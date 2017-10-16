@@ -17,26 +17,33 @@
 
 namespace Google\Cloud\Tests\System\Storage;
 
+use GuzzleHttp\Client;
+use Google\Cloud\Storage\Acl;
 use Google\Cloud\Storage\Bucket;
+use Google\Cloud\PubSub\PubSubClient;
 use Google\Cloud\Storage\StorageClient;
 use Google\Cloud\Storage\StorageObject;
-use GuzzleHttp\Client;
 use GuzzleHttp\Exception\ClientException;
 
 /**
  * @group storage
- * @group storage-requester-pays
+ * @group storage-requesterpays
  */
 class RequesterPaysTest extends StorageTestCase
 {
     private $keyFilePath;
     private $requesterPaysClient;
+    private $requesterProject;
+    private $user;
 
     private static $bucketName;
     private static $ownerBucketInstance;
     private static $object1;
     private static $object2;
     private static $content;
+    private static $topic;
+    private static $notificationId;
+    private static $iamsetup = false;
 
     public static function setupBeforeClass()
     {
@@ -48,6 +55,9 @@ class RequesterPaysTest extends StorageTestCase
         self::$ownerBucketInstance = self::createBucket($client, self::$bucketName, [
             'billing' => ['requesterPays' => true]
         ]);
+
+        self::$topic = self::$pubsubClient->createTopic(uniqid(self::TESTING_PREFIX));
+        self::$deletionQueue->add(self::$topic);
 
         self::$content = uniqid(self::TESTING_PREFIX);
         self::$object1 = self::$ownerBucketInstance->upload(self::$content, [
@@ -69,6 +79,40 @@ class RequesterPaysTest extends StorageTestCase
         $this->requesterPaysClient = new StorageClient([
             'keyFilePath' => $this->keyFilePath
         ]);
+
+        $parentKeyfile = json_decode(file_get_contents(getenv('GOOGLE_CLOUD_PHP_TESTS_KEY_PATH')), true);
+        $keyfile = json_decode(file_get_contents($this->keyFilePath), true);
+        $this->requesterProject = $keyfile['project_id'];
+
+        if (!self::$iamsetup) {
+            // set bucket policy
+            $p = self::$ownerBucketInstance->iam()->policy();
+            $p['bindings'][] = [
+                'role' => 'roles/storage.admin',
+                'members' => [
+                    'serviceAccount:' . $keyfile['client_email']
+                ]
+            ];
+            $p['bindings'][] = [
+                'role' => 'roles/storage.objectAdmin',
+                'members' => [
+                    'serviceAccount:' . $keyfile['client_email']
+                ]
+            ];
+            self::$ownerBucketInstance->iam()->setPolicy($p);
+
+            // set topic policy
+            $p = self::$topic->iam()->policy();
+            $p['bindings'][] = [
+                'role' => 'roles/pubsub.publisher',
+                'members' => [
+                    'serviceAccount:'. $parentKeyfile['project_id'] .'@gs-project-accounts.iam.gserviceaccount.com'
+                ]
+            ];
+            self::$topic->iam()->setPolicy($p);
+
+            self::$iamsetup = true;
+        }
     }
 
     public function testBucketSettings()
@@ -116,10 +160,65 @@ class RequesterPaysTest extends StorageTestCase
         $call($bucket, $object);
     }
 
+    /**
+     * @group foo
+     * @dataProvider requesterPaysMethods
+     */
+    public function testRequesterPaysWithUserProject(callable $call)
+    {
+        $bucket = $this->requesterPaysClient->bucket(self::$bucketName, $this->requesterProject);
+        $object = $bucket->object(self::$object1->name());
+
+        $call($bucket, $object);
+    }
+
     public function requesterPaysMethods()
     {
+        $keyfile = json_decode(file_get_contents(GOOGLE_CLOUD_WHITELIST_KEY_PATH), true);
+        $user = $keyfile['client_email'];
+
         return [
             [
+                function (Bucket $bucket) use ($user) {
+                    $acl = $bucket->acl();
+                    $acl->add('user-'. $user, Acl::ROLE_READER);
+                }
+            ], [
+                function (Bucket $bucket) use ($user) {
+                    $acl = $bucket->acl();
+                    $item = $acl->get(['entity' => 'user-'. $user]);
+                }
+            ], [
+                function (Bucket $bucket) use ($user) {
+                    $acl = $bucket->acl();
+                    $acl->update('user-'. $user, Acl::ROLE_OWNER);
+                }
+            ], [
+                function (Bucket $bucket) use ($user) {
+                    $acl = $bucket->acl();
+                    $acl->delete('user-'. $user);
+                }
+            ], [
+                function (Bucket $bucket) use ($user) {
+                    $acl = $bucket->defaultAcl();
+                    $acl->add('user-'. $user, Acl::ROLE_READER);
+                }
+            ], [
+                function (Bucket $bucket) use ($user) {
+                    $acl = $bucket->defaultAcl();
+                    $item = $acl->get(['entity' => 'user-'. $user]);
+                }
+            ], [
+                function (Bucket $bucket) use ($user) {
+                    $acl = $bucket->defaultAcl();
+                    $acl->update('user-'. $user, Acl::ROLE_OWNER);
+                }
+            ], [
+                function (Bucket $bucket) use ($user) {
+                    $acl = $bucket->defaultAcl();
+                    $acl->delete('user-'. $user);
+                }
+            ], [
                 function (Bucket $bucket) {
                     $bucket->exists();
                 },
@@ -160,6 +259,38 @@ class RequesterPaysTest extends StorageTestCase
                     $bucket->reload();
                 }
             ], [
+                function (Bucket $bucket) {
+                    self::$notificationId = $bucket->createNotification(self::$topic)->info()['id'];
+                }
+            ], [
+                function (Bucket $bucket) {
+                    $bucket->notifications()->current();
+                }
+            ], [
+                function (Bucket $bucket) {
+                    $bucket->notification(self::$notificationId)->reload();
+                }
+            ], [
+                function (Bucket $bucket, StorageObject $object) use ($user) {
+                    $acl = $object->acl();
+                    $acl->add('user-'. $user, Acl::ROLE_READER);
+                }
+            ], [
+                function (Bucket $bucket, StorageObject $object) use ($user) {
+                    $acl = $object->acl();
+                    $item = $acl->get(['entity' => 'user-'. $user]);
+                }
+            ], [
+                function (Bucket $bucket, StorageObject $object) use ($user) {
+                    $acl = $object->acl();
+                    $acl->update('user-'. $user, Acl::ROLE_OWNER);
+                }
+            ], [
+                function (Bucket $bucket, StorageObject $object) use ($user) {
+                    $acl = $object->acl();
+                    $acl->delete('user-'. $user);
+                }
+            ], [
                 function (Bucket $bucket, StorageObject $object) {
                     $object->exists();
                 }
@@ -197,11 +328,13 @@ class RequesterPaysTest extends StorageTestCase
                 }
             ], [
                 function (Bucket $bucket, StorageObject $object) {
-                    $bucket->iam()->setPolicy([]);
+                    $p = $bucket->iam()->policy();
+                    $bucket->iam()->setPolicy($p);
                 }
             ], [
                 function (Bucket $bucket, StorageObject $object) {
-                    $bucket->iam()->testPermissions(['foo']);
+                    // broke!
+                    $bucket->iam()->testPermissions(['storage.objects.create', 'storage.objects.delete']);
                 }
             ], [
                 function (Bucket $bucket, StorageObject $object) {
@@ -209,5 +342,11 @@ class RequesterPaysTest extends StorageTestCase
                 }
             ]
         ];
+    }
+
+    public function testDeleteNotification()
+    {
+        $bucket = $this->requesterPaysClient->bucket(self::$bucketName, $this->requesterProject);
+        $bucket->notification(self::$notificationId)->delete();
     }
 }
