@@ -369,7 +369,7 @@ class Table
      *        [upstream API documentation for Job configuration]
      *        (https://cloud.google.com/bigquery/docs/reference/rest/v2/jobs#configuration)
      *        for the available options.
-     * @return ExportJobConfiguration
+     * @return ExtractJobConfiguration
      */
     public function extract($destination, array $options = [])
     {
