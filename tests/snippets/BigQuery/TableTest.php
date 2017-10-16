@@ -19,8 +19,12 @@ namespace Google\Cloud\Tests\Snippets\BigQuery;
 
 use Google\Cloud\BigQuery\BigQueryClient;
 use Google\Cloud\BigQuery\Connection\ConnectionInterface;
+use Google\Cloud\BigQuery\CopyJobConfiguration;
+use Google\Cloud\BigQuery\ExtractJobConfiguration;
 use Google\Cloud\BigQuery\InsertResponse;
 use Google\Cloud\BigQuery\Job;
+use Google\Cloud\BigQuery\JobConfigurationInterface;
+use Google\Cloud\BigQuery\LoadJobConfiguration;
 use Google\Cloud\BigQuery\Table;
 use Google\Cloud\BigQuery\ValueMapper;
 use Google\Cloud\Core\Iterator\ItemIterator;
@@ -38,6 +42,7 @@ class TableTest extends SnippetTestCase
     const ID = 'foo';
     const DSID = 'bar';
     const PROJECT = 'my-awesome-project';
+    const JOB_ID = '123';
 
     private $info;
     private $connection;
@@ -137,102 +142,158 @@ class TableTest extends SnippetTestCase
         $this->assertEquals('abcd' . PHP_EOL, $res->output());
     }
 
+    public function testRunJob()
+    {
+        $jobConfig = $this->prophesize(JobConfigurationInterface::class);
+        $jobConfig->toArray()
+            ->willReturn([
+                'projectId' => self::PROJECT,
+                'jobReference' => [
+                    'jobId' => self::JOB_ID,
+                    'projectId' => self::PROJECT
+                ]
+            ]);
+        $snippet = $this->snippetFromMethod(Table::class, 'runJob');
+        $snippet->addLocal('table', $this->table);
+        $snippet->addLocal('jobConfig', $jobConfig->reveal());
+        $this->connection->insertJob(Argument::any())
+            ->shouldBeCalled()
+            ->willReturn([
+                'jobReference' => [
+                    'jobId' => self::JOB_ID
+                ],
+                'status' => [
+                    'state' => 'DONE'
+                ]
+            ]);
+        $this->table->___setProperty('connection', $this->connection->reveal());
+        $res = $snippet->invoke('job');
+
+        $this->assertInstanceOf(Job::class, $res->returnVal());
+        $this->assertEquals('1', $res->output());
+    }
+
+    public function testStartJob()
+    {
+        $jobConfig = $this->prophesize(JobConfigurationInterface::class);
+        $jobConfig->toArray()
+            ->willReturn([
+                'projectId' => self::PROJECT,
+                'jobReference' => [
+                    'jobId' => self::JOB_ID,
+                    'projectId' => self::PROJECT
+                ]
+            ]);
+        $snippet = $this->snippetFromMethod(Table::class, 'startJob');
+        $snippet->addLocal('table', $this->table);
+        $snippet->addLocal('jobConfig', $jobConfig->reveal());
+        $this->connection->insertJob(Argument::any())
+            ->shouldBeCalled()
+            ->willReturn([
+                'jobReference' => [
+                    'jobId' => self::JOB_ID
+                ]
+            ]);
+        $this->table->___setProperty('connection', $this->connection->reveal());
+        $res = $snippet->invoke('job');
+
+        $this->assertInstanceOf(Job::class, $res->returnVal());
+    }
+
     public function testCopy()
     {
         $bq = \Google\Cloud\Dev\stub(BigQueryClient::class);
         $snippet = $this->snippetFromMethod(Table::class, 'copy');
         $snippet->addLocal('bigQuery', $bq);
-
         $bq->___setProperty('connection', $this->connection->reveal());
+        $config = $snippet->invoke('copyJobConfig')
+            ->returnVal();
 
-        $this->connection->insertJob(Argument::any())
-            ->shouldBeCalled()
-            ->willReturn([
-                'jobReference' => [
-                    'jobId' => '123'
+        $this->assertInstanceOf(CopyJobConfiguration::class, $config);
+        $this->assertEquals(
+            [
+                'destinationTable' => [
+                    'projectId' => self::PROJECT,
+                    'datasetId' => 'myDataset',
+                    'tableId' => 'myDestinationTable'
+                ],
+                'sourceTable' => [
+                    'projectId' => self::PROJECT,
+                    'datasetId' => 'myDataset',
+                    'tableId' => 'mySourceTable'
                 ]
-            ]);
-
-        $this->table->___setProperty('connection', $this->connection->reveal());
-
-        $res = $snippet->invoke('job');
-        $this->assertInstanceOf(Job::class, $res->returnVal());
+            ],
+            $config->toArray()['configuration']['copy']
+        );
     }
 
-    public function testExport()
+    public function testExtract()
     {
         $storage = \Google\Cloud\Dev\stub(StorageClient::class);
         $storage->___setProperty('connection', $this->prophesize(StorageConnection::class)->reveal());
-
-        $snippet = $this->snippetFromMethod(Table::class, 'export');
+        $snippet = $this->snippetFromMethod(Table::class, 'extract');
         $snippet->addLocal('storage', $storage);
         $snippet->addLocal('table', $this->table);
+        $config = $snippet->invoke('extractJobConfig')
+            ->returnVal();
 
-        $this->connection->insertJob(Argument::any())
-            ->shouldBeCalled()
-            ->willReturn([
-                'jobReference' => [
-                    'jobId' => '123'
+        $this->assertInstanceOf(ExtractJobConfiguration::class, $config);
+        $this->assertEquals(
+            [
+                'destinationUris' => ['gs://myBucket/tableOutput'],
+                'sourceTable' => [
+                    'projectId' => self::PROJECT,
+                    'datasetId' => self::DSID,
+                    'tableId' => self::ID
                 ]
-            ]);
-
-        $this->table->___setProperty('connection', $this->connection->reveal());
-
-        $res = $snippet->invoke('job');
-        $this->assertInstanceOf(Job::class, $res->returnVal());
+            ],
+            $config->toArray()['configuration']['extract']
+        );
     }
 
     public function testLoad()
     {
         $snippet = $this->snippetFromMethod(Table::class, 'load');
         $snippet->addLocal('table', $this->table);
-        $snippet->replace('/path/to/my/data.csv', 'php://temp');
+        $snippet->replace('fopen(\'/path/to/my/data.csv\', \'r\')', '123');
+        $config = $snippet->invoke('loadJobConfig')
+            ->returnVal();
 
-        $uploader = $this->prophesize(MultipartUploader::class);
-        $uploader->upload()
-            ->shouldBeCalled()
-            ->willReturn([
-                'jobReference' => [
-                    'jobId' => '123'
+        $this->assertInstanceOf(LoadJobConfiguration::class, $config);
+        $this->assertEquals(
+            [
+                'destinationTable' => [
+                    'projectId' => self::PROJECT,
+                    'datasetId' => self::DSID,
+                    'tableId' => self::ID
                 ]
-            ]);
-
-        $this->connection->insertJobUpload(Argument::any())
-            ->shouldBeCalled()
-            ->willReturn($uploader->reveal());
-
-        $this->table->___setProperty('connection', $this->connection->reveal());
-
-        $res = $snippet->invoke('job');
-        $this->assertInstanceOf(Job::class, $res->returnVal());
+            ],
+            $config->toArray()['configuration']['load']
+        );
     }
 
     public function testLoadFromStorage()
     {
         $storage = \Google\Cloud\Dev\stub(StorageClient::class);
         $storage->___setProperty('connection', $this->prophesize(StorageConnection::class)->reveal());
-
         $snippet = $this->snippetFromMethod(Table::class, 'loadFromStorage');
         $snippet->addLocal('storage', $storage);
         $snippet->addLocal('table', $this->table);
+        $config = $snippet->invoke('loadJobConfig')
+            ->returnVal();
 
-        $uploader = $this->prophesize(MultipartUploader::class);
-        $uploader->upload()
-            ->shouldBeCalled()
-            ->willReturn([
-                'jobReference' => [
-                    'jobId' => '123'
+        $this->assertInstanceOf(LoadJobConfiguration::class, $config);
+        $this->assertEquals(
+            [
+                'sourceUris' => ['gs://myBucket/important-data.csv'],
+                'destinationTable' => [
+                    'projectId' => self::PROJECT,
+                    'datasetId' => self::DSID,
+                    'tableId' => self::ID
                 ]
-            ]);
-
-        $this->connection->insertJobUpload(Argument::any())
-            ->shouldBeCalled()
-            ->willReturn($uploader->reveal());
-
-        $this->table->___setProperty('connection', $this->connection->reveal());
-
-        $res = $snippet->invoke('job');
-        $this->assertInstanceOf(Job::class, $res->returnVal());
+            ],
+            $config->toArray()['configuration']['load']
+        );
     }
 
     public function testInsertRow()

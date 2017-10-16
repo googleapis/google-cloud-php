@@ -36,13 +36,13 @@ class RequestWrapper
     use RetryDeciderTrait;
 
     /**
-     * @var string The current version of the component from which the request
+     * @var string|null The current version of the component from which the request
      * originated.
      */
     private $componentVersion;
 
     /**
-     * @var string Access token used to sign requests.
+     * @var string|null Access token used to sign requests.
      */
     private $accessToken;
 
@@ -63,15 +63,21 @@ class RequestWrapper
     private $restOptions;
 
     /**
-     * @var bool $shouldSignRequest Whether to enable request signing.
+     * @var bool Whether to enable request signing.
      */
     private $shouldSignRequest;
 
     /**
-     * @var callable $retryFunction Sets the conditions for whether or not a
+     * @var callable Sets the conditions for whether or not a
      * request should attempt to retry.
      */
     private $retryFunction;
+
+    /**
+     * @var callable|null Sets the conditions for determining how long to wait
+     * between attempts to retry.
+     */
+    private $restDelayFunction;
 
     /**
      * @param array $config [optional] {
@@ -89,6 +95,8 @@ class RequestWrapper
      *     @type bool $shouldSignRequest Whether to enable request signing.
      *     @type callable $restRetryFunction Sets the conditions for whether or
      *           not a request should attempt to retry.
+     *     @type callable $restDelayFunction Sets the conditions for determining
+     *           how long to wait between attempts to retry.
      * }
      */
     public function __construct(array $config = [])
@@ -101,7 +109,8 @@ class RequestWrapper
             'restOptions' => [],
             'shouldSignRequest' => true,
             'componentVersion' => null,
-            'restRetryFunction' => null
+            'restRetryFunction' => null,
+            'restDelayFunction' => null
         ];
 
         $this->componentVersion = $config['componentVersion'];
@@ -111,6 +120,7 @@ class RequestWrapper
         $this->restOptions = $config['restOptions'];
         $this->shouldSignRequest = $config['shouldSignRequest'];
         $this->retryFunction = $config['restRetryFunction'] ?: $this->getRetryFunction();
+        $this->delayFunction = $config['restDelayFunction'];
     }
 
     /**
@@ -126,19 +136,17 @@ class RequestWrapper
      *           **Defaults to** `3`.
      *     @type callable $restRetryFunction Sets the conditions for whether or
      *           not a request should attempt to retry.
+     *     @type callable $restDelayFunction Sets the conditions for determining
+     *           how long to wait between attempts to retry.
      *     @type array $restOptions HTTP client specific configuration options.
      * }
      * @return ResponseInterface
      */
     public function send(RequestInterface $request, array $options = [])
     {
-        $retries = isset($options['retries']) ? $options['retries'] : $this->retries;
         $restOptions = isset($options['restOptions']) ? $options['restOptions'] : $this->restOptions;
         $timeout = isset($options['requestTimeout']) ? $options['requestTimeout'] : $this->requestTimeout;
-        $retryFunction = isset($options['restRetryFunction'])
-            ? $options['restRetryFunction']
-            : $this->retryFunction;
-        $backoff = new ExponentialBackoff($retries, $retryFunction);
+        $backoff = $this->configureBackoff($options);
 
         if ($timeout && !array_key_exists('timeout', $restOptions)) {
             $restOptions['timeout'] = $timeout;
@@ -265,5 +273,31 @@ class RequestWrapper
         }
 
         return $ex->getMessage();
+    }
+
+    /**
+     * Configures an exponential backoff implementation.
+     *
+     * @param array $options
+     * @return ExponentialBackoff
+     */
+    private function configureBackoff(array $options)
+    {
+        $retries = isset($options['retries'])
+            ? $options['retries']
+            : $this->retries;
+        $retryFunction = isset($options['restRetryFunction'])
+            ? $options['restRetryFunction']
+            : $this->retryFunction;
+        $delayFunction = isset($options['restDelayFunction'])
+            ? $options['restDelayFunction']
+            : $this->delayFunction;
+        $backoff = new ExponentialBackoff($retries, $retryFunction);
+
+        if ($delayFunction) {
+            $backoff->setDelayFunction($delayFunction);
+        }
+
+        return $backoff;
     }
 }

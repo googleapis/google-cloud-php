@@ -19,11 +19,14 @@ namespace Google\Cloud\BigQuery;
 
 use Google\Cloud\BigQuery\Connection\ConnectionInterface;
 use Google\Cloud\BigQuery\Connection\Rest;
+use Google\Cloud\BigQuery\Exception\JobException;
+use Google\Cloud\BigQuery\Job;
 use Google\Cloud\Core\ArrayTrait;
-use Google\Cloud\Core\Iterator\ItemIterator;
-use Google\Cloud\Core\Iterator\PageIterator;
 use Google\Cloud\Core\ClientTrait;
 use Google\Cloud\Core\Int64;
+use Google\Cloud\Core\Iterator\ItemIterator;
+use Google\Cloud\Core\Iterator\PageIterator;
+use Google\Cloud\Core\RetryDeciderTrait;
 use Psr\Cache\CacheItemPoolInterface;
 use Psr\Http\Message\StreamInterface;
 
@@ -43,9 +46,11 @@ class BigQueryClient
 {
     use ArrayTrait;
     use ClientTrait;
-    use JobConfigurationTrait;
+    use RetryDeciderTrait;
 
     const VERSION = '0.2.4';
+
+    const MAX_DELAY_MICROSECONDS = 32000000;
 
     const SCOPE = 'https://www.googleapis.com/auth/bigquery';
     const INSERT_SCOPE = 'https://www.googleapis.com/auth/bigquery.insertdata';
@@ -56,7 +61,7 @@ class BigQueryClient
     protected $connection;
 
     /**
-     * @var ValueMapper $mapper Maps values between PHP and BigQuery.
+     * @var ValueMapper Maps values between PHP and BigQuery.
      */
     private $mapper;
 
@@ -95,13 +100,83 @@ class BigQueryClient
      */
     public function __construct(array $config = [])
     {
+        $this->setHttpRetryCodes([]);
+        $this->setHttpRetryMessages([
+            'rateLimitExceeded',
+            'backendError'
+        ]);
         $config += [
             'scopes' => [self::SCOPE],
-            'returnInt64AsObject' => false
+            'returnInt64AsObject' => false,
+            'restRetryFunction' => $this->getRetryFunction(),
+            'restDelayFunction' => function ($attempt) {
+                return min(
+                    mt_rand(0, 1000000) + (pow(2, $attempt) * 1000000),
+                    self::MAX_DELAY_MICROSECONDS
+                );
+            }
         ];
 
         $this->connection = new Rest($this->configureAuthentication($config));
         $this->mapper = new ValueMapper($config['returnInt64AsObject']);
+    }
+
+    /**
+     * Returns a job configuration to be passed to either
+     * {@see Google\Cloud\BigQuery\BigQueryClient::runQuery()} or
+     * {@see Google\Cloud\BigQuery\BigQueryClient::startQuery()}. A
+     * configuration can be built using fluent setters or by providing a full
+     * set of options at once.
+     *
+     * Unless otherwise specified, all configuration options will default based
+     * on the [Jobs configuration API documentation]
+     * (https://cloud.google.com/bigquery/docs/reference/rest/v2/jobs#configuration)
+     * except for `configuration.query.useLegacySql`, which defaults to `false`
+     * in this client.
+     *
+     * Example:
+     * ```
+     * $queryJobConfig = $bigQuery->query(
+     *     'SELECT commit FROM `bigquery-public-data.github_repos.commits` LIMIT 100'
+     * );
+     * ```
+     *
+     * ```
+     * // Set create disposition using fluent setters.
+     * $queryJobConfig = $bigQuery->query(
+     *     'SELECT commit FROM `bigquery-public-data.github_repos.commits` LIMIT 100'
+     * )->createDisposition('CREATE_NEVER');
+     * ```
+     *
+     * ```
+     * // This is equivalent to the above example, using array configuration
+     * // instead of fluent setters.
+     * $queryJobConfig = $bigQuery->query(
+     *     'SELECT commit FROM `bigquery-public-data.github_repos.commits` LIMIT 100',
+     *     [
+     *         'configuration' => [
+     *             'query' => [
+     *                 'createDisposition' => 'CREATE_NEVER'
+     *             ]
+     *         ]
+     *     ]
+     * );
+     * ```
+     *
+     * @param string $query A BigQuery SQL query.
+     * @param array $options [optional] Please see the
+     *        [API documentation for Job configuration]
+     *        (https://cloud.google.com/bigquery/docs/reference/rest/v2/jobs#configuration)
+     *        for the available options.
+     * @return QueryJobConfiguration
+     */
+    public function query($query, array $options = [])
+    {
+        return (new QueryJobConfiguration(
+            $this->mapper,
+            $this->projectId,
+            $options
+        ))->query($query);
     }
 
     /**
@@ -112,7 +187,7 @@ class BigQueryClient
      *
      * Queries constructed using
      * [standard SQL](https://cloud.google.com/bigquery/docs/reference/standard-sql/)
-     * can take advantage of parametriziation.
+     * can take advantage of parameterization.
      *
      * Refer to the table below for a guide on how parameter types are mapped to
      * their BigQuery equivalents.
@@ -136,17 +211,12 @@ class BigQueryClient
      *
      * Example:
      * ```
-     * $queryResults = $bigQuery->runQuery('SELECT commit FROM [bigquery-public-data:github_repos.commits] LIMIT 100');
+     * $queryJobConfig = $bigQuery->query(
+     *     'SELECT commit FROM `bigquery-public-data.github_repos.commits` LIMIT 100'
+     * );
+     * $queryResults = $bigQuery->runQuery($queryJobConfig);
      *
-     * $isComplete = $queryResults->isComplete();
-     *
-     * while (!$isComplete) {
-     *     sleep(1); // let's wait for a moment...
-     *     $queryResults->reload(); // trigger a network request
-     *     $isComplete = $queryResults->isComplete(); // check the query's status
-     * }
-     *
-     * foreach ($queryResults->rows() as $row) {
+     * foreach ($queryResults as $row) {
      *     echo $row['commit'];
      * }
      * ```
@@ -155,22 +225,14 @@ class BigQueryClient
      * // Construct a query utilizing named parameters.
      * $query = 'SELECT commit FROM `bigquery-public-data.github_repos.commits`' .
      *          'WHERE author.date < @date AND message = @message LIMIT 100';
-     * $queryResults = $bigQuery->runQuery($query, [
-     *     'parameters' => [
+     * $queryJobConfig = $bigQuery->query($query)
+     *     ->parameters([
      *         'date' => $bigQuery->timestamp(new \DateTime('1980-01-01 12:15:00Z')),
      *         'message' => 'A commit message.'
-     *     ]
-     * ]);
+     *     ]);
+     * $queryResults = $bigQuery->runQuery($queryJobConfig);
      *
-     * $isComplete = $queryResults->isComplete();
-     *
-     * while (!$isComplete) {
-     *     sleep(1); // let's wait for a moment...
-     *     $queryResults->reload(); // trigger a network request
-     *     $isComplete = $queryResults->isComplete(); // check the query's status
-     * }
-     *
-     * foreach ($queryResults->rows() as $row) {
+     * foreach ($queryResults as $row) {
      *     echo $row['commit'];
      * }
      * ```
@@ -178,26 +240,18 @@ class BigQueryClient
      * ```
      * // Construct a query utilizing positional parameters.
      * $query = 'SELECT commit FROM `bigquery-public-data.github_repos.commits` WHERE message = ? LIMIT 100';
-     * $queryResults = $bigQuery->runQuery($query, [
-     *     'parameters' => ['A commit message.']
-     * ]);
+     * $queryJobConfig = $bigQuery->query($query)
+     *     ->parameters(['A commit message.']);
+     * $queryResults = $bigQuery->runQuery($queryJobConfig);
      *
-     * $isComplete = $queryResults->isComplete();
-     *
-     * while (!$isComplete) {
-     *     sleep(1); // let's wait for a moment...
-     *     $queryResults->reload(); // trigger a network request
-     *     $isComplete = $queryResults->isComplete(); // check the query's status
-     * }
-     *
-     * foreach ($queryResults->rows() as $row) {
+     * foreach ($queryResults as $row) {
      *     echo $row['commit'];
      * }
      * ```
      *
      * @see https://cloud.google.com/bigquery/docs/reference/v2/jobs/query Query API documentation.
      *
-     * @param string $query A BigQuery SQL query.
+     * @param QueryJobConfiguration $query A BigQuery SQL query configuration.
      * @param array $options [optional] {
      *     Configuration options.
      *
@@ -205,114 +259,66 @@ class BigQueryClient
      *           of results. Setting this flag to a small value such as 1000 and
      *           then paging through results might improve reliability when the
      *           query result set is large.
-     *     @type array $defaultDataset Specifies the default datasetId and
-     *           projectId to assume for any unqualified table names in the
-     *           query. If not set, all table names in the query string must be
-     *           qualified in the format 'datasetId.tableId'.
+     *     @type int $startIndex Zero-based index of the starting row.
      *     @type int $timeoutMs How long to wait for the query to complete, in
      *           milliseconds. **Defaults to** `10000` milliseconds (10 seconds).
-     *     @type bool $useQueryCache Whether to look for the result in the query
-     *           cache.
-     *     @type bool $useLegacySql Specifies whether to use BigQuery's legacy
-     *           SQL dialect for this query. **Defaults to** `true`. If set to
-     *           false, the query will use
-     *           [BigQuery's standard SQL](https://cloud.google.com/bigquery/sql-reference).
-     *     @type array $parameters Only available for standard SQL queries.
-     *           When providing a non-associative array positional parameters
-     *           (`?`) will be used. When providing an associative array
-     *           named parameters will be used (`@name`).
+     *     @type int $maxRetries The number of times to retry, checking if the
+     *           query has completed. **Defaults to** `100`.
      * }
      * @return QueryResults
+     * @throws JobException If the maximum number of retries while waiting for
+     *         query completion has been exceeded.
      */
-    public function runQuery($query, array $options = [])
+    public function runQuery(JobConfigurationInterface $query, array $options = [])
     {
-        if (isset($options['parameters'])) {
-            $options += $this->formatQueryParameters($options['parameters']);
-            unset($options['parameters']);
-        }
+        $queryResultsOptions = $this->pluckArray([
+            'maxResults',
+            'startIndex',
+            'timeoutMs',
+            'maxRetries'
+        ], $options);
 
-        $response = $this->connection->query([
-            'projectId' => $this->projectId,
-            'query' => $query
-        ] + $options);
-
-        return new QueryResults(
-            $this->connection,
-            $response['jobReference']['jobId'],
-            $this->projectId,
-            $response,
-            $options,
-            $this->mapper
-        );
+        return $this->startQuery(
+            $query,
+            $options
+        )->queryResults($queryResultsOptions + $options);
     }
 
     /**
-     * Runs a BigQuery SQL query in an asynchronous fashion. Running a query
-     * in this fashion requires you to poll for the status before being able
-     * to access results.
+     * Runs a BigQuery SQL query in an asynchronous fashion.
      *
      * Queries constructed using
      * [standard SQL](https://cloud.google.com/bigquery/docs/reference/standard-sql/)
-     * can take advantage of parametriziation. For more details and examples
+     * can take advantage of parameterization. For more details and examples
      * please see {@see Google\Cloud\BigQuery\BigQueryClient::runQuery()}.
      *
      * Example:
      * ```
-     * $job = $bigQuery->runQueryAsJob('SELECT commit FROM [bigquery-public-data:github_repos.commits] LIMIT 100');
-     *
-     * $isComplete = false;
+     * $queryJobConfig = $bigQuery->query(
+     *     'SELECT commit FROM `bigquery-public-data.github_repos.commits` LIMIT 100'
+     * );
+     * $job = $bigQuery->startQuery($queryJobConfig);
      * $queryResults = $job->queryResults();
      *
-     * while (!$isComplete) {
-     *     sleep(1); // let's wait for a moment...
-     *     $queryResults->reload(); // trigger a network request
-     *     $isComplete = $queryResults->isComplete(); // check the query's status
-     * }
-     *
-     * foreach ($queryResults->rows() as $row) {
+     * foreach ($queryResults as $row) {
      *     echo $row['commit'];
      * }
      * ```
      *
      * @see https://cloud.google.com/bigquery/docs/reference/v2/jobs/insert Jobs insert API documentation.
      *
-     * @param string $query A BigQuery SQL query.
-     * @param array $options [optional] {
-     *     Configuration options.
-     *
-     *     @type array $parameters Only available for standard SQL queries.
-     *           When providing a non-associative array positional parameters
-     *           (`?`) will be used. When providing an associative array
-     *           named parameters will be used (`@name`).
-     *     @type array $jobConfig Configuration settings for a query job are
-     *           outlined in the [API Docs for `configuration.query`](https://goo.gl/PuRa3I).
-     *           If not provided default settings will be used.
-     * }
+     * @param QueryJobConfiguration $query A BigQuery SQL query configuration.
+     * @param array $options [optional] Configuration options.
      * @return Job
      */
-    public function runQueryAsJob($query, array $options = [])
+    public function startQuery(JobConfigurationInterface $query, array $options = [])
     {
-        if (isset($options['parameters'])) {
-            if (!isset($options['jobConfig'])) {
-                $options['jobConfig'] = [];
-            }
-
-            $options['jobConfig'] += $this->formatQueryParameters($options['parameters']);
-            unset($options['parameters']);
-        }
-
-        $config = $this->buildJobConfig(
-            'query',
-            $this->projectId,
-            ['query' => $query],
-            $options
-        );
-
-        $response = $this->connection->insertJob($config);
+        $config = $query->toArray();
+        $response = $this->connection->insertJob($config + $options);
 
         return new Job(
             $this->connection,
-            $response['jobReference']['jobId'],
+            $config['jobReference']['jobId'],
             $this->projectId,
             $this->mapper,
             $response
@@ -329,7 +335,7 @@ class BigQueryClient
      * $job = $bigQuery->job('myJobId');
      * ```
      *
-     * @param string $id The id of the job to request.
+     * @param string $id The id of the already run or running job to request.
      * @return Job
      */
     public function job($id)
@@ -472,6 +478,9 @@ class BigQueryClient
     /**
      * Creates a dataset.
      *
+     * Please note that by default the library will not attempt to retry this
+     * call on your behalf.
+     *
      * Example:
      * ```
      * $dataset = $bigQuery->createDataset('aDataset');
@@ -496,12 +505,16 @@ class BigQueryClient
             unset($options['metadata']);
         }
 
-        $response = $this->connection->insertDataset([
-            'projectId' => $this->projectId,
-            'datasetReference' => [
-                'datasetId' => $id
+        $response = $this->connection->insertDataset(
+            [
+                'projectId' => $this->projectId,
+                'datasetReference' => [
+                    'datasetId' => $id
+                ]
             ]
-        ] + $options);
+            + $options
+            + ['retries' => 0]
+        );
 
         return new Dataset(
             $this->connection,
@@ -591,31 +604,5 @@ class BigQueryClient
     public function timestamp(\DateTimeInterface $value)
     {
         return new Timestamp($value);
-    }
-
-    /**
-     * Formats query parameters for the API.
-     *
-     * @param array $parameters The parameters to format.
-     * @return array
-     */
-    private function formatQueryParameters(array $parameters)
-    {
-        $options = [
-            'parameterMode' => $this->isAssoc($parameters) ? 'named' : 'positional',
-            'useLegacySql' => false
-        ];
-
-        foreach ($parameters as $name => $value) {
-            $param = $this->mapper->toParameter($value);
-
-            if ($options['parameterMode'] === 'named') {
-                $param += ['name' => $name];
-            }
-
-            $options['queryParameters'][] = $param;
-        }
-
-        return $options;
     }
 }

@@ -27,13 +27,12 @@ class ManageJobsTest extends BigQueryTestCase
 {
     public function testListJobs()
     {
-        self::$client->runQueryAsJob(
-            sprintf(
-                'SELECT * FROM [%s.%s]',
-                self::$dataset->id(),
-                self::$table->id()
-            )
-        );
+        $query = self::$client->query(sprintf(
+            'SELECT * FROM [%s.%s]',
+            self::$dataset->id(),
+            self::$table->id()
+        ));
+        self::$client->startQuery($query);
         $jobs = self::$client->jobs();
         $job = null;
 
@@ -59,13 +58,12 @@ class ManageJobsTest extends BigQueryTestCase
 
     public function testCancelsJob()
     {
-        $job = self::$client->runQueryAsJob(
-            sprintf(
-                'SELECT * FROM [%s.%s]',
-                self::$dataset->id(),
-                self::$table->id()
-            )
-        );
+        $query = self::$client->query(sprintf(
+            'SELECT * FROM [%s.%s]',
+            self::$dataset->id(),
+            self::$table->id()
+        ));
+        $job = self::$client->startQuery($query);
         $job->cancel();
     }
 

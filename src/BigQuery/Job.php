@@ -18,6 +18,8 @@
 namespace Google\Cloud\BigQuery;
 
 use Google\Cloud\BigQuery\Connection\ConnectionInterface;
+use Google\Cloud\BigQuery\Exception\JobException;
+use Google\Cloud\Core\ArrayTrait;
 use Google\Cloud\Core\Exception\NotFoundException;
 
 /**
@@ -27,6 +29,11 @@ use Google\Cloud\Core\Exception\NotFoundException;
  */
 class Job
 {
+    use ArrayTrait;
+    use JobWaitTrait;
+
+    const MAX_RETRIES = 100;
+
     /**
      * @var ConnectionInterface Represents a connection to BigQuery.
      */
@@ -96,6 +103,9 @@ class Job
      * Requests that a job be cancelled. You will need to poll the job to ensure
      * the cancel request successfully goes through.
      *
+     * Please note that by default the library will not attempt to retry this
+     * call on your behalf.
+     *
      * Example:
      * ```
      * $job->cancel();
@@ -117,7 +127,11 @@ class Job
      */
     public function cancel(array $options = [])
     {
-        $this->connection->cancelJob($options + $this->identity);
+        $this->connection->cancelJob(
+            $options
+            + ['retries' => 0]
+            + $this->identity
+        );
     }
 
     /**
@@ -143,15 +157,45 @@ class Job
      */
     public function queryResults(array $options = [])
     {
-        $response = $this->connection->getQueryResults($options + $this->identity);
-
         return new QueryResults(
             $this->connection,
             $this->identity['jobId'],
             $this->identity['projectId'],
-            $response,
-            $options,
-            $this->mapper
+            $this->connection->getQueryResults($options + $this->identity),
+            $this->mapper,
+            $this
+        );
+    }
+
+    /**
+     * Blocks until the job is complete.
+     *
+     * Example:
+     * ```
+     * $job->waitUntilComplete();
+     * ```
+     *
+     * @param array $options [optional] {
+     *     Configuration options.
+     *
+     *     @type int $maxRetries The number of times to retry, checking if the
+     *           job has completed. **Defaults to** `100`.
+     * }
+     * @throws JobException If the maximum number of retries while waiting for
+     *         job completion has been exceeded.
+     */
+    public function waitUntilComplete(array $options = [])
+    {
+        $maxRetries = $this->pluck('maxRetries', $options, false);
+        $this->wait(
+            function () use ($options) {
+                return $this->isComplete($options);
+            },
+            function () use ($options) {
+                return $this->reload($options);
+            },
+            $this,
+            $maxRetries
         );
     }
 
@@ -171,6 +215,7 @@ class Job
      *
      * echo 'Query complete!';
      * ```
+     *
      * @param array $options [optional] Configuration options.
      * @return bool
      */

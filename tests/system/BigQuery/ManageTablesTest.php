@@ -74,7 +74,8 @@ class ManageTablesTest extends BigQueryTestCase
      */
     public function testCopiesTable($table)
     {
-        $job = self::$table->copy($table);
+        $copyJobConfig = self::$table->copy($table);
+        $job = self::$table->startJob($copyJobConfig);
         $backoff = new ExponentialBackoff(8);
         $backoff->execute(function () use ($job) {
             $job->reload();
@@ -91,17 +92,15 @@ class ManageTablesTest extends BigQueryTestCase
         $this->assertArrayNotHasKey('errorResult', $job->info()['status']);
     }
 
-    public function testExportsTable()
+    public function testExtractsTable()
     {
         $object = self::$bucket->object(
             uniqid(self::TESTING_PREFIX)
         );
 
-        $job = self::$table->export($object, [
-            'jobConfig' => [
-                'destinationFormat' => 'NEWLINE_DELIMITED_JSON'
-            ]
-        ]);
+        $extractJobConfig = self::$table->extract($object)
+            ->destinationFormat('NEWLINE_DELIMITED_JSON');
+        $job = self::$table->startJob($extractJobConfig);
 
         $backoff = new ExponentialBackoff(8);
         $backoff->execute(function () use ($job) {
@@ -127,6 +126,19 @@ class ManageTablesTest extends BigQueryTestCase
         $info = self::$table->update($metadata);
 
         $this->assertEquals($metadata['friendlyName'], $info['friendlyName']);
+    }
+
+    /**
+     * @expectedException Google\Cloud\Core\Exception\FailedPreconditionException
+     */
+    public function testUpdateTableConcurrentUpdateFails()
+    {
+        $data = [
+            'friendlyName' => 'foo',
+            'etag' => 'blah'
+        ];
+
+        self::$table->update($data);
     }
 
     public function testReloadsTable()
