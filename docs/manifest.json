@@ -11,6 +11,7 @@
             "name": "google/cloud",
             "defaultService": "readme",
             "versions": [
+                "v0.40.0",
                 "v0.39.2",
                 "v0.39.1",
                 "v0.39.0",
@@ -69,6 +70,7 @@
             "name": "google/cloud-bigquery",
             "defaultService": "bigquery/bigqueryclient",
             "versions": [
+                "v0.3.0",
                 "v0.2.4",
                 "v0.2.3",
                 "v0.2.2",
@@ -83,6 +85,7 @@
             "name": "google/cloud-core",
             "defaultService": "core/servicebuilder",
             "versions": [
+                "v1.10.0",
                 "v1.9.0",
                 "v1.8.1",
                 "v1.8.0",
@@ -118,6 +121,7 @@
             "name": "google/cloud-dlp",
             "defaultService": "dlp/readme",
             "versions": [
+                "v0.2.0",
                 "v0.1.2",
                 "v0.1.1",
                 "v0.1.0",
@@ -129,6 +133,7 @@
             "name": "google/cloud-error-reporting",
             "defaultService": "errorreporting/readme",
             "versions": [
+                "v0.5.0",
                 "v0.4.3",
                 "v0.4.2",
                 "v0.4.1",
@@ -145,6 +150,7 @@
             "name": "google/cloud-logging",
             "defaultService": "logging/loggingclient",
             "versions": [
+                "v1.5.0",
                 "v1.4.0",
                 "v1.3.2",
                 "v1.3.1",
@@ -161,6 +167,7 @@
             "name": "google/cloud-monitoring",
             "defaultService": "monitoring/readme",
             "versions": [
+                "v0.5.0",
                 "v0.4.3",
                 "v0.4.2",
                 "v0.4.1",
@@ -177,6 +184,7 @@
             "name": "google/cloud-language",
             "defaultService": "language/languageclient",
             "versions": [
+                "v0.6.0",
                 "v0.5.0",
                 "v0.4.1",
                 "v0.4.0",
@@ -191,6 +199,7 @@
             "name": "google/cloud-pubsub",
             "defaultService": "pubsub/pubsubclient",
             "versions": [
+                "v0.8.0",
                 "v0.7.0",
                 "v0.6.2",
                 "v0.6.1",
@@ -209,6 +218,7 @@
             "name": "google/cloud-spanner",
             "defaultService": "spanner/spannerclient",
             "versions": [
+                "v0.7.0",
                 "v0.6.0",
                 "v0.5.0",
                 "v0.4.0",
@@ -227,6 +237,7 @@
             "name": "google/cloud-speech",
             "defaultService": "speech/speechclient",
             "versions": [
+                "v0.8.0",
                 "v0.7.0",
                 "v0.6.2",
                 "v0.6.1",
@@ -244,6 +255,7 @@
             "name": "google/cloud-storage",
             "defaultService": "storage/storageclient",
             "versions": [
+                "v1.2.0",
                 "v1.1.5",
                 "v1.1.4",
                 "v1.1.3",
@@ -286,6 +298,7 @@
             "name": "google/cloud-videointelligence",
             "defaultService": "videointelligence/videointelligenceserviceclient",
             "versions": [
+                "v0.5.0",
                 "v0.4.0",
                 "v0.3.3",
                 "v0.3.2",
@@ -301,6 +314,7 @@
             "name": "google/cloud-vision",
             "defaultService": "vision/visionclient",
             "versions": [
+                "v0.5.0",
                 "v0.4.1",
                 "v0.4.0",
                 "v0.3.0",
