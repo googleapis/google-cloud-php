@@ -30,6 +30,7 @@
 
 namespace Google\Cloud\Firestore\V1beta1;
 
+use Google\Cloud\Version;
 use Google\Firestore\V1beta1\BatchGetDocumentsRequest;
 use Google\Firestore\V1beta1\BeginTransactionRequest;
 use Google\Firestore\V1beta1\CommitRequest;
@@ -51,13 +52,14 @@ use Google\Firestore\V1beta1\TransactionOptions;
 use Google\Firestore\V1beta1\UpdateDocumentRequest;
 use Google\Firestore\V1beta1\Write;
 use Google\Firestore\V1beta1\WriteRequest;
+use Google\Firestore\V1beta1\WriteRequest_LabelsEntry as LabelsEntry;
 use Google\GAX\AgentHeaderDescriptor;
 use Google\GAX\ApiCallable;
 use Google\GAX\CallSettings;
-use Google\GAX\GrpcConstants;
 use Google\GAX\GrpcCredentialsHelper;
 use Google\GAX\PageStreamingDescriptor;
 use Google\GAX\PathTemplate;
+use Google\GAX\ValidationException;
 use Google\Protobuf\Timestamp;
 
 /**
@@ -88,7 +90,7 @@ use Google\Protobuf\Timestamp;
  * ```
  * try {
  *     $firestoreClient = new FirestoreClient();
- *     $formattedName = FirestoreClient::formatDocumentPathName("[PROJECT]", "[DATABASE]", "[DOCUMENT]", "[DOCUMENT_PATH]");
+ *     $formattedName = $firestoreClient->anyPathName('[PROJECT]', '[DATABASE]', '[DOCUMENT]', '[ANY_PATH]');
  *     $response = $firestoreClient->getDocument($formattedName);
  * } finally {
  *     $firestoreClient->close();
@@ -97,9 +99,8 @@ use Google\Protobuf\Timestamp;
  *
  * Many parameters require resource names to be formatted in a particular way. To assist
  * with these names, this class includes a format method for each type of name, and additionally
- * a parse method to extract the individual identifiers contained within names that are
- * returned.
- *
+ * a parseName method to extract the individual identifiers contained within formatted names
+ * that are returned by the API.
  * @experimental
  */
 class FirestoreGapicClient
@@ -115,11 +116,6 @@ class FirestoreGapicClient
     const DEFAULT_SERVICE_PORT = 443;
 
     /**
-     * The default timeout for non-retrying methods.
-     */
-    const DEFAULT_TIMEOUT_MILLIS = 30000;
-
-    /**
      * The name of the code generator, to be included in the agent header.
      */
     const CODEGEN_NAME = 'gapic';
@@ -129,8 +125,13 @@ class FirestoreGapicClient
      */
     const CODEGEN_VERSION = '0.0.5';
 
-    private static $databaseNameTemplate;
+    private static $databaseRootNameTemplate;
+    private static $documentRootNameTemplate;
     private static $documentPathNameTemplate;
+    private static $anyPathNameTemplate;
+    private static $pathTemplateMap;
+    private static $gapicVersion;
+    private static $gapicVersionLoaded = false;
 
     protected $grpcCredentialsHelper;
     protected $firestoreStub;
@@ -138,146 +139,53 @@ class FirestoreGapicClient
     private $defaultCallSettings;
     private $descriptors;
 
-    /**
-     * Formats a string containing the fully-qualified path to represent
-     * a database resource.
-     *
-     * @param string $project
-     * @param string $database
-     *
-     * @return string The formatted database resource.
-     * @experimental
-     */
-    public static function formatDatabaseName($project, $database)
+    private static function getDatabaseRootNameTemplate()
     {
-        return self::getDatabaseNameTemplate()->render([
-            'project' => $project,
-            'database' => $database,
-        ]);
-    }
-
-    /**
-     * Formats a string containing the fully-qualified path to represent
-     * a document_path resource.
-     *
-     * @param string $project
-     * @param string $database
-     * @param string $document
-     * @param string $documentPath
-     *
-     * @return string The formatted document_path resource.
-     * @experimental
-     */
-    public static function formatDocumentPathName($project, $database, $document, $documentPath)
-    {
-        return self::getDocumentPathNameTemplate()->render([
-            'project' => $project,
-            'database' => $database,
-            'document' => $document,
-            'document_path' => $documentPath,
-        ]);
-    }
-
-    /**
-     * Parses the project from the given fully-qualified path which
-     * represents a database resource.
-     *
-     * @param string $databaseName The fully-qualified database resource.
-     *
-     * @return string The extracted project value.
-     * @experimental
-     */
-    public static function parseProjectFromDatabaseName($databaseName)
-    {
-        return self::getDatabaseNameTemplate()->match($databaseName)['project'];
-    }
-
-    /**
-     * Parses the database from the given fully-qualified path which
-     * represents a database resource.
-     *
-     * @param string $databaseName The fully-qualified database resource.
-     *
-     * @return string The extracted database value.
-     * @experimental
-     */
-    public static function parseDatabaseFromDatabaseName($databaseName)
-    {
-        return self::getDatabaseNameTemplate()->match($databaseName)['database'];
-    }
-
-    /**
-     * Parses the project from the given fully-qualified path which
-     * represents a document_path resource.
-     *
-     * @param string $documentPathName The fully-qualified document_path resource.
-     *
-     * @return string The extracted project value.
-     * @experimental
-     */
-    public static function parseProjectFromDocumentPathName($documentPathName)
-    {
-        return self::getDocumentPathNameTemplate()->match($documentPathName)['project'];
-    }
-
-    /**
-     * Parses the database from the given fully-qualified path which
-     * represents a document_path resource.
-     *
-     * @param string $documentPathName The fully-qualified document_path resource.
-     *
-     * @return string The extracted database value.
-     * @experimental
-     */
-    public static function parseDatabaseFromDocumentPathName($documentPathName)
-    {
-        return self::getDocumentPathNameTemplate()->match($documentPathName)['database'];
-    }
-
-    /**
-     * Parses the document from the given fully-qualified path which
-     * represents a document_path resource.
-     *
-     * @param string $documentPathName The fully-qualified document_path resource.
-     *
-     * @return string The extracted document value.
-     * @experimental
-     */
-    public static function parseDocumentFromDocumentPathName($documentPathName)
-    {
-        return self::getDocumentPathNameTemplate()->match($documentPathName)['document'];
-    }
-
-    /**
-     * Parses the document_path from the given fully-qualified path which
-     * represents a document_path resource.
-     *
-     * @param string $documentPathName The fully-qualified document_path resource.
-     *
-     * @return string The extracted document_path value.
-     * @experimental
-     */
-    public static function parseDocumentPathFromDocumentPathName($documentPathName)
-    {
-        return self::getDocumentPathNameTemplate()->match($documentPathName)['document_path'];
-    }
-
-    private static function getDatabaseNameTemplate()
-    {
-        if (self::$databaseNameTemplate == null) {
-            self::$databaseNameTemplate = new PathTemplate('projects/{project}/databases/{database}');
+        if (self::$databaseRootNameTemplate == null) {
+            self::$databaseRootNameTemplate = new PathTemplate('projects/{project}/databases/{database}');
         }
 
-        return self::$databaseNameTemplate;
+        return self::$databaseRootNameTemplate;
+    }
+
+    private static function getDocumentRootNameTemplate()
+    {
+        if (self::$documentRootNameTemplate == null) {
+            self::$documentRootNameTemplate = new PathTemplate('projects/{project}/databases/{database}/documents');
+        }
+
+        return self::$documentRootNameTemplate;
     }
 
     private static function getDocumentPathNameTemplate()
     {
         if (self::$documentPathNameTemplate == null) {
-            self::$documentPathNameTemplate = new PathTemplate('projects/{project}/databases/{database}/documents/{document}/{document_path=**}');
+            self::$documentPathNameTemplate = new PathTemplate('projects/{project}/databases/{database}/documents/{document_path=**}');
         }
 
         return self::$documentPathNameTemplate;
+    }
+
+    private static function getAnyPathNameTemplate()
+    {
+        if (self::$anyPathNameTemplate == null) {
+            self::$anyPathNameTemplate = new PathTemplate('projects/{project}/databases/{database}/documents/{document}/{any_path=**}');
+        }
+
+        return self::$anyPathNameTemplate;
+    }
+
+    private static function getPathTemplateMap()
+    {
+        if (self::$pathTemplateMap == null) {
+            self::$pathTemplateMap = [
+                'databaseRoot' => self::getDatabaseRootNameTemplate(),
+                'documentRoot' => self::getDocumentRootNameTemplate(),
+                'documentPath' => self::getDocumentPathNameTemplate(),
+                'anyPath' => self::getAnyPathNameTemplate(),
+            ];
+        }
+        return self::$pathTemplateMap;
     }
 
     private static function getPageStreamingDescriptors()
@@ -329,20 +237,137 @@ class FirestoreGapicClient
 
     private static function getGapicVersion()
     {
-        if (file_exists(__DIR__.'/../VERSION')) {
-            return trim(file_get_contents(__DIR__.'/../VERSION'));
-        } elseif (class_exists('\Google\Cloud\ServiceBuilder')) {
-            return \Google\Cloud\ServiceBuilder::VERSION;
-        } else {
-            return;
+        if (!self::$gapicVersionLoaded) {
+            if (file_exists(__DIR__ . '/../VERSION')) {
+                self::$gapicVersion = trim(file_get_contents(__DIR__ . '/../VERSION'));
+            } elseif (class_exists(Version::class)) {
+                self::$gapicVersion = Version::VERSION;
+            }
+            self::$gapicVersionLoaded = true;
         }
+        return self::$gapicVersion;
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent
+     * a database_root resource.
+     *
+     * @param string $project
+     * @param string $database
+     * @return string The formatted database_root resource.
+     * @experimental
+     */
+    public static function databaseRootName($project, $database)
+    {
+        return self::getDatabaseRootNameTemplate()->render([
+            'project' => $project,
+            'database' => $database,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent
+     * a document_root resource.
+     *
+     * @param string $project
+     * @param string $database
+     * @return string The formatted document_root resource.
+     * @experimental
+     */
+    public static function documentRootName($project, $database)
+    {
+        return self::getDocumentRootNameTemplate()->render([
+            'project' => $project,
+            'database' => $database,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent
+     * a document_path resource.
+     *
+     * @param string $project
+     * @param string $database
+     * @param string $documentPath
+     * @return string The formatted document_path resource.
+     * @experimental
+     */
+    public static function documentPathName($project, $database, $documentPath)
+    {
+        return self::getDocumentPathNameTemplate()->render([
+            'project' => $project,
+            'database' => $database,
+            'document_path' => $documentPath,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent
+     * a any_path resource.
+     *
+     * @param string $project
+     * @param string $database
+     * @param string $document
+     * @param string $anyPath
+     * @return string The formatted any_path resource.
+     * @experimental
+     */
+    public static function anyPathName($project, $database, $document, $anyPath)
+    {
+        return self::getAnyPathNameTemplate()->render([
+            'project' => $project,
+            'database' => $database,
+            'document' => $document,
+            'any_path' => $anyPath,
+        ]);
+    }
+
+    /**
+     * Parses a formatted name string and returns an associative array of the components in the name.
+     * The following name formats are supported:
+     * Template: Pattern
+     * - databaseRoot: projects/{project}/databases/{database}
+     * - documentRoot: projects/{project}/databases/{database}/documents
+     * - documentPath: projects/{project}/databases/{database}/documents/{document_path=**}
+     * - anyPath: projects/{project}/databases/{database}/documents/{document}/{any_path=**}
+     *
+     * The optional $template argument can be supplied to specify a particular pattern, and must
+     * match one of the templates listed above. If no $template argument is provided, or if the
+     * $template argument does not match one of the templates listed, then parseName will check
+     * each of the supported templates, and return the first match.
+     *
+     * @param string $formattedName The formatted name string
+     * @param string $template Optional name of template to match
+     * @return array An associative array from name component IDs to component values.
+     * @throws ValidationException If $formattedName could not be matched.
+     * @experimental
+     */
+    public static function parseName($formattedName, $template = null)
+    {
+        $templateMap = self::getPathTemplateMap();
+
+        if ($template) {
+            if (!isset($templateMap[$template])) {
+                throw new ValidationException("Template name $template does not exist");
+            }
+            return $templateMap[$template]->match($formattedName);
+        }
+
+        foreach ($templateMap as $templateName => $pathTemplate) {
+            try {
+                return $pathTemplate->match($formattedName);
+            } catch (ValidationException $ex) {
+                // Swallow the exception to continue trying other path templates
+            }
+        }
+        throw new ValidationException("Input did not match any known format. Input: $formattedName");
     }
 
     /**
      * Constructor.
      *
      * @param array $options {
-     *                       Optional. Options for configuring the service API wrapper.
+     *     Optional. Options for configuring the service API wrapper.
      *
      *     @type string $serviceAddress The domain name of the API remote host.
      *                                  Default 'firestore.googleapis.com'.
@@ -362,15 +387,20 @@ class FirestoreGapicClient
      *           A CredentialsLoader object created using the Google\Auth library.
      *     @type array $scopes A string array of scopes to use when acquiring credentials.
      *                          Defaults to the scopes for the Google Cloud Firestore API.
+     *     @type string $clientConfigPath
+     *           Path to a JSON file containing client method configuration, including retry settings.
+     *           Specify this setting to specify the retry behavior of all methods on the client.
+     *           By default this settings points to the default client config file, which is provided
+     *           in the resources folder. The retry settings provided in this option can be overridden
+     *           by settings in $retryingOverride
      *     @type array $retryingOverride
-     *           An associative array of string => RetryOptions, where the keys
-     *           are method names (e.g. 'createFoo'), that overrides default retrying
-     *           settings. A value of null indicates that the method in question should
-     *           not retry.
-     *     @type int $timeoutMillis The timeout in milliseconds to use for calls
-     *                              that don't use retries. For calls that use retries,
-     *                              set the timeout in RetryOptions.
-     *                              Default: 30000 (30 seconds)
+     *           An associative array in which the keys are method names (e.g. 'createFoo'), and
+     *           the values are retry settings to use for that method. The retry settings for each
+     *           method can be a {@see Google\GAX\RetrySettings} object, or an associative array
+     *           of retry settings parameters. See the documentation on {@see Google\GAX\RetrySettings}
+     *           for example usage. Passing a value of null is equivalent to a value of
+     *           ['retriesEnabled' => false]. Retry settings provided in this setting override the
+     *           settings in $clientConfigPath.
      * }
      * @experimental
      */
@@ -384,9 +414,9 @@ class FirestoreGapicClient
                 'https://www.googleapis.com/auth/datastore',
             ],
             'retryingOverride' => null,
-            'timeoutMillis' => self::DEFAULT_TIMEOUT_MILLIS,
             'libName' => null,
             'libVersion' => null,
+            'clientConfigPath' => __DIR__ . '/resources/firestore_client_config.json',
         ];
         $options = array_merge($defaultOptions, $options);
 
@@ -423,16 +453,12 @@ class FirestoreGapicClient
             $this->descriptors[$method]['grpcStreamingDescriptor'] = $grpcStreamingDescriptor;
         }
 
-        $clientConfigJsonString = file_get_contents(__DIR__.'/resources/firestore_client_config.json');
+        $clientConfigJsonString = file_get_contents($options['clientConfigPath']);
         $clientConfig = json_decode($clientConfigJsonString, true);
         $this->defaultCallSettings =
-                CallSettings::load(
-                    'google.firestore.v1beta1.Firestore',
-                    $clientConfig,
-                    $options['retryingOverride'],
-                    GrpcConstants::getStatusCodeNames(),
-                    $options['timeoutMillis']
-                );
+                CallSettings::load('google.firestore.v1beta1.Firestore',
+                                   $clientConfig,
+                                   $options['retryingOverride']);
 
         $this->scopes = $options['scopes'];
 
@@ -458,18 +484,17 @@ class FirestoreGapicClient
      * ```
      * try {
      *     $firestoreClient = new FirestoreClient();
-     *     $formattedName = FirestoreClient::formatDocumentPathName("[PROJECT]", "[DATABASE]", "[DOCUMENT]", "[DOCUMENT_PATH]");
+     *     $formattedName = $firestoreClient->anyPathName('[PROJECT]', '[DATABASE]', '[DOCUMENT]', '[ANY_PATH]');
      *     $response = $firestoreClient->getDocument($formattedName);
      * } finally {
      *     $firestoreClient->close();
      * }
      * ```
      *
-     * @param string $name         The resource name of the Document to get. In the format:
-     *                             `projects/{project_id}/databases/{database_id}/documents/{document_path}`.
-     * @param array  $optionalArgs {
-     *                             Optional.
-     *
+     * @param string $name The resource name of the Document to get. In the format:
+     * `projects/{project_id}/databases/{database_id}/documents/{document_path}`.
+     * @param array $optionalArgs {
+     *     Optional.
      *     @type DocumentMask $mask
      *          The fields to return. If not set, returns all fields.
      *
@@ -480,12 +505,11 @@ class FirestoreGapicClient
      *     @type Timestamp $readTime
      *          Reads the version of the document at the given time.
      *          This may not be older than 60 seconds.
-     *     @type \Google\GAX\RetrySettings $retrySettings
-     *          Retry settings to use for this call. If present, then
-     *          $timeoutMillis is ignored.
-     *     @type int $timeoutMillis
-     *          Timeout to use for this call. Only used if $retrySettings
-     *          is not set.
+     *     @type \Google\GAX\RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\GAX\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\GAX\RetrySettings} for example usage.
      * }
      *
      * @return \Google\Firestore\V1beta1\Document
@@ -507,15 +531,15 @@ class FirestoreGapicClient
             $request->setReadTime($optionalArgs['readTime']);
         }
 
-        $mergedSettings = $this->defaultCallSettings['getDocument']->merge(
-            new CallSettings($optionalArgs)
-        );
+        $defaultCallSettings = $this->defaultCallSettings['getDocument'];
+        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
+            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
+                $optionalArgs['retrySettings']
+            );
+        }
+        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
         $callable = ApiCallable::createApiCall(
-            $this->firestoreStub,
-            'GetDocument',
-            $mergedSettings,
-            $this->descriptors['getDocument']
-        );
+            $this->firestoreStub, 'GetDocument', $mergedSettings, $this->descriptors['getDocument']);
 
         return $callable(
             $request,
@@ -530,8 +554,8 @@ class FirestoreGapicClient
      * ```
      * try {
      *     $firestoreClient = new FirestoreClient();
-     *     $formattedParent = FirestoreClient::formatDatabaseName("[PROJECT]", "[DATABASE]");
-     *     $collectionId = "";
+     *     $formattedParent = $firestoreClient->anyPathName('[PROJECT]', '[DATABASE]', '[DOCUMENT]', '[ANY_PATH]');
+     *     $collectionId = '';
      *     // Iterate through all elements
      *     $pagedResponse = $firestoreClient->listDocuments($formattedParent, $collectionId);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
@@ -550,17 +574,16 @@ class FirestoreGapicClient
      * }
      * ```
      *
-     * @param string $parent       The parent resource name. In the format:
-     *                             `projects/{project_id}/databases/{database_id}/documents` or
-     *                             `projects/{project_id}/databases/{database_id}/documents/{document_path}`.
-     *                             For example:
-     *                             `projects/my-project/databases/my-database/documents` or
-     *                             `projects/my-project/databases/my-database/documents/chatrooms/my-chatroom`
+     * @param string $parent The parent resource name. In the format:
+     * `projects/{project_id}/databases/{database_id}/documents` or
+     * `projects/{project_id}/databases/{database_id}/documents/{document_path}`.
+     * For example:
+     * `projects/my-project/databases/my-database/documents` or
+     * `projects/my-project/databases/my-database/documents/chatrooms/my-chatroom`
      * @param string $collectionId The collection ID, relative to `parent`, to list. For example: `chatrooms`
-     *                             or `messages`.
-     * @param array  $optionalArgs {
-     *                             Optional.
-     *
+     * or `messages`.
+     * @param array $optionalArgs {
+     *     Optional.
      *     @type int $pageSize
      *          The maximum number of resources contained in the underlying API
      *          response. The API may return fewer values in a page, even if
@@ -590,12 +613,11 @@ class FirestoreGapicClient
      *
      *          Requests with `show_missing` may not specify `where` or
      *          `order_by`.
-     *     @type \Google\GAX\RetrySettings $retrySettings
-     *          Retry settings to use for this call. If present, then
-     *          $timeoutMillis is ignored.
-     *     @type int $timeoutMillis
-     *          Timeout to use for this call. Only used if $retrySettings
-     *          is not set.
+     *     @type \Google\GAX\RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\GAX\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\GAX\RetrySettings} for example usage.
      * }
      *
      * @return \Google\GAX\PagedListResponse
@@ -630,15 +652,15 @@ class FirestoreGapicClient
             $request->setShowMissing($optionalArgs['showMissing']);
         }
 
-        $mergedSettings = $this->defaultCallSettings['listDocuments']->merge(
-            new CallSettings($optionalArgs)
-        );
+        $defaultCallSettings = $this->defaultCallSettings['listDocuments'];
+        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
+            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
+                $optionalArgs['retrySettings']
+            );
+        }
+        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
         $callable = ApiCallable::createApiCall(
-            $this->firestoreStub,
-            'ListDocuments',
-            $mergedSettings,
-            $this->descriptors['listDocuments']
-        );
+            $this->firestoreStub, 'ListDocuments', $mergedSettings, $this->descriptors['listDocuments']);
 
         return $callable(
             $request,
@@ -653,38 +675,36 @@ class FirestoreGapicClient
      * ```
      * try {
      *     $firestoreClient = new FirestoreClient();
-     *     $formattedParent = FirestoreClient::formatDatabaseName("[PROJECT]", "[DATABASE]");
-     *     $collectionId = "";
+     *     $formattedParent = $firestoreClient->anyPathName('[PROJECT]', '[DATABASE]', '[DOCUMENT]', '[ANY_PATH]');
+     *     $collectionId = '';
+     *     $documentId = '';
      *     $document = new Document();
-     *     $response = $firestoreClient->createDocument($formattedParent, $collectionId, $document);
+     *     $response = $firestoreClient->createDocument($formattedParent, $collectionId, $documentId, $document);
      * } finally {
      *     $firestoreClient->close();
      * }
      * ```
      *
-     * @param string   $parent       The parent resource. For example:
-     *                               `projects/{project_id}/databases/{database_id}/documents` or
-     *                               `projects/{project_id}/databases/{database_id}/documents/chatrooms/{chatroom_id}`
-     * @param string   $collectionId The collection ID, relative to `parent`, to list. For example: `chatrooms`.
-     * @param Document $document     The document to create. `name` must not be set.
-     * @param array    $optionalArgs {
-     *                               Optional.
+     * @param string $parent The parent resource. For example:
+     * `projects/{project_id}/databases/{database_id}/documents` or
+     * `projects/{project_id}/databases/{database_id}/documents/chatrooms/{chatroom_id}`
+     * @param string $collectionId The collection ID, relative to `parent`, to list. For example: `chatrooms`.
+     * @param string $documentId The client-assigned document ID to use for this document.
      *
-     *     @type string $documentId
-     *          The client-assigned document ID to use for this document.
-     *
-     *          Optional. If not specified, an ID will be assigned by the service.
+     * Optional. If not specified, an ID will be assigned by the service.
+     * @param Document $document The document to create. `name` must not be set.
+     * @param array $optionalArgs {
+     *     Optional.
      *     @type DocumentMask $mask
      *          The fields to return. If not set, returns all fields.
      *
      *          If the document has a field that is not present in this mask, that field
      *          will not be returned in the response.
-     *     @type \Google\GAX\RetrySettings $retrySettings
-     *          Retry settings to use for this call. If present, then
-     *          $timeoutMillis is ignored.
-     *     @type int $timeoutMillis
-     *          Timeout to use for this call. Only used if $retrySettings
-     *          is not set.
+     *     @type \Google\GAX\RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\GAX\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\GAX\RetrySettings} for example usage.
      * }
      *
      * @return \Google\Firestore\V1beta1\Document
@@ -692,28 +712,26 @@ class FirestoreGapicClient
      * @throws \Google\GAX\ApiException if the remote call fails
      * @experimental
      */
-    public function createDocument($parent, $collectionId, $document, $optionalArgs = [])
+    public function createDocument($parent, $collectionId, $documentId, $document, $optionalArgs = [])
     {
         $request = new CreateDocumentRequest();
         $request->setParent($parent);
         $request->setCollectionId($collectionId);
+        $request->setDocumentId($documentId);
         $request->setDocument($document);
-        if (isset($optionalArgs['documentId'])) {
-            $request->setDocumentId($optionalArgs['documentId']);
-        }
         if (isset($optionalArgs['mask'])) {
             $request->setMask($optionalArgs['mask']);
         }
 
-        $mergedSettings = $this->defaultCallSettings['createDocument']->merge(
-            new CallSettings($optionalArgs)
-        );
+        $defaultCallSettings = $this->defaultCallSettings['createDocument'];
+        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
+            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
+                $optionalArgs['retrySettings']
+            );
+        }
+        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
         $callable = ApiCallable::createApiCall(
-            $this->firestoreStub,
-            'CreateDocument',
-            $mergedSettings,
-            $this->descriptors['createDocument']
-        );
+            $this->firestoreStub, 'CreateDocument', $mergedSettings, $this->descriptors['createDocument']);
 
         return $callable(
             $request,
@@ -736,18 +754,17 @@ class FirestoreGapicClient
      * }
      * ```
      *
-     * @param Document     $document   The updated document.
-     *                                 Creates the document if it does not already exist.
+     * @param Document $document The updated document.
+     * Creates the document if it does not already exist.
      * @param DocumentMask $updateMask The fields to update.
-     *                                 None of the field paths in the mask may contain a reserved name.
+     * None of the field paths in the mask may contain a reserved name.
      *
      * If the document exists on the server and has fields not referenced in the
      * mask, they are left unchanged.
      * Fields referenced in the mask, but not present in the input document, are
      * deleted from the document on the server.
      * @param array $optionalArgs {
-     *                            Optional.
-     *
+     *     Optional.
      *     @type DocumentMask $mask
      *          The fields to return. If not set, returns all fields.
      *
@@ -756,12 +773,11 @@ class FirestoreGapicClient
      *     @type Precondition $currentDocument
      *          An optional precondition on the document.
      *          The request will fail if this is set and not met by the target document.
-     *     @type \Google\GAX\RetrySettings $retrySettings
-     *          Retry settings to use for this call. If present, then
-     *          $timeoutMillis is ignored.
-     *     @type int $timeoutMillis
-     *          Timeout to use for this call. Only used if $retrySettings
-     *          is not set.
+     *     @type \Google\GAX\RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\GAX\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\GAX\RetrySettings} for example usage.
      * }
      *
      * @return \Google\Firestore\V1beta1\Document
@@ -781,15 +797,15 @@ class FirestoreGapicClient
             $request->setCurrentDocument($optionalArgs['currentDocument']);
         }
 
-        $mergedSettings = $this->defaultCallSettings['updateDocument']->merge(
-            new CallSettings($optionalArgs)
-        );
+        $defaultCallSettings = $this->defaultCallSettings['updateDocument'];
+        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
+            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
+                $optionalArgs['retrySettings']
+            );
+        }
+        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
         $callable = ApiCallable::createApiCall(
-            $this->firestoreStub,
-            'UpdateDocument',
-            $mergedSettings,
-            $this->descriptors['updateDocument']
-        );
+            $this->firestoreStub, 'UpdateDocument', $mergedSettings, $this->descriptors['updateDocument']);
 
         return $callable(
             $request,
@@ -804,27 +820,25 @@ class FirestoreGapicClient
      * ```
      * try {
      *     $firestoreClient = new FirestoreClient();
-     *     $formattedName = FirestoreClient::formatDocumentPathName("[PROJECT]", "[DATABASE]", "[DOCUMENT]", "[DOCUMENT_PATH]");
+     *     $formattedName = $firestoreClient->anyPathName('[PROJECT]', '[DATABASE]', '[DOCUMENT]', '[ANY_PATH]');
      *     $firestoreClient->deleteDocument($formattedName);
      * } finally {
      *     $firestoreClient->close();
      * }
      * ```
      *
-     * @param string $name         The resource name of the Document to delete. In the format:
-     *                             `projects/{project_id}/databases/{database_id}/documents/{document_path}`.
-     * @param array  $optionalArgs {
-     *                             Optional.
-     *
+     * @param string $name The resource name of the Document to delete. In the format:
+     * `projects/{project_id}/databases/{database_id}/documents/{document_path}`.
+     * @param array $optionalArgs {
+     *     Optional.
      *     @type Precondition $currentDocument
      *          An optional precondition on the document.
      *          The request will fail if this is set and not met by the target document.
-     *     @type \Google\GAX\RetrySettings $retrySettings
-     *          Retry settings to use for this call. If present, then
-     *          $timeoutMillis is ignored.
-     *     @type int $timeoutMillis
-     *          Timeout to use for this call. Only used if $retrySettings
-     *          is not set.
+     *     @type \Google\GAX\RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\GAX\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\GAX\RetrySettings} for example usage.
      * }
      *
      * @throws \Google\GAX\ApiException if the remote call fails
@@ -838,15 +852,15 @@ class FirestoreGapicClient
             $request->setCurrentDocument($optionalArgs['currentDocument']);
         }
 
-        $mergedSettings = $this->defaultCallSettings['deleteDocument']->merge(
-            new CallSettings($optionalArgs)
-        );
+        $defaultCallSettings = $this->defaultCallSettings['deleteDocument'];
+        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
+            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
+                $optionalArgs['retrySettings']
+            );
+        }
+        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
         $callable = ApiCallable::createApiCall(
-            $this->firestoreStub,
-            'DeleteDocument',
-            $mergedSettings,
-            $this->descriptors['deleteDocument']
-        );
+            $this->firestoreStub, 'DeleteDocument', $mergedSettings, $this->descriptors['deleteDocument']);
 
         return $callable(
             $request,
@@ -864,7 +878,7 @@ class FirestoreGapicClient
      * ```
      * try {
      *     $firestoreClient = new FirestoreClient();
-     *     $formattedDatabase = FirestoreClient::formatDatabaseName("[PROJECT]", "[DATABASE]");
+     *     $formattedDatabase = $firestoreClient->databaseRootName('[PROJECT]', '[DATABASE]');
      *     $documents = [];
      *     // Read all responses until the stream is complete
      *     $stream = $firestoreClient->batchGetDocuments($formattedDatabase, $documents);
@@ -876,15 +890,14 @@ class FirestoreGapicClient
      * }
      * ```
      *
-     * @param string   $database     The database name. In the format:
-     *                               `projects/{project_id}/databases/{database_id}`.
-     * @param string[] $documents    The names of the documents to retrieve. In the format:
-     *                               `projects/{project_id}/databases/{database_id}/documents/{document_path}`.
-     *                               The request will fail if any of the document is not a child resource of the
-     *                               given `database`. Duplicate names will be elided.
-     * @param array    $optionalArgs {
-     *                               Optional.
-     *
+     * @param string $database The database name. In the format:
+     * `projects/{project_id}/databases/{database_id}`.
+     * @param string[] $documents The names of the documents to retrieve. In the format:
+     * `projects/{project_id}/databases/{database_id}/documents/{document_path}`.
+     * The request will fail if any of the document is not a child resource of the
+     * given `database`. Duplicate names will be elided.
+     * @param array $optionalArgs {
+     *     Optional.
      *     @type DocumentMask $mask
      *          The fields to return. If not set, returns all fields.
      *
@@ -927,15 +940,22 @@ class FirestoreGapicClient
             $request->setReadTime($optionalArgs['readTime']);
         }
 
-        $mergedSettings = $this->defaultCallSettings['batchGetDocuments']->merge(
-            new CallSettings($optionalArgs)
-        );
+        if (array_key_exists('timeoutMillis', $optionalArgs)) {
+            $optionalArgs['retrySettings'] = [
+                'retriesEnabled' => false,
+                'noRetriesRpcTimeoutMillis' => $optionalArgs['timeoutMillis']
+            ];
+        }
+
+        $defaultCallSettings = $this->defaultCallSettings['batchGetDocuments'];
+        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
+            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
+                $optionalArgs['retrySettings']
+            );
+        }
+        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
         $callable = ApiCallable::createApiCall(
-            $this->firestoreStub,
-            'BatchGetDocuments',
-            $mergedSettings,
-            $this->descriptors['batchGetDocuments']
-        );
+            $this->firestoreStub, 'BatchGetDocuments', $mergedSettings, $this->descriptors['batchGetDocuments']);
 
         return $callable(
             $request,
@@ -950,27 +970,25 @@ class FirestoreGapicClient
      * ```
      * try {
      *     $firestoreClient = new FirestoreClient();
-     *     $formattedDatabase = FirestoreClient::formatDatabaseName("[PROJECT]", "[DATABASE]");
+     *     $formattedDatabase = $firestoreClient->databaseRootName('[PROJECT]', '[DATABASE]');
      *     $response = $firestoreClient->beginTransaction($formattedDatabase);
      * } finally {
      *     $firestoreClient->close();
      * }
      * ```
      *
-     * @param string $database     The database name. In the format:
-     *                             `projects/{project_id}/databases/{database_id}`.
-     * @param array  $optionalArgs {
-     *                             Optional.
-     *
+     * @param string $database The database name. In the format:
+     * `projects/{project_id}/databases/{database_id}`.
+     * @param array $optionalArgs {
+     *     Optional.
      *     @type TransactionOptions $options
      *          The options for the transaction.
      *          Defaults to a read-write transaction.
-     *     @type \Google\GAX\RetrySettings $retrySettings
-     *          Retry settings to use for this call. If present, then
-     *          $timeoutMillis is ignored.
-     *     @type int $timeoutMillis
-     *          Timeout to use for this call. Only used if $retrySettings
-     *          is not set.
+     *     @type \Google\GAX\RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\GAX\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\GAX\RetrySettings} for example usage.
      * }
      *
      * @return \Google\Firestore\V1beta1\BeginTransactionResponse
@@ -986,15 +1004,15 @@ class FirestoreGapicClient
             $request->setOptions($optionalArgs['options']);
         }
 
-        $mergedSettings = $this->defaultCallSettings['beginTransaction']->merge(
-            new CallSettings($optionalArgs)
-        );
+        $defaultCallSettings = $this->defaultCallSettings['beginTransaction'];
+        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
+            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
+                $optionalArgs['retrySettings']
+            );
+        }
+        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
         $callable = ApiCallable::createApiCall(
-            $this->firestoreStub,
-            'BeginTransaction',
-            $mergedSettings,
-            $this->descriptors['beginTransaction']
-        );
+            $this->firestoreStub, 'BeginTransaction', $mergedSettings, $this->descriptors['beginTransaction']);
 
         return $callable(
             $request,
@@ -1009,7 +1027,7 @@ class FirestoreGapicClient
      * ```
      * try {
      *     $firestoreClient = new FirestoreClient();
-     *     $formattedDatabase = FirestoreClient::formatDatabaseName("[PROJECT]", "[DATABASE]");
+     *     $formattedDatabase = $firestoreClient->databaseRootName('[PROJECT]', '[DATABASE]');
      *     $writes = [];
      *     $response = $firestoreClient->commit($formattedDatabase, $writes);
      * } finally {
@@ -1017,23 +1035,20 @@ class FirestoreGapicClient
      * }
      * ```
      *
-     * @param string  $database The database name. In the format:
-     *                          `projects/{project_id}/databases/{database_id}`.
-     * @param Write[] $writes   The writes to apply.
+     * @param string $database The database name. In the format:
+     * `projects/{project_id}/databases/{database_id}`.
+     * @param Write[] $writes The writes to apply.
      *
      * Always executed atomically and in order.
      * @param array $optionalArgs {
-     *                            Optional.
-     *
+     *     Optional.
      *     @type string $transaction
-     *          If non-empty, applies all writes in this transaction, and commits it.
-     *          Otherwise, applies the writes as if they were in their own transaction.
-     *     @type \Google\GAX\RetrySettings $retrySettings
-     *          Retry settings to use for this call. If present, then
-     *          $timeoutMillis is ignored.
-     *     @type int $timeoutMillis
-     *          Timeout to use for this call. Only used if $retrySettings
-     *          is not set.
+     *          If set, applies all writes in this transaction, and commits it.
+     *     @type \Google\GAX\RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\GAX\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\GAX\RetrySettings} for example usage.
      * }
      *
      * @return \Google\Firestore\V1beta1\CommitResponse
@@ -1050,15 +1065,15 @@ class FirestoreGapicClient
             $request->setTransaction($optionalArgs['transaction']);
         }
 
-        $mergedSettings = $this->defaultCallSettings['commit']->merge(
-            new CallSettings($optionalArgs)
-        );
+        $defaultCallSettings = $this->defaultCallSettings['commit'];
+        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
+            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
+                $optionalArgs['retrySettings']
+            );
+        }
+        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
         $callable = ApiCallable::createApiCall(
-            $this->firestoreStub,
-            'Commit',
-            $mergedSettings,
-            $this->descriptors['commit']
-        );
+            $this->firestoreStub, 'Commit', $mergedSettings, $this->descriptors['commit']);
 
         return $callable(
             $request,
@@ -1073,26 +1088,24 @@ class FirestoreGapicClient
      * ```
      * try {
      *     $firestoreClient = new FirestoreClient();
-     *     $formattedDatabase = FirestoreClient::formatDatabaseName("[PROJECT]", "[DATABASE]");
-     *     $transaction = "";
+     *     $formattedDatabase = $firestoreClient->databaseRootName('[PROJECT]', '[DATABASE]');
+     *     $transaction = '';
      *     $firestoreClient->rollback($formattedDatabase, $transaction);
      * } finally {
      *     $firestoreClient->close();
      * }
      * ```
      *
-     * @param string $database     The database name. In the format:
-     *                             `projects/{project_id}/databases/{database_id}`.
-     * @param string $transaction  The transaction to roll back.
-     * @param array  $optionalArgs {
-     *                             Optional.
-     *
-     *     @type \Google\GAX\RetrySettings $retrySettings
-     *          Retry settings to use for this call. If present, then
-     *          $timeoutMillis is ignored.
-     *     @type int $timeoutMillis
-     *          Timeout to use for this call. Only used if $retrySettings
-     *          is not set.
+     * @param string $database The database name. In the format:
+     * `projects/{project_id}/databases/{database_id}`.
+     * @param string $transaction The transaction to roll back.
+     * @param array $optionalArgs {
+     *     Optional.
+     *     @type \Google\GAX\RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\GAX\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\GAX\RetrySettings} for example usage.
      * }
      *
      * @throws \Google\GAX\ApiException if the remote call fails
@@ -1104,15 +1117,15 @@ class FirestoreGapicClient
         $request->setDatabase($database);
         $request->setTransaction($transaction);
 
-        $mergedSettings = $this->defaultCallSettings['rollback']->merge(
-            new CallSettings($optionalArgs)
-        );
+        $defaultCallSettings = $this->defaultCallSettings['rollback'];
+        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
+            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
+                $optionalArgs['retrySettings']
+            );
+        }
+        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
         $callable = ApiCallable::createApiCall(
-            $this->firestoreStub,
-            'Rollback',
-            $mergedSettings,
-            $this->descriptors['rollback']
-        );
+            $this->firestoreStub, 'Rollback', $mergedSettings, $this->descriptors['rollback']);
 
         return $callable(
             $request,
@@ -1127,7 +1140,7 @@ class FirestoreGapicClient
      * ```
      * try {
      *     $firestoreClient = new FirestoreClient();
-     *     $formattedParent = FirestoreClient::formatDatabaseName("[PROJECT]", "[DATABASE]");
+     *     $formattedParent = $firestoreClient->anyPathName('[PROJECT]', '[DATABASE]', '[DOCUMENT]', '[ANY_PATH]');
      *     // Read all responses until the stream is complete
      *     $stream = $firestoreClient->runQuery($formattedParent);
      *     foreach ($stream->readAll() as $element) {
@@ -1138,15 +1151,14 @@ class FirestoreGapicClient
      * }
      * ```
      *
-     * @param string $parent       The parent resource name. In the format:
-     *                             `projects/{project_id}/databases/{database_id}/documents` or
-     *                             `projects/{project_id}/databases/{database_id}/documents/{document_path}`.
-     *                             For example:
-     *                             `projects/my-project/databases/my-database/documents` or
-     *                             `projects/my-project/databases/my-database/documents/chatrooms/my-chatroom`
-     * @param array  $optionalArgs {
-     *                             Optional.
-     *
+     * @param string $parent The parent resource name. In the format:
+     * `projects/{project_id}/databases/{database_id}/documents` or
+     * `projects/{project_id}/databases/{database_id}/documents/{document_path}`.
+     * For example:
+     * `projects/my-project/databases/my-database/documents` or
+     * `projects/my-project/databases/my-database/documents/chatrooms/my-chatroom`
+     * @param array $optionalArgs {
+     *     Optional.
      *     @type StructuredQuery $structuredQuery
      *          A structured query.
      *     @type string $transaction
@@ -1185,15 +1197,22 @@ class FirestoreGapicClient
             $request->setReadTime($optionalArgs['readTime']);
         }
 
-        $mergedSettings = $this->defaultCallSettings['runQuery']->merge(
-            new CallSettings($optionalArgs)
-        );
+        if (array_key_exists('timeoutMillis', $optionalArgs)) {
+            $optionalArgs['retrySettings'] = [
+                'retriesEnabled' => false,
+                'noRetriesRpcTimeoutMillis' => $optionalArgs['timeoutMillis']
+            ];
+        }
+
+        $defaultCallSettings = $this->defaultCallSettings['runQuery'];
+        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
+            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
+                $optionalArgs['retrySettings']
+            );
+        }
+        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
         $callable = ApiCallable::createApiCall(
-            $this->firestoreStub,
-            'RunQuery',
-            $mergedSettings,
-            $this->descriptors['runQuery']
-        );
+            $this->firestoreStub, 'RunQuery', $mergedSettings, $this->descriptors['runQuery']);
 
         return $callable(
             $request,
@@ -1208,7 +1227,9 @@ class FirestoreGapicClient
      * ```
      * try {
      *     $firestoreClient = new FirestoreClient();
+     *     $formattedDatabase = $firestoreClient->databaseRootName('[PROJECT]', '[DATABASE]');
      *     $request = new WriteRequest();
+     *     $request->setDatabase($formattedDatabase);
      *     $requests = [$request];
      *
      *     // Write all requests to the server, then read all responses until the
@@ -1241,8 +1262,7 @@ class FirestoreGapicClient
      * ```
      *
      * @param array $optionalArgs {
-     *                            Optional.
-     *
+     *     Optional.
      *     @type int $timeoutMillis
      *          Timeout to use for this call.
      * }
@@ -1254,15 +1274,22 @@ class FirestoreGapicClient
      */
     public function write($optionalArgs = [])
     {
-        $mergedSettings = $this->defaultCallSettings['write']->merge(
-            new CallSettings($optionalArgs)
-        );
+        if (array_key_exists('timeoutMillis', $optionalArgs)) {
+            $optionalArgs['retrySettings'] = [
+                'retriesEnabled' => false,
+                'noRetriesRpcTimeoutMillis' => $optionalArgs['timeoutMillis']
+            ];
+        }
+
+        $defaultCallSettings = $this->defaultCallSettings['write'];
+        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
+            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
+                $optionalArgs['retrySettings']
+            );
+        }
+        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
         $callable = ApiCallable::createApiCall(
-            $this->firestoreStub,
-            'Write',
-            $mergedSettings,
-            $this->descriptors['write']
-        );
+            $this->firestoreStub, 'Write', $mergedSettings, $this->descriptors['write']);
 
         return $callable(
             null,
@@ -1277,7 +1304,9 @@ class FirestoreGapicClient
      * ```
      * try {
      *     $firestoreClient = new FirestoreClient();
+     *     $formattedDatabase = $firestoreClient->databaseRootName('[PROJECT]', '[DATABASE]');
      *     $request = new ListenRequest();
+     *     $request->setDatabase($formattedDatabase);
      *     $requests = [$request];
      *
      *     // Write all requests to the server, then read all responses until the
@@ -1310,8 +1339,7 @@ class FirestoreGapicClient
      * ```
      *
      * @param array $optionalArgs {
-     *                            Optional.
-     *
+     *     Optional.
      *     @type int $timeoutMillis
      *          Timeout to use for this call.
      * }
@@ -1323,15 +1351,22 @@ class FirestoreGapicClient
      */
     public function listen($optionalArgs = [])
     {
-        $mergedSettings = $this->defaultCallSettings['listen']->merge(
-            new CallSettings($optionalArgs)
-        );
+        if (array_key_exists('timeoutMillis', $optionalArgs)) {
+            $optionalArgs['retrySettings'] = [
+                'retriesEnabled' => false,
+                'noRetriesRpcTimeoutMillis' => $optionalArgs['timeoutMillis']
+            ];
+        }
+
+        $defaultCallSettings = $this->defaultCallSettings['listen'];
+        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
+            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
+                $optionalArgs['retrySettings']
+            );
+        }
+        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
         $callable = ApiCallable::createApiCall(
-            $this->firestoreStub,
-            'Listen',
-            $mergedSettings,
-            $this->descriptors['listen']
-        );
+            $this->firestoreStub, 'Listen', $mergedSettings, $this->descriptors['listen']);
 
         return $callable(
             null,
@@ -1346,7 +1381,7 @@ class FirestoreGapicClient
      * ```
      * try {
      *     $firestoreClient = new FirestoreClient();
-     *     $formattedParent = FirestoreClient::formatDocumentPathName("[PROJECT]", "[DATABASE]", "[DOCUMENT]", "[DOCUMENT_PATH]");
+     *     $formattedParent = $firestoreClient->anyPathName('[PROJECT]', '[DATABASE]', '[DOCUMENT]', '[ANY_PATH]');
      *     // Iterate through all elements
      *     $pagedResponse = $firestoreClient->listCollectionIds($formattedParent);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
@@ -1365,13 +1400,12 @@ class FirestoreGapicClient
      * }
      * ```
      *
-     * @param string $parent       The parent document. In the format:
-     *                             `projects/{project_id}/databases/{database_id}/documents/{document_path}`.
-     *                             For example:
-     *                             `projects/my-project/databases/my-database/documents/chatrooms/my-chatroom`
-     * @param array  $optionalArgs {
-     *                             Optional.
-     *
+     * @param string $parent The parent document. In the format:
+     * `projects/{project_id}/databases/{database_id}/documents/{document_path}`.
+     * For example:
+     * `projects/my-project/databases/my-database/documents/chatrooms/my-chatroom`
+     * @param array $optionalArgs {
+     *     Optional.
      *     @type int $pageSize
      *          The maximum number of resources contained in the underlying API
      *          response. The API may return fewer values in a page, even if
@@ -1381,12 +1415,11 @@ class FirestoreGapicClient
      *          If no page token is specified (the default), the first page
      *          of values will be returned. Any page token used here must have
      *          been generated by a previous call to the API.
-     *     @type \Google\GAX\RetrySettings $retrySettings
-     *          Retry settings to use for this call. If present, then
-     *          $timeoutMillis is ignored.
-     *     @type int $timeoutMillis
-     *          Timeout to use for this call. Only used if $retrySettings
-     *          is not set.
+     *     @type \Google\GAX\RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\GAX\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\GAX\RetrySettings} for example usage.
      * }
      *
      * @return \Google\GAX\PagedListResponse
@@ -1405,15 +1438,15 @@ class FirestoreGapicClient
             $request->setPageToken($optionalArgs['pageToken']);
         }
 
-        $mergedSettings = $this->defaultCallSettings['listCollectionIds']->merge(
-            new CallSettings($optionalArgs)
-        );
+        $defaultCallSettings = $this->defaultCallSettings['listCollectionIds'];
+        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
+            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
+                $optionalArgs['retrySettings']
+            );
+        }
+        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
         $callable = ApiCallable::createApiCall(
-            $this->firestoreStub,
-            'ListCollectionIds',
-            $mergedSettings,
-            $this->descriptors['listCollectionIds']
-        );
+            $this->firestoreStub, 'ListCollectionIds', $mergedSettings, $this->descriptors['listCollectionIds']);
 
         return $callable(
             $request,
@@ -1424,7 +1457,6 @@ class FirestoreGapicClient
     /**
      * Initiates an orderly shutdown in which preexisting calls continue but new
      * calls are immediately cancelled.
-     *
      * @experimental
      */
     public function close()
