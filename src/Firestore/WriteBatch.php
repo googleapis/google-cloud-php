@@ -531,4 +531,15 @@ class WriteBatch
             // @codeCoverageIgnoreEnd
         }
     }
+
+    /**
+     * Check if the WriteBatch has any writes enqueued.
+     *
+     * @return bool
+     * @access private
+     */
+    public function empty()
+    {
+        return ! (bool) $this->writes;
+    }
 }

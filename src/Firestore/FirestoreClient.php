@@ -401,7 +401,8 @@ class FirestoreClient
 
         $backoff = new ExponentialBackoff($options['maxRetries'], $retryFn);
 
-        return $backoff->execute(function (callable $callable, array $options) use (&$transactionId, $retryableErrors) {
+        $iteration = 0;
+        return $backoff->execute(function (callable $callable, array $options) use (&$transactionId, $retryableErrors, &$iteration) {
             $this->isRunningTransaction = true;
 
             $database = $this->databaseName($this->projectId, $this->database);
@@ -415,17 +416,23 @@ class FirestoreClient
             $transaction = new Transaction($this->connection, $this->valueMapper, $database, $transactionId);
 
             try {
-                $callable($transaction, ($transaction !== null));
+                $callable($transaction, ($iteration > 0));
 
-                return $transaction->writer()->commit([
-                    'transaction' => $transactionId
-                ] + $options['commit']);
+                if (!$transaction->writer()->empty()) {
+                    return $transaction->writer()->commit([
+                        'transaction' => $transactionId
+                    ] + $options['commit']);
+                } else {
+                    // trigger rollback if no writes exist.
+                    $transaction->writer()->rollback($options['rollback']);
+                }
             } catch (\Exception $e) {
                 $transaction->writer()->rollback($options['rollback']);
 
                 throw $e;
             } finally {
                 $this->isRunningTransaction = false;
+                $iteration++;
             }
         }, [
             $callable,
