@@ -20,7 +20,10 @@ namespace Google\Cloud\Tests\Perf;
 use Google\Cloud\Logging\LoggingClient;
 use Google\Cloud\Logging\PsrLogger;
 
-class LoggingPerfTestCase extends \PHPUnit_Framework_TestCase
+/**
+ * @group logging
+ */
+class LoggingPerfTest extends \PHPUnit_Framework_TestCase
 {
     /* @var PsrLogger */
     private $restClient;
