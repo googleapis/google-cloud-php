@@ -98,6 +98,9 @@ class RestTest extends \PHPUnit_Framework_TestCase
     {
         $actualRequest = null;
         $config = [
+            'labels' => [],
+            'dryRun' => false,
+            'jobReference' => [],
             'configuration' => [
                 'load' => [
                     'destinationTable' => [

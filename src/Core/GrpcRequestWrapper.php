@@ -131,11 +131,13 @@ class GrpcRequestWrapper
         });
 
         if (!isset($grpcOptions['retrySettings'])) {
-            $grpcOptions['retrySettings'] = new RetrySettings(null, null);
-        }
-
-        if ($timeout && !array_key_exists('timeoutMs', $grpcOptions)) {
-            $grpcOptions['timeoutMs'] = $timeout * 1000;
+            $retrySettings = [
+                'retriesEnabled' => false
+            ];
+            if ($timeout) {
+                $retrySettings['noRetriesRpcTimeoutMillis'] = $timeout * 1000;
+            }
+            $grpcOptions['retrySettings'] = $retrySettings;
         }
 
         $optionalArgs = &$args[count($args) - 1];

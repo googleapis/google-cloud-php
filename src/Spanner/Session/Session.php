@@ -133,7 +133,7 @@ class Session
      */
     public function name()
     {
-        return SpannerClient::formatSessionName(
+        return SpannerClient::sessionName(
             $this->projectId,
             $this->instance,
             $this->database,

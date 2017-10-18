@@ -30,14 +30,15 @@
 
 namespace Google\Cloud\Dlp\V2beta1\Gapic;
 
+use Google\Cloud\Version;
 use Google\GAX\AgentHeaderDescriptor;
 use Google\GAX\ApiCallable;
 use Google\GAX\CallSettings;
-use Google\GAX\GrpcConstants;
 use Google\GAX\GrpcCredentialsHelper;
 use Google\GAX\LongRunning\OperationsClient;
 use Google\GAX\OperationResponse;
 use Google\GAX\PathTemplate;
+use Google\GAX\ValidationException;
 use Google\Privacy\Dlp\V2beta1\ContentItem;
 use Google\Privacy\Dlp\V2beta1\CreateInspectOperationRequest;
 use Google\Privacy\Dlp\V2beta1\DlpServiceGrpcClient;
@@ -91,8 +92,8 @@ use Google\Privacy\Dlp\V2beta1\StorageConfig;
  *
  * Many parameters require resource names to be formatted in a particular way. To assist
  * with these names, this class includes a format method for each type of name, and additionally
- * a parse method to extract the individual identifiers contained within names that are
- * returned.
+ * a parseName method to extract the individual identifiers contained within formatted names
+ * that are returned by the API.
  *
  * @experimental
  */
@@ -109,11 +110,6 @@ class DlpServiceGapicClient
     const DEFAULT_SERVICE_PORT = 443;
 
     /**
-     * The default timeout for non-retrying methods.
-     */
-    const DEFAULT_TIMEOUT_MILLIS = 30000;
-
-    /**
      * The name of the code generator, to be included in the agent header.
      */
     const CODEGEN_NAME = 'gapic';
@@ -124,6 +120,9 @@ class DlpServiceGapicClient
     const CODEGEN_VERSION = '0.0.5';
 
     private static $resultNameTemplate;
+    private static $pathTemplateMap;
+    private static $gapicVersion;
+    private static $gapicVersionLoaded = false;
 
     protected $grpcCredentialsHelper;
     protected $dlpServiceStub;
@@ -132,36 +131,6 @@ class DlpServiceGapicClient
     private $descriptors;
     private $operationsClient;
 
-    /**
-     * Formats a string containing the fully-qualified path to represent
-     * a result resource.
-     *
-     * @param string $result
-     *
-     * @return string The formatted result resource.
-     * @experimental
-     */
-    public static function formatResultName($result)
-    {
-        return self::getResultNameTemplate()->render([
-            'result' => $result,
-        ]);
-    }
-
-    /**
-     * Parses the result from the given fully-qualified path which
-     * represents a result resource.
-     *
-     * @param string $resultName The fully-qualified result resource.
-     *
-     * @return string The extracted result value.
-     * @experimental
-     */
-    public static function parseResultFromResultName($resultName)
-    {
-        return self::getResultNameTemplate()->match($resultName)['result'];
-    }
-
     private static function getResultNameTemplate()
     {
         if (self::$resultNameTemplate == null) {
@@ -169,6 +138,17 @@ class DlpServiceGapicClient
         }
 
         return self::$resultNameTemplate;
+    }
+
+    private static function getPathTemplateMap()
+    {
+        if (self::$pathTemplateMap == null) {
+            self::$pathTemplateMap = [
+                'result' => self::getResultNameTemplate(),
+            ];
+        }
+
+        return self::$pathTemplateMap;
     }
 
     private static function getLongRunningDescriptors()
@@ -183,13 +163,73 @@ class DlpServiceGapicClient
 
     private static function getGapicVersion()
     {
-        if (file_exists(__DIR__.'/../VERSION')) {
-            return trim(file_get_contents(__DIR__.'/../VERSION'));
-        } elseif (class_exists('\Google\Cloud\ServiceBuilder')) {
-            return \Google\Cloud\ServiceBuilder::VERSION;
-        } else {
-            return;
+        if (!self::$gapicVersionLoaded) {
+            if (file_exists(__DIR__.'/../VERSION')) {
+                self::$gapicVersion = trim(file_get_contents(__DIR__.'/../VERSION'));
+            } elseif (class_exists(Version::class)) {
+                self::$gapicVersion = Version::VERSION;
+            }
+            self::$gapicVersionLoaded = true;
         }
+
+        return self::$gapicVersion;
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent
+     * a result resource.
+     *
+     * @param string $result
+     *
+     * @return string The formatted result resource.
+     * @experimental
+     */
+    public static function resultName($result)
+    {
+        return self::getResultNameTemplate()->render([
+            'result' => $result,
+        ]);
+    }
+
+    /**
+     * Parses a formatted name string and returns an associative array of the components in the name.
+     * The following name formats are supported:
+     * Template: Pattern
+     * - result: inspect/results/{result}.
+     *
+     * The optional $template argument can be supplied to specify a particular pattern, and must
+     * match one of the templates listed above. If no $template argument is provided, or if the
+     * $template argument does not match one of the templates listed, then parseName will check
+     * each of the supported templates, and return the first match.
+     *
+     * @param string $formattedName The formatted name string
+     * @param string $template      Optional name of template to match
+     *
+     * @return array An associative array from name component IDs to component values.
+     *
+     * @throws ValidationException If $formattedName could not be matched.
+     * @experimental
+     */
+    public static function parseName($formattedName, $template = null)
+    {
+        $templateMap = self::getPathTemplateMap();
+
+        if ($template) {
+            if (!isset($templateMap[$template])) {
+                throw new ValidationException("Template name $template does not exist");
+            }
+
+            return $templateMap[$template]->match($formattedName);
+        }
+
+        foreach ($templateMap as $templateName => $pathTemplate) {
+            try {
+                return $pathTemplate->match($formattedName);
+            } catch (ValidationException $ex) {
+                // Swallow the exception to continue trying other path templates
+            }
+        }
+        throw new ValidationException("Input did not match any known format. Input: $formattedName");
     }
 
     /**
@@ -254,15 +294,20 @@ class DlpServiceGapicClient
      *           A CredentialsLoader object created using the Google\Auth library.
      *     @type array $scopes A string array of scopes to use when acquiring credentials.
      *                          Defaults to the scopes for the DLP API.
+     *     @type string $clientConfigPath
+     *           Path to a JSON file containing client method configuration, including retry settings.
+     *           Specify this setting to specify the retry behavior of all methods on the client.
+     *           By default this settings points to the default client config file, which is provided
+     *           in the resources folder. The retry settings provided in this option can be overridden
+     *           by settings in $retryingOverride
      *     @type array $retryingOverride
-     *           An associative array of string => RetryOptions, where the keys
-     *           are method names (e.g. 'createFoo'), that overrides default retrying
-     *           settings. A value of null indicates that the method in question should
-     *           not retry.
-     *     @type int $timeoutMillis The timeout in milliseconds to use for calls
-     *                              that don't use retries. For calls that use retries,
-     *                              set the timeout in RetryOptions.
-     *                              Default: 30000 (30 seconds)
+     *           An associative array in which the keys are method names (e.g. 'createFoo'), and
+     *           the values are retry settings to use for that method. The retry settings for each
+     *           method can be a {@see Google\GAX\RetrySettings} object, or an associative array
+     *           of retry settings parameters. See the documentation on {@see Google\GAX\RetrySettings}
+     *           for example usage. Passing a value of null is equivalent to a value of
+     *           ['retriesEnabled' => false]. Retry settings provided in this setting override the
+     *           settings in $clientConfigPath.
      * }
      * @experimental
      */
@@ -275,9 +320,9 @@ class DlpServiceGapicClient
                 'https://www.googleapis.com/auth/cloud-platform',
             ],
             'retryingOverride' => null,
-            'timeoutMillis' => self::DEFAULT_TIMEOUT_MILLIS,
             'libName' => null,
             'libVersion' => null,
+            'clientConfigPath' => __DIR__.'/../resources/dlp_service_client_config.json',
         ];
         $options = array_merge($defaultOptions, $options);
 
@@ -285,8 +330,8 @@ class DlpServiceGapicClient
             $this->operationsClient = $options['operationsClient'];
         } else {
             $operationsClientOptions = $options;
-            unset($operationsClientOptions['timeoutMillis']);
             unset($operationsClientOptions['retryingOverride']);
+            unset($operationsClientOptions['clientConfigPath']);
             $this->operationsClient = new OperationsClient($operationsClientOptions);
         }
 
@@ -312,15 +357,13 @@ class DlpServiceGapicClient
             $this->descriptors[$method]['longRunningDescriptor'] = $longRunningDescriptor + ['operationsClient' => $this->operationsClient];
         }
 
-        $clientConfigJsonString = file_get_contents(__DIR__.'/../resources/dlp_service_client_config.json');
+        $clientConfigJsonString = file_get_contents($options['clientConfigPath']);
         $clientConfig = json_decode($clientConfigJsonString, true);
         $this->defaultCallSettings =
                 CallSettings::load(
                     'google.privacy.dlp.v2beta1.DlpService',
                     $clientConfig,
-                    $options['retryingOverride'],
-                    GrpcConstants::getStatusCodeNames(),
-                    $options['timeoutMillis']
+                    $options['retryingOverride']
                 );
 
         $this->scopes = $options['scopes'];
@@ -373,12 +416,11 @@ class DlpServiceGapicClient
      * @param array         $optionalArgs  {
      *                                     Optional.
      *
-     *     @type \Google\GAX\RetrySettings $retrySettings
-     *          Retry settings to use for this call. If present, then
-     *          $timeoutMillis is ignored.
-     *     @type int $timeoutMillis
-     *          Timeout to use for this call. Only used if $retrySettings
-     *          is not set.
+     *     @type \Google\GAX\RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\GAX\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\GAX\RetrySettings} for example usage.
      * }
      *
      * @return \Google\Privacy\Dlp\V2beta1\InspectContentResponse
@@ -392,9 +434,13 @@ class DlpServiceGapicClient
         $request->setInspectConfig($inspectConfig);
         $request->setItems($items);
 
-        $mergedSettings = $this->defaultCallSettings['inspectContent']->merge(
-            new CallSettings($optionalArgs)
-        );
+        $defaultCallSettings = $this->defaultCallSettings['inspectContent'];
+        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
+            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
+                $optionalArgs['retrySettings']
+            );
+        }
+        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
         $callable = ApiCallable::createApiCall(
             $this->dlpServiceStub,
             'InspectContent',
@@ -451,12 +497,11 @@ class DlpServiceGapicClient
      *
      *     @type ImageRedactionConfig[] $imageRedactionConfigs
      *          The configuration for specifying what content to redact from images.
-     *     @type \Google\GAX\RetrySettings $retrySettings
-     *          Retry settings to use for this call. If present, then
-     *          $timeoutMillis is ignored.
-     *     @type int $timeoutMillis
-     *          Timeout to use for this call. Only used if $retrySettings
-     *          is not set.
+     *     @type \Google\GAX\RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\GAX\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\GAX\RetrySettings} for example usage.
      * }
      *
      * @return \Google\Privacy\Dlp\V2beta1\RedactContentResponse
@@ -474,9 +519,13 @@ class DlpServiceGapicClient
             $request->setImageRedactionConfigs($optionalArgs['imageRedactionConfigs']);
         }
 
-        $mergedSettings = $this->defaultCallSettings['redactContent']->merge(
-            new CallSettings($optionalArgs)
-        );
+        $defaultCallSettings = $this->defaultCallSettings['redactContent'];
+        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
+            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
+                $optionalArgs['retrySettings']
+            );
+        }
+        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
         $callable = ApiCallable::createApiCall(
             $this->dlpServiceStub,
             'RedactContent',
@@ -566,12 +615,11 @@ class DlpServiceGapicClient
      *
      *     @type OperationConfig $operationConfig
      *          Additional configuration settings for long running operations.
-     *     @type \Google\GAX\RetrySettings $retrySettings
-     *          Retry settings to use for this call. If present, then
-     *          $timeoutMillis is ignored.
-     *     @type int $timeoutMillis
-     *          Timeout to use for this call. Only used if $retrySettings
-     *          is not set.
+     *     @type \Google\GAX\RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\GAX\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\GAX\RetrySettings} for example usage.
      * }
      *
      * @return \Google\GAX\OperationResponse
@@ -589,9 +637,13 @@ class DlpServiceGapicClient
             $request->setOperationConfig($optionalArgs['operationConfig']);
         }
 
-        $mergedSettings = $this->defaultCallSettings['createInspectOperation']->merge(
-            new CallSettings($optionalArgs)
-        );
+        $defaultCallSettings = $this->defaultCallSettings['createInspectOperation'];
+        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
+            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
+                $optionalArgs['retrySettings']
+            );
+        }
+        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
         $callable = ApiCallable::createApiCall(
             $this->dlpServiceStub,
             'CreateInspectOperation',
@@ -612,7 +664,7 @@ class DlpServiceGapicClient
      * ```
      * try {
      *     $dlpServiceClient = new DlpServiceClient();
-     *     $formattedName = DlpServiceClient::formatResultName("[RESULT]");
+     *     $formattedName = $dlpServiceClient->resultName("[RESULT]");
      *     $response = $dlpServiceClient->listInspectFindings($formattedName);
      * } finally {
      *     $dlpServiceClient->close();
@@ -640,12 +692,11 @@ class DlpServiceGapicClient
      *          <li>likelihood=VERY_LIKELY
      *          <li>likelihood=VERY_LIKELY,LIKELY
      *          <li>info_type=EMAIL_ADDRESS,likelihood=VERY_LIKELY,LIKELY
-     *     @type \Google\GAX\RetrySettings $retrySettings
-     *          Retry settings to use for this call. If present, then
-     *          $timeoutMillis is ignored.
-     *     @type int $timeoutMillis
-     *          Timeout to use for this call. Only used if $retrySettings
-     *          is not set.
+     *     @type \Google\GAX\RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\GAX\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\GAX\RetrySettings} for example usage.
      * }
      *
      * @return \Google\Privacy\Dlp\V2beta1\ListInspectFindingsResponse
@@ -667,9 +718,13 @@ class DlpServiceGapicClient
             $request->setFilter($optionalArgs['filter']);
         }
 
-        $mergedSettings = $this->defaultCallSettings['listInspectFindings']->merge(
-            new CallSettings($optionalArgs)
-        );
+        $defaultCallSettings = $this->defaultCallSettings['listInspectFindings'];
+        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
+            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
+                $optionalArgs['retrySettings']
+            );
+        }
+        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
         $callable = ApiCallable::createApiCall(
             $this->dlpServiceStub,
             'ListInspectFindings',
@@ -705,12 +760,11 @@ class DlpServiceGapicClient
      * @param array  $optionalArgs {
      *                             Optional.
      *
-     *     @type \Google\GAX\RetrySettings $retrySettings
-     *          Retry settings to use for this call. If present, then
-     *          $timeoutMillis is ignored.
-     *     @type int $timeoutMillis
-     *          Timeout to use for this call. Only used if $retrySettings
-     *          is not set.
+     *     @type \Google\GAX\RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\GAX\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\GAX\RetrySettings} for example usage.
      * }
      *
      * @return \Google\Privacy\Dlp\V2beta1\ListInfoTypesResponse
@@ -724,9 +778,13 @@ class DlpServiceGapicClient
         $request->setCategory($category);
         $request->setLanguageCode($languageCode);
 
-        $mergedSettings = $this->defaultCallSettings['listInfoTypes']->merge(
-            new CallSettings($optionalArgs)
-        );
+        $defaultCallSettings = $this->defaultCallSettings['listInfoTypes'];
+        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
+            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
+                $optionalArgs['retrySettings']
+            );
+        }
+        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
         $callable = ApiCallable::createApiCall(
             $this->dlpServiceStub,
             'ListInfoTypes',
@@ -760,12 +818,11 @@ class DlpServiceGapicClient
      * @param array  $optionalArgs {
      *                             Optional.
      *
-     *     @type \Google\GAX\RetrySettings $retrySettings
-     *          Retry settings to use for this call. If present, then
-     *          $timeoutMillis is ignored.
-     *     @type int $timeoutMillis
-     *          Timeout to use for this call. Only used if $retrySettings
-     *          is not set.
+     *     @type \Google\GAX\RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\GAX\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\GAX\RetrySettings} for example usage.
      * }
      *
      * @return \Google\Privacy\Dlp\V2beta1\ListRootCategoriesResponse
@@ -778,9 +835,13 @@ class DlpServiceGapicClient
         $request = new ListRootCategoriesRequest();
         $request->setLanguageCode($languageCode);
 
-        $mergedSettings = $this->defaultCallSettings['listRootCategories']->merge(
-            new CallSettings($optionalArgs)
-        );
+        $defaultCallSettings = $this->defaultCallSettings['listRootCategories'];
+        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
+            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
+                $optionalArgs['retrySettings']
+            );
+        }
+        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
         $callable = ApiCallable::createApiCall(
             $this->dlpServiceStub,
             'ListRootCategories',

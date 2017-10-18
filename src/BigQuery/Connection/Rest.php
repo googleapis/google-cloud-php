@@ -246,12 +246,19 @@ class Rest implements ConnectionInterface
         $args += [
             'projectId' => null,
             'data' => null,
-            'configuration' => []
+            'configuration' => [],
+            'labels' => [],
+            'dryRun' => false,
+            'jobReference' => []
         ];
 
         $args['data'] = Psr7\stream_for($args['data']);
-        $args['metadata']['configuration'] = $args['configuration'];
-        unset($args['configuration']);
+        $args['metadata'] = $this->pluckArray([
+            'labels',
+            'dryRun',
+            'jobReference',
+            'configuration'
+        ], $args);
 
         $uploaderOptionKeys = [
             'restOptions',

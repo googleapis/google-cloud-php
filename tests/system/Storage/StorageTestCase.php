@@ -18,6 +18,7 @@
 namespace Google\Cloud\Tests\System\Storage;
 
 use Google\Cloud\Core\Exception\NotFoundException;
+use Google\Cloud\PubSub\PubSubClient;
 use Google\Cloud\Storage\StorageClient;
 use Google\Cloud\Tests\System\SystemTestCase;
 
@@ -32,6 +33,7 @@ class StorageTestCase extends SystemTestCase
 
     protected static $bucket;
     protected static $client;
+    protected static $pubsubClient;
     protected static $object;
     private static $hasSetUp = false;
 
@@ -41,9 +43,13 @@ class StorageTestCase extends SystemTestCase
             return;
         }
 
-        self::$client = new StorageClient([
-            'keyFilePath' => getenv('GOOGLE_CLOUD_PHP_TESTS_KEY_PATH')
-        ]);
+        $config = [
+            'keyFilePath' => getenv('GOOGLE_CLOUD_PHP_TESTS_KEY_PATH'),
+            'transport' => 'rest'
+        ];
+
+        self::$client = new StorageClient($config);
+        self::$pubsubClient = new PubSubClient($config);
 
         $bucket = getenv('BUCKET') ?: uniqid(self::TESTING_PREFIX);
 

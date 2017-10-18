@@ -18,6 +18,7 @@
 namespace Google\Cloud\Tests\Unit\BigQuery;
 
 use Google\Cloud\BigQuery\Connection\ConnectionInterface;
+use Google\Cloud\BigQuery\Job;
 use Google\Cloud\BigQuery\QueryResults;
 use Google\Cloud\BigQuery\ValueMapper;
 use Prophecy\Argument;
@@ -57,21 +58,9 @@ class QueryResultsTest extends \PHPUnit_Framework_TestCase
             $this->jobId,
             $this->projectId,
             $data,
-            [],
-            new ValueMapper(false)
+            new ValueMapper(false),
+            $this->prophesize(Job::class)->reveal()
         );
-    }
-
-    /**
-     * @expectedException \Google\Cloud\Core\Exception\GoogleException
-     */
-    public function testGetsRowsThrowsExceptionWhenQueryNotComplete()
-    {
-        $this->queryData['jobComplete'] = false;
-        unset($this->queryData['rows']);
-        $this->connection->getQueryResults()->shouldNotBeCalled();
-        $queryResults = $this->getQueryResults($this->connection, $this->queryData);
-        $queryResults->rows()->next();
     }
 
     public function testGetsRowsWithNoResults()
@@ -107,6 +96,27 @@ class QueryResultsTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('Alton', $rows[1]['first_name']);
     }
 
+    public function testWaitsUntilComplete()
+    {
+        $this->queryData['jobComplete'] = false;
+        $this->connection->getQueryResults(Argument::any())
+            ->willReturn([
+                'jobComplete' => true
+            ])->shouldBeCalledTimes(1);
+        $queryResults = $this->getQueryResults($this->connection, $this->queryData);
+        $queryResults->waitUntilComplete();
+    }
+
+    public function testGetIterator()
+    {
+        $this->connection->getQueryResults()->shouldNotBeCalled();
+        unset($this->queryData['rows']);
+        $queryResults = $this->getQueryResults($this->connection, $this->queryData);
+        $rows = iterator_to_array($queryResults);
+
+        $this->assertEmpty($rows);
+    }
+
     public function testIsCompleteTrue()
     {
         $queryResults = $this->getQueryResults($this->connection, $this->queryData);
@@ -120,6 +130,13 @@ class QueryResultsTest extends \PHPUnit_Framework_TestCase
         $queryResults = $this->getQueryResults($this->connection, $this->queryData);
 
         $this->assertFalse($queryResults->isComplete());
+    }
+
+    public function testGetsJob()
+    {
+        $queryResults = $this->getQueryResults($this->connection, $this->queryData);
+
+        $this->assertInstanceOf(Job::class, $queryResults->job());
     }
 
     public function testGetsInfo()

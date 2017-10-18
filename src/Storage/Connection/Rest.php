@@ -265,7 +265,8 @@ class Rest implements ConnectionInterface
             'bucket' => $args['bucket'],
             'query' => [
                 'predefinedAcl' => $args['predefinedAcl'],
-                'uploadType' => $uploadType
+                'uploadType' => $uploadType,
+                'userProject' => $args['userProject']
             ]
         ];
 
@@ -289,7 +290,8 @@ class Rest implements ConnectionInterface
             'resumable' => null,
             'streamable' => null,
             'predefinedAcl' => null,
-            'metadata' => []
+            'metadata' => [],
+            'userProject' => null,
         ];
 
         $args['data'] = Psr7\stream_for($args['data']);
@@ -351,5 +353,37 @@ class Rest implements ConnectionInterface
     public function testBucketIamPermissions(array $args)
     {
         return $this->send('buckets', 'testIamPermissions', $args);
+    }
+
+    /**
+     * @param array $args
+     */
+    public function getNotification(array $args = [])
+    {
+        return $this->send('notifications', 'get', $args);
+    }
+
+    /**
+     * @param array $args
+     */
+    public function deleteNotification(array $args = [])
+    {
+        return $this->send('notifications', 'delete', $args);
+    }
+
+    /**
+     * @param array $args
+     */
+    public function insertNotification(array $args = [])
+    {
+        return $this->send('notifications', 'insert', $args);
+    }
+
+    /**
+     * @param array $args
+     */
+    public function listNotifications(array $args = [])
+    {
+        return $this->send('notifications', 'list', $args);
     }
 }

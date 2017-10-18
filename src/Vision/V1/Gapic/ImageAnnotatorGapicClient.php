@@ -30,13 +30,13 @@
 
 namespace Google\Cloud\Vision\V1\Gapic;
 
+use Google\Cloud\Version;
 use Google\Cloud\Vision\V1\AnnotateImageRequest;
 use Google\Cloud\Vision\V1\BatchAnnotateImagesRequest;
 use Google\Cloud\Vision\V1\ImageAnnotatorGrpcClient;
 use Google\GAX\AgentHeaderDescriptor;
 use Google\GAX\ApiCallable;
 use Google\GAX\CallSettings;
-use Google\GAX\GrpcConstants;
 use Google\GAX\GrpcCredentialsHelper;
 
 /**
@@ -76,11 +76,6 @@ class ImageAnnotatorGapicClient
     const DEFAULT_SERVICE_PORT = 443;
 
     /**
-     * The default timeout for non-retrying methods.
-     */
-    const DEFAULT_TIMEOUT_MILLIS = 30000;
-
-    /**
      * The name of the code generator, to be included in the agent header.
      */
     const CODEGEN_NAME = 'gapic';
@@ -90,6 +85,9 @@ class ImageAnnotatorGapicClient
      */
     const CODEGEN_VERSION = '0.0.5';
 
+    private static $gapicVersion;
+    private static $gapicVersionLoaded = false;
+
     protected $grpcCredentialsHelper;
     protected $imageAnnotatorStub;
     private $scopes;
@@ -98,13 +96,16 @@ class ImageAnnotatorGapicClient
 
     private static function getGapicVersion()
     {
-        if (file_exists(__DIR__.'/../VERSION')) {
-            return trim(file_get_contents(__DIR__.'/../VERSION'));
-        } elseif (class_exists('\Google\Cloud\ServiceBuilder')) {
-            return \Google\Cloud\ServiceBuilder::VERSION;
-        } else {
-            return;
+        if (!self::$gapicVersionLoaded) {
+            if (file_exists(__DIR__.'/../VERSION')) {
+                self::$gapicVersion = trim(file_get_contents(__DIR__.'/../VERSION'));
+            } elseif (class_exists(Version::class)) {
+                self::$gapicVersion = Version::VERSION;
+            }
+            self::$gapicVersionLoaded = true;
         }
+
+        return self::$gapicVersion;
     }
 
     /**
@@ -131,15 +132,20 @@ class ImageAnnotatorGapicClient
      *           A CredentialsLoader object created using the Google\Auth library.
      *     @type array $scopes A string array of scopes to use when acquiring credentials.
      *                          Defaults to the scopes for the Google Cloud Vision API.
+     *     @type string $clientConfigPath
+     *           Path to a JSON file containing client method configuration, including retry settings.
+     *           Specify this setting to specify the retry behavior of all methods on the client.
+     *           By default this settings points to the default client config file, which is provided
+     *           in the resources folder. The retry settings provided in this option can be overridden
+     *           by settings in $retryingOverride
      *     @type array $retryingOverride
-     *           An associative array of string => RetryOptions, where the keys
-     *           are method names (e.g. 'createFoo'), that overrides default retrying
-     *           settings. A value of null indicates that the method in question should
-     *           not retry.
-     *     @type int $timeoutMillis The timeout in milliseconds to use for calls
-     *                              that don't use retries. For calls that use retries,
-     *                              set the timeout in RetryOptions.
-     *                              Default: 30000 (30 seconds)
+     *           An associative array in which the keys are method names (e.g. 'createFoo'), and
+     *           the values are retry settings to use for that method. The retry settings for each
+     *           method can be a {@see Google\GAX\RetrySettings} object, or an associative array
+     *           of retry settings parameters. See the documentation on {@see Google\GAX\RetrySettings}
+     *           for example usage. Passing a value of null is equivalent to a value of
+     *           ['retriesEnabled' => false]. Retry settings provided in this setting override the
+     *           settings in $clientConfigPath.
      * }
      * @experimental
      */
@@ -152,9 +158,9 @@ class ImageAnnotatorGapicClient
                 'https://www.googleapis.com/auth/cloud-platform',
             ],
             'retryingOverride' => null,
-            'timeoutMillis' => self::DEFAULT_TIMEOUT_MILLIS,
             'libName' => null,
             'libVersion' => null,
+            'clientConfigPath' => __DIR__.'/../resources/image_annotator_client_config.json',
         ];
         $options = array_merge($defaultOptions, $options);
 
@@ -171,15 +177,13 @@ class ImageAnnotatorGapicClient
             'batchAnnotateImages' => $defaultDescriptors,
         ];
 
-        $clientConfigJsonString = file_get_contents(__DIR__.'/../resources/image_annotator_client_config.json');
+        $clientConfigJsonString = file_get_contents($options['clientConfigPath']);
         $clientConfig = json_decode($clientConfigJsonString, true);
         $this->defaultCallSettings =
                 CallSettings::load(
                     'google.cloud.vision.v1.ImageAnnotator',
                     $clientConfig,
-                    $options['retryingOverride'],
-                    GrpcConstants::getStatusCodeNames(),
-                    $options['timeoutMillis']
+                    $options['retryingOverride']
                 );
 
         $this->scopes = $options['scopes'];
@@ -217,12 +221,11 @@ class ImageAnnotatorGapicClient
      * @param array                  $optionalArgs {
      *                                             Optional.
      *
-     *     @type \Google\GAX\RetrySettings $retrySettings
-     *          Retry settings to use for this call. If present, then
-     *          $timeoutMillis is ignored.
-     *     @type int $timeoutMillis
-     *          Timeout to use for this call. Only used if $retrySettings
-     *          is not set.
+     *     @type \Google\GAX\RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\GAX\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\GAX\RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\Vision\V1\BatchAnnotateImagesResponse
@@ -235,9 +238,13 @@ class ImageAnnotatorGapicClient
         $request = new BatchAnnotateImagesRequest();
         $request->setRequests($requests);
 
-        $mergedSettings = $this->defaultCallSettings['batchAnnotateImages']->merge(
-            new CallSettings($optionalArgs)
-        );
+        $defaultCallSettings = $this->defaultCallSettings['batchAnnotateImages'];
+        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
+            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
+                $optionalArgs['retrySettings']
+            );
+        }
+        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
         $callable = ApiCallable::createApiCall(
             $this->imageAnnotatorStub,
             'BatchAnnotateImages',

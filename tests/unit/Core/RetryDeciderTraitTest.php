@@ -34,6 +34,18 @@ class RetryDeciderTraitTest extends \PHPUnit_Framework_TestCase
     /**
      * @dataProvider retryProvider
      */
+    public function testDisableRetry($exception)
+    {
+        $this->implementation->call('setHttpRetryCodes', [[]]);
+        $this->implementation->call('setHttpRetryMessages', [[]]);
+        $retryFunction = $this->implementation->call('getRetryFunction');
+
+        $this->assertFalse($retryFunction($exception));
+    }
+
+    /**
+     * @dataProvider retryProvider
+     */
     public function testShouldRetry($exception, $shouldRetryMessage, $expected)
     {
         $retryFunction = $this->implementation->call('getRetryFunction', [$shouldRetryMessage]);

@@ -15,7 +15,7 @@
       </exclude>
     </whitelist>
   </filter>
-  <logging>
-    <log type="coverage-clover" target="build/clover.xml"/>
-  </logging>
+  <php>
+    <ini name="memory_limit" value="2048M"/>
+  </php>
 </phpunit>
