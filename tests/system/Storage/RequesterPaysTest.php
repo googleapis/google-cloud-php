@@ -161,7 +161,6 @@ class RequesterPaysTest extends StorageTestCase
     }
 
     /**
-     * @group foo
      * @dataProvider requesterPaysMethods
      */
     public function testRequesterPaysWithUserProject(callable $call)
@@ -347,6 +346,15 @@ class RequesterPaysTest extends StorageTestCase
     public function testDeleteNotification()
     {
         $bucket = $this->requesterPaysClient->bucket(self::$bucketName, $this->requesterProject);
+        $bucket->notification(self::$notificationId)->delete();
+    }
+
+    /**
+     * @expectedException Google\Cloud\Core\Exception\BadRequestException
+     */
+    public function testDeleteNotificationFails()
+    {
+        $bucket = $this->requesterPaysClient->bucket(self::$bucketName);
         $bucket->notification(self::$notificationId)->delete();
     }
 }
