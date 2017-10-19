@@ -144,15 +144,16 @@ class Query
      * @param array $options Configuration options.
      * @return QuerySnapshot
      */
-    public function documents(array $options = [])
+    public function snapshot(array $options = [])
     {
-        $res = $this->connection->runQuery([
-            'parent' => $this->parent,
-            'structuredQuery' => $this->query
-        ]);
+        $call = function ($resumeToken = null) use ($options) {
+            return $this->connection->runQuery([
+                'parent' => $this->parent,
+                'structuredQuery' => $this->query
+            ] + $options);
+        };
 
-        return $res;
-        // return new QuerySnapshot($this->connection, $this, $this->valueMapper);
+        return new QuerySnapshot($this->connection, $this->valueMapper, $this, $call);
     }
 
     /**

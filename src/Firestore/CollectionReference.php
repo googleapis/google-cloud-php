@@ -205,7 +205,7 @@ class CollectionReference
      */
     public function query(array $query = [])
     {
-        return new Query($this->connection, $this->valueMapper, $this->name, [
+        return new Query($this->connection, $this->valueMapper, $this->parentPath($this->name), [
             'from' => [
                 [
                     'collectionId' => $this->pathId($this->name)

@@ -17,54 +17,128 @@
 
 namespace Google\Cloud\Firestore;
 
+use Grpc;
+use Google\Cloud\Core\ExponentialBackoff;
+use Google\Cloud\Core\Exception\ServiceException;
 use Google\Cloud\Firestore\Connection\ConnectionInterface;
 
 /**
- * Query Results
- *
- * @todo make iterable -- page results?
+ * Represents the result set of a Cloud Firestore Query.
  */
 class QuerySnapshot implements \IteratorAggregate
 {
-    /**
-     * @var ConnectionInterface
-     */
+    use SnapshotTrait;
+
+    const MAX_RETRIES = 3;
+
     private $connection;
-
-    /**
-     * @var ValueMapper
-     */
     private $valueMapper;
-
-    /**
-     * @var Query
-     */
     private $query;
+    private $call;
+    private $retries;
 
-    /**
-     * @var array
-     */
-    private $res;
-
-    /**
-     * @param ConnectionInterface $connection A Connection to Cloud Firestore.
-     * @param ValueMapper $valueMapper A Firestore Value Mapper.
-     * @param Query $query The Query which originated the call.
-     * @param callable $call
-     */
-    public function __construct(ConnectionInterface $connection, ValueMapper $valueMapper, Query $query)
-    {
+    public function __construct(
+        ConnectionInterface $connection,
+        ValueMapper $valueMapper,
+        Query $query,
+        callable $call,
+        $retries = self::MAX_RETRIES
+    ) {
         $this->connection = $connection;
         $this->valueMapper = $valueMapper;
         $this->query = $query;
+        $this->call = $call;
+        $this->retries = $retries;
     }
 
     /**
-     * @return Query
+     * The size of the Query result set.
+     *
+     * NOTE: If the Query has not been enumerated, this method will trigger
+     * execution of the query. Additionally, if the query execution was
+     * interrupted before completion, this method may not return an accurate
+     * value.
+     *
+     * @return int
      */
-    public function query()
+    public function size()
     {
-        return $this->query;
+        if (is_null($this->size)) {
+            $this->rows();
+        }
+
+        return $this->size;
+    }
+
+    /**
+     * Return the formatted and decoded rows. If the stream is interrupted,
+     * attempts will be made on your behalf to resume.
+     *
+     * Example:
+     * ```
+     * $rows = $result->rows();
+     * ```
+     *
+     * @return \Generator<DocumentSnapshot>
+     */
+    public function rows()
+    {
+        $call = $this->call;
+        $generator = $call();
+
+        // cache collection references
+        $collections = [];
+
+        while ($generator->valid()) {
+            try {
+                $result = $generator->current();
+
+                if (isset($result['transaction']) && $result['transaction']) {
+                    $this->transaction = $result['transaction'];
+                } elseif (isset($result['document']) && $result['document']) {
+                    $collectionName = $this->parentPath($result['document']['name']);
+                    if (!isset($collections[$collectionName])) {
+                        $collections[$collectionName] = new CollectionReference(
+                            $this->connection,
+                            $this->valueMapper,
+                            $collectionName
+                        );
+                    }
+
+                    $ref = new DocumentReference(
+                        $this->connection,
+                        $this->valueMapper,
+                        $collections[$collectionName],
+                        $result['document']['name']
+                    );
+
+                    $document = $result['document'];
+                    $document['readTime'] = $result['readTime'];
+
+                    yield $this->createSnapshot($ref, [
+                        'data' => $document
+                    ]);
+                }
+
+                $generator->next();
+            } catch (ServiceException $ex) {
+                if ($shouldRetry && $ex->getCode() === Grpc\STATUS_UNAVAILABLE) {
+                    $backoff = new ExponentialBackoff($this->retries, function (ServiceException $ex) {
+                        return $ex->getCode() === Grpc\STATUS_UNAVAILABLE
+                            ? true
+                            : false;
+                    });
+
+                    // Attempt to resume using our last stored resume token. If we
+                    // successfully resume, flush the buffer.
+                    $generator = $backoff->execute($call);
+
+                    continue;
+                }
+
+                throw $ex;
+            }
+        }
     }
 
     /**
@@ -73,6 +147,6 @@ class QuerySnapshot implements \IteratorAggregate
      */
     public function getIterator()
     {
-        return $this->documents();
+        return $this->rows();
     }
 }

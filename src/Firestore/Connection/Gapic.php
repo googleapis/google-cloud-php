@@ -153,6 +153,7 @@ class Gapic implements ConnectionInterface
      */
     public function runQuery(array $args)
     {
+        var_dump('run');
         $q = $this->pluck('structuredQuery', $args);
 
         $args['structuredQuery'] = $this->serializer->decodeMessage(
