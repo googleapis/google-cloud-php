@@ -90,54 +90,36 @@ class QuerySnapshot implements \IteratorAggregate
         $collections = [];
 
         while ($generator->valid()) {
-            try {
-                $result = $generator->current();
+            $result = $generator->current();
 
-                if (isset($result['transaction']) && $result['transaction']) {
-                    $this->transaction = $result['transaction'];
-                } elseif (isset($result['document']) && $result['document']) {
-                    $collectionName = $this->parentPath($result['document']['name']);
-                    if (!isset($collections[$collectionName])) {
-                        $collections[$collectionName] = new CollectionReference(
-                            $this->connection,
-                            $this->valueMapper,
-                            $collectionName
-                        );
-                    }
-
-                    $ref = new DocumentReference(
+            if (isset($result['transaction']) && $result['transaction']) {
+                $this->transaction = $result['transaction'];
+            } elseif (isset($result['document']) && $result['document']) {
+                $collectionName = $this->parentPath($result['document']['name']);
+                if (!isset($collections[$collectionName])) {
+                    $collections[$collectionName] = new CollectionReference(
                         $this->connection,
                         $this->valueMapper,
-                        $collections[$collectionName],
-                        $result['document']['name']
+                        $collectionName
                     );
-
-                    $document = $result['document'];
-                    $document['readTime'] = $result['readTime'];
-
-                    yield $this->createSnapshot($ref, [
-                        'data' => $document
-                    ]);
                 }
 
-                $generator->next();
-            } catch (ServiceException $ex) {
-                if ($shouldRetry && $ex->getCode() === Grpc\STATUS_UNAVAILABLE) {
-                    $backoff = new ExponentialBackoff($this->retries, function (ServiceException $ex) {
-                        return $ex->getCode() === Grpc\STATUS_UNAVAILABLE
-                            ? true
-                            : false;
-                    });
+                $ref = new DocumentReference(
+                    $this->connection,
+                    $this->valueMapper,
+                    $collections[$collectionName],
+                    $result['document']['name']
+                );
 
-                    // Attempt to resume using our last stored resume token. If we
-                    // successfully resume, flush the buffer.
-                    $generator = $backoff->execute($call);
+                $document = $result['document'];
+                $document['readTime'] = $result['readTime'];
 
-                    continue;
-                }
-
-                throw $ex;
+                yield $this->createSnapshot($ref, [
+                    'data' => $document
+                ]);
             }
+
+            $generator->next();
         }
     }
 
