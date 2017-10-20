@@ -168,6 +168,8 @@ class RequesterPaysTest extends StorageTestCase
         $bucket = $this->requesterPaysClient->bucket(self::$bucketName, $this->requesterProject);
         $object = $bucket->object(self::$object1->name());
 
+        $this->assertEquals($this->requesterProject, $object->identity()['userProject']);
+
         $call($bucket, $object);
     }
 
@@ -332,7 +334,6 @@ class RequesterPaysTest extends StorageTestCase
                 }
             ], [
                 function (Bucket $bucket, StorageObject $object) {
-                    // broke!
                     $bucket->iam()->testPermissions(['storage.objects.create', 'storage.objects.delete']);
                 }
             ], [
@@ -347,6 +348,10 @@ class RequesterPaysTest extends StorageTestCase
     {
         $bucket = $this->requesterPaysClient->bucket(self::$bucketName, $this->requesterProject);
         $bucket->notification(self::$notificationId)->delete();
+
+        // test that the userProject is right through the object (since no access on bucket).
+        $object = $bucket->object(self::$object1->name());
+        $this->assertEquals($this->requesterProject, $object->identity()['userProject']);
     }
 
     /**
