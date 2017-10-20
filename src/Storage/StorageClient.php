@@ -265,14 +265,10 @@ class StorageClient
      *           **Defaults to** `STANDARD`.
      *     @type array $versioning The bucket's versioning configuration.
      *     @type array $website The bucket's website configuration.
-     *     @type array $billing The bucket's billing configuration. **Whitelist
-     *           Warning:** At the time of publication, this argument is subject
-     *           to a feature whitelist and may not be available in your project.
+     *     @type array $billing The bucket's billing configuration.
      *     @type bool $billing['requesterPays'] When `true`, requests to this bucket
      *           and objects within it must provide a project ID to which the
-     *           request will be billed. **Whitelist Warning:** At the time of
-     *           publication, this argument is subject to a feature whitelist
-     *           and may not be available in your project.
+     *           request will be billed.
      *     @type array $labels The Bucket labels. Labels are represented as an
      *           array of keys and values. To remove an existing label, set its
      *           value to `null`.
