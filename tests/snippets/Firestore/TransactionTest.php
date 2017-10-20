@@ -25,6 +25,7 @@ use Google\Cloud\Firestore\FirestoreClient;
 use Google\Cloud\Firestore\DocumentSnapshot;
 use Google\Cloud\Dev\Snippet\SnippetTestCase;
 use Google\Cloud\Firestore\DocumentReference;
+use Google\Cloud\Firestore\CollectionReference;
 use Google\Cloud\Firestore\Connection\ConnectionInterface;
 
 /**
@@ -64,7 +65,7 @@ class TransactionTest extends SnippetTestCase
             ->shouldBeCalled()
             ->willReturn(['transaction' => self::TRANSACTION]);
 
-        $this->connection->commit(Argument::any())
+        $this->connection->rollback(Argument::any())
             ->shouldBeCalled();
 
         $client = \Google\Cloud\Dev\stub(FirestoreClient::class);
@@ -74,6 +75,14 @@ class TransactionTest extends SnippetTestCase
         $snippet->setLine(3, '');
         $snippet->addLocal('firestore', $client);
         $snippet->invoke();
+    }
+
+    public function testCollection()
+    {
+        $snippet = $this->snippetFromMethod(Transaction::class, 'collection');
+        $snippet->addLocal('transaction', $this->transaction);
+        $res = $snippet->invoke('collection');
+        $this->assertInstanceOf(CollectionReference::class, $res->returnVal());
     }
 
     public function testSnapshot()

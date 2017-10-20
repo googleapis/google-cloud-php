@@ -32,6 +32,7 @@ class CollectionReferenceTest extends \PHPUnit_Framework_TestCase
 {
     const PROJECT = 'example_project';
     const DATABASE = '(default)';
+    const PARENT = 'projects/example_project/databases/(default)/documents/a';
     const NAME = 'projects/example_project/databases/(default)/documents/a/b';
 
     private $connection;
@@ -140,9 +141,12 @@ class CollectionReferenceTest extends \PHPUnit_Framework_TestCase
         $q = $this->collection->query();
         $this->assertInstanceOf(Query::class, $q);
 
-        $this->connection->runQuery(Argument::withEntry('parent', self::NAME))->shouldBeCalled();
+        $this->connection->runQuery(Argument::withEntry('parent', self::PARENT))->shouldBeCalled()
+            ->willReturn(new \ArrayIterator([
+                []
+            ]));
         $this->collection->___setProperty('connection', $this->connection->reveal());
 
-        $q->documents();
+        $q->snapshot()->rows()->current();
     }
 }

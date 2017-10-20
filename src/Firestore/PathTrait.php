@@ -37,6 +37,19 @@ trait PathTrait
     }
 
     /**
+     * Create a full name from a database name and relative path.
+     *
+     * @param string $databaseName
+     * @param string $relativeName
+     * @return string
+     */
+    public function fullNameFromDatabase($databaseName, $relativeName)
+    {
+        $template = '%s/documents/%s';
+        return sprintf($template, $databaseName, $relativeName);
+    }
+
+    /**
      * @param string $projectId The project ID.
      * @param string $database The database name.
      */

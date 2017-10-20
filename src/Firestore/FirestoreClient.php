@@ -402,7 +402,14 @@ class FirestoreClient
         $backoff = new ExponentialBackoff($options['maxRetries'], $retryFn);
 
         $iteration = 0;
-        return $backoff->execute(function (callable $callable, array $options) use (&$transactionId, $retryableErrors, &$iteration) {
+        return $backoff->execute(function (
+            callable $callable,
+            array $options
+        ) use (
+            &$transactionId,
+            $retryableErrors,
+            &$iteration
+        ) {
             $this->isRunningTransaction = true;
 
             $database = $this->databaseName($this->projectId, $this->database);
@@ -411,9 +418,15 @@ class FirestoreClient
                 'database' => $database,
                 'retryTransaction' => $transactionId
             ]) + $options['begin']);
+
             $transactionId = $beginTransaction['transaction'];
 
-            $transaction = new Transaction($this->connection, $this->valueMapper, $database, $transactionId);
+            $transaction = new Transaction(
+                $this->connection,
+                $this->valueMapper,
+                $database,
+                $transactionId
+            );
 
             try {
                 $callable($transaction, ($iteration > 0));

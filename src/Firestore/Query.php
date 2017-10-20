@@ -105,7 +105,7 @@ class Query
     /**
      * @var string?
      */
-    private $transactionId;
+    private $transaction;
 
     /**
      * @param ConnectionInterface $connection A Connection to Cloud Firestore.
@@ -118,17 +118,17 @@ class Query
         ValueMapper $valueMapper,
         $parent,
         array $query,
-        $transactionId = null
+        $transaction = null
     ) {
         $this->connection = $connection;
         $this->valueMapper = $valueMapper;
         $this->parent = $parent;
         $this->query = $query;
-        $this->transactionId = $transactionId;
+        $this->transaction = $transaction;
 
         if (!isset($this->query['from'])) {
             throw new \InvalidArgumentException(
-                'Cannot instantiate a query which does not specify a collection selector'
+                'Cannot instantiate a query which does not specify a collection selector (`from`).'
             );
         }
     }
@@ -149,7 +149,8 @@ class Query
         $call = function ($resumeToken = null) use ($options) {
             return $this->connection->runQuery([
                 'parent' => $this->parent,
-                'structuredQuery' => $this->query
+                'structuredQuery' => $this->query,
+                'transaction' => $this->transaction
             ] + $options);
         };
 

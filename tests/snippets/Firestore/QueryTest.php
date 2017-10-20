@@ -150,16 +150,17 @@ class QueryTest extends SnippetTestCase
     {
         $this->connection->runQuery([
             'parent' => self::NAME,
+            'transaction' => null,
             'structuredQuery' => array_filter([
                 'from' => self::NAME,
                 $key => $argument
             ])
-        ])->shouldBeCalled();
+        ])->shouldBeCalled()->willReturn(new \ArrayIterator([[]]));
 
         $this->query->___setProperty('connection', $this->connection->reveal());
         $snippet->addLocal('query', $this->query);
         $res = $snippet->invoke('query');
-        $res->returnVal()->documents();
+        $res->returnVal()->snapshot()->rows()->current();
         $this->assertInstanceOf(Query::class, $res->returnVal());
     }
 }

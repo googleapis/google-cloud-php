@@ -60,15 +60,25 @@ class CollectionReference
     private $name;
 
     /**
+     * @var string|null
+     */
+    private $transaction;
+
+    /**
      * @param ConnectionInterface $connection A Connection to Cloud Firestore.
      * @param ValueMapper $valueMapper A Firestore Value Mapper.
      * @param string $name The absolute name of the collection.
      */
-    public function __construct(ConnectionInterface $connection, ValueMapper $valueMapper, $name)
-    {
+    public function __construct(
+        ConnectionInterface $connection,
+        ValueMapper $valueMapper,
+        $name,
+        $transaction = null
+    ) {
         $this->connection = $connection;
         $this->valueMapper = $valueMapper;
         $this->name = $name;
+        $this->transaction = $transaction;
     }
 
     /**
@@ -211,7 +221,7 @@ class CollectionReference
                     'collectionId' => $this->pathId($this->name)
                 ]
             ] + $query
-        ]);
+        ], $this->transaction);
     }
 
     /**

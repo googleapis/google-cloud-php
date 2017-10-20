@@ -248,18 +248,14 @@ class FirestoreClientTest extends \PHPUnit_Framework_TestCase
             'transaction' => $transactionId
         ]);
 
-        $this->connection->commit([
+        $this->connection->rollback([
             'database' => 'projects/'. self::PROJECT .'/databases/'. self::DATABASE,
             'transaction' => $transactionId
-        ])->shouldBeCalled()->willReturn([
-            'commitTime' => $timestamp,
-        ]);
+        ])->shouldBeCalled();
 
         $this->client->___setProperty('connection', $this->connection->reveal());
 
-        $res = $this->client->runTransaction(function ($t) {});
-        $this->assertInstanceOf(Timestamp::class, $res['commitTime']);
-        $this->assertEquals($timestamp['seconds'], $res['commitTime']->get()->format('U'));
+        $this->client->runTransaction(function ($t) {});
     }
 
     public function testRunTransactionRetryable()
@@ -280,16 +276,22 @@ class FirestoreClientTest extends \PHPUnit_Framework_TestCase
             ];
         });
 
-        $this->connection->commit([
-            'database' => 'projects/'. self::PROJECT .'/databases/'. self::DATABASE,
-            'transaction' => $transactionId
-        ])->shouldBeCalled()->will(function ($args, $mock) use ($timestamp, $transactionId2) {
-            $mock->commit([
-                'database' => 'projects/'. self::PROJECT .'/databases/'. self::DATABASE,
-                'transaction' => $transactionId2
-            ])->willReturn([
-                'commitTime' => $timestamp,
-            ]);
+        $this->connection->commit(Argument::that(function ($args) use ($transactionId) {
+            if ($args['database'] !== 'projects/'. self::PROJECT .'/databases/'. self::DATABASE) return false;
+            if ($args['transaction'] !== $transactionId) return false;
+
+            return true;
+        }))
+            ->shouldBeCalled()
+            ->will(function ($args, $mock) use ($timestamp, $transactionId2) {
+                $mock->commit(Argument::that(function ($args) use ($transactionId2) {
+                    if ($args['database'] !== 'projects/'. self::PROJECT .'/databases/'. self::DATABASE) return false;
+                    if ($args['transaction'] !== $transactionId2) return false;
+
+                    return true;
+                }))->willReturn([
+                    'commitTime' => $timestamp,
+                ]);
 
             throw new AbortedException('');
         });
@@ -301,7 +303,11 @@ class FirestoreClientTest extends \PHPUnit_Framework_TestCase
 
         $this->client->___setProperty('connection', $this->connection->reveal());
 
-        $res = $this->client->runTransaction(function ($t) {});
+        $res = $this->client->runTransaction(function ($t) {
+            $doc = $this->prophesize(DocumentReference::class);
+            $doc->name('foo');
+            $t->create($doc->reveal(), []);
+        });
         $this->assertInstanceOf(Timestamp::class, $res['commitTime']);
         $this->assertEquals($timestamp['seconds'], $res['commitTime']->get()->format('U'));
     }
@@ -353,7 +359,11 @@ class FirestoreClientTest extends \PHPUnit_Framework_TestCase
 
         $this->client->___setProperty('connection', $this->connection->reveal());
 
-        $res = $this->client->runTransaction(function ($t) {});
+        $res = $this->client->runTransaction(function ($t) {
+            $doc = $this->prophesize(DocumentReference::class);
+            $doc->name('foo');
+            $t->create($doc->reveal(), []);
+        });
     }
 
     /**
@@ -376,7 +386,11 @@ class FirestoreClientTest extends \PHPUnit_Framework_TestCase
 
         $this->client->___setProperty('connection', $this->connection->reveal());
 
-        $res = $this->client->runTransaction(function ($t) {}, ['maxRetries' => 2]);
+        $res = $this->client->runTransaction(function ($t) {
+            $doc = $this->prophesize(DocumentReference::class);
+            $doc->name('foo');
+            $t->create($doc->reveal(), []);
+        }, ['maxRetries' => 2]);
     }
 
     /**

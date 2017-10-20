@@ -381,8 +381,10 @@ class QueryTest extends \PHPUnit_Framework_TestCase
     private function runAndAssert(Query $query, $assertion)
     {
         if (is_array($assertion)) {
-            $this->connection->runQuery($assertion)
-            ->shouldBeCalledTimes(1);
+            $this->connection->runQuery($assertion + ['transaction' => null])
+            ->shouldBeCalledTimes(1)->willReturn(new \ArrayIterator([
+                []
+            ]));
         } elseif (is_callable($assertion)) {
             $this->connection->runQuery(Argument::that($assertion))
                 ->shouldBeCalledTimes(1);
@@ -390,6 +392,6 @@ class QueryTest extends \PHPUnit_Framework_TestCase
 
         $query->___setProperty('connection', $this->connection->reveal());
 
-        $query->documents();
+        $query->snapshot()->rows()->current();
     }
 }

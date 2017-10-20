@@ -59,19 +59,19 @@ class Transaction
     private $valueMapper;
 
     /**
-     * @var WriteBatch
-     */
-    private $writer;
-
-    /**
      * @var string
      */
     private $transaction;
 
     /**
-     * @var array
+     * @var string
      */
-    private $commitOptions = [];
+    private $database;
+
+    /**
+     * @var WriteBatch
+     */
+    private $writer;
 
     /**
      * @param ConnectionInterface $connection A connection to Cloud Firestore.
@@ -79,12 +79,49 @@ class Transaction
      * @param string $database The database name.
      * @param string $transaction The transaction ID.
      */
-    public function __construct(ConnectionInterface $connection, ValueMapper $valueMapper, $database, $transaction)
-    {
+    public function __construct(
+        ConnectionInterface $connection,
+        ValueMapper $valueMapper,
+        $database,
+        $transaction
+    ) {
         $this->connection = $connection;
         $this->valueMapper = $valueMapper;
-        $this->writer = new WriteBatch($connection, $valueMapper, $database, $transaction);
+        $this->database = $database;
         $this->transaction = $transaction;
+
+        $this->writer = new WriteBatch($connection, $valueMapper, $database, $transaction);
+    }
+
+    /**
+     * Lazily instantiate a Collection with the current Transaction ID applied.
+     *
+     * Collections hold Firestore documents. Collections cannot be created or
+     * deleted directly - they exist only as implicit namespaces. Once no child
+     * documents remain in a collection, it ceases to exist.
+     *
+     * Creating a Collection within a Transaction is required in order to run
+     * queries as part of a Firestore Transaction.
+     *
+     * Example:
+     * ```
+     * $collection = $transaction->collection('users');
+     * ```
+     *
+     * @param string $name The name of the collection.
+     * @return CollectionReference
+     */
+    public function collection($name)
+    {
+        if ($this->isRelative($name)) {
+            $name = $this->fullNameFromDatabase($this->database, $name);
+        }
+
+        if (!$this->isCollection($name)) {
+            throw new \InvalidArgumentException('Given path is not a valid collection path.');
+        }
+
+        return new CollectionReference($this->connection, $this->valueMapper, $name, $this->transaction);
     }
 
     /**
