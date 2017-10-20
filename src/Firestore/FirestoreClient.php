@@ -431,7 +431,7 @@ class FirestoreClient
             try {
                 $callable($transaction, ($iteration > 0));
 
-                if (!$transaction->writer()->empty()) {
+                if (!$transaction->writer()->isEmpty()) {
                     return $transaction->writer()->commit([
                         'transaction' => $transactionId
                     ] + $options['commit']);

@@ -538,7 +538,7 @@ class WriteBatch
      * @return bool
      * @access private
      */
-    public function empty()
+    public function isEmpty()
     {
         return ! (bool) $this->writes;
     }
