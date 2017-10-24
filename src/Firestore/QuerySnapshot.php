@@ -73,6 +73,16 @@ class QuerySnapshot implements \IteratorAggregate
     private $retries;
 
     /**
+     * @var bool|null
+     */
+    private $empty;
+
+    /**
+     * @var int|null
+     */
+    private $size;
+
+    /**
      * @param ConnectionInterface $connection A connection to Cloud Firestore
      * @param ValueMapper $valueMapper A Firestore Value Mapper
      * @param Query $query The Query which generated this snapshot.
@@ -94,6 +104,43 @@ class QuerySnapshot implements \IteratorAggregate
     }
 
     /**
+     * Check if the result is empty.
+     *
+     * Please note that this value will be null until the result is first
+     * iterated.
+     *
+     * Example:
+     * ```
+     * $empty = $snapshot->isEmpty();
+     * ```
+     *
+     * @return bool|null
+     */
+    public function isEmpty()
+    {
+        return $this->empty;
+    }
+
+    /**
+     * Returns the size of the result set.
+     *
+     * Please note that this value will be null until the entire result set
+     * has been iterated. If the query results are ended before the set has been
+     * fully enumerated, this value will never be set.
+     *
+     * Example:
+     * ```
+     * $size = $snapshot->size();
+     * ```
+     *
+     * @return int|null
+     */
+    public function size()
+    {
+        return $this->size;
+    }
+
+    /**
      * Return the formatted and decoded rows. If the stream is interrupted,
      * attempts will be made on your behalf to resume.
      *
@@ -106,12 +153,13 @@ class QuerySnapshot implements \IteratorAggregate
      */
     public function rows()
     {
-        $call = $this->call;
-        $backoff = new ExponentialBackoff($this->maxRetries);
-        $generator = $call();
+        $generator = $this->executeQuery();
 
         // cache collection references
         $collections = [];
+
+        $this->empty = true;
+        $size = 0;
 
         while ($generator->valid()) {
             $result = $generator->current();
@@ -119,6 +167,9 @@ class QuerySnapshot implements \IteratorAggregate
             if (isset($result['transaction']) && $result['transaction']) {
                 $this->transaction = $result['transaction'];
             } elseif (isset($result['document']) && $result['document']) {
+                $this->empty = false;
+                $size++;
+
                 $collectionName = $this->parentPath($result['document']['name']);
                 if (!isset($collections[$collectionName])) {
                     $collections[$collectionName] = new CollectionReference(
@@ -145,6 +196,8 @@ class QuerySnapshot implements \IteratorAggregate
 
             $generator->next();
         }
+
+        $this->size = $size;
     }
 
     /**
@@ -154,5 +207,31 @@ class QuerySnapshot implements \IteratorAggregate
     public function getIterator()
     {
         return $this->rows();
+    }
+
+    /**
+     * Execute the query and return a Generator filled with streaming query results.
+     *
+     * Firestore does not support resuming broken queries. The retry logic
+     * contained in this method is intended to allow retries of queries that
+     * break on the initial call, but prevent retries if the stream is
+     * interrupted due to error.
+     *
+     * @return \Generator
+     */
+    private function executeQuery()
+    {
+        $call = $this->call;
+
+        $shouldRetry = true;
+        $backoff = new ExponentialBackoff($this->maxRetries, function () use (&$shouldRetry) {
+            return $shouldRetry;
+        });
+
+        $generator = $backoff->execute(function () use (&$shouldRetry) {
+            $res = $call();
+            $shouldRetry = false;
+            return $res;
+        });
     }
 }
