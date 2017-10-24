@@ -323,7 +323,7 @@ class Entity implements ArrayAccess
      */
     public function __get($property)
     {
-        return $this->offsetExists($property) ? $this->offsetGet($property) : null;
+        return $this->offsetGet($property);
     }
 
     /**
