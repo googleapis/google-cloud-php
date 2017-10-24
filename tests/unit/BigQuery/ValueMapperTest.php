@@ -141,7 +141,7 @@ class ValueMapperTest extends \PHPUnit_Framework_TestCase
             [
                 ['v' => '2678400.0'],
                 ['type' => 'TIMESTAMP'],
-                new Timestamp(new \DateTime('1970-02-01'))
+                new Timestamp(new \DateTime('1970-02-01', new \DateTimeZone('UTC')))
             ],
             [
                 ['v' => '-3.1561919984985E8'],
