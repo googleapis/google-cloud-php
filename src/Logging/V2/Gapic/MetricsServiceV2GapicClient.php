@@ -34,7 +34,7 @@ use Google\Cloud\Version;
 use Google\GAX\AgentHeaderDescriptor;
 use Google\GAX\ApiCallable;
 use Google\GAX\CallSettings;
-use Google\GAX\GrpcCredentialsHelper;
+use Google\GAX\GapicClientTrait;
 use Google\GAX\PageStreamingDescriptor;
 use Google\GAX\PathTemplate;
 use Google\GAX\ValidationException;
@@ -45,6 +45,7 @@ use Google\Logging\V2\ListLogMetricsRequest;
 use Google\Logging\V2\LogMetric;
 use Google\Logging\V2\MetricsServiceV2GrpcClient;
 use Google\Logging\V2\UpdateLogMetricRequest;
+use InvalidArgumentException;
 
 /**
  * Service Description: Service for configuring logs-based metrics.
@@ -59,7 +60,7 @@ use Google\Logging\V2\UpdateLogMetricRequest;
  * ```
  * try {
  *     $metricsServiceV2Client = new MetricsServiceV2Client();
- *     $formattedParent = $metricsServiceV2Client->projectName("[PROJECT]");
+ *     $formattedParent = $metricsServiceV2Client->projectName('[PROJECT]');
  *     // Iterate through all elements
  *     $pagedResponse = $metricsServiceV2Client->listLogMetrics($formattedParent);
  *     foreach ($pagedResponse->iterateAllElements() as $element) {
@@ -82,11 +83,12 @@ use Google\Logging\V2\UpdateLogMetricRequest;
  * with these names, this class includes a format method for each type of name, and additionally
  * a parseName method to extract the individual identifiers contained within formatted names
  * that are returned by the API.
- *
  * @experimental
  */
 class MetricsServiceV2GapicClient
 {
+    use GapicClientTrait;
+
     /**
      * The default address of the service.
      */
@@ -113,8 +115,7 @@ class MetricsServiceV2GapicClient
     private static $gapicVersion;
     private static $gapicVersionLoaded = false;
 
-    protected $grpcCredentialsHelper;
-    protected $metricsServiceV2Stub;
+    protected $metricsServiceV2Transport;
     private $scopes;
     private $defaultCallSettings;
     private $descriptors;
@@ -145,9 +146,9 @@ class MetricsServiceV2GapicClient
                 'metric' => self::getMetricNameTemplate(),
             ];
         }
-
         return self::$pathTemplateMap;
     }
+
     private static function getPageStreamingDescriptors()
     {
         $listLogMetricsPageStreamingDescriptor =
@@ -170,14 +171,13 @@ class MetricsServiceV2GapicClient
     private static function getGapicVersion()
     {
         if (!self::$gapicVersionLoaded) {
-            if (file_exists(__DIR__.'/../VERSION')) {
-                self::$gapicVersion = trim(file_get_contents(__DIR__.'/../VERSION'));
+            if (file_exists(__DIR__ . '/../VERSION')) {
+                self::$gapicVersion = trim(file_get_contents(__DIR__ . '/../VERSION'));
             } elseif (class_exists(Version::class)) {
                 self::$gapicVersion = Version::VERSION;
             }
             self::$gapicVersionLoaded = true;
         }
-
         return self::$gapicVersion;
     }
 
@@ -186,7 +186,6 @@ class MetricsServiceV2GapicClient
      * a project resource.
      *
      * @param string $project
-     *
      * @return string The formatted project resource.
      * @experimental
      */
@@ -203,7 +202,6 @@ class MetricsServiceV2GapicClient
      *
      * @param string $project
      * @param string $metric
-     *
      * @return string The formatted metric resource.
      * @experimental
      */
@@ -220,7 +218,7 @@ class MetricsServiceV2GapicClient
      * The following name formats are supported:
      * Template: Pattern
      * - project: projects/{project}
-     * - metric: projects/{project}/metrics/{metric}.
+     * - metric: projects/{project}/metrics/{metric}
      *
      * The optional $template argument can be supplied to specify a particular pattern, and must
      * match one of the templates listed above. If no $template argument is provided, or if the
@@ -228,10 +226,8 @@ class MetricsServiceV2GapicClient
      * each of the supported templates, and return the first match.
      *
      * @param string $formattedName The formatted name string
-     * @param string $template      Optional name of template to match
-     *
+     * @param string $template Optional name of template to match
      * @return array An associative array from name component IDs to component values.
-     *
      * @throws ValidationException If $formattedName could not be matched.
      * @experimental
      */
@@ -243,7 +239,6 @@ class MetricsServiceV2GapicClient
             if (!isset($templateMap[$template])) {
                 throw new ValidationException("Template name $template does not exist");
             }
-
             return $templateMap[$template]->match($formattedName);
         }
 
@@ -261,22 +256,24 @@ class MetricsServiceV2GapicClient
      * Constructor.
      *
      * @param array $options {
-     *                       Optional. Options for configuring the service API wrapper.
+     *     Optional. Options for configuring the service API wrapper.
      *
      *     @type string $serviceAddress The domain name of the API remote host.
      *                                  Default 'logging.googleapis.com'.
      *     @type mixed $port The port on which to connect to the remote host. Default 443.
      *     @type \Grpc\Channel $channel
-     *           A `Channel` object to be used by gRPC. If not specified, a channel will be constructed.
+     *           Optional. A `Channel` object to be used by gRPC. If not specified, a channel will be constructed.
      *     @type \Grpc\ChannelCredentials $sslCreds
-     *           A `ChannelCredentials` object for use with an SSL-enabled channel.
+     *           Optional. A `ChannelCredentials` object for use with an SSL-enabled channel.
      *           Default: a credentials object returned from
      *           \Grpc\ChannelCredentials::createSsl()
-     *           NOTE: if the $channel optional argument is specified, then this argument is unused.
+     *           NOTE: if the $channel optional argument is specified, then this option is unused.
      *     @type bool $forceNewChannel
-     *           If true, this forces gRPC to create a new channel instead of using a persistent channel.
+     *           Optional. If true, this forces gRPC to create a new channel instead of using a persistent channel.
      *           Defaults to false.
      *           NOTE: if the $channel optional argument is specified, then this option is unused.
+     *     @type mixed $transport Optional, the string "grpc". Determines the backend transport used
+     *            to make the API call.
      *     @type \Google\Auth\CredentialsLoader $credentialsLoader
      *           A CredentialsLoader object created using the Google\Auth library.
      *     @type array $scopes A string array of scopes to use when acquiring credentials.
@@ -313,10 +310,9 @@ class MetricsServiceV2GapicClient
             'retryingOverride' => null,
             'libName' => null,
             'libVersion' => null,
-            'clientConfigPath' => __DIR__.'/../resources/metrics_service_v2_client_config.json',
+            'clientConfigPath' => __DIR__ . '/../resources/metrics_service_v2_client_config.json',
         ];
         $options = array_merge($defaultOptions, $options);
-
         $gapicVersion = $options['libVersion'] ?: self::getGapicVersion();
 
         $headerDescriptor = new AgentHeaderDescriptor([
@@ -341,27 +337,31 @@ class MetricsServiceV2GapicClient
         $clientConfigJsonString = file_get_contents($options['clientConfigPath']);
         $clientConfig = json_decode($clientConfigJsonString, true);
         $this->defaultCallSettings =
-                CallSettings::load(
-                    'google.logging.v2.MetricsServiceV2',
-                    $clientConfig,
-                    $options['retryingOverride']
-                );
+                CallSettings::load('google.logging.v2.MetricsServiceV2',
+                                   $clientConfig,
+                                   $options['retryingOverride']);
 
         $this->scopes = $options['scopes'];
 
-        $createStubOptions = [];
-        if (array_key_exists('sslCreds', $options)) {
-            $createStubOptions['sslCreds'] = $options['sslCreds'];
+        if (empty($options['createTransportFunction'])) {
+            $options['createTransportFunction'] = function ($options, $transport = null) {
+                switch ($transport) {
+                    case 'grpc':
+                        if (empty($options['createGrpcStubFunction'])) {
+                            $options['createGrpcStubFunction'] = function ($fullAddress, $stubOpts, $channel) {
+                                return new MetricsServiceV2GrpcClient($fullAddress, $stubOpts, $channel);
+                            };
+                        }
+                        return new \Google\GAX\Grpc\GrpcTransport($options);
+                }
+                throw new InvalidArgumentException('Invalid transport provided: ' . $transport);
+            };
         }
-        $this->grpcCredentialsHelper = new GrpcCredentialsHelper($options);
 
-        $createMetricsServiceV2StubFunction = function ($hostname, $opts, $channel) {
-            return new MetricsServiceV2GrpcClient($hostname, $opts, $channel);
-        };
-        if (array_key_exists('createMetricsServiceV2StubFunction', $options)) {
-            $createMetricsServiceV2StubFunction = $options['createMetricsServiceV2StubFunction'];
-        }
-        $this->metricsServiceV2Stub = $this->grpcCredentialsHelper->createStub($createMetricsServiceV2StubFunction);
+        $this->metricsServiceV2Transport = call_user_func_array(
+            $options['createTransportFunction'],
+            [$options, $this->getTransport($options)]
+        );
     }
 
     /**
@@ -371,7 +371,7 @@ class MetricsServiceV2GapicClient
      * ```
      * try {
      *     $metricsServiceV2Client = new MetricsServiceV2Client();
-     *     $formattedParent = $metricsServiceV2Client->projectName("[PROJECT]");
+     *     $formattedParent = $metricsServiceV2Client->projectName('[PROJECT]');
      *     // Iterate through all elements
      *     $pagedResponse = $metricsServiceV2Client->listLogMetrics($formattedParent);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
@@ -394,8 +394,7 @@ class MetricsServiceV2GapicClient
      *
      *     "projects/[PROJECT_ID]"
      * @param array $optionalArgs {
-     *                            Optional.
-     *
+     *     Optional.
      *     @type string $pageToken
      *          A page token is used to specify a page of values to be returned.
      *          If no page token is specified (the default), the first page
@@ -435,8 +434,8 @@ class MetricsServiceV2GapicClient
             );
         }
         $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
-        $callable = ApiCallable::createApiCall(
-            $this->metricsServiceV2Stub,
+
+        $callable = $this->metricsServiceV2Transport->createApiCall(
             'ListLogMetrics',
             $mergedSettings,
             $this->descriptors['listLogMetrics']
@@ -444,8 +443,8 @@ class MetricsServiceV2GapicClient
 
         return $callable(
             $request,
-            [],
-            ['call_credentials_callback' => $this->createCredentialsCallback()]);
+            []
+        );
     }
 
     /**
@@ -455,7 +454,7 @@ class MetricsServiceV2GapicClient
      * ```
      * try {
      *     $metricsServiceV2Client = new MetricsServiceV2Client();
-     *     $formattedMetricName = $metricsServiceV2Client->metricName("[PROJECT]", "[METRIC]");
+     *     $formattedMetricName = $metricsServiceV2Client->metricName('[PROJECT]', '[METRIC]');
      *     $response = $metricsServiceV2Client->getLogMetric($formattedMetricName);
      * } finally {
      *     $metricsServiceV2Client->close();
@@ -466,8 +465,7 @@ class MetricsServiceV2GapicClient
      *
      *     "projects/[PROJECT_ID]/metrics/[METRIC_ID]"
      * @param array $optionalArgs {
-     *                            Optional.
-     *
+     *     Optional.
      *     @type \Google\GAX\RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\GAX\RetrySettings} object, or an associative array
@@ -492,8 +490,8 @@ class MetricsServiceV2GapicClient
             );
         }
         $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
-        $callable = ApiCallable::createApiCall(
-            $this->metricsServiceV2Stub,
+
+        $callable = $this->metricsServiceV2Transport->createApiCall(
             'GetLogMetric',
             $mergedSettings,
             $this->descriptors['getLogMetric']
@@ -501,8 +499,8 @@ class MetricsServiceV2GapicClient
 
         return $callable(
             $request,
-            [],
-            ['call_credentials_callback' => $this->createCredentialsCallback()]);
+            []
+        );
     }
 
     /**
@@ -512,7 +510,7 @@ class MetricsServiceV2GapicClient
      * ```
      * try {
      *     $metricsServiceV2Client = new MetricsServiceV2Client();
-     *     $formattedParent = $metricsServiceV2Client->projectName("[PROJECT]");
+     *     $formattedParent = $metricsServiceV2Client->projectName('[PROJECT]');
      *     $metric = new LogMetric();
      *     $response = $metricsServiceV2Client->createLogMetric($formattedParent, $metric);
      * } finally {
@@ -525,11 +523,10 @@ class MetricsServiceV2GapicClient
      *     "projects/[PROJECT_ID]"
      *
      * The new metric must be provided in the request.
-     * @param LogMetric $metric       The new logs-based metric, which must not have an identifier that
-     *                                already exists.
-     * @param array     $optionalArgs {
-     *                                Optional.
-     *
+     * @param LogMetric $metric The new logs-based metric, which must not have an identifier that
+     * already exists.
+     * @param array $optionalArgs {
+     *     Optional.
      *     @type \Google\GAX\RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\GAX\RetrySettings} object, or an associative array
@@ -555,8 +552,8 @@ class MetricsServiceV2GapicClient
             );
         }
         $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
-        $callable = ApiCallable::createApiCall(
-            $this->metricsServiceV2Stub,
+
+        $callable = $this->metricsServiceV2Transport->createApiCall(
             'CreateLogMetric',
             $mergedSettings,
             $this->descriptors['createLogMetric']
@@ -564,8 +561,8 @@ class MetricsServiceV2GapicClient
 
         return $callable(
             $request,
-            [],
-            ['call_credentials_callback' => $this->createCredentialsCallback()]);
+            []
+        );
     }
 
     /**
@@ -575,7 +572,7 @@ class MetricsServiceV2GapicClient
      * ```
      * try {
      *     $metricsServiceV2Client = new MetricsServiceV2Client();
-     *     $formattedMetricName = $metricsServiceV2Client->metricName("[PROJECT]", "[METRIC]");
+     *     $formattedMetricName = $metricsServiceV2Client->metricName('[PROJECT]', '[METRIC]');
      *     $metric = new LogMetric();
      *     $response = $metricsServiceV2Client->updateLogMetric($formattedMetricName, $metric);
      * } finally {
@@ -590,10 +587,9 @@ class MetricsServiceV2GapicClient
      * The updated metric must be provided in the request and it's
      * `name` field must be the same as `[METRIC_ID]` If the metric
      * does not exist in `[PROJECT_ID]`, then a new metric is created.
-     * @param LogMetric $metric       The updated metric.
-     * @param array     $optionalArgs {
-     *                                Optional.
-     *
+     * @param LogMetric $metric The updated metric.
+     * @param array $optionalArgs {
+     *     Optional.
      *     @type \Google\GAX\RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\GAX\RetrySettings} object, or an associative array
@@ -619,8 +615,8 @@ class MetricsServiceV2GapicClient
             );
         }
         $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
-        $callable = ApiCallable::createApiCall(
-            $this->metricsServiceV2Stub,
+
+        $callable = $this->metricsServiceV2Transport->createApiCall(
             'UpdateLogMetric',
             $mergedSettings,
             $this->descriptors['updateLogMetric']
@@ -628,8 +624,8 @@ class MetricsServiceV2GapicClient
 
         return $callable(
             $request,
-            [],
-            ['call_credentials_callback' => $this->createCredentialsCallback()]);
+            []
+        );
     }
 
     /**
@@ -639,7 +635,7 @@ class MetricsServiceV2GapicClient
      * ```
      * try {
      *     $metricsServiceV2Client = new MetricsServiceV2Client();
-     *     $formattedMetricName = $metricsServiceV2Client->metricName("[PROJECT]", "[METRIC]");
+     *     $formattedMetricName = $metricsServiceV2Client->metricName('[PROJECT]', '[METRIC]');
      *     $metricsServiceV2Client->deleteLogMetric($formattedMetricName);
      * } finally {
      *     $metricsServiceV2Client->close();
@@ -650,8 +646,7 @@ class MetricsServiceV2GapicClient
      *
      *     "projects/[PROJECT_ID]/metrics/[METRIC_ID]"
      * @param array $optionalArgs {
-     *                            Optional.
-     *
+     *     Optional.
      *     @type \Google\GAX\RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\GAX\RetrySettings} object, or an associative array
@@ -674,8 +669,8 @@ class MetricsServiceV2GapicClient
             );
         }
         $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
-        $callable = ApiCallable::createApiCall(
-            $this->metricsServiceV2Stub,
+
+        $callable = $this->metricsServiceV2Transport->createApiCall(
             'DeleteLogMetric',
             $mergedSettings,
             $this->descriptors['deleteLogMetric']
@@ -683,23 +678,17 @@ class MetricsServiceV2GapicClient
 
         return $callable(
             $request,
-            [],
-            ['call_credentials_callback' => $this->createCredentialsCallback()]);
+            []
+        );
     }
 
     /**
      * Initiates an orderly shutdown in which preexisting calls continue but new
      * calls are immediately cancelled.
-     *
      * @experimental
      */
     public function close()
     {
-        $this->metricsServiceV2Stub->close();
-    }
-
-    private function createCredentialsCallback()
-    {
-        return $this->grpcCredentialsHelper->createCallCredentialsCallback();
+        $this->metricsServiceV2Transport->close();
     }
 }
