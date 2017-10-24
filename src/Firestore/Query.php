@@ -146,15 +146,22 @@ class Query
      */
     public function snapshot(array $options = [])
     {
-        $call = function ($resumeToken = null) use ($options) {
+        $options['maxRetries'] = (isset($options['maxRetries']))
+            ? $options['maxReties']
+            : FirestoreClient::MAX_RETRIES;
+
+        $call = function () use ($options) {
+            unset($options['maxRetries']);
+
             return $this->connection->runQuery([
                 'parent' => $this->parent,
                 'structuredQuery' => $this->query,
-                'transaction' => $this->transaction
+                'transaction' => $this->transaction,
+                'retries' => 0,
             ] + $options);
         };
 
-        return new QuerySnapshot($this->connection, $this->valueMapper, $this, $call);
+        return new QuerySnapshot($this->connection, $this->valueMapper, $this, $call, $options['maxRetries']);
     }
 
     /**

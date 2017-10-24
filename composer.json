@@ -85,8 +85,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Google\\Cloud\\": "src",
-            "": "proto/src"
+            "Google\\Cloud\\": "src"
         }
     },
     "autoload-dev": {

@@ -47,8 +47,6 @@ class QuerySnapshot implements \IteratorAggregate
 {
     use SnapshotTrait;
 
-    const MAX_RETRIES = 3;
-
     /**
      * @var ConnectionInterface
      */
@@ -86,7 +84,7 @@ class QuerySnapshot implements \IteratorAggregate
         ValueMapper $valueMapper,
         Query $query,
         callable $call,
-        $retries = self::MAX_RETRIES
+        $retries = FirestoreClient::MAX_RETRIES
     ) {
         $this->connection = $connection;
         $this->valueMapper = $valueMapper;
@@ -109,6 +107,7 @@ class QuerySnapshot implements \IteratorAggregate
     public function rows()
     {
         $call = $this->call;
+        $backoff = new ExponentialBackoff($this->maxRetries);
         $generator = $call();
 
         // cache collection references
