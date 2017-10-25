@@ -159,7 +159,7 @@ class LoggerTest extends \PHPUnit_Framework_TestCase
             ],
             [
                 $this->textPayload,
-                ['timestamp' => new Timestamp(new \DateTime('1980-01-01'))],
+                ['timestamp' => new Timestamp(new \DateTime('1980-01-01', new \DateTimeZone('UTC')))],
                 [
                     'textPayload' => $this->textPayload,
                     'timestamp' => $this->formattedTimestamp,
@@ -169,7 +169,7 @@ class LoggerTest extends \PHPUnit_Framework_TestCase
             ],
             [
                 $this->textPayload,
-                ['timestamp' => new \DateTime('1980-01-01')],
+                ['timestamp' => new \DateTime('1980-01-01', new \DateTimeZone('UTC'))],
                 [
                     'textPayload' => $this->textPayload,
                     'timestamp' => $this->formattedTimestamp,
