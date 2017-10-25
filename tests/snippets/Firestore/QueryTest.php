@@ -151,6 +151,7 @@ class QueryTest extends SnippetTestCase
         $this->connection->runQuery([
             'parent' => self::NAME,
             'transaction' => null,
+            'retries' => 0,
             'structuredQuery' => array_filter([
                 'from' => self::NAME,
                 $key => $argument

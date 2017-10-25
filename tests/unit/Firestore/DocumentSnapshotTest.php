@@ -131,4 +131,12 @@ class DocumentSnapshotTest extends \PHPUnit_Framework_TestCase
     {
         unset($this->snapshot['name']);
     }
+
+    /**
+     * @expectedException PHPUnit_Framework_Error_Notice
+     */
+    public function testArrayAccessNonExistentIndex()
+    {
+        $this->snapshot['name'];
+    }
 }

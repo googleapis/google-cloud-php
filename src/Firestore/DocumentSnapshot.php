@@ -244,7 +244,9 @@ class DocumentSnapshot implements \ArrayAccess
                 $offset
             ), E_USER_NOTICE);
 
+            // @codeCoverageIgnoreStart
             return null;
+            // @codeCoverageIgnoreEnd
         }
 
         return $this->fields[$offset];

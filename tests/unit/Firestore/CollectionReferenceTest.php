@@ -138,14 +138,14 @@ class CollectionReferenceTest extends \PHPUnit_Framework_TestCase
 
     public function testQuery()
     {
-        $q = $this->collection->query();
-        $this->assertInstanceOf(Query::class, $q);
-
         $this->connection->runQuery(Argument::withEntry('parent', self::PARENT))->shouldBeCalled()
             ->willReturn(new \ArrayIterator([
                 []
             ]));
         $this->collection->___setProperty('connection', $this->connection->reveal());
+
+        $q = $this->collection->query();
+        $this->assertInstanceOf(Query::class, $q);
 
         $q->snapshot()->rows()->current();
     }

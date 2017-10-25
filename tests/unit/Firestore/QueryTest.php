@@ -381,7 +381,7 @@ class QueryTest extends \PHPUnit_Framework_TestCase
     private function runAndAssert(Query $query, $assertion)
     {
         if (is_array($assertion)) {
-            $this->connection->runQuery($assertion + ['transaction' => null])
+            $this->connection->runQuery($assertion + ['transaction' => null, 'retries' => 0])
             ->shouldBeCalledTimes(1)->willReturn(new \ArrayIterator([
                 []
             ]));

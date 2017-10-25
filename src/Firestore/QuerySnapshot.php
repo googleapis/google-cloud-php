@@ -161,43 +161,45 @@ class QuerySnapshot implements \IteratorAggregate
         $this->empty = true;
         $size = 0;
 
-        while ($generator->valid()) {
-            $result = $generator->current();
+        try {
+            while ($generator->valid()) {
+                $result = $generator->current();
 
-            if (isset($result['transaction']) && $result['transaction']) {
-                $this->transaction = $result['transaction'];
-            } elseif (isset($result['document']) && $result['document']) {
-                $this->empty = false;
-                $size++;
+                if (isset($result['transaction']) && $result['transaction']) {
+                    $this->transaction = $result['transaction'];
+                } elseif (isset($result['document']) && $result['document']) {
+                    $this->empty = false;
+                    $size++;
 
-                $collectionName = $this->parentPath($result['document']['name']);
-                if (!isset($collections[$collectionName])) {
-                    $collections[$collectionName] = new CollectionReference(
+                    $collectionName = $this->parentPath($result['document']['name']);
+                    if (!isset($collections[$collectionName])) {
+                        $collections[$collectionName] = new CollectionReference(
+                            $this->connection,
+                            $this->valueMapper,
+                            $collectionName
+                        );
+                    }
+
+                    $ref = new DocumentReference(
                         $this->connection,
                         $this->valueMapper,
-                        $collectionName
+                        $collections[$collectionName],
+                        $result['document']['name']
                     );
+
+                    $document = $result['document'];
+                    $document['readTime'] = $result['readTime'];
+
+                    yield $this->createSnapshot($ref, [
+                        'data' => $document
+                    ]);
                 }
 
-                $ref = new DocumentReference(
-                    $this->connection,
-                    $this->valueMapper,
-                    $collections[$collectionName],
-                    $result['document']['name']
-                );
-
-                $document = $result['document'];
-                $document['readTime'] = $result['readTime'];
-
-                yield $this->createSnapshot($ref, [
-                    'data' => $document
-                ]);
+                $generator->next();
             }
-
-            $generator->next();
+        } finally {
+            $this->size = $size;
         }
-
-        $this->size = $size;
     }
 
     /**
@@ -221,14 +223,13 @@ class QuerySnapshot implements \IteratorAggregate
      */
     private function executeQuery()
     {
-        $call = $this->call;
-
         $shouldRetry = true;
-        $backoff = new ExponentialBackoff($this->maxRetries, function () use (&$shouldRetry) {
+        $backoff = new ExponentialBackoff($this->retries, function () use (&$shouldRetry) {
             return $shouldRetry;
         });
 
-        $generator = $backoff->execute(function () use (&$shouldRetry) {
+        return $backoff->execute(function () use (&$shouldRetry) {
+            $call = $this->call;
             $res = $call();
             $shouldRetry = false;
             return $res;

@@ -82,4 +82,18 @@ class QuerySnapshotTest extends SnippetTestCase
         $res = $snippet->invoke('rows');
         $this->assertInstanceOf(\Generator::class, $res->returnVal());
     }
+
+    public function testIsEmpty()
+    {
+        $snippet = $this->snippetFromMethod(QuerySnapshot::class, 'isEmpty');
+        $snippet->addLocal('snapshot', $this->snapshot);
+        $this->assertNull($snippet->invoke('empty')->returnVal());
+    }
+
+    public function testSize()
+    {
+        $snippet = $this->snippetFromMethod(QuerySnapshot::class, 'size');
+        $snippet->addLocal('snapshot', $this->snapshot);
+        $this->assertNull($snippet->invoke('size')->returnVal());
+    }
 }
