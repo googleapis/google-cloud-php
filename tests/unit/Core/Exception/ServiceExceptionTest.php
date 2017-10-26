@@ -40,4 +40,11 @@ class ServiceExceptionTest extends \PHPUnit_Framework_TestCase
         $ex = new ServiceException('foo');
         $this->assertFalse($ex->hasServiceException());
     }
+
+    public function testGetMetadata()
+    {
+        $metadata = ['foo' => 'bar'];
+        $ex = new ServiceException('foo', 400, null, $metadata);
+        $this->assertEquals($metadata, $ex->getMetadata());
+    }
 }

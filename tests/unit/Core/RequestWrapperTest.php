@@ -19,6 +19,7 @@
 namespace Google\Cloud\Tests\Unit\Core;
 
 use Google\Auth\FetchAuthTokenInterface;
+use Google\Cloud\Core\Exception;
 use Google\Cloud\Core\RequestWrapper;
 use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Psr7\Request;
@@ -281,68 +282,37 @@ class RequestWrapperTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException Google\Cloud\Core\Exception\BadRequestException
+     * @dataProvider exceptionProvider
      */
-    public function testThrowsBadRequestException()
+    public function testCastsToProperException($code, $expectedException)
     {
         $requestWrapper = new RequestWrapper([
-            'httpHandler' => function ($request, $options = []) {
-                throw new \Exception('', 400);
+            'httpHandler' => function ($request, $options = []) use ($code) {
+                throw new \Exception('', $code);
             }
         ]);
 
-        $requestWrapper->send(
-            new Request('GET', 'http://www.example.com')
-        );
+        try {
+            $requestWrapper->send(
+                new Request('GET', 'http://www.example.com')
+            );
+        } catch (\Exception $e) {
+            $this->assertInstanceOf($expectedException, $e);
+        }
     }
 
-    /**
-     * @expectedException Google\Cloud\Core\Exception\NotFoundException
-     */
-    public function testThrowsNotFoundException()
+    public function exceptionProvider()
     {
-        $requestWrapper = new RequestWrapper([
-            'httpHandler' => function ($request, $options = []) {
-                throw new \Exception('', 404);
-            }
-        ]);
-
-        $requestWrapper->send(
-            new Request('GET', 'http://www.example.com')
-        );
-    }
-
-    /**
-     * @expectedException Google\Cloud\Core\Exception\ConflictException
-     */
-    public function testThrowsConflictException()
-    {
-        $requestWrapper = new RequestWrapper([
-            'httpHandler' => function ($request, $options = []) {
-                throw new \Exception('', 409);
-            }
-        ]);
-
-        $requestWrapper->send(
-            new Request('GET', 'http://www.example.com')
-        );
-    }
-
-    /**
-     * @expectedException Google\Cloud\Core\Exception\ServerException
-     */
-    public function testThrowsServerException()
-    {
-        $requestWrapper = new RequestWrapper([
-            'httpHandler' => function ($request, $options = []) {
-                throw new \Exception('', 500);
-            },
-            'retries' => 0
-        ]);
-
-        $requestWrapper->send(
-            new Request('GET', 'http://www.example.com')
-        );
+        return [
+            [400, Exception\BadRequestException::class],
+            [404, Exception\NotFoundException::class],
+            [409, Exception\ConflictException::class],
+            [412, Exception\FailedPreconditionException::class],
+            [500, Exception\ServerException::class],
+            [503, Exception\UnavailableException::class],
+            [504, Exception\DeadlineExceededException::class],
+            [999, Exception\ServiceException::class],
+        ];
     }
 
     public function testThrowsExceptionWithNonRetryableError()

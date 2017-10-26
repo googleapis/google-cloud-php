@@ -61,4 +61,80 @@ class RunTransactionTest extends DatastoreTestCase
 
         $this->assertEquals($newLastName, $result['lastName']);
     }
+
+    public function testTransactionCallable()
+    {
+        $kind = 'Person';
+        $user1 = self::$client->key($kind);
+        $user2 = self::$client->key($kind);
+
+        self::$localDeletionQueue->add($user1);
+        self::$localDeletionQueue->add($user2);
+
+        $e1 = self::$client->entity($user1, [
+            'balance' => 500
+        ]);
+        $e2 = self::$client->entity($user2, [
+            'balance' => 500
+        ]);
+
+        self::$client->runTransaction(function ($t) use ($e1, $e2) {
+            $t->insertBatch([$e1, $e2]);
+        });
+
+        $transfer = 100;
+        self::$client->runTransaction(function ($t) use ($transfer, $user1, $user2) {
+            $from = $t->lookup($user1);
+            $to = $t->lookup($user2);
+
+            $from['balance'] = $from['balance'] - $transfer;
+            $to['balance'] = $to['balance'] + $transfer;
+
+            $t->updateBatch([$from, $to]);
+        });
+
+        $e1 = self::$client->lookup($user1);
+        $e2 = self::$client->lookup($user2);
+
+        $this->assertEquals(400, $e1['balance']);
+        $this->assertEquals(600, $e2['balance']);
+    }
+
+    /**
+     * @group rb
+     */
+    public function testTransactionCallableRollback()
+    {
+        $kind = 'Person';
+        $user1 = self::$client->key($kind);
+        $user2 = self::$client->key($kind);
+
+        self::$localDeletionQueue->add($user1);
+        self::$localDeletionQueue->add($user2);
+
+        $e1 = self::$client->entity($user1, [
+            'balance' => 500
+        ]);
+        $e2 = self::$client->entity($user2, [
+            'balance' => 500
+        ]);
+
+        self::$client->runTransaction(function ($t) use ($e1, $e2) {
+            $t->insertBatch([$e1, $e2]);
+        });
+
+        $transfer = 100;
+        try {
+            self::$client->runTransaction(function ($t) use ($transfer, $user1, $user2) {
+                var_dump('run');
+                throw new \Exception('');
+            });
+        } catch (\Exception $e) {}
+
+        $e1 = self::$client->lookup($user1);
+        $e2 = self::$client->lookup($user2);
+
+        $this->assertEquals(500, $e1['balance']);
+        $this->assertEquals(500, $e2['balance']);
+    }
 }

@@ -55,44 +55,17 @@ use Google\Cloud\Datastore\Query\QueryInterface;
  *
  * @see https://cloud.google.com/datastore/docs/concepts/transactions Transactions
  */
-class Transaction
+class Transaction extends ReadOnlyTransaction
 {
-    /**
-     * @var Operation
-     */
-    private $operation;
-
-    /**
-     * @var string
-     */
-    private $projectId;
-
-    /**
-     * @var string
-     */
-    private $transactionId;
-
     /**
      * @var array
      */
     private $mutations = [];
 
     /**
-     * Create a Transaction
-     *
-     * @param Operation $operation Class that handles shared API interaction.
-     * @param string $projectId The Google Cloud Platform project ID.
-     * @param string $transactionId The transaction to run mutations in.
+     * @var bool
      */
-    public function __construct(
-        Operation $operation,
-        $projectId,
-        $transactionId
-    ) {
-        $this->operation = $operation;
-        $this->projectId = $projectId;
-        $this->transactionId = $transactionId;
-    }
+    private $closed = false;
 
     /**
      * Insert an entity
@@ -111,6 +84,7 @@ class Transaction
      *
      * @param Entity $entity The entity to insert.
      * @return Transaction
+     * @throws \RuntimeException If the transaction is already committed or rolled back.
      */
     public function insert(Entity $entity)
     {
@@ -136,6 +110,7 @@ class Transaction
      *
      * @param Entity[] $entities The entities to insert.
      * @return Transaction
+     * @throws \RuntimeException If the transaction is already committed or rolled back.
      */
     public function insertBatch(array $entities)
     {
@@ -175,6 +150,7 @@ class Transaction
      *           lookup or query. **Defaults to** `false`.
      * }
      * @return Transaction
+     * @throws \RuntimeException If the transaction is already committed or rolled back.
      */
     public function update(Entity $entity, array $options = [])
     {
@@ -214,6 +190,7 @@ class Transaction
      *           lookup or query. **Defaults to** `false`.
      * }
      * @return Transaction
+     * @throws \RuntimeException If the transaction is already committed or rolled back.
      */
     public function updateBatch(array $entities, array $options = [])
     {
@@ -249,6 +226,7 @@ class Transaction
      *
      * @param Entity $entity The entity to upsert.
      * @return Transaction
+     * @throws \RuntimeException If the transaction is already committed or rolled back.
      */
     public function upsert(Entity $entity)
     {
@@ -282,6 +260,7 @@ class Transaction
      *
      * @param Entity[] $entities The entities to upsert.
      * @return Transaction
+     * @throws \RuntimeException If the transaction is already committed or rolled back.
      */
     public function upsertBatch(array $entities)
     {
@@ -308,6 +287,7 @@ class Transaction
      *
      * @param Key $key The key to delete
      * @return Transaction
+     * @throws \RuntimeException If the transaction is already committed or rolled back.
      */
     public function delete(Key $key)
     {
@@ -333,6 +313,7 @@ class Transaction
      *
      * @param Key[] $keys The keys to delete.
      * @return Transaction
+     * @throws \RuntimeException If the transaction is already committed or rolled back.
      */
     public function deleteBatch(array $keys)
     {
@@ -341,109 +322,6 @@ class Transaction
         }
 
         return $this;
-    }
-
-    /**
-     * Retrieve an entity from the datastore inside a transaction
-     *
-     * Example:
-     * ```
-     * $key = $datastore->key('Person', 'Bob');
-     *
-     * $entity = $transaction->lookup($key);
-     * if (!is_null($entity)) {
-     *     echo $entity['firstName']; // 'Bob'
-     * }
-     * ```
-     *
-     * @param Key $key $key The identifier to use to locate a desired entity.
-     * @param array $options [optional] {
-     *     Configuration Options
-     *
-     *     @type string $className The name of the class to return results as.
-     *           Must be a subclass of {@see Google\Cloud\Datastore\Entity}.
-     *           If not set, {@see Google\Cloud\Datastore\Entity} will be used.
-     * }
-     * @return Entity|null
-     */
-    public function lookup(Key $key, array $options = [])
-    {
-        $res = $this->lookupBatch([$key], $options);
-
-        return (isset($res['found'][0]))
-            ? $res['found'][0]
-            : null;
-    }
-
-    /**
-     * Get multiple entities inside a transaction
-     *
-     * Example:
-     * ```
-     * $keys = [
-     *     $datastore->key('Person', 'Bob'),
-     *     $datastore->key('Person', 'John')
-     * ];
-     *
-     * $entities = $transaction->lookupBatch($keys);
-     *
-     * foreach ($entities['found'] as $entity) {
-     *     echo $entity['firstName'] . PHP_EOL;
-     * }
-     * ```
-     *
-     * @param Key[] $key The identifiers to look up.
-     * @param array $options [optional] {
-     *     Configuration Options
-     *
-     *     @type string|array $className If a string, the name of the class to return results as.
-     *           Must be a subclass of {@see Google\Cloud\Datastore\Entity}.
-     *           If not set, {@see Google\Cloud\Datastore\Entity} will be used.
-     *           If an array is given, it must be an associative array, where
-     *           the key is a Kind and the value is the name of a subclass of
-     *           {@see Google\Cloud\Datastore\Entity}.
-     *     @type bool $sort If set to true, results in each set will be sorted
-     *           to match the order given in $keys. **Defaults to** `false`.
-     * }
-     * @return array Returns an array with keys [`found`, `missing`, and `deferred`].
-     *         Members of `found` will be instance of
-     *         {@see Google\Cloud\Datastore\Entity}. Members of `missing` and
-     *         `deferred` will be instance of {@see Google\Cloud\Datastore\Key}.
-     */
-    public function lookupBatch(array $keys, array $options = [])
-    {
-        return $this->operation->lookup($keys, $options + [
-            'transaction' => $this->transactionId
-        ]);
-    }
-
-    /**
-     * Run a query and return entities inside a Transaction
-     *
-     * Example:
-     * ```
-     * $result = $transaction->runQuery($query);
-     *
-     * foreach ($result as $entity) {
-     *     echo $entity['firstName'];
-     * }
-     * ```
-     *
-     * @param QueryInterface $query The query object.
-     * @param array $options [optional] {
-     *     Configuration Options
-     *
-     *     @type string $className The name of the class to return results as.
-     *           Must be a subclass of {@see Google\Cloud\Datastore\Entity}.
-     *           If not set, {@see Google\Cloud\Datastore\Entity} will be used.
-     * }
-     * @return EntityIterator<Google\Cloud\Datastore\Entity>
-     */
-    public function runQuery(QueryInterface $query, array $options = [])
-    {
-        return $this->operation->runQuery($query, $options + [
-            'transaction' => $this->transactionId
-        ]);
     }
 
     /**
@@ -461,11 +339,12 @@ class Transaction
      *
      * @param array $options [optional] Configuration Options.
      * @return array [Response Body](https://cloud.google.com/datastore/reference/rest/v1/projects/commit#response-body)
+     * @throws \RuntimeException If the transaction is already committed or rolled back.
      */
     public function commit(array $options = [])
     {
         $options['transaction'] = $this->transactionId;
-
+        $this->closed = true;
         return $this->operation->commit($this->mutations, $options);
     }
 
@@ -478,9 +357,23 @@ class Transaction
      * ```
      *
      * @return void
+     * @throws \RuntimeException If the transaction is already committed or rolled back.
      */
     public function rollback()
     {
+        $this->closed = true;
         return $this->operation->rollback($this->transactionId);
+    }
+
+    /**
+     * If true, the transaction has been committed or rolled back, and further
+     * operations are not permitted.
+     *
+     * @return bool
+     * @access private
+     */
+    public function closed()
+    {
+        return $this->closed;
     }
 }

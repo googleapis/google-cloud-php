@@ -18,16 +18,22 @@
 namespace Google\Cloud\Datastore;
 
 use DomainException;
-use Google\Cloud\Core\ClientTrait;
-use Google\Cloud\Datastore\Connection\Rest;
-use Google\Cloud\Datastore\Query\GqlQuery;
-use Google\Cloud\Datastore\Query\Query;
-use Google\Cloud\Datastore\Query\QueryBuilder;
-use Google\Cloud\Datastore\Query\QueryInterface;
 use Google\Cloud\Core\Int64;
 use InvalidArgumentException;
+use Google\Cloud\Core\ArrayTrait;
+use Google\Cloud\Core\ClientTrait;
 use Psr\Cache\CacheItemPoolInterface;
 use Psr\Http\Message\StreamInterface;
+use Google\Cloud\Datastore\Query\Query;
+use Google\Cloud\Core\ExponentialBackoff;
+use Google\Cloud\Datastore\Query\GqlQuery;
+use Google\Cloud\Datastore\Connection\Rest;
+use Google\Cloud\Datastore\Query\QueryBuilder;
+use Google\Cloud\Datastore\Query\QueryInterface;
+use Google\Cloud\Core\Exception\ServerException;
+use Google\Cloud\Core\Exception\AbortedException;
+use Google\Cloud\Core\Exception\UnavailableException;
+use Google\Cloud\Core\Exception\DeadlineExceededException;
 
 /**
  * Google Cloud Datastore is a highly-scalable NoSQL database for your
@@ -73,12 +79,15 @@ use Psr\Http\Message\StreamInterface;
  */
 class DatastoreClient
 {
+    use ArrayTrait;
     use ClientTrait;
     use DatastoreTrait;
 
     const VERSION = '1.0.1';
 
     const FULL_CONTROL_SCOPE = 'https://www.googleapis.com/auth/datastore';
+
+    const MAX_RETRIES = 3;
 
     /**
      * @var ConnectionInterface
@@ -456,21 +465,184 @@ class DatastoreClient
      * ```
      *
      * @see https://cloud.google.com/datastore/docs/concepts/transactions Datastore Transactions
+     * @see https://cloud.google.com/datastore/docs/reference/rest/v1/projects/beginTransaction beginTransaction
      *
-     * @param array $options [optional] Configuration options.
+     * @codingStandardsIgnoreStart
+     * @param array $options {
+     *     Configuration options.
+     *
+     *      @type string $previousTransaction If the transaction is being restarted,
+     *           the previous transaction ID.
+     *     @type array $transactionOptions Any other transaction configuration,
+     *           besides `previousTransaction`. See
+     *           [ReadWrite](https://cloud.google.com/datastore/docs/reference/rest/v1/projects/beginTransaction#ReadWrite).
+     * }
      * @return Transaction
+     * @codingStandardsIgnoreEnd
      */
     public function transaction(array $options = [])
     {
-        $res = $this->connection->beginTransaction($options + [
-            'projectId' => $this->projectId
-        ]);
+        $options += [
+            'transactionOptions' => [],
+            'previousTransaction' => null
+        ];
+
+        $transactionOptions = $this->pluck('transactionOptions', $options);
+        $previous = $this->pluck('previousTransaction', $options);
+
+        $res = $this->connection->beginTransaction([
+            'projectId' => $this->projectId,
+            'transactionOptions' => [
+                'readWrite' => array_filter([
+                    'previousTransaction' => $previous
+                ]) + $transactionOptions
+            ]
+        ] + $options);
 
         return new Transaction(
             clone $this->operation,
             $this->projectId,
             $res['transaction']
         );
+    }
+
+    /**
+     * Create a Read-Only Transaction
+     *
+     * Example:
+     * ```
+     * $transaction = $datastore->readOnlyTransaction();
+     * ```
+     *
+     * @see https://cloud.google.com/datastore/docs/concepts/transactions Datastore Transactions
+     * @see https://cloud.google.com/datastore/docs/reference/rest/v1/projects/beginTransaction beginTransaction
+     *
+     * @codingStandardsIgnoreStart
+     * @param array $options Configuration options.
+     * @return Transaction
+     * @codingStandardsIgnoreEnd
+     */
+    public function readOnlyTransaction(array $options = [])
+    {
+        $res = $this->connection->beginTransaction([
+            'projectId' => $this->projectId,
+            'transactionOptions' => [
+                'readOnly' => []
+            ]
+        ] + $options);
+
+        return new ReadOnlyTransaction(
+            clone $this->operation,
+            $this->projectId,
+            $res['transaction']
+        );
+    }
+
+    /**
+     * Execute a callable function in a Datastore Transaction.
+     *
+     * Transactions offer atomic operations, guaranteeing that either all
+     * writes will be applied, or none will be applied. The Google Cloud PHP
+     * Datastore client handles automatic retries in cases where transactions
+     * fail due to a retryable error.
+     *
+     * It is crucial to a good transaction that all reads related to the transaction
+     * be executed within the transaction callable. In cases where retries are
+     * required, these reads will also be reapplied, guaranteeing that the
+     * transaction is working with the latest snapshot of the server state.
+     *
+     * Transactions will be automatically committed once the provided callable
+     * has finished execution. Thrown exceptions will prevent commit, trigger a
+     * rollback, and bubble up to the user, and should be handled in whatever
+     * fashion appropriate.
+     *
+     * Example:
+     * ```
+     * $transferAmount = 50.00;
+     * $datastore->runTransaction(function (Transaction $t) use ($datastore, $transferAmount) {
+     *     $user1 = $t->lookup($datastore->key('Users', 'John'));
+     *     $user2 = $t->lookup($datastore->key('Users', 'Dave'));
+     *
+     *     $user1['walletBalance'] = $user1['walletBalance'] - $transferAmount;
+     *     $user2['walletBalance'] = $user2['walletBalance'] + $transferAmount;
+     *
+     *     if ($user1['walletBalance'] < 0) {
+     *         throw new Exception('User 1 Wallet has an insufficient balance.');
+     *     }
+     *
+     *     $t->updateBatch([$user1, $user2]);
+     * });
+     * ```
+     *
+     * @param callable $callable A callable function performing atomic operations
+     *        against Cloud Datastore. Function signature:
+     *        `function (Transaction $t, bool $isRetry)`.
+     * @param array $options {
+     *     Configuration Options.
+     *
+     *     @type array $begin Configuration Options for BeginTransaction.
+     *     @type array $commit Configuration Options for Commit.
+     *     @type array $rollback Configuration Options for Rollback.
+     *     @type int $maxRetries The maximum number of times to retry failed
+     *           transactions. **Defaults to** `5`.
+     * }
+     * @return array [Response Body](https://cloud.google.com/datastore/reference/rest/v1/projects/commit#response-body)
+     */
+    public function runTransaction(callable $callable, array $options = [])
+    {
+        $options = [
+            'maxRetries' => self::MAX_RETRIES,
+            'begin' => [],
+            'commit' => [],
+            'rollback' => []
+        ];
+
+        $transaction = null;
+        $iteration = 0;
+
+        $retryable = [
+            AbortedException::class => $options['maxRetries'],
+            DeadlineExceededException::class => $options['maxRetries'],
+            ServerException::class => 1,
+            UnavailableException::class => $options['maxRetries']
+        ];
+
+        $backoff = new ExponentialBackoff($options['maxRetries'], function (\Exception $e) use (
+            $retryable,
+            $iteration
+        ) {
+            $class = get_class($e);
+            return array_key_exists($class, $retryable) && $iteration < $retryable[$class];
+        });
+
+        $backoff->execute(function (callable $callable, array $options) use (&$transaction, &$iteration) {
+            $previousTransaction = $transaction ? $transaction->id() : null;
+            $transaction = $this->transaction([
+                'previousTransaction' => $previousTransaction
+            ] + $options['begin']);
+
+            try {
+                $callable($transaction, ($iteration > 0));
+
+                if ($transaction->closed()) {
+                    throw new \RuntimeException(
+                        'Transaction callables should not invoke ' .
+                        '`Transaction::commit()` or `Transaction::rollback()` directly.'
+                    );
+                }
+
+                return $transaction->commit($options['commit']);
+            } catch (\Exception $e) {
+                $transaction->rollback($options['rollback']);
+
+                throw $e;
+            } finally {
+                $iteration++;
+            }
+        }, [
+            $callable,
+            $options
+        ]);
     }
 
     /**

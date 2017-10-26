@@ -17,12 +17,12 @@
 
 namespace Google\Cloud\Tests\Unit\Datastore;
 
-use Google\Cloud\Datastore\Entity;
-use Google\Cloud\Datastore\Key;
-use Google\Cloud\Datastore\Operation;
-use Google\Cloud\Datastore\Query\QueryInterface;
-use Google\Cloud\Datastore\Transaction;
 use Prophecy\Argument;
+use Google\Cloud\Datastore\Key;
+use Google\Cloud\Datastore\Entity;
+use Google\Cloud\Datastore\Operation;
+use Google\Cloud\Datastore\Transaction;
+use Google\Cloud\Datastore\Query\QueryInterface;
 
 /**
  * @group datastore
@@ -37,7 +37,11 @@ class TransactionTest extends \PHPUnit_Framework_TestCase
     public function setUp()
     {
         $this->operation = $this->prophesize(Operation::class);
-        $this->transaction = new TransactionStub($this->operation->reveal(), 'foo', $this->transactionId);
+        $this->transaction = \Google\Cloud\Dev\stub(Transaction::class, [
+            $this->operation->reveal(),
+            'foo',
+            $this->transactionId
+        ], ['operation']);
     }
 
     public function testInsert()
@@ -52,7 +56,7 @@ class TransactionTest extends \PHPUnit_Framework_TestCase
         $this->operation->allocateIdsToEntities(Argument::type('array'))
             ->willReturn([$e->reveal()]);
 
-        $this->transaction->setOperation($this->operation->reveal());
+        $this->transaction->___setProperty('operation', $this->operation->reveal());
 
         $this->transaction->insert($e->reveal());
     }
@@ -69,7 +73,7 @@ class TransactionTest extends \PHPUnit_Framework_TestCase
         $this->operation->allocateIdsToEntities(Argument::type('array'))
             ->willReturn([$e->reveal()]);
 
-        $this->transaction->setOperation($this->operation->reveal());
+        $this->transaction->___setProperty('operation', $this->operation->reveal());
 
         $this->transaction->insertBatch([$e->reveal()]);
     }
@@ -85,7 +89,7 @@ class TransactionTest extends \PHPUnit_Framework_TestCase
 
         $this->operation->checkOverwrite(Argument::type('array'), Argument::exact(false))->willReturn(null);
 
-        $this->transaction->setOperation($this->operation->reveal());
+        $this->transaction->___setProperty('operation', $this->operation->reveal());
 
         $this->transaction->update($e->reveal());
     }
@@ -101,7 +105,7 @@ class TransactionTest extends \PHPUnit_Framework_TestCase
 
         $this->operation->checkOverwrite(Argument::type('array'), Argument::exact(false))->willReturn(null);
 
-        $this->transaction->setOperation($this->operation->reveal());
+        $this->transaction->___setProperty('operation', $this->operation->reveal());
 
         $this->transaction->updateBatch([$e->reveal()]);
     }
@@ -115,7 +119,7 @@ class TransactionTest extends \PHPUnit_Framework_TestCase
 
         $this->operation->commit()->shouldNotBeCalled();
 
-        $this->transaction->setOperation($this->operation->reveal());
+        $this->transaction->___setProperty('operation', $this->operation->reveal());
 
         $this->transaction->upsert($e->reveal());
     }
@@ -129,7 +133,7 @@ class TransactionTest extends \PHPUnit_Framework_TestCase
 
         $this->operation->commit()->shouldNotBeCalled();
 
-        $this->transaction->setOperation($this->operation->reveal());
+        $this->transaction->___setProperty('operation', $this->operation->reveal());
 
         $this->transaction->upsertBatch([$e->reveal()]);
     }
@@ -143,7 +147,7 @@ class TransactionTest extends \PHPUnit_Framework_TestCase
 
         $this->operation->commit()->shouldNotBeCalled();
 
-        $this->transaction->setOperation($this->operation->reveal());
+        $this->transaction->___setProperty('operation', $this->operation->reveal());
 
         $this->transaction->delete($k->reveal());
     }
@@ -158,58 +162,9 @@ class TransactionTest extends \PHPUnit_Framework_TestCase
         $this->operation->commit()->shouldNotBeCalled();
 
 
-        $this->transaction->setOperation($this->operation->reveal());
+        $this->transaction->___setProperty('operation', $this->operation->reveal());
 
         $this->transaction->deleteBatch([$k->reveal()]);
-    }
-
-    public function testLookup()
-    {
-        $this->operation->lookup(Argument::type('array'), Argument::that(function ($arg) {
-            if ($arg['transaction'] !== $this->transactionId) return false;
-
-            return true;
-        }))->willReturn(['found' => ['foo']]);
-
-        $this->transaction->setOperation($this->operation->reveal());
-
-        $k = $this->prophesize(Key::class);
-
-        $res = $this->transaction->lookup($k->reveal());
-
-        $this->assertEquals($res, 'foo');
-    }
-
-    public function testLookupBatch()
-    {
-        $this->operation->lookup(Argument::type('array'), Argument::that(function ($arg) {
-            if ($arg['transaction'] !== $this->transactionId) return false;
-
-            return true;
-        }))->willReturn([]);
-
-        $this->transaction->setOperation($this->operation->reveal());
-
-        $k = $this->prophesize(Key::class);
-
-        $this->transaction->lookupBatch([$k->reveal()]);
-    }
-
-    public function testRunQuery()
-    {
-        $this->operation->runQuery(Argument::type(QueryInterface::class), Argument::that(function ($arg) {
-            if ($arg['transaction'] !== $this->transactionId) return false;
-
-            return true;
-        }))->willReturn('test');
-
-        $this->transaction->setOperation($this->operation->reveal());
-
-        $q = $this->prophesize(QueryInterface::class);
-
-        $res = $this->transaction->runQuery($q->reveal());
-
-        $this->assertEquals($res, 'test');
     }
 
     public function testCommit()
@@ -218,7 +173,7 @@ class TransactionTest extends \PHPUnit_Framework_TestCase
             if ($arg['transaction'] !== $this->transactionId) return false;
         }));
 
-        $this->transaction->setOperation($this->operation->reveal());
+        $this->transaction->___setProperty('operation', $this->operation->reveal());
 
         $this->transaction->commit();
     }
@@ -230,13 +185,5 @@ class TransactionTest extends \PHPUnit_Framework_TestCase
             ->willReturn(null);
 
         $this->transaction->rollback();
-    }
-}
-
-class TransactionStub extends Transaction
-{
-    public function setOperation($operation)
-    {
-        $this->operation = $operation;
     }
 }
