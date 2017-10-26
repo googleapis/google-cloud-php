@@ -34,6 +34,7 @@ use Google\Cloud\Version;
 use Google\GAX\AgentHeaderDescriptor;
 use Google\GAX\ApiCallable;
 use Google\GAX\CallSettings;
+use Google\GAX\GrpcConstants;
 use Google\GAX\GrpcCredentialsHelper;
 use Google\GAX\PageStreamingDescriptor;
 use Google\GAX\PathTemplate;
@@ -43,7 +44,6 @@ use Google\Iam\V1\IAMPolicyGrpcClient;
 use Google\Iam\V1\Policy;
 use Google\Iam\V1\SetIamPolicyRequest;
 use Google\Iam\V1\TestIamPermissionsRequest;
-use Google\Protobuf\FieldMask;
 use Google\Pubsub\V1\DeleteTopicRequest;
 use Google\Pubsub\V1\GetTopicRequest;
 use Google\Pubsub\V1\ListTopicSubscriptionsRequest;
@@ -52,7 +52,7 @@ use Google\Pubsub\V1\PublishRequest;
 use Google\Pubsub\V1\PublisherGrpcClient;
 use Google\Pubsub\V1\PubsubMessage;
 use Google\Pubsub\V1\Topic;
-use Google\Pubsub\V1\UpdateTopicRequest;
+use Google\Pubsub\V1\Topic_LabelsEntry as LabelsEntry;
 
 /**
  * Service Description: The service that an application uses to manipulate topics, and to send
@@ -68,7 +68,7 @@ use Google\Pubsub\V1\UpdateTopicRequest;
  * ```
  * try {
  *     $publisherClient = new PublisherClient();
- *     $formattedName = $publisherClient->topicName("[PROJECT]", "[TOPIC]");
+ *     $formattedName = $publisherClient->topicName('[PROJECT]', '[TOPIC]');
  *     $response = $publisherClient->createTopic($formattedName);
  * } finally {
  *     $publisherClient->close();
@@ -79,7 +79,6 @@ use Google\Pubsub\V1\UpdateTopicRequest;
  * with these names, this class includes a format method for each type of name, and additionally
  * a parseName method to extract the individual identifiers contained within formatted names
  * that are returned by the API.
- *
  * @experimental
  */
 class PublisherGapicClient
@@ -143,7 +142,6 @@ class PublisherGapicClient
                 'topic' => self::getTopicNameTemplate(),
             ];
         }
-
         return self::$pathTemplateMap;
     }
     private static function getPageStreamingDescriptors()
@@ -175,17 +173,18 @@ class PublisherGapicClient
         return $pageStreamingDescriptors;
     }
 
+
+
     private static function getGapicVersion()
     {
         if (!self::$gapicVersionLoaded) {
-            if (file_exists(__DIR__.'/../VERSION')) {
-                self::$gapicVersion = trim(file_get_contents(__DIR__.'/../VERSION'));
+            if (file_exists(__DIR__ . '/../VERSION')) {
+                self::$gapicVersion = trim(file_get_contents(__DIR__ . '/../VERSION'));
             } elseif (class_exists(Version::class)) {
                 self::$gapicVersion = Version::VERSION;
             }
             self::$gapicVersionLoaded = true;
         }
-
         return self::$gapicVersion;
     }
 
@@ -194,7 +193,6 @@ class PublisherGapicClient
      * a project resource.
      *
      * @param string $project
-     *
      * @return string The formatted project resource.
      * @experimental
      */
@@ -211,7 +209,6 @@ class PublisherGapicClient
      *
      * @param string $project
      * @param string $topic
-     *
      * @return string The formatted topic resource.
      * @experimental
      */
@@ -228,7 +225,7 @@ class PublisherGapicClient
      * The following name formats are supported:
      * Template: Pattern
      * - project: projects/{project}
-     * - topic: projects/{project}/topics/{topic}.
+     * - topic: projects/{project}/topics/{topic}
      *
      * The optional $template argument can be supplied to specify a particular pattern, and must
      * match one of the templates listed above. If no $template argument is provided, or if the
@@ -236,10 +233,8 @@ class PublisherGapicClient
      * each of the supported templates, and return the first match.
      *
      * @param string $formattedName The formatted name string
-     * @param string $template      Optional name of template to match
-     *
+     * @param string $template Optional name of template to match
      * @return array An associative array from name component IDs to component values.
-     *
      * @throws ValidationException If $formattedName could not be matched.
      * @experimental
      */
@@ -251,7 +246,6 @@ class PublisherGapicClient
             if (!isset($templateMap[$template])) {
                 throw new ValidationException("Template name $template does not exist");
             }
-
             return $templateMap[$template]->match($formattedName);
         }
 
@@ -265,11 +259,14 @@ class PublisherGapicClient
         throw new ValidationException("Input did not match any known format. Input: $formattedName");
     }
 
+
+
+
     /**
      * Constructor.
      *
      * @param array $options {
-     *                       Optional. Options for configuring the service API wrapper.
+     *     Optional. Options for configuring the service API wrapper.
      *
      *     @type string $serviceAddress The domain name of the API remote host.
      *                                  Default 'pubsub.googleapis.com'.
@@ -318,9 +315,10 @@ class PublisherGapicClient
             'retryingOverride' => null,
             'libName' => null,
             'libVersion' => null,
-            'clientConfigPath' => __DIR__.'/../resources/publisher_client_config.json',
+            'clientConfigPath' => __DIR__ . '/../resources/publisher_client_config.json',
         ];
         $options = array_merge($defaultOptions, $options);
+
 
         $gapicVersion = $options['libVersion'] ?: self::getGapicVersion();
 
@@ -333,7 +331,6 @@ class PublisherGapicClient
         $defaultDescriptors = ['headerDescriptor' => $headerDescriptor];
         $this->descriptors = [
             'createTopic' => $defaultDescriptors,
-            'updateTopic' => $defaultDescriptors,
             'publish' => $defaultDescriptors,
             'getTopic' => $defaultDescriptors,
             'listTopics' => $defaultDescriptors,
@@ -388,22 +385,21 @@ class PublisherGapicClient
      * ```
      * try {
      *     $publisherClient = new PublisherClient();
-     *     $formattedName = $publisherClient->topicName("[PROJECT]", "[TOPIC]");
+     *     $formattedName = $publisherClient->topicName('[PROJECT]', '[TOPIC]');
      *     $response = $publisherClient->createTopic($formattedName);
      * } finally {
      *     $publisherClient->close();
      * }
      * ```
      *
-     * @param string $name         The name of the topic. It must have the format
-     *                             `"projects/{project}/topics/{topic}"`. `{topic}` must start with a letter,
-     *                             and contain only letters (`[A-Za-z]`), numbers (`[0-9]`), dashes (`-`),
-     *                             underscores (`_`), periods (`.`), tildes (`~`), plus (`+`) or percent
-     *                             signs (`%`). It must be between 3 and 255 characters in length, and it
-     *                             must not start with `"goog"`.
-     * @param array  $optionalArgs {
-     *                             Optional.
-     *
+     * @param string $name The name of the topic. It must have the format
+     * `"projects/{project}/topics/{topic}"`. `{topic}` must start with a letter,
+     * and contain only letters (`[A-Za-z]`), numbers (`[0-9]`), dashes (`-`),
+     * underscores (`_`), periods (`.`), tildes (`~`), plus (`+`) or percent
+     * signs (`%`). It must be between 3 and 255 characters in length, and it
+     * must not start with `"goog"`.
+     * @param array $optionalArgs {
+     *     Optional.
      *     @type array $labels
      *          User labels.
      *     @type \Google\GAX\RetrySettings|array $retrySettings
@@ -447,70 +443,6 @@ class PublisherGapicClient
     }
 
     /**
-     * Updates an existing topic. Note that certain properties of a topic are not
-     * modifiable.  Options settings follow the style guide:
-     * NOTE:  The style guide requires body: "topic" instead of body: "*".
-     * Keeping the latter for internal consistency in V1, however it should be
-     * corrected in V2.  See
-     * https://cloud.google.com/apis/design/standard_methods#update for details.
-     *
-     * Sample code:
-     * ```
-     * try {
-     *     $publisherClient = new PublisherClient();
-     *     $topic = new Topic();
-     *     $updateMask = new FieldMask();
-     *     $response = $publisherClient->updateTopic($topic, $updateMask);
-     * } finally {
-     *     $publisherClient->close();
-     * }
-     * ```
-     *
-     * @param Topic     $topic        The topic to update.
-     * @param FieldMask $updateMask   Indicates which fields in the provided topic to update.
-     *                                Must be specified and non-empty.
-     * @param array     $optionalArgs {
-     *                                Optional.
-     *
-     *     @type \Google\GAX\RetrySettings|array $retrySettings
-     *          Retry settings to use for this call. Can be a
-     *          {@see Google\GAX\RetrySettings} object, or an associative array
-     *          of retry settings parameters. See the documentation on
-     *          {@see Google\GAX\RetrySettings} for example usage.
-     * }
-     *
-     * @return \Google\Pubsub\V1\Topic
-     *
-     * @throws \Google\GAX\ApiException if the remote call fails
-     * @experimental
-     */
-    public function updateTopic($topic, $updateMask, $optionalArgs = [])
-    {
-        $request = new UpdateTopicRequest();
-        $request->setTopic($topic);
-        $request->setUpdateMask($updateMask);
-
-        $defaultCallSettings = $this->defaultCallSettings['updateTopic'];
-        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
-            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
-                $optionalArgs['retrySettings']
-            );
-        }
-        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
-        $callable = ApiCallable::createApiCall(
-            $this->publisherStub,
-            'UpdateTopic',
-            $mergedSettings,
-            $this->descriptors['updateTopic']
-        );
-
-        return $callable(
-            $request,
-            [],
-            ['call_credentials_callback' => $this->createCredentialsCallback()]);
-    }
-
-    /**
      * Adds one or more messages to the topic. Returns `NOT_FOUND` if the topic
      * does not exist. The message payload must not be empty; it must contain
      *  either a non-empty data field, or at least one attribute.
@@ -519,8 +451,8 @@ class PublisherGapicClient
      * ```
      * try {
      *     $publisherClient = new PublisherClient();
-     *     $formattedTopic = $publisherClient->topicName("[PROJECT]", "[TOPIC]");
-     *     $data = "";
+     *     $formattedTopic = $publisherClient->topicName('[PROJECT]', '[TOPIC]');
+     *     $data = '';
      *     $messagesElement = new PubsubMessage();
      *     $messagesElement->setData($data);
      *     $messages = [$messagesElement];
@@ -530,12 +462,11 @@ class PublisherGapicClient
      * }
      * ```
      *
-     * @param string          $topic        The messages in the request will be published on this topic.
-     *                                      Format is `projects/{project}/topics/{topic}`.
-     * @param PubsubMessage[] $messages     The messages to publish.
-     * @param array           $optionalArgs {
-     *                                      Optional.
-     *
+     * @param string $topic The messages in the request will be published on this topic.
+     * Format is `projects/{project}/topics/{topic}`.
+     * @param PubsubMessage[] $messages The messages to publish.
+     * @param array $optionalArgs {
+     *     Optional.
      *     @type \Google\GAX\RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\GAX\RetrySettings} object, or an associative array
@@ -581,18 +512,17 @@ class PublisherGapicClient
      * ```
      * try {
      *     $publisherClient = new PublisherClient();
-     *     $formattedTopic = $publisherClient->topicName("[PROJECT]", "[TOPIC]");
+     *     $formattedTopic = $publisherClient->topicName('[PROJECT]', '[TOPIC]');
      *     $response = $publisherClient->getTopic($formattedTopic);
      * } finally {
      *     $publisherClient->close();
      * }
      * ```
      *
-     * @param string $topic        The name of the topic to get.
-     *                             Format is `projects/{project}/topics/{topic}`.
-     * @param array  $optionalArgs {
-     *                             Optional.
-     *
+     * @param string $topic The name of the topic to get.
+     * Format is `projects/{project}/topics/{topic}`.
+     * @param array $optionalArgs {
+     *     Optional.
      *     @type \Google\GAX\RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\GAX\RetrySettings} object, or an associative array
@@ -637,15 +567,15 @@ class PublisherGapicClient
      * ```
      * try {
      *     $publisherClient = new PublisherClient();
-     *     $formattedProject = $publisherClient->projectName("[PROJECT]");
+     *     $formattedProject = $publisherClient->projectName('[PROJECT]');
      *     // Iterate through all elements
      *     $pagedResponse = $publisherClient->listTopics($formattedProject);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
      *
-     *     // OR iterate over pages of elements, with the maximum page size set to 5
-     *     $pagedResponse = $publisherClient->listTopics($formattedProject, ['pageSize' => 5]);
+     *     // OR iterate over pages of elements
+     *     $pagedResponse = $publisherClient->listTopics($formattedProject);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -656,11 +586,10 @@ class PublisherGapicClient
      * }
      * ```
      *
-     * @param string $project      The name of the cloud project that topics belong to.
-     *                             Format is `projects/{project}`.
-     * @param array  $optionalArgs {
-     *                             Optional.
-     *
+     * @param string $project The name of the cloud project that topics belong to.
+     * Format is `projects/{project}`.
+     * @param array $optionalArgs {
+     *     Optional.
      *     @type int $pageSize
      *          The maximum number of resources contained in the underlying API
      *          response. The API may return fewer values in a page, even if
@@ -720,15 +649,15 @@ class PublisherGapicClient
      * ```
      * try {
      *     $publisherClient = new PublisherClient();
-     *     $formattedTopic = $publisherClient->topicName("[PROJECT]", "[TOPIC]");
+     *     $formattedTopic = $publisherClient->topicName('[PROJECT]', '[TOPIC]');
      *     // Iterate through all elements
      *     $pagedResponse = $publisherClient->listTopicSubscriptions($formattedTopic);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
      *
-     *     // OR iterate over pages of elements, with the maximum page size set to 5
-     *     $pagedResponse = $publisherClient->listTopicSubscriptions($formattedTopic, ['pageSize' => 5]);
+     *     // OR iterate over pages of elements
+     *     $pagedResponse = $publisherClient->listTopicSubscriptions($formattedTopic);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -739,11 +668,10 @@ class PublisherGapicClient
      * }
      * ```
      *
-     * @param string $topic        The name of the topic that subscriptions are attached to.
-     *                             Format is `projects/{project}/topics/{topic}`.
-     * @param array  $optionalArgs {
-     *                             Optional.
-     *
+     * @param string $topic The name of the topic that subscriptions are attached to.
+     * Format is `projects/{project}/topics/{topic}`.
+     * @param array $optionalArgs {
+     *     Optional.
      *     @type int $pageSize
      *          The maximum number of resources contained in the underlying API
      *          response. The API may return fewer values in a page, even if
@@ -807,18 +735,17 @@ class PublisherGapicClient
      * ```
      * try {
      *     $publisherClient = new PublisherClient();
-     *     $formattedTopic = $publisherClient->topicName("[PROJECT]", "[TOPIC]");
+     *     $formattedTopic = $publisherClient->topicName('[PROJECT]', '[TOPIC]');
      *     $publisherClient->deleteTopic($formattedTopic);
      * } finally {
      *     $publisherClient->close();
      * }
      * ```
      *
-     * @param string $topic        Name of the topic to delete.
-     *                             Format is `projects/{project}/topics/{topic}`.
-     * @param array  $optionalArgs {
-     *                             Optional.
-     *
+     * @param string $topic Name of the topic to delete.
+     * Format is `projects/{project}/topics/{topic}`.
+     * @param array $optionalArgs {
+     *     Optional.
      *     @type \Google\GAX\RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\GAX\RetrySettings} object, or an associative array
@@ -862,7 +789,7 @@ class PublisherGapicClient
      * ```
      * try {
      *     $publisherClient = new PublisherClient();
-     *     $formattedResource = $publisherClient->topicName("[PROJECT]", "[TOPIC]");
+     *     $formattedResource = $publisherClient->topicName('[PROJECT]', '[TOPIC]');
      *     $policy = new Policy();
      *     $response = $publisherClient->setIamPolicy($formattedResource, $policy);
      * } finally {
@@ -870,16 +797,15 @@ class PublisherGapicClient
      * }
      * ```
      *
-     * @param string $resource     REQUIRED: The resource for which the policy is being specified.
-     *                             `resource` is usually specified as a path. For example, a Project
-     *                             resource is specified as `projects/{project}`.
-     * @param Policy $policy       REQUIRED: The complete policy to be applied to the `resource`. The size of
-     *                             the policy is limited to a few 10s of KB. An empty policy is a
-     *                             valid policy but certain Cloud Platform services (such as Projects)
-     *                             might reject them.
-     * @param array  $optionalArgs {
-     *                             Optional.
-     *
+     * @param string $resource REQUIRED: The resource for which the policy is being specified.
+     * `resource` is usually specified as a path. For example, a Project
+     * resource is specified as `projects/{project}`.
+     * @param Policy $policy REQUIRED: The complete policy to be applied to the `resource`. The size of
+     * the policy is limited to a few 10s of KB. An empty policy is a
+     * valid policy but certain Cloud Platform services (such as Projects)
+     * might reject them.
+     * @param array $optionalArgs {
+     *     Optional.
      *     @type \Google\GAX\RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\GAX\RetrySettings} object, or an associative array
@@ -927,19 +853,18 @@ class PublisherGapicClient
      * ```
      * try {
      *     $publisherClient = new PublisherClient();
-     *     $formattedResource = $publisherClient->topicName("[PROJECT]", "[TOPIC]");
+     *     $formattedResource = $publisherClient->topicName('[PROJECT]', '[TOPIC]');
      *     $response = $publisherClient->getIamPolicy($formattedResource);
      * } finally {
      *     $publisherClient->close();
      * }
      * ```
      *
-     * @param string $resource     REQUIRED: The resource for which the policy is being requested.
-     *                             `resource` is usually specified as a path. For example, a Project
-     *                             resource is specified as `projects/{project}`.
-     * @param array  $optionalArgs {
-     *                             Optional.
-     *
+     * @param string $resource REQUIRED: The resource for which the policy is being requested.
+     * `resource` is usually specified as a path. For example, a Project
+     * resource is specified as `projects/{project}`.
+     * @param array $optionalArgs {
+     *     Optional.
      *     @type \Google\GAX\RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\GAX\RetrySettings} object, or an associative array
@@ -986,7 +911,7 @@ class PublisherGapicClient
      * ```
      * try {
      *     $publisherClient = new PublisherClient();
-     *     $formattedResource = $publisherClient->topicName("[PROJECT]", "[TOPIC]");
+     *     $formattedResource = $publisherClient->topicName('[PROJECT]', '[TOPIC]');
      *     $permissions = [];
      *     $response = $publisherClient->testIamPermissions($formattedResource, $permissions);
      * } finally {
@@ -994,16 +919,15 @@ class PublisherGapicClient
      * }
      * ```
      *
-     * @param string   $resource     REQUIRED: The resource for which the policy detail is being requested.
-     *                               `resource` is usually specified as a path. For example, a Project
-     *                               resource is specified as `projects/{project}`.
-     * @param string[] $permissions  The set of permissions to check for the `resource`. Permissions with
-     *                               wildcards (such as '*' or 'storage.*') are not allowed. For more
-     *                               information see
-     *                               [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).
-     * @param array    $optionalArgs {
-     *                               Optional.
-     *
+     * @param string $resource REQUIRED: The resource for which the policy detail is being requested.
+     * `resource` is usually specified as a path. For example, a Project
+     * resource is specified as `projects/{project}`.
+     * @param string[] $permissions The set of permissions to check for the `resource`. Permissions with
+     * wildcards (such as '*' or 'storage.*') are not allowed. For more
+     * information see
+     * [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).
+     * @param array $optionalArgs {
+     *     Optional.
      *     @type \Google\GAX\RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\GAX\RetrySettings} object, or an associative array
@@ -1045,7 +969,6 @@ class PublisherGapicClient
     /**
      * Initiates an orderly shutdown in which preexisting calls continue but new
      * calls are immediately cancelled.
-     *
      * @experimental
      */
     public function close()

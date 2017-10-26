@@ -38,6 +38,7 @@ use Google\Devtools\Clouderrorreporting\V1beta1\UpdateGroupRequest;
 use Google\GAX\AgentHeaderDescriptor;
 use Google\GAX\ApiCallable;
 use Google\GAX\CallSettings;
+use Google\GAX\GrpcConstants;
 use Google\GAX\GrpcCredentialsHelper;
 use Google\GAX\PathTemplate;
 use Google\GAX\ValidationException;
@@ -55,7 +56,7 @@ use Google\GAX\ValidationException;
  * ```
  * try {
  *     $errorGroupServiceClient = new ErrorGroupServiceClient();
- *     $formattedGroupName = $errorGroupServiceClient->groupName("[PROJECT]", "[GROUP]");
+ *     $formattedGroupName = $errorGroupServiceClient->groupName('[PROJECT]', '[GROUP]');
  *     $response = $errorGroupServiceClient->getGroup($formattedGroupName);
  * } finally {
  *     $errorGroupServiceClient->close();
@@ -66,7 +67,6 @@ use Google\GAX\ValidationException;
  * with these names, this class includes a format method for each type of name, and additionally
  * a parseName method to extract the individual identifiers contained within formatted names
  * that are returned by the API.
- *
  * @experimental
  */
 class ErrorGroupServiceGapicClient
@@ -118,21 +118,21 @@ class ErrorGroupServiceGapicClient
                 'group' => self::getGroupNameTemplate(),
             ];
         }
-
         return self::$pathTemplateMap;
     }
+
+
 
     private static function getGapicVersion()
     {
         if (!self::$gapicVersionLoaded) {
-            if (file_exists(__DIR__.'/../VERSION')) {
-                self::$gapicVersion = trim(file_get_contents(__DIR__.'/../VERSION'));
+            if (file_exists(__DIR__ . '/../VERSION')) {
+                self::$gapicVersion = trim(file_get_contents(__DIR__ . '/../VERSION'));
             } elseif (class_exists(Version::class)) {
                 self::$gapicVersion = Version::VERSION;
             }
             self::$gapicVersionLoaded = true;
         }
-
         return self::$gapicVersion;
     }
 
@@ -142,7 +142,6 @@ class ErrorGroupServiceGapicClient
      *
      * @param string $project
      * @param string $group
-     *
      * @return string The formatted group resource.
      * @experimental
      */
@@ -158,7 +157,7 @@ class ErrorGroupServiceGapicClient
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
-     * - group: projects/{project}/groups/{group}.
+     * - group: projects/{project}/groups/{group}
      *
      * The optional $template argument can be supplied to specify a particular pattern, and must
      * match one of the templates listed above. If no $template argument is provided, or if the
@@ -166,10 +165,8 @@ class ErrorGroupServiceGapicClient
      * each of the supported templates, and return the first match.
      *
      * @param string $formattedName The formatted name string
-     * @param string $template      Optional name of template to match
-     *
+     * @param string $template Optional name of template to match
      * @return array An associative array from name component IDs to component values.
-     *
      * @throws ValidationException If $formattedName could not be matched.
      * @experimental
      */
@@ -181,7 +178,6 @@ class ErrorGroupServiceGapicClient
             if (!isset($templateMap[$template])) {
                 throw new ValidationException("Template name $template does not exist");
             }
-
             return $templateMap[$template]->match($formattedName);
         }
 
@@ -195,11 +191,14 @@ class ErrorGroupServiceGapicClient
         throw new ValidationException("Input did not match any known format. Input: $formattedName");
     }
 
+
+
+
     /**
      * Constructor.
      *
      * @param array $options {
-     *                       Optional. Options for configuring the service API wrapper.
+     *     Optional. Options for configuring the service API wrapper.
      *
      *     @type string $serviceAddress The domain name of the API remote host.
      *                                  Default 'clouderrorreporting.googleapis.com'.
@@ -247,9 +246,10 @@ class ErrorGroupServiceGapicClient
             'retryingOverride' => null,
             'libName' => null,
             'libVersion' => null,
-            'clientConfigPath' => __DIR__.'/../resources/error_group_service_client_config.json',
+            'clientConfigPath' => __DIR__ . '/../resources/error_group_service_client_config.json',
         ];
         $options = array_merge($defaultOptions, $options);
+
 
         $gapicVersion = $options['libVersion'] ?: self::getGapicVersion();
 
@@ -298,7 +298,7 @@ class ErrorGroupServiceGapicClient
      * ```
      * try {
      *     $errorGroupServiceClient = new ErrorGroupServiceClient();
-     *     $formattedGroupName = $errorGroupServiceClient->groupName("[PROJECT]", "[GROUP]");
+     *     $formattedGroupName = $errorGroupServiceClient->groupName('[PROJECT]', '[GROUP]');
      *     $response = $errorGroupServiceClient->getGroup($formattedGroupName);
      * } finally {
      *     $errorGroupServiceClient->close();
@@ -306,16 +306,15 @@ class ErrorGroupServiceGapicClient
      * ```
      *
      * @param string $groupName [Required] The group resource name. Written as
-     *                          <code>projects/<var>projectID</var>/groups/<var>group_name</var></code>.
-     *                          Call
-     *                          <a href="/error-reporting/reference/rest/v1beta1/projects.groupStats/list">
-     *                          <code>groupStats.list</code></a> to return a list of groups belonging to
-     *                          this project.
+     * <code>projects/<var>projectID</var>/groups/<var>group_name</var></code>.
+     * Call
+     * <a href="/error-reporting/reference/rest/v1beta1/projects.groupStats/list">
+     * <code>groupStats.list</code></a> to return a list of groups belonging to
+     * this project.
      *
      * Example: <code>projects/my-project-123/groups/my-group</code>
      * @param array $optionalArgs {
-     *                            Optional.
-     *
+     *     Optional.
      *     @type \Google\GAX\RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\GAX\RetrySettings} object, or an associative array
@@ -368,10 +367,9 @@ class ErrorGroupServiceGapicClient
      * }
      * ```
      *
-     * @param ErrorGroup $group        [Required] The group which replaces the resource on the server.
-     * @param array      $optionalArgs {
-     *                                 Optional.
-     *
+     * @param ErrorGroup $group [Required] The group which replaces the resource on the server.
+     * @param array $optionalArgs {
+     *     Optional.
      *     @type \Google\GAX\RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\GAX\RetrySettings} object, or an associative array
@@ -412,7 +410,6 @@ class ErrorGroupServiceGapicClient
     /**
      * Initiates an orderly shutdown in which preexisting calls continue but new
      * calls are immediately cancelled.
-     *
      * @experimental
      */
     public function close()

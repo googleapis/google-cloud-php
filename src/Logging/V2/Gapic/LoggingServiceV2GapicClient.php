@@ -35,6 +35,7 @@ use Google\Cloud\Version;
 use Google\GAX\AgentHeaderDescriptor;
 use Google\GAX\ApiCallable;
 use Google\GAX\CallSettings;
+use Google\GAX\GrpcConstants;
 use Google\GAX\GrpcCredentialsHelper;
 use Google\GAX\PageStreamingDescriptor;
 use Google\GAX\PathTemplate;
@@ -46,6 +47,7 @@ use Google\Logging\V2\ListMonitoredResourceDescriptorsRequest;
 use Google\Logging\V2\LogEntry;
 use Google\Logging\V2\LoggingServiceV2GrpcClient;
 use Google\Logging\V2\WriteLogEntriesRequest;
+use Google\Logging\V2\WriteLogEntriesRequest_LabelsEntry as LabelsEntry;
 
 /**
  * Service Description: Service for ingesting and querying logs.
@@ -60,7 +62,7 @@ use Google\Logging\V2\WriteLogEntriesRequest;
  * ```
  * try {
  *     $loggingServiceV2Client = new LoggingServiceV2Client();
- *     $formattedLogName = $loggingServiceV2Client->logName("[PROJECT]", "[LOG]");
+ *     $formattedLogName = $loggingServiceV2Client->logName('[PROJECT]', '[LOG]');
  *     $loggingServiceV2Client->deleteLog($formattedLogName);
  * } finally {
  *     $loggingServiceV2Client->close();
@@ -71,7 +73,6 @@ use Google\Logging\V2\WriteLogEntriesRequest;
  * with these names, this class includes a format method for each type of name, and additionally
  * a parseName method to extract the individual identifiers contained within formatted names
  * that are returned by the API.
- *
  * @experimental
  */
 class LoggingServiceV2GapicClient
@@ -134,7 +135,6 @@ class LoggingServiceV2GapicClient
                 'log' => self::getLogNameTemplate(),
             ];
         }
-
         return self::$pathTemplateMap;
     }
     private static function getPageStreamingDescriptors()
@@ -176,17 +176,18 @@ class LoggingServiceV2GapicClient
         return $pageStreamingDescriptors;
     }
 
+
+
     private static function getGapicVersion()
     {
         if (!self::$gapicVersionLoaded) {
-            if (file_exists(__DIR__.'/../VERSION')) {
-                self::$gapicVersion = trim(file_get_contents(__DIR__.'/../VERSION'));
+            if (file_exists(__DIR__ . '/../VERSION')) {
+                self::$gapicVersion = trim(file_get_contents(__DIR__ . '/../VERSION'));
             } elseif (class_exists(Version::class)) {
                 self::$gapicVersion = Version::VERSION;
             }
             self::$gapicVersionLoaded = true;
         }
-
         return self::$gapicVersion;
     }
 
@@ -195,7 +196,6 @@ class LoggingServiceV2GapicClient
      * a project resource.
      *
      * @param string $project
-     *
      * @return string The formatted project resource.
      * @experimental
      */
@@ -212,7 +212,6 @@ class LoggingServiceV2GapicClient
      *
      * @param string $project
      * @param string $log
-     *
      * @return string The formatted log resource.
      * @experimental
      */
@@ -229,7 +228,7 @@ class LoggingServiceV2GapicClient
      * The following name formats are supported:
      * Template: Pattern
      * - project: projects/{project}
-     * - log: projects/{project}/logs/{log}.
+     * - log: projects/{project}/logs/{log}
      *
      * The optional $template argument can be supplied to specify a particular pattern, and must
      * match one of the templates listed above. If no $template argument is provided, or if the
@@ -237,10 +236,8 @@ class LoggingServiceV2GapicClient
      * each of the supported templates, and return the first match.
      *
      * @param string $formattedName The formatted name string
-     * @param string $template      Optional name of template to match
-     *
+     * @param string $template Optional name of template to match
      * @return array An associative array from name component IDs to component values.
-     *
      * @throws ValidationException If $formattedName could not be matched.
      * @experimental
      */
@@ -252,7 +249,6 @@ class LoggingServiceV2GapicClient
             if (!isset($templateMap[$template])) {
                 throw new ValidationException("Template name $template does not exist");
             }
-
             return $templateMap[$template]->match($formattedName);
         }
 
@@ -266,11 +262,14 @@ class LoggingServiceV2GapicClient
         throw new ValidationException("Input did not match any known format. Input: $formattedName");
     }
 
+
+
+
     /**
      * Constructor.
      *
      * @param array $options {
-     *                       Optional. Options for configuring the service API wrapper.
+     *     Optional. Options for configuring the service API wrapper.
      *
      *     @type string $serviceAddress The domain name of the API remote host.
      *                                  Default 'logging.googleapis.com'.
@@ -322,9 +321,10 @@ class LoggingServiceV2GapicClient
             'retryingOverride' => null,
             'libName' => null,
             'libVersion' => null,
-            'clientConfigPath' => __DIR__.'/../resources/logging_service_v2_client_config.json',
+            'clientConfigPath' => __DIR__ . '/../resources/logging_service_v2_client_config.json',
         ];
         $options = array_merge($defaultOptions, $options);
+
 
         $gapicVersion = $options['libVersion'] ?: self::getGapicVersion();
 
@@ -383,7 +383,7 @@ class LoggingServiceV2GapicClient
      * ```
      * try {
      *     $loggingServiceV2Client = new LoggingServiceV2Client();
-     *     $formattedLogName = $loggingServiceV2Client->logName("[PROJECT]", "[LOG]");
+     *     $formattedLogName = $loggingServiceV2Client->logName('[PROJECT]', '[LOG]');
      *     $loggingServiceV2Client->deleteLog($formattedLogName);
      * } finally {
      *     $loggingServiceV2Client->close();
@@ -403,8 +403,7 @@ class LoggingServiceV2GapicClient
      * For more information about log names, see
      * [LogEntry][google.logging.v2.LogEntry].
      * @param array $optionalArgs {
-     *                            Optional.
-     *
+     *     Optional.
      *     @type \Google\GAX\RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\GAX\RetrySettings} object, or an associative array
@@ -441,7 +440,7 @@ class LoggingServiceV2GapicClient
     }
 
     /**
-     * ## Log entry resources.
+     * ## Log entry resources
      *
      * Writes log entries to Stackdriver Logging. This API method is the
      * only way to send log entries to Stackdriver Logging. This method
@@ -461,10 +460,10 @@ class LoggingServiceV2GapicClient
      * ```
      *
      * @param LogEntry[] $entries Required. The log entries to send to Stackdriver Logging. The order of log
-     *                            entries in this list does not matter. Values supplied in this method's
-     *                            `log_name`, `resource`, and `labels` fields are copied into those log
-     *                            entries in this list that do not include values for their corresponding
-     *                            fields. For more information, see the [LogEntry][google.logging.v2.LogEntry] type.
+     * entries in this list does not matter. Values supplied in this method's
+     * `log_name`, `resource`, and `labels` fields are copied into those log
+     * entries in this list that do not include values for their corresponding
+     * fields. For more information, see the [LogEntry][google.logging.v2.LogEntry] type.
      *
      * If the `timestamp` or `insert_id` fields are missing in log entries, then
      * this method supplies the current time or a unique identifier, respectively.
@@ -482,8 +481,7 @@ class LoggingServiceV2GapicClient
      * you should try to include several log entries in this list,
      * rather than calling this method for each individual log entry.
      * @param array $optionalArgs {
-     *                            Optional.
-     *
+     *     Optional.
      *     @type string $logName
      *          Optional. A default log resource name that is assigned to all log entries
      *          in `entries` that do not specify a value for `log_name`:
@@ -583,8 +581,8 @@ class LoggingServiceV2GapicClient
      *         // doSomethingWith($element);
      *     }
      *
-     *     // OR iterate over pages of elements, with the maximum page size set to 5
-     *     $pagedResponse = $loggingServiceV2Client->listLogEntries($resourceNames, ['pageSize' => 5]);
+     *     // OR iterate over pages of elements
+     *     $pagedResponse = $loggingServiceV2Client->listLogEntries($resourceNames);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -596,7 +594,7 @@ class LoggingServiceV2GapicClient
      * ```
      *
      * @param string[] $resourceNames Required. Names of one or more parent resources from which to
-     *                                retrieve log entries:
+     * retrieve log entries:
      *
      *     "projects/[PROJECT_ID]"
      *     "organizations/[ORGANIZATION_ID]"
@@ -605,8 +603,7 @@ class LoggingServiceV2GapicClient
      *
      * Projects listed in the `project_ids` field are added to this list.
      * @param array $optionalArgs {
-     *                            Optional.
-     *
+     *     Optional.
      *     @type string[] $projectIds
      *          Deprecated. Use `resource_names` instead.  One or more project identifiers
      *          or project numbers from which to retrieve log entries.  Example:
@@ -704,8 +701,8 @@ class LoggingServiceV2GapicClient
      *         // doSomethingWith($element);
      *     }
      *
-     *     // OR iterate over pages of elements, with the maximum page size set to 5
-     *     $pagedResponse = $loggingServiceV2Client->listMonitoredResourceDescriptors(['pageSize' => 5]);
+     *     // OR iterate over pages of elements
+     *     $pagedResponse = $loggingServiceV2Client->listMonitoredResourceDescriptors();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -717,8 +714,7 @@ class LoggingServiceV2GapicClient
      * ```
      *
      * @param array $optionalArgs {
-     *                            Optional.
-     *
+     *     Optional.
      *     @type int $pageSize
      *          The maximum number of resources contained in the underlying API
      *          response. The API may return fewer values in a page, even if
@@ -778,15 +774,15 @@ class LoggingServiceV2GapicClient
      * ```
      * try {
      *     $loggingServiceV2Client = new LoggingServiceV2Client();
-     *     $formattedParent = $loggingServiceV2Client->projectName("[PROJECT]");
+     *     $formattedParent = $loggingServiceV2Client->projectName('[PROJECT]');
      *     // Iterate through all elements
      *     $pagedResponse = $loggingServiceV2Client->listLogs($formattedParent);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
      *
-     *     // OR iterate over pages of elements, with the maximum page size set to 5
-     *     $pagedResponse = $loggingServiceV2Client->listLogs($formattedParent, ['pageSize' => 5]);
+     *     // OR iterate over pages of elements
+     *     $pagedResponse = $loggingServiceV2Client->listLogs($formattedParent);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -804,8 +800,7 @@ class LoggingServiceV2GapicClient
      *     "billingAccounts/[BILLING_ACCOUNT_ID]"
      *     "folders/[FOLDER_ID]"
      * @param array $optionalArgs {
-     *                            Optional.
-     *
+     *     Optional.
      *     @type int $pageSize
      *          The maximum number of resources contained in the underlying API
      *          response. The API may return fewer values in a page, even if
@@ -861,7 +856,6 @@ class LoggingServiceV2GapicClient
     /**
      * Initiates an orderly shutdown in which preexisting calls continue but new
      * calls are immediately cancelled.
-     *
      * @experimental
      */
     public function close()

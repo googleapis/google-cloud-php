@@ -34,17 +34,25 @@ use Google\Cloud\Version;
 use Google\GAX\AgentHeaderDescriptor;
 use Google\GAX\ApiCallable;
 use Google\GAX\CallSettings;
+use Google\GAX\GrpcConstants;
 use Google\GAX\GrpcCredentialsHelper;
 use Google\GAX\PageStreamingDescriptor;
 use Google\GAX\PathTemplate;
 use Google\GAX\ValidationException;
 use Google\Logging\V2\ConfigServiceV2GrpcClient;
+use Google\Logging\V2\CreateExclusionRequest;
 use Google\Logging\V2\CreateSinkRequest;
+use Google\Logging\V2\DeleteExclusionRequest;
 use Google\Logging\V2\DeleteSinkRequest;
+use Google\Logging\V2\GetExclusionRequest;
 use Google\Logging\V2\GetSinkRequest;
+use Google\Logging\V2\ListExclusionsRequest;
 use Google\Logging\V2\ListSinksRequest;
+use Google\Logging\V2\LogExclusion;
 use Google\Logging\V2\LogSink;
+use Google\Logging\V2\UpdateExclusionRequest;
 use Google\Logging\V2\UpdateSinkRequest;
+use Google\Protobuf\FieldMask;
 
 /**
  * Service Description: Service for configuring sinks used to export log entries outside of
@@ -60,15 +68,15 @@ use Google\Logging\V2\UpdateSinkRequest;
  * ```
  * try {
  *     $configServiceV2Client = new ConfigServiceV2Client();
- *     $formattedParent = $configServiceV2Client->projectName("[PROJECT]");
+ *     $formattedParent = $configServiceV2Client->projectName('[PROJECT]');
  *     // Iterate through all elements
  *     $pagedResponse = $configServiceV2Client->listSinks($formattedParent);
  *     foreach ($pagedResponse->iterateAllElements() as $element) {
  *         // doSomethingWith($element);
  *     }
  *
- *     // OR iterate over pages of elements, with the maximum page size set to 5
- *     $pagedResponse = $configServiceV2Client->listSinks($formattedParent, ['pageSize' => 5]);
+ *     // OR iterate over pages of elements
+ *     $pagedResponse = $configServiceV2Client->listSinks($formattedParent);
  *     foreach ($pagedResponse->iteratePages() as $page) {
  *         foreach ($page as $element) {
  *             // doSomethingWith($element);
@@ -83,7 +91,6 @@ use Google\Logging\V2\UpdateSinkRequest;
  * with these names, this class includes a format method for each type of name, and additionally
  * a parseName method to extract the individual identifiers contained within formatted names
  * that are returned by the API.
- *
  * @experimental
  */
 class ConfigServiceV2GapicClient
@@ -110,6 +117,7 @@ class ConfigServiceV2GapicClient
 
     private static $projectNameTemplate;
     private static $sinkNameTemplate;
+    private static $exclusionNameTemplate;
     private static $pathTemplateMap;
     private static $gapicVersion;
     private static $gapicVersionLoaded = false;
@@ -138,15 +146,24 @@ class ConfigServiceV2GapicClient
         return self::$sinkNameTemplate;
     }
 
+    private static function getExclusionNameTemplate()
+    {
+        if (self::$exclusionNameTemplate == null) {
+            self::$exclusionNameTemplate = new PathTemplate('projects/{project}/exclusions/{exclusion}');
+        }
+
+        return self::$exclusionNameTemplate;
+    }
+
     private static function getPathTemplateMap()
     {
         if (self::$pathTemplateMap == null) {
             self::$pathTemplateMap = [
                 'project' => self::getProjectNameTemplate(),
                 'sink' => self::getSinkNameTemplate(),
+                'exclusion' => self::getExclusionNameTemplate(),
             ];
         }
-
         return self::$pathTemplateMap;
     }
     private static function getPageStreamingDescriptors()
@@ -160,25 +177,36 @@ class ConfigServiceV2GapicClient
                     'responsePageTokenGetMethod' => 'getNextPageToken',
                     'resourcesGetMethod' => 'getSinks',
                 ]);
+        $listExclusionsPageStreamingDescriptor =
+                new PageStreamingDescriptor([
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getExclusions',
+                ]);
 
         $pageStreamingDescriptors = [
             'listSinks' => $listSinksPageStreamingDescriptor,
+            'listExclusions' => $listExclusionsPageStreamingDescriptor,
         ];
 
         return $pageStreamingDescriptors;
     }
 
+
+
     private static function getGapicVersion()
     {
         if (!self::$gapicVersionLoaded) {
-            if (file_exists(__DIR__.'/../VERSION')) {
-                self::$gapicVersion = trim(file_get_contents(__DIR__.'/../VERSION'));
+            if (file_exists(__DIR__ . '/../VERSION')) {
+                self::$gapicVersion = trim(file_get_contents(__DIR__ . '/../VERSION'));
             } elseif (class_exists(Version::class)) {
                 self::$gapicVersion = Version::VERSION;
             }
             self::$gapicVersionLoaded = true;
         }
-
         return self::$gapicVersion;
     }
 
@@ -187,7 +215,6 @@ class ConfigServiceV2GapicClient
      * a project resource.
      *
      * @param string $project
-     *
      * @return string The formatted project resource.
      * @experimental
      */
@@ -204,7 +231,6 @@ class ConfigServiceV2GapicClient
      *
      * @param string $project
      * @param string $sink
-     *
      * @return string The formatted sink resource.
      * @experimental
      */
@@ -217,11 +243,29 @@ class ConfigServiceV2GapicClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent
+     * a exclusion resource.
+     *
+     * @param string $project
+     * @param string $exclusion
+     * @return string The formatted exclusion resource.
+     * @experimental
+     */
+    public static function exclusionName($project, $exclusion)
+    {
+        return self::getExclusionNameTemplate()->render([
+            'project' => $project,
+            'exclusion' => $exclusion,
+        ]);
+    }
+
+    /**
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
      * - project: projects/{project}
-     * - sink: projects/{project}/sinks/{sink}.
+     * - sink: projects/{project}/sinks/{sink}
+     * - exclusion: projects/{project}/exclusions/{exclusion}
      *
      * The optional $template argument can be supplied to specify a particular pattern, and must
      * match one of the templates listed above. If no $template argument is provided, or if the
@@ -229,10 +273,8 @@ class ConfigServiceV2GapicClient
      * each of the supported templates, and return the first match.
      *
      * @param string $formattedName The formatted name string
-     * @param string $template      Optional name of template to match
-     *
+     * @param string $template Optional name of template to match
      * @return array An associative array from name component IDs to component values.
-     *
      * @throws ValidationException If $formattedName could not be matched.
      * @experimental
      */
@@ -244,7 +286,6 @@ class ConfigServiceV2GapicClient
             if (!isset($templateMap[$template])) {
                 throw new ValidationException("Template name $template does not exist");
             }
-
             return $templateMap[$template]->match($formattedName);
         }
 
@@ -258,11 +299,14 @@ class ConfigServiceV2GapicClient
         throw new ValidationException("Input did not match any known format. Input: $formattedName");
     }
 
+
+
+
     /**
      * Constructor.
      *
      * @param array $options {
-     *                       Optional. Options for configuring the service API wrapper.
+     *     Optional. Options for configuring the service API wrapper.
      *
      *     @type string $serviceAddress The domain name of the API remote host.
      *                                  Default 'logging.googleapis.com'.
@@ -314,9 +358,10 @@ class ConfigServiceV2GapicClient
             'retryingOverride' => null,
             'libName' => null,
             'libVersion' => null,
-            'clientConfigPath' => __DIR__.'/../resources/config_service_v2_client_config.json',
+            'clientConfigPath' => __DIR__ . '/../resources/config_service_v2_client_config.json',
         ];
         $options = array_merge($defaultOptions, $options);
+
 
         $gapicVersion = $options['libVersion'] ?: self::getGapicVersion();
 
@@ -333,6 +378,11 @@ class ConfigServiceV2GapicClient
             'createSink' => $defaultDescriptors,
             'updateSink' => $defaultDescriptors,
             'deleteSink' => $defaultDescriptors,
+            'listExclusions' => $defaultDescriptors,
+            'getExclusion' => $defaultDescriptors,
+            'createExclusion' => $defaultDescriptors,
+            'updateExclusion' => $defaultDescriptors,
+            'deleteExclusion' => $defaultDescriptors,
         ];
         $pageStreamingDescriptors = self::getPageStreamingDescriptors();
         foreach ($pageStreamingDescriptors as $method => $pageStreamingDescriptor) {
@@ -372,15 +422,15 @@ class ConfigServiceV2GapicClient
      * ```
      * try {
      *     $configServiceV2Client = new ConfigServiceV2Client();
-     *     $formattedParent = $configServiceV2Client->projectName("[PROJECT]");
+     *     $formattedParent = $configServiceV2Client->projectName('[PROJECT]');
      *     // Iterate through all elements
      *     $pagedResponse = $configServiceV2Client->listSinks($formattedParent);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
      *
-     *     // OR iterate over pages of elements, with the maximum page size set to 5
-     *     $pagedResponse = $configServiceV2Client->listSinks($formattedParent, ['pageSize' => 5]);
+     *     // OR iterate over pages of elements
+     *     $pagedResponse = $configServiceV2Client->listSinks($formattedParent);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -398,8 +448,7 @@ class ConfigServiceV2GapicClient
      *     "billingAccounts/[BILLING_ACCOUNT_ID]"
      *     "folders/[FOLDER_ID]"
      * @param array $optionalArgs {
-     *                            Optional.
-     *
+     *     Optional.
      *     @type string $pageToken
      *          A page token is used to specify a page of values to be returned.
      *          If no page token is specified (the default), the first page
@@ -459,7 +508,7 @@ class ConfigServiceV2GapicClient
      * ```
      * try {
      *     $configServiceV2Client = new ConfigServiceV2Client();
-     *     $formattedSinkName = $configServiceV2Client->sinkName("[PROJECT]", "[SINK]");
+     *     $formattedSinkName = $configServiceV2Client->sinkName('[PROJECT]', '[SINK]');
      *     $response = $configServiceV2Client->getSink($formattedSinkName);
      * } finally {
      *     $configServiceV2Client->close();
@@ -475,8 +524,7 @@ class ConfigServiceV2GapicClient
      *
      * Example: `"projects/my-project-id/sinks/my-sink-id"`.
      * @param array $optionalArgs {
-     *                            Optional.
-     *
+     *     Optional.
      *     @type \Google\GAX\RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\GAX\RetrySettings} object, or an associative array
@@ -525,7 +573,7 @@ class ConfigServiceV2GapicClient
      * ```
      * try {
      *     $configServiceV2Client = new ConfigServiceV2Client();
-     *     $formattedParent = $configServiceV2Client->projectName("[PROJECT]");
+     *     $formattedParent = $configServiceV2Client->projectName('[PROJECT]');
      *     $sink = new LogSink();
      *     $response = $configServiceV2Client->createSink($formattedParent, $sink);
      * } finally {
@@ -541,11 +589,10 @@ class ConfigServiceV2GapicClient
      *     "folders/[FOLDER_ID]"
      *
      * Examples: `"projects/my-logging-project"`, `"organizations/123456789"`.
-     * @param LogSink $sink         Required. The new sink, whose `name` parameter is a sink identifier that
-     *                              is not already in use.
-     * @param array   $optionalArgs {
-     *                              Optional.
-     *
+     * @param LogSink $sink Required. The new sink, whose `name` parameter is a sink identifier that
+     * is not already in use.
+     * @param array $optionalArgs {
+     *     Optional.
      *     @type bool $uniqueWriterIdentity
      *          Optional. Determines the kind of IAM identity returned as `writer_identity`
      *          in the new sink.  If this value is omitted or set to false, and if the
@@ -610,7 +657,7 @@ class ConfigServiceV2GapicClient
      * ```
      * try {
      *     $configServiceV2Client = new ConfigServiceV2Client();
-     *     $formattedSinkName = $configServiceV2Client->sinkName("[PROJECT]", "[SINK]");
+     *     $formattedSinkName = $configServiceV2Client->sinkName('[PROJECT]', '[SINK]');
      *     $sink = new LogSink();
      *     $response = $configServiceV2Client->updateSink($formattedSinkName, $sink);
      * } finally {
@@ -619,7 +666,7 @@ class ConfigServiceV2GapicClient
      * ```
      *
      * @param string $sinkName Required. The full resource name of the sink to update, including the
-     *                         parent resource and the sink identifier:
+     * parent resource and the sink identifier:
      *
      *     "projects/[PROJECT_ID]/sinks/[SINK_ID]"
      *     "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]"
@@ -627,11 +674,10 @@ class ConfigServiceV2GapicClient
      *     "folders/[FOLDER_ID]/sinks/[SINK_ID]"
      *
      * Example: `"projects/my-project-id/sinks/my-sink-id"`.
-     * @param LogSink $sink         Required. The updated sink, whose name is the same identifier that appears
-     *                              as part of `sink_name`.
-     * @param array   $optionalArgs {
-     *                              Optional.
-     *
+     * @param LogSink $sink Required. The updated sink, whose name is the same identifier that appears
+     * as part of `sink_name`.
+     * @param array $optionalArgs {
+     *     Optional.
      *     @type bool $uniqueWriterIdentity
      *          Optional. See
      *          [sinks.create](https://cloud.google.com/logging/docs/api/reference/rest/v2/projects.sinks/create)
@@ -694,7 +740,7 @@ class ConfigServiceV2GapicClient
      * ```
      * try {
      *     $configServiceV2Client = new ConfigServiceV2Client();
-     *     $formattedSinkName = $configServiceV2Client->sinkName("[PROJECT]", "[SINK]");
+     *     $formattedSinkName = $configServiceV2Client->sinkName('[PROJECT]', '[SINK]');
      *     $configServiceV2Client->deleteSink($formattedSinkName);
      * } finally {
      *     $configServiceV2Client->close();
@@ -702,7 +748,7 @@ class ConfigServiceV2GapicClient
      * ```
      *
      * @param string $sinkName Required. The full resource name of the sink to delete, including the
-     *                         parent resource and the sink identifier:
+     * parent resource and the sink identifier:
      *
      *     "projects/[PROJECT_ID]/sinks/[SINK_ID]"
      *     "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]"
@@ -711,8 +757,7 @@ class ConfigServiceV2GapicClient
      *
      * Example: `"projects/my-project-id/sinks/my-sink-id"`.
      * @param array $optionalArgs {
-     *                            Optional.
-     *
+     *     Optional.
      *     @type \Google\GAX\RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\GAX\RetrySettings} object, or an associative array
@@ -749,9 +794,355 @@ class ConfigServiceV2GapicClient
     }
 
     /**
+     * Lists all the exclusions in a parent resource.
+     *
+     * Sample code:
+     * ```
+     * try {
+     *     $configServiceV2Client = new ConfigServiceV2Client();
+     *     $formattedParent = $configServiceV2Client->projectName('[PROJECT]');
+     *     // Iterate through all elements
+     *     $pagedResponse = $configServiceV2Client->listExclusions($formattedParent);
+     *     foreach ($pagedResponse->iterateAllElements() as $element) {
+     *         // doSomethingWith($element);
+     *     }
+     *
+     *     // OR iterate over pages of elements
+     *     $pagedResponse = $configServiceV2Client->listExclusions($formattedParent);
+     *     foreach ($pagedResponse->iteratePages() as $page) {
+     *         foreach ($page as $element) {
+     *             // doSomethingWith($element);
+     *         }
+     *     }
+     * } finally {
+     *     $configServiceV2Client->close();
+     * }
+     * ```
+     *
+     * @param string $parent Required. The parent resource whose exclusions are to be listed.
+     *
+     *     "projects/[PROJECT_ID]"
+     *     "organizations/[ORGANIZATION_ID]"
+     *     "billingAccounts/[BILLING_ACCOUNT_ID]"
+     *     "folders/[FOLDER_ID]"
+     * @param array $optionalArgs {
+     *     Optional.
+     *     @type string $pageToken
+     *          A page token is used to specify a page of values to be returned.
+     *          If no page token is specified (the default), the first page
+     *          of values will be returned. Any page token used here must have
+     *          been generated by a previous call to the API.
+     *     @type int $pageSize
+     *          The maximum number of resources contained in the underlying API
+     *          response. The API may return fewer values in a page, even if
+     *          there are additional values to be retrieved.
+     *     @type \Google\GAX\RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\GAX\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\GAX\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\GAX\PagedListResponse
+     *
+     * @throws \Google\GAX\ApiException if the remote call fails
+     * @experimental
+     */
+    public function listExclusions($parent, $optionalArgs = [])
+    {
+        $request = new ListExclusionsRequest();
+        $request->setParent($parent);
+        if (isset($optionalArgs['pageToken'])) {
+            $request->setPageToken($optionalArgs['pageToken']);
+        }
+        if (isset($optionalArgs['pageSize'])) {
+            $request->setPageSize($optionalArgs['pageSize']);
+        }
+
+        $defaultCallSettings = $this->defaultCallSettings['listExclusions'];
+        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
+            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
+                $optionalArgs['retrySettings']
+            );
+        }
+        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
+        $callable = ApiCallable::createApiCall(
+            $this->configServiceV2Stub,
+            'ListExclusions',
+            $mergedSettings,
+            $this->descriptors['listExclusions']
+        );
+
+        return $callable(
+            $request,
+            [],
+            ['call_credentials_callback' => $this->createCredentialsCallback()]);
+    }
+
+    /**
+     * Gets the description of an exclusion.
+     *
+     * Sample code:
+     * ```
+     * try {
+     *     $configServiceV2Client = new ConfigServiceV2Client();
+     *     $formattedName = $configServiceV2Client->exclusionName('[PROJECT]', '[EXCLUSION]');
+     *     $response = $configServiceV2Client->getExclusion($formattedName);
+     * } finally {
+     *     $configServiceV2Client->close();
+     * }
+     * ```
+     *
+     * @param string $name Required. The resource name of an existing exclusion:
+     *
+     *     "projects/[PROJECT_ID]/exclusions/[EXCLUSION_ID]"
+     *     "organizations/[ORGANIZATION_ID]/exclusions/[EXCLUSION_ID]"
+     *     "billingAccounts/[BILLING_ACCOUNT_ID]/exclusions/[EXCLUSION_ID]"
+     *     "folders/[FOLDER_ID]/exclusions/[EXCLUSION_ID]"
+     *
+     * Example: `"projects/my-project-id/exclusions/my-exclusion-id"`.
+     * @param array $optionalArgs {
+     *     Optional.
+     *     @type \Google\GAX\RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\GAX\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\GAX\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Logging\V2\LogExclusion
+     *
+     * @throws \Google\GAX\ApiException if the remote call fails
+     * @experimental
+     */
+    public function getExclusion($name, $optionalArgs = [])
+    {
+        $request = new GetExclusionRequest();
+        $request->setName($name);
+
+        $defaultCallSettings = $this->defaultCallSettings['getExclusion'];
+        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
+            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
+                $optionalArgs['retrySettings']
+            );
+        }
+        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
+        $callable = ApiCallable::createApiCall(
+            $this->configServiceV2Stub,
+            'GetExclusion',
+            $mergedSettings,
+            $this->descriptors['getExclusion']
+        );
+
+        return $callable(
+            $request,
+            [],
+            ['call_credentials_callback' => $this->createCredentialsCallback()]);
+    }
+
+    /**
+     * Creates a new exclusion in a specified parent resource.
+     * Only log entries belonging to that resource can be excluded.
+     * You can have up to 10 exclusions in a resource.
+     *
+     * Sample code:
+     * ```
+     * try {
+     *     $configServiceV2Client = new ConfigServiceV2Client();
+     *     $formattedParent = $configServiceV2Client->projectName('[PROJECT]');
+     *     $exclusion = new LogExclusion();
+     *     $response = $configServiceV2Client->createExclusion($formattedParent, $exclusion);
+     * } finally {
+     *     $configServiceV2Client->close();
+     * }
+     * ```
+     *
+     * @param string $parent Required. The parent resource in which to create the exclusion:
+     *
+     *     "projects/[PROJECT_ID]"
+     *     "organizations/[ORGANIZATION_ID]"
+     *     "billingAccounts/[BILLING_ACCOUNT_ID]"
+     *     "folders/[FOLDER_ID]"
+     *
+     * Examples: `"projects/my-logging-project"`, `"organizations/123456789"`.
+     * @param LogExclusion $exclusion Required. The new exclusion, whose `name` parameter is an exclusion name
+     * that is not already used in the parent resource.
+     * @param array $optionalArgs {
+     *     Optional.
+     *     @type \Google\GAX\RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\GAX\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\GAX\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Logging\V2\LogExclusion
+     *
+     * @throws \Google\GAX\ApiException if the remote call fails
+     * @experimental
+     */
+    public function createExclusion($parent, $exclusion, $optionalArgs = [])
+    {
+        $request = new CreateExclusionRequest();
+        $request->setParent($parent);
+        $request->setExclusion($exclusion);
+
+        $defaultCallSettings = $this->defaultCallSettings['createExclusion'];
+        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
+            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
+                $optionalArgs['retrySettings']
+            );
+        }
+        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
+        $callable = ApiCallable::createApiCall(
+            $this->configServiceV2Stub,
+            'CreateExclusion',
+            $mergedSettings,
+            $this->descriptors['createExclusion']
+        );
+
+        return $callable(
+            $request,
+            [],
+            ['call_credentials_callback' => $this->createCredentialsCallback()]);
+    }
+
+    /**
+     * Changes one or more properties of an existing exclusion.
+     *
+     * Sample code:
+     * ```
+     * try {
+     *     $configServiceV2Client = new ConfigServiceV2Client();
+     *     $formattedName = $configServiceV2Client->exclusionName('[PROJECT]', '[EXCLUSION]');
+     *     $exclusion = new LogExclusion();
+     *     $updateMask = new FieldMask();
+     *     $response = $configServiceV2Client->updateExclusion($formattedName, $exclusion, $updateMask);
+     * } finally {
+     *     $configServiceV2Client->close();
+     * }
+     * ```
+     *
+     * @param string $name Required. The resource name of the exclusion to update:
+     *
+     *     "projects/[PROJECT_ID]/exclusions/[EXCLUSION_ID]"
+     *     "organizations/[ORGANIZATION_ID]/exclusions/[EXCLUSION_ID]"
+     *     "billingAccounts/[BILLING_ACCOUNT_ID]/exclusions/[EXCLUSION_ID]"
+     *     "folders/[FOLDER_ID]/exclusions/[EXCLUSION_ID]"
+     *
+     * Example: `"projects/my-project-id/exclusions/my-exclusion-id"`.
+     * @param LogExclusion $exclusion Required. New values for the existing exclusion. Only the fields specified
+     * in `update_mask` are relevant.
+     * @param FieldMask $updateMask Required. A nonempty list of fields to change in the existing exclusion.
+     * New values for the fields are taken from the corresponding fields in the
+     * [LogExclusion][google.logging.v2.LogExclusion] included in this request. Fields not mentioned in
+     * `update_mask` are not changed and are ignored in the request.
+     *
+     * For example, to change the filter and description of an exclusion,
+     * specify an `update_mask` of `"filter,description"`.
+     * @param array $optionalArgs {
+     *     Optional.
+     *     @type \Google\GAX\RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\GAX\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\GAX\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Logging\V2\LogExclusion
+     *
+     * @throws \Google\GAX\ApiException if the remote call fails
+     * @experimental
+     */
+    public function updateExclusion($name, $exclusion, $updateMask, $optionalArgs = [])
+    {
+        $request = new UpdateExclusionRequest();
+        $request->setName($name);
+        $request->setExclusion($exclusion);
+        $request->setUpdateMask($updateMask);
+
+        $defaultCallSettings = $this->defaultCallSettings['updateExclusion'];
+        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
+            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
+                $optionalArgs['retrySettings']
+            );
+        }
+        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
+        $callable = ApiCallable::createApiCall(
+            $this->configServiceV2Stub,
+            'UpdateExclusion',
+            $mergedSettings,
+            $this->descriptors['updateExclusion']
+        );
+
+        return $callable(
+            $request,
+            [],
+            ['call_credentials_callback' => $this->createCredentialsCallback()]);
+    }
+
+    /**
+     * Deletes an exclusion.
+     *
+     * Sample code:
+     * ```
+     * try {
+     *     $configServiceV2Client = new ConfigServiceV2Client();
+     *     $formattedName = $configServiceV2Client->exclusionName('[PROJECT]', '[EXCLUSION]');
+     *     $configServiceV2Client->deleteExclusion($formattedName);
+     * } finally {
+     *     $configServiceV2Client->close();
+     * }
+     * ```
+     *
+     * @param string $name Required. The resource name of an existing exclusion to delete:
+     *
+     *     "projects/[PROJECT_ID]/exclusions/[EXCLUSION_ID]"
+     *     "organizations/[ORGANIZATION_ID]/exclusions/[EXCLUSION_ID]"
+     *     "billingAccounts/[BILLING_ACCOUNT_ID]/exclusions/[EXCLUSION_ID]"
+     *     "folders/[FOLDER_ID]/exclusions/[EXCLUSION_ID]"
+     *
+     * Example: `"projects/my-project-id/exclusions/my-exclusion-id"`.
+     * @param array $optionalArgs {
+     *     Optional.
+     *     @type \Google\GAX\RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\GAX\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\GAX\RetrySettings} for example usage.
+     * }
+     *
+     * @throws \Google\GAX\ApiException if the remote call fails
+     * @experimental
+     */
+    public function deleteExclusion($name, $optionalArgs = [])
+    {
+        $request = new DeleteExclusionRequest();
+        $request->setName($name);
+
+        $defaultCallSettings = $this->defaultCallSettings['deleteExclusion'];
+        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
+            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
+                $optionalArgs['retrySettings']
+            );
+        }
+        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
+        $callable = ApiCallable::createApiCall(
+            $this->configServiceV2Stub,
+            'DeleteExclusion',
+            $mergedSettings,
+            $this->descriptors['deleteExclusion']
+        );
+
+        return $callable(
+            $request,
+            [],
+            ['call_credentials_callback' => $this->createCredentialsCallback()]);
+    }
+
+    /**
      * Initiates an orderly shutdown in which preexisting calls continue but new
      * calls are immediately cancelled.
-     *
      * @experimental
      */
     public function close()

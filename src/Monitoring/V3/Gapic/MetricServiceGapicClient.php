@@ -35,6 +35,7 @@ use Google\Cloud\Version;
 use Google\GAX\AgentHeaderDescriptor;
 use Google\GAX\ApiCallable;
 use Google\GAX\CallSettings;
+use Google\GAX\GrpcConstants;
 use Google\GAX\GrpcCredentialsHelper;
 use Google\GAX\PageStreamingDescriptor;
 use Google\GAX\PathTemplate;
@@ -67,15 +68,15 @@ use Google\Monitoring\V3\TimeSeries;
  * ```
  * try {
  *     $metricServiceClient = new MetricServiceClient();
- *     $formattedName = $metricServiceClient->projectName("[PROJECT]");
+ *     $formattedName = $metricServiceClient->projectName('[PROJECT]');
  *     // Iterate through all elements
  *     $pagedResponse = $metricServiceClient->listMonitoredResourceDescriptors($formattedName);
  *     foreach ($pagedResponse->iterateAllElements() as $element) {
  *         // doSomethingWith($element);
  *     }
  *
- *     // OR iterate over pages of elements, with the maximum page size set to 5
- *     $pagedResponse = $metricServiceClient->listMonitoredResourceDescriptors($formattedName, ['pageSize' => 5]);
+ *     // OR iterate over pages of elements
+ *     $pagedResponse = $metricServiceClient->listMonitoredResourceDescriptors($formattedName);
  *     foreach ($pagedResponse->iteratePages() as $page) {
  *         foreach ($page as $element) {
  *             // doSomethingWith($element);
@@ -90,7 +91,6 @@ use Google\Monitoring\V3\TimeSeries;
  * with these names, this class includes a format method for each type of name, and additionally
  * a parseName method to extract the individual identifiers contained within formatted names
  * that are returned by the API.
- *
  * @experimental
  */
 class MetricServiceGapicClient
@@ -164,7 +164,6 @@ class MetricServiceGapicClient
                 'monitoredResourceDescriptor' => self::getMonitoredResourceDescriptorNameTemplate(),
             ];
         }
-
         return self::$pathTemplateMap;
     }
     private static function getPageStreamingDescriptors()
@@ -206,17 +205,18 @@ class MetricServiceGapicClient
         return $pageStreamingDescriptors;
     }
 
+
+
     private static function getGapicVersion()
     {
         if (!self::$gapicVersionLoaded) {
-            if (file_exists(__DIR__.'/../VERSION')) {
-                self::$gapicVersion = trim(file_get_contents(__DIR__.'/../VERSION'));
+            if (file_exists(__DIR__ . '/../VERSION')) {
+                self::$gapicVersion = trim(file_get_contents(__DIR__ . '/../VERSION'));
             } elseif (class_exists(Version::class)) {
                 self::$gapicVersion = Version::VERSION;
             }
             self::$gapicVersionLoaded = true;
         }
-
         return self::$gapicVersion;
     }
 
@@ -225,7 +225,6 @@ class MetricServiceGapicClient
      * a project resource.
      *
      * @param string $project
-     *
      * @return string The formatted project resource.
      * @experimental
      */
@@ -242,7 +241,6 @@ class MetricServiceGapicClient
      *
      * @param string $project
      * @param string $metricDescriptor
-     *
      * @return string The formatted metric_descriptor resource.
      * @experimental
      */
@@ -260,7 +258,6 @@ class MetricServiceGapicClient
      *
      * @param string $project
      * @param string $monitoredResourceDescriptor
-     *
      * @return string The formatted monitored_resource_descriptor resource.
      * @experimental
      */
@@ -278,7 +275,7 @@ class MetricServiceGapicClient
      * Template: Pattern
      * - project: projects/{project}
      * - metricDescriptor: projects/{project}/metricDescriptors/{metric_descriptor=**}
-     * - monitoredResourceDescriptor: projects/{project}/monitoredResourceDescriptors/{monitored_resource_descriptor}.
+     * - monitoredResourceDescriptor: projects/{project}/monitoredResourceDescriptors/{monitored_resource_descriptor}
      *
      * The optional $template argument can be supplied to specify a particular pattern, and must
      * match one of the templates listed above. If no $template argument is provided, or if the
@@ -286,10 +283,8 @@ class MetricServiceGapicClient
      * each of the supported templates, and return the first match.
      *
      * @param string $formattedName The formatted name string
-     * @param string $template      Optional name of template to match
-     *
+     * @param string $template Optional name of template to match
      * @return array An associative array from name component IDs to component values.
-     *
      * @throws ValidationException If $formattedName could not be matched.
      * @experimental
      */
@@ -301,7 +296,6 @@ class MetricServiceGapicClient
             if (!isset($templateMap[$template])) {
                 throw new ValidationException("Template name $template does not exist");
             }
-
             return $templateMap[$template]->match($formattedName);
         }
 
@@ -315,11 +309,14 @@ class MetricServiceGapicClient
         throw new ValidationException("Input did not match any known format. Input: $formattedName");
     }
 
+
+
+
     /**
      * Constructor.
      *
      * @param array $options {
-     *                       Optional. Options for configuring the service API wrapper.
+     *     Optional. Options for configuring the service API wrapper.
      *
      *     @type string $serviceAddress The domain name of the API remote host.
      *                                  Default 'monitoring.googleapis.com'.
@@ -370,9 +367,10 @@ class MetricServiceGapicClient
             'retryingOverride' => null,
             'libName' => null,
             'libVersion' => null,
-            'clientConfigPath' => __DIR__.'/../resources/metric_service_client_config.json',
+            'clientConfigPath' => __DIR__ . '/../resources/metric_service_client_config.json',
         ];
         $options = array_merge($defaultOptions, $options);
+
 
         $gapicVersion = $options['libVersion'] ?: self::getGapicVersion();
 
@@ -431,15 +429,15 @@ class MetricServiceGapicClient
      * ```
      * try {
      *     $metricServiceClient = new MetricServiceClient();
-     *     $formattedName = $metricServiceClient->projectName("[PROJECT]");
+     *     $formattedName = $metricServiceClient->projectName('[PROJECT]');
      *     // Iterate through all elements
      *     $pagedResponse = $metricServiceClient->listMonitoredResourceDescriptors($formattedName);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
      *
-     *     // OR iterate over pages of elements, with the maximum page size set to 5
-     *     $pagedResponse = $metricServiceClient->listMonitoredResourceDescriptors($formattedName, ['pageSize' => 5]);
+     *     // OR iterate over pages of elements
+     *     $pagedResponse = $metricServiceClient->listMonitoredResourceDescriptors($formattedName);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -450,11 +448,10 @@ class MetricServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         The project on which to execute the request. The format is
-     *                             `"projects/{project_id_or_number}"`.
-     * @param array  $optionalArgs {
-     *                             Optional.
-     *
+     * @param string $name The project on which to execute the request. The format is
+     * `"projects/{project_id_or_number}"`.
+     * @param array $optionalArgs {
+     *     Optional.
      *     @type string $filter
      *          An optional [filter](https://cloud.google.com/monitoring/api/v3/filters) describing
      *          the descriptors to be returned.  The filter can reference
@@ -525,20 +522,19 @@ class MetricServiceGapicClient
      * ```
      * try {
      *     $metricServiceClient = new MetricServiceClient();
-     *     $formattedName = $metricServiceClient->monitoredResourceDescriptorName("[PROJECT]", "[MONITORED_RESOURCE_DESCRIPTOR]");
+     *     $formattedName = $metricServiceClient->monitoredResourceDescriptorName('[PROJECT]', '[MONITORED_RESOURCE_DESCRIPTOR]');
      *     $response = $metricServiceClient->getMonitoredResourceDescriptor($formattedName);
      * } finally {
      *     $metricServiceClient->close();
      * }
      * ```
      *
-     * @param string $name         The monitored resource descriptor to get.  The format is
-     *                             `"projects/{project_id_or_number}/monitoredResourceDescriptors/{resource_type}"`.
-     *                             The `{resource_type}` is a predefined type, such as
-     *                             `cloudsql_database`.
-     * @param array  $optionalArgs {
-     *                             Optional.
-     *
+     * @param string $name The monitored resource descriptor to get.  The format is
+     * `"projects/{project_id_or_number}/monitoredResourceDescriptors/{resource_type}"`.
+     * The `{resource_type}` is a predefined type, such as
+     * `cloudsql_database`.
+     * @param array $optionalArgs {
+     *     Optional.
      *     @type \Google\GAX\RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\GAX\RetrySettings} object, or an associative array
@@ -583,15 +579,15 @@ class MetricServiceGapicClient
      * ```
      * try {
      *     $metricServiceClient = new MetricServiceClient();
-     *     $formattedName = $metricServiceClient->projectName("[PROJECT]");
+     *     $formattedName = $metricServiceClient->projectName('[PROJECT]');
      *     // Iterate through all elements
      *     $pagedResponse = $metricServiceClient->listMetricDescriptors($formattedName);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
      *
-     *     // OR iterate over pages of elements, with the maximum page size set to 5
-     *     $pagedResponse = $metricServiceClient->listMetricDescriptors($formattedName, ['pageSize' => 5]);
+     *     // OR iterate over pages of elements
+     *     $pagedResponse = $metricServiceClient->listMetricDescriptors($formattedName);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -602,11 +598,10 @@ class MetricServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         The project on which to execute the request. The format is
-     *                             `"projects/{project_id_or_number}"`.
-     * @param array  $optionalArgs {
-     *                             Optional.
-     *
+     * @param string $name The project on which to execute the request. The format is
+     * `"projects/{project_id_or_number}"`.
+     * @param array $optionalArgs {
+     *     Optional.
      *     @type string $filter
      *          If this field is empty, all custom and
      *          system-defined metric descriptors are returned.
@@ -678,20 +673,19 @@ class MetricServiceGapicClient
      * ```
      * try {
      *     $metricServiceClient = new MetricServiceClient();
-     *     $formattedName = $metricServiceClient->metricDescriptorName("[PROJECT]", "[METRIC_DESCRIPTOR]");
+     *     $formattedName = $metricServiceClient->metricDescriptorName('[PROJECT]', '[METRIC_DESCRIPTOR]');
      *     $response = $metricServiceClient->getMetricDescriptor($formattedName);
      * } finally {
      *     $metricServiceClient->close();
      * }
      * ```
      *
-     * @param string $name         The metric descriptor on which to execute the request. The format is
-     *                             `"projects/{project_id_or_number}/metricDescriptors/{metric_id}"`.
-     *                             An example value of `{metric_id}` is
-     *                             `"compute.googleapis.com/instance/disk/read_bytes_count"`.
-     * @param array  $optionalArgs {
-     *                             Optional.
-     *
+     * @param string $name The metric descriptor on which to execute the request. The format is
+     * `"projects/{project_id_or_number}/metricDescriptors/{metric_id}"`.
+     * An example value of `{metric_id}` is
+     * `"compute.googleapis.com/instance/disk/read_bytes_count"`.
+     * @param array $optionalArgs {
+     *     Optional.
      *     @type \Google\GAX\RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\GAX\RetrySettings} object, or an associative array
@@ -738,7 +732,7 @@ class MetricServiceGapicClient
      * ```
      * try {
      *     $metricServiceClient = new MetricServiceClient();
-     *     $formattedName = $metricServiceClient->projectName("[PROJECT]");
+     *     $formattedName = $metricServiceClient->projectName('[PROJECT]');
      *     $metricDescriptor = new MetricDescriptor();
      *     $response = $metricServiceClient->createMetricDescriptor($formattedName, $metricDescriptor);
      * } finally {
@@ -746,13 +740,12 @@ class MetricServiceGapicClient
      * }
      * ```
      *
-     * @param string           $name             The project on which to execute the request. The format is
-     *                                           `"projects/{project_id_or_number}"`.
+     * @param string $name The project on which to execute the request. The format is
+     * `"projects/{project_id_or_number}"`.
      * @param MetricDescriptor $metricDescriptor The new [custom metric](https://cloud.google.com/monitoring/custom-metrics)
-     *                                           descriptor.
-     * @param array            $optionalArgs     {
-     *                                           Optional.
-     *
+     * descriptor.
+     * @param array $optionalArgs {
+     *     Optional.
      *     @type \Google\GAX\RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\GAX\RetrySettings} object, or an associative array
@@ -799,20 +792,19 @@ class MetricServiceGapicClient
      * ```
      * try {
      *     $metricServiceClient = new MetricServiceClient();
-     *     $formattedName = $metricServiceClient->metricDescriptorName("[PROJECT]", "[METRIC_DESCRIPTOR]");
+     *     $formattedName = $metricServiceClient->metricDescriptorName('[PROJECT]', '[METRIC_DESCRIPTOR]');
      *     $metricServiceClient->deleteMetricDescriptor($formattedName);
      * } finally {
      *     $metricServiceClient->close();
      * }
      * ```
      *
-     * @param string $name         The metric descriptor on which to execute the request. The format is
-     *                             `"projects/{project_id_or_number}/metricDescriptors/{metric_id}"`.
-     *                             An example of `{metric_id}` is:
-     *                             `"custom.googleapis.com/my_test_metric"`.
-     * @param array  $optionalArgs {
-     *                             Optional.
-     *
+     * @param string $name The metric descriptor on which to execute the request. The format is
+     * `"projects/{project_id_or_number}/metricDescriptors/{metric_id}"`.
+     * An example of `{metric_id}` is:
+     * `"custom.googleapis.com/my_test_metric"`.
+     * @param array $optionalArgs {
+     *     Optional.
      *     @type \Google\GAX\RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\GAX\RetrySettings} object, or an associative array
@@ -855,8 +847,8 @@ class MetricServiceGapicClient
      * ```
      * try {
      *     $metricServiceClient = new MetricServiceClient();
-     *     $formattedName = $metricServiceClient->projectName("[PROJECT]");
-     *     $filter = "";
+     *     $formattedName = $metricServiceClient->projectName('[PROJECT]');
+     *     $filter = '';
      *     $interval = new TimeInterval();
      *     $view = TimeSeriesView::FULL;
      *     // Iterate through all elements
@@ -865,8 +857,8 @@ class MetricServiceGapicClient
      *         // doSomethingWith($element);
      *     }
      *
-     *     // OR iterate over pages of elements, with the maximum page size set to 5
-     *     $pagedResponse = $metricServiceClient->listTimeSeries($formattedName, $filter, $interval, $view, ['pageSize' => 5]);
+     *     // OR iterate over pages of elements
+     *     $pagedResponse = $metricServiceClient->listTimeSeries($formattedName, $filter, $interval, $view);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -877,23 +869,22 @@ class MetricServiceGapicClient
      * }
      * ```
      *
-     * @param string $name   The project on which to execute the request. The format is
-     *                       "projects/{project_id_or_number}".
+     * @param string $name The project on which to execute the request. The format is
+     * "projects/{project_id_or_number}".
      * @param string $filter A [monitoring filter](https://cloud.google.com/monitoring/api/v3/filters) that specifies which time
-     *                       series should be returned.  The filter must specify a single metric type,
-     *                       and can additionally specify metric labels and other information. For
-     *                       example:
+     * series should be returned.  The filter must specify a single metric type,
+     * and can additionally specify metric labels and other information. For
+     * example:
      *
      *     metric.type = "compute.googleapis.com/instance/cpu/usage_time" AND
      *         metric.label.instance_name = "my-instance-name"
-     * @param TimeInterval $interval     The time interval for which results should be returned. Only time series
-     *                                   that contain data points in the specified interval are included
-     *                                   in the response.
-     * @param int          $view         Specifies which information is returned about the time series.
-     *                                   For allowed values, use constants defined on {@see \Google\Monitoring\V3\ListTimeSeriesRequest_TimeSeriesView}
-     * @param array        $optionalArgs {
-     *                                   Optional.
-     *
+     * @param TimeInterval $interval The time interval for which results should be returned. Only time series
+     * that contain data points in the specified interval are included
+     * in the response.
+     * @param int $view Specifies which information is returned about the time series.
+     * For allowed values, use constants defined on {@see \Google\Monitoring\V3\ListTimeSeriesRequest_TimeSeriesView}
+     * @param array $optionalArgs {
+     *     Optional.
      *     @type Aggregation $aggregation
      *          By default, the raw time series data is returned.
      *          Use this field to combine multiple time series for different
@@ -973,7 +964,7 @@ class MetricServiceGapicClient
      * ```
      * try {
      *     $metricServiceClient = new MetricServiceClient();
-     *     $formattedName = $metricServiceClient->projectName("[PROJECT]");
+     *     $formattedName = $metricServiceClient->projectName('[PROJECT]');
      *     $timeSeries = [];
      *     $metricServiceClient->createTimeSeries($formattedName, $timeSeries);
      * } finally {
@@ -981,16 +972,15 @@ class MetricServiceGapicClient
      * }
      * ```
      *
-     * @param string       $name         The project on which to execute the request. The format is
-     *                                   `"projects/{project_id_or_number}"`.
-     * @param TimeSeries[] $timeSeries   The new data to be added to a list of time series.
-     *                                   Adds at most one data point to each of several time series.  The new data
-     *                                   point must be more recent than any other point in its time series.  Each
-     *                                   `TimeSeries` value must fully specify a unique time series by supplying
-     *                                   all label values for the metric and the monitored resource.
-     * @param array        $optionalArgs {
-     *                                   Optional.
-     *
+     * @param string $name The project on which to execute the request. The format is
+     * `"projects/{project_id_or_number}"`.
+     * @param TimeSeries[] $timeSeries The new data to be added to a list of time series.
+     * Adds at most one data point to each of several time series.  The new data
+     * point must be more recent than any other point in its time series.  Each
+     * `TimeSeries` value must fully specify a unique time series by supplying
+     * all label values for the metric and the monitored resource.
+     * @param array $optionalArgs {
+     *     Optional.
      *     @type \Google\GAX\RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\GAX\RetrySettings} object, or an associative array
@@ -1030,7 +1020,6 @@ class MetricServiceGapicClient
     /**
      * Initiates an orderly shutdown in which preexisting calls continue but new
      * calls are immediately cancelled.
-     *
      * @experimental
      */
     public function close()

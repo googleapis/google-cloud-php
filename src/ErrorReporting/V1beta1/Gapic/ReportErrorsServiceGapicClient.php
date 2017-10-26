@@ -37,6 +37,7 @@ use Google\Devtools\Clouderrorreporting\V1beta1\ReportedErrorEvent;
 use Google\GAX\AgentHeaderDescriptor;
 use Google\GAX\ApiCallable;
 use Google\GAX\CallSettings;
+use Google\GAX\GrpcConstants;
 use Google\GAX\GrpcCredentialsHelper;
 use Google\GAX\PathTemplate;
 use Google\GAX\ValidationException;
@@ -54,7 +55,7 @@ use Google\GAX\ValidationException;
  * ```
  * try {
  *     $reportErrorsServiceClient = new ReportErrorsServiceClient();
- *     $formattedProjectName = $reportErrorsServiceClient->projectName("[PROJECT]");
+ *     $formattedProjectName = $reportErrorsServiceClient->projectName('[PROJECT]');
  *     $event = new ReportedErrorEvent();
  *     $response = $reportErrorsServiceClient->reportErrorEvent($formattedProjectName, $event);
  * } finally {
@@ -66,7 +67,6 @@ use Google\GAX\ValidationException;
  * with these names, this class includes a format method for each type of name, and additionally
  * a parseName method to extract the individual identifiers contained within formatted names
  * that are returned by the API.
- *
  * @experimental
  */
 class ReportErrorsServiceGapicClient
@@ -118,21 +118,21 @@ class ReportErrorsServiceGapicClient
                 'project' => self::getProjectNameTemplate(),
             ];
         }
-
         return self::$pathTemplateMap;
     }
+
+
 
     private static function getGapicVersion()
     {
         if (!self::$gapicVersionLoaded) {
-            if (file_exists(__DIR__.'/../VERSION')) {
-                self::$gapicVersion = trim(file_get_contents(__DIR__.'/../VERSION'));
+            if (file_exists(__DIR__ . '/../VERSION')) {
+                self::$gapicVersion = trim(file_get_contents(__DIR__ . '/../VERSION'));
             } elseif (class_exists(Version::class)) {
                 self::$gapicVersion = Version::VERSION;
             }
             self::$gapicVersionLoaded = true;
         }
-
         return self::$gapicVersion;
     }
 
@@ -141,7 +141,6 @@ class ReportErrorsServiceGapicClient
      * a project resource.
      *
      * @param string $project
-     *
      * @return string The formatted project resource.
      * @experimental
      */
@@ -156,7 +155,7 @@ class ReportErrorsServiceGapicClient
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
-     * - project: projects/{project}.
+     * - project: projects/{project}
      *
      * The optional $template argument can be supplied to specify a particular pattern, and must
      * match one of the templates listed above. If no $template argument is provided, or if the
@@ -164,10 +163,8 @@ class ReportErrorsServiceGapicClient
      * each of the supported templates, and return the first match.
      *
      * @param string $formattedName The formatted name string
-     * @param string $template      Optional name of template to match
-     *
+     * @param string $template Optional name of template to match
      * @return array An associative array from name component IDs to component values.
-     *
      * @throws ValidationException If $formattedName could not be matched.
      * @experimental
      */
@@ -179,7 +176,6 @@ class ReportErrorsServiceGapicClient
             if (!isset($templateMap[$template])) {
                 throw new ValidationException("Template name $template does not exist");
             }
-
             return $templateMap[$template]->match($formattedName);
         }
 
@@ -193,11 +189,14 @@ class ReportErrorsServiceGapicClient
         throw new ValidationException("Input did not match any known format. Input: $formattedName");
     }
 
+
+
+
     /**
      * Constructor.
      *
      * @param array $options {
-     *                       Optional. Options for configuring the service API wrapper.
+     *     Optional. Options for configuring the service API wrapper.
      *
      *     @type string $serviceAddress The domain name of the API remote host.
      *                                  Default 'clouderrorreporting.googleapis.com'.
@@ -245,9 +244,10 @@ class ReportErrorsServiceGapicClient
             'retryingOverride' => null,
             'libName' => null,
             'libVersion' => null,
-            'clientConfigPath' => __DIR__.'/../resources/report_errors_service_client_config.json',
+            'clientConfigPath' => __DIR__ . '/../resources/report_errors_service_client_config.json',
         ];
         $options = array_merge($defaultOptions, $options);
+
 
         $gapicVersion = $options['libVersion'] ?: self::getGapicVersion();
 
@@ -302,7 +302,7 @@ class ReportErrorsServiceGapicClient
      * ```
      * try {
      *     $reportErrorsServiceClient = new ReportErrorsServiceClient();
-     *     $formattedProjectName = $reportErrorsServiceClient->projectName("[PROJECT]");
+     *     $formattedProjectName = $reportErrorsServiceClient->projectName('[PROJECT]');
      *     $event = new ReportedErrorEvent();
      *     $response = $reportErrorsServiceClient->reportErrorEvent($formattedProjectName, $event);
      * } finally {
@@ -310,14 +310,13 @@ class ReportErrorsServiceGapicClient
      * }
      * ```
      *
-     * @param string             $projectName  [Required] The resource name of the Google Cloud Platform project. Written
-     *                                         as `projects/` plus the
-     *                                         [Google Cloud Platform project ID](https://support.google.com/cloud/answer/6158840).
-     *                                         Example: `projects/my-project-123`.
-     * @param ReportedErrorEvent $event        [Required] The error event to be reported.
-     * @param array              $optionalArgs {
-     *                                         Optional.
-     *
+     * @param string $projectName [Required] The resource name of the Google Cloud Platform project. Written
+     * as `projects/` plus the
+     * [Google Cloud Platform project ID](https://support.google.com/cloud/answer/6158840).
+     * Example: `projects/my-project-123`.
+     * @param ReportedErrorEvent $event [Required] The error event to be reported.
+     * @param array $optionalArgs {
+     *     Optional.
      *     @type \Google\GAX\RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\GAX\RetrySettings} object, or an associative array
@@ -359,7 +358,6 @@ class ReportErrorsServiceGapicClient
     /**
      * Initiates an orderly shutdown in which preexisting calls continue but new
      * calls are immediately cancelled.
-     *
      * @experimental
      */
     public function close()

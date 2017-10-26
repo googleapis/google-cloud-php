@@ -30,20 +30,25 @@
 
 namespace Google\Cloud\Speech\V1beta1\Gapic;
 
+use Google\Cloud\Speech\V1beta1\AsyncRecognizeMetadata;
 use Google\Cloud\Speech\V1beta1\AsyncRecognizeRequest;
 use Google\Cloud\Speech\V1beta1\AsyncRecognizeResponse;
 use Google\Cloud\Speech\V1beta1\RecognitionAudio;
 use Google\Cloud\Speech\V1beta1\RecognitionConfig;
 use Google\Cloud\Speech\V1beta1\SpeechGrpcClient;
+use Google\Cloud\Speech\V1beta1\StreamingRecognitionConfig;
 use Google\Cloud\Speech\V1beta1\StreamingRecognizeRequest;
 use Google\Cloud\Speech\V1beta1\SyncRecognizeRequest;
 use Google\Cloud\Version;
 use Google\GAX\AgentHeaderDescriptor;
 use Google\GAX\ApiCallable;
 use Google\GAX\CallSettings;
+use Google\GAX\GrpcConstants;
 use Google\GAX\GrpcCredentialsHelper;
 use Google\GAX\LongRunning\OperationsClient;
 use Google\GAX\OperationResponse;
+use Google\GAX\PathTemplate;
+use Google\GAX\ValidationException;
 
 /**
  * Service Description: Service that implements Google Cloud Speech API.
@@ -63,7 +68,7 @@ use Google\GAX\OperationResponse;
  *     $config = new RecognitionConfig();
  *     $config->setEncoding($encoding);
  *     $config->setSampleRate($sampleRate);
- *     $uri = "gs://bucket_name/file_name.flac";
+ *     $uri = 'gs://bucket_name/file_name.flac';
  *     $audio = new RecognitionAudio();
  *     $audio->setUri($uri);
  *     $response = $speechClient->syncRecognize($config, $audio);
@@ -96,6 +101,7 @@ class SpeechGapicClient
      */
     const CODEGEN_VERSION = '0.0.5';
 
+
     private static $gapicVersion;
     private static $gapicVersionLoaded = false;
 
@@ -105,6 +111,8 @@ class SpeechGapicClient
     private $defaultCallSettings;
     private $descriptors;
     private $operationsClient;
+
+
 
     private static function getLongRunningDescriptors()
     {
@@ -128,16 +136,16 @@ class SpeechGapicClient
     private static function getGapicVersion()
     {
         if (!self::$gapicVersionLoaded) {
-            if (file_exists(__DIR__.'/../VERSION')) {
-                self::$gapicVersion = trim(file_get_contents(__DIR__.'/../VERSION'));
+            if (file_exists(__DIR__ . '/../VERSION')) {
+                self::$gapicVersion = trim(file_get_contents(__DIR__ . '/../VERSION'));
             } elseif (class_exists(Version::class)) {
                 self::$gapicVersion = Version::VERSION;
             }
             self::$gapicVersionLoaded = true;
         }
-
         return self::$gapicVersion;
     }
+
 
     /**
      * Return an OperationsClient object with the same endpoint as $this.
@@ -158,14 +166,13 @@ class SpeechGapicClient
      * final response.
      *
      * @param string $operationName The name of the long running operation
-     * @param string $methodName    The name of the method used to start the operation
-     *
+     * @param string $methodName The name of the method used to start the operation
      * @return \Google\GAX\OperationResponse
      * @experimental
      */
     public function resumeOperation($operationName, $methodName = null)
     {
-        $lroDescriptors = self::getLongRunningDescriptors();
+        $lroDescriptors = SpeechGapicClient::getLongRunningDescriptors();
         if (!is_null($methodName) && array_key_exists($methodName, $lroDescriptors)) {
             $options = $lroDescriptors[$methodName];
         } else {
@@ -173,7 +180,6 @@ class SpeechGapicClient
         }
         $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
         $operation->reload();
-
         return $operation;
     }
 
@@ -181,7 +187,7 @@ class SpeechGapicClient
      * Constructor.
      *
      * @param array $options {
-     *                       Optional. Options for configuring the service API wrapper.
+     *     Optional. Options for configuring the service API wrapper.
      *
      *     @type string $serviceAddress The domain name of the API remote host.
      *                                  Default 'speech.googleapis.com'.
@@ -229,7 +235,7 @@ class SpeechGapicClient
             'retryingOverride' => null,
             'libName' => null,
             'libVersion' => null,
-            'clientConfigPath' => __DIR__.'/../resources/speech_client_config.json',
+            'clientConfigPath' => __DIR__ . '/../resources/speech_client_config.json',
         ];
         $options = array_merge($defaultOptions, $options);
 
@@ -304,7 +310,7 @@ class SpeechGapicClient
      *     $config = new RecognitionConfig();
      *     $config->setEncoding($encoding);
      *     $config->setSampleRate($sampleRate);
-     *     $uri = "gs://bucket_name/file_name.flac";
+     *     $uri = 'gs://bucket_name/file_name.flac';
      *     $audio = new RecognitionAudio();
      *     $audio->setUri($uri);
      *     $response = $speechClient->syncRecognize($config, $audio);
@@ -313,12 +319,11 @@ class SpeechGapicClient
      * }
      * ```
      *
-     * @param RecognitionConfig $config       *Required* Provides information to the recognizer that specifies how to
-     *                                        process the request.
-     * @param RecognitionAudio  $audio        *Required* The audio data to be recognized.
-     * @param array             $optionalArgs {
-     *                                        Optional.
-     *
+     * @param RecognitionConfig $config *Required* Provides information to the recognizer that specifies how to
+     * process the request.
+     * @param RecognitionAudio $audio *Required* The audio data to be recognized.
+     * @param array $optionalArgs {
+     *     Optional.
      *     @type \Google\GAX\RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\GAX\RetrySettings} object, or an associative array
@@ -374,7 +379,7 @@ class SpeechGapicClient
      *     $config = new RecognitionConfig();
      *     $config->setEncoding($encoding);
      *     $config->setSampleRate($sampleRate);
-     *     $uri = "gs://bucket_name/file_name.flac";
+     *     $uri = 'gs://bucket_name/file_name.flac';
      *     $audio = new RecognitionAudio();
      *     $audio->setUri($uri);
      *     $operationResponse = $speechClient->asyncRecognize($config, $audio);
@@ -408,12 +413,11 @@ class SpeechGapicClient
      * }
      * ```
      *
-     * @param RecognitionConfig $config       *Required* Provides information to the recognizer that specifies how to
-     *                                        process the request.
-     * @param RecognitionAudio  $audio        *Required* The audio data to be recognized.
-     * @param array             $optionalArgs {
-     *                                        Optional.
-     *
+     * @param RecognitionConfig $config *Required* Provides information to the recognizer that specifies how to
+     * process the request.
+     * @param RecognitionAudio $audio *Required* The audio data to be recognized.
+     * @param array $optionalArgs {
+     *     Optional.
      *     @type \Google\GAX\RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\GAX\RetrySettings} object, or an associative array
@@ -493,8 +497,7 @@ class SpeechGapicClient
      * ```
      *
      * @param array $optionalArgs {
-     *                            Optional.
-     *
+     *     Optional.
      *     @type int $timeoutMillis
      *          Timeout to use for this call.
      * }
@@ -509,7 +512,7 @@ class SpeechGapicClient
         if (array_key_exists('timeoutMillis', $optionalArgs)) {
             $optionalArgs['retrySettings'] = [
                 'retriesEnabled' => false,
-                'noRetriesRpcTimeoutMillis' => $optionalArgs['timeoutMillis'],
+                'noRetriesRpcTimeoutMillis' => $optionalArgs['timeoutMillis']
             ];
         }
 
@@ -536,7 +539,6 @@ class SpeechGapicClient
     /**
      * Initiates an orderly shutdown in which preexisting calls continue but new
      * calls are immediately cancelled.
-     *
      * @experimental
      */
     public function close()
