@@ -362,7 +362,7 @@ class Serializer
      */
     public static function toCamelCase($key)
     {
-        return lcfirst(str_replace('_', '', ucwords($key, '_')));
+        return lcfirst(str_replace(' ', '', ucwords(str_replace('_', ' ', $key))));
     }
 
     private static function hasBinaryHeaderSuffix($key)
