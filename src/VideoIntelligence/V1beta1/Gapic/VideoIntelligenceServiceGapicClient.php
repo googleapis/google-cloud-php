@@ -40,12 +40,9 @@ use Google\Cloud\Videointelligence\V1beta1\VideoIntelligenceServiceGrpcClient;
 use Google\GAX\AgentHeaderDescriptor;
 use Google\GAX\ApiCallable;
 use Google\GAX\CallSettings;
-use Google\GAX\GrpcConstants;
 use Google\GAX\GrpcCredentialsHelper;
 use Google\GAX\LongRunning\OperationsClient;
 use Google\GAX\OperationResponse;
-use Google\GAX\PathTemplate;
-use Google\GAX\ValidationException;
 
 /**
  * Service Description: Service that implements Google Cloud Video Intelligence API.
@@ -118,7 +115,6 @@ class VideoIntelligenceServiceGapicClient
      */
     const CODEGEN_VERSION = '0.0.5';
 
-
     private static $gapicVersion;
     private static $gapicVersionLoaded = false;
 
@@ -128,8 +124,6 @@ class VideoIntelligenceServiceGapicClient
     private $defaultCallSettings;
     private $descriptors;
     private $operationsClient;
-
-
 
     private static function getLongRunningDescriptors()
     {
@@ -141,20 +135,19 @@ class VideoIntelligenceServiceGapicClient
         ];
     }
 
-
     private static function getGapicVersion()
     {
         if (!self::$gapicVersionLoaded) {
-            if (file_exists(__DIR__ . '/../VERSION')) {
-                self::$gapicVersion = trim(file_get_contents(__DIR__ . '/../VERSION'));
+            if (file_exists(__DIR__.'/../VERSION')) {
+                self::$gapicVersion = trim(file_get_contents(__DIR__.'/../VERSION'));
             } elseif (class_exists(Version::class)) {
                 self::$gapicVersion = Version::VERSION;
             }
             self::$gapicVersionLoaded = true;
         }
+
         return self::$gapicVersion;
     }
-
 
     /**
      * Return an OperationsClient object with the same endpoint as $this.
@@ -175,13 +168,14 @@ class VideoIntelligenceServiceGapicClient
      * final response.
      *
      * @param string $operationName The name of the long running operation
-     * @param string $methodName The name of the method used to start the operation
+     * @param string $methodName    The name of the method used to start the operation
+     *
      * @return \Google\GAX\OperationResponse
      * @experimental
      */
     public function resumeOperation($operationName, $methodName = null)
     {
-        $lroDescriptors = VideoIntelligenceServiceGapicClient::getLongRunningDescriptors();
+        $lroDescriptors = self::getLongRunningDescriptors();
         if (!is_null($methodName) && array_key_exists($methodName, $lroDescriptors)) {
             $options = $lroDescriptors[$methodName];
         } else {
@@ -189,6 +183,7 @@ class VideoIntelligenceServiceGapicClient
         }
         $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
         $operation->reload();
+
         return $operation;
     }
 
@@ -196,7 +191,7 @@ class VideoIntelligenceServiceGapicClient
      * Constructor.
      *
      * @param array $options {
-     *     Optional. Options for configuring the service API wrapper.
+     *                       Optional. Options for configuring the service API wrapper.
      *
      *     @type string $serviceAddress The domain name of the API remote host.
      *                                  Default 'videointelligence.googleapis.com'.
@@ -244,7 +239,7 @@ class VideoIntelligenceServiceGapicClient
             'retryingOverride' => null,
             'libName' => null,
             'libVersion' => null,
-            'clientConfigPath' => __DIR__ . '/../resources/video_intelligence_service_client_config.json',
+            'clientConfigPath' => __DIR__.'/../resources/video_intelligence_service_client_config.json',
         ];
         $options = array_merge($defaultOptions, $options);
 
@@ -344,20 +339,21 @@ class VideoIntelligenceServiceGapicClient
      * }
      * ```
      *
-     * @param string $inputUri Input video location. Currently, only
-     * [Google Cloud Storage](https://cloud.google.com/storage/) URIs are
-     * supported, which must be specified in the following format:
-     * `gs://bucket-id/object-id` (other URI formats return
-     * [google.rpc.Code.INVALID_ARGUMENT][google.rpc.Code.INVALID_ARGUMENT]). For more information, see
-     * [Request URIs](https://cloud.google.com/storage/docs/reference-uris).
-     * A video URI may include wildcards in `object-id`, and thus identify
-     * multiple videos. Supported wildcards: '*' to match 0 or more characters;
-     * '?' to match 1 character. If unset, the input video should be embedded
-     * in the request as `input_content`. If set, `input_content` should be unset.
-     * @param int[] $features Requested video annotation features.
-     * For allowed values, use constants defined on {@see \Google\Cloud\Videointelligence\V1beta1\Feature}
-     * @param array $optionalArgs {
-     *     Optional.
+     * @param string $inputUri     Input video location. Currently, only
+     *                             [Google Cloud Storage](https://cloud.google.com/storage/) URIs are
+     *                             supported, which must be specified in the following format:
+     *                             `gs://bucket-id/object-id` (other URI formats return
+     *                             [google.rpc.Code.INVALID_ARGUMENT][google.rpc.Code.INVALID_ARGUMENT]). For more information, see
+     *                             [Request URIs](https://cloud.google.com/storage/docs/reference-uris).
+     *                             A video URI may include wildcards in `object-id`, and thus identify
+     *                             multiple videos. Supported wildcards: '*' to match 0 or more characters;
+     *                             '?' to match 1 character. If unset, the input video should be embedded
+     *                             in the request as `input_content`. If set, `input_content` should be unset.
+     * @param int[]  $features     Requested video annotation features.
+     *                             For allowed values, use constants defined on {@see \Google\Cloud\Videointelligence\V1beta1\Feature}
+     * @param array  $optionalArgs {
+     *                             Optional
+     *
      *     @type string $inputContent
      *          The video data bytes. Encoding: base64. If unset, the input video(s)
      *          should be specified via `input_uri`. If set, `input_uri` should be unset.
@@ -427,6 +423,7 @@ class VideoIntelligenceServiceGapicClient
     /**
      * Initiates an orderly shutdown in which preexisting calls continue but new
      * calls are immediately cancelled.
+     *
      * @experimental
      */
     public function close()

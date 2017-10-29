@@ -44,10 +44,7 @@ use Google\Cloud\Version;
 use Google\GAX\AgentHeaderDescriptor;
 use Google\GAX\ApiCallable;
 use Google\GAX\CallSettings;
-use Google\GAX\GrpcConstants;
 use Google\GAX\GrpcCredentialsHelper;
-use Google\GAX\PathTemplate;
-use Google\GAX\ValidationException;
 
 /**
  * Service Description: Provides text analysis operations such as sentiment analysis and entity
@@ -94,7 +91,6 @@ class LanguageServiceGapicClient
      */
     const CODEGEN_VERSION = '0.0.5';
 
-
     private static $gapicVersion;
     private static $gapicVersionLoaded = false;
 
@@ -104,31 +100,25 @@ class LanguageServiceGapicClient
     private $defaultCallSettings;
     private $descriptors;
 
-
-
-
-
     private static function getGapicVersion()
     {
         if (!self::$gapicVersionLoaded) {
-            if (file_exists(__DIR__ . '/../VERSION')) {
-                self::$gapicVersion = trim(file_get_contents(__DIR__ . '/../VERSION'));
+            if (file_exists(__DIR__.'/../VERSION')) {
+                self::$gapicVersion = trim(file_get_contents(__DIR__.'/../VERSION'));
             } elseif (class_exists(Version::class)) {
                 self::$gapicVersion = Version::VERSION;
             }
             self::$gapicVersionLoaded = true;
         }
+
         return self::$gapicVersion;
     }
-
-
-
 
     /**
      * Constructor.
      *
      * @param array $options {
-     *     Optional. Options for configuring the service API wrapper.
+     *                       Optional. Options for configuring the service API wrapper.
      *
      *     @type string $serviceAddress The domain name of the API remote host.
      *                                  Default 'language.googleapis.com'.
@@ -176,10 +166,9 @@ class LanguageServiceGapicClient
             'retryingOverride' => null,
             'libName' => null,
             'libVersion' => null,
-            'clientConfigPath' => __DIR__ . '/../resources/language_service_client_config.json',
+            'clientConfigPath' => __DIR__.'/../resources/language_service_client_config.json',
         ];
         $options = array_merge($defaultOptions, $options);
-
 
         $gapicVersion = $options['libVersion'] ?: self::getGapicVersion();
 
@@ -239,9 +228,10 @@ class LanguageServiceGapicClient
      * }
      * ```
      *
-     * @param Document $document Input document.
-     * @param array $optionalArgs {
-     *     Optional.
+     * @param Document $document     input document
+     * @param array    $optionalArgs {
+     *                               Optional
+     *
      *     @type int $encodingType
      *          The encoding type used by the API to calculate sentence offsets for the
      *          sentence sentiment.
@@ -302,9 +292,10 @@ class LanguageServiceGapicClient
      * }
      * ```
      *
-     * @param Document $document Input document.
-     * @param array $optionalArgs {
-     *     Optional.
+     * @param Document $document     input document
+     * @param array    $optionalArgs {
+     *                               Optional
+     *
      *     @type int $encodingType
      *          The encoding type used by the API to calculate offsets.
      *          For allowed values, use constants defined on {@see \Google\Cloud\Language\V1beta2\EncodingType}
@@ -363,9 +354,10 @@ class LanguageServiceGapicClient
      * }
      * ```
      *
-     * @param Document $document Input document.
-     * @param array $optionalArgs {
-     *     Optional.
+     * @param Document $document     input document
+     * @param array    $optionalArgs {
+     *                               Optional
+     *
      *     @type int $encodingType
      *          The encoding type used by the API to calculate offsets.
      *          For allowed values, use constants defined on {@see \Google\Cloud\Language\V1beta2\EncodingType}
@@ -425,9 +417,10 @@ class LanguageServiceGapicClient
      * }
      * ```
      *
-     * @param Document $document Input document.
-     * @param array $optionalArgs {
-     *     Optional.
+     * @param Document $document     input document
+     * @param array    $optionalArgs {
+     *                               Optional
+     *
      *     @type int $encodingType
      *          The encoding type used by the API to calculate offsets.
      *          For allowed values, use constants defined on {@see \Google\Cloud\Language\V1beta2\EncodingType}
@@ -485,9 +478,10 @@ class LanguageServiceGapicClient
      * }
      * ```
      *
-     * @param Document $document Input document.
-     * @param array $optionalArgs {
-     *     Optional.
+     * @param Document $document     input document
+     * @param array    $optionalArgs {
+     *                               Optional
+     *
      *     @type \Google\GAX\RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\GAX\RetrySettings} object, or an associative array
@@ -541,10 +535,11 @@ class LanguageServiceGapicClient
      * }
      * ```
      *
-     * @param Document $document Input document.
-     * @param Features $features The enabled features.
-     * @param array $optionalArgs {
-     *     Optional.
+     * @param Document $document     input document
+     * @param Features $features     the enabled features
+     * @param array    $optionalArgs {
+     *                               Optional
+     *
      *     @type int $encodingType
      *          The encoding type used by the API to calculate offsets.
      *          For allowed values, use constants defined on {@see \Google\Cloud\Language\V1beta2\EncodingType}
@@ -592,6 +587,7 @@ class LanguageServiceGapicClient
     /**
      * Initiates an orderly shutdown in which preexisting calls continue but new
      * calls are immediately cancelled.
+     *
      * @experimental
      */
     public function close()

@@ -32,17 +32,14 @@ namespace Google\Cloud\ErrorReporting\V1beta1\Gapic;
 
 use Google\Cloud\Version;
 use Google\Devtools\Clouderrorreporting\V1beta1\DeleteEventsRequest;
-use Google\Devtools\Clouderrorreporting\V1beta1\ErrorGroupOrder;
 use Google\Devtools\Clouderrorreporting\V1beta1\ErrorStatsServiceGrpcClient;
 use Google\Devtools\Clouderrorreporting\V1beta1\ListEventsRequest;
 use Google\Devtools\Clouderrorreporting\V1beta1\ListGroupStatsRequest;
 use Google\Devtools\Clouderrorreporting\V1beta1\QueryTimeRange;
 use Google\Devtools\Clouderrorreporting\V1beta1\ServiceContextFilter;
-use Google\Devtools\Clouderrorreporting\V1beta1\TimedCountAlignment;
 use Google\GAX\AgentHeaderDescriptor;
 use Google\GAX\ApiCallable;
 use Google\GAX\CallSettings;
-use Google\GAX\GrpcConstants;
 use Google\GAX\GrpcCredentialsHelper;
 use Google\GAX\PageStreamingDescriptor;
 use Google\GAX\PathTemplate;
@@ -88,6 +85,7 @@ use Google\Protobuf\Timestamp;
  * with these names, this class includes a format method for each type of name, and additionally
  * a parseName method to extract the individual identifiers contained within formatted names
  * that are returned by the API.
+ *
  * @experimental
  */
 class ErrorStatsServiceGapicClient
@@ -139,8 +137,10 @@ class ErrorStatsServiceGapicClient
                 'project' => self::getProjectNameTemplate(),
             ];
         }
+
         return self::$pathTemplateMap;
     }
+
     private static function getPageStreamingDescriptors()
     {
         $listGroupStatsPageStreamingDescriptor =
@@ -170,18 +170,17 @@ class ErrorStatsServiceGapicClient
         return $pageStreamingDescriptors;
     }
 
-
-
     private static function getGapicVersion()
     {
         if (!self::$gapicVersionLoaded) {
-            if (file_exists(__DIR__ . '/../VERSION')) {
-                self::$gapicVersion = trim(file_get_contents(__DIR__ . '/../VERSION'));
+            if (file_exists(__DIR__.'/../VERSION')) {
+                self::$gapicVersion = trim(file_get_contents(__DIR__.'/../VERSION'));
             } elseif (class_exists(Version::class)) {
                 self::$gapicVersion = Version::VERSION;
             }
             self::$gapicVersionLoaded = true;
         }
+
         return self::$gapicVersion;
     }
 
@@ -190,7 +189,8 @@ class ErrorStatsServiceGapicClient
      * a project resource.
      *
      * @param string $project
-     * @return string The formatted project resource.
+     *
+     * @return string the formatted project resource
      * @experimental
      */
     public static function projectName($project)
@@ -204,7 +204,7 @@ class ErrorStatsServiceGapicClient
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
-     * - project: projects/{project}
+     * - project: projects/{project}.
      *
      * The optional $template argument can be supplied to specify a particular pattern, and must
      * match one of the templates listed above. If no $template argument is provided, or if the
@@ -212,9 +212,11 @@ class ErrorStatsServiceGapicClient
      * each of the supported templates, and return the first match.
      *
      * @param string $formattedName The formatted name string
-     * @param string $template Optional name of template to match
-     * @return array An associative array from name component IDs to component values.
-     * @throws ValidationException If $formattedName could not be matched.
+     * @param string $template      Optional name of template to match
+     *
+     * @return array an associative array from name component IDs to component values
+     *
+     * @throws ValidationException if $formattedName could not be matched
      * @experimental
      */
     public static function parseName($formattedName, $template = null)
@@ -225,6 +227,7 @@ class ErrorStatsServiceGapicClient
             if (!isset($templateMap[$template])) {
                 throw new ValidationException("Template name $template does not exist");
             }
+
             return $templateMap[$template]->match($formattedName);
         }
 
@@ -238,14 +241,11 @@ class ErrorStatsServiceGapicClient
         throw new ValidationException("Input did not match any known format. Input: $formattedName");
     }
 
-
-
-
     /**
      * Constructor.
      *
      * @param array $options {
-     *     Optional. Options for configuring the service API wrapper.
+     *                       Optional. Options for configuring the service API wrapper.
      *
      *     @type string $serviceAddress The domain name of the API remote host.
      *                                  Default 'clouderrorreporting.googleapis.com'.
@@ -293,10 +293,9 @@ class ErrorStatsServiceGapicClient
             'retryingOverride' => null,
             'libName' => null,
             'libVersion' => null,
-            'clientConfigPath' => __DIR__ . '/../resources/error_stats_service_client_config.json',
+            'clientConfigPath' => __DIR__.'/../resources/error_stats_service_client_config.json',
         ];
         $options = array_merge($defaultOptions, $options);
-
 
         $gapicVersion = $options['libVersion'] ?: self::getGapicVersion();
 
@@ -371,20 +370,21 @@ class ErrorStatsServiceGapicClient
      * ```
      *
      * @param string $projectName [Required] The resource name of the Google Cloud Platform project. Written
-     * as <code>projects/</code> plus the
-     * <a href="https://support.google.com/cloud/answer/6158840">Google Cloud
-     * Platform project ID</a>.
+     *                            as <code>projects/</code> plus the
+     *                            <a href="https://support.google.com/cloud/answer/6158840">Google Cloud
+     *                            Platform project ID</a>.
      *
      * Example: <code>projects/my-project-123</code>.
-     * @param QueryTimeRange $timeRange [Optional] List data for the given time range.
-     * If not set a default time range is used. The field time_range_begin
-     * in the response will specify the beginning of this time range.
-     * Only <code>ErrorGroupStats</code> with a non-zero count in the given time
-     * range are returned, unless the request contains an explicit group_id list.
-     * If a group_id list is given, also <code>ErrorGroupStats</code> with zero
-     * occurrences are returned.
-     * @param array $optionalArgs {
-     *     Optional.
+     * @param QueryTimeRange $timeRange    [Optional] List data for the given time range.
+     *                                     If not set a default time range is used. The field time_range_begin
+     *                                     in the response will specify the beginning of this time range.
+     *                                     Only <code>ErrorGroupStats</code> with a non-zero count in the given time
+     *                                     range are returned, unless the request contains an explicit group_id list.
+     *                                     If a group_id list is given, also <code>ErrorGroupStats</code> with zero
+     *                                     occurrences are returned.
+     * @param array          $optionalArgs {
+     *                                     Optional
+     *
      *     @type string[] $groupId
      *          [Optional] List all <code>ErrorGroupStats</code> with these IDs.
      *     @type ServiceContextFilter $serviceFilter
@@ -503,14 +503,15 @@ class ErrorStatsServiceGapicClient
      * }
      * ```
      *
-     * @param string $projectName [Required] The resource name of the Google Cloud Platform project. Written
-     * as `projects/` plus the
-     * [Google Cloud Platform project
-     * ID](https://support.google.com/cloud/answer/6158840).
-     * Example: `projects/my-project-123`.
-     * @param string $groupId [Required] The group for which events shall be returned.
-     * @param array $optionalArgs {
-     *     Optional.
+     * @param string $projectName  [Required] The resource name of the Google Cloud Platform project. Written
+     *                             as `projects/` plus the
+     *                             [Google Cloud Platform project
+     *                             ID](https://support.google.com/cloud/answer/6158840).
+     *                             Example: `projects/my-project-123`.
+     * @param string $groupId      [Required] The group for which events shall be returned
+     * @param array  $optionalArgs {
+     *                             Optional
+     *
      *     @type ServiceContextFilter $serviceFilter
      *          [Optional] List only ErrorGroups which belong to a service context that
      *          matches the filter.
@@ -592,13 +593,14 @@ class ErrorStatsServiceGapicClient
      * }
      * ```
      *
-     * @param string $projectName [Required] The resource name of the Google Cloud Platform project. Written
-     * as `projects/` plus the
-     * [Google Cloud Platform project
-     * ID](https://support.google.com/cloud/answer/6158840).
-     * Example: `projects/my-project-123`.
-     * @param array $optionalArgs {
-     *     Optional.
+     * @param string $projectName  [Required] The resource name of the Google Cloud Platform project. Written
+     *                             as `projects/` plus the
+     *                             [Google Cloud Platform project
+     *                             ID](https://support.google.com/cloud/answer/6158840).
+     *                             Example: `projects/my-project-123`.
+     * @param array  $optionalArgs {
+     *                             Optional
+     *
      *     @type \Google\GAX\RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\GAX\RetrySettings} object, or an associative array
@@ -639,6 +641,7 @@ class ErrorStatsServiceGapicClient
     /**
      * Initiates an orderly shutdown in which preexisting calls continue but new
      * calls are immediately cancelled.
+     *
      * @experimental
      */
     public function close()

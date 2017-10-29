@@ -34,7 +34,6 @@ use Google\Cloud\Version;
 use Google\GAX\AgentHeaderDescriptor;
 use Google\GAX\ApiCallable;
 use Google\GAX\CallSettings;
-use Google\GAX\GrpcConstants;
 use Google\GAX\GrpcCredentialsHelper;
 use Google\GAX\PageStreamingDescriptor;
 use Google\GAX\PathTemplate;
@@ -45,7 +44,6 @@ use Google\Spanner\V1\CommitRequest;
 use Google\Spanner\V1\CreateSessionRequest;
 use Google\Spanner\V1\DeleteSessionRequest;
 use Google\Spanner\V1\ExecuteSqlRequest;
-use Google\Spanner\V1\ExecuteSqlRequest_ParamTypesEntry as ParamTypesEntry;
 use Google\Spanner\V1\ExecuteSqlRequest_QueryMode as QueryMode;
 use Google\Spanner\V1\GetSessionRequest;
 use Google\Spanner\V1\KeySet;
@@ -59,7 +57,7 @@ use Google\Spanner\V1\TransactionOptions;
 use Google\Spanner\V1\TransactionSelector;
 
 /**
- * Service Description: Cloud Spanner API
+ * Service Description: Cloud Spanner API.
  *
  * The Cloud Spanner API can be used to manage sessions and execute
  * transactions on data stored in Cloud Spanner databases.
@@ -85,6 +83,7 @@ use Google\Spanner\V1\TransactionSelector;
  * with these names, this class includes a format method for each type of name, and additionally
  * a parseName method to extract the individual identifiers contained within formatted names
  * that are returned by the API.
+ *
  * @experimental
  */
 class SpannerGapicClient
@@ -147,8 +146,10 @@ class SpannerGapicClient
                 'session' => self::getSessionNameTemplate(),
             ];
         }
+
         return self::$pathTemplateMap;
     }
+
     private static function getPageStreamingDescriptors()
     {
         $listSessionsPageStreamingDescriptor =
@@ -168,7 +169,6 @@ class SpannerGapicClient
         return $pageStreamingDescriptors;
     }
 
-
     private static function getGrpcStreamingDescriptors()
     {
         return [
@@ -184,13 +184,14 @@ class SpannerGapicClient
     private static function getGapicVersion()
     {
         if (!self::$gapicVersionLoaded) {
-            if (file_exists(__DIR__ . '/../VERSION')) {
-                self::$gapicVersion = trim(file_get_contents(__DIR__ . '/../VERSION'));
+            if (file_exists(__DIR__.'/../VERSION')) {
+                self::$gapicVersion = trim(file_get_contents(__DIR__.'/../VERSION'));
             } elseif (class_exists(Version::class)) {
                 self::$gapicVersion = Version::VERSION;
             }
             self::$gapicVersionLoaded = true;
         }
+
         return self::$gapicVersion;
     }
 
@@ -201,7 +202,8 @@ class SpannerGapicClient
      * @param string $project
      * @param string $instance
      * @param string $database
-     * @return string The formatted database resource.
+     *
+     * @return string the formatted database resource
      * @experimental
      */
     public static function databaseName($project, $instance, $database)
@@ -221,7 +223,8 @@ class SpannerGapicClient
      * @param string $instance
      * @param string $database
      * @param string $session
-     * @return string The formatted session resource.
+     *
+     * @return string the formatted session resource
      * @experimental
      */
     public static function sessionName($project, $instance, $database, $session)
@@ -239,7 +242,7 @@ class SpannerGapicClient
      * The following name formats are supported:
      * Template: Pattern
      * - database: projects/{project}/instances/{instance}/databases/{database}
-     * - session: projects/{project}/instances/{instance}/databases/{database}/sessions/{session}
+     * - session: projects/{project}/instances/{instance}/databases/{database}/sessions/{session}.
      *
      * The optional $template argument can be supplied to specify a particular pattern, and must
      * match one of the templates listed above. If no $template argument is provided, or if the
@@ -247,9 +250,11 @@ class SpannerGapicClient
      * each of the supported templates, and return the first match.
      *
      * @param string $formattedName The formatted name string
-     * @param string $template Optional name of template to match
-     * @return array An associative array from name component IDs to component values.
-     * @throws ValidationException If $formattedName could not be matched.
+     * @param string $template      Optional name of template to match
+     *
+     * @return array an associative array from name component IDs to component values
+     *
+     * @throws ValidationException if $formattedName could not be matched
      * @experimental
      */
     public static function parseName($formattedName, $template = null)
@@ -260,6 +265,7 @@ class SpannerGapicClient
             if (!isset($templateMap[$template])) {
                 throw new ValidationException("Template name $template does not exist");
             }
+
             return $templateMap[$template]->match($formattedName);
         }
 
@@ -273,14 +279,11 @@ class SpannerGapicClient
         throw new ValidationException("Input did not match any known format. Input: $formattedName");
     }
 
-
-
-
     /**
      * Constructor.
      *
      * @param array $options {
-     *     Optional. Options for configuring the service API wrapper.
+     *                       Optional. Options for configuring the service API wrapper.
      *
      *     @type string $serviceAddress The domain name of the API remote host.
      *                                  Default 'spanner.googleapis.com'.
@@ -329,10 +332,9 @@ class SpannerGapicClient
             'retryingOverride' => null,
             'libName' => null,
             'libVersion' => null,
-            'clientConfigPath' => __DIR__ . '/../resources/spanner_client_config.json',
+            'clientConfigPath' => __DIR__.'/../resources/spanner_client_config.json',
         ];
         $options = array_merge($defaultOptions, $options);
-
 
         $gapicVersion = $options['libVersion'] ?: self::getGapicVersion();
 
@@ -423,9 +425,10 @@ class SpannerGapicClient
      * }
      * ```
      *
-     * @param string $database Required. The database in which the new session is created.
-     * @param array $optionalArgs {
-     *     Optional.
+     * @param string $database     Required. The database in which the new session is created.
+     * @param array  $optionalArgs {
+     *                             Optional
+     *
      *     @type Session $session
      *          The session to create.
      *     @type \Google\GAX\RetrySettings|array $retrySettings
@@ -484,9 +487,10 @@ class SpannerGapicClient
      * }
      * ```
      *
-     * @param string $name Required. The name of the session to retrieve.
-     * @param array $optionalArgs {
-     *     Optional.
+     * @param string $name         Required. The name of the session to retrieve.
+     * @param array  $optionalArgs {
+     *                             Optional
+     *
      *     @type \Google\GAX\RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\GAX\RetrySettings} object, or an associative array
@@ -550,9 +554,10 @@ class SpannerGapicClient
      * }
      * ```
      *
-     * @param string $database Required. The database in which to list sessions.
-     * @param array $optionalArgs {
-     *     Optional.
+     * @param string $database     Required. The database in which to list sessions.
+     * @param array  $optionalArgs {
+     *                             Optional
+     *
      *     @type int $pageSize
      *          The maximum number of resources contained in the underlying API
      *          response. The API may return fewer values in a page, even if
@@ -633,9 +638,10 @@ class SpannerGapicClient
      * }
      * ```
      *
-     * @param string $name Required. The name of the session to delete.
-     * @param array $optionalArgs {
-     *     Optional.
+     * @param string $name         Required. The name of the session to delete.
+     * @param array  $optionalArgs {
+     *                             Optional
+     *
      *     @type \Google\GAX\RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\GAX\RetrySettings} object, or an associative array
@@ -696,10 +702,11 @@ class SpannerGapicClient
      * }
      * ```
      *
-     * @param string $session Required. The session in which the SQL query should be performed.
-     * @param string $sql Required. The SQL query string.
-     * @param array $optionalArgs {
-     *     Optional.
+     * @param string $session      Required. The session in which the SQL query should be performed.
+     * @param string $sql          Required. The SQL query string.
+     * @param array  $optionalArgs {
+     *                             Optional
+     *
      *     @type TransactionSelector $transaction
      *          The transaction to use. If none is provided, the default is a
      *          temporary read-only transaction with strong concurrency.
@@ -814,10 +821,11 @@ class SpannerGapicClient
      * }
      * ```
      *
-     * @param string $session Required. The session in which the SQL query should be performed.
-     * @param string $sql Required. The SQL query string.
-     * @param array $optionalArgs {
-     *     Optional.
+     * @param string $session      Required. The session in which the SQL query should be performed.
+     * @param string $sql          Required. The SQL query string.
+     * @param array  $optionalArgs {
+     *                             Optional
+     *
      *     @type TransactionSelector $transaction
      *          The transaction to use. If none is provided, the default is a
      *          temporary read-only transaction with strong concurrency.
@@ -889,7 +897,7 @@ class SpannerGapicClient
         if (array_key_exists('timeoutMillis', $optionalArgs)) {
             $optionalArgs['retrySettings'] = [
                 'retriesEnabled' => false,
-                'noRetriesRpcTimeoutMillis' => $optionalArgs['timeoutMillis']
+                'noRetriesRpcTimeoutMillis' => $optionalArgs['timeoutMillis'],
             ];
         }
 
@@ -942,14 +950,14 @@ class SpannerGapicClient
      * }
      * ```
      *
-     * @param string $session Required. The session in which the read should be performed.
-     * @param string $table Required. The name of the table in the database to be read.
+     * @param string   $session Required. The session in which the read should be performed.
+     * @param string   $table   Required. The name of the table in the database to be read.
      * @param string[] $columns The columns of [table][google.spanner.v1.ReadRequest.table] to be returned for each row matching
-     * this request.
-     * @param KeySet $keySet Required. `key_set` identifies the rows to be yielded. `key_set` names the
-     * primary keys of the rows in [table][google.spanner.v1.ReadRequest.table] to be yielded, unless [index][google.spanner.v1.ReadRequest.index]
-     * is present. If [index][google.spanner.v1.ReadRequest.index] is present, then [key_set][google.spanner.v1.ReadRequest.key_set] instead names
-     * index keys in [index][google.spanner.v1.ReadRequest.index].
+     *                          this request.
+     * @param KeySet   $keySet  Required. `key_set` identifies the rows to be yielded. `key_set` names the
+     *                          primary keys of the rows in [table][google.spanner.v1.ReadRequest.table] to be yielded, unless [index][google.spanner.v1.ReadRequest.index]
+     *                          is present. If [index][google.spanner.v1.ReadRequest.index] is present, then [key_set][google.spanner.v1.ReadRequest.key_set] instead names
+     *                          index keys in [index][google.spanner.v1.ReadRequest.index].
      *
      * Rows are yielded in table primary key order (if [index][google.spanner.v1.ReadRequest.index] is empty)
      * or index key order (if [index][google.spanner.v1.ReadRequest.index] is non-empty).
@@ -957,7 +965,8 @@ class SpannerGapicClient
      * It is not an error for the `key_set` to name rows that do not
      * exist in the database. Read yields nothing for nonexistent rows.
      * @param array $optionalArgs {
-     *     Optional.
+     *                            Optional
+     *
      *     @type TransactionSelector $transaction
      *          The transaction to use. If none is provided, the default is a
      *          temporary read-only transaction with strong concurrency.
@@ -1052,14 +1061,14 @@ class SpannerGapicClient
      * }
      * ```
      *
-     * @param string $session Required. The session in which the read should be performed.
-     * @param string $table Required. The name of the table in the database to be read.
+     * @param string   $session Required. The session in which the read should be performed.
+     * @param string   $table   Required. The name of the table in the database to be read.
      * @param string[] $columns The columns of [table][google.spanner.v1.ReadRequest.table] to be returned for each row matching
-     * this request.
-     * @param KeySet $keySet Required. `key_set` identifies the rows to be yielded. `key_set` names the
-     * primary keys of the rows in [table][google.spanner.v1.ReadRequest.table] to be yielded, unless [index][google.spanner.v1.ReadRequest.index]
-     * is present. If [index][google.spanner.v1.ReadRequest.index] is present, then [key_set][google.spanner.v1.ReadRequest.key_set] instead names
-     * index keys in [index][google.spanner.v1.ReadRequest.index].
+     *                          this request.
+     * @param KeySet   $keySet  Required. `key_set` identifies the rows to be yielded. `key_set` names the
+     *                          primary keys of the rows in [table][google.spanner.v1.ReadRequest.table] to be yielded, unless [index][google.spanner.v1.ReadRequest.index]
+     *                          is present. If [index][google.spanner.v1.ReadRequest.index] is present, then [key_set][google.spanner.v1.ReadRequest.key_set] instead names
+     *                          index keys in [index][google.spanner.v1.ReadRequest.index].
      *
      * Rows are yielded in table primary key order (if [index][google.spanner.v1.ReadRequest.index] is empty)
      * or index key order (if [index][google.spanner.v1.ReadRequest.index] is non-empty).
@@ -1067,7 +1076,8 @@ class SpannerGapicClient
      * It is not an error for the `key_set` to name rows that do not
      * exist in the database. Read yields nothing for nonexistent rows.
      * @param array $optionalArgs {
-     *     Optional.
+     *                            Optional
+     *
      *     @type TransactionSelector $transaction
      *          The transaction to use. If none is provided, the default is a
      *          temporary read-only transaction with strong concurrency.
@@ -1117,7 +1127,7 @@ class SpannerGapicClient
         if (array_key_exists('timeoutMillis', $optionalArgs)) {
             $optionalArgs['retrySettings'] = [
                 'retriesEnabled' => false,
-                'noRetriesRpcTimeoutMillis' => $optionalArgs['timeoutMillis']
+                'noRetriesRpcTimeoutMillis' => $optionalArgs['timeoutMillis'],
             ];
         }
 
@@ -1159,10 +1169,11 @@ class SpannerGapicClient
      * }
      * ```
      *
-     * @param string $session Required. The session in which the transaction runs.
-     * @param TransactionOptions $options Required. Options for the new transaction.
-     * @param array $optionalArgs {
-     *     Optional.
+     * @param string             $session      Required. The session in which the transaction runs.
+     * @param TransactionOptions $options      Required. Options for the new transaction.
+     * @param array              $optionalArgs {
+     *                                         Optional
+     *
      *     @type \Google\GAX\RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\GAX\RetrySettings} object, or an associative array
@@ -1223,12 +1234,13 @@ class SpannerGapicClient
      * }
      * ```
      *
-     * @param string $session Required. The session in which the transaction to be committed is running.
-     * @param Mutation[] $mutations The mutations to be executed when this transaction commits. All
-     * mutations are applied atomically, in the order they appear in
-     * this list.
-     * @param array $optionalArgs {
-     *     Optional.
+     * @param string     $session      Required. The session in which the transaction to be committed is running.
+     * @param Mutation[] $mutations    The mutations to be executed when this transaction commits. All
+     *                                 mutations are applied atomically, in the order they appear in
+     *                                 this list.
+     * @param array      $optionalArgs {
+     *                                 Optional
+     *
      *     @type string $transactionId
      *          Commit a previously-started transaction.
      *     @type TransactionOptions $singleUseTransaction
@@ -1307,10 +1319,11 @@ class SpannerGapicClient
      * }
      * ```
      *
-     * @param string $session Required. The session in which the transaction to roll back is running.
+     * @param string $session       Required. The session in which the transaction to roll back is running.
      * @param string $transactionId Required. The transaction to roll back.
-     * @param array $optionalArgs {
-     *     Optional.
+     * @param array  $optionalArgs  {
+     *                              Optional
+     *
      *     @type \Google\GAX\RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\GAX\RetrySettings} object, or an associative array
@@ -1350,6 +1363,7 @@ class SpannerGapicClient
     /**
      * Initiates an orderly shutdown in which preexisting calls continue but new
      * calls are immediately cancelled.
+     *
      * @experimental
      */
     public function close()

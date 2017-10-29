@@ -34,7 +34,6 @@ use Google\Cloud\Version;
 use Google\GAX\AgentHeaderDescriptor;
 use Google\GAX\ApiCallable;
 use Google\GAX\CallSettings;
-use Google\GAX\GrpcConstants;
 use Google\GAX\GrpcCredentialsHelper;
 use Google\GAX\LongRunning\OperationsClient;
 use Google\GAX\OperationResponse;
@@ -59,7 +58,7 @@ use Google\Spanner\Admin\Instance\V1\UpdateInstanceMetadata;
 use Google\Spanner\Admin\Instance\V1\UpdateInstanceRequest;
 
 /**
- * Service Description: Cloud Spanner Instance Admin API
+ * Service Description: Cloud Spanner Instance Admin API.
  *
  * The Cloud Spanner Instance Admin API can be used to create, delete,
  * modify and list instances. Instances are dedicated Cloud Spanner serving
@@ -114,6 +113,7 @@ use Google\Spanner\Admin\Instance\V1\UpdateInstanceRequest;
  * with these names, this class includes a format method for each type of name, and additionally
  * a parseName method to extract the individual identifiers contained within formatted names
  * that are returned by the API.
+ *
  * @experimental
  */
 class InstanceAdminGapicClient
@@ -188,8 +188,10 @@ class InstanceAdminGapicClient
                 'instance' => self::getInstanceNameTemplate(),
             ];
         }
+
         return self::$pathTemplateMap;
     }
+
     private static function getPageStreamingDescriptors()
     {
         $listInstanceConfigsPageStreamingDescriptor =
@@ -233,17 +235,17 @@ class InstanceAdminGapicClient
         ];
     }
 
-
     private static function getGapicVersion()
     {
         if (!self::$gapicVersionLoaded) {
-            if (file_exists(__DIR__ . '/../VERSION')) {
-                self::$gapicVersion = trim(file_get_contents(__DIR__ . '/../VERSION'));
+            if (file_exists(__DIR__.'/../VERSION')) {
+                self::$gapicVersion = trim(file_get_contents(__DIR__.'/../VERSION'));
             } elseif (class_exists(Version::class)) {
                 self::$gapicVersion = Version::VERSION;
             }
             self::$gapicVersionLoaded = true;
         }
+
         return self::$gapicVersion;
     }
 
@@ -252,7 +254,8 @@ class InstanceAdminGapicClient
      * a project resource.
      *
      * @param string $project
-     * @return string The formatted project resource.
+     *
+     * @return string the formatted project resource
      * @experimental
      */
     public static function projectName($project)
@@ -268,7 +271,8 @@ class InstanceAdminGapicClient
      *
      * @param string $project
      * @param string $instanceConfig
-     * @return string The formatted instance_config resource.
+     *
+     * @return string the formatted instance_config resource
      * @experimental
      */
     public static function instanceConfigName($project, $instanceConfig)
@@ -285,7 +289,8 @@ class InstanceAdminGapicClient
      *
      * @param string $project
      * @param string $instance
-     * @return string The formatted instance resource.
+     *
+     * @return string the formatted instance resource
      * @experimental
      */
     public static function instanceName($project, $instance)
@@ -302,7 +307,7 @@ class InstanceAdminGapicClient
      * Template: Pattern
      * - project: projects/{project}
      * - instanceConfig: projects/{project}/instanceConfigs/{instance_config}
-     * - instance: projects/{project}/instances/{instance}
+     * - instance: projects/{project}/instances/{instance}.
      *
      * The optional $template argument can be supplied to specify a particular pattern, and must
      * match one of the templates listed above. If no $template argument is provided, or if the
@@ -310,9 +315,11 @@ class InstanceAdminGapicClient
      * each of the supported templates, and return the first match.
      *
      * @param string $formattedName The formatted name string
-     * @param string $template Optional name of template to match
-     * @return array An associative array from name component IDs to component values.
-     * @throws ValidationException If $formattedName could not be matched.
+     * @param string $template      Optional name of template to match
+     *
+     * @return array an associative array from name component IDs to component values
+     *
+     * @throws ValidationException if $formattedName could not be matched
      * @experimental
      */
     public static function parseName($formattedName, $template = null)
@@ -323,6 +330,7 @@ class InstanceAdminGapicClient
             if (!isset($templateMap[$template])) {
                 throw new ValidationException("Template name $template does not exist");
             }
+
             return $templateMap[$template]->match($formattedName);
         }
 
@@ -335,7 +343,6 @@ class InstanceAdminGapicClient
         }
         throw new ValidationException("Input did not match any known format. Input: $formattedName");
     }
-
 
     /**
      * Return an OperationsClient object with the same endpoint as $this.
@@ -356,13 +363,14 @@ class InstanceAdminGapicClient
      * final response.
      *
      * @param string $operationName The name of the long running operation
-     * @param string $methodName The name of the method used to start the operation
+     * @param string $methodName    The name of the method used to start the operation
+     *
      * @return \Google\GAX\OperationResponse
      * @experimental
      */
     public function resumeOperation($operationName, $methodName = null)
     {
-        $lroDescriptors = InstanceAdminGapicClient::getLongRunningDescriptors();
+        $lroDescriptors = self::getLongRunningDescriptors();
         if (!is_null($methodName) && array_key_exists($methodName, $lroDescriptors)) {
             $options = $lroDescriptors[$methodName];
         } else {
@@ -370,6 +378,7 @@ class InstanceAdminGapicClient
         }
         $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
         $operation->reload();
+
         return $operation;
     }
 
@@ -377,7 +386,7 @@ class InstanceAdminGapicClient
      * Constructor.
      *
      * @param array $options {
-     *     Optional. Options for configuring the service API wrapper.
+     *                       Optional. Options for configuring the service API wrapper.
      *
      *     @type string $serviceAddress The domain name of the API remote host.
      *                                  Default 'spanner.googleapis.com'.
@@ -426,7 +435,7 @@ class InstanceAdminGapicClient
             'retryingOverride' => null,
             'libName' => null,
             'libVersion' => null,
-            'clientConfigPath' => __DIR__ . '/../resources/instance_admin_client_config.json',
+            'clientConfigPath' => __DIR__.'/../resources/instance_admin_client_config.json',
         ];
         $options = array_merge($defaultOptions, $options);
 
@@ -521,11 +530,12 @@ class InstanceAdminGapicClient
      * }
      * ```
      *
-     * @param string $parent Required. The name of the project for which a list of supported instance
-     * configurations is requested. Values are of the form
-     * `projects/<project>`.
-     * @param array $optionalArgs {
-     *     Optional.
+     * @param string $parent       Required. The name of the project for which a list of supported instance
+     *                             configurations is requested. Values are of the form
+     *                             `projects/<project>`.
+     * @param array  $optionalArgs {
+     *                             Optional
+     *
      *     @type int $pageSize
      *          The maximum number of resources contained in the underlying API
      *          response. The API may return fewer values in a page, even if
@@ -592,10 +602,11 @@ class InstanceAdminGapicClient
      * }
      * ```
      *
-     * @param string $name Required. The name of the requested instance configuration. Values are of
-     * the form `projects/<project>/instanceConfigs/<config>`.
-     * @param array $optionalArgs {
-     *     Optional.
+     * @param string $name         Required. The name of the requested instance configuration. Values are of
+     *                             the form `projects/<project>/instanceConfigs/<config>`.
+     * @param array  $optionalArgs {
+     *                             Optional
+     *
      *     @type \Google\GAX\RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\GAX\RetrySettings} object, or an associative array
@@ -659,10 +670,11 @@ class InstanceAdminGapicClient
      * }
      * ```
      *
-     * @param string $parent Required. The name of the project for which a list of instances is
-     * requested. Values are of the form `projects/<project>`.
-     * @param array $optionalArgs {
-     *     Optional.
+     * @param string $parent       Required. The name of the project for which a list of instances is
+     *                             requested. Values are of the form `projects/<project>`.
+     * @param array  $optionalArgs {
+     *                             Optional
+     *
      *     @type int $pageSize
      *          The maximum number of resources contained in the underlying API
      *          response. The API may return fewer values in a page, even if
@@ -752,10 +764,11 @@ class InstanceAdminGapicClient
      * }
      * ```
      *
-     * @param string $name Required. The name of the requested instance. Values are of the form
-     * `projects/<project>/instances/<instance>`.
-     * @param array $optionalArgs {
-     *     Optional.
+     * @param string $name         Required. The name of the requested instance. Values are of the form
+     *                             `projects/<project>/instances/<instance>`.
+     * @param array  $optionalArgs {
+     *                             Optional
+     *
      *     @type \Google\GAX\RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\GAX\RetrySettings} object, or an associative array
@@ -867,15 +880,16 @@ class InstanceAdminGapicClient
      * }
      * ```
      *
-     * @param string $parent Required. The name of the project in which to create the instance. Values
-     * are of the form `projects/<project>`.
-     * @param string $instanceId Required. The ID of the instance to create.  Valid identifiers are of the
-     * form `[a-z][-a-z0-9]*[a-z0-9]` and must be between 6 and 30 characters in
-     * length.
-     * @param Instance $instance Required. The instance to create.  The name may be omitted, but if
-     * specified must be `<parent>/instances/<instance_id>`.
-     * @param array $optionalArgs {
-     *     Optional.
+     * @param string   $parent       Required. The name of the project in which to create the instance. Values
+     *                               are of the form `projects/<project>`.
+     * @param string   $instanceId   Required. The ID of the instance to create.  Valid identifiers are of the
+     *                               form `[a-z][-a-z0-9]*[a-z0-9]` and must be between 6 and 30 characters in
+     *                               length.
+     * @param Instance $instance     Required. The instance to create.  The name may be omitted, but if
+     *                               specified must be `<parent>/instances/<instance_id>`.
+     * @param array    $optionalArgs {
+     *                               Optional
+     *
      *     @type \Google\GAX\RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\GAX\RetrySettings} object, or an associative array
@@ -994,14 +1008,15 @@ class InstanceAdminGapicClient
      * }
      * ```
      *
-     * @param Instance $instance Required. The instance to update, which must always include the instance
-     * name.  Otherwise, only fields mentioned in [][google.spanner.admin.instance.v1.UpdateInstanceRequest.field_mask] need be included.
-     * @param FieldMask $fieldMask Required. A mask specifying which fields in [][google.spanner.admin.instance.v1.UpdateInstanceRequest.instance] should be updated.
-     * The field mask must always be specified; this prevents any future fields in
-     * [][google.spanner.admin.instance.v1.Instance] from being erased accidentally by clients that do not know
-     * about them.
-     * @param array $optionalArgs {
-     *     Optional.
+     * @param Instance  $instance     Required. The instance to update, which must always include the instance
+     *                                name.  Otherwise, only fields mentioned in [][google.spanner.admin.instance.v1.UpdateInstanceRequest.field_mask] need be included.
+     * @param FieldMask $fieldMask    Required. A mask specifying which fields in [][google.spanner.admin.instance.v1.UpdateInstanceRequest.instance] should be updated.
+     *                                The field mask must always be specified; this prevents any future fields in
+     *                                [][google.spanner.admin.instance.v1.Instance] from being erased accidentally by clients that do not know
+     *                                about them.
+     * @param array     $optionalArgs {
+     *                                Optional
+     *
      *     @type \Google\GAX\RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\GAX\RetrySettings} object, or an associative array
@@ -1064,10 +1079,11 @@ class InstanceAdminGapicClient
      * }
      * ```
      *
-     * @param string $name Required. The name of the instance to be deleted. Values are of the form
-     * `projects/<project>/instances/<instance>`
-     * @param array $optionalArgs {
-     *     Optional.
+     * @param string $name         Required. The name of the instance to be deleted. Values are of the form
+     *                             `projects/<project>/instances/<instance>`
+     * @param array  $optionalArgs {
+     *                             Optional
+     *
      *     @type \Google\GAX\RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\GAX\RetrySettings} object, or an associative array
@@ -1122,15 +1138,16 @@ class InstanceAdminGapicClient
      * }
      * ```
      *
-     * @param string $resource REQUIRED: The resource for which the policy is being specified.
-     * `resource` is usually specified as a path. For example, a Project
-     * resource is specified as `projects/{project}`.
-     * @param Policy $policy REQUIRED: The complete policy to be applied to the `resource`. The size of
-     * the policy is limited to a few 10s of KB. An empty policy is a
-     * valid policy but certain Cloud Platform services (such as Projects)
-     * might reject them.
-     * @param array $optionalArgs {
-     *     Optional.
+     * @param string $resource     REQUIRED: The resource for which the policy is being specified.
+     *                             `resource` is usually specified as a path. For example, a Project
+     *                             resource is specified as `projects/{project}`.
+     * @param Policy $policy       REQUIRED: The complete policy to be applied to the `resource`. The size of
+     *                             the policy is limited to a few 10s of KB. An empty policy is a
+     *                             valid policy but certain Cloud Platform services (such as Projects)
+     *                             might reject them.
+     * @param array  $optionalArgs {
+     *                             Optional
+     *
      *     @type \Google\GAX\RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\GAX\RetrySettings} object, or an associative array
@@ -1187,11 +1204,12 @@ class InstanceAdminGapicClient
      * }
      * ```
      *
-     * @param string $resource REQUIRED: The resource for which the policy is being requested.
-     * `resource` is usually specified as a path. For example, a Project
-     * resource is specified as `projects/{project}`.
-     * @param array $optionalArgs {
-     *     Optional.
+     * @param string $resource     REQUIRED: The resource for which the policy is being requested.
+     *                             `resource` is usually specified as a path. For example, a Project
+     *                             resource is specified as `projects/{project}`.
+     * @param array  $optionalArgs {
+     *                             Optional
+     *
      *     @type \Google\GAX\RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\GAX\RetrySettings} object, or an associative array
@@ -1249,15 +1267,16 @@ class InstanceAdminGapicClient
      * }
      * ```
      *
-     * @param string $resource REQUIRED: The resource for which the policy detail is being requested.
-     * `resource` is usually specified as a path. For example, a Project
-     * resource is specified as `projects/{project}`.
-     * @param string[] $permissions The set of permissions to check for the `resource`. Permissions with
-     * wildcards (such as '*' or 'storage.*') are not allowed. For more
-     * information see
-     * [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).
-     * @param array $optionalArgs {
-     *     Optional.
+     * @param string   $resource     REQUIRED: The resource for which the policy detail is being requested.
+     *                               `resource` is usually specified as a path. For example, a Project
+     *                               resource is specified as `projects/{project}`.
+     * @param string[] $permissions  The set of permissions to check for the `resource`. Permissions with
+     *                               wildcards (such as '*' or 'storage.*') are not allowed. For more
+     *                               information see
+     *                               [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).
+     * @param array    $optionalArgs {
+     *                               Optional
+     *
      *     @type \Google\GAX\RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\GAX\RetrySettings} object, or an associative array
@@ -1299,6 +1318,7 @@ class InstanceAdminGapicClient
     /**
      * Initiates an orderly shutdown in which preexisting calls continue but new
      * calls are immediately cancelled.
+     *
      * @experimental
      */
     public function close()

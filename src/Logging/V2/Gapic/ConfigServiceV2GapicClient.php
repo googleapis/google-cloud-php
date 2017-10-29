@@ -34,7 +34,6 @@ use Google\Cloud\Version;
 use Google\GAX\AgentHeaderDescriptor;
 use Google\GAX\ApiCallable;
 use Google\GAX\CallSettings;
-use Google\GAX\GrpcConstants;
 use Google\GAX\GrpcCredentialsHelper;
 use Google\GAX\PageStreamingDescriptor;
 use Google\GAX\PathTemplate;
@@ -91,6 +90,7 @@ use Google\Protobuf\FieldMask;
  * with these names, this class includes a format method for each type of name, and additionally
  * a parseName method to extract the individual identifiers contained within formatted names
  * that are returned by the API.
+ *
  * @experimental
  */
 class ConfigServiceV2GapicClient
@@ -164,8 +164,10 @@ class ConfigServiceV2GapicClient
                 'exclusion' => self::getExclusionNameTemplate(),
             ];
         }
+
         return self::$pathTemplateMap;
     }
+
     private static function getPageStreamingDescriptors()
     {
         $listSinksPageStreamingDescriptor =
@@ -195,18 +197,17 @@ class ConfigServiceV2GapicClient
         return $pageStreamingDescriptors;
     }
 
-
-
     private static function getGapicVersion()
     {
         if (!self::$gapicVersionLoaded) {
-            if (file_exists(__DIR__ . '/../VERSION')) {
-                self::$gapicVersion = trim(file_get_contents(__DIR__ . '/../VERSION'));
+            if (file_exists(__DIR__.'/../VERSION')) {
+                self::$gapicVersion = trim(file_get_contents(__DIR__.'/../VERSION'));
             } elseif (class_exists(Version::class)) {
                 self::$gapicVersion = Version::VERSION;
             }
             self::$gapicVersionLoaded = true;
         }
+
         return self::$gapicVersion;
     }
 
@@ -215,7 +216,8 @@ class ConfigServiceV2GapicClient
      * a project resource.
      *
      * @param string $project
-     * @return string The formatted project resource.
+     *
+     * @return string the formatted project resource
      * @experimental
      */
     public static function projectName($project)
@@ -231,7 +233,8 @@ class ConfigServiceV2GapicClient
      *
      * @param string $project
      * @param string $sink
-     * @return string The formatted sink resource.
+     *
+     * @return string the formatted sink resource
      * @experimental
      */
     public static function sinkName($project, $sink)
@@ -248,7 +251,8 @@ class ConfigServiceV2GapicClient
      *
      * @param string $project
      * @param string $exclusion
-     * @return string The formatted exclusion resource.
+     *
+     * @return string the formatted exclusion resource
      * @experimental
      */
     public static function exclusionName($project, $exclusion)
@@ -265,7 +269,7 @@ class ConfigServiceV2GapicClient
      * Template: Pattern
      * - project: projects/{project}
      * - sink: projects/{project}/sinks/{sink}
-     * - exclusion: projects/{project}/exclusions/{exclusion}
+     * - exclusion: projects/{project}/exclusions/{exclusion}.
      *
      * The optional $template argument can be supplied to specify a particular pattern, and must
      * match one of the templates listed above. If no $template argument is provided, or if the
@@ -273,9 +277,11 @@ class ConfigServiceV2GapicClient
      * each of the supported templates, and return the first match.
      *
      * @param string $formattedName The formatted name string
-     * @param string $template Optional name of template to match
-     * @return array An associative array from name component IDs to component values.
-     * @throws ValidationException If $formattedName could not be matched.
+     * @param string $template      Optional name of template to match
+     *
+     * @return array an associative array from name component IDs to component values
+     *
+     * @throws ValidationException if $formattedName could not be matched
      * @experimental
      */
     public static function parseName($formattedName, $template = null)
@@ -286,6 +292,7 @@ class ConfigServiceV2GapicClient
             if (!isset($templateMap[$template])) {
                 throw new ValidationException("Template name $template does not exist");
             }
+
             return $templateMap[$template]->match($formattedName);
         }
 
@@ -299,14 +306,11 @@ class ConfigServiceV2GapicClient
         throw new ValidationException("Input did not match any known format. Input: $formattedName");
     }
 
-
-
-
     /**
      * Constructor.
      *
      * @param array $options {
-     *     Optional. Options for configuring the service API wrapper.
+     *                       Optional. Options for configuring the service API wrapper.
      *
      *     @type string $serviceAddress The domain name of the API remote host.
      *                                  Default 'logging.googleapis.com'.
@@ -358,10 +362,9 @@ class ConfigServiceV2GapicClient
             'retryingOverride' => null,
             'libName' => null,
             'libVersion' => null,
-            'clientConfigPath' => __DIR__ . '/../resources/config_service_v2_client_config.json',
+            'clientConfigPath' => __DIR__.'/../resources/config_service_v2_client_config.json',
         ];
         $options = array_merge($defaultOptions, $options);
-
 
         $gapicVersion = $options['libVersion'] ?: self::getGapicVersion();
 
@@ -448,7 +451,8 @@ class ConfigServiceV2GapicClient
      *     "billingAccounts/[BILLING_ACCOUNT_ID]"
      *     "folders/[FOLDER_ID]"
      * @param array $optionalArgs {
-     *     Optional.
+     *                            Optional
+     *
      *     @type string $pageToken
      *          A page token is used to specify a page of values to be returned.
      *          If no page token is specified (the default), the first page
@@ -524,7 +528,8 @@ class ConfigServiceV2GapicClient
      *
      * Example: `"projects/my-project-id/sinks/my-sink-id"`.
      * @param array $optionalArgs {
-     *     Optional.
+     *                            Optional
+     *
      *     @type \Google\GAX\RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\GAX\RetrySettings} object, or an associative array
@@ -589,10 +594,11 @@ class ConfigServiceV2GapicClient
      *     "folders/[FOLDER_ID]"
      *
      * Examples: `"projects/my-logging-project"`, `"organizations/123456789"`.
-     * @param LogSink $sink Required. The new sink, whose `name` parameter is a sink identifier that
-     * is not already in use.
-     * @param array $optionalArgs {
-     *     Optional.
+     * @param LogSink $sink         Required. The new sink, whose `name` parameter is a sink identifier that
+     *                              is not already in use.
+     * @param array   $optionalArgs {
+     *                              Optional
+     *
      *     @type bool $uniqueWriterIdentity
      *          Optional. Determines the kind of IAM identity returned as `writer_identity`
      *          in the new sink.  If this value is omitted or set to false, and if the
@@ -666,7 +672,7 @@ class ConfigServiceV2GapicClient
      * ```
      *
      * @param string $sinkName Required. The full resource name of the sink to update, including the
-     * parent resource and the sink identifier:
+     *                         parent resource and the sink identifier:
      *
      *     "projects/[PROJECT_ID]/sinks/[SINK_ID]"
      *     "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]"
@@ -674,10 +680,11 @@ class ConfigServiceV2GapicClient
      *     "folders/[FOLDER_ID]/sinks/[SINK_ID]"
      *
      * Example: `"projects/my-project-id/sinks/my-sink-id"`.
-     * @param LogSink $sink Required. The updated sink, whose name is the same identifier that appears
-     * as part of `sink_name`.
-     * @param array $optionalArgs {
-     *     Optional.
+     * @param LogSink $sink         Required. The updated sink, whose name is the same identifier that appears
+     *                              as part of `sink_name`.
+     * @param array   $optionalArgs {
+     *                              Optional
+     *
      *     @type bool $uniqueWriterIdentity
      *          Optional. See
      *          [sinks.create](https://cloud.google.com/logging/docs/api/reference/rest/v2/projects.sinks/create)
@@ -748,7 +755,7 @@ class ConfigServiceV2GapicClient
      * ```
      *
      * @param string $sinkName Required. The full resource name of the sink to delete, including the
-     * parent resource and the sink identifier:
+     *                         parent resource and the sink identifier:
      *
      *     "projects/[PROJECT_ID]/sinks/[SINK_ID]"
      *     "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]"
@@ -757,7 +764,8 @@ class ConfigServiceV2GapicClient
      *
      * Example: `"projects/my-project-id/sinks/my-sink-id"`.
      * @param array $optionalArgs {
-     *     Optional.
+     *                            Optional
+     *
      *     @type \Google\GAX\RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\GAX\RetrySettings} object, or an associative array
@@ -826,7 +834,8 @@ class ConfigServiceV2GapicClient
      *     "billingAccounts/[BILLING_ACCOUNT_ID]"
      *     "folders/[FOLDER_ID]"
      * @param array $optionalArgs {
-     *     Optional.
+     *                            Optional
+     *
      *     @type string $pageToken
      *          A page token is used to specify a page of values to be returned.
      *          If no page token is specified (the default), the first page
@@ -902,7 +911,8 @@ class ConfigServiceV2GapicClient
      *
      * Example: `"projects/my-project-id/exclusions/my-exclusion-id"`.
      * @param array $optionalArgs {
-     *     Optional.
+     *                            Optional
+     *
      *     @type \Google\GAX\RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\GAX\RetrySettings} object, or an associative array
@@ -965,10 +975,11 @@ class ConfigServiceV2GapicClient
      *     "folders/[FOLDER_ID]"
      *
      * Examples: `"projects/my-logging-project"`, `"organizations/123456789"`.
-     * @param LogExclusion $exclusion Required. The new exclusion, whose `name` parameter is an exclusion name
-     * that is not already used in the parent resource.
-     * @param array $optionalArgs {
-     *     Optional.
+     * @param LogExclusion $exclusion    Required. The new exclusion, whose `name` parameter is an exclusion name
+     *                                   that is not already used in the parent resource.
+     * @param array        $optionalArgs {
+     *                                   Optional
+     *
      *     @type \Google\GAX\RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\GAX\RetrySettings} object, or an associative array
@@ -1031,17 +1042,18 @@ class ConfigServiceV2GapicClient
      *     "folders/[FOLDER_ID]/exclusions/[EXCLUSION_ID]"
      *
      * Example: `"projects/my-project-id/exclusions/my-exclusion-id"`.
-     * @param LogExclusion $exclusion Required. New values for the existing exclusion. Only the fields specified
-     * in `update_mask` are relevant.
-     * @param FieldMask $updateMask Required. A nonempty list of fields to change in the existing exclusion.
-     * New values for the fields are taken from the corresponding fields in the
-     * [LogExclusion][google.logging.v2.LogExclusion] included in this request. Fields not mentioned in
-     * `update_mask` are not changed and are ignored in the request.
+     * @param LogExclusion $exclusion  Required. New values for the existing exclusion. Only the fields specified
+     *                                 in `update_mask` are relevant.
+     * @param FieldMask    $updateMask Required. A nonempty list of fields to change in the existing exclusion.
+     *                                 New values for the fields are taken from the corresponding fields in the
+     *                                 [LogExclusion][google.logging.v2.LogExclusion] included in this request. Fields not mentioned in
+     *                                 `update_mask` are not changed and are ignored in the request.
      *
      * For example, to change the filter and description of an exclusion,
      * specify an `update_mask` of `"filter,description"`.
      * @param array $optionalArgs {
-     *     Optional.
+     *                            Optional
+     *
      *     @type \Google\GAX\RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\GAX\RetrySettings} object, or an associative array
@@ -1104,7 +1116,8 @@ class ConfigServiceV2GapicClient
      *
      * Example: `"projects/my-project-id/exclusions/my-exclusion-id"`.
      * @param array $optionalArgs {
-     *     Optional.
+     *                            Optional
+     *
      *     @type \Google\GAX\RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\GAX\RetrySettings} object, or an associative array
@@ -1143,6 +1156,7 @@ class ConfigServiceV2GapicClient
     /**
      * Initiates an orderly shutdown in which preexisting calls continue but new
      * calls are immediately cancelled.
+     *
      * @experimental
      */
     public function close()

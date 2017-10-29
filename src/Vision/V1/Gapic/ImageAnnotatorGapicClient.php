@@ -37,10 +37,7 @@ use Google\Cloud\Vision\V1\ImageAnnotatorGrpcClient;
 use Google\GAX\AgentHeaderDescriptor;
 use Google\GAX\ApiCallable;
 use Google\GAX\CallSettings;
-use Google\GAX\GrpcConstants;
 use Google\GAX\GrpcCredentialsHelper;
-use Google\GAX\PathTemplate;
-use Google\GAX\ValidationException;
 
 /**
  * Service Description: Service that performs Google Cloud Vision API detection tasks over client
@@ -88,7 +85,6 @@ class ImageAnnotatorGapicClient
      */
     const CODEGEN_VERSION = '0.0.5';
 
-
     private static $gapicVersion;
     private static $gapicVersionLoaded = false;
 
@@ -98,31 +94,25 @@ class ImageAnnotatorGapicClient
     private $defaultCallSettings;
     private $descriptors;
 
-
-
-
-
     private static function getGapicVersion()
     {
         if (!self::$gapicVersionLoaded) {
-            if (file_exists(__DIR__ . '/../VERSION')) {
-                self::$gapicVersion = trim(file_get_contents(__DIR__ . '/../VERSION'));
+            if (file_exists(__DIR__.'/../VERSION')) {
+                self::$gapicVersion = trim(file_get_contents(__DIR__.'/../VERSION'));
             } elseif (class_exists(Version::class)) {
                 self::$gapicVersion = Version::VERSION;
             }
             self::$gapicVersionLoaded = true;
         }
+
         return self::$gapicVersion;
     }
-
-
-
 
     /**
      * Constructor.
      *
      * @param array $options {
-     *     Optional. Options for configuring the service API wrapper.
+     *                       Optional. Options for configuring the service API wrapper.
      *
      *     @type string $serviceAddress The domain name of the API remote host.
      *                                  Default 'vision.googleapis.com'.
@@ -170,10 +160,9 @@ class ImageAnnotatorGapicClient
             'retryingOverride' => null,
             'libName' => null,
             'libVersion' => null,
-            'clientConfigPath' => __DIR__ . '/../resources/image_annotator_client_config.json',
+            'clientConfigPath' => __DIR__.'/../resources/image_annotator_client_config.json',
         ];
         $options = array_merge($defaultOptions, $options);
-
 
         $gapicVersion = $options['libVersion'] ?: self::getGapicVersion();
 
@@ -228,9 +217,10 @@ class ImageAnnotatorGapicClient
      * }
      * ```
      *
-     * @param AnnotateImageRequest[] $requests Individual image annotation requests for this batch.
-     * @param array $optionalArgs {
-     *     Optional.
+     * @param AnnotateImageRequest[] $requests     individual image annotation requests for this batch
+     * @param array                  $optionalArgs {
+     *                                             Optional
+     *
      *     @type \Google\GAX\RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\GAX\RetrySettings} object, or an associative array
@@ -271,6 +261,7 @@ class ImageAnnotatorGapicClient
     /**
      * Initiates an orderly shutdown in which preexisting calls continue but new
      * calls are immediately cancelled.
+     *
      * @experimental
      */
     public function close()

@@ -34,7 +34,6 @@ use Google\Cloud\Version;
 use Google\GAX\AgentHeaderDescriptor;
 use Google\GAX\ApiCallable;
 use Google\GAX\CallSettings;
-use Google\GAX\GrpcConstants;
 use Google\GAX\GrpcCredentialsHelper;
 use Google\GAX\LongRunning\OperationsClient;
 use Google\GAX\OperationResponse;
@@ -49,8 +48,6 @@ use Google\Privacy\Dlp\V2beta1\DeidentifyContentRequest;
 use Google\Privacy\Dlp\V2beta1\DlpServiceGrpcClient;
 use Google\Privacy\Dlp\V2beta1\InspectConfig;
 use Google\Privacy\Dlp\V2beta1\InspectContentRequest;
-use Google\Privacy\Dlp\V2beta1\InspectOperationMetadata;
-use Google\Privacy\Dlp\V2beta1\InspectOperationResult;
 use Google\Privacy\Dlp\V2beta1\ListInfoTypesRequest;
 use Google\Privacy\Dlp\V2beta1\ListInspectFindingsRequest;
 use Google\Privacy\Dlp\V2beta1\ListRootCategoriesRequest;
@@ -60,8 +57,6 @@ use Google\Privacy\Dlp\V2beta1\PrivacyMetric;
 use Google\Privacy\Dlp\V2beta1\RedactContentRequest;
 use Google\Privacy\Dlp\V2beta1\RedactContentRequest_ImageRedactionConfig as ImageRedactionConfig;
 use Google\Privacy\Dlp\V2beta1\RedactContentRequest_ReplaceConfig as ReplaceConfig;
-use Google\Privacy\Dlp\V2beta1\RiskAnalysisOperationMetadata;
-use Google\Privacy\Dlp\V2beta1\RiskAnalysisOperationResult;
 use Google\Privacy\Dlp\V2beta1\StorageConfig;
 
 /**
@@ -95,6 +90,7 @@ use Google\Privacy\Dlp\V2beta1\StorageConfig;
  * with these names, this class includes a format method for each type of name, and additionally
  * a parseName method to extract the individual identifiers contained within formatted names
  * that are returned by the API.
+ *
  * @experimental
  */
 class DlpServiceGapicClient
@@ -147,6 +143,7 @@ class DlpServiceGapicClient
                 'result' => self::getResultNameTemplate(),
             ];
         }
+
         return self::$pathTemplateMap;
     }
 
@@ -164,17 +161,17 @@ class DlpServiceGapicClient
         ];
     }
 
-
     private static function getGapicVersion()
     {
         if (!self::$gapicVersionLoaded) {
-            if (file_exists(__DIR__ . '/../VERSION')) {
-                self::$gapicVersion = trim(file_get_contents(__DIR__ . '/../VERSION'));
+            if (file_exists(__DIR__.'/../VERSION')) {
+                self::$gapicVersion = trim(file_get_contents(__DIR__.'/../VERSION'));
             } elseif (class_exists(Version::class)) {
                 self::$gapicVersion = Version::VERSION;
             }
             self::$gapicVersionLoaded = true;
         }
+
         return self::$gapicVersion;
     }
 
@@ -183,7 +180,8 @@ class DlpServiceGapicClient
      * a result resource.
      *
      * @param string $result
-     * @return string The formatted result resource.
+     *
+     * @return string the formatted result resource
      * @experimental
      */
     public static function resultName($result)
@@ -197,7 +195,7 @@ class DlpServiceGapicClient
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
-     * - result: inspect/results/{result}
+     * - result: inspect/results/{result}.
      *
      * The optional $template argument can be supplied to specify a particular pattern, and must
      * match one of the templates listed above. If no $template argument is provided, or if the
@@ -205,9 +203,11 @@ class DlpServiceGapicClient
      * each of the supported templates, and return the first match.
      *
      * @param string $formattedName The formatted name string
-     * @param string $template Optional name of template to match
-     * @return array An associative array from name component IDs to component values.
-     * @throws ValidationException If $formattedName could not be matched.
+     * @param string $template      Optional name of template to match
+     *
+     * @return array an associative array from name component IDs to component values
+     *
+     * @throws ValidationException if $formattedName could not be matched
      * @experimental
      */
     public static function parseName($formattedName, $template = null)
@@ -218,6 +218,7 @@ class DlpServiceGapicClient
             if (!isset($templateMap[$template])) {
                 throw new ValidationException("Template name $template does not exist");
             }
+
             return $templateMap[$template]->match($formattedName);
         }
 
@@ -230,7 +231,6 @@ class DlpServiceGapicClient
         }
         throw new ValidationException("Input did not match any known format. Input: $formattedName");
     }
-
 
     /**
      * Return an OperationsClient object with the same endpoint as $this.
@@ -251,13 +251,14 @@ class DlpServiceGapicClient
      * final response.
      *
      * @param string $operationName The name of the long running operation
-     * @param string $methodName The name of the method used to start the operation
+     * @param string $methodName    The name of the method used to start the operation
+     *
      * @return \Google\GAX\OperationResponse
      * @experimental
      */
     public function resumeOperation($operationName, $methodName = null)
     {
-        $lroDescriptors = DlpServiceGapicClient::getLongRunningDescriptors();
+        $lroDescriptors = self::getLongRunningDescriptors();
         if (!is_null($methodName) && array_key_exists($methodName, $lroDescriptors)) {
             $options = $lroDescriptors[$methodName];
         } else {
@@ -265,6 +266,7 @@ class DlpServiceGapicClient
         }
         $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
         $operation->reload();
+
         return $operation;
     }
 
@@ -272,7 +274,7 @@ class DlpServiceGapicClient
      * Constructor.
      *
      * @param array $options {
-     *     Optional. Options for configuring the service API wrapper.
+     *                       Optional. Options for configuring the service API wrapper.
      *
      *     @type string $serviceAddress The domain name of the API remote host.
      *                                  Default 'dlp.googleapis.com'.
@@ -320,7 +322,7 @@ class DlpServiceGapicClient
             'retryingOverride' => null,
             'libName' => null,
             'libVersion' => null,
-            'clientConfigPath' => __DIR__ . '/../resources/dlp_service_client_config.json',
+            'clientConfigPath' => __DIR__.'/../resources/dlp_service_client_config.json',
         ];
         $options = array_merge($defaultOptions, $options);
 
@@ -400,12 +402,13 @@ class DlpServiceGapicClient
      * }
      * ```
      *
-     * @param DeidentifyConfig $deidentifyConfig Configuration for the de-identification of the list of content items.
-     * @param InspectConfig $inspectConfig Configuration for the inspector.
-     * @param ContentItem[] $items The list of items to inspect. Up to 100 are allowed per request.
-     * All items will be treated as text/*.
-     * @param array $optionalArgs {
-     *     Optional.
+     * @param DeidentifyConfig $deidentifyConfig configuration for the de-identification of the list of content items
+     * @param InspectConfig    $inspectConfig    configuration for the inspector
+     * @param ContentItem[]    $items            The list of items to inspect. Up to 100 are allowed per request.
+     *                                           All items will be treated as text/*.
+     * @param array            $optionalArgs     {
+     *                                           Optional
+     *
      *     @type \Google\GAX\RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\GAX\RetrySettings} object, or an associative array
@@ -486,10 +489,11 @@ class DlpServiceGapicClient
      * }
      * ```
      *
-     * @param PrivacyMetric $privacyMetric Privacy metric to compute.
-     * @param BigQueryTable $sourceTable Input dataset to compute metrics over.
-     * @param array $optionalArgs {
-     *     Optional.
+     * @param PrivacyMetric $privacyMetric privacy metric to compute
+     * @param BigQueryTable $sourceTable   input dataset to compute metrics over
+     * @param array         $optionalArgs  {
+     *                                     Optional
+     *
      *     @type \Google\GAX\RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\GAX\RetrySettings} object, or an associative array
@@ -554,12 +558,13 @@ class DlpServiceGapicClient
      * }
      * ```
      *
-     * @param InspectConfig $inspectConfig Configuration for the inspector.
-     * @param ContentItem[] $items The list of items to inspect. Items in a single request are
-     * considered "related" unless inspect_config.independent_inputs is true.
-     * Up to 100 are allowed per request.
-     * @param array $optionalArgs {
-     *     Optional.
+     * @param InspectConfig $inspectConfig configuration for the inspector
+     * @param ContentItem[] $items         The list of items to inspect. Items in a single request are
+     *                                     considered "related" unless inspect_config.independent_inputs is true.
+     *                                     Up to 100 are allowed per request.
+     * @param array         $optionalArgs  {
+     *                                     Optional
+     *
      *     @type \Google\GAX\RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\GAX\RetrySettings} object, or an associative array
@@ -632,12 +637,13 @@ class DlpServiceGapicClient
      * }
      * ```
      *
-     * @param InspectConfig $inspectConfig Configuration for the inspector.
-     * @param ContentItem[] $items The list of items to inspect. Up to 100 are allowed per request.
+     * @param InspectConfig   $inspectConfig  configuration for the inspector
+     * @param ContentItem[]   $items          The list of items to inspect. Up to 100 are allowed per request.
      * @param ReplaceConfig[] $replaceConfigs The strings to replace findings text findings with. Must specify at least
-     * one of these or one ImageRedactionConfig if redacting images.
-     * @param array $optionalArgs {
-     *     Optional.
+     *                                        one of these or one ImageRedactionConfig if redacting images.
+     * @param array           $optionalArgs   {
+     *                                        Optional
+     *
      *     @type ImageRedactionConfig[] $imageRedactionConfigs
      *          The configuration for specifying what content to redact from images.
      *     @type \Google\GAX\RetrySettings|array $retrySettings
@@ -735,11 +741,12 @@ class DlpServiceGapicClient
      * }
      * ```
      *
-     * @param InspectConfig $inspectConfig Configuration for the inspector.
-     * @param StorageConfig $storageConfig Specification of the data set to process.
-     * @param OutputStorageConfig $outputConfig Optional location to store findings.
-     * @param array $optionalArgs {
-     *     Optional.
+     * @param InspectConfig       $inspectConfig configuration for the inspector
+     * @param StorageConfig       $storageConfig specification of the data set to process
+     * @param OutputStorageConfig $outputConfig  optional location to store findings
+     * @param array               $optionalArgs  {
+     *                                           Optional
+     *
      *     @type OperationConfig $operationConfig
      *          Additional configuration settings for long running operations.
      *     @type \Google\GAX\RetrySettings|array $retrySettings
@@ -798,11 +805,12 @@ class DlpServiceGapicClient
      * }
      * ```
      *
-     * @param string $name Identifier of the results set returned as metadata of
-     * the longrunning operation created by a call to InspectDataSource.
-     * Should be in the format of `inspect/results/{id}`.
-     * @param array $optionalArgs {
-     *     Optional.
+     * @param string $name         Identifier of the results set returned as metadata of
+     *                             the longrunning operation created by a call to InspectDataSource.
+     *                             Should be in the format of `inspect/results/{id}`.
+     * @param array  $optionalArgs {
+     *                             Optional
+     *
      *     @type int $pageSize
      *          Maximum number of results to return.
      *          If 0, the implementation selects a reasonable value.
@@ -881,12 +889,13 @@ class DlpServiceGapicClient
      * }
      * ```
      *
-     * @param string $category Category name as returned by ListRootCategories.
+     * @param string $category     category name as returned by ListRootCategories
      * @param string $languageCode Optional BCP-47 language code for localized info type friendly
-     * names. If omitted, or if localized strings are not available,
-     * en-US strings will be returned.
-     * @param array $optionalArgs {
-     *     Optional.
+     *                             names. If omitted, or if localized strings are not available,
+     *                             en-US strings will be returned.
+     * @param array  $optionalArgs {
+     *                             Optional
+     *
      *     @type \Google\GAX\RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\GAX\RetrySettings} object, or an associative array
@@ -940,10 +949,11 @@ class DlpServiceGapicClient
      * ```
      *
      * @param string $languageCode Optional language code for localized friendly category names.
-     * If omitted or if localized strings are not available,
-     * en-US strings will be returned.
-     * @param array $optionalArgs {
-     *     Optional.
+     *                             If omitted or if localized strings are not available,
+     *                             en-US strings will be returned.
+     * @param array  $optionalArgs {
+     *                             Optional
+     *
      *     @type \Google\GAX\RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\GAX\RetrySettings} object, or an associative array
@@ -984,6 +994,7 @@ class DlpServiceGapicClient
     /**
      * Initiates an orderly shutdown in which preexisting calls continue but new
      * calls are immediately cancelled.
+     *
      * @experimental
      */
     public function close()

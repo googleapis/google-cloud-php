@@ -34,7 +34,6 @@ use Google\Cloud\Version;
 use Google\GAX\AgentHeaderDescriptor;
 use Google\GAX\ApiCallable;
 use Google\GAX\CallSettings;
-use Google\GAX\GrpcConstants;
 use Google\GAX\GrpcCredentialsHelper;
 use Google\GAX\PageStreamingDescriptor;
 use Google\GAX\PathTemplate;
@@ -96,6 +95,7 @@ use Google\Monitoring\V3\UpdateGroupRequest;
  * with these names, this class includes a format method for each type of name, and additionally
  * a parseName method to extract the individual identifiers contained within formatted names
  * that are returned by the API.
+ *
  * @experimental
  */
 class GroupServiceGapicClient
@@ -158,8 +158,10 @@ class GroupServiceGapicClient
                 'group' => self::getGroupNameTemplate(),
             ];
         }
+
         return self::$pathTemplateMap;
     }
+
     private static function getPageStreamingDescriptors()
     {
         $listGroupsPageStreamingDescriptor =
@@ -189,18 +191,17 @@ class GroupServiceGapicClient
         return $pageStreamingDescriptors;
     }
 
-
-
     private static function getGapicVersion()
     {
         if (!self::$gapicVersionLoaded) {
-            if (file_exists(__DIR__ . '/../VERSION')) {
-                self::$gapicVersion = trim(file_get_contents(__DIR__ . '/../VERSION'));
+            if (file_exists(__DIR__.'/../VERSION')) {
+                self::$gapicVersion = trim(file_get_contents(__DIR__.'/../VERSION'));
             } elseif (class_exists(Version::class)) {
                 self::$gapicVersion = Version::VERSION;
             }
             self::$gapicVersionLoaded = true;
         }
+
         return self::$gapicVersion;
     }
 
@@ -209,7 +210,8 @@ class GroupServiceGapicClient
      * a project resource.
      *
      * @param string $project
-     * @return string The formatted project resource.
+     *
+     * @return string the formatted project resource
      * @experimental
      */
     public static function projectName($project)
@@ -225,7 +227,8 @@ class GroupServiceGapicClient
      *
      * @param string $project
      * @param string $group
-     * @return string The formatted group resource.
+     *
+     * @return string the formatted group resource
      * @experimental
      */
     public static function groupName($project, $group)
@@ -241,7 +244,7 @@ class GroupServiceGapicClient
      * The following name formats are supported:
      * Template: Pattern
      * - project: projects/{project}
-     * - group: projects/{project}/groups/{group}
+     * - group: projects/{project}/groups/{group}.
      *
      * The optional $template argument can be supplied to specify a particular pattern, and must
      * match one of the templates listed above. If no $template argument is provided, or if the
@@ -249,9 +252,11 @@ class GroupServiceGapicClient
      * each of the supported templates, and return the first match.
      *
      * @param string $formattedName The formatted name string
-     * @param string $template Optional name of template to match
-     * @return array An associative array from name component IDs to component values.
-     * @throws ValidationException If $formattedName could not be matched.
+     * @param string $template      Optional name of template to match
+     *
+     * @return array an associative array from name component IDs to component values
+     *
+     * @throws ValidationException if $formattedName could not be matched
      * @experimental
      */
     public static function parseName($formattedName, $template = null)
@@ -262,6 +267,7 @@ class GroupServiceGapicClient
             if (!isset($templateMap[$template])) {
                 throw new ValidationException("Template name $template does not exist");
             }
+
             return $templateMap[$template]->match($formattedName);
         }
 
@@ -275,14 +281,11 @@ class GroupServiceGapicClient
         throw new ValidationException("Input did not match any known format. Input: $formattedName");
     }
 
-
-
-
     /**
      * Constructor.
      *
      * @param array $options {
-     *     Optional. Options for configuring the service API wrapper.
+     *                       Optional. Options for configuring the service API wrapper.
      *
      *     @type string $serviceAddress The domain name of the API remote host.
      *                                  Default 'monitoring.googleapis.com'.
@@ -333,10 +336,9 @@ class GroupServiceGapicClient
             'retryingOverride' => null,
             'libName' => null,
             'libVersion' => null,
-            'clientConfigPath' => __DIR__ . '/../resources/group_service_client_config.json',
+            'clientConfigPath' => __DIR__.'/../resources/group_service_client_config.json',
         ];
         $options = array_merge($defaultOptions, $options);
-
 
         $gapicVersion = $options['libVersion'] ?: self::getGapicVersion();
 
@@ -412,10 +414,11 @@ class GroupServiceGapicClient
      * }
      * ```
      *
-     * @param string $name The project whose groups are to be listed. The format is
-     * `"projects/{project_id_or_number}"`.
-     * @param array $optionalArgs {
-     *     Optional.
+     * @param string $name         The project whose groups are to be listed. The format is
+     *                             `"projects/{project_id_or_number}"`.
+     * @param array  $optionalArgs {
+     *                             Optional
+     *
      *     @type string $childrenOfGroup
      *          A group name: `"projects/{project_id_or_number}/groups/{group_id}"`.
      *          Returns groups whose `parentName` field contains the group
@@ -506,10 +509,11 @@ class GroupServiceGapicClient
      * }
      * ```
      *
-     * @param string $name The group to retrieve. The format is
-     * `"projects/{project_id_or_number}/groups/{group_id}"`.
-     * @param array $optionalArgs {
-     *     Optional.
+     * @param string $name         The group to retrieve. The format is
+     *                             `"projects/{project_id_or_number}/groups/{group_id}"`.
+     * @param array  $optionalArgs {
+     *                             Optional
+     *
      *     @type \Google\GAX\RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\GAX\RetrySettings} object, or an associative array
@@ -562,12 +566,13 @@ class GroupServiceGapicClient
      * }
      * ```
      *
-     * @param string $name The project in which to create the group. The format is
-     * `"projects/{project_id_or_number}"`.
-     * @param Group $group A group definition. It is an error to define the `name` field because
-     * the system assigns the name.
-     * @param array $optionalArgs {
-     *     Optional.
+     * @param string $name         The project in which to create the group. The format is
+     *                             `"projects/{project_id_or_number}"`.
+     * @param Group  $group        A group definition. It is an error to define the `name` field because
+     *                             the system assigns the name.
+     * @param array  $optionalArgs {
+     *                             Optional
+     *
      *     @type bool $validateOnly
      *          If true, validate this request but do not create the group.
      *     @type \Google\GAX\RetrySettings|array $retrySettings
@@ -626,10 +631,11 @@ class GroupServiceGapicClient
      * }
      * ```
      *
-     * @param Group $group The new definition of the group.  All fields of the existing group,
-     * excepting `name`, are replaced with the corresponding fields of this group.
+     * @param Group $group        The new definition of the group.  All fields of the existing group,
+     *                            excepting `name`, are replaced with the corresponding fields of this group.
      * @param array $optionalArgs {
-     *     Optional.
+     *                            Optional
+     *
      *     @type bool $validateOnly
      *          If true, validate this request but do not update the existing group.
      *     @type \Google\GAX\RetrySettings|array $retrySettings
@@ -686,10 +692,11 @@ class GroupServiceGapicClient
      * }
      * ```
      *
-     * @param string $name The group to delete. The format is
-     * `"projects/{project_id_or_number}/groups/{group_id}"`.
-     * @param array $optionalArgs {
-     *     Optional.
+     * @param string $name         The group to delete. The format is
+     *                             `"projects/{project_id_or_number}/groups/{group_id}"`.
+     * @param array  $optionalArgs {
+     *                             Optional
+     *
      *     @type \Google\GAX\RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\GAX\RetrySettings} object, or an associative array
@@ -751,10 +758,11 @@ class GroupServiceGapicClient
      * }
      * ```
      *
-     * @param string $name The group whose members are listed. The format is
-     * `"projects/{project_id_or_number}/groups/{group_id}"`.
-     * @param array $optionalArgs {
-     *     Optional.
+     * @param string $name         The group whose members are listed. The format is
+     *                             `"projects/{project_id_or_number}/groups/{group_id}"`.
+     * @param array  $optionalArgs {
+     *                             Optional
+     *
      *     @type int $pageSize
      *          The maximum number of resources contained in the underlying API
      *          response. The API may return fewer values in a page, even if
@@ -829,6 +837,7 @@ class GroupServiceGapicClient
     /**
      * Initiates an orderly shutdown in which preexisting calls continue but new
      * calls are immediately cancelled.
+     *
      * @experimental
      */
     public function close()
