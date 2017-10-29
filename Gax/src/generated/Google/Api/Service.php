@@ -36,10 +36,10 @@ use Google\Protobuf\Internal\GPBUtil;
 class Service extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The version of the service configuration. The config version may
-     * influence interpretation of the configuration, for example, to
-     * determine defaults. This is documented together with applicable
-     * options. The current default for the config version itself is `3`.
+     * The semantic version of the service configuration. The config version
+     * affects the interpretation of the service configuration. For example,
+     * certain features are enabled by default for certain config versions.
+     * The latest config version is `3`.
      *
      * Generated from protobuf field <code>.google.protobuf.UInt32Value config_version = 20;</code>
      */
@@ -60,15 +60,13 @@ class Service extends \Google\Protobuf\Internal\Message
      */
     private $id = '';
     /**
-     * The product title associated with this service.
+     * The product title for this service.
      *
      * Generated from protobuf field <code>string title = 2;</code>
      */
     private $title = '';
     /**
-     * The id of the Google developer project that owns the service.
-     * Members of this project can manage the service configuration,
-     * manage consumption of the service, etc.
+     * The Google project that owns this service.
      *
      * Generated from protobuf field <code>string producer_project_id = 22;</code>
      */
@@ -182,6 +180,12 @@ class Service extends \Google\Protobuf\Internal\Message
      */
     private $monitored_resources;
     /**
+     * Billing configuration.
+     *
+     * Generated from protobuf field <code>.google.api.Billing billing = 26;</code>
+     */
+    private $billing = null;
+    /**
      * Logging configuration.
      *
      * Generated from protobuf field <code>.google.api.Logging logging = 27;</code>
@@ -218,10 +222,10 @@ class Service extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The version of the service configuration. The config version may
-     * influence interpretation of the configuration, for example, to
-     * determine defaults. This is documented together with applicable
-     * options. The current default for the config version itself is `3`.
+     * The semantic version of the service configuration. The config version
+     * affects the interpretation of the service configuration. For example,
+     * certain features are enabled by default for certain config versions.
+     * The latest config version is `3`.
      *
      * Generated from protobuf field <code>.google.protobuf.UInt32Value config_version = 20;</code>
      * @return \Google\Protobuf\UInt32Value
@@ -232,10 +236,10 @@ class Service extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The version of the service configuration. The config version may
-     * influence interpretation of the configuration, for example, to
-     * determine defaults. This is documented together with applicable
-     * options. The current default for the config version itself is `3`.
+     * The semantic version of the service configuration. The config version
+     * affects the interpretation of the service configuration. For example,
+     * certain features are enabled by default for certain config versions.
+     * The latest config version is `3`.
      *
      * Generated from protobuf field <code>.google.protobuf.UInt32Value config_version = 20;</code>
      * @param \Google\Protobuf\UInt32Value $var
@@ -308,7 +312,7 @@ class Service extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The product title associated with this service.
+     * The product title for this service.
      *
      * Generated from protobuf field <code>string title = 2;</code>
      * @return string
@@ -319,7 +323,7 @@ class Service extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The product title associated with this service.
+     * The product title for this service.
      *
      * Generated from protobuf field <code>string title = 2;</code>
      * @param string $var
@@ -334,9 +338,7 @@ class Service extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The id of the Google developer project that owns the service.
-     * Members of this project can manage the service configuration,
-     * manage consumption of the service, etc.
+     * The Google project that owns this service.
      *
      * Generated from protobuf field <code>string producer_project_id = 22;</code>
      * @return string
@@ -347,9 +349,7 @@ class Service extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The id of the Google developer project that owns the service.
-     * Members of this project can manage the service configuration,
-     * manage consumption of the service, etc.
+     * The Google project that owns this service.
      *
      * Generated from protobuf field <code>string producer_project_id = 22;</code>
      * @param string $var
@@ -785,6 +785,32 @@ class Service extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Api\MonitoredResourceDescriptor::class);
         $this->monitored_resources = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Billing configuration.
+     *
+     * Generated from protobuf field <code>.google.api.Billing billing = 26;</code>
+     * @return \Google\Api\Billing
+     */
+    public function getBilling()
+    {
+        return $this->billing;
+    }
+
+    /**
+     * Billing configuration.
+     *
+     * Generated from protobuf field <code>.google.api.Billing billing = 26;</code>
+     * @param \Google\Api\Billing $var
+     * @return $this
+     */
+    public function setBilling($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Api\Billing::class);
+        $this->billing = $var;
 
         return $this;
     }
