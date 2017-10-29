@@ -82,7 +82,7 @@ use Google\Longrunning\OperationsGrpcClient;
  *         'scopes' => ['my-service-scope'],
  *     ];
  *     $operationsClient = new OperationsClient($options);
- *     $name = "";
+ *     $name = '';
  *     $response = $operationsClient->getOperation($name);
  * } finally {
  *     if (isset($operationsClient)) {
@@ -191,8 +191,8 @@ class OperationsGapicClient
      *           settings in $clientConfigPath.
      * }
      *
-     * @throws ValidationException Throws a ValidationException if required arguments are missing
-     *                             from the $options array.
+     * @throws ValidationException throws a ValidationException if required arguments are missing
+     *                             from the $options array
      * @experimental
      */
     public function __construct($options = [])
@@ -271,7 +271,7 @@ class OperationsGapicClient
      *         'scopes' => ['my-service-scope'],
      *     ];
      *     $operationsClient = new OperationsClient($options);
-     *     $name = "";
+     *     $name = '';
      *     $response = $operationsClient->getOperation($name);
      * } finally {
      *     if (isset($operationsClient)) {
@@ -280,9 +280,9 @@ class OperationsGapicClient
      * }
      * ```
      *
-     * @param string $name         The name of the operation resource.
+     * @param string $name         the name of the operation resource
      * @param array  $optionalArgs {
-     *                             Optional.
+     *                             Optional
      *
      *     @type \Google\GAX\RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
@@ -336,16 +336,16 @@ class OperationsGapicClient
      *         'scopes' => ['my-service-scope'],
      *     ];
      *     $operationsClient = new OperationsClient($options);
-     *     $name = "";
-     *     $filter = "";
+     *     $name = '';
+     *     $filter = '';
      *     // Iterate through all elements
      *     $pagedResponse = $operationsClient->listOperations($name, $filter);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
      *
-     *     // OR iterate over pages of elements, with the maximum page size set to 5
-     *     $pagedResponse = $operationsClient->listOperations($name, $filter, ['pageSize' => 5]);
+     *     // OR iterate over pages of elements
+     *     $pagedResponse = $operationsClient->listOperations($name, $filter);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -358,10 +358,10 @@ class OperationsGapicClient
      * }
      * ```
      *
-     * @param string $name         The name of the operation collection.
-     * @param string $filter       The standard list filter.
+     * @param string $name         the name of the operation collection
+     * @param string $filter       the standard list filter
      * @param array  $optionalArgs {
-     *                             Optional.
+     *                             Optional
      *
      *     @type int $pageSize
      *          The maximum number of resources contained in the underlying API
@@ -436,7 +436,7 @@ class OperationsGapicClient
      *         'scopes' => ['my-service-scope'],
      *     ];
      *     $operationsClient = new OperationsClient($options);
-     *     $name = "";
+     *     $name = '';
      *     $operationsClient->cancelOperation($name);
      * } finally {
      *     if (isset($operationsClient)) {
@@ -445,9 +445,9 @@ class OperationsGapicClient
      * }
      * ```
      *
-     * @param string $name         The name of the operation resource to be cancelled.
+     * @param string $name         the name of the operation resource to be cancelled
      * @param array  $optionalArgs {
-     *                             Optional.
+     *                             Optional
      *
      *     @type \Google\GAX\RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
@@ -498,7 +498,7 @@ class OperationsGapicClient
      *         'scopes' => ['my-service-scope'],
      *     ];
      *     $operationsClient = new OperationsClient($options);
-     *     $name = "";
+     *     $name = '';
      *     $operationsClient->deleteOperation($name);
      * } finally {
      *     if (isset($operationsClient)) {
@@ -507,9 +507,9 @@ class OperationsGapicClient
      * }
      * ```
      *
-     * @param string $name         The name of the operation resource to be deleted.
+     * @param string $name         the name of the operation resource to be deleted
      * @param array  $optionalArgs {
-     *                             Optional.
+     *                             Optional
      *
      *     @type \Google\GAX\RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a

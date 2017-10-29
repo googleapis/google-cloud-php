@@ -10,54 +10,38 @@ use Google\Protobuf\Internal\GPBUtil;
 
 /**
  * Billing related configuration of the service.
- * The following example shows how to configure metrics for billing:
+ * The following example shows how to configure monitored resources and metrics
+ * for billing:
+ *     monitored_resources:
+ *     - type: library.googleapis.com/branch
+ *       labels:
+ *       - key: /city
+ *         description: The city where the library branch is located in.
+ *       - key: /name
+ *         description: The name of the branch.
  *     metrics:
- *     - name: library.googleapis.com/read_calls
- *       metric_kind: DELTA
- *       value_type: INT64
- *     - name: library.googleapis.com/write_calls
+ *     - name: library.googleapis.com/book/borrowed_count
  *       metric_kind: DELTA
  *       value_type: INT64
  *     billing:
- *       metrics:
- *       - library.googleapis.com/read_calls
- *       - library.googleapis.com/write_calls
- * The next example shows how to enable billing status check and customize the
- * check behavior. It makes sure billing status check is included in the `Check`
- * method of [Service Control API](https://cloud.google.com/service-control/).
- * In the example, "google.storage.Get" method can be served when the billing
- * status is either `current` or `delinquent`, while "google.storage.Write"
- * method can only be served when the billing status is `current`:
- *     billing:
- *       rules:
- *       - selector: google.storage.Get
- *         allowed_statuses:
- *         - current
- *         - delinquent
- *       - selector: google.storage.Write
- *         allowed_statuses: current
- * Mostly services should only allow `current` status when serving requests.
- * In addition, services can choose to allow both `current` and `delinquent`
- * statuses when serving read-only requests to resources. If there's no
- * matching selector for operation, no billing status check will be performed.
+ *       consumer_destinations:
+ *       - monitored_resource: library.googleapis.com/branch
+ *         metrics:
+ *         - library.googleapis.com/book/borrowed_count
  *
  * Generated from protobuf message <code>google.api.Billing</code>
  */
 class Billing extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Names of the metrics to report to billing. Each name must
-     * be defined in [Service.metrics][google.api.Service.metrics] section.
+     * Billing configurations for sending metrics to the consumer project.
+     * There can be multiple consumer destinations per service, each one must have
+     * a different monitored resource type. A metric can be used in at most
+     * one consumer destination.
      *
-     * Generated from protobuf field <code>repeated string metrics = 1;</code>
+     * Generated from protobuf field <code>repeated .google.api.Billing.BillingDestination consumer_destinations = 8;</code>
      */
-    private $metrics;
-    /**
-     * A list of billing status rules for configuring billing status check.
-     *
-     * Generated from protobuf field <code>repeated .google.api.BillingStatusRule rules = 5;</code>
-     */
-    private $rules;
+    private $consumer_destinations;
 
     public function __construct() {
         \GPBMetadata\Google\Api\Billing::initOnce();
@@ -65,55 +49,33 @@ class Billing extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Names of the metrics to report to billing. Each name must
-     * be defined in [Service.metrics][google.api.Service.metrics] section.
+     * Billing configurations for sending metrics to the consumer project.
+     * There can be multiple consumer destinations per service, each one must have
+     * a different monitored resource type. A metric can be used in at most
+     * one consumer destination.
      *
-     * Generated from protobuf field <code>repeated string metrics = 1;</code>
+     * Generated from protobuf field <code>repeated .google.api.Billing.BillingDestination consumer_destinations = 8;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
-    public function getMetrics()
+    public function getConsumerDestinations()
     {
-        return $this->metrics;
+        return $this->consumer_destinations;
     }
 
     /**
-     * Names of the metrics to report to billing. Each name must
-     * be defined in [Service.metrics][google.api.Service.metrics] section.
+     * Billing configurations for sending metrics to the consumer project.
+     * There can be multiple consumer destinations per service, each one must have
+     * a different monitored resource type. A metric can be used in at most
+     * one consumer destination.
      *
-     * Generated from protobuf field <code>repeated string metrics = 1;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * Generated from protobuf field <code>repeated .google.api.Billing.BillingDestination consumer_destinations = 8;</code>
+     * @param \Google\Api\Billing_BillingDestination[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
-    public function setMetrics($var)
+    public function setConsumerDestinations($var)
     {
-        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
-        $this->metrics = $arr;
-
-        return $this;
-    }
-
-    /**
-     * A list of billing status rules for configuring billing status check.
-     *
-     * Generated from protobuf field <code>repeated .google.api.BillingStatusRule rules = 5;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
-     */
-    public function getRules()
-    {
-        return $this->rules;
-    }
-
-    /**
-     * A list of billing status rules for configuring billing status check.
-     *
-     * Generated from protobuf field <code>repeated .google.api.BillingStatusRule rules = 5;</code>
-     * @param \Google\Api\BillingStatusRule[]|\Google\Protobuf\Internal\RepeatedField $var
-     * @return $this
-     */
-    public function setRules($var)
-    {
-        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Api\BillingStatusRule::class);
-        $this->rules = $arr;
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Api\Billing_BillingDestination::class);
+        $this->consumer_destinations = $arr;
 
         return $this;
     }
