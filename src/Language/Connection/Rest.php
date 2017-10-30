@@ -40,7 +40,7 @@ class Rest implements ConnectionInterface
     public function __construct(array $config = [])
     {
         $config += [
-            'serviceDefinitionPath' => __DIR__ . '/ServiceDefinition/language-v1.json',
+            'serviceDefinitionPath' => __DIR__ . '/ServiceDefinition/language-v1beta2.json',
             'componentVersion' => LanguageClient::VERSION
         ];
 
@@ -85,5 +85,14 @@ class Rest implements ConnectionInterface
     public function annotateText(array $args = [])
     {
         return $this->send('documents', 'annotateText', $args);
+    }
+
+    /**
+     * @param array $args
+     * @return array
+     */
+    public function classifyText(array $args = [])
+    {
+        return $this->send('documents', 'classifyText', $args);
     }
 }

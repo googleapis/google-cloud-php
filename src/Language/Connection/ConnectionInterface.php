@@ -46,4 +46,10 @@ interface ConnectionInterface
      * @return array
      */
     public function annotateText(array $args = []);
+
+    /**
+     * @param array $args
+     * @return array
+     */
+    public function classifyText(array $args = []);
 }

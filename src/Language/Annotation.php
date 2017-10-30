@@ -53,7 +53,7 @@ use Google\Cloud\Core\CallTrait;
  *     }
  *     ```
  *
- *     @see https://cloud.google.com/natural-language/docs/reference/rest/v1beta1/Sentence Sentence type documentation
+ *     @see https://cloud.google.com/natural-language/docs/reference/rest/v1/Sentence Sentence type documentation
  *
  *     @return array|null
  * }
@@ -67,7 +67,7 @@ use Google\Cloud\Core\CallTrait;
  *     }
  *     ```
  *
- *     @see https://cloud.google.com/natural-language/docs/reference/rest/v1beta1/Token Token type documentation
+ *     @see https://cloud.google.com/natural-language/docs/reference/rest/v1/Token Token type documentation
  *
  *     @return array|null
  * }
@@ -81,7 +81,23 @@ use Google\Cloud\Core\CallTrait;
  *     }
  *     ```
  *
- *     @see https://cloud.google.com/natural-language/docs/reference/rest/v1beta1/Entity Entity type documentation
+ *     @see https://cloud.google.com/natural-language/docs/reference/rest/v1/Entity Entity type documentation
+ *
+ *     @return array|null
+ * }
+ * @method categories() {
+ *     Returns an array of categories representing the input document.
+ *
+ *     Example:
+ *     ```
+ *     foreach ($annotation->categories() as $category) {
+ *         echo $category['name'];
+ *     }
+ *     ```
+ *
+ *     @codeCoverageIgnoreStart
+ *     @see https://cloud.google.com/natural-language/docs/reference/rest/v1beta2/ClassificationCategory Classification category documentation
+ *     @codeCoverageIgnoreEnd
  *
  *     @return array|null
  * }
@@ -93,7 +109,7 @@ use Google\Cloud\Core\CallTrait;
  *     echo $annotation->language();
  *     ```
  *
- *     @return string
+ *     @return string|null
  * }
  */
 class Annotation

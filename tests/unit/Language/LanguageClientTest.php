@@ -92,6 +92,33 @@ class LanguageClientTest extends \PHPUnit_Framework_TestCase
     /**
      * @dataProvider analyzeDataProvider
      */
+    public function testClassifyText($options, $expectedOptions)
+    {
+        $content = $options['content'];
+        unset($options['content']);
+        $categories = [
+            [
+                'name' => 'category1',
+                'confidence' => .99
+            ]
+        ];
+
+        $this->connection
+            ->classifyText($expectedOptions)
+            ->willReturn([
+                'categories' => $categories
+            ])
+            ->shouldBeCalledTimes(1);
+        $this->client->setConnection($this->connection->reveal());
+        $annotation = $this->client->classifyText($content, $options);
+
+        $this->assertInstanceOf(Annotation::class, $annotation);
+        $this->assertEquals($categories, $annotation->categories());
+    }
+
+    /**
+     * @dataProvider analyzeDataProvider
+     */
     public function testAnnotateText($options, $expectedOptions)
     {
         $content = $options['content'];

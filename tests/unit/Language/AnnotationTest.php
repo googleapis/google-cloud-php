@@ -66,7 +66,7 @@ class AnnotationTest extends \PHPUnit_Framework_TestCase
             'sentences' => [],
             'language' => 'en'
         ];
-        $this->annotation = new annotation($this->info);
+        $this->annotation = new Annotation($this->info);
     }
 
     public function testGetSentiment()

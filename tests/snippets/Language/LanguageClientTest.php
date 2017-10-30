@@ -107,6 +107,29 @@ class LanguageClientTest extends SnippetTestCase
         $this->assertEquals('1.0', $res->output());
     }
 
+    public function testClassifyText()
+    {
+        $name = 'my-category';
+        $this->connection->classifyText(Argument::any())
+            ->shouldBeCalled()
+            ->willReturn([
+                'categories' => [
+                    [
+                        'name' => $name,
+                        'confidence' => .99
+                    ]
+                ]
+            ]);
+
+        $this->client->___setProperty('connection', $this->connection->reveal());
+
+        $snippet = $this->snippetFromMethod(LanguageClient::class, 'classifyText');
+        $snippet->addLocal('language', $this->client);
+
+        $res = $snippet->invoke();
+        $this->assertEquals($name, $res->output());
+    }
+
     public function testAnnotateTextAllFeatures()
     {
         $this->connection->annotateText(Argument::any())
