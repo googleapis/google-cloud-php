@@ -21,6 +21,7 @@ use Google\Cloud\Core\Batch\BatchRunner;
 use Google\Cloud\Core\Batch\BatchTrait;
 use Google\Cloud\Debugger\BreakpointStorage\BreakpointStorageInterface;
 use Google\Cloud\Debugger\BreakpointStorage\SysvBreakpointStorage;
+use Google\Cloud\Logging\LoggingClient;
 use Psr\Log\LoggerInterface;
 
 /**
@@ -196,7 +197,7 @@ class Agent
 
     private function defaultLogger()
     {
-        return null;
+        return new LoggingClient();
     }
 
     private function invalidateOpcache($breakpoint)
