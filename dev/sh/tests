@@ -5,7 +5,11 @@ set -e
 function unit () {
   echo "Running Unit Test Suite"
 
-  $(dirname $0)/../../vendor/bin/phpunit
+  if [ "${TRAVIS}" == "true" ]; then
+    $(dirname $0)/../../vendor/bin/phpunit --coverage-clover=build/clover.xml
+  else
+    $(dirname $0)/../../vendor/bin/phpunit
+  fi
 }
 
 function snippets() {

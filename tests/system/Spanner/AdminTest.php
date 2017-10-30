@@ -125,11 +125,11 @@ class AdminTest extends SpannerTestCase
 
     private function parseName($name)
     {
-        return InstanceAdminClient::parseInstanceFromInstanceName($name);
+        return InstanceAdminClient::parseName($name)['instance'];
     }
 
     private function parseDbName($name)
     {
-        return DatabaseAdminClient::parseDatabaseFromDatabaseName($name);
+        return DatabaseAdminClient::parseName($name)['database'];
     }
 }

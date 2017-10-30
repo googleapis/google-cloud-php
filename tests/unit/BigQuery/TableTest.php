@@ -18,10 +18,15 @@
 namespace Google\Cloud\Tests\Unit\BigQuery;
 
 use Google\Cloud\BigQuery\Connection\ConnectionInterface;
+use Google\Cloud\BigQuery\CopyJobConfiguration;
+use Google\Cloud\BigQuery\ExtractJobConfiguration;
 use Google\Cloud\BigQuery\InsertResponse;
 use Google\Cloud\BigQuery\Job;
+use Google\Cloud\BigQuery\JobConfigurationInterface;
+use Google\Cloud\BigQuery\LoadJobConfiguration;
 use Google\Cloud\BigQuery\Table;
 use Google\Cloud\BigQuery\ValueMapper;
+use Google\Cloud\Core\Exception\ConflictException;
 use Google\Cloud\Core\Exception\NotFoundException;
 use Google\Cloud\Core\Upload\AbstractUploader;
 use Google\Cloud\Storage\Connection\ConnectionInterface as StorageConnectionInterface;
@@ -33,14 +38,16 @@ use Prophecy\Argument;
  */
 class TableTest extends \PHPUnit_Framework_TestCase
 {
+    const JOB_ID = 'myJobId';
+    const PROJECT_ID = 'myProjectId';
+    const BUCKET_NAME = 'myBucket';
+    const FILE_NAME = 'myfile.csv';
+    const TABLE_ID = 'myTableId';
+    const DATASET_ID = 'myDatasetId';
+
     public $connection;
     public $storageConnection;
     public $mapper;
-    public $fileName = 'myfile.csv';
-    public $bucketName = 'myBucket';
-    public $projectId = 'myProjectId';
-    public $tableId = 'myTableId';
-    public $datasetId = 'myDatasetId';
     public $rowData = [
         'rows' => [
             ['f' => [['v' => 'Alton']]]
@@ -58,7 +65,10 @@ class TableTest extends \PHPUnit_Framework_TestCase
     ];
     public $insertJobResponse = [
         'jobReference' => [
-            'jobId' => 'myJobId'
+            'jobId' => self::JOB_ID
+        ],
+        'status' => [
+            'state' => 'RUNNING'
         ]
     ];
 
@@ -73,18 +83,18 @@ class TableTest extends \PHPUnit_Framework_TestCase
     {
         return new StorageObject(
             $this->storageConnection->reveal(),
-            $this->fileName,
-            $this->bucketName
+            self::FILE_NAME,
+            self::BUCKET_NAME
         );
     }
 
     public function getTable($connection, array $data = [], $tableId = null)
     {
-        return new Table(
+        return new TableStub(
             $connection->reveal(),
-            $tableId ?: $this->tableId,
-            $this->datasetId,
-            $this->projectId,
+            $tableId ?: self::TABLE_ID,
+            self::DATASET_ID,
+            self::PROJECT_ID,
             $this->mapper,
             $data
         );
@@ -94,7 +104,7 @@ class TableTest extends \PHPUnit_Framework_TestCase
     {
         $this->connection->getTable(Argument::any())
             ->willReturn([
-                'tableReference' => ['tableId' => $this->tableId]
+                'tableReference' => ['tableId' => self::TABLE_ID]
             ])
             ->shouldBeCalledTimes(1);
         $table = $this->getTable($this->connection);
@@ -121,6 +131,22 @@ class TableTest extends \PHPUnit_Framework_TestCase
     }
 
     public function testUpdatesData()
+    {
+        $updateData = ['friendlyName' => 'wow a name', 'etag' => 'foo'];
+        $this->connection->patchTable(Argument::that(function ($args) {
+            if ($args['restOptions']['headers']['If-Match'] !== 'foo') return false;
+
+            return true;
+        }))
+            ->willReturn($updateData)
+            ->shouldBeCalledTimes(1);
+        $table = $this->getTable($this->connection, ['friendlyName' => 'another name']);
+        $table->update($updateData);
+
+        $this->assertEquals($updateData['friendlyName'], $table->info()['friendlyName']);
+    }
+
+    public function testUpdatesDataWithEtag()
     {
         $updateData = ['friendlyName' => 'wow a name'];
         $this->connection->patchTable(Argument::any())
@@ -175,7 +201,7 @@ class TableTest extends \PHPUnit_Framework_TestCase
             ->shouldBeCalledTimes(1);
         $this->connection->listTableData(Argument::any())
             ->willReturn(
-                $this->rowData + ['nextPageToken' => 'abc'],
+                $this->rowData + ['pageToken' => 'abc'],
                 $secondRowData
             )
             ->shouldBeCalledTimes(2);
@@ -186,65 +212,145 @@ class TableTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($name, $rows[1]['first_name']);
     }
 
-    public function testRunsCopyJob()
+    /**
+     * @dataProvider jobConfigDataProvider
+     */
+    public function testRunJob($expectedData, $expectedMethod, $returnedData)
+    {
+        $jobConfig = $this->prophesize(JobConfigurationInterface::class);
+        $jobConfig->toArray()
+            ->willReturn($expectedData);
+        $this->connection->$expectedMethod($expectedData)
+            ->willReturn($returnedData)
+            ->shouldBeCalledTimes(1);
+        $this->connection->getJob(Argument::any())
+            ->willReturn([
+                'status' => [
+                    'state' => 'DONE'
+                ]
+            ])
+            ->shouldBeCalledTimes(1);
+        $table = $this->getTable($this->connection);
+        $job = $table->runJob($jobConfig->reveal());
+
+        $this->assertInstanceOf(Job::class, $job);
+        $this->assertTrue($job->isComplete());
+    }
+
+    /**
+     * @dataProvider jobConfigDataProvider
+     */
+    public function testStartJob($expectedData, $expectedMethod, $returnedData)
+    {
+        $jobConfig = $this->prophesize(JobConfigurationInterface::class);
+        $jobConfig->toArray()
+            ->willReturn($expectedData);
+        $this->connection->$expectedMethod($expectedData)
+            ->willReturn($returnedData)
+            ->shouldBeCalledTimes(1);
+        $this->connection->getJob(Argument::any())
+            ->shouldNotBeCalled();
+        $table = $this->getTable($this->connection);
+        $job = $table->startJob($jobConfig->reveal());
+
+        $this->assertInstanceOf(Job::class, $job);
+        $this->assertFalse($job->isComplete());
+        $this->assertEquals($this->insertJobResponse, $job->info());
+    }
+
+    public function jobConfigDataProvider()
+    {
+        $expected = [
+            'projectId' => self::PROJECT_ID,
+            'jobReference' => [
+                'projectId' => self::PROJECT_ID,
+                'jobId' => self::JOB_ID
+            ]
+        ];
+        $uploader = $this->prophesize(AbstractUploader::class);
+        $uploader->upload()
+            ->willReturn($this->insertJobResponse)
+            ->shouldBeCalledTimes(1);
+
+        return [
+            [
+                $expected,
+                'insertJob',
+                $this->insertJobResponse
+            ],
+            [
+                $expected + ['data' => 'abc'],
+                'insertJobUpload',
+                $uploader->reveal()
+            ]
+        ];
+    }
+
+    public function testGetsCopyJobConfiguration()
     {
         $destinationTableId = 'destinationTable';
         $destinationTable = $this->getTable($this->connection, [], $destinationTableId);
-        $expectedArguments = [
-            'projectId' => $this->projectId,
+        $expected = [
+            'projectId' => self::PROJECT_ID,
             'configuration' => [
                 'copy' => [
                     'destinationTable' => [
-                        'datasetId' => $this->datasetId,
+                        'datasetId' => self::DATASET_ID,
                         'tableId' => $destinationTableId,
-                        'projectId' => $this->projectId
+                        'projectId' => self::PROJECT_ID
                     ],
                     'sourceTable' => [
-                        'datasetId' => $this->datasetId,
-                        'tableId' => $this->tableId,
-                        'projectId' => $this->projectId
+                        'datasetId' => self::DATASET_ID,
+                        'tableId' => self::TABLE_ID,
+                        'projectId' => self::PROJECT_ID
                     ]
                 ]
+            ],
+            'jobReference' => [
+                'projectId' => self::PROJECT_ID,
+                'jobId' => self::JOB_ID
             ]
         ];
-        $this->connection->insertJob(Argument::exact($expectedArguments))
-            ->willReturn($this->insertJobResponse)
-            ->shouldBeCalledTimes(1);
         $table = $this->getTable($this->connection);
-        $job = $table->copy($destinationTable);
+        $config = $table->copy($destinationTable, [
+            'jobReference' => ['jobId' => self::JOB_ID]
+        ]);
 
-        $this->assertInstanceOf(Job::class, $job);
-        $this->assertEquals($this->insertJobResponse, $job->info());
+        $this->assertInstanceOf(CopyJobConfiguration::class, $config);
+        $this->assertEquals($expected, $config->toArray());
     }
 
     /**
      * @dataProvider destinationProvider
      */
-    public function testRunsExportJob($destinationObject)
+    public function testGetsExtractJobConfiguration($destinationObject)
     {
-        $expectedArguments = [
-            'projectId' => $this->projectId,
+        $expected = [
+            'projectId' => self::PROJECT_ID,
             'configuration' => [
                 'extract' => [
                     'destinationUris' => [
-                        'gs://' . $this->bucketName . '/' . $this->fileName
+                        'gs://' . self::BUCKET_NAME . '/' . self::FILE_NAME
                     ],
                     'sourceTable' => [
-                        'datasetId' => $this->datasetId,
-                        'tableId' => $this->tableId,
-                        'projectId' => $this->projectId
+                        'datasetId' => self::DATASET_ID,
+                        'tableId' => self::TABLE_ID,
+                        'projectId' => self::PROJECT_ID
                     ]
                 ]
+            ],
+            'jobReference' => [
+                'projectId' => self::PROJECT_ID,
+                'jobId' => self::JOB_ID
             ]
         ];
-        $this->connection->insertJob(Argument::exact($expectedArguments))
-            ->willReturn($this->insertJobResponse)
-            ->shouldBeCalledTimes(1);
         $table = $this->getTable($this->connection);
-        $job = $table->export($destinationObject);
+        $config = $table->extract($destinationObject, [
+            'jobReference' => ['jobId' => self::JOB_ID]
+        ]);
 
-        $this->assertInstanceOf(Job::class, $job);
-        $this->assertEquals($this->insertJobResponse, $job->info());
+        $this->assertInstanceOf(ExtractJobConfiguration::class, $config);
+        $this->assertEquals($expected, $config->toArray());
     }
 
     public function destinationProvider()
@@ -255,68 +361,70 @@ class TableTest extends \PHPUnit_Framework_TestCase
             [$this->getObject()],
             [sprintf(
                 'gs://%s/%s',
-                $this->bucketName,
-                $this->fileName
+                self::BUCKET_NAME,
+                self::FILE_NAME
             )]
         ];
     }
 
-    public function testRunsLoadJob()
+    public function testGetsLoadJobConfiguration()
     {
         $data = 'abc';
-        $uploader = $this->prophesize(AbstractUploader::class);
-        $uploader->upload()
-            ->willReturn($this->insertJobResponse)
-            ->shouldBeCalledTimes(1);
-        $expectedArguments = [
+        $expected = [
             'data' => $data,
-            'projectId' => $this->projectId,
+            'projectId' => self::PROJECT_ID,
             'configuration' => [
                 'load' => [
                     'destinationTable' => [
-                        'datasetId' => $this->datasetId,
-                        'tableId' => $this->tableId,
-                        'projectId' => $this->projectId
+                        'datasetId' => self::DATASET_ID,
+                        'tableId' => self::TABLE_ID,
+                        'projectId' => self::PROJECT_ID
                     ]
                 ]
+            ],
+            'jobReference' => [
+                'projectId' => self::PROJECT_ID,
+                'jobId' => self::JOB_ID
             ]
         ];
-        $this->connection->insertJobUpload(Argument::exact($expectedArguments))
-            ->willReturn($uploader)
-            ->shouldBeCalledTimes(1);
         $table = $this->getTable($this->connection);
-        $job = $table->load($data);
+        $config = $table->load($data, [
+            'jobReference' => ['jobId' => self::JOB_ID]
+        ]);
 
-        $this->assertInstanceOf(Job::class, $job);
-        $this->assertEquals($this->insertJobResponse, $job->info());
+        $this->assertInstanceOf(LoadJobConfiguration::class, $config);
+        $this->assertEquals($expected, $config->toArray());
     }
 
-    public function testRunsLoadJobFromStorage()
+    public function testGetsLoadJobConfigurationFromStorage()
     {
         $sourceObject = $this->getObject();
-        $expectedArguments = [
-            'projectId' => $this->projectId,
+        $expected = [
+            'projectId' => self::PROJECT_ID,
             'configuration' => [
                 'load' => [
                     'sourceUris' => [
-                        'gs://' . $this->bucketName . '/' . $this->fileName
+                        'gs://' . self::BUCKET_NAME . '/' . self::FILE_NAME
                     ],
                     'destinationTable' => [
-                        'datasetId' => $this->datasetId,
-                        'tableId' => $this->tableId,
-                        'projectId' => $this->projectId
+                        'datasetId' => self::DATASET_ID,
+                        'tableId' => self::TABLE_ID,
+                        'projectId' => self::PROJECT_ID
                     ]
                 ]
+            ],
+            'jobReference' => [
+                'projectId' => self::PROJECT_ID,
+                'jobId' => self::JOB_ID
             ]
         ];
-        $this->connection->insertJob(Argument::exact($expectedArguments))
-            ->willReturn($this->insertJobResponse)
-            ->shouldBeCalledTimes(1);
         $table = $this->getTable($this->connection);
-        $job = $table->loadFromStorage($sourceObject);
+        $config = $table->loadFromStorage($sourceObject, [
+            'jobReference' => ['jobId' => self::JOB_ID]
+        ]);
 
-        $this->assertInstanceOf(Job::class, $job);
-        $this->assertEquals($this->insertJobResponse, $job->info());
+        $this->assertInstanceOf(LoadJobConfiguration::class, $config);
+        $this->assertEquals($expected, $config->toArray());
     }
 
     public function testInsertsRow()
@@ -324,9 +432,9 @@ class TableTest extends \PHPUnit_Framework_TestCase
         $insertId = '1';
         $rowData = ['key' => 'value'];
         $expectedArguments = [
-            'tableId' => $this->tableId,
-            'projectId' => $this->projectId,
-            'datasetId' => $this->datasetId,
+            'tableId' => self::TABLE_ID,
+            'projectId' => self::PROJECT_ID,
+            'datasetId' => self::DATASET_ID,
             'rows' => [
                 [
                     'json' => $rowData,
@@ -358,9 +466,9 @@ class TableTest extends \PHPUnit_Framework_TestCase
             ]
         ];
         $expectedArguments = [
-            'tableId' => $this->tableId,
-            'projectId' => $this->projectId,
-            'datasetId' => $this->datasetId,
+            'tableId' => self::TABLE_ID,
+            'projectId' => self::PROJECT_ID,
+            'datasetId' => self::DATASET_ID,
             'rows' => [
                 [
                     'json' => $data,
@@ -372,8 +480,72 @@ class TableTest extends \PHPUnit_Framework_TestCase
             ->willReturn([])
             ->shouldBeCalledTimes(1);
         $table = $this->getTable($this->connection);
-
         $insertResponse = $table->insertRows($rowData);
+
+        $this->assertInstanceOf(InsertResponse::class, $insertResponse);
+        $this->assertTrue($insertResponse->isSuccessful());
+    }
+
+    public function testInsertsRowsWithAutoCreate()
+    {
+        $insertId = '1';
+        $data = ['key' => 'value'];
+        $rowData = [
+            [
+                'insertId' => $insertId,
+                'data' => $data
+            ]
+        ];
+        $schema = [
+            'fields' => [
+                [
+                    'name' => 'key',
+                    'type' => 'STRING'
+                ]
+            ]
+        ];
+        $expectedInsertTableDataArguments = [
+            'tableId' => self::TABLE_ID,
+            'projectId' => self::PROJECT_ID,
+            'datasetId' => self::DATASET_ID,
+            'rows' => [
+                [
+                    'json' => $data,
+                    'insertId' => $insertId
+                ]
+            ]
+        ];
+        $expectedInsertTableArguments = [
+            'schema' => $schema,
+            'retries' => 0,
+            'projectId' => self::PROJECT_ID,
+            'datasetId' => self::DATASET_ID,
+            'tableReference' => [
+                'projectId' => self::PROJECT_ID,
+                'datasetId' => self::DATASET_ID,
+                'tableId' => self::TABLE_ID
+            ]
+        ];
+        $callCount = 0;
+        $this->connection->insertAllTableData($expectedInsertTableDataArguments)
+            ->will(function () use (&$callCount) {
+                if ($callCount === 0) {
+                    $callCount++;
+                    throw new NotFoundException(null);
+                }
+
+                return [];
+            })
+            ->shouldBeCalledTimes(2);
+        $this->connection->insertTable($expectedInsertTableArguments)
+            ->willReturn([]);
+        $table = $this->getTable($this->connection);
+        $insertResponse = $table->insertRows($rowData, [
+            'autoCreate' => true,
+            'tableMetadata' => [
+                'schema' => $schema
+            ]
+        ]);
 
         $this->assertInstanceOf(InsertResponse::class, $insertResponse);
         $this->assertTrue($insertResponse->isSuccessful());
@@ -381,16 +553,99 @@ class TableTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @expectedException \InvalidArgumentException
+     * @expectedMessage A schema is required when creating a table.
      */
-    public function testInsertRowsThrowsException()
+    public function testInsertRowsThrowsExceptionWithoutSchema()
+    {
+        $options = [
+            'autoCreate' => true
+        ];
+        $this->connection->insertAllTableData(Argument::any())
+            ->willThrow(new NotFoundException(null));
+        $table = $this->getTable($this->connection);
+        $table->insertRows([
+            [
+                'data' => [
+                    'city' => 'state'
+                ]
+            ]
+        ], $options);
+    }
+
+    /**
+     * @expectedException \Exception
+     */
+    public function testInsertRowsThrowsExceptionWithUnretryableTableFailure()
+    {
+        $options = [
+            'autoCreate' => true,
+            'tableMetadata' => [
+                'schema' => []
+            ]
+        ];
+        $this->connection->insertAllTableData(Argument::any())
+            ->willThrow(new NotFoundException(null));
+        $this->connection->insertTable(Argument::any())
+            ->willThrow(new \Exception());
+        $table = $this->getTable($this->connection);
+        $table->insertRows([
+            [
+                'data' => [
+                    'city' => 'state'
+                ]
+            ]
+        ], $options);
+    }
+
+    /**
+     * @expectedException Google\Cloud\Core\Exception\NotFoundException
+     */
+    public function testInsertRowsThrowsExceptionWhenMaxRetryLimitHit()
+    {
+        $options = [
+            'autoCreate' => true,
+            'maxRetries' => 0,
+            'tableMetadata' => [
+                'schema' => []
+            ]
+        ];
+        $this->connection->insertAllTableData(Argument::any())
+            ->willThrow(new NotFoundException(null));
+        $this->connection->insertTable(Argument::any())
+            ->willThrow(new ConflictException(null));
+        $table = $this->getTable($this->connection);
+        $table->insertRows([
+            [
+                'data' => [
+                    'city' => 'state'
+                ]
+            ]
+        ], $options);
+    }
+
+    /**
+     * @expectedException \InvalidArgumentException
+     * @expectedMessage A row must have a data key.
+     */
+    public function testInsertRowsThrowsExceptionWithoutDataKey()
     {
         $table = $this->getTable($this->connection);
         $table->insertRows([[], []]);
     }
 
+    /**
+     * @expectedException \InvalidArgumentException
+     * @expectedMessage Must provide at least a single row.
+     */
+    public function testInsertRowsThrowsExceptionWithZeroRows()
+    {
+        $table = $this->getTable($this->connection);
+        $table->insertRows([]);
+    }
+
     public function testGetsInfo()
     {
-        $tableInfo = ['tableReference' => ['tableId' => $this->tableId]];
+        $tableInfo = ['tableReference' => ['tableId' => self::TABLE_ID]];
         $this->connection->getTable(Argument::any())->shouldNotBeCalled();
         $table = $this->getTable($this->connection, $tableInfo);
 
@@ -399,7 +654,7 @@ class TableTest extends \PHPUnit_Framework_TestCase
 
     public function testGetsInfoWithReload()
     {
-        $tableInfo = ['tableReference' => ['tableId' => $this->tableId]];
+        $tableInfo = ['tableReference' => ['tableId' => self::TABLE_ID]];
         $this->connection->getTable(Argument::any())
             ->willReturn($tableInfo)
             ->shouldBeCalledTimes(1);
@@ -412,14 +667,22 @@ class TableTest extends \PHPUnit_Framework_TestCase
     {
         $table = $this->getTable($this->connection);
 
-        $this->assertEquals($this->tableId, $table->id());
+        $this->assertEquals(self::TABLE_ID, $table->id());
     }
 
     public function testGetsIdentity()
     {
         $table = $this->getTable($this->connection);
 
-        $this->assertEquals($this->tableId, $table->identity()['tableId']);
-        $this->assertEquals($this->projectId, $table->identity()['projectId']);
+        $this->assertEquals(self::TABLE_ID, $table->identity()['tableId']);
+        $this->assertEquals(self::PROJECT_ID, $table->identity()['projectId']);
+    }
+}
+
+class TableStub extends Table
+{
+    protected function usleep($ms)
+    {
+        return;
     }
 }

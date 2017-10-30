@@ -52,7 +52,7 @@ class InstanceConfigurationTest extends \PHPUnit_Framework_TestCase
 
     public function testName()
     {
-        $this->assertEquals(self::NAME, InstanceAdminClient::parseInstanceConfigFromInstanceConfigName($this->configuration->name()));
+        $this->assertEquals(self::NAME, InstanceAdminClient::parseName($this->configuration->name())['instance_config']);
     }
 
     public function testInfo()
@@ -76,7 +76,7 @@ class InstanceConfigurationTest extends \PHPUnit_Framework_TestCase
         $info = ['foo' => 'bar'];
 
         $this->connection->getInstanceConfig([
-            'name' => InstanceAdminClient::formatInstanceConfigName(self::PROJECT_ID, self::NAME),
+            'name' => InstanceAdminClient::instanceConfigName(self::PROJECT_ID, self::NAME),
             'projectId' => self::PROJECT_ID
         ])->shouldBeCalled()->willReturn($info);
 
@@ -106,7 +106,7 @@ class InstanceConfigurationTest extends \PHPUnit_Framework_TestCase
         $info = ['foo' => 'bar'];
 
         $this->connection->getInstanceConfig([
-            'name' => InstanceAdminClient::formatInstanceConfigName(self::PROJECT_ID, self::NAME),
+            'name' => InstanceAdminClient::instanceConfigName(self::PROJECT_ID, self::NAME),
             'projectId' => self::PROJECT_ID
         ])->shouldBeCalledTimes(1)->willReturn($info);
 

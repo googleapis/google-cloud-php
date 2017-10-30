@@ -309,7 +309,8 @@ class Database
             'statements' => [],
         ];
 
-        $statement = sprintf('CREATE DATABASE `%s`', DatabaseAdminClient::parseDatabaseFromDatabaseName($this->name));
+        $databaseName = DatabaseAdminClient::parseName($this->name())['database'];
+        $statement = sprintf('CREATE DATABASE `%s`', $databaseName);
 
         $operation = $this->connection->createDatabase([
             'instance' => $this->instance->name(),
@@ -1430,12 +1431,13 @@ class Database
      */
     public function session($name)
     {
+        $sessionNameComponents = GapicSpannerClient::parseName($name);
         return new Session(
             $this->connection,
             $this->projectId,
-            GapicSpannerClient::parseInstanceFromSessionName($name),
-            GapicSpannerClient::parseDatabaseFromSessionName($name),
-            GapicSpannerClient::parseSessionFromSessionName($name)
+            $sessionNameComponents['instance'],
+            $sessionNameComponents['database'],
+            $sessionNameComponents['session']
         );
     }
 
@@ -1455,6 +1457,18 @@ class Database
             'database' => end($databaseParts),
             'instance' => end($instanceParts),
         ];
+    }
+
+    /**
+     * Returns the underlying connection.
+     *
+     * @access private
+     * @return ConnectionInterface
+     * @experimental
+     */
+    public function connection()
+    {
+        return $this->connection;
     }
 
     /**
@@ -1514,10 +1528,10 @@ class Database
      */
     private function fullyQualifiedDatabaseName($name)
     {
-        $instance = InstanceAdminClient::parseInstanceFromInstanceName($this->instance->name());
+        $instance = InstanceAdminClient::parseName($this->instance->name())['instance'];
 
         try {
-            return GapicSpannerClient::formatDatabaseName(
+            return GapicSpannerClient::databaseName(
                 $this->projectId,
                 $instance,
                 $name

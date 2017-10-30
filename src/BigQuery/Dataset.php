@@ -19,6 +19,7 @@ namespace Google\Cloud\BigQuery;
 
 use Google\Cloud\BigQuery\Connection\ConnectionInterface;
 use Google\Cloud\Core\ArrayTrait;
+use Google\Cloud\Core\ConcurrencyControlTrait;
 use Google\Cloud\Core\Exception\NotFoundException;
 use Google\Cloud\Core\Iterator\ItemIterator;
 use Google\Cloud\Core\Iterator\PageIterator;
@@ -30,6 +31,7 @@ use Google\Cloud\Core\Iterator\PageIterator;
 class Dataset
 {
     use ArrayTrait;
+    use ConcurrencyControlTrait;
 
     /**
      * @var ConnectionInterface Represents a connection to BigQuery.
@@ -98,6 +100,9 @@ class Dataset
     /**
      * Delete the dataset.
      *
+     * Please note that by default the library will not attempt to retry this
+     * call on your behalf.
+     *
      * Example:
      * ```
      * $dataset->delete();
@@ -115,11 +120,23 @@ class Dataset
      */
     public function delete(array $options = [])
     {
-        $this->connection->deleteDataset($options + $this->identity);
+        $this->connection->deleteDataset(
+            $options
+            + ['retries' => 0]
+            + $this->identity
+        );
     }
 
     /**
      * Update the dataset.
+     *
+     * Providing an `etag` key as part of `$metadata` will enable simultaneous
+     * update protection. This is useful in preventing override of modifications
+     * made by another user. The resource's current etag can be obtained via a
+     * GET request on the resource.
+     *
+     * Please note that by default this call will not automatically retry on
+     * your behalf unless an `etag` is set.
      *
      * Example:
      * ```
@@ -129,6 +146,7 @@ class Dataset
      * ```
      *
      * @see https://cloud.google.com/bigquery/docs/reference/v2/datasets/patch Datasets patch API documentation.
+     * @see https://cloud.google.com/bigquery/docs/api-performance#patch Patch (Partial Update)
      *
      * @param array $metadata The available options for metadata are outlined
      *        at the [Dataset Resource API docs](https://cloud.google.com/bigquery/docs/reference/v2/datasets#resource)
@@ -136,10 +154,17 @@ class Dataset
      */
     public function update(array $metadata, array $options = [])
     {
-        $options += $metadata;
-        $this->info = $this->connection->patchDataset($options + $this->identity);
+        $options = $this->applyEtagHeader(
+            $options
+            + $metadata
+            + $this->identity
+        );
 
-        return $this->info;
+        if (!isset($options['etag']) && !isset($options['retries'])) {
+            $options['retries'] = 0;
+        }
+
+        return $this->info = $this->connection->patchDataset($options);
     }
 
     /**
@@ -220,6 +245,9 @@ class Dataset
     /**
      * Creates a table.
      *
+     * Please note that by default the library will not attempt to retry this
+     * call on your behalf.
+     *
      * Example:
      * ```
      * $table = $dataset->createTable('aTable');
@@ -243,11 +271,15 @@ class Dataset
             unset($options['metadata']);
         }
 
-        $response = $this->connection->insertTable([
-            'projectId' => $this->identity['projectId'],
-            'datasetId' => $this->identity['datasetId'],
-            'tableReference' => $this->identity + ['tableId' => $id]
-        ] + $options);
+        $response = $this->connection->insertTable(
+            [
+                'projectId' => $this->identity['projectId'],
+                'datasetId' => $this->identity['datasetId'],
+                'tableReference' => $this->identity + ['tableId' => $id]
+            ]
+            + $options
+            + ['retries' => 0]
+        );
 
         return new Table(
             $this->connection,

@@ -64,7 +64,7 @@ class SpannerClient
     use LROTrait;
     use ValidateTrait;
 
-    const VERSION = '0.6.0';
+    const VERSION = '0.7.0';
 
     const FULL_CONTROL_SCOPE = 'https://www.googleapis.com/auth/spanner.data';
     const ADMIN_SCOPE = 'https://www.googleapis.com/auth/spanner.admin';
@@ -127,14 +127,15 @@ class SpannerClient
             [
                 'typeUrl' => 'type.googleapis.com/google.spanner.admin.instance.v1.UpdateInstanceMetadata',
                 'callable' => function ($instance) {
-                    $name = InstanceAdminClient::parseInstanceFromInstanceName($instance['name']);
+                    $name = InstanceAdminClient::parseName($instance['name'])['instance'];
                     return $this->instance($name, $instance);
                 }
             ], [
                 'typeUrl' => 'type.googleapis.com/google.spanner.admin.database.v1.CreateDatabaseMetadata',
                 'callable' => function ($database) {
-                    $instanceName = DatabaseAdminClient::parseInstanceFromDatabaseName($database['name']);
-                    $databaseName = DatabaseAdminClient::parseDatabaseFromDatabaseName($database['name']);
+                    $databaseNameComponents = DatabaseAdminClient::parseName($database['name']);
+                    $instanceName = $databaseNameComponents['instance'];
+                    $databaseName = $databaseNameComponents['database'];
 
                     $instance = $this->instance($instanceName);
                     return $instance->database($databaseName);
@@ -142,7 +143,7 @@ class SpannerClient
             ], [
                 'typeUrl' => 'type.googleapis.com/google.spanner.admin.instance.v1.CreateInstanceMetadata',
                 'callable' => function ($instance) {
-                    $name = InstanceAdminClient::parseInstanceFromInstanceName($instance['name']);
+                    $name = InstanceAdminClient::parseName($instance['name'])['instance'];
                     return $this->instance($name, $instance);
                 }
             ]
@@ -183,7 +184,7 @@ class SpannerClient
                     return $this->instanceConfiguration($config['name'], $config);
                 },
                 [$this->connection, 'listInstanceConfigs'],
-                ['projectId' => InstanceAdminClient::formatProjectName($this->projectId)] + $options,
+                ['projectId' => InstanceAdminClient::projectName($this->projectId)] + $options,
                 [
                     'itemsKey' => 'instanceConfigs',
                     'resultLimit' => $resultLimit
@@ -309,11 +310,11 @@ class SpannerClient
         return new ItemIterator(
             new PageIterator(
                 function (array $instance) {
-                    $name = InstanceAdminClient::parseInstanceFromInstanceName($instance['name']);
+                    $name = InstanceAdminClient::parseName($instance['name'])['instance'];
                     return $this->instance($name, $instance);
                 },
                 [$this->connection, 'listInstances'],
-                ['projectId' => InstanceAdminClient::formatProjectName($this->projectId)] + $options,
+                ['projectId' => InstanceAdminClient::projectName($this->projectId)] + $options,
                 [
                     'itemsKey' => 'instances',
                     'resultLimit' => $resultLimit

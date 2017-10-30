@@ -56,7 +56,7 @@ class InstanceConfigurationTest extends SnippetTestCase
         $res = $snippet->invoke('configuration');
 
         $this->assertInstanceOf(InstanceConfiguration::class, $res->returnVal());
-        $this->assertEquals(InstanceAdminClient::formatInstanceConfigName(self::PROJECT, self::CONFIG), $res->returnVal()->name());
+        $this->assertEquals(InstanceAdminClient::instanceConfigName(self::PROJECT, self::CONFIG), $res->returnVal()->name());
     }
 
     public function testName()
@@ -65,7 +65,7 @@ class InstanceConfigurationTest extends SnippetTestCase
         $snippet->addLocal('configuration', $this->config);
 
         $res = $snippet->invoke('name');
-        $this->assertEquals(InstanceAdminClient::formatInstanceConfigName(self::PROJECT, self::CONFIG), $res->returnVal());
+        $this->assertEquals(InstanceAdminClient::instanceConfigName(self::PROJECT, self::CONFIG), $res->returnVal());
     }
 
     public function testInfo()
@@ -74,7 +74,7 @@ class InstanceConfigurationTest extends SnippetTestCase
         $snippet->addLocal('configuration', $this->config);
 
         $info = [
-            'name' => InstanceAdminClient::formatInstanceConfigName(self::PROJECT, self::CONFIG),
+            'name' => InstanceAdminClient::instanceConfigName(self::PROJECT, self::CONFIG),
             'displayName' => self::CONFIG
         ];
 
@@ -96,7 +96,7 @@ class InstanceConfigurationTest extends SnippetTestCase
         $this->connection->getInstanceConfig(Argument::any())
             ->shouldBeCalled()
             ->willReturn([
-                'name' => InstanceAdminClient::formatInstanceConfigName(self::PROJECT, self::CONFIG),
+                'name' => InstanceAdminClient::instanceConfigName(self::PROJECT, self::CONFIG),
                 'displayName' => self::CONFIG
             ]);
 
@@ -109,7 +109,7 @@ class InstanceConfigurationTest extends SnippetTestCase
     public function testReload()
     {
         $info = [
-            'name' => InstanceAdminClient::formatInstanceConfigName(self::PROJECT, self::CONFIG),
+            'name' => InstanceAdminClient::instanceConfigName(self::PROJECT, self::CONFIG),
             'displayName' => self::CONFIG
         ];
 

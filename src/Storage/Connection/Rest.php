@@ -41,7 +41,12 @@ class Rest implements ConnectionInterface
 
     const BASE_URI = 'https://www.googleapis.com/storage/v1/';
     const UPLOAD_URI = 'https://www.googleapis.com/upload/storage/v1/b/{bucket}/o{?query*}';
-    const DOWNLOAD_URI = 'https://storage.googleapis.com/{bucket}/{object}{?query*}';
+    const DOWNLOAD_URI = 'https://www.googleapis.com/storage/v1/b/{bucket}/o/{object}{?query*}';
+
+    /**
+     * @var string
+     */
+    private $projectId;
 
     /**
      * @param array $config
@@ -58,6 +63,16 @@ class Rest implements ConnectionInterface
             $config['serviceDefinitionPath'],
             self::BASE_URI
         ));
+
+        $this->projectId = $this->pluck('projectId', $config, false);
+    }
+
+    /**
+     * @return string
+     */
+    public function projectId()
+    {
+        return $this->projectId;
     }
 
     /**
@@ -204,7 +219,8 @@ class Rest implements ConnectionInterface
         $args += [
             'bucket' => null,
             'object' => null,
-            'generation' => null
+            'generation' => null,
+            'userProject' => null
         ];
 
         $requestOptions = array_intersect_key($args, [
@@ -217,7 +233,8 @@ class Rest implements ConnectionInterface
             'object' => $args['object'],
             'query' => [
                 'generation' => $args['generation'],
-                'alt' => 'media'
+                'alt' => 'media',
+                'userProject' => $args['userProject']
             ]
         ]);
 
@@ -248,7 +265,8 @@ class Rest implements ConnectionInterface
             'bucket' => $args['bucket'],
             'query' => [
                 'predefinedAcl' => $args['predefinedAcl'],
-                'uploadType' => $uploadType
+                'uploadType' => $uploadType,
+                'userProject' => $args['userProject']
             ]
         ];
 
@@ -272,7 +290,8 @@ class Rest implements ConnectionInterface
             'resumable' => null,
             'streamable' => null,
             'predefinedAcl' => null,
-            'metadata' => []
+            'metadata' => [],
+            'userProject' => null,
         ];
 
         $args['data'] = Psr7\stream_for($args['data']);
@@ -334,5 +353,37 @@ class Rest implements ConnectionInterface
     public function testBucketIamPermissions(array $args)
     {
         return $this->send('buckets', 'testIamPermissions', $args);
+    }
+
+    /**
+     * @param array $args
+     */
+    public function getNotification(array $args = [])
+    {
+        return $this->send('notifications', 'get', $args);
+    }
+
+    /**
+     * @param array $args
+     */
+    public function deleteNotification(array $args = [])
+    {
+        return $this->send('notifications', 'delete', $args);
+    }
+
+    /**
+     * @param array $args
+     */
+    public function insertNotification(array $args = [])
+    {
+        return $this->send('notifications', 'insert', $args);
+    }
+
+    /**
+     * @param array $args
+     */
+    public function listNotifications(array $args = [])
+    {
+        return $this->send('notifications', 'list', $args);
     }
 }

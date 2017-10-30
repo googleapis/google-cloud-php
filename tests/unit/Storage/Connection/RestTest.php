@@ -101,7 +101,23 @@ class RestTest extends \PHPUnit_Framework_TestCase
             ['getBucketIamPolicy'],
             ['setBucketIamPolicy'],
             ['testBucketIamPermissions'],
+            ['getNotification'],
+            ['deleteNotification'],
+            ['insertNotification'],
+            ['listNotifications'],
         ];
+    }
+
+    public function testProjectId()
+    {
+        $rest = new Rest(['projectId' => 'foo']);
+        $this->assertEquals('foo', $rest->projectId());
+    }
+
+    public function testProjectIdNull()
+    {
+        $rest = new Rest();
+        $this->assertNull($rest->projectId());
     }
 
     public function testDownloadObject()
@@ -127,14 +143,15 @@ class RestTest extends \PHPUnit_Framework_TestCase
             'object' => 'myfile.txt',
             'generation' => 100,
             'restOptions' => ['debug' => true],
-            'retries' => 0
+            'retries' => 0,
+            'userProject' => 'myProject'
         ]);
 
         $actualUri = (string) $actualRequest->getUri();
 
         $this->assertEquals($this->successBody, $actualBody);
         $this->assertEquals(
-            'https://storage.googleapis.com/bigbucket/myfile.txt?generation=100&alt=media',
+            'https://www.googleapis.com/storage/v1/b/bigbucket/o/myfile.txt?generation=100&alt=media&userProject=myProject',
             $actualUri
         );
     }

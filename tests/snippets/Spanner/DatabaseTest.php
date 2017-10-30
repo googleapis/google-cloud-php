@@ -59,7 +59,7 @@ class DatabaseTest extends SnippetTestCase
         $this->checkAndSkipGrpcTests();
 
         $instance = $this->prophesize(Instance::class);
-        $instance->name()->willReturn(InstanceAdminClient::formatInstanceName(self::PROJECT, self::INSTANCE));
+        $instance->name()->willReturn(InstanceAdminClient::instanceName(self::PROJECT, self::INSTANCE));
 
         $session = $this->prophesize(Session::class);
 
@@ -95,7 +95,7 @@ class DatabaseTest extends SnippetTestCase
         $snippet = $this->snippetFromClass(Database::class);
         $res = $snippet->invoke('database');
         $this->assertInstanceOf(Database::class, $res->returnVal());
-        $this->assertEquals(self::DATABASE, DatabaseAdminClient::parseDatabaseFromDatabaseName($res->returnVal()->name()));
+        $this->assertEquals(self::DATABASE, DatabaseAdminClient::parseName($res->returnVal()->name())['database']);
     }
 
     public function testClassViaInstance()
@@ -107,7 +107,7 @@ class DatabaseTest extends SnippetTestCase
         $snippet = $this->snippetFromClass(Database::class, 1);
         $res = $snippet->invoke('database');
         $this->assertInstanceOf(Database::class, $res->returnVal());
-        $this->assertEquals(self::DATABASE, DatabaseAdminClient::parseDatabaseFromDatabaseName($res->returnVal()->name()));
+        $this->assertEquals(self::DATABASE, DatabaseAdminClient::parseName($res->returnVal()->name())['database']);
     }
 
     public function testName()
@@ -115,7 +115,7 @@ class DatabaseTest extends SnippetTestCase
         $snippet = $this->snippetFromMethod(Database::class, 'name');
         $snippet->addLocal('database', $this->database);
         $res = $snippet->invoke('name');
-        $this->assertEquals(self::DATABASE, DatabaseAdminClient::parseDatabaseFromDatabaseName($res->returnVal()));
+        $this->assertEquals(self::DATABASE, DatabaseAdminClient::parseName($res->returnVal())['database']);
     }
 
     /**

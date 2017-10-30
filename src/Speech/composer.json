@@ -4,12 +4,12 @@
     "license": "Apache-2.0",
     "minimum-stability": "stable",
     "require": {
-        "google/cloud-core": "^1.0"
+        "google/cloud-core": "^1.0",
+        "google/proto-client": "^0.24",
+        "google/gax": "^0.24"
     },
     "suggest": {
-        "google/gax": "Required to support gRPC",
-        "google/proto-client": "Required to support gRPC",
-        "google/cloud-storage": "Run operations on files stored in Google Cloud Storage"
+        "google/gax": "Required to support gRPC"
     },
     "extra": {
         "component": {

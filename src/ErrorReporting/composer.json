@@ -4,9 +4,12 @@
     "license": "Apache-2.0",
     "minimum-stability": "stable",
     "require": {
-        "ext-grpc": "*",
-        "google/proto-client": "^0.23",
-        "google/gax": "^0.23"
+        "google/cloud-logging": "^1.5.0",
+        "google/proto-client": "^0.24",
+        "google/gax": "^0.24"
+    },
+    "suggest": {
+        "ext-grpc": "the gRPC extension allows more granular control over Error Reporting"
     },
     "extra": {
         "component": {

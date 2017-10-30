@@ -18,6 +18,7 @@
 namespace Google\Cloud\Tests\Snippets\BigQuery;
 
 use Google\Cloud\BigQuery\Connection\ConnectionInterface;
+use Google\Cloud\BigQuery\Job;
 use Google\Cloud\BigQuery\QueryResults;
 use Google\Cloud\BigQuery\ValueMapper;
 use Google\Cloud\Dev\Snippet\SnippetTestCase;
@@ -60,7 +61,6 @@ class QueryResultsTest extends SnippetTestCase
                 ]
             ]
         ];
-        $this->reload = [];
 
         $this->connection = $this->prophesize(ConnectionInterface::class);
         $this->qr = \Google\Cloud\Dev\stub(QueryResults::class, [
@@ -68,8 +68,8 @@ class QueryResultsTest extends SnippetTestCase
             self::JOB_ID,
             self::PROJECT,
             $this->info,
-            $this->reload,
-            new ValueMapper(false)
+            new ValueMapper(false),
+            $this->prophesize(Job::class)->reveal()
         ]);
     }
 
@@ -88,6 +88,20 @@ class QueryResultsTest extends SnippetTestCase
 
         $res = $snippet->invoke();
         $this->assertEquals('abcd', trim($res->output()));
+    }
+
+    public function testWaitUntilComplete()
+    {
+        $snippet = $this->snippetFromMethod(QueryResults::class, 'waitUntilComplete');
+        $snippet->addLocal('queryResults', $this->qr);
+
+        $this->info['jobComplete'] = true;
+        $this->connection->getQueryResults(Argument::any())
+            ->willReturn($this->info);
+
+        $this->qr->___setProperty('connection', $this->connection->reveal());
+
+        $snippet->invoke();
     }
 
     public function testIsComplete()
@@ -123,6 +137,15 @@ class QueryResultsTest extends SnippetTestCase
         $this->assertEquals($this->info['totalBytesProcessed'], $res->output());
     }
 
+    public function testJob()
+    {
+        $snippet = $this->snippetFromMethod(QueryResults::class, 'job');
+        $snippet->addLocal('queryResults', $this->qr);
+
+        $res = $snippet->invoke('job');
+        $this->assertInstanceOf(Job::class, $res->returnVal());
+    }
+
     public function testReload()
     {
         $this->connection->getQueryResults(Argument::any())
@@ -133,9 +156,7 @@ class QueryResultsTest extends SnippetTestCase
 
         $snippet = $this->snippetFromMethod(QueryResults::class, 'reload');
         $snippet->addLocal('queryResults', $this->qr);
-        $snippet->replace('sleep(1);', '');
 
         $res = $snippet->invoke();
-        $this->assertEquals('Query complete!', $res->output());
     }
 }

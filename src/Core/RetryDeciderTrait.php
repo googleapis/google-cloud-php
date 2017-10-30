@@ -77,4 +77,20 @@ trait RetryDeciderTrait
             return false;
         };
     }
+
+    /**
+     * @param array $codes
+     */
+    private function setHttpRetryCodes(array $codes)
+    {
+        $this->httpRetryCodes = $codes;
+    }
+
+    /**
+     * @param array $messages
+     */
+    private function setHttpRetryMessages(array $messages)
+    {
+        $this->httpRetryMessages = $messages;
+    }
 }

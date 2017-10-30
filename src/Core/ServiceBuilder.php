@@ -118,7 +118,7 @@ class ServiceBuilder
      */
     public function bigQuery(array $config = [])
     {
-        return new BigQueryClient($config ? $this->resolveConfig($config) : $this->config);
+        return $this->createClient(BigQueryClient::class, 'bigquery', $config);
     }
 
     /**
@@ -142,7 +142,7 @@ class ServiceBuilder
      */
     public function datastore(array $config = [])
     {
-        return new DatastoreClient($config ? $this->resolveConfig($config) : $this->config);
+        return $this->createClient(DatastoreClient::class, 'datastore', $config);
     }
 
     /**
@@ -162,7 +162,7 @@ class ServiceBuilder
      */
     public function logging(array $config = [])
     {
-        return new LoggingClient($config ? $this->resolveConfig($config) : $this->config);
+        return $this->createClient(LoggingClient::class, 'logging', $config);
     }
 
     /**
@@ -183,7 +183,7 @@ class ServiceBuilder
      */
     public function language(array $config = [])
     {
-        return new LanguageClient($config ? $this->resolveConfig($config) : $this->config);
+        return $this->createClient(LanguageClient::class, 'language', $config);
     }
 
     /**
@@ -207,7 +207,7 @@ class ServiceBuilder
      */
     public function pubsub(array $config = [])
     {
-        return new PubSubClient($config ? $this->resolveConfig($config) : $this->config);
+        return $this->createClient(PubSubClient::class, 'pubsub', $config);
     }
 
     /**
@@ -232,7 +232,7 @@ class ServiceBuilder
      */
     public function spanner(array $config = [])
     {
-        return new SpannerClient($config ? $this->resolveConfig($config) : $this->config);
+        return $this->createClient(SpannerClient::class, 'spanner', $config);
     }
 
     /**
@@ -261,7 +261,7 @@ class ServiceBuilder
      */
     public function speech(array $config = [])
     {
-        return new SpeechClient($config ? $this->resolveConfig($config) : $this->config);
+        return $this->createClient(SpeechClient::class, 'speech', $config);
     }
 
     /**
@@ -280,7 +280,7 @@ class ServiceBuilder
      */
     public function storage(array $config = [])
     {
-        return new StorageClient($config ? $this->resolveConfig($config) : $this->config);
+        return $this->createClient(StorageClient::class, 'storage', $config);
     }
 
 
@@ -300,7 +300,7 @@ class ServiceBuilder
      */
     public function trace(array $config = [])
     {
-        return new TraceClient($config ? $this->resolveConfig($config) : $this->config);
+        return $this->createClient(TraceClient::class, 'trace', $config);
     }
 
     /**
@@ -320,7 +320,7 @@ class ServiceBuilder
      */
     public function vision(array $config = [])
     {
-        return new VisionClient($config ? $this->resolveConfig($config) : $this->config);
+        return $this->createClient(VisionClient::class, 'vision', $config);
     }
 
     /**
@@ -368,7 +368,18 @@ class ServiceBuilder
      */
     public function translate(array $config = [])
     {
-        return new TranslateClient($config ? $this->resolveConfig($config) : $this->config);
+        return $this->createClient(TranslateClient::class, 'translate', $config);
+    }
+
+    private function createClient($class, $packageName, array $config = [])
+    {
+        if (class_exists($class)) {
+            return new $class($config ? $this->resolveConfig($config) : $this->config);
+        }
+        throw new \Exception(sprintf(
+            'The google/cloud-%s package is missing and must be installed.',
+            $packageName
+        ));
     }
 
     /**

@@ -202,7 +202,7 @@ class InstanceConfiguration
     private function fullyQualifiedConfigName($name, $projectId)
     {
         try {
-            return InstanceAdminClient::formatInstanceConfigName(
+            return InstanceAdminClient::instanceConfigName(
                 $projectId,
                 $name
             );

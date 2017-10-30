@@ -53,7 +53,7 @@ trait ArrayTrait
      *
      * @param string $keys
      * @param array $arr
-     * @return string
+     * @return array
      */
     private function pluckArray(array $keys, &$arr)
     {
