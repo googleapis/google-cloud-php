@@ -107,7 +107,7 @@ class QueryTest extends \PHPUnit_Framework_TestCase
                 'from' => self::PARENT,
                 'where' => [
                     'compositeFilter' => [
-                        'op' => StructuredQuery_CompositeFilter_Operator::AND,
+                        'op' => StructuredQuery_CompositeFilter_Operator::PBAND,
                         'filters' => [
                             [
                                 'fieldFilter' => [

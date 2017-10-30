@@ -20,6 +20,7 @@ namespace Google\Cloud\Tests\Snippets\Firestore;
 use Prophecy\Argument;
 use Google\Cloud\Firestore\Query;
 use Google\Cloud\Firestore\ValueMapper;
+use Google\Cloud\Firestore\QuerySnapshot;
 use Google\Cloud\Dev\Snippet\Parser\Snippet;
 use Google\Cloud\Dev\Snippet\SnippetTestCase;
 use Google\Cloud\Firestore\Connection\ConnectionInterface;
@@ -54,6 +55,14 @@ class QueryTest extends SnippetTestCase
         $this->assertInstanceOf(Query::class, $res->returnVal());
     }
 
+    public function testSnapshot()
+    {
+        $snippet = $this->snippetFromMethod(Query::class, 'snapshot');
+        $snippet->addLocal('query', $this->query);
+        $res = $snippet->invoke('result');
+        $this->assertInstanceOf(QuerySnapshot::class, $res->returnVal());
+    }
+
     public function testSelect()
     {
         $snippet = $this->snippetFromMethod(Query::class, 'select');
@@ -67,7 +76,7 @@ class QueryTest extends SnippetTestCase
         $snippet = $this->snippetFromMethod(Query::class, 'where');
         $this->runAndAssert($snippet, 'where', [
             'compositeFilter' => [
-                'op' => StructuredQuery_CompositeFilter_Operator::AND,
+                'op' => StructuredQuery_CompositeFilter_Operator::PBAND,
                 'filters' => [
                     [
                         'fieldFilter' => [

@@ -136,9 +136,14 @@ class Query
     /**
      * Get all documents matching the provided query filters.
      *
+     * This method will not execute an immediate service call. The Query will be
+     * executed once you begin iterating over the rows (either by iterating
+     * directly on the QuerySnapshot, or by iterating over
+     * {@see Google\Cloud\Firestore\QuerySnapshot::rows()}).
+     *
      * Example:
      * ```
-     * $result = $query->documents();
+     * $result = $query->snapshot();
      * ```
      *
      * @param array $options Configuration options.
@@ -222,7 +227,7 @@ class Query
         $query = [
             'where' => [
                 'compositeFilter' => [
-                    'op' => StructuredQuery_CompositeFilter_Operator::AND,
+                    'op' => StructuredQuery_CompositeFilter_Operator::PBAND,
                     'filters' => [
                         [
                             'fieldFilter' => [
