@@ -110,10 +110,9 @@ class Agent
             return;
         }
 
-        $sourceFile = isset($options['sourceRoot'])
-            ? $options['sourceRoot'] . '/foo'
-            : debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS, 1)[0]['file'];
-        $this->sourceRoot = dirname($sourceFile);
+        $this->sourceRoot = isset($options['sourceRoot'])
+            ? $options['sourceRoot']
+            : dirname(debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS, 1)[0]['file']);
 
         foreach ($breakpoints as $breakpoint) {
             $this->breakpoints[$breakpoint->id()] = $breakpoint;
@@ -130,7 +129,7 @@ class Agent
                             'condition'     => $breakpoint->condition(),
                             'expressions'   => $breakpoint->expressions(),
                             'callback'      => [$this, 'handleSnapshot'],
-                            'currentFile'   => $sourceFile
+                            'sourceRoot'    => $this->sourceRoot
                         ]
                     );
                     break;
@@ -147,7 +146,7 @@ class Agent
                             'condition'     => $breakpoint->condition(),
                             'expressions'   => $breakpoint->expressions(),
                             'callback'      => [$this->logger, 'log'],
-                            'currentFile'   => $sourceFile
+                            'sourceRoot'    => $this->sourceRoot
                         ]
                     );
                 default:
