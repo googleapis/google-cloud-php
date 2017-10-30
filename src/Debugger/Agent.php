@@ -128,6 +128,7 @@ class Agent
                             'snapshotId'    => $breakpoint->id(),
                             'condition'     => $breakpoint->condition(),
                             'expressions'   => $breakpoint->expressions(),
+                            'callback'      => [$this, 'handleSnapshot'],
                             'currentFile'   => $sourceFile
                         ]
                     );
@@ -144,6 +145,7 @@ class Agent
                             'snapshotId'    => $breakpoint->id(),
                             'condition'     => $breakpoint->condition(),
                             'expressions'   => $breakpoint->expressions(),
+                            'callback'      => [$this->logger, 'log'],
                             'currentFile'   => $sourceFile
                         ]
                     );
@@ -151,34 +153,21 @@ class Agent
                     continue;
             }
         }
-
-        register_shutdown_function([$this, 'onExit']);
     }
 
     /**
-     * The function is registered as the shutdown function. Reports any captured
-     * breakpoint data and reportes it to the Stackdriver Debugger backend.
+     * Callback for reporting a snapshot.
+     *
+     * @param  array $snapshot
      */
-    public function onExit()
+    public function handleSnapshot($snapshot)
     {
-        $snapshots = stackdriver_debugger_list_snapshots();
-        foreach ($snapshots as $snapshot) {
-            if (array_key_exists($snapshot['id'], $this->breakpoints)) {
-                $breakpoint = $this->breakpoints[$snapshot['id']];
-                $breakpoint->finalize();
-                $breakpoint->addEvaluatedExpressions($snapshot['evaluatedExpressions']);
-                $breakpoint->addStackFrames($snapshot['stackframes']);
-                $this->batchRunner->submitItem($this->identifier, $breakpoint);
-            }
-        }
-
-        if ($this->logger) {
-            $logpoints = stackdriver_debugger_list_logpoints();
-            foreach ($logpoints as $logpoint) {
-                $this->logger->log($logpoint['level'], $logpoint['message'], [
-                    'timestamp' => $logpoint['timestamp']
-                ]);
-            }
+        if (array_key_exists($snapshot['id'], $this->breakpoints)) {
+            $breakpoint = $this->breakpoints[$snapshot['id']];
+            $breakpoint->finalize();
+            $breakpoint->addEvaluatedExpressions($snapshot['evaluatedExpressions']);
+            $breakpoint->addStackFrames($snapshot['stackframes']);
+            $this->batchRunner->submitItem($this->identifier, $breakpoint);
         }
     }
 
