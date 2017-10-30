@@ -18,8 +18,15 @@
 namespace Google\Cloud\Debugger;
 
 use Google\Cloud\Core\Exception\ConflictException;
+use Google\Cloud\Debugger\BreakpointStorage\BreakpointStorageInterface;
 use Google\Cloud\Debugger\BreakpointStorage\SysvBreakpointStorage;
 
+/**
+ * This class is responsible for registering itself as a Debuggee with the
+ * Stackdriver backend. It will fetch the list of breakpoints from the
+ * Stackdriver backend, validate and normalize them, and store them into the
+ * configured breakpoint storage.
+ */
 class Daemon
 {
     /**
@@ -27,37 +34,68 @@ class Daemon
      */
     private $debuggee;
 
+    /**
+     * @var string The full path to the source root
+     */
     private $sourceRoot;
 
+    /**
+     * @var BreakpointStorageInterface
+     */
     private $storage;
 
-    public function __construct($sourceRoot, array $info = [])
+    /**
+     * Creates a new Daemon instance.
+     *
+     * @param string $sourceRoot The full path to the source root
+     * @param array $options [optional] {
+     *      Configuration options.
+     *
+     *      @type DebuggerClient $client A DebuggerClient to use. **Defaults
+     *            to** a new DebuggerClient.
+     *      @type array $sourceContext The source code identifier. **Defaults
+     *            to** values autodetected from the environment.
+     *      @type string $uniquifier A string when uniquely identifies this
+     *            debuggee. **Defaults to** a value autodetected from the
+     *            environment.
+     *      @type bool $debugOutput Whether or not to enable debug output.
+     * }
+     */
+    public function __construct($sourceRoot, array $options = [])
     {
-        $client = array_key_exists('client', $info)
-            ? $info['client']
+        $client = array_key_exists('client', $options)
+            ? $options['client']
             : new DebuggerClient();
 
         $this->sourceRoot = realpath($sourceRoot);
 
-        $sourceContext = array_key_exists('sourceContext', $info)
-            ? $info['sourceContext']
+        $sourceContext = array_key_exists('sourceContext', $options)
+            ? $options['sourceContext']
             : $this->defaultSourceContext();
         var_dump($sourceContext);
 
-        $uniquifier = $this->defaultUniquifier();
+        $uniquifier = array_key_exists('uniquifier', $options)
+            ? $options['uniquifier']
+            : $this->defaultUniquifier();
         $name = $uniquifier;
         $description = $uniquifier . ' debugger';
         $this->debuggee = $client->debuggee($name, [
             'uniquifier' => $uniquifier,
             'description' => $description,
             'sourceContexts' => [$sourceContext]
-            // FIXME: add extended source context - plain source context is deprecated
+            // FIXME: add extended source context - plain source context is
+            // deprecated
         ]);
         $this->debuggee->register();
 
         $this->storage = new SysvBreakpointStorage();
     }
 
+    /**
+     * Main loop for the daemon. Fetches breakpoints from the DebuggerClient
+     * and stores them in shared storage for the application to read. This
+     * function runs indefinitely.
+     */
     public function run()
     {
         echo "fetching breakpoints...\n";
@@ -67,7 +105,9 @@ class Daemon
         while (array_key_exists('nextWaitToken', $breakpoints)) {
             try {
                 echo "fetching breakpoints...\n";
-                $breakpoints = $this->debuggee->breakpoints(['waitToken' => $breakpoints['nextWaitToken']]);
+                $breakpoints = $this->debuggee->breakpoints([
+                    'waitToken' => $breakpoints['nextWaitToken']
+                ]);
                 $this->setBreakpoints($breakpoints);
             } catch (ConflictException $e) {
 
@@ -87,7 +127,7 @@ class Daemon
         foreach ($breakpoints as $breakpoint) {
             echo $breakpoint->id() . PHP_EOL;
             var_dump($breakpoint->location());
-            // echo "{$breakpoint->id()}: {$breakpoint->location()->path}:{$breakpoint->location->line}\n";
+
             // validate breakpoint condition and/or expressions
             if ($breakpoint->validate()) {
                 array_push($validBreakpoints, $breakpoint);

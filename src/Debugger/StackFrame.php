@@ -46,17 +46,49 @@ class StackFrame implements \JsonSerializable
      */
     private $locals = [];
 
-    public function __construct($data)
+    /**
+     * Instantiate a new StackFrame.
+     *
+     * @type string $function The name of the function
+     * @type SourceLocation $location The source location
+     */
+    public function __construct($function, SourceLocation $location)
     {
         $this->function = $this->pluck('function', $data, false);
         $this->location = new SourceLocation($this->pluck('location', $data, false));
     }
 
+    /**
+     * Instantiate a new StackFrame from JSON form
+     * @param  [type] $data [description]
+     * @return [type]       [description]
+     */
+    public static function fromJson($data)
+    {
+        $location = array_key_exists('location', $data)
+            ? $data['location']
+            : null;
+        return new static(
+            array_key_exists('function', $data) ? $data['function'] : null,
+            new SourceLocation($location)
+        );
+    }
+
+    /**
+     * Register a local variable in this stack frame.
+     *
+     * @param Variable $variable
+     */
     public function addLocal(Variable $variable)
     {
         array_push($this->locals, $variable);
     }
 
+    /**
+     * Returns a JSON serializable array representation of the stack frame.
+     *
+     * @return array
+     */
     public function jsonSerialize()
     {
         return [

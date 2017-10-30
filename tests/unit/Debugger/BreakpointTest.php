@@ -41,7 +41,7 @@ class BreakpointTest extends \PHPUnit_Framework_TestCase
 
         $breakpoint = new Breakpoint($input);
         $this->assertEquals('breakpointid', $breakpoint->id());
-        $this->assertEquals(Action::CAPTURE, $breakpoint->action());
+        $this->assertEquals(Breakpoint::ACTION_CAPTURE, $breakpoint->action());
         $this->assertInstanceOf(SourceLocation::class, $breakpoint->location());
         $this->assertEquals('/path/to/file.php', $breakpoint->location()->path());
         $this->assertEquals(45, $breakpoint->location()->line());

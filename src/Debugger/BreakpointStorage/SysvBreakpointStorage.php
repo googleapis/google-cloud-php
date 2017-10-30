@@ -20,10 +20,15 @@ namespace Google\Cloud\Debugger\BreakpointStorage;
 use Google\Cloud\Debugger\Breakpoint;
 use Google\Cloud\Debugger\Debuggee;
 
+/**
+ * This implementation of BreakpointStorageInterface using PHP's shared memory
+ * provided by the [Semaphore Functions](http://php.net/manual/en/ref.sem.php).
+ */
 class SysvBreakpointStorage implements BreakpointStorageInterface
 {
     const VAR_KEY = 1;
 
+    /* @var int */
     private $sysvKey;
 
     /* @var int */

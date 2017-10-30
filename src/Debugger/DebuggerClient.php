@@ -82,6 +82,16 @@ class DebuggerClient
         $this->connection = new Rest($this->configureAuthentication($config));
     }
 
+    /**
+     * Lazily instantiate a debuggee. There are no network requests made at this
+     * point. To see the operations that can be performed on a debuggee, please
+     * see {@see Google\Cloud\Debugger\Debugee}.
+     *
+     * @param string $id The debuggee identifier
+     * @param array $extras [optional]
+     *
+     * @return Debuggee
+     */
     public function debuggee($id, array $extras = [])
     {
         return new Debuggee($this->connection, [
@@ -92,12 +102,13 @@ class DebuggerClient
     }
 
     /**
-     * [debuggees description]
+     * Fetches all the debuggees in the project.
+     *
      * @return Debuggee[]
      */
-    public function debuggees(array $args = [])
+    public function debuggees(array $extras = [])
     {
-        $res = $this->connection->listDebuggees(['project' => $this->projectId] + $args);
+        $res = $this->connection->listDebuggees($this->projectId, $extras);
         if (is_array($res) && array_key_exists('debuggees', $res)) {
             return array_map(function ($info) {
                 return new Debuggee($this->connection, $info);

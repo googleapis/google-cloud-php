@@ -20,6 +20,11 @@ namespace Google\Cloud\Debugger\BreakpointStorage;
 use Google\Cloud\Debugger\Breakpoint;
 use Google\Cloud\Debugger\Debuggee;
 
+/**
+ * This interface represents the abstraction for storing and retrieving
+ * breakpoint configuration from a shared location on the machine. All processes
+ * on the machine can share the storage space.
+ */
 interface BreakpointStorageInterface
 {
     /**

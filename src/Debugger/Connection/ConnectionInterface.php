@@ -17,11 +17,47 @@
 
 namespace Google\Cloud\Debugger\Connection;
 
+use Google\Cloud\Debugger\Breakpoint;
+use Google\Cloud\Debugger\Debuggee;
+
 /**
  * Represents a connection to
  * [Debugger](https://cloud.google.com/debugger).
  */
 interface ConnectionInterface
 {
+    /**
+     * List all registered debuggees.
+     *
+     * @param string $projectId
+     * @param array $args
+     * @return Debuggee[]
+     */
+    public function listDebuggees($projectId, array $args);
 
+    /**
+     * Register this process as a debuggee.
+     *
+     * @param Debuggee $debuggee
+     * @param array $args
+     */
+    public function registerDebuggee(Debuggee $debuggee, array $args = []);
+
+    /**
+     * List the breakpoints set for the specified debuggee.
+     *
+     * @param string $debuggeeId
+     * @param array $args
+     * @return Breakpoint[]
+     */
+    public function listBreakpoints($debuggeeId, array $args = []);
+
+    /**
+     * Update the provided breakpoint.
+     *
+     * @param string $debuggeeId
+     * @param Breakpoint $breakpoint
+     * @return bool
+     */
+    public function updateBreakpoint($debuggeeId, Breakpoint $breakpoint);
 }

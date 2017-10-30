@@ -23,7 +23,8 @@ use Google\Cloud\Core\Iterator\PageIterator;
 use Google\Cloud\Debugger\Connection\ConnectionInterface;
 
 /**
- * This class represents a debuggee - a service that can handle breakpoints. For more information see
+ * This class represents a debuggee - a service that can handle breakpoints.
+ * For more information see
  * [Debugee](https://cloud.google.com/debugger/api/reference/rest/v2/Debuggee)
  */
 class Debuggee implements \JsonSerializable
@@ -35,16 +36,57 @@ class Debuggee implements \JsonSerializable
      */
     private $connection;
 
+    /**
+     * @var string The unique identifier for this Debuggee
+     */
     private $id;
+
+    /**
+     * @var string
+     */
     private $project;
+
+    /**
+     * @var string The debuggee uniquifier.
+     */
     private $uniquifier;
+
+    /**
+     * @var string
+     */
     private $description;
+
+    /**
+     * @var bool
+     */
     private $isInactive = false;
+
+    /**
+     * @var string
+     */
     private $agentVersion = DebuggerClient::VERSION;
+
     private $sourceContexts = [];
     private $extSourceContexts = [];
     private $labels = [];
 
+    /**
+     * Instantiate a new Debuggee.
+     *
+     * @param ConnectionInterface $connection
+     * @param array $info [optional]
+     *      Configuration options.
+     *
+     *      @type string $id
+     *      @type string $project
+     *      @type string $uniquifier
+     *      @type string $description
+     *      @type string $isInactive
+     *      @type string $agentVersion
+     *      @type string $status
+     *      @type string $sourceContexts
+     *      @type string $extSourceContexts
+     */
     public function __construct(ConnectionInterface $connection, array $info = [])
     {
         $this->connection = $connection;
@@ -64,22 +106,30 @@ class Debuggee implements \JsonSerializable
         $this->extSourceContexts = $this->pluck('extSourceContexts', $info, false) ?: [];
     }
 
+    /**
+     * Return the debuggee identifier.
+     *
+     * @return string
+     */
     public function id()
     {
         return $this->id;
     }
 
+    /**
+     * Register this debuggee with the Stackdriver backend.
+     *
+     * @param array $args [description]
+     * @return bool
+     */
     public function register(array $args = [])
     {
-        $resp = $this->connection->registerDebuggee($this->jsonSerialize());
+        $resp = $this->connection->registerDebuggee($this, $args);
         if (array_key_exists('debuggee', $resp)) {
             $this->id = $resp['debuggee']['id'];
+            return true;
         }
-    }
-
-    public function sourceContexts()
-    {
-        return $this->sourceContexts;
+        return false;
     }
 
     /**
@@ -88,21 +138,22 @@ class Debuggee implements \JsonSerializable
      * @param array $options [optional] {
      *      Configuration options.
      *
-     *      @type string $waitToken A wait token that, if specified, blocks the method call until the
-     *            list of active breakpoints has changed, or a server selected timeout has expired.
-     *            The value should be set from the last returned response.
-     *      @type bool $successOnTimeout If set to **true**, returns **google.rpc.Code.OK** status and
-     *            sets the **waitExpired** response field to **true** when the server-selected timeout
-     *            has expired (recommended). If set to **false**, returns **google.rpc.Code.ABORTED**
-     *            status when the server-selected timeout has expired (deprecated).
+     *      @type string $waitToken A wait token that, if specified, blocks the
+     *            method call until the list of active breakpoints has changed,
+     *            or a server selected timeout has expired. The value should be
+     *            set from the last returned response.
+     *      @type bool $successOnTimeout If set to **true**, returns
+     *            **google.rpc.Code.OK** status and sets the **waitExpired**
+     *            response field to **true** when the server-selected timeout
+     *            has expired (recommended). If set to **false**, returns
+     *            **google.rpc.Code.ABORTED** status when the server-selected
+     *            timeout has expired (deprecated).
      * }
      * @return Breakpoint[]
      */
     public function breakpoints(array $options = [])
     {
-        $ret = $this->connection->listBreakpoints([
-            'debuggeeId' => $this->id
-        ] + $options);
+        $ret = $this->connection->listBreakpoints($this->id, $options);
 
         if (array_key_exists('breakpoints', $ret)) {
             $ret['breakpoints'] = array_map(
@@ -115,21 +166,22 @@ class Debuggee implements \JsonSerializable
         return $ret;
     }
 
-    public function breakpoint($breakpointId)
-    {
-
-    }
-
+    /**
+     * Update the provided, modified breakpoint.
+     *
+     * @param Breakpoint $breakpoint The modified breakpoint.
+     * @return bool
+     */
     public function updateBreakpoint(Breakpoint $breakpoint)
     {
-        $data = [
-            'debuggeeId' => $this->id,
-            'id' => $breakpoint->id(),
-            'breakpoint' => $breakpoint->jsonSerialize()
-        ];
-        return $this->connection->updateBreakpoint($data);
+        return $this->connection->updateBreakpoint($this->id, $breakpoint);
     }
 
+    /**
+     * Update multiple breakpoints.
+     *
+     * @param Breakpoint[] $breakpoints The modified breakpoints.
+     */
     public function updateBreakpointBatch($breakpoints)
     {
         foreach ($breakpoints as $breakpoint) {
@@ -137,11 +189,11 @@ class Debuggee implements \JsonSerializable
         }
     }
 
-    public function deleteBreakpoint(Breakpoint $breakpoint)
-    {
-
-    }
-
+    /**
+     * Returns a JSON serializable array representation of the debuggee.
+     *
+     * @return array
+     */
     public function jsonSerialize()
     {
         return [

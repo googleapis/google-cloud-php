@@ -77,7 +77,7 @@ class Breakpoint implements \JsonSerializable
         if (array_key_exists('stackFrames', $data)) {
             $this->info['stackFrames'] = array_map(
                 function ($data) {
-                    return new StackFrame($data);
+                    return StackFrame::fromJson($data);
                 },
                 $data['stackFrames']
             );
