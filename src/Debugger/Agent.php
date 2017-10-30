@@ -118,7 +118,7 @@ class Agent
             $this->breakpoints[$breakpoint->id()] = $breakpoint;
             switch ($breakpoint->action()) {
                 case null: // default action (not set) is a snapsoht
-                case Action::CAPTURE:
+                case Breakpoint::ACTION_CAPTURE:
                     $sourceLocation = $breakpoint->location();
                     $this->invalidateOpcache($breakpoint);
                     stackdriver_debugger_add_snapshot(
@@ -133,7 +133,7 @@ class Agent
                         ]
                     );
                     break;
-                case Action::LOG:
+                case Breakpoint::ACTION_LOG:
                     $sourceLocation = $breakpoint->location();
                     $this->invalidateOpcache($breakpoint);
                     stackdriver_debugger_add_logpoint(

@@ -27,6 +27,19 @@ class Breakpoint implements \JsonSerializable
 {
     use ArrayTrait;
 
+    const ACTION_CAPTURE = 'CAPTURE';
+    const ACTION_LOG = 'LOG';
+    const REFERENCE_UNSPECIFIED = 'UNSPECIFIED';
+    const REFERENCE_BREAKPOINT_SOURCE_LOCATION = 'BREAKPOINT_SOURCE_LOCATION';
+    const REFERENCE_BREAKPOINT_CONDITION = 'BREAKPOINT_CONDITION';
+    const REFERENCE_BREAKPOINT_EXPRESSION = 'BREAKPOINT_EXPRESSION';
+    const REFERENCE_BREAKPOINT_AGE = 'BREAKPOINT_AGE';
+    const REFERENCE_VARIABLE_NAME = 'VARIABLE_NAME';
+    const REFERENCE_VARIABLE_VALUE = 'VARIABLE_VALUE';
+    const LOG_LEVEL_INFO = 'INFO';
+    const LOG_LEVEL_WARNING = 'WARNING';
+    const LOG_LEVEL_ERROR = 'ERROR';
+
     /**
      * @var array
      */
@@ -121,12 +134,17 @@ class Breakpoint implements \JsonSerializable
      */
     public function condition()
     {
-        return isset($this->info['condition']) ? $this->info['condition'] : null;
+        return isset($this->info['condition']) ? $this->info['condition'] : '';
     }
 
+    /**
+     * Returns the log level for this breakpoint.
+     *
+     * @return string
+     */
     public function logLevel()
     {
-        return isset($this->info['logLevel']) ? $this->info['logLevel'] : LogLevel::INFO;
+        return isset($this->info['logLevel']) ? $this->info['logLevel'] : LOG_LEVEL_INFO;
     }
 
     /**
@@ -136,7 +154,7 @@ class Breakpoint implements \JsonSerializable
      */
     public function logMessageFormat()
     {
-        return isset($this->info['logMessageFormat']) ? $this->info['logMessageFormat'] : null;
+        return isset($this->info['logMessageFormat']) ? $this->info['logMessageFormat'] : '';
     }
 
     /**
@@ -261,11 +279,11 @@ class Breakpoint implements \JsonSerializable
             // validate that the condition is ok for debugging
             try {
                 if (!stackdriver_debugger_valid_statement($this->condition())) {
-                    $this->setError(Reference::BREAKPOINT_CONDITION, 'Invalid breakpoint condition - Invalid operations: $0.', [$this->condition]);
+                    $this->setError(self::REFERENCE_BREAKPOINT_CONDITION, 'Invalid breakpoint condition - Invalid operations: $0.', [$this->condition]);
                     return false;
                 }
             } catch (\ParseError $e) {
-                $this->setError(Reference::BREAKPOINT_CONDITION, 'Invalid breakpoint condition - Parse error: $0.', [$this->condition]);
+                $this->setError(self::REFERENCE_BREAKPOINT_CONDITION, 'Invalid breakpoint condition - Parse error: $0.', [$this->condition]);
                 return false;
             }
         }
@@ -273,7 +291,7 @@ class Breakpoint implements \JsonSerializable
         if ($this->expressions()) {
             foreach ($this->expressions() as $expression) {
                 if (!stackdriver_debugger_valid_statement($expression)) {
-                    $this->setError(Reference::BREAKPOINT_EXPRESSION, 'Invalid breakpoint expression: $0', [$expression]);
+                    $this->setError(self::REFERENCE_BREAKPOINT_EXPRESSION, 'Invalid breakpoint expression: $0', [$expression]);
                     return false;
                 }
             }
