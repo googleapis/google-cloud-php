@@ -472,16 +472,11 @@ class Grpc implements ConnectionInterface
             + $this->addResourcePrefixHeader($args, $database)['userHeaders'];
         $request = new DeleteSessionRequest();
         $request->setName($this->pluck('name', $args));
-        $credentialsCallback = $this->spannerClient
-            ->getCredentialsHelper()
-            ->createCallCredentialsCallback();
 
         return $this->spannerClient
-            ->getStub()
-            ->DeleteSession(
+            ->deleteSession(
                 $request,
-                $headers,
-                ['call_credentials_callback' => $credentialsCallback]
+                $headers
             );
     }
 
