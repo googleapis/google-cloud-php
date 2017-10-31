@@ -95,9 +95,9 @@ use Google\Cloud\Core\CallTrait;
  *     }
  *     ```
  *
- *     @codeCoverageIgnoreStart
+ *     @codingStandardsIgnoreStart
  *     @see https://cloud.google.com/natural-language/docs/reference/rest/v1beta2/ClassificationCategory Classification category documentation
- *     @codeCoverageIgnoreEnd
+ *     @codingStandardsIgnoreEnd
  *
  *     @return array|null
  * }
