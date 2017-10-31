@@ -110,7 +110,7 @@ class Daemon
                 ]);
                 $this->setBreakpoints($breakpoints);
             } catch (ConflictException $e) {
-
+                // Ignoring this exception
             }
         }
     }

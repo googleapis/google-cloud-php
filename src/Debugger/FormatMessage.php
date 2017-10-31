@@ -37,7 +37,8 @@ class FormatMessage
      *
      * @param array $data
      */
-    public function __construct(array $data = []) {
+    public function __construct(array $data = [])
+    {
         $this->format = $data['format'];
         $this->parameters = $data['parameters'];
     }

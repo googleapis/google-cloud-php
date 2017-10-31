@@ -279,11 +279,19 @@ class Breakpoint implements \JsonSerializable
             // validate that the condition is ok for debugging
             try {
                 if (!stackdriver_debugger_valid_statement($this->condition())) {
-                    $this->setError(self::REFERENCE_BREAKPOINT_CONDITION, 'Invalid breakpoint condition - Invalid operations: $0.', [$this->condition]);
+                    $this->setError(
+                        self::REFERENCE_BREAKPOINT_CONDITION,
+                        'Invalid breakpoint condition - Invalid operations: $0.',
+                        [$this->condition]
+                    );
                     return false;
                 }
             } catch (\ParseError $e) {
-                $this->setError(self::REFERENCE_BREAKPOINT_CONDITION, 'Invalid breakpoint condition - Parse error: $0.', [$this->condition]);
+                $this->setError(
+                    self::REFERENCE_BREAKPOINT_CONDITION,
+                    'Invalid breakpoint condition - Parse error: $0.',
+                    [$this->condition]
+                );
                 return false;
             }
         }
@@ -291,7 +299,11 @@ class Breakpoint implements \JsonSerializable
         if ($this->expressions()) {
             foreach ($this->expressions() as $expression) {
                 if (!stackdriver_debugger_valid_statement($expression)) {
-                    $this->setError(self::REFERENCE_BREAKPOINT_EXPRESSION, 'Invalid breakpoint expression: $0', [$expression]);
+                    $this->setError(
+                        self::REFERENCE_BREAKPOINT_EXPRESSION,
+                        'Invalid breakpoint expression: $0',
+                        [$expression]
+                    );
                     return false;
                 }
             }

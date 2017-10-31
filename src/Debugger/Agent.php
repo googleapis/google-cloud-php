@@ -149,6 +149,7 @@ class Agent
                             'sourceRoot'    => $this->sourceRoot
                         ]
                     );
+                    break;
                 default:
                     continue;
             }

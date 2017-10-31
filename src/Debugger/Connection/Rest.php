@@ -20,6 +20,8 @@ namespace Google\Cloud\Debugger\Connection;
 use Google\Cloud\Core\RequestBuilder;
 use Google\Cloud\Core\RequestWrapper;
 use Google\Cloud\Core\RestTrait;
+use Google\Cloud\Debugger\Breakpoint;
+use Google\Cloud\Debugger\Debuggee;
 
 /**
  * Implementation of the
