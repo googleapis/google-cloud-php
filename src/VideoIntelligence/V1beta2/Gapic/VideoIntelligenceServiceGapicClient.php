@@ -57,9 +57,8 @@ use Google\GAX\OperationResponse;
  * ```
  * try {
  *     $videoIntelligenceServiceClient = new VideoIntelligenceServiceClient();
- *     $inputUri = "";
- *     $features = [];
- *     $operationResponse = $videoIntelligenceServiceClient->annotateVideo($inputUri, $features);
+ *
+ *     $operationResponse = $videoIntelligenceServiceClient->annotateVideo();
  *     $operationResponse->pollUntilComplete();
  *     if ($operationResponse->operationSucceeded()) {
  *       $result = $operationResponse->getResult();
@@ -70,7 +69,7 @@ use Google\GAX\OperationResponse;
  *     }
  *
  *     // OR start the operation, keep the operation name, and resume later
- *     $operationResponse = $videoIntelligenceServiceClient->annotateVideo($inputUri, $features);
+ *     $operationResponse = $videoIntelligenceServiceClient->annotateVideo();
  *     $operationName = $operationResponse->getName();
  *     // ... do other work
  *     $newOperationResponse = $videoIntelligenceServiceClient->resumeOperation($operationName, 'annotateVideo');
@@ -304,9 +303,8 @@ class VideoIntelligenceServiceGapicClient
      * ```
      * try {
      *     $videoIntelligenceServiceClient = new VideoIntelligenceServiceClient();
-     *     $inputUri = "";
-     *     $features = [];
-     *     $operationResponse = $videoIntelligenceServiceClient->annotateVideo($inputUri, $features);
+     *
+     *     $operationResponse = $videoIntelligenceServiceClient->annotateVideo();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *       $result = $operationResponse->getResult();
@@ -317,7 +315,7 @@ class VideoIntelligenceServiceGapicClient
      *     }
      *
      *     // OR start the operation, keep the operation name, and resume later
-     *     $operationResponse = $videoIntelligenceServiceClient->annotateVideo($inputUri, $features);
+     *     $operationResponse = $videoIntelligenceServiceClient->annotateVideo();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $videoIntelligenceServiceClient->resumeOperation($operationName, 'annotateVideo');
@@ -337,24 +335,26 @@ class VideoIntelligenceServiceGapicClient
      * }
      * ```
      *
-     * @param string $inputUri     Input video location. Currently, only
-     *                             [Google Cloud Storage](https://cloud.google.com/storage/) URIs are
-     *                             supported, which must be specified in the following format:
-     *                             `gs://bucket-id/object-id` (other URI formats return
-     *                             [google.rpc.Code.INVALID_ARGUMENT][google.rpc.Code.INVALID_ARGUMENT]). For more information, see
-     *                             [Request URIs](https://cloud.google.com/storage/docs/reference-uris).
-     *                             A video URI may include wildcards in `object-id`, and thus identify
-     *                             multiple videos. Supported wildcards: '*' to match 0 or more characters;
-     *                             '?' to match 1 character. If unset, the input video should be embedded
-     *                             in the request as `input_content`. If set, `input_content` should be unset.
-     * @param int[]  $features     Requested video annotation features.
-     *                             For allowed values, use constants defined on {@see \Google\Cloud\Videointelligence\V1beta2\Feature}
-     * @param array  $optionalArgs {
-     *                             Optional.
+     * @param array $optionalArgs {
+     *                            Optional
      *
+     *     @type string $inputUri
+     *          Input video location. Currently, only
+     *          [Google Cloud Storage](https://cloud.google.com/storage/) URIs are
+     *          supported, which must be specified in the following format:
+     *          `gs://bucket-id/object-id` (other URI formats return
+     *          [google.rpc.Code.INVALID_ARGUMENT][google.rpc.Code.INVALID_ARGUMENT]). For more information, see
+     *          [Request URIs](https://cloud.google.com/storage/docs/reference-uris).
+     *          A video URI may include wildcards in `object-id`, and thus identify
+     *          multiple videos. Supported wildcards: '*' to match 0 or more characters;
+     *          '?' to match 1 character. If unset, the input video should be embedded
+     *          in the request as `input_content`. If set, `input_content` should be unset.
      *     @type string $inputContent
      *          The video data bytes. Encoding: base64. If unset, the input video(s)
      *          should be specified via `input_uri`. If set, `input_uri` should be unset.
+     *     @type int[] $features
+     *          Requested video annotation features.
+     *          For allowed values, use constants defined on {@see \Google\Cloud\Videointelligence\V1beta2\Feature}
      *     @type VideoContext $videoContext
      *          Additional video context and/or feature-specific parameters.
      *     @type string $outputUri
@@ -380,13 +380,17 @@ class VideoIntelligenceServiceGapicClient
      * @throws \Google\GAX\ApiException if the remote call fails
      * @experimental
      */
-    public function annotateVideo($inputUri, $features, $optionalArgs = [])
+    public function annotateVideo($optionalArgs = [])
     {
         $request = new AnnotateVideoRequest();
-        $request->setInputUri($inputUri);
-        $request->setFeatures($features);
+        if (isset($optionalArgs['inputUri'])) {
+            $request->setInputUri($optionalArgs['inputUri']);
+        }
         if (isset($optionalArgs['inputContent'])) {
             $request->setInputContent($optionalArgs['inputContent']);
+        }
+        if (isset($optionalArgs['features'])) {
+            $request->setFeatures($optionalArgs['features']);
         }
         if (isset($optionalArgs['videoContext'])) {
             $request->setVideoContext($optionalArgs['videoContext']);

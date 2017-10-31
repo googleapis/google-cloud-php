@@ -57,8 +57,9 @@ use Google\GAX\OperationResponse;
  * ```
  * try {
  *     $videoIntelligenceServiceClient = new VideoIntelligenceServiceClient();
- *     $inputUri = "";
- *     $features = [];
+ *     $inputUri = 'gs://demomaker/cat.mp4';
+ *     $featuresElement = Feature::LABEL_DETECTION;
+ *     $features = [$featuresElement];
  *     $operationResponse = $videoIntelligenceServiceClient->annotateVideo($inputUri, $features);
  *     $operationResponse->pollUntilComplete();
  *     if ($operationResponse->operationSucceeded()) {
@@ -304,8 +305,9 @@ class VideoIntelligenceServiceGapicClient
      * ```
      * try {
      *     $videoIntelligenceServiceClient = new VideoIntelligenceServiceClient();
-     *     $inputUri = "";
-     *     $features = [];
+     *     $inputUri = 'gs://demomaker/cat.mp4';
+     *     $featuresElement = Feature::LABEL_DETECTION;
+     *     $features = [$featuresElement];
      *     $operationResponse = $videoIntelligenceServiceClient->annotateVideo($inputUri, $features);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
@@ -350,7 +352,7 @@ class VideoIntelligenceServiceGapicClient
      * @param int[]  $features     Requested video annotation features.
      *                             For allowed values, use constants defined on {@see \Google\Cloud\Videointelligence\V1beta1\Feature}
      * @param array  $optionalArgs {
-     *                             Optional.
+     *                             Optional
      *
      *     @type string $inputContent
      *          The video data bytes. Encoding: base64. If unset, the input video(s)

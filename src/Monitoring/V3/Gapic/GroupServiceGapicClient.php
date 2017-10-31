@@ -72,15 +72,15 @@ use Google\Monitoring\V3\UpdateGroupRequest;
  * ```
  * try {
  *     $groupServiceClient = new GroupServiceClient();
- *     $formattedName = $groupServiceClient->projectName("[PROJECT]");
+ *     $formattedName = $groupServiceClient->projectName('[PROJECT]');
  *     // Iterate through all elements
  *     $pagedResponse = $groupServiceClient->listGroups($formattedName);
  *     foreach ($pagedResponse->iterateAllElements() as $element) {
  *         // doSomethingWith($element);
  *     }
  *
- *     // OR iterate over pages of elements, with the maximum page size set to 5
- *     $pagedResponse = $groupServiceClient->listGroups($formattedName, ['pageSize' => 5]);
+ *     // OR iterate over pages of elements
+ *     $pagedResponse = $groupServiceClient->listGroups($formattedName);
  *     foreach ($pagedResponse->iteratePages() as $page) {
  *         foreach ($page as $element) {
  *             // doSomethingWith($element);
@@ -161,6 +161,7 @@ class GroupServiceGapicClient
 
         return self::$pathTemplateMap;
     }
+
     private static function getPageStreamingDescriptors()
     {
         $listGroupsPageStreamingDescriptor =
@@ -210,7 +211,7 @@ class GroupServiceGapicClient
      *
      * @param string $project
      *
-     * @return string The formatted project resource.
+     * @return string the formatted project resource
      * @experimental
      */
     public static function projectName($project)
@@ -227,7 +228,7 @@ class GroupServiceGapicClient
      * @param string $project
      * @param string $group
      *
-     * @return string The formatted group resource.
+     * @return string the formatted group resource
      * @experimental
      */
     public static function groupName($project, $group)
@@ -253,9 +254,9 @@ class GroupServiceGapicClient
      * @param string $formattedName The formatted name string
      * @param string $template      Optional name of template to match
      *
-     * @return array An associative array from name component IDs to component values.
+     * @return array an associative array from name component IDs to component values
      *
-     * @throws ValidationException If $formattedName could not be matched.
+     * @throws ValidationException if $formattedName could not be matched
      * @experimental
      */
     public static function parseName($formattedName, $template = null)
@@ -394,15 +395,15 @@ class GroupServiceGapicClient
      * ```
      * try {
      *     $groupServiceClient = new GroupServiceClient();
-     *     $formattedName = $groupServiceClient->projectName("[PROJECT]");
+     *     $formattedName = $groupServiceClient->projectName('[PROJECT]');
      *     // Iterate through all elements
      *     $pagedResponse = $groupServiceClient->listGroups($formattedName);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
      *
-     *     // OR iterate over pages of elements, with the maximum page size set to 5
-     *     $pagedResponse = $groupServiceClient->listGroups($formattedName, ['pageSize' => 5]);
+     *     // OR iterate over pages of elements
+     *     $pagedResponse = $groupServiceClient->listGroups($formattedName);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -416,7 +417,7 @@ class GroupServiceGapicClient
      * @param string $name         The project whose groups are to be listed. The format is
      *                             `"projects/{project_id_or_number}"`.
      * @param array  $optionalArgs {
-     *                             Optional.
+     *                             Optional
      *
      *     @type string $childrenOfGroup
      *          A group name: `"projects/{project_id_or_number}/groups/{group_id}"`.
@@ -501,7 +502,7 @@ class GroupServiceGapicClient
      * ```
      * try {
      *     $groupServiceClient = new GroupServiceClient();
-     *     $formattedName = $groupServiceClient->groupName("[PROJECT]", "[GROUP]");
+     *     $formattedName = $groupServiceClient->groupName('[PROJECT]', '[GROUP]');
      *     $response = $groupServiceClient->getGroup($formattedName);
      * } finally {
      *     $groupServiceClient->close();
@@ -511,7 +512,7 @@ class GroupServiceGapicClient
      * @param string $name         The group to retrieve. The format is
      *                             `"projects/{project_id_or_number}/groups/{group_id}"`.
      * @param array  $optionalArgs {
-     *                             Optional.
+     *                             Optional
      *
      *     @type \Google\GAX\RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
@@ -557,7 +558,7 @@ class GroupServiceGapicClient
      * ```
      * try {
      *     $groupServiceClient = new GroupServiceClient();
-     *     $formattedName = $groupServiceClient->projectName("[PROJECT]");
+     *     $formattedName = $groupServiceClient->projectName('[PROJECT]');
      *     $group = new Group();
      *     $response = $groupServiceClient->createGroup($formattedName, $group);
      * } finally {
@@ -570,7 +571,7 @@ class GroupServiceGapicClient
      * @param Group  $group        A group definition. It is an error to define the `name` field because
      *                             the system assigns the name.
      * @param array  $optionalArgs {
-     *                             Optional.
+     *                             Optional
      *
      *     @type bool $validateOnly
      *          If true, validate this request but do not create the group.
@@ -633,7 +634,7 @@ class GroupServiceGapicClient
      * @param Group $group        The new definition of the group.  All fields of the existing group,
      *                            excepting `name`, are replaced with the corresponding fields of this group.
      * @param array $optionalArgs {
-     *                            Optional.
+     *                            Optional
      *
      *     @type bool $validateOnly
      *          If true, validate this request but do not update the existing group.
@@ -684,7 +685,7 @@ class GroupServiceGapicClient
      * ```
      * try {
      *     $groupServiceClient = new GroupServiceClient();
-     *     $formattedName = $groupServiceClient->groupName("[PROJECT]", "[GROUP]");
+     *     $formattedName = $groupServiceClient->groupName('[PROJECT]', '[GROUP]');
      *     $groupServiceClient->deleteGroup($formattedName);
      * } finally {
      *     $groupServiceClient->close();
@@ -694,7 +695,7 @@ class GroupServiceGapicClient
      * @param string $name         The group to delete. The format is
      *                             `"projects/{project_id_or_number}/groups/{group_id}"`.
      * @param array  $optionalArgs {
-     *                             Optional.
+     *                             Optional
      *
      *     @type \Google\GAX\RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
@@ -738,15 +739,15 @@ class GroupServiceGapicClient
      * ```
      * try {
      *     $groupServiceClient = new GroupServiceClient();
-     *     $formattedName = $groupServiceClient->groupName("[PROJECT]", "[GROUP]");
+     *     $formattedName = $groupServiceClient->groupName('[PROJECT]', '[GROUP]');
      *     // Iterate through all elements
      *     $pagedResponse = $groupServiceClient->listGroupMembers($formattedName);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
      *
-     *     // OR iterate over pages of elements, with the maximum page size set to 5
-     *     $pagedResponse = $groupServiceClient->listGroupMembers($formattedName, ['pageSize' => 5]);
+     *     // OR iterate over pages of elements
+     *     $pagedResponse = $groupServiceClient->listGroupMembers($formattedName);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -760,7 +761,7 @@ class GroupServiceGapicClient
      * @param string $name         The group whose members are listed. The format is
      *                             `"projects/{project_id_or_number}/groups/{group_id}"`.
      * @param array  $optionalArgs {
-     *                             Optional.
+     *                             Optional
      *
      *     @type int $pageSize
      *          The maximum number of resources contained in the underlying API

@@ -79,8 +79,8 @@ use Google\Pubsub\V1\UpdateSubscriptionRequest;
  * ```
  * try {
  *     $subscriberClient = new SubscriberClient();
- *     $formattedName = $subscriberClient->subscriptionName("[PROJECT]", "[SUBSCRIPTION]");
- *     $formattedTopic = $subscriberClient->topicName("[PROJECT]", "[TOPIC]");
+ *     $formattedName = $subscriberClient->subscriptionName('[PROJECT]', '[SUBSCRIPTION]');
+ *     $formattedTopic = $subscriberClient->topicName('[PROJECT]', '[TOPIC]');
  *     $response = $subscriberClient->createSubscription($formattedName, $formattedTopic);
  * } finally {
  *     $subscriberClient->close();
@@ -180,6 +180,7 @@ class SubscriberGapicClient
 
         return self::$pathTemplateMap;
     }
+
     private static function getPageStreamingDescriptors()
     {
         $listSubscriptionsPageStreamingDescriptor =
@@ -239,7 +240,7 @@ class SubscriberGapicClient
      *
      * @param string $project
      *
-     * @return string The formatted project resource.
+     * @return string the formatted project resource
      * @experimental
      */
     public static function projectName($project)
@@ -256,7 +257,7 @@ class SubscriberGapicClient
      * @param string $project
      * @param string $snapshot
      *
-     * @return string The formatted snapshot resource.
+     * @return string the formatted snapshot resource
      * @experimental
      */
     public static function snapshotName($project, $snapshot)
@@ -274,7 +275,7 @@ class SubscriberGapicClient
      * @param string $project
      * @param string $subscription
      *
-     * @return string The formatted subscription resource.
+     * @return string the formatted subscription resource
      * @experimental
      */
     public static function subscriptionName($project, $subscription)
@@ -292,7 +293,7 @@ class SubscriberGapicClient
      * @param string $project
      * @param string $topic
      *
-     * @return string The formatted topic resource.
+     * @return string the formatted topic resource
      * @experimental
      */
     public static function topicName($project, $topic)
@@ -320,9 +321,9 @@ class SubscriberGapicClient
      * @param string $formattedName The formatted name string
      * @param string $template      Optional name of template to match
      *
-     * @return array An associative array from name component IDs to component values.
+     * @return array an associative array from name component IDs to component values
      *
-     * @throws ValidationException If $formattedName could not be matched.
+     * @throws ValidationException if $formattedName could not be matched
      * @experimental
      */
     public static function parseName($formattedName, $template = null)
@@ -491,8 +492,8 @@ class SubscriberGapicClient
      * ```
      * try {
      *     $subscriberClient = new SubscriberClient();
-     *     $formattedName = $subscriberClient->subscriptionName("[PROJECT]", "[SUBSCRIPTION]");
-     *     $formattedTopic = $subscriberClient->topicName("[PROJECT]", "[TOPIC]");
+     *     $formattedName = $subscriberClient->subscriptionName('[PROJECT]', '[SUBSCRIPTION]');
+     *     $formattedTopic = $subscriberClient->topicName('[PROJECT]', '[TOPIC]');
      *     $response = $subscriberClient->createSubscription($formattedName, $formattedTopic);
      * } finally {
      *     $subscriberClient->close();
@@ -510,7 +511,7 @@ class SubscriberGapicClient
      *                             The value of this field will be `_deleted-topic_` if the topic has been
      *                             deleted.
      * @param array  $optionalArgs {
-     *                             Optional.
+     *                             Optional
      *
      *     @type PushConfig $pushConfig
      *          If push delivery is used with this subscription, this field is
@@ -610,7 +611,7 @@ class SubscriberGapicClient
      * ```
      * try {
      *     $subscriberClient = new SubscriberClient();
-     *     $formattedSubscription = $subscriberClient->subscriptionName("[PROJECT]", "[SUBSCRIPTION]");
+     *     $formattedSubscription = $subscriberClient->subscriptionName('[PROJECT]', '[SUBSCRIPTION]');
      *     $response = $subscriberClient->getSubscription($formattedSubscription);
      * } finally {
      *     $subscriberClient->close();
@@ -620,7 +621,7 @@ class SubscriberGapicClient
      * @param string $subscription The name of the subscription to get.
      *                             Format is `projects/{project}/subscriptions/{sub}`.
      * @param array  $optionalArgs {
-     *                             Optional.
+     *                             Optional
      *
      *     @type \Google\GAX\RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
@@ -679,11 +680,11 @@ class SubscriberGapicClient
      * }
      * ```
      *
-     * @param Subscription $subscription The updated subscription object.
+     * @param Subscription $subscription the updated subscription object
      * @param FieldMask    $updateMask   Indicates which fields in the provided subscription to update.
      *                                   Must be specified and non-empty.
      * @param array        $optionalArgs {
-     *                                   Optional.
+     *                                   Optional
      *
      *     @type \Google\GAX\RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
@@ -730,15 +731,15 @@ class SubscriberGapicClient
      * ```
      * try {
      *     $subscriberClient = new SubscriberClient();
-     *     $formattedProject = $subscriberClient->projectName("[PROJECT]");
+     *     $formattedProject = $subscriberClient->projectName('[PROJECT]');
      *     // Iterate through all elements
      *     $pagedResponse = $subscriberClient->listSubscriptions($formattedProject);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
      *
-     *     // OR iterate over pages of elements, with the maximum page size set to 5
-     *     $pagedResponse = $subscriberClient->listSubscriptions($formattedProject, ['pageSize' => 5]);
+     *     // OR iterate over pages of elements
+     *     $pagedResponse = $subscriberClient->listSubscriptions($formattedProject);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -752,7 +753,7 @@ class SubscriberGapicClient
      * @param string $project      The name of the cloud project that subscriptions belong to.
      *                             Format is `projects/{project}`.
      * @param array  $optionalArgs {
-     *                             Optional.
+     *                             Optional
      *
      *     @type int $pageSize
      *          The maximum number of resources contained in the underlying API
@@ -817,7 +818,7 @@ class SubscriberGapicClient
      * ```
      * try {
      *     $subscriberClient = new SubscriberClient();
-     *     $formattedSubscription = $subscriberClient->subscriptionName("[PROJECT]", "[SUBSCRIPTION]");
+     *     $formattedSubscription = $subscriberClient->subscriptionName('[PROJECT]', '[SUBSCRIPTION]');
      *     $subscriberClient->deleteSubscription($formattedSubscription);
      * } finally {
      *     $subscriberClient->close();
@@ -827,7 +828,7 @@ class SubscriberGapicClient
      * @param string $subscription The subscription to delete.
      *                             Format is `projects/{project}/subscriptions/{sub}`.
      * @param array  $optionalArgs {
-     *                             Optional.
+     *                             Optional
      *
      *     @type \Google\GAX\RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
@@ -875,7 +876,7 @@ class SubscriberGapicClient
      * ```
      * try {
      *     $subscriberClient = new SubscriberClient();
-     *     $formattedSubscription = $subscriberClient->subscriptionName("[PROJECT]", "[SUBSCRIPTION]");
+     *     $formattedSubscription = $subscriberClient->subscriptionName('[PROJECT]', '[SUBSCRIPTION]');
      *     $ackIds = [];
      *     $ackDeadlineSeconds = 0;
      *     $subscriberClient->modifyAckDeadline($formattedSubscription, $ackIds, $ackDeadlineSeconds);
@@ -886,7 +887,7 @@ class SubscriberGapicClient
      *
      * @param string   $subscription       The name of the subscription.
      *                                     Format is `projects/{project}/subscriptions/{sub}`.
-     * @param string[] $ackIds             List of acknowledgment IDs.
+     * @param string[] $ackIds             list of acknowledgment IDs
      * @param int      $ackDeadlineSeconds The new ack deadline with respect to the time this request was sent to
      *                                     the Pub/Sub system. For example, if the value is 10, the new
      *                                     ack deadline will expire 10 seconds after the `ModifyAckDeadline` call
@@ -895,7 +896,7 @@ class SubscriberGapicClient
      *                                     The minimum deadline you can specify is 0 seconds.
      *                                     The maximum deadline you can specify is 600 seconds (10 minutes).
      * @param array    $optionalArgs       {
-     *                                     Optional.
+     *                                     Optional
      *
      *     @type \Google\GAX\RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
@@ -947,7 +948,7 @@ class SubscriberGapicClient
      * ```
      * try {
      *     $subscriberClient = new SubscriberClient();
-     *     $formattedSubscription = $subscriberClient->subscriptionName("[PROJECT]", "[SUBSCRIPTION]");
+     *     $formattedSubscription = $subscriberClient->subscriptionName('[PROJECT]', '[SUBSCRIPTION]');
      *     $ackIds = [];
      *     $subscriberClient->acknowledge($formattedSubscription, $ackIds);
      * } finally {
@@ -960,7 +961,7 @@ class SubscriberGapicClient
      * @param string[] $ackIds       The acknowledgment ID for the messages being acknowledged that was returned
      *                               by the Pub/Sub system in the `Pull` response. Must not be empty.
      * @param array    $optionalArgs {
-     *                               Optional.
+     *                               Optional
      *
      *     @type \Google\GAX\RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
@@ -1008,7 +1009,7 @@ class SubscriberGapicClient
      * ```
      * try {
      *     $subscriberClient = new SubscriberClient();
-     *     $formattedSubscription = $subscriberClient->subscriptionName("[PROJECT]", "[SUBSCRIPTION]");
+     *     $formattedSubscription = $subscriberClient->subscriptionName('[PROJECT]', '[SUBSCRIPTION]');
      *     $maxMessages = 0;
      *     $response = $subscriberClient->pull($formattedSubscription, $maxMessages);
      * } finally {
@@ -1021,7 +1022,7 @@ class SubscriberGapicClient
      * @param int    $maxMessages  The maximum number of messages returned for this request. The Pub/Sub
      *                             system may return fewer than the number specified.
      * @param array  $optionalArgs {
-     *                             Optional.
+     *                             Optional
      *
      *     @type bool $returnImmediately
      *          If this field set to true, the system will respond immediately even if
@@ -1089,7 +1090,7 @@ class SubscriberGapicClient
      * ```
      * try {
      *     $subscriberClient = new SubscriberClient();
-     *     $formattedSubscription = $subscriberClient->subscriptionName("[PROJECT]", "[SUBSCRIPTION]");
+     *     $formattedSubscription = $subscriberClient->subscriptionName('[PROJECT]', '[SUBSCRIPTION]');
      *     $streamAckDeadlineSeconds = 0;
      *     $request = new StreamingPullRequest();
      *     $request->setSubscription($formattedSubscription);
@@ -1126,7 +1127,7 @@ class SubscriberGapicClient
      * ```
      *
      * @param array $optionalArgs {
-     *                            Optional.
+     *                            Optional
      *
      *     @type int $timeoutMillis
      *          Timeout to use for this call.
@@ -1178,7 +1179,7 @@ class SubscriberGapicClient
      * ```
      * try {
      *     $subscriberClient = new SubscriberClient();
-     *     $formattedSubscription = $subscriberClient->subscriptionName("[PROJECT]", "[SUBSCRIPTION]");
+     *     $formattedSubscription = $subscriberClient->subscriptionName('[PROJECT]', '[SUBSCRIPTION]');
      *     $pushConfig = new PushConfig();
      *     $subscriberClient->modifyPushConfig($formattedSubscription, $pushConfig);
      * } finally {
@@ -1195,7 +1196,7 @@ class SubscriberGapicClient
      * messages to be pulled and acknowledged - effectively pausing
      * the subscription if `Pull` is not called.
      * @param array $optionalArgs {
-     *                            Optional.
+     *                            Optional
      *
      *     @type \Google\GAX\RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
@@ -1240,15 +1241,15 @@ class SubscriberGapicClient
      * ```
      * try {
      *     $subscriberClient = new SubscriberClient();
-     *     $formattedProject = $subscriberClient->projectName("[PROJECT]");
+     *     $formattedProject = $subscriberClient->projectName('[PROJECT]');
      *     // Iterate through all elements
      *     $pagedResponse = $subscriberClient->listSnapshots($formattedProject);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
      *
-     *     // OR iterate over pages of elements, with the maximum page size set to 5
-     *     $pagedResponse = $subscriberClient->listSnapshots($formattedProject, ['pageSize' => 5]);
+     *     // OR iterate over pages of elements
+     *     $pagedResponse = $subscriberClient->listSnapshots($formattedProject);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -1262,7 +1263,7 @@ class SubscriberGapicClient
      * @param string $project      The name of the cloud project that snapshots belong to.
      *                             Format is `projects/{project}`.
      * @param array  $optionalArgs {
-     *                             Optional.
+     *                             Optional
      *
      *     @type int $pageSize
      *          The maximum number of resources contained in the underlying API
@@ -1332,8 +1333,8 @@ class SubscriberGapicClient
      * ```
      * try {
      *     $subscriberClient = new SubscriberClient();
-     *     $formattedName = $subscriberClient->snapshotName("[PROJECT]", "[SNAPSHOT]");
-     *     $formattedSubscription = $subscriberClient->subscriptionName("[PROJECT]", "[SUBSCRIPTION]");
+     *     $formattedName = $subscriberClient->snapshotName('[PROJECT]', '[SNAPSHOT]');
+     *     $formattedSubscription = $subscriberClient->subscriptionName('[PROJECT]', '[SUBSCRIPTION]');
      *     $response = $subscriberClient->createSnapshot($formattedName, $formattedSubscription);
      * } finally {
      *     $subscriberClient->close();
@@ -1355,7 +1356,7 @@ class SubscriberGapicClient
      *                             successful completion of the CreateSnapshot request.
      *                             Format is `projects/{project}/subscriptions/{sub}`.
      * @param array  $optionalArgs {
-     *                             Optional.
+     *                             Optional
      *
      *     @type \Google\GAX\RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
@@ -1415,11 +1416,11 @@ class SubscriberGapicClient
      * }
      * ```
      *
-     * @param Snapshot  $snapshot     The updated snpashot object.
+     * @param Snapshot  $snapshot     the updated snpashot object
      * @param FieldMask $updateMask   Indicates which fields in the provided snapshot to update.
      *                                Must be specified and non-empty.
      * @param array     $optionalArgs {
-     *                                Optional.
+     *                                Optional
      *
      *     @type \Google\GAX\RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
@@ -1469,7 +1470,7 @@ class SubscriberGapicClient
      * ```
      * try {
      *     $subscriberClient = new SubscriberClient();
-     *     $formattedSnapshot = $subscriberClient->snapshotName("[PROJECT]", "[SNAPSHOT]");
+     *     $formattedSnapshot = $subscriberClient->snapshotName('[PROJECT]', '[SNAPSHOT]');
      *     $subscriberClient->deleteSnapshot($formattedSnapshot);
      * } finally {
      *     $subscriberClient->close();
@@ -1479,7 +1480,7 @@ class SubscriberGapicClient
      * @param string $snapshot     The name of the snapshot to delete.
      *                             Format is `projects/{project}/snapshots/{snap}`.
      * @param array  $optionalArgs {
-     *                             Optional.
+     *                             Optional
      *
      *     @type \Google\GAX\RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
@@ -1524,16 +1525,16 @@ class SubscriberGapicClient
      * ```
      * try {
      *     $subscriberClient = new SubscriberClient();
-     *     $formattedSubscription = $subscriberClient->subscriptionName("[PROJECT]", "[SUBSCRIPTION]");
+     *     $formattedSubscription = $subscriberClient->subscriptionName('[PROJECT]', '[SUBSCRIPTION]');
      *     $response = $subscriberClient->seek($formattedSubscription);
      * } finally {
      *     $subscriberClient->close();
      * }
      * ```
      *
-     * @param string $subscription The subscription to affect.
+     * @param string $subscription the subscription to affect
      * @param array  $optionalArgs {
-     *                             Optional.
+     *                             Optional
      *
      *     @type Timestamp $time
      *          The time to seek to.
@@ -1602,7 +1603,7 @@ class SubscriberGapicClient
      * ```
      * try {
      *     $subscriberClient = new SubscriberClient();
-     *     $formattedResource = $subscriberClient->subscriptionName("[PROJECT]", "[SUBSCRIPTION]");
+     *     $formattedResource = $subscriberClient->subscriptionName('[PROJECT]', '[SUBSCRIPTION]');
      *     $policy = new Policy();
      *     $response = $subscriberClient->setIamPolicy($formattedResource, $policy);
      * } finally {
@@ -1618,7 +1619,7 @@ class SubscriberGapicClient
      *                             valid policy but certain Cloud Platform services (such as Projects)
      *                             might reject them.
      * @param array  $optionalArgs {
-     *                             Optional.
+     *                             Optional
      *
      *     @type \Google\GAX\RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
@@ -1667,7 +1668,7 @@ class SubscriberGapicClient
      * ```
      * try {
      *     $subscriberClient = new SubscriberClient();
-     *     $formattedResource = $subscriberClient->subscriptionName("[PROJECT]", "[SUBSCRIPTION]");
+     *     $formattedResource = $subscriberClient->subscriptionName('[PROJECT]', '[SUBSCRIPTION]');
      *     $response = $subscriberClient->getIamPolicy($formattedResource);
      * } finally {
      *     $subscriberClient->close();
@@ -1678,7 +1679,7 @@ class SubscriberGapicClient
      *                             `resource` is usually specified as a path. For example, a Project
      *                             resource is specified as `projects/{project}`.
      * @param array  $optionalArgs {
-     *                             Optional.
+     *                             Optional
      *
      *     @type \Google\GAX\RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
@@ -1726,7 +1727,7 @@ class SubscriberGapicClient
      * ```
      * try {
      *     $subscriberClient = new SubscriberClient();
-     *     $formattedResource = $subscriberClient->subscriptionName("[PROJECT]", "[SUBSCRIPTION]");
+     *     $formattedResource = $subscriberClient->subscriptionName('[PROJECT]', '[SUBSCRIPTION]');
      *     $permissions = [];
      *     $response = $subscriberClient->testIamPermissions($formattedResource, $permissions);
      * } finally {
@@ -1742,7 +1743,7 @@ class SubscriberGapicClient
      *                               information see
      *                               [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).
      * @param array    $optionalArgs {
-     *                               Optional.
+     *                               Optional
      *
      *     @type \Google\GAX\RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a

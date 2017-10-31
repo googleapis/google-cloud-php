@@ -68,7 +68,7 @@ use Google\Pubsub\V1\UpdateTopicRequest;
  * ```
  * try {
  *     $publisherClient = new PublisherClient();
- *     $formattedName = $publisherClient->topicName("[PROJECT]", "[TOPIC]");
+ *     $formattedName = $publisherClient->topicName('[PROJECT]', '[TOPIC]');
  *     $response = $publisherClient->createTopic($formattedName);
  * } finally {
  *     $publisherClient->close();
@@ -146,6 +146,7 @@ class PublisherGapicClient
 
         return self::$pathTemplateMap;
     }
+
     private static function getPageStreamingDescriptors()
     {
         $listTopicsPageStreamingDescriptor =
@@ -195,7 +196,7 @@ class PublisherGapicClient
      *
      * @param string $project
      *
-     * @return string The formatted project resource.
+     * @return string the formatted project resource
      * @experimental
      */
     public static function projectName($project)
@@ -212,7 +213,7 @@ class PublisherGapicClient
      * @param string $project
      * @param string $topic
      *
-     * @return string The formatted topic resource.
+     * @return string the formatted topic resource
      * @experimental
      */
     public static function topicName($project, $topic)
@@ -238,9 +239,9 @@ class PublisherGapicClient
      * @param string $formattedName The formatted name string
      * @param string $template      Optional name of template to match
      *
-     * @return array An associative array from name component IDs to component values.
+     * @return array an associative array from name component IDs to component values
      *
-     * @throws ValidationException If $formattedName could not be matched.
+     * @throws ValidationException if $formattedName could not be matched
      * @experimental
      */
     public static function parseName($formattedName, $template = null)
@@ -388,7 +389,7 @@ class PublisherGapicClient
      * ```
      * try {
      *     $publisherClient = new PublisherClient();
-     *     $formattedName = $publisherClient->topicName("[PROJECT]", "[TOPIC]");
+     *     $formattedName = $publisherClient->topicName('[PROJECT]', '[TOPIC]');
      *     $response = $publisherClient->createTopic($formattedName);
      * } finally {
      *     $publisherClient->close();
@@ -402,7 +403,7 @@ class PublisherGapicClient
      *                             signs (`%`). It must be between 3 and 255 characters in length, and it
      *                             must not start with `"goog"`.
      * @param array  $optionalArgs {
-     *                             Optional.
+     *                             Optional
      *
      *     @type array $labels
      *          User labels.
@@ -466,11 +467,11 @@ class PublisherGapicClient
      * }
      * ```
      *
-     * @param Topic     $topic        The topic to update.
+     * @param Topic     $topic        the topic to update
      * @param FieldMask $updateMask   Indicates which fields in the provided topic to update.
      *                                Must be specified and non-empty.
      * @param array     $optionalArgs {
-     *                                Optional.
+     *                                Optional
      *
      *     @type \Google\GAX\RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
@@ -519,8 +520,8 @@ class PublisherGapicClient
      * ```
      * try {
      *     $publisherClient = new PublisherClient();
-     *     $formattedTopic = $publisherClient->topicName("[PROJECT]", "[TOPIC]");
-     *     $data = "";
+     *     $formattedTopic = $publisherClient->topicName('[PROJECT]', '[TOPIC]');
+     *     $data = '';
      *     $messagesElement = new PubsubMessage();
      *     $messagesElement->setData($data);
      *     $messages = [$messagesElement];
@@ -532,9 +533,9 @@ class PublisherGapicClient
      *
      * @param string          $topic        The messages in the request will be published on this topic.
      *                                      Format is `projects/{project}/topics/{topic}`.
-     * @param PubsubMessage[] $messages     The messages to publish.
+     * @param PubsubMessage[] $messages     the messages to publish
      * @param array           $optionalArgs {
-     *                                      Optional.
+     *                                      Optional
      *
      *     @type \Google\GAX\RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
@@ -581,7 +582,7 @@ class PublisherGapicClient
      * ```
      * try {
      *     $publisherClient = new PublisherClient();
-     *     $formattedTopic = $publisherClient->topicName("[PROJECT]", "[TOPIC]");
+     *     $formattedTopic = $publisherClient->topicName('[PROJECT]', '[TOPIC]');
      *     $response = $publisherClient->getTopic($formattedTopic);
      * } finally {
      *     $publisherClient->close();
@@ -591,7 +592,7 @@ class PublisherGapicClient
      * @param string $topic        The name of the topic to get.
      *                             Format is `projects/{project}/topics/{topic}`.
      * @param array  $optionalArgs {
-     *                             Optional.
+     *                             Optional
      *
      *     @type \Google\GAX\RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
@@ -637,15 +638,15 @@ class PublisherGapicClient
      * ```
      * try {
      *     $publisherClient = new PublisherClient();
-     *     $formattedProject = $publisherClient->projectName("[PROJECT]");
+     *     $formattedProject = $publisherClient->projectName('[PROJECT]');
      *     // Iterate through all elements
      *     $pagedResponse = $publisherClient->listTopics($formattedProject);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
      *
-     *     // OR iterate over pages of elements, with the maximum page size set to 5
-     *     $pagedResponse = $publisherClient->listTopics($formattedProject, ['pageSize' => 5]);
+     *     // OR iterate over pages of elements
+     *     $pagedResponse = $publisherClient->listTopics($formattedProject);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -659,7 +660,7 @@ class PublisherGapicClient
      * @param string $project      The name of the cloud project that topics belong to.
      *                             Format is `projects/{project}`.
      * @param array  $optionalArgs {
-     *                             Optional.
+     *                             Optional
      *
      *     @type int $pageSize
      *          The maximum number of resources contained in the underlying API
@@ -720,15 +721,15 @@ class PublisherGapicClient
      * ```
      * try {
      *     $publisherClient = new PublisherClient();
-     *     $formattedTopic = $publisherClient->topicName("[PROJECT]", "[TOPIC]");
+     *     $formattedTopic = $publisherClient->topicName('[PROJECT]', '[TOPIC]');
      *     // Iterate through all elements
      *     $pagedResponse = $publisherClient->listTopicSubscriptions($formattedTopic);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
      *
-     *     // OR iterate over pages of elements, with the maximum page size set to 5
-     *     $pagedResponse = $publisherClient->listTopicSubscriptions($formattedTopic, ['pageSize' => 5]);
+     *     // OR iterate over pages of elements
+     *     $pagedResponse = $publisherClient->listTopicSubscriptions($formattedTopic);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -742,7 +743,7 @@ class PublisherGapicClient
      * @param string $topic        The name of the topic that subscriptions are attached to.
      *                             Format is `projects/{project}/topics/{topic}`.
      * @param array  $optionalArgs {
-     *                             Optional.
+     *                             Optional
      *
      *     @type int $pageSize
      *          The maximum number of resources contained in the underlying API
@@ -807,7 +808,7 @@ class PublisherGapicClient
      * ```
      * try {
      *     $publisherClient = new PublisherClient();
-     *     $formattedTopic = $publisherClient->topicName("[PROJECT]", "[TOPIC]");
+     *     $formattedTopic = $publisherClient->topicName('[PROJECT]', '[TOPIC]');
      *     $publisherClient->deleteTopic($formattedTopic);
      * } finally {
      *     $publisherClient->close();
@@ -817,7 +818,7 @@ class PublisherGapicClient
      * @param string $topic        Name of the topic to delete.
      *                             Format is `projects/{project}/topics/{topic}`.
      * @param array  $optionalArgs {
-     *                             Optional.
+     *                             Optional
      *
      *     @type \Google\GAX\RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
@@ -862,7 +863,7 @@ class PublisherGapicClient
      * ```
      * try {
      *     $publisherClient = new PublisherClient();
-     *     $formattedResource = $publisherClient->topicName("[PROJECT]", "[TOPIC]");
+     *     $formattedResource = $publisherClient->topicName('[PROJECT]', '[TOPIC]');
      *     $policy = new Policy();
      *     $response = $publisherClient->setIamPolicy($formattedResource, $policy);
      * } finally {
@@ -878,7 +879,7 @@ class PublisherGapicClient
      *                             valid policy but certain Cloud Platform services (such as Projects)
      *                             might reject them.
      * @param array  $optionalArgs {
-     *                             Optional.
+     *                             Optional
      *
      *     @type \Google\GAX\RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
@@ -927,7 +928,7 @@ class PublisherGapicClient
      * ```
      * try {
      *     $publisherClient = new PublisherClient();
-     *     $formattedResource = $publisherClient->topicName("[PROJECT]", "[TOPIC]");
+     *     $formattedResource = $publisherClient->topicName('[PROJECT]', '[TOPIC]');
      *     $response = $publisherClient->getIamPolicy($formattedResource);
      * } finally {
      *     $publisherClient->close();
@@ -938,7 +939,7 @@ class PublisherGapicClient
      *                             `resource` is usually specified as a path. For example, a Project
      *                             resource is specified as `projects/{project}`.
      * @param array  $optionalArgs {
-     *                             Optional.
+     *                             Optional
      *
      *     @type \Google\GAX\RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
@@ -986,7 +987,7 @@ class PublisherGapicClient
      * ```
      * try {
      *     $publisherClient = new PublisherClient();
-     *     $formattedResource = $publisherClient->topicName("[PROJECT]", "[TOPIC]");
+     *     $formattedResource = $publisherClient->topicName('[PROJECT]', '[TOPIC]');
      *     $permissions = [];
      *     $response = $publisherClient->testIamPermissions($formattedResource, $permissions);
      * } finally {
@@ -1002,7 +1003,7 @@ class PublisherGapicClient
      *                               information see
      *                               [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).
      * @param array    $optionalArgs {
-     *                               Optional.
+     *                               Optional
      *
      *     @type \Google\GAX\RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a

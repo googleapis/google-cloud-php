@@ -72,15 +72,15 @@ use Google\Spanner\Admin\Database\V1\UpdateDatabaseDdlRequest;
  * ```
  * try {
  *     $databaseAdminClient = new DatabaseAdminClient();
- *     $formattedParent = $databaseAdminClient->instanceName("[PROJECT]", "[INSTANCE]");
+ *     $formattedParent = $databaseAdminClient->instanceName('[PROJECT]', '[INSTANCE]');
  *     // Iterate through all elements
  *     $pagedResponse = $databaseAdminClient->listDatabases($formattedParent);
  *     foreach ($pagedResponse->iterateAllElements() as $element) {
  *         // doSomethingWith($element);
  *     }
  *
- *     // OR iterate over pages of elements, with the maximum page size set to 5
- *     $pagedResponse = $databaseAdminClient->listDatabases($formattedParent, ['pageSize' => 5]);
+ *     // OR iterate over pages of elements
+ *     $pagedResponse = $databaseAdminClient->listDatabases($formattedParent);
  *     foreach ($pagedResponse->iteratePages() as $page) {
  *         foreach ($page as $element) {
  *             // doSomethingWith($element);
@@ -162,6 +162,7 @@ class DatabaseAdminGapicClient
 
         return self::$pathTemplateMap;
     }
+
     private static function getPageStreamingDescriptors()
     {
         $listDatabasesPageStreamingDescriptor =
@@ -216,7 +217,7 @@ class DatabaseAdminGapicClient
      * @param string $project
      * @param string $instance
      *
-     * @return string The formatted instance resource.
+     * @return string the formatted instance resource
      * @experimental
      */
     public static function instanceName($project, $instance)
@@ -235,7 +236,7 @@ class DatabaseAdminGapicClient
      * @param string $instance
      * @param string $database
      *
-     * @return string The formatted database resource.
+     * @return string the formatted database resource
      * @experimental
      */
     public static function databaseName($project, $instance, $database)
@@ -262,9 +263,9 @@ class DatabaseAdminGapicClient
      * @param string $formattedName The formatted name string
      * @param string $template      Optional name of template to match
      *
-     * @return array An associative array from name component IDs to component values.
+     * @return array an associative array from name component IDs to component values
      *
-     * @throws ValidationException If $formattedName could not be matched.
+     * @throws ValidationException if $formattedName could not be matched
      * @experimental
      */
     public static function parseName($formattedName, $template = null)
@@ -455,15 +456,15 @@ class DatabaseAdminGapicClient
      * ```
      * try {
      *     $databaseAdminClient = new DatabaseAdminClient();
-     *     $formattedParent = $databaseAdminClient->instanceName("[PROJECT]", "[INSTANCE]");
+     *     $formattedParent = $databaseAdminClient->instanceName('[PROJECT]', '[INSTANCE]');
      *     // Iterate through all elements
      *     $pagedResponse = $databaseAdminClient->listDatabases($formattedParent);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
      *
-     *     // OR iterate over pages of elements, with the maximum page size set to 5
-     *     $pagedResponse = $databaseAdminClient->listDatabases($formattedParent, ['pageSize' => 5]);
+     *     // OR iterate over pages of elements
+     *     $pagedResponse = $databaseAdminClient->listDatabases($formattedParent);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -477,7 +478,7 @@ class DatabaseAdminGapicClient
      * @param string $parent       Required. The instance whose databases should be listed.
      *                             Values are of the form `projects/<project>/instances/<instance>`.
      * @param array  $optionalArgs {
-     *                             Optional.
+     *                             Optional
      *
      *     @type int $pageSize
      *          The maximum number of resources contained in the underlying API
@@ -545,8 +546,8 @@ class DatabaseAdminGapicClient
      * ```
      * try {
      *     $databaseAdminClient = new DatabaseAdminClient();
-     *     $formattedParent = $databaseAdminClient->instanceName("[PROJECT]", "[INSTANCE]");
-     *     $createStatement = "";
+     *     $formattedParent = $databaseAdminClient->instanceName('[PROJECT]', '[INSTANCE]');
+     *     $createStatement = '';
      *     $operationResponse = $databaseAdminClient->createDatabase($formattedParent, $createStatement);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
@@ -583,8 +584,10 @@ class DatabaseAdminGapicClient
      * @param string $createStatement Required. A `CREATE DATABASE` statement, which specifies the ID of the
      *                                new database.  The database ID must conform to the regular expression
      *                                `[a-z][a-z0-9_\-]*[a-z0-9]` and be between 2 and 30 characters in length.
+     *                                If the database ID is a reserved word or if it contains a hyphen, the
+     *                                database ID must be enclosed in backticks (`` ` ``).
      * @param array  $optionalArgs    {
-     *                                Optional.
+     *                                Optional
      *
      *     @type string[] $extraStatements
      *          An optional list of DDL statements to run inside the newly created
@@ -639,7 +642,7 @@ class DatabaseAdminGapicClient
      * ```
      * try {
      *     $databaseAdminClient = new DatabaseAdminClient();
-     *     $formattedName = $databaseAdminClient->databaseName("[PROJECT]", "[INSTANCE]", "[DATABASE]");
+     *     $formattedName = $databaseAdminClient->databaseName('[PROJECT]', '[INSTANCE]', '[DATABASE]');
      *     $response = $databaseAdminClient->getDatabase($formattedName);
      * } finally {
      *     $databaseAdminClient->close();
@@ -649,7 +652,7 @@ class DatabaseAdminGapicClient
      * @param string $name         Required. The name of the requested database. Values are of the form
      *                             `projects/<project>/instances/<instance>/databases/<database>`.
      * @param array  $optionalArgs {
-     *                             Optional.
+     *                             Optional
      *
      *     @type \Google\GAX\RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
@@ -701,7 +704,7 @@ class DatabaseAdminGapicClient
      * ```
      * try {
      *     $databaseAdminClient = new DatabaseAdminClient();
-     *     $formattedDatabase = $databaseAdminClient->databaseName("[PROJECT]", "[INSTANCE]", "[DATABASE]");
+     *     $formattedDatabase = $databaseAdminClient->databaseName('[PROJECT]', '[INSTANCE]', '[DATABASE]');
      *     $statements = [];
      *     $operationResponse = $databaseAdminClient->updateDatabaseDdl($formattedDatabase, $statements);
      *     $operationResponse->pollUntilComplete();
@@ -733,9 +736,9 @@ class DatabaseAdminGapicClient
      * ```
      *
      * @param string   $database     Required. The database to update.
-     * @param string[] $statements   DDL statements to be applied to the database.
+     * @param string[] $statements   DDL statements to be applied to the database
      * @param array    $optionalArgs {
-     *                               Optional.
+     *                               Optional
      *
      *     @type string $operationId
      *          If empty, the new update request is assigned an
@@ -805,7 +808,7 @@ class DatabaseAdminGapicClient
      * ```
      * try {
      *     $databaseAdminClient = new DatabaseAdminClient();
-     *     $formattedDatabase = $databaseAdminClient->databaseName("[PROJECT]", "[INSTANCE]", "[DATABASE]");
+     *     $formattedDatabase = $databaseAdminClient->databaseName('[PROJECT]', '[INSTANCE]', '[DATABASE]');
      *     $databaseAdminClient->dropDatabase($formattedDatabase);
      * } finally {
      *     $databaseAdminClient->close();
@@ -814,7 +817,7 @@ class DatabaseAdminGapicClient
      *
      * @param string $database     Required. The database to be dropped.
      * @param array  $optionalArgs {
-     *                             Optional.
+     *                             Optional
      *
      *     @type \Google\GAX\RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
@@ -860,7 +863,7 @@ class DatabaseAdminGapicClient
      * ```
      * try {
      *     $databaseAdminClient = new DatabaseAdminClient();
-     *     $formattedDatabase = $databaseAdminClient->databaseName("[PROJECT]", "[INSTANCE]", "[DATABASE]");
+     *     $formattedDatabase = $databaseAdminClient->databaseName('[PROJECT]', '[INSTANCE]', '[DATABASE]');
      *     $response = $databaseAdminClient->getDatabaseDdl($formattedDatabase);
      * } finally {
      *     $databaseAdminClient->close();
@@ -869,7 +872,7 @@ class DatabaseAdminGapicClient
      *
      * @param string $database     Required. The database whose schema we wish to get.
      * @param array  $optionalArgs {
-     *                             Optional.
+     *                             Optional
      *
      *     @type \Google\GAX\RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
@@ -919,7 +922,7 @@ class DatabaseAdminGapicClient
      * ```
      * try {
      *     $databaseAdminClient = new DatabaseAdminClient();
-     *     $formattedResource = $databaseAdminClient->databaseName("[PROJECT]", "[INSTANCE]", "[DATABASE]");
+     *     $formattedResource = $databaseAdminClient->databaseName('[PROJECT]', '[INSTANCE]', '[DATABASE]');
      *     $policy = new Policy();
      *     $response = $databaseAdminClient->setIamPolicy($formattedResource, $policy);
      * } finally {
@@ -935,7 +938,7 @@ class DatabaseAdminGapicClient
      *                             valid policy but certain Cloud Platform services (such as Projects)
      *                             might reject them.
      * @param array  $optionalArgs {
-     *                             Optional.
+     *                             Optional
      *
      *     @type \Google\GAX\RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
@@ -986,7 +989,7 @@ class DatabaseAdminGapicClient
      * ```
      * try {
      *     $databaseAdminClient = new DatabaseAdminClient();
-     *     $formattedResource = $databaseAdminClient->databaseName("[PROJECT]", "[INSTANCE]", "[DATABASE]");
+     *     $formattedResource = $databaseAdminClient->databaseName('[PROJECT]', '[INSTANCE]', '[DATABASE]');
      *     $response = $databaseAdminClient->getIamPolicy($formattedResource);
      * } finally {
      *     $databaseAdminClient->close();
@@ -997,7 +1000,7 @@ class DatabaseAdminGapicClient
      *                             `resource` is usually specified as a path. For example, a Project
      *                             resource is specified as `projects/{project}`.
      * @param array  $optionalArgs {
-     *                             Optional.
+     *                             Optional
      *
      *     @type \Google\GAX\RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
@@ -1048,7 +1051,7 @@ class DatabaseAdminGapicClient
      * ```
      * try {
      *     $databaseAdminClient = new DatabaseAdminClient();
-     *     $formattedResource = $databaseAdminClient->databaseName("[PROJECT]", "[INSTANCE]", "[DATABASE]");
+     *     $formattedResource = $databaseAdminClient->databaseName('[PROJECT]', '[INSTANCE]', '[DATABASE]');
      *     $permissions = [];
      *     $response = $databaseAdminClient->testIamPermissions($formattedResource, $permissions);
      * } finally {
@@ -1064,7 +1067,7 @@ class DatabaseAdminGapicClient
      *                               information see
      *                               [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).
      * @param array    $optionalArgs {
-     *                               Optional.
+     *                               Optional
      *
      *     @type \Google\GAX\RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a

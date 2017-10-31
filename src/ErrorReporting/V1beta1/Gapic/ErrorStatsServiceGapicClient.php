@@ -61,7 +61,7 @@ use Google\Protobuf\Timestamp;
  * ```
  * try {
  *     $errorStatsServiceClient = new ErrorStatsServiceClient();
- *     $formattedProjectName = $errorStatsServiceClient->projectName("[PROJECT]");
+ *     $formattedProjectName = $errorStatsServiceClient->projectName('[PROJECT]');
  *     $timeRange = new QueryTimeRange();
  *     // Iterate through all elements
  *     $pagedResponse = $errorStatsServiceClient->listGroupStats($formattedProjectName, $timeRange);
@@ -69,8 +69,8 @@ use Google\Protobuf\Timestamp;
  *         // doSomethingWith($element);
  *     }
  *
- *     // OR iterate over pages of elements, with the maximum page size set to 5
- *     $pagedResponse = $errorStatsServiceClient->listGroupStats($formattedProjectName, $timeRange, ['pageSize' => 5]);
+ *     // OR iterate over pages of elements
+ *     $pagedResponse = $errorStatsServiceClient->listGroupStats($formattedProjectName, $timeRange);
  *     foreach ($pagedResponse->iteratePages() as $page) {
  *         foreach ($page as $element) {
  *             // doSomethingWith($element);
@@ -140,6 +140,7 @@ class ErrorStatsServiceGapicClient
 
         return self::$pathTemplateMap;
     }
+
     private static function getPageStreamingDescriptors()
     {
         $listGroupStatsPageStreamingDescriptor =
@@ -189,7 +190,7 @@ class ErrorStatsServiceGapicClient
      *
      * @param string $project
      *
-     * @return string The formatted project resource.
+     * @return string the formatted project resource
      * @experimental
      */
     public static function projectName($project)
@@ -213,9 +214,9 @@ class ErrorStatsServiceGapicClient
      * @param string $formattedName The formatted name string
      * @param string $template      Optional name of template to match
      *
-     * @return array An associative array from name component IDs to component values.
+     * @return array an associative array from name component IDs to component values
      *
-     * @throws ValidationException If $formattedName could not be matched.
+     * @throws ValidationException if $formattedName could not be matched
      * @experimental
      */
     public static function parseName($formattedName, $template = null)
@@ -348,7 +349,7 @@ class ErrorStatsServiceGapicClient
      * ```
      * try {
      *     $errorStatsServiceClient = new ErrorStatsServiceClient();
-     *     $formattedProjectName = $errorStatsServiceClient->projectName("[PROJECT]");
+     *     $formattedProjectName = $errorStatsServiceClient->projectName('[PROJECT]');
      *     $timeRange = new QueryTimeRange();
      *     // Iterate through all elements
      *     $pagedResponse = $errorStatsServiceClient->listGroupStats($formattedProjectName, $timeRange);
@@ -356,8 +357,8 @@ class ErrorStatsServiceGapicClient
      *         // doSomethingWith($element);
      *     }
      *
-     *     // OR iterate over pages of elements, with the maximum page size set to 5
-     *     $pagedResponse = $errorStatsServiceClient->listGroupStats($formattedProjectName, $timeRange, ['pageSize' => 5]);
+     *     // OR iterate over pages of elements
+     *     $pagedResponse = $errorStatsServiceClient->listGroupStats($formattedProjectName, $timeRange);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -382,7 +383,7 @@ class ErrorStatsServiceGapicClient
      *                                     If a group_id list is given, also <code>ErrorGroupStats</code> with zero
      *                                     occurrences are returned.
      * @param array          $optionalArgs {
-     *                                     Optional.
+     *                                     Optional
      *
      *     @type string[] $groupId
      *          [Optional] List all <code>ErrorGroupStats</code> with these IDs.
@@ -482,16 +483,16 @@ class ErrorStatsServiceGapicClient
      * ```
      * try {
      *     $errorStatsServiceClient = new ErrorStatsServiceClient();
-     *     $formattedProjectName = $errorStatsServiceClient->projectName("[PROJECT]");
-     *     $groupId = "";
+     *     $formattedProjectName = $errorStatsServiceClient->projectName('[PROJECT]');
+     *     $groupId = '';
      *     // Iterate through all elements
      *     $pagedResponse = $errorStatsServiceClient->listEvents($formattedProjectName, $groupId);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
      *
-     *     // OR iterate over pages of elements, with the maximum page size set to 5
-     *     $pagedResponse = $errorStatsServiceClient->listEvents($formattedProjectName, $groupId, ['pageSize' => 5]);
+     *     // OR iterate over pages of elements
+     *     $pagedResponse = $errorStatsServiceClient->listEvents($formattedProjectName, $groupId);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -507,9 +508,9 @@ class ErrorStatsServiceGapicClient
      *                             [Google Cloud Platform project
      *                             ID](https://support.google.com/cloud/answer/6158840).
      *                             Example: `projects/my-project-123`.
-     * @param string $groupId      [Required] The group for which events shall be returned.
+     * @param string $groupId      [Required] The group for which events shall be returned
      * @param array  $optionalArgs {
-     *                             Optional.
+     *                             Optional
      *
      *     @type ServiceContextFilter $serviceFilter
      *          [Optional] List only ErrorGroups which belong to a service context that
@@ -585,7 +586,7 @@ class ErrorStatsServiceGapicClient
      * ```
      * try {
      *     $errorStatsServiceClient = new ErrorStatsServiceClient();
-     *     $formattedProjectName = $errorStatsServiceClient->projectName("[PROJECT]");
+     *     $formattedProjectName = $errorStatsServiceClient->projectName('[PROJECT]');
      *     $response = $errorStatsServiceClient->deleteEvents($formattedProjectName);
      * } finally {
      *     $errorStatsServiceClient->close();
@@ -598,7 +599,7 @@ class ErrorStatsServiceGapicClient
      *                             ID](https://support.google.com/cloud/answer/6158840).
      *                             Example: `projects/my-project-123`.
      * @param array  $optionalArgs {
-     *                             Optional.
+     *                             Optional
      *
      *     @type \Google\GAX\RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a

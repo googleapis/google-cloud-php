@@ -59,15 +59,15 @@ use Google\Logging\V2\UpdateLogMetricRequest;
  * ```
  * try {
  *     $metricsServiceV2Client = new MetricsServiceV2Client();
- *     $formattedParent = $metricsServiceV2Client->projectName("[PROJECT]");
+ *     $formattedParent = $metricsServiceV2Client->projectName('[PROJECT]');
  *     // Iterate through all elements
  *     $pagedResponse = $metricsServiceV2Client->listLogMetrics($formattedParent);
  *     foreach ($pagedResponse->iterateAllElements() as $element) {
  *         // doSomethingWith($element);
  *     }
  *
- *     // OR iterate over pages of elements, with the maximum page size set to 5
- *     $pagedResponse = $metricsServiceV2Client->listLogMetrics($formattedParent, ['pageSize' => 5]);
+ *     // OR iterate over pages of elements
+ *     $pagedResponse = $metricsServiceV2Client->listLogMetrics($formattedParent);
  *     foreach ($pagedResponse->iteratePages() as $page) {
  *         foreach ($page as $element) {
  *             // doSomethingWith($element);
@@ -148,6 +148,7 @@ class MetricsServiceV2GapicClient
 
         return self::$pathTemplateMap;
     }
+
     private static function getPageStreamingDescriptors()
     {
         $listLogMetricsPageStreamingDescriptor =
@@ -187,7 +188,7 @@ class MetricsServiceV2GapicClient
      *
      * @param string $project
      *
-     * @return string The formatted project resource.
+     * @return string the formatted project resource
      * @experimental
      */
     public static function projectName($project)
@@ -204,7 +205,7 @@ class MetricsServiceV2GapicClient
      * @param string $project
      * @param string $metric
      *
-     * @return string The formatted metric resource.
+     * @return string the formatted metric resource
      * @experimental
      */
     public static function metricName($project, $metric)
@@ -230,9 +231,9 @@ class MetricsServiceV2GapicClient
      * @param string $formattedName The formatted name string
      * @param string $template      Optional name of template to match
      *
-     * @return array An associative array from name component IDs to component values.
+     * @return array an associative array from name component IDs to component values
      *
-     * @throws ValidationException If $formattedName could not be matched.
+     * @throws ValidationException if $formattedName could not be matched
      * @experimental
      */
     public static function parseName($formattedName, $template = null)
@@ -371,15 +372,15 @@ class MetricsServiceV2GapicClient
      * ```
      * try {
      *     $metricsServiceV2Client = new MetricsServiceV2Client();
-     *     $formattedParent = $metricsServiceV2Client->projectName("[PROJECT]");
+     *     $formattedParent = $metricsServiceV2Client->projectName('[PROJECT]');
      *     // Iterate through all elements
      *     $pagedResponse = $metricsServiceV2Client->listLogMetrics($formattedParent);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
      *
-     *     // OR iterate over pages of elements, with the maximum page size set to 5
-     *     $pagedResponse = $metricsServiceV2Client->listLogMetrics($formattedParent, ['pageSize' => 5]);
+     *     // OR iterate over pages of elements
+     *     $pagedResponse = $metricsServiceV2Client->listLogMetrics($formattedParent);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -394,7 +395,7 @@ class MetricsServiceV2GapicClient
      *
      *     "projects/[PROJECT_ID]"
      * @param array $optionalArgs {
-     *                            Optional.
+     *                            Optional
      *
      *     @type string $pageToken
      *          A page token is used to specify a page of values to be returned.
@@ -455,7 +456,7 @@ class MetricsServiceV2GapicClient
      * ```
      * try {
      *     $metricsServiceV2Client = new MetricsServiceV2Client();
-     *     $formattedMetricName = $metricsServiceV2Client->metricName("[PROJECT]", "[METRIC]");
+     *     $formattedMetricName = $metricsServiceV2Client->metricName('[PROJECT]', '[METRIC]');
      *     $response = $metricsServiceV2Client->getLogMetric($formattedMetricName);
      * } finally {
      *     $metricsServiceV2Client->close();
@@ -466,7 +467,7 @@ class MetricsServiceV2GapicClient
      *
      *     "projects/[PROJECT_ID]/metrics/[METRIC_ID]"
      * @param array $optionalArgs {
-     *                            Optional.
+     *                            Optional
      *
      *     @type \Google\GAX\RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
@@ -512,7 +513,7 @@ class MetricsServiceV2GapicClient
      * ```
      * try {
      *     $metricsServiceV2Client = new MetricsServiceV2Client();
-     *     $formattedParent = $metricsServiceV2Client->projectName("[PROJECT]");
+     *     $formattedParent = $metricsServiceV2Client->projectName('[PROJECT]');
      *     $metric = new LogMetric();
      *     $response = $metricsServiceV2Client->createLogMetric($formattedParent, $metric);
      * } finally {
@@ -520,15 +521,15 @@ class MetricsServiceV2GapicClient
      * }
      * ```
      *
-     * @param string $parent The resource name of the project in which to create the metric:
+     * @param string $parent the resource name of the project in which to create the metric:
      *
      *     "projects/[PROJECT_ID]"
      *
-     * The new metric must be provided in the request.
-     * @param LogMetric $metric       The new logs-based metric, which must not have an identifier that
-     *                                already exists.
+     * The new metric must be provided in the request
+     * @param LogMetric $metric       the new logs-based metric, which must not have an identifier that
+     *                                already exists
      * @param array     $optionalArgs {
-     *                                Optional.
+     *                                Optional
      *
      *     @type \Google\GAX\RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
@@ -575,7 +576,7 @@ class MetricsServiceV2GapicClient
      * ```
      * try {
      *     $metricsServiceV2Client = new MetricsServiceV2Client();
-     *     $formattedMetricName = $metricsServiceV2Client->metricName("[PROJECT]", "[METRIC]");
+     *     $formattedMetricName = $metricsServiceV2Client->metricName('[PROJECT]', '[METRIC]');
      *     $metric = new LogMetric();
      *     $response = $metricsServiceV2Client->updateLogMetric($formattedMetricName, $metric);
      * } finally {
@@ -583,16 +584,16 @@ class MetricsServiceV2GapicClient
      * }
      * ```
      *
-     * @param string $metricName The resource name of the metric to update:
+     * @param string $metricName the resource name of the metric to update:
      *
      *     "projects/[PROJECT_ID]/metrics/[METRIC_ID]"
      *
      * The updated metric must be provided in the request and it's
      * `name` field must be the same as `[METRIC_ID]` If the metric
-     * does not exist in `[PROJECT_ID]`, then a new metric is created.
-     * @param LogMetric $metric       The updated metric.
+     * does not exist in `[PROJECT_ID]`, then a new metric is created
+     * @param LogMetric $metric       the updated metric
      * @param array     $optionalArgs {
-     *                                Optional.
+     *                                Optional
      *
      *     @type \Google\GAX\RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
@@ -639,7 +640,7 @@ class MetricsServiceV2GapicClient
      * ```
      * try {
      *     $metricsServiceV2Client = new MetricsServiceV2Client();
-     *     $formattedMetricName = $metricsServiceV2Client->metricName("[PROJECT]", "[METRIC]");
+     *     $formattedMetricName = $metricsServiceV2Client->metricName('[PROJECT]', '[METRIC]');
      *     $metricsServiceV2Client->deleteLogMetric($formattedMetricName);
      * } finally {
      *     $metricsServiceV2Client->close();
@@ -650,7 +651,7 @@ class MetricsServiceV2GapicClient
      *
      *     "projects/[PROJECT_ID]/metrics/[METRIC_ID]"
      * @param array $optionalArgs {
-     *                            Optional.
+     *                            Optional
      *
      *     @type \Google\GAX\RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a

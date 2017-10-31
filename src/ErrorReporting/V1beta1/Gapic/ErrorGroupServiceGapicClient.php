@@ -55,7 +55,7 @@ use Google\GAX\ValidationException;
  * ```
  * try {
  *     $errorGroupServiceClient = new ErrorGroupServiceClient();
- *     $formattedGroupName = $errorGroupServiceClient->groupName("[PROJECT]", "[GROUP]");
+ *     $formattedGroupName = $errorGroupServiceClient->groupName('[PROJECT]', '[GROUP]');
  *     $response = $errorGroupServiceClient->getGroup($formattedGroupName);
  * } finally {
  *     $errorGroupServiceClient->close();
@@ -143,7 +143,7 @@ class ErrorGroupServiceGapicClient
      * @param string $project
      * @param string $group
      *
-     * @return string The formatted group resource.
+     * @return string the formatted group resource
      * @experimental
      */
     public static function groupName($project, $group)
@@ -168,9 +168,9 @@ class ErrorGroupServiceGapicClient
      * @param string $formattedName The formatted name string
      * @param string $template      Optional name of template to match
      *
-     * @return array An associative array from name component IDs to component values.
+     * @return array an associative array from name component IDs to component values
      *
-     * @throws ValidationException If $formattedName could not be matched.
+     * @throws ValidationException if $formattedName could not be matched
      * @experimental
      */
     public static function parseName($formattedName, $template = null)
@@ -298,7 +298,7 @@ class ErrorGroupServiceGapicClient
      * ```
      * try {
      *     $errorGroupServiceClient = new ErrorGroupServiceClient();
-     *     $formattedGroupName = $errorGroupServiceClient->groupName("[PROJECT]", "[GROUP]");
+     *     $formattedGroupName = $errorGroupServiceClient->groupName('[PROJECT]', '[GROUP]');
      *     $response = $errorGroupServiceClient->getGroup($formattedGroupName);
      * } finally {
      *     $errorGroupServiceClient->close();
@@ -314,7 +314,7 @@ class ErrorGroupServiceGapicClient
      *
      * Example: <code>projects/my-project-123/groups/my-group</code>
      * @param array $optionalArgs {
-     *                            Optional.
+     *                            Optional
      *
      *     @type \Google\GAX\RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
@@ -368,9 +368,9 @@ class ErrorGroupServiceGapicClient
      * }
      * ```
      *
-     * @param ErrorGroup $group        [Required] The group which replaces the resource on the server.
+     * @param errorGroup $group        [Required] The group which replaces the resource on the server
      * @param array      $optionalArgs {
-     *                                 Optional.
+     *                                 Optional
      *
      *     @type \Google\GAX\RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a

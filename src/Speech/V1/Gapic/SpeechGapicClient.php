@@ -60,12 +60,12 @@ use Google\GAX\OperationResponse;
  *     $speechClient = new SpeechClient();
  *     $encoding = AudioEncoding::FLAC;
  *     $sampleRateHertz = 44100;
- *     $languageCode = "en-US";
+ *     $languageCode = 'en-US';
  *     $config = new RecognitionConfig();
  *     $config->setEncoding($encoding);
  *     $config->setSampleRateHertz($sampleRateHertz);
  *     $config->setLanguageCode($languageCode);
- *     $uri = "gs://bucket_name/file_name.flac";
+ *     $uri = 'gs://bucket_name/file_name.flac';
  *     $audio = new RecognitionAudio();
  *     $audio->setUri($uri);
  *     $response = $speechClient->recognize($config, $audio);
@@ -303,12 +303,12 @@ class SpeechGapicClient
      *     $speechClient = new SpeechClient();
      *     $encoding = AudioEncoding::FLAC;
      *     $sampleRateHertz = 44100;
-     *     $languageCode = "en-US";
+     *     $languageCode = 'en-US';
      *     $config = new RecognitionConfig();
      *     $config->setEncoding($encoding);
      *     $config->setSampleRateHertz($sampleRateHertz);
      *     $config->setLanguageCode($languageCode);
-     *     $uri = "gs://bucket_name/file_name.flac";
+     *     $uri = 'gs://bucket_name/file_name.flac';
      *     $audio = new RecognitionAudio();
      *     $audio->setUri($uri);
      *     $response = $speechClient->recognize($config, $audio);
@@ -317,11 +317,11 @@ class SpeechGapicClient
      * }
      * ```
      *
-     * @param RecognitionConfig $config       *Required* Provides information to the recognizer that specifies how to
-     *                                        process the request.
-     * @param RecognitionAudio  $audio        *Required* The audio data to be recognized.
+     * @param recognitionConfig $config       *Required* Provides information to the recognizer that specifies how to
+     *                                        process the request
+     * @param recognitionAudio  $audio        *Required* The audio data to be recognized
      * @param array             $optionalArgs {
-     *                                        Optional.
+     *                                        Optional
      *
      *     @type \Google\GAX\RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
@@ -373,12 +373,12 @@ class SpeechGapicClient
      *     $speechClient = new SpeechClient();
      *     $encoding = AudioEncoding::FLAC;
      *     $sampleRateHertz = 44100;
-     *     $languageCode = "en-US";
+     *     $languageCode = 'en-US';
      *     $config = new RecognitionConfig();
      *     $config->setEncoding($encoding);
      *     $config->setSampleRateHertz($sampleRateHertz);
      *     $config->setLanguageCode($languageCode);
-     *     $uri = "gs://bucket_name/file_name.flac";
+     *     $uri = 'gs://bucket_name/file_name.flac';
      *     $audio = new RecognitionAudio();
      *     $audio->setUri($uri);
      *     $operationResponse = $speechClient->longRunningRecognize($config, $audio);
@@ -412,11 +412,11 @@ class SpeechGapicClient
      * }
      * ```
      *
-     * @param RecognitionConfig $config       *Required* Provides information to the recognizer that specifies how to
-     *                                        process the request.
-     * @param RecognitionAudio  $audio        *Required* The audio data to be recognized.
+     * @param recognitionConfig $config       *Required* Provides information to the recognizer that specifies how to
+     *                                        process the request
+     * @param recognitionAudio  $audio        *Required* The audio data to be recognized
      * @param array             $optionalArgs {
-     *                                        Optional.
+     *                                        Optional
      *
      *     @type \Google\GAX\RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
@@ -497,7 +497,7 @@ class SpeechGapicClient
      * ```
      *
      * @param array $optionalArgs {
-     *                            Optional.
+     *                            Optional
      *
      *     @type int $timeoutMillis
      *          Timeout to use for this call.

@@ -35,6 +35,7 @@ use Google\GAX\AgentHeaderDescriptor;
 use Google\GAX\ApiCallable;
 use Google\GAX\CallSettings;
 use Google\GAX\GrpcCredentialsHelper;
+use Google\GAX\PageStreamingDescriptor;
 use Google\GAX\PathTemplate;
 use Google\GAX\ValidationException;
 use Google\Protobuf\Struct;
@@ -46,9 +47,11 @@ use Google\Spanner\V1\ExecuteSqlRequest;
 use Google\Spanner\V1\ExecuteSqlRequest_QueryMode as QueryMode;
 use Google\Spanner\V1\GetSessionRequest;
 use Google\Spanner\V1\KeySet;
+use Google\Spanner\V1\ListSessionsRequest;
 use Google\Spanner\V1\Mutation;
 use Google\Spanner\V1\ReadRequest;
 use Google\Spanner\V1\RollbackRequest;
+use Google\Spanner\V1\Session;
 use Google\Spanner\V1\SpannerGrpcClient;
 use Google\Spanner\V1\TransactionOptions;
 use Google\Spanner\V1\TransactionSelector;
@@ -69,7 +72,7 @@ use Google\Spanner\V1\TransactionSelector;
  * ```
  * try {
  *     $spannerClient = new SpannerClient();
- *     $formattedDatabase = $spannerClient->databaseName("[PROJECT]", "[INSTANCE]", "[DATABASE]");
+ *     $formattedDatabase = $spannerClient->databaseName('[PROJECT]', '[INSTANCE]', '[DATABASE]');
  *     $response = $spannerClient->createSession($formattedDatabase);
  * } finally {
  *     $spannerClient->close();
@@ -147,6 +150,25 @@ class SpannerGapicClient
         return self::$pathTemplateMap;
     }
 
+    private static function getPageStreamingDescriptors()
+    {
+        $listSessionsPageStreamingDescriptor =
+                new PageStreamingDescriptor([
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getSessions',
+                ]);
+
+        $pageStreamingDescriptors = [
+            'listSessions' => $listSessionsPageStreamingDescriptor,
+        ];
+
+        return $pageStreamingDescriptors;
+    }
+
     private static function getGrpcStreamingDescriptors()
     {
         return [
@@ -181,7 +203,7 @@ class SpannerGapicClient
      * @param string $instance
      * @param string $database
      *
-     * @return string The formatted database resource.
+     * @return string the formatted database resource
      * @experimental
      */
     public static function databaseName($project, $instance, $database)
@@ -202,7 +224,7 @@ class SpannerGapicClient
      * @param string $database
      * @param string $session
      *
-     * @return string The formatted session resource.
+     * @return string the formatted session resource
      * @experimental
      */
     public static function sessionName($project, $instance, $database, $session)
@@ -230,9 +252,9 @@ class SpannerGapicClient
      * @param string $formattedName The formatted name string
      * @param string $template      Optional name of template to match
      *
-     * @return array An associative array from name component IDs to component values.
+     * @return array an associative array from name component IDs to component values
      *
-     * @throws ValidationException If $formattedName could not be matched.
+     * @throws ValidationException if $formattedName could not be matched
      * @experimental
      */
     public static function parseName($formattedName, $template = null)
@@ -326,6 +348,7 @@ class SpannerGapicClient
         $this->descriptors = [
             'createSession' => $defaultDescriptors,
             'getSession' => $defaultDescriptors,
+            'listSessions' => $defaultDescriptors,
             'deleteSession' => $defaultDescriptors,
             'executeSql' => $defaultDescriptors,
             'executeStreamingSql' => $defaultDescriptors,
@@ -335,6 +358,10 @@ class SpannerGapicClient
             'commit' => $defaultDescriptors,
             'rollback' => $defaultDescriptors,
         ];
+        $pageStreamingDescriptors = self::getPageStreamingDescriptors();
+        foreach ($pageStreamingDescriptors as $method => $pageStreamingDescriptor) {
+            $this->descriptors[$method]['pageStreamingDescriptor'] = $pageStreamingDescriptor;
+        }
         $grpcStreamingDescriptors = self::getGrpcStreamingDescriptors();
         foreach ($grpcStreamingDescriptors as $method => $grpcStreamingDescriptor) {
             $this->descriptors[$method]['grpcStreamingDescriptor'] = $grpcStreamingDescriptor;
@@ -391,7 +418,7 @@ class SpannerGapicClient
      * ```
      * try {
      *     $spannerClient = new SpannerClient();
-     *     $formattedDatabase = $spannerClient->databaseName("[PROJECT]", "[INSTANCE]", "[DATABASE]");
+     *     $formattedDatabase = $spannerClient->databaseName('[PROJECT]', '[INSTANCE]', '[DATABASE]');
      *     $response = $spannerClient->createSession($formattedDatabase);
      * } finally {
      *     $spannerClient->close();
@@ -400,8 +427,10 @@ class SpannerGapicClient
      *
      * @param string $database     Required. The database in which the new session is created.
      * @param array  $optionalArgs {
-     *                             Optional.
+     *                             Optional
      *
+     *     @type Session $session
+     *          The session to create.
      *     @type \Google\GAX\RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\GAX\RetrySettings} object, or an associative array
@@ -418,6 +447,9 @@ class SpannerGapicClient
     {
         $request = new CreateSessionRequest();
         $request->setDatabase($database);
+        if (isset($optionalArgs['session'])) {
+            $request->setSession($optionalArgs['session']);
+        }
 
         $defaultCallSettings = $this->defaultCallSettings['createSession'];
         if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
@@ -448,7 +480,7 @@ class SpannerGapicClient
      * ```
      * try {
      *     $spannerClient = new SpannerClient();
-     *     $formattedName = $spannerClient->sessionName("[PROJECT]", "[INSTANCE]", "[DATABASE]", "[SESSION]");
+     *     $formattedName = $spannerClient->sessionName('[PROJECT]', '[INSTANCE]', '[DATABASE]', '[SESSION]');
      *     $response = $spannerClient->getSession($formattedName);
      * } finally {
      *     $spannerClient->close();
@@ -457,7 +489,7 @@ class SpannerGapicClient
      *
      * @param string $name         Required. The name of the session to retrieve.
      * @param array  $optionalArgs {
-     *                             Optional.
+     *                             Optional
      *
      *     @type \Google\GAX\RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
@@ -497,13 +529,109 @@ class SpannerGapicClient
     }
 
     /**
+     * Lists all sessions in a given database.
+     *
+     * Sample code:
+     * ```
+     * try {
+     *     $spannerClient = new SpannerClient();
+     *     $formattedDatabase = $spannerClient->databaseName('[PROJECT]', '[INSTANCE]', '[DATABASE]');
+     *     // Iterate through all elements
+     *     $pagedResponse = $spannerClient->listSessions($formattedDatabase);
+     *     foreach ($pagedResponse->iterateAllElements() as $element) {
+     *         // doSomethingWith($element);
+     *     }
+     *
+     *     // OR iterate over pages of elements
+     *     $pagedResponse = $spannerClient->listSessions($formattedDatabase);
+     *     foreach ($pagedResponse->iteratePages() as $page) {
+     *         foreach ($page as $element) {
+     *             // doSomethingWith($element);
+     *         }
+     *     }
+     * } finally {
+     *     $spannerClient->close();
+     * }
+     * ```
+     *
+     * @param string $database     Required. The database in which to list sessions.
+     * @param array  $optionalArgs {
+     *                             Optional
+     *
+     *     @type int $pageSize
+     *          The maximum number of resources contained in the underlying API
+     *          response. The API may return fewer values in a page, even if
+     *          there are additional values to be retrieved.
+     *     @type string $pageToken
+     *          A page token is used to specify a page of values to be returned.
+     *          If no page token is specified (the default), the first page
+     *          of values will be returned. Any page token used here must have
+     *          been generated by a previous call to the API.
+     *     @type string $filter
+     *          An expression for filtering the results of the request. Filter rules are
+     *          case insensitive. The fields eligible for filtering are:
+     *
+     *            * `labels.key` where key is the name of a label
+     *
+     *          Some examples of using filters are:
+     *
+     *            * `labels.env:*` --> The session has the label "env".
+     *            * `labels.env:dev` --> The session has the label "env" and the value of
+     *                                 the label contains the string "dev".
+     *     @type \Google\GAX\RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\GAX\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\GAX\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\GAX\PagedListResponse
+     *
+     * @throws \Google\GAX\ApiException if the remote call fails
+     * @experimental
+     */
+    public function listSessions($database, $optionalArgs = [])
+    {
+        $request = new ListSessionsRequest();
+        $request->setDatabase($database);
+        if (isset($optionalArgs['pageSize'])) {
+            $request->setPageSize($optionalArgs['pageSize']);
+        }
+        if (isset($optionalArgs['pageToken'])) {
+            $request->setPageToken($optionalArgs['pageToken']);
+        }
+        if (isset($optionalArgs['filter'])) {
+            $request->setFilter($optionalArgs['filter']);
+        }
+
+        $defaultCallSettings = $this->defaultCallSettings['listSessions'];
+        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
+            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
+                $optionalArgs['retrySettings']
+            );
+        }
+        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
+        $callable = ApiCallable::createApiCall(
+            $this->spannerStub,
+            'ListSessions',
+            $mergedSettings,
+            $this->descriptors['listSessions']
+        );
+
+        return $callable(
+            $request,
+            [],
+            ['call_credentials_callback' => $this->createCredentialsCallback()]);
+    }
+
+    /**
      * Ends a session, releasing server resources associated with it.
      *
      * Sample code:
      * ```
      * try {
      *     $spannerClient = new SpannerClient();
-     *     $formattedName = $spannerClient->sessionName("[PROJECT]", "[INSTANCE]", "[DATABASE]", "[SESSION]");
+     *     $formattedName = $spannerClient->sessionName('[PROJECT]', '[INSTANCE]', '[DATABASE]', '[SESSION]');
      *     $spannerClient->deleteSession($formattedName);
      * } finally {
      *     $spannerClient->close();
@@ -512,7 +640,7 @@ class SpannerGapicClient
      *
      * @param string $name         Required. The name of the session to delete.
      * @param array  $optionalArgs {
-     *                             Optional.
+     *                             Optional
      *
      *     @type \Google\GAX\RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
@@ -566,8 +694,8 @@ class SpannerGapicClient
      * ```
      * try {
      *     $spannerClient = new SpannerClient();
-     *     $formattedSession = $spannerClient->sessionName("[PROJECT]", "[INSTANCE]", "[DATABASE]", "[SESSION]");
-     *     $sql = "";
+     *     $formattedSession = $spannerClient->sessionName('[PROJECT]', '[INSTANCE]', '[DATABASE]', '[SESSION]');
+     *     $sql = '';
      *     $response = $spannerClient->executeSql($formattedSession, $sql);
      * } finally {
      *     $spannerClient->close();
@@ -577,7 +705,7 @@ class SpannerGapicClient
      * @param string $session      Required. The session in which the SQL query should be performed.
      * @param string $sql          Required. The SQL query string.
      * @param array  $optionalArgs {
-     *                             Optional.
+     *                             Optional
      *
      *     @type TransactionSelector $transaction
      *          The transaction to use. If none is provided, the default is a
@@ -681,8 +809,8 @@ class SpannerGapicClient
      * ```
      * try {
      *     $spannerClient = new SpannerClient();
-     *     $formattedSession = $spannerClient->sessionName("[PROJECT]", "[INSTANCE]", "[DATABASE]", "[SESSION]");
-     *     $sql = "";
+     *     $formattedSession = $spannerClient->sessionName('[PROJECT]', '[INSTANCE]', '[DATABASE]', '[SESSION]');
+     *     $sql = '';
      *     // Read all responses until the stream is complete
      *     $stream = $spannerClient->executeStreamingSql($formattedSession, $sql);
      *     foreach ($stream->readAll() as $element) {
@@ -696,7 +824,7 @@ class SpannerGapicClient
      * @param string $session      Required. The session in which the SQL query should be performed.
      * @param string $sql          Required. The SQL query string.
      * @param array  $optionalArgs {
-     *                             Optional.
+     *                             Optional
      *
      *     @type TransactionSelector $transaction
      *          The transaction to use. If none is provided, the default is a
@@ -812,8 +940,8 @@ class SpannerGapicClient
      * ```
      * try {
      *     $spannerClient = new SpannerClient();
-     *     $formattedSession = $spannerClient->sessionName("[PROJECT]", "[INSTANCE]", "[DATABASE]", "[SESSION]");
-     *     $table = "";
+     *     $formattedSession = $spannerClient->sessionName('[PROJECT]', '[INSTANCE]', '[DATABASE]', '[SESSION]');
+     *     $table = '';
      *     $columns = [];
      *     $keySet = new KeySet();
      *     $response = $spannerClient->read($formattedSession, $table, $columns, $keySet);
@@ -837,7 +965,7 @@ class SpannerGapicClient
      * It is not an error for the `key_set` to name rows that do not
      * exist in the database. Read yields nothing for nonexistent rows.
      * @param array $optionalArgs {
-     *                            Optional.
+     *                            Optional
      *
      *     @type TransactionSelector $transaction
      *          The transaction to use. If none is provided, the default is a
@@ -919,8 +1047,8 @@ class SpannerGapicClient
      * ```
      * try {
      *     $spannerClient = new SpannerClient();
-     *     $formattedSession = $spannerClient->sessionName("[PROJECT]", "[INSTANCE]", "[DATABASE]", "[SESSION]");
-     *     $table = "";
+     *     $formattedSession = $spannerClient->sessionName('[PROJECT]', '[INSTANCE]', '[DATABASE]', '[SESSION]');
+     *     $table = '';
      *     $columns = [];
      *     $keySet = new KeySet();
      *     // Read all responses until the stream is complete
@@ -948,7 +1076,7 @@ class SpannerGapicClient
      * It is not an error for the `key_set` to name rows that do not
      * exist in the database. Read yields nothing for nonexistent rows.
      * @param array $optionalArgs {
-     *                            Optional.
+     *                            Optional
      *
      *     @type TransactionSelector $transaction
      *          The transaction to use. If none is provided, the default is a
@@ -1033,7 +1161,7 @@ class SpannerGapicClient
      * ```
      * try {
      *     $spannerClient = new SpannerClient();
-     *     $formattedSession = $spannerClient->sessionName("[PROJECT]", "[INSTANCE]", "[DATABASE]", "[SESSION]");
+     *     $formattedSession = $spannerClient->sessionName('[PROJECT]', '[INSTANCE]', '[DATABASE]', '[SESSION]');
      *     $options = new TransactionOptions();
      *     $response = $spannerClient->beginTransaction($formattedSession, $options);
      * } finally {
@@ -1044,7 +1172,7 @@ class SpannerGapicClient
      * @param string             $session      Required. The session in which the transaction runs.
      * @param TransactionOptions $options      Required. Options for the new transaction.
      * @param array              $optionalArgs {
-     *                                         Optional.
+     *                                         Optional
      *
      *     @type \Google\GAX\RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
@@ -1098,7 +1226,7 @@ class SpannerGapicClient
      * ```
      * try {
      *     $spannerClient = new SpannerClient();
-     *     $formattedSession = $spannerClient->sessionName("[PROJECT]", "[INSTANCE]", "[DATABASE]", "[SESSION]");
+     *     $formattedSession = $spannerClient->sessionName('[PROJECT]', '[INSTANCE]', '[DATABASE]', '[SESSION]');
      *     $mutations = [];
      *     $response = $spannerClient->commit($formattedSession, $mutations);
      * } finally {
@@ -1111,7 +1239,7 @@ class SpannerGapicClient
      *                                 mutations are applied atomically, in the order they appear in
      *                                 this list.
      * @param array      $optionalArgs {
-     *                                 Optional.
+     *                                 Optional
      *
      *     @type string $transactionId
      *          Commit a previously-started transaction.
@@ -1183,8 +1311,8 @@ class SpannerGapicClient
      * ```
      * try {
      *     $spannerClient = new SpannerClient();
-     *     $formattedSession = $spannerClient->sessionName("[PROJECT]", "[INSTANCE]", "[DATABASE]", "[SESSION]");
-     *     $transactionId = "";
+     *     $formattedSession = $spannerClient->sessionName('[PROJECT]', '[INSTANCE]', '[DATABASE]', '[SESSION]');
+     *     $transactionId = '';
      *     $spannerClient->rollback($formattedSession, $transactionId);
      * } finally {
      *     $spannerClient->close();
@@ -1194,7 +1322,7 @@ class SpannerGapicClient
      * @param string $session       Required. The session in which the transaction to roll back is running.
      * @param string $transactionId Required. The transaction to roll back.
      * @param array  $optionalArgs  {
-     *                              Optional.
+     *                              Optional
      *
      *     @type \Google\GAX\RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
