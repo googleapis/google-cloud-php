@@ -60,6 +60,8 @@ use Google\Pubsub\V1\SeekRequest;
 use Google\Pubsub\V1\StreamingPullRequest;
 use Google\Pubsub\V1\SubscriberGrpcClient;
 use Google\Pubsub\V1\Subscription;
+use Google\Pubsub\V1\UpdateSnapshotRequest;
+use Google\Pubsub\V1\UpdateSubscriptionRequest;
 
 /**
  * Service Description: The service that an application uses to manipulate subscriptions and to
@@ -416,6 +418,7 @@ class SubscriberGapicClient
         $this->descriptors = [
             'createSubscription' => $defaultDescriptors,
             'getSubscription' => $defaultDescriptors,
+            'updateSubscription' => $defaultDescriptors,
             'listSubscriptions' => $defaultDescriptors,
             'deleteSubscription' => $defaultDescriptors,
             'modifyAckDeadline' => $defaultDescriptors,
@@ -425,6 +428,7 @@ class SubscriberGapicClient
             'modifyPushConfig' => $defaultDescriptors,
             'listSnapshots' => $defaultDescriptors,
             'createSnapshot' => $defaultDescriptors,
+            'updateSnapshot' => $defaultDescriptors,
             'deleteSnapshot' => $defaultDescriptors,
             'seek' => $defaultDescriptors,
             'setIamPolicy' => $defaultDescriptors,
@@ -669,6 +673,70 @@ class SubscriberGapicClient
             'GetSubscription',
             $mergedSettings,
             $this->descriptors['getSubscription']
+        );
+
+        return $callable(
+            $request,
+            []
+        );
+    }
+
+        /**
+     * Updates an existing subscription. Note that certain properties of a
+     * subscription, such as its topic, are not modifiable.
+     * NOTE:  The style guide requires body: "subscription" instead of body: "*".
+     * Keeping the latter for internal consistency in V1, however it should be
+     * corrected in V2.  See
+     * https://cloud.google.com/apis/design/standard_methods#update for details.
+     *
+     * Sample code:
+     * ```
+     * try {
+     *     $subscriberClient = new SubscriberClient();
+     *     $subscription = new Subscription();
+     *     $updateMask = new FieldMask();
+     *     $response = $subscriberClient->updateSubscription($subscription, $updateMask);
+     * } finally {
+     *     $subscriberClient->close();
+     * }
+     * ```
+     *
+     * @param Subscription $subscription The updated subscription object.
+     * @param FieldMask    $updateMask   Indicates which fields in the provided subscription to update.
+     *                                   Must be specified and non-empty.
+     * @param array        $optionalArgs {
+     *                                   Optional.
+     *
+     *     @type \Google\GAX\RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\GAX\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\GAX\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Pubsub\V1\Subscription
+     *
+     * @throws \Google\GAX\ApiException if the remote call fails
+     * @experimental
+     */
+    public function updateSubscription($subscription, $updateMask, $optionalArgs = [])
+    {
+        $request = new UpdateSubscriptionRequest();
+        $request->setSubscription($subscription);
+        $request->setUpdateMask($updateMask);
+
+        $defaultCallSettings = $this->defaultCallSettings['updateSubscription'];
+        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
+            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
+                $optionalArgs['retrySettings']
+            );
+        }
+        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
+
+        $callable = $this->subscriberTransport->createApiCall(
+            'UpdateSubscription',
+            $mergedSettings,
+            $this->descriptors['updateSubscription']
         );
 
         return $callable(
@@ -1341,6 +1409,70 @@ class SubscriberGapicClient
             'CreateSnapshot',
             $mergedSettings,
             $this->descriptors['createSnapshot']
+        );
+
+        return $callable(
+            $request,
+            []
+        );
+    }
+
+        /**
+     * Updates an existing snapshot. Note that certain properties of a snapshot
+     * are not modifiable.
+     * NOTE:  The style guide requires body: "snapshot" instead of body: "*".
+     * Keeping the latter for internal consistency in V1, however it should be
+     * corrected in V2.  See
+     * https://cloud.google.com/apis/design/standard_methods#update for details.
+     *
+     * Sample code:
+     * ```
+     * try {
+     *     $subscriberClient = new SubscriberClient();
+     *     $snapshot = new Snapshot();
+     *     $updateMask = new FieldMask();
+     *     $response = $subscriberClient->updateSnapshot($snapshot, $updateMask);
+     * } finally {
+     *     $subscriberClient->close();
+     * }
+     * ```
+     *
+     * @param Snapshot  $snapshot     The updated snpashot object.
+     * @param FieldMask $updateMask   Indicates which fields in the provided snapshot to update.
+     *                                Must be specified and non-empty.
+     * @param array     $optionalArgs {
+     *                                Optional.
+     *
+     *     @type \Google\GAX\RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\GAX\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\GAX\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Pubsub\V1\Snapshot
+     *
+     * @throws \Google\GAX\ApiException if the remote call fails
+     * @experimental
+     */
+    public function updateSnapshot($snapshot, $updateMask, $optionalArgs = [])
+    {
+        $request = new UpdateSnapshotRequest();
+        $request->setSnapshot($snapshot);
+        $request->setUpdateMask($updateMask);
+
+        $defaultCallSettings = $this->defaultCallSettings['updateSnapshot'];
+        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
+            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
+                $optionalArgs['retrySettings']
+            );
+        }
+        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
+
+        $callable = $this->subscriberTransport->createApiCall(
+            'UpdateSnapshot',
+            $mergedSettings,
+            $this->descriptors['updateSnapshot']
         );
 
         return $callable(
