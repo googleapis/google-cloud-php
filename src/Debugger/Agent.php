@@ -101,6 +101,10 @@ class Agent
             ? $options['logger']
             : $this->defaultLogger();
 
+        $this->sourceRoot = isset($options['sourceRoot'])
+            ? $options['sourceRoot']
+            : dirname(debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS, 1)[0]['file']);
+
         if (empty($breakpoints)) {
             return;
         }
@@ -109,10 +113,6 @@ class Agent
             trigger_error('Breakpoints set but "stackdriver_debugger" extension not loaded', E_USER_WARNING);
             return;
         }
-
-        $this->sourceRoot = isset($options['sourceRoot'])
-            ? $options['sourceRoot']
-            : dirname(debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS, 1)[0]['file']);
 
         foreach ($breakpoints as $breakpoint) {
             $this->breakpoints[$breakpoint->id()] = $breakpoint;
