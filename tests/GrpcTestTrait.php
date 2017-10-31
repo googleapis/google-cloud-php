@@ -17,11 +17,38 @@
 
 namespace Google\Cloud\Tests;
 
+use Google\Protobuf\Any;
+use Google\Rpc\Status;
+
 /**
  * Provides checks for whether to run gRPC tests
  */
 trait GrpcTestTrait
 {
+    /**
+     * @param \Google\Rpc\Code $code
+     * @param String $message
+     * @return Status
+     */
+    public static function createStatus($code, $message)
+    {
+        $status = new Status();
+        $status->setCode($code);
+        $status->setMessage($message);
+        return $status;
+    }
+
+    /**
+     * @param $value \Google\Protobuf\Internal\Message;
+     * @return Any
+     */
+    public static function createAny($value)
+    {
+        $any = new Any();
+        $any->setValue($value->serializeToString());
+        return $any;
+    }
+
     public function checkAndSkipGrpcTests()
     {
         if (!extension_loaded('grpc')) {
