@@ -23,6 +23,7 @@ use Google\Protobuf\NullValue;
 use Google\Cloud\Core\GeoPoint;
 use Google\Cloud\Core\Timestamp;
 use Google\Cloud\Core\ArrayTrait;
+use Google\Cloud\Core\ValidateTrait;
 use Google\Cloud\Core\DebugInfoTrait;
 use Google\Cloud\Core\ValueMapperTrait;
 use Google\Cloud\Firestore\Connection\ConnectionInterface;
@@ -35,6 +36,7 @@ class ValueMapper
     use ArrayTrait;
     use DebugInfoTrait;
     use PathTrait;
+    use ValidateTrait;
     use ValueMapperTrait;
 
     /**
@@ -129,23 +131,24 @@ class ValueMapper
     }
 
     /**
-     * Decode field paths and values.
+     * Accepts a list of FieldPath objects and a list of values, and constructs
+     * a nested array of fields and values.
      *
-     * Accepts an array of form array<string, mixed>, where the key is a field
-     * path and the value is a document field value, and returns a nested array.
-     *
-     * @param array $fieldPaths A list of field paths and values.
+     * @param FieldPath[] $paths The field paths.
+     * @param array $values The field values.
      * @return array
      */
-    public function decodeFieldPaths(array $fieldPaths)
+    public function buildDocumentFromPathsAndValues(array $paths, array $values)
     {
+        $this->validateBatch($paths, FieldPath::class);
+
         $output = [];
 
-        foreach ($fieldPaths as $fieldPath => $fieldValue) {
-            $keys = explode('.', $fieldPath);
+        foreach ($paths as $pathIndex => $path) {
+            $keys = $path->path();
             $num = count($keys);
 
-            $val = $fieldValue;
+            $val = $values[$pathIndex];
             foreach (array_reverse($keys) as $index => $key) {
                 if ($num >= $index+1) {
                     $val = [$key => $val];
@@ -195,12 +198,12 @@ class ValueMapper
             if (is_array($value)) {
                 $fields[$key] = $this->removeSentinel($value, $timestamps, $deletes, $currPath);
             } else {
-                if ($value === FirestoreClient::DELETE_FIELD || $value === FirestoreClient::SERVER_TIMESTAMP) {
-                    if ($value === FirestoreClient::DELETE_FIELD) {
+                if ($value === FieldValue::deleteField() || $value === FieldValue::serverTimestamp()) {
+                    if ($value === FieldValue::deleteField()) {
                         $deletes[] = $currPath;
                     }
 
-                    if ($value === FirestoreClient::SERVER_TIMESTAMP) {
+                    if ($value === FieldValue::serverTimestamp()) {
                         $timestamps[] = $currPath;
                     }
 
@@ -236,7 +239,7 @@ class ValueMapper
             case 'integerValue':
                 return $this->returnInt64AsObject
                     ? new Int64($value)
-                    : $value;
+                    : (int) $value;
 
             case 'timestampValue':
                 return $this->createTimestampWithNanos($value);

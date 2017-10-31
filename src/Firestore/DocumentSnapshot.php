@@ -75,7 +75,7 @@ class DocumentSnapshot implements \ArrayAccess
     }
 
     /**
-     * Get the document which created the snapshot.
+     * Get the reference of the document which created the snapshot.
      *
      * Example:
      * ```
@@ -125,6 +125,13 @@ class DocumentSnapshot implements \ArrayAccess
      * Example:
      * ```
      * $info = $snapshot->info();
+     * ```
+     *
+     * ```
+     * // Snapshot updateTime is often useful for precondition arguments.
+     * $updateTime = isset($snapshot->info()['updateTime'])
+     *     ? $snapshot->info()['updateTime']
+     *     : null;
      * ```
      *
      * @return array

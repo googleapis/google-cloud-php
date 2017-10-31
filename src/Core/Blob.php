@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright 2016 Google Inc.
+ * Copyright 2017 Google Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -23,7 +23,7 @@ use Psr\Http\Message\StreamInterface;
 /**
  * Represents a Blob value.
  *
- * Blobs can be used to store binary data in Google Cloud Datastore.
+ * Blobs can be used to store binary data various Google Cloud services.
  *
  * Example:
  * ```

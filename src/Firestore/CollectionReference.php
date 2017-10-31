@@ -122,7 +122,7 @@ class CollectionReference
     }
 
     /**
-     * Lazily get a document which is a direct child of this collection.
+     * Get a reference to a document which is a direct child of this collection.
      *
      * Example:
      * ```
@@ -155,7 +155,7 @@ class CollectionReference
     }
 
     /**
-     * Generate a new document, and insert it with the given field data.
+     * Generate a new document reference, and insert it with the given field data.
      *
      * This method immediately inserts the document. If you wish for lazy
      * creation of a Document instance, refer to
@@ -169,30 +169,14 @@ class CollectionReference
      * ]);
      * ```
      *
-     * ```
-     * // To specify a document ID, supply it in `$options`.
-     * $newUser = $collection->add([
-     *     'name' => 'David'
-     * ], [
-     *     'documentId' => 'david'
-     * ]);
-     * ```
-     *
      * @param array $fields An array containing field names paired with their value.
      *        Accepts a nested array, or a simple array of field paths.
-     * @param array $options {
-     *     Configuration Options.
-     *
-     *     @type string $documentId The ID of the new document. If not set, a
-     *           random name will be generated. **Defaults to** `null`.
-     * }
+     * @param array $options Configuration Options.
      * @return DocumentReference
      */
     public function add(array $fields = [], array $options = [])
     {
-        $name = isset($options['documentId'])
-            ? $this->childPath($this->name, $this->pluck('documentId', $options))
-            : $this->randomName($this->name);
+        $name = $this->randomName($this->name);
 
         $document = $this->documentFactory($name);
         $result = $document->create($fields, $options);

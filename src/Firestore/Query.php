@@ -172,6 +172,9 @@ class Query
     /**
      * Add a SELECT to the Query.
      *
+     * If set, adds a projection to the query, limiting the fields in returned
+     * documents to only fields matching the given `$fieldPaths`.
+     *
      * Example:
      * ```
      * $query = $query->select(['firstName']);
@@ -255,10 +258,10 @@ class Query
      * ```
      *
      * @param string $fieldPath The field to order by.
-     * @param string $direction The direction to order in.
+     * @param string $direction The direction to order in. **Defaults to** `ASC`.
      * @return Query A new instance of Query with the given changes applied.
      */
-    public function orderBy($fieldPath, $direction)
+    public function orderBy($fieldPath, $direction = self::DIR_ASCENDING)
     {
         $direction = array_key_exists(strtoupper($direction), $this->shortDirections)
             ? $this->shortDirections[strtoupper($direction)]
@@ -328,6 +331,10 @@ class Query
     /**
      * A starting point for the query results.
      *
+     * Multiple invocations of this call overwrite previous calls. Calling
+     * `startAt()` will overwrite both previous `startAt()` and `startAfter()`
+     * calls.
+     *
      * Example:
      * ```
      * $query = $query->startAt($cursor);
@@ -351,6 +358,10 @@ class Query
      *
      * This method starts the result set AFTER the occurence of the given cursor.
      *
+     * Multiple invocations of this call overwrite previous calls. Calling
+     * `startAt()` will overwrite both previous `startAt()` and `startAfter()`
+     * calls.
+     *
      * Example:
      * ```
      * $query = $query->startAfter($cursor);
@@ -371,6 +382,10 @@ class Query
 
     /**
      * An end point for the query results.
+     *
+     * Multiple invocations of this call overwrite previous calls. Calling
+     * `endBefore()` will overwrite both previous `endBefore()` and `endAt()`
+     * calls.
      *
      * Example:
      * ```
@@ -395,6 +410,10 @@ class Query
      *
      * This method ends the result set AFTER the occurence of the given cursor.
      *
+     * Multiple invocations of this call overwrite previous calls. Calling
+     * `endBefore()` will overwrite both previous `endBefore()` and `endAt()`
+     * calls.
+     *
      * Example:
      * ```
      * $query = $query->endAt($cursor);
@@ -411,21 +430,6 @@ class Query
                 'values' => $this->valueMapper->encodeValues($cursor)
             ]
         ]);
-    }
-
-    /**
-     * Resets the Query.
-     *
-     * Example:
-     * ```
-     * $query = $query->clearQuery();
-     * ```
-     *
-     * @return Query A new instance of Query with the given changes applied.
-     */
-    public function clearQuery()
-    {
-        return $this->newQuery([], true);
     }
 
     /**

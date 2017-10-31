@@ -94,37 +94,6 @@ class Transaction
     }
 
     /**
-     * Lazily instantiate a Collection with the current Transaction ID applied.
-     *
-     * Collections hold Firestore documents. Collections cannot be created or
-     * deleted directly - they exist only as implicit namespaces. Once no child
-     * documents remain in a collection, it ceases to exist.
-     *
-     * Creating a Collection within a Transaction is required in order to run
-     * queries as part of a Firestore Transaction.
-     *
-     * Example:
-     * ```
-     * $collection = $transaction->collection('users');
-     * ```
-     *
-     * @param string $name The name of the collection.
-     * @return CollectionReference
-     */
-    public function collection($name)
-    {
-        if ($this->isRelative($name)) {
-            $name = $this->fullNameFromDatabase($this->database, $name);
-        }
-
-        if (!$this->isCollection($name)) {
-            throw new \InvalidArgumentException('Given path is not a valid collection path.');
-        }
-
-        return new CollectionReference($this->connection, $this->valueMapper, $name, $this->transaction);
-    }
-
-    /**
      * Get a Document Snapshot.
      *
      * Unlike {@see Google\Cloud\Firestore\Document::snapshot()}, if the document
@@ -150,7 +119,7 @@ class Transaction
     }
 
     /**
-     * Create a Firestore document.
+     * Enqueue an operation to create a Firestore document.
      *
      * Example:
      * ```
@@ -175,7 +144,7 @@ class Transaction
     }
 
     /**
-     * Modify or replace a Firestore document.
+     * Enqueue an operation to modify or replace a Firestore document.
      *
      * Example:
      * ```
@@ -216,13 +185,16 @@ class Transaction
     }
 
     /**
-     * Update a Firestore document.
+     * Enqueue an update to a Firestore document.
      *
      * Merges provided data with data stored in Firestore.
      *
-     * By default, this method will fail if the document does not exist.
+     * Calling this method on a non-existent document will raise an exception.
      *
-     * To remove a field, set the field value to `FirestoreClient::DELETE_FIELD`.
+     * To remove a field, set the field value to {@see Gooogle\Cloud\Firestore\FieldValue::deleteField()}.
+     *
+     * To update a document using field paths, see
+     * {@see Google\Cloud\Firestore\Transaction::updatePaths()}.
      *
      * Example:
      * ```
@@ -239,38 +211,43 @@ class Transaction
      * ```
      *
      * @codingStandardsIgnoreStart
-     * @param string $documentName The document to update.
+     * @param DocumentReference $document The document to update.
      * @param array $fields An array containing field names paired with their value.
-     *        Accepts a nested array, or a simple array of field paths.
-     * @param array $options {
-     *     Configuration options
-     *
-     *     @type array $precondition An optional precondition on the document. If
-     *           this is set and not met by the target document, the write will
-     *           fail. Allowed arguments are `(bool) $exists` and
-     *           {@see Google\Cloud\Core\Timestamp} `$updateTime`.
-     *           To completely disable precondition checks, provide an empty array
-     *           as the value of `$precondition`. **Defaults to**
-     *           `['exists' => true]` (i.e. Document must exist in Firestore).
-     *           For more information, refer to the [Precondition](https://firebase.google.com/docs/firestore/reference/rpc/google.firestore.v1beta1#google.firestore.v1beta1.Precondition)
-     *           documentation.
-     * }
+     * @param array $options Configuration options
      * @return Transaction
      * @codingStandardsIgnoreEnd
      */
     public function update(DocumentReference $document, array $fields, array $options = [])
     {
-        $options += [
-            'precondition' => ['exists' => true]
-        ];
-
         $this->writer->update($document->name(), $fields, $options);
 
         return $this;
     }
 
     /**
-     * Delete a Firestore document.
+     * Enqueue an update with field paths and values.
+     *
+     * Example:
+     * ```
+     * // todo
+     * ```
+     *
+     * @codingStandardsIgnoreStart
+     * @param DocumentReference $document The document to modify or replace.
+     * @param array[] $data A list of arrays of form `[FieldPath|string $path, mixed $value]`.
+     * @param array $options Configuration options
+     * @return Transaction
+     * @codingStandardsIgnoreEnd
+     */
+    public function updatePaths(DocumentReference $document, array $data, array $options = [])
+    {
+        $this->writer->updatePaths($document->name(), $data, $options);
+
+        return $this;
+    }
+
+    /**
+     * Enqueue an operation to delete a Firestore document.
      *
      * Example:
      * ```
@@ -280,7 +257,6 @@ class Transaction
      * @param DocumentReference $document The document to delete.
      * @param array $options Configuration Options.
      * @return Transaction
-     * @throws ConflictException If the precondition is not met.
      */
     public function delete(DocumentReference $document, array $options = [])
     {

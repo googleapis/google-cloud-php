@@ -237,6 +237,41 @@ class FirestoreClientTest extends \PHPUnit_Framework_TestCase
         ];
     }
 
+    public function testDocumentsOrdered()
+    {
+        $tpl = 'projects/'. self::PROJECT .'/databases/'. self::DATABASE .'/documents/a/%s';
+        $names = [
+            sprintf($tpl, 'a'),
+            sprintf($tpl, 'b'),
+            sprintf($tpl, 'c'),
+        ];
+
+        $res = [
+            [
+                'missing' => $names[2],
+                'readTime' => ['seconds' => 1, 'nanos' => 0]
+            ], [
+                'missing' => $names[1],
+                'readTime' => ['seconds' => 1, 'nanos' => 0]
+            ], [
+                'missing' => $names[0],
+                'readTime' => ['seconds' => 1, 'nanos' => 0]
+            ]
+        ];
+
+        $this->connection->batchGetDocuments(Argument::withEntry('documents', $names))
+            ->shouldBeCalled()
+            ->willReturn($res);
+
+        $this->client->___setProperty('connection', $this->connection->reveal());
+
+        $res = $this->client->documents($names);
+        $arr = iterator_to_array($res);
+        $this->assertEquals($names[0], $arr[0]->name());
+        $this->assertEquals($names[1], $arr[1]->name());
+        $this->assertEquals($names[2], $arr[2]->name());
+    }
+
     public function testRunTransaction()
     {
         $transactionId = 'foobar';

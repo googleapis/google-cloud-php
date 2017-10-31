@@ -96,6 +96,12 @@ class DocumentReference
     /**
      * Get the document name.
      *
+     * Names are absolute. The result of this call would be of the form
+     * `projects/<project-id>/databases/<database-id>/documents/<relative-path>`.
+     *
+     * To retrieve the document ID (the last element of the path), use
+     * {@see Google\Cloud\Firestore\DocumentReference::id()}.
+     *
      * Example:
      * ```
      * $name = $document->name();
@@ -110,6 +116,10 @@ class DocumentReference
 
     /**
      * Get the document identifier (i.e. the last path element).
+     *
+     * IDs are the path element which identifies a resource. To retrieve the
+     * full path to a resource (the resource name), use
+     * {@see Google\Cloud\Firestore\DocumentReference::name()}.
      *
      * Example:
      * ```
@@ -134,11 +144,13 @@ class DocumentReference
      * ]);
      * ```
      *
+     * @codingStandardsIgnoreStart
      * @param array $fields An array containing field names paired with their value.
      *        Accepts a nested array, or a simple array of field paths.
      * @param array $options Configuration Options.
-     * @return array
+     * @return array [WriteResult](https://cloud.google.com/firestore/docs/reference/rpc/google.firestore.v1beta1#google.firestore.v1beta1.WriteResult)
      * @throws ConflictException
+     * @codingStandardsIgnoreEnd
      */
     public function create(array $fields = [], array $options = [])
     {
@@ -146,11 +158,11 @@ class DocumentReference
 
         $writer->create($this->name, $fields, $options);
 
-        return $writer->commit($options);
+        return $this->writeResult($writer->commit($options));
     }
 
     /**
-     * Update a Firestore document, with optional merge behavior.
+     * Write to a Firestore document, with optional merge behavior.
      *
      * This method will create the document if it does not already exist.
      *
@@ -175,8 +187,10 @@ class DocumentReference
      *           Otherwise, they will be overwritten (removed). **Defaults to**
      *           `false`.
      * }
-     * @return array
+     * @codingStandardsIgnoreStart
+     * @return array [WriteResult](https://cloud.google.com/firestore/docs/reference/rpc/google.firestore.v1beta1#google.firestore.v1beta1.WriteResult)
      * @throws ConflictException If the precondition is not met.
+     * @codingStandardsIgnoreEnd
      */
     public function set(array $fields, array $options = [])
     {
@@ -184,15 +198,20 @@ class DocumentReference
 
         $writer->set($this->name, $fields, $options);
 
-        return $writer->commit($options);
+        return $this->writeResult($writer->commit($options));
     }
 
     /**
-     * Update a Firestore document. Merges provided data with data stored in Firestore.
+     * Update a Firestore document.
      *
-     * By default, this method will fail if the document does not exist.
+     * Merges provided data with data stored in Firestore.
      *
-     * To remove a field, set the field value to `FirestoreClient::DELETE_FIELD`.
+     * Calling this method on a non-existent document will raise an exception.
+     *
+     * To remove a field, set the field value to {@see Gooogle\Cloud\Firestore\FieldValue::deleteField()}.
+     *
+     * To update a document using field paths, see
+     * {@see Google\Cloud\Firestore\DocumentReference::updatePaths()}.
      *
      * Example:
      * ```
@@ -208,39 +227,20 @@ class DocumentReference
      * ```
      *
      * ```
-     * // Remove a field using the `FirestoreClient::DELETE_FIELD` special value.
+     * // Remove a field using the {@see Gooogle\Cloud\Firestore\FieldValue::deleteField()} special value.
+     * use Google\Cloud\Firestore\FieldValue;
+     *
      * $document->update([
-     *     'country' => FirestoreClient::DELETE_FIELD
+     *     'country' => FieldValue::deleteField()
      * ]);
      * ```
      *
-     * ```
-     * // Documents can be updated using field paths as well.
-     * $document->update([
-     *     'name' => 'John',
-     *     'country' => 'USA',
-     *     'cryptoCurrencies.bitcoin' => 0.5,
-     *     'cryptoCurrencies.ethereum' => 10,
-     *     'cryptoCurrencies.litecoin' => 5.51
-     * ]);
-     * ```
-     *
+     * @codingStandardsIgnoreStart
      * @param array $fields An array containing field names paired with their value.
-     *        Accepts a nested array, or a simple array of field paths.
-     * @param array $options {
-     *     Configuration Options
-     *
-     *     @type array $precondition An optional precondition on the document. If
-     *           this is set and not met by the target document, the write will
-     *           fail. Allowed arguments are `(bool) $exists` and
-     *           {@see Google\Cloud\Core\Timestamp} `$updateTime`.
-     *           To completely disable precondition checks, provide an empty array
-     *           as the value of `$precondition`. **Defaults to**
-     *           `['exists' => true]` (i.e. Document must exist in Firestore).
-     * }
-     * @return array
-     * @throws ConflictException If the
-     *         precondition is not met.
+     * @param array $options Configuration Options
+     * @return array [WriteResult](https://cloud.google.com/firestore/docs/reference/rpc/google.firestore.v1beta1#google.firestore.v1beta1.WriteResult)
+     * @throws ConflictException If the document does not exist.
+     * @codingStandardsIgnoreEnd
      */
     public function update(array $fields, array $options = [])
     {
@@ -248,7 +248,30 @@ class DocumentReference
 
         $writer->update($this->name, $fields, $options);
 
-        return $writer->commit($options);
+        return $this->writeResult($writer->commit($options));
+    }
+
+    /**
+     * Enqueue an update with field paths and values.
+     *
+     * Example:
+     * ```
+     * // todo
+     * ```
+     *
+     * @codingStandardsIgnoreStart
+     * @param array[] $data A list of arrays of form `[FieldPath|string $path, mixed $value]`.
+     * @param array $options Configuration options
+     * @return array [WriteResult](https://cloud.google.com/firestore/docs/reference/rpc/google.firestore.v1beta1#google.firestore.v1beta1.WriteResult)
+     * @throws ConflictException If the document does not exist.
+     * @codingStandardsIgnoreEnd
+     */
+    public function updatePaths(array $data, array $options = [])
+    {
+        $writer = $this->batchFactory();
+        $writer->updatePaths($this->name, $data, $options);
+
+        return $this->writeResult($writer->commit($options));
     }
 
     /**
@@ -270,8 +293,10 @@ class DocumentReference
      *           as the value of `$precondition`. **Defaults to**
      *           `['exists' => true]` (i.e. Document must exist in Firestore).
      * }
-     * @return array
+     * @codingStandardsIgnoreStart
+     * @return array [WriteResult](https://cloud.google.com/firestore/docs/reference/rpc/google.firestore.v1beta1#google.firestore.v1beta1.WriteResult)
      * @throws ConflictException If the precondition is not met.
+     * @codingStandardsIgnoreEnd
      */
     public function delete(array $options = [])
     {
@@ -279,7 +304,7 @@ class DocumentReference
 
         $writer->delete($this->name, $options);
 
-        return $writer->commit($options);
+        return $this->writeResult($writer->commit($options));
     }
 
     /**
@@ -290,14 +315,7 @@ class DocumentReference
      * $snapshot = $document->snapshot();
      * ```
      *
-     * @param array $options {
-     *     Configuration Options
-     *
-     *     @type array $mask A list of fields to return. If not set, returns all
-     *           fields.
-     *     @type Timestamp $readTime Reads the version of the document at the
-     *           given time. This may not be older than 60 seconds.
-     * }
+     * @param array $options Configuration Options
      * @return DocumentSnapshot
      */
     public function snapshot(array $options = [])
@@ -306,7 +324,7 @@ class DocumentReference
     }
 
     /**
-     * Lazily get a collection which is a child of the current document.
+     * Get a reference to a collection which is a child of the current document.
      *
      * Example:
      * ```
@@ -370,5 +388,18 @@ class DocumentReference
             $this->valueMapper,
             $this->databaseFromName($this->name)
         );
+    }
+
+    /**
+     * Return the first write result from a commit response
+     *
+     * @param array $commitResponse
+     * @return array
+     */
+    private function writeResult(array $commitResponse)
+    {
+        return isset($commitResponse['writeResults'][0])
+            ? $commitResponse['writeResults'][0]
+            : [];
     }
 }

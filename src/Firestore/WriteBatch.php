@@ -75,11 +75,6 @@ class WriteBatch
     private $writes = [];
 
     /**
-     * @var bool
-     */
-    private $hasPreviousTransform = false;
-
-    /**
      * @param ConnectionInterface $connection A connection to Cloud Firestore
      * @param ValueMapper $valueMapper A Value Mapper instance
      * @param string $database The current database
@@ -119,15 +114,16 @@ class WriteBatch
     }
 
     /**
-     * Enqueue an update.
+     * Enqueue an update to a Firestore document.
      *
      * Merges provided data with data stored in Firestore.
      *
-     * By default, this method will fail if the document does not exist.
+     * Calling this method on a non-existent document will raise an exception.
      *
-     * To remove a field, set the field value to `FirestoreClient::DELETE_FIELD`.
-     * To set a field to the current server timestamp, set the field value to
-     * `FirestoreClient::SERVER_TIMESTAMP`.
+     * To remove a field, set the field value to {@see Gooogle\Cloud\Firestore\FieldValue::deleteField()}.
+     *
+     * To update a document using field paths, see
+     * {@see Google\Cloud\Firestore\WriteBatch::updatePaths()}.
      *
      * Example:
      * ```
@@ -139,31 +135,12 @@ class WriteBatch
      * @codingStandardsIgnoreStart
      * @param string $documentName The document to update.
      * @param array $fields An array containing field names paired with their value.
-     *        Accepts a nested array, or a simple array of field paths.
-     * @param array $options {
-     *     Configuration options
-     *
-     *     @type array $precondition An optional precondition on the document. If
-     *           this is set and not met by the target document, the write will
-     *           fail. Allowed arguments are `(bool) $exists` and
-     *           {@see Google\Cloud\Core\Timestamp} `$updateTime`.
-     *           To completely disable precondition checks, provide an empty array
-     *           as the value of `$precondition`. **Defaults to**
-     *           `['exists' => true]` (i.e. Document must exist in Firestore).
-     *           For more information, refer to the [Precondition](https://firebase.google.com/docs/firestore/reference/rpc/google.firestore.v1beta1#google.firestore.v1beta1.Precondition)
-     *           documentation.
-     * }
+     * @param array $options Configuration options
      * @return WriteBatch
      * @codingStandardsIgnoreEnd
      */
     public function update($documentName, array $fields, array $options = [])
     {
-        if ($this->hasPreviousTransform) {
-            throw new \BadMethodCallException(
-                'Cannot apply an UPDATE operation after a TRANSFORM operation has been enqueued.'
-            );
-        }
-
         $options += [
             'precondition' => ['exists' => true]
         ];
@@ -177,9 +154,7 @@ class WriteBatch
         // and enqueue an empty UPDATE operation.
         if ($fields || !$timestamps) {
             $this->writes[] = $this->createDatabaseWrite(self::TYPE_UPDATE, $documentName, [
-                'fields' => $this->valueMapper->encodeValues(
-                    $this->valueMapper->decodeFieldPaths($fields)
-                ),
+                'fields' => $this->valueMapper->encodeValues($fields),
                 'updateMask' => array_merge($this->valueMapper->encodeFieldPaths($fields), $deletes)
             ] + $options);
         }
@@ -188,6 +163,40 @@ class WriteBatch
         $this->updateTransformations($documentName, $timestamps);
 
         return $this;
+    }
+
+    /**
+     * Enqueue an update with field paths and values.
+     *
+     * Example:
+     * ```
+     * // todo
+     * ```
+     *
+     * @param string $documentName The document name.
+     * @param array[] $data A list of arrays of form `[FieldPath|string $path, mixed $value]`.
+     * @param array $options Configuration options
+     * @return WriteBatch
+     */
+    public function updatePaths($documentName, array $data, array $options = [])
+    {
+        $paths = [];
+        $values = [];
+        foreach ($data as $field) {
+            if (!isset($field['path']) || !isset($field['value'])) {
+                throw new \BadMethodCallException('Missing field path or value.');
+            }
+
+            $paths[] = ($field['path'] instanceof FieldPath)
+                ? $field['path']
+                : FieldPath::fromString($field['path']);
+
+            $values[] = $field['value'];
+        }
+
+        $fields = $this->valueMapper->buildDocumentFromPathsAndValues($paths, $values);
+
+        return $this->update($documentName, $fields, $options);
     }
 
     /**
@@ -219,12 +228,6 @@ class WriteBatch
      */
     public function set($documentName, array $fields, array $options = [])
     {
-        if ($this->hasPreviousTransform) {
-            throw new \BadMethodCallException(
-                'Cannot apply an UPDATE operation after a TRANSFORM operation has been enqueued.'
-            );
-        }
-
         $options += [
             'merge' => false
         ];
@@ -270,43 +273,6 @@ class WriteBatch
     }
 
     /**
-     * Verify a precondition without performing a write.
-     *
-     * Example:
-     * ```
-     * $batch->verify($documentName, [
-     *     'precondition' => [
-     *         'exists' => true
-     *     ]
-     * ]);
-     * ```
-     *
-     * @codingStandardsIgnoreStart
-     * @param string $documentName The document to delete.
-     * @param array $options {
-     *     Configuration Options
-     *
-     *     @type array $precondition An optional precondition on the document. If
-     *           this is set and not met by the target document, the write will
-     *           fail. Allowed arguments are `(bool) $exists` and
-     *           {@see Google\Cloud\Core\Timestamp} `$updateTime`.
-     *           To completely disable precondition checks, provide an empty array
-     *           as the value of `$precondition`. **Defaults to**
-     *           `['exists' => true]` (i.e. Document must exist in Firestore).
-     *           For more information, refer to the [Precondition](https://firebase.google.com/docs/firestore/reference/rpc/google.firestore.v1beta1#google.firestore.v1beta1.Precondition)
-     *           documentation.
-     * }
-     * @return WriteBatch
-     * @codingStandardsIgnoreEnd
-     */
-    public function verify($documentName, array $options = [])
-    {
-        $this->writes[] = $this->createDatabaseWrite(self::TYPE_VERIFY, $documentName, $options);
-
-        return $this;
-    }
-
-    /**
      * Enqueue a Transform operation.
      *
      * Note that UPDATE cannot follow TRANSFORM, so once any transforms are
@@ -333,13 +299,11 @@ class WriteBatch
      * @param array $options Configuration options.
      * @return WriteBatch
      */
-    public function transform($documentName, array $transforms = [], array $options = [])
+    private function transform($documentName, array $transforms = [], array $options = [])
     {
         $this->writes[] = $this->createDatabaseWrite(self::TYPE_TRANSFORM, $documentName, [
             'fieldTransforms' => $transforms
         ] + $options);
-
-        $this->hasPreviousTransform = true;
 
         return $this;
     }
@@ -387,11 +351,15 @@ class WriteBatch
      *
      * If the class was created without a Transaction ID, this method will fail.
      *
+     * This method is intended for use internally and should not be considered
+     * part of the public API.
+     *
      * Example:
      * ```
      * $batch->rollback();
      * ```
      *
+     * @access private
      * @param array $options Configuration Options
      * @return void
      * @throws \RuntimeException If no transaction ID is provided at class construction.

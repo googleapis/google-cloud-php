@@ -17,10 +17,12 @@
 
 namespace Google\Cloud\Firestore;
 
+use Google\Cloud\Core\Blob;
+use Google\Cloud\Core\Retry;
+use Google\Cloud\Core\GeoPoint;
 use Google\Cloud\Core\ArrayTrait;
 use Google\Cloud\Core\ClientTrait;
 use Google\Cloud\Core\ValidateTrait;
-use Google\Cloud\Core\ExponentialBackoff;
 use Google\Cloud\Firestore\Connection\Gapic;
 use Google\Cloud\Core\Iterator\ItemIterator;
 use Google\Cloud\Core\Iterator\PageIterator;
@@ -49,10 +51,6 @@ class FirestoreClient
 
     const MAX_RETRIES = 5;
 
-    // Sentinel values, chosen for uniqueness and extreme unlikeliness to match any real field value.
-    const DELETE_FIELD = '___google-cloud-php__deleteField___';
-    const SERVER_TIMESTAMP = '___google-cloud-php__serverTimestamp___';
-
     /**
      * @var ConnectionInterface
      */
@@ -67,11 +65,6 @@ class FirestoreClient
      * @var ValueMapper
      */
     private $valueMapper;
-
-    /**
-     * @var bool
-     */
-    private $isRunningTransaction = false;
 
     /**
      * Create a Firestore client.
@@ -120,9 +113,8 @@ class FirestoreClient
     /**
      * Get a Batch Writer
      *
-     * The {@see Google\Cloud\Firestore\WriteBatch} class is useful for closer
-     * to direct database writes. Most operations can be accomplished via other
-     * means.
+     * The {@see Google\Cloud\Firestore\WriteBatch} allows more performant
+     * multi-document, atomic updates.
      *
      * Example:
      * ```
@@ -141,7 +133,7 @@ class FirestoreClient
     }
 
     /**
-     * Lazily instantiate a Collection.
+     * Lazily instantiate a Collection reference.
      *
      * Collections hold Firestore documents. Collections cannot be created or
      * deleted directly - they exist only as implicit namespaces. Once no child
@@ -250,8 +242,7 @@ class FirestoreClient
      * Get a list of documents by their path.
      *
      * The number of results generated will be equal to the number of documents
-     * requested, except in case of error. This method does NOT guarantee that
-     * results will be returned in the order requested.
+     * requested, except in case of error.
      *
      * Note that this method will **always** yield instances of
      * {@see Google\Cloud\Firestore\DocumentSnapshot}, even if the documents
@@ -300,6 +291,7 @@ class FirestoreClient
             'documents' => $paths,
         ] + $options);
 
+        $res = [];
         foreach ($documents as $document) {
             $exists = isset($document['found']);
             $data = $exists
@@ -310,10 +302,14 @@ class FirestoreClient
                 ? $document['found']['name']
                 : $document['missing'];
 
-            yield $this->document($name)->snapshot([
+            $res[$name] = $this->document($name)->snapshot([
                 'data' => $data,
                 'exists' => $exists
             ]);
+        }
+
+        foreach ($paths as $path) {
+            yield $res[$path];
         }
     }
 
@@ -359,7 +355,7 @@ class FirestoreClient
      *
      * @param callable $callable A callable function, allowing atomic operations
      *        against the Firestore API. Function signature:
-     *        `function (Transaction $t, bool $isRetry)`.
+     *        `function (Transaction $t)`.
      * @param array $options {
      *     Configuration Options.
      *
@@ -373,10 +369,6 @@ class FirestoreClient
      */
     public function runTransaction(callable $callable, array $options = [])
     {
-        if ($this->isRunningTransaction) {
-            throw new \RuntimeException('Another transaction is currently in progress in this client.');
-        }
-
         $options += [
             'maxRetries' => self::MAX_RETRIES,
             'begin' => [],
@@ -387,6 +379,10 @@ class FirestoreClient
         $retryableErrors = [
             AbortedException::class
         ];
+
+        $delayFn = function() {
+            return ['seconds' => 0, 'nanos' => 0];
+        };
 
         $retryFn = function (\Exception $e) use ($retryableErrors) {
             return in_array(get_class($e), $retryableErrors);
@@ -399,19 +395,15 @@ class FirestoreClient
         // transaction is retried or not.
         $transactionId = null;
 
-        $backoff = new ExponentialBackoff($options['maxRetries'], $retryFn);
+        $backoff = new Retry($options['maxRetries'], $delayFn, $retryFn);
 
-        $iteration = 0;
         return $backoff->execute(function (
             callable $callable,
             array $options
         ) use (
             &$transactionId,
-            $retryableErrors,
-            &$iteration
+            $retryableErrors
         ) {
-            $this->isRunningTransaction = true;
-
             $database = $this->databaseName($this->projectId, $this->database);
 
             $beginTransaction = $this->connection->beginTransaction(array_filter([
@@ -429,7 +421,7 @@ class FirestoreClient
             );
 
             try {
-                $callable($transaction, ($iteration > 0));
+                $callable($transaction);
 
                 if (!$transaction->writer()->isEmpty()) {
                     return $transaction->writer()->commit([
@@ -443,13 +435,70 @@ class FirestoreClient
                 $transaction->writer()->rollback($options['rollback']);
 
                 throw $e;
-            } finally {
-                $this->isRunningTransaction = false;
-                $iteration++;
             }
         }, [
             $callable,
             $options
         ]);
+    }
+
+    /**
+     * Create a new GeoPoint
+     *
+     * Example:
+     * ```
+     * $geoPoint = $firestore->geoPoint(37.4220, -122.0841);
+     * ```
+     *
+     * @see https://cloud.google.com/firestore/docs/reference/rpc/google.type#google.type.LatLng LatLng
+     *
+     * @param float $latitude The latitude
+     * @param float $longitude The longitude
+     * @return GeoPoint
+     */
+    public function geoPoint($latitude, $longitude)
+    {
+        return new GeoPoint($latitude, $longitude);
+    }
+
+    /**
+     * Create a new Blob
+     *
+     * Example:
+     * ```
+     * $blob = $firestore->blob('hello world');
+     * ```
+     *
+     * ```
+     * // Blobs can be used to store binary data
+     * $blob = $datastore->blob(file_get_contents(__DIR__ .'/family-photo.jpg'));
+     * ```
+     *
+     * @param string|resource|StreamInterface $value The value to store in a blob.
+     * @return Blob
+     */
+    public function blob($value)
+    {
+        return new Blob($value);
+    }
+
+    /**
+     * Returns a FieldPath class, referring to a field in a document.
+     *
+     * The path may consist of a single field name (referring to a top-level
+     * field in the document), or a list of field names (referring to a nested
+     * field in the document).
+     *
+     * Example:
+     * ```
+     * $path = $firestore->fieldPath(['accounts', 'usd']);
+     * ```
+     *
+     * @param array $fieldNames A list of field names.
+     * @return FieldPath
+     */
+    public function fieldPath(array $fieldNames)
+    {
+        return new FieldPath($fieldNames);
     }
 }

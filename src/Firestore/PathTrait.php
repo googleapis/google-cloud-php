@@ -180,6 +180,7 @@ trait PathTrait
 
     /**
      * Get a relative name from an absolute name.
+     *
      * @param string $name
      * @return string
      */
