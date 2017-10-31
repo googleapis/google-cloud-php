@@ -30,7 +30,7 @@ interface BreakpointStorageInterface
     /**
      * Save the given debugger breakpoints.
      *
-     * @param Debuggee
+     * @param Debuggee $debuggee
      * @param Breakpoint[] $breakpoints
      * @return bool
      */

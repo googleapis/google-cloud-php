@@ -40,6 +40,11 @@ class StatusMessage implements \JsonSerializable
      */
     private $description;
 
+    /**
+     * Instantiate a new StatusMessage
+     *
+     * @param array $data
+     */
     public function __construct($data)
     {
         if ($data) {

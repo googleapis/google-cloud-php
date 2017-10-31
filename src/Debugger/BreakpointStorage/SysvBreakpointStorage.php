@@ -46,6 +46,7 @@ class SysvBreakpointStorage implements BreakpointStorageInterface
     /**
      * Save the given debugger breakpoints.
      *
+     * @param Debuggee $debuggee
      * @param Breakpoint[] $breakpoints
      * @return bool
      * @throws \RuntimeException when failed to attach to the shared memory.
