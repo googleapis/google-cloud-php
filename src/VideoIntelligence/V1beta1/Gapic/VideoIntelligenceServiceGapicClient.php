@@ -30,6 +30,10 @@
 
 namespace Google\Cloud\VideoIntelligence\V1beta1\Gapic;
 
+use Google\Cloud\Core\GapicClientTrait;
+use Google\Cloud\Core\Grpc\GrpcTransport;
+use Google\Cloud\Core\LongRunning\OperationsClient;
+use Google\Cloud\Core\OperationResponse;
 use Google\Cloud\Version;
 use Google\Cloud\Videointelligence\V1beta1\AnnotateVideoProgress;
 use Google\Cloud\Videointelligence\V1beta1\AnnotateVideoRequest;
@@ -38,11 +42,7 @@ use Google\Cloud\Videointelligence\V1beta1\Feature;
 use Google\Cloud\Videointelligence\V1beta1\VideoContext;
 use Google\Cloud\Videointelligence\V1beta1\VideoIntelligenceServiceGrpcClient;
 use Google\GAX\AgentHeaderDescriptor;
-use Google\GAX\ApiCallable;
 use Google\GAX\CallSettings;
-use Google\GAX\GrpcCredentialsHelper;
-use Google\GAX\LongRunning\OperationsClient;
-use Google\GAX\OperationResponse;
 
 /**
  * Service Description: Service that implements Google Cloud Video Intelligence API.
@@ -95,6 +95,8 @@ use Google\GAX\OperationResponse;
  */
 class VideoIntelligenceServiceGapicClient
 {
+    use GapicClientTrait;
+
     /**
      * The default address of the service.
      */
@@ -118,8 +120,7 @@ class VideoIntelligenceServiceGapicClient
     private static $gapicVersion;
     private static $gapicVersionLoaded = false;
 
-    protected $grpcCredentialsHelper;
-    protected $videoIntelligenceServiceStub;
+    protected $videoIntelligenceServiceTransport;
     private $scopes;
     private $defaultCallSettings;
     private $descriptors;
@@ -152,7 +153,7 @@ class VideoIntelligenceServiceGapicClient
     /**
      * Return an OperationsClient object with the same endpoint as $this.
      *
-     * @return \Google\GAX\LongRunning\OperationsClient
+     * @return \Google\Cloud\Core\LongRunning\OperationsClient
      * @experimental
      */
     public function getOperationsClient()
@@ -197,16 +198,18 @@ class VideoIntelligenceServiceGapicClient
      *                                  Default 'videointelligence.googleapis.com'.
      *     @type mixed $port The port on which to connect to the remote host. Default 443.
      *     @type \Grpc\Channel $channel
-     *           A `Channel` object to be used by gRPC. If not specified, a channel will be constructed.
+     *           Optional. A `Channel` object to be used by gRPC. If not specified, a channel will be constructed.
      *     @type \Grpc\ChannelCredentials $sslCreds
-     *           A `ChannelCredentials` object for use with an SSL-enabled channel.
+     *           Optional. A `ChannelCredentials` object for use with an SSL-enabled channel.
      *           Default: a credentials object returned from
      *           \Grpc\ChannelCredentials::createSsl()
-     *           NOTE: if the $channel optional argument is specified, then this argument is unused.
+     *           NOTE: if the $channel optional argument is specified, then this option is unused.
      *     @type bool $forceNewChannel
-     *           If true, this forces gRPC to create a new channel instead of using a persistent channel.
+     *           Optional. If true, this forces gRPC to create a new channel instead of using a persistent channel.
      *           Defaults to false.
      *           NOTE: if the $channel optional argument is specified, then this option is unused.
+     *     @type mixed $transport Optional, the string "grpc". Determines the backend transport used
+     *            to make the API call.
      *     @type \Google\Auth\CredentialsLoader $credentialsLoader
      *           A CredentialsLoader object created using the Google\Auth library.
      *     @type array $scopes A string array of scopes to use when acquiring credentials.
@@ -274,25 +277,32 @@ class VideoIntelligenceServiceGapicClient
         $this->defaultCallSettings =
                 CallSettings::load(
                     'google.cloud.videointelligence.v1beta1.VideoIntelligenceService',
-                    $clientConfig,
-                    $options['retryingOverride']
+                                   $clientConfig,
+                                   $options['retryingOverride']
                 );
 
         $this->scopes = $options['scopes'];
 
-        $createStubOptions = [];
-        if (array_key_exists('sslCreds', $options)) {
-            $createStubOptions['sslCreds'] = $options['sslCreds'];
-        }
-        $this->grpcCredentialsHelper = new GrpcCredentialsHelper($options);
+        if (empty($options['createTransportFunction'])) {
+            $options['createTransportFunction'] = function ($options, $transport = null) {
+                switch ($transport) {
+                    case 'grpc':
+                        if (empty($options['createGrpcStubFunction'])) {
+                            $options['createGrpcStubFunction'] = function ($fullAddress, $stubOpts, $channel) {
+                                return new VideoIntelligenceServiceGrpcClient($fullAddress, $stubOpts, $channel);
+                            };
+                        }
 
-        $createVideoIntelligenceServiceStubFunction = function ($hostname, $opts, $channel) {
-            return new VideoIntelligenceServiceGrpcClient($hostname, $opts, $channel);
-        };
-        if (array_key_exists('createVideoIntelligenceServiceStubFunction', $options)) {
-            $createVideoIntelligenceServiceStubFunction = $options['createVideoIntelligenceServiceStubFunction'];
+                        return new GrpcTransport($options);
+                }
+                throw new InvalidArgumentException('Invalid transport provided: '.$transport);
+            };
         }
-        $this->videoIntelligenceServiceStub = $this->grpcCredentialsHelper->createStub($createVideoIntelligenceServiceStubFunction);
+
+        $this->videoIntelligenceServiceTransport = call_user_func_array(
+            $options['createTransportFunction'],
+            [$options, $this->getTransport($options)]
+        );
     }
 
     /**
@@ -352,7 +362,7 @@ class VideoIntelligenceServiceGapicClient
      * @param int[]  $features     Requested video annotation features.
      *                             For allowed values, use constants defined on {@see \Google\Cloud\Videointelligence\V1beta1\Feature}
      * @param array  $optionalArgs {
-     *                             Optional.
+     *                             Optional
      *
      *     @type string $inputContent
      *          The video data bytes. Encoding: base64. If unset, the input video(s)
@@ -407,8 +417,8 @@ class VideoIntelligenceServiceGapicClient
             );
         }
         $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
-        $callable = ApiCallable::createApiCall(
-            $this->videoIntelligenceServiceStub,
+
+        $callable = $this->videoIntelligenceServiceTransport->createApiCall(
             'AnnotateVideo',
             $mergedSettings,
             $this->descriptors['annotateVideo']
@@ -416,8 +426,8 @@ class VideoIntelligenceServiceGapicClient
 
         return $callable(
             $request,
-            [],
-            ['call_credentials_callback' => $this->createCredentialsCallback()]);
+            []
+        );
     }
 
     /**
@@ -428,11 +438,6 @@ class VideoIntelligenceServiceGapicClient
      */
     public function close()
     {
-        $this->videoIntelligenceServiceStub->close();
-    }
-
-    private function createCredentialsCallback()
-    {
-        return $this->grpcCredentialsHelper->createCallCredentialsCallback();
+        $this->videoIntelligenceServiceTransport->close();
     }
 }
