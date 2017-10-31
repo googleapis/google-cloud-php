@@ -32,13 +32,16 @@
 
 namespace Google\Cloud\Tests\Unit\Core\Grpc;
 
-use PHPUnit_Framework_TestCase;
+use Google\Cloud\Tests\GrpcTestTrait;
 use Google\Cloud\Tests\Mocks\MockCredentialsLoader;
 use Google\Cloud\Tests\Mocks\MockGrpcTransport;
 use Google\Cloud\Tests\Mocks\MockGrpcTransportStub;
+use PHPUnit_Framework_TestCase;
 
 class GrpcTransportTest extends PHPUnit_Framework_TestCase
 {
+    use GrpcTestTrait;
+
     private $defaultScope = ['my-scope'];
     private $defaultTokens = [
         [
@@ -50,6 +53,11 @@ class GrpcTransportTest extends PHPUnit_Framework_TestCase
             'expires_in' => '100'
         ],
     ];
+
+    public function setUp()
+    {
+        $this->checkAndSkipGrpcTests();
+    }
 
     /**
      * @expectedException \Google\GAX\ValidationException

@@ -39,6 +39,7 @@ namespace Google\Cloud\Tests\Unit\Core;
 use Google\Cloud\Core\ApiTransportInterface;
 use Google\Cloud\Core\LongRunning\OperationsClient;
 use Google\Cloud\Core\Grpc\GrpcTransportTrait;
+use Google\Cloud\Tests\GrpcTestTrait;
 use Google\Cloud\Tests\Mocks\MockOperationsImpl;
 use Google\Cloud\Tests\Mocks\MockStubTrait;
 use Google\GAX\ApiException;
@@ -56,6 +57,13 @@ use stdClass;
  */
 class OperationsClientTest extends GeneratedTest
 {
+    use GrpcTestTrait;
+
+    public function setUp()
+    {
+        $this->checkAndSkipGrpcTests();
+    }
+
     /**
      * @return OperationsClient
      */

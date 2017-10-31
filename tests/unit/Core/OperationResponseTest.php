@@ -42,6 +42,8 @@ use PHPUnit_Framework_TestCase;
 
 class OperationResponseTest extends PHPUnit_Framework_TestCase
 {
+    use GrpcTestTrait;
+
     public function testBasic()
     {
         $opName = 'operations/opname';
@@ -150,6 +152,8 @@ class OperationResponseTest extends PHPUnit_Framework_TestCase
 
     public static function createOperationsClient($transport = null)
     {
+        self::checkAndSkipGrpcTests();
+
         $client = new OperationsClient([
             'createTransportFunction' => function ($hostname, $opts) use ($transport) {
                 return $transport;

@@ -46,6 +46,11 @@ class GrpcServerStreamTest extends PHPUnit_Framework_TestCase
 {
     use GrpcTestTrait;
 
+    public function setUp()
+    {
+        $this->checkAndSkipGrpcTests();
+    }
+
     public function testEmptySuccess()
     {
         $call = new MockServerStreamingCall([]);

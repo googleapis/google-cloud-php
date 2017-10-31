@@ -49,17 +49,17 @@ trait GrpcTestTrait
         return $any;
     }
 
-    public function checkAndSkipGrpcTests()
+    public static function checkAndSkipGrpcTests()
     {
         if (!extension_loaded('grpc')) {
-            $this->markTestSkipped('Must have the grpc extension installed to run this test.');
+            self::markTestSkipped('Must have the grpc extension installed to run this test.');
         }
         if (defined('HHVM_VERSION')) {
-            $this->markTestSkipped('gRPC is not supported on HHVM.');
+            self::markTestSkipped('gRPC is not supported on HHVM.');
         }
     }
 
-    public function shouldSkipGrpcTests()
+    public static function shouldSkipGrpcTests()
     {
         return !extension_loaded('grpc') || defined('HHVM_VERSION');
     }

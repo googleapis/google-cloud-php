@@ -41,6 +41,13 @@ use PHPUnit_Framework_TestCase;
 
 class GrpcClientStreamTest extends PHPUnit_Framework_TestCase
 {
+    use GrpcTestTrait;
+
+    public function setUp()
+    {
+        $this->checkAndSkipGrpcTests();
+    }
+
     public function testNoWritesSuccess()
     {
         $response = 'response';
