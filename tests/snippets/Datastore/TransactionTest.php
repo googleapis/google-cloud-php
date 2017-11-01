@@ -275,19 +275,6 @@ class TransactionTest extends SnippetTestCase
         $snippet->invoke();
     }
 
-    public function testRollback()
-    {
-        $snippet = $this->snippetFromMethod(Transaction::class, 'rollback');
-        $snippet->addLocal('transaction', $this->transaction);
-
-        $this->connection->rollback(Argument::any())
-            ->shouldBeCalled();
-
-        $this->operation->___setProperty('connection', $this->connection->reveal());
-
-        $snippet->invoke();
-    }
-
     // ******** HELPERS
 
     private function allocateIdsConnectionMock()

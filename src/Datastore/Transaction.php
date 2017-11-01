@@ -63,11 +63,6 @@ class Transaction extends ReadOnlyTransaction
     private $mutations = [];
 
     /**
-     * @var bool
-     */
-    private $closed = false;
-
-    /**
      * Insert an entity
      *
      * No service requests are run when this method is called.
@@ -84,7 +79,6 @@ class Transaction extends ReadOnlyTransaction
      *
      * @param Entity $entity The entity to insert.
      * @return Transaction
-     * @throws \RuntimeException If the transaction is already committed or rolled back.
      */
     public function insert(Entity $entity)
     {
@@ -110,7 +104,6 @@ class Transaction extends ReadOnlyTransaction
      *
      * @param Entity[] $entities The entities to insert.
      * @return Transaction
-     * @throws \RuntimeException If the transaction is already committed or rolled back.
      */
     public function insertBatch(array $entities)
     {
@@ -150,7 +143,6 @@ class Transaction extends ReadOnlyTransaction
      *           lookup or query. **Defaults to** `false`.
      * }
      * @return Transaction
-     * @throws \RuntimeException If the transaction is already committed or rolled back.
      */
     public function update(Entity $entity, array $options = [])
     {
@@ -190,7 +182,6 @@ class Transaction extends ReadOnlyTransaction
      *           lookup or query. **Defaults to** `false`.
      * }
      * @return Transaction
-     * @throws \RuntimeException If the transaction is already committed or rolled back.
      */
     public function updateBatch(array $entities, array $options = [])
     {
@@ -226,7 +217,6 @@ class Transaction extends ReadOnlyTransaction
      *
      * @param Entity $entity The entity to upsert.
      * @return Transaction
-     * @throws \RuntimeException If the transaction is already committed or rolled back.
      */
     public function upsert(Entity $entity)
     {
@@ -260,7 +250,6 @@ class Transaction extends ReadOnlyTransaction
      *
      * @param Entity[] $entities The entities to upsert.
      * @return Transaction
-     * @throws \RuntimeException If the transaction is already committed or rolled back.
      */
     public function upsertBatch(array $entities)
     {
@@ -287,7 +276,6 @@ class Transaction extends ReadOnlyTransaction
      *
      * @param Key $key The key to delete
      * @return Transaction
-     * @throws \RuntimeException If the transaction is already committed or rolled back.
      */
     public function delete(Key $key)
     {
@@ -313,7 +301,6 @@ class Transaction extends ReadOnlyTransaction
      *
      * @param Key[] $keys The keys to delete.
      * @return Transaction
-     * @throws \RuntimeException If the transaction is already committed or rolled back.
      */
     public function deleteBatch(array $keys)
     {
@@ -339,41 +326,11 @@ class Transaction extends ReadOnlyTransaction
      *
      * @param array $options [optional] Configuration Options.
      * @return array [Response Body](https://cloud.google.com/datastore/reference/rest/v1/projects/commit#response-body)
-     * @throws \RuntimeException If the transaction is already committed or rolled back.
      */
     public function commit(array $options = [])
     {
         $options['transaction'] = $this->transactionId;
         $this->closed = true;
         return $this->operation->commit($this->mutations, $options);
-    }
-
-    /**
-     * Roll back a Transaction
-     *
-     * Example:
-     * ```
-     * $transaction->rollback();
-     * ```
-     *
-     * @return void
-     * @throws \RuntimeException If the transaction is already committed or rolled back.
-     */
-    public function rollback()
-    {
-        $this->closed = true;
-        return $this->operation->rollback($this->transactionId);
-    }
-
-    /**
-     * If true, the transaction has been committed or rolled back, and further
-     * operations are not permitted.
-     *
-     * @return bool
-     * @access private
-     */
-    public function closed()
-    {
-        return $this->closed;
     }
 }

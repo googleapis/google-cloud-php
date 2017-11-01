@@ -204,4 +204,17 @@ class ReadOnlyTransactionTest extends SnippetTestCase
         $res = $snippet->invoke('result');
         $this->assertEquals('Bob', $res->output());
     }
+
+    public function testRollback()
+    {
+        $snippet = $this->snippetFromMethod(Transaction::class, 'rollback');
+        $snippet->addLocal('transaction', $this->transaction);
+
+        $this->connection->rollback(Argument::any())
+            ->shouldBeCalled();
+
+        $this->operation->___setProperty('connection', $this->connection->reveal());
+
+        $snippet->invoke();
+    }
 }

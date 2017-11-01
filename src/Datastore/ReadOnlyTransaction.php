@@ -20,7 +20,11 @@ namespace Google\Cloud\Datastore;
 use Google\Cloud\Datastore\Query\QueryInterface;
 
 /**
- * A Datastore Read-Only transaction.
+ * A Datastore Read-Only Transaction.
+ *
+ * Read-only transactions cannot be committed and cannot modify server state.
+ * It remains best practice to roll back read-only transactions when you are
+ * finished using them.
  *
  * Example:
  * ```
@@ -46,6 +50,11 @@ class ReadOnlyTransaction
      * @var string
      */
     protected $transactionId;
+
+    /**
+     * @var bool
+     */
+    protected $closed = false;
 
     /**
      * Create a Transaction
@@ -179,5 +188,34 @@ class ReadOnlyTransaction
     public function id()
     {
         return $this->transactionId;
+    }
+
+    /**
+     * Roll back a Transaction
+     *
+     * Example:
+     * ```
+     * $transaction->rollback();
+     * ```
+     *
+     * @return void
+     * @throws \RuntimeException If the transaction is already committed or rolled back.
+     */
+    public function rollback()
+    {
+        $this->closed = true;
+        return $this->operation->rollback($this->transactionId);
+    }
+
+    /**
+     * If true, the transaction has been committed or rolled back, and further
+     * operations are not permitted.
+     *
+     * @return bool
+     * @access private
+     */
+    public function closed()
+    {
+        return $this->closed;
     }
 }

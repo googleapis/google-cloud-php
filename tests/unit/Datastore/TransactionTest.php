@@ -177,13 +177,4 @@ class TransactionTest extends \PHPUnit_Framework_TestCase
 
         $this->transaction->commit();
     }
-
-    public function testRollback()
-    {
-        $this->operation->rollback(Argument::exact($this->transactionId))
-            ->shouldBeCalled()
-            ->willReturn(null);
-
-        $this->transaction->rollback();
-    }
 }

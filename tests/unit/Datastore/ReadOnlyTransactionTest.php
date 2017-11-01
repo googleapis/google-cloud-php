@@ -92,4 +92,13 @@ class ReadOnlyTransactionTest extends \PHPUnit_Framework_TestCase
 
         $this->assertEquals($res, 'test');
     }
+
+    public function testRollback()
+    {
+        $this->operation->rollback(Argument::exact($this->transactionId))
+            ->shouldBeCalled()
+            ->willReturn(null);
+
+        $this->transaction->rollback();
+    }
 }

@@ -137,4 +137,10 @@ class RunTransactionTest extends DatastoreTestCase
         $this->assertEquals(500, $e1['balance']);
         $this->assertEquals(500, $e2['balance']);
     }
+
+    public function testReadOnlyTransactionCommitFails()
+    {
+        $t = self::$client->readOnlyTransaction();
+        $t->rollback();
+    }
 }
