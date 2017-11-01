@@ -320,7 +320,7 @@ class DocumentReference
      */
     public function snapshot(array $options = [])
     {
-        return $this->createSnapshot($this, $options);
+        return $this->createSnapshot($this, $this->valueMapper, $options);
     }
 
     /**

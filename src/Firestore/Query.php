@@ -172,17 +172,19 @@ class Query
     /**
      * Add a SELECT to the Query.
      *
-     * If set, adds a projection to the query, limiting the fields in returned
-     * documents to only fields matching the given `$fieldPaths`.
+     * Creates and returns a new Query instance that applies a field mask to the
+     * result and returns only the specified subset of fields. You can specify a
+     * list of field paths to return, or use an empty list to only return the
+     * references of matching documents.
      *
      * Example:
      * ```
      * $query = $query->select(['firstName']);
      * ```
      *
-     * @param array $fieldPaths The projection to return, in the form of an
-     *        array of field paths. To only return the name of the document, use
-     *        `['__name__']`.
+     * @param string[]|FieldPath[] $fieldPaths The projection to return, in the
+     *        form of an array of field paths. To only return the name of the
+     *        document, provide an empty array.
      * @return Query A new instance of Query with the given changes applied.
      */
     public function select(array $fieldPaths)
@@ -190,7 +192,13 @@ class Query
         $fields = [];
         foreach ($fieldPaths as $field) {
             $fields[] = [
-                'fieldPath' => $field
+                'fieldPath' => $this->valueMapper->escapeFieldPath($field)
+            ];
+        }
+
+        if (!$fields) {
+            $fields[] = [
+                'fieldPath' => '__name__'
             ];
         }
 
@@ -209,7 +217,7 @@ class Query
      * $query = $query->where('firstName', '=', 'John');
      * ```
      *
-     * @param string $fieldPath The field to filter by.
+     * @param string|FieldPath $fieldPath The field to filter by.
      * @param string $operator The operator to filter by.
      * @param mixed $value The value to compare to.
      * @return Query A new instance of Query with the given changes applied.
@@ -235,7 +243,7 @@ class Query
                         [
                             'fieldFilter' => [
                                 'field' => [
-                                    'fieldPath' => $fieldPath,
+                                    'fieldPath' => $this->valueMapper->escapeFieldPath($fieldPath),
                                 ],
                                 'op' => $operator,
                                 'value' => $this->valueMapper->encodeValue($value)
@@ -257,7 +265,7 @@ class Query
      * $query = $query->orderBy('firstName', 'DESC');
      * ```
      *
-     * @param string $fieldPath The field to order by.
+     * @param string|FieldPath $fieldPath The field to order by.
      * @param string $direction The direction to order in. **Defaults to** `ASC`.
      * @return Query A new instance of Query with the given changes applied.
      */
@@ -278,7 +286,7 @@ class Query
             'orderBy' => [
                 [
                     'field' => [
-                        'fieldPath' => $fieldPath
+                        'fieldPath' => $this->valueMapper->escapeFieldPath($fieldPath)
                     ],
                     'direction' => $direction
                 ]
@@ -331,6 +339,10 @@ class Query
     /**
      * A starting point for the query results.
      *
+     * Starts results at the provided set of field values relative to the order
+     * of the query. The order of the provided values must match the order of
+     * the order by clauses of the query.
+     *
      * Multiple invocations of this call overwrite previous calls. Calling
      * `startAt()` will overwrite both previous `startAt()` and `startAfter()`
      * calls.
@@ -350,13 +362,15 @@ class Query
                 'before' => true,
                 'values' => $this->valueMapper->encodeValues($cursor)
             ]
-        ]);
+        ], true);
     }
 
     /**
      * A starting point for the query results.
      *
-     * This method starts the result set AFTER the occurence of the given cursor.
+     * Starts results after the provided set of field values relative to the order
+     * of the query. The order of the provided values must match the order of
+     * the order by clauses of the query.
      *
      * Multiple invocations of this call overwrite previous calls. Calling
      * `startAt()` will overwrite both previous `startAt()` and `startAfter()`
@@ -377,11 +391,15 @@ class Query
                 'before' => false,
                 'values' => $this->valueMapper->encodeValues($cursor)
             ]
-        ]);
+        ], true);
     }
 
     /**
      * An end point for the query results.
+     *
+     * Ends results before the provided set of field values relative to the order
+     * of the query. The order of the provided values must match the order of
+     * the order by clauses of the query.
      *
      * Multiple invocations of this call overwrite previous calls. Calling
      * `endBefore()` will overwrite both previous `endBefore()` and `endAt()`
@@ -402,13 +420,15 @@ class Query
                 'before' => true,
                 'values' => $this->valueMapper->encodeValues($cursor)
             ]
-        ]);
+        ], true);
     }
 
     /**
      * An end point for the query results.
      *
-     * This method ends the result set AFTER the occurence of the given cursor.
+     * Ends results at the provided set of field values relative to the order
+     * of the query. The order of the provided values must match the order of
+     * the order by clauses of the query.
      *
      * Multiple invocations of this call overwrite previous calls. Calling
      * `endBefore()` will overwrite both previous `endBefore()` and `endAt()`
@@ -429,20 +449,29 @@ class Query
                 'before' => false,
                 'values' => $this->valueMapper->encodeValues($cursor)
             ]
-        ]);
+        ], true);
     }
 
     /**
      * Create a new Query instance
      *
      * @param array $additionalConfig
+     * @param bool $overrideTopLevelKeys If true, top-level keys will be replaced
+     *        rather than recursively merged.
      * @return Query A new instance of Query with the given changes applied.
      */
-    private function newQuery(array $additionalConfig, $reset = false)
+    private function newQuery(array $additionalConfig, $overrideTopLevelKeys = false)
     {
-        $query = !$reset
-            ? $this->arrayMergeRecursive($this->query, $additionalConfig)
-            : ['from' => $this->query['from']];
+        $query = $this->query;
+
+        if ($overrideTopLevelKeys) {
+            $keys = array_keys($additionalKeys);
+            foreach ($keys as $key) {
+                unset($query[$key]);
+            }
+        }
+
+        $query = $this->arrayMergeRecursive($query, $additionalConfig);
 
         return new static(
             $this->connection,

@@ -19,6 +19,7 @@ namespace Google\Cloud\Firestore;
 
 use Google\Cloud\Core\Timestamp;
 use Google\Cloud\Core\ArrayTrait;
+use Google\Cloud\Core\DebugInfoTrait;
 use Google\Cloud\Firestore\Connection\ConnectionInterface;
 use Google\Firestore\V1beta1\DocumentTransform_FieldTransform_ServerValue;
 
@@ -41,6 +42,7 @@ use Google\Firestore\V1beta1\DocumentTransform_FieldTransform_ServerValue;
 class WriteBatch
 {
     use ArrayTrait;
+    use DebugInfoTrait;
 
     const TYPE_UPDATE = 'update';
     const TYPE_DELETE = 'delete';

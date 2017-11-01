@@ -46,6 +46,11 @@ class DocumentSnapshot implements \ArrayAccess
     private $reference;
 
     /**
+     * @var ValueMapper
+     */
+    private $valueMapper;
+
+    /**
      * @var array
      */
     private $info;
@@ -62,13 +67,20 @@ class DocumentSnapshot implements \ArrayAccess
 
     /**
      * @param DocumentReference $reference The document which created the snapshot.
+     * @param ValueMapper $valueMapper A Firestore Value Mapper.
      * @param array $info Document information, such as create and update timestamps.
      * @param array $fields Document field data.
      * @param bool $exists Whether the document exists in the Firestore database.
      */
-    public function __construct(DocumentReference $reference, array $info, array $fields, $exists)
-    {
+    public function __construct(
+        DocumentReference $reference,
+        ValueMapper $valueMapper,
+        array $info,
+        array $fields,
+        $exists
+    ) {
         $this->reference = $reference;
+        $this->valueMapper = $valueMapper;
         $this->info = $info;
         $this->fields = $fields;
         $this->exists = $exists;
@@ -183,10 +195,15 @@ class DocumentSnapshot implements \ArrayAccess
      *
      * Example:
      * ```
-     * $bitcoinWalletValue = $snapshot->get('wallet.cryptoCurrency.bitcoin');
+     * $value = $snapshot->get('wallet.cryptoCurrency.bitcoin');
      * ```
      *
-     * @param string $fieldPath The field path to return.
+     * ```
+     * // Field names containing dots can be targeted using a FieldPath instance:
+     * $value = $snapshot->get(new FieldPath(['wallet', 'cryptoCurrency', 'my.coin']));
+     * ```
+     *
+     * @param string|FieldPath $fieldPath The field path to return.
      * @return mixed
      * @throws \InvalidArgumentException if the field path does not exist.
      *
@@ -194,10 +211,17 @@ class DocumentSnapshot implements \ArrayAccess
      */
     public function get($fieldPath)
     {
-        $parts = explode('.', $fieldPath);
-        $len = count($parts);
-
         $res = null;
+
+        if (is_string($fieldPath)) {
+            $parts = explode('.', $fieldPath);
+        } elseif ($fieldPath instanceof FieldPath) {
+            $parts = $fieldPath->path();
+        } else {
+            throw new \InvalidArgumentException('Given path was not a string or instance of FieldPath.');
+        }
+
+        $len = count($parts);
 
         $fields = $this->fields;
         foreach ($parts as $idx => $part) {

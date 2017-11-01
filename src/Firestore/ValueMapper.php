@@ -39,6 +39,9 @@ class ValueMapper
     use ValidateTrait;
     use ValueMapperTrait;
 
+    const VALID_FIELD_PATH = '/^[^*~\/[\]]+$/';
+    const UNESCAPED_FIELD_NAME = '/^[_a-zA-Z][_a-zA-Z0-9]*$/';
+
     /**
      * @var ConnectionInterface
      */
@@ -100,6 +103,31 @@ class ValueMapper
     }
 
     /**
+     * Escape a field path and return it as a string.
+     *
+     * @param string|FieldPath $fieldPath
+     * @return string
+     * @throws \InvalidArgumentException If the path is a string, and is invalid.
+     */
+    public function escapeFieldPath($fieldPath)
+    {
+        if ($fieldPath instanceof FieldPath) {
+            $parts = $fieldPath->path();
+
+            $out = [];
+            foreach ($parts as $part) {
+                $out[] = $this->escapePathPart($part);
+            }
+
+            return implode('.', $out);
+        } else {
+            $this->validateFieldPath($fieldPath);
+        }
+
+        return $fieldPath;
+    }
+
+    /**
      * Create a list of fields paths from field data.
      *
      * The return value of this method does not include the field values. It
@@ -114,6 +142,8 @@ class ValueMapper
         $output = [];
 
         foreach ($fields as $key => $val) {
+            $key = $this->escapePathPart($key);
+
             if (is_array($val) && $this->isAssoc($val)) {
                 $nestedParentPath = $parentPath
                     ? $parentPath . '.' . $key
@@ -151,7 +181,9 @@ class ValueMapper
             $val = $values[$pathIndex];
             foreach (array_reverse($keys) as $index => $key) {
                 if ($num >= $index+1) {
-                    $val = [$key => $val];
+                    $val = [
+                        $key => $val
+                    ];
                 }
             }
 
@@ -194,7 +226,7 @@ class ValueMapper
         }
 
         foreach ($fields as $key => $value) {
-            $currPath = $path . (string) $key;
+            $currPath = $path . (string) $this->escapePathPart($key);
             if (is_array($value)) {
                 $fields[$key] = $this->removeSentinel($value, $timestamps, $deletes, $currPath);
             } else {
@@ -428,5 +460,40 @@ class ValueMapper
         }
 
         return ['arrayValue' => ['values' => $out]];
+    }
+
+    /**
+     * Test a field path component, checking for any special characters,
+     * and escaping as required.
+     *
+     * @param string $part The raw field path component.
+     * @return string
+     */
+    private function escapePathPart($part)
+    {
+        return preg_match(self::UNESCAPED_FIELD_NAME, $part)
+            ? $part
+            : '`' . str_replace('`', '\\`', str_replace('\\', '\\\\', $part)) . '`';
+    }
+
+    /**
+     * Check if a given string field path is valid.
+     *
+     * @param string $fieldPath
+     * @throws \InvalidArgumentException
+     */
+    private function validateFieldPath($fieldPath)
+    {
+        if (strpos($fieldPath, '..')) {
+            throw new \InvalidArgumentException('Paths cannot contain `..`.');
+        }
+
+        if (strpos($fieldPath, '.') === 0 || strpos(strrev($fieldPath, '.')) === 0) {
+            throw new \InvalidArgumentException('Paths cannot begin or end with `.`.');
+        }
+
+        if (!preg_match(self::VALID_FIELD_PATH, $fieldPath)) {
+            throw new \InvalidArgumentException('Paths cannot be empty and must not contain `*~/[]\`.');
+        }
     }
 }

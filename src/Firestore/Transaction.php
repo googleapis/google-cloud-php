@@ -112,7 +112,7 @@ class Transaction
      */
     public function snapshot(DocumentReference $document, array $options = [])
     {
-        return $this->createSnapshot($document, [
+        return $this->createSnapshot($document, $this->valueMapper, [
             'transaction' => $this->transaction,
             'allowNonExistence' => false
         ] + $options);

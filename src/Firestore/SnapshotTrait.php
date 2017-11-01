@@ -38,6 +38,7 @@ trait SnapshotTrait
      * will be populated with the data provided.
      *
      * @param DocumentReference $document The parent document.
+     * @param ValueMapper $valueMapper A Firestore Value Mapper.
      * @param array $options {
      *     Configuration Options
      *
@@ -58,7 +59,7 @@ trait SnapshotTrait
      * @throws NotFoundException If the document does not exist, and
      *         `$options['allowNonExistence'] is `false`.
      */
-    private function createSnapshot(DocumentReference $document, array $options = [])
+    private function createSnapshot(DocumentReference $document, ValueMapper $valueMapper, array $options = [])
     {
         $options += [
             'exists' => true,
@@ -96,7 +97,7 @@ trait SnapshotTrait
             }
         }
 
-        return new DocumentSnapshot($document, $data, $fields, $exists);
+        return new DocumentSnapshot($document, $valueMapper, $data, $fields, $exists);
     }
 
     /**
