@@ -77,10 +77,19 @@ use Google\Privacy\Dlp\V2beta1\StorageConfig;
  * ```
  * try {
  *     $dlpServiceClient = new DlpServiceClient();
- *     $deidentifyConfig = new DeidentifyConfig();
+ *     $name = 'EMAIL_ADDRESS';
+ *     $infoTypesElement = new InfoType();
+ *     $infoTypesElement->setName($name);
+ *     $infoTypes = [$infoTypesElement];
  *     $inspectConfig = new InspectConfig();
- *     $items = [];
- *     $response = $dlpServiceClient->deidentifyContent($deidentifyConfig, $inspectConfig, $items);
+ *     $inspectConfig->setInfoTypes($infoTypes);
+ *     $type = 'text/plain';
+ *     $value = 'My email is example@example.com.';
+ *     $itemsElement = new ContentItem();
+ *     $itemsElement->setType($type);
+ *     $itemsElement->setValue($value);
+ *     $items = [$itemsElement];
+ *     $response = $dlpServiceClient->inspectContent($inspectConfig, $items);
  * } finally {
  *     $dlpServiceClient->close();
  * }
@@ -181,7 +190,7 @@ class DlpServiceGapicClient
      *
      * @param string $result
      *
-     * @return string the formatted result resource
+     * @return string The formatted result resource.
      * @experimental
      */
     public static function resultName($result)
@@ -205,9 +214,9 @@ class DlpServiceGapicClient
      * @param string $formattedName The formatted name string
      * @param string $template      Optional name of template to match
      *
-     * @return array an associative array from name component IDs to component values
+     * @return array An associative array from name component IDs to component values.
      *
-     * @throws ValidationException if $formattedName could not be matched
+     * @throws ValidationException If $formattedName could not be matched.
      * @experimental
      */
     public static function parseName($formattedName, $template = null)
@@ -345,10 +354,10 @@ class DlpServiceGapicClient
 
         $defaultDescriptors = ['headerDescriptor' => $headerDescriptor];
         $this->descriptors = [
-            'deidentifyContent' => $defaultDescriptors,
-            'analyzeDataSourceRisk' => $defaultDescriptors,
             'inspectContent' => $defaultDescriptors,
             'redactContent' => $defaultDescriptors,
+            'deidentifyContent' => $defaultDescriptors,
+            'analyzeDataSourceRisk' => $defaultDescriptors,
             'createInspectOperation' => $defaultDescriptors,
             'listInspectFindings' => $defaultDescriptors,
             'listInfoTypes' => $defaultDescriptors,
@@ -386,6 +395,162 @@ class DlpServiceGapicClient
     }
 
     /**
+     * Finds potentially sensitive info in a list of strings.
+     * This method has limits on input size, processing time, and output size.
+     *
+     * Sample code:
+     * ```
+     * try {
+     *     $dlpServiceClient = new DlpServiceClient();
+     *     $name = 'EMAIL_ADDRESS';
+     *     $infoTypesElement = new InfoType();
+     *     $infoTypesElement->setName($name);
+     *     $infoTypes = [$infoTypesElement];
+     *     $inspectConfig = new InspectConfig();
+     *     $inspectConfig->setInfoTypes($infoTypes);
+     *     $type = 'text/plain';
+     *     $value = 'My email is example@example.com.';
+     *     $itemsElement = new ContentItem();
+     *     $itemsElement->setType($type);
+     *     $itemsElement->setValue($value);
+     *     $items = [$itemsElement];
+     *     $response = $dlpServiceClient->inspectContent($inspectConfig, $items);
+     * } finally {
+     *     $dlpServiceClient->close();
+     * }
+     * ```
+     *
+     * @param InspectConfig $inspectConfig Configuration for the inspector.
+     * @param ContentItem[] $items         The list of items to inspect. Items in a single request are
+     *                                     considered "related" unless inspect_config.independent_inputs is true.
+     *                                     Up to 100 are allowed per request.
+     * @param array         $optionalArgs  {
+     *                                     Optional.
+     *
+     *     @type \Google\GAX\RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\GAX\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\GAX\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Privacy\Dlp\V2beta1\InspectContentResponse
+     *
+     * @throws \Google\GAX\ApiException if the remote call fails
+     * @experimental
+     */
+    public function inspectContent($inspectConfig, $items, $optionalArgs = [])
+    {
+        $request = new InspectContentRequest();
+        $request->setInspectConfig($inspectConfig);
+        $request->setItems($items);
+
+        $defaultCallSettings = $this->defaultCallSettings['inspectContent'];
+        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
+            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
+                $optionalArgs['retrySettings']
+            );
+        }
+        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
+        $callable = ApiCallable::createApiCall(
+            $this->dlpServiceStub,
+            'InspectContent',
+            $mergedSettings,
+            $this->descriptors['inspectContent']
+        );
+
+        return $callable(
+            $request,
+            [],
+            ['call_credentials_callback' => $this->createCredentialsCallback()]);
+    }
+
+    /**
+     * Redacts potentially sensitive info from a list of strings.
+     * This method has limits on input size, processing time, and output size.
+     *
+     * Sample code:
+     * ```
+     * try {
+     *     $dlpServiceClient = new DlpServiceClient();
+     *     $name = 'EMAIL_ADDRESS';
+     *     $infoTypesElement = new InfoType();
+     *     $infoTypesElement->setName($name);
+     *     $infoTypes = [$infoTypesElement];
+     *     $inspectConfig = new InspectConfig();
+     *     $inspectConfig->setInfoTypes($infoTypes);
+     *     $type = 'text/plain';
+     *     $value = 'My email is example@example.com.';
+     *     $itemsElement = new ContentItem();
+     *     $itemsElement->setType($type);
+     *     $itemsElement->setValue($value);
+     *     $items = [$itemsElement];
+     *     $name2 = 'EMAIL_ADDRESS';
+     *     $infoType = new InfoType();
+     *     $infoType->setName($name2);
+     *     $replaceWith = 'REDACTED';
+     *     $replaceConfigsElement = new ReplaceConfig();
+     *     $replaceConfigsElement->setInfoType($infoType);
+     *     $replaceConfigsElement->setReplaceWith($replaceWith);
+     *     $replaceConfigs = [$replaceConfigsElement];
+     *     $response = $dlpServiceClient->redactContent($inspectConfig, $items, $replaceConfigs);
+     * } finally {
+     *     $dlpServiceClient->close();
+     * }
+     * ```
+     *
+     * @param InspectConfig   $inspectConfig  Configuration for the inspector.
+     * @param ContentItem[]   $items          The list of items to inspect. Up to 100 are allowed per request.
+     * @param ReplaceConfig[] $replaceConfigs The strings to replace findings text findings with. Must specify at least
+     *                                        one of these or one ImageRedactionConfig if redacting images.
+     * @param array           $optionalArgs   {
+     *                                        Optional.
+     *
+     *     @type ImageRedactionConfig[] $imageRedactionConfigs
+     *          The configuration for specifying what content to redact from images.
+     *     @type \Google\GAX\RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\GAX\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\GAX\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Privacy\Dlp\V2beta1\RedactContentResponse
+     *
+     * @throws \Google\GAX\ApiException if the remote call fails
+     * @experimental
+     */
+    public function redactContent($inspectConfig, $items, $replaceConfigs, $optionalArgs = [])
+    {
+        $request = new RedactContentRequest();
+        $request->setInspectConfig($inspectConfig);
+        $request->setItems($items);
+        $request->setReplaceConfigs($replaceConfigs);
+        if (isset($optionalArgs['imageRedactionConfigs'])) {
+            $request->setImageRedactionConfigs($optionalArgs['imageRedactionConfigs']);
+        }
+
+        $defaultCallSettings = $this->defaultCallSettings['redactContent'];
+        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
+            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
+                $optionalArgs['retrySettings']
+            );
+        }
+        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
+        $callable = ApiCallable::createApiCall(
+            $this->dlpServiceStub,
+            'RedactContent',
+            $mergedSettings,
+            $this->descriptors['redactContent']
+        );
+
+        return $callable(
+            $request,
+            [],
+            ['call_credentials_callback' => $this->createCredentialsCallback()]);
+    }
+
+    /**
      * De-identifies potentially sensitive info from a list of strings.
      * This method has limits on input size and output size.
      *
@@ -402,12 +567,12 @@ class DlpServiceGapicClient
      * }
      * ```
      *
-     * @param DeidentifyConfig $deidentifyConfig configuration for the de-identification of the list of content items
-     * @param InspectConfig    $inspectConfig    configuration for the inspector
+     * @param DeidentifyConfig $deidentifyConfig Configuration for the de-identification of the list of content items.
+     * @param InspectConfig    $inspectConfig    Configuration for the inspector.
      * @param ContentItem[]    $items            The list of items to inspect. Up to 100 are allowed per request.
      *                                           All items will be treated as text/*.
      * @param array            $optionalArgs     {
-     *                                           Optional
+     *                                           Optional.
      *
      *     @type \Google\GAX\RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
@@ -489,10 +654,10 @@ class DlpServiceGapicClient
      * }
      * ```
      *
-     * @param PrivacyMetric $privacyMetric privacy metric to compute
-     * @param BigQueryTable $sourceTable   input dataset to compute metrics over
+     * @param PrivacyMetric $privacyMetric Privacy metric to compute.
+     * @param BigQueryTable $sourceTable   Input dataset to compute metrics over.
      * @param array         $optionalArgs  {
-     *                                     Optional
+     *                                     Optional.
      *
      *     @type \Google\GAX\RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
@@ -524,162 +689,6 @@ class DlpServiceGapicClient
             'AnalyzeDataSourceRisk',
             $mergedSettings,
             $this->descriptors['analyzeDataSourceRisk']
-        );
-
-        return $callable(
-            $request,
-            [],
-            ['call_credentials_callback' => $this->createCredentialsCallback()]);
-    }
-
-    /**
-     * Finds potentially sensitive info in a list of strings.
-     * This method has limits on input size, processing time, and output size.
-     *
-     * Sample code:
-     * ```
-     * try {
-     *     $dlpServiceClient = new DlpServiceClient();
-     *     $name = 'EMAIL_ADDRESS';
-     *     $infoTypesElement = new InfoType();
-     *     $infoTypesElement->setName($name);
-     *     $infoTypes = [$infoTypesElement];
-     *     $inspectConfig = new InspectConfig();
-     *     $inspectConfig->setInfoTypes($infoTypes);
-     *     $type = 'text/plain';
-     *     $value = 'My email is example@example.com.';
-     *     $itemsElement = new ContentItem();
-     *     $itemsElement->setType($type);
-     *     $itemsElement->setValue($value);
-     *     $items = [$itemsElement];
-     *     $response = $dlpServiceClient->inspectContent($inspectConfig, $items);
-     * } finally {
-     *     $dlpServiceClient->close();
-     * }
-     * ```
-     *
-     * @param InspectConfig $inspectConfig configuration for the inspector
-     * @param ContentItem[] $items         The list of items to inspect. Items in a single request are
-     *                                     considered "related" unless inspect_config.independent_inputs is true.
-     *                                     Up to 100 are allowed per request.
-     * @param array         $optionalArgs  {
-     *                                     Optional
-     *
-     *     @type \Google\GAX\RetrySettings|array $retrySettings
-     *          Retry settings to use for this call. Can be a
-     *          {@see Google\GAX\RetrySettings} object, or an associative array
-     *          of retry settings parameters. See the documentation on
-     *          {@see Google\GAX\RetrySettings} for example usage.
-     * }
-     *
-     * @return \Google\Privacy\Dlp\V2beta1\InspectContentResponse
-     *
-     * @throws \Google\GAX\ApiException if the remote call fails
-     * @experimental
-     */
-    public function inspectContent($inspectConfig, $items, $optionalArgs = [])
-    {
-        $request = new InspectContentRequest();
-        $request->setInspectConfig($inspectConfig);
-        $request->setItems($items);
-
-        $defaultCallSettings = $this->defaultCallSettings['inspectContent'];
-        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
-            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
-                $optionalArgs['retrySettings']
-            );
-        }
-        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
-        $callable = ApiCallable::createApiCall(
-            $this->dlpServiceStub,
-            'InspectContent',
-            $mergedSettings,
-            $this->descriptors['inspectContent']
-        );
-
-        return $callable(
-            $request,
-            [],
-            ['call_credentials_callback' => $this->createCredentialsCallback()]);
-    }
-
-    /**
-     * Redacts potentially sensitive info from a list of strings.
-     * This method has limits on input size, processing time, and output size.
-     *
-     * Sample code:
-     * ```
-     * try {
-     *     $dlpServiceClient = new DlpServiceClient();
-     *     $name = 'EMAIL_ADDRESS';
-     *     $infoTypesElement = new InfoType();
-     *     $infoTypesElement->setName($name);
-     *     $infoTypes = [$infoTypesElement];
-     *     $inspectConfig = new InspectConfig();
-     *     $inspectConfig->setInfoTypes($infoTypes);
-     *     $type = 'text/plain';
-     *     $value = 'My email is example@example.com.';
-     *     $itemsElement = new ContentItem();
-     *     $itemsElement->setType($type);
-     *     $itemsElement->setValue($value);
-     *     $items = [$itemsElement];
-     *     $name2 = 'EMAIL_ADDRESS';
-     *     $infoType = new InfoType();
-     *     $infoType->setName($name2);
-     *     $replaceWith = 'REDACTED';
-     *     $replaceConfigsElement = new ReplaceConfig();
-     *     $replaceConfigsElement->setInfoType($infoType);
-     *     $replaceConfigsElement->setReplaceWith($replaceWith);
-     *     $replaceConfigs = [$replaceConfigsElement];
-     *     $response = $dlpServiceClient->redactContent($inspectConfig, $items, $replaceConfigs);
-     * } finally {
-     *     $dlpServiceClient->close();
-     * }
-     * ```
-     *
-     * @param InspectConfig   $inspectConfig  configuration for the inspector
-     * @param ContentItem[]   $items          The list of items to inspect. Up to 100 are allowed per request.
-     * @param ReplaceConfig[] $replaceConfigs The strings to replace findings text findings with. Must specify at least
-     *                                        one of these or one ImageRedactionConfig if redacting images.
-     * @param array           $optionalArgs   {
-     *                                        Optional
-     *
-     *     @type ImageRedactionConfig[] $imageRedactionConfigs
-     *          The configuration for specifying what content to redact from images.
-     *     @type \Google\GAX\RetrySettings|array $retrySettings
-     *          Retry settings to use for this call. Can be a
-     *          {@see Google\GAX\RetrySettings} object, or an associative array
-     *          of retry settings parameters. See the documentation on
-     *          {@see Google\GAX\RetrySettings} for example usage.
-     * }
-     *
-     * @return \Google\Privacy\Dlp\V2beta1\RedactContentResponse
-     *
-     * @throws \Google\GAX\ApiException if the remote call fails
-     * @experimental
-     */
-    public function redactContent($inspectConfig, $items, $replaceConfigs, $optionalArgs = [])
-    {
-        $request = new RedactContentRequest();
-        $request->setInspectConfig($inspectConfig);
-        $request->setItems($items);
-        $request->setReplaceConfigs($replaceConfigs);
-        if (isset($optionalArgs['imageRedactionConfigs'])) {
-            $request->setImageRedactionConfigs($optionalArgs['imageRedactionConfigs']);
-        }
-
-        $defaultCallSettings = $this->defaultCallSettings['redactContent'];
-        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
-            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
-                $optionalArgs['retrySettings']
-            );
-        }
-        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
-        $callable = ApiCallable::createApiCall(
-            $this->dlpServiceStub,
-            'RedactContent',
-            $mergedSettings,
-            $this->descriptors['redactContent']
         );
 
         return $callable(
@@ -741,11 +750,11 @@ class DlpServiceGapicClient
      * }
      * ```
      *
-     * @param InspectConfig       $inspectConfig configuration for the inspector
-     * @param StorageConfig       $storageConfig specification of the data set to process
-     * @param OutputStorageConfig $outputConfig  optional location to store findings
+     * @param InspectConfig       $inspectConfig Configuration for the inspector.
+     * @param StorageConfig       $storageConfig Specification of the data set to process.
+     * @param OutputStorageConfig $outputConfig  Optional location to store findings.
      * @param array               $optionalArgs  {
-     *                                           Optional
+     *                                           Optional.
      *
      *     @type OperationConfig $operationConfig
      *          Additional configuration settings for long running operations.
@@ -809,7 +818,7 @@ class DlpServiceGapicClient
      *                             the longrunning operation created by a call to InspectDataSource.
      *                             Should be in the format of `inspect/results/{id}`.
      * @param array  $optionalArgs {
-     *                             Optional
+     *                             Optional.
      *
      *     @type int $pageSize
      *          Maximum number of results to return.
@@ -889,12 +898,12 @@ class DlpServiceGapicClient
      * }
      * ```
      *
-     * @param string $category     category name as returned by ListRootCategories
+     * @param string $category     Category name as returned by ListRootCategories.
      * @param string $languageCode Optional BCP-47 language code for localized info type friendly
      *                             names. If omitted, or if localized strings are not available,
      *                             en-US strings will be returned.
      * @param array  $optionalArgs {
-     *                             Optional
+     *                             Optional.
      *
      *     @type \Google\GAX\RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
@@ -952,7 +961,7 @@ class DlpServiceGapicClient
      *                             If omitted or if localized strings are not available,
      *                             en-US strings will be returned.
      * @param array  $optionalArgs {
-     *                             Optional
+     *                             Optional.
      *
      *     @type \Google\GAX\RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a

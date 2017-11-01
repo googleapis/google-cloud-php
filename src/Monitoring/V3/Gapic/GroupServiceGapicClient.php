@@ -211,7 +211,7 @@ class GroupServiceGapicClient
      *
      * @param string $project
      *
-     * @return string the formatted project resource
+     * @return string The formatted project resource.
      * @experimental
      */
     public static function projectName($project)
@@ -228,7 +228,7 @@ class GroupServiceGapicClient
      * @param string $project
      * @param string $group
      *
-     * @return string the formatted group resource
+     * @return string The formatted group resource.
      * @experimental
      */
     public static function groupName($project, $group)
@@ -254,9 +254,9 @@ class GroupServiceGapicClient
      * @param string $formattedName The formatted name string
      * @param string $template      Optional name of template to match
      *
-     * @return array an associative array from name component IDs to component values
+     * @return array An associative array from name component IDs to component values.
      *
-     * @throws ValidationException if $formattedName could not be matched
+     * @throws ValidationException If $formattedName could not be matched.
      * @experimental
      */
     public static function parseName($formattedName, $template = null)
@@ -417,7 +417,7 @@ class GroupServiceGapicClient
      * @param string $name         The project whose groups are to be listed. The format is
      *                             `"projects/{project_id_or_number}"`.
      * @param array  $optionalArgs {
-     *                             Optional
+     *                             Optional.
      *
      *     @type string $childrenOfGroup
      *          A group name: `"projects/{project_id_or_number}/groups/{group_id}"`.
@@ -512,7 +512,7 @@ class GroupServiceGapicClient
      * @param string $name         The group to retrieve. The format is
      *                             `"projects/{project_id_or_number}/groups/{group_id}"`.
      * @param array  $optionalArgs {
-     *                             Optional
+     *                             Optional.
      *
      *     @type \Google\GAX\RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
@@ -571,7 +571,7 @@ class GroupServiceGapicClient
      * @param Group  $group        A group definition. It is an error to define the `name` field because
      *                             the system assigns the name.
      * @param array  $optionalArgs {
-     *                             Optional
+     *                             Optional.
      *
      *     @type bool $validateOnly
      *          If true, validate this request but do not create the group.
@@ -634,7 +634,7 @@ class GroupServiceGapicClient
      * @param Group $group        The new definition of the group.  All fields of the existing group,
      *                            excepting `name`, are replaced with the corresponding fields of this group.
      * @param array $optionalArgs {
-     *                            Optional
+     *                            Optional.
      *
      *     @type bool $validateOnly
      *          If true, validate this request but do not update the existing group.
@@ -695,7 +695,7 @@ class GroupServiceGapicClient
      * @param string $name         The group to delete. The format is
      *                             `"projects/{project_id_or_number}/groups/{group_id}"`.
      * @param array  $optionalArgs {
-     *                             Optional
+     *                             Optional.
      *
      *     @type \Google\GAX\RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
@@ -761,7 +761,7 @@ class GroupServiceGapicClient
      * @param string $name         The group whose members are listed. The format is
      *                             `"projects/{project_id_or_number}/groups/{group_id}"`.
      * @param array  $optionalArgs {
-     *                             Optional
+     *                             Optional.
      *
      *     @type int $pageSize
      *          The maximum number of resources contained in the underlying API

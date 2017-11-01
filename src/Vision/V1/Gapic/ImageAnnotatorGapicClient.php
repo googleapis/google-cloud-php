@@ -217,9 +217,9 @@ class ImageAnnotatorGapicClient
      * }
      * ```
      *
-     * @param AnnotateImageRequest[] $requests     individual image annotation requests for this batch
+     * @param AnnotateImageRequest[] $requests     Individual image annotation requests for this batch.
      * @param array                  $optionalArgs {
-     *                                             Optional
+     *                                             Optional.
      *
      *     @type \Google\GAX\RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a

@@ -190,7 +190,7 @@ class ErrorStatsServiceGapicClient
      *
      * @param string $project
      *
-     * @return string the formatted project resource
+     * @return string The formatted project resource.
      * @experimental
      */
     public static function projectName($project)
@@ -214,9 +214,9 @@ class ErrorStatsServiceGapicClient
      * @param string $formattedName The formatted name string
      * @param string $template      Optional name of template to match
      *
-     * @return array an associative array from name component IDs to component values
+     * @return array An associative array from name component IDs to component values.
      *
-     * @throws ValidationException if $formattedName could not be matched
+     * @throws ValidationException If $formattedName could not be matched.
      * @experimental
      */
     public static function parseName($formattedName, $template = null)
@@ -383,7 +383,7 @@ class ErrorStatsServiceGapicClient
      *                                     If a group_id list is given, also <code>ErrorGroupStats</code> with zero
      *                                     occurrences are returned.
      * @param array          $optionalArgs {
-     *                                     Optional
+     *                                     Optional.
      *
      *     @type string[] $groupId
      *          [Optional] List all <code>ErrorGroupStats</code> with these IDs.
@@ -508,9 +508,9 @@ class ErrorStatsServiceGapicClient
      *                             [Google Cloud Platform project
      *                             ID](https://support.google.com/cloud/answer/6158840).
      *                             Example: `projects/my-project-123`.
-     * @param string $groupId      [Required] The group for which events shall be returned
+     * @param string $groupId      [Required] The group for which events shall be returned.
      * @param array  $optionalArgs {
-     *                             Optional
+     *                             Optional.
      *
      *     @type ServiceContextFilter $serviceFilter
      *          [Optional] List only ErrorGroups which belong to a service context that
@@ -599,7 +599,7 @@ class ErrorStatsServiceGapicClient
      *                             ID](https://support.google.com/cloud/answer/6158840).
      *                             Example: `projects/my-project-123`.
      * @param array  $optionalArgs {
-     *                             Optional
+     *                             Optional.
      *
      *     @type \Google\GAX\RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a

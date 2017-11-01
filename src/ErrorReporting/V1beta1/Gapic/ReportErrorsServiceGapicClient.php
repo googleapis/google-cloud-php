@@ -142,7 +142,7 @@ class ReportErrorsServiceGapicClient
      *
      * @param string $project
      *
-     * @return string the formatted project resource
+     * @return string The formatted project resource.
      * @experimental
      */
     public static function projectName($project)
@@ -166,9 +166,9 @@ class ReportErrorsServiceGapicClient
      * @param string $formattedName The formatted name string
      * @param string $template      Optional name of template to match
      *
-     * @return array an associative array from name component IDs to component values
+     * @return array An associative array from name component IDs to component values.
      *
-     * @throws ValidationException if $formattedName could not be matched
+     * @throws ValidationException If $formattedName could not be matched.
      * @experimental
      */
     public static function parseName($formattedName, $template = null)
@@ -314,9 +314,9 @@ class ReportErrorsServiceGapicClient
      *                                         as `projects/` plus the
      *                                         [Google Cloud Platform project ID](https://support.google.com/cloud/answer/6158840).
      *                                         Example: `projects/my-project-123`.
-     * @param reportedErrorEvent $event        [Required] The error event to be reported
+     * @param ReportedErrorEvent $event        [Required] The error event to be reported.
      * @param array              $optionalArgs {
-     *                                         Optional
+     *                                         Optional.
      *
      *     @type \Google\GAX\RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
