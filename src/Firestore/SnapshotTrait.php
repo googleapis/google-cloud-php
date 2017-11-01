@@ -31,73 +31,71 @@ trait SnapshotTrait
     use PathTrait;
 
     /**
-     * Create and return a document snapshot.
+     * Execute a service request to retrieve a document snapshot.
      *
-     * If `$options['data']` is set, no service request will be triggered, and
-     * the returned snapshot will indicate that the document does exist, and
-     * will be populated with the data provided.
-     *
-     * @param DocumentReference $document The parent document.
+     * @param DocumentReference $reference The parent document.
      * @param ValueMapper $valueMapper A Firestore Value Mapper.
      * @param array $options {
      *     Configuration Options
      *
-     *     @type bool $exists If set to false, no service request will be
-     *           triggered, and the returned snapshot will indicate that the
-     *           document does not exist. **Defaults to** `false`.
-     *     @type array $data If set, no service request will be triggered, and
-     *           the returned snapshot will indicate that the document does
-     *           exist, and will be populated with the data provided.
-     *     @type string $transactionId The transaction ID to fetch the snapshot.
+     *     @type string $transaction The transaction ID to fetch the snapshot.
      *     @type bool $allowNonExistence If true, a DocumentSnapshot will be
      *           returned, even if the document does not exist. **Defaults to**
      *           `true`.
-     *     @type Timestamp $readTime Reads the version of the document at the
-     *           given time. This may not be older than 60 seconds.
      * }
      * @return DocumentSnapshot
      * @throws NotFoundException If the document does not exist, and
      *         `$options['allowNonExistence'] is `false`.
      */
-    private function createSnapshot(DocumentReference $document, ValueMapper $valueMapper, array $options = [])
+    private function createSnapshot(DocumentReference $reference, ValueMapper $valueMapper, array $options = [])
     {
         $options += [
-            'exists' => true,
             'allowNonExistence' => true,
         ];
 
-        $exists = true;
-        $data = [];
+        $document = [];
         $fields = [];
+        $exists = true;
 
         $allowNonExistence = $this->pluck('allowNonExistence', $options);
-        if ($this->pluck('exists', $options)) {
-            try {
-                $data = (isset($options['data']))
-                    ? $options['data']
-                    : $this->getSnapshot($document->name(), $options);
-
-                $fields = $this->valueMapper->decodeValues(
-                    $this->pluck('fields', $data)
-                );
-
-                $data = $this->transformSnapshotTimestamps($data);
-            } catch (NotFoundException $e) {
-                if (!$allowNonExistence) {
-                    throw $e;
-                }
-
-                $exists = false;
+        try {
+            $document = $this->getSnapshot($reference->name(), $options);
+        } catch (NotFoundException $e) {
+            if (!$allowNonExistence) {
+                throw $e;
             }
-        } else {
+
             $exists = false;
-
-            if (isset($options['data'])) {
-                $data = $this->transformSnapshotTimestamps($options['data']);
-            }
         }
 
-        return new DocumentSnapshot($document, $valueMapper, $data, $fields, $exists);
+        return $this->createSnapshotWithData($reference, $valueMapper, $document, $exists);
+    }
+
+    /**
+     * Create a document snapshot by providing a dataset.
+     *
+     * This method will not perform a service request.
+     *
+     * @codingStandardsIgnoreStart
+     * @param DocumentReference $reference The parent document.
+     * @param ValueMapper $valueMapper A Firestore Value Mapper.
+     * @param array $document [Document](https://cloud.google.com/firestore/docs/reference/rpc/google.firestore.v1beta1#google.firestore.v1beta1.Document)
+     * @param bool $exists Whether the document exists. **Defaults to** `true`.
+     * @codingStandardsIgnoreEnd
+     */
+    private function createSnapshotWithData(
+        DocumentReference $reference,
+        ValueMapper $valueMapper,
+        array $document,
+        $exists = true
+    ) {
+        $fields = $exists
+            ? $this->valueMapper->decodeValues($this->pluck('fields', $document))
+            : [];
+
+        $document = $this->transformSnapshotTimestamps($document);
+
+        return new DocumentSnapshot($reference, $valueMapper, $document, $fields, $exists);
     }
 
     /**

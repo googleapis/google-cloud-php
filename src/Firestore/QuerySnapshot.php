@@ -190,9 +190,7 @@ class QuerySnapshot implements \IteratorAggregate
                     $document = $result['document'];
                     $document['readTime'] = $result['readTime'];
 
-                    yield $this->createSnapshot($ref, $this->valueMapper, [
-                        'data' => $document
-                    ]);
+                    yield $this->createSnapshotWithData($ref, $this->valueMapper, $document);
                 }
 
                 $generator->next();
