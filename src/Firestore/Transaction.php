@@ -119,6 +119,25 @@ class Transaction
     }
 
     /**
+     * Run a Query inside the Transaction.
+     *
+     * Example:
+     * ```
+     * $results = $transaction->runQuery($query);
+     * ```
+     *
+     * @param Query $query A Firestore Query.
+     * @param array $options Configuration options.
+     * @return QuerySnapshot
+     */
+    public function runQuery(Query $query, array $options = [])
+    {
+        return $query->snapshot([
+            'transaction' => $this->transaction
+        ] + $options);
+    }
+
+    /**
      * Enqueue an operation to create a Firestore document.
      *
      * Example:

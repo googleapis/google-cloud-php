@@ -103,28 +103,20 @@ class Query
     private $query;
 
     /**
-     * @var string?
-     */
-    private $transaction;
-
-    /**
      * @param ConnectionInterface $connection A Connection to Cloud Firestore.
      * @param ValueMapper $valueMapper A Firestore Value Mapper.
      * @param array $query The Query object
-     * @param string|null The transaction ID, if the query is run in a transaction.
      */
     public function __construct(
         ConnectionInterface $connection,
         ValueMapper $valueMapper,
         $parent,
         array $query,
-        $transaction = null
     ) {
         $this->connection = $connection;
         $this->valueMapper = $valueMapper;
         $this->parent = $parent;
         $this->query = $query;
-        $this->transaction = $transaction;
 
         if (!isset($this->query['from'])) {
             throw new \InvalidArgumentException(
@@ -161,7 +153,6 @@ class Query
             return $this->connection->runQuery([
                 'parent' => $this->parent,
                 'structuredQuery' => $this->query,
-                'transaction' => $this->transaction,
                 'retries' => 0,
             ] + $options);
         };
