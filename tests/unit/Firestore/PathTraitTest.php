@@ -56,6 +56,18 @@ class PathTraitTest extends \PHPUnit_Framework_TestCase
         );
     }
 
+    public function testFullNameFromDatabase()
+    {
+        $relativeName = 'foo/bar';
+        $this->assertEquals(
+            sprintf('projects/%s/databases/%s/documents/%s', self::PROJECT, self::DATABASE, $relativeName),
+            $this->impl->call('fullNameFromDatabase', [
+                sprintf('projects/%s/databases/%s', self::PROJECT, self::DATABASE),
+                $relativeName
+            ])
+        );
+    }
+
     public function testDatabaseFromName()
     {
         $path = sprintf('projects/%s/databases/%s/documents/%s', self::PROJECT, self::DATABASE, self::DOCUMENT);

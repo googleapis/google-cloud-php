@@ -40,9 +40,8 @@ use Google\Cloud\Core\Exception\AbortedException;
  */
 class FirestoreClient
 {
-    use ArrayTrait;
     use ClientTrait;
-    use PathTrait;
+    use SnapshotTrait;
     use ValidateTrait;
 
     const VERSION = 'master';
@@ -302,10 +301,12 @@ class FirestoreClient
                 ? $document['found']['name']
                 : $document['missing'];
 
-            $res[$name] = $this->document($name)->snapshot([
-                'data' => $data,
-                'exists' => $exists
-            ]);
+            $res[$name] = $this->createSnapshotWithData(
+                $this->document($name),
+                $this->valueMapper,
+                $data,
+                $exists
+            );
         }
 
         foreach ($paths as $path) {
@@ -400,10 +401,7 @@ class FirestoreClient
         return $backoff->execute(function (
             callable $callable,
             array $options
-        ) use (
-            &$transactionId,
-            $retryableErrors
-        ) {
+        ) use (&$transactionId, $retryableErrors) {
             $database = $this->databaseName($this->projectId, $this->database);
 
             $beginTransaction = $this->connection->beginTransaction(array_filter([

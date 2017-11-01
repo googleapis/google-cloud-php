@@ -1,7 +1,7 @@
 # Google Cloud PHP Client
 > Idiomatic PHP client for [Google Cloud Platform](https://cloud.google.com/) services.
 
-[![Travis Build Status](https://travis-ci.org/GoogleCloudPlatform/google-cloud-php.svg?branch=master)](https://travis-ci.org/GoogleCloudPlatform/google-cloud-php/) [![codecov](https://codecov.io/gh/googlecloudplatform/google-cloud-php/branch/master/graph/badge.svg)](https://codecov.io/gh/googlecloudplatform/google-cloud-php)
+[![Latest Stable Version](https://poser.pugx.org/google/cloud/v/stable)](https://packagist.org/packages/google/cloud) [![Packagist](https://img.shields.io/packagist/dm/google/cloud.svg)](https://packagist.org/packages/google/cloud) [![Travis Build Status](https://travis-ci.org/GoogleCloudPlatform/google-cloud-php.svg?branch=master)](https://travis-ci.org/GoogleCloudPlatform/google-cloud-php/) [![codecov](https://codecov.io/gh/googlecloudplatform/google-cloud-php/branch/master/graph/badge.svg)](https://codecov.io/gh/googlecloudplatform/google-cloud-php)
 
 * [Homepage](http://googlecloudplatform.github.io/google-cloud-php)
 * [API Documentation](http://googlecloudplatform.github.io/google-cloud-php/#/docs)
@@ -14,6 +14,7 @@ This client supports the following Google Cloud Platform services at a [General 
 
 This client supports the following Google Cloud Platform services at a [Beta](#versioning) quality level:
 
+* [Cloud Firestore](#cloud-firestore-beta) (Beta)
 * [Cloud Spanner](#cloud-spanner-beta) (Beta)
 * [Google BigQuery](#google-bigquery-beta) (Beta)
 * [Google Cloud Natural Language](#google-cloud-natural-language-beta) (Beta)
@@ -271,6 +272,37 @@ Google Stackdriver Logging can be installed separately by requiring the `google/
 
 ```
 $ require google/cloud-logging
+```
+
+## Cloud Firestore (Beta)
+
+- [API Documentation](http://googlecloudplatform.github.io/google-cloud-php/#/docs/latest/firestore/firestoreclient)
+- [Official Documentation](https://cloud.google.com/firestore/docs)
+
+#### Preview
+
+```php
+require 'vendor/autoload.php';
+
+use Google\Cloud\Firestore\FirestoreClient;
+
+$firestore = new FirestoreClient([
+    'projectId' => 'my_project'
+]);
+
+$collectionReference = $firestore->collection('Users');
+$documentReference = $collectionReference->document($userId);
+$snapshot = $documentReference->snapshot();
+
+echo "Hello ". $snapshot['firstName'];
+```
+
+#### google/cloud-firestore
+
+Cloud Firestore can be installed separately by requiring the `google/cloud-firestore` composer package:
+
+```
+$ require google/cloud-firestore
 ```
 
 ## Cloud Spanner (Beta)

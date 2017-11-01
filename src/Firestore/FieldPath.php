@@ -60,6 +60,6 @@ class FieldPath
      */
     public static function fromString($path)
     {
-        return new static(explode('.', $path));
+        return new self(explode('.', $path));
     }
 }

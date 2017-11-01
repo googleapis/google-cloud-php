@@ -102,38 +102,11 @@ class CollectionReferenceTest extends \PHPUnit_Framework_TestCase
             if ($args !== $expected) return false;
 
             return true;
-        }))->shouldBeCalled();
+        }))->shouldBeCalled()->willReturn([[]]);
 
         $this->collection->___setProperty('connection', $this->connection->reveal());
 
         $this->collection->add(['hello' => 'world']);
-    }
-
-    public function testAddWithDocumentId()
-    {
-        $id = 'foo';
-
-        $this->connection->commit([
-            'database' => sprintf('projects/%s/databases/%s', self::PROJECT, self::DATABASE),
-            'writes' => [
-                [
-                    'updateMask' => ['hello'],
-                    'currentDocument' => ['exists' => false],
-                    'update' => [
-                        'name' => self::NAME .'/'. $id,
-                        'fields' => [
-                            'hello' => [
-                                'stringValue' => 'world'
-                            ]
-                        ]
-                    ]
-                ]
-            ]
-        ])->shouldBeCalled();
-
-        $this->collection->___setProperty('connection', $this->connection->reveal());
-
-        $this->collection->add(['hello' => 'world'], ['documentId' => $id]);
     }
 
     public function testQuery()

@@ -22,6 +22,7 @@ use Google\Cloud\Core\DebugInfoTrait;
 use Google\Firestore\V1beta1\StructuredQuery_Direction;
 use Google\Cloud\Firestore\Connection\ConnectionInterface;
 use Google\Firestore\V1beta1\StructuredQuery_FieldFilter_Operator;
+use Google\Firestore\V1beta1\StructuredQuery_UnaryFilter_Operator;
 use Google\Firestore\V1beta1\StructuredQuery_CompositeFilter_Operator;
 
 /**
@@ -480,7 +481,7 @@ class Query
         $query = $this->query;
 
         if ($overrideTopLevelKeys) {
-            $keys = array_keys($additionalKeys);
+            $keys = array_keys($additionalConfig);
             foreach ($keys as $key) {
                 unset($query[$key]);
             }

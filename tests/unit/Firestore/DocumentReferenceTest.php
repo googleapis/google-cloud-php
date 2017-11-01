@@ -17,11 +17,14 @@
 
 namespace Google\Cloud\Tests\Unit\Firestore;
 
+use Google\Cloud\Core\Timestamp;
+use Google\Cloud\Firestore\FieldPath;
 use Google\Cloud\Firestore\ValueMapper;
 use Google\Cloud\Firestore\DocumentSnapshot;
 use Google\Cloud\Firestore\DocumentReference;
 use Google\Cloud\Firestore\CollectionReference;
 use Google\Cloud\Firestore\Connection\ConnectionInterface;
+use Prophecy\Argument;
 
 /**
  * @group firestore
@@ -84,7 +87,7 @@ class DocumentReferenceTest extends \PHPUnit_Framework_TestCase
                     ]
                 ]
             ]
-        ])->shouldBeCalled();
+        ])->shouldBeCalled()->willReturn([[]]);
 
         $this->document->___setProperty('connection', $this->connection->reveal());
 
@@ -107,7 +110,7 @@ class DocumentReferenceTest extends \PHPUnit_Framework_TestCase
                     ]
                 ]
             ]
-        ])->shouldBeCalled();
+        ])->shouldBeCalled()->willReturn([[]]);
 
         $this->document->___setProperty('connection', $this->connection->reveal());
 
@@ -132,11 +135,56 @@ class DocumentReferenceTest extends \PHPUnit_Framework_TestCase
                     ]
                 ]
             ]
-        ])->shouldBeCalled();
+        ])->shouldBeCalled()->willReturn([[]]);
 
         $this->document->___setProperty('connection', $this->connection->reveal());
 
         $this->document->update(['hello' => 'world']);
+    }
+
+    public function testUpdatePaths()
+    {
+        $this->connection->commit([
+            'database' => sprintf('projects/%s/databases/%s', self::PROJECT, self::DATABASE),
+            'writes' => [
+                [
+                    'updateMask' => [
+                        "hello",
+                        "foo.bar",
+                        "foo.baz"
+                    ],
+                    'currentDocument' => ['exists' => true],
+                    'update' => [
+                        'name' => self::NAME,
+                        'fields' => [
+                            'hello' => [
+                                'stringValue' => 'world'
+                            ],
+                            'foo' => [
+                                'mapValue' => [
+                                    'fields' => [
+                                        'bar' => [
+                                            'stringValue' => 'val'
+                                        ],
+                                        'baz' => [
+                                            'stringValue' => 'val'
+                                        ]
+                                    ]
+                                ]
+                            ]
+                        ]
+                    ]
+                ]
+            ]
+        ])->shouldBeCalled()->willReturn([[]]);
+
+        $this->document->___setProperty('connection', $this->connection->reveal());
+
+        $this->document->updatePaths([
+            ['path' => 'hello', 'value' => 'world'],
+            ['path' => 'foo.bar', 'value' => 'val'],
+            ['path' => new FieldPath(['foo', 'baz']), 'value' => 'val']
+        ]);
     }
 
     public function testDelete()
@@ -148,7 +196,7 @@ class DocumentReferenceTest extends \PHPUnit_Framework_TestCase
                     'delete' => self::NAME
                 ]
             ]
-        ])->shouldBeCalled();
+        ])->shouldBeCalled()->willReturn([[]]);
 
         $this->document->___setProperty('connection', $this->connection->reveal());
 
@@ -215,5 +263,31 @@ class DocumentReferenceTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(self::NAME .'/c', $collections[0]->name());
         $this->assertEquals(self::NAME .'/d', $collections[1]->name());
         $this->assertEquals(self::NAME .'/e', $collections[2]->name());
+    }
+
+    public function testWriteResult()
+    {
+        $this->connection->commit(Argument::any())
+            ->shouldBeCalled()
+            ->willReturn([
+                'writeResults' => [
+                    [
+                        'updateTime' => [
+                            'seconds' => time()
+                        ]
+                    ], [
+                        'updateTime' => [
+                            'seconds' => time() + 100
+                        ]
+                    ]
+                ],
+                'commitTime' => ['seconds' => time()]
+            ]);
+
+        $this->document->___setProperty('connection', $this->connection->reveal());
+
+        $res = $this->document->update(['foo' => 'bar']);
+        $this->assertInstanceOf(Timestamp::class, $res['updateTime']);
+        $this->assertEquals(time(), $res['updateTime']->get()->format('U'));
     }
 }

@@ -17,8 +17,11 @@
 
 namespace Google\Cloud\Tests\Unit\Firestore;
 
+use Google\Cloud\Firestore\FieldPath;
+use Google\Cloud\Firestore\ValueMapper;
 use Google\Cloud\Firestore\DocumentSnapshot;
 use Google\Cloud\Firestore\DocumentReference;
+use Google\Cloud\Firestore\Connection\ConnectionInterface;
 
 /**
  * @group firestore
@@ -39,6 +42,7 @@ class DocumentSnapshotTest extends \PHPUnit_Framework_TestCase
 
         $this->snapshot = \Google\Cloud\Dev\stub(DocumentSnapshot::class, [
             $ref->reveal(),
+            new ValueMapper($this->prophesize(ConnectionInterface::class)->reveal(), false),
             [], [], true
         ], ['info', 'fields', 'exists']);
     }
@@ -100,12 +104,39 @@ class DocumentSnapshotTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('f', $this->snapshot->get('a.d.e'));
     }
 
+    public function testGetWithFieldPath()
+    {
+        $fields = [
+            'foo' => 'bar',
+            'a' => [
+                'b' => 'c',
+                'd' => [
+                    'e' => 'f'
+                ]
+            ]
+        ];
+
+        $this->snapshot->___setProperty('fields', $fields);
+
+        $this->assertEquals('bar', $this->snapshot->get(new FieldPath(['foo'])));
+        $this->assertEquals('c', $this->snapshot->get(new FieldPath(['a', 'b'])));
+        $this->assertEquals('f', $this->snapshot->get(new FieldPath(['a', 'd', 'e'])));
+    }
+
     /**
      * @expectedException InvalidArgumentException
      */
     public function testGetInvalid()
     {
         $this->snapshot->get('foo');
+    }
+
+    /**
+     * @expectedException InvalidArgumentException
+     */
+    public function testGetInvalidArgumentType()
+    {
+        $this->snapshot->get(1234);
     }
 
     public function testArrayAccessRead()

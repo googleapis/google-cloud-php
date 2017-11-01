@@ -18,12 +18,15 @@
 namespace Google\Cloud\Tests\Unit\Firestore;
 
 use Prophecy\Argument;
+use Google\Cloud\Core\Blob;
+use Google\Cloud\Core\GeoPoint;
 use Google\Cloud\Core\Timestamp;
+use Google\Cloud\Firestore\FieldPath;
 use Google\Cloud\Firestore\WriteBatch;
-use Google\Cloud\Firestore\CollectionReference;
 use Google\Cloud\Firestore\FirestoreClient;
 use Google\Cloud\Core\Iterator\ItemIterator;
 use Google\Cloud\Firestore\DocumentReference;
+use Google\Cloud\Firestore\CollectionReference;
 use Google\Cloud\Core\Exception\AbortedException;
 use Google\Cloud\Firestore\Connection\ConnectionInterface;
 
@@ -443,5 +446,31 @@ class FirestoreClientTest extends \PHPUnit_Framework_TestCase
         $this->client->runTransaction(function ($t) {
             $this->client->runTransaction(function (){});
         });
+    }
+
+    public function testGeoPoint()
+    {
+        $lat = 1.1;
+        $lng = 2.2;
+        $point = $this->client->geoPoint($lat, $lng);
+        $this->assertInstanceOf(GeoPoint::class, $point);
+        $this->assertEquals($lat, $point->latitude());
+        $this->assertEquals($lng, $point->longitude());
+    }
+
+    public function testBlob()
+    {
+        $val = 'hello world';
+        $blob = $this->client->blob($val);
+        $this->assertInstanceOf(Blob::class, $blob);
+        $this->assertEquals($val, (string)$blob);
+    }
+
+    public function testFieldPath()
+    {
+        $parts = ['foo', 'bar'];
+        $path = $this->client->fieldPath($parts);
+        $this->assertInstanceOf(FieldPath::class, $path);
+        $this->assertEquals($parts, $path->path());
     }
 }
