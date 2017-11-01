@@ -51,6 +51,9 @@ class Query
     const OP_GREATER_THAN_OR_EQUAL = StructuredQuery_FieldFilter_Operator::GREATER_THAN_OR_EQUAL;
     const OP_EQUAL = StructuredQuery_FieldFilter_Operator::EQUAL;
 
+    CONST OP_NAN = StructuredQuery_UnaryFilter_Operator::IS_NAN;
+    const OP_NULL = StructuredQuery_UnaryFilter_Operator::IS_NULL;
+
     const DIR_ASCENDING = StructuredQuery_Direction::ASCENDING;
     const DIR_DESCENDING = StructuredQuery_Direction::DESCENDING;
 
@@ -215,6 +218,8 @@ class Query
      */
     public function where($fieldPath, $operator, $value)
     {
+        $escapedFieldPath = $this->valueMapper->escapeFieldPath($fieldPath);
+
         $operator = array_key_exists($operator, $this->shortOperators)
             ? $this->shortOperators[$operator]
             : $operator;
@@ -226,20 +231,38 @@ class Query
             ));
         }
 
+        if (is_nan($value) || is_null($value)) {
+            if ($operator !== self::OP_EQUAL) {
+                throw new \InvalidArgumentException('Null and NaN are allowed only with operator EQUALS.');
+            }
+
+            $unaryOperator = is_nan($value)
+                ? self::OP_NAN
+                : self::OP_NULL;
+
+            $filter = [
+                'unaryFilter' => [
+                    'field' => $escapedFieldPath,
+                ],
+                'op' => $unaryOperator
+            ];
+        } else {
+            $filter = [
+                'fieldFilter' => [
+                    'field' => [
+                        'fieldPath' => $escapedFieldPath,
+                    ],
+                    'op' => $operator,
+                    'value' => $this->valueMapper->encodeValue($value)
+                ]
+            ];
+
         $query = [
             'where' => [
                 'compositeFilter' => [
                     'op' => StructuredQuery_CompositeFilter_Operator::PBAND,
                     'filters' => [
-                        [
-                            'fieldFilter' => [
-                                'field' => [
-                                    'fieldPath' => $this->valueMapper->escapeFieldPath($fieldPath),
-                                ],
-                                'op' => $operator,
-                                'value' => $this->valueMapper->encodeValue($value)
-                            ]
-                        ]
+                        $filter
                     ]
                 ]
             ]
