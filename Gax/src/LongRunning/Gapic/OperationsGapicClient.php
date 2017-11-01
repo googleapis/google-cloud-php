@@ -191,8 +191,8 @@ class OperationsGapicClient
      *           settings in $clientConfigPath.
      * }
      *
-     * @throws ValidationException throws a ValidationException if required arguments are missing
-     *                             from the $options array
+     * @throws ValidationException Throws a ValidationException if required arguments are missing
+     *                             from the $options array.
      * @experimental
      */
     public function __construct($options = [])
@@ -280,9 +280,9 @@ class OperationsGapicClient
      * }
      * ```
      *
-     * @param string $name         the name of the operation resource
+     * @param string $name         The name of the operation resource.
      * @param array  $optionalArgs {
-     *                             Optional
+     *                             Optional.
      *
      *     @type \Google\GAX\RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
@@ -358,10 +358,10 @@ class OperationsGapicClient
      * }
      * ```
      *
-     * @param string $name         the name of the operation collection
-     * @param string $filter       the standard list filter
+     * @param string $name         The name of the operation collection.
+     * @param string $filter       The standard list filter.
      * @param array  $optionalArgs {
-     *                             Optional
+     *                             Optional.
      *
      *     @type int $pageSize
      *          The maximum number of resources contained in the underlying API
@@ -445,9 +445,9 @@ class OperationsGapicClient
      * }
      * ```
      *
-     * @param string $name         the name of the operation resource to be cancelled
+     * @param string $name         The name of the operation resource to be cancelled.
      * @param array  $optionalArgs {
-     *                             Optional
+     *                             Optional.
      *
      *     @type \Google\GAX\RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
@@ -507,9 +507,9 @@ class OperationsGapicClient
      * }
      * ```
      *
-     * @param string $name         the name of the operation resource to be deleted
+     * @param string $name         The name of the operation resource to be deleted.
      * @param array  $optionalArgs {
-     *                             Optional
+     *                             Optional.
      *
      *     @type \Google\GAX\RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
