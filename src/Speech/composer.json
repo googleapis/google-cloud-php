@@ -5,8 +5,8 @@
     "minimum-stability": "stable",
     "require": {
         "google/cloud-core": "^1.0",
-        "google/proto-client": "^0.24",
-        "google/gax": "^0.24"
+        "google/proto-client": "^0.25",
+        "google/gax": "^0.25"
     },
     "suggest": {
         "google/gax": "Required to support gRPC"
