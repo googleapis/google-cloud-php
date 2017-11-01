@@ -317,11 +317,11 @@ class SpeechGapicClient
      * }
      * ```
      *
-     * @param recognitionConfig $config       *Required* Provides information to the recognizer that specifies how to
-     *                                        process the request
-     * @param recognitionAudio  $audio        *Required* The audio data to be recognized
+     * @param RecognitionConfig $config       *Required* Provides information to the recognizer that specifies how to
+     *                                        process the request.
+     * @param RecognitionAudio  $audio        *Required* The audio data to be recognized.
      * @param array             $optionalArgs {
-     *                                        Optional
+     *                                        Optional.
      *
      *     @type \Google\GAX\RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
@@ -412,11 +412,11 @@ class SpeechGapicClient
      * }
      * ```
      *
-     * @param recognitionConfig $config       *Required* Provides information to the recognizer that specifies how to
-     *                                        process the request
-     * @param recognitionAudio  $audio        *Required* The audio data to be recognized
+     * @param RecognitionConfig $config       *Required* Provides information to the recognizer that specifies how to
+     *                                        process the request.
+     * @param RecognitionAudio  $audio        *Required* The audio data to be recognized.
      * @param array             $optionalArgs {
-     *                                        Optional
+     *                                        Optional.
      *
      *     @type \Google\GAX\RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
@@ -497,7 +497,7 @@ class SpeechGapicClient
      * ```
      *
      * @param array $optionalArgs {
-     *                            Optional
+     *                            Optional.
      *
      *     @type int $timeoutMillis
      *          Timeout to use for this call.

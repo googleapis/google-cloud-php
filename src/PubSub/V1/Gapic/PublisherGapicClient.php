@@ -196,7 +196,7 @@ class PublisherGapicClient
      *
      * @param string $project
      *
-     * @return string the formatted project resource
+     * @return string The formatted project resource.
      * @experimental
      */
     public static function projectName($project)
@@ -213,7 +213,7 @@ class PublisherGapicClient
      * @param string $project
      * @param string $topic
      *
-     * @return string the formatted topic resource
+     * @return string The formatted topic resource.
      * @experimental
      */
     public static function topicName($project, $topic)
@@ -239,9 +239,9 @@ class PublisherGapicClient
      * @param string $formattedName The formatted name string
      * @param string $template      Optional name of template to match
      *
-     * @return array an associative array from name component IDs to component values
+     * @return array An associative array from name component IDs to component values.
      *
-     * @throws ValidationException if $formattedName could not be matched
+     * @throws ValidationException If $formattedName could not be matched.
      * @experimental
      */
     public static function parseName($formattedName, $template = null)
@@ -403,7 +403,7 @@ class PublisherGapicClient
      *                             signs (`%`). It must be between 3 and 255 characters in length, and it
      *                             must not start with `"goog"`.
      * @param array  $optionalArgs {
-     *                             Optional
+     *                             Optional.
      *
      *     @type array $labels
      *          User labels.
@@ -467,11 +467,11 @@ class PublisherGapicClient
      * }
      * ```
      *
-     * @param Topic     $topic        the topic to update
+     * @param Topic     $topic        The topic to update.
      * @param FieldMask $updateMask   Indicates which fields in the provided topic to update.
      *                                Must be specified and non-empty.
      * @param array     $optionalArgs {
-     *                                Optional
+     *                                Optional.
      *
      *     @type \Google\GAX\RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
@@ -533,9 +533,9 @@ class PublisherGapicClient
      *
      * @param string          $topic        The messages in the request will be published on this topic.
      *                                      Format is `projects/{project}/topics/{topic}`.
-     * @param PubsubMessage[] $messages     the messages to publish
+     * @param PubsubMessage[] $messages     The messages to publish.
      * @param array           $optionalArgs {
-     *                                      Optional
+     *                                      Optional.
      *
      *     @type \Google\GAX\RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
@@ -592,7 +592,7 @@ class PublisherGapicClient
      * @param string $topic        The name of the topic to get.
      *                             Format is `projects/{project}/topics/{topic}`.
      * @param array  $optionalArgs {
-     *                             Optional
+     *                             Optional.
      *
      *     @type \Google\GAX\RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
@@ -660,7 +660,7 @@ class PublisherGapicClient
      * @param string $project      The name of the cloud project that topics belong to.
      *                             Format is `projects/{project}`.
      * @param array  $optionalArgs {
-     *                             Optional
+     *                             Optional.
      *
      *     @type int $pageSize
      *          The maximum number of resources contained in the underlying API
@@ -743,7 +743,7 @@ class PublisherGapicClient
      * @param string $topic        The name of the topic that subscriptions are attached to.
      *                             Format is `projects/{project}/topics/{topic}`.
      * @param array  $optionalArgs {
-     *                             Optional
+     *                             Optional.
      *
      *     @type int $pageSize
      *          The maximum number of resources contained in the underlying API
@@ -818,7 +818,7 @@ class PublisherGapicClient
      * @param string $topic        Name of the topic to delete.
      *                             Format is `projects/{project}/topics/{topic}`.
      * @param array  $optionalArgs {
-     *                             Optional
+     *                             Optional.
      *
      *     @type \Google\GAX\RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
@@ -879,7 +879,7 @@ class PublisherGapicClient
      *                             valid policy but certain Cloud Platform services (such as Projects)
      *                             might reject them.
      * @param array  $optionalArgs {
-     *                             Optional
+     *                             Optional.
      *
      *     @type \Google\GAX\RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
@@ -939,7 +939,7 @@ class PublisherGapicClient
      *                             `resource` is usually specified as a path. For example, a Project
      *                             resource is specified as `projects/{project}`.
      * @param array  $optionalArgs {
-     *                             Optional
+     *                             Optional.
      *
      *     @type \Google\GAX\RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
@@ -1003,7 +1003,7 @@ class PublisherGapicClient
      *                               information see
      *                               [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).
      * @param array    $optionalArgs {
-     *                               Optional
+     *                               Optional.
      *
      *     @type \Google\GAX\RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a

@@ -203,7 +203,7 @@ class SpannerGapicClient
      * @param string $instance
      * @param string $database
      *
-     * @return string the formatted database resource
+     * @return string The formatted database resource.
      * @experimental
      */
     public static function databaseName($project, $instance, $database)
@@ -224,7 +224,7 @@ class SpannerGapicClient
      * @param string $database
      * @param string $session
      *
-     * @return string the formatted session resource
+     * @return string The formatted session resource.
      * @experimental
      */
     public static function sessionName($project, $instance, $database, $session)
@@ -252,9 +252,9 @@ class SpannerGapicClient
      * @param string $formattedName The formatted name string
      * @param string $template      Optional name of template to match
      *
-     * @return array an associative array from name component IDs to component values
+     * @return array An associative array from name component IDs to component values.
      *
-     * @throws ValidationException if $formattedName could not be matched
+     * @throws ValidationException If $formattedName could not be matched.
      * @experimental
      */
     public static function parseName($formattedName, $template = null)
@@ -427,7 +427,7 @@ class SpannerGapicClient
      *
      * @param string $database     Required. The database in which the new session is created.
      * @param array  $optionalArgs {
-     *                             Optional
+     *                             Optional.
      *
      *     @type Session $session
      *          The session to create.
@@ -489,7 +489,7 @@ class SpannerGapicClient
      *
      * @param string $name         Required. The name of the session to retrieve.
      * @param array  $optionalArgs {
-     *                             Optional
+     *                             Optional.
      *
      *     @type \Google\GAX\RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
@@ -556,7 +556,7 @@ class SpannerGapicClient
      *
      * @param string $database     Required. The database in which to list sessions.
      * @param array  $optionalArgs {
-     *                             Optional
+     *                             Optional.
      *
      *     @type int $pageSize
      *          The maximum number of resources contained in the underlying API
@@ -640,7 +640,7 @@ class SpannerGapicClient
      *
      * @param string $name         Required. The name of the session to delete.
      * @param array  $optionalArgs {
-     *                             Optional
+     *                             Optional.
      *
      *     @type \Google\GAX\RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
@@ -705,7 +705,7 @@ class SpannerGapicClient
      * @param string $session      Required. The session in which the SQL query should be performed.
      * @param string $sql          Required. The SQL query string.
      * @param array  $optionalArgs {
-     *                             Optional
+     *                             Optional.
      *
      *     @type TransactionSelector $transaction
      *          The transaction to use. If none is provided, the default is a
@@ -824,7 +824,7 @@ class SpannerGapicClient
      * @param string $session      Required. The session in which the SQL query should be performed.
      * @param string $sql          Required. The SQL query string.
      * @param array  $optionalArgs {
-     *                             Optional
+     *                             Optional.
      *
      *     @type TransactionSelector $transaction
      *          The transaction to use. If none is provided, the default is a
@@ -965,7 +965,7 @@ class SpannerGapicClient
      * It is not an error for the `key_set` to name rows that do not
      * exist in the database. Read yields nothing for nonexistent rows.
      * @param array $optionalArgs {
-     *                            Optional
+     *                            Optional.
      *
      *     @type TransactionSelector $transaction
      *          The transaction to use. If none is provided, the default is a
@@ -1076,7 +1076,7 @@ class SpannerGapicClient
      * It is not an error for the `key_set` to name rows that do not
      * exist in the database. Read yields nothing for nonexistent rows.
      * @param array $optionalArgs {
-     *                            Optional
+     *                            Optional.
      *
      *     @type TransactionSelector $transaction
      *          The transaction to use. If none is provided, the default is a
@@ -1172,7 +1172,7 @@ class SpannerGapicClient
      * @param string             $session      Required. The session in which the transaction runs.
      * @param TransactionOptions $options      Required. Options for the new transaction.
      * @param array              $optionalArgs {
-     *                                         Optional
+     *                                         Optional.
      *
      *     @type \Google\GAX\RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
@@ -1239,7 +1239,7 @@ class SpannerGapicClient
      *                                 mutations are applied atomically, in the order they appear in
      *                                 this list.
      * @param array      $optionalArgs {
-     *                                 Optional
+     *                                 Optional.
      *
      *     @type string $transactionId
      *          Commit a previously-started transaction.
@@ -1322,7 +1322,7 @@ class SpannerGapicClient
      * @param string $session       Required. The session in which the transaction to roll back is running.
      * @param string $transactionId Required. The transaction to roll back.
      * @param array  $optionalArgs  {
-     *                              Optional
+     *                              Optional.
      *
      *     @type \Google\GAX\RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a

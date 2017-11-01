@@ -255,7 +255,7 @@ class InstanceAdminGapicClient
      *
      * @param string $project
      *
-     * @return string the formatted project resource
+     * @return string The formatted project resource.
      * @experimental
      */
     public static function projectName($project)
@@ -272,7 +272,7 @@ class InstanceAdminGapicClient
      * @param string $project
      * @param string $instanceConfig
      *
-     * @return string the formatted instance_config resource
+     * @return string The formatted instance_config resource.
      * @experimental
      */
     public static function instanceConfigName($project, $instanceConfig)
@@ -290,7 +290,7 @@ class InstanceAdminGapicClient
      * @param string $project
      * @param string $instance
      *
-     * @return string the formatted instance resource
+     * @return string The formatted instance resource.
      * @experimental
      */
     public static function instanceName($project, $instance)
@@ -317,9 +317,9 @@ class InstanceAdminGapicClient
      * @param string $formattedName The formatted name string
      * @param string $template      Optional name of template to match
      *
-     * @return array an associative array from name component IDs to component values
+     * @return array An associative array from name component IDs to component values.
      *
-     * @throws ValidationException if $formattedName could not be matched
+     * @throws ValidationException If $formattedName could not be matched.
      * @experimental
      */
     public static function parseName($formattedName, $template = null)
@@ -534,7 +534,7 @@ class InstanceAdminGapicClient
      *                             configurations is requested. Values are of the form
      *                             `projects/<project>`.
      * @param array  $optionalArgs {
-     *                             Optional
+     *                             Optional.
      *
      *     @type int $pageSize
      *          The maximum number of resources contained in the underlying API
@@ -605,7 +605,7 @@ class InstanceAdminGapicClient
      * @param string $name         Required. The name of the requested instance configuration. Values are of
      *                             the form `projects/<project>/instanceConfigs/<config>`.
      * @param array  $optionalArgs {
-     *                             Optional
+     *                             Optional.
      *
      *     @type \Google\GAX\RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
@@ -673,7 +673,7 @@ class InstanceAdminGapicClient
      * @param string $parent       Required. The name of the project for which a list of instances is
      *                             requested. Values are of the form `projects/<project>`.
      * @param array  $optionalArgs {
-     *                             Optional
+     *                             Optional.
      *
      *     @type int $pageSize
      *          The maximum number of resources contained in the underlying API
@@ -767,7 +767,7 @@ class InstanceAdminGapicClient
      * @param string $name         Required. The name of the requested instance. Values are of the form
      *                             `projects/<project>/instances/<instance>`.
      * @param array  $optionalArgs {
-     *                             Optional
+     *                             Optional.
      *
      *     @type \Google\GAX\RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
@@ -888,7 +888,7 @@ class InstanceAdminGapicClient
      * @param Instance $instance     Required. The instance to create.  The name may be omitted, but if
      *                               specified must be `<parent>/instances/<instance_id>`.
      * @param array    $optionalArgs {
-     *                               Optional
+     *                               Optional.
      *
      *     @type \Google\GAX\RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
@@ -1015,7 +1015,7 @@ class InstanceAdminGapicClient
      *                                [][google.spanner.admin.instance.v1.Instance] from being erased accidentally by clients that do not know
      *                                about them.
      * @param array     $optionalArgs {
-     *                                Optional
+     *                                Optional.
      *
      *     @type \Google\GAX\RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
@@ -1082,7 +1082,7 @@ class InstanceAdminGapicClient
      * @param string $name         Required. The name of the instance to be deleted. Values are of the form
      *                             `projects/<project>/instances/<instance>`
      * @param array  $optionalArgs {
-     *                             Optional
+     *                             Optional.
      *
      *     @type \Google\GAX\RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
@@ -1146,7 +1146,7 @@ class InstanceAdminGapicClient
      *                             valid policy but certain Cloud Platform services (such as Projects)
      *                             might reject them.
      * @param array  $optionalArgs {
-     *                             Optional
+     *                             Optional.
      *
      *     @type \Google\GAX\RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
@@ -1208,7 +1208,7 @@ class InstanceAdminGapicClient
      *                             `resource` is usually specified as a path. For example, a Project
      *                             resource is specified as `projects/{project}`.
      * @param array  $optionalArgs {
-     *                             Optional
+     *                             Optional.
      *
      *     @type \Google\GAX\RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
@@ -1275,7 +1275,7 @@ class InstanceAdminGapicClient
      *                               information see
      *                               [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).
      * @param array    $optionalArgs {
-     *                               Optional
+     *                               Optional.
      *
      *     @type \Google\GAX\RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a

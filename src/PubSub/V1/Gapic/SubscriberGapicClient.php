@@ -240,7 +240,7 @@ class SubscriberGapicClient
      *
      * @param string $project
      *
-     * @return string the formatted project resource
+     * @return string The formatted project resource.
      * @experimental
      */
     public static function projectName($project)
@@ -257,7 +257,7 @@ class SubscriberGapicClient
      * @param string $project
      * @param string $snapshot
      *
-     * @return string the formatted snapshot resource
+     * @return string The formatted snapshot resource.
      * @experimental
      */
     public static function snapshotName($project, $snapshot)
@@ -275,7 +275,7 @@ class SubscriberGapicClient
      * @param string $project
      * @param string $subscription
      *
-     * @return string the formatted subscription resource
+     * @return string The formatted subscription resource.
      * @experimental
      */
     public static function subscriptionName($project, $subscription)
@@ -293,7 +293,7 @@ class SubscriberGapicClient
      * @param string $project
      * @param string $topic
      *
-     * @return string the formatted topic resource
+     * @return string The formatted topic resource.
      * @experimental
      */
     public static function topicName($project, $topic)
@@ -321,9 +321,9 @@ class SubscriberGapicClient
      * @param string $formattedName The formatted name string
      * @param string $template      Optional name of template to match
      *
-     * @return array an associative array from name component IDs to component values
+     * @return array An associative array from name component IDs to component values.
      *
-     * @throws ValidationException if $formattedName could not be matched
+     * @throws ValidationException If $formattedName could not be matched.
      * @experimental
      */
     public static function parseName($formattedName, $template = null)
@@ -511,7 +511,7 @@ class SubscriberGapicClient
      *                             The value of this field will be `_deleted-topic_` if the topic has been
      *                             deleted.
      * @param array  $optionalArgs {
-     *                             Optional
+     *                             Optional.
      *
      *     @type PushConfig $pushConfig
      *          If push delivery is used with this subscription, this field is
@@ -621,7 +621,7 @@ class SubscriberGapicClient
      * @param string $subscription The name of the subscription to get.
      *                             Format is `projects/{project}/subscriptions/{sub}`.
      * @param array  $optionalArgs {
-     *                             Optional
+     *                             Optional.
      *
      *     @type \Google\GAX\RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
@@ -680,11 +680,11 @@ class SubscriberGapicClient
      * }
      * ```
      *
-     * @param Subscription $subscription the updated subscription object
+     * @param Subscription $subscription The updated subscription object.
      * @param FieldMask    $updateMask   Indicates which fields in the provided subscription to update.
      *                                   Must be specified and non-empty.
      * @param array        $optionalArgs {
-     *                                   Optional
+     *                                   Optional.
      *
      *     @type \Google\GAX\RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
@@ -753,7 +753,7 @@ class SubscriberGapicClient
      * @param string $project      The name of the cloud project that subscriptions belong to.
      *                             Format is `projects/{project}`.
      * @param array  $optionalArgs {
-     *                             Optional
+     *                             Optional.
      *
      *     @type int $pageSize
      *          The maximum number of resources contained in the underlying API
@@ -828,7 +828,7 @@ class SubscriberGapicClient
      * @param string $subscription The subscription to delete.
      *                             Format is `projects/{project}/subscriptions/{sub}`.
      * @param array  $optionalArgs {
-     *                             Optional
+     *                             Optional.
      *
      *     @type \Google\GAX\RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
@@ -887,7 +887,7 @@ class SubscriberGapicClient
      *
      * @param string   $subscription       The name of the subscription.
      *                                     Format is `projects/{project}/subscriptions/{sub}`.
-     * @param string[] $ackIds             list of acknowledgment IDs
+     * @param string[] $ackIds             List of acknowledgment IDs.
      * @param int      $ackDeadlineSeconds The new ack deadline with respect to the time this request was sent to
      *                                     the Pub/Sub system. For example, if the value is 10, the new
      *                                     ack deadline will expire 10 seconds after the `ModifyAckDeadline` call
@@ -896,7 +896,7 @@ class SubscriberGapicClient
      *                                     The minimum deadline you can specify is 0 seconds.
      *                                     The maximum deadline you can specify is 600 seconds (10 minutes).
      * @param array    $optionalArgs       {
-     *                                     Optional
+     *                                     Optional.
      *
      *     @type \Google\GAX\RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
@@ -961,7 +961,7 @@ class SubscriberGapicClient
      * @param string[] $ackIds       The acknowledgment ID for the messages being acknowledged that was returned
      *                               by the Pub/Sub system in the `Pull` response. Must not be empty.
      * @param array    $optionalArgs {
-     *                               Optional
+     *                               Optional.
      *
      *     @type \Google\GAX\RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
@@ -1022,7 +1022,7 @@ class SubscriberGapicClient
      * @param int    $maxMessages  The maximum number of messages returned for this request. The Pub/Sub
      *                             system may return fewer than the number specified.
      * @param array  $optionalArgs {
-     *                             Optional
+     *                             Optional.
      *
      *     @type bool $returnImmediately
      *          If this field set to true, the system will respond immediately even if
@@ -1127,7 +1127,7 @@ class SubscriberGapicClient
      * ```
      *
      * @param array $optionalArgs {
-     *                            Optional
+     *                            Optional.
      *
      *     @type int $timeoutMillis
      *          Timeout to use for this call.
@@ -1196,7 +1196,7 @@ class SubscriberGapicClient
      * messages to be pulled and acknowledged - effectively pausing
      * the subscription if `Pull` is not called.
      * @param array $optionalArgs {
-     *                            Optional
+     *                            Optional.
      *
      *     @type \Google\GAX\RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
@@ -1263,7 +1263,7 @@ class SubscriberGapicClient
      * @param string $project      The name of the cloud project that snapshots belong to.
      *                             Format is `projects/{project}`.
      * @param array  $optionalArgs {
-     *                             Optional
+     *                             Optional.
      *
      *     @type int $pageSize
      *          The maximum number of resources contained in the underlying API
@@ -1356,7 +1356,7 @@ class SubscriberGapicClient
      *                             successful completion of the CreateSnapshot request.
      *                             Format is `projects/{project}/subscriptions/{sub}`.
      * @param array  $optionalArgs {
-     *                             Optional
+     *                             Optional.
      *
      *     @type \Google\GAX\RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
@@ -1416,11 +1416,11 @@ class SubscriberGapicClient
      * }
      * ```
      *
-     * @param Snapshot  $snapshot     the updated snpashot object
+     * @param Snapshot  $snapshot     The updated snpashot object.
      * @param FieldMask $updateMask   Indicates which fields in the provided snapshot to update.
      *                                Must be specified and non-empty.
      * @param array     $optionalArgs {
-     *                                Optional
+     *                                Optional.
      *
      *     @type \Google\GAX\RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
@@ -1480,7 +1480,7 @@ class SubscriberGapicClient
      * @param string $snapshot     The name of the snapshot to delete.
      *                             Format is `projects/{project}/snapshots/{snap}`.
      * @param array  $optionalArgs {
-     *                             Optional
+     *                             Optional.
      *
      *     @type \Google\GAX\RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
@@ -1532,9 +1532,9 @@ class SubscriberGapicClient
      * }
      * ```
      *
-     * @param string $subscription the subscription to affect
+     * @param string $subscription The subscription to affect.
      * @param array  $optionalArgs {
-     *                             Optional
+     *                             Optional.
      *
      *     @type Timestamp $time
      *          The time to seek to.
@@ -1619,7 +1619,7 @@ class SubscriberGapicClient
      *                             valid policy but certain Cloud Platform services (such as Projects)
      *                             might reject them.
      * @param array  $optionalArgs {
-     *                             Optional
+     *                             Optional.
      *
      *     @type \Google\GAX\RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
@@ -1679,7 +1679,7 @@ class SubscriberGapicClient
      *                             `resource` is usually specified as a path. For example, a Project
      *                             resource is specified as `projects/{project}`.
      * @param array  $optionalArgs {
-     *                             Optional
+     *                             Optional.
      *
      *     @type \Google\GAX\RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
@@ -1743,7 +1743,7 @@ class SubscriberGapicClient
      *                               information see
      *                               [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).
      * @param array    $optionalArgs {
-     *                               Optional
+     *                               Optional.
      *
      *     @type \Google\GAX\RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a

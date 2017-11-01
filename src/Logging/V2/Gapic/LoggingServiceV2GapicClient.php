@@ -197,7 +197,7 @@ class LoggingServiceV2GapicClient
      *
      * @param string $project
      *
-     * @return string the formatted project resource
+     * @return string The formatted project resource.
      * @experimental
      */
     public static function projectName($project)
@@ -214,7 +214,7 @@ class LoggingServiceV2GapicClient
      * @param string $project
      * @param string $log
      *
-     * @return string the formatted log resource
+     * @return string The formatted log resource.
      * @experimental
      */
     public static function logName($project, $log)
@@ -240,9 +240,9 @@ class LoggingServiceV2GapicClient
      * @param string $formattedName The formatted name string
      * @param string $template      Optional name of template to match
      *
-     * @return array an associative array from name component IDs to component values
+     * @return array An associative array from name component IDs to component values.
      *
-     * @throws ValidationException if $formattedName could not be matched
+     * @throws ValidationException If $formattedName could not be matched.
      * @experimental
      */
     public static function parseName($formattedName, $template = null)
@@ -404,7 +404,7 @@ class LoggingServiceV2GapicClient
      * For more information about log names, see
      * [LogEntry][google.logging.v2.LogEntry].
      * @param array $optionalArgs {
-     *                            Optional
+     *                            Optional.
      *
      *     @type \Google\GAX\RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
@@ -483,7 +483,7 @@ class LoggingServiceV2GapicClient
      * you should try to include several log entries in this list,
      * rather than calling this method for each individual log entry.
      * @param array $optionalArgs {
-     *                            Optional
+     *                            Optional.
      *
      *     @type string $logName
      *          Optional. A default log resource name that is assigned to all log entries
@@ -606,7 +606,7 @@ class LoggingServiceV2GapicClient
      *
      * Projects listed in the `project_ids` field are added to this list.
      * @param array $optionalArgs {
-     *                            Optional
+     *                            Optional.
      *
      *     @type string[] $projectIds
      *          Deprecated. Use `resource_names` instead.  One or more project identifiers
@@ -718,7 +718,7 @@ class LoggingServiceV2GapicClient
      * ```
      *
      * @param array $optionalArgs {
-     *                            Optional
+     *                            Optional.
      *
      *     @type int $pageSize
      *          The maximum number of resources contained in the underlying API
@@ -805,7 +805,7 @@ class LoggingServiceV2GapicClient
      *     "billingAccounts/[BILLING_ACCOUNT_ID]"
      *     "folders/[FOLDER_ID]"
      * @param array $optionalArgs {
-     *                            Optional
+     *                            Optional.
      *
      *     @type int $pageSize
      *          The maximum number of resources contained in the underlying API

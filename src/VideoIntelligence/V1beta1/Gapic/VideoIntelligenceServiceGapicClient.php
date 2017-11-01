@@ -352,7 +352,7 @@ class VideoIntelligenceServiceGapicClient
      * @param int[]  $features     Requested video annotation features.
      *                             For allowed values, use constants defined on {@see \Google\Cloud\Videointelligence\V1beta1\Feature}
      * @param array  $optionalArgs {
-     *                             Optional
+     *                             Optional.
      *
      *     @type string $inputContent
      *          The video data bytes. Encoding: base64. If unset, the input video(s)

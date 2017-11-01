@@ -217,7 +217,7 @@ class DatabaseAdminGapicClient
      * @param string $project
      * @param string $instance
      *
-     * @return string the formatted instance resource
+     * @return string The formatted instance resource.
      * @experimental
      */
     public static function instanceName($project, $instance)
@@ -236,7 +236,7 @@ class DatabaseAdminGapicClient
      * @param string $instance
      * @param string $database
      *
-     * @return string the formatted database resource
+     * @return string The formatted database resource.
      * @experimental
      */
     public static function databaseName($project, $instance, $database)
@@ -263,9 +263,9 @@ class DatabaseAdminGapicClient
      * @param string $formattedName The formatted name string
      * @param string $template      Optional name of template to match
      *
-     * @return array an associative array from name component IDs to component values
+     * @return array An associative array from name component IDs to component values.
      *
-     * @throws ValidationException if $formattedName could not be matched
+     * @throws ValidationException If $formattedName could not be matched.
      * @experimental
      */
     public static function parseName($formattedName, $template = null)
@@ -478,7 +478,7 @@ class DatabaseAdminGapicClient
      * @param string $parent       Required. The instance whose databases should be listed.
      *                             Values are of the form `projects/<project>/instances/<instance>`.
      * @param array  $optionalArgs {
-     *                             Optional
+     *                             Optional.
      *
      *     @type int $pageSize
      *          The maximum number of resources contained in the underlying API
@@ -587,7 +587,7 @@ class DatabaseAdminGapicClient
      *                                If the database ID is a reserved word or if it contains a hyphen, the
      *                                database ID must be enclosed in backticks (`` ` ``).
      * @param array  $optionalArgs    {
-     *                                Optional
+     *                                Optional.
      *
      *     @type string[] $extraStatements
      *          An optional list of DDL statements to run inside the newly created
@@ -652,7 +652,7 @@ class DatabaseAdminGapicClient
      * @param string $name         Required. The name of the requested database. Values are of the form
      *                             `projects/<project>/instances/<instance>/databases/<database>`.
      * @param array  $optionalArgs {
-     *                             Optional
+     *                             Optional.
      *
      *     @type \Google\GAX\RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
@@ -736,9 +736,9 @@ class DatabaseAdminGapicClient
      * ```
      *
      * @param string   $database     Required. The database to update.
-     * @param string[] $statements   DDL statements to be applied to the database
+     * @param string[] $statements   DDL statements to be applied to the database.
      * @param array    $optionalArgs {
-     *                               Optional
+     *                               Optional.
      *
      *     @type string $operationId
      *          If empty, the new update request is assigned an
@@ -817,7 +817,7 @@ class DatabaseAdminGapicClient
      *
      * @param string $database     Required. The database to be dropped.
      * @param array  $optionalArgs {
-     *                             Optional
+     *                             Optional.
      *
      *     @type \Google\GAX\RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
@@ -872,7 +872,7 @@ class DatabaseAdminGapicClient
      *
      * @param string $database     Required. The database whose schema we wish to get.
      * @param array  $optionalArgs {
-     *                             Optional
+     *                             Optional.
      *
      *     @type \Google\GAX\RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
@@ -938,7 +938,7 @@ class DatabaseAdminGapicClient
      *                             valid policy but certain Cloud Platform services (such as Projects)
      *                             might reject them.
      * @param array  $optionalArgs {
-     *                             Optional
+     *                             Optional.
      *
      *     @type \Google\GAX\RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
@@ -1000,7 +1000,7 @@ class DatabaseAdminGapicClient
      *                             `resource` is usually specified as a path. For example, a Project
      *                             resource is specified as `projects/{project}`.
      * @param array  $optionalArgs {
-     *                             Optional
+     *                             Optional.
      *
      *     @type \Google\GAX\RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
@@ -1067,7 +1067,7 @@ class DatabaseAdminGapicClient
      *                               information see
      *                               [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).
      * @param array    $optionalArgs {
-     *                               Optional
+     *                               Optional.
      *
      *     @type \Google\GAX\RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a

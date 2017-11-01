@@ -217,7 +217,7 @@ class ConfigServiceV2GapicClient
      *
      * @param string $project
      *
-     * @return string the formatted project resource
+     * @return string The formatted project resource.
      * @experimental
      */
     public static function projectName($project)
@@ -234,7 +234,7 @@ class ConfigServiceV2GapicClient
      * @param string $project
      * @param string $sink
      *
-     * @return string the formatted sink resource
+     * @return string The formatted sink resource.
      * @experimental
      */
     public static function sinkName($project, $sink)
@@ -252,7 +252,7 @@ class ConfigServiceV2GapicClient
      * @param string $project
      * @param string $exclusion
      *
-     * @return string the formatted exclusion resource
+     * @return string The formatted exclusion resource.
      * @experimental
      */
     public static function exclusionName($project, $exclusion)
@@ -279,9 +279,9 @@ class ConfigServiceV2GapicClient
      * @param string $formattedName The formatted name string
      * @param string $template      Optional name of template to match
      *
-     * @return array an associative array from name component IDs to component values
+     * @return array An associative array from name component IDs to component values.
      *
-     * @throws ValidationException if $formattedName could not be matched
+     * @throws ValidationException If $formattedName could not be matched.
      * @experimental
      */
     public static function parseName($formattedName, $template = null)
@@ -451,7 +451,7 @@ class ConfigServiceV2GapicClient
      *     "billingAccounts/[BILLING_ACCOUNT_ID]"
      *     "folders/[FOLDER_ID]"
      * @param array $optionalArgs {
-     *                            Optional
+     *                            Optional.
      *
      *     @type string $pageToken
      *          A page token is used to specify a page of values to be returned.
@@ -528,7 +528,7 @@ class ConfigServiceV2GapicClient
      *
      * Example: `"projects/my-project-id/sinks/my-sink-id"`.
      * @param array $optionalArgs {
-     *                            Optional
+     *                            Optional.
      *
      *     @type \Google\GAX\RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
@@ -597,7 +597,7 @@ class ConfigServiceV2GapicClient
      * @param LogSink $sink         Required. The new sink, whose `name` parameter is a sink identifier that
      *                              is not already in use.
      * @param array   $optionalArgs {
-     *                              Optional
+     *                              Optional.
      *
      *     @type bool $uniqueWriterIdentity
      *          Optional. Determines the kind of IAM identity returned as `writer_identity`
@@ -683,7 +683,7 @@ class ConfigServiceV2GapicClient
      * @param LogSink $sink         Required. The updated sink, whose name is the same identifier that appears
      *                              as part of `sink_name`.
      * @param array   $optionalArgs {
-     *                              Optional
+     *                              Optional.
      *
      *     @type bool $uniqueWriterIdentity
      *          Optional. See
@@ -764,7 +764,7 @@ class ConfigServiceV2GapicClient
      *
      * Example: `"projects/my-project-id/sinks/my-sink-id"`.
      * @param array $optionalArgs {
-     *                            Optional
+     *                            Optional.
      *
      *     @type \Google\GAX\RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
@@ -834,7 +834,7 @@ class ConfigServiceV2GapicClient
      *     "billingAccounts/[BILLING_ACCOUNT_ID]"
      *     "folders/[FOLDER_ID]"
      * @param array $optionalArgs {
-     *                            Optional
+     *                            Optional.
      *
      *     @type string $pageToken
      *          A page token is used to specify a page of values to be returned.
@@ -911,7 +911,7 @@ class ConfigServiceV2GapicClient
      *
      * Example: `"projects/my-project-id/exclusions/my-exclusion-id"`.
      * @param array $optionalArgs {
-     *                            Optional
+     *                            Optional.
      *
      *     @type \Google\GAX\RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
@@ -978,7 +978,7 @@ class ConfigServiceV2GapicClient
      * @param LogExclusion $exclusion    Required. The new exclusion, whose `name` parameter is an exclusion name
      *                                   that is not already used in the parent resource.
      * @param array        $optionalArgs {
-     *                                   Optional
+     *                                   Optional.
      *
      *     @type \Google\GAX\RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
@@ -1052,7 +1052,7 @@ class ConfigServiceV2GapicClient
      * For example, to change the filter and description of an exclusion,
      * specify an `update_mask` of `"filter,description"`.
      * @param array $optionalArgs {
-     *                            Optional
+     *                            Optional.
      *
      *     @type \Google\GAX\RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
@@ -1116,7 +1116,7 @@ class ConfigServiceV2GapicClient
      *
      * Example: `"projects/my-project-id/exclusions/my-exclusion-id"`.
      * @param array $optionalArgs {
-     *                            Optional
+     *                            Optional.
      *
      *     @type \Google\GAX\RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a

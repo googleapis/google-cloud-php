@@ -228,9 +228,9 @@ class LanguageServiceGapicClient
      * }
      * ```
      *
-     * @param Document $document     input document
+     * @param Document $document     Input document.
      * @param array    $optionalArgs {
-     *                               Optional
+     *                               Optional.
      *
      *     @type int $encodingType
      *          The encoding type used by the API to calculate sentence offsets for the
@@ -292,9 +292,9 @@ class LanguageServiceGapicClient
      * }
      * ```
      *
-     * @param Document $document     input document
+     * @param Document $document     Input document.
      * @param array    $optionalArgs {
-     *                               Optional
+     *                               Optional.
      *
      *     @type int $encodingType
      *          The encoding type used by the API to calculate offsets.
@@ -354,9 +354,9 @@ class LanguageServiceGapicClient
      * }
      * ```
      *
-     * @param Document $document     input document
+     * @param Document $document     Input document.
      * @param array    $optionalArgs {
-     *                               Optional
+     *                               Optional.
      *
      *     @type int $encodingType
      *          The encoding type used by the API to calculate offsets.
@@ -417,9 +417,9 @@ class LanguageServiceGapicClient
      * }
      * ```
      *
-     * @param Document $document     input document
+     * @param Document $document     Input document.
      * @param array    $optionalArgs {
-     *                               Optional
+     *                               Optional.
      *
      *     @type int $encodingType
      *          The encoding type used by the API to calculate offsets.
@@ -478,9 +478,9 @@ class LanguageServiceGapicClient
      * }
      * ```
      *
-     * @param Document $document     input document
+     * @param Document $document     Input document.
      * @param array    $optionalArgs {
-     *                               Optional
+     *                               Optional.
      *
      *     @type \Google\GAX\RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
@@ -535,10 +535,10 @@ class LanguageServiceGapicClient
      * }
      * ```
      *
-     * @param Document $document     input document
-     * @param Features $features     the enabled features
+     * @param Document $document     Input document.
+     * @param Features $features     The enabled features.
      * @param array    $optionalArgs {
-     *                               Optional
+     *                               Optional.
      *
      *     @type int $encodingType
      *          The encoding type used by the API to calculate offsets.

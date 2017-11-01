@@ -336,7 +336,7 @@ class VideoIntelligenceServiceGapicClient
      * ```
      *
      * @param array $optionalArgs {
-     *                            Optional
+     *                            Optional.
      *
      *     @type string $inputUri
      *          Input video location. Currently, only
