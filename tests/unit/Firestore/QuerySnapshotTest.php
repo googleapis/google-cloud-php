@@ -101,7 +101,7 @@ class QuerySnapshotTest extends \PHPUnit_Framework_TestCase
 
         $this->setCall($this->connection->reveal());
 
-        $this->snapshot->rows()->current();
+        iterator_to_array($this->snapshot->rows());
         $this->assertEquals(1, $this->snapshot->size());
     }
 

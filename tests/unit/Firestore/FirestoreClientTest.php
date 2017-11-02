@@ -22,6 +22,7 @@ use Google\Cloud\Core\Blob;
 use Google\Cloud\Core\GeoPoint;
 use Google\Cloud\Core\Timestamp;
 use Google\Cloud\Firestore\FieldPath;
+use Google\Cloud\Tests\GrpcTestTrait;
 use Google\Cloud\Firestore\WriteBatch;
 use Google\Cloud\Firestore\FirestoreClient;
 use Google\Cloud\Core\Iterator\ItemIterator;
@@ -36,6 +37,8 @@ use Google\Cloud\Firestore\Connection\ConnectionInterface;
  */
 class FirestoreClientTest extends \PHPUnit_Framework_TestCase
 {
+    use GrpcTestTrait;
+
     const PROJECT = 'example_project';
     const DATABASE = '(default)';
 
@@ -44,6 +47,8 @@ class FirestoreClientTest extends \PHPUnit_Framework_TestCase
 
     public function setUp()
     {
+        $this->checkAndSkipGrpcTests();
+
         $this->connection = $this->prophesize(ConnectionInterface::class);
         $this->client = \Google\Cloud\Dev\stub(FirestoreClient::class);
     }

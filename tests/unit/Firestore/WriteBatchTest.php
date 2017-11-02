@@ -277,7 +277,7 @@ class WriteBatchTest extends \PHPUnit_Framework_TestCase
 
         $this->batch->delete(self::DOCUMENT, [
             'precondition' => [
-                'updateTime' => new Timestamp(\DateTimeImmutable::createFromFormat('U', $ts['seconds']), $ts['nanos'])
+                'updateTime' => new Timestamp(\DateTimeImmutable::createFromFormat('U', (string) $ts['seconds']), $ts['nanos'])
             ]
         ]);
 
@@ -326,7 +326,7 @@ class WriteBatchTest extends \PHPUnit_Framework_TestCase
             'nanos' => $nanos
         ];
 
-        $tsObj = new Timestamp(\DateTimeImmutable::createFromFormat('U', $now), $nanos);
+        $tsObj = new Timestamp(\DateTimeImmutable::createFromFormat('U', (string) $now), $nanos);
 
         $this->connection->commit(Argument::any())
             ->shouldBeCalled()

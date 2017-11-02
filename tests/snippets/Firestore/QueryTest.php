@@ -19,6 +19,7 @@ namespace Google\Cloud\Tests\Snippets\Firestore;
 
 use Prophecy\Argument;
 use Google\Cloud\Firestore\Query;
+use Google\Cloud\Tests\GrpcTestTrait;
 use Google\Cloud\Firestore\ValueMapper;
 use Google\Cloud\Firestore\QuerySnapshot;
 use Google\Cloud\Dev\Snippet\Parser\Snippet;
@@ -32,6 +33,8 @@ use Google\Firestore\V1beta1\StructuredQuery_CompositeFilter_Operator;
  */
 class QueryTest extends SnippetTestCase
 {
+    use GrpcTestTrait;
+
     const NAME = 'projects/example_project/databases/(default)/documents/a/b';
 
     private $connection;
@@ -50,6 +53,8 @@ class QueryTest extends SnippetTestCase
 
     public function testClass()
     {
+        $this->checkAndSkipGrpcTests();
+
         $snippet = $this->snippetFromClass(Query::class);
         $res = $snippet->invoke('query');
         $this->assertInstanceOf(Query::class, $res->returnVal());

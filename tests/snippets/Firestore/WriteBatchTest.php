@@ -18,11 +18,12 @@
 namespace Google\Cloud\Tests\Snippets\Firestore;
 
 use Prophecy\Argument;
-use Google\Cloud\Firestore\WriteBatch;
-use Google\Cloud\Firestore\ValueMapper;
 use Google\Cloud\Dev\Snippet\Parser\Snippet;
 use Google\Cloud\Dev\Snippet\SnippetTestCase;
+use Google\Cloud\Firestore\WriteBatch;
+use Google\Cloud\Firestore\ValueMapper;
 use Google\Cloud\Firestore\Connection\ConnectionInterface;
+use Google\Cloud\Tests\GrpcTestTrait;
 
 /**
  * @group firestore
@@ -30,6 +31,8 @@ use Google\Cloud\Firestore\Connection\ConnectionInterface;
  */
 class WriteBatchTest extends SnippetTestCase
 {
+    use GrpcTestTrait;
+
     const DATABASE = 'projects/example_project/databases/(default)';
     const DOCUMENT = 'projects/example_project/databases/(default)/documents/a/b';
 
@@ -48,6 +51,8 @@ class WriteBatchTest extends SnippetTestCase
 
     public function testClass()
     {
+        $this->checkAndSkipGrpcTests();
+
         $snippet = $this->snippetFromClass(WriteBatch::class);
         $res = $snippet->invoke('batch');
         $this->assertInstanceOf(WriteBatch::class, $res->returnVal());

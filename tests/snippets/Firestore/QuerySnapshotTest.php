@@ -18,6 +18,7 @@
 namespace Google\Cloud\Tests\Snippets\Firestore;
 
 use Google\Cloud\Firestore\Query;
+use Google\Cloud\Tests\GrpcTestTrait;
 use Google\Cloud\Firestore\ValueMapper;
 use Google\Cloud\Firestore\QuerySnapshot;
 use Google\Cloud\Dev\Snippet\SnippetTestCase;
@@ -29,6 +30,8 @@ use Google\Cloud\Firestore\Connection\ConnectionInterface;
  */
 class QuerySnapshotTest extends SnippetTestCase
 {
+    use GrpcTestTrait;
+
     private $connection;
     private $snapshot;
 
@@ -45,6 +48,8 @@ class QuerySnapshotTest extends SnippetTestCase
 
     public function testClass()
     {
+        $this->checkAndSkipGrpcTests();
+
         $snippet = $this->snippetFromClass(QuerySnapshot::class);
         $res = $snippet->invoke('snapshot');
         $this->assertInstanceOf(QuerySnapshot::class, $res->returnVal());

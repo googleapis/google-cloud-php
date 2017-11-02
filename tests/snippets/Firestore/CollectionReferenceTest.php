@@ -19,6 +19,7 @@ namespace Google\Cloud\Tests\Snippets\Firestore;
 
 use Prophecy\Argument;
 use Google\Cloud\Firestore\Query;
+use Google\Cloud\Tests\GrpcTestTrait;
 use Google\Cloud\Firestore\ValueMapper;
 use Google\Cloud\Dev\Snippet\SnippetTestCase;
 use Google\Cloud\Firestore\DocumentReference;
@@ -31,6 +32,8 @@ use Google\Cloud\Firestore\Connection\ConnectionInterface;
  */
 class CollectionReferenceTest extends SnippetTestCase
 {
+    use GrpcTestTrait;
+
     const PROJECT = 'example_project';
     const DATABASE = '(default)';
     const NAME = 'projects/example_project/databases/(default)/documents/users';
@@ -50,6 +53,8 @@ class CollectionReferenceTest extends SnippetTestCase
 
     public function testClass()
     {
+        $this->checkAndSkipGrpcTests();
+
         $snippet = $this->snippetFromClass(CollectionReference::class);
         $res = $snippet->invoke('collection');
         $this->assertInstanceOf(CollectionReference::class, $res->returnVal());

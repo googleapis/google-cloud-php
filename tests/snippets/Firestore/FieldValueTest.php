@@ -18,6 +18,7 @@
 namespace Google\Cloud\Tests\Snippets\Firestore;
 
 use Prophecy\Argument;
+use Google\Cloud\Tests\GrpcTestTrait;
 use Google\Cloud\Firestore\FieldValue;
 use Google\Cloud\Firestore\FirestoreClient;
 use Google\Cloud\Dev\Snippet\SnippetTestCase;
@@ -30,11 +31,15 @@ use Google\Firestore\V1beta1\DocumentTransform_FieldTransform_ServerValue;
  */
 class FieldValueTest extends SnippetTestCase
 {
+    use GrpcTestTrait;
+
     private $connection;
     private $firestore;
 
     public function setUp()
     {
+        $this->checkAndSkipGrpcTests();
+
         $this->connection = $this->prophesize(ConnectionInterface::class);
         $this->firestore = \Google\Cloud\Dev\stub(FirestoreClient::class);
     }

@@ -153,7 +153,7 @@ class SnapshotTraitTest extends \PHPUnit_Framework_TestCase
         $this->impl->call('getSnapshot', [
             $this->connection->reveal(),
             self::NAME,
-            ['readTime' => new Timestamp(\DateTimeImmutable::createFromFormat('U', $timestamp['seconds']), $timestamp['nanos'])]
+            ['readTime' => new Timestamp(\DateTimeImmutable::createFromFormat('U', (string) $timestamp['seconds']), $timestamp['nanos'])]
         ]);
     }
 
@@ -219,7 +219,7 @@ class SnapshotTraitTest extends \PHPUnit_Framework_TestCase
             $input
         ]);
 
-        $timestamp = new Timestamp(\DateTimeImmutable::createFromFormat('U', $now), $ts['nanos']);
+        $timestamp = new Timestamp(\DateTimeImmutable::createFromFormat('U', (string) $now), $ts['nanos']);
 
         $expected = [
             'createTime' => $timestamp,

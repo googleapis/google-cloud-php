@@ -18,6 +18,7 @@
 namespace Google\Cloud\Tests\Snippets\Firestore;
 
 use Google\Cloud\Firestore\FieldPath;
+use Google\Cloud\Tests\GrpcTestTrait;
 use Google\Cloud\Dev\Snippet\SnippetTestCase;
 
 /**
@@ -26,8 +27,12 @@ use Google\Cloud\Dev\Snippet\SnippetTestCase;
  */
 class FieldPathTest extends SnippetTestCase
 {
+    use GrpcTestTrait;
+
     public function testClass()
     {
+        $this->checkAndSkipGrpcTests();
+
         $snippet = $this->snippetFromClass(FieldPath::class);
         $res = $snippet->invoke('path');
         $this->assertInstanceOf(FieldPath::class, $res->returnVal());

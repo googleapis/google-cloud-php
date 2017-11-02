@@ -19,6 +19,7 @@ namespace Google\Cloud\Tests\Snippets\Firestore;
 
 use Prophecy\Argument;
 use Google\Cloud\Firestore\Query;
+use Google\Cloud\Tests\GrpcTestTrait;
 use Google\Cloud\Firestore\WriteBatch;
 use Google\Cloud\Firestore\ValueMapper;
 use Google\Cloud\Firestore\Transaction;
@@ -36,6 +37,8 @@ use Google\Cloud\Firestore\Connection\ConnectionInterface;
  */
 class TransactionTest extends SnippetTestCase
 {
+    use GrpcTestTrait;
+
     const TRANSACTION = 'foobar';
     const DATABASE = 'projects/example_project/databases/(default)';
     const DOCUMENT = 'projects/example_project/databases/(default)/documents/a/b';
@@ -63,6 +66,8 @@ class TransactionTest extends SnippetTestCase
 
     public function testClass()
     {
+        $this->checkAndSkipGrpcTests();
+
         $this->connection->beginTransaction(Argument::any())
             ->shouldBeCalled()
             ->willReturn(['transaction' => self::TRANSACTION]);

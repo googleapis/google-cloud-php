@@ -294,7 +294,7 @@ $collectionReference = $firestore->collection('Users');
 $documentReference = $collectionReference->document($userId);
 $snapshot = $documentReference->snapshot();
 
-echo "Hello ". $snapshot['firstName'];
+echo "Hello " . $snapshot['firstName'];
 ```
 
 #### google/cloud-firestore

@@ -41,7 +41,7 @@ trait ValueMapperTrait
                 'nanos' => 0
             ];
 
-            $dt = \DateTimeImmutable::createFromFormat('U', $timestamp['seconds']);
+            $dt = \DateTimeImmutable::createFromFormat('U', (string) $timestamp['seconds']);
             $nanos = $timestamp['nanos'];
         } else {
             $nanoRegex = '/(?:\.(\d{1,9})Z)|(?:Z)/';

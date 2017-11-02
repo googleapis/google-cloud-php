@@ -102,7 +102,7 @@ class ValueMapperTest extends \PHPUnit_Framework_TestCase
                 ['timestampValue' => ['seconds' => $now, 'nanos' => 10]],
                 function ($val) use ($now) {
                     $this->assertInstanceOf(Timestamp::class, $val);
-                    $ts = new Timestamp(\DateTimeImmutable::createFromFormat('U', $now), 10);
+                    $ts = new Timestamp(\DateTimeImmutable::createFromFormat('U', (string) $now), 10);
                     $this->assertEquals($ts, $val);
                 }
             ], [
@@ -191,9 +191,9 @@ class ValueMapperTest extends \PHPUnit_Framework_TestCase
         $blobValue = 'hello world';
         $blob = new Blob($blobValue);
 
-        $now = time();
+        $now = (string) time();
         $nanos = 10;
-        $timestamp = new Timestamp(\DateTimeImmutable::createFromFormat('U', $now), $nanos);
+        $timestamp = new Timestamp(\DateTimeImmutable::createFromFormat('U', (string) $now), $nanos);
 
         $lat = 100.01;
         $lng = 100.25;

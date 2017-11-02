@@ -18,13 +18,14 @@
 namespace Google\Cloud\Tests\Snippets\Firestore;
 
 use Prophecy\Argument;
+use Google\Cloud\Core\Timestamp;
+use Google\Cloud\Tests\GrpcTestTrait;
 use Google\Cloud\Firestore\ValueMapper;
 use Google\Cloud\Firestore\FirestoreClient;
 use Google\Cloud\Firestore\DocumentSnapshot;
 use Google\Cloud\Dev\Snippet\SnippetTestCase;
 use Google\Cloud\Firestore\DocumentReference;
 use Google\Cloud\Firestore\Connection\ConnectionInterface;
-use Google\Cloud\Core\Timestamp;
 
 /**
  * @group firestore
@@ -32,6 +33,8 @@ use Google\Cloud\Core\Timestamp;
  */
 class DocumentSnapshotTest extends SnippetTestCase
 {
+    use GrpcTestTrait;
+
     const DOCUMENT = 'projects/example_project/databases/(default)/documents/a/b';
 
     private $snapshot;
@@ -53,6 +56,8 @@ class DocumentSnapshotTest extends SnippetTestCase
 
     public function testClass()
     {
+        $this->checkAndSkipGrpcTests();
+
         $connection = $this->prophesize(ConnectionInterface::class);
         $connection->batchGetDocuments(Argument::any())
             ->shouldBeCalled()
