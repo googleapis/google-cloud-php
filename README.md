@@ -117,7 +117,7 @@ $entity = $datastore->lookup($key);
 Google Cloud Datastore can be installed separately by requiring the `google/cloud-datastore` composer package:
 
 ```
-$ require google/cloud-datastore
+$ composer require google/cloud-datastore
 ```
 
 ## Google Cloud Storage (GA)
@@ -177,7 +177,7 @@ $contents = file_get_contents('gs://my_bucket/file_backup.txt');
 Google Cloud Storage can be installed separately by requiring the `google/cloud-storage` composer package:
 
 ```
-$ require google/cloud-storage
+$ composer require google/cloud-storage
 ```
 
 ## Google Cloud Translation (GA)
@@ -231,7 +231,7 @@ foreach ($languages as $language) {
 Google Cloud Translation can be installed separately by requiring the `google/cloud-translate` composer package:
 
 ```
-$ require google/cloud-translate
+$ composer require google/cloud-translate
 ```
 
 ## Google Stackdriver Logging (GA)
@@ -271,7 +271,7 @@ foreach ($entries as $entry) {
 Google Stackdriver Logging can be installed separately by requiring the `google/cloud-logging` composer package:
 
 ```
-$ require google/cloud-logging
+$ composer require google/cloud-logging
 ```
 
 ## Cloud Firestore (Beta)
@@ -302,7 +302,7 @@ echo "Hello ". $snapshot['firstName'];
 Cloud Firestore can be installed separately by requiring the `google/cloud-firestore` composer package:
 
 ```
-$ require google/cloud-firestore
+$ composer require google/cloud-firestore
 ```
 
 ## Cloud Spanner (Beta)
@@ -339,7 +339,7 @@ echo 'Hello ' . $user['firstName'];
 Cloud Spanner can be installed separately by requiring the `google/cloud-spanner` composer package:
 
 ```
-$ require google/cloud-spanner
+$ composer require google/cloud-spanner
 ```
 
 ## Google BigQuery (Beta)
@@ -380,7 +380,7 @@ foreach ($queryResults->rows() as $row) {
 Google BigQuery can be installed separately by requiring the `google/cloud-bigquery` composer package:
 
 ```
-$ require google/cloud-bigquery
+$ composer require google/cloud-bigquery
 ```
 
 ## Google Cloud Natural Language (Beta)
@@ -427,7 +427,7 @@ foreach ($tokens as $token) {
 Google Cloud Natural Language can be installed separately by requiring the `google/cloud-language` composer package:
 
 ```
-$ require google/cloud-language
+$ composer require google/cloud-language
 ```
 
 ## Google Cloud Pub/Sub (Beta)
@@ -474,7 +474,7 @@ foreach ($messages as $message) {
 Google Cloud Pub/Sub can be installed separately by requiring the `google/cloud-pubsub` composer package:
 
 ```
-$ require google/cloud-pubsub
+$ composer require google/cloud-pubsub
 ```
 
 ## Google Cloud Vision (Beta)
@@ -514,7 +514,7 @@ foreach ($annotation->faces() as $key => $face) {
 Google Cloud Vision can be installed separately by requiring the `google/cloud-vision` composer package:
 
 ```
-$ require google/cloud-vision
+$ composer require google/cloud-vision
 ```
 
 ## Google Cloud Speech (Alpha)
@@ -549,7 +549,7 @@ foreach ($results as $result) {
 Google Cloud Speech can be installed separately by requiring the `google/cloud-speech` composer package:
 
 ```
-$ require google/cloud-speech
+$ composer require google/cloud-speech
 ```
 
 ## Google Cloud Video Intelligence (Alpha)
@@ -591,7 +591,7 @@ if ($operationResponse->operationSucceeded()) {
 Cloud Video Intelligence can be installed separately by requiring the `google/cloud-videointelligence` composer package:
 
 ```
-$ require google/cloud-videointelligence
+$ composer require google/cloud-videointelligence
 ```
 
 ## Google Stackdriver Trace (Alpha)
@@ -632,7 +632,7 @@ foreach($traceClient->traces() as $trace) {
 Stackdriver Trace can be installed separately by requiring the `google/cloud-trace` composer package:
 
 ```
-$ require google/cloud-trace
+$ composer require google/cloud-trace
 ```
 
 ## Caching Access Tokens

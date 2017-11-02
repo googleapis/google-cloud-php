@@ -17,8 +17,7 @@
 
 namespace Google\Cloud\Datastore;
 
-use Google\Cloud\Core;
-use InvalidArgumentException;
+use Google\Cloud\Core\GeoPoint as CoreGeoPoint;
 
 /**
  * Represents a geographical point.
@@ -34,7 +33,7 @@ use InvalidArgumentException;
  *
  * @see https://cloud.google.com/datastore/reference/rest/Shared.Types/LatLng LatLng
  */
-class GeoPoint extends Core\GeoPoint
+class GeoPoint extends CoreGeoPoint
 {
 
 }

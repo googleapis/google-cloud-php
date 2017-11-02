@@ -23,7 +23,7 @@ use Psr\Http\Message\StreamInterface;
 /**
  * Represents a Blob value.
  *
- * Blobs can be used to store binary data various Google Cloud services.
+ * Blobs can be used to store binary across data various Google Cloud services.
  *
  * Example:
  * ```

@@ -217,7 +217,7 @@ class QueryTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException BadMethodCallException
+     * @expectedException InvalidArgumentException
      */
     public function testWhereInvalidOperator()
     {
@@ -273,7 +273,7 @@ class QueryTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException BadMethodCallException
+     * @expectedException InvalidArgumentException
      */
     public function testOrderByInvalidOperator()
     {

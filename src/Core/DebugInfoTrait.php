@@ -24,6 +24,7 @@ trait DebugInfoTrait
 {
     /**
      * @access private
+     * @return array
      */
     public function __debugInfo()
     {

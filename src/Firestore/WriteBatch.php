@@ -25,7 +25,7 @@ use Google\Cloud\Firestore\Connection\ConnectionInterface;
 use Google\Firestore\V1beta1\DocumentTransform_FieldTransform_ServerValue;
 
 /**
- * Enqueue and write multiple mutations to Cloud Firestore
+ * Enqueue and write multiple mutations to Cloud Firestore.
  *
  * This class may be used directly for multiple non-transactional writes. To
  * run changes in a transaction (with automatic retry/rollback on failure),
@@ -107,6 +107,7 @@ class WriteBatch
      * @param string $documentName The document to create.
      * @param array $fields An array containing field names paired with their value.
      *        Accepts a nested array, or a simple array of field paths.
+     * @param array $options Configuration options
      * @return WriteBatch
      */
     public function create($documentName, array $fields, array $options = [])
@@ -131,7 +132,7 @@ class WriteBatch
      * @param string $documentName The document to update.
      * @param array $fields An array containing fields, where keys are the field
      *        names, and values are field values. Nested arrays are allowed.
-     *        Note that unlike {@see Google\Cloud\Firestore\WriteBatch::update()},
+     *        Note that unlike {@see Google\Cloud\Firestore\WriteBatch::updatePaths()},
      *        field paths are NOT supported by this method.
      * @param array $options {
      *     Configuration Options
@@ -261,6 +262,7 @@ class WriteBatch
      * @param array[] $data A list of arrays of form `[FieldPath|string $path, mixed $value]`.
      * @param array $options Configuration options
      * @return WriteBatch
+     * @throws \InvalidArgumentException If data is given in an invalid format.
      */
     public function updatePaths($documentName, array $data, array $options = [])
     {
@@ -304,42 +306,6 @@ class WriteBatch
     public function delete($documentName, array $options = [])
     {
         $this->writes[] = $this->createDatabaseWrite(self::TYPE_DELETE, $documentName, $options);
-
-        return $this;
-    }
-
-    /**
-     * Enqueue a Transform operation.
-     *
-     * Note that UPDATE cannot follow TRANSFORM, so once any transforms are
-     * enqueued (either by this method, or by using the `FirestoreClient::SERVER_TIMESTAMP`
-     * sentinel value), any subsequent updates will fail.
-     *
-     * Example:
-     * ```
-     * $batch->transform($documentName, [
-     *     [
-     *         'fieldPath' => 'lastLoginTime',
-     *         'setToServerValue' => WriteBatch::REQUEST_TIME
-     *     ]
-     * ]);
-     * ```
-     *
-     * @param string $documentName The document to apply the transformation to.
-     * @param array[] $transforms {
-     *     A list of Document transformations.
-     *
-     *     @param string $fieldPath The path of the field.
-     *     @param string $setToServerValue Sets the field to the given server value.
-     * }
-     * @param array $options Configuration options.
-     * @return WriteBatch
-     */
-    private function transform($documentName, array $transforms = [], array $options = [])
-    {
-        $this->writes[] = $this->createDatabaseWrite(self::TYPE_TRANSFORM, $documentName, [
-            'fieldTransforms' => $transforms
-        ] + $options);
 
         return $this;
     }
@@ -410,6 +376,32 @@ class WriteBatch
             'database' => $this->database,
             'transaction' => $this->transaction
         ] + $options);
+    }
+
+    /**
+     * Enqueue a Transform operation.
+     *
+     * Note that UPDATE cannot follow TRANSFORM, so once any transforms are
+     * enqueued (either by this method, or by using the `FirestoreClient::SERVER_TIMESTAMP`
+     * sentinel value), any subsequent updates will fail.
+     *
+     * @param string $documentName The document to apply the transformation to.
+     * @param array[] $transforms {
+     *     A list of Document transformations.
+     *
+     *     @param string $fieldPath The path of the field.
+     *     @param string $setToServerValue Sets the field to the given server value.
+     * }
+     * @param array $options Configuration options.
+     * @return WriteBatch
+     */
+    private function transform($documentName, array $transforms = [], array $options = [])
+    {
+        $this->writes[] = $this->createDatabaseWrite(self::TYPE_TRANSFORM, $documentName, [
+            'fieldTransforms' => $transforms
+        ] + $options);
+
+        return $this;
     }
 
     /**
@@ -504,10 +496,12 @@ class WriteBatch
     {
         switch ($type) {
             case self::TYPE_UPDATE:
-                return ['update' => [
-                    'name' => $name,
-                    'fields' => $this->pluck('fields', $options)
-                ]];
+                return [
+                    'update' => [
+                        'name' => $name,
+                        'fields' => $this->pluck('fields', $options)
+                    ]
+                ];
                 break;
 
             case self::TYPE_DELETE:
@@ -515,10 +509,12 @@ class WriteBatch
                 break;
 
             case self::TYPE_TRANSFORM:
-                return ['transform' => [
-                    'document' => $name,
-                    'fieldTransforms' => $this->pluck('fieldTransforms', $options)
-                ]];
+                return [
+                    'transform' => [
+                        'document' => $name,
+                        'fieldTransforms' => $this->pluck('fieldTransforms', $options)
+                    ]
+                ];
                 break;
 
             // @codeCoverageIgnoreStart

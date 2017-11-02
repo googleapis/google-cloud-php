@@ -47,7 +47,7 @@ trait SnapshotTrait
      * }
      * @return DocumentSnapshot
      * @throws NotFoundException If the document does not exist, and
-     *         `$options['allowNonExistence'] is `false`.
+     *         `$options.allowNonExistence` is `false`.
      */
     private function createSnapshot(
         ConnectionInterface $connection,
@@ -111,14 +111,17 @@ trait SnapshotTrait
      * @param string $name The document name.
      * @param array $options Configuration options.
      * @return array
+     * @throws \InvalidArgumentException if an invalid `$options.readTime` is specified.
+     * @throws NotFoundException If the document does not exist.
      */
     private function getSnapshot(ConnectionInterface $connection, $name, array $options = [])
     {
         if (isset($options['readTime'])) {
             if (!($options['readTime'] instanceof Timestamp)) {
-                throw new \InvalidArgumentException(
-                    '`$options.readTime` must be an instance of Google\\Cloud\\Core\\Timestamp'
-                );
+                throw new \InvalidArgumentException(sprintf(
+                    '`$options.readTime` must be an instance of %s',
+                    Timestamp::class
+                ));
             }
 
             $options['readTime'] = $options['readTime']->formatForApi();
@@ -130,14 +133,17 @@ trait SnapshotTrait
         ] + $options)->current();
 
         if (!isset($snapshot['found'])) {
-            throw new NotFoundException('');
+            throw new NotFoundException(sprintf(
+                'Document %s does not exist',
+                $name
+            ));
         }
 
         return $snapshot['found'];
     }
 
     /**
-     * Convert snapshot timestamps to google cloud php types.
+     * Convert snapshot timestamps to Google Cloud PHP types.
      *
      * @param ValueMapper $valueMapper A Firestore Value Mapper
      * @param array $data The snapshot data.

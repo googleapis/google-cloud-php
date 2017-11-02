@@ -23,7 +23,7 @@ use Google\Cloud\Core\GeoPoint;
 use Google\Cloud\Core\ArrayTrait;
 use Google\Cloud\Core\ClientTrait;
 use Google\Cloud\Core\ValidateTrait;
-use Google\Cloud\Firestore\Connection\Gapic;
+use Google\Cloud\Firestore\Connection\Grpc;
 use Google\Cloud\Core\Iterator\ItemIterator;
 use Google\Cloud\Core\Iterator\PageIterator;
 use Google\Cloud\Core\Exception\AbortedException;
@@ -102,7 +102,7 @@ class FirestoreClient
             'scopes' => [self::FULL_CONTROL_SCOPE]
         ];
 
-        $this->connection = new Gapic($this->configureAuthentication($config));
+        $this->connection = new Grpc($this->configureAuthentication($config));
         $this->valueMapper = new ValueMapper(
             $this->connection,
             $config['returnInt64AsObject']
@@ -181,7 +181,7 @@ class FirestoreClient
      *     @type string $pageToken A previously-returned page token used to
      *           resume the loading of results from a specific point.
      * }
-     * @return ItemIterator<Collection>
+     * @return ItemIterator<CollectionReference>
      */
     public function collections(array $options = [])
     {
@@ -213,7 +213,7 @@ class FirestoreClient
      *
      * @param string $name The document name or a path, relative to the database.
      * @return DocumentReference
-     * @throws InvalidArgumentException If the given path is not a valid document path.
+     * @throws \InvalidArgumentException If the given path is not a valid document path.
      */
     public function document($name)
     {
@@ -228,11 +228,7 @@ class FirestoreClient
         return new DocumentReference(
             $this->connection,
             $this->valueMapper,
-            $this->collection($this->pathId(
-                $this->parentPath(
-                    $name
-                )
-            )),
+            $this->collection($this->pathId($this->parentPath($name))),
             $name
         );
     }
@@ -290,7 +286,8 @@ class FirestoreClient
             'documents' => $paths,
         ] + $options);
 
-        $res = [];
+        $pathKeys = array_flip($paths);
+        $out = [];
         foreach ($documents as $document) {
             $exists = isset($document['found']);
             $data = $exists
@@ -301,17 +298,18 @@ class FirestoreClient
                 ? $document['found']['name']
                 : $document['missing'];
 
-            $res[$name] = $this->createSnapshotWithData(
+            $snap = $this->createSnapshotWithData(
                 $this->valueMapper,
                 $this->document($name),
                 $data,
                 $exists
             );
+
+            $key = $pathKeys[$name];
+            $out[$key] = $snap;
         }
 
-        foreach ($paths as $path) {
-            yield $res[$path];
-        }
+        return $out;
     }
 
     /**
@@ -329,6 +327,8 @@ class FirestoreClient
      *
      * Example:
      * ```
+     * use Google\Cloud\Firestore\Transaction;
+     *
      * $transferAmount = 500.00;
      * $from = $firestore->document('users/john');
      * $to = $firestore->document('users/dave');
@@ -381,8 +381,11 @@ class FirestoreClient
             AbortedException::class
         ];
 
-        $delayFn = function() {
-            return ['seconds' => 0, 'nanos' => 0];
+        $delayFn = function () {
+            return [
+                'seconds' => 0,
+                'nanos' => 0
+            ];
         };
 
         $retryFn = function (\Exception $e) use ($retryableErrors) {
@@ -401,7 +404,10 @@ class FirestoreClient
         return $retry->execute(function (
             callable $callable,
             array $options
-        ) use (&$transactionId, $retryableErrors) {
+        ) use (
+            &$transactionId,
+            $retryableErrors
+        ) {
             $database = $this->databaseName($this->projectId, $this->database);
 
             $beginTransaction = $this->connection->beginTransaction(array_filter([

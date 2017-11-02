@@ -22,14 +22,16 @@ use InvalidArgumentException;
 /**
  * Represents a geographical point.
  *
+ * Unless specified otherwise, this must conform to the
+ * [WGS84](http://www.unoosa.org/pdf/icg/2012/template/WGS_84.pdf) standard.
+ * Values must be within normalized ranges.
+ *
  * Example:
  * ```
  * use Google\Cloud\Core\GeoPoint;
  *
  * $point = new GeoPoint(37.423147, -122.085015);
  * ```
- *
- * @see https://cloud.google.com/datastore/reference/rest/Shared.Types/LatLng LatLng
  */
 class GeoPoint
 {

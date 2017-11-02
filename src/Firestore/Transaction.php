@@ -185,7 +185,7 @@ class Transaction
      * @param DocumentReference $document The document to modify or replace.
      * @param array $fields An array containing fields, where keys are the field
      *        names, and values are field values. Nested arrays are allowed.
-     *        Note that unlike {@see Google\Cloud\Firestore\Document::update()},
+     *        Note that unlike {@see Google\Cloud\Firestore\Transaction::updatePaths()},
      *        field paths are NOT supported by this method.
      * @param array $options {
      *     Configuration options.

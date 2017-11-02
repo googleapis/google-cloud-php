@@ -151,14 +151,14 @@ class DocumentReference
      *        Accepts a nested array, or a simple array of field paths.
      * @param array $options Configuration Options.
      * @return array [WriteResult](https://cloud.google.com/firestore/docs/reference/rpc/google.firestore.v1beta1#google.firestore.v1beta1.WriteResult)
-     * @throws ConflictException If the document already exists.
      * @codingStandardsIgnoreEnd
      */
     public function create(array $fields = [], array $options = [])
     {
-        return $this->writeResult($this->batchFactory()
-            ->create($this->name, $fields, $options)
-            ->commit($options)
+        return $this->writeResult(
+            $this->batchFactory()
+                ->create($this->name, $fields, $options)
+                ->commit($options)
         );
     }
 
@@ -179,7 +179,7 @@ class DocumentReference
      *
      * @param array $fields An array containing fields, where keys are the field
      *        names, and values are field values. Nested arrays are allowed.
-     *        Note that unlike {@see Google\Cloud\Firestore\Document::update()},
+     *        Note that unlike {@see Google\Cloud\Firestore\DocumentReference::updatePaths()},
      *        field paths are NOT supported by this method.
      * @param array $options {
      *     Configuration Options
@@ -194,9 +194,10 @@ class DocumentReference
      */
     public function set(array $fields, array $options = [])
     {
-        return $this->writeResult($this->batchFactory()
-            ->set($this->name, $fields, $options)
-            ->commit($options)
+        return $this->writeResult(
+            $this->batchFactory()
+                ->set($this->name, $fields, $options)
+                ->commit($options)
         );
     }
 
@@ -244,9 +245,10 @@ class DocumentReference
      */
     public function update(array $fields, array $options = [])
     {
-        return $this->writeResult($this->batchFactory()
-            ->update($this->name, $fields, $options)
-            ->commit($options)
+        return $this->writeResult(
+            $this->batchFactory()
+                ->update($this->name, $fields, $options)
+                ->commit($options)
         );
     }
 
@@ -295,9 +297,10 @@ class DocumentReference
      */
     public function updatePaths(array $data, array $options = [])
     {
-        return $this->writeResult($this->batchFactory()
-            ->updatePaths($this->name, $data, $options)
-            ->commit($options)
+        return $this->writeResult(
+            $this->batchFactory()
+                ->updatePaths($this->name, $data, $options)
+                ->commit($options)
         );
     }
 
@@ -316,9 +319,10 @@ class DocumentReference
      */
     public function delete(array $options = [])
     {
-        return $this->writeResult($this->batchFactory()
-            ->delete($this->name, $options)
-            ->commit($options)
+        return $this->writeResult(
+            $this->batchFactory()
+                ->delete($this->name, $options)
+                ->commit($options)
         );
     }
 
@@ -367,7 +371,7 @@ class DocumentReference
      * ```
      *
      * @param array $options Configuration options.
-     * @return ItemIterator<Collection>
+     * @return ItemIterator<CollectionReference>
      */
     public function collections(array $options = [])
     {

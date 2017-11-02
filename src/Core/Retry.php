@@ -100,7 +100,7 @@ class Retry
                     throw $exception;
                 }
             }
-        } while($continue);
+        } while ($continue);
     }
 
     /**

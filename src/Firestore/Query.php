@@ -52,7 +52,7 @@ class Query
     const OP_GREATER_THAN_OR_EQUAL = StructuredQuery_FieldFilter_Operator::GREATER_THAN_OR_EQUAL;
     const OP_EQUAL = StructuredQuery_FieldFilter_Operator::EQUAL;
 
-    CONST OP_NAN = StructuredQuery_UnaryFilter_Operator::IS_NAN;
+    const OP_NAN = StructuredQuery_UnaryFilter_Operator::IS_NAN;
     const OP_NULL = StructuredQuery_UnaryFilter_Operator::IS_NULL;
 
     const DIR_ASCENDING = StructuredQuery_Direction::ASCENDING;
@@ -109,7 +109,9 @@ class Query
     /**
      * @param ConnectionInterface $connection A Connection to Cloud Firestore.
      * @param ValueMapper $valueMapper A Firestore Value Mapper.
+     * @param string $parent The parent of the query.
      * @param array $query The Query object
+     * @throws \InvalidArgumentException If the query does not provide a valid selector.
      */
     public function __construct(
         ConnectionInterface $connection,
@@ -142,18 +144,19 @@ class Query
      * $result = $query->documents();
      * ```
      *
-     * @param array $options Configuration options.
+     * @param array $options {
+     *     Configuration options.
+     *
+     *     @type int $maxRetries The maximum number of times to retry a query.
+     *           **Defaults to** `5`.
+     * }
      * @return QuerySnapshot
      */
     public function documents(array $options = [])
     {
-        $options['maxRetries'] = (isset($options['maxRetries']))
-            ? $options['maxRetries']
-            : FirestoreClient::MAX_RETRIES;
+        $maxRetries = $this->pluck('maxRetries', $options, false) ?: FirestoreClient::MAX_RETRIES;
 
         $call = function () use ($options) {
-            unset($options['maxRetries']);
-
             return $this->connection->runQuery([
                 'parent' => $this->parent,
                 'structuredQuery' => $this->query,
@@ -161,7 +164,7 @@ class Query
             ] + $options);
         };
 
-        return new QuerySnapshot($this->connection, $this->valueMapper, $this, $call, $options['maxRetries']);
+        return new QuerySnapshot($this->connection, $this->valueMapper, $this, $call, $maxRetries);
     }
 
     /**
@@ -221,6 +224,7 @@ class Query
      * @param string $operator The operator to filter by.
      * @param mixed $value The value to compare to.
      * @return Query A new instance of Query with the given changes applied.
+     * @throws \InvalidArgumentException If an invalid operator or value is encountered.
      */
     public function where($fieldPath, $operator, $value)
     {
@@ -231,7 +235,7 @@ class Query
             : $operator;
 
         if (!in_array($operator, $this->allowedOperators)) {
-            throw new \BadMethodCallException(sprintf(
+            throw new \InvalidArgumentException(sprintf(
                 'Operator %s is not a valid operator',
                 $operator
             ));
@@ -291,6 +295,7 @@ class Query
      * @param string|FieldPath $fieldPath The field to order by.
      * @param string $direction The direction to order in. **Defaults to** `ASC`.
      * @return Query A new instance of Query with the given changes applied.
+     * @throws \InvalidArgumentException If an invalid direction is given.
      */
     public function orderBy($fieldPath, $direction = self::DIR_ASCENDING)
     {
@@ -299,7 +304,7 @@ class Query
             : $direction;
 
         if (!in_array($direction, $this->allowedDirections)) {
-            throw new \BadMethodCallException(sprintf(
+            throw new \InvalidArgumentException(sprintf(
                 'Direction %s is not a valid direction',
                 $direction
             ));
@@ -517,7 +522,6 @@ class Query
      */
     private function arrayMergeRecursive(array $array1, array $array2)
     {
-
         foreach ($array2 as $key => $value) {
             if (array_key_exists($key, $array1) && is_array($array1[$key]) && is_array($value)) {
                 $array1[$key] = ($this->isAssoc($array1[$key]) && $this->isAssoc($value))

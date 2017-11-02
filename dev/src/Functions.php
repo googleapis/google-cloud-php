@@ -36,10 +36,6 @@ function stub($extends, array $args = [], array $props = [])
  */
 function impl($trait, array $props = [])
 {
-    if (empty($props)) {
-        $props = [];
-    }
-
     $properties = [];
     foreach ($props as $prop) {
         $properties[] = 'private $'. $prop .';';

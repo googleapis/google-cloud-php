@@ -17,7 +17,7 @@
 
 namespace Google\Cloud\Datastore;
 
-use Google\Cloud\Core;
+use Google\Cloud\Core\Blob as CoreBlob;
 use GuzzleHttp\Psr7;
 use Psr\Http\Message\StreamInterface;
 
@@ -41,7 +41,7 @@ use Psr\Http\Message\StreamInterface;
  * echo (string) $blob;
  * ```
  */
-class Blob extends Core\Blob
+class Blob extends CoreBlob
 {
 
 }

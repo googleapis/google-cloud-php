@@ -189,9 +189,9 @@ class DocumentSnapshot implements \ArrayAccess
      * Get a field by field path.
      *
      * A field path is a string containing the path to a specific field, at the
-     * top level or nested, delimited by `.`. For instance, the structured field
-     * `{ "foo" : { "bar" : "hello" }}` would be represented by the field path
-     * `foo.bar`.
+     * top level or nested, delimited by `.`. For instance, the value `hello` in
+     * the structured field `{ "foo" : { "bar" : "hello" }}` would be accessible
+     * using a field path of `foo.bar`.
      *
      * Example:
      * ```

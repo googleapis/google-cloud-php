@@ -127,13 +127,10 @@ class FirestoreClientTest extends SnippetTestCase
 
         $snippet = $this->snippetFromMethod(FirestoreClient::class, 'documents');
         $snippet->addLocal('firestore', $this->client);
-        $res = $snippet->invoke('documents');
+        $res = $snippet->invoke('documents')->returnVal();
 
-        $this->assertInstanceOf(\Generator::class, $res->returnVal());
-
-        $current = $res->returnVal()->current();
-        $this->assertInstanceOf(DocumentSnapshot::class, $current);
-        $this->assertEquals('john', $current->id());
+        $this->assertInstanceOf(DocumentSnapshot::class, $res[0]);
+        $this->assertEquals('john', $res[0]->id());
     }
 
     public function testDocumentsDoesntExist()
@@ -205,7 +202,6 @@ class FirestoreClientTest extends SnippetTestCase
 
         $snippet = $this->snippetFromMethod(FirestoreClient::class, 'runTransaction');
         $snippet->addLocal('firestore', $this->client);
-        $snippet->addUse(Transaction::class);
 
         $snippet->invoke();
     }

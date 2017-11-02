@@ -166,6 +166,7 @@ class ValueMapper
      * @param FieldPath[] $paths The field paths.
      * @param array $values The field values.
      * @return array
+     * @todo less recursion
      */
     public function buildDocumentFromPathsAndValues(array $paths, array $values)
     {
@@ -253,6 +254,7 @@ class ValueMapper
      * @param string $type The Firestore value type.
      * @param mixed $value The firestore value.
      * @return mixed
+     * @throws \RuntimeException if an unknown value is encountered.
      */
     private function decodeValue($type, $value)
     {
@@ -328,6 +330,7 @@ class ValueMapper
      *
      * @param mixed $value
      * @return array [Value](https://firebase.google.com/docs/firestore/reference/rpc/google.firestore.v1beta1#value)
+     * @throws \RuntimeException If an unknown type is encountered.
      */
     public function encodeValue($value)
     {
@@ -351,7 +354,7 @@ class ValueMapper
                 break;
 
             case 'resource':
-                return ['bytesValue' => base64_encode(stream_get_contents($value))];
+                return ['bytesValue' => stream_get_contents($value)];
                 break;
 
             case 'object':
@@ -400,10 +403,12 @@ class ValueMapper
         }
 
         if ($value instanceof Timestamp) {
-            return ['timestampValue' => [
-                'seconds' => $value->get()->format('U'),
-                'nanos' => $value->nanoSeconds()
-            ]];
+            return [
+                'timestampValue' => [
+                    'seconds' => $value->get()->format('U'),
+                    'nanos' => $value->nanoSeconds()
+                ]
+            ];
         }
 
         if ($value instanceof GeoPoint) {

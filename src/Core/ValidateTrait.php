@@ -32,7 +32,7 @@ trait ValidateTrait
      * @param callable [optional] An additional check for each element of $input.
      *        This will be run count($input) times, so use with care.
      * @return void
-     * @throws InvalidArgumentException
+     * @throws \InvalidArgumentException
      */
     private function validateBatch(
         array $input,
@@ -59,7 +59,7 @@ trait ValidateTrait
      * @param array $input The input to validate.
      * @param array $keys A list of keys to verify in $input.
      * @return void
-     * @throws InvalidArgumentException
+     * @throws \InvalidArgumentException
      */
     private function arrayHasKeys(array $input, array $keys)
     {

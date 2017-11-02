@@ -26,7 +26,7 @@ namespace Google\Cloud\Firestore;
 abstract class FieldValue
 {
     /**
-     * Delete a field from Cloud Firestore.
+     * Denotes a field which should be deleted from a Firestore Document.
      *
      * This special value, when used as a field value on update calls, will
      * cause the field to be entirely deleted from Cloud Firestore.
@@ -49,7 +49,7 @@ abstract class FieldValue
     }
 
     /**
-     * Set a field to the current server timestamp.
+     * Denotes a field which should be set to the server timestamp.
      *
      * This special value, when used as a field value on create, update or set
      * calls, will cause the field value to be set to the current server

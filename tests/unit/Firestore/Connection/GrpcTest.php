@@ -26,7 +26,7 @@ use Google\Firestore\V1beta1\Document;
 use Google\Cloud\Core\GrpcRequestWrapper;
 use Google\Firestore\V1beta1\DocumentMask;
 use Google\Firestore\V1beta1\Precondition;
-use Google\Cloud\Firestore\Connection\Gapic;
+use Google\Cloud\Firestore\Connection\Grpc;
 use Google\Firestore\V1beta1\StructuredQuery;
 use Google\Firestore\V1beta1\TransactionOptions;
 use Google\Firestore\V1beta1\TransactionOptions_ReadWrite;
@@ -34,9 +34,9 @@ use Google\Firestore\V1beta1\StructuredQuery_CollectionSelector;
 
 /**
  * @group firestore
- * @group firestore-gapic
+ * @group firestore-grpc
  */
-class GapicTest extends \PHPUnit_Framework_TestCase
+class GrpcTest extends \PHPUnit_Framework_TestCase
 {
     use GrpcTestTrait;
     use GrpcTrait;
@@ -189,7 +189,7 @@ class GapicTest extends \PHPUnit_Framework_TestCase
             Argument::type('array')
         )->willReturn($this->successMessage);
 
-        $connection = new Gapic();
+        $connection = new Grpc();
         $connection->setRequestWrapper($this->requestWrapper->reveal());
 
         $this->assertEquals($this->successMessage, $connection->$method($args));

@@ -60,11 +60,6 @@ class CollectionReference extends Query
     private $name;
 
     /**
-     * @var string|null
-     */
-    private $transaction;
-
-    /**
      * @param ConnectionInterface $connection A Connection to Cloud Firestore.
      * @param ValueMapper $valueMapper A Firestore Value Mapper.
      * @param string $name The absolute name of the collection.
@@ -72,13 +67,11 @@ class CollectionReference extends Query
     public function __construct(
         ConnectionInterface $connection,
         ValueMapper $valueMapper,
-        $name,
-        $transaction = null
+        $name
     ) {
         $this->connection = $connection;
         $this->valueMapper = $valueMapper;
         $this->name = $name;
-        $this->transaction = $transaction;
 
         parent::__construct(
             $connection,
@@ -151,9 +144,10 @@ class CollectionReference extends Query
     }
 
     /**
-     * Lazily generate a new document with a random name.
+     * Get a document reference with a randomly generated document ID.
      *
-     * This method does NOT insert the document until you call {@see Google\Cloud\Firestore\Document::create()}.
+     * This method does NOT insert the document until you call
+     * {@see Google\Cloud\Firestore\DocumentReference::create()}.
      *
      * Example:
      * ```
@@ -172,8 +166,8 @@ class CollectionReference extends Query
      *
      * This method immediately inserts the document. If you wish for lazy
      * creation of a Document instance, refer to
-     * {@see Google\Cloud\Firestore\Collection::document()} or
-     * {@see Google\Cloud\Firestore\Collection::newDocument()}.
+     * {@see Google\Cloud\Firestore\CollectionReference::document()} or
+     * {@see Google\Cloud\Firestore\CollectionReference::newDocument()}.
      *
      * Example:
      * ```

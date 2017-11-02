@@ -232,7 +232,7 @@ class ValueMapperTest extends \PHPUnit_Framework_TestCase
             ], [
                 $stream,
                 function ($val) {
-                    $this->assertEquals(base64_encode('hello'), $val['bytesValue']);
+                    $this->assertEquals('hello', $val['bytesValue']);
                 }
             ], [
                 null,

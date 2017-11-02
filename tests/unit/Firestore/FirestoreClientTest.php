@@ -190,9 +190,8 @@ class FirestoreClientTest extends \PHPUnit_Framework_TestCase
         $this->client->___setProperty('connection', $this->connection->reveal());
 
         $res = $this->client->documents($input);
-        $arr = iterator_to_array($res);
 
-        $this->assertEquals('world', $arr[0]['hello']);
+        $this->assertEquals('world', $res[0]['hello']);
     }
 
     public function documents()
@@ -269,10 +268,9 @@ class FirestoreClientTest extends \PHPUnit_Framework_TestCase
         $this->client->___setProperty('connection', $this->connection->reveal());
 
         $res = $this->client->documents($names);
-        $arr = iterator_to_array($res);
-        $this->assertEquals($names[0], $arr[0]->name());
-        $this->assertEquals($names[1], $arr[1]->name());
-        $this->assertEquals($names[2], $arr[2]->name());
+        $this->assertEquals($names[0], $res[0]->name());
+        $this->assertEquals($names[1], $res[1]->name());
+        $this->assertEquals($names[2], $res[2]->name());
     }
 
     public function testRunTransaction()
