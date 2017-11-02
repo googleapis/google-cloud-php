@@ -18,11 +18,14 @@
 namespace Google\Cloud\Tests\Snippets\Firestore;
 
 use Prophecy\Argument;
+use Google\Cloud\Core\Blob;
+use Google\Cloud\Core\GeoPoint;
+use Google\Cloud\Firestore\FieldPath;
 use Google\Cloud\Firestore\WriteBatch;
 use Google\Cloud\Firestore\Transaction;
 use Google\Cloud\Firestore\FirestoreClient;
-use Google\Cloud\Core\Iterator\ItemIterator;
 use Google\Cloud\Firestore\DocumentSnapshot;
+use Google\Cloud\Core\Iterator\ItemIterator;
 use Google\Cloud\Dev\Snippet\SnippetTestCase;
 use Google\Cloud\Firestore\DocumentReference;
 use Google\Cloud\Firestore\CollectionReference;
@@ -205,5 +208,38 @@ class FirestoreClientTest extends SnippetTestCase
         $snippet->addUse(Transaction::class);
 
         $snippet->invoke();
+    }
+
+    public function testGeoPoint()
+    {
+        $snippet = $this->snippetFromMethod(FirestoreClient::class, 'geoPoint');
+        $snippet->addLocal('firestore', $this->client);
+        $res = $snippet->invoke('geoPoint');
+        $this->assertInstanceOf(GeoPoint::class, $res->returnVal());
+    }
+
+    public function testBlob()
+    {
+        $snippet = $this->snippetFromMethod(FirestoreClient::class, 'blob');
+        $snippet->addLocal('firestore', $this->client);
+        $res = $snippet->invoke('blob');
+        $this->assertInstanceOf(Blob::class, $res->returnVal());
+    }
+
+    public function testBlobBinaryData()
+    {
+        $snippet = $this->snippetFromMethod(FirestoreClient::class, 'blob', 1);
+        $snippet->addLocal('firestore', $this->client);
+        $snippet->replace("__DIR__ .'/family-photo.jpg'", "'php://temp'");
+        $res = $snippet->invoke('blob');
+        $this->assertInstanceOf(Blob::class, $res->returnVal());
+    }
+
+    public function testFieldPath()
+    {
+        $snippet = $this->snippetFromMethod(FirestoreClient::class, 'fieldPath');
+        $snippet->addLocal('firestore', $this->client);
+        $res = $snippet->invoke('path');
+        $this->assertInstanceOf(FieldPath::class, $res->returnVal());
     }
 }

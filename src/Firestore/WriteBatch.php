@@ -236,7 +236,8 @@ class WriteBatch
      * {@see Google\Cloud\Firestore\FieldPath}. Nested arrays are not allowed.
      *
      * Example:
-     * $batch->updatePaths([
+     * ```
+     * $batch->updatePaths($documentName, [
      *     ['path' => 'name', 'value' => 'John'],
      *     ['path' => 'country', 'value' => 'USA'],
      *     ['path' => 'cryptoCurrencies.bitcoin', 'value' => 0.5],
@@ -251,7 +252,7 @@ class WriteBatch
      *
      * use Google\Cloud\Firestore\FieldPath;
      *
-     * $batch->updatePaths([
+     * $batch->updatePaths($documentName, [
      *     ['path' => new FieldPath(['cryptoCurrencies', 'big$$$coin']), 'value' => 5.51]
      * ]);
      * ```

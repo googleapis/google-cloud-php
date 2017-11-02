@@ -87,6 +87,72 @@ class WriteBatchTest extends SnippetTestCase
         ]);
     }
 
+    public function testUpdatePaths()
+    {
+        $snippet = $this->snippetFromMethod(WriteBatch::class, 'updatePaths');
+        $this->commitAndAssert($snippet, [
+            [
+                'updateMask' => [
+                    'name',
+                    'country',
+                    'cryptoCurrencies.bitcoin',
+                    'cryptoCurrencies.ethereum',
+                    'cryptoCurrencies.litecoin'
+                ],
+                'currentDocument' => ['exists' => true],
+                'update' => [
+                    'name' => self::DOCUMENT,
+                    'fields' => [
+                        'name' => ['stringValue' => 'John'],
+                        'country' => ['stringValue' => 'USA'],
+                        'cryptoCurrencies' => [
+                            'mapValue' => [
+                                'fields' => [
+                                    'bitcoin' => [
+                                        'doubleValue' => 0.5,
+                                    ],
+                                    'ethereum' => [
+                                        'integerValue' => 10
+                                    ],
+                                    'litecoin' => [
+                                        'doubleValue' => 5.51
+                                    ]
+                                ]
+                            ]
+                        ]
+                    ]
+                ]
+            ]
+        ]);
+    }
+
+    public function testUpdatePathsSpecialChars()
+    {
+        $snippet = $this->snippetFromMethod(WriteBatch::class, 'updatePaths', 1);
+        $this->commitAndAssert($snippet, [
+            [
+                'updateMask' => [
+                    'cryptoCurrencies.`big$$$coin`'
+                ],
+                'currentDocument' => ['exists' => true],
+                'update' => [
+                    'name' => self::DOCUMENT,
+                    'fields' => [
+                        'cryptoCurrencies' => [
+                            'mapValue' => [
+                                'fields' => [
+                                    'big$$$coin' => [
+                                        'doubleValue' => 5.51,
+                                    ],
+                                ]
+                            ]
+                        ]
+                    ]
+                ]
+            ]
+        ]);
+    }
+
     public function testSet()
     {
         $snippet = $this->snippetFromMethod(WriteBatch::class, 'set');

@@ -24,6 +24,7 @@ use Google\Cloud\Firestore\DocumentSnapshot;
 use Google\Cloud\Dev\Snippet\SnippetTestCase;
 use Google\Cloud\Firestore\DocumentReference;
 use Google\Cloud\Firestore\Connection\ConnectionInterface;
+use Google\Cloud\Core\Timestamp;
 
 /**
  * @group firestore
@@ -116,6 +117,18 @@ class DocumentSnapshotTest extends SnippetTestCase
         $this->assertEquals($info, $res->returnVal());
     }
 
+    public function testInfoUpdateTime()
+    {
+        $ts = new Timestamp(new \DateTime);
+        $info = ['updateTime' => $ts];
+        $this->snapshot->___setProperty('info', $info);
+
+        $snippet = $this->snippetFromMethod(DocumentSnapshot::class, 'info', 1);
+        $snippet->addLocal('snapshot', $this->snapshot);
+        $res = $snippet->invoke('updateTime');
+        $this->assertEquals($ts, $res->returnVal());
+    }
+
     public function testFields()
     {
         $fields = ['foo' => 'bar'];
@@ -146,6 +159,23 @@ class DocumentSnapshotTest extends SnippetTestCase
 
         $this->snapshot->___setProperty('fields', $fields);
         $snippet = $this->snippetFromMethod(DocumentSnapshot::class, 'get');
+        $snippet->addLocal('snapshot', $this->snapshot);
+        $res = $snippet->invoke('value');
+        $this->assertEquals(1, $res->returnVal());
+    }
+
+    public function testGetFieldPath()
+    {
+        $fields = [
+            'wallet' => [
+                'cryptoCurrency' => [
+                    'my.coin' => 1
+                ]
+            ]
+        ];
+
+        $this->snapshot->___setProperty('fields', $fields);
+        $snippet = $this->snippetFromMethod(DocumentSnapshot::class, 'get', 1);
         $snippet->addLocal('snapshot', $this->snapshot);
         $res = $snippet->invoke('value');
         $this->assertEquals(1, $res->returnVal());

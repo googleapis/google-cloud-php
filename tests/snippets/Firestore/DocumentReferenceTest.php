@@ -164,6 +164,22 @@ class DocumentReferenceTest extends SnippetTestCase
         $snippet->invoke();
     }
 
+    public function testUpdatePathsSpecialChars()
+    {
+        $this->batch->commit(Argument::any())
+        ->shouldBeCalled()
+        ->willReturn([[]]);
+
+        $this->batch->updatePaths(self::DOCUMENT, Argument::any(), Argument::any())
+            ->shouldBeCalled()->willReturn($this->batch->reveal());
+
+        $this->document->setBatch($this->batch->reveal());
+
+        $snippet = $this->snippetFromMethod(DocumentReference::class, 'updatePaths', 1);
+        $snippet->addLocal('document', $this->document);
+        $snippet->invoke();
+    }
+
     public function testDelete()
     {
         $this->batch->commit(Argument::any())

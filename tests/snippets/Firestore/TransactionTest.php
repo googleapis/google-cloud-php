@@ -18,9 +18,11 @@
 namespace Google\Cloud\Tests\Snippets\Firestore;
 
 use Prophecy\Argument;
+use Google\Cloud\Firestore\Query;
 use Google\Cloud\Firestore\WriteBatch;
 use Google\Cloud\Firestore\ValueMapper;
 use Google\Cloud\Firestore\Transaction;
+use Google\Cloud\Firestore\QuerySnapshot;
 use Google\Cloud\Firestore\FirestoreClient;
 use Google\Cloud\Firestore\DocumentSnapshot;
 use Google\Cloud\Dev\Snippet\SnippetTestCase;
@@ -100,6 +102,18 @@ class TransactionTest extends SnippetTestCase
         $this->assertInstanceOf(DocumentSnapshot::class, $res->returnVal());
     }
 
+    public function testRunQuery()
+    {
+        $q = $this->prophesize(Query::class);
+        $q->documents(Argument::any())->willReturn($this->prophesize(QuerySnapshot::class)->reveal());
+        $snippet = $this->snippetFromMethod(Transaction::class, 'runQuery');
+        $snippet->addLocal('transaction', $this->transaction);
+        $snippet->addLocal('query', $q->reveal());
+
+        $res = $snippet->invoke('results');
+        $this->assertInstanceOf(QuerySnapshot::class, $res->returnVal());
+    }
+
     public function testCreate()
     {
         $this->batch->create(self::DOCUMENT, Argument::any(), Argument::any())->shouldBeCalled();
@@ -158,6 +172,30 @@ class TransactionTest extends SnippetTestCase
         $snippet->addLocal('transaction', $this->transaction);
         $snippet->addLocal('document', $this->document->reveal());
         $snippet->addUse(FirestoreClient::class);
+        $snippet->invoke();
+    }
+
+    public function testUpdatePaths()
+    {
+        $this->batch->updatePaths(self::DOCUMENT, Argument::any(), Argument::any())->shouldBeCalled();
+
+        $this->transaction->setWriter($this->batch->reveal());
+
+        $snippet = $this->snippetFromMethod(Transaction::class, 'updatePaths');
+        $snippet->addLocal('document', $this->document->reveal());
+        $snippet->addLocal('transaction', $this->transaction);
+        $snippet->invoke();
+    }
+
+    public function testUpdatePathsSpecialChars()
+    {
+        $this->batch->updatePaths(self::DOCUMENT, Argument::any(), Argument::any())->shouldBeCalled();
+
+        $this->transaction->setWriter($this->batch->reveal());
+
+        $snippet = $this->snippetFromMethod(Transaction::class, 'updatePaths', 1);
+        $snippet->addLocal('document', $this->document->reveal());
+        $snippet->addLocal('transaction', $this->transaction);
         $snippet->invoke();
     }
 

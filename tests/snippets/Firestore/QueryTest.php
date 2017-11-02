@@ -94,6 +94,26 @@ class QueryTest extends SnippetTestCase
         ]);
     }
 
+    public function testWhereNaN()
+    {
+        $snippet = $this->snippetFromMethod(Query::class, 'where', 1);
+        $this->runAndAssert($snippet, 'where', [
+            'compositeFilter' => [
+                'op' => StructuredQuery_CompositeFilter_Operator::PBAND,
+                'filters' => [
+                    [
+                        'unaryFilter' => [
+                            'field' => [
+                                'fieldPath' => 'coolnessPercentage'
+                            ],
+                            'op' => Query::OP_NAN,
+                        ]
+                    ]
+                ]
+            ]
+        ]);
+    }
+
     public function testOrderBy()
     {
         $snippet = $this->snippetFromMethod(Query::class, 'orderBy');

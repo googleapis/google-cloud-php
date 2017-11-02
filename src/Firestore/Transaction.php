@@ -264,7 +264,7 @@ class Transaction
      *
      * Example:
      * ```
-     * $transaction->updatePaths([
+     * $transaction->updatePaths($document, [
      *     ['path' => 'name', 'value' => 'John'],
      *     ['path' => 'country', 'value' => 'USA'],
      *     ['path' => 'cryptoCurrencies.bitcoin', 'value' => 0.5],
@@ -279,7 +279,7 @@ class Transaction
      *
      * use Google\Cloud\Firestore\FieldPath;
      *
-     * $transaction->updatePaths([
+     * $transaction->updatePaths($document, [
      *     ['path' => new FieldPath(['cryptoCurrencies', 'big$$$coin']), 'value' => 5.51]
      * ]);
      * ```

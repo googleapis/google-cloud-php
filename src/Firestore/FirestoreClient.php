@@ -469,7 +469,7 @@ class FirestoreClient
      *
      * ```
      * // Blobs can be used to store binary data
-     * $blob = $datastore->blob(file_get_contents(__DIR__ .'/family-photo.jpg'));
+     * $blob = $firestore->blob(file_get_contents(__DIR__ .'/family-photo.jpg'));
      * ```
      *
      * @param string|resource|StreamInterface $value The value to store in a blob.

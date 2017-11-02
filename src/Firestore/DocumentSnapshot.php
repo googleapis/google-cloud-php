@@ -199,15 +199,15 @@ class DocumentSnapshot implements \ArrayAccess
      * ```
      *
      * ```
-     * // Field names containing dots can be targeted using a FieldPath instance:
+     * // Field names containing dots or symbols can be targeted using a FieldPath instance:
+     * use Google\Cloud\Firestore\FieldPath;
+     *
      * $value = $snapshot->get(new FieldPath(['wallet', 'cryptoCurrency', 'my.coin']));
      * ```
      *
      * @param string|FieldPath $fieldPath The field path to return.
      * @return mixed
      * @throws \InvalidArgumentException if the field path does not exist.
-     *
-     * @todo support quoted and escaped field path pieces
      */
     public function get($fieldPath)
     {
