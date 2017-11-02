@@ -33,13 +33,13 @@
 namespace Google\Cloud\Tests\Unit\Core;
 
 use Google\Cloud\Tests\GrpcTestTrait;
+use Google\Cloud\Tests\MockTrait;
 use Google\Cloud\Tests\Mocks\MockBidiStreamingTransport;
 use Google\Cloud\Tests\Mocks\MockClientStreamingTransport;
 use Google\Cloud\Tests\Mocks\MockServerStreamingTransport;
 use Google\Cloud\Tests\Mocks\MockTransport;
 use Google\Cloud\Tests\Mocks\MockStreamingTransport;
-use Google\Cloud\Tests\Mocks\MockPageStreamingRequest;
-use Google\Cloud\Tests\Mocks\MockPageStreamingResponse;
+use Google\Cloud\Tests\Mocks\MockRequest;
 use Google\GAX\ApiException;
 use Google\GAX\AgentHeaderDescriptor;
 use Google\GAX\CallSettings;
@@ -59,6 +59,9 @@ use PHPUnit_Framework_TestCase;
 
 class CallStackTraitTest extends PHPUnit_Framework_TestCase
 {
+    use GrpcTestTrait;
+    use MockTrait;
+
     public function testBaseCall()
     {
         $request = "request";
@@ -270,10 +273,10 @@ class CallStackTraitTest extends PHPUnit_Framework_TestCase
 
     public function testPageStreamingDirectIterationNoTimeout()
     {
-        $request = MockPageStreamingRequest::createPageStreamingRequest('token');
-        $responseA = MockPageStreamingResponse::createPageStreamingResponse('nextPageToken1', ['resource1']);
-        $responseB = MockPageStreamingResponse::createPageStreamingResponse('nextPageToken2', ['resource2']);
-        $responseC = MockPageStreamingResponse::createPageStreamingResponse(null, ['resource3', 'resource4']);
+        $request = $this->createMockRequest('token');
+        $responseA = $this->createMockResponse('nextPageToken1', ['resource1']);
+        $responseB = $this->createMockResponse('nextPageToken2', ['resource2']);
+        $responseC = $this->createMockResponse(null, ['resource3', 'resource4']);
         $responseSequence = [
             [$responseA, new MockStatus(Code::OK, '')],
             [$responseB, new MockStatus(Code::OK, '')],
@@ -305,10 +308,10 @@ class CallStackTraitTest extends PHPUnit_Framework_TestCase
 
     public function testPageStreamingPageIterationNoTimeout()
     {
-        $request = MockPageStreamingRequest::createPageStreamingRequest('token');
-        $responseA = MockPageStreamingResponse::createPageStreamingResponse('nextPageToken1', ['resource1']);
-        $responseB = MockPageStreamingResponse::createPageStreamingResponse('nextPageToken2', ['resource2']);
-        $responseC = MockPageStreamingResponse::createPageStreamingResponse(null, ['resource3', 'resource4']);
+        $request = $this->createMockRequest('token', 3);
+        $responseA = $this->createMockResponse('nextPageToken1', ['resource1']);
+        $responseB = $this->createMockResponse('nextPageToken2', ['resource2']);
+        $responseC = $this->createMockResponse(null, ['resource3', 'resource4']);
         $responseSequence = [
             [$responseA, new MockStatus(Code::OK, '')],
             [$responseB, new MockStatus(Code::OK, '')],
@@ -349,10 +352,10 @@ class CallStackTraitTest extends PHPUnit_Framework_TestCase
 
     public function testPageStreamingFixedSizeIterationNoTimeout()
     {
-        $request = MockPageStreamingRequest::createPageStreamingRequest('token', 2);
-        $responseA = MockPageStreamingResponse::createPageStreamingResponse('nextPageToken1', ['resource1']);
-        $responseB = MockPageStreamingResponse::createPageStreamingResponse('nextPageToken2', ['resource2']);
-        $responseC = MockPageStreamingResponse::createPageStreamingResponse(null, ['resource3', 'resource4']);
+        $request = $this->createMockRequest('token', 2);
+        $responseA = $this->createMockResponse('nextPageToken1', ['resource1']);
+        $responseB = $this->createMockResponse('nextPageToken2', ['resource2']);
+        $responseC = $this->createMockResponse(null, ['resource3', 'resource4']);
         $responseSequence = [
             [$responseA, new MockStatus(Code::OK, '')],
             [$responseB, new MockStatus(Code::OK, '')],
@@ -395,8 +398,8 @@ class CallStackTraitTest extends PHPUnit_Framework_TestCase
      */
     public function testPageStreamingFixedSizeFailPageSizeNotSupported()
     {
-        $request = MockPageStreamingRequest::createPageStreamingRequest('token');
-        $responseA = MockPageStreamingResponse::createPageStreamingResponse('nextPageToken1', ['resource1']);
+        $request = $this->createMockRequest('token');
+        $responseA = $this->createMockResponse('nextPageToken1', ['resource1']);
         $responseSequence = [
             [$responseA, new MockStatus(Code::OK, '')],
                              ];
@@ -423,8 +426,8 @@ class CallStackTraitTest extends PHPUnit_Framework_TestCase
      */
     public function testPageStreamingFixedSizeFailPageSizeNotSet()
     {
-        $request = MockPageStreamingRequest::createPageStreamingRequest('token');
-        $responseA = MockPageStreamingResponse::createPageStreamingResponse('nextPageToken1', ['resource1']);
+        $request = $this->createMockRequest('token');
+        $responseA = $this->createMockResponse('nextPageToken1', ['resource1']);
         $responseSequence = [
             [$responseA, new MockStatus(Code::OK, '')],
         ];
@@ -453,8 +456,8 @@ class CallStackTraitTest extends PHPUnit_Framework_TestCase
     public function testPageStreamingFixedSizeFailPageSizeTooLarge()
     {
         $collectionSize = 2;
-        $request = MockPageStreamingRequest::createPageStreamingRequest('token', $collectionSize + 1);
-        $responseA = MockPageStreamingResponse::createPageStreamingResponse('nextPageToken1', ['resource1']);
+        $request = $this->createMockRequest('token', $collectionSize + 1);
+        $responseA = $this->createMockResponse('nextPageToken1', ['resource1']);
         $responseSequence = [
             [$responseA, new MockStatus(Code::OK, '')]
         ];
@@ -477,10 +480,10 @@ class CallStackTraitTest extends PHPUnit_Framework_TestCase
 
     public function testPageStreamingWithTimeout()
     {
-        $request = MockPageStreamingRequest::createPageStreamingRequest('token');
-        $responseA = MockPageStreamingResponse::createPageStreamingResponse('nextPageToken1', ['resource1']);
-        $responseB = MockPageStreamingResponse::createPageStreamingResponse('nextPageToken2', ['resource2']);
-        $responseC = MockPageStreamingResponse::createPageStreamingResponse(null, ['resource3', 'resource4']);
+        $request = $this->createMockRequest('token');
+        $responseA = $this->createMockResponse('nextPageToken1', ['resource1']);
+        $responseB = $this->createMockResponse('nextPageToken2', ['resource2']);
+        $responseC = $this->createMockResponse(null, ['resource3', 'resource4']);
         $responseSequence = [
             [$responseA, new MockStatus(Code::OK, '')],
             [$responseB, new MockStatus(Code::OK, '')],
@@ -512,7 +515,7 @@ class CallStackTraitTest extends PHPUnit_Framework_TestCase
 
     public function testCustomHeader()
     {
-        $transport = MockTransport::create(new MockPageStreamingResponse());
+        $transport = MockTransport::create($this->createMockResponse());
         $headerDescriptor = new AgentHeaderDescriptor([
             'libName' => 'gccl',
             'libVersion' => '0.0.0',
@@ -526,7 +529,7 @@ class CallStackTraitTest extends PHPUnit_Framework_TestCase
             new CallSettings(),
             ['headerDescriptor' => $headerDescriptor]
         );
-        $resources = $apiCall(new MockPageStreamingRequest(), []);
+        $resources = $apiCall($this->createMockRequest(), []);
         $actualCalls = $transport->popReceivedCalls();
         $this->assertEquals(1, count($actualCalls));
         $expectedMetadata = [
@@ -537,7 +540,7 @@ class CallStackTraitTest extends PHPUnit_Framework_TestCase
 
     public function testUserHeaders()
     {
-        $transport = MockTransport::create(new MockPageStreamingResponse());
+        $transport = MockTransport::create($this->createMockResponse());
         $headerDescriptor = new AgentHeaderDescriptor([
             'libName' => 'gccl',
             'libVersion' => '0.0.0',
@@ -557,7 +560,7 @@ class CallStackTraitTest extends PHPUnit_Framework_TestCase
             $callSettings,
             ['headerDescriptor' => $headerDescriptor]
         );
-        $resources = $apiCall(new MockPageStreamingRequest(), []);
+        $resources = $apiCall($this->createMockRequest(), []);
         $actualCalls = $transport->popReceivedCalls();
         $this->assertEquals(1, count($actualCalls));
         $expectedMetadata = [
@@ -569,7 +572,7 @@ class CallStackTraitTest extends PHPUnit_Framework_TestCase
 
     public function testUserHeadersOverwriteBehavior()
     {
-        $transport = MockTransport::create(new MockPageStreamingResponse());
+        $transport = MockTransport::create($this->createMockResponse());
         $headerDescriptor = new AgentHeaderDescriptor([
             'libName' => 'gccl',
             'libVersion' => '0.0.0',
@@ -590,7 +593,7 @@ class CallStackTraitTest extends PHPUnit_Framework_TestCase
             $callSettings,
             ['headerDescriptor' => $headerDescriptor]
         );
-        $resources = $apiCall(new MockPageStreamingRequest(), []);
+        $resources = $apiCall($this->createMockRequest(), []);
         $actualCalls = $transport->popReceivedCalls();
         $this->assertEquals(1, count($actualCalls));
         $expectedMetadata = [
@@ -600,9 +603,9 @@ class CallStackTraitTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($expectedMetadata, $actualCalls[0]->getMetadata());
     }
 
-    public static function createIncompleteOperationResponse($name, $metadataString = '')
+    public function createIncompleteOperationResponse($name, $metadataString = '')
     {
-        $metadata = GrpcTestTrait::createAny(GrpcTestTrait::createStatus(Code::OK, $metadataString));
+        $metadata = $this->createAny($this->createStatus(Code::OK, $metadataString));
         $op = new Operation();
         $op->setName($name);
         $op->setMetadata($metadata);
@@ -610,18 +613,18 @@ class CallStackTraitTest extends PHPUnit_Framework_TestCase
         return $op;
     }
 
-    public static function createSuccessfulOperationResponse($name, $response, $metadataString = '')
+    public function createSuccessfulOperationResponse($name, $response, $metadataString = '')
     {
         $op = self::createIncompleteOperationResponse($name, $metadataString);
         $op->setDone(true);
-        $any = GrpcTestTrait::createAny($response);
+        $any = $this->createAny($response);
         $op->setResponse($any);
         return $op;
     }
 
-    public static function createFailedOperationResponse($name, $code, $message, $metadataString = '')
+    public function createFailedOperationResponse($name, $code, $message, $metadataString = '')
     {
-        $error = GrpcTestTrait::createStatus($code, $message);
+        $error = $this->createStatus($code, $message);
         $op = self::createIncompleteOperationResponse($name, $metadataString);
         $op->setDone(true);
         $op->setError($error);
@@ -633,7 +636,7 @@ class CallStackTraitTest extends PHPUnit_Framework_TestCase
         $opName = 'operation/someop';
 
         $request = null;
-        $result = GrpcTestTrait::createStatus(Code::OK, 'someMessage');
+        $result = $this->createStatus(Code::OK, 'someMessage');
         $initialResponse = self::createIncompleteOperationResponse($opName, 'm1');
         $responseA = self::createIncompleteOperationResponse($opName, 'm2');
         $responseB = self::createSuccessfulOperationResponse($opName, $result, 'm3');
@@ -649,7 +652,7 @@ class CallStackTraitTest extends PHPUnit_Framework_TestCase
             $responseSequence,
             ['\Google\Longrunning\Operation', 'mergeFromString']
         );
-        $opClient = OperationResponseTest::createOperationsClient($opTransport);
+        $opClient = $this->createOperationsClient($opTransport);
         $descriptor = [
             'operationsClient' => $opClient,
             'operationReturnType' => '\Google\Rpc\Status',
@@ -694,12 +697,12 @@ class CallStackTraitTest extends PHPUnit_Framework_TestCase
         $this->assertSame('GetOperation', $opReceivedCalls[0]->getFuncCall());
         $this->assertSame('GetOperation', $opReceivedCalls[1]->getFuncCall());
 
-        $this->assertEquals([null, null, GrpcTestTrait::createStatus(Code::OK, 'someMessage')], $results);
+        $this->assertEquals([null, null, $this->createStatus(Code::OK, 'someMessage')], $results);
         $this->assertEquals([null, null, null], $errors);
         $this->assertEquals([
-            GrpcTestTrait::createStatus(Code::OK, 'm1'),
-            GrpcTestTrait::createStatus(Code::OK, 'm2'),
-            GrpcTestTrait::createStatus(Code::OK, 'm3')
+            $this->createStatus(Code::OK, 'm1'),
+            $this->createStatus(Code::OK, 'm2'),
+            $this->createStatus(Code::OK, 'm3')
         ], $metadataResponses);
         $this->assertEquals([false, false, true], $isDoneResponses);
     }
@@ -709,7 +712,7 @@ class CallStackTraitTest extends PHPUnit_Framework_TestCase
         $opName = 'operation/someop';
 
         $request = null;
-        $result = GrpcTestTrait::createStatus(Code::OK, 'someMessage');
+        $result = $this->createStatus(Code::OK, 'someMessage');
 
         $initialResponse = self::createIncompleteOperationResponse($opName, 'm1');
         $responseA = self::createIncompleteOperationResponse($opName, 'm2');
@@ -726,7 +729,7 @@ class CallStackTraitTest extends PHPUnit_Framework_TestCase
             $responseSequence,
             ['\Google\Longrunning\Operation', 'mergeFromString']
         );
-        $opClient = OperationResponseTest::createOperationsClient($opTransport);
+        $opClient = $this->createOperationsClient($opTransport);
         $descriptor = [
             'operationsClient' => $opClient,
             'operationReturnType' => '\Google\Rpc\Status',
@@ -763,12 +766,12 @@ class CallStackTraitTest extends PHPUnit_Framework_TestCase
         $this->assertSame('GetOperation', $opReceivedCalls[1]->getFuncCall());
 
         $this->assertEquals(
-            GrpcTestTrait::createStatus(Code::OK, 'someMessage'),
+            $this->createStatus(Code::OK, 'someMessage'),
             $response->getResult()
         );
         $this->assertNull($response->getError());
         $this->assertEquals(
-            GrpcTestTrait::createStatus(Code::OK, 'm3'),
+            $this->createStatus(Code::OK, 'm3'),
             $response->getMetadata()
         );
     }
@@ -778,7 +781,7 @@ class CallStackTraitTest extends PHPUnit_Framework_TestCase
         $opName = 'operation/someop';
 
         $request = null;
-        $result = GrpcTestTrait::createStatus(Code::OK, 'someMessage');
+        $result = $this->createStatus(Code::OK, 'someMessage');
 
         $initialResponse = self::createIncompleteOperationResponse($opName, 'm1');
         $responseA = self::createIncompleteOperationResponse($opName, 'm2');
@@ -795,7 +798,7 @@ class CallStackTraitTest extends PHPUnit_Framework_TestCase
             $responseSequence,
             ['\Google\Longrunning\Operation', 'mergeFromString']
         );
-        $opClient = OperationResponseTest::createOperationsClient($opTransport);
+        $opClient = $this->createOperationsClient($opTransport);
         $descriptor = [
             'operationsClient' => $opClient,
             'operationReturnType' => '\Google\Rpc\Status',
@@ -836,7 +839,7 @@ class CallStackTraitTest extends PHPUnit_Framework_TestCase
         $this->assertNull($response->getResult());
         $this->assertNull($response->getError());
         $this->assertEquals(
-            GrpcTestTrait::createStatus(Code::OK, 'm3'),
+            $this->createStatus(Code::OK, 'm3'),
             $response->getMetadata()
         );
     }
@@ -862,7 +865,7 @@ class CallStackTraitTest extends PHPUnit_Framework_TestCase
             $responseSequence,
             ['\Google\Longrunning\Operation', 'mergeFromString']
         );
-        $opClient = OperationResponseTest::createOperationsClient($opTransport);
+        $opClient = $this->createOperationsClient($opTransport);
         $descriptor = [
             'operationsClient' => $opClient,
             'operationReturnType' => '\Google\Rpc\Status',
@@ -909,13 +912,13 @@ class CallStackTraitTest extends PHPUnit_Framework_TestCase
 
         $this->assertEquals([null, null, null], $results);
         $this->assertEquals(
-            [null, null, GrpcTestTrait::createStatus(Code::UNKNOWN, 'someError')],
+            [null, null, $this->createStatus(Code::UNKNOWN, 'someError')],
             $errors
         );
         $this->assertEquals([
-            GrpcTestTrait::createStatus(Code::OK, 'm1'),
-            GrpcTestTrait::createStatus(Code::OK, 'm2'),
-            GrpcTestTrait::createStatus(Code::OK, 'm3')
+            $this->createStatus(Code::OK, 'm1'),
+            $this->createStatus(Code::OK, 'm2'),
+            $this->createStatus(Code::OK, 'm3')
         ], $metadataResponses);
         $this->assertEquals([false, false, true], $isDoneResponses);
     }
@@ -926,9 +929,9 @@ class CallStackTraitTest extends PHPUnit_Framework_TestCase
 
         $request = null;
 
-        $initialResponse = self::createIncompleteOperationResponse($opName, 'm1');
-        $responseA = self::createIncompleteOperationResponse($opName, 'm2');
-        $responseB = self::createFailedOperationResponse(
+        $initialResponse = $this->createIncompleteOperationResponse($opName, 'm1');
+        $responseA = $this->createIncompleteOperationResponse($opName, 'm2');
+        $responseB = $this->createFailedOperationResponse(
             $opName,
             Code::CANCELLED,
             'someError',
@@ -947,7 +950,7 @@ class CallStackTraitTest extends PHPUnit_Framework_TestCase
             $responseSequence,
             ['\Google\Longrunning\Operation', 'mergeFromString']
         );
-        $opClient = OperationResponseTest::createOperationsClient($opTransport);
+        $opClient = $this->createOperationsClient($opTransport);
         $descriptor = [
             'operationsClient' => $opClient,
             'operationReturnType' => '\Google\Rpc\Status',
@@ -993,8 +996,8 @@ class CallStackTraitTest extends PHPUnit_Framework_TestCase
         $this->assertSame('GetOperation', $opReceivedCalls[2]->getFuncCall());
 
         $this->assertNull($response->getResult());
-        $this->assertEquals(GrpcTestTrait::createStatus(Code::CANCELLED, 'someError'), $response->getError());
-        $this->assertEquals(GrpcTestTrait::createStatus(Code::OK, 'm3'), $response->getMetadata());
+        $this->assertEquals($this->createStatus(Code::CANCELLED, 'someError'), $response->getError());
+        $this->assertEquals($this->createStatus(Code::OK, 'm3'), $response->getMetadata());
     }
 
     /**
@@ -1007,7 +1010,7 @@ class CallStackTraitTest extends PHPUnit_Framework_TestCase
 
         $request = null;
 
-        $initialResponse = self::createIncompleteOperationResponse($opName, 'm1');
+        $initialResponse = $this->createIncompleteOperationResponse($opName, 'm1');
         $transport = MockTransport::createWithResponseSequence(
             [[$initialResponse, new MockStatus(Code::OK, '')]],
             ['\Google\Longrunning\Operation', 'mergeFromString']
@@ -1016,7 +1019,7 @@ class CallStackTraitTest extends PHPUnit_Framework_TestCase
             [[new GPBEmpty(), new MockStatus(Code::OK, '')]],
             ['\Google\Longrunning\Operation', 'mergeFromString']
         );
-        $opClient = OperationResponseTest::createOperationsClient($opTransport);
+        $opClient = $this->createOperationsClient($opTransport);
         $descriptor = [
             'operationsClient' => $opClient,
             'operationReturnType' => '\Google\Rpc\Status',
@@ -1204,7 +1207,7 @@ class CallStackTraitTest extends PHPUnit_Framework_TestCase
         foreach ($resources as $resource) {
             $repeatedField[] = $resource;
         }
-        $response = MockPageStreamingResponse::createPageStreamingResponse(
+        $response = $this->createMockResponse(
             'nextPageToken',
             $repeatedField
         );
@@ -1345,7 +1348,7 @@ class CallStackTraitTest extends PHPUnit_Framework_TestCase
         foreach ($resources as $resource) {
             $repeatedField[] = $resource;
         }
-        $response = MockPageStreamingResponse::createPageStreamingResponse(
+        $response = $this->createMockResponse(
             'nextPageToken',
             $repeatedField
         );

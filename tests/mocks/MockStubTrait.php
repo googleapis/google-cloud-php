@@ -49,10 +49,16 @@ trait MockStubTrait
     private $serverStreamingStatus = null;
     private $callObjects = [];
     private $deserialize;
+    private $phpunit;
 
     public function __construct($deserialize = null)
     {
         $this->deserialize = $deserialize;
+    }
+
+    public function setPhpunit($phpunit)
+    {
+        $this->phpunit = $phpunit;
     }
 
     /**

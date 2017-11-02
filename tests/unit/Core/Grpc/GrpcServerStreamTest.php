@@ -34,7 +34,7 @@ namespace Google\Cloud\Tests\Unit\Core\Grpc;
 
 use Google\Cloud\Core\Grpc\GrpcServerStream;
 use Google\Cloud\Tests\GrpcTestTrait;
-use Google\Cloud\Tests\Mocks\MockPageStreamingResponse;
+use Google\Cloud\Tests\MockTrait;
 use Google\Cloud\Tests\Mocks\MockServerStreamingCall;
 use Google\GAX\Testing\MockStatus;
 use Google\Protobuf\Internal\GPBType;
@@ -45,6 +45,7 @@ use PHPUnit_Framework_TestCase;
 class GrpcServerStreamTest extends PHPUnit_Framework_TestCase
 {
     use GrpcTestTrait;
+    use MockTrait;
 
     public function setUp()
     {
@@ -168,8 +169,8 @@ class GrpcServerStreamTest extends PHPUnit_Framework_TestCase
         $repeatedField2[] = 'resource2';
         $repeatedField2[] = 'resource3';
         $responses = [
-            MockPageStreamingResponse::createPageStreamingResponse('nextPageToken1', $repeatedField1),
-            MockPageStreamingResponse::createPageStreamingResponse('nextPageToken1', $repeatedField2)
+            $this->createMockResponse('nextPageToken1', $repeatedField1),
+            $this->createMockResponse('nextPageToken1', $repeatedField2)
         ];
         $call = new MockServerStreamingCall($responses);
         $stream = new GrpcServerStream($call, [
@@ -188,8 +189,8 @@ class GrpcServerStreamTest extends PHPUnit_Framework_TestCase
     {
         $resources = ['resource1', 'resource2', 'resource3'];
         $responses = [
-            MockPageStreamingResponse::createPageStreamingResponse('nextPageToken1', ['resource1']),
-            MockPageStreamingResponse::createPageStreamingResponse('nextPageToken1', ['resource2', 'resource3'])
+            $this->createMockResponse('nextPageToken1', ['resource1']),
+            $this->createMockResponse('nextPageToken1', ['resource2', 'resource3'])
         ];
         $call = new MockServerStreamingCall(
             $responses,

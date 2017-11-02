@@ -53,7 +53,6 @@ class GrpcTest extends TestCase
 
     const PROJECT = 'projects/my-project';
 
-    private $requestWrapper;
     private $successMessage;
 
     public function setUp()

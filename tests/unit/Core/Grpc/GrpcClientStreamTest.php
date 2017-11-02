@@ -81,10 +81,10 @@ class GrpcClientStreamTest extends PHPUnit_Framework_TestCase
     public function testManualWritesSuccess()
     {
         $requests = [
-            GrpcTestTrait::createStatus(Grpc\STATUS_OK, 'request1'),
-            GrpcTestTrait::createStatus(Grpc\STATUS_OK, 'request2')
+            $this->createStatus(Grpc\STATUS_OK, 'request1'),
+            $this->createStatus(Grpc\STATUS_OK, 'request2')
         ];
-        $response = GrpcTestTrait::createStatus(Grpc\STATUS_OK, 'response');
+        $response = $this->createStatus(Grpc\STATUS_OK, 'response');
         $call = new MockClientStreamingCall($response->serializeToString(), ['\Google\Rpc\Status', 'mergeFromString']);
         $stream = new GrpcClientStream($call);
 
@@ -104,10 +104,10 @@ class GrpcClientStreamTest extends PHPUnit_Framework_TestCase
     public function testManualWritesFailure()
     {
         $requests = [
-            GrpcTestTrait::createStatus(Grpc\STATUS_OK, 'request1'),
-            GrpcTestTrait::createStatus(Grpc\STATUS_OK, 'request2')
+            $this->createStatus(Grpc\STATUS_OK, 'request1'),
+            $this->createStatus(Grpc\STATUS_OK, 'request2')
         ];
-        $response = GrpcTestTrait::createStatus(Grpc\STATUS_OK, 'response');
+        $response = $this->createStatus(Grpc\STATUS_OK, 'response');
         $call = new MockClientStreamingCall(
             $response->serializeToString(),
             ['\Google\Rpc\Status', 'mergeFromString'],
@@ -127,10 +127,10 @@ class GrpcClientStreamTest extends PHPUnit_Framework_TestCase
     public function testWriteAllSuccess()
     {
         $requests = [
-            GrpcTestTrait::createStatus(Grpc\STATUS_OK, 'request1'),
-            GrpcTestTrait::createStatus(Grpc\STATUS_OK, 'request2')
+            $this->createStatus(Grpc\STATUS_OK, 'request1'),
+            $this->createStatus(Grpc\STATUS_OK, 'request2')
         ];
-        $response = GrpcTestTrait::createStatus(Grpc\STATUS_OK, 'response');
+        $response = $this->createStatus(Grpc\STATUS_OK, 'response');
         $call = new MockClientStreamingCall($response->serializeToString(), ['\Google\Rpc\Status', 'mergeFromString']);
         $stream = new GrpcClientStream($call);
 
@@ -148,10 +148,10 @@ class GrpcClientStreamTest extends PHPUnit_Framework_TestCase
     public function testWriteAllFailure()
     {
         $requests = [
-            GrpcTestTrait::createStatus(Grpc\STATUS_OK, 'request1'),
-            GrpcTestTrait::createStatus(Grpc\STATUS_OK, 'request2')
+            $this->createStatus(Grpc\STATUS_OK, 'request1'),
+            $this->createStatus(Grpc\STATUS_OK, 'request2')
         ];
-        $response = GrpcTestTrait::createStatus(Grpc\STATUS_OK, 'response');
+        $response = $this->createStatus(Grpc\STATUS_OK, 'response');
         $call = new MockClientStreamingCall(
             $response->serializeToString(),
             ['\Google\Rpc\Status', 'mergeFromString'],

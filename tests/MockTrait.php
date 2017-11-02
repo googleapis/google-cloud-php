@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2016, Google Inc.
+ * Copyright 2017, Google Inc.
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -30,53 +30,43 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-namespace Google\Cloud\Tests\Mocks;
+namespace Google\Cloud\Tests;
 
-use Google\Cloud\Core\Grpc\GrpcTransport;
+use Google\Cloud\Tests\Mocks\MockRequest;
 
-class MockGrpcTransport extends GrpcTransport
+trait MockTrait
 {
-    public $hostname;
-    public $stubOpts;
-    public $channel;
-
-    public function __construct($args = [])
+    public function createMockRequest($token = null, $pageSize = null)
     {
-        $args['createGrpcStubFunction'] = function ($hostname, $stubOpts, $channel) {
-            $this->hostname = $hostname;
-            $this->stubOpts = $stubOpts;
-            $this->channel = $channel;
-        };
-        parent::__construct($args);
-    }
-    /**
-     * Get the generated Grpc Stub
-     */
-    public function getGrpcStub()
-    {
-        return $this->grpcStub;
+        return new MockRequest($token, $pageSize);
     }
 
-    /**
-     * Test constructGrpcArgs function
-     */
-    public function doConstructGrpcArgs($optionalArgs = [])
+    public function createMockResponse($pageToken = null, $resourcesList = [])
     {
-        return $this->constructGrpcArgs($optionalArgs);
+        $mockResponse = $this->getMockBuilder(MockResponse::class)
+            ->setMethods(['getResourcesList', 'getNextPageToken'])
+            ->getMock();
+        $mockResponse->method('getNextPageToken')
+            ->willReturn($pageToken);
+        $mockResponse->method('getResourcesList')
+            ->willReturn($resourcesList);
+
+        return $mockResponse;
     }
 
-    protected function getADCCredentials($scopes)
+    public function createCallWithResponseSequence($sequence)
     {
-        return new MockCredentialsLoader($scopes, [
-            [
-                'access_token' => 'adcAccessToken',
-                'expires_in' => '100',
-            ],
-        ]);
-    }
+        foreach ($sequence as $key => $value) {
+            if (!is_array($value)) {
+                $sequence[$key] = [$value, null];
+            }
+        }
+        $mockCall = $this->getMockBuilder(MockCall::class)
+            ->setMethods(['takeAction'])
+            ->getMock();
+        $mockCall->method('takeAction')
+            ->will(call_user_func_array([$this, 'onConsecutiveCalls'], $sequence));
 
-    protected function createSslChannelCredentials()
-    {
-        return "DummySslCreds";
+        return $mockCall;
     }
 }

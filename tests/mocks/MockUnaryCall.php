@@ -33,7 +33,7 @@
 namespace Google\Cloud\Tests\Mocks;
 
 use Google\GAX\Testing\MockStatus;
-use Google\GAX\UnaryCallInterface;
+use Google\Cloud\Core\UnaryCallInterface;
 use Google\Rpc\Code;
 
 /**

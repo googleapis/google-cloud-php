@@ -17,6 +17,7 @@
 
 namespace Google\Cloud\Tests;
 
+use Google\Cloud\Core\LongRunning\OperationsClient;
 use Google\Protobuf\Any;
 use Google\Rpc\Status;
 
@@ -30,7 +31,7 @@ trait GrpcTestTrait
      * @param String $message
      * @return Status
      */
-    public static function createStatus($code, $message)
+    public function createStatus($code, $message)
     {
         $status = new Status();
         $status->setCode($code);
@@ -42,7 +43,7 @@ trait GrpcTestTrait
      * @param $value \Google\Protobuf\Internal\Message;
      * @return Any
      */
-    public static function createAny($value)
+    public function createAny($value)
     {
         $any = new Any();
         $any->setValue($value->serializeToString());
@@ -59,8 +60,23 @@ trait GrpcTestTrait
         }
     }
 
-    public static function shouldSkipGrpcTests()
+    public function shouldSkipGrpcTests()
     {
         return !extension_loaded('grpc') || defined('HHVM_VERSION');
+    }
+
+    public function createOperationsClient($transport = null)
+    {
+        $this->checkAndSkipGrpcTests();
+
+        $client = new OperationsClient([
+            'createTransportFunction' => function ($hostname, $opts) use ($transport) {
+                return $transport;
+            },
+            'serviceAddress' => '',
+            'scopes' => [],
+        ]);
+
+        return $client;
     }
 }

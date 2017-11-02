@@ -32,26 +32,34 @@
 
 namespace Google\Cloud\Tests\Mocks;
 
-class MockPageStreamingResponse
+class MockRequest
 {
-    private $nextPageToken;
-    private $resource;
+    private $pageToken;
+    private $pageSize;
 
-    public static function createPageStreamingResponse($nextPageToken, $resource)
+    public function __construct($pageToken, $pageSize = null)
     {
-        $response = new MockPageStreamingResponse();
-        $response->nextPageToken = $nextPageToken;
-        $response->resource = $resource;
-        return $response;
+        $this->pageToken = $pageToken;
+        $this->pageSize = $pageSize;
     }
 
-    public function getResourcesList()
+    public function getPageToken()
     {
-        return $this->resource;
+        return $this->pageToken;
     }
 
-    public function getNextPageToken()
+    public function getPageSize()
     {
-        return $this->nextPageToken;
+        return $this->pageSize;
+    }
+
+    public function setPageSize($pageSize)
+    {
+        $this->pageSize = $pageSize;
+    }
+
+    public function setPageToken($pageToken)
+    {
+        $this->pageToken = $pageToken;
     }
 }

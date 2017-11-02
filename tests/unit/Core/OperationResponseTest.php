@@ -35,7 +35,7 @@ namespace Google\Cloud\Tests\Unit\Core;
 use Google\Cloud\Tests\GrpcTestTrait;
 use Google\Cloud\Core\OperationResponse;
 use Google\Cloud\Core\LongRunning\OperationsClient;
-use google\longrunning\Operation;
+use Google\Longrunning\Operation;
 use Google\Protobuf\Any;
 use Google\Rpc\Status;
 use PHPUnit_Framework_TestCase;
@@ -47,7 +47,7 @@ class OperationResponseTest extends PHPUnit_Framework_TestCase
     public function testBasic()
     {
         $opName = 'operations/opname';
-        $opClient = self::createOperationsClient();
+        $opClient = $this->createOperationsClient();
         $op = new OperationResponse($opName, $opClient);
 
         $this->assertSame($opName, $op->getName());
@@ -57,7 +57,7 @@ class OperationResponseTest extends PHPUnit_Framework_TestCase
     public function testWithoutResponse()
     {
         $opName = 'operations/opname';
-        $opClient = self::createOperationsClient();
+        $opClient = $this->createOperationsClient();
         $op = new OperationResponse($opName, $opClient);
 
         $this->assertNull($op->getLastProtoResponse());
@@ -76,7 +76,7 @@ class OperationResponseTest extends PHPUnit_Framework_TestCase
     public function testWithResponse()
     {
         $opName = 'operations/opname';
-        $opClient = self::createOperationsClient();
+        $opClient = $this->createOperationsClient();
         $protoResponse = new Operation();
         $op = new OperationResponse($opName, $opClient, [
             'lastProtoResponse' => $protoResponse,
@@ -94,9 +94,9 @@ class OperationResponseTest extends PHPUnit_Framework_TestCase
             'metadataReturnType' => null,
         ], $op->getReturnTypeOptions());
 
-        $response = GrpcTestTrait::createAny(GrpcTestTrait::createStatus(0, "response"));
-        $error = GrpcTestTrait::createStatus(2, "error");
-        $metadata = GrpcTestTrait::createAny(GrpcTestTrait::createStatus(0, "metadata"));
+        $response = $this->createAny($this->createStatus(0, "response"));
+        $error = $this->createStatus(2, "error");
+        $metadata = $this->createAny($this->createStatus(0, "metadata"));
 
         $protoResponse->setDone(true);
         $protoResponse->setResponse($response);
@@ -117,7 +117,7 @@ class OperationResponseTest extends PHPUnit_Framework_TestCase
     public function testWithOptions()
     {
         $opName = 'operations/opname';
-        $opClient = self::createOperationsClient();
+        $opClient = $this->createOperationsClient();
         $protoResponse = new Operation();
         $op = new OperationResponse($opName, $opClient, [
             'operationReturnType' => '\Google\Rpc\Status',
@@ -135,12 +135,12 @@ class OperationResponseTest extends PHPUnit_Framework_TestCase
             'metadataReturnType' => '\Google\Protobuf\Any',
         ], $op->getReturnTypeOptions());
 
-        $innerResponse = GrpcTestTrait::createStatus(0, "response");
+        $innerResponse = $this->createStatus(0, "response");
         $innerMetadata = new Any();
         $innerMetadata->setValue("metadata");
 
-        $response = GrpcTestTrait::createAny($innerResponse);
-        $metadata = GrpcTestTrait::createAny($innerMetadata);
+        $response = $this->createAny($innerResponse);
+        $metadata = $this->createAny($innerMetadata);
 
         $protoResponse->setDone(true);
         $protoResponse->setResponse($response);
@@ -148,19 +148,5 @@ class OperationResponseTest extends PHPUnit_Framework_TestCase
         $this->assertTrue($op->isDone());
         $this->assertEquals($innerResponse, $op->getResult());
         $this->assertEquals($innerMetadata, $op->getMetadata());
-    }
-
-    public static function createOperationsClient($transport = null)
-    {
-        self::checkAndSkipGrpcTests();
-
-        $client = new OperationsClient([
-            'createTransportFunction' => function ($hostname, $opts) use ($transport) {
-                return $transport;
-            },
-            'serviceAddress' => '',
-            'scopes' => [],
-        ]);
-        return $client;
     }
 }
