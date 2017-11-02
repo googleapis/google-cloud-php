@@ -38,7 +38,7 @@ use Google\Firestore\V1beta1\StructuredQuery_CompositeFilter_Operator;
  * $firestore = new FirestoreClient();
  *
  * $collection = $firestore->collection('users');
- * $query = $collection->query();
+ * $query = $collection->where('age', '>', 18);
  * ```
  */
 class Query
@@ -139,16 +139,16 @@ class Query
      *
      * Example:
      * ```
-     * $result = $query->snapshot();
+     * $result = $query->documents();
      * ```
      *
      * @param array $options Configuration options.
      * @return QuerySnapshot
      */
-    public function snapshot(array $options = [])
+    public function documents(array $options = [])
     {
         $options['maxRetries'] = (isset($options['maxRetries']))
-            ? $options['maxReties']
+            ? $options['maxRetries']
             : FirestoreClient::MAX_RETRIES;
 
         $call = function () use ($options) {
@@ -212,6 +212,11 @@ class Query
      * $query = $query->where('firstName', '=', 'John');
      * ```
      *
+     * ```
+     * // Filtering against `null` and `NAN` is supported only with the equality operator.
+     * $query = $query->where('coolnessPercentage', '=', NAN);
+     * ```
+     *
      * @param string|FieldPath $fieldPath The field to filter by.
      * @param string $operator The operator to filter by.
      * @param mixed $value The value to compare to.
@@ -243,9 +248,11 @@ class Query
 
             $filter = [
                 'unaryFilter' => [
-                    'field' => $escapedFieldPath,
-                ],
-                'op' => $unaryOperator
+                    'field' => [
+                        'fieldPath' => $escapedFieldPath
+                    ],
+                    'op' => $unaryOperator
+                ]
             ];
         } else {
             $filter = [

@@ -80,14 +80,6 @@ class TransactionTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('world', $res['hello']);
     }
 
-    public function testCollection()
-    {
-        $this->connection->runQuery(Argument::withEntry('transaction', self::TRANSACTION));
-        $this->transaction->___setProperty('connection', $this->connection->reveal());
-
-        $this->transaction->collection('users')->query()->snapshot();
-    }
-
     /**
      * @expectedException Google\Cloud\Core\Exception\NotFoundException
      */

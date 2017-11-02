@@ -20,6 +20,7 @@ namespace Google\Cloud\Tests\Unit\Firestore;
 use Prophecy\Argument;
 use Google\Cloud\Firestore\Query;
 use Google\Cloud\Firestore\ValueMapper;
+use Google\Cloud\Firestore\FirestoreClient;
 use Google\Firestore\V1beta1\StructuredQuery_Direction;
 use Google\Cloud\Firestore\Connection\ConnectionInterface;
 use Google\Firestore\V1beta1\StructuredQuery_FieldFilter_Operator;
@@ -69,15 +70,12 @@ class QueryTest extends \PHPUnit_Framework_TestCase
             'users.dave'
         ];
 
-        $immutable = clone $this->query;
-        $res = $this->query->select($paths);
+        $this->runAndAssert(function (Query $q) use ($paths) {
+            $res = $q->select($paths);
+            $res = $res->select(['users.dan']);
 
-        $this->assertInstanceOf(Query::class, $res);
-        $this->assertNotEquals($res, $immutable);
-
-        $res = $res->select(['users.dan']);
-
-        $this->runAndAssert($res, [
+            return $res;
+        }, [
             'parent' => self::PARENT,
             'structuredQuery' => [
                 'from' => self::PARENT,
@@ -92,16 +90,35 @@ class QueryTest extends \PHPUnit_Framework_TestCase
         ]);
     }
 
+    public function testSelectName()
+    {
+        $this->runAndAssert(function (Query $q) {
+            $res = $q->select([]);
+
+            return $res;
+        }, [
+            'parent' => self::PARENT,
+            'structuredQuery' => [
+                'from' => self::PARENT,
+                'select' => [
+                    'fields' => [
+                        [ 'fieldPath' => '__name__' ]
+                    ]
+                ]
+            ]
+        ]);
+    }
+
     public function testWhere()
     {
-        $immutable = clone $this->query;
-        $res = $this->query->where('user.name', '=', 'John');
-        $res = $res->where('user.age', '=', 30);
+        $this->runAndAssert(function (Query $q) {
+            $res = $q->where('user.name', '=', 'John');
+            $res = $res->where('user.age', '=', 30);
+            $res = $res->where('user.coolness', '=', null);
+            $res = $res->where('user.numberOfFriends', '=', NAN);
 
-        $this->assertInstanceOf(Query::class, $res);
-        $this->assertNotEquals($res, $immutable);
-
-        $this->runAndAssert($res, [
+            return $res;
+        }, [
             'parent' => self::PARENT,
             'structuredQuery' => [
                 'from' => self::PARENT,
@@ -129,12 +146,50 @@ class QueryTest extends \PHPUnit_Framework_TestCase
                                         'integerValue' => '30'
                                     ]
                                 ]
+                            ],
+                            [
+                                'unaryFilter' => [
+                                    'field' => [
+                                        'fieldPath' => 'user.coolness'
+                                    ],
+                                    'op' => Query::OP_NULL
+                                ]
+                            ], [
+                                'unaryFilter' => [
+                                    'field' => [
+                                        'fieldPath' => 'user.numberOfFriends'
+                                    ],
+                                    'op' => Query::OP_NAN
+                                ]
                             ]
                         ]
                     ]
                 ]
             ]
         ]);
+    }
+
+    /**
+     * @dataProvider invalidUnaryComparisonOperators
+     * @expectedException InvalidArgumentException
+     */
+    public function testWhereUnaryInvalidComparisonOperator($operator)
+    {
+        $this->query->where('foo', $operator, null);
+    }
+
+    public function invalidUnaryComparisonOperators()
+    {
+        return [
+            [Query::OP_LESS_THAN],
+            [Query::OP_LESS_THAN_OR_EQUAL],
+            [Query::OP_GREATER_THAN],
+            [Query::OP_GREATER_THAN_OR_EQUAL],
+            ['<'],
+            ['<='],
+            ['>'],
+            ['>='],
+        ];
     }
 
     /**
@@ -171,14 +226,12 @@ class QueryTest extends \PHPUnit_Framework_TestCase
 
     public function testOrderBy()
     {
-        $immutable = clone $this->query;
-        $res = $this->query->orderBy('user.name', 'DESC');
-        $res = $res->orderBy('user.age', 'ASC');
+        $this->runAndAssert(function (Query $q) {
+            $res = $q->orderBy('user.name', 'DESC');
+            $res = $res->orderBy('user.age', 'ASC');
 
-        $this->assertInstanceOf(Query::class, $res);
-        $this->assertNotEquals($res, $immutable);
-
-        $this->runAndAssert($res, [
+            return $res;
+        }, [
             'parent' => self::PARENT,
             'structuredQuery' => [
                 'from' => self::PARENT,
@@ -231,13 +284,11 @@ class QueryTest extends \PHPUnit_Framework_TestCase
     {
         $limit = 50;
 
-        $immutable = clone $this->query;
-        $res = $this->query->limit($limit);
+        $this->runAndAssert(function (Query $q) use ($limit) {
+            $res = $q->limit($limit);
 
-        $this->assertInstanceOf(Query::class, $res);
-        $this->assertNotEquals($res, $immutable);
-
-        $this->runAndAssert($res, [
+            return $res;
+        }, [
             'parent' => self::PARENT,
             'structuredQuery' => [
                 'from' => self::PARENT,
@@ -250,13 +301,11 @@ class QueryTest extends \PHPUnit_Framework_TestCase
     {
         $offset = 50;
 
-        $immutable = clone $this->query;
-        $res = $this->query->offset($offset);
+        $this->runAndAssert(function (Query $q) use ($offset) {
+            $res = $q->offset($offset);
 
-        $this->assertInstanceOf(Query::class, $res);
-        $this->assertNotEquals($res, $immutable);
-
-        $this->runAndAssert($res, [
+            return $res;
+        }, [
             'parent' => self::PARENT,
             'structuredQuery' => [
                 'from' => self::PARENT,
@@ -267,13 +316,11 @@ class QueryTest extends \PHPUnit_Framework_TestCase
 
     public function testStartAt()
     {
-        $immutable = clone $this->query;
-        $res = $this->query->startAt(['john']);
+        $this->runAndAssert(function (Query $q) {
+            $res = $q->startAt(['john']);
 
-        $this->assertInstanceOf(Query::class, $res);
-        $this->assertNotEquals($res, $immutable);
-
-        $this->runAndAssert($res, [
+            return $res;
+        }, [
             'parent' => self::PARENT,
             'structuredQuery' => [
                 'from' => self::PARENT,
@@ -291,13 +338,11 @@ class QueryTest extends \PHPUnit_Framework_TestCase
 
     public function testStartAfter()
     {
-        $immutable = clone $this->query;
-        $res = $this->query->startAfter(['john']);
+        $this->runAndAssert(function (Query $q) {
+            $res = $q->startAfter(['john']);
 
-        $this->assertInstanceOf(Query::class, $res);
-        $this->assertNotEquals($res, $immutable);
-
-        $this->runAndAssert($res, [
+            return $res;
+        }, [
             'parent' => self::PARENT,
             'structuredQuery' => [
                 'from' => self::PARENT,
@@ -315,13 +360,11 @@ class QueryTest extends \PHPUnit_Framework_TestCase
 
     public function testEndBefore()
     {
-        $immutable = clone $this->query;
-        $res = $this->query->endBefore(['john']);
+        $this->runAndAssert(function (Query $q) {
+            $res = $q->endBefore(['john']);
 
-        $this->assertInstanceOf(Query::class, $res);
-        $this->assertNotEquals($res, $immutable);
-
-        $this->runAndAssert($res, [
+            return $res;
+        }, [
             'parent' => self::PARENT,
             'structuredQuery' => [
                 'from' => self::PARENT,
@@ -337,32 +380,13 @@ class QueryTest extends \PHPUnit_Framework_TestCase
         ]);
     }
 
-    public function testClearQuery()
-    {
-        $query = $this->query->limit(10);
-        $immutable = clone $query;
-        $res = $query->clearQuery();
-
-        $this->assertInstanceOf(Query::class, $res);
-        $this->assertNotEquals($res, $immutable);
-
-        $this->runAndAssert($res, [
-            'parent' => self::PARENT,
-            'structuredQuery' => [
-                'from' => self::PARENT
-            ]
-        ]);
-    }
-
     public function testEndAt()
     {
-        $immutable = clone $this->query;
-        $res = $this->query->endAt(['john']);
+        $this->runAndAssert(function (Query $q) {
+            $res = $q->endAt(['john']);
 
-        $this->assertInstanceOf(Query::class, $res);
-        $this->assertNotEquals($res, $immutable);
-
-        $this->runAndAssert($res, [
+            return $res;
+        }, [
             'parent' => self::PARENT,
             'structuredQuery' => [
                 'from' => self::PARENT,
@@ -378,10 +402,22 @@ class QueryTest extends \PHPUnit_Framework_TestCase
         ]);
     }
 
-    private function runAndAssert(Query $query, $assertion)
+    public function testDefaultRetries()
+    {
+        $this->connection->runQuery(Argument::withEntry('retries', 0))
+            ->shouldBeCalledTimes(1)->willReturn(new \ArrayIterator([
+                []
+            ]));
+
+        $query = clone $this->query;
+        $query->___setProperty('connection', $this->connection->reveal());
+        $query->documents()->rows()->current();
+    }
+
+    private function runAndAssert(callable $filters, $assertion)
     {
         if (is_array($assertion)) {
-            $this->connection->runQuery($assertion + ['transaction' => null, 'retries' => 0])
+            $this->connection->runQuery($assertion + ['retries' => 0])
             ->shouldBeCalledTimes(1)->willReturn(new \ArrayIterator([
                 []
             ]));
@@ -390,8 +426,13 @@ class QueryTest extends \PHPUnit_Framework_TestCase
                 ->shouldBeCalledTimes(1);
         }
 
-        $query->___setProperty('connection', $this->connection->reveal());
+        $immutable = clone $this->query;
+        $immutable->___setProperty('connection', $this->connection->reveal());
+        $query = $filters($immutable);
 
-        $query->snapshot()->rows()->current();
+        $this->assertInstanceOf(Query::class, $query);
+        $this->assertNotEquals($immutable, $query);
+
+        $query->documents(['maxRetries' => 0])->rows()->current();
     }
 }

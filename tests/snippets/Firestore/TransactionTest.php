@@ -77,14 +77,6 @@ class TransactionTest extends SnippetTestCase
         $snippet->invoke();
     }
 
-    public function testCollection()
-    {
-        $snippet = $this->snippetFromMethod(Transaction::class, 'collection');
-        $snippet->addLocal('transaction', $this->transaction);
-        $res = $snippet->invoke('collection');
-        $this->assertInstanceOf(CollectionReference::class, $res->returnVal());
-    }
-
     public function testSnapshot()
     {
         $this->connection->batchGetDocuments(Argument::any())

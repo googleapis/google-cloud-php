@@ -112,7 +112,7 @@ class Transaction
      */
     public function snapshot(DocumentReference $document, array $options = [])
     {
-        return $this->createSnapshot($document, $this->valueMapper, [
+        return $this->createSnapshot($this->connection, $this->valueMapper, $document, [
             'transaction' => $this->transaction,
             'allowNonExistence' => false
         ] + $options);
@@ -210,7 +210,9 @@ class Transaction
      *
      * Calling this method on a non-existent document will raise an exception.
      *
-     * To remove a field, set the field value to {@see Gooogle\Cloud\Firestore\FieldValue::deleteField()}.
+     * This method supports various sentinel values, to perform special operations
+     * on fields. Available sentinel values are provided as methods, found in
+     * {@see Google\Cloud\Firestore\FieldValue}.
      *
      * To update a document using field paths, see
      * {@see Google\Cloud\Firestore\Transaction::updatePaths()}.
@@ -224,8 +226,10 @@ class Transaction
      *
      * ```
      * // Fields may be deleted by setting them to a special value.
+     * use Google\Cloud\Firestore\FieldValue;
+     *
      * $transaction->update($document, [
-     *     'country' => FirestoreClient::DELETE_FIELD
+     *     'country' => FieldValue::deleteField()
      * ]);
      * ```
      *
@@ -246,9 +250,38 @@ class Transaction
     /**
      * Enqueue an update with field paths and values.
      *
+     * Merges provided data with data stored in Firestore.
+     *
+     * Calling this method on a non-existent document will raise an exception.
+     *
+     * This method supports various sentinel values, to perform special operations
+     * on fields. Available sentinel values are provided as methods, found in
+     * {@see Google\Cloud\Firestore\FieldValue}.
+     *
+     * Note that field names must be provided using field paths, encoded either
+     * as a dot-delimited string (i.e. `foo.bar`), or an instance of
+     * {@see Google\Cloud\Firestore\FieldPath}. Nested arrays are not allowed.
+     *
      * Example:
      * ```
-     * // todo
+     * $transaction->updatePaths([
+     *     ['path' => 'name', 'value' => 'John'],
+     *     ['path' => 'country', 'value' => 'USA'],
+     *     ['path' => 'cryptoCurrencies.bitcoin', 'value' => 0.5],
+     *     ['path' => 'cryptoCurrencies.ethereum', 'value' => 10],
+     *     ['path' => 'cryptoCurrencies.litecoin', 'value' => 5.51]
+     * ]);
+     * ```
+     *
+     * ```
+     * // If your field names contain special characters (such as `.`, or symbols),
+     * // using {@see Google\Cloud\Firestore\FieldPath} will properly escape each element.
+     *
+     * use Google\Cloud\Firestore\FieldPath;
+     *
+     * $transaction->updatePaths([
+     *     ['path' => new FieldPath(['cryptoCurrencies', 'big$$$coin']), 'value' => 5.51]
+     * ]);
      * ```
      *
      * @codingStandardsIgnoreStart

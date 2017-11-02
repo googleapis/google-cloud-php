@@ -131,18 +131,21 @@ class TransactionTest extends FirestoreTestCase
         ]);
 
         $didRetry = false;
-        self::$client->runTransaction(function ($t, $isRetry) use (&$didRetry) {
-            if ($isRetry) {
+        $iteration = 0;
+        self::$client->runTransaction(function ($t) use (&$didRetry, &$iteration) {
+            if ($iteration > 0) {
                 $didRetry = true;
             }
 
             $s = $t->snapshot($this->document);
 
-            if (!$isRetry) {
+            if ($iteration === 0) {
                 $this->document->update([
                     'foo' => 'baz'
                 ]);
             }
+
+            $iteration++;
 
             $t->update($this->document, [
                 'foo' => 'bat'

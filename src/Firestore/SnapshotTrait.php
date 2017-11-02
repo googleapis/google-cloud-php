@@ -21,6 +21,7 @@ use Google\Cloud\Core\Timestamp;
 use Google\Cloud\Core\ArrayTrait;
 use Google\Cloud\Core\ValueMapperTrait;
 use Google\Cloud\Core\Exception\NotFoundException;
+use Google\Cloud\Firestore\Connection\ConnectionInterface;
 
 /**
  * Methods common to representing Document Snapshots.
@@ -33,8 +34,9 @@ trait SnapshotTrait
     /**
      * Execute a service request to retrieve a document snapshot.
      *
-     * @param DocumentReference $reference The parent document.
+     * @param ConnectionInterface $connection A Connection to Cloud Firestore.
      * @param ValueMapper $valueMapper A Firestore Value Mapper.
+     * @param DocumentReference $reference The parent document.
      * @param array $options {
      *     Configuration Options
      *
@@ -47,8 +49,12 @@ trait SnapshotTrait
      * @throws NotFoundException If the document does not exist, and
      *         `$options['allowNonExistence'] is `false`.
      */
-    private function createSnapshot(DocumentReference $reference, ValueMapper $valueMapper, array $options = [])
-    {
+    private function createSnapshot(
+        ConnectionInterface $connection,
+        ValueMapper $valueMapper,
+        DocumentReference $reference,
+        array $options = []
+    ) {
         $options += [
             'allowNonExistence' => true,
         ];
@@ -59,7 +65,7 @@ trait SnapshotTrait
 
         $allowNonExistence = $this->pluck('allowNonExistence', $options);
         try {
-            $document = $this->getSnapshot($reference->name(), $options);
+            $document = $this->getSnapshot($connection, $reference->name(), $options);
         } catch (NotFoundException $e) {
             if (!$allowNonExistence) {
                 throw $e;
@@ -68,7 +74,7 @@ trait SnapshotTrait
             $exists = false;
         }
 
-        return $this->createSnapshotWithData($reference, $valueMapper, $document, $exists);
+        return $this->createSnapshotWithData($valueMapper, $reference, $document, $exists);
     }
 
     /**
@@ -77,23 +83,23 @@ trait SnapshotTrait
      * This method will not perform a service request.
      *
      * @codingStandardsIgnoreStart
-     * @param DocumentReference $reference The parent document.
      * @param ValueMapper $valueMapper A Firestore Value Mapper.
+     * @param DocumentReference $reference The parent document.
      * @param array $document [Document](https://cloud.google.com/firestore/docs/reference/rpc/google.firestore.v1beta1#google.firestore.v1beta1.Document)
      * @param bool $exists Whether the document exists. **Defaults to** `true`.
      * @codingStandardsIgnoreEnd
      */
     private function createSnapshotWithData(
-        DocumentReference $reference,
         ValueMapper $valueMapper,
+        DocumentReference $reference,
         array $document,
         $exists = true
     ) {
         $fields = $exists
-            ? $this->valueMapper->decodeValues($this->pluck('fields', $document))
+            ? $valueMapper->decodeValues($this->pluck('fields', $document))
             : [];
 
-        $document = $this->transformSnapshotTimestamps($document);
+        $document = $this->transformSnapshotTimestamps($valueMapper, $document);
 
         return new DocumentSnapshot($reference, $valueMapper, $document, $fields, $exists);
     }
@@ -101,11 +107,12 @@ trait SnapshotTrait
     /**
      * Send a service request for a snapshot, and return the raw data
      *
+     * @param ConnectionInterface $connection A Connection to Cloud Firestore
      * @param string $name The document name.
      * @param array $options Configuration options.
      * @return array
      */
-    private function getSnapshot($name, array $options = [])
+    private function getSnapshot(ConnectionInterface $connection, $name, array $options = [])
     {
         if (isset($options['readTime'])) {
             if (!($options['readTime'] instanceof Timestamp)) {
@@ -117,7 +124,7 @@ trait SnapshotTrait
             $options['readTime'] = $options['readTime']->formatForApi();
         }
 
-        $snapshot = $this->connection->batchGetDocuments([
+        $snapshot = $connection->batchGetDocuments([
             'database' => $this->databaseFromName($name),
             'documents' => [$name],
         ] + $options)->current();
@@ -132,21 +139,22 @@ trait SnapshotTrait
     /**
      * Convert snapshot timestamps to google cloud php types.
      *
+     * @param ValueMapper $valueMapper A Firestore Value Mapper
      * @param array $data The snapshot data.
      * @return array
      */
-    private function transformSnapshotTimestamps(array $data)
+    private function transformSnapshotTimestamps(ValueMapper $valueMapper, array $data)
     {
         $data['createTime'] = isset($data['createTime'])
-            ? $this->valueMapper->createTimestampWithNanos($data['createTime'])
+            ? $valueMapper->createTimestampWithNanos($data['createTime'])
             : null;
 
         $data['updateTime'] = isset($data['updateTime'])
-            ? $this->valueMapper->createTimestampWithNanos($data['updateTime'])
+            ? $valueMapper->createTimestampWithNanos($data['updateTime'])
             : null;
 
         $data['readTime'] = isset($data['readTime'])
-            ? $this->valueMapper->createTimestampWithNanos($data['readTime'])
+            ? $valueMapper->createTimestampWithNanos($data['readTime'])
             : null;
 
         return $data;

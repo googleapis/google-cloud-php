@@ -31,9 +31,9 @@ use Google\Cloud\Firestore\Connection\ConnectionInterface;
  *
  * $firestore = new FirestoreClient();
  * $collection = $firestore->collection('users');
- * $query = $collection->query();
+ * $query = $collection->where('age', '>', 18);
  *
- * $snapshot = $query->snapshot();
+ * $snapshot = $query->documents();
  * ```
  *
  * ```
@@ -190,7 +190,7 @@ class QuerySnapshot implements \IteratorAggregate
                     $document = $result['document'];
                     $document['readTime'] = $result['readTime'];
 
-                    yield $this->createSnapshotWithData($ref, $this->valueMapper, $document);
+                    yield $this->createSnapshotWithData($this->valueMapper, $ref, $document);
                 }
 
                 $generator->next();

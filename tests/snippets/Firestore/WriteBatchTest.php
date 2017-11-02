@@ -112,36 +112,6 @@ class WriteBatchTest extends SnippetTestCase
         ]);
     }
 
-    public function testVerify()
-    {
-        $snippet = $this->snippetFromMethod(WriteBatch::class, 'verify');
-        $this->commitAndAssert($snippet, [
-            [
-                'verify' => self::DOCUMENT,
-                'currentDocument' => ['exists' => true]
-            ]
-        ]);
-    }
-
-    public function testTransform()
-    {
-        $snippet = $this->snippetFromMethod(WriteBatch::class, 'transform');
-        $snippet->addUse(WriteBatch::class);
-        $this->commitAndAssert($snippet, [
-            [
-                'transform' => [
-                    'document' => self::DOCUMENT,
-                    'fieldTransforms' => [
-                        [
-                            'fieldPath' => 'lastLoginTime',
-                            'setToServerValue' => WriteBatch::REQUEST_TIME
-                        ]
-                    ]
-                ]
-            ]
-        ]);
-    }
-
     public function testCommit()
     {
         $this->connection->commit(Argument::any())

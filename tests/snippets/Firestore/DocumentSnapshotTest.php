@@ -18,6 +18,7 @@
 namespace Google\Cloud\Tests\Snippets\Firestore;
 
 use Prophecy\Argument;
+use Google\Cloud\Firestore\ValueMapper;
 use Google\Cloud\Firestore\FirestoreClient;
 use Google\Cloud\Firestore\DocumentSnapshot;
 use Google\Cloud\Dev\Snippet\SnippetTestCase;
@@ -42,6 +43,7 @@ class DocumentSnapshotTest extends SnippetTestCase
         $ref->id()->willReturn(array_pop($parts));
         $this->snapshot = \Google\Cloud\Dev\stub(DocumentSnapshot::class, [
             $ref->reveal(),
+            new ValueMapper($this->prophesize(ConnectionInterface::class)->reveal(), false),
             [],
             [],
             true
@@ -134,11 +136,18 @@ class DocumentSnapshotTest extends SnippetTestCase
 
     public function testGet()
     {
-        $fields = ['wallet' => ['cryptoCurrency' => ['bitcoin' => 1]]];
+        $fields = [
+            'wallet' => [
+                'cryptoCurrency' => [
+                    'bitcoin' => 1
+                ]
+            ]
+        ];
+
         $this->snapshot->___setProperty('fields', $fields);
         $snippet = $this->snippetFromMethod(DocumentSnapshot::class, 'get');
         $snippet->addLocal('snapshot', $this->snapshot);
-        $res = $snippet->invoke('bitcoinWalletValue');
+        $res = $snippet->invoke('value');
         $this->assertEquals(1, $res->returnVal());
     }
 }

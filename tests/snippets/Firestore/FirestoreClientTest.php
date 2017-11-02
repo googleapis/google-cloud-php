@@ -100,18 +100,20 @@ class FirestoreClientTest extends SnippetTestCase
 
     public function testDocuments()
     {
+        $tpl = 'projects/%s/databases/%s/documents/users/%s';
+
         $this->connection->batchGetDocuments(Argument::any())
             ->shouldBeCalled()
             ->willReturn([
                 [
                     'found' => [
-                        'name' => 'users/john',
+                        'name' => sprintf($tpl, self::PROJECT, self::DATABASE, 'john'),
                         'fields' => []
                     ],
                     'readTime' => ['seconds' => time()]
                 ], [
                     'found' => [
-                        'name' => 'users/dave',
+                        'name' => sprintf($tpl, self::PROJECT, self::DATABASE, 'dave'),
                         'fields' => []
                     ],
                     'readTime' => ['seconds' => time()]
@@ -133,11 +135,12 @@ class FirestoreClientTest extends SnippetTestCase
 
     public function testDocumentsDoesntExist()
     {
+        $tpl = 'projects/%s/databases/%s/documents/users/%s';
         $this->connection->batchGetDocuments(Argument::any())
             ->shouldBeCalled()
             ->willReturn([
                 [
-                    'missing' => 'users/deleted-user',
+                    'missing' => sprintf($tpl, self::PROJECT, self::DATABASE, 'deleted-user'),
                     'readTime' => ['seconds' => time()]
                 ]
             ]);

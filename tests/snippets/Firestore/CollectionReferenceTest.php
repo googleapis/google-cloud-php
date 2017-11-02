@@ -92,7 +92,9 @@ class CollectionReferenceTest extends SnippetTestCase
 
     public function testAdd()
     {
-        $this->connection->commit(Argument::any())->shouldBeCalled();
+        $this->connection->commit(Argument::any())
+            ->shouldBeCalled()
+            ->willReturn([[]]);
         $this->collection->___setProperty('connection', $this->connection->reveal());
 
         $snippet = $this->snippetFromMethod(CollectionReference::class, 'add');
@@ -100,27 +102,5 @@ class CollectionReferenceTest extends SnippetTestCase
         $res = $snippet->invoke('newUser');
 
         $this->assertInstanceOf(DocumentReference::class, $res->returnVal());
-    }
-
-    public function testAddNamed()
-    {
-        $this->connection->commit(Argument::any())->shouldBeCalled();
-        $this->collection->___setProperty('connection', $this->connection->reveal());
-
-        $snippet = $this->snippetFromMethod(CollectionReference::class, 'add', 1);
-        $snippet->addLocal('collection', $this->collection);
-        $res = $snippet->invoke('newUser');
-
-        $this->assertInstanceOf(DocumentReference::class, $res->returnVal());
-        $this->assertEquals('david', $res->returnVal()->id());
-    }
-
-    public function testQuery()
-    {
-        $snippet = $this->snippetFromMethod(CollectionReference::class, 'query');
-        $snippet->addLocal('collection', $this->collection);
-
-        $res = $snippet->invoke('query');
-        $this->assertInstanceOf(Query::class, $res->returnVal());
     }
 }

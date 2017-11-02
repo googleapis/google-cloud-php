@@ -55,9 +55,9 @@ class QueryTest extends SnippetTestCase
         $this->assertInstanceOf(Query::class, $res->returnVal());
     }
 
-    public function testSnapshot()
+    public function testDocuments()
     {
-        $snippet = $this->snippetFromMethod(Query::class, 'snapshot');
+        $snippet = $this->snippetFromMethod(Query::class, 'documents');
         $snippet->addLocal('query', $this->query);
         $res = $snippet->invoke('result');
         $this->assertInstanceOf(QuerySnapshot::class, $res->returnVal());
@@ -149,17 +149,10 @@ class QueryTest extends SnippetTestCase
         ];
     }
 
-    public function testClearQuery()
-    {
-        $snippet = $this->snippetFromMethod(Query::class, 'clearQuery');
-        $this->runAndAssert($snippet, '', null);
-    }
-
     private function runAndAssert(Snippet $snippet, $key, $argument)
     {
         $this->connection->runQuery([
             'parent' => self::NAME,
-            'transaction' => null,
             'retries' => 0,
             'structuredQuery' => array_filter([
                 'from' => self::NAME,
@@ -170,7 +163,7 @@ class QueryTest extends SnippetTestCase
         $this->query->___setProperty('connection', $this->connection->reveal());
         $snippet->addLocal('query', $this->query);
         $res = $snippet->invoke('query');
-        $res->returnVal()->snapshot()->rows()->current();
+        $res->returnVal()->documents(['retries' => 0])->rows()->current();
         $this->assertInstanceOf(Query::class, $res->returnVal());
     }
 }

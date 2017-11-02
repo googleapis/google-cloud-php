@@ -35,15 +35,15 @@ class SnapshotTraitTest extends \PHPUnit_Framework_TestCase
     const NAME = 'projects/example_project/databases/(default)/documents/a/b';
 
     private $connection;
+    private $mapper;
     private $impl;
 
     public function setUp()
     {
         $this->connection = $this->prophesize(ConnectionInterface::class);
-        $this->impl = \Google\Cloud\Dev\impl(SnapshotTrait::class, ['connection', 'valueMapper']);
+        $this->impl = \Google\Cloud\Dev\impl(SnapshotTrait::class);
 
-        $mapper = new ValueMapper($this->connection->reveal(), false);
-        $this->impl->___setProperty('valueMapper', $mapper);
+        $this->valueMapper = new ValueMapper($this->connection->reveal(), false);
     }
 
     public function testCreateSnapshot()
@@ -62,11 +62,13 @@ class SnapshotTraitTest extends \PHPUnit_Framework_TestCase
             ]]
         ]));
 
-        $this->impl->___setProperty('connection', $this->connection->reveal());
-
         $ref = $this->prophesize(DocumentReference::class);
         $ref->name()->willReturn(self::NAME);
-        $res = $this->impl->call('createSnapshot', [$ref->reveal()]);
+        $res = $this->impl->call('createSnapshot', [
+            $this->connection->reveal(),
+            $this->valueMapper,
+            $ref->reveal()
+        ]);
 
         $this->assertInstanceOf(DocumentSnapshot::class, $res);
         $this->assertEquals('world', $res['hello']);
@@ -83,11 +85,13 @@ class SnapshotTraitTest extends \PHPUnit_Framework_TestCase
             ['missing' => self::NAME]
         ]));
 
-        $this->impl->___setProperty('connection', $this->connection->reveal());
-
         $ref = $this->prophesize(DocumentReference::class);
         $ref->name()->willReturn(self::NAME);
-        $res = $this->impl->call('createSnapshot', [$ref->reveal()]);
+        $res = $this->impl->call('createSnapshot', [
+            $this->connection->reveal(),
+            $this->valueMapper,
+            $ref->reveal()
+        ]);
 
         $this->assertInstanceOf(DocumentSnapshot::class, $res);
         $this->assertEquals(self::NAME, $res->name());
@@ -106,50 +110,15 @@ class SnapshotTraitTest extends \PHPUnit_Framework_TestCase
             ['missing' => self::NAME]
         ]));
 
-        $this->impl->___setProperty('connection', $this->connection->reveal());
-
         $ref = $this->prophesize(DocumentReference::class);
         $ref->name()->willReturn(self::NAME);
-        $res = $this->impl->call('createSnapshot', [$ref->reveal(), ['allowNonExistence' => false]]);
-    }
-
-    public function testCreateSnapshotProvidedData()
-    {
-        $this->connection->batchGetDocuments()->shouldNotBeCalled();
-        $this->impl->___setProperty('connection', $this->connection->reveal());
-
-        $ref = $this->prophesize(DocumentReference::class);
-        $ref->name()->willReturn(self::NAME);
-
-        $res = $this->impl->call('createSnapshot', [$ref->reveal(), [
-            'data' => [
-                'name' => self::NAME,
-                'fields' => [
-                    'hello' => [
-                        'stringValue' => 'world'
-                    ]
-                ]
+        $res = $this->impl->call('createSnapshot', [
+            $this->connection->reveal(),
+            $this->valueMapper,
+            $ref->reveal(), [
+                'allowNonExistence' => false
             ]
-        ]]);
-
-        $this->assertInstanceOf(DocumentSnapshot::class, $res);
-        $this->assertEquals('world', $res['hello']);
-        $this->assertEquals(self::NAME, $res->name());
-        $this->assertTrue($res->exists());
-    }
-
-    public function testCreateSnapshotExistsSetToFalse()
-    {
-        $this->connection->batchGetDocuments()->shouldNotBeCalled();
-        $this->impl->___setProperty('connection', $this->connection->reveal());
-
-        $ref = $this->prophesize(DocumentReference::class);
-        $ref->name()->willReturn(self::NAME);
-
-        $res = $this->impl->call('createSnapshot', [$ref->reveal(), ['exists' => false, 'data' => []]]);
-        $this->assertInstanceOf(DocumentSnapshot::class, $res);
-        $this->assertEquals(self::NAME, $res->name());
-        $this->assertFalse($res->exists());
+        ]);
     }
 
     public function testGetSnapshot()
@@ -161,9 +130,10 @@ class SnapshotTraitTest extends \PHPUnit_Framework_TestCase
             ['found' => 'foo']
         ]));
 
-        $this->impl->___setProperty('connection', $this->connection->reveal());
-
-        $this->assertEquals('foo', $this->impl->call('getSnapshot', [self::NAME]));
+        $this->assertEquals('foo', $this->impl->call('getSnapshot', [
+            $this->connection->reveal(),
+            self::NAME
+        ]));
     }
 
     /**
@@ -178,14 +148,18 @@ class SnapshotTraitTest extends \PHPUnit_Framework_TestCase
             ['missing' => self::NAME]
         ]));
 
-        $this->impl->___setProperty('connection', $this->connection->reveal());
-
-        $this->impl->call('getSnapshot', [self::NAME]);
+        $this->impl->call('getSnapshot', [
+            $this->connection->reveal(),
+            self::NAME
+        ]);
     }
 
     public function testTransformSnapshotTimestampsEmpty()
     {
-        $res = $this->impl->call('transformSnapshotTimestamps', [[]]);
+        $res = $this->impl->call('transformSnapshotTimestamps', [
+            $this->valueMapper,
+            []
+        ]);
         $this->assertEquals([
             'createTime' => null,
             'updateTime' => null,
@@ -207,7 +181,10 @@ class SnapshotTraitTest extends \PHPUnit_Framework_TestCase
             'readTime' => $ts
         ];
 
-        $res = $this->impl->call('transformSnapshotTimestamps', [$input]);
+        $res = $this->impl->call('transformSnapshotTimestamps', [
+            $this->valueMapper,
+            $input
+        ]);
 
         $timestamp = new Timestamp(\DateTimeImmutable::createFromFormat('U', $now), $ts['nanos']);
 

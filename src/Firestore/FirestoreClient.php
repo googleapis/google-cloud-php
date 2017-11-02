@@ -243,7 +243,7 @@ class FirestoreClient
      * The number of results generated will be equal to the number of documents
      * requested, except in case of error.
      *
-     * Note that this method will **always** yield instances of
+     * Note that this method will **always** return instances of
      * {@see Google\Cloud\Firestore\DocumentSnapshot}, even if the documents
      * requested do not exist. It is highly recommended that you check for
      * existence before accessing document data.
@@ -271,7 +271,7 @@ class FirestoreClient
      *
      * @param string[]|DocumentReference[] $paths Any combination of string paths or DocumentReference instances.
      * @param array $options Configuration options.
-     * @return \Generator<DocumentSnapshot>
+     * @return DocumentSnapshot[]
      */
     public function documents(array $paths, array $options = [])
     {
@@ -302,8 +302,8 @@ class FirestoreClient
                 : $document['missing'];
 
             $res[$name] = $this->createSnapshotWithData(
-                $this->document($name),
                 $this->valueMapper,
+                $this->document($name),
                 $data,
                 $exists
             );
@@ -396,9 +396,9 @@ class FirestoreClient
         // transaction is retried or not.
         $transactionId = null;
 
-        $backoff = new Retry($options['maxRetries'], $delayFn, $retryFn);
+        $retry = new Retry($options['maxRetries'], $delayFn, $retryFn);
 
-        return $backoff->execute(function (
+        return $retry->execute(function (
             callable $callable,
             array $options
         ) use (&$transactionId, $retryableErrors) {

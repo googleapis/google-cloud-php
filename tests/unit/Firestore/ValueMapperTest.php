@@ -22,6 +22,7 @@ use Google\Cloud\Core\Int64;
 use Google\Protobuf\NullValue;
 use Google\Cloud\Core\GeoPoint;
 use Google\Cloud\Core\Timestamp;
+use Google\Cloud\Firestore\FieldValue;
 use Google\Cloud\Firestore\ValueMapper;
 use Google\Cloud\Firestore\FirestoreClient;
 use Google\Cloud\Firestore\DocumentReference;
@@ -362,41 +363,17 @@ class ValueMapperTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($expected, $res);
     }
 
-    public function testDecodeFieldPaths()
-    {
-        $input = [
-            'users.john.name' => 'John',
-            'users.john.family' => ['katelynn'],
-            'users.david.name' => 'David'
-        ];
-
-        $expected = [
-            'users' => [
-                'john' => [
-                    'name' => 'John',
-                    'family' => ['katelynn']
-                ],
-                'david' => [
-                    'name' => 'David',
-                ]
-            ]
-        ];
-
-        $res = $this->mapper->decodeFieldPaths($input);
-        $this->assertEquals($expected, $res);
-    }
-
     public function testFindSentinels()
     {
         $input = [
             'users' => [
                 'john' => [
                     'name' => 'John',
-                    'family' => FirestoreClient::DELETE_FIELD
+                    'family' => FieldValue::deleteField()
                 ],
                 'david' => [
                     'name' => 'David',
-                    'lastLogin' => FirestoreClient::SERVER_TIMESTAMP
+                    'lastLogin' => FieldValue::serverTimestamp()
                 ]
             ]
         ];

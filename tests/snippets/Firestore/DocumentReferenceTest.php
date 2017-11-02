@@ -85,8 +85,12 @@ class DocumentReferenceTest extends SnippetTestCase
 
     public function testCreate()
     {
-        $this->batch->create(self::DOCUMENT, Argument::any(), Argument::any())->shouldBeCalled();
-        $this->batch->commit(Argument::any())->shouldBeCalled();
+        $this->batch->commit(Argument::any())
+            ->shouldBeCalled()
+            ->willReturn([[]]);
+
+        $this->batch->create(self::DOCUMENT, Argument::any(), Argument::any())
+            ->shouldBeCalled()->willReturn($this->batch->reveal());
 
         $this->document->setBatch($this->batch->reveal());
 
@@ -97,8 +101,12 @@ class DocumentReferenceTest extends SnippetTestCase
 
     public function testSet()
     {
-        $this->batch->set(self::DOCUMENT, Argument::any(), Argument::any())->shouldBeCalled();
-        $this->batch->commit(Argument::any())->shouldBeCalled();
+        $this->batch->commit(Argument::any())
+            ->shouldBeCalled()
+            ->willReturn([[]]);
+
+        $this->batch->set(self::DOCUMENT, Argument::any(), Argument::any())
+            ->shouldBeCalled()->willReturn($this->batch->reveal());
 
         $this->document->setBatch($this->batch->reveal());
 
@@ -109,8 +117,12 @@ class DocumentReferenceTest extends SnippetTestCase
 
     public function testUpdate()
     {
-        $this->batch->update(self::DOCUMENT, Argument::any(), Argument::any())->shouldBeCalled();
-        $this->batch->commit(Argument::any())->shouldBeCalled();
+        $this->batch->commit(Argument::any())
+            ->shouldBeCalled()
+            ->willReturn([[]]);
+
+        $this->batch->update(self::DOCUMENT, Argument::any(), Argument::any())
+            ->shouldBeCalled()->willReturn($this->batch->reveal());
 
         $this->document->setBatch($this->batch->reveal());
 
@@ -121,8 +133,12 @@ class DocumentReferenceTest extends SnippetTestCase
 
     public function testUpdateRemoveField()
     {
-        $this->batch->update(self::DOCUMENT, Argument::any(), Argument::any())->shouldBeCalled();
-        $this->batch->commit(Argument::any())->shouldBeCalled();
+        $this->batch->commit(Argument::any())
+            ->shouldBeCalled()
+            ->willReturn([[]]);
+
+        $this->batch->update(self::DOCUMENT, Argument::any(), Argument::any())
+            ->shouldBeCalled()->willReturn($this->batch->reveal());
 
         $this->document->setBatch($this->batch->reveal());
 
@@ -132,22 +148,30 @@ class DocumentReferenceTest extends SnippetTestCase
         $snippet->invoke();
     }
 
-    public function testUpdateFieldPaths()
+    public function testUpdatePaths()
     {
-        $this->batch->update(self::DOCUMENT, Argument::any(), Argument::any())->shouldBeCalled();
-        $this->batch->commit(Argument::any())->shouldBeCalled();
+        $this->batch->commit(Argument::any())
+            ->shouldBeCalled()
+            ->willReturn([[]]);
+
+        $this->batch->updatePaths(self::DOCUMENT, Argument::any(), Argument::any())
+            ->shouldBeCalled()->willReturn($this->batch->reveal());
 
         $this->document->setBatch($this->batch->reveal());
 
-        $snippet = $this->snippetFromMethod(DocumentReference::class, 'update', 2);
+        $snippet = $this->snippetFromMethod(DocumentReference::class, 'updatePaths');
         $snippet->addLocal('document', $this->document);
         $snippet->invoke();
     }
 
     public function testDelete()
     {
-        $this->batch->delete(self::DOCUMENT, Argument::any(), Argument::any())->shouldBeCalled();
-        $this->batch->commit(Argument::any())->shouldBeCalled();
+        $this->batch->commit(Argument::any())
+            ->shouldBeCalled()
+            ->willReturn([[]]);
+
+        $this->batch->delete(self::DOCUMENT, Argument::any())
+            ->shouldBeCalled()->willReturn($this->batch->reveal());
 
         $this->document->setBatch($this->batch->reveal());
 

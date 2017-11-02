@@ -18,6 +18,7 @@
 namespace Google\Cloud\Tests\System\Firestore;
 
 use Google\Cloud\Core\Timestamp;
+use Google\Cloud\Firestore\FieldValue;
 use Google\Cloud\Firestore\FirestoreClient;
 
 /**
@@ -123,7 +124,7 @@ class DocumentAndCollectionTest extends FirestoreTestCase
         $this->assertEquals('bar', $this->document->snapshot()['foo']);
 
         $this->document->update([
-            'foo' => FirestoreClient::DELETE_FIELD
+            'foo' => FieldValue::deleteField()
         ]);
 
         try {
@@ -142,7 +143,7 @@ class DocumentAndCollectionTest extends FirestoreTestCase
         $this->assertEquals('bar', $this->document->snapshot()['foo']);
 
         $this->document->update([
-            'foo' => FirestoreClient::SERVER_TIMESTAMP
+            'foo' => FieldValue::serverTimestamp()
         ]);
 
         $this->assertInstanceOf(Timestamp::class, $this->document->snapshot()['foo']);

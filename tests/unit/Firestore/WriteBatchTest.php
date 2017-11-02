@@ -19,7 +19,9 @@ namespace Google\Cloud\Tests\Unit\Firestore;
 
 use Prophecy\Argument;
 use Google\Cloud\Core\Timestamp;
+use Google\Cloud\Firestore\FieldPath;
 use Google\Cloud\Firestore\WriteBatch;
+use Google\Cloud\Firestore\FieldValue;
 use Google\Cloud\Firestore\ValueMapper;
 use Google\Cloud\Firestore\FirestoreClient;
 use Google\Cloud\Firestore\Connection\ConnectionInterface;
@@ -91,17 +93,26 @@ class WriteBatchTest extends \PHPUnit_Framework_TestCase
         ]);
     }
 
-    public function testUpdateFieldPaths()
+    public function testUpdatePaths()
     {
-        $this->batch->update(self::DOCUMENT, [
-            'hello.world' => 'world'
+        $this->batch->updatePaths(self::DOCUMENT, [
+            [
+                'path' => 'hello.world',
+                'value' => 'world'
+            ], [
+                'path' => new FieldPath(['hello', 'house']),
+                'value' => 'house'
+            ]
         ]);
 
         $this->commitAndAssert([
             'database' => sprintf('projects/%s/databases/%s', self::PROJECT, self::DATABASE),
             'writes' => [
                 [
-                    'updateMask' => ['hello.world'],
+                    'updateMask' => [
+                        'hello.world',
+                        'hello.house'
+                    ],
                     'currentDocument' => ['exists' => true],
                     'update' => [
                         'name' => self::DOCUMENT,
@@ -111,6 +122,9 @@ class WriteBatchTest extends \PHPUnit_Framework_TestCase
                                     'fields' => [
                                         'world' => [
                                             'stringValue' => 'world'
+                                        ],
+                                        'house' => [
+                                            'stringValue' => 'house'
                                         ]
                                     ]
                                 ]
@@ -126,8 +140,8 @@ class WriteBatchTest extends \PHPUnit_Framework_TestCase
     {
         $this->batch->update(self::DOCUMENT, [
             'foo' => 'bar',
-            'hello' => FirestoreClient::DELETE_FIELD,
-            'world' => FirestoreClient::SERVER_TIMESTAMP
+            'hello' => FieldValue::deleteField(),
+            'world' => FieldValue::serverTimestamp()
         ]);
 
         $this->commitAndAssert([
@@ -154,20 +168,6 @@ class WriteBatchTest extends \PHPUnit_Framework_TestCase
                     ]
                 ]
             ]
-        ]);
-    }
-
-    /**
-     * @expectedException BadMethodCallException
-     */
-    public function testUpdatePreviousTransform()
-    {
-        $this->batch->update(self::DOCUMENT, [
-            'world' => FirestoreClient::SERVER_TIMESTAMP
-        ]);
-
-        $this->batch->update(self::DOCUMENT, [
-            'hello' => FirestoreClient::DELETE_FIELD,
         ]);
     }
 
@@ -213,8 +213,8 @@ class WriteBatchTest extends \PHPUnit_Framework_TestCase
     public function testSetSentinels()
     {
         $this->batch->set(self::DOCUMENT, [
-            'hello' => FirestoreClient::DELETE_FIELD,
-            'world' => FirestoreClient::SERVER_TIMESTAMP
+            'hello' => FieldValue::deleteField(),
+            'world' => FieldValue::serverTimestamp()
         ]);
 
         $this->commitAndAssert([
@@ -235,20 +235,6 @@ class WriteBatchTest extends \PHPUnit_Framework_TestCase
         ]);
     }
 
-    /**
-     * @expectedException BadMethodCallException
-     */
-    public function testSetPreviousTransform()
-    {
-        $this->batch->set(self::DOCUMENT, [
-            'world' => FirestoreClient::SERVER_TIMESTAMP
-        ]);
-
-        $this->batch->set(self::DOCUMENT, [
-            'hello' => FirestoreClient::DELETE_FIELD,
-        ]);
-    }
-
     public function testDelete()
     {
         $this->batch->delete(self::DOCUMENT);
@@ -261,81 +247,6 @@ class WriteBatchTest extends \PHPUnit_Framework_TestCase
                 ]
             ]
         ]);
-    }
-
-    public function testVerify()
-    {
-        $this->batch->verify(self::DOCUMENT, [
-            'precondition' => [
-                'exists' => true
-            ]
-        ]);
-
-        $this->commitAndAssert([
-            'database' => sprintf('projects/%s/databases/%s', self::PROJECT, self::DATABASE),
-            'writes' => [
-                [
-                    'verify' => self::DOCUMENT,
-                    'currentDocument' => [
-                        'exists' => true
-                    ]
-                ]
-            ]
-        ]);
-    }
-
-    public function testVerifyUpdateTime()
-    {
-        $now = time();
-        $ts = new Timestamp(\DateTimeImmutable::createFromFormat('U', $now), 10);
-        $this->batch->verify(self::DOCUMENT, [
-            'precondition' => [
-                'updateTime' => $ts
-            ]
-        ]);
-
-        $this->commitAndAssert([
-            'database' => sprintf('projects/%s/databases/%s', self::PROJECT, self::DATABASE),
-            'writes' => [
-                [
-                    'verify' => self::DOCUMENT,
-                    'currentDocument' => [
-                        'updateTime' => [
-                            'seconds' => $now,
-                            'nanos' => 10
-                        ]
-                    ]
-                ]
-            ]
-        ]);
-    }
-
-    /**
-     * @expectedException InvalidArgumentException
-     */
-    public function testVerifyUpdateTimeInvalidArgument()
-    {
-        $this->batch->verify(self::DOCUMENT, [
-            'precondition' => [
-                'updateTime' => 'hello'
-            ]
-        ]);
-
-        $this->commitAndAssert([]);
-    }
-
-    /**
-     * @expectedException InvalidArgumentException
-     */
-    public function testVerifyInvalidPrecondition()
-    {
-        $this->batch->verify(self::DOCUMENT, [
-            'precondition' => [
-                'foo' => 'bar'
-            ]
-        ]);
-
-        $this->commitAndAssert([]);
     }
 
     public function testCommitResponse()
@@ -357,6 +268,8 @@ class WriteBatchTest extends \PHPUnit_Framework_TestCase
                 'writeResults' => [
                     [
                         'updateTime' => $timestamp
+                    ], [
+                        'updateTime' => $timestamp
                     ]
                 ]
             ]);
@@ -367,6 +280,7 @@ class WriteBatchTest extends \PHPUnit_Framework_TestCase
 
         $this->assertEquals($tsObj, $res['commitTime']);
         $this->assertEquals($tsObj, $res['writeResults'][0]['updateTime']);
+        $this->assertEquals($tsObj, $res['writeResults'][1]['updateTime']);
     }
 
     public function testCommitWithTransaction()

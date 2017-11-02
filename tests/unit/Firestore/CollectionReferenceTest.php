@@ -109,17 +109,8 @@ class CollectionReferenceTest extends \PHPUnit_Framework_TestCase
         $this->collection->add(['hello' => 'world']);
     }
 
-    public function testQuery()
+    public function testExtends()
     {
-        $this->connection->runQuery(Argument::withEntry('parent', self::PARENT))->shouldBeCalled()
-            ->willReturn(new \ArrayIterator([
-                []
-            ]));
-        $this->collection->___setProperty('connection', $this->connection->reveal());
-
-        $q = $this->collection->query();
-        $this->assertInstanceOf(Query::class, $q);
-
-        $q->snapshot()->rows()->current();
+        $this->assertTrue($this->collection instanceof Query);
     }
 }

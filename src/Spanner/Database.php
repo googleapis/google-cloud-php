@@ -712,8 +712,7 @@ class Database
                 throw $e;
             }
 
-            $delay = $e->getRetryDelay();
-            time_nanosleep($delay['seconds'], $delay['nanos']);
+            return $e->getRetryDelay();
         };
 
         $transactionFn = function ($operation, $session, $options) use ($startTransactionFn) {

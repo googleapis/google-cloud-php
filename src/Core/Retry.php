@@ -55,8 +55,8 @@ class Retry
         callable $retryFunction = null
     ) {
         $this->retries = $retries !== null ? (int) $retries : 3;
-        $this->retryFunction = $retryFunction;
         $this->delayFunction = $delayFunction;
+        $this->retryFunction = $retryFunction;
     }
 
     /**
@@ -71,11 +71,13 @@ class Retry
     {
         $delayFunction = $this->delayFunction;
         $retryAttempt = 0;
-        $exception = null;
 
-        while (true) {
+        $continue = true;
+        do {
             try {
-                return call_user_func_array($function, $arguments);
+                $res = call_user_func_array($function, $arguments);
+                $continue = false;
+                return $res;
             } catch (\Exception $exception) {
                 if ($this->retryFunction) {
                     if (!call_user_func($this->retryFunction, $exception)) {
@@ -83,16 +85,22 @@ class Retry
                     }
                 }
 
-                if ($retryAttempt >= $this->retries) {
-                    break;
+                if ($retryAttempt < $this->retries) {
+                    $delay = $delayFunction($exception);
+                    $delay = $delay + [
+                        'seconds' => 0,
+                        'nanos' => 0
+                    ];
+
+                    time_nanosleep($delay['seconds'], $delay['nanos']);
+
+                    $retryAttempt++;
+                } else {
+                    $continue = false;
+                    throw $exception;
                 }
-
-                $delayFunction($exception);
-                $retryAttempt++;
             }
-        }
-
-        throw $exception;
+        } while($continue);
     }
 
     /**
