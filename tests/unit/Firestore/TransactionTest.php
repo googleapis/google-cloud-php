@@ -18,8 +18,11 @@
 namespace Google\Cloud\Tests\Unit\Firestore;
 
 use Prophecy\Argument;
+use Google\Cloud\Firestore\Query;
+use Google\Cloud\Firestore\FieldPath;
 use Google\Cloud\Firestore\Transaction;
 use Google\Cloud\Firestore\ValueMapper;
+use Google\Cloud\Firestore\QuerySnapshot;
 use Google\Cloud\Firestore\DocumentSnapshot;
 use Google\Cloud\Firestore\DocumentReference;
 use Google\Cloud\Firestore\Connection\ConnectionInterface;
@@ -36,15 +39,17 @@ class TransactionTest extends \PHPUnit_Framework_TestCase
     const TRANSACTION = 'foobar';
 
     private $connection;
+    private $valueMapper;
     private $transaction;
     private $reference;
 
     public function setUp()
     {
         $this->connection = $this->prophesize(ConnectionInterface::class);
+        $this->valueMapper = new ValueMapper($this->connection->reveal(), false);
         $this->transaction = \Google\Cloud\Dev\stub(Transaction::class, [
             $this->connection->reveal(),
-            new ValueMapper($this->connection->reveal(), false),
+            $this->valueMapper,
             sprintf('projects/%s/databases/%s', self::PROJECT, self::DATABASE),
             self::TRANSACTION
         ]);
@@ -96,6 +101,19 @@ class TransactionTest extends \PHPUnit_Framework_TestCase
         $this->transaction->___setProperty('connection', $this->connection->reveal());
 
         $res = $this->transaction->snapshot($this->ref->reveal());
+    }
+
+    public function testRunQuery()
+    {
+        $this->connection->runQuery(Argument::withEntry('transaction', self::TRANSACTION))
+            ->shouldBeCalled()
+            ->willReturn(new \ArrayIterator([[]]));
+
+        $query = new Query($this->connection->reveal(), $this->valueMapper, '', ['from' => ['collectionId' => '']]);
+
+        $res = $this->transaction->runQuery($query);
+        $this->assertInstanceOf(QuerySnapshot::class, $res);
+        $res->rows()->current();
     }
 
     public function testCreate()
@@ -162,6 +180,46 @@ class TransactionTest extends \PHPUnit_Framework_TestCase
                 'update' => [
                     'name' => self::DOCUMENT,
                     'fields' => ['hello' => ['stringValue' => 'world']]
+                ]
+            ]
+        ]);
+    }
+
+    public function testUpdatePaths()
+    {
+        $this->transaction->updatePaths($this->ref->reveal(), [
+            ['path' => 'hello', 'value' => 'world'],
+            ['path' => 'foo.bar', 'value' => 'val'],
+            ['path' => new FieldPath(['foo', 'baz']), 'value' => 'val']
+        ]);
+
+        $this->expectAndInvoke([
+            [
+                'updateMask' => [
+                    "hello",
+                    "foo.bar",
+                    "foo.baz"
+                ],
+                'currentDocument' => ['exists' => true],
+                'update' => [
+                    'name' => self::DOCUMENT,
+                    'fields' => [
+                        'hello' => [
+                            'stringValue' => 'world'
+                        ],
+                        'foo' => [
+                            'mapValue' => [
+                                'fields' => [
+                                    'bar' => [
+                                        'stringValue' => 'val'
+                                    ],
+                                    'baz' => [
+                                        'stringValue' => 'val'
+                                    ]
+                                ]
+                            ]
+                        ]
+                    ]
                 ]
             ]
         ]);

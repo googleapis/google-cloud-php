@@ -66,8 +66,9 @@ trait ValidateTrait
         foreach ($keys as $key) {
             if (!isset($input[$key])) {
                 throw new \InvalidArgumentException(sprintf(
-                    'Input missing required one or more required keys. Required keys are %s'
-                ), implode(', ', $keys));
+                    'Input missing required one or more required keys. Required keys are %s',
+                    implode(', ', $keys)
+                ));
             }
         }
     }

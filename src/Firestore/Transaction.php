@@ -132,7 +132,7 @@ class Transaction
      */
     public function runQuery(Query $query, array $options = [])
     {
-        return $query->snapshot([
+        return $query->documents([
             'transaction' => $this->transaction
         ] + $options);
     }

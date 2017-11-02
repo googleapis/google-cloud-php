@@ -136,6 +136,25 @@ class WriteBatchTest extends \PHPUnit_Framework_TestCase
         ]);
     }
 
+    /**
+     * @dataProvider updatePathsBadInput
+     * @expectedException InvalidArgumentException
+     */
+    public function testUpdatePathsBadInput($data)
+    {
+        $this->batch->updatePaths(self::DOCUMENT, $data);
+    }
+
+    public function updatePathsBadInput()
+    {
+        return [
+            [['foo' => 'bar']],
+            [[['path' => 'foo']]],
+            [[['value' => 'bar']]],
+            [[[]]]
+        ];
+    }
+
     public function testUpdateSentinels()
     {
         $this->batch->update(self::DOCUMENT, [
@@ -246,6 +265,54 @@ class WriteBatchTest extends \PHPUnit_Framework_TestCase
                     'delete' => self::DOCUMENT
                 ]
             ]
+        ]);
+    }
+
+    public function testWriteUpdateTimePrecondition()
+    {
+        $ts = [
+            'seconds' => 10000,
+            'nanos' => 5
+        ];
+
+        $this->batch->delete(self::DOCUMENT, [
+            'precondition' => [
+                'updateTime' => new Timestamp(\DateTimeImmutable::createFromFormat('U', $ts['seconds']), $ts['nanos'])
+            ]
+        ]);
+
+        $this->commitAndAssert([
+            'database' => sprintf('projects/%s/databases/%s', self::PROJECT, self::DATABASE),
+            'writes' => [
+                [
+                    'delete' => self::DOCUMENT,
+                    'currentDocument' => [
+                        'updateTime' => $ts
+                    ]
+                ]
+            ]
+        ]);
+    }
+
+    /**
+     * @expectedException InvalidArgumentException
+     */
+    public function testWriteUpdateTimePreconditionInvalidType()
+    {
+        $this->batch->delete(self::DOCUMENT, [
+            'precondition' => [
+                'updateTime' => 'foobar'
+            ]
+        ]);
+    }
+
+    /**
+     * @expectedException InvalidArgumentException
+     */
+    public function testWritePreconditionMissingStuff()
+    {
+        $this->batch->delete(self::DOCUMENT, [
+            'precondition' => ['foo' => 'bar']
         ]);
     }
 

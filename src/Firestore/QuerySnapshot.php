@@ -165,9 +165,7 @@ class QuerySnapshot implements \IteratorAggregate
             while ($generator->valid()) {
                 $result = $generator->current();
 
-                if (isset($result['transaction']) && $result['transaction']) {
-                    $this->transaction = $result['transaction'];
-                } elseif (isset($result['document']) && $result['document']) {
+                if (isset($result['document']) && $result['document']) {
                     $this->empty = false;
                     $size++;
 
@@ -223,7 +221,9 @@ class QuerySnapshot implements \IteratorAggregate
     {
         $shouldRetry = true;
         $backoff = new ExponentialBackoff($this->retries, function () use (&$shouldRetry) {
+            // @codeCoverageIgnoreStart
             return $shouldRetry;
+            // @codeCoverageIgnoreEnd
         });
 
         return $backoff->execute(function () use (&$shouldRetry) {

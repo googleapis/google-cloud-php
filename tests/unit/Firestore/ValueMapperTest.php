@@ -22,6 +22,7 @@ use Google\Cloud\Core\Int64;
 use Google\Protobuf\NullValue;
 use Google\Cloud\Core\GeoPoint;
 use Google\Cloud\Core\Timestamp;
+use Google\Cloud\Firestore\FieldPath;
 use Google\Cloud\Firestore\FieldValue;
 use Google\Cloud\Firestore\ValueMapper;
 use Google\Cloud\Firestore\FirestoreClient;
@@ -339,6 +340,27 @@ class ValueMapperTest extends \PHPUnit_Framework_TestCase
         ]]);
     }
 
+    /**
+     * @dataProvider fieldPaths
+     */
+    public function testEscapeFieldPath($input, $expected)
+    {
+        $this->assertEquals($expected, $this->mapper->escapeFieldPath($input));
+    }
+
+    public function fieldPaths()
+    {
+        return [
+            ['foo.bar', 'foo.bar'],
+            ['foo.bar.bar.bar.baz.whatever', 'foo.bar.bar.bar.baz.whatever'],
+            ['this.is.a.bad.idea!!', 'this.is.a.bad.idea!!'],
+            ['manual.escaping.`isn\'t`.wrong', 'manual.escaping.`isn\'t`.wrong'],
+            [new FieldPath(['foo', 'bar']), 'foo.bar'],
+            [new FieldPath(['hello.world']), '`hello.world`'],
+            [new FieldPath(['get', '$$$$', 'do', 'things#']), 'get.`$$$$`.do.`things#`']
+        ];
+    }
+
     public function testEncodeFieldPaths()
     {
         $input = [
@@ -392,5 +414,29 @@ class ValueMapperTest extends \PHPUnit_Framework_TestCase
             $timestamps,
             $deletes,
         ], $res);
+    }
+
+    /**
+     * @dataProvider invalidPaths
+     * @expectedException InvalidArgumentException
+     */
+    public function testValidatePathsInvalidPaths($path)
+    {
+        $this->mapper->escapeFieldPath($path);
+    }
+
+    public function invalidPaths()
+    {
+        return [
+            ['hello..world'],
+            ['.hello.world'],
+            ['hello.world.'],
+            ['.hello.world.'],
+            ['hello*'],
+            ['hello~'],
+            ['hello/'],
+            ['hello['],
+            ['hello]'],
+        ];
     }
 }

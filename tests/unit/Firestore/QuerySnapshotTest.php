@@ -17,11 +17,12 @@
 
 namespace Google\Cloud\Tests\Unit\Firestore;
 
+use Prophecy\Argument;
 use Google\Cloud\Firestore\Query;
 use Google\Cloud\Firestore\ValueMapper;
 use Google\Cloud\Firestore\QuerySnapshot;
+use Google\Cloud\Core\Exception\AbortedException;
 use Google\Cloud\Firestore\Connection\ConnectionInterface;
-use Prophecy\Argument;
 
 /**
  * @group firestore
@@ -178,6 +179,25 @@ class QuerySnapshotTest extends \PHPUnit_Framework_TestCase
         }
 
         $this->assertEquals(['world', 'google'], $hellos);
+    }
+
+    public function testExecuteRetry()
+    {
+        $this->connection->runQuery(Argument::any())
+            ->shouldBeCalled()
+            ->will(function ($nothing, $mock) {
+                $mock->runQuery(Argument::any())
+                    ->shouldBeCalled()
+                    ->willReturn(new \ArrayIterator([
+                        []
+                    ]));
+
+                throw new AbortedException('');
+            });
+
+        $this->setCall($this->connection->reveal());
+
+        iterator_to_array($this->snapshot->rows());
     }
 
     private function setCall(ConnectionInterface $conn)

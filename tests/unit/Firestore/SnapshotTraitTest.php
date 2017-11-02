@@ -23,6 +23,7 @@ use Google\Cloud\Firestore\SnapshotTrait;
 use Google\Cloud\Firestore\DocumentSnapshot;
 use Google\Cloud\Firestore\DocumentReference;
 use Google\Cloud\Firestore\Connection\ConnectionInterface;
+use Prophecy\Argument;
 
 /**
  * @group firestore
@@ -134,6 +135,38 @@ class SnapshotTraitTest extends \PHPUnit_Framework_TestCase
             $this->connection->reveal(),
             self::NAME
         ]));
+    }
+
+    public function testGetSnapshotReadTime()
+    {
+        $timestamp = [
+            'seconds' => 100,
+            'nanos' => 501
+        ];
+
+        $this->connection->batchGetDocuments(Argument::withEntry('readTime', $timestamp))
+            ->shouldBeCalled()
+            ->willReturn(new \ArrayIterator([
+                ['found' => 'foo']
+            ]));
+
+        $this->impl->call('getSnapshot', [
+            $this->connection->reveal(),
+            self::NAME,
+            ['readTime' => new Timestamp(\DateTimeImmutable::createFromFormat('U', $timestamp['seconds']), $timestamp['nanos'])]
+        ]);
+    }
+
+    /**
+     * @expectedException InvalidArgumentException
+     */
+    public function testGetSnapshotReadTimeInvalidReadTime()
+    {
+        $this->impl->call('getSnapshot', [
+            $this->connection->reveal(),
+            self::NAME,
+            ['readTime' => 'foo']
+        ]);
     }
 
     /**

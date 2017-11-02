@@ -19,6 +19,7 @@ namespace Google\Cloud\Firestore;
 
 use Google\Cloud\Core\Timestamp;
 use Google\Cloud\Core\ArrayTrait;
+use Google\Cloud\Core\ValidateTrait;
 use Google\Cloud\Core\DebugInfoTrait;
 use Google\Cloud\Firestore\Connection\ConnectionInterface;
 use Google\Firestore\V1beta1\DocumentTransform_FieldTransform_ServerValue;
@@ -43,10 +44,10 @@ class WriteBatch
 {
     use ArrayTrait;
     use DebugInfoTrait;
+    use ValidateTrait;
 
     const TYPE_UPDATE = 'update';
     const TYPE_DELETE = 'delete';
-    const TYPE_VERIFY = 'verify';
     const TYPE_TRANSFORM = 'transform';
 
     const REQUEST_TIME = DocumentTransform_FieldTransform_ServerValue::REQUEST_TIME;
@@ -510,10 +511,6 @@ class WriteBatch
 
             case self::TYPE_DELETE:
                 return ['delete' => $name];
-                break;
-
-            case self::TYPE_VERIFY:
-                return ['verify' => $name];
                 break;
 
             case self::TYPE_TRANSFORM:

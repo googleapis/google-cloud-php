@@ -119,11 +119,10 @@ class ValueMapper
                 $out[] = $this->escapePathPart($part);
             }
 
-            return implode('.', $out);
-        } else {
-            $this->validateFieldPath($fieldPath);
+            $fieldPath = implode('.', $out);
         }
 
+        $this->validateFieldPath($fieldPath);
         return $fieldPath;
     }
 
