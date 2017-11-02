@@ -38,7 +38,7 @@ use Google\Cloud\Firestore\Connection\ConnectionInterface;
  * $collection = $firestore->collection('users');
  * ```
  */
-class CollectionReference
+class CollectionReference extends Query
 {
     use ArrayTrait;
     use DebugInfoTrait;
@@ -79,6 +79,19 @@ class CollectionReference
         $this->valueMapper = $valueMapper;
         $this->name = $name;
         $this->transaction = $transaction;
+
+        parent::__construct(
+            $connection,
+            $valueMapper,
+            $this->parentPath($this->name),
+            [
+                'from' => [
+                    [
+                        'collectionId' => $this->pathId($this->name)
+                    ]
+                ]
+            ]
+        );
     }
 
     /**
@@ -182,30 +195,6 @@ class CollectionReference
         $result = $document->create($fields, $options);
 
         return $document;
-    }
-
-    /**
-     * Query the current collection.
-     *
-     * Example:
-     * ```
-     * $query = $collection->query();
-     * ```
-     *
-     * @codingStandardsIgnoreStart
-     * @param array $query [StructuredQuery](https://firebase.google.com/docs/firestore/reference/rpc/google.firestore.v1beta1#structuredquery)
-     * @return Query
-     * @codingStandardsIgnoreEnd
-     */
-    public function query(array $query = [])
-    {
-        return new Query($this->connection, $this->valueMapper, $this->parentPath($this->name), [
-            'from' => [
-                [
-                    'collectionId' => $this->pathId($this->name)
-                ]
-            ] + $query
-        ], $this->transaction);
     }
 
     /**

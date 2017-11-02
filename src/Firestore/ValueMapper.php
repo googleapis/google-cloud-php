@@ -488,7 +488,7 @@ class ValueMapper
             throw new \InvalidArgumentException('Paths cannot contain `..`.');
         }
 
-        if (strpos($fieldPath, '.') === 0 || strpos(strrev($fieldPath, '.')) === 0) {
+        if (strpos($fieldPath, '.') === 0 || strpos(strrev($fieldPath), '.') === 0) {
             throw new \InvalidArgumentException('Paths cannot begin or end with `.`.');
         }
 

@@ -232,7 +232,7 @@ class Query
             ));
         }
 
-        if (is_nan($value) || is_null($value)) {
+        if ((is_float($value) && is_nan($value)) || is_null($value)) {
             if ($operator !== self::OP_EQUAL) {
                 throw new \InvalidArgumentException('Null and NaN are allowed only with operator EQUALS.');
             }
@@ -489,7 +489,7 @@ class Query
 
         $query = $this->arrayMergeRecursive($query, $additionalConfig);
 
-        return new static(
+        return new self(
             $this->connection,
             $this->valueMapper,
             $this->parent,
