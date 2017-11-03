@@ -204,7 +204,7 @@ class FirestoreClient
     }
 
     /**
-     * Lazily instantiate a Document instance.
+     * Get a reference to a Firestore document.
      *
      * Example:
      * ```
@@ -264,6 +264,10 @@ class FirestoreClient
      *     }
      * }
      * ```
+     *
+     * @codingStandardsIgnoreStart
+     * @see https://cloud.google.com/firestore/docs/reference/rpc/google.firestore.v1beta1#google.firestore.v1beta1.Firestore.BatchGetDocuments BatchGetDocuments
+     * @codingStandardsIgnoreEnd
      *
      * @param string[]|DocumentReference[] $paths Any combination of string paths or DocumentReference instances.
      * @param array $options Configuration options.
@@ -353,6 +357,12 @@ class FirestoreClient
      *     ]);
      * });
      * ```
+     *
+     * @codingStandardsIgnoreStart
+     * @see https://cloud.google.com/firestore/docs/reference/rpc/google.firestore.v1beta1#google.firestore.v1beta1.Firestore.BeginTransaction BeginTransaction
+     * @see https://cloud.google.com/firestore/docs/reference/rpc/google.firestore.v1beta1#google.firestore.v1beta1.Firestore.Commit Commit
+     * @see https://cloud.google.com/firestore/docs/reference/rpc/google.firestore.v1beta1#google.firestore.v1beta1.Firestore.Rollback Rollback
+     * @codingStandardsIgnoreEnd
      *
      * @param callable $callable A callable function, allowing atomic operations
      *        against the Firestore API. Function signature:

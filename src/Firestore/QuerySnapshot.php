@@ -149,6 +149,10 @@ class QuerySnapshot implements \IteratorAggregate
      * $rows = $snapshot->rows();
      * ```
      *
+     * @codingStandardsIgnoreStart
+     * @see https://cloud.google.com/firestore/docs/reference/rpc/google.firestore.v1beta1#google.firestore.v1beta1.Firestore.RunQuery RunQuery
+     * @codingStandardsIgnoreEnd
+     *
      * @return \Generator<DocumentSnapshot>
      */
     public function rows()

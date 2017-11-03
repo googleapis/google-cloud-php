@@ -147,6 +147,8 @@ class DocumentReference
      * ```
      *
      * @codingStandardsIgnoreStart
+     * @see https://cloud.google.com/firestore/docs/reference/rpc/google.firestore.v1beta1#google.firestore.v1beta1.Firestore.Commit Commit
+     *
      * @param array $fields An array containing field names paired with their value.
      *        Accepts a nested array, or a simple array of field paths.
      * @param array $options Configuration Options.
@@ -176,6 +178,10 @@ class DocumentReference
      *     'name' => 'Dave'
      * ]);
      * ```
+     *
+     * @codingStandardsIgnoreStart
+     * @see https://cloud.google.com/firestore/docs/reference/rpc/google.firestore.v1beta1#google.firestore.v1beta1.Firestore.Commit Commit
+     * @codingStandardsIgnoreEnd
      *
      * @param array $fields An array containing fields, where keys are the field
      *        names, and values are field values. Nested arrays are allowed.
@@ -238,6 +244,8 @@ class DocumentReference
      * ```
      *
      * @codingStandardsIgnoreStart
+     * @see https://cloud.google.com/firestore/docs/reference/rpc/google.firestore.v1beta1#google.firestore.v1beta1.Firestore.Commit Commit
+     *
      * @param array $fields An array containing field names paired with their value.
      * @param array $options Configuration Options
      * @return array [WriteResult](https://cloud.google.com/firestore/docs/reference/rpc/google.firestore.v1beta1#google.firestore.v1beta1.WriteResult)
@@ -290,6 +298,8 @@ class DocumentReference
      * ```
      *
      * @codingStandardsIgnoreStart
+     * @see https://cloud.google.com/firestore/docs/reference/rpc/google.firestore.v1beta1#google.firestore.v1beta1.Firestore.Commit Commit
+     *
      * @param array[] $data A list of arrays of form `[FieldPath|string $path, mixed $value]`.
      * @param array $options Configuration options
      * @return array [WriteResult](https://cloud.google.com/firestore/docs/reference/rpc/google.firestore.v1beta1#google.firestore.v1beta1.WriteResult)
@@ -312,8 +322,10 @@ class DocumentReference
      * $document->delete();
      * ```
      *
-     * @param array $options Configuration Options
      * @codingStandardsIgnoreStart
+     * @see https://cloud.google.com/firestore/docs/reference/rpc/google.firestore.v1beta1#google.firestore.v1beta1.Firestore.Commit Commit
+     *
+     * @param array $options Configuration Options
      * @return array [WriteResult](https://cloud.google.com/firestore/docs/reference/rpc/google.firestore.v1beta1#google.firestore.v1beta1.WriteResult)
      * @codingStandardsIgnoreEnd
      */
@@ -333,6 +345,10 @@ class DocumentReference
      * ```
      * $snapshot = $document->snapshot();
      * ```
+     *
+     * @codingStandardsIgnoreStart
+     * @see https://cloud.google.com/firestore/docs/reference/rpc/google.firestore.v1beta1#google.firestore.v1beta1.Firestore.BatchGetDocuments BatchGetDocuments
+     * @codingStandardsIgnoreEnd
      *
      * @param array $options Configuration Options
      * @return DocumentSnapshot
@@ -369,6 +385,10 @@ class DocumentReference
      * ```
      * $collections = $document->collections();
      * ```
+     *
+     * @codingStandardsIgnoreStart
+     * https://cloud.google.com/firestore/docs/reference/rpc/google.firestore.v1beta1#google.firestore.v1beta1.Firestore.ListCollectionIds ListCollectionIds
+     * @codingStandardsIgnoreEnd
      *
      * @param array $options Configuration options.
      * @return ItemIterator<CollectionReference>

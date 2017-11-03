@@ -356,11 +356,6 @@ class WriteBatch
      * This method is intended for use internally and should not be considered
      * part of the public API.
      *
-     * Example:
-     * ```
-     * $batch->rollback();
-     * ```
-     *
      * @access private
      * @param array $options Configuration Options
      * @return void
