@@ -17,6 +17,7 @@
 
 namespace Google\Cloud\Tests\Unit\Firestore;
 
+use Google\Cloud\Core\Timestamp;
 use Google\Cloud\Firestore\FieldPath;
 use Google\Cloud\Firestore\ValueMapper;
 use Google\Cloud\Firestore\DocumentSnapshot;
@@ -62,12 +63,32 @@ class DocumentSnapshotTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(self::ID, $this->snapshot->id());
     }
 
-    public function testInfo()
+    /**
+     * @dataProvider timestampMethods
+     */
+    public function testTimestampMethods($method)
     {
-        $i = ['foo' => 'bar'];
+        $ts = new Timestamp(new \DateTime);
+        $info = [$method => $ts];
+        $this->snapshot->___setProperty('info', $info);
 
-        $this->snapshot->___setProperty('info', $i);
-        $this->assertEquals($i, $this->snapshot->info());
+        $res = $this->snapshot->$method();
+
+        $this->assertEquals($ts, $res);
+
+        $this->snapshot->___setProperty('info', []);
+        $res = $this->snapshot->$method();
+
+        $this->assertNull($res);
+    }
+
+    public function timestampMethods()
+    {
+        return [
+            ['readTime'],
+            ['updateTime'],
+            ['createTime']
+        ];
     }
 
     public function testFields()

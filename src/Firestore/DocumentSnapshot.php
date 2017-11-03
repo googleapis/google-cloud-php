@@ -132,25 +132,54 @@ class DocumentSnapshot implements \ArrayAccess
     }
 
     /**
-     * Returns create and update timestamps.
+     * Get the Document Update Timestamp.
      *
      * Example:
      * ```
-     * $info = $snapshot->info();
+     * $updateTime = $snapshot->updateTime();
      * ```
      *
-     * ```
-     * // Snapshot updateTime is often useful for precondition arguments.
-     * $updateTime = isset($snapshot->info()['updateTime'])
-     *     ? $snapshot->info()['updateTime']
-     *     : null;
-     * ```
-     *
-     * @return array
+     * @return Timestamp|null
      */
-    public function info()
+    public function updateTime()
     {
-        return $this->info;
+        return isset($this->info['updateTime'])
+            ? $this->info['updateTime']
+            : null;
+    }
+
+    /**
+     * Get the Document Read Timestamp.
+     *
+     * Example:
+     * ```
+     * $readTime = $snapshot->readTime();
+     * ```
+     *
+     * @return Timestamp|null
+     */
+    public function readTime()
+    {
+        return isset($this->info['readTime'])
+            ? $this->info['readTime']
+            : null;
+    }
+
+    /**
+     * Get the Document Create Timestamp.
+     *
+     * Example:
+     * ```
+     * $createTime = $snapshot->createTime();
+     * ```
+     *
+     * @return Timestamp|null
+     */
+    public function createTime()
+    {
+        return isset($this->info['createTime'])
+            ? $this->info['createTime']
+            : null;
     }
 
     /**

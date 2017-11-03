@@ -112,26 +112,36 @@ class DocumentSnapshotTest extends SnippetTestCase
         $this->assertEquals($id, $res->returnVal());
     }
 
-    public function testInfo()
-    {
-        $info = ['foo' => 'bar'];
-        $this->snapshot->___setProperty('info', $info);
-        $snippet = $this->snippetFromMethod(DocumentSnapshot::class, 'info');
-        $snippet->addLocal('snapshot', $this->snapshot);
-        $res = $snippet->invoke('info');
-        $this->assertEquals($info, $res->returnVal());
-    }
-
-    public function testInfoUpdateTime()
+    /**
+     * @dataProvider timestampMethods
+     */
+    public function testTimestampMethods($method)
     {
         $ts = new Timestamp(new \DateTime);
-        $info = ['updateTime' => $ts];
+        $info = [$method => $ts];
         $this->snapshot->___setProperty('info', $info);
 
-        $snippet = $this->snippetFromMethod(DocumentSnapshot::class, 'info', 1);
+        $snippet = $this->snippetFromMethod(DocumentSnapshot::class, $method);
         $snippet->addLocal('snapshot', $this->snapshot);
-        $res = $snippet->invoke('updateTime');
+        $res = $snippet->invoke($method);
+
         $this->assertEquals($ts, $res->returnVal());
+
+        $this->snapshot->___setProperty('info', []);
+        $snippet = $this->snippetFromMethod(DocumentSnapshot::class, $method);
+        $snippet->addLocal('snapshot', $this->snapshot);
+        $res = $snippet->invoke($method);
+
+        $this->assertNull($res->returnVal());
+    }
+
+    public function timestampMethods()
+    {
+        return [
+            ['readTime'],
+            ['updateTime'],
+            ['createTime']
+        ];
     }
 
     public function testFields()
