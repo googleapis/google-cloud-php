@@ -148,4 +148,71 @@ class DocumentAndCollectionTest extends FirestoreTestCase
 
         $this->assertInstanceOf(Timestamp::class, $this->document->snapshot()['foo']);
     }
+
+    public function testNonAlphaNumericFieldPaths()
+    {
+        $paths = [
+            [
+                'path' => '`!.\\``.`\'!.\\``',
+                'value' => 'foo'
+            ]
+        ];
+
+        $this->document->updatePaths($paths);
+
+        $snap = $this->document->snapshot();
+
+        $this->assertEquals($paths[0]['value'], $snap->get($paths[0]['path']));
+    }
+
+    public function testDeeplyNestedFieldData()
+    {
+        $this->document->set([
+            'level1' => [
+                'level2' => [
+                    'level3' => [
+                        'level4' => [
+                            'level5' => 'a value!'
+                        ]
+                    ],
+                    'level3val' => 'another value'
+                ]
+            ]
+        ]);
+
+        $this->document->update([
+            'level1' => [
+                'level2' => [
+                    'level3' => [
+                        'level4' => [
+                            'foo' => 'bar'
+                        ]
+                    ],
+                ]
+            ]
+        ]);
+
+        $this->document->set([
+            'level1' => [
+                'level2' => [
+                    'level3' => [
+                        'level4' => [
+                            'hello' => 'world'
+                        ]
+                    ],
+                ]
+            ]
+        ], ['merge' => true]);
+
+        $this->document->updatePaths([
+            ['path' => 'level1.level2.level3.level4.final', 'value' => 'final']
+        ]);
+
+        $snap = $this->document->snapshot();
+        $this->assertEquals('a value!', $snap->get('level1.level2.level3.level4.level5'));
+        $this->assertEquals('another value', $snap->get('level1.level2.level3val'));
+        $this->assertEquals('bar', $snap->get('level1.level2.level3.level4.foo'));
+        $this->assertEquals('world', $snap->get('level1.level2.level3.level4.hello'));
+        $this->assertEquals('final', $snap->get('level1.level2.level3.level4.final'));
+    }
 }

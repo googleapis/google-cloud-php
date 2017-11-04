@@ -42,14 +42,18 @@ class ValueMapperTest extends FirestoreTestCase
     /**
      * @dataProvider values
      */
-    public function testValue($input)
+    public function testValue($input, callable $expectation = null)
     {
         self::$document->update([
             self::FIELD => $input
         ]);
 
         $snapshot = self::$document->snapshot();
-        $this->assertEquals($input, $snapshot[self::FIELD]);
+        if ($expectation) {
+            $this->assertTrue($expectation($snapshot[self::FIELD]));
+        } else {
+            $this->assertEquals($input, $snapshot[self::FIELD]);
+        }
     }
 
     public function values()
@@ -66,7 +70,8 @@ class ValueMapperTest extends FirestoreTestCase
             [self::$document],
             [new GeoPoint(10,-10)],
             [[1,2,3,4]],
-            [['foo' => 'bar', 'bat' => [1,2,3,4]]]
+            [['foo' => 'bar', 'bat' => [1,2,3,4]]],
+            [NAN, function ($val) { return is_nan($val); }]
         ];
     }
 
