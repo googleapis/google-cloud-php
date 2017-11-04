@@ -67,7 +67,7 @@ class GrpcTest extends \PHPUnit_Framework_TestCase
             'documents' => $documents
         ];
 
-        $expected = [$args['database'], $args['documents'], []];
+        $expected = [$args['database'], $args['documents'], $this->header()];
 
         $this->sendAndAssert('batchGetDocuments', $args, $expected);
     }
@@ -87,7 +87,7 @@ class GrpcTest extends \PHPUnit_Framework_TestCase
 
         $expected = [
             $args['database'],
-            ['options' => $options]
+            ['options' => $options] + $this->header()
         ];
 
         $this->sendAndAssert('beginTransaction', $args, $expected);
@@ -133,7 +133,13 @@ class GrpcTest extends \PHPUnit_Framework_TestCase
         $document->setFields(['foo' => $field]);
         $write->setUpdate($document);
 
-        $expected = [$args['database'], [$write], ['transaction' => $args['transaction']]];
+        $expected = [
+            $args['database'],
+            [$write],
+            [
+                'transaction' => $args['transaction']
+            ] + $this->header()
+        ];
 
         $this->sendAndAssert('commit', $args, $expected);
     }
@@ -144,7 +150,7 @@ class GrpcTest extends \PHPUnit_Framework_TestCase
             'parent' => sprintf('projects/%s/databases/%s', self::PROJECT, self::DATABASE)
         ];
 
-        $expected = [$args['parent'], []];
+        $expected = [$args['parent'], $this->header()];
 
         $this->sendAndAssert('listCollectionIds', $args, $expected);
     }
@@ -156,7 +162,7 @@ class GrpcTest extends \PHPUnit_Framework_TestCase
             'transaction' => 'foo'
         ];
 
-        $expected = [$args['database'], $args['transaction'], []];
+        $expected = [$args['database'], $args['transaction'], $this->header()];
 
         $this->sendAndAssert('rollback', $args, $expected);
     }
@@ -175,10 +181,19 @@ class GrpcTest extends \PHPUnit_Framework_TestCase
 
         $expected = [
             $args['parent'],
-            ['structuredQuery' => $q]
+            ['structuredQuery' => $q] + $this->header()
         ];
 
         $this->sendAndAssert('runQuery', $args, $expected);
+    }
+
+    private function header()
+    {
+        return [
+            "userHeaders" => [
+                "google-cloud-resource-prefix" => ["projects/test/databases/(default)"]
+            ]
+        ];
     }
 
     private function sendAndAssert($method, array $args, array $expectedArgs)
@@ -189,7 +204,10 @@ class GrpcTest extends \PHPUnit_Framework_TestCase
             Argument::type('array')
         )->willReturn($this->successMessage);
 
-        $connection = new Grpc();
+        $connection = new Grpc([
+            'projectId' => 'test',
+            'database' => '(default)'
+        ]);
         $connection->setRequestWrapper($this->requestWrapper->reveal());
 
         $this->assertEquals($this->successMessage, $connection->$method($args));

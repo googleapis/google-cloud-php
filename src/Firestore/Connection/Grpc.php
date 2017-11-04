@@ -84,8 +84,8 @@ class Grpc implements ConnectionInterface
         $this->firestore = new FirestoreClient($grpcConfig);
 
         $this->resourcePrefixHeader = FirestoreClient::databaseRootName(
-            $config['projectId'],
-            $config['database']
+            $this->pluck('projectId', $config),
+            $this->pluck('database', $config)
         );
     }
 
