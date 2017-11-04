@@ -46,6 +46,11 @@ class Grpc implements ConnectionInterface
     private $firestore;
 
     /**
+     * @var string
+     */
+    private $resourcePrefixHeader;
+
+    /**
      * @param array $config [optional]
      */
     public function __construct(array $config = [])
@@ -77,6 +82,11 @@ class Grpc implements ConnectionInterface
 
         $grpcConfig = $this->getGaxConfig(ManualFirestoreClient::VERSION);
         $this->firestore = new FirestoreClient($grpcConfig);
+
+        $this->resourcePrefixHeader = FirestoreClient::databaseRootName(
+            $config['projectId'],
+            $config['database']
+        );
     }
 
     /**
@@ -87,7 +97,7 @@ class Grpc implements ConnectionInterface
         return $this->send([$this->firestore, 'batchGetDocuments'], [
             $this->pluck('database', $args),
             $this->pluck('documents', $args),
-            $args
+            $this->addResourcePrefixHeader($args)
         ]);
     }
 
@@ -104,7 +114,7 @@ class Grpc implements ConnectionInterface
 
         return $this->send([$this->firestore, 'beginTransaction'], [
             $this->pluck('database', $args),
-            $args
+            $this->addResourcePrefixHeader($args)
         ]);
     }
 
@@ -127,7 +137,7 @@ class Grpc implements ConnectionInterface
         return $this->send([$this->firestore, 'commit'], [
             $this->pluck('database', $args),
             $writes,
-            $args
+            $this->addResourcePrefixHeader($args)
         ]);
     }
 
@@ -138,7 +148,7 @@ class Grpc implements ConnectionInterface
     {
         return $this->send([$this->firestore, 'listCollectionIds'], [
             $this->pluck('parent', $args),
-            $args
+            $this->addResourcePrefixHeader($args)
         ]);
     }
 
@@ -150,7 +160,7 @@ class Grpc implements ConnectionInterface
         return $this->send([$this->firestore, 'rollback'], [
             $this->pluck('database', $args),
             $this->pluck('transaction', $args),
-            $args
+            $this->addResourcePrefixHeader($args)
         ]);
     }
 
@@ -166,7 +176,23 @@ class Grpc implements ConnectionInterface
 
         return $this->send([$this->firestore, 'runQuery'], [
             $this->pluck('parent', $args),
-            $args
+            $this->addResourcePrefixHeader($args)
         ]);
+    }
+
+    /**
+     * Add the `google-cloud-resource-prefix` header value to the request.
+     *
+     * @param array $args
+     * @param string $value
+     * @return array
+     */
+    private function addResourcePrefixHeader(array $args)
+    {
+        $args['userHeaders'] = [
+            'google-cloud-resource-prefix' => [$this->resourcePrefixHeader]
+        ];
+
+        return $args;
     }
 }

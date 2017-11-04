@@ -46,6 +46,8 @@ class FirestoreClient
 
     const VERSION = 'master';
 
+    const DEFAULT_DATABASE = '(default)';
+
     const FULL_CONTROL_SCOPE = 'https://www.googleapis.com/auth/cloud-platform';
 
     const MAX_RETRIES = 5;
@@ -99,10 +101,16 @@ class FirestoreClient
     {
         $config += [
             'returnInt64AsObject' => false,
-            'scopes' => [self::FULL_CONTROL_SCOPE]
+            'scopes' => [self::FULL_CONTROL_SCOPE],
+            'database' => self::DEFAULT_DATABASE
         ];
 
-        $this->connection = new Grpc($this->configureAuthentication($config));
+        $this->database = $config['database'];
+
+        $this->connection = new Grpc($this->configureAuthentication($config) + [
+            'projectId' => $this->projectId
+        ]);
+
         $this->valueMapper = new ValueMapper(
             $this->connection,
             $config['returnInt64AsObject']
