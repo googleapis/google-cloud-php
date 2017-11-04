@@ -193,17 +193,6 @@ class WriteBatchTest extends SnippetTestCase
         $snippet->invoke();
     }
 
-    public function testRollback()
-    {
-        $this->connection->rollback(Argument::any())
-            ->shouldBeCalled();
-        $this->batch->___setProperty('connection', $this->connection->reveal());
-        $this->batch->___setProperty('transaction', 'foo');
-        $snippet = $this->snippetFromMethod(WriteBatch::class, 'rollback');
-        $snippet->addLocal('batch', $this->batch);
-        $snippet->invoke();
-    }
-
     public function commitAndAssert(Snippet $snippet, $assertion)
     {
         $this->connection->commit([
