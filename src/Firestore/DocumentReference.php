@@ -149,8 +149,10 @@ class DocumentReference
      * @codingStandardsIgnoreStart
      * @see https://cloud.google.com/firestore/docs/reference/rpc/google.firestore.v1beta1#google.firestore.v1beta1.Firestore.Commit Commit
      *
-     * @param array $fields An array containing field names paired with their value.
-     *        Accepts a nested array, or a simple array of field paths.
+     * @param array $fields An array containing fields, where keys are the field
+     *        names, and values are field values. Nested arrays are allowed.
+     *        Note that unlike {@see Google\Cloud\Firestore\DocumentReference::updatePaths()},
+     *        field paths are NOT supported by this method.
      * @param array $options Configuration Options.
      * @return array [WriteResult](https://cloud.google.com/firestore/docs/reference/rpc/google.firestore.v1beta1#google.firestore.v1beta1.WriteResult)
      * @codingStandardsIgnoreEnd
