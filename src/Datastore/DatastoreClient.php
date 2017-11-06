@@ -28,7 +28,6 @@ use Google\Cloud\Datastore\Query\Query;
 use Google\Cloud\Core\ExponentialBackoff;
 use Google\Cloud\Datastore\Query\GqlQuery;
 use Google\Cloud\Datastore\Connection\Rest;
-use Google\Cloud\Datastore\Query\QueryBuilder;
 use Google\Cloud\Datastore\Query\QueryInterface;
 use Google\Cloud\Core\Exception\ServerException;
 use Google\Cloud\Core\Exception\AbortedException;
