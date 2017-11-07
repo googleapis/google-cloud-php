@@ -40,7 +40,7 @@ class Rest implements ConnectionInterface
     public function __construct(array $config = [])
     {
         $config += [
-            'serviceDefinitionPath' => __DIR__ . '/ServiceDefinition/language-v1beta2.json',
+            'serviceDefinitionPath' => __DIR__ . '/ServiceDefinition/language-v1.json',
             'componentVersion' => LanguageClient::VERSION
         ];
 
