@@ -207,7 +207,7 @@ class ReadOnlyTransactionTest extends SnippetTestCase
 
     public function testRollback()
     {
-        $snippet = $this->snippetFromMethod(Transaction::class, 'rollback');
+        $snippet = $this->snippetFromMethod(ReadOnlyTransaction::class, 'rollback');
         $snippet->addLocal('transaction', $this->transaction);
 
         $this->connection->rollback(Argument::any())
