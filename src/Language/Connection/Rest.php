@@ -86,4 +86,13 @@ class Rest implements ConnectionInterface
     {
         return $this->send('documents', 'annotateText', $args);
     }
+
+    /**
+     * @param array $args
+     * @return array
+     */
+    public function classifyText(array $args = [])
+    {
+        return $this->send('documents', 'classifyText', $args);
+    }
 }

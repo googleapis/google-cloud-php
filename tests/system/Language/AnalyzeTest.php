@@ -82,8 +82,8 @@ class AnalyzeTest extends LanguageTestCase
                                 'beginOffset' => 0,
                             ],
                             'sentiment' => [
-                                'magnitude' => 0,
-                                'score' => 0,
+                                'magnitude' => 0.1,
+                                'score' => 0.1,
                             ],
                         ]
                     ],
@@ -131,5 +131,19 @@ class AnalyzeTest extends LanguageTestCase
                 ]
             ]
         ];
+    }
+
+    public function testClassifyText()
+    {
+        $result = self::$client->classifyText(
+            'Rafael Montero Shines in Mets’ Victory Over the Reds.Montero, who ' .
+            'was demoted at midseason, took a one-hitter into the ninth inning ' .
+            'as the Mets continued to dominate Cincinnati with a win at Great ' .
+            'American Ball Park.'
+        );
+        $category = $result->categories()[0];
+
+        $this->assertEquals('/Sports/Team Sports/Baseball', $category['name']);
+        $this->assertGreaterThan(.9, $category['confidence']);
     }
 }

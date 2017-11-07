@@ -33,6 +33,12 @@ class AnnotationTest extends SnippetTestCase
     public function setUp()
     {
         $this->info = [
+            'categories' => [
+                [
+                    'name' => 'my-category',
+                    'confidence' => .99
+                ]
+            ],
             'sentences' => [
                 [
                     'text' => [
@@ -110,6 +116,14 @@ class AnnotationTest extends SnippetTestCase
         $snippet->addLocal('annotation', $this->annotation);
         $res = $snippet->invoke();
         $this->assertEquals($this->info['entities'][0]['type'], $res->output());
+    }
+
+    public function testCategories()
+    {
+        $snippet = $this->snippetFromMagicMethod(Annotation::class, 'categories');
+        $snippet->addLocal('annotation', $this->annotation);
+        $res = $snippet->invoke();
+        $this->assertEquals($this->info['categories'][0]['name'], $res->output());
     }
 
     public function testLanguage()
