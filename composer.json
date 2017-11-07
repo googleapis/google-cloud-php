@@ -69,7 +69,7 @@
         "google/cloud-error-reporting": "0.6.0",
         "google/cloud-logging": "1.6.0",
         "google/cloud-monitoring": "0.6.0",
-        "google/cloud-language": "0.7.0",
+        "google/cloud-language": "0.8.0",
         "google/cloud-pubsub": "0.9.0",
         "google/cloud-spanner": "0.8.0",
         "google/cloud-speech": "0.8.0",
