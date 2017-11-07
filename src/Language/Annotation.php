@@ -140,7 +140,7 @@ class Annotation
      * ```
      *
      * @codingStandardsIgnoreStart
-     * @see https://cloud.google.com/natural-language/docs/reference/rest/v1beta1/documents/annotateText#response-body Annotate Text documentation
+     * @see https://cloud.google.com/natural-language/docs/reference/rest/v1/documents/annotateText#response-body Annotate Text documentation
      * @codingStandardsIgnoreEnd
      *
      * @return array
@@ -162,7 +162,7 @@ class Annotation
      * }
      * ```
      *
-     * @see https://cloud.google.com/natural-language/docs/reference/rest/v1beta1/Sentiment Sentiment type documentation
+     * @see https://cloud.google.com/natural-language/docs/reference/rest/v1/Sentiment Sentiment type documentation
      *
      * @return array|null
      */
@@ -184,7 +184,7 @@ class Annotation
      * ```
      *
      * @codingStandardsIgnoreStart
-     * @see https://cloud.google.com/natural-language/docs/reference/rest/v1beta1/Token#Tag Token tags documentation
+     * @see https://cloud.google.com/natural-language/docs/reference/rest/v1/Token#Tag Token tags documentation
      * @codingStandardsIgnoreEnd
      *
      * @return array|null
@@ -211,7 +211,7 @@ class Annotation
      * ```
      *
      * @codingStandardsIgnoreStart
-     * @see https://cloud.google.com/natural-language/docs/reference/rest/v1beta1/Token#Label Token labels documentation
+     * @see https://cloud.google.com/natural-language/docs/reference/rest/v1/Token#Label Token labels documentation
      * @codingStandardsIgnoreEnd
      *
      * @return array|null
@@ -238,7 +238,7 @@ class Annotation
      * ```
      *
      * @codingStandardsIgnoreStart
-     * @see https://cloud.google.com/natural-language/docs/reference/rest/v1beta1/Entity#Type Entity types documentation
+     * @see https://cloud.google.com/natural-language/docs/reference/rest/v1/Entity#Type Entity types documentation
      * @codingStandardsIgnoreEnd
      *
      * @return array|null
