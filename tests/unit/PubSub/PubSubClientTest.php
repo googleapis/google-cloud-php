@@ -30,11 +30,12 @@ use Google\Cloud\PubSub\Subscription;
 use Google\Cloud\PubSub\Topic;
 use Google\Cloud\Tests\GrpcTestTrait;
 use Prophecy\Argument;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group pubsub
  */
-class PubSubClientTest extends \PHPUnit_Framework_TestCase
+class PubSubClientTest extends TestCase
 {
     use GrpcTestTrait;
 

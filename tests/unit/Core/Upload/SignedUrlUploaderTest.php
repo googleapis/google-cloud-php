@@ -26,12 +26,13 @@ use GuzzleHttp\Psr7\Response;
 use Prophecy\Argument;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\StreamInterface;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group core
  * @group upload
  */
-class SignedUrlUploaderTest extends \PHPUnit_Framework_TestCase
+class SignedUrlUploaderTest extends TestCase
 {
     private $requestWrapper;
     private $stream;

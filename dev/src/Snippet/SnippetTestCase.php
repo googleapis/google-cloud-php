@@ -18,13 +18,14 @@
 namespace Google\Cloud\Dev\Snippet;
 
 use Google\Cloud\Dev\Snippet\Container;
+use PHPUnit\Framework\TestCase;
 
 /**
  * Provide helpers for Snippet tests.
  *
  * Snippet test cases should extend this class.
  */
-class SnippetTestCase extends \PHPUnit_Framework_TestCase
+class SnippetTestCase extends TestCase
 {
     private static $coverage;
     private static $parser;

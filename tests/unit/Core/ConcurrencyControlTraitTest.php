@@ -18,11 +18,12 @@
 namespace Google\Cloud\Tests\Unit\Core;
 
 use Google\Cloud\Core\ConcurrencyControlTrait;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group core
  */
-class ConcurrencyControlTraitTest extends \PHPUnit_Framework_TestCase
+class ConcurrencyControlTraitTest extends TestCase
 {
     const ETAG = 'foobar';
 

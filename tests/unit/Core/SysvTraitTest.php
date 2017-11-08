@@ -18,11 +18,12 @@
 namespace Google\Cloud\Tests\Unit\Core;
 
 use Google\Cloud\Core\SysvTrait;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group core
  */
-class SysvTraitTest extends \PHPUnit_Framework_TestCase
+class SysvTraitTest extends TestCase
 {
     public function setUp()
     {

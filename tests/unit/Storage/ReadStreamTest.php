@@ -21,11 +21,12 @@ use Google\Cloud\Storage\ReadStream;
 use Google\Cloud\Upload\StreamableUploader;
 use Prophecy\Argument;
 use Psr\Http\Message\StreamInterface;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group storage
  */
-class ReadStreamTest extends \PHPUnit_Framework_TestCase
+class ReadStreamTest extends TestCase
 {
     public function testReadsFromHeadersWhenGetSizeIsNull()
     {

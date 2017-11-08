@@ -21,11 +21,12 @@ use Google\Cloud\Core\Exception\NotFoundException;
 use Google\Cloud\Logging\Metric;
 use Google\Cloud\Logging\Connection\ConnectionInterface;
 use Prophecy\Argument;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group logging
  */
-class MetricTest extends \PHPUnit_Framework_TestCase
+class MetricTest extends TestCase
 {
     public $connection;
     public $formattedName;

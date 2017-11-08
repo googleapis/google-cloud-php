@@ -20,11 +20,12 @@ namespace Google\Cloud\Tests\Unit\BigQuery;
 use Google\Cloud\BigQuery\Dataset;
 use Google\Cloud\BigQuery\ExtractJobConfiguration;
 use Google\Cloud\BigQuery\Table;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group bigquery
  */
-class ExtractJobConfigurationTest extends \PHPUnit_Framework_TestCase
+class ExtractJobConfigurationTest extends TestCase
 {
     const PROJECT_ID = 'my_project';
     const DATASET_ID = 'my_dataset';

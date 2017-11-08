@@ -29,11 +29,12 @@ use Google\Cloud\Datastore\Query\Query;
 use Google\Cloud\Datastore\Query\QueryInterface;
 use Google\Cloud\Datastore\Transaction;
 use Prophecy\Argument;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group datastore
  */
-class DatastoreClientTest extends \PHPUnit_Framework_TestCase
+class DatastoreClientTest extends TestCase
 {
     private $connection;
     private $operation;

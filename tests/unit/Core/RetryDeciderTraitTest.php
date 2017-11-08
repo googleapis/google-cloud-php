@@ -18,11 +18,12 @@
 namespace Google\Cloud\Tests\Unit\Core;
 
 use Google\Cloud\Core\RetryDeciderTrait;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group core
  */
-class RetryDeciderTraitTest extends \PHPUnit_Framework_TestCase
+class RetryDeciderTraitTest extends TestCase
 {
     private $implementation;
 

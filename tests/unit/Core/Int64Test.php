@@ -18,11 +18,12 @@
 namespace Google\Cloud\Tests\Unit\Core;
 
 use Google\Cloud\Core\Int64;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group core
  */
-class Int64Test extends \PHPUnit_Framework_TestCase
+class Int64Test extends TestCase
 {
     public function testGetsValue()
     {

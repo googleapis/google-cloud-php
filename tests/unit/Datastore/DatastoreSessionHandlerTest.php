@@ -27,11 +27,12 @@ use Google\Cloud\Datastore\Query\Query;
 use Google\Cloud\Datastore\Transaction;
 use InvalidArgumentException;
 use Prophecy\Argument;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group datastore
  */
-class DatastoreSessionHandlerTest extends \PHPUnit_Framework_TestCase
+class DatastoreSessionHandlerTest extends TestCase
 {
     const KIND = 'PHPSESSID';
     const NAMESPACE_ID = 'sessions';

@@ -19,11 +19,12 @@ namespace Google\Cloud\Tests\Unit\Storage\Connection;
 
 use Google\Cloud\Storage\Connection\ConnectionInterface;
 use Google\Cloud\Storage\Connection\IamBucket;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group storage
  */
-class IamBucketTest extends \PHPUnit_Framework_TestCase
+class IamBucketTest extends TestCase
 {
     /**
      * @dataProvider methodProvider

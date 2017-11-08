@@ -20,11 +20,12 @@ namespace Google\Cloud\Tests\Unit\Core;
 use Google\Cloud\Core\ClientTrait;
 use Google\Cloud\Core\Compute\Metadata;
 use GuzzleHttp\Psr7\Response;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group core
  */
-class ClientTraitTest extends \PHPUnit_Framework_TestCase
+class ClientTraitTest extends TestCase
 {
     /**
      * @expectedException Google\Cloud\Core\Exception\GoogleException

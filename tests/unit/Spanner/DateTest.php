@@ -19,11 +19,12 @@ namespace Google\Cloud\Tests\Unit\Spanner;
 
 use Google\Cloud\Spanner\Date;
 use Google\Cloud\Tests\GrpcTestTrait;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group spanner
  */
-class DateTest extends \PHPUnit_Framework_TestCase
+class DateTest extends TestCase
 {
     use GrpcTestTrait;
 

@@ -18,11 +18,12 @@
 namespace Google\Cloud\Tests\Unit\Trace;
 
 use Google\Cloud\Trace\TraceSpan;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group trace
  */
-class TraceSpanTest extends \PHPUnit_Framework_TestCase
+class TraceSpanTest extends TestCase
 {
     const EXPECTED_TIMESTAMP_FORMAT = '/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{9}Z$/';
 

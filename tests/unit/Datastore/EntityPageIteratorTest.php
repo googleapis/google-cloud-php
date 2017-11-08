@@ -18,11 +18,12 @@
 namespace Google\Cloud\Tests\Unit\Datastore;
 
 use Google\Cloud\Datastore\EntityPageIterator;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group datastore
  */
-class EntityPageIteratorTest extends \PHPUnit_Framework_TestCase
+class EntityPageIteratorTest extends TestCase
 {
     private static $moreResultsType = 'NOT_FINISHED';
     private static $items = ['a', 'b', 'c'];

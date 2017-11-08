@@ -24,11 +24,12 @@ use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\Psr7\Response;
 use Prophecy\Argument;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group core
  */
-class RequestWrapperTest extends \PHPUnit_Framework_TestCase
+class RequestWrapperTest extends TestCase
 {
     const VERSION = 'v0.1';
 

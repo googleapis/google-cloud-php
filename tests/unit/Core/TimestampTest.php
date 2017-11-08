@@ -18,11 +18,12 @@
 namespace Google\Cloud\Tests\Core;
 
 use Google\Cloud\Core\Timestamp;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group core
  */
-class TimestampTest extends \PHPUnit_Framework_TestCase
+class TimestampTest extends TestCase
 {
     private $dt;
     private $ts;

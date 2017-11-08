@@ -19,11 +19,12 @@ namespace Google\Cloud\Tests\Unit\Core;
 
 use Google\Cloud\Core\EmulatorTrait;
 use Prophecy\Argument;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group core
  */
-class EmulatorTraitTest extends \PHPUnit_Framework_TestCase
+class EmulatorTraitTest extends TestCase
 {
     private $implementation;
 

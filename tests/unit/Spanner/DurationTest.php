@@ -18,11 +18,12 @@
 namespace Google\Cloud\Tests\Unit\Spanner;
 
 use Google\Cloud\Spanner\Duration;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group spanner
  */
-class DurationTest extends \PHPUnit_Framework_TestCase
+class DurationTest extends TestCase
 {
     const SECONDS = 10;
     const NANOS = 1;

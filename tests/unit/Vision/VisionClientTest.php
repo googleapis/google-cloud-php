@@ -22,11 +22,12 @@ use Google\Cloud\Vision\Connection\ConnectionInterface;
 use Google\Cloud\Vision\Image;
 use Google\Cloud\Vision\VisionClient;
 use Prophecy\Argument;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group vision
  */
-class VisionClientTest extends \PHPUnit_Framework_TestCase
+class VisionClientTest extends TestCase
 {
     private $client;
 

@@ -18,11 +18,12 @@
 namespace Google\Cloud\Tests\Vision\Annotation;
 
 use Google\Cloud\Vision\Annotation\CropHint;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group vision
  */
-class CropHintTest extends \PHPUnit_Framework_TestCase
+class CropHintTest extends TestCase
 {
     private $info;
     private $hint;

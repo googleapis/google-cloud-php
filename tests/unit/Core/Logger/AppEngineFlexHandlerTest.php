@@ -19,12 +19,13 @@ namespace Google\Cloud\Tests\Unit\Core\Logger;
 
 use Google\Cloud\Core\Logger\AppEngineFlexHandler;
 use Monolog\Logger;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group core
  * @group logger
  */
-class AppEngineFlexHandlerTest extends \PHPUnit_Framework_TestCase
+class AppEngineFlexHandlerTest extends TestCase
 {
     private $stream;
     private $log;

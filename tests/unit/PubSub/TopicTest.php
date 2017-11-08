@@ -25,11 +25,12 @@ use Google\Cloud\PubSub\Connection\ConnectionInterface;
 use Google\Cloud\PubSub\Subscription;
 use Google\Cloud\PubSub\Topic;
 use Prophecy\Argument;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group pubsub
  */
-class TopicTest extends \PHPUnit_Framework_TestCase
+class TopicTest extends TestCase
 {
     private $topic;
     private $connection;

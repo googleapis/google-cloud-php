@@ -22,11 +22,12 @@ use Google\Cloud\Logging\Logger;
 use Google\Cloud\Logging\PsrLogger;
 use Google\Cloud\Logging\Connection\ConnectionInterface;
 use Prophecy\Argument;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group logging
  */
-class PsrLoggerTest extends \PHPUnit_Framework_TestCase
+class PsrLoggerTest extends TestCase
 {
     public $connection;
     public $formattedName;

@@ -19,11 +19,12 @@ namespace Google\Cloud\Tests\Unit\Speech;
 
 use Google\Cloud\Speech\Result;
 use Prophecy\Argument;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group speech
  */
-class ResultTest extends \PHPUnit_Framework_TestCase
+class ResultTest extends TestCase
 {
     private $transcript;
     private $confidence;

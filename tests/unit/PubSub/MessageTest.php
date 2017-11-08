@@ -19,11 +19,12 @@ namespace Google\Cloud\Tests\Unit\PubSub;
 
 use Google\Cloud\PubSub\Message;
 use Google\Cloud\PubSub\Subscription;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group pubsub
  */
-class MessageTest extends \PHPUnit_Framework_TestCase
+class MessageTest extends TestCase
 {
     private $message;
 

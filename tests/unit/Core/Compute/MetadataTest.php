@@ -19,12 +19,13 @@ namespace Google\Cloud\Tests\Unit\Core\Compute;
 
 use Google\Cloud\Core\Compute\Metadata;
 use Google\Cloud\Core\Compute\Metadata\Readers\StreamReader;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group core
  * @group compute
  */
-class MetadataTest extends \PHPUnit_Framework_TestCase
+class MetadataTest extends TestCase
 {
     protected $mock;
     protected $metadata;

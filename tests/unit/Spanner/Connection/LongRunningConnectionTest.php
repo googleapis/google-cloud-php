@@ -19,12 +19,13 @@ namespace Google\Cloud\Tests\Unit\Spanner\Connection;
 
 use Google\Cloud\Spanner\Connection\ConnectionInterface;
 use Google\Cloud\Spanner\Connection\LongRunningConnection;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group spanner
  * @group spanneradmin
  */
-class LongRunningConnectionTest extends \PHPUnit_Framework_TestCase
+class LongRunningConnectionTest extends TestCase
 {
     private $connection;
     private $lro;

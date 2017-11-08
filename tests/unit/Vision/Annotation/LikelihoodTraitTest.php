@@ -19,11 +19,12 @@ namespace Google\Cloud\Tests\Unit\Vision\Annotation;
 
 use Google\Cloud\Vision\Annotation\FeatureInterface;
 use Google\Cloud\Vision\Annotation\LikelihoodTrait;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group vision
  */
-class LikelihoodTraitTest extends \PHPUnit_Framework_TestCase
+class LikelihoodTraitTest extends TestCase
 {
     public function testLikelihoods()
     {

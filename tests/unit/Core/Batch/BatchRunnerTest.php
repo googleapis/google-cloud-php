@@ -23,12 +23,13 @@ use Google\Cloud\Core\Batch\BatchRunner;
 use Google\Cloud\Core\Batch\ConfigStorageInterface;
 use Google\Cloud\Core\Batch\ProcessItemInterface;
 use Prophecy\Argument;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group core
  * @group batch
  */
-class BatchRunnerTest extends \PHPUnit_Framework_TestCase
+class BatchRunnerTest extends TestCase
 {
     private $configStorage;
     private $processor;

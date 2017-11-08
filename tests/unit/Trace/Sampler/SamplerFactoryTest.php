@@ -23,11 +23,12 @@ use Google\Cloud\Trace\Sampler\AlwaysOnSampler;
 use Google\Cloud\Trace\Sampler\QpsSampler;
 use Google\Cloud\Trace\Sampler\RandomSampler;
 use Psr\Cache\CacheItemPoolInterface;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group trace
  */
-class SamplerFactoryTest extends \PHPUnit_Framework_TestCase
+class SamplerFactoryTest extends TestCase
 {
     public function testDefaultEnabled()
     {

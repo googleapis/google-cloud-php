@@ -21,11 +21,12 @@ use Google\Cloud\Trace\Sampler\QpsSampler;
 use Psr\Cache\CacheItemInterface;
 use Psr\Cache\CacheItemPoolInterface;
 use Prophecy\Argument;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group trace
  */
-class QpsSamplerTest extends \PHPUnit_Framework_TestCase
+class QpsSamplerTest extends TestCase
 {
     public function testCachedValue()
     {

@@ -20,12 +20,13 @@ namespace Google\Cloud\Tests\Unit\Core\Batch;
 use Google\Cloud\Core\Batch\BatchConfig;
 use Google\Cloud\Core\Batch\SysvConfigStorage;
 use Google\Cloud\Core\SysvTrait;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group core
  * @group batch
  */
-class SysvConfigStorageTest extends \PHPUnit_Framework_TestCase
+class SysvConfigStorageTest extends TestCase
 {
     use SysvTrait;
 

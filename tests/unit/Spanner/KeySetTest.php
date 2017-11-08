@@ -19,11 +19,12 @@ namespace Google\Cloud\Tests\Unit\Spanner;
 
 use Google\Cloud\Spanner\KeyRange;
 use Google\Cloud\Spanner\KeySet;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group spanner
  */
-class KeySetTest extends \PHPUnit_Framework_TestCase
+class KeySetTest extends TestCase
 {
     public function testAddRange()
     {

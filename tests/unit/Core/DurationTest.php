@@ -18,11 +18,12 @@
 namespace Google\Cloud\Tests\Core;
 
 use Google\Cloud\Core\Duration;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group core
  */
-class DurationTest extends \PHPUnit_Framework_TestCase
+class DurationTest extends TestCase
 {
     const SECONDS = 10;
     const NANOS = 1;

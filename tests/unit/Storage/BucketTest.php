@@ -29,11 +29,12 @@ use Google\Cloud\Storage\Connection\Rest;
 use Google\Cloud\Storage\Notification;
 use Google\Cloud\Storage\StorageObject;
 use Prophecy\Argument;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group storage
  */
-class BucketTest extends \PHPUnit_Framework_TestCase
+class BucketTest extends TestCase
 {
     const BUCKET_NAME = 'my-bucket';
     const PROJECT_ID = 'my-project';

@@ -21,11 +21,12 @@ use Google\Cloud\BigQuery\Dataset;
 use Google\Cloud\BigQuery\QueryJobConfiguration;
 use Google\Cloud\BigQuery\Table;
 use Google\Cloud\BigQuery\ValueMapper;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group bigquery
  */
-class QueryJobConfigurationTest extends \PHPUnit_Framework_TestCase
+class QueryJobConfigurationTest extends TestCase
 {
     const PROJECT_ID = 'my_project';
     const DATASET_ID = 'my_dataset';

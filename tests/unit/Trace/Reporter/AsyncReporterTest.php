@@ -25,11 +25,12 @@ use Google\Cloud\Trace\TraceSpan;
 use Google\Cloud\Trace\Trace;
 use Google\Cloud\Trace\Tracer\TracerInterface;
 use Prophecy\Argument;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group trace
  */
-class AsyncReporterTest extends \PHPUnit_Framework_TestCase
+class AsyncReporterTest extends TestCase
 {
     private $runner;
     private $tracer;
