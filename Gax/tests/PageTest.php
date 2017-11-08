@@ -37,10 +37,10 @@ use Google\GAX\Testing\MockStatus;
 use Google\GAX\UnitTests\Mocks\MockStub;
 use Google\GAX\UnitTests\Mocks\MockPageStreamingRequest;
 use Google\GAX\UnitTests\Mocks\MockPageStreamingResponse;
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 use Grpc;
 
-class PageTest extends PHPUnit_Framework_TestCase
+class PageTest extends TestCase
 {
     private static function createPage($responseSequence)
     {

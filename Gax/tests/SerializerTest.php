@@ -39,11 +39,12 @@ use Google\Protobuf\ListValue;
 use Google\Protobuf\Struct;
 use Google\Protobuf\Value;
 use Google\Rpc\Status;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group core
  */
-class SerializerTest extends \PHPUnit_Framework_TestCase
+class SerializerTest extends TestCase
 {
     /**
      * @param \Google\Protobuf\Internal\Message $message A protobuf message

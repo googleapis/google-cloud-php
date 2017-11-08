@@ -49,7 +49,7 @@ use Google\Longrunning\OperationsGrpcClient;
 use Google\Protobuf\Any;
 use Google\Protobuf\GPBEmpty;
 use Grpc;
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 use stdClass;
 
 class MockOperationsImpl extends OperationsGrpcClient

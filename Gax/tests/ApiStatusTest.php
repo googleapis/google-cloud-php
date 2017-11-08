@@ -35,10 +35,10 @@ use Exception;
 use Google\GAX\GrpcConstants;
 use Google\GAX\ApiStatus;
 use Google\Rpc\Code;
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 use ReflectionClass;
 
-class ApiStatusTest extends PHPUnit_Framework_TestCase
+class ApiStatusTest extends TestCase
 {
     /**
      * @dataProvider getValidStatus

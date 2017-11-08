@@ -33,9 +33,9 @@ namespace Google\GAX\UnitTests;
 
 use Google\GAX\RetrySettings;
 use Google\GAX\ValidationException;
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 
-class RetrySettingsTest extends PHPUnit_Framework_TestCase
+class RetrySettingsTest extends TestCase
 {
     /**
      * @expectedException \Google\GAX\ValidationException

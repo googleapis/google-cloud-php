@@ -53,9 +53,9 @@ use Google\Protobuf\Internal\GPBType;
 use Google\Protobuf\Internal\RepeatedField;
 use Google\Rpc\Code;
 use Google\Rpc\Status;
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 
-class ApiCallableTest extends PHPUnit_Framework_TestCase
+class ApiCallableTest extends TestCase
 {
     public function testBaseCall()
     {

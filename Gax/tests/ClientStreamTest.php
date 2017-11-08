@@ -35,9 +35,9 @@ use Google\GAX\ClientStream;
 use Google\GAX\Testing\MockClientStreamingCall;
 use Google\GAX\Testing\MockStatus;
 use Grpc;
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 
-class ClientStreamTest extends PHPUnit_Framework_TestCase
+class ClientStreamTest extends TestCase
 {
     use TestTrait;
 

@@ -32,9 +32,9 @@
 namespace Google\GAX\UnitTests;
 
 use Google\GAX\PageStreamingDescriptor;
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 
-class PageStreamingDescriptorTest extends PHPUnit_Framework_TestCase
+class PageStreamingDescriptorTest extends TestCase
 {
     /**
      * @expectedException \InvalidArgumentException

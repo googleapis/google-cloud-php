@@ -42,10 +42,10 @@ use Google\Rpc\QuotaFailure;
 use Google\Rpc\RequestInfo;
 use Google\Rpc\ResourceInfo;
 use Google\Rpc\RetryInfo;
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 use Grpc;
 
-class ApiExceptionTest extends PHPUnit_Framework_TestCase
+class ApiExceptionTest extends TestCase
 {
     public function testWithoutMetadata()
     {
