@@ -41,13 +41,8 @@ trait SnapshotTrait
      *     Configuration Options
      *
      *     @type string $transaction The transaction ID to fetch the snapshot.
-     *     @type bool $allowNonExistence If true, a DocumentSnapshot will be
-     *           returned, even if the document does not exist. **Defaults to**
-     *           `true`.
      * }
      * @return DocumentSnapshot
-     * @throws NotFoundException If the document does not exist, and
-     *         `$options.allowNonExistence` is `false`.
      */
     private function createSnapshot(
         ConnectionInterface $connection,
@@ -55,22 +50,13 @@ trait SnapshotTrait
         DocumentReference $reference,
         array $options = []
     ) {
-        $options += [
-            'allowNonExistence' => true,
-        ];
-
         $document = [];
         $fields = [];
         $exists = true;
 
-        $allowNonExistence = $this->pluck('allowNonExistence', $options);
         try {
             $document = $this->getSnapshot($connection, $reference->name(), $options);
         } catch (NotFoundException $e) {
-            if (!$allowNonExistence) {
-                throw $e;
-            }
-
             $exists = false;
         }
 

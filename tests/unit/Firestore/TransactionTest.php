@@ -85,24 +85,6 @@ class TransactionTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('world', $res['hello']);
     }
 
-    /**
-     * @expectedException Google\Cloud\Core\Exception\NotFoundException
-     */
-    public function testSnapshotNotFound()
-    {
-        $this->connection->batchGetDocuments([
-            'database' => sprintf('projects/%s/databases/%s', self::PROJECT, self::DATABASE),
-            'documents' => [self::DOCUMENT],
-            'transaction' => self::TRANSACTION
-        ])->shouldBeCalled()->willReturn(new \ArrayIterator([
-            ['missing' => self::DOCUMENT]
-        ]));
-
-        $this->transaction->___setProperty('connection', $this->connection->reveal());
-
-        $res = $this->transaction->snapshot($this->ref->reveal());
-    }
-
     public function testRunQuery()
     {
         $this->connection->runQuery(Argument::withEntry('transaction', self::TRANSACTION))

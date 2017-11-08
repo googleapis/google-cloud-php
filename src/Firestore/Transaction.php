@@ -96,10 +96,6 @@ class Transaction
     /**
      * Get a Document Snapshot.
      *
-     * Unlike {@see Google\Cloud\Firestore\Document::snapshot()}, if the document
-     * does not exist, this method will throw
-     * {@see Google\Cloud\Core\Exception\NotFoundException}.
-     *
      * Example:
      * ```
      * $snapshot = $transaction->snapshot($document);
@@ -108,13 +104,11 @@ class Transaction
      * @param DocumentReference $document The document to retrieve.
      * @param array $options Configuration options.
      * @return DocumentSnapshot
-     * @throws NotFoundException If the document does not exist.
      */
     public function snapshot(DocumentReference $document, array $options = [])
     {
         return $this->createSnapshot($this->connection, $this->valueMapper, $document, [
             'transaction' => $this->transaction,
-            'allowNonExistence' => false
         ] + $options);
     }
 

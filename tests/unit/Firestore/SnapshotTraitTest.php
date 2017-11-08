@@ -99,29 +99,6 @@ class SnapshotTraitTest extends \PHPUnit_Framework_TestCase
         $this->assertFalse($res->exists());
     }
 
-    /**
-     * @expectedException Google\Cloud\Core\Exception\NotFoundException
-     */
-    public function testCreateSnapshotNonExistenceThrowsException()
-    {
-        $this->connection->batchGetDocuments([
-            'database' => sprintf('projects/%s/databases/%s', self::PROJECT, self::DATABASE),
-            'documents' => [self::NAME]
-        ])->shouldBeCalled()->willReturn(new \ArrayIterator([
-            ['missing' => self::NAME]
-        ]));
-
-        $ref = $this->prophesize(DocumentReference::class);
-        $ref->name()->willReturn(self::NAME);
-        $res = $this->impl->call('createSnapshot', [
-            $this->connection->reveal(),
-            $this->valueMapper,
-            $ref->reveal(), [
-                'allowNonExistence' => false
-            ]
-        ]);
-    }
-
     public function testGetSnapshot()
     {
         $this->connection->batchGetDocuments([
