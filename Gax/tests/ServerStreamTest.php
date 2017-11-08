@@ -38,9 +38,9 @@ use Google\GAX\UnitTests\Mocks\MockPageStreamingResponse;
 use Google\Protobuf\Internal\GPBType;
 use Google\Protobuf\Internal\RepeatedField;
 use Grpc;
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 
-class ServerStreamTest extends PHPUnit_Framework_TestCase
+class ServerStreamTest extends TestCase
 {
     use TestTrait;
 

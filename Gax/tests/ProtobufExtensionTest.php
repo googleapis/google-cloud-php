@@ -31,9 +31,9 @@
  */
 namespace Google\GAX\UnitTests;
 
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 
-class ProtobufExtensionTest extends PHPUnit_Framework_TestCase
+class ProtobufExtensionTest extends TestCase
 {
     public function setUp()
     {

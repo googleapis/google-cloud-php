@@ -35,9 +35,9 @@ use Google\GAX\Serializer;
 use Google\Protobuf\DescriptorPool;
 use Google\Protobuf\Internal\Message;
 use Google\Protobuf\Internal\RepeatedField;
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 
-class GeneratedTest extends PHPUnit_Framework_TestCase
+class GeneratedTest extends TestCase
 {
 
     public function assertProtobufEquals(&$expected, &$actual)

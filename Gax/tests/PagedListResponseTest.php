@@ -36,9 +36,9 @@ use Google\GAX\PageStreamingDescriptor;
 use Google\GAX\UnitTests\Mocks\MockStub;
 use Google\GAX\UnitTests\Mocks\MockPageStreamingRequest;
 use Google\GAX\UnitTests\Mocks\MockPageStreamingResponse;
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 
-class PagedListResponseTest extends PHPUnit_Framework_TestCase
+class PagedListResponseTest extends TestCase
 {
     public function testNextPageToken()
     {

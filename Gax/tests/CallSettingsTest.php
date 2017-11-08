@@ -34,9 +34,9 @@ namespace Google\GAX\UnitTests;
 use Google\GAX\CallSettings;
 use Google\GAX\RetrySettings;
 use Google\GAX\ValidationException;
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 
-class CallSettingsTest extends PHPUnit_Framework_TestCase
+class CallSettingsTest extends TestCase
 {
     const SERVICE_NAME = 'test.interface.v1.api';
 

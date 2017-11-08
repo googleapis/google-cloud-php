@@ -36,8 +36,9 @@ use RecursiveDirectoryIterator;
 use RecursiveIteratorIterator;
 use RecursiveRegexIterator;
 use RegexIterator;
+use PHPUnit\Framework\TestCase;
 
-class InstantiateClassesTest extends \PHPUnit_Framework_TestCase
+class InstantiateClassesTest extends TestCase
 {
     /**
      * @dataProvider classesProvider

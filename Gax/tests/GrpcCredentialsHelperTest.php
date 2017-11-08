@@ -31,11 +31,11 @@
  */
 namespace Google\GAX\UnitTests;
 
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 use Google\GAX\UnitTests\Mocks\MockGrpcCredentialsHelper;
 use Google\GAX\UnitTests\Mocks\MockCredentialsLoader;
 
-class GrpcCredentialsHelperTest extends PHPUnit_Framework_TestCase
+class GrpcCredentialsHelperTest extends TestCase
 {
     private $defaultScope = ['my-scope'];
     private $defaultTokens = [

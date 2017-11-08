@@ -36,9 +36,9 @@ use google\longrunning\Operation;
 use Google\GAX\LongRunning\OperationsClient;
 use Google\Protobuf\Any;
 use Google\Rpc\Status;
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 
-class OperationResponseTest extends PHPUnit_Framework_TestCase
+class OperationResponseTest extends TestCase
 {
     use TestTrait;
 
