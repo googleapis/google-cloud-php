@@ -18,30 +18,10 @@
 namespace Google\Cloud\Core\Exception;
 
 /**
- * Exception thrown when a transaction is aborted.
+ * Exception thrown when a request fails because the server is unavailable.
+ * In REST context, this exception indicates a status code 503.
  */
-class AbortedException extends ServiceException
+class UnavailableException extends ServiceException
 {
-    /**
-     * Return the delay in seconds and nanos before retrying the failed request.
-     *
-     * @return array
-     */
-    public function getRetryDelay()
-    {
-        $metadata = array_filter($this->metadata, function ($metadataItem) {
-            return array_key_exists('retryDelay', $metadataItem);
-        });
 
-        $default = [
-            'seconds' => 0,
-            'nanos' => 0
-        ];
-
-        if (count($metadata) === 0) {
-            return $default;
-        }
-
-        return $metadata[0]['retryDelay'] + $default;
-    }
 }

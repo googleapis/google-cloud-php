@@ -5,14 +5,17 @@
         "title": "DatastoreClient",
         "type": "datastore/datastoreclient"
     }, {
-        "title": "Transaction",
-        "type": "datastore/transaction"
-    }, {
         "title": "Entity",
         "type": "datastore/entity"
     }, {
         "title": "Key",
         "type": "datastore/key"
+    }, {
+        "title": "Transaction",
+        "type": "datastore/transaction"
+    }, {
+        "title": "ReadOnlyTransaction",
+        "type": "datastore/readonlytransaction"
     }, {
         "title": "GeoPoint",
         "type": "datastore/geopoint"

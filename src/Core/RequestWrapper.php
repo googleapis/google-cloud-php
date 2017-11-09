@@ -241,6 +241,10 @@ class RequestWrapper
                 $exception = Exception\ServerException::class;
                 break;
 
+            case 503:
+                $exception = Exception\UnavailableException::class;
+                break;
+
             case 504:
                 $exception = Exception\DeadlineExceededException::class;
                 break;

@@ -17,18 +17,20 @@
 
 namespace Google\Cloud\Tests\Unit\Datastore;
 
+use Prophecy\Argument;
+use Google\Cloud\Core\Int64;
+use Google\Cloud\Datastore\Key;
 use Google\Cloud\Datastore\Blob;
-use Google\Cloud\Datastore\Connection\ConnectionInterface;
-use Google\Cloud\Datastore\DatastoreClient;
 use Google\Cloud\Datastore\Entity;
 use Google\Cloud\Datastore\GeoPoint;
-use Google\Cloud\Datastore\Key;
 use Google\Cloud\Datastore\Operation;
-use Google\Cloud\Datastore\Query\GqlQuery;
 use Google\Cloud\Datastore\Query\Query;
-use Google\Cloud\Datastore\Query\QueryInterface;
 use Google\Cloud\Datastore\Transaction;
-use Prophecy\Argument;
+use Google\Cloud\Datastore\Query\GqlQuery;
+use Google\Cloud\Datastore\DatastoreClient;
+use Google\Cloud\Datastore\ReadOnlyTransaction;
+use Google\Cloud\Datastore\Query\QueryInterface;
+use Google\Cloud\Datastore\Connection\ConnectionInterface;
 
 /**
  * @group datastore
@@ -37,30 +39,32 @@ class DatastoreClientTest extends \PHPUnit_Framework_TestCase
 {
     private $connection;
     private $operation;
-    private $datastore;
+    private $client;
 
     public function setUp()
     {
         $this->connection = $this->prophesize(ConnectionInterface::class);
         $this->operation = $this->prophesize(Operation::class);
-        $this->datastore = new DatastoreClientStub(['projectId' => 'foo']);
+        $this->client = \Google\Cloud\Dev\Stub(DatastoreClient::class, [
+            ['projectId' => 'foo']
+        ], ['connection', 'operation']);
     }
 
     public function testKey()
     {
-        $key = $this->datastore->key('Foo', 'Bar');
+        $key = $this->client->key('Foo', 'Bar');
 
         $this->assertInstanceOf(Key::class, $key);
 
         $this->assertEquals($key->keyObject()['path'][0]['kind'], 'Foo');
         $this->assertEquals($key->keyObject()['path'][0]['name'], 'Bar');
 
-        $key = $this->datastore->key('Foo', '123');
+        $key = $this->client->key('Foo', '123');
 
         $this->assertEquals($key->keyObject()['path'][0]['kind'], 'Foo');
         $this->assertEquals($key->keyObject()['path'][0]['id'], '123');
 
-        $key = $this->datastore->key('Foo', 123);
+        $key = $this->client->key('Foo', 123);
 
         $this->assertEquals($key->keyObject()['path'][0]['kind'], 'Foo');
         $this->assertEquals($key->keyObject()['path'][0]['id'], '123');
@@ -68,11 +72,11 @@ class DatastoreClientTest extends \PHPUnit_Framework_TestCase
 
     public function testKeyForceType()
     {
-        $key = $this->datastore->key('Foo', '123');
+        $key = $this->client->key('Foo', '123');
 
         $this->assertEquals($key->keyObject()['path'][0]['id'], '123');
 
-        $key = $this->datastore->key('Foo', '123', [
+        $key = $this->client->key('Foo', '123', [
             'identifierType' => Key::TYPE_NAME
         ]);
 
@@ -81,7 +85,7 @@ class DatastoreClientTest extends \PHPUnit_Framework_TestCase
 
     public function testKeyNamespaceId()
     {
-        $key = $this->datastore->key('Foo', 'Bar', [
+        $key = $this->client->key('Foo', 'Bar', [
             'namespaceId' => 'MyApp'
         ]);
 
@@ -93,7 +97,7 @@ class DatastoreClientTest extends \PHPUnit_Framework_TestCase
 
     public function testKeys()
     {
-        $keys = $this->datastore->keys('Person', [
+        $keys = $this->client->keys('Person', [
             'allocateIds' => false
         ]);
 
@@ -104,7 +108,7 @@ class DatastoreClientTest extends \PHPUnit_Framework_TestCase
 
     public function testKeysMultiple()
     {
-        $keys = $this->datastore->keys('Person', [
+        $keys = $this->client->keys('Person', [
             'allocateIds' => false,
             'number' => 5
         ]);
@@ -121,7 +125,7 @@ class DatastoreClientTest extends \PHPUnit_Framework_TestCase
             ['kind' => 'Parent2', 'id' => '321']
         ];
 
-        $keys = $this->datastore->keys('Person', [
+        $keys = $this->client->keys('Person', [
             'allocateIds' => false,
             'ancestors' => $ancestors
         ]);
@@ -136,9 +140,9 @@ class DatastoreClientTest extends \PHPUnit_Framework_TestCase
 
     public function testEntity()
     {
-        $key = $this->datastore->key('Person', 'Foo');
+        $key = $this->client->key('Person', 'Foo');
 
-        $entity = $this->datastore->entity($key, [
+        $entity = $this->client->entity($key, [
             'foo' => 'bar'
         ]);
 
@@ -148,14 +152,21 @@ class DatastoreClientTest extends \PHPUnit_Framework_TestCase
 
     public function testBlob()
     {
-        $blob = $this->datastore->blob('foo');
+        $blob = $this->client->blob('foo');
         $this->assertInstanceOf(Blob::class, $blob);
         $this->assertEquals('foo', (string) $blob);
     }
 
+    public function testInt64()
+    {
+        $int64 = $this->client->int64('foo');
+        $this->assertInstanceOf(Int64::class, $int64);
+        $this->assertEquals('foo', (string) $int64);
+    }
+
     public function testGeoPoint()
     {
-        $point = $this->datastore->geoPoint(1.1, 0.1);
+        $point = $this->client->geoPoint(1.1, 0.1);
         $this->assertInstanceOf(GeoPoint::class, $point);
         $this->assertEquals($point->point(), [
             'latitude' => 1.1,
@@ -181,7 +192,7 @@ class DatastoreClientTest extends \PHPUnit_Framework_TestCase
             ->shouldBeCalled()
             ->willReturn([]);
 
-        $this->datastore->setOperation($this->operation->reveal());
+        $this->client->___setProperty('operation', $this->operation->reveal());
 
         $key = $this->prophesize(Key::class);
         $keys = [
@@ -189,7 +200,7 @@ class DatastoreClientTest extends \PHPUnit_Framework_TestCase
             $key->reveal()
         ];
 
-        $res = $this->datastore->allocateIds($keys);
+        $res = $this->client->allocateIds($keys);
 
         $this->assertTrue(is_array($res));
     }
@@ -200,10 +211,35 @@ class DatastoreClientTest extends \PHPUnit_Framework_TestCase
             ->shouldBeCalled()
             ->willReturn(['transaction' => '1234']);
 
-        $this->datastore->setConnection($this->connection->reveal());
+        $this->client->___setProperty('connection', $this->connection->reveal());
 
-        $t = $this->datastore->transaction();
+        $t = $this->client->transaction();
 
+        $this->assertInstanceOf(Transaction::class, $t);
+    }
+
+    public function testReadOnlyTransaction()
+    {
+        $this->connection->beginTransaction(Argument::withEntry('transactionOptions', ['readOnly' => []]))
+            ->shouldBeCalled()
+            ->willReturn(['transaction' => '1234']);
+
+        $this->client->___setProperty('connection', $this->connection->reveal());
+
+        $t = $this->client->readOnlyTransaction(['readOnly' => true]);
+        $this->assertInstanceOf(ReadOnlyTransaction::class, $t);
+    }
+
+    public function testTransactionPreviousTransaction()
+    {
+        $t = '4321';
+        $this->connection->beginTransaction(Argument::withEntry('transactionOptions', [
+            'readWrite' => ['previousTransaction' => $t]
+        ]))->shouldBeCalled()->willReturn(['transaction' => '1234']);
+
+        $this->client->___setProperty('connection', $this->connection->reveal());
+
+        $t = $this->client->transaction(['previousTransaction' => $t]);
         $this->assertInstanceOf(Transaction::class, $t);
     }
 
@@ -221,9 +257,9 @@ class DatastoreClientTest extends \PHPUnit_Framework_TestCase
             ->shouldBeCalled()
             ->willReturn(['mutationResults' => [['version' => '1234']]]);
 
-        $this->datastore->setOperation($this->operation->reveal());
+        $this->client->___setProperty('operation', $this->operation->reveal());
 
-        $res = $this->datastore->insert($e->reveal());
+        $res = $this->client->insert($e->reveal());
 
         $this->assertEquals($res, '1234');
     }
@@ -245,9 +281,9 @@ class DatastoreClientTest extends \PHPUnit_Framework_TestCase
             ->shouldBeCalled()
             ->willReturn(['mutationResults' => [['version' => '1234', 'conflictDetected' => true]]]);
 
-        $this->datastore->setOperation($this->operation->reveal());
+        $this->client->___setProperty('operation', $this->operation->reveal());
 
-        $res = $this->datastore->insert($e->reveal());
+        $res = $this->client->insert($e->reveal());
     }
 
     public function testInsertBatch()
@@ -264,9 +300,9 @@ class DatastoreClientTest extends \PHPUnit_Framework_TestCase
         $this->operation->allocateIdsToEntities(Argument::type('array'))
             ->willReturn([$e->reveal()]);
 
-        $this->datastore->setOperation($this->operation->reveal());
+        $this->client->___setProperty('operation', $this->operation->reveal());
 
-        $res = $this->datastore->insertBatch([$e->reveal()]);
+        $res = $this->client->insertBatch([$e->reveal()]);
 
         $this->assertEquals($res, ['mutationResults' => [['version' => '1234']]]);
     }
@@ -283,11 +319,11 @@ class DatastoreClientTest extends \PHPUnit_Framework_TestCase
         $this->operation->checkOverwrite(Argument::type('array'), Argument::type('bool'))
             ->shouldBeCalled();
 
-        $this->datastore->setOperation($this->operation->reveal());
+        $this->client->___setProperty('operation', $this->operation->reveal());
 
         $e = $this->prophesize(Entity::class);
 
-        $res = $this->datastore->update($e->reveal());
+        $res = $this->client->update($e->reveal());
 
         $this->assertEquals($res, '1234');
     }
@@ -304,11 +340,11 @@ class DatastoreClientTest extends \PHPUnit_Framework_TestCase
         $this->operation->checkOverwrite(Argument::type('array'), Argument::type('bool'))
             ->shouldBeCalled();
 
-        $this->datastore->setOperation($this->operation->reveal());
+        $this->client->___setProperty('operation', $this->operation->reveal());
 
         $e = $this->prophesize(Entity::class);
 
-        $res = $this->datastore->updateBatch([$e->reveal()]);
+        $res = $this->client->updateBatch([$e->reveal()]);
 
         $this->assertEquals($res, ['mutationResults' => [['version' => '1234']]]);
     }
@@ -322,11 +358,11 @@ class DatastoreClientTest extends \PHPUnit_Framework_TestCase
         $this->operation->mutation(Argument::exact('upsert'), Argument::type(Entity::class), Argument::exact(Entity::class), Argument::exact(null))
             ->shouldBeCalled();
 
-        $this->datastore->setOperation($this->operation->reveal());
+        $this->client->___setProperty('operation', $this->operation->reveal());
 
         $e = $this->prophesize(Entity::class);
 
-        $res = $this->datastore->upsert($e->reveal());
+        $res = $this->client->upsert($e->reveal());
 
         $this->assertEquals($res, '1234');
     }
@@ -340,11 +376,11 @@ class DatastoreClientTest extends \PHPUnit_Framework_TestCase
         $this->operation->mutation(Argument::exact('upsert'), Argument::type(Entity::class), Argument::exact(Entity::class), Argument::exact(null))
             ->shouldBeCalled();
 
-        $this->datastore->setOperation($this->operation->reveal());
+        $this->client->___setProperty('operation', $this->operation->reveal());
 
         $e = $this->prophesize(Entity::class);
 
-        $res = $this->datastore->upsertBatch([$e->reveal()]);
+        $res = $this->client->upsertBatch([$e->reveal()]);
 
         $this->assertEquals($res, ['mutationResults' => [['version' => '1234']]]);
     }
@@ -358,11 +394,11 @@ class DatastoreClientTest extends \PHPUnit_Framework_TestCase
         $this->operation->mutation(Argument::exact('delete'), Argument::type(Key::class), Argument::exact(Key::class), Argument::exact(null))
             ->shouldBeCalled();
 
-        $this->datastore->setOperation($this->operation->reveal());
+        $this->client->___setProperty('operation', $this->operation->reveal());
 
         $key = $this->prophesize(Key::class);
 
-        $res = $this->datastore->delete($key->reveal());
+        $res = $this->client->delete($key->reveal());
 
         $this->assertEquals($res, '1234');
     }
@@ -376,11 +412,11 @@ class DatastoreClientTest extends \PHPUnit_Framework_TestCase
         $this->operation->mutation(Argument::exact('delete'), Argument::type(Key::class), Argument::exact(Key::class), Argument::exact(null))
             ->shouldBeCalled();
 
-        $this->datastore->setOperation($this->operation->reveal());
+        $this->client->___setProperty('operation', $this->operation->reveal());
 
         $key = $this->prophesize(Key::class);
 
-        $res = $this->datastore->deleteBatch([$key->reveal()]);
+        $res = $this->client->deleteBatch([$key->reveal()]);
 
         $this->assertEquals($res, ['mutationResults' => [['version' => '1234']]]);
     }
@@ -404,25 +440,25 @@ class DatastoreClientTest extends \PHPUnit_Framework_TestCase
             ->shouldBeCalled()
             ->willReturn(['foo']);
 
-        $this->datastore->setOperation($this->operation->reveal());
+        $this->client->___setProperty('operation', $this->operation->reveal());
 
         $key = $this->prophesize(Key::class);
 
-        $res = $this->datastore->lookupBatch([$key->reveal()]);
+        $res = $this->client->lookupBatch([$key->reveal()]);
 
         $this->assertEquals($res, ['foo']);
     }
 
     public function testQuery()
     {
-        $q = $this->datastore->query();
+        $q = $this->client->query();
 
         $this->assertInstanceOf(Query::class, $q);
     }
 
     public function testGqlQuery()
     {
-        $q = $this->datastore->gqlQuery('foo');
+        $q = $this->client->gqlQuery('foo');
         $this->assertInstanceOf(GqlQuery::class, $q);
     }
 
@@ -434,29 +470,16 @@ class DatastoreClientTest extends \PHPUnit_Framework_TestCase
             ->shouldBeCalled()
             ->willReturn('foo');
 
-        $this->datastore->setOperation($this->operation->reveal());
+        $this->client->___setProperty('operation', $this->operation->reveal());
 
-        $q = $this->datastore->query();
-        $res = $this->datastore->runQuery($q);
+        $q = $this->client->query();
+        $res = $this->client->runQuery($q);
 
         $this->assertEquals($res, 'foo');
     }
 }
 
-class DatastoreClientStub extends DatastoreClient
-{
-    public function setConnection($connection)
-    {
-        $this->connection = $connection;
-    }
-
-    public function setOperation($operation)
-    {
-        $this->operation = $operation;
-    }
-}
-
-class DatastoreClientStubNoService extends DatastoreClientStub
+class DatastoreClientStubNoService extends DatastoreClient
 {
     public $didCallAllocateIds = false;
 

@@ -195,15 +195,17 @@ class GrpcRequestWrapperTest extends \PHPUnit_Framework_TestCase
     public function exceptionProvider()
     {
         return [
+            [2, Exception\ServerException::class],
             [3, Exception\BadRequestException::class],
+            [4, Exception\DeadlineExceededException::class],
             [5, Exception\NotFoundException::class],
-            [12, Exception\NotFoundException::class],
             [6, Exception\ConflictException::class],
             [9, Exception\FailedPreconditionException::class],
-            [2, Exception\ServerException::class],
+            [12, Exception\NotFoundException::class],
             [13, Exception\ServerException::class],
+            [14, Exception\UnavailableException::class],
             [10, Exception\AbortedException::class],
-            [999, Exception\ServiceException::class]
+            [999, Exception\ServiceException::class],
         ];
     }
 }

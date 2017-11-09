@@ -233,6 +233,10 @@ class GrpcRequestWrapper
                 $exception = Exception\AbortedException::class;
                 break;
 
+            case Grpc\STATUS_UNAVAILABLE:
+                $exception = Exception\UnavailableException::class;
+                break;
+
             case Grpc\STATUS_DEADLINE_EXCEEDED:
                 $exception = Exception\DeadlineExceededException::class;
                 break;

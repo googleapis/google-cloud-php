@@ -17,21 +17,22 @@
 
 namespace Google\Cloud\Tests\Snippets\Datastore;
 
-use Google\Cloud\Datastore\Blob;
-use Google\Cloud\Datastore\Connection\ConnectionInterface;
-use Google\Cloud\Datastore\DatastoreClient;
-use Google\Cloud\Datastore\Entity;
-use Google\Cloud\Datastore\EntityMapper;
-use Google\Cloud\Datastore\GeoPoint;
-use Google\Cloud\Datastore\Key;
-use Google\Cloud\Datastore\Operation;
-use Google\Cloud\Datastore\Query\GqlQuery;
-use Google\Cloud\Datastore\Query\Query;
-use Google\Cloud\Datastore\Query\QueryInterface;
-use Google\Cloud\Datastore\Transaction;
-use Google\Cloud\Dev\Snippet\SnippetTestCase;
-use Google\Cloud\Core\Int64;
 use Prophecy\Argument;
+use Google\Cloud\Core\Int64;
+use Google\Cloud\Datastore\Key;
+use Google\Cloud\Datastore\Blob;
+use Google\Cloud\Datastore\Entity;
+use Google\Cloud\Datastore\GeoPoint;
+use Google\Cloud\Datastore\Operation;
+use Google\Cloud\Datastore\Query\Query;
+use Google\Cloud\Datastore\Transaction;
+use Google\Cloud\Datastore\EntityMapper;
+use Google\Cloud\Datastore\Query\GqlQuery;
+use Google\Cloud\Datastore\DatastoreClient;
+use Google\Cloud\Dev\Snippet\SnippetTestCase;
+use Google\Cloud\Datastore\ReadOnlyTransaction;
+use Google\Cloud\Datastore\Query\QueryInterface;
+use Google\Cloud\Datastore\Connection\ConnectionInterface;
 
 /**
  * @group datastore
@@ -297,6 +298,67 @@ class DatastoreClientTest extends SnippetTestCase
 
         $res = $snippet->invoke('transaction');
         $this->assertInstanceOf(Transaction::class, $res->returnVal());
+    }
+
+    public function testReadOnlyTransaction()
+    {
+        $snippet = $this->snippetFromMethod(DatastoreClient::class, 'readOnlyTransaction');
+        $snippet->addLocal('datastore', $this->client);
+
+        $this->connection->beginTransaction(Argument::any())
+            ->shouldBeCalled()
+            ->willReturn([
+                'transaction' => 'foo'
+            ]);
+
+        $this->client->setConnection($this->connection->reveal());
+
+        $res = $snippet->invoke('transaction');
+        $this->assertInstanceOf(ReadOnlyTransaction::class, $res->returnVal());
+    }
+
+    public function testRunTransaction()
+    {
+        $snippet = $this->snippetFromMethod(DatastoreClient::class, 'runTransaction');
+        $snippet->addLocal('datastore', $this->client);
+        $snippet->addUse(Transaction::class);
+
+        $this->connection->beginTransaction(Argument::any())
+            ->shouldBeCalled()
+            ->willReturn([
+                'transaction' => 'foo'
+            ]);
+
+        $this->connection->lookup(Argument::any())
+            ->shouldBeCalled()
+            ->willReturn([
+                "found" => [
+                    [
+                        "entity" => [
+                            "key" => [
+                                "partitionId" => [
+                                    "projectId" => "foo",
+                                    "namespaceId" => ""
+                                ],
+                                "path" => [
+                                    ["kind" => "Users", "id" => "foo"]
+                                ]
+                            ],
+                            "properties" => [
+                                "walletBalance" => [
+                                    "doubleValue" => 100.00
+                                ]
+                            ]
+                        ]
+                    ]
+                ]
+            ]);
+
+        $this->connection->commit(Argument::any())->shouldBeCalled();
+
+        $this->client->setConnection($this->connection->reveal());
+
+        $res = $snippet->invoke();
     }
 
     public function testInsert()
