@@ -153,9 +153,9 @@ class BigtableGapicClient
     {
         if (!self::$gapicVersionLoaded) {
             if (file_exists(__DIR__ . '/../VERSION')) {
-              self::$gapicVersion = trim(file_get_contents(__DIR__ . '/../VERSION'));
+                self::$gapicVersion = trim(file_get_contents(__DIR__ . '/../VERSION'));
             } elseif (class_exists(Version::class)) {
-              self::$gapicVersion = Version::VERSION;
+                self::$gapicVersion = Version::VERSION;
             }
             self::$gapicVersionLoaded = true;
         }
@@ -309,9 +309,11 @@ class BigtableGapicClient
         $clientConfigJsonString = file_get_contents($options['clientConfigPath']);
         $clientConfig = json_decode($clientConfigJsonString, true);
         $this->defaultCallSettings =
-                CallSettings::load('google.bigtable.v2.Bigtable',
-                                   $clientConfig,
-                                   $options['retryingOverride']);
+                CallSettings::load(
+                    'google.bigtable.v2.Bigtable',
+                    $clientConfig,
+                    $options['retryingOverride']
+                );
 
         $this->scopes = $options['scopes'];
 
@@ -403,7 +405,11 @@ class BigtableGapicClient
         }
         $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
         $callable = ApiCallable::createApiCall(
-            $this->bigtableStub, 'ReadRows', $mergedSettings, $this->descriptors['readRows']);
+            $this->bigtableStub,
+            'ReadRows',
+            $mergedSettings,
+            $this->descriptors['readRows']
+        );
 
         return $callable(
             $request,
@@ -466,7 +472,11 @@ class BigtableGapicClient
         }
         $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
         $callable = ApiCallable::createApiCall(
-            $this->bigtableStub, 'SampleRowKeys', $mergedSettings, $this->descriptors['sampleRowKeys']);
+            $this->bigtableStub,
+            'SampleRowKeys',
+            $mergedSettings,
+            $this->descriptors['sampleRowKeys']
+        );
 
         return $callable(
             $request,
@@ -527,7 +537,11 @@ class BigtableGapicClient
         }
         $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
         $callable = ApiCallable::createApiCall(
-            $this->bigtableStub, 'MutateRow', $mergedSettings, $this->descriptors['mutateRow']);
+            $this->bigtableStub,
+            'MutateRow',
+            $mergedSettings,
+            $this->descriptors['mutateRow']
+        );
 
         return $callable(
             $request,
@@ -594,7 +608,11 @@ class BigtableGapicClient
         }
         $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
         $callable = ApiCallable::createApiCall(
-            $this->bigtableStub, 'MutateRows', $mergedSettings, $this->descriptors['mutateRows']);
+            $this->bigtableStub,
+            'MutateRows',
+            $mergedSettings,
+            $this->descriptors['mutateRows']
+        );
 
         return $callable(
             $request,
@@ -676,7 +694,11 @@ class BigtableGapicClient
         }
         $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
         $callable = ApiCallable::createApiCall(
-            $this->bigtableStub, 'CheckAndMutateRow', $mergedSettings, $this->descriptors['checkAndMutateRow']);
+            $this->bigtableStub,
+            'CheckAndMutateRow',
+            $mergedSettings,
+            $this->descriptors['checkAndMutateRow']
+        );
 
         return $callable(
             $request,
@@ -741,7 +763,11 @@ class BigtableGapicClient
         }
         $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
         $callable = ApiCallable::createApiCall(
-            $this->bigtableStub, 'ReadModifyWriteRow', $mergedSettings, $this->descriptors['readModifyWriteRow']);
+            $this->bigtableStub,
+            'ReadModifyWriteRow',
+            $mergedSettings,
+            $this->descriptors['readModifyWriteRow']
+        );
 
         return $callable(
             $request,

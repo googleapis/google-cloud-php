@@ -224,9 +224,9 @@ class BigtableInstanceAdminGapicClient
     {
         if (!self::$gapicVersionLoaded) {
             if (file_exists(__DIR__ . '/../VERSION')) {
-              self::$gapicVersion = trim(file_get_contents(__DIR__ . '/../VERSION'));
+                self::$gapicVersion = trim(file_get_contents(__DIR__ . '/../VERSION'));
             } elseif (class_exists(Version::class)) {
-              self::$gapicVersion = Version::VERSION;
+                self::$gapicVersion = Version::VERSION;
             }
             self::$gapicVersionLoaded = true;
         }
@@ -481,9 +481,11 @@ class BigtableInstanceAdminGapicClient
         $clientConfigJsonString = file_get_contents($options['clientConfigPath']);
         $clientConfig = json_decode($clientConfigJsonString, true);
         $this->defaultCallSettings =
-                CallSettings::load('google.bigtable.admin.v2.BigtableInstanceAdmin',
-                                   $clientConfig,
-                                   $options['retryingOverride']);
+                CallSettings::load(
+                    'google.bigtable.admin.v2.BigtableInstanceAdmin',
+                    $clientConfig,
+                    $options['retryingOverride']
+                );
 
         $this->scopes = $options['scopes'];
 
@@ -586,7 +588,11 @@ class BigtableInstanceAdminGapicClient
         }
         $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
         $callable = ApiCallable::createApiCall(
-            $this->bigtableInstanceAdminStub, 'CreateInstance', $mergedSettings, $this->descriptors['createInstance']);
+            $this->bigtableInstanceAdminStub,
+            'CreateInstance',
+            $mergedSettings,
+            $this->descriptors['createInstance']
+        );
 
         return $callable(
             $request,
@@ -637,7 +643,11 @@ class BigtableInstanceAdminGapicClient
         }
         $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
         $callable = ApiCallable::createApiCall(
-            $this->bigtableInstanceAdminStub, 'GetInstance', $mergedSettings, $this->descriptors['getInstance']);
+            $this->bigtableInstanceAdminStub,
+            'GetInstance',
+            $mergedSettings,
+            $this->descriptors['getInstance']
+        );
 
         return $callable(
             $request,
@@ -693,7 +703,11 @@ class BigtableInstanceAdminGapicClient
         }
         $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
         $callable = ApiCallable::createApiCall(
-            $this->bigtableInstanceAdminStub, 'ListInstances', $mergedSettings, $this->descriptors['listInstances']);
+            $this->bigtableInstanceAdminStub,
+            'ListInstances',
+            $mergedSettings,
+            $this->descriptors['listInstances']
+        );
 
         return $callable(
             $request,
@@ -761,7 +775,11 @@ class BigtableInstanceAdminGapicClient
         }
         $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
         $callable = ApiCallable::createApiCall(
-            $this->bigtableInstanceAdminStub, 'UpdateInstance', $mergedSettings, $this->descriptors['updateInstance']);
+            $this->bigtableInstanceAdminStub,
+            'UpdateInstance',
+            $mergedSettings,
+            $this->descriptors['updateInstance']
+        );
 
         return $callable(
             $request,
@@ -810,7 +828,11 @@ class BigtableInstanceAdminGapicClient
         }
         $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
         $callable = ApiCallable::createApiCall(
-            $this->bigtableInstanceAdminStub, 'DeleteInstance', $mergedSettings, $this->descriptors['deleteInstance']);
+            $this->bigtableInstanceAdminStub,
+            'DeleteInstance',
+            $mergedSettings,
+            $this->descriptors['deleteInstance']
+        );
 
         return $callable(
             $request,
@@ -896,7 +918,11 @@ class BigtableInstanceAdminGapicClient
         }
         $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
         $callable = ApiCallable::createApiCall(
-            $this->bigtableInstanceAdminStub, 'CreateCluster', $mergedSettings, $this->descriptors['createCluster']);
+            $this->bigtableInstanceAdminStub,
+            'CreateCluster',
+            $mergedSettings,
+            $this->descriptors['createCluster']
+        );
 
         return $callable(
             $request,
@@ -947,7 +973,11 @@ class BigtableInstanceAdminGapicClient
         }
         $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
         $callable = ApiCallable::createApiCall(
-            $this->bigtableInstanceAdminStub, 'GetCluster', $mergedSettings, $this->descriptors['getCluster']);
+            $this->bigtableInstanceAdminStub,
+            'GetCluster',
+            $mergedSettings,
+            $this->descriptors['getCluster']
+        );
 
         return $callable(
             $request,
@@ -1005,7 +1035,11 @@ class BigtableInstanceAdminGapicClient
         }
         $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
         $callable = ApiCallable::createApiCall(
-            $this->bigtableInstanceAdminStub, 'ListClusters', $mergedSettings, $this->descriptors['listClusters']);
+            $this->bigtableInstanceAdminStub,
+            'ListClusters',
+            $mergedSettings,
+            $this->descriptors['listClusters']
+        );
 
         return $callable(
             $request,
@@ -1106,7 +1140,11 @@ class BigtableInstanceAdminGapicClient
         }
         $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
         $callable = ApiCallable::createApiCall(
-            $this->bigtableInstanceAdminStub, 'UpdateCluster', $mergedSettings, $this->descriptors['updateCluster']);
+            $this->bigtableInstanceAdminStub,
+            'UpdateCluster',
+            $mergedSettings,
+            $this->descriptors['updateCluster']
+        );
 
         return $callable(
             $request,
@@ -1155,7 +1193,11 @@ class BigtableInstanceAdminGapicClient
         }
         $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
         $callable = ApiCallable::createApiCall(
-            $this->bigtableInstanceAdminStub, 'DeleteCluster', $mergedSettings, $this->descriptors['deleteCluster']);
+            $this->bigtableInstanceAdminStub,
+            'DeleteCluster',
+            $mergedSettings,
+            $this->descriptors['deleteCluster']
+        );
 
         return $callable(
             $request,

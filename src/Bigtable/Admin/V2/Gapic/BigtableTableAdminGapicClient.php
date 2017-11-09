@@ -168,9 +168,9 @@ class BigtableTableAdminGapicClient
     {
         if (!self::$gapicVersionLoaded) {
             if (file_exists(__DIR__ . '/../VERSION')) {
-              self::$gapicVersion = trim(file_get_contents(__DIR__ . '/../VERSION'));
+                self::$gapicVersion = trim(file_get_contents(__DIR__ . '/../VERSION'));
             } elseif (class_exists(Version::class)) {
-              self::$gapicVersion = Version::VERSION;
+                self::$gapicVersion = Version::VERSION;
             }
             self::$gapicVersionLoaded = true;
         }
@@ -345,9 +345,11 @@ class BigtableTableAdminGapicClient
         $clientConfigJsonString = file_get_contents($options['clientConfigPath']);
         $clientConfig = json_decode($clientConfigJsonString, true);
         $this->defaultCallSettings =
-                CallSettings::load('google.bigtable.admin.v2.BigtableTableAdmin',
-                                   $clientConfig,
-                                   $options['retryingOverride']);
+                CallSettings::load(
+                    'google.bigtable.admin.v2.BigtableTableAdmin',
+                    $clientConfig,
+                    $options['retryingOverride']
+                );
 
         $this->scopes = $options['scopes'];
 
@@ -438,7 +440,11 @@ class BigtableTableAdminGapicClient
         }
         $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
         $callable = ApiCallable::createApiCall(
-            $this->bigtableTableAdminStub, 'CreateTable', $mergedSettings, $this->descriptors['createTable']);
+            $this->bigtableTableAdminStub,
+            'CreateTable',
+            $mergedSettings,
+            $this->descriptors['createTable']
+        );
 
         return $callable(
             $request,
@@ -516,7 +522,11 @@ class BigtableTableAdminGapicClient
         }
         $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
         $callable = ApiCallable::createApiCall(
-            $this->bigtableTableAdminStub, 'ListTables', $mergedSettings, $this->descriptors['listTables']);
+            $this->bigtableTableAdminStub,
+            'ListTables',
+            $mergedSettings,
+            $this->descriptors['listTables']
+        );
 
         return $callable(
             $request,
@@ -575,7 +585,11 @@ class BigtableTableAdminGapicClient
         }
         $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
         $callable = ApiCallable::createApiCall(
-            $this->bigtableTableAdminStub, 'GetTable', $mergedSettings, $this->descriptors['getTable']);
+            $this->bigtableTableAdminStub,
+            'GetTable',
+            $mergedSettings,
+            $this->descriptors['getTable']
+        );
 
         return $callable(
             $request,
@@ -625,7 +639,11 @@ class BigtableTableAdminGapicClient
         }
         $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
         $callable = ApiCallable::createApiCall(
-            $this->bigtableTableAdminStub, 'DeleteTable', $mergedSettings, $this->descriptors['deleteTable']);
+            $this->bigtableTableAdminStub,
+            'DeleteTable',
+            $mergedSettings,
+            $this->descriptors['deleteTable']
+        );
 
         return $callable(
             $request,
@@ -686,7 +704,11 @@ class BigtableTableAdminGapicClient
         }
         $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
         $callable = ApiCallable::createApiCall(
-            $this->bigtableTableAdminStub, 'ModifyColumnFamilies', $mergedSettings, $this->descriptors['modifyColumnFamilies']);
+            $this->bigtableTableAdminStub,
+            'ModifyColumnFamilies',
+            $mergedSettings,
+            $this->descriptors['modifyColumnFamilies']
+        );
 
         return $callable(
             $request,
@@ -749,7 +771,11 @@ class BigtableTableAdminGapicClient
         }
         $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
         $callable = ApiCallable::createApiCall(
-            $this->bigtableTableAdminStub, 'DropRowRange', $mergedSettings, $this->descriptors['dropRowRange']);
+            $this->bigtableTableAdminStub,
+            'DropRowRange',
+            $mergedSettings,
+            $this->descriptors['dropRowRange']
+        );
 
         return $callable(
             $request,

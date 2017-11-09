@@ -1,0 +1,24 @@
+{
+    "name": "google/cloud-bigtable",
+    "description": "Cloud Bigtable Client for PHP",
+    "license": "Apache-2.0",
+    "minimum-stability": "stable",
+    "require": {
+        "google/cloud-core": "^1.0",
+        "google/proto-client": "^0.25",
+        "google/gax": "^0.25"
+    },
+    "extra": {
+        "component": {
+            "id": "cloud-bigtable",
+            "target": "GoogleCloudPlatform/google-cloud-php-bigtable.git",
+            "path": "src/Bigtable",
+            "entry": "BigtableClient.php"
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "Google\\Cloud\\Bigtable\\": ""
+        }
+    }
+}
