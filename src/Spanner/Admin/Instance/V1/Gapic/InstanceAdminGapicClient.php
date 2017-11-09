@@ -30,9 +30,9 @@
 
 namespace Google\Cloud\Spanner\Admin\Instance\V1\Gapic;
 
-use Google\Cloud\Core\GapicClientTrait;
-use Google\Cloud\Core\Grpc\GrpcTransport;
-use Google\Cloud\Core\LongRunning\OperationsClient;
+use Google\GAX\GapicClientTrait;
+use Google\GAX\Grpc\GrpcTransport;
+use Google\GAX\LongRunning\OperationsClient;
 use Google\Cloud\Core\OperationResponse;
 use Google\Cloud\Version;
 use Google\GAX\AgentHeaderDescriptor;
@@ -348,7 +348,7 @@ class InstanceAdminGapicClient
     /**
      * Return an OperationsClient object with the same endpoint as $this.
      *
-     * @return \Google\Cloud\Core\LongRunning\OperationsClient
+     * @return \Google\GAX\LongRunning\OperationsClient
      * @experimental
      */
     public function getOperationsClient()
@@ -486,8 +486,8 @@ class InstanceAdminGapicClient
         $this->defaultCallSettings =
                 CallSettings::load(
                     'google.spanner.admin.instance.v1.InstanceAdmin',
-                                   $clientConfig,
-                                   $options['retryingOverride']
+                    $clientConfig,
+                    $options['retryingOverride']
                 );
 
         $this->scopes = $options['scopes'];

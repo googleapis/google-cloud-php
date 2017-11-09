@@ -30,9 +30,9 @@
 
 namespace Google\Cloud\Speech\V1\Gapic;
 
-use Google\Cloud\Core\GapicClientTrait;
-use Google\Cloud\Core\Grpc\GrpcTransport;
-use Google\Cloud\Core\LongRunning\OperationsClient;
+use Google\GAX\GapicClientTrait;
+use Google\GAX\Grpc\GrpcTransport;
+use Google\GAX\LongRunning\OperationsClient;
 use Google\Cloud\Core\OperationResponse;
 use Google\Cloud\Speech\V1\LongRunningRecognizeRequest;
 use Google\Cloud\Speech\V1\LongRunningRecognizeResponse;
@@ -145,7 +145,7 @@ class SpeechGapicClient
     /**
      * Return an OperationsClient object with the same endpoint as $this.
      *
-     * @return \Google\Cloud\Core\LongRunning\OperationsClient
+     * @return \Google\GAX\LongRunning\OperationsClient
      * @experimental
      */
     public function getOperationsClient()
@@ -275,8 +275,8 @@ class SpeechGapicClient
         $this->defaultCallSettings =
                 CallSettings::load(
                     'google.cloud.speech.v1.Speech',
-                                   $clientConfig,
-                                   $options['retryingOverride']
+                    $clientConfig,
+                    $options['retryingOverride']
                 );
 
         $this->scopes = $options['scopes'];

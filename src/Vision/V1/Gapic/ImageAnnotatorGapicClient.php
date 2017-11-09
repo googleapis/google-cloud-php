@@ -30,8 +30,8 @@
 
 namespace Google\Cloud\Vision\V1\Gapic;
 
-use Google\Cloud\Core\GapicClientTrait;
-use Google\Cloud\Core\Grpc\GrpcTransport;
+use Google\GAX\GapicClientTrait;
+use Google\GAX\Grpc\GrpcTransport;
 use Google\Cloud\Version;
 use Google\Cloud\Vision\V1\AnnotateImageRequest;
 use Google\Cloud\Vision\V1\BatchAnnotateImagesRequest;
@@ -185,8 +185,8 @@ class ImageAnnotatorGapicClient
         $this->defaultCallSettings =
                 CallSettings::load(
                     'google.cloud.vision.v1.ImageAnnotator',
-                                   $clientConfig,
-                                   $options['retryingOverride']
+                    $clientConfig,
+                    $options['retryingOverride']
                 );
 
         $this->scopes = $options['scopes'];

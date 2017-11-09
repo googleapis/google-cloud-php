@@ -30,8 +30,8 @@
 
 namespace Google\Cloud\Language\V1beta2\Gapic;
 
-use Google\Cloud\Core\GapicClientTrait;
-use Google\Cloud\Core\Grpc\GrpcTransport;
+use Google\GAX\GapicClientTrait;
+use Google\GAX\Grpc\GrpcTransport;
 use Google\Cloud\Language\V1beta2\AnalyzeEntitiesRequest;
 use Google\Cloud\Language\V1beta2\AnalyzeEntitySentimentRequest;
 use Google\Cloud\Language\V1beta2\AnalyzeSentimentRequest;
@@ -196,8 +196,8 @@ class LanguageServiceGapicClient
         $this->defaultCallSettings =
                 CallSettings::load(
                     'google.cloud.language.v1beta2.LanguageService',
-                                   $clientConfig,
-                                   $options['retryingOverride']
+                    $clientConfig,
+                    $options['retryingOverride']
                 );
 
         $this->scopes = $options['scopes'];

@@ -30,8 +30,8 @@
 
 namespace Google\Cloud\Spanner\V1\Gapic;
 
-use Google\Cloud\Core\GapicClientTrait;
-use Google\Cloud\Core\Grpc\GrpcTransport;
+use Google\GAX\GapicClientTrait;
+use Google\GAX\Grpc\GrpcTransport;
 use Google\Cloud\Version;
 use Google\GAX\AgentHeaderDescriptor;
 use Google\GAX\CallSettings;
@@ -375,8 +375,8 @@ class SpannerGapicClient
         $this->defaultCallSettings =
                 CallSettings::load(
                     'google.spanner.v1.Spanner',
-                                   $clientConfig,
-                                   $options['retryingOverride']
+                    $clientConfig,
+                    $options['retryingOverride']
                 );
 
         $this->scopes = $options['scopes'];

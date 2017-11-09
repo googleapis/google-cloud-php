@@ -30,9 +30,9 @@
 
 namespace Google\Cloud\VideoIntelligence\V1beta1\Gapic;
 
-use Google\Cloud\Core\GapicClientTrait;
-use Google\Cloud\Core\Grpc\GrpcTransport;
-use Google\Cloud\Core\LongRunning\OperationsClient;
+use Google\GAX\GapicClientTrait;
+use Google\GAX\Grpc\GrpcTransport;
+use Google\GAX\LongRunning\OperationsClient;
 use Google\Cloud\Core\OperationResponse;
 use Google\Cloud\Version;
 use Google\Cloud\Videointelligence\V1beta1\AnnotateVideoProgress;
@@ -153,7 +153,7 @@ class VideoIntelligenceServiceGapicClient
     /**
      * Return an OperationsClient object with the same endpoint as $this.
      *
-     * @return \Google\Cloud\Core\LongRunning\OperationsClient
+     * @return \Google\GAX\LongRunning\OperationsClient
      * @experimental
      */
     public function getOperationsClient()
@@ -277,8 +277,8 @@ class VideoIntelligenceServiceGapicClient
         $this->defaultCallSettings =
                 CallSettings::load(
                     'google.cloud.videointelligence.v1beta1.VideoIntelligenceService',
-                                   $clientConfig,
-                                   $options['retryingOverride']
+                    $clientConfig,
+                    $options['retryingOverride']
                 );
 
         $this->scopes = $options['scopes'];

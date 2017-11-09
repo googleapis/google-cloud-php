@@ -30,8 +30,8 @@
 
 namespace Google\Cloud\ErrorReporting\V1beta1\Gapic;
 
-use Google\Cloud\Core\GapicClientTrait;
-use Google\Cloud\Core\Grpc\GrpcTransport;
+use Google\GAX\GapicClientTrait;
+use Google\GAX\Grpc\GrpcTransport;
 use Google\Cloud\Version;
 use Google\Devtools\Clouderrorreporting\V1beta1\ReportErrorEventRequest;
 use Google\Devtools\Clouderrorreporting\V1beta1\ReportErrorsServiceGrpcClient;
@@ -270,8 +270,8 @@ class ReportErrorsServiceGapicClient
         $this->defaultCallSettings =
                 CallSettings::load(
                     'google.devtools.clouderrorreporting.v1beta1.ReportErrorsService',
-                                   $clientConfig,
-                                   $options['retryingOverride']
+                    $clientConfig,
+                    $options['retryingOverride']
                 );
 
         $this->scopes = $options['scopes'];

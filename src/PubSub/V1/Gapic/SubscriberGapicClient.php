@@ -30,8 +30,8 @@
 
 namespace Google\Cloud\PubSub\V1\Gapic;
 
-use Google\Cloud\Core\GapicClientTrait;
-use Google\Cloud\Core\Grpc\GrpcTransport;
+use Google\GAX\GapicClientTrait;
+use Google\GAX\Grpc\GrpcTransport;
 use Google\Cloud\Version;
 use Google\GAX\AgentHeaderDescriptor;
 use Google\GAX\CallSettings;
@@ -449,8 +449,8 @@ class SubscriberGapicClient
         $this->defaultCallSettings =
                 CallSettings::load(
                     'google.pubsub.v1.Subscriber',
-                                   $clientConfig,
-                                   $options['retryingOverride']
+                    $clientConfig,
+                    $options['retryingOverride']
                 );
 
         $this->scopes = $options['scopes'];

@@ -31,8 +31,8 @@
 namespace Google\Cloud\Monitoring\V3\Gapic;
 
 use Google\Api\MetricDescriptor;
-use Google\Cloud\Core\GapicClientTrait;
-use Google\Cloud\Core\Grpc\GrpcTransport;
+use Google\GAX\GapicClientTrait;
+use Google\GAX\Grpc\GrpcTransport;
 use Google\Cloud\Version;
 use Google\GAX\AgentHeaderDescriptor;
 use Google\GAX\CallSettings;
@@ -407,8 +407,8 @@ class MetricServiceGapicClient
         $this->defaultCallSettings =
                 CallSettings::load(
                     'google.monitoring.v3.MetricService',
-                                   $clientConfig,
-                                   $options['retryingOverride']
+                    $clientConfig,
+                    $options['retryingOverride']
                 );
 
         $this->scopes = $options['scopes'];

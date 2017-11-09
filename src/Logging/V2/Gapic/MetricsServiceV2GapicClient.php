@@ -30,8 +30,8 @@
 
 namespace Google\Cloud\Logging\V2\Gapic;
 
-use Google\Cloud\Core\GapicClientTrait;
-use Google\Cloud\Core\Grpc\GrpcTransport;
+use Google\GAX\GapicClientTrait;
+use Google\GAX\Grpc\GrpcTransport;
 use Google\Cloud\Version;
 use Google\GAX\AgentHeaderDescriptor;
 use Google\GAX\CallSettings;
@@ -347,8 +347,8 @@ class MetricsServiceV2GapicClient
         $this->defaultCallSettings =
                 CallSettings::load(
                     'google.logging.v2.MetricsServiceV2',
-                                   $clientConfig,
-                                   $options['retryingOverride']
+                    $clientConfig,
+                    $options['retryingOverride']
                 );
 
         $this->scopes = $options['scopes'];

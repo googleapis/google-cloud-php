@@ -30,9 +30,9 @@
 
 namespace Google\Cloud\Dlp\V2beta1\Gapic;
 
-use Google\Cloud\Core\GapicClientTrait;
-use Google\Cloud\Core\Grpc\GrpcTransport;
-use Google\Cloud\Core\LongRunning\OperationsClient;
+use Google\GAX\GapicClientTrait;
+use Google\GAX\Grpc\GrpcTransport;
+use Google\GAX\LongRunning\OperationsClient;
 use Google\Cloud\Core\OperationResponse;
 use Google\Cloud\Version;
 use Google\GAX\AgentHeaderDescriptor;
@@ -245,7 +245,7 @@ class DlpServiceGapicClient
     /**
      * Return an OperationsClient object with the same endpoint as $this.
      *
-     * @return \Google\Cloud\Core\LongRunning\OperationsClient
+     * @return \Google\GAX\LongRunning\OperationsClient
      * @experimental
      */
     public function getOperationsClient()
@@ -361,8 +361,6 @@ class DlpServiceGapicClient
             'analyzeDataSourceRisk' => $defaultDescriptors,
             'inspectContent' => $defaultDescriptors,
             'redactContent' => $defaultDescriptors,
-            'deidentifyContent' => $defaultDescriptors,
-            'analyzeDataSourceRisk' => $defaultDescriptors,
             'createInspectOperation' => $defaultDescriptors,
             'listInspectFindings' => $defaultDescriptors,
             'listInfoTypes' => $defaultDescriptors,
@@ -378,8 +376,8 @@ class DlpServiceGapicClient
         $this->defaultCallSettings =
                 CallSettings::load(
                     'google.privacy.dlp.v2beta1.DlpService',
-                                   $clientConfig,
-                                   $options['retryingOverride']
+                    $clientConfig,
+                    $options['retryingOverride']
                 );
 
         $this->scopes = $options['scopes'];
@@ -423,12 +421,12 @@ class DlpServiceGapicClient
      * }
      * ```
      *
-     * @param DeidentifyConfig $deidentifyConfig configuration for the de-identification of the list of content items
-     * @param InspectConfig    $inspectConfig    configuration for the inspector
+     * @param DeidentifyConfig $deidentifyConfig Configuration for the de-identification of the list of content items.
+     * @param InspectConfig    $inspectConfig    Configuration for the inspector.
      * @param ContentItem[]    $items            The list of items to inspect. Up to 100 are allowed per request.
      *                                           All items will be treated as text/*.
      * @param array            $optionalArgs     {
-     *                                           Optional
+     *                                           Optional.
      *
      *     @type \Google\GAX\RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
@@ -510,10 +508,10 @@ class DlpServiceGapicClient
      * }
      * ```
      *
-     * @param PrivacyMetric $privacyMetric privacy metric to compute
-     * @param BigQueryTable $sourceTable   input dataset to compute metrics over
+     * @param PrivacyMetric $privacyMetric Privacy metric to compute.
+     * @param BigQueryTable $sourceTable   Input dataset to compute metrics over.
      * @param array         $optionalArgs  {
-     *                                     Optional
+     *                                     Optional.
      *
      *     @type \Google\GAX\RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
@@ -707,153 +705,6 @@ class DlpServiceGapicClient
             $request,
             []
         );
-    }
-
-    /**
-     * De-identifies potentially sensitive info from a list of strings.
-     * This method has limits on input size and output size.
-     *
-     * Sample code:
-     * ```
-     * try {
-     *     $dlpServiceClient = new DlpServiceClient();
-     *     $deidentifyConfig = new DeidentifyConfig();
-     *     $inspectConfig = new InspectConfig();
-     *     $items = [];
-     *     $response = $dlpServiceClient->deidentifyContent($deidentifyConfig, $inspectConfig, $items);
-     * } finally {
-     *     $dlpServiceClient->close();
-     * }
-     * ```
-     *
-     * @param DeidentifyConfig $deidentifyConfig Configuration for the de-identification of the list of content items.
-     * @param InspectConfig    $inspectConfig    Configuration for the inspector.
-     * @param ContentItem[]    $items            The list of items to inspect. Up to 100 are allowed per request.
-     *                                           All items will be treated as text/*.
-     * @param array            $optionalArgs     {
-     *                                           Optional.
-     *
-     *     @type \Google\GAX\RetrySettings|array $retrySettings
-     *          Retry settings to use for this call. Can be a
-     *          {@see Google\GAX\RetrySettings} object, or an associative array
-     *          of retry settings parameters. See the documentation on
-     *          {@see Google\GAX\RetrySettings} for example usage.
-     * }
-     *
-     * @return \Google\Privacy\Dlp\V2beta1\DeidentifyContentResponse
-     *
-     * @throws \Google\GAX\ApiException if the remote call fails
-     * @experimental
-     */
-    public function deidentifyContent($deidentifyConfig, $inspectConfig, $items, $optionalArgs = [])
-    {
-        $request = new DeidentifyContentRequest();
-        $request->setDeidentifyConfig($deidentifyConfig);
-        $request->setInspectConfig($inspectConfig);
-        $request->setItems($items);
-
-        $defaultCallSettings = $this->defaultCallSettings['deidentifyContent'];
-        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
-            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
-                $optionalArgs['retrySettings']
-            );
-        }
-        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
-        $callable = ApiCallable::createApiCall(
-            $this->dlpServiceStub,
-            'DeidentifyContent',
-            $mergedSettings,
-            $this->descriptors['deidentifyContent']
-        );
-
-        return $callable(
-            $request,
-            [],
-            ['call_credentials_callback' => $this->createCredentialsCallback()]);
-    }
-
-    /**
-     * Schedules a job to compute risk analysis metrics over content in a Google
-     * Cloud Platform repository.
-     *
-     * Sample code:
-     * ```
-     * try {
-     *     $dlpServiceClient = new DlpServiceClient();
-     *     $privacyMetric = new PrivacyMetric();
-     *     $sourceTable = new BigQueryTable();
-     *     $operationResponse = $dlpServiceClient->analyzeDataSourceRisk($privacyMetric, $sourceTable);
-     *     $operationResponse->pollUntilComplete();
-     *     if ($operationResponse->operationSucceeded()) {
-     *       $result = $operationResponse->getResult();
-     *       // doSomethingWith($result)
-     *     } else {
-     *       $error = $operationResponse->getError();
-     *       // handleError($error)
-     *     }
-     *
-     *     // OR start the operation, keep the operation name, and resume later
-     *     $operationResponse = $dlpServiceClient->analyzeDataSourceRisk($privacyMetric, $sourceTable);
-     *     $operationName = $operationResponse->getName();
-     *     // ... do other work
-     *     $newOperationResponse = $dlpServiceClient->resumeOperation($operationName, 'analyzeDataSourceRisk');
-     *     while (!$newOperationResponse->isDone()) {
-     *         // ... do other work
-     *         $newOperationResponse->reload();
-     *     }
-     *     if ($newOperationResponse->operationSucceeded()) {
-     *       $result = $newOperationResponse->getResult();
-     *       // doSomethingWith($result)
-     *     } else {
-     *       $error = $newOperationResponse->getError();
-     *       // handleError($error)
-     *     }
-     * } finally {
-     *     $dlpServiceClient->close();
-     * }
-     * ```
-     *
-     * @param PrivacyMetric $privacyMetric Privacy metric to compute.
-     * @param BigQueryTable $sourceTable   Input dataset to compute metrics over.
-     * @param array         $optionalArgs  {
-     *                                     Optional.
-     *
-     *     @type \Google\GAX\RetrySettings|array $retrySettings
-     *          Retry settings to use for this call. Can be a
-     *          {@see Google\GAX\RetrySettings} object, or an associative array
-     *          of retry settings parameters. See the documentation on
-     *          {@see Google\GAX\RetrySettings} for example usage.
-     * }
-     *
-     * @return \Google\GAX\OperationResponse
-     *
-     * @throws \Google\GAX\ApiException if the remote call fails
-     * @experimental
-     */
-    public function analyzeDataSourceRisk($privacyMetric, $sourceTable, $optionalArgs = [])
-    {
-        $request = new AnalyzeDataSourceRiskRequest();
-        $request->setPrivacyMetric($privacyMetric);
-        $request->setSourceTable($sourceTable);
-
-        $defaultCallSettings = $this->defaultCallSettings['analyzeDataSourceRisk'];
-        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
-            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
-                $optionalArgs['retrySettings']
-            );
-        }
-        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
-        $callable = ApiCallable::createApiCall(
-            $this->dlpServiceStub,
-            'AnalyzeDataSourceRisk',
-            $mergedSettings,
-            $this->descriptors['analyzeDataSourceRisk']
-        );
-
-        return $callable(
-            $request,
-            [],
-            ['call_credentials_callback' => $this->createCredentialsCallback()]);
     }
 
     /**

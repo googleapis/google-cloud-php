@@ -30,11 +30,11 @@
 
 namespace Google\Cloud\Logging\V2\Gapic;
 
-use Google\Cloud\Core\GapicClientTrait;
-use Google\Cloud\Core\Grpc\GrpcTransport;
 use Google\Cloud\Version;
 use Google\GAX\AgentHeaderDescriptor;
 use Google\GAX\CallSettings;
+use Google\GAX\GapicClientTrait;
+use Google\GAX\Grpc\GrpcTransport;
 use Google\GAX\PageStreamingDescriptor;
 use Google\GAX\PathTemplate;
 use Google\GAX\ValidationException;
@@ -400,8 +400,8 @@ class ConfigServiceV2GapicClient
         $this->defaultCallSettings =
                 CallSettings::load(
                     'google.logging.v2.ConfigServiceV2',
-                                   $clientConfig,
-                                   $options['retryingOverride']
+                    $clientConfig,
+                    $options['retryingOverride']
                 );
 
         $this->scopes = $options['scopes'];
@@ -812,6 +812,271 @@ class ConfigServiceV2GapicClient
     }
 
     /**
+     * Gets the description of an exclusion.
+     *
+     * Sample code:
+     * ```
+     * try {
+     *     $configServiceV2Client = new ConfigServiceV2Client();
+     *     $formattedName = $configServiceV2Client->exclusionName('[PROJECT]', '[EXCLUSION]');
+     *     $response = $configServiceV2Client->getExclusion($formattedName);
+     * } finally {
+     *     $configServiceV2Client->close();
+     * }
+     * ```
+     *
+     * @param string $name Required. The resource name of an existing exclusion:
+     *
+     *     "projects/[PROJECT_ID]/exclusions/[EXCLUSION_ID]"
+     *     "organizations/[ORGANIZATION_ID]/exclusions/[EXCLUSION_ID]"
+     *     "billingAccounts/[BILLING_ACCOUNT_ID]/exclusions/[EXCLUSION_ID]"
+     *     "folders/[FOLDER_ID]/exclusions/[EXCLUSION_ID]"
+     *
+     * Example: `"projects/my-project-id/exclusions/my-exclusion-id"`.
+     * @param array $optionalArgs {
+     *                            Optional.
+     *
+     *     @type \Google\GAX\RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\GAX\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\GAX\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Logging\V2\LogExclusion
+     *
+     * @throws \Google\GAX\ApiException if the remote call fails
+     * @experimental
+     */
+    public function getExclusion($name, $optionalArgs = [])
+    {
+        $request = new GetExclusionRequest();
+        $request->setName($name);
+
+        $defaultCallSettings = $this->defaultCallSettings['getExclusion'];
+        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
+            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
+                $optionalArgs['retrySettings']
+            );
+        }
+        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
+
+        $callable = $this->configServiceV2Transport->createApiCall(
+            'GetExclusion',
+            $mergedSettings,
+            $this->descriptors['getExclusion']
+        );
+
+        return $callable(
+            $request,
+            []
+        );
+    }
+
+    /**
+     * Creates a new exclusion in a specified parent resource.
+     * Only log entries belonging to that resource can be excluded.
+     * You can have up to 10 exclusions in a resource.
+     *
+     * Sample code:
+     * ```
+     * try {
+     *     $configServiceV2Client = new ConfigServiceV2Client();
+     *     $formattedParent = $configServiceV2Client->projectName('[PROJECT]');
+     *     $exclusion = new LogExclusion();
+     *     $response = $configServiceV2Client->createExclusion($formattedParent, $exclusion);
+     * } finally {
+     *     $configServiceV2Client->close();
+     * }
+     * ```
+     *
+     * @param string $parent Required. The parent resource in which to create the exclusion:
+     *
+     *     "projects/[PROJECT_ID]"
+     *     "organizations/[ORGANIZATION_ID]"
+     *     "billingAccounts/[BILLING_ACCOUNT_ID]"
+     *     "folders/[FOLDER_ID]"
+     *
+     * Examples: `"projects/my-logging-project"`, `"organizations/123456789"`.
+     * @param LogExclusion $exclusion    Required. The new exclusion, whose `name` parameter is an exclusion name
+     *                                   that is not already used in the parent resource.
+     * @param array        $optionalArgs {
+     *                                   Optional.
+     *
+     *     @type \Google\GAX\RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\GAX\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\GAX\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Logging\V2\LogExclusion
+     *
+     * @throws \Google\GAX\ApiException if the remote call fails
+     * @experimental
+     */
+    public function createExclusion($parent, $exclusion, $optionalArgs = [])
+    {
+        $request = new CreateExclusionRequest();
+        $request->setParent($parent);
+        $request->setExclusion($exclusion);
+
+        $defaultCallSettings = $this->defaultCallSettings['createExclusion'];
+        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
+            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
+                $optionalArgs['retrySettings']
+            );
+        }
+        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
+
+        $callable = $this->configServiceV2Transport->createApiCall(
+            'CreateExclusion',
+            $mergedSettings,
+            $this->descriptors['createExclusion']
+        );
+
+        return $callable(
+            $request,
+            []
+        );
+    }
+
+    /**
+     * Changes one or more properties of an existing exclusion.
+     *
+     * Sample code:
+     * ```
+     * try {
+     *     $configServiceV2Client = new ConfigServiceV2Client();
+     *     $formattedName = $configServiceV2Client->exclusionName('[PROJECT]', '[EXCLUSION]');
+     *     $exclusion = new LogExclusion();
+     *     $updateMask = new FieldMask();
+     *     $response = $configServiceV2Client->updateExclusion($formattedName, $exclusion, $updateMask);
+     * } finally {
+     *     $configServiceV2Client->close();
+     * }
+     * ```
+     *
+     * @param string $name Required. The resource name of the exclusion to update:
+     *
+     *     "projects/[PROJECT_ID]/exclusions/[EXCLUSION_ID]"
+     *     "organizations/[ORGANIZATION_ID]/exclusions/[EXCLUSION_ID]"
+     *     "billingAccounts/[BILLING_ACCOUNT_ID]/exclusions/[EXCLUSION_ID]"
+     *     "folders/[FOLDER_ID]/exclusions/[EXCLUSION_ID]"
+     *
+     * Example: `"projects/my-project-id/exclusions/my-exclusion-id"`.
+     * @param LogExclusion $exclusion  Required. New values for the existing exclusion. Only the fields specified
+     *                                 in `update_mask` are relevant.
+     * @param FieldMask    $updateMask Required. A nonempty list of fields to change in the existing exclusion.
+     *                                 New values for the fields are taken from the corresponding fields in the
+     *                                 [LogExclusion][google.logging.v2.LogExclusion] included in this request. Fields not mentioned in
+     *                                 `update_mask` are not changed and are ignored in the request.
+     *
+     * For example, to change the filter and description of an exclusion,
+     * specify an `update_mask` of `"filter,description"`.
+     * @param array $optionalArgs {
+     *                            Optional.
+     *
+     *     @type \Google\GAX\RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\GAX\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\GAX\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Logging\V2\LogExclusion
+     *
+     * @throws \Google\GAX\ApiException if the remote call fails
+     * @experimental
+     */
+    public function updateExclusion($name, $exclusion, $updateMask, $optionalArgs = [])
+    {
+        $request = new UpdateExclusionRequest();
+        $request->setName($name);
+        $request->setExclusion($exclusion);
+        $request->setUpdateMask($updateMask);
+
+        $defaultCallSettings = $this->defaultCallSettings['updateExclusion'];
+        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
+            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
+                $optionalArgs['retrySettings']
+            );
+        }
+        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
+
+        $callable = $this->configServiceV2Transport->createApiCall(
+            'UpdateExclusion',
+            $mergedSettings,
+            $this->descriptors['updateExclusion']
+        );
+
+        return $callable(
+            $request,
+            []
+        );
+    }
+
+    /**
+     * Deletes an exclusion.
+     *
+     * Sample code:
+     * ```
+     * try {
+     *     $configServiceV2Client = new ConfigServiceV2Client();
+     *     $formattedName = $configServiceV2Client->exclusionName('[PROJECT]', '[EXCLUSION]');
+     *     $configServiceV2Client->deleteExclusion($formattedName);
+     * } finally {
+     *     $configServiceV2Client->close();
+     * }
+     * ```
+     *
+     * @param string $name Required. The resource name of an existing exclusion to delete:
+     *
+     *     "projects/[PROJECT_ID]/exclusions/[EXCLUSION_ID]"
+     *     "organizations/[ORGANIZATION_ID]/exclusions/[EXCLUSION_ID]"
+     *     "billingAccounts/[BILLING_ACCOUNT_ID]/exclusions/[EXCLUSION_ID]"
+     *     "folders/[FOLDER_ID]/exclusions/[EXCLUSION_ID]"
+     *
+     * Example: `"projects/my-project-id/exclusions/my-exclusion-id"`.
+     * @param array $optionalArgs {
+     *                            Optional.
+     *
+     *     @type \Google\GAX\RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\GAX\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\GAX\RetrySettings} for example usage.
+     * }
+     *
+     * @throws \Google\GAX\ApiException if the remote call fails
+     * @experimental
+     */
+    public function deleteExclusion($name, $optionalArgs = [])
+    {
+        $request = new DeleteExclusionRequest();
+        $request->setName($name);
+
+        $defaultCallSettings = $this->defaultCallSettings['deleteExclusion'];
+        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
+            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
+                $optionalArgs['retrySettings']
+            );
+        }
+        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
+
+        $callable = $this->configServiceV2Transport->createApiCall(
+            'DeleteExclusion',
+            $mergedSettings,
+            $this->descriptors['deleteExclusion']
+        );
+
+        return $callable(
+            $request,
+            []
+        );
+    }
+
+    /**
      * Lists all the exclusions in a parent resource.
      *
      * Sample code:
@@ -885,579 +1150,11 @@ class ConfigServiceV2GapicClient
             );
         }
         $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
-        $callable = ApiCallable::createApiCall(
-            $this->configServiceV2Stub,
-            'ListExclusions',
-            $mergedSettings,
-            $this->descriptors['listExclusions']
-        );
-
-        return $callable(
-            $request,
-            [],
-            ['call_credentials_callback' => $this->createCredentialsCallback()]);
-    }
-
-    /**
-     * Gets the description of an exclusion.
-     *
-     * Sample code:
-     * ```
-     * try {
-     *     $configServiceV2Client = new ConfigServiceV2Client();
-     *     $formattedName = $configServiceV2Client->exclusionName('[PROJECT]', '[EXCLUSION]');
-     *     $response = $configServiceV2Client->getExclusion($formattedName);
-     * } finally {
-     *     $configServiceV2Client->close();
-     * }
-     * ```
-     *
-     * @param string $name Required. The resource name of an existing exclusion:
-     *
-     *     "projects/[PROJECT_ID]/exclusions/[EXCLUSION_ID]"
-     *     "organizations/[ORGANIZATION_ID]/exclusions/[EXCLUSION_ID]"
-     *     "billingAccounts/[BILLING_ACCOUNT_ID]/exclusions/[EXCLUSION_ID]"
-     *     "folders/[FOLDER_ID]/exclusions/[EXCLUSION_ID]"
-     *
-     * Example: `"projects/my-project-id/exclusions/my-exclusion-id"`.
-     * @param array $optionalArgs {
-     *                            Optional.
-     *
-     *     @type \Google\GAX\RetrySettings|array $retrySettings
-     *          Retry settings to use for this call. Can be a
-     *          {@see Google\GAX\RetrySettings} object, or an associative array
-     *          of retry settings parameters. See the documentation on
-     *          {@see Google\GAX\RetrySettings} for example usage.
-     * }
-     *
-     * @return \Google\Logging\V2\LogExclusion
-     *
-     * @throws \Google\GAX\ApiException if the remote call fails
-     * @experimental
-     */
-    public function getExclusion($name, $optionalArgs = [])
-    {
-        $request = new GetExclusionRequest();
-        $request->setName($name);
-
-        $defaultCallSettings = $this->defaultCallSettings['getExclusion'];
-        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
-            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
-                $optionalArgs['retrySettings']
-            );
-        }
-        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
-        $callable = ApiCallable::createApiCall(
-            $this->configServiceV2Stub,
-            'GetExclusion',
-            $mergedSettings,
-            $this->descriptors['getExclusion']
-        );
-
-        return $callable(
-            $request,
-            [],
-            ['call_credentials_callback' => $this->createCredentialsCallback()]);
-    }
-
-    /**
-     * Creates a new exclusion in a specified parent resource.
-     * Only log entries belonging to that resource can be excluded.
-     * You can have up to 10 exclusions in a resource.
-     *
-     * Sample code:
-     * ```
-     * try {
-     *     $configServiceV2Client = new ConfigServiceV2Client();
-     *     $formattedParent = $configServiceV2Client->projectName('[PROJECT]');
-     *     $exclusion = new LogExclusion();
-     *     $response = $configServiceV2Client->createExclusion($formattedParent, $exclusion);
-     * } finally {
-     *     $configServiceV2Client->close();
-     * }
-     * ```
-     *
-     * @param string $parent Required. The parent resource in which to create the exclusion:
-     *
-     *     "projects/[PROJECT_ID]"
-     *     "organizations/[ORGANIZATION_ID]"
-     *     "billingAccounts/[BILLING_ACCOUNT_ID]"
-     *     "folders/[FOLDER_ID]"
-     *
-     * Examples: `"projects/my-logging-project"`, `"organizations/123456789"`.
-     * @param LogExclusion $exclusion    Required. The new exclusion, whose `name` parameter is an exclusion name
-     *                                   that is not already used in the parent resource.
-     * @param array        $optionalArgs {
-     *                                   Optional.
-     *
-     *     @type \Google\GAX\RetrySettings|array $retrySettings
-     *          Retry settings to use for this call. Can be a
-     *          {@see Google\GAX\RetrySettings} object, or an associative array
-     *          of retry settings parameters. See the documentation on
-     *          {@see Google\GAX\RetrySettings} for example usage.
-     * }
-     *
-     * @return \Google\Logging\V2\LogExclusion
-     *
-     * @throws \Google\GAX\ApiException if the remote call fails
-     * @experimental
-     */
-    public function createExclusion($parent, $exclusion, $optionalArgs = [])
-    {
-        $request = new CreateExclusionRequest();
-        $request->setParent($parent);
-        $request->setExclusion($exclusion);
-
-        $defaultCallSettings = $this->defaultCallSettings['createExclusion'];
-        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
-            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
-                $optionalArgs['retrySettings']
-            );
-        }
-        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
-        $callable = ApiCallable::createApiCall(
-            $this->configServiceV2Stub,
-            'CreateExclusion',
-            $mergedSettings,
-            $this->descriptors['createExclusion']
-        );
-
-        return $callable(
-            $request,
-            [],
-            ['call_credentials_callback' => $this->createCredentialsCallback()]);
-    }
-
-    /**
-     * Changes one or more properties of an existing exclusion.
-     *
-     * Sample code:
-     * ```
-     * try {
-     *     $configServiceV2Client = new ConfigServiceV2Client();
-     *     $formattedName = $configServiceV2Client->exclusionName('[PROJECT]', '[EXCLUSION]');
-     *     $exclusion = new LogExclusion();
-     *     $updateMask = new FieldMask();
-     *     $response = $configServiceV2Client->updateExclusion($formattedName, $exclusion, $updateMask);
-     * } finally {
-     *     $configServiceV2Client->close();
-     * }
-     * ```
-     *
-     * @param string $name Required. The resource name of the exclusion to update:
-     *
-     *     "projects/[PROJECT_ID]/exclusions/[EXCLUSION_ID]"
-     *     "organizations/[ORGANIZATION_ID]/exclusions/[EXCLUSION_ID]"
-     *     "billingAccounts/[BILLING_ACCOUNT_ID]/exclusions/[EXCLUSION_ID]"
-     *     "folders/[FOLDER_ID]/exclusions/[EXCLUSION_ID]"
-     *
-     * Example: `"projects/my-project-id/exclusions/my-exclusion-id"`.
-     * @param LogExclusion $exclusion  Required. New values for the existing exclusion. Only the fields specified
-     *                                 in `update_mask` are relevant.
-     * @param FieldMask    $updateMask Required. A nonempty list of fields to change in the existing exclusion.
-     *                                 New values for the fields are taken from the corresponding fields in the
-     *                                 [LogExclusion][google.logging.v2.LogExclusion] included in this request. Fields not mentioned in
-     *                                 `update_mask` are not changed and are ignored in the request.
-     *
-     * For example, to change the filter and description of an exclusion,
-     * specify an `update_mask` of `"filter,description"`.
-     * @param array $optionalArgs {
-     *                            Optional.
-     *
-     *     @type \Google\GAX\RetrySettings|array $retrySettings
-     *          Retry settings to use for this call. Can be a
-     *          {@see Google\GAX\RetrySettings} object, or an associative array
-     *          of retry settings parameters. See the documentation on
-     *          {@see Google\GAX\RetrySettings} for example usage.
-     * }
-     *
-     * @return \Google\Logging\V2\LogExclusion
-     *
-     * @throws \Google\GAX\ApiException if the remote call fails
-     * @experimental
-     */
-    public function updateExclusion($name, $exclusion, $updateMask, $optionalArgs = [])
-    {
-        $request = new UpdateExclusionRequest();
-        $request->setName($name);
-        $request->setExclusion($exclusion);
-        $request->setUpdateMask($updateMask);
-
-        $defaultCallSettings = $this->defaultCallSettings['updateExclusion'];
-        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
-            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
-                $optionalArgs['retrySettings']
-            );
-        }
-        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
-        $callable = ApiCallable::createApiCall(
-            $this->configServiceV2Stub,
-            'UpdateExclusion',
-            $mergedSettings,
-            $this->descriptors['updateExclusion']
-        );
-
-        return $callable(
-            $request,
-            [],
-            ['call_credentials_callback' => $this->createCredentialsCallback()]);
-    }
-
-    /**
-     * Deletes an exclusion.
-     *
-     * Sample code:
-     * ```
-     * try {
-     *     $configServiceV2Client = new ConfigServiceV2Client();
-     *     $formattedName = $configServiceV2Client->exclusionName('[PROJECT]', '[EXCLUSION]');
-     *     $configServiceV2Client->deleteExclusion($formattedName);
-     * } finally {
-     *     $configServiceV2Client->close();
-     * }
-     * ```
-     *
-     * @param string $name Required. The resource name of an existing exclusion to delete:
-     *
-     *     "projects/[PROJECT_ID]/exclusions/[EXCLUSION_ID]"
-     *     "organizations/[ORGANIZATION_ID]/exclusions/[EXCLUSION_ID]"
-     *     "billingAccounts/[BILLING_ACCOUNT_ID]/exclusions/[EXCLUSION_ID]"
-     *     "folders/[FOLDER_ID]/exclusions/[EXCLUSION_ID]"
-     *
-     * Example: `"projects/my-project-id/exclusions/my-exclusion-id"`.
-     * @param array $optionalArgs {
-     *                            Optional.
-     *
-     *     @type \Google\GAX\RetrySettings|array $retrySettings
-     *          Retry settings to use for this call. Can be a
-     *          {@see Google\GAX\RetrySettings} object, or an associative array
-     *          of retry settings parameters. See the documentation on
-     *          {@see Google\GAX\RetrySettings} for example usage.
-     * }
-     *
-     * @throws \Google\GAX\ApiException if the remote call fails
-     * @experimental
-     */
-    public function deleteExclusion($name, $optionalArgs = [])
-    {
-        $request = new DeleteExclusionRequest();
-        $request->setName($name);
-
-        $defaultCallSettings = $this->defaultCallSettings['deleteExclusion'];
-        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
-            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
-                $optionalArgs['retrySettings']
-            );
-        }
-        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
-        $callable = ApiCallable::createApiCall(
-            $this->configServiceV2Stub,
-            'DeleteExclusion',
-            $mergedSettings,
-            $this->descriptors['deleteExclusion']
-        );
-
-        return $callable(
-            $request,
-            [],
-            ['call_credentials_callback' => $this->createCredentialsCallback()]);
-    }
-
-    /**
-     * Initiates an orderly shutdown in which preexisting calls continue but new
-     * calls are immediately cancelled.
-     *
-     * @throws \Google\GAX\ApiException if the remote call fails
-     * @experimental
-     */
-    public function listExclusions($parent, $optionalArgs = [])
-    {
-        $request = new ListExclusionsRequest();
-        $request->setParent($parent);
-        if (isset($optionalArgs['pageToken'])) {
-            $request->setPageToken($optionalArgs['pageToken']);
-        }
-        if (isset($optionalArgs['pageSize'])) {
-            $request->setPageSize($optionalArgs['pageSize']);
-        }
-
-        $defaultCallSettings = $this->defaultCallSettings['listExclusions'];
-        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
-            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
-                $optionalArgs['retrySettings']
-            );
-        }
-        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
 
         $callable = $this->configServiceV2Transport->createApiCall(
             'ListExclusions',
             $mergedSettings,
             $this->descriptors['listExclusions']
-        );
-
-        return $callable(
-            $request,
-            []
-        );
-    }
-
-    /**
-     * Gets the description of an exclusion.
-     *
-     * Sample code:
-     * ```
-     * try {
-     *     $configServiceV2Client = new ConfigServiceV2Client();
-     *     $formattedName = $configServiceV2Client->exclusionName('[PROJECT]', '[EXCLUSION]');
-     *     $response = $configServiceV2Client->getExclusion($formattedName);
-     * } finally {
-     *     $configServiceV2Client->close();
-     * }
-     * ```
-     *
-     * @param string $name Required. The resource name of an existing exclusion:
-     *
-     *     "projects/[PROJECT_ID]/exclusions/[EXCLUSION_ID]"
-     *     "organizations/[ORGANIZATION_ID]/exclusions/[EXCLUSION_ID]"
-     *     "billingAccounts/[BILLING_ACCOUNT_ID]/exclusions/[EXCLUSION_ID]"
-     *     "folders/[FOLDER_ID]/exclusions/[EXCLUSION_ID]"
-     *
-     * Example: `"projects/my-project-id/exclusions/my-exclusion-id"`.
-     * @param array $optionalArgs {
-     *                            Optional
-     *
-     *     @type \Google\GAX\RetrySettings|array $retrySettings
-     *          Retry settings to use for this call. Can be a
-     *          {@see Google\GAX\RetrySettings} object, or an associative array
-     *          of retry settings parameters. See the documentation on
-     *          {@see Google\GAX\RetrySettings} for example usage.
-     * }
-     *
-     * @return \Google\Logging\V2\LogExclusion
-     *
-     * @throws \Google\GAX\ApiException if the remote call fails
-     * @experimental
-     */
-    public function getExclusion($name, $optionalArgs = [])
-    {
-        $request = new GetExclusionRequest();
-        $request->setName($name);
-
-        $defaultCallSettings = $this->defaultCallSettings['getExclusion'];
-        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
-            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
-                $optionalArgs['retrySettings']
-            );
-        }
-        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
-
-        $callable = $this->configServiceV2Transport->createApiCall(
-            'GetExclusion',
-            $mergedSettings,
-            $this->descriptors['getExclusion']
-        );
-
-        return $callable(
-            $request,
-            []
-        );
-    }
-
-    /**
-     * Creates a new exclusion in a specified parent resource.
-     * Only log entries belonging to that resource can be excluded.
-     * You can have up to 10 exclusions in a resource.
-     *
-     * Sample code:
-     * ```
-     * try {
-     *     $configServiceV2Client = new ConfigServiceV2Client();
-     *     $formattedParent = $configServiceV2Client->projectName('[PROJECT]');
-     *     $exclusion = new LogExclusion();
-     *     $response = $configServiceV2Client->createExclusion($formattedParent, $exclusion);
-     * } finally {
-     *     $configServiceV2Client->close();
-     * }
-     * ```
-     *
-     * @param string $parent Required. The parent resource in which to create the exclusion:
-     *
-     *     "projects/[PROJECT_ID]"
-     *     "organizations/[ORGANIZATION_ID]"
-     *     "billingAccounts/[BILLING_ACCOUNT_ID]"
-     *     "folders/[FOLDER_ID]"
-     *
-     * Examples: `"projects/my-logging-project"`, `"organizations/123456789"`.
-     * @param LogExclusion $exclusion    Required. The new exclusion, whose `name` parameter is an exclusion name
-     *                                   that is not already used in the parent resource.
-     * @param array        $optionalArgs {
-     *                                   Optional
-     *
-     *     @type \Google\GAX\RetrySettings|array $retrySettings
-     *          Retry settings to use for this call. Can be a
-     *          {@see Google\GAX\RetrySettings} object, or an associative array
-     *          of retry settings parameters. See the documentation on
-     *          {@see Google\GAX\RetrySettings} for example usage.
-     * }
-     *
-     * @return \Google\Logging\V2\LogExclusion
-     *
-     * @throws \Google\GAX\ApiException if the remote call fails
-     * @experimental
-     */
-    public function createExclusion($parent, $exclusion, $optionalArgs = [])
-    {
-        $request = new CreateExclusionRequest();
-        $request->setParent($parent);
-        $request->setExclusion($exclusion);
-
-        $defaultCallSettings = $this->defaultCallSettings['createExclusion'];
-        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
-            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
-                $optionalArgs['retrySettings']
-            );
-        }
-        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
-
-        $callable = $this->configServiceV2Transport->createApiCall(
-            'CreateExclusion',
-            $mergedSettings,
-            $this->descriptors['createExclusion']
-        );
-
-        return $callable(
-            $request,
-            []
-        );
-    }
-
-    /**
-     * Changes one or more properties of an existing exclusion.
-     *
-     * Sample code:
-     * ```
-     * try {
-     *     $configServiceV2Client = new ConfigServiceV2Client();
-     *     $formattedName = $configServiceV2Client->exclusionName('[PROJECT]', '[EXCLUSION]');
-     *     $exclusion = new LogExclusion();
-     *     $updateMask = new FieldMask();
-     *     $response = $configServiceV2Client->updateExclusion($formattedName, $exclusion, $updateMask);
-     * } finally {
-     *     $configServiceV2Client->close();
-     * }
-     * ```
-     *
-     * @param string $name Required. The resource name of the exclusion to update:
-     *
-     *     "projects/[PROJECT_ID]/exclusions/[EXCLUSION_ID]"
-     *     "organizations/[ORGANIZATION_ID]/exclusions/[EXCLUSION_ID]"
-     *     "billingAccounts/[BILLING_ACCOUNT_ID]/exclusions/[EXCLUSION_ID]"
-     *     "folders/[FOLDER_ID]/exclusions/[EXCLUSION_ID]"
-     *
-     * Example: `"projects/my-project-id/exclusions/my-exclusion-id"`.
-     * @param LogExclusion $exclusion  Required. New values for the existing exclusion. Only the fields specified
-     *                                 in `update_mask` are relevant.
-     * @param FieldMask    $updateMask Required. A nonempty list of fields to change in the existing exclusion.
-     *                                 New values for the fields are taken from the corresponding fields in the
-     *                                 [LogExclusion][google.logging.v2.LogExclusion] included in this request. Fields not mentioned in
-     *                                 `update_mask` are not changed and are ignored in the request.
-     *
-     * For example, to change the filter and description of an exclusion,
-     * specify an `update_mask` of `"filter,description"`.
-     * @param array $optionalArgs {
-     *                            Optional
-     *
-     *     @type \Google\GAX\RetrySettings|array $retrySettings
-     *          Retry settings to use for this call. Can be a
-     *          {@see Google\GAX\RetrySettings} object, or an associative array
-     *          of retry settings parameters. See the documentation on
-     *          {@see Google\GAX\RetrySettings} for example usage.
-     * }
-     *
-     * @return \Google\Logging\V2\LogExclusion
-     *
-     * @throws \Google\GAX\ApiException if the remote call fails
-     * @experimental
-     */
-    public function updateExclusion($name, $exclusion, $updateMask, $optionalArgs = [])
-    {
-        $request = new UpdateExclusionRequest();
-        $request->setName($name);
-        $request->setExclusion($exclusion);
-        $request->setUpdateMask($updateMask);
-
-        $defaultCallSettings = $this->defaultCallSettings['updateExclusion'];
-        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
-            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
-                $optionalArgs['retrySettings']
-            );
-        }
-        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
-
-        $callable = $this->configServiceV2Transport->createApiCall(
-            'UpdateExclusion',
-            $mergedSettings,
-            $this->descriptors['updateExclusion']
-        );
-
-        return $callable(
-            $request,
-            []
-        );
-    }
-
-    /**
-     * Deletes an exclusion.
-     *
-     * Sample code:
-     * ```
-     * try {
-     *     $configServiceV2Client = new ConfigServiceV2Client();
-     *     $formattedName = $configServiceV2Client->exclusionName('[PROJECT]', '[EXCLUSION]');
-     *     $configServiceV2Client->deleteExclusion($formattedName);
-     * } finally {
-     *     $configServiceV2Client->close();
-     * }
-     * ```
-     *
-     * @param string $name Required. The resource name of an existing exclusion to delete:
-     *
-     *     "projects/[PROJECT_ID]/exclusions/[EXCLUSION_ID]"
-     *     "organizations/[ORGANIZATION_ID]/exclusions/[EXCLUSION_ID]"
-     *     "billingAccounts/[BILLING_ACCOUNT_ID]/exclusions/[EXCLUSION_ID]"
-     *     "folders/[FOLDER_ID]/exclusions/[EXCLUSION_ID]"
-     *
-     * Example: `"projects/my-project-id/exclusions/my-exclusion-id"`.
-     * @param array $optionalArgs {
-     *                            Optional
-     *
-     *     @type \Google\GAX\RetrySettings|array $retrySettings
-     *          Retry settings to use for this call. Can be a
-     *          {@see Google\GAX\RetrySettings} object, or an associative array
-     *          of retry settings parameters. See the documentation on
-     *          {@see Google\GAX\RetrySettings} for example usage.
-     * }
-     *
-     * @throws \Google\GAX\ApiException if the remote call fails
-     * @experimental
-     */
-    public function deleteExclusion($name, $optionalArgs = [])
-    {
-        $request = new DeleteExclusionRequest();
-        $request->setName($name);
-
-        $defaultCallSettings = $this->defaultCallSettings['deleteExclusion'];
-        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
-            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
-                $optionalArgs['retrySettings']
-            );
-        }
-        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
-
-        $callable = $this->configServiceV2Transport->createApiCall(
-            'DeleteExclusion',
-            $mergedSettings,
-            $this->descriptors['deleteExclusion']
         );
 
         return $callable(

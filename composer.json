@@ -49,7 +49,6 @@
         "psr/http-message": "1.0.*",
         "ramsey/uuid": "~3",
         "google/proto-client": "^0.25",
-        "google/proto-client": "^0.24",
         "google/gax": "dev-json-transport"
     },
     "require-dev": {

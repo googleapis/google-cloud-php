@@ -17,7 +17,7 @@
 
 namespace Google\Cloud\Core\LongRunning;
 
-use Google\Cloud\Core\OperationResponse;
+use Google\GAX\OperationResponse;
 use Google\GAX\Serializer;
 
 /**
