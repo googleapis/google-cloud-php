@@ -157,7 +157,7 @@ class TranslateClient
      *           be `nmt` or `base`. **Defaults to** an empty string.
      * }
      * @return array|null A translation result including a `source` key containing
-     *         the detected or provided langauge of the provided input, an
+     *         the detected or provided language of the provided input, an
      *         `input` key containing the original string, and a `text` key
      *         containing the translated result.
      */
