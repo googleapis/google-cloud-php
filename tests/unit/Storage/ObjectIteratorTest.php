@@ -19,11 +19,12 @@ namespace Google\Cloud\Tests\Unit\Storage;
 
 use Google\Cloud\Storage\ObjectIterator;
 use Google\Cloud\Storage\ObjectPageIterator;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group storage
  */
-class ObjectIteratorTest extends \PHPUnit_Framework_TestCase
+class ObjectIteratorTest extends TestCase
 {
     public function testGetsPrefixes()
     {

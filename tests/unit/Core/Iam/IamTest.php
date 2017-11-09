@@ -21,12 +21,13 @@ use Google\Cloud\Core\Iam\Iam;
 use Google\Cloud\Core\Iam\IamConnectionInterface;
 use Google\Cloud\Core\Iam\PolicyBuilder;
 use Prophecy\Argument;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group core
  * @group iam
  */
-class IamTest extends \PHPUnit_Framework_TestCase
+class IamTest extends TestCase
 {
     const RESOURCE = 'projects/my-project/topics/my-topic';
 

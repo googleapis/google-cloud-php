@@ -23,11 +23,12 @@ use Google\Cloud\Datastore\EntityMapper;
 use Google\Cloud\Datastore\GeoPoint;
 use Google\Cloud\Datastore\Key;
 use Google\Cloud\Core\Int64;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group datastore
  */
-class EntityMapperTest extends \PHPUnit_Framework_TestCase
+class EntityMapperTest extends TestCase
 {
     const DATE_FORMAT = 'Y-m-d\TH:i:s.uP';
 

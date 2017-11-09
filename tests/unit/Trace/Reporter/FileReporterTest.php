@@ -21,11 +21,12 @@ use Google\Cloud\Trace\Reporter\FileReporter;
 use Google\Cloud\Trace\TraceContext;
 use Google\Cloud\Trace\TraceSpan;
 use Google\Cloud\Trace\Tracer\TracerInterface;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group trace
  */
-class FileReporterTest extends \PHPUnit_Framework_TestCase
+class FileReporterTest extends TestCase
 {
     private $tracer;
     private $filename;

@@ -20,11 +20,12 @@ namespace Google\Cloud\Tests\Unit\Core\Report;
 use Google\Cloud\Core\Report\EmptyMetadataProvider;
 use Google\Cloud\Core\Report\GAEFlexMetadataProvider;
 use Google\Cloud\Core\Report\MetadataProviderUtils;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group core
  */
-class MetadataProviderUtilsTest extends \PHPUnit_Framework_TestCase
+class MetadataProviderUtilsTest extends TestCase
 {
     private $envs = ['GAE_SERVICE' => 'my-service'];
 

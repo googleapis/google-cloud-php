@@ -21,11 +21,12 @@ use Google\Cloud\Core\Batch\BatchRunner;
 use Google\Cloud\PubSub\BatchPublisher;
 use Google\Cloud\PubSub\Topic;
 use Prophecy\Argument;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group pubsub
  */
-class BatchPublisherTest extends \PHPUnit_Framework_TestCase
+class BatchPublisherTest extends TestCase
 {
     const TOPIC_NAME = 'my-topic';
 

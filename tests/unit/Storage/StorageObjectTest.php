@@ -31,11 +31,12 @@ use Prophecy\Prophecy\ObjectProphecy;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\StreamInterface;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group storage
  */
-class StorageObjectTest extends \PHPUnit_Framework_TestCase
+class StorageObjectTest extends TestCase
 {
     use KeyPairGenerateTrait;
 

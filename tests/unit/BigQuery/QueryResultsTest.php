@@ -22,11 +22,12 @@ use Google\Cloud\BigQuery\Job;
 use Google\Cloud\BigQuery\QueryResults;
 use Google\Cloud\BigQuery\ValueMapper;
 use Prophecy\Argument;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group bigquery
  */
-class QueryResultsTest extends \PHPUnit_Framework_TestCase
+class QueryResultsTest extends TestCase
 {
     public $connection;
     public $projectId = 'myProjectId';

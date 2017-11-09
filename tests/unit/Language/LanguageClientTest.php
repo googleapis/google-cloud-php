@@ -22,11 +22,12 @@ use Google\Cloud\Language\Connection\ConnectionInterface;
 use Google\Cloud\Language\LanguageClient;
 use Google\Cloud\Storage\StorageObject;
 use Prophecy\Argument;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group language
  */
-class LanguageClientTest extends \PHPUnit_Framework_TestCase
+class LanguageClientTest extends TestCase
 {
     private $client;
     private $connection;

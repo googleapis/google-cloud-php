@@ -21,11 +21,12 @@ use Google\Cloud\Core\Exception\NotFoundException;
 use Google\Cloud\Logging\Sink;
 use Google\Cloud\Logging\Connection\ConnectionInterface;
 use Prophecy\Argument;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group logging
  */
-class SinkTest extends \PHPUnit_Framework_TestCase
+class SinkTest extends TestCase
 {
     public $connection;
     public $formattedName;

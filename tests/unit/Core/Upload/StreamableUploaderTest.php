@@ -26,12 +26,13 @@ use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\Psr7\Response;
 use Prophecy\Argument;
 use Psr\Http\Message\RequestInterface;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group core
  * @group upload
  */
-class StreamableUploaderTest extends \PHPUnit_Framework_TestCase
+class StreamableUploaderTest extends TestCase
 {
     private $requestWrapper;
     private $stream;

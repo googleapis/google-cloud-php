@@ -23,12 +23,13 @@ use Psr\Http\Message\RequestInterface;
 use Google\Cloud\Storage\StorageClient;
 use Google\Cloud\Storage\Connection\Rest;
 use Google\Cloud\Core\Upload\AbstractUploader;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group storage
  * @group storage-requesterpays
  */
-class RequesterPaysTest extends \PHPUnit_Framework_TestCase
+class RequesterPaysTest extends TestCase
 {
     const PROJECT = 'example_project';
     const USER_PROJECT = 'foobar';

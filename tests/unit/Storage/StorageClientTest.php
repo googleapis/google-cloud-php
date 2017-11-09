@@ -25,11 +25,12 @@ use Google\Cloud\Storage\StorageClient;
 use Google\Cloud\Storage\StreamWrapper;
 use GuzzleHttp\Psr7;
 use Prophecy\Argument;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group storage
  */
-class StorageClientTest extends \PHPUnit_Framework_TestCase
+class StorageClientTest extends TestCase
 {
     const PROJECT = 'my-project';
     public $connection;

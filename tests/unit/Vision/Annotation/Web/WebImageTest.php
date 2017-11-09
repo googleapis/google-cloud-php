@@ -18,11 +18,12 @@
 namespace Google\Cloud\Tests\Vision\Annotation;
 
 use Google\Cloud\Vision\Annotation\Web\WebImage;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group vision
  */
-class WebImageTest extends \PHPUnit_Framework_TestCase
+class WebImageTest extends TestCase
 {
     private $info;
     private $image;

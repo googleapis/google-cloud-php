@@ -20,11 +20,12 @@ namespace Google\Cloud\Tests\Unit\Datastore\Query;
 use Google\Cloud\Datastore\EntityMapper;
 use Google\Cloud\Datastore\Key;
 use Google\Cloud\Datastore\Query\Query;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group datastore
  */
-class QueryTest extends \PHPUnit_Framework_TestCase
+class QueryTest extends TestCase
 {
     private $query;
     private $mapper;

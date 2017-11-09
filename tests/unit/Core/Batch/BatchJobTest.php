@@ -18,12 +18,13 @@
 namespace Google\Cloud\Tests\Unit\Core\Batch;
 
 use Google\Cloud\Core\Batch\BatchJob;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group core
  * @group batch
  */
-class BatchJobTest extends \PHPUnit_Framework_TestCase
+class BatchJobTest extends TestCase
 {
     private $items = array();
 

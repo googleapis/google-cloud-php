@@ -26,11 +26,12 @@ use Google\Cloud\Logging\LoggingClient;
 use Google\Cloud\Logging\PsrLogger;
 use GuzzleHttp\Psr7\Response;
 use Prophecy\Argument;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group logging
  */
-class PsrLoggerBatchTest extends \PHPUnit_Framework_TestCase
+class PsrLoggerBatchTest extends TestCase
 {
     const LOG_NAME = 'my-log';
 

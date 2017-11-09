@@ -25,11 +25,12 @@ use Google\Cloud\Spanner\Snapshot;
 use Google\Cloud\Spanner\ValueMapper;
 use Google\Cloud\Tests\GrpcTestTrait;
 use Prophecy\Argument;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group spanner
  */
-class ResultTest extends \PHPUnit_Framework_TestCase
+class ResultTest extends TestCase
 {
     use GrpcTestTrait;
     use ResultTestTrait;

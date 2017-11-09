@@ -21,11 +21,12 @@ use Google\Cloud\Core\Timestamp;
 use Google\Cloud\Logging\Logger;
 use Google\Cloud\Logging\Connection\ConnectionInterface;
 use Prophecy\Argument;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group logging
  */
-class LoggerTest extends \PHPUnit_Framework_TestCase
+class LoggerTest extends TestCase
 {
     private $connection;
     private $formattedName = 'projects/myProjectId/logs/myLog';

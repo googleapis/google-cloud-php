@@ -19,11 +19,12 @@ namespace Google\Cloud\Tests\Unit\Vision;
 
 use Google\Cloud\Storage\StorageClient;
 use Google\Cloud\Vision\Image;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group vision
  */
-class ImageTest extends \PHPUnit_Framework_TestCase
+class ImageTest extends TestCase
 {
     public function testWithString()
     {

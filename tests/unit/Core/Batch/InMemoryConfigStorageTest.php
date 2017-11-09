@@ -19,12 +19,13 @@ namespace Google\Cloud\Tests\Unit\Core\Batch;
 
 use Google\Cloud\Core\Batch\BatchConfig;
 use Google\Cloud\Core\Batch\InMemoryConfigStorage;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group core
  * @group batch
  */
-class InMemoryConfigStorageTest extends \PHPUnit_Framework_TestCase
+class InMemoryConfigStorageTest extends TestCase
 {
     private $items;
 

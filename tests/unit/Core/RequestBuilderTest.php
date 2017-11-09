@@ -19,11 +19,12 @@ namespace Google\Cloud\Tests\Unit\Core;
 
 use Google\Cloud\Core\RequestBuilder;
 use Prophecy\Argument;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group core
  */
-class RequestBuilderTest extends \PHPUnit_Framework_TestCase
+class RequestBuilderTest extends TestCase
 {
     public function setUp()
     {

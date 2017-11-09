@@ -19,11 +19,12 @@ namespace Google\Cloud\Tests\Unit\Core;
 
 use Google\Cloud\Core\ExponentialBackoff;
 use Prophecy\Argument;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group core
  */
-class ExponentialBackoffTest extends \PHPUnit_Framework_TestCase
+class ExponentialBackoffTest extends TestCase
 {
     private $delayFunction;
 

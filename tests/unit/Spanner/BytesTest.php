@@ -19,11 +19,12 @@ namespace Google\Cloud\Tests\Unit\Spanner;
 
 use Google\Cloud\Spanner\Bytes;
 use Google\Cloud\Tests\GrpcTestTrait;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group spanner
  */
-class BytesTest extends \PHPUnit_Framework_TestCase
+class BytesTest extends TestCase
 {
     use GrpcTestTrait;
 

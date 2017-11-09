@@ -26,11 +26,12 @@ use Google\Cloud\Core\GrpcRequestWrapper;
 use Google\Cloud\Core\GrpcTrait;
 use google\protobuf;
 use Prophecy\Argument;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group core
  */
-class GrpcTraitTest extends \PHPUnit_Framework_TestCase
+class GrpcTraitTest extends TestCase
 {
     use GrpcTestTrait;
 

@@ -19,11 +19,12 @@ namespace Google\Cloud\Tests\Unit;
 
 use League\JsonGuard\Dereferencer;
 use League\JsonGuard\Validator;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group root
  */
-class JsonFileTest extends \PHPUnit_Framework_TestCase
+class JsonFileTest extends TestCase
 {
     const SCHEMA_PATH = '%s/fixtures/schema/%s';
 

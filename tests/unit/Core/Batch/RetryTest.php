@@ -20,12 +20,13 @@ namespace Google\Cloud\Tests\Unit\Core\Batch;
 use Google\Cloud\Core\Batch\BatchJob;
 use Google\Cloud\Core\Batch\BatchRunner;
 use Google\Cloud\Core\Batch\Retry;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group core
  * @group batch
  */
-class RetryTest extends \PHPUnit_Framework_TestCase
+class RetryTest extends TestCase
 {
     private $runner;
     private $job;

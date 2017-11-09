@@ -19,11 +19,12 @@ namespace Google\Cloud\Tests\Unit\Core;
 
 use Google\Cloud\Core\ArrayTrait;
 use Prophecy\Argument;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group core
  */
-class ArrayTraitTest extends \PHPUnit_Framework_TestCase
+class ArrayTraitTest extends TestCase
 {
     private $implementation;
 

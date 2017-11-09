@@ -22,12 +22,13 @@ use Google\Cloud\Core\Batch\BatchRunner;
 use Google\Cloud\Core\Batch\BatchTrait;
 use Google\Cloud\Core\Batch\ProcessItemInterface;
 use Prophecy\Argument;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group core
  * @group batch
  */
-class BatchTraitTest extends \PHPUnit_Framework_TestCase
+class BatchTraitTest extends TestCase
 {
     const ID = 'some-id';
     const BATCH_METHOD = 'doBatch';

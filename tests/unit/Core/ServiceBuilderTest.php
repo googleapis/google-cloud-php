@@ -14,7 +14,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 namespace Google\Cloud\Tests\Unit;
 
 use Google\Cloud\BigQuery\BigQueryClient;
@@ -29,12 +28,14 @@ use Google\Cloud\Storage\StorageClient;
 use Google\Cloud\Tests\GrpcTestTrait;
 use Google\Cloud\Translate\TranslateClient;
 use Google\Cloud\Vision\VisionClient;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group servicebuilder
  */
-class ServiceBuilderTest extends \PHPUnit_Framework_TestCase
+class ServiceBuilderTest extends TestCase
 {
+
     use GrpcTestTrait;
 
     /**
@@ -42,7 +43,8 @@ class ServiceBuilderTest extends \PHPUnit_Framework_TestCase
      */
     public function testBuildsClients($serviceName, $expectedClient, array $args = [], callable $beforeCallable = null)
     {
-        if ($beforeCallable) {
+        if ($beforeCallable)
+        {
             call_user_func($beforeCallable);
         }
 
@@ -53,7 +55,7 @@ class ServiceBuilderTest extends \PHPUnit_Framework_TestCase
             'httpHandler' => function() {
                 return;
             }
-        ] + $args;
+                ] + $args;
 
         $localConfigClient = $serviceBuilder->$serviceName($config);
 
@@ -105,4 +107,5 @@ class ServiceBuilderTest extends \PHPUnit_Framework_TestCase
             ]
         ];
     }
+
 }

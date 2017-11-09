@@ -18,11 +18,12 @@
 namespace Google\Cloud\Tests\Unit\Core;
 
 use Google\Cloud\Core\UriTrait;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group core
  */
-class UriTraitTest extends \PHPUnit_Framework_TestCase
+class UriTraitTest extends TestCase
 {
     private $implementation;
 

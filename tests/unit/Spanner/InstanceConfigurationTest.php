@@ -23,12 +23,13 @@ use Google\Cloud\Spanner\InstanceConfiguration;
 use Google\Cloud\Spanner\Connection\ConnectionInterface;
 use Google\Cloud\Tests\GrpcTestTrait;
 use Prophecy\Argument;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group spanneradmin
  * @group spanner
  */
-class InstanceConfigurationTest extends \PHPUnit_Framework_TestCase
+class InstanceConfigurationTest extends TestCase
 {
     use GrpcTestTrait;
 

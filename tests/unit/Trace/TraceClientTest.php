@@ -21,11 +21,12 @@ use Google\Cloud\Trace\Connection\ConnectionInterface;
 use Google\Cloud\Trace\Trace;
 use Google\Cloud\Trace\TraceClient;
 use Prophecy\Argument;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group trace
  */
-class TraceClientTest extends \PHPUnit_Framework_TestCase
+class TraceClientTest extends TestCase
 {
     private $client;
     private $connection;

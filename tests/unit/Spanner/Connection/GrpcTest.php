@@ -42,11 +42,12 @@ use Google\Spanner\V1\TransactionOptions;
 use Google\Spanner\V1\TransactionSelector;
 use Google\Spanner\V1\Type;
 use Prophecy\Argument;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group spanner
  */
-class GrpcTest extends \PHPUnit_Framework_TestCase
+class GrpcTest extends TestCase
 {
     use GrpcTestTrait;
     use GrpcTrait;

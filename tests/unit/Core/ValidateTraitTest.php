@@ -18,11 +18,12 @@
 namespace Google\Cloud\Tests\Unit\Core;
 
 use Google\Cloud\Core\ValidateTrait;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group core
  */
-class ValidateTraitTest extends \PHPUnit_Framework_TestCase
+class ValidateTraitTest extends TestCase
 {
     private $stub;
 

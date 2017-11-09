@@ -18,12 +18,13 @@
 namespace Google\Cloud\Tests\Unit\Core\Exception;
 
 use Google\Cloud\Core\Exception\NotFoundException;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group core
  * @group exception
  */
-class NotFoundExceptionTest extends \PHPUnit_Framework_TestCase
+class NotFoundExceptionTest extends TestCase
 {
     public function testSetMessage()
     {

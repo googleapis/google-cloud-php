@@ -35,11 +35,12 @@ use Google\Cloud\Spanner\SpannerClient;
 use Google\Cloud\Spanner\Timestamp;
 use Google\Cloud\Tests\GrpcTestTrait;
 use Prophecy\Argument;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group spanner
  */
-class SpannerClientTest extends \PHPUnit_Framework_TestCase
+class SpannerClientTest extends TestCase
 {
     use GrpcTestTrait;
 

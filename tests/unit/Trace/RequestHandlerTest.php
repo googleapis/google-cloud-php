@@ -22,11 +22,12 @@ use Google\Cloud\Trace\RequestHandler;
 use Google\Cloud\Trace\Reporter\ReporterInterface;
 use Google\Cloud\Trace\Sampler\SamplerInterface;
 use Google\Cloud\Trace\Tracer\NullTracer;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group trace
  */
-class RequestHandlerTest extends \PHPUnit_Framework_TestCase
+class RequestHandlerTest extends TestCase
 {
     private $reporter;
 

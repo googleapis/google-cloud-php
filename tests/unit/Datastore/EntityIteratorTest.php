@@ -19,11 +19,12 @@ namespace Google\Cloud\Tests\Unit\Datastore;
 
 use Google\Cloud\Datastore\EntityIterator;
 use Google\Cloud\Datastore\EntityPageIterator;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group datastore
  */
-class EntityIteratorTest extends \PHPUnit_Framework_TestCase
+class EntityIteratorTest extends TestCase
 {
     public function testGetsMoreResultsType()
     {

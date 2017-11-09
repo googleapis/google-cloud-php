@@ -18,11 +18,12 @@
 namespace Google\Cloud\Tests\Unit\BigQuery;
 
 use Google\Cloud\BigQuery\Time;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group bigquery
  */
-class TimeTest extends \PHPUnit_Framework_TestCase
+class TimeTest extends TestCase
 {
     public function testGet()
     {

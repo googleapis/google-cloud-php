@@ -19,6 +19,7 @@ namespace Google\Cloud\Tests\System\Core\Batch;
 
 use Google\Cloud\Core\Batch\BatchRunner;
 use Google\Cloud\Core\Batch\Retry;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group core
@@ -28,7 +29,7 @@ use Google\Cloud\Core\Batch\Retry;
  * this system test. You can run the tests with the in-memory implementation
  * by setting `GOOGLE_CLOUD_PHP_TESTS_WITHOUT_DAEMON` environment variable.
  */
-class BatchRunnerTest extends \PHPUnit_Framework_TestCase
+class BatchRunnerTest extends TestCase
 {
     private $items;
     private $runner;

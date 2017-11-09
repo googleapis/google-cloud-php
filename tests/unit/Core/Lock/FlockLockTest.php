@@ -21,12 +21,13 @@ require_once __DIR__ . '/MockGlobals.php';
 
 use Google\Cloud\Core\Lock\FlockLock;
 use Google\Cloud\Core\Lock\MockValues;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group core
  * @group lock
  */
-class FlockLockTest extends \PHPUnit_Framework_TestCase
+class FlockLockTest extends TestCase
 {
     use CommonLockTrait;
 

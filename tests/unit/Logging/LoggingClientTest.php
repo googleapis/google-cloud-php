@@ -26,11 +26,12 @@ use Google\Cloud\Logging\Sink;
 use Google\Cloud\Logging\Connection\ConnectionInterface;
 use Google\Cloud\Tests\GrpcTestTrait;
 use Prophecy\Argument;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group logging
  */
-class LoggingClientTest extends \PHPUnit_Framework_TestCase
+class LoggingClientTest extends TestCase
 {
     use GrpcTestTrait;
 
