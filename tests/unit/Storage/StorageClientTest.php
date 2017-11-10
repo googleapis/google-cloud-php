@@ -56,6 +56,16 @@ class StorageClientTest extends TestCase
         $bucket->reload();
     }
 
+    /**
+     * @expectedException \Google\Cloud\Core\Exception\GoogleException
+     */
+    public function testGetsBucketsThrowsExceptionWithoutProjectId()
+    {
+        $keyFilePath = __DIR__ . '/../fixtures/empty-json-key-fixture.json';
+        $client = \Google\Cloud\Dev\stub(StorageClient::class, [['keyFilePath' => $keyFilePath]]);
+        $client->buckets();
+    }
+
     public function testGetsBucketsWithoutToken()
     {
         $this->connection->listBuckets(Argument::any())->willReturn([
@@ -94,6 +104,16 @@ class StorageClientTest extends TestCase
         $bucket = iterator_to_array($this->client->buckets());
 
         $this->assertEquals('bucket2', $bucket[1]->name());
+    }
+
+    /**
+     * @expectedException \Google\Cloud\Core\Exception\GoogleException
+     */
+    public function testCreateBucketThrowsExceptionWithoutProjectId()
+    {
+        $keyFilePath = __DIR__ . '/../fixtures/empty-json-key-fixture.json';
+        $client = \Google\Cloud\Dev\stub(StorageClient::class, [['keyFilePath' => $keyFilePath]]);
+        $client->createBucket('bucket');
     }
 
     public function testCreatesBucket()

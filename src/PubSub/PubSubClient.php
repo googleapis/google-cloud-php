@@ -133,9 +133,10 @@ class PubSubClient
     {
         $this->clientConfig = $config;
         $connectionType = $this->getConnectionType($config);
-        if (!isset($config['scopes'])) {
-            $config['scopes'] = [self::FULL_CONTROL_SCOPE];
-        }
+        $config += [
+            'scopes' => [self::FULL_CONTROL_SCOPE],
+            'projectIdRequired' => true
+        ];
 
         if ($connectionType === 'grpc') {
             $this->connection = new Grpc($this->configureAuthentication($config));

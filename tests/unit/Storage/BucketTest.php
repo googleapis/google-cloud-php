@@ -36,6 +36,7 @@ use PHPUnit\Framework\TestCase;
  */
 class BucketTest extends TestCase
 {
+    const TOPIC_NAME = 'my-topic';
     const BUCKET_NAME = 'my-bucket';
     const PROJECT_ID = 'my-project';
     const NOTIFICATION_ID = '1234';
@@ -49,11 +50,14 @@ class BucketTest extends TestCase
         $this->resumableUploader = $this->prophesize(ResumableUploader::class);
     }
 
-    private function getBucket(array $data = [], $shouldExpectProjectIdCall = true)
-    {
+    private function getBucket(
+        array $data = [],
+        $shouldExpectProjectIdCall = true,
+        $expectedProjectId = self::PROJECT_ID
+    ) {
         if ($shouldExpectProjectIdCall) {
             $this->connection->projectId()
-                ->willReturn(self::PROJECT_ID);
+                ->willReturn($expectedProjectId);
         }
 
         return new Bucket(
@@ -424,9 +428,18 @@ class BucketTest extends TestCase
         $bucket->createNotification(9124);
     }
 
+    /**
+     * @expectedException \Google\Cloud\Core\Exception\GoogleException
+     */
+    public function testCreatesNotificationThrowsExceptionWithoutProjectId()
+    {
+        $bucket = $this->getBucket([], true, null);
+        $bucket->createNotification(self::TOPIC_NAME);
+    }
+
     public function topicDataProvider()
     {
-        $topicName = 'topic';
+        $topicName = self::TOPIC_NAME;
         $fullTopicName = sprintf('projects/%s/topics/%s', self::PROJECT_ID, $topicName);
         $topic = $this->prophesize(Topic::class);
         $topic->name()

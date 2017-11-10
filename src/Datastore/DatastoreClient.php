@@ -136,7 +136,8 @@ class DatastoreClient
         $config += [
             'namespaceId' => null,
             'returnInt64AsObject' => false,
-            'scopes' => [self::FULL_CONTROL_SCOPE]
+            'scopes' => [self::FULL_CONTROL_SCOPE],
+            'projectIdRequired' => true
         ];
 
         $this->connection = new Rest($this->configureAuthentication($config));
