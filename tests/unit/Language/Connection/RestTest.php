@@ -77,6 +77,7 @@ class RestTest extends TestCase
         return [
             ['analyzeSentiment'],
             ['analyzeEntities'],
+            ['analyzeEntitySentiment'],
             ['analyzeSyntax'],
             ['annotateText'],
             ['classifyText']

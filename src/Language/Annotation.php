@@ -31,6 +31,7 @@ use Google\Cloud\Core\CallTrait;
  * Annotations are returned by
  * {@see Google\Cloud\Language\LanguageClient::analyzeEntities()},
  * {@see Google\Cloud\Language\LanguageClient::analyzeSentiment()},
+ * {@see Google\Cloud\Language\LanguageClient::analyzeEntitySentiment()},
  * {@see Google\Cloud\Language\LanguageClient::analyzeSyntax()} and
  * {@see Google\Cloud\Language\LanguageClient::annotateText()}.
  *
