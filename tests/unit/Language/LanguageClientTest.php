@@ -140,11 +140,12 @@ class LanguageClientTest extends TestCase
     {
         $content = $options['content'];
         unset($options['content']);
-        $options['features'] = ['syntax', 'entities', 'sentiment'];
+        $options['features'] = ['syntax', 'entities', 'sentiment', 'entitySentiment'];
         $expectedOptions['features'] = [
             'extractSyntax' => true,
             'extractEntities' => true,
-            'extractDocumentSentiment' => true
+            'extractDocumentSentiment' => true,
+            'extractEntitySentiment' => true,
         ];
         $this->connection
             ->annotateText($expectedOptions)

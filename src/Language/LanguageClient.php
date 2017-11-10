@@ -54,6 +54,7 @@ class LanguageClient
         'syntax'    => 'extractSyntax',
         'entities'  => 'extractEntities',
         'sentiment' => 'extractDocumentSentiment',
+        'entitySentiment' => 'extractEntitySentiment',
         'classify'  => 'classifyText'
     ];
 
@@ -421,9 +422,9 @@ class LanguageClient
      *           string represents a Google Cloud Storage URI in the format of
      *           `gs://{bucket-name}/{object-name}`. **Defaults to** `true`.
      *     @type array $features Features to apply to the request. Valid values
-     *           are `syntax`, `sentiment`, `entities`, and `classify`. If no
-     *           features are provided the request will run with all four
-     *           enabled.
+     *           are `syntax`, `sentiment`, `entities`, `entitySentiment`, and
+     *           `classify`. If no features are provided the request will run
+     *           with all features enabled.
      *     @type string $type The document type. Acceptable values are
      *           `PLAIN_TEXT` or `HTML`. **Defaults to** `"PLAIN_TEXT"`.
      *     @type string $language The language of the document. Both ISO
