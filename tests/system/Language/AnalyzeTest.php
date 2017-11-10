@@ -133,6 +133,76 @@ class AnalyzeTest extends LanguageTestCase
         ];
     }
 
+    /**
+     * @dataProvider analyzeEntitySentimentProvider
+     */
+    public function testAnalyzeEntitySentiment($text, $expectedEntities)
+    {
+        $result = self::$client->analyzeEntitySentiment($text);
+        $info = $result->info();
+
+        foreach ($expectedEntities as $expectedEntity) {
+            $exists = false;
+            foreach ($info['entities'] as $entity) {
+                if ($entity['name'] == $expectedEntity['name']) {
+                    $exists = true;
+                    $this->assertEquals($entity['type'], $expectedEntity['type']);
+                    $this->assertEquals($entity['sentiment'], $expectedEntity['sentiment']);
+                    break;
+                }
+            }
+            $this->assertTrue($exists);
+        }
+    }
+
+    public function analyzeEntitySentimentProvider()
+    {
+        return [
+            [
+                'Do you know the way to San Jose?',
+                [
+                    [
+                        'name' => 'San Jose',
+                        'type' => 'LOCATION',
+                        'sentiment' => [
+                            'magnitude' => 0,
+                            'score' => 0,
+                        ],
+                    ],
+                    [
+                        'name' => 'way',
+                        'type' => 'OTHER',
+                        'sentiment' => [
+                            'magnitude' => 0,
+                            'score' => 0,
+                        ],
+                    ],
+                ]
+            ],
+            [
+                "The road to San Jose is great!",
+                [
+                    [
+                        'name' => 'San Jose',
+                        'type' => 'LOCATION',
+                        'sentiment' => [
+                            'magnitude' => 0.3,
+                            'score' => 0.3,
+                        ],
+                    ],
+                    [
+                        'name' => 'road',
+                        'type' => 'LOCATION',
+                        'sentiment' => [
+                            'magnitude' => 0.3,
+                            'score' => 0.3,
+                        ],
+                    ],
+                ]
+            ]
+        ];
+    }
+
     public function testClassifyText()
     {
         $result = self::$client->classifyText(
