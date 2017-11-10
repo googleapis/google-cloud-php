@@ -75,7 +75,7 @@ class Rest implements ConnectionInterface
      */
     public function analyzeEntitySentiment(array $args = [])
     {
-        return $this->send('documents', 'analyzeEntitySentiment',$args);
+        return $this->send('documents', 'analyzeEntitySentiment', $args);
     }
 
     /**
