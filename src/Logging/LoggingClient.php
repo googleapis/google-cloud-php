@@ -59,7 +59,7 @@ class LoggingClient
     use ArrayTrait;
     use ClientTrait;
 
-    const VERSION = '1.6.0';
+    const VERSION = '1.6.1';
 
     const FULL_CONTROL_SCOPE = 'https://www.googleapis.com/auth/logging.admin';
     const READ_ONLY_SCOPE = 'https://www.googleapis.com/auth/logging.read';
