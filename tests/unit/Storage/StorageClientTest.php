@@ -61,9 +61,12 @@ class StorageClientTest extends TestCase
      */
     public function testGetsBucketsThrowsExceptionWithoutProjectId()
     {
+        $project = getenv('GCLOUD_PROJECT');
+        putenv('GCLOUD_PROJECT');
         $keyFilePath = __DIR__ . '/../fixtures/empty-json-key-fixture.json';
-        $client = \Google\Cloud\Dev\stub(StorageClient::class, [['keyFilePath' => $keyFilePath]]);
+        $client = new StorageClientStub(['keyFilePath' => $keyFilePath]);
         $client->buckets();
+        putenv("GCLOUD_PROJECT=$project");
     }
 
     public function testGetsBucketsWithoutToken()
@@ -111,9 +114,12 @@ class StorageClientTest extends TestCase
      */
     public function testCreateBucketThrowsExceptionWithoutProjectId()
     {
+        $project = getenv('GCLOUD_PROJECT');
+        putenv('GCLOUD_PROJECT');
         $keyFilePath = __DIR__ . '/../fixtures/empty-json-key-fixture.json';
-        $client = \Google\Cloud\Dev\stub(StorageClient::class, [['keyFilePath' => $keyFilePath]]);
+        $client = new StorageClientStub(['keyFilePath' => $keyFilePath]);
         $client->createBucket('bucket');
+        putenv("GCLOUD_PROJECT=$project");
     }
 
     public function testCreatesBucket()
@@ -149,5 +155,13 @@ class StorageClientTest extends TestCase
         $ts = $this->client->timestamp($dt);
         $this->assertInstanceOf(Timestamp::class, $ts);
         $this->assertEquals($ts->get(), $dt);
+    }
+}
+
+class StorageClientStub extends StorageClient
+{
+    protected function onGce($httpHandler)
+    {
+        return false;
     }
 }
