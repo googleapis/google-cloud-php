@@ -33,7 +33,10 @@ class AnonymousCredentials implements FetchAuthTokenInterface
     ];
 
     /**
-     * {@inheritDoc}
+     * Fetches the auth token. In this case it returns a null value.
+     *
+     * @param callable $httpHandler
+     * @return array
      */
     public function fetchAuthToken(callable $httpHandler = null)
     {
@@ -41,7 +44,10 @@ class AnonymousCredentials implements FetchAuthTokenInterface
     }
 
     /**
-     * {@inheritDoc}
+     * Returns the cache key. In this case it returns a null value, disabling
+     * caching.
+     *
+     * @return string|null
      */
     public function getCacheKey()
     {
@@ -49,7 +55,10 @@ class AnonymousCredentials implements FetchAuthTokenInterface
     }
 
     /**
-     * {@inheritDoc}
+     * Fetches the last received token. In this case, it returns the same null
+     * auth token.
+     *
+     * @return array
      */
     public function getLastReceivedToken()
     {
