@@ -107,6 +107,7 @@ class BigQueryClient
         ]);
         $config += [
             'scopes' => [self::SCOPE],
+            'projectIdRequired' => true,
             'returnInt64AsObject' => false,
             'restRetryFunction' => $this->getRetryFunction(),
             'restDelayFunction' => function ($attempt) {

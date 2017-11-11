@@ -91,9 +91,10 @@ class TraceClient
     public function __construct(array $config = [])
     {
         $this->clientConfig = $config;
-        if (!isset($config['scopes'])) {
-            $config['scopes'] = [self::FULL_CONTROL_SCOPE];
-        }
+        $config += [
+            'scopes' => [self::FULL_CONTROL_SCOPE],
+            'projectIdRequired' => true
+        ];
 
         $this->connection = new Rest($this->configureAuthentication($config));
     }

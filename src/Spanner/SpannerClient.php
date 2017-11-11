@@ -117,7 +117,8 @@ class SpannerClient
                 self::FULL_CONTROL_SCOPE,
                 self::ADMIN_SCOPE
             ],
-            'returnInt64AsObject' => false
+            'returnInt64AsObject' => false,
+            'projectIdRequired' => true
         ];
 
         $this->connection = new Grpc($this->configureAuthentication($config));

@@ -25,6 +25,8 @@ use Psr\Http\Message\StreamInterface;
  */
 class ManageObjectsTest extends StorageTestCase
 {
+    const DATA = 'data';
+
     public function testListsObjects()
     {
         $foundObjects = [];
@@ -34,7 +36,7 @@ class ManageObjectsTest extends StorageTestCase
         ];
 
         foreach ($objectsToCreate as $objectToCreate) {
-            self::$bucket->upload('somedata', ['name' => $objectToCreate]);
+            self::$bucket->upload(self::DATA, ['name' => $objectToCreate]);
         }
 
         $objects = self::$bucket->objects(['prefix' => self::TESTING_PREFIX]);
@@ -52,7 +54,7 @@ class ManageObjectsTest extends StorageTestCase
 
     public function testObjectExists()
     {
-        $object = self::$bucket->upload('somedata', ['name' => uniqid(self::TESTING_PREFIX)]);
+        $object = self::$bucket->upload(self::DATA, ['name' => uniqid(self::TESTING_PREFIX)]);
         $this->assertTrue($object->exists());
         $object->delete();
         $this->assertFalse($object->exists());
@@ -114,13 +116,12 @@ class ManageObjectsTest extends StorageTestCase
 
     public function testRotatesCustomerSuppliedEncrpytion()
     {
-        $data = 'somedata';
         $key = base64_encode(openssl_random_pseudo_bytes(32));
         $options = [
             'name' => uniqid(self::TESTING_PREFIX),
             'encryptionKey' => $key
         ];
-        $object = self::$bucket->upload($data, $options);
+        $object = self::$bucket->upload(self::DATA, $options);
 
         $dkey = base64_encode(openssl_random_pseudo_bytes(32));
         $dsha = base64_encode(hash('SHA256', base64_decode($dkey), true));
@@ -156,6 +157,40 @@ class ManageObjectsTest extends StorageTestCase
         $stream = self::$object->downloadToFile('php://temp');
 
         $this->assertEquals($contents, (string) $stream);
+    }
+
+    public function testDownloadsPublicFileWithUnauthenticatedClient()
+    {
+        $objectName = uniqid(self::TESTING_PREFIX);
+        self::$bucket->upload(self::DATA, [
+            'name' => $objectName,
+            'predefinedAcl' => 'publicRead'
+        ]);
+        $actualData = self::$unauthenticatedClient
+            ->bucket(self::$mainBucketName)
+            ->object($objectName)
+            ->downloadAsString();
+
+        $this->assertEquals(self::DATA, $actualData);
+    }
+
+    /**
+     * @expectedException \Google\Cloud\Core\Exception\ServiceException
+     * @expectedExceptionCode 401
+     */
+    public function testThrowsExceptionWhenDownloadsPrivateFileWithUnauthenticatedClient()
+    {
+        $objectName = uniqid(self::TESTING_PREFIX);
+        self::$bucket->upload(self::DATA, [
+            'name' => $objectName,
+            'predefinedAcl' => 'private'
+        ]);
+        $actualData = self::$unauthenticatedClient
+            ->bucket(self::$mainBucketName)
+            ->object($objectName)
+            ->downloadAsString();
+
+        $this->assertEquals(self::DATA, $actualData);
     }
 
     public function testReloadObject()

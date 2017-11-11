@@ -121,6 +121,10 @@ class RequestWrapper
         $this->shouldSignRequest = $config['shouldSignRequest'];
         $this->retryFunction = $config['restRetryFunction'] ?: $this->getRetryFunction();
         $this->delayFunction = $config['restDelayFunction'];
+
+        if ($this->credentialsFetcher instanceof AnonymousCredentials) {
+            $this->shouldSignRequest = false;
+        }
     }
 
     /**
@@ -215,8 +219,8 @@ class RequestWrapper
     /**
      * Convert any exception to a Google Exception.
      *
-     * @param  \Exception $ex
-     * @return  ServiceException
+     * @param \Exception $ex
+     * @return ServiceException
      */
     private function convertToGoogleException(\Exception $ex)
     {
