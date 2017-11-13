@@ -68,6 +68,14 @@ class CollectionReferenceTest extends SnippetTestCase
         $this->assertEquals(self::NAME, $res->returnVal());
     }
 
+    public function testPath()
+    {
+        $snippet = $this->snippetFromMethod(CollectionReference::class, 'path');
+        $snippet->addLocal('collection', $this->collection);
+        $res = $snippet->invoke('path');
+        $this->assertEquals('users', $res->returnVal());
+    }
+
     public function testId()
     {
         $snippet = $this->snippetFromMethod(CollectionReference::class, 'id');

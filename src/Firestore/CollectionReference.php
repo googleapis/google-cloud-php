@@ -93,8 +93,9 @@ class CollectionReference extends Query
      * Names are absolute. The result of this call would be of the form
      * `projects/<project-id>/databases/<database-id>/documents/<relative-path>`.
      *
-     * To retrieve the collection ID (the last element of the path), use
-     * {@see Google\Cloud\Firestore\CollectionReference::id()}.
+     * Other methods are available to retrieve different parts of a collection name:
+     * * {@see Google\Cloud\Firestore\CollectionReference::id()} Returns the last element.
+     * * {@see Google\Cloud\Firestore\CollectionReference::path()} Returns the path, relative to the database.
      *
      * Example:
      * ```
@@ -106,6 +107,26 @@ class CollectionReference extends Query
     public function name()
     {
         return $this->name;
+    }
+
+    /**
+     * Get the collection path.
+     *
+     * Paths identify the location of a collection, relative to the database name.
+     *
+     * To retrieve the collection ID (the last element of the path), use
+     * {@see Google\Cloud\Firestore\CollectionReference::id()}.
+     *
+     * Example:
+     * ```
+     * $path = $collection->path();
+     * ```
+     *
+     * @return string
+     */
+    public function path()
+    {
+        return $this->relativeName($this->name);
     }
 
     /**

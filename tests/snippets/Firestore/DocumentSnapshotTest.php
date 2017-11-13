@@ -17,15 +17,15 @@
 
 namespace Google\Cloud\Tests\Snippets\Firestore;
 
-use Prophecy\Argument;
 use Google\Cloud\Core\Timestamp;
-use Google\Cloud\Tests\GrpcTestTrait;
-use Google\Cloud\Firestore\ValueMapper;
-use Google\Cloud\Firestore\FirestoreClient;
-use Google\Cloud\Firestore\DocumentSnapshot;
 use Google\Cloud\Dev\Snippet\SnippetTestCase;
-use Google\Cloud\Firestore\DocumentReference;
 use Google\Cloud\Firestore\Connection\ConnectionInterface;
+use Google\Cloud\Firestore\DocumentReference;
+use Google\Cloud\Firestore\DocumentSnapshot;
+use Google\Cloud\Firestore\FirestoreClient;
+use Google\Cloud\Firestore\ValueMapper;
+use Google\Cloud\Tests\GrpcTestTrait;
+use Prophecy\Argument;
 
 /**
  * @group firestore
@@ -45,6 +45,8 @@ class DocumentSnapshotTest extends SnippetTestCase
         $ref->name()->willReturn(self::DOCUMENT);
         $parts = explode('/', self::DOCUMENT);
         $ref->id()->willReturn(array_pop($parts));
+        $ref->path()->willReturn(explode('/documents/', self::DOCUMENT)[1]);
+
         $this->snapshot = \Google\Cloud\Dev\stub(DocumentSnapshot::class, [
             $ref->reveal(),
             new ValueMapper($this->prophesize(ConnectionInterface::class)->reveal(), false),
@@ -99,6 +101,14 @@ class DocumentSnapshotTest extends SnippetTestCase
         $snippet->addLocal('snapshot', $this->snapshot);
         $res = $snippet->invoke('name');
         $this->assertEquals(self::DOCUMENT, $res->returnVal());
+    }
+
+    public function testPath()
+    {
+        $snippet = $this->snippetFromMethod(DocumentSnapshot::class, 'path');
+        $snippet->addLocal('snapshot', $this->snapshot);
+        $res = $snippet->invoke('path');
+        $this->assertEquals('a/b', $res->returnVal());
     }
 
     public function testId()

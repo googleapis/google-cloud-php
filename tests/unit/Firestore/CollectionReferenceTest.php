@@ -54,6 +54,11 @@ class CollectionReferenceTest extends TestCase
         $this->assertEquals(self::NAME, $this->collection->name());
     }
 
+    public function testPath()
+    {
+        $this->assertEquals('a/b', $this->collection->path());
+    }
+
     public function testId()
     {
         $this->assertEquals(array_reverse(explode('/', self::NAME))[0], $this->collection->id());

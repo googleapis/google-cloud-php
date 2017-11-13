@@ -78,6 +78,14 @@ class DocumentReferenceTest extends SnippetTestCase
         $this->assertEquals(self::DOCUMENT, $res->returnVal());
     }
 
+    public function testPath()
+    {
+        $snippet = $this->snippetFromMethod(DocumentReference::class, 'path');
+        $snippet->addLocal('document', $this->document);
+        $res = $snippet->invoke('path');
+        $this->assertEquals('a/b', $res->returnVal());
+    }
+
     public function testId()
     {
         $snippet = $this->snippetFromMethod(DocumentReference::class, 'id');

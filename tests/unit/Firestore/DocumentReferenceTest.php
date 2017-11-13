@@ -65,6 +65,11 @@ class DocumentReferenceTest extends TestCase
         $this->assertEquals(self::NAME, $this->document->name());
     }
 
+    public function testPath()
+    {
+        $this->assertEquals('a/b', $this->document->path());
+    }
+
     public function testId()
     {
         $this->assertEquals(array_reverse(explode('/', self::NAME))[0], $this->document->id());

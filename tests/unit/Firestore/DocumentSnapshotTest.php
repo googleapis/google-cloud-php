@@ -41,6 +41,7 @@ class DocumentSnapshotTest extends TestCase
         $ref = $this->prophesize(DocumentReference::class);
         $ref->name()->willReturn(self::NAME);
         $ref->id()->willReturn(self::ID);
+        $ref->path()->willReturn('a/b');
 
         $this->snapshot = \Google\Cloud\Dev\stub(DocumentSnapshot::class, [
             $ref->reveal(),
@@ -57,6 +58,11 @@ class DocumentSnapshotTest extends TestCase
     public function testName()
     {
         $this->assertEquals(self::NAME, $this->snapshot->name());
+    }
+
+    public function testPath()
+    {
+        $this->assertEquals('a/b', $this->snapshot->path());
     }
 
     public function testId()

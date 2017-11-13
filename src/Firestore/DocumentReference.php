@@ -99,8 +99,9 @@ class DocumentReference
      * Names are absolute. The result of this call would be of the form
      * `projects/<project-id>/databases/<database-id>/documents/<relative-path>`.
      *
-     * To retrieve the document ID (the last element of the path), use
-     * {@see Google\Cloud\Firestore\DocumentReference::id()}.
+     * Other methods are available to retrieve different parts of a collection name:
+     * * {@see Google\Cloud\Firestore\DocumentReference::id()} Returns the last element.
+     * * {@see Google\Cloud\Firestore\DocumentReference::path()} Returns the path, relative to the database.
      *
      * Example:
      * ```
@@ -115,11 +116,31 @@ class DocumentReference
     }
 
     /**
+     * Get the document path.
+     *
+     * Paths identify the location of a document, relative to the database name.
+     *
+     * To retrieve the document ID (the last element of the path), use
+     * {@see Google\Cloud\Firestore\DocumentReference::id()}.
+     *
+     * Example:
+     * ```
+     * $path = $document->path();
+     * ```
+     *
+     * @return string
+     */
+    public function path()
+    {
+        return $this->relativeName($this->name);
+    }
+
+    /**
      * Get the document identifier (i.e. the last path element).
      *
      * IDs are the path element which identifies a resource. To retrieve the
-     * full path to a resource (the resource name), use
-     * {@see Google\Cloud\Firestore\DocumentReference::name()}.
+     * path of a resource, relative to the database name, use
+     * {@see Google\Cloud\Firestore\DocumentReference::path()}.
      *
      * Example:
      * ```
