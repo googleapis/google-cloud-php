@@ -83,7 +83,7 @@ class Daemon
             ? $options['name']
             : $this->defaultName();
 
-        $description = $uniquifier . ' debugger';
+        $description = $uniquifier;
         $this->debuggee = $client->debuggee($name, [
             'uniquifier' => $uniquifier,
             'description' => $description,
