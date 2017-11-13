@@ -20,7 +20,6 @@ namespace Google\Cloud\Core;
 use Google\Auth\HttpHandler\HttpHandlerFactory;
 use Google\Cloud\Core\Exception;
 use Google\GAX\ApiException;
-use Google\GAX\OperationResponse;
 use Google\GAX\PagedListResponse;
 use Google\GAX\RetrySettings;
 use Google\GAX\Serializer;

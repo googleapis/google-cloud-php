@@ -30,13 +30,13 @@
 
 namespace Google\Cloud\Spanner\Admin\Instance\V1\Gapic;
 
+use Google\GAX\GapicClientTrait;
+use Google\GAX\Grpc\GrpcTransport;
+use Google\GAX\LongRunning\OperationsClient;
+use Google\Cloud\Core\OperationResponse;
 use Google\Cloud\Version;
 use Google\GAX\AgentHeaderDescriptor;
-use Google\GAX\ApiCallable;
 use Google\GAX\CallSettings;
-use Google\GAX\GrpcCredentialsHelper;
-use Google\GAX\LongRunning\OperationsClient;
-use Google\GAX\OperationResponse;
 use Google\GAX\PageStreamingDescriptor;
 use Google\GAX\PathTemplate;
 use Google\GAX\ValidationException;
@@ -118,6 +118,8 @@ use Google\Spanner\Admin\Instance\V1\UpdateInstanceRequest;
  */
 class InstanceAdminGapicClient
 {
+    use GapicClientTrait;
+
     /**
      * The default address of the service.
      */
@@ -145,8 +147,7 @@ class InstanceAdminGapicClient
     private static $gapicVersion;
     private static $gapicVersionLoaded = false;
 
-    protected $grpcCredentialsHelper;
-    protected $instanceAdminStub;
+    protected $instanceAdminTransport;
     private $scopes;
     private $defaultCallSettings;
     private $descriptors;
@@ -154,7 +155,7 @@ class InstanceAdminGapicClient
 
     private static function getProjectNameTemplate()
     {
-        if (self::$projectNameTemplate == null) {
+        if (null == self::$projectNameTemplate) {
             self::$projectNameTemplate = new PathTemplate('projects/{project}');
         }
 
@@ -163,7 +164,7 @@ class InstanceAdminGapicClient
 
     private static function getInstanceConfigNameTemplate()
     {
-        if (self::$instanceConfigNameTemplate == null) {
+        if (null == self::$instanceConfigNameTemplate) {
             self::$instanceConfigNameTemplate = new PathTemplate('projects/{project}/instanceConfigs/{instance_config}');
         }
 
@@ -172,7 +173,7 @@ class InstanceAdminGapicClient
 
     private static function getInstanceNameTemplate()
     {
-        if (self::$instanceNameTemplate == null) {
+        if (null == self::$instanceNameTemplate) {
             self::$instanceNameTemplate = new PathTemplate('projects/{project}/instances/{instance}');
         }
 
@@ -181,7 +182,7 @@ class InstanceAdminGapicClient
 
     private static function getPathTemplateMap()
     {
-        if (self::$pathTemplateMap == null) {
+        if (null == self::$pathTemplateMap) {
             self::$pathTemplateMap = [
                 'project' => self::getProjectNameTemplate(),
                 'instanceConfig' => self::getInstanceConfigNameTemplate(),
@@ -255,7 +256,7 @@ class InstanceAdminGapicClient
      *
      * @param string $project
      *
-     * @return string The formatted project resource.
+     * @return string the formatted project resource
      * @experimental
      */
     public static function projectName($project)
@@ -272,7 +273,7 @@ class InstanceAdminGapicClient
      * @param string $project
      * @param string $instanceConfig
      *
-     * @return string The formatted instance_config resource.
+     * @return string the formatted instance_config resource
      * @experimental
      */
     public static function instanceConfigName($project, $instanceConfig)
@@ -290,7 +291,7 @@ class InstanceAdminGapicClient
      * @param string $project
      * @param string $instance
      *
-     * @return string The formatted instance resource.
+     * @return string the formatted instance resource
      * @experimental
      */
     public static function instanceName($project, $instance)
@@ -317,9 +318,9 @@ class InstanceAdminGapicClient
      * @param string $formattedName The formatted name string
      * @param string $template      Optional name of template to match
      *
-     * @return array An associative array from name component IDs to component values.
+     * @return array an associative array from name component IDs to component values
      *
-     * @throws ValidationException If $formattedName could not be matched.
+     * @throws ValidationException if $formattedName could not be matched
      * @experimental
      */
     public static function parseName($formattedName, $template = null)
@@ -392,16 +393,18 @@ class InstanceAdminGapicClient
      *                                  Default 'spanner.googleapis.com'.
      *     @type mixed $port The port on which to connect to the remote host. Default 443.
      *     @type \Grpc\Channel $channel
-     *           A `Channel` object to be used by gRPC. If not specified, a channel will be constructed.
+     *           Optional. A `Channel` object to be used by gRPC. If not specified, a channel will be constructed.
      *     @type \Grpc\ChannelCredentials $sslCreds
-     *           A `ChannelCredentials` object for use with an SSL-enabled channel.
+     *           Optional. A `ChannelCredentials` object for use with an SSL-enabled channel.
      *           Default: a credentials object returned from
      *           \Grpc\ChannelCredentials::createSsl()
-     *           NOTE: if the $channel optional argument is specified, then this argument is unused.
+     *           NOTE: if the $channel optional argument is specified, then this option is unused.
      *     @type bool $forceNewChannel
-     *           If true, this forces gRPC to create a new channel instead of using a persistent channel.
+     *           Optional. If true, this forces gRPC to create a new channel instead of using a persistent channel.
      *           Defaults to false.
      *           NOTE: if the $channel optional argument is specified, then this option is unused.
+     *     @type mixed $transport Optional, the string "grpc". Determines the backend transport used
+     *            to make the API call.
      *     @type \Google\Auth\CredentialsLoader $credentialsLoader
      *           A CredentialsLoader object created using the Google\Auth library.
      *     @type array $scopes A string array of scopes to use when acquiring credentials.
@@ -489,19 +492,26 @@ class InstanceAdminGapicClient
 
         $this->scopes = $options['scopes'];
 
-        $createStubOptions = [];
-        if (array_key_exists('sslCreds', $options)) {
-            $createStubOptions['sslCreds'] = $options['sslCreds'];
-        }
-        $this->grpcCredentialsHelper = new GrpcCredentialsHelper($options);
+        if (empty($options['createTransportFunction'])) {
+            $options['createTransportFunction'] = function ($options, $transport = null) {
+                switch ($transport) {
+                    case 'grpc':
+                        if (empty($options['createGrpcStubFunction'])) {
+                            $options['createGrpcStubFunction'] = function ($fullAddress, $stubOpts, $channel) {
+                                return new InstanceAdminGrpcClient($fullAddress, $stubOpts, $channel);
+                            };
+                        }
 
-        $createInstanceAdminStubFunction = function ($hostname, $opts, $channel) {
-            return new InstanceAdminGrpcClient($hostname, $opts, $channel);
-        };
-        if (array_key_exists('createInstanceAdminStubFunction', $options)) {
-            $createInstanceAdminStubFunction = $options['createInstanceAdminStubFunction'];
+                        return new GrpcTransport($options);
+                }
+                throw new InvalidArgumentException('Invalid transport provided: '.$transport);
+            };
         }
-        $this->instanceAdminStub = $this->grpcCredentialsHelper->createStub($createInstanceAdminStubFunction);
+
+        $this->instanceAdminTransport = call_user_func_array(
+            $options['createTransportFunction'],
+            [$options, $this->getTransport($options)]
+        );
     }
 
     /**
@@ -534,7 +544,7 @@ class InstanceAdminGapicClient
      *                             configurations is requested. Values are of the form
      *                             `projects/<project>`.
      * @param array  $optionalArgs {
-     *                             Optional.
+     *                             Optional
      *
      *     @type int $pageSize
      *          The maximum number of resources contained in the underlying API
@@ -575,8 +585,8 @@ class InstanceAdminGapicClient
             );
         }
         $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
-        $callable = ApiCallable::createApiCall(
-            $this->instanceAdminStub,
+
+        $callable = $this->instanceAdminTransport->createApiCall(
             'ListInstanceConfigs',
             $mergedSettings,
             $this->descriptors['listInstanceConfigs']
@@ -584,8 +594,8 @@ class InstanceAdminGapicClient
 
         return $callable(
             $request,
-            [],
-            ['call_credentials_callback' => $this->createCredentialsCallback()]);
+            []
+        );
     }
 
     /**
@@ -605,7 +615,7 @@ class InstanceAdminGapicClient
      * @param string $name         Required. The name of the requested instance configuration. Values are of
      *                             the form `projects/<project>/instanceConfigs/<config>`.
      * @param array  $optionalArgs {
-     *                             Optional.
+     *                             Optional
      *
      *     @type \Google\GAX\RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
@@ -631,8 +641,8 @@ class InstanceAdminGapicClient
             );
         }
         $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
-        $callable = ApiCallable::createApiCall(
-            $this->instanceAdminStub,
+
+        $callable = $this->instanceAdminTransport->createApiCall(
             'GetInstanceConfig',
             $mergedSettings,
             $this->descriptors['getInstanceConfig']
@@ -640,8 +650,8 @@ class InstanceAdminGapicClient
 
         return $callable(
             $request,
-            [],
-            ['call_credentials_callback' => $this->createCredentialsCallback()]);
+            []
+        );
     }
 
     /**
@@ -673,7 +683,7 @@ class InstanceAdminGapicClient
      * @param string $parent       Required. The name of the project for which a list of instances is
      *                             requested. Values are of the form `projects/<project>`.
      * @param array  $optionalArgs {
-     *                             Optional.
+     *                             Optional
      *
      *     @type int $pageSize
      *          The maximum number of resources contained in the underlying API
@@ -737,8 +747,8 @@ class InstanceAdminGapicClient
             );
         }
         $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
-        $callable = ApiCallable::createApiCall(
-            $this->instanceAdminStub,
+
+        $callable = $this->instanceAdminTransport->createApiCall(
             'ListInstances',
             $mergedSettings,
             $this->descriptors['listInstances']
@@ -746,8 +756,8 @@ class InstanceAdminGapicClient
 
         return $callable(
             $request,
-            [],
-            ['call_credentials_callback' => $this->createCredentialsCallback()]);
+            []
+        );
     }
 
     /**
@@ -767,7 +777,7 @@ class InstanceAdminGapicClient
      * @param string $name         Required. The name of the requested instance. Values are of the form
      *                             `projects/<project>/instances/<instance>`.
      * @param array  $optionalArgs {
-     *                             Optional.
+     *                             Optional
      *
      *     @type \Google\GAX\RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
@@ -793,8 +803,8 @@ class InstanceAdminGapicClient
             );
         }
         $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
-        $callable = ApiCallable::createApiCall(
-            $this->instanceAdminStub,
+
+        $callable = $this->instanceAdminTransport->createApiCall(
             'GetInstance',
             $mergedSettings,
             $this->descriptors['getInstance']
@@ -802,8 +812,8 @@ class InstanceAdminGapicClient
 
         return $callable(
             $request,
-            [],
-            ['call_credentials_callback' => $this->createCredentialsCallback()]);
+            []
+        );
     }
 
     /**
@@ -888,7 +898,7 @@ class InstanceAdminGapicClient
      * @param Instance $instance     Required. The instance to create.  The name may be omitted, but if
      *                               specified must be `<parent>/instances/<instance_id>`.
      * @param array    $optionalArgs {
-     *                               Optional.
+     *                               Optional
      *
      *     @type \Google\GAX\RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
@@ -916,8 +926,8 @@ class InstanceAdminGapicClient
             );
         }
         $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
-        $callable = ApiCallable::createApiCall(
-            $this->instanceAdminStub,
+
+        $callable = $this->instanceAdminTransport->createApiCall(
             'CreateInstance',
             $mergedSettings,
             $this->descriptors['createInstance']
@@ -925,8 +935,8 @@ class InstanceAdminGapicClient
 
         return $callable(
             $request,
-            [],
-            ['call_credentials_callback' => $this->createCredentialsCallback()]);
+            []
+        );
     }
 
     /**
@@ -1015,7 +1025,7 @@ class InstanceAdminGapicClient
      *                                [][google.spanner.admin.instance.v1.Instance] from being erased accidentally by clients that do not know
      *                                about them.
      * @param array     $optionalArgs {
-     *                                Optional.
+     *                                Optional
      *
      *     @type \Google\GAX\RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
@@ -1042,8 +1052,8 @@ class InstanceAdminGapicClient
             );
         }
         $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
-        $callable = ApiCallable::createApiCall(
-            $this->instanceAdminStub,
+
+        $callable = $this->instanceAdminTransport->createApiCall(
             'UpdateInstance',
             $mergedSettings,
             $this->descriptors['updateInstance']
@@ -1051,8 +1061,8 @@ class InstanceAdminGapicClient
 
         return $callable(
             $request,
-            [],
-            ['call_credentials_callback' => $this->createCredentialsCallback()]);
+            []
+        );
     }
 
     /**
@@ -1082,7 +1092,7 @@ class InstanceAdminGapicClient
      * @param string $name         Required. The name of the instance to be deleted. Values are of the form
      *                             `projects/<project>/instances/<instance>`
      * @param array  $optionalArgs {
-     *                             Optional.
+     *                             Optional
      *
      *     @type \Google\GAX\RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
@@ -1106,8 +1116,8 @@ class InstanceAdminGapicClient
             );
         }
         $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
-        $callable = ApiCallable::createApiCall(
-            $this->instanceAdminStub,
+
+        $callable = $this->instanceAdminTransport->createApiCall(
             'DeleteInstance',
             $mergedSettings,
             $this->descriptors['deleteInstance']
@@ -1115,8 +1125,8 @@ class InstanceAdminGapicClient
 
         return $callable(
             $request,
-            [],
-            ['call_credentials_callback' => $this->createCredentialsCallback()]);
+            []
+        );
     }
 
     /**
@@ -1146,7 +1156,7 @@ class InstanceAdminGapicClient
      *                             valid policy but certain Cloud Platform services (such as Projects)
      *                             might reject them.
      * @param array  $optionalArgs {
-     *                             Optional.
+     *                             Optional
      *
      *     @type \Google\GAX\RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
@@ -1173,8 +1183,8 @@ class InstanceAdminGapicClient
             );
         }
         $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
-        $callable = ApiCallable::createApiCall(
-            $this->instanceAdminStub,
+
+        $callable = $this->instanceAdminTransport->createApiCall(
             'SetIamPolicy',
             $mergedSettings,
             $this->descriptors['setIamPolicy']
@@ -1182,8 +1192,8 @@ class InstanceAdminGapicClient
 
         return $callable(
             $request,
-            [],
-            ['call_credentials_callback' => $this->createCredentialsCallback()]);
+            []
+        );
     }
 
     /**
@@ -1208,7 +1218,7 @@ class InstanceAdminGapicClient
      *                             `resource` is usually specified as a path. For example, a Project
      *                             resource is specified as `projects/{project}`.
      * @param array  $optionalArgs {
-     *                             Optional.
+     *                             Optional
      *
      *     @type \Google\GAX\RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
@@ -1234,8 +1244,8 @@ class InstanceAdminGapicClient
             );
         }
         $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
-        $callable = ApiCallable::createApiCall(
-            $this->instanceAdminStub,
+
+        $callable = $this->instanceAdminTransport->createApiCall(
             'GetIamPolicy',
             $mergedSettings,
             $this->descriptors['getIamPolicy']
@@ -1243,8 +1253,8 @@ class InstanceAdminGapicClient
 
         return $callable(
             $request,
-            [],
-            ['call_credentials_callback' => $this->createCredentialsCallback()]);
+            []
+        );
     }
 
     /**
@@ -1275,7 +1285,7 @@ class InstanceAdminGapicClient
      *                               information see
      *                               [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).
      * @param array    $optionalArgs {
-     *                               Optional.
+     *                               Optional
      *
      *     @type \Google\GAX\RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
@@ -1302,8 +1312,8 @@ class InstanceAdminGapicClient
             );
         }
         $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
-        $callable = ApiCallable::createApiCall(
-            $this->instanceAdminStub,
+
+        $callable = $this->instanceAdminTransport->createApiCall(
             'TestIamPermissions',
             $mergedSettings,
             $this->descriptors['testIamPermissions']
@@ -1311,8 +1321,8 @@ class InstanceAdminGapicClient
 
         return $callable(
             $request,
-            [],
-            ['call_credentials_callback' => $this->createCredentialsCallback()]);
+            []
+        );
     }
 
     /**
@@ -1323,11 +1333,6 @@ class InstanceAdminGapicClient
      */
     public function close()
     {
-        $this->instanceAdminStub->close();
-    }
-
-    private function createCredentialsCallback()
-    {
-        return $this->grpcCredentialsHelper->createCallCredentialsCallback();
+        $this->instanceAdminTransport->close();
     }
 }

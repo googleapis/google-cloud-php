@@ -30,11 +30,11 @@
 
 namespace Google\Cloud\Monitoring\V3\Gapic;
 
+use Google\GAX\GapicClientTrait;
+use Google\GAX\Grpc\GrpcTransport;
 use Google\Cloud\Version;
 use Google\GAX\AgentHeaderDescriptor;
-use Google\GAX\ApiCallable;
 use Google\GAX\CallSettings;
-use Google\GAX\GrpcCredentialsHelper;
 use Google\GAX\PageStreamingDescriptor;
 use Google\GAX\PathTemplate;
 use Google\GAX\ValidationException;
@@ -100,6 +100,8 @@ use Google\Monitoring\V3\UpdateGroupRequest;
  */
 class GroupServiceGapicClient
 {
+    use GapicClientTrait;
+
     /**
      * The default address of the service.
      */
@@ -126,15 +128,14 @@ class GroupServiceGapicClient
     private static $gapicVersion;
     private static $gapicVersionLoaded = false;
 
-    protected $grpcCredentialsHelper;
-    protected $groupServiceStub;
+    protected $groupServiceTransport;
     private $scopes;
     private $defaultCallSettings;
     private $descriptors;
 
     private static function getProjectNameTemplate()
     {
-        if (self::$projectNameTemplate == null) {
+        if (null == self::$projectNameTemplate) {
             self::$projectNameTemplate = new PathTemplate('projects/{project}');
         }
 
@@ -143,7 +144,7 @@ class GroupServiceGapicClient
 
     private static function getGroupNameTemplate()
     {
-        if (self::$groupNameTemplate == null) {
+        if (null == self::$groupNameTemplate) {
             self::$groupNameTemplate = new PathTemplate('projects/{project}/groups/{group}');
         }
 
@@ -152,7 +153,7 @@ class GroupServiceGapicClient
 
     private static function getPathTemplateMap()
     {
-        if (self::$pathTemplateMap == null) {
+        if (null == self::$pathTemplateMap) {
             self::$pathTemplateMap = [
                 'project' => self::getProjectNameTemplate(),
                 'group' => self::getGroupNameTemplate(),
@@ -211,7 +212,7 @@ class GroupServiceGapicClient
      *
      * @param string $project
      *
-     * @return string The formatted project resource.
+     * @return string the formatted project resource
      * @experimental
      */
     public static function projectName($project)
@@ -228,7 +229,7 @@ class GroupServiceGapicClient
      * @param string $project
      * @param string $group
      *
-     * @return string The formatted group resource.
+     * @return string the formatted group resource
      * @experimental
      */
     public static function groupName($project, $group)
@@ -254,9 +255,9 @@ class GroupServiceGapicClient
      * @param string $formattedName The formatted name string
      * @param string $template      Optional name of template to match
      *
-     * @return array An associative array from name component IDs to component values.
+     * @return array an associative array from name component IDs to component values
      *
-     * @throws ValidationException If $formattedName could not be matched.
+     * @throws ValidationException if $formattedName could not be matched
      * @experimental
      */
     public static function parseName($formattedName, $template = null)
@@ -291,16 +292,18 @@ class GroupServiceGapicClient
      *                                  Default 'monitoring.googleapis.com'.
      *     @type mixed $port The port on which to connect to the remote host. Default 443.
      *     @type \Grpc\Channel $channel
-     *           A `Channel` object to be used by gRPC. If not specified, a channel will be constructed.
+     *           Optional. A `Channel` object to be used by gRPC. If not specified, a channel will be constructed.
      *     @type \Grpc\ChannelCredentials $sslCreds
-     *           A `ChannelCredentials` object for use with an SSL-enabled channel.
+     *           Optional. A `ChannelCredentials` object for use with an SSL-enabled channel.
      *           Default: a credentials object returned from
      *           \Grpc\ChannelCredentials::createSsl()
-     *           NOTE: if the $channel optional argument is specified, then this argument is unused.
+     *           NOTE: if the $channel optional argument is specified, then this option is unused.
      *     @type bool $forceNewChannel
-     *           If true, this forces gRPC to create a new channel instead of using a persistent channel.
+     *           Optional. If true, this forces gRPC to create a new channel instead of using a persistent channel.
      *           Defaults to false.
      *           NOTE: if the $channel optional argument is specified, then this option is unused.
+     *     @type mixed $transport Optional, the string "grpc". Determines the backend transport used
+     *            to make the API call.
      *     @type \Google\Auth\CredentialsLoader $credentialsLoader
      *           A CredentialsLoader object created using the Google\Auth library.
      *     @type array $scopes A string array of scopes to use when acquiring credentials.
@@ -373,19 +376,26 @@ class GroupServiceGapicClient
 
         $this->scopes = $options['scopes'];
 
-        $createStubOptions = [];
-        if (array_key_exists('sslCreds', $options)) {
-            $createStubOptions['sslCreds'] = $options['sslCreds'];
-        }
-        $this->grpcCredentialsHelper = new GrpcCredentialsHelper($options);
+        if (empty($options['createTransportFunction'])) {
+            $options['createTransportFunction'] = function ($options, $transport = null) {
+                switch ($transport) {
+                    case 'grpc':
+                        if (empty($options['createGrpcStubFunction'])) {
+                            $options['createGrpcStubFunction'] = function ($fullAddress, $stubOpts, $channel) {
+                                return new GroupServiceGrpcClient($fullAddress, $stubOpts, $channel);
+                            };
+                        }
 
-        $createGroupServiceStubFunction = function ($hostname, $opts, $channel) {
-            return new GroupServiceGrpcClient($hostname, $opts, $channel);
-        };
-        if (array_key_exists('createGroupServiceStubFunction', $options)) {
-            $createGroupServiceStubFunction = $options['createGroupServiceStubFunction'];
+                        return new GrpcTransport($options);
+                }
+                throw new InvalidArgumentException('Invalid transport provided: '.$transport);
+            };
         }
-        $this->groupServiceStub = $this->grpcCredentialsHelper->createStub($createGroupServiceStubFunction);
+
+        $this->groupServiceTransport = call_user_func_array(
+            $options['createTransportFunction'],
+            [$options, $this->getTransport($options)]
+        );
     }
 
     /**
@@ -417,7 +427,7 @@ class GroupServiceGapicClient
      * @param string $name         The project whose groups are to be listed. The format is
      *                             `"projects/{project_id_or_number}"`.
      * @param array  $optionalArgs {
-     *                             Optional.
+     *                             Optional
      *
      *     @type string $childrenOfGroup
      *          A group name: `"projects/{project_id_or_number}/groups/{group_id}"`.
@@ -482,8 +492,8 @@ class GroupServiceGapicClient
             );
         }
         $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
-        $callable = ApiCallable::createApiCall(
-            $this->groupServiceStub,
+
+        $callable = $this->groupServiceTransport->createApiCall(
             'ListGroups',
             $mergedSettings,
             $this->descriptors['listGroups']
@@ -491,8 +501,8 @@ class GroupServiceGapicClient
 
         return $callable(
             $request,
-            [],
-            ['call_credentials_callback' => $this->createCredentialsCallback()]);
+            []
+        );
     }
 
     /**
@@ -512,7 +522,7 @@ class GroupServiceGapicClient
      * @param string $name         The group to retrieve. The format is
      *                             `"projects/{project_id_or_number}/groups/{group_id}"`.
      * @param array  $optionalArgs {
-     *                             Optional.
+     *                             Optional
      *
      *     @type \Google\GAX\RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
@@ -538,8 +548,8 @@ class GroupServiceGapicClient
             );
         }
         $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
-        $callable = ApiCallable::createApiCall(
-            $this->groupServiceStub,
+
+        $callable = $this->groupServiceTransport->createApiCall(
             'GetGroup',
             $mergedSettings,
             $this->descriptors['getGroup']
@@ -547,8 +557,8 @@ class GroupServiceGapicClient
 
         return $callable(
             $request,
-            [],
-            ['call_credentials_callback' => $this->createCredentialsCallback()]);
+            []
+        );
     }
 
     /**
@@ -571,7 +581,7 @@ class GroupServiceGapicClient
      * @param Group  $group        A group definition. It is an error to define the `name` field because
      *                             the system assigns the name.
      * @param array  $optionalArgs {
-     *                             Optional.
+     *                             Optional
      *
      *     @type bool $validateOnly
      *          If true, validate this request but do not create the group.
@@ -603,8 +613,8 @@ class GroupServiceGapicClient
             );
         }
         $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
-        $callable = ApiCallable::createApiCall(
-            $this->groupServiceStub,
+
+        $callable = $this->groupServiceTransport->createApiCall(
             'CreateGroup',
             $mergedSettings,
             $this->descriptors['createGroup']
@@ -612,8 +622,8 @@ class GroupServiceGapicClient
 
         return $callable(
             $request,
-            [],
-            ['call_credentials_callback' => $this->createCredentialsCallback()]);
+            []
+        );
     }
 
     /**
@@ -634,7 +644,7 @@ class GroupServiceGapicClient
      * @param Group $group        The new definition of the group.  All fields of the existing group,
      *                            excepting `name`, are replaced with the corresponding fields of this group.
      * @param array $optionalArgs {
-     *                            Optional.
+     *                            Optional
      *
      *     @type bool $validateOnly
      *          If true, validate this request but do not update the existing group.
@@ -665,8 +675,8 @@ class GroupServiceGapicClient
             );
         }
         $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
-        $callable = ApiCallable::createApiCall(
-            $this->groupServiceStub,
+
+        $callable = $this->groupServiceTransport->createApiCall(
             'UpdateGroup',
             $mergedSettings,
             $this->descriptors['updateGroup']
@@ -674,8 +684,8 @@ class GroupServiceGapicClient
 
         return $callable(
             $request,
-            [],
-            ['call_credentials_callback' => $this->createCredentialsCallback()]);
+            []
+        );
     }
 
     /**
@@ -695,7 +705,7 @@ class GroupServiceGapicClient
      * @param string $name         The group to delete. The format is
      *                             `"projects/{project_id_or_number}/groups/{group_id}"`.
      * @param array  $optionalArgs {
-     *                             Optional.
+     *                             Optional
      *
      *     @type \Google\GAX\RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
@@ -719,8 +729,8 @@ class GroupServiceGapicClient
             );
         }
         $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
-        $callable = ApiCallable::createApiCall(
-            $this->groupServiceStub,
+
+        $callable = $this->groupServiceTransport->createApiCall(
             'DeleteGroup',
             $mergedSettings,
             $this->descriptors['deleteGroup']
@@ -728,8 +738,8 @@ class GroupServiceGapicClient
 
         return $callable(
             $request,
-            [],
-            ['call_credentials_callback' => $this->createCredentialsCallback()]);
+            []
+        );
     }
 
     /**
@@ -761,7 +771,7 @@ class GroupServiceGapicClient
      * @param string $name         The group whose members are listed. The format is
      *                             `"projects/{project_id_or_number}/groups/{group_id}"`.
      * @param array  $optionalArgs {
-     *                             Optional.
+     *                             Optional
      *
      *     @type int $pageSize
      *          The maximum number of resources contained in the underlying API
@@ -821,8 +831,8 @@ class GroupServiceGapicClient
             );
         }
         $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
-        $callable = ApiCallable::createApiCall(
-            $this->groupServiceStub,
+
+        $callable = $this->groupServiceTransport->createApiCall(
             'ListGroupMembers',
             $mergedSettings,
             $this->descriptors['listGroupMembers']
@@ -830,8 +840,8 @@ class GroupServiceGapicClient
 
         return $callable(
             $request,
-            [],
-            ['call_credentials_callback' => $this->createCredentialsCallback()]);
+            []
+        );
     }
 
     /**
@@ -842,11 +852,6 @@ class GroupServiceGapicClient
      */
     public function close()
     {
-        $this->groupServiceStub->close();
-    }
-
-    private function createCredentialsCallback()
-    {
-        return $this->grpcCredentialsHelper->createCallCredentialsCallback();
+        $this->groupServiceTransport->close();
     }
 }

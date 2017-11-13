@@ -30,6 +30,8 @@
 
 namespace Google\Cloud\Language\V1beta2\Gapic;
 
+use Google\GAX\GapicClientTrait;
+use Google\GAX\Grpc\GrpcTransport;
 use Google\Cloud\Language\V1beta2\AnalyzeEntitiesRequest;
 use Google\Cloud\Language\V1beta2\AnalyzeEntitySentimentRequest;
 use Google\Cloud\Language\V1beta2\AnalyzeSentimentRequest;
@@ -42,9 +44,7 @@ use Google\Cloud\Language\V1beta2\EncodingType;
 use Google\Cloud\Language\V1beta2\LanguageServiceGrpcClient;
 use Google\Cloud\Version;
 use Google\GAX\AgentHeaderDescriptor;
-use Google\GAX\ApiCallable;
 use Google\GAX\CallSettings;
-use Google\GAX\GrpcCredentialsHelper;
 
 /**
  * Service Description: Provides text analysis operations such as sentiment analysis and entity
@@ -71,6 +71,8 @@ use Google\GAX\GrpcCredentialsHelper;
  */
 class LanguageServiceGapicClient
 {
+    use GapicClientTrait;
+
     /**
      * The default address of the service.
      */
@@ -94,8 +96,7 @@ class LanguageServiceGapicClient
     private static $gapicVersion;
     private static $gapicVersionLoaded = false;
 
-    protected $grpcCredentialsHelper;
-    protected $languageServiceStub;
+    protected $languageServiceTransport;
     private $scopes;
     private $defaultCallSettings;
     private $descriptors;
@@ -124,16 +125,18 @@ class LanguageServiceGapicClient
      *                                  Default 'language.googleapis.com'.
      *     @type mixed $port The port on which to connect to the remote host. Default 443.
      *     @type \Grpc\Channel $channel
-     *           A `Channel` object to be used by gRPC. If not specified, a channel will be constructed.
+     *           Optional. A `Channel` object to be used by gRPC. If not specified, a channel will be constructed.
      *     @type \Grpc\ChannelCredentials $sslCreds
-     *           A `ChannelCredentials` object for use with an SSL-enabled channel.
+     *           Optional. A `ChannelCredentials` object for use with an SSL-enabled channel.
      *           Default: a credentials object returned from
      *           \Grpc\ChannelCredentials::createSsl()
-     *           NOTE: if the $channel optional argument is specified, then this argument is unused.
+     *           NOTE: if the $channel optional argument is specified, then this option is unused.
      *     @type bool $forceNewChannel
-     *           If true, this forces gRPC to create a new channel instead of using a persistent channel.
+     *           Optional. If true, this forces gRPC to create a new channel instead of using a persistent channel.
      *           Defaults to false.
      *           NOTE: if the $channel optional argument is specified, then this option is unused.
+     *     @type mixed $transport Optional, the string "grpc". Determines the backend transport used
+     *            to make the API call.
      *     @type \Google\Auth\CredentialsLoader $credentialsLoader
      *           A CredentialsLoader object created using the Google\Auth library.
      *     @type array $scopes A string array of scopes to use when acquiring credentials.
@@ -199,19 +202,26 @@ class LanguageServiceGapicClient
 
         $this->scopes = $options['scopes'];
 
-        $createStubOptions = [];
-        if (array_key_exists('sslCreds', $options)) {
-            $createStubOptions['sslCreds'] = $options['sslCreds'];
-        }
-        $this->grpcCredentialsHelper = new GrpcCredentialsHelper($options);
+        if (empty($options['createTransportFunction'])) {
+            $options['createTransportFunction'] = function ($options, $transport = null) {
+                switch ($transport) {
+                    case 'grpc':
+                        if (empty($options['createGrpcStubFunction'])) {
+                            $options['createGrpcStubFunction'] = function ($fullAddress, $stubOpts, $channel) {
+                                return new LanguageServiceGrpcClient($fullAddress, $stubOpts, $channel);
+                            };
+                        }
 
-        $createLanguageServiceStubFunction = function ($hostname, $opts, $channel) {
-            return new LanguageServiceGrpcClient($hostname, $opts, $channel);
-        };
-        if (array_key_exists('createLanguageServiceStubFunction', $options)) {
-            $createLanguageServiceStubFunction = $options['createLanguageServiceStubFunction'];
+                        return new GrpcTransport($options);
+                }
+                throw new InvalidArgumentException('Invalid transport provided: '.$transport);
+            };
         }
-        $this->languageServiceStub = $this->grpcCredentialsHelper->createStub($createLanguageServiceStubFunction);
+
+        $this->languageServiceTransport = call_user_func_array(
+            $options['createTransportFunction'],
+            [$options, $this->getTransport($options)]
+        );
     }
 
     /**
@@ -228,9 +238,9 @@ class LanguageServiceGapicClient
      * }
      * ```
      *
-     * @param Document $document     Input document.
+     * @param Document $document     input document
      * @param array    $optionalArgs {
-     *                               Optional.
+     *                               Optional
      *
      *     @type int $encodingType
      *          The encoding type used by the API to calculate sentence offsets for the
@@ -263,8 +273,8 @@ class LanguageServiceGapicClient
             );
         }
         $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
-        $callable = ApiCallable::createApiCall(
-            $this->languageServiceStub,
+
+        $callable = $this->languageServiceTransport->createApiCall(
             'AnalyzeSentiment',
             $mergedSettings,
             $this->descriptors['analyzeSentiment']
@@ -272,8 +282,8 @@ class LanguageServiceGapicClient
 
         return $callable(
             $request,
-            [],
-            ['call_credentials_callback' => $this->createCredentialsCallback()]);
+            []
+        );
     }
 
     /**
@@ -292,9 +302,9 @@ class LanguageServiceGapicClient
      * }
      * ```
      *
-     * @param Document $document     Input document.
+     * @param Document $document     input document
      * @param array    $optionalArgs {
-     *                               Optional.
+     *                               Optional
      *
      *     @type int $encodingType
      *          The encoding type used by the API to calculate offsets.
@@ -326,8 +336,8 @@ class LanguageServiceGapicClient
             );
         }
         $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
-        $callable = ApiCallable::createApiCall(
-            $this->languageServiceStub,
+
+        $callable = $this->languageServiceTransport->createApiCall(
             'AnalyzeEntities',
             $mergedSettings,
             $this->descriptors['analyzeEntities']
@@ -335,8 +345,8 @@ class LanguageServiceGapicClient
 
         return $callable(
             $request,
-            [],
-            ['call_credentials_callback' => $this->createCredentialsCallback()]);
+            []
+        );
     }
 
     /**
@@ -354,9 +364,9 @@ class LanguageServiceGapicClient
      * }
      * ```
      *
-     * @param Document $document     Input document.
+     * @param Document $document     input document
      * @param array    $optionalArgs {
-     *                               Optional.
+     *                               Optional
      *
      *     @type int $encodingType
      *          The encoding type used by the API to calculate offsets.
@@ -388,8 +398,8 @@ class LanguageServiceGapicClient
             );
         }
         $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
-        $callable = ApiCallable::createApiCall(
-            $this->languageServiceStub,
+
+        $callable = $this->languageServiceTransport->createApiCall(
             'AnalyzeEntitySentiment',
             $mergedSettings,
             $this->descriptors['analyzeEntitySentiment']
@@ -397,8 +407,8 @@ class LanguageServiceGapicClient
 
         return $callable(
             $request,
-            [],
-            ['call_credentials_callback' => $this->createCredentialsCallback()]);
+            []
+        );
     }
 
     /**
@@ -417,9 +427,9 @@ class LanguageServiceGapicClient
      * }
      * ```
      *
-     * @param Document $document     Input document.
+     * @param Document $document     input document
      * @param array    $optionalArgs {
-     *                               Optional.
+     *                               Optional
      *
      *     @type int $encodingType
      *          The encoding type used by the API to calculate offsets.
@@ -451,8 +461,8 @@ class LanguageServiceGapicClient
             );
         }
         $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
-        $callable = ApiCallable::createApiCall(
-            $this->languageServiceStub,
+
+        $callable = $this->languageServiceTransport->createApiCall(
             'AnalyzeSyntax',
             $mergedSettings,
             $this->descriptors['analyzeSyntax']
@@ -460,8 +470,8 @@ class LanguageServiceGapicClient
 
         return $callable(
             $request,
-            [],
-            ['call_credentials_callback' => $this->createCredentialsCallback()]);
+            []
+        );
     }
 
     /**
@@ -478,9 +488,9 @@ class LanguageServiceGapicClient
      * }
      * ```
      *
-     * @param Document $document     Input document.
+     * @param Document $document     input document
      * @param array    $optionalArgs {
-     *                               Optional.
+     *                               Optional
      *
      *     @type \Google\GAX\RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
@@ -506,8 +516,8 @@ class LanguageServiceGapicClient
             );
         }
         $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
-        $callable = ApiCallable::createApiCall(
-            $this->languageServiceStub,
+
+        $callable = $this->languageServiceTransport->createApiCall(
             'ClassifyText',
             $mergedSettings,
             $this->descriptors['classifyText']
@@ -515,8 +525,8 @@ class LanguageServiceGapicClient
 
         return $callable(
             $request,
-            [],
-            ['call_credentials_callback' => $this->createCredentialsCallback()]);
+            []
+        );
     }
 
     /**
@@ -535,10 +545,10 @@ class LanguageServiceGapicClient
      * }
      * ```
      *
-     * @param Document $document     Input document.
-     * @param Features $features     The enabled features.
+     * @param Document $document     input document
+     * @param Features $features     the enabled features
      * @param array    $optionalArgs {
-     *                               Optional.
+     *                               Optional
      *
      *     @type int $encodingType
      *          The encoding type used by the API to calculate offsets.
@@ -571,8 +581,8 @@ class LanguageServiceGapicClient
             );
         }
         $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
-        $callable = ApiCallable::createApiCall(
-            $this->languageServiceStub,
+
+        $callable = $this->languageServiceTransport->createApiCall(
             'AnnotateText',
             $mergedSettings,
             $this->descriptors['annotateText']
@@ -580,8 +590,8 @@ class LanguageServiceGapicClient
 
         return $callable(
             $request,
-            [],
-            ['call_credentials_callback' => $this->createCredentialsCallback()]);
+            []
+        );
     }
 
     /**
@@ -592,11 +602,6 @@ class LanguageServiceGapicClient
      */
     public function close()
     {
-        $this->languageServiceStub->close();
-    }
-
-    private function createCredentialsCallback()
-    {
-        return $this->grpcCredentialsHelper->createCallCredentialsCallback();
+        $this->languageServiceTransport->close();
     }
 }

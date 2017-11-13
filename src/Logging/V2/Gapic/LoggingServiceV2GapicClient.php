@@ -31,11 +31,11 @@
 namespace Google\Cloud\Logging\V2\Gapic;
 
 use Google\Api\MonitoredResource;
+use Google\GAX\GapicClientTrait;
+use Google\GAX\Grpc\GrpcTransport;
 use Google\Cloud\Version;
 use Google\GAX\AgentHeaderDescriptor;
-use Google\GAX\ApiCallable;
 use Google\GAX\CallSettings;
-use Google\GAX\GrpcCredentialsHelper;
 use Google\GAX\PageStreamingDescriptor;
 use Google\GAX\PathTemplate;
 use Google\GAX\ValidationException;
@@ -76,6 +76,8 @@ use Google\Logging\V2\WriteLogEntriesRequest;
  */
 class LoggingServiceV2GapicClient
 {
+    use GapicClientTrait;
+
     /**
      * The default address of the service.
      */
@@ -102,15 +104,14 @@ class LoggingServiceV2GapicClient
     private static $gapicVersion;
     private static $gapicVersionLoaded = false;
 
-    protected $grpcCredentialsHelper;
-    protected $loggingServiceV2Stub;
+    protected $loggingServiceV2Transport;
     private $scopes;
     private $defaultCallSettings;
     private $descriptors;
 
     private static function getProjectNameTemplate()
     {
-        if (self::$projectNameTemplate == null) {
+        if (null == self::$projectNameTemplate) {
             self::$projectNameTemplate = new PathTemplate('projects/{project}');
         }
 
@@ -119,7 +120,7 @@ class LoggingServiceV2GapicClient
 
     private static function getLogNameTemplate()
     {
-        if (self::$logNameTemplate == null) {
+        if (null == self::$logNameTemplate) {
             self::$logNameTemplate = new PathTemplate('projects/{project}/logs/{log}');
         }
 
@@ -128,7 +129,7 @@ class LoggingServiceV2GapicClient
 
     private static function getPathTemplateMap()
     {
-        if (self::$pathTemplateMap == null) {
+        if (null == self::$pathTemplateMap) {
             self::$pathTemplateMap = [
                 'project' => self::getProjectNameTemplate(),
                 'log' => self::getLogNameTemplate(),
@@ -197,7 +198,7 @@ class LoggingServiceV2GapicClient
      *
      * @param string $project
      *
-     * @return string The formatted project resource.
+     * @return string the formatted project resource
      * @experimental
      */
     public static function projectName($project)
@@ -214,7 +215,7 @@ class LoggingServiceV2GapicClient
      * @param string $project
      * @param string $log
      *
-     * @return string The formatted log resource.
+     * @return string the formatted log resource
      * @experimental
      */
     public static function logName($project, $log)
@@ -240,9 +241,9 @@ class LoggingServiceV2GapicClient
      * @param string $formattedName The formatted name string
      * @param string $template      Optional name of template to match
      *
-     * @return array An associative array from name component IDs to component values.
+     * @return array an associative array from name component IDs to component values
      *
-     * @throws ValidationException If $formattedName could not be matched.
+     * @throws ValidationException if $formattedName could not be matched
      * @experimental
      */
     public static function parseName($formattedName, $template = null)
@@ -277,16 +278,18 @@ class LoggingServiceV2GapicClient
      *                                  Default 'logging.googleapis.com'.
      *     @type mixed $port The port on which to connect to the remote host. Default 443.
      *     @type \Grpc\Channel $channel
-     *           A `Channel` object to be used by gRPC. If not specified, a channel will be constructed.
+     *           Optional. A `Channel` object to be used by gRPC. If not specified, a channel will be constructed.
      *     @type \Grpc\ChannelCredentials $sslCreds
-     *           A `ChannelCredentials` object for use with an SSL-enabled channel.
+     *           Optional. A `ChannelCredentials` object for use with an SSL-enabled channel.
      *           Default: a credentials object returned from
      *           \Grpc\ChannelCredentials::createSsl()
-     *           NOTE: if the $channel optional argument is specified, then this argument is unused.
+     *           NOTE: if the $channel optional argument is specified, then this option is unused.
      *     @type bool $forceNewChannel
-     *           If true, this forces gRPC to create a new channel instead of using a persistent channel.
+     *           Optional. If true, this forces gRPC to create a new channel instead of using a persistent channel.
      *           Defaults to false.
      *           NOTE: if the $channel optional argument is specified, then this option is unused.
+     *     @type mixed $transport Optional, the string "grpc". Determines the backend transport used
+     *            to make the API call.
      *     @type \Google\Auth\CredentialsLoader $credentialsLoader
      *           A CredentialsLoader object created using the Google\Auth library.
      *     @type array $scopes A string array of scopes to use when acquiring credentials.
@@ -359,19 +362,26 @@ class LoggingServiceV2GapicClient
 
         $this->scopes = $options['scopes'];
 
-        $createStubOptions = [];
-        if (array_key_exists('sslCreds', $options)) {
-            $createStubOptions['sslCreds'] = $options['sslCreds'];
-        }
-        $this->grpcCredentialsHelper = new GrpcCredentialsHelper($options);
+        if (empty($options['createTransportFunction'])) {
+            $options['createTransportFunction'] = function ($options, $transport = null) {
+                switch ($transport) {
+                    case 'grpc':
+                        if (empty($options['createGrpcStubFunction'])) {
+                            $options['createGrpcStubFunction'] = function ($fullAddress, $stubOpts, $channel) {
+                                return new LoggingServiceV2GrpcClient($fullAddress, $stubOpts, $channel);
+                            };
+                        }
 
-        $createLoggingServiceV2StubFunction = function ($hostname, $opts, $channel) {
-            return new LoggingServiceV2GrpcClient($hostname, $opts, $channel);
-        };
-        if (array_key_exists('createLoggingServiceV2StubFunction', $options)) {
-            $createLoggingServiceV2StubFunction = $options['createLoggingServiceV2StubFunction'];
+                        return new GrpcTransport($options);
+                }
+                throw new InvalidArgumentException('Invalid transport provided: '.$transport);
+            };
         }
-        $this->loggingServiceV2Stub = $this->grpcCredentialsHelper->createStub($createLoggingServiceV2StubFunction);
+
+        $this->loggingServiceV2Transport = call_user_func_array(
+            $options['createTransportFunction'],
+            [$options, $this->getTransport($options)]
+        );
     }
 
     /**
@@ -404,7 +414,7 @@ class LoggingServiceV2GapicClient
      * For more information about log names, see
      * [LogEntry][google.logging.v2.LogEntry].
      * @param array $optionalArgs {
-     *                            Optional.
+     *                            Optional
      *
      *     @type \Google\GAX\RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
@@ -428,8 +438,8 @@ class LoggingServiceV2GapicClient
             );
         }
         $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
-        $callable = ApiCallable::createApiCall(
-            $this->loggingServiceV2Stub,
+
+        $callable = $this->loggingServiceV2Transport->createApiCall(
             'DeleteLog',
             $mergedSettings,
             $this->descriptors['deleteLog']
@@ -437,8 +447,8 @@ class LoggingServiceV2GapicClient
 
         return $callable(
             $request,
-            [],
-            ['call_credentials_callback' => $this->createCredentialsCallback()]);
+            []
+        );
     }
 
     /**
@@ -483,7 +493,7 @@ class LoggingServiceV2GapicClient
      * you should try to include several log entries in this list,
      * rather than calling this method for each individual log entry.
      * @param array $optionalArgs {
-     *                            Optional.
+     *                            Optional
      *
      *     @type string $logName
      *          Optional. A default log resource name that is assigned to all log entries
@@ -555,8 +565,8 @@ class LoggingServiceV2GapicClient
             );
         }
         $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
-        $callable = ApiCallable::createApiCall(
-            $this->loggingServiceV2Stub,
+
+        $callable = $this->loggingServiceV2Transport->createApiCall(
             'WriteLogEntries',
             $mergedSettings,
             $this->descriptors['writeLogEntries']
@@ -564,8 +574,8 @@ class LoggingServiceV2GapicClient
 
         return $callable(
             $request,
-            [],
-            ['call_credentials_callback' => $this->createCredentialsCallback()]);
+            []
+        );
     }
 
     /**
@@ -606,7 +616,7 @@ class LoggingServiceV2GapicClient
      *
      * Projects listed in the `project_ids` field are added to this list.
      * @param array $optionalArgs {
-     *                            Optional.
+     *                            Optional
      *
      *     @type string[] $projectIds
      *          Deprecated. Use `resource_names` instead.  One or more project identifiers
@@ -677,8 +687,8 @@ class LoggingServiceV2GapicClient
             );
         }
         $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
-        $callable = ApiCallable::createApiCall(
-            $this->loggingServiceV2Stub,
+
+        $callable = $this->loggingServiceV2Transport->createApiCall(
             'ListLogEntries',
             $mergedSettings,
             $this->descriptors['listLogEntries']
@@ -686,8 +696,8 @@ class LoggingServiceV2GapicClient
 
         return $callable(
             $request,
-            [],
-            ['call_credentials_callback' => $this->createCredentialsCallback()]);
+            []
+        );
     }
 
     /**
@@ -718,7 +728,7 @@ class LoggingServiceV2GapicClient
      * ```
      *
      * @param array $optionalArgs {
-     *                            Optional.
+     *                            Optional
      *
      *     @type int $pageSize
      *          The maximum number of resources contained in the underlying API
@@ -758,8 +768,8 @@ class LoggingServiceV2GapicClient
             );
         }
         $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
-        $callable = ApiCallable::createApiCall(
-            $this->loggingServiceV2Stub,
+
+        $callable = $this->loggingServiceV2Transport->createApiCall(
             'ListMonitoredResourceDescriptors',
             $mergedSettings,
             $this->descriptors['listMonitoredResourceDescriptors']
@@ -767,8 +777,8 @@ class LoggingServiceV2GapicClient
 
         return $callable(
             $request,
-            [],
-            ['call_credentials_callback' => $this->createCredentialsCallback()]);
+            []
+        );
     }
 
     /**
@@ -805,7 +815,7 @@ class LoggingServiceV2GapicClient
      *     "billingAccounts/[BILLING_ACCOUNT_ID]"
      *     "folders/[FOLDER_ID]"
      * @param array $optionalArgs {
-     *                            Optional.
+     *                            Optional
      *
      *     @type int $pageSize
      *          The maximum number of resources contained in the underlying API
@@ -846,8 +856,8 @@ class LoggingServiceV2GapicClient
             );
         }
         $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
-        $callable = ApiCallable::createApiCall(
-            $this->loggingServiceV2Stub,
+
+        $callable = $this->loggingServiceV2Transport->createApiCall(
             'ListLogs',
             $mergedSettings,
             $this->descriptors['listLogs']
@@ -855,8 +865,8 @@ class LoggingServiceV2GapicClient
 
         return $callable(
             $request,
-            [],
-            ['call_credentials_callback' => $this->createCredentialsCallback()]);
+            []
+        );
     }
 
     /**
@@ -867,11 +877,6 @@ class LoggingServiceV2GapicClient
      */
     public function close()
     {
-        $this->loggingServiceV2Stub->close();
-    }
-
-    private function createCredentialsCallback()
-    {
-        return $this->grpcCredentialsHelper->createCallCredentialsCallback();
+        $this->loggingServiceV2Transport->close();
     }
 }

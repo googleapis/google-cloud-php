@@ -24,7 +24,6 @@ use Google\Cloud\Spanner\Connection\Grpc;
 use Google\Cloud\Spanner\V1\SpannerClient;
 use Google\Cloud\Spanner\ValueMapper;
 use Google\Cloud\Tests\GrpcTestTrait;
-use Google\GAX\GrpcCredentialsHelper;
 use Google\GAX\OperationResponse;
 use Google\GAX\Serializer;
 use Google\Protobuf\FieldMask;
@@ -54,7 +53,6 @@ class GrpcTest extends TestCase
 
     const PROJECT = 'projects/my-project';
 
-    private $requestWrapper;
     private $successMessage;
 
     public function setUp()
@@ -67,26 +65,16 @@ class GrpcTest extends TestCase
 
     public function testDeleteSessionAsync()
     {
-        $cb = function () {};
         $sessionName = 'session1';
         $databaseName = 'database1';
         $request = new DeleteSessionRequest();
         $request->setName($sessionName);
         $unaryCall = $this->prophesize(UnaryCall::class);
-        $credentialsHelper = $this->prophesize(GrpcCredentialsHelper::class);
         $client = $this->prophesize(SpannerClient::class);
-        $stub = $this->prophesize(SpannerGrpcClient::class);
-        $credentialsHelper->createCallCredentialsCallback()
-            ->willReturn($cb);
-        $stub->DeleteSession(
+        $client->deleteSession(
             $request,
-            Argument::type('array'),
-            Argument::withKey('call_credentials_callback')
+            Argument::type('array')
         )->willReturn($unaryCall->reveal());
-        $client->getStub()
-            ->willReturn($stub->reveal());
-        $client->getCredentialsHelper()
-            ->willReturn($credentialsHelper->reveal());
         $grpc = new Grpc(['gapicSpannerClient' => $client->reveal()]);
         $call = $grpc->deleteSessionAsync([
             'name' => $sessionName,

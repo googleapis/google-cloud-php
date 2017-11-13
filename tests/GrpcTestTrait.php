@@ -22,13 +22,13 @@ namespace Google\Cloud\Tests;
  */
 trait GrpcTestTrait
 {
-    public function checkAndSkipGrpcTests()
+    public static function checkAndSkipGrpcTests()
     {
         if (!extension_loaded('grpc')) {
-            $this->markTestSkipped('Must have the grpc extension installed to run this test.');
+            self::markTestSkipped('Must have the grpc extension installed to run this test.');
         }
         if (defined('HHVM_VERSION')) {
-            $this->markTestSkipped('gRPC is not supported on HHVM.');
+            self::markTestSkipped('gRPC is not supported on HHVM.');
         }
     }
 

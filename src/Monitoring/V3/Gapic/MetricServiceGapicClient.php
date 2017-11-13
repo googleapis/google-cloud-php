@@ -31,11 +31,11 @@
 namespace Google\Cloud\Monitoring\V3\Gapic;
 
 use Google\Api\MetricDescriptor;
+use Google\GAX\GapicClientTrait;
+use Google\GAX\Grpc\GrpcTransport;
 use Google\Cloud\Version;
 use Google\GAX\AgentHeaderDescriptor;
-use Google\GAX\ApiCallable;
 use Google\GAX\CallSettings;
-use Google\GAX\GrpcCredentialsHelper;
 use Google\GAX\PageStreamingDescriptor;
 use Google\GAX\PathTemplate;
 use Google\GAX\ValidationException;
@@ -95,6 +95,8 @@ use Google\Monitoring\V3\TimeSeries;
  */
 class MetricServiceGapicClient
 {
+    use GapicClientTrait;
+
     /**
      * The default address of the service.
      */
@@ -122,15 +124,14 @@ class MetricServiceGapicClient
     private static $gapicVersion;
     private static $gapicVersionLoaded = false;
 
-    protected $grpcCredentialsHelper;
-    protected $metricServiceStub;
+    protected $metricServiceTransport;
     private $scopes;
     private $defaultCallSettings;
     private $descriptors;
 
     private static function getProjectNameTemplate()
     {
-        if (self::$projectNameTemplate == null) {
+        if (null == self::$projectNameTemplate) {
             self::$projectNameTemplate = new PathTemplate('projects/{project}');
         }
 
@@ -139,7 +140,7 @@ class MetricServiceGapicClient
 
     private static function getMetricDescriptorNameTemplate()
     {
-        if (self::$metricDescriptorNameTemplate == null) {
+        if (null == self::$metricDescriptorNameTemplate) {
             self::$metricDescriptorNameTemplate = new PathTemplate('projects/{project}/metricDescriptors/{metric_descriptor=**}');
         }
 
@@ -148,7 +149,7 @@ class MetricServiceGapicClient
 
     private static function getMonitoredResourceDescriptorNameTemplate()
     {
-        if (self::$monitoredResourceDescriptorNameTemplate == null) {
+        if (null == self::$monitoredResourceDescriptorNameTemplate) {
             self::$monitoredResourceDescriptorNameTemplate = new PathTemplate('projects/{project}/monitoredResourceDescriptors/{monitored_resource_descriptor}');
         }
 
@@ -157,7 +158,7 @@ class MetricServiceGapicClient
 
     private static function getPathTemplateMap()
     {
-        if (self::$pathTemplateMap == null) {
+        if (null == self::$pathTemplateMap) {
             self::$pathTemplateMap = [
                 'project' => self::getProjectNameTemplate(),
                 'metricDescriptor' => self::getMetricDescriptorNameTemplate(),
@@ -227,7 +228,7 @@ class MetricServiceGapicClient
      *
      * @param string $project
      *
-     * @return string The formatted project resource.
+     * @return string the formatted project resource
      * @experimental
      */
     public static function projectName($project)
@@ -244,7 +245,7 @@ class MetricServiceGapicClient
      * @param string $project
      * @param string $metricDescriptor
      *
-     * @return string The formatted metric_descriptor resource.
+     * @return string the formatted metric_descriptor resource
      * @experimental
      */
     public static function metricDescriptorName($project, $metricDescriptor)
@@ -262,7 +263,7 @@ class MetricServiceGapicClient
      * @param string $project
      * @param string $monitoredResourceDescriptor
      *
-     * @return string The formatted monitored_resource_descriptor resource.
+     * @return string the formatted monitored_resource_descriptor resource
      * @experimental
      */
     public static function monitoredResourceDescriptorName($project, $monitoredResourceDescriptor)
@@ -289,9 +290,9 @@ class MetricServiceGapicClient
      * @param string $formattedName The formatted name string
      * @param string $template      Optional name of template to match
      *
-     * @return array An associative array from name component IDs to component values.
+     * @return array an associative array from name component IDs to component values
      *
-     * @throws ValidationException If $formattedName could not be matched.
+     * @throws ValidationException if $formattedName could not be matched
      * @experimental
      */
     public static function parseName($formattedName, $template = null)
@@ -326,16 +327,18 @@ class MetricServiceGapicClient
      *                                  Default 'monitoring.googleapis.com'.
      *     @type mixed $port The port on which to connect to the remote host. Default 443.
      *     @type \Grpc\Channel $channel
-     *           A `Channel` object to be used by gRPC. If not specified, a channel will be constructed.
+     *           Optional. A `Channel` object to be used by gRPC. If not specified, a channel will be constructed.
      *     @type \Grpc\ChannelCredentials $sslCreds
-     *           A `ChannelCredentials` object for use with an SSL-enabled channel.
+     *           Optional. A `ChannelCredentials` object for use with an SSL-enabled channel.
      *           Default: a credentials object returned from
      *           \Grpc\ChannelCredentials::createSsl()
-     *           NOTE: if the $channel optional argument is specified, then this argument is unused.
+     *           NOTE: if the $channel optional argument is specified, then this option is unused.
      *     @type bool $forceNewChannel
-     *           If true, this forces gRPC to create a new channel instead of using a persistent channel.
+     *           Optional. If true, this forces gRPC to create a new channel instead of using a persistent channel.
      *           Defaults to false.
      *           NOTE: if the $channel optional argument is specified, then this option is unused.
+     *     @type mixed $transport Optional, the string "grpc". Determines the backend transport used
+     *            to make the API call.
      *     @type \Google\Auth\CredentialsLoader $credentialsLoader
      *           A CredentialsLoader object created using the Google\Auth library.
      *     @type array $scopes A string array of scopes to use when acquiring credentials.
@@ -410,19 +413,26 @@ class MetricServiceGapicClient
 
         $this->scopes = $options['scopes'];
 
-        $createStubOptions = [];
-        if (array_key_exists('sslCreds', $options)) {
-            $createStubOptions['sslCreds'] = $options['sslCreds'];
-        }
-        $this->grpcCredentialsHelper = new GrpcCredentialsHelper($options);
+        if (empty($options['createTransportFunction'])) {
+            $options['createTransportFunction'] = function ($options, $transport = null) {
+                switch ($transport) {
+                    case 'grpc':
+                        if (empty($options['createGrpcStubFunction'])) {
+                            $options['createGrpcStubFunction'] = function ($fullAddress, $stubOpts, $channel) {
+                                return new MetricServiceGrpcClient($fullAddress, $stubOpts, $channel);
+                            };
+                        }
 
-        $createMetricServiceStubFunction = function ($hostname, $opts, $channel) {
-            return new MetricServiceGrpcClient($hostname, $opts, $channel);
-        };
-        if (array_key_exists('createMetricServiceStubFunction', $options)) {
-            $createMetricServiceStubFunction = $options['createMetricServiceStubFunction'];
+                        return new GrpcTransport($options);
+                }
+                throw new InvalidArgumentException('Invalid transport provided: '.$transport);
+            };
         }
-        $this->metricServiceStub = $this->grpcCredentialsHelper->createStub($createMetricServiceStubFunction);
+
+        $this->metricServiceTransport = call_user_func_array(
+            $options['createTransportFunction'],
+            [$options, $this->getTransport($options)]
+        );
     }
 
     /**
@@ -454,7 +464,7 @@ class MetricServiceGapicClient
      * @param string $name         The project on which to execute the request. The format is
      *                             `"projects/{project_id_or_number}"`.
      * @param array  $optionalArgs {
-     *                             Optional.
+     *                             Optional
      *
      *     @type string $filter
      *          An optional [filter](https://cloud.google.com/monitoring/api/v3/filters) describing
@@ -506,8 +516,8 @@ class MetricServiceGapicClient
             );
         }
         $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
-        $callable = ApiCallable::createApiCall(
-            $this->metricServiceStub,
+
+        $callable = $this->metricServiceTransport->createApiCall(
             'ListMonitoredResourceDescriptors',
             $mergedSettings,
             $this->descriptors['listMonitoredResourceDescriptors']
@@ -515,8 +525,8 @@ class MetricServiceGapicClient
 
         return $callable(
             $request,
-            [],
-            ['call_credentials_callback' => $this->createCredentialsCallback()]);
+            []
+        );
     }
 
     /**
@@ -538,7 +548,7 @@ class MetricServiceGapicClient
      *                             The `{resource_type}` is a predefined type, such as
      *                             `cloudsql_database`.
      * @param array  $optionalArgs {
-     *                             Optional.
+     *                             Optional
      *
      *     @type \Google\GAX\RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
@@ -564,8 +574,8 @@ class MetricServiceGapicClient
             );
         }
         $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
-        $callable = ApiCallable::createApiCall(
-            $this->metricServiceStub,
+
+        $callable = $this->metricServiceTransport->createApiCall(
             'GetMonitoredResourceDescriptor',
             $mergedSettings,
             $this->descriptors['getMonitoredResourceDescriptor']
@@ -573,8 +583,8 @@ class MetricServiceGapicClient
 
         return $callable(
             $request,
-            [],
-            ['call_credentials_callback' => $this->createCredentialsCallback()]);
+            []
+        );
     }
 
     /**
@@ -606,7 +616,7 @@ class MetricServiceGapicClient
      * @param string $name         The project on which to execute the request. The format is
      *                             `"projects/{project_id_or_number}"`.
      * @param array  $optionalArgs {
-     *                             Optional.
+     *                             Optional
      *
      *     @type string $filter
      *          If this field is empty, all custom and
@@ -659,8 +669,8 @@ class MetricServiceGapicClient
             );
         }
         $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
-        $callable = ApiCallable::createApiCall(
-            $this->metricServiceStub,
+
+        $callable = $this->metricServiceTransport->createApiCall(
             'ListMetricDescriptors',
             $mergedSettings,
             $this->descriptors['listMetricDescriptors']
@@ -668,8 +678,8 @@ class MetricServiceGapicClient
 
         return $callable(
             $request,
-            [],
-            ['call_credentials_callback' => $this->createCredentialsCallback()]);
+            []
+        );
     }
 
     /**
@@ -691,7 +701,7 @@ class MetricServiceGapicClient
      *                             An example value of `{metric_id}` is
      *                             `"compute.googleapis.com/instance/disk/read_bytes_count"`.
      * @param array  $optionalArgs {
-     *                             Optional.
+     *                             Optional
      *
      *     @type \Google\GAX\RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
@@ -717,8 +727,8 @@ class MetricServiceGapicClient
             );
         }
         $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
-        $callable = ApiCallable::createApiCall(
-            $this->metricServiceStub,
+
+        $callable = $this->metricServiceTransport->createApiCall(
             'GetMetricDescriptor',
             $mergedSettings,
             $this->descriptors['getMetricDescriptor']
@@ -726,8 +736,8 @@ class MetricServiceGapicClient
 
         return $callable(
             $request,
-            [],
-            ['call_credentials_callback' => $this->createCredentialsCallback()]);
+            []
+        );
     }
 
     /**
@@ -752,7 +762,7 @@ class MetricServiceGapicClient
      * @param MetricDescriptor $metricDescriptor The new [custom metric](https://cloud.google.com/monitoring/custom-metrics)
      *                                           descriptor.
      * @param array            $optionalArgs     {
-     *                                           Optional.
+     *                                           Optional
      *
      *     @type \Google\GAX\RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
@@ -779,8 +789,8 @@ class MetricServiceGapicClient
             );
         }
         $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
-        $callable = ApiCallable::createApiCall(
-            $this->metricServiceStub,
+
+        $callable = $this->metricServiceTransport->createApiCall(
             'CreateMetricDescriptor',
             $mergedSettings,
             $this->descriptors['createMetricDescriptor']
@@ -788,8 +798,8 @@ class MetricServiceGapicClient
 
         return $callable(
             $request,
-            [],
-            ['call_credentials_callback' => $this->createCredentialsCallback()]);
+            []
+        );
     }
 
     /**
@@ -812,7 +822,7 @@ class MetricServiceGapicClient
      *                             An example of `{metric_id}` is:
      *                             `"custom.googleapis.com/my_test_metric"`.
      * @param array  $optionalArgs {
-     *                             Optional.
+     *                             Optional
      *
      *     @type \Google\GAX\RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
@@ -836,8 +846,8 @@ class MetricServiceGapicClient
             );
         }
         $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
-        $callable = ApiCallable::createApiCall(
-            $this->metricServiceStub,
+
+        $callable = $this->metricServiceTransport->createApiCall(
             'DeleteMetricDescriptor',
             $mergedSettings,
             $this->descriptors['deleteMetricDescriptor']
@@ -845,8 +855,8 @@ class MetricServiceGapicClient
 
         return $callable(
             $request,
-            [],
-            ['call_credentials_callback' => $this->createCredentialsCallback()]);
+            []
+        );
     }
 
     /**
@@ -893,7 +903,7 @@ class MetricServiceGapicClient
      * @param int          $view         Specifies which information is returned about the time series.
      *                                   For allowed values, use constants defined on {@see \Google\Monitoring\V3\ListTimeSeriesRequest_TimeSeriesView}
      * @param array        $optionalArgs {
-     *                                   Optional.
+     *                                   Optional
      *
      *     @type Aggregation $aggregation
      *          By default, the raw time series data is returned.
@@ -951,8 +961,8 @@ class MetricServiceGapicClient
             );
         }
         $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
-        $callable = ApiCallable::createApiCall(
-            $this->metricServiceStub,
+
+        $callable = $this->metricServiceTransport->createApiCall(
             'ListTimeSeries',
             $mergedSettings,
             $this->descriptors['listTimeSeries']
@@ -960,8 +970,8 @@ class MetricServiceGapicClient
 
         return $callable(
             $request,
-            [],
-            ['call_credentials_callback' => $this->createCredentialsCallback()]);
+            []
+        );
     }
 
     /**
@@ -990,7 +1000,7 @@ class MetricServiceGapicClient
      *                                   `TimeSeries` value must fully specify a unique time series by supplying
      *                                   all label values for the metric and the monitored resource.
      * @param array        $optionalArgs {
-     *                                   Optional.
+     *                                   Optional
      *
      *     @type \Google\GAX\RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
@@ -1015,8 +1025,8 @@ class MetricServiceGapicClient
             );
         }
         $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
-        $callable = ApiCallable::createApiCall(
-            $this->metricServiceStub,
+
+        $callable = $this->metricServiceTransport->createApiCall(
             'CreateTimeSeries',
             $mergedSettings,
             $this->descriptors['createTimeSeries']
@@ -1024,8 +1034,8 @@ class MetricServiceGapicClient
 
         return $callable(
             $request,
-            [],
-            ['call_credentials_callback' => $this->createCredentialsCallback()]);
+            []
+        );
     }
 
     /**
@@ -1036,11 +1046,6 @@ class MetricServiceGapicClient
      */
     public function close()
     {
-        $this->metricServiceStub->close();
-    }
-
-    private function createCredentialsCallback()
-    {
-        return $this->grpcCredentialsHelper->createCallCredentialsCallback();
+        $this->metricServiceTransport->close();
     }
 }

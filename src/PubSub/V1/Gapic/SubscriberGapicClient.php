@@ -30,11 +30,11 @@
 
 namespace Google\Cloud\PubSub\V1\Gapic;
 
+use Google\GAX\GapicClientTrait;
+use Google\GAX\Grpc\GrpcTransport;
 use Google\Cloud\Version;
 use Google\GAX\AgentHeaderDescriptor;
-use Google\GAX\ApiCallable;
 use Google\GAX\CallSettings;
-use Google\GAX\GrpcCredentialsHelper;
 use Google\GAX\PageStreamingDescriptor;
 use Google\GAX\PathTemplate;
 use Google\GAX\ValidationException;
@@ -44,7 +44,6 @@ use Google\Iam\V1\Policy;
 use Google\Iam\V1\SetIamPolicyRequest;
 use Google\Iam\V1\TestIamPermissionsRequest;
 use Google\Protobuf\Duration;
-use Google\Protobuf\FieldMask;
 use Google\Protobuf\Timestamp;
 use Google\Pubsub\V1\AcknowledgeRequest;
 use Google\Pubsub\V1\CreateSnapshotRequest;
@@ -58,7 +57,6 @@ use Google\Pubsub\V1\ModifyPushConfigRequest;
 use Google\Pubsub\V1\PullRequest;
 use Google\Pubsub\V1\PushConfig;
 use Google\Pubsub\V1\SeekRequest;
-use Google\Pubsub\V1\Snapshot;
 use Google\Pubsub\V1\StreamingPullRequest;
 use Google\Pubsub\V1\SubscriberGrpcClient;
 use Google\Pubsub\V1\Subscription;
@@ -96,6 +94,8 @@ use Google\Pubsub\V1\UpdateSubscriptionRequest;
  */
 class SubscriberGapicClient
 {
+    use GapicClientTrait;
+
     /**
      * The default address of the service.
      */
@@ -124,16 +124,15 @@ class SubscriberGapicClient
     private static $gapicVersion;
     private static $gapicVersionLoaded = false;
 
-    protected $grpcCredentialsHelper;
-    protected $iamPolicyStub;
-    protected $subscriberStub;
+    protected $iamPolicyTransport;
+    protected $subscriberTransport;
     private $scopes;
     private $defaultCallSettings;
     private $descriptors;
 
     private static function getProjectNameTemplate()
     {
-        if (self::$projectNameTemplate == null) {
+        if (null == self::$projectNameTemplate) {
             self::$projectNameTemplate = new PathTemplate('projects/{project}');
         }
 
@@ -142,7 +141,7 @@ class SubscriberGapicClient
 
     private static function getSnapshotNameTemplate()
     {
-        if (self::$snapshotNameTemplate == null) {
+        if (null == self::$snapshotNameTemplate) {
             self::$snapshotNameTemplate = new PathTemplate('projects/{project}/snapshots/{snapshot}');
         }
 
@@ -151,7 +150,7 @@ class SubscriberGapicClient
 
     private static function getSubscriptionNameTemplate()
     {
-        if (self::$subscriptionNameTemplate == null) {
+        if (null == self::$subscriptionNameTemplate) {
             self::$subscriptionNameTemplate = new PathTemplate('projects/{project}/subscriptions/{subscription}');
         }
 
@@ -160,7 +159,7 @@ class SubscriberGapicClient
 
     private static function getTopicNameTemplate()
     {
-        if (self::$topicNameTemplate == null) {
+        if (null == self::$topicNameTemplate) {
             self::$topicNameTemplate = new PathTemplate('projects/{project}/topics/{topic}');
         }
 
@@ -169,7 +168,7 @@ class SubscriberGapicClient
 
     private static function getPathTemplateMap()
     {
-        if (self::$pathTemplateMap == null) {
+        if (null == self::$pathTemplateMap) {
             self::$pathTemplateMap = [
                 'project' => self::getProjectNameTemplate(),
                 'snapshot' => self::getSnapshotNameTemplate(),
@@ -240,7 +239,7 @@ class SubscriberGapicClient
      *
      * @param string $project
      *
-     * @return string The formatted project resource.
+     * @return string the formatted project resource
      * @experimental
      */
     public static function projectName($project)
@@ -257,7 +256,7 @@ class SubscriberGapicClient
      * @param string $project
      * @param string $snapshot
      *
-     * @return string The formatted snapshot resource.
+     * @return string the formatted snapshot resource
      * @experimental
      */
     public static function snapshotName($project, $snapshot)
@@ -275,7 +274,7 @@ class SubscriberGapicClient
      * @param string $project
      * @param string $subscription
      *
-     * @return string The formatted subscription resource.
+     * @return string the formatted subscription resource
      * @experimental
      */
     public static function subscriptionName($project, $subscription)
@@ -293,7 +292,7 @@ class SubscriberGapicClient
      * @param string $project
      * @param string $topic
      *
-     * @return string The formatted topic resource.
+     * @return string the formatted topic resource
      * @experimental
      */
     public static function topicName($project, $topic)
@@ -321,9 +320,9 @@ class SubscriberGapicClient
      * @param string $formattedName The formatted name string
      * @param string $template      Optional name of template to match
      *
-     * @return array An associative array from name component IDs to component values.
+     * @return array an associative array from name component IDs to component values
      *
-     * @throws ValidationException If $formattedName could not be matched.
+     * @throws ValidationException if $formattedName could not be matched
      * @experimental
      */
     public static function parseName($formattedName, $template = null)
@@ -358,16 +357,18 @@ class SubscriberGapicClient
      *                                  Default 'pubsub.googleapis.com'.
      *     @type mixed $port The port on which to connect to the remote host. Default 443.
      *     @type \Grpc\Channel $channel
-     *           A `Channel` object to be used by gRPC. If not specified, a channel will be constructed.
+     *           Optional. A `Channel` object to be used by gRPC. If not specified, a channel will be constructed.
      *     @type \Grpc\ChannelCredentials $sslCreds
-     *           A `ChannelCredentials` object for use with an SSL-enabled channel.
+     *           Optional. A `ChannelCredentials` object for use with an SSL-enabled channel.
      *           Default: a credentials object returned from
      *           \Grpc\ChannelCredentials::createSsl()
-     *           NOTE: if the $channel optional argument is specified, then this argument is unused.
+     *           NOTE: if the $channel optional argument is specified, then this option is unused.
      *     @type bool $forceNewChannel
-     *           If true, this forces gRPC to create a new channel instead of using a persistent channel.
+     *           Optional. If true, this forces gRPC to create a new channel instead of using a persistent channel.
      *           Defaults to false.
      *           NOTE: if the $channel optional argument is specified, then this option is unused.
+     *     @type mixed $transport Optional, the string "grpc". Determines the backend transport used
+     *            to make the API call.
      *     @type \Google\Auth\CredentialsLoader $credentialsLoader
      *           A CredentialsLoader object created using the Google\Auth library.
      *     @type array $scopes A string array of scopes to use when acquiring credentials.
@@ -454,26 +455,46 @@ class SubscriberGapicClient
 
         $this->scopes = $options['scopes'];
 
-        $createStubOptions = [];
-        if (array_key_exists('sslCreds', $options)) {
-            $createStubOptions['sslCreds'] = $options['sslCreds'];
-        }
-        $this->grpcCredentialsHelper = new GrpcCredentialsHelper($options);
+        // if (empty($options['createTransportFunction'])) {
+        //     $options['createTransportFunction'] = function ($options, $transport = null) {
+        //         switch ($transport) {
+        //             case 'grpc':
+        //                 if (empty($options['createGrpcStubFunction'])) {
+        //                     $options['createGrpcStubFunction'] = function ($fullAddress, $stubOpts, $channel) {
+        //                         return new IAMPolicyGrpcClient($fullAddress, $stubOpts, $channel);
+        //                     };
+        //                 }
 
-        $createIamPolicyStubFunction = function ($hostname, $opts, $channel) {
-            return new IAMPolicyGrpcClient($hostname, $opts, $channel);
-        };
-        if (array_key_exists('createIamPolicyStubFunction', $options)) {
-            $createIamPolicyStubFunction = $options['createIamPolicyStubFunction'];
+        //                 return new GrpcTransport($options);
+        //         }
+        //         throw new InvalidArgumentException('Invalid transport provided: '.$transport);
+        //     };
+        // }
+
+        // $this->iamPolicyTransport = call_user_func_array(
+        //     $options['createTransportFunction'],
+        //     [$options, $this->getTransport($options)]
+        // );
+        if (empty($options['createTransportFunction'])) {
+            $options['createTransportFunction'] = function ($options, $transport = null) {
+                switch ($transport) {
+                    case 'grpc':
+                        if (empty($options['createGrpcStubFunction'])) {
+                            $options['createGrpcStubFunction'] = function ($fullAddress, $stubOpts, $channel) {
+                                return new SubscriberGrpcClient($fullAddress, $stubOpts, $channel);
+                            };
+                        }
+
+                        return new GrpcTransport($options);
+                }
+                throw new InvalidArgumentException('Invalid transport provided: '.$transport);
+            };
         }
-        $this->iamPolicyStub = $this->grpcCredentialsHelper->createStub($createIamPolicyStubFunction);
-        $createSubscriberStubFunction = function ($hostname, $opts, $channel) {
-            return new SubscriberGrpcClient($hostname, $opts, $channel);
-        };
-        if (array_key_exists('createSubscriberStubFunction', $options)) {
-            $createSubscriberStubFunction = $options['createSubscriberStubFunction'];
-        }
-        $this->subscriberStub = $this->grpcCredentialsHelper->createStub($createSubscriberStubFunction);
+
+        $this->subscriberTransport = call_user_func_array(
+            $options['createTransportFunction'],
+            [$options, $this->getTransport($options)]
+        );
     }
 
     /**
@@ -511,7 +532,7 @@ class SubscriberGapicClient
      *                             The value of this field will be `_deleted-topic_` if the topic has been
      *                             deleted.
      * @param array  $optionalArgs {
-     *                             Optional.
+     *                             Optional
      *
      *     @type PushConfig $pushConfig
      *          If push delivery is used with this subscription, this field is
@@ -591,8 +612,8 @@ class SubscriberGapicClient
             );
         }
         $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
-        $callable = ApiCallable::createApiCall(
-            $this->subscriberStub,
+
+        $callable = $this->subscriberTransport->createApiCall(
             'CreateSubscription',
             $mergedSettings,
             $this->descriptors['createSubscription']
@@ -600,8 +621,8 @@ class SubscriberGapicClient
 
         return $callable(
             $request,
-            [],
-            ['call_credentials_callback' => $this->createCredentialsCallback()]);
+            []
+        );
     }
 
     /**
@@ -621,7 +642,7 @@ class SubscriberGapicClient
      * @param string $subscription The name of the subscription to get.
      *                             Format is `projects/{project}/subscriptions/{sub}`.
      * @param array  $optionalArgs {
-     *                             Optional.
+     *                             Optional
      *
      *     @type \Google\GAX\RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
@@ -647,8 +668,8 @@ class SubscriberGapicClient
             );
         }
         $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
-        $callable = ApiCallable::createApiCall(
-            $this->subscriberStub,
+
+        $callable = $this->subscriberTransport->createApiCall(
             'GetSubscription',
             $mergedSettings,
             $this->descriptors['getSubscription']
@@ -656,11 +677,11 @@ class SubscriberGapicClient
 
         return $callable(
             $request,
-            [],
-            ['call_credentials_callback' => $this->createCredentialsCallback()]);
+            []
+        );
     }
 
-    /**
+        /**
      * Updates an existing subscription. Note that certain properties of a
      * subscription, such as its topic, are not modifiable.
      * NOTE:  The style guide requires body: "subscription" instead of body: "*".
@@ -711,8 +732,8 @@ class SubscriberGapicClient
             );
         }
         $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
-        $callable = ApiCallable::createApiCall(
-            $this->subscriberStub,
+
+        $callable = $this->subscriberTransport->createApiCall(
             'UpdateSubscription',
             $mergedSettings,
             $this->descriptors['updateSubscription']
@@ -720,8 +741,8 @@ class SubscriberGapicClient
 
         return $callable(
             $request,
-            [],
-            ['call_credentials_callback' => $this->createCredentialsCallback()]);
+            []
+        );
     }
 
     /**
@@ -753,7 +774,7 @@ class SubscriberGapicClient
      * @param string $project      The name of the cloud project that subscriptions belong to.
      *                             Format is `projects/{project}`.
      * @param array  $optionalArgs {
-     *                             Optional.
+     *                             Optional
      *
      *     @type int $pageSize
      *          The maximum number of resources contained in the underlying API
@@ -794,8 +815,8 @@ class SubscriberGapicClient
             );
         }
         $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
-        $callable = ApiCallable::createApiCall(
-            $this->subscriberStub,
+
+        $callable = $this->subscriberTransport->createApiCall(
             'ListSubscriptions',
             $mergedSettings,
             $this->descriptors['listSubscriptions']
@@ -803,8 +824,8 @@ class SubscriberGapicClient
 
         return $callable(
             $request,
-            [],
-            ['call_credentials_callback' => $this->createCredentialsCallback()]);
+            []
+        );
     }
 
     /**
@@ -828,7 +849,7 @@ class SubscriberGapicClient
      * @param string $subscription The subscription to delete.
      *                             Format is `projects/{project}/subscriptions/{sub}`.
      * @param array  $optionalArgs {
-     *                             Optional.
+     *                             Optional
      *
      *     @type \Google\GAX\RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
@@ -852,8 +873,8 @@ class SubscriberGapicClient
             );
         }
         $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
-        $callable = ApiCallable::createApiCall(
-            $this->subscriberStub,
+
+        $callable = $this->subscriberTransport->createApiCall(
             'DeleteSubscription',
             $mergedSettings,
             $this->descriptors['deleteSubscription']
@@ -861,8 +882,8 @@ class SubscriberGapicClient
 
         return $callable(
             $request,
-            [],
-            ['call_credentials_callback' => $this->createCredentialsCallback()]);
+            []
+        );
     }
 
     /**
@@ -887,7 +908,7 @@ class SubscriberGapicClient
      *
      * @param string   $subscription       The name of the subscription.
      *                                     Format is `projects/{project}/subscriptions/{sub}`.
-     * @param string[] $ackIds             List of acknowledgment IDs.
+     * @param string[] $ackIds             list of acknowledgment IDs
      * @param int      $ackDeadlineSeconds The new ack deadline with respect to the time this request was sent to
      *                                     the Pub/Sub system. For example, if the value is 10, the new
      *                                     ack deadline will expire 10 seconds after the `ModifyAckDeadline` call
@@ -896,7 +917,7 @@ class SubscriberGapicClient
      *                                     The minimum deadline you can specify is 0 seconds.
      *                                     The maximum deadline you can specify is 600 seconds (10 minutes).
      * @param array    $optionalArgs       {
-     *                                     Optional.
+     *                                     Optional
      *
      *     @type \Google\GAX\RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
@@ -922,8 +943,8 @@ class SubscriberGapicClient
             );
         }
         $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
-        $callable = ApiCallable::createApiCall(
-            $this->subscriberStub,
+
+        $callable = $this->subscriberTransport->createApiCall(
             'ModifyAckDeadline',
             $mergedSettings,
             $this->descriptors['modifyAckDeadline']
@@ -931,8 +952,8 @@ class SubscriberGapicClient
 
         return $callable(
             $request,
-            [],
-            ['call_credentials_callback' => $this->createCredentialsCallback()]);
+            []
+        );
     }
 
     /**
@@ -961,7 +982,7 @@ class SubscriberGapicClient
      * @param string[] $ackIds       The acknowledgment ID for the messages being acknowledged that was returned
      *                               by the Pub/Sub system in the `Pull` response. Must not be empty.
      * @param array    $optionalArgs {
-     *                               Optional.
+     *                               Optional
      *
      *     @type \Google\GAX\RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
@@ -986,8 +1007,8 @@ class SubscriberGapicClient
             );
         }
         $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
-        $callable = ApiCallable::createApiCall(
-            $this->subscriberStub,
+
+        $callable = $this->subscriberTransport->createApiCall(
             'Acknowledge',
             $mergedSettings,
             $this->descriptors['acknowledge']
@@ -995,8 +1016,8 @@ class SubscriberGapicClient
 
         return $callable(
             $request,
-            [],
-            ['call_credentials_callback' => $this->createCredentialsCallback()]);
+            []
+        );
     }
 
     /**
@@ -1022,7 +1043,7 @@ class SubscriberGapicClient
      * @param int    $maxMessages  The maximum number of messages returned for this request. The Pub/Sub
      *                             system may return fewer than the number specified.
      * @param array  $optionalArgs {
-     *                             Optional.
+     *                             Optional
      *
      *     @type bool $returnImmediately
      *          If this field set to true, the system will respond immediately even if
@@ -1059,8 +1080,8 @@ class SubscriberGapicClient
             );
         }
         $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
-        $callable = ApiCallable::createApiCall(
-            $this->subscriberStub,
+
+        $callable = $this->subscriberTransport->createApiCall(
             'Pull',
             $mergedSettings,
             $this->descriptors['pull']
@@ -1068,8 +1089,8 @@ class SubscriberGapicClient
 
         return $callable(
             $request,
-            [],
-            ['call_credentials_callback' => $this->createCredentialsCallback()]);
+            []
+        );
     }
 
     /**
@@ -1127,7 +1148,7 @@ class SubscriberGapicClient
      * ```
      *
      * @param array $optionalArgs {
-     *                            Optional.
+     *                            Optional
      *
      *     @type int $timeoutMillis
      *          Timeout to use for this call.
@@ -1154,8 +1175,8 @@ class SubscriberGapicClient
             );
         }
         $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
-        $callable = ApiCallable::createApiCall(
-            $this->subscriberStub,
+
+        $callable = $this->subscriberTransport->createApiCall(
             'StreamingPull',
             $mergedSettings,
             $this->descriptors['streamingPull']
@@ -1163,8 +1184,8 @@ class SubscriberGapicClient
 
         return $callable(
             null,
-            [],
-            ['call_credentials_callback' => $this->createCredentialsCallback()]);
+            []
+        );
     }
 
     /**
@@ -1196,7 +1217,7 @@ class SubscriberGapicClient
      * messages to be pulled and acknowledged - effectively pausing
      * the subscription if `Pull` is not called.
      * @param array $optionalArgs {
-     *                            Optional.
+     *                            Optional
      *
      *     @type \Google\GAX\RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
@@ -1221,8 +1242,8 @@ class SubscriberGapicClient
             );
         }
         $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
-        $callable = ApiCallable::createApiCall(
-            $this->subscriberStub,
+
+        $callable = $this->subscriberTransport->createApiCall(
             'ModifyPushConfig',
             $mergedSettings,
             $this->descriptors['modifyPushConfig']
@@ -1230,8 +1251,8 @@ class SubscriberGapicClient
 
         return $callable(
             $request,
-            [],
-            ['call_credentials_callback' => $this->createCredentialsCallback()]);
+            []
+        );
     }
 
     /**
@@ -1263,7 +1284,7 @@ class SubscriberGapicClient
      * @param string $project      The name of the cloud project that snapshots belong to.
      *                             Format is `projects/{project}`.
      * @param array  $optionalArgs {
-     *                             Optional.
+     *                             Optional
      *
      *     @type int $pageSize
      *          The maximum number of resources contained in the underlying API
@@ -1304,8 +1325,8 @@ class SubscriberGapicClient
             );
         }
         $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
-        $callable = ApiCallable::createApiCall(
-            $this->subscriberStub,
+
+        $callable = $this->subscriberTransport->createApiCall(
             'ListSnapshots',
             $mergedSettings,
             $this->descriptors['listSnapshots']
@@ -1313,8 +1334,8 @@ class SubscriberGapicClient
 
         return $callable(
             $request,
-            [],
-            ['call_credentials_callback' => $this->createCredentialsCallback()]);
+            []
+        );
     }
 
     /**
@@ -1356,7 +1377,7 @@ class SubscriberGapicClient
      *                             successful completion of the CreateSnapshot request.
      *                             Format is `projects/{project}/subscriptions/{sub}`.
      * @param array  $optionalArgs {
-     *                             Optional.
+     *                             Optional
      *
      *     @type \Google\GAX\RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
@@ -1383,8 +1404,8 @@ class SubscriberGapicClient
             );
         }
         $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
-        $callable = ApiCallable::createApiCall(
-            $this->subscriberStub,
+
+        $callable = $this->subscriberTransport->createApiCall(
             'CreateSnapshot',
             $mergedSettings,
             $this->descriptors['createSnapshot']
@@ -1392,11 +1413,11 @@ class SubscriberGapicClient
 
         return $callable(
             $request,
-            [],
-            ['call_credentials_callback' => $this->createCredentialsCallback()]);
+            []
+        );
     }
 
-    /**
+        /**
      * Updates an existing snapshot. Note that certain properties of a snapshot
      * are not modifiable.
      * NOTE:  The style guide requires body: "snapshot" instead of body: "*".
@@ -1447,8 +1468,8 @@ class SubscriberGapicClient
             );
         }
         $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
-        $callable = ApiCallable::createApiCall(
-            $this->subscriberStub,
+
+        $callable = $this->subscriberTransport->createApiCall(
             'UpdateSnapshot',
             $mergedSettings,
             $this->descriptors['updateSnapshot']
@@ -1456,8 +1477,8 @@ class SubscriberGapicClient
 
         return $callable(
             $request,
-            [],
-            ['call_credentials_callback' => $this->createCredentialsCallback()]);
+            []
+        );
     }
 
     /**
@@ -1480,7 +1501,7 @@ class SubscriberGapicClient
      * @param string $snapshot     The name of the snapshot to delete.
      *                             Format is `projects/{project}/snapshots/{snap}`.
      * @param array  $optionalArgs {
-     *                             Optional.
+     *                             Optional
      *
      *     @type \Google\GAX\RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
@@ -1504,8 +1525,8 @@ class SubscriberGapicClient
             );
         }
         $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
-        $callable = ApiCallable::createApiCall(
-            $this->subscriberStub,
+
+        $callable = $this->subscriberTransport->createApiCall(
             'DeleteSnapshot',
             $mergedSettings,
             $this->descriptors['deleteSnapshot']
@@ -1513,8 +1534,8 @@ class SubscriberGapicClient
 
         return $callable(
             $request,
-            [],
-            ['call_credentials_callback' => $this->createCredentialsCallback()]);
+            []
+        );
     }
 
     /**
@@ -1532,9 +1553,9 @@ class SubscriberGapicClient
      * }
      * ```
      *
-     * @param string $subscription The subscription to affect.
+     * @param string $subscription the subscription to affect
      * @param array  $optionalArgs {
-     *                             Optional.
+     *                             Optional
      *
      *     @type Timestamp $time
      *          The time to seek to.
@@ -1582,8 +1603,8 @@ class SubscriberGapicClient
             );
         }
         $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
-        $callable = ApiCallable::createApiCall(
-            $this->subscriberStub,
+
+        $callable = $this->subscriberTransport->createApiCall(
             'Seek',
             $mergedSettings,
             $this->descriptors['seek']
@@ -1591,8 +1612,8 @@ class SubscriberGapicClient
 
         return $callable(
             $request,
-            [],
-            ['call_credentials_callback' => $this->createCredentialsCallback()]);
+            []
+        );
     }
 
     /**
@@ -1619,7 +1640,7 @@ class SubscriberGapicClient
      *                             valid policy but certain Cloud Platform services (such as Projects)
      *                             might reject them.
      * @param array  $optionalArgs {
-     *                             Optional.
+     *                             Optional
      *
      *     @type \Google\GAX\RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
@@ -1646,8 +1667,8 @@ class SubscriberGapicClient
             );
         }
         $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
-        $callable = ApiCallable::createApiCall(
-            $this->iamPolicyStub,
+
+        $callable = $this->iamPolicyTransport->createApiCall(
             'SetIamPolicy',
             $mergedSettings,
             $this->descriptors['setIamPolicy']
@@ -1655,8 +1676,8 @@ class SubscriberGapicClient
 
         return $callable(
             $request,
-            [],
-            ['call_credentials_callback' => $this->createCredentialsCallback()]);
+            []
+        );
     }
 
     /**
@@ -1679,7 +1700,7 @@ class SubscriberGapicClient
      *                             `resource` is usually specified as a path. For example, a Project
      *                             resource is specified as `projects/{project}`.
      * @param array  $optionalArgs {
-     *                             Optional.
+     *                             Optional
      *
      *     @type \Google\GAX\RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
@@ -1705,8 +1726,8 @@ class SubscriberGapicClient
             );
         }
         $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
-        $callable = ApiCallable::createApiCall(
-            $this->iamPolicyStub,
+
+        $callable = $this->iamPolicyTransport->createApiCall(
             'GetIamPolicy',
             $mergedSettings,
             $this->descriptors['getIamPolicy']
@@ -1714,8 +1735,8 @@ class SubscriberGapicClient
 
         return $callable(
             $request,
-            [],
-            ['call_credentials_callback' => $this->createCredentialsCallback()]);
+            []
+        );
     }
 
     /**
@@ -1743,7 +1764,7 @@ class SubscriberGapicClient
      *                               information see
      *                               [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).
      * @param array    $optionalArgs {
-     *                               Optional.
+     *                               Optional
      *
      *     @type \Google\GAX\RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
@@ -1770,8 +1791,8 @@ class SubscriberGapicClient
             );
         }
         $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
-        $callable = ApiCallable::createApiCall(
-            $this->iamPolicyStub,
+
+        $callable = $this->iamPolicyTransport->createApiCall(
             'TestIamPermissions',
             $mergedSettings,
             $this->descriptors['testIamPermissions']
@@ -1779,8 +1800,8 @@ class SubscriberGapicClient
 
         return $callable(
             $request,
-            [],
-            ['call_credentials_callback' => $this->createCredentialsCallback()]);
+            []
+        );
     }
 
     /**
@@ -1791,12 +1812,7 @@ class SubscriberGapicClient
      */
     public function close()
     {
-        $this->iamPolicyStub->close();
-        $this->subscriberStub->close();
-    }
-
-    private function createCredentialsCallback()
-    {
-        return $this->grpcCredentialsHelper->createCallCredentialsCallback();
+        $this->iamPolicyTransport->close();
+        $this->subscriberTransport->close();
     }
 }
