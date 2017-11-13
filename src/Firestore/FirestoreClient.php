@@ -360,9 +360,9 @@ class FirestoreClient
      *     }
      *
      *     $t->update($from, [
-     *         'balance' => $fromNewBalance
+     *         ['path' => 'balance', 'value' => $fromNewBalance]
      *     ])->update($to, [
-     *         'balance' => $toNewBalance
+     *         ['path' => 'balance', 'value' => $toNewBalance]
      *     ]);
      * });
      * ```

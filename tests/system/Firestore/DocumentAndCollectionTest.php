@@ -53,7 +53,7 @@ class DocumentAndCollectionTest extends FirestoreTestCase
         $this->assertEquals('John', $this->document->snapshot()['firstName']);
 
         $this->document->update([
-            'firstName' => 'Dave'
+            ['path' => 'firstName', 'value' => 'Dave']
         ]);
 
         $snapshot = $this->document->snapshot();
@@ -118,13 +118,13 @@ class DocumentAndCollectionTest extends FirestoreTestCase
 
     public function testDeleteField()
     {
-        $this->document->update([
+        $this->document->set([
             'foo' => 'bar'
         ]);
         $this->assertEquals('bar', $this->document->snapshot()['foo']);
 
         $this->document->update([
-            'foo' => FieldValue::deleteField()
+            ['path' => 'foo', 'value' => FieldValue::deleteField()]
         ]);
 
         try {
@@ -137,13 +137,13 @@ class DocumentAndCollectionTest extends FirestoreTestCase
 
     public function testServerTimestamp()
     {
-        $this->document->update([
+        $this->document->set([
             'foo' => 'bar'
         ]);
         $this->assertEquals('bar', $this->document->snapshot()['foo']);
 
         $this->document->update([
-            'foo' => FieldValue::serverTimestamp()
+            ['path' => 'foo', 'value' => FieldValue::serverTimestamp()]
         ]);
 
         $this->assertInstanceOf(Timestamp::class, $this->document->snapshot()['foo']);
@@ -158,7 +158,7 @@ class DocumentAndCollectionTest extends FirestoreTestCase
             ]
         ];
 
-        $this->document->updatePaths($paths);
+        $this->document->update($paths);
 
         $snap = $this->document->snapshot();
 
@@ -180,18 +180,6 @@ class DocumentAndCollectionTest extends FirestoreTestCase
             ]
         ]);
 
-        $this->document->update([
-            'level1' => [
-                'level2' => [
-                    'level3' => [
-                        'level4' => [
-                            'foo' => 'bar'
-                        ]
-                    ],
-                ]
-            ]
-        ]);
-
         $this->document->set([
             'level1' => [
                 'level2' => [
@@ -204,14 +192,13 @@ class DocumentAndCollectionTest extends FirestoreTestCase
             ]
         ], ['merge' => true]);
 
-        $this->document->updatePaths([
+        $this->document->update([
             ['path' => 'level1.level2.level3.level4.final', 'value' => 'final']
         ]);
 
         $snap = $this->document->snapshot();
         $this->assertEquals('a value!', $snap->get('level1.level2.level3.level4.level5'));
         $this->assertEquals('another value', $snap->get('level1.level2.level3val'));
-        $this->assertEquals('bar', $snap->get('level1.level2.level3.level4.foo'));
         $this->assertEquals('world', $snap->get('level1.level2.level3.level4.hello'));
         $this->assertEquals('final', $snap->get('level1.level2.level3.level4.final'));
     }

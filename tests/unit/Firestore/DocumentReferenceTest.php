@@ -81,7 +81,6 @@ class DocumentReferenceTest extends TestCase
             'database' => sprintf('projects/%s/databases/%s', self::PROJECT, self::DATABASE),
             'writes' => [
                 [
-                    'updateMask' => ['hello'],
                     'currentDocument' => ['exists' => false],
                     'update' => [
                         'name' => self::NAME,
@@ -129,31 +128,6 @@ class DocumentReferenceTest extends TestCase
             'database' => sprintf('projects/%s/databases/%s', self::PROJECT, self::DATABASE),
             'writes' => [
                 [
-                    'updateMask' => ['hello'],
-                    'currentDocument' => ['exists' => true],
-                    'update' => [
-                        'name' => self::NAME,
-                        'fields' => [
-                            'hello' => [
-                                'stringValue' => 'world'
-                            ]
-                        ]
-                    ]
-                ]
-            ]
-        ])->shouldBeCalled()->willReturn([[]]);
-
-        $this->document->___setProperty('connection', $this->connection->reveal());
-
-        $this->document->update(['hello' => 'world']);
-    }
-
-    public function testUpdatePaths()
-    {
-        $this->connection->commit([
-            'database' => sprintf('projects/%s/databases/%s', self::PROJECT, self::DATABASE),
-            'writes' => [
-                [
                     'updateMask' => [
                         "hello",
                         "foo.bar",
@@ -186,7 +160,7 @@ class DocumentReferenceTest extends TestCase
 
         $this->document->___setProperty('connection', $this->connection->reveal());
 
-        $this->document->updatePaths([
+        $this->document->update([
             ['path' => 'hello', 'value' => 'world'],
             ['path' => 'foo.bar', 'value' => 'val'],
             ['path' => new FieldPath(['foo', 'baz']), 'value' => 'val']
@@ -292,7 +266,7 @@ class DocumentReferenceTest extends TestCase
 
         $this->document->___setProperty('connection', $this->connection->reveal());
 
-        $res = $this->document->update(['foo' => 'bar']);
+        $res = $this->document->set(['foo' => 'bar']);
         $this->assertInstanceOf(Timestamp::class, $res['updateTime']);
         $this->assertEquals(time(), $res['updateTime']->get()->format('U'));
     }

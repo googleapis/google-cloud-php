@@ -17,13 +17,14 @@
 
 namespace Google\Cloud\Tests\Snippets\Firestore;
 
-use Prophecy\Argument;
 use Google\Cloud\Dev\Snippet\Parser\Snippet;
 use Google\Cloud\Dev\Snippet\SnippetTestCase;
-use Google\Cloud\Firestore\WriteBatch;
-use Google\Cloud\Firestore\ValueMapper;
 use Google\Cloud\Firestore\Connection\ConnectionInterface;
+use Google\Cloud\Firestore\ValueMapper;
+use Google\Cloud\Firestore\WriteBatch;
 use Google\Cloud\Tests\GrpcTestTrait;
+use Google\Firestore\V1beta1\DocumentTransform_FieldTransform_ServerValue;
+use Prophecy\Argument;
 
 /**
  * @group firestore
@@ -63,7 +64,6 @@ class WriteBatchTest extends SnippetTestCase
         $snippet = $this->snippetFromMethod(WriteBatch::class, 'create');
         $this->commitAndAssert($snippet, [
             [
-                'updateMask' => ['name'],
                 'currentDocument' => ['exists' => false],
                 'update' => [
                     'name' => self::DOCUMENT,
@@ -78,23 +78,6 @@ class WriteBatchTest extends SnippetTestCase
     public function testUpdate()
     {
         $snippet = $this->snippetFromMethod(WriteBatch::class, 'update');
-        $this->commitAndAssert($snippet, [
-            [
-                'updateMask' => ['name'],
-                'currentDocument' => ['exists' => true],
-                'update' => [
-                    'name' => self::DOCUMENT,
-                    'fields' => [
-                        'name' => ['stringValue' => 'John']
-                    ]
-                ]
-            ]
-        ]);
-    }
-
-    public function testUpdatePaths()
-    {
-        $snippet = $this->snippetFromMethod(WriteBatch::class, 'updatePaths');
         $this->commitAndAssert($snippet, [
             [
                 'updateMask' => [
@@ -131,9 +114,36 @@ class WriteBatchTest extends SnippetTestCase
         ]);
     }
 
-    public function testUpdatePathsSpecialChars()
+    public function testUpdateSentinels()
     {
-        $snippet = $this->snippetFromMethod(WriteBatch::class, 'updatePaths', 1);
+        $snippet = $this->snippetFromMethod(WriteBatch::class, 'update', 1);
+        $this->commitAndAssert($snippet, [
+            [
+                'updateMask' => [
+                    'country'
+                ],
+                'currentDocument' => ['exists' => true],
+                'update' => [
+                    'name' => self::DOCUMENT,
+                    'fields' => []
+                ]
+            ], [
+                'transform' => [
+                    'document' => self::DOCUMENT,
+                    'fieldTransforms' => [
+                        [
+                            'fieldPath' => 'lastLogin',
+                            'setToServerValue' => DocumentTransform_FieldTransform_ServerValue::REQUEST_TIME
+                        ]
+                    ]
+                ]
+            ]
+        ]);
+    }
+
+    public function testUpdateSpecialChars()
+    {
+        $snippet = $this->snippetFromMethod(WriteBatch::class, 'update', 2);
         $this->commitAndAssert($snippet, [
             [
                 'updateMask' => [

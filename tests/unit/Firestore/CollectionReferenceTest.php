@@ -91,7 +91,6 @@ class CollectionReferenceTest extends TestCase
                 'database' => sprintf('projects/%s/databases/%s', self::PROJECT, self::DATABASE),
                 'writes' => [
                     [
-                        'updateMask' => ['hello'],
                         'currentDocument' => ['exists' => false],
                         'update' => [
                             'fields' => [

@@ -172,7 +172,7 @@ class DocumentReference
      *
      * @param array $fields An array containing fields, where keys are the field
      *        names, and values are field values. Nested arrays are allowed.
-     *        Note that unlike {@see Google\Cloud\Firestore\DocumentReference::updatePaths()},
+     *        Note that unlike {@see Google\Cloud\Firestore\DocumentReference::update()},
      *        field paths are NOT supported by this method.
      * @param array $options Configuration Options.
      * @return array [WriteResult](https://cloud.google.com/firestore/docs/reference/rpc/google.firestore.v1beta1#google.firestore.v1beta1.WriteResult)
@@ -208,7 +208,7 @@ class DocumentReference
      *
      * @param array $fields An array containing fields, where keys are the field
      *        names, and values are field values. Nested arrays are allowed.
-     *        Note that unlike {@see Google\Cloud\Firestore\DocumentReference::updatePaths()},
+     *        Note that unlike {@see Google\Cloud\Firestore\DocumentReference::update()},
      *        field paths are NOT supported by this method.
      * @param array $options {
      *     Configuration Options
@@ -231,59 +231,6 @@ class DocumentReference
     }
 
     /**
-     * Update a Firestore document.
-     *
-     * Merges provided data with data stored in Firestore.
-     *
-     * Calling this method on a non-existent document will raise an exception.
-     *
-     * This method supports various sentinel values, to perform special operations
-     * on fields. Available sentinel values are provided as methods, found in
-     * {@see Google\Cloud\Firestore\FieldValue}.
-     *
-     * To update a document using field paths, see
-     * {@see Google\Cloud\Firestore\DocumentReference::updatePaths()}.
-     *
-     * Example:
-     * ```
-     * $document->update([
-     *     'name' => 'John',
-     *     'country' => 'USA',
-     *     'cryptoCurrencies' => [
-     *         'bitcoin' => 0.5,
-     *         'ethereum' => 10,
-     *         'litecoin' => 5.51
-     *     ]
-     * ]);
-     * ```
-     *
-     * ```
-     * // Remove a field using the {@see Gooogle\Cloud\Firestore\FieldValue::deleteField()} special value.
-     * use Google\Cloud\Firestore\FieldValue;
-     *
-     * $document->update([
-     *     'country' => FieldValue::deleteField()
-     * ]);
-     * ```
-     *
-     * @codingStandardsIgnoreStart
-     * @see https://cloud.google.com/firestore/docs/reference/rpc/google.firestore.v1beta1#google.firestore.v1beta1.Firestore.Commit Commit
-     *
-     * @param array $fields An array containing field names paired with their value.
-     * @param array $options Configuration Options
-     * @return array [WriteResult](https://cloud.google.com/firestore/docs/reference/rpc/google.firestore.v1beta1#google.firestore.v1beta1.WriteResult)
-     * @codingStandardsIgnoreEnd
-     */
-    public function update(array $fields, array $options = [])
-    {
-        return $this->writeResult(
-            $this->batchFactory()
-                ->update($this->name, $fields, $options)
-                ->commit($options)
-        );
-    }
-
-    /**
      * Update a Firestore document using field paths and values.
      *
      * Merges provided data with data stored in Firestore.
@@ -300,7 +247,7 @@ class DocumentReference
      *
      * Example:
      * ```
-     * $document->updatePaths([
+     * $document->update([
      *     ['path' => 'name', 'value' => 'John'],
      *     ['path' => 'country', 'value' => 'USA'],
      *     ['path' => 'cryptoCurrencies.bitcoin', 'value' => 0.5],
@@ -310,12 +257,23 @@ class DocumentReference
      * ```
      *
      * ```
+     * // Google Cloud PHP provides special field values to enable operations such
+     * // as deleting fields or setting the value to the current server timestamp.
+     * use Google\Cloud\Firestore\FieldValue;
+     *
+     * $document->update([
+     *     ['path' => 'country', 'value' => FieldValue::deleteField()],
+     *     ['path' => 'lastLogin', 'value' => FieldValue::serverTimestamp()]
+     * ]);
+     * ```
+     *
+     * ```
      * // If your field names contain special characters (such as `.`, or symbols),
      * // using {@see Google\Cloud\Firestore\FieldPath} will properly escape each element.
      *
      * use Google\Cloud\Firestore\FieldPath;
      *
-     * $document->updatePaths([
+     * $document->update([
      *     ['path' => new FieldPath(['cryptoCurrencies', 'big$$$coin']), 'value' => 5.51]
      * ]);
      * ```
@@ -328,11 +286,11 @@ class DocumentReference
      * @return array [WriteResult](https://cloud.google.com/firestore/docs/reference/rpc/google.firestore.v1beta1#google.firestore.v1beta1.WriteResult)
      * @codingStandardsIgnoreEnd
      */
-    public function updatePaths(array $data, array $options = [])
+    public function update(array $data, array $options = [])
     {
         return $this->writeResult(
             $this->batchFactory()
-                ->updatePaths($this->name, $data, $options)
+                ->update($this->name, $data, $options)
                 ->commit($options)
         );
     }

@@ -106,7 +106,6 @@ class TransactionTest extends TestCase
 
         $this->expectAndInvoke([
             [
-                'updateMask' => ['hello'],
                 'currentDocument' => ['exists' => false],
                 'update' => [
                     'name' => self::DOCUMENT,
@@ -152,24 +151,6 @@ class TransactionTest extends TestCase
     public function testUpdate()
     {
         $this->transaction->update($this->ref->reveal(), [
-            'hello' => 'world'
-        ]);
-
-        $this->expectAndInvoke([
-            [
-                'currentDocument' => ['exists' => true],
-                'updateMask' => ['hello'],
-                'update' => [
-                    'name' => self::DOCUMENT,
-                    'fields' => ['hello' => ['stringValue' => 'world']]
-                ]
-            ]
-        ]);
-    }
-
-    public function testUpdatePaths()
-    {
-        $this->transaction->updatePaths($this->ref->reveal(), [
             ['path' => 'hello', 'value' => 'world'],
             ['path' => 'foo.bar', 'value' => 'val'],
             ['path' => new FieldPath(['foo', 'baz']), 'value' => 'val']

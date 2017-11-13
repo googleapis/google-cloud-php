@@ -17,19 +17,20 @@
 
 namespace Google\Cloud\Tests\Snippets\Firestore;
 
-use Prophecy\Argument;
-use Google\Cloud\Firestore\Query;
-use Google\Cloud\Tests\GrpcTestTrait;
-use Google\Cloud\Firestore\WriteBatch;
-use Google\Cloud\Firestore\ValueMapper;
-use Google\Cloud\Firestore\Transaction;
-use Google\Cloud\Firestore\QuerySnapshot;
-use Google\Cloud\Firestore\FirestoreClient;
-use Google\Cloud\Firestore\DocumentSnapshot;
 use Google\Cloud\Dev\Snippet\SnippetTestCase;
-use Google\Cloud\Firestore\DocumentReference;
 use Google\Cloud\Firestore\CollectionReference;
 use Google\Cloud\Firestore\Connection\ConnectionInterface;
+use Google\Cloud\Firestore\DocumentReference;
+use Google\Cloud\Firestore\DocumentSnapshot;
+use Google\Cloud\Firestore\FieldValue;
+use Google\Cloud\Firestore\FirestoreClient;
+use Google\Cloud\Firestore\Query;
+use Google\Cloud\Firestore\QuerySnapshot;
+use Google\Cloud\Firestore\Transaction;
+use Google\Cloud\Firestore\ValueMapper;
+use Google\Cloud\Firestore\WriteBatch;
+use Google\Cloud\Tests\GrpcTestTrait;
+use Prophecy\Argument;
 
 /**
  * @group firestore
@@ -162,43 +163,33 @@ class TransactionTest extends SnippetTestCase
         $this->transaction->setWriter($this->batch->reveal());
 
         $snippet = $this->snippetFromMethod(Transaction::class, 'update');
-        $snippet->addLocal('transaction', $this->transaction);
         $snippet->addLocal('document', $this->document->reveal());
+        $snippet->addLocal('transaction', $this->transaction);
         $snippet->invoke();
     }
 
-    public function testUpdateSentinel()
+    public function testUpdateSentinels()
+    {
+        $this->batch->update(self::DOCUMENT, [
+            ['path' => 'country', 'value' => FieldValue::deleteField()],
+            ['path' => 'lastLogin', 'value' => FieldValue::serverTimestamp()]
+        ], Argument::any())->shouldBeCalled()->willReturn($this->batch->reveal());
+
+        $this->transaction->setWriter($this->batch->reveal());
+
+        $snippet = $this->snippetFromMethod(Transaction::class, 'update', 1);
+        $snippet->addLocal('document', $this->document->reveal());
+        $snippet->addLocal('transaction', $this->transaction);
+        $snippet->invoke();
+    }
+
+    public function testUpdateSpecialChars()
     {
         $this->batch->update(self::DOCUMENT, Argument::any(), Argument::any())->shouldBeCalled();
 
         $this->transaction->setWriter($this->batch->reveal());
 
-        $snippet = $this->snippetFromMethod(Transaction::class, 'update', 1);
-        $snippet->addLocal('transaction', $this->transaction);
-        $snippet->addLocal('document', $this->document->reveal());
-        $snippet->addUse(FirestoreClient::class);
-        $snippet->invoke();
-    }
-
-    public function testUpdatePaths()
-    {
-        $this->batch->updatePaths(self::DOCUMENT, Argument::any(), Argument::any())->shouldBeCalled();
-
-        $this->transaction->setWriter($this->batch->reveal());
-
-        $snippet = $this->snippetFromMethod(Transaction::class, 'updatePaths');
-        $snippet->addLocal('document', $this->document->reveal());
-        $snippet->addLocal('transaction', $this->transaction);
-        $snippet->invoke();
-    }
-
-    public function testUpdatePathsSpecialChars()
-    {
-        $this->batch->updatePaths(self::DOCUMENT, Argument::any(), Argument::any())->shouldBeCalled();
-
-        $this->transaction->setWriter($this->batch->reveal());
-
-        $snippet = $this->snippetFromMethod(Transaction::class, 'updatePaths', 1);
+        $snippet = $this->snippetFromMethod(Transaction::class, 'update', 2);
         $snippet->addLocal('document', $this->document->reveal());
         $snippet->addLocal('transaction', $this->transaction);
         $snippet->invoke();

@@ -62,7 +62,6 @@ class WriteBatchTest extends TestCase
             'database' => sprintf('projects/%s/databases/%s', self::PROJECT, self::DATABASE),
             'writes' => [
                 [
-                    'updateMask' => ['hello'],
                     'currentDocument' => ['exists' => false],
                     'update' => [
                         'name' => self::DOCUMENT,
@@ -76,27 +75,6 @@ class WriteBatchTest extends TestCase
     public function testUpdate()
     {
         $this->batch->update(self::DOCUMENT, [
-            'hello' => 'world'
-        ]);
-
-        $this->commitAndAssert([
-            'database' => sprintf('projects/%s/databases/%s', self::PROJECT, self::DATABASE),
-            'writes' => [
-                [
-                    'updateMask' => ['hello'],
-                    'currentDocument' => ['exists' => true],
-                    'update' => [
-                        'name' => self::DOCUMENT,
-                        'fields' => ['hello' => ['stringValue' => 'world']]
-                    ]
-                ]
-            ]
-        ]);
-    }
-
-    public function testUpdatePaths()
-    {
-        $this->batch->updatePaths(self::DOCUMENT, [
             [
                 'path' => 'hello.world',
                 'value' => 'world'
@@ -138,15 +116,15 @@ class WriteBatchTest extends TestCase
     }
 
     /**
-     * @dataProvider updatePathsBadInput
+     * @dataProvider updateBadInput
      * @expectedException InvalidArgumentException
      */
-    public function testUpdatePathsBadInput($data)
+    public function testUpdateBadInput($data)
     {
-        $this->batch->updatePaths(self::DOCUMENT, $data);
+        $this->batch->update(self::DOCUMENT, $data);
     }
 
-    public function updatePathsBadInput()
+    public function updateBadInput()
     {
         return [
             [['foo' => 'bar']],
@@ -159,9 +137,9 @@ class WriteBatchTest extends TestCase
     public function testUpdateSentinels()
     {
         $this->batch->update(self::DOCUMENT, [
-            'foo' => 'bar',
-            'hello' => FieldValue::deleteField(),
-            'world' => FieldValue::serverTimestamp()
+            ['path' => 'foo', 'value' =>  'bar'],
+            ['path' => 'hello', 'value' =>  FieldValue::deleteField()],
+            ['path' => 'world', 'value' =>  FieldValue::serverTimestamp()],
         ]);
 
         $this->commitAndAssert([

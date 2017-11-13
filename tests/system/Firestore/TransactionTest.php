@@ -53,7 +53,7 @@ class TransactionTest extends FirestoreTestCase
 
         self::$client->runTransaction(function ($t) {
             $t->update($this->document, [
-                'bat' => 'baz'
+                ['path' => 'bat', 'value' => 'baz']
             ]);
         });
 

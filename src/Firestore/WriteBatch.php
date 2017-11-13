@@ -107,16 +107,19 @@ class WriteBatch
      * @param string $documentName The document to create.
      * @param array $fields An array containing fields, where keys are the field
      *        names, and values are field values. Nested arrays are allowed.
-     *        Note that unlike {@see Google\Cloud\Firestore\DocumentReference::updatePaths()},
+     *        Note that unlike {@see Google\Cloud\Firestore\DocumentReference::update()},
      *        field paths are NOT supported by this method.
      * @param array $options Configuration options
      * @return WriteBatch
      */
     public function create($documentName, array $fields, array $options = [])
     {
-        return $this->update($documentName, $fields, [
+        $this->writes[] = $this->createDatabaseWrite(self::TYPE_UPDATE, $documentName, [
+            'fields' => $this->valueMapper->encodeValues($fields),
             'precondition' => ['exists' => false]
         ] + $options);
+
+        return $this;
     }
 
     /**
@@ -134,7 +137,7 @@ class WriteBatch
      * @param string $documentName The document to update.
      * @param array $fields An array containing fields, where keys are the field
      *        names, and values are field values. Nested arrays are allowed.
-     *        Note that unlike {@see Google\Cloud\Firestore\WriteBatch::updatePaths()},
+     *        Note that unlike {@see Google\Cloud\Firestore\WriteBatch::update()},
      *        field paths are NOT supported by this method.
      * @param array $options {
      *     Configuration Options
@@ -170,60 +173,6 @@ class WriteBatch
     }
 
     /**
-     * Enqueue an update to a Firestore document.
-     *
-     * Merges provided data with data stored in Firestore.
-     *
-     * Calling this method on a non-existent document will raise an exception.
-     *
-     * This method supports various sentinel values, to perform special operations
-     * on fields. Available sentinel values are provided as methods, found in
-     * {@see Google\Cloud\Firestore\FieldValue}.
-     *
-     * To update a document using field paths, see
-     * {@see Google\Cloud\Firestore\WriteBatch::updatePaths()}.
-     *
-     * Example:
-     * ```
-     * $batch->update($documentName, [
-     *     'name' => 'John'
-     * ]);
-     * ```
-     *
-     * @codingStandardsIgnoreStart
-     * @param string $documentName The document to update.
-     * @param array $fields An array containing field names paired with their value.
-     * @param array $options Configuration options
-     * @return WriteBatch
-     * @codingStandardsIgnoreEnd
-     */
-    public function update($documentName, array $fields, array $options = [])
-    {
-        $options += [
-            'precondition' => ['exists' => true]
-        ];
-
-        list($fields, $timestamps, $deletes) = $this->valueMapper->findSentinels($fields);
-
-        // We only want to enqueue an update write if there are non-sentinel fields
-        // OR no timestamp sentinels are found.
-        // We MUST always enqueue at least one write, so if there are no fields
-        // and no timestamp sentinels, we can assume an empty write is intended
-        // and enqueue an empty UPDATE operation.
-        if ($fields || !$timestamps) {
-            $this->writes[] = $this->createDatabaseWrite(self::TYPE_UPDATE, $documentName, [
-                'fields' => $this->valueMapper->encodeValues($fields),
-                'updateMask' => array_merge($this->valueMapper->encodeFieldPaths($fields), $deletes)
-            ] + $options);
-        }
-
-        // Setting values to the server timestamp is implemented as a document tranformation.
-        $this->updateTransformations($documentName, $timestamps);
-
-        return $this;
-    }
-
-    /**
      * Enqueue an update with field paths and values.
      *
      * Merges provided data with data stored in Firestore.
@@ -240,7 +189,7 @@ class WriteBatch
      *
      * Example:
      * ```
-     * $batch->updatePaths($documentName, [
+     * $batch->update($documentName, [
      *     ['path' => 'name', 'value' => 'John'],
      *     ['path' => 'country', 'value' => 'USA'],
      *     ['path' => 'cryptoCurrencies.bitcoin', 'value' => 0.5],
@@ -250,12 +199,23 @@ class WriteBatch
      * ```
      *
      * ```
+     * // Google Cloud PHP provides special field values to enable operations such
+     * // as deleting fields or setting the value to the current server timestamp.
+     * use Google\Cloud\Firestore\FieldValue;
+     *
+     * $batch->update($documentName, [
+     *     ['path' => 'country', 'value' => FieldValue::deleteField()],
+     *     ['path' => 'lastLogin', 'value' => FieldValue::serverTimestamp()]
+     * ]);
+     * ```
+     *
+     * ```
      * // If your field names contain special characters (such as `.`, or symbols),
      * // using {@see Google\Cloud\Firestore\FieldPath} will properly escape each element.
      *
      * use Google\Cloud\Firestore\FieldPath;
      *
-     * $batch->updatePaths($documentName, [
+     * $batch->update($documentName, [
      *     ['path' => new FieldPath(['cryptoCurrencies', 'big$$$coin']), 'value' => 5.51]
      * ]);
      * ```
@@ -266,13 +226,17 @@ class WriteBatch
      * @return WriteBatch
      * @throws \InvalidArgumentException If data is given in an invalid format.
      */
-    public function updatePaths($documentName, array $data, array $options = [])
+    public function update($documentName, array $data, array $options = [])
     {
         if ($this->isAssoc($data)) {
             throw new \InvalidArgumentException(
                 'Field data must be provided as a list of arrays of form `[string|FieldPath $path, mixed $value]`.'
             );
         }
+
+        $options += [
+            'precondition' => ['exists' => true]
+        ];
 
         $paths = [];
         $values = [];
@@ -288,7 +252,33 @@ class WriteBatch
 
         $fields = $this->valueMapper->buildDocumentFromPathsAndValues($paths, $values);
 
-        return $this->update($documentName, $fields, $options);
+        list($fields, $timestamps, $deletes) = $this->valueMapper->findSentinels($fields);
+
+        // We only want to enqueue an update write if there are non-sentinel fields
+        // OR no timestamp sentinels are found.
+        // We MUST always enqueue at least one write, so if there are no fields
+        // and no timestamp sentinels, we can assume an empty write is intended
+        // and enqueue an empty UPDATE operation.
+        if ($fields || !$timestamps || $deletes) {
+            // encode field paths as strings and remove server timestamp sentinels.
+            $updateMask = [];
+            array_walk($paths, function ($path) use (&$updateMask, $timestamps) {
+                $path = $this->valueMapper->escapeFieldPath($path);
+                if (!in_array($path, $timestamps)) {
+                    $updateMask[] = $path;
+                }
+            });
+
+            $this->writes[] = $this->createDatabaseWrite(self::TYPE_UPDATE, $documentName, [
+                'fields' => $this->valueMapper->encodeValues($fields),
+                'updateMask' => array_unique(array_merge($updateMask, $deletes))
+            ] + $options);
+        }
+
+        // Setting values to the server timestamp is implemented as a document tranformation.
+        $this->updateTransformations($documentName, $timestamps);
+
+        return $this;
     }
 
     /**
@@ -376,39 +366,14 @@ class WriteBatch
     }
 
     /**
-     * Enqueue a Transform operation.
-     *
-     * Note that UPDATE cannot follow TRANSFORM, so once any transforms are
-     * enqueued (either by this method, or by using the `FirestoreClient::SERVER_TIMESTAMP`
-     * sentinel value), any subsequent updates will fail.
-     *
-     * @param string $documentName The document to apply the transformation to.
-     * @param array[] $transforms {
-     *     A list of Document transformations.
-     *
-     *     @param string $fieldPath The path of the field.
-     *     @param string $setToServerValue Sets the field to the given server value.
-     * }
-     * @param array $options Configuration options.
-     * @return WriteBatch
-     */
-    private function transform($documentName, array $transforms = [], array $options = [])
-    {
-        $this->writes[] = $this->createDatabaseWrite(self::TYPE_TRANSFORM, $documentName, [
-            'fieldTransforms' => $transforms
-        ] + $options);
-
-        return $this;
-    }
-
-    /**
      * Enqueue transformations for sentinels found in UPDATE calls.
      *
      * @param string $documentName
      * @param array $timestamps
+     * @param array $options
      * @return void
      */
-    private function updateTransformations($documentName, array $timestamps)
+    private function updateTransformations($documentName, array $timestamps, array $options = [])
     {
         $transforms = [];
         foreach ($timestamps as $timestamp) {
@@ -419,7 +384,9 @@ class WriteBatch
         }
 
         if ($transforms) {
-            $this->transform($documentName, $transforms);
+            $this->writes[] = $this->createDatabaseWrite(self::TYPE_TRANSFORM, $documentName, [
+                'fieldTransforms' => $transforms
+            ] + $options);
         }
     }
 

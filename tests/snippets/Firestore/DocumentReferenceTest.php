@@ -17,16 +17,17 @@
 
 namespace Google\Cloud\Tests\Snippets\Firestore;
 
-use Prophecy\Argument;
-use Google\Cloud\Tests\GrpcTestTrait;
-use Google\Cloud\Firestore\WriteBatch;
-use Google\Cloud\Firestore\ValueMapper;
-use Google\Cloud\Firestore\FirestoreClient;
-use Google\Cloud\Firestore\DocumentSnapshot;
 use Google\Cloud\Dev\Snippet\SnippetTestCase;
-use Google\Cloud\Firestore\DocumentReference;
 use Google\Cloud\Firestore\CollectionReference;
 use Google\Cloud\Firestore\Connection\ConnectionInterface;
+use Google\Cloud\Firestore\DocumentReference;
+use Google\Cloud\Firestore\DocumentSnapshot;
+use Google\Cloud\Firestore\FieldValue;
+use Google\Cloud\Firestore\FirestoreClient;
+use Google\Cloud\Firestore\ValueMapper;
+use Google\Cloud\Firestore\WriteBatch;
+use Google\Cloud\Tests\GrpcTestTrait;
+use Prophecy\Argument;
 
 /**
  * @group firestore
@@ -143,51 +144,36 @@ class DocumentReferenceTest extends SnippetTestCase
         $snippet->invoke();
     }
 
-    public function testUpdateRemoveField()
+    public function testUpdateSentinels()
     {
         $this->batch->commit(Argument::any())
             ->shouldBeCalled()
             ->willReturn([[]]);
+
+        $this->batch->update(self::DOCUMENT, [
+            ['path' => 'country', 'value' => FieldValue::deleteField()],
+            ['path' => 'lastLogin', 'value' => FieldValue::serverTimestamp()]
+        ], Argument::any())->shouldBeCalled()->willReturn($this->batch->reveal());
+
+        $this->document->setBatch($this->batch->reveal());
+
+        $snippet = $this->snippetFromMethod(DocumentReference::class, 'update', 1);
+        $snippet->addLocal('document', $this->document);
+        $snippet->invoke();
+    }
+
+    public function testUpdateSpecialChars()
+    {
+        $this->batch->commit(Argument::any())
+        ->shouldBeCalled()
+        ->willReturn([[]]);
 
         $this->batch->update(self::DOCUMENT, Argument::any(), Argument::any())
             ->shouldBeCalled()->willReturn($this->batch->reveal());
 
         $this->document->setBatch($this->batch->reveal());
 
-        $snippet = $this->snippetFromMethod(DocumentReference::class, 'update', 1);
-        $snippet->addLocal('document', $this->document);
-        $snippet->addUse(FirestoreClient::class);
-        $snippet->invoke();
-    }
-
-    public function testUpdatePaths()
-    {
-        $this->batch->commit(Argument::any())
-            ->shouldBeCalled()
-            ->willReturn([[]]);
-
-        $this->batch->updatePaths(self::DOCUMENT, Argument::any(), Argument::any())
-            ->shouldBeCalled()->willReturn($this->batch->reveal());
-
-        $this->document->setBatch($this->batch->reveal());
-
-        $snippet = $this->snippetFromMethod(DocumentReference::class, 'updatePaths');
-        $snippet->addLocal('document', $this->document);
-        $snippet->invoke();
-    }
-
-    public function testUpdatePathsSpecialChars()
-    {
-        $this->batch->commit(Argument::any())
-        ->shouldBeCalled()
-        ->willReturn([[]]);
-
-        $this->batch->updatePaths(self::DOCUMENT, Argument::any(), Argument::any())
-            ->shouldBeCalled()->willReturn($this->batch->reveal());
-
-        $this->document->setBatch($this->batch->reveal());
-
-        $snippet = $this->snippetFromMethod(DocumentReference::class, 'updatePaths', 1);
+        $snippet = $this->snippetFromMethod(DocumentReference::class, 'update', 2);
         $snippet->addLocal('document', $this->document);
         $snippet->invoke();
     }

@@ -179,7 +179,7 @@ class Transaction
      * @param DocumentReference $document The document to modify or replace.
      * @param array $fields An array containing fields, where keys are the field
      *        names, and values are field values. Nested arrays are allowed.
-     *        Note that unlike {@see Google\Cloud\Firestore\Transaction::updatePaths()},
+     *        Note that unlike {@see Google\Cloud\Firestore\Transaction::update()},
      *        field paths are NOT supported by this method.
      * @param array $options {
      *     Configuration options.
@@ -193,50 +193,6 @@ class Transaction
     public function set(DocumentReference $document, array $fields, array $options = [])
     {
         $this->writer->set($document->name(), $fields, $options);
-
-        return $this;
-    }
-
-    /**
-     * Enqueue an update to a Firestore document.
-     *
-     * Merges provided data with data stored in Firestore.
-     *
-     * Calling this method on a non-existent document will raise an exception.
-     *
-     * This method supports various sentinel values, to perform special operations
-     * on fields. Available sentinel values are provided as methods, found in
-     * {@see Google\Cloud\Firestore\FieldValue}.
-     *
-     * To update a document using field paths, see
-     * {@see Google\Cloud\Firestore\Transaction::updatePaths()}.
-     *
-     * Example:
-     * ```
-     * $transaction->update($document, [
-     *     'name' => 'John'
-     * ]);
-     * ```
-     *
-     * ```
-     * // Fields may be deleted by setting them to a special value.
-     * use Google\Cloud\Firestore\FieldValue;
-     *
-     * $transaction->update($document, [
-     *     'country' => FieldValue::deleteField()
-     * ]);
-     * ```
-     *
-     * @codingStandardsIgnoreStart
-     * @param DocumentReference $document The document to update.
-     * @param array $fields An array containing field names paired with their value.
-     * @param array $options Configuration options
-     * @return Transaction
-     * @codingStandardsIgnoreEnd
-     */
-    public function update(DocumentReference $document, array $fields, array $options = [])
-    {
-        $this->writer->update($document->name(), $fields, $options);
 
         return $this;
     }
@@ -258,7 +214,7 @@ class Transaction
      *
      * Example:
      * ```
-     * $transaction->updatePaths($document, [
+     * $transaction->update($document, [
      *     ['path' => 'name', 'value' => 'John'],
      *     ['path' => 'country', 'value' => 'USA'],
      *     ['path' => 'cryptoCurrencies.bitcoin', 'value' => 0.5],
@@ -268,12 +224,23 @@ class Transaction
      * ```
      *
      * ```
+     * // Google Cloud PHP provides special field values to enable operations such
+     * // as deleting fields or setting the value to the current server timestamp.
+     * use Google\Cloud\Firestore\FieldValue;
+     *
+     * $transaction->update($document, [
+     *     ['path' => 'country', 'value' => FieldValue::deleteField()],
+     *     ['path' => 'lastLogin', 'value' => FieldValue::serverTimestamp()]
+     * ]);
+     * ```
+     *
+     * ```
      * // If your field names contain special characters (such as `.`, or symbols),
      * // using {@see Google\Cloud\Firestore\FieldPath} will properly escape each element.
      *
      * use Google\Cloud\Firestore\FieldPath;
      *
-     * $transaction->updatePaths($document, [
+     * $transaction->update($document, [
      *     ['path' => new FieldPath(['cryptoCurrencies', 'big$$$coin']), 'value' => 5.51]
      * ]);
      * ```
@@ -285,9 +252,9 @@ class Transaction
      * @return Transaction
      * @codingStandardsIgnoreEnd
      */
-    public function updatePaths(DocumentReference $document, array $data, array $options = [])
+    public function update(DocumentReference $document, array $data, array $options = [])
     {
-        $this->writer->updatePaths($document->name(), $data, $options);
+        $this->writer->update($document->name(), $data, $options);
 
         return $this;
     }

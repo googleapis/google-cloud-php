@@ -45,7 +45,7 @@ class ValueMapperTest extends FirestoreTestCase
     public function testValue($input, callable $expectation = null)
     {
         self::$document->update([
-            self::FIELD => $input
+            ['path' => self::FIELD, 'value' => $input]
         ]);
 
         $snapshot = self::$document->snapshot();
@@ -80,7 +80,7 @@ class ValueMapperTest extends FirestoreTestCase
         $blob = new Blob('foobar');
 
         self::$document->update([
-            self::FIELD => $blob
+            ['path' => self::FIELD, 'value' => $blob]
         ]);
 
         $snapshot = self::$document->snapshot();

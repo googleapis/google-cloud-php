@@ -38,7 +38,9 @@ abstract class FieldValue
      *
      * $firestore = new FirestoreClient;
      * $document = $firestore->document('users/dave');
-     * $document->update(['hometown' => FieldValue::deleteField()]);
+     * $document->update([
+     *     ['path' => 'hometown', 'value' => FieldValue::deleteField()]
+     * ]);
      * ```
      *
      * @return string
@@ -62,7 +64,9 @@ abstract class FieldValue
      *
      * $firestore = new FirestoreClient;
      * $document = $firestore->document('users/dave');
-     * $document->update(['lastLogin' => FieldValue::serverTimestamp()]);
+     * $document->update([
+     *     ['path' => 'lastLogin', 'value' => FieldValue::serverTimestamp()]
+     * ]);
      * ```
      *
      * @return string

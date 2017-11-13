@@ -64,7 +64,7 @@ trait ValidateTrait
     private function arrayHasKeys(array $input, array $keys)
     {
         foreach ($keys as $key) {
-            if (!isset($input[$key])) {
+            if (!array_key_exists($key, $input)) {
                 throw new \InvalidArgumentException(sprintf(
                     'Input missing required one or more required keys. Required keys are %s',
                     implode(', ', $keys)

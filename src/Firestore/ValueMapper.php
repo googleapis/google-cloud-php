@@ -160,10 +160,10 @@ class ValueMapper
     }
 
     /**
-     * Accepts a list of FieldPath objects and a list of values, and constructs
+     * Accepts a list of field paths and a list of values, and constructs
      * a nested array of fields and values.
      *
-     * @param FieldPath[] $paths The field paths.
+     * @param string[] $paths The field paths.
      * @param array $values The field values.
      * @return array
      * @todo less recursion
@@ -187,7 +187,7 @@ class ValueMapper
                 }
             }
 
-            $output = array_merge_recursive($output, $val);
+            $output = $this->arrayMergeRecursive($output, $val);
         }
 
         return $output;
