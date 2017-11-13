@@ -73,18 +73,22 @@ class Daemon
             ? $options['sourceContext']
             : $this->defaultSourceContext();
         var_dump($sourceContext);
+        $extSourceContext = new ExtendedSourceContext($sourceContext, []);
 
         $uniquifier = array_key_exists('uniquifier', $options)
             ? $options['uniquifier']
             : $this->defaultUniquifier();
-        $name = $uniquifier;
+
+        $name = array_key_exists('name', $options)
+            ? $options['name']
+            : $this->defaultName();
+
         $description = $uniquifier . ' debugger';
         $this->debuggee = $client->debuggee($name, [
             'uniquifier' => $uniquifier,
             'description' => $description,
-            'sourceContexts' => [$sourceContext]
-            // FIXME: add extended source context - plain source context is
-            // deprecated
+            'sourceContexts' => [$sourceContext],
+            'extendedSourceContexts' => [$extSourceContext]
         ]);
         $this->debuggee->register();
 
@@ -144,10 +148,15 @@ class Daemon
         }
     }
 
+    private function defaultName()
+    {
+        return 'default php debugger name';
+    }
+
     private function defaultUniquifier()
     {
         if (isset($_SERVER['GAE_SERVICE'])) {
-            return $_SERVER['GAE_SERVICE'] . '-' . $_SERVER['GAE_VERSION'];
+            return $_SERVER['GAE_SERVICE'] . ' - ' . $_SERVER['GAE_VERSION'];
         }
         return gethostname() . '-' . getcwd();
     }

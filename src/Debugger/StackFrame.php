@@ -54,8 +54,8 @@ class StackFrame implements \JsonSerializable
      */
     public function __construct($function, SourceLocation $location)
     {
-        $this->function = $this->pluck('function', $data, false);
-        $this->location = new SourceLocation($this->pluck('location', $data, false));
+        $this->function = $function;
+        $this->location = $location;
     }
 
     /**

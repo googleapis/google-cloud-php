@@ -114,7 +114,7 @@ class Breakpoint implements \JsonSerializable
      */
     public function action()
     {
-        return $this->info['action'];
+        return isset($this->info['action']) ? $this->info['action'] : self::ACTION_CAPTURE;
     }
 
     /**
@@ -144,7 +144,7 @@ class Breakpoint implements \JsonSerializable
      */
     public function logLevel()
     {
-        return isset($this->info['logLevel']) ? $this->info['logLevel'] : LOG_LEVEL_INFO;
+        return isset($this->info['logLevel']) ? $this->info['logLevel'] : self::LOG_LEVEL_INFO;
     }
 
     /**
@@ -229,13 +229,13 @@ class Breakpoint implements \JsonSerializable
             ? $stackFrameData['function']
             : null;
 
-        $sf = new StackFrame([
-            'function' => $function,
-            'location' => [
+        $sf = new StackFrame(
+            $function,
+            new SourceLocation([
                 'path' => $stackFrameData['filename'],
                 'line' => $stackFrameData['line']
-            ]
-        ]);
+            ])
+        );
 
         if (isset($stackFrameData['locals'])) {
             foreach ($stackFrameData['locals'] as $local) {
