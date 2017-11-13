@@ -542,30 +542,4 @@ class Query
             $query
         );
     }
-
-    /**
-     * A method, similar to PHP's `array_merge_recursive`, with two differences.
-     *
-     * 1. Keys in $array2 take precedence over keys in $array1.
-     * 2. Non-array keys found in both inputs are not transformed into an array
-     *    and appended. Rather, the value in $array2 is used.
-     *
-     * @param array $array1
-     * @param array $array2
-     * @return array
-     */
-    private function arrayMergeRecursive(array $array1, array $array2)
-    {
-        foreach ($array2 as $key => $value) {
-            if (array_key_exists($key, $array1) && is_array($array1[$key]) && is_array($value)) {
-                $array1[$key] = ($this->isAssoc($array1[$key]) && $this->isAssoc($value))
-                    ? $this->arrayMergeRecursive($array1[$key], $value)
-                    : array_merge($array1[$key], $value);
-            } else {
-                $array1[$key] = $value;
-            }
-        }
-
-        return $array1;
-    }
 }
