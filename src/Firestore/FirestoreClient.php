@@ -298,8 +298,7 @@ class FirestoreClient
             'documents' => $paths,
         ] + $options);
 
-        $pathKeys = array_flip($paths);
-        $out = [];
+        $res = [];
         foreach ($documents as $document) {
             $exists = isset($document['found']);
             $data = $exists
@@ -310,15 +309,17 @@ class FirestoreClient
                 ? $document['found']['name']
                 : $document['missing'];
 
-            $snap = $this->createSnapshotWithData(
+            $res[$name] = $this->createSnapshotWithData(
                 $this->valueMapper,
                 $this->document($name),
                 $data,
                 $exists
             );
+        }
 
-            $key = $pathKeys[$name];
-            $out[$key] = $snap;
+        $out = [];
+        foreach ($paths as $path) {
+            $out[] = $res[$path];
         }
 
         return $out;
