@@ -17,11 +17,6 @@
 
 namespace Google\Cloud\Firestore;
 
-use Grpc;
-use Google\Cloud\Core\ExponentialBackoff;
-use Google\Cloud\Core\Exception\ServiceException;
-use Google\Cloud\Firestore\Connection\ConnectionInterface;
-
 /**
  * Represents the result set of a Cloud Firestore Query.
  *
@@ -45,69 +40,30 @@ use Google\Cloud\Firestore\Connection\ConnectionInterface;
  */
 class QuerySnapshot implements \IteratorAggregate
 {
-    use SnapshotTrait;
-
-    /**
-     * @var ConnectionInterface
-     */
-    private $connection;
-
-    /**
-     * @var ValueMapper
-     */
-    private $valueMapper;
-
     /**
      * @var Query
      */
     private $query;
 
     /**
-     * @var callable
+     * @var DocumentSnapshot[]
      */
-    private $call;
+    private $rows;
 
     /**
-     * @var int
-     */
-    private $retries;
-
-    /**
-     * @var bool|null
-     */
-    private $empty;
-
-    /**
-     * @var int|null
-     */
-    private $size;
-
-    /**
-     * @param ConnectionInterface $connection A connection to Cloud Firestore
-     * @param ValueMapper $valueMapper A Firestore Value Mapper
      * @param Query $query The Query which generated this snapshot.
-     * @param callable $call A callable function which executes the Firestore query.
-     * @param int $retries The number of retries allowed on failure.
+     * @param DocumentSnapshot[] $rows The query result rows.
      */
     public function __construct(
-        ConnectionInterface $connection,
-        ValueMapper $valueMapper,
         Query $query,
-        callable $call,
-        $retries = FirestoreClient::MAX_RETRIES
+        array $rows
     ) {
-        $this->connection = $connection;
-        $this->valueMapper = $valueMapper;
         $this->query = $query;
-        $this->call = $call;
-        $this->retries = $retries;
+        $this->rows = $rows;
     }
 
     /**
      * Check if the result is empty.
-     *
-     * Please note that this value will be null until the result is first
-     * iterated.
      *
      * Example:
      * ```
@@ -118,15 +74,11 @@ class QuerySnapshot implements \IteratorAggregate
      */
     public function isEmpty()
     {
-        return $this->empty;
+        return empty($this->rows);
     }
 
     /**
      * Returns the size of the result set.
-     *
-     * Please note that this value will be null until the entire result set
-     * has been iterated. If the query results are ended before the set has been
-     * fully enumerated, this value will never be set.
      *
      * Example:
      * ```
@@ -137,7 +89,7 @@ class QuerySnapshot implements \IteratorAggregate
      */
     public function size()
     {
-        return $this->size;
+        return count($this->rows);
     }
 
     /**
@@ -149,57 +101,11 @@ class QuerySnapshot implements \IteratorAggregate
      * $rows = $snapshot->rows();
      * ```
      *
-     * @codingStandardsIgnoreStart
-     * @see https://cloud.google.com/firestore/docs/reference/rpc/google.firestore.v1beta1#google.firestore.v1beta1.Firestore.RunQuery RunQuery
-     * @codingStandardsIgnoreEnd
-     *
-     * @return \Generator<DocumentSnapshot>
+     * @return DocumentSnapshot[]
      */
     public function rows()
     {
-        $generator = $this->executeQuery();
-
-        // cache collection references
-        $collections = [];
-
-        $this->empty = true;
-        $size = 0;
-
-        try {
-            while ($generator->valid()) {
-                $result = $generator->current();
-
-                if (isset($result['document']) && $result['document']) {
-                    $this->empty = false;
-                    $size++;
-
-                    $collectionName = $this->parentPath($result['document']['name']);
-                    if (!isset($collections[$collectionName])) {
-                        $collections[$collectionName] = new CollectionReference(
-                            $this->connection,
-                            $this->valueMapper,
-                            $collectionName
-                        );
-                    }
-
-                    $ref = new DocumentReference(
-                        $this->connection,
-                        $this->valueMapper,
-                        $collections[$collectionName],
-                        $result['document']['name']
-                    );
-
-                    $document = $result['document'];
-                    $document['readTime'] = $result['readTime'];
-
-                    yield $this->createSnapshotWithData($this->valueMapper, $ref, $document);
-                }
-
-                $generator->next();
-            }
-        } finally {
-            $this->size = $size;
-        }
+        return $this->rows;
     }
 
     /**
@@ -208,7 +114,7 @@ class QuerySnapshot implements \IteratorAggregate
      */
     public function getIterator()
     {
-        return $this->rows();
+        return new \ArrayIterator($this->rows);
     }
 
     /**

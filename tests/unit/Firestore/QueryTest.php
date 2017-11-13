@@ -403,18 +403,6 @@ class QueryTest extends TestCase
         ]);
     }
 
-    public function testDefaultRetries()
-    {
-        $this->connection->runQuery(Argument::withEntry('retries', 0))
-            ->shouldBeCalledTimes(1)->willReturn(new \ArrayIterator([
-                []
-            ]));
-
-        $query = clone $this->query;
-        $query->___setProperty('connection', $this->connection->reveal());
-        $query->documents()->rows()->current();
-    }
-
     private function runAndAssert(callable $filters, $assertion)
     {
         if (is_array($assertion)) {
@@ -434,6 +422,6 @@ class QueryTest extends TestCase
         $this->assertInstanceOf(Query::class, $query);
         $this->assertNotEquals($immutable, $query);
 
-        $query->documents(['maxRetries' => 0])->rows()->current();
+        $query->documents(['maxRetries' => 0]);
     }
 }

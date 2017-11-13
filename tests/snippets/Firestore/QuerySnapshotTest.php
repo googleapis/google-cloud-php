@@ -17,12 +17,14 @@
 
 namespace Google\Cloud\Tests\Snippets\Firestore;
 
-use Google\Cloud\Firestore\Query;
-use Google\Cloud\Tests\GrpcTestTrait;
-use Google\Cloud\Firestore\ValueMapper;
-use Google\Cloud\Firestore\QuerySnapshot;
 use Google\Cloud\Dev\Snippet\SnippetTestCase;
 use Google\Cloud\Firestore\Connection\ConnectionInterface;
+use Google\Cloud\Firestore\FirestoreClient;
+use Google\Cloud\Firestore\Query;
+use Google\Cloud\Firestore\QuerySnapshot;
+use Google\Cloud\Firestore\ValueMapper;
+use Google\Cloud\Tests\GrpcTestTrait;
+use Prophecy\Argument;
 
 /**
  * @group firestore
@@ -39,18 +41,25 @@ class QuerySnapshotTest extends SnippetTestCase
     {
         $this->connection = $this->prophesize(ConnectionInterface::class);
         $this->snapshot = \Google\Cloud\Dev\stub(QuerySnapshot::class, [
-            $this->connection->reveal(),
-            new ValueMapper($this->connection->reveal(), false),
             $this->prophesize(Query::class)->reveal(),
-            function(){}
-        ], ['connection', 'call']);
+            []
+        ], ['rows']);
     }
 
     public function testClass()
     {
         $this->checkAndSkipGrpcTests();
 
+        $this->connection->runQuery(Argument::any())
+            ->shouldBeCalled()
+            ->willReturn(new \ArrayIterator([]));
+
+        $client = \Google\Cloud\Dev\stub(FirestoreClient::class);
+        $client->___setProperty('connection', $this->connection->reveal());
+
         $snippet = $this->snippetFromClass(QuerySnapshot::class);
+        $snippet->setLine(2, '');
+        $snippet->addLocal('firestore', $client);
         $res = $snippet->invoke('snapshot');
         $this->assertInstanceOf(QuerySnapshot::class, $res->returnVal());
     }
@@ -60,21 +69,9 @@ class QuerySnapshotTest extends SnippetTestCase
         $snippet = $this->snippetFromClass(QuerySnapshot::class, 1);
         $snippet->addLocal('snapshot', $this->snapshot);
 
-        $this->snapshot->___setProperty('call', function () {
-            return new \ArrayIterator([
-                [
-                    'document' => [
-                        'name' => 'foo',
-                        'fields' => [
-                            'name' => [
-                                'stringValue' => 'John'
-                            ]
-                        ]
-                    ],
-                    'readTime' => ['seconds' => time()]
-                ]
-            ]);
-        });
+        $this->snapshot->___setProperty('rows', [
+            ['name' => 'John']
+        ]);
 
         $res = $snippet->invoke();
         $this->assertEquals('John', trim($res->output()));
@@ -85,20 +82,20 @@ class QuerySnapshotTest extends SnippetTestCase
         $snippet = $this->snippetFromMethod(QuerySnapshot::class, 'rows');
         $snippet->addLocal('snapshot', $this->snapshot);
         $res = $snippet->invoke('rows');
-        $this->assertInstanceOf(\Generator::class, $res->returnVal());
+        $this->assertEquals([], $res->returnVal());
     }
 
     public function testIsEmpty()
     {
         $snippet = $this->snippetFromMethod(QuerySnapshot::class, 'isEmpty');
         $snippet->addLocal('snapshot', $this->snapshot);
-        $this->assertNull($snippet->invoke('empty')->returnVal());
+        $this->assertTrue($snippet->invoke('empty')->returnVal());
     }
 
     public function testSize()
     {
         $snippet = $this->snippetFromMethod(QuerySnapshot::class, 'size');
         $snippet->addLocal('snapshot', $this->snapshot);
-        $this->assertNull($snippet->invoke('size')->returnVal());
+        $this->assertEquals(0, $snippet->invoke('size')->returnVal());
     }
 }

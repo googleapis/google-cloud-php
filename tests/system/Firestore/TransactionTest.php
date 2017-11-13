@@ -126,6 +126,8 @@ class TransactionTest extends FirestoreTestCase
 
     public function testAbort()
     {
+        $this->markTestSkipped();
+
         $this->document->create([
             'foo' => 'bar'
         ]);

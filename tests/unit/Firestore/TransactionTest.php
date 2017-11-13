@@ -96,7 +96,6 @@ class TransactionTest extends TestCase
 
         $res = $this->transaction->runQuery($query);
         $this->assertInstanceOf(QuerySnapshot::class, $res);
-        $res->rows()->current();
     }
 
     public function testCreate()

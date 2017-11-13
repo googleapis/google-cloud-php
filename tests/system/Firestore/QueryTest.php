@@ -101,6 +101,6 @@ class QueryTest extends FirestoreTestCase
 
     private function getQueryRow($query)
     {
-        return $query->documents()->rows()->current();
+        return current(iterator_to_array($query->documents()));
     }
 }

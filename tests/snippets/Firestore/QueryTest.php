@@ -62,6 +62,12 @@ class QueryTest extends SnippetTestCase
 
     public function testDocuments()
     {
+        $this->connection->runQuery(Argument::any())
+            ->shouldBeCalled()
+            ->willReturn(new \ArrayIterator([]));
+
+        $this->query->___setProperty('connection', $this->connection->reveal());
+
         $snippet = $this->snippetFromMethod(Query::class, 'documents');
         $snippet->addLocal('query', $this->query);
         $res = $snippet->invoke('result');
@@ -188,7 +194,7 @@ class QueryTest extends SnippetTestCase
         $this->query->___setProperty('connection', $this->connection->reveal());
         $snippet->addLocal('query', $this->query);
         $res = $snippet->invoke('query');
-        $res->returnVal()->documents(['retries' => 0])->rows()->current();
+        $res->returnVal()->documents(['retries' => 0]);
         $this->assertInstanceOf(Query::class, $res->returnVal());
     }
 }

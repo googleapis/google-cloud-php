@@ -38,173 +38,51 @@ class QuerySnapshotTest extends TestCase
     {
         $this->connection = $this->prophesize(ConnectionInterface::class);
         $this->snapshot = \Google\Cloud\Dev\stub(QuerySnapshot::class, [
-            $this->connection->reveal(),
-            new ValueMapper($this->connection->reveal(), false),
             $this->prophesize(Query::class)->reveal(),
-            function() {}
-            ], ['connection', 'call']);
+            []
+        ], ['rows']);
     }
 
     public function testIsEmptyReturnsFalse()
     {
-        $this->connection->runQuery(Argument::any())
-            ->shouldBeCalled()
-            ->willReturn(new \ArrayIterator([
-                [
-                    'document' => [
-                        'name' => 'foo',
-                        'fields' => []
-                    ],
-                    'readTime' => ['seconds' => time()]
-                ]
-            ]));
-
-        $this->setCall($this->connection->reveal());
-
-        $this->snapshot->rows()->current();
+        $this->snapshot->___setProperty('rows', [[]]);
 
         $this->assertFalse($this->snapshot->isEmpty());
     }
 
     public function testIsEmptyReturnsTrue()
     {
-        $this->connection->runQuery(Argument::any())
-            ->shouldBeCalled()
-            ->willReturn(new \ArrayIterator([
-                []
-            ]));
-
-        $this->setCall($this->connection->reveal());
-
-        $this->snapshot->rows()->current();
+        $this->snapshot->___setProperty('rows', []);
 
         $this->assertTrue($this->snapshot->isEmpty());
     }
 
     public function testSize()
     {
-        $this->assertNull($this->snapshot->size());
-    }
+        $this->snapshot->___setProperty('rows', []);
+        $this->assertEquals(0, $this->snapshot->size());
 
-    public function testSizeWithCount()
-    {
-        $this->connection->runQuery(Argument::any())
-            ->shouldBeCalled()
-            ->willReturn(new \ArrayIterator([
-                [
-                    'document' => [
-                        'name' => 'foo',
-                        'fields' => []
-                    ],
-                    'readTime' => ['seconds' => time()]
-                ]
-            ]));
-
-        $this->setCall($this->connection->reveal());
-
-        iterator_to_array($this->snapshot->rows());
-        $this->assertEquals(1, $this->snapshot->size());
-    }
-
-    public function testIterate()
-    {
-        $this->connection->runQuery(Argument::any())
-            ->shouldBeCalled()
-            ->willReturn(new \ArrayIterator([
-                [
-                    'document' => [
-                        'name' => 'foo',
-                        'fields' => [
-                            'hello' => [
-                                'stringValue' => 'world'
-                            ]
-                        ]
-                    ],
-                    'readTime' => ['seconds' => time()]
-                ], [
-                    'document' => [
-                        'name' => 'bar',
-                        'fields' => [
-                            'hello' => [
-                                'stringValue' => 'google'
-                            ]
-                        ]
-                    ],
-                    'readTime' => ['seconds' => time()]
-                ]
-            ]));
-
-        $this->setCall($this->connection->reveal());
-
-        $hellos = [];
-        foreach ($this->snapshot as $row) {
-            $hellos[] = $row['hello'];
-        }
-
-        $this->assertEquals(['world', 'google'], $hellos);
+        $this->snapshot->___setProperty('rows', [[], []]);
+        $this->assertEquals(2, $this->snapshot->size());
     }
 
     public function testRows()
     {
-        $this->connection->runQuery(Argument::any())
-            ->shouldBeCalled()
-            ->willReturn(new \ArrayIterator([
-                [
-                    'document' => [
-                        'name' => 'foo',
-                        'fields' => [
-                            'hello' => [
-                                'stringValue' => 'world'
-                            ]
-                        ]
-                    ],
-                    'readTime' => ['seconds' => time()]
-                ], [
-                    'document' => [
-                        'name' => 'bar',
-                        'fields' => [
-                            'hello' => [
-                                'stringValue' => 'google'
-                            ]
-                        ]
-                    ],
-                    'readTime' => ['seconds' => time()]
-                ]
-            ]));
+        $rows = [
+            'foo', 'bar'
+        ];
+        $this->snapshot->___setProperty('rows', $rows);
 
-        $this->setCall($this->connection->reveal());
-
-        $hellos = [];
-        foreach ($this->snapshot->rows() as $row) {
-            $hellos[] = $row['hello'];
-        }
-
-        $this->assertEquals(['world', 'google'], $hellos);
+        $this->assertEquals($rows, $this->snapshot->rows());
     }
 
-    public function testExecuteRetry()
+    public function testIterator()
     {
-        $this->connection->runQuery(Argument::any())
-            ->shouldBeCalled()
-            ->will(function ($nothing, $mock) {
-                $mock->runQuery(Argument::any())
-                    ->shouldBeCalled()
-                    ->willReturn(new \ArrayIterator([
-                        []
-                    ]));
+        $rows = [
+            'foo', 'bar'
+        ];
+        $this->snapshot->___setProperty('rows', $rows);
 
-                throw new AbortedException('');
-            });
-
-        $this->setCall($this->connection->reveal());
-
-        iterator_to_array($this->snapshot->rows());
-    }
-
-    private function setCall(ConnectionInterface $conn)
-    {
-        $this->snapshot->___setProperty('call', function () use ($conn) {
-            return $conn->runQuery([]);
-        });
+        $this->assertEquals($rows, iterator_to_array($this->snapshot));
     }
 }

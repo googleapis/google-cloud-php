@@ -17,13 +17,14 @@
 
 namespace Google\Cloud\Firestore;
 
-use Google\Cloud\Core\ArrayTrait;
 use Google\Cloud\Core\DebugInfoTrait;
-use Google\Firestore\V1beta1\StructuredQuery_Direction;
+use Google\Cloud\Core\ExponentialBackoff;
 use Google\Cloud\Firestore\Connection\ConnectionInterface;
+use Google\Cloud\Firestore\SnapshotTrait;
+use Google\Firestore\V1beta1\StructuredQuery_CompositeFilter_Operator;
+use Google\Firestore\V1beta1\StructuredQuery_Direction;
 use Google\Firestore\V1beta1\StructuredQuery_FieldFilter_Operator;
 use Google\Firestore\V1beta1\StructuredQuery_UnaryFilter_Operator;
-use Google\Firestore\V1beta1\StructuredQuery_CompositeFilter_Operator;
 
 /**
  * A Cloud Firestore Query.
@@ -43,8 +44,8 @@ use Google\Firestore\V1beta1\StructuredQuery_CompositeFilter_Operator;
  */
 class Query
 {
-    use ArrayTrait;
     use DebugInfoTrait;
+    use SnapshotTrait;
 
     const OP_LESS_THAN = StructuredQuery_FieldFilter_Operator::LESS_THAN;
     const OP_LESS_THAN_OR_EQUAL = StructuredQuery_FieldFilter_Operator::LESS_THAN_OR_EQUAL;
@@ -134,37 +135,70 @@ class Query
     /**
      * Get all documents matching the provided query filters.
      *
-     * This method will not execute an immediate service call. The Query will be
-     * executed once you begin iterating over the rows (either by iterating
-     * directly on the QuerySnapshot, or by iterating over
-     * {@see Google\Cloud\Firestore\QuerySnapshot::rows()}).
-     *
      * Example:
      * ```
      * $result = $query->documents();
      * ```
      *
+     * @codingStandardsIgnoreStart
+     * @see https://cloud.google.com/firestore/docs/reference/rpc/google.firestore.v1beta1#google.firestore.v1beta1.Firestore.RunQuery RunQuery
+     * @codingStandardsIgnoreEnd
      * @param array $options {
      *     Configuration options.
      *
      *     @type int $maxRetries The maximum number of times to retry a query.
      *           **Defaults to** `5`.
      * }
-     * @return QuerySnapshot
+     * @return QuerySnapshot<DocumentSnapshot>
      */
     public function documents(array $options = [])
     {
         $maxRetries = $this->pluck('maxRetries', $options, false) ?: FirestoreClient::MAX_RETRIES;
 
-        $call = function () use ($options) {
-            return $this->connection->runQuery([
+        $rows = (new ExponentialBackoff($maxRetries))->execute(function () use ($maxRetries, $options) {
+            $generator = $this->connection->runQuery([
                 'parent' => $this->parent,
                 'structuredQuery' => $this->query,
-                'retries' => 0,
+                'retries' => 0
             ] + $options);
-        };
 
-        return new QuerySnapshot($this->connection, $this->valueMapper, $this, $call, $maxRetries);
+            // cache collection references
+            $collections = [];
+
+            $out = [];
+            while ($generator->valid()) {
+                $result = $generator->current();
+
+                if (isset($result['document']) && $result['document']) {
+                    $collectionName = $this->parentPath($result['document']['name']);
+                    if (!isset($collections[$collectionName])) {
+                        $collections[$collectionName] = new CollectionReference(
+                            $this->connection,
+                            $this->valueMapper,
+                            $collectionName
+                        );
+                    }
+
+                    $ref = new DocumentReference(
+                        $this->connection,
+                        $this->valueMapper,
+                        $collections[$collectionName],
+                        $result['document']['name']
+                    );
+
+                    $document = $result['document'];
+                    $document['readTime'] = $result['readTime'];
+
+                    $out[] = $this->createSnapshotWithData($this->valueMapper, $ref, $document);
+                }
+
+                $generator->next();
+            }
+
+            return $out;
+        });
+
+        return new QuerySnapshot($this, $rows);
     }
 
     /**
