@@ -18,12 +18,13 @@
 namespace Google\Cloud\Tests\Unit\Firestore;
 
 use Google\Cloud\Firestore\PathTrait;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group firestore
  * @group firestore-pathtrait
  */
-class PathTraitTest extends \PHPUnit_Framework_TestCase
+class PathTraitTest extends TestCase
 {
     const PROJECT = 'project';
     const DATABASE = 'database';

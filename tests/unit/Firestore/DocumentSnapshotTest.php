@@ -18,17 +18,18 @@
 namespace Google\Cloud\Tests\Unit\Firestore;
 
 use Google\Cloud\Core\Timestamp;
+use Google\Cloud\Firestore\Connection\ConnectionInterface;
+use Google\Cloud\Firestore\DocumentReference;
+use Google\Cloud\Firestore\DocumentSnapshot;
 use Google\Cloud\Firestore\FieldPath;
 use Google\Cloud\Firestore\ValueMapper;
-use Google\Cloud\Firestore\DocumentSnapshot;
-use Google\Cloud\Firestore\DocumentReference;
-use Google\Cloud\Firestore\Connection\ConnectionInterface;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group firestore
  * @group firestore-documentsnapshot
  */
-class DocumentSnapshotTest extends \PHPUnit_Framework_TestCase
+class DocumentSnapshotTest extends TestCase
 {
     const NAME = 'projects/example_project/databases/(default)/documents/a/b';
     const ID = 'b';

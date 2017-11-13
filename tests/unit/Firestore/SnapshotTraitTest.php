@@ -18,18 +18,19 @@
 namespace Google\Cloud\Tests\Unit\Firestore;
 
 use Google\Cloud\Core\Timestamp;
-use Google\Cloud\Firestore\ValueMapper;
-use Google\Cloud\Firestore\SnapshotTrait;
-use Google\Cloud\Firestore\DocumentSnapshot;
-use Google\Cloud\Firestore\DocumentReference;
 use Google\Cloud\Firestore\Connection\ConnectionInterface;
+use Google\Cloud\Firestore\DocumentReference;
+use Google\Cloud\Firestore\DocumentSnapshot;
+use Google\Cloud\Firestore\SnapshotTrait;
+use Google\Cloud\Firestore\ValueMapper;
+use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
 
 /**
  * @group firestore
  * @group firestore-snapshottrait
  */
-class SnapshotTraitTest extends \PHPUnit_Framework_TestCase
+class SnapshotTraitTest extends TestCase
 {
     const PROJECT = 'example_project';
     const DATABASE = '(default)';

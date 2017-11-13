@@ -18,19 +18,20 @@
 namespace Google\Cloud\Tests\Unit\Firestore;
 
 use Google\Cloud\Core\Timestamp;
-use Google\Cloud\Firestore\FieldPath;
-use Google\Cloud\Firestore\ValueMapper;
-use Google\Cloud\Firestore\DocumentSnapshot;
-use Google\Cloud\Firestore\DocumentReference;
 use Google\Cloud\Firestore\CollectionReference;
 use Google\Cloud\Firestore\Connection\ConnectionInterface;
+use Google\Cloud\Firestore\DocumentReference;
+use Google\Cloud\Firestore\DocumentSnapshot;
+use Google\Cloud\Firestore\FieldPath;
+use Google\Cloud\Firestore\ValueMapper;
+use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
 
 /**
  * @group firestore
  * @group firestore-documentreference
  */
-class DocumentReferenceTest extends \PHPUnit_Framework_TestCase
+class DocumentReferenceTest extends TestCase
 {
     const PROJECT = 'example_project';
     const DATABASE = '(default)';

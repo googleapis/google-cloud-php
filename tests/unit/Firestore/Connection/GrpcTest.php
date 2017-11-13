@@ -17,26 +17,27 @@
 
 namespace Google\Cloud\Tests\Unit\Firestore\Connection;
 
-use Prophecy\Argument;
+use Google\Cloud\Core\GrpcRequestWrapper;
 use Google\Cloud\Core\GrpcTrait;
-use Google\Firestore\V1beta1\Write;
-use Google\Firestore\V1beta1\Value;
+use Google\Cloud\Firestore\Connection\Grpc;
 use Google\Cloud\Tests\GrpcTestTrait;
 use Google\Firestore\V1beta1\Document;
-use Google\Cloud\Core\GrpcRequestWrapper;
 use Google\Firestore\V1beta1\DocumentMask;
 use Google\Firestore\V1beta1\Precondition;
-use Google\Cloud\Firestore\Connection\Grpc;
 use Google\Firestore\V1beta1\StructuredQuery;
+use Google\Firestore\V1beta1\StructuredQuery_CollectionSelector;
 use Google\Firestore\V1beta1\TransactionOptions;
 use Google\Firestore\V1beta1\TransactionOptions_ReadWrite;
-use Google\Firestore\V1beta1\StructuredQuery_CollectionSelector;
+use Google\Firestore\V1beta1\Value;
+use Google\Firestore\V1beta1\Write;
+use PHPUnit\Framework\TestCase;
+use Prophecy\Argument;
 
 /**
  * @group firestore
  * @group firestore-grpc
  */
-class GrpcTest extends \PHPUnit_Framework_TestCase
+class GrpcTest extends TestCase
 {
     use GrpcTestTrait;
     use GrpcTrait;

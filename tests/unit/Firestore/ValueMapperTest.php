@@ -18,23 +18,24 @@
 namespace Google\Cloud\Tests\Unit\Firestore;
 
 use Google\Cloud\Core\Blob;
-use Google\Cloud\Core\Int64;
-use Google\Protobuf\NullValue;
 use Google\Cloud\Core\GeoPoint;
+use Google\Cloud\Core\Int64;
 use Google\Cloud\Core\Timestamp;
-use Google\Cloud\Firestore\FieldPath;
-use Google\Cloud\Firestore\FieldValue;
-use Google\Cloud\Firestore\ValueMapper;
-use Google\Cloud\Firestore\FirestoreClient;
-use Google\Cloud\Firestore\DocumentReference;
 use Google\Cloud\Firestore\CollectionReference;
 use Google\Cloud\Firestore\Connection\ConnectionInterface;
+use Google\Cloud\Firestore\DocumentReference;
+use Google\Cloud\Firestore\FieldPath;
+use Google\Cloud\Firestore\FieldValue;
+use Google\Cloud\Firestore\FirestoreClient;
+use Google\Cloud\Firestore\ValueMapper;
+use Google\Protobuf\NullValue;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group firestore
  * @group firestore-valuemapper
  */
-class ValueMapperTest extends \PHPUnit_Framework_TestCase
+class ValueMapperTest extends TestCase
 {
     private $connection;
     private $mapper;

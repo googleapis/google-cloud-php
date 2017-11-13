@@ -18,12 +18,13 @@
 namespace Google\Cloud\Tests\Unit\Firestore;
 
 use Google\Cloud\Firestore\FieldPath;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group firestore
  * @group firestore-fieldpath
  */
-class FieldPathTest extends \PHPUnit_Framework_TestCase
+class FieldPathTest extends TestCase
 {
     private $pieces = ['foo', 'bar', 'hello', 'world'];
 

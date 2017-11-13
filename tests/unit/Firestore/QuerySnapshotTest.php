@@ -17,18 +17,19 @@
 
 namespace Google\Cloud\Tests\Unit\Firestore;
 
-use Prophecy\Argument;
-use Google\Cloud\Firestore\Query;
-use Google\Cloud\Firestore\ValueMapper;
-use Google\Cloud\Firestore\QuerySnapshot;
 use Google\Cloud\Core\Exception\AbortedException;
 use Google\Cloud\Firestore\Connection\ConnectionInterface;
+use Google\Cloud\Firestore\Query;
+use Google\Cloud\Firestore\QuerySnapshot;
+use Google\Cloud\Firestore\ValueMapper;
+use PHPUnit\Framework\TestCase;
+use Prophecy\Argument;
 
 /**
  * @group firestore
  * @group firestore-querysnapshot
  */
-class QuerySnapshotTest extends \PHPUnit_Framework_TestCase
+class QuerySnapshotTest extends TestCase
 {
     private $connection;
     private $snapshot;

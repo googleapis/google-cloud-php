@@ -17,25 +17,26 @@
 
 namespace Google\Cloud\Tests\Unit\Firestore;
 
-use Prophecy\Argument;
 use Google\Cloud\Core\Blob;
-use Google\Cloud\Core\GeoPoint;
-use Google\Cloud\Core\Timestamp;
-use Google\Cloud\Firestore\FieldPath;
-use Google\Cloud\Tests\GrpcTestTrait;
-use Google\Cloud\Firestore\WriteBatch;
-use Google\Cloud\Firestore\FirestoreClient;
-use Google\Cloud\Core\Iterator\ItemIterator;
-use Google\Cloud\Firestore\DocumentReference;
-use Google\Cloud\Firestore\CollectionReference;
 use Google\Cloud\Core\Exception\AbortedException;
+use Google\Cloud\Core\GeoPoint;
+use Google\Cloud\Core\Iterator\ItemIterator;
+use Google\Cloud\Core\Timestamp;
+use Google\Cloud\Firestore\CollectionReference;
 use Google\Cloud\Firestore\Connection\ConnectionInterface;
+use Google\Cloud\Firestore\DocumentReference;
+use Google\Cloud\Firestore\FieldPath;
+use Google\Cloud\Firestore\FirestoreClient;
+use Google\Cloud\Firestore\WriteBatch;
+use Google\Cloud\Tests\GrpcTestTrait;
+use PHPUnit\Framework\TestCase;
+use Prophecy\Argument;
 
 /**
  * @group firestore
  * @group firestore-client
  */
-class FirestoreClientTest extends \PHPUnit_Framework_TestCase
+class FirestoreClientTest extends TestCase
 {
     use GrpcTestTrait;
 

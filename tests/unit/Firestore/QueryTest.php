@@ -17,20 +17,21 @@
 
 namespace Google\Cloud\Tests\Unit\Firestore;
 
-use Prophecy\Argument;
+use Google\Cloud\Firestore\Connection\ConnectionInterface;
+use Google\Cloud\Firestore\FirestoreClient;
 use Google\Cloud\Firestore\Query;
 use Google\Cloud\Firestore\ValueMapper;
-use Google\Cloud\Firestore\FirestoreClient;
-use Google\Firestore\V1beta1\StructuredQuery_Direction;
-use Google\Cloud\Firestore\Connection\ConnectionInterface;
-use Google\Firestore\V1beta1\StructuredQuery_FieldFilter_Operator;
 use Google\Firestore\V1beta1\StructuredQuery_CompositeFilter_Operator;
+use Google\Firestore\V1beta1\StructuredQuery_Direction;
+use Google\Firestore\V1beta1\StructuredQuery_FieldFilter_Operator;
+use PHPUnit\Framework\TestCase;
+use Prophecy\Argument;
 
 /**
  * @group firestore
  * @group firestore-query
  */
-class QueryTest extends \PHPUnit_Framework_TestCase
+class QueryTest extends TestCase
 {
     const PROJECT = 'example_project';
     const DATABASE = '(default)';
