@@ -5,8 +5,8 @@
     "minimum-stability": "stable",
     "require": {
         "google/cloud-core": "^1.0",
-        "google/proto-client": "^0.25",
-        "google/gax": "^0.25"
+        "google/proto-client": "^0.26",
+        "google/gax": "^0.26"
     },
     "suggest": {
         "google/cloud-storage": "Analyze documents stored in Google Cloud Storage"
