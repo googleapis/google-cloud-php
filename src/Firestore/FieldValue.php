@@ -23,8 +23,17 @@ namespace Google\Cloud\Firestore;
  * This class cannot be instantiated, and methods contained within it should be
  * accessed statically.
  */
-abstract class FieldValue
+class FieldValue
 {
+    /**
+     * @access private
+     * @codeCoverageIgnore
+     */
+    private function __construct()
+    {
+        // Prevent instantiation of this class.
+    }
+
     /**
      * Denotes a field which should be deleted from a Firestore Document.
      *
