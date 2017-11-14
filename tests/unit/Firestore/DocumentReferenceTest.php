@@ -268,6 +268,6 @@ class DocumentReferenceTest extends TestCase
 
         $res = $this->document->set(['foo' => 'bar']);
         $this->assertInstanceOf(Timestamp::class, $res['updateTime']);
-        $this->assertEquals(time(), $res['updateTime']->get()->format('U'));
+        $this->assertEquals(time(), $res['updateTime']->get()->format('U'), '', 3);
     }
 }
