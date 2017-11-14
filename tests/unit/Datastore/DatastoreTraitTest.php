@@ -21,11 +21,12 @@ use Google\Cloud\Datastore\DatastoreClient;
 use Google\Cloud\Datastore\DatastoreTrait;
 use Google\Cloud\Datastore\Key;
 use Google\Cloud\Datastore\Transaction;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group datastore
  */
-class DatastoreTraitTest extends \PHPUnit_Framework_TestCase
+class DatastoreTraitTest extends TestCase
 {
     private $stub;
 

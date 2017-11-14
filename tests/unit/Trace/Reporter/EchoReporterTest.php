@@ -21,11 +21,12 @@ use Google\Cloud\Trace\Reporter\EchoReporter;
 use Google\Cloud\Trace\TraceContext;
 use Google\Cloud\Trace\TraceSpan;
 use Google\Cloud\Trace\Tracer\TracerInterface;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group trace
  */
-class EchoReporterTest extends \PHPUnit_Framework_TestCase
+class EchoReporterTest extends TestCase
 {
     private $tracer;
 

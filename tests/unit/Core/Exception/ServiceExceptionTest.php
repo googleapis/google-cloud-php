@@ -18,12 +18,13 @@
 namespace Google\Cloud\Tests\Unit\Core\Exception;
 
 use Google\Cloud\Core\Exception\ServiceException;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group core
  * @group exception
  */
-class ServiceExceptionTest extends \PHPUnit_Framework_TestCase
+class ServiceExceptionTest extends TestCase
 {
     public function testHasServiceException()
     {

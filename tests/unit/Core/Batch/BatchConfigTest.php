@@ -18,12 +18,13 @@
 namespace Google\Cloud\Tests\Unit\Core\Batch;
 
 use Google\Cloud\Core\Batch\BatchConfig;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group core
  * @group batch
  */
-class BatchConfigTest extends \PHPUnit_Framework_TestCase
+class BatchConfigTest extends TestCase
 {
     private $config;
     private $identifier;

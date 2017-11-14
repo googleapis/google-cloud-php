@@ -63,7 +63,7 @@ use Google\GAX\OperationResponse;
  *     $config = new RecognitionConfig();
  *     $config->setEncoding($encoding);
  *     $config->setSampleRate($sampleRate);
- *     $uri = "gs://bucket_name/file_name.flac";
+ *     $uri = 'gs://bucket_name/file_name.flac';
  *     $audio = new RecognitionAudio();
  *     $audio->setUri($uri);
  *     $response = $speechClient->syncRecognize($config, $audio);
@@ -304,7 +304,7 @@ class SpeechGapicClient
      *     $config = new RecognitionConfig();
      *     $config->setEncoding($encoding);
      *     $config->setSampleRate($sampleRate);
-     *     $uri = "gs://bucket_name/file_name.flac";
+     *     $uri = 'gs://bucket_name/file_name.flac';
      *     $audio = new RecognitionAudio();
      *     $audio->setUri($uri);
      *     $response = $speechClient->syncRecognize($config, $audio);
@@ -374,7 +374,7 @@ class SpeechGapicClient
      *     $config = new RecognitionConfig();
      *     $config->setEncoding($encoding);
      *     $config->setSampleRate($sampleRate);
-     *     $uri = "gs://bucket_name/file_name.flac";
+     *     $uri = 'gs://bucket_name/file_name.flac';
      *     $audio = new RecognitionAudio();
      *     $audio->setUri($uri);
      *     $operationResponse = $speechClient->asyncRecognize($config, $audio);

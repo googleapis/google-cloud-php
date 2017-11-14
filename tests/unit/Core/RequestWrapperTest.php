@@ -19,16 +19,18 @@
 namespace Google\Cloud\Tests\Unit\Core;
 
 use Google\Auth\FetchAuthTokenInterface;
+use Google\Cloud\Core\AnonymousCredentials;
 use Google\Cloud\Core\RequestWrapper;
 use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\Psr7\Response;
 use Prophecy\Argument;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group core
  */
-class RequestWrapperTest extends \PHPUnit_Framework_TestCase
+class RequestWrapperTest extends TestCase
 {
     const VERSION = 'v0.1';
 
@@ -366,5 +368,21 @@ class RequestWrapperTest extends \PHPUnit_Framework_TestCase
 
         $this->assertTrue($hasTriggeredException);
         $this->assertEquals(1, $actualAttempts);
+    }
+
+    public function testDisablesRequestSigningWithAnonymousCredentials()
+    {
+        $headers = [];
+        $requestWrapper = new RequestWrapper([
+            'credentialsFetcher' => new AnonymousCredentials(),
+            'httpHandler' => function ($request, array $options = []) use (&$headers) {
+                $headers = $request->getHeaders();
+
+                return new Response(200);
+            }
+        ]);
+        $requestWrapper->send(new Request('GET', 'http://www.example.com'));
+
+        $this->assertArrayNotHasKey('Authorization', $headers);
     }
 }

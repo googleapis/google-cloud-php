@@ -18,6 +18,7 @@
 namespace Google\Cloud\Storage;
 
 use Google\Cloud\Core\ArrayTrait;
+use Google\Cloud\Core\Exception\GoogleException;
 use Google\Cloud\Core\Exception\NotFoundException;
 use Google\Cloud\Core\Exception\ServiceException;
 use Google\Cloud\Core\Iam\Iam;
@@ -585,6 +586,7 @@ class Bucket
      * @return Notification
      * @throws \InvalidArgumentException When providing a type other than string
      *         or {@see Google\Cloud\PubSub\Topic} as $topic.
+     * @throws GoogleException When a project ID has not been detected.
      * @experimental The experimental flag means that while we believe this
      *      method or class is ready for use, it may change before release in
      *      backwards-incompatible ways. Please use with caution, and test
@@ -1043,6 +1045,7 @@ class Bucket
      * @param Topic|string $topic
      * @return string
      * @throws \InvalidArgumentException
+     * @throws GoogleException
      */
     private function getFormattedTopic($topic)
     {
@@ -1058,6 +1061,13 @@ class Bucket
 
         if (preg_match('/projects\/[^\/]*\/topics\/(.*)/', $topic) === 1) {
             return sprintf(self::NOTIFICATION_TEMPLATE, $topic);
+        }
+
+        if (!$this->projectId) {
+            throw new GoogleException(
+                'No project ID was provided, ' .
+                'and we were unable to detect a default project ID.'
+            );
         }
 
         return sprintf(

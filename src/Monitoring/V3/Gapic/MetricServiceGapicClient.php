@@ -67,15 +67,15 @@ use Google\Monitoring\V3\TimeSeries;
  * ```
  * try {
  *     $metricServiceClient = new MetricServiceClient();
- *     $formattedName = $metricServiceClient->projectName("[PROJECT]");
+ *     $formattedName = $metricServiceClient->projectName('[PROJECT]');
  *     // Iterate through all elements
  *     $pagedResponse = $metricServiceClient->listMonitoredResourceDescriptors($formattedName);
  *     foreach ($pagedResponse->iterateAllElements() as $element) {
  *         // doSomethingWith($element);
  *     }
  *
- *     // OR iterate over pages of elements, with the maximum page size set to 5
- *     $pagedResponse = $metricServiceClient->listMonitoredResourceDescriptors($formattedName, ['pageSize' => 5]);
+ *     // OR iterate over pages of elements
+ *     $pagedResponse = $metricServiceClient->listMonitoredResourceDescriptors($formattedName);
  *     foreach ($pagedResponse->iteratePages() as $page) {
  *         foreach ($page as $element) {
  *             // doSomethingWith($element);
@@ -167,6 +167,7 @@ class MetricServiceGapicClient
 
         return self::$pathTemplateMap;
     }
+
     private static function getPageStreamingDescriptors()
     {
         $listMonitoredResourceDescriptorsPageStreamingDescriptor =
@@ -431,15 +432,15 @@ class MetricServiceGapicClient
      * ```
      * try {
      *     $metricServiceClient = new MetricServiceClient();
-     *     $formattedName = $metricServiceClient->projectName("[PROJECT]");
+     *     $formattedName = $metricServiceClient->projectName('[PROJECT]');
      *     // Iterate through all elements
      *     $pagedResponse = $metricServiceClient->listMonitoredResourceDescriptors($formattedName);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
      *
-     *     // OR iterate over pages of elements, with the maximum page size set to 5
-     *     $pagedResponse = $metricServiceClient->listMonitoredResourceDescriptors($formattedName, ['pageSize' => 5]);
+     *     // OR iterate over pages of elements
+     *     $pagedResponse = $metricServiceClient->listMonitoredResourceDescriptors($formattedName);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -525,7 +526,7 @@ class MetricServiceGapicClient
      * ```
      * try {
      *     $metricServiceClient = new MetricServiceClient();
-     *     $formattedName = $metricServiceClient->monitoredResourceDescriptorName("[PROJECT]", "[MONITORED_RESOURCE_DESCRIPTOR]");
+     *     $formattedName = $metricServiceClient->monitoredResourceDescriptorName('[PROJECT]', '[MONITORED_RESOURCE_DESCRIPTOR]');
      *     $response = $metricServiceClient->getMonitoredResourceDescriptor($formattedName);
      * } finally {
      *     $metricServiceClient->close();
@@ -583,15 +584,15 @@ class MetricServiceGapicClient
      * ```
      * try {
      *     $metricServiceClient = new MetricServiceClient();
-     *     $formattedName = $metricServiceClient->projectName("[PROJECT]");
+     *     $formattedName = $metricServiceClient->projectName('[PROJECT]');
      *     // Iterate through all elements
      *     $pagedResponse = $metricServiceClient->listMetricDescriptors($formattedName);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
      *
-     *     // OR iterate over pages of elements, with the maximum page size set to 5
-     *     $pagedResponse = $metricServiceClient->listMetricDescriptors($formattedName, ['pageSize' => 5]);
+     *     // OR iterate over pages of elements
+     *     $pagedResponse = $metricServiceClient->listMetricDescriptors($formattedName);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -678,7 +679,7 @@ class MetricServiceGapicClient
      * ```
      * try {
      *     $metricServiceClient = new MetricServiceClient();
-     *     $formattedName = $metricServiceClient->metricDescriptorName("[PROJECT]", "[METRIC_DESCRIPTOR]");
+     *     $formattedName = $metricServiceClient->metricDescriptorName('[PROJECT]', '[METRIC_DESCRIPTOR]');
      *     $response = $metricServiceClient->getMetricDescriptor($formattedName);
      * } finally {
      *     $metricServiceClient->close();
@@ -738,7 +739,7 @@ class MetricServiceGapicClient
      * ```
      * try {
      *     $metricServiceClient = new MetricServiceClient();
-     *     $formattedName = $metricServiceClient->projectName("[PROJECT]");
+     *     $formattedName = $metricServiceClient->projectName('[PROJECT]');
      *     $metricDescriptor = new MetricDescriptor();
      *     $response = $metricServiceClient->createMetricDescriptor($formattedName, $metricDescriptor);
      * } finally {
@@ -799,7 +800,7 @@ class MetricServiceGapicClient
      * ```
      * try {
      *     $metricServiceClient = new MetricServiceClient();
-     *     $formattedName = $metricServiceClient->metricDescriptorName("[PROJECT]", "[METRIC_DESCRIPTOR]");
+     *     $formattedName = $metricServiceClient->metricDescriptorName('[PROJECT]', '[METRIC_DESCRIPTOR]');
      *     $metricServiceClient->deleteMetricDescriptor($formattedName);
      * } finally {
      *     $metricServiceClient->close();
@@ -855,8 +856,8 @@ class MetricServiceGapicClient
      * ```
      * try {
      *     $metricServiceClient = new MetricServiceClient();
-     *     $formattedName = $metricServiceClient->projectName("[PROJECT]");
-     *     $filter = "";
+     *     $formattedName = $metricServiceClient->projectName('[PROJECT]');
+     *     $filter = '';
      *     $interval = new TimeInterval();
      *     $view = TimeSeriesView::FULL;
      *     // Iterate through all elements
@@ -865,8 +866,8 @@ class MetricServiceGapicClient
      *         // doSomethingWith($element);
      *     }
      *
-     *     // OR iterate over pages of elements, with the maximum page size set to 5
-     *     $pagedResponse = $metricServiceClient->listTimeSeries($formattedName, $filter, $interval, $view, ['pageSize' => 5]);
+     *     // OR iterate over pages of elements
+     *     $pagedResponse = $metricServiceClient->listTimeSeries($formattedName, $filter, $interval, $view);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -973,7 +974,7 @@ class MetricServiceGapicClient
      * ```
      * try {
      *     $metricServiceClient = new MetricServiceClient();
-     *     $formattedName = $metricServiceClient->projectName("[PROJECT]");
+     *     $formattedName = $metricServiceClient->projectName('[PROJECT]');
      *     $timeSeries = [];
      *     $metricServiceClient->createTimeSeries($formattedName, $timeSeries);
      * } finally {

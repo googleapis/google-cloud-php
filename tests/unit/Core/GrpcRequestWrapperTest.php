@@ -30,11 +30,12 @@ use Google\GAX\PagedListResponse;
 use Google\GAX\Serializer;
 use Google\Protobuf\Internal\Message;
 use Prophecy\Argument;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group core
  */
-class GrpcRequestWrapperTest extends \PHPUnit_Framework_TestCase
+class GrpcRequestWrapperTest extends TestCase
 {
     use GrpcTestTrait;
 

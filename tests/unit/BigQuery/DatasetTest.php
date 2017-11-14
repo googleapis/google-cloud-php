@@ -23,11 +23,12 @@ use Google\Cloud\BigQuery\Table;
 use Google\Cloud\BigQuery\ValueMapper;
 use Google\Cloud\Core\Exception\NotFoundException;
 use Prophecy\Argument;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group bigquery
  */
-class DatasetTest extends \PHPUnit_Framework_TestCase
+class DatasetTest extends TestCase
 {
     public $connection;
     public $mapper;

@@ -72,15 +72,15 @@ use Google\Spanner\Admin\Database\V1\UpdateDatabaseDdlRequest;
  * ```
  * try {
  *     $databaseAdminClient = new DatabaseAdminClient();
- *     $formattedParent = $databaseAdminClient->instanceName("[PROJECT]", "[INSTANCE]");
+ *     $formattedParent = $databaseAdminClient->instanceName('[PROJECT]', '[INSTANCE]');
  *     // Iterate through all elements
  *     $pagedResponse = $databaseAdminClient->listDatabases($formattedParent);
  *     foreach ($pagedResponse->iterateAllElements() as $element) {
  *         // doSomethingWith($element);
  *     }
  *
- *     // OR iterate over pages of elements, with the maximum page size set to 5
- *     $pagedResponse = $databaseAdminClient->listDatabases($formattedParent, ['pageSize' => 5]);
+ *     // OR iterate over pages of elements
+ *     $pagedResponse = $databaseAdminClient->listDatabases($formattedParent);
  *     foreach ($pagedResponse->iteratePages() as $page) {
  *         foreach ($page as $element) {
  *             // doSomethingWith($element);
@@ -162,6 +162,7 @@ class DatabaseAdminGapicClient
 
         return self::$pathTemplateMap;
     }
+
     private static function getPageStreamingDescriptors()
     {
         $listDatabasesPageStreamingDescriptor =
@@ -455,15 +456,15 @@ class DatabaseAdminGapicClient
      * ```
      * try {
      *     $databaseAdminClient = new DatabaseAdminClient();
-     *     $formattedParent = $databaseAdminClient->instanceName("[PROJECT]", "[INSTANCE]");
+     *     $formattedParent = $databaseAdminClient->instanceName('[PROJECT]', '[INSTANCE]');
      *     // Iterate through all elements
      *     $pagedResponse = $databaseAdminClient->listDatabases($formattedParent);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
      *
-     *     // OR iterate over pages of elements, with the maximum page size set to 5
-     *     $pagedResponse = $databaseAdminClient->listDatabases($formattedParent, ['pageSize' => 5]);
+     *     // OR iterate over pages of elements
+     *     $pagedResponse = $databaseAdminClient->listDatabases($formattedParent);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -545,8 +546,8 @@ class DatabaseAdminGapicClient
      * ```
      * try {
      *     $databaseAdminClient = new DatabaseAdminClient();
-     *     $formattedParent = $databaseAdminClient->instanceName("[PROJECT]", "[INSTANCE]");
-     *     $createStatement = "";
+     *     $formattedParent = $databaseAdminClient->instanceName('[PROJECT]', '[INSTANCE]');
+     *     $createStatement = '';
      *     $operationResponse = $databaseAdminClient->createDatabase($formattedParent, $createStatement);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
@@ -583,6 +584,8 @@ class DatabaseAdminGapicClient
      * @param string $createStatement Required. A `CREATE DATABASE` statement, which specifies the ID of the
      *                                new database.  The database ID must conform to the regular expression
      *                                `[a-z][a-z0-9_\-]*[a-z0-9]` and be between 2 and 30 characters in length.
+     *                                If the database ID is a reserved word or if it contains a hyphen, the
+     *                                database ID must be enclosed in backticks (`` ` ``).
      * @param array  $optionalArgs    {
      *                                Optional.
      *
@@ -639,7 +642,7 @@ class DatabaseAdminGapicClient
      * ```
      * try {
      *     $databaseAdminClient = new DatabaseAdminClient();
-     *     $formattedName = $databaseAdminClient->databaseName("[PROJECT]", "[INSTANCE]", "[DATABASE]");
+     *     $formattedName = $databaseAdminClient->databaseName('[PROJECT]', '[INSTANCE]', '[DATABASE]');
      *     $response = $databaseAdminClient->getDatabase($formattedName);
      * } finally {
      *     $databaseAdminClient->close();
@@ -701,7 +704,7 @@ class DatabaseAdminGapicClient
      * ```
      * try {
      *     $databaseAdminClient = new DatabaseAdminClient();
-     *     $formattedDatabase = $databaseAdminClient->databaseName("[PROJECT]", "[INSTANCE]", "[DATABASE]");
+     *     $formattedDatabase = $databaseAdminClient->databaseName('[PROJECT]', '[INSTANCE]', '[DATABASE]');
      *     $statements = [];
      *     $operationResponse = $databaseAdminClient->updateDatabaseDdl($formattedDatabase, $statements);
      *     $operationResponse->pollUntilComplete();
@@ -805,7 +808,7 @@ class DatabaseAdminGapicClient
      * ```
      * try {
      *     $databaseAdminClient = new DatabaseAdminClient();
-     *     $formattedDatabase = $databaseAdminClient->databaseName("[PROJECT]", "[INSTANCE]", "[DATABASE]");
+     *     $formattedDatabase = $databaseAdminClient->databaseName('[PROJECT]', '[INSTANCE]', '[DATABASE]');
      *     $databaseAdminClient->dropDatabase($formattedDatabase);
      * } finally {
      *     $databaseAdminClient->close();
@@ -860,7 +863,7 @@ class DatabaseAdminGapicClient
      * ```
      * try {
      *     $databaseAdminClient = new DatabaseAdminClient();
-     *     $formattedDatabase = $databaseAdminClient->databaseName("[PROJECT]", "[INSTANCE]", "[DATABASE]");
+     *     $formattedDatabase = $databaseAdminClient->databaseName('[PROJECT]', '[INSTANCE]', '[DATABASE]');
      *     $response = $databaseAdminClient->getDatabaseDdl($formattedDatabase);
      * } finally {
      *     $databaseAdminClient->close();
@@ -919,7 +922,7 @@ class DatabaseAdminGapicClient
      * ```
      * try {
      *     $databaseAdminClient = new DatabaseAdminClient();
-     *     $formattedResource = $databaseAdminClient->databaseName("[PROJECT]", "[INSTANCE]", "[DATABASE]");
+     *     $formattedResource = $databaseAdminClient->databaseName('[PROJECT]', '[INSTANCE]', '[DATABASE]');
      *     $policy = new Policy();
      *     $response = $databaseAdminClient->setIamPolicy($formattedResource, $policy);
      * } finally {
@@ -986,7 +989,7 @@ class DatabaseAdminGapicClient
      * ```
      * try {
      *     $databaseAdminClient = new DatabaseAdminClient();
-     *     $formattedResource = $databaseAdminClient->databaseName("[PROJECT]", "[INSTANCE]", "[DATABASE]");
+     *     $formattedResource = $databaseAdminClient->databaseName('[PROJECT]', '[INSTANCE]', '[DATABASE]');
      *     $response = $databaseAdminClient->getIamPolicy($formattedResource);
      * } finally {
      *     $databaseAdminClient->close();
@@ -1048,7 +1051,7 @@ class DatabaseAdminGapicClient
      * ```
      * try {
      *     $databaseAdminClient = new DatabaseAdminClient();
-     *     $formattedResource = $databaseAdminClient->databaseName("[PROJECT]", "[INSTANCE]", "[DATABASE]");
+     *     $formattedResource = $databaseAdminClient->databaseName('[PROJECT]', '[INSTANCE]', '[DATABASE]');
      *     $permissions = [];
      *     $response = $databaseAdminClient->testIamPermissions($formattedResource, $permissions);
      * } finally {

@@ -19,11 +19,12 @@ namespace Google\Cloud\Tests\Unit\Trace\Tracer;
 
 use Google\Cloud\Trace\TraceContext;
 use Google\Cloud\Trace\Tracer\ContextTracer;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group trace
  */
-class ContextTracerTest extends \PHPUnit_Framework_TestCase
+class ContextTracerTest extends TestCase
 {
     public function testMaintainsContext()
     {

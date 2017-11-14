@@ -60,7 +60,7 @@ use Google\Logging\V2\WriteLogEntriesRequest;
  * ```
  * try {
  *     $loggingServiceV2Client = new LoggingServiceV2Client();
- *     $formattedLogName = $loggingServiceV2Client->logName("[PROJECT]", "[LOG]");
+ *     $formattedLogName = $loggingServiceV2Client->logName('[PROJECT]', '[LOG]');
  *     $loggingServiceV2Client->deleteLog($formattedLogName);
  * } finally {
  *     $loggingServiceV2Client->close();
@@ -137,6 +137,7 @@ class LoggingServiceV2GapicClient
 
         return self::$pathTemplateMap;
     }
+
     private static function getPageStreamingDescriptors()
     {
         $listLogEntriesPageStreamingDescriptor =
@@ -383,7 +384,7 @@ class LoggingServiceV2GapicClient
      * ```
      * try {
      *     $loggingServiceV2Client = new LoggingServiceV2Client();
-     *     $formattedLogName = $loggingServiceV2Client->logName("[PROJECT]", "[LOG]");
+     *     $formattedLogName = $loggingServiceV2Client->logName('[PROJECT]', '[LOG]');
      *     $loggingServiceV2Client->deleteLog($formattedLogName);
      * } finally {
      *     $loggingServiceV2Client->close();
@@ -583,8 +584,8 @@ class LoggingServiceV2GapicClient
      *         // doSomethingWith($element);
      *     }
      *
-     *     // OR iterate over pages of elements, with the maximum page size set to 5
-     *     $pagedResponse = $loggingServiceV2Client->listLogEntries($resourceNames, ['pageSize' => 5]);
+     *     // OR iterate over pages of elements
+     *     $pagedResponse = $loggingServiceV2Client->listLogEntries($resourceNames);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -704,8 +705,8 @@ class LoggingServiceV2GapicClient
      *         // doSomethingWith($element);
      *     }
      *
-     *     // OR iterate over pages of elements, with the maximum page size set to 5
-     *     $pagedResponse = $loggingServiceV2Client->listMonitoredResourceDescriptors(['pageSize' => 5]);
+     *     // OR iterate over pages of elements
+     *     $pagedResponse = $loggingServiceV2Client->listMonitoredResourceDescriptors();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -778,15 +779,15 @@ class LoggingServiceV2GapicClient
      * ```
      * try {
      *     $loggingServiceV2Client = new LoggingServiceV2Client();
-     *     $formattedParent = $loggingServiceV2Client->projectName("[PROJECT]");
+     *     $formattedParent = $loggingServiceV2Client->projectName('[PROJECT]');
      *     // Iterate through all elements
      *     $pagedResponse = $loggingServiceV2Client->listLogs($formattedParent);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
      *
-     *     // OR iterate over pages of elements, with the maximum page size set to 5
-     *     $pagedResponse = $loggingServiceV2Client->listLogs($formattedParent, ['pageSize' => 5]);
+     *     // OR iterate over pages of elements
+     *     $pagedResponse = $loggingServiceV2Client->listLogs($formattedParent);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);

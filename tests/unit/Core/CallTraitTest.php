@@ -18,11 +18,12 @@
 namespace Google\Cloud\Tests\Unit\Core;
 
 use Google\Cloud\Core\CallTrait;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group core
  */
-class CallTraitTest extends \PHPUnit_Framework_TestCase
+class CallTraitTest extends TestCase
 {
     public function testCall()
     {

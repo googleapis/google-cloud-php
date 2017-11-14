@@ -18,11 +18,12 @@
 namespace Google\Cloud\Tests\Unit\Language;
 
 use Google\Cloud\Language\Annotation;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group language
  */
-class AnnotationTest extends \PHPUnit_Framework_TestCase
+class AnnotationTest extends TestCase
 {
     private $annotation;
     private $entity;
@@ -66,7 +67,7 @@ class AnnotationTest extends \PHPUnit_Framework_TestCase
             'sentences' => [],
             'language' => 'en'
         ];
-        $this->annotation = new annotation($this->info);
+        $this->annotation = new Annotation($this->info);
     }
 
     public function testGetSentiment()

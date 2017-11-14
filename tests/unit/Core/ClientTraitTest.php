@@ -17,14 +17,16 @@
 
 namespace Google\Cloud\Tests\Unit\Core;
 
+use Google\Cloud\Core\AnonymousCredentials;
 use Google\Cloud\Core\ClientTrait;
 use Google\Cloud\Core\Compute\Metadata;
 use GuzzleHttp\Psr7\Response;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group core
  */
-class ClientTraitTest extends \PHPUnit_Framework_TestCase
+class ClientTraitTest extends TestCase
 {
     /**
      * @expectedException Google\Cloud\Core\Exception\GoogleException
@@ -129,6 +131,17 @@ class ClientTraitTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('example_project', $trait->getProjectId());
     }
 
+    public function testConfigureAuthenticationReturnsAnonymousCredentials()
+    {
+        $keyFilePath = __DIR__ . '/../fixtures/empty-json-key-fixture.json';
+        $trait = new ClientTraitStub;
+        $conf = $trait->runConfigureAuthentication([
+            'keyFilePath' => $keyFilePath
+        ]);
+
+        $this->assertInstanceOf(AnonymousCredentials::class, $conf['credentialsFetcher']);
+    }
+
     /**
      * @expectedException Google\Cloud\Core\Exception\GoogleException
      */
@@ -166,6 +179,7 @@ class ClientTraitTest extends \PHPUnit_Framework_TestCase
 
         $trait = new ClientTraitStub;
         $conf = $trait->runDetectProjectId([
+            'projectIdRequired' => true,
             'keyFile' => $keyFile,
             'httpHandler' => function ($request, $options = []) {
                 return new Response(500);
@@ -221,7 +235,9 @@ class ClientTraitTest extends \PHPUnit_Framework_TestCase
 
         $trait = new ClientTraitStubOnGce($m);
 
-        $res = $trait->runDetectProjectId([]);
+        $res = $trait->runDetectProjectId([
+            'projectIdRequired' => true
+        ]);
     }
 }
 

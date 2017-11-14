@@ -61,7 +61,7 @@ use Google\Protobuf\Timestamp;
  * ```
  * try {
  *     $errorStatsServiceClient = new ErrorStatsServiceClient();
- *     $formattedProjectName = $errorStatsServiceClient->projectName("[PROJECT]");
+ *     $formattedProjectName = $errorStatsServiceClient->projectName('[PROJECT]');
  *     $timeRange = new QueryTimeRange();
  *     // Iterate through all elements
  *     $pagedResponse = $errorStatsServiceClient->listGroupStats($formattedProjectName, $timeRange);
@@ -69,8 +69,8 @@ use Google\Protobuf\Timestamp;
  *         // doSomethingWith($element);
  *     }
  *
- *     // OR iterate over pages of elements, with the maximum page size set to 5
- *     $pagedResponse = $errorStatsServiceClient->listGroupStats($formattedProjectName, $timeRange, ['pageSize' => 5]);
+ *     // OR iterate over pages of elements
+ *     $pagedResponse = $errorStatsServiceClient->listGroupStats($formattedProjectName, $timeRange);
  *     foreach ($pagedResponse->iteratePages() as $page) {
  *         foreach ($page as $element) {
  *             // doSomethingWith($element);
@@ -140,6 +140,7 @@ class ErrorStatsServiceGapicClient
 
         return self::$pathTemplateMap;
     }
+
     private static function getPageStreamingDescriptors()
     {
         $listGroupStatsPageStreamingDescriptor =
@@ -348,7 +349,7 @@ class ErrorStatsServiceGapicClient
      * ```
      * try {
      *     $errorStatsServiceClient = new ErrorStatsServiceClient();
-     *     $formattedProjectName = $errorStatsServiceClient->projectName("[PROJECT]");
+     *     $formattedProjectName = $errorStatsServiceClient->projectName('[PROJECT]');
      *     $timeRange = new QueryTimeRange();
      *     // Iterate through all elements
      *     $pagedResponse = $errorStatsServiceClient->listGroupStats($formattedProjectName, $timeRange);
@@ -356,8 +357,8 @@ class ErrorStatsServiceGapicClient
      *         // doSomethingWith($element);
      *     }
      *
-     *     // OR iterate over pages of elements, with the maximum page size set to 5
-     *     $pagedResponse = $errorStatsServiceClient->listGroupStats($formattedProjectName, $timeRange, ['pageSize' => 5]);
+     *     // OR iterate over pages of elements
+     *     $pagedResponse = $errorStatsServiceClient->listGroupStats($formattedProjectName, $timeRange);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -482,16 +483,16 @@ class ErrorStatsServiceGapicClient
      * ```
      * try {
      *     $errorStatsServiceClient = new ErrorStatsServiceClient();
-     *     $formattedProjectName = $errorStatsServiceClient->projectName("[PROJECT]");
-     *     $groupId = "";
+     *     $formattedProjectName = $errorStatsServiceClient->projectName('[PROJECT]');
+     *     $groupId = '';
      *     // Iterate through all elements
      *     $pagedResponse = $errorStatsServiceClient->listEvents($formattedProjectName, $groupId);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
      *
-     *     // OR iterate over pages of elements, with the maximum page size set to 5
-     *     $pagedResponse = $errorStatsServiceClient->listEvents($formattedProjectName, $groupId, ['pageSize' => 5]);
+     *     // OR iterate over pages of elements
+     *     $pagedResponse = $errorStatsServiceClient->listEvents($formattedProjectName, $groupId);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -585,7 +586,7 @@ class ErrorStatsServiceGapicClient
      * ```
      * try {
      *     $errorStatsServiceClient = new ErrorStatsServiceClient();
-     *     $formattedProjectName = $errorStatsServiceClient->projectName("[PROJECT]");
+     *     $formattedProjectName = $errorStatsServiceClient->projectName('[PROJECT]');
      *     $response = $errorStatsServiceClient->deleteEvents($formattedProjectName);
      * } finally {
      *     $errorStatsServiceClient->close();

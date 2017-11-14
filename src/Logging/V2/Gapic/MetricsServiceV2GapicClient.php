@@ -59,15 +59,15 @@ use Google\Logging\V2\UpdateLogMetricRequest;
  * ```
  * try {
  *     $metricsServiceV2Client = new MetricsServiceV2Client();
- *     $formattedParent = $metricsServiceV2Client->projectName("[PROJECT]");
+ *     $formattedParent = $metricsServiceV2Client->projectName('[PROJECT]');
  *     // Iterate through all elements
  *     $pagedResponse = $metricsServiceV2Client->listLogMetrics($formattedParent);
  *     foreach ($pagedResponse->iterateAllElements() as $element) {
  *         // doSomethingWith($element);
  *     }
  *
- *     // OR iterate over pages of elements, with the maximum page size set to 5
- *     $pagedResponse = $metricsServiceV2Client->listLogMetrics($formattedParent, ['pageSize' => 5]);
+ *     // OR iterate over pages of elements
+ *     $pagedResponse = $metricsServiceV2Client->listLogMetrics($formattedParent);
  *     foreach ($pagedResponse->iteratePages() as $page) {
  *         foreach ($page as $element) {
  *             // doSomethingWith($element);
@@ -148,6 +148,7 @@ class MetricsServiceV2GapicClient
 
         return self::$pathTemplateMap;
     }
+
     private static function getPageStreamingDescriptors()
     {
         $listLogMetricsPageStreamingDescriptor =
@@ -371,15 +372,15 @@ class MetricsServiceV2GapicClient
      * ```
      * try {
      *     $metricsServiceV2Client = new MetricsServiceV2Client();
-     *     $formattedParent = $metricsServiceV2Client->projectName("[PROJECT]");
+     *     $formattedParent = $metricsServiceV2Client->projectName('[PROJECT]');
      *     // Iterate through all elements
      *     $pagedResponse = $metricsServiceV2Client->listLogMetrics($formattedParent);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
      *
-     *     // OR iterate over pages of elements, with the maximum page size set to 5
-     *     $pagedResponse = $metricsServiceV2Client->listLogMetrics($formattedParent, ['pageSize' => 5]);
+     *     // OR iterate over pages of elements
+     *     $pagedResponse = $metricsServiceV2Client->listLogMetrics($formattedParent);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -455,7 +456,7 @@ class MetricsServiceV2GapicClient
      * ```
      * try {
      *     $metricsServiceV2Client = new MetricsServiceV2Client();
-     *     $formattedMetricName = $metricsServiceV2Client->metricName("[PROJECT]", "[METRIC]");
+     *     $formattedMetricName = $metricsServiceV2Client->metricName('[PROJECT]', '[METRIC]');
      *     $response = $metricsServiceV2Client->getLogMetric($formattedMetricName);
      * } finally {
      *     $metricsServiceV2Client->close();
@@ -512,7 +513,7 @@ class MetricsServiceV2GapicClient
      * ```
      * try {
      *     $metricsServiceV2Client = new MetricsServiceV2Client();
-     *     $formattedParent = $metricsServiceV2Client->projectName("[PROJECT]");
+     *     $formattedParent = $metricsServiceV2Client->projectName('[PROJECT]');
      *     $metric = new LogMetric();
      *     $response = $metricsServiceV2Client->createLogMetric($formattedParent, $metric);
      * } finally {
@@ -575,7 +576,7 @@ class MetricsServiceV2GapicClient
      * ```
      * try {
      *     $metricsServiceV2Client = new MetricsServiceV2Client();
-     *     $formattedMetricName = $metricsServiceV2Client->metricName("[PROJECT]", "[METRIC]");
+     *     $formattedMetricName = $metricsServiceV2Client->metricName('[PROJECT]', '[METRIC]');
      *     $metric = new LogMetric();
      *     $response = $metricsServiceV2Client->updateLogMetric($formattedMetricName, $metric);
      * } finally {
@@ -639,7 +640,7 @@ class MetricsServiceV2GapicClient
      * ```
      * try {
      *     $metricsServiceV2Client = new MetricsServiceV2Client();
-     *     $formattedMetricName = $metricsServiceV2Client->metricName("[PROJECT]", "[METRIC]");
+     *     $formattedMetricName = $metricsServiceV2Client->metricName('[PROJECT]', '[METRIC]');
      *     $metricsServiceV2Client->deleteLogMetric($formattedMetricName);
      * } finally {
      *     $metricsServiceV2Client->close();

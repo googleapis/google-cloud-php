@@ -30,11 +30,12 @@ use Google\Iam\V1\Policy;
 use Google\Pubsub\V1\PubsubMessage;
 use Google\Pubsub\V1\PushConfig;
 use Google\Pubsub\V1\Subscription;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group pubsub
  */
-class GrpcTest extends \PHPUnit_Framework_TestCase
+class GrpcTest extends TestCase
 {
     use GrpcTestTrait;
     use GrpcTrait;

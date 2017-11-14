@@ -76,7 +76,7 @@ class DatastoreClient
     use ClientTrait;
     use DatastoreTrait;
 
-    const VERSION = '1.0.1';
+    const VERSION = '1.0.3';
 
     const FULL_CONTROL_SCOPE = 'https://www.googleapis.com/auth/datastore';
 
@@ -136,7 +136,8 @@ class DatastoreClient
         $config += [
             'namespaceId' => null,
             'returnInt64AsObject' => false,
-            'scopes' => [self::FULL_CONTROL_SCOPE]
+            'scopes' => [self::FULL_CONTROL_SCOPE],
+            'projectIdRequired' => true
         ];
 
         $this->connection = new Rest($this->configureAuthentication($config));

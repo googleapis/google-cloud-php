@@ -55,7 +55,7 @@ use Google\GAX\ValidationException;
  * ```
  * try {
  *     $errorGroupServiceClient = new ErrorGroupServiceClient();
- *     $formattedGroupName = $errorGroupServiceClient->groupName("[PROJECT]", "[GROUP]");
+ *     $formattedGroupName = $errorGroupServiceClient->groupName('[PROJECT]', '[GROUP]');
  *     $response = $errorGroupServiceClient->getGroup($formattedGroupName);
  * } finally {
  *     $errorGroupServiceClient->close();
@@ -298,7 +298,7 @@ class ErrorGroupServiceGapicClient
      * ```
      * try {
      *     $errorGroupServiceClient = new ErrorGroupServiceClient();
-     *     $formattedGroupName = $errorGroupServiceClient->groupName("[PROJECT]", "[GROUP]");
+     *     $formattedGroupName = $errorGroupServiceClient->groupName('[PROJECT]', '[GROUP]');
      *     $response = $errorGroupServiceClient->getGroup($formattedGroupName);
      * } finally {
      *     $errorGroupServiceClient->close();

@@ -18,11 +18,12 @@
 namespace Google\Cloud\Tests\Unit\Vision\Annotation;
 
 use Google\Cloud\Vision\Annotation\Face\Landmarks;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group vision
  */
-class LandmarksTest extends \PHPUnit_Framework_TestCase
+class LandmarksTest extends TestCase
 {
     private $data;
     private $landmarks;

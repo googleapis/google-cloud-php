@@ -25,11 +25,12 @@ use Google\Cloud\Storage\StorageClient;
 use Google\Cloud\Storage\StreamWrapper;
 use GuzzleHttp\Psr7;
 use Prophecy\Argument;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group storage
  */
-class StorageClientTest extends \PHPUnit_Framework_TestCase
+class StorageClientTest extends TestCase
 {
     const PROJECT = 'my-project';
     public $connection;
@@ -53,6 +54,19 @@ class StorageClientTest extends \PHPUnit_Framework_TestCase
         $bucket = $this->client->bucket('myBucket', true);
 
         $bucket->reload();
+    }
+
+    /**
+     * @expectedException \Google\Cloud\Core\Exception\GoogleException
+     */
+    public function testGetsBucketsThrowsExceptionWithoutProjectId()
+    {
+        $project = getenv('GCLOUD_PROJECT');
+        putenv('GCLOUD_PROJECT');
+        $keyFilePath = __DIR__ . '/../fixtures/empty-json-key-fixture.json';
+        $client = new StorageClientStub(['keyFilePath' => $keyFilePath]);
+        $client->buckets();
+        putenv("GCLOUD_PROJECT=$project");
     }
 
     public function testGetsBucketsWithoutToken()
@@ -95,6 +109,19 @@ class StorageClientTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('bucket2', $bucket[1]->name());
     }
 
+    /**
+     * @expectedException \Google\Cloud\Core\Exception\GoogleException
+     */
+    public function testCreateBucketThrowsExceptionWithoutProjectId()
+    {
+        $project = getenv('GCLOUD_PROJECT');
+        putenv('GCLOUD_PROJECT');
+        $keyFilePath = __DIR__ . '/../fixtures/empty-json-key-fixture.json';
+        $client = new StorageClientStub(['keyFilePath' => $keyFilePath]);
+        $client->createBucket('bucket');
+        putenv("GCLOUD_PROJECT=$project");
+    }
+
     public function testCreatesBucket()
     {
         $this->connection->insertBucket(Argument::any())->willReturn(['name' => 'bucket']);
@@ -128,5 +155,13 @@ class StorageClientTest extends \PHPUnit_Framework_TestCase
         $ts = $this->client->timestamp($dt);
         $this->assertInstanceOf(Timestamp::class, $ts);
         $this->assertEquals($ts->get(), $dt);
+    }
+}
+
+class StorageClientStub extends StorageClient
+{
+    protected function onGce($httpHandler)
+    {
+        return false;
     }
 }

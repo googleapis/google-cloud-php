@@ -22,11 +22,12 @@ use Google\Cloud\Language\Connection\ConnectionInterface;
 use Google\Cloud\Language\LanguageClient;
 use Google\Cloud\Storage\StorageObject;
 use Prophecy\Argument;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group language
  */
-class LanguageClientTest extends \PHPUnit_Framework_TestCase
+class LanguageClientTest extends TestCase
 {
     private $client;
     private $connection;
@@ -74,6 +75,22 @@ class LanguageClientTest extends \PHPUnit_Framework_TestCase
     /**
      * @dataProvider analyzeDataProvider
      */
+    public function testAnalyzeEntitySentiment($options, $expectedOptions)
+    {
+        $content = $options['content'];
+        unset($options['content']);
+        $this->connection
+            ->analyzeEntitySentiment($expectedOptions)
+            ->willReturn([])
+            ->shouldBeCalledTimes(1);
+        $this->client->setConnection($this->connection->reveal());
+        $annotation = $this->client->analyzeEntitySentiment($content, $options);
+        $this->assertInstanceOf(Annotation::class, $annotation);
+    }
+
+    /**
+     * @dataProvider analyzeDataProvider
+     */
     public function testAnalyzeSyntax($options, $expectedOptions)
     {
         $content = $options['content'];
@@ -92,15 +109,43 @@ class LanguageClientTest extends \PHPUnit_Framework_TestCase
     /**
      * @dataProvider analyzeDataProvider
      */
+    public function testClassifyText($options, $expectedOptions)
+    {
+        $content = $options['content'];
+        unset($options['content']);
+        $categories = [
+            [
+                'name' => 'category1',
+                'confidence' => .99
+            ]
+        ];
+
+        $this->connection
+            ->classifyText($expectedOptions)
+            ->willReturn([
+                'categories' => $categories
+            ])
+            ->shouldBeCalledTimes(1);
+        $this->client->setConnection($this->connection->reveal());
+        $annotation = $this->client->classifyText($content, $options);
+
+        $this->assertInstanceOf(Annotation::class, $annotation);
+        $this->assertEquals($categories, $annotation->categories());
+    }
+
+    /**
+     * @dataProvider analyzeDataProvider
+     */
     public function testAnnotateText($options, $expectedOptions)
     {
         $content = $options['content'];
         unset($options['content']);
-        $options['features'] = ['syntax', 'entities', 'sentiment'];
+        $options['features'] = ['syntax', 'entities', 'sentiment', 'entitySentiment'];
         $expectedOptions['features'] = [
             'extractSyntax' => true,
             'extractEntities' => true,
-            'extractDocumentSentiment' => true
+            'extractDocumentSentiment' => true,
+            'extractEntitySentiment' => true,
         ];
         $this->connection
             ->annotateText($expectedOptions)

@@ -23,11 +23,12 @@ use Google\Cloud\Trace\TraceContext;
 use Google\Cloud\Trace\TraceSpan;
 use Google\Cloud\Trace\Tracer\TracerInterface;
 use Prophecy\Argument;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group trace
  */
-class LoggerReporterTest extends \PHPUnit_Framework_TestCase
+class LoggerReporterTest extends TestCase
 {
     private $tracer;
     private $logger;

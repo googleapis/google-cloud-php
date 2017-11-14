@@ -73,6 +73,15 @@ class Rest implements ConnectionInterface
      * @param array $args
      * @return array
      */
+    public function analyzeEntitySentiment(array $args = [])
+    {
+        return $this->send('documents', 'analyzeEntitySentiment', $args);
+    }
+
+    /**
+     * @param array $args
+     * @return array
+     */
     public function analyzeSyntax(array $args = [])
     {
         return $this->send('documents', 'analyzeSyntax', $args);
@@ -85,5 +94,14 @@ class Rest implements ConnectionInterface
     public function annotateText(array $args = [])
     {
         return $this->send('documents', 'annotateText', $args);
+    }
+
+    /**
+     * @param array $args
+     * @return array
+     */
+    public function classifyText(array $args = [])
+    {
+        return $this->send('documents', 'classifyText', $args);
     }
 }

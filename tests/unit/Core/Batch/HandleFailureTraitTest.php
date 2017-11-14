@@ -18,12 +18,13 @@
 namespace Google\Cloud\Tests\Unit\Core\Batch;
 
 use Google\Cloud\Core\Batch\HandleFailureTrait;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group core
  * @group batch
  */
-class HandleFailureTraitTest extends \PHPUnit_Framework_TestCase
+class HandleFailureTraitTest extends TestCase
 {
 
     private $impl;

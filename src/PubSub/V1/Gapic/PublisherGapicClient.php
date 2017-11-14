@@ -68,7 +68,7 @@ use Google\Pubsub\V1\UpdateTopicRequest;
  * ```
  * try {
  *     $publisherClient = new PublisherClient();
- *     $formattedName = $publisherClient->topicName("[PROJECT]", "[TOPIC]");
+ *     $formattedName = $publisherClient->topicName('[PROJECT]', '[TOPIC]');
  *     $response = $publisherClient->createTopic($formattedName);
  * } finally {
  *     $publisherClient->close();
@@ -146,6 +146,7 @@ class PublisherGapicClient
 
         return self::$pathTemplateMap;
     }
+
     private static function getPageStreamingDescriptors()
     {
         $listTopicsPageStreamingDescriptor =
@@ -388,7 +389,7 @@ class PublisherGapicClient
      * ```
      * try {
      *     $publisherClient = new PublisherClient();
-     *     $formattedName = $publisherClient->topicName("[PROJECT]", "[TOPIC]");
+     *     $formattedName = $publisherClient->topicName('[PROJECT]', '[TOPIC]');
      *     $response = $publisherClient->createTopic($formattedName);
      * } finally {
      *     $publisherClient->close();
@@ -519,8 +520,8 @@ class PublisherGapicClient
      * ```
      * try {
      *     $publisherClient = new PublisherClient();
-     *     $formattedTopic = $publisherClient->topicName("[PROJECT]", "[TOPIC]");
-     *     $data = "";
+     *     $formattedTopic = $publisherClient->topicName('[PROJECT]', '[TOPIC]');
+     *     $data = '';
      *     $messagesElement = new PubsubMessage();
      *     $messagesElement->setData($data);
      *     $messages = [$messagesElement];
@@ -581,7 +582,7 @@ class PublisherGapicClient
      * ```
      * try {
      *     $publisherClient = new PublisherClient();
-     *     $formattedTopic = $publisherClient->topicName("[PROJECT]", "[TOPIC]");
+     *     $formattedTopic = $publisherClient->topicName('[PROJECT]', '[TOPIC]');
      *     $response = $publisherClient->getTopic($formattedTopic);
      * } finally {
      *     $publisherClient->close();
@@ -637,15 +638,15 @@ class PublisherGapicClient
      * ```
      * try {
      *     $publisherClient = new PublisherClient();
-     *     $formattedProject = $publisherClient->projectName("[PROJECT]");
+     *     $formattedProject = $publisherClient->projectName('[PROJECT]');
      *     // Iterate through all elements
      *     $pagedResponse = $publisherClient->listTopics($formattedProject);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
      *
-     *     // OR iterate over pages of elements, with the maximum page size set to 5
-     *     $pagedResponse = $publisherClient->listTopics($formattedProject, ['pageSize' => 5]);
+     *     // OR iterate over pages of elements
+     *     $pagedResponse = $publisherClient->listTopics($formattedProject);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -720,15 +721,15 @@ class PublisherGapicClient
      * ```
      * try {
      *     $publisherClient = new PublisherClient();
-     *     $formattedTopic = $publisherClient->topicName("[PROJECT]", "[TOPIC]");
+     *     $formattedTopic = $publisherClient->topicName('[PROJECT]', '[TOPIC]');
      *     // Iterate through all elements
      *     $pagedResponse = $publisherClient->listTopicSubscriptions($formattedTopic);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
      *
-     *     // OR iterate over pages of elements, with the maximum page size set to 5
-     *     $pagedResponse = $publisherClient->listTopicSubscriptions($formattedTopic, ['pageSize' => 5]);
+     *     // OR iterate over pages of elements
+     *     $pagedResponse = $publisherClient->listTopicSubscriptions($formattedTopic);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -807,7 +808,7 @@ class PublisherGapicClient
      * ```
      * try {
      *     $publisherClient = new PublisherClient();
-     *     $formattedTopic = $publisherClient->topicName("[PROJECT]", "[TOPIC]");
+     *     $formattedTopic = $publisherClient->topicName('[PROJECT]', '[TOPIC]');
      *     $publisherClient->deleteTopic($formattedTopic);
      * } finally {
      *     $publisherClient->close();
@@ -862,7 +863,7 @@ class PublisherGapicClient
      * ```
      * try {
      *     $publisherClient = new PublisherClient();
-     *     $formattedResource = $publisherClient->topicName("[PROJECT]", "[TOPIC]");
+     *     $formattedResource = $publisherClient->topicName('[PROJECT]', '[TOPIC]');
      *     $policy = new Policy();
      *     $response = $publisherClient->setIamPolicy($formattedResource, $policy);
      * } finally {
@@ -927,7 +928,7 @@ class PublisherGapicClient
      * ```
      * try {
      *     $publisherClient = new PublisherClient();
-     *     $formattedResource = $publisherClient->topicName("[PROJECT]", "[TOPIC]");
+     *     $formattedResource = $publisherClient->topicName('[PROJECT]', '[TOPIC]');
      *     $response = $publisherClient->getIamPolicy($formattedResource);
      * } finally {
      *     $publisherClient->close();
@@ -986,7 +987,7 @@ class PublisherGapicClient
      * ```
      * try {
      *     $publisherClient = new PublisherClient();
-     *     $formattedResource = $publisherClient->topicName("[PROJECT]", "[TOPIC]");
+     *     $formattedResource = $publisherClient->topicName('[PROJECT]', '[TOPIC]');
      *     $permissions = [];
      *     $response = $publisherClient->testIamPermissions($formattedResource, $permissions);
      * } finally {

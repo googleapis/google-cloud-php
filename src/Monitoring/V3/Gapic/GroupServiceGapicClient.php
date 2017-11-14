@@ -72,15 +72,15 @@ use Google\Monitoring\V3\UpdateGroupRequest;
  * ```
  * try {
  *     $groupServiceClient = new GroupServiceClient();
- *     $formattedName = $groupServiceClient->projectName("[PROJECT]");
+ *     $formattedName = $groupServiceClient->projectName('[PROJECT]');
  *     // Iterate through all elements
  *     $pagedResponse = $groupServiceClient->listGroups($formattedName);
  *     foreach ($pagedResponse->iterateAllElements() as $element) {
  *         // doSomethingWith($element);
  *     }
  *
- *     // OR iterate over pages of elements, with the maximum page size set to 5
- *     $pagedResponse = $groupServiceClient->listGroups($formattedName, ['pageSize' => 5]);
+ *     // OR iterate over pages of elements
+ *     $pagedResponse = $groupServiceClient->listGroups($formattedName);
  *     foreach ($pagedResponse->iteratePages() as $page) {
  *         foreach ($page as $element) {
  *             // doSomethingWith($element);
@@ -161,6 +161,7 @@ class GroupServiceGapicClient
 
         return self::$pathTemplateMap;
     }
+
     private static function getPageStreamingDescriptors()
     {
         $listGroupsPageStreamingDescriptor =
@@ -394,15 +395,15 @@ class GroupServiceGapicClient
      * ```
      * try {
      *     $groupServiceClient = new GroupServiceClient();
-     *     $formattedName = $groupServiceClient->projectName("[PROJECT]");
+     *     $formattedName = $groupServiceClient->projectName('[PROJECT]');
      *     // Iterate through all elements
      *     $pagedResponse = $groupServiceClient->listGroups($formattedName);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
      *
-     *     // OR iterate over pages of elements, with the maximum page size set to 5
-     *     $pagedResponse = $groupServiceClient->listGroups($formattedName, ['pageSize' => 5]);
+     *     // OR iterate over pages of elements
+     *     $pagedResponse = $groupServiceClient->listGroups($formattedName);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -501,7 +502,7 @@ class GroupServiceGapicClient
      * ```
      * try {
      *     $groupServiceClient = new GroupServiceClient();
-     *     $formattedName = $groupServiceClient->groupName("[PROJECT]", "[GROUP]");
+     *     $formattedName = $groupServiceClient->groupName('[PROJECT]', '[GROUP]');
      *     $response = $groupServiceClient->getGroup($formattedName);
      * } finally {
      *     $groupServiceClient->close();
@@ -557,7 +558,7 @@ class GroupServiceGapicClient
      * ```
      * try {
      *     $groupServiceClient = new GroupServiceClient();
-     *     $formattedName = $groupServiceClient->projectName("[PROJECT]");
+     *     $formattedName = $groupServiceClient->projectName('[PROJECT]');
      *     $group = new Group();
      *     $response = $groupServiceClient->createGroup($formattedName, $group);
      * } finally {
@@ -684,7 +685,7 @@ class GroupServiceGapicClient
      * ```
      * try {
      *     $groupServiceClient = new GroupServiceClient();
-     *     $formattedName = $groupServiceClient->groupName("[PROJECT]", "[GROUP]");
+     *     $formattedName = $groupServiceClient->groupName('[PROJECT]', '[GROUP]');
      *     $groupServiceClient->deleteGroup($formattedName);
      * } finally {
      *     $groupServiceClient->close();
@@ -738,15 +739,15 @@ class GroupServiceGapicClient
      * ```
      * try {
      *     $groupServiceClient = new GroupServiceClient();
-     *     $formattedName = $groupServiceClient->groupName("[PROJECT]", "[GROUP]");
+     *     $formattedName = $groupServiceClient->groupName('[PROJECT]', '[GROUP]');
      *     // Iterate through all elements
      *     $pagedResponse = $groupServiceClient->listGroupMembers($formattedName);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
      *
-     *     // OR iterate over pages of elements, with the maximum page size set to 5
-     *     $pagedResponse = $groupServiceClient->listGroupMembers($formattedName, ['pageSize' => 5]);
+     *     // OR iterate over pages of elements
+     *     $pagedResponse = $groupServiceClient->listGroupMembers($formattedName);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);

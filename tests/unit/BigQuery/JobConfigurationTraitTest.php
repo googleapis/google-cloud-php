@@ -19,11 +19,12 @@ namespace Google\Cloud\Tests\Unit\BigQuery;
 
 use Google\Cloud\BigQuery\JobConfigurationTrait;
 use Ramsey\Uuid\Uuid;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group bigquery
  */
-class JobConfigurationTraitTest extends \PHPUnit_Framework_TestCase
+class JobConfigurationTraitTest extends TestCase
 {
     const PROJECT_ID = 'project-id';
     const JOB_ID = '1234';

@@ -22,8 +22,9 @@ use Google\Cloud\BigQuery\BigQueryClient;
 use Google\Cloud\Language\LanguageClient;
 use Google\Cloud\PubSub\PubSubClient;
 use Google\Cloud\Storage\StorageClient;
+use PHPUnit\Framework\TestCase;
 
-class LanguageTestCase extends \PHPUnit_Framework_TestCase
+class LanguageTestCase extends TestCase
 {
     protected static $client;
     private static $hasSetUp = false;
@@ -41,5 +42,3 @@ class LanguageTestCase extends \PHPUnit_Framework_TestCase
         self::$hasSetUp = true;
     }
 }
-
-

@@ -27,11 +27,12 @@ use GuzzleHttp\Psr7\Response;
 use Prophecy\Argument;
 use Psr\Http\Message\RequestInterface;
 use Rize\UriTemplate;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group speech
  */
-class RestTest extends \PHPUnit_Framework_TestCase
+class RestTest extends TestCase
 {
     private $requestWrapper;
     private $successBody;

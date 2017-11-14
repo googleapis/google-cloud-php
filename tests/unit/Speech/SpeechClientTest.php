@@ -23,11 +23,12 @@ use Google\Cloud\Speech\Result;
 use Google\Cloud\Speech\SpeechClient;
 use Google\Cloud\Storage\StorageObject;
 use Prophecy\Argument;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group speech
  */
-class SpeechClientTest extends \PHPUnit_Framework_TestCase
+class SpeechClientTest extends TestCase
 {
     CONST GCS_URI = 'gs://bucket/object';
 

@@ -54,7 +54,7 @@ use Google\GAX\ValidationException;
  * ```
  * try {
  *     $reportErrorsServiceClient = new ReportErrorsServiceClient();
- *     $formattedProjectName = $reportErrorsServiceClient->projectName("[PROJECT]");
+ *     $formattedProjectName = $reportErrorsServiceClient->projectName('[PROJECT]');
  *     $event = new ReportedErrorEvent();
  *     $response = $reportErrorsServiceClient->reportErrorEvent($formattedProjectName, $event);
  * } finally {
@@ -302,7 +302,7 @@ class ReportErrorsServiceGapicClient
      * ```
      * try {
      *     $reportErrorsServiceClient = new ReportErrorsServiceClient();
-     *     $formattedProjectName = $reportErrorsServiceClient->projectName("[PROJECT]");
+     *     $formattedProjectName = $reportErrorsServiceClient->projectName('[PROJECT]');
      *     $event = new ReportedErrorEvent();
      *     $response = $reportErrorsServiceClient->reportErrorEvent($formattedProjectName, $event);
      * } finally {

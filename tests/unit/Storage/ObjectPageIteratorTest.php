@@ -18,11 +18,12 @@
 namespace Google\Cloud\Tests\Unit\Storage;
 
 use Google\Cloud\Storage\ObjectPageIterator;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group storage
  */
-class ObjectPageIteratorTest extends \PHPUnit_Framework_TestCase
+class ObjectPageIteratorTest extends TestCase
 {
     private static $prefixes = ['test/', 'test1/'];
     private static $items = ['a', 'b', 'c'];

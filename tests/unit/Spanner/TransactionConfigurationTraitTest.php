@@ -22,11 +22,12 @@ use Google\Cloud\Spanner\Session\SessionPoolInterface;
 use Google\Cloud\Spanner\Timestamp;
 use Google\Cloud\Spanner\TransactionConfigurationTrait;
 use Google\Cloud\Tests\GrpcTestTrait;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group spanner
  */
-class TransactionConfigurationTraitTest extends \PHPUnit_Framework_TestCase
+class TransactionConfigurationTraitTest extends TestCase
 {
     use GrpcTestTrait;
 

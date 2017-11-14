@@ -20,11 +20,12 @@ namespace Google\Cloud\Tests\Unit\Core;
 use Google\Cloud\Core\Exception\NotFoundException;
 use Google\Cloud\Core\Exception\ServiceException;
 use Google\Cloud\Core\WhitelistTrait;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group core
  */
-class WhitelistTraitTest extends \PHPUnit_Framework_TestCase
+class WhitelistTraitTest extends TestCase
 {
     private $trait;
 

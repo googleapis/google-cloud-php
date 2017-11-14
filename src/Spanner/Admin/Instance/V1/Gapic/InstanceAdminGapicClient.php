@@ -90,15 +90,15 @@ use Google\Spanner\Admin\Instance\V1\UpdateInstanceRequest;
  * ```
  * try {
  *     $instanceAdminClient = new InstanceAdminClient();
- *     $formattedParent = $instanceAdminClient->projectName("[PROJECT]");
+ *     $formattedParent = $instanceAdminClient->projectName('[PROJECT]');
  *     // Iterate through all elements
  *     $pagedResponse = $instanceAdminClient->listInstanceConfigs($formattedParent);
  *     foreach ($pagedResponse->iterateAllElements() as $element) {
  *         // doSomethingWith($element);
  *     }
  *
- *     // OR iterate over pages of elements, with the maximum page size set to 5
- *     $pagedResponse = $instanceAdminClient->listInstanceConfigs($formattedParent, ['pageSize' => 5]);
+ *     // OR iterate over pages of elements
+ *     $pagedResponse = $instanceAdminClient->listInstanceConfigs($formattedParent);
  *     foreach ($pagedResponse->iteratePages() as $page) {
  *         foreach ($page as $element) {
  *             // doSomethingWith($element);
@@ -191,6 +191,7 @@ class InstanceAdminGapicClient
 
         return self::$pathTemplateMap;
     }
+
     private static function getPageStreamingDescriptors()
     {
         $listInstanceConfigsPageStreamingDescriptor =
@@ -510,15 +511,15 @@ class InstanceAdminGapicClient
      * ```
      * try {
      *     $instanceAdminClient = new InstanceAdminClient();
-     *     $formattedParent = $instanceAdminClient->projectName("[PROJECT]");
+     *     $formattedParent = $instanceAdminClient->projectName('[PROJECT]');
      *     // Iterate through all elements
      *     $pagedResponse = $instanceAdminClient->listInstanceConfigs($formattedParent);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
      *
-     *     // OR iterate over pages of elements, with the maximum page size set to 5
-     *     $pagedResponse = $instanceAdminClient->listInstanceConfigs($formattedParent, ['pageSize' => 5]);
+     *     // OR iterate over pages of elements
+     *     $pagedResponse = $instanceAdminClient->listInstanceConfigs($formattedParent);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -594,7 +595,7 @@ class InstanceAdminGapicClient
      * ```
      * try {
      *     $instanceAdminClient = new InstanceAdminClient();
-     *     $formattedName = $instanceAdminClient->instanceConfigName("[PROJECT]", "[INSTANCE_CONFIG]");
+     *     $formattedName = $instanceAdminClient->instanceConfigName('[PROJECT]', '[INSTANCE_CONFIG]');
      *     $response = $instanceAdminClient->getInstanceConfig($formattedName);
      * } finally {
      *     $instanceAdminClient->close();
@@ -650,15 +651,15 @@ class InstanceAdminGapicClient
      * ```
      * try {
      *     $instanceAdminClient = new InstanceAdminClient();
-     *     $formattedParent = $instanceAdminClient->projectName("[PROJECT]");
+     *     $formattedParent = $instanceAdminClient->projectName('[PROJECT]');
      *     // Iterate through all elements
      *     $pagedResponse = $instanceAdminClient->listInstances($formattedParent);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
      *
-     *     // OR iterate over pages of elements, with the maximum page size set to 5
-     *     $pagedResponse = $instanceAdminClient->listInstances($formattedParent, ['pageSize' => 5]);
+     *     // OR iterate over pages of elements
+     *     $pagedResponse = $instanceAdminClient->listInstances($formattedParent);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -687,20 +688,20 @@ class InstanceAdminGapicClient
      *          An expression for filtering the results of the request. Filter rules are
      *          case insensitive. The fields eligible for filtering are:
      *
-     *            * name
-     *            * display_name
-     *            * labels.key where key is the name of a label
+     *            * `name`
+     *            * `display_name`
+     *            * `labels.key` where key is the name of a label
      *
      *          Some examples of using filters are:
      *
-     *            * name:* --> The instance has a name.
-     *            * name:Howl --> The instance's name contains the string "howl".
-     *            * name:HOWL --> Equivalent to above.
-     *            * NAME:howl --> Equivalent to above.
-     *            * labels.env:* --> The instance has the label "env".
-     *            * labels.env:dev --> The instance has the label "env" and the value of
+     *            * `name:*` --> The instance has a name.
+     *            * `name:Howl` --> The instance's name contains the string "howl".
+     *            * `name:HOWL` --> Equivalent to above.
+     *            * `NAME:howl` --> Equivalent to above.
+     *            * `labels.env:*` --> The instance has the label "env".
+     *            * `labels.env:dev` --> The instance has the label "env" and the value of
      *                                 the label contains the string "dev".
-     *            * name:howl labels.env:dev --> The instance's name contains "howl" and
+     *            * `name:howl labels.env:dev` --> The instance's name contains "howl" and
      *                                           it has the label "env" with its value
      *                                           containing "dev".
      *     @type \Google\GAX\RetrySettings|array $retrySettings
@@ -756,7 +757,7 @@ class InstanceAdminGapicClient
      * ```
      * try {
      *     $instanceAdminClient = new InstanceAdminClient();
-     *     $formattedName = $instanceAdminClient->instanceName("[PROJECT]", "[INSTANCE]");
+     *     $formattedName = $instanceAdminClient->instanceName('[PROJECT]', '[INSTANCE]');
      *     $response = $instanceAdminClient->getInstance($formattedName);
      * } finally {
      *     $instanceAdminClient->close();
@@ -845,8 +846,8 @@ class InstanceAdminGapicClient
      * ```
      * try {
      *     $instanceAdminClient = new InstanceAdminClient();
-     *     $formattedParent = $instanceAdminClient->projectName("[PROJECT]");
-     *     $instanceId = "";
+     *     $formattedParent = $instanceAdminClient->projectName('[PROJECT]');
+     *     $instanceId = '';
      *     $instance = new Instance();
      *     $operationResponse = $instanceAdminClient->createInstance($formattedParent, $instanceId, $instance);
      *     $operationResponse->pollUntilComplete();
@@ -1071,7 +1072,7 @@ class InstanceAdminGapicClient
      * ```
      * try {
      *     $instanceAdminClient = new InstanceAdminClient();
-     *     $formattedName = $instanceAdminClient->instanceName("[PROJECT]", "[INSTANCE]");
+     *     $formattedName = $instanceAdminClient->instanceName('[PROJECT]', '[INSTANCE]');
      *     $instanceAdminClient->deleteInstance($formattedName);
      * } finally {
      *     $instanceAdminClient->close();
@@ -1129,7 +1130,7 @@ class InstanceAdminGapicClient
      * ```
      * try {
      *     $instanceAdminClient = new InstanceAdminClient();
-     *     $formattedResource = $instanceAdminClient->instanceName("[PROJECT]", "[INSTANCE]");
+     *     $formattedResource = $instanceAdminClient->instanceName('[PROJECT]', '[INSTANCE]');
      *     $policy = new Policy();
      *     $response = $instanceAdminClient->setIamPolicy($formattedResource, $policy);
      * } finally {
@@ -1196,7 +1197,7 @@ class InstanceAdminGapicClient
      * ```
      * try {
      *     $instanceAdminClient = new InstanceAdminClient();
-     *     $formattedResource = $instanceAdminClient->instanceName("[PROJECT]", "[INSTANCE]");
+     *     $formattedResource = $instanceAdminClient->instanceName('[PROJECT]', '[INSTANCE]');
      *     $response = $instanceAdminClient->getIamPolicy($formattedResource);
      * } finally {
      *     $instanceAdminClient->close();
@@ -1258,7 +1259,7 @@ class InstanceAdminGapicClient
      * ```
      * try {
      *     $instanceAdminClient = new InstanceAdminClient();
-     *     $formattedResource = $instanceAdminClient->instanceName("[PROJECT]", "[INSTANCE]");
+     *     $formattedResource = $instanceAdminClient->instanceName('[PROJECT]', '[INSTANCE]');
      *     $permissions = [];
      *     $response = $instanceAdminClient->testIamPermissions($formattedResource, $permissions);
      * } finally {

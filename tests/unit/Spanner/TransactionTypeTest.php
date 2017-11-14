@@ -32,11 +32,12 @@ use Google\Cloud\Spanner\Transaction;
 use Google\Cloud\Spanner\V1\SpannerClient;
 use Google\Cloud\Tests\GrpcTestTrait;
 use Prophecy\Argument;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group spanner
  */
-class TransactionTypeTest extends \PHPUnit_Framework_TestCase
+class TransactionTypeTest extends TestCase
 {
     use GrpcTestTrait;
 

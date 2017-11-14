@@ -84,6 +84,32 @@ class LanguageClientTest extends SnippetTestCase
         $this->assertEquals("This is a positive message.", $res->output());
     }
 
+    public function testAnalyzeEntitySentiment()
+    {
+        $this->connection->analyzeEntitySentiment(Argument::any())
+            ->shouldBeCalled()
+            ->willReturn([
+                'entities' => [
+                    [
+                        'name' => 'Google Cloud Platform',
+                        'sentiment' => [
+                            'score' => 1.0
+                        ]
+                    ]
+                ]
+            ]);
+
+        $this->client->___setProperty('connection', $this->connection->reveal());
+
+        $snippet = $this->snippetFromMethod(LanguageClient::class, 'analyzeEntitySentiment');
+        $snippet->addLocal('language', $this->client);
+
+        $res = $snippet->invoke();
+        $lines = explode(PHP_EOL, $res->output());
+        $this->assertEquals('Entity name: Google Cloud Platform', $lines[0]);
+        $this->assertEquals("This is a positive message.", $lines[1]);
+    }
+
     public function testAnalyzeSyntax()
     {
         $this->connection->analyzeSyntax(Argument::any())
@@ -105,6 +131,29 @@ class LanguageClientTest extends SnippetTestCase
 
         $res = $snippet->invoke();
         $this->assertEquals('1.0', $res->output());
+    }
+
+    public function testClassifyText()
+    {
+        $name = 'my-category';
+        $this->connection->classifyText(Argument::any())
+            ->shouldBeCalled()
+            ->willReturn([
+                'categories' => [
+                    [
+                        'name' => $name,
+                        'confidence' => .99
+                    ]
+                ]
+            ]);
+
+        $this->client->___setProperty('connection', $this->connection->reveal());
+
+        $snippet = $this->snippetFromMethod(LanguageClient::class, 'classifyText');
+        $snippet->addLocal('language', $this->client);
+
+        $res = $snippet->invoke();
+        $this->assertEquals($name, $res->output());
     }
 
     public function testAnnotateTextAllFeatures()

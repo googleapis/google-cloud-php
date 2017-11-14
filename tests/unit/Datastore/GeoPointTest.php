@@ -18,11 +18,12 @@
 namespace Google\Cloud\Tests\Unit\Datastore;
 
 use Google\Cloud\Datastore\GeoPoint;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group datastore
  */
-class GeoPointTest extends \PHPUnit_Framework_TestCase
+class GeoPointTest extends TestCase
 {
     public function testGeoPoint()
     {

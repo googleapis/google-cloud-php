@@ -57,8 +57,9 @@ use Google\GAX\OperationResponse;
  * ```
  * try {
  *     $videoIntelligenceServiceClient = new VideoIntelligenceServiceClient();
- *     $inputUri = "";
- *     $features = [];
+ *     $inputUri = 'gs://demomaker/cat.mp4';
+ *     $featuresElement = Feature::LABEL_DETECTION;
+ *     $features = [$featuresElement];
  *     $operationResponse = $videoIntelligenceServiceClient->annotateVideo($inputUri, $features);
  *     $operationResponse->pollUntilComplete();
  *     if ($operationResponse->operationSucceeded()) {
@@ -304,8 +305,9 @@ class VideoIntelligenceServiceGapicClient
      * ```
      * try {
      *     $videoIntelligenceServiceClient = new VideoIntelligenceServiceClient();
-     *     $inputUri = "";
-     *     $features = [];
+     *     $inputUri = 'gs://demomaker/cat.mp4';
+     *     $featuresElement = Feature::LABEL_DETECTION;
+     *     $features = [$featuresElement];
      *     $operationResponse = $videoIntelligenceServiceClient->annotateVideo($inputUri, $features);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {

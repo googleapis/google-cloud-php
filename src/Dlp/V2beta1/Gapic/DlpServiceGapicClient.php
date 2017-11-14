@@ -39,8 +39,12 @@ use Google\GAX\LongRunning\OperationsClient;
 use Google\GAX\OperationResponse;
 use Google\GAX\PathTemplate;
 use Google\GAX\ValidationException;
+use Google\Privacy\Dlp\V2beta1\AnalyzeDataSourceRiskRequest;
+use Google\Privacy\Dlp\V2beta1\BigQueryTable;
 use Google\Privacy\Dlp\V2beta1\ContentItem;
 use Google\Privacy\Dlp\V2beta1\CreateInspectOperationRequest;
+use Google\Privacy\Dlp\V2beta1\DeidentifyConfig;
+use Google\Privacy\Dlp\V2beta1\DeidentifyContentRequest;
 use Google\Privacy\Dlp\V2beta1\DlpServiceGrpcClient;
 use Google\Privacy\Dlp\V2beta1\InspectConfig;
 use Google\Privacy\Dlp\V2beta1\InspectContentRequest;
@@ -49,6 +53,7 @@ use Google\Privacy\Dlp\V2beta1\ListInspectFindingsRequest;
 use Google\Privacy\Dlp\V2beta1\ListRootCategoriesRequest;
 use Google\Privacy\Dlp\V2beta1\OperationConfig;
 use Google\Privacy\Dlp\V2beta1\OutputStorageConfig;
+use Google\Privacy\Dlp\V2beta1\PrivacyMetric;
 use Google\Privacy\Dlp\V2beta1\RedactContentRequest;
 use Google\Privacy\Dlp\V2beta1\RedactContentRequest_ImageRedactionConfig as ImageRedactionConfig;
 use Google\Privacy\Dlp\V2beta1\RedactContentRequest_ReplaceConfig as ReplaceConfig;
@@ -72,14 +77,14 @@ use Google\Privacy\Dlp\V2beta1\StorageConfig;
  * ```
  * try {
  *     $dlpServiceClient = new DlpServiceClient();
- *     $name = "EMAIL_ADDRESS";
+ *     $name = 'EMAIL_ADDRESS';
  *     $infoTypesElement = new InfoType();
  *     $infoTypesElement->setName($name);
  *     $infoTypes = [$infoTypesElement];
  *     $inspectConfig = new InspectConfig();
  *     $inspectConfig->setInfoTypes($infoTypes);
- *     $type = "text/plain";
- *     $value = "My email is example@example.com.";
+ *     $type = 'text/plain';
+ *     $value = 'My email is example@example.com.';
  *     $itemsElement = new ContentItem();
  *     $itemsElement->setType($type);
  *     $itemsElement->setValue($value);
@@ -154,6 +159,10 @@ class DlpServiceGapicClient
     private static function getLongRunningDescriptors()
     {
         return [
+            'analyzeDataSourceRisk' => [
+                'operationReturnType' => '\Google\Privacy\Dlp\V2beta1\RiskAnalysisOperationResult',
+                'metadataReturnType' => '\Google\Privacy\Dlp\V2beta1\RiskAnalysisOperationMetadata',
+            ],
             'createInspectOperation' => [
                 'operationReturnType' => '\Google\Privacy\Dlp\V2beta1\InspectOperationResult',
                 'metadataReturnType' => '\Google\Privacy\Dlp\V2beta1\InspectOperationMetadata',
@@ -347,6 +356,8 @@ class DlpServiceGapicClient
         $this->descriptors = [
             'inspectContent' => $defaultDescriptors,
             'redactContent' => $defaultDescriptors,
+            'deidentifyContent' => $defaultDescriptors,
+            'analyzeDataSourceRisk' => $defaultDescriptors,
             'createInspectOperation' => $defaultDescriptors,
             'listInspectFindings' => $defaultDescriptors,
             'listInfoTypes' => $defaultDescriptors,
@@ -391,14 +402,14 @@ class DlpServiceGapicClient
      * ```
      * try {
      *     $dlpServiceClient = new DlpServiceClient();
-     *     $name = "EMAIL_ADDRESS";
+     *     $name = 'EMAIL_ADDRESS';
      *     $infoTypesElement = new InfoType();
      *     $infoTypesElement->setName($name);
      *     $infoTypes = [$infoTypesElement];
      *     $inspectConfig = new InspectConfig();
      *     $inspectConfig->setInfoTypes($infoTypes);
-     *     $type = "text/plain";
-     *     $value = "My email is example@example.com.";
+     *     $type = 'text/plain';
+     *     $value = 'My email is example@example.com.';
      *     $itemsElement = new ContentItem();
      *     $itemsElement->setType($type);
      *     $itemsElement->setValue($value);
@@ -462,22 +473,22 @@ class DlpServiceGapicClient
      * ```
      * try {
      *     $dlpServiceClient = new DlpServiceClient();
-     *     $name = "EMAIL_ADDRESS";
+     *     $name = 'EMAIL_ADDRESS';
      *     $infoTypesElement = new InfoType();
      *     $infoTypesElement->setName($name);
      *     $infoTypes = [$infoTypesElement];
      *     $inspectConfig = new InspectConfig();
      *     $inspectConfig->setInfoTypes($infoTypes);
-     *     $type = "text/plain";
-     *     $value = "My email is example@example.com.";
+     *     $type = 'text/plain';
+     *     $value = 'My email is example@example.com.';
      *     $itemsElement = new ContentItem();
      *     $itemsElement->setType($type);
      *     $itemsElement->setValue($value);
      *     $items = [$itemsElement];
-     *     $name2 = "EMAIL_ADDRESS";
+     *     $name2 = 'EMAIL_ADDRESS';
      *     $infoType = new InfoType();
      *     $infoType->setName($name2);
-     *     $replaceWith = "REDACTED";
+     *     $replaceWith = 'REDACTED';
      *     $replaceConfigsElement = new ReplaceConfig();
      *     $replaceConfigsElement->setInfoType($infoType);
      *     $replaceConfigsElement->setReplaceWith($replaceWith);
@@ -540,6 +551,153 @@ class DlpServiceGapicClient
     }
 
     /**
+     * De-identifies potentially sensitive info from a list of strings.
+     * This method has limits on input size and output size.
+     *
+     * Sample code:
+     * ```
+     * try {
+     *     $dlpServiceClient = new DlpServiceClient();
+     *     $deidentifyConfig = new DeidentifyConfig();
+     *     $inspectConfig = new InspectConfig();
+     *     $items = [];
+     *     $response = $dlpServiceClient->deidentifyContent($deidentifyConfig, $inspectConfig, $items);
+     * } finally {
+     *     $dlpServiceClient->close();
+     * }
+     * ```
+     *
+     * @param DeidentifyConfig $deidentifyConfig Configuration for the de-identification of the list of content items.
+     * @param InspectConfig    $inspectConfig    Configuration for the inspector.
+     * @param ContentItem[]    $items            The list of items to inspect. Up to 100 are allowed per request.
+     *                                           All items will be treated as text/*.
+     * @param array            $optionalArgs     {
+     *                                           Optional.
+     *
+     *     @type \Google\GAX\RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\GAX\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\GAX\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Privacy\Dlp\V2beta1\DeidentifyContentResponse
+     *
+     * @throws \Google\GAX\ApiException if the remote call fails
+     * @experimental
+     */
+    public function deidentifyContent($deidentifyConfig, $inspectConfig, $items, $optionalArgs = [])
+    {
+        $request = new DeidentifyContentRequest();
+        $request->setDeidentifyConfig($deidentifyConfig);
+        $request->setInspectConfig($inspectConfig);
+        $request->setItems($items);
+
+        $defaultCallSettings = $this->defaultCallSettings['deidentifyContent'];
+        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
+            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
+                $optionalArgs['retrySettings']
+            );
+        }
+        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
+        $callable = ApiCallable::createApiCall(
+            $this->dlpServiceStub,
+            'DeidentifyContent',
+            $mergedSettings,
+            $this->descriptors['deidentifyContent']
+        );
+
+        return $callable(
+            $request,
+            [],
+            ['call_credentials_callback' => $this->createCredentialsCallback()]);
+    }
+
+    /**
+     * Schedules a job to compute risk analysis metrics over content in a Google
+     * Cloud Platform repository.
+     *
+     * Sample code:
+     * ```
+     * try {
+     *     $dlpServiceClient = new DlpServiceClient();
+     *     $privacyMetric = new PrivacyMetric();
+     *     $sourceTable = new BigQueryTable();
+     *     $operationResponse = $dlpServiceClient->analyzeDataSourceRisk($privacyMetric, $sourceTable);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *       $result = $operationResponse->getResult();
+     *       // doSomethingWith($result)
+     *     } else {
+     *       $error = $operationResponse->getError();
+     *       // handleError($error)
+     *     }
+     *
+     *     // OR start the operation, keep the operation name, and resume later
+     *     $operationResponse = $dlpServiceClient->analyzeDataSourceRisk($privacyMetric, $sourceTable);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $dlpServiceClient->resumeOperation($operationName, 'analyzeDataSourceRisk');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *       $result = $newOperationResponse->getResult();
+     *       // doSomethingWith($result)
+     *     } else {
+     *       $error = $newOperationResponse->getError();
+     *       // handleError($error)
+     *     }
+     * } finally {
+     *     $dlpServiceClient->close();
+     * }
+     * ```
+     *
+     * @param PrivacyMetric $privacyMetric Privacy metric to compute.
+     * @param BigQueryTable $sourceTable   Input dataset to compute metrics over.
+     * @param array         $optionalArgs  {
+     *                                     Optional.
+     *
+     *     @type \Google\GAX\RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\GAX\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\GAX\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\GAX\OperationResponse
+     *
+     * @throws \Google\GAX\ApiException if the remote call fails
+     * @experimental
+     */
+    public function analyzeDataSourceRisk($privacyMetric, $sourceTable, $optionalArgs = [])
+    {
+        $request = new AnalyzeDataSourceRiskRequest();
+        $request->setPrivacyMetric($privacyMetric);
+        $request->setSourceTable($sourceTable);
+
+        $defaultCallSettings = $this->defaultCallSettings['analyzeDataSourceRisk'];
+        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
+            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
+                $optionalArgs['retrySettings']
+            );
+        }
+        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
+        $callable = ApiCallable::createApiCall(
+            $this->dlpServiceStub,
+            'AnalyzeDataSourceRisk',
+            $mergedSettings,
+            $this->descriptors['analyzeDataSourceRisk']
+        );
+
+        return $callable(
+            $request,
+            [],
+            ['call_credentials_callback' => $this->createCredentialsCallback()]);
+    }
+
+    /**
      * Schedules a job scanning content in a Google Cloud Platform data
      * repository.
      *
@@ -547,13 +705,13 @@ class DlpServiceGapicClient
      * ```
      * try {
      *     $dlpServiceClient = new DlpServiceClient();
-     *     $name = "EMAIL_ADDRESS";
+     *     $name = 'EMAIL_ADDRESS';
      *     $infoTypesElement = new InfoType();
      *     $infoTypesElement->setName($name);
      *     $infoTypes = [$infoTypesElement];
      *     $inspectConfig = new InspectConfig();
      *     $inspectConfig->setInfoTypes($infoTypes);
-     *     $url = "gs://example_bucket/example_file.png";
+     *     $url = 'gs://example_bucket/example_file.png';
      *     $fileSet = new FileSet();
      *     $fileSet->setUrl($url);
      *     $cloudStorageOptions = new CloudStorageOptions();
@@ -594,22 +752,7 @@ class DlpServiceGapicClient
      *
      * @param InspectConfig       $inspectConfig Configuration for the inspector.
      * @param StorageConfig       $storageConfig Specification of the data set to process.
-     * @param OutputStorageConfig $outputConfig  Optional location to store findings. The bucket must already exist and
-     *                                           the Google APIs service account for DLP must have write permission to
-     *                                           write to the given bucket.
-     *                                           <p>Results are split over multiple csv files with each file name matching
-     *                                           the pattern "[operation_id]_[count].csv", for example
-     *                                           `3094877188788974909_1.csv`. The `operation_id` matches the
-     *                                           identifier for the Operation, and the `count` is a counter used for
-     *                                           tracking the number of files written. <p>The CSV file(s) contain the
-     *                                           following columns regardless of storage type scanned: <li>id <li>info_type
-     *                                           <li>likelihood <li>byte size of finding <li>quote <li>timestamp<br/>
-     *                                           <p>For Cloud Storage the next columns are: <li>file_path
-     *                                           <li>start_offset<br/>
-     *                                           <p>For Cloud Datastore the next columns are: <li>project_id
-     *                                           <li>namespace_id <li>path <li>column_name <li>offset<br/>
-     *                                           <p>For BigQuery the next columns are: <li>row_number <li>project_id
-     *                                           <li>dataset_id <li>table_id
+     * @param OutputStorageConfig $outputConfig  Optional location to store findings.
      * @param array               $optionalArgs  {
      *                                           Optional.
      *
@@ -664,7 +807,7 @@ class DlpServiceGapicClient
      * ```
      * try {
      *     $dlpServiceClient = new DlpServiceClient();
-     *     $formattedName = $dlpServiceClient->resultName("[RESULT]");
+     *     $formattedName = $dlpServiceClient->resultName('[RESULT]');
      *     $response = $dlpServiceClient->listInspectFindings($formattedName);
      * } finally {
      *     $dlpServiceClient->close();
@@ -672,7 +815,7 @@ class DlpServiceGapicClient
      * ```
      *
      * @param string $name         Identifier of the results set returned as metadata of
-     *                             the longrunning operation created by a call to CreateInspectOperation.
+     *                             the longrunning operation created by a call to InspectDataSource.
      *                             Should be in the format of `inspect/results/{id}`.
      * @param array  $optionalArgs {
      *                             Optional.
@@ -686,12 +829,14 @@ class DlpServiceGapicClient
      *          the system should return the next page of data.
      *     @type string $filter
      *          Restricts findings to items that match. Supports info_type and likelihood.
-     *          <p>Examples:<br/>
-     *          <li>info_type=EMAIL_ADDRESS
-     *          <li>info_type=PHONE_NUMBER,EMAIL_ADDRESS
-     *          <li>likelihood=VERY_LIKELY
-     *          <li>likelihood=VERY_LIKELY,LIKELY
-     *          <li>info_type=EMAIL_ADDRESS,likelihood=VERY_LIKELY,LIKELY
+     *
+     *          Examples:
+     *
+     *          - info_type=EMAIL_ADDRESS
+     *          - info_type=PHONE_NUMBER,EMAIL_ADDRESS
+     *          - likelihood=VERY_LIKELY
+     *          - likelihood=VERY_LIKELY,LIKELY
+     *          - info_type=EMAIL_ADDRESS,likelihood=VERY_LIKELY,LIKELY
      *     @type \Google\GAX\RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\GAX\RetrySettings} object, or an associative array
@@ -745,8 +890,8 @@ class DlpServiceGapicClient
      * ```
      * try {
      *     $dlpServiceClient = new DlpServiceClient();
-     *     $category = "PII";
-     *     $languageCode = "en";
+     *     $category = 'PII';
+     *     $languageCode = 'en';
      *     $response = $dlpServiceClient->listInfoTypes($category, $languageCode);
      * } finally {
      *     $dlpServiceClient->close();
@@ -805,7 +950,7 @@ class DlpServiceGapicClient
      * ```
      * try {
      *     $dlpServiceClient = new DlpServiceClient();
-     *     $languageCode = "en";
+     *     $languageCode = 'en';
      *     $response = $dlpServiceClient->listRootCategories($languageCode);
      * } finally {
      *     $dlpServiceClient->close();

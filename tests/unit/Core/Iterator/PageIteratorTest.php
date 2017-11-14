@@ -19,12 +19,13 @@ namespace Google\Cloud\Tests\Unit\Core\Iterator;
 
 use Google\Cloud\Core\Iterator\ItemIterator;
 use Google\Cloud\Core\Iterator\PageIterator;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group core
  * @group iterator
  */
-class PageIteratorTest extends \PHPUnit_Framework_TestCase
+class PageIteratorTest extends TestCase
 {
     private static $page1 = ['a', 'b', 'c'];
     private static $page2 = ['d', 'e', 'f'];

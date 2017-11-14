@@ -20,11 +20,12 @@ namespace Google\Cloud\Tests\Unit\Trace;
 use Google\Cloud\Trace\Reporter\ReporterInterface;
 use Google\Cloud\Trace\RequestTracer;
 use Google\Cloud\Trace\Tracer\NullTracer;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group trace
  */
-class RequestTracerTest extends \PHPUnit_Framework_TestCase
+class RequestTracerTest extends TestCase
 {
     private $reporter;
 

@@ -25,11 +25,12 @@ use Google\Cloud\Vision\Annotation\Face;
 use Google\Cloud\Vision\Annotation\ImageProperties;
 use Google\Cloud\Vision\Annotation\SafeSearch;
 use Google\Cloud\Vision\Annotation\Web;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group vision
  */
-class AnnotationTest extends \PHPUnit_Framework_TestCase
+class AnnotationTest extends TestCase
 {
     public function testConstruct()
     {
