@@ -155,16 +155,25 @@ class QueryTest extends SnippetTestCase
     /**
      * @dataProvider cursors
      */
-    public function testCursors($method, $key, $before)
+    public function testCursors($method, $key, $before, $value)
     {
         $cursor = ['foo' => 'bar'];
         $snippet = $this->snippetFromMethod(Query::class, $method);
+        $snippet->setLine(1, '');
         $snippet->addLocal('cursor', $cursor);
-        $this->runAndAssert($snippet, $key, [
-            'before' => $before,
-            'values' => [
-                'foo' => [
-                    'stringValue' => 'bar'
+        $this->runAndAssertArray($snippet, [
+            $key => [
+                'before' => $before,
+                'values' => [
+                    ['integerValue' => $value]
+                ]
+            ],
+            'orderBy' => [
+                [
+                    'field' => [
+                        'fieldPath' => 'age'
+                    ],
+                    'direction' => Query::DIR_ASCENDING
                 ]
             ]
         ]);
@@ -173,22 +182,26 @@ class QueryTest extends SnippetTestCase
     public function cursors()
     {
         return [
-            ['startAt', 'startAt', true],
-            ['startAfter', 'startAt', false],
-            ['endBefore', 'endAt', true],
-            ['endAt', 'endAt', false]
+            ['startAt', 'startAt', true, 18],
+            ['startAfter', 'startAt', false, 17],
+            ['endBefore', 'endAt', true, 18],
+            ['endAt', 'endAt', false, 17]
         ];
     }
 
     private function runAndAssert(Snippet $snippet, $key, $argument)
+    {
+        return $this->runAndAssertArray($snippet, [$key => $argument]);
+    }
+
+    private function runAndAssertArray(Snippet $snippet, array $query)
     {
         $this->connection->runQuery([
             'parent' => self::NAME,
             'retries' => 0,
             'structuredQuery' => array_filter([
                 'from' => self::NAME,
-                $key => $argument
-            ])
+            ]) + $query
         ])->shouldBeCalled()->willReturn(new \ArrayIterator([[]]));
 
         $this->query->___setProperty('connection', $this->connection->reveal());

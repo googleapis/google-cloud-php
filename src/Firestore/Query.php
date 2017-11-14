@@ -403,7 +403,8 @@ class Query
      *
      * Starts results at the provided set of field values relative to the order
      * of the query. The order of the provided values must match the order of
-     * the order by clauses of the query.
+     * the order by clauses of the query. Values in the given cursor will be
+     * included in the result set, if found.
      *
      * Multiple invocations of this call overwrite previous calls. Calling
      * `startAt()` will overwrite both previous `startAt()` and `startAfter()`
@@ -411,19 +412,17 @@ class Query
      *
      * Example:
      * ```
-     * $query = $query->startAt($cursor);
+     * $query = $query->orderBy('age', 'ASC')->startAt([18]);
+     * $users18YearsOrOlder = $query->documents();
      * ```
      *
-     * @param array $cursor A list of values.
+     * @param array $cursor A list of values defining the query starting point.
      * @return Query A new instance of Query with the given changes applied.
      */
     public function startAt(array $cursor)
     {
         return $this->newQuery([
-            'startAt' => [
-                'before' => true,
-                'values' => $this->valueMapper->encodeValues($cursor)
-            ]
+            'startAt' => $this->buildPosition($cursor, true)
         ], true);
     }
 
@@ -432,7 +431,8 @@ class Query
      *
      * Starts results after the provided set of field values relative to the order
      * of the query. The order of the provided values must match the order of
-     * the order by clauses of the query.
+     * the order by clauses of the query. Values in the given cursor will not be
+     * included in the result set.
      *
      * Multiple invocations of this call overwrite previous calls. Calling
      * `startAt()` will overwrite both previous `startAt()` and `startAfter()`
@@ -440,19 +440,17 @@ class Query
      *
      * Example:
      * ```
-     * $query = $query->startAfter($cursor);
+     * $query = $query->orderBy('age', 'ASC')->startAfter([17]);
+     * $users18YearsOrOlder = $query->documents();
      * ```
      *
-     * @param array $cursor A list of values.
+     * @param array $cursor A list of values defining the query starting point.
      * @return Query A new instance of Query with the given changes applied.
      */
     public function startAfter(array $cursor)
     {
         return $this->newQuery([
-            'startAt' => [
-                'before' => false,
-                'values' => $this->valueMapper->encodeValues($cursor)
-            ]
+            'startAt' => $this->buildPosition($cursor, false)
         ], true);
     }
 
@@ -461,7 +459,8 @@ class Query
      *
      * Ends results before the provided set of field values relative to the order
      * of the query. The order of the provided values must match the order of
-     * the order by clauses of the query.
+     * the order by clauses of the query. Values in the given cursor will be
+     * included in the result set, if found.
      *
      * Multiple invocations of this call overwrite previous calls. Calling
      * `endBefore()` will overwrite both previous `endBefore()` and `endAt()`
@@ -469,19 +468,17 @@ class Query
      *
      * Example:
      * ```
-     * $query = $query->endBefore($cursor);
+     * $query = $query->orderBy('age', 'ASC')->endBefore([18]);
+     * $usersYoungerThan18 = $query->documents();
      * ```
      *
-     * @param array $cursor A list of values.
+     * @param array $cursor A list of values defining the query end point.
      * @return Query A new instance of Query with the given changes applied.
      */
     public function endBefore(array $cursor)
     {
         return $this->newQuery([
-            'endAt' => [
-                'before' => true,
-                'values' => $this->valueMapper->encodeValues($cursor)
-            ]
+            'endAt' => $this->buildPosition($cursor, true)
         ], true);
     }
 
@@ -490,7 +487,8 @@ class Query
      *
      * Ends results at the provided set of field values relative to the order
      * of the query. The order of the provided values must match the order of
-     * the order by clauses of the query.
+     * the order by clauses of the query. Values in the given cursor will not be
+     * included in the result set.
      *
      * Multiple invocations of this call overwrite previous calls. Calling
      * `endBefore()` will overwrite both previous `endBefore()` and `endAt()`
@@ -498,20 +496,34 @@ class Query
      *
      * Example:
      * ```
-     * $query = $query->endAt($cursor);
+     * $query = $query->orderBy('age', 'ASC')->endAt([17]);
+     * $usersYoungerThan18 = $query->documents();
      * ```
      *
-     * @param array $cursor A list of values.
+     * @param array $cursor A list of values defining the query end point.
      * @return Query A new instance of Query with the given changes applied.
      */
     public function endAt(array $cursor)
     {
         return $this->newQuery([
-            'endAt' => [
-                'before' => false,
-                'values' => $this->valueMapper->encodeValues($cursor)
-            ]
+            'endAt' => $this->buildPosition($cursor, false)
         ], true);
+    }
+
+    /**
+     * Builds a Firestore query position.
+     *
+     * @param array $cursor The set of field values to use as the query boundary.
+     * @param bool $before Whether the query boundary lies just before or after
+     *        the provided data.
+     * @return array
+     */
+    private function buildPosition(array $cursor, $before)
+    {
+        return [
+            'before' => $before,
+            'values' => $this->valueMapper->encodeValues($cursor)
+        ];
     }
 
     /**

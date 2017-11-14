@@ -163,7 +163,7 @@ class ValueMapper
      * Accepts a list of field paths and a list of values, and constructs
      * a nested array of fields and values.
      *
-     * @param string[] $paths The field paths.
+     * @param FieldPath[] $paths The field paths.
      * @param array $values The field values.
      * @return array
      * @todo less recursion
