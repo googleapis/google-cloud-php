@@ -149,7 +149,7 @@ class DocumentReference
      *        Accepts a nested array, or a simple array of field paths.
      * @param array $options Configuration Options.
      * @return array [WriteResult](https://cloud.google.com/firestore/docs/reference/rpc/google.firestore.v1beta1#google.firestore.v1beta1.WriteResult)
-     * @throws ConflictException
+     * @throws ConflictException If the document already exists.
      * @codingStandardsIgnoreEnd
      */
     public function create(array $fields = [], array $options = [])
@@ -189,7 +189,6 @@ class DocumentReference
      * }
      * @codingStandardsIgnoreStart
      * @return array [WriteResult](https://cloud.google.com/firestore/docs/reference/rpc/google.firestore.v1beta1#google.firestore.v1beta1.WriteResult)
-     * @throws ConflictException If the precondition is not met.
      * @codingStandardsIgnoreEnd
      */
     public function set(array $fields, array $options = [])
@@ -239,7 +238,6 @@ class DocumentReference
      * @param array $fields An array containing field names paired with their value.
      * @param array $options Configuration Options
      * @return array [WriteResult](https://cloud.google.com/firestore/docs/reference/rpc/google.firestore.v1beta1#google.firestore.v1beta1.WriteResult)
-     * @throws ConflictException If the document does not exist.
      * @codingStandardsIgnoreEnd
      */
     public function update(array $fields, array $options = [])
@@ -263,7 +261,6 @@ class DocumentReference
      * @param array[] $data A list of arrays of form `[FieldPath|string $path, mixed $value]`.
      * @param array $options Configuration options
      * @return array [WriteResult](https://cloud.google.com/firestore/docs/reference/rpc/google.firestore.v1beta1#google.firestore.v1beta1.WriteResult)
-     * @throws ConflictException If the document does not exist.
      * @codingStandardsIgnoreEnd
      */
     public function updatePaths(array $data, array $options = [])
@@ -282,20 +279,9 @@ class DocumentReference
      * $document->delete();
      * ```
      *
-     * @param array $options {
-     *     Configuration Options
-     *
-     *     @type array $precondition An optional precondition on the document. If
-     *           this is set and not met by the target document, the write will
-     *           fail. Allowed arguments are `(bool) $exists` and
-     *           {@see Google\Cloud\Core\Timestamp} `$updateTime`.
-     *           To completely disable precondition checks, provide an empty array
-     *           as the value of `$precondition`. **Defaults to**
-     *           `['exists' => true]` (i.e. Document must exist in Firestore).
-     * }
+     * @param array $options Configuration Options
      * @codingStandardsIgnoreStart
      * @return array [WriteResult](https://cloud.google.com/firestore/docs/reference/rpc/google.firestore.v1beta1#google.firestore.v1beta1.WriteResult)
-     * @throws ConflictException If the precondition is not met.
      * @codingStandardsIgnoreEnd
      */
     public function delete(array $options = [])

@@ -267,8 +267,6 @@ class WriteBatch
      */
     public function delete($documentName, array $options = [])
     {
-        $options['precondition'] = [];
-
         $this->writes[] = $this->createDatabaseWrite(self::TYPE_DELETE, $documentName, $options);
 
         return $this;

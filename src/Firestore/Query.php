@@ -114,7 +114,7 @@ class Query
         ConnectionInterface $connection,
         ValueMapper $valueMapper,
         $parent,
-        array $query,
+        array $query
     ) {
         $this->connection = $connection;
         $this->valueMapper = $valueMapper;
@@ -256,6 +256,7 @@ class Query
                     'value' => $this->valueMapper->encodeValue($value)
                 ]
             ];
+        }
 
         $query = [
             'where' => [

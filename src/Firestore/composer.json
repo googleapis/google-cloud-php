@@ -5,6 +5,8 @@
     "minimum-stability": "stable",
     "require": {
         "google/cloud-core": "^1.0",
+        "google/gax": "^0.25",
+        "google/proto-client": "^0.25",
         "paragonie/random_compat": "^1|^2"
     },
     "extra": {
