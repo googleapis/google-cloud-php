@@ -64,7 +64,7 @@ class SpannerClient
     use LROTrait;
     use ValidateTrait;
 
-    const VERSION = '0.8.0';
+    const VERSION = '0.8.2';
 
     const FULL_CONTROL_SCOPE = 'https://www.googleapis.com/auth/spanner.data';
     const ADMIN_SCOPE = 'https://www.googleapis.com/auth/spanner.admin';
@@ -117,7 +117,8 @@ class SpannerClient
                 self::FULL_CONTROL_SCOPE,
                 self::ADMIN_SCOPE
             ],
-            'returnInt64AsObject' => false
+            'returnInt64AsObject' => false,
+            'projectIdRequired' => true
         ];
 
         $this->connection = new Grpc($this->configureAuthentication($config));

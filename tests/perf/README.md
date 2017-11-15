@@ -25,5 +25,5 @@ immediately before the class declaration:
 /**
  * @group bigquery
  */
-class BigQueryTest extends \PHPUnit_Framework_TestCase
+class BigQueryTest extends TestCase
 ```

@@ -19,6 +19,7 @@ namespace Google\Cloud\Storage;
 
 use Google\Cloud\Core\ArrayTrait;
 use Google\Cloud\Core\ClientTrait;
+use Google\Cloud\Core\Exception\GoogleException;
 use Google\Cloud\Core\Iterator\ItemIterator;
 use Google\Cloud\Core\Iterator\PageIterator;
 use Google\Cloud\Core\Timestamp;
@@ -45,7 +46,7 @@ class StorageClient
     use ArrayTrait;
     use ClientTrait;
 
-    const VERSION = '1.2.0';
+    const VERSION = '1.2.1';
 
     const FULL_CONTROL_SCOPE = 'https://www.googleapis.com/auth/devstorage.full_control';
     const READ_ONLY_SCOPE = 'https://www.googleapis.com/auth/devstorage.read_only';
@@ -177,17 +178,22 @@ class StorageClient
      *           this option has no effect. **Defaults to** `true`.
      * }
      * @return ItemIterator<Google\Cloud\Storage\Bucket>
+     * @throws GoogleException When a project ID has not been detected.
      */
     public function buckets(array $options = [])
     {
+        if (!$this->projectId) {
+            throw new GoogleException(
+                'No project ID was provided, ' .
+                'and we were unable to detect a default project ID.'
+            );
+        }
+
         $resultLimit = $this->pluck('resultLimit', $options, false);
-
         $bucketUserProject = $this->pluck('bucketUserProject', $options, false);
-
         $bucketUserProject = !is_null($bucketUserProject)
             ? $bucketUserProject
             : true;
-
         $userProject = (isset($options['userProject']) && $bucketUserProject)
             ? $options['userProject']
             : null;
@@ -281,15 +287,21 @@ class StorageClient
      *           this option has no effect. **Defaults to** `true`.
      * }
      * @return Bucket
+     * @throws GoogleException When a project ID has not been detected.
      */
     public function createBucket($name, array $options = [])
     {
-        $bucketUserProject = $this->pluck('bucketUserProject', $options, false);
+        if (!$this->projectId) {
+            throw new GoogleException(
+                'No project ID was provided, ' .
+                'and we were unable to detect a default project ID.'
+            );
+        }
 
+        $bucketUserProject = $this->pluck('bucketUserProject', $options, false);
         $bucketUserProject = !is_null($bucketUserProject)
             ? $bucketUserProject
             : true;
-
         $userProject = (isset($options['userProject']) && $bucketUserProject)
             ? $options['userProject']
             : null;
