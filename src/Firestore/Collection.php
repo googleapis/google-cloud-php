@@ -62,9 +62,14 @@ class Collection
     }
 
     /**
+     * Get all documents belonging to this collection.
+     *
      * @todo This method is not in the document defining the API behavior, so it may have been omitted for a reason (and
      * may therefore be removed later). In testing, I found it useful to list documents in a collection, so I've
      * included it for the time being. (jdp)
+     *
+     * @param array $options
+     * @return ItemIterator<Document>
      */
     public function documents(array $options = [])
     {
@@ -72,7 +77,7 @@ class Collection
         return new ItemIterator(
             new PageIterator(
                 function (array $document) {
-                    return new Document($this->connection, $this->valueMapper, $document['name']);
+                    return $this->documentFactory($document['name']);
                 },
                 [$this->connection, 'listDocuments'],
                 [
@@ -85,5 +90,60 @@ class Collection
                 ]
             )
         );
+    }
+
+    /**
+     * Lazily get a document which is a direct child of this collection.
+     *
+     * @param string $documentId The document ID.
+     * @return Document
+     */
+    public function document($documentId)
+    {
+        return $this->documentFactory($this->child($this->name, $documentId));
+    }
+
+    /**
+     * Lazily generate a new document with a random name.
+     *
+     * This method does NOT insert the document until you call {@see Google\Cloud\Firestore\Document::create()}.
+     *
+     * @param array $fields
+     * @param array $options
+     * @return Document
+     */
+    public function newDocument()
+    {
+        return $this->documentFactory($this->randomName($this->name));
+    }
+
+    /**
+     * Generate a new document with a random name, and insert it with the given field data.
+     *
+     * This method immediately inserts the document. If you wish for lazy creation of a Document instance,
+     * refer to {@see Google\Cloud\Firestore\Collection::document()} or
+     * {@see Google\Cloud\Firestore\Collection::newDocument()}.
+     *
+     * @param array $fields
+     * @param array $options
+     * @return array [{@see Google\Cloud\Firestore\Document}, array $result]
+     */
+    public function add(array $fields = [], array $options = [])
+    {
+        $document = $this->documentFactory($this->randomName($this->name));
+        $result = $document->create($fields, $options);
+
+        return [$document, $result];
+    }
+
+    /**
+     * Create a document instance with the given document name.
+     *
+     * @param string $name
+     * @return Document
+     */
+    private function documentFactory($name)
+    {
+        return new Document($this->connection, $this->valueMapper, $this, $name);
     }
 }

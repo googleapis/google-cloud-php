@@ -29,7 +29,7 @@ trait ValueMapperTrait
      *        **Defaults to** `Google\Cloud\Core\Timestamp`.
      * @return mixed
      */
-    private function createTimestampWithNanos($timestamp, $returnType = Timestamp::class)
+    public function createTimestampWithNanos($timestamp, $returnType = Timestamp::class)
     {
         $nanos = 0;
         if (is_array($timestamp)) {

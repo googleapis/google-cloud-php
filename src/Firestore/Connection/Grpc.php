@@ -20,8 +20,8 @@ namespace Google\Cloud\Firestore\Connection;
 use Google\Cloud\Core\GrpcRequestWrapper;
 use Google\Cloud\Core\GrpcTrait;
 use Google\Cloud\Firestore\FirestoreClient as ManualFirestoreClient;
-use Google\Cloud\Firestore\V1beta1\FirestoreAdminGapicClient;
-use Google\Cloud\Firestore\V1beta1\FirestoreGapicClient;
+use Google\Cloud\Firestore\V1beta1\FirestoreAdminClient;
+use Google\Cloud\Firestore\V1beta1\FirestoreClient;
 use Google\Firestore\V1beta1\DocumentMask;
 use Google\Firestore\V1beta1\Write;
 use Google\GAX\Serializer;
@@ -67,8 +67,8 @@ class Grpc implements ConnectionInterface
         $this->setRequestWrapper(new GrpcRequestWrapper($config));
 
         $grpcConfig = $this->getGaxConfig(ManualFirestoreClient::VERSION);
-        $this->admin = new FirestoreAdminGapicClient($grpcConfig);
-        $this->firestore = new FirestoreGapicClient($grpcConfig);
+        $this->admin = new FirestoreAdminClient($grpcConfig);
+        $this->firestore = new FirestoreClient($grpcConfig);
     }
 
         /**

@@ -19,42 +19,86 @@ namespace Google\Cloud\Firestore;
 
 trait PathTrait
 {
+    /**
+     * Create a full name from a project, database and relative path.
+     *
+     * @param string $projectId
+     * @param string $database
+     * @param string $relativeName
+     * @return string
+     */
     private function fullName($projectId, $database, $relativeName)
     {
         $template = 'projects/%s/databases/%s/documents/%s';
         return sprintf($template, $projectId, $database, $relativeName);
     }
 
+    /**
+     * Get the database name from a path.
+     *
+     * @param string $name
+     * @return string
+     */
     private function databaseName($name)
     {
         $parts = explode('/databases/', $name);
         return $parts[0] . '/databases/' . explode('/', $parts[1])[0];
     }
 
+    /**
+     * Determine whether the given path is a document.
+     *
+     * @param string $name
+     * @return bool
+     */
     private function isDocument($name)
     {
         $parts = $this->splitName($name);
         return count($parts) > 0 && count($parts) % 2 === 0;
     }
 
+    /**
+     * Determine whether the given path is a collection.
+     *
+     * @param string $name
+     * @return bool
+     */
     private function isCollection($name)
     {
         $parts = $this->splitName($name);
         return count($parts) % 2 === 1;
     }
 
+    /**
+     * Determine whether the given path is relative or absolute.
+     *
+     * @param string $name
+     * @return bool
+     */
     private function isRelative($name)
     {
         $parts = $this->splitName($name);
         return count($parts) > 0 && $parts[0] !== 'projects';
     }
 
+    /**
+     * Split a path into pieces at the separator (`/`).
+     *
+     * @param string $name
+     * @return array
+     */
     private function splitName($name)
     {
         return explode('/', trim($name, '/'));
     }
 
-    private function id($name)
+    /**
+     * Return the identifier from a path.
+     *
+     * @param string $name
+     * @return string|null
+     */
+    private function pathId($name)
     {
         $parts = $this->splitName($name);
         if (!is_array($parts) || count($parts) === 0) {
@@ -64,16 +108,40 @@ trait PathTrait
         return end($parts);
     }
 
+    /**
+     * Append a new element to a given path.
+     *
+     * @param string $name
+     * @param string $child
+     * @return string
+     */
     private function childPath($name, $child)
     {
         return $name . '/' . $child;
     }
 
+    /**
+     * Get the current path's parent.
+     * @param string $name
+     * @return string
+     */
     private function parentPath($name)
     {
         $parts = $this->splitName($name);
         array_pop($parts);
 
         return implode('/', $parts);
+    }
+
+    /**
+     * Create a random name.
+     *
+     * @param string $name
+     * @return string
+     */
+    private function randomName($name)
+    {
+        $rand = preg_filter('/[^a-zA-Z0-9]{0,}/', '', base64_encode(random_bytes(30)));
+        return $this->childPath($name, substr($rand, 0, 20));
     }
 }

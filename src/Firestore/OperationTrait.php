@@ -35,7 +35,6 @@ trait OperationTrait
      */
     private function commitWrites(WriteBatch $writes, array $options = [])
     {
-        // print_r($writes->writes());exit;
         $response = $this->connection->commit([
             'database' => $writes->database(),
             'writes' => $writes->writes()
@@ -54,5 +53,35 @@ trait OperationTrait
         }
 
         return $response;
+    }
+
+    private function getSnapshot($name, array $options = [])
+    {
+        $exists = true;
+        $document = [];
+        $fields = [];
+
+        try {
+            $document = $this->connection->getDocument([
+                'name' => $this->name,
+            ] + $options);
+
+            $fields = $this->valueMapper->decodeValues(
+                $this->pluck('fields', $document)
+            );
+
+            $document['createTime'] = isset($document['createTime'])
+                ? $this->valueMapper->createTimestampWithNanos($document['createTime'])
+                : null;
+
+            $document['updateTime'] = isset($document['updateTime'])
+                ? $this->valueMapper->createTimestampWithNanos($document['updateTime'])
+                : null;
+
+        } catch (NotFoundException $e) {
+            $exists = false;
+        }
+
+        return new DocumentSnapshot($this, $this->name, $document, $fields, $exists);
     }
 }

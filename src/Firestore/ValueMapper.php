@@ -52,6 +52,13 @@ class ValueMapper
         $this->returnInt64AsObject = $returnInt64AsObject;
     }
 
+    /**
+     * Convert a list of fields from the API to corresponding PHP values in a
+     * nested key/value array.
+     *
+     * @param array $fields
+     * @return array
+     */
     public function decodeValues(array $fields)
     {
         $output = [];
@@ -66,6 +73,13 @@ class ValueMapper
         return $output;
     }
 
+    /**
+     * Convert a PHP array containing google-cloud-php and simple types to an
+     * array ready to be sent to Firestore.
+     *
+     * @param array $fields
+     * @return array
+     */
     public function encodeValues(array $fields)
     {
         $output = [];
@@ -81,6 +95,13 @@ class ValueMapper
         return $output;
     }
 
+    /**
+     * Create a list of fields paths from field data.
+     *
+     * @param array $fields
+     * @param string $parentPath
+     * @return array
+     */
     public function encodeFieldPaths(array $fields, $parentPath = '')
     {
         $output = [];

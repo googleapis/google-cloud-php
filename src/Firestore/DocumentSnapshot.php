@@ -26,6 +26,13 @@ namespace Google\Cloud\Firestore;
  */
 class DocumentSnapshot implements \ArrayAccess
 {
+    use PathTrait;
+
+    /**
+     * @var Document
+     */
+    private $reference;
+
     /**
      * @var string
      */
@@ -47,17 +54,29 @@ class DocumentSnapshot implements \ArrayAccess
     private $exists;
 
     /**
+     * @param Document $reference The document which created the snapshot.
      * @param string $name The document path.
      * @param array $info Document information, such as create and update timestamps.
      * @param array $fields Document field data.
      * @param bool $exists Whether the document exists in the Firestore database.
      */
-    public function __construct($name, array $info, array $fields, $exists)
+    public function __construct(Document $reference, $name, array $info, array $fields, $exists)
     {
+        $this->reference = $reference;
         $this->name = $name;
         $this->info = $info;
         $this->fields = $fields;
         $this->exists = $exists;
+    }
+
+    /**
+     * Get the document which created the snapshot.
+     *
+     * @return Document
+     */
+    public function reference()
+    {
+        return $this->reference;
     }
 
     /**
@@ -71,7 +90,17 @@ class DocumentSnapshot implements \ArrayAccess
     }
 
     /**
-     * Returns document information, such as create and update timestamps.
+     * Get the document identifier (i.e. the last path element).
+     *
+     * @return string
+     */
+    public function id()
+    {
+        return $this->pathId($this->name);
+    }
+
+    /**
+     * Returns create and update timestamps.
      *
      * @return array
      */

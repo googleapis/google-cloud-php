@@ -93,7 +93,7 @@ class FirestoreClient
             throw new \InvalidArgumentException('Given path is not a valid collection path.');
         }
 
-        return new Collection($this->connection, $this->fullName(
+        return new Collection($this->connection, $this->valueMapper, $this->fullName(
             $this->projectId,
             $this->database,
             $relativeName
@@ -142,14 +142,21 @@ class FirestoreClient
             throw new \InvalidArgumentException('Given path is not a valid document path.');
         }
 
+        $name = $this->fullName(
+            $this->projectId,
+            $this->database,
+            $relativeName
+        );
+
         return new Document(
             $this->connection,
             $this->valueMapper,
-            $this->fullName(
-                $this->projectId,
-                $this->database,
-                $relativeName
-            )
+            $this->collection($this->pathId(
+                $this->parentPath(
+                    $name
+                )
+            )),
+            $name
         );
     }
 

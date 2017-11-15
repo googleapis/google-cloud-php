@@ -38,18 +38,45 @@ class Document
 
     private $connection;
     private $valueMapper;
+    private $parent;
     private $name;
 
-    public function __construct(ConnectionInterface $connection, ValueMapper $valueMapper, $name)
+    public function __construct(ConnectionInterface $connection, ValueMapper $valueMapper, Collection $parent, $name)
     {
         $this->connection = $connection;
         $this->valueMapper = $valueMapper;
+        $this->parent = $parent;
         $this->name = $name;
     }
 
+    /**
+     * Returns the parent collection.
+     *
+     * @return Collection
+     */
     public function parent()
     {
-        return new Collection($this->connection, $this->valueMapper, $this->parentPath($this->name));
+        return $this->parent;
+    }
+
+    /**
+     * Get the document name.
+     *
+     * @return string
+     */
+    public function name()
+    {
+        return $this->name;
+    }
+
+    /**
+     * Get the document identifier (i.e. the last path element).
+     *
+     * @return string
+     */
+    public function id()
+    {
+        return $this->pathId($this->name);
     }
 
     /**
@@ -72,6 +99,8 @@ class Document
 
     /**
      * Replace all fields in a Firestore document.
+     *
+     * @todo HOW do I replace all fields? This is only partially implemented.
      *
      * @param array $fields
      * @param array $options {
@@ -109,7 +138,40 @@ class Document
      *
      * By default, this method will fail if the document does not exist.
      *
-     * @param array $fields
+     * To remove a field, set the field value to `Document::DELETE_FIELD`.
+     *
+     * Example:
+     * ```
+     * $document->update([
+     *     'name' => 'John',
+     *     'country' => 'USA',
+     *     'cryptoCurrencies' => [
+     *         'bitcoin' => 0.5,
+     *         'ethereum' => 10,
+     *         'litecoin' => 5.51
+     *     ]
+     * ]);
+     *
+     * ```
+     * // Remove a field using the `Document::DELETE_FIELD` special value.
+     * $document->update([
+     *     'country' => Document::DELETE_FIELD
+     * ]);
+     * ```
+     *
+     * ```
+     * // Documents can be updated using field paths as well.
+     * $document->update([
+     *     'name' => 'John',
+     *     'country' => 'USA',
+     *     'cryptoCurrencies.bitcoin' => 0.5,
+     *     'cryptoCurrencies.ethereum' => 10,
+     *     'cryptoCurrencies.litecoin' => 5.51
+     * ]);
+     * ```
+     *
+     * @param array $fields An array containing field names paired with their value.
+     *        Accepts a nested array, or a simple array of field paths.
      * @param array $options {
      *     Configuration Options
      *
@@ -184,30 +246,26 @@ class Document
      */
     public function snapshot(array $options = [])
     {
-        $exists = true;
-        $document = [];
-        $fields = [];
-
-        try {
-            $document = $this->connection->getDocument([
-                'name' => $this->name,
-            ] + $options);
-
-            $fields = $this->valueMapper->decodeValues(
-                $this->pluck('fields', $document)
-            );
-        } catch (NotFoundException $e) {
-            $exists = false;
-        }
-
-        return new DocumentSnapshot($this->name, $document, $fields, $exists);
+        return $this->getSnapshot($this->name, $options);
     }
 
+    /**
+     * Lazily get a collection which is a child of the current document.
+     *
+     * @param string $collectionId
+     * @return Collection
+     */
     public function collection($collectionId)
     {
         return new Collection($this->connection, $this->valueMapper, $this->childPath($this->name, $collectionId));
     }
 
+    /**
+     * List all collections which are children of the current document.
+     *
+     * @param array $options
+     * @return ItemIterator<Collection>
+     */
     public function collections(array $options = [])
     {
         $resultLimit = $this->pluck('resultLimit', $options, false);
