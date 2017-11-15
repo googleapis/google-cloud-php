@@ -9,7 +9,7 @@
         "type": "bigtable/v2/readme",
         "patterns": [
             "bigtable/v2/\\w{1,}",
-            "bigtable/admin/v2/\\w{1,}",
+            "bigtable/admin/v2/\\w{1,}"
         ],
         "nav": [{
             "title": "BigtableClient",
