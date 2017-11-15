@@ -43,7 +43,7 @@ class TraceClient
     use ArrayTrait;
     use ClientTrait;
 
-    const VERSION = '0.3.2';
+    const VERSION = '0.3.3';
 
     const FULL_CONTROL_SCOPE = 'https://www.googleapis.com/auth/cloud-platform';
     const READ_ONLY_SCOPE = 'https://www.googleapis.com/auth/trace.readonly';
@@ -91,9 +91,10 @@ class TraceClient
     public function __construct(array $config = [])
     {
         $this->clientConfig = $config;
-        if (!isset($config['scopes'])) {
-            $config['scopes'] = [self::FULL_CONTROL_SCOPE];
-        }
+        $config += [
+            'scopes' => [self::FULL_CONTROL_SCOPE],
+            'projectIdRequired' => true
+        ];
 
         $this->connection = new Rest($this->configureAuthentication($config));
     }
