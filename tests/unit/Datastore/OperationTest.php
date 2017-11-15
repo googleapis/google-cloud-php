@@ -25,11 +25,12 @@ use Google\Cloud\Datastore\Key;
 use Google\Cloud\Datastore\Operation;
 use Google\Cloud\Datastore\Query\QueryInterface;
 use Prophecy\Argument;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group datastore
  */
-class OperationTest extends \PHPUnit_Framework_TestCase
+class OperationTest extends TestCase
 {
     private $operation;
     private $mapper;

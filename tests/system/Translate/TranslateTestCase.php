@@ -18,8 +18,9 @@
 namespace Google\Cloud\Tests\System\Translate;
 
 use Google\Cloud\Translate\TranslateClient;
+use PHPUnit\Framework\TestCase;
 
-class TranslateTestCase extends \PHPUnit_Framework_TestCase
+class TranslateTestCase extends TestCase
 {
     protected static $hasSetUp = false;
     protected static $client;

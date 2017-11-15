@@ -21,11 +21,12 @@ use Google\Cloud\Storage\WriteStream;
 use Google\Cloud\Core\Upload\StreamableUploader;
 use Prophecy\Argument;
 
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group storage
  */
-class WriteStreamTest extends \PHPUnit_Framework_TestCase
+class WriteStreamTest extends TestCase
 {
     public function testUploadsWhenWriteOverflowsBuffer()
     {

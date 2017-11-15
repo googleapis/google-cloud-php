@@ -18,11 +18,12 @@
 namespace Google\Cloud\Tests\Unit\Core;
 
 use Google\Cloud\Core\JsonTrait;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group core
  */
-class JsonTraitTest extends \PHPUnit_Framework_TestCase
+class JsonTraitTest extends TestCase
 {
     private $implementation;
 

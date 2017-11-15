@@ -19,11 +19,12 @@ namespace Google\Cloud\Tests\Unit\Core;
 
 use Google\Cloud\Core\ServiceBuilder;
 use Composer\Autoload\ClassLoader;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group core
  */
-class ServicesNotFoundTest extends \PHPUnit_Framework_TestCase
+class ServicesNotFoundTest extends TestCase
 {
     private static $previousAutoloadFunc;
     private static $newAutoloadFunc;

@@ -20,13 +20,14 @@ namespace Google\Cloud\Tests\System\Datastore;
 use Google\Cloud\Core\ExponentialBackoff;
 use Google\Cloud\Datastore\DatastoreClient;
 use Google\Cloud\Tests\System\DeletionQueue;
+use PHPUnit\Framework\TestCase;
 
 /**
  * Datastore does not use the default deletion queue. Because of the way
  * datastore entities are deleted, a local queue is required.
  * Be sure to use `self::$localDeletionQueue` for all datastore entities.
  */
-class DatastoreTestCase extends \PHPUnit_Framework_TestCase
+class DatastoreTestCase extends TestCase
 {
     const TESTING_PREFIX = 'gcloud_testing_';
 
@@ -71,5 +72,3 @@ class DatastoreTestCase extends \PHPUnit_Framework_TestCase
         });
     }
 }
-
-

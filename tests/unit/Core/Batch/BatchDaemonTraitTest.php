@@ -18,12 +18,13 @@
 namespace Google\Cloud\Tests\Unit\Core\Batch;
 
 use Google\Cloud\Core\Batch\BatchDaemonTrait;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group core
  * @group batch
  */
-class BatchDaemonTraitTest extends \PHPUnit_Framework_TestCase
+class BatchDaemonTraitTest extends TestCase
 {
     public function setUp()
     {

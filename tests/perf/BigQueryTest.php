@@ -18,11 +18,12 @@
 namespace Google\Cloud\Tests\Perf;
 
 use Google\Cloud\BigQuery\BigQueryClient;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group bigquery
  */
-class BigQueryPerfTest extends \PHPUnit_Framework_TestCase
+class BigQueryPerfTest extends TestCase
 {
     const SOURCE = 'bigquery.json';
 

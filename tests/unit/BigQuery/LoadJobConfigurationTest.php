@@ -19,11 +19,12 @@ namespace Google\Cloud\Tests\Unit\BigQuery;
 
 use Google\Cloud\BigQuery\LoadJobConfiguration;
 use Google\Cloud\BigQuery\Table;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group bigquery
  */
-class LoadJobConfigurationTest extends \PHPUnit_Framework_TestCase
+class LoadJobConfigurationTest extends TestCase
 {
     const PROJECT_ID = 'my_project';
     const DATASET_ID = 'my_dataset';

@@ -31,11 +31,12 @@ use Psr\Cache\CacheItemInterface;
 use Psr\Cache\CacheItemPoolInterface;
 use Prophecy\Argument;
 use Prophecy\Argument\ArgumentsWildcard;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group spanner
  */
-class CacheSessionPoolTest extends \PHPUnit_Framework_TestCase
+class CacheSessionPoolTest extends TestCase
 {
     use GrpcTestTrait;
 

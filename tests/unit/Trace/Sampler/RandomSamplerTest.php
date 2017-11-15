@@ -18,11 +18,12 @@
 namespace Google\Cloud\Tests\Unit\Trace\Sampler;
 
 use Google\Cloud\Trace\Sampler\RandomSampler;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group trace
  */
-class RandomSamplerTest extends \PHPUnit_Framework_TestCase
+class RandomSamplerTest extends TestCase
 {
     /**
      * @dataProvider invalidRates

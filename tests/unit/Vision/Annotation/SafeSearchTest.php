@@ -18,11 +18,12 @@
 namespace Google\Cloud\Tests\Unit\Vision\Annotation;
 
 use Google\Cloud\Vision\Annotation\SafeSearch;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group vision
  */
-class SafeSearchTest extends \PHPUnit_Framework_TestCase
+class SafeSearchTest extends TestCase
 {
     private $safeSearch;
 

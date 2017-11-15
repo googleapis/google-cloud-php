@@ -29,11 +29,12 @@ use Google\Cloud\BigQuery\Time;
 use Google\Cloud\BigQuery\Timestamp;
 use Google\Cloud\Core\Iterator\ItemIterator;
 use Prophecy\Argument;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group bigquery
  */
-class BigQueryClientTest extends \PHPUnit_Framework_TestCase
+class BigQueryClientTest extends TestCase
 {
     const JOB_ID = 'myJobId';
     const PROJECT_ID = 'myProjectId';

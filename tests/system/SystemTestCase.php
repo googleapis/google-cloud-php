@@ -22,8 +22,9 @@ use Google\Cloud\Core\ExponentialBackoff;
 use Google\Cloud\PubSub\PubSubClient;
 use Google\Cloud\Storage\StorageClient;
 use Google\Cloud\Tests\System\DeletionQueue;
+use PHPUnit\Framework\TestCase;
 
-class SystemTestCase extends \PHPUnit_Framework_TestCase
+class SystemTestCase extends TestCase
 {
     protected static $deletionQueue;
 

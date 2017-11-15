@@ -17,6 +17,7 @@
 
 namespace Google\Cloud\Tests\System\Storage;
 
+use Google\Cloud\Core\AnonymousCredentials;
 use Google\Cloud\Core\Exception\NotFoundException;
 use Google\Cloud\PubSub\PubSubClient;
 use Google\Cloud\Storage\StorageClient;
@@ -33,8 +34,10 @@ class StorageTestCase extends SystemTestCase
 
     protected static $bucket;
     protected static $client;
+    protected static $unauthenticatedClient;
     protected static $pubsubClient;
     protected static $object;
+    protected static $mainBucketName;
     private static $hasSetUp = false;
 
     public static function setUpBeforeClass()
@@ -49,11 +52,13 @@ class StorageTestCase extends SystemTestCase
         ];
 
         self::$client = new StorageClient($config);
+        self::$unauthenticatedClient = new StorageClient([
+            'credentialsFetcher' => new AnonymousCredentials()
+        ]);
         self::$pubsubClient = new PubSubClient($config);
 
-        $bucket = getenv('BUCKET') ?: uniqid(self::TESTING_PREFIX);
-
-        self::$bucket = self::createBucket(self::$client, $bucket);
+        self::$mainBucketName = getenv('BUCKET') ?: uniqid(self::TESTING_PREFIX);
+        self::$bucket = self::createBucket(self::$client, self::$mainBucketName);
         self::$object = self::$bucket->upload('somedata', ['name' => uniqid(self::TESTING_PREFIX)]);
 
         self::$hasSetUp = true;

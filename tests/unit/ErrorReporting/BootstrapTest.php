@@ -22,13 +22,14 @@ use Google\Cloud\ErrorReporting\Bootstrap;
 use Google\Cloud\ErrorReporting\MockValues;
 use Google\Cloud\Logging\PsrLogger;
 use Prophecy\Argument;
+use PHPUnit\Framework\TestCase;
 
 require_once __DIR__ . '/fakeGlobalFunctions.php';
 
 /**
  * @group error-reporting
  */
-class BootstrapTest extends \PHPUnit_Framework_TestCase
+class BootstrapTest extends TestCase
 {
 
     private $psrBatchLogger;

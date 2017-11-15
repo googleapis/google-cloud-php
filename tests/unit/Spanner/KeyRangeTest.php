@@ -19,11 +19,12 @@ namespace Google\Cloud\Tests\Unit\Spanner;
 
 use Google\Cloud\Spanner\KeyRange;
 use Google\Cloud\Tests\GrpcTestTrait;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group spanner
  */
-class KeyRangeTest extends \PHPUnit_Framework_TestCase
+class KeyRangeTest extends TestCase
 {
     use GrpcTestTrait;
 

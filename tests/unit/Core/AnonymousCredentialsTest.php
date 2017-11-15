@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright 2016 Google Inc.
+ * Copyright 2017 Google Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,45 +17,36 @@
 
 namespace Google\Cloud\Tests\Core;
 
-use Google\Cloud\Core\Duration;
+use Google\Cloud\Core\AnonymousCredentials;
 use PHPUnit\Framework\TestCase;
 
 /**
  * @group core
  */
-class DurationTest extends TestCase
+class AnonymousCredentialsTest extends TestCase
 {
-    const SECONDS = 10;
-    const NANOS = 1;
-
-    private $duration;
+    private $credentials;
+    private $token = [
+        'access_token' => null
+    ];
 
     public function setUp()
     {
-        $this->duration = new Duration(self::SECONDS, self::NANOS);
+        $this->credentials = new AnonymousCredentials();
     }
 
-    public function testGet()
+    public function testFetchAuthToken()
     {
-        $this->assertEquals([
-            'seconds' => self::SECONDS,
-            'nanos' => self::NANOS
-        ], $this->duration->get());
+        $this->assertEquals($this->token, $this->credentials->fetchAuthToken());
     }
 
-    public function testFormatAsString()
+    public function testGetCacheKey()
     {
-        $this->assertEquals(
-            json_encode($this->duration->get()),
-            $this->duration->formatAsString()
-        );
+        $this->assertNull($this->credentials->getCacheKey());
     }
 
-    public function testTostring()
+    public function testGetLastReceivedToken()
     {
-        $this->assertEquals(
-            json_encode($this->duration->get()),
-            (string)$this->duration
-        );
+        $this->assertEquals($this->token, $this->credentials->getLastReceivedToken());
     }
 }

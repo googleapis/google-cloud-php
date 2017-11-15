@@ -20,11 +20,12 @@ namespace Google\Cloud\Tests\Unit\PubSub\Connection;
 use Google\Cloud\PubSub\Connection\ConnectionInterface;
 use Google\Cloud\PubSub\Connection\IamSubscription;
 use Prophecy\Argument;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group pubsub
  */
-class IamSubscriptionTest extends \PHPUnit_Framework_TestCase
+class IamSubscriptionTest extends TestCase
 {
     /**
      * @dataProvider methodProvider

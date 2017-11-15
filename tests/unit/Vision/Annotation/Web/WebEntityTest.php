@@ -18,11 +18,12 @@
 namespace Google\Cloud\Tests\Vision\Annotation;
 
 use Google\Cloud\Vision\Annotation\Web\WebEntity;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group vision
  */
-class WebEntityTest extends \PHPUnit_Framework_TestCase
+class WebEntityTest extends TestCase
 {
     private $info;
     private $entity;

@@ -18,11 +18,12 @@
 namespace Google\Cloud\Tests\Unit\Core\Report;
 
 use Google\Cloud\Core\Report\SimpleMetadataProvider;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group core
  */
-class SimpleMetadataProviderTest extends \PHPUnit_Framework_TestCase
+class SimpleMetadataProviderTest extends TestCase
 {
     private $metadataProvider;
 

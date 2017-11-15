@@ -18,11 +18,12 @@
 namespace Google\Cloud\Tests\Unit\PubSub;
 
 use Google\Cloud\PubSub\ResourceNameTrait;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group pubsub
  */
-class ResourceNameTraitTest extends \PHPUnit_Framework_TestCase
+class ResourceNameTraitTest extends TestCase
 {
     private $trait;
 

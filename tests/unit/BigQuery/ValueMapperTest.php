@@ -23,11 +23,12 @@ use Google\Cloud\BigQuery\Time;
 use Google\Cloud\BigQuery\Timestamp;
 use Google\Cloud\BigQuery\ValueMapper;
 use Google\Cloud\Core\Int64;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group bigquery
  */
-class ValueMapperTest extends \PHPUnit_Framework_TestCase
+class ValueMapperTest extends TestCase
 {
     /**
      * @expectedException \InvalidArgumentException

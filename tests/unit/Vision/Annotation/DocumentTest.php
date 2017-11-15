@@ -18,11 +18,12 @@
 namespace Google\Cloud\Tests\Vision\Annotation;
 
 use Google\Cloud\Vision\Annotation\Document;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group vision
  */
-class DocumentTest extends \PHPUnit_Framework_TestCase
+class DocumentTest extends TestCase
 {
     public function testDocument()
     {

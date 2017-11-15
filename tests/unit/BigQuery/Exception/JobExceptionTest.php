@@ -19,11 +19,12 @@ namespace Google\Cloud\Tests\Unit\BigQuery\Exception;
 
 use Google\Cloud\BigQuery\Exception\JobException;
 use Google\Cloud\BigQuery\Job;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group bigquery
  */
-class JobExceptionTest extends \PHPUnit_Framework_TestCase
+class JobExceptionTest extends TestCase
 {
     public function testGetsJob()
     {

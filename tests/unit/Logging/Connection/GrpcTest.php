@@ -25,11 +25,12 @@ use Google\Logging\V2\LogEntry;
 use Google\Logging\V2\LogMetric;
 use Google\Logging\V2\LogSink;
 use Prophecy\Argument;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group logging
  */
-class GrpcTest extends \PHPUnit_Framework_TestCase
+class GrpcTest extends TestCase
 {
     use GrpcTestTrait;
 

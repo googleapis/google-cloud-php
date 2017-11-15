@@ -27,11 +27,12 @@ use GuzzleHttp\Psr7;
 use Prophecy\Argument;
 use Prophecy\Promise\CallbackPromise;
 use Prophecy\Prophecy\ObjectProphecy;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group storage
  */
-class StreamWrapperTest extends \PHPUnit_Framework_TestCase
+class StreamWrapperTest extends TestCase
 {
     private $originalDefaultContext;
 

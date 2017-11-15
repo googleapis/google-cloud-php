@@ -18,12 +18,13 @@
 namespace Google\Cloud\Tests\Unit\Core\Iam;
 
 use Google\Cloud\Core\Iam\PolicyBuilder;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group core
  * @group iam
  */
-class PolicyBuilderTest extends \PHPUnit_Framework_TestCase
+class PolicyBuilderTest extends TestCase
 {
     public function testBuilder()
     {

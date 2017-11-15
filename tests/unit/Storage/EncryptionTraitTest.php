@@ -19,11 +19,12 @@ namespace Google\Cloud\Tests\Unit\Storage;
 
 use Google\Cloud\Tests\KeyPairGenerateTrait;
 use Google\Cloud\Storage\EncryptionTrait;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group storage
  */
-class EncryptionTraitTest extends \PHPUnit_Framework_TestCase
+class EncryptionTraitTest extends TestCase
 {
     use KeyPairGenerateTrait;
 

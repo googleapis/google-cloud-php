@@ -25,11 +25,12 @@ use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\Psr7\Response;
 use Prophecy\Argument;
 use Psr\Http\Message\RequestInterface;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group core
  */
-class RestTraitTest extends \PHPUnit_Framework_TestCase
+class RestTraitTest extends TestCase
 {
     private $implementation;
     private $requestBuilder;

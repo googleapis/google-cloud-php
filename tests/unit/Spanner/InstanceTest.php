@@ -31,12 +31,13 @@ use Google\Cloud\Spanner\Instance;
 use Google\Cloud\Spanner\Session\SessionPoolInterface;
 use Google\Cloud\Tests\GrpcTestTrait;
 use Prophecy\Argument;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group spanner
  * @group spanneradmin
  */
-class InstanceTest extends \PHPUnit_Framework_TestCase
+class InstanceTest extends TestCase
 {
     use GrpcTestTrait;
 

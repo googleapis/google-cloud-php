@@ -20,11 +20,12 @@ namespace Google\Cloud\Tests\Unit\Trace;
 use Google\Cloud\Trace\Connection\ConnectionInterface;
 use Google\Cloud\Trace\Trace;
 use Google\Cloud\Trace\TraceSpan;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group trace
  */
-class TraceTest extends \PHPUnit_Framework_TestCase
+class TraceTest extends TestCase
 {
     /** @var ConnectionInterface|ObjectProphecy */
     public $connection;

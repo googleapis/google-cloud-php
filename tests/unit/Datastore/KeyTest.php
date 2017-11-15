@@ -18,11 +18,12 @@
 namespace Google\Cloud\Tests\Unit\Datastore;
 
 use Google\Cloud\Datastore\Key;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group datastore
  */
-class KeyTest extends \PHPUnit_Framework_TestCase
+class KeyTest extends TestCase
 {
     public function testWithInitialPath()
     {

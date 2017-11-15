@@ -26,11 +26,12 @@ use Google\Cloud\PubSub\Message;
 use Google\Cloud\PubSub\Snapshot;
 use Google\Cloud\PubSub\Subscription;
 use Prophecy\Argument;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group pubsub
  */
-class SubscriptionTest extends \PHPUnit_Framework_TestCase
+class SubscriptionTest extends TestCase
 {
     private $subscription;
     private $connection;

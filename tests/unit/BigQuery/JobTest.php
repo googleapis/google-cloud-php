@@ -23,11 +23,12 @@ use Google\Cloud\BigQuery\QueryResults;
 use Google\Cloud\BigQuery\ValueMapper;
 use Google\Cloud\Core\Exception\NotFoundException;
 use Prophecy\Argument;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group bigquery
  */
-class JobTest extends \PHPUnit_Framework_TestCase
+class JobTest extends TestCase
 {
     public $connection;
     public $projectId = 'myProjectId';

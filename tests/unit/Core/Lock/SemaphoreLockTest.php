@@ -22,12 +22,13 @@ require_once __DIR__ . '/MockGlobals.php';
 use Google\Cloud\Core\Lock\MockValues;
 use Google\Cloud\Core\Lock\SemaphoreLock;
 use Google\Cloud\Core\SysvTrait;;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group core
  * @group lock
  */
-class SemaphoreLockTest extends \PHPUnit_Framework_TestCase
+class SemaphoreLockTest extends TestCase
 {
     use CommonLockTrait;
     use SysvTrait;

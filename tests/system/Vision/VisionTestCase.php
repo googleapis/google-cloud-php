@@ -18,11 +18,12 @@
 namespace Google\Cloud\Tests\System\Vision;
 
 use Google\Cloud\Vision\VisionClient;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group vision
  */
-class VisionTestCase extends \PHPUnit_Framework_TestCase
+class VisionTestCase extends TestCase
 {
     protected static $vision;
     private static $hasSetUp = false;

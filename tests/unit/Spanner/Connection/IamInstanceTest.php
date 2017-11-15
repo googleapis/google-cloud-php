@@ -20,12 +20,13 @@ namespace Google\Cloud\Tests\Unit\Spanner\Connection;
 use Google\Cloud\Spanner\Connection\ConnectionInterface;
 use Google\Cloud\Spanner\Connection\IamInstance;
 use Prophecy\Argument;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group spanneradmin
  * @group spanner
  */
-class IamInstanceTest extends \PHPUnit_Framework_TestCase
+class IamInstanceTest extends TestCase
 {
     private $connection;
 

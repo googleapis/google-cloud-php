@@ -21,11 +21,12 @@ use Google\Cloud\Core\ExponentialBackoff;
 use Google\Cloud\Trace\TraceClient;
 use Google\Cloud\Trace\TraceSpan;
 use Google\Cloud\Trace\Trace;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group trace
  */
-class BasicTest extends \PHPUnit_Framework_TestCase
+class BasicTest extends TestCase
 {
     private $traceClient;
 

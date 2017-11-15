@@ -19,11 +19,12 @@ namespace Google\Cloud\Tests\Unit\BigQuery;
 
 use Google\Cloud\BigQuery\Job;
 use Google\Cloud\BigQuery\JobWaitTrait;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group bigquery
  */
-class JobWaitTraitTest extends \PHPUnit_Framework_TestCase
+class JobWaitTraitTest extends TestCase
 {
     private $trait;
     private $job;

@@ -21,11 +21,12 @@ use Google\Cloud\Vision\Annotation\Web;
 use Google\Cloud\Vision\Annotation\Web\WebEntity;
 use Google\Cloud\Vision\Annotation\Web\WebImage;
 use Google\Cloud\Vision\Annotation\Web\WebPage;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group vision
  */
-class WebTest extends \PHPUnit_Framework_TestCase
+class WebTest extends TestCase
 {
     private $info;
     private $annotation;

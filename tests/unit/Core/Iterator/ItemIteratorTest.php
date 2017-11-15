@@ -19,12 +19,13 @@ namespace Google\Cloud\Tests\Unit\Core\Iterator;
 
 use Google\Cloud\Core\Iterator\ItemIterator;
 use Google\Cloud\Core\Iterator\PageIterator;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group core
  * @group iterator
  */
-class ItemIteratorTest extends \PHPUnit_Framework_TestCase
+class ItemIteratorTest extends TestCase
 {
     public function testIteratesData()
     {

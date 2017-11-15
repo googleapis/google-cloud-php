@@ -22,11 +22,12 @@ use Google\Cloud\PubSub\Snapshot;
 use Google\Cloud\PubSub\Subscription;
 use Google\Cloud\PubSub\Topic;
 use Prophecy\Argument;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group pubsub
  */
-class SnapshotTest extends \PHPUnit_Framework_TestCase
+class SnapshotTest extends TestCase
 {
     const PROJECT = 'my-project';
     const NAME = 'snapshot';

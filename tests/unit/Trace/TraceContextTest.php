@@ -18,11 +18,12 @@
 namespace Google\Cloud\Tests\Unit\Trace;
 
 use Google\Cloud\Trace\TraceContext;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group trace
  */
-class TraceContextTest extends \PHPUnit_Framework_TestCase
+class TraceContextTest extends TestCase
 {
     /**
      * @dataProvider traceHeaders

@@ -22,11 +22,12 @@ use Google\Cloud\Speech\Connection\ConnectionInterface;
 use Google\Cloud\Speech\Operation;
 use Google\Cloud\Speech\Result;
 use Prophecy\Argument;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group speech
  */
-class OperationTest extends \PHPUnit_Framework_TestCase
+class OperationTest extends TestCase
 {
     public $connection;
     public $operationName = 'myOperation';
