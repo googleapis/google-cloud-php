@@ -17,7 +17,6 @@
 
 namespace Google\Cloud\Core;
 
-use Google\Auth\ApplicationDefaultCredentials;
 use Google\Auth\CredentialsLoader;
 use Google\Auth\Credentials\GCECredentials;
 use Google\Auth\HttpHandler\HttpHandlerFactory;
@@ -33,7 +32,7 @@ trait ClientTrait
     use JsonTrait;
 
     /**
-     * @var string The project ID created in the Google Developers Console.
+     * @var string|null The project ID created in the Google Developers Console.
      */
     private $projectId;
 
@@ -75,14 +74,13 @@ trait ClientTrait
     private function configureAuthentication(array $config)
     {
         $config['keyFile'] = $this->getKeyFile($config);
-
         $this->projectId = $this->detectProjectId($config);
 
         return $config;
     }
 
     /**
-     * Get a keyfile.
+     * Get a keyfile if it exists.
      *
      * Process:
      * 1. If $config['keyFile'] is set, use that.
@@ -91,10 +89,9 @@ trait ClientTrait
      *    from that location and use that.
      * 4. If OS-specific well-known-file is set, load from that location and use
      *    that.
-     * 5. Exception. :(
      *
      * @param  array $config
-     * @return array Key data
+     * @return array|null Key data
      * @throws GoogleException
      */
     private function getKeyFile(array $config = [])
@@ -120,7 +117,7 @@ trait ClientTrait
                 $keyFileData = $this->jsonDecode(file_get_contents($config['keyFilePath']), true);
             } catch (\InvalidArgumentException $ex) {
                 throw new GoogleException(sprintf(
-                    'Given keyfile at path %swas invalid',
+                    'Given keyfile at path %s was invalid',
                     $config['keyFilePath']
                 ));
             }
@@ -140,7 +137,7 @@ trait ClientTrait
      * 2. If $config['keyFile'] is set, attempt to retrieve a project ID from
      *    that.
      * 3. If code is running on compute engine, try to get the project ID from
-     *    the metadata store
+     *    the metadata store.
      * 4. Throw exception.
      *
      * @param  array $config
@@ -150,8 +147,9 @@ trait ClientTrait
     private function detectProjectId(array $config)
     {
         $config += [
-            'projectId' => null,
             'httpHandler' => null,
+            'projectId' => null,
+            'projectIdRequired' => false
         ];
 
         if ($config['projectId']) {
@@ -174,10 +172,12 @@ trait ClientTrait
             }
         }
 
-        throw new GoogleException(
-            'No project ID was provided, ' .
-            'and we were unable to detect a default project ID.'
-        );
+        if ($config['projectIdRequired']) {
+            throw new GoogleException(
+                'No project ID was provided, ' .
+                'and we were unable to detect a default project ID.'
+            );
+        }
     }
 
     /**

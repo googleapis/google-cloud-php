@@ -128,9 +128,13 @@ trait RequestWrapperTrait
     }
 
     /**
-     * Gets the credentials fetcher and sets up caching. Precedence begins with
-     * user supplied credentials fetcher instance, followed by a reference to a
-     * key file stream, and finally the application default credentials.
+     * Gets the credentials fetcher and sets up caching. Precedence is as
+     * follows:
+     *
+     * - A user supplied credentials fetcher instance.
+     * - Credentials created from a keyfile.
+     * - Application default credentials.
+     * - Anonymous credentials.
      *
      * @return FetchAuthTokenInterface
      */
@@ -143,7 +147,11 @@ trait RequestWrapperTrait
         } elseif ($this->keyFile) {
             $fetcher = CredentialsLoader::makeCredentials($this->scopes, $this->keyFile);
         } else {
-            $fetcher = ApplicationDefaultCredentials::getCredentials($this->scopes, $this->authHttpHandler);
+            try {
+                $fetcher = $this->getADC();
+            } catch (\DomainException $ex) {
+                $fetcher = new AnonymousCredentials();
+            }
         }
 
         return new FetchAuthTokenCache(
@@ -151,5 +159,16 @@ trait RequestWrapperTrait
             $this->authCacheOptions,
             $this->authCache
         );
+    }
+
+    /**
+     * Returns application default credentials. Abstracted out for unit testing.
+     *
+     * @return FetchAuthTokenInterface
+     * @throws \DomainException
+     */
+    protected function getADC()
+    {
+        return ApplicationDefaultCredentials::getCredentials($this->scopes, $this->authHttpHandler);
     }
 }
