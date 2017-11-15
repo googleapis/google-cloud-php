@@ -143,7 +143,11 @@ trait RequestWrapperTrait
         } elseif ($this->keyFile) {
             $fetcher = CredentialsLoader::makeCredentials($this->scopes, $this->keyFile);
         } else {
-            $fetcher = ApplicationDefaultCredentials::getCredentials($this->scopes, $this->authHttpHandler);
+            try {
+                $fetcher = $this->getADC();
+            } catch (\DomainException $ex) {
+                $fetcher = new AnonymousCredentials();
+            }
         }
 
         return new FetchAuthTokenCache(
@@ -151,5 +155,15 @@ trait RequestWrapperTrait
             $this->authCacheOptions,
             $this->authCache
         );
+    }
+
+    /**
+     * Returns application default credentials. Abstracted out for unit testing.
+     *
+     * @return FetchAuthTokenInterface
+     */
+    protected function getADC()
+    {
+        return ApplicationDefaultCredentials::getCredentials($this->scopes, $this->authHttpHandler);
     }
 }

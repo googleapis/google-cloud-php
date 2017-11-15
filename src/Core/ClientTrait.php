@@ -17,7 +17,6 @@
 
 namespace Google\Cloud\Core;
 
-use Google\Auth\ApplicationDefaultCredentials;
 use Google\Auth\CredentialsLoader;
 use Google\Auth\Credentials\GCECredentials;
 use Google\Auth\HttpHandler\HttpHandlerFactory;
@@ -76,10 +75,6 @@ trait ClientTrait
     {
         $config['keyFile'] = $this->getKeyFile($config);
         $this->projectId = $this->detectProjectId($config);
-
-        if (!$config['keyFile'] && !isset($config['credentialsFetcher'])) {
-            $config['credentialsFetcher'] = new AnonymousCredentials();
-        }
 
         return $config;
     }
