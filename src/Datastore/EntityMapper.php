@@ -444,8 +444,10 @@ class EntityMapper
     private function convertArrayToEntityValue(array $value)
     {
         $properties = [];
+        $should_exclude = isset($value['excludeFromIndexes']) && $value['excludeFromIndexes'];
         foreach ($value as $key => $val) {
-            $properties[$key] = $this->valueObject($val);
+            if($key != 'excludeFromIndexes')
+                $properties[$key] = $this->valueObject($val, $should_exclude);
         }
 
         return [
