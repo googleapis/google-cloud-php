@@ -385,4 +385,21 @@ class RequestWrapperTest extends TestCase
 
         $this->assertArrayNotHasKey('Authorization', $headers);
     }
+
+    public function testDefaultToAnonymousCredentialsWhenNoOthersExist()
+    {
+        $requestWrapper = new RequestWrapperStub();
+        $fetcher = $requestWrapper->getCredentialsFetcher();
+
+        $this->assertInstanceOf(FetchAuthTokenInterface::class, $fetcher);
+        $this->assertEquals(null, $fetcher->fetchAuthToken()['access_token']);
+    }
+}
+
+class RequestWrapperStub extends RequestWrapper
+{
+    protected function getADC()
+    {
+        throw new \DomainException('Not found');
+    }
 }

@@ -17,7 +17,6 @@
 
 namespace Google\Cloud\Tests\Unit\Core;
 
-use Google\Cloud\Core\AnonymousCredentials;
 use Google\Cloud\Core\ClientTrait;
 use Google\Cloud\Core\Compute\Metadata;
 use GuzzleHttp\Psr7\Response;
@@ -129,17 +128,6 @@ class ClientTraitTest extends TestCase
 
         $this->assertEquals($keyFile, $conf['keyFile']);
         $this->assertEquals('example_project', $trait->getProjectId());
-    }
-
-    public function testConfigureAuthenticationReturnsAnonymousCredentials()
-    {
-        $keyFilePath = __DIR__ . '/../fixtures/empty-json-key-fixture.json';
-        $trait = new ClientTraitStub;
-        $conf = $trait->runConfigureAuthentication([
-            'keyFilePath' => $keyFilePath
-        ]);
-
-        $this->assertInstanceOf(AnonymousCredentials::class, $conf['credentialsFetcher']);
     }
 
     /**
