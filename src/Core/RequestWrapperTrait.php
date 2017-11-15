@@ -128,9 +128,13 @@ trait RequestWrapperTrait
     }
 
     /**
-     * Gets the credentials fetcher and sets up caching. Precedence begins with
-     * user supplied credentials fetcher instance, followed by a reference to a
-     * key file stream, and finally the application default credentials.
+     * Gets the credentials fetcher and sets up caching. Precedence is as
+     * follows:
+     *
+     * - A user supplied credentials fetcher instance.
+     * - Credentials created from a keyfile.
+     * - Application default credentials.
+     * - Anonymous credentials.
      *
      * @return FetchAuthTokenInterface
      */
