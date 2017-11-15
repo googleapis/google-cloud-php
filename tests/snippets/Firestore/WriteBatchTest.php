@@ -81,11 +81,13 @@ class WriteBatchTest extends SnippetTestCase
         $this->commitAndAssert($snippet, [
             [
                 'updateMask' => [
-                    'name',
-                    'country',
-                    'cryptoCurrencies.bitcoin',
-                    'cryptoCurrencies.ethereum',
-                    'cryptoCurrencies.litecoin'
+                    'fieldPaths' => [
+                        'country',
+                        'cryptoCurrencies.bitcoin',
+                        'cryptoCurrencies.ethereum',
+                        'cryptoCurrencies.litecoin',
+                        'name',
+                    ]
                 ],
                 'currentDocument' => ['exists' => true],
                 'update' => [
@@ -120,7 +122,9 @@ class WriteBatchTest extends SnippetTestCase
         $this->commitAndAssert($snippet, [
             [
                 'updateMask' => [
-                    'country'
+                    'fieldPaths' => [
+                        'country'
+                    ]
                 ],
                 'currentDocument' => ['exists' => true],
                 'update' => [
@@ -147,7 +151,9 @@ class WriteBatchTest extends SnippetTestCase
         $this->commitAndAssert($snippet, [
             [
                 'updateMask' => [
-                    'cryptoCurrencies.`big$$$coin`'
+                    'fieldPaths' => [
+                        'cryptoCurrencies.`big$$$coin`'
+                    ]
                 ],
                 'currentDocument' => ['exists' => true],
                 'update' => [

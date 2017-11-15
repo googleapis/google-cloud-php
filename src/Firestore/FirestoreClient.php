@@ -379,10 +379,10 @@ class FirestoreClient
      * @param array $options {
      *     Configuration Options.
      *
-     *     @param array $begin Configuration options for BeginTransaction.
-     *     @param array $commit Configuration options for Commit.
-     *     @param array $rollback Configuration options for rollback.
-     *     @param int $maxRetries The maximum number of times to retry failures.
+     *     @type array $begin Configuration options for BeginTransaction.
+     *     @type array $commit Configuration options for Commit.
+     *     @type array $rollback Configuration options for rollback.
+     *     @type int $maxRetries The maximum number of times to retry failures.
      *            **Defaults to** `5`.
      * }
      * @return array

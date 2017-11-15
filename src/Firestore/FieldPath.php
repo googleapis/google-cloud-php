@@ -35,7 +35,7 @@ class FieldPath
     /**
      * @param array $fieldNames A list of field names.
      */
-    public function __construct(array $fieldNames = [])
+    public function __construct(array $fieldNames)
     {
         $this->fieldNames = $fieldNames;
     }

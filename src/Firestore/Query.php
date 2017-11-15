@@ -20,6 +20,7 @@ namespace Google\Cloud\Firestore;
 use Google\Cloud\Core\DebugInfoTrait;
 use Google\Cloud\Core\ExponentialBackoff;
 use Google\Cloud\Firestore\Connection\ConnectionInterface;
+use Google\Cloud\Firestore\DocumentSnapshot;
 use Google\Cloud\Firestore\SnapshotTrait;
 use Google\Firestore\V1beta1\StructuredQuery_CompositeFilter_Operator;
 use Google\Firestore\V1beta1\StructuredQuery_Direction;

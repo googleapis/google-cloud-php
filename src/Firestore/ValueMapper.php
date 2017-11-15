@@ -120,6 +120,10 @@ class ValueMapper
             }
 
             $fieldPath = implode('.', $out);
+        } else {
+            if (!preg_match(self::VALID_FIELD_PATH, $fieldPath)) {
+                throw new \InvalidArgumentException('Paths cannot be empty and must not contain `*~/[]\`.');
+            }
         }
 
         $this->validateFieldPath($fieldPath);
@@ -494,10 +498,6 @@ class ValueMapper
 
         if (strpos($fieldPath, '.') === 0 || strpos(strrev($fieldPath), '.') === 0) {
             throw new \InvalidArgumentException('Paths cannot begin or end with `.`.');
-        }
-
-        if (!preg_match(self::VALID_FIELD_PATH, $fieldPath)) {
-            throw new \InvalidArgumentException('Paths cannot be empty and must not contain `*~/[]\`.');
         }
     }
 }
