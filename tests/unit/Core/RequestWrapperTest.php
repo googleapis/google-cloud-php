@@ -391,6 +391,7 @@ class RequestWrapperTest extends TestCase
         $requestWrapper = new RequestWrapperStub();
         $fetcher = $requestWrapper->getCredentialsFetcher();
 
+        $this->assertInstanceOf(FetchAuthTokenInterface::class, $fetcher);
         $this->assertEquals(null, $fetcher->fetchAuthToken()['access_token']);
     }
 }
