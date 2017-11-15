@@ -155,6 +155,10 @@ class WriteBatch
             'merge' => false
         ];
 
+        if ($options['merge'] && empty($fields)) {
+            throw new \InvalidArgumentException('Fields list cannot be empty when merging fields.');
+        }
+
         list($fields, $timestamps) = $this->valueMapper->findSentinels($fields);
 
         if ($fields) {
@@ -167,7 +171,7 @@ class WriteBatch
         }
 
         // Setting values to the server timestamp is implemented as a document tranformation.
-        $this->updateTransformations($documentName, $timestamps);
+        $this->updateTransforms($documentName, $timestamps);
 
         return $this;
     }
@@ -228,9 +232,13 @@ class WriteBatch
      */
     public function update($documentName, array $data, array $options = [])
     {
-        if ($this->isAssoc($data)) {
+        if (!empty($data) && $this->isAssoc($data)) {
             throw new \InvalidArgumentException(
                 'Field data must be provided as a list of arrays of form `[string|FieldPath $path, mixed $value]`.'
+            );
+        } elseif (empty($data)) {
+            throw new \InvalidArgumentException(
+                'Field data cannot be empty.'
             );
         }
 
@@ -276,7 +284,7 @@ class WriteBatch
         }
 
         // Setting values to the server timestamp is implemented as a document tranformation.
-        $this->updateTransformations($documentName, $timestamps);
+        $this->updateTransforms($documentName, $timestamps);
 
         return $this;
     }
@@ -366,14 +374,14 @@ class WriteBatch
     }
 
     /**
-     * Enqueue transformations for sentinels found in UPDATE calls.
+     * Enqueue transforms for sentinels found in UPDATE calls.
      *
      * @param string $documentName
      * @param array $timestamps
      * @param array $options
      * @return void
      */
-    private function updateTransformations($documentName, array $timestamps, array $options = [])
+    private function updateTransforms($documentName, array $timestamps, array $options = [])
     {
         $transforms = [];
         foreach ($timestamps as $timestamp) {

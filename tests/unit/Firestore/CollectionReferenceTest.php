@@ -118,4 +118,30 @@ class CollectionReferenceTest extends TestCase
     {
         $this->assertTrue($this->collection instanceof Query);
     }
+
+    /**
+     * @dataProvider randomNames
+     */
+    public function testRandomNames(DocumentReference $doc)
+    {
+        $id = $doc->id();
+        $this->assertEquals(1, preg_match('/[0-9a-zA-Z]{20}/', $id));
+    }
+
+    public function randomNames()
+    {
+        $connection = $this->prophesize(ConnectionInterface::class);
+        $collection = \Google\Cloud\Dev\stub(CollectionReference::class, [
+            $connection->reveal(),
+            new ValueMapper($connection->reveal(), false),
+            self::NAME
+        ]);
+
+        $res = [];
+        for ($i = 0; $i < 50; $i++) {
+            $res[] = [$collection->newDocument()];
+        }
+
+        return $res;
+    }
 }

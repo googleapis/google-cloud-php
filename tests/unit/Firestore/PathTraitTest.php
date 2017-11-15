@@ -231,4 +231,25 @@ class PathTraitTest extends TestCase
             [sprintf('projects/%s/databases/%s/documents/%s', self::PROJECT, self::DATABASE, self::DOCUMENT), self::DOCUMENT]
         ];
     }
+
+    /**
+     * @dataProvider prefixOf
+     */
+    public function testIsPrefixOf($result, $original, $other)
+    {
+        $this->assertEquals($result, $this->impl->call('isPrefixOf', [$original, $other]));
+    }
+
+    public function prefixOf()
+    {
+        $base = 'projects/foo/databases/bar/documents/';
+
+        return [
+            [true, $base . 'a/b/c', $base .'a/b/c'],
+            [true, $base . 'a/b/c/d', $base .'a/b/c/d'],
+            [true, $base . 'a', $base .'a/b/c/d'],
+            [false, $base . 'a', $base],
+            [false, $base . 'a/b/c/d/e/f', $base .'a/b/c/d'],
+        ];
+    }
 }

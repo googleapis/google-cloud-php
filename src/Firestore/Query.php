@@ -59,6 +59,8 @@ class Query
     const DIR_ASCENDING = StructuredQuery_Direction::ASCENDING;
     const DIR_DESCENDING = StructuredQuery_Direction::DESCENDING;
 
+    const DOCUMENT_ID = '__name__';
+
     private $allowedOperators = [
         self::OP_LESS_THAN,
         self::OP_LESS_THAN_OR_EQUAL,
@@ -319,7 +321,7 @@ class Query
     }
 
     /**
-     * Add an ORDER BY clause to the Query
+     * Add an ORDER BY clause to the Query.
      *
      * Example:
      * ```
@@ -330,6 +332,8 @@ class Query
      * @param string $direction The direction to order in. **Defaults to** `ASC`.
      * @return Query A new instance of Query with the given changes applied.
      * @throws \InvalidArgumentException If an invalid direction is given.
+     * @throws \BadMethodCallException If orderBy is called after `startAt()`,
+     *         `startAfter()`, `endBefore()` or `endAt`().
      */
     public function orderBy($fieldPath, $direction = self::DIR_ASCENDING)
     {
@@ -342,6 +346,13 @@ class Query
                 'Direction %s is not a valid direction',
                 $direction
             ));
+        }
+
+        if ($this->queryHas('startAt') || $this->queryHas('endAt')) {
+            throw new \BadMethodCallException(
+                'Cannot specify an orderBy constraint after calling any of ' .
+                '`startAt()`, `startAfter()`, `endBefore()` or `endAt`().'
+            );
         }
 
         return $this->newQuery([
@@ -416,13 +427,13 @@ class Query
      * $users18YearsOrOlder = $query->documents();
      * ```
      *
-     * @param array $cursor A list of values defining the query starting point.
+     * @param array $fieldValues A list of values defining the query starting point.
      * @return Query A new instance of Query with the given changes applied.
      */
-    public function startAt(array $cursor)
+    public function startAt(array $fieldValues)
     {
         return $this->newQuery([
-            'startAt' => $this->buildPosition($cursor, true)
+            'startAt' => $this->buildPosition($fieldValues, true)
         ], true);
     }
 
@@ -444,13 +455,13 @@ class Query
      * $users18YearsOrOlder = $query->documents();
      * ```
      *
-     * @param array $cursor A list of values defining the query starting point.
+     * @param array $fieldValues A list of values defining the query starting point.
      * @return Query A new instance of Query with the given changes applied.
      */
-    public function startAfter(array $cursor)
+    public function startAfter(array $fieldValues)
     {
         return $this->newQuery([
-            'startAt' => $this->buildPosition($cursor, false)
+            'startAt' => $this->buildPosition($fieldValues, false)
         ], true);
     }
 
@@ -472,13 +483,13 @@ class Query
      * $usersYoungerThan18 = $query->documents();
      * ```
      *
-     * @param array $cursor A list of values defining the query end point.
+     * @param array $fieldValues A list of values defining the query end point.
      * @return Query A new instance of Query with the given changes applied.
      */
-    public function endBefore(array $cursor)
+    public function endBefore(array $fieldValues)
     {
         return $this->newQuery([
-            'endAt' => $this->buildPosition($cursor, true)
+            'endAt' => $this->buildPosition($fieldValues, true)
         ], true);
     }
 
@@ -500,30 +511,93 @@ class Query
      * $usersYoungerThan18 = $query->documents();
      * ```
      *
-     * @param array $cursor A list of values defining the query end point.
+     * @param array $fieldValues A list of values defining the query end point.
      * @return Query A new instance of Query with the given changes applied.
      */
-    public function endAt(array $cursor)
+    public function endAt(array $fieldValues)
     {
         return $this->newQuery([
-            'endAt' => $this->buildPosition($cursor, false)
+            'endAt' => $this->buildPosition($fieldValues, false)
         ], true);
     }
 
     /**
      * Builds a Firestore query position.
      *
-     * @param array $cursor The set of field values to use as the query boundary.
+     * @param array $fieldValues The set of field values to use as the query boundary.
      * @param bool $before Whether the query boundary lies just before or after
      *        the provided data.
      * @return array
      */
-    private function buildPosition(array $cursor, $before)
+    private function buildPosition(array $fieldValues, $before)
     {
+        if (!$this->queryHas('orderBy') || count($fieldValues) > count($this->query['orderBy'])) {
+            throw new \BadMethodCallException(
+                'Too many cursor values specified. The specified values must ' .
+                'match the `orderBy` constraints of the query.'
+            );
+        }
+
+        $order = $this->query['orderBy'];
+        foreach ($fieldValues as $i => &$value) {
+            if ($order[$i]['field']['fieldPath'] === self::DOCUMENT_ID) {
+                $collection = $this->childPath(
+                    $this->parent,
+                    $this->query['from'][0]['collectionId']
+                );
+
+                if (is_string($value)) {
+                    $c = new CollectionReference(
+                        $this->connection,
+                        $this->valueMapper,
+                        $collection
+                    );
+
+                    $value = new DocumentReference(
+                        $this->connection,
+                        $this->valueMapper,
+                        $c,
+                        $this->childPath($collection, $value)
+                    );
+                } elseif ($value instanceof DocumentReference) {
+                    $name = $value->name();
+                    if (!$this->isPrefixOf($collection, $name)) {
+                        throw new \BadMethodCallException(sprintf(
+                            '%s is not a part of the query result set and ' .
+                            'cannot be used as a query boundary',
+                            $name
+                        ));
+                    }
+                } else {
+                    throw new \BadMethodCallException(
+                        'The corresponding value for DOCUMENT_ID must be a ' .
+                        'string or a DocumentReference.'
+                    );
+                }
+
+                if ($value->parent()->name() !== $collection) {
+                    throw new \BadMethodCallException(
+                        'Only direct children may be used as query boundaries.'
+                    );
+                }
+            }
+        }
+
         return [
             'before' => $before,
-            'values' => $this->valueMapper->encodeValues($cursor)
+            'values' => $this->valueMapper->encodeValues($fieldValues)
         ];
+    }
+
+    /**
+     * Check if a given constraint type has been specified on the query.
+     *
+     * @param string $key The constraint name.
+     * @return bool
+     */
+    private function queryHas($key)
+    {
+        return isset($this->query[$key]);
     }
 
     /**

@@ -17,6 +17,8 @@
 
 namespace Google\Cloud\Firestore;
 
+use Ramsey\Uuid\Uuid;
+
 /**
  * Provides methods for managing resource paths.
  */
@@ -169,13 +171,18 @@ trait PathTrait
     /**
      * Create a random name.
      *
-     * @param string $name
+     * @param string $parent
      * @return string
      */
-    private function randomName($name)
+    private function randomName($parent)
     {
-        $rand = preg_filter('/[^a-zA-Z0-9]{0,}/', '', base64_encode(random_bytes(30)));
-        return $this->childPath($name, substr($rand, 0, 20));
+        // UUIDs are a pre-existing library dependency, so we'll use that instead
+        // of adding random_compat or something similar.
+        // Generate a UUID, then strip `-` and trim to expected length.
+        // @todo revisit once library requires php >= 7.0 and random_int() can be used without dependency.
+        $rand = substr(str_replace('-', '', Uuid::uuid4()), 0, 20);
+
+        return $this->childPath($parent, $rand);
     }
 
     /**
@@ -194,5 +201,30 @@ trait PathTrait
         }
 
         return $name;
+    }
+
+    /**
+     * Check if the given `$original` path is a prefix of the `$other` path.
+     *
+     * @param string $original
+     * @param string $other
+     * @return bool
+     */
+    private function isPrefixOf($original, $other)
+    {
+        $original = $this->splitName($original);
+        $other = $this->splitName($other);
+
+        if (count($other) < count($original)) {
+            return false;
+        }
+
+        foreach ($original as $i => $segment) {
+            if ($segment !== $other[$i]) {
+                return false;
+            }
+        }
+
+        return true;
     }
 }

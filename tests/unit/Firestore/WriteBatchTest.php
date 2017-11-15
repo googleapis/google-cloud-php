@@ -361,6 +361,22 @@ class WriteBatchTest extends TestCase
         $this->batch->rollback();
     }
 
+    /**
+     * @expectedException InvalidArgumentException
+     */
+    public function testSetEmptyFails()
+    {
+        $this->batch->set(self::DOCUMENT, [], ['merge' => true]);
+    }
+
+    /**
+     * @expectedException InvalidArgumentException
+     */
+    public function testUpdateEmptyFails()
+    {
+        $this->batch->update(self::DOCUMENT, []);
+    }
+
     private function commitAndAssert($assertion)
     {
         if (is_callable($assertion)) {

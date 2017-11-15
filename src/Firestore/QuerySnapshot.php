@@ -116,31 +116,4 @@ class QuerySnapshot implements \IteratorAggregate
     {
         return new \ArrayIterator($this->rows);
     }
-
-    /**
-     * Execute the query and return a Generator filled with streaming query results.
-     *
-     * Firestore does not support resuming broken queries. The retry logic
-     * contained in this method is intended to allow retries of queries that
-     * break on the initial call, but prevent retries if the stream is
-     * interrupted due to error.
-     *
-     * @return \Generator
-     */
-    private function executeQuery()
-    {
-        $shouldRetry = true;
-        $backoff = new ExponentialBackoff($this->retries, function () use (&$shouldRetry) {
-            // @codeCoverageIgnoreStart
-            return $shouldRetry;
-            // @codeCoverageIgnoreEnd
-        });
-
-        return $backoff->execute(function () use (&$shouldRetry) {
-            $call = $this->call;
-            $res = $call();
-            $shouldRetry = false;
-            return $res;
-        });
-    }
 }

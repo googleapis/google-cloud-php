@@ -17,7 +17,10 @@
 
 namespace Google\Cloud\Tests\Unit\Firestore;
 
+use Google\Cloud\Firestore\CollectionReference;
 use Google\Cloud\Firestore\Connection\ConnectionInterface;
+use Google\Cloud\Firestore\DocumentReference;
+use Google\Cloud\Firestore\DocumentSnapshot;
 use Google\Cloud\Firestore\FirestoreClient;
 use Google\Cloud\Firestore\Query;
 use Google\Cloud\Firestore\ValueMapper;
@@ -35,9 +38,13 @@ class QueryTest extends TestCase
 {
     const PROJECT = 'example_project';
     const DATABASE = '(default)';
-    const PARENT = 'projects/example_project/databases/(default)/documents/';
+    const PARENT = 'projects/example_project/databases/(default)/documents';
 
-    private $queryObj = ['from' => 'projects/example_project/databases/(default)/documents/'];
+    private $queryObj = [
+        'from' => [
+            ['collectionId' => 'foo']
+        ]
+    ];
     private $connection;
     private $query;
 
@@ -64,6 +71,40 @@ class QueryTest extends TestCase
         );
     }
 
+    public function testDocuments()
+    {
+        $name = self::PARENT .'/foo';
+
+        $this->connection->runQuery(Argument::any())
+            ->shouldBeCalled()
+            ->willReturn(new \ArrayIterator([
+                [
+                    'document' => [
+                        'name' => $name,
+                        'fields' => [
+                            'hello' => [
+                                'stringValue' => 'world'
+                            ]
+                        ]
+                    ],
+                    'readTime' => [
+                        'seconds' => time()
+                    ]
+                ],
+                []
+            ]));
+
+        $this->query->___setProperty('connection', $this->connection->reveal());
+
+        $res = $this->query->documents();
+        $this->assertContainsOnlyInstancesOf(DocumentSnapshot::class, $res);
+        $this->assertEquals(1, count($res->rows()));
+
+        $current = $res->rows()[0];
+        $this->assertEquals($name, $current->name());
+        $this->assertEquals('world', $current['hello']);
+    }
+
     public function testSelect()
     {
         $paths = [
@@ -79,7 +120,7 @@ class QueryTest extends TestCase
         }, [
             'parent' => self::PARENT,
             'structuredQuery' => [
-                'from' => self::PARENT,
+                'from' => $this->queryFrom(),
                 'select' => [
                     'fields' => [
                         [ 'fieldPath' => 'users.john' ],
@@ -100,7 +141,7 @@ class QueryTest extends TestCase
         }, [
             'parent' => self::PARENT,
             'structuredQuery' => [
-                'from' => self::PARENT,
+                'from' => $this->queryFrom(),
                 'select' => [
                     'fields' => [
                         [ 'fieldPath' => '__name__' ]
@@ -122,7 +163,7 @@ class QueryTest extends TestCase
         }, [
             'parent' => self::PARENT,
             'structuredQuery' => [
-                'from' => self::PARENT,
+                'from' => $this->queryFrom(),
                 'where' => [
                     'compositeFilter' => [
                         'op' => StructuredQuery_CompositeFilter_Operator::PBAND,
@@ -235,7 +276,7 @@ class QueryTest extends TestCase
         }, [
             'parent' => self::PARENT,
             'structuredQuery' => [
-                'from' => self::PARENT,
+                'from' => $this->queryFrom(),
                 'orderBy' => [
                     [
                         'field' => ['fieldPath' => 'user.name'],
@@ -247,6 +288,22 @@ class QueryTest extends TestCase
                 ]
             ]
         ]);
+    }
+
+    /**
+     * @expectedException BadMethodCallException
+     * @dataProvider cursors
+     */
+    public function testOrderByAfterCursor($cursor)
+    {
+        $this->query->orderBy('foo')->$cursor(['bar'])->orderBy('world');
+    }
+
+    public function cursors()
+    {
+        return [
+            ['startAt'], ['startAfter'], ['endBefore'], ['endAt']
+        ];
     }
 
     /**
@@ -292,7 +349,7 @@ class QueryTest extends TestCase
         }, [
             'parent' => self::PARENT,
             'structuredQuery' => [
-                'from' => self::PARENT,
+                'from' => $this->queryFrom(),
                 'limit' => ['value' => $limit]
             ]
         ]);
@@ -309,7 +366,7 @@ class QueryTest extends TestCase
         }, [
             'parent' => self::PARENT,
             'structuredQuery' => [
-                'from' => self::PARENT,
+                'from' => $this->queryFrom(),
                 'offset' => $offset
             ]
         ]);
@@ -318,13 +375,21 @@ class QueryTest extends TestCase
     public function testStartAt()
     {
         $this->runAndAssert(function (Query $q) {
-            $res = $q->startAt(['john']);
+            $res = $q->orderBy('name', Query::DIR_DESCENDING)->startAt(['john']);
 
             return $res;
         }, [
             'parent' => self::PARENT,
             'structuredQuery' => [
-                'from' => self::PARENT,
+                'from' => $this->queryFrom(),
+                'orderBy' => [
+                    [
+                        'field' => [
+                            'fieldPath' => 'name'
+                        ],
+                        'direction' => Query::DIR_DESCENDING
+                    ]
+                ],
                 'startAt' => [
                     'before' => true,
                     'values' => [
@@ -340,13 +405,21 @@ class QueryTest extends TestCase
     public function testStartAfter()
     {
         $this->runAndAssert(function (Query $q) {
-            $res = $q->startAfter(['john']);
+            $res = $q->orderBy('name', Query::DIR_DESCENDING)->startAfter(['john']);
 
             return $res;
         }, [
             'parent' => self::PARENT,
             'structuredQuery' => [
-                'from' => self::PARENT,
+                'from' => $this->queryFrom(),
+                'orderBy' => [
+                    [
+                        'field' => [
+                            'fieldPath' => 'name'
+                        ],
+                        'direction' => Query::DIR_DESCENDING
+                    ]
+                ],
                 'startAt' => [
                     'before' => false,
                     'values' => [
@@ -362,13 +435,21 @@ class QueryTest extends TestCase
     public function testEndBefore()
     {
         $this->runAndAssert(function (Query $q) {
-            $res = $q->endBefore(['john']);
+            $res = $q->orderBy('name', Query::DIR_DESCENDING)->endBefore(['john']);
 
             return $res;
         }, [
             'parent' => self::PARENT,
             'structuredQuery' => [
-                'from' => self::PARENT,
+                'from' => $this->queryFrom(),
+                'orderBy' => [
+                    [
+                        'field' => [
+                            'fieldPath' => 'name'
+                        ],
+                        'direction' => Query::DIR_DESCENDING
+                    ]
+                ],
                 'endAt' => [
                     'before' => true,
                     'values' => [
@@ -384,13 +465,21 @@ class QueryTest extends TestCase
     public function testEndAt()
     {
         $this->runAndAssert(function (Query $q) {
-            $res = $q->endAt(['john']);
+            $res = $q->orderBy('name', Query::DIR_DESCENDING)->endAt(['john']);
 
             return $res;
         }, [
             'parent' => self::PARENT,
             'structuredQuery' => [
-                'from' => self::PARENT,
+                'from' => $this->queryFrom(),
+                'orderBy' => [
+                    [
+                        'field' => [
+                            'fieldPath' => 'name'
+                        ],
+                        'direction' => Query::DIR_DESCENDING
+                    ]
+                ],
                 'endAt' => [
                     'before' => false,
                     'values' => [
@@ -401,6 +490,114 @@ class QueryTest extends TestCase
                 ]
             ]
         ]);
+    }
+
+    public function testBuildPositionWithDocumentId()
+    {
+        $this->runAndAssert(function (Query $q) {
+            $res = $q->orderBy(Query::DOCUMENT_ID, Query::DIR_DESCENDING)->endAt(['john']);
+
+            return $res;
+        }, [
+            'parent' => self::PARENT,
+            'structuredQuery' => [
+                'from' => $this->queryFrom(),
+                'orderBy' => [
+                    [
+                        'field' => [
+                            'fieldPath' => Query::DOCUMENT_ID
+                        ],
+                        'direction' => Query::DIR_DESCENDING
+                    ]
+                ],
+                'endAt' => [
+                    'before' => false,
+                    'values' => [
+                        [
+                            'referenceValue' => self::PARENT .'/'. $this->queryFrom()[0]['collectionId'] .'/john'
+                        ]
+                    ]
+                ]
+            ]
+        ]);
+    }
+
+    public function testBuildPositionWithDocumentReference()
+    {
+        $c = $this->prophesize(CollectionReference::class);
+        $c->name()->willReturn(self::PARENT .'/'. $this->queryFrom()[0]['collectionId']);
+
+        $ref = $this->prophesize(DocumentReference::class);
+        $ref->name()->willReturn(self::PARENT .'/'. $this->queryFrom()[0]['collectionId'] .'/john');
+        $ref->parent()->willReturn($c->reveal());
+
+        $this->runAndAssert(function (Query $q) use ($ref) {
+            $res = $q->orderBy(Query::DOCUMENT_ID, Query::DIR_DESCENDING)->endAt([$ref->reveal()]);
+
+            return $res;
+        }, [
+            'parent' => self::PARENT,
+            'structuredQuery' => [
+                'from' => $this->queryFrom(),
+                'orderBy' => [
+                    [
+                        'field' => [
+                            'fieldPath' => Query::DOCUMENT_ID
+                        ],
+                        'direction' => Query::DIR_DESCENDING
+                    ]
+                ],
+                'endAt' => [
+                    'before' => false,
+                    'values' => [
+                        [
+                            'referenceValue' => self::PARENT .'/'. $this->queryFrom()[0]['collectionId'] .'/john'
+                        ]
+                    ]
+                ]
+            ]
+        ]);
+    }
+
+    /**
+     * @expectedException BadMethodCallException
+     */
+    public function testBuildPositionTooManyCursorValues()
+    {
+        $this->query->orderBy('foo')->endAt(['a','b']);
+    }
+
+    /**
+     * @expectedException BadMethodCallException
+     */
+    public function testBuildPositionOutOfBounds()
+    {
+        $ref = $this->prophesize(DocumentReference::class);
+        $ref->name()->willReturn(self::PARENT .'/whatev/john');
+        $this->query->orderBy(Query::DOCUMENT_ID)->startAt([$ref->reveal()]);
+    }
+
+    /**
+     * @expectedException BadMethodCallException
+     */
+    public function testBuildPositionInvalidCursorType()
+    {
+        $this->query->orderBy(Query::DOCUMENT_ID)->startAt([10]);
+    }
+
+    /**
+     * @expectedException BadMethodCallException
+     */
+    public function testBuildPositionNestedChild()
+    {
+        $c = $this->prophesize(CollectionReference::class);
+        $c->name()->willReturn(self::PARENT .'/'. $this->queryFrom()[0]['collectionId'] .'/john');
+
+        $ref = $this->prophesize(DocumentReference::class);
+        $ref->name()->willReturn(self::PARENT .'/'. $this->queryFrom()[0]['collectionId'] .'/john/bar');
+        $ref->parent()->willReturn($c->reveal());
+
+        $this->query->orderBy(Query::DOCUMENT_ID)->startAt([$ref->reveal()]);
     }
 
     private function runAndAssert(callable $filters, $assertion)
@@ -423,5 +620,10 @@ class QueryTest extends TestCase
         $this->assertNotEquals($immutable, $query);
 
         $query->documents(['maxRetries' => 0]);
+    }
+
+    private function queryFrom()
+    {
+        return $this->queryObj['from'];
     }
 }
