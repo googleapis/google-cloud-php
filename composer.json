@@ -64,7 +64,7 @@
     },
     "replace": {
         "google/cloud-bigquery": "0.3.1",
-        "google/cloud-core": "1.12.0",
+        "google/cloud-core": "1.12.1",
         "google/cloud-datastore": "1.0.3",
         "google/cloud-error-reporting": "0.6.0",
         "google/cloud-logging": "1.6.1",
