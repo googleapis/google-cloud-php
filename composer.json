@@ -52,7 +52,7 @@
         "google/gax": "^0.26"
     },
     "require-dev": {
-        "phpunit/phpunit": "^4.8.36",
+        "phpunit/phpunit": "^4.8|^5.0",
         "squizlabs/php_codesniffer": "2.*",
         "phpdocumentor/reflection": "^3.0",
         "symfony/console": "^3.0",
@@ -67,6 +67,7 @@
         "google/cloud-core": "1.12.1",
         "google/cloud-datastore": "1.0.3",
         "google/cloud-error-reporting": "0.6.1",
+        "google/cloud-firestore": "dev-master",
         "google/cloud-logging": "1.6.2",
         "google/cloud-monitoring": "0.6.1",
         "google/cloud-language": "0.9.1",
