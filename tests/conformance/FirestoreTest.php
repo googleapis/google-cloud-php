@@ -74,28 +74,44 @@ class FirestoreTest extends TestCase
     /**
      * @dataProvider cases
      */
-    public function testConformance($test)
+    public function testConformance($description, $type, array $test)
     {
-        if (in_array($test['description'], $this->skipped)) {
-            $this->markTestSkipped('manually skipped '. $test['description']);
+        if (in_array($description, $this->skipped)) {
+            $this->markTestSkipped('manually skipped '. $description);
             return;
         }
 
-        if (isset($test['get'])) {
-            return $this->runGet($test['get'], $test['description']);
-        } else if (isset($test['create'])) {
-            return $this->runCreate($test['create'], $test['description']);
-        } else if (isset($test['set'])) {
-            return $this->runSet($test['set'], $test['description']);
-        } else if (isset($test['update'])) {
-            return $this->runUpdate($test['update'], $test['description']);
-        } else if (isset($test['updatePaths'])) {
-            return $this->runUpdatePaths($test['updatePaths'], $test['description']);
-        } else if (isset($test['delete'])) {
-            return $this->runDelete($test['delete'], $test['description']);
+        switch ($type) {
+            case 'get':
+                $method = 'runGet';
+                break;
+
+            case 'create':
+                $method = 'runCreate';
+                break;
+
+            case 'set':
+                $method = 'runSet';
+                break;
+
+            case 'update':
+                $method = 'runUpdate';
+                break;
+
+            case 'updatePaths':
+                $method = 'runUpdatePaths';
+                break;
+
+            case 'delete':
+                $method = 'runDelete';
+                break;
+
+            default :
+                throw \Exception('Invalid test type '. $type);
+                break;
         }
 
-        $this->markTestSkipped('skipped: '. $test['description']);
+        return $this->$method($test);
     }
 
     private function runGet($test)
@@ -173,7 +189,7 @@ class FirestoreTest extends TestCase
         }
     }
 
-    private function runUpdate($test, $description)
+    private function runUpdate($test)
     {
         if (isset($test['request'])) {
             $request = $test['request'];
@@ -212,7 +228,7 @@ class FirestoreTest extends TestCase
         }
     }
 
-    private function runUpdatePaths($test, $desc)
+    private function runUpdatePaths($test)
     {
         if (isset($test['request'])) {
             $request = $test['request'];
@@ -255,7 +271,7 @@ class FirestoreTest extends TestCase
         }
     }
 
-    private function runDelete($test, $desc)
+    private function runDelete($test)
     {
         if (isset($test['request'])) {
             $request = $test['request'];
@@ -345,6 +361,8 @@ class FirestoreTest extends TestCase
 
     public function cases()
     {
+        $types = ['get', 'create', 'set', 'update', 'updatePaths', 'delete'];
+
         $serializer = new Serializer;
         $bytes = (new Client)->get(self::TEST_FILE)->getBody();
 
@@ -353,7 +371,11 @@ class FirestoreTest extends TestCase
         $protos = [];
         while ($index < $len) {
             list($proto, $index) = $this->loadProto($bytes, $index);
-            $protos[] = [$serializer->encodeMessage($proto)];
+            $case = $serializer->encodeMessage($proto);
+
+            $type = array_values(array_intersect($types, array_keys($case)))[0];
+
+            $protos[] = [$case['description'], $type, $case[$type]];
         }
         return $protos;
     }
