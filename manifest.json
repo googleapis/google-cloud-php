@@ -161,6 +161,14 @@
             ]
         },
         {
+            "id": "cloud-firestore",
+            "name": "google/cloud-firestore",
+            "defaultService": "firestore/firestoreclient",
+            "versions": [
+                "master"
+            ]
+        },
+        {
             "id": "cloud-logging",
             "name": "google/cloud-logging",
             "defaultService": "logging/loggingclient",
