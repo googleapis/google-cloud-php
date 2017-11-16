@@ -1,5 +1,16 @@
-# Cloud Firestore
+# Cloud Firestore for PHP
 
-Cloud Firestore is a flexible, scalable, realtime database for mobile, web, and server development.
+> Idiomatic PHP client for [Cloud Firestore](https://cloud.google.com/firestore/).
 
-For more information, see [cloud.google.com](https://cloud.google.com/firestore/).
+* [Homepage](http://googlecloudplatform.github.io/google-cloud-php)
+* [API documentation](http://googlecloudplatform.github.io/google-cloud-php/#/docs/cloud-firestore/latest/firestore/firestoreclient)
+
+**NOTE:** This repository is part of [Google Cloud PHP](https://github.com/googlecloudplatform/google-cloud-php). Any
+support requests, bug reports, or development contributions should be directed to
+that project.
+
+## Installation
+
+```
+$ composer require google/cloud-firestore
+```
