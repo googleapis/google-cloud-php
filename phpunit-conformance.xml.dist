@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit bootstrap="./tests/conformance/bootstrap.php" colors="true">
+  <testsuites>
+    <testsuite>
+      <directory>tests/conformance</directory>
+    </testsuite>
+  </testsuites>
+  <filter>
+    <whitelist>
+      <directory suffix=".php">src</directory>
+      <exclude>
+        <directory suffix=".php">src/*/V[!a-zA-Z]*</directory>
+      </exclude>
+    </whitelist>
+  </filter>
+</phpunit>

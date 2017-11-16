@@ -51,7 +51,7 @@ class FieldValueTest extends SnippetTestCase
             "writes" => [
                 [
                     "updateMask" => [
-                        "hometown"
+                        "fieldPaths" => ["hometown"]
                     ],
                     "currentDocument" => [
                         "exists" => true
@@ -87,6 +87,9 @@ class FieldValueTest extends SnippetTestCase
                                 "setToServerValue" => DocumentTransform_FieldTransform_ServerValue::REQUEST_TIME
                             ]
                         ]
+                    ],
+                    "currentDocument" => [
+                        "exists" => true
                     ]
                 ]
             ]

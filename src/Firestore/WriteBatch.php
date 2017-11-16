@@ -111,13 +111,32 @@ class WriteBatch
      *        field paths are NOT supported by this method.
      * @param array $options Configuration options
      * @return WriteBatch
+     * @throws \InvalidArgumentException If delete field sentinels are found in the fields list.
      */
     public function create($documentName, array $fields, array $options = [])
     {
-        $this->writes[] = $this->createDatabaseWrite(self::TYPE_UPDATE, $documentName, [
-            'fields' => $this->valueMapper->encodeValues($fields),
-            'precondition' => ['exists' => false]
-        ] + $options);
+        list($fields, $timestamps, $deletes) = $this->valueMapper->findSentinels($fields);
+
+        if (!empty($deletes)) {
+            throw new \InvalidArgumentException('Cannot delete fields when creating a document.');
+        }
+
+        $precondition = ['exists' => false];
+
+        $transformOptions = [];
+        if (!empty($fields)) {
+            $this->writes[] = $this->createDatabaseWrite(self::TYPE_UPDATE, $documentName, [
+                'fields' => $this->valueMapper->encodeValues($fields),
+                'precondition' => $precondition
+            ] + $options);
+        } else {
+            $transformOptions = [
+                'precondition' => $precondition
+            ];
+        }
+
+        // Setting values to the server timestamp is implemented as a document tranformation.
+        $this->updateTransforms($documentName, $timestamps, $transformOptions);
 
         return $this;
     }
@@ -148,14 +167,13 @@ class WriteBatch
      * }
      * @return WriteBatch
      * @codingStandardsIgnoreEnd
+     * @throws \InvalidArgumentException If the fields list is empty when `$options.merge` is `true`.
      */
     public function set($documentName, array $fields, array $options = [])
     {
-        $options += [
-            'merge' => false
-        ];
+        $merge = $this->pluck('merge', $options, false) ?: false;
 
-        if ($options['merge'] && empty($fields)) {
+        if ($merge && empty($fields)) {
             throw new \InvalidArgumentException('Fields list cannot be empty when merging fields.');
         }
 
@@ -164,7 +182,7 @@ class WriteBatch
         if ($fields) {
             $write = array_filter([
                 'fields' => $this->valueMapper->encodeValues($fields),
-                'updateMask' => $options['merge'] ? $this->valueMapper->encodeFieldPaths($fields) : null
+                'updateMask' => $merge ? $this->valueMapper->encodeFieldPaths($fields) : null
             ]);
 
             $this->writes[] = $this->createDatabaseWrite(self::TYPE_UPDATE, $documentName, $write);
@@ -228,15 +246,16 @@ class WriteBatch
      * @param array[] $data A list of arrays of form `[FieldPath|string $path, mixed $value]`.
      * @param array $options Configuration options
      * @return WriteBatch
-     * @throws \InvalidArgumentException If data is given in an invalid format.
+     * @throws \InvalidArgumentException If data is given in an invalid format or is empty.
+     * @throws \InvalidArgumentException If any field paths are empty.
      */
     public function update($documentName, array $data, array $options = [])
     {
-        if (!empty($data) && $this->isAssoc($data)) {
+        if (!$data || $this->isAssoc($data)) {
             throw new \InvalidArgumentException(
                 'Field data must be provided as a list of arrays of form `[string|FieldPath $path, mixed $value]`.'
             );
-        } elseif (empty($data)) {
+        } elseif (!$data) {
             throw new \InvalidArgumentException(
                 'Field data cannot be empty.'
             );
@@ -251,9 +270,15 @@ class WriteBatch
         foreach ($data as $field) {
             $this->arrayHasKeys($field, ['path', 'value']);
 
-            $paths[] = ($field['path'] instanceof FieldPath)
+            $path = ($field['path'] instanceof FieldPath)
                 ? $field['path']
                 : FieldPath::fromString($field['path']);
+
+            if (!$path->path()) {
+                throw new \InvalidArgumentException('Field Path cannot be empty.');
+            }
+
+            $paths[] = $path;
 
             $values[] = $field['value'];
         }
@@ -261,6 +286,8 @@ class WriteBatch
         $fields = $this->valueMapper->buildDocumentFromPathsAndValues($paths, $values);
 
         list($fields, $timestamps, $deletes) = $this->valueMapper->findSentinels($fields);
+
+        $transformOptions = [];
 
         // We only want to enqueue an update write if there are non-sentinel fields
         // OR no timestamp sentinels are found.
@@ -281,10 +308,14 @@ class WriteBatch
                 'fields' => $this->valueMapper->encodeValues($fields),
                 'updateMask' => array_unique(array_merge($updateMask, $deletes))
             ] + $options);
+        } else {
+            $transformOptions = [
+                'precondition' => $options['precondition']
+            ];
         }
 
         // Setting values to the server timestamp is implemented as a document tranformation.
-        $this->updateTransforms($documentName, $timestamps);
+        $this->updateTransforms($documentName, $timestamps, $transformOptions);
 
         return $this;
     }
@@ -327,6 +358,8 @@ class WriteBatch
      */
     public function commit(array $options = [])
     {
+        unset($options['merge'], $options['precondition']);
+
         $response = $this->connection->commit(array_filter([
             'database' => $this->database,
             'writes' => $this->writes,
@@ -413,8 +446,14 @@ class WriteBatch
      */
     private function createDatabaseWrite($type, $name, array $options = [])
     {
+        $mask = $this->pluck('updateMask', $options, false);
+        if ($mask) {
+            sort($mask);
+            $mask = ['fieldPaths' => $mask];
+        }
+
         return array_filter([
-            'updateMask' => $this->pluck('updateMask', $options, false),
+            'updateMask' => $mask,
             'currentDocument' => $this->validatePrecondition($options),
         ]) + $this->createDatabaseWriteOperation($type, $name, $options);
     }

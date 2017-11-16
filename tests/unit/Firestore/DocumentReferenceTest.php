@@ -129,9 +129,11 @@ class DocumentReferenceTest extends TestCase
             'writes' => [
                 [
                     'updateMask' => [
-                        "hello",
-                        "foo.bar",
-                        "foo.baz"
+                        'fieldPaths' => [
+                            "foo.bar",
+                            "foo.baz",
+                            "hello",
+                        ]
                     ],
                     'currentDocument' => ['exists' => true],
                     'update' => [

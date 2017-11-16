@@ -100,7 +100,7 @@ class GrpcTest extends TestCase
             'database' => sprintf('projects/%s/databases/%s', self::PROJECT, self::DATABASE),
             'writes' => [
                 [
-                    'updateMask' => ['foo'],
+                    'updateMask' => ['fieldPaths' => ['foo']],
                     'currentDocument' => ['exists' => true],
                     'update' => [
                         'name' => 'foo',

@@ -99,6 +99,9 @@
         },
         "files": [
             "dev/src/Functions.php"
+        ],
+        "classmap": [
+            "tests/conformance-fixtures"
         ]
     },
     "scripts": {

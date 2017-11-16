@@ -139,7 +139,7 @@ class TransactionTest extends TestCase
 
         $this->expectAndInvoke([
             [
-                'updateMask' => ['hello'],
+                'updateMask' => ['fieldPaths' => ['hello']],
                 'update' => [
                     'name' => self::DOCUMENT,
                     'fields' => ['hello' => ['stringValue' => 'world']]
@@ -159,9 +159,11 @@ class TransactionTest extends TestCase
         $this->expectAndInvoke([
             [
                 'updateMask' => [
-                    "hello",
-                    "foo.bar",
-                    "foo.baz"
+                    'fieldPaths' => [
+                        "foo.bar",
+                        "foo.baz",
+                        "hello",
+                    ]
                 ],
                 'currentDocument' => ['exists' => true],
                 'update' => [

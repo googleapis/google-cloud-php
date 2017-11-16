@@ -45,7 +45,7 @@ trait PathTrait
      * @param string $relativeName
      * @return string
      */
-    public function fullNameFromDatabase($databaseName, $relativeName)
+    private function fullNameFromDatabase($databaseName, $relativeName)
     {
         $template = '%s/documents/%s';
         return sprintf($template, $databaseName, $relativeName);

@@ -89,8 +89,10 @@ class WriteBatchTest extends TestCase
             'writes' => [
                 [
                     'updateMask' => [
-                        'hello.world',
-                        'hello.house'
+                        'fieldPaths' => [
+                            'hello.house',
+                            'hello.world',
+                        ]
                     ],
                     'currentDocument' => ['exists' => true],
                     'update' => [
@@ -146,7 +148,7 @@ class WriteBatchTest extends TestCase
             'database' => sprintf('projects/%s/databases/%s', self::PROJECT, self::DATABASE),
             'writes' => [
                 [
-                    'updateMask' => ['foo', 'hello'],
+                    'updateMask' => ['fieldPaths' => ['foo', 'hello']],
                     'currentDocument' => ['exists' => true],
                     'update' => [
                         'name' => self::DOCUMENT,
@@ -198,7 +200,7 @@ class WriteBatchTest extends TestCase
             'database' => sprintf('projects/%s/databases/%s', self::PROJECT, self::DATABASE),
             'writes' => [
                 [
-                    'updateMask' => ['hello'],
+                    'updateMask' => ['fieldPaths' => ['hello']],
                     'update' => [
                         'name' => self::DOCUMENT,
                         'fields' => ['hello' => ['stringValue' => 'world']]

@@ -348,7 +348,7 @@ class FirestoreClientTest extends TestCase
         $res = $this->client->runTransaction(function ($t) {
             $doc = $this->prophesize(DocumentReference::class);
             $doc->name('foo');
-            $t->create($doc->reveal(), []);
+            $t->create($doc->reveal(), ['foo'=>'bar']);
         });
         $this->assertInstanceOf(Timestamp::class, $res['commitTime']);
         $this->assertEquals($timestamp['seconds'], $res['commitTime']->get()->format('U'));
@@ -404,7 +404,7 @@ class FirestoreClientTest extends TestCase
         $res = $this->client->runTransaction(function ($t) {
             $doc = $this->prophesize(DocumentReference::class);
             $doc->name('foo');
-            $t->create($doc->reveal(), []);
+            $t->create($doc->reveal(), ['foo'=>'bar']);
         });
     }
 
@@ -431,7 +431,7 @@ class FirestoreClientTest extends TestCase
         $res = $this->client->runTransaction(function ($t) {
             $doc = $this->prophesize(DocumentReference::class);
             $doc->name('foo');
-            $t->create($doc->reveal(), []);
+            $t->create($doc->reveal(), ['foo'=>'bar']);
         }, ['maxRetries' => 2]);
     }
 
