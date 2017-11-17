@@ -89,6 +89,23 @@ class ClientTraitTest extends TestCase
         ];
     }
 
+    public function testRequireGrpcPassesWithGrpc()
+    {
+        $this->assertNull(
+            (new ClientTraitStubGrpcDependencyChecks(true))
+                ->runRequireGrpc()
+        );
+    }
+
+    /**
+     * @expectedException Google\Cloud\Core\Exception\GoogleException
+     */
+    public function testRequireGrpcThrowsExceptionWithoutGrpc()
+    {
+        (new ClientTraitStubGrpcDependencyChecks(false))
+            ->runRequireGrpc();
+    }
+
     public function testConfigureAuthentication()
     {
         $keyFilePath = __DIR__ . '/../fixtures/json-key-fixture.json';
@@ -252,6 +269,11 @@ class ClientTraitStub
     {
         return $this->detectProjectId($config);
     }
+
+    public function runRequireGrpc()
+    {
+        return $this->requireGrpc();
+    }
 }
 
 class ClientTraitStubOnGce extends ClientTraitStub
@@ -287,7 +309,7 @@ class ClientTraitStubGrpcDependencyChecks extends ClientTraitStub
         $this->dependencyStatus = $dependencyStatus;
     }
 
-    protected function getGrpcDependencyStatus()
+    protected function isGrpcLoaded()
     {
         return $this->dependencyStatus;
     }

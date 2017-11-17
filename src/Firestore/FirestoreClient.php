@@ -17,16 +17,17 @@
 
 namespace Google\Cloud\Firestore;
 
-use Google\Cloud\Core\Blob;
-use Google\Cloud\Core\Retry;
-use Google\Cloud\Core\GeoPoint;
 use Google\Cloud\Core\ArrayTrait;
+use Google\Cloud\Core\Blob;
 use Google\Cloud\Core\ClientTrait;
-use Google\Cloud\Core\ValidateTrait;
-use Google\Cloud\Firestore\Connection\Grpc;
+use Google\Cloud\Core\Exception\AbortedException;
+use Google\Cloud\Core\Exception\GoogleException;
+use Google\Cloud\Core\GeoPoint;
 use Google\Cloud\Core\Iterator\ItemIterator;
 use Google\Cloud\Core\Iterator\PageIterator;
-use Google\Cloud\Core\Exception\AbortedException;
+use Google\Cloud\Core\Retry;
+use Google\Cloud\Core\ValidateTrait;
+use Google\Cloud\Firestore\Connection\Grpc;
 
 /**
  * Cloud Firestore is a flexible, scalable, realtime database for mobile, web, and server development.
@@ -68,7 +69,8 @@ class FirestoreClient
     private $valueMapper;
 
     /**
-     * Create a Firestore client.
+     * Create a Firestore client. Please note that this client requires
+     * [the gRPC extension](https://cloud.google.com/php/grpc).
      *
      * @param array $config [optional] {
      *     Configuration Options.
@@ -96,9 +98,11 @@ class FirestoreClient
      *           platform compatibility. **Defaults to** false.
      * }
      * @throws \InvalidArgumentException
+     * @throws GoogleException
      */
     public function __construct(array $config = [])
     {
+        $this->requireGrpc();
         $config += [
             'returnInt64AsObject' => false,
             'scopes' => [self::FULL_CONTROL_SCOPE],

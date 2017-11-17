@@ -46,7 +46,7 @@ trait ClientTrait
      */
     private function getConnectionType(array $config)
     {
-        $isGrpcExtensionLoaded = $this->getGrpcDependencyStatus();
+        $isGrpcExtensionLoaded = $this->isGrpcLoaded();
         $defaultTransport = $isGrpcExtensionLoaded ? 'grpc' : 'rest';
         $transport = isset($config['transport'])
             ? strtolower($config['transport'])
@@ -56,13 +56,36 @@ trait ClientTrait
             if (!$isGrpcExtensionLoaded) {
                 throw new GoogleException(
                     'gRPC support has been requested but required dependencies ' .
-                    'have not been found. Please make sure to run the following ' .
-                    'from the command line: pecl install grpc'
+                    'have not been found. ' . $this->getGrpcInstallationMessage()
                 );
             }
         }
 
         return $transport;
+    }
+
+    /**
+     * Throw an exception if the gRPC extension is not loaded.
+     *
+     * @throws GoogleException
+     */
+    private function requireGrpc()
+    {
+        if (!$this->isGrpcLoaded()) {
+            throw new GoogleException(
+                'The requested client requires the gRPC extension. ' .
+                $this->getGrpcInstallationMessage()
+            );
+        }
+    }
+
+    /**
+     * @return string
+     */
+    private function getGrpcInstallationMessage()
+    {
+        return 'Please see https://cloud.google.com/php/grpc for installation ' .
+               'instructions.';
     }
 
     /**
@@ -208,7 +231,7 @@ trait ClientTrait
      * @codeCoverageIgnore
      * @return bool
      */
-    protected function getGrpcDependencyStatus()
+    protected function isGrpcLoaded()
     {
         return extension_loaded('grpc');
     }
