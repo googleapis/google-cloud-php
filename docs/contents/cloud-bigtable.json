@@ -3,7 +3,7 @@
     "pattern": "bigtable\/\\w{1,}",
     "services": [{
         "title": "BigtableClient",
-        "type": "bigtable/bigtableclient"
+        "type": "bigtable/readme"
     }, {
         "title": "v2",
         "type": "bigtable/v2/readme",
