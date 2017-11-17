@@ -98,7 +98,7 @@ class FirestoreClient
      *           platform compatibility. **Defaults to** false.
      * }
      * @throws \InvalidArgumentException
-     * @throws GoogleException
+     * @throws GoogleException If the gRPC extension is not enabled.
      */
     public function __construct(array $config = [])
     {

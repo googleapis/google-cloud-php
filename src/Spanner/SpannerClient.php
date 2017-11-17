@@ -110,7 +110,7 @@ class SpannerClient
      *           returned as a {@see Google\Cloud\Core\Int64} object for 32 bit
      *           platform compatibility. **Defaults to** false.
      * }
-     * @throws GoogleException
+     * @throws GoogleException If the gRPC extension is not enabled.
      */
     public function __construct(array $config = [])
     {
