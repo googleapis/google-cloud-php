@@ -65,7 +65,7 @@ class SpannerClient
     use LROTrait;
     use ValidateTrait;
 
-    const VERSION = '0.9.0';
+    const VERSION = '0.9.1';
 
     const FULL_CONTROL_SCOPE = 'https://www.googleapis.com/auth/spanner.data';
     const ADMIN_SCOPE = 'https://www.googleapis.com/auth/spanner.admin';
@@ -110,7 +110,7 @@ class SpannerClient
      *           returned as a {@see Google\Cloud\Core\Int64} object for 32 bit
      *           platform compatibility. **Defaults to** false.
      * }
-     * @throws GoogleException
+     * @throws GoogleException If the gRPC extension is not enabled.
      */
     public function __construct(array $config = [])
     {

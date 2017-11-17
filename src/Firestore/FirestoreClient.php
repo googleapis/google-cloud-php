@@ -45,7 +45,7 @@ class FirestoreClient
     use SnapshotTrait;
     use ValidateTrait;
 
-    const VERSION = '0.1.0';
+    const VERSION = '0.1.1';
 
     const DEFAULT_DATABASE = '(default)';
 
@@ -98,7 +98,7 @@ class FirestoreClient
      *           platform compatibility. **Defaults to** false.
      * }
      * @throws \InvalidArgumentException
-     * @throws GoogleException
+     * @throws GoogleException If the gRPC extension is not enabled.
      */
     public function __construct(array $config = [])
     {
