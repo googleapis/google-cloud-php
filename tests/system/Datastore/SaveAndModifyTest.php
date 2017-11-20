@@ -18,6 +18,7 @@
 namespace Google\Cloud\Tests\System\Datastore;
 
 use Google\Cloud\Core\Int64;
+use Google\Cloud\Datastore\Entity;
 
 /**
  * @group datastore
@@ -115,5 +116,21 @@ class SaveAndModifyTest extends DatastoreTestCase
 
         $this->assertInstanceOf(Int64::class, $entity[$entityDataKey]);
         $this->assertEquals($intValue, (string) $entity[$entityDataKey]);
+    }
+
+    public function testExcludeEmbeddedEntityPropertyFromIndexes()
+    {
+        $entity = self::$client->entity('Person', [
+            'foo' => [
+                'hello' => 'world',
+                Entity::EXCLUDE_FROM_INDEXES => ['hello']
+            ]
+        ]);
+        self::$client->insert($entity);
+
+        $key = $entity->key();
+        self::$localDeletionQueue->add($key);
+        $e = self::$client->lookup($key);
+        $this->assertEquals(['hello'], $e['foo'][Entity::EXCLUDE_FROM_INDEXES]);
     }
 }

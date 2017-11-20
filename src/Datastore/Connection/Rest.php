@@ -78,6 +78,7 @@ class Rest implements ConnectionInterface
      */
     public function commit(array $args)
     {
+        // print_r($args);exit;
         return $this->send('projects', 'commit', $args);
     }
 
