@@ -1,4 +1,4 @@
-Google API Extensions for PHP
+Google API Core for PHP
 =================================
 
 [![Build Status](https://img.shields.io/travis/googleapis/gax-php.svg)](https://travis-ci.org/googleapis/gax-php)
@@ -7,7 +7,7 @@ Google API Extensions for PHP
 
 - [Documentation](http://googleapis.github.io/gax-php)
 
-Google API Extensions for PHP (gax-php) is a set of modules which aids
+Google API Core for PHP (gax-php) is a set of modules which aids
 the development of APIs for clients based on [gRPC][] and Google API
 conventions.
 
@@ -51,7 +51,14 @@ stable.
 Repository Structure
 -------
 
-All code lives under src/ and is contained in the `Google\GAX` namespace.
+All code lives under the src/ directory. Handwritten code lives in the
+src/ApiCore directory and is contained in the `Google\ApiCore` namespace.
+
+Generated classes for protobuf common types and LongRunning client live under
+the src/ directory, in the appropriate directory and namespace.
+
+Code in the metadata/ directory is provided to support generated protobuf
+classes, and should not be used directly.
 
 
 License

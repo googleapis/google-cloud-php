@@ -1,7 +1,7 @@
 {
     "name": "google/gax",
     "type": "library",
-    "description": "Google API Extensions for PHP",
+    "description": "Google API Core for PHP",
     "keywords": ["google"],
     "homepage": "https://github.com/googleapis/gax-php",
     "license": "BSD-3-Clause",
@@ -17,10 +17,13 @@
     },
     "autoload": {
         "psr-4": {
-          "Google\\GAX\\":"src/",
-          "Google\\GAX\\UnitTests\\":"tests/",
-          "Google\\":"src/generated/Google/",
-          "GPBMetadata\\":"src/generated/GPBMetadata/"
+            "Google\\": "src",
+            "GPBMetadata\\Google\\": "metadata"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Google\\": "tests"
         }
     }
 }
