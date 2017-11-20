@@ -47,7 +47,7 @@ use Google\ApiCore\Tests\Unit\Mocks\MockStub;
 use Google\ApiCore\Tests\Unit\Mocks\MockPageStreamingRequest;
 use Google\ApiCore\Tests\Unit\Mocks\MockPageStreamingResponse;
 use Google\ApiCore\ValidationException;
-use Google\Longrunning\Operation;
+use Google\LongRunning\Operation;
 use Google\Protobuf\GPBEmpty;
 use Google\Protobuf\Internal\GPBType;
 use Google\Protobuf\Internal\RepeatedField;
@@ -637,7 +637,7 @@ class ApiCallableTest extends TestCase
         return $op;
     }
 
-    public function testLongrunningSuccess()
+    public function testLongRunningSuccess()
     {
         $opName = 'operation/someop';
 
@@ -652,11 +652,11 @@ class ApiCallableTest extends TestCase
         ];
         $callStub = MockStub::createWithResponseSequence(
             [[$initialResponse, new MockStatus(Code::OK, '')]],
-            ['\Google\Longrunning\Operation', 'mergeFromString']
+            ['\Google\LongRunning\Operation', 'mergeFromString']
         );
         $opStub = MockStub::createWithResponseSequence(
             $responseSequence,
-            ['\Google\Longrunning\Operation', 'mergeFromString']
+            ['\Google\LongRunning\Operation', 'mergeFromString']
         );
         $opClient = OperationResponseTest::createOperationsClient($opStub);
         $descriptor = [
@@ -714,7 +714,7 @@ class ApiCallableTest extends TestCase
         $this->assertEquals([false, false, true], $isDoneResponses);
     }
 
-    public function testLongrunningPollingInterval()
+    public function testLongRunningPollingInterval()
     {
         $opName = 'operation/someop';
 
@@ -730,11 +730,11 @@ class ApiCallableTest extends TestCase
         ];
         $callStub = MockStub::createWithResponseSequence(
             [[$initialResponse, new MockStatus(Code::OK, '')]],
-            ['\Google\Longrunning\Operation', 'mergeFromString']
+            ['\Google\LongRunning\Operation', 'mergeFromString']
         );
         $opStub = MockStub::createWithResponseSequence(
             $responseSequence,
-            ['\Google\Longrunning\Operation', 'mergeFromString']
+            ['\Google\LongRunning\Operation', 'mergeFromString']
         );
         $opClient = OperationResponseTest::createOperationsClient($opStub);
         $descriptor = [
@@ -784,7 +784,7 @@ class ApiCallableTest extends TestCase
         );
     }
 
-    public function testLongrunningMaxPollingDuration()
+    public function testLongRunningMaxPollingDuration()
     {
         $opName = 'operation/someop';
 
@@ -800,11 +800,11 @@ class ApiCallableTest extends TestCase
         ];
         $callStub = MockStub::createWithResponseSequence(
             [[$initialResponse, new MockStatus(Code::OK, '')]],
-            ['\Google\Longrunning\Operation', 'mergeFromString']
+            ['\Google\LongRunning\Operation', 'mergeFromString']
         );
         $opStub = MockStub::createWithResponseSequence(
             $responseSequence,
-            ['\Google\Longrunning\Operation', 'mergeFromString']
+            ['\Google\LongRunning\Operation', 'mergeFromString']
         );
         $opClient = OperationResponseTest::createOperationsClient($opStub);
         $descriptor = [
@@ -853,7 +853,7 @@ class ApiCallableTest extends TestCase
         );
     }
 
-    public function testLongrunningFailure()
+    public function testLongRunningFailure()
     {
         $opName = 'operation/someop';
 
@@ -868,11 +868,11 @@ class ApiCallableTest extends TestCase
         ];
         $callStub = MockStub::createWithResponseSequence(
             [[$initialResponse, new MockStatus(Code::OK, '')]],
-            ['\Google\Longrunning\Operation', 'mergeFromString']
+            ['\Google\LongRunning\Operation', 'mergeFromString']
         );
         $opStub = MockStub::createWithResponseSequence(
             $responseSequence,
-            ['\Google\Longrunning\Operation', 'mergeFromString']
+            ['\Google\LongRunning\Operation', 'mergeFromString']
         );
         $opClient = OperationResponseTest::createOperationsClient($opStub);
         $descriptor = [
@@ -933,7 +933,7 @@ class ApiCallableTest extends TestCase
         $this->assertEquals([false, false, true], $isDoneResponses);
     }
 
-    public function testLongrunningCancel()
+    public function testLongRunningCancel()
     {
         $opName = 'operation/someop';
 
@@ -954,11 +954,11 @@ class ApiCallableTest extends TestCase
         ];
         $callStub = MockStub::createWithResponseSequence(
             [[$initialResponse, new MockStatus(Code::OK, '')]],
-            ['\Google\Longrunning\Operation', 'mergeFromString']
+            ['\Google\LongRunning\Operation', 'mergeFromString']
         );
         $opStub = MockStub::createWithResponseSequence(
             $responseSequence,
-            ['\Google\Longrunning\Operation', 'mergeFromString']
+            ['\Google\LongRunning\Operation', 'mergeFromString']
         );
         $opClient = OperationResponseTest::createOperationsClient($opStub);
         $descriptor = [
@@ -1015,7 +1015,7 @@ class ApiCallableTest extends TestCase
      * @expectedException \Google\ApiCore\ValidationException
      * @expectedExceptionMessage Cannot call reload() on a deleted operation
      */
-    public function testLongrunningDelete()
+    public function testLongRunningDelete()
     {
         $opName = 'operation/someop';
 
@@ -1024,11 +1024,11 @@ class ApiCallableTest extends TestCase
         $initialResponse = self::createIncompleteOperationResponse($opName, 'm1');
         $callStub = MockStub::createWithResponseSequence(
             [[$initialResponse, new MockStatus(Code::OK, '')]],
-            ['\Google\Longrunning\Operation', 'mergeFromString']
+            ['\Google\LongRunning\Operation', 'mergeFromString']
         );
         $opStub = MockStub::createWithResponseSequence(
             [[new GPBEmpty(), new MockStatus(Code::OK, '')]],
-            ['\Google\Longrunning\Operation', 'mergeFromString']
+            ['\Google\LongRunning\Operation', 'mergeFromString']
         );
         $opClient = OperationResponseTest::createOperationsClient($opStub);
         $descriptor = [

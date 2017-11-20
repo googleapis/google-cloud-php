@@ -33,7 +33,7 @@ class AuditData extends \Google\Protobuf\Internal\Message
      * Policy delta between the original policy and the newly set policy.
      *
      * Generated from protobuf field <code>.google.iam.v1.PolicyDelta policy_delta = 2;</code>
-     * @return \Google\Iam\V1\PolicyDelta
+     * @return \Google\Cloud\Iam\V1\PolicyDelta
      */
     public function getPolicyDelta()
     {
@@ -44,12 +44,12 @@ class AuditData extends \Google\Protobuf\Internal\Message
      * Policy delta between the original policy and the newly set policy.
      *
      * Generated from protobuf field <code>.google.iam.v1.PolicyDelta policy_delta = 2;</code>
-     * @param \Google\Iam\V1\PolicyDelta $var
+     * @param \Google\Cloud\Iam\V1\PolicyDelta $var
      * @return $this
      */
     public function setPolicyDelta($var)
     {
-        GPBUtil::checkMessage($var, \Google\Iam\V1\PolicyDelta::class);
+        GPBUtil::checkMessage($var, \Google\Cloud\Iam\V1\PolicyDelta::class);
         $this->policy_delta = $var;
 
         return $this;
