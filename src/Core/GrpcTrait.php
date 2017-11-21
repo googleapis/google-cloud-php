@@ -88,7 +88,7 @@ trait GrpcTrait
     }
 
     /**
-     * Gets the default configuration for generated GAX clients.
+     * Gets the default configuration for generated ApiCore clients.
      *
      * @return array
      */

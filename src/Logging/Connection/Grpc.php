@@ -24,7 +24,7 @@ use Google\Cloud\Logging\LoggingClient;
 use Google\Cloud\Logging\V2\ConfigServiceV2Client;
 use Google\Cloud\Logging\V2\LoggingServiceV2Client;
 use Google\Cloud\Logging\V2\MetricsServiceV2Client;
-use Google\GAX\Serializer;
+use Google\ApiCore\Serializer;
 use Google\Logging\V2\LogEntry;
 use Google\Logging\V2\LogMetric;
 use Google\Logging\V2\LogSink;

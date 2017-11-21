@@ -26,7 +26,7 @@ use Google\Firestore\V1beta1\StructuredQuery;
 use Google\Firestore\V1beta1\TransactionOptions;
 use Google\Firestore\V1beta1\TransactionOptions_ReadWrite;
 use Google\Firestore\V1beta1\Write;
-use Google\GAX\Serializer;
+use Google\ApiCore\Serializer;
 
 /**
  * A gRPC connection to Cloud Firestore via GAPIC.
