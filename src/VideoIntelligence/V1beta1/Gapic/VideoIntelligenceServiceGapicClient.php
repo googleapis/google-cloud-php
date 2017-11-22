@@ -152,7 +152,7 @@ class VideoIntelligenceServiceGapicClient
     /**
      * Return an OperationsClient object with the same endpoint as $this.
      *
-     * @return \Google\LongRunning\OperationsClient
+     * @return \Google\ApiCore\LongRunning\OperationsClient
      * @experimental
      */
     public function getOperationsClient()
