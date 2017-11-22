@@ -122,9 +122,5 @@
                 "ServiceBuilder.php"
             ]
         }
-    },
-    "repositories": [{
-        "type": "vcs",
-        "url": "/usr/local/google/home/michaelbausor/dev/veneer/proto-client-php"
-    }]
+    }
 }
