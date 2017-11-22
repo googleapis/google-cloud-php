@@ -23,7 +23,7 @@ use Google\Cloud\Firestore\FieldValue;
 use Google\Cloud\Firestore\FirestoreClient;
 use Google\Cloud\Dev\Snippet\SnippetTestCase;
 use Google\Cloud\Firestore\Connection\ConnectionInterface;
-use Google\Firestore\V1beta1\DocumentTransform_FieldTransform_ServerValue;
+use Google\Cloud\Firestore\V1beta1\DocumentTransform_FieldTransform_ServerValue;
 
 /**
  * @group firestore

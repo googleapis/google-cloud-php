@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2017, Google Inc. All rights reserved.
+ * Copyright 2017, Google LLC All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -30,19 +30,19 @@
 
 namespace Google\Cloud\VideoIntelligence\V1beta1\Gapic;
 
-use Google\Cloud\Version;
-use Google\Cloud\Videointelligence\V1beta1\AnnotateVideoProgress;
-use Google\Cloud\Videointelligence\V1beta1\AnnotateVideoRequest;
-use Google\Cloud\Videointelligence\V1beta1\AnnotateVideoResponse;
-use Google\Cloud\Videointelligence\V1beta1\Feature;
-use Google\Cloud\Videointelligence\V1beta1\VideoContext;
-use Google\Cloud\Videointelligence\V1beta1\VideoIntelligenceServiceGrpcClient;
 use Google\ApiCore\AgentHeaderDescriptor;
 use Google\ApiCore\ApiCallable;
 use Google\ApiCore\CallSettings;
 use Google\ApiCore\GrpcCredentialsHelper;
 use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\Version;
+use Google\Cloud\VideoIntelligence\V1beta1\AnnotateVideoProgress;
+use Google\Cloud\VideoIntelligence\V1beta1\AnnotateVideoRequest;
+use Google\Cloud\VideoIntelligence\V1beta1\AnnotateVideoResponse;
+use Google\Cloud\VideoIntelligence\V1beta1\Feature;
+use Google\Cloud\VideoIntelligence\V1beta1\VideoContext;
+use Google\Cloud\VideoIntelligence\V1beta1\VideoIntelligenceServiceGrpcClient;
 
 /**
  * Service Description: Service that implements Google Cloud Video Intelligence API.
@@ -129,8 +129,8 @@ class VideoIntelligenceServiceGapicClient
     {
         return [
             'annotateVideo' => [
-                'operationReturnType' => '\Google\Cloud\Videointelligence\V1beta1\AnnotateVideoResponse',
-                'metadataReturnType' => '\Google\Cloud\Videointelligence\V1beta1\AnnotateVideoProgress',
+                'operationReturnType' => '\Google\Cloud\VideoIntelligence\V1beta1\AnnotateVideoResponse',
+                'metadataReturnType' => '\Google\Cloud\VideoIntelligence\V1beta1\AnnotateVideoProgress',
             ],
         ];
     }
@@ -152,7 +152,7 @@ class VideoIntelligenceServiceGapicClient
     /**
      * Return an OperationsClient object with the same endpoint as $this.
      *
-     * @return \Google\ApiCore\LongRunning\OperationsClient
+     * @return \Google\LongRunning\OperationsClient
      * @experimental
      */
     public function getOperationsClient()
@@ -350,7 +350,7 @@ class VideoIntelligenceServiceGapicClient
      *                             '?' to match 1 character. If unset, the input video should be embedded
      *                             in the request as `input_content`. If set, `input_content` should be unset.
      * @param int[]  $features     Requested video annotation features.
-     *                             For allowed values, use constants defined on {@see \Google\Cloud\Videointelligence\V1beta1\Feature}
+     *                             For allowed values, use constants defined on {@see \Google\Cloud\VideoIntelligence\V1beta1\Feature}
      * @param array  $optionalArgs {
      *                             Optional.
      *

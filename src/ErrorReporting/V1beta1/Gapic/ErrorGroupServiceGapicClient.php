@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2017, Google Inc. All rights reserved.
+ * Copyright 2017, Google LLC All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -30,17 +30,17 @@
 
 namespace Google\Cloud\ErrorReporting\V1beta1\Gapic;
 
-use Google\Cloud\Version;
-use Google\Devtools\Clouderrorreporting\V1beta1\ErrorGroup;
-use Google\Devtools\Clouderrorreporting\V1beta1\ErrorGroupServiceGrpcClient;
-use Google\Devtools\Clouderrorreporting\V1beta1\GetGroupRequest;
-use Google\Devtools\Clouderrorreporting\V1beta1\UpdateGroupRequest;
 use Google\ApiCore\AgentHeaderDescriptor;
 use Google\ApiCore\ApiCallable;
 use Google\ApiCore\CallSettings;
 use Google\ApiCore\GrpcCredentialsHelper;
 use Google\ApiCore\PathTemplate;
 use Google\ApiCore\ValidationException;
+use Google\Cloud\ErrorReporting\V1beta1\ErrorGroup;
+use Google\Cloud\ErrorReporting\V1beta1\ErrorGroupServiceGrpcClient;
+use Google\Cloud\ErrorReporting\V1beta1\GetGroupRequest;
+use Google\Cloud\ErrorReporting\V1beta1\UpdateGroupRequest;
+use Google\Cloud\Version;
 
 /**
  * Service Description: Service for retrieving and updating individual error groups.
@@ -323,7 +323,7 @@ class ErrorGroupServiceGapicClient
      *          {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
-     * @return \Google\Devtools\Clouderrorreporting\V1beta1\ErrorGroup
+     * @return \Google\Cloud\ErrorReporting\V1beta1\ErrorGroup
      *
      * @throws \Google\ApiCore\ApiException if the remote call fails
      * @experimental
@@ -379,7 +379,7 @@ class ErrorGroupServiceGapicClient
      *          {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
-     * @return \Google\Devtools\Clouderrorreporting\V1beta1\ErrorGroup
+     * @return \Google\Cloud\ErrorReporting\V1beta1\ErrorGroup
      *
      * @throws \Google\ApiCore\ApiException if the remote call fails
      * @experimental

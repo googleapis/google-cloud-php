@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2017, Google Inc. All rights reserved.
+ * Copyright 2017, Google LLC All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -30,6 +30,10 @@
 
 namespace Google\Cloud\Language\V1beta2\Gapic;
 
+use Google\ApiCore\AgentHeaderDescriptor;
+use Google\ApiCore\ApiCallable;
+use Google\ApiCore\CallSettings;
+use Google\ApiCore\GrpcCredentialsHelper;
 use Google\Cloud\Language\V1beta2\AnalyzeEntitiesRequest;
 use Google\Cloud\Language\V1beta2\AnalyzeEntitySentimentRequest;
 use Google\Cloud\Language\V1beta2\AnalyzeSentimentRequest;
@@ -41,10 +45,6 @@ use Google\Cloud\Language\V1beta2\Document;
 use Google\Cloud\Language\V1beta2\EncodingType;
 use Google\Cloud\Language\V1beta2\LanguageServiceGrpcClient;
 use Google\Cloud\Version;
-use Google\ApiCore\AgentHeaderDescriptor;
-use Google\ApiCore\ApiCallable;
-use Google\ApiCore\CallSettings;
-use Google\ApiCore\GrpcCredentialsHelper;
 
 /**
  * Service Description: Provides text analysis operations such as sentiment analysis and entity

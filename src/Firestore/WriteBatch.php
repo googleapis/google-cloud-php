@@ -22,7 +22,7 @@ use Google\Cloud\Core\ArrayTrait;
 use Google\Cloud\Core\ValidateTrait;
 use Google\Cloud\Core\DebugInfoTrait;
 use Google\Cloud\Firestore\Connection\ConnectionInterface;
-use Google\Firestore\V1beta1\DocumentTransform_FieldTransform_ServerValue;
+use Google\Cloud\Firestore\V1beta1\DocumentTransform_FieldTransform_ServerValue;
 
 /**
  * Enqueue and write multiple mutations to Cloud Firestore.

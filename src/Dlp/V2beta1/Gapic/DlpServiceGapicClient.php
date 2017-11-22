@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2017, Google Inc. All rights reserved.
+ * Copyright 2017, Google LLC All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -30,7 +30,6 @@
 
 namespace Google\Cloud\Dlp\V2beta1\Gapic;
 
-use Google\Cloud\Version;
 use Google\ApiCore\AgentHeaderDescriptor;
 use Google\ApiCore\ApiCallable;
 use Google\ApiCore\CallSettings;
@@ -39,25 +38,26 @@ use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\OperationResponse;
 use Google\ApiCore\PathTemplate;
 use Google\ApiCore\ValidationException;
-use Google\Privacy\Dlp\V2beta1\AnalyzeDataSourceRiskRequest;
-use Google\Privacy\Dlp\V2beta1\BigQueryTable;
-use Google\Privacy\Dlp\V2beta1\ContentItem;
-use Google\Privacy\Dlp\V2beta1\CreateInspectOperationRequest;
-use Google\Privacy\Dlp\V2beta1\DeidentifyConfig;
-use Google\Privacy\Dlp\V2beta1\DeidentifyContentRequest;
-use Google\Privacy\Dlp\V2beta1\DlpServiceGrpcClient;
-use Google\Privacy\Dlp\V2beta1\InspectConfig;
-use Google\Privacy\Dlp\V2beta1\InspectContentRequest;
-use Google\Privacy\Dlp\V2beta1\ListInfoTypesRequest;
-use Google\Privacy\Dlp\V2beta1\ListInspectFindingsRequest;
-use Google\Privacy\Dlp\V2beta1\ListRootCategoriesRequest;
-use Google\Privacy\Dlp\V2beta1\OperationConfig;
-use Google\Privacy\Dlp\V2beta1\OutputStorageConfig;
-use Google\Privacy\Dlp\V2beta1\PrivacyMetric;
-use Google\Privacy\Dlp\V2beta1\RedactContentRequest;
-use Google\Privacy\Dlp\V2beta1\RedactContentRequest_ImageRedactionConfig as ImageRedactionConfig;
-use Google\Privacy\Dlp\V2beta1\RedactContentRequest_ReplaceConfig as ReplaceConfig;
-use Google\Privacy\Dlp\V2beta1\StorageConfig;
+use Google\Cloud\Dlp\V2beta1\AnalyzeDataSourceRiskRequest;
+use Google\Cloud\Dlp\V2beta1\BigQueryTable;
+use Google\Cloud\Dlp\V2beta1\ContentItem;
+use Google\Cloud\Dlp\V2beta1\CreateInspectOperationRequest;
+use Google\Cloud\Dlp\V2beta1\DeidentifyConfig;
+use Google\Cloud\Dlp\V2beta1\DeidentifyContentRequest;
+use Google\Cloud\Dlp\V2beta1\DlpServiceGrpcClient;
+use Google\Cloud\Dlp\V2beta1\InspectConfig;
+use Google\Cloud\Dlp\V2beta1\InspectContentRequest;
+use Google\Cloud\Dlp\V2beta1\ListInfoTypesRequest;
+use Google\Cloud\Dlp\V2beta1\ListInspectFindingsRequest;
+use Google\Cloud\Dlp\V2beta1\ListRootCategoriesRequest;
+use Google\Cloud\Dlp\V2beta1\OperationConfig;
+use Google\Cloud\Dlp\V2beta1\OutputStorageConfig;
+use Google\Cloud\Dlp\V2beta1\PrivacyMetric;
+use Google\Cloud\Dlp\V2beta1\RedactContentRequest;
+use Google\Cloud\Dlp\V2beta1\RedactContentRequest_ImageRedactionConfig as ImageRedactionConfig;
+use Google\Cloud\Dlp\V2beta1\RedactContentRequest_ReplaceConfig as ReplaceConfig;
+use Google\Cloud\Dlp\V2beta1\StorageConfig;
+use Google\Cloud\Version;
 
 /**
  * Service Description: The DLP API is a service that allows clients
@@ -160,12 +160,12 @@ class DlpServiceGapicClient
     {
         return [
             'analyzeDataSourceRisk' => [
-                'operationReturnType' => '\Google\Privacy\Dlp\V2beta1\RiskAnalysisOperationResult',
-                'metadataReturnType' => '\Google\Privacy\Dlp\V2beta1\RiskAnalysisOperationMetadata',
+                'operationReturnType' => '\Google\Cloud\Dlp\V2beta1\RiskAnalysisOperationResult',
+                'metadataReturnType' => '\Google\Cloud\Dlp\V2beta1\RiskAnalysisOperationMetadata',
             ],
             'createInspectOperation' => [
-                'operationReturnType' => '\Google\Privacy\Dlp\V2beta1\InspectOperationResult',
-                'metadataReturnType' => '\Google\Privacy\Dlp\V2beta1\InspectOperationMetadata',
+                'operationReturnType' => '\Google\Cloud\Dlp\V2beta1\InspectOperationResult',
+                'metadataReturnType' => '\Google\Cloud\Dlp\V2beta1\InspectOperationMetadata',
             ],
         ];
     }
@@ -244,7 +244,7 @@ class DlpServiceGapicClient
     /**
      * Return an OperationsClient object with the same endpoint as $this.
      *
-     * @return \Google\ApiCore\LongRunning\OperationsClient
+     * @return \Google\LongRunning\OperationsClient
      * @experimental
      */
     public function getOperationsClient()
@@ -434,7 +434,7 @@ class DlpServiceGapicClient
      *          {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
-     * @return \Google\Privacy\Dlp\V2beta1\InspectContentResponse
+     * @return \Google\Cloud\Dlp\V2beta1\InspectContentResponse
      *
      * @throws \Google\ApiCore\ApiException if the remote call fails
      * @experimental
@@ -485,27 +485,20 @@ class DlpServiceGapicClient
      *     $itemsElement->setType($type);
      *     $itemsElement->setValue($value);
      *     $items = [$itemsElement];
-     *     $name2 = 'EMAIL_ADDRESS';
-     *     $infoType = new InfoType();
-     *     $infoType->setName($name2);
-     *     $replaceWith = 'REDACTED';
-     *     $replaceConfigsElement = new ReplaceConfig();
-     *     $replaceConfigsElement->setInfoType($infoType);
-     *     $replaceConfigsElement->setReplaceWith($replaceWith);
-     *     $replaceConfigs = [$replaceConfigsElement];
-     *     $response = $dlpServiceClient->redactContent($inspectConfig, $items, $replaceConfigs);
+     *     $response = $dlpServiceClient->redactContent($inspectConfig, $items);
      * } finally {
      *     $dlpServiceClient->close();
      * }
      * ```
      *
-     * @param InspectConfig   $inspectConfig  Configuration for the inspector.
-     * @param ContentItem[]   $items          The list of items to inspect. Up to 100 are allowed per request.
-     * @param ReplaceConfig[] $replaceConfigs The strings to replace findings text findings with. Must specify at least
-     *                                        one of these or one ImageRedactionConfig if redacting images.
-     * @param array           $optionalArgs   {
-     *                                        Optional.
+     * @param InspectConfig $inspectConfig Configuration for the inspector.
+     * @param ContentItem[] $items         The list of items to inspect. Up to 100 are allowed per request.
+     * @param array         $optionalArgs  {
+     *                                     Optional.
      *
+     *     @type ReplaceConfig[] $replaceConfigs
+     *          The strings to replace findings text findings with. Must specify at least
+     *          one of these or one ImageRedactionConfig if redacting images.
      *     @type ImageRedactionConfig[] $imageRedactionConfigs
      *          The configuration for specifying what content to redact from images.
      *     @type \Google\ApiCore\RetrySettings|array $retrySettings
@@ -515,17 +508,19 @@ class DlpServiceGapicClient
      *          {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
-     * @return \Google\Privacy\Dlp\V2beta1\RedactContentResponse
+     * @return \Google\Cloud\Dlp\V2beta1\RedactContentResponse
      *
      * @throws \Google\ApiCore\ApiException if the remote call fails
      * @experimental
      */
-    public function redactContent($inspectConfig, $items, $replaceConfigs, $optionalArgs = [])
+    public function redactContent($inspectConfig, $items, $optionalArgs = [])
     {
         $request = new RedactContentRequest();
         $request->setInspectConfig($inspectConfig);
         $request->setItems($items);
-        $request->setReplaceConfigs($replaceConfigs);
+        if (isset($optionalArgs['replaceConfigs'])) {
+            $request->setReplaceConfigs($optionalArgs['replaceConfigs']);
+        }
         if (isset($optionalArgs['imageRedactionConfigs'])) {
             $request->setImageRedactionConfigs($optionalArgs['imageRedactionConfigs']);
         }
@@ -581,7 +576,7 @@ class DlpServiceGapicClient
      *          {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
-     * @return \Google\Privacy\Dlp\V2beta1\DeidentifyContentResponse
+     * @return \Google\Cloud\Dlp\V2beta1\DeidentifyContentResponse
      *
      * @throws \Google\ApiCore\ApiException if the remote call fails
      * @experimental
@@ -844,7 +839,7 @@ class DlpServiceGapicClient
      *          {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
-     * @return \Google\Privacy\Dlp\V2beta1\ListInspectFindingsResponse
+     * @return \Google\Cloud\Dlp\V2beta1\ListInspectFindingsResponse
      *
      * @throws \Google\ApiCore\ApiException if the remote call fails
      * @experimental
@@ -912,7 +907,7 @@ class DlpServiceGapicClient
      *          {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
-     * @return \Google\Privacy\Dlp\V2beta1\ListInfoTypesResponse
+     * @return \Google\Cloud\Dlp\V2beta1\ListInfoTypesResponse
      *
      * @throws \Google\ApiCore\ApiException if the remote call fails
      * @experimental
@@ -970,7 +965,7 @@ class DlpServiceGapicClient
      *          {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
-     * @return \Google\Privacy\Dlp\V2beta1\ListRootCategoriesResponse
+     * @return \Google\Cloud\Dlp\V2beta1\ListRootCategoriesResponse
      *
      * @throws \Google\ApiCore\ApiException if the remote call fails
      * @experimental

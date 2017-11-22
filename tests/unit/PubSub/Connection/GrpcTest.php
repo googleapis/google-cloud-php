@@ -27,9 +27,9 @@ use Google\Protobuf\Timestamp;
 use Prophecy\Argument;
 use Google\Cloud\Iam\V1\Binding;
 use Google\Cloud\Iam\V1\Policy;
-use Google\Pubsub\V1\PubsubMessage;
-use Google\Pubsub\V1\PushConfig;
-use Google\Pubsub\V1\Subscription;
+use Google\Cloud\PubSub\V1\PubsubMessage;
+use Google\Cloud\PubSub\V1\PushConfig;
+use Google\Cloud\PubSub\V1\Subscription;
 use PHPUnit\Framework\TestCase;
 
 /**

@@ -21,9 +21,9 @@ use Google\Cloud\Logging\Connection\Grpc;
 use Google\Cloud\Tests\GrpcTestTrait;
 use Google\Cloud\Core\GrpcRequestWrapper;
 use Google\ApiCore\Serializer;
-use Google\Logging\V2\LogEntry;
-use Google\Logging\V2\LogMetric;
-use Google\Logging\V2\LogSink;
+use Google\Cloud\Logging\V2\LogEntry;
+use Google\Cloud\Logging\V2\LogMetric;
+use Google\Cloud\Logging\V2\LogSink;
 use Prophecy\Argument;
 use PHPUnit\Framework\TestCase;
 

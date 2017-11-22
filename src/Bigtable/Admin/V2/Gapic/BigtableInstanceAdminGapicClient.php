@@ -30,21 +30,6 @@
 
 namespace Google\Cloud\Bigtable\Admin\V2\Gapic;
 
-use Google\Bigtable\Admin\V2\BigtableInstanceAdminGrpcClient;
-use Google\Bigtable\Admin\V2\Cluster;
-use Google\Bigtable\Admin\V2\CreateClusterRequest;
-use Google\Bigtable\Admin\V2\CreateInstanceRequest;
-use Google\Bigtable\Admin\V2\DeleteClusterRequest;
-use Google\Bigtable\Admin\V2\DeleteInstanceRequest;
-use Google\Bigtable\Admin\V2\GetClusterRequest;
-use Google\Bigtable\Admin\V2\GetInstanceRequest;
-use Google\Bigtable\Admin\V2\Instance;
-use Google\Bigtable\Admin\V2\Instance_State as State;
-use Google\Bigtable\Admin\V2\Instance_Type as Type;
-use Google\Bigtable\Admin\V2\ListClustersRequest;
-use Google\Bigtable\Admin\V2\ListInstancesRequest;
-use Google\Bigtable\Admin\V2\StorageType;
-use Google\Cloud\Version;
 use Google\ApiCore\AgentHeaderDescriptor;
 use Google\ApiCore\ApiCallable;
 use Google\ApiCore\CallSettings;
@@ -53,6 +38,21 @@ use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\OperationResponse;
 use Google\ApiCore\PathTemplate;
 use Google\ApiCore\ValidationException;
+use Google\Cloud\Bigtable\Admin\V2\BigtableInstanceAdminGrpcClient;
+use Google\Cloud\Bigtable\Admin\V2\Cluster;
+use Google\Cloud\Bigtable\Admin\V2\CreateClusterRequest;
+use Google\Cloud\Bigtable\Admin\V2\CreateInstanceRequest;
+use Google\Cloud\Bigtable\Admin\V2\DeleteClusterRequest;
+use Google\Cloud\Bigtable\Admin\V2\DeleteInstanceRequest;
+use Google\Cloud\Bigtable\Admin\V2\GetClusterRequest;
+use Google\Cloud\Bigtable\Admin\V2\GetInstanceRequest;
+use Google\Cloud\Bigtable\Admin\V2\Instance;
+use Google\Cloud\Bigtable\Admin\V2\Instance_State as State;
+use Google\Cloud\Bigtable\Admin\V2\Instance_Type as Type;
+use Google\Cloud\Bigtable\Admin\V2\ListClustersRequest;
+use Google\Cloud\Bigtable\Admin\V2\ListInstancesRequest;
+use Google\Cloud\Bigtable\Admin\V2\StorageType;
+use Google\Cloud\Version;
 
 /**
  * Service Description: Service for creating, configuring, and deleting Cloud Bigtable Instances and
@@ -202,16 +202,16 @@ class BigtableInstanceAdminGapicClient
     {
         return [
             'createInstance' => [
-                'operationReturnType' => '\Google\Bigtable\Admin\V2\Instance',
-                'metadataReturnType' => '\Google\Bigtable\Admin\V2\CreateInstanceMetadata',
+                'operationReturnType' => '\Google\Cloud\Bigtable\Admin\V2\Instance',
+                'metadataReturnType' => '\Google\Cloud\Bigtable\Admin\V2\CreateInstanceMetadata',
             ],
             'createCluster' => [
-                'operationReturnType' => '\Google\Bigtable\Admin\V2\Cluster',
-                'metadataReturnType' => '\Google\Bigtable\Admin\V2\CreateClusterMetadata',
+                'operationReturnType' => '\Google\Cloud\Bigtable\Admin\V2\Cluster',
+                'metadataReturnType' => '\Google\Cloud\Bigtable\Admin\V2\CreateClusterMetadata',
             ],
             'updateCluster' => [
-                'operationReturnType' => '\Google\Bigtable\Admin\V2\Cluster',
-                'metadataReturnType' => '\Google\Bigtable\Admin\V2\UpdateClusterMetadata',
+                'operationReturnType' => '\Google\Cloud\Bigtable\Admin\V2\Cluster',
+                'metadataReturnType' => '\Google\Cloud\Bigtable\Admin\V2\UpdateClusterMetadata',
             ],
         ];
     }
@@ -349,7 +349,7 @@ class BigtableInstanceAdminGapicClient
     /**
      * Return an OperationsClient object with the same endpoint as $this.
      *
-     * @return \Google\ApiCore\LongRunning\OperationsClient
+     * @return \Google\LongRunning\OperationsClient
      * @experimental
      */
     public function getOperationsClient()
@@ -632,7 +632,7 @@ class BigtableInstanceAdminGapicClient
      *          {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
-     * @return \Google\Bigtable\Admin\V2\Instance
+     * @return \Google\Cloud\Bigtable\Admin\V2\Instance
      *
      * @throws \Google\ApiCore\ApiException if the remote call fails
      * @experimental
@@ -690,7 +690,7 @@ class BigtableInstanceAdminGapicClient
      *          {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
-     * @return \Google\Bigtable\Admin\V2\ListInstancesResponse
+     * @return \Google\Cloud\Bigtable\Admin\V2\ListInstancesResponse
      *
      * @throws \Google\ApiCore\ApiException if the remote call fails
      * @experimental
@@ -746,14 +746,14 @@ class BigtableInstanceAdminGapicClient
      *                             Can be changed at any time, but should be kept globally unique
      *                             to avoid confusion.
      * @param int    $type         The type of the instance. Defaults to `PRODUCTION`.
-     *                             For allowed values, use constants defined on {@see \Google\Bigtable\Admin\V2\Instance_Type}
+     *                             For allowed values, use constants defined on {@see \Google\Cloud\Bigtable\Admin\V2\Instance_Type}
      * @param array  $optionalArgs {
      *                             Optional.
      *
      *     @type int $state
      *          (`OutputOnly`)
      *          The current state of the instance.
-     *          For allowed values, use constants defined on {@see \Google\Bigtable\Admin\V2\Instance_State}
+     *          For allowed values, use constants defined on {@see \Google\Cloud\Bigtable\Admin\V2\Instance_State}
      *     @type \Google\ApiCore\RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
@@ -761,7 +761,7 @@ class BigtableInstanceAdminGapicClient
      *          {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
-     * @return \Google\Bigtable\Admin\V2\Instance
+     * @return \Google\Cloud\Bigtable\Admin\V2\Instance
      *
      * @throws \Google\ApiCore\ApiException if the remote call fails
      * @experimental
@@ -967,7 +967,7 @@ class BigtableInstanceAdminGapicClient
      *          {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
-     * @return \Google\Bigtable\Admin\V2\Cluster
+     * @return \Google\Cloud\Bigtable\Admin\V2\Cluster
      *
      * @throws \Google\ApiCore\ApiException if the remote call fails
      * @experimental
@@ -1027,7 +1027,7 @@ class BigtableInstanceAdminGapicClient
      *          {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
-     * @return \Google\Bigtable\Admin\V2\ListClustersResponse
+     * @return \Google\Cloud\Bigtable\Admin\V2\ListClustersResponse
      *
      * @throws \Google\ApiCore\ApiException if the remote call fails
      * @experimental
@@ -1115,14 +1115,14 @@ class BigtableInstanceAdminGapicClient
      * @param int    $defaultStorageType (`CreationOnly`)
      *                                   The type of storage used by this cluster to serve its
      *                                   parent instance's tables, unless explicitly overridden.
-     *                                   For allowed values, use constants defined on {@see \Google\Bigtable\Admin\V2\StorageType}
+     *                                   For allowed values, use constants defined on {@see \Google\Cloud\Bigtable\Admin\V2\StorageType}
      * @param array  $optionalArgs       {
      *                                   Optional.
      *
      *     @type int $state
      *          (`OutputOnly`)
      *          The current state of the cluster.
-     *          For allowed values, use constants defined on {@see \Google\Bigtable\Admin\V2\Cluster_State}
+     *          For allowed values, use constants defined on {@see \Google\Cloud\Bigtable\Admin\V2\Cluster_State}
      *     @type \Google\ApiCore\RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array

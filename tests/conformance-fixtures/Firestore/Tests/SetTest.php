@@ -159,7 +159,7 @@ class SetTest extends \Google\Protobuf\Internal\Message
      */
     public function setRequest(&$var)
     {
-        GPBUtil::checkMessage($var, \Google\Firestore\V1beta1\CommitRequest::class);
+        GPBUtil::checkMessage($var, \Google\Cloud\Firestore\V1beta1\CommitRequest::class);
         $this->request = $var;
     }
 

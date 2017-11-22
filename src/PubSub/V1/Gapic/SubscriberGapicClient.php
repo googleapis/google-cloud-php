@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2017, Google Inc. All rights reserved.
+ * Copyright 2017, Google LLC All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -30,7 +30,6 @@
 
 namespace Google\Cloud\PubSub\V1\Gapic;
 
-use Google\Cloud\Version;
 use Google\ApiCore\AgentHeaderDescriptor;
 use Google\ApiCore\ApiCallable;
 use Google\ApiCore\CallSettings;
@@ -43,27 +42,28 @@ use Google\Cloud\Iam\V1\IAMPolicyGrpcClient;
 use Google\Cloud\Iam\V1\Policy;
 use Google\Cloud\Iam\V1\SetIamPolicyRequest;
 use Google\Cloud\Iam\V1\TestIamPermissionsRequest;
+use Google\Cloud\PubSub\V1\AcknowledgeRequest;
+use Google\Cloud\PubSub\V1\CreateSnapshotRequest;
+use Google\Cloud\PubSub\V1\DeleteSnapshotRequest;
+use Google\Cloud\PubSub\V1\DeleteSubscriptionRequest;
+use Google\Cloud\PubSub\V1\GetSubscriptionRequest;
+use Google\Cloud\PubSub\V1\ListSnapshotsRequest;
+use Google\Cloud\PubSub\V1\ListSubscriptionsRequest;
+use Google\Cloud\PubSub\V1\ModifyAckDeadlineRequest;
+use Google\Cloud\PubSub\V1\ModifyPushConfigRequest;
+use Google\Cloud\PubSub\V1\PullRequest;
+use Google\Cloud\PubSub\V1\PushConfig;
+use Google\Cloud\PubSub\V1\SeekRequest;
+use Google\Cloud\PubSub\V1\Snapshot;
+use Google\Cloud\PubSub\V1\StreamingPullRequest;
+use Google\Cloud\PubSub\V1\SubscriberGrpcClient;
+use Google\Cloud\PubSub\V1\Subscription;
+use Google\Cloud\PubSub\V1\UpdateSnapshotRequest;
+use Google\Cloud\PubSub\V1\UpdateSubscriptionRequest;
+use Google\Cloud\Version;
 use Google\Protobuf\Duration;
 use Google\Protobuf\FieldMask;
 use Google\Protobuf\Timestamp;
-use Google\Pubsub\V1\AcknowledgeRequest;
-use Google\Pubsub\V1\CreateSnapshotRequest;
-use Google\Pubsub\V1\DeleteSnapshotRequest;
-use Google\Pubsub\V1\DeleteSubscriptionRequest;
-use Google\Pubsub\V1\GetSubscriptionRequest;
-use Google\Pubsub\V1\ListSnapshotsRequest;
-use Google\Pubsub\V1\ListSubscriptionsRequest;
-use Google\Pubsub\V1\ModifyAckDeadlineRequest;
-use Google\Pubsub\V1\ModifyPushConfigRequest;
-use Google\Pubsub\V1\PullRequest;
-use Google\Pubsub\V1\PushConfig;
-use Google\Pubsub\V1\SeekRequest;
-use Google\Pubsub\V1\Snapshot;
-use Google\Pubsub\V1\StreamingPullRequest;
-use Google\Pubsub\V1\SubscriberGrpcClient;
-use Google\Pubsub\V1\Subscription;
-use Google\Pubsub\V1\UpdateSnapshotRequest;
-use Google\Pubsub\V1\UpdateSubscriptionRequest;
 
 /**
  * Service Description: The service that an application uses to manipulate subscriptions and to
@@ -558,7 +558,7 @@ class SubscriberGapicClient
      *          {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
-     * @return \Google\Pubsub\V1\Subscription
+     * @return \Google\Cloud\PubSub\V1\Subscription
      *
      * @throws \Google\ApiCore\ApiException if the remote call fails
      * @experimental
@@ -630,7 +630,7 @@ class SubscriberGapicClient
      *          {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
-     * @return \Google\Pubsub\V1\Subscription
+     * @return \Google\Cloud\PubSub\V1\Subscription
      *
      * @throws \Google\ApiCore\ApiException if the remote call fails
      * @experimental
@@ -693,7 +693,7 @@ class SubscriberGapicClient
      *          {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
-     * @return \Google\Pubsub\V1\Subscription
+     * @return \Google\Cloud\PubSub\V1\Subscription
      *
      * @throws \Google\ApiCore\ApiException if the remote call fails
      * @experimental
@@ -1038,7 +1038,7 @@ class SubscriberGapicClient
      *          {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
-     * @return \Google\Pubsub\V1\PullResponse
+     * @return \Google\Cloud\PubSub\V1\PullResponse
      *
      * @throws \Google\ApiCore\ApiException if the remote call fails
      * @experimental
@@ -1365,7 +1365,7 @@ class SubscriberGapicClient
      *          {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
-     * @return \Google\Pubsub\V1\Snapshot
+     * @return \Google\Cloud\PubSub\V1\Snapshot
      *
      * @throws \Google\ApiCore\ApiException if the remote call fails
      * @experimental
@@ -1429,7 +1429,7 @@ class SubscriberGapicClient
      *          {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
-     * @return \Google\Pubsub\V1\Snapshot
+     * @return \Google\Cloud\PubSub\V1\Snapshot
      *
      * @throws \Google\ApiCore\ApiException if the remote call fails
      * @experimental
@@ -1559,7 +1559,7 @@ class SubscriberGapicClient
      *          {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
-     * @return \Google\Pubsub\V1\SeekResponse
+     * @return \Google\Cloud\PubSub\V1\SeekResponse
      *
      * @throws \Google\ApiCore\ApiException if the remote call fails
      * @experimental

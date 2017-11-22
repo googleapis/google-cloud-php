@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2017, Google Inc. All rights reserved.
+ * Copyright 2017, Google LLC All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -30,8 +30,6 @@
 
 namespace Google\Cloud\Logging\V2\Gapic;
 
-use Google\Api\MonitoredResource;
-use Google\Cloud\Version;
 use Google\ApiCore\AgentHeaderDescriptor;
 use Google\ApiCore\ApiCallable;
 use Google\ApiCore\CallSettings;
@@ -39,13 +37,15 @@ use Google\ApiCore\GrpcCredentialsHelper;
 use Google\ApiCore\PageStreamingDescriptor;
 use Google\ApiCore\PathTemplate;
 use Google\ApiCore\ValidationException;
-use Google\Logging\V2\DeleteLogRequest;
-use Google\Logging\V2\ListLogEntriesRequest;
-use Google\Logging\V2\ListLogsRequest;
-use Google\Logging\V2\ListMonitoredResourceDescriptorsRequest;
-use Google\Logging\V2\LogEntry;
-use Google\Logging\V2\LoggingServiceV2GrpcClient;
-use Google\Logging\V2\WriteLogEntriesRequest;
+use Google\Api\MonitoredResource;
+use Google\Cloud\Logging\V2\DeleteLogRequest;
+use Google\Cloud\Logging\V2\ListLogEntriesRequest;
+use Google\Cloud\Logging\V2\ListLogsRequest;
+use Google\Cloud\Logging\V2\ListMonitoredResourceDescriptorsRequest;
+use Google\Cloud\Logging\V2\LogEntry;
+use Google\Cloud\Logging\V2\LoggingServiceV2GrpcClient;
+use Google\Cloud\Logging\V2\WriteLogEntriesRequest;
+use Google\Cloud\Version;
 
 /**
  * Service Description: Service for ingesting and querying logs.
@@ -526,7 +526,7 @@ class LoggingServiceV2GapicClient
      *          {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
-     * @return \Google\Logging\V2\WriteLogEntriesResponse
+     * @return \Google\Cloud\Logging\V2\WriteLogEntriesResponse
      *
      * @throws \Google\ApiCore\ApiException if the remote call fails
      * @experimental

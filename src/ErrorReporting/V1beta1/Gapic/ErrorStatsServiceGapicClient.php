@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2017, Google Inc. All rights reserved.
+ * Copyright 2017, Google LLC All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -30,13 +30,6 @@
 
 namespace Google\Cloud\ErrorReporting\V1beta1\Gapic;
 
-use Google\Cloud\Version;
-use Google\Devtools\Clouderrorreporting\V1beta1\DeleteEventsRequest;
-use Google\Devtools\Clouderrorreporting\V1beta1\ErrorStatsServiceGrpcClient;
-use Google\Devtools\Clouderrorreporting\V1beta1\ListEventsRequest;
-use Google\Devtools\Clouderrorreporting\V1beta1\ListGroupStatsRequest;
-use Google\Devtools\Clouderrorreporting\V1beta1\QueryTimeRange;
-use Google\Devtools\Clouderrorreporting\V1beta1\ServiceContextFilter;
 use Google\ApiCore\AgentHeaderDescriptor;
 use Google\ApiCore\ApiCallable;
 use Google\ApiCore\CallSettings;
@@ -44,6 +37,13 @@ use Google\ApiCore\GrpcCredentialsHelper;
 use Google\ApiCore\PageStreamingDescriptor;
 use Google\ApiCore\PathTemplate;
 use Google\ApiCore\ValidationException;
+use Google\Cloud\ErrorReporting\V1beta1\DeleteEventsRequest;
+use Google\Cloud\ErrorReporting\V1beta1\ErrorStatsServiceGrpcClient;
+use Google\Cloud\ErrorReporting\V1beta1\ListEventsRequest;
+use Google\Cloud\ErrorReporting\V1beta1\ListGroupStatsRequest;
+use Google\Cloud\ErrorReporting\V1beta1\QueryTimeRange;
+use Google\Cloud\ErrorReporting\V1beta1\ServiceContextFilter;
+use Google\Cloud\Version;
 use Google\Protobuf\Duration;
 use Google\Protobuf\Timestamp;
 
@@ -397,14 +397,14 @@ class ErrorStatsServiceGapicClient
      *     @type int $alignment
      *          [Optional] The alignment of the timed counts to be returned.
      *          Default is `ALIGNMENT_EQUAL_AT_END`.
-     *          For allowed values, use constants defined on {@see \Google\Devtools\Clouderrorreporting\V1beta1\TimedCountAlignment}
+     *          For allowed values, use constants defined on {@see \Google\Cloud\ErrorReporting\V1beta1\TimedCountAlignment}
      *     @type Timestamp $alignmentTime
      *          [Optional] Time where the timed counts shall be aligned if rounded
      *          alignment is chosen. Default is 00:00 UTC.
      *     @type int $order
      *          [Optional] The sort order in which the results are returned.
      *          Default is `COUNT_DESC`.
-     *          For allowed values, use constants defined on {@see \Google\Devtools\Clouderrorreporting\V1beta1\ErrorGroupOrder}
+     *          For allowed values, use constants defined on {@see \Google\Cloud\ErrorReporting\V1beta1\ErrorGroupOrder}
      *     @type int $pageSize
      *          The maximum number of resources contained in the underlying API
      *          response. The API may return fewer values in a page, even if
@@ -608,7 +608,7 @@ class ErrorStatsServiceGapicClient
      *          {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
-     * @return \Google\Devtools\Clouderrorreporting\V1beta1\DeleteEventsResponse
+     * @return \Google\Cloud\ErrorReporting\V1beta1\DeleteEventsResponse
      *
      * @throws \Google\ApiCore\ApiException if the remote call fails
      * @experimental

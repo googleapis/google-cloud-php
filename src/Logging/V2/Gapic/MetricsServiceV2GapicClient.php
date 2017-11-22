@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2017, Google Inc. All rights reserved.
+ * Copyright 2017, Google LLC All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -30,7 +30,6 @@
 
 namespace Google\Cloud\Logging\V2\Gapic;
 
-use Google\Cloud\Version;
 use Google\ApiCore\AgentHeaderDescriptor;
 use Google\ApiCore\ApiCallable;
 use Google\ApiCore\CallSettings;
@@ -38,13 +37,14 @@ use Google\ApiCore\GrpcCredentialsHelper;
 use Google\ApiCore\PageStreamingDescriptor;
 use Google\ApiCore\PathTemplate;
 use Google\ApiCore\ValidationException;
-use Google\Logging\V2\CreateLogMetricRequest;
-use Google\Logging\V2\DeleteLogMetricRequest;
-use Google\Logging\V2\GetLogMetricRequest;
-use Google\Logging\V2\ListLogMetricsRequest;
-use Google\Logging\V2\LogMetric;
-use Google\Logging\V2\MetricsServiceV2GrpcClient;
-use Google\Logging\V2\UpdateLogMetricRequest;
+use Google\Cloud\Logging\V2\CreateLogMetricRequest;
+use Google\Cloud\Logging\V2\DeleteLogMetricRequest;
+use Google\Cloud\Logging\V2\GetLogMetricRequest;
+use Google\Cloud\Logging\V2\ListLogMetricsRequest;
+use Google\Cloud\Logging\V2\LogMetric;
+use Google\Cloud\Logging\V2\MetricsServiceV2GrpcClient;
+use Google\Cloud\Logging\V2\UpdateLogMetricRequest;
+use Google\Cloud\Version;
 
 /**
  * Service Description: Service for configuring logs-based metrics.
@@ -476,7 +476,7 @@ class MetricsServiceV2GapicClient
      *          {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
-     * @return \Google\Logging\V2\LogMetric
+     * @return \Google\Cloud\Logging\V2\LogMetric
      *
      * @throws \Google\ApiCore\ApiException if the remote call fails
      * @experimental
@@ -538,7 +538,7 @@ class MetricsServiceV2GapicClient
      *          {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
-     * @return \Google\Logging\V2\LogMetric
+     * @return \Google\Cloud\Logging\V2\LogMetric
      *
      * @throws \Google\ApiCore\ApiException if the remote call fails
      * @experimental
@@ -602,7 +602,7 @@ class MetricsServiceV2GapicClient
      *          {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
-     * @return \Google\Logging\V2\LogMetric
+     * @return \Google\Cloud\Logging\V2\LogMetric
      *
      * @throws \Google\ApiCore\ApiException if the remote call fails
      * @experimental

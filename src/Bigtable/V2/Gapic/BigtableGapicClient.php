@@ -30,25 +30,25 @@
 
 namespace Google\Cloud\Bigtable\V2\Gapic;
 
-use Google\Bigtable\V2\BigtableGrpcClient;
-use Google\Bigtable\V2\CheckAndMutateRowRequest;
-use Google\Bigtable\V2\MutateRowRequest;
-use Google\Bigtable\V2\MutateRowsRequest;
-use Google\Bigtable\V2\MutateRowsRequest_Entry as Entry;
-use Google\Bigtable\V2\Mutation;
-use Google\Bigtable\V2\ReadModifyWriteRowRequest;
-use Google\Bigtable\V2\ReadModifyWriteRule;
-use Google\Bigtable\V2\ReadRowsRequest;
-use Google\Bigtable\V2\RowFilter;
-use Google\Bigtable\V2\RowSet;
-use Google\Bigtable\V2\SampleRowKeysRequest;
-use Google\Cloud\Version;
 use Google\ApiCore\AgentHeaderDescriptor;
 use Google\ApiCore\ApiCallable;
 use Google\ApiCore\CallSettings;
 use Google\ApiCore\GrpcCredentialsHelper;
 use Google\ApiCore\PathTemplate;
 use Google\ApiCore\ValidationException;
+use Google\Cloud\Bigtable\V2\BigtableGrpcClient;
+use Google\Cloud\Bigtable\V2\CheckAndMutateRowRequest;
+use Google\Cloud\Bigtable\V2\MutateRowRequest;
+use Google\Cloud\Bigtable\V2\MutateRowsRequest;
+use Google\Cloud\Bigtable\V2\MutateRowsRequest_Entry as Entry;
+use Google\Cloud\Bigtable\V2\Mutation;
+use Google\Cloud\Bigtable\V2\ReadModifyWriteRowRequest;
+use Google\Cloud\Bigtable\V2\ReadModifyWriteRule;
+use Google\Cloud\Bigtable\V2\ReadRowsRequest;
+use Google\Cloud\Bigtable\V2\RowFilter;
+use Google\Cloud\Bigtable\V2\RowSet;
+use Google\Cloud\Bigtable\V2\SampleRowKeysRequest;
+use Google\Cloud\Version;
 
 /**
  * Service Description: Service for reading from and writing to existing Bigtable tables.
@@ -521,7 +521,7 @@ class BigtableGapicClient
      *          {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
-     * @return \Google\Bigtable\V2\MutateRowResponse
+     * @return \Google\Cloud\Bigtable\V2\MutateRowResponse
      *
      * @throws \Google\ApiCore\ApiException if the remote call fails
      * @experimental
@@ -672,7 +672,7 @@ class BigtableGapicClient
      *          {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
-     * @return \Google\Bigtable\V2\CheckAndMutateRowResponse
+     * @return \Google\Cloud\Bigtable\V2\CheckAndMutateRowResponse
      *
      * @throws \Google\ApiCore\ApiException if the remote call fails
      * @experimental
@@ -750,7 +750,7 @@ class BigtableGapicClient
      *          {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
-     * @return \Google\Bigtable\V2\ReadModifyWriteRowResponse
+     * @return \Google\Cloud\Bigtable\V2\ReadModifyWriteRowResponse
      *
      * @throws \Google\ApiCore\ApiException if the remote call fails
      * @experimental

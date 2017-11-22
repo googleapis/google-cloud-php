@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2017, Google Inc. All rights reserved.
+ * Copyright 2017, Google LLC All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -30,8 +30,6 @@
 
 namespace Google\Cloud\Monitoring\V3\Gapic;
 
-use Google\Api\MetricDescriptor;
-use Google\Cloud\Version;
 use Google\ApiCore\AgentHeaderDescriptor;
 use Google\ApiCore\ApiCallable;
 use Google\ApiCore\CallSettings;
@@ -39,19 +37,21 @@ use Google\ApiCore\GrpcCredentialsHelper;
 use Google\ApiCore\PageStreamingDescriptor;
 use Google\ApiCore\PathTemplate;
 use Google\ApiCore\ValidationException;
-use Google\Monitoring\V3\Aggregation;
-use Google\Monitoring\V3\CreateMetricDescriptorRequest;
-use Google\Monitoring\V3\CreateTimeSeriesRequest;
-use Google\Monitoring\V3\DeleteMetricDescriptorRequest;
-use Google\Monitoring\V3\GetMetricDescriptorRequest;
-use Google\Monitoring\V3\GetMonitoredResourceDescriptorRequest;
-use Google\Monitoring\V3\ListMetricDescriptorsRequest;
-use Google\Monitoring\V3\ListMonitoredResourceDescriptorsRequest;
-use Google\Monitoring\V3\ListTimeSeriesRequest;
-use Google\Monitoring\V3\ListTimeSeriesRequest_TimeSeriesView as TimeSeriesView;
-use Google\Monitoring\V3\MetricServiceGrpcClient;
-use Google\Monitoring\V3\TimeInterval;
-use Google\Monitoring\V3\TimeSeries;
+use Google\Api\MetricDescriptor;
+use Google\Cloud\Monitoring\V3\Aggregation;
+use Google\Cloud\Monitoring\V3\CreateMetricDescriptorRequest;
+use Google\Cloud\Monitoring\V3\CreateTimeSeriesRequest;
+use Google\Cloud\Monitoring\V3\DeleteMetricDescriptorRequest;
+use Google\Cloud\Monitoring\V3\GetMetricDescriptorRequest;
+use Google\Cloud\Monitoring\V3\GetMonitoredResourceDescriptorRequest;
+use Google\Cloud\Monitoring\V3\ListMetricDescriptorsRequest;
+use Google\Cloud\Monitoring\V3\ListMonitoredResourceDescriptorsRequest;
+use Google\Cloud\Monitoring\V3\ListTimeSeriesRequest;
+use Google\Cloud\Monitoring\V3\ListTimeSeriesRequest_TimeSeriesView as TimeSeriesView;
+use Google\Cloud\Monitoring\V3\MetricServiceGrpcClient;
+use Google\Cloud\Monitoring\V3\TimeInterval;
+use Google\Cloud\Monitoring\V3\TimeSeries;
+use Google\Cloud\Version;
 
 /**
  * Service Description: Manages metric descriptors, monitored resource descriptors, and
@@ -891,7 +891,7 @@ class MetricServiceGapicClient
      *                                   that contain data points in the specified interval are included
      *                                   in the response.
      * @param int          $view         Specifies which information is returned about the time series.
-     *                                   For allowed values, use constants defined on {@see \Google\Monitoring\V3\ListTimeSeriesRequest_TimeSeriesView}
+     *                                   For allowed values, use constants defined on {@see \Google\Cloud\Monitoring\V3\ListTimeSeriesRequest_TimeSeriesView}
      * @param array        $optionalArgs {
      *                                   Optional.
      *

@@ -30,18 +30,6 @@
 
 namespace Google\Cloud\Bigtable\Admin\V2\Gapic;
 
-use Google\Bigtable\Admin\V2\BigtableTableAdminGrpcClient;
-use Google\Bigtable\Admin\V2\CreateTableRequest;
-use Google\Bigtable\Admin\V2\CreateTableRequest_Split as Split;
-use Google\Bigtable\Admin\V2\DeleteTableRequest;
-use Google\Bigtable\Admin\V2\DropRowRangeRequest;
-use Google\Bigtable\Admin\V2\GetTableRequest;
-use Google\Bigtable\Admin\V2\ListTablesRequest;
-use Google\Bigtable\Admin\V2\ModifyColumnFamiliesRequest;
-use Google\Bigtable\Admin\V2\ModifyColumnFamiliesRequest_Modification as Modification;
-use Google\Bigtable\Admin\V2\Table;
-use Google\Bigtable\Admin\V2\Table_View as View;
-use Google\Cloud\Version;
 use Google\ApiCore\AgentHeaderDescriptor;
 use Google\ApiCore\ApiCallable;
 use Google\ApiCore\CallSettings;
@@ -49,6 +37,18 @@ use Google\ApiCore\GrpcCredentialsHelper;
 use Google\ApiCore\PageStreamingDescriptor;
 use Google\ApiCore\PathTemplate;
 use Google\ApiCore\ValidationException;
+use Google\Cloud\Bigtable\Admin\V2\BigtableTableAdminGrpcClient;
+use Google\Cloud\Bigtable\Admin\V2\CreateTableRequest;
+use Google\Cloud\Bigtable\Admin\V2\CreateTableRequest_Split as Split;
+use Google\Cloud\Bigtable\Admin\V2\DeleteTableRequest;
+use Google\Cloud\Bigtable\Admin\V2\DropRowRangeRequest;
+use Google\Cloud\Bigtable\Admin\V2\GetTableRequest;
+use Google\Cloud\Bigtable\Admin\V2\ListTablesRequest;
+use Google\Cloud\Bigtable\Admin\V2\ModifyColumnFamiliesRequest;
+use Google\Cloud\Bigtable\Admin\V2\ModifyColumnFamiliesRequest_Modification as Modification;
+use Google\Cloud\Bigtable\Admin\V2\Table;
+use Google\Cloud\Bigtable\Admin\V2\Table_View as View;
+use Google\Cloud\Version;
 
 /**
  * Service Description: Service for creating, configuring, and deleting Cloud Bigtable tables.
@@ -420,7 +420,7 @@ class BigtableTableAdminGapicClient
      *          {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
-     * @return \Google\Bigtable\Admin\V2\Table
+     * @return \Google\Cloud\Bigtable\Admin\V2\Table
      *
      * @throws \Google\ApiCore\ApiException if the remote call fails
      * @experimental
@@ -489,7 +489,7 @@ class BigtableTableAdminGapicClient
      *     @type int $view
      *          The view to be applied to the returned tables' fields.
      *          Defaults to `NAME_ONLY` if unspecified; no others are currently supported.
-     *          For allowed values, use constants defined on {@see \Google\Bigtable\Admin\V2\Table_View}
+     *          For allowed values, use constants defined on {@see \Google\Cloud\Bigtable\Admin\V2\Table_View}
      *     @type string $pageToken
      *          A page token is used to specify a page of values to be returned.
      *          If no page token is specified (the default), the first page
@@ -561,7 +561,7 @@ class BigtableTableAdminGapicClient
      *     @type int $view
      *          The view to be applied to the returned table's fields.
      *          Defaults to `SCHEMA_VIEW` if unspecified.
-     *          For allowed values, use constants defined on {@see \Google\Bigtable\Admin\V2\Table_View}
+     *          For allowed values, use constants defined on {@see \Google\Cloud\Bigtable\Admin\V2\Table_View}
      *     @type \Google\ApiCore\RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
@@ -569,7 +569,7 @@ class BigtableTableAdminGapicClient
      *          {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
-     * @return \Google\Bigtable\Admin\V2\Table
+     * @return \Google\Cloud\Bigtable\Admin\V2\Table
      *
      * @throws \Google\ApiCore\ApiException if the remote call fails
      * @experimental
@@ -692,7 +692,7 @@ class BigtableTableAdminGapicClient
      *          {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
-     * @return \Google\Bigtable\Admin\V2\Table
+     * @return \Google\Cloud\Bigtable\Admin\V2\Table
      *
      * @throws \Google\ApiCore\ApiException if the remote call fails
      * @experimental

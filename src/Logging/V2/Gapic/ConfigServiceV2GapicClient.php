@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2017, Google Inc. All rights reserved.
+ * Copyright 2017, Google LLC All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -30,7 +30,6 @@
 
 namespace Google\Cloud\Logging\V2\Gapic;
 
-use Google\Cloud\Version;
 use Google\ApiCore\AgentHeaderDescriptor;
 use Google\ApiCore\ApiCallable;
 use Google\ApiCore\CallSettings;
@@ -38,19 +37,20 @@ use Google\ApiCore\GrpcCredentialsHelper;
 use Google\ApiCore\PageStreamingDescriptor;
 use Google\ApiCore\PathTemplate;
 use Google\ApiCore\ValidationException;
-use Google\Logging\V2\ConfigServiceV2GrpcClient;
-use Google\Logging\V2\CreateExclusionRequest;
-use Google\Logging\V2\CreateSinkRequest;
-use Google\Logging\V2\DeleteExclusionRequest;
-use Google\Logging\V2\DeleteSinkRequest;
-use Google\Logging\V2\GetExclusionRequest;
-use Google\Logging\V2\GetSinkRequest;
-use Google\Logging\V2\ListExclusionsRequest;
-use Google\Logging\V2\ListSinksRequest;
-use Google\Logging\V2\LogExclusion;
-use Google\Logging\V2\LogSink;
-use Google\Logging\V2\UpdateExclusionRequest;
-use Google\Logging\V2\UpdateSinkRequest;
+use Google\Cloud\Logging\V2\ConfigServiceV2GrpcClient;
+use Google\Cloud\Logging\V2\CreateExclusionRequest;
+use Google\Cloud\Logging\V2\CreateSinkRequest;
+use Google\Cloud\Logging\V2\DeleteExclusionRequest;
+use Google\Cloud\Logging\V2\DeleteSinkRequest;
+use Google\Cloud\Logging\V2\GetExclusionRequest;
+use Google\Cloud\Logging\V2\GetSinkRequest;
+use Google\Cloud\Logging\V2\ListExclusionsRequest;
+use Google\Cloud\Logging\V2\ListSinksRequest;
+use Google\Cloud\Logging\V2\LogExclusion;
+use Google\Cloud\Logging\V2\LogSink;
+use Google\Cloud\Logging\V2\UpdateExclusionRequest;
+use Google\Cloud\Logging\V2\UpdateSinkRequest;
+use Google\Cloud\Version;
 use Google\Protobuf\FieldMask;
 
 /**
@@ -537,7 +537,7 @@ class ConfigServiceV2GapicClient
      *          {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
-     * @return \Google\Logging\V2\LogSink
+     * @return \Google\Cloud\Logging\V2\LogSink
      *
      * @throws \Google\ApiCore\ApiException if the remote call fails
      * @experimental
@@ -569,8 +569,7 @@ class ConfigServiceV2GapicClient
 
     /**
      * Creates a sink that exports specified log entries to a destination.  The
-     * export of newly-ingested log entries begins immediately, unless the current
-     * time is outside the sink's start and end times or the sink's
+     * export of newly-ingested log entries begins immediately, unless the sink's
      * `writer_identity` is not permitted to write to the destination.  A sink can
      * export log entries only from the resource owning the sink.
      *
@@ -618,7 +617,7 @@ class ConfigServiceV2GapicClient
      *          {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
-     * @return \Google\Logging\V2\LogSink
+     * @return \Google\Cloud\Logging\V2\LogSink
      *
      * @throws \Google\ApiCore\ApiException if the remote call fails
      * @experimental
@@ -654,8 +653,7 @@ class ConfigServiceV2GapicClient
 
     /**
      * Updates a sink.  This method replaces the following fields in the existing
-     * sink with values from the new sink: `destination`, `filter`,
-     * `output_version_format`, `start_time`, and `end_time`.
+     * sink with values from the new sink: `destination`, and `filter`.
      * The updated sink might also have a new `writer_identity`; see the
      * `unique_writer_identity` field.
      *
@@ -698,6 +696,21 @@ class ConfigServiceV2GapicClient
      *              `writer_identity` is changed to a unique service account.
      *          +   It is an error if the old value is true and the new value is
      *              set to false or defaulted to false.
+     *     @type FieldMask $updateMask
+     *          Optional. Field mask that specifies the fields in `sink` that need
+     *          an update. A sink field will be overwritten if, and only if, it is
+     *          in the update mask.  `name` and output only fields cannot be updated.
+     *
+     *          An empty updateMask is temporarily treated as using the following mask
+     *          for backwards compatibility purposes:
+     *            destination,filter,includeChildren
+     *          At some point in the future, behavior will be removed and specifying an
+     *          empty updateMask will be an error.
+     *
+     *          For a detailed `FieldMask` definition, see
+     *          https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask
+     *
+     *          Example: `updateMask=filter`.
      *     @type \Google\ApiCore\RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
@@ -705,7 +718,7 @@ class ConfigServiceV2GapicClient
      *          {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
-     * @return \Google\Logging\V2\LogSink
+     * @return \Google\Cloud\Logging\V2\LogSink
      *
      * @throws \Google\ApiCore\ApiException if the remote call fails
      * @experimental
@@ -717,6 +730,9 @@ class ConfigServiceV2GapicClient
         $request->setSink($sink);
         if (isset($optionalArgs['uniqueWriterIdentity'])) {
             $request->setUniqueWriterIdentity($optionalArgs['uniqueWriterIdentity']);
+        }
+        if (isset($optionalArgs['updateMask'])) {
+            $request->setUpdateMask($optionalArgs['updateMask']);
         }
 
         $defaultCallSettings = $this->defaultCallSettings['updateSink'];
@@ -920,7 +936,7 @@ class ConfigServiceV2GapicClient
      *          {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
-     * @return \Google\Logging\V2\LogExclusion
+     * @return \Google\Cloud\Logging\V2\LogExclusion
      *
      * @throws \Google\ApiCore\ApiException if the remote call fails
      * @experimental
@@ -987,7 +1003,7 @@ class ConfigServiceV2GapicClient
      *          {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
-     * @return \Google\Logging\V2\LogExclusion
+     * @return \Google\Cloud\Logging\V2\LogExclusion
      *
      * @throws \Google\ApiCore\ApiException if the remote call fails
      * @experimental
@@ -1061,7 +1077,7 @@ class ConfigServiceV2GapicClient
      *          {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
-     * @return \Google\Logging\V2\LogExclusion
+     * @return \Google\Cloud\Logging\V2\LogExclusion
      *
      * @throws \Google\ApiCore\ApiException if the remote call fails
      * @experimental

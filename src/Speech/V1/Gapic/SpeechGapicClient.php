@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2017, Google Inc. All rights reserved.
+ * Copyright 2017, Google LLC All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -30,6 +30,12 @@
 
 namespace Google\Cloud\Speech\V1\Gapic;
 
+use Google\ApiCore\AgentHeaderDescriptor;
+use Google\ApiCore\ApiCallable;
+use Google\ApiCore\CallSettings;
+use Google\ApiCore\GrpcCredentialsHelper;
+use Google\ApiCore\LongRunning\OperationsClient;
+use Google\ApiCore\OperationResponse;
 use Google\Cloud\Speech\V1\LongRunningRecognizeRequest;
 use Google\Cloud\Speech\V1\LongRunningRecognizeResponse;
 use Google\Cloud\Speech\V1\RecognitionAudio;
@@ -38,12 +44,6 @@ use Google\Cloud\Speech\V1\RecognizeRequest;
 use Google\Cloud\Speech\V1\SpeechGrpcClient;
 use Google\Cloud\Speech\V1\StreamingRecognizeRequest;
 use Google\Cloud\Version;
-use Google\ApiCore\AgentHeaderDescriptor;
-use Google\ApiCore\ApiCallable;
-use Google\ApiCore\CallSettings;
-use Google\ApiCore\GrpcCredentialsHelper;
-use Google\ApiCore\LongRunning\OperationsClient;
-use Google\ApiCore\OperationResponse;
 
 /**
  * Service Description: Service that implements Google Cloud Speech API.
@@ -144,7 +144,7 @@ class SpeechGapicClient
     /**
      * Return an OperationsClient object with the same endpoint as $this.
      *
-     * @return \Google\ApiCore\LongRunning\OperationsClient
+     * @return \Google\LongRunning\OperationsClient
      * @experimental
      */
     public function getOperationsClient()

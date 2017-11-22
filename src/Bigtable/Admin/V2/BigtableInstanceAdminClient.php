@@ -37,5 +37,6 @@ use Google\Cloud\Bigtable\Admin\V2\Gapic\BigtableInstanceAdminGapicClient;
  */
 class BigtableInstanceAdminClient extends BigtableInstanceAdminGapicClient
 {
-    // This class is intentionally empty, and is intended to hold manual additions to the generated {@see BigtableInstanceAdminClientImpl} class.
+    // This class is intentionally empty, and is intended to hold manual
+    // additions to the generated {@see BigtableInstanceAdminClientImpl} class.
 }
