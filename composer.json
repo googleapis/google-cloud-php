@@ -49,7 +49,7 @@
         "monolog/monolog": "~1",
         "psr/http-message": "1.0.*",
         "ramsey/uuid": "~3",
-        "google/proto-client": "dev-master",
+        "google/proto-client": "0.27.0",
         "google/gax": "0.27.0"
     },
     "require-dev": {
