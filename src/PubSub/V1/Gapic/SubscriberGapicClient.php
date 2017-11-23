@@ -672,8 +672,13 @@ class SubscriberGapicClient
      * ```
      * try {
      *     $subscriberClient = new SubscriberClient();
+     *     $ackDeadlineSeconds = 42;
      *     $subscription = new Subscription();
+     *     $subscription->setAckDeadlineSeconds($ackDeadlineSeconds);
+     *     $pathsElement = 'ack_deadline_seconds';
+     *     $paths = [$pathsElement];
      *     $updateMask = new FieldMask();
+     *     $updateMask->setPaths($paths);
      *     $response = $subscriberClient->updateSubscription($subscription, $updateMask);
      * } finally {
      *     $subscriberClient->close();
@@ -1408,8 +1413,15 @@ class SubscriberGapicClient
      * ```
      * try {
      *     $subscriberClient = new SubscriberClient();
+     *     $seconds = 123456;
+     *     $expireTime = new Timestamp();
+     *     $expireTime->setSeconds($seconds);
      *     $snapshot = new Snapshot();
+     *     $snapshot->setExpireTime($expireTime);
+     *     $pathsElement = 'expire_time';
+     *     $paths = [$pathsElement];
      *     $updateMask = new FieldMask();
+     *     $updateMask->setPaths($paths);
      *     $response = $subscriberClient->updateSnapshot($snapshot, $updateMask);
      * } finally {
      *     $subscriberClient->close();
