@@ -4,7 +4,7 @@
 [![Latest Stable Version](https://poser.pugx.org/google/cloud/v/stable)](https://packagist.org/packages/google/cloud) [![Packagist](https://img.shields.io/packagist/dm/google/cloud.svg)](https://packagist.org/packages/google/cloud) [![Travis Build Status](https://travis-ci.org/GoogleCloudPlatform/google-cloud-php.svg?branch=master)](https://travis-ci.org/GoogleCloudPlatform/google-cloud-php/) [![codecov](https://codecov.io/gh/googlecloudplatform/google-cloud-php/branch/master/graph/badge.svg)](https://codecov.io/gh/googlecloudplatform/google-cloud-php)
 
 * [Homepage](http://googlecloudplatform.github.io/google-cloud-php)
-* [API Documentation](http://googlecloudplatform.github.io/google-cloud-php/#/docs)
+* [API Documentation](https://googlecloudplatform.github.io/google-cloud-php/#/docs/google-cloud/latest/servicebuilder)
 
 This client supports the following Google Cloud Platform services at a [General Availability](#versioning) quality level:
 * [Google Cloud Datastore](#google-cloud-datastore-ga) (GA)
