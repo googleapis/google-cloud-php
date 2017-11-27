@@ -32,7 +32,7 @@ class SpanTest extends TestCase
     public function testGeneratesDefaultSpanId()
     {
         $traceSpan = new Span(self::PROJECT_ID, self::TRACE_ID);
-        $info = $traceSpan->info();
+        $info = $traceSpan->jsonSerialize();
         $this->assertArrayHasKey('spanId', $info);
         $this->assertRegExp('/^[0-9a-f]{16}$/', $info['spanId']);
         $this->assertEquals($info['spanId'], $traceSpan->spanId());
@@ -41,7 +41,7 @@ class SpanTest extends TestCase
     public function testReadsSpanId()
     {
         $traceSpan = new Span(self::PROJECT_ID, self::TRACE_ID, ['spanId' => '1234']);
-        $info = $traceSpan->info();
+        $info = $traceSpan->jsonSerialize();
         $this->assertArrayHasKey('spanId', $info);
         $this->assertEquals('1234', $info['spanId']);
     }
@@ -49,7 +49,7 @@ class SpanTest extends TestCase
     public function testReadsLabels()
     {
         $traceSpan = new Span(self::PROJECT_ID, self::TRACE_ID, ['attributes' => ['foo' => 'bar']]);
-        $info = $traceSpan->info();
+        $info = $traceSpan->jsonSerialize();
         $this->assertArrayHasKey('attributes', $info);
         $this->assertEquals('bar', $info['attributes']['foo']);
     }
@@ -58,7 +58,7 @@ class SpanTest extends TestCase
     {
         $traceSpan = new Span(self::PROJECT_ID, self::TRACE_ID);
         $traceSpan->addAttribute('foo', 'bar');
-        $info = $traceSpan->info();
+        $info = $traceSpan->jsonSerialize();
         $this->assertArrayHasKey('attributes', $info);
         $this->assertEquals('bar', $info['attributes']['foo']);
     }
@@ -66,14 +66,14 @@ class SpanTest extends TestCase
     public function testNoLabels()
     {
         $traceSpan = new Span(self::PROJECT_ID, self::TRACE_ID);
-        $info = $traceSpan->info();
+        $info = $traceSpan->jsonSerialize();
         $this->assertArrayNotHasKey('attributes', $info);
     }
 
     public function testEmptyLabels()
     {
         $traceSpan = new Span(self::PROJECT_ID, self::TRACE_ID, ['attributes' => []]);
-        $info = $traceSpan->info();
+        $info = $traceSpan->jsonSerialize();
         $this->assertArrayNotHasKey('attributes', $info);
     }
 
@@ -93,7 +93,7 @@ class SpanTest extends TestCase
     {
         $traceSpan = new Span(self::PROJECT_ID, self::TRACE_ID);
         $traceSpan->setStartTime();
-        $info = $traceSpan->info();
+        $info = $traceSpan->jsonSerialize();
         $this->assertArrayHasKey('startTime', $info);
         $this->assertRegExp(self::EXPECTED_TIMESTAMP_FORMAT, $info['startTime']);
     }
@@ -102,7 +102,7 @@ class SpanTest extends TestCase
     {
         $traceSpan = new Span(self::PROJECT_ID, self::TRACE_ID);
         $traceSpan->setEndTime();
-        $info = $traceSpan->info();
+        $info = $traceSpan->jsonSerialize();
         $this->assertArrayHasKey('endTime', $info);
         $this->assertRegExp(self::EXPECTED_TIMESTAMP_FORMAT, $info['endTime']);
     }
@@ -110,7 +110,7 @@ class SpanTest extends TestCase
     public function testIgnoresUnknownFields()
     {
         $traceSpan = new Span(self::PROJECT_ID, self::TRACE_ID, ['extravalue' => 'something']);
-        $info = $traceSpan->info();
+        $info = $traceSpan->jsonSerialize();
         $this->assertArrayNotHasKey('extravalue', $info);
     }
 
@@ -120,7 +120,7 @@ class SpanTest extends TestCase
     public function testCanFormatTimestamps($field, $timestamp, $expected)
     {
         $traceSpan = new Span(self::PROJECT_ID, self::TRACE_ID, [$field => $timestamp]);
-        $this->assertEquals($expected, $traceSpan->info()[$field]);
+        $this->assertEquals($expected, $traceSpan->jsonSerialize()[$field]);
     }
 
     public function timestampFields()

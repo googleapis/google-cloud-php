@@ -147,7 +147,7 @@ class TraceClient
      */
     public function trace($traceId = null)
     {
-        return new Trace($this->connection, $this->projectId, $traceId);
+        return new Trace($this->projectId, $traceId);
     }
 
     /**

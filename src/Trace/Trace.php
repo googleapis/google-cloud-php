@@ -24,7 +24,7 @@ use Google\Cloud\Core\ValidateTrait;
  * This plain PHP class represents a Trace resource. The model currently has no
  * backing API model and is identified by its traceId.
  */
-class Trace
+class Trace implements \JsonSerializable
 {
     use IdGeneratorTrait;
     use ValidateTrait;
@@ -89,14 +89,12 @@ class Trace
      * @param array $options [optional] Configuration Options
      * @return array
      */
-    public function info(array $options = [])
+    public function jsonSerialize(array $options = [])
     {
         return [
             'projectId' => $this->projectId,
             'traceId' => $this->traceId,
-            'spans' => array_map(function ($span) {
-                return $span->info();
-            }, $this->spans)
+            'spans' => $this->spans
         ];
     }
 
