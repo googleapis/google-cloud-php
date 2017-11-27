@@ -31,6 +31,7 @@ use Google\Cloud\Core\ArrayTrait;
 class Span implements \JsonSerializable
 {
     use ArrayTrait;
+    use AttributeTrait;
 
     private $projectId;
 
@@ -45,8 +46,6 @@ class Span implements \JsonSerializable
     private $startTime;
 
     private $endTime;
-
-    private $attributes;
 
     private $stackTrace;
 
@@ -98,6 +97,10 @@ class Span implements \JsonSerializable
 
         if (array_key_exists('attributes', $options)) {
             $this->addAttributes($options['attributes']);
+        }
+
+        if (array_key_exists('timeEvents', $options)) {
+            $this->addTimeEvents($options['timeEvents']);
         }
     }
 
@@ -177,33 +180,28 @@ class Span implements \JsonSerializable
         if ($this->attributes) {
             $data['attributes'] = $this->attributes;
         }
+        if ($this->timeEvents) {
+            $data['timeEvents'] = [
+                'timeEvent' => $this->timeEvents
+            ];
+        }
         return $data;
     }
 
-    /**
-     * Attach labels to this span.
-     *
-     * @param array $labels Labels in the form of $label => $value
-     */
-    public function addAttributes(array $attributes)
+
+    public function addTimeEvents(array $events)
     {
-        foreach ($attributes as $key => $value) {
-            $this->addAttribute($key, $value);
+        foreach ($events as $event) {
+            $this->addTimeEvent($event);
         }
     }
 
-    /**
-     * Attach a single label to this span.
-     *
-     * @param string $label The name of the label.
-     * @param mixed $value The value of the label. Will be cast to a string
-     */
-    public function addAttribute($key, $value)
+    public function addTimeEvent(TimeEvent $event)
     {
-        if (!$this->attributes) {
-            $this->attributes = [];
+        if (!$this->timeEvents) {
+            $this->timeEvents = [];
         }
-        $this->attributes[$key] = (string) $value;
+        $this->timeEvents[] = $event;
     }
 
     /**

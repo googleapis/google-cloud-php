@@ -46,7 +46,7 @@ class SpanTest extends TestCase
         $this->assertEquals('1234', $info['spanId']);
     }
 
-    public function testReadsLabels()
+    public function testReadsAttributes()
     {
         $span = new Span(self::PROJECT_ID, self::TRACE_ID, ['attributes' => ['foo' => 'bar']]);
         $info = $span->jsonSerialize();
@@ -54,7 +54,7 @@ class SpanTest extends TestCase
         $this->assertEquals('bar', $info['attributes']['foo']);
     }
 
-    public function testCanAddLabel()
+    public function testCanAddAttribute()
     {
         $span = new Span(self::PROJECT_ID, self::TRACE_ID);
         $span->addAttribute('foo', 'bar');
@@ -63,14 +63,14 @@ class SpanTest extends TestCase
         $this->assertEquals('bar', $info['attributes']['foo']);
     }
 
-    public function testNoLabels()
+    public function testNoAttributes()
     {
         $span = new Span(self::PROJECT_ID, self::TRACE_ID);
         $info = $span->jsonSerialize();
         $this->assertArrayNotHasKey('attributes', $info);
     }
 
-    public function testEmptyLabels()
+    public function testEmptyAttributes()
     {
         $span = new Span(self::PROJECT_ID, self::TRACE_ID, ['attributes' => []]);
         $info = $span->jsonSerialize();
