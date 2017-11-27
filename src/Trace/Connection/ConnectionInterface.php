@@ -26,15 +26,10 @@ interface ConnectionInterface
     /**
      * @param  array $args
      */
-    public function patchTraces(array $args);
+    public function traceBatchWrite(array $args);
 
     /**
      * @param  array $args
      */
-    public function getTrace(array $args);
-
-    /**
-     * @param  array $args
-     */
-    public function listTraces(array $args);
+    public function traceSpanCreate(array $args);
 }

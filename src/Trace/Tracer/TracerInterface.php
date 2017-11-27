@@ -18,7 +18,7 @@
 namespace Google\Cloud\Trace\Tracer;
 
 use Google\Cloud\Trace\TraceContext;
-use Google\Cloud\Trace\TraceSpan;
+use Google\Cloud\Trace\Span;
 
 /**
  * This interface allows you to use the null object pattern for your tracer.
@@ -28,10 +28,10 @@ use Google\Cloud\Trace\TraceSpan;
 interface TracerInterface
 {
     /**
-     * Instrument a callable by creating a TraceSpan
+     * Instrument a callable by creating a Span
      *
      * @param array $spanOptions Options for the span.
-     *      {@see Google\Cloud\Trace\TraceSpan::__construct()}
+     *      {@see Google\Cloud\Trace\Span::__construct()}
      * @param callable $callable The callable to inSpan.
      * @param array $arguments [optional] Arguments for the callable.
      * @return mixed The result of the callable
@@ -60,12 +60,12 @@ interface TracerInterface
     /**
      * Return the spans collected.
      *
-     * @return TraceSpan[]
+     * @return Span[]
      */
     public function spans();
 
     /**
-     * Add a label to the current TraceSpan
+     * Add a label to the current Span
      *
      * @param string $label
      * @param string $value
@@ -73,7 +73,7 @@ interface TracerInterface
     public function addLabel($label, $value);
 
     /**
-     * Add a label to the primary TraceSpan
+     * Add a label to the primary Span
      *
      * @param string $label
      * @param string $value

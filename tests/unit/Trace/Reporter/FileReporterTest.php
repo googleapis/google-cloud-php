@@ -19,7 +19,7 @@ namespace Google\Cloud\Tests\Unit\Trace\Reporter;
 
 use Google\Cloud\Trace\Reporter\FileReporter;
 use Google\Cloud\Trace\TraceContext;
-use Google\Cloud\Trace\TraceSpan;
+use Google\Cloud\Trace\Span;
 use Google\Cloud\Trace\Tracer\TracerInterface;
 use PHPUnit\Framework\TestCase;
 
@@ -45,7 +45,7 @@ class FileReporterTest extends TestCase
     public function testLogsTrace()
     {
         $spans = [
-            new TraceSpan([
+            new Span([
                 'name' => 'span',
                 'startTime' => microtime(true),
                 'endTime' => microtime(true) + 10

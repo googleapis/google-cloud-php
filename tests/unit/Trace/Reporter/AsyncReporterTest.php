@@ -21,7 +21,7 @@ use Google\Cloud\Core\Batch\BatchRunner;
 use Google\Cloud\Trace\Reporter\AsyncReporter;
 use Google\Cloud\Trace\TraceClient;
 use Google\Cloud\Trace\TraceContext;
-use Google\Cloud\Trace\TraceSpan;
+use Google\Cloud\Trace\Span;
 use Google\Cloud\Trace\Trace;
 use Google\Cloud\Trace\Tracer\TracerInterface;
 use Prophecy\Argument;
@@ -50,7 +50,7 @@ class AsyncReporterTest extends TestCase
     public function testReportsTrace()
     {
         $spans = [
-            new TraceSpan([
+            new Span([
                 'name' => 'span',
                 'startTime' => microtime(true),
                 'endTime' => microtime(true) + 10

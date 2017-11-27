@@ -22,7 +22,7 @@ use Google\Cloud\Trace\Connection\ConnectionInterface;
 use Google\Cloud\Trace\Reporter\SyncReporter;
 use Google\Cloud\Trace\TraceClient;
 use Google\Cloud\Trace\TraceContext;
-use Google\Cloud\Trace\TraceSpan;
+use Google\Cloud\Trace\Span;
 use Google\Cloud\Trace\Tracer\TracerInterface;
 use Prophecy\Argument;
 use PHPUnit\Framework\TestCase;
@@ -46,7 +46,7 @@ class SyncReporterTest extends TestCase
     public function testReportsTrace()
     {
         $spans = [
-            new TraceSpan([
+            new Span([
                 'name' => 'span',
                 'startTime' => microtime(true),
                 'endTime' => microtime(true) + 10
@@ -55,7 +55,7 @@ class SyncReporterTest extends TestCase
         $this->tracer->context()->willReturn(new TraceContext('testtraceid'));
         $this->tracer->spans()->willReturn($spans);
 
-        $this->connection->patchTraces(Argument::any())->willReturn(true);
+        $this->connection->traceBatchWrite(Argument::any())->willReturn(true);
         $this->client->setConnection($this->connection->reveal());
 
         $reporter = new SyncReporter($this->client);
@@ -73,7 +73,7 @@ class SyncReporterTest extends TestCase
     public function testHandlesServiceFailure()
     {
         $spans = [
-            new TraceSpan([
+            new Span([
                 'name' => 'span',
                 'startTime' => microtime(true),
                 'endTime' => microtime(true) + 10
@@ -82,7 +82,7 @@ class SyncReporterTest extends TestCase
         $this->tracer->context()->willReturn(new TraceContext('testtraceid'));
         $this->tracer->spans()->willReturn($spans);
 
-        $this->connection->patchTraces(Argument::any())->willThrow(new ServiceException('An error occurred'));
+        $this->connection->traceBatchWrite(Argument::any())->willThrow(new ServiceException('An error occurred'));
         $this->client->setConnection($this->connection->reveal());
 
         $reporter = new SyncReporter($this->client);

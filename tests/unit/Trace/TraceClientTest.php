@@ -37,67 +37,9 @@ class TraceClientTest extends TestCase
         $this->connection = $this->prophesize(ConnectionInterface::class);
     }
 
-    public function testListsTraces()
-    {
-        $this->connection->listTraces(Argument::any())->willReturn([
-            'traces' => [
-                ['projectId' => 'project', 'traceId' => '1'],
-                ['projectId' => 'project', 'traceId' => '2'],
-                ['projectId' => 'project', 'traceId' => '3']
-            ]
-        ]);
-
-        $this->client->setConnection($this->connection->reveal());
-        $traces = iterator_to_array($this->client->traces());
-
-        $this->assertEquals(3, count($traces));
-        $this->assertEquals('1', $traces[0]->traceId());
-        $this->assertEquals('2', $traces[1]->traceId());
-        $this->assertEquals('3', $traces[2]->traceId());
-    }
-
-    public function testListsTracesNoneFound()
-    {
-        $this->connection->listTraces(Argument::any())->willReturn([]);
-
-        $this->client->setConnection($this->connection->reveal());
-        $traces = iterator_to_array($this->client->traces());
-
-        $this->assertEquals([], $traces);
-    }
-
-    public function testGetSingleTrace()
-    {
-        $this->connection->getTrace(Argument::any())->willReturn([
-            'projectId' => 'project',
-            'traceId' => '1',
-            'spans' => [
-                ['name' => 'main']
-            ]
-        ]);
-        $this->client->setConnection($this->connection->reveal());
-
-        $trace = $this->client->trace('1');
-        $trace->reload();
-        $this->assertEquals('1', $trace->traceId());
-        $this->assertEquals(1, count($trace->spans()));
-    }
-
-    /**
-     * @expectedException Google\Cloud\Core\Exception\NotFoundException
-     */
-    public function testGetSingleTraceNotFound()
-    {
-        $this->connection->getTrace(Argument::any())->willReturn([]);
-        $this->client->setConnection($this->connection->reveal());
-
-        $trace = $this->client->trace('1');
-        $trace->info();
-    }
-
     public function testInsertTrace()
     {
-        $this->connection->patchTraces(Argument::any())->willReturn([
+        $this->connection->traceBatchWrite(Argument::any())->willReturn([
             'traces' => [
                 [
                     'projectId' => 'project',
@@ -119,7 +61,7 @@ class TraceClientTest extends TestCase
 
     public function testInsertMultipleTraces()
     {
-        $this->connection->patchTraces(Argument::any())->willReturn([
+        $this->connection->traceBatchWrite(Argument::any())->willReturn([
             'traces' => [
                 [
                     'projectId' => 'project',

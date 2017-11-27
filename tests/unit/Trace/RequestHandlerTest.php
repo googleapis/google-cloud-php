@@ -17,7 +17,7 @@
 
 namespace Google\Cloud\Tests\Unit\Trace;
 
-use Google\Cloud\Trace\TraceSpan;
+use Google\Cloud\Trace\Span;
 use Google\Cloud\Trace\RequestHandler;
 use Google\Cloud\Trace\Reporter\ReporterInterface;
 use Google\Cloud\Trace\Sampler\SamplerInterface;
@@ -55,7 +55,7 @@ class RequestHandlerTest extends TestCase
         $spans = $rt->tracer()->spans();
         $this->assertCount(2, $spans);
         foreach ($spans as $span) {
-            $this->assertInstanceOf(TraceSpan::class, $span);
+            $this->assertInstanceOf(Span::class, $span);
             $this->assertArrayHasKey('endTime', $span->info());
         }
         $this->assertEquals('main', $spans[0]->name());

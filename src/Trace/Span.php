@@ -21,28 +21,45 @@ use Google\Cloud\Core\ArrayTrait;
 
 /**
  * This plain PHP class represents a
- * [TraceSpan resource](https://cloud.google.com/trace/docs/reference/v1/rest/v1/projects.traces#TraceSpan)
+ * [Span resource](https://cloud.google.com/trace/docs/reference/v1/rest/v1/projects.traces#Span)
  * A span represents a single timed event within a Trace. Spans can be nested
  * and form a trace tree. Often, a trace contains a root span that describes
  * the end-to-end latency of an operation and, optionally, one or more subspans
  * for its suboperations. Spans do not need to be contiguous. There may be
  * gaps between spans in a trace.
  */
-class TraceSpan implements \JsonSerializable
+class Span implements \JsonSerializable
 {
     use ArrayTrait;
 
-    const SPAN_KIND_UNSPECIFIED = 'SPAN_KIND_UNSPECIFIED';
-    const SPAN_KIND_RPC_SERVER = 'RPC_SERVER';
-    const SPAN_KIND_RPC_CLIENT = 'RPC_CLIENT';
+    private $projectId;
+
+    private $traceId;
+
+    private $spanId;
+
+    private $parentSpanId;
+
+    private $name;
+
+    private $startTime;
+
+    private $endTime;
+
+    private $attributes;
+
+    private $stackTrace;
+
+    private $timeEvents;
+
+    private $links;
+
+    private $status;
+
+    private $sameProcessAsParentSpan;
 
     /**
-     * @var array Associative array containing all the fields representing this TraceSpan.
-     */
-    private $info;
-
-    /**
-     * Instantiate a new TraceSpan instance.
+     * Instantiate a new Span instance.
      *
      * @param array $options [optional] {
      *      Configuration options.
@@ -64,34 +81,23 @@ class TraceSpan implements \JsonSerializable
      *            to attach to this span.
      * }
      */
-    public function __construct($options = [])
+    public function __construct($projectId, $traceId, $options = [])
     {
-        $this->info = $this->pluckArray(
-            ['spanId', 'kind', 'name', 'parentSpanId'],
-            $options
-        );
+        $this->projectId = $projectId;
+        $this->traceId = $traceId;
+        $this->spanId = $this->pluck('spanId', $options, false) ?: $this->generateSpanId();
+        $this->parentSpanId = $this->pluck('parentSpanId', $options, false);
+        $this->name = $this->pluck('name', $options, false) ?: $this->generateSpanName();
 
         if (array_key_exists('startTime', $options)) {
-            $this->setStart($options['startTime']);
+            $this->setStartTime($options['startTime']);
         }
         if (array_key_exists('endTime', $options)) {
-            $this->setEnd($options['endTime']);
+            $this->setEndTime($options['endTime']);
         }
 
-        if (array_key_exists('labels', $options)) {
-            $this->addLabels($options['labels']);
-        }
-
-        $this->info += [
-            'kind' => self::SPAN_KIND_UNSPECIFIED
-        ];
-
-        if (!array_key_exists('spanId', $this->info)) {
-            $this->info['spanId'] = $this->generateSpanId();
-        }
-
-        if (!array_key_exists('name', $this->info)) {
-            $this->info['name'] = $this->generateSpanName();
+        if (array_key_exists('attributes', $options)) {
+            $this->addAttributes($options['attributes']);
         }
     }
 
@@ -102,9 +108,9 @@ class TraceSpan implements \JsonSerializable
      *         **Defaults to** now. If provided as a string, it must be in "Zulu" format.
      *         If provided as an int or float, it is expected to be a Unix timestamp.
      */
-    public function setStart($when = null)
+    public function setStartTime($when = null)
     {
-        $this->info['startTime'] = $this->formatDate($when);
+        $this->startTime = $this->formatDate($when);
     }
 
     /**
@@ -114,9 +120,9 @@ class TraceSpan implements \JsonSerializable
      *         **Defaults to** now. If provided as a string, it must be in "Zulu" format.
      *         If provided as an int or float, it is expected to be a Unix timestamp.
      */
-    public function setEnd($when = null)
+    public function setEndTime($when = null)
     {
-        $this->info['endTime'] = $this->formatDate($when);
+        $this->endTime = $this->formatDate($when);
     }
 
     /**
@@ -126,7 +132,7 @@ class TraceSpan implements \JsonSerializable
      */
     public function spanId()
     {
-        return $this->info['spanId'];
+        return $this->spanId;
     }
 
     /**
@@ -136,9 +142,7 @@ class TraceSpan implements \JsonSerializable
      */
     public function parentSpanId()
     {
-        return array_key_exists('parentSpanId', $this->info)
-            ? $this->info['parentSpanId']
-            : null;
+        return $this->parentSpanId;
     }
 
     /**
@@ -148,17 +152,7 @@ class TraceSpan implements \JsonSerializable
      */
     public function name()
     {
-        return $this->info['name'];
-    }
-
-    /**
-     * Returns a serializable array representing this span.
-     *
-     * @return array
-     */
-    public function info()
-    {
-        return $this->info;
+        return $this->name;
     }
 
     /**
@@ -168,7 +162,22 @@ class TraceSpan implements \JsonSerializable
      */
     public function jsonSerialize()
     {
-        return $this->info;
+        $data = [
+            'name' => "projects/{$this->projectId}/traces/{$this->traceId}/spans/{$this->spanId}",
+            'displayName' => [
+                'value' => $this->name
+            ],
+            'spanId' => $this->spanId,
+            'startTime' => $this->startTime,
+            'endTime' => $this->endTime
+        ];
+        if ($this->parentSpanId) {
+            $data['parentSpanId'] = $this->parentSpanId;
+        }
+        if ($this->attributes) {
+            $data['attributes'] = $this->attributes;
+        }
+        return $data;
     }
 
     /**
@@ -176,10 +185,10 @@ class TraceSpan implements \JsonSerializable
      *
      * @param array $labels Labels in the form of $label => $value
      */
-    public function addLabels(array $labels)
+    public function addAttributes(array $attributes)
     {
-        foreach ($labels as $label => $value) {
-            $this->addLabel($label, $value);
+        foreach ($attributes as $key => $value) {
+            $this->addAttribute($key, $value);
         }
     }
 
@@ -189,12 +198,12 @@ class TraceSpan implements \JsonSerializable
      * @param string $label The name of the label.
      * @param mixed $value The value of the label. Will be cast to a string
      */
-    public function addLabel($label, $value)
+    public function addAttribute($key, $value)
     {
-        if (!array_key_exists('labels', $this->info)) {
-            $this->info['labels'] = [];
+        if (!$this->attributes) {
+            $this->attributes = [];
         }
-        $this->info['labels'][$label] = (string) $value;
+        $this->attributes[$key] = (string) $value;
     }
 
     /**
@@ -230,7 +239,7 @@ class TraceSpan implements \JsonSerializable
      */
     private function generateSpanId()
     {
-        return '' . mt_rand();
+        return str_pad(dechex(mt_rand()), 16, "0", STR_PAD_LEFT);
     }
 
     /**

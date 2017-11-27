@@ -19,7 +19,7 @@ namespace Google\Cloud\Tests\System\Trace;
 
 use Google\Cloud\Core\ExponentialBackoff;
 use Google\Cloud\Trace\TraceClient;
-use Google\Cloud\Trace\TraceSpan;
+use Google\Cloud\Trace\Span;
 use Google\Cloud\Trace\Trace;
 use PHPUnit\Framework\TestCase;
 
@@ -40,61 +40,20 @@ class BasicTest extends TestCase
     public function testCanCreateTraces()
     {
         $trace = $this->traceClient->trace();
-        $span = new TraceSpan(['name' => 'main']);
-        $span->setStart();
-
-        $span2 = new TraceSpan(['name' => 'inner', 'parentSpanId' => $span->spanId()]);
-        $span2->setStart();
+        $span = $trace->span(['name' => 'main']);
+        $span->setStartTime();
+        $span2 = $trace->span(['name' => 'inner', 'parentSpanId' => $span->spanId()]);
+        $span2->setStartTime();
 
         // just add a little bit of time for the spans
         usleep(20);
 
-        $span2->setEnd();
-        $span->setEnd();
+        $span2->setEndTime();
+        $span->setEndTime();
 
         $trace->setSpans([$span, $span2]);
 
         // create the trace
         $this->assertTrue($this->traceClient->insert($trace));
-
-        // find the created trace (need to retry b/c eventual consistency)
-        $fetchedTrace = $this->traceClient->trace($trace->traceId());
-        $backoff = new ExponentialBackoff(5);
-        $info = $backoff->execute([$fetchedTrace, 'info']);
-
-        $this->assertInstanceOf(Trace::class, $fetchedTrace);
-        $this->assertEquals($trace->traceId(), $fetchedTrace->traceId());
-        $this->assertEquals(2, count($fetchedTrace->spans()));
-    }
-
-    /**
-     * @expectedException Google\Cloud\Core\Exception\NotFoundException
-     */
-    public function testFindNonExistentTrace()
-    {
-        // should not exist (it's possible, but unlikely)
-        $trace = $this->traceClient->trace('00000000000000000000000000000000');
-        $trace->info();
-    }
-
-    /**
-     * @expectedException Google\Cloud\Core\Exception\BadRequestException
-     */
-    public function testFindInvalidRequest()
-    {
-        $trace = $this->traceClient->trace('invalidid');
-        $trace->info();
-    }
-
-    /**
-     * @depends testCanCreateTraces
-     */
-    public function testListTraces()
-    {
-        $traces = iterator_to_array($this->traceClient->traces());
-        $this->assertNotEmpty($traces);
-        foreach ($traces as $trace) {
-            $this->assertInstanceOf(Trace::class, $trace);
-        }
     }
 }

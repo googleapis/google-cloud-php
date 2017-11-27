@@ -22,8 +22,8 @@ use Google\Cloud\Core\ValidateTrait;
 use Google\Cloud\Trace\Connection\ConnectionInterface;
 
 /**
- * This plain PHP class represents a Trace resource. For more information see
- * [TraceResource](https://cloud.google.com/trace/docs/reference/v1/rest/v1/projects.traces#resource-trace)
+ * This plain PHP class represents a Trace resource. The model currently has no
+ * backing API model and is identified by its traceId.
  */
 class Trace implements \Serializable
 {
@@ -46,7 +46,7 @@ class Trace implements \Serializable
     private $traceId;
 
     /**
-     * @var TraceSpan[] List of TraceSpans to report
+     * @var Span[] List of Span to report
      */
     private $spans = [];
 
@@ -57,8 +57,8 @@ class Trace implements \Serializable
      * @param string $projectId The id of the project this trace belongs to.
      * @param string $traceId [optional] The id of the trace. If not provided, one will be generated
      *        automatically for you.
-     * @param array $spans [optional] Array of TraceSpan constructor arguments. See
-     *        {@see Google\Cloud\Trace\TraceSpan::__construct()} for configuration details.
+     * @param array $spans [optional] Array of Span constructor arguments. See
+     *        {@see Google\Cloud\Trace\Span::__construct()} for configuration details.
      * }
      */
     public function __construct(ConnectionInterface $connection, $projectId, $traceId = null, $spans = null)
@@ -68,7 +68,7 @@ class Trace implements \Serializable
         $this->traceId = $traceId ?: $this->generateTraceId();
         if ($spans) {
             $this->spans = array_map(function ($span) {
-                return new TraceSpan($span);
+                return new Span($span);
             }, $spans);
         }
     }
@@ -94,13 +94,6 @@ class Trace implements \Serializable
      */
     public function info(array $options = [])
     {
-        // We don't want to maintain both an info array and array of TraceSpans,
-        // so we'll rely on the presence of the loaded/specified spans for whether
-        // or not we should fetch remote data.
-        if (!$this->spans) {
-            $this->reload($options);
-        }
-
         return [
             'projectId' => $this->projectId,
             'traceId' => $this->traceId,
@@ -111,32 +104,9 @@ class Trace implements \Serializable
     }
 
     /**
-     * Triggers a network request to load a span's details.
-     *
-     * @see https://cloud.google.com/trace/docs/reference/v1/rest/v1/projects.traces/get Traces get API documentation.
-     *
-     * @param array $options [optional] Configuration Options
-     */
-    public function reload(array $options = [])
-    {
-        $trace = $this->connection->getTrace([
-            'projectId' => $this->projectId,
-            'traceId' => $this->traceId
-        ] + $options);
-
-        if (empty($trace)) {
-            throw new NotFoundException('Trace ID does not exist', 404);
-        }
-
-        $this->spans = array_map(function ($span) {
-            return new TraceSpan($span);
-        }, $trace['spans']);
-    }
-
-    /**
      * Retrieves the spans for this trace.
      *
-     * @return TraceSpan[]
+     * @return Span[]
      */
     public function spans()
     {
@@ -144,25 +114,25 @@ class Trace implements \Serializable
     }
 
     /**
-     * Create an instance of {@see Google\Cloud\Trace\TraceSpan}
+     * Create an instance of {@see Google\Cloud\Trace\Span}
      *
-     * @param array $options [optional] See {@see Google\Cloud\Trace\TraceSpan::__construct()}
+     * @param array $options [optional] See {@see Google\Cloud\Trace\Span::__construct()}
      *        for configuration details.
-     * @return TraceSpan
+     * @return Span
      */
     public function span(array $options = [])
     {
-        return new TraceSpan($options);
+        return new Span($this->projectId, $this->traceId, $options);
     }
 
     /**
      * Set the spans for this trace.
      *
-     * @param TraceSpan[] $spans
+     * @param Span[] $spans
      */
     public function setSpans(array $spans)
     {
-        $this->validateBatch($spans, TraceSpan::class);
+        $this->validateBatch($spans, Span::class);
         $this->spans = $spans;
     }
 

@@ -20,7 +20,7 @@ namespace Google\Cloud\Tests\Unit\Trace\Reporter;
 use Psr\Log\LoggerInterface;
 use Google\Cloud\Trace\Reporter\LoggerReporter;
 use Google\Cloud\Trace\TraceContext;
-use Google\Cloud\Trace\TraceSpan;
+use Google\Cloud\Trace\Span;
 use Google\Cloud\Trace\Tracer\TracerInterface;
 use Prophecy\Argument;
 use PHPUnit\Framework\TestCase;
@@ -42,7 +42,7 @@ class LoggerReporterTest extends TestCase
     public function testLogsTrace()
     {
         $spans = [
-            new TraceSpan([
+            new Span([
                 'name' => 'span',
                 'startTime' => microtime(true),
                 'endTime' => microtime(true) + 10

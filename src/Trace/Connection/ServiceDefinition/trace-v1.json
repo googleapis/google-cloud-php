@@ -1,7 +1,7 @@
 {
   "version_module": "True",
   "schemas": {
-    "TraceSpan": {
+    "Span": {
       "description": "A span represents a single timed event within a trace. Spans can be nested\nand form a trace tree. Often, a trace contains a root span that describes the\nend-to-end latency of an operation and, optionally, one or more subspans for\nits suboperations. Spans do not need to be contiguous. There may be gaps\nbetween spans in a trace.",
       "type": "object",
       "properties": {
@@ -51,7 +51,7 @@
           "type": "string"
         }
       },
-      "id": "TraceSpan"
+      "id": "Span"
     },
     "ListTracesResponse": {
       "description": "The response message for the `ListTraces` method.",
@@ -88,7 +88,7 @@
           "description": "Collection of spans in the trace.",
           "type": "array",
           "items": {
-            "$ref": "TraceSpan"
+            "$ref": "Span"
           }
         },
         "traceId": {

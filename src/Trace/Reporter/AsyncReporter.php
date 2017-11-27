@@ -24,7 +24,7 @@ use Google\Cloud\Trace\Tracer\TracerInterface;
 
 /**
  * This implementation of the ReporterInterface use the BatchRunner to provide
- * asynchronous reporting of Traces and their TraceSpans.
+ * asynchronous reporting of Traces and their Spans.
  *
  * @experimental The experimental flag means that while we believe this method
  *      or class is ready for use, it may change before release in backwards-

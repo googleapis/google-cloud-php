@@ -21,7 +21,7 @@ use Google\Cloud\Core\ArrayTrait;
 use Google\Cloud\Trace\Reporter\ReporterInterface;
 use Google\Cloud\Trace\Sampler\SamplerInterface;
 use Google\Cloud\Trace\TraceClient;
-use Google\Cloud\Trace\TraceSpan;
+use Google\Cloud\Trace\Span;
 use Google\Cloud\Trace\Tracer\ContextTracer;
 use Google\Cloud\Trace\Tracer\NullTracer;
 use Google\Cloud\Trace\Tracer\TracerInterface;
@@ -79,7 +79,7 @@ class RequestHandler
      * @param SamplerInterface $sampler Which sampler to use for sampling requests
      * @param array $options [optional] {
      *      Configuration options. See
-     *      {@see Google\Cloud\Trace\TraceSpan::__construct()} for the other available options.
+     *      {@see Google\Cloud\Trace\Span::__construct()} for the other available options.
      *
      *      @type array $headers Optional array of headers to use in place of $_SERVER
      * }
@@ -155,13 +155,13 @@ class RequestHandler
     }
 
     /**
-     * Instrument a callable by creating a TraceSpan that manages the startTime
+     * Instrument a callable by creating a Span that manages the startTime
      * and endTime. If an exception is thrown while executing the callable, the
      * exception will be caught, the span will be closed, and the exception will
      * be re-thrown.
      *
      * @param array $spanOptions Options for the span.
-     *        {@see Google\Cloud\Trace\TraceSpan::__construct()}
+     *        {@see Google\Cloud\Trace\Span::__construct()}
      * @param callable $callable    The callable to inSpan.
      * @return mixed Returns whatever the callable returns
      */
@@ -171,12 +171,12 @@ class RequestHandler
     }
 
     /**
-     * Explicitly start a new TraceSpan. You will need to manage finishing the TraceSpan,
+     * Explicitly start a new Span. You will need to manage finishing the Span,
      * including handling any thrown exceptions.
      *
      * @param array $spanOptions [optional] Options for the span.
-     *        {@see Google\Cloud\Trace\TraceSpan::__construct()}
-     * @return TraceSpan
+     *        {@see Google\Cloud\Trace\Span::__construct()}
+     * @return Span
      */
     public function startSpan(array $spanOptions = [])
     {
@@ -184,9 +184,9 @@ class RequestHandler
     }
 
     /**
-     * Explicitly finish the current context (TraceSpan).
+     * Explicitly finish the current context (Span).
      *
-     * @return TraceSpan
+     * @return Span
      */
     public function endSpan()
     {
@@ -194,7 +194,7 @@ class RequestHandler
     }
 
     /**
-     * Return the current context (TraceSpan)
+     * Return the current context (Span)
      *
      * @return TraceContext
      */

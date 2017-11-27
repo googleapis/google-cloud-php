@@ -113,7 +113,7 @@ class RequestTracer
      * @param ReporterInterface $reporter
      * @param array $options {
      *      Configuration options. See
-     *      {@see Google\Cloud\Trace\TraceSpan::__construct()} for the other available options.
+     *      {@see Google\Cloud\Trace\Span::__construct()} for the other available options.
      *
      *      @type SamplerInterface|array $sampler Sampler or sampler factory build arguments. See
      *          {@see Google\Cloud\Trace\Sampler\SamplerFactory::build()} for the available options.
@@ -134,7 +134,7 @@ class RequestTracer
     }
 
     /**
-     * Instrument a callable by creating a TraceSpan that manages the startTime and endTime.
+     * Instrument a callable by creating a Span that manages the startTime and endTime.
      * If an exception is thrown while executing the callable, the exception will be caught,
      * the span will be closed, and the exception will be re-thrown.
      *
@@ -155,7 +155,7 @@ class RequestTracer
      * ```
      *
      * @param array $spanOptions Options for the span.
-     *      {@see Google\Cloud\Trace\TraceSpan::__construct()}
+     *      {@see Google\Cloud\Trace\Span::__construct()}
      * @param  callable $callable The callable to inSpan.
      * @return mixed Returns whatever the callable returns
      */
@@ -165,7 +165,7 @@ class RequestTracer
     }
 
     /**
-     * Explicitly start a new TraceSpan. You will need to manage finishing the TraceSpan,
+     * Explicitly start a new Span. You will need to manage finishing the Span,
      * including handling any thrown exceptions.
      *
      * Example:
@@ -179,7 +179,7 @@ class RequestTracer
      * ```
      *
      * @param array $spanOptions [optional] Options for the span.
-     *      {@see Google\Cloud\Trace\TraceSpan::__construct()}
+     *      {@see Google\Cloud\Trace\Span::__construct()}
      */
     public static function startSpan(array $spanOptions = [])
     {
@@ -187,7 +187,7 @@ class RequestTracer
     }
 
     /**
-    * Explicitly finish the current context (TraceSpan).
+    * Explicitly finish the current context (Span).
      */
     public static function endSpan()
     {

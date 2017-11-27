@@ -129,11 +129,9 @@ class TraceClient
     public function insertBatch(array $traces, array $options = [])
     {
         // throws ServiceException on failure
-        $this->connection->patchTraces([
-            'projectId' => $this->projectId,
-            'traces' => array_map(function ($trace) {
-                return $trace->info();
-            }, $traces)
+        $this->connection->traceBatchWrite([ // FIXME: fix these parameters
+            'projectsId' => $this->projectId,
+            'spans' => array_map([$this, 'transformSpan'], $traces)
         ] + $options);
         return true;
     }
@@ -153,55 +151,6 @@ class TraceClient
     }
 
     /**
-     * Fetch all traces in the project.
-     *
-     * @see https://cloud.google.com/trace/docs/reference/v1/rest/v1/projects.traces/list Traces list API documentation.
-     *
-     * @param array $options [optional] {
-     *      Configuration options.
-     *
-     *      @type string $viewType Type of data returned for traces in the list.
-     *            Can be one of 'VIEW_TYPE_UNSPECIFIED', 'MINIMAL', 'ROOTSPAN', or
-     *            'COMPLETE'
-     *      @type int $pageSize Maximum number of traces to return per page.
-     *      @type int $resultLimit Limit the number of results returned in total.
-     *           **Defaults to** `0` (return all results).
-     *      @type string $pageToken Token identifying the page of results to return
-     *      @type string $startTime Start of the time interval during which trace data
-     *            was collected. This timestamp in nanoseconds should be in "Zulu" format.
-     *            Example: '2014-10-02T15:01:23.045123456Z'
-     *      @type string $endTime End of the time interval during which trace data was
-     *            collected. This timestamp in nanoseconds should be in "Zulu" format.
-     *            Example: '2014-10-02T15:01:23.045123456Z'
-     *      @type string $filter An optional filter for the request
-     *      @type string $orderBy Field used to sort the returned traces. Can be one
-     *            of 'traceId', 'name', 'duration', 'start'. Descending order can be
-     *            specified by appending 'desc' to the sort field (for example,
-     *            'name desc'). Only one sort field is permitted.
-     * }
-     * @return ItemIterator<Trace>
-     */
-    public function traces(array $options = [])
-    {
-        $resultLimit = $this->pluck('resultLimit', $options, false);
-
-        return new ItemIterator(
-            new PageIterator(
-                function (array $trace) {
-                    $trace += ['spans' => null];
-                    return new Trace($this->connection, $trace['projectId'], $trace['traceId'], $trace['spans']);
-                },
-                [$this->connection, 'listTraces'],
-                ['projectId' => $this->projectId] + $options,
-                [
-                    'itemsKey' => 'traces',
-                    'resultLimit' => $resultLimit
-                ]
-            )
-        );
-    }
-
-    /**
      * Return a Trace reporter that utilizes this client's configuration
      *
      * @param  array $options [optional] Reporter options.
@@ -213,5 +162,11 @@ class TraceClient
         return new AsyncReporter($options + [
             'clientConfig' => $this->clientConfig
         ]);
+    }
+
+    private function transformSpan ($trace)
+    {
+        var_dump(json_encode($trace->spans()));
+        return $trace->spans();
     }
 }

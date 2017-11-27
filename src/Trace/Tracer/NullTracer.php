@@ -18,7 +18,7 @@
 namespace Google\Cloud\Trace\Tracer;
 
 use Google\Cloud\Trace\TraceContext;
-use Google\Cloud\Trace\TraceSpan;
+use Google\Cloud\Trace\Span;
 
 /**
  * This implementation of the TracerInterface is the null object implementation.
@@ -27,10 +27,10 @@ use Google\Cloud\Trace\TraceSpan;
 class NullTracer implements TracerInterface
 {
     /**
-     * Instrument a callable by creating a TraceSpan
+     * Instrument a callable by creating a Span
      *
      * @param array $spanOptions Options for the span.
-     *      {@see Google\Cloud\Trace\TraceSpan::__construct()}
+     *      {@see Google\Cloud\Trace\Span::__construct()}
      * @param callable $callable The callable to inSpan.
      * @param array $arguments [optional] Arguments for the callable.
      * @return mixed The result of the callable
@@ -44,7 +44,7 @@ class NullTracer implements TracerInterface
      * Start a new Span. The start time is already set to the current time.
      *
      * @param array $spanOptions [optional] Options for the span.
-     *      {@see Google\Cloud\Trace\TraceSpan::__construct()}
+     *      {@see Google\Cloud\Trace\Span::__construct()}
      */
     public function startSpan(array $spanOptions)
     {
@@ -70,7 +70,7 @@ class NullTracer implements TracerInterface
     /**
      * Return the spans collected.
      *
-     * @return TraceSpan[]
+     * @return Span[]
      */
     public function spans()
     {
@@ -78,7 +78,7 @@ class NullTracer implements TracerInterface
     }
 
     /**
-     * Add a label to the current TraceSpan
+     * Add a label to the current Span
      *
      * @param string $label
      * @param string $value
@@ -88,7 +88,7 @@ class NullTracer implements TracerInterface
     }
 
     /**
-     * Add a label to the primary TraceSpan
+     * Add a label to the primary Span
      *
      * @param string $label
      * @param string $value
