@@ -34,7 +34,7 @@ class SpanTest extends TestCase
         $traceSpan = new Span(self::PROJECT_ID, self::TRACE_ID);
         $info = $traceSpan->info();
         $this->assertArrayHasKey('spanId', $info);
-        $this->assertRegExp('/^\d+$/', $info['spanId']);
+        $this->assertRegExp('/^[0-9a-f]{16}$/', $info['spanId']);
         $this->assertEquals($info['spanId'], $traceSpan->spanId());
     }
 
@@ -48,10 +48,10 @@ class SpanTest extends TestCase
 
     public function testReadsLabels()
     {
-        $traceSpan = new Span(self::PROJECT_ID, self::TRACE_ID, ['labels' => ['foo' => 'bar']]);
+        $traceSpan = new Span(self::PROJECT_ID, self::TRACE_ID, ['attributes' => ['foo' => 'bar']]);
         $info = $traceSpan->info();
-        $this->assertArrayHasKey('labels', $info);
-        $this->assertEquals('bar', $info['labels']['foo']);
+        $this->assertArrayHasKey('attributes', $info);
+        $this->assertEquals('bar', $info['attributes']['foo']);
     }
 
     public function testCanAddLabel()
@@ -59,39 +59,34 @@ class SpanTest extends TestCase
         $traceSpan = new Span(self::PROJECT_ID, self::TRACE_ID);
         $traceSpan->addAttribute('foo', 'bar');
         $info = $traceSpan->info();
-        $this->assertArrayHasKey('labels', $info);
-        $this->assertEquals('bar', $info['labels']['foo']);
+        $this->assertArrayHasKey('attributes', $info);
+        $this->assertEquals('bar', $info['attributes']['foo']);
     }
 
     public function testNoLabels()
     {
         $traceSpan = new Span(self::PROJECT_ID, self::TRACE_ID);
         $info = $traceSpan->info();
-        $this->assertArrayNotHasKey('labels', $info);
+        $this->assertArrayNotHasKey('attributes', $info);
     }
 
     public function testEmptyLabels()
     {
-        $traceSpan = new Span(self::PROJECT_ID, self::TRACE_ID, ['labels' => []]);
+        $traceSpan = new Span(self::PROJECT_ID, self::TRACE_ID, ['attributes' => []]);
         $info = $traceSpan->info();
-        $this->assertArrayNotHasKey('labels', $info);
+        $this->assertArrayNotHasKey('attributes', $info);
     }
 
     public function testGeneratesDefaultSpanName()
     {
         $traceSpan = new Span(self::PROJECT_ID, self::TRACE_ID);
-        $info = $traceSpan->info();
-        $this->assertArrayHasKey('name', $info);
-        $this->assertStringStartsWith('app', $info['name']);
-        $this->assertEquals($info['name'], $traceSpan->name());
+        $this->assertStringStartsWith('app', $traceSpan->name());
     }
 
     public function testReadsName()
     {
         $traceSpan = new Span(self::PROJECT_ID, self::TRACE_ID, ['name' => 'myspan']);
-        $info = $traceSpan->info();
-        $this->assertArrayHasKey('name', $info);
-        $this->assertEquals('myspan', $info['name']);
+        $this->assertEquals('myspan', $traceSpan->name());
     }
 
     public function testStartFormat()
