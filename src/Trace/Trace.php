@@ -19,13 +19,12 @@ namespace Google\Cloud\Trace;
 
 use Google\Cloud\Core\Exception\NotFoundException;
 use Google\Cloud\Core\ValidateTrait;
-use Google\Cloud\Trace\Connection\ConnectionInterface;
 
 /**
  * This plain PHP class represents a Trace resource. The model currently has no
  * backing API model and is identified by its traceId.
  */
-class Trace implements \Serializable
+class Trace
 {
     use IdGeneratorTrait;
     use ValidateTrait;
@@ -53,7 +52,6 @@ class Trace implements \Serializable
     /**
      * Instantiate a new Trace instance.
      *
-     * @param ConnectionInterface $connection The connection to Stackdriver Trace.
      * @param string $projectId The id of the project this trace belongs to.
      * @param string $traceId [optional] The id of the trace. If not provided, one will be generated
      *        automatically for you.
@@ -61,14 +59,13 @@ class Trace implements \Serializable
      *        {@see Google\Cloud\Trace\Span::__construct()} for configuration details.
      * }
      */
-    public function __construct(ConnectionInterface $connection, $projectId, $traceId = null, $spans = null)
+    public function __construct($projectId, $traceId = null, $spans = null)
     {
-        $this->connection = $connection;
         $this->projectId = $projectId;
         $this->traceId = $traceId ?: $this->generateTraceId();
         if ($spans) {
-            $this->spans = array_map(function ($span) {
-                return new Span($span);
+            $this->spans = array_map(function ($span) use ($projectId, $traceId) {
+                return new Span($projectId, $traceId, $span);
             }, $spans);
         }
     }
@@ -134,35 +131,5 @@ class Trace implements \Serializable
     {
         $this->validateBatch($spans, Span::class);
         $this->spans = $spans;
-    }
-
-    /**
-     * Serialize data.
-     *
-     * @return string
-     * @access private
-     */
-    public function serialize()
-    {
-        return serialize([
-            $this->projectId,
-            $this->traceId,
-            $this->spans
-        ]);
-    }
-
-    /**
-     * Unserialize data.
-     *
-     * @param string
-     * @access private
-     */
-    public function unserialize($data)
-    {
-        list(
-            $this->projectId,
-            $this->traceId,
-            $this->spans
-        ) = unserialize($data);
     }
 }

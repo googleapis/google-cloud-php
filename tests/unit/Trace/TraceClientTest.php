@@ -52,7 +52,7 @@ class TraceClientTest extends TestCase
         ]);
         $this->client->setConnection($this->connection->reveal());
 
-        $trace = new Trace($this->connection->reveal(), 'project', '1', [
+        $trace = new Trace('project', '1', [
                 ['name' => 'main']
             ]
         );
@@ -74,7 +74,7 @@ class TraceClientTest extends TestCase
         ]);
         $this->client->setConnection($this->connection->reveal());
 
-        $trace = new Trace($this->connection->reveal(), 'project', '1', [
+        $trace = new Trace('project', '1', [
                 ['name' => 'main']
             ]
         );

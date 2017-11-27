@@ -38,7 +38,6 @@ class TraceTest extends TestCase
     public function testLoadFromArray()
     {
         $trace = new Trace(
-            $this->connection->reveal(),
             'myproject',
             '1234abcd',
             [
@@ -60,13 +59,13 @@ class TraceTest extends TestCase
 
     public function testGeneratesDefaultTraceId()
     {
-        $trace = new Trace($this->connection->reveal(), 'myproject');
+        $trace = new Trace('myproject');
         $this->assertRegExp('/^[0-9a-f]{32}$/', $trace->traceId());
     }
 
     public function testBuildsSpan()
     {
-        $trace = new Trace($this->connection->reveal(), 'myproject');
+        $trace = new Trace('myproject');
         $span = $trace->span(['name' => 'myspan']);
         $this->assertInstanceOf(Span::class, $span);
         $this->assertEquals('myspan', $span->name());

@@ -155,6 +155,11 @@ class Span implements \JsonSerializable
         return $this->name;
     }
 
+    public function info()
+    {
+        return $this->jsonSerialize();
+    }
+
     /**
      * Returns the info array for serialization.
      *

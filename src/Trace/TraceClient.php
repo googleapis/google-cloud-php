@@ -166,7 +166,6 @@ class TraceClient
 
     private function transformSpan ($trace)
     {
-        var_dump(json_encode($trace->spans()));
         return $trace->spans();
     }
 }

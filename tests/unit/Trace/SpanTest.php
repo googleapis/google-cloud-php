@@ -26,10 +26,12 @@ use PHPUnit\Framework\TestCase;
 class SpanTest extends TestCase
 {
     const EXPECTED_TIMESTAMP_FORMAT = '/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{9}Z$/';
+    const PROJECT_ID = 'test_project_id';
+    const TRACE_ID = 'abcd1234';
 
     public function testGeneratesDefaultSpanId()
     {
-        $traceSpan = new Span();
+        $traceSpan = new Span(self::PROJECT_ID, self::TRACE_ID);
         $info = $traceSpan->info();
         $this->assertArrayHasKey('spanId', $info);
         $this->assertRegExp('/^\d+$/', $info['spanId']);
@@ -38,7 +40,7 @@ class SpanTest extends TestCase
 
     public function testReadsSpanId()
     {
-        $traceSpan = new Span(['spanId' => '1234']);
+        $traceSpan = new Span(self::PROJECT_ID, self::TRACE_ID, ['spanId' => '1234']);
         $info = $traceSpan->info();
         $this->assertArrayHasKey('spanId', $info);
         $this->assertEquals('1234', $info['spanId']);
@@ -46,7 +48,7 @@ class SpanTest extends TestCase
 
     public function testReadsLabels()
     {
-        $traceSpan = new Span(['labels' => ['foo' => 'bar']]);
+        $traceSpan = new Span(self::PROJECT_ID, self::TRACE_ID, ['labels' => ['foo' => 'bar']]);
         $info = $traceSpan->info();
         $this->assertArrayHasKey('labels', $info);
         $this->assertEquals('bar', $info['labels']['foo']);
@@ -54,8 +56,8 @@ class SpanTest extends TestCase
 
     public function testCanAddLabel()
     {
-        $traceSpan = new Span();
-        $traceSpan->addLabel('foo', 'bar');
+        $traceSpan = new Span(self::PROJECT_ID, self::TRACE_ID);
+        $traceSpan->addAttribute('foo', 'bar');
         $info = $traceSpan->info();
         $this->assertArrayHasKey('labels', $info);
         $this->assertEquals('bar', $info['labels']['foo']);
@@ -63,21 +65,21 @@ class SpanTest extends TestCase
 
     public function testNoLabels()
     {
-        $traceSpan = new Span();
+        $traceSpan = new Span(self::PROJECT_ID, self::TRACE_ID);
         $info = $traceSpan->info();
         $this->assertArrayNotHasKey('labels', $info);
     }
 
     public function testEmptyLabels()
     {
-        $traceSpan = new Span(['labels' => []]);
+        $traceSpan = new Span(self::PROJECT_ID, self::TRACE_ID, ['labels' => []]);
         $info = $traceSpan->info();
         $this->assertArrayNotHasKey('labels', $info);
     }
 
     public function testGeneratesDefaultSpanName()
     {
-        $traceSpan = new Span();
+        $traceSpan = new Span(self::PROJECT_ID, self::TRACE_ID);
         $info = $traceSpan->info();
         $this->assertArrayHasKey('name', $info);
         $this->assertStringStartsWith('app', $info['name']);
@@ -86,7 +88,7 @@ class SpanTest extends TestCase
 
     public function testReadsName()
     {
-        $traceSpan = new Span(['name' => 'myspan']);
+        $traceSpan = new Span(self::PROJECT_ID, self::TRACE_ID, ['name' => 'myspan']);
         $info = $traceSpan->info();
         $this->assertArrayHasKey('name', $info);
         $this->assertEquals('myspan', $info['name']);
@@ -94,8 +96,8 @@ class SpanTest extends TestCase
 
     public function testStartFormat()
     {
-        $traceSpan = new Span();
-        $traceSpan->setStart();
+        $traceSpan = new Span(self::PROJECT_ID, self::TRACE_ID);
+        $traceSpan->setStartTime();
         $info = $traceSpan->info();
         $this->assertArrayHasKey('startTime', $info);
         $this->assertRegExp(self::EXPECTED_TIMESTAMP_FORMAT, $info['startTime']);
@@ -103,32 +105,16 @@ class SpanTest extends TestCase
 
     public function testFinishFormat()
     {
-        $traceSpan = new Span();
-        $traceSpan->setEnd();
+        $traceSpan = new Span(self::PROJECT_ID, self::TRACE_ID);
+        $traceSpan->setEndTime();
         $info = $traceSpan->info();
         $this->assertArrayHasKey('endTime', $info);
         $this->assertRegExp(self::EXPECTED_TIMESTAMP_FORMAT, $info['endTime']);
     }
 
-    public function testGeneratesDefaultKind()
-    {
-        $traceSpan = new Span();
-        $info = $traceSpan->info();
-        $this->assertArrayHasKey('kind', $info);
-        $this->assertEquals(Span::SPAN_KIND_UNSPECIFIED, $info['kind']);
-    }
-
-    public function testReadsKind()
-    {
-        $traceSpan = new Span(['kind' => Span::SPAN_KIND_RPC_CLIENT]);
-        $info = $traceSpan->info();
-        $this->assertArrayHasKey('kind', $info);
-        $this->assertEquals(Span::SPAN_KIND_RPC_CLIENT, $info['kind']);
-    }
-
     public function testIgnoresUnknownFields()
     {
-        $traceSpan = new Span(['extravalue' => 'something']);
+        $traceSpan = new Span(self::PROJECT_ID, self::TRACE_ID, ['extravalue' => 'something']);
         $info = $traceSpan->info();
         $this->assertArrayNotHasKey('extravalue', $info);
     }
@@ -138,7 +124,7 @@ class SpanTest extends TestCase
      */
     public function testCanFormatTimestamps($field, $timestamp, $expected)
     {
-        $traceSpan = new Span([$field => $timestamp]);
+        $traceSpan = new Span(self::PROJECT_ID, self::TRACE_ID, [$field => $timestamp]);
         $this->assertEquals($expected, $traceSpan->info()[$field]);
     }
 
