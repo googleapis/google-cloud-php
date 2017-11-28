@@ -17,6 +17,9 @@
 
 namespace Google\Cloud\Trace;
 
+/**
+ * Trait providing setters for adding attributes to other models.
+ */
 trait AttributeTrait
 {
     /**
