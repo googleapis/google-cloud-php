@@ -34,26 +34,72 @@ class Span implements \JsonSerializable
     use AttributeTrait;
     use TimestampTrait;
 
+    /**
+     * @var string [TRACE_ID] is a unique identifier for a trace within a
+     *      project; it is a 32-character hexadecimal encoding of a 16-byte
+     *      array.
+     */
     private $traceId;
 
+    /**
+     * @var string The [SPAN_ID] portion of the span's resource name.
+     */
     private $spanId;
 
+    /**
+     * @var string The [SPAN_ID] of this span's parent span. If this is a root
+     *      span, then this field must be empty.
+     */
     private $parentSpanId;
 
+    /**
+     * @var string
+     */
     private $name;
 
+    /**
+     * @var \DateTimeInterface The start time of the span. On the client side,
+     *      this is the time kept by the local machine where the span execution
+     *      starts. On the server side, this is the time when the server's
+     *      application handler starts running.
+     */
     private $startTime;
 
+    /**
+     * @var \DateTimeInterface The end time of the span. On the client side,
+     *      this is the time kept by the local machine where the span execution
+     *      ends. On the server side, this is the time when the server's
+     *      application handler stops running.
+     */
     private $endTime;
 
+    /**
+     * @var array Stack trace captured at the start of the span.
+     */
     private $stackTrace;
 
+    /**
+     * @var TimeEvent[] A set of time events. You can have up to 32 annotations
+     *      and 128 message events per span.
+     */
     private $timeEvents;
 
+    /**
+     * @var Link[] Links associated with the span. You can have up to 128 links
+     *      per Span.
+     */
     private $links;
 
+    /**
+     * @var Status An optional final status for this span.
+     */
     private $status;
 
+    /**
+     * @var bool A highly recommended but not required flag that identifies when
+     *      a trace crosses a process boundary. True when the parent_span
+     *      belongs to the same process as the current span.
+     */
     private $sameProcessAsParentSpan;
 
     /**
@@ -64,9 +110,6 @@ class Span implements \JsonSerializable
      *
      *      @type string $spanId The ID of the span. If not provided,
      *            one will be generated automatically for you.
-     *      @type string $kind Distinguishes between spans generated
-     *            in a particular context. **Defaults to**
-     *            SPAN_KIND_UNSPECIFIED.
      *      @type string $name The name of the span.
      *      @type \DateTimeInterface|int|float|string $startTime Start time of the span in nanoseconds.
      *            If provided as a string, it must be in "Zulu" format. If provided as an int or float, it is
@@ -75,7 +118,7 @@ class Span implements \JsonSerializable
      *            If provided as a string, it must be in "Zulu" format. If provided as an int or float, it is
      *            expected to be a Unix timestamp.
      *      @type string $parentSpanId ID of the parent span if any.
-     *      @type array $labels Associative array of $label => $value
+     *      @type array $attributes Associative array of $label => $value
      *            to attach to this span.
      * }
      */
@@ -85,6 +128,7 @@ class Span implements \JsonSerializable
         $this->spanId = $this->pluck('spanId', $options, false) ?: $this->generateSpanId();
         $this->parentSpanId = $this->pluck('parentSpanId', $options, false);
         $this->name = $this->pluck('name', $options, false) ?: $this->generateSpanName();
+        $this->status = $this->pluck('status', $options, false);
 
         if (array_key_exists('startTime', $options)) {
             $this->setStartTime($options['startTime']);
@@ -99,6 +143,10 @@ class Span implements \JsonSerializable
 
         if (array_key_exists('timeEvents', $options)) {
             $this->addTimeEvents($options['timeEvents']);
+        }
+
+        if (array_key_exists('links', $options)) {
+            $this->addLinks($options['links']);
         }
     }
 
@@ -187,6 +235,11 @@ class Span implements \JsonSerializable
                 'timeEvent' => $this->timeEvents
             ];
         }
+        if ($this->links) {
+            $data['links'] = [
+                'link' => $this->links
+            ];
+        }
         return $data;
     }
 
@@ -215,7 +268,30 @@ class Span implements \JsonSerializable
         $this->timeEvents[] = $event;
     }
 
+    /**
+     * Add multiple Links to this span.
+     *
+     * @param Link[] $links
+     */
+    public function addLinks(array $links)
+    {
+        foreach ($links as $link) {
+            $this->addLink($link);
+        }
+    }
 
+    /**
+     * Add a single Link to this span.
+     *
+     * @param Link $link
+     */
+    public function addLink(Link $link)
+    {
+        if (!$this->links) {
+            $this->links = [];
+        }
+        $this->links[] = $event;
+    }
 
     /**
      * Generate a random ID for this span. Must be unique per trace,
