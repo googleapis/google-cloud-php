@@ -57,7 +57,18 @@ class Status implements \JsonSerializable
      *
      * @param string $description A user-supplied message describing the event.
      *        The maximum length for the description is 256 bytes.
-     * @param array $options
+     * @param array $options [optional] {
+     *     Configuration options.
+     *
+     *     @type int $code The status code, which should be an enum value of
+     *           google.rpc.Code.
+     *     @type string $message A developer-facing error message, which should be in English.
+     *           Any user-facing error message should be localized and sent in the
+     *           google.rpc.Status.details field, or localized by the client.
+     *     @type array $details A list of messages that carry the error details. There is a
+     *           common set of message types for APIs to use. An object containing fields
+     *           of an arbitrary type. An additional field "@type" contains a URI
+     *           identifying the type.
      */
     public function __construct($options = [])
     {

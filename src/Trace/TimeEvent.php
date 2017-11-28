@@ -34,7 +34,10 @@ abstract class TimeEvent implements \JsonSerializable
     /**
      * Create a new TimeEvent.
      *
-     * @param array $options
+     * @param array $options [optional] {
+     *     Configuration options.
+     *
+     *     @type \DateTimeInterface|int|float|string $time The event time.
      */
     public function __construct($options = [])
     {

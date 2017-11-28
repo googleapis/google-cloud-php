@@ -83,10 +83,9 @@ class Trace implements \JsonSerializable
     /**
      * Returns a serializable array representing this trace.
      *
-     * @param array $options [optional] Configuration Options
      * @return array
      */
-    public function jsonSerialize(array $options = [])
+    public function jsonSerialize()
     {
         return [
             'projectId' => $this->projectId,

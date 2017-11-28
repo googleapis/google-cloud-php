@@ -38,7 +38,12 @@ class Annotation extends TimeEvent
      *
      * @param string $description A user-supplied message describing the event.
      *        The maximum length for the description is 256 bytes.
-     * @param array $options
+     * @param array $options [optional] {
+     *     Configuration options.
+     *
+     *     @type array $attributes A set of attributes on the annotation. You
+     *           can have up to 4 attributes per Annotation.
+     * }
      */
     public function __construct($description, $options = [])
     {

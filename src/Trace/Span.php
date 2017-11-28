@@ -122,6 +122,12 @@ class Span implements \JsonSerializable
      *      @type string $parentSpanId ID of the parent span if any.
      *      @type array $attributes Associative array of $label => $value
      *            to attach to this span.
+     *      @type array $stackTrace Stack trace captured at the start of the span.
+     *      @type TimeEvent[] $timeEvents A set of time events. You can have up
+     *            to 32 annotations and 128 message events per span.
+     *      @type Link[] $links Links associated with the span. You can have up
+     *            to 128 links per Span.
+     *      @type Status $status An optional final status for this span.
      * }
      */
     public function __construct($traceId, $options = [])

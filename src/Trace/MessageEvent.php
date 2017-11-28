@@ -63,7 +63,17 @@ class MessageEvent extends TimeEvent
      * @param $id An identifier for the MessageEvent's message that can be used
      *        to match SENT and RECEIVED MessageEvents. It is recommended to be
      *        unique within a Span.
-     * @param array $options
+     * @param array $options [optional] {
+     *     Configuration options.
+     *
+     *     @type string $type The number of compressed bytes sent or received.
+     *           If missing assumed to be the same size as uncompressed.
+     *     @type int $uncompressedSizeBytes The number of uncompressed bytes
+     *           sent or received.
+     *     @type int $compressedSizeBytes The number of compressed bytes sent or
+     *           received. If missing assumed to be the same size as
+     *           uncompressed.
+     * }
      */
     public function __construct($id, $options = [])
     {
