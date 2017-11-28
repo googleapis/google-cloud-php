@@ -196,6 +196,11 @@ class Span implements \JsonSerializable
         return $this->spanId;
     }
 
+    /**
+     * Retrieve the TraceID of this span
+     *
+     * @return string
+     */
     public function traceId()
     {
         return $this->traceId;
