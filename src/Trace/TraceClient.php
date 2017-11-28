@@ -149,20 +149,6 @@ class TraceClient
         return new Trace($this->projectId, $traceId);
     }
 
-    /**
-     * Return a Trace reporter that utilizes this client's configuration
-     *
-     * @param  array $options [optional] Reporter options.
-     *      {@see Google\Cloud\Trace\Reporter\AsyncReporter::__construct()}
-     * @return ReporterInterface
-     */
-    public function reporter(array $options = [])
-    {
-        return new AsyncReporter($options + [
-            'clientConfig' => $this->clientConfig
-        ]);
-    }
-
     private function transformSpan($trace)
     {
         $projectId = $this->projectId;
