@@ -128,8 +128,11 @@ class Span implements \JsonSerializable
         $this->spanId = $this->pluck('spanId', $options, false) ?: $this->generateSpanId();
         $this->parentSpanId = $this->pluck('parentSpanId', $options, false);
         $this->name = $this->pluck('name', $options, false) ?: $this->generateSpanName();
-        $this->stackTrace = $this->pluck('stackTrace', $options, false);
         $this->status = $this->pluck('status', $options, false);
+
+        if (array_key_exists('stackTrace', $options)) {
+            $this->stackTrace = new StackTrace($options['stackTrace']);
+        }
 
         if (array_key_exists('startTime', $options)) {
             $this->setStartTime($options['startTime']);
