@@ -240,6 +240,9 @@ class Span implements \JsonSerializable
                 'link' => $this->links
             ];
         }
+        if ($this->status) {
+            $data['status'] = $this->status;
+        }
         return $data;
     }
 
@@ -290,7 +293,7 @@ class Span implements \JsonSerializable
         if (!$this->links) {
             $this->links = [];
         }
-        $this->links[] = $event;
+        $this->links[] = $link;
     }
 
     /**

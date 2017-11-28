@@ -19,7 +19,10 @@ namespace Google\Cloud\Trace;
 
 trait AttributeTrait
 {
-    private $attributes;
+    /**
+     * @var Attributes
+     */
+    protected $attributes;
 
     /**
      * Attach labels to this span.
@@ -42,8 +45,9 @@ trait AttributeTrait
     public function addAttribute($key, $value)
     {
         if (!$this->attributes) {
-            $this->attributes = [];
+            $this->attributes = new Attributes();
         }
-        $this->attributes[$key] = (string) $value;
+
+        $this->attributes->add($key, $value);
     }
 }

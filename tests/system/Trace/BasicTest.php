@@ -18,9 +18,11 @@
 namespace Google\Cloud\Tests\System\Trace;
 
 use Google\Cloud\Core\ExponentialBackoff;
+use Google\Cloud\Trace\Annotation;
+use Google\Cloud\Trace\Link;
+use Google\Cloud\Trace\MessageEvent;
 use Google\Cloud\Trace\TraceClient;
-use Google\Cloud\Trace\Span;
-use Google\Cloud\Trace\Trace;
+use Google\Cloud\Trace\Status;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -40,9 +42,64 @@ class BasicTest extends TestCase
     public function testCanCreateTraces()
     {
         $trace = $this->traceClient->trace();
-        $span = $trace->span(['name' => 'main']);
+        $span = $trace->span(['name' => 'basic']);
         $span->setStartTime();
         $span2 = $trace->span(['name' => 'inner', 'parentSpanId' => $span->spanId()]);
+        $span2->setStartTime();
+
+        // just add a little bit of time for the spans
+        usleep(20);
+
+        $span2->setEndTime();
+        $span->setEndTime();
+
+        $trace->setSpans([$span, $span2]);
+
+        // create the trace
+        $this->assertTrue($this->traceClient->insert($trace));
+    }
+
+    public function testCanCreateComplexTrace()
+    {
+        $trace = $this->traceClient->trace();
+        $events = [
+            new Annotation('some annotation', [
+                'attributes' => [
+                    'asdf' => 'qwer'
+                ]
+            ]),
+            new MessageEvent(1234, [
+                'uncompressedSizeBytes' => 2345
+            ])
+        ];
+        $status = new Status([
+            'code' => 200,
+            'message' => 'OK'
+        ]);
+        $span = $trace->span([
+            'name' => 'complex',
+            'attributes' => [
+                'foo' => 'bar'
+            ],
+            'stackTrace' => debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS),
+            'timeEvents' => $events,
+            'status' => $status
+        ]);
+        $links = [
+            new Link([
+                'traceId' => $trace->traceId(),
+                'spanId' => $span->spanId(),
+                'attributes' => [
+                    'key' => 'value'
+                ]
+            ])
+        ];
+        $span->setStartTime();
+        $span2 = $trace->span([
+            'name' => 'inner',
+            'parentSpanId' => $span->spanId(),
+            'links' => $links
+        ]);
         $span2->setStartTime();
 
         // just add a little bit of time for the spans
