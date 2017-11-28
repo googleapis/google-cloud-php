@@ -20,7 +20,10 @@ namespace Google\Cloud\Trace;
 use Google\Cloud\Core\ArrayTrait;
 
 /**
- * This plain PHP class represents a StackTrace resource.
+ * This plain PHP class represents a StackTrace resource. A call stack appearing
+ * in a trace.
+ *
+ * @see https://cloud.google.com/trace/docs/reference/v2/rest/v2/StackTrace
  */
 class StackTrace implements \JsonSerializable
 {

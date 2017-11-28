@@ -20,13 +20,15 @@ namespace Google\Cloud\Trace;
 use Google\Cloud\Core\ArrayTrait;
 
 /**
- * This plain PHP class represents a
- * [Span resource](https://cloud.google.com/trace/docs/reference/v1/rest/v1/projects.traces#Span)
+ * This plain PHP class represents a Span resource.
+ *
  * A span represents a single timed event within a Trace. Spans can be nested
  * and form a trace tree. Often, a trace contains a root span that describes
  * the end-to-end latency of an operation and, optionally, one or more subspans
  * for its suboperations. Spans do not need to be contiguous. There may be
  * gaps between spans in a trace.
+ *
+ * @see https://cloud.google.com/trace/docs/reference/v2/rest/v2/projects.traces/batchWrite#Span
  */
 class Span implements \JsonSerializable
 {

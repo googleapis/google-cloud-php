@@ -19,6 +19,8 @@ namespace Google\Cloud\Trace;
 
 /**
  * An abstract class that represents a TimeEvent resource.
+ *
+ * @see https://cloud.google.com/trace/docs/reference/v2/rest/v2/TimeEvents#timeevent
  */
 abstract class TimeEvent implements \JsonSerializable
 {

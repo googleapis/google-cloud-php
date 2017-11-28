@@ -22,7 +22,9 @@ use Google\Cloud\Core\ArrayTrait;
 /**
  * This plain PHP class represents an Status resource. The Status type defines a
  * logical error model that is suitable for different programming environments,
- * including REST APIs and RPC APIs
+ * including REST APIs and RPC APIs.
+ *
+ * @see https://cloud.google.com/trace/docs/reference/v2/rest/v2/Status
  */
 class Status implements \JsonSerializable
 {

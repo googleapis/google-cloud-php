@@ -20,7 +20,10 @@ namespace Google\Cloud\Trace;
 use Google\Cloud\Core\ArrayTrait;
 
 /**
- * This plain PHP class represents a Link resource.
+ * This plain PHP class represents a Link resource. A set of attributes, each in
+ * the format [KEY]:[VALUE].
+ *
+ * @see https://cloud.google.com/trace/docs/reference/v2/rest/v2/Attributes
  */
 class Attributes implements \JsonSerializable, \ArrayAccess
 {

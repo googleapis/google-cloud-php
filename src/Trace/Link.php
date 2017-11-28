@@ -20,7 +20,13 @@ namespace Google\Cloud\Trace;
 use Google\Cloud\Core\ArrayTrait;
 
 /**
- * This plain PHP class represents a Link resource.
+ * This plain PHP class represents a Link resource. A pointer from the current
+ * span to another span in the same trace or in a different trace. For example,
+ * this can be used in batching operations, where a single batch handler
+ * processes multiple requests from different traces or when the handler
+ * receives a request from a different project.
+ *
+ * @see https://cloud.google.com/trace/docs/reference/v2/rest/v2/Links#link
  */
 class Link implements \JsonSerializable
 {
