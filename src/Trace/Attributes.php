@@ -35,13 +35,6 @@ class Attributes implements \JsonSerializable, \ArrayAccess
     /**
      * Callback for \ArrayAccess []= setter.
      *
-     * Example:
-     *
-     * ```
-     * $attributes = new Attributes();
-     * $attributes['foo'] = 'bar';
-     * ```
-     *
      * @param string $offset
      * @param mixed $value
      */
