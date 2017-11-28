@@ -20,7 +20,8 @@ namespace Google\Cloud\Trace;
 use Google\Cloud\Core\ArrayTrait;
 
 /**
- * This plain PHP class represents an MessageEvent resource.
+ * This plain PHP class represents an MessageEvent resource. An event describing
+ * a message sent/received between Spans.
  */
 class MessageEvent extends TimeEvent
 {
@@ -30,22 +31,52 @@ class MessageEvent extends TimeEvent
     const TYPE_SENT = 'SENT';
     const TYPE_RECEIVED = 'RECEIVED';
 
+    /**
+     * @var string Type of MessageEvent. Indicates whether the message was sent
+     *      or received.
+     */
     private $type;
 
+    /**
+     * @var int An identifier for the MessageEvent's message that can be used to
+     *      match SENT and RECEIVED MessageEvents. It is recommended to be
+     *      unique within a Span.
+     */
     private $id;
 
+    /**
+     * @var int The number of uncompressed bytes sent or received.
+     */
     private $uncompressedSizeBytes;
 
+    /**
+     * @var int The number of compressed bytes sent or received. If missing,
+     *      assumed to be the same size as uncompressed.
+     */
     private $compressedSizeBytes;
 
+    /**
+     * Create a new MessageEvent.
+     *
+     * @param $id An identifier for the MessageEvent's message that can be used
+     *        to match SENT and RECEIVED MessageEvents. It is recommended to be
+     *        unique within a Span.
+     * @param array $options
+     */
     public function __construct($id, $options = [])
     {
+        parent::__construct($options);
         $this->id = $id;
         $this->type = $this->pluck('type', $options, false) ?: self::TYPE_UNSPECIFIED;
         $this->uncompressedSizeBytes = $this->pluck('uncompressedSizeBytes', $options, false);
         $this->compressedSizeBytes = $this->pluck('compressedSizeBytes', $options, false);
     }
 
+    /**
+     * Returns a serializable array representing this MessageEvent.
+     *
+     * @return array
+     */
     public function jsonSerialize()
     {
         $data = [
@@ -60,6 +91,9 @@ class MessageEvent extends TimeEvent
             $data['compressedSizeBytes'] = $this->compressedSizeBytes;
         }
 
-        return $data;
+        return [
+            'time' => $this->time,
+            'messageEvent' => $data
+        ];
     }
 }

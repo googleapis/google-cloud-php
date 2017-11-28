@@ -18,22 +18,40 @@
 namespace Google\Cloud\Trace;
 
 /**
- * This plain PHP class represents an Annotation resource.
+ * This plain PHP class represents an Annotation resource. Text annotation with
+ * a set of attributes.
  */
 class Annotation extends TimeEvent
 {
     use AttributeTrait;
 
+    /**
+     * @var string A user-supplied message describing the event. The maximum
+     *      length for the description is 256 bytes.
+     */
     private $description;
 
+    /**
+     * Create a new Annotation.
+     *
+     * @param string $description A user-supplied message describing the event.
+     *        The maximum length for the description is 256 bytes.
+     * @param array $options
+     */
     public function __construct($description, $options = [])
     {
+        parent::__construct($options);
         $this->description = $description;
         if (array_key_exists('attributes', $options)) {
             $this->addAttributes($options['attributes']);
         }
     }
 
+    /**
+     * Returns a serializable array representing this Link.
+     *
+     * @return array
+     */
     public function jsonSerialize()
     {
         $data = [
@@ -45,6 +63,9 @@ class Annotation extends TimeEvent
             $data['attributes'] = $this->attributes;
         }
 
-        return $data;
+        return [
+            'time' => $this->time,
+            'annotation' => $data
+        ];
     }
 }

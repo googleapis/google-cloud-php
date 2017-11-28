@@ -32,6 +32,7 @@ class Span implements \JsonSerializable
 {
     use ArrayTrait;
     use AttributeTrait;
+    use TimestampTrait;
 
     private $traceId;
 
@@ -189,7 +190,11 @@ class Span implements \JsonSerializable
         return $data;
     }
 
-
+    /**
+     * Add multiple TimeEvent to this span.
+     *
+     * @param TimeEvent[] $events
+     */
     public function addTimeEvents(array $events)
     {
         foreach ($events as $event) {
@@ -197,6 +202,11 @@ class Span implements \JsonSerializable
         }
     }
 
+    /**
+     * Add a single TimeEvent to this span.
+     *
+     * @param TimeEvent $event
+     */
     public function addTimeEvent(TimeEvent $event)
     {
         if (!$this->timeEvents) {
@@ -205,30 +215,7 @@ class Span implements \JsonSerializable
         $this->timeEvents[] = $event;
     }
 
-    /**
-     * Returns a "Zulu" formatted string representing the provided \DateTime.
-     *
-     * @param  \DateTimeInterface|int|float|string $when [optional] The end time of this span.
-     *         **Defaults to** now. If provided as a string, it must be in "Zulu" format.
-     *         If provided as an int or float, it is expected to be a Unix timestamp.
-     * @return string
-     */
-    private function formatDate($when = null)
-    {
-        if (is_string($when)) {
-            return $when;
-        } elseif (!$when) {
-            list($usec, $sec) = explode(' ', microtime());
-            $micro = sprintf("%06d", $usec * 1000000);
-            $when = new \DateTime(date('Y-m-d H:i:s.' . $micro));
-        } elseif (is_numeric($when)) {
-            // Expect that this is a timestamp
-            $micro = sprintf("%06d", ($when - floor($when)) * 1000000);
-            $when = new \DateTime(date('Y-m-d H:i:s.'. $micro, (int) $when));
-        }
-        $when->setTimezone(new \DateTimeZone('UTC'));
-        return $when->format('Y-m-d\TH:i:s.u000\Z');
-    }
+
 
     /**
      * Generate a random ID for this span. Must be unique per trace,

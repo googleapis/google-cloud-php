@@ -17,14 +17,29 @@
 
 namespace Google\Cloud\Trace;
 
-use Google\Cloud\Core\Exception\NotFoundException;
-use Google\Cloud\Core\ValidateTrait;
-
 /**
- * This plain PHP class represents a Trace resource. The model currently has no
- * backing API model and is identified by its traceId.
+ * An abstract class that represents a TimeEvent resource.
  */
 abstract class TimeEvent implements \JsonSerializable
 {
+    use TimestampTrait;
 
+    /**
+     * @var \DateTimeInterface The time of the event.
+     */
+    protected $time;
+
+    /**
+     * Create a new TimeEvent.
+     *
+     * @param array $options
+     */
+    public function __construct($options = [])
+    {
+        if (array_key_exists('time', $options)) {
+            $this->time = $this->formatDate($options['time']);
+        } else {
+            $this->time = $this->formatDate();
+        }
+    }
 }
