@@ -46,7 +46,6 @@ class TraceClient
     const VERSION = '0.3.3';
 
     const FULL_CONTROL_SCOPE = 'https://www.googleapis.com/auth/cloud-platform';
-    const READ_ONLY_SCOPE = 'https://www.googleapis.com/auth/trace.readonly';
 
     /**
      * @var ConnectionInterface $connection Represents a connection to Trace
