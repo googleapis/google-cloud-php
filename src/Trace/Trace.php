@@ -65,7 +65,7 @@ class Trace implements \JsonSerializable
         $this->traceId = $traceId ?: $this->generateTraceId();
         if ($spans) {
             $this->spans = array_map(function ($span) use ($projectId, $traceId) {
-                return new Span($projectId, $traceId, $span);
+                return new Span($traceId, $span);
             }, $spans);
         }
     }
@@ -117,7 +117,7 @@ class Trace implements \JsonSerializable
      */
     public function span(array $options = [])
     {
-        return new Span($this->projectId, $this->traceId, $options);
+        return new Span($this->traceId, $options);
     }
 
     /**

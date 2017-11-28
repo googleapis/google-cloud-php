@@ -164,8 +164,18 @@ class TraceClient
         ]);
     }
 
-    private function transformSpan ($trace)
+    private function transformSpan($trace)
     {
-        return $trace->spans();
+        $projectId = $this->projectId;
+        return array_map(function ($span) use ($projectId) {
+            $data = $span->jsonSerialize();
+            $data['name'] = sprintf(
+                'projects/%s/traces/%s/spans/%s',
+                $projectId,
+                $span->traceId(),
+                $span->spanId()
+            );
+            return $data;
+        }, $trace->spans());
     }
 }

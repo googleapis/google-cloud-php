@@ -33,8 +33,6 @@ class Span implements \JsonSerializable
     use ArrayTrait;
     use AttributeTrait;
 
-    private $projectId;
-
     private $traceId;
 
     private $spanId;
@@ -80,9 +78,8 @@ class Span implements \JsonSerializable
      *            to attach to this span.
      * }
      */
-    public function __construct($projectId, $traceId, $options = [])
+    public function __construct($traceId, $options = [])
     {
-        $this->projectId = $projectId;
         $this->traceId = $traceId;
         $this->spanId = $this->pluck('spanId', $options, false) ?: $this->generateSpanId();
         $this->parentSpanId = $this->pluck('parentSpanId', $options, false);
@@ -138,6 +135,11 @@ class Span implements \JsonSerializable
         return $this->spanId;
     }
 
+    public function traceId()
+    {
+        return $this->traceId;
+    }
+
     /**
      * Retrieve the ID of this span's parent if it exists.
      *
@@ -166,7 +168,6 @@ class Span implements \JsonSerializable
     public function jsonSerialize()
     {
         $data = [
-            'name' => "projects/{$this->projectId}/traces/{$this->traceId}/spans/{$this->spanId}",
             'displayName' => [
                 'value' => $this->name
             ],
