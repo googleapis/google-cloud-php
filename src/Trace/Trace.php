@@ -81,10 +81,7 @@ class Trace implements \JsonSerializable
     }
 
     /**
-     * Returns a serializable array representing this trace. If no span data
-     * is cached, a network request will be made to retrieve it.
-     *
-     * @see https://cloud.google.com/trace/docs/reference/v1/rest/v1/projects.traces/get Traces get API documentation.
+     * Returns a serializable array representing this trace.
      *
      * @param array $options [optional] Configuration Options
      * @return array
