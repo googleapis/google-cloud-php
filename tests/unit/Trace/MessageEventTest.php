@@ -28,7 +28,7 @@ class MessageEventTest extends TestCase
     public function testCreateMessageEvent()
     {
         $messageEvent = new MessageEvent('some id');
-        $info = $messageEvent->jsonSerialize();
+        $info = $messageEvent->jsonSerialize()['messageEvent'];
 
         $this->assertArrayHasKey('id', $info);
         $this->assertEquals('some id', $info['id']);
@@ -39,7 +39,7 @@ class MessageEventTest extends TestCase
     public function testDefaultType()
     {
         $messageEvent = new MessageEvent('some id');
-        $info = $messageEvent->jsonSerialize();
+        $info = $messageEvent->jsonSerialize()['messageEvent'];
 
         $this->assertArrayHasKey('type', $info);
         $this->assertEquals(MessageEvent::TYPE_UNSPECIFIED, $info['type']);
@@ -50,7 +50,7 @@ class MessageEventTest extends TestCase
         $messageEvent = new MessageEvent('some id', [
             'uncompressedSizeBytes' => 1234
         ]);
-        $info = $messageEvent->jsonSerialize();
+        $info = $messageEvent->jsonSerialize()['messageEvent'];
 
         $this->assertArrayHasKey('uncompressedSizeBytes', $info);
         $this->assertEquals(1234, $info['uncompressedSizeBytes']);
@@ -61,7 +61,7 @@ class MessageEventTest extends TestCase
         $messageEvent = new MessageEvent('some id', [
             'compressedSizeBytes' => 1234
         ]);
-        $info = $messageEvent->jsonSerialize();
+        $info = $messageEvent->jsonSerialize()['messageEvent'];
 
         $this->assertArrayHasKey('compressedSizeBytes', $info);
         $this->assertEquals(1234, $info['compressedSizeBytes']);
