@@ -55,8 +55,6 @@ class Status implements \JsonSerializable
     /**
      * Create a new Status.
      *
-     * @param string $description A user-supplied message describing the event.
-     *        The maximum length for the description is 256 bytes.
      * @param array $options [optional] {
      *     Configuration options.
      *
