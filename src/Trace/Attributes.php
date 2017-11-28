@@ -22,7 +22,7 @@ use Google\Cloud\Core\ArrayTrait;
 /**
  * This plain PHP class represents a Link resource.
  */
-class Attributes implements \JsonSerializable
+class Attributes implements \JsonSerializable, \ArrayAccess
 {
     /**
      * @var array
@@ -30,14 +30,53 @@ class Attributes implements \JsonSerializable
     private $attributes = [];
 
     /**
-     * Add an attribute
+     * Callback for \ArrayAccess []= setter.
      *
-     * @param string $key
+     * Example:
+     *
+     * ```
+     * $attributes = new Attributes();
+     * $attributes['foo'] = 'bar';
+     * ```
+     *
+     * @param string $offset
      * @param mixed $value
      */
-    public function add($key, $value)
+    public function offsetSet($offset, $value)
     {
-        $this->attributes[$key] = $value;
+        $this->attributes[$offset] = $value;
+    }
+
+    /**
+     * Callback for \ArrayAccess isset.
+     *
+     * @param string $offset
+     */
+    public function offsetExists($offset)
+    {
+        return isset($this->attributes[$offset]);
+    }
+
+    /**
+     * Callback for \ArrayAccess unset.
+     *
+     * @param string $offset
+     */
+    public function offsetUnset($offset)
+    {
+        unset($this->attributes[$offset]);
+    }
+
+    /**
+     * Callback for \ArrayAccess [$key] getter.
+     *
+     * @param string $offset
+     */
+    public function offsetGet($offset)
+    {
+        return isset($this->attributes[$offset])
+            ? $this->attributes[$offset]
+            : null;
     }
 
     /**

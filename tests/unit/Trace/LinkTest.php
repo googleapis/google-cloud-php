@@ -41,7 +41,7 @@ class LinkTest extends TestCase
 
         $info = $link->jsonSerialize();
         $this->assertArrayHasKey('attributes', $info);
-        $this->assertEquals(['foo' => 'bar'], $info['attributes']);
+        $this->assertEquals('bar', $info['attributes']['foo']);
     }
 
     public function testCreatesAnAnnotionWithAttributes()
@@ -54,7 +54,7 @@ class LinkTest extends TestCase
 
         $info = $link->jsonSerialize();
         $this->assertArrayHasKey('attributes', $info);
-        $this->assertEquals(['foo' => 'bar'], $info['attributes']);
+        $this->assertEquals('bar', $info['attributes']['foo']);
     }
 
     public function testCreatesWithTraceId()

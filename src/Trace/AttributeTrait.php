@@ -48,6 +48,6 @@ trait AttributeTrait
             $this->attributes = new Attributes();
         }
 
-        $this->attributes->add($key, $value);
+        $this->attributes[$key] = $value;
     }
 }
