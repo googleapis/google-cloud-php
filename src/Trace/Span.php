@@ -128,6 +128,7 @@ class Span implements \JsonSerializable
         $this->spanId = $this->pluck('spanId', $options, false) ?: $this->generateSpanId();
         $this->parentSpanId = $this->pluck('parentSpanId', $options, false);
         $this->name = $this->pluck('name', $options, false) ?: $this->generateSpanName();
+        $this->stackTrace = $this->pluck('stackTrace', $options, false);
         $this->status = $this->pluck('status', $options, false);
 
         if (array_key_exists('startTime', $options)) {
@@ -242,6 +243,9 @@ class Span implements \JsonSerializable
         }
         if ($this->status) {
             $data['status'] = $this->status;
+        }
+        if ($this->stackTrace) {
+            $data['stackTrace'] = $this->stackTrace;
         }
         return $data;
     }
