@@ -22,7 +22,7 @@ namespace Google\Cloud\Trace;
  * logical error model that is suitable for different programming environments,
  * including REST APIs and RPC APIs.
  *
- * @see https://cloud.google.com/trace/docs/reference/v2/rest/v2/Status
+ * @see https://cloud.google.com/trace/docs/reference/v2/rest/v2/Status Status model documentation
  */
 class Status implements \JsonSerializable
 {

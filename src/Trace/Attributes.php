@@ -30,7 +30,7 @@ namespace Google\Cloud\Trace;
  * echo $attributes['foo'];
  * ```
  *
- * @see https://cloud.google.com/trace/docs/reference/v2/rest/v2/Attributes
+ * @see https://cloud.google.com/trace/docs/reference/v2/rest/v2/Attributes Attributes model documentation
  */
 class Attributes implements \JsonSerializable, \ArrayAccess
 {

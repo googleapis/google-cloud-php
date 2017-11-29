@@ -26,7 +26,7 @@ namespace Google\Cloud\Trace;
  * for its suboperations. Spans do not need to be contiguous. There may be
  * gaps between spans in a trace.
  *
- * @see https://cloud.google.com/trace/docs/reference/v2/rest/v2/projects.traces/batchWrite#Span
+ * @see https://cloud.google.com/trace/docs/reference/v2/rest/v2/projects.traces/batchWrite#Span Span model documentation
  */
 class Span implements \JsonSerializable
 {
