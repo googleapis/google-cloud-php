@@ -33,9 +33,9 @@ class StackTrace implements \JsonSerializable
     /**
      * Create a new StackTrace.
      *
-     * @param array $backtrace Thje backtrace in the format of debug_backtrace().
+     * @param array $backtrace The backtrace in the format of debug_backtrace().
      */
-    public function __construct($backtrace)
+    public function __construct(array $backtrace)
     {
         $this->backtrace = $backtrace;
     }

@@ -55,17 +55,17 @@ class Trace implements \JsonSerializable
      * @param string $projectId The id of the project this trace belongs to.
      * @param string $traceId [optional] The id of the trace. If not provided, one will be generated
      *        automatically for you.
-     * @param array $spans [optional] Array of Span constructor arguments. See
+     * @param string[] $spans [optional] Array of Span constructor arguments. See
      *        {@see Google\Cloud\Trace\Span::__construct()} for configuration details.
      * }
      */
-    public function __construct($projectId, $traceId = null, $spans = null)
+    public function __construct($projectId, $traceId = null, $spans = []])
     {
         $this->projectId = $projectId;
         $this->traceId = $traceId ?: $this->generateTraceId();
         if ($spans) {
-            $this->spans = array_map(function ($span) use ($projectId, $traceId) {
-                return new Span($traceId, $span);
+            $this->spans = array_map(function ($spanData) use ($projectId, $traceId) {
+                return new Span($traceId, $spanData);
             }, $spans);
         }
     }
