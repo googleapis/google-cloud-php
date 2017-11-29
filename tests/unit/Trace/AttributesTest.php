@@ -20,11 +20,6 @@ namespace Google\Cloud\Tests\Unit\Trace;
 use Google\Cloud\Trace\Attributes;
 use PHPUnit\Framework\TestCase;
 
-class TestClass
-{
-    public $foo = 'bar';
-}
-
 /**
  * @group trace
  */

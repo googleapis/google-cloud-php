@@ -21,16 +21,6 @@ use Google\Cloud\Trace\Attributes;
 use Google\Cloud\Trace\AttributeTrait;
 use PHPUnit\Framework\TestCase;
 
-class TestTraitClass
-{
-    use AttributeTrait;
-
-    public function attributes()
-    {
-        return $this->attributes;
-    }
-}
-
 /**
  * @group trace
  */
@@ -59,5 +49,15 @@ class AttributesTraitTest extends TestCase
         $this->assertInstanceOf(Attributes::class, $attributes);
         $this->assertEquals('bar', $attributes['foo']);
         $this->assertEquals('qwer', $attributes['asdf']);
+    }
+}
+
+class TestTraitClass
+{
+    use AttributeTrait;
+
+    public function attributes()
+    {
+        return $this->attributes;
     }
 }

@@ -20,23 +20,6 @@ namespace Google\Cloud\Tests\Unit\Trace;
 use Google\Cloud\Trace\TimestampTrait;
 use PHPUnit\Framework\TestCase;
 
-class TestTimestampClass
-{
-    use TimestampTrait;
-
-    private $time;
-
-    public function setTime($time)
-    {
-        $this->time = $this->formatDate($time);
-    }
-
-    public function time()
-    {
-        return $this->time;
-    }
-}
-
 /**
  * @group trace
  */
@@ -65,5 +48,22 @@ class TimestampTraitTest extends TestCase
             ['2017-11-28T23:06:59.000000000Z', 1511910419],
             [false, null]
         ];
+    }
+}
+
+class TestTimestampClass
+{
+    use TimestampTrait;
+
+    private $time;
+
+    public function setTime($time)
+    {
+        $this->time = $this->formatDate($time);
+    }
+
+    public function time()
+    {
+        return $this->time;
     }
 }
