@@ -19,6 +19,7 @@ namespace Google\Cloud\Trace;
 
 use Google\Cloud\Core\Exception\NotFoundException;
 use Google\Cloud\Core\ValidateTrait;
+use Ramsey\Uuid\Uuid;
 
 /**
  * This plain PHP class represents a Trace resource. The model currently has no
@@ -26,7 +27,6 @@ use Google\Cloud\Core\ValidateTrait;
  */
 class Trace implements \JsonSerializable
 {
-    use IdGeneratorTrait;
     use ValidateTrait;
 
     /**
@@ -126,5 +126,15 @@ class Trace implements \JsonSerializable
     {
         $this->validateBatch($spans, Span::class);
         $this->spans = $spans;
+    }
+
+    /**
+     * Generates a random trace id as a UUID without dashes.
+     *
+     * @return string
+     */
+    private function generateTraceId()
+    {
+        return str_replace('-', '', Uuid::uuid4());
     }
 }
