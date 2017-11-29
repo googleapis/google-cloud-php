@@ -30,7 +30,7 @@ If you need support for other Google APIs, please check out the [Google APIs Cli
 
 ## Quick Start
 
-We recommend installing individual component packages when possible. A list of available packages can be found on [Packagist](https://packagist.org/search/?q=google%2Fgoogle-cloud-).
+We recommend installing individual component packages when possible. A list of available packages can be found on [Packagist](https://packagist.org/search/?q=google%2Fcloud-).
 
 For example:
 
