@@ -440,7 +440,7 @@ class Span implements \JsonSerializable
      *
      * Example:
      * ```
-     * $link = new Link();
+     * $link = new Link('abcd1234', 'abcd2345');
      * $span->addLinks([$link]);
      * ```
      *
@@ -458,7 +458,7 @@ class Span implements \JsonSerializable
      *
      * Example:
      * ```
-     * $link = new Link();
+     * $link = new Link('abcd1234', 'abcd2345');
      * $span->addLink($link);
      * ```
      *

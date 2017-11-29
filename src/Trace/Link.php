@@ -28,7 +28,7 @@ namespace Google\Cloud\Trace;
  * ```
  * use Google\Cloud\Trace\Link;
  *
- * $link = new Link();
+ * $link = new Link('abcd1234', 'abcd2345');
  * $span->addLink($link);
  * ```
  *
@@ -63,15 +63,13 @@ class Link implements \JsonSerializable
      *
      * @param array $options
      */
-    public function __construct($options = [])
+    public function __construct($traceId, $spanId, $options = [])
     {
         $options += [
-            'traceId' => null,
-            'spanId' => null,
             'type' => self::TYPE_UNSPECIFIED
         ];
-        $this->traceId = $options['traceId'];
-        $this->spanId = $options['spanId'];
+        $this->traceId = $traceId;
+        $this->spanId = $spanId;
         $this->type = $options['type'];
         if (array_key_exists('attributes', $options)) {
             $this->addAttributes($options['attributes']);
@@ -86,16 +84,11 @@ class Link implements \JsonSerializable
      */
     public function jsonSerialize()
     {
-        $data = [];
-        if ($this->traceId) {
-            $data['traceId'] = $this->traceId;
-        }
-        if ($this->spanId) {
-            $data['spanId'] = $this->spanId;
-        }
-        if ($this->type) {
-            $data['type'] = $this->type;
-        }
+        $data = [
+            'traceId' => $this->traceId,
+            'spanId' => $this->spanId,
+            'type' => $this->type
+        ];
         if ($this->attributes) {
             $data['attributes'] = $this->attributes;
         }

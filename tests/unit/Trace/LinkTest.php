@@ -25,9 +25,9 @@ use PHPUnit\Framework\TestCase;
  */
 class LinkTest extends TestCase
 {
-    public function testCreateAnAnnotation()
+    public function testCreateLink()
     {
-        $link = new Link();
+        $link = new Link('abcd1234', 'abcd2345');
 
         $info = $link->jsonSerialize();
         $this->assertArrayHasKey('type', $info);
@@ -36,7 +36,7 @@ class LinkTest extends TestCase
 
     public function testAddsAnAttribute()
     {
-        $link = new Link();
+        $link = new Link('abcd1234', 'abcd2345');
         $link->addAttribute('foo', 'bar');
 
         $info = $link->jsonSerialize();
@@ -46,7 +46,7 @@ class LinkTest extends TestCase
 
     public function testCreatesAnAnnotionWithAttributes()
     {
-        $link = new Link([
+        $link = new Link('abcd1234', 'abcd2345', [
             'attributes' => [
                 'foo' => 'bar'
             ]
@@ -59,7 +59,7 @@ class LinkTest extends TestCase
 
     public function testCreatesWithTraceId()
     {
-        $link = new Link(['traceId' => 'some trace id']);
+        $link = new Link('some trace id', 'abcd2345');
 
         $info = $link->jsonSerialize();
         $this->assertArrayHasKey('traceId', $info);
@@ -68,7 +68,7 @@ class LinkTest extends TestCase
 
     public function testCreatesWithSpanId()
     {
-        $link = new Link(['spanId' => 'some span id']);
+        $link = new Link('abcd1234', 'some span id');
 
         $info = $link->jsonSerialize();
         $this->assertArrayHasKey('spanId', $info);
@@ -77,7 +77,9 @@ class LinkTest extends TestCase
 
     public function testCreatesWithType()
     {
-        $link = new Link(['type' => Link::TYPE_CHILD_LINKED_SPAN]);
+        $link = new Link('abcd1234', 'abcd2345', [
+            'type' => Link::TYPE_CHILD_LINKED_SPAN
+        ]);
 
         $info = $link->jsonSerialize();
         $this->assertArrayHasKey('type', $info);

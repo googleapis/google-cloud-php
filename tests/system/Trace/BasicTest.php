@@ -83,9 +83,7 @@ class BasicTest extends TestCase
             'status' => $status
         ]);
         $links = [
-            new Link([
-                'traceId' => $trace->traceId(),
-                'spanId' => $span->spanId(),
+            new Link($trace->traceId(), $span->spanId(), [
                 'attributes' => [
                     'key' => 'value'
                 ]
