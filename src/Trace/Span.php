@@ -255,7 +255,7 @@ class Span implements \JsonSerializable
      * ```
      * echo $span->endTime();
      * ```
-     *     *
+     *
      * @return string
      */
     public function endTime()

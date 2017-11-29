@@ -79,6 +79,22 @@ class SpanTest extends SnippetTestCase
         $this->assertEquals('2017-11-29T11:51:23.000000000Z', $res->output());
     }
 
+    public function testSetEndTime()
+    {
+        $snippet = $this->snippetFromMethod(Span::class, 'setEndTime');
+        $snippet->addLocal('span', $this->span);
+        $res = $snippet->invoke('span');
+        $this->assertRegExp(self::EXPECTED_TIMESTAMP_FORMAT, $res->returnVal()->startTime());
+    }
+
+    public function testSetEndTimeWithValue()
+    {
+        $snippet = $this->snippetFromMethod(Span::class, 'setEndTime', 1);
+        $snippet->addLocal('span', $this->span);
+        $res = $snippet->invoke('span');
+        $this->assertEquals('2017-11-29T11:51:23.000000000Z', $res->returnVal()->endTime());
+    }
+
     public function testSetSpanId()
     {
         $snippet = $this->snippetFromMethod(Span::class, 'setSpanId');
