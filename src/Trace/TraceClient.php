@@ -101,9 +101,8 @@ class TraceClient
      *
      * Example:
      * ```
-     * $traceClient = new TraceClient();
      * $trace = $traceClient->trace();
-     * $traceClient->insert($trace);
+     * $result = $traceClient->insert($trace);
      * ```
      *
      * @codingStandardsIgnoreStart
@@ -124,9 +123,8 @@ class TraceClient
      *
      * Example:
      * ```
-     * $traceClient = new TraceClient();
      * $trace = $traceClient->trace();
-     * $traceClient->insertBatch([$trace]);
+     * $result = $traceClient->insertBatch([$trace]);
      * ```
      *
      * @codingStandardsIgnoreStart
@@ -155,7 +153,13 @@ class TraceClient
      *
      * * Example:
      * ```
+     * // Create a trace with a generated traceId
      * $trace = $traceClient->trace();
+     * ```
+     *
+     * ```
+     * // Create a trace with a specific traceId
+     * $trace = $traceClient->trace('1234abcd');
      * ```
      *
      * @param string $traceId [optional] The trace id of the trace to reference.

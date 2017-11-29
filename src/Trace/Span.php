@@ -73,7 +73,7 @@ class Span implements \JsonSerializable
     private $name;
 
     /**
-     * @var \DateTimeInterface The start time of the span. On the client side,
+     * @var string The start time of the span. On the client side,
      *      this is the time kept by the local machine where the span execution
      *      starts. On the server side, this is the time when the server's
      *      application handler starts running.
@@ -81,7 +81,7 @@ class Span implements \JsonSerializable
     private $startTime;
 
     /**
-     * @var \DateTimeInterface The end time of the span. On the client side,
+     * @var string The end time of the span. On the client side,
      *      this is the time kept by the local machine where the span execution
      *      ends. On the server side, this is the time when the server's
      *      application handler stops running.
@@ -211,6 +211,21 @@ class Span implements \JsonSerializable
     }
 
     /**
+     * Returns a "Zulu" formatted string representing the start time for this span.
+     *
+     * Example:
+     * ```
+     * echo $span->startTime();
+     * ```
+     *
+     * @return string
+     */
+    public function startTime()
+    {
+        return $this->startTime;
+    }
+
+    /**
      * Set the end time for this span.
      *
      * Example:
@@ -231,6 +246,21 @@ class Span implements \JsonSerializable
     public function setEndTime($when = null)
     {
         $this->endTime = $this->formatDate($when);
+    }
+
+    /**
+     * Returns a "Zulu" formatted string representing the end time for this span.
+     *
+     * Example:
+     * ```
+     * echo $span->endTime();
+     * ```
+     *     *
+     * @return string
+     */
+    public function endTime()
+    {
+        return $this->endTime;
     }
 
     /**
