@@ -59,7 +59,7 @@ class Trace implements \JsonSerializable
      *        {@see Google\Cloud\Trace\Span::__construct()} for configuration details.
      * }
      */
-    public function __construct($projectId, $traceId = null, $spans = []])
+    public function __construct($projectId, $traceId = null, $spans = [])
     {
         $this->projectId = $projectId;
         $this->traceId = $traceId ?: $this->generateTraceId();
