@@ -17,8 +17,6 @@
 
 namespace Google\Cloud\Trace;
 
-use Google\Cloud\Core\ArrayTrait;
-
 /**
  * This plain PHP class represents a Span resource.
  *
@@ -32,7 +30,6 @@ use Google\Cloud\Core\ArrayTrait;
  */
 class Span implements \JsonSerializable
 {
-    use ArrayTrait;
     use AttributeTrait;
     use TimestampTrait;
 
@@ -133,9 +130,25 @@ class Span implements \JsonSerializable
     public function __construct($traceId, $options = [])
     {
         $this->traceId = $traceId;
-        $this->setSpanId($this->pluck('spanId', $options, false) ?: $this->generateSpanId());
-        $this->name = $this->pluck('name', $options, false) ?: $this->generateSpanName();
-        $this->status = $this->pluck('status', $options, false);
+        $options += [
+            'status' => null,
+            'startTime' => null,
+            'attributes' => [],
+            'timeEvents' => [],
+            'links' => []
+        ];
+
+        if (array_key_exists('name', $options)) {
+            $this->name = $options['name'];
+        } else {
+            $this->name = $this->generateSpanName();
+        }
+
+        if (array_key_exists('spanId', $options)) {
+            $this->setSpanId($options['spanId']);
+        } else {
+            $this->setSpanId($this->generateSpanId());
+        }
 
         if (array_key_exists('parentSpanId', $options)) {
             $this->setParentSpanId($options['parentSpanId']);
@@ -152,17 +165,10 @@ class Span implements \JsonSerializable
             $this->setEndTime($options['endTime']);
         }
 
-        if (array_key_exists('attributes', $options)) {
-            $this->addAttributes($options['attributes']);
-        }
-
-        if (array_key_exists('timeEvents', $options)) {
-            $this->addTimeEvents($options['timeEvents']);
-        }
-
-        if (array_key_exists('links', $options)) {
-            $this->addLinks($options['links']);
-        }
+        $this->status = $options['status'];
+        $this->addAttributes($options['attributes']);
+        $this->addTimeEvents($options['timeEvents']);
+        $this->addLinks($options['links']);
     }
 
     /**

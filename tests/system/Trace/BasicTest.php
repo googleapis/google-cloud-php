@@ -72,10 +72,7 @@ class BasicTest extends TestCase
                 'uncompressedSizeBytes' => 2345
             ])
         ];
-        $status = new Status([
-            'code' => 200,
-            'message' => 'OK'
-        ]);
+        $status = new Status(200, 'OK');
         $span = $trace->span([
             'name' => 'complex',
             'attributes' => [

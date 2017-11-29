@@ -17,8 +17,6 @@
 
 namespace Google\Cloud\Trace;
 
-use Google\Cloud\Core\ArrayTrait;
-
 /**
  * This plain PHP class represents an MessageEvent resource. An event describing
  * a message sent/received between Spans.
@@ -27,8 +25,6 @@ use Google\Cloud\Core\ArrayTrait;
  */
 class MessageEvent extends TimeEvent
 {
-    use ArrayTrait;
-
     const TYPE_UNSPECIFIED = 'TYPE_UNSPECIFIED';
     const TYPE_SENT = 'SENT';
     const TYPE_RECEIVED = 'RECEIVED';
@@ -78,10 +74,15 @@ class MessageEvent extends TimeEvent
     public function __construct($id, $options = [])
     {
         parent::__construct($options);
+        $options += [
+            'type' => self::TYPE_UNSPECIFIED,
+            'uncompressedSizeBytes' => null,
+            'compressedSizeBytes' => null
+        ];
         $this->id = $id;
-        $this->type = $this->pluck('type', $options, false) ?: self::TYPE_UNSPECIFIED;
-        $this->uncompressedSizeBytes = $this->pluck('uncompressedSizeBytes', $options, false);
-        $this->compressedSizeBytes = $this->pluck('compressedSizeBytes', $options, false);
+        $this->type = $options['type'];
+        $this->uncompressedSizeBytes = $options['uncompressedSizeBytes'];
+        $this->compressedSizeBytes = $options['compressedSizeBytes'];
     }
 
     /**

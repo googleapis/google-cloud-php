@@ -17,8 +17,6 @@
 
 namespace Google\Cloud\Trace;
 
-use Google\Cloud\Core\ArrayTrait;
-
 /**
  * This plain PHP class represents a Link resource. A pointer from the current
  * span to another span in the same trace or in a different trace. For example,
@@ -30,7 +28,6 @@ use Google\Cloud\Core\ArrayTrait;
  */
 class Link implements \JsonSerializable
 {
-    use ArrayTrait;
     use AttributeTrait;
 
     const TYPE_UNSPECIFIED = 'TYPE_UNSPECIFIED';
@@ -60,9 +57,14 @@ class Link implements \JsonSerializable
      */
     public function __construct($options = [])
     {
-        $this->traceId = $this->pluck('traceId', $options, false);
-        $this->spanId = $this->pluck('spanId', $options, false);
-        $this->type = $this->pluck('type', $options, false) ?: self::TYPE_UNSPECIFIED;
+        $options += [
+            'traceId' => null,
+            'spanId' => null,
+            'type' => self::TYPE_UNSPECIFIED
+        ];
+        $this->traceId = $options['traceId'];
+        $this->spanId = $options['spanId'];
+        $this->type = $options['type'];
         if (array_key_exists('attributes', $options)) {
             $this->addAttributes($options['attributes']);
         }

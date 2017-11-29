@@ -17,7 +17,6 @@
 
 namespace Google\Cloud\Trace;
 
-use Google\Cloud\Core\ArrayTrait;
 use Google\Cloud\Core\ClientTrait;
 use Google\Cloud\Core\Iterator\ItemIterator;
 use Google\Cloud\Core\Iterator\PageIterator;
@@ -40,7 +39,6 @@ use Google\Cloud\Trace\Reporter\ReporterInterface;
  */
 class TraceClient
 {
-    use ArrayTrait;
     use ClientTrait;
 
     const VERSION = '0.3.3';

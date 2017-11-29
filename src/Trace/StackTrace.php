@@ -17,8 +17,6 @@
 
 namespace Google\Cloud\Trace;
 
-use Google\Cloud\Core\ArrayTrait;
-
 /**
  * This plain PHP class represents a StackTrace resource. A call stack appearing
  * in a trace.

@@ -17,8 +17,6 @@
 
 namespace Google\Cloud\Trace;
 
-use Google\Cloud\Core\ArrayTrait;
-
 /**
  * This plain PHP class represents a Link resource. A set of attributes, each in
  * the format [KEY]:[VALUE].
