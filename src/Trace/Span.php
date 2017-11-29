@@ -133,10 +133,13 @@ class Span implements \JsonSerializable
     public function __construct($traceId, $options = [])
     {
         $this->traceId = $traceId;
-        $this->spanId = $this->pluck('spanId', $options, false) ?: $this->generateSpanId();
-        $this->parentSpanId = $this->pluck('parentSpanId', $options, false);
+        $this->setSpanId($this->pluck('spanId', $options, false) ?: $this->generateSpanId());
         $this->name = $this->pluck('name', $options, false) ?: $this->generateSpanName();
         $this->status = $this->pluck('status', $options, false);
+
+        if (array_key_exists('parentSpanId', $options)) {
+            $this->setParentSpanId($options['parentSpanId']);
+        }
 
         if (array_key_exists('stackTrace', $options)) {
             $this->stackTrace = new StackTrace($options['stackTrace']);
@@ -184,6 +187,26 @@ class Span implements \JsonSerializable
     public function setEndTime($when = null)
     {
         $this->endTime = $this->formatDate($when);
+    }
+
+    /**
+     * Set the ID of this span
+     *
+     * @param string $spanId
+     */
+    public function setSpanId($spanId)
+    {
+        $this->spanId = str_pad($spanId, 16, '0', STR_PAD_LEFT);
+    }
+
+    /**
+     * Set the ID of this span's parent
+     *
+     * @param string $spanId
+     */
+    public function setParentSpanId($spanId)
+    {
+        $this->parentSpanId = str_pad($spanId, 16, '0', STR_PAD_LEFT);
     }
 
     /**
@@ -324,7 +347,7 @@ class Span implements \JsonSerializable
      */
     private function generateSpanId()
     {
-        return str_pad(dechex(mt_rand()), 16, "0", STR_PAD_LEFT);
+        return dechex(mt_rand());
     }
 
     /**
