@@ -24,6 +24,14 @@ namespace Google\Cloud\Trace;
  * processes multiple requests from different traces or when the handler
  * receives a request from a different project.
  *
+ * Example:
+ * ```
+ * use Google\Cloud\Trace\Link;
+ *
+ * $link = new Link();
+ * $span->addLink($link);
+ * ```
+ *
  * @see https://cloud.google.com/trace/docs/reference/v2/rest/v2/Links#link Link model documentation
  */
 class Link implements \JsonSerializable

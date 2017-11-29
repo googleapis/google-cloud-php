@@ -21,6 +21,14 @@ namespace Google\Cloud\Trace;
  * This plain PHP class represents an Annotation resource. Text annotation with
  * a set of attributes.
  *
+ * Example:
+ * ```
+ * use Google\Cloud\Trace\Annotation;
+ *
+ * $annotation = new Annotation('some note');
+ * $span->addTimeEvent($annotation);
+ * ```
+ *
  * @see https://cloud.google.com/trace/docs/reference/v2/rest/v2/TimeEvents#annotation Annotation model documentation
  */
 class Annotation extends TimeEvent

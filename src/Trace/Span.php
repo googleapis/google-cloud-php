@@ -26,6 +26,20 @@ namespace Google\Cloud\Trace;
  * for its suboperations. Spans do not need to be contiguous. There may be
  * gaps between spans in a trace.
  *
+ * Example:
+ * ```
+ * use Google\Cloud\Trace\TraceClient;
+ *
+ * $traceClient = new TraceClient();
+ * $trace = $traceClient->trace();
+ * $span = $trace->span([
+ *     'name' => 'span name',
+ *     'attributes' => ['foo' => 'bar'],
+ *     'stackTrace' => debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS)
+ * ]);
+ * $span->setStartTime();
+ * $span->setEndTime();
+ * ```
  * @codingStandardsIgnoreStart
  * @see https://cloud.google.com/trace/docs/reference/v2/rest/v2/projects.traces/batchWrite#Span Span model documentation
  * @codingStandardsIgnoreEnd
@@ -176,6 +190,17 @@ class Span implements \JsonSerializable
     /**
      * Set the start time for this span.
      *
+     * Example:
+     * ```
+     * // Set the start time to now
+     * $span->setStartTime();
+     * ```
+     *
+     * ```
+     * // Set the start time to a custom time
+     * $span->setStartTime(new \DateTime('2017-11-29 11:51:23'));
+     * ```
+     *
      * @param  \DateTimeInterface|int|float|string $when [optional] The start time of this span.
      *         **Defaults to** now. If provided as a string, it must be in "Zulu" format.
      *         If provided as an int or float, it is expected to be a Unix timestamp.
@@ -187,6 +212,17 @@ class Span implements \JsonSerializable
 
     /**
      * Set the end time for this span.
+     *
+     * Example:
+     * ```
+     * // Set the end time to now
+     * $span->setEndTime();
+     * ```
+     *
+     * ```
+     * // Set the end time to a custom time
+     * $span->setEndTime(new \DateTime('2017-11-29 11:51:23'));
+     * ```
      *
      * @param  \DateTimeInterface|int|float|string $when [optional] The end time of this span.
      *         **Defaults to** now. If provided as a string, it must be in "Zulu" format.
@@ -200,6 +236,11 @@ class Span implements \JsonSerializable
     /**
      * Set the ID of this span
      *
+     * Example:
+     * ```
+     * $span->setSpanId('1234abcd');
+     * ```
+     *
      * @param string $spanId
      */
     public function setSpanId($spanId)
@@ -209,6 +250,11 @@ class Span implements \JsonSerializable
 
     /**
      * Set the ID of this span's parent
+     *
+     * Example:
+     * ```
+     * $span->setParentSpanId('1234abcd');
+     * ```
      *
      * @param string $spanId
      */
@@ -220,6 +266,11 @@ class Span implements \JsonSerializable
     /**
      * Retrieve the ID of this span.
      *
+     * Example:
+     * ```
+     * echo $span->spanId();
+     * ```
+     *
      * @return string
      */
     public function spanId()
@@ -229,6 +280,11 @@ class Span implements \JsonSerializable
 
     /**
      * Retrieve the TraceID of this span
+     *
+     * Example:
+     * ```
+     * echo $span->traceId();
+     * ```
      *
      * @return string
      */
@@ -240,6 +296,11 @@ class Span implements \JsonSerializable
     /**
      * Retrieve the ID of this span's parent if it exists.
      *
+     * Example:
+     * ```
+     * echo $span->parentSpanId();
+     * ```
+     *
      * @return string
      */
     public function parentSpanId()
@@ -249,6 +310,11 @@ class Span implements \JsonSerializable
 
     /**
      * Retrieve the name of this span.
+     *
+     * Example:
+     * ```
+     * echo $span->name();
+     * ```
      *
      * @return string
      */
@@ -301,6 +367,16 @@ class Span implements \JsonSerializable
     /**
      * Add multiple TimeEvent to this span.
      *
+     * Example:
+     * ```
+     * $annotation = new Annotation('some message');
+     * $messageEvent = new MessageEvent('message id');
+     * $span->addTimeEvents([
+     *     $annotation,
+     *     $messageEvent
+     * ]);
+     * ```
+     *
      * @param TimeEvent[] $events
      */
     public function addTimeEvents(array $events)
@@ -312,6 +388,12 @@ class Span implements \JsonSerializable
 
     /**
      * Add a single TimeEvent to this span.
+     *
+     * Example:
+     * ```
+     * $annotation = new Annotation('some message');
+     * $span->addTimeEvent($annotation);
+     * ```
      *
      * @param TimeEvent $event
      */
@@ -326,6 +408,12 @@ class Span implements \JsonSerializable
     /**
      * Add multiple Links to this span.
      *
+     * Example:
+     * ```
+     * $link = new Link();
+     * $span->addLinks([$link]);
+     * ```
+     *
      * @param Link[] $links
      */
     public function addLinks(array $links)
@@ -337,6 +425,12 @@ class Span implements \JsonSerializable
 
     /**
      * Add a single Link to this span.
+     *
+     * Example:
+     * ```
+     * $link = new Link();
+     * $span->addLink($link);
+     * ```
      *
      * @param Link $link
      */

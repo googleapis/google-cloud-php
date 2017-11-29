@@ -99,6 +99,13 @@ class TraceClient
     /**
      * Sends a Trace log in a simple fashion.
      *
+     * Example:
+     * ```
+     * $traceClient = new TraceClient();
+     * $trace = $traceClient->trace();
+     * $traceClient->insert($trace);
+     * ```
+     *
      * @codingStandardsIgnoreStart
      * @see https://cloud.google.com/trace/docs/reference/v1/rest/v1/projects/patchTraces Project patchTraces API documentation.
      * @codingStandardsIgnoreEnd
@@ -114,6 +121,13 @@ class TraceClient
 
     /**
      * Sends multiple Trace logs in a simple fashion.
+     *
+     * Example:
+     * ```
+     * $traceClient = new TraceClient();
+     * $trace = $traceClient->trace();
+     * $traceClient->insertBatch([$trace]);
+     * ```
      *
      * @codingStandardsIgnoreStart
      * @see https://cloud.google.com/trace/docs/reference/v1/rest/v1/projects/patchTraces Project patchTraces API documentation.
@@ -138,6 +152,11 @@ class TraceClient
      * point. To see the operations that can be performed on a trace please
      * see {@see Google\Cloud\Trace\Trace}. If no traceId is provided, one will be
      * generated for you.
+     *
+     * * Example:
+     * ```
+     * $trace = $traceClient->trace();
+     * ```
      *
      * @param string $traceId [optional] The trace id of the trace to reference.
      * @return Trace

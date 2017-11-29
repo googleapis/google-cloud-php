@@ -21,6 +21,14 @@ namespace Google\Cloud\Trace;
  * This plain PHP class represents an MessageEvent resource. An event describing
  * a message sent/received between Spans.
  *
+ * Example:
+ * ```
+ * use Google\Cloud\Trace\MessageEvent;
+ *
+ * $messageEvent = new MessageEvent('some-event-id');
+ * $span->addTimeEvent($messageEvent);
+ * ```
+ *
  * @codingStandardsIgnoreStart
  * @see https://cloud.google.com/trace/docs/reference/v2/rest/v2/TimeEvents#messageevent MessageEvent model documentation
  * @codingStandardsIgnoreEnd

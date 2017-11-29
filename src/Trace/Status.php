@@ -22,6 +22,13 @@ namespace Google\Cloud\Trace;
  * logical error model that is suitable for different programming environments,
  * including REST APIs and RPC APIs.
  *
+ * Example:
+ * ```
+ * use Google\Cloud\Trace\Status;
+ *
+ * $status = new Status(200, 'OK');
+ * ```
+ *
  * @see https://cloud.google.com/trace/docs/reference/v2/rest/v2/Status Status model documentation
  */
 class Status implements \JsonSerializable

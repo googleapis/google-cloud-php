@@ -24,6 +24,15 @@ use Ramsey\Uuid\Uuid;
 /**
  * This plain PHP class represents a Trace resource. The model currently has no
  * backing API model and is identified by its traceId.
+ *
+ * Example:
+ * ```
+ * use Google\Cloud\Trace\TraceClient;
+ *
+ * $traceClient = new TraceClient();
+ *
+ * $trace = $traceClient->trace();
+ * ```
  */
 class Trace implements \JsonSerializable
 {
@@ -73,6 +82,11 @@ class Trace implements \JsonSerializable
     /**
      * Retrieves the trace's id.
      *
+     * Example:
+     * ```
+     * echo $trace->traceId();
+     * ```
+     *
      * @return string
      */
     public function traceId()
@@ -98,6 +112,11 @@ class Trace implements \JsonSerializable
     /**
      * Retrieves the spans for this trace.
      *
+     * Example:
+     * ```
+     * $spans = $trace->spans();
+     * ```
+     *
      * @return Span[]
      */
     public function spans()
@@ -107,6 +126,11 @@ class Trace implements \JsonSerializable
 
     /**
      * Create an instance of {@see Google\Cloud\Trace\Span}
+     *
+     * Example:
+     * ```
+     * $span = $trace->span(['name' => 'newSpan']);
+     * ```
      *
      * @param array $options [optional] See {@see Google\Cloud\Trace\Span::__construct()}
      *        for configuration details.
@@ -119,6 +143,11 @@ class Trace implements \JsonSerializable
 
     /**
      * Set the spans for this trace.
+     *
+     * Example:
+     * ```
+     * $trace->setSpans([$span1, $span2]);
+     * ```
      *
      * @param Span[] $spans
      */

@@ -21,6 +21,13 @@ namespace Google\Cloud\Trace;
  * This plain PHP class represents a StackTrace resource. A call stack appearing
  * in a trace.
  *
+ * Example:
+ * ```
+ * use Google\Cloud\Trace\StackTrace;
+ *
+ * $stackTrace = new StackTrace(debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS));
+ * ```
+ *
  * @see https://cloud.google.com/trace/docs/reference/v2/rest/v2/StackTrace StackTrace model documentation
  */
 class StackTrace implements \JsonSerializable

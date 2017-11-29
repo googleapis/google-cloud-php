@@ -21,8 +21,13 @@ namespace Google\Cloud\Trace;
  * This plain PHP class represents a Link resource. A set of attributes, each in
  * the format [KEY]:[VALUE].
  *
- * This class implemets PHP's `ArrayAccess` interface and thus supports all
- * array-style read and assignment operations.
+ * This class implements PHP's [ArrayAccess](http://php.net/arrayaccess),
+ * allowing access via the array syntax (example below).
+ *
+ * Attributes are available to
+ * {@see Google\Cloud\Trace\Annotation},
+ * {@see Google\Cloud\Trace\Link}, and
+ * {@see Google\Cloud\Trace\Span}.
  *
  * Example:
  * ```
