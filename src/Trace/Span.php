@@ -252,6 +252,7 @@ class Span implements \JsonSerializable
     /**
      * Returns the info array for serialization.
      *
+     * @access private
      * @return array
      */
     public function jsonSerialize()

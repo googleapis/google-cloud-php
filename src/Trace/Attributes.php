@@ -23,6 +23,15 @@ use Google\Cloud\Core\ArrayTrait;
  * This plain PHP class represents a Link resource. A set of attributes, each in
  * the format [KEY]:[VALUE].
  *
+ * This class implemets PHP's `ArrayAccess` interface and thus supports all
+ * array-style read and assignment operations.
+ *
+ * Example:
+ * ```
+ * $attributes['foo'] = 'bar';
+ * echo $attributes['foo'];
+ * ```
+ *
  * @see https://cloud.google.com/trace/docs/reference/v2/rest/v2/Attributes
  */
 class Attributes implements \JsonSerializable, \ArrayAccess
@@ -35,6 +44,7 @@ class Attributes implements \JsonSerializable, \ArrayAccess
     /**
      * Callback for \ArrayAccess []= setter.
      *
+     * @access private
      * @param string $offset
      * @param mixed $value
      */
@@ -46,6 +56,7 @@ class Attributes implements \JsonSerializable, \ArrayAccess
     /**
      * Callback for \ArrayAccess isset.
      *
+     * @access private
      * @param string $offset
      */
     public function offsetExists($offset)
@@ -56,6 +67,7 @@ class Attributes implements \JsonSerializable, \ArrayAccess
     /**
      * Callback for \ArrayAccess unset.
      *
+     * @access private
      * @param string $offset
      */
     public function offsetUnset($offset)
@@ -66,6 +78,7 @@ class Attributes implements \JsonSerializable, \ArrayAccess
     /**
      * Callback for \ArrayAccess [$key] getter.
      *
+     * @access private
      * @param string $offset
      */
     public function offsetGet($offset)
@@ -78,6 +91,7 @@ class Attributes implements \JsonSerializable, \ArrayAccess
     /**
      * Returns a serializable array representing this Link.
      *
+     * @access private
      * @return array
      */
     public function jsonSerialize()

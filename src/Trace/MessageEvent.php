@@ -87,6 +87,7 @@ class MessageEvent extends TimeEvent
     /**
      * Returns a serializable array representing this MessageEvent.
      *
+     * @access private
      * @return array
      */
     public function jsonSerialize()

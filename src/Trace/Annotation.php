@@ -57,6 +57,7 @@ class Annotation extends TimeEvent
     /**
      * Returns a serializable array representing this Link.
      *
+     * @access private
      * @return array
      */
     public function jsonSerialize()

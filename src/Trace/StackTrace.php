@@ -45,6 +45,7 @@ class StackTrace implements \JsonSerializable
     /**
      * Returns a serializable array representing this StackTrace
      *
+     * @access private
      * @return array
      */
     public function jsonSerialize()

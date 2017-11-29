@@ -83,6 +83,7 @@ class Trace implements \JsonSerializable
     /**
      * Returns a serializable array representing this trace.
      *
+     * @access private
      * @return array
      */
     public function jsonSerialize()
