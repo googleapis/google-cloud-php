@@ -37,7 +37,9 @@ $client->insert($trace);
 ### Using OpenCensus
 
 We highly recommend using the [OpenCensus][opencensus] project to instrument
-your application.
+your application. OpenCensus is an open source, distributed tracing framework
+that maintains integrations with popular frameworks and tools. OpenCensus
+provides a data exporter for Stackdriver Trace which uses this library.
 
 Install with `composer` or add to your `composer.json`.
 
