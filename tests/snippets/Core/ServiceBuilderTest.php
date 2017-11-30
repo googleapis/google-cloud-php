@@ -21,8 +21,9 @@ use Google\Cloud\BigQuery\BigQueryClient;
 use Google\Cloud\Core\ServiceBuilder;
 use Google\Cloud\Datastore\DatastoreClient;
 use Google\Cloud\Dev\Snippet\SnippetTestCase;
-use Google\Cloud\Logging\LoggingClient;
+use Google\Cloud\Firestore\FirestoreClient;
 use Google\Cloud\Language\LanguageClient;
+use Google\Cloud\Logging\LoggingClient;
 use Google\Cloud\PubSub\PubSubClient;
 use Google\Cloud\Spanner\SpannerClient;
 use Google\Cloud\Speech\SpeechClient;
@@ -54,6 +55,7 @@ class ServiceBuilderTest extends SnippetTestCase
         return [
             ['bigQuery', BigQueryClient::class, 'bigQuery'],
             ['datastore', DatastoreClient::class, 'datastore'],
+            ['firestore', FirestoreClient::class, 'firestore', true],
             ['logging', LoggingClient::class, 'logging'],
             ['language', LanguageClient::class, 'language'],
             ['pubsub', PubSubClient::class, 'pubsub'],
