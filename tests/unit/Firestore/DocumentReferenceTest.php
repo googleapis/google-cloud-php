@@ -241,7 +241,7 @@ class DocumentReferenceTest extends TestCase
 
         $collections = iterator_to_array($this->document->collections());
         $this->assertContainsOnlyInstancesOf(CollectionReference::class, $collections);
-        $this->assertTrue(count($collections) === 3);
+        $this->assertCount(3, $collections);
         $this->assertEquals(self::NAME .'/c', $collections[0]->name());
         $this->assertEquals(self::NAME .'/d', $collections[1]->name());
         $this->assertEquals(self::NAME .'/e', $collections[2]->name());

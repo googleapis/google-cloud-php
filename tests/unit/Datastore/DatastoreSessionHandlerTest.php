@@ -208,7 +208,7 @@ class DatastoreSessionHandlerTest extends TestCase
         $datastoreSessionHandler->open(self::NAMESPACE_ID, self::KIND);
         $ret = $datastoreSessionHandler->write('sessionid', $data);
 
-        $this->assertEquals(true, $ret);
+        $this->assertTrue($ret);
     }
 
     /**
@@ -254,7 +254,7 @@ class DatastoreSessionHandlerTest extends TestCase
         $datastoreSessionHandler->open(self::NAMESPACE_ID, self::KIND);
         $ret = $datastoreSessionHandler->write('sessionid', $data);
 
-        $this->assertEquals(false, $ret);
+        $this->assertFalse($ret);
     }
 
     public function testWriteWithEntityOptions()
@@ -300,7 +300,7 @@ class DatastoreSessionHandlerTest extends TestCase
         $datastoreSessionHandler->open(self::NAMESPACE_ID, self::KIND);
         $ret = $datastoreSessionHandler->write('sessionid', $data);
 
-        $this->assertEquals(true, $ret);
+        $this->assertTrue($ret);
     }
 
     public function testWriteWithEmptyEntityOptions()
@@ -346,7 +346,7 @@ class DatastoreSessionHandlerTest extends TestCase
         $datastoreSessionHandler->open(self::NAMESPACE_ID, self::KIND);
         $ret = $datastoreSessionHandler->write('sessionid', $data);
 
-        $this->assertEquals(true, $ret);
+        $this->assertTrue($ret);
     }
 
     /**
@@ -399,7 +399,7 @@ class DatastoreSessionHandlerTest extends TestCase
         $datastoreSessionHandler->open(self::NAMESPACE_ID, self::KIND);
         $ret = $datastoreSessionHandler->destroy('sessionid');
 
-        $this->assertEquals(true, $ret);
+        $this->assertTrue($ret);
     }
 
     /**
@@ -431,7 +431,7 @@ class DatastoreSessionHandlerTest extends TestCase
         $datastoreSessionHandler->open(self::NAMESPACE_ID, self::KIND);
         $ret = $datastoreSessionHandler->destroy('sessionid');
 
-        $this->assertEquals(false, $ret);
+        $this->assertFalse($ret);
     }
 
     public function testDefaultGcDoesNothing()
@@ -446,7 +446,7 @@ class DatastoreSessionHandlerTest extends TestCase
         $datastoreSessionHandler->open(self::NAMESPACE_ID, self::KIND);
         $ret = $datastoreSessionHandler->gc(100);
 
-        $this->assertEquals(true, $ret);
+        $this->assertTrue($ret);
     }
 
     public function testGc()
@@ -519,7 +519,7 @@ class DatastoreSessionHandlerTest extends TestCase
         $datastoreSessionHandler->open(self::NAMESPACE_ID, self::KIND);
         $ret = $datastoreSessionHandler->gc(100);
 
-        $this->assertEquals(true, $ret);
+        $this->assertTrue($ret);
     }
 
     /**
@@ -596,6 +596,6 @@ class DatastoreSessionHandlerTest extends TestCase
         $datastoreSessionHandler->open(self::NAMESPACE_ID, self::KIND);
         $ret = $datastoreSessionHandler->gc(100);
 
-        $this->assertEquals(false, $ret);
+        $this->assertFalse($ret);
     }
 }

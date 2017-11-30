@@ -87,7 +87,7 @@ class SpannerClientTest extends TestCase
         $this->assertInstanceOf(ItemIterator::class, $configs);
 
         $configs = iterator_to_array($configs);
-        $this->assertEquals(2, count($configs));
+        $this->assertCount(2, $configs);
         $this->assertInstanceOf(InstanceConfiguration::class, $configs[0]);
         $this->assertInstanceOf(InstanceConfiguration::class, $configs[1]);
     }
@@ -127,7 +127,7 @@ class SpannerClientTest extends TestCase
         $this->assertInstanceOf(ItemIterator::class, $configs);
 
         $configs = iterator_to_array($configs);
-        $this->assertEquals(2, count($configs));
+        $this->assertCount(2, $configs);
         $this->assertInstanceOf(InstanceConfiguration::class, $configs[0]);
         $this->assertInstanceOf(InstanceConfiguration::class, $configs[1]);
     }
@@ -208,7 +208,7 @@ class SpannerClientTest extends TestCase
         $this->assertInstanceOf(ItemIterator::class, $instances);
 
         $instances = iterator_to_array($instances);
-        $this->assertEquals(2, count($instances));
+        $this->assertCount(2, $instances);
         $this->assertEquals('foo', InstanceAdminClient::parseName($instances[0]->name())['instance']);
         $this->assertEquals('bar', InstanceAdminClient::parseName($instances[1]->name())['instance']);
     }

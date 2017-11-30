@@ -80,7 +80,7 @@ class AnnotationsTest extends VisionTestCase
         $this->assertInstanceOf(CropHint::class, $res->cropHints()[0]);
         $this->assertTrue(isset($res->cropHints()[0]->boundingPoly()['vertices']));
         $this->assertTrue(is_float($res->cropHints()[0]->confidence()));
-        $this->assertTrue(!is_null($res->cropHints()[0]->importanceFraction()));
+        $this->assertNotNull($res->cropHints()[0]->importanceFraction());
 
         // Web Annotation
         $this->assertInstanceOf(Web::class, $res->web());
@@ -89,7 +89,7 @@ class AnnotationsTest extends VisionTestCase
         $desc = array_filter($res->web()->entities(), function ($e) {
             return ($e->description() === 'Eiffel Tower');
         });
-        $this->assertTrue(count($desc) > 0);
+        $this->assertGreaterThan(0, count($desc));
 
         $this->assertInstanceOf(WebImage::class, $res->web()->matchingImages()[0]);
         $this->assertInstanceOf(WebImage::class, $res->web()->partialMatchingImages()[0]);

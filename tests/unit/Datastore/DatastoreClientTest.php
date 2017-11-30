@@ -112,7 +112,7 @@ class DatastoreClientTest extends TestCase
 
         $this->assertTrue(is_array($keys));
         $this->assertInstanceOf(Key::class, $keys[0]);
-        $this->assertEquals(5, count($keys));
+        $this->assertCount(5, $keys);
     }
 
     public function testKeysAncestors()

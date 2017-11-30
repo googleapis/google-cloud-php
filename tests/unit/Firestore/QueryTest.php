@@ -98,7 +98,7 @@ class QueryTest extends TestCase
 
         $res = $this->query->documents();
         $this->assertContainsOnlyInstancesOf(DocumentSnapshot::class, $res);
-        $this->assertEquals(1, count($res->rows()));
+        $this->assertCount(1, $res->rows());
 
         $current = $res->rows()[0];
         $this->assertEquals($name, $current->name());

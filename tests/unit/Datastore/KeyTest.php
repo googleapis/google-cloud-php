@@ -56,7 +56,7 @@ class KeyTest extends TestCase
 
         $key->pathElement('foo', 'bar');
 
-        $this->assertEquals(1, count($key->keyObject()['path']));
+        $this->assertCount(1, $key->keyObject()['path']);
         $this->assertEquals(['kind' => 'foo', 'name' => 'bar'], $key->keyObject()['path'][0]);
     }
 

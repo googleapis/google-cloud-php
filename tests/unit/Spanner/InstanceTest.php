@@ -269,7 +269,7 @@ class InstanceTest extends TestCase
 
         $dbs = iterator_to_array($dbs);
 
-        $this->assertEquals(2, count($dbs));
+        $this->assertCount(2, $dbs);
         $this->assertEquals('database1', DatabaseAdminClient::parseName($dbs[0]->name())['database']);
         $this->assertEquals('database2', DatabaseAdminClient::parseName($dbs[1]->name())['database']);
     }
@@ -294,7 +294,7 @@ class InstanceTest extends TestCase
 
         $dbs = iterator_to_array($dbs);
 
-        $this->assertEquals(2, count($dbs));
+        $this->assertCount(2, $dbs);
         $this->assertEquals('database1', DatabaseAdminClient::parseName($dbs[0]->name())['database']);
         $this->assertEquals('database2', DatabaseAdminClient::parseName($dbs[1]->name())['database']);
     }

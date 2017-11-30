@@ -37,7 +37,7 @@ class DirectoryTest extends StreamWrapperTestCase
     {
         $dir = self::generateUrl('test_directory');
         $this->assertTrue(mkdir($dir));
-        $this->assertTrue(file_exists($dir . '/'));
+        $this->assertFileExists($dir . '/');
         $this->assertTrue(is_dir($dir . '/'));
     }
 
@@ -45,7 +45,7 @@ class DirectoryTest extends StreamWrapperTestCase
     {
         $dir = self::generateUrl('test_directory/');
         $this->assertTrue(rmdir($dir));
-        $this->assertFalse(file_exists($dir . '/'));
+        $this->assertFileNotExists($dir . '/');
     }
 
     public function testMkDirCreatesBucket()

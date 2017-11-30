@@ -75,7 +75,7 @@ class OperationTest extends TestCase
     public function testKeys()
     {
         $keys = $this->operation->keys('Foo');
-        $this->assertEquals(1, count($keys));
+        $this->assertCount(1, $keys);
         $this->assertInstanceOf(Key::class, $keys[0]);
     }
 
@@ -85,7 +85,7 @@ class OperationTest extends TestCase
             'number' => 10
         ]);
 
-        $this->assertEquals(10, count($keys));
+        $this->assertCount(10, $keys);
     }
 
     public function testKeysAncestors()
@@ -448,7 +448,7 @@ class OperationTest extends TestCase
         $this->assertInstanceOf(EntityIterator::class, $res);
 
         $arr = iterator_to_array($res);
-        $this->assertEquals(count($arr), 2);
+        $this->assertCount(2, $arr);
         $this->assertInstanceOf(Entity::class, $arr[0]);
     }
 
@@ -476,7 +476,7 @@ class OperationTest extends TestCase
         $this->assertInstanceOf(EntityIterator::class, $res);
 
         $arr = iterator_to_array($res);
-        $this->assertEquals(count($arr), 3);
+        $this->assertCount(3, $arr);
         $this->assertInstanceOf(Entity::class, $arr[0]);
     }
 
@@ -498,7 +498,7 @@ class OperationTest extends TestCase
         $this->assertInstanceOf(EntityIterator::class, $res);
 
         $arr = iterator_to_array($res);
-        $this->assertEquals(count($arr), 0);
+        $this->assertCount(0, $arr);
     }
 
     public function testRunQueryWithReadOptionsFromTransaction()
