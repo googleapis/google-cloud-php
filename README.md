@@ -26,7 +26,6 @@ This client supports the following Google Cloud Platform services at a [Beta](#v
 * [Google Stackdriver Monitoring](#google-stackdriver-monitoring-beta) (Beta)
 
 This client supports the following Google Cloud Platform services at an [Alpha](#versioning) quality level:
-* [Google Bigtable](#google-bigtable-alpha) (Alpha)
 * [Google Cloud Speech](#google-cloud-speech-alpha) (Alpha)
 * [Google Stackdriver Trace](#google-stackdriver-trace-alpha) (Alpha)
 
@@ -491,16 +490,16 @@ $ composer require google/cloud-pubsub
 ```php
 require __DIR__ . '/vendor/autoload.php';
 
-use Google\Cloud\VideoIntelligence\V1beta1\VideoIntelligenceServiceClient;
-use google\cloud\videointelligence\v1beta1\Feature;
+use Google\Cloud\VideoIntelligence\V1\VideoIntelligenceServiceClient;
+use Google\Cloud\VideoIntelligence\V1\Feature;
 
-$client = new VideoIntelligenceServiceClient();
+$videoIntelligenceServiceClient = new VideoIntelligenceServiceClient();
 
 $inputUri = "gs://example-bucket/example-video.mp4";
 $features = [
     Feature::LABEL_DETECTION,
 ];
-$operationResponse = $client->annotateVideo($inputUri, $features);
+$operationResponse = $videoIntelligenceServiceClient->annotateVideo($inputUri, $features);
 $operationResponse->pollUntilComplete();
 if ($operationResponse->operationSucceeded()) {
     $results = $operationResponse->getResult();
@@ -573,10 +572,10 @@ $ composer require google/cloud-vision
 ```php
 require 'vendor/autoload.php';
 
-use Google\Cloud\Dlp\V1beta1\DlpServiceClient;
-use Google\Privacy\Dlp\V2beta1\ContentItem;
-use Google\Privacy\Dlp\V2beta1\InfoType;
-use Google\Privacy\Dlp\V2beta1\InspectConfig;
+use Google\Cloud\Dlp\V2beta1\DlpServiceClient;
+use Google\Cloud\Dlp\V2beta1\ContentItem;
+use Google\Cloud\Dlp\V2beta1\InfoType;
+use Google\Cloud\Dlp\V2beta1\InspectConfig;
 
 $dlpServiceClient = new DlpServiceClient();
 $name = 'EMAIL_ADDRESS';
@@ -618,7 +617,7 @@ $ composer require google/cloud-dlp
 require 'vendor/autoload.php';
 
 use Google\Cloud\ErrorReporting\V1beta1\ReportErrorsServiceClient;
-use Google\Devtools\Clouderrorreporting\V1beta1\ReportedErrorEvent;
+use Google\Cloud\ErrorReporting\\V1beta1\ReportedErrorEvent;
 
 $reportErrorsServiceClient = new ReportErrorsServiceClient();
 $formattedProjectName = $reportErrorsServiceClient->projectName('[PROJECT]');
@@ -654,14 +653,14 @@ require 'vendor/autoload.php';
 use Google\Api\Metric;
 use Google\Api\MonitoredResource;
 use Google\Cloud\Monitoring\V3\MetricServiceClient;
-use Google\Monitoring\V3\Point;
-use Google\Monitoring\V3\TimeInterval;
-use Google\Monitoring\V3\TimeSeries;
-use Google\Monitoring\V3\TypedValue;
+use Google\Cloud\Monitoring\V3\Point;
+use Google\Cloud\Monitoring\V3\TimeInterval;
+use Google\Cloud\Monitoring\V3\TimeSeries;
+use Google\Cloud\Monitoring\V3\TypedValue;
 use Google\Protobuf\Timestamp;
 
-$client = new MetricServiceClient();
-$formattedProjectName = $client->projectName($projectId);
+$metricServiceClient = new MetricServiceClient();
+$formattedProjectName = $metricServiceClient->projectName($projectId);
 $labels = [
     'instance_id' => $instanceId,
     'zone' => $zone,
@@ -695,10 +694,10 @@ $timeSeries->setResource($r);
 $timeSeries->setPoints($points);
 
 try {
-    $client->createTimeSeries($formattedProjectName, [$timeSeries]);
+    $metricServiceClient->createTimeSeries($formattedProjectName, [$timeSeries]);
     print('Successfully submitted a time series' . PHP_EOL);
 } finally {
-    $client->close();
+    $metricServiceClient->close();
 }
 ```
 
@@ -708,39 +707,6 @@ Google Stackdriver Monitoring can be installed separately by requiring the `goog
 
 ```
 $ composer require google/cloud-monitoring
-```
-
-## Google Bigtable (Alpha)
-
-- [API Documentation](http://googlecloudplatform.github.io/google-cloud-php/#/docs/latest/bigtable/readme)
-- [Official Documentation](https://cloud.google.com/bigtable/docs)
-
-#### Preview
-
-```php
-require 'vendor/autoload.php';
-
-use Google\Cloud\Bigtable\V2\BigtableClient;
-
-$bigtableClient = new BigtableClient();
-$formattedTableName = $bigtableClient->tableName('[PROJECT]', '[INSTANCE]', '[TABLE]');
-
-try {
-    $stream = $bigtableClient->readRows($formattedTableName);
-    foreach ($stream->readAll() as $element) {
-        // doSomethingWith($element);
-    }
-} finally {
-    $bigtableClient->close();
-}
-```
-
-#### google/cloud-bigtable
-
-Google Bigtable can be installed separately by requiring the `google/cloud-bigtable` composer package:
-
-```
-$ composer require google/cloud-bigtable
 ```
 
 ## Google Cloud Speech (Alpha)
