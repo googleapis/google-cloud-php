@@ -19,11 +19,15 @@ This client supports the following Google Cloud Platform services at a [Beta](#v
 * [Google BigQuery](#google-bigquery-beta) (Beta)
 * [Google Cloud Natural Language](#google-cloud-natural-language-beta) (Beta)
 * [Google Cloud Pub/Sub](#google-cloud-pubsub-beta) (Beta)
+* [Google Cloud Video Intelligence](#google-cloud-video-intelligence-beta) (Beta)
 * [Google Cloud Vision](#google-cloud-vision-beta) (Beta)
+* [Google DLP](#google-dlp-beta) (Beta)
+* [Google Stackdriver Error Reporting](#google-stackdriver-error-reporting-beta) (Beta)
+* [Google Stackdriver Monitoring](#google-stackdriver-monitoring-beta) (Beta)
 
 This client supports the following Google Cloud Platform services at an [Alpha](#versioning) quality level:
+* [Google Bigtable](#google-bigtable-alpha) (Alpha)
 * [Google Cloud Speech](#google-cloud-speech-alpha) (Alpha)
-* [Google Cloud Video Intelligence](#google-cloud-video-intelligence-alpha) (Alpha)
 * [Google Stackdriver Trace](#google-stackdriver-trace-alpha) (Alpha)
 
 If you need support for other Google APIs, please check out the [Google APIs Client Library for PHP](https://github.com/google/google-api-php-client).
@@ -477,6 +481,48 @@ Google Cloud Pub/Sub can be installed separately by requiring the `google/cloud-
 $ composer require google/cloud-pubsub
 ```
 
+## Google Cloud Video Intelligence (Beta)
+
+- [API Documentation](http://googlecloudplatform.github.io/google-cloud-php/#/docs/latest/videointelligence/readme)
+- [Official Documentation](https://cloud.google.com/video-intelligence/docs)
+
+#### Preview
+
+```php
+require __DIR__ . '/vendor/autoload.php';
+
+use Google\Cloud\VideoIntelligence\V1beta1\VideoIntelligenceServiceClient;
+use google\cloud\videointelligence\v1beta1\Feature;
+
+$client = new VideoIntelligenceServiceClient();
+
+$inputUri = "gs://example-bucket/example-video.mp4";
+$features = [
+    Feature::LABEL_DETECTION,
+];
+$operationResponse = $client->annotateVideo($inputUri, $features);
+$operationResponse->pollUntilComplete();
+if ($operationResponse->operationSucceeded()) {
+    $results = $operationResponse->getResult();
+    foreach ($results->getAnnotationResultsList() as $result) {
+        foreach ($result->getLabelAnnotationsList() as $labelAnnotation) {
+            echo "Label: " . $labelAnnotation->getDescription() . "\n";
+        }
+    }
+} else {
+    $error = $operationResponse->getError();
+    echo "error: " . $error->getMessage() . "\n";
+}
+```
+
+#### google/cloud-videointelligence
+
+Cloud Video Intelligence can be installed separately by requiring the `google/cloud-videointelligence` composer package:
+
+```
+$ composer require google/cloud-videointelligence
+```
+
 ## Google Cloud Vision (Beta)
 
 - [API Documentation](http://googlecloudplatform.github.io/google-cloud-php/#/docs/latest/vision/visionclient)
@@ -517,6 +563,186 @@ Google Cloud Vision can be installed separately by requiring the `google/cloud-v
 $ composer require google/cloud-vision
 ```
 
+## Google DLP (Beta)
+
+- [API Documentation](http://googlecloudplatform.github.io/google-cloud-php/#/docs/latest/dlp/readme)
+- [Official Documentation](https://cloud.google.com/dlp/docs)
+
+#### Preview
+
+```php
+require 'vendor/autoload.php';
+
+use Google\Cloud\Dlp\V1beta1\DlpServiceClient;
+use Google\Privacy\Dlp\V2beta1\ContentItem;
+use Google\Privacy\Dlp\V2beta1\InfoType;
+use Google\Privacy\Dlp\V2beta1\InspectConfig;
+
+$dlpServiceClient = new DlpServiceClient();
+$name = 'EMAIL_ADDRESS';
+$infoTypesElement = new InfoType();
+$infoTypesElement->setName($name);
+$infoTypes = [$infoTypesElement];
+$inspectConfig = new InspectConfig();
+$inspectConfig->setInfoTypes($infoTypes);
+$type = 'text/plain';
+$value = 'My email is example@example.com.';
+$itemsElement = new ContentItem();
+$itemsElement->setType($type);
+$itemsElement->setValue($value);
+$items = [$itemsElement];
+
+try {
+    $response = $dlpServiceClient->inspectContent($inspectConfig, $items);
+} finally {
+    $dlpServiceClient->close();
+}
+```
+
+#### google/cloud-dlp
+
+Google DLP can be installed separately by requiring the `google/cloud-dlp` composer package:
+
+```
+$ composer require google/cloud-dlp
+```
+
+## Google Stackdriver Error Reporting (Beta)
+
+- [API Documentation](http://googlecloudplatform.github.io/google-cloud-php/#/docs/latest/errorreporting/readme)
+- [Official Documentation](https://cloud.google.com/error-reporting/docs)
+
+#### Preview
+
+```php
+require 'vendor/autoload.php';
+
+use Google\Cloud\ErrorReporting\V1beta1\ReportErrorsServiceClient;
+use Google\Devtools\Clouderrorreporting\V1beta1\ReportedErrorEvent;
+
+$reportErrorsServiceClient = new ReportErrorsServiceClient();
+$formattedProjectName = $reportErrorsServiceClient->projectName('[PROJECT]');
+$event = new ReportedErrorEvent();
+
+try {
+    $response = $reportErrorsServiceClient->reportErrorEvent($formattedProjectName, $event);
+} finally {
+    $reportErrorsServiceClient->close();
+}
+```
+
+#### google/cloud-error-reporting
+
+Google Stackdriver Error Reporting can be installed separately by requiring the `google/cloud-error-reporting` composer package:
+
+```
+$ composer require google/cloud-error-reporting
+```
+
+## Google Stackdriver Monitoring (Beta)
+
+- [API Documentation](http://googlecloudplatform.github.io/google-cloud-php/#/docs/latest/monitoring/readme)
+- [Official Documentation](https://cloud.google.com/monitoring/docs)
+
+#### Preview
+
+```php
+require 'vendor/autoload.php';
+
+<?php
+
+use Google\Api\Metric;
+use Google\Api\MonitoredResource;
+use Google\Cloud\Monitoring\V3\MetricServiceClient;
+use Google\Monitoring\V3\Point;
+use Google\Monitoring\V3\TimeInterval;
+use Google\Monitoring\V3\TimeSeries;
+use Google\Monitoring\V3\TypedValue;
+use Google\Protobuf\Timestamp;
+
+$client = new MetricServiceClient();
+$formattedProjectName = $client->projectName($projectId);
+$labels = [
+    'instance_id' => $instanceId,
+    'zone' => $zone,
+];
+
+$m = new Metric();
+$m->setType('custom.googleapis.com/my_metric');
+
+$r = new MonitoredResource();
+$r->setType('gce_instance');
+$r->setLabels($labels);
+
+$value = new TypedValue();
+$value->setDoubleValue(3.14);
+
+$timestamp = new Timestamp();
+$timestamp->setSeconds(time());
+
+$interval = new TimeInterval();
+$interval->setStartTime($timestamp);
+$interval->setEndTime($timestamp);
+
+$point = new Point();
+$point->setValue($value);
+$point->setInterval($interval);
+$points = [$point];
+
+$timeSeries = new TimeSeries();
+$timeSeries->setMetric($m);
+$timeSeries->setResource($r);
+$timeSeries->setPoints($points);
+
+try {
+    $client->createTimeSeries($formattedProjectName, [$timeSeries]);
+    print('Successfully submitted a time series' . PHP_EOL);
+} finally {
+    $client->close();
+}
+```
+
+#### google/cloud-monitoring
+
+Google Stackdriver Monitoring can be installed separately by requiring the `google/cloud-monitoring` composer package:
+
+```
+$ composer require google/cloud-monitoring
+```
+
+## Google Bigtable (Alpha)
+
+- [API Documentation](http://googlecloudplatform.github.io/google-cloud-php/#/docs/latest/bigtable/readme)
+- [Official Documentation](https://cloud.google.com/bigtable/docs)
+
+#### Preview
+
+```php
+require 'vendor/autoload.php';
+
+use Google\Cloud\Bigtable\V2\BigtableClient;
+
+$bigtableClient = new BigtableClient();
+$formattedTableName = $bigtableClient->tableName('[PROJECT]', '[INSTANCE]', '[TABLE]');
+
+try {
+    $stream = $bigtableClient->readRows($formattedTableName);
+    foreach ($stream->readAll() as $element) {
+        // doSomethingWith($element);
+    }
+} finally {
+    $bigtableClient->close();
+}
+```
+
+#### google/cloud-bigtable
+
+Google Bigtable can be installed separately by requiring the `google/cloud-bigtable` composer package:
+
+```
+$ composer require google/cloud-bigtable
+```
+
 ## Google Cloud Speech (Alpha)
 
 - [API Documentation](http://googlecloudplatform.github.io/google-cloud-php/#/docs/latest/speech/speechclient)
@@ -550,48 +776,6 @@ Google Cloud Speech can be installed separately by requiring the `google/cloud-s
 
 ```
 $ composer require google/cloud-speech
-```
-
-## Google Cloud Video Intelligence (Alpha)
-
-- [API Documentation](http://googlecloudplatform.github.io/google-cloud-php/#/docs/latest/videointelligence/readme)
-- [Official Documentation](https://cloud.google.com/video-intelligence/docs)
-
-#### Preview
-
-```php
-require __DIR__ . '/vendor/autoload.php';
-
-use Google\Cloud\VideoIntelligence\V1beta1\VideoIntelligenceServiceClient;
-use google\cloud\videointelligence\v1beta1\Feature;
-
-$client = new VideoIntelligenceServiceClient();
-
-$inputUri = "gs://example-bucket/example-video.mp4";
-$features = [
-    Feature::LABEL_DETECTION,
-];
-$operationResponse = $client->annotateVideo($inputUri, $features);
-$operationResponse->pollUntilComplete();
-if ($operationResponse->operationSucceeded()) {
-    $results = $operationResponse->getResult();
-    foreach ($results->getAnnotationResultsList() as $result) {
-        foreach ($result->getLabelAnnotationsList() as $labelAnnotation) {
-            echo "Label: " . $labelAnnotation->getDescription() . "\n";
-        }
-    }
-} else {
-    $error = $operationResponse->getError();
-    echo "error: " . $error->getMessage() . "\n";
-}
-```
-
-#### google/cloud-videointelligence
-
-Cloud Video Intelligence can be installed separately by requiring the `google/cloud-videointelligence` composer package:
-
-```
-$ composer require google/cloud-videointelligence
 ```
 
 ## Google Stackdriver Trace (Alpha)

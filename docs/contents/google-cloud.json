@@ -6,6 +6,7 @@
     }],
     "includes": [
         "cloud-bigquery",
+        "cloud-bigtable",
         "cloud-datastore",
         "cloud-dlp",
         "cloud-error-reporting",
