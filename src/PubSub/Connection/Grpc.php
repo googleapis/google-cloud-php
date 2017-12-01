@@ -23,13 +23,13 @@ use Google\Cloud\Core\GrpcTrait;
 use Google\Cloud\PubSub\PubSubClient;
 use Google\Cloud\PubSub\V1\PublisherClient;
 use Google\Cloud\PubSub\V1\SubscriberClient;
-use Google\GAX\Serializer;
-use Google\Iam\V1\Policy;
+use Google\ApiCore\Serializer;
+use Google\Cloud\Iam\V1\Policy;
 use Google\Protobuf\FieldMask;
 use Google\Protobuf\Timestamp;
-use Google\Pubsub\V1\PubsubMessage;
-use Google\Pubsub\V1\PushConfig;
-use Google\Pubsub\V1\Subscription;
+use Google\Cloud\PubSub\V1\PubsubMessage;
+use Google\Cloud\PubSub\V1\PushConfig;
+use Google\Cloud\PubSub\V1\Subscription;
 use Grpc\ChannelCredentials;
 
 /**

@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2017, Google Inc. All rights reserved.
+ * Copyright 2017, Google LLC All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -30,10 +30,13 @@
 
 namespace Google\Cloud\Firestore\V1beta1;
 
+use Google\Cloud\Firestore\V1beta1\Gapic\FirestoreGapicClient;
+
 /**
  * {@inheritdoc}
  */
 class FirestoreClient extends FirestoreGapicClient
 {
-    // This class is intentionally empty, and is intended to hold manual additions to the generated {@see FirestoreClientImpl} class.
+    // This class is intentionally empty, and is intended to hold manual
+    // additions to the generated {@see FirestoreClientImpl} class.
 }

@@ -20,7 +20,7 @@ namespace Google\Cloud\Spanner;
 use Google\Cloud\Core\ArrayTrait;
 use Google\Cloud\Core\Int64;
 use Google\Cloud\Core\ValueMapperTrait;
-use Google\Spanner\V1\TypeCode;
+use Google\Cloud\Spanner\V1\TypeCode;
 
 /**
  * Manage value mappings between Google Cloud PHP and Cloud Spanner

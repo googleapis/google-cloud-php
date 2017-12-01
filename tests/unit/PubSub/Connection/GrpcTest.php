@@ -21,15 +21,15 @@ use Google\Cloud\Core\GrpcRequestWrapper;
 use Google\Cloud\Core\GrpcTrait;
 use Google\Cloud\PubSub\Connection\Grpc;
 use Google\Cloud\Tests\GrpcTestTrait;
-use Google\GAX\Serializer;
+use Google\ApiCore\Serializer;
 use Google\Protobuf\FieldMask;
 use Google\Protobuf\Timestamp;
 use Prophecy\Argument;
-use Google\Iam\V1\Binding;
-use Google\Iam\V1\Policy;
-use Google\Pubsub\V1\PubsubMessage;
-use Google\Pubsub\V1\PushConfig;
-use Google\Pubsub\V1\Subscription;
+use Google\Cloud\Iam\V1\Binding;
+use Google\Cloud\Iam\V1\Policy;
+use Google\Cloud\PubSub\V1\PubsubMessage;
+use Google\Cloud\PubSub\V1\PushConfig;
+use Google\Cloud\PubSub\V1\Subscription;
 use PHPUnit\Framework\TestCase;
 
 /**

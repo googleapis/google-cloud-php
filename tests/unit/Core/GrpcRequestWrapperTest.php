@@ -23,11 +23,11 @@ use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\Core\Exception;
 use Google\Cloud\Tests\GrpcTestTrait;
 use Google\Cloud\Core\GrpcRequestWrapper;
-use Google\GAX\ApiException;
-use Google\GAX\ApiStatus;
-use Google\GAX\Page;
-use Google\GAX\PagedListResponse;
-use Google\GAX\Serializer;
+use Google\ApiCore\ApiException;
+use Google\ApiCore\ApiStatus;
+use Google\ApiCore\Page;
+use Google\ApiCore\PagedListResponse;
+use Google\ApiCore\Serializer;
 use Google\Protobuf\Internal\Message;
 use Prophecy\Argument;
 use PHPUnit\Framework\TestCase;
@@ -108,7 +108,7 @@ class GrpcRequestWrapperTest extends TestCase
         $requestWrapper->send(function () {
             throw new ApiException('message',
                 \Google\Rpc\Code::NOT_FOUND,
-                \Google\GAX\ApiStatus::NOT_FOUND
+                \Google\ApiCore\ApiStatus::NOT_FOUND
             );
         }, [[]]);
     }

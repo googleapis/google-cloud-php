@@ -19,12 +19,12 @@ namespace Google\Cloud\Core;
 
 use Google\Auth\HttpHandler\HttpHandlerFactory;
 use Google\Cloud\Core\Exception;
-use Google\GAX\ApiException;
-use Google\GAX\OperationResponse;
-use Google\GAX\PagedListResponse;
-use Google\GAX\RetrySettings;
-use Google\GAX\Serializer;
-use Google\GAX\ServerStream;
+use Google\ApiCore\ApiException;
+use Google\ApiCore\OperationResponse;
+use Google\ApiCore\PagedListResponse;
+use Google\ApiCore\RetrySettings;
+use Google\ApiCore\Serializer;
+use Google\ApiCore\ServerStream;
 use Google\Protobuf\Internal\Message;
 use Google\Rpc\BadRequest;
 use Google\Rpc\RetryInfo;
@@ -49,7 +49,7 @@ class GrpcRequestWrapper
     private $serializer;
 
     /**
-     * @var array gRPC specific configuration options passed off to the GAX
+     * @var array gRPC specific configuration options passed off to the ApiCore
      * library.
      */
     private $grpcOptions;
@@ -82,7 +82,7 @@ class GrpcRequestWrapper
      *           requests specifically for authentication.
      *     @type Serializer $serializer A serializer used to encode responses.
      *     @type array $grpcOptions gRPC specific configuration options passed
-     *           off to the GAX library.
+     *           off to the ApiCore library.
      * }
      */
     public function __construct(array $config = [])
@@ -196,7 +196,7 @@ class GrpcRequestWrapper
     }
 
     /**
-     * Convert a GAX exception to a Google Exception.
+     * Convert a ApiCore exception to a Google Exception.
      *
      * @param ApiException $ex
      * @return ServiceException

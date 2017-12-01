@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2017, Google Inc. All rights reserved.
+ * Copyright 2017, Google LLC All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -30,6 +30,10 @@
 
 namespace Google\Cloud\Language\V1beta2\Gapic;
 
+use Google\ApiCore\AgentHeaderDescriptor;
+use Google\ApiCore\ApiCallable;
+use Google\ApiCore\CallSettings;
+use Google\ApiCore\GrpcCredentialsHelper;
 use Google\Cloud\Language\V1beta2\AnalyzeEntitiesRequest;
 use Google\Cloud\Language\V1beta2\AnalyzeEntitySentimentRequest;
 use Google\Cloud\Language\V1beta2\AnalyzeSentimentRequest;
@@ -41,10 +45,6 @@ use Google\Cloud\Language\V1beta2\Document;
 use Google\Cloud\Language\V1beta2\EncodingType;
 use Google\Cloud\Language\V1beta2\LanguageServiceGrpcClient;
 use Google\Cloud\Version;
-use Google\GAX\AgentHeaderDescriptor;
-use Google\GAX\ApiCallable;
-use Google\GAX\CallSettings;
-use Google\GAX\GrpcCredentialsHelper;
 
 /**
  * Service Description: Provides text analysis operations such as sentiment analysis and entity
@@ -147,8 +147,8 @@ class LanguageServiceGapicClient
      *     @type array $retryingOverride
      *           An associative array in which the keys are method names (e.g. 'createFoo'), and
      *           the values are retry settings to use for that method. The retry settings for each
-     *           method can be a {@see Google\GAX\RetrySettings} object, or an associative array
-     *           of retry settings parameters. See the documentation on {@see Google\GAX\RetrySettings}
+     *           method can be a {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *           of retry settings parameters. See the documentation on {@see Google\ApiCore\RetrySettings}
      *           for example usage. Passing a value of null is equivalent to a value of
      *           ['retriesEnabled' => false]. Retry settings provided in this setting override the
      *           settings in $clientConfigPath.
@@ -236,16 +236,16 @@ class LanguageServiceGapicClient
      *          The encoding type used by the API to calculate sentence offsets for the
      *          sentence sentiment.
      *          For allowed values, use constants defined on {@see \Google\Cloud\Language\V1beta2\EncodingType}
-     *     @type \Google\GAX\RetrySettings|array $retrySettings
+     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
-     *          {@see Google\GAX\RetrySettings} object, or an associative array
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
-     *          {@see Google\GAX\RetrySettings} for example usage.
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\Language\V1beta2\AnalyzeSentimentResponse
      *
-     * @throws \Google\GAX\ApiException if the remote call fails
+     * @throws \Google\ApiCore\ApiException if the remote call fails
      * @experimental
      */
     public function analyzeSentiment($document, $optionalArgs = [])
@@ -299,16 +299,16 @@ class LanguageServiceGapicClient
      *     @type int $encodingType
      *          The encoding type used by the API to calculate offsets.
      *          For allowed values, use constants defined on {@see \Google\Cloud\Language\V1beta2\EncodingType}
-     *     @type \Google\GAX\RetrySettings|array $retrySettings
+     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
-     *          {@see Google\GAX\RetrySettings} object, or an associative array
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
-     *          {@see Google\GAX\RetrySettings} for example usage.
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\Language\V1beta2\AnalyzeEntitiesResponse
      *
-     * @throws \Google\GAX\ApiException if the remote call fails
+     * @throws \Google\ApiCore\ApiException if the remote call fails
      * @experimental
      */
     public function analyzeEntities($document, $optionalArgs = [])
@@ -361,16 +361,16 @@ class LanguageServiceGapicClient
      *     @type int $encodingType
      *          The encoding type used by the API to calculate offsets.
      *          For allowed values, use constants defined on {@see \Google\Cloud\Language\V1beta2\EncodingType}
-     *     @type \Google\GAX\RetrySettings|array $retrySettings
+     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
-     *          {@see Google\GAX\RetrySettings} object, or an associative array
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
-     *          {@see Google\GAX\RetrySettings} for example usage.
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\Language\V1beta2\AnalyzeEntitySentimentResponse
      *
-     * @throws \Google\GAX\ApiException if the remote call fails
+     * @throws \Google\ApiCore\ApiException if the remote call fails
      * @experimental
      */
     public function analyzeEntitySentiment($document, $optionalArgs = [])
@@ -424,16 +424,16 @@ class LanguageServiceGapicClient
      *     @type int $encodingType
      *          The encoding type used by the API to calculate offsets.
      *          For allowed values, use constants defined on {@see \Google\Cloud\Language\V1beta2\EncodingType}
-     *     @type \Google\GAX\RetrySettings|array $retrySettings
+     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
-     *          {@see Google\GAX\RetrySettings} object, or an associative array
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
-     *          {@see Google\GAX\RetrySettings} for example usage.
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\Language\V1beta2\AnalyzeSyntaxResponse
      *
-     * @throws \Google\GAX\ApiException if the remote call fails
+     * @throws \Google\ApiCore\ApiException if the remote call fails
      * @experimental
      */
     public function analyzeSyntax($document, $optionalArgs = [])
@@ -482,16 +482,16 @@ class LanguageServiceGapicClient
      * @param array    $optionalArgs {
      *                               Optional.
      *
-     *     @type \Google\GAX\RetrySettings|array $retrySettings
+     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
-     *          {@see Google\GAX\RetrySettings} object, or an associative array
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
-     *          {@see Google\GAX\RetrySettings} for example usage.
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\Language\V1beta2\ClassifyTextResponse
      *
-     * @throws \Google\GAX\ApiException if the remote call fails
+     * @throws \Google\ApiCore\ApiException if the remote call fails
      * @experimental
      */
     public function classifyText($document, $optionalArgs = [])
@@ -543,16 +543,16 @@ class LanguageServiceGapicClient
      *     @type int $encodingType
      *          The encoding type used by the API to calculate offsets.
      *          For allowed values, use constants defined on {@see \Google\Cloud\Language\V1beta2\EncodingType}
-     *     @type \Google\GAX\RetrySettings|array $retrySettings
+     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
-     *          {@see Google\GAX\RetrySettings} object, or an associative array
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
-     *          {@see Google\GAX\RetrySettings} for example usage.
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\Language\V1beta2\AnnotateTextResponse
      *
-     * @throws \Google\GAX\ApiException if the remote call fails
+     * @throws \Google\ApiCore\ApiException if the remote call fails
      * @experimental
      */
     public function annotateText($document, $features, $optionalArgs = [])

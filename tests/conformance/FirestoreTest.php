@@ -24,7 +24,7 @@ use Google\Cloud\Firestore\FieldValue;
 use Google\Cloud\Firestore\FirestoreClient;
 use Google\Cloud\Firestore\PathTrait;
 use Google\Cloud\Tests\ArrayHasSameValuesToken;
-use Google\GAX\Serializer;
+use Google\ApiCore\Serializer;
 use GuzzleHttp\Client;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;

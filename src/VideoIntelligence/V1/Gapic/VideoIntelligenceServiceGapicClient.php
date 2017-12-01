@@ -30,19 +30,19 @@
 
 namespace Google\Cloud\VideoIntelligence\V1\Gapic;
 
+use Google\ApiCore\AgentHeaderDescriptor;
+use Google\ApiCore\ApiCallable;
+use Google\ApiCore\CallSettings;
+use Google\ApiCore\GrpcCredentialsHelper;
+use Google\ApiCore\LongRunning\OperationsClient;
+use Google\ApiCore\OperationResponse;
 use Google\Cloud\Version;
-use Google\Cloud\Videointelligence\V1\AnnotateVideoProgress;
-use Google\Cloud\Videointelligence\V1\AnnotateVideoRequest;
-use Google\Cloud\Videointelligence\V1\AnnotateVideoResponse;
-use Google\Cloud\Videointelligence\V1\Feature;
-use Google\Cloud\Videointelligence\V1\VideoContext;
-use Google\Cloud\Videointelligence\V1\VideoIntelligenceServiceGrpcClient;
-use Google\GAX\AgentHeaderDescriptor;
-use Google\GAX\ApiCallable;
-use Google\GAX\CallSettings;
-use Google\GAX\GrpcCredentialsHelper;
-use Google\GAX\LongRunning\OperationsClient;
-use Google\GAX\OperationResponse;
+use Google\Cloud\VideoIntelligence\V1\AnnotateVideoProgress;
+use Google\Cloud\VideoIntelligence\V1\AnnotateVideoRequest;
+use Google\Cloud\VideoIntelligence\V1\AnnotateVideoResponse;
+use Google\Cloud\VideoIntelligence\V1\Feature;
+use Google\Cloud\VideoIntelligence\V1\VideoContext;
+use Google\Cloud\VideoIntelligence\V1\VideoIntelligenceServiceGrpcClient;
 
 /**
  * Service Description: Service that implements Google Cloud Video Intelligence API.
@@ -127,8 +127,8 @@ class VideoIntelligenceServiceGapicClient
     {
         return [
             'annotateVideo' => [
-                'operationReturnType' => '\Google\Cloud\Videointelligence\V1\AnnotateVideoResponse',
-                'metadataReturnType' => '\Google\Cloud\Videointelligence\V1\AnnotateVideoProgress',
+                'operationReturnType' => '\Google\Cloud\VideoIntelligence\V1\AnnotateVideoResponse',
+                'metadataReturnType' => '\Google\Cloud\VideoIntelligence\V1\AnnotateVideoProgress',
             ],
         ];
     }
@@ -150,7 +150,7 @@ class VideoIntelligenceServiceGapicClient
     /**
      * Return an OperationsClient object with the same endpoint as $this.
      *
-     * @return \Google\GAX\LongRunning\OperationsClient
+     * @return \Google\ApiCore\LongRunning\OperationsClient
      * @experimental
      */
     public function getOperationsClient()
@@ -168,7 +168,7 @@ class VideoIntelligenceServiceGapicClient
      * @param string $operationName The name of the long running operation
      * @param string $methodName    The name of the method used to start the operation
      *
-     * @return \Google\GAX\OperationResponse
+     * @return \Google\ApiCore\OperationResponse
      * @experimental
      */
     public function resumeOperation($operationName, $methodName = null)
@@ -218,8 +218,8 @@ class VideoIntelligenceServiceGapicClient
      *     @type array $retryingOverride
      *           An associative array in which the keys are method names (e.g. 'createFoo'), and
      *           the values are retry settings to use for that method. The retry settings for each
-     *           method can be a {@see Google\GAX\RetrySettings} object, or an associative array
-     *           of retry settings parameters. See the documentation on {@see Google\GAX\RetrySettings}
+     *           method can be a {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *           of retry settings parameters. See the documentation on {@see Google\ApiCore\RetrySettings}
      *           for example usage. Passing a value of null is equivalent to a value of
      *           ['retriesEnabled' => false]. Retry settings provided in this setting override the
      *           settings in $clientConfigPath.
@@ -355,7 +355,7 @@ class VideoIntelligenceServiceGapicClient
      *          If set, `input_uri` should be unset.
      *     @type int[] $features
      *          Requested video annotation features.
-     *          For allowed values, use constants defined on {@see \Google\Cloud\Videointelligence\V1\Feature}
+     *          For allowed values, use constants defined on {@see \Google\Cloud\VideoIntelligence\V1\Feature}
      *     @type VideoContext $videoContext
      *          Additional video context and/or feature-specific parameters.
      *     @type string $outputUri
@@ -369,16 +369,16 @@ class VideoIntelligenceServiceGapicClient
      *          Optional cloud region where annotation should take place. Supported cloud
      *          regions: `us-east1`, `us-west1`, `europe-west1`, `asia-east1`. If no region
      *          is specified, a region will be determined based on video file location.
-     *     @type \Google\GAX\RetrySettings|array $retrySettings
+     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
-     *          {@see Google\GAX\RetrySettings} object, or an associative array
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
-     *          {@see Google\GAX\RetrySettings} for example usage.
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
-     * @return \Google\GAX\OperationResponse
+     * @return \Google\ApiCore\OperationResponse
      *
-     * @throws \Google\GAX\ApiException if the remote call fails
+     * @throws \Google\ApiCore\ApiException if the remote call fails
      * @experimental
      */
     public function annotateVideo($optionalArgs = [])
