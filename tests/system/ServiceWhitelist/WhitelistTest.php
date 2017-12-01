@@ -150,6 +150,6 @@ class WhitelistTest extends SystemTestCase
 
         $this->assertTrue($thrown);
         $this->assertInstanceOf(NotFoundException::class, $ex);
-        $this->assertTrue(strpos($ex->getMessage(), self::MESSAGE) !== false);
+        $this->assertContains(self::MESSAGE, $ex->getMessage());
     }
 }
