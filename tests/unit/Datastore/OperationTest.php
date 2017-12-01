@@ -218,7 +218,7 @@ class OperationTest extends TestCase
 
         $res = $this->operation->lookup($keys);
 
-        $this->assertTrue(is_array($res));
+        $this->assertInternalType('array', $res);
     }
 
     public function testLookupFound()
@@ -233,7 +233,7 @@ class OperationTest extends TestCase
         $key = $this->operation->key('Kind', 'ID');
         $res = $this->operation->lookup([$key]);
 
-        $this->assertTrue(is_array($res));
+        $this->assertInternalType('array', $res);
         $this->assertTrue(isset($res['found']) && is_array($res['found']));
 
         $this->assertInstanceOf(Entity::class, $res['found'][0]);
@@ -256,7 +256,7 @@ class OperationTest extends TestCase
 
         $res = $this->operation->lookup([$key]);
 
-        $this->assertTrue(is_array($res));
+        $this->assertInternalType('array', $res);
         $this->assertTrue(isset($res['missing']) && is_array($res['missing']));
 
         $this->assertInstanceOf(Key::class, $res['missing'][0]);
@@ -276,7 +276,7 @@ class OperationTest extends TestCase
 
         $res = $this->operation->lookup([$key]);
 
-        $this->assertTrue(is_array($res));
+        $this->assertInternalType('array', $res);
         $this->assertTrue(isset($res['deferred']) && is_array($res['deferred']));
         $this->assertInstanceOf(Key::class, $res['deferred'][0]);
     }
