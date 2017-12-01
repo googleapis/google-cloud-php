@@ -572,10 +572,10 @@ class StorageObjectTest extends TestCase
 
         $this->assertTrue($object->___signatureIsCorrect($signature));
         $this->assertEquals($object->input, $input);
-        $this->assertTrue(in_array('generation=foo', $pieces));
-        $this->assertTrue(in_array('response-content-type='. urlencode($contentType), $pieces));
-        $this->assertTrue(in_array('response-content-disposition=foo', $pieces));
-        $this->assertTrue(in_array('response-content-type='. urlencode($responseType), $pieces));
+        $this->assertContains('generation=foo', $pieces);
+        $this->assertContains('response-content-type='. urlencode($contentType), $pieces);
+        $this->assertContains('response-content-disposition=foo', $pieces);
+        $this->assertContains('response-content-type='. urlencode($responseType), $pieces);
     }
 
     public function testSignedUrlWithSaveAsName()
@@ -605,7 +605,7 @@ class StorageObjectTest extends TestCase
 
         $this->assertTrue($object->___signatureIsCorrect($signature));
         $this->assertEquals($object->input, $input);
-        $this->assertTrue(in_array('response-content-disposition=attachment;filename="foo"', $pieces));
+        $this->assertContains('response-content-disposition=attachment;filename="foo"', $pieces);
     }
 
     public function testSignedUrlConnectionKeyfile()
@@ -686,10 +686,10 @@ class StorageObjectTest extends TestCase
 
         $this->assertTrue($object->___signatureIsCorrect($signature));
         $this->assertEquals($object->input, $input);
-        $this->assertTrue(in_array('generation=foo', $pieces));
-        $this->assertTrue(in_array('response-content-type='. urlencode($contentType), $pieces));
-        $this->assertTrue(in_array('response-content-disposition=foo', $pieces));
-        $this->assertTrue(in_array('response-content-type='. urlencode($responseType), $pieces));
+        $this->assertContains('generation=foo', $pieces);
+        $this->assertContains('response-content-type='. urlencode($contentType), $pieces);
+        $this->assertContains('response-content-disposition=foo', $pieces);
+        $this->assertContains('response-content-type='. urlencode($responseType), $pieces);
     }
 
     public function testSignedUploadUrl()

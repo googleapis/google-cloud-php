@@ -89,7 +89,7 @@ class AnnotationsTest extends VisionTestCase
         $desc = array_filter($res->web()->entities(), function ($e) {
             return ($e->description() === 'Eiffel Tower');
         });
-        $this->assertGreaterThan(0, count($desc));
+        $this->assertGreaterThan(0, $desc);
 
         $this->assertInstanceOf(WebImage::class, $res->web()->matchingImages()[0]);
         $this->assertInstanceOf(WebImage::class, $res->web()->partialMatchingImages()[0]);

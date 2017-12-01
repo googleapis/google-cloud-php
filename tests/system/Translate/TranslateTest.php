@@ -184,8 +184,8 @@ class TranslateTest extends TranslateTestCase
 
         $res = $client->languages();
         $this->assertInternalType('array', $res);
-        $this->assertTrue(in_array('en', $res));
-        $this->assertTrue(in_array('es', $res));
+        $this->assertContains('en', $res);
+        $this->assertContains('es', $res);
     }
 
     public function testLocalizedLanguages()
@@ -194,7 +194,7 @@ class TranslateTest extends TranslateTestCase
 
         $res = $client->localizedLanguages();
         $this->assertInternalType('array', $res);
-        $this->assertTrue(in_array(['code' => 'es', 'name' => 'Spanish'], $res));
-        $this->assertTrue(in_array(['code' => 'en', 'name' => 'English'], $res));
+        $this->assertContains(['code' => 'es', 'name' => 'Spanish'], $res);
+        $this->assertContains(['code' => 'en', 'name' => 'English'], $res);
     }
 }
