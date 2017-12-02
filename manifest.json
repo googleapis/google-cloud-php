@@ -78,7 +78,6 @@
             "name": "google/cloud-bigtable",
             "defaultService": "bigtable/readme",
             "versions": [
-                "v0.1.0",
                 "master"
             ]
         },
