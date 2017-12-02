@@ -20,12 +20,6 @@
  * This file was generated from the file
  * https://github.com/google/googleapis/blob/master/google/cloud/videointelligence/v1beta2/video_intelligence.proto
  * and updates to that file get reflected here through a refresh process.
- *
- * EXPERIMENTAL: this client library class has not yet been declared beta. This class may change
- * more frequently than those which have been declared beta or 1.0, including changes which break
- * backwards compatibility.
- *
- * @experimental
  */
 
 namespace Google\Cloud\VideoIntelligence\V1beta2\Gapic;
@@ -46,10 +40,6 @@ use Google\Cloud\VideoIntelligence\V1beta2\VideoIntelligenceServiceGrpcClient;
 
 /**
  * Service Description: Service that implements Google Cloud Video Intelligence API.
- *
- * EXPERIMENTAL: this client library class has not yet been declared beta. This class may change
- * more frequently than those which have been declared beta or 1.0, including changes which break
- * backwards compatibility.
  *
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods. Sample code to get started:
@@ -88,8 +78,6 @@ use Google\Cloud\VideoIntelligence\V1beta2\VideoIntelligenceServiceGrpcClient;
  *     $videoIntelligenceServiceClient->close();
  * }
  * ```
- *
- * @experimental
  */
 class VideoIntelligenceServiceGapicClient
 {
