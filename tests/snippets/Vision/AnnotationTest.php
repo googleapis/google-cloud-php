@@ -198,6 +198,6 @@ class AnnotationTest extends SnippetTestCase
         ]));
 
         $res = $snippet->invoke('error');
-        $this->assertTrue(is_array($res->returnVal()));
+        $this->assertInternalType('array', $res->returnVal());
     }
 }

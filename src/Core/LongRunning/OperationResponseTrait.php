@@ -17,18 +17,18 @@
 
 namespace Google\Cloud\Core\LongRunning;
 
-use Google\GAX\OperationResponse;
-use Google\GAX\Serializer;
+use Google\ApiCore\OperationResponse;
+use Google\ApiCore\Serializer;
 
 /**
- * Serializes and deserializes GAX LRO Response objects.
+ * Serializes and deserializes ApiCore LRO Response objects.
  *
  * This trait should be used in a gRPC Connection class to normalize responses.
  */
 trait OperationResponseTrait
 {
     /**
-     * Convert a GAX OperationResponse object to an array.
+     * Convert a ApiCore OperationResponse object to an array.
      *
      * @param OperationResponse $operation The operation response
      * @param Serializer $serializer The serializer to use for gRPC serialization/deserialization.

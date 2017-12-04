@@ -32,8 +32,8 @@ use Google\Cloud\Spanner\Session\Session;
 use Google\Cloud\Spanner\Session\SessionPoolInterface;
 use Google\Cloud\Spanner\Transaction;
 use Google\Cloud\Spanner\V1\SpannerClient as GapicSpannerClient;
-use Google\GAX\ValidationException;
-use Google\Spanner\V1\TypeCode;
+use Google\ApiCore\ValidationException;
+use Google\Cloud\Spanner\V1\TypeCode;
 
 /**
  * Represents a Cloud Spanner Database.

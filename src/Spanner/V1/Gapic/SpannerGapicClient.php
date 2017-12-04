@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2017, Google Inc. All rights reserved.
+ * Copyright 2017, Google LLC All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -30,31 +30,31 @@
 
 namespace Google\Cloud\Spanner\V1\Gapic;
 
+use Google\ApiCore\AgentHeaderDescriptor;
+use Google\ApiCore\ApiCallable;
+use Google\ApiCore\CallSettings;
+use Google\ApiCore\GrpcCredentialsHelper;
+use Google\ApiCore\PageStreamingDescriptor;
+use Google\ApiCore\PathTemplate;
+use Google\ApiCore\ValidationException;
+use Google\Cloud\Spanner\V1\BeginTransactionRequest;
+use Google\Cloud\Spanner\V1\CommitRequest;
+use Google\Cloud\Spanner\V1\CreateSessionRequest;
+use Google\Cloud\Spanner\V1\DeleteSessionRequest;
+use Google\Cloud\Spanner\V1\ExecuteSqlRequest;
+use Google\Cloud\Spanner\V1\ExecuteSqlRequest_QueryMode as QueryMode;
+use Google\Cloud\Spanner\V1\GetSessionRequest;
+use Google\Cloud\Spanner\V1\KeySet;
+use Google\Cloud\Spanner\V1\ListSessionsRequest;
+use Google\Cloud\Spanner\V1\Mutation;
+use Google\Cloud\Spanner\V1\ReadRequest;
+use Google\Cloud\Spanner\V1\RollbackRequest;
+use Google\Cloud\Spanner\V1\Session;
+use Google\Cloud\Spanner\V1\SpannerGrpcClient;
+use Google\Cloud\Spanner\V1\TransactionOptions;
+use Google\Cloud\Spanner\V1\TransactionSelector;
 use Google\Cloud\Version;
-use Google\GAX\AgentHeaderDescriptor;
-use Google\GAX\ApiCallable;
-use Google\GAX\CallSettings;
-use Google\GAX\GrpcCredentialsHelper;
-use Google\GAX\PageStreamingDescriptor;
-use Google\GAX\PathTemplate;
-use Google\GAX\ValidationException;
 use Google\Protobuf\Struct;
-use Google\Spanner\V1\BeginTransactionRequest;
-use Google\Spanner\V1\CommitRequest;
-use Google\Spanner\V1\CreateSessionRequest;
-use Google\Spanner\V1\DeleteSessionRequest;
-use Google\Spanner\V1\ExecuteSqlRequest;
-use Google\Spanner\V1\ExecuteSqlRequest_QueryMode as QueryMode;
-use Google\Spanner\V1\GetSessionRequest;
-use Google\Spanner\V1\KeySet;
-use Google\Spanner\V1\ListSessionsRequest;
-use Google\Spanner\V1\Mutation;
-use Google\Spanner\V1\ReadRequest;
-use Google\Spanner\V1\RollbackRequest;
-use Google\Spanner\V1\Session;
-use Google\Spanner\V1\SpannerGrpcClient;
-use Google\Spanner\V1\TransactionOptions;
-use Google\Spanner\V1\TransactionSelector;
 
 /**
  * Service Description: Cloud Spanner API.
@@ -312,8 +312,8 @@ class SpannerGapicClient
      *     @type array $retryingOverride
      *           An associative array in which the keys are method names (e.g. 'createFoo'), and
      *           the values are retry settings to use for that method. The retry settings for each
-     *           method can be a {@see Google\GAX\RetrySettings} object, or an associative array
-     *           of retry settings parameters. See the documentation on {@see Google\GAX\RetrySettings}
+     *           method can be a {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *           of retry settings parameters. See the documentation on {@see Google\ApiCore\RetrySettings}
      *           for example usage. Passing a value of null is equivalent to a value of
      *           ['retriesEnabled' => false]. Retry settings provided in this setting override the
      *           settings in $clientConfigPath.
@@ -431,16 +431,16 @@ class SpannerGapicClient
      *
      *     @type Session $session
      *          The session to create.
-     *     @type \Google\GAX\RetrySettings|array $retrySettings
+     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
-     *          {@see Google\GAX\RetrySettings} object, or an associative array
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
-     *          {@see Google\GAX\RetrySettings} for example usage.
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
-     * @return \Google\Spanner\V1\Session
+     * @return \Google\Cloud\Spanner\V1\Session
      *
-     * @throws \Google\GAX\ApiException if the remote call fails
+     * @throws \Google\ApiCore\ApiException if the remote call fails
      * @experimental
      */
     public function createSession($database, $optionalArgs = [])
@@ -491,16 +491,16 @@ class SpannerGapicClient
      * @param array  $optionalArgs {
      *                             Optional.
      *
-     *     @type \Google\GAX\RetrySettings|array $retrySettings
+     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
-     *          {@see Google\GAX\RetrySettings} object, or an associative array
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
-     *          {@see Google\GAX\RetrySettings} for example usage.
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
-     * @return \Google\Spanner\V1\Session
+     * @return \Google\Cloud\Spanner\V1\Session
      *
-     * @throws \Google\GAX\ApiException if the remote call fails
+     * @throws \Google\ApiCore\ApiException if the remote call fails
      * @experimental
      */
     public function getSession($name, $optionalArgs = [])
@@ -578,16 +578,16 @@ class SpannerGapicClient
      *            * `labels.env:*` --> The session has the label "env".
      *            * `labels.env:dev` --> The session has the label "env" and the value of
      *                                 the label contains the string "dev".
-     *     @type \Google\GAX\RetrySettings|array $retrySettings
+     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
-     *          {@see Google\GAX\RetrySettings} object, or an associative array
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
-     *          {@see Google\GAX\RetrySettings} for example usage.
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
-     * @return \Google\GAX\PagedListResponse
+     * @return \Google\ApiCore\PagedListResponse
      *
-     * @throws \Google\GAX\ApiException if the remote call fails
+     * @throws \Google\ApiCore\ApiException if the remote call fails
      * @experimental
      */
     public function listSessions($database, $optionalArgs = [])
@@ -642,14 +642,14 @@ class SpannerGapicClient
      * @param array  $optionalArgs {
      *                             Optional.
      *
-     *     @type \Google\GAX\RetrySettings|array $retrySettings
+     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
-     *          {@see Google\GAX\RetrySettings} object, or an associative array
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
-     *          {@see Google\GAX\RetrySettings} for example usage.
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
-     * @throws \Google\GAX\ApiException if the remote call fails
+     * @throws \Google\ApiCore\ApiException if the remote call fails
      * @experimental
      */
     public function deleteSession($name, $optionalArgs = [])
@@ -744,17 +744,17 @@ class SpannerGapicClient
      *     @type int $queryMode
      *          Used to control the amount of debugging information returned in
      *          [ResultSetStats][google.spanner.v1.ResultSetStats].
-     *          For allowed values, use constants defined on {@see \Google\Spanner\V1\ExecuteSqlRequest_QueryMode}
-     *     @type \Google\GAX\RetrySettings|array $retrySettings
+     *          For allowed values, use constants defined on {@see \Google\Cloud\Spanner\V1\ExecuteSqlRequest_QueryMode}
+     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
-     *          {@see Google\GAX\RetrySettings} object, or an associative array
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
-     *          {@see Google\GAX\RetrySettings} for example usage.
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
-     * @return \Google\Spanner\V1\ResultSet
+     * @return \Google\Cloud\Spanner\V1\ResultSet
      *
-     * @throws \Google\GAX\ApiException if the remote call fails
+     * @throws \Google\ApiCore\ApiException if the remote call fails
      * @experimental
      */
     public function executeSql($session, $sql, $optionalArgs = [])
@@ -863,14 +863,14 @@ class SpannerGapicClient
      *     @type int $queryMode
      *          Used to control the amount of debugging information returned in
      *          [ResultSetStats][google.spanner.v1.ResultSetStats].
-     *          For allowed values, use constants defined on {@see \Google\Spanner\V1\ExecuteSqlRequest_QueryMode}
+     *          For allowed values, use constants defined on {@see \Google\Cloud\Spanner\V1\ExecuteSqlRequest_QueryMode}
      *     @type int $timeoutMillis
      *          Timeout to use for this call.
      * }
      *
-     * @return \Google\GAX\ServerStream
+     * @return \Google\ApiCore\ServerStream
      *
-     * @throws \Google\GAX\ApiException if the remote call fails
+     * @throws \Google\ApiCore\ApiException if the remote call fails
      * @experimental
      */
     public function executeStreamingSql($session, $sql, $optionalArgs = [])
@@ -984,16 +984,16 @@ class SpannerGapicClient
      *          enables the new read to resume where the last read left off. The
      *          rest of the request parameters must exactly match the request
      *          that yielded this token.
-     *     @type \Google\GAX\RetrySettings|array $retrySettings
+     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
-     *          {@see Google\GAX\RetrySettings} object, or an associative array
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
-     *          {@see Google\GAX\RetrySettings} for example usage.
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
-     * @return \Google\Spanner\V1\ResultSet
+     * @return \Google\Cloud\Spanner\V1\ResultSet
      *
-     * @throws \Google\GAX\ApiException if the remote call fails
+     * @throws \Google\ApiCore\ApiException if the remote call fails
      * @experimental
      */
     public function read($session, $table, $columns, $keySet, $optionalArgs = [])
@@ -1099,9 +1099,9 @@ class SpannerGapicClient
      *          Timeout to use for this call.
      * }
      *
-     * @return \Google\GAX\ServerStream
+     * @return \Google\ApiCore\ServerStream
      *
-     * @throws \Google\GAX\ApiException if the remote call fails
+     * @throws \Google\ApiCore\ApiException if the remote call fails
      * @experimental
      */
     public function streamingRead($session, $table, $columns, $keySet, $optionalArgs = [])
@@ -1174,16 +1174,16 @@ class SpannerGapicClient
      * @param array              $optionalArgs {
      *                                         Optional.
      *
-     *     @type \Google\GAX\RetrySettings|array $retrySettings
+     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
-     *          {@see Google\GAX\RetrySettings} object, or an associative array
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
-     *          {@see Google\GAX\RetrySettings} for example usage.
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
-     * @return \Google\Spanner\V1\Transaction
+     * @return \Google\Cloud\Spanner\V1\Transaction
      *
-     * @throws \Google\GAX\ApiException if the remote call fails
+     * @throws \Google\ApiCore\ApiException if the remote call fails
      * @experimental
      */
     public function beginTransaction($session, $options, $optionalArgs = [])
@@ -1253,16 +1253,16 @@ class SpannerGapicClient
      *          executed more than once. If this is undesirable, use
      *          [BeginTransaction][google.spanner.v1.Spanner.BeginTransaction] and
      *          [Commit][google.spanner.v1.Spanner.Commit] instead.
-     *     @type \Google\GAX\RetrySettings|array $retrySettings
+     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
-     *          {@see Google\GAX\RetrySettings} object, or an associative array
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
-     *          {@see Google\GAX\RetrySettings} for example usage.
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
-     * @return \Google\Spanner\V1\CommitResponse
+     * @return \Google\Cloud\Spanner\V1\CommitResponse
      *
-     * @throws \Google\GAX\ApiException if the remote call fails
+     * @throws \Google\ApiCore\ApiException if the remote call fails
      * @experimental
      */
     public function commit($session, $mutations, $optionalArgs = [])
@@ -1324,14 +1324,14 @@ class SpannerGapicClient
      * @param array  $optionalArgs  {
      *                              Optional.
      *
-     *     @type \Google\GAX\RetrySettings|array $retrySettings
+     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
-     *          {@see Google\GAX\RetrySettings} object, or an associative array
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
-     *          {@see Google\GAX\RetrySettings} for example usage.
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
-     * @throws \Google\GAX\ApiException if the remote call fails
+     * @throws \Google\ApiCore\ApiException if the remote call fails
      * @experimental
      */
     public function rollback($session, $transactionId, $optionalArgs = [])

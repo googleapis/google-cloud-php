@@ -71,7 +71,7 @@ class ValidateTraitTest extends TestCase
             $called++;
         });
 
-        $this->assertEquals(count($input), $called);
+        $this->assertCount($called, $input);
     }
 }
 

@@ -22,10 +22,10 @@ use Google\Cloud\Core\ExponentialBackoff;
 use Google\Cloud\Firestore\Connection\ConnectionInterface;
 use Google\Cloud\Firestore\DocumentSnapshot;
 use Google\Cloud\Firestore\SnapshotTrait;
-use Google\Firestore\V1beta1\StructuredQuery_CompositeFilter_Operator;
-use Google\Firestore\V1beta1\StructuredQuery_Direction;
-use Google\Firestore\V1beta1\StructuredQuery_FieldFilter_Operator;
-use Google\Firestore\V1beta1\StructuredQuery_UnaryFilter_Operator;
+use Google\Cloud\Firestore\V1beta1\StructuredQuery_CompositeFilter_Operator;
+use Google\Cloud\Firestore\V1beta1\StructuredQuery_Direction;
+use Google\Cloud\Firestore\V1beta1\StructuredQuery_FieldFilter_Operator;
+use Google\Cloud\Firestore\V1beta1\StructuredQuery_UnaryFilter_Operator;
 
 /**
  * A Cloud Firestore Query.

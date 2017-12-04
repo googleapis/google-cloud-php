@@ -361,7 +361,7 @@ class EntityMapperTest extends TestCase
         ];
 
         $res = $this->mapper->convertValue($type, $val);
-        $this->assertTrue(is_array($res));
+        $this->assertInternalType('array', $res);
         $this->assertEquals('test', $res['prop']);
     }
 
@@ -371,7 +371,7 @@ class EntityMapperTest extends TestCase
         $val = 1.1;
 
         $res = $this->mapper->convertValue($type, $val);
-        $this->assertTrue(is_float($res));
+        $this->assertInternalType('float', $res);
         $this->assertEquals(1.1, $res);
     }
 
@@ -381,7 +381,7 @@ class EntityMapperTest extends TestCase
         $val = 1;
 
         $res = $this->mapper->convertValue($type, $val);
-        $this->assertTrue(is_float($res));
+        $this->assertInternalType('float', $res);
         $this->assertEquals((float)1, $res);
     }
 
@@ -437,7 +437,7 @@ class EntityMapperTest extends TestCase
         ];
 
         $res = $this->mapper->convertValue($type, $val);
-        $this->assertTrue(is_array($res));
+        $this->assertInternalType('array', $res);
         $this->assertEquals(['foo', 'bar'], $res);
     }
 
@@ -447,7 +447,7 @@ class EntityMapperTest extends TestCase
         $val = [];
 
         $res = $this->mapper->convertValue($type, $val);
-        $this->assertTrue(is_array($res));
+        $this->assertInternalType('array', $res);
         $this->assertEquals([], $res);
     }
 

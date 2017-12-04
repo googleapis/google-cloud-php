@@ -118,7 +118,7 @@ class UpdatePathsTest extends \Google\Protobuf\Internal\Message
      */
     public function setPrecondition(&$var)
     {
-        GPBUtil::checkMessage($var, \Google\Firestore\V1beta1\Precondition::class);
+        GPBUtil::checkMessage($var, \Google\Cloud\Firestore\V1beta1\Precondition::class);
         $this->precondition = $var;
     }
 
@@ -193,7 +193,7 @@ class UpdatePathsTest extends \Google\Protobuf\Internal\Message
      */
     public function setRequest(&$var)
     {
-        GPBUtil::checkMessage($var, \Google\Firestore\V1beta1\CommitRequest::class);
+        GPBUtil::checkMessage($var, \Google\Cloud\Firestore\V1beta1\CommitRequest::class);
         $this->request = $var;
     }
 

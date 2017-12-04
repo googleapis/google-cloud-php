@@ -37,5 +37,6 @@ use Google\Cloud\VideoIntelligence\V1\Gapic\VideoIntelligenceServiceGapicClient;
  */
 class VideoIntelligenceServiceClient extends VideoIntelligenceServiceGapicClient
 {
-    // This class is intentionally empty, and is intended to hold manual additions to the generated {@see VideoIntelligenceServiceClientImpl} class.
+    // This class is intentionally empty, and is intended to hold manual
+    // additions to the generated {@see VideoIntelligenceServiceClientImpl} class.
 }

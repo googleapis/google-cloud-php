@@ -25,7 +25,7 @@ use Google\Cloud\Firestore\QuerySnapshot;
 use Google\Cloud\Dev\Snippet\Parser\Snippet;
 use Google\Cloud\Dev\Snippet\SnippetTestCase;
 use Google\Cloud\Firestore\Connection\ConnectionInterface;
-use Google\Firestore\V1beta1\StructuredQuery_CompositeFilter_Operator;
+use Google\Cloud\Firestore\V1beta1\StructuredQuery_CompositeFilter_Operator;
 
 /**
  * @group firestore

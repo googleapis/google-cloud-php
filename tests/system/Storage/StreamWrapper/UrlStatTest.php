@@ -74,8 +74,8 @@ class UrlStatTest extends StreamWrapperTestCase
 
     public function testFileExists()
     {
-        $this->assertTrue(file_exists(self::$dirUrl));
-        $this->assertTrue(file_exists(self::$fileUrl));
+        $this->assertFileExists(self::$dirUrl);
+        $this->assertFileExists(self::$fileUrl);
     }
 
     public function testIsLink()

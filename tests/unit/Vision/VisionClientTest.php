@@ -87,7 +87,7 @@ class VisionClientTest extends TestCase
 
         $res = $this->client->annotateBatch([$image]);
 
-        $this->assertTrue(is_array($res));
+        $this->assertInternalType('array', $res);
 
         $this->assertInstanceOf(Annotation::class, $res[0]);
         $this->assertInstanceOf(Annotation::class, $res[1]);

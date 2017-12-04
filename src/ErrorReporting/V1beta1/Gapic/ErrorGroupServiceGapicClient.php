@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2017, Google Inc. All rights reserved.
+ * Copyright 2017, Google LLC All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -21,33 +21,25 @@
  * https://github.com/google/googleapis/blob/master/google/devtools/clouderrorreporting/v1beta1/error_group_service.proto
  * and updates to that file get reflected here through a refresh process.
  *
- * EXPERIMENTAL: this client library class has not yet been declared beta. This class may change
- * more frequently than those which have been declared beta or 1.0, including changes which break
- * backwards compatibility.
- *
  * @experimental
  */
 
 namespace Google\Cloud\ErrorReporting\V1beta1\Gapic;
 
+use Google\ApiCore\AgentHeaderDescriptor;
+use Google\ApiCore\ApiCallable;
+use Google\ApiCore\CallSettings;
+use Google\ApiCore\GrpcCredentialsHelper;
+use Google\ApiCore\PathTemplate;
+use Google\ApiCore\ValidationException;
+use Google\Cloud\ErrorReporting\V1beta1\ErrorGroup;
+use Google\Cloud\ErrorReporting\V1beta1\ErrorGroupServiceGrpcClient;
+use Google\Cloud\ErrorReporting\V1beta1\GetGroupRequest;
+use Google\Cloud\ErrorReporting\V1beta1\UpdateGroupRequest;
 use Google\Cloud\Version;
-use Google\Devtools\Clouderrorreporting\V1beta1\ErrorGroup;
-use Google\Devtools\Clouderrorreporting\V1beta1\ErrorGroupServiceGrpcClient;
-use Google\Devtools\Clouderrorreporting\V1beta1\GetGroupRequest;
-use Google\Devtools\Clouderrorreporting\V1beta1\UpdateGroupRequest;
-use Google\GAX\AgentHeaderDescriptor;
-use Google\GAX\ApiCallable;
-use Google\GAX\CallSettings;
-use Google\GAX\GrpcCredentialsHelper;
-use Google\GAX\PathTemplate;
-use Google\GAX\ValidationException;
 
 /**
  * Service Description: Service for retrieving and updating individual error groups.
- *
- * EXPERIMENTAL: this client library class has not yet been declared beta. This class may change
- * more frequently than those which have been declared beta or 1.0, including changes which break
- * backwards compatibility.
  *
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods. Sample code to get started:
@@ -66,8 +58,6 @@ use Google\GAX\ValidationException;
  * with these names, this class includes a format method for each type of name, and additionally
  * a parseName method to extract the individual identifiers contained within formatted names
  * that are returned by the API.
- *
- * @experimental
  */
 class ErrorGroupServiceGapicClient
 {
@@ -228,8 +218,8 @@ class ErrorGroupServiceGapicClient
      *     @type array $retryingOverride
      *           An associative array in which the keys are method names (e.g. 'createFoo'), and
      *           the values are retry settings to use for that method. The retry settings for each
-     *           method can be a {@see Google\GAX\RetrySettings} object, or an associative array
-     *           of retry settings parameters. See the documentation on {@see Google\GAX\RetrySettings}
+     *           method can be a {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *           of retry settings parameters. See the documentation on {@see Google\ApiCore\RetrySettings}
      *           for example usage. Passing a value of null is equivalent to a value of
      *           ['retriesEnabled' => false]. Retry settings provided in this setting override the
      *           settings in $clientConfigPath.
@@ -316,16 +306,16 @@ class ErrorGroupServiceGapicClient
      * @param array $optionalArgs {
      *                            Optional.
      *
-     *     @type \Google\GAX\RetrySettings|array $retrySettings
+     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
-     *          {@see Google\GAX\RetrySettings} object, or an associative array
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
-     *          {@see Google\GAX\RetrySettings} for example usage.
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
-     * @return \Google\Devtools\Clouderrorreporting\V1beta1\ErrorGroup
+     * @return \Google\Cloud\ErrorReporting\V1beta1\ErrorGroup
      *
-     * @throws \Google\GAX\ApiException if the remote call fails
+     * @throws \Google\ApiCore\ApiException if the remote call fails
      * @experimental
      */
     public function getGroup($groupName, $optionalArgs = [])
@@ -372,16 +362,16 @@ class ErrorGroupServiceGapicClient
      * @param array      $optionalArgs {
      *                                 Optional.
      *
-     *     @type \Google\GAX\RetrySettings|array $retrySettings
+     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
-     *          {@see Google\GAX\RetrySettings} object, or an associative array
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
-     *          {@see Google\GAX\RetrySettings} for example usage.
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
-     * @return \Google\Devtools\Clouderrorreporting\V1beta1\ErrorGroup
+     * @return \Google\Cloud\ErrorReporting\V1beta1\ErrorGroup
      *
-     * @throws \Google\GAX\ApiException if the remote call fails
+     * @throws \Google\ApiCore\ApiException if the remote call fails
      * @experimental
      */
     public function updateGroup($group, $optionalArgs = [])

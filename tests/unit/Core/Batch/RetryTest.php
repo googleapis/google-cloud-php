@@ -75,9 +75,9 @@ class RetryTest extends TestCase
             ->shouldBeCalledTimes(1);
         $this->retry = new Retry($this->runner->reveal());
         $this->retry->handleFailure(1, array('apple', 'orange'));
-        $this->assertEquals(1, count(glob(self::$testDir . '/failed-items*')));
+        $this->assertCount(1, glob(self::$testDir . '/failed-items*'));
         $this->retry->retryAll();
-        $this->assertEquals(0, count(glob(self::$testDir . '/failed-items*')));
+        $this->assertCount(0, glob(self::$testDir . '/failed-items*'));
     }
 
     public function testRetryAllWithSingleFailure()
@@ -91,8 +91,8 @@ class RetryTest extends TestCase
         $this->retry = new Retry($this->runner->reveal());
         $this->retry->handleFailure(1, array('apple', 'orange'));
         $this->retry->retryAll();
-        $this->assertEquals(1, count(glob(self::$testDir . '/failed-items*')));
+        $this->assertCount(1, glob(self::$testDir . '/failed-items*'));
         $this->retry->retryAll();
-        $this->assertEquals(0, count(glob(self::$testDir . '/failed-items*')));
+        $this->assertCount(0, glob(self::$testDir . '/failed-items*'));
     }
 }
