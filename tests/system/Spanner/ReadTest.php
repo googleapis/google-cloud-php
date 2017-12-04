@@ -84,8 +84,8 @@ class ReadTest extends SpannerTestCase
 
         $res = $db->read(self::$rangeTableName, $keyset, array_keys(self::$dataset[0]));
         $rows = iterator_to_array($res->rows());
-        $this->assertFalse(in_array(self::$dataset[0], $rows));
-        $this->assertFalse(in_array(self::$dataset[10], $rows));
+        $this->assertNotContains(self::$dataset[0], $rows);
+        $this->assertNotContains(self::$dataset[10], $rows);
     }
 
     /**
@@ -106,8 +106,8 @@ class ReadTest extends SpannerTestCase
 
         $res = $db->read(self::$rangeTableName, $keyset, array_keys(self::$dataset[0]));
         $rows = iterator_to_array($res->rows());
-        $this->assertTrue(in_array(self::$dataset[0], $rows));
-        $this->assertTrue(in_array(self::$dataset[10], $rows));
+        $this->assertContains(self::$dataset[0], $rows);
+        $this->assertContains(self::$dataset[10], $rows);
     }
 
     /**
@@ -127,8 +127,8 @@ class ReadTest extends SpannerTestCase
 
         $res = $db->read(self::$rangeTableName, $keyset, array_keys(self::$dataset[0]));
         $rows = iterator_to_array($res->rows());
-        $this->assertFalse(in_array(self::$dataset[0], $rows));
-        $this->assertTrue(in_array(self::$dataset[10], $rows));
+        $this->assertNotContains(self::$dataset[0], $rows);
+        $this->assertContains(self::$dataset[10], $rows);
     }
 
     /**
@@ -148,8 +148,8 @@ class ReadTest extends SpannerTestCase
 
         $res = $db->read(self::$rangeTableName, $keyset, array_keys(self::$dataset[0]));
         $rows = iterator_to_array($res->rows());
-        $this->assertTrue(in_array(self::$dataset[0], $rows));
-        $this->assertFalse(in_array(self::$dataset[10], $rows));
+        $this->assertContains(self::$dataset[0], $rows);
+        $this->assertNotContains(self::$dataset[10], $rows);
     }
 
     /**
@@ -168,8 +168,8 @@ class ReadTest extends SpannerTestCase
 
         $res = $db->read(self::$rangeTableName, $keyset, array_keys(self::$dataset[0]));
         $rows = iterator_to_array($res->rows());
-        $this->assertFalse(in_array(self::$dataset[0], $rows));
-        $this->assertFalse(in_array(self::$dataset[10], $rows));
+        $this->assertNotContains(self::$dataset[0], $rows);
+        $this->assertNotContains(self::$dataset[10], $rows);
     }
 
     /**
@@ -190,8 +190,8 @@ class ReadTest extends SpannerTestCase
 
         $res = $db->read(self::$rangeTableName, $keyset, array_keys(self::$dataset[0]));
         $rows = iterator_to_array($res->rows());
-        $this->assertTrue(in_array(self::$dataset[0], $rows));
-        $this->assertTrue(in_array(self::$dataset[10], $rows));
+        $this->assertContains(self::$dataset[0], $rows);
+        $this->assertContains(self::$dataset[10], $rows);
     }
 
     /**
@@ -212,8 +212,8 @@ class ReadTest extends SpannerTestCase
             'index' => $this->getIndexName(self::$rangeTableName, 'complex')
         ]);
         $rows = iterator_to_array($res->rows());
-        $this->assertFalse(in_array(self::$dataset[0], $rows));
-        $this->assertFalse(in_array(self::$dataset[10], $rows));
+        $this->assertNotContains(self::$dataset[0], $rows);
+        $this->assertNotContains(self::$dataset[10], $rows);
     }
 
     /**
@@ -236,8 +236,8 @@ class ReadTest extends SpannerTestCase
             'index' => $this->getIndexName(self::$rangeTableName, 'complex')
         ]);
         $rows = iterator_to_array($res->rows());
-        $this->assertTrue(in_array(self::$dataset[0], $rows));
-        $this->assertTrue(in_array(self::$dataset[10], $rows));
+        $this->assertContains(self::$dataset[0], $rows);
+        $this->assertContains(self::$dataset[10], $rows);
     }
 
     /**
@@ -259,8 +259,8 @@ class ReadTest extends SpannerTestCase
             'index' => $this->getIndexName(self::$rangeTableName, 'complex')
         ]);
         $rows = iterator_to_array($res->rows());
-        $this->assertFalse(in_array(self::$dataset[0], $rows));
-        $this->assertTrue(in_array(self::$dataset[10], $rows));
+        $this->assertNotContains(self::$dataset[0], $rows);
+        $this->assertContains(self::$dataset[10], $rows);
     }
 
     /**
@@ -282,8 +282,8 @@ class ReadTest extends SpannerTestCase
             'index' => $this->getIndexName(self::$rangeTableName, 'complex')
         ]);
         $rows = iterator_to_array($res->rows());
-        $this->assertTrue(in_array(self::$dataset[0], $rows));
-        $this->assertFalse(in_array(self::$dataset[10], $rows));
+        $this->assertContains(self::$dataset[0], $rows);
+        $this->assertNotContains(self::$dataset[10], $rows);
     }
 
     /**
@@ -304,8 +304,8 @@ class ReadTest extends SpannerTestCase
             'index' => $this->getIndexName(self::$rangeTableName, 'complex')
         ]);
         $rows = iterator_to_array($res->rows());
-        $this->assertFalse(in_array(self::$dataset[0], $rows));
-        $this->assertFalse(in_array(self::$dataset[10], $rows));
+        $this->assertNotContains(self::$dataset[0], $rows);
+        $this->assertNotContains(self::$dataset[10], $rows);
     }
 
     /**
@@ -328,8 +328,8 @@ class ReadTest extends SpannerTestCase
             'index' => $this->getIndexName(self::$rangeTableName, 'complex')
         ]);
         $rows = iterator_to_array($res->rows());
-        $this->assertTrue(in_array(self::$dataset[0], $rows));
-        $this->assertTrue(in_array(self::$dataset[10], $rows));
+        $this->assertContains(self::$dataset[0], $rows);
+        $this->assertContains(self::$dataset[10], $rows);
     }
 
     /**
@@ -398,8 +398,8 @@ class ReadTest extends SpannerTestCase
         $res = $db->read(self::$readTableName, $keyset, array_keys($dataset[0]));
         $rows = $res->rows();
         foreach ($rows as $index => $row) {
-            $this->assertTrue(in_array($row, $dataset));
-            $this->assertTrue(in_array($row, $points));
+            $this->assertContains($row, $dataset);
+            $this->assertContains($row, $points);
         }
     }
 
@@ -428,8 +428,8 @@ class ReadTest extends SpannerTestCase
         ]);
         $rows = $res->rows();
         foreach ($rows as $index => $row) {
-            $this->assertTrue(in_array($row, $dataset));
-            $this->assertTrue(in_array($row, $points));
+            $this->assertContains($row, $dataset);
+            $this->assertContains($row, $points);
         }
     }
 

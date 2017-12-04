@@ -116,7 +116,7 @@ class CollectionReferenceTest extends TestCase
 
     public function testExtends()
     {
-        $this->assertTrue($this->collection instanceof Query);
+        $this->assertInstanceOf(Query::class, $this->collection);
     }
 
     /**

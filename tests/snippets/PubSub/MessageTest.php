@@ -158,6 +158,6 @@ class MessageTest extends SnippetTestCase
         $snippet->addLocal('message', $this->message);
 
         $res = $snippet->invoke('info');
-        $this->assertTrue(is_array($res->returnVal()));
+        $this->assertInternalType('array', $res->returnVal());
     }
 }

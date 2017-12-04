@@ -175,7 +175,7 @@ class PubSubClientTest extends TestCase
             if ($i == 6) break;
         }
 
-        $this->assertEquals(6, count($arr));
+        $this->assertCount(6, $arr);
     }
 
     public function testSubscribe()
@@ -289,7 +289,7 @@ class PubSubClientTest extends TestCase
             if ($i == 6) break;
         }
 
-        $this->assertEquals(6, count($arr));
+        $this->assertCount(6, $arr);
     }
 
     public function testCreateSnapshot()
@@ -385,7 +385,7 @@ class PubSubClientTest extends TestCase
             if ($i == 6) break;
         }
 
-        $this->assertEquals(6, count($arr));
+        $this->assertCount(6, $arr);
     }
 
     public function testConsume()

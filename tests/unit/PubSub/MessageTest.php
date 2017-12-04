@@ -88,8 +88,8 @@ class MessageTest extends TestCase
 
     public function testInfo()
     {
-        $this->assertTrue(is_array($this->message->info()));
-        $this->assertTrue(is_array($this->message->info()['message']));
+        $this->assertInternalType('array', $this->message->info());
+        $this->assertInternalType('array', $this->message->info()['message']);
         $this->assertInstanceOf(Subscription::class, $this->message->info()['subscription']);
         $this->assertEquals(1234, $this->message->info()['ackId']);
     }

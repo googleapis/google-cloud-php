@@ -56,6 +56,6 @@ class BytesTest extends TestCase
     public function testType()
     {
         $bytes = new Bytes($this->content);
-        $this->assertTrue(is_integer($bytes->type()));
+        $this->assertInternalType('int', $bytes->type());
     }
 }

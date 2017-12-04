@@ -52,7 +52,7 @@ class TraceTest extends TestCase
             ]
         );
         $this->assertEquals('1234abcd', $trace->traceId());
-        $this->assertEquals(1, count($trace->spans()));
+        $this->assertCount(1, $trace->spans());
         foreach($trace->spans() as $span) {
             $this->assertInstanceOf(TraceSpan::class, $span);
         }

@@ -62,6 +62,6 @@ class DateTest extends TestCase
 
     public function testType()
     {
-        $this->assertTrue(is_integer($this->date->type()));
+        $this->assertInternalType('int', $this->date->type());
     }
 }

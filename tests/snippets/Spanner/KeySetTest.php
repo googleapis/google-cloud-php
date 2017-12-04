@@ -99,7 +99,7 @@ class KeySetTest extends SnippetTestCase
         $this->assertEmpty($this->keyset->keys());
 
         $res = $snippet->invoke();
-        $this->assertEquals(1, count($this->keyset->keys()));
+        $this->assertCount(1, $this->keyset->keys());
     }
 
     public function testSetKeys()
@@ -110,7 +110,7 @@ class KeySetTest extends SnippetTestCase
         $this->assertEmpty($this->keyset->keys());
 
         $res = $snippet->invoke();
-        $this->assertEquals(2, count($this->keyset->keys()));
+        $this->assertCount(2, $this->keyset->keys());
     }
 
     public function testMatchAll()

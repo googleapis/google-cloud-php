@@ -50,7 +50,7 @@ class TraceClientTest extends TestCase
         $this->client->setConnection($this->connection->reveal());
         $traces = iterator_to_array($this->client->traces());
 
-        $this->assertEquals(3, count($traces));
+        $this->assertCount(3, $traces);
         $this->assertEquals('1', $traces[0]->traceId());
         $this->assertEquals('2', $traces[1]->traceId());
         $this->assertEquals('3', $traces[2]->traceId());
@@ -80,7 +80,7 @@ class TraceClientTest extends TestCase
         $trace = $this->client->trace('1');
         $trace->reload();
         $this->assertEquals('1', $trace->traceId());
-        $this->assertEquals(1, count($trace->spans()));
+        $this->assertCount(1, $trace->spans());
     }
 
     /**

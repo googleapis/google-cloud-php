@@ -136,7 +136,7 @@ class StorageClientTest extends TestCase
     {
         $this->assertTrue($this->client->registerStreamWrapper());
         $this->assertEquals($this->client, StreamWrapper::getClient());
-        $this->assertTrue(in_array('gs', stream_get_wrappers()));
+        $this->assertContains('gs', stream_get_wrappers());
         $this->client->unregisterStreamWrapper();
     }
 

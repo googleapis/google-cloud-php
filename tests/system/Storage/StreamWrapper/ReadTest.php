@@ -40,7 +40,7 @@ class ReadTest extends StreamWrapperTestCase
 
     public function testFileGetContents()
     {
-        $this->assertEquals('somedata', file_get_contents($this->file));
+        $this->assertStringEqualsFile($this->file, 'somedata');
     }
 
     public function testGetLines()

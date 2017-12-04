@@ -130,7 +130,7 @@ class FirestoreClientTest extends TestCase
             if ($i == 6) break;
         }
 
-        $this->assertEquals(6, count($arr));
+        $this->assertCount(6, $arr);
     }
 
     public function testDocument()

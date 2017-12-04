@@ -141,7 +141,7 @@ class ManageObjectsTest extends StorageTestCase
     {
         $content = self::$object->downloadAsString();
 
-        $this->assertTrue(is_string($content));
+        $this->assertInternalType('string', $content);
     }
 
     public function testDownloadsAsStream()
