@@ -47,7 +47,7 @@ class StatusMessage implements \JsonSerializable
      * @param Reference $refersTo Reference to which the message applies.
      * @param FormatMessage $description Status message text.
      */
-    public function __construct($isError, $refersTo, $description))
+    public function __construct($isError, $refersTo, $description)
     {
         $this->isError = $isError;
         $this->refersTo = $refersTo;

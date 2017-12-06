@@ -31,7 +31,7 @@ class VariableTest extends \PHPUnit_Framework_TestCase
             'type' => 'int',
             'value' => '5'
         ];
-        $variable = new Variable($input);
+        $variable = Variable::fromJson($input);
 
         $this->assertProducesEquivalentJson($input, $variable);
     }
@@ -43,7 +43,7 @@ class VariableTest extends \PHPUnit_Framework_TestCase
             'type' => 'int',
             'varTableIndex' => 4
         ];
-        $variable = new Variable($input);
+        $variable = Variable::fromJson($input);
 
         $this->assertProducesEquivalentJson($input, $variable);
     }
@@ -67,7 +67,7 @@ class VariableTest extends \PHPUnit_Framework_TestCase
                 ]
             ]
         ];
-        $variable = new Variable($input);
+        $variable = Variable::fromJson($input);
 
         $this->assertProducesEquivalentJson($input, $variable);
     }

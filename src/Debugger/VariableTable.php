@@ -99,16 +99,12 @@ class VariableTable implements \JsonSerializable
                     }
 
                     $this->nextIndex++;
-                    array_push($this->variables, new Variable([
-                        'name' => $name,
-                        'type' => $type,
+                    array_push($this->variables, new Variable($name, $type, [
                         'value' => "$type ($hash)",
                         'members' => $members
                     ]));
                 }
-                return new Variable([
-                    'name' => $name,
-                    'type' => $type,
+                return new Variable($name, $type, [
                     'varTableIndex' => $index
                 ]);
                 break;
@@ -120,9 +116,7 @@ class VariableTable implements \JsonSerializable
                         array_push($members, $this->doRegister($key, $member, $depth + 1));
                     }
                 }
-                return new Variable([
-                    'name' => $name,
-                    'type' => $type,
+                return new Variable($name, $type, [
                     'value' => "array ($arraySize)",
                     'members' => $members
                 ]);
@@ -134,9 +128,7 @@ class VariableTable implements \JsonSerializable
                 $variableValue = (string)$value;
         }
 
-        return new Variable([
-            'name' => $name,
-            'type' => $type,
+        return new Variable($name, $type, [
             'value' => $variableValue
         ]);
     }

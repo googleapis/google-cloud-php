@@ -67,11 +67,11 @@ class Breakpoint implements \JsonSerializable
         ], $data);
 
         if (array_key_exists('location', $data)) {
-            $this->info['location'] = new SourceLocation($data['location']);
+            $this->info['location'] = SourceLocation::fromJson($data['location']);
         }
 
         if (array_key_exists('status', $data)) {
-            $this->info['status'] = new StatusMessage($data['status']);
+            $this->info['status'] = StatusMessage::fromJson($data['status']);
         }
 
         if (array_key_exists('stackFrames', $data)) {

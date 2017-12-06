@@ -48,7 +48,6 @@ class VariableTableTest extends \PHPUnit_Framework_TestCase
         $this->assertArrayNotHasKey('varTableIndex', $variableData);
         $this->assertEquals(Int64::class, $variableData['type']);
         $this->assertRegexp('/Google\\\\Cloud\\\\Core\\\\Int64 \([0-9a-z]+\)/', $variableData['value']);
-        $this->assertEquals([], $variableData['members']);
         $this->assertArrayNotHasKey('status', $variableData);
     }
 

@@ -65,20 +65,30 @@ class Variable implements \JsonSerializable
      * Instantiate a new Variable
      *
      * @param string $name
-     * @param string $value
      * @param string $type
-     * @param int $varTableIndex
-     * @param Variable[] $members
-     * @param Status $status
+     * @param array $options {
+     *      Variable options
+     *
+     *      @type string $value
+     *      @type int $varTableIndex
+     *      @type Variable[] $members
+     *      @type Status $status
+     * }
      */
-    public function __construct($name, $value, $type, $varTableIndex, $members, Status $status)
+    public function __construct($name, $type, array $options = [])
     {
         $this->name = $name;
-        $this->value = $value;
         $this->type = $type;
-        $this->varTableIndex = $varTableIndex;
-        $this->members = $members;
-        $this->status = $status;
+        $options += [
+            'value' => null,
+            'varTableIndex' => null,
+            'members' => [],
+            'status' => null
+        ];
+        $this->value = $options['value'];
+        $this->varTableIndex = $options['varTableIndex'];
+        $this->members = $options['members'];
+        $this->status = $options['status'];
     }
 
     /**
@@ -98,22 +108,13 @@ class Variable implements \JsonSerializable
      */
     public static function fromJson(array $data)
     {
-        $data += [
-            'name' => null,
-            'value' => null,
-            'type' => null,
-            'varTableIndex' => null,
-            'members' => [],
-            'status' => null
-        ];
-        return new static(
-            $data['name'],
-            $data['value'],
-            $data['type'],
-            $data['varTableIndex'],
-            array_map([static::class, 'fromJson'], $data['members']),
-            StatusMessage::fromJson($data['status'])
-        );
+        if (array_key_exists('members', $data)) {
+            $data['members'] = array_map([static::class, 'fromJson'], $data['members']);
+        }
+        if (array_key_exists('status', $data)) {
+            $data['status'] = StatusMessage::fromJson($data['status']);
+        }
+        return new static($data['name'], $data['type'], $data);
     }
 
     /**
@@ -134,7 +135,7 @@ class Variable implements \JsonSerializable
         if ($this->varTableIndex !== null) {
             $data['varTableIndex'] = $this->varTableIndex;
         }
-        if (!empty($this->members)) {
+        if ($this->members) {
             $data['members'] = $this->members;
         }
         if ($this->status) {
