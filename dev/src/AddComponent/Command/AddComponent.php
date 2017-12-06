@@ -18,6 +18,7 @@
 namespace Google\Cloud\Dev\AddComponent\Command;
 
 use Google\Cloud\Dev\AddComponent\Composer;
+use Google\Cloud\Dev\AddComponent\Contributing;
 use Google\Cloud\Dev\AddComponent\License;
 use Google\Cloud\Dev\AddComponent\Manifest;
 use Google\Cloud\Dev\AddComponent\QuestionTrait;
@@ -124,6 +125,13 @@ class AddComponent extends Command
         ));
 
         (new License($this->cliBasePath, $path))->run();
+
+        $output->writeln($formatter->formatSection(
+            'Contributing',
+            'Creating CONTRIBUTING.md file by copying from template.'
+        ));
+
+        (new Contributing($this->cliBasePath, $path))->run();
 
         $output->writeln($formatter->formatSection(
             'Readme',
