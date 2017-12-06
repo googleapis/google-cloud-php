@@ -82,10 +82,10 @@ class Daemon
             : $this->defaultName();
 
         $description = $uniquifier;
-        $this->debuggee = $client->debuggee($name, [
+        $this->debuggee = $client->debuggee(null, [
             'uniquifier' => $uniquifier,
-            'description' => $description,
-            'extendedSourceContexts' => [$extSourceContext]
+            'description' => $name,
+            'extendedSourceContexts' => $extSourceContext
         ]);
 
         $this->debuggee->register();
@@ -156,7 +156,7 @@ class Daemon
         if (isset($_SERVER['GAE_SERVICE'])) {
             return $_SERVER['GAE_SERVICE'] . ' - ' . $_SERVER['GAE_VERSION'];
         }
-        return gethostname() . '-' . getcwd();
+        return gethostname() . ' - ' . getcwd();
     }
 
     private function defaultExtSourceContext()
