@@ -41,7 +41,7 @@ class DatastoreTraitTest extends TestCase
             'foo', 'bar'
         ]);
 
-        $this->assertTrue(is_array($res));
+        $this->assertInternalType('array', $res);
         $this->assertEquals('foo', $res['projectId']);
         $this->assertEquals('bar', $res['namespaceId']);
     }

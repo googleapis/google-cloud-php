@@ -34,7 +34,7 @@ class SamplerFactory
      *
      *     @type string $type Which type of sampler to build. May be one of:
      *           `"qps"`, `"random"`, `"enabled"`, `"disabled"`. **Defaults to**
-     *           `"qps"`.
+     *           `"enabled"`.
      *     @type float $rate The sampling rate for query per second and random sampling.
      *           **Defaults to** `0.1`.
      *     @type CacheItemPoolInterface $cache The PSR-6 cache implementation to use for query

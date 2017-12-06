@@ -29,7 +29,7 @@ class AllocateKeyTest extends DatastoreTestCase
         $key = self::$client->key($kind);
         $path = self::$client->allocateId($key)->path()[0];
 
-        $this->assertTrue(is_numeric($path['id']));
+        $this->assertInternalType('numeric', $path['id']);
         $this->assertEquals($kind, $path['kind']);
     }
 
@@ -41,7 +41,7 @@ class AllocateKeyTest extends DatastoreTestCase
 
         foreach ($allocatedKeys as $key) {
             $path = $key->path()[0];
-            $this->assertTrue(is_numeric($path['id']));
+            $this->assertInternalType('numeric', $path['id']);
             $this->assertEquals($kind, $path['kind']);
         }
     }

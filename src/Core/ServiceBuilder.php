@@ -20,8 +20,9 @@ namespace Google\Cloud\Core;
 use Google\Auth\HttpHandler\HttpHandlerFactory;
 use Google\Cloud\BigQuery\BigQueryClient;
 use Google\Cloud\Datastore\DatastoreClient;
-use Google\Cloud\Logging\LoggingClient;
+use Google\Cloud\Firestore\FirestoreClient;
 use Google\Cloud\Language\LanguageClient;
+use Google\Cloud\Logging\LoggingClient;
 use Google\Cloud\PubSub\PubSubClient;
 use Google\Cloud\Spanner\SpannerClient;
 use Google\Cloud\Speech\SpeechClient;
@@ -143,6 +144,30 @@ class ServiceBuilder
     public function datastore(array $config = [])
     {
         return $this->createClient(DatastoreClient::class, 'datastore', $config);
+    }
+
+    /**
+     * Cloud Firestore is a flexible, scalable, realtime database for mobile,
+     * web, and server development. Find more information at the
+     * [Google Cloud firestore docs](https://cloud.google.com/firestore/docs/).
+     *
+     * Example:
+     * ```
+     * $firestore = $cloud->firestore();
+     * ```
+     *
+     * @param array $config [optional] {
+     *     Configuration options. See
+     *     {@see Google\Cloud\Core\ServiceBuilder::__construct()} for the other available options.
+     *
+     *     @type bool $returnInt64AsObject If true, 64 bit integers will be
+     *           returned as a {@see Google\Cloud\Core\Int64} object for 32 bit
+     *           platform compatibility. **Defaults to** false.
+     * @return FirestoreClient
+     */
+    public function firestore(array $config = [])
+    {
+        return $this->createClient(FirestoreClient::class, 'firestore', $config);
     }
 
     /**

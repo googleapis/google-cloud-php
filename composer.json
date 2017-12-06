@@ -11,6 +11,7 @@
         "google cloud platform",
         "google cloud",
         "cloud",
+        "bigtable",
         "bigquery",
         "big query",
         "datastore",
@@ -48,11 +49,11 @@
         "monolog/monolog": "~1",
         "psr/http-message": "1.0.*",
         "ramsey/uuid": "~3",
-        "google/proto-client": "^0.25",
-        "google/gax": "^0.25"
+        "google/proto-client": "0.27.0",
+        "google/gax": "0.27.0"
     },
     "require-dev": {
-        "phpunit/phpunit": "^4.8.36",
+        "phpunit/phpunit": "^4.8|^5.0",
         "squizlabs/php_codesniffer": "2.*",
         "phpdocumentor/reflection": "^3.0",
         "symfony/console": "^3.0",
@@ -63,22 +64,24 @@
         "phpseclib/phpseclib": "^2"
     },
     "replace": {
+        "google/cloud-bigtable": "0.1.0",
         "google/cloud-bigquery": "0.3.1",
-        "google/cloud-core": "1.12.0",
-        "google/cloud-datastore": "1.0.3",
-        "google/cloud-error-reporting": "0.6.0",
-        "google/cloud-logging": "1.6.1",
-        "google/cloud-monitoring": "0.6.0",
-        "google/cloud-language": "0.9.0",
-        "google/cloud-pubsub": "0.9.1",
-        "google/cloud-spanner": "0.8.1",
-        "google/cloud-speech": "0.8.0",
+        "google/cloud-core": "1.14.0",
+        "google/cloud-datastore": "1.1.0",
+        "google/cloud-error-reporting": "0.7.0",
+        "google/cloud-firestore": "0.2.0",
+        "google/cloud-logging": "1.7.0",
+        "google/cloud-monitoring": "0.7.0",
+        "google/cloud-language": "0.10.0",
+        "google/cloud-pubsub": "0.10.0",
+        "google/cloud-spanner": "0.10.0",
+        "google/cloud-speech": "0.9.0",
         "google/cloud-storage": "1.2.1",
         "google/cloud-trace": "0.3.3",
         "google/cloud-translate": "1.0.2",
-        "google/cloud-videointelligence": "0.6.0",
-        "google/cloud-vision": "0.6.0",
-        "google/cloud-dlp": "0.3.0"
+        "google/cloud-videointelligence": "0.8.0",
+        "google/cloud-vision": "0.7.0",
+        "google/cloud-dlp": "0.4.0"
     },
     "suggest": {
         "phpseclib/phpseclib": "May be used in place of OpenSSL for creating signed Cloud Storage URLs. Please require version ^2."
@@ -98,6 +101,9 @@
         },
         "files": [
             "dev/src/Functions.php"
+        ],
+        "classmap": [
+            "tests/conformance-fixtures"
         ]
     },
     "scripts": {

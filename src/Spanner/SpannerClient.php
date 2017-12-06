@@ -19,6 +19,7 @@ namespace Google\Cloud\Spanner;
 
 use Google\Cloud\Core\ArrayTrait;
 use Google\Cloud\Core\ClientTrait;
+use Google\Cloud\Core\Exception\GoogleException;
 use Google\Cloud\Core\Exception\NotFoundException;
 use Google\Cloud\Core\Int64;
 use Google\Cloud\Core\Iterator\ItemIterator;
@@ -64,7 +65,7 @@ class SpannerClient
     use LROTrait;
     use ValidateTrait;
 
-    const VERSION = '0.8.1';
+    const VERSION = '0.10.0';
 
     const FULL_CONTROL_SCOPE = 'https://www.googleapis.com/auth/spanner.data';
     const ADMIN_SCOPE = 'https://www.googleapis.com/auth/spanner.admin';
@@ -80,7 +81,8 @@ class SpannerClient
     private $returnInt64AsObject;
 
     /**
-     * Create a Spanner client.
+     * Create a Spanner client. Please note that this client requires
+     * [the gRPC extension](https://cloud.google.com/php/grpc).
      *
      * @param array $config [optional] {
      *     Configuration Options.
@@ -108,10 +110,11 @@ class SpannerClient
      *           returned as a {@see Google\Cloud\Core\Int64} object for 32 bit
      *           platform compatibility. **Defaults to** false.
      * }
-     * @throws Google\Cloud\Core\Exception\GoogleException
+     * @throws GoogleException If the gRPC extension is not enabled.
      */
     public function __construct(array $config = [])
     {
+        $this->requireGrpc();
         $config += [
             'scopes' => [
                 self::FULL_CONTROL_SCOPE,

@@ -62,6 +62,6 @@ class TimestampTest extends TestCase
 
     public function testType()
     {
-        $this->assertTrue(is_integer($this->ts->type()));
+        $this->assertInternalType('int', $this->ts->type());
     }
 }

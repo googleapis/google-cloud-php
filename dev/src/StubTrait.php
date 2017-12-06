@@ -42,13 +42,23 @@ trait StubTrait
     private function ___getPropertyReflector($property)
     {
         $trait = new \ReflectionClass($this);
-        $ref = $trait->getParentClass();
+        $ref = $trait->getParentClass() ?: $trait;
 
-        try {
-            $property = $ref->getProperty($property);
-        } catch (\ReflectionException $e) {
-            throw new \BadMethodCallException($e->getMessage());
-        }
+        // wrap this in a loop that will iterate up a class hierarchy to try
+        // and find a private property.
+        $keepTrying = true;
+        do {
+            try {
+                $property = $ref->getProperty($property);
+                $keepTrying = false;
+            } catch (\ReflectionException $e) {
+                if ($ref->getParentClass()) {
+                    $ref = $ref->getParentClass();
+                } else {
+                    throw new \BadMethodCallException($e->getMessage());
+                }
+            }
+        } while($keepTrying);
 
         return $property;
     }

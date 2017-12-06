@@ -1,10 +1,10 @@
 # Google Cloud PHP Client
 > Idiomatic PHP client for [Google Cloud Platform](https://cloud.google.com/) services.
 
-[![Travis Build Status](https://travis-ci.org/GoogleCloudPlatform/google-cloud-php.svg?branch=master)](https://travis-ci.org/GoogleCloudPlatform/google-cloud-php/) [![codecov](https://codecov.io/gh/googlecloudplatform/google-cloud-php/branch/master/graph/badge.svg)](https://codecov.io/gh/googlecloudplatform/google-cloud-php)
+[![Latest Stable Version](https://poser.pugx.org/google/cloud/v/stable)](https://packagist.org/packages/google/cloud) [![Packagist](https://img.shields.io/packagist/dm/google/cloud.svg)](https://packagist.org/packages/google/cloud) [![Travis Build Status](https://travis-ci.org/GoogleCloudPlatform/google-cloud-php.svg?branch=master)](https://travis-ci.org/GoogleCloudPlatform/google-cloud-php/) [![codecov](https://codecov.io/gh/googlecloudplatform/google-cloud-php/branch/master/graph/badge.svg)](https://codecov.io/gh/googlecloudplatform/google-cloud-php)
 
 * [Homepage](http://googlecloudplatform.github.io/google-cloud-php)
-* [API Documentation](http://googlecloudplatform.github.io/google-cloud-php/#/docs)
+* [API Documentation](https://googlecloudplatform.github.io/google-cloud-php/#/docs/google-cloud/latest/servicebuilder)
 
 This client supports the following Google Cloud Platform services at a [General Availability](#versioning) quality level:
 * [Google Cloud Datastore](#google-cloud-datastore-ga) (GA)
@@ -14,22 +14,26 @@ This client supports the following Google Cloud Platform services at a [General 
 
 This client supports the following Google Cloud Platform services at a [Beta](#versioning) quality level:
 
+* [Cloud Firestore](#cloud-firestore-beta) (Beta)
 * [Cloud Spanner](#cloud-spanner-beta) (Beta)
 * [Google BigQuery](#google-bigquery-beta) (Beta)
 * [Google Cloud Natural Language](#google-cloud-natural-language-beta) (Beta)
 * [Google Cloud Pub/Sub](#google-cloud-pubsub-beta) (Beta)
+* [Google Cloud Video Intelligence](#google-cloud-video-intelligence-beta) (Beta)
 * [Google Cloud Vision](#google-cloud-vision-beta) (Beta)
+* [Google DLP](#google-dlp-beta) (Beta)
+* [Google Stackdriver Error Reporting](#google-stackdriver-error-reporting-beta) (Beta)
+* [Google Stackdriver Monitoring](#google-stackdriver-monitoring-beta) (Beta)
 
 This client supports the following Google Cloud Platform services at an [Alpha](#versioning) quality level:
 * [Google Cloud Speech](#google-cloud-speech-alpha) (Alpha)
-* [Google Cloud Video Intelligence](#google-cloud-video-intelligence-alpha) (Alpha)
 * [Google Stackdriver Trace](#google-stackdriver-trace-alpha) (Alpha)
 
 If you need support for other Google APIs, please check out the [Google APIs Client Library for PHP](https://github.com/google/google-api-php-client).
 
 ## Quick Start
 
-We recommend installing individual component packages when possible. A list of available packages can be found on [Packagist](https://packagist.org/search/?q=google%2Fgoogle-cloud-).
+We recommend installing individual component packages when possible. A list of available packages can be found on [Packagist](https://packagist.org/search/?q=google%2Fcloud-).
 
 For example:
 
@@ -116,7 +120,7 @@ $entity = $datastore->lookup($key);
 Google Cloud Datastore can be installed separately by requiring the `google/cloud-datastore` composer package:
 
 ```
-$ require google/cloud-datastore
+$ composer require google/cloud-datastore
 ```
 
 ## Google Cloud Storage (GA)
@@ -176,7 +180,7 @@ $contents = file_get_contents('gs://my_bucket/file_backup.txt');
 Google Cloud Storage can be installed separately by requiring the `google/cloud-storage` composer package:
 
 ```
-$ require google/cloud-storage
+$ composer require google/cloud-storage
 ```
 
 ## Google Cloud Translation (GA)
@@ -230,7 +234,7 @@ foreach ($languages as $language) {
 Google Cloud Translation can be installed separately by requiring the `google/cloud-translate` composer package:
 
 ```
-$ require google/cloud-translate
+$ composer require google/cloud-translate
 ```
 
 ## Google Stackdriver Logging (GA)
@@ -270,7 +274,38 @@ foreach ($entries as $entry) {
 Google Stackdriver Logging can be installed separately by requiring the `google/cloud-logging` composer package:
 
 ```
-$ require google/cloud-logging
+$ composer require google/cloud-logging
+```
+
+## Cloud Firestore (Beta)
+
+- [API Documentation](http://googlecloudplatform.github.io/google-cloud-php/#/docs/latest/firestore/firestoreclient)
+- [Official Documentation](https://cloud.google.com/firestore/docs)
+
+#### Preview
+
+```php
+require 'vendor/autoload.php';
+
+use Google\Cloud\Firestore\FirestoreClient;
+
+$firestore = new FirestoreClient([
+    'projectId' => 'my_project'
+]);
+
+$collectionReference = $firestore->collection('Users');
+$documentReference = $collectionReference->document($userId);
+$snapshot = $documentReference->snapshot();
+
+echo "Hello " . $snapshot['firstName'];
+```
+
+#### google/cloud-firestore
+
+Cloud Firestore can be installed separately by requiring the `google/cloud-firestore` composer package:
+
+```
+$ composer require google/cloud-firestore
 ```
 
 ## Cloud Spanner (Beta)
@@ -307,7 +342,7 @@ echo 'Hello ' . $user['firstName'];
 Cloud Spanner can be installed separately by requiring the `google/cloud-spanner` composer package:
 
 ```
-$ require google/cloud-spanner
+$ composer require google/cloud-spanner
 ```
 
 ## Google BigQuery (Beta)
@@ -348,7 +383,7 @@ foreach ($queryResults->rows() as $row) {
 Google BigQuery can be installed separately by requiring the `google/cloud-bigquery` composer package:
 
 ```
-$ require google/cloud-bigquery
+$ composer require google/cloud-bigquery
 ```
 
 ## Google Cloud Natural Language (Beta)
@@ -395,7 +430,7 @@ foreach ($tokens as $token) {
 Google Cloud Natural Language can be installed separately by requiring the `google/cloud-language` composer package:
 
 ```
-$ require google/cloud-language
+$ composer require google/cloud-language
 ```
 
 ## Google Cloud Pub/Sub (Beta)
@@ -442,7 +477,49 @@ foreach ($messages as $message) {
 Google Cloud Pub/Sub can be installed separately by requiring the `google/cloud-pubsub` composer package:
 
 ```
-$ require google/cloud-pubsub
+$ composer require google/cloud-pubsub
+```
+
+## Google Cloud Video Intelligence (Beta)
+
+- [API Documentation](http://googlecloudplatform.github.io/google-cloud-php/#/docs/latest/videointelligence/readme)
+- [Official Documentation](https://cloud.google.com/video-intelligence/docs)
+
+#### Preview
+
+```php
+require __DIR__ . '/vendor/autoload.php';
+
+use Google\Cloud\VideoIntelligence\V1\VideoIntelligenceServiceClient;
+use Google\Cloud\VideoIntelligence\V1\Feature;
+
+$videoIntelligenceServiceClient = new VideoIntelligenceServiceClient();
+
+$inputUri = "gs://example-bucket/example-video.mp4";
+$features = [
+    Feature::LABEL_DETECTION,
+];
+$operationResponse = $videoIntelligenceServiceClient->annotateVideo($inputUri, $features);
+$operationResponse->pollUntilComplete();
+if ($operationResponse->operationSucceeded()) {
+    $results = $operationResponse->getResult();
+    foreach ($results->getAnnotationResultsList() as $result) {
+        foreach ($result->getLabelAnnotationsList() as $labelAnnotation) {
+            echo "Label: " . $labelAnnotation->getDescription() . "\n";
+        }
+    }
+} else {
+    $error = $operationResponse->getError();
+    echo "error: " . $error->getMessage() . "\n";
+}
+```
+
+#### google/cloud-videointelligence
+
+Cloud Video Intelligence can be installed separately by requiring the `google/cloud-videointelligence` composer package:
+
+```
+$ composer require google/cloud-videointelligence
 ```
 
 ## Google Cloud Vision (Beta)
@@ -482,7 +559,154 @@ foreach ($annotation->faces() as $key => $face) {
 Google Cloud Vision can be installed separately by requiring the `google/cloud-vision` composer package:
 
 ```
-$ require google/cloud-vision
+$ composer require google/cloud-vision
+```
+
+## Google DLP (Beta)
+
+- [API Documentation](http://googlecloudplatform.github.io/google-cloud-php/#/docs/latest/dlp/readme)
+- [Official Documentation](https://cloud.google.com/dlp/docs)
+
+#### Preview
+
+```php
+require 'vendor/autoload.php';
+
+use Google\Cloud\Dlp\V2beta1\DlpServiceClient;
+use Google\Cloud\Dlp\V2beta1\ContentItem;
+use Google\Cloud\Dlp\V2beta1\InfoType;
+use Google\Cloud\Dlp\V2beta1\InspectConfig;
+
+$dlpServiceClient = new DlpServiceClient();
+$name = 'EMAIL_ADDRESS';
+$infoTypesElement = new InfoType();
+$infoTypesElement->setName($name);
+$infoTypes = [$infoTypesElement];
+$inspectConfig = new InspectConfig();
+$inspectConfig->setInfoTypes($infoTypes);
+$type = 'text/plain';
+$value = 'My email is example@example.com.';
+$itemsElement = new ContentItem();
+$itemsElement->setType($type);
+$itemsElement->setValue($value);
+$items = [$itemsElement];
+
+try {
+    $response = $dlpServiceClient->inspectContent($inspectConfig, $items);
+} finally {
+    $dlpServiceClient->close();
+}
+```
+
+#### google/cloud-dlp
+
+Google DLP can be installed separately by requiring the `google/cloud-dlp` composer package:
+
+```
+$ composer require google/cloud-dlp
+```
+
+## Google Stackdriver Error Reporting (Beta)
+
+- [API Documentation](http://googlecloudplatform.github.io/google-cloud-php/#/docs/latest/errorreporting/readme)
+- [Official Documentation](https://cloud.google.com/error-reporting/docs)
+
+#### Preview
+
+```php
+require 'vendor/autoload.php';
+
+use Google\Cloud\ErrorReporting\V1beta1\ReportErrorsServiceClient;
+use Google\Cloud\ErrorReporting\\V1beta1\ReportedErrorEvent;
+
+$reportErrorsServiceClient = new ReportErrorsServiceClient();
+$formattedProjectName = $reportErrorsServiceClient->projectName('[PROJECT]');
+$event = new ReportedErrorEvent();
+
+try {
+    $response = $reportErrorsServiceClient->reportErrorEvent($formattedProjectName, $event);
+} finally {
+    $reportErrorsServiceClient->close();
+}
+```
+
+#### google/cloud-error-reporting
+
+Google Stackdriver Error Reporting can be installed separately by requiring the `google/cloud-error-reporting` composer package:
+
+```
+$ composer require google/cloud-error-reporting
+```
+
+## Google Stackdriver Monitoring (Beta)
+
+- [API Documentation](http://googlecloudplatform.github.io/google-cloud-php/#/docs/latest/monitoring/readme)
+- [Official Documentation](https://cloud.google.com/monitoring/docs)
+
+#### Preview
+
+```php
+require 'vendor/autoload.php';
+
+<?php
+
+use Google\Api\Metric;
+use Google\Api\MonitoredResource;
+use Google\Cloud\Monitoring\V3\MetricServiceClient;
+use Google\Cloud\Monitoring\V3\Point;
+use Google\Cloud\Monitoring\V3\TimeInterval;
+use Google\Cloud\Monitoring\V3\TimeSeries;
+use Google\Cloud\Monitoring\V3\TypedValue;
+use Google\Protobuf\Timestamp;
+
+$metricServiceClient = new MetricServiceClient();
+$formattedProjectName = $metricServiceClient->projectName($projectId);
+$labels = [
+    'instance_id' => $instanceId,
+    'zone' => $zone,
+];
+
+$m = new Metric();
+$m->setType('custom.googleapis.com/my_metric');
+
+$r = new MonitoredResource();
+$r->setType('gce_instance');
+$r->setLabels($labels);
+
+$value = new TypedValue();
+$value->setDoubleValue(3.14);
+
+$timestamp = new Timestamp();
+$timestamp->setSeconds(time());
+
+$interval = new TimeInterval();
+$interval->setStartTime($timestamp);
+$interval->setEndTime($timestamp);
+
+$point = new Point();
+$point->setValue($value);
+$point->setInterval($interval);
+$points = [$point];
+
+$timeSeries = new TimeSeries();
+$timeSeries->setMetric($m);
+$timeSeries->setResource($r);
+$timeSeries->setPoints($points);
+
+try {
+    $metricServiceClient->createTimeSeries($formattedProjectName, [$timeSeries]);
+    print('Successfully submitted a time series' . PHP_EOL);
+} finally {
+    $metricServiceClient->close();
+}
+```
+
+#### google/cloud-monitoring
+
+Google Stackdriver Monitoring can be installed separately by requiring the `google/cloud-monitoring` composer package:
+
+```
+$ composer require google/cloud-monitoring
 ```
 
 ## Google Cloud Speech (Alpha)
@@ -517,49 +741,7 @@ foreach ($results as $result) {
 Google Cloud Speech can be installed separately by requiring the `google/cloud-speech` composer package:
 
 ```
-$ require google/cloud-speech
-```
-
-## Google Cloud Video Intelligence (Alpha)
-
-- [API Documentation](http://googlecloudplatform.github.io/google-cloud-php/#/docs/latest/videointelligence/readme)
-- [Official Documentation](https://cloud.google.com/video-intelligence/docs)
-
-#### Preview
-
-```php
-require __DIR__ . '/vendor/autoload.php';
-
-use Google\Cloud\VideoIntelligence\V1beta1\VideoIntelligenceServiceClient;
-use google\cloud\videointelligence\v1beta1\Feature;
-
-$client = new VideoIntelligenceServiceClient();
-
-$inputUri = "gs://example-bucket/example-video.mp4";
-$features = [
-    Feature::LABEL_DETECTION,
-];
-$operationResponse = $client->annotateVideo($inputUri, $features);
-$operationResponse->pollUntilComplete();
-if ($operationResponse->operationSucceeded()) {
-    $results = $operationResponse->getResult();
-    foreach ($results->getAnnotationResultsList() as $result) {
-        foreach ($result->getLabelAnnotationsList() as $labelAnnotation) {
-            echo "Label: " . $labelAnnotation->getDescription() . "\n";
-        }
-    }
-} else {
-    $error = $operationResponse->getError();
-    echo "error: " . $error->getMessage() . "\n";
-}
-```
-
-#### google/cloud-videointelligence
-
-Cloud Video Intelligence can be installed separately by requiring the `google/cloud-videointelligence` composer package:
-
-```
-$ require google/cloud-videointelligence
+$ composer require google/cloud-speech
 ```
 
 ## Google Stackdriver Trace (Alpha)
@@ -600,7 +782,7 @@ foreach($traceClient->traces() as $trace) {
 Stackdriver Trace can be installed separately by requiring the `google/cloud-trace` composer package:
 
 ```
-$ require google/cloud-trace
+$ composer require google/cloud-trace
 ```
 
 ## Caching Access Tokens

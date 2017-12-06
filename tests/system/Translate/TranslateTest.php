@@ -147,7 +147,7 @@ class TranslateTest extends TranslateTestCase
         $res = $client->detectLanguage(self::INPUT_STRING);
         $this->assertEquals(self::INPUT_LANGUAGE, $res['languageCode']);
         $this->assertEquals(self::INPUT_STRING, $res['input']);
-        $this->assertTrue(is_double($res['confidence']));
+        $this->assertInternalType('double', $res['confidence']);
     }
 
     public function testDetectLanguageUndefined()
@@ -166,7 +166,7 @@ class TranslateTest extends TranslateTestCase
         $res = $client->detectLanguageBatch([self::INPUT_STRING]);
         $this->assertEquals(self::INPUT_LANGUAGE, $res[0]['languageCode']);
         $this->assertEquals(self::INPUT_STRING, $res[0]['input']);
-        $this->assertTrue(is_double($res[0]['confidence']));
+        $this->assertInternalType('double', $res[0]['confidence']);
     }
 
     public function testDetectLanguageBatchUndefined()
@@ -183,9 +183,9 @@ class TranslateTest extends TranslateTestCase
         $client = self::$client;
 
         $res = $client->languages();
-        $this->assertTrue(is_array($res));
-        $this->assertTrue(in_array('en', $res));
-        $this->assertTrue(in_array('es', $res));
+        $this->assertInternalType('array', $res);
+        $this->assertContains('en', $res);
+        $this->assertContains('es', $res);
     }
 
     public function testLocalizedLanguages()
@@ -193,8 +193,8 @@ class TranslateTest extends TranslateTestCase
         $client = self::$client;
 
         $res = $client->localizedLanguages();
-        $this->assertTrue(is_array($res));
-        $this->assertTrue(in_array(['code' => 'es', 'name' => 'Spanish'], $res));
-        $this->assertTrue(in_array(['code' => 'en', 'name' => 'English'], $res));
+        $this->assertInternalType('array', $res);
+        $this->assertContains(['code' => 'es', 'name' => 'Spanish'], $res);
+        $this->assertContains(['code' => 'en', 'name' => 'English'], $res);
     }
 }

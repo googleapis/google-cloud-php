@@ -131,7 +131,7 @@ class Operation
             'database' => $session->info()['database']
         ]) + $options);
 
-        return $this->mapper->createTimestampWithNanos($res['commitTimestamp']);
+        return $this->mapper->createTimestampWithNanos($res['commitTimestamp'], Timestamp::class);
     }
 
     /**
@@ -336,7 +336,7 @@ class Operation
         ];
 
         if ($res['readTimestamp']) {
-            $res['readTimestamp'] = $this->mapper->createTimestampWithNanos($res['readTimestamp']);
+            $res['readTimestamp'] = $this->mapper->createTimestampWithNanos($res['readTimestamp'], Timestamp::class);
         }
 
         return new Snapshot($this, $session, $res);

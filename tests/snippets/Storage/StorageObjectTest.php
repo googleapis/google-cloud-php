@@ -388,9 +388,9 @@ class StorageObjectTest extends SnippetTestCase
         $this->object->___setProperty('connection', $conn->reveal());
 
         $res = $snippet->invoke('url');
-        $this->assertTrue(strpos($res->returnVal(), 'https://storage.googleapis.com/my-bucket/my-object') !== false);
-        $this->assertTrue(strpos($res->returnVal(), 'Expires=') !== false);
-        $this->assertTrue(strpos($res->returnVal(), 'Signature=') !== false);
+        $this->assertContains('https://storage.googleapis.com/my-bucket/my-object', $res->returnVal());
+        $this->assertContains('Expires=', $res->returnVal());
+        $this->assertContains('Signature=', $res->returnVal());
     }
 
     public function testSignedUrlUpdate()
@@ -414,9 +414,9 @@ class StorageObjectTest extends SnippetTestCase
         $this->object->___setProperty('connection', $conn->reveal());
 
         $res = $snippet->invoke('url');
-        $this->assertTrue(strpos($res->returnVal(), 'https://storage.googleapis.com/my-bucket/my-object') !== false);
-        $this->assertTrue(strpos($res->returnVal(), 'Expires=') !== false);
-        $this->assertTrue(strpos($res->returnVal(), 'Signature=') !== false);
+        $this->assertContains('https://storage.googleapis.com/my-bucket/my-object', $res->returnVal());
+        $this->assertContains('Expires=', $res->returnVal());
+        $this->assertContains('Signature=', $res->returnVal());
     }
 
     public function testSignedUploadUrl()
@@ -440,9 +440,9 @@ class StorageObjectTest extends SnippetTestCase
         $this->object->___setProperty('connection', $conn->reveal());
 
         $res = $snippet->invoke('url');
-        $this->assertTrue(strpos($res->returnVal(), 'https://storage.googleapis.com/my-bucket/my-object') !== false);
-        $this->assertTrue(strpos($res->returnVal(), 'Expires=') !== false);
-        $this->assertTrue(strpos($res->returnVal(), 'Signature=') !== false);
+        $this->assertContains('https://storage.googleapis.com/my-bucket/my-object', $res->returnVal());
+        $this->assertContains('Expires=', $res->returnVal());
+        $this->assertContains('Signature=', $res->returnVal());
     }
 
     public function testBeginSignedUploadSession()

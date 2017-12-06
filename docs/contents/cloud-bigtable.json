@@ -1,0 +1,25 @@
+{
+    "title": "Bigtable",
+    "pattern": "bigtable\/\\w{1,}",
+    "services": [{
+        "title": "BigtableClient",
+        "type": "bigtable/readme"
+    }, {
+        "title": "v2",
+        "type": "bigtable/v2/readme",
+        "patterns": [
+            "bigtable/v2/\\w{1,}",
+            "bigtable/admin/v2/\\w{1,}"
+        ],
+        "nav": [{
+            "title": "BigtableClient",
+            "type": "bigtable/v2/bigtableclient"
+        }, {
+            "title": "BigtableInstanceAdminClient",
+            "type": "bigtable/admin/v2/bigtableinstanceadminclient"
+        }, {
+            "title": "BigtableTableAdminClient",
+            "type": "bigtable/admin/v2/bigtabletableadminclient"
+        }]
+    }]
+}

@@ -99,7 +99,7 @@ class RestTraitTest extends TestCase
             $msg = $e->getMessage();
         }
 
-        $this->assertFalse(strpos($msg, 'NOTE: Error may be due to Whitelist Restriction.') === false);
+        $this->assertContains('NOTE: Error may be due to Whitelist Restriction.', $msg);
     }
 
     public function testSendsRequestNotFoundNotWhitelisted()
@@ -119,6 +119,6 @@ class RestTraitTest extends TestCase
             $msg = $e->getMessage();
         }
 
-        $this->assertTrue(strpos($msg, 'NOTE: Error may be due to Whitelist Restriction.') === false);
+        $this->assertNotContains('NOTE: Error may be due to Whitelist Restriction.', $msg);
     }
 }

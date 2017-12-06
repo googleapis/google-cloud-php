@@ -81,6 +81,16 @@ class Timestamp
     }
 
     /**
+     * Return the number of nanoseconds.
+     *
+     * @return int
+     */
+    public function nanoSeconds()
+    {
+        return $this->nanoSeconds;
+    }
+
+    /**
      * Format the value as a string.
      *
      * This method retains nanosecond precision, if available.
@@ -108,5 +118,18 @@ class Timestamp
     public function __toString()
     {
         return $this->formatAsString();
+    }
+
+    /**
+     * Format a timestamp for the API with nanosecond precision.
+     *
+     * @return array
+     */
+    public function formatForApi()
+    {
+        return [
+            'seconds' => (int)$this->value->format('U'),
+            'nanos' => (int)$this->nanoSeconds
+        ];
     }
 }

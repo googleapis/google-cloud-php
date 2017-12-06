@@ -98,7 +98,7 @@ class DatastoreClientTest extends TestCase
             'allocateIds' => false
         ]);
 
-        $this->assertTrue(is_array($keys));
+        $this->assertInternalType('array', $keys);
         $this->assertInstanceOf(Key::class, $keys[0]);
         $this->assertEquals($keys[0]->keyObject()['path'][0]['kind'], 'Person');
     }
@@ -110,9 +110,9 @@ class DatastoreClientTest extends TestCase
             'number' => 5
         ]);
 
-        $this->assertTrue(is_array($keys));
+        $this->assertInternalType('array', $keys);
         $this->assertInstanceOf(Key::class, $keys[0]);
-        $this->assertEquals(5, count($keys));
+        $this->assertCount(5, $keys);
     }
 
     public function testKeysAncestors()
@@ -192,7 +192,7 @@ class DatastoreClientTest extends TestCase
 
         $res = $this->datastore->allocateIds($keys);
 
-        $this->assertTrue(is_array($res));
+        $this->assertInternalType('array', $res);
     }
 
     public function testTransaction()

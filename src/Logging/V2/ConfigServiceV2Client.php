@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2017, Google Inc. All rights reserved.
+ * Copyright 2017, Google LLC All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -37,5 +37,6 @@ use Google\Cloud\Logging\V2\Gapic\ConfigServiceV2GapicClient;
  */
 class ConfigServiceV2Client extends ConfigServiceV2GapicClient
 {
-    // This class is intentionally empty, and is intended to hold manual additions to the generated {@see ConfigServiceV2ClientImpl} class.
+    // This class is intentionally empty, and is intended to hold manual
+    // additions to the generated {@see ConfigServiceV2ClientImpl} class.
 }

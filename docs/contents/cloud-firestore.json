@@ -1,0 +1,45 @@
+{
+    "title": "Firestore",
+    "pattern": "firestore\/\\w{1,}",
+    "services": [{
+        "title": "FirestoreClient",
+        "type": "firestore/firestoreclient"
+    }, {
+        "title": "CollectionReference",
+        "type": "firestore/collectionreference"
+    }, {
+        "title": "DocumentReference",
+        "type": "firestore/documentreference"
+    }, {
+        "title": "DocumentSnapshot",
+        "type": "firestore/documentsnapshot"
+    }, {
+        "title": "Transaction",
+        "type": "firestore/transaction"
+    }, {
+        "title": "Query",
+        "type": "firestore/query"
+    }, {
+        "title": "QuerySnapshot",
+        "type": "firestore/querysnapshot"
+    }, {
+        "title": "WriteBatch",
+        "type": "firestore/writebatch"
+    }, {
+        "title": "FieldPath",
+        "type": "firestore/fieldpath"
+    }, {
+        "title": "FieldValue",
+        "type": "firestore/fieldvalue"
+    }, {
+        "title": "v1beta1",
+        "type": "firestore/v1beta1/readme",
+        "patterns": [
+          "firestore/v1beta1/\\w{1,}"
+        ],
+        "nav": [{
+            "title": "FirestoreClient",
+            "type": "firestore/v1beta1/firestoreclient"
+        }]
+    }]
+}

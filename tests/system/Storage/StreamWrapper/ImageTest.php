@@ -65,7 +65,7 @@ class ImageTest extends StreamWrapperTestCase
         $size = getimagesize($url, $info);
         $this->assertEquals($width, $size[0]);
         $this->assertEquals($height, $size[1]);
-        $this->assertTrue(count(array_keys($info)) > 1);
+        $this->assertGreaterThan(1, array_keys($info));
     }
 
     public function imageProvider()

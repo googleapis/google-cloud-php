@@ -33,7 +33,7 @@ use PHPUnit\Framework\TestCase;
 class ValueMapperTest extends TestCase
 {
     use GrpcTestTrait;
-    
+
     const FORMAT_TEST_VALUE = 'abc';
 
     private $mapper;
@@ -238,7 +238,7 @@ class ValueMapperTest extends TestCase
             $this->createRow(false),
             Result::RETURN_ASSOCIATIVE
         );
-        $this->assertEquals(false, $res['rowName']);
+        $this->assertFalse($res['rowName']);
     }
 
     public function testDecodeValuesInt()

@@ -84,7 +84,7 @@ class BatchConfigTest extends TestCase
             []
         );
         $jobs = $this->config->getJobs();
-        $this->assertEquals(count($jobs), 2);
+        $this->assertCount(2, $jobs);
         $this->assertEquals($this->idNum, $jobs[$this->identifier]->getIdNum());
         $this->assertEquals(2, $jobs[$identifier]->getIdNum());
     }

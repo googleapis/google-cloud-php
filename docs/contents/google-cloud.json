@@ -9,6 +9,7 @@
         "cloud-datastore",
         "cloud-dlp",
         "cloud-error-reporting",
+        "cloud-firestore",
         "cloud-logging",
         "cloud-monitoring",
         "cloud-language",

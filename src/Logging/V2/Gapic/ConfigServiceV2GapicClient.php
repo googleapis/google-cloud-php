@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2017, Google Inc. All rights reserved.
+ * Copyright 2017, Google LLC All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -30,27 +30,27 @@
 
 namespace Google\Cloud\Logging\V2\Gapic;
 
+use Google\ApiCore\AgentHeaderDescriptor;
+use Google\ApiCore\ApiCallable;
+use Google\ApiCore\CallSettings;
+use Google\ApiCore\GrpcCredentialsHelper;
+use Google\ApiCore\PageStreamingDescriptor;
+use Google\ApiCore\PathTemplate;
+use Google\ApiCore\ValidationException;
+use Google\Cloud\Logging\V2\ConfigServiceV2GrpcClient;
+use Google\Cloud\Logging\V2\CreateExclusionRequest;
+use Google\Cloud\Logging\V2\CreateSinkRequest;
+use Google\Cloud\Logging\V2\DeleteExclusionRequest;
+use Google\Cloud\Logging\V2\DeleteSinkRequest;
+use Google\Cloud\Logging\V2\GetExclusionRequest;
+use Google\Cloud\Logging\V2\GetSinkRequest;
+use Google\Cloud\Logging\V2\ListExclusionsRequest;
+use Google\Cloud\Logging\V2\ListSinksRequest;
+use Google\Cloud\Logging\V2\LogExclusion;
+use Google\Cloud\Logging\V2\LogSink;
+use Google\Cloud\Logging\V2\UpdateExclusionRequest;
+use Google\Cloud\Logging\V2\UpdateSinkRequest;
 use Google\Cloud\Version;
-use Google\GAX\AgentHeaderDescriptor;
-use Google\GAX\ApiCallable;
-use Google\GAX\CallSettings;
-use Google\GAX\GrpcCredentialsHelper;
-use Google\GAX\PageStreamingDescriptor;
-use Google\GAX\PathTemplate;
-use Google\GAX\ValidationException;
-use Google\Logging\V2\ConfigServiceV2GrpcClient;
-use Google\Logging\V2\CreateExclusionRequest;
-use Google\Logging\V2\CreateSinkRequest;
-use Google\Logging\V2\DeleteExclusionRequest;
-use Google\Logging\V2\DeleteSinkRequest;
-use Google\Logging\V2\GetExclusionRequest;
-use Google\Logging\V2\GetSinkRequest;
-use Google\Logging\V2\ListExclusionsRequest;
-use Google\Logging\V2\ListSinksRequest;
-use Google\Logging\V2\LogExclusion;
-use Google\Logging\V2\LogSink;
-use Google\Logging\V2\UpdateExclusionRequest;
-use Google\Logging\V2\UpdateSinkRequest;
 use Google\Protobuf\FieldMask;
 
 /**
@@ -339,8 +339,8 @@ class ConfigServiceV2GapicClient
      *     @type array $retryingOverride
      *           An associative array in which the keys are method names (e.g. 'createFoo'), and
      *           the values are retry settings to use for that method. The retry settings for each
-     *           method can be a {@see Google\GAX\RetrySettings} object, or an associative array
-     *           of retry settings parameters. See the documentation on {@see Google\GAX\RetrySettings}
+     *           method can be a {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *           of retry settings parameters. See the documentation on {@see Google\ApiCore\RetrySettings}
      *           for example usage. Passing a value of null is equivalent to a value of
      *           ['retriesEnabled' => false]. Retry settings provided in this setting override the
      *           settings in $clientConfigPath.
@@ -462,16 +462,16 @@ class ConfigServiceV2GapicClient
      *          The maximum number of resources contained in the underlying API
      *          response. The API may return fewer values in a page, even if
      *          there are additional values to be retrieved.
-     *     @type \Google\GAX\RetrySettings|array $retrySettings
+     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
-     *          {@see Google\GAX\RetrySettings} object, or an associative array
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
-     *          {@see Google\GAX\RetrySettings} for example usage.
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
-     * @return \Google\GAX\PagedListResponse
+     * @return \Google\ApiCore\PagedListResponse
      *
-     * @throws \Google\GAX\ApiException if the remote call fails
+     * @throws \Google\ApiCore\ApiException if the remote call fails
      * @experimental
      */
     public function listSinks($parent, $optionalArgs = [])
@@ -530,16 +530,16 @@ class ConfigServiceV2GapicClient
      * @param array $optionalArgs {
      *                            Optional.
      *
-     *     @type \Google\GAX\RetrySettings|array $retrySettings
+     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
-     *          {@see Google\GAX\RetrySettings} object, or an associative array
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
-     *          {@see Google\GAX\RetrySettings} for example usage.
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
-     * @return \Google\Logging\V2\LogSink
+     * @return \Google\Cloud\Logging\V2\LogSink
      *
-     * @throws \Google\GAX\ApiException if the remote call fails
+     * @throws \Google\ApiCore\ApiException if the remote call fails
      * @experimental
      */
     public function getSink($sinkName, $optionalArgs = [])
@@ -569,8 +569,7 @@ class ConfigServiceV2GapicClient
 
     /**
      * Creates a sink that exports specified log entries to a destination.  The
-     * export of newly-ingested log entries begins immediately, unless the current
-     * time is outside the sink's start and end times or the sink's
+     * export of newly-ingested log entries begins immediately, unless the sink's
      * `writer_identity` is not permitted to write to the destination.  A sink can
      * export log entries only from the resource owning the sink.
      *
@@ -611,16 +610,16 @@ class ConfigServiceV2GapicClient
      *          resource such as an organization, then the value of `writer_identity` will
      *          be a unique service account used only for exports from the new sink.  For
      *          more information, see `writer_identity` in [LogSink][google.logging.v2.LogSink].
-     *     @type \Google\GAX\RetrySettings|array $retrySettings
+     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
-     *          {@see Google\GAX\RetrySettings} object, or an associative array
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
-     *          {@see Google\GAX\RetrySettings} for example usage.
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
-     * @return \Google\Logging\V2\LogSink
+     * @return \Google\Cloud\Logging\V2\LogSink
      *
-     * @throws \Google\GAX\ApiException if the remote call fails
+     * @throws \Google\ApiCore\ApiException if the remote call fails
      * @experimental
      */
     public function createSink($parent, $sink, $optionalArgs = [])
@@ -654,8 +653,7 @@ class ConfigServiceV2GapicClient
 
     /**
      * Updates a sink.  This method replaces the following fields in the existing
-     * sink with values from the new sink: `destination`, `filter`,
-     * `output_version_format`, `start_time`, and `end_time`.
+     * sink with values from the new sink: `destination`, and `filter`.
      * The updated sink might also have a new `writer_identity`; see the
      * `unique_writer_identity` field.
      *
@@ -698,16 +696,31 @@ class ConfigServiceV2GapicClient
      *              `writer_identity` is changed to a unique service account.
      *          +   It is an error if the old value is true and the new value is
      *              set to false or defaulted to false.
-     *     @type \Google\GAX\RetrySettings|array $retrySettings
+     *     @type FieldMask $updateMask
+     *          Optional. Field mask that specifies the fields in `sink` that need
+     *          an update. A sink field will be overwritten if, and only if, it is
+     *          in the update mask.  `name` and output only fields cannot be updated.
+     *
+     *          An empty updateMask is temporarily treated as using the following mask
+     *          for backwards compatibility purposes:
+     *            destination,filter,includeChildren
+     *          At some point in the future, behavior will be removed and specifying an
+     *          empty updateMask will be an error.
+     *
+     *          For a detailed `FieldMask` definition, see
+     *          https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask
+     *
+     *          Example: `updateMask=filter`.
+     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
-     *          {@see Google\GAX\RetrySettings} object, or an associative array
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
-     *          {@see Google\GAX\RetrySettings} for example usage.
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
-     * @return \Google\Logging\V2\LogSink
+     * @return \Google\Cloud\Logging\V2\LogSink
      *
-     * @throws \Google\GAX\ApiException if the remote call fails
+     * @throws \Google\ApiCore\ApiException if the remote call fails
      * @experimental
      */
     public function updateSink($sinkName, $sink, $optionalArgs = [])
@@ -717,6 +730,9 @@ class ConfigServiceV2GapicClient
         $request->setSink($sink);
         if (isset($optionalArgs['uniqueWriterIdentity'])) {
             $request->setUniqueWriterIdentity($optionalArgs['uniqueWriterIdentity']);
+        }
+        if (isset($optionalArgs['updateMask'])) {
+            $request->setUpdateMask($optionalArgs['updateMask']);
         }
 
         $defaultCallSettings = $this->defaultCallSettings['updateSink'];
@@ -766,14 +782,14 @@ class ConfigServiceV2GapicClient
      * @param array $optionalArgs {
      *                            Optional.
      *
-     *     @type \Google\GAX\RetrySettings|array $retrySettings
+     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
-     *          {@see Google\GAX\RetrySettings} object, or an associative array
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
-     *          {@see Google\GAX\RetrySettings} for example usage.
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
-     * @throws \Google\GAX\ApiException if the remote call fails
+     * @throws \Google\ApiCore\ApiException if the remote call fails
      * @experimental
      */
     public function deleteSink($sinkName, $optionalArgs = [])
@@ -845,16 +861,16 @@ class ConfigServiceV2GapicClient
      *          The maximum number of resources contained in the underlying API
      *          response. The API may return fewer values in a page, even if
      *          there are additional values to be retrieved.
-     *     @type \Google\GAX\RetrySettings|array $retrySettings
+     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
-     *          {@see Google\GAX\RetrySettings} object, or an associative array
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
-     *          {@see Google\GAX\RetrySettings} for example usage.
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
-     * @return \Google\GAX\PagedListResponse
+     * @return \Google\ApiCore\PagedListResponse
      *
-     * @throws \Google\GAX\ApiException if the remote call fails
+     * @throws \Google\ApiCore\ApiException if the remote call fails
      * @experimental
      */
     public function listExclusions($parent, $optionalArgs = [])
@@ -913,16 +929,16 @@ class ConfigServiceV2GapicClient
      * @param array $optionalArgs {
      *                            Optional.
      *
-     *     @type \Google\GAX\RetrySettings|array $retrySettings
+     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
-     *          {@see Google\GAX\RetrySettings} object, or an associative array
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
-     *          {@see Google\GAX\RetrySettings} for example usage.
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
-     * @return \Google\Logging\V2\LogExclusion
+     * @return \Google\Cloud\Logging\V2\LogExclusion
      *
-     * @throws \Google\GAX\ApiException if the remote call fails
+     * @throws \Google\ApiCore\ApiException if the remote call fails
      * @experimental
      */
     public function getExclusion($name, $optionalArgs = [])
@@ -980,16 +996,16 @@ class ConfigServiceV2GapicClient
      * @param array        $optionalArgs {
      *                                   Optional.
      *
-     *     @type \Google\GAX\RetrySettings|array $retrySettings
+     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
-     *          {@see Google\GAX\RetrySettings} object, or an associative array
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
-     *          {@see Google\GAX\RetrySettings} for example usage.
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
-     * @return \Google\Logging\V2\LogExclusion
+     * @return \Google\Cloud\Logging\V2\LogExclusion
      *
-     * @throws \Google\GAX\ApiException if the remote call fails
+     * @throws \Google\ApiCore\ApiException if the remote call fails
      * @experimental
      */
     public function createExclusion($parent, $exclusion, $optionalArgs = [])
@@ -1054,16 +1070,16 @@ class ConfigServiceV2GapicClient
      * @param array $optionalArgs {
      *                            Optional.
      *
-     *     @type \Google\GAX\RetrySettings|array $retrySettings
+     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
-     *          {@see Google\GAX\RetrySettings} object, or an associative array
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
-     *          {@see Google\GAX\RetrySettings} for example usage.
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
-     * @return \Google\Logging\V2\LogExclusion
+     * @return \Google\Cloud\Logging\V2\LogExclusion
      *
-     * @throws \Google\GAX\ApiException if the remote call fails
+     * @throws \Google\ApiCore\ApiException if the remote call fails
      * @experimental
      */
     public function updateExclusion($name, $exclusion, $updateMask, $optionalArgs = [])
@@ -1118,14 +1134,14 @@ class ConfigServiceV2GapicClient
      * @param array $optionalArgs {
      *                            Optional.
      *
-     *     @type \Google\GAX\RetrySettings|array $retrySettings
+     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
-     *          {@see Google\GAX\RetrySettings} object, or an associative array
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
-     *          {@see Google\GAX\RetrySettings} for example usage.
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
-     * @throws \Google\GAX\ApiException if the remote call fails
+     * @throws \Google\ApiCore\ApiException if the remote call fails
      * @experimental
      */
     public function deleteExclusion($name, $optionalArgs = [])

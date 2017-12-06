@@ -60,7 +60,7 @@ class JobConfigurationTraitTest extends TestCase
         ]);
         $jobId = $this->trait->call('toArray')['jobReference']['jobId'];
 
-        $this->assertTrue(is_string($jobId));
+        $this->assertInternalType('string', $jobId);
         $this->assertTrue(Uuid::isValid($jobId));
     }
 
@@ -104,7 +104,7 @@ class JobConfigurationTraitTest extends TestCase
     public function testGenerateJobId()
     {
         $uuid = $this->trait->call('generateJobId');
-        $this->assertTrue(is_string($uuid));
+        $this->assertInternalType('string', $uuid);
         $this->assertTrue(Uuid::isValid($uuid));
     }
 }

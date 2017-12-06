@@ -196,9 +196,9 @@ class DatastoreSessionHandlerTest extends TestCase
                 $that->assertEquals($key, $args[0]);
                 $that->assertEquals('sessiondata', $args[1]['data']);
                 $that->assertInternalType('int', $args[1]['t']);
-                $that->assertTrue(time() >= $args[1]['t']);
+                $that->assertGreaterThanOrEqual($args[1]['t'], time());
                 // 2 seconds grace period should be enough
-                $that->assertTrue(time() - $args[1]['t'] <= 2);
+                $that->assertLessThanOrEqual(2, time() - $args[1]['t']);
                 $that->assertEquals(['excludeFromIndexes' => ['data']], $args[2]);
                 return $entity;
             });
@@ -208,7 +208,7 @@ class DatastoreSessionHandlerTest extends TestCase
         $datastoreSessionHandler->open(self::NAMESPACE_ID, self::KIND);
         $ret = $datastoreSessionHandler->write('sessionid', $data);
 
-        $this->assertEquals(true, $ret);
+        $this->assertTrue($ret);
     }
 
     /**
@@ -241,9 +241,9 @@ class DatastoreSessionHandlerTest extends TestCase
                 $that->assertEquals($key, $args[0]);
                 $that->assertEquals('sessiondata', $args[1]['data']);
                 $that->assertInternalType('int', $args[1]['t']);
-                $that->assertTrue(time() >= $args[1]['t']);
+                $that->assertGreaterThanOrEqual($args[1]['t'], time());
                 // 2 seconds grace period should be enough
-                $that->assertTrue(time() - $args[1]['t'] <= 2);
+                $that->assertLessThanOrEqual(2, time() - $args[1]['t']);
                 $that->assertEquals(['excludeFromIndexes' => ['data']], $args[2]);
                 return $entity;
             });
@@ -254,7 +254,7 @@ class DatastoreSessionHandlerTest extends TestCase
         $datastoreSessionHandler->open(self::NAMESPACE_ID, self::KIND);
         $ret = $datastoreSessionHandler->write('sessionid', $data);
 
-        $this->assertEquals(false, $ret);
+        $this->assertFalse($ret);
     }
 
     public function testWriteWithEntityOptions()
@@ -286,9 +286,9 @@ class DatastoreSessionHandlerTest extends TestCase
                 $that->assertEquals($key, $args[0]);
                 $that->assertEquals('sessiondata', $args[1]['data']);
                 $that->assertInternalType('int', $args[1]['t']);
-                $that->assertTrue(time() >= $args[1]['t']);
+                $that->assertGreaterThanOrEqual($args[1]['t'], time());
                 // 2 seconds grace period should be enough
-                $that->assertTrue(time() - $args[1]['t'] <= 2);
+                $that->assertLessThanOrEqual(2, time() - $args[1]['t']);
                 $that->assertEquals(['excludeFromIndexes' => ['data', 'additional']], $args[2]);
                 return $entity;
             });
@@ -300,7 +300,7 @@ class DatastoreSessionHandlerTest extends TestCase
         $datastoreSessionHandler->open(self::NAMESPACE_ID, self::KIND);
         $ret = $datastoreSessionHandler->write('sessionid', $data);
 
-        $this->assertEquals(true, $ret);
+        $this->assertTrue($ret);
     }
 
     public function testWriteWithEmptyEntityOptions()
@@ -332,9 +332,9 @@ class DatastoreSessionHandlerTest extends TestCase
                 $that->assertEquals($key, $args[0]);
                 $that->assertEquals('sessiondata', $args[1]['data']);
                 $that->assertInternalType('int', $args[1]['t']);
-                $that->assertTrue(time() >= $args[1]['t']);
+                $that->assertGreaterThanOrEqual($args[1]['t'], time());
                 // 2 seconds grace period should be enough
-                $that->assertTrue(time() - $args[1]['t'] <= 2);
+                $that->assertLessThanOrEqual(2, time() - $args[1]['t']);
                 $that->assertEquals([], $args[2]);
                 return $entity;
             });
@@ -346,7 +346,7 @@ class DatastoreSessionHandlerTest extends TestCase
         $datastoreSessionHandler->open(self::NAMESPACE_ID, self::KIND);
         $ret = $datastoreSessionHandler->write('sessionid', $data);
 
-        $this->assertEquals(true, $ret);
+        $this->assertTrue($ret);
     }
 
     /**
@@ -399,7 +399,7 @@ class DatastoreSessionHandlerTest extends TestCase
         $datastoreSessionHandler->open(self::NAMESPACE_ID, self::KIND);
         $ret = $datastoreSessionHandler->destroy('sessionid');
 
-        $this->assertEquals(true, $ret);
+        $this->assertTrue($ret);
     }
 
     /**
@@ -431,7 +431,7 @@ class DatastoreSessionHandlerTest extends TestCase
         $datastoreSessionHandler->open(self::NAMESPACE_ID, self::KIND);
         $ret = $datastoreSessionHandler->destroy('sessionid');
 
-        $this->assertEquals(false, $ret);
+        $this->assertFalse($ret);
     }
 
     public function testDefaultGcDoesNothing()
@@ -446,7 +446,7 @@ class DatastoreSessionHandlerTest extends TestCase
         $datastoreSessionHandler->open(self::NAMESPACE_ID, self::KIND);
         $ret = $datastoreSessionHandler->gc(100);
 
-        $this->assertEquals(true, $ret);
+        $this->assertTrue($ret);
     }
 
     public function testGc()
@@ -474,8 +474,8 @@ class DatastoreSessionHandlerTest extends TestCase
                 $that->assertInternalType('int', $args[2]);
                 $diff = time() - $args[2];
                 // 2 seconds grace period should be enough
-                $that->assertTrue($diff <= 102);
-                $that->assertTrue($diff >= 100);
+                $that->assertLessThanOrEqual(102, $diff);
+                $that->assertGreaterThanOrEqual(100, $diff);
                 return $query->reveal();
             });
         $query->order('t')
@@ -519,7 +519,7 @@ class DatastoreSessionHandlerTest extends TestCase
         $datastoreSessionHandler->open(self::NAMESPACE_ID, self::KIND);
         $ret = $datastoreSessionHandler->gc(100);
 
-        $this->assertEquals(true, $ret);
+        $this->assertTrue($ret);
     }
 
     /**
@@ -550,8 +550,8 @@ class DatastoreSessionHandlerTest extends TestCase
                 $that->assertInternalType('int', $args[2]);
                 $diff = time() - $args[2];
                 // 2 seconds grace period should be enough
-                $that->assertTrue($diff <= 102);
-                $that->assertTrue($diff >= 100);
+                $that->assertLessThanOrEqual(102, $diff);
+                $that->assertGreaterThanOrEqual(100, $diff);
                 return $query->reveal();
             });
         $query->order('t')
@@ -596,6 +596,6 @@ class DatastoreSessionHandlerTest extends TestCase
         $datastoreSessionHandler->open(self::NAMESPACE_ID, self::KIND);
         $ret = $datastoreSessionHandler->gc(100);
 
-        $this->assertEquals(false, $ret);
+        $this->assertFalse($ret);
     }
 }
