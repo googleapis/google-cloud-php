@@ -342,6 +342,8 @@ class FirestoreClient
      * and will bubble up to your level to be handled in whatever fashion is
      * appropriate.
      *
+     * This method returns the return value of the given transaction callable.
+     *
      * Example:
      * ```
      * use Google\Cloud\Firestore\Transaction;
@@ -350,7 +352,7 @@ class FirestoreClient
      * $from = $firestore->document('users/john');
      * $to = $firestore->document('users/dave');
      *
-     * $firestore->runTransaction(function (Transaction $t) use ($from, $to, $transferAmount) {
+     * $toNewBalance = $firestore->runTransaction(function (Transaction $t) use ($from, $to, $transferAmount) {
      *     $fromSnapshot = $t->snapshot($from);
      *     $toSnapshot = $t->snapshot($to);
      *
@@ -368,6 +370,8 @@ class FirestoreClient
      *     ])->update($to, [
      *         ['path' => 'balance', 'value' => $toNewBalance]
      *     ]);
+     *
+     *     return $toNewBalance;
      * });
      * ```
      *
@@ -378,7 +382,7 @@ class FirestoreClient
      * @codingStandardsIgnoreEnd
      *
      * @param callable $callable A callable function, allowing atomic operations
-     *        against the Firestore API. Function signature:
+     *        against the Firestore API. Function signature should be of form:
      *        `function (Transaction $t)`.
      * @param array $options {
      *     Configuration Options.
@@ -389,7 +393,7 @@ class FirestoreClient
      *     @type int $maxRetries The maximum number of times to retry failures.
      *            **Defaults to** `5`.
      * }
-     * @return array
+     * @return mixed
      */
     public function runTransaction(callable $callable, array $options = [])
     {
@@ -448,16 +452,18 @@ class FirestoreClient
             );
 
             try {
-                $callable($transaction);
+                $res = $callable($transaction);
 
                 if (!$transaction->writer()->isEmpty()) {
-                    return $transaction->writer()->commit([
+                    $transaction->writer()->commit([
                         'transaction' => $transactionId
                     ] + $options['commit']);
                 } else {
                     // trigger rollback if no writes exist.
                     $transaction->writer()->rollback($options['rollback']);
                 }
+
+                return $res;
             } catch (\Exception $e) {
                 $transaction->writer()->rollback($options['rollback']);
 
