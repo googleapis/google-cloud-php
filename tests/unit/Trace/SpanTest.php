@@ -121,6 +121,14 @@ class SpanTest extends TestCase
         $this->assertArrayNotHasKey('extravalue', $info);
     }
 
+    public function testSameProcessAsParentSpan()
+    {
+        $span = new Span(self::TRACE_ID, ['sameProcessAsParentSpan' => false]);
+        $info = $span->jsonSerialize();
+        $this->assertArrayHasKey('sameProcessAsParentSpan', $info);
+        $this->assertFalse($info['sameProcessAsParentSpan']);
+    }
+
     /**
      * @dataProvider timestampFields
      */
