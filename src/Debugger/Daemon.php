@@ -70,22 +70,21 @@ class Daemon
         $this->sourceRoot = realpath($sourceRoot);
 
         $extSourceContext = array_key_exists('extSourceContext', $options)
-            ? $options['extSourceContext']
+            ? [$options['extSourceContext']]
             : $this->defaultExtSourceContext();
 
         $uniquifier = array_key_exists('uniquifier', $options)
             ? $options['uniquifier']
             : $this->defaultUniquifier();
 
-        $name = array_key_exists('name', $options)
-            ? $options['name']
-            : $this->defaultName();
+        $description = array_key_exists('description', $options)
+            ? $options['description']
+            : $uniquifier;
 
-        $description = $uniquifier;
         $this->debuggee = $client->debuggee(null, [
             'uniquifier' => $uniquifier,
-            'description' => $name,
-            'extendedSourceContexts' => $extSourceContext
+            'description' => $description,
+            'extSourceContexts' => $extSourceContext
         ]);
 
         $this->debuggee->register();
@@ -144,11 +143,6 @@ class Daemon
         if (!empty($invalidBreakpoints)) {
             $this->debuggee->updateBreakpointBatch($invalidBreakpoints);
         }
-    }
-
-    private function defaultName()
-    {
-        return 'default php debugger name';
     }
 
     private function defaultUniquifier()
