@@ -249,27 +249,29 @@ class DocumentReferenceTest extends TestCase
 
     public function testWriteResult()
     {
+        $time = time();
+
         $this->connection->commit(Argument::any())
             ->shouldBeCalled()
             ->willReturn([
                 'writeResults' => [
                     [
                         'updateTime' => [
-                            'seconds' => time()
+                            'seconds' => $time
                         ]
                     ], [
                         'updateTime' => [
-                            'seconds' => time() + 100
+                            'seconds' => $time + 100
                         ]
                     ]
                 ],
-                'commitTime' => ['seconds' => time()]
+                'commitTime' => ['seconds' => $time]
             ]);
 
         $this->document->___setProperty('connection', $this->connection->reveal());
 
         $res = $this->document->set(['foo' => 'bar']);
         $this->assertInstanceOf(Timestamp::class, $res['updateTime']);
-        $this->assertEquals(time(), $res['updateTime']->get()->format('U'), '', 3);
+        $this->assertEquals($time + 100, $res['updateTime']->get()->format('U'), '', 3);
     }
 }
