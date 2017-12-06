@@ -85,15 +85,15 @@ class Breakpoint implements \JsonSerializable
 
         if (array_key_exists('evaluatedExpressions', $data)) {
             $this->info['evaluatedExpressions'] = array_map(
-                function ($data) {
-                    return new Variable($data);
-                },
+                [Variable::class, 'fromJson'],
                 $data['evaluatedExpressions']
             );
         }
 
         if (array_key_exists('variableTable', $data)) {
-            $this->info['variableTable'] = new VariableTable($data['variableTable']);
+            $this->info['variableTable'] = new VariableTable(
+                array_map([Variable::class, 'fromJson'], $data['variableTable'])
+            );
         }
     }
 
@@ -168,13 +168,23 @@ class Breakpoint implements \JsonSerializable
     }
 
     /**
-     * Return the breakpoint's data
+     * Return the list of collected stack frames
      *
-     * @return array
+     * @return StackFrame[]
      */
-    public function info()
+    public function stackFrames()
     {
-        return $this->info;
+        return isset($this->info['stackFrames']) ? $this->info['stackFrames'] : [];
+    }
+
+    /**
+     * Returns the VariableTable
+     *
+     * @return VariableTable
+     */
+    public function variableTable()
+    {
+        return isset($this->info['variableTable']) ? $this->info['variableTable'] : new VariableTable();
     }
 
     /**
@@ -204,7 +214,7 @@ class Breakpoint implements \JsonSerializable
     /**
      * Add collected data to this breakpoint.
      *
-     * @param array $stackFrames
+     * @param array $stackFrames Array of stackframe data.
      */
     public function addStackFrames(array $stackFrames)
     {
@@ -227,25 +237,22 @@ class Breakpoint implements \JsonSerializable
      */
     public function addStackFrame($stackFrameData)
     {
-        $function = isset($stackFrameData['function'])
-            ? $stackFrameData['function']
-            : null;
+        $stackFrameData += [
+            'function' => null,
+            'locals' => []
+        ];
 
         $sf = new StackFrame(
-            $function,
-            new SourceLocation([
-                'path' => $stackFrameData['filename'],
-                'line' => $stackFrameData['line']
-            ])
+            $stackFrameData['function'],
+            new SourceLocation($stackFrameData['filename'], $stackFrameData['line'])
         );
 
-        if (isset($stackFrameData['locals'])) {
-            foreach ($stackFrameData['locals'] as $local) {
-                $value = isset($local['value']) ? $local['value'] : null;
-                $variable = $this->addVariable($local['name'], $value);
-                $sf->addLocal($variable);
-            }
+        foreach ($stackFrameData['locals'] as $local) {
+            $value = isset($local['value']) ? $local['value'] : null;
+            $variable = $this->addVariable($local['name'], $value);
+            $sf->addLocal($variable);
         }
+
         if (!array_key_exists('stackFrames', $this->info)) {
             $this->info['stackFrames'] = [];
         }

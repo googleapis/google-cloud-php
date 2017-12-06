@@ -26,6 +26,8 @@ use Google\Cloud\Debugger\SourceLocation;
  */
 class BreakpointTest extends \PHPUnit_Framework_TestCase
 {
+    use JsonTestTrait;
+
     public function testCreateFromJson()
     {
         $input = [
@@ -61,11 +63,51 @@ class BreakpointTest extends \PHPUnit_Framework_TestCase
         $this->assertProducesEquivalentJson($input, $breakpoint);
     }
 
+    public function testParsesExpressionsFromJson()
+    {
+        $input = [
+            'expressions' => [
+                '$foo',
+                '2 + 3'
+            ]
+        ];
+
+        $breakpoint = new Breakpoint($input);
+        $this->assertCount(2, $breakpoint->expressions());
+        $this->assertProducesEquivalentJson($input, $breakpoint);
+    }
+
+    public function testDefaultsLogLevel()
+    {
+        $breakpoint = new Breakpoint();
+        $this->assertEquals(Breakpoint::LOG_LEVEL_INFO, $breakpoint->logLevel());
+    }
+
+    public function testParsesLogLevel()
+    {
+        $input = [
+            'logLevel' => Breakpoint::LOG_LEVEL_ERROR
+        ];
+        $breakpoint = new Breakpoint($input);
+        $this->assertEquals(Breakpoint::LOG_LEVEL_ERROR, $breakpoint->logLevel());
+        $this->assertProducesEquivalentJson($input, $breakpoint);
+    }
+
+    public function testParsesLogMessageFormat()
+    {
+        $input = [
+            'logMessageFormat' => 'some log message'
+        ];
+        $breakpoint = new Breakpoint($input);
+        $this->assertEQuals('some log message', $breakpoint->logMessageFormat());
+        $this->assertProducesEquivalentJson($input, $breakpoint);
+    }
+
     public function testFinalizeSetsFinalStateAndTime()
     {
         $breakpoint = new Breakpoint();
         $breakpoint->finalize();
-        $info = $breakpoint->info();
+        $info = $breakpoint->jsonSerialize();
 
         $this->assertArrayHasKey('finalTime', $info);
         $this->assertArrayHasKey('isFinalState', $info);
@@ -74,24 +116,55 @@ class BreakpointTest extends \PHPUnit_Framework_TestCase
 
     public function testAddingStackFrame()
     {
-
+        $breakpoint = new Breakpoint();
+        $breakpoint->addStackFrame([
+            'function' => 'testFunc',
+            'filename' => 'foo.php',
+            'line' => 10
+        ]);
+        $this->assertCount(1, $breakpoint->stackFrames());
+        $this->assertCount(0, $breakpoint->variableTable()->variables());
     }
 
-    public function testAddingStackFrames()
+    public function testAddingStackFrameWithLocals()
     {
+        $breakpoint = new Breakpoint();
+        $breakpoint->addStackFrame([
+            'function' => 'testFunc',
+            'filename' => 'foo.php',
+            'line' => 10,
+            'locals' => [
+                ['name' => 'foo', 'value' => 'bar']
+            ]
+        ]);
+        $this->assertCount(1, $breakpoint->stackFrames());
+        $this->assertCount(0, $breakpoint->variableTable()->variables());
+    }
 
+    public function testAddingStackFrameWithObjectLocalsAddsToVariableTable()
+    {
+        $breakpoint = new Breakpoint();
+        $breakpoint->addStackFrame([
+            'function' => 'testFunc',
+            'filename' => 'foo.php',
+            'line' => 10,
+            'locals' => [
+                ['name' => 'foo', 'value' => new Breakpoint()]
+            ]
+        ]);
+        $this->assertCount(1, $breakpoint->stackFrames());
+        $this->assertCount(1, $breakpoint->variableTable()->variables());
     }
 
     public function testAddingEvaluatedExpressions()
     {
-
-    }
-
-    private function assertProducesEquivalentJson($array1, $array2)
-    {
-        $this->assertEquals(
-            json_decode(json_encode($array1), true),
-            json_decode(json_encode($array2), true)
-        );
+        $breakpoint = new Breakpoint();
+        $breakpoint->addEvaluatedExpressions([
+            '2 + 3' => 5,
+            'false' => false
+        ]);
+        $json = $breakpoint->jsonSerialize();
+        $this->assertArrayHasKey('evaluatedExpressions', $json);
+        $this->assertCount(2, $json['evaluatedExpressions']);
     }
 }

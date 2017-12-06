@@ -20,7 +20,7 @@ namespace Google\Cloud\Debugger;
 /**
  * Represents a message with parameters.
  */
-class FormatMessage
+class FormatMessage implements \JsonSerializable
 {
     /**
      * @var string Format template for the message. The format uses placeholders

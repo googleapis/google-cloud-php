@@ -44,7 +44,7 @@ class CloudWorkspaceId implements \JsonSerializable
      *        This is the name chosen by the client in the Source API's
      *        CreateWorkspace method.
      */
-    public function __construct($repoId, $name)
+    public function __construct(RepoId $repoId, $name)
     {
         $this->repoId = $repoId;
         $this->name = $name;

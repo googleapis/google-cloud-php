@@ -21,7 +21,7 @@ namespace Google\Cloud\Debugger;
  * A CloudRepoSourceContext denotes a particular revision in a cloud repo (a
  * repo hosted by the Google Cloud Platform).
  */
-class CloudRepoSourceContext implements SourceContext
+class CloudRepoSourceContext implements SourceContext, \JsonSerializable
 {
     /**
      * @var RepoId The ID of the repo.
@@ -45,7 +45,7 @@ class CloudRepoSourceContext implements SourceContext
      * @param string $revisionId A revision ID.
      * @param AliasContext $aliasContext An alias, which may be a branch or tag.
      */
-    public function __construct($repoId, $revisionId, $aliasContext)
+    public function __construct(RepoId $repoId, $revisionId, AliasContext $aliasContext)
     {
         $this->repoId = $repoId;
         $this->revisionId = $revisionId;

@@ -20,7 +20,7 @@ namespace Google\Cloud\Debugger;
 /**
  * A CloudWorkspaceSourceContext denotes a workspace at a particular snapshot.
  */
-class CloudWorkspaceSourceContext implements \JsonSerializable
+class CloudWorkspaceSourceContext implements SourceContext, \JsonSerializable
 {
     /**
      * @var CloudWorkspaceId The ID of the workspace.
