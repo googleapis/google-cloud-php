@@ -50,25 +50,25 @@ class Span implements \JsonSerializable
     use TimestampTrait;
 
     /**
-     * @var string [TRACE_ID] is a unique identifier for a trace within a
+     * @var string A unique identifier for a trace within a
      *      project; it is a 32-character hexadecimal encoding of a 16-byte
      *      array.
      */
     private $traceId;
 
     /**
-     * @var string The [SPAN_ID] portion of the span's resource name.
+     * @var string The id portion of the span's resource name.
      */
     private $spanId;
 
     /**
-     * @var string The [SPAN_ID] of this span's parent span. If this is a root
+     * @var string The id of this span's parent span. If this is a root
      *      span, then this field must be empty.
      */
     private $parentSpanId;
 
     /**
-     * @var string
+     * @var string The displayable name of this span.
      */
     private $name;
 
@@ -120,6 +120,9 @@ class Span implements \JsonSerializable
     /**
      * Instantiate a new Span instance.
      *
+     * @param string $traceId A unique identifier for a trace within a
+     *      project; it is a 32-character hexadecimal encoding of a 16-byte
+     *      array.
      * @param array $options [optional] {
      *      Configuration options.
      *
@@ -141,6 +144,10 @@ class Span implements \JsonSerializable
      *      @type Link[] $links Links associated with the span. You can have up
      *            to 128 links per Span.
      *      @type Status $status An optional final status for this span.
+     *      @type bool $sameProcessAsParentSpan A highly recommended but not
+     *            required flag that identifies when a trace crosses a process
+     *            boundary. True when the parent_span belongs to the same
+     *            process as the current span.
      * }
      */
     public function __construct($traceId, $options = [])
@@ -148,23 +155,19 @@ class Span implements \JsonSerializable
         $this->traceId = $traceId;
         $options += [
             'status' => null,
-            'startTime' => null,
             'attributes' => [],
             'timeEvents' => [],
             'links' => []
         ];
 
-        if (array_key_exists('name', $options)) {
-            $this->name = $options['name'];
-        } else {
-            $this->name = $this->generateSpanName();
-        }
-
-        if (array_key_exists('spanId', $options)) {
-            $this->setSpanId($options['spanId']);
-        } else {
-            $this->setSpanId($this->generateSpanId());
-        }
+        $this->name = array_key_exists('name', $options)
+            ? $options['name']
+            : $this->generateSpanName();
+        $this->setSpanId(
+            array_key_exists('spanId', $options)
+                ? $options['spanId']
+                : $this->generateSpanId()
+        );
 
         if (array_key_exists('parentSpanId', $options)) {
             $this->setParentSpanId($options['parentSpanId']);
@@ -185,6 +188,10 @@ class Span implements \JsonSerializable
         $this->addAttributes($options['attributes']);
         $this->addTimeEvents($options['timeEvents']);
         $this->addLinks($options['links']);
+
+        if (array_key_exists('sameProcessAsParentSpan', $options)) {
+            $this->sameProcessAsParentSpan = $options['sameProcessAsParentSpan'];
+        }
     }
 
     /**
@@ -390,6 +397,9 @@ class Span implements \JsonSerializable
         }
         if ($this->stackTrace) {
             $data['stackTrace'] = $this->stackTrace;
+        }
+        if ($this->sameProcessAsParentSpan !== null) {
+            $data['sameProcessAsParentSpan'] = $this->sameProcessAsParentSpan;
         }
         return $data;
     }

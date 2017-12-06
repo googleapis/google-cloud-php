@@ -72,8 +72,9 @@ class MessageEvent extends TimeEvent
      * @param array $options [optional] {
      *     Configuration options.
      *
-     *     @type string $type The number of compressed bytes sent or received.
-     *           If missing assumed to be the same size as uncompressed.
+     *     @type string $type Type of MessageEvent. Indicates whether the
+     *           message was sent or received. **Defaults to**
+     *           `TYPE_UNSPECIFIED`.
      *     @type int $uncompressedSizeBytes The number of uncompressed bytes
      *           sent or received.
      *     @type int $compressedSizeBytes The number of compressed bytes sent or

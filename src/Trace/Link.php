@@ -61,7 +61,19 @@ class Link implements \JsonSerializable
     /**
      * Create a new Link.
      *
-     * @param array $options
+     * @param string $traceId
+     * @param string $spanId
+     * @param array $options [optional] {
+     *     Configuration options.
+     *
+     *     @type string $type The relationship of the current span relative to
+     *           the linked span. **Defaults to** `TYPE_UNSPECIFIED`.
+     *     @type int $uncompressedSizeBytes The number of uncompressed bytes
+     *           sent or received.
+     *     @type int $compressedSizeBytes The number of compressed bytes sent or
+     *           received. If missing assumed to be the same size as
+     *           uncompressed.
+     * }
      */
     public function __construct($traceId, $spanId, $options = [])
     {

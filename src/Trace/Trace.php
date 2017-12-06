@@ -54,7 +54,7 @@ class Trace implements \JsonSerializable
     private $traceId;
 
     /**
-     * @var Span[] List of Span to report
+     * @var Span[] List of Spans to report
      */
     private $spans = [];
 
@@ -64,9 +64,8 @@ class Trace implements \JsonSerializable
      * @param string $projectId The id of the project this trace belongs to.
      * @param string $traceId [optional] The id of the trace. If not provided, one will be generated
      *        automatically for you.
-     * @param string[] $spans [optional] Array of Span constructor arguments. See
+     * @param array $spans [optional] Array of Span constructor arguments. See
      *        {@see Google\Cloud\Trace\Span::__construct()} for configuration details.
-     * }
      */
     public function __construct($projectId, $traceId = null, $spans = [])
     {

@@ -138,7 +138,7 @@ class TraceClient
     public function insertBatch(array $traces, array $options = [])
     {
         // throws ServiceException on failure
-        $this->connection->traceBatchWrite([ // FIXME: fix these parameters
+        $this->connection->traceBatchWrite([
             'projectsId' => $this->projectId,
             'spans' => array_map([$this, 'transformSpan'], $traces)
         ] + $options);
@@ -151,7 +151,7 @@ class TraceClient
      * see {@see Google\Cloud\Trace\Trace}. If no traceId is provided, one will be
      * generated for you.
      *
-     * * Example:
+     * Example:
      * ```
      * // Create a trace with a generated traceId
      * $trace = $traceClient->trace();
@@ -172,12 +172,11 @@ class TraceClient
 
     private function transformSpan($trace)
     {
-        $projectId = $this->projectId;
-        return array_map(function ($span) use ($projectId) {
+        return array_map(function ($span) {
             $data = $span->jsonSerialize();
             $data['name'] = sprintf(
                 'projects/%s/traces/%s/spans/%s',
-                $projectId,
+                $this->projectId,
                 $span->traceId(),
                 $span->spanId()
             );

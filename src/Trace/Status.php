@@ -18,7 +18,7 @@
 namespace Google\Cloud\Trace;
 
 /**
- * This plain PHP class represents an Status resource. The Status type defines a
+ * This plain PHP class represents a Status resource. The Status type defines a
  * logical error model that is suitable for different programming environments,
  * including REST APIs and RPC APIs.
  *
@@ -51,7 +51,7 @@ class Status implements \JsonSerializable
      * of an arbitrary type. An additional field "@type" contains a URI
      * identifying the type.
      *
-     * Example: { "id": 1234, "@type": "types.example.com/standard/id" }.
+     * Example: ["id" => 1234, "@type" => "types.example.com/standard/id"].
      */
     private $details;
 
