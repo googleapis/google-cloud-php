@@ -541,7 +541,7 @@ class EntityMapperTest extends TestCase
 
         $res = $this->mapper->valueObject('hello', false);
 
-        $this->assertFalse(isset($res['excludeFromIndexes']));
+        $this->assertArrayNotHasKey('excludeFromIndexes', $res);
     }
 
     public function testObjectPropertyBlob()
