@@ -37,19 +37,37 @@ class FormatMessage
     /**
      * Instantiate a new FormatMessage
      *
+     * @param string $format Format template for the message. The format
+     *        uses placeholders $0, $1, etc. to reference parameters. $$ can
+     *        be used to denote the $ character.
+     * @param string[] $parameters Optional parameters to be embedded into the message.
+     */
+    public function __construct($format, $parameters)
+    {
+        $this->format = $format;
+        $this->parameters = $parameters;
+    }
+
+    /**
+     * Load a new FormatMessage from JSON form
+     *
      * @param array $data {
      *      FormatMessage params
      *
      *      @type string $format Format template for the message. The format
      *            uses placeholders $0, $1, etc. to reference parameters. $$ can
      *            be used to denote the $ character.
-     *      @type string[] Optional parameters to be embedded into the message.
+     *      @type string[] $parameters Optional parameters to be embedded into the message.
      * }
+     * @return FormatMessage
      */
-    public function __construct(array $data = [])
+    public static function fromJson(array $data)
     {
-        $this->format = $data['format'];
-        $this->parameters = $data['parameters'];
+        $data += [
+            'format' => null,
+            'parameters' => []
+        ];
+        return new static($data['format'], $data['parameters']);
     }
 
     /**

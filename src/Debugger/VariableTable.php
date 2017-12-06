@@ -29,13 +29,11 @@ class VariableTable implements \JsonSerializable
     /**
      * Initialize a new VariableTable with optional initial values.
      *
-     * @param array $data
+     * @param Variable[] $initialVariables
      */
-    public function __construct($data = [])
+    public function __construct($initialVariables = [])
     {
-        $this->variables = array_map(function ($variable) {
-            return new Variable($variable);
-        }, $data);
+        $this->variables = $initialVariables;
         $this->nextIndex = count($this->variables);
         $this->sharedVariableIndex = [];
     }

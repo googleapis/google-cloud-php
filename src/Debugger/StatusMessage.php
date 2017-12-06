@@ -43,6 +43,20 @@ class StatusMessage implements \JsonSerializable
     /**
      * Instantiate a new StatusMessage
      *
+     * @param bool $isError Distinguishes errors from informational messages.
+     * @param Reference $refersTo Reference to which the message applies.
+     * @param FormatMessage $description Status message text.
+     */
+    public function __construct($isError, $refersTo, $description))
+    {
+        $this->isError = $isError;
+        $this->refersTo = $refersTo;
+        $this->description = $description;
+    }
+
+    /**
+     * Load a StatusMessage from JSON form
+     *
      * @param array $data {
      *      StatusMessage data
      *
@@ -50,14 +64,20 @@ class StatusMessage implements \JsonSerializable
      *      @type Reference $refersTo Reference to which the message applies.
      *      @type FormatMessage $description Status message text.
      * }
+     * @return StatusMessage
      */
-    public function __construct($data)
+    public static function fromJson(array $data)
     {
-        if ($data) {
-            $this->isError = $data['isError'];
-            $this->refersTo = $data['refersTo'];
-            $this->description = $data['description'];
+        if (!$data) {
+            return null;
         }
+
+        $data += [
+            'isError' => false,
+            'refersTo' => null,
+            'formatMessage' => null
+        ];
+        return new static($data['isError'], $data['refersTo'], $data['FormatMessage']);
     }
 
     /**

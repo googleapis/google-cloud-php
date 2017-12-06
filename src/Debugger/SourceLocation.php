@@ -17,15 +17,11 @@
 
 namespace Google\Cloud\Debugger;
 
-use Google\Cloud\Core\ArrayTrait;
-
 /**
  * Represents a location in the source code.
  */
 class SourceLocation implements \JsonSerializable
 {
-    use ArrayTrait;
-
     /**
      * @var string Path to the source file within the source context of the
      *      target binary.
@@ -40,6 +36,20 @@ class SourceLocation implements \JsonSerializable
     /**
      * Instantiate a new SourceLocation
      *
+     * @param string $path Path to the source file within the source context
+     *        of the target binary.
+     * @param int $line Line inside the file. The first line in the file has
+     *        the value 1.
+     */
+    public function __construct($path, $line)
+    {
+        $this->path = $path;
+        $this->line = $line;
+    }
+
+    /**
+     * Load a SourceLocation from JSON form
+     *
      * @param array $data {
      *      SourceLocation data
      *
@@ -49,11 +59,13 @@ class SourceLocation implements \JsonSerializable
      *            the value 1.
      * }
      */
-    public function __construct(array $data = [])
+    public static function fromJson(array $data)
     {
-        $data = $data ?: [];
-        $this->path = $this->pluck('path', $data, false);
-        $this->line = $this->pluck('line', $data, false);
+        $data += [
+            'path' => null,
+            'line' => null
+        ];
+        return new static($data['path'], $data['line']);
     }
 
     /**

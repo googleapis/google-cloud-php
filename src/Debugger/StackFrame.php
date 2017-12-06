@@ -17,15 +17,11 @@
 
 namespace Google\Cloud\Debugger;
 
-use Google\Cloud\Core\ArrayTrait;
-
 /**
  * Represents a stack frame context.
  */
 class StackFrame implements \JsonSerializable
 {
-    use ArrayTrait;
-
     /**
      * @var string Demangled function name at the call site.
      */
@@ -62,17 +58,23 @@ class StackFrame implements \JsonSerializable
 
     /**
      * Instantiate a new StackFrame from JSON form
-     * @param  [type] $data [description]
-     * @return [type]       [description]
+     *
+     * @param array $data {
+     *      @type string $function
+     *      @type SourceLocation $location
+     * }
+     * @return StackFrame
      */
-    public static function fromJson($data)
+    public static function fromJson(array $data)
     {
-        $location = array_key_exists('location', $data)
-            ? $data['location']
-            : null;
+        $data += [
+            'location' => null,
+            'function' => null
+        ];
+
         return new static(
-            array_key_exists('function', $data) ? $data['function'] : null,
-            new SourceLocation($location)
+            $data['function'],
+            new SourceLocation($data['location'])
         );
     }
 

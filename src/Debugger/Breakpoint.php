@@ -315,14 +315,11 @@ class Breakpoint implements \JsonSerializable
 
     private function setError($type, $message, $parameters)
     {
-        $this->info['status'] = new StatusMessage([
-            'isError' => true,
-            'refersTo' => $type,
-            'description' => new FormatMessage([
-                'format' => $message,
-                'parameters' => $parameters
-            ])
-        ]);
+        $this->info['status'] = new StatusMessage(
+            true,
+            $type,
+            new FormatMessage($message, $parameters)
+        );
     }
 
     private function addVariable($name, $value)
