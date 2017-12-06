@@ -89,6 +89,7 @@ class StackFrame implements \JsonSerializable
     /**
      * Returns a JSON serializable array representation of the stack frame.
      *
+     * @access private
      * @return array
      */
     public function jsonSerialize()

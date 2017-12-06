@@ -48,6 +48,7 @@ class RepoId implements \JsonSerializable
     /**
      * Callback to implement JsonSerializable interface
      *
+     * @access private
      * @return array
      */
     public function jsonSerialize()

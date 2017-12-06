@@ -50,6 +50,7 @@ class ExtendedSourceContext implements SourceContext
     /**
      * Callback to implement JsonSerializable interface
      *
+     * @access private
      * @return array
      */
     public function jsonSerialize()

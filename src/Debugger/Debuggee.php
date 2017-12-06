@@ -225,6 +225,7 @@ class Debuggee implements \JsonSerializable
     /**
      * Returns a JSON serializable array representation of the debuggee.
      *
+     * @access private
      * @return array
      */
     public function jsonSerialize()
