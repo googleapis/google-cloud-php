@@ -25,12 +25,14 @@ namespace Google\Cloud\Debugger;
 class CloudWorkspaceId implements \JsonSerializable
 {
     /**
-     * @var RepoId
+     * @var RepoId The ID of the repo containing the workspace.
      */
     private $repoId;
 
     /**
-     * @var string
+     * @var string The unique name of the workspace within the repo. This is the
+     *      name chosen by the client in the Source API's CreateWorkspace
+     *      method.
      */
     private $name;
 

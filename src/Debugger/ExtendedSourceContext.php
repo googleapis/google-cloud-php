@@ -24,12 +24,13 @@ namespace Google\Cloud\Debugger;
 class ExtendedSourceContext implements SourceContext
 {
     /**
-     * @var SourceContext
+     * @var SourceContext Any source context.
      */
     private $context;
 
     /**
-     * @var array
+     * @var array Labels with user defined metadata. An object containing a list
+     *      of "key": value pairs.
      */
     private $labels;
 
@@ -38,8 +39,7 @@ class ExtendedSourceContext implements SourceContext
      *
      * @param SourceContext $context Any source context.
      * @param array $labels Labels with user defined metadata. An object
-     *        containing a list of "key": value pairs. Example:
-     *        { "name": "wrench", "mass": "1.3kg", "count": "3" }.
+     *        containing a list of "key": value pairs.
      */
     public function __construct($context, $labels)
     {

@@ -24,12 +24,12 @@ namespace Google\Cloud\Debugger;
 class GitSourceContext implements SourceContext, \JsonSerializable
 {
     /**
-     * @var string
+     * @var string Git repository URL.
      */
     private $url;
 
     /**
-     * @var string
+     * @var string Git commit hash.
      */
     private $revisionId;
 
@@ -37,7 +37,7 @@ class GitSourceContext implements SourceContext, \JsonSerializable
      * Instantiate a new GitSourceContext.
      *
      * @param string $url Git repository URL.
-     * @param string $revisionId Git commit hash. required.
+     * @param string $revisionId Git commit hash.
      */
     public function __construct($url, $revisionId)
     {

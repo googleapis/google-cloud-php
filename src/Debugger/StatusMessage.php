@@ -26,24 +26,30 @@ namespace Google\Cloud\Debugger;
 class StatusMessage implements \JsonSerializable
 {
     /**
-     * @var bool
+     * @var bool Distinguishes errors from informational messages.
      */
     private $isError;
 
     /**
-     * @var Reference
+     * @var Reference Reference to which the message applies.
      */
     private $refersTo;
 
     /**
-     * @var FormatMessage
+     * @var FormatMessage Status message text.
      */
     private $description;
 
     /**
      * Instantiate a new StatusMessage
      *
-     * @param array $data
+     * @param array $data {
+     *      StatusMessage data
+     *
+     *      @type bool $isError Distinguishes errors from informational messages.
+     *      @type Reference $refersTo Reference to which the message applies.
+     *      @type FormatMessage $description Status message text.
+     * }
      */
     public function __construct($data)
     {

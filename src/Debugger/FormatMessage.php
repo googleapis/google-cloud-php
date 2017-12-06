@@ -23,19 +23,28 @@ namespace Google\Cloud\Debugger;
 class FormatMessage
 {
     /**
-     * @var string
+     * @var string Format template for the message. The format uses placeholders
+     *      $0, $1, etc. to reference parameters. $$ can be used to denote the
+     *      $ character.
      */
     private $format;
 
     /**
-     * @var string[]
+     * @var string[] Optional parameters to be embedded into the message.
      */
     private $parameters;
 
     /**
      * Instantiate a new FormatMessage
      *
-     * @param array $data
+     * @param array $data {
+     *      FormatMessage params
+     *
+     *      @type string $format Format template for the message. The format
+     *            uses placeholders $0, $1, etc. to reference parameters. $$ can
+     *            be used to denote the $ character.
+     *      @type string[] Optional parameters to be embedded into the message.
+     * }
      */
     public function __construct(array $data = [])
     {

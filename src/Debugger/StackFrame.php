@@ -27,30 +27,32 @@ class StackFrame implements \JsonSerializable
     use ArrayTrait;
 
     /**
-     * @var string
+     * @var string Demangled function name at the call site.
      */
     private $function;
 
     /**
-     * @var SourceLocation
+     * @var SourceLocation Source location of the call site.
      */
     private $location;
 
     /**
-     * @var Variable[]
+     * @var Variable[] Set of arguments passed to this function. Note that this
+     *      might not be populated for all stack frames.
      */
     private $arguments = [];
 
     /**
-     * @var Variable[]
+     * @var Variable[] Set of local variables at the stack frame location. Note
+     *      that this might not be populated for all stack frames.
      */
     private $locals = [];
 
     /**
      * Instantiate a new StackFrame.
      *
-     * @type string $function The name of the function
-     * @type SourceLocation $location The source location
+     * @param string $function Demangled function name at the call site.
+     * @param SourceLocation $location The source location
      */
     public function __construct($function, SourceLocation $location)
     {

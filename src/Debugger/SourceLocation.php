@@ -27,19 +27,27 @@ class SourceLocation implements \JsonSerializable
     use ArrayTrait;
 
     /**
-     * @var string
+     * @var string Path to the source file within the source context of the
+     *      target binary.
      */
     private $path;
 
     /**
-     * @var int
+     * @var int Line inside the file. The first line in the file has the value 1.
      */
     private $line;
 
     /**
      * Instantiate a new SourceLocation
      *
-     * @param [type] $data [description]
+     * @param array $data {
+     *      SourceLocation data
+     *
+     *      @type string $path Path to the source file within the source context
+     *            of the target binary.
+     *      @type int $line Line inside the file. The first line in the file has
+     *            the value 1.
+     * }
      */
     public function __construct(array $data = [])
     {

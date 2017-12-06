@@ -41,7 +41,7 @@ class Breakpoint implements \JsonSerializable
     const LOG_LEVEL_ERROR = 'ERROR';
 
     /**
-     * @var array
+     * @var array Breakpoint data
      */
     private $info;
 
@@ -205,7 +205,7 @@ class Breakpoint implements \JsonSerializable
      *
      * @param array $stackFrames
      */
-    public function addStackFrames($stackFrames)
+    public function addStackFrames(array $stackFrames)
     {
         foreach ($stackFrames as $stackFrame) {
             $this->addStackFrame($stackFrame);
@@ -222,6 +222,7 @@ class Breakpoint implements \JsonSerializable
      *      @type string $filename The name of the file executed.
      *      @type int $line The line number of the file executed.
      *      @type array $locals Captured local variables.
+     * }
      */
     public function addStackFrame($stackFrameData)
     {
@@ -256,7 +257,7 @@ class Breakpoint implements \JsonSerializable
      * @param array $expressions Key is the expression executed. Value is the
      *        execution result.
      */
-    public function addEvaluatedExpressions($expressions)
+    public function addEvaluatedExpressions(array $expressions)
     {
         if (!array_key_exists('evaluatedExpressions', $this->info)) {
             $this->info['evaluatedExpressions'] = [];

@@ -4,15 +4,26 @@ namespace Google\Cloud\Debugger;
 
 /**
  * This class represents a collection of Variables that are referenced by index
- * within a Breakpoint. It's main use to reduce duplication of identical objects
+ * within a Breakpoint. Its main use to reduce duplication of identical objects
  * by checking a unique identifier for objects.
  */
 class VariableTable implements \JsonSerializable
 {
     const MAX_MEMBER_DEPTH = 5;
 
+    /**
+     * @var int The next index to use for the variable table
+     */
     private $nextIndex;
+
+    /**
+     * @var Variable[] List of all variables
+     */
     private $variables;
+
+    /**
+     * @var array Associative array of all variables indexed by object hash.
+     */
     private $sharedVariableIndex;
 
     /**

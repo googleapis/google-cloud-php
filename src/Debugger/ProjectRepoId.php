@@ -24,12 +24,12 @@ namespace Google\Cloud\Debugger;
 class ProjectRepoId implements \JsonSerializable
 {
     /**
-     * @var string
+     * @var string The ID of the project.
      */
     private $projectId;
 
     /**
-     * @var string
+     * @var string The name of the repo. Leave empty for the default repo.
      */
     private $repoName;
 

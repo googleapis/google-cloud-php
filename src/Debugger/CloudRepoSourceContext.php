@@ -24,22 +24,17 @@ namespace Google\Cloud\Debugger;
 class CloudRepoSourceContext implements SourceContext
 {
     /**
-     * @var RepoId
+     * @var RepoId The ID of the repo.
      */
     private $repoId;
 
     /**
-     * @var string
+     * @var string A revision ID.
      */
     private $revisionId;
 
     /**
-     * @var string
-     */
-    private $aliasName;
-
-    /**
-     * @var AliasContext
+     * @var AliasContext An alias, which may be a branch or tag.
      */
     private $aliasContext;
 
@@ -48,14 +43,12 @@ class CloudRepoSourceContext implements SourceContext
      *
      * @param RepoId $repoId The ID of the repo.
      * @param string $revisionId A revision ID.
-     * @param string $aliasName [Deprecated] The name of an alias (branch, tag, etc.).
      * @param AliasContext $aliasContext An alias, which may be a branch or tag.
      */
-    public function __construct($repoId, $revisionId, $aliasName, $aliasContext)
+    public function __construct($repoId, $revisionId, $aliasContext)
     {
         $this->repoId = $repoId;
         $this->revisionId = $revisionId;
-        $this->aliasName = $aliasName;
         $this->aliasContext = $aliasContext;
     }
 
@@ -70,7 +63,6 @@ class CloudRepoSourceContext implements SourceContext
             'cloudRepo' => [
                 'repoId' => $this->repoId,
                 'revisionId' => $this->revisionId,
-                'aliasName' => $this->aliasName,
                 'aliasContext' => $this->aliasContext
             ]
         ];

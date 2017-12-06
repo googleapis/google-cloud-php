@@ -23,12 +23,12 @@ namespace Google\Cloud\Debugger;
 class AliasContext implements \JsonSerializable
 {
     /**
-     * @var string
+     * @var string The alias kind.
      */
     public $kind;
 
     /**
-     * @var string
+     * @var string The alias name.
      */
     public $name;
 

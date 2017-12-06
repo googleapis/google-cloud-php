@@ -23,12 +23,13 @@ namespace Google\Cloud\Debugger;
 class CloudWorkspaceSourceContext implements \JsonSerializable
 {
     /**
-     * @var CloudWorkspaceId
+     * @var CloudWorkspaceId The ID of the workspace.
      */
     private $workspaceId;
 
     /**
-     * @var string
+     * @var string The ID of the snapshot. An empty snapshotId refers to the
+     *      most recent snapshot.
      */
     private $snapshotId;
 

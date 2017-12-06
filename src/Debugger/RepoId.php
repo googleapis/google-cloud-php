@@ -23,12 +23,12 @@ namespace Google\Cloud\Debugger;
 class RepoId implements \JsonSerializable
 {
     /**
-     * @var ProjectRepoId
+     * @var ProjectRepoId A combination of a project ID and a repo name.
      */
     private $projectRepoId;
 
     /**
-     * @var string
+     * @var string A server-assigned, globally unique identifier.
      */
     private $uid;
 

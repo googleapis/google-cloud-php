@@ -23,27 +23,24 @@ namespace Google\Cloud\Debugger;
 class GerritSourceContext implements SourceContext, \JsonSerializable
 {
     /**
-     * @var string
+     * @var string The URI of a running Gerrit instance.
      */
     private $hostUri;
 
     /**
-     * @var string
+     * @var string The full project name within the host. Projects may be
+     *      nested, so "project/subproject" is a valid project name. The
+     *      "repo name" is hostURI/project.
      */
     private $gerritProject;
 
     /**
-     * @var string
+     * @var string A revision (commit) ID.
      */
     private $revisionId;
 
     /**
-     * @var string
-     */
-    private $aliasName;
-
-    /**
-     * @var AliasContext
+     * @var AliasContext An alias, which may be a branch or tag.
      */
     private $aliasContext;
 
@@ -55,20 +52,17 @@ class GerritSourceContext implements SourceContext, \JsonSerializable
      *        Projects may be nested, so "project/subproject" is a valid project
      *        name. The "repo name" is hostURI/project.
      * @param string $revisionId A revision (commit) ID.
-     * @param string $aliasName The name of an alias (branch, tag, etc.).
      * @param AliasContext $aliasContext An alias, which may be a branch or tag.
      */
     public function __construct(
         $hostUri,
         $gerritProject,
         $revisionId,
-        $aliasName,
         AliasContext $aliasContext
     ) {
         $this->hostUri = $hostUri;
         $this->gerritProject = $gerritProject;
         $this->revisionId = $revisionId;
-        $this->aliasName = $aliasName;
         $this->aliasContext = $aliasContext;
     }
 
@@ -84,7 +78,6 @@ class GerritSourceContext implements SourceContext, \JsonSerializable
                 'hostUri' => $this->hostUri,
                 'gerritProject' => $this->gerritProject,
                 'revisionId' => $this->revisionId,
-                'aliasName' => $this->aliasName,
                 'aliasContext' => $this->aliasContext
             ]
         ];
