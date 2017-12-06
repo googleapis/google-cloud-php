@@ -69,11 +69,9 @@ class Daemon
 
         $this->sourceRoot = realpath($sourceRoot);
 
-        $sourceContext = array_key_exists('sourceContext', $options)
-            ? $options['sourceContext']
-            : $this->defaultSourceContext();
-        var_dump($sourceContext);
-        $extSourceContext = new ExtendedSourceContext($sourceContext, []);
+        $extSourceContext = array_key_exists('extSourceContext', $options)
+            ? $options['extSourceContext']
+            : $this->defaultExtSourceContext();
 
         $uniquifier = array_key_exists('uniquifier', $options)
             ? $options['uniquifier']
@@ -87,9 +85,9 @@ class Daemon
         $this->debuggee = $client->debuggee($name, [
             'uniquifier' => $uniquifier,
             'description' => $description,
-            'sourceContexts' => [$sourceContext],
             'extendedSourceContexts' => [$extSourceContext]
         ]);
+
         $this->debuggee->register();
 
         $this->storage = new SysvBreakpointStorage();
@@ -161,9 +159,9 @@ class Daemon
         return gethostname() . '-' . getcwd();
     }
 
-    private function defaultSourceContext()
+    private function defaultExtSourceContext()
     {
-        $sourceContextFile = $this->sourceRoot . '/source-context.json';
+        $sourceContextFile = $this->sourceRoot . '/source-contexts.json';
         if (file_exists($sourceContextFile)) {
             return json_decode(file_get_contents($sourceContextFile), true);
         } else {

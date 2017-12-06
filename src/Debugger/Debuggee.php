@@ -72,12 +72,6 @@ class Debuggee implements \JsonSerializable
     private $agentVersion;
 
     /**
-     * @var SourceContext[] [Deprecated] References to the locations and
-     *      revisions of the source code used in the deployed application.
-     */
-    private $sourceContexts = [];
-
-    /**
      * @var ExtendedSourceContext[] References to the locations and revisions of
      *      the source code used in the deployed application. Contexts
      *      describing a remote repo related to the source code have a category
@@ -121,9 +115,7 @@ class Debuggee implements \JsonSerializable
      *            user about this debuggee. Absence of this field indicates no
      *            status. The message can be either informational or an error
      *            status.
-     *      @type string $sourceContexts References to the locations and
-     *            revisions of the source code used in the deployed application.
-     *      @type string $extSourceContexts References to the locations and
+     *      @type ExtendedSourceContext[] $extSourceContexts References to the locations and
      *            revisions of the source code used in the deployed application.
      */
     public function __construct(ConnectionInterface $connection, array $info = [])
@@ -134,7 +126,6 @@ class Debuggee implements \JsonSerializable
             'isInactive' => false,
             'agentVersion' => DebuggerClient::VERSION,
             'status' => null,
-            'sourceContexts' => [],
             'extSourceContexts' => []
         ];
 
@@ -143,7 +134,8 @@ class Debuggee implements \JsonSerializable
         $this->uniquifier = $info['uniquifier'];
         $this->description = $info['description'];
         $this->status = $info['status'];
-        $this->sourceContexts = $info['sourceContexts'];
+        $this->agentVersion = $info['agentVersion'];
+        $this->isInactive = $info['isInactive'];
         $this->extSourceContexts = $info['extSourceContexts'];
     }
 
@@ -245,9 +237,6 @@ class Debuggee implements \JsonSerializable
             'isInactive' => $this->isInactive,
             'agentVersion' => $this->agentVersion,
             'status' => $this->status,
-            'sourceContexts' => array_map(function ($sc) {
-                return is_array($sc) ? $sc : $sc->jsonSerialize();
-            }, $this->sourceContexts),
             'extSourceContexts' => array_map(function ($esc) {
                 return is_array($esc) ? $esc : $esc->jsonSerialize();
             }, $this->extSourceContexts)
