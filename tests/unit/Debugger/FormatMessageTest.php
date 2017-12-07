@@ -18,11 +18,12 @@
 namespace Google\Cloud\Tests\Unit\Debugger;
 
 use Google\Cloud\Debugger\FormatMessage;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group debugger
  */
-class FormatMessageTest extends \PHPUnit_Framework_TestCase
+class FormatMessageTest extends TestCase
 {
     use JsonTestTrait;
 

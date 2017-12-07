@@ -18,11 +18,12 @@
 namespace Google\Cloud\Tests\Unit\Debugger;
 
 use Google\Cloud\Debugger\AliasContext;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group debugger
  */
-class AliasContextTest extends \PHPUnit_Framework_TestCase
+class AliasContextTest extends TestCase
 {
     use JsonTestTrait;
 

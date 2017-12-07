@@ -22,11 +22,12 @@ use Google\Cloud\Debugger\Debuggee;
 use Google\Cloud\Debugger\ExtendedSourceContext;
 use Google\Cloud\Debugger\Connection\ConnectionInterface;
 use Prophecy\Argument;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group debugger
  */
-class DebuggeeTest extends \PHPUnit_Framework_TestCase
+class DebuggeeTest extends TestCase
 {
     private $connection;
 

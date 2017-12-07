@@ -20,11 +20,12 @@ namespace Google\Cloud\Tests\Unit\Debugger;
 use Google\Cloud\Debugger\Action;
 use Google\Cloud\Debugger\Breakpoint;
 use Google\Cloud\Debugger\SourceLocation;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group debugger
  */
-class BreakpointTest extends \PHPUnit_Framework_TestCase
+class BreakpointTest extends TestCase
 {
     use JsonTestTrait;
 

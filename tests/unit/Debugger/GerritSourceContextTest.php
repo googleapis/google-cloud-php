@@ -19,11 +19,12 @@ namespace Google\Cloud\Tests\Unit\Debugger;
 
 use Google\Cloud\Debugger\AliasContext;
 use Google\Cloud\Debugger\GerritSourceContext;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group debugger
  */
-class GerritSourceContextTest extends \PHPUnit_Framework_TestCase
+class GerritSourceContextTest extends TestCase
 {
     use JsonTestTrait;
 

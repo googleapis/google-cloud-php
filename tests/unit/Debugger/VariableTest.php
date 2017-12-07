@@ -18,11 +18,12 @@
 namespace Google\Cloud\Tests\Unit\Debugger;
 
 use Google\Cloud\Debugger\Variable;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group debugger
  */
-class VariableTest extends \PHPUnit_Framework_TestCase
+class VariableTest extends TestCase
 {
     use JsonTestTrait;
 

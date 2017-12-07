@@ -18,11 +18,12 @@
 namespace Google\Cloud\Tests\Unit\Debugger;
 
 use Google\Cloud\Debugger\CloudWorkspaceSourceContext;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group debugger
  */
-class CloudWorkspaceSourceContextTest extends \PHPUnit_Framework_TestCase
+class CloudWorkspaceSourceContextTest extends TestCase
 {
     use JsonTestTrait;
 

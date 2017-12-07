@@ -21,11 +21,12 @@ use Google\Cloud\Debugger\Connection\ConnectionInterface;
 use Google\Cloud\Debugger\DebuggerClient;
 use Google\Cloud\Debugger\Debuggee;
 use Prophecy\Argument;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group debugger
  */
-class DebuggerClientTest extends \PHPUnit_Framework_TestCase
+class DebuggerClientTest extends TestCase
 {
     private $client;
     private $connection;

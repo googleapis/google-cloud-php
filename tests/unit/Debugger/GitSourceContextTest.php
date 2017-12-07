@@ -18,11 +18,12 @@
 namespace Google\Cloud\Tests\Unit\Debugger;
 
 use Google\Cloud\Debugger\GitSourceContext;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group debugger
  */
-class GitSourceContextTest extends \PHPUnit_Framework_TestCase
+class GitSourceContextTest extends TestCase
 {
     use JsonTestTrait;
 

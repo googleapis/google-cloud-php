@@ -21,11 +21,12 @@ use Google\Cloud\Debugger\Agent;
 use Google\Cloud\Debugger\Debuggee;
 use Google\Cloud\Debugger\BreakpointStorage\BreakpointStorageInterface;
 use Psr\Log\LoggerInterface;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group debugger
  */
-class AgentTest extends \PHPUnit_Framework_TestCase
+class AgentTest extends TestCase
 {
     private $storage;
 

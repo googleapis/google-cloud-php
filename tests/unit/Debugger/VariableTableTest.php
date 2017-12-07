@@ -19,11 +19,12 @@ namespace Google\Cloud\Tests\Unit\Debugger;
 
 use Google\Cloud\Debugger\VariableTable;
 use Google\Cloud\Core\Int64;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group debugger
  */
-class VariableTableTest extends \PHPUnit_Framework_TestCase
+class VariableTableTest extends TestCase
 {
     public function testRegisterObjectCreatesVariable()
     {

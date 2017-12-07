@@ -20,11 +20,12 @@ namespace Google\Cloud\Tests\Unit\Debugger;
 use Google\Cloud\Debugger\SourceLocation;
 use Google\Cloud\Debugger\StackFrame;
 use Google\Cloud\Debugger\Variable;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group debugger
  */
-class StackFrameTest extends \PHPUnit_Framework_TestCase
+class StackFrameTest extends TestCase
 {
     use JsonTestTrait;
 

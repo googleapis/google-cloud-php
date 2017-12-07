@@ -20,11 +20,12 @@ namespace Google\Cloud\Tests\Unit\Debugger;
 use Google\Cloud\Debugger\FormatMessage;
 use Google\Cloud\Debugger\Reference;
 use Google\Cloud\Debugger\StatusMessage;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group debugger
  */
-class StatusMessageTest extends \PHPUnit_Framework_TestCase
+class StatusMessageTest extends TestCase
 {
     use JsonTestTrait;
 

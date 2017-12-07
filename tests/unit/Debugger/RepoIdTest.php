@@ -19,11 +19,12 @@ namespace Google\Cloud\Tests\Unit\Debugger;
 
 use Google\Cloud\Debugger\ProjectRepoId;
 use Google\Cloud\Debugger\RepoId;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group debugger
  */
-class RepoIdTest extends \PHPUnit_Framework_TestCase
+class RepoIdTest extends TestCase
 {
     use JsonTestTrait;
 

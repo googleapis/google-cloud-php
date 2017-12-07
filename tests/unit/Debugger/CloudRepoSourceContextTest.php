@@ -21,11 +21,12 @@ use Google\Cloud\Debugger\AliasContext;
 use Google\Cloud\Debugger\CloudRepoSourceContext;
 use Google\Cloud\Debugger\ProjectRepoId;
 use Google\Cloud\Debugger\RepoId;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group debugger
  */
-class CloudRepoSourceContextTest extends \PHPUnit_Framework_TestCase
+class CloudRepoSourceContextTest extends TestCase
 {
     use JsonTestTrait;
 

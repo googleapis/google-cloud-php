@@ -23,11 +23,12 @@ use Google\Cloud\Debugger\Daemon;
 use Google\Cloud\Debugger\Debuggee;
 use Google\Cloud\Debugger\DebuggerClient;
 use Prophecy\Argument;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group debugger
  */
-class DaemonTest extends \PHPUnit_Framework_TestCase
+class DaemonTest extends TestCase
 {
     private $client;
     private $debuggee;
