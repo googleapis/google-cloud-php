@@ -123,8 +123,9 @@ class Debuggee implements \JsonSerializable
         $this->connection = $connection;
 
         $info += [
+            'id' => null,
             'isInactive' => false,
-            'agentVersion' => DebuggerClient::VERSION,
+            'agentVersion' => DebuggerClient::DEFAULT_AGENT_VERSION,
             'status' => null,
             'extSourceContexts' => [],
             'uniquifier' => null,
@@ -191,14 +192,11 @@ class Debuggee implements \JsonSerializable
         $ret = $this->connection->listBreakpoints($this->id, $options);
 
         if (array_key_exists('breakpoints', $ret)) {
-            $ret['breakpoints'] = array_map(
-                function ($data) {
-                    return new Breakpoint($data);
-                },
-                $ret['breakpoints']
-            );
+            return array_map(function ($breakpointData) {
+                return new Breakpoint($breakpointData);
+            }, $ret['breakpoints']);
         }
-        return $ret;
+        return [];
     }
 
     /**
@@ -241,11 +239,9 @@ class Debuggee implements \JsonSerializable
             'agentVersion' => $this->agentVersion,
             'status' => $this->status,
             'sourceContexts' => array_map(function ($esc) {
-                return is_array($esc) ? $esc['context'] : $esc->context()->jsonSerialize();
+                return is_array($esc) ? $esc['context'] : $esc->context();
             }, $this->extSourceContexts),
-            'extSourceContexts' => array_map(function ($esc) {
-                return is_array($esc) ? $esc : $esc->jsonSerialize();
-            }, $this->extSourceContexts)
+            'extSourceContexts' => $this->extSourceContexts
         ];
     }
 }

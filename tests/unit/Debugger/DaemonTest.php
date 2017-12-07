@@ -87,9 +87,7 @@ class DaemonTest extends \PHPUnit_Framework_TestCase
 
     public function testFetchesBreakpoints()
     {
-        $breakpoints = [
-            'breakpoints' => []
-        ];
+        $breakpoints = [];
         $storage = $this->prophesize(BreakpointStorageInterface::class);
         $this->debuggee->register(Argument::any())
             ->shouldBeCalled();

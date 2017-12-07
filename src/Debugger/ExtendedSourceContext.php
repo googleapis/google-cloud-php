@@ -48,6 +48,16 @@ class ExtendedSourceContext implements SourceContext, \JsonSerializable
     }
 
     /**
+     * Returns the contained context
+     *
+     * @return SourceContext
+     */
+    public function context()
+    {
+        return $this->context;
+    }
+
+    /**
      * Callback to implement JsonSerializable interface
      *
      * @access private

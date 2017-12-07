@@ -120,9 +120,6 @@ class Daemon
 
     private function setBreakpoints($breakpoints)
     {
-        $breakpoints = array_key_exists('breakpoints', $breakpoints)
-            ? $breakpoints['breakpoints']
-            : [];
         $count = count($breakpoints);
         $validBreakpoints = [];
         $invalidBreakpoints = [];
