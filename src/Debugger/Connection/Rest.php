@@ -21,7 +21,6 @@ use Google\Cloud\Core\RequestBuilder;
 use Google\Cloud\Core\RequestWrapper;
 use Google\Cloud\Core\RestTrait;
 use Google\Cloud\Debugger\Breakpoint;
-use Google\Cloud\Debugger\Debuggee;
 
 /**
  * Implementation of the
@@ -52,57 +51,40 @@ class Rest implements ConnectionInterface
     /**
      * List all registered debuggees.
      *
-     * @param string $projectId
      * @param array $args
-     * @return Debuggee[]
      */
-    public function listDebuggees($projectId, array $args = [])
+    public function listDebuggees(array $args = [])
     {
-        return $this->send('debugger.resources.debuggees', 'list', [
-            'project' => $projectId
-        ] + $args);
+        return $this->send('debugger.resources.debuggees', 'list', $args);
     }
 
     /**
      * Register this process as a debuggee.
      *
-     * @param Debuggee $debuggee
      * @param array $args
      */
-    public function registerDebuggee(Debuggee $debuggee, array $args = [])
+    public function registerDebuggee(array $args = [])
     {
-        return $this->send('controller.resources.debuggees', 'register', [
-            'debuggee' => $debuggee
-        ] + $args);
+        return $this->send('controller.resources.debuggees', 'register', $args);
     }
 
     /**
      * List the breakpoints set for the specified debuggee.
      *
-     * @param string $debuggeeId
      * @param array $args
-     * @return Breakpoint[]
      */
-    public function listBreakpoints($debuggeeId, array $args = [])
+    public function listBreakpoints(array $args = [])
     {
-        return $this->send('controller.resources.debuggees.resources.breakpoints', 'list', [
-            'debuggeeId' => $debuggeeId
-        ] + $args);
+        return $this->send('controller.resources.debuggees.resources.breakpoints', 'list', $args);
     }
 
     /**
      * Update the provided breakpoint.
      *
-     * @param string $debuggeeId
-     * @param Breakpoint $breakpoint
-     * @return bool
+     * @param array $args
      */
-    public function updateBreakpoint($debuggeeId, Breakpoint $breakpoint)
+    public function updateBreakpoint(array $args)
     {
-        return $this->send('controller.resources.debuggees.resources.breakpoints', 'update', [
-            'debuggeeId' => $debuggeeId,
-            'id' => $breakpoint->id(),
-            'breakpoint' => $breakpoint->jsonSerialize()
-        ]);
+        return $this->send('controller.resources.debuggees.resources.breakpoints', 'update', $args);
     }
 }

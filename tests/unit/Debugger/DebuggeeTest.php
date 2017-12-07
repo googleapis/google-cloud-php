@@ -37,7 +37,7 @@ class DebuggeeTest extends \PHPUnit_Framework_TestCase
 
     public function testFetchesBreakpoints()
     {
-        $this->connection->listBreakpoints('debuggee1', [])->willReturn([
+        $this->connection->listBreakpoints(['debuggeeId' => 'debuggee1'])->willReturn([
             'breakpoints' => [
                 ['id' => 'breakpoint1'],
                 ['id' => 'breakpoint2']
@@ -52,7 +52,7 @@ class DebuggeeTest extends \PHPUnit_Framework_TestCase
 
     public function testFetchesEmptyBreakpoints()
     {
-        $this->connection->listBreakpoints('debuggee1', [])->willReturn([]);
+        $this->connection->listBreakpoints(['debuggeeId' => 'debuggee1'])->willReturn([]);
         $debuggee = new Debuggee($this->connection->reveal(), ['id' => 'debuggee1', 'project' => 'project1']);
         $breakpoints = $debuggee->breakpoints();
         $this->assertCount(0, $breakpoints);
@@ -60,8 +60,8 @@ class DebuggeeTest extends \PHPUnit_Framework_TestCase
 
     public function testUpdatesBreakpoint()
     {
-        $this->connection->updateBreakpoint('debuggee1', Argument::that(function ($breakpoint) {
-            return $breakpoint->id() == 'breakpoint1';
+        $this->connection->updateBreakpoint(Argument::that(function ($args) {
+            return $args['id'] == 'breakpoint1';
         }))->willReturn(true);
         $debuggee = new Debuggee($this->connection->reveal(), ['id' => 'debuggee1', 'project' => 'project1']);
 
@@ -90,8 +90,8 @@ class DebuggeeTest extends \PHPUnit_Framework_TestCase
 
     public function testRegisterSetsDebuggeeId()
     {
-        $this->connection->registerDebuggee(Argument::that(function ($debuggee) {
-            return $debuggee->id() == null;
+        $this->connection->registerDebuggee(Argument::that(function ($args) {
+            return $args['debuggee']->id() == null;
         }), Argument::any())->willReturn([
             'debuggee' => [
                 'id' => 'debuggee1'

@@ -38,7 +38,7 @@ class DebuggerClientTest extends \PHPUnit_Framework_TestCase
 
     public function testListsDebuggees()
     {
-        $this->connection->listDebuggees('project1', Argument::any())->willReturn([
+        $this->connection->listDebuggees(['projectId' => 'project1'])->willReturn([
             'debuggees' => [
                 ['id' => 'debuggee1', 'project' => 'project1'],
                 ['id' => 'debuggee2', 'project' => 'project1'],
@@ -53,7 +53,7 @@ class DebuggerClientTest extends \PHPUnit_Framework_TestCase
 
     public function testListsDebuggeesEmpty()
     {
-        $this->connection->listDebuggees('project1', Argument::any())->willReturn([]);
+        $this->connection->listDebuggees(['projectId' => 'project1'])->willReturn([]);
         $this->client->setConnection($this->connection->reveal());
         $debuggees = $this->client->debuggees();
         $this->assertCount(0, $debuggees);

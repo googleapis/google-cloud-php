@@ -160,7 +160,7 @@ class Debuggee implements \JsonSerializable
      */
     public function register(array $args = [])
     {
-        $resp = $this->connection->registerDebuggee($this, $args);
+        $resp = $this->connection->registerDebuggee(['debuggee' => $this] + $args);
         if (array_key_exists('debuggee', $resp)) {
             $this->id = $resp['debuggee']['id'];
             return true;
@@ -189,7 +189,7 @@ class Debuggee implements \JsonSerializable
      */
     public function breakpoints(array $options = [])
     {
-        $ret = $this->connection->listBreakpoints($this->id, $options);
+        $ret = $this->connection->listBreakpoints(['debuggeeId' => $this->id] + $options);
 
         if (array_key_exists('breakpoints', $ret)) {
             return array_map(function ($breakpointData) {
@@ -207,7 +207,11 @@ class Debuggee implements \JsonSerializable
      */
     public function updateBreakpoint(Breakpoint $breakpoint)
     {
-        return $this->connection->updateBreakpoint($this->id, $breakpoint);
+        return $this->connection->updateBreakpoint([
+            'debuggeeId' => $this->id,
+            'id' => $breakpoint->id(),
+            'breakpoint' => $breakpoint
+        ]);
     }
 
     /**

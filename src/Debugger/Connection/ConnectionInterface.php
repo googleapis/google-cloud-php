@@ -29,35 +29,28 @@ interface ConnectionInterface
     /**
      * List all registered debuggees.
      *
-     * @param string $projectId
      * @param array $args
-     * @return Debuggee[]
      */
-    public function listDebuggees($projectId, array $args);
+    public function listDebuggees(array $args = []);
 
     /**
      * Register this process as a debuggee.
      *
-     * @param Debuggee $debuggee
      * @param array $args
      */
-    public function registerDebuggee(Debuggee $debuggee, array $args = []);
+    public function registerDebuggee(array $args = []);
 
     /**
      * List the breakpoints set for the specified debuggee.
      *
-     * @param string $debuggeeId
      * @param array $args
-     * @return Breakpoint[]
      */
-    public function listBreakpoints($debuggeeId, array $args = []);
+    public function listBreakpoints(array $args = []);
 
     /**
      * Update the provided breakpoint.
      *
-     * @param string $debuggeeId
-     * @param Breakpoint $breakpoint
-     * @return bool
+     * @param array $args
      */
-    public function updateBreakpoint($debuggeeId, Breakpoint $breakpoint);
+    public function updateBreakpoint(array $args);
 }
