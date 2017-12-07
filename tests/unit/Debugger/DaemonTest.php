@@ -49,6 +49,7 @@ class DaemonTest extends \PHPUnit_Framework_TestCase
 
         $daemon = new Daemon('.', [
             'client' => $this->client->reveal(),
+            'storage' => $this->storage->reveal(),
             'uniquifier' => 'some uniquifier'
         ]);
     }
@@ -62,6 +63,7 @@ class DaemonTest extends \PHPUnit_Framework_TestCase
 
         $daemon = new Daemon('.', [
             'client' => $this->client->reveal(),
+            'storage' => $this->storage->reveal(),
             'description' => 'some description'
         ]);
     }
@@ -84,6 +86,7 @@ class DaemonTest extends \PHPUnit_Framework_TestCase
 
         $daemon = new Daemon('.', [
             'client' => $this->client->reveal(),
+            'storage' => $this->storage->reveal(),
             'extSourceContext' => $context
         ]);
     }

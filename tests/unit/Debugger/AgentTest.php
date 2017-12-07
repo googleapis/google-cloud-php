@@ -31,6 +31,9 @@ class AgentTest extends \PHPUnit_Framework_TestCase
 
     public function setUp()
     {
+        if (PHP_MAJOR_VERSION < 7) {
+            $this->markTestSkipped('Can only run the Agent on PHP 7+');
+        }
         $this->storage = $this->prophesize(BreakpointStorageInterface::class);
     }
 
