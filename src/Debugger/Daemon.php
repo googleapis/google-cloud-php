@@ -124,9 +124,6 @@ class Daemon
         $validBreakpoints = [];
         $invalidBreakpoints = [];
         foreach ($breakpoints as $breakpoint) {
-            echo $breakpoint->id() . PHP_EOL;
-            var_dump($breakpoint->location());
-
             // validate breakpoint condition and/or expressions
             if ($breakpoint->validate()) {
                 array_push($validBreakpoints, $breakpoint);

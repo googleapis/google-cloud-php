@@ -117,7 +117,7 @@ class Breakpoint implements \JsonSerializable
      */
     public function location()
     {
-        return $this->info['location'];
+        return isset($this->info['location']) ? $this->info['location'] : null;
     }
 
     /**

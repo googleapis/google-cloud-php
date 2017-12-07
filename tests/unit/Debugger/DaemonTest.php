@@ -17,6 +17,7 @@
 
 namespace Google\Cloud\Tests\Unit\Debugger;
 
+use Google\Cloud\Debugger\Breakpoint;
 use Google\Cloud\Debugger\BreakpointStorage\BreakpointStorageInterface;
 use Google\Cloud\Debugger\Daemon;
 use Google\Cloud\Debugger\Debuggee;
@@ -30,11 +31,13 @@ class DaemonTest extends \PHPUnit_Framework_TestCase
 {
     private $client;
     private $debuggee;
+    private $storage;
 
     public function setUp()
     {
         $this->client = $this->prophesize(DebuggerClient::class);
         $this->debuggee = $this->prophesize(Debuggee::class);
+        $this->storage = $this->prophesize(BreakpointStorageInterface::class);
     }
 
     public function testSpecifyUniquifier()
@@ -87,8 +90,9 @@ class DaemonTest extends \PHPUnit_Framework_TestCase
 
     public function testFetchesBreakpoints()
     {
-        $breakpoints = [];
-        $storage = $this->prophesize(BreakpointStorageInterface::class);
+        $breakpoints = [
+            new Breakpoint(['id' => 'breakpoint1'])
+        ];
         $this->debuggee->register(Argument::any())
             ->shouldBeCalled();
         $this->debuggee->breakpoints()
@@ -99,7 +103,7 @@ class DaemonTest extends \PHPUnit_Framework_TestCase
 
         $daemon = new Daemon('.', [
             'client' => $this->client->reveal(),
-            'storage' => $storage->reveal()
+            'storage' => $this->storage->reveal()
         ]);
         $daemon->run();
     }
