@@ -60,8 +60,8 @@ class StackFrame implements \JsonSerializable
      * Instantiate a new StackFrame from JSON form
      *
      * @param array $data {
-     *      @type string $function
-     *      @type SourceLocation $location
+     *      @type string $function Demangled function name at the call site.
+     *      @type SourceLocation $location The source location
      * }
      * @return StackFrame
      */
