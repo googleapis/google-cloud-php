@@ -197,16 +197,13 @@ class Agent
     private function defaultDebuggee()
     {
         $client = new DebuggerClient($this->clientConfig);
-        return $client->debuggee($this->debuggeeId, [
-            'uniquifier' => 'foo-bar2', // FIXME: what should these defaults be?
-            'description' => 'Debugger for test'
-        ]);
+        return $client->debuggee($this->debuggeeId);
     }
 
     private function defaultLogger()
     {
-        // FIXME: what log file should these be using
-        return (new LoggingClient())->psrBatchLogger('logpoints');
+        $client = new LoggingClient();
+        return $client->psrBatchLogger('logpoints');
     }
 
     private function invalidateOpcache($breakpoint)

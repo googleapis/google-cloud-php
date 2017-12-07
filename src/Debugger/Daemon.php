@@ -53,11 +53,13 @@ class Daemon
      *
      *      @type DebuggerClient $client A DebuggerClient to use. **Defaults
      *            to** a new DebuggerClient.
-     *      @type array $sourceContext The source code identifier. **Defaults
+     *      @type array $extSourceContext The source code identifier. **Defaults
      *            to** values autodetected from the environment.
      *      @type string $uniquifier A string when uniquely identifies this
      *            debuggee. **Defaults to** a value autodetected from the
      *            environment.
+     *      @type BreakpointStorageInterface $storage The breakpoint storage
+     *            mechanism to use.
      *      @type bool $debugOutput Whether or not to enable debug output.
      * }
      */
@@ -89,7 +91,9 @@ class Daemon
 
         $this->debuggee->register();
 
-        $this->storage = new SysvBreakpointStorage();
+        $this->storage = array_key_exists('storage', $options)
+            ? $options['storage']
+            : new SysvBreakpointStorage();
     }
 
     /**
@@ -99,13 +103,11 @@ class Daemon
      */
     public function run()
     {
-        echo "fetching breakpoints...\n";
         $breakpoints = $this->debuggee->breakpoints();
         $this->setBreakpoints($breakpoints);
 
         while (array_key_exists('nextWaitToken', $breakpoints)) {
             try {
-                echo "fetching breakpoints...\n";
                 $breakpoints = $this->debuggee->breakpoints([
                     'waitToken' => $breakpoints['nextWaitToken']
                 ]);
@@ -122,7 +124,6 @@ class Daemon
             ? $breakpoints['breakpoints']
             : [];
         $count = count($breakpoints);
-        echo "saving $count breakpoints...\n";
         $validBreakpoints = [];
         $invalidBreakpoints = [];
         foreach ($breakpoints as $breakpoint) {
@@ -159,7 +160,7 @@ class Daemon
         if (file_exists($sourceContextFile)) {
             return json_decode(file_get_contents($sourceContextFile), true);
         } else {
-            echo "no source context found " . $sourceContextFile;
+            return null;
         }
     }
 }

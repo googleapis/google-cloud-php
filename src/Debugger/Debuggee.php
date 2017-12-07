@@ -126,7 +126,9 @@ class Debuggee implements \JsonSerializable
             'isInactive' => false,
             'agentVersion' => DebuggerClient::VERSION,
             'status' => null,
-            'extSourceContexts' => []
+            'extSourceContexts' => [],
+            'uniquifier' => null,
+            'description' => null
         ];
 
         $this->id = $info['id'];

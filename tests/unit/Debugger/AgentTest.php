@@ -18,7 +18,9 @@
 namespace Google\Cloud\Tests\Unit\Debugger;
 
 use Google\Cloud\Debugger\Agent;
+use Google\Cloud\Debugger\Debuggee;
 use Google\Cloud\Debugger\BreakpointStorage\BreakpointStorageInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * @group debugger
@@ -40,16 +42,23 @@ class AgentTest extends \PHPUnit_Framework_TestCase
 
     public function testSpecifyLogger()
     {
+        $this->storage->load()->willReturn('debuggeeId', []);
+        $logger = $this->prophesize(LoggerInterface::class);
 
+        $agent = new Agent([
+            'storage' => $this->storage->reveal(),
+            'logger' => $logger->reveal()
+        ]);
     }
 
     public function testSpecifyDebuggee()
     {
+        $this->storage->load()->willReturn('debuggeeId', []);
+        $debuggee = $this->prophesize(Debuggee::class);
 
-    }
-
-    public function testSpecifySourceRoot()
-    {
-
+        $agent = new Agent([
+            'storage' => $this->storage->reveal(),
+            'debuggee' => $debuggee->reveal()
+        ]);
     }
 }
