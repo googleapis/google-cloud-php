@@ -26,19 +26,48 @@ use Google\Cloud\Core\RequestWrapper;
 trait EmulatorTrait
 {
     /**
-     * When emulators are enabled, use them as the service host
+     * Check whether the emulator is enabled.
+     *
+     * @param string|bool $emulatorHost
+     * @return bool
+     */
+    private function emulatorEnabled($emulatorHost)
+    {
+        return (bool) $emulatorHost;
+    }
+
+    /**
+     * Retrieve a valid base uri for a service emulator.
+     *
+     * @param string $emulatorHost
+     * @return string
+     */
+    private function emulatorBaseUri($emulatorHost)
+    {
+        $emulatorUriComponents = parse_url($emulatorHost);
+        $emulatorUriComponents = array_merge(['scheme' => 'http', 'port' => ''], $emulatorUriComponents);
+        $baseUri = "{$emulatorUriComponents['scheme']}://{$emulatorUriComponents['host']}";
+        $baseUri .= $emulatorUriComponents['port'] ? ":{$emulatorUriComponents['port']}/" : '/';
+
+        return $baseUri;
+    }
+
+    /**
+     * When emulators are enabled, use them as the service host.
+     *
+     * This method is deprecated and will be removed in a future major release.
      *
      * @param string $baseUri
      * @param string $emulatorHost [optional]
      * @return string
+     *
+     * @deprecated
+     * @access private
      */
     public function getEmulatorBaseUri($baseUri, $emulatorHost = null)
     {
         if ($emulatorHost) {
-            $emulatorUriComponents = parse_url($emulatorHost);
-            $emulatorUriComponents = array_merge(['scheme' => 'http', 'port' => ''], $emulatorUriComponents);
-            $baseUri = "{$emulatorUriComponents['scheme']}://{$emulatorUriComponents['host']}";
-            $baseUri .= $emulatorUriComponents['port'] ? ":{$emulatorUriComponents['port']}/" : '/';
+            $baseUri = $this->emulatorBaseUri($emulatorHost);
         }
 
         return $baseUri;

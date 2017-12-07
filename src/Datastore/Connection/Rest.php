@@ -43,7 +43,11 @@ class Rest implements ConnectionInterface
     {
         $emulatorHost = getenv('DATASTORE_EMULATOR_HOST');
 
-        $baseUri = $this->getEmulatorBaseUri(self::BASE_URI, $emulatorHost);
+        $baseUri = self::BASE_URI;
+        if ($this->emulatorEnabled($emulatorHost)) {
+            $baseUri = $this->emulatorBaseUri($emulatorHost);
+            $config['shouldSignRequest'] = false;
+        }
 
         $config += [
             'serviceDefinitionPath' => __DIR__ . '/ServiceDefinition/datastore-v1.json',

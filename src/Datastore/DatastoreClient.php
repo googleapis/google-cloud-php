@@ -19,12 +19,12 @@ namespace Google\Cloud\Datastore;
 
 use DomainException;
 use Google\Cloud\Core\ClientTrait;
+use Google\Cloud\Core\Int64;
 use Google\Cloud\Datastore\Connection\Rest;
 use Google\Cloud\Datastore\Query\GqlQuery;
 use Google\Cloud\Datastore\Query\Query;
 use Google\Cloud\Datastore\Query\QueryBuilder;
 use Google\Cloud\Datastore\Query\QueryInterface;
-use Google\Cloud\Core\Int64;
 use InvalidArgumentException;
 use Psr\Cache\CacheItemPoolInterface;
 use Psr\Http\Message\StreamInterface;
@@ -137,7 +137,8 @@ class DatastoreClient
             'namespaceId' => null,
             'returnInt64AsObject' => false,
             'scopes' => [self::FULL_CONTROL_SCOPE],
-            'projectIdRequired' => true
+            'projectIdRequired' => true,
+            'hasEmulator' => (bool) getenv('DATASTORE_EMULATOR_HOST')
         ];
 
         $this->connection = new Rest($this->configureAuthentication($config));
