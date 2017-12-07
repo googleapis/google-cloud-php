@@ -25,13 +25,21 @@ namespace Google\Cloud\Debugger;
  */
 class StatusMessage implements \JsonSerializable
 {
+    const REFERENCE_UNSPECIFIED = 'UNSPECIFIED';
+    const REFERENCE_BREAKPOINT_SOURCE_LOCATION = 'BREAKPOINT_SOURCE_LOCATION';
+    const REFERENCE_BREAKPOINT_CONDITION = 'BREAKPOINT_CONDITION';
+    const REFERENCE_BREAKPOINT_EXPRESSION = 'BREAKPOINT_EXPRESSION';
+    const REFERENCE_BREAKPOINT_AGE = 'BREAKPOINT_AGE';
+    const REFERENCE_VARIABLE_NAME = 'VARIABLE_NAME';
+    const REFERENCE_VARIABLE_VALUE = 'VARIABLE_VALUE';
+
     /**
      * @var bool Distinguishes errors from informational messages.
      */
     private $isError;
 
     /**
-     * @var Reference Reference to which the message applies.
+     * @var string Reference to which the message applies.
      */
     private $refersTo;
 
@@ -44,10 +52,10 @@ class StatusMessage implements \JsonSerializable
      * Instantiate a new StatusMessage
      *
      * @param bool $isError Distinguishes errors from informational messages.
-     * @param Reference $refersTo Reference to which the message applies.
+     * @param string $refersTo Reference to which the message applies.
      * @param FormatMessage $description Status message text.
      */
-    public function __construct($isError, $refersTo, $description)
+    public function __construct($isError, $refersTo, FormatMessage $description)
     {
         $this->isError = $isError;
         $this->refersTo = $refersTo;
@@ -75,9 +83,9 @@ class StatusMessage implements \JsonSerializable
         $data += [
             'isError' => false,
             'refersTo' => null,
-            'formatMessage' => null
+            'description' => null
         ];
-        return new static($data['isError'], $data['refersTo'], $data['FormatMessage']);
+        return new static($data['isError'], $data['refersTo'], $data['FormatdescriptionMessage']);
     }
 
     /**

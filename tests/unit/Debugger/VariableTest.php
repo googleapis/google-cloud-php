@@ -24,6 +24,8 @@ use Google\Cloud\Debugger\Variable;
  */
 class VariableTest extends \PHPUnit_Framework_TestCase
 {
+    use JsonTestTrait;
+
     public function testCreateBasicFromJson()
     {
         $input = [
@@ -70,13 +72,5 @@ class VariableTest extends \PHPUnit_Framework_TestCase
         $variable = Variable::fromJson($input);
 
         $this->assertProducesEquivalentJson($input, $variable);
-    }
-
-    private function assertProducesEquivalentJson($array1, $array2)
-    {
-        $this->assertEquals(
-            json_decode(json_encode($array1), true),
-            json_decode(json_encode($array2), true)
-        );
     }
 }
