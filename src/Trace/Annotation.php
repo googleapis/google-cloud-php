@@ -53,7 +53,7 @@ class Annotation extends TimeEvent
      *           can have up to 4 attributes per Annotation.
      * }
      */
-    public function __construct($description, $options = [])
+    public function __construct($description, array $options = [])
     {
         parent::__construct($options);
         $this->description = $description;

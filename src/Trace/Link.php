@@ -75,7 +75,7 @@ class Link implements \JsonSerializable
      *           uncompressed.
      * }
      */
-    public function __construct($traceId, $spanId, $options = [])
+    public function __construct($traceId, $spanId, array $options = [])
     {
         $options += [
             'type' => self::TYPE_UNSPECIFIED

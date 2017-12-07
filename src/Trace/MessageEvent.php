@@ -82,7 +82,7 @@ class MessageEvent extends TimeEvent
      *           uncompressed.
      * }
      */
-    public function __construct($id, $options = [])
+    public function __construct($id, array $options = [])
     {
         parent::__construct($options);
         $options += [

@@ -72,7 +72,7 @@ class Status implements \JsonSerializable
      *           of an arbitrary type. An additional field "@type" contains a URI
      *           identifying the type.
      */
-    public function __construct($code, $message, $options = [])
+    public function __construct($code, $message, array $options = [])
     {
         $options += [
             'details' => []

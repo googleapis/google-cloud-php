@@ -39,7 +39,7 @@ abstract class TimeEvent implements \JsonSerializable
      *
      *     @type \DateTimeInterface|int|float|string $time The event time.
      */
-    public function __construct($options = [])
+    public function __construct(array $options = [])
     {
         if (array_key_exists('time', $options)) {
             $this->time = $this->formatDate($options['time']);

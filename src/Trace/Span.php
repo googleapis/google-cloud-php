@@ -150,7 +150,7 @@ class Span implements \JsonSerializable
      *            process as the current span.
      * }
      */
-    public function __construct($traceId, $options = [])
+    public function __construct($traceId, array $options = [])
     {
         $this->traceId = $traceId;
         $options += [
