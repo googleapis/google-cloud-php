@@ -64,15 +64,16 @@ class Variable implements \JsonSerializable
     /**
      * Instantiate a new Variable
      *
-     * @param string $name
-     * @param string $type
+     * @param string $name Name of the variable, if any.
+     * @param string $type Variable type (e.g. MyClass).
      * @param array $options {
      *      Variable options
      *
-     *      @type string $value
-     *      @type int $varTableIndex
-     *      @type Variable[] $members
-     *      @type Status $status
+     *      @type string $value Simple value of the variable.
+     *      @type int $varTableIndex The index of this variable in the variable
+     *            table.
+     *      @type Variable[] $members Any public member variables.
+     *      @type Status $status Status associated with the variable.
      * }
      */
     public function __construct($name, $type, array $options = [])
@@ -97,12 +98,13 @@ class Variable implements \JsonSerializable
      * @param array $data {
      *      Variable data.
      *
-     *      @type string $name
-     *      @type string $value
-     *      @type string $type
-     *      @type int $varTableIndex
-     *      @type array $members
-     *      @type array $status
+     *      @type string $name Name of the variable, if any.
+     *      @type string $value Simple value of the variable.
+     *      @type string $type Variable type (e.g. MyClass).
+     *      @type int $varTableIndex The index of this variable in the variable
+     *            table.
+     *      @type array $members Any public member variables.
+     *      @type array $status Status associated with the variable.
      * }
      * @return Variable
      */
