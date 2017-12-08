@@ -17,7 +17,10 @@
 
 namespace Google\Cloud\Tests\Unit\Debugger;
 
+use Google\Cloud\Debugger\CloudWorkspaceId;
 use Google\Cloud\Debugger\CloudWorkspaceSourceContext;
+use Google\Cloud\Debugger\ProjectRepoId;
+use Google\Cloud\Debugger\RepoId;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -29,10 +32,20 @@ class CloudWorkspaceSourceContextTest extends TestCase
 
     public function testSerializes()
     {
-        $sourceContext = new CloudWorkspaceSourceContext('workspaceId', 'snapshotId');
+        $workspaceId = new CloudWorkspaceId(new RepoId(new ProjectRepoId('projectId', 'repoName'), 'uid'), 'name');
+        $sourceContext = new CloudWorkspaceSourceContext($workspaceId, 'snapshotId');
         $expected = [
             'cloudWorkspace' => [
-                'workspaceId' => 'workspaceId',
+                'workspaceId' => [
+                    'repoId' => [
+                        'projectRepoId' => [
+                            'projectId' => 'projectId',
+                            'repoName' => 'repoName'
+                        ],
+                        'uid' => 'uid'
+                    ],
+                    'name' => 'name'
+                ],
                 'snapshotId' => 'snapshotId'
             ]
         ];
