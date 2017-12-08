@@ -89,11 +89,13 @@ class Readmes
         $files = $this->scanDirectory($path);
         if (!in_array('README.md', $files)) {
             $questionText = sprintf('%s '. PHP_EOL .'Create README.md?', $path);
+            $suggest = true;
             if (strpos($path, 'Gapic') !== false || strpos($path, 'resources') !== false) {
+                $suggest = false;
                 $questionText = $questionText . self::SUGGESTION_TEXT;
             }
 
-            $q = $this->confirm($questionText);
+            $q = $this->confirm($questionText, $suggest);
             $create = $this->askQuestion($q);
 
             if ($create) {

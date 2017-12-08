@@ -85,7 +85,7 @@ trait QuestionTrait
 
     private function preventEmpty($answer)
     {
-        if (empty($answer)) {
+        if (empty($answer) && $answer !== 0 && $answer !== '0') {
             throw new \RuntimeException('Answer cannot be blank.');
         }
 

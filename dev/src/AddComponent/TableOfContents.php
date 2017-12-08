@@ -27,7 +27,7 @@ use Symfony\Component\Console\Output\OutputInterface;
  */
 class TableOfContents
 {
-    const SUGGESTION_TEXT = ' (suggested based on path name)';
+    const SUGGESTION_TEXT = ' (leave blank to select this option)';
     const TOC_PATH = 'docs/contents';
 
     use PathTrait;
@@ -87,6 +87,30 @@ class TableOfContents
         $this->addToIncludes($name);
     }
 
+    private function directoryHasPhpFile(array $choices)
+    {
+        $res = false;
+        foreach ($choices as $choice) {
+            $res = strpos($choice, '.php') !== false;
+            if ($res) {
+                return $res;
+            }
+        }
+
+        return $res;
+    }
+
+    private function stripDirectories($path, array $files)
+    {
+        foreach ($files as $i => $file) {
+            if (is_dir($path .'/'. $file)) {
+                unset($files[$i]);
+            }
+        }
+
+        return array_values($files);
+    }
+
     private function buildToc($path, $main = false, $isTopLevel = false)
     {
         $this->output->writeln($this->formatter->formatSection(
@@ -100,33 +124,49 @@ class TableOfContents
             $skipText = 'skip directory';
 
             if (strpos($path, 'Gapic') !== false || strpos($path, 'resources') !== false) {
-                $skipText = $skipText . self::SUGGESTION_TEXT;
+                return;
             }
 
-            $choices = array_values($files);
+            $choices = $this->stripDirectories($path, array_values($files));
             $choices[] = $skipText;
 
-            if ($this->pathIsGapic($path)) {
-                foreach ($choices as &$choice) {
+            $default = null;
+            if ($this->pathIsGapic($path) || !$this->directoryHasPhpFile($choices)) {
+                foreach ($choices as $index => &$choice) {
                     if ($choice === 'README.md') {
+                        $default = $index;
                         $choice = 'README.md' . self::SUGGESTION_TEXT;
                     }
                 }
             }
 
+            $setDefault = function ($answer) use ($default) {
+                if (empty($answer) && $answer !== 0 && $answer !== '0' && $default !== null) {
+                    return (string) $default;
+                }
+
+                return $answer;
+            };
+
+            $validator = function ($answer) use ($choices) {
+                if (!array_key_exists((int)$answer, $choices)) {
+                    throw new \RuntimeException('Invalid selection.');
+                }
+
+                $answer = $choices[$answer];
+                if ($answer === 'README.md' . self::SUGGESTION_TEXT) {
+                    $answer = 'README.md';
+                }
+
+                return $answer;
+            };
+
             $q = $this->choice('Please select the main service.', $choices)
-                ->setValidator(function ($answer) use ($choices) {
-                    if (!array_key_exists((int)$answer, $choices)) {
-                        throw new \RuntimeException('Invalid selection.');
-                    }
-
-                    $answer = $choices[$answer];
-                    if ($answer === 'README.md' . self::SUGGESTION_TEXT) {
-                        $answer = 'README.md';
-                    }
-
-                    return $answer;
-                });
+                ->setValidator($this->validators([
+                    $setDefault,
+                    [$this, 'preventEmpty'],
+                    $validator,
+                ]));
 
             $main = $this->askQuestion($q);
             if ($main === $skipText) {

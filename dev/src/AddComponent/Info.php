@@ -133,7 +133,13 @@ class Info
             $default
         )->setValidator($this->validators([
             [$this, 'preventEmpty'],
-            [$this, 'uriValidate']
+            function ($answer) use ($default) {
+                if ($answer === $default) {
+                    return $answer;
+                }
+
+                return $this->uriValidate($answer);
+            }
         ]));
 
         return $this->askQuestion($q);
