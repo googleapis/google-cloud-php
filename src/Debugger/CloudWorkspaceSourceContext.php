@@ -19,6 +19,27 @@ namespace Google\Cloud\Debugger;
 
 /**
  * A CloudWorkspaceSourceContext denotes a workspace at a particular snapshot.
+ *
+ * Example:
+ * ```
+ * use Google\Cloud\Debugger\CloudWorkspaceId;
+ * use Google\Cloud\Debugger\CloudWorkspaceSourceContext;
+ * use Google\Cloud\Debugger\ProjectRepoId;
+ * use Google\Cloud\Debugger\RepoId;
+ *
+ * $workspace = new CloudWorkspaceId(
+ *     new RepoId(
+ *         new ProjectRepoId('project-id', 'repo-name'),
+ *         'some-uid'
+ *     ),
+ *     'workspace-name'
+ * );
+ * $sourceContext = new CloudWorkspaceSourceContext($workspace, 'snapshot-id');
+ * ```
+ *
+ * @codingStandardsIgnoreStart
+ * @see https://cloud.google.com/debugger/api/reference/rest/v2/Debuggee#cloudworkspacesourcecontext CloudWorkspaceSourceContext model documentation
+ * @codingStandardsIgnoreEnd
  */
 class CloudWorkspaceSourceContext implements SourceContext, \JsonSerializable
 {
@@ -40,7 +61,7 @@ class CloudWorkspaceSourceContext implements SourceContext, \JsonSerializable
      * @param string $snapshotId The ID of the snapshot. An empty snapshotId
      *        refers to the most recent snapshot.
      */
-    public function __construct($workspaceId, $snapshotId)
+    public function __construct(CloudWorkspaceId $workspaceId, $snapshotId)
     {
         $this->workspaceId = $workspaceId;
         $this->snapshotId = $snapshotId;

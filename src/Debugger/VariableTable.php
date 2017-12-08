@@ -6,6 +6,13 @@ namespace Google\Cloud\Debugger;
  * This class represents a collection of Variables that are referenced by index
  * within a Breakpoint. Its main use to reduce duplication of identical objects
  * by checking a unique identifier for objects.
+ *
+ * Example:
+ * ```
+ * use Google\Cloud\Debugger\VariableTable;
+ *
+ * $variableTable = new VariableTable();
+ * ```
  */
 class VariableTable implements \JsonSerializable
 {
@@ -42,6 +49,11 @@ class VariableTable implements \JsonSerializable
      * Register a variable in the VariableTable and return a Variable reference.
      * The reference should be stored in the correct Breakpoint location.
      *
+     * Example:
+     * ```
+     * $variableReference = $variableTable->register('varName', 'some value');
+     * ```
+     *
      * @param string $name The name of the variable
      * @param mixed $value The value of the variable
      * @return Variable
@@ -54,6 +66,7 @@ class VariableTable implements \JsonSerializable
     /**
      * Callback to implement JsonSerializable interface
      *
+     * @access private
      * @return array
      */
     public function jsonSerialize()
@@ -63,6 +76,11 @@ class VariableTable implements \JsonSerializable
 
     /**
      * Return the shared variables
+     *
+     * Example:
+     * ```
+     * $variables = $variableTable->variables();
+     * ```
      *
      * @return Variable[]
      */

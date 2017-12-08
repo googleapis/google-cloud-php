@@ -20,6 +20,19 @@ namespace Google\Cloud\Debugger;
 /**
  * An ExtendedSourceContext is a SourceContext combined with additional details
  * describing the context.
+ *
+ * Example:
+ * ```
+ * use Google\Cloud\Debugger\ExtendedSourceContext;
+ *
+ * $extendedSourceContext = new ExtendedSourceContext($sourceContext, [
+ *     'key' => 'value'
+ * ]);
+ * ```
+ *
+ * @codingStandardsIgnoreStart
+ * @see https://cloud.google.com/debugger/api/reference/rest/v2/Debuggee#extendedsourcecontext ExtendedSourceContext model documentation
+ * @codingStandardsIgnoreEnd
  */
 class ExtendedSourceContext implements SourceContext, \JsonSerializable
 {
@@ -49,6 +62,11 @@ class ExtendedSourceContext implements SourceContext, \JsonSerializable
 
     /**
      * Returns the contained context
+     *
+     * Example:
+     * ```
+     * echo $extendedSourceContext->context();
+     * ```
      *
      * @return SourceContext
      */

@@ -20,6 +20,27 @@ namespace Google\Cloud\Debugger;
 /**
  * A CloudRepoSourceContext denotes a particular revision in a cloud repo (a
  * repo hosted by the Google Cloud Platform).
+ *
+ * Example:
+ * ```
+ * use Google\Cloud\Debugger\AliasContext;
+ * use Google\Cloud\Debugger\CloudRepoSourceContext;
+ * use Google\Cloud\Debugger\ProjectRepoId;
+ * use Google\Cloud\Debugger\RepoId;
+ *
+ * $sourceContext = new CloudRepoSourceContext(
+ *     new RepoId(
+ *         new ProjectRepoId('project-id', 'repo-name'),
+ *         'some-uid'
+ *     ),
+ *     'some-sha-value',
+ *     new AliasContext(AliasContext::KIND_FIXED, 'branch-alias')
+ * );
+ * ```
+ *
+ * @codingStandardsIgnoreStart
+ * @see https://cloud.google.com/debugger/api/reference/rest/v2/Debuggee#cloudreposourcecontext CloudRepoSourceContext model documentation
+ * @codingStandardsIgnoreEnd
  */
 class CloudRepoSourceContext implements SourceContext, \JsonSerializable
 {

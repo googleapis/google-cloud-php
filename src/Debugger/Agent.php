@@ -160,6 +160,7 @@ class Agent
     /**
      * Callback for reporting a snapshot.
      *
+     * @access private
      * @param array $snapshot {
      *      Snapshot data
      *
@@ -190,7 +191,6 @@ class Agent
 
     private function defaultStorage()
     {
-        // FIXME: detect whether sysv is available and fallback to file storage
         return new SysvBreakpointStorage();
     }
 

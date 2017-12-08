@@ -21,6 +21,25 @@ namespace Google\Cloud\Debugger;
  * A CloudWorkspaceId is a unique identifier for a cloud workspace. A cloud
  * workspace is a place associated with a repo where modified files can be
  * stored before they are committed.
+ *
+ * Example:
+ * ```
+ * use Google\Cloud\Debugger\CloudWorkspaceId;
+ * use Google\Cloud\Debugger\ProjectRepoId;
+ * use Google\Cloud\Debugger\RepoId;
+ *
+ * $workspace = new CloudWorkspaceId(
+ *     new RepoId(
+ *         new ProjectRepoId('project-id', 'repo-name'),
+ *         'some-uid'
+ *     ),
+ *     'workspace-name'
+ * );
+ * ```
+ *
+ * @codingStandardsIgnoreStart
+ * @see https://cloud.google.com/debugger/api/reference/rest/v2/Debuggee#cloudworkspaceid CloudWorkspaceId model documentation
+ * @codingStandardsIgnoreEnd
  */
 class CloudWorkspaceId implements \JsonSerializable
 {

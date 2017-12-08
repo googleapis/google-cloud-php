@@ -19,9 +19,25 @@ namespace Google\Cloud\Debugger;
 
 /**
  * An alias to a repo revision.
+ *
+ * Example:
+ * ```
+ * use Google\Cloud\Debugger\AliasContext;
+ *
+ * $aliasContext = new AliasContext(AliasContext::KIND_FIXED, 'branch-alias');
+ * ```
+ *
+ * @codingStandardsIgnoreStart
+ * @see https://cloud.google.com/debugger/api/reference/rest/v2/Debuggee#aliascontext AliasContext model documentation
+ * @codingStandardsIgnoreEnd
  */
 class AliasContext implements \JsonSerializable
 {
+    const KIND_ANY = 'ANY';
+    const KIND_FIXED = 'FIXED';
+    const KIND_MOVABLE = 'MOVABLE';
+    const KIND_OTHER = 'OTHER';
+
     /**
      * @var string The alias kind.
      */

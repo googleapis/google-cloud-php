@@ -19,6 +19,21 @@ namespace Google\Cloud\Debugger;
 
 /**
  * A unique identifier for a cloud repo.
+ *
+ * Example:
+ * ```
+ * use Google\Cloud\Debugger\ProjectRepoId;
+ * use Google\Cloud\Debugger\RepoId;
+ *
+ * $repoId = new RepoId(
+ *     new ProjectRepoId('project-id', 'repo-name'),
+ *     'some-uid'
+ * );
+ * ```
+ *
+ * @codingStandardsIgnoreStart
+ * @see https://cloud.google.com/debugger/api/reference/rest/v2/Debuggee#repoid RepoId model documentation
+ * @codingStandardsIgnoreEnd
  */
 class RepoId implements \JsonSerializable
 {

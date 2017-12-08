@@ -19,6 +19,23 @@ namespace Google\Cloud\Debugger;
 
 /**
  * A SourceContext referring to a Gerrit project.
+ *
+ * Example:
+ * ```
+ * use Google\Cloud\Debugger\AliasContext;
+ * use Google\Cloud\Debugger\GerritSourceContext;
+ *
+ * $sourceContext = new GerritSourceContext(
+ *     'host-uri',
+ *     'gerrit-project',
+ *     'revision-id',
+ *     new AliasContext(AliasContext::KIND_FIXED, 'branch-alias')
+ * );
+ * ```
+ *
+ * @codingStandardsIgnoreStart
+ * @see https://cloud.google.com/debugger/api/reference/rest/v2/Debuggee#gerritsourcecontext GerritSourceContext model documentation
+ * @codingStandardsIgnoreEnd
  */
 class GerritSourceContext implements SourceContext, \JsonSerializable
 {

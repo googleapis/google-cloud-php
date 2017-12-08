@@ -24,6 +24,14 @@ use Google\Cloud\Debugger\Connection\ConnectionInterface;
 /**
  * This class represents a debuggee - a service that can handle breakpoints.
  *
+ * Example:
+ * ```
+ * use Google\Cloud\Debugger\DebuggerClient;
+ *
+ * $client = new DebuggerClient();
+ * $debuggee = $client->debuggee('debuggeeid');
+ * ```
+ *
  * @see https://cloud.google.com/debugger/api/reference/rest/v2/Debuggee Debuggee API Documentation
  */
 class Debuggee implements \JsonSerializable
@@ -145,6 +153,11 @@ class Debuggee implements \JsonSerializable
     /**
      * Return the debuggee identifier.
      *
+     * Example:
+     * ```
+     * echo $debuggee->id();
+     * ```
+     *
      * @return string
      */
     public function id()
@@ -154,6 +167,11 @@ class Debuggee implements \JsonSerializable
 
     /**
      * Register this debuggee with the Stackdriver backend.
+     *
+     * Example:
+     * ```
+     * $debuggee->register();
+     * ```
      *
      * @param array $args
      * @return bool
@@ -170,6 +188,11 @@ class Debuggee implements \JsonSerializable
 
     /**
      * Fetch the list of breakpoints this debugee should try to handle.
+     *
+     * Example:
+     * ```
+     * $breakpoints = $debuggee->breakpoints();
+     * ```
      *
      * @param array $options [optional] {
      *      Configuration options.
@@ -202,6 +225,11 @@ class Debuggee implements \JsonSerializable
     /**
      * Update the provided, modified breakpoint.
      *
+     * Example:
+     * ```
+     * $debuggee->updateBreakpoint($breakpoint);
+     * ```
+     *
      * @param Breakpoint $breakpoint The modified breakpoint.
      * @return bool
      */
@@ -216,6 +244,11 @@ class Debuggee implements \JsonSerializable
 
     /**
      * Update multiple breakpoints.
+     *
+     * Example:
+     * ```
+     * $debuggee->updateBreakpoint([$breakpoint1, $breakpoint2]);
+     * ```
      *
      * @param Breakpoint[] $breakpoints The modified breakpoints.
      */

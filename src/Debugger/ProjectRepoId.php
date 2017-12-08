@@ -20,6 +20,20 @@ namespace Google\Cloud\Debugger;
 /**
  * Selects a repo using a Google Cloud Platform project ID
  * (e.g. winged-cargo-31) and a repo name within that project.
+ *
+ * Example:
+ * ```
+ * use Google\Cloud\Debugger\ProjectRepoId;
+ *
+ * $repoId = new ProjectRepoId(
+ *     'project-id',
+ *     'repo-name'
+ * );
+ * ```
+ *
+ * @codingStandardsIgnoreStart
+ * @see https://cloud.google.com/debugger/api/reference/rest/v2/Debuggee#projectrepoid ProjectRepoId model documentation
+ * @codingStandardsIgnoreEnd
  */
 class ProjectRepoId implements \JsonSerializable
 {

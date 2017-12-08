@@ -88,6 +88,16 @@ class DebuggerClient
      * point. To see the operations that can be performed on a debuggee, please
      * see {@see Google\Cloud\Debugger\Debuggee}.
      *
+     * Example:
+     * ```
+     * $debuggee = $client->debuggee();
+     * $debuggee->register();
+     * ```
+     *
+     * ```
+     * $debuggee = $client->debuggee('debuggee-id');
+     * ```
+     *
      * @param string $id The debuggee identifier
      * @param array $extras [optional]
      *
@@ -104,6 +114,11 @@ class DebuggerClient
 
     /**
      * Fetches all the debuggees in the project.
+     *
+     * Example:
+     * ```
+     * $debuggees = $client->debuggees();
+     * ```
      *
      * @return Debuggee[]
      */

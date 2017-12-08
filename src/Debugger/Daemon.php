@@ -26,6 +26,14 @@ use Google\Cloud\Debugger\BreakpointStorage\SysvBreakpointStorage;
  * Stackdriver backend. It will fetch the list of breakpoints from the
  * Stackdriver backend, validate and normalize them, and store them into the
  * configured breakpoint storage.
+ *
+ * Example:
+ * ```
+ * use Google\Cloud\Debugger\Daemon;
+ *
+ * $daemon = new Daemon('/path/to/source/root');
+ * $daemon->run();
+ * ```
  */
 class Daemon
 {
@@ -100,6 +108,11 @@ class Daemon
      * Main loop for the daemon. Fetches breakpoints from the DebuggerClient
      * and stores them in shared storage for the application to read. This
      * function runs indefinitely.
+     *
+     * Example:
+     * ```
+     * $daemon->run();
+     * ```
      */
     public function run()
     {

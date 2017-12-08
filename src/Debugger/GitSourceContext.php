@@ -20,6 +20,20 @@ namespace Google\Cloud\Debugger;
 /**
  * A GitSourceContext denotes a particular revision in a third party Git
  * repository (e.g. GitHub).
+ *
+ * Example:
+ * ```
+ * use Google\Cloud\Debugger\GitSourceContext;
+ *
+ * $sourceContext = new GitSourceContext(
+ *     'url',
+ *     'revision-id'
+ * );
+ * ```
+ *
+ * @codingStandardsIgnoreStart
+ * @see https://cloud.google.com/debugger/api/reference/rest/v2/Debuggee#gitsourcecontext GitSourceContext model documentation
+ * @codingStandardsIgnoreEnd
  */
 class GitSourceContext implements SourceContext, \JsonSerializable
 {

@@ -19,6 +19,17 @@ namespace Google\Cloud\Debugger;
 
 /**
  * Represents a variable or an argument possibly of a compound object type.
+ *
+ * Example:
+ * ```
+ * use Google\Cloud\Debugger\Variable;
+ *
+ * $variable = new Variable('myVar', 'string', ['value' => 'some value']);
+ * ```
+ *
+ * @codingStandardsIgnoreStart
+ * @see https://cloud.google.com/debugger/api/reference/rest/v2/debugger.debuggees.breakpoints#variable Variable model documentation
+ * @codingStandardsIgnoreEnd
  */
 class Variable implements \JsonSerializable
 {
@@ -94,6 +105,15 @@ class Variable implements \JsonSerializable
 
     /**
      * Load a Variable from JSON form
+     *
+     * Example:
+     * ```
+     * $variable = Variable::fromJson([
+     *     'name' => 'myVar',
+     *     'type' => 'string',
+     *     'value' => 'some value'
+     * ]);
+     * ```
      *
      * @param array $data {
      *      Variable data.

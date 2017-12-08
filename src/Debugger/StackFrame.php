@@ -19,6 +19,19 @@ namespace Google\Cloud\Debugger;
 
 /**
  * Represents a stack frame context.
+ *
+ * Example:
+ * ```
+ * use Google\Cloud\Debugger\SourceLocation;
+ * use Google\Cloud\Debugger\StackFrame;
+ *
+ * $location = new SourceLocation('/path/to/file.php', 10);
+ * $stackFrame = new StackFrame('function-name', $location);
+ * ```
+ *
+ * @codingStandardsIgnoreStart
+ * @see https://cloud.google.com/debugger/api/reference/rest/v2/debugger.debuggees.breakpoints#stackframe StackFrame model documentation
+ * @codingStandardsIgnoreEnd
  */
 class StackFrame implements \JsonSerializable
 {
@@ -59,6 +72,17 @@ class StackFrame implements \JsonSerializable
     /**
      * Instantiate a new StackFrame from JSON form
      *
+     * Example:
+     * ```
+     * $stackFrame = StackFrame::fromJson([
+     *     'function' => 'function-name',
+     *     'location' => [
+     *         'path' => '/path/to/file.php',
+     *         'line' => 10
+     *     ]
+     * ]);
+     * ```
+     *
      * @param array $data {
      *      @type string $function Demangled function name at the call site.
      *      @type SourceLocation $location The source location
@@ -74,12 +98,17 @@ class StackFrame implements \JsonSerializable
 
         return new static(
             $data['function'],
-            new SourceLocation($data['location'])
+            SourceLocation::fromJson($data['location'])
         );
     }
 
     /**
      * Register a local variable in this stack frame.
+     *
+     * Example:
+     * ```
+     * $stackFrame->addLocal($variable);
+     * ```
      *
      * @param Variable $variable
      */

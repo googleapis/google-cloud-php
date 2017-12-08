@@ -20,8 +20,25 @@ namespace Google\Cloud\Debugger;
 use Google\Cloud\Core\ArrayTrait;
 
 /**
- * This plain PHP class represents a debugger breakpoint resource. For more information see
- * [Breakpoint](https://cloud.google.com/debugger/api/reference/rest/v2/debugger.debuggees.breakpoints#Breakpoint)
+ * This plain PHP class represents a debugger breakpoint resource.
+ *
+ * Example:
+ * ```
+ * use Google\Cloud\Debugger\Breakpoint;
+ *
+ * $breakpoint = new Breakpoint([
+ *     'id' => 'breakpoint-id',
+ *     'action' => Breakpoint::ACTION_CAPTURE,
+ *     'location' => [
+ *         'path' => '/path/to/file.php',
+ *         'line' => 10
+ *     ]
+ * ]);
+ * ```
+ *
+ * @codingStandardsIgnoreStart
+ * @see https://cloud.google.com/debugger/api/reference/rest/v2/debugger.debuggees.breakpoints#Breakpoint Breakpoint model documentation
+ * @codingStandardsIgnoreEnd
  */
 class Breakpoint implements \JsonSerializable
 {
@@ -258,6 +275,11 @@ class Breakpoint implements \JsonSerializable
     /**
      * Return the breakpoint id.
      *
+     * Example:
+     * ```
+     * echo $breakpoint->id();
+     * ```
+     *
      * @return string
      */
     public function id()
@@ -267,6 +289,11 @@ class Breakpoint implements \JsonSerializable
 
     /**
      * Return the type of breakpoint.
+     *
+     * Example:
+     * ```
+     * echo $breakpoint->action();
+     * ```
      *
      * @return string
      */
@@ -278,6 +305,11 @@ class Breakpoint implements \JsonSerializable
     /**
      * Return the source location for this breakpoint.
      *
+     * Example:
+     * ```
+     * echo $breakpoint->location();
+     * ```
+     *
      * @return SourceLocation
      */
     public function location()
@@ -287,6 +319,11 @@ class Breakpoint implements \JsonSerializable
 
     /**
      * Return the condition for this breakpoint.
+     *
+     * Example:
+     * ```
+     * echo $breakpoint->condition();
+     * ```
      *
      * @return string
      */
@@ -298,6 +335,11 @@ class Breakpoint implements \JsonSerializable
     /**
      * Returns the log level for this breakpoint.
      *
+     * Example:
+     * ```
+     * echo $breakpoint->logLevel();
+     * ```
+     *
      * @return string
      */
     public function logLevel()
@@ -307,6 +349,11 @@ class Breakpoint implements \JsonSerializable
 
     /**
      * Return the log message format for this breakpoint.
+     *
+     * Example:
+     * ```
+     * echo $breakpoint->logMessageFormat();
+     * ```
      *
      * @return string
      */
@@ -318,6 +365,11 @@ class Breakpoint implements \JsonSerializable
     /**
      * Return the expressions to evaluate for this breakpoint.
      *
+     * Example:
+     * ```
+     * echo $breakpoint->expressions();
+     * ```
+     *
      * @return string[]
      */
     public function expressions()
@@ -328,6 +380,11 @@ class Breakpoint implements \JsonSerializable
     /**
      * Return the list of collected stack frames
      *
+     * Example:
+     * ```
+     * echo $breakpoint->stackFrames();
+     * ```
+     *
      * @return StackFrame[]
      */
     public function stackFrames()
@@ -337,6 +394,11 @@ class Breakpoint implements \JsonSerializable
 
     /**
      * Returns the VariableTable
+     *
+     * Example:
+     * ```
+     * echo $breakpoint->variableTable();
+     * ```
      *
      * @return VariableTable
      */
@@ -364,6 +426,11 @@ class Breakpoint implements \JsonSerializable
 
     /**
      * Mark this breakpoint as final state and record the current timestamp.
+     *
+     * Example:
+     * ```
+     * $breakpoint->finalize();
+     * ```
      */
     public function finalize()
     {
@@ -378,6 +445,17 @@ class Breakpoint implements \JsonSerializable
     /**
      * Add collected data to this breakpoint.
      *
+     * Example:
+     * ```
+     * $breakpoint->addStackFrames([
+     *     [
+     *         'filename' => '/path/to/file.php',
+     *         'line' => 10
+     *     ]
+     * ]);
+     * echo $breakpoint->stackFrames();
+     * ```
+     *
      * @param array $stackFrames Array of stackframe data.
      */
     public function addStackFrames(array $stackFrames)
@@ -389,6 +467,15 @@ class Breakpoint implements \JsonSerializable
 
     /**
      * Add single stackframe of data to this breakpoint.
+     *
+     * Example:
+     * ```
+     * $breakpoint->addStackFrames([
+ *         'filename' => '/path/to/file.php',
+ *         'line' => 10
+     * ]);
+     * echo $breakpoint->stackFrames();
+     * ```
      *
      * @param array $stackFrameData {
      *      Stackframe information.
@@ -423,6 +510,14 @@ class Breakpoint implements \JsonSerializable
     /**
      * Add evaluated expression results to this breakpoint.
      *
+     * Example:
+     * ```
+     * $breakpoint->addEvaluatedExpressions([
+     *     '2 + 3' => '5',
+     *     '$foo' => 'variable value'
+     * ]);
+     * ```
+     *
      * @param array $expressions Key is the expression executed. Value is the
      *        execution result.
      */
@@ -436,6 +531,11 @@ class Breakpoint implements \JsonSerializable
     /**
      * Validate that this breakpoint can be executed. If not valid, the status
      * field will be populated with the corresponding error message.
+     *
+     * Example:
+     * ```
+     * echo $breakpoint->validate();
+     * ```
      *
      * @return bool
      */

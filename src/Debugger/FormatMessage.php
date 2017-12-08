@@ -19,6 +19,17 @@ namespace Google\Cloud\Debugger;
 
 /**
  * Represents a message with parameters.
+ *
+ * Example:
+ * ```
+ * use Google\Cloud\Debugger\FormatMessage;
+ *
+ * $message = new FormatMessage('message with placeholders', ['additional parameter']);
+ * ```
+ *
+ * @codingStandardsIgnoreStart
+ * @see https://cloud.google.com/debugger/api/reference/rest/v2/debugger.debuggees.breakpoints#formatmessage FormatMessage model documentation
+ * @codingStandardsIgnoreEnd
  */
 class FormatMessage implements \JsonSerializable
 {
@@ -50,6 +61,14 @@ class FormatMessage implements \JsonSerializable
 
     /**
      * Load a new FormatMessage from JSON form
+     *
+     * Example:
+     * ```
+     * $message = FormatMessage::fromJson([
+     *     'format' => 'message with placeholders',
+     *     'parameters' => ['additional parameter']
+     * ]);
+     * ```
      *
      * @param array $data {
      *      FormatMessage params

@@ -22,6 +22,19 @@ namespace Google\Cloud\Debugger;
  * informational status, and refer to specific parts of the containing object.
  * For example, the Breakpoint.status field can indicate an error referring to
  * the BREAKPOINT_SOURCE_LOCATION with the message Location not found.
+ *
+ * Example:
+ * ```
+ * use Google\Cloud\Debugger\FormatMessage;
+ * use Google\Cloud\Debugger\StatusMessage;
+ *
+ * $format = new FormatMessage('message with placeholders', ['additional parameter']);
+ * $message = new StatusMessage(true, StatusMessage::REFERENCE_UNSPECIFIED, $format);
+ * ```
+ *
+ * @codingStandardsIgnoreStart
+ * @see https://cloud.google.com/debugger/api/reference/rest/v2/debugger.debuggees.breakpoints#statusmessage StatusMessage model documentation
+ * @codingStandardsIgnoreEnd
  */
 class StatusMessage implements \JsonSerializable
 {
@@ -65,6 +78,18 @@ class StatusMessage implements \JsonSerializable
     /**
      * Load a StatusMessage from JSON form
      *
+     * Example:
+     * ```
+     * $message = StatusMessage::fromJson([
+     *     'isError' => true,
+     *     'refersTo' => StatusMessage::REFERENCE_UNSPECIFIED,
+     *     'description' => [
+     *         'format' => 'message with placeholders',
+     *         'parameters' => []
+     *     ]
+     * ]);
+     * ```
+     *
      * @param array $data {
      *      StatusMessage data
      *
@@ -85,7 +110,7 @@ class StatusMessage implements \JsonSerializable
             'refersTo' => null,
             'description' => null
         ];
-        return new static($data['isError'], $data['refersTo'], $data['FormatdescriptionMessage']);
+        return new static($data['isError'], $data['refersTo'], FormatMessage::fromJson($data['description']));
     }
 
     /**

@@ -19,6 +19,17 @@ namespace Google\Cloud\Debugger;
 
 /**
  * Represents a location in the source code.
+ *
+ * Example:
+ * ```
+ * use Google\Cloud\Debugger\SourceLocation;
+ *
+ * $location = new SourceLocation('/path/to/file.php', 10);
+ * ```
+ *
+ * @codingStandardsIgnoreStart
+ * @see https://cloud.google.com/debugger/api/reference/rest/v2/debugger.debuggees.breakpoints#sourcelocation SourceLocation model documentation
+ * @codingStandardsIgnoreEnd
  */
 class SourceLocation implements \JsonSerializable
 {
@@ -50,6 +61,14 @@ class SourceLocation implements \JsonSerializable
     /**
      * Load a SourceLocation from JSON form
      *
+     * Example:
+     * ```
+     * $location = SourceLocation::fromJSON([
+     *     'path' => '/path/to/file.php',
+     *     'line' => 10
+     * ]);
+     * ```
+     *
      * @param array $data {
      *      SourceLocation data
      *
@@ -71,6 +90,11 @@ class SourceLocation implements \JsonSerializable
     /**
      * Returns the path to the source file.
      *
+     * Example:
+     * ```
+     * echo $location->path();
+     * ```
+     *
      * @return string
      */
     public function path()
@@ -80,6 +104,11 @@ class SourceLocation implements \JsonSerializable
 
     /**
      * Returns the line inside the file.
+     *
+     * Example:
+     * ```
+     * echo $location->line();
+     * ```
      *
      * @return int
      */
