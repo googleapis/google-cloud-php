@@ -54,11 +54,6 @@ class Readmes
     private $cliBasePath;
 
     /**
-     * @var string
-     */
-    private $path;
-
-    /**
      * @var array
      */
     private $info;
@@ -73,14 +68,12 @@ class Readmes
         InputInterface $input,
         OutputInterface $output,
         $cliBasePath,
-        $path,
         array $info
     ) {
         $this->questionHelper = $questionHelper;
         $this->input = $input;
         $this->output = $output;
         $this->cliBasePath = $cliBasePath;
-        $this->path = $path;
         $this->info = $info;
 
         $this->templatesPath = $this->cliBasePath .'/src/AddComponent/templates';
@@ -88,14 +81,14 @@ class Readmes
 
     public function run()
     {
-        $this->createReadmes($this->path);
+        $this->createReadmes($this->info['path']);
     }
 
     private function createReadmes($path)
     {
         $files = $this->scanDirectory($path);
         if (!in_array('README.md', $files)) {
-            $questionText = sprintf('%s '. PHP_EOL .'Create README.md?', realpath($path));
+            $questionText = sprintf('%s '. PHP_EOL .'Create README.md?', $path);
             if (strpos($path, 'Gapic') !== false || strpos($path, 'resources') !== false) {
                 $questionText = $questionText . self::SUGGESTION_TEXT;
             }

@@ -76,14 +76,13 @@ class Composer
         InputInterface $input,
         OutputInterface $output,
         $cliBasePath,
-        $path,
         array $info
     ) {
         $this->questionHelper = $questionHelper;
         $this->input = $input;
         $this->output = $output;
         $this->cliBasePath = $cliBasePath;
-        $this->path = $path;
+        $this->path = $info['path'];
         $this->info = $info;
     }
 
@@ -91,8 +90,6 @@ class Composer
     {
         $this->updateMainComposer();
         $this->createComponentComposer();
-        // update /composer.json "replaces"
-        // create /src/<pkg>/composer.json
     }
 
     private function updateMainComposer()
@@ -126,15 +123,10 @@ class Composer
             'Google\\Cloud\\' . $namespace .'\\' => ''
         ];
 
-        $path = $this->ask(
-            'Enter the path to the component root, relative to the google-cloud-php repository root.',
-            'src' . explode('src', realpath($this->path))[1]
-        );
-
         $target = $this->ask(
             'Enter the remote repository target, relative to the hostname. ' .
             'For `git@github.com:foo/bar.git`, enter `foo/bar.git`.',
-            'GoogleCloudPlatform/google-cloud-'. str_replace('cloud-', '', $this->info['name']) .'.git'
+            'GoogleCloudPlatform/google-cloud-php-'. str_replace('cloud-', '', $this->info['name']) .'.git'
         );
 
         $entry = $this->ask(
@@ -145,7 +137,7 @@ class Composer
 
         $composer['extra']['component'] = [
             'id' => $this->info['name'],
-            'path' => $path,
+            'path' => $this->path,
             'entry' => $entry ?: null,
             'target' => $target
         ];

@@ -73,14 +73,13 @@ class Manifest
         InputInterface $input,
         OutputInterface $output,
         $cliBasePath,
-        $path,
         array $info
     ) {
         $this->questionHelper = $questionHelper;
         $this->input = $input;
         $this->output = $output;
         $this->cliBasePath = $cliBasePath;
-        $this->path = $path;
+        $this->path = $info['path'];
         $this->info = $info;
     }
 

@@ -62,8 +62,33 @@ trait QuestionTrait
         return new ChoiceQuestion($question, $options);
     }
 
-    private function confirm($question)
+    private function confirm($question, $defaultToYes = true)
     {
-        return new ConfirmationQuestion($question .' (y/n)' . PHP_EOL);
+        $choices = implode('/', [
+            ($defaultToYes) ? 'y [default]' : 'y',
+            (!$defaultToYes) ? 'n [default]' : 'n',
+        ]);
+
+        return new ConfirmationQuestion($question . ' (' . $choices .')' . PHP_EOL, $defaultToYes);
+    }
+
+    private function validators(array $callables)
+    {
+        return function ($answer) use ($callables) {
+            foreach ($callables as $callable) {
+                $answer = call_user_func($callable, $answer);
+            }
+
+            return $answer;
+        };
+    }
+
+    private function preventEmpty($answer)
+    {
+        if (empty($answer)) {
+            throw new \RuntimeException('Answer cannot be blank.');
+        }
+
+        return $answer;
     }
 }

@@ -19,6 +19,7 @@ namespace Google\Cloud\Dev\AddComponent\Command;
 
 use Google\Cloud\Dev\AddComponent\Composer;
 use Google\Cloud\Dev\AddComponent\Contributing;
+use Google\Cloud\Dev\AddComponent\Info;
 use Google\Cloud\Dev\AddComponent\License;
 use Google\Cloud\Dev\AddComponent\Manifest;
 use Google\Cloud\Dev\AddComponent\QuestionTrait;
@@ -65,73 +66,26 @@ class AddComponent extends Command
 
         $formatter = $this->getHelper('formatter');
 
-        $info = [];
-        $info['name'] = $this->ask(
-            'Please enter the component name, omitting the vendor ' .
-            '(e.g. cloud-foo)'
-        );
-
-        $info['display'] = $this->ask(
-            'Please enter the component display name ' .
-            '(e.g. Google Cloud Foo)'
-        );
-
-        $q = $this->question(
-            'Please enter the URI of the service homepage on cloud.google.com'
-        )->setValidator(function ($answer) {
-            if (strpos($answer, '://') === false) {
-                $answer = 'https://'. $answer;
-            }
-
-            return $answer;
-        });
-
-        $info['cloudPage'] = $this->askQuestion($q);
-
-        $q = $this->question(
-            'Please enter the URI of the documentation homepage on cloud.google.com',
-            $info['cloudPage'] .'/docs'
-        )->setValidator(function ($answer) {
-            if (strpos($answer, '://') === false) {
-                $answer = 'https://'. $answer;
-            }
-
-            return $answer;
-        });
-
-        $info['docsPage'] = $this->askQuestion($q);
-
-        $base = $this->cliBasePath . '/../src/';
-        $q = $this->question(
-            'Please enter the directory name, relative to `src/`, where the component is found. ' .
-            'For instance, if the directory is `src/Foo`, enter `Foo`.'
-        )->setValidator(function ($answer) use ($base) {
-            $path = $base . $answer;
-
-            if (!is_dir($path)) {
-                throw new \RuntimeException(
-                    $path .' does not exist or is not a folder.'
-                );
-            }
-
-            return $path;
-        })->setMaxAttempts(null);
-
-        $path = $this->askQuestion($q);
+        $info = (new Info(
+            $this->getHelper('question'),
+            $input,
+            $output,
+            $this->cliBasePath
+        ))->run();
 
         $output->writeln($formatter->formatSection(
             'License',
             'Creating LICENSE file by copying from repository base.'
         ));
 
-        (new License($this->cliBasePath, $path))->run();
+        (new License($this->cliBasePath, $info['path']))->run();
 
         $output->writeln($formatter->formatSection(
             'Contributing',
             'Creating CONTRIBUTING.md file by copying from template.'
         ));
 
-        (new Contributing($this->cliBasePath, $path))->run();
+        (new Contributing($this->cliBasePath, $info['path']))->run();
 
         $output->writeln($formatter->formatSection(
             'Readme',
@@ -149,7 +103,6 @@ class AddComponent extends Command
             $input,
             $output,
             $this->cliBasePath,
-            $path,
             $info
         );
         $readme->run();
@@ -169,7 +122,7 @@ class AddComponent extends Command
             $input,
             $output,
             $this->cliBasePath,
-            $path
+            $info['path']
         ))->run($info['name']);
 
         $output->writeln($formatter->formatSection(
@@ -188,7 +141,6 @@ class AddComponent extends Command
             $input,
             $output,
             $this->cliBasePath,
-            $path,
             $info
         ))->run();
 
@@ -202,7 +154,6 @@ class AddComponent extends Command
             $input,
             $output,
             $this->cliBasePath,
-            $path,
             $info
         ))->run();
 
