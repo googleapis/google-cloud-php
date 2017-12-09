@@ -92,7 +92,7 @@ class StackFrame implements \JsonSerializable
     public static function fromJson(array $data)
     {
         $data += [
-            'location' => null,
+            'location' => [],
             'function' => null
         ];
 

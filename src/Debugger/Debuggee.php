@@ -171,6 +171,7 @@ class Debuggee implements \JsonSerializable
      * Example:
      * ```
      * $debuggee->register();
+     * echo $debuggee->id();
      * ```
      *
      * @param array $args
@@ -247,7 +248,7 @@ class Debuggee implements \JsonSerializable
      *
      * Example:
      * ```
-     * $debuggee->updateBreakpoint([$breakpoint1, $breakpoint2]);
+     * $debuggee->updateBreakpointBatch([$breakpoint1, $breakpoint2]);
      * ```
      *
      * @param Breakpoint[] $breakpoints The modified breakpoints.
@@ -267,6 +268,7 @@ class Debuggee implements \JsonSerializable
      */
     public function jsonSerialize()
     {
+        var_dump($this->extSourceContexts);
         return [
             'id' => $this->id,
             'project' => $this->project,

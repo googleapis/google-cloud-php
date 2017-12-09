@@ -20,6 +20,7 @@ namespace Google\Cloud\Debugger\Snippets\Trace;
 use Google\Cloud\Dev\Snippet\SnippetTestCase;
 use Google\Cloud\Debugger\Connection\ConnectionInterface;
 use Google\Cloud\Debugger\DebuggerClient;
+use Google\Cloud\Debugger\Debuggee;
 use Prophecy\Argument;
 
 /**
@@ -42,5 +43,43 @@ class DebuggerClientTest extends SnippetTestCase
         $snippet = $this->snippetFromClass(DebuggerClient::class);
         $res = $snippet->invoke('debugger');
         $this->assertInstanceOf(DebuggerClient::class, $res->returnVal());
+    }
+
+    public function testDebuggee()
+    {
+        $this->connection->registerDebuggee(Argument::any())->willReturn([
+            'debuggee' => [
+                'id' => 'debuggee1'
+            ]
+        ]);
+        $snippet = $this->snippetFromMethod(DebuggerClient::class, 'debuggee');
+        $snippet->addLocal('client', $this->client);
+        $res = $snippet->invoke('debuggee');
+        $this->assertEquals('debuggee1', $res->returnVal()->id());
+    }
+
+    public function testDebuggeeWithId()
+    {
+        $snippet = $this->snippetFromMethod(DebuggerClient::class, 'debuggee', 1);
+        $snippet->addLocal('client', $this->client);
+        $res = $snippet->invoke('debuggee');
+        $this->assertEquals('debuggee-id', $res->returnVal()->id());
+    }
+
+    public function testDebuggees()
+    {
+        $this->connection->listDebuggees(Argument::any())->willReturn([
+            'debuggees' => [
+                ['id' => 'debuggee1', 'project' => 'projectId']
+            ]
+        ]);
+        $snippet = $this->snippetFromMethod(DebuggerClient::class, 'debuggees');
+        $snippet->addLocal('client', $this->client);
+        $res = $snippet->invoke('debuggees');
+        $debuggees = $res->returnVal();
+        $this->assertCount(1, $debuggees);
+        foreach ($debuggees as $debuggee) {
+            $this->assertInstanceOf(Debuggee::class, $debuggee);
+        }
     }
 }

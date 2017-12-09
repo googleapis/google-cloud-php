@@ -42,7 +42,7 @@ namespace Google\Cloud\Debugger;
  * @see https://cloud.google.com/debugger/api/reference/rest/v2/Debuggee#cloudreposourcecontext CloudRepoSourceContext model documentation
  * @codingStandardsIgnoreEnd
  */
-class CloudRepoSourceContext implements SourceContext, \JsonSerializable
+class CloudRepoSourceContext extends SourceContext implements \JsonSerializable
 {
     /**
      * @var RepoId The ID of the repo.

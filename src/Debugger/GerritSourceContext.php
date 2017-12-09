@@ -37,7 +37,7 @@ namespace Google\Cloud\Debugger;
  * @see https://cloud.google.com/debugger/api/reference/rest/v2/Debuggee#gerritsourcecontext GerritSourceContext model documentation
  * @codingStandardsIgnoreEnd
  */
-class GerritSourceContext implements SourceContext, \JsonSerializable
+class GerritSourceContext extends SourceContext implements \JsonSerializable
 {
     /**
      * @var string The URI of a running Gerrit instance.

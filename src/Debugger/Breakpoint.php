@@ -307,7 +307,7 @@ class Breakpoint implements \JsonSerializable
      *
      * Example:
      * ```
-     * echo $breakpoint->location();
+     * $location = $breakpoint->location();
      * ```
      *
      * @return SourceLocation
@@ -367,7 +367,7 @@ class Breakpoint implements \JsonSerializable
      *
      * Example:
      * ```
-     * echo $breakpoint->expressions();
+     * $expressions = $breakpoint->expressions();
      * ```
      *
      * @return string[]
@@ -382,7 +382,7 @@ class Breakpoint implements \JsonSerializable
      *
      * Example:
      * ```
-     * echo $breakpoint->stackFrames();
+     * $stackFrames = $breakpoint->stackFrames();
      * ```
      *
      * @return StackFrame[]
@@ -397,7 +397,7 @@ class Breakpoint implements \JsonSerializable
      *
      * Example:
      * ```
-     * echo $breakpoint->variableTable();
+     * $variableTable = $breakpoint->variableTable();
      * ```
      *
      * @return VariableTable
@@ -453,7 +453,7 @@ class Breakpoint implements \JsonSerializable
      *         'line' => 10
      *     ]
      * ]);
-     * echo $breakpoint->stackFrames();
+     * $stackFrames = $breakpoint->stackFrames();
      * ```
      *
      * @param array $stackFrames Array of stackframe data.
@@ -470,11 +470,11 @@ class Breakpoint implements \JsonSerializable
      *
      * Example:
      * ```
-     * $breakpoint->addStackFrames([
- *         'filename' => '/path/to/file.php',
- *         'line' => 10
+     * $breakpoint->addStackFrame([
+     *     'filename' => '/path/to/file.php',
+     *     'line' => 10
      * ]);
-     * echo $breakpoint->stackFrames();
+     * $stackFrames = $breakpoint->stackFrames();
      * ```
      *
      * @param array $stackFrameData {
@@ -488,6 +488,7 @@ class Breakpoint implements \JsonSerializable
      */
     public function addStackFrame($stackFrameData)
     {
+        var_dump($stackFrameData);
         $stackFrameData += [
             'function' => null,
             'locals' => []
@@ -534,13 +535,17 @@ class Breakpoint implements \JsonSerializable
      *
      * Example:
      * ```
-     * echo $breakpoint->validate();
+     * $valid = $breakpoint->validate();
      * ```
      *
      * @return bool
      */
     public function validate()
     {
+        if (!extension_loaded('stackdriver_debugger')) {
+            return false;
+        }
+
         if ($this->condition() && !empty($this->condition())) {
             // validate that the condition is ok for debugging
             try {
