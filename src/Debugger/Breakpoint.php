@@ -488,7 +488,6 @@ class Breakpoint implements \JsonSerializable
      */
     public function addStackFrame($stackFrameData)
     {
-        var_dump($stackFrameData);
         $stackFrameData += [
             'function' => null,
             'locals' => []

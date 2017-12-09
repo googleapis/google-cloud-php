@@ -101,6 +101,8 @@ class DaemonTest extends TestCase
             ->shouldBeCalled();
         $this->debuggee->breakpoints()
             ->willReturn($breakpoints);
+        $this->debuggee->updateBreakpointBatch(Argument::any())
+            ->willReturn(true);
         $this->client->debuggee(null, Argument::any())
             ->willReturn($this->debuggee->reveal())
             ->shouldBeCalled();

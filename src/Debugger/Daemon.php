@@ -141,7 +141,7 @@ class Daemon
             if ($breakpoint->validate()) {
                 array_push($validBreakpoints, $breakpoint);
             } else {
-                $breakpoint->isFinalState = true;
+                $breakpoint->finalize();
                 array_push($invalidBreakpoints, $breakpoint);
             }
         }

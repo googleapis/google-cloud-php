@@ -268,7 +268,6 @@ class Debuggee implements \JsonSerializable
      */
     public function jsonSerialize()
     {
-        var_dump($this->extSourceContexts);
         return [
             'id' => $this->id,
             'project' => $this->project,
