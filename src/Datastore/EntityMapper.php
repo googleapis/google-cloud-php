@@ -207,7 +207,9 @@ class EntityMapper
                 break;
 
             case 'entityValue':
-                $props = $this->responseToEntityProperties($value['properties'])['properties'];
+                $decoded = $this->responseToEntityProperties($value['properties']);
+                $props = $decoded['properties'];
+                $excludes = $decoded['excludes'];
 
                 if (isset($value['key'])) {
                     $namespaceId = (isset($value['key']['partitionId']['namespaceId']))
@@ -220,13 +222,18 @@ class EntityMapper
                     ]);
 
                     $result = new Entity($key, $props, [
-                        'populatedByService' => true
+                        'populatedByService' => true,
+                        'excludeFromIndexes' => $excludes
                     ]);
                 } else {
                     $result = [];
 
                     foreach ($value['properties'] as $key => $property) {
                         $result[$key] = $this->getPropertyValue($property);
+                    }
+
+                    if ($excludes) {
+                        $result[Entity::EXCLUDE_FROM_INDEXES] = $excludes;
                     }
                 }
 
@@ -443,9 +450,14 @@ class EntityMapper
      */
     private function convertArrayToEntityValue(array $value)
     {
+        $excludes = $this->pluck(Entity::EXCLUDE_FROM_INDEXES, $value, false) ?: [];
+
         $properties = [];
         foreach ($value as $key => $val) {
-            $properties[$key] = $this->valueObject($val);
+            $properties[$key] = $this->valueObject(
+                $val,
+                in_array($key, $excludes)
+            );
         }
 
         return [
