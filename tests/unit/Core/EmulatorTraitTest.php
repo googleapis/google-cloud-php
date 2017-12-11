@@ -33,12 +33,6 @@ class EmulatorTraitTest extends TestCase
         $this->impl = \Google\Cloud\Dev\impl(EmulatorTrait::class);
     }
 
-    public function testEmulatorEnabled()
-    {
-        $this->assertFalse($this->impl->call('emulatorEnabled', [false]));
-        $this->assertTrue($this->impl->call('emulatorEnabled', ['localhost:9000']));
-    }
-
     public function testEmulatorBaseUri()
     {
         $host = 'localhost:9000';

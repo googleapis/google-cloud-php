@@ -133,12 +133,15 @@ class DatastoreClient
      */
     public function __construct(array $config = [])
     {
+        $emulatorHost = getenv('DATASTORE_EMULATOR_HOST');
+
         $config += [
             'namespaceId' => null,
             'returnInt64AsObject' => false,
             'scopes' => [self::FULL_CONTROL_SCOPE],
             'projectIdRequired' => true,
-            'hasEmulator' => (bool) getenv('DATASTORE_EMULATOR_HOST')
+            'hasEmulator' => (bool) $emulatorHost,
+            'emulatorHost' => $emulatorHost
         ];
 
         $this->connection = new Rest($this->configureAuthentication($config));

@@ -26,17 +26,6 @@ use Google\Cloud\Core\RequestWrapper;
 trait EmulatorTrait
 {
     /**
-     * Check whether the emulator is enabled.
-     *
-     * @param string|bool $emulatorHost
-     * @return bool
-     */
-    private function emulatorEnabled($emulatorHost)
-    {
-        return (bool) $emulatorHost;
-    }
-
-    /**
      * Retrieve a valid base uri for a service emulator.
      *
      * @param string $emulatorHost

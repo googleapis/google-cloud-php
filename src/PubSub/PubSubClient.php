@@ -133,10 +133,12 @@ class PubSubClient
     {
         $this->clientConfig = $config;
         $connectionType = $this->getConnectionType($config);
+        $emulatorHost = getenv('PUBSUB_EMULATOR_HOST');
         $config += [
             'scopes' => [self::FULL_CONTROL_SCOPE],
             'projectIdRequired' => true,
-            'hasEmulator' => (bool) getenv('PUBSUB_EMULATOR_HOST')
+            'hasEmulator' => (bool) $emulatorHost,
+            'emulatorHost' => $emulatorHost
         ];
 
         if ($connectionType === 'grpc') {
