@@ -411,7 +411,7 @@ class DocumentReference
     }
 
     /**
-     * Return the first write result from a commit response
+     * Return the latest write result from a commit response
      *
      * @param array $commitResponse
      * @return array
