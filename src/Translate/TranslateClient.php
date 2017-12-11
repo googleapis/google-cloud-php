@@ -154,7 +154,13 @@ class TranslateClient
      *           either plain-text or HTML. Acceptable values are `html` or
      *           `text`. **Defaults to** `"html"`.
      *     @type string $model The model to use for the translation request. May
-     *           be `nmt` or `base`. **Defaults to** an empty string.
+     *           be `nmt` (for the NMT model) or `base` (for the PBMT model).
+     *           **Defaults to** using the NMT model. If the NMT model is not
+     *           supported for the requested language translation pair, the PBMT
+     *           model will be defaulted instead. For a list of supported
+     *           languages for the model types, please see the
+     *           [Language Support](https://cloud.google.com/translate/docs/languages)
+     *           documentation.
      * }
      * @return array|null A translation result including a `source` key containing
      *         the detected or provided language of the provided input, an
@@ -200,7 +206,13 @@ class TranslateClient
      *           either plain-text or HTML. Acceptable values are `html` or
      *           `text`. **Defaults to** `"html"`.
      *     @type string $model The model to use for the translation request. May
-     *           be `nmt` or `base`. **Defaults to** null.
+     *           be `nmt` (for the NMT model) or `base` (for the PBMT model).
+     *           **Defaults to** using the NMT model. If the NMT model is not
+     *           supported for the requested language translation pair, the PBMT
+     *           model will be defaulted instead. For a list of supported
+     *           languages for the model types, please see the
+     *           [Language Support](https://cloud.google.com/translate/docs/languages)
+     *           documentation.
      * }
      * @return array A set of translation results. Each result includes a
      *         `source` key containing the detected or provided language of the
