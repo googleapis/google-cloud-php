@@ -135,9 +135,10 @@ class Composer
             'Gapic-only clients should leave this blank.'
         );
 
+        $path = 'src/' . trim(explode('src', $this->path)[1], '/');
         $composer['extra']['component'] = [
             'id' => $this->info['name'],
-            'path' => $this->path,
+            'path' => $path,
             'entry' => $entry ?: null,
             'target' => $target
         ];
@@ -167,7 +168,7 @@ class Composer
 
         file_put_contents(
             $this->path .'/composer.json',
-            json_encode($composer, JSON_PRETTY_PRINT|JSON_UNESCAPED_SLASHES)
+            json_encode($composer, JSON_PRETTY_PRINT|JSON_UNESCAPED_SLASHES) . PHP_EOL
         );
     }
 

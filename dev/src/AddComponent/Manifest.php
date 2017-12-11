@@ -146,7 +146,7 @@ class Manifest
 
         $manifest['modules'] = $modules;
 
-        file_put_contents($path, json_encode($manifest, JSON_PRETTY_PRINT|JSON_UNESCAPED_SLASHES));
+        file_put_contents($path, json_encode($manifest, JSON_PRETTY_PRINT|JSON_UNESCAPED_SLASHES) . PHP_EOL);
     }
 
     protected function questionHelper()
