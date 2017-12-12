@@ -710,7 +710,6 @@ Google Stackdriver Monitoring can be installed separately by requiring the `goog
 $ composer require google/cloud-monitoring
 ```
 
-```
 ## Google Cloud Container (Beta)
 
 - [API Documentation](http://googlecloudplatform.github.io/google-cloud-php/#/docs/latest/monitoring/readme)
