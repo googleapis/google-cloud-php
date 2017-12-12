@@ -1,0 +1,24 @@
+{
+    "name": "google/cloud-bigquerydatatransfer",
+    "description": "BigQuery Data Transfer Client for PHP",
+    "license": "Apache-2.0",
+    "minimum-stability": "stable",
+    "autoload": {
+        "psr-4": {
+            "Google\\Cloud\\BigQuery\\DataTransfer\\": ""
+        }
+    },
+    "extra": {
+        "component": {
+            "id": "cloud-bigquerydatatransfer",
+            "path": "src/BigQueryDataTransfer",
+            "entry": null,
+            "target": "GoogleCloudPlatform/google-cloud-php-bigquerydatatransfer.git"
+        }
+    },
+    "require": {
+        "ext-grpc": "*",
+        "google/proto-client": "^0.27.0",
+        "google/gax": "^0.27.0"
+    }
+}
