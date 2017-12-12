@@ -75,14 +75,6 @@
             ]
         },
         {
-            "id": "cloud-bigtable",
-            "name": "google/cloud-bigtable",
-            "defaultService": "bigtable/readme",
-            "versions": [
-                "master"
-            ]
-        },
-        {
             "id": "cloud-bigquery",
             "name": "google/cloud-bigquery",
             "defaultService": "bigquery/bigqueryclient",
@@ -95,6 +87,14 @@
                 "v0.2.1",
                 "v0.2.0",
                 "v0.1.0",
+                "master"
+            ]
+        },
+        {
+            "id": "cloud-bigtable",
+            "name": "google/cloud-bigtable",
+            "defaultService": "bigtable/readme",
+            "versions": [
                 "master"
             ]
         },

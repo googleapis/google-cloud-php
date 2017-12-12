@@ -11,7 +11,7 @@
     "extra": {
         "component": {
             "id": "cloud-container",
-            "path": "/usr/local/google/home/michaelbausor/dev/veneer/google-cloud-php/src/Container",
+            "path": "src/Container",
             "entry": null,
             "target": "GoogleCloudPlatform/google-cloud-php-container.git"
         }

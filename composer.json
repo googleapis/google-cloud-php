@@ -64,8 +64,8 @@
         "phpseclib/phpseclib": "^2"
     },
     "replace": {
-        "google/cloud-bigtable": "0.1.0",
         "google/cloud-bigquery": "0.3.1",
+        "google/cloud-bigtable": "0.1.0",
         "google/cloud-container": "master",
         "google/cloud-core": "1.14.0",
         "google/cloud-datastore": "1.1.0",
