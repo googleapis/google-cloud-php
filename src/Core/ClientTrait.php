@@ -172,7 +172,8 @@ trait ClientTrait
         $config += [
             'httpHandler' => null,
             'projectId' => null,
-            'projectIdRequired' => false
+            'projectIdRequired' => false,
+            'hasEmulator' => false
         ];
 
         if ($config['projectId']) {
@@ -193,6 +194,10 @@ trait ClientTrait
             if ($projectId) {
                 return $projectId;
             }
+        }
+
+        if ($config['hasEmulator']) {
+            return 'emulator-project';
         }
 
         if ($config['projectIdRequired']) {
