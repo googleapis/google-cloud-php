@@ -1,0 +1,27 @@
+{
+    "title": "Dataproc",
+    "services": [
+        {
+            "title": "Overview",
+            "type": "dataproc\/readme"
+        },
+        {
+            "title": "v1",
+            "type": "dataproc\/v1\/readme",
+            "nav": [
+                {
+                    "title": "ClusterControllerClient",
+                    "type": "dataproc\/v1\/clustercontrollerclient"
+                },
+                {
+                    "title": "JobControllerClient",
+                    "type": "dataproc\/v1\/jobcontrollerclient"
+                }
+            ],
+            "patterns": [
+                "dataproc\/v1\/\\w{1,}"
+            ]
+        }
+    ],
+    "pattern": "dataproc\/\\w{1,}"
+}
