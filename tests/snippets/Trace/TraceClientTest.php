@@ -19,6 +19,7 @@ namespace Google\Cloud\Tests\Snippets\Trace;
 
 use Google\Cloud\Dev\Snippet\SnippetTestCase;
 use Google\Cloud\Trace\Connection\ConnectionInterface;
+use Google\Cloud\Trace\Trace;
 use Google\Cloud\Trace\TraceClient;
 use Prophecy\Argument;
 
@@ -42,5 +43,41 @@ class TraceClientTest extends SnippetTestCase
         $snippet = $this->snippetFromClass(TraceClient::class);
         $res = $snippet->invoke('trace');
         $this->assertInstanceOf(TraceClient::class, $res->returnVal());
+    }
+
+    public function testInsert()
+    {
+        $snippet = $this->snippetFromMethod(TraceClient::class, 'insert');
+        $snippet->addLocal('traceClient', $this->client);
+        $res = $snippet->invoke('result');
+        $this->assertEquals(true, $res->returnVal());
+    }
+
+    public function testInsertBatch()
+    {
+        $snippet = $this->snippetFromMethod(TraceClient::class, 'insertBatch');
+        $snippet->addLocal('traceClient', $this->client);
+        $res = $snippet->invoke('result');
+        $this->assertEquals(true, $res->returnVal());
+    }
+
+    public function testTrace()
+    {
+        $snippet = $this->snippetFromMethod(TraceClient::class, 'trace');
+        $snippet->addLocal('traceClient', $this->client);
+        $res = $snippet->invoke('trace');
+        $trace = $res->returnVal();
+        $this->assertInstanceOf(Trace::class, $trace);
+        $this->assertRegExp('/[0-9a-f]{32}/', $trace->traceId());
+    }
+
+    public function testTraceWithTraceId()
+    {
+        $snippet = $this->snippetFromMethod(TraceClient::class, 'trace', 1);
+        $snippet->addLocal('traceClient', $this->client);
+        $res = $snippet->invoke('trace');
+        $trace = $res->returnVal();
+        $this->assertInstanceOf(Trace::class, $trace);
+        $this->assertEquals('1234abcd', $trace->traceId());
     }
 }

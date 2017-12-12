@@ -19,15 +19,23 @@ namespace Google\Cloud\Trace;
 
 use Google\Cloud\Core\Exception\NotFoundException;
 use Google\Cloud\Core\ValidateTrait;
-use Google\Cloud\Trace\Connection\ConnectionInterface;
+use Ramsey\Uuid\Uuid;
 
 /**
- * This plain PHP class represents a Trace resource. For more information see
- * [TraceResource](https://cloud.google.com/trace/docs/reference/v1/rest/v1/projects.traces#resource-trace)
+ * This plain PHP class represents a Trace resource. The model currently has no
+ * backing API model and is identified by its traceId.
+ *
+ * Example:
+ * ```
+ * use Google\Cloud\Trace\TraceClient;
+ *
+ * $traceClient = new TraceClient();
+ *
+ * $trace = $traceClient->trace();
+ * ```
  */
-class Trace implements \Serializable
+class Trace implements \JsonSerializable
 {
-    use IdGeneratorTrait;
     use ValidateTrait;
 
     /**
@@ -46,35 +54,37 @@ class Trace implements \Serializable
     private $traceId;
 
     /**
-     * @var TraceSpan[] List of TraceSpans to report
+     * @var Span[] List of Spans to report
      */
     private $spans = [];
 
     /**
      * Instantiate a new Trace instance.
      *
-     * @param ConnectionInterface $connection The connection to Stackdriver Trace.
      * @param string $projectId The id of the project this trace belongs to.
      * @param string $traceId [optional] The id of the trace. If not provided, one will be generated
      *        automatically for you.
-     * @param array $spans [optional] Array of TraceSpan constructor arguments. See
-     *        {@see Google\Cloud\Trace\TraceSpan::__construct()} for configuration details.
-     * }
+     * @param array $spans [optional] Array of Span constructor arguments. See
+     *        {@see Google\Cloud\Trace\Span::__construct()} for configuration details.
      */
-    public function __construct(ConnectionInterface $connection, $projectId, $traceId = null, $spans = null)
+    public function __construct($projectId, $traceId = null, array $spans = [])
     {
-        $this->connection = $connection;
         $this->projectId = $projectId;
         $this->traceId = $traceId ?: $this->generateTraceId();
         if ($spans) {
-            $this->spans = array_map(function ($span) {
-                return new TraceSpan($span);
+            $this->spans = array_map(function ($spanData) use ($projectId, $traceId) {
+                return new Span($traceId, $spanData);
             }, $spans);
         }
     }
 
     /**
      * Retrieves the trace's id.
+     *
+     * Example:
+     * ```
+     * echo $trace->traceId();
+     * ```
      *
      * @return string
      */
@@ -84,59 +94,29 @@ class Trace implements \Serializable
     }
 
     /**
-     * Returns a serializable array representing this trace. If no span data
-     * is cached, a network request will be made to retrieve it.
+     * Returns a serializable array representing this trace.
      *
-     * @see https://cloud.google.com/trace/docs/reference/v1/rest/v1/projects.traces/get Traces get API documentation.
-     *
-     * @param array $options [optional] Configuration Options
+     * @access private
      * @return array
      */
-    public function info(array $options = [])
+    public function jsonSerialize()
     {
-        // We don't want to maintain both an info array and array of TraceSpans,
-        // so we'll rely on the presence of the loaded/specified spans for whether
-        // or not we should fetch remote data.
-        if (!$this->spans) {
-            $this->reload($options);
-        }
-
         return [
             'projectId' => $this->projectId,
             'traceId' => $this->traceId,
-            'spans' => array_map(function ($span) {
-                return $span->info();
-            }, $this->spans)
+            'spans' => $this->spans
         ];
-    }
-
-    /**
-     * Triggers a network request to load a span's details.
-     *
-     * @see https://cloud.google.com/trace/docs/reference/v1/rest/v1/projects.traces/get Traces get API documentation.
-     *
-     * @param array $options [optional] Configuration Options
-     */
-    public function reload(array $options = [])
-    {
-        $trace = $this->connection->getTrace([
-            'projectId' => $this->projectId,
-            'traceId' => $this->traceId
-        ] + $options);
-
-        if (empty($trace)) {
-            throw new NotFoundException('Trace ID does not exist', 404);
-        }
-
-        $this->spans = array_map(function ($span) {
-            return new TraceSpan($span);
-        }, $trace['spans']);
     }
 
     /**
      * Retrieves the spans for this trace.
      *
-     * @return TraceSpan[]
+     * Example:
+     * ```
+     * $spans = $trace->spans();
+     * ```
+     *
+     * @return Span[]
      */
     public function spans()
     {
@@ -144,55 +124,45 @@ class Trace implements \Serializable
     }
 
     /**
-     * Create an instance of {@see Google\Cloud\Trace\TraceSpan}
+     * Create an instance of {@see Google\Cloud\Trace\Span}
      *
-     * @param array $options [optional] See {@see Google\Cloud\Trace\TraceSpan::__construct()}
+     * Example:
+     * ```
+     * $span = $trace->span(['name' => 'newSpan']);
+     * ```
+     *
+     * @param array $options [optional] See {@see Google\Cloud\Trace\Span::__construct()}
      *        for configuration details.
-     * @return TraceSpan
+     * @return Span
      */
     public function span(array $options = [])
     {
-        return new TraceSpan($options);
+        return new Span($this->traceId, $options);
     }
 
     /**
      * Set the spans for this trace.
      *
-     * @param TraceSpan[] $spans
+     * Example:
+     * ```
+     * $trace->setSpans([$span1, $span2]);
+     * ```
+     *
+     * @param Span[] $spans
      */
     public function setSpans(array $spans)
     {
-        $this->validateBatch($spans, TraceSpan::class);
+        $this->validateBatch($spans, Span::class);
         $this->spans = $spans;
     }
 
     /**
-     * Serialize data.
+     * Generates a random trace id as a UUID without dashes.
      *
      * @return string
-     * @access private
      */
-    public function serialize()
+    private function generateTraceId()
     {
-        return serialize([
-            $this->projectId,
-            $this->traceId,
-            $this->spans
-        ]);
-    }
-
-    /**
-     * Unserialize data.
-     *
-     * @param string
-     * @access private
-     */
-    public function unserialize($data)
-    {
-        list(
-            $this->projectId,
-            $this->traceId,
-            $this->spans
-        ) = unserialize($data);
+        return str_replace('-', '', Uuid::uuid4());
     }
 }

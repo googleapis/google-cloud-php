@@ -1,12 +1,12 @@
 <?php
 /**
- * Copyright 2017 Google Inc. All Rights Reserved.
+ * Copyright 2017 Google Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *      http://www.apache.org/licenses/LICENSE-2.0
+ *     http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -15,21 +15,21 @@
  * limitations under the License.
  */
 
-namespace Google\Cloud\Trace\Connection;
+namespace Google\Cloud\Tests\Snippets\Trace;
+
+use Google\Cloud\Dev\Snippet\SnippetTestCase;
+use Google\Cloud\Trace\StackTrace;
+use Prophecy\Argument;
 
 /**
- * Represents a connection to
- * [Trace](https://cloud.google.com/trace).
+ * @group trace
  */
-interface ConnectionInterface
+class StackTraceTest extends SnippetTestCase
 {
-    /**
-     * @param  array $args
-     */
-    public function traceBatchWrite(array $args);
-
-    /**
-     * @param  array $args
-     */
-    public function traceSpanCreate(array $args);
+    public function testClass()
+    {
+        $snippet = $this->snippetFromClass(StackTrace::class);
+        $res = $snippet->invoke('stackTrace');
+        $this->assertInstanceOf(StackTrace::class, $res->returnVal());
+    }
 }
