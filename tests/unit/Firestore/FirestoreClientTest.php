@@ -349,9 +349,10 @@ class FirestoreClientTest extends TestCase
             $doc = $this->prophesize(DocumentReference::class);
             $doc->name('foo');
             $t->create($doc->reveal(), ['foo'=>'bar']);
+
+            return 'foo';
         });
-        $this->assertInstanceOf(Timestamp::class, $res['commitTime']);
-        $this->assertEquals($timestamp['seconds'], $res['commitTime']->get()->format('U'));
+        $this->assertEquals('foo', $res);
     }
 
     /**

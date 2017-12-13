@@ -73,9 +73,8 @@ class RestTest extends TestCase
     public function methodProvider()
     {
         return [
-            ['patchTraces'],
-            ['listTraces'],
-            ['getTrace']
+            ['traceBatchWrite'],
+            ['traceSpanCreate']
         ];
     }
 }

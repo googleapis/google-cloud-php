@@ -321,6 +321,36 @@ class EntityMapperTest extends TestCase
         $this->assertEquals('test', $res['prop']);
     }
 
+    public function testConvertValueEntityWithKeyExcludes()
+    {
+        $type = 'entityValue';
+        $val = [
+            'key' => [
+                'partitionId' => [
+                    'namespaceId' => 'bar'
+                ],
+                'path' => [['kind' => 'kind', 'id' => '2']]
+            ],
+            'properties' => [
+                'prop' => [
+                    'stringValue' => 'test',
+                    'excludeFromIndexes' => true
+                ]
+            ]
+        ];
+
+        $res = $this->mapper->convertValue($type, $val);
+        $this->assertInstanceOf(Entity::class, $res);
+        $this->assertInstanceOf(Key::class, $res->key());
+
+        $key = $res->key()->keyObject();
+        $this->assertEquals('bar', $key['partitionId']['namespaceId']);
+        $this->assertEquals([['kind' => 'kind', 'id' => '2']], $key['path']);
+
+        $this->assertEquals('test', $res['prop']);
+        $this->assertEquals(['prop'], $res->excludedProperties());
+    }
+
     public function testConvertValueEntityWithIncompleteKey()
     {
         $type = 'entityValue';
@@ -363,6 +393,24 @@ class EntityMapperTest extends TestCase
         $res = $this->mapper->convertValue($type, $val);
         $this->assertInternalType('array', $res);
         $this->assertEquals('test', $res['prop']);
+    }
+
+    public function testConvertValueEntityWithoutKeyExcludes()
+    {
+        $type = 'entityValue';
+        $val = [
+            'properties' => [
+                'prop' => [
+                    'stringValue' => 'test',
+                    'excludeFromIndexes' => true
+                ]
+            ]
+        ];
+
+        $res = $this->mapper->convertValue($type, $val);
+        $this->assertTrue(is_array($res));
+        $this->assertEquals('test', $res['prop']);
+        $this->assertEquals(['prop'], $res[Entity::EXCLUDE_FROM_INDEXES]);
     }
 
     public function testConvertValueDouble()
@@ -491,6 +539,20 @@ class EntityMapperTest extends TestCase
         $this->assertEquals('val2', $entity['entityValue']['properties']['key2']['stringValue']);
     }
 
+    public function testValueObjectArrayEntityValueExcludes()
+    {
+        $entity = $this->mapper->valueObject([
+            'key1' => 'val1',
+            'key2' => 'val2',
+            Entity::EXCLUDE_FROM_INDEXES => ['key1']
+        ]);
+
+        $this->assertEquals('entityValue', key($entity));
+        $this->assertEquals('val1', $entity['entityValue']['properties']['key1']['stringValue']);
+        $this->assertTrue($entity['entityValue']['properties']['key1']['excludeFromIndexes']);
+        $this->assertEquals('val2', $entity['entityValue']['properties']['key2']['stringValue']);
+    }
+
     public function testValueObjectArrayArrayValue()
     {
         $array = $this->mapper->valueObject([ 'bar', 1 ]);
@@ -541,7 +603,7 @@ class EntityMapperTest extends TestCase
 
         $res = $this->mapper->valueObject('hello', false);
 
-        $this->assertFalse(isset($res['excludeFromIndexes']));
+        $this->assertArrayNotHasKey('excludeFromIndexes', $res);
     }
 
     public function testObjectPropertyBlob()

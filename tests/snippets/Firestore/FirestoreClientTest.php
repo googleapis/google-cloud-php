@@ -208,7 +208,8 @@ class FirestoreClientTest extends SnippetTestCase
         $snippet = $this->snippetFromMethod(FirestoreClient::class, 'runTransaction');
         $snippet->addLocal('firestore', $this->client);
 
-        $snippet->invoke();
+        $res = $snippet->invoke('toNewBalance');
+        $this->assertEquals(1500.00, $res->returnVal());
     }
 
     public function testGeoPoint()

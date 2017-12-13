@@ -54,11 +54,11 @@ class EntityTest extends TestCase
 
         $this->assertNull($entity['doesntExist']);
 
-        $this->assertFalse(isset($entity['doesntExist']));
-        $this->assertTrue(isset($entity['test']));
+        $this->assertArrayNotHasKey('doesntExist', $entity);
+        $this->assertArrayHasKey('test', $entity);
 
         unset($entity['test']);
-        $this->assertFalse(isset($entity['test']));
+        $this->assertArrayNotHasKey('test', $entity);
 
         $entity->magicProperty = 'magic value';
         $this->assertEquals('magic value', $entity->magicProperty);

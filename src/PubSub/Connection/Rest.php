@@ -44,11 +44,11 @@ class Rest implements ConnectionInterface
      */
     public function __construct(array $config = [])
     {
-        $emulatorHost = getenv('PUBSUB_EMULATOR_HOST');
+        $config += ['emulatorHost' => null];
 
-        $baseUri = $this->getEmulatorBaseUri(self::BASE_URI, $emulatorHost);
-
-        if ($emulatorHost) {
+        $baseUri = self::BASE_URI;
+        if ((bool) $config['emulatorHost']) {
+            $baseUri = $this->emulatorBaseUri($config['emulatorHost']);
             $config['shouldSignRequest'] = false;
         }
 

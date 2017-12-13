@@ -24,17 +24,30 @@ use PHPUnit\Framework\TestCase;
 
 /**
  * @group core
+ * @group client-trait
  */
 class ClientTraitTest extends TestCase
 {
+    private $impl;
+    private $dependency;
+
+    public function setUp()
+    {
+        $this->impl = \Google\Cloud\Dev\impl(ClientTrait::class);
+
+        $this->dependency = \Google\Cloud\Dev\impl(ClientTraitStubGrpcDependencyChecks::class, [
+            'dependencyStatus'
+        ]);
+    }
+
     /**
      * @expectedException Google\Cloud\Core\Exception\GoogleException
      * @dataProvider invalidDependencyStatusProvider
      */
     public function testGetConnectionTypeInvalidStatus($dependencyStatus, $config)
     {
-        $trait = new ClientTraitStubGrpcDependencyChecks($dependencyStatus);
-        $trait->runGetConnectionType($config);
+        $this->dependency->___setProperty('dependencyStatus', $dependencyStatus);
+        $this->dependency->call('getConnectionType', [$config]);
     }
 
     /**
@@ -42,8 +55,9 @@ class ClientTraitTest extends TestCase
      */
     public function testGetConnectionType($dependencyStatus, $config, $expectedConnectionType)
     {
-        $trait = new ClientTraitStubGrpcDependencyChecks($dependencyStatus);
-        $actualConnectionType = $trait->runGetConnectionType($config);
+        $this->dependency->___setProperty('dependencyStatus', $dependencyStatus);
+
+        $actualConnectionType = $this->dependency->call('getConnectionType', [$config]);
 
         $this->assertEquals($expectedConnectionType, $actualConnectionType);
     }
@@ -91,9 +105,10 @@ class ClientTraitTest extends TestCase
 
     public function testRequireGrpcPassesWithGrpc()
     {
+        $this->dependency->___setProperty('dependencyStatus', true);
+
         $this->assertNull(
-            (new ClientTraitStubGrpcDependencyChecks(true))
-                ->runRequireGrpc()
+            $this->dependency->call('requireGrpc')
         );
     }
 
@@ -102,8 +117,8 @@ class ClientTraitTest extends TestCase
      */
     public function testRequireGrpcThrowsExceptionWithoutGrpc()
     {
-        (new ClientTraitStubGrpcDependencyChecks(false))
-            ->runRequireGrpc();
+        $this->dependency->___setProperty('dependencyStatus', false);
+        $this->dependency->call('requireGrpc');
     }
 
     public function testConfigureAuthentication()
@@ -111,11 +126,10 @@ class ClientTraitTest extends TestCase
         $keyFilePath = __DIR__ . '/../fixtures/json-key-fixture.json';
         putenv("GOOGLE_APPLICATION_CREDENTIALS=$keyFilePath"); // for application default credentials
 
-        $trait = new ClientTraitStub;
-        $conf = $trait->runConfigureAuthentication([]);
+        $conf = $this->impl->call('configureAuthentication', [[]]);
 
         $this->assertEquals(json_decode(file_get_contents($keyFilePath), true), $conf['keyFile']);
-        $this->assertEquals('example_project', $trait->getProjectId());
+        $this->assertEquals('example_project', $this->impl->___getProperty('projectId'));
     }
 
     public function testConfigureAuthenticationWithKeyFile()
@@ -124,13 +138,12 @@ class ClientTraitTest extends TestCase
         $keyFile = json_decode(file_get_contents($keyFilePath), true);
         $keyFile['project_id'] = 'test';
 
-        $trait = new ClientTraitStub;
-        $conf = $trait->runConfigureAuthentication([
+        $conf = $this->impl->call('configureAuthentication', [[
             'keyFile' => $keyFile
-        ]);
+        ]]);
 
         $this->assertEquals($keyFile, $conf['keyFile']);
-        $this->assertEquals('test', $trait->getProjectId());
+        $this->assertEquals('test', $this->impl->___getProperty('projectId'));
     }
 
     public function testConfigureAuthenticationWithKeyFilePath()
@@ -138,13 +151,12 @@ class ClientTraitTest extends TestCase
         $keyFilePath = __DIR__ . '/../fixtures/json-key-fixture.json';
         $keyFile = json_decode(file_get_contents($keyFilePath), true);
 
-        $trait = new ClientTraitStub;
-        $conf = $trait->runConfigureAuthentication([
+        $conf = $this->impl->call('configureAuthentication', [[
             'keyFilePath' => $keyFilePath
-        ]);
+        ]]);
 
         $this->assertEquals($keyFile, $conf['keyFile']);
-        $this->assertEquals('example_project', $trait->getProjectId());
+        $this->assertEquals('example_project', $this->impl->___getProperty('projectId'));
     }
 
     /**
@@ -154,10 +166,9 @@ class ClientTraitTest extends TestCase
     {
         $keyFilePath = __DIR__ . '/i/sure/hope/this/doesnt/exist';
 
-        $trait = new ClientTraitStub;
-        $conf = $trait->runConfigureAuthentication([
+        $conf = $this->impl->call('configureAuthentication', [[
             'keyFilePath' => $keyFilePath
-        ]);
+        ]]);
     }
 
     /**
@@ -167,10 +178,9 @@ class ClientTraitTest extends TestCase
     {
         $keyFilePath = __DIR__ . '/ClientTraitTest.php';
 
-        $trait = new ClientTraitStub;
-        $conf = $trait->runConfigureAuthentication([
+        $conf = $this->impl->call('configureAuthentication', [[
             'keyFilePath' => $keyFilePath
-        ]);
+        ]]);
     }
 
     /**
@@ -182,27 +192,24 @@ class ClientTraitTest extends TestCase
         $keyFile = json_decode(file_get_contents($keyFilePath), true);
         unset($keyFile['project_id']);
 
-        $trait = new ClientTraitStub;
-        $conf = $trait->runDetectProjectId([
+        $conf = $this->impl->call('detectProjectId', [[
             'projectIdRequired' => true,
             'keyFile' => $keyFile,
             'httpHandler' => function ($request, $options = []) {
                 return new Response(500);
             }
-        ]);
+        ]]);
     }
 
     public function testProjectIdFromEnv()
     {
         $projectId = 'project-from-env';
 
-        $trait = new ClientTraitStub();
-
         $originalEnv = getenv('GCLOUD_PROJECT');
 
         try {
             putenv('GCLOUD_PROJECT=' . $projectId);
-            $res = $trait->runDetectProjectId([]);
+            $res = $this->impl->call('detectProjectId', [[]]);
 
             $this->assertEquals($res, $projectId);
         } finally {
@@ -221,9 +228,10 @@ class ClientTraitTest extends TestCase
         $m = $this->prophesize(Metadata::class);
         $m->getProjectId()->willReturn($projectId)->shouldBeCalled();
 
-        $trait = new ClientTraitStubOnGce($m);
+        $trait = \Google\Cloud\Dev\impl(ClientTraitStubOnGce::class, ['metadata']);
+        $trait->___setProperty('metadata', $m);
 
-        $res = $trait->runDetectProjectId([]);
+        $res = $trait->call('detectProjectId', [[]]);
 
         $this->assertEquals($res, $projectId);
     }
@@ -238,54 +246,42 @@ class ClientTraitTest extends TestCase
         $m = $this->prophesize(Metadata::class);
         $m->getProjectId()->willReturn($projectId)->shouldBeCalled();
 
-        $trait = new ClientTraitStubOnGce($m);
+        $trait = \Google\Cloud\Dev\impl(ClientTraitStubOnGce::class, ['metadata']);
+        $trait->___setProperty('metadata', $m);
 
-        $res = $trait->runDetectProjectId([
+        $res = $trait->call('detectProjectId', [[
             'projectIdRequired' => true
-        ]);
+        ]]);
+    }
+
+    public function testDetectProjectIdEmulator()
+    {
+        $projectId = 'emulator-project';
+
+        $originalEnv = getenv('GCLOUD_PROJECT');
+        putenv('GCLOUD_PROJECT');
+
+        $m = $this->prophesize(Metadata::class);
+        $m->getProjectId()->willReturn(false)->shouldBeCalled();
+
+        $trait = \Google\Cloud\Dev\impl(ClientTraitStubOnGce::class, ['metadata']);
+        $trait->___setProperty('metadata', $m);
+
+        $res = $trait->call('detectProjectId', [[
+            'hasEmulator' => true
+        ]]);
+
+        if ($originalEnv) {
+            putenv('GCLOUD_PROJECT='. $originalEnv);
+        }
+
+        $this->assertEquals($projectId, $res);
     }
 }
 
-class ClientTraitStub
+trait ClientTraitStubOnGce
 {
     use ClientTrait;
-
-    public function getProjectId()
-    {
-        return $this->projectId;
-    }
-
-    public function runGetConnectionType($config)
-    {
-        return $this->getConnectionType($config);
-    }
-
-    public function runConfigureAuthentication($config)
-    {
-        return $this->configureAuthentication($config);
-    }
-
-    public function runDetectProjectId($config)
-    {
-        return $this->detectProjectId($config);
-    }
-
-    public function runRequireGrpc()
-    {
-        return $this->requireGrpc();
-    }
-}
-
-class ClientTraitStubOnGce extends ClientTraitStub
-{
-    use ClientTrait;
-
-    private $metadata;
-
-    public function __construct($metadata)
-    {
-        $this->metadata = $metadata;
-    }
 
     protected function onGce($httpHandler)
     {
@@ -298,16 +294,9 @@ class ClientTraitStubOnGce extends ClientTraitStub
     }
 }
 
-class ClientTraitStubGrpcDependencyChecks extends ClientTraitStub
+trait ClientTraitStubGrpcDependencyChecks
 {
     use ClientTrait;
-
-    private $dependencyStatus;
-
-    public function __construct($dependencyStatus)
-    {
-        $this->dependencyStatus = $dependencyStatus;
-    }
 
     protected function isGrpcLoaded()
     {

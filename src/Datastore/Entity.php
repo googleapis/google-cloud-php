@@ -70,6 +70,8 @@ class Entity implements ArrayAccess
 {
     use DatastoreTrait;
 
+    const EXCLUDE_FROM_INDEXES = '___GOOGLECLOUDPHP___EXCLUDEFROMINDEXES___';
+
     /**
      * @var Key
      */

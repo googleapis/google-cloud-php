@@ -411,15 +411,15 @@ class DocumentReference
     }
 
     /**
-     * Return the first write result from a commit response
+     * Return the latest write result from a commit response
      *
      * @param array $commitResponse
      * @return array
      */
     private function writeResult(array $commitResponse)
     {
-        return isset($commitResponse['writeResults'][0])
-            ? $commitResponse['writeResults'][0]
+        return isset($commitResponse['writeResults']) && is_array($commitResponse['writeResults'])
+            ? array_pop($commitResponse['writeResults'])
             : [];
     }
 }
