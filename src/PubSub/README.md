@@ -2,6 +2,8 @@
 
 > Idiomatic PHP client for [Cloud Pub/Sub](https://cloud.google.com/pubsub/).
 
+[![Latest Stable Version](https://poser.pugx.org/google/cloud-pubsub/v/stable)](https://packagist.org/packages/google/cloud-pubsub) [![Packagist](https://img.shields.io/packagist/dm/google/cloud-pubsub.svg)](https://packagist.org/packages/google/cloud-pubsub)
+
 * [Homepage](http://googlecloudplatform.github.io/google-cloud-php)
 * [API documentation](http://googlecloudplatform.github.io/google-cloud-php/#/docs/cloud-pubsub/latest/pubsub/pubsubclient)
 
