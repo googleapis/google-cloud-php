@@ -309,9 +309,9 @@ class StreamWrapper
         if ($object) {
             $this->directoryIterator->next();
             return $object->name();
-        } else {
-            return false;
         }
+
+        return false;
     }
 
     /**
@@ -478,9 +478,9 @@ class StreamWrapper
         // if directory
         if ($this->isDirectory($this->file)) {
             return $this->urlStatDirectory();
-        } else {
-            return $this->urlStatFile();
         }
+
+        return $this->urlStatFile();
     }
 
     /**
@@ -513,9 +513,9 @@ class StreamWrapper
     {
         if (substr($path, -1) == '/') {
             return $path;
-        } else {
-            return $path . '/';
         }
+
+        return $path . '/';
     }
 
     /**
@@ -682,9 +682,9 @@ class StreamWrapper
         } elseif ($mode & 0040) {
             // If any group user can read, assume it should be projectPrivate.
             return 'projectPrivate';
-        } else {
-            // Otherwise, assume only the project/bucket owner can use the bucket.
-            return 'private';
         }
+
+        // Otherwise, assume only the project/bucket owner can use the bucket.
+        return 'private';
     }
 }
