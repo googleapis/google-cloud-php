@@ -130,8 +130,7 @@ class BigQueryClient
      * set of options at once.
      *
      * Unless otherwise specified, all configuration options will default based
-     * on the [Jobs configuration API documentation]
-     * (https://cloud.google.com/bigquery/docs/reference/rest/v2/jobs#configuration)
+     * on the [Jobs configuration API documentation](https://goo.gl/vSTbGp)
      * except for `configuration.query.useLegacySql`, which defaults to `false`
      * in this client.
      *
@@ -166,8 +165,7 @@ class BigQueryClient
      *
      * @param string $query A BigQuery SQL query.
      * @param array $options [optional] Please see the
-     *        [API documentation for Job configuration]
-     *        (https://cloud.google.com/bigquery/docs/reference/rest/v2/jobs#configuration)
+     *        [API documentation for Job configuration](https://goo.gl/vSTbGp)
      *        for the available options.
      * @return QueryJobConfiguration
      */
