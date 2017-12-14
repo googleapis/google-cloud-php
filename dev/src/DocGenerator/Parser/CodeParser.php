@@ -184,9 +184,9 @@ class CodeParser implements ParserInterface
         if (strpos($fileReflector->getFileName(), $this->basePath) !== false) {
             $fileSplit = explode($this->basePath, trim($fileReflector->getFileName(), '/'));
             return 'src/' . trim($fileSplit[1], '/');
-        } else {
-            return 'src/'. trim(explode('src', $fileReflector->getFileName())[1]);
         }
+
+        return 'src/'. trim(explode('src', $fileReflector->getFileName())[1]);
     }
 
     private function buildDocument($fileReflector, $reflector)
