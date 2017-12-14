@@ -54,11 +54,13 @@ class VisionClient
     /**
      * Create a Vision client.
      *
+     * Note that when creating a VisionClient instance, setting
+     * `$config.projectId` is not supported. To switch between projects, you
+     * must provide credentials with access to the project.
+     *
      * @param array $config [optional] {
      *     Configuration Options.
      *
-     *     @type string $projectId The project ID from the Google Developer's
-     *           Console.
      *     @type CacheItemPoolInterface $authCache A cache for storing access
      *           tokens. **Defaults to** a simple in memory implementation.
      *     @type array $authCacheOptions Cache configuration options.
