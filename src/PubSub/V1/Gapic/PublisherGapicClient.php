@@ -30,29 +30,29 @@
 
 namespace Google\Cloud\PubSub\V1\Gapic;
 
-use Google\ApiCore\AgentHeaderDescriptor;
-use Google\ApiCore\ApiCallable;
-use Google\ApiCore\CallSettings;
-use Google\ApiCore\GrpcCredentialsHelper;
-use Google\ApiCore\PageStreamingDescriptor;
+use Google\ApiCore\Call;
+use Google\ApiCore\GapicClientTrait;
 use Google\ApiCore\PathTemplate;
+use Google\ApiCore\Transport\ApiTransportInterface;
 use Google\ApiCore\ValidationException;
 use Google\Cloud\Iam\V1\GetIamPolicyRequest;
-use Google\Cloud\Iam\V1\IAMPolicyGrpcClient;
 use Google\Cloud\Iam\V1\Policy;
 use Google\Cloud\Iam\V1\SetIamPolicyRequest;
 use Google\Cloud\Iam\V1\TestIamPermissionsRequest;
+use Google\Cloud\Iam\V1\TestIamPermissionsResponse;
 use Google\Cloud\PubSub\V1\DeleteTopicRequest;
 use Google\Cloud\PubSub\V1\GetTopicRequest;
 use Google\Cloud\PubSub\V1\ListTopicSubscriptionsRequest;
+use Google\Cloud\PubSub\V1\ListTopicSubscriptionsResponse;
 use Google\Cloud\PubSub\V1\ListTopicsRequest;
+use Google\Cloud\PubSub\V1\ListTopicsResponse;
 use Google\Cloud\PubSub\V1\PublishRequest;
-use Google\Cloud\PubSub\V1\PublisherGrpcClient;
+use Google\Cloud\PubSub\V1\PublishResponse;
 use Google\Cloud\PubSub\V1\PubsubMessage;
 use Google\Cloud\PubSub\V1\Topic;
 use Google\Cloud\PubSub\V1\UpdateTopicRequest;
-use Google\Cloud\Version;
 use Google\Protobuf\FieldMask;
+use Google\Protobuf\GPBEmpty;
 
 /**
  * Service Description: The service that an application uses to manipulate topics, and to send
@@ -84,6 +84,13 @@ use Google\Protobuf\FieldMask;
  */
 class PublisherGapicClient
 {
+    use GapicClientTrait;
+
+    /**
+     * The name of the service.
+     */
+    const SERVICE_NAME = 'google.pubsub.v1.Publisher';
+
     /**
      * The default address of the service.
      */
@@ -107,19 +114,22 @@ class PublisherGapicClient
     private static $projectNameTemplate;
     private static $topicNameTemplate;
     private static $pathTemplateMap;
-    private static $gapicVersion;
-    private static $gapicVersionLoaded = false;
-
-    protected $grpcCredentialsHelper;
-    protected $iamPolicyStub;
-    protected $publisherStub;
-    private $scopes;
-    private $defaultCallSettings;
-    private $descriptors;
+    private static $clientDefaults = [
+        'serviceName' => self::SERVICE_NAME,
+        'serviceAddress' => self::SERVICE_ADDRESS,
+        'port' => self::DEFAULT_SERVICE_PORT,
+        'scopes' => [
+            'https://www.googleapis.com/auth/cloud-platform',
+            'https://www.googleapis.com/auth/pubsub',
+        ],
+        'clientConfigPath' => __DIR__.'/../resources/publisher_client_config.json',
+        'restClientConfigPath' => __DIR__.'/../resources/publisher_rest_client_config.php',
+        'descriptorsConfigPath' => __DIR__.'/../resources/publisher_descriptor_config.php',
+    ];
 
     private static function getProjectNameTemplate()
     {
-        if (self::$projectNameTemplate == null) {
+        if (null == self::$projectNameTemplate) {
             self::$projectNameTemplate = new PathTemplate('projects/{project}');
         }
 
@@ -128,7 +138,7 @@ class PublisherGapicClient
 
     private static function getTopicNameTemplate()
     {
-        if (self::$topicNameTemplate == null) {
+        if (null == self::$topicNameTemplate) {
             self::$topicNameTemplate = new PathTemplate('projects/{project}/topics/{topic}');
         }
 
@@ -137,7 +147,7 @@ class PublisherGapicClient
 
     private static function getPathTemplateMap()
     {
-        if (self::$pathTemplateMap == null) {
+        if (null == self::$pathTemplateMap) {
             self::$pathTemplateMap = [
                 'project' => self::getProjectNameTemplate(),
                 'topic' => self::getTopicNameTemplate(),
@@ -145,49 +155,6 @@ class PublisherGapicClient
         }
 
         return self::$pathTemplateMap;
-    }
-
-    private static function getPageStreamingDescriptors()
-    {
-        $listTopicsPageStreamingDescriptor =
-                new PageStreamingDescriptor([
-                    'requestPageTokenGetMethod' => 'getPageToken',
-                    'requestPageTokenSetMethod' => 'setPageToken',
-                    'requestPageSizeGetMethod' => 'getPageSize',
-                    'requestPageSizeSetMethod' => 'setPageSize',
-                    'responsePageTokenGetMethod' => 'getNextPageToken',
-                    'resourcesGetMethod' => 'getTopics',
-                ]);
-        $listTopicSubscriptionsPageStreamingDescriptor =
-                new PageStreamingDescriptor([
-                    'requestPageTokenGetMethod' => 'getPageToken',
-                    'requestPageTokenSetMethod' => 'setPageToken',
-                    'requestPageSizeGetMethod' => 'getPageSize',
-                    'requestPageSizeSetMethod' => 'setPageSize',
-                    'responsePageTokenGetMethod' => 'getNextPageToken',
-                    'resourcesGetMethod' => 'getSubscriptions',
-                ]);
-
-        $pageStreamingDescriptors = [
-            'listTopics' => $listTopicsPageStreamingDescriptor,
-            'listTopicSubscriptions' => $listTopicSubscriptionsPageStreamingDescriptor,
-        ];
-
-        return $pageStreamingDescriptors;
-    }
-
-    private static function getGapicVersion()
-    {
-        if (!self::$gapicVersionLoaded) {
-            if (file_exists(__DIR__.'/../VERSION')) {
-                self::$gapicVersion = trim(file_get_contents(__DIR__.'/../VERSION'));
-            } elseif (class_exists(Version::class)) {
-                self::$gapicVersion = Version::VERSION;
-            }
-            self::$gapicVersionLoaded = true;
-        }
-
-        return self::$gapicVersion;
     }
 
     /**
@@ -276,16 +243,19 @@ class PublisherGapicClient
      *                                  Default 'pubsub.googleapis.com'.
      *     @type mixed $port The port on which to connect to the remote host. Default 443.
      *     @type \Grpc\Channel $channel
-     *           A `Channel` object to be used by gRPC. If not specified, a channel will be constructed.
+     *           A `Channel` object. If not specified, a channel will be constructed.
+     *           NOTE: This option is only valid when utilizing the gRPC transport.
      *     @type \Grpc\ChannelCredentials $sslCreds
      *           A `ChannelCredentials` object for use with an SSL-enabled channel.
      *           Default: a credentials object returned from
-     *           \Grpc\ChannelCredentials::createSsl()
-     *           NOTE: if the $channel optional argument is specified, then this argument is unused.
+     *           \Grpc\ChannelCredentials::createSsl().
+     *           NOTE: This option is only valid when utilizing the gRPC transport. Also, if the $channel
+     *           optional argument is specified, then this argument is unused.
      *     @type bool $forceNewChannel
      *           If true, this forces gRPC to create a new channel instead of using a persistent channel.
      *           Defaults to false.
-     *           NOTE: if the $channel optional argument is specified, then this option is unused.
+     *           NOTE: This option is only valid when utilizing the gRPC transport. Also, if the $channel
+     *           optional argument is specified, then this option is unused.
      *     @type \Google\Auth\CredentialsLoader $credentialsLoader
      *           A CredentialsLoader object created using the Google\Auth library.
      *     @type array $scopes A string array of scopes to use when acquiring credentials.
@@ -304,82 +274,23 @@ class PublisherGapicClient
      *           for example usage. Passing a value of null is equivalent to a value of
      *           ['retriesEnabled' => false]. Retry settings provided in this setting override the
      *           settings in $clientConfigPath.
+     *     @type callable $authHttpHandler A handler used to deliver PSR-7 requests specifically
+     *           for authentication. Should match a signature of
+     *           `function (RequestInterface $request, array $options) : ResponseInterface`
+     *           NOTE: This option is only valid when utilizing the REST transport.
+     *     @type callable $httpHandler A handler used to deliver PSR-7 requests. Should match a
+     *           signature of `function (RequestInterface $request, array $options) : PromiseInterface`
+     *           NOTE: This option is only valid when utilizing the REST transport.
+     *     @type string|ApiTransportInterface $transport The transport used for executing network
+     *           requests. May be either the string `rest` or `grpc`. Additionally, it is possible
+     *           to pass in an already instantiated transport. Defaults to `grpc` if gRPC support is
+     *           detected on the system.
      * }
      * @experimental
      */
     public function __construct($options = [])
     {
-        $defaultOptions = [
-            'serviceAddress' => self::SERVICE_ADDRESS,
-            'port' => self::DEFAULT_SERVICE_PORT,
-            'scopes' => [
-                'https://www.googleapis.com/auth/cloud-platform',
-                'https://www.googleapis.com/auth/pubsub',
-            ],
-            'retryingOverride' => null,
-            'libName' => null,
-            'libVersion' => null,
-            'clientConfigPath' => __DIR__.'/../resources/publisher_client_config.json',
-        ];
-        $options = array_merge($defaultOptions, $options);
-
-        $gapicVersion = $options['libVersion'] ?: self::getGapicVersion();
-
-        $headerDescriptor = new AgentHeaderDescriptor([
-            'libName' => $options['libName'],
-            'libVersion' => $options['libVersion'],
-            'gapicVersion' => $gapicVersion,
-        ]);
-
-        $defaultDescriptors = ['headerDescriptor' => $headerDescriptor];
-        $this->descriptors = [
-            'createTopic' => $defaultDescriptors,
-            'updateTopic' => $defaultDescriptors,
-            'publish' => $defaultDescriptors,
-            'getTopic' => $defaultDescriptors,
-            'listTopics' => $defaultDescriptors,
-            'listTopicSubscriptions' => $defaultDescriptors,
-            'deleteTopic' => $defaultDescriptors,
-            'setIamPolicy' => $defaultDescriptors,
-            'getIamPolicy' => $defaultDescriptors,
-            'testIamPermissions' => $defaultDescriptors,
-        ];
-        $pageStreamingDescriptors = self::getPageStreamingDescriptors();
-        foreach ($pageStreamingDescriptors as $method => $pageStreamingDescriptor) {
-            $this->descriptors[$method]['pageStreamingDescriptor'] = $pageStreamingDescriptor;
-        }
-
-        $clientConfigJsonString = file_get_contents($options['clientConfigPath']);
-        $clientConfig = json_decode($clientConfigJsonString, true);
-        $this->defaultCallSettings =
-                CallSettings::load(
-                    'google.pubsub.v1.Publisher',
-                    $clientConfig,
-                    $options['retryingOverride']
-                );
-
-        $this->scopes = $options['scopes'];
-
-        $createStubOptions = [];
-        if (array_key_exists('sslCreds', $options)) {
-            $createStubOptions['sslCreds'] = $options['sslCreds'];
-        }
-        $this->grpcCredentialsHelper = new GrpcCredentialsHelper($options);
-
-        $createIamPolicyStubFunction = function ($hostname, $opts, $channel) {
-            return new IAMPolicyGrpcClient($hostname, $opts, $channel);
-        };
-        if (array_key_exists('createIamPolicyStubFunction', $options)) {
-            $createIamPolicyStubFunction = $options['createIamPolicyStubFunction'];
-        }
-        $this->iamPolicyStub = $this->grpcCredentialsHelper->createStub($createIamPolicyStubFunction);
-        $createPublisherStubFunction = function ($hostname, $opts, $channel) {
-            return new PublisherGrpcClient($hostname, $opts, $channel);
-        };
-        if (array_key_exists('createPublisherStubFunction', $options)) {
-            $createPublisherStubFunction = $options['createPublisherStubFunction'];
-        }
-        $this->publisherStub = $this->grpcCredentialsHelper->createStub($createPublisherStubFunction);
+        $this->setClientOptions($options + self::$clientDefaults);
     }
 
     /**
@@ -427,24 +338,14 @@ class PublisherGapicClient
             $request->setLabels($optionalArgs['labels']);
         }
 
-        $defaultCallSettings = $this->defaultCallSettings['createTopic'];
-        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
-            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
-                $optionalArgs['retrySettings']
-            );
-        }
-        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
-        $callable = ApiCallable::createApiCall(
-            $this->publisherStub,
-            'CreateTopic',
-            $mergedSettings,
-            $this->descriptors['createTopic']
-        );
-
-        return $callable(
-            $request,
-            [],
-            ['call_credentials_callback' => $this->createCredentialsCallback()]);
+        return $this->startCall(
+            new Call(
+                self::SERVICE_NAME.'/CreateTopic',
+                Topic::class,
+                $request
+            ),
+            $this->configureCallSettings('createTopic', $optionalArgs)
+        )->wait();
     }
 
     /**
@@ -491,24 +392,14 @@ class PublisherGapicClient
         $request->setTopic($topic);
         $request->setUpdateMask($updateMask);
 
-        $defaultCallSettings = $this->defaultCallSettings['updateTopic'];
-        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
-            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
-                $optionalArgs['retrySettings']
-            );
-        }
-        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
-        $callable = ApiCallable::createApiCall(
-            $this->publisherStub,
-            'UpdateTopic',
-            $mergedSettings,
-            $this->descriptors['updateTopic']
-        );
-
-        return $callable(
-            $request,
-            [],
-            ['call_credentials_callback' => $this->createCredentialsCallback()]);
+        return $this->startCall(
+            new Call(
+                self::SERVICE_NAME.'/UpdateTopic',
+                Topic::class,
+                $request
+            ),
+            $this->configureCallSettings('updateTopic', $optionalArgs)
+        )->wait();
     }
 
     /**
@@ -555,24 +446,14 @@ class PublisherGapicClient
         $request->setTopic($topic);
         $request->setMessages($messages);
 
-        $defaultCallSettings = $this->defaultCallSettings['publish'];
-        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
-            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
-                $optionalArgs['retrySettings']
-            );
-        }
-        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
-        $callable = ApiCallable::createApiCall(
-            $this->publisherStub,
-            'Publish',
-            $mergedSettings,
-            $this->descriptors['publish']
-        );
-
-        return $callable(
-            $request,
-            [],
-            ['call_credentials_callback' => $this->createCredentialsCallback()]);
+        return $this->startCall(
+            new Call(
+                self::SERVICE_NAME.'/Publish',
+                PublishResponse::class,
+                $request
+            ),
+            $this->configureCallSettings('publish', $optionalArgs)
+        )->wait();
     }
 
     /**
@@ -611,24 +492,14 @@ class PublisherGapicClient
         $request = new GetTopicRequest();
         $request->setTopic($topic);
 
-        $defaultCallSettings = $this->defaultCallSettings['getTopic'];
-        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
-            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
-                $optionalArgs['retrySettings']
-            );
-        }
-        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
-        $callable = ApiCallable::createApiCall(
-            $this->publisherStub,
-            'GetTopic',
-            $mergedSettings,
-            $this->descriptors['getTopic']
-        );
-
-        return $callable(
-            $request,
-            [],
-            ['call_credentials_callback' => $this->createCredentialsCallback()]);
+        return $this->startCall(
+            new Call(
+                self::SERVICE_NAME.'/GetTopic',
+                Topic::class,
+                $request
+            ),
+            $this->configureCallSettings('getTopic', $optionalArgs)
+        )->wait();
     }
 
     /**
@@ -694,24 +565,15 @@ class PublisherGapicClient
             $request->setPageToken($optionalArgs['pageToken']);
         }
 
-        $defaultCallSettings = $this->defaultCallSettings['listTopics'];
-        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
-            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
-                $optionalArgs['retrySettings']
-            );
-        }
-        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
-        $callable = ApiCallable::createApiCall(
-            $this->publisherStub,
-            'ListTopics',
-            $mergedSettings,
-            $this->descriptors['listTopics']
+        return $this->getPagedListResponse(
+            new Call(
+                self::SERVICE_NAME.'/ListTopics',
+                ListTopicsResponse::class,
+                $request
+            ),
+            $this->configureCallSettings('listTopics', $optionalArgs),
+            $this->descriptors['listTopics']['pageStreaming']
         );
-
-        return $callable(
-            $request,
-            [],
-            ['call_credentials_callback' => $this->createCredentialsCallback()]);
     }
 
     /**
@@ -777,24 +639,15 @@ class PublisherGapicClient
             $request->setPageToken($optionalArgs['pageToken']);
         }
 
-        $defaultCallSettings = $this->defaultCallSettings['listTopicSubscriptions'];
-        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
-            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
-                $optionalArgs['retrySettings']
-            );
-        }
-        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
-        $callable = ApiCallable::createApiCall(
-            $this->publisherStub,
-            'ListTopicSubscriptions',
-            $mergedSettings,
-            $this->descriptors['listTopicSubscriptions']
+        return $this->getPagedListResponse(
+            new Call(
+                self::SERVICE_NAME.'/ListTopicSubscriptions',
+                ListTopicSubscriptionsResponse::class,
+                $request
+            ),
+            $this->configureCallSettings('listTopicSubscriptions', $optionalArgs),
+            $this->descriptors['listTopicSubscriptions']['pageStreaming']
         );
-
-        return $callable(
-            $request,
-            [],
-            ['call_credentials_callback' => $this->createCredentialsCallback()]);
     }
 
     /**
@@ -835,24 +688,14 @@ class PublisherGapicClient
         $request = new DeleteTopicRequest();
         $request->setTopic($topic);
 
-        $defaultCallSettings = $this->defaultCallSettings['deleteTopic'];
-        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
-            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
-                $optionalArgs['retrySettings']
-            );
-        }
-        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
-        $callable = ApiCallable::createApiCall(
-            $this->publisherStub,
-            'DeleteTopic',
-            $mergedSettings,
-            $this->descriptors['deleteTopic']
-        );
-
-        return $callable(
-            $request,
-            [],
-            ['call_credentials_callback' => $this->createCredentialsCallback()]);
+        return $this->startCall(
+            new Call(
+                self::SERVICE_NAME.'/DeleteTopic',
+                GPBEmpty::class,
+                $request
+            ),
+            $this->configureCallSettings('deleteTopic', $optionalArgs)
+        )->wait();
     }
 
     /**
@@ -899,24 +742,14 @@ class PublisherGapicClient
         $request->setResource($resource);
         $request->setPolicy($policy);
 
-        $defaultCallSettings = $this->defaultCallSettings['setIamPolicy'];
-        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
-            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
-                $optionalArgs['retrySettings']
-            );
-        }
-        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
-        $callable = ApiCallable::createApiCall(
-            $this->iamPolicyStub,
-            'SetIamPolicy',
-            $mergedSettings,
-            $this->descriptors['setIamPolicy']
-        );
-
-        return $callable(
-            $request,
-            [],
-            ['call_credentials_callback' => $this->createCredentialsCallback()]);
+        return $this->startCall(
+            new Call(
+                self::SERVICE_NAME.'/SetIamPolicy',
+                Policy::class,
+                $request
+            ),
+            $this->configureCallSettings('setIamPolicy', $optionalArgs)
+        )->wait();
     }
 
     /**
@@ -958,24 +791,14 @@ class PublisherGapicClient
         $request = new GetIamPolicyRequest();
         $request->setResource($resource);
 
-        $defaultCallSettings = $this->defaultCallSettings['getIamPolicy'];
-        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
-            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
-                $optionalArgs['retrySettings']
-            );
-        }
-        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
-        $callable = ApiCallable::createApiCall(
-            $this->iamPolicyStub,
-            'GetIamPolicy',
-            $mergedSettings,
-            $this->descriptors['getIamPolicy']
-        );
-
-        return $callable(
-            $request,
-            [],
-            ['call_credentials_callback' => $this->createCredentialsCallback()]);
+        return $this->startCall(
+            new Call(
+                self::SERVICE_NAME.'/GetIamPolicy',
+                Policy::class,
+                $request
+            ),
+            $this->configureCallSettings('getIamPolicy', $optionalArgs)
+        )->wait();
     }
 
     /**
@@ -1023,24 +846,14 @@ class PublisherGapicClient
         $request->setResource($resource);
         $request->setPermissions($permissions);
 
-        $defaultCallSettings = $this->defaultCallSettings['testIamPermissions'];
-        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
-            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
-                $optionalArgs['retrySettings']
-            );
-        }
-        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
-        $callable = ApiCallable::createApiCall(
-            $this->iamPolicyStub,
-            'TestIamPermissions',
-            $mergedSettings,
-            $this->descriptors['testIamPermissions']
-        );
-
-        return $callable(
-            $request,
-            [],
-            ['call_credentials_callback' => $this->createCredentialsCallback()]);
+        return $this->startCall(
+            new Call(
+                self::SERVICE_NAME.'/TestIamPermissions',
+                TestIamPermissionsResponse::class,
+                $request
+            ),
+            $this->configureCallSettings('testIamPermissions', $optionalArgs)
+        )->wait();
     }
 
     /**
@@ -1051,12 +864,6 @@ class PublisherGapicClient
      */
     public function close()
     {
-        $this->iamPolicyStub->close();
-        $this->publisherStub->close();
-    }
-
-    private function createCredentialsCallback()
-    {
-        return $this->grpcCredentialsHelper->createCallCredentialsCallback();
+        $this->transport->close();
     }
 }

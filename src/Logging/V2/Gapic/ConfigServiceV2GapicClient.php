@@ -30,14 +30,11 @@
 
 namespace Google\Cloud\Logging\V2\Gapic;
 
-use Google\ApiCore\AgentHeaderDescriptor;
-use Google\ApiCore\ApiCallable;
-use Google\ApiCore\CallSettings;
-use Google\ApiCore\GrpcCredentialsHelper;
-use Google\ApiCore\PageStreamingDescriptor;
+use Google\ApiCore\Call;
+use Google\ApiCore\GapicClientTrait;
 use Google\ApiCore\PathTemplate;
+use Google\ApiCore\Transport\ApiTransportInterface;
 use Google\ApiCore\ValidationException;
-use Google\Cloud\Logging\V2\ConfigServiceV2GrpcClient;
 use Google\Cloud\Logging\V2\CreateExclusionRequest;
 use Google\Cloud\Logging\V2\CreateSinkRequest;
 use Google\Cloud\Logging\V2\DeleteExclusionRequest;
@@ -45,13 +42,15 @@ use Google\Cloud\Logging\V2\DeleteSinkRequest;
 use Google\Cloud\Logging\V2\GetExclusionRequest;
 use Google\Cloud\Logging\V2\GetSinkRequest;
 use Google\Cloud\Logging\V2\ListExclusionsRequest;
+use Google\Cloud\Logging\V2\ListExclusionsResponse;
 use Google\Cloud\Logging\V2\ListSinksRequest;
+use Google\Cloud\Logging\V2\ListSinksResponse;
 use Google\Cloud\Logging\V2\LogExclusion;
 use Google\Cloud\Logging\V2\LogSink;
 use Google\Cloud\Logging\V2\UpdateExclusionRequest;
 use Google\Cloud\Logging\V2\UpdateSinkRequest;
-use Google\Cloud\Version;
 use Google\Protobuf\FieldMask;
+use Google\Protobuf\GPBEmpty;
 
 /**
  * Service Description: Service for configuring sinks used to export log entries outside of
@@ -95,6 +94,13 @@ use Google\Protobuf\FieldMask;
  */
 class ConfigServiceV2GapicClient
 {
+    use GapicClientTrait;
+
+    /**
+     * The name of the service.
+     */
+    const SERVICE_NAME = 'google.logging.v2.ConfigServiceV2';
+
     /**
      * The default address of the service.
      */
@@ -119,18 +125,25 @@ class ConfigServiceV2GapicClient
     private static $sinkNameTemplate;
     private static $exclusionNameTemplate;
     private static $pathTemplateMap;
-    private static $gapicVersion;
-    private static $gapicVersionLoaded = false;
-
-    protected $grpcCredentialsHelper;
-    protected $configServiceV2Stub;
-    private $scopes;
-    private $defaultCallSettings;
-    private $descriptors;
+    private static $clientDefaults = [
+        'serviceName' => self::SERVICE_NAME,
+        'serviceAddress' => self::SERVICE_ADDRESS,
+        'port' => self::DEFAULT_SERVICE_PORT,
+        'scopes' => [
+            'https://www.googleapis.com/auth/cloud-platform',
+            'https://www.googleapis.com/auth/cloud-platform.read-only',
+            'https://www.googleapis.com/auth/logging.admin',
+            'https://www.googleapis.com/auth/logging.read',
+            'https://www.googleapis.com/auth/logging.write',
+        ],
+        'clientConfigPath' => __DIR__.'/../resources/config_service_v2_client_config.json',
+        'restClientConfigPath' => __DIR__.'/../resources/config_service_v2_rest_client_config.php',
+        'descriptorsConfigPath' => __DIR__.'/../resources/config_service_v2_descriptor_config.php',
+    ];
 
     private static function getProjectNameTemplate()
     {
-        if (self::$projectNameTemplate == null) {
+        if (null == self::$projectNameTemplate) {
             self::$projectNameTemplate = new PathTemplate('projects/{project}');
         }
 
@@ -139,7 +152,7 @@ class ConfigServiceV2GapicClient
 
     private static function getSinkNameTemplate()
     {
-        if (self::$sinkNameTemplate == null) {
+        if (null == self::$sinkNameTemplate) {
             self::$sinkNameTemplate = new PathTemplate('projects/{project}/sinks/{sink}');
         }
 
@@ -148,7 +161,7 @@ class ConfigServiceV2GapicClient
 
     private static function getExclusionNameTemplate()
     {
-        if (self::$exclusionNameTemplate == null) {
+        if (null == self::$exclusionNameTemplate) {
             self::$exclusionNameTemplate = new PathTemplate('projects/{project}/exclusions/{exclusion}');
         }
 
@@ -157,7 +170,7 @@ class ConfigServiceV2GapicClient
 
     private static function getPathTemplateMap()
     {
-        if (self::$pathTemplateMap == null) {
+        if (null == self::$pathTemplateMap) {
             self::$pathTemplateMap = [
                 'project' => self::getProjectNameTemplate(),
                 'sink' => self::getSinkNameTemplate(),
@@ -166,49 +179,6 @@ class ConfigServiceV2GapicClient
         }
 
         return self::$pathTemplateMap;
-    }
-
-    private static function getPageStreamingDescriptors()
-    {
-        $listSinksPageStreamingDescriptor =
-                new PageStreamingDescriptor([
-                    'requestPageTokenGetMethod' => 'getPageToken',
-                    'requestPageTokenSetMethod' => 'setPageToken',
-                    'requestPageSizeGetMethod' => 'getPageSize',
-                    'requestPageSizeSetMethod' => 'setPageSize',
-                    'responsePageTokenGetMethod' => 'getNextPageToken',
-                    'resourcesGetMethod' => 'getSinks',
-                ]);
-        $listExclusionsPageStreamingDescriptor =
-                new PageStreamingDescriptor([
-                    'requestPageTokenGetMethod' => 'getPageToken',
-                    'requestPageTokenSetMethod' => 'setPageToken',
-                    'requestPageSizeGetMethod' => 'getPageSize',
-                    'requestPageSizeSetMethod' => 'setPageSize',
-                    'responsePageTokenGetMethod' => 'getNextPageToken',
-                    'resourcesGetMethod' => 'getExclusions',
-                ]);
-
-        $pageStreamingDescriptors = [
-            'listSinks' => $listSinksPageStreamingDescriptor,
-            'listExclusions' => $listExclusionsPageStreamingDescriptor,
-        ];
-
-        return $pageStreamingDescriptors;
-    }
-
-    private static function getGapicVersion()
-    {
-        if (!self::$gapicVersionLoaded) {
-            if (file_exists(__DIR__.'/../VERSION')) {
-                self::$gapicVersion = trim(file_get_contents(__DIR__.'/../VERSION'));
-            } elseif (class_exists(Version::class)) {
-                self::$gapicVersion = Version::VERSION;
-            }
-            self::$gapicVersionLoaded = true;
-        }
-
-        return self::$gapicVersion;
     }
 
     /**
@@ -316,16 +286,19 @@ class ConfigServiceV2GapicClient
      *                                  Default 'logging.googleapis.com'.
      *     @type mixed $port The port on which to connect to the remote host. Default 443.
      *     @type \Grpc\Channel $channel
-     *           A `Channel` object to be used by gRPC. If not specified, a channel will be constructed.
+     *           A `Channel` object. If not specified, a channel will be constructed.
+     *           NOTE: This option is only valid when utilizing the gRPC transport.
      *     @type \Grpc\ChannelCredentials $sslCreds
      *           A `ChannelCredentials` object for use with an SSL-enabled channel.
      *           Default: a credentials object returned from
-     *           \Grpc\ChannelCredentials::createSsl()
-     *           NOTE: if the $channel optional argument is specified, then this argument is unused.
+     *           \Grpc\ChannelCredentials::createSsl().
+     *           NOTE: This option is only valid when utilizing the gRPC transport. Also, if the $channel
+     *           optional argument is specified, then this argument is unused.
      *     @type bool $forceNewChannel
      *           If true, this forces gRPC to create a new channel instead of using a persistent channel.
      *           Defaults to false.
-     *           NOTE: if the $channel optional argument is specified, then this option is unused.
+     *           NOTE: This option is only valid when utilizing the gRPC transport. Also, if the $channel
+     *           optional argument is specified, then this option is unused.
      *     @type \Google\Auth\CredentialsLoader $credentialsLoader
      *           A CredentialsLoader object created using the Google\Auth library.
      *     @type array $scopes A string array of scopes to use when acquiring credentials.
@@ -344,78 +317,23 @@ class ConfigServiceV2GapicClient
      *           for example usage. Passing a value of null is equivalent to a value of
      *           ['retriesEnabled' => false]. Retry settings provided in this setting override the
      *           settings in $clientConfigPath.
+     *     @type callable $authHttpHandler A handler used to deliver PSR-7 requests specifically
+     *           for authentication. Should match a signature of
+     *           `function (RequestInterface $request, array $options) : ResponseInterface`
+     *           NOTE: This option is only valid when utilizing the REST transport.
+     *     @type callable $httpHandler A handler used to deliver PSR-7 requests. Should match a
+     *           signature of `function (RequestInterface $request, array $options) : PromiseInterface`
+     *           NOTE: This option is only valid when utilizing the REST transport.
+     *     @type string|ApiTransportInterface $transport The transport used for executing network
+     *           requests. May be either the string `rest` or `grpc`. Additionally, it is possible
+     *           to pass in an already instantiated transport. Defaults to `grpc` if gRPC support is
+     *           detected on the system.
      * }
      * @experimental
      */
     public function __construct($options = [])
     {
-        $defaultOptions = [
-            'serviceAddress' => self::SERVICE_ADDRESS,
-            'port' => self::DEFAULT_SERVICE_PORT,
-            'scopes' => [
-                'https://www.googleapis.com/auth/cloud-platform',
-                'https://www.googleapis.com/auth/cloud-platform.read-only',
-                'https://www.googleapis.com/auth/logging.admin',
-                'https://www.googleapis.com/auth/logging.read',
-                'https://www.googleapis.com/auth/logging.write',
-            ],
-            'retryingOverride' => null,
-            'libName' => null,
-            'libVersion' => null,
-            'clientConfigPath' => __DIR__.'/../resources/config_service_v2_client_config.json',
-        ];
-        $options = array_merge($defaultOptions, $options);
-
-        $gapicVersion = $options['libVersion'] ?: self::getGapicVersion();
-
-        $headerDescriptor = new AgentHeaderDescriptor([
-            'libName' => $options['libName'],
-            'libVersion' => $options['libVersion'],
-            'gapicVersion' => $gapicVersion,
-        ]);
-
-        $defaultDescriptors = ['headerDescriptor' => $headerDescriptor];
-        $this->descriptors = [
-            'listSinks' => $defaultDescriptors,
-            'getSink' => $defaultDescriptors,
-            'createSink' => $defaultDescriptors,
-            'updateSink' => $defaultDescriptors,
-            'deleteSink' => $defaultDescriptors,
-            'listExclusions' => $defaultDescriptors,
-            'getExclusion' => $defaultDescriptors,
-            'createExclusion' => $defaultDescriptors,
-            'updateExclusion' => $defaultDescriptors,
-            'deleteExclusion' => $defaultDescriptors,
-        ];
-        $pageStreamingDescriptors = self::getPageStreamingDescriptors();
-        foreach ($pageStreamingDescriptors as $method => $pageStreamingDescriptor) {
-            $this->descriptors[$method]['pageStreamingDescriptor'] = $pageStreamingDescriptor;
-        }
-
-        $clientConfigJsonString = file_get_contents($options['clientConfigPath']);
-        $clientConfig = json_decode($clientConfigJsonString, true);
-        $this->defaultCallSettings =
-                CallSettings::load(
-                    'google.logging.v2.ConfigServiceV2',
-                    $clientConfig,
-                    $options['retryingOverride']
-                );
-
-        $this->scopes = $options['scopes'];
-
-        $createStubOptions = [];
-        if (array_key_exists('sslCreds', $options)) {
-            $createStubOptions['sslCreds'] = $options['sslCreds'];
-        }
-        $this->grpcCredentialsHelper = new GrpcCredentialsHelper($options);
-
-        $createConfigServiceV2StubFunction = function ($hostname, $opts, $channel) {
-            return new ConfigServiceV2GrpcClient($hostname, $opts, $channel);
-        };
-        if (array_key_exists('createConfigServiceV2StubFunction', $options)) {
-            $createConfigServiceV2StubFunction = $options['createConfigServiceV2StubFunction'];
-        }
-        $this->configServiceV2Stub = $this->grpcCredentialsHelper->createStub($createConfigServiceV2StubFunction);
+        $this->setClientOptions($options + self::$clientDefaults);
     }
 
     /**
@@ -485,24 +403,15 @@ class ConfigServiceV2GapicClient
             $request->setPageSize($optionalArgs['pageSize']);
         }
 
-        $defaultCallSettings = $this->defaultCallSettings['listSinks'];
-        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
-            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
-                $optionalArgs['retrySettings']
-            );
-        }
-        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
-        $callable = ApiCallable::createApiCall(
-            $this->configServiceV2Stub,
-            'ListSinks',
-            $mergedSettings,
-            $this->descriptors['listSinks']
+        return $this->getPagedListResponse(
+            new Call(
+                self::SERVICE_NAME.'/ListSinks',
+                ListSinksResponse::class,
+                $request
+            ),
+            $this->configureCallSettings('listSinks', $optionalArgs),
+            $this->descriptors['listSinks']['pageStreaming']
         );
-
-        return $callable(
-            $request,
-            [],
-            ['call_credentials_callback' => $this->createCredentialsCallback()]);
     }
 
     /**
@@ -547,24 +456,14 @@ class ConfigServiceV2GapicClient
         $request = new GetSinkRequest();
         $request->setSinkName($sinkName);
 
-        $defaultCallSettings = $this->defaultCallSettings['getSink'];
-        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
-            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
-                $optionalArgs['retrySettings']
-            );
-        }
-        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
-        $callable = ApiCallable::createApiCall(
-            $this->configServiceV2Stub,
-            'GetSink',
-            $mergedSettings,
-            $this->descriptors['getSink']
-        );
-
-        return $callable(
-            $request,
-            [],
-            ['call_credentials_callback' => $this->createCredentialsCallback()]);
+        return $this->startCall(
+            new Call(
+                self::SERVICE_NAME.'/GetSink',
+                LogSink::class,
+                $request
+            ),
+            $this->configureCallSettings('getSink', $optionalArgs)
+        )->wait();
     }
 
     /**
@@ -631,24 +530,14 @@ class ConfigServiceV2GapicClient
             $request->setUniqueWriterIdentity($optionalArgs['uniqueWriterIdentity']);
         }
 
-        $defaultCallSettings = $this->defaultCallSettings['createSink'];
-        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
-            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
-                $optionalArgs['retrySettings']
-            );
-        }
-        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
-        $callable = ApiCallable::createApiCall(
-            $this->configServiceV2Stub,
-            'CreateSink',
-            $mergedSettings,
-            $this->descriptors['createSink']
-        );
-
-        return $callable(
-            $request,
-            [],
-            ['call_credentials_callback' => $this->createCredentialsCallback()]);
+        return $this->startCall(
+            new Call(
+                self::SERVICE_NAME.'/CreateSink',
+                LogSink::class,
+                $request
+            ),
+            $this->configureCallSettings('createSink', $optionalArgs)
+        )->wait();
     }
 
     /**
@@ -735,24 +624,14 @@ class ConfigServiceV2GapicClient
             $request->setUpdateMask($optionalArgs['updateMask']);
         }
 
-        $defaultCallSettings = $this->defaultCallSettings['updateSink'];
-        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
-            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
-                $optionalArgs['retrySettings']
-            );
-        }
-        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
-        $callable = ApiCallable::createApiCall(
-            $this->configServiceV2Stub,
-            'UpdateSink',
-            $mergedSettings,
-            $this->descriptors['updateSink']
-        );
-
-        return $callable(
-            $request,
-            [],
-            ['call_credentials_callback' => $this->createCredentialsCallback()]);
+        return $this->startCall(
+            new Call(
+                self::SERVICE_NAME.'/UpdateSink',
+                LogSink::class,
+                $request
+            ),
+            $this->configureCallSettings('updateSink', $optionalArgs)
+        )->wait();
     }
 
     /**
@@ -797,24 +676,14 @@ class ConfigServiceV2GapicClient
         $request = new DeleteSinkRequest();
         $request->setSinkName($sinkName);
 
-        $defaultCallSettings = $this->defaultCallSettings['deleteSink'];
-        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
-            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
-                $optionalArgs['retrySettings']
-            );
-        }
-        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
-        $callable = ApiCallable::createApiCall(
-            $this->configServiceV2Stub,
-            'DeleteSink',
-            $mergedSettings,
-            $this->descriptors['deleteSink']
-        );
-
-        return $callable(
-            $request,
-            [],
-            ['call_credentials_callback' => $this->createCredentialsCallback()]);
+        return $this->startCall(
+            new Call(
+                self::SERVICE_NAME.'/DeleteSink',
+                GPBEmpty::class,
+                $request
+            ),
+            $this->configureCallSettings('deleteSink', $optionalArgs)
+        )->wait();
     }
 
     /**
@@ -884,24 +753,15 @@ class ConfigServiceV2GapicClient
             $request->setPageSize($optionalArgs['pageSize']);
         }
 
-        $defaultCallSettings = $this->defaultCallSettings['listExclusions'];
-        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
-            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
-                $optionalArgs['retrySettings']
-            );
-        }
-        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
-        $callable = ApiCallable::createApiCall(
-            $this->configServiceV2Stub,
-            'ListExclusions',
-            $mergedSettings,
-            $this->descriptors['listExclusions']
+        return $this->getPagedListResponse(
+            new Call(
+                self::SERVICE_NAME.'/ListExclusions',
+                ListExclusionsResponse::class,
+                $request
+            ),
+            $this->configureCallSettings('listExclusions', $optionalArgs),
+            $this->descriptors['listExclusions']['pageStreaming']
         );
-
-        return $callable(
-            $request,
-            [],
-            ['call_credentials_callback' => $this->createCredentialsCallback()]);
     }
 
     /**
@@ -946,24 +806,14 @@ class ConfigServiceV2GapicClient
         $request = new GetExclusionRequest();
         $request->setName($name);
 
-        $defaultCallSettings = $this->defaultCallSettings['getExclusion'];
-        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
-            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
-                $optionalArgs['retrySettings']
-            );
-        }
-        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
-        $callable = ApiCallable::createApiCall(
-            $this->configServiceV2Stub,
-            'GetExclusion',
-            $mergedSettings,
-            $this->descriptors['getExclusion']
-        );
-
-        return $callable(
-            $request,
-            [],
-            ['call_credentials_callback' => $this->createCredentialsCallback()]);
+        return $this->startCall(
+            new Call(
+                self::SERVICE_NAME.'/GetExclusion',
+                LogExclusion::class,
+                $request
+            ),
+            $this->configureCallSettings('getExclusion', $optionalArgs)
+        )->wait();
     }
 
     /**
@@ -1014,24 +864,14 @@ class ConfigServiceV2GapicClient
         $request->setParent($parent);
         $request->setExclusion($exclusion);
 
-        $defaultCallSettings = $this->defaultCallSettings['createExclusion'];
-        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
-            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
-                $optionalArgs['retrySettings']
-            );
-        }
-        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
-        $callable = ApiCallable::createApiCall(
-            $this->configServiceV2Stub,
-            'CreateExclusion',
-            $mergedSettings,
-            $this->descriptors['createExclusion']
-        );
-
-        return $callable(
-            $request,
-            [],
-            ['call_credentials_callback' => $this->createCredentialsCallback()]);
+        return $this->startCall(
+            new Call(
+                self::SERVICE_NAME.'/CreateExclusion',
+                LogExclusion::class,
+                $request
+            ),
+            $this->configureCallSettings('createExclusion', $optionalArgs)
+        )->wait();
     }
 
     /**
@@ -1089,24 +929,14 @@ class ConfigServiceV2GapicClient
         $request->setExclusion($exclusion);
         $request->setUpdateMask($updateMask);
 
-        $defaultCallSettings = $this->defaultCallSettings['updateExclusion'];
-        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
-            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
-                $optionalArgs['retrySettings']
-            );
-        }
-        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
-        $callable = ApiCallable::createApiCall(
-            $this->configServiceV2Stub,
-            'UpdateExclusion',
-            $mergedSettings,
-            $this->descriptors['updateExclusion']
-        );
-
-        return $callable(
-            $request,
-            [],
-            ['call_credentials_callback' => $this->createCredentialsCallback()]);
+        return $this->startCall(
+            new Call(
+                self::SERVICE_NAME.'/UpdateExclusion',
+                LogExclusion::class,
+                $request
+            ),
+            $this->configureCallSettings('updateExclusion', $optionalArgs)
+        )->wait();
     }
 
     /**
@@ -1149,24 +979,14 @@ class ConfigServiceV2GapicClient
         $request = new DeleteExclusionRequest();
         $request->setName($name);
 
-        $defaultCallSettings = $this->defaultCallSettings['deleteExclusion'];
-        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
-            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
-                $optionalArgs['retrySettings']
-            );
-        }
-        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
-        $callable = ApiCallable::createApiCall(
-            $this->configServiceV2Stub,
-            'DeleteExclusion',
-            $mergedSettings,
-            $this->descriptors['deleteExclusion']
-        );
-
-        return $callable(
-            $request,
-            [],
-            ['call_credentials_callback' => $this->createCredentialsCallback()]);
+        return $this->startCall(
+            new Call(
+                self::SERVICE_NAME.'/DeleteExclusion',
+                GPBEmpty::class,
+                $request
+            ),
+            $this->configureCallSettings('deleteExclusion', $optionalArgs)
+        )->wait();
     }
 
     /**
@@ -1177,11 +997,6 @@ class ConfigServiceV2GapicClient
      */
     public function close()
     {
-        $this->configServiceV2Stub->close();
-    }
-
-    private function createCredentialsCallback()
-    {
-        return $this->grpcCredentialsHelper->createCallCredentialsCallback();
+        $this->transport->close();
     }
 }

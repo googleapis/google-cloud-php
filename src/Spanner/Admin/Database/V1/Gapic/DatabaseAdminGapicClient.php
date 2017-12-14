@@ -30,30 +30,31 @@
 
 namespace Google\Cloud\Spanner\Admin\Database\V1\Gapic;
 
-use Google\ApiCore\AgentHeaderDescriptor;
-use Google\ApiCore\ApiCallable;
-use Google\ApiCore\CallSettings;
-use Google\ApiCore\GrpcCredentialsHelper;
+use Google\ApiCore\Call;
+use Google\ApiCore\GapicClientTrait;
 use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\OperationResponse;
-use Google\ApiCore\PageStreamingDescriptor;
 use Google\ApiCore\PathTemplate;
+use Google\ApiCore\Transport\ApiTransportInterface;
 use Google\ApiCore\ValidationException;
 use Google\Cloud\Iam\V1\GetIamPolicyRequest;
 use Google\Cloud\Iam\V1\Policy;
 use Google\Cloud\Iam\V1\SetIamPolicyRequest;
 use Google\Cloud\Iam\V1\TestIamPermissionsRequest;
+use Google\Cloud\Iam\V1\TestIamPermissionsResponse;
 use Google\Cloud\Spanner\Admin\Database\V1\CreateDatabaseMetadata;
 use Google\Cloud\Spanner\Admin\Database\V1\CreateDatabaseRequest;
 use Google\Cloud\Spanner\Admin\Database\V1\Database;
-use Google\Cloud\Spanner\Admin\Database\V1\DatabaseAdminGrpcClient;
 use Google\Cloud\Spanner\Admin\Database\V1\DropDatabaseRequest;
 use Google\Cloud\Spanner\Admin\Database\V1\GetDatabaseDdlRequest;
+use Google\Cloud\Spanner\Admin\Database\V1\GetDatabaseDdlResponse;
 use Google\Cloud\Spanner\Admin\Database\V1\GetDatabaseRequest;
 use Google\Cloud\Spanner\Admin\Database\V1\ListDatabasesRequest;
+use Google\Cloud\Spanner\Admin\Database\V1\ListDatabasesResponse;
 use Google\Cloud\Spanner\Admin\Database\V1\UpdateDatabaseDdlMetadata;
 use Google\Cloud\Spanner\Admin\Database\V1\UpdateDatabaseDdlRequest;
-use Google\Cloud\Version;
+use Google\LongRunning\Operation;
+use Google\Protobuf\GPBEmpty;
 
 /**
  * Service Description: Cloud Spanner Database Admin API.
@@ -100,6 +101,13 @@ use Google\Cloud\Version;
  */
 class DatabaseAdminGapicClient
 {
+    use GapicClientTrait;
+
+    /**
+     * The name of the service.
+     */
+    const SERVICE_NAME = 'google.spanner.admin.database.v1.DatabaseAdmin';
+
     /**
      * The default address of the service.
      */
@@ -123,19 +131,24 @@ class DatabaseAdminGapicClient
     private static $instanceNameTemplate;
     private static $databaseNameTemplate;
     private static $pathTemplateMap;
-    private static $gapicVersion;
-    private static $gapicVersionLoaded = false;
+    private static $clientDefaults = [
+        'serviceName' => self::SERVICE_NAME,
+        'serviceAddress' => self::SERVICE_ADDRESS,
+        'port' => self::DEFAULT_SERVICE_PORT,
+        'scopes' => [
+            'https://www.googleapis.com/auth/cloud-platform',
+            'https://www.googleapis.com/auth/spanner.admin',
+        ],
+        'clientConfigPath' => __DIR__.'/../resources/database_admin_client_config.json',
+        'restClientConfigPath' => __DIR__.'/../resources/database_admin_rest_client_config.php',
+        'descriptorsConfigPath' => __DIR__.'/../resources/database_admin_descriptor_config.php',
+    ];
 
-    protected $grpcCredentialsHelper;
-    protected $databaseAdminStub;
-    private $scopes;
-    private $defaultCallSettings;
-    private $descriptors;
     private $operationsClient;
 
     private static function getInstanceNameTemplate()
     {
-        if (self::$instanceNameTemplate == null) {
+        if (null == self::$instanceNameTemplate) {
             self::$instanceNameTemplate = new PathTemplate('projects/{project}/instances/{instance}');
         }
 
@@ -144,7 +157,7 @@ class DatabaseAdminGapicClient
 
     private static function getDatabaseNameTemplate()
     {
-        if (self::$databaseNameTemplate == null) {
+        if (null == self::$databaseNameTemplate) {
             self::$databaseNameTemplate = new PathTemplate('projects/{project}/instances/{instance}/databases/{database}');
         }
 
@@ -153,7 +166,7 @@ class DatabaseAdminGapicClient
 
     private static function getPathTemplateMap()
     {
-        if (self::$pathTemplateMap == null) {
+        if (null == self::$pathTemplateMap) {
             self::$pathTemplateMap = [
                 'instance' => self::getInstanceNameTemplate(),
                 'database' => self::getDatabaseNameTemplate(),
@@ -161,53 +174,6 @@ class DatabaseAdminGapicClient
         }
 
         return self::$pathTemplateMap;
-    }
-
-    private static function getPageStreamingDescriptors()
-    {
-        $listDatabasesPageStreamingDescriptor =
-                new PageStreamingDescriptor([
-                    'requestPageTokenGetMethod' => 'getPageToken',
-                    'requestPageTokenSetMethod' => 'setPageToken',
-                    'requestPageSizeGetMethod' => 'getPageSize',
-                    'requestPageSizeSetMethod' => 'setPageSize',
-                    'responsePageTokenGetMethod' => 'getNextPageToken',
-                    'resourcesGetMethod' => 'getDatabases',
-                ]);
-
-        $pageStreamingDescriptors = [
-            'listDatabases' => $listDatabasesPageStreamingDescriptor,
-        ];
-
-        return $pageStreamingDescriptors;
-    }
-
-    private static function getLongRunningDescriptors()
-    {
-        return [
-            'createDatabase' => [
-                'operationReturnType' => '\Google\Cloud\Spanner\Admin\Database\V1\Database',
-                'metadataReturnType' => '\Google\Cloud\Spanner\Admin\Database\V1\CreateDatabaseMetadata',
-            ],
-            'updateDatabaseDdl' => [
-                'operationReturnType' => '\Google\Protobuf\GPBEmpty',
-                'metadataReturnType' => '\Google\Cloud\Spanner\Admin\Database\V1\UpdateDatabaseDdlMetadata',
-            ],
-        ];
-    }
-
-    private static function getGapicVersion()
-    {
-        if (!self::$gapicVersionLoaded) {
-            if (file_exists(__DIR__.'/../VERSION')) {
-                self::$gapicVersion = trim(file_get_contents(__DIR__.'/../VERSION'));
-            } elseif (class_exists(Version::class)) {
-                self::$gapicVersion = Version::VERSION;
-            }
-            self::$gapicVersionLoaded = true;
-        }
-
-        return self::$gapicVersion;
     }
 
     /**
@@ -316,12 +282,9 @@ class DatabaseAdminGapicClient
      */
     public function resumeOperation($operationName, $methodName = null)
     {
-        $lroDescriptors = self::getLongRunningDescriptors();
-        if (!is_null($methodName) && array_key_exists($methodName, $lroDescriptors)) {
-            $options = $lroDescriptors[$methodName];
-        } else {
-            $options = [];
-        }
+        $options = isset($this->descriptors[$methodName]['longRunning'])
+            ? $this->descriptors[$methodName]['longRunning']
+            : [];
         $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
         $operation->reload();
 
@@ -338,16 +301,19 @@ class DatabaseAdminGapicClient
      *                                  Default 'spanner.googleapis.com'.
      *     @type mixed $port The port on which to connect to the remote host. Default 443.
      *     @type \Grpc\Channel $channel
-     *           A `Channel` object to be used by gRPC. If not specified, a channel will be constructed.
+     *           A `Channel` object. If not specified, a channel will be constructed.
+     *           NOTE: This option is only valid when utilizing the gRPC transport.
      *     @type \Grpc\ChannelCredentials $sslCreds
      *           A `ChannelCredentials` object for use with an SSL-enabled channel.
      *           Default: a credentials object returned from
-     *           \Grpc\ChannelCredentials::createSsl()
-     *           NOTE: if the $channel optional argument is specified, then this argument is unused.
+     *           \Grpc\ChannelCredentials::createSsl().
+     *           NOTE: This option is only valid when utilizing the gRPC transport. Also, if the $channel
+     *           optional argument is specified, then this argument is unused.
      *     @type bool $forceNewChannel
      *           If true, this forces gRPC to create a new channel instead of using a persistent channel.
      *           Defaults to false.
-     *           NOTE: if the $channel optional argument is specified, then this option is unused.
+     *           NOTE: This option is only valid when utilizing the gRPC transport. Also, if the $channel
+     *           optional argument is specified, then this option is unused.
      *     @type \Google\Auth\CredentialsLoader $credentialsLoader
      *           A CredentialsLoader object created using the Google\Auth library.
      *     @type array $scopes A string array of scopes to use when acquiring credentials.
@@ -366,87 +332,31 @@ class DatabaseAdminGapicClient
      *           for example usage. Passing a value of null is equivalent to a value of
      *           ['retriesEnabled' => false]. Retry settings provided in this setting override the
      *           settings in $clientConfigPath.
+     *     @type callable $authHttpHandler A handler used to deliver PSR-7 requests specifically
+     *           for authentication. Should match a signature of
+     *           `function (RequestInterface $request, array $options) : ResponseInterface`
+     *           NOTE: This option is only valid when utilizing the REST transport.
+     *     @type callable $httpHandler A handler used to deliver PSR-7 requests. Should match a
+     *           signature of `function (RequestInterface $request, array $options) : PromiseInterface`
+     *           NOTE: This option is only valid when utilizing the REST transport.
+     *     @type string|ApiTransportInterface $transport The transport used for executing network
+     *           requests. May be either the string `rest` or `grpc`. Additionally, it is possible
+     *           to pass in an already instantiated transport. Defaults to `grpc` if gRPC support is
+     *           detected on the system.
      * }
      * @experimental
      */
     public function __construct($options = [])
     {
-        $defaultOptions = [
-            'serviceAddress' => self::SERVICE_ADDRESS,
-            'port' => self::DEFAULT_SERVICE_PORT,
-            'scopes' => [
-                'https://www.googleapis.com/auth/cloud-platform',
-                'https://www.googleapis.com/auth/spanner.admin',
-            ],
-            'retryingOverride' => null,
-            'libName' => null,
-            'libVersion' => null,
-            'clientConfigPath' => __DIR__.'/../resources/database_admin_client_config.json',
-        ];
-        $options = array_merge($defaultOptions, $options);
-
-        if (array_key_exists('operationsClient', $options)) {
-            $this->operationsClient = $options['operationsClient'];
-        } else {
-            $operationsClientOptions = $options;
-            unset($operationsClientOptions['retryingOverride']);
-            unset($operationsClientOptions['clientConfigPath']);
-            $this->operationsClient = new OperationsClient($operationsClientOptions);
-        }
-
-        $gapicVersion = $options['libVersion'] ?: self::getGapicVersion();
-
-        $headerDescriptor = new AgentHeaderDescriptor([
-            'libName' => $options['libName'],
-            'libVersion' => $options['libVersion'],
-            'gapicVersion' => $gapicVersion,
-        ]);
-
-        $defaultDescriptors = ['headerDescriptor' => $headerDescriptor];
-        $this->descriptors = [
-            'listDatabases' => $defaultDescriptors,
-            'createDatabase' => $defaultDescriptors,
-            'getDatabase' => $defaultDescriptors,
-            'updateDatabaseDdl' => $defaultDescriptors,
-            'dropDatabase' => $defaultDescriptors,
-            'getDatabaseDdl' => $defaultDescriptors,
-            'setIamPolicy' => $defaultDescriptors,
-            'getIamPolicy' => $defaultDescriptors,
-            'testIamPermissions' => $defaultDescriptors,
-        ];
-        $pageStreamingDescriptors = self::getPageStreamingDescriptors();
-        foreach ($pageStreamingDescriptors as $method => $pageStreamingDescriptor) {
-            $this->descriptors[$method]['pageStreamingDescriptor'] = $pageStreamingDescriptor;
-        }
-        $longRunningDescriptors = self::getLongRunningDescriptors();
-        foreach ($longRunningDescriptors as $method => $longRunningDescriptor) {
-            $this->descriptors[$method]['longRunningDescriptor'] = $longRunningDescriptor + ['operationsClient' => $this->operationsClient];
-        }
-
-        $clientConfigJsonString = file_get_contents($options['clientConfigPath']);
-        $clientConfig = json_decode($clientConfigJsonString, true);
-        $this->defaultCallSettings =
-                CallSettings::load(
-                    'google.spanner.admin.database.v1.DatabaseAdmin',
-                    $clientConfig,
-                    $options['retryingOverride']
-                );
-
-        $this->scopes = $options['scopes'];
-
-        $createStubOptions = [];
-        if (array_key_exists('sslCreds', $options)) {
-            $createStubOptions['sslCreds'] = $options['sslCreds'];
-        }
-        $this->grpcCredentialsHelper = new GrpcCredentialsHelper($options);
-
-        $createDatabaseAdminStubFunction = function ($hostname, $opts, $channel) {
-            return new DatabaseAdminGrpcClient($hostname, $opts, $channel);
-        };
-        if (array_key_exists('createDatabaseAdminStubFunction', $options)) {
-            $createDatabaseAdminStubFunction = $options['createDatabaseAdminStubFunction'];
-        }
-        $this->databaseAdminStub = $this->grpcCredentialsHelper->createStub($createDatabaseAdminStubFunction);
+        $options += self::$clientDefaults;
+        $this->setClientOptions($options);
+        $this->pluckArray([
+            'serviceName',
+            'clientConfigPath',
+            'restClientConfigPath',
+            'descriptorsConfigPath',
+        ], $options);
+        $this->operationsClient = new OperationsClient($options);
     }
 
     /**
@@ -512,24 +422,15 @@ class DatabaseAdminGapicClient
             $request->setPageToken($optionalArgs['pageToken']);
         }
 
-        $defaultCallSettings = $this->defaultCallSettings['listDatabases'];
-        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
-            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
-                $optionalArgs['retrySettings']
-            );
-        }
-        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
-        $callable = ApiCallable::createApiCall(
-            $this->databaseAdminStub,
-            'ListDatabases',
-            $mergedSettings,
-            $this->descriptors['listDatabases']
+        return $this->getPagedListResponse(
+            new Call(
+                self::SERVICE_NAME.'/ListDatabases',
+                ListDatabasesResponse::class,
+                $request
+            ),
+            $this->configureCallSettings('listDatabases', $optionalArgs),
+            $this->descriptors['listDatabases']['pageStreaming']
         );
-
-        return $callable(
-            $request,
-            [],
-            ['call_credentials_callback' => $this->createCredentialsCallback()]);
     }
 
     /**
@@ -615,24 +516,17 @@ class DatabaseAdminGapicClient
             $request->setExtraStatements($optionalArgs['extraStatements']);
         }
 
-        $defaultCallSettings = $this->defaultCallSettings['createDatabase'];
-        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
-            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
-                $optionalArgs['retrySettings']
-            );
-        }
-        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
-        $callable = ApiCallable::createApiCall(
-            $this->databaseAdminStub,
-            'CreateDatabase',
-            $mergedSettings,
-            $this->descriptors['createDatabase']
-        );
-
-        return $callable(
-            $request,
-            [],
-            ['call_credentials_callback' => $this->createCredentialsCallback()]);
+        return $this->startOperationsCall(
+            new Call(
+                self::SERVICE_NAME.'/CreateDatabase',
+                Operation::class,
+                $request
+            ),
+            $this->configureCallSettings('createDatabase', $optionalArgs),
+            $this->descriptors['createDatabase']['longRunning'] + [
+                'operationsClient' => $this->getOperationsClient(),
+            ]
+        )->wait();
     }
 
     /**
@@ -671,24 +565,14 @@ class DatabaseAdminGapicClient
         $request = new GetDatabaseRequest();
         $request->setName($name);
 
-        $defaultCallSettings = $this->defaultCallSettings['getDatabase'];
-        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
-            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
-                $optionalArgs['retrySettings']
-            );
-        }
-        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
-        $callable = ApiCallable::createApiCall(
-            $this->databaseAdminStub,
-            'GetDatabase',
-            $mergedSettings,
-            $this->descriptors['getDatabase']
-        );
-
-        return $callable(
-            $request,
-            [],
-            ['call_credentials_callback' => $this->createCredentialsCallback()]);
+        return $this->startCall(
+            new Call(
+                self::SERVICE_NAME.'/GetDatabase',
+                Database::class,
+                $request
+            ),
+            $this->configureCallSettings('getDatabase', $optionalArgs)
+        )->wait();
     }
 
     /**
@@ -781,24 +665,17 @@ class DatabaseAdminGapicClient
             $request->setOperationId($optionalArgs['operationId']);
         }
 
-        $defaultCallSettings = $this->defaultCallSettings['updateDatabaseDdl'];
-        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
-            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
-                $optionalArgs['retrySettings']
-            );
-        }
-        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
-        $callable = ApiCallable::createApiCall(
-            $this->databaseAdminStub,
-            'UpdateDatabaseDdl',
-            $mergedSettings,
-            $this->descriptors['updateDatabaseDdl']
-        );
-
-        return $callable(
-            $request,
-            [],
-            ['call_credentials_callback' => $this->createCredentialsCallback()]);
+        return $this->startOperationsCall(
+            new Call(
+                self::SERVICE_NAME.'/UpdateDatabaseDdl',
+                Operation::class,
+                $request
+            ),
+            $this->configureCallSettings('updateDatabaseDdl', $optionalArgs),
+            $this->descriptors['updateDatabaseDdl']['longRunning'] + [
+                'operationsClient' => $this->getOperationsClient(),
+            ]
+        )->wait();
     }
 
     /**
@@ -834,24 +711,14 @@ class DatabaseAdminGapicClient
         $request = new DropDatabaseRequest();
         $request->setDatabase($database);
 
-        $defaultCallSettings = $this->defaultCallSettings['dropDatabase'];
-        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
-            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
-                $optionalArgs['retrySettings']
-            );
-        }
-        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
-        $callable = ApiCallable::createApiCall(
-            $this->databaseAdminStub,
-            'DropDatabase',
-            $mergedSettings,
-            $this->descriptors['dropDatabase']
-        );
-
-        return $callable(
-            $request,
-            [],
-            ['call_credentials_callback' => $this->createCredentialsCallback()]);
+        return $this->startCall(
+            new Call(
+                self::SERVICE_NAME.'/DropDatabase',
+                GPBEmpty::class,
+                $request
+            ),
+            $this->configureCallSettings('dropDatabase', $optionalArgs)
+        )->wait();
     }
 
     /**
@@ -891,24 +758,14 @@ class DatabaseAdminGapicClient
         $request = new GetDatabaseDdlRequest();
         $request->setDatabase($database);
 
-        $defaultCallSettings = $this->defaultCallSettings['getDatabaseDdl'];
-        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
-            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
-                $optionalArgs['retrySettings']
-            );
-        }
-        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
-        $callable = ApiCallable::createApiCall(
-            $this->databaseAdminStub,
-            'GetDatabaseDdl',
-            $mergedSettings,
-            $this->descriptors['getDatabaseDdl']
-        );
-
-        return $callable(
-            $request,
-            [],
-            ['call_credentials_callback' => $this->createCredentialsCallback()]);
+        return $this->startCall(
+            new Call(
+                self::SERVICE_NAME.'/GetDatabaseDdl',
+                GetDatabaseDdlResponse::class,
+                $request
+            ),
+            $this->configureCallSettings('getDatabaseDdl', $optionalArgs)
+        )->wait();
     }
 
     /**
@@ -958,24 +815,14 @@ class DatabaseAdminGapicClient
         $request->setResource($resource);
         $request->setPolicy($policy);
 
-        $defaultCallSettings = $this->defaultCallSettings['setIamPolicy'];
-        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
-            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
-                $optionalArgs['retrySettings']
-            );
-        }
-        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
-        $callable = ApiCallable::createApiCall(
-            $this->databaseAdminStub,
-            'SetIamPolicy',
-            $mergedSettings,
-            $this->descriptors['setIamPolicy']
-        );
-
-        return $callable(
-            $request,
-            [],
-            ['call_credentials_callback' => $this->createCredentialsCallback()]);
+        return $this->startCall(
+            new Call(
+                self::SERVICE_NAME.'/SetIamPolicy',
+                Policy::class,
+                $request
+            ),
+            $this->configureCallSettings('setIamPolicy', $optionalArgs)
+        )->wait();
     }
 
     /**
@@ -1019,24 +866,14 @@ class DatabaseAdminGapicClient
         $request = new GetIamPolicyRequest();
         $request->setResource($resource);
 
-        $defaultCallSettings = $this->defaultCallSettings['getIamPolicy'];
-        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
-            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
-                $optionalArgs['retrySettings']
-            );
-        }
-        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
-        $callable = ApiCallable::createApiCall(
-            $this->databaseAdminStub,
-            'GetIamPolicy',
-            $mergedSettings,
-            $this->descriptors['getIamPolicy']
-        );
-
-        return $callable(
-            $request,
-            [],
-            ['call_credentials_callback' => $this->createCredentialsCallback()]);
+        return $this->startCall(
+            new Call(
+                self::SERVICE_NAME.'/GetIamPolicy',
+                Policy::class,
+                $request
+            ),
+            $this->configureCallSettings('getIamPolicy', $optionalArgs)
+        )->wait();
     }
 
     /**
@@ -1087,24 +924,14 @@ class DatabaseAdminGapicClient
         $request->setResource($resource);
         $request->setPermissions($permissions);
 
-        $defaultCallSettings = $this->defaultCallSettings['testIamPermissions'];
-        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
-            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
-                $optionalArgs['retrySettings']
-            );
-        }
-        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
-        $callable = ApiCallable::createApiCall(
-            $this->databaseAdminStub,
-            'TestIamPermissions',
-            $mergedSettings,
-            $this->descriptors['testIamPermissions']
-        );
-
-        return $callable(
-            $request,
-            [],
-            ['call_credentials_callback' => $this->createCredentialsCallback()]);
+        return $this->startCall(
+            new Call(
+                self::SERVICE_NAME.'/TestIamPermissions',
+                TestIamPermissionsResponse::class,
+                $request
+            ),
+            $this->configureCallSettings('testIamPermissions', $optionalArgs)
+        )->wait();
     }
 
     /**
@@ -1115,11 +942,6 @@ class DatabaseAdminGapicClient
      */
     public function close()
     {
-        $this->databaseAdminStub->close();
-    }
-
-    private function createCredentialsCallback()
-    {
-        return $this->grpcCredentialsHelper->createCallCredentialsCallback();
+        $this->transport->close();
     }
 }

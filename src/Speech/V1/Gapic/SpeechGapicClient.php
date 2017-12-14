@@ -30,20 +30,20 @@
 
 namespace Google\Cloud\Speech\V1\Gapic;
 
-use Google\ApiCore\AgentHeaderDescriptor;
-use Google\ApiCore\ApiCallable;
-use Google\ApiCore\CallSettings;
-use Google\ApiCore\GrpcCredentialsHelper;
+use Google\ApiCore\Call;
+use Google\ApiCore\GapicClientTrait;
 use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\OperationResponse;
+use Google\ApiCore\Transport\ApiTransportInterface;
 use Google\Cloud\Speech\V1\LongRunningRecognizeRequest;
 use Google\Cloud\Speech\V1\LongRunningRecognizeResponse;
 use Google\Cloud\Speech\V1\RecognitionAudio;
 use Google\Cloud\Speech\V1\RecognitionConfig;
 use Google\Cloud\Speech\V1\RecognizeRequest;
-use Google\Cloud\Speech\V1\SpeechGrpcClient;
+use Google\Cloud\Speech\V1\RecognizeResponse;
 use Google\Cloud\Speech\V1\StreamingRecognizeRequest;
-use Google\Cloud\Version;
+use Google\Cloud\Speech\V1\StreamingRecognizeResponse;
+use Google\LongRunning\Operation;
 
 /**
  * Service Description: Service that implements Google Cloud Speech API.
@@ -78,6 +78,13 @@ use Google\Cloud\Version;
  */
 class SpeechGapicClient
 {
+    use GapicClientTrait;
+
+    /**
+     * The name of the service.
+     */
+    const SERVICE_NAME = 'google.cloud.speech.v1.Speech';
+
     /**
      * The default address of the service.
      */
@@ -98,48 +105,19 @@ class SpeechGapicClient
      */
     const CODEGEN_VERSION = '0.0.5';
 
-    private static $gapicVersion;
-    private static $gapicVersionLoaded = false;
+    private static $clientDefaults = [
+        'serviceName' => self::SERVICE_NAME,
+        'serviceAddress' => self::SERVICE_ADDRESS,
+        'port' => self::DEFAULT_SERVICE_PORT,
+        'scopes' => [
+            'https://www.googleapis.com/auth/cloud-platform',
+        ],
+        'clientConfigPath' => __DIR__.'/../resources/speech_client_config.json',
+        'restClientConfigPath' => __DIR__.'/../resources/speech_rest_client_config.php',
+        'descriptorsConfigPath' => __DIR__.'/../resources/speech_descriptor_config.php',
+    ];
 
-    protected $grpcCredentialsHelper;
-    protected $speechStub;
-    private $scopes;
-    private $defaultCallSettings;
-    private $descriptors;
     private $operationsClient;
-
-    private static function getLongRunningDescriptors()
-    {
-        return [
-            'longRunningRecognize' => [
-                'operationReturnType' => '\Google\Cloud\Speech\V1\LongRunningRecognizeResponse',
-                'metadataReturnType' => '\Google\Cloud\Speech\V1\LongRunningRecognizeMetadata',
-            ],
-        ];
-    }
-
-    private static function getGrpcStreamingDescriptors()
-    {
-        return [
-            'streamingRecognize' => [
-                'grpcStreamingType' => 'BidiStreaming',
-            ],
-        ];
-    }
-
-    private static function getGapicVersion()
-    {
-        if (!self::$gapicVersionLoaded) {
-            if (file_exists(__DIR__.'/../VERSION')) {
-                self::$gapicVersion = trim(file_get_contents(__DIR__.'/../VERSION'));
-            } elseif (class_exists(Version::class)) {
-                self::$gapicVersion = Version::VERSION;
-            }
-            self::$gapicVersionLoaded = true;
-        }
-
-        return self::$gapicVersion;
-    }
 
     /**
      * Return an OperationsClient object with the same endpoint as $this.
@@ -167,12 +145,9 @@ class SpeechGapicClient
      */
     public function resumeOperation($operationName, $methodName = null)
     {
-        $lroDescriptors = self::getLongRunningDescriptors();
-        if (!is_null($methodName) && array_key_exists($methodName, $lroDescriptors)) {
-            $options = $lroDescriptors[$methodName];
-        } else {
-            $options = [];
-        }
+        $options = isset($this->descriptors[$methodName]['longRunning'])
+            ? $this->descriptors[$methodName]['longRunning']
+            : [];
         $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
         $operation->reload();
 
@@ -189,16 +164,19 @@ class SpeechGapicClient
      *                                  Default 'speech.googleapis.com'.
      *     @type mixed $port The port on which to connect to the remote host. Default 443.
      *     @type \Grpc\Channel $channel
-     *           A `Channel` object to be used by gRPC. If not specified, a channel will be constructed.
+     *           A `Channel` object. If not specified, a channel will be constructed.
+     *           NOTE: This option is only valid when utilizing the gRPC transport.
      *     @type \Grpc\ChannelCredentials $sslCreds
      *           A `ChannelCredentials` object for use with an SSL-enabled channel.
      *           Default: a credentials object returned from
-     *           \Grpc\ChannelCredentials::createSsl()
-     *           NOTE: if the $channel optional argument is specified, then this argument is unused.
+     *           \Grpc\ChannelCredentials::createSsl().
+     *           NOTE: This option is only valid when utilizing the gRPC transport. Also, if the $channel
+     *           optional argument is specified, then this argument is unused.
      *     @type bool $forceNewChannel
      *           If true, this forces gRPC to create a new channel instead of using a persistent channel.
      *           Defaults to false.
-     *           NOTE: if the $channel optional argument is specified, then this option is unused.
+     *           NOTE: This option is only valid when utilizing the gRPC transport. Also, if the $channel
+     *           optional argument is specified, then this option is unused.
      *     @type \Google\Auth\CredentialsLoader $credentialsLoader
      *           A CredentialsLoader object created using the Google\Auth library.
      *     @type array $scopes A string array of scopes to use when acquiring credentials.
@@ -217,80 +195,31 @@ class SpeechGapicClient
      *           for example usage. Passing a value of null is equivalent to a value of
      *           ['retriesEnabled' => false]. Retry settings provided in this setting override the
      *           settings in $clientConfigPath.
+     *     @type callable $authHttpHandler A handler used to deliver PSR-7 requests specifically
+     *           for authentication. Should match a signature of
+     *           `function (RequestInterface $request, array $options) : ResponseInterface`
+     *           NOTE: This option is only valid when utilizing the REST transport.
+     *     @type callable $httpHandler A handler used to deliver PSR-7 requests. Should match a
+     *           signature of `function (RequestInterface $request, array $options) : PromiseInterface`
+     *           NOTE: This option is only valid when utilizing the REST transport.
+     *     @type string|ApiTransportInterface $transport The transport used for executing network
+     *           requests. May be either the string `rest` or `grpc`. Additionally, it is possible
+     *           to pass in an already instantiated transport. Defaults to `grpc` if gRPC support is
+     *           detected on the system.
      * }
      * @experimental
      */
     public function __construct($options = [])
     {
-        $defaultOptions = [
-            'serviceAddress' => self::SERVICE_ADDRESS,
-            'port' => self::DEFAULT_SERVICE_PORT,
-            'scopes' => [
-                'https://www.googleapis.com/auth/cloud-platform',
-            ],
-            'retryingOverride' => null,
-            'libName' => null,
-            'libVersion' => null,
-            'clientConfigPath' => __DIR__.'/../resources/speech_client_config.json',
-        ];
-        $options = array_merge($defaultOptions, $options);
-
-        if (array_key_exists('operationsClient', $options)) {
-            $this->operationsClient = $options['operationsClient'];
-        } else {
-            $operationsClientOptions = $options;
-            unset($operationsClientOptions['retryingOverride']);
-            unset($operationsClientOptions['clientConfigPath']);
-            $this->operationsClient = new OperationsClient($operationsClientOptions);
-        }
-
-        $gapicVersion = $options['libVersion'] ?: self::getGapicVersion();
-
-        $headerDescriptor = new AgentHeaderDescriptor([
-            'libName' => $options['libName'],
-            'libVersion' => $options['libVersion'],
-            'gapicVersion' => $gapicVersion,
-        ]);
-
-        $defaultDescriptors = ['headerDescriptor' => $headerDescriptor];
-        $this->descriptors = [
-            'recognize' => $defaultDescriptors,
-            'longRunningRecognize' => $defaultDescriptors,
-            'streamingRecognize' => $defaultDescriptors,
-        ];
-        $longRunningDescriptors = self::getLongRunningDescriptors();
-        foreach ($longRunningDescriptors as $method => $longRunningDescriptor) {
-            $this->descriptors[$method]['longRunningDescriptor'] = $longRunningDescriptor + ['operationsClient' => $this->operationsClient];
-        }
-        $grpcStreamingDescriptors = self::getGrpcStreamingDescriptors();
-        foreach ($grpcStreamingDescriptors as $method => $grpcStreamingDescriptor) {
-            $this->descriptors[$method]['grpcStreamingDescriptor'] = $grpcStreamingDescriptor;
-        }
-
-        $clientConfigJsonString = file_get_contents($options['clientConfigPath']);
-        $clientConfig = json_decode($clientConfigJsonString, true);
-        $this->defaultCallSettings =
-                CallSettings::load(
-                    'google.cloud.speech.v1.Speech',
-                    $clientConfig,
-                    $options['retryingOverride']
-                );
-
-        $this->scopes = $options['scopes'];
-
-        $createStubOptions = [];
-        if (array_key_exists('sslCreds', $options)) {
-            $createStubOptions['sslCreds'] = $options['sslCreds'];
-        }
-        $this->grpcCredentialsHelper = new GrpcCredentialsHelper($options);
-
-        $createSpeechStubFunction = function ($hostname, $opts, $channel) {
-            return new SpeechGrpcClient($hostname, $opts, $channel);
-        };
-        if (array_key_exists('createSpeechStubFunction', $options)) {
-            $createSpeechStubFunction = $options['createSpeechStubFunction'];
-        }
-        $this->speechStub = $this->grpcCredentialsHelper->createStub($createSpeechStubFunction);
+        $options += self::$clientDefaults;
+        $this->setClientOptions($options);
+        $this->pluckArray([
+            'serviceName',
+            'clientConfigPath',
+            'restClientConfigPath',
+            'descriptorsConfigPath',
+        ], $options);
+        $this->operationsClient = new OperationsClient($options);
     }
 
     /**
@@ -341,24 +270,14 @@ class SpeechGapicClient
         $request->setConfig($config);
         $request->setAudio($audio);
 
-        $defaultCallSettings = $this->defaultCallSettings['recognize'];
-        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
-            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
-                $optionalArgs['retrySettings']
-            );
-        }
-        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
-        $callable = ApiCallable::createApiCall(
-            $this->speechStub,
-            'Recognize',
-            $mergedSettings,
-            $this->descriptors['recognize']
-        );
-
-        return $callable(
-            $request,
-            [],
-            ['call_credentials_callback' => $this->createCredentialsCallback()]);
+        return $this->startCall(
+            new Call(
+                self::SERVICE_NAME.'/Recognize',
+                RecognizeResponse::class,
+                $request
+            ),
+            $this->configureCallSettings('recognize', $optionalArgs)
+        )->wait();
     }
 
     /**
@@ -436,24 +355,17 @@ class SpeechGapicClient
         $request->setConfig($config);
         $request->setAudio($audio);
 
-        $defaultCallSettings = $this->defaultCallSettings['longRunningRecognize'];
-        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
-            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
-                $optionalArgs['retrySettings']
-            );
-        }
-        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
-        $callable = ApiCallable::createApiCall(
-            $this->speechStub,
-            'LongRunningRecognize',
-            $mergedSettings,
-            $this->descriptors['longRunningRecognize']
-        );
-
-        return $callable(
-            $request,
-            [],
-            ['call_credentials_callback' => $this->createCredentialsCallback()]);
+        return $this->startOperationsCall(
+            new Call(
+                self::SERVICE_NAME.'/LongRunningRecognize',
+                Operation::class,
+                $request
+            ),
+            $this->configureCallSettings('longRunningRecognize', $optionalArgs),
+            $this->descriptors['longRunningRecognize']['longRunning'] + [
+                'operationsClient' => $this->getOperationsClient(),
+            ]
+        )->wait();
     }
 
     /**
@@ -510,31 +422,14 @@ class SpeechGapicClient
      */
     public function streamingRecognize($optionalArgs = [])
     {
-        if (array_key_exists('timeoutMillis', $optionalArgs)) {
-            $optionalArgs['retrySettings'] = [
-                'retriesEnabled' => false,
-                'noRetriesRpcTimeoutMillis' => $optionalArgs['timeoutMillis'],
-            ];
-        }
-
-        $defaultCallSettings = $this->defaultCallSettings['streamingRecognize'];
-        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
-            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
-                $optionalArgs['retrySettings']
-            );
-        }
-        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
-        $callable = ApiCallable::createApiCall(
-            $this->speechStub,
-            'StreamingRecognize',
-            $mergedSettings,
-            $this->descriptors['streamingRecognize']
+        return $this->transport->startBidiStreamingCall(
+            new Call(
+                self::SERVICE_NAME.'/StreamingRecognize',
+                StreamingRecognizeResponse::class
+            ),
+            $this->configureCallSettings('streamingRecognize', $optionalArgs),
+            $this->descriptors['streamingRecognize']['grpcStreaming']
         );
-
-        return $callable(
-            null,
-            [],
-            ['call_credentials_callback' => $this->createCredentialsCallback()]);
     }
 
     /**
@@ -545,11 +440,6 @@ class SpeechGapicClient
      */
     public function close()
     {
-        $this->speechStub->close();
-    }
-
-    private function createCredentialsCallback()
-    {
-        return $this->grpcCredentialsHelper->createCallCredentialsCallback();
+        $this->transport->close();
     }
 }
