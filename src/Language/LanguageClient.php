@@ -66,9 +66,9 @@ class LanguageClient
     /**
      * Create a Language client.
      *
-     * Note that when creating a LanguageClient, setting `$config.projectId` is
-     * not supported. To switch between projects, you must provide credentials
-     * with access to the project.
+     * Note that when creating a LanguageClient instance, setting
+     * `$config.projectId` is not supported. To switch between projects, you
+     * must provide credentials with access to the project.
      *
      * @param array $config [optional] {
      *     Configuration Options.

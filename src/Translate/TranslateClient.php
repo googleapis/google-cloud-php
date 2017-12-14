@@ -70,6 +70,10 @@ class TranslateClient
     /**
      * Create a Translate client.
      *
+     * Note that when creating a TranslateClient instance, setting
+     * `$config.projectId` is not supported. To switch between projects, you
+     * must provide credentials with access to the project.
+     *
      * @param array $config [optional] {
      *     Configuration Options.
      *
@@ -77,8 +81,6 @@ class TranslateClient
      *     @type string $target The target language to assign to the client.
      *           Must be a valid ISO 639-1 language code. **Defaults to** `"en"`
      *           (English).
-     *     @type string $projectId The project ID from the Google Developer's
-     *           Console.
      *     @type CacheItemPoolInterface $authCache A cache used storing access
      *           tokens. **Defaults to** a simple in memory implementation.
      *     @type array $authCacheOptions Cache configuration options.
