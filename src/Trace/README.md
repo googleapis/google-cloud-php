@@ -41,7 +41,9 @@ $client->insert($trace);
 We highly recommend using the [OpenCensus][opencensus] project to instrument
 your application. OpenCensus is an open source, distributed tracing framework
 that maintains integrations with popular frameworks and tools. OpenCensus
-provides a data exporter for Stackdriver Trace which uses this library.
+provides a data exporter for Stackdriver Trace which uses this library. If you
+were using google/cloud-trace <= v0.3.3 or google/cloud  <= 0.46.0, then check
+out the [migration guide to OpenCensus][opencensus-migration].
 
 Install with `composer` or add to your `composer.json`.
 
@@ -67,3 +69,4 @@ options and features.
 [github-home]: https://github.com/googlecloudplatform/google-cloud-php
 [opencensus]: http://opencensus.io
 [opencensus-php]: https://github.com/census-instrumentation/opencensus-php
+[opencensus-migration]: http://opencensus.io/opencensus-php/migrating-stackdriver-trace
