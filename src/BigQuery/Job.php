@@ -32,7 +32,7 @@ class Job
     use ArrayTrait;
     use JobWaitTrait;
 
-    const MAX_RETRIES = 100;
+    const MAX_RETRIES = INF;
 
     /**
      * @var ConnectionInterface Represents a connection to BigQuery.
@@ -178,8 +178,8 @@ class Job
      * @param array $options [optional] {
      *     Configuration options.
      *
-     *     @type int $maxRetries The number of times to retry, checking if the
-     *           job has completed. **Defaults to** `100`.
+     *     @type int $maxRetries The number of times to poll the Job status,
+     *           until the job is complete. By default, will poll indefinitely.
      * }
      * @throws JobException If the maximum number of retries while waiting for
      *         job completion has been exceeded.
