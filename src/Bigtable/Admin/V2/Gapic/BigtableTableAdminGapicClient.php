@@ -592,9 +592,8 @@ class BigtableTableAdminGapicClient
                 $request
             ),
             $this->configureCallSettings('createTableFromSnapshot', $optionalArgs),
-            $this->descriptors['createTableFromSnapshot']['longRunning'] + [
-                'operationsClient' => $this->getOperationsClient(),
-            ]
+            $this->getOperationsClient(),
+            $this->descriptors['createTableFromSnapshot']['longRunning']
         )->wait();
     }
 

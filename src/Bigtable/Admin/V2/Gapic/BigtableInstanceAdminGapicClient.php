@@ -570,9 +570,8 @@ class BigtableInstanceAdminGapicClient
                 $request
             ),
             $this->configureCallSettings('createInstance', $optionalArgs),
-            $this->descriptors['createInstance']['longRunning'] + [
-                'operationsClient' => $this->getOperationsClient(),
-            ]
+            $this->getOperationsClient(),
+            $this->descriptors['createInstance']['longRunning']
         )->wait();
     }
 
@@ -920,9 +919,8 @@ class BigtableInstanceAdminGapicClient
                 $request
             ),
             $this->configureCallSettings('createCluster', $optionalArgs),
-            $this->descriptors['createCluster']['longRunning'] + [
-                'operationsClient' => $this->getOperationsClient(),
-            ]
+            $this->getOperationsClient(),
+            $this->descriptors['createCluster']['longRunning']
         )->wait();
     }
 
@@ -1120,9 +1118,8 @@ class BigtableInstanceAdminGapicClient
                 $request
             ),
             $this->configureCallSettings('updateCluster', $optionalArgs),
-            $this->descriptors['updateCluster']['longRunning'] + [
-                'operationsClient' => $this->getOperationsClient(),
-            ]
+            $this->getOperationsClient(),
+            $this->descriptors['updateCluster']['longRunning']
         )->wait();
     }
 

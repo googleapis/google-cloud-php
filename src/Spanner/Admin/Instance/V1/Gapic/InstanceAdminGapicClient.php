@@ -782,9 +782,8 @@ class InstanceAdminGapicClient
                 $request
             ),
             $this->configureCallSettings('createInstance', $optionalArgs),
-            $this->descriptors['createInstance']['longRunning'] + [
-                'operationsClient' => $this->getOperationsClient(),
-            ]
+            $this->getOperationsClient(),
+            $this->descriptors['createInstance']['longRunning']
         )->wait();
     }
 
@@ -901,9 +900,8 @@ class InstanceAdminGapicClient
                 $request
             ),
             $this->configureCallSettings('updateInstance', $optionalArgs),
-            $this->descriptors['updateInstance']['longRunning'] + [
-                'operationsClient' => $this->getOperationsClient(),
-            ]
+            $this->getOperationsClient(),
+            $this->descriptors['updateInstance']['longRunning']
         )->wait();
     }
 

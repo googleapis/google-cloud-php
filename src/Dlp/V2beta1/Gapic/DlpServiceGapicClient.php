@@ -590,9 +590,8 @@ class DlpServiceGapicClient
                 $request
             ),
             $this->configureCallSettings('analyzeDataSourceRisk', $optionalArgs),
-            $this->descriptors['analyzeDataSourceRisk']['longRunning'] + [
-                'operationsClient' => $this->getOperationsClient(),
-            ]
+            $this->getOperationsClient(),
+            $this->descriptors['analyzeDataSourceRisk']['longRunning']
         )->wait();
     }
 
@@ -686,9 +685,8 @@ class DlpServiceGapicClient
                 $request
             ),
             $this->configureCallSettings('createInspectOperation', $optionalArgs),
-            $this->descriptors['createInspectOperation']['longRunning'] + [
-                'operationsClient' => $this->getOperationsClient(),
-            ]
+            $this->getOperationsClient(),
+            $this->descriptors['createInspectOperation']['longRunning']
         )->wait();
     }
 

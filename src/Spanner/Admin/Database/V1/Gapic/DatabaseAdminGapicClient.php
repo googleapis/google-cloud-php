@@ -527,9 +527,8 @@ class DatabaseAdminGapicClient
                 $request
             ),
             $this->configureCallSettings('createDatabase', $optionalArgs),
-            $this->descriptors['createDatabase']['longRunning'] + [
-                'operationsClient' => $this->getOperationsClient(),
-            ]
+            $this->getOperationsClient(),
+            $this->descriptors['createDatabase']['longRunning']
         )->wait();
     }
 
@@ -676,9 +675,8 @@ class DatabaseAdminGapicClient
                 $request
             ),
             $this->configureCallSettings('updateDatabaseDdl', $optionalArgs),
-            $this->descriptors['updateDatabaseDdl']['longRunning'] + [
-                'operationsClient' => $this->getOperationsClient(),
-            ]
+            $this->getOperationsClient(),
+            $this->descriptors['updateDatabaseDdl']['longRunning']
         )->wait();
     }
 

@@ -352,9 +352,8 @@ class VideoIntelligenceServiceGapicClient
                 $request
             ),
             $this->configureCallSettings('annotateVideo', $optionalArgs),
-            $this->descriptors['annotateVideo']['longRunning'] + [
-                'operationsClient' => $this->getOperationsClient(),
-            ]
+            $this->getOperationsClient(),
+            $this->descriptors['annotateVideo']['longRunning']
         )->wait();
     }
 

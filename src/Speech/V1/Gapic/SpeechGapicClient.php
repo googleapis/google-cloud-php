@@ -365,9 +365,8 @@ class SpeechGapicClient
                 $request
             ),
             $this->configureCallSettings('longRunningRecognize', $optionalArgs),
-            $this->descriptors['longRunningRecognize']['longRunning'] + [
-                'operationsClient' => $this->getOperationsClient(),
-            ]
+            $this->getOperationsClient(),
+            $this->descriptors['longRunningRecognize']['longRunning']
         )->wait();
     }
 
