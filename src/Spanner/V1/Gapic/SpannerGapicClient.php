@@ -762,7 +762,7 @@ class SpannerGapicClient
         return $this->transport->startServerStreamingCall(
             new Call(
                 self::SERVICE_NAME.'/ExecuteStreamingSql',
-                \Google\ApiCore\ServerStream::class,
+                PartialResultSet::class,
                 $request
             ),
             $this->configureCallSettings('executeStreamingSql', $optionalArgs),
@@ -966,7 +966,7 @@ class SpannerGapicClient
         return $this->transport->startServerStreamingCall(
             new Call(
                 self::SERVICE_NAME.'/StreamingRead',
-                \Google\ApiCore\ServerStream::class,
+                PartialResultSet::class,
                 $request
             ),
             $this->configureCallSettings('streamingRead', $optionalArgs),

@@ -36,6 +36,7 @@ use Google\ApiCore\PathTemplate;
 use Google\ApiCore\Transport\ApiTransportInterface;
 use Google\ApiCore\ValidationException;
 use Google\Cloud\Firestore\V1beta1\BatchGetDocumentsRequest;
+use Google\Cloud\Firestore\V1beta1\BatchGetDocumentsResponse;
 use Google\Cloud\Firestore\V1beta1\BeginTransactionRequest;
 use Google\Cloud\Firestore\V1beta1\BeginTransactionResponse;
 use Google\Cloud\Firestore\V1beta1\CommitRequest;
@@ -54,6 +55,7 @@ use Google\Cloud\Firestore\V1beta1\ListenResponse;
 use Google\Cloud\Firestore\V1beta1\Precondition;
 use Google\Cloud\Firestore\V1beta1\RollbackRequest;
 use Google\Cloud\Firestore\V1beta1\RunQueryRequest;
+use Google\Cloud\Firestore\V1beta1\RunQueryResponse;
 use Google\Cloud\Firestore\V1beta1\StructuredQuery;
 use Google\Cloud\Firestore\V1beta1\Target;
 use Google\Cloud\Firestore\V1beta1\TransactionOptions;
@@ -828,7 +830,7 @@ class FirestoreGapicClient
         return $this->transport->startServerStreamingCall(
             new Call(
                 self::SERVICE_NAME.'/BatchGetDocuments',
-                \Google\ApiCore\ServerStream::class,
+                BatchGetDocumentsResponse::class,
                 $request
             ),
             $this->configureCallSettings('batchGetDocuments', $optionalArgs),
@@ -1059,7 +1061,7 @@ class FirestoreGapicClient
         return $this->transport->startServerStreamingCall(
             new Call(
                 self::SERVICE_NAME.'/RunQuery',
-                \Google\ApiCore\ServerStream::class,
+                RunQueryResponse::class,
                 $request
             ),
             $this->configureCallSettings('runQuery', $optionalArgs),

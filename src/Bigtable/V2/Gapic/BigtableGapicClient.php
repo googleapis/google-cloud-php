@@ -41,6 +41,7 @@ use Google\Cloud\Bigtable\V2\MutateRowRequest;
 use Google\Cloud\Bigtable\V2\MutateRowResponse;
 use Google\Cloud\Bigtable\V2\MutateRowsRequest;
 use Google\Cloud\Bigtable\V2\MutateRowsRequest_Entry as Entry;
+use Google\Cloud\Bigtable\V2\MutateRowsResponse;
 use Google\Cloud\Bigtable\V2\Mutation;
 use Google\Cloud\Bigtable\V2\ReadModifyWriteRowRequest;
 use Google\Cloud\Bigtable\V2\ReadModifyWriteRowResponse;
@@ -50,6 +51,7 @@ use Google\Cloud\Bigtable\V2\ReadRowsResponse;
 use Google\Cloud\Bigtable\V2\RowFilter;
 use Google\Cloud\Bigtable\V2\RowSet;
 use Google\Cloud\Bigtable\V2\SampleRowKeysRequest;
+use Google\Cloud\Bigtable\V2\SampleRowKeysResponse;
 
 /**
  * Service Description: Service for reading from and writing to existing Bigtable tables.
@@ -344,7 +346,7 @@ class BigtableGapicClient
         return $this->transport->startServerStreamingCall(
             new Call(
                 self::SERVICE_NAME.'/ReadRows',
-                \Google\ApiCore\ServerStream::class,
+                ReadRowsResponse::class,
                 $request
             ),
             $this->configureCallSettings('readRows', $optionalArgs),
@@ -407,7 +409,7 @@ class BigtableGapicClient
         return $this->transport->startServerStreamingCall(
             new Call(
                 self::SERVICE_NAME.'/SampleRowKeys',
-                \Google\ApiCore\ServerStream::class,
+                SampleRowKeysResponse::class,
                 $request
             ),
             $this->configureCallSettings('sampleRowKeys', $optionalArgs),
@@ -541,7 +543,7 @@ class BigtableGapicClient
         return $this->transport->startServerStreamingCall(
             new Call(
                 self::SERVICE_NAME.'/MutateRows',
-                \Google\ApiCore\ServerStream::class,
+                MutateRowsResponse::class,
                 $request
             ),
             $this->configureCallSettings('mutateRows', $optionalArgs),
