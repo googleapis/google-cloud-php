@@ -62,6 +62,11 @@ class QueryResults implements \IteratorAggregate
     private $mapper;
 
     /**
+     * @param int|null
+     */
+    private $maxRetries;
+
+    /**
      * @param ConnectionInterface $connection Represents a connection to
      *        BigQuery.
      * @param string $jobId The job's ID.
@@ -69,6 +74,7 @@ class QueryResults implements \IteratorAggregate
      * @param array $info The query result's metadata.
      * @param ValueMapper $mapper Maps values between PHP and BigQuery.
      * @param Job $job The job from which the query results originated.
+     * @param int|null $maxRetries The maximum number of times to retry before stopping.
      */
     public function __construct(
         ConnectionInterface $connection,
@@ -76,7 +82,8 @@ class QueryResults implements \IteratorAggregate
         $projectId,
         array $info,
         ValueMapper $mapper,
-        Job $job
+        Job $job,
+        $maxRetries = null
     ) {
         $this->connection = $connection;
         $this->info = $info;
@@ -86,6 +93,7 @@ class QueryResults implements \IteratorAggregate
         ];
         $this->mapper = $mapper;
         $this->job = $job;
+        $this->maxRetries = $maxRetries;
     }
 
     /**
@@ -194,7 +202,7 @@ class QueryResults implements \IteratorAggregate
      */
     public function waitUntilComplete(array $options = [])
     {
-        $maxRetries = $this->pluck('maxRetries', $options, false);
+        $maxRetries = $this->pluck('maxRetries', $options, false) ? : $this->maxRetries;
         $this->wait(
             function () {
                 return $this->isComplete();
