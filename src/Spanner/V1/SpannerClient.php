@@ -30,8 +30,8 @@
 
 namespace Google\Cloud\Spanner\V1;
 
+use Google\ApiCore\Transport\ApiTransportInterface;
 use Google\Cloud\Spanner\V1\Gapic\SpannerGapicClient;
-use Google\ApiCore\GrpcCredentialsHelper;
 use Google\Cloud\Spanner\V1\SpannerGrpcClient;
 
 /**
@@ -40,26 +40,14 @@ use Google\Cloud\Spanner\V1\SpannerGrpcClient;
 class SpannerClient extends SpannerGapicClient
 {
     /**
-     * Returns the underlying stub.
+     * Returns the underlying transport.
      *
      * @access private
-     * @return SpannerGrpcClient
+     * @return ApiTransportInterface
      * @experimental
      */
-    public function getStub()
+    public function getTransport()
     {
-        return $this->spannerStub;
-    }
-
-    /**
-     * Returns the underlying gRPC credentials helper.
-     *
-     * @access private
-     * @return GrpcCredentialsHelper
-     * @experimental
-     */
-    public function getCredentialsHelper()
-    {
-        return $this->grpcCredentialsHelper;
+        return $this->transport;
     }
 }
