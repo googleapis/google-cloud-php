@@ -8,7 +8,7 @@ return [
                 'uri' => '/v1beta1/{project_name=projects/*}/groupStats',
                 'placeholders' => [
                     'project_name' => [
-                        'getProject_name',
+                        'getProjectName',
                     ],
                 ],
             ],
@@ -17,7 +17,7 @@ return [
                 'uri' => '/v1beta1/{project_name=projects/*}/events',
                 'placeholders' => [
                     'project_name' => [
-                        'getProject_name',
+                        'getProjectName',
                     ],
                 ],
             ],
@@ -26,7 +26,7 @@ return [
                 'uri' => '/v1beta1/{project_name=projects/*}/events',
                 'placeholders' => [
                     'project_name' => [
-                        'getProject_name',
+                        'getProjectName',
                     ],
                 ],
             ],

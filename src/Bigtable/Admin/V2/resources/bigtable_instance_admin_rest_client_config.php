@@ -142,7 +142,7 @@ return [
                 'body' => 'app_profile',
                 'placeholders' => [
                     'app_profile.name' => [
-                        'getApp_profile',
+                        'getAppProfile',
                         'getName',
                     ],
                 ],

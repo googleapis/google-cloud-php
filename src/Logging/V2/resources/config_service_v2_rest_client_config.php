@@ -17,7 +17,7 @@ return [
                 'uri' => '/v2/{sink_name=*/*/sinks/*}',
                 'placeholders' => [
                     'sink_name' => [
-                        'getSink_name',
+                        'getSinkName',
                     ],
                 ],
             ],
@@ -37,7 +37,7 @@ return [
                 'body' => 'sink',
                 'placeholders' => [
                     'sink_name' => [
-                        'getSink_name',
+                        'getSinkName',
                     ],
                 ],
             ],
@@ -46,7 +46,7 @@ return [
                 'uri' => '/v2/{sink_name=*/*/sinks/*}',
                 'placeholders' => [
                     'sink_name' => [
-                        'getSink_name',
+                        'getSinkName',
                     ],
                 ],
             ],

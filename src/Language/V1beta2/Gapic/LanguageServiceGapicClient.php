@@ -101,17 +101,20 @@ class LanguageServiceGapicClient
      */
     const CODEGEN_VERSION = '0.0.5';
 
-    private static $clientDefaults = [
-        'serviceName' => self::SERVICE_NAME,
-        'serviceAddress' => self::SERVICE_ADDRESS,
-        'port' => self::DEFAULT_SERVICE_PORT,
-        'scopes' => [
-            'https://www.googleapis.com/auth/cloud-platform',
-        ],
-        'clientConfigPath' => __DIR__.'/../resources/language_service_client_config.json',
-        'restClientConfigPath' => __DIR__.'/../resources/language_service_rest_client_config.php',
-        'descriptorsConfigPath' => __DIR__.'/../resources/language_service_descriptor_config.php',
-    ];
+    private static function getClientDefaults()
+    {
+        return [
+            'serviceName' => self::SERVICE_NAME,
+            'serviceAddress' => self::SERVICE_ADDRESS,
+            'port' => self::DEFAULT_SERVICE_PORT,
+            'scopes' => [
+                'https://www.googleapis.com/auth/cloud-platform',
+            ],
+            'clientConfigPath' => __DIR__.'/../resources/language_service_client_config.json',
+            'restClientConfigPath' => __DIR__.'/../resources/language_service_rest_client_config.php',
+            'descriptorsConfigPath' => __DIR__.'/../resources/language_service_descriptor_config.php',
+        ];
+    }
 
     /**
      * Constructor.
@@ -170,7 +173,7 @@ class LanguageServiceGapicClient
      */
     public function __construct($options = [])
     {
-        $this->setClientOptions($options + self::$clientDefaults);
+        $this->setClientOptions($options + self::getClientDefaults());
     }
 
     /**

@@ -151,20 +151,24 @@ class InstanceAdminGapicClient
     private static $instanceConfigNameTemplate;
     private static $instanceNameTemplate;
     private static $pathTemplateMap;
-    private static $clientDefaults = [
-        'serviceName' => self::SERVICE_NAME,
-        'serviceAddress' => self::SERVICE_ADDRESS,
-        'port' => self::DEFAULT_SERVICE_PORT,
-        'scopes' => [
-            'https://www.googleapis.com/auth/cloud-platform',
-            'https://www.googleapis.com/auth/spanner.admin',
-        ],
-        'clientConfigPath' => __DIR__.'/../resources/instance_admin_client_config.json',
-        'restClientConfigPath' => __DIR__.'/../resources/instance_admin_rest_client_config.php',
-        'descriptorsConfigPath' => __DIR__.'/../resources/instance_admin_descriptor_config.php',
-    ];
 
     private $operationsClient;
+
+    private static function getClientDefaults()
+    {
+        return [
+            'serviceName' => self::SERVICE_NAME,
+            'serviceAddress' => self::SERVICE_ADDRESS,
+            'port' => self::DEFAULT_SERVICE_PORT,
+            'scopes' => [
+                'https://www.googleapis.com/auth/cloud-platform',
+                'https://www.googleapis.com/auth/spanner.admin',
+            ],
+            'clientConfigPath' => __DIR__.'/../resources/instance_admin_client_config.json',
+            'restClientConfigPath' => __DIR__.'/../resources/instance_admin_rest_client_config.php',
+            'descriptorsConfigPath' => __DIR__.'/../resources/instance_admin_descriptor_config.php',
+        ];
+    }
 
     private static function getProjectNameTemplate()
     {
@@ -393,7 +397,7 @@ class InstanceAdminGapicClient
      */
     public function __construct($options = [])
     {
-        $options += self::$clientDefaults;
+        $options += self::getClientDefaults();
         $this->setClientOptions($options);
         $this->pluckArray([
             'serviceName',

@@ -130,27 +130,31 @@ class BigtableTableAdminGapicClient
     private static $snapshotNameTemplate;
     private static $tableNameTemplate;
     private static $pathTemplateMap;
-    private static $clientDefaults = [
-        'serviceName' => self::SERVICE_NAME,
-        'serviceAddress' => self::SERVICE_ADDRESS,
-        'port' => self::DEFAULT_SERVICE_PORT,
-        'scopes' => [
-            'https://www.googleapis.com/auth/bigtable.admin',
-            'https://www.googleapis.com/auth/bigtable.admin.cluster',
-            'https://www.googleapis.com/auth/bigtable.admin.instance',
-            'https://www.googleapis.com/auth/bigtable.admin.table',
-            'https://www.googleapis.com/auth/cloud-bigtable.admin',
-            'https://www.googleapis.com/auth/cloud-bigtable.admin.cluster',
-            'https://www.googleapis.com/auth/cloud-bigtable.admin.table',
-            'https://www.googleapis.com/auth/cloud-platform',
-            'https://www.googleapis.com/auth/cloud-platform.read-only',
-        ],
-        'clientConfigPath' => __DIR__.'/../resources/bigtable_table_admin_client_config.json',
-        'restClientConfigPath' => __DIR__.'/../resources/bigtable_table_admin_rest_client_config.php',
-        'descriptorsConfigPath' => __DIR__.'/../resources/bigtable_table_admin_descriptor_config.php',
-    ];
 
     private $operationsClient;
+
+    private static function getClientDefaults()
+    {
+        return [
+            'serviceName' => self::SERVICE_NAME,
+            'serviceAddress' => self::SERVICE_ADDRESS,
+            'port' => self::DEFAULT_SERVICE_PORT,
+            'scopes' => [
+                'https://www.googleapis.com/auth/bigtable.admin',
+                'https://www.googleapis.com/auth/bigtable.admin.cluster',
+                'https://www.googleapis.com/auth/bigtable.admin.instance',
+                'https://www.googleapis.com/auth/bigtable.admin.table',
+                'https://www.googleapis.com/auth/cloud-bigtable.admin',
+                'https://www.googleapis.com/auth/cloud-bigtable.admin.cluster',
+                'https://www.googleapis.com/auth/cloud-bigtable.admin.table',
+                'https://www.googleapis.com/auth/cloud-platform',
+                'https://www.googleapis.com/auth/cloud-platform.read-only',
+            ],
+            'clientConfigPath' => __DIR__.'/../resources/bigtable_table_admin_client_config.json',
+            'restClientConfigPath' => __DIR__.'/../resources/bigtable_table_admin_rest_client_config.php',
+            'descriptorsConfigPath' => __DIR__.'/../resources/bigtable_table_admin_descriptor_config.php',
+        ];
+    }
 
     private static function getInstanceNameTemplate()
     {
@@ -418,7 +422,7 @@ class BigtableTableAdminGapicClient
      */
     public function __construct($options = [])
     {
-        $options += self::$clientDefaults;
+        $options += self::getClientDefaults();
         $this->setClientOptions($options);
         $this->pluckArray([
             'serviceName',

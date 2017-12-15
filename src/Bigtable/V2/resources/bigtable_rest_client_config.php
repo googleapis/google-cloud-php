@@ -9,7 +9,7 @@ return [
                 'body' => '*',
                 'placeholders' => [
                     'table_name' => [
-                        'getTable_name',
+                        'getTableName',
                     ],
                 ],
             ],
@@ -18,7 +18,7 @@ return [
                 'uri' => '/v2/{table_name=projects/*/instances/*/tables/*}:sampleRowKeys',
                 'placeholders' => [
                     'table_name' => [
-                        'getTable_name',
+                        'getTableName',
                     ],
                 ],
             ],
@@ -28,7 +28,7 @@ return [
                 'body' => '*',
                 'placeholders' => [
                     'table_name' => [
-                        'getTable_name',
+                        'getTableName',
                     ],
                 ],
             ],
@@ -38,7 +38,7 @@ return [
                 'body' => '*',
                 'placeholders' => [
                     'table_name' => [
-                        'getTable_name',
+                        'getTableName',
                     ],
                 ],
             ],
@@ -48,7 +48,7 @@ return [
                 'body' => '*',
                 'placeholders' => [
                     'table_name' => [
-                        'getTable_name',
+                        'getTableName',
                     ],
                 ],
             ],
@@ -58,7 +58,7 @@ return [
                 'body' => '*',
                 'placeholders' => [
                     'table_name' => [
-                        'getTable_name',
+                        'getTableName',
                     ],
                 ],
             ],

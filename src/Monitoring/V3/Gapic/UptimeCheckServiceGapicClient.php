@@ -125,20 +125,24 @@ class UptimeCheckServiceGapicClient
     private static $projectNameTemplate;
     private static $uptimeCheckConfigNameTemplate;
     private static $pathTemplateMap;
-    private static $clientDefaults = [
-        'serviceName' => self::SERVICE_NAME,
-        'serviceAddress' => self::SERVICE_ADDRESS,
-        'port' => self::DEFAULT_SERVICE_PORT,
-        'scopes' => [
-            'https://www.googleapis.com/auth/cloud-platform',
-            'https://www.googleapis.com/auth/monitoring',
-            'https://www.googleapis.com/auth/monitoring.read',
-            'https://www.googleapis.com/auth/monitoring.write',
-        ],
-        'clientConfigPath' => __DIR__.'/../resources/uptime_check_service_client_config.json',
-        'restClientConfigPath' => __DIR__.'/../resources/uptime_check_service_rest_client_config.php',
-        'descriptorsConfigPath' => __DIR__.'/../resources/uptime_check_service_descriptor_config.php',
-    ];
+
+    private static function getClientDefaults()
+    {
+        return [
+            'serviceName' => self::SERVICE_NAME,
+            'serviceAddress' => self::SERVICE_ADDRESS,
+            'port' => self::DEFAULT_SERVICE_PORT,
+            'scopes' => [
+                'https://www.googleapis.com/auth/cloud-platform',
+                'https://www.googleapis.com/auth/monitoring',
+                'https://www.googleapis.com/auth/monitoring.read',
+                'https://www.googleapis.com/auth/monitoring.write',
+            ],
+            'clientConfigPath' => __DIR__.'/../resources/uptime_check_service_client_config.json',
+            'restClientConfigPath' => __DIR__.'/../resources/uptime_check_service_rest_client_config.php',
+            'descriptorsConfigPath' => __DIR__.'/../resources/uptime_check_service_descriptor_config.php',
+        ];
+    }
 
     private static function getProjectNameTemplate()
     {
@@ -303,7 +307,7 @@ class UptimeCheckServiceGapicClient
      */
     public function __construct($options = [])
     {
-        $this->setClientOptions($options + self::$clientDefaults);
+        $this->setClientOptions($options + self::getClientDefaults());
     }
 
     /**

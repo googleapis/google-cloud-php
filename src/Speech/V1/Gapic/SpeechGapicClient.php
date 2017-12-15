@@ -105,19 +105,22 @@ class SpeechGapicClient
      */
     const CODEGEN_VERSION = '0.0.5';
 
-    private static $clientDefaults = [
-        'serviceName' => self::SERVICE_NAME,
-        'serviceAddress' => self::SERVICE_ADDRESS,
-        'port' => self::DEFAULT_SERVICE_PORT,
-        'scopes' => [
-            'https://www.googleapis.com/auth/cloud-platform',
-        ],
-        'clientConfigPath' => __DIR__.'/../resources/speech_client_config.json',
-        'restClientConfigPath' => __DIR__.'/../resources/speech_rest_client_config.php',
-        'descriptorsConfigPath' => __DIR__.'/../resources/speech_descriptor_config.php',
-    ];
-
     private $operationsClient;
+
+    private static function getClientDefaults()
+    {
+        return [
+            'serviceName' => self::SERVICE_NAME,
+            'serviceAddress' => self::SERVICE_ADDRESS,
+            'port' => self::DEFAULT_SERVICE_PORT,
+            'scopes' => [
+                'https://www.googleapis.com/auth/cloud-platform',
+            ],
+            'clientConfigPath' => __DIR__.'/../resources/speech_client_config.json',
+            'restClientConfigPath' => __DIR__.'/../resources/speech_rest_client_config.php',
+            'descriptorsConfigPath' => __DIR__.'/../resources/speech_descriptor_config.php',
+        ];
+    }
 
     /**
      * Return an OperationsClient object with the same endpoint as $this.
@@ -211,7 +214,7 @@ class SpeechGapicClient
      */
     public function __construct($options = [])
     {
-        $options += self::$clientDefaults;
+        $options += self::getClientDefaults();
         $this->setClientOptions($options);
         $this->pluckArray([
             'serviceName',

@@ -8,7 +8,7 @@ return [
                 'uri' => '/v2beta1/{log_name=projects/*/logs/*}',
                 'placeholders' => [
                     'log_name' => [
-                        'getLog_name',
+                        'getLogName',
                     ],
                 ],
             ],

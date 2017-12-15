@@ -115,22 +115,26 @@ class BigtableGapicClient
 
     private static $tableNameTemplate;
     private static $pathTemplateMap;
-    private static $clientDefaults = [
-        'serviceName' => self::SERVICE_NAME,
-        'serviceAddress' => self::SERVICE_ADDRESS,
-        'port' => self::DEFAULT_SERVICE_PORT,
-        'scopes' => [
-            'https://www.googleapis.com/auth/bigtable.data',
-            'https://www.googleapis.com/auth/bigtable.data.readonly',
-            'https://www.googleapis.com/auth/cloud-bigtable.data',
-            'https://www.googleapis.com/auth/cloud-bigtable.data.readonly',
-            'https://www.googleapis.com/auth/cloud-platform',
-            'https://www.googleapis.com/auth/cloud-platform.read-only',
-        ],
-        'clientConfigPath' => __DIR__.'/../resources/bigtable_client_config.json',
-        'restClientConfigPath' => __DIR__.'/../resources/bigtable_rest_client_config.php',
-        'descriptorsConfigPath' => __DIR__.'/../resources/bigtable_descriptor_config.php',
-    ];
+
+    private static function getClientDefaults()
+    {
+        return [
+            'serviceName' => self::SERVICE_NAME,
+            'serviceAddress' => self::SERVICE_ADDRESS,
+            'port' => self::DEFAULT_SERVICE_PORT,
+            'scopes' => [
+                'https://www.googleapis.com/auth/bigtable.data',
+                'https://www.googleapis.com/auth/bigtable.data.readonly',
+                'https://www.googleapis.com/auth/cloud-bigtable.data',
+                'https://www.googleapis.com/auth/cloud-bigtable.data.readonly',
+                'https://www.googleapis.com/auth/cloud-platform',
+                'https://www.googleapis.com/auth/cloud-platform.read-only',
+            ],
+            'clientConfigPath' => __DIR__.'/../resources/bigtable_client_config.json',
+            'restClientConfigPath' => __DIR__.'/../resources/bigtable_rest_client_config.php',
+            'descriptorsConfigPath' => __DIR__.'/../resources/bigtable_descriptor_config.php',
+        ];
+    }
 
     private static function getTableNameTemplate()
     {
@@ -270,7 +274,7 @@ class BigtableGapicClient
      */
     public function __construct($options = [])
     {
-        $this->setClientOptions($options + self::$clientDefaults);
+        $this->setClientOptions($options + self::getClientDefaults());
     }
 
     /**

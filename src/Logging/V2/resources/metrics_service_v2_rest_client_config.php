@@ -17,7 +17,7 @@ return [
                 'uri' => '/v2/{metric_name=projects/*/metrics/*}',
                 'placeholders' => [
                     'metric_name' => [
-                        'getMetric_name',
+                        'getMetricName',
                     ],
                 ],
             ],
@@ -37,7 +37,7 @@ return [
                 'body' => 'metric',
                 'placeholders' => [
                     'metric_name' => [
-                        'getMetric_name',
+                        'getMetricName',
                     ],
                 ],
             ],
@@ -46,7 +46,7 @@ return [
                 'uri' => '/v2/{metric_name=projects/*/metrics/*}',
                 'placeholders' => [
                     'metric_name' => [
-                        'getMetric_name',
+                        'getMetricName',
                     ],
                 ],
             ],

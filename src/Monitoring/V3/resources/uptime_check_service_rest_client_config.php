@@ -37,7 +37,7 @@ return [
                 'body' => 'uptime_check_config',
                 'placeholders' => [
                     'uptime_check_config.name' => [
-                        'getUptime_check_config',
+                        'getUptimeCheckConfig',
                         'getName',
                     ],
                 ],

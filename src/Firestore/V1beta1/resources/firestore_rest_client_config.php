@@ -9,8 +9,8 @@ return [
                 'placeholders' => [
                     'name' => [
                         'getName',
-                    ]
-                ]
+                    ],
+                ],
             ],
             'ListDocuments' => [
                 'method' => 'get',
@@ -18,11 +18,11 @@ return [
                 'placeholders' => [
                     'parent' => [
                         'getParent',
-                    ]
+                    ],
                     'collection_id' => [
-                        'getCollection_id',
-                    ]
-                ]
+                        'getCollectionId',
+                    ],
+                ],
             ],
             'CreateDocument' => [
                 'method' => 'post',
@@ -31,11 +31,11 @@ return [
                 'placeholders' => [
                     'parent' => [
                         'getParent',
-                    ]
+                    ],
                     'collection_id' => [
-                        'getCollection_id',
-                    ]
-                ]
+                        'getCollectionId',
+                    ],
+                ],
             ],
             'UpdateDocument' => [
                 'method' => 'patch',
@@ -45,8 +45,8 @@ return [
                     'document.name' => [
                         'getDocument',
                         'getName',
-                    ]
-                ]
+                    ],
+                ],
             ],
             'DeleteDocument' => [
                 'method' => 'delete',
@@ -54,8 +54,8 @@ return [
                 'placeholders' => [
                     'name' => [
                         'getName',
-                    ]
-                ]
+                    ],
+                ],
             ],
             'BatchGetDocuments' => [
                 'method' => 'post',
@@ -64,8 +64,8 @@ return [
                 'placeholders' => [
                     'database' => [
                         'getDatabase',
-                    ]
-                ]
+                    ],
+                ],
             ],
             'BeginTransaction' => [
                 'method' => 'post',
@@ -74,8 +74,8 @@ return [
                 'placeholders' => [
                     'database' => [
                         'getDatabase',
-                    ]
-                ]
+                    ],
+                ],
             ],
             'Commit' => [
                 'method' => 'post',
@@ -84,8 +84,8 @@ return [
                 'placeholders' => [
                     'database' => [
                         'getDatabase',
-                    ]
-                ]
+                    ],
+                ],
             ],
             'Rollback' => [
                 'method' => 'post',
@@ -94,8 +94,8 @@ return [
                 'placeholders' => [
                     'database' => [
                         'getDatabase',
-                    ]
-                ]
+                    ],
+                ],
             ],
             'RunQuery' => [
                 'method' => 'post',
@@ -104,8 +104,8 @@ return [
                 'placeholders' => [
                     'parent' => [
                         'getParent',
-                    ]
-                ]
+                    ],
+                ],
             ],
             'ListCollectionIds' => [
                 'method' => 'post',
@@ -114,9 +114,9 @@ return [
                 'placeholders' => [
                     'parent' => [
                         'getParent',
-                    ]
-                ]
+                    ],
+                ],
             ],
-        ]
-    ]
+        ],
+    ],
 ];

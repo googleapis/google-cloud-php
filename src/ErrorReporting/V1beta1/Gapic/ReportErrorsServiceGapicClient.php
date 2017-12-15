@@ -98,17 +98,21 @@ class ReportErrorsServiceGapicClient
 
     private static $projectNameTemplate;
     private static $pathTemplateMap;
-    private static $clientDefaults = [
-        'serviceName' => self::SERVICE_NAME,
-        'serviceAddress' => self::SERVICE_ADDRESS,
-        'port' => self::DEFAULT_SERVICE_PORT,
-        'scopes' => [
-            'https://www.googleapis.com/auth/cloud-platform',
-        ],
-        'clientConfigPath' => __DIR__.'/../resources/report_errors_service_client_config.json',
-        'restClientConfigPath' => __DIR__.'/../resources/report_errors_service_rest_client_config.php',
-        'descriptorsConfigPath' => __DIR__.'/../resources/report_errors_service_descriptor_config.php',
-    ];
+
+    private static function getClientDefaults()
+    {
+        return [
+            'serviceName' => self::SERVICE_NAME,
+            'serviceAddress' => self::SERVICE_ADDRESS,
+            'port' => self::DEFAULT_SERVICE_PORT,
+            'scopes' => [
+                'https://www.googleapis.com/auth/cloud-platform',
+            ],
+            'clientConfigPath' => __DIR__.'/../resources/report_errors_service_client_config.json',
+            'restClientConfigPath' => __DIR__.'/../resources/report_errors_service_rest_client_config.php',
+            'descriptorsConfigPath' => __DIR__.'/../resources/report_errors_service_descriptor_config.php',
+        ];
+    }
 
     private static function getProjectNameTemplate()
     {
@@ -244,7 +248,7 @@ class ReportErrorsServiceGapicClient
      */
     public function __construct($options = [])
     {
-        $this->setClientOptions($options + self::$clientDefaults);
+        $this->setClientOptions($options + self::getClientDefaults());
     }
 
     /**

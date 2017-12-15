@@ -9,7 +9,7 @@ return [
                 'body' => 'event',
                 'placeholders' => [
                     'project_name' => [
-                        'getProject_name',
+                        'getProjectName',
                     ],
                 ],
             ],

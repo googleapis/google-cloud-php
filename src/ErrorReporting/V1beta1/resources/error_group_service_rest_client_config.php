@@ -8,7 +8,7 @@ return [
                 'uri' => '/v1beta1/{group_name=projects/*/groups/*}',
                 'placeholders' => [
                     'group_name' => [
-                        'getGroup_name',
+                        'getGroupName',
                     ],
                 ],
             ],
