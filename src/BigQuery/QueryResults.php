@@ -134,8 +134,8 @@ class QueryResults implements \IteratorAggregate
      *     @type int $startIndex Zero-based index of the starting row.
      *     @type int $timeoutMs If not yet complete, how long to wait in
      *           milliseconds. **Defaults to** `10000` milliseconds (10 seconds).
-     *     @type int $maxRetries The number of times to retry, checking if the
-     *           query has completed. **Defaults to** `100`.
+     *     @type int $maxRetries The number of times to poll the Job status,
+     *           until the job is complete. By default, will poll indefinitely.
      * }
      * @return ItemIterator
      * @throws JobException If the maximum number of retries while waiting for
@@ -194,8 +194,8 @@ class QueryResults implements \IteratorAggregate
      *     @type int $timeoutMs If not yet complete, how long to wait for the
      *           query to complete, in milliseconds. **Defaults to**
      *           `10000` milliseconds (10 seconds).
-     *     @type int $maxRetries The number of times to retry, checking if the
-     *           query has completed. **Defaults to** `100`.
+     *     @type int $maxRetries The number of times to poll the Job status,
+     *           until the job is complete. By default, will poll indefinitely.
      * }
      * @throws JobException If the maximum number of retries while waiting for
      *         query completion has been exceeded.
