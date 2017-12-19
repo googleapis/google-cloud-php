@@ -1504,9 +1504,9 @@ class Database
 
         if ($this->sessionPool) {
             return $this->session = $this->sessionPool->acquire($context);
-        } else {
-            return $this->session = $this->createSession();
         }
+
+        return $this->session = $this->createSession();
     }
 
     private function commitInSingleUseTransaction(array $mutations, array $options = [])

@@ -2,6 +2,8 @@
 
 > Idiomatic PHP client for [Stackdriver Logging](https://cloud.google.com/logging/).
 
+[![Latest Stable Version](https://poser.pugx.org/google/cloud-logging/v/stable)](https://packagist.org/packages/google/cloud-logging) [![Packagist](https://img.shields.io/packagist/dm/google/cloud-logging.svg)](https://packagist.org/packages/google/cloud-logging)
+
 * [Homepage](http://googlecloudplatform.github.io/google-cloud-php)
 * [API documentation](http://googlecloudplatform.github.io/google-cloud-php/#/docs/cloud-logging/latest/logging/loggingclient)
 
