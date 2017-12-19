@@ -8,6 +8,10 @@
         "google/proto-client": "^0.27",
         "google/gax": "^0.27"
     },
+    "suggest": {
+        "ext-grpc": "The gRPC extension enables use of the performant gRPC transport",
+        "ext-protobuf": "Provides a significant increase in throughput over the pure PHP protobuf implementation. See https://cloud.google.com/php/grpc for installation instructions."
+    },
     "extra": {
         "component": {
             "id": "cloud-logging",

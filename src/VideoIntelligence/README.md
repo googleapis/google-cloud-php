@@ -9,15 +9,9 @@
 support requests, bug reports, or development contributions should be directed to
 that project.
 
-This client supports transport over gRPC. In order to enable gRPC support please make sure to install and enable
-the gRPC extension through PECL:
+If it is not already installed, you will also require the gRPC extension. For installation instructions, [see here](https://cloud.google.com/php/grpc).
 
-```sh
-$ pecl install grpc
-```
-
-NOTE: Support for gRPC is currently at an Alpha quality level, meaning it is still
-a work in progress and is more likely to get backwards-incompatible updates.
+NOTE: In addition to the gRPC extension, we recommend installing the protobuf extension for improved performance. For installation instructions, [see here](https://cloud.google.com/php/grpc#install_the_protobuf_runtime_library).
 
 ## Installation
 

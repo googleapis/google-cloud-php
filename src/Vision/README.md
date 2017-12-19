@@ -11,6 +11,10 @@
 support requests, bug reports, or development contributions should be directed to
 that project.
 
+Use of the included GAPIC clients requires installation of the gRPC PHP extension. For instructions, [see here](https://cloud.google.com/php/grpc).
+
+NOTE: In addition to the gRPC extension, we recommend installing the protobuf extension for improved performance. For installation instructions, [see here](https://cloud.google.com/php/grpc#install_the_protobuf_runtime_library).
+
 ## Installation
 
 ```
