@@ -24,6 +24,7 @@ This client supports the following Google Cloud Platform services at a [Beta](#v
 * [Google DLP](#google-dlp-beta) (Beta)
 * [Google Stackdriver Error Reporting](#google-stackdriver-error-reporting-beta) (Beta)
 * [Google Stackdriver Monitoring](#google-stackdriver-monitoring-beta) (Beta)
+* [Google Cloud Dataproc](#google-cloud-dataproc-beta) (Beta)
 
 This client supports the following Google Cloud Platform services at an [Alpha](#versioning) quality level:
 * [Google Cloud Speech](#google-cloud-speech-alpha) (Alpha)
@@ -707,6 +708,49 @@ Google Stackdriver Monitoring can be installed separately by requiring the `goog
 
 ```
 $ composer require google/cloud-monitoring
+```
+
+## Google Cloud Dataproc (Beta)
+
+- [API Documentation](http://googlecloudplatform.github.io/google-cloud-php/#/docs/latest/dataproc/readme)
+- [Official Documentation](https://cloud.google.com/dataproc/docs)
+
+#### Preview
+
+```php
+require 'vendor/autoload.php';
+
+<?php
+
+use Google\Cloud\Dataproc\V1\JobControllerClient;
+use Google\Cloud\Dataproc\V1\Job;
+use Google\Cloud\Dataproc\V1\HadoopJob;
+use Google\Cloud\Dataproc\V1\JobPlacement;
+
+$projectId = '[MY_PROJECT_ID'];
+$region = 'global';
+$clusterName = '[MY_CLUSTER]';
+
+$jobPlacement = new JobPlacement();
+$jobPlacement->setClusterName($clusterName);
+
+$hadoopJob = new HadoopJob();
+$hadoopJob->setMainJarFileUri('gs://my-bucket/my-hadoop-job.jar');
+
+$job = new Job();
+$job->setPlacement($jobPlacement);
+$job->setHadoopJob($hadoopJob);
+
+$jobControllerClient = new JobControllerClient();
+$submittedJob = $jobControllerClient->submitJob($projectId, $region, $job);
+```
+
+#### google/cloud-dataproc
+
+Google Cloud Dataproc can be installed separately by requiring the `google/cloud-dataproc` composer package:
+
+```
+$ composer require google/cloud-dataproc
 ```
 
 ## Google Cloud Speech (Alpha)
