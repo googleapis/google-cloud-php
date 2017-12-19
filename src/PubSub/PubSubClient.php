@@ -76,7 +76,7 @@ class PubSubClient
     use IncomingMessageTrait;
     use ResourceNameTrait;
 
-    const VERSION = '0.10.0';
+    const VERSION = '0.11.0';
 
     const FULL_CONTROL_SCOPE = 'https://www.googleapis.com/auth/pubsub';
 
@@ -133,9 +133,12 @@ class PubSubClient
     {
         $this->clientConfig = $config;
         $connectionType = $this->getConnectionType($config);
+        $emulatorHost = getenv('PUBSUB_EMULATOR_HOST');
         $config += [
             'scopes' => [self::FULL_CONTROL_SCOPE],
-            'projectIdRequired' => true
+            'projectIdRequired' => true,
+            'hasEmulator' => (bool) $emulatorHost,
+            'emulatorHost' => $emulatorHost
         ];
 
         if ($connectionType === 'grpc') {

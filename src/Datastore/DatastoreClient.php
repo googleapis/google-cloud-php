@@ -19,12 +19,12 @@ namespace Google\Cloud\Datastore;
 
 use DomainException;
 use Google\Cloud\Core\ClientTrait;
+use Google\Cloud\Core\Int64;
 use Google\Cloud\Datastore\Connection\Rest;
 use Google\Cloud\Datastore\Query\GqlQuery;
 use Google\Cloud\Datastore\Query\Query;
 use Google\Cloud\Datastore\Query\QueryBuilder;
 use Google\Cloud\Datastore\Query\QueryInterface;
-use Google\Cloud\Core\Int64;
 use InvalidArgumentException;
 use Psr\Cache\CacheItemPoolInterface;
 use Psr\Http\Message\StreamInterface;
@@ -76,7 +76,7 @@ class DatastoreClient
     use ClientTrait;
     use DatastoreTrait;
 
-    const VERSION = '1.1.0';
+    const VERSION = '1.2.0';
 
     const FULL_CONTROL_SCOPE = 'https://www.googleapis.com/auth/datastore';
 
@@ -133,11 +133,15 @@ class DatastoreClient
      */
     public function __construct(array $config = [])
     {
+        $emulatorHost = getenv('DATASTORE_EMULATOR_HOST');
+
         $config += [
             'namespaceId' => null,
             'returnInt64AsObject' => false,
             'scopes' => [self::FULL_CONTROL_SCOPE],
-            'projectIdRequired' => true
+            'projectIdRequired' => true,
+            'hasEmulator' => (bool) $emulatorHost,
+            'emulatorHost' => $emulatorHost
         ];
 
         $this->connection = new Rest($this->configureAuthentication($config));

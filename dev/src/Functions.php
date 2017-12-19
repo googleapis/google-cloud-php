@@ -49,7 +49,7 @@ function impl($trait, array $props = [])
         public function call($fn, array $args = []) { return call_user_func_array([$this, $fn], $args); }
     }';
 
-    $name = 'Trait'. sha1($trait);
+    $name = 'Trait'. sha1($trait . json_encode($props));
 
     if (!class_exists($name)) {
         eval(sprintf($tpl, $name, $trait, json_encode($props), implode("\n", $properties)));

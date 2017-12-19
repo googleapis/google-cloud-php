@@ -32,7 +32,7 @@ class Job
     use ArrayTrait;
     use JobWaitTrait;
 
-    const MAX_RETRIES = 100;
+    const MAX_RETRIES = PHP_INT_MAX;
 
     /**
      * @var ConnectionInterface Represents a connection to BigQuery.
@@ -152,6 +152,11 @@ class Job
      *     @type int $startIndex Zero-based index of the starting row.
      *     @type int $timeoutMs How long to wait for the query to complete, in
      *           milliseconds. **Defaults to** `10000` milliseconds (10 seconds).
+     *     @type int $maxRetries The number of times to poll the Job status,
+     *           until the job is complete. By default, will poll indefinitely.
+     *           Please note that this option is used when iterating on the
+     *           returned class, and will not block immediately upon calling of
+     *           this method.
      * }
      * @return QueryResults
      */
@@ -163,7 +168,8 @@ class Job
             $this->identity['projectId'],
             $this->connection->getQueryResults($options + $this->identity),
             $this->mapper,
-            $this
+            $this,
+            $this->pluck('maxRetries', $options, false)
         );
     }
 
@@ -178,8 +184,8 @@ class Job
      * @param array $options [optional] {
      *     Configuration options.
      *
-     *     @type int $maxRetries The number of times to retry, checking if the
-     *           job has completed. **Defaults to** `100`.
+     *     @type int $maxRetries The number of times to poll the Job status,
+     *           until the job is complete. By default, will poll indefinitely.
      * }
      * @throws JobException If the maximum number of retries while waiting for
      *         job completion has been exceeded.

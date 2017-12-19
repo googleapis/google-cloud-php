@@ -37,7 +37,7 @@ class Rest implements ConnectionInterface
     public function __construct(array $config = [])
     {
         $config += [
-            'serviceDefinitionPath' => __DIR__ . '/ServiceDefinition/trace-v1.json'
+            'serviceDefinitionPath' => __DIR__ . '/ServiceDefinition/trace-v2.json'
         ];
 
         $this->setRequestWrapper(new RequestWrapper($config));
@@ -50,24 +50,16 @@ class Rest implements ConnectionInterface
     /**
      * @param  array $args
      */
-    public function patchTraces(array $args)
+    public function traceBatchWrite(array $args)
     {
-        return $this->send('projects', 'patchTraces', $args);
+        return $this->send('projects.resources.traces', 'batchWrite', $args);
     }
 
     /**
      * @param  array $args
      */
-    public function getTrace(array $args)
+    public function traceSpanCreate(array $args)
     {
-        return $this->send('projects.resources.traces', 'get', $args);
-    }
-
-    /**
-     * @param  array $args
-     */
-    public function listTraces(array $args)
-    {
-        return $this->send('projects.resources.traces', 'list', $args);
+        return $this->send('projects.resources.traces.resources.spans', 'create', $args);
     }
 }

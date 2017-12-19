@@ -51,7 +51,7 @@ class TranslateClient
 {
     use ClientTrait;
 
-    const VERSION = '1.0.2';
+    const VERSION = '1.1.0';
 
     const ENGLISH_LANGUAGE_CODE = 'en';
 
@@ -70,6 +70,10 @@ class TranslateClient
     /**
      * Create a Translate client.
      *
+     * Note that when creating a TranslateClient instance, setting
+     * `$config.projectId` is not supported. To switch between projects, you
+     * must provide credentials with access to the project.
+     *
      * @param array $config [optional] {
      *     Configuration Options.
      *
@@ -77,8 +81,6 @@ class TranslateClient
      *     @type string $target The target language to assign to the client.
      *           Must be a valid ISO 639-1 language code. **Defaults to** `"en"`
      *           (English).
-     *     @type string $projectId The project ID from the Google Developer's
-     *           Console.
      *     @type CacheItemPoolInterface $authCache A cache used storing access
      *           tokens. **Defaults to** a simple in memory implementation.
      *     @type array $authCacheOptions Cache configuration options.
@@ -154,7 +156,13 @@ class TranslateClient
      *           either plain-text or HTML. Acceptable values are `html` or
      *           `text`. **Defaults to** `"html"`.
      *     @type string $model The model to use for the translation request. May
-     *           be `nmt` or `base`. **Defaults to** an empty string.
+     *           be `nmt` (for the NMT model) or `base` (for the PBMT model).
+     *           **Defaults to** using the NMT model. If the NMT model is not
+     *           supported for the requested language translation pair, the PBMT
+     *           model will be defaulted instead. For a list of supported
+     *           languages for the model types, please see the
+     *           [Language Support](https://cloud.google.com/translate/docs/languages)
+     *           documentation.
      * }
      * @return array|null A translation result including a `source` key containing
      *         the detected or provided language of the provided input, an
@@ -200,7 +208,13 @@ class TranslateClient
      *           either plain-text or HTML. Acceptable values are `html` or
      *           `text`. **Defaults to** `"html"`.
      *     @type string $model The model to use for the translation request. May
-     *           be `nmt` or `base`. **Defaults to** null.
+     *           be `nmt` (for the NMT model) or `base` (for the PBMT model).
+     *           **Defaults to** using the NMT model. If the NMT model is not
+     *           supported for the requested language translation pair, the PBMT
+     *           model will be defaulted instead. For a list of supported
+     *           languages for the model types, please see the
+     *           [Language Support](https://cloud.google.com/translate/docs/languages)
+     *           documentation.
      * }
      * @return array A set of translation results. Each result includes a
      *         `source` key containing the detected or provided language of the

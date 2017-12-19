@@ -1,6 +1,6 @@
 # Google Cloud PHP Video Intelligence
 
-> Idiomatic PHP client for [Cloud Video Intelligence](https://cloud.google.com/video-intelligence/).
+[![Latest Stable Version](https://poser.pugx.org/google/cloud-videointelligence/v/stable)](https://packagist.org/packages/google/cloud-videointelligence) [![Packagist](https://img.shields.io/packagist/dm/google/cloud-videointelligence.svg)](https://packagist.org/packages/google/cloud-videointelligence)
 
 * [Homepage](http://googlecloudplatform.github.io/google-cloud-php)
 * [API documentation](http://googlecloudplatform.github.io/google-cloud-php/#/docs/cloud-videointelligence/latest/readme)

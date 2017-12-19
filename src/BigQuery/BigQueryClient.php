@@ -48,7 +48,7 @@ class BigQueryClient
     use ClientTrait;
     use RetryDeciderTrait;
 
-    const VERSION = '0.3.1';
+    const VERSION = '0.4.0';
 
     const MAX_DELAY_MICROSECONDS = 32000000;
 
@@ -130,8 +130,7 @@ class BigQueryClient
      * set of options at once.
      *
      * Unless otherwise specified, all configuration options will default based
-     * on the [Jobs configuration API documentation]
-     * (https://cloud.google.com/bigquery/docs/reference/rest/v2/jobs#configuration)
+     * on the [Jobs configuration API documentation](https://goo.gl/vSTbGp)
      * except for `configuration.query.useLegacySql`, which defaults to `false`
      * in this client.
      *
@@ -166,8 +165,7 @@ class BigQueryClient
      *
      * @param string $query A BigQuery SQL query.
      * @param array $options [optional] Please see the
-     *        [API documentation for Job configuration]
-     *        (https://cloud.google.com/bigquery/docs/reference/rest/v2/jobs#configuration)
+     *        [API documentation for Job configuration](https://goo.gl/vSTbGp)
      *        for the available options.
      * @return QueryJobConfiguration
      */
@@ -181,10 +179,10 @@ class BigQueryClient
     }
 
     /**
-     * Runs a BigQuery SQL query in a synchronous fashion. Rows are returned
-     * immediately as long as the query completes within a specified timeout. In
-     * the case that the query does not complete in the specified timeout, you
-     * are able to poll the query's status until it is complete.
+     * Runs a BigQuery SQL query in a synchronous fashion.
+     *
+     * Unless `$options.maxRetries` is specified, this method will block until
+     * the query completes, at which time the result set will be returned.
      *
      * Queries constructed using
      * [standard SQL](https://cloud.google.com/bigquery/docs/reference/standard-sql/)
@@ -263,8 +261,8 @@ class BigQueryClient
      *     @type int $startIndex Zero-based index of the starting row.
      *     @type int $timeoutMs How long to wait for the query to complete, in
      *           milliseconds. **Defaults to** `10000` milliseconds (10 seconds).
-     *     @type int $maxRetries The number of times to retry, checking if the
-     *           query has completed. **Defaults to** `100`.
+     *     @type int $maxRetries The number of times to poll the Job status,
+     *           until the job is complete. By default, will poll indefinitely.
      * }
      * @return QueryResults
      * @throws JobException If the maximum number of retries while waiting for

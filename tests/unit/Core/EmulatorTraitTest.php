@@ -26,23 +26,32 @@ use PHPUnit\Framework\TestCase;
  */
 class EmulatorTraitTest extends TestCase
 {
-    private $implementation;
+    private $impl;
 
     public function setUp()
     {
-        $this->implementation = $this->getObjectForTrait(EmulatorTrait::class);
+        $this->impl = \Google\Cloud\Dev\impl(EmulatorTrait::class);
+    }
+
+    public function testEmulatorBaseUri()
+    {
+        $host = 'localhost:9000';
+        $this->assertEquals(
+            sprintf('http://%s/', $host),
+            $this->impl->call('emulatorBaseUri', [$host])
+        );
     }
 
     public function testGetEmulatorBaseUriNoEmulator()
     {
-        $res = $this->implementation->getEmulatorBaseUri('http://google.com', null);
+        $res = $this->impl->getEmulatorBaseUri('http://google.com', null);
 
         $this->assertEquals('http://google.com', $res);
     }
 
     public function testGetEmulatorBaseUriEmulator()
     {
-        $res = $this->implementation->getEmulatorBaseUri('http://google.com', 'http://localhost:8080');
+        $res = $this->impl->getEmulatorBaseUri('http://google.com', 'http://localhost:8080');
 
         $this->assertEquals('http://localhost:8080/', $res);
     }
