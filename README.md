@@ -84,6 +84,18 @@ $cloud = new ServiceBuilder();
 
 The `GOOGLE_APPLICATION_CREDENTIALS` environment variable may be set in your server configuration.
 
+### gRPC and Protobuf
+
+Many clients in Google Cloud PHP offer support for gRPC, either as an option or a requirement. gRPC is a high-performance RPC framework created by Google. To use gRPC in PHP, you must install the gRPC PHP extension on your server. While not required, it is also recommended that you install the protobuf extension whenever using gRPC in production.
+
+```
+$ pecl install grpc
+$ pecl install protobuf
+```
+
+* [gRPC Installation Instructions](https://cloud.google.com/php/grpc)
+* [Protobuf Installation Instructions](https://cloud.google.com/php/grpc#install_the_protobuf_runtime_library)
+
 ## Google Cloud Datastore (GA)
 
 - [API Documentation](http://googlecloudplatform.github.io/google-cloud-php/#/docs/latest/datastore/datastoreclient)
@@ -336,10 +348,6 @@ $user = $userQuery->rows()->current();
 
 echo 'Hello ' . $user['firstName'];
 ```
-
-If it is not already installed, you will also require the gRPC extension. For installation instructions, [see here](https://cloud.google.com/php/grpc).
-
-NOTE: In addition to the gRPC extension, we recommend installing the protobuf extension for improved performance. For installation instructions, [see here](https://cloud.google.com/php/grpc#install_the_protobuf_runtime_library).
 
 #### google/cloud-spanner
 
