@@ -19,6 +19,13 @@ Install with `composer` or add to your `composer.json`.
 $ composer require google/cloud-trace
 ```
 
+Use of the included generated clients requires installation of the gRPC PHP
+extension. For instructions, [see here](https://cloud.google.com/php/grpc).
+
+NOTE: In addition to the gRPC extension, we recommend installing the protobuf
+extension for improved performance. For installation instructions,
+[see here](https://cloud.google.com/php/grpc#install_the_protobuf_runtime_library).
+
 ## Usage
 
 This library contains code to interact with the Stackdriver Trace V2 API.
