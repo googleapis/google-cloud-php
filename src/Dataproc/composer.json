@@ -1,0 +1,24 @@
+{
+    "name": "google/cloud-dataproc",
+    "description": "Google Cloud Dataproc Client for PHP",
+    "license": "Apache-2.0",
+    "minimum-stability": "stable",
+    "autoload": {
+        "psr-4": {
+            "Google\\Cloud\\Dataproc\\": ""
+        }
+    },
+    "extra": {
+        "component": {
+            "id": "cloud-dataproc",
+            "path": "src/Dataproc",
+            "entry": null,
+            "target": "GoogleCloudPlatform/google-cloud-php-dataproc.git"
+        }
+    },
+    "require": {
+        "ext-grpc": "*",
+        "google/proto-client": "^0.28.0",
+        "google/gax": "^0.28.0"
+    }
+}

@@ -32,6 +32,14 @@ use Google\Cloud\Firestore\Connection\Grpc;
 /**
  * Cloud Firestore is a flexible, scalable, realtime database for mobile, web, and server development.
  *
+ * In production environments, it is highly recommended that you make use of the
+ * Protobuf PHP extension for improved performance. Protobuf can be installed
+ * via [PECL](https://pecl.php.net).
+ *
+ * ```
+ * $ pecl install protobuf
+ * ```
+ *
  * Example:
  * ```
  * use Google\Cloud\Firestore\FirestoreClient;

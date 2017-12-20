@@ -24,6 +24,8 @@ This client supports the following Google Cloud Platform services at a [Beta](#v
 * [Google DLP](#google-dlp-beta) (Beta)
 * [Google Stackdriver Error Reporting](#google-stackdriver-error-reporting-beta) (Beta)
 * [Google Stackdriver Monitoring](#google-stackdriver-monitoring-beta) (Beta)
+* [Google Cloud Container](#google-cloud-container-beta) (Beta)
+* [Google Cloud Dataproc](#google-cloud-dataproc-beta) (Beta)
 
 This client supports the following Google Cloud Platform services at an [Alpha](#versioning) quality level:
 * [Google Cloud Speech](#google-cloud-speech-alpha) (Alpha)
@@ -83,6 +85,18 @@ $cloud = new ServiceBuilder();
 ```
 
 The `GOOGLE_APPLICATION_CREDENTIALS` environment variable may be set in your server configuration.
+
+### gRPC and Protobuf
+
+Many clients in Google Cloud PHP offer support for gRPC, either as an option or a requirement. gRPC is a high-performance RPC framework created by Google. To use gRPC in PHP, you must install the gRPC PHP extension on your server. While not required, it is also recommended that you install the protobuf extension whenever using gRPC in production.
+
+```
+$ pecl install grpc
+$ pecl install protobuf
+```
+
+* [gRPC Installation Instructions](https://cloud.google.com/php/grpc)
+* [Protobuf Installation Instructions](https://cloud.google.com/php/grpc#install_the_protobuf_runtime_library)
 
 ## Google Cloud Datastore (GA)
 
@@ -707,6 +721,80 @@ Google Stackdriver Monitoring can be installed separately by requiring the `goog
 
 ```
 $ composer require google/cloud-monitoring
+```
+
+## Google Cloud Container (Beta)
+
+- [API Documentation](http://googlecloudplatform.github.io/google-cloud-php/#/docs/latest/monitoring/readme)
+- [Official Documentation](https://cloud.google.com/kubernetes-engine/docs)
+
+```php
+<?php
+require 'vendor/autoload.php';
+
+use Google\Cloud\Container\V1\ClusterManagerClient;
+
+$clusterManagerClient = new ClusterManagerClient();
+
+$projectId = '[MY-PROJECT-ID]';
+$zone = 'us-central1-a';
+
+try {
+    $clusters = $clusterManagerClient->listClusters($projectId, $zone);
+    foreach ($clusters->getClusters() as $cluster) {
+        print('Cluster: ' . $cluster->getName() . PHP_EOL);
+    }
+} finally {
+    $clusterManagerClient->close();
+}
+```
+
+#### google/cloud-container
+
+Google Cloud Container can be installed separately by requiring the `google/cloud-container` composer package:
+
+```
+$ composer require google/cloud-container
+```
+
+## Google Cloud Dataproc (Beta)
+
+- [API Documentation](http://googlecloudplatform.github.io/google-cloud-php/#/docs/latest/dataproc/readme)
+- [Official Documentation](https://cloud.google.com/dataproc/docs)
+
+```php
+<?php
+require 'vendor/autoload.php';
+
+use Google\Cloud\Dataproc\V1\JobControllerClient;
+use Google\Cloud\Dataproc\V1\Job;
+use Google\Cloud\Dataproc\V1\HadoopJob;
+use Google\Cloud\Dataproc\V1\JobPlacement;
+
+$projectId = '[MY_PROJECT_ID'];
+$region = 'global';
+$clusterName = '[MY_CLUSTER]';
+
+$jobPlacement = new JobPlacement();
+$jobPlacement->setClusterName($clusterName);
+
+$hadoopJob = new HadoopJob();
+$hadoopJob->setMainJarFileUri('gs://my-bucket/my-hadoop-job.jar');
+
+$job = new Job();
+$job->setPlacement($jobPlacement);
+$job->setHadoopJob($hadoopJob);
+
+$jobControllerClient = new JobControllerClient();
+$submittedJob = $jobControllerClient->submitJob($projectId, $region, $job);
+```
+
+#### google/cloud-dataproc
+
+Google Cloud Dataproc can be installed separately by requiring the `google/cloud-dataproc` composer package:
+
+```
+$ composer require google/cloud-dataproc
 ```
 
 ## Google Cloud Speech (Alpha)

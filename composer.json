@@ -64,15 +64,18 @@
         "phpseclib/phpseclib": "^2"
     },
     "replace": {
-        "google/cloud-bigtable": "0.1.0",
         "google/cloud-bigquery": "0.4.0",
+        "google/cloud-bigtable": "0.1.0",
+        "google/cloud-container": "master",
         "google/cloud-core": "1.14.1",
+        "google/cloud-dataproc": "master",
         "google/cloud-datastore": "1.2.0",
+        "google/cloud-dlp": "0.4.1",
         "google/cloud-error-reporting": "0.7.1",
         "google/cloud-firestore": "0.3.0",
+        "google/cloud-language": "0.11.0",
         "google/cloud-logging": "1.8.0",
         "google/cloud-monitoring": "0.7.1",
-        "google/cloud-language": "0.11.0",
         "google/cloud-pubsub": "0.11.0",
         "google/cloud-spanner": "0.11.0",
         "google/cloud-speech": "0.10.0",
@@ -80,8 +83,7 @@
         "google/cloud-trace": "0.4.0",
         "google/cloud-translate": "1.1.0",
         "google/cloud-videointelligence": "0.8.1",
-        "google/cloud-vision": "0.8.0",
-        "google/cloud-dlp": "0.4.1"
+        "google/cloud-vision": "0.8.0"
     },
     "suggest": {
         "phpseclib/phpseclib": "May be used in place of OpenSSL for creating signed Cloud Storage URLs. Please require version ^2."
