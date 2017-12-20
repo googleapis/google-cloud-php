@@ -424,7 +424,7 @@ class TraceServiceGapicClient
      * @param string            $spanId       The [SPAN_ID] portion of the span's resource name.
      * @param TruncatableString $displayName  A description of the span's operation (up to 128 bytes).
      *                                        Stackdriver Trace displays the description in the
-     *                                        {% dynamic print site_values.console_name %}.
+     *                                        Google Cloud Platform Console.
      *                                        For example, the display name can be a qualified method name or a file name
      *                                        and a line number where the operation is called. A best practice is to use
      *                                        the same display name within an application and at the same call point.
