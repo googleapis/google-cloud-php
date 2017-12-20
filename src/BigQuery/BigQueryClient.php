@@ -179,6 +179,17 @@ class BigQueryClient
     }
 
     /**
+     * Returns a job configuration to be passed to either
+     * {@see Google\Cloud\BigQuery\BigQueryClient::runQuery()} or
+     * {@see Google\Cloud\BigQuery\BigQueryClient::startQuery()}. A
+     * configuration can be built using fluent setters or by providing a full
+     * set of options at once.
+     *
+     * Unless otherwise specified, all configuration options will default based
+     * on the [Jobs configuration API documentation](https://goo.gl/vSTbGp)
+     * except for `configuration.query.useLegacySql`, which defaults to `false`
+     * in this client.
+     *
      * As this method is an alias, please see
      * {@see Google\Cloud\BigQuery\BigQueryClient::query()} for usage examples.
      *
