@@ -9,7 +9,8 @@
         "google/gax": "^0.28"
     },
     "suggest": {
-        "google/gax": "Required to support gRPC"
+        "ext-grpc": "The gRPC extension enables use of the performant gRPC transport",
+        "ext-protobuf": "Provides a significant increase in throughput over the pure PHP protobuf implementation. See https://cloud.google.com/php/grpc for installation instructions."
     },
     "extra": {
         "component": {

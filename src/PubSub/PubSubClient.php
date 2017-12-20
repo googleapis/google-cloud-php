@@ -51,6 +51,14 @@ use Psr\Cache\CacheItemPoolInterface;
  * NOTE: Support for gRPC is currently at an Alpha quality level, meaning it is still
  * a work in progress and is more likely to get backwards-incompatible updates.
  *
+ * When using gRPC in production environments, it is highly recommended that you make use of the
+ * Protobuf PHP extension for improved performance. Protobuf can be installed
+ * via [PECL](https://pecl.php.net).
+ *
+ * ```
+ * $ pecl install protobuf
+ * ```
+ *
  * Example:
  * ```
  * use Google\Cloud\PubSub\PubSubClient;

@@ -38,6 +38,14 @@ use Psr\Http\StreamInterface;
  * database service. Find more information at
  * [Cloud Spanner docs](https://cloud.google.com/spanner/).
  *
+ * In production environments, it is highly recommended that you make use of the
+ * Protobuf PHP extension for improved performance. Protobuf can be installed
+ * via [PECL](https://pecl.php.net).
+ *
+ * ```
+ * $ pecl install protobuf
+ * ```
+ *
  * Example:
  * ```
  * use Google\Cloud\Spanner\SpannerClient;

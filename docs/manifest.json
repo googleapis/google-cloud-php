@@ -101,6 +101,14 @@
             ]
         },
         {
+            "id": "cloud-container",
+            "name": "google/cloud-container",
+            "defaultService": "container/readme",
+            "versions": [
+                "master"
+            ]
+        },
+        {
             "id": "cloud-core",
             "name": "google/cloud-core",
             "defaultService": "core/servicebuilder",

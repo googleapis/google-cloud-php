@@ -66,6 +66,7 @@
     "replace": {
         "google/cloud-bigquery": "0.4.0",
         "google/cloud-bigtable": "0.1.0",
+        "google/cloud-container": "master",
         "google/cloud-core": "1.14.1",
         "google/cloud-dataproc": "master",
         "google/cloud-datastore": "1.2.0",
