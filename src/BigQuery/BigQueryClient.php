@@ -277,10 +277,12 @@ class BigQueryClient
             'maxRetries'
         ], $options);
 
-        return $this->startQuery(
+        $queryResults = $this->startQuery(
             $query,
             $options
         )->queryResults($queryResultsOptions + $options);
+        $queryResults->waitUntilComplete();
+        return $queryResults;
     }
 
     /**
