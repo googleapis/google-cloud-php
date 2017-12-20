@@ -76,14 +76,6 @@
             ]
         },
         {
-            "id": "cloud-bigtable",
-            "name": "google/cloud-bigtable",
-            "defaultService": "bigtable/readme",
-            "versions": [
-                "master"
-            ]
-        },
-        {
             "id": "cloud-bigquery",
             "name": "google/cloud-bigquery",
             "defaultService": "bigquery/bigqueryclient",
@@ -97,6 +89,22 @@
                 "v0.2.1",
                 "v0.2.0",
                 "v0.1.0",
+                "master"
+            ]
+        },
+        {
+            "id": "cloud-bigtable",
+            "name": "google/cloud-bigtable",
+            "defaultService": "bigtable/readme",
+            "versions": [
+                "master"
+            ]
+        },
+        {
+            "id": "cloud-container",
+            "name": "google/cloud-container",
+            "defaultService": "container/readme",
+            "versions": [
                 "master"
             ]
         },
@@ -198,6 +206,28 @@
             ]
         },
         {
+            "id": "cloud-language",
+            "name": "google/cloud-language",
+            "defaultService": "language/languageclient",
+            "versions": [
+                "v0.11.0",
+                "v0.10.0",
+                "v0.9.1",
+                "v0.9.0",
+                "v0.8.1",
+                "v0.8.0",
+                "v0.7.0",
+                "v0.6.0",
+                "v0.5.0",
+                "v0.4.1",
+                "v0.4.0",
+                "v0.3.0",
+                "v0.2.0",
+                "v0.1.0",
+                "master"
+            ]
+        },
+        {
             "id": "cloud-logging",
             "name": "google/cloud-logging",
             "defaultService": "logging/loggingclient",
@@ -235,28 +265,6 @@
                 "v0.4.0",
                 "v0.3.0",
                 "v0.2.1",
-                "v0.2.0",
-                "v0.1.0",
-                "master"
-            ]
-        },
-        {
-            "id": "cloud-language",
-            "name": "google/cloud-language",
-            "defaultService": "language/languageclient",
-            "versions": [
-                "v0.11.0",
-                "v0.10.0",
-                "v0.9.1",
-                "v0.9.0",
-                "v0.8.1",
-                "v0.8.0",
-                "v0.7.0",
-                "v0.6.0",
-                "v0.5.0",
-                "v0.4.1",
-                "v0.4.0",
-                "v0.3.0",
                 "v0.2.0",
                 "v0.1.0",
                 "master"
