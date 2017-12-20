@@ -718,9 +718,8 @@ $ composer require google/cloud-monitoring
 #### Preview
 
 ```php
-require 'vendor/autoload.php';
-
 <?php
+require 'vendor/autoload.php';
 
 use Google\Cloud\Dataproc\V1\JobControllerClient;
 use Google\Cloud\Dataproc\V1\Job;
