@@ -10,6 +10,9 @@
         "google/proto-client": "^0.27",
         "ramsey/uuid": "~3"
     },
+    "suggest": {
+        "ext-protobuf": "Provides a significant increase in throughput over the pure PHP protobuf implementation. See https://cloud.google.com/php/grpc for installation instructions."
+    },
     "extra": {
         "component": {
             "id": "cloud-firestore",

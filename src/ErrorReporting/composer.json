@@ -9,7 +9,8 @@
         "google/gax": "^0.27"
     },
     "suggest": {
-        "ext-grpc": "the gRPC extension allows more granular control over Error Reporting"
+        "ext-grpc": "The gRPC extension allows more granular control over Error Reporting",
+        "ext-protobuf": "Provides a significant increase in throughput over the pure PHP protobuf implementation. See https://cloud.google.com/php/grpc for installation instructions."
     },
     "extra": {
         "component": {
