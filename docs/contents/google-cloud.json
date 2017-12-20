@@ -10,6 +10,7 @@
         "cloud-bigquery",
         "cloud-container",
         "cloud-core",
+        "cloud-dataproc",
         "cloud-datastore",
         "cloud-dlp",
         "cloud-error-reporting",
