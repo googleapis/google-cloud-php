@@ -569,11 +569,11 @@ class Table
      *           will be required to provide a schema through
      *           $tableMetadata['schema'] in the case the table does not already
      *           exist. **Defaults to** `false`.
-     *     @type $tableMetadata Metadata to apply to table to be created. The
+     *     @type array $tableMetadata Metadata to apply to table to be created. The
      *           full set of metadata are outlined at the
      *           [Table Resource API docs](https://cloud.google.com/bigquery/docs/reference/v2/tables#resource).
      *           Only applies when `autoCreate` is `true`.
-     *     @type $maxRetries The maximum number of times to attempt creating the
+     *     @type int $maxRetries The maximum number of times to attempt creating the
      *           table in the case of failure. Please note, each retry attempt
      *           may take up to two minutes. Only applies when `autoCreate` is
      *           `true`. **Defaults to** `100`.
