@@ -1,7 +1,7 @@
 Google API Core for PHP
 =================================
 
-[![Build Status](https://img.shields.io/travis/googleapis/gax-php.svg)](https://travis-ci.org/googleapis/gax-php)
+[![Build Status](https://api.travis-ci.org/googleapis/gax-php.svg?branch=master)](https://travis-ci.org/googleapis/gax-php)
 
 [![Code Coverage](https://img.shields.io/codecov/c/github/googleapis/gax-php.svg)](https://codecov.io/github/googleapis/gax-php)
 
