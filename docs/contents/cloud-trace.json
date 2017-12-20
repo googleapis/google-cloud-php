@@ -10,5 +10,15 @@
     }, {
         "title": "TraceSpan",
         "type": "trace/tracespan"
+    }, {
+        "title": "v2",
+        "type": "trace\/v2\/readme",
+        "nav": [{
+            "title": "TraceServiceClient",
+            "type": "trace\/v2\/traceserviceclient"
+        }],
+        "patterns": [
+            "trace\/v2\/\\w{1,}"
+        ]
     }]
 }

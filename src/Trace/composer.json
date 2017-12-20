@@ -5,7 +5,9 @@
     "minimum-stability": "stable",
     "require": {
         "google/cloud-core": "^1.14",
-        "ramsey/uuid": "~3"
+        "ramsey/uuid": "~3",
+        "google/gax": "^0.28.0",
+        "google/proto-client": "^0.28.0"
     },
     "suggest": {
         "cache/apcu-adapter": "Enable QpsSampler to use apcu cache.",
