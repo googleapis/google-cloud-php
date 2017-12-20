@@ -24,6 +24,7 @@ This client supports the following Google Cloud Platform services at a [Beta](#v
 * [Google DLP](#google-dlp-beta) (Beta)
 * [Google Stackdriver Error Reporting](#google-stackdriver-error-reporting-beta) (Beta)
 * [Google Stackdriver Monitoring](#google-stackdriver-monitoring-beta) (Beta)
+* [Google Cloud Container](#google-cloud-container-beta) (Beta)
 
 This client supports the following Google Cloud Platform services at an [Alpha](#versioning) quality level:
 * [Google Cloud Speech](#google-cloud-speech-alpha) (Alpha)
@@ -719,6 +720,43 @@ Google Stackdriver Monitoring can be installed separately by requiring the `goog
 
 ```
 $ composer require google/cloud-monitoring
+```
+
+## Google Cloud Container (Beta)
+
+- [API Documentation](http://googlecloudplatform.github.io/google-cloud-php/#/docs/latest/monitoring/readme)
+- [Official Documentation](https://cloud.google.com/kubernetes-engine/docs)
+
+#### Preview
+
+```php
+<?php
+
+require 'vendor/autoload.php';
+
+use Google\Cloud\Container\V1\ClusterManagerClient;
+
+$clusterManagerClient = new ClusterManagerClient();
+
+$projectId = '[MY-PROJECT-ID]';
+$zone = 'us-central1-a';
+
+try {
+    $clusters = $clusterManagerClient->listClusters($projectId, $zone);
+    foreach ($clusters->getClusters() as $cluster) {
+        print('Cluster: ' . $cluster->getName() . PHP_EOL);
+    }
+} finally {
+    $clusterManagerClient->close();
+}
+```
+
+#### google/cloud-container
+
+Google Cloud Container can be installed separately by requiring the `google/cloud-container` composer package:
+
+```
+$ composer require google/cloud-container
 ```
 
 ## Google Cloud Speech (Alpha)

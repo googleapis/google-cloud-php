@@ -5,8 +5,8 @@
     "minimum-stability": "stable",
     "require": {
         "ext-grpc": "*",
-        "google/proto-client": "^0.27",
-        "google/gax": "^0.27"
+        "google/proto-client": "^0.28",
+        "google/gax": "^0.28"
     },
     "suggest": {
         "ext-protobuf": "Provides a significant increase in throughput over the pure PHP protobuf implementation. See https://cloud.google.com/php/grpc for installation instructions."
