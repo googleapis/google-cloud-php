@@ -179,6 +179,21 @@ class BigQueryClient
     }
 
     /**
+     * As this method is an alias, please see
+     * {@see Google\Cloud\BigQuery\BigQueryClient::query()} for usage examples.
+     *
+     * @param string $query A BigQuery SQL query.
+     * @param array $options [optional] Please see the
+     *        [API documentation for Job configuration](https://goo.gl/vSTbGp)
+     *        for the available options.
+     * @return QueryJobConfiguration
+     */
+    public function queryConfig($query, array $options = [])
+    {
+        return $this->query($query, $options);
+    }
+
+    /**
      * Runs a BigQuery SQL query in a synchronous fashion.
      *
      * Unless `$options.maxRetries` is specified, this method will block until

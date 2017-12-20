@@ -50,6 +50,13 @@ class BigQueryClientTest extends TestCase
         $this->client = \Google\Cloud\Dev\stub(BigQueryClient::class, ['options' => ['projectId' => self::PROJECT_ID]]);
     }
 
+    public function testQueryConfig()
+    {
+        $query = $this->client->queryConfig(self::QUERY_STRING);
+
+        $this->assertInstanceOf(QueryJobConfiguration::class, $query);
+    }
+
     public function testRunsQuery()
     {
         $query = $this->client->query(self::QUERY_STRING, [
