@@ -132,8 +132,11 @@ class QueryResults implements \IteratorAggregate
      *
      *     @type int $maxResults Maximum number of results to read per page.
      *     @type int $startIndex Zero-based index of the starting row.
-     *     @type int $timeoutMs If not yet complete, how long to wait in
-     *           milliseconds. **Defaults to** `10000` milliseconds (10 seconds).
+     *     @type int $timeoutMs How long, in milliseconds, each API call will
+     *           wait for query results to become available before timing out.
+     *           Depending on whether the $maxRetries has been exceeded, the
+     *           results will be polled again after the timeout has been reached.
+     *           **Defaults to** `10000` milliseconds (10 seconds).
      *     @type int $maxRetries The number of times to poll the Job status,
      *           until the job is complete. By default, will poll indefinitely.
      * }
@@ -191,9 +194,11 @@ class QueryResults implements \IteratorAggregate
      *
      *     @type int $maxResults Maximum number of results to read per page.
      *     @type int $startIndex Zero-based index of the starting row.
-     *     @type int $timeoutMs If not yet complete, how long to wait for the
-     *           query to complete, in milliseconds. **Defaults to**
-     *           `10000` milliseconds (10 seconds).
+     *     @type int $timeoutMs How long, in milliseconds, each API call will
+     *           wait for query results to become available before timing out.
+     *           Depending on whether the $maxRetries has been exceeded, the
+     *           results will be polled again after the timeout has been reached.
+     *           **Defaults to** `10000` milliseconds (10 seconds).
      *     @type int $maxRetries The number of times to poll the Job status,
      *           until the job is complete. By default, will poll indefinitely.
      * }
