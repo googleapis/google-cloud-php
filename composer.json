@@ -76,6 +76,7 @@
         "google/cloud-language": "0.11.0",
         "google/cloud-logging": "1.8.0",
         "google/cloud-monitoring": "0.7.1",
+        "google/cloud-oslogin": "master",
         "google/cloud-pubsub": "0.11.0",
         "google/cloud-spanner": "0.11.0",
         "google/cloud-speech": "0.10.0",
