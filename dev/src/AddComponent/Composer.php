@@ -71,6 +71,15 @@ class Composer
         'google/gax'
     ];
 
+    /**
+     * @var array
+     */
+    private $defaultSuggests = [
+        'ext-grpc' => 'Enables use of gRPC, a universal high-performance RPC framework created by Google.',
+        'ext-protobuf' => 'Provides a significant increase in throughput over the pure PHP ' .
+            'protobuf implementation. See https://cloud.google.com/php/grpc for installation instructions.'
+    ];
+
     public function __construct(
         QuestionHelper $questionHelper,
         InputInterface $input,
@@ -165,6 +174,23 @@ class Composer
                 $composer['require'][$dep] = $version;
             }
         } while ($hasMoreDependencies);
+
+        foreach ($this->defaultSuggests as $dep => $val) {
+            if (array_key_exists($dep, $composer['require'])) {
+                continue;
+            }
+
+            $confirm = $this->confirm(sprintf('Should `%s` be suggested?', $dep));
+            if (!$this->askQuestion($confirm)) {
+                continue;
+            }
+
+            if (!isset($composer['suggest'])) {
+                $composer['suggest'] = [];
+            }
+
+            $composer['suggest'][$dep] = $this->defaultSuggests[$dep];
+        }
 
         file_put_contents(
             $this->path .'/composer.json',

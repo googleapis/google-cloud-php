@@ -12,7 +12,7 @@
 support requests, bug reports, or development contributions should be directed to
 that project. Additional tests and build information can also be found at the
 parent project.
-
+{notice}
 ## Installation
 
 ```

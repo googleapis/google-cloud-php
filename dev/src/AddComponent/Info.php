@@ -28,6 +28,7 @@ use Symfony\Component\Console\Output\OutputInterface;
  */
 class Info
 {
+    use ComponentTypeTrait;
     use QuestionTrait;
 
     /**
@@ -107,6 +108,21 @@ class Info
 
         $info['path'] = $this->askQuestion($q);
 
+        $defaultType = $this->getComponentTypeValue('gapic');
+        $q = $this->choice(
+            'What type of component is this?',
+            $this->getComponentTypesListValues(),
+            $defaultType
+        )->setValidator($this->validators([
+            $this->defaultChoice($defaultType),
+            $this->preventEmpty(),
+            $this->removeDefaultNotice($defaultType),
+            function ($answer) {
+                return $this->getComponentTypeKey($answer);
+            }
+        ]));
+        $info['type'] = $this->askQuestion($q);
+
         $this->output->writeln('Confirm entered data');
         foreach ($info as $key => $val) {
             $this->output->writeln(sprintf('<info>%s</info>: %s', $key, $val));
@@ -132,7 +148,7 @@ class Info
             $description,
             $default
         )->setValidator($this->validators([
-            [$this, 'preventEmpty'],
+            $this->preventEmpty(),
             function ($answer) use ($default) {
                 if ($answer === $default) {
                     return $answer;
@@ -186,7 +202,7 @@ class Info
         $q = $this->question(
             'Please enter the component short name. Examples include bigquery, datastore, spanner.'
         )->setValidator($this->validators([
-            [$this, 'preventEmpty']
+            $this->preventEmpty()
         ]));
 
         return $this->askQuestion($q);
@@ -219,7 +235,7 @@ class Info
             'Please enter the component name, omitting the vendor',
             'cloud-'. $info['shortName']
         )->setValidator($this->validators([
-            [$this, 'preventEmpty'],
+            $this->preventEmpty(),
             $validator
         ]));
 

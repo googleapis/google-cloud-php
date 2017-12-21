@@ -164,7 +164,7 @@ class TableOfContents
             $q = $this->choice('Please select the main service.', $choices)
                 ->setValidator($this->validators([
                     $setDefault,
-                    [$this, 'preventEmpty'],
+                    $this->preventEmpty(),
                     $validator,
                 ]));
 

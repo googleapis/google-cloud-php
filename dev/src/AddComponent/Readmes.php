@@ -28,6 +28,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 class Readmes
 {
     const README_TPL = 'template-README.md.txt';
+    const GRPC_NOTICE_TPL = 'template-README.md-%s.txt';
     const SUGGESTION_TEXT = ' (skip suggested based on path name)';
 
     use PathTrait;
@@ -101,6 +102,10 @@ class Readmes
             if ($create) {
                 $file = $path .'/README.md';
                 $content = file_get_contents($this->templatesPath .'/'. self::README_TPL);
+
+                $content = str_replace('{notice}', file_get_contents(
+                    $this->templatesPath .'/'. sprintf(self::GRPC_NOTICE_TPL, $this->info['type'])
+                ), $content);
                 $content = str_replace('{display}', $this->info['display'], $content);
                 $content = str_replace('{homepage}', $this->info['cloudPage'], $content);
                 $content = str_replace('{name}', $this->info['name'], $content);

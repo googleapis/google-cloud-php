@@ -57,8 +57,19 @@ trait QuestionTrait
         );
     }
 
-    private function choice($question, array $options)
+    private function choice($question, array $options, $default = null)
     {
+        if ($default !== null) {
+            if (!in_array($default, $options)) {
+                throw new \RuntimeException(
+                    'default choice `'. $default .'` is not an allowed choice. (This is a developer problem)'
+                );
+            }
+
+            $key = array_search($default, $options);
+            $options[$key] = $options[$key] .' (default)';
+        }
+
         return new ChoiceQuestion($question, $options);
     }
 
@@ -83,12 +94,36 @@ trait QuestionTrait
         };
     }
 
-    private function preventEmpty($answer)
+    private function preventEmpty()
     {
-        if (empty($answer) && $answer !== 0 && $answer !== '0') {
-            throw new \RuntimeException('Answer cannot be blank.');
-        }
+        return function ($answer) {
+            if (empty($answer) && $answer !== 0 && $answer !== '0') {
+                throw new \RuntimeException('Answer cannot be blank.');
+            }
 
-        return $answer;
+            return $answer;
+        };
+    }
+
+    private function defaultChoice($default)
+    {
+        return function ($answer) use ($default) {
+            if (empty($answer) && $answer !== 0 && $answer !== '0' && $default !== null) {
+                return (string) $default;
+            }
+
+            return $answer;
+        };
+    }
+
+    private function removeDefaultNotice($default, $notice = '(default)')
+    {
+        return function ($answer) use ($default, $notice) {
+            if (strpos($answer, $notice) !== false) {
+                $answer = trim(str_replace($notice, '', $answer));
+            }
+
+            return $answer;
+        };
     }
 }
