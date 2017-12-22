@@ -1,5 +1,8 @@
 # Google Cloud OsLogin for PHP
 
+[![Latest Stable Version](https://poser.pugx.org/google/cloud-oslogin/v/stable)](https://packagist.org/packages/google/cloud-oslogin)
+[![Packagist](https://img.shields.io/packagist/dm/google/cloud-oslogin.svg)](https://packagist.org/packages/google/cloud-oslogin)
+
 > Idiomatic PHP client for [Google Cloud OsLogin](https://cloud.google.com/compute/docs/oslogin/rest/).
 
 * [Homepage](http://googlecloudplatform.github.io/google-cloud-php)
