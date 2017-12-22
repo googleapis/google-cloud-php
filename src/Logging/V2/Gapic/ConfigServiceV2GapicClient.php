@@ -21,9 +21,9 @@
  * https://github.com/google/googleapis/blob/master/google/logging/v2/logging_config.proto
  * and updates to that file get reflected here through a refresh process.
  *
- * EXPERIMENTAL: this client library class has not yet been declared beta. This class may change
- * more frequently than those which have been declared beta or 1.0, including changes which break
- * backwards compatibility.
+ * EXPERIMENTAL: this client library class has not yet been declared GA (1.0). This means that
+ * even though we intent the surface to be stable, we may make backwards incompatible changes
+ * if necessary.
  *
  * @experimental
  */
@@ -57,9 +57,9 @@ use Google\Protobuf\FieldMask;
  * Service Description: Service for configuring sinks used to export log entries outside of
  * Stackdriver Logging.
  *
- * EXPERIMENTAL: this client library class has not yet been declared beta. This class may change
- * more frequently than those which have been declared beta or 1.0, including changes which break
- * backwards compatibility.
+ * EXPERIMENTAL: this client library class has not yet been declared GA (1.0). This means that
+ * even though we intent the surface to be stable, we may make backwards incompatible changes
+ * if necessary.
  *
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods. Sample code to get started:
