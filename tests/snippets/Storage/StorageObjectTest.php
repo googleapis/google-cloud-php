@@ -25,7 +25,7 @@ use Google\Cloud\Storage\Bucket;
 use Google\Cloud\Storage\Connection\Rest;
 use Google\Cloud\Storage\StorageClient;
 use Google\Cloud\Storage\StorageObject;
-use Google\Cloud\Tests\KeyPairGenerateTrait;
+use Google\Cloud\Core\Testing\KeyPairGenerateTrait;
 use GuzzleHttp\Psr7\Response;
 use Prophecy\Argument;
 use Psr\Http\Message\RequestInterface;

@@ -20,7 +20,7 @@ namespace Google\Cloud\Tests\Unit\Storage;
 use Google\Cloud\Core\Exception\NotFoundException;
 use Google\Cloud\Core\RequestWrapper;
 use Google\Cloud\Core\Timestamp;
-use Google\Cloud\Tests\KeyPairGenerateTrait;
+use Google\Cloud\Core\Testing\KeyPairGenerateTrait;
 use Google\Cloud\Storage\Acl;
 use Google\Cloud\Storage\Bucket;
 use Google\Cloud\Storage\Connection\Rest;

@@ -17,7 +17,7 @@
 
 namespace Google\Cloud\Tests\Unit\Storage;
 
-use Google\Cloud\Tests\KeyPairGenerateTrait;
+use Google\Cloud\Core\Testing\KeyPairGenerateTrait;
 use Google\Cloud\Storage\EncryptionTrait;
 use PHPUnit\Framework\TestCase;
 
