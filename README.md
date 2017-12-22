@@ -8,7 +8,6 @@
 
 This client supports the following Google Cloud Platform services at a [General Availability](#versioning) quality level:
 * [Cloud Spanner](#cloud-spanner-ga) (GA)
-* [Google BigQuery](#google-bigquery-ga) (GA)
 * [Google Cloud Datastore](#google-cloud-datastore-ga) (GA)
 * [Google Cloud Storage](#google-cloud-storage-ga) (GA)
 * [Google Cloud Translation](#google-cloud-translation-ga) (GA)
@@ -17,6 +16,7 @@ This client supports the following Google Cloud Platform services at a [General 
 This client supports the following Google Cloud Platform services at a [Beta](#versioning) quality level:
 
 * [Cloud Firestore](#cloud-firestore-beta) (Beta)
+* [Google BigQuery](#google-bigquery-beta) (Beta)
 * [Google Cloud Container](#google-cloud-container-beta) (Beta)
 * [Google Cloud Dataproc](#google-cloud-dataproc-beta) (Beta)
 * [Google Cloud Natural Language](#google-cloud-natural-language-beta) (Beta)
@@ -134,47 +134,6 @@ Cloud Spanner can be installed separately by requiring the `google/cloud-spanner
 
 ```
 $ composer require google/cloud-spanner
-```
-
-## Google BigQuery (GA)
-
-- [API Documentation](http://googlecloudplatform.github.io/google-cloud-php/#/docs/latest/bigquery/bigqueryclient)
-- [Official Documentation](https://cloud.google.com/bigquery/docs)
-
-#### Preview
-
-```php
-require 'vendor/autoload.php';
-
-use Google\Cloud\BigQuery\BigQueryClient;
-
-$bigQuery = new BigQueryClient([
-    'projectId' => 'my_project'
-]);
-
-// Get an instance of a previously created table.
-$dataset = $bigQuery->dataset('my_dataset');
-$table = $dataset->table('my_table');
-
-// Begin a job to import data from a CSV file into the table.
-$job = $table->load(
-    fopen('/data/my_data.csv', 'r')
-);
-
-// Run a query and inspect the results.
-$queryResults = $bigQuery->runQuery('SELECT * FROM [my_project:my_dataset.my_table]');
-
-foreach ($queryResults->rows() as $row) {
-    print_r($row);
-}
-```
-
-#### google/cloud-bigquery
-
-Google BigQuery can be installed separately by requiring the `google/cloud-bigquery` composer package:
-
-```
-$ composer require google/cloud-bigquery
 ```
 
 ## Google Cloud Datastore (GA)
@@ -399,6 +358,47 @@ Cloud Firestore can be installed separately by requiring the `google/cloud-fires
 
 ```
 $ composer require google/cloud-firestore
+```
+
+## Google BigQuery (Beta)
+
+- [API Documentation](http://googlecloudplatform.github.io/google-cloud-php/#/docs/latest/bigquery/bigqueryclient)
+- [Official Documentation](https://cloud.google.com/bigquery/docs)
+
+#### Preview
+
+```php
+require 'vendor/autoload.php';
+
+use Google\Cloud\BigQuery\BigQueryClient;
+
+$bigQuery = new BigQueryClient([
+    'projectId' => 'my_project'
+]);
+
+// Get an instance of a previously created table.
+$dataset = $bigQuery->dataset('my_dataset');
+$table = $dataset->table('my_table');
+
+// Begin a job to import data from a CSV file into the table.
+$job = $table->load(
+    fopen('/data/my_data.csv', 'r')
+);
+
+// Run a query and inspect the results.
+$queryResults = $bigQuery->runQuery('SELECT * FROM [my_project:my_dataset.my_table]');
+
+foreach ($queryResults->rows() as $row) {
+    print_r($row);
+}
+```
+
+#### google/cloud-bigquery
+
+Google BigQuery can be installed separately by requiring the `google/cloud-bigquery` composer package:
+
+```
+$ composer require google/cloud-bigquery
 ```
 
 ## Google Cloud Container (Beta)
