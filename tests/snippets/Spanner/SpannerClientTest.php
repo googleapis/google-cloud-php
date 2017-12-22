@@ -55,7 +55,7 @@ class SpannerClientTest extends SnippetTestCase
         $this->checkAndSkipGrpcTests();
 
         $this->connection = $this->prophesize(ConnectionInterface::class);
-        $this->client = \Google\Cloud\Dev\stub(SpannerClient::class);
+        $this->client = \Google\Cloud\Core\Testing\stub(SpannerClient::class);
         $this->client->___setProperty('connection', $this->connection->reveal());
     }
 

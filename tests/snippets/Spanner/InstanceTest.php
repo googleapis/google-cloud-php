@@ -51,7 +51,7 @@ class InstanceTest extends SnippetTestCase
         $this->checkAndSkipGrpcTests();
 
         $this->connection = $this->prophesize(ConnectionInterface::class);
-        $this->instance = \Google\Cloud\Dev\stub(Instance::class, [
+        $this->instance = \Google\Cloud\Core\Testing\stub(Instance::class, [
             $this->connection->reveal(),
             $this->prophesize(LongRunningConnectionInterface::class)->reveal(),
             [],

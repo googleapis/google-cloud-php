@@ -63,7 +63,7 @@ class QueryResultsTest extends SnippetTestCase
         ];
 
         $this->connection = $this->prophesize(ConnectionInterface::class);
-        $this->qr = \Google\Cloud\Dev\stub(QueryResults::class, [
+        $this->qr = \Google\Cloud\Core\Testing\stub(QueryResults::class, [
             $this->connection->reveal(),
             self::JOB_ID,
             self::PROJECT,

@@ -38,7 +38,7 @@ class SnapshotTest extends SnippetTestCase
     public function setUp()
     {
         $this->connection = $this->prophesize(ConnectionInterface::class);
-        $this->snapshot = \Google\Cloud\Dev\stub(Snapshot::class, [
+        $this->snapshot = \Google\Cloud\Core\Testing\stub(Snapshot::class, [
             $this->connection->reveal(),
             self::PROJECT,
             self::SNAPSHOT,

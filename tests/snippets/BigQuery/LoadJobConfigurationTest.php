@@ -81,7 +81,7 @@ class LoadJobConfigurationTest extends SnippetTestCase
 
     public function setterDataProvider()
     {
-        $bq = \Google\Cloud\Dev\stub(BigQueryClient::class, [
+        $bq = \Google\Cloud\Core\Testing\stub(BigQueryClient::class, [
             ['projectId' => self::PROJECT_ID]
         ]);
 

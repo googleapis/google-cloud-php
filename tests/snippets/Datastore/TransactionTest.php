@@ -44,7 +44,7 @@ class TransactionTest extends SnippetTestCase
     public function setUp()
     {
         $this->connection = $this->prophesize(ConnectionInterface::class);
-        $this->operation = \Google\Cloud\Dev\stub(Operation::class, [
+        $this->operation = \Google\Cloud\Core\Testing\stub(Operation::class, [
             $this->connection->reveal(),
             self::PROJECT,
             '',

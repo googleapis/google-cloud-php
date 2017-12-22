@@ -35,7 +35,7 @@ class VisionClientTest extends SnippetTestCase
     public function setUp()
     {
         $this->connection = $this->prophesize(ConnectionInterface::class);
-        $this->client = \Google\Cloud\Dev\stub(VisionClient::class);
+        $this->client = \Google\Cloud\Core\Testing\stub(VisionClient::class);
         $this->client->___setProperty('connection', $this->connection->reveal());
     }
 

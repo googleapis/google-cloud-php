@@ -80,10 +80,10 @@ class TransactionTest extends TestCase
             'operation', 'readTimestamp', 'state'
         ];
 
-        $this->transaction = \Google\Cloud\Dev\stub(Transaction::class, $args, $props);
+        $this->transaction = \Google\Cloud\Core\Testing\stub(Transaction::class, $args, $props);
 
         unset($args[2]);
-        $this->singleUseTransaction = \Google\Cloud\Dev\stub(Transaction::class, $args, $props);
+        $this->singleUseTransaction = \Google\Cloud\Core\Testing\stub(Transaction::class, $args, $props);
     }
 
     public function testInsert()
@@ -303,7 +303,7 @@ class TransactionTest extends TestCase
             true
         ];
 
-        $transaction = \Google\Cloud\Dev\stub(Transaction::class, $args);
+        $transaction = \Google\Cloud\Core\Testing\stub(Transaction::class, $args);
 
         $this->assertTrue($transaction->isRetry());
     }

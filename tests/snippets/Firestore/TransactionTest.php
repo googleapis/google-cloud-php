@@ -52,7 +52,7 @@ class TransactionTest extends SnippetTestCase
     public function setUp()
     {
         $this->connection = $this->prophesize(ConnectionInterface::class);
-        $this->transaction = \Google\Cloud\Dev\stub(TransactionStub::class, [
+        $this->transaction = \Google\Cloud\Core\Testing\stub(TransactionStub::class, [
             $this->connection->reveal(),
             new ValueMapper($this->connection->reveal(), false),
             self::DATABASE,
@@ -76,7 +76,7 @@ class TransactionTest extends SnippetTestCase
         $this->connection->rollback(Argument::any())
             ->shouldBeCalled();
 
-        $client = \Google\Cloud\Dev\stub(FirestoreClient::class);
+        $client = \Google\Cloud\Core\Testing\stub(FirestoreClient::class);
         $client->___setProperty('connection', $this->connection->reveal());
 
         $snippet = $this->snippetFromClass(Transaction::class);

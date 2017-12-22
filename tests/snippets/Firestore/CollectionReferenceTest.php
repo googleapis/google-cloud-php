@@ -44,7 +44,7 @@ class CollectionReferenceTest extends SnippetTestCase
     public function setUp()
     {
         $this->connection = $this->prophesize(ConnectionInterface::class);
-        $this->collection = \Google\Cloud\Dev\stub(CollectionReference::class, [
+        $this->collection = \Google\Cloud\Core\Testing\stub(CollectionReference::class, [
             $this->connection->reveal(),
             new ValueMapper($this->connection->reveal(), false),
             self::NAME

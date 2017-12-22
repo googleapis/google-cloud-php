@@ -202,7 +202,7 @@ class TableTest extends SnippetTestCase
 
     public function testCopy()
     {
-        $bq = \Google\Cloud\Dev\stub(BigQueryClient::class);
+        $bq = \Google\Cloud\Core\Testing\stub(BigQueryClient::class);
         $snippet = $this->snippetFromMethod(Table::class, 'copy');
         $snippet->addLocal('bigQuery', $bq);
         $bq->___setProperty('connection', $this->connection->reveal());
@@ -229,7 +229,7 @@ class TableTest extends SnippetTestCase
 
     public function testExtract()
     {
-        $storage = \Google\Cloud\Dev\stub(StorageClient::class);
+        $storage = \Google\Cloud\Core\Testing\stub(StorageClient::class);
         $storage->___setProperty('connection', $this->prophesize(StorageConnection::class)->reveal());
         $snippet = $this->snippetFromMethod(Table::class, 'extract');
         $snippet->addLocal('storage', $storage);
@@ -274,7 +274,7 @@ class TableTest extends SnippetTestCase
 
     public function testLoadFromStorage()
     {
-        $storage = \Google\Cloud\Dev\stub(StorageClient::class);
+        $storage = \Google\Cloud\Core\Testing\stub(StorageClient::class);
         $storage->___setProperty('connection', $this->prophesize(StorageConnection::class)->reveal());
         $snippet = $this->snippetFromMethod(Table::class, 'loadFromStorage');
         $snippet->addLocal('storage', $storage);

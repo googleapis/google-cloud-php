@@ -33,7 +33,7 @@ class LanguageClientTest extends SnippetTestCase
     public function setUp()
     {
         $this->connection = $this->prophesize(ConnectionInterface::class);
-        $this->client = \Google\Cloud\Dev\stub(LanguageClient::class);
+        $this->client = \Google\Cloud\Core\Testing\stub(LanguageClient::class);
         $this->client->___setProperty('connection', $this->connection->reveal());
     }
 

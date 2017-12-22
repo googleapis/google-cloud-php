@@ -41,7 +41,7 @@ class FieldValueTest extends SnippetTestCase
         $this->checkAndSkipGrpcTests();
 
         $this->connection = $this->prophesize(ConnectionInterface::class);
-        $this->firestore = \Google\Cloud\Dev\stub(FirestoreClient::class);
+        $this->firestore = \Google\Cloud\Core\Testing\stub(FirestoreClient::class);
     }
 
     public function testDeleteField()

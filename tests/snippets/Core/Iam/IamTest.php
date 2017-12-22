@@ -39,7 +39,7 @@ class IamTest extends SnippetTestCase
         $this->resource = 'testObject';
 
         $this->connection = $this->prophesize(IamConnectionInterface::class);
-        $this->iam = \Google\Cloud\Dev\stub(Iam::class, [$this->connection->reveal(), $this->resource]);
+        $this->iam = \Google\Cloud\Core\Testing\stub(Iam::class, [$this->connection->reveal(), $this->resource]);
         $this->iam->___setProperty('connection', $this->connection->reveal());
     }
 

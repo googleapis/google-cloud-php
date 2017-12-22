@@ -45,7 +45,7 @@ class WriteBatchTest extends TestCase
     public function setUp()
     {
         $this->connection = $this->prophesize(ConnectionInterface::class);
-        $this->batch = \Google\Cloud\Dev\stub(WriteBatch::class, [
+        $this->batch = \Google\Cloud\Core\Testing\stub(WriteBatch::class, [
             $this->connection->reveal(),
             new ValueMapper($this->connection->reveal(), false),
             sprintf('projects/%s/databases/%s', self::PROJECT, self::DATABASE)

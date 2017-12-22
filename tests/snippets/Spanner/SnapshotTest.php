@@ -51,7 +51,7 @@ class SnapshotTest extends SnippetTestCase
         $operation = $this->prophesize(Operation::class);
         $session = $this->prophesize(Session::class);
 
-        $this->snapshot = \Google\Cloud\Dev\stub(Snapshot::class, [
+        $this->snapshot = \Google\Cloud\Core\Testing\stub(Snapshot::class, [
             $operation->reveal(),
             $session->reveal(),
             [
@@ -63,7 +63,7 @@ class SnapshotTest extends SnippetTestCase
 
     private function stubOperation($stub = null)
     {
-        $operation = \Google\Cloud\Dev\stub(Operation::class, [
+        $operation = \Google\Cloud\Core\Testing\stub(Operation::class, [
             $this->connection->reveal(), false
         ]);
 

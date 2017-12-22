@@ -37,7 +37,7 @@ class QuerySnapshotTest extends TestCase
     public function setUp()
     {
         $this->connection = $this->prophesize(ConnectionInterface::class);
-        $this->snapshot = \Google\Cloud\Dev\stub(QuerySnapshot::class, [
+        $this->snapshot = \Google\Cloud\Core\Testing\stub(QuerySnapshot::class, [
             $this->prophesize(Query::class)->reveal(),
             []
         ], ['rows']);

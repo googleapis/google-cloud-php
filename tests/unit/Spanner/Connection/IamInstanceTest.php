@@ -36,7 +36,7 @@ class IamInstanceTest extends TestCase
     {
         $this->connection = $this->prophesize(ConnectionInterface::class);
 
-        $this->iam = \Google\Cloud\Dev\stub(IamInstance::class, [$this->connection->reveal()]);
+        $this->iam = \Google\Cloud\Core\Testing\stub(IamInstance::class, [$this->connection->reveal()]);
     }
 
     /**

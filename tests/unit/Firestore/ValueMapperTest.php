@@ -43,7 +43,7 @@ class ValueMapperTest extends TestCase
     public function setUp()
     {
         $this->connection = $this->prophesize(ConnectionInterface::class);
-        $this->mapper = \Google\Cloud\Dev\stub(ValueMapper::class, [
+        $this->mapper = \Google\Cloud\Core\Testing\stub(ValueMapper::class, [
             $this->connection->reveal(),
             false
         ], ['connection', 'returnInt64AsObject']);

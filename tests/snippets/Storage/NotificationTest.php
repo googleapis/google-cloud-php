@@ -40,7 +40,7 @@ class NotificationTest extends SnippetTestCase
     public function setUp()
     {
         $this->connection = $this->prophesize(Rest::class);
-        $this->notification = \Google\Cloud\Dev\stub(Notification::class, [
+        $this->notification = \Google\Cloud\Core\Testing\stub(Notification::class, [
             $this->connection->reveal(),
             self::NOTIFICATION_ID,
             self::BUCKET

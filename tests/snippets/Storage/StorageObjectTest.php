@@ -47,7 +47,7 @@ class StorageObjectTest extends SnippetTestCase
     public function setUp()
     {
         $this->connection = $this->prophesize(Rest::class);
-        $this->object = \Google\Cloud\Dev\stub(StorageObject::class, [
+        $this->object = \Google\Cloud\Core\Testing\stub(StorageObject::class, [
             $this->connection->reveal(),
             self::OBJECT,
             self::BUCKET
