@@ -26,6 +26,7 @@ This client supports the following Google Cloud Platform services at a [Beta](#v
 * [Google Stackdriver Monitoring](#google-stackdriver-monitoring-beta) (Beta)
 * [Google Cloud Container](#google-cloud-container-beta) (Beta)
 * [Google Cloud Dataproc](#google-cloud-dataproc-beta) (Beta)
+* [Google Cloud OsLogin](#google-cloud-oslogin-beta) (Beta)
 
 This client supports the following Google Cloud Platform services at an [Alpha](#versioning) quality level:
 * [Google Cloud Speech](#google-cloud-speech-alpha) (Alpha)
@@ -771,7 +772,7 @@ use Google\Cloud\Dataproc\V1\Job;
 use Google\Cloud\Dataproc\V1\HadoopJob;
 use Google\Cloud\Dataproc\V1\JobPlacement;
 
-$projectId = '[MY_PROJECT_ID'];
+$projectId = '[MY_PROJECT_ID]';
 $region = 'global';
 $clusterName = '[MY_CLUSTER]';
 
@@ -795,6 +796,31 @@ Google Cloud Dataproc can be installed separately by requiring the `google/cloud
 
 ```
 $ composer require google/cloud-dataproc
+```
+
+## Google Cloud OsLogin (Beta)
+
+- [API Documentation](http://googlecloudplatform.github.io/google-cloud-php/#/docs/latest/oslogin/readme)
+- [Official Documentation](https://cloud.google.com/compute/docs/oslogin/rest/)
+
+```php
+<?php
+require 'vendor/autoload.php';
+
+use Google\Cloud\OsLogin\V1beta\OsLoginServiceClient;
+
+$osLoginServiceClient = new OsLoginServiceClient();
+$userId = '[MY_USER_ID]';
+$formattedName = $osLoginServiceClient->userName($userId);
+$loginProfile = $osLoginServiceClient->getLoginProfile($formattedName);
+```
+
+#### google/cloud-oslogin
+
+Google Cloud OsLogin can be installed separately by requiring the `google/cloud-oslogin` composer package:
+
+```
+$ composer require google/cloud-oslogin
 ```
 
 ## Google Cloud Speech (Alpha)

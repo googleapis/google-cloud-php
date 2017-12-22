@@ -1,19 +1,19 @@
 {
-    "name": "google/cloud-dataproc",
-    "description": "Google Cloud Dataproc Client for PHP",
+    "name": "google/cloud-oslogin",
+    "description": "Google Cloud OsLogin Client for PHP",
     "license": "Apache-2.0",
     "minimum-stability": "stable",
     "autoload": {
         "psr-4": {
-            "Google\\Cloud\\Dataproc\\": ""
+            "Google\\Cloud\\OsLogin\\": ""
         }
     },
     "extra": {
         "component": {
-            "id": "cloud-dataproc",
-            "path": "src/Dataproc",
+            "id": "cloud-oslogin",
+            "path": "src/OsLogin",
             "entry": null,
-            "target": "GoogleCloudPlatform/google-cloud-php-dataproc.git"
+            "target": "GoogleCloudPlatform/google-cloud-php-oslogin.git"
         }
     },
     "require": {

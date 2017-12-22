@@ -18,6 +18,7 @@
         "cloud-language",
         "cloud-logging",
         "cloud-monitoring",
+        "cloud-oslogin",
         "cloud-pubsub",
         "cloud-spanner",
         "cloud-speech",
