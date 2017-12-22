@@ -36,7 +36,7 @@ class PathTraitTest extends TestCase
 
     public function setUp()
     {
-        $this->impl = \Google\Cloud\Dev\impl(PathTrait::class);
+        $this->impl = \Google\Cloud\Core\Testing\impl(PathTrait::class);
     }
 
     public function testFullName()

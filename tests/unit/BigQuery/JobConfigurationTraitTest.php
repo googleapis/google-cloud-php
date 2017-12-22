@@ -33,7 +33,7 @@ class JobConfigurationTraitTest extends TestCase
 
     public function setUp()
     {
-        $this->trait = \Google\Cloud\Dev\impl(JobConfigurationTrait::class);
+        $this->trait = \Google\Cloud\Core\Testing\impl(JobConfigurationTrait::class);
     }
 
     public function testJobConfigurationProperties()
