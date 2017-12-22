@@ -17,16 +17,16 @@ This client supports the following Google Cloud Platform services at a [General 
 This client supports the following Google Cloud Platform services at a [Beta](#versioning) quality level:
 
 * [Cloud Firestore](#cloud-firestore-beta) (Beta)
+* [Google Cloud Container](#google-cloud-container-beta) (Beta)
+* [Google Cloud Dataproc](#google-cloud-dataproc-beta) (Beta)
 * [Google Cloud Natural Language](#google-cloud-natural-language-beta) (Beta)
+* [Google Cloud OsLogin](#google-cloud-oslogin-beta) (Beta)
 * [Google Cloud Pub/Sub](#google-cloud-pubsub-beta) (Beta)
 * [Google Cloud Video Intelligence](#google-cloud-video-intelligence-beta) (Beta)
 * [Google Cloud Vision](#google-cloud-vision-beta) (Beta)
 * [Google DLP](#google-dlp-beta) (Beta)
 * [Google Stackdriver Error Reporting](#google-stackdriver-error-reporting-beta) (Beta)
 * [Google Stackdriver Monitoring](#google-stackdriver-monitoring-beta) (Beta)
-* [Google Cloud Container](#google-cloud-container-beta) (Beta)
-* [Google Cloud Dataproc](#google-cloud-dataproc-beta) (Beta)
-* [Google Cloud OsLogin](#google-cloud-oslogin-beta) (Beta)
 
 This client supports the following Google Cloud Platform services at an [Alpha](#versioning) quality level:
 * [Google Cloud Speech](#google-cloud-speech-alpha) (Alpha)
@@ -401,6 +401,80 @@ Cloud Firestore can be installed separately by requiring the `google/cloud-fires
 $ composer require google/cloud-firestore
 ```
 
+## Google Cloud Container (Beta)
+
+- [API Documentation](http://googlecloudplatform.github.io/google-cloud-php/#/docs/latest/monitoring/readme)
+- [Official Documentation](https://cloud.google.com/kubernetes-engine/docs)
+
+```php
+<?php
+require 'vendor/autoload.php';
+
+use Google\Cloud\Container\V1\ClusterManagerClient;
+
+$clusterManagerClient = new ClusterManagerClient();
+
+$projectId = '[MY-PROJECT-ID]';
+$zone = 'us-central1-a';
+
+try {
+    $clusters = $clusterManagerClient->listClusters($projectId, $zone);
+    foreach ($clusters->getClusters() as $cluster) {
+        print('Cluster: ' . $cluster->getName() . PHP_EOL);
+    }
+} finally {
+    $clusterManagerClient->close();
+}
+```
+
+#### google/cloud-container
+
+Google Cloud Container can be installed separately by requiring the `google/cloud-container` composer package:
+
+```
+$ composer require google/cloud-container
+```
+
+## Google Cloud Dataproc (Beta)
+
+- [API Documentation](http://googlecloudplatform.github.io/google-cloud-php/#/docs/latest/dataproc/readme)
+- [Official Documentation](https://cloud.google.com/dataproc/docs)
+
+```php
+<?php
+require 'vendor/autoload.php';
+
+use Google\Cloud\Dataproc\V1\JobControllerClient;
+use Google\Cloud\Dataproc\V1\Job;
+use Google\Cloud\Dataproc\V1\HadoopJob;
+use Google\Cloud\Dataproc\V1\JobPlacement;
+
+$projectId = '[MY_PROJECT_ID]';
+$region = 'global';
+$clusterName = '[MY_CLUSTER]';
+
+$jobPlacement = new JobPlacement();
+$jobPlacement->setClusterName($clusterName);
+
+$hadoopJob = new HadoopJob();
+$hadoopJob->setMainJarFileUri('gs://my-bucket/my-hadoop-job.jar');
+
+$job = new Job();
+$job->setPlacement($jobPlacement);
+$job->setHadoopJob($hadoopJob);
+
+$jobControllerClient = new JobControllerClient();
+$submittedJob = $jobControllerClient->submitJob($projectId, $region, $job);
+```
+
+#### google/cloud-dataproc
+
+Google Cloud Dataproc can be installed separately by requiring the `google/cloud-dataproc` composer package:
+
+```
+$ composer require google/cloud-dataproc
+```
+
 ## Google Cloud Natural Language (Beta)
 
 - [API Documentation](http://googlecloudplatform.github.io/google-cloud-php/#/docs/latest/language/languageclient)
@@ -446,6 +520,31 @@ Google Cloud Natural Language can be installed separately by requiring the `goog
 
 ```
 $ composer require google/cloud-language
+```
+
+## Google Cloud OsLogin (Beta)
+
+- [API Documentation](http://googlecloudplatform.github.io/google-cloud-php/#/docs/latest/oslogin/readme)
+- [Official Documentation](https://cloud.google.com/compute/docs/oslogin/rest/)
+
+```php
+<?php
+require 'vendor/autoload.php';
+
+use Google\Cloud\OsLogin\V1beta\OsLoginServiceClient;
+
+$osLoginServiceClient = new OsLoginServiceClient();
+$userId = '[MY_USER_ID]';
+$formattedName = $osLoginServiceClient->userName($userId);
+$loginProfile = $osLoginServiceClient->getLoginProfile($formattedName);
+```
+
+#### google/cloud-oslogin
+
+Google Cloud OsLogin can be installed separately by requiring the `google/cloud-oslogin` composer package:
+
+```
+$ composer require google/cloud-oslogin
 ```
 
 ## Google Cloud Pub/Sub (Beta)
@@ -722,105 +821,6 @@ Google Stackdriver Monitoring can be installed separately by requiring the `goog
 
 ```
 $ composer require google/cloud-monitoring
-```
-
-## Google Cloud Container (Beta)
-
-- [API Documentation](http://googlecloudplatform.github.io/google-cloud-php/#/docs/latest/monitoring/readme)
-- [Official Documentation](https://cloud.google.com/kubernetes-engine/docs)
-
-```php
-<?php
-require 'vendor/autoload.php';
-
-use Google\Cloud\Container\V1\ClusterManagerClient;
-
-$clusterManagerClient = new ClusterManagerClient();
-
-$projectId = '[MY-PROJECT-ID]';
-$zone = 'us-central1-a';
-
-try {
-    $clusters = $clusterManagerClient->listClusters($projectId, $zone);
-    foreach ($clusters->getClusters() as $cluster) {
-        print('Cluster: ' . $cluster->getName() . PHP_EOL);
-    }
-} finally {
-    $clusterManagerClient->close();
-}
-```
-
-#### google/cloud-container
-
-Google Cloud Container can be installed separately by requiring the `google/cloud-container` composer package:
-
-```
-$ composer require google/cloud-container
-```
-
-## Google Cloud Dataproc (Beta)
-
-- [API Documentation](http://googlecloudplatform.github.io/google-cloud-php/#/docs/latest/dataproc/readme)
-- [Official Documentation](https://cloud.google.com/dataproc/docs)
-
-```php
-<?php
-require 'vendor/autoload.php';
-
-use Google\Cloud\Dataproc\V1\JobControllerClient;
-use Google\Cloud\Dataproc\V1\Job;
-use Google\Cloud\Dataproc\V1\HadoopJob;
-use Google\Cloud\Dataproc\V1\JobPlacement;
-
-$projectId = '[MY_PROJECT_ID]';
-$region = 'global';
-$clusterName = '[MY_CLUSTER]';
-
-$jobPlacement = new JobPlacement();
-$jobPlacement->setClusterName($clusterName);
-
-$hadoopJob = new HadoopJob();
-$hadoopJob->setMainJarFileUri('gs://my-bucket/my-hadoop-job.jar');
-
-$job = new Job();
-$job->setPlacement($jobPlacement);
-$job->setHadoopJob($hadoopJob);
-
-$jobControllerClient = new JobControllerClient();
-$submittedJob = $jobControllerClient->submitJob($projectId, $region, $job);
-```
-
-#### google/cloud-dataproc
-
-Google Cloud Dataproc can be installed separately by requiring the `google/cloud-dataproc` composer package:
-
-```
-$ composer require google/cloud-dataproc
-```
-
-## Google Cloud OsLogin (Beta)
-
-- [API Documentation](http://googlecloudplatform.github.io/google-cloud-php/#/docs/latest/oslogin/readme)
-- [Official Documentation](https://cloud.google.com/compute/docs/oslogin/rest/)
-
-```php
-<?php
-require 'vendor/autoload.php';
-
-use Google\Cloud\OsLogin\V1beta\OsLoginServiceClient;
-
-$osLoginServiceClient = new OsLoginServiceClient();
-$userId = '[MY_USER_ID]';
-$formattedName = $osLoginServiceClient->userName($userId);
-$loginProfile = $osLoginServiceClient->getLoginProfile($formattedName);
-```
-
-#### google/cloud-oslogin
-
-Google Cloud OsLogin can be installed separately by requiring the `google/cloud-oslogin` composer package:
-
-```
-$ composer require google/cloud-oslogin
 ```
 
 ## Google Cloud Speech (Alpha)
