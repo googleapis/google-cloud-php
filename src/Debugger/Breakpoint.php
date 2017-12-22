@@ -237,7 +237,8 @@ class Breakpoint implements \JsonSerializable
             'userEmail' => null,
             'stackFrames' => [],
             'evaluatedExpressions' => [],
-            'labels' => []
+            'labels' => [],
+            'variableTable' => []
         ];
         $this->id = $data['id'];
         $this->action = $data['action'];
@@ -265,11 +266,9 @@ class Breakpoint implements \JsonSerializable
             $data['evaluatedExpressions']
         );
 
-        if (array_key_exists('variableTable', $data)) {
-            $this->variableTable = new VariableTable(
-                array_map([Variable::class, 'fromJson'], $data['variableTable'])
-            );
-        }
+        $this->variableTable = new VariableTable(
+            array_map([Variable::class, 'fromJson'], $data['variableTable'])
+        );
     }
 
     /**
@@ -404,7 +403,7 @@ class Breakpoint implements \JsonSerializable
      */
     public function variableTable()
     {
-        return $this->variableTable ?: new VariableTable();
+        return $this->variableTable;
     }
 
     /**
@@ -545,7 +544,7 @@ class Breakpoint implements \JsonSerializable
             return false;
         }
 
-        if ($this->condition() && !empty($this->condition())) {
+        if ($this->condition()) {
             // validate that the condition is ok for debugging
             try {
                 if (!stackdriver_debugger_valid_statement($this->condition())) {

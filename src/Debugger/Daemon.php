@@ -66,9 +66,11 @@ class Daemon
      *      @type string $uniquifier A string when uniquely identifies this
      *            debuggee. **Defaults to** a value autodetected from the
      *            environment.
+     *      @type string $description A display name for the debuggee in the
+     *            Stackdriver Debugger UI. **Defaults to** the uniquifier.
      *      @type BreakpointStorageInterface $storage The breakpoint storage
-     *            mechanism to use.
-     *      @type bool $debugOutput Whether or not to enable debug output.
+     *            mechanism to use. **Defaults to** a new SysvBreakpointStorage
+     *            instance.
      * }
      */
     public function __construct($sourceRoot, array $options = [])
@@ -133,7 +135,6 @@ class Daemon
 
     private function setBreakpoints($breakpoints)
     {
-        $count = count($breakpoints);
         $validBreakpoints = [];
         $invalidBreakpoints = [];
         foreach ($breakpoints as $breakpoint) {

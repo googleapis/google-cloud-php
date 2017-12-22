@@ -99,17 +99,34 @@ class DebuggerClient
      * ```
      *
      * @param string $id The debuggee identifier
-     * @param array $extras [optional]
+     * @param array $options [optional] {
+     *      Configuration options.
      *
+     *      @type string $uniquifier Debuggee uniquifier within the project. Any
+     *            string that identifies the application within the project can
+     *            be used. Including environment and version or build IDs is
+     *            recommended.
+     *      @type string $description Human readable description of the
+     *            debuggee. Including a human-readable project name, environment
+     *            name and version information is recommended.
+     *      @type string $isInactive If set to true, indicates that the debuggee
+     *            is considered as inactive by the Controller service.
+     *      @type string $status Human readable message to be displayed to the
+     *            user about this debuggee. Absence of this field indicates no
+     *            status. The message can be either informational or an error
+     *            status.
+     *      @type ExtendedSourceContext[] $extSourceContexts References to the locations and
+     *            revisions of the source code used in the deployed application.
+     * }
      * @return Debuggee
      */
-    public function debuggee($id = null, array $extras = [])
+    public function debuggee($id = null, array $options = [])
     {
         return new Debuggee($this->connection, [
             'id' => $id,
             'project' => $this->projectId,
             'agentVersion' => self::DEFAULT_AGENT_VERSION
-        ] + $extras);
+        ] + $options);
     }
 
     /**

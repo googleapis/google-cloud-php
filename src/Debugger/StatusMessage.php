@@ -97,7 +97,7 @@ class StatusMessage implements \JsonSerializable
      *      @type Reference $refersTo Reference to which the message applies.
      *      @type FormatMessage $description Status message text.
      * }
-     * @return StatusMessage
+     * @return StatusMessage|null
      */
     public static function fromJson(array $data)
     {

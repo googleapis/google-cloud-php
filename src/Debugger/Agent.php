@@ -54,7 +54,7 @@ class Agent
     /**
      * @var array Associative array of breakpoints indexed by breakpoint id.
      */
-    private $breakpoints = [];
+    private $breakpointsById = [];
 
     /**
      * @var string Path to the root directory of the source code.
@@ -81,7 +81,7 @@ class Agent
      *      @type string $sourceRoot Path to the root of the source repository.
      *            **Defaults to** the directory of the calling file.
      *      @type LoggerInterface $logger PSR-3 compliant logger used to write
-     *            logpoint records.
+     *            logpoint records. **Defaults to** a new Stackdriver logger.
      * }
      */
     public function __construct(array $options = [])
@@ -118,7 +118,6 @@ class Agent
         foreach ($breakpoints as $breakpoint) {
             $this->breakpointsById[$breakpoint->id()] = $breakpoint;
             switch ($breakpoint->action()) {
-                case null: // default action (not set) is a snapsoht
                 case Breakpoint::ACTION_CAPTURE:
                     $sourceLocation = $breakpoint->location();
                     $this->invalidateOpcache($breakpoint);
@@ -170,7 +169,7 @@ class Agent
      *      @type array $stackframes List of captured stackframe data.
      * }
      */
-    public function handleSnapshot($snapshot)
+    public function handleSnapshot(array $snapshot)
     {
         if (array_key_exists($snapshot['id'], $this->breakpointsById)) {
             $breakpoint = $this->breakpointsById[$snapshot['id']];

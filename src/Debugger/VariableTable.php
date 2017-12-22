@@ -38,7 +38,7 @@ class VariableTable implements \JsonSerializable
      *
      * @param Variable[] $initialVariables
      */
-    public function __construct($initialVariables = [])
+    public function __construct(array $initialVariables = [])
     {
         $this->variables = $initialVariables;
         $this->nextIndex = count($this->variables);

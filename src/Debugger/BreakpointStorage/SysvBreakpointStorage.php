@@ -65,9 +65,10 @@ class SysvBreakpointStorage implements BreakpointStorageInterface
     }
 
     /**
-     * Load debugger breakpoints from the storage.
+     * Load debugger breakpoints from the storage. Returns a 2-arity array
+     * with the debuggee id and the list of breakpoints.
      *
-     * @return BatchConfig
+     * @return array
      * @throws \RuntimeException when failed to attach to the shared memory.
      */
     public function load()
