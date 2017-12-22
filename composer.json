@@ -49,8 +49,8 @@
         "monolog/monolog": "~1",
         "psr/http-message": "1.0.*",
         "ramsey/uuid": "~3",
-        "google/proto-client": "0.29.0",
-        "google/gax": "0.28.0"
+        "google/proto-client": "^0.29.0",
+        "google/gax": "^0.28.0"
     },
     "require-dev": {
         "phpunit/phpunit": "^4.8|^5.0",
@@ -87,7 +87,8 @@
         "google/cloud-vision": "0.8.0"
     },
     "suggest": {
-        "phpseclib/phpseclib": "May be used in place of OpenSSL for creating signed Cloud Storage URLs. Please require version ^2."
+        "phpseclib/phpseclib": "May be used in place of OpenSSL for creating signed Cloud Storage URLs. Please require version ^2.",
+        "google/cloud-bigquerydatatransfer": "Client library for the BigQuery Data Transfer API."
     },
     "autoload": {
         "psr-4": {
