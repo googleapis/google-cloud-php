@@ -541,6 +541,10 @@ class Breakpoint implements \JsonSerializable
     public function validate()
     {
         if (!extension_loaded('stackdriver_debugger')) {
+            $this->setError(
+                StatusMessage::REFERENCE_UNSPECIFIED,
+                'PHP extension not installed.'
+            );
             return false;
         }
 
@@ -549,7 +553,7 @@ class Breakpoint implements \JsonSerializable
             try {
                 if (!stackdriver_debugger_valid_statement($this->condition())) {
                     $this->setError(
-                        self::REFERENCE_BREAKPOINT_CONDITION,
+                        StatusMessage::REFERENCE_BREAKPOINT_CONDITION,
                         'Invalid breakpoint condition - Invalid operations: $0.',
                         [$this->condition]
                     );
@@ -557,7 +561,7 @@ class Breakpoint implements \JsonSerializable
                 }
             } catch (\ParseError $e) {
                 $this->setError(
-                    self::REFERENCE_BREAKPOINT_CONDITION,
+                    StatusMessage::REFERENCE_BREAKPOINT_CONDITION,
                     'Invalid breakpoint condition - Parse error: $0.',
                     [$this->condition]
                 );
@@ -568,7 +572,7 @@ class Breakpoint implements \JsonSerializable
         foreach ($this->expressions as $expression) {
             if (!stackdriver_debugger_valid_statement($expression)) {
                 $this->setError(
-                    self::REFERENCE_BREAKPOINT_EXPRESSION,
+                    StatusMessage::REFERENCE_BREAKPOINT_EXPRESSION,
                     'Invalid breakpoint expression: $0',
                     [$expression]
                 );
@@ -578,7 +582,7 @@ class Breakpoint implements \JsonSerializable
         return true;
     }
 
-    private function setError($type, $message, $parameters)
+    private function setError($type, $message, array $parameters = [])
     {
         $this->status = new StatusMessage(
             true,

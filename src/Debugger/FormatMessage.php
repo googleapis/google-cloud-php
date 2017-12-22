@@ -53,7 +53,7 @@ class FormatMessage implements \JsonSerializable
      *        be used to denote the $ character.
      * @param string[] $parameters Optional parameters to be embedded into the message.
      */
-    public function __construct($format, $parameters)
+    public function __construct($format, array $parameters = [])
     {
         $this->format = $format;
         $this->parameters = $parameters;
