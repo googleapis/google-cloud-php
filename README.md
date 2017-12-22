@@ -31,6 +31,7 @@ This client supports the following Google Cloud Platform services at a [Beta](#v
 This client supports the following Google Cloud Platform services at an [Alpha](#versioning) quality level:
 * [Google Cloud Speech](#google-cloud-speech-alpha) (Alpha)
 * [Google Stackdriver Trace](#google-stackdriver-trace-alpha) (Alpha)
+* [Google Cloud BigQuery Data Transfer](#google-cloud-bigquerydatatransfer-alpha) (Alpha)
 
 If you need support for other Google APIs, please check out the [Google APIs Client Library for PHP](https://github.com/google/google-api-php-client).
 
@@ -897,6 +898,33 @@ Stackdriver Trace can be installed separately by requiring the `google/cloud-tra
 
 ```
 $ composer require google/cloud-trace
+```
+
+## Google Cloud BigQuery Data Transfer (Alpha)
+
+- [API Documentation](http://googlecloudplatform.github.io/google-cloud-php/#/docs/latest/bigquery/datatransfer/readme)
+- [Official Documentation](https://cloud.google.com/bigquery/docs/transfer-service-overview)
+
+#### Preview
+
+```php
+require 'vendor/autoload.php';
+
+use Google\Cloud\BigQuery\DataTransfer\V1\DataTransferServiceClient;
+
+$dataTransferServiceClient = new DataTransferServiceClient();
+$projectId = '[MY_PROJECT_ID]';
+$location = 'us-central1';
+$formattedLocation = $dataTransferServiceClient->locationName($projectId, $location);
+$dataSources = $dataTransferServiceClient->listDataSources($formattedLocation);
+```
+
+#### google/cloud-bigquerydatatransfer
+
+Google Cloud BigQuery Data Transfer can be installed separately by requiring the `google/cloud-bigquerydatatransfer` composer package:
+
+```
+$ composer require google/cloud-bigquerydatatransfer
 ```
 
 ## Caching Access Tokens
