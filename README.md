@@ -7,6 +7,8 @@
 * [API Documentation](https://googlecloudplatform.github.io/google-cloud-php/#/docs/google-cloud/latest/servicebuilder)
 
 This client supports the following Google Cloud Platform services at a [General Availability](#versioning) quality level:
+* [Cloud Spanner](#cloud-spanner-ga) (GA)
+* [Google BigQuery](#google-bigquery-ga) (GA)
 * [Google Cloud Datastore](#google-cloud-datastore-ga) (GA)
 * [Google Cloud Storage](#google-cloud-storage-ga) (GA)
 * [Google Cloud Translation](#google-cloud-translation-ga) (GA)
@@ -15,18 +17,16 @@ This client supports the following Google Cloud Platform services at a [General 
 This client supports the following Google Cloud Platform services at a [Beta](#versioning) quality level:
 
 * [Cloud Firestore](#cloud-firestore-beta) (Beta)
-* [Cloud Spanner](#cloud-spanner-beta) (Beta)
-* [Google BigQuery](#google-bigquery-beta) (Beta)
+* [Google Cloud Container](#google-cloud-container-beta) (Beta)
+* [Google Cloud Dataproc](#google-cloud-dataproc-beta) (Beta)
 * [Google Cloud Natural Language](#google-cloud-natural-language-beta) (Beta)
+* [Google Cloud OsLogin](#google-cloud-oslogin-beta) (Beta)
 * [Google Cloud Pub/Sub](#google-cloud-pubsub-beta) (Beta)
 * [Google Cloud Video Intelligence](#google-cloud-video-intelligence-beta) (Beta)
 * [Google Cloud Vision](#google-cloud-vision-beta) (Beta)
 * [Google DLP](#google-dlp-beta) (Beta)
 * [Google Stackdriver Error Reporting](#google-stackdriver-error-reporting-beta) (Beta)
 * [Google Stackdriver Monitoring](#google-stackdriver-monitoring-beta) (Beta)
-* [Google Cloud Container](#google-cloud-container-beta) (Beta)
-* [Google Cloud Dataproc](#google-cloud-dataproc-beta) (Beta)
-* [Google Cloud OsLogin](#google-cloud-oslogin-beta) (Beta)
 
 This client supports the following Google Cloud Platform services at an [Alpha](#versioning) quality level:
 * [Google Cloud Speech](#google-cloud-speech-alpha) (Alpha)
@@ -98,6 +98,84 @@ $ pecl install protobuf
 
 * [gRPC Installation Instructions](https://cloud.google.com/php/grpc)
 * [Protobuf Installation Instructions](https://cloud.google.com/php/grpc#install_the_protobuf_runtime_library)
+
+## Cloud Spanner (GA)
+
+- [API Documentation](http://googlecloudplatform.github.io/google-cloud-php/#/docs/latest/spanner/spannerclient)
+- [Official Documentation](https://cloud.google.com/spanner/docs)
+
+#### Preview
+
+```php
+require 'vendor/autoload.php';
+
+use Google\Cloud\Spanner\SpannerClient;
+
+$spanner = new SpannerClient([
+    'projectId' => 'my_project'
+]);
+
+$db = $spanner->connect('my-instance', 'my-database');
+
+$userQuery = $db->execute('SELECT * FROM Users WHERE id = @id', [
+    'parameters' => [
+        'id' => $userId
+    ]
+]);
+
+$user = $userQuery->rows()->current();
+
+echo 'Hello ' . $user['firstName'];
+```
+
+#### google/cloud-spanner
+
+Cloud Spanner can be installed separately by requiring the `google/cloud-spanner` composer package:
+
+```
+$ composer require google/cloud-spanner
+```
+
+## Google BigQuery (GA)
+
+- [API Documentation](http://googlecloudplatform.github.io/google-cloud-php/#/docs/latest/bigquery/bigqueryclient)
+- [Official Documentation](https://cloud.google.com/bigquery/docs)
+
+#### Preview
+
+```php
+require 'vendor/autoload.php';
+
+use Google\Cloud\BigQuery\BigQueryClient;
+
+$bigQuery = new BigQueryClient([
+    'projectId' => 'my_project'
+]);
+
+// Get an instance of a previously created table.
+$dataset = $bigQuery->dataset('my_dataset');
+$table = $dataset->table('my_table');
+
+// Begin a job to import data from a CSV file into the table.
+$job = $table->load(
+    fopen('/data/my_data.csv', 'r')
+);
+
+// Run a query and inspect the results.
+$queryResults = $bigQuery->runQuery('SELECT * FROM [my_project:my_dataset.my_table]');
+
+foreach ($queryResults->rows() as $row) {
+    print_r($row);
+}
+```
+
+#### google/cloud-bigquery
+
+Google BigQuery can be installed separately by requiring the `google/cloud-bigquery` composer package:
+
+```
+$ composer require google/cloud-bigquery
+```
 
 ## Google Cloud Datastore (GA)
 
@@ -323,82 +401,78 @@ Cloud Firestore can be installed separately by requiring the `google/cloud-fires
 $ composer require google/cloud-firestore
 ```
 
-## Cloud Spanner (Beta)
+## Google Cloud Container (Beta)
 
-- [API Documentation](http://googlecloudplatform.github.io/google-cloud-php/#/docs/latest/spanner/spannerclient)
-- [Official Documentation](https://cloud.google.com/spanner/docs)
-
-#### Preview
+- [API Documentation](http://googlecloudplatform.github.io/google-cloud-php/#/docs/latest/monitoring/readme)
+- [Official Documentation](https://cloud.google.com/kubernetes-engine/docs)
 
 ```php
+<?php
 require 'vendor/autoload.php';
 
-use Google\Cloud\Spanner\SpannerClient;
+use Google\Cloud\Container\V1\ClusterManagerClient;
 
-$spanner = new SpannerClient([
-    'projectId' => 'my_project'
-]);
+$clusterManagerClient = new ClusterManagerClient();
 
-$db = $spanner->connect('my-instance', 'my-database');
+$projectId = '[MY-PROJECT-ID]';
+$zone = 'us-central1-a';
 
-$userQuery = $db->execute('SELECT * FROM Users WHERE id = @id', [
-    'parameters' => [
-        'id' => $userId
-    ]
-]);
-
-$user = $userQuery->rows()->current();
-
-echo 'Hello ' . $user['firstName'];
-```
-
-#### google/cloud-spanner
-
-Cloud Spanner can be installed separately by requiring the `google/cloud-spanner` composer package:
-
-```
-$ composer require google/cloud-spanner
-```
-
-## Google BigQuery (Beta)
-
-- [API Documentation](http://googlecloudplatform.github.io/google-cloud-php/#/docs/latest/bigquery/bigqueryclient)
-- [Official Documentation](https://cloud.google.com/bigquery/docs)
-
-#### Preview
-
-```php
-require 'vendor/autoload.php';
-
-use Google\Cloud\BigQuery\BigQueryClient;
-
-$bigQuery = new BigQueryClient([
-    'projectId' => 'my_project'
-]);
-
-// Get an instance of a previously created table.
-$dataset = $bigQuery->dataset('my_dataset');
-$table = $dataset->table('my_table');
-
-// Begin a job to import data from a CSV file into the table.
-$job = $table->load(
-    fopen('/data/my_data.csv', 'r')
-);
-
-// Run a query and inspect the results.
-$queryResults = $bigQuery->runQuery('SELECT * FROM [my_project:my_dataset.my_table]');
-
-foreach ($queryResults->rows() as $row) {
-    print_r($row);
+try {
+    $clusters = $clusterManagerClient->listClusters($projectId, $zone);
+    foreach ($clusters->getClusters() as $cluster) {
+        print('Cluster: ' . $cluster->getName() . PHP_EOL);
+    }
+} finally {
+    $clusterManagerClient->close();
 }
 ```
 
-#### google/cloud-bigquery
+#### google/cloud-container
 
-Google BigQuery can be installed separately by requiring the `google/cloud-bigquery` composer package:
+Google Cloud Container can be installed separately by requiring the `google/cloud-container` composer package:
 
 ```
-$ composer require google/cloud-bigquery
+$ composer require google/cloud-container
+```
+
+## Google Cloud Dataproc (Beta)
+
+- [API Documentation](http://googlecloudplatform.github.io/google-cloud-php/#/docs/latest/dataproc/readme)
+- [Official Documentation](https://cloud.google.com/dataproc/docs)
+
+```php
+<?php
+require 'vendor/autoload.php';
+
+use Google\Cloud\Dataproc\V1\JobControllerClient;
+use Google\Cloud\Dataproc\V1\Job;
+use Google\Cloud\Dataproc\V1\HadoopJob;
+use Google\Cloud\Dataproc\V1\JobPlacement;
+
+$projectId = '[MY_PROJECT_ID]';
+$region = 'global';
+$clusterName = '[MY_CLUSTER]';
+
+$jobPlacement = new JobPlacement();
+$jobPlacement->setClusterName($clusterName);
+
+$hadoopJob = new HadoopJob();
+$hadoopJob->setMainJarFileUri('gs://my-bucket/my-hadoop-job.jar');
+
+$job = new Job();
+$job->setPlacement($jobPlacement);
+$job->setHadoopJob($hadoopJob);
+
+$jobControllerClient = new JobControllerClient();
+$submittedJob = $jobControllerClient->submitJob($projectId, $region, $job);
+```
+
+#### google/cloud-dataproc
+
+Google Cloud Dataproc can be installed separately by requiring the `google/cloud-dataproc` composer package:
+
+```
+$ composer require google/cloud-dataproc
 ```
 
 ## Google Cloud Natural Language (Beta)
@@ -446,6 +520,31 @@ Google Cloud Natural Language can be installed separately by requiring the `goog
 
 ```
 $ composer require google/cloud-language
+```
+
+## Google Cloud OsLogin (Beta)
+
+- [API Documentation](http://googlecloudplatform.github.io/google-cloud-php/#/docs/latest/oslogin/readme)
+- [Official Documentation](https://cloud.google.com/compute/docs/oslogin/rest/)
+
+```php
+<?php
+require 'vendor/autoload.php';
+
+use Google\Cloud\OsLogin\V1beta\OsLoginServiceClient;
+
+$osLoginServiceClient = new OsLoginServiceClient();
+$userId = '[MY_USER_ID]';
+$formattedName = $osLoginServiceClient->userName($userId);
+$loginProfile = $osLoginServiceClient->getLoginProfile($formattedName);
+```
+
+#### google/cloud-oslogin
+
+Google Cloud OsLogin can be installed separately by requiring the `google/cloud-oslogin` composer package:
+
+```
+$ composer require google/cloud-oslogin
 ```
 
 ## Google Cloud Pub/Sub (Beta)
@@ -722,105 +821,6 @@ Google Stackdriver Monitoring can be installed separately by requiring the `goog
 
 ```
 $ composer require google/cloud-monitoring
-```
-
-## Google Cloud Container (Beta)
-
-- [API Documentation](http://googlecloudplatform.github.io/google-cloud-php/#/docs/latest/monitoring/readme)
-- [Official Documentation](https://cloud.google.com/kubernetes-engine/docs)
-
-```php
-<?php
-require 'vendor/autoload.php';
-
-use Google\Cloud\Container\V1\ClusterManagerClient;
-
-$clusterManagerClient = new ClusterManagerClient();
-
-$projectId = '[MY-PROJECT-ID]';
-$zone = 'us-central1-a';
-
-try {
-    $clusters = $clusterManagerClient->listClusters($projectId, $zone);
-    foreach ($clusters->getClusters() as $cluster) {
-        print('Cluster: ' . $cluster->getName() . PHP_EOL);
-    }
-} finally {
-    $clusterManagerClient->close();
-}
-```
-
-#### google/cloud-container
-
-Google Cloud Container can be installed separately by requiring the `google/cloud-container` composer package:
-
-```
-$ composer require google/cloud-container
-```
-
-## Google Cloud Dataproc (Beta)
-
-- [API Documentation](http://googlecloudplatform.github.io/google-cloud-php/#/docs/latest/dataproc/readme)
-- [Official Documentation](https://cloud.google.com/dataproc/docs)
-
-```php
-<?php
-require 'vendor/autoload.php';
-
-use Google\Cloud\Dataproc\V1\JobControllerClient;
-use Google\Cloud\Dataproc\V1\Job;
-use Google\Cloud\Dataproc\V1\HadoopJob;
-use Google\Cloud\Dataproc\V1\JobPlacement;
-
-$projectId = '[MY_PROJECT_ID]';
-$region = 'global';
-$clusterName = '[MY_CLUSTER]';
-
-$jobPlacement = new JobPlacement();
-$jobPlacement->setClusterName($clusterName);
-
-$hadoopJob = new HadoopJob();
-$hadoopJob->setMainJarFileUri('gs://my-bucket/my-hadoop-job.jar');
-
-$job = new Job();
-$job->setPlacement($jobPlacement);
-$job->setHadoopJob($hadoopJob);
-
-$jobControllerClient = new JobControllerClient();
-$submittedJob = $jobControllerClient->submitJob($projectId, $region, $job);
-```
-
-#### google/cloud-dataproc
-
-Google Cloud Dataproc can be installed separately by requiring the `google/cloud-dataproc` composer package:
-
-```
-$ composer require google/cloud-dataproc
-```
-
-## Google Cloud OsLogin (Beta)
-
-- [API Documentation](http://googlecloudplatform.github.io/google-cloud-php/#/docs/latest/oslogin/readme)
-- [Official Documentation](https://cloud.google.com/compute/docs/oslogin/rest/)
-
-```php
-<?php
-require 'vendor/autoload.php';
-
-use Google\Cloud\OsLogin\V1beta\OsLoginServiceClient;
-
-$osLoginServiceClient = new OsLoginServiceClient();
-$userId = '[MY_USER_ID]';
-$formattedName = $osLoginServiceClient->userName($userId);
-$loginProfile = $osLoginServiceClient->getLoginProfile($formattedName);
-```
-
-#### google/cloud-oslogin
-
-Google Cloud OsLogin can be installed separately by requiring the `google/cloud-oslogin` composer package:
-
-```
-$ composer require google/cloud-oslogin
 ```
 
 ## Google Cloud Speech (Alpha)
