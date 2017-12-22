@@ -18,7 +18,7 @@
 namespace Google\Cloud\Tests\Snippets\Firestore;
 
 use Google\Cloud\Firestore\FieldPath;
-use Google\Cloud\Tests\GrpcTestTrait;
+use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Dev\Snippet\SnippetTestCase;
 
 /**

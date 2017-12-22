@@ -18,7 +18,7 @@
 namespace Google\Cloud\Tests\Unit\Logging\Connection;
 
 use Google\Cloud\Logging\Connection\Grpc;
-use Google\Cloud\Tests\GrpcTestTrait;
+use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Core\GrpcRequestWrapper;
 use Google\ApiCore\Serializer;
 use Google\Cloud\Logging\V2\LogEntry;
