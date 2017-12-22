@@ -1,6 +1,6 @@
 <?php
 
-namespace Google\Cloud\Tests;
+namespace Google\Cloud\Core\Testing;
 
 use Prophecy\Argument\Token\TokenInterface;
 use Prophecy\Util\StringUtil;

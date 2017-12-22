@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-namespace Google\Cloud\Tests\System;
+namespace Google\Cloud\Core\Testing\System;
 
 use Google\Cloud\Core\Exception\NotFoundException;
 use Google\Cloud\Core\ExponentialBackoff;

@@ -18,6 +18,7 @@ namespace Google\Cloud\Tests\Unit;
 
 use Google\Cloud\BigQuery\BigQueryClient;
 use Google\Cloud\Core\ServiceBuilder;
+use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Datastore\DatastoreClient;
 use Google\Cloud\Firestore\FirestoreClient;
 use Google\Cloud\Language\LanguageClient;
@@ -26,7 +27,6 @@ use Google\Cloud\PubSub\PubSubClient;
 use Google\Cloud\Spanner\SpannerClient;
 use Google\Cloud\Speech\SpeechClient;
 use Google\Cloud\Storage\StorageClient;
-use Google\Cloud\Tests\GrpcTestTrait;
 use Google\Cloud\Translate\TranslateClient;
 use Google\Cloud\Vision\VisionClient;
 use PHPUnit\Framework\TestCase;

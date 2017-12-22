@@ -21,7 +21,7 @@ namespace Google\Cloud\Tests\Unit\Core;
 use Google\Api\Http;
 use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\Core\Exception;
-use Google\Cloud\Tests\GrpcTestTrait;
+use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Core\GrpcRequestWrapper;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\ApiStatus;

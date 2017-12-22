@@ -104,7 +104,7 @@
             "Google\\Cloud\\Tests\\Unit\\": "tests/unit"
         },
         "files": [
-            "dev/src/Functions.php"
+            "src/Core/Testing/Functions.php"
         ],
         "classmap": [
             "tests/conformance-fixtures"

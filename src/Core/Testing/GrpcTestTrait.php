@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-namespace Google\Cloud\Tests;
+namespace Google\Cloud\Core\Testing;
 
 /**
  * Provides checks for whether to run gRPC tests

@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-namespace Google\Cloud\Tests;
+namespace Google\Cloud\Core\Testing;
 
 use Google\Cloud\Storage\EncryptionTrait;
 use phpseclib\Crypt\RSA;

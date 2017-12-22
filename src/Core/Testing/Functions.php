@@ -1,6 +1,6 @@
 <?php
 
-namespace Google\Cloud\Dev;
+namespace Google\Cloud\Core\Testing;
 
 /**
  * Create a test stub which extends a real class and allows overriding of private properties.
