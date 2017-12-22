@@ -902,8 +902,7 @@ $ composer require google/cloud-trace
 
 ## Google Cloud BigQuery Data Transfer (Alpha)
 
-- [API Documentation](http://googlecloudplatform.github.io/google-cloud-php/#/docs/latest/bigquery/datatransfer/readme)
-- [Official Documentation](https://cloud.google.com/bigquery/docs/transfer-service-overview)
+- [Source Code](https://github.com/GoogleCloudPlatform/google-cloud-php-bigquerydatatransfer)
 
 #### Preview
 
