@@ -17,7 +17,7 @@
 
 namespace Google\Cloud\Tests\Snippets\Storage;
 
-use Google\Cloud\Dev\Snippet\SnippetTestCase;
+use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
 use Google\Cloud\Storage\Acl;
 use Google\Cloud\Storage\Connection\ConnectionInterface;
 use Prophecy\Argument;

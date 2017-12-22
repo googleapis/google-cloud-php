@@ -18,7 +18,7 @@
 namespace Google\Cloud\Tests\Snippets\Firestore;
 
 use Google\Cloud\Dev\Snippet\Parser\Snippet;
-use Google\Cloud\Dev\Snippet\SnippetTestCase;
+use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
 use Google\Cloud\Firestore\Connection\ConnectionInterface;
 use Google\Cloud\Firestore\ValueMapper;
 use Google\Cloud\Firestore\WriteBatch;

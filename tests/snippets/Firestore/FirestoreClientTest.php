@@ -27,7 +27,7 @@ use Google\Cloud\Firestore\Transaction;
 use Google\Cloud\Firestore\FirestoreClient;
 use Google\Cloud\Core\Iterator\ItemIterator;
 use Google\Cloud\Firestore\DocumentSnapshot;
-use Google\Cloud\Dev\Snippet\SnippetTestCase;
+use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
 use Google\Cloud\Firestore\DocumentReference;
 use Google\Cloud\Firestore\CollectionReference;
 use Google\Cloud\Firestore\Connection\ConnectionInterface;

@@ -21,7 +21,7 @@ use Google\Cloud\Core\Iterator\ItemIterator;
 use Google\Cloud\Core\RequestWrapper;
 use Google\Cloud\Core\Timestamp;
 use Google\Cloud\Core\Upload\SignedUrlUploader;
-use Google\Cloud\Dev\Snippet\SnippetTestCase;
+use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
 use Google\Cloud\Storage\Bucket;
 use Google\Cloud\Storage\Connection\Rest;
 use Google\Cloud\Storage\StorageClient;

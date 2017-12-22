@@ -18,7 +18,7 @@
 namespace Google\Cloud\Tests\Snippets\PubSub;
 
 use Google\Cloud\Dev\SetStubConnectionTrait;
-use Google\Cloud\Dev\Snippet\SnippetTestCase;
+use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
 use Google\Cloud\Core\Iam\Iam;
 use Google\Cloud\PubSub\Connection\ConnectionInterface;
 use Google\Cloud\PubSub\Message;

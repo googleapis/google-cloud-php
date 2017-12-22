@@ -21,7 +21,7 @@ use Prophecy\Argument;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Firestore\FieldValue;
 use Google\Cloud\Firestore\FirestoreClient;
-use Google\Cloud\Dev\Snippet\SnippetTestCase;
+use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
 use Google\Cloud\Firestore\Connection\ConnectionInterface;
 use Google\Cloud\Firestore\V1beta1\DocumentTransform_FieldTransform_ServerValue;
 

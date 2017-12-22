@@ -18,7 +18,7 @@
 namespace Google\Cloud\Tests\Snippets\Datastore;
 
 use Google\Cloud\Datastore\GeoPoint;
-use Google\Cloud\Dev\Snippet\SnippetTestCase;
+use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
 
 /**
  * @group datastore

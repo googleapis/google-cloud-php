@@ -20,7 +20,7 @@ namespace Google\Cloud\Tests\Snippets\BigQuery;
 use Google\Cloud\BigQuery\BigQueryClient;
 use Google\Cloud\BigQuery\QueryJobConfiguration;
 use Google\Cloud\BigQuery\ValueMapper;
-use Google\Cloud\Dev\Snippet\SnippetTestCase;
+use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
 
 /**
  * @group bigquery

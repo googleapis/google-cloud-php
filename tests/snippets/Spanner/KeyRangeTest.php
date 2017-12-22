@@ -17,7 +17,7 @@
 
 namespace Google\Cloud\Tests\Snippets\Spanner;
 
-use Google\Cloud\Dev\Snippet\SnippetTestCase;
+use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
 use Google\Cloud\Spanner\KeyRange;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
 

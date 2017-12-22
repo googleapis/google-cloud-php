@@ -18,7 +18,7 @@
 namespace Google\Cloud\Tests\Snippets\Spanner;
 
 use Google\Auth\Cache\MemoryCacheItemPool;
-use Google\Cloud\Dev\Snippet\SnippetTestCase;
+use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
 use Google\Cloud\Spanner\Database;
 use Google\Cloud\Spanner\Session\CacheSessionPool;
 

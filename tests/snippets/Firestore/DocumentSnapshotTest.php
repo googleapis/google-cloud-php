@@ -18,7 +18,7 @@
 namespace Google\Cloud\Tests\Snippets\Firestore;
 
 use Google\Cloud\Core\Timestamp;
-use Google\Cloud\Dev\Snippet\SnippetTestCase;
+use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
 use Google\Cloud\Firestore\Connection\ConnectionInterface;
 use Google\Cloud\Firestore\DocumentReference;
 use Google\Cloud\Firestore\DocumentSnapshot;
