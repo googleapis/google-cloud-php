@@ -904,6 +904,10 @@ $ composer require google/cloud-trace
 
 - [Source Code](https://github.com/GoogleCloudPlatform/google-cloud-php-bigquerydatatransfer)
 
+**NOTE:** The BigQuery Data Transfer client library is not included in
+google/cloud, and must be installed separately. See below for installation
+instructions.
+
 #### Preview
 
 ```php
@@ -920,7 +924,7 @@ $dataSources = $dataTransferServiceClient->listDataSources($formattedLocation);
 
 #### google/cloud-bigquerydatatransfer
 
-Google Cloud BigQuery Data Transfer can be installed separately by requiring the `google/cloud-bigquerydatatransfer` composer package:
+Google Cloud BigQuery Data Transfer **must** be installed separately by requiring the `google/cloud-bigquerydatatransfer` composer package:
 
 ```
 $ composer require google/cloud-bigquerydatatransfer
