@@ -21,7 +21,7 @@ use Google\Cloud\Core\AnonymousCredentials;
 use Google\Cloud\Core\Exception\NotFoundException;
 use Google\Cloud\PubSub\PubSubClient;
 use Google\Cloud\Storage\StorageClient;
-use Google\Cloud\Tests\System\SystemTestCase;
+use Google\Cloud\Core\Testing\System\SystemTestCase;
 
 /**
  * Refer to README.md in this directory for some important information
