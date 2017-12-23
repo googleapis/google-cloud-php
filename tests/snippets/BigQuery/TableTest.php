@@ -73,7 +73,7 @@ class TableTest extends SnippetTestCase
 
         $this->mapper = new ValueMapper(false);
         $this->connection = $this->prophesize(ConnectionInterface::class);
-        $this->table = \Google\Cloud\Dev\Stub(Table::class, [
+        $this->table = \Google\Cloud\Core\Testing\stub(Table::class, [
             $this->connection->reveal(),
             self::ID,
             self::DSID,
