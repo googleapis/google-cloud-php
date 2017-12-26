@@ -29,7 +29,9 @@ use Google\Cloud\Storage\StorageClient;
 use Google\Cloud\Tests\GrpcTestTrait;
 use Google\Cloud\Translate\TranslateClient;
 use Google\Cloud\Vision\VisionClient;
+use GuzzleHttp\Psr7\Response;
 use PHPUnit\Framework\TestCase;
+use Psr\Http\Message\RequestInterface;
 
 /**
  * @group servicebuilder
@@ -44,8 +46,7 @@ class ServiceBuilderTest extends TestCase
      */
     public function testBuildsClients($serviceName, $expectedClient, array $args = [], callable $beforeCallable = null)
     {
-        if ($beforeCallable)
-        {
+        if ($beforeCallable) {
             call_user_func($beforeCallable);
         }
 
@@ -56,20 +57,91 @@ class ServiceBuilderTest extends TestCase
             'httpHandler' => function() {
                 return;
             }
-                ] + $args;
+        ] + $args;
 
         $localConfigClient = $serviceBuilder->$serviceName($config);
 
         $this->assertInstanceOf($expectedClient, $localConfigClient);
     }
 
-    public function testBuildsTranslateClient()
+    public function testTranslateClientWithApiKey()
     {
         $config = ['key' => 'test_key'];
         $serviceBuilder = new ServiceBuilder($config);
 
         $this->assertInstanceOf(TranslateClient::class, $serviceBuilder->translate());
         $this->assertInstanceOf(TranslateClient::class, $serviceBuilder->translate($config));
+    }
+
+    /**
+     * @dataProvider serviceProvider
+     */
+    public function testKeyfilePathAuthPassthrough(
+        $serviceName,
+        $expectedClient,
+        array $args = [],
+        callable $beforeCallable = null
+    ) {
+        if ($beforeCallable) {
+            call_user_func($beforeCallable);
+        }
+
+        $kfPath = __DIR__ .'/../fixtures/json-key-fixture.json';
+        $kf = json_decode(file_get_contents($kfPath), true);
+
+        $adc = getenv('GOOGLE_APPLICATION_CREDENTIALS');
+        putenv('GOOGLE_APPLICATION_CREDENTIALS=');
+
+        $serviceBuilder = new ServiceBuilder([
+            'keyFilePath' => $kfPath
+        ]);
+
+        $client = $serviceBuilder->$serviceName($args);
+
+        $ref = new \ReflectionClass($client);
+        $prop = $ref->getProperty('connection');
+        $prop->setAccessible(true);
+        $conn = $prop->getValue($client);
+        $conn->requestWrapper()
+            ->getCredentialsFetcher()
+            ->fetchAuthToken($this->stub($kf));
+
+        putenv('GOOGLE_APPLICATION_CREDENTIALS='. $adc);
+    }
+
+    /**
+     * @dataProvider serviceProvider
+     */
+    public function testKeyfileAuthPassthrough(
+        $serviceName, $expectedClient,
+        array $args = [],
+        callable $beforeCallable = null
+    ) {
+        if ($beforeCallable) {
+            call_user_func($beforeCallable);
+        }
+
+        $kfPath = __DIR__ .'/../fixtures/json-key-fixture.json';
+        $kf = json_decode(file_get_contents($kfPath), true);
+
+        $adc = getenv('GOOGLE_APPLICATION_CREDENTIALS');
+        putenv('GOOGLE_APPLICATION_CREDENTIALS=');
+
+        $serviceBuilder = new ServiceBuilder([
+            'keyFile' => $kf
+        ]);
+
+        $client = $serviceBuilder->$serviceName($args);
+
+        $ref = new \ReflectionClass($client);
+        $prop = $ref->getProperty('connection');
+        $prop->setAccessible(true);
+        $conn = $prop->getValue($client);
+        $conn->requestWrapper()
+            ->getCredentialsFetcher()
+            ->fetchAuthToken($this->stub($kf));
+
+        putenv('GOOGLE_APPLICATION_CREDENTIALS='. $adc);
     }
 
     public function serviceProvider()
@@ -108,10 +180,32 @@ class ServiceBuilderTest extends TestCase
                 'storage',
                 StorageClient::class
             ], [
+                'translate',
+                TranslateClient::class
+            ], [
                 'vision',
                 VisionClient::class
             ]
         ];
     }
 
+    public function stub($kf)
+    {
+        return function (RequestInterface $request) use ($kf) {
+            parse_str((string)$request->getBody(), $result);
+
+            $exp = [
+                'grant_type' => 'refresh_token',
+                'refresh_token' => $kf['refresh_token'],
+                'client_id' => $kf['client_id'],
+                'client_secret' => $kf['client_secret']
+            ];
+
+            $this->assertEquals($result, $exp);
+
+            return new Response(200, [], json_encode([
+                'access_token' => 'foo'
+            ]));
+        };
+    }
 }

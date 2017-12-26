@@ -54,7 +54,7 @@ class ServiceBuilder
     /**
      * @var array Configuration options to be used between clients.
      */
-    private $config;
+    private $config = [];
 
     /**
      * Pass in an array of configuration options which will be shared between
@@ -396,10 +396,17 @@ class ServiceBuilder
         return $this->createClient(TranslateClient::class, 'translate', $config);
     }
 
+    /**
+     * Create the client library, or error if not installed.
+     *
+     * @param string $class The class to create.
+     * @param string $packageName The name of the package
+     * @param array $config Configuration options.
+     */
     private function createClient($class, $packageName, array $config = [])
     {
         if (class_exists($class)) {
-            return new $class($config ? $this->resolveConfig($config) : $this->config);
+            return new $class($this->resolveConfig($config));
         }
         throw new \Exception(sprintf(
             'The google/cloud-%s package is missing and must be installed.',
@@ -419,6 +426,6 @@ class ServiceBuilder
             $config['httpHandler'] = HttpHandlerFactory::build();
         }
 
-        return $config;
+        return array_merge($this->config, $config);
     }
 }
