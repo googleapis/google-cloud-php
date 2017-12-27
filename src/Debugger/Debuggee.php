@@ -211,14 +211,8 @@ class Debuggee implements \JsonSerializable
      *            method call until the list of active breakpoints has changed,
      *            or a server selected timeout has expired. The value should be
      *            set from the last returned response.
-     *      @type bool $successOnTimeout If set to **true**, returns
-     *            **google.rpc.Code.OK** status and sets the **waitExpired**
-     *            response field to **true** when the server-selected timeout
-     *            has expired (recommended). If set to **false**, returns
-     *            **google.rpc.Code.ABORTED** status when the server-selected
-     *            timeout has expired (deprecated).
      * }
-     * @return Breakpoint[]     *
+     * @return Breakpoint[]
      */
     public function breakpoints(array $options = [])
     {
