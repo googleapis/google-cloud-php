@@ -21,6 +21,12 @@ namespace Google\Cloud\Debugger;
  * A SourceContext is a reference to a tree of files. A SourceContext together
  * with a path point to a unique revision of a single file or directory.
  */
-abstract class SourceContext
+interface SourceContext
 {
+    /**
+     * Return context data.
+     *
+     * @return array
+     */
+    public function contextData();
 }

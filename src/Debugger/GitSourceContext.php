@@ -35,7 +35,7 @@ namespace Google\Cloud\Debugger;
  * @see https://cloud.google.com/debugger/api/reference/rest/v2/Debuggee#gitsourcecontext GitSourceContext model documentation
  * @codingStandardsIgnoreEnd
  */
-class GitSourceContext extends SourceContext implements \JsonSerializable
+class GitSourceContext implements SourceContext, \JsonSerializable
 {
     /**
      * @var string Git repository URL.
@@ -60,12 +60,11 @@ class GitSourceContext extends SourceContext implements \JsonSerializable
     }
 
     /**
-     * Callback to implement JsonSerializable interface
+     * Return context data.
      *
-     * @access private
      * @return array
      */
-    public function jsonSerialize()
+    public function contextData()
     {
         return [
             'git' => [
@@ -73,5 +72,16 @@ class GitSourceContext extends SourceContext implements \JsonSerializable
                 'revisionId' => $this->revisionId
             ]
         ];
+    }
+
+    /**
+     * Callback to implement JsonSerializable interface
+     *
+     * @access private
+     * @return array
+     */
+    public function jsonSerialize()
+    {
+        return $this->contextData();
     }
 }

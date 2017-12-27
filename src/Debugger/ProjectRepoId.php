@@ -54,7 +54,7 @@ class ProjectRepoId implements \JsonSerializable
      * @param string $repoName The name of the repo. Leave empty for the default
      *        repo.
      */
-    public function __construct($projectId, $repoName)
+    public function __construct($projectId, $repoName = null)
     {
         $this->projectId = $projectId;
         $this->repoName = $repoName;

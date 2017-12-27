@@ -41,7 +41,7 @@ namespace Google\Cloud\Debugger;
  * @see https://cloud.google.com/debugger/api/reference/rest/v2/Debuggee#cloudworkspacesourcecontext CloudWorkspaceSourceContext model documentation
  * @codingStandardsIgnoreEnd
  */
-class CloudWorkspaceSourceContext extends SourceContext implements \JsonSerializable
+class CloudWorkspaceSourceContext implements SourceContext, \JsonSerializable
 {
     /**
      * @var CloudWorkspaceId The ID of the workspace.
@@ -68,12 +68,11 @@ class CloudWorkspaceSourceContext extends SourceContext implements \JsonSerializ
     }
 
     /**
-     * Callback to implement JsonSerializable interface
+     * Return context data.
      *
-     * @access private
      * @return array
      */
-    public function jsonSerialize()
+    public function contextData()
     {
         return [
             'cloudWorkspace' => [
@@ -81,5 +80,16 @@ class CloudWorkspaceSourceContext extends SourceContext implements \JsonSerializ
                 'snapshotId' => $this->snapshotId
             ]
         ];
+    }
+
+    /**
+     * Callback to implement JsonSerializable interface
+     *
+     * @access private
+     * @return array
+     */
+    public function jsonSerialize()
+    {
+        return $this->contextData();
     }
 }

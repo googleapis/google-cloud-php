@@ -39,7 +39,8 @@ class BreakpointTest extends TestCase
                 'line' => 45
             ],
             'createTime' => '2017-09-20T16:29:28.001Z',
-            'userEmail' => 'debugger@google.com'
+            'userEmail' => 'debugger@google.com',
+            'variableTable' => []
         ];
 
         $breakpoint = new Breakpoint($input);
@@ -55,7 +56,8 @@ class BreakpointTest extends TestCase
     public function testParsesConditionFromJson()
     {
         $input = [
-            'condition' => '$foo == "bar"'
+            'condition' => '$foo == "bar"',
+            'variableTable' => []
         ];
 
         $breakpoint = new Breakpoint($input);
@@ -70,7 +72,8 @@ class BreakpointTest extends TestCase
             'expressions' => [
                 '$foo',
                 '2 + 3'
-            ]
+            ],
+            'variableTable' => []
         ];
 
         $breakpoint = new Breakpoint($input);
@@ -87,7 +90,8 @@ class BreakpointTest extends TestCase
     public function testParsesLogLevel()
     {
         $input = [
-            'logLevel' => Breakpoint::LOG_LEVEL_ERROR
+            'logLevel' => Breakpoint::LOG_LEVEL_ERROR,
+            'variableTable' => []
         ];
         $breakpoint = new Breakpoint($input);
         $this->assertEquals(Breakpoint::LOG_LEVEL_ERROR, $breakpoint->logLevel());
@@ -97,7 +101,8 @@ class BreakpointTest extends TestCase
     public function testParsesLogMessageFormat()
     {
         $input = [
-            'logMessageFormat' => 'some log message'
+            'logMessageFormat' => 'some log message',
+            'variableTable' => []
         ];
         $breakpoint = new Breakpoint($input);
         $this->assertEQuals('some log message', $breakpoint->logMessageFormat());
