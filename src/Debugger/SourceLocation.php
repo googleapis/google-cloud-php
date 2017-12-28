@@ -47,6 +47,7 @@ class SourceLocation implements \JsonSerializable
     /**
      * Instantiate a new SourceLocation
      *
+     * @access private
      * @param string $path Path to the source file within the source context
      *        of the target binary.
      * @param int $line Line inside the file. The first line in the file has
@@ -69,6 +70,7 @@ class SourceLocation implements \JsonSerializable
      * ]);
      * ```
      *
+     * @access private
      * @param array $data {
      *      SourceLocation data
      *

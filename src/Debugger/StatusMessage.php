@@ -64,6 +64,7 @@ class StatusMessage implements \JsonSerializable
     /**
      * Instantiate a new StatusMessage
      *
+     * @access private
      * @param bool $isError Distinguishes errors from informational messages.
      * @param string $refersTo Reference to which the message applies.
      * @param FormatMessage $description Status message text.
@@ -90,6 +91,7 @@ class StatusMessage implements \JsonSerializable
      * ]);
      * ```
      *
+     * @access private
      * @param array $data {
      *      StatusMessage data
      *

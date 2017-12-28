@@ -75,6 +75,7 @@ class Variable implements \JsonSerializable
     /**
      * Instantiate a new Variable
      *
+     * @access private
      * @param string $name Name of the variable, if any.
      * @param string $type Variable type (e.g. MyClass).
      * @param array $options {
@@ -115,6 +116,7 @@ class Variable implements \JsonSerializable
      * ]);
      * ```
      *
+     * @access private
      * @param array $data {
      *      Variable data.
      *

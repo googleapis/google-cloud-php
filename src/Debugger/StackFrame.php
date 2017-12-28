@@ -60,6 +60,7 @@ class StackFrame implements \JsonSerializable
     /**
      * Instantiate a new StackFrame.
      *
+     * @access private
      * @param string $function Demangled function name at the call site.
      * @param SourceLocation $location The source location
      */
@@ -83,6 +84,7 @@ class StackFrame implements \JsonSerializable
      * ]);
      * ```
      *
+     * @access private
      * @param array $data {
      *      @type string $function Demangled function name at the call site.
      *      @type SourceLocation $location The source location

@@ -48,6 +48,7 @@ class FormatMessage implements \JsonSerializable
     /**
      * Instantiate a new FormatMessage
      *
+     * @access private
      * @param string $format Format template for the message. The format
      *        uses placeholders $0, $1, etc. to reference parameters. $$ can
      *        be used to denote the $ character.
@@ -70,6 +71,7 @@ class FormatMessage implements \JsonSerializable
      * ]);
      * ```
      *
+     * @access private
      * @param array $data {
      *      FormatMessage params
      *

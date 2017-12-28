@@ -17,8 +17,6 @@
 
 namespace Google\Cloud\Debugger;
 
-use Google\Cloud\Core\Iterator\ItemIterator;
-use Google\Cloud\Core\Iterator\PageIterator;
 use Google\Cloud\Debugger\Connection\ConnectionInterface;
 
 /**

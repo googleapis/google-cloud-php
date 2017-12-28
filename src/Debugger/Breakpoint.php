@@ -167,6 +167,7 @@ class Breakpoint implements \JsonSerializable
     /**
      * Instantiate a Breakpoint from its JSON representation
      *
+     * @access private
      * @param array $data {
      *      Breakpoint data.
      *
