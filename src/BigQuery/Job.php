@@ -139,7 +139,8 @@ class Job
      *
      * Please note this method will trigger an initial network request, but
      * further polling may be necessary in order to access the full query
-     * results. Polling for completion can be initiated by iterating on
+     * results. Polling for completion can be initiated by iterating on the
+     * returned
      * {@see Google\Cloud\BigQuery\QueryResults}, or by calling either
      * {@see Google\Cloud\BigQuery\QueryResults::rows()} or
      * {@see Google\Cloud\BigQuery\QueryResults::waitUntilComplete()}.
