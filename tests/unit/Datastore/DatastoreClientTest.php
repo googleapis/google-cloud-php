@@ -400,7 +400,7 @@ class DatastoreClientTest extends TestCase
 
     public function testLookupBatch()
     {
-        $body = json_decode(file_get_contents(__DIR__ .'/../fixtures/datastore/entity-batch-lookup.json'), true);
+        $body = json_decode(file_get_contents(Fixtures::ENTITY_BATCH_LOOKUP_FIXTURE()), true);
         $this->operation->lookup(Argument::type('array'), Argument::type('array'))
             ->shouldBeCalled()
             ->willReturn(['foo']);
@@ -429,7 +429,7 @@ class DatastoreClientTest extends TestCase
 
     public function testRunQuery()
     {
-        $queryResult = json_decode(file_get_contents(__DIR__ .'/../fixtures/datastore/query-results.json'), true);
+        $queryResult = json_decode(file_get_contents(Fixtures::QUERY_RESULTS_FIXTURE()), true);
 
         $this->operation->runQuery(Argument::type(QueryInterface::class), Argument::type('array'))
             ->shouldBeCalled()

@@ -147,7 +147,7 @@ class RequestWrapperTest extends TestCase
             }
         ];
 
-        $keyFilePath = __DIR__ . '/../fixtures/json-key-fixture.json';
+        $keyFilePath = Fixtures::JSON_KEY_FIXTURE();
         putenv("GOOGLE_APPLICATION_CREDENTIALS=$keyFilePath"); // for application default credentials
 
         $credentialsFetcher = $this->prophesize(FetchAuthTokenInterface::class);
@@ -173,7 +173,7 @@ class RequestWrapperTest extends TestCase
             }
         ];
 
-        $keyFilePath = __DIR__ . '/../fixtures/json-key-fixture.json';
+        $keyFilePath = Fixtures::JSON_KEY_FIXTURE();
 
         return [
             [$config + ['keyFile' => json_decode(file_get_contents($keyFilePath), true)]], // keyFile

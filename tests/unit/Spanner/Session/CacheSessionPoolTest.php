@@ -17,10 +17,8 @@
 
 namespace Google\Cloud\Tests\Unit\Spanner\Session;
 
-require_once __DIR__ . '../../../Core/Lock/MockGlobals.php';
-
 use Google\Auth\Cache\MemoryCacheItemPool;
-use Google\Cloud\Core\Lock\MockValues;
+use Google\Cloud\Core\Testing\Lock\MockValues;
 use Google\Cloud\Spanner\Connection\Grpc;
 use Google\Cloud\Spanner\Database;
 use Google\Cloud\Spanner\Session\CacheSessionPool;
