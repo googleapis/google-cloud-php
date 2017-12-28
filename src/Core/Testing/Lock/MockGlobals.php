@@ -17,7 +17,6 @@
  */
 
 namespace Google\Cloud\Core\Lock {
-
     class MockValues
     {
         public static $flockReturnValue;
@@ -29,17 +28,16 @@ namespace Google\Cloud\Core\Lock {
         public static function initialize()
         {
             self::$flockReturnValue = true;
-            self::$fopenReturnValue = function ($file, $mode) {
+            self::$fopenReturnValue = function($file, $mode) {
                 return \fopen($file, $mode);
             };
             self::$sem_acquireReturnValue = true;
             self::$sem_releaseReturnValue = true;
-            self::$sem_getReturnValue = function ($key) {
+            self::$sem_getReturnValue = function($key) {
                 return \sem_get($key);
             };
         }
     }
-
 
     function flock($handle, $type)
     {
