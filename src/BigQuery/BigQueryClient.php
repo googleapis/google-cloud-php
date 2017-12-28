@@ -305,6 +305,7 @@ class BigQueryClient
             'timeoutMs',
             'maxRetries'
         ], $options);
+        $queryResultsOptions['initialTimeoutMs'] = 10000;
 
         $queryResults = $this->startQuery(
             $query,
