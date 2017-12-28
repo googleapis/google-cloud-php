@@ -46,6 +46,7 @@ class PathTemplateTest extends TestCase
 
     /**
      * @expectedException \Google\ApiCore\ValidationException
+     * @expectedExceptionMessage Exception in parser
      */
     public function testFailInvalidToken()
     {
@@ -54,6 +55,7 @@ class PathTemplateTest extends TestCase
 
     /**
      * @expectedException \Google\ApiCore\ValidationException
+     * @expectedExceptionMessage match error
      */
     public function testFailWhenImpossibleMatch01()
     {
@@ -63,6 +65,7 @@ class PathTemplateTest extends TestCase
 
     /**
      * @expectedException \Google\ApiCore\ValidationException
+     * @expectedExceptionMessage match error
      */
     public function testFailWhenImpossibleMatch02()
     {
@@ -72,6 +75,7 @@ class PathTemplateTest extends TestCase
 
     /**
      * @expectedException \Google\ApiCore\ValidationException
+     * @expectedExceptionMessage mismatched literal
      */
     public function testFailMismatchedLiteral()
     {
@@ -81,6 +85,7 @@ class PathTemplateTest extends TestCase
 
     /**
      * @expectedException \Google\ApiCore\ValidationException
+     * @expectedExceptionMessage validation error: path template cannot contain more than one path wildcard
      */
     public function testFailWhenMultiplePathWildcards()
     {
@@ -89,6 +94,7 @@ class PathTemplateTest extends TestCase
 
     /**
      * @expectedException \Google\ApiCore\ValidationException
+     * @expectedExceptionMessage Exception in parser
      */
     public function testFailIfInnerBinding()
     {
@@ -97,10 +103,29 @@ class PathTemplateTest extends TestCase
 
     /**
      * @expectedException \Google\ApiCore\ValidationException
+     * @expectedExceptionMessage Exception in parser
      */
     public function testFailUnexpectedEof()
     {
         new PathTemplate('a/{hello=world');
+    }
+
+    /**
+     * @expectedException \Google\ApiCore\ValidationException
+     * @expectedExceptionMessage Cannot construct PathTemplate from empty string
+     */
+    public function testFailNullString()
+    {
+        new PathTemplate(null);
+    }
+
+    /**
+     * @expectedException \Google\ApiCore\ValidationException
+     * @expectedExceptionMessage Cannot construct PathTemplate from empty string
+     */
+    public function testFailEmptyString()
+    {
+        new PathTemplate("");
     }
 
     public function testMatchAtomicResourceName()
@@ -160,6 +185,7 @@ class PathTemplateTest extends TestCase
 
     /**
      * @expectedException \Google\ApiCore\ValidationException
+     * @expectedExceptionMessage render error
      */
     public function testRenderFailWhenTooFewVariables()
     {
