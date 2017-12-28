@@ -17,8 +17,9 @@
 
 namespace Google\Cloud\Tests\Unit\Spanner\Session;
 
+require_once __DIR__ . '/../../../../src/Core/Testing/Lock/MockGlobals.php';
+
 use Google\Auth\Cache\MemoryCacheItemPool;
-use Google\Cloud\Core\Testing\Lock\MockValues;
 use Google\Cloud\Spanner\Connection\Grpc;
 use Google\Cloud\Spanner\Database;
 use Google\Cloud\Spanner\Session\CacheSessionPool;
@@ -50,7 +51,7 @@ class CacheSessionPoolTest extends TestCase
         $this->checkAndSkipGrpcTests();
         putenv('GOOGLE_CLOUD_SYSV_ID=U');
         $this->time = time();
-        MockValues::initialize();
+        \Google\Cloud\Core\Lock\MockValues::initialize();
     }
 
     /**

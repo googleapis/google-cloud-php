@@ -123,7 +123,7 @@ class ClientTraitTest extends TestCase
 
     public function testConfigureAuthentication()
     {
-        $keyFilePath = __DIR__ . '/../fixtures/json-key-fixture.json';
+        $keyFilePath = Fixtures::JSON_KEY_FIXTURE();
         putenv("GOOGLE_APPLICATION_CREDENTIALS=$keyFilePath"); // for application default credentials
 
         $conf = $this->impl->call('configureAuthentication', [[]]);
@@ -134,7 +134,7 @@ class ClientTraitTest extends TestCase
 
     public function testConfigureAuthenticationWithKeyFile()
     {
-        $keyFilePath = __DIR__ . '/../fixtures/json-key-fixture.json';
+        $keyFilePath = Fixtures::JSON_KEY_FIXTURE();
         $keyFile = json_decode(file_get_contents($keyFilePath), true);
         $keyFile['project_id'] = 'test';
 
@@ -148,7 +148,7 @@ class ClientTraitTest extends TestCase
 
     public function testConfigureAuthenticationWithKeyFilePath()
     {
-        $keyFilePath = __DIR__ . '/../fixtures/json-key-fixture.json';
+        $keyFilePath = Fixtures::JSON_KEY_FIXTURE();
         $keyFile = json_decode(file_get_contents($keyFilePath), true);
 
         $conf = $this->impl->call('configureAuthentication', [[
@@ -188,7 +188,7 @@ class ClientTraitTest extends TestCase
      */
     public function testDetectProjectIdWithNoProjectIdAvailable()
     {
-        $keyFilePath = __DIR__ . '/../fixtures/json-key-fixture.json';
+        $keyFilePath = Fixtures::JSON_KEY_FIXTURE();
         $keyFile = json_decode(file_get_contents($keyFilePath), true);
         unset($keyFile['project_id']);
 

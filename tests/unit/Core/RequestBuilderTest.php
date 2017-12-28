@@ -29,7 +29,7 @@ class RequestBuilderTest extends TestCase
     public function setUp()
     {
         $this->builder = new RequestBuilder(
-            __DIR__ . '/../fixtures/service-fixture.json',
+            Fixtures::SERVICE_FIXTURE(),
             'http://www.example.com/'
         );
     }
@@ -54,7 +54,7 @@ class RequestBuilderTest extends TestCase
     public function testBuildsNestedRequest()
     {
         $builder = new RequestBuilder(
-            __DIR__ . '/../fixtures/service-fixture.json',
+            Fixtures::SERVICE_FIXTURE(),
             'http://www.example.com/',
             ['resources', 'projects', 'otherThing']
         );
@@ -76,7 +76,7 @@ class RequestBuilderTest extends TestCase
     public function testBuildsNestedRequestWithStringSplitting()
     {
         $builder = new RequestBuilder(
-            __DIR__ . '/../fixtures/service-fixture.json',
+            Fixtures::SERVICE_FIXTURE(),
             'http://www.example.com/',
             ['resources', 'projects', 'otherThing']
         );

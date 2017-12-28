@@ -16,44 +16,6 @@
  * limitations under the License.
  */
 
-namespace Google\Cloud\Core\Testing\Lock;
+use Google\Cloud\Core\Testing\Lock\MockValues;
 
-class Functions
-{
-    public static function flock($handle, $type)
-    {
-        return MockValues::$flockReturnValue;
-    }
 
-    public static function fopen($file, $mode)
-    {
-        $val = MockValues::$fopenReturnValue;
-
-        if (is_callable($val)) {
-            return $val($file, $mode);
-        }
-
-        return $val;
-    }
-
-    public static function sem_acquire($id)
-    {
-        return MockValues::$sem_acquireReturnValue;
-    }
-
-    public static function sem_release($id)
-    {
-        return MockValues::$sem_releaseReturnValue;
-    }
-
-    public static function sem_get($key)
-    {
-        $val = MockValues::$sem_getReturnValue;
-
-        if (is_callable($val)) {
-            return $val($key);
-        }
-
-        return $val;
-    }
-}

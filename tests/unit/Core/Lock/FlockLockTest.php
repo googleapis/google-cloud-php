@@ -17,8 +17,9 @@
 
 namespace Google\Cloud\Tests\Unit\Core\Lock;
 
+require_once __DIR__ . '/../../../../src/Core/Testing/Lock/MockGlobals.php';
+
 use Google\Cloud\Core\Lock\FlockLock;
-use Google\Cloud\Core\Testing\Lock\MockValues;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -33,7 +34,7 @@ class FlockLockTest extends TestCase
 
     public function setUp()
     {
-        MockValues::initialize();
+        \Google\Cloud\Core\Lock\MockValues::initialize();
         $this->setLock(new FlockLock(self::LOCK_NAME));
     }
 
@@ -51,7 +52,7 @@ class FlockLockTest extends TestCase
      */
     public function testThrowsExceptionWhenFlockFailsOnAcquire()
     {
-        MockValues::$flockReturnValue = false;
+        \Google\Cloud\Core\Lock\MockValues::$flockReturnValue = false;
         $this->lock->acquire();
     }
 
@@ -62,7 +63,7 @@ class FlockLockTest extends TestCase
     public function testThrowsExceptionWhenFlockFailsOnRelease()
     {
         $this->lock->acquire();
-        MockValues::$flockReturnValue = false;
+        \Google\Cloud\Core\Lock\MockValues::$flockReturnValue = false;
         $this->lock->release();
     }
 
@@ -72,7 +73,7 @@ class FlockLockTest extends TestCase
      */
     public function testThrowsExceptionWhenFopenFails()
     {
-        MockValues::$fopenReturnValue = false;
+        \Google\Cloud\Core\Lock\MockValues::$fopenReturnValue = false;
         $this->lock->acquire();
     }
 }
