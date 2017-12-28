@@ -52,7 +52,7 @@ class InstanceTest extends TestCase
         $this->checkAndSkipGrpcTests();
 
         $this->connection = $this->prophesize(ConnectionInterface::class);
-        $this->instance = \Google\Cloud\Core\Testing\stub(Instance::class, [
+        $this->instance = \Google\Cloud\Core\Testing\Functions::stub(Instance::class, [
             $this->connection->reveal(),
             $this->prophesize(LongRunningConnectionInterface::class)->reveal(),
             [],

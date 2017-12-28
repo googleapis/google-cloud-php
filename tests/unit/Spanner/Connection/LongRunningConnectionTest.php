@@ -33,7 +33,7 @@ class LongRunningConnectionTest extends TestCase
     public function setUp()
     {
         $this->connection = $this->prophesize(ConnectionInterface::class);
-        $this->lro = \Google\Cloud\Core\Testing\stub(LongRunningConnection::class, [
+        $this->lro = \Google\Cloud\Core\Testing\Functions::stub(LongRunningConnection::class, [
             $this->connection->reveal()
         ]);
     }

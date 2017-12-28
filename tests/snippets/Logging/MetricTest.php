@@ -36,7 +36,7 @@ class MetricTest extends SnippetTestCase
     public function setUp()
     {
         $this->connection = $this->prophesize(ConnectionInterface::class);
-        $this->metric = \Google\Cloud\Core\Testing\stub(Metric::class, [
+        $this->metric = \Google\Cloud\Core\Testing\Functions::stub(Metric::class, [
             $this->connection->reveal(),
             self::METRIC,
             self::PROJECT

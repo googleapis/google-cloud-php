@@ -55,7 +55,7 @@ class OperationTest extends TestCase
 
         $this->connection = $this->prophesize(ConnectionInterface::class);
 
-        $this->operation = \Google\Cloud\Core\Testing\stub(Operation::class, [
+        $this->operation = \Google\Cloud\Core\Testing\Functions::stub(Operation::class, [
             $this->connection->reveal(),
             false
         ]);

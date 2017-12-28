@@ -47,7 +47,7 @@ class DocumentSnapshotTest extends SnippetTestCase
         $ref->id()->willReturn(array_pop($parts));
         $ref->path()->willReturn(explode('/documents/', self::DOCUMENT)[1]);
 
-        $this->snapshot = \Google\Cloud\Core\Testing\stub(DocumentSnapshot::class, [
+        $this->snapshot = \Google\Cloud\Core\Testing\Functions::stub(DocumentSnapshot::class, [
             $ref->reveal(),
             new ValueMapper($this->prophesize(ConnectionInterface::class)->reveal(), false),
             [],
@@ -67,7 +67,7 @@ class DocumentSnapshotTest extends SnippetTestCase
                 ['missing' => self::DOCUMENT]
             ]));
 
-        $client = \Google\Cloud\Core\Testing\stub(FirestoreClient::class);
+        $client = \Google\Cloud\Core\Testing\Functions::stub(FirestoreClient::class);
         $client->___setProperty('connection', $connection->reveal());
         $snippet = $this->snippetFromClass(DocumentSnapshot::class);
         $snippet->setLine(2, '');

@@ -43,7 +43,7 @@ class WriteBatchTest extends SnippetTestCase
     public function setUp()
     {
         $this->connection = $this->prophesize(ConnectionInterface::class);
-        $this->batch = \Google\Cloud\Core\Testing\stub(WriteBatch::class, [
+        $this->batch = \Google\Cloud\Core\Testing\Functions::stub(WriteBatch::class, [
             $this->connection->reveal(),
             new ValueMapper($this->connection->reveal(), false),
             self::DATABASE

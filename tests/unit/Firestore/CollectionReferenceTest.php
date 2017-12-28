@@ -42,7 +42,7 @@ class CollectionReferenceTest extends TestCase
     public function setUp()
     {
         $this->connection = $this->prophesize(ConnectionInterface::class);
-        $this->collection = \Google\Cloud\Core\Testing\stub(CollectionReference::class, [
+        $this->collection = \Google\Cloud\Core\Testing\Functions::stub(CollectionReference::class, [
             $this->connection->reveal(),
             new ValueMapper($this->connection->reveal(), false),
             self::NAME
@@ -131,7 +131,7 @@ class CollectionReferenceTest extends TestCase
     public function randomNames()
     {
         $connection = $this->prophesize(ConnectionInterface::class);
-        $collection = \Google\Cloud\Core\Testing\stub(CollectionReference::class, [
+        $collection = \Google\Cloud\Core\Testing\Functions::stub(CollectionReference::class, [
             $connection->reveal(),
             new ValueMapper($connection->reveal(), false),
             self::NAME

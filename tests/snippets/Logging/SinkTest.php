@@ -36,7 +36,7 @@ class SinkTest extends SnippetTestCase
     public function setUp()
     {
         $this->connection = $this->prophesize(ConnectionInterface::class);
-        $this->sink = \Google\Cloud\Core\Testing\stub(Sink::class, [
+        $this->sink = \Google\Cloud\Core\Testing\Functions::stub(Sink::class, [
             $this->connection->reveal(),
             self::SINK,
             self::PROJECT

@@ -42,7 +42,7 @@ class GrpcTraitTest extends TestCase
     {
         $this->checkAndSkipGrpcTests();
 
-        $this->implementation = \Google\Cloud\Core\Testing\impl(GrpcTrait::class);
+        $this->implementation = \Google\Cloud\Core\Testing\Functions::impl(GrpcTrait::class);
         $this->requestWrapper = $this->prophesize(GrpcRequestWrapper::class);
     }
 

@@ -44,7 +44,7 @@ class InstanceConfigurationTest extends TestCase
         $this->checkAndSkipGrpcTests();
 
         $this->connection = $this->prophesize(ConnectionInterface::class);
-        $this->configuration = \Google\Cloud\Core\Testing\stub(InstanceConfiguration::class, [
+        $this->configuration = \Google\Cloud\Core\Testing\Functions::stub(InstanceConfiguration::class, [
             $this->connection->reveal(),
             self::PROJECT_ID,
             self::NAME
@@ -62,7 +62,7 @@ class InstanceConfigurationTest extends TestCase
         $this->configuration->___setProperty('connection', $this->connection->reveal());
 
         $info = ['foo' => 'bar'];
-        $config = \Google\Cloud\Core\Testing\stub(InstanceConfiguration::class, [
+        $config = \Google\Cloud\Core\Testing\Functions::stub(InstanceConfiguration::class, [
             $this->connection->reveal(),
             self::PROJECT_ID,
             self::NAME,

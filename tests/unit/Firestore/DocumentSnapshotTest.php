@@ -43,7 +43,7 @@ class DocumentSnapshotTest extends TestCase
         $ref->id()->willReturn(self::ID);
         $ref->path()->willReturn('a/b');
 
-        $this->snapshot = \Google\Cloud\Core\Testing\stub(DocumentSnapshot::class, [
+        $this->snapshot = \Google\Cloud\Core\Testing\Functions::stub(DocumentSnapshot::class, [
             $ref->reveal(),
             new ValueMapper($this->prophesize(ConnectionInterface::class)->reveal(), false),
             [], [], true

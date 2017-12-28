@@ -99,7 +99,7 @@ class DatabaseTest extends TestCase
             'connection', 'operation'
         ];
 
-        $this->database = \Google\Cloud\Core\Testing\stub(Database::class, $args, $props);
+        $this->database = \Google\Cloud\Core\Testing\Functions::stub(Database::class, $args, $props);
     }
 
     public function testName()

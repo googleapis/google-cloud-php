@@ -42,8 +42,8 @@ class TopicTest extends SnippetTestCase
     public function setUp()
     {
         $this->connection = $this->prophesize(ConnectionInterface::class);
-        $this->pubsub = \Google\Cloud\Core\Testing\stub(PubSubClient::class);
-        $this->topic = \Google\Cloud\Core\Testing\stub(Topic::class, [
+        $this->pubsub = \Google\Cloud\Core\Testing\Functions::stub(PubSubClient::class);
+        $this->topic = \Google\Cloud\Core\Testing\Functions::stub(Topic::class, [
             $this->connection->reveal(),
             'my-awesome-project',
             self::TOPIC,

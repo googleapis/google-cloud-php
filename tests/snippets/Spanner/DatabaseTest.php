@@ -70,7 +70,7 @@ class DatabaseTest extends SnippetTestCase
             ->willReturn(null);
 
         $this->connection = $this->prophesize(ConnectionInterface::class);
-        $this->database = \Google\Cloud\Core\Testing\stub(Database::class, [
+        $this->database = \Google\Cloud\Core\Testing\Functions::stub(Database::class, [
             $this->connection->reveal(),
             $instance->reveal(),
             $this->prophesize(LongRunningConnectionInterface::class)->reveal(),
@@ -83,7 +83,7 @@ class DatabaseTest extends SnippetTestCase
 
     private function stubOperation()
     {
-        $operation = \Google\Cloud\Core\Testing\stub(Operation::class, [
+        $operation = \Google\Cloud\Core\Testing\Functions::stub(Operation::class, [
             $this->connection->reveal(), false
         ]);
 

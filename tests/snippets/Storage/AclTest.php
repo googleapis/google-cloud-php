@@ -33,7 +33,7 @@ class AclTest extends SnippetTestCase
     public function setUp()
     {
         $this->connection = $this->prophesize(ConnectionInterface::class);
-        $this->acl = \Google\Cloud\Core\Testing\stub(Acl::class, [
+        $this->acl = \Google\Cloud\Core\Testing\Functions::stub(Acl::class, [
             $this->connection->reveal(),
             'bucketAccessControls',
             []

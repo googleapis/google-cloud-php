@@ -41,7 +41,7 @@ class SubscriptionTest extends SnippetTestCase
     public function setUp()
     {
         $this->connection = $this->prophesize(ConnectionInterface::class);
-        $this->subscription = \Google\Cloud\Core\Testing\stub(Subscription::class, [
+        $this->subscription = \Google\Cloud\Core\Testing\Functions::stub(Subscription::class, [
             $this->connection->reveal(),
             'foo',
             self::SUBSCRIPTION,
@@ -49,7 +49,7 @@ class SubscriptionTest extends SnippetTestCase
             false
         ]);
 
-        $this->pubsub = \Google\Cloud\Core\Testing\stub(PubSubClient::class, [['transport' => 'rest']]);
+        $this->pubsub = \Google\Cloud\Core\Testing\Functions::stub(PubSubClient::class, [['transport' => 'rest']]);
         $this->pubsub->___setProperty('connection', $this->connection->reveal());
     }
 

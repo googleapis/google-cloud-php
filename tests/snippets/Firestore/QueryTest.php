@@ -43,7 +43,7 @@ class QueryTest extends SnippetTestCase
     public function setUp()
     {
         $this->connection = $this->prophesize(ConnectionInterface::class);
-        $this->query = \Google\Cloud\Core\Testing\stub(Query::class, [
+        $this->query = \Google\Cloud\Core\Testing\Functions::stub(Query::class, [
             $this->connection->reveal(),
             new ValueMapper($this->connection->reveal(), false),
             self::NAME,

@@ -38,7 +38,7 @@ class LoggerTest extends SnippetTestCase
     public function setUp()
     {
         $this->connection = $this->prophesize(ConnectionInterface::class);
-        $this->logger = \Google\Cloud\Core\Testing\stub(Logger::class, [
+        $this->logger = \Google\Cloud\Core\Testing\Functions::stub(Logger::class, [
             $this->connection->reveal(),
             self::NAME,
             self::PROJECT

@@ -50,7 +50,7 @@ class TransactionTest extends SnippetTestCase
         $operation = $this->prophesize(Operation::class);
         $session = $this->prophesize(Session::class);
 
-        $this->transaction = \Google\Cloud\Core\Testing\stub(Transaction::class, [
+        $this->transaction = \Google\Cloud\Core\Testing\Functions::stub(Transaction::class, [
             $operation->reveal(),
             $session->reveal(),
             self::TRANSACTION
@@ -59,7 +59,7 @@ class TransactionTest extends SnippetTestCase
 
     private function stubOperation($stub = null)
     {
-        $operation = \Google\Cloud\Core\Testing\stub(Operation::class, [
+        $operation = \Google\Cloud\Core\Testing\Functions::stub(Operation::class, [
             $this->connection->reveal(), false
         ]);
 

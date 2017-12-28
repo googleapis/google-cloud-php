@@ -43,7 +43,7 @@ class StorageClientTest extends SnippetTestCase
         $this->connection = $this->prophesize(Rest::class);
         $this->connection->projectId()
             ->willReturn(self::PROJECT_ID);
-        $this->client = \Google\Cloud\Core\Testing\stub(StorageClient::class);
+        $this->client = \Google\Cloud\Core\Testing\Functions::stub(StorageClient::class);
         $this->client->___setProperty('connection', $this->connection->reveal());
     }
 
