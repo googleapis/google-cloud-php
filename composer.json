@@ -50,7 +50,7 @@
         "psr/http-message": "1.0.*",
         "ramsey/uuid": "~3",
         "google/proto-client": "^0.29.0",
-        "google/gax": "^0.28.0"
+        "google/gax": "^0.29"
     },
     "require-dev": {
         "phpunit/phpunit": "^4.8|^5.0",

@@ -6,7 +6,7 @@
     "require": {
         "ext-grpc": "*",
         "google/cloud-core": "^1.14",
-        "google/gax": "^0.28",
+        "google/gax": "^0.29",
         "google/proto-client": "^0.29"
     },
     "suggest": {

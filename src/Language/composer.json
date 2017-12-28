@@ -6,7 +6,7 @@
     "require": {
         "google/cloud-core": "^1.14",
         "google/proto-client": "^0.29",
-        "google/gax": "^0.28"
+        "google/gax": "^0.29"
     },
     "suggest": {
         "google/cloud-storage": "Analyze documents stored in Google Cloud Storage",
