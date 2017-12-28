@@ -46,7 +46,7 @@ class ExtendedSourceContextTest extends SnippetTestCase
     }
 }
 
-class TestSourceContext implements SoruceContext
+class TestSourceContext implements SourceContext
 {
     public function contextData()
     {
