@@ -28,7 +28,7 @@ class ExtendedSourceContextTest extends SnippetTestCase
 {
     public function testClass()
     {
-        $sourceContext = \Google\Cloud\Dev\stub(SourceContext::class);
+        $sourceContext = new TestSourceContext();
         $snippet = $this->snippetFromClass(ExtendedSourceContext::class);
         $snippet->addLocal('sourceContext', $sourceContext);
         $res = $snippet->invoke('extendedSourceContext');
@@ -37,11 +37,21 @@ class ExtendedSourceContextTest extends SnippetTestCase
 
     public function testContext()
     {
-        $sourceContext = \Google\Cloud\Dev\stub(SourceContext::class);
+        $sourceContext = new TestSourceContext();
         $extendedSourceContext = new ExtendedSourceContext($sourceContext, []);
         $snippet = $this->snippetFromMethod(ExtendedSourceContext::class, 'context');
         $snippet->addLocal('extendedSourceContext', $extendedSourceContext);
         $res = $snippet->invoke('context');
         $this->assertEquals($sourceContext, $res->returnVal());
+    }
+}
+
+class TestSourceContext implements SoruceContext
+{
+    public function contextData()
+    {
+        return [
+            'context' => 'test'
+        ];
     }
 }
