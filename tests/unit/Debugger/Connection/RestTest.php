@@ -15,20 +15,19 @@
  * limitations under the License.
  */
 
-namespace Google\Cloud\Tests\Unit\Trace\Connection;
+namespace Google\Cloud\Tests\Unit\Debugger\Connection;
 
-use Google\Cloud\Trace\Connection\Rest;
+use Google\Cloud\Debugger\Connection\Rest;
 use Google\Cloud\Core\RequestBuilder;
 use Google\Cloud\Core\RequestWrapper;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\Psr7\Response;
 use Prophecy\Argument;
 use Psr\Http\Message\RequestInterface;
-use Rize\UriTemplate;
 use PHPUnit\Framework\TestCase;
 
 /**
- * @group trace
+ * @group debugger
  */
 class RestTest extends TestCase
 {
@@ -73,8 +72,10 @@ class RestTest extends TestCase
     public function methodProvider()
     {
         return [
-            ['traceBatchWrite'],
-            ['traceSpanCreate']
+            ['listDebuggees'],
+            ['registerDebuggee'],
+            ['listBreakpoints'],
+            ['updateBreakpoint']
         ];
     }
 }

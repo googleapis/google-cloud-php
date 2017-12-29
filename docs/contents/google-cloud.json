@@ -12,6 +12,7 @@
         "cloud-core",
         "cloud-dataproc",
         "cloud-datastore",
+        "cloud-debugger",
         "cloud-dlp",
         "cloud-error-reporting",
         "cloud-firestore",

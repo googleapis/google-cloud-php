@@ -1,0 +1,31 @@
+{
+    "name": "google/cloud-debugger",
+    "description": "Stackdriver Debugger Client for PHP",
+    "license": "Apache-2.0",
+    "minimum-stability": "stable",
+    "require": {
+        "google/cloud-core": "^1.4",
+        "google/cloud-logging": "^1.4",
+        "psr/log": "^1.0",
+        "ext-stackdriver_debugger": "*"
+    },
+    "extra": {
+        "component": {
+            "id": "cloud-debugger",
+            "target": "GoogleCloudPlatform/google-cloud-php-debugger.git",
+            "path": "src/Debugger",
+            "entry": "DebuggerClient.php"
+        }
+    },
+    "bin": [
+        "bin/google-cloud-debugger"
+    ],
+    "autoload": {
+        "psr-4": {
+            "Google\\Cloud\\Debugger\\": ""
+        }
+    },
+    "archive": {
+        "exclude": ["/ext"]
+    }
+}
