@@ -170,6 +170,14 @@
             ]
         },
         {
+            "id": "cloud-debugger",
+            "name": "google/cloud-debugger",
+            "defaultService": "debugger/debuggerclient",
+            "versions": [
+                "master"
+            ]
+        },
+        {
             "id": "cloud-dlp",
             "name": "google/cloud-dlp",
             "defaultService": "dlp/readme",
