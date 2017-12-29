@@ -16,6 +16,7 @@ This client supports the following Google Cloud Platform services at a [General 
 This client supports the following Google Cloud Platform services at a [Beta](#versioning) quality level:
 
 * [Cloud Firestore](#cloud-firestore-beta) (Beta)
+* [Google Bigtable](#google-bigtable-beta) (Beta)
 * [Google BigQuery](#google-bigquery-beta) (Beta)
 * [Google Cloud Container](#google-cloud-container-beta) (Beta)
 * [Google Cloud Dataproc](#google-cloud-dataproc-beta) (Beta)
@@ -30,6 +31,7 @@ This client supports the following Google Cloud Platform services at a [Beta](#v
 
 This client supports the following Google Cloud Platform services at an [Alpha](#versioning) quality level:
 * [Google Cloud Speech](#google-cloud-speech-alpha) (Alpha)
+* [Google Stackdriver Debugger](#google-stackdriver-debugger-alpha) (Alpha)
 * [Google Stackdriver Trace](#google-stackdriver-trace-alpha) (Alpha)
 * [Google Cloud BigQuery Data Transfer](#google-cloud-bigquerydatatransfer-alpha) (Alpha)
 
@@ -360,6 +362,40 @@ Cloud Firestore can be installed separately by requiring the `google/cloud-fires
 ```
 $ composer require google/cloud-firestore
 ```
+
+## Google Bigtable (Beta)
+
+- [API Documentation](http://googlecloudplatform.github.io/google-cloud-php/#/docs/latest/bigtable/readme)
+- [Official Documentation](https://cloud.google.com/bigtable/docs)
+
+#### Preview
+
+```php
+require 'vendor/autoload.php';
+
+use Google\Cloud\Bigtable\V2\BigtableClient;
+
+$bigtableClient = new BigtableClient();
+$formattedTableName = $bigtableClient->tableName('[PROJECT]', '[INSTANCE]', '[TABLE]');
+
+try {
+    $stream = $bigtableClient->readRows($formattedTableName);
+    foreach ($stream->readAll() as $element) {
+        // doSomethingWith($element);
+    }
+} finally {
+    $bigtableClient->close();
+}
+```
+
+#### google/cloud-bigtable
+
+Google Bigtable can be installed separately by requiring the `google/cloud-bigtable` composer package:
+
+```
+$ composer require google/cloud-bigtable
+```
+
 
 ## Google BigQuery (Beta)
 
@@ -857,6 +893,29 @@ Google Cloud Speech can be installed separately by requiring the `google/cloud-s
 
 ```
 $ composer require google/cloud-speech
+```
+
+## Google Stackdriver Debugger (Alpha)
+
+- [API Documentation](http://googlecloudplatform.github.io/google-cloud-php/#/docs/latest/debugger/debuggerclient)
+- [Official Documentation](https://cloud.google.com/debugger/docs)
+
+#### Preview
+
+```php
+use Google\Cloud\Debugger\DebuggerClient;
+
+$debugger = new DebuggerClient();
+$debuggee = $debugger->debugee();
+$debuggee->register();
+```
+
+#### google/cloud-debugger
+
+Stackdriver Debugger can be installed separately by requiring the `google/cloud-debugger` composer package:
+
+```
+$ composer require google/cloud-debugger
 ```
 
 ## Google Stackdriver Trace (Alpha)
