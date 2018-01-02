@@ -26,6 +26,7 @@ use GuzzleHttp\Client;
  */
 class SignedUrlTest extends StorageTestCase
 {
+    const RANDOM_NAME = 'rand';
     const CONTENT = 'hello world!';
 
     private $guzzle;
@@ -35,24 +36,30 @@ class SignedUrlTest extends StorageTestCase
         $this->guzzle = new Client;
     }
 
-    public function testSignedUrl()
+    public function signedUrls()
     {
-        $obj = $this->createFile();
-
-        $ts = new Timestamp(new \DateTime('tomorrow'));
-        $url = $obj->signedUrl($ts);
-
-        $this->assertEquals(self::CONTENT, $this->getFile($url));
+        return [
+            [
+                self::RANDOM_NAME
+            ], [
+                uniqid(self::TESTING_PREFIX . ' ' . self::TESTING_PREFIX)
+            ], [
+                uniqid(self::TESTING_PREFIX) .'/'. uniqid(self::TESTING_PREFIX) .' '. uniqid(self::TESTING_PREFIX)
+            ]
+        ];
     }
 
-    public function testSignedUrlWithSpaces()
+    /**
+     * @dataProvider signedUrls
+     */
+    public function testSignedUrl($objectName, array $urlOpts = [])
     {
-        $obj = $this->createFile(
-            uniqid(self::TESTING_PREFIX . ' ' . self::TESTING_PREFIX)
-        );
-
+        if ($objectName === self::RANDOM_NAME) {
+            $objectName = null;
+        }
+        $obj = $this->createFile($objectName);
         $ts = new Timestamp(new \DateTime('tomorrow'));
-        $url = $obj->signedUrl($ts);
+        return $obj->signedUrl($ts, $urlOpts);
 
         $this->assertEquals(self::CONTENT, $this->getFile($url));
     }
