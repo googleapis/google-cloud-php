@@ -31,8 +31,8 @@ class GAEFlexMetadataProvider implements MetadataProviderInterface
      */
     public function __construct(array $server)
     {
-        $projectId = isset($server['GCLOUD_PROJECT'])
-            ? $server['GCLOUD_PROJECT']
+        $projectId = isset($server['GOOGLE_CLOUD_PROJECT'])
+            ? $server['GOOGLE_CLOUD_PROJECT']
             : 'unknown-projectid';
         $serviceId = isset($server['GAE_SERVICE'])
             ? $server['GAE_SERVICE']
