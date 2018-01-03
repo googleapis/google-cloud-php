@@ -372,6 +372,12 @@ class PsrLogger implements LoggerInterface, \Serializable
                 (isset($options['labels'])
                  ? $options['labels']
                  : []) + $labels;
+            // Copy over the value for 'appengine.googleapis.com/trace_id' to
+            // `trace` option too.
+            if (isset($labels['appengine.googleapis.com/trace_id'])) {
+                $options['trace'] =
+                    $labels['appengine.googleapis.com/trace_id'];
+            }
         }
         // Adding MonitoredResource
         $resource = $this->metadataProvider->monitoredResource();
