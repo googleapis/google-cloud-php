@@ -59,6 +59,36 @@ class DebuggeeTest extends TestCase
         $this->assertCount(0, $breakpoints);
     }
 
+    public function testFetchesBreakpointsWithWaitToken()
+    {
+        $this->connection->listBreakpoints(['debuggeeId' => 'debuggee1'])->willReturn([
+            'breakpoints' => [
+                ['id' => 'breakpoint1'],
+                ['id' => 'breakpoint2']
+            ],
+            'nextWaitToken' => 'token'
+        ]);
+        $debuggee = new Debuggee($this->connection->reveal(), ['id' => 'debuggee1', 'project' => 'project1']);
+        $resp = $debuggee->breakpointsWithWaitToken();
+        $this->assertArrayHasKey('breakpoints', $resp);
+        $this->assertCount(2, $resp['breakpoints']);
+        $this->assertArrayHasKey('nextWaitToken', $resp);
+        $this->assertEquals('token', $resp['nextWaitToken']);
+    }
+
+    public function testFetchesEmptyBreakpointsWithWaitToken()
+    {
+        $this->connection->listBreakpoints(['debuggeeId' => 'debuggee1'])->willReturn([
+            'nextWaitToken' => 'token'
+        ]);
+        $debuggee = new Debuggee($this->connection->reveal(), ['id' => 'debuggee1', 'project' => 'project1']);
+        $resp = $debuggee->breakpointsWithWaitToken();
+        $this->assertArrayHasKey('breakpoints', $resp);
+        $this->assertCount(0, $resp['breakpoints']);
+        $this->assertArrayHasKey('nextWaitToken', $resp);
+        $this->assertEquals('token', $resp['nextWaitToken']);
+    }
+
     public function testUpdatesBreakpoint()
     {
         $this->connection->updateBreakpoint(Argument::that(function ($args) {

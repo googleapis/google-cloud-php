@@ -118,15 +118,15 @@ class Daemon
      */
     public function run()
     {
-        $breakpoints = $this->debuggee->breakpoints();
-        $this->setBreakpoints($breakpoints);
+        $resp = $this->debuggee->breakpointsWithWaitToken();
+        $this->setBreakpoints($resp['breakpoints']);
 
-        while (array_key_exists('nextWaitToken', $breakpoints)) {
+        while (array_key_exists('nextWaitToken', $resp)) {
             try {
-                $breakpoints = $this->debuggee->breakpoints([
-                    'waitToken' => $breakpoints['nextWaitToken']
+                $resp = $this->debuggee->breakpointsWithWaitToken([
+                    'waitToken' => $resp['nextWaitToken']
                 ]);
-                $this->setBreakpoints($breakpoints);
+                $this->setBreakpoints($resp['breakpoints']);
             } catch (ConflictException $e) {
                 // Ignoring this exception
             }
