@@ -17,10 +17,9 @@
 
 namespace Google\Cloud\Tests\Unit\Core\Lock;
 
-require_once __DIR__ . '/../../../../src/Core/Testing/Lock/MockGlobals.php';
-
 use Google\Cloud\Core\Lock\SemaphoreLock;
 use Google\Cloud\Core\SysvTrait;
+use Google\Cloud\Core\Testing\Lock\MockValues;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -43,7 +42,7 @@ class SemaphoreLockTest extends TestCase
         }
 
         $this->setLock(new SemaphoreLock(1));
-        \Google\Cloud\Core\Lock\MockValues::initialize();
+        MockValues::initialize();
     }
 
     /**
@@ -60,7 +59,7 @@ class SemaphoreLockTest extends TestCase
      */
     public function testThrowsExceptionWhenSemAcquireFailsOnAcquire()
     {
-        \Google\Cloud\Core\Lock\MockValues::$sem_acquireReturnValue = false;
+        MockValues::$sem_acquireReturnValue = false;
         $this->lock->acquire();
     }
 
@@ -71,7 +70,7 @@ class SemaphoreLockTest extends TestCase
     public function testThrowsExceptionWhenSemReleaseFailsOnRelease()
     {
         $this->lock->acquire();
-        \Google\Cloud\Core\Lock\MockValues::$sem_releaseReturnValue = false;
+        MockValues::$sem_releaseReturnValue = false;
         $this->lock->release();
     }
 
@@ -81,7 +80,7 @@ class SemaphoreLockTest extends TestCase
      */
     public function testThrowsExceptionWhenSemGetFails()
     {
-        \Google\Cloud\Core\Lock\MockValues::$sem_getReturnValue = false;
+        MockValues::$sem_getReturnValue = false;
         $this->lock->acquire();
     }
 }

@@ -27,6 +27,7 @@ use Google\Cloud\PubSub\PubSubClient;
 use Google\Cloud\Spanner\SpannerClient;
 use Google\Cloud\Speech\SpeechClient;
 use Google\Cloud\Storage\StorageClient;
+use Google\Cloud\Tests\Unit\Core\Fixtures;
 use Google\Cloud\Translate\TranslateClient;
 use Google\Cloud\Vision\VisionClient;
 use GuzzleHttp\Psr7\Response;
@@ -86,7 +87,7 @@ class ServiceBuilderTest extends TestCase
             call_user_func($beforeCallable);
         }
 
-        $kfPath = __DIR__ .'/../fixtures/json-key-fixture.json';
+        $kfPath = Fixtures::JSON_KEY_FIXTURE();
         $kf = json_decode(file_get_contents($kfPath), true);
 
         $adc = getenv('GOOGLE_APPLICATION_CREDENTIALS');
@@ -121,7 +122,7 @@ class ServiceBuilderTest extends TestCase
             call_user_func($beforeCallable);
         }
 
-        $kfPath = __DIR__ .'/../fixtures/json-key-fixture.json';
+        $kfPath = Fixtures::JSON_KEY_FIXTURE();
         $kf = json_decode(file_get_contents($kfPath), true);
 
         $adc = getenv('GOOGLE_APPLICATION_CREDENTIALS');
