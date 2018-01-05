@@ -11,6 +11,7 @@
             "name": "google/cloud",
             "defaultService": "readme",
             "versions": [
+                "v0.50.0",
                 "v0.49.0",
                 "v0.48.0",
                 "v0.47.0",
@@ -82,6 +83,7 @@
             "name": "google/cloud-bigquery",
             "defaultService": "bigquery/bigqueryclient",
             "versions": [
+                "v1.0.0",
                 "v0.6.0",
                 "v0.5.0",
                 "v0.4.0",
@@ -121,6 +123,7 @@
             "name": "google/cloud-core",
             "defaultService": "core/servicebuilder",
             "versions": [
+                "v1.15.1",
                 "v1.15.0",
                 "v1.14.1",
                 "v1.14.0",
@@ -268,6 +271,7 @@
             "name": "google/cloud-logging",
             "defaultService": "logging/loggingclient",
             "versions": [
+                "v1.8.2",
                 "v1.8.1",
                 "v1.8.0",
                 "v1.7.0",
@@ -401,6 +405,7 @@
             "name": "google/cloud-storage",
             "defaultService": "storage/storageclient",
             "versions": [
+                "v1.3.1",
                 "v1.3.0",
                 "v1.2.1",
                 "v1.2.0",
