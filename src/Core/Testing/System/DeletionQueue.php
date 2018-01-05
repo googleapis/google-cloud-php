@@ -62,7 +62,7 @@ class DeletionQueue
             }
 
             if (!is_callable($toDelete)) {
-                $toDelete = function() use ($toDelete) {
+                $toDelete = function () use ($toDelete) {
                     $toDelete->delete();
                 };
             }
@@ -87,7 +87,8 @@ class DeletionQueue
                 $backoff->execute(function () use ($item) {
                     try {
                         call_user_func($item);
-                    } catch (NotFoundException $e) {}
+                    } catch (NotFoundException $e) {
+                    }
                 });
             }
         }
