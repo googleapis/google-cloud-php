@@ -130,6 +130,9 @@ class PsrLoggerBatchTest extends TestCase
         $this->assertEquals('stackdriver-logging-my-log', self::$logName);
         $info = self::$entry->info();
         $this->assertEquals($expectedLabels, $info['labels']);
+        if (!empty($traceId)) {
+            $this->assertEquals($traceId, $info['trace']);
+        }
     }
 
     /**

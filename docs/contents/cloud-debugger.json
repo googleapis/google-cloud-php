@@ -1,0 +1,14 @@
+{
+    "title": "Debugger",
+    "pattern": "debugger\/\\w{1,}",
+    "services": [{
+        "title": "DebuggerClient",
+        "type": "debugger/debuggerclient"
+    }, {
+        "title": "Agent",
+        "type": "debugger/agent"
+    }, {
+        "title": "Daemon",
+        "type": "debugger/daemon"
+    }]
+}

@@ -62,9 +62,9 @@ class QueryResults implements \IteratorAggregate
     private $mapper;
 
     /**
-     * @param int|null
+     * @param array Default options to be used for calls to get query results.
      */
-    private $maxRetries;
+    private $queryResultsOptions;
 
     /**
      * @param ConnectionInterface $connection Represents a connection to
@@ -74,7 +74,8 @@ class QueryResults implements \IteratorAggregate
      * @param array $info The query result's metadata.
      * @param ValueMapper $mapper Maps values between PHP and BigQuery.
      * @param Job $job The job from which the query results originated.
-     * @param int|null $maxRetries The maximum number of times to retry before stopping.
+     * @param array $queryResultsOptions Default options to be used for calls to
+     *        get query results.
      */
     public function __construct(
         ConnectionInterface $connection,
@@ -83,7 +84,7 @@ class QueryResults implements \IteratorAggregate
         array $info,
         ValueMapper $mapper,
         Job $job,
-        $maxRetries = null
+        array $queryResultsOptions = []
     ) {
         $this->connection = $connection;
         $this->info = $info;
@@ -93,7 +94,7 @@ class QueryResults implements \IteratorAggregate
         ];
         $this->mapper = $mapper;
         $this->job = $job;
-        $this->maxRetries = $maxRetries;
+        $this->queryResultsOptions = $queryResultsOptions;
     }
 
     /**
@@ -128,7 +129,10 @@ class QueryResults implements \IteratorAggregate
      * ```
      *
      * @param array $options [optional] {
-     *     Configuration options.
+     *     Configuration options. Please note, these options will inherit the
+     *     values set by either
+     *     {@see Google\Cloud\BigQuery\BigQueryClient::runQuery()} or
+     *     {@see Google\Cloud\BigQuery\Job::queryResults()}.
      *
      *     @type int $maxResults Maximum number of results to read per page.
      *     @type int $startIndex Zero-based index of the starting row.
@@ -147,6 +151,7 @@ class QueryResults implements \IteratorAggregate
      */
     public function rows(array $options = [])
     {
+        $options += $this->queryResultsOptions;
         $this->waitUntilComplete($options);
         $schema = $this->info['schema']['fields'];
 
@@ -190,7 +195,10 @@ class QueryResults implements \IteratorAggregate
      * ```
      *
      * @param array $options [optional] {
-     *     Configuration options.
+     *     Configuration options. Please note, these options will inherit the
+     *     values set by either
+     *     {@see Google\Cloud\BigQuery\BigQueryClient::runQuery()} or
+     *     {@see Google\Cloud\BigQuery\Job::queryResults()}.
      *
      *     @type int $maxResults Maximum number of results to read per page.
      *     @type int $startIndex Zero-based index of the starting row.
@@ -207,7 +215,8 @@ class QueryResults implements \IteratorAggregate
      */
     public function waitUntilComplete(array $options = [])
     {
-        $maxRetries = $this->pluck('maxRetries', $options, false) ? : $this->maxRetries;
+        $options += $this->queryResultsOptions;
+        $maxRetries = $this->pluck('maxRetries', $options, false);
         $this->wait(
             function () {
                 return $this->isComplete();

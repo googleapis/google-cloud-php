@@ -137,6 +137,14 @@ class Job
     /**
      * Retrieves the results of a query job.
      *
+     * Please note this method will trigger an initial network request, but
+     * further polling may be necessary in order to access the full query
+     * results. Polling for completion can be initiated by iterating on the
+     * returned
+     * {@see Google\Cloud\BigQuery\QueryResults}, or by calling either
+     * {@see Google\Cloud\BigQuery\QueryResults::rows()} or
+     * {@see Google\Cloud\BigQuery\QueryResults::waitUntilComplete()}.
+     *
      * Example:
      * ```
      * $queryResults = $job->queryResults();
@@ -150,11 +158,21 @@ class Job
      *
      *     @type int $maxResults Maximum number of results to read per page.
      *     @type int $startIndex Zero-based index of the starting row.
+     *     @type int $initialTimeoutMs How long, in milliseconds, to wait for
+     *           query results to become available before timing out.
+     *           **Defaults to** `0` milliseconds (0 seconds). Please note
+     *           that this option is used only for the initial call to get query
+     *           results. To control the timeout for any subsequent calls while
+     *           polling for query results to complete, please see the
+     *           `$timeoutMs` option.
      *     @type int $timeoutMs How long, in milliseconds, each API call will
      *           wait for query results to become available before timing out.
-     *           Depending on whether the $maxRetries has been exceeded, the
-     *           results will be polled again after the timeout has been reached.
-     *           **Defaults to** `10000` milliseconds (10 seconds).
+     *           Depending on whether the $maxRetries has been exceeded,
+     *           the results will be polled again after the timeout has been
+     *           reached. **Defaults to** `10000` milliseconds (10 seconds).
+     *           Please note that this option is used when iterating on the
+     *           returned class, and will not apply immediately upon calling of
+     *           this method.
      *     @type int $maxRetries The number of times to poll the Job status,
      *           until the job is complete. By default, will poll indefinitely.
      *           Please note that this option is used when iterating on the
@@ -165,6 +183,10 @@ class Job
      */
     public function queryResults(array $options = [])
     {
+        $timeoutMs = $this->pluck('initialTimeoutMs', $options, false) ?: 0;
+        $queryResultsOptions = $options;
+        $options['timeoutMs'] = $timeoutMs;
+
         return new QueryResults(
             $this->connection,
             $this->identity['jobId'],
@@ -172,7 +194,7 @@ class Job
             $this->connection->getQueryResults($options + $this->identity),
             $this->mapper,
             $this,
-            $this->pluck('maxRetries', $options, false)
+            $queryResultsOptions
         );
     }
 

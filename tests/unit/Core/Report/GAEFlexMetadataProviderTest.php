@@ -28,7 +28,7 @@ class GAEFlexMetadataProviderTest extends TestCase
     private $envs = [
         'GAE_SERVICE' => 'my-service',
         'GAE_VERSION' => 'my-version',
-        'GCLOUD_PROJECT' => 'my-project',
+        'GOOGLE_CLOUD_PROJECT' => 'my-project',
         'HTTP_X_CLOUD_TRACE_CONTEXT' => 'my-traceId'
     ];
 
