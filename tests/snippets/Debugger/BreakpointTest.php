@@ -17,7 +17,7 @@
 
 namespace Google\Cloud\Tests\Snippets\Debugger;
 
-use Google\Cloud\Dev\Snippet\SnippetTestCase;
+use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
 use Google\Cloud\Debugger\Breakpoint;
 use Google\Cloud\Debugger\SourceLocation;
 use Google\Cloud\Debugger\StackFrame;
