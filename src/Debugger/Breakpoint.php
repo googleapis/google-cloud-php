@@ -393,6 +393,16 @@ class Breakpoint implements \JsonSerializable
     }
 
     /**
+     * Return the status for this breakpoint
+     *
+     * @return StatusMessage|null
+     */
+    public function status()
+    {
+        return $this->status;
+    }
+
+    /**
      * Returns the VariableTable
      *
      * Example:
@@ -541,46 +551,10 @@ class Breakpoint implements \JsonSerializable
      */
     public function validate()
     {
-        if (!extension_loaded('stackdriver_debugger')) {
-            $this->setError(
-                StatusMessage::REFERENCE_UNSPECIFIED,
-                'PHP extension not installed.'
-            );
-            return false;
-        }
-
-        if ($this->condition()) {
-            // validate that the condition is ok for debugging
-            try {
-                if (!stackdriver_debugger_valid_statement($this->condition())) {
-                    $this->setError(
-                        StatusMessage::REFERENCE_BREAKPOINT_CONDITION,
-                        'Invalid breakpoint condition - Invalid operations: $0.',
-                        [$this->condition]
-                    );
-                    return false;
-                }
-            } catch (\ParseError $e) {
-                $this->setError(
-                    StatusMessage::REFERENCE_BREAKPOINT_CONDITION,
-                    'Invalid breakpoint condition - Parse error: $0.',
-                    [$this->condition]
-                );
-                return false;
-            }
-        }
-
-        foreach ($this->expressions as $expression) {
-            if (!stackdriver_debugger_valid_statement($expression)) {
-                $this->setError(
-                    StatusMessage::REFERENCE_BREAKPOINT_EXPRESSION,
-                    'Invalid breakpoint expression: $0',
-                    [$expression]
-                );
-                return false;
-            }
-        }
-        return true;
+        return $this->ensureExtensionLoaded() &&
+            $this->validateSourceLocation() &&
+            $this->validateCondition() &&
+            $this->validateExpressions();
     }
 
     private function setError($type, $message, array $parameters = [])
@@ -596,5 +570,110 @@ class Breakpoint implements \JsonSerializable
     {
         $this->variableTable = $this->variableTable ?: new VariableTable();
         return $this->variableTable->register($name, $value);
+    }
+
+    private function ensureExtensionLoaded()
+    {
+        if (!extension_loaded('stackdriver_debugger')) {
+            $this->setError(
+                StatusMessage::REFERENCE_UNSPECIFIED,
+                'PHP extension not installed.'
+            );
+            return false;
+        }
+        return true;
+    }
+
+    private function validateSourceLocation()
+    {
+        if (!$this->location) {
+            $this->setError(
+                StatusMessage::REFERENCE_BREAKPOINT_SOURCE_LOCATION,
+                'Invalid breakpoint location'
+            );
+            return false;
+        }
+
+        $path = $this->location->path();
+        $info = new \SplFileInfo($path);
+
+        // Ensure the file exists and is readable
+        if (!$info->isReadable()) {
+            $this->setError(
+                StatusMessage::REFERENCE_BREAKPOINT_SOURCE_LOCATION,
+                'Invalid breakpoint location - File not found or unreadable: $0.',
+                [$path]
+            );
+            return false;
+        }
+
+        // Ensure the file is a php file
+        if ($info->getExtension() !== "php") {
+            $this->setError(
+                StatusMessage::REFERENCE_BREAKPOINT_SOURCE_LOCATION,
+                'Invalid breakpoint location - Invalid file type: $0.',
+                [$info->getExtension()]
+            );
+            return false;
+        }
+
+        $file = $info->openFile("r");
+        $file->seek($this->location->line() - 1);
+        $line = $file->current();
+
+        // Ensure the line exists and is not a comment in the file
+        if ($line === false ||
+                preg_match('/^\s*[\/\*]+/', $line) ||
+                preg_match('/^\s*$/', $line)) {
+            $this->setError(
+                StatusMessage::REFERENCE_BREAKPOINT_SOURCE_LOCATION,
+                'Invalid breakpoint location - Invalid file line: $0.',
+                [$this->location->line()]
+            );
+            return false;
+        }
+
+        return true;
+    }
+
+    private function validateCondition()
+    {
+        if (!$this->condition) {
+            return true;
+        }
+
+        try {
+            if (!@stackdriver_debugger_valid_statement($this->condition())) {
+                $this->setError(
+                    StatusMessage::REFERENCE_BREAKPOINT_CONDITION,
+                    'Invalid breakpoint condition - Invalid operations: $0.',
+                    [$this->condition]
+                );
+                return false;
+            }
+        } catch (\ParseError $e) {
+            $this->setError(
+                StatusMessage::REFERENCE_BREAKPOINT_CONDITION,
+                'Invalid breakpoint condition - Parse error: $0.',
+                [$this->condition]
+            );
+            return false;
+        }
+        return true;
+    }
+
+    private function validateExpressions()
+    {
+        foreach ($this->expressions as $expression) {
+            if (!@stackdriver_debugger_valid_statement($expression)) {
+                $this->setError(
+                    StatusMessage::REFERENCE_BREAKPOINT_EXPRESSION,
+                    'Invalid breakpoint expression: $0',
+                    [$expression]
+                );
+                return false;
+            }
+        }
+        return true;
     }
 }
