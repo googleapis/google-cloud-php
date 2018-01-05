@@ -8,7 +8,7 @@
 
 This client supports the following Google Cloud Platform services at a [General Availability](#versioning) quality level:
 * [Cloud Spanner](#cloud-spanner-ga) (GA)
-* [Google BigQuery](#google-bigquery-beta) (GA)
+* [Google BigQuery](#google-bigquery-ga) (GA)
 * [Google Cloud Datastore](#google-cloud-datastore-ga) (GA)
 * [Google Cloud Storage](#google-cloud-storage-ga) (GA)
 * [Google Cloud Translation](#google-cloud-translation-ga) (GA)
