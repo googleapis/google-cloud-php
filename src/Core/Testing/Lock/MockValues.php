@@ -20,6 +20,12 @@ namespace Google\Cloud\Core\Testing\Lock;
 
 require_once __DIR__ . '/MockGlobals.php';
 
+/**
+ * MockValues holds mock values used for testing the locking implementation.
+ *
+ * WARNING: this class requires MockGlobals.php, which replaces some existing functions with test
+ * implementations.
+ */
 class MockValues
 {
     public static $flockReturnValue;
@@ -28,6 +34,9 @@ class MockValues
     public static $sem_releaseReturnValue;
     public static $sem_getReturnValue;
 
+    /**
+     * Initialize MockValues
+     */
     public static function initialize()
     {
         self::$flockReturnValue = true;

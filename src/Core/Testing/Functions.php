@@ -18,6 +18,9 @@
 
 namespace Google\Cloud\Core\Testing;
 
+/**
+ * Class Functions is used to hold static functions required for testing
+ */
 class Functions
 {
     /**

@@ -30,6 +30,9 @@ class SnippetTestCase extends TestCase
     private static $coverage;
     private static $parser;
 
+    /**
+     * Run to set up class before testing
+     */
     public static function setUpBeforeClass()
     {
         self::$coverage = Container::$coverage;

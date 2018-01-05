@@ -24,15 +24,24 @@ use Google\Cloud\Storage\StorageClient;
 use Google\Cloud\Core\Testing\System\DeletionQueue;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * SystemTestCase can be extended to implement system tests
+ */
 class SystemTestCase extends TestCase
 {
     protected static $deletionQueue;
 
+    /**
+     * Set up the deletion queue
+     */
     public static function setupQueue()
     {
         self::$deletionQueue = new DeletionQueue;
     }
 
+    /**
+     * Process the deletion queue
+     */
     public static function processQueue()
     {
         self::$deletionQueue->process();

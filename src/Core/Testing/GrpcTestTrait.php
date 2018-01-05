@@ -22,6 +22,9 @@ namespace Google\Cloud\Core\Testing;
  */
 trait GrpcTestTrait
 {
+    /**
+     * Checks for the grpc extension, and if it is missing, marked the test as skipped
+     */
     public function checkAndSkipGrpcTests()
     {
         if (!extension_loaded('grpc')) {
@@ -32,6 +35,9 @@ trait GrpcTestTrait
         }
     }
 
+    /**
+     * @return bool True if grpc tests should be skipped, otherwise false
+     */
     public function shouldSkipGrpcTests()
     {
         return !extension_loaded('grpc') || defined('HHVM_VERSION');
