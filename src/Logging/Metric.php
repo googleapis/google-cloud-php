@@ -52,6 +52,11 @@ class Metric
     private $name;
 
     /**
+     * @var array The metric's metadata.
+     */
+    private $info;
+
+    /**
      * @param ConnectionInterface $connection Represents a connection to Cloud
      *        Logging.
      * @param string $name The metric's name.

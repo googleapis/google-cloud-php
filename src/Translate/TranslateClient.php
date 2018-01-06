@@ -68,6 +68,11 @@ class TranslateClient
     private $targetLanguage;
 
     /**
+     * @var string
+     */
+    private $key;
+
+    /**
      * Create a Translate client.
      *
      * Note that when creating a TranslateClient instance, setting

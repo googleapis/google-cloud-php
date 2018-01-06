@@ -199,7 +199,7 @@ class GrpcRequestWrapper
      * Convert a ApiCore exception to a Google Exception.
      *
      * @param ApiException $ex
-     * @return ServiceException
+     * @return Exception\ServiceException
      */
     private function convertToGoogleException(ApiException $ex)
     {

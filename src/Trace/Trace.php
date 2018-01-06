@@ -39,7 +39,7 @@ class Trace implements \JsonSerializable
     use ValidateTrait;
 
     /**
-     * @var ConnectionInterface Represents a connection to Stackdriver Trace.
+     * @var Connection\ConnectionInterface Represents a connection to Stackdriver Trace.
      */
     private $connection;
 
@@ -72,7 +72,7 @@ class Trace implements \JsonSerializable
         $this->projectId = $projectId;
         $this->traceId = $traceId ?: $this->generateTraceId();
         if ($spans) {
-            $this->spans = array_map(function ($spanData) use ($projectId, $traceId) {
+            $this->spans = array_map(function ($spanData) use ($traceId) {
                 return new Span($traceId, $spanData);
             }, $spans);
         }

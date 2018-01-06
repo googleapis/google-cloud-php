@@ -63,6 +63,11 @@ class Iam
     private $args;
 
     /**
+     * @var array
+     */
+    private $options;
+
+    /**
      * @param IamConnectionInterface $connection
      * @param string $resource
      * @param array $options [optional] {
