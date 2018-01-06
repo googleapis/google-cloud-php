@@ -56,7 +56,20 @@ class FirestoreClientTest extends TestCase
 
     public function testBatch()
     {
-        $this->assertInstanceOf(WriteBatch::class, $this->client->batch());
+        $batch = $this->client->batch();
+        $this->assertInstanceOf(WriteBatch::class, $batch);
+    }
+
+    public function testBatchCorrectDatabaseName()
+    {
+        $db = sprintf('projects/%s/databases/%s', self::PROJECT, self::DATABASE);
+        $this->connection->commit(Argument::withEntry('database', $db))
+            ->shouldBeCalled()
+            ->willReturn([[]]);
+
+        $this->client->___setProperty('connection', $this->connection->reveal());
+        $batch = $this->client->batch();
+        $batch->commit();
     }
 
     public function testCollection()
