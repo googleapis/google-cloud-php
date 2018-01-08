@@ -91,7 +91,7 @@ class Daemon
 
         $description = array_key_exists('description', $options)
             ? $options['description']
-            : $uniquifier;
+            : $this->defaultDescription();
 
         $this->debuggee = $client->debuggee(null, [
             'uniquifier' => $uniquifier,
@@ -156,6 +156,14 @@ class Daemon
 
     private function defaultUniquifier()
     {
+        $files = glob($this->sourceRoot . '/**/*.php');
+        return sha1(implode(':', array_map(function ($filename) {
+            return $filename . ':' . filesize($filename);
+        }, $files)));
+    }
+
+    private function defaultDescription()
+    {
         if (isset($_SERVER['GAE_SERVICE'])) {
             return $_SERVER['GAE_SERVICE'] . ' - ' . $_SERVER['GAE_VERSION'];
         }
@@ -168,7 +176,7 @@ class Daemon
         if (file_exists($sourceContextFile)) {
             return json_decode(file_get_contents($sourceContextFile), true);
         } else {
-            return null;
+            return [];
         }
     }
 }
