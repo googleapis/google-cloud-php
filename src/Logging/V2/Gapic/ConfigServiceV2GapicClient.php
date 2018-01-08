@@ -1,12 +1,12 @@
 <?php
 /*
- * Copyright 2017, Google LLC All rights reserved.
+ * Copyright 2017 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
+ *     https://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -30,11 +30,13 @@
 
 namespace Google\Cloud\Logging\V2\Gapic;
 
-use Google\ApiCore\Call;
+use Google\ApiCore\ApiException;
 use Google\ApiCore\GapicClientTrait;
 use Google\ApiCore\PathTemplate;
-use Google\ApiCore\Transport\ApiTransportInterface;
+use Google\ApiCore\RetrySettings;
+use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
+use Google\Auth\CredentialsLoader;
 use Google\Cloud\Logging\V2\CreateExclusionRequest;
 use Google\Cloud\Logging\V2\CreateSinkRequest;
 use Google\Cloud\Logging\V2\DeleteExclusionRequest;
@@ -51,6 +53,8 @@ use Google\Cloud\Logging\V2\UpdateExclusionRequest;
 use Google\Cloud\Logging\V2\UpdateSinkRequest;
 use Google\Protobuf\FieldMask;
 use Google\Protobuf\GPBEmpty;
+use Grpc\Channel;
+use Grpc\ChannelCredentials;
 
 /**
  * Service Description: Service for configuring sinks used to export log entries outside of
@@ -64,8 +68,8 @@ use Google\Protobuf\GPBEmpty;
  * calls that map to API methods. Sample code to get started:
  *
  * ```
+ * $configServiceV2Client = new ConfigServiceV2Client();
  * try {
- *     $configServiceV2Client = new ConfigServiceV2Client();
  *     $formattedParent = $configServiceV2Client->projectName('[PROJECT]');
  *     // Iterate through all elements
  *     $pagedResponse = $configServiceV2Client->listSinks($formattedParent);
@@ -142,6 +146,7 @@ class ConfigServiceV2GapicClient
             'clientConfigPath' => __DIR__.'/../resources/config_service_v2_client_config.json',
             'restClientConfigPath' => __DIR__.'/../resources/config_service_v2_rest_client_config.php',
             'descriptorsConfigPath' => __DIR__.'/../resources/config_service_v2_descriptor_config.php',
+            'versionFile' => __DIR__.'/../../VERSION',
         ];
     }
 
@@ -289,10 +294,10 @@ class ConfigServiceV2GapicClient
      *     @type string $serviceAddress The domain name of the API remote host.
      *                                  Default 'logging.googleapis.com'.
      *     @type mixed $port The port on which to connect to the remote host. Default 443.
-     *     @type \Grpc\Channel $channel
+     *     @type Channel $channel
      *           A `Channel` object. If not specified, a channel will be constructed.
      *           NOTE: This option is only valid when utilizing the gRPC transport.
-     *     @type \Grpc\ChannelCredentials $sslCreds
+     *     @type ChannelCredentials $sslCreds
      *           A `ChannelCredentials` object for use with an SSL-enabled channel.
      *           Default: a credentials object returned from
      *           \Grpc\ChannelCredentials::createSsl().
@@ -303,9 +308,9 @@ class ConfigServiceV2GapicClient
      *           Defaults to false.
      *           NOTE: This option is only valid when utilizing the gRPC transport. Also, if the $channel
      *           optional argument is specified, then this option is unused.
-     *     @type \Google\Auth\CredentialsLoader $credentialsLoader
+     *     @type CredentialsLoader $credentialsLoader
      *           A CredentialsLoader object created using the Google\Auth library.
-     *     @type array $scopes A string array of scopes to use when acquiring credentials.
+     *     @type string[] $scopes A string array of scopes to use when acquiring credentials.
      *                          Defaults to the scopes for the Stackdriver Logging API.
      *     @type string $clientConfigPath
      *           Path to a JSON file containing client method configuration, including retry settings.
@@ -323,12 +328,11 @@ class ConfigServiceV2GapicClient
      *           settings in $clientConfigPath.
      *     @type callable $authHttpHandler A handler used to deliver PSR-7 requests specifically
      *           for authentication. Should match a signature of
-     *           `function (RequestInterface $request, array $options) : ResponseInterface`
-     *           NOTE: This option is only valid when utilizing the REST transport.
+     *           `function (RequestInterface $request, array $options) : ResponseInterface`.
      *     @type callable $httpHandler A handler used to deliver PSR-7 requests. Should match a
-     *           signature of `function (RequestInterface $request, array $options) : PromiseInterface`
+     *           signature of `function (RequestInterface $request, array $options) : PromiseInterface`.
      *           NOTE: This option is only valid when utilizing the REST transport.
-     *     @type string|ApiTransportInterface $transport The transport used for executing network
+     *     @type string|TransportInterface $transport The transport used for executing network
      *           requests. May be either the string `rest` or `grpc`. Additionally, it is possible
      *           to pass in an already instantiated transport. Defaults to `grpc` if gRPC support is
      *           detected on the system.
@@ -345,8 +349,8 @@ class ConfigServiceV2GapicClient
      *
      * Sample code:
      * ```
+     * $configServiceV2Client = new ConfigServiceV2Client();
      * try {
-     *     $configServiceV2Client = new ConfigServiceV2Client();
      *     $formattedParent = $configServiceV2Client->projectName('[PROJECT]');
      *     // Iterate through all elements
      *     $pagedResponse = $configServiceV2Client->listSinks($formattedParent);
@@ -384,7 +388,7 @@ class ConfigServiceV2GapicClient
      *          The maximum number of resources contained in the underlying API
      *          response. The API may return fewer values in a page, even if
      *          there are additional values to be retrieved.
-     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
+     *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
@@ -393,7 +397,7 @@ class ConfigServiceV2GapicClient
      *
      * @return \Google\ApiCore\PagedListResponse
      *
-     * @throws \Google\ApiCore\ApiException if the remote call fails
+     * @throws ApiException if the remote call fails
      * @experimental
      */
     public function listSinks($parent, $optionalArgs = [])
@@ -408,13 +412,10 @@ class ConfigServiceV2GapicClient
         }
 
         return $this->getPagedListResponse(
-            new Call(
-                self::SERVICE_NAME.'/ListSinks',
-                ListSinksResponse::class,
-                $request
-            ),
-            $this->configureCallSettings('listSinks', $optionalArgs),
-            $this->descriptors['listSinks']['pageStreaming']
+            'ListSinks',
+            $optionalArgs,
+            ListSinksResponse::class,
+            $request
         );
     }
 
@@ -423,8 +424,8 @@ class ConfigServiceV2GapicClient
      *
      * Sample code:
      * ```
+     * $configServiceV2Client = new ConfigServiceV2Client();
      * try {
-     *     $configServiceV2Client = new ConfigServiceV2Client();
      *     $formattedSinkName = $configServiceV2Client->sinkName('[PROJECT]', '[SINK]');
      *     $response = $configServiceV2Client->getSink($formattedSinkName);
      * } finally {
@@ -443,7 +444,7 @@ class ConfigServiceV2GapicClient
      * @param array $optionalArgs {
      *                            Optional.
      *
-     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
+     *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
@@ -452,7 +453,7 @@ class ConfigServiceV2GapicClient
      *
      * @return \Google\Cloud\Logging\V2\LogSink
      *
-     * @throws \Google\ApiCore\ApiException if the remote call fails
+     * @throws ApiException if the remote call fails
      * @experimental
      */
     public function getSink($sinkName, $optionalArgs = [])
@@ -461,12 +462,10 @@ class ConfigServiceV2GapicClient
         $request->setSinkName($sinkName);
 
         return $this->startCall(
-            new Call(
-                self::SERVICE_NAME.'/GetSink',
-                LogSink::class,
-                $request
-            ),
-            $this->configureCallSettings('getSink', $optionalArgs)
+            'GetSink',
+            LogSink::class,
+            $optionalArgs,
+            $request
         )->wait();
     }
 
@@ -478,8 +477,8 @@ class ConfigServiceV2GapicClient
      *
      * Sample code:
      * ```
+     * $configServiceV2Client = new ConfigServiceV2Client();
      * try {
-     *     $configServiceV2Client = new ConfigServiceV2Client();
      *     $formattedParent = $configServiceV2Client->projectName('[PROJECT]');
      *     $sink = new LogSink();
      *     $response = $configServiceV2Client->createSink($formattedParent, $sink);
@@ -513,7 +512,7 @@ class ConfigServiceV2GapicClient
      *          resource such as an organization, then the value of `writer_identity` will
      *          be a unique service account used only for exports from the new sink.  For
      *          more information, see `writer_identity` in [LogSink][google.logging.v2.LogSink].
-     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
+     *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
@@ -522,7 +521,7 @@ class ConfigServiceV2GapicClient
      *
      * @return \Google\Cloud\Logging\V2\LogSink
      *
-     * @throws \Google\ApiCore\ApiException if the remote call fails
+     * @throws ApiException if the remote call fails
      * @experimental
      */
     public function createSink($parent, $sink, $optionalArgs = [])
@@ -535,12 +534,10 @@ class ConfigServiceV2GapicClient
         }
 
         return $this->startCall(
-            new Call(
-                self::SERVICE_NAME.'/CreateSink',
-                LogSink::class,
-                $request
-            ),
-            $this->configureCallSettings('createSink', $optionalArgs)
+            'CreateSink',
+            LogSink::class,
+            $optionalArgs,
+            $request
         )->wait();
     }
 
@@ -552,8 +549,8 @@ class ConfigServiceV2GapicClient
      *
      * Sample code:
      * ```
+     * $configServiceV2Client = new ConfigServiceV2Client();
      * try {
-     *     $configServiceV2Client = new ConfigServiceV2Client();
      *     $formattedSinkName = $configServiceV2Client->sinkName('[PROJECT]', '[SINK]');
      *     $sink = new LogSink();
      *     $response = $configServiceV2Client->updateSink($formattedSinkName, $sink);
@@ -604,7 +601,7 @@ class ConfigServiceV2GapicClient
      *          https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask
      *
      *          Example: `updateMask=filter`.
-     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
+     *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
@@ -613,7 +610,7 @@ class ConfigServiceV2GapicClient
      *
      * @return \Google\Cloud\Logging\V2\LogSink
      *
-     * @throws \Google\ApiCore\ApiException if the remote call fails
+     * @throws ApiException if the remote call fails
      * @experimental
      */
     public function updateSink($sinkName, $sink, $optionalArgs = [])
@@ -629,12 +626,10 @@ class ConfigServiceV2GapicClient
         }
 
         return $this->startCall(
-            new Call(
-                self::SERVICE_NAME.'/UpdateSink',
-                LogSink::class,
-                $request
-            ),
-            $this->configureCallSettings('updateSink', $optionalArgs)
+            'UpdateSink',
+            LogSink::class,
+            $optionalArgs,
+            $request
         )->wait();
     }
 
@@ -644,8 +639,8 @@ class ConfigServiceV2GapicClient
      *
      * Sample code:
      * ```
+     * $configServiceV2Client = new ConfigServiceV2Client();
      * try {
-     *     $configServiceV2Client = new ConfigServiceV2Client();
      *     $formattedSinkName = $configServiceV2Client->sinkName('[PROJECT]', '[SINK]');
      *     $configServiceV2Client->deleteSink($formattedSinkName);
      * } finally {
@@ -665,14 +660,14 @@ class ConfigServiceV2GapicClient
      * @param array $optionalArgs {
      *                            Optional.
      *
-     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
+     *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
      *          {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
-     * @throws \Google\ApiCore\ApiException if the remote call fails
+     * @throws ApiException if the remote call fails
      * @experimental
      */
     public function deleteSink($sinkName, $optionalArgs = [])
@@ -681,12 +676,10 @@ class ConfigServiceV2GapicClient
         $request->setSinkName($sinkName);
 
         return $this->startCall(
-            new Call(
-                self::SERVICE_NAME.'/DeleteSink',
-                GPBEmpty::class,
-                $request
-            ),
-            $this->configureCallSettings('deleteSink', $optionalArgs)
+            'DeleteSink',
+            GPBEmpty::class,
+            $optionalArgs,
+            $request
         )->wait();
     }
 
@@ -695,8 +688,8 @@ class ConfigServiceV2GapicClient
      *
      * Sample code:
      * ```
+     * $configServiceV2Client = new ConfigServiceV2Client();
      * try {
-     *     $configServiceV2Client = new ConfigServiceV2Client();
      *     $formattedParent = $configServiceV2Client->projectName('[PROJECT]');
      *     // Iterate through all elements
      *     $pagedResponse = $configServiceV2Client->listExclusions($formattedParent);
@@ -734,7 +727,7 @@ class ConfigServiceV2GapicClient
      *          The maximum number of resources contained in the underlying API
      *          response. The API may return fewer values in a page, even if
      *          there are additional values to be retrieved.
-     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
+     *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
@@ -743,7 +736,7 @@ class ConfigServiceV2GapicClient
      *
      * @return \Google\ApiCore\PagedListResponse
      *
-     * @throws \Google\ApiCore\ApiException if the remote call fails
+     * @throws ApiException if the remote call fails
      * @experimental
      */
     public function listExclusions($parent, $optionalArgs = [])
@@ -758,13 +751,10 @@ class ConfigServiceV2GapicClient
         }
 
         return $this->getPagedListResponse(
-            new Call(
-                self::SERVICE_NAME.'/ListExclusions',
-                ListExclusionsResponse::class,
-                $request
-            ),
-            $this->configureCallSettings('listExclusions', $optionalArgs),
-            $this->descriptors['listExclusions']['pageStreaming']
+            'ListExclusions',
+            $optionalArgs,
+            ListExclusionsResponse::class,
+            $request
         );
     }
 
@@ -773,8 +763,8 @@ class ConfigServiceV2GapicClient
      *
      * Sample code:
      * ```
+     * $configServiceV2Client = new ConfigServiceV2Client();
      * try {
-     *     $configServiceV2Client = new ConfigServiceV2Client();
      *     $formattedName = $configServiceV2Client->exclusionName('[PROJECT]', '[EXCLUSION]');
      *     $response = $configServiceV2Client->getExclusion($formattedName);
      * } finally {
@@ -793,7 +783,7 @@ class ConfigServiceV2GapicClient
      * @param array $optionalArgs {
      *                            Optional.
      *
-     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
+     *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
@@ -802,7 +792,7 @@ class ConfigServiceV2GapicClient
      *
      * @return \Google\Cloud\Logging\V2\LogExclusion
      *
-     * @throws \Google\ApiCore\ApiException if the remote call fails
+     * @throws ApiException if the remote call fails
      * @experimental
      */
     public function getExclusion($name, $optionalArgs = [])
@@ -811,12 +801,10 @@ class ConfigServiceV2GapicClient
         $request->setName($name);
 
         return $this->startCall(
-            new Call(
-                self::SERVICE_NAME.'/GetExclusion',
-                LogExclusion::class,
-                $request
-            ),
-            $this->configureCallSettings('getExclusion', $optionalArgs)
+            'GetExclusion',
+            LogExclusion::class,
+            $optionalArgs,
+            $request
         )->wait();
     }
 
@@ -827,8 +815,8 @@ class ConfigServiceV2GapicClient
      *
      * Sample code:
      * ```
+     * $configServiceV2Client = new ConfigServiceV2Client();
      * try {
-     *     $configServiceV2Client = new ConfigServiceV2Client();
      *     $formattedParent = $configServiceV2Client->projectName('[PROJECT]');
      *     $exclusion = new LogExclusion();
      *     $response = $configServiceV2Client->createExclusion($formattedParent, $exclusion);
@@ -850,7 +838,7 @@ class ConfigServiceV2GapicClient
      * @param array        $optionalArgs {
      *                                   Optional.
      *
-     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
+     *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
@@ -859,7 +847,7 @@ class ConfigServiceV2GapicClient
      *
      * @return \Google\Cloud\Logging\V2\LogExclusion
      *
-     * @throws \Google\ApiCore\ApiException if the remote call fails
+     * @throws ApiException if the remote call fails
      * @experimental
      */
     public function createExclusion($parent, $exclusion, $optionalArgs = [])
@@ -869,12 +857,10 @@ class ConfigServiceV2GapicClient
         $request->setExclusion($exclusion);
 
         return $this->startCall(
-            new Call(
-                self::SERVICE_NAME.'/CreateExclusion',
-                LogExclusion::class,
-                $request
-            ),
-            $this->configureCallSettings('createExclusion', $optionalArgs)
+            'CreateExclusion',
+            LogExclusion::class,
+            $optionalArgs,
+            $request
         )->wait();
     }
 
@@ -883,8 +869,8 @@ class ConfigServiceV2GapicClient
      *
      * Sample code:
      * ```
+     * $configServiceV2Client = new ConfigServiceV2Client();
      * try {
-     *     $configServiceV2Client = new ConfigServiceV2Client();
      *     $formattedName = $configServiceV2Client->exclusionName('[PROJECT]', '[EXCLUSION]');
      *     $exclusion = new LogExclusion();
      *     $updateMask = new FieldMask();
@@ -914,7 +900,7 @@ class ConfigServiceV2GapicClient
      * @param array $optionalArgs {
      *                            Optional.
      *
-     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
+     *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
@@ -923,7 +909,7 @@ class ConfigServiceV2GapicClient
      *
      * @return \Google\Cloud\Logging\V2\LogExclusion
      *
-     * @throws \Google\ApiCore\ApiException if the remote call fails
+     * @throws ApiException if the remote call fails
      * @experimental
      */
     public function updateExclusion($name, $exclusion, $updateMask, $optionalArgs = [])
@@ -934,12 +920,10 @@ class ConfigServiceV2GapicClient
         $request->setUpdateMask($updateMask);
 
         return $this->startCall(
-            new Call(
-                self::SERVICE_NAME.'/UpdateExclusion',
-                LogExclusion::class,
-                $request
-            ),
-            $this->configureCallSettings('updateExclusion', $optionalArgs)
+            'UpdateExclusion',
+            LogExclusion::class,
+            $optionalArgs,
+            $request
         )->wait();
     }
 
@@ -948,8 +932,8 @@ class ConfigServiceV2GapicClient
      *
      * Sample code:
      * ```
+     * $configServiceV2Client = new ConfigServiceV2Client();
      * try {
-     *     $configServiceV2Client = new ConfigServiceV2Client();
      *     $formattedName = $configServiceV2Client->exclusionName('[PROJECT]', '[EXCLUSION]');
      *     $configServiceV2Client->deleteExclusion($formattedName);
      * } finally {
@@ -968,14 +952,14 @@ class ConfigServiceV2GapicClient
      * @param array $optionalArgs {
      *                            Optional.
      *
-     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
+     *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
      *          {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
-     * @throws \Google\ApiCore\ApiException if the remote call fails
+     * @throws ApiException if the remote call fails
      * @experimental
      */
     public function deleteExclusion($name, $optionalArgs = [])
@@ -984,23 +968,10 @@ class ConfigServiceV2GapicClient
         $request->setName($name);
 
         return $this->startCall(
-            new Call(
-                self::SERVICE_NAME.'/DeleteExclusion',
-                GPBEmpty::class,
-                $request
-            ),
-            $this->configureCallSettings('deleteExclusion', $optionalArgs)
+            'DeleteExclusion',
+            GPBEmpty::class,
+            $optionalArgs,
+            $request
         )->wait();
-    }
-
-    /**
-     * Initiates an orderly shutdown in which preexisting calls continue but new
-     * calls are immediately cancelled.
-     *
-     * @experimental
-     */
-    public function close()
-    {
-        $this->transport->close();
     }
 }

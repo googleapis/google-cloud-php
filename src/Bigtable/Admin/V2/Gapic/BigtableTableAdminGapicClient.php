@@ -1,12 +1,12 @@
 <?php
 /*
- * Copyright 2017, Google LLC All rights reserved.
+ * Copyright 2017 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
+ *     https://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -30,13 +30,15 @@
 
 namespace Google\Cloud\Bigtable\Admin\V2\Gapic;
 
-use Google\ApiCore\Call;
+use Google\ApiCore\ApiException;
 use Google\ApiCore\GapicClientTrait;
 use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\OperationResponse;
 use Google\ApiCore\PathTemplate;
-use Google\ApiCore\Transport\ApiTransportInterface;
+use Google\ApiCore\RetrySettings;
+use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
+use Google\Auth\CredentialsLoader;
 use Google\Cloud\Bigtable\Admin\V2\CheckConsistencyRequest;
 use Google\Cloud\Bigtable\Admin\V2\CheckConsistencyResponse;
 use Google\Cloud\Bigtable\Admin\V2\CreateTableFromSnapshotRequest;
@@ -62,6 +64,8 @@ use Google\Cloud\Bigtable\Admin\V2\Table_View as View;
 use Google\LongRunning\Operation;
 use Google\Protobuf\Duration;
 use Google\Protobuf\GPBEmpty;
+use Grpc\Channel;
+use Grpc\ChannelCredentials;
 
 /**
  * Service Description: Service for creating, configuring, and deleting Cloud Bigtable tables.
@@ -78,8 +82,8 @@ use Google\Protobuf\GPBEmpty;
  * calls that map to API methods. Sample code to get started:
  *
  * ```
+ * $bigtableTableAdminClient = new BigtableTableAdminClient();
  * try {
- *     $bigtableTableAdminClient = new BigtableTableAdminClient();
  *     $formattedParent = $bigtableTableAdminClient->instanceName('[PROJECT]', '[INSTANCE]');
  *     $tableId = '';
  *     $table = new Table();
@@ -153,6 +157,7 @@ class BigtableTableAdminGapicClient
             'clientConfigPath' => __DIR__.'/../resources/bigtable_table_admin_client_config.json',
             'restClientConfigPath' => __DIR__.'/../resources/bigtable_table_admin_rest_client_config.php',
             'descriptorsConfigPath' => __DIR__.'/../resources/bigtable_table_admin_descriptor_config.php',
+            'versionFile' => __DIR__.'/../../VERSION',
         ];
     }
 
@@ -333,7 +338,7 @@ class BigtableTableAdminGapicClient
     /**
      * Return an OperationsClient object with the same endpoint as $this.
      *
-     * @return \Google\ApiCore\LongRunning\OperationsClient
+     * @return OperationsClient
      * @experimental
      */
     public function getOperationsClient()
@@ -351,7 +356,7 @@ class BigtableTableAdminGapicClient
      * @param string $operationName The name of the long running operation
      * @param string $methodName    The name of the method used to start the operation
      *
-     * @return \Google\ApiCore\OperationResponse
+     * @return OperationResponse
      * @experimental
      */
     public function resumeOperation($operationName, $methodName = null)
@@ -374,10 +379,10 @@ class BigtableTableAdminGapicClient
      *     @type string $serviceAddress The domain name of the API remote host.
      *                                  Default 'bigtableadmin.googleapis.com'.
      *     @type mixed $port The port on which to connect to the remote host. Default 443.
-     *     @type \Grpc\Channel $channel
+     *     @type Channel $channel
      *           A `Channel` object. If not specified, a channel will be constructed.
      *           NOTE: This option is only valid when utilizing the gRPC transport.
-     *     @type \Grpc\ChannelCredentials $sslCreds
+     *     @type ChannelCredentials $sslCreds
      *           A `ChannelCredentials` object for use with an SSL-enabled channel.
      *           Default: a credentials object returned from
      *           \Grpc\ChannelCredentials::createSsl().
@@ -388,9 +393,9 @@ class BigtableTableAdminGapicClient
      *           Defaults to false.
      *           NOTE: This option is only valid when utilizing the gRPC transport. Also, if the $channel
      *           optional argument is specified, then this option is unused.
-     *     @type \Google\Auth\CredentialsLoader $credentialsLoader
+     *     @type CredentialsLoader $credentialsLoader
      *           A CredentialsLoader object created using the Google\Auth library.
-     *     @type array $scopes A string array of scopes to use when acquiring credentials.
+     *     @type string[] $scopes A string array of scopes to use when acquiring credentials.
      *                          Defaults to the scopes for the Cloud Bigtable Admin API.
      *     @type string $clientConfigPath
      *           Path to a JSON file containing client method configuration, including retry settings.
@@ -408,12 +413,11 @@ class BigtableTableAdminGapicClient
      *           settings in $clientConfigPath.
      *     @type callable $authHttpHandler A handler used to deliver PSR-7 requests specifically
      *           for authentication. Should match a signature of
-     *           `function (RequestInterface $request, array $options) : ResponseInterface`
-     *           NOTE: This option is only valid when utilizing the REST transport.
+     *           `function (RequestInterface $request, array $options) : ResponseInterface`.
      *     @type callable $httpHandler A handler used to deliver PSR-7 requests. Should match a
-     *           signature of `function (RequestInterface $request, array $options) : PromiseInterface`
+     *           signature of `function (RequestInterface $request, array $options) : PromiseInterface`.
      *           NOTE: This option is only valid when utilizing the REST transport.
-     *     @type string|ApiTransportInterface $transport The transport used for executing network
+     *     @type string|TransportInterface $transport The transport used for executing network
      *           requests. May be either the string `rest` or `grpc`. Additionally, it is possible
      *           to pass in an already instantiated transport. Defaults to `grpc` if gRPC support is
      *           detected on the system.
@@ -440,8 +444,8 @@ class BigtableTableAdminGapicClient
      *
      * Sample code:
      * ```
+     * $bigtableTableAdminClient = new BigtableTableAdminClient();
      * try {
-     *     $bigtableTableAdminClient = new BigtableTableAdminClient();
      *     $formattedParent = $bigtableTableAdminClient->instanceName('[PROJECT]', '[INSTANCE]');
      *     $tableId = '';
      *     $table = new Table();
@@ -476,7 +480,7 @@ class BigtableTableAdminGapicClient
      *              - Tablet 3 `[customer_1, customer_2) => {"customer_1"}.`
      *              - Tablet 4 `[customer_2, other)      => {"customer_2"}.`
      *              - Tablet 5 `[other, )                => {"other", "zz"}.`
-     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
+     *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
@@ -485,7 +489,7 @@ class BigtableTableAdminGapicClient
      *
      * @return \Google\Cloud\Bigtable\Admin\V2\Table
      *
-     * @throws \Google\ApiCore\ApiException if the remote call fails
+     * @throws ApiException if the remote call fails
      * @experimental
      */
     public function createTable($parent, $tableId, $table, $optionalArgs = [])
@@ -499,12 +503,10 @@ class BigtableTableAdminGapicClient
         }
 
         return $this->startCall(
-            new Call(
-                self::SERVICE_NAME.'/CreateTable',
-                Table::class,
-                $request
-            ),
-            $this->configureCallSettings('createTable', $optionalArgs)
+            'CreateTable',
+            Table::class,
+            $optionalArgs,
+            $request
         )->wait();
     }
 
@@ -519,8 +521,8 @@ class BigtableTableAdminGapicClient
      *
      * Sample code:
      * ```
+     * $bigtableTableAdminClient = new BigtableTableAdminClient();
      * try {
-     *     $bigtableTableAdminClient = new BigtableTableAdminClient();
      *     $formattedParent = $bigtableTableAdminClient->instanceName('[PROJECT]', '[INSTANCE]');
      *     $tableId = '';
      *     $sourceSnapshot = '';
@@ -566,7 +568,7 @@ class BigtableTableAdminGapicClient
      * @param array  $optionalArgs   {
      *                               Optional.
      *
-     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
+     *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
@@ -575,7 +577,7 @@ class BigtableTableAdminGapicClient
      *
      * @return \Google\ApiCore\OperationResponse
      *
-     * @throws \Google\ApiCore\ApiException if the remote call fails
+     * @throws ApiException if the remote call fails
      * @experimental
      */
     public function createTableFromSnapshot($parent, $tableId, $sourceSnapshot, $optionalArgs = [])
@@ -586,14 +588,10 @@ class BigtableTableAdminGapicClient
         $request->setSourceSnapshot($sourceSnapshot);
 
         return $this->startOperationsCall(
-            new Call(
-                self::SERVICE_NAME.'/CreateTableFromSnapshot',
-                Operation::class,
-                $request
-            ),
-            $this->configureCallSettings('createTableFromSnapshot', $optionalArgs),
-            $this->getOperationsClient(),
-            $this->descriptors['createTableFromSnapshot']['longRunning']
+            'CreateTableFromSnapshot',
+            $optionalArgs,
+            $request,
+            $this->getOperationsClient()
         )->wait();
     }
 
@@ -602,8 +600,8 @@ class BigtableTableAdminGapicClient
      *
      * Sample code:
      * ```
+     * $bigtableTableAdminClient = new BigtableTableAdminClient();
      * try {
-     *     $bigtableTableAdminClient = new BigtableTableAdminClient();
      *     $formattedParent = $bigtableTableAdminClient->instanceName('[PROJECT]', '[INSTANCE]');
      *     // Iterate through all elements
      *     $pagedResponse = $bigtableTableAdminClient->listTables($formattedParent);
@@ -637,7 +635,7 @@ class BigtableTableAdminGapicClient
      *          If no page token is specified (the default), the first page
      *          of values will be returned. Any page token used here must have
      *          been generated by a previous call to the API.
-     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
+     *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
@@ -646,7 +644,7 @@ class BigtableTableAdminGapicClient
      *
      * @return \Google\ApiCore\PagedListResponse
      *
-     * @throws \Google\ApiCore\ApiException if the remote call fails
+     * @throws ApiException if the remote call fails
      * @experimental
      */
     public function listTables($parent, $optionalArgs = [])
@@ -661,13 +659,10 @@ class BigtableTableAdminGapicClient
         }
 
         return $this->getPagedListResponse(
-            new Call(
-                self::SERVICE_NAME.'/ListTables',
-                ListTablesResponse::class,
-                $request
-            ),
-            $this->configureCallSettings('listTables', $optionalArgs),
-            $this->descriptors['listTables']['pageStreaming']
+            'ListTables',
+            $optionalArgs,
+            ListTablesResponse::class,
+            $request
         );
     }
 
@@ -676,8 +671,8 @@ class BigtableTableAdminGapicClient
      *
      * Sample code:
      * ```
+     * $bigtableTableAdminClient = new BigtableTableAdminClient();
      * try {
-     *     $bigtableTableAdminClient = new BigtableTableAdminClient();
      *     $formattedName = $bigtableTableAdminClient->tableName('[PROJECT]', '[INSTANCE]', '[TABLE]');
      *     $response = $bigtableTableAdminClient->getTable($formattedName);
      * } finally {
@@ -695,7 +690,7 @@ class BigtableTableAdminGapicClient
      *          The view to be applied to the returned table's fields.
      *          Defaults to `SCHEMA_VIEW` if unspecified.
      *          For allowed values, use constants defined on {@see \Google\Cloud\Bigtable\Admin\V2\Table_View}
-     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
+     *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
@@ -704,7 +699,7 @@ class BigtableTableAdminGapicClient
      *
      * @return \Google\Cloud\Bigtable\Admin\V2\Table
      *
-     * @throws \Google\ApiCore\ApiException if the remote call fails
+     * @throws ApiException if the remote call fails
      * @experimental
      */
     public function getTable($name, $optionalArgs = [])
@@ -716,12 +711,10 @@ class BigtableTableAdminGapicClient
         }
 
         return $this->startCall(
-            new Call(
-                self::SERVICE_NAME.'/GetTable',
-                Table::class,
-                $request
-            ),
-            $this->configureCallSettings('getTable', $optionalArgs)
+            'GetTable',
+            Table::class,
+            $optionalArgs,
+            $request
         )->wait();
     }
 
@@ -730,8 +723,8 @@ class BigtableTableAdminGapicClient
      *
      * Sample code:
      * ```
+     * $bigtableTableAdminClient = new BigtableTableAdminClient();
      * try {
-     *     $bigtableTableAdminClient = new BigtableTableAdminClient();
      *     $formattedName = $bigtableTableAdminClient->tableName('[PROJECT]', '[INSTANCE]', '[TABLE]');
      *     $bigtableTableAdminClient->deleteTable($formattedName);
      * } finally {
@@ -745,14 +738,14 @@ class BigtableTableAdminGapicClient
      * @param array  $optionalArgs {
      *                             Optional.
      *
-     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
+     *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
      *          {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
-     * @throws \Google\ApiCore\ApiException if the remote call fails
+     * @throws ApiException if the remote call fails
      * @experimental
      */
     public function deleteTable($name, $optionalArgs = [])
@@ -761,12 +754,10 @@ class BigtableTableAdminGapicClient
         $request->setName($name);
 
         return $this->startCall(
-            new Call(
-                self::SERVICE_NAME.'/DeleteTable',
-                GPBEmpty::class,
-                $request
-            ),
-            $this->configureCallSettings('deleteTable', $optionalArgs)
+            'DeleteTable',
+            GPBEmpty::class,
+            $optionalArgs,
+            $request
         )->wait();
     }
 
@@ -778,8 +769,8 @@ class BigtableTableAdminGapicClient
      *
      * Sample code:
      * ```
+     * $bigtableTableAdminClient = new BigtableTableAdminClient();
      * try {
-     *     $bigtableTableAdminClient = new BigtableTableAdminClient();
      *     $formattedName = $bigtableTableAdminClient->tableName('[PROJECT]', '[INSTANCE]', '[TABLE]');
      *     $modifications = [];
      *     $response = $bigtableTableAdminClient->modifyColumnFamilies($formattedName, $modifications);
@@ -798,7 +789,7 @@ class BigtableTableAdminGapicClient
      * @param array          $optionalArgs  {
      *                                      Optional.
      *
-     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
+     *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
@@ -807,7 +798,7 @@ class BigtableTableAdminGapicClient
      *
      * @return \Google\Cloud\Bigtable\Admin\V2\Table
      *
-     * @throws \Google\ApiCore\ApiException if the remote call fails
+     * @throws ApiException if the remote call fails
      * @experimental
      */
     public function modifyColumnFamilies($name, $modifications, $optionalArgs = [])
@@ -817,12 +808,10 @@ class BigtableTableAdminGapicClient
         $request->setModifications($modifications);
 
         return $this->startCall(
-            new Call(
-                self::SERVICE_NAME.'/ModifyColumnFamilies',
-                Table::class,
-                $request
-            ),
-            $this->configureCallSettings('modifyColumnFamilies', $optionalArgs)
+            'ModifyColumnFamilies',
+            Table::class,
+            $optionalArgs,
+            $request
         )->wait();
     }
 
@@ -833,8 +822,8 @@ class BigtableTableAdminGapicClient
      *
      * Sample code:
      * ```
+     * $bigtableTableAdminClient = new BigtableTableAdminClient();
      * try {
-     *     $bigtableTableAdminClient = new BigtableTableAdminClient();
      *     $formattedName = $bigtableTableAdminClient->tableName('[PROJECT]', '[INSTANCE]', '[TABLE]');
      *     $bigtableTableAdminClient->dropRowRange($formattedName);
      * } finally {
@@ -853,14 +842,14 @@ class BigtableTableAdminGapicClient
      *          zero length.
      *     @type bool $deleteAllDataFromTable
      *          Delete all rows in the table. Setting this to false is a no-op.
-     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
+     *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
      *          {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
-     * @throws \Google\ApiCore\ApiException if the remote call fails
+     * @throws ApiException if the remote call fails
      * @experimental
      */
     public function dropRowRange($name, $optionalArgs = [])
@@ -875,12 +864,10 @@ class BigtableTableAdminGapicClient
         }
 
         return $this->startCall(
-            new Call(
-                self::SERVICE_NAME.'/DropRowRange',
-                GPBEmpty::class,
-                $request
-            ),
-            $this->configureCallSettings('dropRowRange', $optionalArgs)
+            'DropRowRange',
+            GPBEmpty::class,
+            $optionalArgs,
+            $request
         )->wait();
     }
 
@@ -897,8 +884,8 @@ class BigtableTableAdminGapicClient
      *
      * Sample code:
      * ```
+     * $bigtableTableAdminClient = new BigtableTableAdminClient();
      * try {
-     *     $bigtableTableAdminClient = new BigtableTableAdminClient();
      *     $formattedName = $bigtableTableAdminClient->tableName('[PROJECT]', '[INSTANCE]', '[TABLE]');
      *     $response = $bigtableTableAdminClient->generateConsistencyToken($formattedName);
      * } finally {
@@ -912,7 +899,7 @@ class BigtableTableAdminGapicClient
      * @param array  $optionalArgs {
      *                             Optional.
      *
-     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
+     *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
@@ -921,7 +908,7 @@ class BigtableTableAdminGapicClient
      *
      * @return \Google\Cloud\Bigtable\Admin\V2\GenerateConsistencyTokenResponse
      *
-     * @throws \Google\ApiCore\ApiException if the remote call fails
+     * @throws ApiException if the remote call fails
      * @experimental
      */
     public function generateConsistencyToken($name, $optionalArgs = [])
@@ -930,12 +917,10 @@ class BigtableTableAdminGapicClient
         $request->setName($name);
 
         return $this->startCall(
-            new Call(
-                self::SERVICE_NAME.'/GenerateConsistencyToken',
-                GenerateConsistencyTokenResponse::class,
-                $request
-            ),
-            $this->configureCallSettings('generateConsistencyToken', $optionalArgs)
+            'GenerateConsistencyToken',
+            GenerateConsistencyTokenResponse::class,
+            $optionalArgs,
+            $request
         )->wait();
     }
 
@@ -951,8 +936,8 @@ class BigtableTableAdminGapicClient
      *
      * Sample code:
      * ```
+     * $bigtableTableAdminClient = new BigtableTableAdminClient();
      * try {
-     *     $bigtableTableAdminClient = new BigtableTableAdminClient();
      *     $formattedName = $bigtableTableAdminClient->tableName('[PROJECT]', '[INSTANCE]', '[TABLE]');
      *     $consistencyToken = '';
      *     $response = $bigtableTableAdminClient->checkConsistency($formattedName, $consistencyToken);
@@ -968,7 +953,7 @@ class BigtableTableAdminGapicClient
      * @param array  $optionalArgs     {
      *                                 Optional.
      *
-     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
+     *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
@@ -977,7 +962,7 @@ class BigtableTableAdminGapicClient
      *
      * @return \Google\Cloud\Bigtable\Admin\V2\CheckConsistencyResponse
      *
-     * @throws \Google\ApiCore\ApiException if the remote call fails
+     * @throws ApiException if the remote call fails
      * @experimental
      */
     public function checkConsistency($name, $consistencyToken, $optionalArgs = [])
@@ -987,12 +972,10 @@ class BigtableTableAdminGapicClient
         $request->setConsistencyToken($consistencyToken);
 
         return $this->startCall(
-            new Call(
-                self::SERVICE_NAME.'/CheckConsistency',
-                CheckConsistencyResponse::class,
-                $request
-            ),
-            $this->configureCallSettings('checkConsistency', $optionalArgs)
+            'CheckConsistency',
+            CheckConsistencyResponse::class,
+            $optionalArgs,
+            $request
         )->wait();
     }
 
@@ -1007,8 +990,8 @@ class BigtableTableAdminGapicClient
      *
      * Sample code:
      * ```
+     * $bigtableTableAdminClient = new BigtableTableAdminClient();
      * try {
-     *     $bigtableTableAdminClient = new BigtableTableAdminClient();
      *     $formattedName = $bigtableTableAdminClient->tableName('[PROJECT]', '[INSTANCE]', '[TABLE]');
      *     $cluster = '';
      *     $snapshotId = '';
@@ -1038,7 +1021,7 @@ class BigtableTableAdminGapicClient
      *          created. Once 'ttl' expires, the snapshot will get deleted. The maximum
      *          amount of time a snapshot can stay active is 7 days. If 'ttl' is not
      *          specified, the default value of 24 hours will be used.
-     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
+     *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
@@ -1047,7 +1030,7 @@ class BigtableTableAdminGapicClient
      *
      * @return \Google\LongRunning\Operation
      *
-     * @throws \Google\ApiCore\ApiException if the remote call fails
+     * @throws ApiException if the remote call fails
      * @experimental
      */
     public function snapshotTable($name, $cluster, $snapshotId, $description, $optionalArgs = [])
@@ -1062,12 +1045,10 @@ class BigtableTableAdminGapicClient
         }
 
         return $this->startCall(
-            new Call(
-                self::SERVICE_NAME.'/SnapshotTable',
-                Operation::class,
-                $request
-            ),
-            $this->configureCallSettings('snapshotTable', $optionalArgs)
+            'SnapshotTable',
+            Operation::class,
+            $optionalArgs,
+            $request
         )->wait();
     }
 
@@ -1081,8 +1062,8 @@ class BigtableTableAdminGapicClient
      *
      * Sample code:
      * ```
+     * $bigtableTableAdminClient = new BigtableTableAdminClient();
      * try {
-     *     $bigtableTableAdminClient = new BigtableTableAdminClient();
      *     $formattedName = $bigtableTableAdminClient->snapshotName('[PROJECT]', '[INSTANCE]', '[CLUSTER]', '[SNAPSHOT]');
      *     $response = $bigtableTableAdminClient->getSnapshot($formattedName);
      * } finally {
@@ -1096,7 +1077,7 @@ class BigtableTableAdminGapicClient
      * @param array  $optionalArgs {
      *                             Optional.
      *
-     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
+     *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
@@ -1105,7 +1086,7 @@ class BigtableTableAdminGapicClient
      *
      * @return \Google\Cloud\Bigtable\Admin\V2\Snapshot
      *
-     * @throws \Google\ApiCore\ApiException if the remote call fails
+     * @throws ApiException if the remote call fails
      * @experimental
      */
     public function getSnapshot($name, $optionalArgs = [])
@@ -1114,12 +1095,10 @@ class BigtableTableAdminGapicClient
         $request->setName($name);
 
         return $this->startCall(
-            new Call(
-                self::SERVICE_NAME.'/GetSnapshot',
-                Snapshot::class,
-                $request
-            ),
-            $this->configureCallSettings('getSnapshot', $optionalArgs)
+            'GetSnapshot',
+            Snapshot::class,
+            $optionalArgs,
+            $request
         )->wait();
     }
 
@@ -1133,8 +1112,8 @@ class BigtableTableAdminGapicClient
      *
      * Sample code:
      * ```
+     * $bigtableTableAdminClient = new BigtableTableAdminClient();
      * try {
-     *     $bigtableTableAdminClient = new BigtableTableAdminClient();
      *     $formattedParent = $bigtableTableAdminClient->clusterName('[PROJECT]', '[INSTANCE]', '[CLUSTER]');
      *     // Iterate through all elements
      *     $pagedResponse = $bigtableTableAdminClient->listSnapshots($formattedParent);
@@ -1171,7 +1150,7 @@ class BigtableTableAdminGapicClient
      *          If no page token is specified (the default), the first page
      *          of values will be returned. Any page token used here must have
      *          been generated by a previous call to the API.
-     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
+     *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
@@ -1180,7 +1159,7 @@ class BigtableTableAdminGapicClient
      *
      * @return \Google\ApiCore\PagedListResponse
      *
-     * @throws \Google\ApiCore\ApiException if the remote call fails
+     * @throws ApiException if the remote call fails
      * @experimental
      */
     public function listSnapshots($parent, $optionalArgs = [])
@@ -1195,13 +1174,10 @@ class BigtableTableAdminGapicClient
         }
 
         return $this->getPagedListResponse(
-            new Call(
-                self::SERVICE_NAME.'/ListSnapshots',
-                ListSnapshotsResponse::class,
-                $request
-            ),
-            $this->configureCallSettings('listSnapshots', $optionalArgs),
-            $this->descriptors['listSnapshots']['pageStreaming']
+            'ListSnapshots',
+            $optionalArgs,
+            ListSnapshotsResponse::class,
+            $request
         );
     }
 
@@ -1215,8 +1191,8 @@ class BigtableTableAdminGapicClient
      *
      * Sample code:
      * ```
+     * $bigtableTableAdminClient = new BigtableTableAdminClient();
      * try {
-     *     $bigtableTableAdminClient = new BigtableTableAdminClient();
      *     $formattedName = $bigtableTableAdminClient->snapshotName('[PROJECT]', '[INSTANCE]', '[CLUSTER]', '[SNAPSHOT]');
      *     $bigtableTableAdminClient->deleteSnapshot($formattedName);
      * } finally {
@@ -1230,14 +1206,14 @@ class BigtableTableAdminGapicClient
      * @param array  $optionalArgs {
      *                             Optional.
      *
-     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
+     *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
      *          {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
-     * @throws \Google\ApiCore\ApiException if the remote call fails
+     * @throws ApiException if the remote call fails
      * @experimental
      */
     public function deleteSnapshot($name, $optionalArgs = [])
@@ -1246,23 +1222,10 @@ class BigtableTableAdminGapicClient
         $request->setName($name);
 
         return $this->startCall(
-            new Call(
-                self::SERVICE_NAME.'/DeleteSnapshot',
-                GPBEmpty::class,
-                $request
-            ),
-            $this->configureCallSettings('deleteSnapshot', $optionalArgs)
+            'DeleteSnapshot',
+            GPBEmpty::class,
+            $optionalArgs,
+            $request
         )->wait();
-    }
-
-    /**
-     * Initiates an orderly shutdown in which preexisting calls continue but new
-     * calls are immediately cancelled.
-     *
-     * @experimental
-     */
-    public function close()
-    {
-        $this->transport->close();
     }
 }

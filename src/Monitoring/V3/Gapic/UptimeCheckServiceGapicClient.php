@@ -1,12 +1,12 @@
 <?php
 /*
- * Copyright 2017, Google LLC All rights reserved.
+ * Copyright 2017 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
+ *     https://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -30,11 +30,13 @@
 
 namespace Google\Cloud\Monitoring\V3\Gapic;
 
-use Google\ApiCore\Call;
+use Google\ApiCore\ApiException;
 use Google\ApiCore\GapicClientTrait;
 use Google\ApiCore\PathTemplate;
-use Google\ApiCore\Transport\ApiTransportInterface;
+use Google\ApiCore\RetrySettings;
+use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
+use Google\Auth\CredentialsLoader;
 use Google\Cloud\Monitoring\V3\CreateUptimeCheckConfigRequest;
 use Google\Cloud\Monitoring\V3\DeleteUptimeCheckConfigRequest;
 use Google\Cloud\Monitoring\V3\GetUptimeCheckConfigRequest;
@@ -46,6 +48,8 @@ use Google\Cloud\Monitoring\V3\UpdateUptimeCheckConfigRequest;
 use Google\Cloud\Monitoring\V3\UptimeCheckConfig;
 use Google\Protobuf\FieldMask;
 use Google\Protobuf\GPBEmpty;
+use Grpc\Channel;
+use Grpc\ChannelCredentials;
 
 /**
  * Service Description: The UptimeCheckService API is used to manage (list, create, delete, edit)
@@ -65,8 +69,8 @@ use Google\Protobuf\GPBEmpty;
  * calls that map to API methods. Sample code to get started:
  *
  * ```
+ * $uptimeCheckServiceClient = new UptimeCheckServiceClient();
  * try {
- *     $uptimeCheckServiceClient = new UptimeCheckServiceClient();
  *     $formattedParent = $uptimeCheckServiceClient->projectName('[PROJECT]');
  *     // Iterate through all elements
  *     $pagedResponse = $uptimeCheckServiceClient->listUptimeCheckConfigs($formattedParent);
@@ -141,6 +145,7 @@ class UptimeCheckServiceGapicClient
             'clientConfigPath' => __DIR__.'/../resources/uptime_check_service_client_config.json',
             'restClientConfigPath' => __DIR__.'/../resources/uptime_check_service_rest_client_config.php',
             'descriptorsConfigPath' => __DIR__.'/../resources/uptime_check_service_descriptor_config.php',
+            'versionFile' => __DIR__.'/../../VERSION',
         ];
     }
 
@@ -259,10 +264,10 @@ class UptimeCheckServiceGapicClient
      *     @type string $serviceAddress The domain name of the API remote host.
      *                                  Default 'monitoring.googleapis.com'.
      *     @type mixed $port The port on which to connect to the remote host. Default 443.
-     *     @type \Grpc\Channel $channel
+     *     @type Channel $channel
      *           A `Channel` object. If not specified, a channel will be constructed.
      *           NOTE: This option is only valid when utilizing the gRPC transport.
-     *     @type \Grpc\ChannelCredentials $sslCreds
+     *     @type ChannelCredentials $sslCreds
      *           A `ChannelCredentials` object for use with an SSL-enabled channel.
      *           Default: a credentials object returned from
      *           \Grpc\ChannelCredentials::createSsl().
@@ -273,9 +278,9 @@ class UptimeCheckServiceGapicClient
      *           Defaults to false.
      *           NOTE: This option is only valid when utilizing the gRPC transport. Also, if the $channel
      *           optional argument is specified, then this option is unused.
-     *     @type \Google\Auth\CredentialsLoader $credentialsLoader
+     *     @type CredentialsLoader $credentialsLoader
      *           A CredentialsLoader object created using the Google\Auth library.
-     *     @type array $scopes A string array of scopes to use when acquiring credentials.
+     *     @type string[] $scopes A string array of scopes to use when acquiring credentials.
      *                          Defaults to the scopes for the Stackdriver Monitoring API.
      *     @type string $clientConfigPath
      *           Path to a JSON file containing client method configuration, including retry settings.
@@ -293,12 +298,11 @@ class UptimeCheckServiceGapicClient
      *           settings in $clientConfigPath.
      *     @type callable $authHttpHandler A handler used to deliver PSR-7 requests specifically
      *           for authentication. Should match a signature of
-     *           `function (RequestInterface $request, array $options) : ResponseInterface`
-     *           NOTE: This option is only valid when utilizing the REST transport.
+     *           `function (RequestInterface $request, array $options) : ResponseInterface`.
      *     @type callable $httpHandler A handler used to deliver PSR-7 requests. Should match a
-     *           signature of `function (RequestInterface $request, array $options) : PromiseInterface`
+     *           signature of `function (RequestInterface $request, array $options) : PromiseInterface`.
      *           NOTE: This option is only valid when utilizing the REST transport.
-     *     @type string|ApiTransportInterface $transport The transport used for executing network
+     *     @type string|TransportInterface $transport The transport used for executing network
      *           requests. May be either the string `rest` or `grpc`. Additionally, it is possible
      *           to pass in an already instantiated transport. Defaults to `grpc` if gRPC support is
      *           detected on the system.
@@ -316,8 +320,8 @@ class UptimeCheckServiceGapicClient
      *
      * Sample code:
      * ```
+     * $uptimeCheckServiceClient = new UptimeCheckServiceClient();
      * try {
-     *     $uptimeCheckServiceClient = new UptimeCheckServiceClient();
      *     $formattedParent = $uptimeCheckServiceClient->projectName('[PROJECT]');
      *     // Iterate through all elements
      *     $pagedResponse = $uptimeCheckServiceClient->listUptimeCheckConfigs($formattedParent);
@@ -352,7 +356,7 @@ class UptimeCheckServiceGapicClient
      *          If no page token is specified (the default), the first page
      *          of values will be returned. Any page token used here must have
      *          been generated by a previous call to the API.
-     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
+     *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
@@ -361,7 +365,7 @@ class UptimeCheckServiceGapicClient
      *
      * @return \Google\ApiCore\PagedListResponse
      *
-     * @throws \Google\ApiCore\ApiException if the remote call fails
+     * @throws ApiException if the remote call fails
      * @experimental
      */
     public function listUptimeCheckConfigs($parent, $optionalArgs = [])
@@ -376,13 +380,10 @@ class UptimeCheckServiceGapicClient
         }
 
         return $this->getPagedListResponse(
-            new Call(
-                self::SERVICE_NAME.'/ListUptimeCheckConfigs',
-                ListUptimeCheckConfigsResponse::class,
-                $request
-            ),
-            $this->configureCallSettings('listUptimeCheckConfigs', $optionalArgs),
-            $this->descriptors['listUptimeCheckConfigs']['pageStreaming']
+            'ListUptimeCheckConfigs',
+            $optionalArgs,
+            ListUptimeCheckConfigsResponse::class,
+            $request
         );
     }
 
@@ -391,8 +392,8 @@ class UptimeCheckServiceGapicClient
      *
      * Sample code:
      * ```
+     * $uptimeCheckServiceClient = new UptimeCheckServiceClient();
      * try {
-     *     $uptimeCheckServiceClient = new UptimeCheckServiceClient();
      *     $formattedName = $uptimeCheckServiceClient->uptimeCheckConfigName('[PROJECT]', '[UPTIME_CHECK_CONFIG]');
      *     $response = $uptimeCheckServiceClient->getUptimeCheckConfig($formattedName);
      * } finally {
@@ -406,7 +407,7 @@ class UptimeCheckServiceGapicClient
      * @param array $optionalArgs {
      *                            Optional.
      *
-     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
+     *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
@@ -415,7 +416,7 @@ class UptimeCheckServiceGapicClient
      *
      * @return \Google\Cloud\Monitoring\V3\UptimeCheckConfig
      *
-     * @throws \Google\ApiCore\ApiException if the remote call fails
+     * @throws ApiException if the remote call fails
      * @experimental
      */
     public function getUptimeCheckConfig($name, $optionalArgs = [])
@@ -424,12 +425,10 @@ class UptimeCheckServiceGapicClient
         $request->setName($name);
 
         return $this->startCall(
-            new Call(
-                self::SERVICE_NAME.'/GetUptimeCheckConfig',
-                UptimeCheckConfig::class,
-                $request
-            ),
-            $this->configureCallSettings('getUptimeCheckConfig', $optionalArgs)
+            'GetUptimeCheckConfig',
+            UptimeCheckConfig::class,
+            $optionalArgs,
+            $request
         )->wait();
     }
 
@@ -438,8 +437,8 @@ class UptimeCheckServiceGapicClient
      *
      * Sample code:
      * ```
+     * $uptimeCheckServiceClient = new UptimeCheckServiceClient();
      * try {
-     *     $uptimeCheckServiceClient = new UptimeCheckServiceClient();
      *     $formattedParent = $uptimeCheckServiceClient->projectName('[PROJECT]');
      *     $uptimeCheckConfig = new UptimeCheckConfig();
      *     $response = $uptimeCheckServiceClient->createUptimeCheckConfig($formattedParent, $uptimeCheckConfig);
@@ -455,7 +454,7 @@ class UptimeCheckServiceGapicClient
      * @param array             $optionalArgs      {
      *                                             Optional.
      *
-     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
+     *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
@@ -464,7 +463,7 @@ class UptimeCheckServiceGapicClient
      *
      * @return \Google\Cloud\Monitoring\V3\UptimeCheckConfig
      *
-     * @throws \Google\ApiCore\ApiException if the remote call fails
+     * @throws ApiException if the remote call fails
      * @experimental
      */
     public function createUptimeCheckConfig($parent, $uptimeCheckConfig, $optionalArgs = [])
@@ -474,12 +473,10 @@ class UptimeCheckServiceGapicClient
         $request->setUptimeCheckConfig($uptimeCheckConfig);
 
         return $this->startCall(
-            new Call(
-                self::SERVICE_NAME.'/CreateUptimeCheckConfig',
-                UptimeCheckConfig::class,
-                $request
-            ),
-            $this->configureCallSettings('createUptimeCheckConfig', $optionalArgs)
+            'CreateUptimeCheckConfig',
+            UptimeCheckConfig::class,
+            $optionalArgs,
+            $request
         )->wait();
     }
 
@@ -491,8 +488,8 @@ class UptimeCheckServiceGapicClient
      *
      * Sample code:
      * ```
+     * $uptimeCheckServiceClient = new UptimeCheckServiceClient();
      * try {
-     *     $uptimeCheckServiceClient = new UptimeCheckServiceClient();
      *     $uptimeCheckConfig = new UptimeCheckConfig();
      *     $response = $uptimeCheckServiceClient->updateUptimeCheckConfig($uptimeCheckConfig);
      * } finally {
@@ -515,7 +512,7 @@ class UptimeCheckServiceGapicClient
      *          configuration are updated with values from the new configuration. If this
      *          field is empty, then the current configuration is completely replaced with
      *          the new configuration.
-     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
+     *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
@@ -524,7 +521,7 @@ class UptimeCheckServiceGapicClient
      *
      * @return \Google\Cloud\Monitoring\V3\UptimeCheckConfig
      *
-     * @throws \Google\ApiCore\ApiException if the remote call fails
+     * @throws ApiException if the remote call fails
      * @experimental
      */
     public function updateUptimeCheckConfig($uptimeCheckConfig, $optionalArgs = [])
@@ -536,12 +533,10 @@ class UptimeCheckServiceGapicClient
         }
 
         return $this->startCall(
-            new Call(
-                self::SERVICE_NAME.'/UpdateUptimeCheckConfig',
-                UptimeCheckConfig::class,
-                $request
-            ),
-            $this->configureCallSettings('updateUptimeCheckConfig', $optionalArgs)
+            'UpdateUptimeCheckConfig',
+            UptimeCheckConfig::class,
+            $optionalArgs,
+            $request
         )->wait();
     }
 
@@ -552,8 +547,8 @@ class UptimeCheckServiceGapicClient
      *
      * Sample code:
      * ```
+     * $uptimeCheckServiceClient = new UptimeCheckServiceClient();
      * try {
-     *     $uptimeCheckServiceClient = new UptimeCheckServiceClient();
      *     $formattedName = $uptimeCheckServiceClient->uptimeCheckConfigName('[PROJECT]', '[UPTIME_CHECK_CONFIG]');
      *     $uptimeCheckServiceClient->deleteUptimeCheckConfig($formattedName);
      * } finally {
@@ -567,14 +562,14 @@ class UptimeCheckServiceGapicClient
      * @param array $optionalArgs {
      *                            Optional.
      *
-     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
+     *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
      *          {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
-     * @throws \Google\ApiCore\ApiException if the remote call fails
+     * @throws ApiException if the remote call fails
      * @experimental
      */
     public function deleteUptimeCheckConfig($name, $optionalArgs = [])
@@ -583,12 +578,10 @@ class UptimeCheckServiceGapicClient
         $request->setName($name);
 
         return $this->startCall(
-            new Call(
-                self::SERVICE_NAME.'/DeleteUptimeCheckConfig',
-                GPBEmpty::class,
-                $request
-            ),
-            $this->configureCallSettings('deleteUptimeCheckConfig', $optionalArgs)
+            'DeleteUptimeCheckConfig',
+            GPBEmpty::class,
+            $optionalArgs,
+            $request
         )->wait();
     }
 
@@ -597,8 +590,8 @@ class UptimeCheckServiceGapicClient
      *
      * Sample code:
      * ```
+     * $uptimeCheckServiceClient = new UptimeCheckServiceClient();
      * try {
-     *     $uptimeCheckServiceClient = new UptimeCheckServiceClient();
      *
      *     // Iterate through all elements
      *     $pagedResponse = $uptimeCheckServiceClient->listUptimeCheckIps();
@@ -630,7 +623,7 @@ class UptimeCheckServiceGapicClient
      *          If no page token is specified (the default), the first page
      *          of values will be returned. Any page token used here must have
      *          been generated by a previous call to the API.
-     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
+     *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
@@ -639,7 +632,7 @@ class UptimeCheckServiceGapicClient
      *
      * @return \Google\ApiCore\PagedListResponse
      *
-     * @throws \Google\ApiCore\ApiException if the remote call fails
+     * @throws ApiException if the remote call fails
      * @experimental
      */
     public function listUptimeCheckIps($optionalArgs = [])
@@ -653,24 +646,10 @@ class UptimeCheckServiceGapicClient
         }
 
         return $this->getPagedListResponse(
-            new Call(
-                self::SERVICE_NAME.'/ListUptimeCheckIps',
-                ListUptimeCheckIpsResponse::class,
-                $request
-            ),
-            $this->configureCallSettings('listUptimeCheckIps', $optionalArgs),
-            $this->descriptors['listUptimeCheckIps']['pageStreaming']
+            'ListUptimeCheckIps',
+            $optionalArgs,
+            ListUptimeCheckIpsResponse::class,
+            $request
         );
-    }
-
-    /**
-     * Initiates an orderly shutdown in which preexisting calls continue but new
-     * calls are immediately cancelled.
-     *
-     * @experimental
-     */
-    public function close()
-    {
-        $this->transport->close();
     }
 }

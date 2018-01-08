@@ -1,12 +1,12 @@
 <?php
 /*
- * Copyright 2017, Google LLC All rights reserved.
+ * Copyright 2017 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
+ *     https://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -30,11 +30,13 @@
 
 namespace Google\Cloud\PubSub\V1\Gapic;
 
-use Google\ApiCore\Call;
+use Google\ApiCore\ApiException;
 use Google\ApiCore\GapicClientTrait;
 use Google\ApiCore\PathTemplate;
-use Google\ApiCore\Transport\ApiTransportInterface;
+use Google\ApiCore\RetrySettings;
+use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
+use Google\Auth\CredentialsLoader;
 use Google\Cloud\Iam\V1\GetIamPolicyRequest;
 use Google\Cloud\Iam\V1\Policy;
 use Google\Cloud\Iam\V1\SetIamPolicyRequest;
@@ -53,6 +55,8 @@ use Google\Cloud\PubSub\V1\Topic;
 use Google\Cloud\PubSub\V1\UpdateTopicRequest;
 use Google\Protobuf\FieldMask;
 use Google\Protobuf\GPBEmpty;
+use Grpc\Channel;
+use Grpc\ChannelCredentials;
 
 /**
  * Service Description: The service that an application uses to manipulate topics, and to send
@@ -66,8 +70,8 @@ use Google\Protobuf\GPBEmpty;
  * calls that map to API methods. Sample code to get started:
  *
  * ```
+ * $publisherClient = new PublisherClient();
  * try {
- *     $publisherClient = new PublisherClient();
  *     $formattedName = $publisherClient->topicName('[PROJECT]', '[TOPIC]');
  *     $response = $publisherClient->createTopic($formattedName);
  * } finally {
@@ -128,6 +132,7 @@ class PublisherGapicClient
             'clientConfigPath' => __DIR__.'/../resources/publisher_client_config.json',
             'restClientConfigPath' => __DIR__.'/../resources/publisher_rest_client_config.php',
             'descriptorsConfigPath' => __DIR__.'/../resources/publisher_descriptor_config.php',
+            'versionFile' => __DIR__.'/../../VERSION',
         ];
     }
 
@@ -246,10 +251,10 @@ class PublisherGapicClient
      *     @type string $serviceAddress The domain name of the API remote host.
      *                                  Default 'pubsub.googleapis.com'.
      *     @type mixed $port The port on which to connect to the remote host. Default 443.
-     *     @type \Grpc\Channel $channel
+     *     @type Channel $channel
      *           A `Channel` object. If not specified, a channel will be constructed.
      *           NOTE: This option is only valid when utilizing the gRPC transport.
-     *     @type \Grpc\ChannelCredentials $sslCreds
+     *     @type ChannelCredentials $sslCreds
      *           A `ChannelCredentials` object for use with an SSL-enabled channel.
      *           Default: a credentials object returned from
      *           \Grpc\ChannelCredentials::createSsl().
@@ -260,9 +265,9 @@ class PublisherGapicClient
      *           Defaults to false.
      *           NOTE: This option is only valid when utilizing the gRPC transport. Also, if the $channel
      *           optional argument is specified, then this option is unused.
-     *     @type \Google\Auth\CredentialsLoader $credentialsLoader
+     *     @type CredentialsLoader $credentialsLoader
      *           A CredentialsLoader object created using the Google\Auth library.
-     *     @type array $scopes A string array of scopes to use when acquiring credentials.
+     *     @type string[] $scopes A string array of scopes to use when acquiring credentials.
      *                          Defaults to the scopes for the Google Cloud Pub/Sub API.
      *     @type string $clientConfigPath
      *           Path to a JSON file containing client method configuration, including retry settings.
@@ -280,12 +285,11 @@ class PublisherGapicClient
      *           settings in $clientConfigPath.
      *     @type callable $authHttpHandler A handler used to deliver PSR-7 requests specifically
      *           for authentication. Should match a signature of
-     *           `function (RequestInterface $request, array $options) : ResponseInterface`
-     *           NOTE: This option is only valid when utilizing the REST transport.
+     *           `function (RequestInterface $request, array $options) : ResponseInterface`.
      *     @type callable $httpHandler A handler used to deliver PSR-7 requests. Should match a
-     *           signature of `function (RequestInterface $request, array $options) : PromiseInterface`
+     *           signature of `function (RequestInterface $request, array $options) : PromiseInterface`.
      *           NOTE: This option is only valid when utilizing the REST transport.
-     *     @type string|ApiTransportInterface $transport The transport used for executing network
+     *     @type string|TransportInterface $transport The transport used for executing network
      *           requests. May be either the string `rest` or `grpc`. Additionally, it is possible
      *           to pass in an already instantiated transport. Defaults to `grpc` if gRPC support is
      *           detected on the system.
@@ -302,8 +306,8 @@ class PublisherGapicClient
      *
      * Sample code:
      * ```
+     * $publisherClient = new PublisherClient();
      * try {
-     *     $publisherClient = new PublisherClient();
      *     $formattedName = $publisherClient->topicName('[PROJECT]', '[TOPIC]');
      *     $response = $publisherClient->createTopic($formattedName);
      * } finally {
@@ -322,7 +326,7 @@ class PublisherGapicClient
      *
      *     @type array $labels
      *          User labels.
-     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
+     *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
@@ -331,7 +335,7 @@ class PublisherGapicClient
      *
      * @return \Google\Cloud\PubSub\V1\Topic
      *
-     * @throws \Google\ApiCore\ApiException if the remote call fails
+     * @throws ApiException if the remote call fails
      * @experimental
      */
     public function createTopic($name, $optionalArgs = [])
@@ -343,12 +347,10 @@ class PublisherGapicClient
         }
 
         return $this->startCall(
-            new Call(
-                self::SERVICE_NAME.'/CreateTopic',
-                Topic::class,
-                $request
-            ),
-            $this->configureCallSettings('createTopic', $optionalArgs)
+            'CreateTopic',
+            Topic::class,
+            $optionalArgs,
+            $request
         )->wait();
     }
 
@@ -362,8 +364,8 @@ class PublisherGapicClient
      *
      * Sample code:
      * ```
+     * $publisherClient = new PublisherClient();
      * try {
-     *     $publisherClient = new PublisherClient();
      *     $topic = new Topic();
      *     $updateMask = new FieldMask();
      *     $response = $publisherClient->updateTopic($topic, $updateMask);
@@ -378,7 +380,7 @@ class PublisherGapicClient
      * @param array     $optionalArgs {
      *                                Optional.
      *
-     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
+     *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
@@ -387,7 +389,7 @@ class PublisherGapicClient
      *
      * @return \Google\Cloud\PubSub\V1\Topic
      *
-     * @throws \Google\ApiCore\ApiException if the remote call fails
+     * @throws ApiException if the remote call fails
      * @experimental
      */
     public function updateTopic($topic, $updateMask, $optionalArgs = [])
@@ -397,12 +399,10 @@ class PublisherGapicClient
         $request->setUpdateMask($updateMask);
 
         return $this->startCall(
-            new Call(
-                self::SERVICE_NAME.'/UpdateTopic',
-                Topic::class,
-                $request
-            ),
-            $this->configureCallSettings('updateTopic', $optionalArgs)
+            'UpdateTopic',
+            Topic::class,
+            $optionalArgs,
+            $request
         )->wait();
     }
 
@@ -413,8 +413,8 @@ class PublisherGapicClient
      *
      * Sample code:
      * ```
+     * $publisherClient = new PublisherClient();
      * try {
-     *     $publisherClient = new PublisherClient();
      *     $formattedTopic = $publisherClient->topicName('[PROJECT]', '[TOPIC]');
      *     $data = '';
      *     $messagesElement = new PubsubMessage();
@@ -432,7 +432,7 @@ class PublisherGapicClient
      * @param array           $optionalArgs {
      *                                      Optional.
      *
-     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
+     *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
@@ -441,7 +441,7 @@ class PublisherGapicClient
      *
      * @return \Google\Cloud\PubSub\V1\PublishResponse
      *
-     * @throws \Google\ApiCore\ApiException if the remote call fails
+     * @throws ApiException if the remote call fails
      * @experimental
      */
     public function publish($topic, $messages, $optionalArgs = [])
@@ -451,12 +451,10 @@ class PublisherGapicClient
         $request->setMessages($messages);
 
         return $this->startCall(
-            new Call(
-                self::SERVICE_NAME.'/Publish',
-                PublishResponse::class,
-                $request
-            ),
-            $this->configureCallSettings('publish', $optionalArgs)
+            'Publish',
+            PublishResponse::class,
+            $optionalArgs,
+            $request
         )->wait();
     }
 
@@ -465,8 +463,8 @@ class PublisherGapicClient
      *
      * Sample code:
      * ```
+     * $publisherClient = new PublisherClient();
      * try {
-     *     $publisherClient = new PublisherClient();
      *     $formattedTopic = $publisherClient->topicName('[PROJECT]', '[TOPIC]');
      *     $response = $publisherClient->getTopic($formattedTopic);
      * } finally {
@@ -479,7 +477,7 @@ class PublisherGapicClient
      * @param array  $optionalArgs {
      *                             Optional.
      *
-     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
+     *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
@@ -488,7 +486,7 @@ class PublisherGapicClient
      *
      * @return \Google\Cloud\PubSub\V1\Topic
      *
-     * @throws \Google\ApiCore\ApiException if the remote call fails
+     * @throws ApiException if the remote call fails
      * @experimental
      */
     public function getTopic($topic, $optionalArgs = [])
@@ -497,12 +495,10 @@ class PublisherGapicClient
         $request->setTopic($topic);
 
         return $this->startCall(
-            new Call(
-                self::SERVICE_NAME.'/GetTopic',
-                Topic::class,
-                $request
-            ),
-            $this->configureCallSettings('getTopic', $optionalArgs)
+            'GetTopic',
+            Topic::class,
+            $optionalArgs,
+            $request
         )->wait();
     }
 
@@ -511,8 +507,8 @@ class PublisherGapicClient
      *
      * Sample code:
      * ```
+     * $publisherClient = new PublisherClient();
      * try {
-     *     $publisherClient = new PublisherClient();
      *     $formattedProject = $publisherClient->projectName('[PROJECT]');
      *     // Iterate through all elements
      *     $pagedResponse = $publisherClient->listTopics($formattedProject);
@@ -546,7 +542,7 @@ class PublisherGapicClient
      *          If no page token is specified (the default), the first page
      *          of values will be returned. Any page token used here must have
      *          been generated by a previous call to the API.
-     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
+     *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
@@ -555,7 +551,7 @@ class PublisherGapicClient
      *
      * @return \Google\ApiCore\PagedListResponse
      *
-     * @throws \Google\ApiCore\ApiException if the remote call fails
+     * @throws ApiException if the remote call fails
      * @experimental
      */
     public function listTopics($project, $optionalArgs = [])
@@ -570,13 +566,10 @@ class PublisherGapicClient
         }
 
         return $this->getPagedListResponse(
-            new Call(
-                self::SERVICE_NAME.'/ListTopics',
-                ListTopicsResponse::class,
-                $request
-            ),
-            $this->configureCallSettings('listTopics', $optionalArgs),
-            $this->descriptors['listTopics']['pageStreaming']
+            'ListTopics',
+            $optionalArgs,
+            ListTopicsResponse::class,
+            $request
         );
     }
 
@@ -585,8 +578,8 @@ class PublisherGapicClient
      *
      * Sample code:
      * ```
+     * $publisherClient = new PublisherClient();
      * try {
-     *     $publisherClient = new PublisherClient();
      *     $formattedTopic = $publisherClient->topicName('[PROJECT]', '[TOPIC]');
      *     // Iterate through all elements
      *     $pagedResponse = $publisherClient->listTopicSubscriptions($formattedTopic);
@@ -620,7 +613,7 @@ class PublisherGapicClient
      *          If no page token is specified (the default), the first page
      *          of values will be returned. Any page token used here must have
      *          been generated by a previous call to the API.
-     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
+     *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
@@ -629,7 +622,7 @@ class PublisherGapicClient
      *
      * @return \Google\ApiCore\PagedListResponse
      *
-     * @throws \Google\ApiCore\ApiException if the remote call fails
+     * @throws ApiException if the remote call fails
      * @experimental
      */
     public function listTopicSubscriptions($topic, $optionalArgs = [])
@@ -644,13 +637,10 @@ class PublisherGapicClient
         }
 
         return $this->getPagedListResponse(
-            new Call(
-                self::SERVICE_NAME.'/ListTopicSubscriptions',
-                ListTopicSubscriptionsResponse::class,
-                $request
-            ),
-            $this->configureCallSettings('listTopicSubscriptions', $optionalArgs),
-            $this->descriptors['listTopicSubscriptions']['pageStreaming']
+            'ListTopicSubscriptions',
+            $optionalArgs,
+            ListTopicSubscriptionsResponse::class,
+            $request
         );
     }
 
@@ -663,8 +653,8 @@ class PublisherGapicClient
      *
      * Sample code:
      * ```
+     * $publisherClient = new PublisherClient();
      * try {
-     *     $publisherClient = new PublisherClient();
      *     $formattedTopic = $publisherClient->topicName('[PROJECT]', '[TOPIC]');
      *     $publisherClient->deleteTopic($formattedTopic);
      * } finally {
@@ -677,14 +667,14 @@ class PublisherGapicClient
      * @param array  $optionalArgs {
      *                             Optional.
      *
-     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
+     *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
      *          {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
-     * @throws \Google\ApiCore\ApiException if the remote call fails
+     * @throws ApiException if the remote call fails
      * @experimental
      */
     public function deleteTopic($topic, $optionalArgs = [])
@@ -693,12 +683,10 @@ class PublisherGapicClient
         $request->setTopic($topic);
 
         return $this->startCall(
-            new Call(
-                self::SERVICE_NAME.'/DeleteTopic',
-                GPBEmpty::class,
-                $request
-            ),
-            $this->configureCallSettings('deleteTopic', $optionalArgs)
+            'DeleteTopic',
+            GPBEmpty::class,
+            $optionalArgs,
+            $request
         )->wait();
     }
 
@@ -708,8 +696,8 @@ class PublisherGapicClient
      *
      * Sample code:
      * ```
+     * $publisherClient = new PublisherClient();
      * try {
-     *     $publisherClient = new PublisherClient();
      *     $formattedResource = $publisherClient->topicName('[PROJECT]', '[TOPIC]');
      *     $policy = new Policy();
      *     $response = $publisherClient->setIamPolicy($formattedResource, $policy);
@@ -728,7 +716,7 @@ class PublisherGapicClient
      * @param array  $optionalArgs {
      *                             Optional.
      *
-     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
+     *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
@@ -737,7 +725,7 @@ class PublisherGapicClient
      *
      * @return \Google\Cloud\Iam\V1\Policy
      *
-     * @throws \Google\ApiCore\ApiException if the remote call fails
+     * @throws ApiException if the remote call fails
      * @experimental
      */
     public function setIamPolicy($resource, $policy, $optionalArgs = [])
@@ -747,12 +735,10 @@ class PublisherGapicClient
         $request->setPolicy($policy);
 
         return $this->startCall(
-            new Call(
-                self::SERVICE_NAME.'/SetIamPolicy',
-                Policy::class,
-                $request
-            ),
-            $this->configureCallSettings('setIamPolicy', $optionalArgs)
+            'SetIamPolicy',
+            Policy::class,
+            $optionalArgs,
+            $request
         )->wait();
     }
 
@@ -763,8 +749,8 @@ class PublisherGapicClient
      *
      * Sample code:
      * ```
+     * $publisherClient = new PublisherClient();
      * try {
-     *     $publisherClient = new PublisherClient();
      *     $formattedResource = $publisherClient->topicName('[PROJECT]', '[TOPIC]');
      *     $response = $publisherClient->getIamPolicy($formattedResource);
      * } finally {
@@ -778,7 +764,7 @@ class PublisherGapicClient
      * @param array  $optionalArgs {
      *                             Optional.
      *
-     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
+     *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
@@ -787,7 +773,7 @@ class PublisherGapicClient
      *
      * @return \Google\Cloud\Iam\V1\Policy
      *
-     * @throws \Google\ApiCore\ApiException if the remote call fails
+     * @throws ApiException if the remote call fails
      * @experimental
      */
     public function getIamPolicy($resource, $optionalArgs = [])
@@ -796,12 +782,10 @@ class PublisherGapicClient
         $request->setResource($resource);
 
         return $this->startCall(
-            new Call(
-                self::SERVICE_NAME.'/GetIamPolicy',
-                Policy::class,
-                $request
-            ),
-            $this->configureCallSettings('getIamPolicy', $optionalArgs)
+            'GetIamPolicy',
+            Policy::class,
+            $optionalArgs,
+            $request
         )->wait();
     }
 
@@ -812,8 +796,8 @@ class PublisherGapicClient
      *
      * Sample code:
      * ```
+     * $publisherClient = new PublisherClient();
      * try {
-     *     $publisherClient = new PublisherClient();
      *     $formattedResource = $publisherClient->topicName('[PROJECT]', '[TOPIC]');
      *     $permissions = [];
      *     $response = $publisherClient->testIamPermissions($formattedResource, $permissions);
@@ -832,7 +816,7 @@ class PublisherGapicClient
      * @param array    $optionalArgs {
      *                               Optional.
      *
-     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
+     *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
@@ -841,7 +825,7 @@ class PublisherGapicClient
      *
      * @return \Google\Cloud\Iam\V1\TestIamPermissionsResponse
      *
-     * @throws \Google\ApiCore\ApiException if the remote call fails
+     * @throws ApiException if the remote call fails
      * @experimental
      */
     public function testIamPermissions($resource, $permissions, $optionalArgs = [])
@@ -851,23 +835,10 @@ class PublisherGapicClient
         $request->setPermissions($permissions);
 
         return $this->startCall(
-            new Call(
-                self::SERVICE_NAME.'/TestIamPermissions',
-                TestIamPermissionsResponse::class,
-                $request
-            ),
-            $this->configureCallSettings('testIamPermissions', $optionalArgs)
+            'TestIamPermissions',
+            TestIamPermissionsResponse::class,
+            $optionalArgs,
+            $request
         )->wait();
-    }
-
-    /**
-     * Initiates an orderly shutdown in which preexisting calls continue but new
-     * calls are immediately cancelled.
-     *
-     * @experimental
-     */
-    public function close()
-    {
-        $this->transport->close();
     }
 }

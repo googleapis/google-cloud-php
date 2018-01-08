@@ -3,7 +3,7 @@
 return [
     'interfaces' => [
         'google.logging.v2.MetricsServiceV2' => [
-            'listLogMetrics' => [
+            'ListLogMetrics' => [
                 'pageStreaming' => [
                     'requestPageTokenGetMethod' => 'getPageToken',
                     'requestPageTokenSetMethod' => 'setPageToken',

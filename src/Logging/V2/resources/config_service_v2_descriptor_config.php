@@ -3,7 +3,7 @@
 return [
     'interfaces' => [
         'google.logging.v2.ConfigServiceV2' => [
-            'listSinks' => [
+            'ListSinks' => [
                 'pageStreaming' => [
                     'requestPageTokenGetMethod' => 'getPageToken',
                     'requestPageTokenSetMethod' => 'setPageToken',
@@ -13,7 +13,7 @@ return [
                     'resourcesGetMethod' => 'getSinks',
                 ],
             ],
-            'listExclusions' => [
+            'ListExclusions' => [
                 'pageStreaming' => [
                     'requestPageTokenGetMethod' => 'getPageToken',
                     'requestPageTokenSetMethod' => 'setPageToken',

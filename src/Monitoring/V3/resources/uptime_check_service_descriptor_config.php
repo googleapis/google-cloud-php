@@ -3,7 +3,7 @@
 return [
     'interfaces' => [
         'google.monitoring.v3.UptimeCheckService' => [
-            'listUptimeCheckConfigs' => [
+            'ListUptimeCheckConfigs' => [
                 'pageStreaming' => [
                     'requestPageTokenGetMethod' => 'getPageToken',
                     'requestPageTokenSetMethod' => 'setPageToken',
@@ -13,7 +13,7 @@ return [
                     'resourcesGetMethod' => 'getUptimeCheckConfigs',
                 ],
             ],
-            'listUptimeCheckIps' => [
+            'ListUptimeCheckIps' => [
                 'pageStreaming' => [
                     'requestPageTokenGetMethod' => 'getPageToken',
                     'requestPageTokenSetMethod' => 'setPageToken',

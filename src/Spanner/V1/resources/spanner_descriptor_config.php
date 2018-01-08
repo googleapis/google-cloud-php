@@ -3,7 +3,7 @@
 return [
     'interfaces' => [
         'google.spanner.v1.Spanner' => [
-            'listSessions' => [
+            'ListSessions' => [
                 'pageStreaming' => [
                     'requestPageTokenGetMethod' => 'getPageToken',
                     'requestPageTokenSetMethod' => 'setPageToken',
@@ -13,12 +13,12 @@ return [
                     'resourcesGetMethod' => 'getSessions',
                 ],
             ],
-            'executeStreamingSql' => [
+            'ExecuteStreamingSql' => [
                 'grpcStreaming' => [
                     'grpcStreamingType' => 'ServerStreaming',
                 ],
             ],
-            'streamingRead' => [
+            'StreamingRead' => [
                 'grpcStreaming' => [
                     'grpcStreamingType' => 'ServerStreaming',
                 ],

@@ -5,58 +5,70 @@ return [
         'google.monitoring.v3.GroupService' => [
             'ListGroups' => [
                 'method' => 'get',
-                'uri' => '/v3/{name=projects/*}/groups',
+                'uriTemplate' => '/v3/{name=projects/*}/groups',
                 'placeholders' => [
                     'name' => [
-                        'getName',
+                        'getters' => [
+                            'getName',
+                        ],
                     ],
                 ],
             ],
             'GetGroup' => [
                 'method' => 'get',
-                'uri' => '/v3/{name=projects/*/groups/*}',
+                'uriTemplate' => '/v3/{name=projects/*/groups/*}',
                 'placeholders' => [
                     'name' => [
-                        'getName',
+                        'getters' => [
+                            'getName',
+                        ],
                     ],
                 ],
             ],
             'CreateGroup' => [
                 'method' => 'post',
-                'uri' => '/v3/{name=projects/*}/groups',
+                'uriTemplate' => '/v3/{name=projects/*}/groups',
                 'body' => 'group',
                 'placeholders' => [
                     'name' => [
-                        'getName',
+                        'getters' => [
+                            'getName',
+                        ],
                     ],
                 ],
             ],
             'UpdateGroup' => [
                 'method' => 'put',
-                'uri' => '/v3/{group.name=projects/*/groups/*}',
+                'uriTemplate' => '/v3/{group.name=projects/*/groups/*}',
                 'body' => 'group',
                 'placeholders' => [
                     'group.name' => [
-                        'getGroup',
-                        'getName',
+                        'getters' => [
+                            'getGroup',
+                            'getName',
+                        ],
                     ],
                 ],
             ],
             'DeleteGroup' => [
                 'method' => 'delete',
-                'uri' => '/v3/{name=projects/*/groups/*}',
+                'uriTemplate' => '/v3/{name=projects/*/groups/*}',
                 'placeholders' => [
                     'name' => [
-                        'getName',
+                        'getters' => [
+                            'getName',
+                        ],
                     ],
                 ],
             ],
             'ListGroupMembers' => [
                 'method' => 'get',
-                'uri' => '/v3/{name=projects/*/groups/*}/members',
+                'uriTemplate' => '/v3/{name=projects/*/groups/*}/members',
                 'placeholders' => [
                     'name' => [
-                        'getName',
+                        'getters' => [
+                            'getName',
+                        ],
                     ],
                 ],
             ],

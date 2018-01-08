@@ -3,7 +3,7 @@
 return [
     'interfaces' => [
         'google.devtools.clouderrorreporting.v1beta1.ErrorStatsService' => [
-            'listGroupStats' => [
+            'ListGroupStats' => [
                 'pageStreaming' => [
                     'requestPageTokenGetMethod' => 'getPageToken',
                     'requestPageTokenSetMethod' => 'setPageToken',
@@ -13,7 +13,7 @@ return [
                     'resourcesGetMethod' => 'getErrorGroupStats',
                 ],
             ],
-            'listEvents' => [
+            'ListEvents' => [
                 'pageStreaming' => [
                     'requestPageTokenGetMethod' => 'getPageToken',
                     'requestPageTokenSetMethod' => 'setPageToken',

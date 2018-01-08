@@ -1,12 +1,12 @@
 <?php
 /*
- * Copyright 2017, Google LLC All rights reserved.
+ * Copyright 2017 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
+ *     https://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -30,14 +30,18 @@
 
 namespace Google\Cloud\ErrorReporting\V1beta1\Gapic;
 
-use Google\ApiCore\Call;
+use Google\ApiCore\ApiException;
 use Google\ApiCore\GapicClientTrait;
 use Google\ApiCore\PathTemplate;
-use Google\ApiCore\Transport\ApiTransportInterface;
+use Google\ApiCore\RetrySettings;
+use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
+use Google\Auth\CredentialsLoader;
 use Google\Cloud\ErrorReporting\V1beta1\ReportErrorEventRequest;
 use Google\Cloud\ErrorReporting\V1beta1\ReportErrorEventResponse;
 use Google\Cloud\ErrorReporting\V1beta1\ReportedErrorEvent;
+use Grpc\Channel;
+use Grpc\ChannelCredentials;
 
 /**
  * Service Description: An API for reporting error events.
@@ -50,8 +54,8 @@ use Google\Cloud\ErrorReporting\V1beta1\ReportedErrorEvent;
  * calls that map to API methods. Sample code to get started:
  *
  * ```
+ * $reportErrorsServiceClient = new ReportErrorsServiceClient();
  * try {
- *     $reportErrorsServiceClient = new ReportErrorsServiceClient();
  *     $formattedProjectName = $reportErrorsServiceClient->projectName('[PROJECT]');
  *     $event = new ReportedErrorEvent();
  *     $response = $reportErrorsServiceClient->reportErrorEvent($formattedProjectName, $event);
@@ -111,6 +115,7 @@ class ReportErrorsServiceGapicClient
             'clientConfigPath' => __DIR__.'/../resources/report_errors_service_client_config.json',
             'restClientConfigPath' => __DIR__.'/../resources/report_errors_service_rest_client_config.php',
             'descriptorsConfigPath' => __DIR__.'/../resources/report_errors_service_descriptor_config.php',
+            'versionFile' => __DIR__.'/../../VERSION',
         ];
     }
 
@@ -200,10 +205,10 @@ class ReportErrorsServiceGapicClient
      *     @type string $serviceAddress The domain name of the API remote host.
      *                                  Default 'clouderrorreporting.googleapis.com'.
      *     @type mixed $port The port on which to connect to the remote host. Default 443.
-     *     @type \Grpc\Channel $channel
+     *     @type Channel $channel
      *           A `Channel` object. If not specified, a channel will be constructed.
      *           NOTE: This option is only valid when utilizing the gRPC transport.
-     *     @type \Grpc\ChannelCredentials $sslCreds
+     *     @type ChannelCredentials $sslCreds
      *           A `ChannelCredentials` object for use with an SSL-enabled channel.
      *           Default: a credentials object returned from
      *           \Grpc\ChannelCredentials::createSsl().
@@ -214,9 +219,9 @@ class ReportErrorsServiceGapicClient
      *           Defaults to false.
      *           NOTE: This option is only valid when utilizing the gRPC transport. Also, if the $channel
      *           optional argument is specified, then this option is unused.
-     *     @type \Google\Auth\CredentialsLoader $credentialsLoader
+     *     @type CredentialsLoader $credentialsLoader
      *           A CredentialsLoader object created using the Google\Auth library.
-     *     @type array $scopes A string array of scopes to use when acquiring credentials.
+     *     @type string[] $scopes A string array of scopes to use when acquiring credentials.
      *                          Defaults to the scopes for the Stackdriver Error Reporting API.
      *     @type string $clientConfigPath
      *           Path to a JSON file containing client method configuration, including retry settings.
@@ -234,12 +239,11 @@ class ReportErrorsServiceGapicClient
      *           settings in $clientConfigPath.
      *     @type callable $authHttpHandler A handler used to deliver PSR-7 requests specifically
      *           for authentication. Should match a signature of
-     *           `function (RequestInterface $request, array $options) : ResponseInterface`
-     *           NOTE: This option is only valid when utilizing the REST transport.
+     *           `function (RequestInterface $request, array $options) : ResponseInterface`.
      *     @type callable $httpHandler A handler used to deliver PSR-7 requests. Should match a
-     *           signature of `function (RequestInterface $request, array $options) : PromiseInterface`
+     *           signature of `function (RequestInterface $request, array $options) : PromiseInterface`.
      *           NOTE: This option is only valid when utilizing the REST transport.
-     *     @type string|ApiTransportInterface $transport The transport used for executing network
+     *     @type string|TransportInterface $transport The transport used for executing network
      *           requests. May be either the string `rest` or `grpc`. Additionally, it is possible
      *           to pass in an already instantiated transport. Defaults to `grpc` if gRPC support is
      *           detected on the system.
@@ -263,8 +267,8 @@ class ReportErrorsServiceGapicClient
      *
      * Sample code:
      * ```
+     * $reportErrorsServiceClient = new ReportErrorsServiceClient();
      * try {
-     *     $reportErrorsServiceClient = new ReportErrorsServiceClient();
      *     $formattedProjectName = $reportErrorsServiceClient->projectName('[PROJECT]');
      *     $event = new ReportedErrorEvent();
      *     $response = $reportErrorsServiceClient->reportErrorEvent($formattedProjectName, $event);
@@ -281,7 +285,7 @@ class ReportErrorsServiceGapicClient
      * @param array              $optionalArgs {
      *                                         Optional.
      *
-     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
+     *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
@@ -290,7 +294,7 @@ class ReportErrorsServiceGapicClient
      *
      * @return \Google\Cloud\ErrorReporting\V1beta1\ReportErrorEventResponse
      *
-     * @throws \Google\ApiCore\ApiException if the remote call fails
+     * @throws ApiException if the remote call fails
      * @experimental
      */
     public function reportErrorEvent($projectName, $event, $optionalArgs = [])
@@ -300,23 +304,10 @@ class ReportErrorsServiceGapicClient
         $request->setEvent($event);
 
         return $this->startCall(
-            new Call(
-                self::SERVICE_NAME.'/ReportErrorEvent',
-                ReportErrorEventResponse::class,
-                $request
-            ),
-            $this->configureCallSettings('reportErrorEvent', $optionalArgs)
+            'ReportErrorEvent',
+            ReportErrorEventResponse::class,
+            $optionalArgs,
+            $request
         )->wait();
-    }
-
-    /**
-     * Initiates an orderly shutdown in which preexisting calls continue but new
-     * calls are immediately cancelled.
-     *
-     * @experimental
-     */
-    public function close()
-    {
-        $this->transport->close();
     }
 }

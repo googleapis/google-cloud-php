@@ -1,12 +1,12 @@
 <?php
 /*
- * Copyright 2017, Google LLC All rights reserved.
+ * Copyright 2017 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
+ *     https://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -30,11 +30,13 @@
 
 namespace Google\Cloud\Monitoring\V3\Gapic;
 
-use Google\ApiCore\Call;
+use Google\ApiCore\ApiException;
 use Google\ApiCore\GapicClientTrait;
 use Google\ApiCore\PathTemplate;
-use Google\ApiCore\Transport\ApiTransportInterface;
+use Google\ApiCore\RetrySettings;
+use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
+use Google\Auth\CredentialsLoader;
 use Google\Cloud\Monitoring\V3\CreateGroupRequest;
 use Google\Cloud\Monitoring\V3\DeleteGroupRequest;
 use Google\Cloud\Monitoring\V3\GetGroupRequest;
@@ -46,6 +48,8 @@ use Google\Cloud\Monitoring\V3\ListGroupsResponse;
 use Google\Cloud\Monitoring\V3\TimeInterval;
 use Google\Cloud\Monitoring\V3\UpdateGroupRequest;
 use Google\Protobuf\GPBEmpty;
+use Grpc\Channel;
+use Grpc\ChannelCredentials;
 
 /**
  * Service Description: The Group API lets you inspect and manage your
@@ -69,8 +73,8 @@ use Google\Protobuf\GPBEmpty;
  * calls that map to API methods. Sample code to get started:
  *
  * ```
+ * $groupServiceClient = new GroupServiceClient();
  * try {
- *     $groupServiceClient = new GroupServiceClient();
  *     $formattedName = $groupServiceClient->projectName('[PROJECT]');
  *     // Iterate through all elements
  *     $pagedResponse = $groupServiceClient->listGroups($formattedName);
@@ -145,6 +149,7 @@ class GroupServiceGapicClient
             'clientConfigPath' => __DIR__.'/../resources/group_service_client_config.json',
             'restClientConfigPath' => __DIR__.'/../resources/group_service_rest_client_config.php',
             'descriptorsConfigPath' => __DIR__.'/../resources/group_service_descriptor_config.php',
+            'versionFile' => __DIR__.'/../../VERSION',
         ];
     }
 
@@ -263,10 +268,10 @@ class GroupServiceGapicClient
      *     @type string $serviceAddress The domain name of the API remote host.
      *                                  Default 'monitoring.googleapis.com'.
      *     @type mixed $port The port on which to connect to the remote host. Default 443.
-     *     @type \Grpc\Channel $channel
+     *     @type Channel $channel
      *           A `Channel` object. If not specified, a channel will be constructed.
      *           NOTE: This option is only valid when utilizing the gRPC transport.
-     *     @type \Grpc\ChannelCredentials $sslCreds
+     *     @type ChannelCredentials $sslCreds
      *           A `ChannelCredentials` object for use with an SSL-enabled channel.
      *           Default: a credentials object returned from
      *           \Grpc\ChannelCredentials::createSsl().
@@ -277,9 +282,9 @@ class GroupServiceGapicClient
      *           Defaults to false.
      *           NOTE: This option is only valid when utilizing the gRPC transport. Also, if the $channel
      *           optional argument is specified, then this option is unused.
-     *     @type \Google\Auth\CredentialsLoader $credentialsLoader
+     *     @type CredentialsLoader $credentialsLoader
      *           A CredentialsLoader object created using the Google\Auth library.
-     *     @type array $scopes A string array of scopes to use when acquiring credentials.
+     *     @type string[] $scopes A string array of scopes to use when acquiring credentials.
      *                          Defaults to the scopes for the Stackdriver Monitoring API.
      *     @type string $clientConfigPath
      *           Path to a JSON file containing client method configuration, including retry settings.
@@ -297,12 +302,11 @@ class GroupServiceGapicClient
      *           settings in $clientConfigPath.
      *     @type callable $authHttpHandler A handler used to deliver PSR-7 requests specifically
      *           for authentication. Should match a signature of
-     *           `function (RequestInterface $request, array $options) : ResponseInterface`
-     *           NOTE: This option is only valid when utilizing the REST transport.
+     *           `function (RequestInterface $request, array $options) : ResponseInterface`.
      *     @type callable $httpHandler A handler used to deliver PSR-7 requests. Should match a
-     *           signature of `function (RequestInterface $request, array $options) : PromiseInterface`
+     *           signature of `function (RequestInterface $request, array $options) : PromiseInterface`.
      *           NOTE: This option is only valid when utilizing the REST transport.
-     *     @type string|ApiTransportInterface $transport The transport used for executing network
+     *     @type string|TransportInterface $transport The transport used for executing network
      *           requests. May be either the string `rest` or `grpc`. Additionally, it is possible
      *           to pass in an already instantiated transport. Defaults to `grpc` if gRPC support is
      *           detected on the system.
@@ -319,8 +323,8 @@ class GroupServiceGapicClient
      *
      * Sample code:
      * ```
+     * $groupServiceClient = new GroupServiceClient();
      * try {
-     *     $groupServiceClient = new GroupServiceClient();
      *     $formattedName = $groupServiceClient->projectName('[PROJECT]');
      *     // Iterate through all elements
      *     $pagedResponse = $groupServiceClient->listGroups($formattedName);
@@ -369,7 +373,7 @@ class GroupServiceGapicClient
      *          If no page token is specified (the default), the first page
      *          of values will be returned. Any page token used here must have
      *          been generated by a previous call to the API.
-     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
+     *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
@@ -378,7 +382,7 @@ class GroupServiceGapicClient
      *
      * @return \Google\ApiCore\PagedListResponse
      *
-     * @throws \Google\ApiCore\ApiException if the remote call fails
+     * @throws ApiException if the remote call fails
      * @experimental
      */
     public function listGroups($name, $optionalArgs = [])
@@ -402,13 +406,10 @@ class GroupServiceGapicClient
         }
 
         return $this->getPagedListResponse(
-            new Call(
-                self::SERVICE_NAME.'/ListGroups',
-                ListGroupsResponse::class,
-                $request
-            ),
-            $this->configureCallSettings('listGroups', $optionalArgs),
-            $this->descriptors['listGroups']['pageStreaming']
+            'ListGroups',
+            $optionalArgs,
+            ListGroupsResponse::class,
+            $request
         );
     }
 
@@ -417,8 +418,8 @@ class GroupServiceGapicClient
      *
      * Sample code:
      * ```
+     * $groupServiceClient = new GroupServiceClient();
      * try {
-     *     $groupServiceClient = new GroupServiceClient();
      *     $formattedName = $groupServiceClient->groupName('[PROJECT]', '[GROUP]');
      *     $response = $groupServiceClient->getGroup($formattedName);
      * } finally {
@@ -431,7 +432,7 @@ class GroupServiceGapicClient
      * @param array  $optionalArgs {
      *                             Optional.
      *
-     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
+     *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
@@ -440,7 +441,7 @@ class GroupServiceGapicClient
      *
      * @return \Google\Cloud\Monitoring\V3\Group
      *
-     * @throws \Google\ApiCore\ApiException if the remote call fails
+     * @throws ApiException if the remote call fails
      * @experimental
      */
     public function getGroup($name, $optionalArgs = [])
@@ -449,12 +450,10 @@ class GroupServiceGapicClient
         $request->setName($name);
 
         return $this->startCall(
-            new Call(
-                self::SERVICE_NAME.'/GetGroup',
-                Group::class,
-                $request
-            ),
-            $this->configureCallSettings('getGroup', $optionalArgs)
+            'GetGroup',
+            Group::class,
+            $optionalArgs,
+            $request
         )->wait();
     }
 
@@ -463,8 +462,8 @@ class GroupServiceGapicClient
      *
      * Sample code:
      * ```
+     * $groupServiceClient = new GroupServiceClient();
      * try {
-     *     $groupServiceClient = new GroupServiceClient();
      *     $formattedName = $groupServiceClient->projectName('[PROJECT]');
      *     $group = new Group();
      *     $response = $groupServiceClient->createGroup($formattedName, $group);
@@ -482,7 +481,7 @@ class GroupServiceGapicClient
      *
      *     @type bool $validateOnly
      *          If true, validate this request but do not create the group.
-     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
+     *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
@@ -491,7 +490,7 @@ class GroupServiceGapicClient
      *
      * @return \Google\Cloud\Monitoring\V3\Group
      *
-     * @throws \Google\ApiCore\ApiException if the remote call fails
+     * @throws ApiException if the remote call fails
      * @experimental
      */
     public function createGroup($name, $group, $optionalArgs = [])
@@ -504,12 +503,10 @@ class GroupServiceGapicClient
         }
 
         return $this->startCall(
-            new Call(
-                self::SERVICE_NAME.'/CreateGroup',
-                Group::class,
-                $request
-            ),
-            $this->configureCallSettings('createGroup', $optionalArgs)
+            'CreateGroup',
+            Group::class,
+            $optionalArgs,
+            $request
         )->wait();
     }
 
@@ -519,8 +516,8 @@ class GroupServiceGapicClient
      *
      * Sample code:
      * ```
+     * $groupServiceClient = new GroupServiceClient();
      * try {
-     *     $groupServiceClient = new GroupServiceClient();
      *     $group = new Group();
      *     $response = $groupServiceClient->updateGroup($group);
      * } finally {
@@ -535,7 +532,7 @@ class GroupServiceGapicClient
      *
      *     @type bool $validateOnly
      *          If true, validate this request but do not update the existing group.
-     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
+     *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
@@ -544,7 +541,7 @@ class GroupServiceGapicClient
      *
      * @return \Google\Cloud\Monitoring\V3\Group
      *
-     * @throws \Google\ApiCore\ApiException if the remote call fails
+     * @throws ApiException if the remote call fails
      * @experimental
      */
     public function updateGroup($group, $optionalArgs = [])
@@ -556,12 +553,10 @@ class GroupServiceGapicClient
         }
 
         return $this->startCall(
-            new Call(
-                self::SERVICE_NAME.'/UpdateGroup',
-                Group::class,
-                $request
-            ),
-            $this->configureCallSettings('updateGroup', $optionalArgs)
+            'UpdateGroup',
+            Group::class,
+            $optionalArgs,
+            $request
         )->wait();
     }
 
@@ -570,8 +565,8 @@ class GroupServiceGapicClient
      *
      * Sample code:
      * ```
+     * $groupServiceClient = new GroupServiceClient();
      * try {
-     *     $groupServiceClient = new GroupServiceClient();
      *     $formattedName = $groupServiceClient->groupName('[PROJECT]', '[GROUP]');
      *     $groupServiceClient->deleteGroup($formattedName);
      * } finally {
@@ -584,14 +579,14 @@ class GroupServiceGapicClient
      * @param array  $optionalArgs {
      *                             Optional.
      *
-     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
+     *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
      *          {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
-     * @throws \Google\ApiCore\ApiException if the remote call fails
+     * @throws ApiException if the remote call fails
      * @experimental
      */
     public function deleteGroup($name, $optionalArgs = [])
@@ -600,12 +595,10 @@ class GroupServiceGapicClient
         $request->setName($name);
 
         return $this->startCall(
-            new Call(
-                self::SERVICE_NAME.'/DeleteGroup',
-                GPBEmpty::class,
-                $request
-            ),
-            $this->configureCallSettings('deleteGroup', $optionalArgs)
+            'DeleteGroup',
+            GPBEmpty::class,
+            $optionalArgs,
+            $request
         )->wait();
     }
 
@@ -614,8 +607,8 @@ class GroupServiceGapicClient
      *
      * Sample code:
      * ```
+     * $groupServiceClient = new GroupServiceClient();
      * try {
-     *     $groupServiceClient = new GroupServiceClient();
      *     $formattedName = $groupServiceClient->groupName('[PROJECT]', '[GROUP]');
      *     // Iterate through all elements
      *     $pagedResponse = $groupServiceClient->listGroupMembers($formattedName);
@@ -662,7 +655,7 @@ class GroupServiceGapicClient
      *          members that were part of the group during the specified interval are
      *          included in the response.  If no interval is provided then the group
      *          membership over the last minute is returned.
-     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
+     *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
@@ -671,7 +664,7 @@ class GroupServiceGapicClient
      *
      * @return \Google\ApiCore\PagedListResponse
      *
-     * @throws \Google\ApiCore\ApiException if the remote call fails
+     * @throws ApiException if the remote call fails
      * @experimental
      */
     public function listGroupMembers($name, $optionalArgs = [])
@@ -692,24 +685,10 @@ class GroupServiceGapicClient
         }
 
         return $this->getPagedListResponse(
-            new Call(
-                self::SERVICE_NAME.'/ListGroupMembers',
-                ListGroupMembersResponse::class,
-                $request
-            ),
-            $this->configureCallSettings('listGroupMembers', $optionalArgs),
-            $this->descriptors['listGroupMembers']['pageStreaming']
+            'ListGroupMembers',
+            $optionalArgs,
+            ListGroupMembersResponse::class,
+            $request
         );
-    }
-
-    /**
-     * Initiates an orderly shutdown in which preexisting calls continue but new
-     * calls are immediately cancelled.
-     *
-     * @experimental
-     */
-    public function close()
-    {
-        $this->transport->close();
     }
 }

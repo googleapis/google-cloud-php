@@ -5,98 +5,118 @@ return [
         'google.pubsub.v1.Publisher' => [
             'CreateTopic' => [
                 'method' => 'put',
-                'uri' => '/v1/{name=projects/*/topics/*}',
+                'uriTemplate' => '/v1/{name=projects/*/topics/*}',
                 'body' => '*',
                 'placeholders' => [
                     'name' => [
-                        'getName',
+                        'getters' => [
+                            'getName',
+                        ],
                     ],
                 ],
             ],
             'UpdateTopic' => [
                 'method' => 'patch',
-                'uri' => '/v1/{topic.name=projects/*/topics/*}',
+                'uriTemplate' => '/v1/{topic.name=projects/*/topics/*}',
                 'body' => '*',
                 'placeholders' => [
                     'topic.name' => [
-                        'getTopic',
-                        'getName',
+                        'getters' => [
+                            'getTopic',
+                            'getName',
+                        ],
                     ],
                 ],
             ],
             'Publish' => [
                 'method' => 'post',
-                'uri' => '/v1/{topic=projects/*/topics/*}:publish',
+                'uriTemplate' => '/v1/{topic=projects/*/topics/*}:publish',
                 'body' => '*',
                 'placeholders' => [
                     'topic' => [
-                        'getTopic',
+                        'getters' => [
+                            'getTopic',
+                        ],
                     ],
                 ],
             ],
             'GetTopic' => [
                 'method' => 'get',
-                'uri' => '/v1/{topic=projects/*/topics/*}',
+                'uriTemplate' => '/v1/{topic=projects/*/topics/*}',
                 'placeholders' => [
                     'topic' => [
-                        'getTopic',
+                        'getters' => [
+                            'getTopic',
+                        ],
                     ],
                 ],
             ],
             'ListTopics' => [
                 'method' => 'get',
-                'uri' => '/v1/{project=projects/*}/topics',
+                'uriTemplate' => '/v1/{project=projects/*}/topics',
                 'placeholders' => [
                     'project' => [
-                        'getProject',
+                        'getters' => [
+                            'getProject',
+                        ],
                     ],
                 ],
             ],
             'ListTopicSubscriptions' => [
                 'method' => 'get',
-                'uri' => '/v1/{topic=projects/*/topics/*}/subscriptions',
+                'uriTemplate' => '/v1/{topic=projects/*/topics/*}/subscriptions',
                 'placeholders' => [
                     'topic' => [
-                        'getTopic',
+                        'getters' => [
+                            'getTopic',
+                        ],
                     ],
                 ],
             ],
             'DeleteTopic' => [
                 'method' => 'delete',
-                'uri' => '/v1/{topic=projects/*/topics/*}',
+                'uriTemplate' => '/v1/{topic=projects/*/topics/*}',
                 'placeholders' => [
                     'topic' => [
-                        'getTopic',
+                        'getters' => [
+                            'getTopic',
+                        ],
                     ],
                 ],
             ],
             'SetIamPolicy' => [
                 'method' => 'post',
-                'uri' => '/v1/{resource=**}:setIamPolicy',
+                'uriTemplate' => '/v1/{resource=**}:setIamPolicy',
                 'body' => '*',
                 'placeholders' => [
                     'resource' => [
-                        'getResource',
+                        'getters' => [
+                            'getResource',
+                        ],
                     ],
                 ],
             ],
             'GetIamPolicy' => [
                 'method' => 'post',
-                'uri' => '/v1/{resource=**}:getIamPolicy',
+                'uriTemplate' => '/v1/{resource=**}:getIamPolicy',
                 'body' => '*',
                 'placeholders' => [
                     'resource' => [
-                        'getResource',
+                        'getters' => [
+                            'getResource',
+                        ],
                     ],
                 ],
             ],
             'TestIamPermissions' => [
                 'method' => 'post',
-                'uri' => '/v1/{resource=**}:testIamPermissions',
+                'uriTemplate' => '/v1/{resource=**}:testIamPermissions',
                 'body' => '*',
                 'placeholders' => [
                     'resource' => [
-                        'getResource',
+                        'getters' => [
+                            'getResource',
+                        ],
                     ],
                 ],
             ],

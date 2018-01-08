@@ -5,33 +5,37 @@ return [
         'google.logging.v2.LoggingServiceV2' => [
             'DeleteLog' => [
                 'method' => 'delete',
-                'uri' => '/v2beta1/{log_name=projects/*/logs/*}',
+                'uriTemplate' => '/v2beta1/{log_name=projects/*/logs/*}',
                 'placeholders' => [
                     'log_name' => [
-                        'getLogName',
+                        'getters' => [
+                            'getLogName',
+                        ],
                     ],
                 ],
             ],
             'WriteLogEntries' => [
                 'method' => 'post',
-                'uri' => '/v2/entries:write',
+                'uriTemplate' => '/v2/entries:write',
                 'body' => '*',
             ],
             'ListLogEntries' => [
                 'method' => 'post',
-                'uri' => '/v2/entries:list',
+                'uriTemplate' => '/v2/entries:list',
                 'body' => '*',
             ],
             'ListMonitoredResourceDescriptors' => [
                 'method' => 'get',
-                'uri' => '/v2/monitoredResourceDescriptors',
+                'uriTemplate' => '/v2/monitoredResourceDescriptors',
             ],
             'ListLogs' => [
                 'method' => 'get',
-                'uri' => '/v2/{parent=*/*}/logs',
+                'uriTemplate' => '/v2/{parent=*/*}/logs',
                 'placeholders' => [
                     'parent' => [
-                        'getParent',
+                        'getters' => [
+                            'getParent',
+                        ],
                     ],
                 ],
             ],

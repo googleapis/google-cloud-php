@@ -3,13 +3,13 @@
 return [
     'interfaces' => [
         'google.cloud.speech.v1beta1.Speech' => [
-            'asyncRecognize' => [
+            'AsyncRecognize' => [
                 'longRunning' => [
                     'operationReturnType' => '\Google\Cloud\Speech\V1beta1\AsyncRecognizeResponse',
                     'metadataReturnType' => '\Google\Cloud\Speech\V1beta1\AsyncRecognizeMetadata',
                 ],
             ],
-            'streamingRecognize' => [
+            'StreamingRecognize' => [
                 'grpcStreaming' => [
                     'grpcStreamingType' => 'BidiStreaming',
                 ],

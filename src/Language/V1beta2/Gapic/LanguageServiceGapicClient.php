@@ -1,12 +1,12 @@
 <?php
 /*
- * Copyright 2017, Google LLC All rights reserved.
+ * Copyright 2017 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
+ *     https://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -30,9 +30,11 @@
 
 namespace Google\Cloud\Language\V1beta2\Gapic;
 
-use Google\ApiCore\Call;
+use Google\ApiCore\ApiException;
 use Google\ApiCore\GapicClientTrait;
-use Google\ApiCore\Transport\ApiTransportInterface;
+use Google\ApiCore\RetrySettings;
+use Google\ApiCore\Transport\TransportInterface;
+use Google\Auth\CredentialsLoader;
 use Google\Cloud\Language\V1beta2\AnalyzeEntitiesRequest;
 use Google\Cloud\Language\V1beta2\AnalyzeEntitiesResponse;
 use Google\Cloud\Language\V1beta2\AnalyzeEntitySentimentRequest;
@@ -48,6 +50,8 @@ use Google\Cloud\Language\V1beta2\ClassifyTextRequest;
 use Google\Cloud\Language\V1beta2\ClassifyTextResponse;
 use Google\Cloud\Language\V1beta2\Document;
 use Google\Cloud\Language\V1beta2\EncodingType;
+use Grpc\Channel;
+use Grpc\ChannelCredentials;
 
 /**
  * Service Description: Provides text analysis operations such as sentiment analysis and entity
@@ -61,8 +65,8 @@ use Google\Cloud\Language\V1beta2\EncodingType;
  * calls that map to API methods. Sample code to get started:
  *
  * ```
+ * $languageServiceClient = new LanguageServiceClient();
  * try {
- *     $languageServiceClient = new LanguageServiceClient();
  *     $document = new Document();
  *     $response = $languageServiceClient->analyzeSentiment($document);
  * } finally {
@@ -113,6 +117,7 @@ class LanguageServiceGapicClient
             'clientConfigPath' => __DIR__.'/../resources/language_service_client_config.json',
             'restClientConfigPath' => __DIR__.'/../resources/language_service_rest_client_config.php',
             'descriptorsConfigPath' => __DIR__.'/../resources/language_service_descriptor_config.php',
+            'versionFile' => __DIR__.'/../../VERSION',
         ];
     }
 
@@ -125,10 +130,10 @@ class LanguageServiceGapicClient
      *     @type string $serviceAddress The domain name of the API remote host.
      *                                  Default 'language.googleapis.com'.
      *     @type mixed $port The port on which to connect to the remote host. Default 443.
-     *     @type \Grpc\Channel $channel
+     *     @type Channel $channel
      *           A `Channel` object. If not specified, a channel will be constructed.
      *           NOTE: This option is only valid when utilizing the gRPC transport.
-     *     @type \Grpc\ChannelCredentials $sslCreds
+     *     @type ChannelCredentials $sslCreds
      *           A `ChannelCredentials` object for use with an SSL-enabled channel.
      *           Default: a credentials object returned from
      *           \Grpc\ChannelCredentials::createSsl().
@@ -139,9 +144,9 @@ class LanguageServiceGapicClient
      *           Defaults to false.
      *           NOTE: This option is only valid when utilizing the gRPC transport. Also, if the $channel
      *           optional argument is specified, then this option is unused.
-     *     @type \Google\Auth\CredentialsLoader $credentialsLoader
+     *     @type CredentialsLoader $credentialsLoader
      *           A CredentialsLoader object created using the Google\Auth library.
-     *     @type array $scopes A string array of scopes to use when acquiring credentials.
+     *     @type string[] $scopes A string array of scopes to use when acquiring credentials.
      *                          Defaults to the scopes for the Google Cloud Natural Language API.
      *     @type string $clientConfigPath
      *           Path to a JSON file containing client method configuration, including retry settings.
@@ -159,12 +164,11 @@ class LanguageServiceGapicClient
      *           settings in $clientConfigPath.
      *     @type callable $authHttpHandler A handler used to deliver PSR-7 requests specifically
      *           for authentication. Should match a signature of
-     *           `function (RequestInterface $request, array $options) : ResponseInterface`
-     *           NOTE: This option is only valid when utilizing the REST transport.
+     *           `function (RequestInterface $request, array $options) : ResponseInterface`.
      *     @type callable $httpHandler A handler used to deliver PSR-7 requests. Should match a
-     *           signature of `function (RequestInterface $request, array $options) : PromiseInterface`
+     *           signature of `function (RequestInterface $request, array $options) : PromiseInterface`.
      *           NOTE: This option is only valid when utilizing the REST transport.
-     *     @type string|ApiTransportInterface $transport The transport used for executing network
+     *     @type string|TransportInterface $transport The transport used for executing network
      *           requests. May be either the string `rest` or `grpc`. Additionally, it is possible
      *           to pass in an already instantiated transport. Defaults to `grpc` if gRPC support is
      *           detected on the system.
@@ -181,8 +185,8 @@ class LanguageServiceGapicClient
      *
      * Sample code:
      * ```
+     * $languageServiceClient = new LanguageServiceClient();
      * try {
-     *     $languageServiceClient = new LanguageServiceClient();
      *     $document = new Document();
      *     $response = $languageServiceClient->analyzeSentiment($document);
      * } finally {
@@ -198,7 +202,7 @@ class LanguageServiceGapicClient
      *          The encoding type used by the API to calculate sentence offsets for the
      *          sentence sentiment.
      *          For allowed values, use constants defined on {@see \Google\Cloud\Language\V1beta2\EncodingType}
-     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
+     *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
@@ -207,7 +211,7 @@ class LanguageServiceGapicClient
      *
      * @return \Google\Cloud\Language\V1beta2\AnalyzeSentimentResponse
      *
-     * @throws \Google\ApiCore\ApiException if the remote call fails
+     * @throws ApiException if the remote call fails
      * @experimental
      */
     public function analyzeSentiment($document, $optionalArgs = [])
@@ -219,12 +223,10 @@ class LanguageServiceGapicClient
         }
 
         return $this->startCall(
-            new Call(
-                self::SERVICE_NAME.'/AnalyzeSentiment',
-                AnalyzeSentimentResponse::class,
-                $request
-            ),
-            $this->configureCallSettings('analyzeSentiment', $optionalArgs)
+            'AnalyzeSentiment',
+            AnalyzeSentimentResponse::class,
+            $optionalArgs,
+            $request
         )->wait();
     }
 
@@ -235,8 +237,8 @@ class LanguageServiceGapicClient
      *
      * Sample code:
      * ```
+     * $languageServiceClient = new LanguageServiceClient();
      * try {
-     *     $languageServiceClient = new LanguageServiceClient();
      *     $document = new Document();
      *     $response = $languageServiceClient->analyzeEntities($document);
      * } finally {
@@ -251,7 +253,7 @@ class LanguageServiceGapicClient
      *     @type int $encodingType
      *          The encoding type used by the API to calculate offsets.
      *          For allowed values, use constants defined on {@see \Google\Cloud\Language\V1beta2\EncodingType}
-     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
+     *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
@@ -260,7 +262,7 @@ class LanguageServiceGapicClient
      *
      * @return \Google\Cloud\Language\V1beta2\AnalyzeEntitiesResponse
      *
-     * @throws \Google\ApiCore\ApiException if the remote call fails
+     * @throws ApiException if the remote call fails
      * @experimental
      */
     public function analyzeEntities($document, $optionalArgs = [])
@@ -272,12 +274,10 @@ class LanguageServiceGapicClient
         }
 
         return $this->startCall(
-            new Call(
-                self::SERVICE_NAME.'/AnalyzeEntities',
-                AnalyzeEntitiesResponse::class,
-                $request
-            ),
-            $this->configureCallSettings('analyzeEntities', $optionalArgs)
+            'AnalyzeEntities',
+            AnalyzeEntitiesResponse::class,
+            $optionalArgs,
+            $request
         )->wait();
     }
 
@@ -287,8 +287,8 @@ class LanguageServiceGapicClient
      *
      * Sample code:
      * ```
+     * $languageServiceClient = new LanguageServiceClient();
      * try {
-     *     $languageServiceClient = new LanguageServiceClient();
      *     $document = new Document();
      *     $response = $languageServiceClient->analyzeEntitySentiment($document);
      * } finally {
@@ -303,7 +303,7 @@ class LanguageServiceGapicClient
      *     @type int $encodingType
      *          The encoding type used by the API to calculate offsets.
      *          For allowed values, use constants defined on {@see \Google\Cloud\Language\V1beta2\EncodingType}
-     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
+     *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
@@ -312,7 +312,7 @@ class LanguageServiceGapicClient
      *
      * @return \Google\Cloud\Language\V1beta2\AnalyzeEntitySentimentResponse
      *
-     * @throws \Google\ApiCore\ApiException if the remote call fails
+     * @throws ApiException if the remote call fails
      * @experimental
      */
     public function analyzeEntitySentiment($document, $optionalArgs = [])
@@ -324,12 +324,10 @@ class LanguageServiceGapicClient
         }
 
         return $this->startCall(
-            new Call(
-                self::SERVICE_NAME.'/AnalyzeEntitySentiment',
-                AnalyzeEntitySentimentResponse::class,
-                $request
-            ),
-            $this->configureCallSettings('analyzeEntitySentiment', $optionalArgs)
+            'AnalyzeEntitySentiment',
+            AnalyzeEntitySentimentResponse::class,
+            $optionalArgs,
+            $request
         )->wait();
     }
 
@@ -340,8 +338,8 @@ class LanguageServiceGapicClient
      *
      * Sample code:
      * ```
+     * $languageServiceClient = new LanguageServiceClient();
      * try {
-     *     $languageServiceClient = new LanguageServiceClient();
      *     $document = new Document();
      *     $response = $languageServiceClient->analyzeSyntax($document);
      * } finally {
@@ -356,7 +354,7 @@ class LanguageServiceGapicClient
      *     @type int $encodingType
      *          The encoding type used by the API to calculate offsets.
      *          For allowed values, use constants defined on {@see \Google\Cloud\Language\V1beta2\EncodingType}
-     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
+     *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
@@ -365,7 +363,7 @@ class LanguageServiceGapicClient
      *
      * @return \Google\Cloud\Language\V1beta2\AnalyzeSyntaxResponse
      *
-     * @throws \Google\ApiCore\ApiException if the remote call fails
+     * @throws ApiException if the remote call fails
      * @experimental
      */
     public function analyzeSyntax($document, $optionalArgs = [])
@@ -377,12 +375,10 @@ class LanguageServiceGapicClient
         }
 
         return $this->startCall(
-            new Call(
-                self::SERVICE_NAME.'/AnalyzeSyntax',
-                AnalyzeSyntaxResponse::class,
-                $request
-            ),
-            $this->configureCallSettings('analyzeSyntax', $optionalArgs)
+            'AnalyzeSyntax',
+            AnalyzeSyntaxResponse::class,
+            $optionalArgs,
+            $request
         )->wait();
     }
 
@@ -391,8 +387,8 @@ class LanguageServiceGapicClient
      *
      * Sample code:
      * ```
+     * $languageServiceClient = new LanguageServiceClient();
      * try {
-     *     $languageServiceClient = new LanguageServiceClient();
      *     $document = new Document();
      *     $response = $languageServiceClient->classifyText($document);
      * } finally {
@@ -404,7 +400,7 @@ class LanguageServiceGapicClient
      * @param array    $optionalArgs {
      *                               Optional.
      *
-     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
+     *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
@@ -413,7 +409,7 @@ class LanguageServiceGapicClient
      *
      * @return \Google\Cloud\Language\V1beta2\ClassifyTextResponse
      *
-     * @throws \Google\ApiCore\ApiException if the remote call fails
+     * @throws ApiException if the remote call fails
      * @experimental
      */
     public function classifyText($document, $optionalArgs = [])
@@ -422,12 +418,10 @@ class LanguageServiceGapicClient
         $request->setDocument($document);
 
         return $this->startCall(
-            new Call(
-                self::SERVICE_NAME.'/ClassifyText',
-                ClassifyTextResponse::class,
-                $request
-            ),
-            $this->configureCallSettings('classifyText', $optionalArgs)
+            'ClassifyText',
+            ClassifyTextResponse::class,
+            $optionalArgs,
+            $request
         )->wait();
     }
 
@@ -437,8 +431,8 @@ class LanguageServiceGapicClient
      *
      * Sample code:
      * ```
+     * $languageServiceClient = new LanguageServiceClient();
      * try {
-     *     $languageServiceClient = new LanguageServiceClient();
      *     $document = new Document();
      *     $features = new Features();
      *     $response = $languageServiceClient->annotateText($document, $features);
@@ -455,7 +449,7 @@ class LanguageServiceGapicClient
      *     @type int $encodingType
      *          The encoding type used by the API to calculate offsets.
      *          For allowed values, use constants defined on {@see \Google\Cloud\Language\V1beta2\EncodingType}
-     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
+     *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
@@ -464,7 +458,7 @@ class LanguageServiceGapicClient
      *
      * @return \Google\Cloud\Language\V1beta2\AnnotateTextResponse
      *
-     * @throws \Google\ApiCore\ApiException if the remote call fails
+     * @throws ApiException if the remote call fails
      * @experimental
      */
     public function annotateText($document, $features, $optionalArgs = [])
@@ -477,23 +471,10 @@ class LanguageServiceGapicClient
         }
 
         return $this->startCall(
-            new Call(
-                self::SERVICE_NAME.'/AnnotateText',
-                AnnotateTextResponse::class,
-                $request
-            ),
-            $this->configureCallSettings('annotateText', $optionalArgs)
+            'AnnotateText',
+            AnnotateTextResponse::class,
+            $optionalArgs,
+            $request
         )->wait();
-    }
-
-    /**
-     * Initiates an orderly shutdown in which preexisting calls continue but new
-     * calls are immediately cancelled.
-     *
-     * @experimental
-     */
-    public function close()
-    {
-        $this->transport->close();
     }
 }

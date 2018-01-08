@@ -5,12 +5,12 @@ return [
         'google.cloud.speech.v1.Speech' => [
             'Recognize' => [
                 'method' => 'post',
-                'uri' => '/v1/speech:recognize',
+                'uriTemplate' => '/v1/speech:recognize',
                 'body' => '*',
             ],
             'LongRunningRecognize' => [
                 'method' => 'post',
-                'uri' => '/v1/speech:longrunningrecognize',
+                'uriTemplate' => '/v1/speech:longrunningrecognize',
                 'body' => '*',
             ],
         ],

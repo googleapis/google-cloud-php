@@ -3,19 +3,19 @@
 return [
     'interfaces' => [
         'google.spanner.admin.instance.v1.InstanceAdmin' => [
-            'createInstance' => [
+            'CreateInstance' => [
                 'longRunning' => [
                     'operationReturnType' => '\Google\Cloud\Spanner\Admin\Instance\V1\Instance',
                     'metadataReturnType' => '\Google\Cloud\Spanner\Admin\Instance\V1\CreateInstanceMetadata',
                 ],
             ],
-            'updateInstance' => [
+            'UpdateInstance' => [
                 'longRunning' => [
                     'operationReturnType' => '\Google\Cloud\Spanner\Admin\Instance\V1\Instance',
                     'metadataReturnType' => '\Google\Cloud\Spanner\Admin\Instance\V1\UpdateInstanceMetadata',
                 ],
             ],
-            'listInstanceConfigs' => [
+            'ListInstanceConfigs' => [
                 'pageStreaming' => [
                     'requestPageTokenGetMethod' => 'getPageToken',
                     'requestPageTokenSetMethod' => 'setPageToken',
@@ -25,7 +25,7 @@ return [
                     'resourcesGetMethod' => 'getInstanceConfigs',
                 ],
             ],
-            'listInstances' => [
+            'ListInstances' => [
                 'pageStreaming' => [
                     'requestPageTokenGetMethod' => 'getPageToken',
                     'requestPageTokenSetMethod' => 'setPageToken',

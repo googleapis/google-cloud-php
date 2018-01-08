@@ -5,97 +5,117 @@ return [
         'google.spanner.admin.instance.v1.InstanceAdmin' => [
             'ListInstanceConfigs' => [
                 'method' => 'get',
-                'uri' => '/v1/{parent=projects/*}/instanceConfigs',
+                'uriTemplate' => '/v1/{parent=projects/*}/instanceConfigs',
                 'placeholders' => [
                     'parent' => [
-                        'getParent',
+                        'getters' => [
+                            'getParent',
+                        ],
                     ],
                 ],
             ],
             'GetInstanceConfig' => [
                 'method' => 'get',
-                'uri' => '/v1/{name=projects/*/instanceConfigs/*}',
+                'uriTemplate' => '/v1/{name=projects/*/instanceConfigs/*}',
                 'placeholders' => [
                     'name' => [
-                        'getName',
+                        'getters' => [
+                            'getName',
+                        ],
                     ],
                 ],
             ],
             'ListInstances' => [
                 'method' => 'get',
-                'uri' => '/v1/{parent=projects/*}/instances',
+                'uriTemplate' => '/v1/{parent=projects/*}/instances',
                 'placeholders' => [
                     'parent' => [
-                        'getParent',
+                        'getters' => [
+                            'getParent',
+                        ],
                     ],
                 ],
             ],
             'GetInstance' => [
                 'method' => 'get',
-                'uri' => '/v1/{name=projects/*/instances/*}',
+                'uriTemplate' => '/v1/{name=projects/*/instances/*}',
                 'placeholders' => [
                     'name' => [
-                        'getName',
+                        'getters' => [
+                            'getName',
+                        ],
                     ],
                 ],
             ],
             'CreateInstance' => [
                 'method' => 'post',
-                'uri' => '/v1/{parent=projects/*}/instances',
+                'uriTemplate' => '/v1/{parent=projects/*}/instances',
                 'body' => '*',
                 'placeholders' => [
                     'parent' => [
-                        'getParent',
+                        'getters' => [
+                            'getParent',
+                        ],
                     ],
                 ],
             ],
             'UpdateInstance' => [
                 'method' => 'patch',
-                'uri' => '/v1/{instance.name=projects/*/instances/*}',
+                'uriTemplate' => '/v1/{instance.name=projects/*/instances/*}',
                 'body' => '*',
                 'placeholders' => [
                     'instance.name' => [
-                        'getInstance',
-                        'getName',
+                        'getters' => [
+                            'getInstance',
+                            'getName',
+                        ],
                     ],
                 ],
             ],
             'DeleteInstance' => [
                 'method' => 'delete',
-                'uri' => '/v1/{name=projects/*/instances/*}',
+                'uriTemplate' => '/v1/{name=projects/*/instances/*}',
                 'placeholders' => [
                     'name' => [
-                        'getName',
+                        'getters' => [
+                            'getName',
+                        ],
                     ],
                 ],
             ],
             'SetIamPolicy' => [
                 'method' => 'post',
-                'uri' => '/v1/{resource=projects/*/instances/*}:setIamPolicy',
+                'uriTemplate' => '/v1/{resource=projects/*/instances/*}:setIamPolicy',
                 'body' => '*',
                 'placeholders' => [
                     'resource' => [
-                        'getResource',
+                        'getters' => [
+                            'getResource',
+                        ],
                     ],
                 ],
             ],
             'GetIamPolicy' => [
                 'method' => 'post',
-                'uri' => '/v1/{resource=projects/*/instances/*}:getIamPolicy',
+                'uriTemplate' => '/v1/{resource=projects/*/instances/*}:getIamPolicy',
                 'body' => '*',
                 'placeholders' => [
                     'resource' => [
-                        'getResource',
+                        'getters' => [
+                            'getResource',
+                        ],
                     ],
                 ],
             ],
             'TestIamPermissions' => [
                 'method' => 'post',
-                'uri' => '/v1/{resource=projects/*/instances/*}:testIamPermissions',
+                'uriTemplate' => '/v1/{resource=projects/*/instances/*}:testIamPermissions',
                 'body' => '*',
                 'placeholders' => [
                     'resource' => [
-                        'getResource',
+                        'getters' => [
+                            'getResource',
+                        ],
                     ],
                 ],
             ],

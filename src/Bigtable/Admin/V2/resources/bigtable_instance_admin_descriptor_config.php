@@ -3,25 +3,25 @@
 return [
     'interfaces' => [
         'google.bigtable.admin.v2.BigtableInstanceAdmin' => [
-            'createInstance' => [
+            'CreateInstance' => [
                 'longRunning' => [
                     'operationReturnType' => '\Google\Cloud\Bigtable\Admin\V2\Instance',
                     'metadataReturnType' => '\Google\Cloud\Bigtable\Admin\V2\CreateInstanceMetadata',
                 ],
             ],
-            'createCluster' => [
+            'CreateCluster' => [
                 'longRunning' => [
                     'operationReturnType' => '\Google\Cloud\Bigtable\Admin\V2\Cluster',
                     'metadataReturnType' => '\Google\Cloud\Bigtable\Admin\V2\CreateClusterMetadata',
                 ],
             ],
-            'updateCluster' => [
+            'UpdateCluster' => [
                 'longRunning' => [
                     'operationReturnType' => '\Google\Cloud\Bigtable\Admin\V2\Cluster',
                     'metadataReturnType' => '\Google\Cloud\Bigtable\Admin\V2\UpdateClusterMetadata',
                 ],
             ],
-            'listAppProfiles' => [
+            'ListAppProfiles' => [
                 'pageStreaming' => [
                     'requestPageTokenGetMethod' => 'getPageToken',
                     'requestPageTokenSetMethod' => 'setPageToken',

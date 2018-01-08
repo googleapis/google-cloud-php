@@ -1,12 +1,12 @@
 <?php
 /*
- * Copyright 2017, Google LLC All rights reserved.
+ * Copyright 2017 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
+ *     https://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -30,11 +30,14 @@
 
 namespace Google\Cloud\Bigtable\V2\Gapic;
 
+use Google\ApiCore\ApiException;
 use Google\ApiCore\Call;
 use Google\ApiCore\GapicClientTrait;
 use Google\ApiCore\PathTemplate;
-use Google\ApiCore\Transport\ApiTransportInterface;
+use Google\ApiCore\RetrySettings;
+use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
+use Google\Auth\CredentialsLoader;
 use Google\Cloud\Bigtable\V2\CheckAndMutateRowRequest;
 use Google\Cloud\Bigtable\V2\CheckAndMutateRowResponse;
 use Google\Cloud\Bigtable\V2\MutateRowRequest;
@@ -52,6 +55,8 @@ use Google\Cloud\Bigtable\V2\RowFilter;
 use Google\Cloud\Bigtable\V2\RowSet;
 use Google\Cloud\Bigtable\V2\SampleRowKeysRequest;
 use Google\Cloud\Bigtable\V2\SampleRowKeysResponse;
+use Grpc\Channel;
+use Grpc\ChannelCredentials;
 
 /**
  * Service Description: Service for reading from and writing to existing Bigtable tables.
@@ -64,8 +69,8 @@ use Google\Cloud\Bigtable\V2\SampleRowKeysResponse;
  * calls that map to API methods. Sample code to get started:
  *
  * ```
+ * $bigtableClient = new BigtableClient();
  * try {
- *     $bigtableClient = new BigtableClient();
  *     $formattedTableName = $bigtableClient->tableName('[PROJECT]', '[INSTANCE]', '[TABLE]');
  *     // Read all responses until the stream is complete
  *     $stream = $bigtableClient->readRows($formattedTableName);
@@ -133,6 +138,7 @@ class BigtableGapicClient
             'clientConfigPath' => __DIR__.'/../resources/bigtable_client_config.json',
             'restClientConfigPath' => __DIR__.'/../resources/bigtable_rest_client_config.php',
             'descriptorsConfigPath' => __DIR__.'/../resources/bigtable_descriptor_config.php',
+            'versionFile' => __DIR__.'/../../VERSION',
         ];
     }
 
@@ -226,10 +232,10 @@ class BigtableGapicClient
      *     @type string $serviceAddress The domain name of the API remote host.
      *                                  Default 'bigtable.googleapis.com'.
      *     @type mixed $port The port on which to connect to the remote host. Default 443.
-     *     @type \Grpc\Channel $channel
+     *     @type Channel $channel
      *           A `Channel` object. If not specified, a channel will be constructed.
      *           NOTE: This option is only valid when utilizing the gRPC transport.
-     *     @type \Grpc\ChannelCredentials $sslCreds
+     *     @type ChannelCredentials $sslCreds
      *           A `ChannelCredentials` object for use with an SSL-enabled channel.
      *           Default: a credentials object returned from
      *           \Grpc\ChannelCredentials::createSsl().
@@ -240,9 +246,9 @@ class BigtableGapicClient
      *           Defaults to false.
      *           NOTE: This option is only valid when utilizing the gRPC transport. Also, if the $channel
      *           optional argument is specified, then this option is unused.
-     *     @type \Google\Auth\CredentialsLoader $credentialsLoader
+     *     @type CredentialsLoader $credentialsLoader
      *           A CredentialsLoader object created using the Google\Auth library.
-     *     @type array $scopes A string array of scopes to use when acquiring credentials.
+     *     @type string[] $scopes A string array of scopes to use when acquiring credentials.
      *                          Defaults to the scopes for the Cloud Bigtable API.
      *     @type string $clientConfigPath
      *           Path to a JSON file containing client method configuration, including retry settings.
@@ -260,12 +266,11 @@ class BigtableGapicClient
      *           settings in $clientConfigPath.
      *     @type callable $authHttpHandler A handler used to deliver PSR-7 requests specifically
      *           for authentication. Should match a signature of
-     *           `function (RequestInterface $request, array $options) : ResponseInterface`
-     *           NOTE: This option is only valid when utilizing the REST transport.
+     *           `function (RequestInterface $request, array $options) : ResponseInterface`.
      *     @type callable $httpHandler A handler used to deliver PSR-7 requests. Should match a
-     *           signature of `function (RequestInterface $request, array $options) : PromiseInterface`
+     *           signature of `function (RequestInterface $request, array $options) : PromiseInterface`.
      *           NOTE: This option is only valid when utilizing the REST transport.
-     *     @type string|ApiTransportInterface $transport The transport used for executing network
+     *     @type string|TransportInterface $transport The transport used for executing network
      *           requests. May be either the string `rest` or `grpc`. Additionally, it is possible
      *           to pass in an already instantiated transport. Defaults to `grpc` if gRPC support is
      *           detected on the system.
@@ -286,8 +291,8 @@ class BigtableGapicClient
      *
      * Sample code:
      * ```
+     * $bigtableClient = new BigtableClient();
      * try {
-     *     $bigtableClient = new BigtableClient();
      *     $formattedTableName = $bigtableClient->tableName('[PROJECT]', '[INSTANCE]', '[TABLE]');
      *     // Read all responses until the stream is complete
      *     $stream = $bigtableClient->readRows($formattedTableName);
@@ -327,7 +332,7 @@ class BigtableGapicClient
      *
      * @return \Google\ApiCore\ServerStream
      *
-     * @throws \Google\ApiCore\ApiException if the remote call fails
+     * @throws ApiException if the remote call fails
      * @experimental
      */
     public function readRows($tableName, $optionalArgs = [])
@@ -347,14 +352,12 @@ class BigtableGapicClient
             $request->setRowsLimit($optionalArgs['rowsLimit']);
         }
 
-        return $this->transport->startServerStreamingCall(
-            new Call(
-                self::SERVICE_NAME.'/ReadRows',
-                ReadRowsResponse::class,
-                $request
-            ),
-            $this->configureCallSettings('readRows', $optionalArgs),
-            $this->descriptors['readRows']['grpcStreaming']
+        return $this->startCall(
+            'ReadRows',
+            ReadRowsResponse::class,
+            $optionalArgs,
+            $request,
+            Call::SERVER_STREAMING_CALL
         );
     }
 
@@ -366,8 +369,8 @@ class BigtableGapicClient
      *
      * Sample code:
      * ```
+     * $bigtableClient = new BigtableClient();
      * try {
-     *     $bigtableClient = new BigtableClient();
      *     $formattedTableName = $bigtableClient->tableName('[PROJECT]', '[INSTANCE]', '[TABLE]');
      *     // Read all responses until the stream is complete
      *     $stream = $bigtableClient->sampleRowKeys($formattedTableName);
@@ -399,7 +402,7 @@ class BigtableGapicClient
      *
      * @return \Google\ApiCore\ServerStream
      *
-     * @throws \Google\ApiCore\ApiException if the remote call fails
+     * @throws ApiException if the remote call fails
      * @experimental
      */
     public function sampleRowKeys($tableName, $optionalArgs = [])
@@ -410,14 +413,12 @@ class BigtableGapicClient
             $request->setAppProfileId($optionalArgs['appProfileId']);
         }
 
-        return $this->transport->startServerStreamingCall(
-            new Call(
-                self::SERVICE_NAME.'/SampleRowKeys',
-                SampleRowKeysResponse::class,
-                $request
-            ),
-            $this->configureCallSettings('sampleRowKeys', $optionalArgs),
-            $this->descriptors['sampleRowKeys']['grpcStreaming']
+        return $this->startCall(
+            'SampleRowKeys',
+            SampleRowKeysResponse::class,
+            $optionalArgs,
+            $request,
+            Call::SERVER_STREAMING_CALL
         );
     }
 
@@ -427,8 +428,8 @@ class BigtableGapicClient
      *
      * Sample code:
      * ```
+     * $bigtableClient = new BigtableClient();
      * try {
-     *     $bigtableClient = new BigtableClient();
      *     $formattedTableName = $bigtableClient->tableName('[PROJECT]', '[INSTANCE]', '[TABLE]');
      *     $rowKey = '';
      *     $mutations = [];
@@ -456,7 +457,7 @@ class BigtableGapicClient
      *
      *          This value specifies routing for replication. If not specified, the
      *          "default" application profile will be used.
-     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
+     *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
@@ -465,7 +466,7 @@ class BigtableGapicClient
      *
      * @return \Google\Cloud\Bigtable\V2\MutateRowResponse
      *
-     * @throws \Google\ApiCore\ApiException if the remote call fails
+     * @throws ApiException if the remote call fails
      * @experimental
      */
     public function mutateRow($tableName, $rowKey, $mutations, $optionalArgs = [])
@@ -479,12 +480,10 @@ class BigtableGapicClient
         }
 
         return $this->startCall(
-            new Call(
-                self::SERVICE_NAME.'/MutateRow',
-                MutateRowResponse::class,
-                $request
-            ),
-            $this->configureCallSettings('mutateRow', $optionalArgs)
+            'MutateRow',
+            MutateRowResponse::class,
+            $optionalArgs,
+            $request
         )->wait();
     }
 
@@ -495,8 +494,8 @@ class BigtableGapicClient
      *
      * Sample code:
      * ```
+     * $bigtableClient = new BigtableClient();
      * try {
-     *     $bigtableClient = new BigtableClient();
      *     $formattedTableName = $bigtableClient->tableName('[PROJECT]', '[INSTANCE]', '[TABLE]');
      *     $entries = [];
      *     // Read all responses until the stream is complete
@@ -532,7 +531,7 @@ class BigtableGapicClient
      *
      * @return \Google\ApiCore\ServerStream
      *
-     * @throws \Google\ApiCore\ApiException if the remote call fails
+     * @throws ApiException if the remote call fails
      * @experimental
      */
     public function mutateRows($tableName, $entries, $optionalArgs = [])
@@ -544,14 +543,12 @@ class BigtableGapicClient
             $request->setAppProfileId($optionalArgs['appProfileId']);
         }
 
-        return $this->transport->startServerStreamingCall(
-            new Call(
-                self::SERVICE_NAME.'/MutateRows',
-                MutateRowsResponse::class,
-                $request
-            ),
-            $this->configureCallSettings('mutateRows', $optionalArgs),
-            $this->descriptors['mutateRows']['grpcStreaming']
+        return $this->startCall(
+            'MutateRows',
+            MutateRowsResponse::class,
+            $optionalArgs,
+            $request,
+            Call::SERVER_STREAMING_CALL
         );
     }
 
@@ -560,8 +557,8 @@ class BigtableGapicClient
      *
      * Sample code:
      * ```
+     * $bigtableClient = new BigtableClient();
      * try {
-     *     $bigtableClient = new BigtableClient();
      *     $formattedTableName = $bigtableClient->tableName('[PROJECT]', '[INSTANCE]', '[TABLE]');
      *     $rowKey = '';
      *     $response = $bigtableClient->checkAndMutateRow($formattedTableName, $rowKey);
@@ -603,7 +600,7 @@ class BigtableGapicClient
      *          order, meaning that earlier mutations can be masked by later ones.
      *          Must contain at least one entry if `true_mutations` is empty, and at most
      *          100000.
-     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
+     *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
@@ -612,7 +609,7 @@ class BigtableGapicClient
      *
      * @return \Google\Cloud\Bigtable\V2\CheckAndMutateRowResponse
      *
-     * @throws \Google\ApiCore\ApiException if the remote call fails
+     * @throws ApiException if the remote call fails
      * @experimental
      */
     public function checkAndMutateRow($tableName, $rowKey, $optionalArgs = [])
@@ -634,12 +631,10 @@ class BigtableGapicClient
         }
 
         return $this->startCall(
-            new Call(
-                self::SERVICE_NAME.'/CheckAndMutateRow',
-                CheckAndMutateRowResponse::class,
-                $request
-            ),
-            $this->configureCallSettings('checkAndMutateRow', $optionalArgs)
+            'CheckAndMutateRow',
+            CheckAndMutateRowResponse::class,
+            $optionalArgs,
+            $request
         )->wait();
     }
 
@@ -652,8 +647,8 @@ class BigtableGapicClient
      *
      * Sample code:
      * ```
+     * $bigtableClient = new BigtableClient();
      * try {
-     *     $bigtableClient = new BigtableClient();
      *     $formattedTableName = $bigtableClient->tableName('[PROJECT]', '[INSTANCE]', '[TABLE]');
      *     $rowKey = '';
      *     $rules = [];
@@ -682,7 +677,7 @@ class BigtableGapicClient
      *
      *          This value specifies routing for replication. If not specified, the
      *          "default" application profile will be used.
-     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
+     *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
@@ -691,7 +686,7 @@ class BigtableGapicClient
      *
      * @return \Google\Cloud\Bigtable\V2\ReadModifyWriteRowResponse
      *
-     * @throws \Google\ApiCore\ApiException if the remote call fails
+     * @throws ApiException if the remote call fails
      * @experimental
      */
     public function readModifyWriteRow($tableName, $rowKey, $rules, $optionalArgs = [])
@@ -705,23 +700,10 @@ class BigtableGapicClient
         }
 
         return $this->startCall(
-            new Call(
-                self::SERVICE_NAME.'/ReadModifyWriteRow',
-                ReadModifyWriteRowResponse::class,
-                $request
-            ),
-            $this->configureCallSettings('readModifyWriteRow', $optionalArgs)
+            'ReadModifyWriteRow',
+            ReadModifyWriteRowResponse::class,
+            $optionalArgs,
+            $request
         )->wait();
-    }
-
-    /**
-     * Initiates an orderly shutdown in which preexisting calls continue but new
-     * calls are immediately cancelled.
-     *
-     * @experimental
-     */
-    public function close()
-    {
-        $this->transport->close();
     }
 }

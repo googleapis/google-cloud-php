@@ -3,19 +3,19 @@
 return [
     'interfaces' => [
         'google.spanner.admin.database.v1.DatabaseAdmin' => [
-            'createDatabase' => [
+            'CreateDatabase' => [
                 'longRunning' => [
                     'operationReturnType' => '\Google\Cloud\Spanner\Admin\Database\V1\Database',
                     'metadataReturnType' => '\Google\Cloud\Spanner\Admin\Database\V1\CreateDatabaseMetadata',
                 ],
             ],
-            'updateDatabaseDdl' => [
+            'UpdateDatabaseDdl' => [
                 'longRunning' => [
                     'operationReturnType' => '\Google\Protobuf\GPBEmpty',
                     'metadataReturnType' => '\Google\Cloud\Spanner\Admin\Database\V1\UpdateDatabaseDdlMetadata',
                 ],
             ],
-            'listDatabases' => [
+            'ListDatabases' => [
                 'pageStreaming' => [
                     'requestPageTokenGetMethod' => 'getPageToken',
                     'requestPageTokenSetMethod' => 'setPageToken',

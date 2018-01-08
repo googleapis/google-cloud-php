@@ -3,13 +3,13 @@
 return [
     'interfaces' => [
         'google.bigtable.admin.v2.BigtableTableAdmin' => [
-            'createTableFromSnapshot' => [
+            'CreateTableFromSnapshot' => [
                 'longRunning' => [
                     'operationReturnType' => '\Google\Cloud\Bigtable\Admin\V2\Table',
                     'metadataReturnType' => '\Google\Cloud\Bigtable\Admin\V2\CreateTableFromSnapshotMetadata',
                 ],
             ],
-            'listTables' => [
+            'ListTables' => [
                 'pageStreaming' => [
                     'requestPageTokenGetMethod' => 'getPageToken',
                     'requestPageTokenSetMethod' => 'setPageToken',
@@ -17,7 +17,7 @@ return [
                     'resourcesGetMethod' => 'getTables',
                 ],
             ],
-            'listSnapshots' => [
+            'ListSnapshots' => [
                 'pageStreaming' => [
                     'requestPageTokenGetMethod' => 'getPageToken',
                     'requestPageTokenSetMethod' => 'setPageToken',

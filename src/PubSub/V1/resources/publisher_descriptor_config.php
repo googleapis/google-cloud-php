@@ -3,7 +3,7 @@
 return [
     'interfaces' => [
         'google.pubsub.v1.Publisher' => [
-            'listTopics' => [
+            'ListTopics' => [
                 'pageStreaming' => [
                     'requestPageTokenGetMethod' => 'getPageToken',
                     'requestPageTokenSetMethod' => 'setPageToken',
@@ -13,7 +13,7 @@ return [
                     'resourcesGetMethod' => 'getTopics',
                 ],
             ],
-            'listTopicSubscriptions' => [
+            'ListTopicSubscriptions' => [
                 'pageStreaming' => [
                     'requestPageTokenGetMethod' => 'getPageToken',
                     'requestPageTokenSetMethod' => 'setPageToken',

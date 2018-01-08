@@ -5,75 +5,91 @@ return [
         'google.monitoring.v3.MetricService' => [
             'ListMonitoredResourceDescriptors' => [
                 'method' => 'get',
-                'uri' => '/v3/{name=projects/*}/monitoredResourceDescriptors',
+                'uriTemplate' => '/v3/{name=projects/*}/monitoredResourceDescriptors',
                 'placeholders' => [
                     'name' => [
-                        'getName',
+                        'getters' => [
+                            'getName',
+                        ],
                     ],
                 ],
             ],
             'GetMonitoredResourceDescriptor' => [
                 'method' => 'get',
-                'uri' => '/v3/{name=projects/*/monitoredResourceDescriptors/*}',
+                'uriTemplate' => '/v3/{name=projects/*/monitoredResourceDescriptors/*}',
                 'placeholders' => [
                     'name' => [
-                        'getName',
+                        'getters' => [
+                            'getName',
+                        ],
                     ],
                 ],
             ],
             'ListMetricDescriptors' => [
                 'method' => 'get',
-                'uri' => '/v3/{name=projects/*}/metricDescriptors',
+                'uriTemplate' => '/v3/{name=projects/*}/metricDescriptors',
                 'placeholders' => [
                     'name' => [
-                        'getName',
+                        'getters' => [
+                            'getName',
+                        ],
                     ],
                 ],
             ],
             'GetMetricDescriptor' => [
                 'method' => 'get',
-                'uri' => '/v3/{name=projects/*/metricDescriptors/**}',
+                'uriTemplate' => '/v3/{name=projects/*/metricDescriptors/**}',
                 'placeholders' => [
                     'name' => [
-                        'getName',
+                        'getters' => [
+                            'getName',
+                        ],
                     ],
                 ],
             ],
             'CreateMetricDescriptor' => [
                 'method' => 'post',
-                'uri' => '/v3/{name=projects/*}/metricDescriptors',
+                'uriTemplate' => '/v3/{name=projects/*}/metricDescriptors',
                 'body' => 'metric_descriptor',
                 'placeholders' => [
                     'name' => [
-                        'getName',
+                        'getters' => [
+                            'getName',
+                        ],
                     ],
                 ],
             ],
             'DeleteMetricDescriptor' => [
                 'method' => 'delete',
-                'uri' => '/v3/{name=projects/*/metricDescriptors/**}',
+                'uriTemplate' => '/v3/{name=projects/*/metricDescriptors/**}',
                 'placeholders' => [
                     'name' => [
-                        'getName',
+                        'getters' => [
+                            'getName',
+                        ],
                     ],
                 ],
             ],
             'ListTimeSeries' => [
                 'method' => 'get',
-                'uri' => '/v3/{name=projects/*}/timeSeries',
+                'uriTemplate' => '/v3/{name=projects/*}/timeSeries',
                 'placeholders' => [
                     'name' => [
-                        'getName',
+                        'getters' => [
+                            'getName',
+                        ],
                     ],
                 ],
             ],
             'CreateTimeSeries' => [
                 'method' => 'post',
-                'uri' => '/v3/{name=projects/*}/timeSeries',
+                'uriTemplate' => '/v3/{name=projects/*}/timeSeries',
                 'body' => '*',
                 'placeholders' => [
                     'name' => [
-                        'getName',
+                        'getters' => [
+                            'getName',
+                        ],
                     ],
                 ],
             ],

@@ -3,7 +3,7 @@
 return [
     'interfaces' => [
         'google.firestore.v1beta1.Firestore' => [
-            'listDocuments' => [
+            'ListDocuments' => [
                 'pageStreaming' => [
                     'requestPageTokenGetMethod' => 'getPageToken',
                     'requestPageTokenSetMethod' => 'setPageToken',
@@ -13,7 +13,7 @@ return [
                     'resourcesGetMethod' => 'getDocuments',
                 ],
             ],
-            'listCollectionIds' => [
+            'ListCollectionIds' => [
                 'pageStreaming' => [
                     'requestPageTokenGetMethod' => 'getPageToken',
                     'requestPageTokenSetMethod' => 'setPageToken',
@@ -23,22 +23,22 @@ return [
                     'resourcesGetMethod' => 'getCollectionIds',
                 ],
             ],
-            'batchGetDocuments' => [
+            'BatchGetDocuments' => [
                 'grpcStreaming' => [
                     'grpcStreamingType' => 'ServerStreaming',
                 ],
             ],
-            'runQuery' => [
+            'RunQuery' => [
                 'grpcStreaming' => [
                     'grpcStreamingType' => 'ServerStreaming',
                 ],
             ],
-            'write' => [
+            'Write' => [
                 'grpcStreaming' => [
                     'grpcStreamingType' => 'BidiStreaming',
                 ],
             ],
-            'listen' => [
+            'Listen' => [
                 'grpcStreaming' => [
                     'grpcStreamingType' => 'BidiStreaming',
                 ],

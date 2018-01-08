@@ -1,12 +1,12 @@
 <?php
 /*
- * Copyright 2017, Google LLC All rights reserved.
+ * Copyright 2017 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
+ *     https://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -30,12 +30,14 @@
 
 namespace Google\Cloud\Logging\V2\Gapic;
 
-use Google\ApiCore\Call;
+use Google\ApiCore\ApiException;
 use Google\ApiCore\GapicClientTrait;
 use Google\ApiCore\PathTemplate;
-use Google\ApiCore\Transport\ApiTransportInterface;
+use Google\ApiCore\RetrySettings;
+use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
 use Google\Api\MonitoredResource;
+use Google\Auth\CredentialsLoader;
 use Google\Cloud\Logging\V2\DeleteLogRequest;
 use Google\Cloud\Logging\V2\ListLogEntriesRequest;
 use Google\Cloud\Logging\V2\ListLogEntriesResponse;
@@ -47,6 +49,8 @@ use Google\Cloud\Logging\V2\LogEntry;
 use Google\Cloud\Logging\V2\WriteLogEntriesRequest;
 use Google\Cloud\Logging\V2\WriteLogEntriesResponse;
 use Google\Protobuf\GPBEmpty;
+use Grpc\Channel;
+use Grpc\ChannelCredentials;
 
 /**
  * Service Description: Service for ingesting and querying logs.
@@ -59,8 +63,8 @@ use Google\Protobuf\GPBEmpty;
  * calls that map to API methods. Sample code to get started:
  *
  * ```
+ * $loggingServiceV2Client = new LoggingServiceV2Client();
  * try {
- *     $loggingServiceV2Client = new LoggingServiceV2Client();
  *     $formattedLogName = $loggingServiceV2Client->logName('[PROJECT]', '[LOG]');
  *     $loggingServiceV2Client->deleteLog($formattedLogName);
  * } finally {
@@ -124,6 +128,7 @@ class LoggingServiceV2GapicClient
             'clientConfigPath' => __DIR__.'/../resources/logging_service_v2_client_config.json',
             'restClientConfigPath' => __DIR__.'/../resources/logging_service_v2_rest_client_config.php',
             'descriptorsConfigPath' => __DIR__.'/../resources/logging_service_v2_descriptor_config.php',
+            'versionFile' => __DIR__.'/../../VERSION',
         ];
     }
 
@@ -242,10 +247,10 @@ class LoggingServiceV2GapicClient
      *     @type string $serviceAddress The domain name of the API remote host.
      *                                  Default 'logging.googleapis.com'.
      *     @type mixed $port The port on which to connect to the remote host. Default 443.
-     *     @type \Grpc\Channel $channel
+     *     @type Channel $channel
      *           A `Channel` object. If not specified, a channel will be constructed.
      *           NOTE: This option is only valid when utilizing the gRPC transport.
-     *     @type \Grpc\ChannelCredentials $sslCreds
+     *     @type ChannelCredentials $sslCreds
      *           A `ChannelCredentials` object for use with an SSL-enabled channel.
      *           Default: a credentials object returned from
      *           \Grpc\ChannelCredentials::createSsl().
@@ -256,9 +261,9 @@ class LoggingServiceV2GapicClient
      *           Defaults to false.
      *           NOTE: This option is only valid when utilizing the gRPC transport. Also, if the $channel
      *           optional argument is specified, then this option is unused.
-     *     @type \Google\Auth\CredentialsLoader $credentialsLoader
+     *     @type CredentialsLoader $credentialsLoader
      *           A CredentialsLoader object created using the Google\Auth library.
-     *     @type array $scopes A string array of scopes to use when acquiring credentials.
+     *     @type string[] $scopes A string array of scopes to use when acquiring credentials.
      *                          Defaults to the scopes for the Stackdriver Logging API.
      *     @type string $clientConfigPath
      *           Path to a JSON file containing client method configuration, including retry settings.
@@ -276,12 +281,11 @@ class LoggingServiceV2GapicClient
      *           settings in $clientConfigPath.
      *     @type callable $authHttpHandler A handler used to deliver PSR-7 requests specifically
      *           for authentication. Should match a signature of
-     *           `function (RequestInterface $request, array $options) : ResponseInterface`
-     *           NOTE: This option is only valid when utilizing the REST transport.
+     *           `function (RequestInterface $request, array $options) : ResponseInterface`.
      *     @type callable $httpHandler A handler used to deliver PSR-7 requests. Should match a
-     *           signature of `function (RequestInterface $request, array $options) : PromiseInterface`
+     *           signature of `function (RequestInterface $request, array $options) : PromiseInterface`.
      *           NOTE: This option is only valid when utilizing the REST transport.
-     *     @type string|ApiTransportInterface $transport The transport used for executing network
+     *     @type string|TransportInterface $transport The transport used for executing network
      *           requests. May be either the string `rest` or `grpc`. Additionally, it is possible
      *           to pass in an already instantiated transport. Defaults to `grpc` if gRPC support is
      *           detected on the system.
@@ -301,8 +305,8 @@ class LoggingServiceV2GapicClient
      *
      * Sample code:
      * ```
+     * $loggingServiceV2Client = new LoggingServiceV2Client();
      * try {
-     *     $loggingServiceV2Client = new LoggingServiceV2Client();
      *     $formattedLogName = $loggingServiceV2Client->logName('[PROJECT]', '[LOG]');
      *     $loggingServiceV2Client->deleteLog($formattedLogName);
      * } finally {
@@ -325,14 +329,14 @@ class LoggingServiceV2GapicClient
      * @param array $optionalArgs {
      *                            Optional.
      *
-     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
+     *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
      *          {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
-     * @throws \Google\ApiCore\ApiException if the remote call fails
+     * @throws ApiException if the remote call fails
      * @experimental
      */
     public function deleteLog($logName, $optionalArgs = [])
@@ -341,12 +345,10 @@ class LoggingServiceV2GapicClient
         $request->setLogName($logName);
 
         return $this->startCall(
-            new Call(
-                self::SERVICE_NAME.'/DeleteLog',
-                GPBEmpty::class,
-                $request
-            ),
-            $this->configureCallSettings('deleteLog', $optionalArgs)
+            'DeleteLog',
+            GPBEmpty::class,
+            $optionalArgs,
+            $request
         )->wait();
     }
 
@@ -361,8 +363,8 @@ class LoggingServiceV2GapicClient
      *
      * Sample code:
      * ```
+     * $loggingServiceV2Client = new LoggingServiceV2Client();
      * try {
-     *     $loggingServiceV2Client = new LoggingServiceV2Client();
      *     $entries = [];
      *     $response = $loggingServiceV2Client->writeLogEntries($entries);
      * } finally {
@@ -428,7 +430,7 @@ class LoggingServiceV2GapicClient
      *          entry is not written, then the response status is the error associated
      *          with one of the failed entries and the response includes error details
      *          keyed by the entries' zero-based index in the `entries.write` method.
-     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
+     *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
@@ -437,7 +439,7 @@ class LoggingServiceV2GapicClient
      *
      * @return \Google\Cloud\Logging\V2\WriteLogEntriesResponse
      *
-     * @throws \Google\ApiCore\ApiException if the remote call fails
+     * @throws ApiException if the remote call fails
      * @experimental
      */
     public function writeLogEntries($entries, $optionalArgs = [])
@@ -458,12 +460,10 @@ class LoggingServiceV2GapicClient
         }
 
         return $this->startCall(
-            new Call(
-                self::SERVICE_NAME.'/WriteLogEntries',
-                WriteLogEntriesResponse::class,
-                $request
-            ),
-            $this->configureCallSettings('writeLogEntries', $optionalArgs)
+            'WriteLogEntries',
+            WriteLogEntriesResponse::class,
+            $optionalArgs,
+            $request
         )->wait();
     }
 
@@ -474,8 +474,8 @@ class LoggingServiceV2GapicClient
      *
      * Sample code:
      * ```
+     * $loggingServiceV2Client = new LoggingServiceV2Client();
      * try {
-     *     $loggingServiceV2Client = new LoggingServiceV2Client();
      *     $resourceNames = [];
      *     // Iterate through all elements
      *     $pagedResponse = $loggingServiceV2Client->listLogEntries($resourceNames);
@@ -537,7 +537,7 @@ class LoggingServiceV2GapicClient
      *          If no page token is specified (the default), the first page
      *          of values will be returned. Any page token used here must have
      *          been generated by a previous call to the API.
-     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
+     *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
@@ -546,7 +546,7 @@ class LoggingServiceV2GapicClient
      *
      * @return \Google\ApiCore\PagedListResponse
      *
-     * @throws \Google\ApiCore\ApiException if the remote call fails
+     * @throws ApiException if the remote call fails
      * @experimental
      */
     public function listLogEntries($resourceNames, $optionalArgs = [])
@@ -570,13 +570,10 @@ class LoggingServiceV2GapicClient
         }
 
         return $this->getPagedListResponse(
-            new Call(
-                self::SERVICE_NAME.'/ListLogEntries',
-                ListLogEntriesResponse::class,
-                $request
-            ),
-            $this->configureCallSettings('listLogEntries', $optionalArgs),
-            $this->descriptors['listLogEntries']['pageStreaming']
+            'ListLogEntries',
+            $optionalArgs,
+            ListLogEntriesResponse::class,
+            $request
         );
     }
 
@@ -586,8 +583,8 @@ class LoggingServiceV2GapicClient
      *
      * Sample code:
      * ```
+     * $loggingServiceV2Client = new LoggingServiceV2Client();
      * try {
-     *     $loggingServiceV2Client = new LoggingServiceV2Client();
      *
      *     // Iterate through all elements
      *     $pagedResponse = $loggingServiceV2Client->listMonitoredResourceDescriptors();
@@ -619,7 +616,7 @@ class LoggingServiceV2GapicClient
      *          If no page token is specified (the default), the first page
      *          of values will be returned. Any page token used here must have
      *          been generated by a previous call to the API.
-     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
+     *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
@@ -628,7 +625,7 @@ class LoggingServiceV2GapicClient
      *
      * @return \Google\ApiCore\PagedListResponse
      *
-     * @throws \Google\ApiCore\ApiException if the remote call fails
+     * @throws ApiException if the remote call fails
      * @experimental
      */
     public function listMonitoredResourceDescriptors($optionalArgs = [])
@@ -642,13 +639,10 @@ class LoggingServiceV2GapicClient
         }
 
         return $this->getPagedListResponse(
-            new Call(
-                self::SERVICE_NAME.'/ListMonitoredResourceDescriptors',
-                ListMonitoredResourceDescriptorsResponse::class,
-                $request
-            ),
-            $this->configureCallSettings('listMonitoredResourceDescriptors', $optionalArgs),
-            $this->descriptors['listMonitoredResourceDescriptors']['pageStreaming']
+            'ListMonitoredResourceDescriptors',
+            $optionalArgs,
+            ListMonitoredResourceDescriptorsResponse::class,
+            $request
         );
     }
 
@@ -658,8 +652,8 @@ class LoggingServiceV2GapicClient
      *
      * Sample code:
      * ```
+     * $loggingServiceV2Client = new LoggingServiceV2Client();
      * try {
-     *     $loggingServiceV2Client = new LoggingServiceV2Client();
      *     $formattedParent = $loggingServiceV2Client->projectName('[PROJECT]');
      *     // Iterate through all elements
      *     $pagedResponse = $loggingServiceV2Client->listLogs($formattedParent);
@@ -697,7 +691,7 @@ class LoggingServiceV2GapicClient
      *          If no page token is specified (the default), the first page
      *          of values will be returned. Any page token used here must have
      *          been generated by a previous call to the API.
-     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
+     *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
@@ -706,7 +700,7 @@ class LoggingServiceV2GapicClient
      *
      * @return \Google\ApiCore\PagedListResponse
      *
-     * @throws \Google\ApiCore\ApiException if the remote call fails
+     * @throws ApiException if the remote call fails
      * @experimental
      */
     public function listLogs($parent, $optionalArgs = [])
@@ -721,24 +715,10 @@ class LoggingServiceV2GapicClient
         }
 
         return $this->getPagedListResponse(
-            new Call(
-                self::SERVICE_NAME.'/ListLogs',
-                ListLogsResponse::class,
-                $request
-            ),
-            $this->configureCallSettings('listLogs', $optionalArgs),
-            $this->descriptors['listLogs']['pageStreaming']
+            'ListLogs',
+            $optionalArgs,
+            ListLogsResponse::class,
+            $request
         );
-    }
-
-    /**
-     * Initiates an orderly shutdown in which preexisting calls continue but new
-     * calls are immediately cancelled.
-     *
-     * @experimental
-     */
-    public function close()
-    {
-        $this->transport->close();
     }
 }

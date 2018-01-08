@@ -1,12 +1,12 @@
 <?php
 /*
- * Copyright 2017, Google LLC All rights reserved.
+ * Copyright 2017 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
+ *     https://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -30,13 +30,15 @@
 
 namespace Google\Cloud\Dlp\V2beta1\Gapic;
 
-use Google\ApiCore\Call;
+use Google\ApiCore\ApiException;
 use Google\ApiCore\GapicClientTrait;
 use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\OperationResponse;
 use Google\ApiCore\PathTemplate;
-use Google\ApiCore\Transport\ApiTransportInterface;
+use Google\ApiCore\RetrySettings;
+use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
+use Google\Auth\CredentialsLoader;
 use Google\Cloud\Dlp\V2beta1\AnalyzeDataSourceRiskRequest;
 use Google\Cloud\Dlp\V2beta1\BigQueryTable;
 use Google\Cloud\Dlp\V2beta1\ContentItem;
@@ -62,6 +64,8 @@ use Google\Cloud\Dlp\V2beta1\RedactContentRequest_ReplaceConfig as ReplaceConfig
 use Google\Cloud\Dlp\V2beta1\RedactContentResponse;
 use Google\Cloud\Dlp\V2beta1\StorageConfig;
 use Google\LongRunning\Operation;
+use Grpc\Channel;
+use Grpc\ChannelCredentials;
 
 /**
  * Service Description: The DLP API is a service that allows clients
@@ -79,8 +83,8 @@ use Google\LongRunning\Operation;
  * calls that map to API methods. Sample code to get started:
  *
  * ```
+ * $dlpServiceClient = new DlpServiceClient();
  * try {
- *     $dlpServiceClient = new DlpServiceClient();
  *     $name = 'EMAIL_ADDRESS';
  *     $infoTypesElement = new InfoType();
  *     $infoTypesElement->setName($name);
@@ -152,6 +156,7 @@ class DlpServiceGapicClient
             'clientConfigPath' => __DIR__.'/../resources/dlp_service_client_config.json',
             'restClientConfigPath' => __DIR__.'/../resources/dlp_service_rest_client_config.php',
             'descriptorsConfigPath' => __DIR__.'/../resources/dlp_service_descriptor_config.php',
+            'versionFile' => __DIR__.'/../../VERSION',
         ];
     }
 
@@ -235,7 +240,7 @@ class DlpServiceGapicClient
     /**
      * Return an OperationsClient object with the same endpoint as $this.
      *
-     * @return \Google\ApiCore\LongRunning\OperationsClient
+     * @return OperationsClient
      * @experimental
      */
     public function getOperationsClient()
@@ -253,7 +258,7 @@ class DlpServiceGapicClient
      * @param string $operationName The name of the long running operation
      * @param string $methodName    The name of the method used to start the operation
      *
-     * @return \Google\ApiCore\OperationResponse
+     * @return OperationResponse
      * @experimental
      */
     public function resumeOperation($operationName, $methodName = null)
@@ -276,10 +281,10 @@ class DlpServiceGapicClient
      *     @type string $serviceAddress The domain name of the API remote host.
      *                                  Default 'dlp.googleapis.com'.
      *     @type mixed $port The port on which to connect to the remote host. Default 443.
-     *     @type \Grpc\Channel $channel
+     *     @type Channel $channel
      *           A `Channel` object. If not specified, a channel will be constructed.
      *           NOTE: This option is only valid when utilizing the gRPC transport.
-     *     @type \Grpc\ChannelCredentials $sslCreds
+     *     @type ChannelCredentials $sslCreds
      *           A `ChannelCredentials` object for use with an SSL-enabled channel.
      *           Default: a credentials object returned from
      *           \Grpc\ChannelCredentials::createSsl().
@@ -290,9 +295,9 @@ class DlpServiceGapicClient
      *           Defaults to false.
      *           NOTE: This option is only valid when utilizing the gRPC transport. Also, if the $channel
      *           optional argument is specified, then this option is unused.
-     *     @type \Google\Auth\CredentialsLoader $credentialsLoader
+     *     @type CredentialsLoader $credentialsLoader
      *           A CredentialsLoader object created using the Google\Auth library.
-     *     @type array $scopes A string array of scopes to use when acquiring credentials.
+     *     @type string[] $scopes A string array of scopes to use when acquiring credentials.
      *                          Defaults to the scopes for the DLP API.
      *     @type string $clientConfigPath
      *           Path to a JSON file containing client method configuration, including retry settings.
@@ -310,12 +315,11 @@ class DlpServiceGapicClient
      *           settings in $clientConfigPath.
      *     @type callable $authHttpHandler A handler used to deliver PSR-7 requests specifically
      *           for authentication. Should match a signature of
-     *           `function (RequestInterface $request, array $options) : ResponseInterface`
-     *           NOTE: This option is only valid when utilizing the REST transport.
+     *           `function (RequestInterface $request, array $options) : ResponseInterface`.
      *     @type callable $httpHandler A handler used to deliver PSR-7 requests. Should match a
-     *           signature of `function (RequestInterface $request, array $options) : PromiseInterface`
+     *           signature of `function (RequestInterface $request, array $options) : PromiseInterface`.
      *           NOTE: This option is only valid when utilizing the REST transport.
-     *     @type string|ApiTransportInterface $transport The transport used for executing network
+     *     @type string|TransportInterface $transport The transport used for executing network
      *           requests. May be either the string `rest` or `grpc`. Additionally, it is possible
      *           to pass in an already instantiated transport. Defaults to `grpc` if gRPC support is
      *           detected on the system.
@@ -341,8 +345,8 @@ class DlpServiceGapicClient
      *
      * Sample code:
      * ```
+     * $dlpServiceClient = new DlpServiceClient();
      * try {
-     *     $dlpServiceClient = new DlpServiceClient();
      *     $name = 'EMAIL_ADDRESS';
      *     $infoTypesElement = new InfoType();
      *     $infoTypesElement->setName($name);
@@ -368,7 +372,7 @@ class DlpServiceGapicClient
      * @param array         $optionalArgs  {
      *                                     Optional.
      *
-     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
+     *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
@@ -377,7 +381,7 @@ class DlpServiceGapicClient
      *
      * @return \Google\Cloud\Dlp\V2beta1\InspectContentResponse
      *
-     * @throws \Google\ApiCore\ApiException if the remote call fails
+     * @throws ApiException if the remote call fails
      * @experimental
      */
     public function inspectContent($inspectConfig, $items, $optionalArgs = [])
@@ -387,12 +391,10 @@ class DlpServiceGapicClient
         $request->setItems($items);
 
         return $this->startCall(
-            new Call(
-                self::SERVICE_NAME.'/InspectContent',
-                InspectContentResponse::class,
-                $request
-            ),
-            $this->configureCallSettings('inspectContent', $optionalArgs)
+            'InspectContent',
+            InspectContentResponse::class,
+            $optionalArgs,
+            $request
         )->wait();
     }
 
@@ -402,8 +404,8 @@ class DlpServiceGapicClient
      *
      * Sample code:
      * ```
+     * $dlpServiceClient = new DlpServiceClient();
      * try {
-     *     $dlpServiceClient = new DlpServiceClient();
      *     $name = 'EMAIL_ADDRESS';
      *     $infoTypesElement = new InfoType();
      *     $infoTypesElement->setName($name);
@@ -416,7 +418,15 @@ class DlpServiceGapicClient
      *     $itemsElement->setType($type);
      *     $itemsElement->setValue($value);
      *     $items = [$itemsElement];
-     *     $response = $dlpServiceClient->redactContent($inspectConfig, $items);
+     *     $name2 = 'EMAIL_ADDRESS';
+     *     $infoType = new InfoType();
+     *     $infoType->setName($name2);
+     *     $replaceWith = 'REDACTED';
+     *     $replaceConfigsElement = new ReplaceConfig();
+     *     $replaceConfigsElement->setInfoType($infoType);
+     *     $replaceConfigsElement->setReplaceWith($replaceWith);
+     *     $replaceConfigs = [$replaceConfigsElement];
+     *     $response = $dlpServiceClient->redactContent($inspectConfig, $items, ['replaceConfigs' => $replaceConfigs]);
      * } finally {
      *     $dlpServiceClient->close();
      * }
@@ -432,7 +442,7 @@ class DlpServiceGapicClient
      *          one of these or one ImageRedactionConfig if redacting images.
      *     @type ImageRedactionConfig[] $imageRedactionConfigs
      *          The configuration for specifying what content to redact from images.
-     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
+     *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
@@ -441,7 +451,7 @@ class DlpServiceGapicClient
      *
      * @return \Google\Cloud\Dlp\V2beta1\RedactContentResponse
      *
-     * @throws \Google\ApiCore\ApiException if the remote call fails
+     * @throws ApiException if the remote call fails
      * @experimental
      */
     public function redactContent($inspectConfig, $items, $optionalArgs = [])
@@ -457,12 +467,10 @@ class DlpServiceGapicClient
         }
 
         return $this->startCall(
-            new Call(
-                self::SERVICE_NAME.'/RedactContent',
-                RedactContentResponse::class,
-                $request
-            ),
-            $this->configureCallSettings('redactContent', $optionalArgs)
+            'RedactContent',
+            RedactContentResponse::class,
+            $optionalArgs,
+            $request
         )->wait();
     }
 
@@ -472,8 +480,8 @@ class DlpServiceGapicClient
      *
      * Sample code:
      * ```
+     * $dlpServiceClient = new DlpServiceClient();
      * try {
-     *     $dlpServiceClient = new DlpServiceClient();
      *     $deidentifyConfig = new DeidentifyConfig();
      *     $inspectConfig = new InspectConfig();
      *     $items = [];
@@ -490,7 +498,7 @@ class DlpServiceGapicClient
      * @param array            $optionalArgs     {
      *                                           Optional.
      *
-     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
+     *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
@@ -499,7 +507,7 @@ class DlpServiceGapicClient
      *
      * @return \Google\Cloud\Dlp\V2beta1\DeidentifyContentResponse
      *
-     * @throws \Google\ApiCore\ApiException if the remote call fails
+     * @throws ApiException if the remote call fails
      * @experimental
      */
     public function deidentifyContent($deidentifyConfig, $inspectConfig, $items, $optionalArgs = [])
@@ -510,12 +518,10 @@ class DlpServiceGapicClient
         $request->setItems($items);
 
         return $this->startCall(
-            new Call(
-                self::SERVICE_NAME.'/DeidentifyContent',
-                DeidentifyContentResponse::class,
-                $request
-            ),
-            $this->configureCallSettings('deidentifyContent', $optionalArgs)
+            'DeidentifyContent',
+            DeidentifyContentResponse::class,
+            $optionalArgs,
+            $request
         )->wait();
     }
 
@@ -525,8 +531,8 @@ class DlpServiceGapicClient
      *
      * Sample code:
      * ```
+     * $dlpServiceClient = new DlpServiceClient();
      * try {
-     *     $dlpServiceClient = new DlpServiceClient();
      *     $privacyMetric = new PrivacyMetric();
      *     $sourceTable = new BigQueryTable();
      *     $operationResponse = $dlpServiceClient->analyzeDataSourceRisk($privacyMetric, $sourceTable);
@@ -565,7 +571,7 @@ class DlpServiceGapicClient
      * @param array         $optionalArgs  {
      *                                     Optional.
      *
-     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
+     *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
@@ -574,7 +580,7 @@ class DlpServiceGapicClient
      *
      * @return \Google\ApiCore\OperationResponse
      *
-     * @throws \Google\ApiCore\ApiException if the remote call fails
+     * @throws ApiException if the remote call fails
      * @experimental
      */
     public function analyzeDataSourceRisk($privacyMetric, $sourceTable, $optionalArgs = [])
@@ -584,14 +590,10 @@ class DlpServiceGapicClient
         $request->setSourceTable($sourceTable);
 
         return $this->startOperationsCall(
-            new Call(
-                self::SERVICE_NAME.'/AnalyzeDataSourceRisk',
-                Operation::class,
-                $request
-            ),
-            $this->configureCallSettings('analyzeDataSourceRisk', $optionalArgs),
-            $this->getOperationsClient(),
-            $this->descriptors['analyzeDataSourceRisk']['longRunning']
+            'AnalyzeDataSourceRisk',
+            $optionalArgs,
+            $request,
+            $this->getOperationsClient()
         )->wait();
     }
 
@@ -601,8 +603,8 @@ class DlpServiceGapicClient
      *
      * Sample code:
      * ```
+     * $dlpServiceClient = new DlpServiceClient();
      * try {
-     *     $dlpServiceClient = new DlpServiceClient();
      *     $name = 'EMAIL_ADDRESS';
      *     $infoTypesElement = new InfoType();
      *     $infoTypesElement->setName($name);
@@ -656,7 +658,7 @@ class DlpServiceGapicClient
      *
      *     @type OperationConfig $operationConfig
      *          Additional configuration settings for long running operations.
-     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
+     *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
@@ -665,7 +667,7 @@ class DlpServiceGapicClient
      *
      * @return \Google\ApiCore\OperationResponse
      *
-     * @throws \Google\ApiCore\ApiException if the remote call fails
+     * @throws ApiException if the remote call fails
      * @experimental
      */
     public function createInspectOperation($inspectConfig, $storageConfig, $outputConfig, $optionalArgs = [])
@@ -679,14 +681,10 @@ class DlpServiceGapicClient
         }
 
         return $this->startOperationsCall(
-            new Call(
-                self::SERVICE_NAME.'/CreateInspectOperation',
-                Operation::class,
-                $request
-            ),
-            $this->configureCallSettings('createInspectOperation', $optionalArgs),
-            $this->getOperationsClient(),
-            $this->descriptors['createInspectOperation']['longRunning']
+            'CreateInspectOperation',
+            $optionalArgs,
+            $request,
+            $this->getOperationsClient()
         )->wait();
     }
 
@@ -695,8 +693,8 @@ class DlpServiceGapicClient
      *
      * Sample code:
      * ```
+     * $dlpServiceClient = new DlpServiceClient();
      * try {
-     *     $dlpServiceClient = new DlpServiceClient();
      *     $formattedName = $dlpServiceClient->resultName('[RESULT]');
      *     $response = $dlpServiceClient->listInspectFindings($formattedName);
      * } finally {
@@ -727,7 +725,7 @@ class DlpServiceGapicClient
      *          - likelihood=VERY_LIKELY
      *          - likelihood=VERY_LIKELY,LIKELY
      *          - info_type=EMAIL_ADDRESS,likelihood=VERY_LIKELY,LIKELY
-     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
+     *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
@@ -736,7 +734,7 @@ class DlpServiceGapicClient
      *
      * @return \Google\Cloud\Dlp\V2beta1\ListInspectFindingsResponse
      *
-     * @throws \Google\ApiCore\ApiException if the remote call fails
+     * @throws ApiException if the remote call fails
      * @experimental
      */
     public function listInspectFindings($name, $optionalArgs = [])
@@ -754,12 +752,10 @@ class DlpServiceGapicClient
         }
 
         return $this->startCall(
-            new Call(
-                self::SERVICE_NAME.'/ListInspectFindings',
-                ListInspectFindingsResponse::class,
-                $request
-            ),
-            $this->configureCallSettings('listInspectFindings', $optionalArgs)
+            'ListInspectFindings',
+            ListInspectFindingsResponse::class,
+            $optionalArgs,
+            $request
         )->wait();
     }
 
@@ -768,8 +764,8 @@ class DlpServiceGapicClient
      *
      * Sample code:
      * ```
+     * $dlpServiceClient = new DlpServiceClient();
      * try {
-     *     $dlpServiceClient = new DlpServiceClient();
      *     $category = 'PII';
      *     $languageCode = 'en';
      *     $response = $dlpServiceClient->listInfoTypes($category, $languageCode);
@@ -785,7 +781,7 @@ class DlpServiceGapicClient
      * @param array  $optionalArgs {
      *                             Optional.
      *
-     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
+     *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
@@ -794,7 +790,7 @@ class DlpServiceGapicClient
      *
      * @return \Google\Cloud\Dlp\V2beta1\ListInfoTypesResponse
      *
-     * @throws \Google\ApiCore\ApiException if the remote call fails
+     * @throws ApiException if the remote call fails
      * @experimental
      */
     public function listInfoTypes($category, $languageCode, $optionalArgs = [])
@@ -804,12 +800,10 @@ class DlpServiceGapicClient
         $request->setLanguageCode($languageCode);
 
         return $this->startCall(
-            new Call(
-                self::SERVICE_NAME.'/ListInfoTypes',
-                ListInfoTypesResponse::class,
-                $request
-            ),
-            $this->configureCallSettings('listInfoTypes', $optionalArgs)
+            'ListInfoTypes',
+            ListInfoTypesResponse::class,
+            $optionalArgs,
+            $request
         )->wait();
     }
 
@@ -818,8 +812,8 @@ class DlpServiceGapicClient
      *
      * Sample code:
      * ```
+     * $dlpServiceClient = new DlpServiceClient();
      * try {
-     *     $dlpServiceClient = new DlpServiceClient();
      *     $languageCode = 'en';
      *     $response = $dlpServiceClient->listRootCategories($languageCode);
      * } finally {
@@ -833,7 +827,7 @@ class DlpServiceGapicClient
      * @param array  $optionalArgs {
      *                             Optional.
      *
-     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
+     *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
@@ -842,7 +836,7 @@ class DlpServiceGapicClient
      *
      * @return \Google\Cloud\Dlp\V2beta1\ListRootCategoriesResponse
      *
-     * @throws \Google\ApiCore\ApiException if the remote call fails
+     * @throws ApiException if the remote call fails
      * @experimental
      */
     public function listRootCategories($languageCode, $optionalArgs = [])
@@ -851,23 +845,10 @@ class DlpServiceGapicClient
         $request->setLanguageCode($languageCode);
 
         return $this->startCall(
-            new Call(
-                self::SERVICE_NAME.'/ListRootCategories',
-                ListRootCategoriesResponse::class,
-                $request
-            ),
-            $this->configureCallSettings('listRootCategories', $optionalArgs)
+            'ListRootCategories',
+            ListRootCategoriesResponse::class,
+            $optionalArgs,
+            $request
         )->wait();
-    }
-
-    /**
-     * Initiates an orderly shutdown in which preexisting calls continue but new
-     * calls are immediately cancelled.
-     *
-     * @experimental
-     */
-    public function close()
-    {
-        $this->transport->close();
     }
 }

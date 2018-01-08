@@ -3,7 +3,7 @@
 return [
     'interfaces' => [
         'google.monitoring.v3.MetricService' => [
-            'listMonitoredResourceDescriptors' => [
+            'ListMonitoredResourceDescriptors' => [
                 'pageStreaming' => [
                     'requestPageTokenGetMethod' => 'getPageToken',
                     'requestPageTokenSetMethod' => 'setPageToken',
@@ -13,7 +13,7 @@ return [
                     'resourcesGetMethod' => 'getResourceDescriptors',
                 ],
             ],
-            'listMetricDescriptors' => [
+            'ListMetricDescriptors' => [
                 'pageStreaming' => [
                     'requestPageTokenGetMethod' => 'getPageToken',
                     'requestPageTokenSetMethod' => 'setPageToken',
@@ -23,7 +23,7 @@ return [
                     'resourcesGetMethod' => 'getMetricDescriptors',
                 ],
             ],
-            'listTimeSeries' => [
+            'ListTimeSeries' => [
                 'pageStreaming' => [
                     'requestPageTokenGetMethod' => 'getPageToken',
                     'requestPageTokenSetMethod' => 'setPageToken',

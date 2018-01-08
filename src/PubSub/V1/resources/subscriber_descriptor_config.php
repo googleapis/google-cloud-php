@@ -3,7 +3,7 @@
 return [
     'interfaces' => [
         'google.pubsub.v1.Subscriber' => [
-            'listSubscriptions' => [
+            'ListSubscriptions' => [
                 'pageStreaming' => [
                     'requestPageTokenGetMethod' => 'getPageToken',
                     'requestPageTokenSetMethod' => 'setPageToken',
@@ -13,7 +13,7 @@ return [
                     'resourcesGetMethod' => 'getSubscriptions',
                 ],
             ],
-            'listSnapshots' => [
+            'ListSnapshots' => [
                 'pageStreaming' => [
                     'requestPageTokenGetMethod' => 'getPageToken',
                     'requestPageTokenSetMethod' => 'setPageToken',
@@ -23,7 +23,7 @@ return [
                     'resourcesGetMethod' => 'getSnapshots',
                 ],
             ],
-            'streamingPull' => [
+            'StreamingPull' => [
                 'grpcStreaming' => [
                     'grpcStreamingType' => 'BidiStreaming',
                     'resourcesGetMethod' => 'getReceivedMessages',

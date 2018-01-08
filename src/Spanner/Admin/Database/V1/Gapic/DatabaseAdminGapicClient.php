@@ -1,12 +1,12 @@
 <?php
 /*
- * Copyright 2017, Google LLC All rights reserved.
+ * Copyright 2017 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
+ *     https://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -30,13 +30,15 @@
 
 namespace Google\Cloud\Spanner\Admin\Database\V1\Gapic;
 
-use Google\ApiCore\Call;
+use Google\ApiCore\ApiException;
 use Google\ApiCore\GapicClientTrait;
 use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\OperationResponse;
 use Google\ApiCore\PathTemplate;
-use Google\ApiCore\Transport\ApiTransportInterface;
+use Google\ApiCore\RetrySettings;
+use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
+use Google\Auth\CredentialsLoader;
 use Google\Cloud\Iam\V1\GetIamPolicyRequest;
 use Google\Cloud\Iam\V1\Policy;
 use Google\Cloud\Iam\V1\SetIamPolicyRequest;
@@ -55,6 +57,8 @@ use Google\Cloud\Spanner\Admin\Database\V1\UpdateDatabaseDdlMetadata;
 use Google\Cloud\Spanner\Admin\Database\V1\UpdateDatabaseDdlRequest;
 use Google\LongRunning\Operation;
 use Google\Protobuf\GPBEmpty;
+use Grpc\Channel;
+use Grpc\ChannelCredentials;
 
 /**
  * Service Description: Cloud Spanner Database Admin API.
@@ -71,8 +75,8 @@ use Google\Protobuf\GPBEmpty;
  * calls that map to API methods. Sample code to get started:
  *
  * ```
+ * $databaseAdminClient = new DatabaseAdminClient();
  * try {
- *     $databaseAdminClient = new DatabaseAdminClient();
  *     $formattedParent = $databaseAdminClient->instanceName('[PROJECT]', '[INSTANCE]');
  *     // Iterate through all elements
  *     $pagedResponse = $databaseAdminClient->listDatabases($formattedParent);
@@ -147,6 +151,7 @@ class DatabaseAdminGapicClient
             'clientConfigPath' => __DIR__.'/../resources/database_admin_client_config.json',
             'restClientConfigPath' => __DIR__.'/../resources/database_admin_rest_client_config.php',
             'descriptorsConfigPath' => __DIR__.'/../resources/database_admin_descriptor_config.php',
+            'versionFile' => __DIR__.'/../../VERSION',
         ];
     }
 
@@ -263,7 +268,7 @@ class DatabaseAdminGapicClient
     /**
      * Return an OperationsClient object with the same endpoint as $this.
      *
-     * @return \Google\ApiCore\LongRunning\OperationsClient
+     * @return OperationsClient
      * @experimental
      */
     public function getOperationsClient()
@@ -281,7 +286,7 @@ class DatabaseAdminGapicClient
      * @param string $operationName The name of the long running operation
      * @param string $methodName    The name of the method used to start the operation
      *
-     * @return \Google\ApiCore\OperationResponse
+     * @return OperationResponse
      * @experimental
      */
     public function resumeOperation($operationName, $methodName = null)
@@ -304,10 +309,10 @@ class DatabaseAdminGapicClient
      *     @type string $serviceAddress The domain name of the API remote host.
      *                                  Default 'spanner.googleapis.com'.
      *     @type mixed $port The port on which to connect to the remote host. Default 443.
-     *     @type \Grpc\Channel $channel
+     *     @type Channel $channel
      *           A `Channel` object. If not specified, a channel will be constructed.
      *           NOTE: This option is only valid when utilizing the gRPC transport.
-     *     @type \Grpc\ChannelCredentials $sslCreds
+     *     @type ChannelCredentials $sslCreds
      *           A `ChannelCredentials` object for use with an SSL-enabled channel.
      *           Default: a credentials object returned from
      *           \Grpc\ChannelCredentials::createSsl().
@@ -318,9 +323,9 @@ class DatabaseAdminGapicClient
      *           Defaults to false.
      *           NOTE: This option is only valid when utilizing the gRPC transport. Also, if the $channel
      *           optional argument is specified, then this option is unused.
-     *     @type \Google\Auth\CredentialsLoader $credentialsLoader
+     *     @type CredentialsLoader $credentialsLoader
      *           A CredentialsLoader object created using the Google\Auth library.
-     *     @type array $scopes A string array of scopes to use when acquiring credentials.
+     *     @type string[] $scopes A string array of scopes to use when acquiring credentials.
      *                          Defaults to the scopes for the Cloud Spanner Database Admin API.
      *     @type string $clientConfigPath
      *           Path to a JSON file containing client method configuration, including retry settings.
@@ -338,12 +343,11 @@ class DatabaseAdminGapicClient
      *           settings in $clientConfigPath.
      *     @type callable $authHttpHandler A handler used to deliver PSR-7 requests specifically
      *           for authentication. Should match a signature of
-     *           `function (RequestInterface $request, array $options) : ResponseInterface`
-     *           NOTE: This option is only valid when utilizing the REST transport.
+     *           `function (RequestInterface $request, array $options) : ResponseInterface`.
      *     @type callable $httpHandler A handler used to deliver PSR-7 requests. Should match a
-     *           signature of `function (RequestInterface $request, array $options) : PromiseInterface`
+     *           signature of `function (RequestInterface $request, array $options) : PromiseInterface`.
      *           NOTE: This option is only valid when utilizing the REST transport.
-     *     @type string|ApiTransportInterface $transport The transport used for executing network
+     *     @type string|TransportInterface $transport The transport used for executing network
      *           requests. May be either the string `rest` or `grpc`. Additionally, it is possible
      *           to pass in an already instantiated transport. Defaults to `grpc` if gRPC support is
      *           detected on the system.
@@ -368,8 +372,8 @@ class DatabaseAdminGapicClient
      *
      * Sample code:
      * ```
+     * $databaseAdminClient = new DatabaseAdminClient();
      * try {
-     *     $databaseAdminClient = new DatabaseAdminClient();
      *     $formattedParent = $databaseAdminClient->instanceName('[PROJECT]', '[INSTANCE]');
      *     // Iterate through all elements
      *     $pagedResponse = $databaseAdminClient->listDatabases($formattedParent);
@@ -403,7 +407,7 @@ class DatabaseAdminGapicClient
      *          If no page token is specified (the default), the first page
      *          of values will be returned. Any page token used here must have
      *          been generated by a previous call to the API.
-     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
+     *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
@@ -412,7 +416,7 @@ class DatabaseAdminGapicClient
      *
      * @return \Google\ApiCore\PagedListResponse
      *
-     * @throws \Google\ApiCore\ApiException if the remote call fails
+     * @throws ApiException if the remote call fails
      * @experimental
      */
     public function listDatabases($parent, $optionalArgs = [])
@@ -427,13 +431,10 @@ class DatabaseAdminGapicClient
         }
 
         return $this->getPagedListResponse(
-            new Call(
-                self::SERVICE_NAME.'/ListDatabases',
-                ListDatabasesResponse::class,
-                $request
-            ),
-            $this->configureCallSettings('listDatabases', $optionalArgs),
-            $this->descriptors['listDatabases']['pageStreaming']
+            'ListDatabases',
+            $optionalArgs,
+            ListDatabasesResponse::class,
+            $request
         );
     }
 
@@ -449,8 +450,8 @@ class DatabaseAdminGapicClient
      *
      * Sample code:
      * ```
+     * $databaseAdminClient = new DatabaseAdminClient();
      * try {
-     *     $databaseAdminClient = new DatabaseAdminClient();
      *     $formattedParent = $databaseAdminClient->instanceName('[PROJECT]', '[INSTANCE]');
      *     $createStatement = '';
      *     $operationResponse = $databaseAdminClient->createDatabase($formattedParent, $createStatement);
@@ -499,7 +500,7 @@ class DatabaseAdminGapicClient
      *          database. Statements can create tables, indexes, etc. These
      *          statements execute atomically with the creation of the database:
      *          if there is an error in any statement, the database is not created.
-     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
+     *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
@@ -508,7 +509,7 @@ class DatabaseAdminGapicClient
      *
      * @return \Google\ApiCore\OperationResponse
      *
-     * @throws \Google\ApiCore\ApiException if the remote call fails
+     * @throws ApiException if the remote call fails
      * @experimental
      */
     public function createDatabase($parent, $createStatement, $optionalArgs = [])
@@ -521,14 +522,10 @@ class DatabaseAdminGapicClient
         }
 
         return $this->startOperationsCall(
-            new Call(
-                self::SERVICE_NAME.'/CreateDatabase',
-                Operation::class,
-                $request
-            ),
-            $this->configureCallSettings('createDatabase', $optionalArgs),
-            $this->getOperationsClient(),
-            $this->descriptors['createDatabase']['longRunning']
+            'CreateDatabase',
+            $optionalArgs,
+            $request,
+            $this->getOperationsClient()
         )->wait();
     }
 
@@ -537,8 +534,8 @@ class DatabaseAdminGapicClient
      *
      * Sample code:
      * ```
+     * $databaseAdminClient = new DatabaseAdminClient();
      * try {
-     *     $databaseAdminClient = new DatabaseAdminClient();
      *     $formattedName = $databaseAdminClient->databaseName('[PROJECT]', '[INSTANCE]', '[DATABASE]');
      *     $response = $databaseAdminClient->getDatabase($formattedName);
      * } finally {
@@ -551,7 +548,7 @@ class DatabaseAdminGapicClient
      * @param array  $optionalArgs {
      *                             Optional.
      *
-     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
+     *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
@@ -560,7 +557,7 @@ class DatabaseAdminGapicClient
      *
      * @return \Google\Cloud\Spanner\Admin\Database\V1\Database
      *
-     * @throws \Google\ApiCore\ApiException if the remote call fails
+     * @throws ApiException if the remote call fails
      * @experimental
      */
     public function getDatabase($name, $optionalArgs = [])
@@ -569,12 +566,10 @@ class DatabaseAdminGapicClient
         $request->setName($name);
 
         return $this->startCall(
-            new Call(
-                self::SERVICE_NAME.'/GetDatabase',
-                Database::class,
-                $request
-            ),
-            $this->configureCallSettings('getDatabase', $optionalArgs)
+            'GetDatabase',
+            Database::class,
+            $optionalArgs,
+            $request
         )->wait();
     }
 
@@ -589,8 +584,8 @@ class DatabaseAdminGapicClient
      *
      * Sample code:
      * ```
+     * $databaseAdminClient = new DatabaseAdminClient();
      * try {
-     *     $databaseAdminClient = new DatabaseAdminClient();
      *     $formattedDatabase = $databaseAdminClient->databaseName('[PROJECT]', '[INSTANCE]', '[DATABASE]');
      *     $statements = [];
      *     $operationResponse = $databaseAdminClient->updateDatabaseDdl($formattedDatabase, $statements);
@@ -647,7 +642,7 @@ class DatabaseAdminGapicClient
      *          underscore. If the named operation already exists,
      *          [UpdateDatabaseDdl][google.spanner.admin.database.v1.DatabaseAdmin.UpdateDatabaseDdl] returns
      *          `ALREADY_EXISTS`.
-     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
+     *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
@@ -656,7 +651,7 @@ class DatabaseAdminGapicClient
      *
      * @return \Google\ApiCore\OperationResponse
      *
-     * @throws \Google\ApiCore\ApiException if the remote call fails
+     * @throws ApiException if the remote call fails
      * @experimental
      */
     public function updateDatabaseDdl($database, $statements, $optionalArgs = [])
@@ -669,14 +664,10 @@ class DatabaseAdminGapicClient
         }
 
         return $this->startOperationsCall(
-            new Call(
-                self::SERVICE_NAME.'/UpdateDatabaseDdl',
-                Operation::class,
-                $request
-            ),
-            $this->configureCallSettings('updateDatabaseDdl', $optionalArgs),
-            $this->getOperationsClient(),
-            $this->descriptors['updateDatabaseDdl']['longRunning']
+            'UpdateDatabaseDdl',
+            $optionalArgs,
+            $request,
+            $this->getOperationsClient()
         )->wait();
     }
 
@@ -685,8 +676,8 @@ class DatabaseAdminGapicClient
      *
      * Sample code:
      * ```
+     * $databaseAdminClient = new DatabaseAdminClient();
      * try {
-     *     $databaseAdminClient = new DatabaseAdminClient();
      *     $formattedDatabase = $databaseAdminClient->databaseName('[PROJECT]', '[INSTANCE]', '[DATABASE]');
      *     $databaseAdminClient->dropDatabase($formattedDatabase);
      * } finally {
@@ -698,14 +689,14 @@ class DatabaseAdminGapicClient
      * @param array  $optionalArgs {
      *                             Optional.
      *
-     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
+     *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
      *          {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
-     * @throws \Google\ApiCore\ApiException if the remote call fails
+     * @throws ApiException if the remote call fails
      * @experimental
      */
     public function dropDatabase($database, $optionalArgs = [])
@@ -714,12 +705,10 @@ class DatabaseAdminGapicClient
         $request->setDatabase($database);
 
         return $this->startCall(
-            new Call(
-                self::SERVICE_NAME.'/DropDatabase',
-                GPBEmpty::class,
-                $request
-            ),
-            $this->configureCallSettings('dropDatabase', $optionalArgs)
+            'DropDatabase',
+            GPBEmpty::class,
+            $optionalArgs,
+            $request
         )->wait();
     }
 
@@ -730,8 +719,8 @@ class DatabaseAdminGapicClient
      *
      * Sample code:
      * ```
+     * $databaseAdminClient = new DatabaseAdminClient();
      * try {
-     *     $databaseAdminClient = new DatabaseAdminClient();
      *     $formattedDatabase = $databaseAdminClient->databaseName('[PROJECT]', '[INSTANCE]', '[DATABASE]');
      *     $response = $databaseAdminClient->getDatabaseDdl($formattedDatabase);
      * } finally {
@@ -743,7 +732,7 @@ class DatabaseAdminGapicClient
      * @param array  $optionalArgs {
      *                             Optional.
      *
-     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
+     *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
@@ -752,7 +741,7 @@ class DatabaseAdminGapicClient
      *
      * @return \Google\Cloud\Spanner\Admin\Database\V1\GetDatabaseDdlResponse
      *
-     * @throws \Google\ApiCore\ApiException if the remote call fails
+     * @throws ApiException if the remote call fails
      * @experimental
      */
     public function getDatabaseDdl($database, $optionalArgs = [])
@@ -761,12 +750,10 @@ class DatabaseAdminGapicClient
         $request->setDatabase($database);
 
         return $this->startCall(
-            new Call(
-                self::SERVICE_NAME.'/GetDatabaseDdl',
-                GetDatabaseDdlResponse::class,
-                $request
-            ),
-            $this->configureCallSettings('getDatabaseDdl', $optionalArgs)
+            'GetDatabaseDdl',
+            GetDatabaseDdlResponse::class,
+            $optionalArgs,
+            $request
         )->wait();
     }
 
@@ -779,8 +766,8 @@ class DatabaseAdminGapicClient
      *
      * Sample code:
      * ```
+     * $databaseAdminClient = new DatabaseAdminClient();
      * try {
-     *     $databaseAdminClient = new DatabaseAdminClient();
      *     $formattedResource = $databaseAdminClient->databaseName('[PROJECT]', '[INSTANCE]', '[DATABASE]');
      *     $policy = new Policy();
      *     $response = $databaseAdminClient->setIamPolicy($formattedResource, $policy);
@@ -799,7 +786,7 @@ class DatabaseAdminGapicClient
      * @param array  $optionalArgs {
      *                             Optional.
      *
-     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
+     *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
@@ -808,7 +795,7 @@ class DatabaseAdminGapicClient
      *
      * @return \Google\Cloud\Iam\V1\Policy
      *
-     * @throws \Google\ApiCore\ApiException if the remote call fails
+     * @throws ApiException if the remote call fails
      * @experimental
      */
     public function setIamPolicy($resource, $policy, $optionalArgs = [])
@@ -818,12 +805,10 @@ class DatabaseAdminGapicClient
         $request->setPolicy($policy);
 
         return $this->startCall(
-            new Call(
-                self::SERVICE_NAME.'/SetIamPolicy',
-                Policy::class,
-                $request
-            ),
-            $this->configureCallSettings('setIamPolicy', $optionalArgs)
+            'SetIamPolicy',
+            Policy::class,
+            $optionalArgs,
+            $request
         )->wait();
     }
 
@@ -836,8 +821,8 @@ class DatabaseAdminGapicClient
      *
      * Sample code:
      * ```
+     * $databaseAdminClient = new DatabaseAdminClient();
      * try {
-     *     $databaseAdminClient = new DatabaseAdminClient();
      *     $formattedResource = $databaseAdminClient->databaseName('[PROJECT]', '[INSTANCE]', '[DATABASE]');
      *     $response = $databaseAdminClient->getIamPolicy($formattedResource);
      * } finally {
@@ -851,7 +836,7 @@ class DatabaseAdminGapicClient
      * @param array  $optionalArgs {
      *                             Optional.
      *
-     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
+     *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
@@ -860,7 +845,7 @@ class DatabaseAdminGapicClient
      *
      * @return \Google\Cloud\Iam\V1\Policy
      *
-     * @throws \Google\ApiCore\ApiException if the remote call fails
+     * @throws ApiException if the remote call fails
      * @experimental
      */
     public function getIamPolicy($resource, $optionalArgs = [])
@@ -869,12 +854,10 @@ class DatabaseAdminGapicClient
         $request->setResource($resource);
 
         return $this->startCall(
-            new Call(
-                self::SERVICE_NAME.'/GetIamPolicy',
-                Policy::class,
-                $request
-            ),
-            $this->configureCallSettings('getIamPolicy', $optionalArgs)
+            'GetIamPolicy',
+            Policy::class,
+            $optionalArgs,
+            $request
         )->wait();
     }
 
@@ -888,8 +871,8 @@ class DatabaseAdminGapicClient
      *
      * Sample code:
      * ```
+     * $databaseAdminClient = new DatabaseAdminClient();
      * try {
-     *     $databaseAdminClient = new DatabaseAdminClient();
      *     $formattedResource = $databaseAdminClient->databaseName('[PROJECT]', '[INSTANCE]', '[DATABASE]');
      *     $permissions = [];
      *     $response = $databaseAdminClient->testIamPermissions($formattedResource, $permissions);
@@ -908,7 +891,7 @@ class DatabaseAdminGapicClient
      * @param array    $optionalArgs {
      *                               Optional.
      *
-     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
+     *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
@@ -917,7 +900,7 @@ class DatabaseAdminGapicClient
      *
      * @return \Google\Cloud\Iam\V1\TestIamPermissionsResponse
      *
-     * @throws \Google\ApiCore\ApiException if the remote call fails
+     * @throws ApiException if the remote call fails
      * @experimental
      */
     public function testIamPermissions($resource, $permissions, $optionalArgs = [])
@@ -927,23 +910,10 @@ class DatabaseAdminGapicClient
         $request->setPermissions($permissions);
 
         return $this->startCall(
-            new Call(
-                self::SERVICE_NAME.'/TestIamPermissions',
-                TestIamPermissionsResponse::class,
-                $request
-            ),
-            $this->configureCallSettings('testIamPermissions', $optionalArgs)
+            'TestIamPermissions',
+            TestIamPermissionsResponse::class,
+            $optionalArgs,
+            $request
         )->wait();
-    }
-
-    /**
-     * Initiates an orderly shutdown in which preexisting calls continue but new
-     * calls are immediately cancelled.
-     *
-     * @experimental
-     */
-    public function close()
-    {
-        $this->transport->close();
     }
 }

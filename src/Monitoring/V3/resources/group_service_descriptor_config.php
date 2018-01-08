@@ -3,7 +3,7 @@
 return [
     'interfaces' => [
         'google.monitoring.v3.GroupService' => [
-            'listGroups' => [
+            'ListGroups' => [
                 'pageStreaming' => [
                     'requestPageTokenGetMethod' => 'getPageToken',
                     'requestPageTokenSetMethod' => 'setPageToken',
@@ -13,7 +13,7 @@ return [
                     'resourcesGetMethod' => 'getGroup',
                 ],
             ],
-            'listGroupMembers' => [
+            'ListGroupMembers' => [
                 'pageStreaming' => [
                     'requestPageTokenGetMethod' => 'getPageToken',
                     'requestPageTokenSetMethod' => 'setPageToken',

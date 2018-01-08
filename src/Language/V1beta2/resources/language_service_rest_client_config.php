@@ -5,32 +5,32 @@ return [
         'google.cloud.language.v1beta2.LanguageService' => [
             'AnalyzeSentiment' => [
                 'method' => 'post',
-                'uri' => '/v1beta2/documents:analyzeSentiment',
+                'uriTemplate' => '/v1beta2/documents:analyzeSentiment',
                 'body' => '*',
             ],
             'AnalyzeEntities' => [
                 'method' => 'post',
-                'uri' => '/v1beta2/documents:analyzeEntities',
+                'uriTemplate' => '/v1beta2/documents:analyzeEntities',
                 'body' => '*',
             ],
             'AnalyzeEntitySentiment' => [
                 'method' => 'post',
-                'uri' => '/v1beta2/documents:analyzeEntitySentiment',
+                'uriTemplate' => '/v1beta2/documents:analyzeEntitySentiment',
                 'body' => '*',
             ],
             'AnalyzeSyntax' => [
                 'method' => 'post',
-                'uri' => '/v1beta2/documents:analyzeSyntax',
+                'uriTemplate' => '/v1beta2/documents:analyzeSyntax',
                 'body' => '*',
             ],
             'ClassifyText' => [
                 'method' => 'post',
-                'uri' => '/v1beta2/documents:classifyText',
+                'uriTemplate' => '/v1beta2/documents:classifyText',
                 'body' => '*',
             ],
             'AnnotateText' => [
                 'method' => 'post',
-                'uri' => '/v1beta2/documents:annotateText',
+                'uriTemplate' => '/v1beta2/documents:annotateText',
                 'body' => '*',
             ],
         ],

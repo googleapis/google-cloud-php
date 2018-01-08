@@ -5,87 +5,105 @@ return [
         'google.spanner.admin.database.v1.DatabaseAdmin' => [
             'ListDatabases' => [
                 'method' => 'get',
-                'uri' => '/v1/{parent=projects/*/instances/*}/databases',
+                'uriTemplate' => '/v1/{parent=projects/*/instances/*}/databases',
                 'placeholders' => [
                     'parent' => [
-                        'getParent',
+                        'getters' => [
+                            'getParent',
+                        ],
                     ],
                 ],
             ],
             'CreateDatabase' => [
                 'method' => 'post',
-                'uri' => '/v1/{parent=projects/*/instances/*}/databases',
+                'uriTemplate' => '/v1/{parent=projects/*/instances/*}/databases',
                 'body' => '*',
                 'placeholders' => [
                     'parent' => [
-                        'getParent',
+                        'getters' => [
+                            'getParent',
+                        ],
                     ],
                 ],
             ],
             'GetDatabase' => [
                 'method' => 'get',
-                'uri' => '/v1/{name=projects/*/instances/*/databases/*}',
+                'uriTemplate' => '/v1/{name=projects/*/instances/*/databases/*}',
                 'placeholders' => [
                     'name' => [
-                        'getName',
+                        'getters' => [
+                            'getName',
+                        ],
                     ],
                 ],
             ],
             'UpdateDatabaseDdl' => [
                 'method' => 'patch',
-                'uri' => '/v1/{database=projects/*/instances/*/databases/*}/ddl',
+                'uriTemplate' => '/v1/{database=projects/*/instances/*/databases/*}/ddl',
                 'body' => '*',
                 'placeholders' => [
                     'database' => [
-                        'getDatabase',
+                        'getters' => [
+                            'getDatabase',
+                        ],
                     ],
                 ],
             ],
             'DropDatabase' => [
                 'method' => 'delete',
-                'uri' => '/v1/{database=projects/*/instances/*/databases/*}',
+                'uriTemplate' => '/v1/{database=projects/*/instances/*/databases/*}',
                 'placeholders' => [
                     'database' => [
-                        'getDatabase',
+                        'getters' => [
+                            'getDatabase',
+                        ],
                     ],
                 ],
             ],
             'GetDatabaseDdl' => [
                 'method' => 'get',
-                'uri' => '/v1/{database=projects/*/instances/*/databases/*}/ddl',
+                'uriTemplate' => '/v1/{database=projects/*/instances/*/databases/*}/ddl',
                 'placeholders' => [
                     'database' => [
-                        'getDatabase',
+                        'getters' => [
+                            'getDatabase',
+                        ],
                     ],
                 ],
             ],
             'SetIamPolicy' => [
                 'method' => 'post',
-                'uri' => '/v1/{resource=projects/*/instances/*/databases/*}:setIamPolicy',
+                'uriTemplate' => '/v1/{resource=projects/*/instances/*/databases/*}:setIamPolicy',
                 'body' => '*',
                 'placeholders' => [
                     'resource' => [
-                        'getResource',
+                        'getters' => [
+                            'getResource',
+                        ],
                     ],
                 ],
             ],
             'GetIamPolicy' => [
                 'method' => 'post',
-                'uri' => '/v1/{resource=projects/*/instances/*/databases/*}:getIamPolicy',
+                'uriTemplate' => '/v1/{resource=projects/*/instances/*/databases/*}:getIamPolicy',
                 'body' => '*',
                 'placeholders' => [
                     'resource' => [
-                        'getResource',
+                        'getters' => [
+                            'getResource',
+                        ],
                     ],
                 ],
             ],
             'TestIamPermissions' => [
                 'method' => 'post',
-                'uri' => '/v1/{resource=projects/*/instances/*/databases/*}:testIamPermissions',
+                'uriTemplate' => '/v1/{resource=projects/*/instances/*/databases/*}:testIamPermissions',
                 'body' => '*',
                 'placeholders' => [
                     'resource' => [
-                        'getResource',
+                        'getters' => [
+                            'getResource',
+                        ],
                     ],
                 ],
             ],

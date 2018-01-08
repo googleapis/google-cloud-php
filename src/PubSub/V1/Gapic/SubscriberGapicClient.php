@@ -1,12 +1,12 @@
 <?php
 /*
- * Copyright 2017, Google LLC All rights reserved.
+ * Copyright 2017 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
+ *     https://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -30,11 +30,14 @@
 
 namespace Google\Cloud\PubSub\V1\Gapic;
 
+use Google\ApiCore\ApiException;
 use Google\ApiCore\Call;
 use Google\ApiCore\GapicClientTrait;
 use Google\ApiCore\PathTemplate;
-use Google\ApiCore\Transport\ApiTransportInterface;
+use Google\ApiCore\RetrySettings;
+use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
+use Google\Auth\CredentialsLoader;
 use Google\Cloud\Iam\V1\GetIamPolicyRequest;
 use Google\Cloud\Iam\V1\Policy;
 use Google\Cloud\Iam\V1\SetIamPolicyRequest;
@@ -66,6 +69,8 @@ use Google\Protobuf\Duration;
 use Google\Protobuf\FieldMask;
 use Google\Protobuf\GPBEmpty;
 use Google\Protobuf\Timestamp;
+use Grpc\Channel;
+use Grpc\ChannelCredentials;
 
 /**
  * Service Description: The service that an application uses to manipulate subscriptions and to
@@ -79,8 +84,8 @@ use Google\Protobuf\Timestamp;
  * calls that map to API methods. Sample code to get started:
  *
  * ```
+ * $subscriberClient = new SubscriberClient();
  * try {
- *     $subscriberClient = new SubscriberClient();
  *     $formattedName = $subscriberClient->subscriptionName('[PROJECT]', '[SUBSCRIPTION]');
  *     $formattedTopic = $subscriberClient->topicName('[PROJECT]', '[TOPIC]');
  *     $response = $subscriberClient->createSubscription($formattedName, $formattedTopic);
@@ -144,6 +149,7 @@ class SubscriberGapicClient
             'clientConfigPath' => __DIR__.'/../resources/subscriber_client_config.json',
             'restClientConfigPath' => __DIR__.'/../resources/subscriber_rest_client_config.php',
             'descriptorsConfigPath' => __DIR__.'/../resources/subscriber_descriptor_config.php',
+            'versionFile' => __DIR__.'/../../VERSION',
         ];
     }
 
@@ -320,10 +326,10 @@ class SubscriberGapicClient
      *     @type string $serviceAddress The domain name of the API remote host.
      *                                  Default 'pubsub.googleapis.com'.
      *     @type mixed $port The port on which to connect to the remote host. Default 443.
-     *     @type \Grpc\Channel $channel
+     *     @type Channel $channel
      *           A `Channel` object. If not specified, a channel will be constructed.
      *           NOTE: This option is only valid when utilizing the gRPC transport.
-     *     @type \Grpc\ChannelCredentials $sslCreds
+     *     @type ChannelCredentials $sslCreds
      *           A `ChannelCredentials` object for use with an SSL-enabled channel.
      *           Default: a credentials object returned from
      *           \Grpc\ChannelCredentials::createSsl().
@@ -334,9 +340,9 @@ class SubscriberGapicClient
      *           Defaults to false.
      *           NOTE: This option is only valid when utilizing the gRPC transport. Also, if the $channel
      *           optional argument is specified, then this option is unused.
-     *     @type \Google\Auth\CredentialsLoader $credentialsLoader
+     *     @type CredentialsLoader $credentialsLoader
      *           A CredentialsLoader object created using the Google\Auth library.
-     *     @type array $scopes A string array of scopes to use when acquiring credentials.
+     *     @type string[] $scopes A string array of scopes to use when acquiring credentials.
      *                          Defaults to the scopes for the Google Cloud Pub/Sub API.
      *     @type string $clientConfigPath
      *           Path to a JSON file containing client method configuration, including retry settings.
@@ -354,12 +360,11 @@ class SubscriberGapicClient
      *           settings in $clientConfigPath.
      *     @type callable $authHttpHandler A handler used to deliver PSR-7 requests specifically
      *           for authentication. Should match a signature of
-     *           `function (RequestInterface $request, array $options) : ResponseInterface`
-     *           NOTE: This option is only valid when utilizing the REST transport.
+     *           `function (RequestInterface $request, array $options) : ResponseInterface`.
      *     @type callable $httpHandler A handler used to deliver PSR-7 requests. Should match a
-     *           signature of `function (RequestInterface $request, array $options) : PromiseInterface`
+     *           signature of `function (RequestInterface $request, array $options) : PromiseInterface`.
      *           NOTE: This option is only valid when utilizing the REST transport.
-     *     @type string|ApiTransportInterface $transport The transport used for executing network
+     *     @type string|TransportInterface $transport The transport used for executing network
      *           requests. May be either the string `rest` or `grpc`. Additionally, it is possible
      *           to pass in an already instantiated transport. Defaults to `grpc` if gRPC support is
      *           detected on the system.
@@ -385,8 +390,8 @@ class SubscriberGapicClient
      *
      * Sample code:
      * ```
+     * $subscriberClient = new SubscriberClient();
      * try {
-     *     $subscriberClient = new SubscriberClient();
      *     $formattedName = $subscriberClient->subscriptionName('[PROJECT]', '[SUBSCRIPTION]');
      *     $formattedTopic = $subscriberClient->topicName('[PROJECT]', '[TOPIC]');
      *     $response = $subscriberClient->createSubscription($formattedName, $formattedTopic);
@@ -446,7 +451,7 @@ class SubscriberGapicClient
      *          minutes.
      *     @type array $labels
      *          User labels.
-     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
+     *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
@@ -455,7 +460,7 @@ class SubscriberGapicClient
      *
      * @return \Google\Cloud\PubSub\V1\Subscription
      *
-     * @throws \Google\ApiCore\ApiException if the remote call fails
+     * @throws ApiException if the remote call fails
      * @experimental
      */
     public function createSubscription($name, $topic, $optionalArgs = [])
@@ -480,12 +485,10 @@ class SubscriberGapicClient
         }
 
         return $this->startCall(
-            new Call(
-                self::SERVICE_NAME.'/CreateSubscription',
-                Subscription::class,
-                $request
-            ),
-            $this->configureCallSettings('createSubscription', $optionalArgs)
+            'CreateSubscription',
+            Subscription::class,
+            $optionalArgs,
+            $request
         )->wait();
     }
 
@@ -494,8 +497,8 @@ class SubscriberGapicClient
      *
      * Sample code:
      * ```
+     * $subscriberClient = new SubscriberClient();
      * try {
-     *     $subscriberClient = new SubscriberClient();
      *     $formattedSubscription = $subscriberClient->subscriptionName('[PROJECT]', '[SUBSCRIPTION]');
      *     $response = $subscriberClient->getSubscription($formattedSubscription);
      * } finally {
@@ -508,7 +511,7 @@ class SubscriberGapicClient
      * @param array  $optionalArgs {
      *                             Optional.
      *
-     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
+     *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
@@ -517,7 +520,7 @@ class SubscriberGapicClient
      *
      * @return \Google\Cloud\PubSub\V1\Subscription
      *
-     * @throws \Google\ApiCore\ApiException if the remote call fails
+     * @throws ApiException if the remote call fails
      * @experimental
      */
     public function getSubscription($subscription, $optionalArgs = [])
@@ -526,12 +529,10 @@ class SubscriberGapicClient
         $request->setSubscription($subscription);
 
         return $this->startCall(
-            new Call(
-                self::SERVICE_NAME.'/GetSubscription',
-                Subscription::class,
-                $request
-            ),
-            $this->configureCallSettings('getSubscription', $optionalArgs)
+            'GetSubscription',
+            Subscription::class,
+            $optionalArgs,
+            $request
         )->wait();
     }
 
@@ -545,8 +546,8 @@ class SubscriberGapicClient
      *
      * Sample code:
      * ```
+     * $subscriberClient = new SubscriberClient();
      * try {
-     *     $subscriberClient = new SubscriberClient();
      *     $ackDeadlineSeconds = 42;
      *     $subscription = new Subscription();
      *     $subscription->setAckDeadlineSeconds($ackDeadlineSeconds);
@@ -566,7 +567,7 @@ class SubscriberGapicClient
      * @param array        $optionalArgs {
      *                                   Optional.
      *
-     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
+     *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
@@ -575,7 +576,7 @@ class SubscriberGapicClient
      *
      * @return \Google\Cloud\PubSub\V1\Subscription
      *
-     * @throws \Google\ApiCore\ApiException if the remote call fails
+     * @throws ApiException if the remote call fails
      * @experimental
      */
     public function updateSubscription($subscription, $updateMask, $optionalArgs = [])
@@ -585,12 +586,10 @@ class SubscriberGapicClient
         $request->setUpdateMask($updateMask);
 
         return $this->startCall(
-            new Call(
-                self::SERVICE_NAME.'/UpdateSubscription',
-                Subscription::class,
-                $request
-            ),
-            $this->configureCallSettings('updateSubscription', $optionalArgs)
+            'UpdateSubscription',
+            Subscription::class,
+            $optionalArgs,
+            $request
         )->wait();
     }
 
@@ -599,8 +598,8 @@ class SubscriberGapicClient
      *
      * Sample code:
      * ```
+     * $subscriberClient = new SubscriberClient();
      * try {
-     *     $subscriberClient = new SubscriberClient();
      *     $formattedProject = $subscriberClient->projectName('[PROJECT]');
      *     // Iterate through all elements
      *     $pagedResponse = $subscriberClient->listSubscriptions($formattedProject);
@@ -634,7 +633,7 @@ class SubscriberGapicClient
      *          If no page token is specified (the default), the first page
      *          of values will be returned. Any page token used here must have
      *          been generated by a previous call to the API.
-     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
+     *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
@@ -643,7 +642,7 @@ class SubscriberGapicClient
      *
      * @return \Google\ApiCore\PagedListResponse
      *
-     * @throws \Google\ApiCore\ApiException if the remote call fails
+     * @throws ApiException if the remote call fails
      * @experimental
      */
     public function listSubscriptions($project, $optionalArgs = [])
@@ -658,13 +657,10 @@ class SubscriberGapicClient
         }
 
         return $this->getPagedListResponse(
-            new Call(
-                self::SERVICE_NAME.'/ListSubscriptions',
-                ListSubscriptionsResponse::class,
-                $request
-            ),
-            $this->configureCallSettings('listSubscriptions', $optionalArgs),
-            $this->descriptors['listSubscriptions']['pageStreaming']
+            'ListSubscriptions',
+            $optionalArgs,
+            ListSubscriptionsResponse::class,
+            $request
         );
     }
 
@@ -677,8 +673,8 @@ class SubscriberGapicClient
      *
      * Sample code:
      * ```
+     * $subscriberClient = new SubscriberClient();
      * try {
-     *     $subscriberClient = new SubscriberClient();
      *     $formattedSubscription = $subscriberClient->subscriptionName('[PROJECT]', '[SUBSCRIPTION]');
      *     $subscriberClient->deleteSubscription($formattedSubscription);
      * } finally {
@@ -691,14 +687,14 @@ class SubscriberGapicClient
      * @param array  $optionalArgs {
      *                             Optional.
      *
-     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
+     *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
      *          {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
-     * @throws \Google\ApiCore\ApiException if the remote call fails
+     * @throws ApiException if the remote call fails
      * @experimental
      */
     public function deleteSubscription($subscription, $optionalArgs = [])
@@ -707,12 +703,10 @@ class SubscriberGapicClient
         $request->setSubscription($subscription);
 
         return $this->startCall(
-            new Call(
-                self::SERVICE_NAME.'/DeleteSubscription',
-                GPBEmpty::class,
-                $request
-            ),
-            $this->configureCallSettings('deleteSubscription', $optionalArgs)
+            'DeleteSubscription',
+            GPBEmpty::class,
+            $optionalArgs,
+            $request
         )->wait();
     }
 
@@ -725,8 +719,8 @@ class SubscriberGapicClient
      *
      * Sample code:
      * ```
+     * $subscriberClient = new SubscriberClient();
      * try {
-     *     $subscriberClient = new SubscriberClient();
      *     $formattedSubscription = $subscriberClient->subscriptionName('[PROJECT]', '[SUBSCRIPTION]');
      *     $ackIds = [];
      *     $ackDeadlineSeconds = 0;
@@ -749,14 +743,14 @@ class SubscriberGapicClient
      * @param array    $optionalArgs       {
      *                                     Optional.
      *
-     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
+     *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
      *          {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
-     * @throws \Google\ApiCore\ApiException if the remote call fails
+     * @throws ApiException if the remote call fails
      * @experimental
      */
     public function modifyAckDeadline($subscription, $ackIds, $ackDeadlineSeconds, $optionalArgs = [])
@@ -767,12 +761,10 @@ class SubscriberGapicClient
         $request->setAckDeadlineSeconds($ackDeadlineSeconds);
 
         return $this->startCall(
-            new Call(
-                self::SERVICE_NAME.'/ModifyAckDeadline',
-                GPBEmpty::class,
-                $request
-            ),
-            $this->configureCallSettings('modifyAckDeadline', $optionalArgs)
+            'ModifyAckDeadline',
+            GPBEmpty::class,
+            $optionalArgs,
+            $request
         )->wait();
     }
 
@@ -787,8 +779,8 @@ class SubscriberGapicClient
      *
      * Sample code:
      * ```
+     * $subscriberClient = new SubscriberClient();
      * try {
-     *     $subscriberClient = new SubscriberClient();
      *     $formattedSubscription = $subscriberClient->subscriptionName('[PROJECT]', '[SUBSCRIPTION]');
      *     $ackIds = [];
      *     $subscriberClient->acknowledge($formattedSubscription, $ackIds);
@@ -804,14 +796,14 @@ class SubscriberGapicClient
      * @param array    $optionalArgs {
      *                               Optional.
      *
-     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
+     *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
      *          {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
-     * @throws \Google\ApiCore\ApiException if the remote call fails
+     * @throws ApiException if the remote call fails
      * @experimental
      */
     public function acknowledge($subscription, $ackIds, $optionalArgs = [])
@@ -821,12 +813,10 @@ class SubscriberGapicClient
         $request->setAckIds($ackIds);
 
         return $this->startCall(
-            new Call(
-                self::SERVICE_NAME.'/Acknowledge',
-                GPBEmpty::class,
-                $request
-            ),
-            $this->configureCallSettings('acknowledge', $optionalArgs)
+            'Acknowledge',
+            GPBEmpty::class,
+            $optionalArgs,
+            $request
         )->wait();
     }
 
@@ -838,8 +828,8 @@ class SubscriberGapicClient
      *
      * Sample code:
      * ```
+     * $subscriberClient = new SubscriberClient();
      * try {
-     *     $subscriberClient = new SubscriberClient();
      *     $formattedSubscription = $subscriberClient->subscriptionName('[PROJECT]', '[SUBSCRIPTION]');
      *     $maxMessages = 0;
      *     $response = $subscriberClient->pull($formattedSubscription, $maxMessages);
@@ -862,7 +852,7 @@ class SubscriberGapicClient
      *          least one message is available, rather than returning no messages. The
      *          client may cancel the request if it does not wish to wait any longer for
      *          the response.
-     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
+     *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
@@ -871,7 +861,7 @@ class SubscriberGapicClient
      *
      * @return \Google\Cloud\PubSub\V1\PullResponse
      *
-     * @throws \Google\ApiCore\ApiException if the remote call fails
+     * @throws ApiException if the remote call fails
      * @experimental
      */
     public function pull($subscription, $maxMessages, $optionalArgs = [])
@@ -884,12 +874,10 @@ class SubscriberGapicClient
         }
 
         return $this->startCall(
-            new Call(
-                self::SERVICE_NAME.'/Pull',
-                PullResponse::class,
-                $request
-            ),
-            $this->configureCallSettings('pull', $optionalArgs)
+            'Pull',
+            PullResponse::class,
+            $optionalArgs,
+            $request
         )->wait();
     }
 
@@ -909,8 +897,8 @@ class SubscriberGapicClient
      *
      * Sample code:
      * ```
+     * $subscriberClient = new SubscriberClient();
      * try {
-     *     $subscriberClient = new SubscriberClient();
      *     $formattedSubscription = $subscriberClient->subscriptionName('[PROJECT]', '[SUBSCRIPTION]');
      *     $streamAckDeadlineSeconds = 0;
      *     $request = new StreamingPullRequest();
@@ -956,18 +944,17 @@ class SubscriberGapicClient
      *
      * @return \Google\ApiCore\BidiStream
      *
-     * @throws \Google\ApiCore\ApiException if the remote call fails
+     * @throws ApiException if the remote call fails
      * @experimental
      */
     public function streamingPull($optionalArgs = [])
     {
-        return $this->transport->startBidiStreamingCall(
-            new Call(
-                self::SERVICE_NAME.'/StreamingPull',
-                StreamingPullResponse::class
-            ),
-            $this->configureCallSettings('streamingPull', $optionalArgs),
-            $this->descriptors['streamingPull']['grpcStreaming']
+        return $this->startCall(
+            'StreamingPull',
+            StreamingPullResponse::class,
+            $optionalArgs,
+            null,
+            Call::BIDI_STREAMING_CALL
         );
     }
 
@@ -981,8 +968,8 @@ class SubscriberGapicClient
      *
      * Sample code:
      * ```
+     * $subscriberClient = new SubscriberClient();
      * try {
-     *     $subscriberClient = new SubscriberClient();
      *     $formattedSubscription = $subscriberClient->subscriptionName('[PROJECT]', '[SUBSCRIPTION]');
      *     $pushConfig = new PushConfig();
      *     $subscriberClient->modifyPushConfig($formattedSubscription, $pushConfig);
@@ -1002,14 +989,14 @@ class SubscriberGapicClient
      * @param array $optionalArgs {
      *                            Optional.
      *
-     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
+     *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
      *          {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
-     * @throws \Google\ApiCore\ApiException if the remote call fails
+     * @throws ApiException if the remote call fails
      * @experimental
      */
     public function modifyPushConfig($subscription, $pushConfig, $optionalArgs = [])
@@ -1019,12 +1006,10 @@ class SubscriberGapicClient
         $request->setPushConfig($pushConfig);
 
         return $this->startCall(
-            new Call(
-                self::SERVICE_NAME.'/ModifyPushConfig',
-                GPBEmpty::class,
-                $request
-            ),
-            $this->configureCallSettings('modifyPushConfig', $optionalArgs)
+            'ModifyPushConfig',
+            GPBEmpty::class,
+            $optionalArgs,
+            $request
         )->wait();
     }
 
@@ -1033,8 +1018,8 @@ class SubscriberGapicClient
      *
      * Sample code:
      * ```
+     * $subscriberClient = new SubscriberClient();
      * try {
-     *     $subscriberClient = new SubscriberClient();
      *     $formattedProject = $subscriberClient->projectName('[PROJECT]');
      *     // Iterate through all elements
      *     $pagedResponse = $subscriberClient->listSnapshots($formattedProject);
@@ -1068,7 +1053,7 @@ class SubscriberGapicClient
      *          If no page token is specified (the default), the first page
      *          of values will be returned. Any page token used here must have
      *          been generated by a previous call to the API.
-     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
+     *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
@@ -1077,7 +1062,7 @@ class SubscriberGapicClient
      *
      * @return \Google\ApiCore\PagedListResponse
      *
-     * @throws \Google\ApiCore\ApiException if the remote call fails
+     * @throws ApiException if the remote call fails
      * @experimental
      */
     public function listSnapshots($project, $optionalArgs = [])
@@ -1092,13 +1077,10 @@ class SubscriberGapicClient
         }
 
         return $this->getPagedListResponse(
-            new Call(
-                self::SERVICE_NAME.'/ListSnapshots',
-                ListSnapshotsResponse::class,
-                $request
-            ),
-            $this->configureCallSettings('listSnapshots', $optionalArgs),
-            $this->descriptors['listSnapshots']['pageStreaming']
+            'ListSnapshots',
+            $optionalArgs,
+            ListSnapshotsResponse::class,
+            $request
         );
     }
 
@@ -1116,8 +1098,8 @@ class SubscriberGapicClient
      *
      * Sample code:
      * ```
+     * $subscriberClient = new SubscriberClient();
      * try {
-     *     $subscriberClient = new SubscriberClient();
      *     $formattedName = $subscriberClient->snapshotName('[PROJECT]', '[SNAPSHOT]');
      *     $formattedSubscription = $subscriberClient->subscriptionName('[PROJECT]', '[SUBSCRIPTION]');
      *     $response = $subscriberClient->createSnapshot($formattedName, $formattedSubscription);
@@ -1143,7 +1125,7 @@ class SubscriberGapicClient
      * @param array  $optionalArgs {
      *                             Optional.
      *
-     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
+     *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
@@ -1152,7 +1134,7 @@ class SubscriberGapicClient
      *
      * @return \Google\Cloud\PubSub\V1\Snapshot
      *
-     * @throws \Google\ApiCore\ApiException if the remote call fails
+     * @throws ApiException if the remote call fails
      * @experimental
      */
     public function createSnapshot($name, $subscription, $optionalArgs = [])
@@ -1162,12 +1144,10 @@ class SubscriberGapicClient
         $request->setSubscription($subscription);
 
         return $this->startCall(
-            new Call(
-                self::SERVICE_NAME.'/CreateSnapshot',
-                Snapshot::class,
-                $request
-            ),
-            $this->configureCallSettings('createSnapshot', $optionalArgs)
+            'CreateSnapshot',
+            Snapshot::class,
+            $optionalArgs,
+            $request
         )->wait();
     }
 
@@ -1181,8 +1161,8 @@ class SubscriberGapicClient
      *
      * Sample code:
      * ```
+     * $subscriberClient = new SubscriberClient();
      * try {
-     *     $subscriberClient = new SubscriberClient();
      *     $seconds = 123456;
      *     $expireTime = new Timestamp();
      *     $expireTime->setSeconds($seconds);
@@ -1204,7 +1184,7 @@ class SubscriberGapicClient
      * @param array     $optionalArgs {
      *                                Optional.
      *
-     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
+     *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
@@ -1213,7 +1193,7 @@ class SubscriberGapicClient
      *
      * @return \Google\Cloud\PubSub\V1\Snapshot
      *
-     * @throws \Google\ApiCore\ApiException if the remote call fails
+     * @throws ApiException if the remote call fails
      * @experimental
      */
     public function updateSnapshot($snapshot, $updateMask, $optionalArgs = [])
@@ -1223,12 +1203,10 @@ class SubscriberGapicClient
         $request->setUpdateMask($updateMask);
 
         return $this->startCall(
-            new Call(
-                self::SERVICE_NAME.'/UpdateSnapshot',
-                Snapshot::class,
-                $request
-            ),
-            $this->configureCallSettings('updateSnapshot', $optionalArgs)
+            'UpdateSnapshot',
+            Snapshot::class,
+            $optionalArgs,
+            $request
         )->wait();
     }
 
@@ -1240,8 +1218,8 @@ class SubscriberGapicClient
      *
      * Sample code:
      * ```
+     * $subscriberClient = new SubscriberClient();
      * try {
-     *     $subscriberClient = new SubscriberClient();
      *     $formattedSnapshot = $subscriberClient->snapshotName('[PROJECT]', '[SNAPSHOT]');
      *     $subscriberClient->deleteSnapshot($formattedSnapshot);
      * } finally {
@@ -1254,14 +1232,14 @@ class SubscriberGapicClient
      * @param array  $optionalArgs {
      *                             Optional.
      *
-     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
+     *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
      *          {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
-     * @throws \Google\ApiCore\ApiException if the remote call fails
+     * @throws ApiException if the remote call fails
      * @experimental
      */
     public function deleteSnapshot($snapshot, $optionalArgs = [])
@@ -1270,12 +1248,10 @@ class SubscriberGapicClient
         $request->setSnapshot($snapshot);
 
         return $this->startCall(
-            new Call(
-                self::SERVICE_NAME.'/DeleteSnapshot',
-                GPBEmpty::class,
-                $request
-            ),
-            $this->configureCallSettings('deleteSnapshot', $optionalArgs)
+            'DeleteSnapshot',
+            GPBEmpty::class,
+            $optionalArgs,
+            $request
         )->wait();
     }
 
@@ -1285,8 +1261,8 @@ class SubscriberGapicClient
      *
      * Sample code:
      * ```
+     * $subscriberClient = new SubscriberClient();
      * try {
-     *     $subscriberClient = new SubscriberClient();
      *     $formattedSubscription = $subscriberClient->subscriptionName('[PROJECT]', '[SUBSCRIPTION]');
      *     $response = $subscriberClient->seek($formattedSubscription);
      * } finally {
@@ -1314,7 +1290,7 @@ class SubscriberGapicClient
      *          The snapshot to seek to. The snapshot's topic must be the same as that of
      *          the provided subscription.
      *          Format is `projects/{project}/snapshots/{snap}`.
-     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
+     *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
@@ -1323,7 +1299,7 @@ class SubscriberGapicClient
      *
      * @return \Google\Cloud\PubSub\V1\SeekResponse
      *
-     * @throws \Google\ApiCore\ApiException if the remote call fails
+     * @throws ApiException if the remote call fails
      * @experimental
      */
     public function seek($subscription, $optionalArgs = [])
@@ -1338,12 +1314,10 @@ class SubscriberGapicClient
         }
 
         return $this->startCall(
-            new Call(
-                self::SERVICE_NAME.'/Seek',
-                SeekResponse::class,
-                $request
-            ),
-            $this->configureCallSettings('seek', $optionalArgs)
+            'Seek',
+            SeekResponse::class,
+            $optionalArgs,
+            $request
         )->wait();
     }
 
@@ -1353,8 +1327,8 @@ class SubscriberGapicClient
      *
      * Sample code:
      * ```
+     * $subscriberClient = new SubscriberClient();
      * try {
-     *     $subscriberClient = new SubscriberClient();
      *     $formattedResource = $subscriberClient->subscriptionName('[PROJECT]', '[SUBSCRIPTION]');
      *     $policy = new Policy();
      *     $response = $subscriberClient->setIamPolicy($formattedResource, $policy);
@@ -1373,7 +1347,7 @@ class SubscriberGapicClient
      * @param array  $optionalArgs {
      *                             Optional.
      *
-     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
+     *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
@@ -1382,7 +1356,7 @@ class SubscriberGapicClient
      *
      * @return \Google\Cloud\Iam\V1\Policy
      *
-     * @throws \Google\ApiCore\ApiException if the remote call fails
+     * @throws ApiException if the remote call fails
      * @experimental
      */
     public function setIamPolicy($resource, $policy, $optionalArgs = [])
@@ -1392,12 +1366,10 @@ class SubscriberGapicClient
         $request->setPolicy($policy);
 
         return $this->startCall(
-            new Call(
-                self::SERVICE_NAME.'/SetIamPolicy',
-                Policy::class,
-                $request
-            ),
-            $this->configureCallSettings('setIamPolicy', $optionalArgs)
+            'SetIamPolicy',
+            Policy::class,
+            $optionalArgs,
+            $request
         )->wait();
     }
 
@@ -1408,8 +1380,8 @@ class SubscriberGapicClient
      *
      * Sample code:
      * ```
+     * $subscriberClient = new SubscriberClient();
      * try {
-     *     $subscriberClient = new SubscriberClient();
      *     $formattedResource = $subscriberClient->subscriptionName('[PROJECT]', '[SUBSCRIPTION]');
      *     $response = $subscriberClient->getIamPolicy($formattedResource);
      * } finally {
@@ -1423,7 +1395,7 @@ class SubscriberGapicClient
      * @param array  $optionalArgs {
      *                             Optional.
      *
-     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
+     *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
@@ -1432,7 +1404,7 @@ class SubscriberGapicClient
      *
      * @return \Google\Cloud\Iam\V1\Policy
      *
-     * @throws \Google\ApiCore\ApiException if the remote call fails
+     * @throws ApiException if the remote call fails
      * @experimental
      */
     public function getIamPolicy($resource, $optionalArgs = [])
@@ -1441,12 +1413,10 @@ class SubscriberGapicClient
         $request->setResource($resource);
 
         return $this->startCall(
-            new Call(
-                self::SERVICE_NAME.'/GetIamPolicy',
-                Policy::class,
-                $request
-            ),
-            $this->configureCallSettings('getIamPolicy', $optionalArgs)
+            'GetIamPolicy',
+            Policy::class,
+            $optionalArgs,
+            $request
         )->wait();
     }
 
@@ -1457,8 +1427,8 @@ class SubscriberGapicClient
      *
      * Sample code:
      * ```
+     * $subscriberClient = new SubscriberClient();
      * try {
-     *     $subscriberClient = new SubscriberClient();
      *     $formattedResource = $subscriberClient->subscriptionName('[PROJECT]', '[SUBSCRIPTION]');
      *     $permissions = [];
      *     $response = $subscriberClient->testIamPermissions($formattedResource, $permissions);
@@ -1477,7 +1447,7 @@ class SubscriberGapicClient
      * @param array    $optionalArgs {
      *                               Optional.
      *
-     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
+     *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
@@ -1486,7 +1456,7 @@ class SubscriberGapicClient
      *
      * @return \Google\Cloud\Iam\V1\TestIamPermissionsResponse
      *
-     * @throws \Google\ApiCore\ApiException if the remote call fails
+     * @throws ApiException if the remote call fails
      * @experimental
      */
     public function testIamPermissions($resource, $permissions, $optionalArgs = [])
@@ -1496,23 +1466,10 @@ class SubscriberGapicClient
         $request->setPermissions($permissions);
 
         return $this->startCall(
-            new Call(
-                self::SERVICE_NAME.'/TestIamPermissions',
-                TestIamPermissionsResponse::class,
-                $request
-            ),
-            $this->configureCallSettings('testIamPermissions', $optionalArgs)
+            'TestIamPermissions',
+            TestIamPermissionsResponse::class,
+            $optionalArgs,
+            $request
         )->wait();
-    }
-
-    /**
-     * Initiates an orderly shutdown in which preexisting calls continue but new
-     * calls are immediately cancelled.
-     *
-     * @experimental
-     */
-    public function close()
-    {
-        $this->transport->close();
     }
 }

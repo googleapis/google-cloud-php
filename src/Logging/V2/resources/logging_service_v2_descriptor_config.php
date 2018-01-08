@@ -3,7 +3,7 @@
 return [
     'interfaces' => [
         'google.logging.v2.LoggingServiceV2' => [
-            'listLogEntries' => [
+            'ListLogEntries' => [
                 'pageStreaming' => [
                     'requestPageTokenGetMethod' => 'getPageToken',
                     'requestPageTokenSetMethod' => 'setPageToken',
@@ -13,7 +13,7 @@ return [
                     'resourcesGetMethod' => 'getEntries',
                 ],
             ],
-            'listMonitoredResourceDescriptors' => [
+            'ListMonitoredResourceDescriptors' => [
                 'pageStreaming' => [
                     'requestPageTokenGetMethod' => 'getPageToken',
                     'requestPageTokenSetMethod' => 'setPageToken',
@@ -23,7 +23,7 @@ return [
                     'resourcesGetMethod' => 'getResourceDescriptors',
                 ],
             ],
-            'listLogs' => [
+            'ListLogs' => [
                 'pageStreaming' => [
                     'requestPageTokenGetMethod' => 'getPageToken',
                     'requestPageTokenSetMethod' => 'setPageToken',

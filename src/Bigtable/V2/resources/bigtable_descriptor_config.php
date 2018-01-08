@@ -3,17 +3,17 @@
 return [
     'interfaces' => [
         'google.bigtable.v2.Bigtable' => [
-            'readRows' => [
+            'ReadRows' => [
                 'grpcStreaming' => [
                     'grpcStreamingType' => 'ServerStreaming',
                 ],
             ],
-            'sampleRowKeys' => [
+            'SampleRowKeys' => [
                 'grpcStreaming' => [
                     'grpcStreamingType' => 'ServerStreaming',
                 ],
             ],
-            'mutateRows' => [
+            'MutateRows' => [
                 'grpcStreaming' => [
                     'grpcStreamingType' => 'ServerStreaming',
                 ],

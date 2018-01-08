@@ -5,55 +5,65 @@ return [
         'google.monitoring.v3.UptimeCheckService' => [
             'ListUptimeCheckConfigs' => [
                 'method' => 'get',
-                'uri' => '/v3/{parent=projects/*}/uptimeCheckConfigs',
+                'uriTemplate' => '/v3/{parent=projects/*}/uptimeCheckConfigs',
                 'placeholders' => [
                     'parent' => [
-                        'getParent',
+                        'getters' => [
+                            'getParent',
+                        ],
                     ],
                 ],
             ],
             'GetUptimeCheckConfig' => [
                 'method' => 'get',
-                'uri' => '/v3/{name=projects/*/uptimeCheckConfigs/*}',
+                'uriTemplate' => '/v3/{name=projects/*/uptimeCheckConfigs/*}',
                 'placeholders' => [
                     'name' => [
-                        'getName',
+                        'getters' => [
+                            'getName',
+                        ],
                     ],
                 ],
             ],
             'CreateUptimeCheckConfig' => [
                 'method' => 'post',
-                'uri' => '/v3/{parent=projects/*}/uptimeCheckConfigs',
+                'uriTemplate' => '/v3/{parent=projects/*}/uptimeCheckConfigs',
                 'body' => 'uptime_check_config',
                 'placeholders' => [
                     'parent' => [
-                        'getParent',
+                        'getters' => [
+                            'getParent',
+                        ],
                     ],
                 ],
             ],
             'UpdateUptimeCheckConfig' => [
                 'method' => 'patch',
-                'uri' => '/v3/{uptime_check_config.name=projects/*/uptimeCheckConfigs/*}',
+                'uriTemplate' => '/v3/{uptime_check_config.name=projects/*/uptimeCheckConfigs/*}',
                 'body' => 'uptime_check_config',
                 'placeholders' => [
                     'uptime_check_config.name' => [
-                        'getUptimeCheckConfig',
-                        'getName',
+                        'getters' => [
+                            'getUptimeCheckConfig',
+                            'getName',
+                        ],
                     ],
                 ],
             ],
             'DeleteUptimeCheckConfig' => [
                 'method' => 'delete',
-                'uri' => '/v3/{name=projects/*/uptimeCheckConfigs/*}',
+                'uriTemplate' => '/v3/{name=projects/*/uptimeCheckConfigs/*}',
                 'placeholders' => [
                     'name' => [
-                        'getName',
+                        'getters' => [
+                            'getName',
+                        ],
                     ],
                 ],
             ],
             'ListUptimeCheckIps' => [
                 'method' => 'get',
-                'uri' => '/v3/uptimeCheckIps',
+                'uriTemplate' => '/v3/uptimeCheckIps',
             ],
         ],
     ],
