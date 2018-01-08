@@ -72,7 +72,7 @@
         "google/cloud-datastore": "1.2.0",
         "google/cloud-dlp": "0.4.3",
         "google/cloud-error-reporting": "0.7.3",
-        "google/cloud-firestore": "0.3.2",
+        "google/cloud-firestore": "0.3.3",
         "google/cloud-language": "0.11.2",
         "google/cloud-logging": "1.8.2",
         "google/cloud-monitoring": "0.7.3",
