@@ -92,6 +92,19 @@ class DaemonTest extends TestCase
         ]);
     }
 
+    public function testDefaultSourceContext()
+    {
+        $this->debuggee->register(Argument::any())->shouldBeCalled();
+        $this->client->debuggee(null, Argument::that(function ($options) {
+            return $options['extSourceContexts'] === [];
+        }))->willReturn($this->debuggee->reveal())->shouldBeCalled();
+
+        $daemon = new Daemon('.', [
+            'client' => $this->client->reveal(),
+            'storage' => $this->storage->reveal()
+        ]);
+    }
+
     public function testFetchesBreakpoints()
     {
         $breakpoints = [
