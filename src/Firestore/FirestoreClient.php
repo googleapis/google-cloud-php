@@ -147,7 +147,10 @@ class FirestoreClient
         return new WriteBatch(
             $this->connection,
             $this->valueMapper,
-            $this->database
+            $this->databaseName(
+                $this->projectId,
+                $this->database
+            )
         );
     }
 
