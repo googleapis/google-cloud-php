@@ -44,9 +44,8 @@ class DaemonTest extends TestCase
     public function testSpecifyUniquifier()
     {
         $this->debuggee->register(Argument::any())->shouldBeCalled();
-        $this->client->debuggee(null, Argument::that(function ($options) {
-            return $options['uniquifier'] == 'some uniquifier';
-        }))->willReturn($this->debuggee->reveal())->shouldBeCalled();
+        $this->client->debuggee(null, Argument::withEntry('uniquifier', 'some uniquifier'))
+            ->willReturn($this->debuggee->reveal())->shouldBeCalled();
 
         $daemon = new Daemon('.', [
             'client' => $this->client->reveal(),
@@ -59,9 +58,8 @@ class DaemonTest extends TestCase
     {
         $expectedValue = sha1('/file.php:50:/nested/folder/file2.php:50');
         $this->debuggee->register(Argument::any())->shouldBeCalled();
-        $this->client->debuggee(null, Argument::that(function ($options) use ($expectedValue) {
-            return $options['uniquifier'] == $expectedValue;
-        }))->willReturn($this->debuggee->reveal())->shouldBeCalled();
+        $this->client->debuggee(null, Argument::withEntry('uniquifier', $expectedValue))
+            ->willReturn($this->debuggee->reveal())->shouldBeCalled();
 
         $daemon = new Daemon(__DIR__ . '/example', [
             'client' => $this->client->reveal(),
@@ -72,9 +70,8 @@ class DaemonTest extends TestCase
     public function testSpecifyDescription()
     {
         $this->debuggee->register(Argument::any())->shouldBeCalled();
-        $this->client->debuggee(null, Argument::that(function ($options) {
-            return $options['description'] == 'some description';
-        }))->willReturn($this->debuggee->reveal())->shouldBeCalled();
+        $this->client->debuggee(null, Argument::withEntry('description', 'some description'))
+            ->willReturn($this->debuggee->reveal())->shouldBeCalled();
 
         $daemon = new Daemon('.', [
             'client' => $this->client->reveal(),
@@ -95,9 +92,8 @@ class DaemonTest extends TestCase
             'labels' => []
         ];
         $this->debuggee->register(Argument::any())->shouldBeCalled();
-        $this->client->debuggee(null, Argument::that(function ($options) use ($context) {
-            return $options['extSourceContexts'] == [$context];
-        }))->willReturn($this->debuggee->reveal())->shouldBeCalled();
+        $this->client->debuggee(null, Argument::withEntry('extSourceContexts', [$context]))
+            ->willReturn($this->debuggee->reveal())->shouldBeCalled();
 
         $daemon = new Daemon('.', [
             'client' => $this->client->reveal(),
@@ -109,9 +105,8 @@ class DaemonTest extends TestCase
     public function testDefaultSourceContext()
     {
         $this->debuggee->register(Argument::any())->shouldBeCalled();
-        $this->client->debuggee(null, Argument::that(function ($options) {
-            return $options['extSourceContexts'] === [];
-        }))->willReturn($this->debuggee->reveal())->shouldBeCalled();
+        $this->client->debuggee(null, Argument::withEntry('extSourceContexts', []))
+            ->willReturn($this->debuggee->reveal())->shouldBeCalled();
 
         $daemon = new Daemon('.', [
             'client' => $this->client->reveal(),
