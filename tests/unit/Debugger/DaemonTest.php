@@ -56,10 +56,10 @@ class DaemonTest extends TestCase
 
     public function testGeneratesDefaultUniquifier()
     {
-        $expectedValue = sha1('/file.php:50:/nested/folder/file2.php:50');
         $this->debuggee->register(Argument::any())->shouldBeCalled();
-        $this->client->debuggee(null, Argument::withEntry('uniquifier', $expectedValue))
-            ->willReturn($this->debuggee->reveal())->shouldBeCalled();
+        $this->client->debuggee(null, Argument::that(function ($options) {
+            return preg_match('/[a-z0-9]{32}/', $options['uniquifier']);
+        }))->willReturn($this->debuggee->reveal())->shouldBeCalled();
 
         $daemon = new Daemon(__DIR__ . '/example', [
             'client' => $this->client->reveal(),
