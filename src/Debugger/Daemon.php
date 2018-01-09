@@ -156,9 +156,18 @@ class Daemon
 
     private function defaultUniquifier()
     {
-        $files = glob($this->sourceRoot . '/**/*.php');
+        $dir = new \RecursiveDirectoryIterator($this->sourceRoot);
+        $iterator = new \RecursiveIteratorIterator($dir);
+        $regex = new \RegexIterator(
+            $iterator,
+            '/^.+\.php$/i',
+            \RecursiveRegexIterator::GET_MATCH
+        );
+
+        $files = array_keys(iterator_to_array($regex));
         return sha1(implode(':', array_map(function ($filename) {
-            return $filename . ':' . filesize($filename);
+            $relativeFilename = str_replace($this->sourceRoot, '', $filename);
+            return $relativeFilename . ':' . filesize($filename);
         }, $files)));
     }
 

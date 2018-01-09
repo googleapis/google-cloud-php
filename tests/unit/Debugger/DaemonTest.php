@@ -55,6 +55,20 @@ class DaemonTest extends TestCase
         ]);
     }
 
+    public function testGeneratesDefaultUniquifier()
+    {
+        $expectedValue = sha1('/file.php:50:/nested/folder/file2.php:50');
+        $this->debuggee->register(Argument::any())->shouldBeCalled();
+        $this->client->debuggee(null, Argument::that(function ($options) use ($expectedValue) {
+            return $options['uniquifier'] == $expectedValue;
+        }))->willReturn($this->debuggee->reveal())->shouldBeCalled();
+
+        $daemon = new Daemon(__DIR__ . '/example', [
+            'client' => $this->client->reveal(),
+            'storage' => $this->storage->reveal()
+        ]);
+    }
+
     public function testSpecifyDescription()
     {
         $this->debuggee->register(Argument::any())->shouldBeCalled();
