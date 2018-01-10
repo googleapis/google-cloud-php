@@ -37,7 +37,7 @@ class Functions
             $props = ['connection'];
         }
 
-        $tpl = 'class %s extends %s {private $___props = \'%s\'; use \Google\Cloud\Dev\StubTrait; }';
+        $tpl = 'class %s extends %s {private $___props = \'%s\'; use \Google\Cloud\Core\Testing\StubTrait; }';
 
         $name = 'Stub' . sha1($extends);
 
@@ -64,7 +64,7 @@ class Functions
 
         $tpl = 'class %s {
             use %s;
-            use \Google\Cloud\Dev\StubTrait;
+            use \Google\Cloud\Core\Testing\StubTrait;
             private $___props = \'%s\';
             %s
             public function call($fn, array $args = []) { return call_user_func_array([$this, $fn], $args); }
