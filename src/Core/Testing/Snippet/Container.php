@@ -15,28 +15,10 @@
  * limitations under the License.
  */
 
-namespace Google\Cloud\Dev\Snippet\Coverage;
+namespace Google\Cloud\Core\Testing\Snippet;
 
-interface ScannerInterface
+class Container
 {
-    /**
-     * Retrieve a list of PHP files to scan.
-     *
-     * @return string[]
-     */
-    public function files();
-
-    /**
-     * Retrieve a list of classes in the given PHP files.
-     *
-     * @return string[]
-     */
-    public function classes(array $files);
-
-    /**
-     * Get a list of all snippets from the given classes.
-     *
-     * @return \Google\Cloud\Dev\Snippet\Parser\Snippet[]
-     */
-    public function snippets(array $classes);
+    public static $coverage;
+    public static $parser;
 }

@@ -20,7 +20,6 @@ namespace Google\Cloud\Tests\Snippets\PubSub;
 use Google\Cloud\Core\Duration;
 use Google\Cloud\Core\Iterator\ItemIterator;
 use Google\Cloud\Core\Timestamp;
-use Google\Cloud\Dev\SetStubConnectionTrait;
 use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
 use Google\Cloud\PubSub\Connection\ConnectionInterface;
 use Google\Cloud\PubSub\Message;

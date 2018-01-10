@@ -15,10 +15,10 @@
  * limitations under the License.
  */
 
-namespace Google\Cloud\Dev\Snippet\Parser;
+namespace Google\Cloud\Core\Testing\Snippet\Parser;
 
 use DomDocument;
-use Google\Cloud\Dev\DocBlockStripSpaces;
+use Google\Cloud\Core\Testing\DocBlockStripSpaces;
 use Parsedown;
 use ReflectionClass;
 use ReflectionMethod;

@@ -17,7 +17,7 @@
 
 namespace Google\Cloud\Core\Testing\Snippet;
 
-use Google\Cloud\Dev\Snippet\Container;
+use Google\Cloud\Core\Testing\Snippet\Container;
 use PHPUnit\Framework\TestCase;
 
 /**

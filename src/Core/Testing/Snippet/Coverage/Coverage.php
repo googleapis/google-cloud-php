@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-namespace Google\Cloud\Dev\Snippet\Coverage;
+namespace Google\Cloud\Core\Testing\Snippet\Coverage;
 
 class Coverage
 {
@@ -29,7 +29,7 @@ class Coverage
     protected $scanner;
 
     /**
-     * @var \Google\Cloud\Dev\Snippet\Parser\Snippet[]
+     * @var \Google\Cloud\Core\Testing\Snippet\Parser\Snippet[]
      */
     private $snippets = [];
 
@@ -54,7 +54,7 @@ class Coverage
     /**
      * Creates a list of all snippets which should be covered.
      *
-     * @return \Google\Cloud\Dev\Snippet\Parser\Snippet[]
+     * @return \Google\Cloud\Core\Testing\Snippet\Parser\Snippet[]
      */
     public function buildListToCover()
     {
@@ -80,7 +80,7 @@ class Coverage
     /**
      * Return a list of all snippets not marked a covered.
      *
-     * @return \Google\Cloud\Dev\Snippet\Parser\Snippet[]
+     * @return \Google\Cloud\Core\Testing\Snippet\Parser\Snippet[]
      */
     public function uncovered()
     {
