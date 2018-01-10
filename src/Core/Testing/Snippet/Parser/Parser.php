@@ -29,6 +29,8 @@ use phpDocumentor\Reflection\DocBlock;
  *
  * Example:
  * ```
+ * use Google\Cloud\Core\Testing\Snippet\Parser\Parser;
+ *
  * $parser = new Parser;
  * ```
  */
@@ -41,6 +43,8 @@ class Parser
      *
      * Example:
      * ```
+     * use Google\Cloud\Core\Testing\Snippet\Parser\Parser;
+     *
      * $snippet = $parser->classExample(Parser::class);
      * ```
      *
@@ -74,10 +78,14 @@ class Parser
      *
      * Example:
      * ```
+     * use Google\Cloud\Core\Testing\Snippet\Parser\Parser;
+     *
      * $snippet = $parser->methodExample(Parser::class, 'methodExample');
      * ```
      *
      * ```
+     * use Google\Cloud\Core\Testing\Snippet\Parser\Parser;
+     *
      * // Get the 2nd example (index=1)
      * $snippet = $parser->methodExample(Parser::class, 'methodExample', 1);
      * ```
@@ -225,12 +233,6 @@ class Parser
 
     /**
      * Parse examples from a DocBlock object.
-     *
-     * Example:
-     * ```
-     * // Yeah, this example is pretty useless.
-     * $examples = $parser->examples($docBlock);
-     * ```
      *
      * @param DocBlock $docBlock The DocBlock to parse
      * @param string $file The filename the docblock is in
