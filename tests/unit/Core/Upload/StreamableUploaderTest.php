@@ -20,9 +20,7 @@ namespace Google\Cloud\Tests\Unit\Core\Upload;
 use Google\Cloud\Core\Exception\GoogleException;
 use Google\Cloud\Core\RequestWrapper;
 use Google\Cloud\Core\Upload\StreamableUploader;
-use Google\Cloud\Storage\WriteStream;
-use GuzzleHttp\Psr7;
-use GuzzleHttp\Psr7\Request;
+use GuzzleHttp\Psr7\BufferStream;
 use GuzzleHttp\Psr7\Response;
 use Prophecy\Argument;
 use Psr\Http\Message\RequestInterface;
@@ -41,7 +39,7 @@ class StreamableUploaderTest extends TestCase
     public function setUp()
     {
         $this->requestWrapper = $this->prophesize(RequestWrapper::class);
-        $this->stream = new WriteStream(null, ['chunkSize' => 16]);
+        $this->stream = new BufferStream(16);
         $this->successBody = '{"canI":"kickIt"}';
     }
 
@@ -69,14 +67,14 @@ class StreamableUploaderTest extends TestCase
             'http://www.example.com',
             ['chunkSize' => 16]
         );
-        $this->stream->setUploader($uploader);
 
         // write some data smaller than the chunk size
         $this->stream->write("0123456789");
-        $upload->shouldHaveBeenCalledTimes(0);
 
         // write some more data that will put us over the chunk size.
         $this->stream->write("more text");
+
+        $uploader->upload(16);
         $upload->shouldHaveBeenCalledTimes(1);
 
         // finish the upload
@@ -98,7 +96,6 @@ class StreamableUploaderTest extends TestCase
             $this->stream,
             'http://www.example.com'
         );
-        $this->stream->setUploader($uploader);
 
         $this->assertEquals(json_decode($this->successBody, true), $uploader->upload());
     }
@@ -118,7 +115,6 @@ class StreamableUploaderTest extends TestCase
             $this->stream,
             'http://www.example.com'
         );
-        $this->stream->setUploader($uploader);
 
         $this->assertEquals($resumeUri, $uploader->getResumeUri());
     }
@@ -171,7 +167,6 @@ class StreamableUploaderTest extends TestCase
             $this->stream,
             'http://www.example.com'
         );
-        $this->stream->setUploader($uploader);
         $this->stream->write('0123456789');
         $uploader->upload();
     }
