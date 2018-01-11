@@ -112,13 +112,13 @@ class BatchDaemon
         while (true) {
             $jobs = $this->runner->getJobs();
             foreach ($jobs as $job) {
-                if (! array_key_exists($job->getIdentifier(), $procs)) {
+                if (! array_key_exists($job->identifier(), $procs)) {
                     $procs[$job->getIdentifier()] = [];
                 }
-                while (count($procs[$job->getIdentifier()]) > $job->getWorkerNum()) {
+                while (count($procs[$job->identifier()]) > $job->worker()) {
                     // Stopping an excessive child.
                     echo 'Stopping an excessive child.' . PHP_EOL;
-                    $proc = array_pop($procs[$job->getIdentifier()]);
+                    $proc = array_pop($procs[$job->identifier()]);
                     $status = proc_get_status($proc);
                     // Keep sending SIGTERM until the child exits.
                     while ($status['running'] === true) {
@@ -128,10 +128,10 @@ class BatchDaemon
                     }
                     @proc_close($proc);
                 }
-                for ($i = 0; $i < $job->getWorkerNum(); $i++) {
+                for ($i = 0; $i < $job->worker(); $i++) {
                     $needStart = false;
-                    if (array_key_exists($i, $procs[$job->getIdentifier()])) {
-                        $status = proc_get_status($procs[$job->getIdentifier()][$i]);
+                    if (array_key_exists($i, $procs[$job->identifier()])) {
+                        $status = proc_get_status($procs[$job->identifier()][$i]);
                         if ($status['running'] !== true) {
                             $needStart = true;
                         }
@@ -140,8 +140,8 @@ class BatchDaemon
                     }
                     if ($needStart) {
                         echo 'Starting a child.' . PHP_EOL;
-                        $procs[$job->getIdentifier()][$i] = proc_open(
-                            sprintf('%s %d', $this->command, $job->getIdNum()),
+                        $procs[$job->identifier()][$i] = proc_open(
+                            sprintf('%s %d', $this->command, $job->id()),
                             $this->descriptorSpec,
                             $pipes
                         );
@@ -181,56 +181,8 @@ class BatchDaemon
     public function runChild($idNum)
     {
         // child process
-        $sysvKey = $this->getSysvKey($idNum);
-        $q = msg_get_queue($sysvKey);
-        $items = [];
         $job = $this->runner->getJobFromIdNum($idNum);
-        $period = $job->getCallPeriod();
-        $lastInvoked = microtime(true);
-        $batchSize = $job->getBatchSize();
-        while (true) {
-            // Fire SIGALRM after 1 second to unblock the blocking call.
-            pcntl_alarm(1);
-            if (msg_receive(
-                $q,
-                0,
-                $type,
-                8192,
-                $message,
-                true,
-                0, // blocking mode
-                $errorcode
-            )) {
-                if ($type === self::$typeDirect) {
-                    $items[] = $message;
-                } elseif ($type === self::$typeFile) {
-                    $items[] = unserialize(file_get_contents($message));
-                    @unlink($message);
-                }
-            }
-            pcntl_signal_dispatch();
-            // It runs the job when
-            // 1. Number of items reaches the batchSize.
-            // 2-a. Count is >0 and the current time is larger than lastInvoked + period.
-            // 2-b. Count is >0 and the shutdown flag is true.
-            if ((count($items) >= $batchSize)
-                || (count($items) > 0
-                    && (microtime(true) > $lastInvoked + $period
-                        || $this->shutdown))) {
-                printf(
-                    'Running the job with %d items' . PHP_EOL,
-                    count($items)
-                );
-                if (! $job->run($items)) {
-                    $this->handleFailure($idNum, $items);
-                }
-                $items = [];
-                $lastInvoked = microtime(true);
-            }
-            gc_collect_cycles();
-            if ($this->shutdown) {
-                exit;
-            }
-        }
+        $job->run();
+
     }
 }

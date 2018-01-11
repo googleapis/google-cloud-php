@@ -28,7 +28,7 @@ namespace Google\Cloud\Core\Batch;
 class BatchConfig
 {
     /**
-     * @var BatchJob[]
+     * @var JobInterface[]
      */
     private $jobs = [];
 
@@ -47,7 +47,7 @@ class BatchConfig
      *
      * @param string $identifier Unique identifier of the job.
      *
-     * @return BatchJob|null
+     * @return JobInterface|null
      */
     public function getJobFromId($identifier)
     {
@@ -61,7 +61,7 @@ class BatchConfig
      *
      * @param int $idNum A numeric id of the job.
      *
-     * @return BatchJob|null
+     * @return JobInterface|null
      */
     public function getJobFromIdNum($idNum)
     {
@@ -109,7 +109,7 @@ class BatchConfig
     /**
      * Get all the jobs.
      *
-     * @return BatchJob[]
+     * @return JobInterface[]
      */
     public function getJobs()
     {
