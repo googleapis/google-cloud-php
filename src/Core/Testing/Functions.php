@@ -20,6 +20,9 @@ namespace Google\Cloud\Core\Testing;
 
 /**
  * Class Functions is used to hold static functions required for testing
+ *
+ * @experimental
+ * @internal
  */
 class Functions
 {
@@ -30,6 +33,9 @@ class Functions
      * @param array $args An array of constructor arguments to use when creating the stub.
      * @param array $props A list of private properties on which to enable overrriding.
      * @return mixed
+     *
+     * @experimental
+     * @internal
      */
     public static function stub($extends, array $args = [], array $props = [])
     {
@@ -54,6 +60,9 @@ class Functions
      *
      * @param string $trait The fully-qualified name of the trait to implement.
      * @return mixed
+     *
+     * @experimental
+     * @internal
      */
     public static function impl($trait, array $props = [])
     {

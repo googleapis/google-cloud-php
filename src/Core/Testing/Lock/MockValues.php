@@ -25,6 +25,9 @@ require_once __DIR__ . '/MockGlobals.php';
  *
  * WARNING: this class requires MockGlobals.php, which replaces some existing functions with test
  * implementations.
+ *
+ * @experimental
+ * @internal
  */
 class MockValues
 {
@@ -36,6 +39,9 @@ class MockValues
 
     /**
      * Initialize MockValues
+     *
+     * @experimental
+     * @internal
      */
     public static function initialize()
     {

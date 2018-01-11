@@ -23,6 +23,9 @@ use phpDocumentor\Reflection\FileReflector;
 /**
  * Scan a directory for files, a set of files for classes, and a set of classes
  * for code snippets.
+ *
+ * @experimental
+ * @internal
  */
 class Scanner implements ScannerInterface
 {
@@ -39,6 +42,9 @@ class Scanner implements ScannerInterface
     /**
      * @param Parser $parser An instance of the Snippet Parser.
      * @param string $basepath The path to scan for PHP files.
+     *
+     * @experimental
+     * @internal
      */
     public function __construct(Parser $parser, $basePath)
     {

@@ -17,12 +17,21 @@
 
 namespace Google\Cloud\Core\Testing;
 
+/**
+ * Trait CheckForClassTrait
+ *
+ * @experimental
+ * @internal
+ */
 trait CheckForClassTrait
 {
     /**
      * Check whether all required classes are available, otherwise skip the tests.
      *
      * @param array $requiredClasses List of classes that must be available.
+     *
+     * @experimental
+     * @internal
      */
     protected function checkAndSkipTest(array $requiredClasses)
     {

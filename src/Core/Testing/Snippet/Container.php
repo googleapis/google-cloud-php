@@ -17,6 +17,12 @@
 
 namespace Google\Cloud\Core\Testing\Snippet;
 
+/**
+ * Class Container
+ *
+ * @experimental
+ * @internal
+ */
 class Container
 {
     public static $coverage;

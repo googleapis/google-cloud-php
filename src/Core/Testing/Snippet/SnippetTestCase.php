@@ -25,6 +25,9 @@ use PHPUnit\Framework\TestCase;
  * Provide helpers for Snippet tests.
  *
  * Snippet test cases should extend this class.
+ *
+ * @experimental
+ * @internal
  */
 class SnippetTestCase extends TestCase
 {
@@ -35,6 +38,9 @@ class SnippetTestCase extends TestCase
 
     /**
      * Run to set up class before testing
+     *
+     * @experimental
+     * @internal
      */
     public static function setUpBeforeClass()
     {
@@ -48,6 +54,9 @@ class SnippetTestCase extends TestCase
      * @param string $class The class name.
      * @param string|int $indexOrName The index of the snippet, or its name.
      * @return Snippet
+     *
+     * @experimental
+     * @internal
      */
     public function snippetFromClass($class, $indexOrName = 0)
     {
@@ -71,6 +80,9 @@ class SnippetTestCase extends TestCase
      * @param string $method The method name
      * @param string|int $indexOrName The index of the snippet, or its name.
      * @return Snippet
+     *
+     * @experimental
+     * @internal
      */
     public function snippetFromMagicMethod($class, $method, $indexOrName = 0)
     {
@@ -94,6 +106,9 @@ class SnippetTestCase extends TestCase
      * @param string $method The method name
      * @param string|int $indexOrName The index of the snippet, or its name.
      * @return Snippet
+     *
+     * @experimental
+     * @internal
      */
     public function snippetFromMethod($class, $method, $indexOrName = 0)
     {

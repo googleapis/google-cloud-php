@@ -17,12 +17,21 @@
 
 namespace Google\Cloud\Core\Testing\Snippet\Coverage;
 
+/**
+ * Interface ScannerInterface
+ *
+ * @experimental
+ * @internal
+ */
 interface ScannerInterface
 {
     /**
      * Retrieve a list of PHP files to scan.
      *
      * @return string[]
+     *
+     * @experimental
+     * @internal
      */
     public function files();
 
@@ -30,6 +39,9 @@ interface ScannerInterface
      * Retrieve a list of classes in the given PHP files.
      *
      * @return string[]
+     *
+     * @experimental
+     * @internal
      */
     public function classes(array $files);
 
@@ -37,6 +49,9 @@ interface ScannerInterface
      * Get a list of all snippets from the given classes.
      *
      * @return \Google\Cloud\Core\Testing\Snippet\Parser\Snippet[]
+     *
+     * @experimental
+     * @internal
      */
     public function snippets(array $classes);
 }

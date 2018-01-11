@@ -22,6 +22,9 @@ use phpseclib\Crypt\RSA;
 
 /**
  * Trait KeyPairGenerateTrait implements key pair generation functions used for testing
+ *
+ * @experimental
+ * @internal
  */
 trait KeyPairGenerateTrait
 {

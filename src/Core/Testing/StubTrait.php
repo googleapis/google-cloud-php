@@ -17,8 +17,21 @@
 
 namespace Google\Cloud\Core\Testing;
 
+/**
+ * Trait StubTrait
+ *
+ * @experimental
+ * @internal
+ */
 trait StubTrait
 {
+    /**
+     * @param $prop
+     * @return mixed
+     *
+     * @experimental
+     * @internal
+     */
     public function ___getProperty($prop)
     {
         $property = $this->___getPropertyReflector($prop);
@@ -27,6 +40,13 @@ trait StubTrait
         return $property->getValue($this);
     }
 
+    /**
+     * @param $prop
+     * @param $value
+     *
+     * @experimental
+     * @internal
+     */
     public function ___setProperty($prop, $value)
     {
         if (!in_array($prop, json_decode($this->___props))) {

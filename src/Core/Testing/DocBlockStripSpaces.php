@@ -19,6 +19,12 @@ namespace Google\Cloud\Core\Testing;
 
 use phpDocumentor\Reflection\DocBlock;
 
+/**
+ * Class DocBlockStripSpaces
+ *
+ * @experimental
+ * @internal
+ */
 class DocBlockStripSpaces extends DocBlock
 {
     /**
@@ -28,6 +34,9 @@ class DocBlockStripSpaces extends DocBlock
      * @param int $spaces The number of spaces to strip.
      *
      * @return string
+     *
+     * @experimental
+     * @internal
      */
     public function cleanInput($comment, $spaces = 4)
     {

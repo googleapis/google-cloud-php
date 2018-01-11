@@ -7,6 +7,9 @@ use Prophecy\Util\StringUtil;
 
 /**
  * ArrayHasSameValuesToken implements TokenInterface and is used for testing
+ *
+ * @experimental
+ * @internal
  */
 class ArrayHasSameValuesToken implements TokenInterface
 {
@@ -18,6 +21,9 @@ class ArrayHasSameValuesToken implements TokenInterface
      * ArrayHasSameValuesToken constructor.
      * @param $value
      * @param StringUtil|null $util
+     *
+     * @experimental
+     * @internal
      */
     public function __construct($value, StringUtil $util = null)
     {
@@ -28,6 +34,9 @@ class ArrayHasSameValuesToken implements TokenInterface
     /**
      * @param $argument
      * @return bool|int
+     *
+     * @experimental
+     * @internal
      */
     public function scoreArgument($argument)
     {
@@ -44,6 +53,9 @@ class ArrayHasSameValuesToken implements TokenInterface
 
     /**
      * @return bool
+     *
+     * @experimental
+     * @internal
      */
     public function isLast()
     {
@@ -52,6 +64,9 @@ class ArrayHasSameValuesToken implements TokenInterface
 
     /**
      * @return string
+     *
+     * @experimental
+     * @internal
      */
     public function __toString()
     {

@@ -17,6 +17,12 @@
 
 namespace Google\Cloud\Core\Testing\Snippet\Coverage;
 
+/**
+ * Class Coverage
+ *
+ * @experimental
+ * @internal
+ */
 class Coverage
 {
     private static $snippetExcludeList = [
@@ -40,6 +46,9 @@ class Coverage
 
     /**
      * @param ScannerInterface $scanner The scanner to use
+     *
+     * @experimental
+     * @internal
      */
     public function __construct(ScannerInterface $scanner)
     {
@@ -55,6 +64,9 @@ class Coverage
      * Creates a list of all snippets which should be covered.
      *
      * @return \Google\Cloud\Core\Testing\Snippet\Parser\Snippet[]
+     *
+     * @experimental
+     * @internal
      */
     public function buildListToCover()
     {
@@ -71,6 +83,9 @@ class Coverage
      *
      * @param string $identifier The identifier of the snippet being covered.
      * @return void
+     *
+     * @experimental
+     * @internal
      */
     public function cover($identifier)
     {
@@ -81,12 +96,22 @@ class Coverage
      * Return a list of all snippets not marked a covered.
      *
      * @return \Google\Cloud\Core\Testing\Snippet\Parser\Snippet[]
+     *
+     * @experimental
+     * @internal
      */
     public function uncovered()
     {
         return array_diff_key($this->snippets, array_flip($this->covered));
     }
 
+    /**
+     * @param $identifier
+     * @return \Google\Cloud\Core\Testing\Snippet\Parser\Snippet|null
+     *
+     * @experimental
+     * @internal
+     */
     public function cache($identifier)
     {
         return (array_key_exists($identifier, $this->snippets))

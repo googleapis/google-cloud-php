@@ -16,6 +16,11 @@
  * limitations under the License.
  */
 
+/**
+ * @experimental
+ * @internal
+ */
+
 namespace Google\Cloud\Core\Lock {
 
     use Google\Cloud\Core\Testing\Lock\MockValues;
