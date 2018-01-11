@@ -13,3 +13,7 @@
 /src/Speech/ @dwsupplee
 /src/Storage/ @dwsupplee
 /src/Translate/ @dwsupplee
+
+# PHP Silver Languages
+/src/Debugger/ @chingor13 @tmatsuo
+/src/Trace/ @chingor13 @tmastuo
