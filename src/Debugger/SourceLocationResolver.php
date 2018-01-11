@@ -22,36 +22,11 @@ namespace Google\Cloud\Debugger;
  * tree. A debugger breakpoint may be requested for a source path that has
  * extra or missing folders.
  *
- * There are 3 cases for resolving a SourceLocation:
- *
- * Case 1: The exact path is found
- *
  * Example:
  * ```
  * $location = new SourceLocation('src/Debugger/DebuggerClient.php', 1);
  * $resolver = new SourceLocationResolver();
  * $resolvedLocation = $resolver->resolve($location);
- * echo $resolvedLocation->path();
- * ```
- *
- * Case 2: There are extra folder(s) in the requested breakpoint path
- *
- * Example:
- * ```
- * $location = new SourceLocation('extra/folder/src/Debugger/DebuggerClient.php', 1);
- * $resolver = new SourceLocationResolver();
- * $resolvedLocation = $resolver->resolve($location);
- * echo $resolvedLocation->path();
- * ```
- *
- * Case 3: There are fewer folders in the requested breakpoint path
- *
- * Example:
- * ```
- * $location = new SourceLocation('Debugger/DebuggerClient.php', 1);
- * $resolver = new SourceLocationResolver();
- * $resolvedLocation = $resolver->resolve($location);
- * echo $resolvedLocation->path();
  * ```
  */
 class SourceLocationResolver
@@ -61,6 +36,34 @@ class SourceLocationResolver
      * If no matching source file is found, then return null. If found, the
      * resolved location will include the full, absolute path to the source
      * file.
+     *
+     * There are 3 cases for resolving a SourceLocation:
+     *
+     * Case 1: The exact path is found
+     *
+     * Example:
+     * ```
+     * $location = new SourceLocation('src/Debugger/DebuggerClient.php', 1);
+     * $resolver = new SourceLocationResolver();
+     * $resolvedLocation = $resolver->resolve($location);
+     * ```
+     *
+     * Case 2: There are extra folder(s) in the requested breakpoint path
+     *
+     * Example:
+     * ```
+     * $location = new SourceLocation('extra/folder/src/Debugger/DebuggerClient.php', 1);
+     * $resolver = new SourceLocationResolver();
+     * $resolvedLocation = $resolver->resolve($location);
+     * ```
+     *
+     * Case 3: There are fewer folders in the requested breakpoint path
+     *
+     * Example:
+     * ```
+     * $location = new SourceLocation('Debugger/DebuggerClient.php', 1);
+     * $resolver = new SourceLocationResolver();
+     * $resolvedLocation = $resolver->resolve($location);
      *
      * @param SourceLocation $location The location to resolve.
      * @return SourceLocation|null
@@ -113,54 +116,5 @@ class SourceLocationResolver
             array_shift($directoryParts);
         }
         return $directories;
-    }
-}
-
-/**
- * This iterator returns files that match the provided file in the provided
- * search path.
- *
- * Example:
- * ```
- * $iterator = new MatchingFileIterator('.', 'src/Debugger/DebuggerClient.php');
- * $matches = iterator_to_array($iterator);
- * ```
- *
- * @access private
- */
-class MatchingFileIterator extends \FilterIterator
-{
-    private $file;
-
-    /**
-     * Create a new MatchingFileIterator.
-     *
-     * @param string $searchPath The root path to search in
-     * @param string $file The file to search for
-     */
-    public function __construct($searchPath, $file)
-    {
-        parent::__construct(
-            new \RecursiveIteratorIterator(
-                new \RecursiveDirectoryIterator(
-                    realpath($searchPath),
-                    \FilesystemIterator::SKIP_DOTS
-                )
-            )
-        );
-        $this->file = $file;
-    }
-
-    /**
-     * FilterIterator callback to determine whether or not the value should be
-     * accepted.
-     *
-     * @return boolean
-     * @access private
-     */
-    public function accept()
-    {
-        $candidate = $this->getInnerIterator()->current();
-        return strrpos($candidate, $this->file) === strlen($candidate) - strlen($this->file);
     }
 }
