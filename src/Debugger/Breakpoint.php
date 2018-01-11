@@ -71,7 +71,7 @@ class Breakpoint implements \JsonSerializable
      *      may not exactly match the path to the deployed source. This value
      *      will be resolved by the Daemon to an existing file (if found).
      */
-    private $resolvedLocation
+    private $resolvedLocation;
 
     /**
      * @var string Condition that triggers the breakpoint. The condition is a
@@ -587,6 +587,24 @@ class Breakpoint implements \JsonSerializable
                 return false;
             }
         }
+
+        if (!$this->location) {
+            $this->setError(
+                StatusMessage::REFERENCE_BREAKPOINT_SOURCE_LOCATION,
+                'No source location specified'
+            );
+            return false;
+        }
+
+        if (!$this->resolveLocation()) {
+            $this->setError(
+                StatusMessage::REFERENCE_BREAKPOINT_SOURCE_LOCATION,
+                'Could not find source location: $0',
+                [$this->location->path()]
+            );
+            return false;
+        }
+
         return true;
     }
 
@@ -607,11 +625,9 @@ class Breakpoint implements \JsonSerializable
 
     private function resolveLocation()
     {
-        if (!$this->location) {
-            return false;
-        }
+        $resolver = new SourceLocationResolver();
+        $this->resolvedLocation = $resolver->resolve($this->location);
 
-        $dirname = dirname($this->location->path());
-        $basename = basename($this->location->path());
+        return $this->resolvedLocation !== null;
     }
 }
