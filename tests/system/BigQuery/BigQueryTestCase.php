@@ -38,7 +38,7 @@ class BigQueryTestCase extends SystemTestCase
         }
 
         $keyFilePath = getenv('GOOGLE_CLOUD_PHP_TESTS_KEY_PATH');
-        $schema = json_decode(file_get_contents(__DIR__ . '/../data/table-schema.json'), true);
+        $schema = json_decode(file_get_contents(__DIR__ . '/data/table-schema.json'), true);
 
         $storage = new StorageClient([
             'keyFilePath' => $keyFilePath

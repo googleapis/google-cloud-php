@@ -29,7 +29,7 @@ class MatchingFileIteratorTest extends TestCase
     {
         // There are many files that end in Connection/RestTest.php in the test/unit folder
         $iterator = new MatchingFileIterator(
-            realpath($this->sourcePath([__DIR__, '..'])),
+            realpath($this->sourcePath([__DIR__, '../../..'])),
             $this->sourcePath(['Connection', 'RestTest.php'])
         );
         $matches = iterator_to_array($iterator);

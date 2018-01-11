@@ -274,7 +274,7 @@ class Parser
             $snippet = new Snippet($identifier, [
                 'content' => $example->textContent,
                 'fqn' => $fullyQualifiedName,
-                'index' => $index,
+                'index' => $indexOrName,
                 'name' => $name,
                 'file' => $file,
                 'line' => $line

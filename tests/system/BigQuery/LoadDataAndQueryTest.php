@@ -367,7 +367,7 @@ class LoadDataAndQueryTest extends BigQueryTestCase
             $this->fail('Job failed to complete within the allotted time.');
         }
 
-        self::$expectedRows += count(file(__DIR__ . '/../data/table-data.json'));
+        self::$expectedRows += count(file(__DIR__ . '/data/table-data.json'));
         $actualRows = count(iterator_to_array(self::$table->rows()));
 
         $this->assertEquals(self::$expectedRows, $actualRows);
@@ -375,11 +375,11 @@ class LoadDataAndQueryTest extends BigQueryTestCase
 
     public function rowProvider()
     {
-        $data = file_get_contents(__DIR__ . '/../data/table-data.json');
+        $data = file_get_contents(__DIR__ . '/data/table-data.json');
 
         return [
             [$data],
-            [fopen(__DIR__ . '/../data/table-data.json', 'r')],
+            [fopen(__DIR__ . '/data/table-data.json', 'r')],
             [Psr7\stream_for($data)]
         ];
     }
@@ -390,7 +390,7 @@ class LoadDataAndQueryTest extends BigQueryTestCase
     public function testLoadsDataFromStorageToTable()
     {
         $object = self::$bucket->upload(
-            fopen(__DIR__ . '/../data/table-data.json', 'r')
+            fopen(__DIR__ . '/data/table-data.json', 'r')
         );
 
         $loadJobConfig = self::$table->loadFromStorage($object)
@@ -408,7 +408,7 @@ class LoadDataAndQueryTest extends BigQueryTestCase
             $this->fail('Job failed to complete within the allotted time.');
         }
 
-        self::$expectedRows += count(file(__DIR__ . '/../data/table-data.json'));
+        self::$expectedRows += count(file(__DIR__ . '/data/table-data.json'));
         $actualRows = count(iterator_to_array(self::$table->rows()));
 
         $this->assertEquals(self::$expectedRows, $actualRows);

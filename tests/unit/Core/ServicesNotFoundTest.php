@@ -37,6 +37,9 @@ class ServicesNotFoundTest extends TestCase
             if ($function[0] instanceof ClassLoader) {
                 $newAutoloader = clone $function[0];
                 $newAutoloader->setPsr4('Google\Cloud\\', '/tmp');
+                foreach (self::getApis() as $api) {
+                    $newAutoloader->setPsr4("Google\\Cloud\\$api\\", '/tmp');
+                }
                 spl_autoload_register(self::$newAutoloadFunc = [$newAutoloader, 'loadClass']);
                 spl_autoload_unregister(self::$previousAutoloadFunc = $function);
             }
@@ -47,6 +50,34 @@ class ServicesNotFoundTest extends TestCase
     {
         spl_autoload_register(self::$previousAutoloadFunc);
         spl_autoload_unregister(self::$newAutoloadFunc);
+    }
+
+    private static function getApis()
+    {
+        return [
+            "BigQuery",
+            "Bigtable",
+            "Container",
+            "Core",
+            "Dataproc",
+            "Datastore",
+            "Debugger",
+            "Dlp",
+            "ErrorReporting",
+            "Firestore",
+            "Language",
+            "Logging",
+            "Monitoring",
+            "OsLogin",
+            "PubSub",
+            "Spanner",
+            "Speech",
+            "Storage",
+            "Trace",
+            "Translate",
+            "VideoIntelligence",
+            "Vision",
+        ];
     }
 
     public function serviceBuilderMethods()

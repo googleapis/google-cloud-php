@@ -28,33 +28,33 @@ class SourceLocationResolverTest extends TestCase
 {
     public function testExactMatch()
     {
-        $location = new SourceLocation($this->sourcePath(['src', 'Debugger', 'DebuggerClient.php']), 1);
+        $location = new SourceLocation($this->sourcePath(['Debugger', 'src', 'DebuggerClient.php']), 1);
         $resolver = new SourceLocationResolver();
         $resolvedLocation = $resolver->resolve($location);
         $this->assertInstanceOf(SourceLocation::class, $resolvedLocation);
-        $expectedFile = $this->sourcePath(['src', 'Debugger', 'DebuggerClient.php']);
+        $expectedFile = $this->sourcePath(['Debugger', 'src', 'DebuggerClient.php']);
         $this->assertEquals($expectedFile, $resolvedLocation->path());
         $this->assertEquals(1, $resolvedLocation->line());
     }
 
     public function testExtraDirectories()
     {
-        $location = new SourceLocation($this->sourcePath(['extra', 'src', 'Debugger', 'DebuggerClient.php']), 1);
+        $location = new SourceLocation($this->sourcePath(['extra', 'Debugger', 'src', 'DebuggerClient.php']), 1);
         $resolver = new SourceLocationResolver();
         $resolvedLocation = $resolver->resolve($location);
         $this->assertInstanceOf(SourceLocation::class, $resolvedLocation);
-        $expectedFile = $this->sourcePath(['src', 'Debugger', 'DebuggerClient.php']);
+        $expectedFile = $this->sourcePath(['Debugger', 'src', 'DebuggerClient.php']);
         $this->assertEquals($expectedFile, $resolvedLocation->path());
         $this->assertEquals(1, $resolvedLocation->line());
     }
 
     public function testMissingDirectories()
     {
-        $location = new SourceLocation($this->sourcePath(['Debugger', 'DebuggerClient.php']), 1);
+        $location = new SourceLocation($this->sourcePath(['src', 'DebuggerClient.php']), 1);
         $resolver = new SourceLocationResolver();
         $resolvedLocation = $resolver->resolve($location);
         $this->assertInstanceOf(SourceLocation::class, $resolvedLocation);
-        $expectedFile = $this->sourcePath(['src', 'Debugger', 'DebuggerClient.php']);
+        $expectedFile = $this->sourcePath(['Debugger', 'src', 'DebuggerClient.php']);
         $this->assertEquals($expectedFile, $resolvedLocation->path());
         $this->assertEquals(1, $resolvedLocation->line());
     }
