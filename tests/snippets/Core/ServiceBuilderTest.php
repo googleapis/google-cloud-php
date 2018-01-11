@@ -80,6 +80,7 @@ class ServiceBuilderTest extends SnippetTestCase
         }
 
         $snippet = $this->snippetFromMethod(ServiceBuilder::class, $method);
+        $this->checkAndSkipTest([$returnType]);
         $snippet->addLocal('cloud', $this->cloud);
         $res = $snippet->invoke($returnName);
 

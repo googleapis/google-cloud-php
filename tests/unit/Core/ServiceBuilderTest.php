@@ -18,6 +18,7 @@ namespace Google\Cloud\Tests\Unit;
 
 use Google\Cloud\BigQuery\BigQueryClient;
 use Google\Cloud\Core\ServiceBuilder;
+use Google\Cloud\Core\Testing\CheckForClassTrait;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Datastore\DatastoreClient;
 use Google\Cloud\Firestore\FirestoreClient;
@@ -41,12 +42,15 @@ class ServiceBuilderTest extends TestCase
 {
 
     use GrpcTestTrait;
+    use CheckForClassTrait;
 
     /**
      * @dataProvider serviceProvider
      */
     public function testBuildsClients($serviceName, $expectedClient, array $args = [], callable $beforeCallable = null)
     {
+        $this->checkAndSkipTest([$expectedClient]);
+
         if ($beforeCallable) {
             call_user_func($beforeCallable);
         }
@@ -67,6 +71,8 @@ class ServiceBuilderTest extends TestCase
 
     public function testTranslateClientWithApiKey()
     {
+        $this->checkAndSkipTest([TranslateClient::class]);
+
         $config = ['key' => 'test_key'];
         $serviceBuilder = new ServiceBuilder($config);
 
@@ -83,6 +89,8 @@ class ServiceBuilderTest extends TestCase
         array $args = [],
         callable $beforeCallable = null
     ) {
+        $this->checkAndSkipTest([$expectedClient]);
+
         if ($beforeCallable) {
             call_user_func($beforeCallable);
         }
@@ -118,6 +126,8 @@ class ServiceBuilderTest extends TestCase
         array $args = [],
         callable $beforeCallable = null
     ) {
+        $this->checkAndSkipTest([$expectedClient]);
+
         if ($beforeCallable) {
             call_user_func($beforeCallable);
         }
