@@ -67,6 +67,13 @@ class Breakpoint implements \JsonSerializable
     private $location;
 
     /**
+     * @var SourceLocation Resolved breakpoint location. The requested location
+     *      may not exactly match the path to the deployed source. This value
+     *      will be resolved by the Daemon to an existing file (if found).
+     */
+    private $resolvedLocation
+
+    /**
      * @var string Condition that triggers the breakpoint. The condition is a
      *      compound boolean expression composed using expressions in a
      *      programming language at the source location
@@ -314,7 +321,7 @@ class Breakpoint implements \JsonSerializable
      */
     public function location()
     {
-        return $this->location;
+        return $this->resolvedLocation ?: $this->location;
     }
 
     /**
@@ -596,5 +603,15 @@ class Breakpoint implements \JsonSerializable
     {
         $this->variableTable = $this->variableTable ?: new VariableTable();
         return $this->variableTable->register($name, $value);
+    }
+
+    private function resolveLocation()
+    {
+        if (!$this->location) {
+            return false;
+        }
+
+        $dirname = dirname($this->location->path());
+        $basename = basename($this->location->path());
     }
 }
