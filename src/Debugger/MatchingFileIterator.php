@@ -16,6 +16,7 @@
  */
 
 namespace Google\Cloud\Debugger;
+
 /**
  * This iterator returns files that match the provided file in the provided
  * search path.
