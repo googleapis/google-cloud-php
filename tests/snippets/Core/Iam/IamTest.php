@@ -31,7 +31,6 @@ class IamTest extends SnippetTestCase
     private $resource;
 
     private $connection;
-    private $policy;
 
     public function setUp()
     {
@@ -46,6 +45,9 @@ class IamTest extends SnippetTestCase
     public function testClass()
     {
         $snippet = $this->snippetFromClass(Iam::class);
+        $this->checkAndSkipTest([
+            '\Google\Cloud\PubSub\PubSubClient',
+        ]);
         $res = $snippet->invoke('iam');
 
         $this->assertInstanceOf(Iam::class, $res->returnVal());

@@ -106,4 +106,19 @@ class SnippetTestCase extends TestCase
 
         return clone $snippet;
     }
+
+    /**
+     * Check whether all required classes are available, otherwise skip the tests.
+     *
+     * @param array $requiredClasses List of classes that must be available.
+     */
+    protected function checkAndSkipTest(array $requiredClasses)
+    {
+        foreach ($requiredClasses as $class) {
+            if (!class_exists($class)) {
+                $this->markTestSkipped("Missing required class: $class");
+                return;
+            }
+        }
+    }
 }
