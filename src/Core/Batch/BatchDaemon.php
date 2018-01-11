@@ -37,12 +37,10 @@ class BatchDaemon
     use BatchDaemonTrait;
     use HandleFailureTrait;
     use SysvTrait;
+    use InterruptTrait;
 
     /* @var BatchRunner */
     private $runner;
-
-    /* @var bool */
-    private $shutdown;
 
     /* @var array */
     private $descriptorSpec;
@@ -72,33 +70,9 @@ class BatchDaemon
             1 => ['file', 'php://stdout', 'w'],
             2 => ['file', 'php://stderr', 'w']
         ];
-        // setup signal handlers
-        pcntl_signal(SIGTERM, [$this, "sigHandler"]);
-        pcntl_signal(SIGINT, [$this, "sigHandler"]);
-        pcntl_signal(SIGHUP, [$this, "sigHandler"]);
-        pcntl_signal(SIGALRM, [$this, "sigHandler"]);
+
         $this->command = sprintf('exec php -d auto_prepend_file="" %s daemon', $entrypoint);
         $this->initFailureFile();
-    }
-
-    /**
-     * A signal handler for setting the terminate switch.
-     * {@see http://php.net/manual/en/function.pcntl-signal.php}
-     *
-     * @param int $signo The received signal.
-     * @param mixed $siginfo [optional] An array representing the signal
-     *              information. **Defaults to** null.
-     *
-     * @return void
-     */
-    public function sigHandler($signo, $signinfo = null)
-    {
-        switch ($signo) {
-            case SIGINT:
-            case SIGTERM:
-                $this->shutdown = true;
-                break;
-        }
     }
 
     /**
@@ -106,8 +80,10 @@ class BatchDaemon
      *
      * @return void
      */
-    public function runParent()
+    public function run()
     {
+        $this->setupSignalHandlers();
+
         $procs = [];
         while (true) {
             $jobs = $this->runner->getJobs();
@@ -173,16 +149,13 @@ class BatchDaemon
     }
 
     /**
-     * A loop for the children.
+     * Fetch the job by id
      *
-     * @param int $idNum Numeric id for the job.
-     * @return void
+     * @param int $idNum The id of the job to find
+     * @return JobInterface
      */
-    public function runChild($idNum)
+    public function job($idNum)
     {
-        // child process
-        $job = $this->runner->getJobFromIdNum($idNum);
-        $job->run();
-
+        return $this->runner->getJobFromIdNum($idNum);
     }
 }

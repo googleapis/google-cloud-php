@@ -35,6 +35,7 @@ class BatchJob implements JobInterface
 
     use JobTrait;
     use SysvTrait;
+    use InterruptTrait;
 
     /**
      * @var callable
@@ -102,7 +103,9 @@ class BatchJob implements JobInterface
      */
     public function run()
     {
-        $sysvKey = $this->getSysvKey($this->id;
+        $this->setupSignalHandlers();
+
+        $sysvKey = $this->getSysvKey($this->id);
         $q = msg_get_queue($sysvKey);
         $items = [];
         $lastInvoked = microtime(true);
