@@ -201,7 +201,7 @@ class RestTest extends TestCase
     {
         $tempFile = Psr7\stream_for(fopen('php://temp', 'r+'));
         $tempFile->write(str_repeat('0', 5000001));
-        $logoFile = Psr7\stream_for(fopen(__DIR__ . '../../../data/logo.svg', 'r'));
+        $logoFile = Psr7\stream_for(fopen(__DIR__ . '/../data/logo.svg', 'r'));
 
         return [
             [

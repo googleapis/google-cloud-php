@@ -32,7 +32,7 @@ class SourceLocationResolverTest extends TestCase
         $resolver = new SourceLocationResolver();
         $resolvedLocation = $resolver->resolve($location);
         $this->assertInstanceOf(SourceLocation::class, $resolvedLocation);
-        $expectedFile = $this->sourcePath(['src', 'Debugger', 'DebuggerClient.php']);
+        $expectedFile = $this->sourcePath(['Debugger', 'src', 'DebuggerClient.php']);
         $this->assertEquals($expectedFile, $resolvedLocation->path());
         $this->assertEquals(1, $resolvedLocation->line());
     }
@@ -43,7 +43,7 @@ class SourceLocationResolverTest extends TestCase
         $resolver = new SourceLocationResolver();
         $resolvedLocation = $resolver->resolve($location);
         $this->assertInstanceOf(SourceLocation::class, $resolvedLocation);
-        $expectedFile = $this->sourcePath(['src', 'Debugger', 'DebuggerClient.php']);
+        $expectedFile = $this->sourcePath(['Debugger', 'src', 'DebuggerClient.php']);
         $this->assertEquals($expectedFile, $resolvedLocation->path());
         $this->assertEquals(1, $resolvedLocation->line());
     }
@@ -54,7 +54,7 @@ class SourceLocationResolverTest extends TestCase
         $resolver = new SourceLocationResolver();
         $resolvedLocation = $resolver->resolve($location);
         $this->assertInstanceOf(SourceLocation::class, $resolvedLocation);
-        $expectedFile = $this->sourcePath(['src', 'Debugger', 'DebuggerClient.php']);
+        $expectedFile = $this->sourcePath(['Debugger', 'src', 'DebuggerClient.php']);
         $this->assertEquals($expectedFile, $resolvedLocation->path());
         $this->assertEquals(1, $resolvedLocation->line());
     }

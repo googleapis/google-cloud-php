@@ -113,7 +113,7 @@ class SpeechClientTest extends TestCase
         $amrMock->gcsUri(Argument::any())->willReturn(self::GCS_URI . '.amr');
         $awbMock = $this->prophesize(StorageObject::class);
         $awbMock->gcsUri(Argument::any())->willReturn(self::GCS_URI . '.awb');
-        $audioPath = __DIR__ . '/../data/brooklyn.flac';
+        $audioPath = __DIR__ . '/data/brooklyn.flac';
 
         return [
             [
