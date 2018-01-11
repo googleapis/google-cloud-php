@@ -648,7 +648,11 @@ class CodeParser implements ParserInterface
             $aliases = $context ? $context->getNamespaceAliases() : [];
 
             $returnsArray[] = [
-                'types' => $this->handleTypes($return->getTypes(), $aliases),
+                'types' => $this->handleTypes(
+                    $return->getTypes(),
+                    $aliases,
+                    $context ? $context->getNamespace() : null
+                ),
                 'description' => $this->buildDescription(null, $return->getDescription(), $return)
             ];
         }
@@ -656,15 +660,15 @@ class CodeParser implements ParserInterface
         return $returnsArray;
     }
 
-    private function handleTypes($types, array $aliases = [])
+    private function handleTypes($types, array $aliases = [], $namespace = null)
     {
         $res = [];
         foreach ($types as $type) {
             $matches = [];
 
             if (preg_match('/\\\\?(.*?)\<(.*?)\>/', $type, $matches)) {
-                $matches[1] = $this->resolveTypeAlias($matches[1], $aliases);
-                $matches[2] = $this->resolveTypeAlias($matches[2], $aliases);
+                $matches[1] = $this->resolveTypeAlias($matches[1], $aliases, $namespace);
+                $matches[2] = $this->resolveTypeAlias($matches[2], $aliases, $namespace);
 
                 $iteratorType = $matches[1];
                 if (strpos($matches[1], '\\') !== FALSE) {
@@ -687,12 +691,16 @@ class CodeParser implements ParserInterface
         return $res;
     }
 
-    private function resolveTypeAlias($type, array $aliases)
+    private function resolveTypeAlias($type, array $aliases, $namespace = null)
     {
         $pieces = explode('\\', $type);
         $basename = array_pop($pieces);
         if (array_key_exists($basename, $aliases)) {
             $type = $aliases[$basename];
+        } elseif (count(explode('\\', $type)) === 1) {
+            if (class_exists($namespace .'\\'. $type)) {
+                $type = $namespace .'\\'. $type;
+            }
         }
 
         return $type;
