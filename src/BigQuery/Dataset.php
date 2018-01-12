@@ -214,7 +214,7 @@ class Dataset
      *     @type string $pageToken A previously-returned page token used to
      *           resume the loading of results from a specific point.
      * }
-     * @return ItemIterator<Google\Cloud\BigQuery\Table>
+     * @return ItemIterator<Table>
      */
     public function tables(array $options = [])
     {

@@ -404,7 +404,7 @@ class BigQueryClient
      *     @type string $stateFilter Filter for job state. Maybe be either
      *           `done`, `pending`, or `running`.
      * }
-     * @return ItemIterator<Google\Cloud\BigQuery\Job>
+     * @return ItemIterator<Job>
      */
     public function jobs(array $options = [])
     {
@@ -479,7 +479,7 @@ class BigQueryClient
      *     @type string $pageToken A previously-returned page token used to
      *           resume the loading of results from a specific point.
      * }
-     * @return ItemIterator<Google\Cloud\BigQuery\Dataset>
+     * @return ItemIterator<Dataset>
      */
     public function datasets(array $options = [])
     {

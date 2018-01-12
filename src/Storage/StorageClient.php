@@ -177,7 +177,7 @@ class StorageClient
      *           listBuckets operation. If `$options.userProject` is not set,
      *           this option has no effect. **Defaults to** `true`.
      * }
-     * @return ItemIterator<Google\Cloud\Storage\Bucket>
+     * @return ItemIterator<Bucket>
      * @throws GoogleException When a project ID has not been detected.
      */
     public function buckets(array $options = [])

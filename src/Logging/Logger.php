@@ -198,7 +198,7 @@ class Logger
      *     @type string $pageToken A previously-returned page token used to
      *           resume the loading of results from a specific point.
      * }
-     * @return ItemIterator<Google\Cloud\Logging\Entry>
+     * @return ItemIterator<Entry>
      */
     public function entries(array $options = [])
     {

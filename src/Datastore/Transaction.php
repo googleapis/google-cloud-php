@@ -437,7 +437,7 @@ class Transaction
      *           Must be a subclass of {@see Google\Cloud\Datastore\Entity}.
      *           If not set, {@see Google\Cloud\Datastore\Entity} will be used.
      * }
-     * @return EntityIterator<Google\Cloud\Datastore\Entity>
+     * @return EntityIterator<Entity>
      */
     public function runQuery(QueryInterface $query, array $options = [])
     {
