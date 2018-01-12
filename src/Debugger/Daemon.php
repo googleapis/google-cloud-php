@@ -17,6 +17,8 @@
 
 namespace Google\Cloud\Debugger;
 
+use Google\Cloud\Core\Batch\JobInterface;
+use Google\Cloud\Core\Batch\JobTrait;
 use Google\Cloud\Core\Exception\ConflictException;
 use Google\Cloud\Debugger\BreakpointStorage\BreakpointStorageInterface;
 use Google\Cloud\Debugger\BreakpointStorage\SysvBreakpointStorage;
@@ -35,12 +37,14 @@ use Google\Cloud\Debugger\BreakpointStorage\SysvBreakpointStorage;
  * $daemon->run();
  * ```
  */
-class Daemon
+class Daemon implements JobInterface
 {
+    use JobTrait;
+
     /**
      * @var Debuggee
      */
-    private $debuggee;
+    private static $debuggee;
 
     /**
      * @var string The full path to the source root
@@ -55,10 +59,10 @@ class Daemon
     /**
      * Creates a new Daemon instance.
      *
-     * @param string $sourceRoot The full path to the source root
      * @param array $options [optional] {
      *      Configuration options.
      *
+     *      @type string $sourceRoot The full path to the source root
      *      @type DebuggerClient $client A DebuggerClient to use. **Defaults
      *            to** a new DebuggerClient.
      *      @type array $extSourceContext The source code identifier. **Defaults
@@ -73,7 +77,7 @@ class Daemon
      *            instance.
      * }
      */
-    public function __construct($sourceRoot, array $options = [])
+    public function __construct(array $options = [])
     {
         $client = array_key_exists('client', $options)
             ? $options['client']
@@ -93,7 +97,7 @@ class Daemon
             ? $options['description']
             : $uniquifier;
 
-        $this->debuggee = $client->debuggee(null, [
+        self::$debuggee = $client->debuggee(null, [
             'uniquifier' => $uniquifier,
             'description' => $description,
             'extSourceContexts' => $extSourceContext
@@ -118,13 +122,17 @@ class Daemon
      */
     public function run()
     {
-        $resp = $this->debuggee->breakpointsWithWaitToken();
-        $this->setBreakpoints($resp['breakpoints']);
+        if (!isset(self::$debuggee)) {
+            self::$debuggee = $this->defaultDebuggee();
+        }
+
+        $breakpoints = self::$debuggee->breakpointsWithWaitToken();
+        $this->setBreakpoints($breakpoints);
 
         while (array_key_exists('nextWaitToken', $resp)) {
             try {
-                $resp = $this->debuggee->breakpointsWithWaitToken([
-                    'waitToken' => $resp['nextWaitToken']
+                $breakpoints = self::$debuggee->breakpointsWithWaitToken([
+                    'waitToken' => $breakpoints['nextWaitToken']
                 ]);
                 $this->setBreakpoints($resp['breakpoints']);
             } catch (ConflictException $e) {

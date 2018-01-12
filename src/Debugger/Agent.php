@@ -115,6 +115,11 @@ class Agent
             return;
         }
 
+
+        $daemon = new DaemonJob([
+            'sourceRoot' => $this->sourceRoot
+        ]);
+
         foreach ($breakpoints as $breakpoint) {
             $this->breakpointsById[$breakpoint->id()] = $breakpoint;
             switch ($breakpoint->action()) {
