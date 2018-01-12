@@ -276,6 +276,11 @@ class Snippet implements \JsonSerializable
         $this->config['content'] = preg_replace($pattern, $new, $this->config['content']);
     }
 
+    /**
+     * Serialize to json
+     *
+     * @return array
+     */
     public function jsonSerialize()
     {
         return $this->config;

@@ -211,8 +211,7 @@ class Parser
      * $examples = $parser->allExamples($parser);
      * ```
      *
-     * @param object|ReflectionClass An instance or reflector of the class to
-     *        parse.
+     * @param object|ReflectionClass $class An instance or reflector of the class to parse.
      * @return array
      */
     public function allExamples($class)
@@ -290,6 +289,13 @@ class Parser
         return $res;
     }
 
+    /**
+     * Create identifier
+     *
+     * @param $fqn
+     * @param $indexOrName
+     * @return string
+     */
     public function createIdentifier($fqn, $indexOrName)
     {
         return sha1($fqn . $indexOrName);

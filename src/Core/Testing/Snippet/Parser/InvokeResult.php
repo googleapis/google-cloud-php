@@ -17,22 +17,37 @@
 
 namespace Google\Cloud\Core\Testing\Snippet\Parser;
 
+/**
+ * Class InvokeResult
+ */
 class InvokeResult
 {
     private $returnVal;
     private $output;
 
+    /**
+     * InvokeResult constructor.
+     *
+     * @param $returnVal
+     * @param $output
+     */
     public function __construct($returnVal, $output)
     {
         $this->returnVal = $returnVal;
         $this->output = $output;
     }
 
+    /**
+     * @return mixed
+     */
     public function returnVal()
     {
         return $this->returnVal;
     }
 
+    /**
+     * @return mixed
+     */
     public function output()
     {
         return $this->output;

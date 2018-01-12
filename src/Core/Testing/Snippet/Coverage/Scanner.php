@@ -53,7 +53,12 @@ class Scanner implements ScannerInterface
     }
 
     /**
-     * {@inheritDoc}
+     * Retrieve a list of PHP files to scan.
+     *
+     * @return string[]
+     *
+     * @experimental
+     * @internal
      */
     public function files()
     {
@@ -84,7 +89,12 @@ class Scanner implements ScannerInterface
     }
 
     /**
-     * {@inheritDoc}
+     * Retrieve a list of classes in the given PHP files.
+     *
+     * @return string[]
+     *
+     * @experimental
+     * @internal
      */
     public function classes(array $files, array $exclude = [])
     {
@@ -103,7 +113,12 @@ class Scanner implements ScannerInterface
     }
 
     /**
-     * {@inheritDoc}
+     * Get a list of all snippets from the given classes.
+     *
+     * @return \Google\Cloud\Core\Testing\Snippet\Parser\Snippet[]
+     *
+     * @experimental
+     * @internal
      */
     public function snippets(array $classes)
     {
