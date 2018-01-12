@@ -11,6 +11,7 @@
             "name": "google/cloud",
             "defaultService": "readme",
             "versions": [
+                "v0.51.0",
                 "v0.50.1",
                 "v0.50.0",
                 "v0.49.0",
@@ -84,6 +85,7 @@
             "name": "google/cloud-bigquery",
             "defaultService": "bigquery/bigqueryclient",
             "versions": [
+                "v1.0.1",
                 "v1.0.0",
                 "v0.6.0",
                 "v0.5.0",
@@ -169,6 +171,7 @@
             "name": "google/cloud-datastore",
             "defaultService": "datastore/datastoreclient",
             "versions": [
+                "v1.2.1",
                 "v1.2.0",
                 "v1.1.0",
                 "v1.0.3",
@@ -184,6 +187,7 @@
             "name": "google/cloud-debugger",
             "defaultService": "debugger/debuggerclient",
             "versions": [
+                "v0.2.0",
                 "v0.1.0",
                 "master"
             ]
@@ -234,6 +238,7 @@
             "name": "google/cloud-firestore",
             "defaultService": "firestore/firestoreclient",
             "versions": [
+                "v0.3.4",
                 "v0.3.3",
                 "v0.3.2",
                 "v0.3.1",
@@ -273,6 +278,7 @@
             "name": "google/cloud-logging",
             "defaultService": "logging/loggingclient",
             "versions": [
+                "v1.8.3",
                 "v1.8.2",
                 "v1.8.1",
                 "v1.8.0",
@@ -330,6 +336,7 @@
             "name": "google/cloud-pubsub",
             "defaultService": "pubsub/pubsubclient",
             "versions": [
+                "v0.11.3",
                 "v0.11.2",
                 "v0.11.1",
                 "v0.11.0",
@@ -407,6 +414,7 @@
             "name": "google/cloud-storage",
             "defaultService": "storage/storageclient",
             "versions": [
+                "v1.3.2",
                 "v1.3.1",
                 "v1.3.0",
                 "v1.2.1",
