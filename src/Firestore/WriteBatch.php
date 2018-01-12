@@ -115,6 +115,8 @@ class WriteBatch
      */
     public function create($documentName, array $fields, array $options = [])
     {
+        $emptyDocument = count($fields) === 0;
+
         list($fields, $timestamps, $deletes) = $this->valueMapper->findSentinels($fields);
 
         if (!empty($deletes)) {
@@ -124,7 +126,7 @@ class WriteBatch
         $precondition = ['exists' => false];
 
         $transformOptions = [];
-        if (!empty($fields)) {
+        if (!empty($fields) || $emptyDocument) {
             $this->writes[] = $this->createDatabaseWrite(self::TYPE_UPDATE, $documentName, [
                 'fields' => $this->valueMapper->encodeValues($fields),
                 'precondition' => $precondition
