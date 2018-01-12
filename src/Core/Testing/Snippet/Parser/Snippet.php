@@ -149,7 +149,7 @@ class Snippet implements \JsonSerializable
             $content = implode("\n", $use) . $content;
         }
 
-        $cb = function($return) use ($content) {
+        $cb = function ($return) use ($content) {
             extract($this->locals);
 
             try {

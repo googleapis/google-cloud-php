@@ -78,7 +78,7 @@ trait StubTrait
                     throw new \BadMethodCallException($e->getMessage());
                 }
             }
-        } while($keepTrying);
+        } while ($keepTrying);
 
         return $property;
     }
