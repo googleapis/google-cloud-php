@@ -17,6 +17,10 @@
 
 namespace Google\Cloud\Core\Batch;
 
+/**
+ * The JobInterface represents any job that can be serialized and run in a
+ * separate process via the Batch daemon.
+ */
 interface JobInterface
 {
     /**
@@ -31,17 +35,5 @@ interface JobInterface
      */
     public function identifier();
 
-    /**
-     * Returns the id number of this job
-     *
-     * @return int
-     */
-    public function id();
-
-    /**
-     * Returns the worker number of this job
-     *
-     * @return int
-     */
-    public function worker();
+    public function numWorkers();
 }

@@ -17,7 +17,7 @@
 
 namespace Google\Cloud\Tests\Unit\Core\Batch;
 
-use Google\Cloud\Core\Batch\BatchConfig;
+use Google\Cloud\Core\Batch\JobConfig;
 use Google\Cloud\Core\Batch\InMemoryConfigStorage;
 use PHPUnit\Framework\TestCase;
 
@@ -61,7 +61,7 @@ class InMemoryConfigStorageTest extends TestCase
     public function testSaveAndLoad()
     {
         $configStorage = InMemoryConfigStorage::getInstance();
-        $config = new BatchConfig();
+        $config = new JobConfig();
         $configStorage->save($config);
         $this->assertEquals($config, $configStorage->load());
     }
@@ -69,7 +69,7 @@ class InMemoryConfigStorageTest extends TestCase
     public function testSubmit()
     {
         $configStorage = InMemoryConfigStorage::getInstance();
-        $config = new BatchConfig();
+        $config = new JobConfig();
         $config->registerJob(
             'testSubmit',
             array($this, 'runJob'),

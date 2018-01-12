@@ -24,15 +24,6 @@ trait JobTrait
      */
     private $identifier;
 
-    /**
-     * @var int The job id
-     */
-    private $id;
-
-    /**
-     * @var int the worker number
-     */
-    private $worker;
 
     /**
      * Return the job identifier
@@ -44,23 +35,5 @@ trait JobTrait
         return $this->identifier;
     }
 
-    /**
-     * Returns the id number of this job
-     *
-     * @return int
-     */
-    public function id()
-    {
-        return $this->id;
-    }
-
-    /**
-     * Returns the worker number of this job
-     *
-     * @return int
-     */
-    public function worker()
-    {
-        return $this->worker;
-    }
+    abstract public function run();
 }

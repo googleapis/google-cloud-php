@@ -58,6 +58,16 @@ class BatchJob implements JobInterface
     private $callPeriod;
 
     /**
+     * @var int The job id
+     */
+    private $id;
+
+    /**
+     * @var int the worker number
+     */
+    private $worker;
+
+    /**
      * @param string $identifier Unique identifier of the job.
      * @param callable $func Any Callable except for Closure. The callable
      *        should accept an array of items as the first argument.
@@ -81,21 +91,19 @@ class BatchJob implements JobInterface
         $idNum,
         array $options = []
     ) {
+        $options += [
+            'batchSize' => self::DEFAULT_BATCH_SIZE,
+            'callPeriod' => self::DEFAULT_CALL_PERIOD,
+            'bootstrapFile' => null,
+            'workerNum' => self::DEFAULT_WORKERS
+        ];
         $this->identifier = $identifier;
         $this->func = $func;
         $this->idNum = $idNum;
-        $this->batchSize = array_key_exists('batchSize', $options)
-            ? $options['batchSize']
-            : self::DEFAULT_BATCH_SIZE;
-        $this->callPeriod = array_key_exists('callPeriod', $options)
-            ? $options['callPeriod']
-            : self::DEFAULT_CALL_PERIOD;
-        $this->bootstrapFile = array_key_exists('bootstrapFile', $options)
-            ? $options['bootstrapFile']
-            : null;
-        $this->workerNum = array_key_exists('workerNum', $options)
-            ? $options['workerNum']
-            : self::DEFAULT_WORKERS;
+        $this->batchSize = $options['batchSize'];
+        $this->callPeriod = $options['callPeriod'];
+        $this->bootstrapFile = $options['bootstrapFile'];
+        $this->workerNum = $options['workerNum'];
     }
 
     /**
@@ -182,5 +190,25 @@ class BatchJob implements JobInterface
     public function getBootstrapFile()
     {
         return $this->bootstrapFile;
+    }
+
+    /**
+     * Returns the id number of this job
+     *
+     * @return int
+     */
+    public function id()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Returns the worker number of this job
+     *
+     * @return int
+     */
+    public function numWorkers()
+    {
+        return $this->worker;
     }
 }

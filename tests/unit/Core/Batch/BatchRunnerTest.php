@@ -17,7 +17,7 @@
 
 namespace Google\Cloud\Tests\Unit\Core\Batch;
 
-use Google\Cloud\Core\Batch\BatchConfig;
+use Google\Cloud\Core\Batch\JobConfig;
 use Google\Cloud\Core\Batch\BatchJob;
 use Google\Cloud\Core\Batch\BatchRunner;
 use Google\Cloud\Core\Batch\ConfigStorageInterface;
@@ -38,7 +38,7 @@ class BatchRunnerTest extends TestCase
     {
         $this->configStorage = $this->prophesize(ConfigStorageInterface::class);
         $this->processor = $this->prophesize(ProcessItemInterface::class);
-        $this->batchConfig = $this->prophesize(BatchConfig::class);
+        $this->batchConfig = $this->prophesize(JobConfig::class);
     }
 
     /**
@@ -99,7 +99,7 @@ class BatchRunnerTest extends TestCase
         $this->configStorage->load()
             ->willreturn($config)
             ->shouldBeCalledTimes(2);
-        $this->configStorage->save(Argument::type(BatchConfig::class))
+        $this->configStorage->save(Argument::type(JobConfig::class))
             ->willreturn(true)
             ->shouldBeCalledTimes(1);
         $this->configStorage->unlock()

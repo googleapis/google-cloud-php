@@ -33,7 +33,7 @@ class BatchRunner
     use SysvTrait;
 
     /**
-     * @var BatchConfig
+     * @var JobConfig
      */
     private $config;
 
@@ -105,7 +105,13 @@ class BatchRunner
             return false;
         }
         $this->config = $this->configStorage->load();
-        $this->config->registerJob($identifier, $func, $options);
+        $this->config->registerJob(
+            $identifier,
+            function ($idNum, $identifier) use ($func, $options) {
+                return new BatchJob($identifier, $func, $idNum, $options);
+            },
+            $this->batchOptions
+        );
 
         try {
             $result = $this->configStorage->save($this->config);

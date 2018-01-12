@@ -47,8 +47,8 @@ if ($argv[1] === 'daemon') {
         $daemon->run();
     } else {
         $idNum = (int) $argv[2];
-        $child = $daemon->child($idNum);
-        $child->run();
+        $job = $daemon->job($idNum);
+        $job->run();
     }
 } elseif ($argv[1] === 'retry') {
     $retry = new Retry();

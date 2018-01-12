@@ -25,7 +25,7 @@ namespace Google\Cloud\Core\Batch;
  *      incompatible ways. Please use with caution, and test thoroughly when
  *      upgrading.
  */
-class BatchConfig
+class JobConfig
 {
     /**
      * @var JobInterface[]
@@ -89,7 +89,7 @@ class BatchConfig
      * }
      * @return void
      */
-    public function registerJob($identifier, $func, array $options = [])
+    public function registerJob($identifier, $callback)
     {
         if (array_key_exists($identifier, $this->idmap)) {
             $idNum = $this->idmap[$identifier];
@@ -97,12 +97,17 @@ class BatchConfig
             $idNum = count($this->idmap) + 1;
             $this->idmap_reverse[$idNum] = $identifier;
         }
-        $this->jobs[$identifier] = new BatchJob(
-            $identifier,
-            $func,
-            $idNum,
-            $options
-        );
+        if (is_callable($callback)) {
+            $this->jobs[$identifier] = call_user_func(
+                $callback,
+                $idNum,
+                $identifier
+            );
+            var_dump($this->jobs);
+        } else {
+            echo "adding job directly\n";
+            $this->jobs[$identifier] = $callback;
+        }
         $this->idmap[$identifier] = $idNum;
     }
 

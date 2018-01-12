@@ -89,9 +89,9 @@ class BatchDaemon
             $jobs = $this->runner->getJobs();
             foreach ($jobs as $job) {
                 if (! array_key_exists($job->identifier(), $procs)) {
-                    $procs[$job->getIdentifier()] = [];
+                    $procs[$job->identifier()] = [];
                 }
-                while (count($procs[$job->identifier()]) > $job->worker()) {
+                while (count($procs[$job->identifier()]) > $job->numWorkers()) {
                     // Stopping an excessive child.
                     echo 'Stopping an excessive child.' . PHP_EOL;
                     $proc = array_pop($procs[$job->identifier()]);
@@ -104,7 +104,7 @@ class BatchDaemon
                     }
                     @proc_close($proc);
                 }
-                for ($i = 0; $i < $job->worker(); $i++) {
+                for ($i = 0; $i < $job->numWorkers(); $i++) {
                     $needStart = false;
                     if (array_key_exists($i, $procs[$job->identifier()])) {
                         $status = proc_get_status($procs[$job->identifier()][$i]);

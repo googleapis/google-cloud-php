@@ -17,14 +17,14 @@
 
 namespace Google\Cloud\Tests\Unit\Core\Batch;
 
-use Google\Cloud\Core\Batch\BatchConfig;
+use Google\Cloud\Core\Batch\JobConfig;
 use PHPUnit\Framework\TestCase;
 
 /**
  * @group core
  * @group batch
  */
-class BatchConfigTest extends TestCase
+class JobConfigTest extends TestCase
 {
     private $config;
     private $identifier;
@@ -33,7 +33,7 @@ class BatchConfigTest extends TestCase
 
     public function setUp()
     {
-        $this->config = new BatchConfig();
+        $this->config = new JobConfig();
         $this->identifier = 'job1';
         $this->func = 'myFunc';
         $this->config->registerJob(

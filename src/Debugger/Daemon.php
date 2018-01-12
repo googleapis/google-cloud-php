@@ -37,9 +37,14 @@ use Google\Cloud\Debugger\BreakpointStorage\SysvBreakpointStorage;
  * $daemon->run();
  * ```
  */
-class Daemon implements JobInterface
+class Daemon
 {
-    use JobTrait;
+    use SimpleJobTrait;
+
+    /**
+     * @var DebuggerClient
+     */
+    private static $client;
 
     /**
      * @var Debuggee
@@ -79,6 +84,9 @@ class Daemon implements JobInterface
      */
     public function __construct(array $options = [])
     {
+        $options += [
+            'extSourceContext' => []
+        ];
         $client = array_key_exists('client', $options)
             ? $options['client']
             : new DebuggerClient();
@@ -103,11 +111,11 @@ class Daemon implements JobInterface
             'extSourceContexts' => $extSourceContext
         ]);
 
-        $this->debuggee->register();
-
         $this->storage = array_key_exists('storage', $options)
             ? $options['storage']
             : new SysvBreakpointStorage();
+
+        $this->setSimpleJobProperties($options);
     }
 
     /**
@@ -125,6 +133,7 @@ class Daemon implements JobInterface
         if (!isset(self::$debuggee)) {
             self::$debuggee = $this->defaultDebuggee();
         }
+        self::$debuggee->register();
 
         $breakpoints = self::$debuggee->breakpointsWithWaitToken();
         $this->setBreakpoints($breakpoints);
