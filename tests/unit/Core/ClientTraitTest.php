@@ -205,18 +205,56 @@ class ClientTraitTest extends TestCase
     {
         $projectId = 'project-from-env';
 
-        $originalEnv = getenv('GCLOUD_PROJECT');
+        $originalOldEnv = getenv('GCLOUD_PROJECT');
+        $originalEnv = getenv('GOOGLE_CLOUD_PROJECT');
 
         try {
-            putenv('GCLOUD_PROJECT=' . $projectId);
+            putenv('GOOGLE_CLOUD_PROJECT=' . $projectId);
+            putenv('GCLOUD_PROJECT=invalid-value');
             $res = $this->impl->call('detectProjectId', [[]]);
 
             $this->assertEquals($res, $projectId);
         } finally {
-            if ($originalEnv === false) {
+            if ($originalOldEnv === false) {
                 putenv('GCLOUD_PROJECT');
             } else {
-                putenv('GCLOUD_PROJECT=' . $originalEnv);
+                putenv('GCLOUD_PROJECT=' . $originalOldEnv);
+            }
+
+            if ($originalEnv === false) {
+                putenv('GOOGLE_CLOUD_PROJECT');
+            } else {
+                putenv('GOOGLE_CLOUD_PROJECT=' . $originalEnv);
+            }
+        }
+    }
+
+    public function testProjectIdFromOldEnv()
+    {
+        $projectId = 'project-from-env';
+
+        $originalEnv = getenv('GCLOUD_PROJECT');
+
+        $originalOldEnv = getenv('GCLOUD_PROJECT');
+        $originalEnv = getenv('GOOGLE_CLOUD_PROJECT');
+
+        try {
+            putenv('GCLOUD_PROJECT=' . $projectId);
+            putenv('GOOGLE_CLOUD_PROJECT');
+            $res = $this->impl->call('detectProjectId', [[]]);
+
+            $this->assertEquals($res, $projectId);
+        } finally {
+            if ($originalOldEnv === false) {
+                putenv('GCLOUD_PROJECT');
+            } else {
+                putenv('GCLOUD_PROJECT=' . $originalOldEnv);
+            }
+
+            if ($originalEnv === false) {
+                putenv('GOOGLE_CLOUD_PROJECT');
+            } else {
+                putenv('GOOGLE_CLOUD_PROJECT=' . $originalEnv);
             }
         }
     }

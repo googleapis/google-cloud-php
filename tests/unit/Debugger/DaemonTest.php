@@ -94,13 +94,13 @@ class DaemonTest extends TestCase
 
     public function testFetchesBreakpoints()
     {
-        $breakpoints = [
-            new Breakpoint(['id' => 'breakpoint1'])
+        $resp = [
+            'breakpoints' => [new Breakpoint(['id' => 'breakpoint1'])]
         ];
         $this->debuggee->register(Argument::any())
             ->shouldBeCalled();
-        $this->debuggee->breakpoints()
-            ->willReturn($breakpoints);
+        $this->debuggee->breakpointsWithWaitToken()
+            ->willReturn($resp);
         $this->debuggee->updateBreakpointBatch(Argument::any())
             ->willReturn(true);
         $this->client->debuggee(null, Argument::any())

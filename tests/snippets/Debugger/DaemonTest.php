@@ -39,7 +39,7 @@ class DaemonTest extends SnippetTestCase
         $this->debuggee = $this->prophesize(Debuggee::class);
         $this->storage = $this->prophesize(BreakpointStorageInterface::class);
         $this->debuggee->register()->willReturn(true);
-        $this->debuggee->breakpoints()->willReturn([]);
+        $this->debuggee->breakpointsWithWaitToken()->willReturn(['breakpoints' => []]);
         $this->client->debuggee(null, Argument::any())->willReturn($this->debuggee->reveal());
     }
 

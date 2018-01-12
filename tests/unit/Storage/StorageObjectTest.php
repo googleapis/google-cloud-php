@@ -732,6 +732,53 @@ class StorageObjectTest extends TestCase
         $this->assertEquals($object->input, $input);
     }
 
+    public function testSignedUploadUrlNestedName()
+    {
+        $objectName = 'folder1/folder2/object.txt';
+        $bucketName = 'bucket';
+        $object = new StorageObjectSignatureStub(
+            $this->connection->reveal(),
+            $objectName,
+            $bucketName,
+            'foo'
+        );
+        $ts = new Timestamp(new \DateTime(self::TIMESTAMP));
+
+        $seconds = $ts->get()->format('U');
+
+        $contentType = $responseType = 'text/plain';
+        $digest = base64_encode(md5('hello world'));
+
+        $url = $object->signedUploadUrl($ts, [
+            'keyFile' => $this->kf,
+            'headers' => [
+                'foo' => ['bar', 'bar'],
+                'bat' => 'baz'
+            ],
+            'contentType' => $contentType,
+            'contentMd5' => $digest
+        ]);
+
+        $input = implode("\n", [
+            'POST',
+            $digest,
+            $contentType,
+            $seconds,
+            'foo:bar,bar',
+            'bat:baz',
+            'x-goog-resumable:start',
+            "/$bucketName/$objectName"
+        ]);
+
+        $query = explode('?', $url)[1];
+        $pieces = explode('&', $query);
+
+        $signature = $this->getSignatureFromSplitUrl($pieces);
+
+        $this->assertTrue($object->___signatureIsCorrect($signature));
+        $this->assertEquals($object->input, $input);
+    }
+
     public function testBeginSignedUploadSession()
     {
         $ts = new Timestamp(new \DateTime('+1 minute'));

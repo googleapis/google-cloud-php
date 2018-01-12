@@ -159,8 +159,11 @@ trait ClientTrait
      * 1. If $config['projectId'] is set, use that.
      * 2. If $config['keyFile'] is set, attempt to retrieve a project ID from
      *    that.
-     * 3. If code is running on compute engine, try to get the project ID from
+     * 3. Check `GOOGLE_CLOUD_PROJECT` environment variable.
+     * 4. Check `GCLOUD_PROJECT` environment variable.
+     * 5. If code is running on compute engine, try to get the project ID from
      *    the metadata store.
+     * 6. If an emulator is enabled, return a dummy value.
      * 4. Throw exception.
      *
      * @param  array $config
@@ -184,8 +187,12 @@ trait ClientTrait
             return $config['keyFile']['project_id'];
         }
 
-        if (false !== $projectFromEnv = getenv('GCLOUD_PROJECT')) {
-            return $projectFromEnv;
+        if (getenv('GOOGLE_CLOUD_PROJECT')) {
+            return getenv('GOOGLE_CLOUD_PROJECT');
+        }
+
+        if (getenv('GCLOUD_PROJECT')) {
+            return getenv('GCLOUD_PROJECT');
         }
 
         if ($this->onGce($config['httpHandler'])) {

@@ -46,7 +46,7 @@ class StorageClient
     use ArrayTrait;
     use ClientTrait;
 
-    const VERSION = '1.3.0';
+    const VERSION = '1.3.1';
 
     const FULL_CONTROL_SCOPE = 'https://www.googleapis.com/auth/devstorage.full_control';
     const READ_ONLY_SCOPE = 'https://www.googleapis.com/auth/devstorage.read_only';
@@ -177,7 +177,7 @@ class StorageClient
      *           listBuckets operation. If `$options.userProject` is not set,
      *           this option has no effect. **Defaults to** `true`.
      * }
-     * @return ItemIterator<Google\Cloud\Storage\Bucket>
+     * @return ItemIterator<Bucket>
      * @throws GoogleException When a project ID has not been detected.
      */
     public function buckets(array $options = [])

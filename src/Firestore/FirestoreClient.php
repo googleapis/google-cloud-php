@@ -53,7 +53,7 @@ class FirestoreClient
     use SnapshotTrait;
     use ValidateTrait;
 
-    const VERSION = '0.3.2';
+    const VERSION = '0.3.3';
 
     const DEFAULT_DATABASE = '(default)';
 
@@ -147,7 +147,10 @@ class FirestoreClient
         return new WriteBatch(
             $this->connection,
             $this->valueMapper,
-            $this->database
+            $this->databaseName(
+                $this->projectId,
+                $this->database
+            )
         );
     }
 
