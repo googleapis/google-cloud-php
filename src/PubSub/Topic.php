@@ -464,7 +464,7 @@ class Topic
      *     @type string $pageToken A previously-returned page token used to
      *           resume the loading of results from a specific point.
      * }
-     * @return ItemIterator<Google\Cloud\PubSub\Subscription>
+     * @return ItemIterator<Subscription>
      */
     public function subscriptions(array $options = [])
     {

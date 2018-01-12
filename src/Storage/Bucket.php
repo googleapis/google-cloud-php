@@ -502,7 +502,7 @@ class Bucket
      *     @type string $fields Selector which will cause the response to only
      *           return the specified fields.
      * }
-     * @return ObjectIterator<Google\Cloud\Storage\StorageObject>
+     * @return ObjectIterator<StorageObject>
      */
     public function objects(array $options = [])
     {
@@ -660,7 +660,7 @@ class Bucket
      *     @type int $resultLimit Limit the number of results returned in total.
      *           **Defaults to** `0` (return all results).
      * }
-     * @return ItemIterator<Google\Cloud\Storage\Notification>
+     * @return ItemIterator<Notification>
      * @experimental The experimental flag means that while we believe this
      *      method or class is ready for use, it may change before release in
      *      backwards-incompatible ways. Please use with caution, and test
