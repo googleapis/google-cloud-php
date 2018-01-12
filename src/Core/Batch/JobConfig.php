@@ -97,17 +97,11 @@ class JobConfig
             $idNum = count($this->idmap) + 1;
             $this->idmap_reverse[$idNum] = $identifier;
         }
-        if (is_callable($callback)) {
-            $this->jobs[$identifier] = call_user_func(
-                $callback,
-                $idNum,
-                $identifier
-            );
-            var_dump($this->jobs);
-        } else {
-            echo "adding job directly\n";
-            $this->jobs[$identifier] = $callback;
-        }
+        $this->jobs[$identifier] = call_user_func(
+            $callback,
+            $idNum,
+            $identifier
+        );
         $this->idmap[$identifier] = $idNum;
     }
 

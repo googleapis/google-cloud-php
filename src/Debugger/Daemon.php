@@ -17,8 +17,9 @@
 
 namespace Google\Cloud\Debugger;
 
-use Google\Cloud\Core\Batch\JobInterface;
-use Google\Cloud\Core\Batch\JobTrait;
+use Google\Cloud\Core\SysvTrait;
+use Google\Cloud\Core\Batch\SimpleJobTrait;
+use Google\Cloud\Core\Batch\BatchDaemonTrait;
 use Google\Cloud\Core\Exception\ConflictException;
 use Google\Cloud\Debugger\BreakpointStorage\BreakpointStorageInterface;
 use Google\Cloud\Debugger\BreakpointStorage\SysvBreakpointStorage;
@@ -39,7 +40,9 @@ use Google\Cloud\Debugger\BreakpointStorage\SysvBreakpointStorage;
  */
 class Daemon
 {
+    use BatchDaemonTrait;
     use SimpleJobTrait;
+    use SysvTrait;
 
     /**
      * @var DebuggerClient
@@ -85,37 +88,33 @@ class Daemon
     public function __construct(array $options = [])
     {
         $options += [
-            'extSourceContext' => []
+            'extSourceContext' => [],
+            'clientOptions' => [],
+            'sourceRoot' => '.'
         ];
-        $client = array_key_exists('client', $options)
-            ? $options['client']
-            : new DebuggerClient();
+        $this->clientOptions = $options['clientOptions'];
 
-        $this->sourceRoot = realpath($sourceRoot);
+        $this->sourceRoot = realpath($options['sourceRoot']);
 
-        $extSourceContext = array_key_exists('extSourceContext', $options)
+        $this->extSourceContext = array_key_exists('extSourceContext', $options)
             ? [$options['extSourceContext']]
             : $this->defaultExtSourceContext();
 
-        $uniquifier = array_key_exists('uniquifier', $options)
+        $this->uniquifier = array_key_exists('uniquifier', $options)
             ? $options['uniquifier']
             : $this->defaultUniquifier();
 
-        $description = array_key_exists('description', $options)
+        $this->description = array_key_exists('description', $options)
             ? $options['description']
-            : $uniquifier;
-
-        self::$debuggee = $client->debuggee(null, [
-            'uniquifier' => $uniquifier,
-            'description' => $description,
-            'extSourceContexts' => $extSourceContext
-        ]);
+            : $this->uniquifier;
 
         $this->storage = array_key_exists('storage', $options)
             ? $options['storage']
             : new SysvBreakpointStorage();
 
-        $this->setSimpleJobProperties($options);
+        $this->setSimpleJobProperties($options + [
+            'identifier' => 'debugger-daemon'
+        ]);
     }
 
     /**
@@ -130,18 +129,19 @@ class Daemon
      */
     public function run()
     {
+        var_dump('running debugger daemon!');
         if (!isset(self::$debuggee)) {
             self::$debuggee = $this->defaultDebuggee();
         }
         self::$debuggee->register();
 
-        $breakpoints = self::$debuggee->breakpointsWithWaitToken();
-        $this->setBreakpoints($breakpoints);
+        $resp = self::$debuggee->breakpointsWithWaitToken();
+        $this->setBreakpoints($resp['breakpoints']);
 
         while (array_key_exists('nextWaitToken', $resp)) {
             try {
-                $breakpoints = self::$debuggee->breakpointsWithWaitToken([
-                    'waitToken' => $breakpoints['nextWaitToken']
+                $resp = self::$debuggee->breakpointsWithWaitToken([
+                    'waitToken' => $resp['nextWaitToken']
                 ]);
                 $this->setBreakpoints($resp['breakpoints']);
             } catch (ConflictException $e) {
@@ -164,7 +164,7 @@ class Daemon
             }
         }
 
-        $this->storage->save($this->debuggee, $validBreakpoints);
+        $this->storage->save(self::$debuggee, $validBreakpoints);
 
         if (!empty($invalidBreakpoints)) {
             $this->debuggee->updateBreakpointBatch($invalidBreakpoints);
@@ -187,5 +187,15 @@ class Daemon
         } else {
             return null;
         }
+    }
+
+    private function defaultDebuggee()
+    {
+        $client = new DebuggerClient($this->clientOptions);
+        return $client->debuggee(null, [
+            'uniquifier' => $this->uniquifier,
+            'description' => $this->description,
+            'extSourceContexts' => $this->extSourceContext
+        ]);
     }
 }

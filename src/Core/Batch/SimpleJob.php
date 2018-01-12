@@ -68,4 +68,12 @@ class SimpleJob implements JobInterface
         return 1;
     }
 
+    public function __wakeup()
+    {
+        if ($this->bootstrapFile && !in_array($this->bootstrapFile, get_included_files())) {
+            require_once $this->bootstrapFile;
+            throw new ReloadJobConfigException();
+        }
+    }
+
 }

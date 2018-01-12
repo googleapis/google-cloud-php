@@ -86,10 +86,17 @@ class Agent
      */
     public function __construct(array $options = [])
     {
+
+        $daemon = new Daemon([
+            'sourceRoot' => $this->sourceRoot
+        ]);
+
         $storage = isset($options['storage'])
             ? $options['storage']
             : $this->defaultStorage();
-        list($this->debuggeeId, $breakpoints) = $storage->load();
+
+        $agentConfig = $storage->load();
+        list($this->debuggeeId, $breakpoints) = $agentConfig;
 
         $this->setCommonBatchProperties($options + [
             'identifier' => 'stackdriver-debugger',
@@ -115,10 +122,6 @@ class Agent
             return;
         }
 
-
-        $daemon = new DaemonJob([
-            'sourceRoot' => $this->sourceRoot
-        ]);
 
         foreach ($breakpoints as $breakpoint) {
             $this->breakpointsById[$breakpoint->id()] = $breakpoint;

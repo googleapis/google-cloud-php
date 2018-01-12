@@ -320,6 +320,9 @@ class Debuggee implements \JsonSerializable
             'agentVersion' => $this->agentVersion,
             'status' => $this->status,
             'sourceContexts' => array_map(function ($esc) {
+                if (empty($esc)) {
+                    return [];
+                }
                 return is_array($esc) ? $esc['context'] : $esc->context();
             }, $this->extSourceContexts),
             'extSourceContexts' => $this->extSourceContexts
