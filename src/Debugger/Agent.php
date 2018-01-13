@@ -96,6 +96,10 @@ class Agent
             : $this->defaultStorage();
 
         $agentConfig = $storage->load();
+        if (empty($agentConfig)) {
+            return;
+        }
+
         list($this->debuggeeId, $breakpoints) = $agentConfig;
 
         $this->setCommonBatchProperties($options + [
@@ -121,7 +125,6 @@ class Agent
             trigger_error('Breakpoints set but "stackdriver_debugger" extension not loaded', E_USER_WARNING);
             return;
         }
-
 
         foreach ($breakpoints as $breakpoint) {
             $this->breakpointsById[$breakpoint->id()] = $breakpoint;
