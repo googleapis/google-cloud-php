@@ -88,11 +88,7 @@ trait ArrayTrait
     private function arrayFilterRemoveNull(array $arr)
     {
         return array_filter($arr, function ($element) {
-            if (!is_null($element)) {
-                return true;
-            }
-
-            return false;
+            return !is_null($element);
         });
     }
 
