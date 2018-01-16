@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2017 Google LLC
+ * Copyright 2018 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -31,6 +31,7 @@
 namespace Google\Cloud\Language\V1beta2\Gapic;
 
 use Google\ApiCore\ApiException;
+use Google\ApiCore\Call;
 use Google\ApiCore\GapicClientTrait;
 use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
@@ -44,7 +45,7 @@ use Google\Cloud\Language\V1beta2\AnalyzeSentimentResponse;
 use Google\Cloud\Language\V1beta2\AnalyzeSyntaxRequest;
 use Google\Cloud\Language\V1beta2\AnalyzeSyntaxResponse;
 use Google\Cloud\Language\V1beta2\AnnotateTextRequest;
-use Google\Cloud\Language\V1beta2\AnnotateTextRequest_Features as Features;
+use Google\Cloud\Language\V1beta2\AnnotateTextRequest_Features;
 use Google\Cloud\Language\V1beta2\AnnotateTextResponse;
 use Google\Cloud\Language\V1beta2\ClassifyTextRequest;
 use Google\Cloud\Language\V1beta2\ClassifyTextResponse;
@@ -434,17 +435,17 @@ class LanguageServiceGapicClient
      * $languageServiceClient = new LanguageServiceClient();
      * try {
      *     $document = new Document();
-     *     $features = new Features();
+     *     $features = new AnnotateTextRequest_Features();
      *     $response = $languageServiceClient->annotateText($document, $features);
      * } finally {
      *     $languageServiceClient->close();
      * }
      * ```
      *
-     * @param Document $document     Input document.
-     * @param Features $features     The enabled features.
-     * @param array    $optionalArgs {
-     *                               Optional.
+     * @param Document                     $document     Input document.
+     * @param AnnotateTextRequest_Features $features     The enabled features.
+     * @param array                        $optionalArgs {
+     *                                                   Optional.
      *
      *     @type int $encodingType
      *          The encoding type used by the API to calculate offsets.

@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2017 Google LLC
+ * Copyright 2018 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -31,6 +31,7 @@
 namespace Google\Cloud\Bigtable\Admin\V2\Gapic;
 
 use Google\ApiCore\ApiException;
+use Google\ApiCore\Call;
 use Google\ApiCore\GapicClientTrait;
 use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\OperationResponse;
@@ -51,8 +52,7 @@ use Google\Cloud\Bigtable\Admin\V2\GetAppProfileRequest;
 use Google\Cloud\Bigtable\Admin\V2\GetClusterRequest;
 use Google\Cloud\Bigtable\Admin\V2\GetInstanceRequest;
 use Google\Cloud\Bigtable\Admin\V2\Instance;
-use Google\Cloud\Bigtable\Admin\V2\Instance_State as State;
-use Google\Cloud\Bigtable\Admin\V2\Instance_Type as Type;
+use Google\Cloud\Bigtable\Admin\V2\Instance_Type;
 use Google\Cloud\Bigtable\Admin\V2\ListAppProfilesRequest;
 use Google\Cloud\Bigtable\Admin\V2\ListAppProfilesResponse;
 use Google\Cloud\Bigtable\Admin\V2\ListClustersRequest;
@@ -677,7 +677,7 @@ class BigtableInstanceAdminGapicClient
      * try {
      *     $formattedName = $bigtableInstanceAdminClient->instanceName('[PROJECT]', '[INSTANCE]');
      *     $displayName = '';
-     *     $type = Type::TYPE_UNSPECIFIED;
+     *     $type = Instance_Type::TYPE_UNSPECIFIED;
      *     $labels = [];
      *     $response = $bigtableInstanceAdminClient->updateInstance($formattedName, $displayName, $type, $labels);
      * } finally {

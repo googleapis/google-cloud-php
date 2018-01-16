@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2017 Google LLC
+ * Copyright 2018 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -21,9 +21,9 @@
  * https://github.com/google/googleapis/blob/master/google/privacy/dlp/v2beta1/dlp.proto
  * and updates to that file get reflected here through a refresh process.
  *
- * EXPERIMENTAL: this client library class has not yet been declared beta. This class may change
- * more frequently than those which have been declared beta or 1.0, including changes which break
- * backwards compatibility.
+ * EXPERIMENTAL: this client library class has not yet been declared GA (1.0). This means that
+ * even though we intent the surface to be stable, we may make backwards incompatible changes
+ * if necessary.
  *
  * @experimental
  */
@@ -31,6 +31,7 @@
 namespace Google\Cloud\Dlp\V2beta1\Gapic;
 
 use Google\ApiCore\ApiException;
+use Google\ApiCore\Call;
 use Google\ApiCore\GapicClientTrait;
 use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\OperationResponse;
@@ -59,8 +60,8 @@ use Google\Cloud\Dlp\V2beta1\OperationConfig;
 use Google\Cloud\Dlp\V2beta1\OutputStorageConfig;
 use Google\Cloud\Dlp\V2beta1\PrivacyMetric;
 use Google\Cloud\Dlp\V2beta1\RedactContentRequest;
-use Google\Cloud\Dlp\V2beta1\RedactContentRequest_ImageRedactionConfig as ImageRedactionConfig;
-use Google\Cloud\Dlp\V2beta1\RedactContentRequest_ReplaceConfig as ReplaceConfig;
+use Google\Cloud\Dlp\V2beta1\RedactContentRequest_ImageRedactionConfig;
+use Google\Cloud\Dlp\V2beta1\RedactContentRequest_ReplaceConfig;
 use Google\Cloud\Dlp\V2beta1\RedactContentResponse;
 use Google\Cloud\Dlp\V2beta1\StorageConfig;
 use Google\LongRunning\Operation;
@@ -75,9 +76,9 @@ use Grpc\ChannelCredentials;
  * The service also includes methods for sensitive data redaction and
  * scheduling of data scans on Google Cloud Platform based data sets.
  *
- * EXPERIMENTAL: this client library class has not yet been declared beta. This class may change
- * more frequently than those which have been declared beta or 1.0, including changes which break
- * backwards compatibility.
+ * EXPERIMENTAL: this client library class has not yet been declared GA (1.0). This means that
+ * even though we intent the surface to be stable, we may make backwards incompatible changes
+ * if necessary.
  *
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods. Sample code to get started:
@@ -422,7 +423,7 @@ class DlpServiceGapicClient
      *     $infoType = new InfoType();
      *     $infoType->setName($name2);
      *     $replaceWith = 'REDACTED';
-     *     $replaceConfigsElement = new ReplaceConfig();
+     *     $replaceConfigsElement = new RedactContentRequest_ReplaceConfig();
      *     $replaceConfigsElement->setInfoType($infoType);
      *     $replaceConfigsElement->setReplaceWith($replaceWith);
      *     $replaceConfigs = [$replaceConfigsElement];
@@ -437,10 +438,10 @@ class DlpServiceGapicClient
      * @param array         $optionalArgs  {
      *                                     Optional.
      *
-     *     @type ReplaceConfig[] $replaceConfigs
+     *     @type RedactContentRequest_ReplaceConfig[] $replaceConfigs
      *          The strings to replace findings text findings with. Must specify at least
      *          one of these or one ImageRedactionConfig if redacting images.
-     *     @type ImageRedactionConfig[] $imageRedactionConfigs
+     *     @type RedactContentRequest_ImageRedactionConfig[] $imageRedactionConfigs
      *          The configuration for specifying what content to redact from images.
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
@@ -612,7 +613,7 @@ class DlpServiceGapicClient
      *     $inspectConfig = new InspectConfig();
      *     $inspectConfig->setInfoTypes($infoTypes);
      *     $url = 'gs://example_bucket/example_file.png';
-     *     $fileSet = new FileSet();
+     *     $fileSet = new CloudStorageOptions_FileSet();
      *     $fileSet->setUrl($url);
      *     $cloudStorageOptions = new CloudStorageOptions();
      *     $cloudStorageOptions->setFileSet($fileSet);

@@ -16,9 +16,8 @@ return [
                 ],
             ],
             'GetIamPolicy' => [
-                'method' => 'post',
+                'method' => 'get',
                 'uriTemplate' => '/v1/{resource=**}:getIamPolicy',
-                'body' => '*',
                 'placeholders' => [
                     'resource' => [
                         'getters' => [

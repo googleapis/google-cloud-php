@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2017 Google LLC
+ * Copyright 2018 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -63,7 +63,7 @@ use Grpc\ChannelCredentials;
  * ```
  * $speechClient = new SpeechClient();
  * try {
- *     $encoding = AudioEncoding::FLAC;
+ *     $encoding = RecognitionConfig_AudioEncoding::FLAC;
  *     $sampleRateHertz = 44100;
  *     $languageCode = 'en-US';
  *     $config = new RecognitionConfig();
@@ -238,7 +238,7 @@ class SpeechGapicClient
      * ```
      * $speechClient = new SpeechClient();
      * try {
-     *     $encoding = AudioEncoding::FLAC;
+     *     $encoding = RecognitionConfig_AudioEncoding::FLAC;
      *     $sampleRateHertz = 44100;
      *     $languageCode = 'en-US';
      *     $config = new RecognitionConfig();
@@ -296,7 +296,7 @@ class SpeechGapicClient
      * ```
      * $speechClient = new SpeechClient();
      * try {
-     *     $encoding = AudioEncoding::FLAC;
+     *     $encoding = RecognitionConfig_AudioEncoding::FLAC;
      *     $sampleRateHertz = 44100;
      *     $languageCode = 'en-US';
      *     $config = new RecognitionConfig();

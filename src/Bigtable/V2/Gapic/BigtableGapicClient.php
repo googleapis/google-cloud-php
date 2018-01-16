@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2017 Google LLC
+ * Copyright 2018 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -43,7 +43,7 @@ use Google\Cloud\Bigtable\V2\CheckAndMutateRowResponse;
 use Google\Cloud\Bigtable\V2\MutateRowRequest;
 use Google\Cloud\Bigtable\V2\MutateRowResponse;
 use Google\Cloud\Bigtable\V2\MutateRowsRequest;
-use Google\Cloud\Bigtable\V2\MutateRowsRequest_Entry as Entry;
+use Google\Cloud\Bigtable\V2\MutateRowsRequest_Entry;
 use Google\Cloud\Bigtable\V2\MutateRowsResponse;
 use Google\Cloud\Bigtable\V2\Mutation;
 use Google\Cloud\Bigtable\V2\ReadModifyWriteRowRequest;
@@ -508,14 +508,14 @@ class BigtableGapicClient
      * }
      * ```
      *
-     * @param string  $tableName    The unique name of the table to which the mutations should be applied.
-     * @param Entry[] $entries      The row keys and corresponding mutations to be applied in bulk.
-     *                              Each entry is applied as an atomic mutation, but the entries may be
-     *                              applied in arbitrary order (even between entries for the same row).
-     *                              At least one entry must be specified, and in total the entries can
-     *                              contain at most 100000 mutations.
-     * @param array   $optionalArgs {
-     *                              Optional.
+     * @param string                    $tableName    The unique name of the table to which the mutations should be applied.
+     * @param MutateRowsRequest_Entry[] $entries      The row keys and corresponding mutations to be applied in bulk.
+     *                                                Each entry is applied as an atomic mutation, but the entries may be
+     *                                                applied in arbitrary order (even between entries for the same row).
+     *                                                At least one entry must be specified, and in total the entries can
+     *                                                contain at most 100000 mutations.
+     * @param array                     $optionalArgs {
+     *                                                Optional.
      *
      *     @type string $appProfileId
      *          This is a private alpha release of Cloud Bigtable replication. This feature

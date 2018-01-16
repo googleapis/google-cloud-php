@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2017 Google LLC
+ * Copyright 2018 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -21,9 +21,9 @@
  * https://github.com/google/googleapis/blob/master/google/monitoring/v3/metric_service.proto
  * and updates to that file get reflected here through a refresh process.
  *
- * EXPERIMENTAL: this client library class has not yet been declared beta. This class may change
- * more frequently than those which have been declared beta or 1.0, including changes which break
- * backwards compatibility.
+ * EXPERIMENTAL: this client library class has not yet been declared GA (1.0). This means that
+ * even though we intent the surface to be stable, we may make backwards incompatible changes
+ * if necessary.
  *
  * @experimental
  */
@@ -31,6 +31,7 @@
 namespace Google\Cloud\Monitoring\V3\Gapic;
 
 use Google\ApiCore\ApiException;
+use Google\ApiCore\Call;
 use Google\ApiCore\GapicClientTrait;
 use Google\ApiCore\PathTemplate;
 use Google\ApiCore\RetrySettings;
@@ -50,7 +51,7 @@ use Google\Cloud\Monitoring\V3\ListMetricDescriptorsResponse;
 use Google\Cloud\Monitoring\V3\ListMonitoredResourceDescriptorsRequest;
 use Google\Cloud\Monitoring\V3\ListMonitoredResourceDescriptorsResponse;
 use Google\Cloud\Monitoring\V3\ListTimeSeriesRequest;
-use Google\Cloud\Monitoring\V3\ListTimeSeriesRequest_TimeSeriesView as TimeSeriesView;
+use Google\Cloud\Monitoring\V3\ListTimeSeriesRequest_TimeSeriesView;
 use Google\Cloud\Monitoring\V3\ListTimeSeriesResponse;
 use Google\Cloud\Monitoring\V3\TimeInterval;
 use Google\Cloud\Monitoring\V3\TimeSeries;
@@ -62,9 +63,9 @@ use Grpc\ChannelCredentials;
  * Service Description: Manages metric descriptors, monitored resource descriptors, and
  * time series data.
  *
- * EXPERIMENTAL: this client library class has not yet been declared beta. This class may change
- * more frequently than those which have been declared beta or 1.0, including changes which break
- * backwards compatibility.
+ * EXPERIMENTAL: this client library class has not yet been declared GA (1.0). This means that
+ * even though we intent the surface to be stable, we may make backwards incompatible changes
+ * if necessary.
  *
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods. Sample code to get started:
@@ -707,7 +708,7 @@ class MetricServiceGapicClient
      *     $formattedName = $metricServiceClient->projectName('[PROJECT]');
      *     $filter = '';
      *     $interval = new TimeInterval();
-     *     $view = TimeSeriesView::FULL;
+     *     $view = ListTimeSeriesRequest_TimeSeriesView::FULL;
      *     // Iterate through all elements
      *     $pagedResponse = $metricServiceClient->listTimeSeries($formattedName, $filter, $interval, $view);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {

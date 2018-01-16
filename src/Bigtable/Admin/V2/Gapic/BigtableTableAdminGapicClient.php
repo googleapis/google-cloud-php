@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2017 Google LLC
+ * Copyright 2018 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -31,6 +31,7 @@
 namespace Google\Cloud\Bigtable\Admin\V2\Gapic;
 
 use Google\ApiCore\ApiException;
+use Google\ApiCore\Call;
 use Google\ApiCore\GapicClientTrait;
 use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\OperationResponse;
@@ -43,7 +44,7 @@ use Google\Cloud\Bigtable\Admin\V2\CheckConsistencyRequest;
 use Google\Cloud\Bigtable\Admin\V2\CheckConsistencyResponse;
 use Google\Cloud\Bigtable\Admin\V2\CreateTableFromSnapshotRequest;
 use Google\Cloud\Bigtable\Admin\V2\CreateTableRequest;
-use Google\Cloud\Bigtable\Admin\V2\CreateTableRequest_Split as Split;
+use Google\Cloud\Bigtable\Admin\V2\CreateTableRequest_Split;
 use Google\Cloud\Bigtable\Admin\V2\DeleteSnapshotRequest;
 use Google\Cloud\Bigtable\Admin\V2\DeleteTableRequest;
 use Google\Cloud\Bigtable\Admin\V2\DropRowRangeRequest;
@@ -56,11 +57,10 @@ use Google\Cloud\Bigtable\Admin\V2\ListSnapshotsResponse;
 use Google\Cloud\Bigtable\Admin\V2\ListTablesRequest;
 use Google\Cloud\Bigtable\Admin\V2\ListTablesResponse;
 use Google\Cloud\Bigtable\Admin\V2\ModifyColumnFamiliesRequest;
-use Google\Cloud\Bigtable\Admin\V2\ModifyColumnFamiliesRequest_Modification as Modification;
+use Google\Cloud\Bigtable\Admin\V2\ModifyColumnFamiliesRequest_Modification;
 use Google\Cloud\Bigtable\Admin\V2\Snapshot;
 use Google\Cloud\Bigtable\Admin\V2\SnapshotTableRequest;
 use Google\Cloud\Bigtable\Admin\V2\Table;
-use Google\Cloud\Bigtable\Admin\V2\Table_View as View;
 use Google\LongRunning\Operation;
 use Google\Protobuf\Duration;
 use Google\Protobuf\GPBEmpty;
@@ -463,7 +463,7 @@ class BigtableTableAdminGapicClient
      * @param array  $optionalArgs {
      *                             Optional.
      *
-     *     @type Split[] $initialSplits
+     *     @type CreateTableRequest_Split[] $initialSplits
      *          The optional list of row keys that will be used to initially split the
      *          table into several tablets (tablets are similar to HBase regions).
      *          Given two split keys, `s1` and `s2`, three tablets will be created,
@@ -779,15 +779,15 @@ class BigtableTableAdminGapicClient
      * }
      * ```
      *
-     * @param string         $name          The unique name of the table whose families should be modified.
-     *                                      Values are of the form
-     *                                      `projects/<project>/instances/<instance>/tables/<table>`.
-     * @param Modification[] $modifications Modifications to be atomically applied to the specified table's families.
-     *                                      Entries are applied in order, meaning that earlier modifications can be
-     *                                      masked by later ones (in the case of repeated updates to the same family,
-     *                                      for example).
-     * @param array          $optionalArgs  {
-     *                                      Optional.
+     * @param string                                     $name          The unique name of the table whose families should be modified.
+     *                                                                  Values are of the form
+     *                                                                  `projects/<project>/instances/<instance>/tables/<table>`.
+     * @param ModifyColumnFamiliesRequest_Modification[] $modifications Modifications to be atomically applied to the specified table's families.
+     *                                                                  Entries are applied in order, meaning that earlier modifications can be
+     *                                                                  masked by later ones (in the case of repeated updates to the same family,
+     *                                                                  for example).
+     * @param array                                      $optionalArgs  {
+     *                                                                  Optional.
      *
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
