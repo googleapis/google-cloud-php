@@ -17,6 +17,14 @@
 
 namespace Google\Cloud\Core\Batch;
 
+/**
+ * A trait to assist in handling interrupt signals and gracefully stopping work.
+ *
+ * @experimental The experimental flag means that while we believe this method
+ *      or class is ready for use, it may change before release in backwards-
+ *      incompatible ways. Please use with caution, and test thoroughly when
+ *      upgrading.
+ */
 trait InterruptTrait
 {
     private $shutdown = false;

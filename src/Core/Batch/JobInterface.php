@@ -20,6 +20,11 @@ namespace Google\Cloud\Core\Batch;
 /**
  * The JobInterface represents any job that can be serialized and run in a
  * separate process via the Batch daemon.
+ *
+ * @experimental The experimental flag means that while we believe this method
+ *      or class is ready for use, it may change before release in backwards-
+ *      incompatible ways. Please use with caution, and test thoroughly when
+ *      upgrading.
  */
 interface JobInterface
 {

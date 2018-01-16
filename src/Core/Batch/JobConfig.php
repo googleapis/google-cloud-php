@@ -35,12 +35,12 @@ class JobConfig
     /**
      * @var array
      */
-    private $idmap = [];
+    private $identifierToId = [];
 
     /**
      * @var array
      */
-    private $idmap_reverse = [];
+    private $idToIdentifier = [];
 
     /**
      * Get the job with the given identifier.
@@ -51,7 +51,7 @@ class JobConfig
      */
     public function getJobFromId($identifier)
     {
-        return array_key_exists($identifier, $this->idmap)
+        return array_key_exists($identifier, $this->identifierToId)
             ? $this->jobs[$identifier]
             : null;
     }
@@ -65,8 +65,8 @@ class JobConfig
      */
     public function getJobFromIdNum($idNum)
     {
-        return array_key_exists($idNum, $this->idmap_reverse)
-            ? $this->jobs[$this->idmap_reverse[$idNum]]
+        return array_key_exists($idNum, $this->idToIdentifier)
+            ? $this->jobs[$this->idToIdentifier[$idNum]]
             : null;
     }
 
@@ -91,24 +91,23 @@ class JobConfig
      */
     public function registerJob($identifier, $callback)
     {
-        if (array_key_exists($identifier, $this->idmap)) {
-            $idNum = $this->idmap[$identifier];
+        if (array_key_exists($identifier, $this->identifierToId)) {
+            $idNum = $this->identifierToId[$identifier];
         } else {
-            $idNum = count($this->idmap) + 1;
-            $this->idmap_reverse[$idNum] = $identifier;
+            $idNum = count($this->identifierToId) + 1;
+            $this->idToIdentifier[$idNum] = $identifier;
         }
         $this->jobs[$identifier] = call_user_func(
             $callback,
             $idNum
         );
-        $this->idmap[$identifier] = $idNum;
-        var_dump($this->jobs);
+        $this->identifierToId[$identifier] = $idNum;
     }
 
     /**
-     * Get all the jobs.
+     * Get all the jobs indexed by the job's identifier.
      *
-     * @return JobInterface[]
+     * @return array[string]JobInterface
      */
     public function getJobs()
     {
