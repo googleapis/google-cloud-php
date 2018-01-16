@@ -32,7 +32,7 @@ use Google\Cloud\Debugger\BreakpointStorage\SysvBreakpointStorage;
  * ```
  * use Google\Cloud\Debugger\Daemon;
  *
- * $daemon = new Daemon('/path/to/source/root');
+ * $daemon = new Daemon();
  * $daemon->run();
  * ```
  */
@@ -114,7 +114,7 @@ class Daemon
      */
     public function run(DebuggerClient $client = null)
     {
-        $client ?: $this->defaultClient();
+        $client = $client ?: $this->defaultClient();
         $debuggee = $client->debuggee(null, [
             'uniquifier' => $this->uniquifier,
             'description' => $this->description,
@@ -176,7 +176,7 @@ class Daemon
         }
     }
 
-    private function defaultDebuggee()
+    private function defaultClient()
     {
         return new DebuggerClient($this->clientOptions);
     }
