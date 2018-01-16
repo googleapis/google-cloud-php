@@ -71,4 +71,15 @@ class SimpleJob implements JobInterface
         }
         call_user_func($this->func);
     }
+
+    /**
+     * Finish any pending activity for this job.
+     *
+     * @param array $items
+     * @return bool
+     */
+    public function flush(array $items = [])
+    {
+        return false;
+    }
 }

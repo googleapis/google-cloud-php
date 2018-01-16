@@ -138,7 +138,7 @@ class BatchRunner
                 "The identifier does not exist: $identifier"
             );
         }
-        $idNum = $job->getIdnum();
+        $idNum = $job->id();
         return $this->processor->submit($item, $idNum);
     }
 

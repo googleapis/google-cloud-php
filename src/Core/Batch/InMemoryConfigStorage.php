@@ -191,7 +191,7 @@ final class InMemoryConfigStorage implements
         if (isset($this->items[$idNum])) {
             $job = $this->config->getJobFromIdNum($idNum);
 
-            if (!$job->run($this->items[$idNum])) {
+            if (!$job->flush($this->items[$idNum])) {
                 $this->handleFailure($idNum, $this->items[$idNum]);
             }
 

@@ -17,6 +17,7 @@
 
 namespace Google\Cloud\Tests\Unit\Core\Batch;
 
+use Google\Cloud\Core\Batch\BatchJob;
 use Google\Cloud\Core\Batch\JobConfig;
 use Google\Cloud\Core\Batch\SysvConfigStorage;
 use Google\Cloud\Core\SysvTrait;
@@ -58,7 +59,9 @@ class SysvConfigStorageTest extends TestCase
     {
         $object = new TestSerializableObjectWithClosure();
         $config = new JobConfig();
-        $config->registerJob('badConfig', [$object, 'callback']);
+        $config->registerJob('badConfig', function ($id) use ($object) {
+            return new BatchJob('badConfig', $id, [$object, 'callback']);
+        });
 
         try {
             $this->storage->save($config);

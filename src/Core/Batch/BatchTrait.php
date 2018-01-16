@@ -72,7 +72,7 @@ trait BatchTrait
     {
         $id = $this->batchRunner
             ->getJobFromId($this->identifier)
-            ->getIdNum();
+            ->id();
 
         return $this->batchRunner
             ->getProcessor()

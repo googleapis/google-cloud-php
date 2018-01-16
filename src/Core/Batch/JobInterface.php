@@ -46,4 +46,12 @@ interface JobInterface
      * @return int
      */
     public function numWorkers();
+
+    /**
+     * Finish any pending activity for this job.
+     *
+     * @param array $items
+     * @return bool
+     */
+    public function flush(array $items = []);
 }

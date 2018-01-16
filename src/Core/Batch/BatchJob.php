@@ -96,6 +96,8 @@ class BatchJob implements JobInterface
      */
     public function run()
     {
+        var_dump("run");
+        return false;
         $this->setupSignalHandlers();
 
         $sysvKey = $this->getSysvKey($this->id);
@@ -140,17 +142,30 @@ class BatchJob implements JobInterface
                     'Running the job with %d items' . PHP_EOL,
                     count($items)
                 );
-                if (!call_user_func_array($this->func, [$items])) {
-                    $this->handleFailure($this->id, $items);
-                }
+                $this->flush($items);
                 $items = [];
                 $lastInvoked = microtime(true);
             }
             gc_collect_cycles();
             if ($this->shutdown) {
-                exit;
+                return;
             }
         }
+    }
+
+    /**
+     * Finish any pending activity for this job.
+     *
+     * @param array $items
+     * @return bool
+     */
+    public function flush(array $items = [])
+    {
+        if (!call_user_func_array($this->func, [$items])) {
+            $this->handleFailure($this->id, $items);
+            return false;
+        }
+        return true;
     }
 
     /**
