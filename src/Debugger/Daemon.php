@@ -41,16 +41,6 @@ class Daemon
     use SimpleJobTrait;
 
     /**
-     * @var DebuggerClient
-     */
-    private static $client;
-
-    /**
-     * @var Debuggee
-     */
-    private static $debuggee;
-
-    /**
      * @var string The full path to the source root
      */
     private $sourceRoot;
@@ -67,8 +57,8 @@ class Daemon
      *      Configuration options.
      *
      *      @type string $sourceRoot The full path to the source root
-     *      @type DebuggerClient $client A DebuggerClient to use. **Defaults
-     *            to** a new DebuggerClient.
+     *      @type array $clientOptions The options to instantiate the default
+     *            DebuggerClient.
      *      @type array $extSourceContext The source code identifier. **Defaults
      *            to** values autodetected from the environment.
      *      @type string $uniquifier A string when uniquely identifies this
@@ -84,12 +74,11 @@ class Daemon
     public function __construct(array $options = [])
     {
         $options += [
-            'extSourceContext' => [],
             'clientOptions' => [],
-            'sourceRoot' => '.'
+            'sourceRoot' => '.',
+            'debuggee' => null
         ];
         $this->clientOptions = $options['clientOptions'];
-
         $this->sourceRoot = realpath($options['sourceRoot']);
 
         $this->extSourceContext = array_key_exists('extSourceContext', $options)
@@ -123,30 +112,32 @@ class Daemon
      * $daemon->run();
      * ```
      */
-    public function run()
+    public function run(DebuggerClient $client = null)
     {
-        var_dump('running debugger daemon!');
-        if (!isset(self::$debuggee)) {
-            self::$debuggee = $this->defaultDebuggee();
-        }
-        self::$debuggee->register();
+        $client ?: $this->defaultClient();
+        $debuggee = $client->debuggee(null, [
+            'uniquifier' => $this->uniquifier,
+            'description' => $this->description,
+            'extSourceContexts' => $this->extSourceContext
+        ]);
+        $debuggee->register();
 
-        $resp = self::$debuggee->breakpointsWithWaitToken();
-        $this->setBreakpoints($resp['breakpoints']);
+        $resp = $debuggee->breakpointsWithWaitToken();
+        $this->setBreakpoints($debuggee, $resp['breakpoints']);
 
         while (array_key_exists('nextWaitToken', $resp)) {
             try {
-                $resp = self::$debuggee->breakpointsWithWaitToken([
+                $resp = $debuggee->breakpointsWithWaitToken([
                     'waitToken' => $resp['nextWaitToken']
                 ]);
-                $this->setBreakpoints($resp['breakpoints']);
+                $this->setBreakpoints($debuggee, $resp['breakpoints']);
             } catch (ConflictException $e) {
                 // Ignoring this exception
             }
         }
     }
 
-    private function setBreakpoints($breakpoints)
+    private function setBreakpoints(Debuggee $debuggee, $breakpoints)
     {
         $validBreakpoints = [];
         $invalidBreakpoints = [];
@@ -159,11 +150,11 @@ class Daemon
                 array_push($invalidBreakpoints, $breakpoint);
             }
         }
-var_dump($validBreakpoints);
-        $this->storage->save(self::$debuggee, $validBreakpoints);
+
+        $this->storage->save($debuggee, $validBreakpoints);
 
         if (!empty($invalidBreakpoints)) {
-            $this->debuggee->updateBreakpointBatch($invalidBreakpoints);
+            $debuggee->updateBreakpointBatch($invalidBreakpoints);
         }
     }
 
@@ -181,17 +172,12 @@ var_dump($validBreakpoints);
         if (file_exists($sourceContextFile)) {
             return json_decode(file_get_contents($sourceContextFile), true);
         } else {
-            return null;
+            return [];
         }
     }
 
     private function defaultDebuggee()
     {
-        $client = new DebuggerClient($this->clientOptions);
-        return $client->debuggee(null, [
-            'uniquifier' => $this->uniquifier,
-            'description' => $this->description,
-            'extSourceContexts' => $this->extSourceContext
-        ]);
+        return new DebuggerClient($this->clientOptions);
     }
 }

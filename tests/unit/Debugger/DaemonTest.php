@@ -43,30 +43,42 @@ class DaemonTest extends TestCase
 
     public function testSpecifyUniquifier()
     {
-        $this->debuggee->register(Argument::any())->shouldBeCalled();
+        $resp = [
+            'breakpoints' => [new Breakpoint(['id' => 'breakpoint1'])]
+        ];
+        $this->debuggee->register(Argument::any())
+            ->shouldBeCalled();
+        $this->debuggee->breakpointsWithWaitToken()
+            ->willReturn($resp);
         $this->client->debuggee(null, Argument::that(function ($options) {
             return $options['uniquifier'] == 'some uniquifier';
         }))->willReturn($this->debuggee->reveal())->shouldBeCalled();
 
-        $daemon = new Daemon('.', [
-            'client' => $this->client->reveal(),
+        $daemon = new Daemon([
             'storage' => $this->storage->reveal(),
             'uniquifier' => 'some uniquifier'
         ]);
+        $daemon->run($this->client->reveal());
     }
 
     public function testSpecifyDescription()
     {
-        $this->debuggee->register(Argument::any())->shouldBeCalled();
+        $resp = [
+            'breakpoints' => [new Breakpoint(['id' => 'breakpoint1'])]
+        ];
+        $this->debuggee->register(Argument::any())
+            ->shouldBeCalled();
+        $this->debuggee->breakpointsWithWaitToken()
+            ->willReturn($resp);
         $this->client->debuggee(null, Argument::that(function ($options) {
             return $options['description'] == 'some description';
         }))->willReturn($this->debuggee->reveal())->shouldBeCalled();
 
-        $daemon = new Daemon('.', [
-            'client' => $this->client->reveal(),
+        $daemon = new Daemon([
             'storage' => $this->storage->reveal(),
             'description' => 'some description'
         ]);
+        $daemon->run($this->client->reveal());
     }
 
     public function testSpecifyExtSourceContext()
@@ -80,16 +92,22 @@ class DaemonTest extends TestCase
             ],
             'labels' => []
         ];
-        $this->debuggee->register(Argument::any())->shouldBeCalled();
+        $resp = [
+            'breakpoints' => [new Breakpoint(['id' => 'breakpoint1'])]
+        ];
+        $this->debuggee->register(Argument::any())
+            ->shouldBeCalled();
+        $this->debuggee->breakpointsWithWaitToken()
+            ->willReturn($resp);
         $this->client->debuggee(null, Argument::that(function ($options) use ($context) {
             return $options['extSourceContexts'] == [$context];
         }))->willReturn($this->debuggee->reveal())->shouldBeCalled();
 
-        $daemon = new Daemon('.', [
-            'client' => $this->client->reveal(),
+        $daemon = new Daemon([
             'storage' => $this->storage->reveal(),
             'extSourceContext' => $context
         ]);
+        $daemon->run($this->client->reveal());
     }
 
     public function testFetchesBreakpoints()
@@ -104,13 +122,11 @@ class DaemonTest extends TestCase
         $this->debuggee->updateBreakpointBatch(Argument::any())
             ->willReturn(true);
         $this->client->debuggee(null, Argument::any())
-            ->willReturn($this->debuggee->reveal())
-            ->shouldBeCalled();
+            ->willReturn($this->debuggee->reveal())->shouldBeCalled();
 
-        $daemon = new Daemon('.', [
-            'client' => $this->client->reveal(),
+        $daemon = new Daemon([
             'storage' => $this->storage->reveal()
         ]);
-        $daemon->run();
+        $daemon->run($this->client->reveal());
     }
 }
