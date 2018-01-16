@@ -17,13 +17,15 @@
 
 namespace Google\Cloud\Core\Batch;
 
+/**
+ * A trait to assist in implementing the JobInterface
+ */
 trait JobTrait
 {
     /**
      * @var string The job identifier
      */
     private $identifier;
-
 
     /**
      * Return the job identifier

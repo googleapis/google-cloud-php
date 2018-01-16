@@ -17,8 +17,10 @@
 
 namespace Google\Cloud\Core\Batch;
 
+use Google\Cloud\Core\SysvTrait;
+
 /**
- * A trait to assist in the registering and processing of batch jobs.
+ * A trait to assist in the registering and processing of simple jobs.
  *
  * @experimental The experimental flag means that while we believe this method
  *      or class is ready for use, it may change before release in backwards-
@@ -27,6 +29,9 @@ namespace Google\Cloud\Core\Batch;
  */
 trait SimpleJobTrait
 {
+    use BatchDaemonTrait;
+    use SysvTrait;
+
     abstract public function run();
 
     private function setSimpleJobProperties(array $options)
@@ -49,7 +54,6 @@ trait SimpleJobTrait
             return false;
         }
         $config = $configStorage->load();
-        echo "registering job!\n";
         $config->registerJob(
             $identifier,
             function ($idNum, $identifier) use ($options) {

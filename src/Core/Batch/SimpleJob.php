@@ -19,6 +19,14 @@ namespace Google\Cloud\Core\Batch;
 
 use Google\Cloud\Core\SysvTrait;
 
+/**
+ * Represents a simple job that runs a single method that loops forever.
+ *
+ * @experimental The experimental flag means that while we believe this method
+ *      or class is ready for use, it may change before release in backwards-
+ *      incompatible ways. Please use with caution, and test thoroughly when
+ *      upgrading.
+ */
 class SimpleJob implements JobInterface
 {
     use JobTrait;
@@ -33,6 +41,19 @@ class SimpleJob implements JobInterface
      */
     private $bootstrapFile;
 
+    /**
+     * Creates a new Simple Job.
+     *
+     * @param string $identifier Unique identifier of the job.
+     * @param callable $func Any Callable except for Closure. The callable
+     *      should not accept arguments and should loop forever.
+     * @param array $options [optional] {
+     *      Configuration options.
+     *
+     *      @type string $bootstrapFile A file to load before executing the job.
+     *                   It's needed for registering global functions.
+     * }
+     */
     public function __construct($identifier, $func, array $options = [])
     {
         $this->identifier = $identifier;

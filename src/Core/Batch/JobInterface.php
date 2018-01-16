@@ -35,5 +35,10 @@ interface JobInterface
      */
     public function identifier();
 
+    /**
+     * Returns the number of workers for this job.
+     *
+     * @return int
+     */
     public function numWorkers();
 }

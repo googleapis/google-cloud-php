@@ -17,9 +17,7 @@
 
 namespace Google\Cloud\Debugger;
 
-use Google\Cloud\Core\SysvTrait;
 use Google\Cloud\Core\Batch\SimpleJobTrait;
-use Google\Cloud\Core\Batch\BatchDaemonTrait;
 use Google\Cloud\Core\Exception\ConflictException;
 use Google\Cloud\Debugger\BreakpointStorage\BreakpointStorageInterface;
 use Google\Cloud\Debugger\BreakpointStorage\SysvBreakpointStorage;
@@ -40,9 +38,7 @@ use Google\Cloud\Debugger\BreakpointStorage\SysvBreakpointStorage;
  */
 class Daemon
 {
-    use BatchDaemonTrait;
     use SimpleJobTrait;
-    use SysvTrait;
 
     /**
      * @var DebuggerClient
