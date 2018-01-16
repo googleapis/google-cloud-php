@@ -17,11 +17,11 @@ return [
         'google.longrunning.Operations' => [
             'ListOperations' => [
                 'method' => 'get',
-                'uriTemplate' => '/v1/operations',
+                'uriTemplate' => '/v1beta1/operations',
             ],
             'GetOperation' => [
                 'method' => 'get',
-                'uriTemplate' => '/v1/operations/{name=*}',
+                'uriTemplate' => '/v1beta1/operations/{name=*}',
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -32,7 +32,7 @@ return [
             ],
             'DeleteOperation' => [
                 'method' => 'delete',
-                'uriTemplate' => '/v1/operations/{name=*}',
+                'uriTemplate' => '/v1beta1/operations/{name=*}',
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -43,7 +43,7 @@ return [
             ],
             'CancelOperation' => [
                 'method' => 'post',
-                'uriTemplate' => '/v1/operations/{name=*}:cancel',
+                'uriTemplate' => '/v1beta1/operations/{name=*}:cancel',
                 'body' => '*',
                 'placeholders' => [
                     'name' => [

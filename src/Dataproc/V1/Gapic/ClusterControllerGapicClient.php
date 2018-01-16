@@ -1,12 +1,12 @@
 <?php
 /*
- * Copyright 2017, Google LLC All rights reserved.
+ * Copyright 2017 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
+ *     https://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -21,47 +21,56 @@
  * https://github.com/google/googleapis/blob/master/google/cloud/dataproc/v1/clusters.proto
  * and updates to that file get reflected here through a refresh process.
  *
- * EXPERIMENTAL: this client library class has not yet been declared GA (1.0). This means that
- * even though we intent the surface to be stable, we may make backwards incompatible changes
- * if necessary.
+ * EXPERIMENTAL: this client library class has not yet been declared beta. This class may change
+ * more frequently than those which have been declared beta or 1.0, including changes which break
+ * backwards compatibility.
  *
  * @experimental
  */
 
 namespace Google\Cloud\Dataproc\V1\Gapic;
 
-use Google\ApiCore\AgentHeaderDescriptor;
-use Google\ApiCore\ApiCallable;
-use Google\ApiCore\CallSettings;
-use Google\ApiCore\GrpcCredentialsHelper;
+use Google\ApiCore\ApiException;
+use Google\ApiCore\GapicClientTrait;
 use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\OperationResponse;
-use Google\ApiCore\PageStreamingDescriptor;
+use Google\ApiCore\PathTemplate;
+use Google\ApiCore\RequestParamsHeaderDescriptor;
+use Google\ApiCore\RetrySettings;
+use Google\ApiCore\Transport\TransportInterface;
+use Google\ApiCore\ValidationException;
+use Google\Auth\CredentialsLoader;
 use Google\Cloud\Dataproc\V1\Cluster;
 use Google\Cloud\Dataproc\V1\ClusterControllerGrpcClient;
+use Google\Cloud\Dataproc\V1\ClusterOperationMetadata;
 use Google\Cloud\Dataproc\V1\CreateClusterRequest;
 use Google\Cloud\Dataproc\V1\DeleteClusterRequest;
 use Google\Cloud\Dataproc\V1\DiagnoseClusterRequest;
+use Google\Cloud\Dataproc\V1\DiagnoseClusterResults;
 use Google\Cloud\Dataproc\V1\GetClusterRequest;
 use Google\Cloud\Dataproc\V1\ListClustersRequest;
+use Google\Cloud\Dataproc\V1\ListClustersResponse;
 use Google\Cloud\Dataproc\V1\UpdateClusterRequest;
-use Google\Cloud\Version;
+use Google\LongRunning\Operation;
 use Google\Protobuf\FieldMask;
+use Google\Protobuf\GPBEmpty;
+use Grpc\Channel;
+use Grpc\ChannelCredentials;
 
 /**
  * Service Description: The ClusterControllerService provides methods to manage clusters
  * of Google Compute Engine instances.
  *
- * EXPERIMENTAL: this client library class has not yet been declared GA (1.0). This means that
- * even though we intent the surface to be stable, we may make backwards incompatible changes
- * if necessary.
+ * EXPERIMENTAL: this client library class has not yet been declared beta. This class may change
+ * more frequently than those which have been declared beta or 1.0, including changes which break
+ * backwards compatibility.
  *
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods. Sample code to get started:
  *
  * ```
+ * $clusterControllerClient = new ClusterControllerClient();
  * try {
- *     $clusterControllerClient = new ClusterControllerClient();
  *     $projectId = '';
  *     $region = '';
  *     $cluster = new Cluster();
@@ -100,10 +109,18 @@ use Google\Protobuf\FieldMask;
  */
 class ClusterControllerGapicClient
 {
+    use GapicClientTrait;
+
+    /**
+     * The name of the service.
+     */
+    const SERVICE_NAME = 'google.cloud.dataproc.v1.ClusterController';
+
     /**
      * The default address of the service.
      */
     const SERVICE_ADDRESS = 'dataproc.googleapis.com';
+
 
     /**
      * The default port of the service.
@@ -120,75 +137,31 @@ class ClusterControllerGapicClient
      */
     const CODEGEN_VERSION = '0.0.5';
 
-    private static $gapicVersion;
-    private static $gapicVersionLoaded = false;
 
-    protected $grpcCredentialsHelper;
-    protected $clusterControllerStub;
-    private $scopes;
-    private $defaultCallSettings;
-    private $descriptors;
+
     private $operationsClient;
-
-    private static function getPageStreamingDescriptors()
-    {
-        $listClustersPageStreamingDescriptor =
-                new PageStreamingDescriptor([
-                    'requestPageTokenGetMethod' => 'getPageToken',
-                    'requestPageTokenSetMethod' => 'setPageToken',
-                    'requestPageSizeGetMethod' => 'getPageSize',
-                    'requestPageSizeSetMethod' => 'setPageSize',
-                    'responsePageTokenGetMethod' => 'getNextPageToken',
-                    'resourcesGetMethod' => 'getClusters',
-                ]);
-
-        $pageStreamingDescriptors = [
-            'listClusters' => $listClustersPageStreamingDescriptor,
-        ];
-
-        return $pageStreamingDescriptors;
-    }
-
-    private static function getLongRunningDescriptors()
+    private static function getClientDefaults()
     {
         return [
-            'createCluster' => [
-                'operationReturnType' => '\Google\Cloud\Dataproc\V1\Cluster',
-                'metadataReturnType' => '\Google\Cloud\Dataproc\V1\ClusterOperationMetadata',
+            'serviceName' => self::SERVICE_NAME,
+            'serviceAddress' => self::SERVICE_ADDRESS,
+            'port' => self::DEFAULT_SERVICE_PORT,
+            'scopes' => [
+                'https://www.googleapis.com/auth/cloud-platform',
             ],
-            'updateCluster' => [
-                'operationReturnType' => '\Google\Cloud\Dataproc\V1\Cluster',
-                'metadataReturnType' => '\Google\Cloud\Dataproc\V1\ClusterOperationMetadata',
-            ],
-            'deleteCluster' => [
-                'operationReturnType' => '\Google\Protobuf\GPBEmpty',
-                'metadataReturnType' => '\Google\Cloud\Dataproc\V1\ClusterOperationMetadata',
-            ],
-            'diagnoseCluster' => [
-                'operationReturnType' => '\Google\Protobuf\GPBEmpty',
-                'metadataReturnType' => '\Google\Cloud\Dataproc\V1\DiagnoseClusterResults',
-            ],
+            'clientConfigPath' => __DIR__ . '/../resources/cluster_controller_client_config.json',
+            'restClientConfigPath' => __DIR__ . '/../resources/cluster_controller_rest_client_config.php',
+            'descriptorsConfigPath' => __DIR__ . '/../resources/cluster_controller_descriptor_config.php',
+            'versionFile' => __DIR__ . '/../../VERSION'
         ];
     }
 
-    private static function getGapicVersion()
-    {
-        if (!self::$gapicVersionLoaded) {
-            if (file_exists(__DIR__.'/../VERSION')) {
-                self::$gapicVersion = trim(file_get_contents(__DIR__.'/../VERSION'));
-            } elseif (class_exists(Version::class)) {
-                self::$gapicVersion = Version::VERSION;
-            }
-            self::$gapicVersionLoaded = true;
-        }
 
-        return self::$gapicVersion;
-    }
 
     /**
      * Return an OperationsClient object with the same endpoint as $this.
      *
-     * @return \Google\ApiCore\LongRunning\OperationsClient
+     * @return OperationsClient
      * @experimental
      */
     public function getOperationsClient()
@@ -204,22 +177,17 @@ class ClusterControllerGapicClient
      * final response.
      *
      * @param string $operationName The name of the long running operation
-     * @param string $methodName    The name of the method used to start the operation
-     *
-     * @return \Google\ApiCore\OperationResponse
+     * @param string $methodName The name of the method used to start the operation
+     * @return OperationResponse
      * @experimental
      */
     public function resumeOperation($operationName, $methodName = null)
     {
-        $lroDescriptors = self::getLongRunningDescriptors();
-        if (!is_null($methodName) && array_key_exists($methodName, $lroDescriptors)) {
-            $options = $lroDescriptors[$methodName];
-        } else {
-            $options = [];
-        }
+        $options = isset($this->descriptors[$methodName]['longRunning'])
+            ? $this->descriptors[$methodName]['longRunning']
+            : [];
         $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
         $operation->reload();
-
         return $operation;
     }
 
@@ -227,25 +195,28 @@ class ClusterControllerGapicClient
      * Constructor.
      *
      * @param array $options {
-     *                       Optional. Options for configuring the service API wrapper.
+     *     Optional. Options for configuring the service API wrapper.
      *
      *     @type string $serviceAddress The domain name of the API remote host.
      *                                  Default 'dataproc.googleapis.com'.
      *     @type mixed $port The port on which to connect to the remote host. Default 443.
-     *     @type \Grpc\Channel $channel
-     *           A `Channel` object to be used by gRPC. If not specified, a channel will be constructed.
-     *     @type \Grpc\ChannelCredentials $sslCreds
+     *     @type Channel $channel
+     *           A `Channel` object. If not specified, a channel will be constructed.
+     *           NOTE: This option is only valid when utilizing the gRPC transport.
+     *     @type ChannelCredentials $sslCreds
      *           A `ChannelCredentials` object for use with an SSL-enabled channel.
      *           Default: a credentials object returned from
-     *           \Grpc\ChannelCredentials::createSsl()
-     *           NOTE: if the $channel optional argument is specified, then this argument is unused.
+     *           \Grpc\ChannelCredentials::createSsl().
+     *           NOTE: This option is only valid when utilizing the gRPC transport. Also, if the $channel
+     *           optional argument is specified, then this argument is unused.
      *     @type bool $forceNewChannel
      *           If true, this forces gRPC to create a new channel instead of using a persistent channel.
      *           Defaults to false.
-     *           NOTE: if the $channel optional argument is specified, then this option is unused.
-     *     @type \Google\Auth\CredentialsLoader $credentialsLoader
+     *           NOTE: This option is only valid when utilizing the gRPC transport. Also, if the $channel
+     *           optional argument is specified, then this option is unused.
+     *     @type CredentialsLoader $credentialsLoader
      *           A CredentialsLoader object created using the Google\Auth library.
-     *     @type array $scopes A string array of scopes to use when acquiring credentials.
+     *     @type string[] $scopes A string array of scopes to use when acquiring credentials.
      *                          Defaults to the scopes for the Google Cloud Dataproc API.
      *     @type string $clientConfigPath
      *           Path to a JSON file containing client method configuration, including retry settings.
@@ -261,83 +232,30 @@ class ClusterControllerGapicClient
      *           for example usage. Passing a value of null is equivalent to a value of
      *           ['retriesEnabled' => false]. Retry settings provided in this setting override the
      *           settings in $clientConfigPath.
+     *     @type callable $authHttpHandler A handler used to deliver PSR-7 requests specifically
+     *           for authentication. Should match a signature of
+     *           `function (RequestInterface $request, array $options) : ResponseInterface`.
+     *     @type callable $httpHandler A handler used to deliver PSR-7 requests. Should match a
+     *           signature of `function (RequestInterface $request, array $options) : PromiseInterface`.
+     *           NOTE: This option is only valid when utilizing the REST transport.
+     *     @type string|TransportInterface $transport The transport used for executing network
+     *           requests. May be either the string `rest` or `grpc`. Additionally, it is possible
+     *           to pass in an already instantiated transport. Defaults to `grpc` if gRPC support is
+     *           detected on the system.
      * }
      * @experimental
      */
     public function __construct($options = [])
     {
-        $defaultOptions = [
-            'serviceAddress' => self::SERVICE_ADDRESS,
-            'port' => self::DEFAULT_SERVICE_PORT,
-            'scopes' => [
-                'https://www.googleapis.com/auth/cloud-platform',
-            ],
-            'retryingOverride' => null,
-            'libName' => null,
-            'libVersion' => null,
-            'clientConfigPath' => __DIR__.'/../resources/cluster_controller_client_config.json',
-        ];
-        $options = array_merge($defaultOptions, $options);
-
-        if (array_key_exists('operationsClient', $options)) {
-            $this->operationsClient = $options['operationsClient'];
-        } else {
-            $operationsClientOptions = $options;
-            unset($operationsClientOptions['retryingOverride']);
-            unset($operationsClientOptions['clientConfigPath']);
-            $this->operationsClient = new OperationsClient($operationsClientOptions);
-        }
-
-        $gapicVersion = $options['libVersion'] ?: self::getGapicVersion();
-
-        $headerDescriptor = new AgentHeaderDescriptor([
-            'libName' => $options['libName'],
-            'libVersion' => $options['libVersion'],
-            'gapicVersion' => $gapicVersion,
-        ]);
-
-        $defaultDescriptors = ['headerDescriptor' => $headerDescriptor];
-        $this->descriptors = [
-            'createCluster' => $defaultDescriptors,
-            'updateCluster' => $defaultDescriptors,
-            'deleteCluster' => $defaultDescriptors,
-            'getCluster' => $defaultDescriptors,
-            'listClusters' => $defaultDescriptors,
-            'diagnoseCluster' => $defaultDescriptors,
-        ];
-        $pageStreamingDescriptors = self::getPageStreamingDescriptors();
-        foreach ($pageStreamingDescriptors as $method => $pageStreamingDescriptor) {
-            $this->descriptors[$method]['pageStreamingDescriptor'] = $pageStreamingDescriptor;
-        }
-        $longRunningDescriptors = self::getLongRunningDescriptors();
-        foreach ($longRunningDescriptors as $method => $longRunningDescriptor) {
-            $this->descriptors[$method]['longRunningDescriptor'] = $longRunningDescriptor + ['operationsClient' => $this->operationsClient];
-        }
-
-        $clientConfigJsonString = file_get_contents($options['clientConfigPath']);
-        $clientConfig = json_decode($clientConfigJsonString, true);
-        $this->defaultCallSettings =
-                CallSettings::load(
-                    'google.cloud.dataproc.v1.ClusterController',
-                    $clientConfig,
-                    $options['retryingOverride']
-                );
-
-        $this->scopes = $options['scopes'];
-
-        $createStubOptions = [];
-        if (array_key_exists('sslCreds', $options)) {
-            $createStubOptions['sslCreds'] = $options['sslCreds'];
-        }
-        $this->grpcCredentialsHelper = new GrpcCredentialsHelper($options);
-
-        $createClusterControllerStubFunction = function ($hostname, $opts, $channel) {
-            return new ClusterControllerGrpcClient($hostname, $opts, $channel);
-        };
-        if (array_key_exists('createClusterControllerStubFunction', $options)) {
-            $createClusterControllerStubFunction = $options['createClusterControllerStubFunction'];
-        }
-        $this->clusterControllerStub = $this->grpcCredentialsHelper->createStub($createClusterControllerStubFunction);
+        $options += self::getClientDefaults();
+        $this->setClientOptions($options);
+        $this->pluckArray([
+            'serviceName',
+            'clientConfigPath',
+            'restClientConfigPath',
+            'descriptorsConfigPath'
+        ], $options);
+        $this->operationsClient = new OperationsClient($options);
     }
 
     /**
@@ -345,8 +263,8 @@ class ClusterControllerGapicClient
      *
      * Sample code:
      * ```
+     * $clusterControllerClient = new ClusterControllerClient();
      * try {
-     *     $clusterControllerClient = new ClusterControllerClient();
      *     $projectId = '';
      *     $region = '';
      *     $cluster = new Cluster();
@@ -381,14 +299,13 @@ class ClusterControllerGapicClient
      * }
      * ```
      *
-     * @param string  $projectId    Required. The ID of the Google Cloud Platform project that the cluster
-     *                              belongs to.
-     * @param string  $region       Required. The Cloud Dataproc region in which to handle the request.
-     * @param Cluster $cluster      Required. The cluster to create.
-     * @param array   $optionalArgs {
-     *                              Optional.
-     *
-     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
+     * @param string $projectId Required. The ID of the Google Cloud Platform project that the cluster
+     * belongs to.
+     * @param string $region Required. The Cloud Dataproc region in which to handle the request.
+     * @param Cluster $cluster Required. The cluster to create.
+     * @param array $optionalArgs {
+     *     Optional.
+     *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
@@ -397,7 +314,7 @@ class ClusterControllerGapicClient
      *
      * @return \Google\ApiCore\OperationResponse
      *
-     * @throws \Google\ApiCore\ApiException if the remote call fails
+     * @throws ApiException if the remote call fails
      * @experimental
      */
     public function createCluster($projectId, $region, $cluster, $optionalArgs = [])
@@ -407,24 +324,12 @@ class ClusterControllerGapicClient
         $request->setRegion($region);
         $request->setCluster($cluster);
 
-        $defaultCallSettings = $this->defaultCallSettings['createCluster'];
-        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
-            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
-                $optionalArgs['retrySettings']
-            );
-        }
-        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
-        $callable = ApiCallable::createApiCall(
-            $this->clusterControllerStub,
+        return $this->startOperationsCall(
             'CreateCluster',
-            $mergedSettings,
-            $this->descriptors['createCluster']
-        );
-
-        return $callable(
+            $optionalArgs,
             $request,
-            [],
-            ['call_credentials_callback' => $this->createCredentialsCallback()]);
+            $this->getOperationsClient()
+        )->wait();
     }
 
     /**
@@ -432,8 +337,8 @@ class ClusterControllerGapicClient
      *
      * Sample code:
      * ```
+     * $clusterControllerClient = new ClusterControllerClient();
      * try {
-     *     $clusterControllerClient = new ClusterControllerClient();
      *     $projectId = '';
      *     $region = '';
      *     $clusterName = '';
@@ -470,16 +375,16 @@ class ClusterControllerGapicClient
      * }
      * ```
      *
-     * @param string    $projectId   Required. The ID of the Google Cloud Platform project the
-     *                               cluster belongs to.
-     * @param string    $region      Required. The Cloud Dataproc region in which to handle the request.
-     * @param string    $clusterName Required. The cluster name.
-     * @param Cluster   $cluster     Required. The changes to the cluster.
-     * @param FieldMask $updateMask  Required. Specifies the path, relative to `Cluster`, of
-     *                               the field to update. For example, to change the number of workers
-     *                               in a cluster to 5, the `update_mask` parameter would be
-     *                               specified as `config.worker_config.num_instances`,
-     *                               and the `PATCH` request body would specify the new value, as follows:
+     * @param string $projectId Required. The ID of the Google Cloud Platform project the
+     * cluster belongs to.
+     * @param string $region Required. The Cloud Dataproc region in which to handle the request.
+     * @param string $clusterName Required. The cluster name.
+     * @param Cluster $cluster Required. The changes to the cluster.
+     * @param FieldMask $updateMask Required. Specifies the path, relative to `Cluster`, of
+     * the field to update. For example, to change the number of workers
+     * in a cluster to 5, the `update_mask` parameter would be
+     * specified as `config.worker_config.num_instances`,
+     * and the `PATCH` request body would specify the new value, as follows:
      *
      *     {
      *       "config":{
@@ -523,9 +428,8 @@ class ClusterControllerGapicClient
      *  </tbody>
      *  </table>
      * @param array $optionalArgs {
-     *                            Optional.
-     *
-     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
+     *     Optional.
+     *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
@@ -534,7 +438,7 @@ class ClusterControllerGapicClient
      *
      * @return \Google\ApiCore\OperationResponse
      *
-     * @throws \Google\ApiCore\ApiException if the remote call fails
+     * @throws ApiException if the remote call fails
      * @experimental
      */
     public function updateCluster($projectId, $region, $clusterName, $cluster, $updateMask, $optionalArgs = [])
@@ -546,24 +450,12 @@ class ClusterControllerGapicClient
         $request->setCluster($cluster);
         $request->setUpdateMask($updateMask);
 
-        $defaultCallSettings = $this->defaultCallSettings['updateCluster'];
-        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
-            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
-                $optionalArgs['retrySettings']
-            );
-        }
-        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
-        $callable = ApiCallable::createApiCall(
-            $this->clusterControllerStub,
+        return $this->startOperationsCall(
             'UpdateCluster',
-            $mergedSettings,
-            $this->descriptors['updateCluster']
-        );
-
-        return $callable(
+            $optionalArgs,
             $request,
-            [],
-            ['call_credentials_callback' => $this->createCredentialsCallback()]);
+            $this->getOperationsClient()
+        )->wait();
     }
 
     /**
@@ -571,8 +463,8 @@ class ClusterControllerGapicClient
      *
      * Sample code:
      * ```
+     * $clusterControllerClient = new ClusterControllerClient();
      * try {
-     *     $clusterControllerClient = new ClusterControllerClient();
      *     $projectId = '';
      *     $region = '';
      *     $clusterName = '';
@@ -605,14 +497,13 @@ class ClusterControllerGapicClient
      * }
      * ```
      *
-     * @param string $projectId    Required. The ID of the Google Cloud Platform project that the cluster
-     *                             belongs to.
-     * @param string $region       Required. The Cloud Dataproc region in which to handle the request.
-     * @param string $clusterName  Required. The cluster name.
-     * @param array  $optionalArgs {
-     *                             Optional.
-     *
-     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
+     * @param string $projectId Required. The ID of the Google Cloud Platform project that the cluster
+     * belongs to.
+     * @param string $region Required. The Cloud Dataproc region in which to handle the request.
+     * @param string $clusterName Required. The cluster name.
+     * @param array $optionalArgs {
+     *     Optional.
+     *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
@@ -621,7 +512,7 @@ class ClusterControllerGapicClient
      *
      * @return \Google\ApiCore\OperationResponse
      *
-     * @throws \Google\ApiCore\ApiException if the remote call fails
+     * @throws ApiException if the remote call fails
      * @experimental
      */
     public function deleteCluster($projectId, $region, $clusterName, $optionalArgs = [])
@@ -631,24 +522,12 @@ class ClusterControllerGapicClient
         $request->setRegion($region);
         $request->setClusterName($clusterName);
 
-        $defaultCallSettings = $this->defaultCallSettings['deleteCluster'];
-        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
-            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
-                $optionalArgs['retrySettings']
-            );
-        }
-        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
-        $callable = ApiCallable::createApiCall(
-            $this->clusterControllerStub,
+        return $this->startOperationsCall(
             'DeleteCluster',
-            $mergedSettings,
-            $this->descriptors['deleteCluster']
-        );
-
-        return $callable(
+            $optionalArgs,
             $request,
-            [],
-            ['call_credentials_callback' => $this->createCredentialsCallback()]);
+            $this->getOperationsClient()
+        )->wait();
     }
 
     /**
@@ -656,8 +535,8 @@ class ClusterControllerGapicClient
      *
      * Sample code:
      * ```
+     * $clusterControllerClient = new ClusterControllerClient();
      * try {
-     *     $clusterControllerClient = new ClusterControllerClient();
      *     $projectId = '';
      *     $region = '';
      *     $clusterName = '';
@@ -667,14 +546,13 @@ class ClusterControllerGapicClient
      * }
      * ```
      *
-     * @param string $projectId    Required. The ID of the Google Cloud Platform project that the cluster
-     *                             belongs to.
-     * @param string $region       Required. The Cloud Dataproc region in which to handle the request.
-     * @param string $clusterName  Required. The cluster name.
-     * @param array  $optionalArgs {
-     *                             Optional.
-     *
-     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
+     * @param string $projectId Required. The ID of the Google Cloud Platform project that the cluster
+     * belongs to.
+     * @param string $region Required. The Cloud Dataproc region in which to handle the request.
+     * @param string $clusterName Required. The cluster name.
+     * @param array $optionalArgs {
+     *     Optional.
+     *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
@@ -683,7 +561,7 @@ class ClusterControllerGapicClient
      *
      * @return \Google\Cloud\Dataproc\V1\Cluster
      *
-     * @throws \Google\ApiCore\ApiException if the remote call fails
+     * @throws ApiException if the remote call fails
      * @experimental
      */
     public function getCluster($projectId, $region, $clusterName, $optionalArgs = [])
@@ -693,24 +571,12 @@ class ClusterControllerGapicClient
         $request->setRegion($region);
         $request->setClusterName($clusterName);
 
-        $defaultCallSettings = $this->defaultCallSettings['getCluster'];
-        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
-            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
-                $optionalArgs['retrySettings']
-            );
-        }
-        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
-        $callable = ApiCallable::createApiCall(
-            $this->clusterControllerStub,
+        return $this->startCall(
             'GetCluster',
-            $mergedSettings,
-            $this->descriptors['getCluster']
-        );
-
-        return $callable(
-            $request,
-            [],
-            ['call_credentials_callback' => $this->createCredentialsCallback()]);
+            Cluster::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**
@@ -718,8 +584,8 @@ class ClusterControllerGapicClient
      *
      * Sample code:
      * ```
+     * $clusterControllerClient = new ClusterControllerClient();
      * try {
-     *     $clusterControllerClient = new ClusterControllerClient();
      *     $projectId = '';
      *     $region = '';
      *     // Iterate through all elements
@@ -740,12 +606,11 @@ class ClusterControllerGapicClient
      * }
      * ```
      *
-     * @param string $projectId    Required. The ID of the Google Cloud Platform project that the cluster
-     *                             belongs to.
-     * @param string $region       Required. The Cloud Dataproc region in which to handle the request.
-     * @param array  $optionalArgs {
-     *                             Optional.
-     *
+     * @param string $projectId Required. The ID of the Google Cloud Platform project that the cluster
+     * belongs to.
+     * @param string $region Required. The Cloud Dataproc region in which to handle the request.
+     * @param array $optionalArgs {
+     *     Optional.
      *     @type string $filter
      *          Optional. A filter constraining the clusters to list. Filters are
      *          case-sensitive and have the following syntax:
@@ -775,7 +640,7 @@ class ClusterControllerGapicClient
      *          If no page token is specified (the default), the first page
      *          of values will be returned. Any page token used here must have
      *          been generated by a previous call to the API.
-     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
+     *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
@@ -784,7 +649,7 @@ class ClusterControllerGapicClient
      *
      * @return \Google\ApiCore\PagedListResponse
      *
-     * @throws \Google\ApiCore\ApiException if the remote call fails
+     * @throws ApiException if the remote call fails
      * @experimental
      */
     public function listClusters($projectId, $region, $optionalArgs = [])
@@ -802,24 +667,12 @@ class ClusterControllerGapicClient
             $request->setPageToken($optionalArgs['pageToken']);
         }
 
-        $defaultCallSettings = $this->defaultCallSettings['listClusters'];
-        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
-            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
-                $optionalArgs['retrySettings']
-            );
-        }
-        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
-        $callable = ApiCallable::createApiCall(
-            $this->clusterControllerStub,
+        return $this->getPagedListResponse(
             'ListClusters',
-            $mergedSettings,
-            $this->descriptors['listClusters']
+            $optionalArgs,
+            ListClustersResponse::class,
+            $request
         );
-
-        return $callable(
-            $request,
-            [],
-            ['call_credentials_callback' => $this->createCredentialsCallback()]);
     }
 
     /**
@@ -829,8 +682,8 @@ class ClusterControllerGapicClient
      *
      * Sample code:
      * ```
+     * $clusterControllerClient = new ClusterControllerClient();
      * try {
-     *     $clusterControllerClient = new ClusterControllerClient();
      *     $projectId = '';
      *     $region = '';
      *     $clusterName = '';
@@ -863,14 +716,13 @@ class ClusterControllerGapicClient
      * }
      * ```
      *
-     * @param string $projectId    Required. The ID of the Google Cloud Platform project that the cluster
-     *                             belongs to.
-     * @param string $region       Required. The Cloud Dataproc region in which to handle the request.
-     * @param string $clusterName  Required. The cluster name.
-     * @param array  $optionalArgs {
-     *                             Optional.
-     *
-     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
+     * @param string $projectId Required. The ID of the Google Cloud Platform project that the cluster
+     * belongs to.
+     * @param string $region Required. The Cloud Dataproc region in which to handle the request.
+     * @param string $clusterName Required. The cluster name.
+     * @param array $optionalArgs {
+     *     Optional.
+     *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
@@ -879,7 +731,7 @@ class ClusterControllerGapicClient
      *
      * @return \Google\ApiCore\OperationResponse
      *
-     * @throws \Google\ApiCore\ApiException if the remote call fails
+     * @throws ApiException if the remote call fails
      * @experimental
      */
     public function diagnoseCluster($projectId, $region, $clusterName, $optionalArgs = [])
@@ -889,39 +741,12 @@ class ClusterControllerGapicClient
         $request->setRegion($region);
         $request->setClusterName($clusterName);
 
-        $defaultCallSettings = $this->defaultCallSettings['diagnoseCluster'];
-        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
-            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
-                $optionalArgs['retrySettings']
-            );
-        }
-        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
-        $callable = ApiCallable::createApiCall(
-            $this->clusterControllerStub,
+        return $this->startOperationsCall(
             'DiagnoseCluster',
-            $mergedSettings,
-            $this->descriptors['diagnoseCluster']
-        );
-
-        return $callable(
+            $optionalArgs,
             $request,
-            [],
-            ['call_credentials_callback' => $this->createCredentialsCallback()]);
+            $this->getOperationsClient()
+        )->wait();
     }
 
-    /**
-     * Initiates an orderly shutdown in which preexisting calls continue but new
-     * calls are immediately cancelled.
-     *
-     * @experimental
-     */
-    public function close()
-    {
-        $this->clusterControllerStub->close();
-    }
-
-    private function createCredentialsCallback()
-    {
-        return $this->grpcCredentialsHelper->createCallCredentialsCallback();
-    }
 }

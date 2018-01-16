@@ -1,12 +1,12 @@
 <?php
 /*
- * Copyright 2017, Google LLC All rights reserved.
+ * Copyright 2018 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
+ *     https://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -21,8 +21,8 @@
  * https://github.com/google/googleapis/blob/master/google/container/v1/cluster_service.proto
  * and updates to that file get reflected here through a refresh process.
  *
- * EXPERIMENTAL: this client library class has not yet been declared GA (1.0). This means that
- * even though we intent the surface to be stable, we may make backwards incompatible changes
+ * EXPERIMENTAL: This client library class has not yet been declared GA (1.0). This means that
+ * even though we intend the surface to be stable, we may make backwards incompatible changes
  * if necessary.
  *
  * @experimental
@@ -30,14 +30,15 @@
 
 namespace Google\Cloud\Container\V1\Gapic;
 
-use Google\ApiCore\AgentHeaderDescriptor;
-use Google\ApiCore\ApiCallable;
-use Google\ApiCore\CallSettings;
-use Google\ApiCore\GrpcCredentialsHelper;
+use Google\ApiCore\ApiException;
+use Google\ApiCore\Call;
+use Google\ApiCore\GapicClientTrait;
+use Google\ApiCore\RetrySettings;
+use Google\ApiCore\Transport\TransportInterface;
+use Google\Auth\CredentialsLoader;
 use Google\Cloud\Container\V1\AddonsConfig;
 use Google\Cloud\Container\V1\CancelOperationRequest;
 use Google\Cloud\Container\V1\Cluster;
-use Google\Cloud\Container\V1\ClusterManagerGrpcClient;
 use Google\Cloud\Container\V1\ClusterUpdate;
 use Google\Cloud\Container\V1\CompleteIPRotationRequest;
 use Google\Cloud\Container\V1\CreateClusterRequest;
@@ -49,15 +50,20 @@ use Google\Cloud\Container\V1\GetNodePoolRequest;
 use Google\Cloud\Container\V1\GetOperationRequest;
 use Google\Cloud\Container\V1\GetServerConfigRequest;
 use Google\Cloud\Container\V1\ListClustersRequest;
+use Google\Cloud\Container\V1\ListClustersResponse;
 use Google\Cloud\Container\V1\ListNodePoolsRequest;
+use Google\Cloud\Container\V1\ListNodePoolsResponse;
 use Google\Cloud\Container\V1\ListOperationsRequest;
+use Google\Cloud\Container\V1\ListOperationsResponse;
 use Google\Cloud\Container\V1\MaintenancePolicy;
 use Google\Cloud\Container\V1\MasterAuth;
 use Google\Cloud\Container\V1\NetworkPolicy;
 use Google\Cloud\Container\V1\NodeManagement;
 use Google\Cloud\Container\V1\NodePool;
 use Google\Cloud\Container\V1\NodePoolAutoscaling;
+use Google\Cloud\Container\V1\Operation;
 use Google\Cloud\Container\V1\RollbackNodePoolUpgradeRequest;
+use Google\Cloud\Container\V1\ServerConfig;
 use Google\Cloud\Container\V1\SetAddonsConfigRequest;
 use Google\Cloud\Container\V1\SetLabelsRequest;
 use Google\Cloud\Container\V1\SetLegacyAbacRequest;
@@ -65,7 +71,7 @@ use Google\Cloud\Container\V1\SetLocationsRequest;
 use Google\Cloud\Container\V1\SetLoggingServiceRequest;
 use Google\Cloud\Container\V1\SetMaintenancePolicyRequest;
 use Google\Cloud\Container\V1\SetMasterAuthRequest;
-use Google\Cloud\Container\V1\SetMasterAuthRequest_Action as Action;
+use Google\Cloud\Container\V1\SetMasterAuthRequest_Action;
 use Google\Cloud\Container\V1\SetMonitoringServiceRequest;
 use Google\Cloud\Container\V1\SetNetworkPolicyRequest;
 use Google\Cloud\Container\V1\SetNodePoolAutoscalingRequest;
@@ -75,7 +81,9 @@ use Google\Cloud\Container\V1\StartIPRotationRequest;
 use Google\Cloud\Container\V1\UpdateClusterRequest;
 use Google\Cloud\Container\V1\UpdateMasterRequest;
 use Google\Cloud\Container\V1\UpdateNodePoolRequest;
-use Google\Cloud\Version;
+use Google\Protobuf\GPBEmpty;
+use Grpc\Channel;
+use Grpc\ChannelCredentials;
 
 /**
  * Service Description: Google Container Engine Cluster Manager v1.
@@ -88,8 +96,8 @@ use Google\Cloud\Version;
  * calls that map to API methods. Sample code to get started:
  *
  * ```
+ * $clusterManagerClient = new ClusterManagerClient();
  * try {
- *     $clusterManagerClient = new ClusterManagerClient();
  *     $projectId = '';
  *     $zone = '';
  *     $response = $clusterManagerClient->listClusters($projectId, $zone);
@@ -102,6 +110,13 @@ use Google\Cloud\Version;
  */
 class ClusterManagerGapicClient
 {
+    use GapicClientTrait;
+
+    /**
+     * The name of the service.
+     */
+    const SERVICE_NAME = 'google.container.v1.ClusterManager';
+
     /**
      * The default address of the service.
      */
@@ -122,27 +137,20 @@ class ClusterManagerGapicClient
      */
     const CODEGEN_VERSION = '0.0.5';
 
-    private static $gapicVersion;
-    private static $gapicVersionLoaded = false;
-
-    protected $grpcCredentialsHelper;
-    protected $clusterManagerStub;
-    private $scopes;
-    private $defaultCallSettings;
-    private $descriptors;
-
-    private static function getGapicVersion()
+    private static function getClientDefaults()
     {
-        if (!self::$gapicVersionLoaded) {
-            if (file_exists(__DIR__.'/../VERSION')) {
-                self::$gapicVersion = trim(file_get_contents(__DIR__.'/../VERSION'));
-            } elseif (class_exists(Version::class)) {
-                self::$gapicVersion = Version::VERSION;
-            }
-            self::$gapicVersionLoaded = true;
-        }
-
-        return self::$gapicVersion;
+        return [
+            'serviceName' => self::SERVICE_NAME,
+            'serviceAddress' => self::SERVICE_ADDRESS,
+            'port' => self::DEFAULT_SERVICE_PORT,
+            'scopes' => [
+                'https://www.googleapis.com/auth/cloud-platform',
+            ],
+            'clientConfigPath' => __DIR__.'/../resources/cluster_manager_client_config.json',
+            'restClientConfigPath' => __DIR__.'/../resources/cluster_manager_rest_client_config.php',
+            'descriptorsConfigPath' => __DIR__.'/../resources/cluster_manager_descriptor_config.php',
+            'versionFile' => __DIR__.'/../../VERSION',
+        ];
     }
 
     /**
@@ -154,20 +162,23 @@ class ClusterManagerGapicClient
      *     @type string $serviceAddress The domain name of the API remote host.
      *                                  Default 'container.googleapis.com'.
      *     @type mixed $port The port on which to connect to the remote host. Default 443.
-     *     @type \Grpc\Channel $channel
-     *           A `Channel` object to be used by gRPC. If not specified, a channel will be constructed.
-     *     @type \Grpc\ChannelCredentials $sslCreds
+     *     @type Channel $channel
+     *           A `Channel` object. If not specified, a channel will be constructed.
+     *           NOTE: This option is only valid when utilizing the gRPC transport.
+     *     @type ChannelCredentials $sslCreds
      *           A `ChannelCredentials` object for use with an SSL-enabled channel.
      *           Default: a credentials object returned from
-     *           \Grpc\ChannelCredentials::createSsl()
-     *           NOTE: if the $channel optional argument is specified, then this argument is unused.
+     *           \Grpc\ChannelCredentials::createSsl().
+     *           NOTE: This option is only valid when utilizing the gRPC transport. Also, if the $channel
+     *           optional argument is specified, then this argument is unused.
      *     @type bool $forceNewChannel
      *           If true, this forces gRPC to create a new channel instead of using a persistent channel.
      *           Defaults to false.
-     *           NOTE: if the $channel optional argument is specified, then this option is unused.
-     *     @type \Google\Auth\CredentialsLoader $credentialsLoader
+     *           NOTE: This option is only valid when utilizing the gRPC transport. Also, if the $channel
+     *           optional argument is specified, then this option is unused.
+     *     @type CredentialsLoader $credentialsLoader
      *           A CredentialsLoader object created using the Google\Auth library.
-     *     @type array $scopes A string array of scopes to use when acquiring credentials.
+     *     @type string[] $scopes A string array of scopes to use when acquiring credentials.
      *                          Defaults to the scopes for the Google Container Engine API.
      *     @type string $clientConfigPath
      *           Path to a JSON file containing client method configuration, including retry settings.
@@ -183,90 +194,22 @@ class ClusterManagerGapicClient
      *           for example usage. Passing a value of null is equivalent to a value of
      *           ['retriesEnabled' => false]. Retry settings provided in this setting override the
      *           settings in $clientConfigPath.
+     *     @type callable $authHttpHandler A handler used to deliver PSR-7 requests specifically
+     *           for authentication. Should match a signature of
+     *           `function (RequestInterface $request, array $options) : ResponseInterface`.
+     *     @type callable $httpHandler A handler used to deliver PSR-7 requests. Should match a
+     *           signature of `function (RequestInterface $request, array $options) : PromiseInterface`.
+     *           NOTE: This option is only valid when utilizing the REST transport.
+     *     @type string|TransportInterface $transport The transport used for executing network
+     *           requests. May be either the string `rest` or `grpc`. Additionally, it is possible
+     *           to pass in an already instantiated transport. Defaults to `grpc` if gRPC support is
+     *           detected on the system.
      * }
      * @experimental
      */
     public function __construct($options = [])
     {
-        $defaultOptions = [
-            'serviceAddress' => self::SERVICE_ADDRESS,
-            'port' => self::DEFAULT_SERVICE_PORT,
-            'scopes' => [
-                'https://www.googleapis.com/auth/cloud-platform',
-            ],
-            'retryingOverride' => null,
-            'libName' => null,
-            'libVersion' => null,
-            'clientConfigPath' => __DIR__.'/../resources/cluster_manager_client_config.json',
-        ];
-        $options = array_merge($defaultOptions, $options);
-
-        $gapicVersion = $options['libVersion'] ?: self::getGapicVersion();
-
-        $headerDescriptor = new AgentHeaderDescriptor([
-            'libName' => $options['libName'],
-            'libVersion' => $options['libVersion'],
-            'gapicVersion' => $gapicVersion,
-        ]);
-
-        $defaultDescriptors = ['headerDescriptor' => $headerDescriptor];
-        $this->descriptors = [
-            'listClusters' => $defaultDescriptors,
-            'getCluster' => $defaultDescriptors,
-            'createCluster' => $defaultDescriptors,
-            'updateCluster' => $defaultDescriptors,
-            'updateNodePool' => $defaultDescriptors,
-            'setNodePoolAutoscaling' => $defaultDescriptors,
-            'setLoggingService' => $defaultDescriptors,
-            'setMonitoringService' => $defaultDescriptors,
-            'setAddonsConfig' => $defaultDescriptors,
-            'setLocations' => $defaultDescriptors,
-            'updateMaster' => $defaultDescriptors,
-            'setMasterAuth' => $defaultDescriptors,
-            'deleteCluster' => $defaultDescriptors,
-            'listOperations' => $defaultDescriptors,
-            'getOperation' => $defaultDescriptors,
-            'cancelOperation' => $defaultDescriptors,
-            'getServerConfig' => $defaultDescriptors,
-            'listNodePools' => $defaultDescriptors,
-            'getNodePool' => $defaultDescriptors,
-            'createNodePool' => $defaultDescriptors,
-            'deleteNodePool' => $defaultDescriptors,
-            'rollbackNodePoolUpgrade' => $defaultDescriptors,
-            'setNodePoolManagement' => $defaultDescriptors,
-            'setLabels' => $defaultDescriptors,
-            'setLegacyAbac' => $defaultDescriptors,
-            'startIPRotation' => $defaultDescriptors,
-            'completeIPRotation' => $defaultDescriptors,
-            'setNodePoolSize' => $defaultDescriptors,
-            'setNetworkPolicy' => $defaultDescriptors,
-            'setMaintenancePolicy' => $defaultDescriptors,
-        ];
-
-        $clientConfigJsonString = file_get_contents($options['clientConfigPath']);
-        $clientConfig = json_decode($clientConfigJsonString, true);
-        $this->defaultCallSettings =
-                CallSettings::load(
-                    'google.container.v1.ClusterManager',
-                    $clientConfig,
-                    $options['retryingOverride']
-                );
-
-        $this->scopes = $options['scopes'];
-
-        $createStubOptions = [];
-        if (array_key_exists('sslCreds', $options)) {
-            $createStubOptions['sslCreds'] = $options['sslCreds'];
-        }
-        $this->grpcCredentialsHelper = new GrpcCredentialsHelper($options);
-
-        $createClusterManagerStubFunction = function ($hostname, $opts, $channel) {
-            return new ClusterManagerGrpcClient($hostname, $opts, $channel);
-        };
-        if (array_key_exists('createClusterManagerStubFunction', $options)) {
-            $createClusterManagerStubFunction = $options['createClusterManagerStubFunction'];
-        }
-        $this->clusterManagerStub = $this->grpcCredentialsHelper->createStub($createClusterManagerStubFunction);
+        $this->setClientOptions($options + self::getClientDefaults());
     }
 
     /**
@@ -275,8 +218,8 @@ class ClusterManagerGapicClient
      *
      * Sample code:
      * ```
+     * $clusterManagerClient = new ClusterManagerClient();
      * try {
-     *     $clusterManagerClient = new ClusterManagerClient();
      *     $projectId = '';
      *     $zone = '';
      *     $response = $clusterManagerClient->listClusters($projectId, $zone);
@@ -293,7 +236,7 @@ class ClusterManagerGapicClient
      * @param array  $optionalArgs {
      *                             Optional.
      *
-     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
+     *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
@@ -302,7 +245,7 @@ class ClusterManagerGapicClient
      *
      * @return \Google\Cloud\Container\V1\ListClustersResponse
      *
-     * @throws \Google\ApiCore\ApiException if the remote call fails
+     * @throws ApiException if the remote call fails
      * @experimental
      */
     public function listClusters($projectId, $zone, $optionalArgs = [])
@@ -311,24 +254,12 @@ class ClusterManagerGapicClient
         $request->setProjectId($projectId);
         $request->setZone($zone);
 
-        $defaultCallSettings = $this->defaultCallSettings['listClusters'];
-        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
-            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
-                $optionalArgs['retrySettings']
-            );
-        }
-        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
-        $callable = ApiCallable::createApiCall(
-            $this->clusterManagerStub,
+        return $this->startCall(
             'ListClusters',
-            $mergedSettings,
-            $this->descriptors['listClusters']
-        );
-
-        return $callable(
-            $request,
-            [],
-            ['call_credentials_callback' => $this->createCredentialsCallback()]);
+            ListClustersResponse::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**
@@ -336,8 +267,8 @@ class ClusterManagerGapicClient
      *
      * Sample code:
      * ```
+     * $clusterManagerClient = new ClusterManagerClient();
      * try {
-     *     $clusterManagerClient = new ClusterManagerClient();
      *     $projectId = '';
      *     $zone = '';
      *     $clusterId = '';
@@ -356,7 +287,7 @@ class ClusterManagerGapicClient
      * @param array  $optionalArgs {
      *                             Optional.
      *
-     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
+     *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
@@ -365,7 +296,7 @@ class ClusterManagerGapicClient
      *
      * @return \Google\Cloud\Container\V1\Cluster
      *
-     * @throws \Google\ApiCore\ApiException if the remote call fails
+     * @throws ApiException if the remote call fails
      * @experimental
      */
     public function getCluster($projectId, $zone, $clusterId, $optionalArgs = [])
@@ -375,24 +306,12 @@ class ClusterManagerGapicClient
         $request->setZone($zone);
         $request->setClusterId($clusterId);
 
-        $defaultCallSettings = $this->defaultCallSettings['getCluster'];
-        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
-            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
-                $optionalArgs['retrySettings']
-            );
-        }
-        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
-        $callable = ApiCallable::createApiCall(
-            $this->clusterManagerStub,
+        return $this->startCall(
             'GetCluster',
-            $mergedSettings,
-            $this->descriptors['getCluster']
-        );
-
-        return $callable(
-            $request,
-            [],
-            ['call_credentials_callback' => $this->createCredentialsCallback()]);
+            Cluster::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**
@@ -412,8 +331,8 @@ class ClusterManagerGapicClient
      *
      * Sample code:
      * ```
+     * $clusterManagerClient = new ClusterManagerClient();
      * try {
-     *     $clusterManagerClient = new ClusterManagerClient();
      *     $projectId = '';
      *     $zone = '';
      *     $cluster = new Cluster();
@@ -433,7 +352,7 @@ class ClusterManagerGapicClient
      * @param array   $optionalArgs {
      *                              Optional.
      *
-     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
+     *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
@@ -442,7 +361,7 @@ class ClusterManagerGapicClient
      *
      * @return \Google\Cloud\Container\V1\Operation
      *
-     * @throws \Google\ApiCore\ApiException if the remote call fails
+     * @throws ApiException if the remote call fails
      * @experimental
      */
     public function createCluster($projectId, $zone, $cluster, $optionalArgs = [])
@@ -452,24 +371,12 @@ class ClusterManagerGapicClient
         $request->setZone($zone);
         $request->setCluster($cluster);
 
-        $defaultCallSettings = $this->defaultCallSettings['createCluster'];
-        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
-            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
-                $optionalArgs['retrySettings']
-            );
-        }
-        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
-        $callable = ApiCallable::createApiCall(
-            $this->clusterManagerStub,
+        return $this->startCall(
             'CreateCluster',
-            $mergedSettings,
-            $this->descriptors['createCluster']
-        );
-
-        return $callable(
-            $request,
-            [],
-            ['call_credentials_callback' => $this->createCredentialsCallback()]);
+            Operation::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**
@@ -477,8 +384,8 @@ class ClusterManagerGapicClient
      *
      * Sample code:
      * ```
+     * $clusterManagerClient = new ClusterManagerClient();
      * try {
-     *     $clusterManagerClient = new ClusterManagerClient();
      *     $projectId = '';
      *     $zone = '';
      *     $clusterId = '';
@@ -499,7 +406,7 @@ class ClusterManagerGapicClient
      * @param array         $optionalArgs {
      *                                    Optional.
      *
-     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
+     *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
@@ -508,7 +415,7 @@ class ClusterManagerGapicClient
      *
      * @return \Google\Cloud\Container\V1\Operation
      *
-     * @throws \Google\ApiCore\ApiException if the remote call fails
+     * @throws ApiException if the remote call fails
      * @experimental
      */
     public function updateCluster($projectId, $zone, $clusterId, $update, $optionalArgs = [])
@@ -519,24 +426,12 @@ class ClusterManagerGapicClient
         $request->setClusterId($clusterId);
         $request->setUpdate($update);
 
-        $defaultCallSettings = $this->defaultCallSettings['updateCluster'];
-        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
-            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
-                $optionalArgs['retrySettings']
-            );
-        }
-        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
-        $callable = ApiCallable::createApiCall(
-            $this->clusterManagerStub,
+        return $this->startCall(
             'UpdateCluster',
-            $mergedSettings,
-            $this->descriptors['updateCluster']
-        );
-
-        return $callable(
-            $request,
-            [],
-            ['call_credentials_callback' => $this->createCredentialsCallback()]);
+            Operation::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**
@@ -544,8 +439,8 @@ class ClusterManagerGapicClient
      *
      * Sample code:
      * ```
+     * $clusterManagerClient = new ClusterManagerClient();
      * try {
-     *     $clusterManagerClient = new ClusterManagerClient();
      *     $projectId = '';
      *     $zone = '';
      *     $clusterId = '';
@@ -572,7 +467,7 @@ class ClusterManagerGapicClient
      * @param array  $optionalArgs {
      *                             Optional.
      *
-     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
+     *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
@@ -581,7 +476,7 @@ class ClusterManagerGapicClient
      *
      * @return \Google\Cloud\Container\V1\Operation
      *
-     * @throws \Google\ApiCore\ApiException if the remote call fails
+     * @throws ApiException if the remote call fails
      * @experimental
      */
     public function updateNodePool($projectId, $zone, $clusterId, $nodePoolId, $nodeVersion, $imageType, $optionalArgs = [])
@@ -594,24 +489,12 @@ class ClusterManagerGapicClient
         $request->setNodeVersion($nodeVersion);
         $request->setImageType($imageType);
 
-        $defaultCallSettings = $this->defaultCallSettings['updateNodePool'];
-        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
-            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
-                $optionalArgs['retrySettings']
-            );
-        }
-        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
-        $callable = ApiCallable::createApiCall(
-            $this->clusterManagerStub,
+        return $this->startCall(
             'UpdateNodePool',
-            $mergedSettings,
-            $this->descriptors['updateNodePool']
-        );
-
-        return $callable(
-            $request,
-            [],
-            ['call_credentials_callback' => $this->createCredentialsCallback()]);
+            Operation::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**
@@ -619,8 +502,8 @@ class ClusterManagerGapicClient
      *
      * Sample code:
      * ```
+     * $clusterManagerClient = new ClusterManagerClient();
      * try {
-     *     $clusterManagerClient = new ClusterManagerClient();
      *     $projectId = '';
      *     $zone = '';
      *     $clusterId = '';
@@ -643,7 +526,7 @@ class ClusterManagerGapicClient
      * @param array               $optionalArgs {
      *                                          Optional.
      *
-     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
+     *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
@@ -652,7 +535,7 @@ class ClusterManagerGapicClient
      *
      * @return \Google\Cloud\Container\V1\Operation
      *
-     * @throws \Google\ApiCore\ApiException if the remote call fails
+     * @throws ApiException if the remote call fails
      * @experimental
      */
     public function setNodePoolAutoscaling($projectId, $zone, $clusterId, $nodePoolId, $autoscaling, $optionalArgs = [])
@@ -664,24 +547,12 @@ class ClusterManagerGapicClient
         $request->setNodePoolId($nodePoolId);
         $request->setAutoscaling($autoscaling);
 
-        $defaultCallSettings = $this->defaultCallSettings['setNodePoolAutoscaling'];
-        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
-            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
-                $optionalArgs['retrySettings']
-            );
-        }
-        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
-        $callable = ApiCallable::createApiCall(
-            $this->clusterManagerStub,
+        return $this->startCall(
             'SetNodePoolAutoscaling',
-            $mergedSettings,
-            $this->descriptors['setNodePoolAutoscaling']
-        );
-
-        return $callable(
-            $request,
-            [],
-            ['call_credentials_callback' => $this->createCredentialsCallback()]);
+            Operation::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**
@@ -689,8 +560,8 @@ class ClusterManagerGapicClient
      *
      * Sample code:
      * ```
+     * $clusterManagerClient = new ClusterManagerClient();
      * try {
-     *     $clusterManagerClient = new ClusterManagerClient();
      *     $projectId = '';
      *     $zone = '';
      *     $clusterId = '';
@@ -715,7 +586,7 @@ class ClusterManagerGapicClient
      * @param array $optionalArgs {
      *                            Optional.
      *
-     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
+     *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
@@ -724,7 +595,7 @@ class ClusterManagerGapicClient
      *
      * @return \Google\Cloud\Container\V1\Operation
      *
-     * @throws \Google\ApiCore\ApiException if the remote call fails
+     * @throws ApiException if the remote call fails
      * @experimental
      */
     public function setLoggingService($projectId, $zone, $clusterId, $loggingService, $optionalArgs = [])
@@ -735,24 +606,12 @@ class ClusterManagerGapicClient
         $request->setClusterId($clusterId);
         $request->setLoggingService($loggingService);
 
-        $defaultCallSettings = $this->defaultCallSettings['setLoggingService'];
-        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
-            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
-                $optionalArgs['retrySettings']
-            );
-        }
-        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
-        $callable = ApiCallable::createApiCall(
-            $this->clusterManagerStub,
+        return $this->startCall(
             'SetLoggingService',
-            $mergedSettings,
-            $this->descriptors['setLoggingService']
-        );
-
-        return $callable(
-            $request,
-            [],
-            ['call_credentials_callback' => $this->createCredentialsCallback()]);
+            Operation::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**
@@ -760,8 +619,8 @@ class ClusterManagerGapicClient
      *
      * Sample code:
      * ```
+     * $clusterManagerClient = new ClusterManagerClient();
      * try {
-     *     $clusterManagerClient = new ClusterManagerClient();
      *     $projectId = '';
      *     $zone = '';
      *     $clusterId = '';
@@ -786,7 +645,7 @@ class ClusterManagerGapicClient
      * @param array $optionalArgs {
      *                            Optional.
      *
-     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
+     *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
@@ -795,7 +654,7 @@ class ClusterManagerGapicClient
      *
      * @return \Google\Cloud\Container\V1\Operation
      *
-     * @throws \Google\ApiCore\ApiException if the remote call fails
+     * @throws ApiException if the remote call fails
      * @experimental
      */
     public function setMonitoringService($projectId, $zone, $clusterId, $monitoringService, $optionalArgs = [])
@@ -806,24 +665,12 @@ class ClusterManagerGapicClient
         $request->setClusterId($clusterId);
         $request->setMonitoringService($monitoringService);
 
-        $defaultCallSettings = $this->defaultCallSettings['setMonitoringService'];
-        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
-            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
-                $optionalArgs['retrySettings']
-            );
-        }
-        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
-        $callable = ApiCallable::createApiCall(
-            $this->clusterManagerStub,
+        return $this->startCall(
             'SetMonitoringService',
-            $mergedSettings,
-            $this->descriptors['setMonitoringService']
-        );
-
-        return $callable(
-            $request,
-            [],
-            ['call_credentials_callback' => $this->createCredentialsCallback()]);
+            Operation::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**
@@ -831,8 +678,8 @@ class ClusterManagerGapicClient
      *
      * Sample code:
      * ```
+     * $clusterManagerClient = new ClusterManagerClient();
      * try {
-     *     $clusterManagerClient = new ClusterManagerClient();
      *     $projectId = '';
      *     $zone = '';
      *     $clusterId = '';
@@ -854,7 +701,7 @@ class ClusterManagerGapicClient
      * @param array        $optionalArgs {
      *                                   Optional.
      *
-     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
+     *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
@@ -863,7 +710,7 @@ class ClusterManagerGapicClient
      *
      * @return \Google\Cloud\Container\V1\Operation
      *
-     * @throws \Google\ApiCore\ApiException if the remote call fails
+     * @throws ApiException if the remote call fails
      * @experimental
      */
     public function setAddonsConfig($projectId, $zone, $clusterId, $addonsConfig, $optionalArgs = [])
@@ -874,24 +721,12 @@ class ClusterManagerGapicClient
         $request->setClusterId($clusterId);
         $request->setAddonsConfig($addonsConfig);
 
-        $defaultCallSettings = $this->defaultCallSettings['setAddonsConfig'];
-        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
-            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
-                $optionalArgs['retrySettings']
-            );
-        }
-        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
-        $callable = ApiCallable::createApiCall(
-            $this->clusterManagerStub,
+        return $this->startCall(
             'SetAddonsConfig',
-            $mergedSettings,
-            $this->descriptors['setAddonsConfig']
-        );
-
-        return $callable(
-            $request,
-            [],
-            ['call_credentials_callback' => $this->createCredentialsCallback()]);
+            Operation::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**
@@ -899,8 +734,8 @@ class ClusterManagerGapicClient
      *
      * Sample code:
      * ```
+     * $clusterManagerClient = new ClusterManagerClient();
      * try {
-     *     $clusterManagerClient = new ClusterManagerClient();
      *     $projectId = '';
      *     $zone = '';
      *     $clusterId = '';
@@ -927,7 +762,7 @@ class ClusterManagerGapicClient
      * @param array $optionalArgs {
      *                            Optional.
      *
-     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
+     *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
@@ -936,7 +771,7 @@ class ClusterManagerGapicClient
      *
      * @return \Google\Cloud\Container\V1\Operation
      *
-     * @throws \Google\ApiCore\ApiException if the remote call fails
+     * @throws ApiException if the remote call fails
      * @experimental
      */
     public function setLocations($projectId, $zone, $clusterId, $locations, $optionalArgs = [])
@@ -947,24 +782,12 @@ class ClusterManagerGapicClient
         $request->setClusterId($clusterId);
         $request->setLocations($locations);
 
-        $defaultCallSettings = $this->defaultCallSettings['setLocations'];
-        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
-            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
-                $optionalArgs['retrySettings']
-            );
-        }
-        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
-        $callable = ApiCallable::createApiCall(
-            $this->clusterManagerStub,
+        return $this->startCall(
             'SetLocations',
-            $mergedSettings,
-            $this->descriptors['setLocations']
-        );
-
-        return $callable(
-            $request,
-            [],
-            ['call_credentials_callback' => $this->createCredentialsCallback()]);
+            Operation::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**
@@ -972,8 +795,8 @@ class ClusterManagerGapicClient
      *
      * Sample code:
      * ```
+     * $clusterManagerClient = new ClusterManagerClient();
      * try {
-     *     $clusterManagerClient = new ClusterManagerClient();
      *     $projectId = '';
      *     $zone = '';
      *     $clusterId = '';
@@ -996,7 +819,7 @@ class ClusterManagerGapicClient
      * @param array  $optionalArgs  {
      *                              Optional.
      *
-     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
+     *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
@@ -1005,7 +828,7 @@ class ClusterManagerGapicClient
      *
      * @return \Google\Cloud\Container\V1\Operation
      *
-     * @throws \Google\ApiCore\ApiException if the remote call fails
+     * @throws ApiException if the remote call fails
      * @experimental
      */
     public function updateMaster($projectId, $zone, $clusterId, $masterVersion, $optionalArgs = [])
@@ -1016,24 +839,12 @@ class ClusterManagerGapicClient
         $request->setClusterId($clusterId);
         $request->setMasterVersion($masterVersion);
 
-        $defaultCallSettings = $this->defaultCallSettings['updateMaster'];
-        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
-            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
-                $optionalArgs['retrySettings']
-            );
-        }
-        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
-        $callable = ApiCallable::createApiCall(
-            $this->clusterManagerStub,
+        return $this->startCall(
             'UpdateMaster',
-            $mergedSettings,
-            $this->descriptors['updateMaster']
-        );
-
-        return $callable(
-            $request,
-            [],
-            ['call_credentials_callback' => $this->createCredentialsCallback()]);
+            Operation::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**
@@ -1043,12 +854,12 @@ class ClusterManagerGapicClient
      *
      * Sample code:
      * ```
+     * $clusterManagerClient = new ClusterManagerClient();
      * try {
-     *     $clusterManagerClient = new ClusterManagerClient();
      *     $projectId = '';
      *     $zone = '';
      *     $clusterId = '';
-     *     $action = Action::UNKNOWN;
+     *     $action = SetMasterAuthRequest_Action::UNKNOWN;
      *     $update = new MasterAuth();
      *     $response = $clusterManagerClient->setMasterAuth($projectId, $zone, $clusterId, $action, $update);
      * } finally {
@@ -1068,7 +879,7 @@ class ClusterManagerGapicClient
      * @param array      $optionalArgs {
      *                                 Optional.
      *
-     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
+     *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
@@ -1077,7 +888,7 @@ class ClusterManagerGapicClient
      *
      * @return \Google\Cloud\Container\V1\Operation
      *
-     * @throws \Google\ApiCore\ApiException if the remote call fails
+     * @throws ApiException if the remote call fails
      * @experimental
      */
     public function setMasterAuth($projectId, $zone, $clusterId, $action, $update, $optionalArgs = [])
@@ -1089,24 +900,12 @@ class ClusterManagerGapicClient
         $request->setAction($action);
         $request->setUpdate($update);
 
-        $defaultCallSettings = $this->defaultCallSettings['setMasterAuth'];
-        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
-            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
-                $optionalArgs['retrySettings']
-            );
-        }
-        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
-        $callable = ApiCallable::createApiCall(
-            $this->clusterManagerStub,
+        return $this->startCall(
             'SetMasterAuth',
-            $mergedSettings,
-            $this->descriptors['setMasterAuth']
-        );
-
-        return $callable(
-            $request,
-            [],
-            ['call_credentials_callback' => $this->createCredentialsCallback()]);
+            Operation::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**
@@ -1122,8 +921,8 @@ class ClusterManagerGapicClient
      *
      * Sample code:
      * ```
+     * $clusterManagerClient = new ClusterManagerClient();
      * try {
-     *     $clusterManagerClient = new ClusterManagerClient();
      *     $projectId = '';
      *     $zone = '';
      *     $clusterId = '';
@@ -1142,7 +941,7 @@ class ClusterManagerGapicClient
      * @param array  $optionalArgs {
      *                             Optional.
      *
-     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
+     *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
@@ -1151,7 +950,7 @@ class ClusterManagerGapicClient
      *
      * @return \Google\Cloud\Container\V1\Operation
      *
-     * @throws \Google\ApiCore\ApiException if the remote call fails
+     * @throws ApiException if the remote call fails
      * @experimental
      */
     public function deleteCluster($projectId, $zone, $clusterId, $optionalArgs = [])
@@ -1161,24 +960,12 @@ class ClusterManagerGapicClient
         $request->setZone($zone);
         $request->setClusterId($clusterId);
 
-        $defaultCallSettings = $this->defaultCallSettings['deleteCluster'];
-        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
-            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
-                $optionalArgs['retrySettings']
-            );
-        }
-        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
-        $callable = ApiCallable::createApiCall(
-            $this->clusterManagerStub,
+        return $this->startCall(
             'DeleteCluster',
-            $mergedSettings,
-            $this->descriptors['deleteCluster']
-        );
-
-        return $callable(
-            $request,
-            [],
-            ['call_credentials_callback' => $this->createCredentialsCallback()]);
+            Operation::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**
@@ -1186,8 +973,8 @@ class ClusterManagerGapicClient
      *
      * Sample code:
      * ```
+     * $clusterManagerClient = new ClusterManagerClient();
      * try {
-     *     $clusterManagerClient = new ClusterManagerClient();
      *     $projectId = '';
      *     $zone = '';
      *     $response = $clusterManagerClient->listOperations($projectId, $zone);
@@ -1203,7 +990,7 @@ class ClusterManagerGapicClient
      * @param array  $optionalArgs {
      *                             Optional.
      *
-     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
+     *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
@@ -1212,7 +999,7 @@ class ClusterManagerGapicClient
      *
      * @return \Google\Cloud\Container\V1\ListOperationsResponse
      *
-     * @throws \Google\ApiCore\ApiException if the remote call fails
+     * @throws ApiException if the remote call fails
      * @experimental
      */
     public function listOperations($projectId, $zone, $optionalArgs = [])
@@ -1221,24 +1008,12 @@ class ClusterManagerGapicClient
         $request->setProjectId($projectId);
         $request->setZone($zone);
 
-        $defaultCallSettings = $this->defaultCallSettings['listOperations'];
-        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
-            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
-                $optionalArgs['retrySettings']
-            );
-        }
-        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
-        $callable = ApiCallable::createApiCall(
-            $this->clusterManagerStub,
+        return $this->startCall(
             'ListOperations',
-            $mergedSettings,
-            $this->descriptors['listOperations']
-        );
-
-        return $callable(
-            $request,
-            [],
-            ['call_credentials_callback' => $this->createCredentialsCallback()]);
+            ListOperationsResponse::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**
@@ -1246,8 +1021,8 @@ class ClusterManagerGapicClient
      *
      * Sample code:
      * ```
+     * $clusterManagerClient = new ClusterManagerClient();
      * try {
-     *     $clusterManagerClient = new ClusterManagerClient();
      *     $projectId = '';
      *     $zone = '';
      *     $operationId = '';
@@ -1266,7 +1041,7 @@ class ClusterManagerGapicClient
      * @param array  $optionalArgs {
      *                             Optional.
      *
-     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
+     *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
@@ -1275,7 +1050,7 @@ class ClusterManagerGapicClient
      *
      * @return \Google\Cloud\Container\V1\Operation
      *
-     * @throws \Google\ApiCore\ApiException if the remote call fails
+     * @throws ApiException if the remote call fails
      * @experimental
      */
     public function getOperation($projectId, $zone, $operationId, $optionalArgs = [])
@@ -1285,24 +1060,12 @@ class ClusterManagerGapicClient
         $request->setZone($zone);
         $request->setOperationId($operationId);
 
-        $defaultCallSettings = $this->defaultCallSettings['getOperation'];
-        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
-            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
-                $optionalArgs['retrySettings']
-            );
-        }
-        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
-        $callable = ApiCallable::createApiCall(
-            $this->clusterManagerStub,
+        return $this->startCall(
             'GetOperation',
-            $mergedSettings,
-            $this->descriptors['getOperation']
-        );
-
-        return $callable(
-            $request,
-            [],
-            ['call_credentials_callback' => $this->createCredentialsCallback()]);
+            Operation::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**
@@ -1310,8 +1073,8 @@ class ClusterManagerGapicClient
      *
      * Sample code:
      * ```
+     * $clusterManagerClient = new ClusterManagerClient();
      * try {
-     *     $clusterManagerClient = new ClusterManagerClient();
      *     $projectId = '';
      *     $zone = '';
      *     $operationId = '';
@@ -1329,14 +1092,14 @@ class ClusterManagerGapicClient
      * @param array  $optionalArgs {
      *                             Optional.
      *
-     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
+     *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
      *          {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
-     * @throws \Google\ApiCore\ApiException if the remote call fails
+     * @throws ApiException if the remote call fails
      * @experimental
      */
     public function cancelOperation($projectId, $zone, $operationId, $optionalArgs = [])
@@ -1346,24 +1109,12 @@ class ClusterManagerGapicClient
         $request->setZone($zone);
         $request->setOperationId($operationId);
 
-        $defaultCallSettings = $this->defaultCallSettings['cancelOperation'];
-        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
-            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
-                $optionalArgs['retrySettings']
-            );
-        }
-        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
-        $callable = ApiCallable::createApiCall(
-            $this->clusterManagerStub,
+        return $this->startCall(
             'CancelOperation',
-            $mergedSettings,
-            $this->descriptors['cancelOperation']
-        );
-
-        return $callable(
-            $request,
-            [],
-            ['call_credentials_callback' => $this->createCredentialsCallback()]);
+            GPBEmpty::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**
@@ -1371,8 +1122,8 @@ class ClusterManagerGapicClient
      *
      * Sample code:
      * ```
+     * $clusterManagerClient = new ClusterManagerClient();
      * try {
-     *     $clusterManagerClient = new ClusterManagerClient();
      *     $projectId = '';
      *     $zone = '';
      *     $response = $clusterManagerClient->getServerConfig($projectId, $zone);
@@ -1388,7 +1139,7 @@ class ClusterManagerGapicClient
      * @param array  $optionalArgs {
      *                             Optional.
      *
-     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
+     *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
@@ -1397,7 +1148,7 @@ class ClusterManagerGapicClient
      *
      * @return \Google\Cloud\Container\V1\ServerConfig
      *
-     * @throws \Google\ApiCore\ApiException if the remote call fails
+     * @throws ApiException if the remote call fails
      * @experimental
      */
     public function getServerConfig($projectId, $zone, $optionalArgs = [])
@@ -1406,24 +1157,12 @@ class ClusterManagerGapicClient
         $request->setProjectId($projectId);
         $request->setZone($zone);
 
-        $defaultCallSettings = $this->defaultCallSettings['getServerConfig'];
-        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
-            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
-                $optionalArgs['retrySettings']
-            );
-        }
-        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
-        $callable = ApiCallable::createApiCall(
-            $this->clusterManagerStub,
+        return $this->startCall(
             'GetServerConfig',
-            $mergedSettings,
-            $this->descriptors['getServerConfig']
-        );
-
-        return $callable(
-            $request,
-            [],
-            ['call_credentials_callback' => $this->createCredentialsCallback()]);
+            ServerConfig::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**
@@ -1431,8 +1170,8 @@ class ClusterManagerGapicClient
      *
      * Sample code:
      * ```
+     * $clusterManagerClient = new ClusterManagerClient();
      * try {
-     *     $clusterManagerClient = new ClusterManagerClient();
      *     $projectId = '';
      *     $zone = '';
      *     $clusterId = '';
@@ -1451,7 +1190,7 @@ class ClusterManagerGapicClient
      * @param array  $optionalArgs {
      *                             Optional.
      *
-     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
+     *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
@@ -1460,7 +1199,7 @@ class ClusterManagerGapicClient
      *
      * @return \Google\Cloud\Container\V1\ListNodePoolsResponse
      *
-     * @throws \Google\ApiCore\ApiException if the remote call fails
+     * @throws ApiException if the remote call fails
      * @experimental
      */
     public function listNodePools($projectId, $zone, $clusterId, $optionalArgs = [])
@@ -1470,24 +1209,12 @@ class ClusterManagerGapicClient
         $request->setZone($zone);
         $request->setClusterId($clusterId);
 
-        $defaultCallSettings = $this->defaultCallSettings['listNodePools'];
-        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
-            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
-                $optionalArgs['retrySettings']
-            );
-        }
-        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
-        $callable = ApiCallable::createApiCall(
-            $this->clusterManagerStub,
+        return $this->startCall(
             'ListNodePools',
-            $mergedSettings,
-            $this->descriptors['listNodePools']
-        );
-
-        return $callable(
-            $request,
-            [],
-            ['call_credentials_callback' => $this->createCredentialsCallback()]);
+            ListNodePoolsResponse::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**
@@ -1495,8 +1222,8 @@ class ClusterManagerGapicClient
      *
      * Sample code:
      * ```
+     * $clusterManagerClient = new ClusterManagerClient();
      * try {
-     *     $clusterManagerClient = new ClusterManagerClient();
      *     $projectId = '';
      *     $zone = '';
      *     $clusterId = '';
@@ -1517,7 +1244,7 @@ class ClusterManagerGapicClient
      * @param array  $optionalArgs {
      *                             Optional.
      *
-     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
+     *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
@@ -1526,7 +1253,7 @@ class ClusterManagerGapicClient
      *
      * @return \Google\Cloud\Container\V1\NodePool
      *
-     * @throws \Google\ApiCore\ApiException if the remote call fails
+     * @throws ApiException if the remote call fails
      * @experimental
      */
     public function getNodePool($projectId, $zone, $clusterId, $nodePoolId, $optionalArgs = [])
@@ -1537,24 +1264,12 @@ class ClusterManagerGapicClient
         $request->setClusterId($clusterId);
         $request->setNodePoolId($nodePoolId);
 
-        $defaultCallSettings = $this->defaultCallSettings['getNodePool'];
-        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
-            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
-                $optionalArgs['retrySettings']
-            );
-        }
-        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
-        $callable = ApiCallable::createApiCall(
-            $this->clusterManagerStub,
+        return $this->startCall(
             'GetNodePool',
-            $mergedSettings,
-            $this->descriptors['getNodePool']
-        );
-
-        return $callable(
-            $request,
-            [],
-            ['call_credentials_callback' => $this->createCredentialsCallback()]);
+            NodePool::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**
@@ -1562,8 +1277,8 @@ class ClusterManagerGapicClient
      *
      * Sample code:
      * ```
+     * $clusterManagerClient = new ClusterManagerClient();
      * try {
-     *     $clusterManagerClient = new ClusterManagerClient();
      *     $projectId = '';
      *     $zone = '';
      *     $clusterId = '';
@@ -1584,7 +1299,7 @@ class ClusterManagerGapicClient
      * @param array    $optionalArgs {
      *                               Optional.
      *
-     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
+     *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
@@ -1593,7 +1308,7 @@ class ClusterManagerGapicClient
      *
      * @return \Google\Cloud\Container\V1\Operation
      *
-     * @throws \Google\ApiCore\ApiException if the remote call fails
+     * @throws ApiException if the remote call fails
      * @experimental
      */
     public function createNodePool($projectId, $zone, $clusterId, $nodePool, $optionalArgs = [])
@@ -1604,24 +1319,12 @@ class ClusterManagerGapicClient
         $request->setClusterId($clusterId);
         $request->setNodePool($nodePool);
 
-        $defaultCallSettings = $this->defaultCallSettings['createNodePool'];
-        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
-            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
-                $optionalArgs['retrySettings']
-            );
-        }
-        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
-        $callable = ApiCallable::createApiCall(
-            $this->clusterManagerStub,
+        return $this->startCall(
             'CreateNodePool',
-            $mergedSettings,
-            $this->descriptors['createNodePool']
-        );
-
-        return $callable(
-            $request,
-            [],
-            ['call_credentials_callback' => $this->createCredentialsCallback()]);
+            Operation::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**
@@ -1629,8 +1332,8 @@ class ClusterManagerGapicClient
      *
      * Sample code:
      * ```
+     * $clusterManagerClient = new ClusterManagerClient();
      * try {
-     *     $clusterManagerClient = new ClusterManagerClient();
      *     $projectId = '';
      *     $zone = '';
      *     $clusterId = '';
@@ -1651,7 +1354,7 @@ class ClusterManagerGapicClient
      * @param array  $optionalArgs {
      *                             Optional.
      *
-     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
+     *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
@@ -1660,7 +1363,7 @@ class ClusterManagerGapicClient
      *
      * @return \Google\Cloud\Container\V1\Operation
      *
-     * @throws \Google\ApiCore\ApiException if the remote call fails
+     * @throws ApiException if the remote call fails
      * @experimental
      */
     public function deleteNodePool($projectId, $zone, $clusterId, $nodePoolId, $optionalArgs = [])
@@ -1671,24 +1374,12 @@ class ClusterManagerGapicClient
         $request->setClusterId($clusterId);
         $request->setNodePoolId($nodePoolId);
 
-        $defaultCallSettings = $this->defaultCallSettings['deleteNodePool'];
-        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
-            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
-                $optionalArgs['retrySettings']
-            );
-        }
-        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
-        $callable = ApiCallable::createApiCall(
-            $this->clusterManagerStub,
+        return $this->startCall(
             'DeleteNodePool',
-            $mergedSettings,
-            $this->descriptors['deleteNodePool']
-        );
-
-        return $callable(
-            $request,
-            [],
-            ['call_credentials_callback' => $this->createCredentialsCallback()]);
+            Operation::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**
@@ -1697,8 +1388,8 @@ class ClusterManagerGapicClient
      *
      * Sample code:
      * ```
+     * $clusterManagerClient = new ClusterManagerClient();
      * try {
-     *     $clusterManagerClient = new ClusterManagerClient();
      *     $projectId = '';
      *     $zone = '';
      *     $clusterId = '';
@@ -1719,7 +1410,7 @@ class ClusterManagerGapicClient
      * @param array  $optionalArgs {
      *                             Optional.
      *
-     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
+     *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
@@ -1728,7 +1419,7 @@ class ClusterManagerGapicClient
      *
      * @return \Google\Cloud\Container\V1\Operation
      *
-     * @throws \Google\ApiCore\ApiException if the remote call fails
+     * @throws ApiException if the remote call fails
      * @experimental
      */
     public function rollbackNodePoolUpgrade($projectId, $zone, $clusterId, $nodePoolId, $optionalArgs = [])
@@ -1739,24 +1430,12 @@ class ClusterManagerGapicClient
         $request->setClusterId($clusterId);
         $request->setNodePoolId($nodePoolId);
 
-        $defaultCallSettings = $this->defaultCallSettings['rollbackNodePoolUpgrade'];
-        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
-            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
-                $optionalArgs['retrySettings']
-            );
-        }
-        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
-        $callable = ApiCallable::createApiCall(
-            $this->clusterManagerStub,
+        return $this->startCall(
             'RollbackNodePoolUpgrade',
-            $mergedSettings,
-            $this->descriptors['rollbackNodePoolUpgrade']
-        );
-
-        return $callable(
-            $request,
-            [],
-            ['call_credentials_callback' => $this->createCredentialsCallback()]);
+            Operation::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**
@@ -1764,8 +1443,8 @@ class ClusterManagerGapicClient
      *
      * Sample code:
      * ```
+     * $clusterManagerClient = new ClusterManagerClient();
      * try {
-     *     $clusterManagerClient = new ClusterManagerClient();
      *     $projectId = '';
      *     $zone = '';
      *     $clusterId = '';
@@ -1788,7 +1467,7 @@ class ClusterManagerGapicClient
      * @param array          $optionalArgs {
      *                                     Optional.
      *
-     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
+     *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
@@ -1797,7 +1476,7 @@ class ClusterManagerGapicClient
      *
      * @return \Google\Cloud\Container\V1\Operation
      *
-     * @throws \Google\ApiCore\ApiException if the remote call fails
+     * @throws ApiException if the remote call fails
      * @experimental
      */
     public function setNodePoolManagement($projectId, $zone, $clusterId, $nodePoolId, $management, $optionalArgs = [])
@@ -1809,24 +1488,12 @@ class ClusterManagerGapicClient
         $request->setNodePoolId($nodePoolId);
         $request->setManagement($management);
 
-        $defaultCallSettings = $this->defaultCallSettings['setNodePoolManagement'];
-        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
-            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
-                $optionalArgs['retrySettings']
-            );
-        }
-        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
-        $callable = ApiCallable::createApiCall(
-            $this->clusterManagerStub,
+        return $this->startCall(
             'SetNodePoolManagement',
-            $mergedSettings,
-            $this->descriptors['setNodePoolManagement']
-        );
-
-        return $callable(
-            $request,
-            [],
-            ['call_credentials_callback' => $this->createCredentialsCallback()]);
+            Operation::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**
@@ -1834,8 +1501,8 @@ class ClusterManagerGapicClient
      *
      * Sample code:
      * ```
+     * $clusterManagerClient = new ClusterManagerClient();
      * try {
-     *     $clusterManagerClient = new ClusterManagerClient();
      *     $projectId = '';
      *     $zone = '';
      *     $clusterId = '';
@@ -1863,7 +1530,7 @@ class ClusterManagerGapicClient
      * @param array  $optionalArgs     {
      *                                 Optional.
      *
-     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
+     *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
@@ -1872,7 +1539,7 @@ class ClusterManagerGapicClient
      *
      * @return \Google\Cloud\Container\V1\Operation
      *
-     * @throws \Google\ApiCore\ApiException if the remote call fails
+     * @throws ApiException if the remote call fails
      * @experimental
      */
     public function setLabels($projectId, $zone, $clusterId, $resourceLabels, $labelFingerprint, $optionalArgs = [])
@@ -1884,24 +1551,12 @@ class ClusterManagerGapicClient
         $request->setResourceLabels($resourceLabels);
         $request->setLabelFingerprint($labelFingerprint);
 
-        $defaultCallSettings = $this->defaultCallSettings['setLabels'];
-        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
-            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
-                $optionalArgs['retrySettings']
-            );
-        }
-        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
-        $callable = ApiCallable::createApiCall(
-            $this->clusterManagerStub,
+        return $this->startCall(
             'SetLabels',
-            $mergedSettings,
-            $this->descriptors['setLabels']
-        );
-
-        return $callable(
-            $request,
-            [],
-            ['call_credentials_callback' => $this->createCredentialsCallback()]);
+            Operation::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**
@@ -1909,8 +1564,8 @@ class ClusterManagerGapicClient
      *
      * Sample code:
      * ```
+     * $clusterManagerClient = new ClusterManagerClient();
      * try {
-     *     $clusterManagerClient = new ClusterManagerClient();
      *     $projectId = '';
      *     $zone = '';
      *     $clusterId = '';
@@ -1931,7 +1586,7 @@ class ClusterManagerGapicClient
      * @param array  $optionalArgs {
      *                             Optional.
      *
-     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
+     *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
@@ -1940,7 +1595,7 @@ class ClusterManagerGapicClient
      *
      * @return \Google\Cloud\Container\V1\Operation
      *
-     * @throws \Google\ApiCore\ApiException if the remote call fails
+     * @throws ApiException if the remote call fails
      * @experimental
      */
     public function setLegacyAbac($projectId, $zone, $clusterId, $enabled, $optionalArgs = [])
@@ -1951,24 +1606,12 @@ class ClusterManagerGapicClient
         $request->setClusterId($clusterId);
         $request->setEnabled($enabled);
 
-        $defaultCallSettings = $this->defaultCallSettings['setLegacyAbac'];
-        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
-            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
-                $optionalArgs['retrySettings']
-            );
-        }
-        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
-        $callable = ApiCallable::createApiCall(
-            $this->clusterManagerStub,
+        return $this->startCall(
             'SetLegacyAbac',
-            $mergedSettings,
-            $this->descriptors['setLegacyAbac']
-        );
-
-        return $callable(
-            $request,
-            [],
-            ['call_credentials_callback' => $this->createCredentialsCallback()]);
+            Operation::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**
@@ -1976,8 +1619,8 @@ class ClusterManagerGapicClient
      *
      * Sample code:
      * ```
+     * $clusterManagerClient = new ClusterManagerClient();
      * try {
-     *     $clusterManagerClient = new ClusterManagerClient();
      *     $projectId = '';
      *     $zone = '';
      *     $clusterId = '';
@@ -1996,7 +1639,7 @@ class ClusterManagerGapicClient
      * @param array  $optionalArgs {
      *                             Optional.
      *
-     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
+     *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
@@ -2005,7 +1648,7 @@ class ClusterManagerGapicClient
      *
      * @return \Google\Cloud\Container\V1\Operation
      *
-     * @throws \Google\ApiCore\ApiException if the remote call fails
+     * @throws ApiException if the remote call fails
      * @experimental
      */
     public function startIPRotation($projectId, $zone, $clusterId, $optionalArgs = [])
@@ -2015,24 +1658,12 @@ class ClusterManagerGapicClient
         $request->setZone($zone);
         $request->setClusterId($clusterId);
 
-        $defaultCallSettings = $this->defaultCallSettings['startIPRotation'];
-        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
-            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
-                $optionalArgs['retrySettings']
-            );
-        }
-        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
-        $callable = ApiCallable::createApiCall(
-            $this->clusterManagerStub,
+        return $this->startCall(
             'StartIPRotation',
-            $mergedSettings,
-            $this->descriptors['startIPRotation']
-        );
-
-        return $callable(
-            $request,
-            [],
-            ['call_credentials_callback' => $this->createCredentialsCallback()]);
+            Operation::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**
@@ -2040,8 +1671,8 @@ class ClusterManagerGapicClient
      *
      * Sample code:
      * ```
+     * $clusterManagerClient = new ClusterManagerClient();
      * try {
-     *     $clusterManagerClient = new ClusterManagerClient();
      *     $projectId = '';
      *     $zone = '';
      *     $clusterId = '';
@@ -2060,7 +1691,7 @@ class ClusterManagerGapicClient
      * @param array  $optionalArgs {
      *                             Optional.
      *
-     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
+     *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
@@ -2069,7 +1700,7 @@ class ClusterManagerGapicClient
      *
      * @return \Google\Cloud\Container\V1\Operation
      *
-     * @throws \Google\ApiCore\ApiException if the remote call fails
+     * @throws ApiException if the remote call fails
      * @experimental
      */
     public function completeIPRotation($projectId, $zone, $clusterId, $optionalArgs = [])
@@ -2079,24 +1710,12 @@ class ClusterManagerGapicClient
         $request->setZone($zone);
         $request->setClusterId($clusterId);
 
-        $defaultCallSettings = $this->defaultCallSettings['completeIPRotation'];
-        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
-            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
-                $optionalArgs['retrySettings']
-            );
-        }
-        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
-        $callable = ApiCallable::createApiCall(
-            $this->clusterManagerStub,
+        return $this->startCall(
             'CompleteIPRotation',
-            $mergedSettings,
-            $this->descriptors['completeIPRotation']
-        );
-
-        return $callable(
-            $request,
-            [],
-            ['call_credentials_callback' => $this->createCredentialsCallback()]);
+            Operation::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**
@@ -2104,8 +1723,8 @@ class ClusterManagerGapicClient
      *
      * Sample code:
      * ```
+     * $clusterManagerClient = new ClusterManagerClient();
      * try {
-     *     $clusterManagerClient = new ClusterManagerClient();
      *     $projectId = '';
      *     $zone = '';
      *     $clusterId = '';
@@ -2128,7 +1747,7 @@ class ClusterManagerGapicClient
      * @param array  $optionalArgs {
      *                             Optional.
      *
-     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
+     *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
@@ -2137,7 +1756,7 @@ class ClusterManagerGapicClient
      *
      * @return \Google\Cloud\Container\V1\Operation
      *
-     * @throws \Google\ApiCore\ApiException if the remote call fails
+     * @throws ApiException if the remote call fails
      * @experimental
      */
     public function setNodePoolSize($projectId, $zone, $clusterId, $nodePoolId, $nodeCount, $optionalArgs = [])
@@ -2149,24 +1768,12 @@ class ClusterManagerGapicClient
         $request->setNodePoolId($nodePoolId);
         $request->setNodeCount($nodeCount);
 
-        $defaultCallSettings = $this->defaultCallSettings['setNodePoolSize'];
-        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
-            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
-                $optionalArgs['retrySettings']
-            );
-        }
-        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
-        $callable = ApiCallable::createApiCall(
-            $this->clusterManagerStub,
+        return $this->startCall(
             'SetNodePoolSize',
-            $mergedSettings,
-            $this->descriptors['setNodePoolSize']
-        );
-
-        return $callable(
-            $request,
-            [],
-            ['call_credentials_callback' => $this->createCredentialsCallback()]);
+            Operation::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**
@@ -2174,8 +1781,8 @@ class ClusterManagerGapicClient
      *
      * Sample code:
      * ```
+     * $clusterManagerClient = new ClusterManagerClient();
      * try {
-     *     $clusterManagerClient = new ClusterManagerClient();
      *     $projectId = '';
      *     $zone = '';
      *     $clusterId = '';
@@ -2196,7 +1803,7 @@ class ClusterManagerGapicClient
      * @param array         $optionalArgs  {
      *                                     Optional.
      *
-     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
+     *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
@@ -2205,7 +1812,7 @@ class ClusterManagerGapicClient
      *
      * @return \Google\Cloud\Container\V1\Operation
      *
-     * @throws \Google\ApiCore\ApiException if the remote call fails
+     * @throws ApiException if the remote call fails
      * @experimental
      */
     public function setNetworkPolicy($projectId, $zone, $clusterId, $networkPolicy, $optionalArgs = [])
@@ -2216,24 +1823,12 @@ class ClusterManagerGapicClient
         $request->setClusterId($clusterId);
         $request->setNetworkPolicy($networkPolicy);
 
-        $defaultCallSettings = $this->defaultCallSettings['setNetworkPolicy'];
-        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
-            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
-                $optionalArgs['retrySettings']
-            );
-        }
-        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
-        $callable = ApiCallable::createApiCall(
-            $this->clusterManagerStub,
+        return $this->startCall(
             'SetNetworkPolicy',
-            $mergedSettings,
-            $this->descriptors['setNetworkPolicy']
-        );
-
-        return $callable(
-            $request,
-            [],
-            ['call_credentials_callback' => $this->createCredentialsCallback()]);
+            Operation::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**
@@ -2241,8 +1836,8 @@ class ClusterManagerGapicClient
      *
      * Sample code:
      * ```
+     * $clusterManagerClient = new ClusterManagerClient();
      * try {
-     *     $clusterManagerClient = new ClusterManagerClient();
      *     $projectId = '';
      *     $zone = '';
      *     $clusterId = '';
@@ -2264,7 +1859,7 @@ class ClusterManagerGapicClient
      * @param array             $optionalArgs      {
      *                                             Optional.
      *
-     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
+     *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
@@ -2273,7 +1868,7 @@ class ClusterManagerGapicClient
      *
      * @return \Google\Cloud\Container\V1\Operation
      *
-     * @throws \Google\ApiCore\ApiException if the remote call fails
+     * @throws ApiException if the remote call fails
      * @experimental
      */
     public function setMaintenancePolicy($projectId, $zone, $clusterId, $maintenancePolicy, $optionalArgs = [])
@@ -2284,39 +1879,11 @@ class ClusterManagerGapicClient
         $request->setClusterId($clusterId);
         $request->setMaintenancePolicy($maintenancePolicy);
 
-        $defaultCallSettings = $this->defaultCallSettings['setMaintenancePolicy'];
-        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
-            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
-                $optionalArgs['retrySettings']
-            );
-        }
-        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
-        $callable = ApiCallable::createApiCall(
-            $this->clusterManagerStub,
+        return $this->startCall(
             'SetMaintenancePolicy',
-            $mergedSettings,
-            $this->descriptors['setMaintenancePolicy']
-        );
-
-        return $callable(
-            $request,
-            [],
-            ['call_credentials_callback' => $this->createCredentialsCallback()]);
-    }
-
-    /**
-     * Initiates an orderly shutdown in which preexisting calls continue but new
-     * calls are immediately cancelled.
-     *
-     * @experimental
-     */
-    public function close()
-    {
-        $this->clusterManagerStub->close();
-    }
-
-    private function createCredentialsCallback()
-    {
-        return $this->grpcCredentialsHelper->createCallCredentialsCallback();
+            Operation::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 }
