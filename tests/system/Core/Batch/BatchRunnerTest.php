@@ -110,7 +110,7 @@ class BatchRunnerTest extends TestCase
             'batch-daemon-system-test',
             array($myJob, 'runJob'),
             array(
-                'workerNum' => 1,
+                'numWorkers' => 1,
                 'batchSize' => 2,
                 'callPeriod' => 1,
             )

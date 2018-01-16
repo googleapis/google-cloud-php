@@ -369,7 +369,7 @@ class Topic
      *           more details.
      *           **Defaults to** ['batchSize' => 1000,
      *                            'callPeriod' => 2.0,
-     *                            'workerNum' => 2].
+     *                            'numWorkers' => 2].
      *     @type array $clientConfig Configuration options for the PubSub client
      *           used to handle processing of batch items. For valid options
      *           please see

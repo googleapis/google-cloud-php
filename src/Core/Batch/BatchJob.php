@@ -43,11 +43,6 @@ class BatchJob implements JobInterface
     private $func;
 
     /**
-     * @var string
-     */
-    private $bootstrapFile;
-
-    /**
      * @var int
      */
     private $batchSize;
@@ -56,16 +51,6 @@ class BatchJob implements JobInterface
      * @var float
      */
     private $callPeriod;
-
-    /**
-     * @var int The job id
-     */
-    private $id;
-
-    /**
-     * @var int the worker number
-     */
-    private $worker;
 
     /**
      * @param string $identifier Unique identifier of the job.
@@ -78,7 +63,7 @@ class BatchJob implements JobInterface
      *     @type int $batchSize The size of the batch. **Defaults to** `100`.
      *     @type float $callPeriod The period in seconds from the last execution
      *                 to force executing the job. **Defaults to** `2.0`.
-     *     @type int $workerNum The number of child processes. It only takes
+     *     @type int $numWorkers The number of child processes. It only takes
      *               effect with the {@see \Google\Cloud\Core\Batch\BatchDaemon}.
      *               **Defaults to** `1`.
      *     @type string $bootstrapFile A file to load before executing the
@@ -95,15 +80,15 @@ class BatchJob implements JobInterface
             'batchSize' => self::DEFAULT_BATCH_SIZE,
             'callPeriod' => self::DEFAULT_CALL_PERIOD,
             'bootstrapFile' => null,
-            'workerNum' => self::DEFAULT_WORKERS
+            'numWorkers' => self::DEFAULT_WORKERS
         ];
         $this->identifier = $identifier;
         $this->func = $func;
-        $this->idNum = $idNum;
+        $this->id = $idNum;
         $this->batchSize = $options['batchSize'];
         $this->callPeriod = $options['callPeriod'];
         $this->bootstrapFile = $options['bootstrapFile'];
-        $this->workerNum = $options['workerNum'];
+        $this->numWorkers = $options['numWorkers'];
     }
 
     /**
@@ -182,33 +167,5 @@ class BatchJob implements JobInterface
     public function getBatchSize()
     {
         return $this->batchSize;
-    }
-
-    /**
-     * @return string
-     */
-    public function getBootstrapFile()
-    {
-        return $this->bootstrapFile;
-    }
-
-    /**
-     * Returns the id number of this job
-     *
-     * @return int
-     */
-    public function id()
-    {
-        return $this->id;
-    }
-
-    /**
-     * Returns the worker number of this job
-     *
-     * @return int
-     */
-    public function numWorkers()
-    {
-        return $this->worker;
     }
 }

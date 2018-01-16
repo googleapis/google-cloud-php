@@ -86,7 +86,7 @@ class BatchRunner
      *     @type int $batchSize The size of the batch.
      *     @type float $callPeriod The period in seconds from the last execution
      *                 to force executing the job.
-     *     @type int $workerNum The number of child processes. It only takes
+     *     @type int $numWorkers The number of child processes. It only takes
      *               effect with the {@see \Google\Cloud\Core\Batch\BatchDaemon}.
      *     @type string $bootstrapFile A file to load before executing the
      *                  job. It's needed for registering global functions.
@@ -107,8 +107,8 @@ class BatchRunner
         $this->config = $this->configStorage->load();
         $this->config->registerJob(
             $identifier,
-            function ($idNum, $identifier) use ($func, $options) {
-                return new BatchJob($identifier, $func, $idNum, $options);
+            function ($id) use ($identifier, $func, $options) {
+                return new BatchJob($identifier, $func, $id, $options);
             },
             $options
         );

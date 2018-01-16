@@ -146,19 +146,20 @@ trait BatchTrait
      *           more details.
      *           **Defaults to** ['batchSize' => 1000,
      *                            'callPeriod' => 2.0,
-     *                            'workerNum' => 2].
+     *                            'numWorkers' => 2].
      *     @type array $clientConfig A config used to construct the client upon
      *           which requests will be made.
      *     @type BatchRunner $batchRunner A BatchRunner object. Mainly used for
      *           the tests to inject a mock. **Defaults to** a newly created
      *           BatchRunner.
-     *     @type string $identifier An identifier for the batch job.
+     *     @type string $identifier An identifier for the batch job. This
+     *           value must be unique across all job configs.
      *     @type string $batchMethod The name of the batch method used to
      *           deliver items.
      * }
      * @throws \InvalidArgumentException
      */
-    private function setCommonBatchProperties(array $options)
+    private function setCommonBatchProperties(array $options = [])
     {
         if (!isset($options['identifier'])) {
             throw new \InvalidArgumentException(
@@ -189,7 +190,7 @@ trait BatchTrait
         $this->batchOptions = $batchOptions + [
             'batchSize' => 1000,
             'callPeriod' => 2.0,
-            'workerNum' => 2
+            'numWorkers' => 2
         ];
         $this->batchRunner = isset($options['batchRunner'])
             ? $options['batchRunner']

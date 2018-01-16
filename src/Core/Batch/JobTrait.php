@@ -28,6 +28,21 @@ trait JobTrait
     private $identifier;
 
     /**
+     * @var int The job id
+     */
+    private $id;
+
+    /**
+     * @var int The number of workers for this job.
+     */
+    private $numWorkers = 1;
+
+    /**
+     * @var string An optional file that is required to run this job.
+     */
+    private $bootstrapFile;
+
+    /**
      * Return the job identifier
      *
      * @return string
@@ -37,5 +52,46 @@ trait JobTrait
         return $this->identifier;
     }
 
-    abstract public function run();
+    /**
+     * Return the job id
+     *
+     * @return int
+     */
+    public function id()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Returns the number of workers for this job. **Defaults to* 1.
+     *
+     * @return int
+     */
+    public function numWorkers()
+    {
+        return $this->numWorkers;
+    }
+
+    /**
+     * Returns the optional file required to run this job.
+     *
+     * @return string|null
+     */
+    public function bootstrapFile()
+    {
+        return $this->bootstrapFile;
+    }
+
+    /**
+     * Callback triggered when this job is deserialized. If there is a required
+     * bootstrapFile, we require the file and signal to the parent to retry
+     * deserialization.
+     */
+    public function __wakeup()
+    {
+        if ($this->bootstrapFile && !in_array($this->bootstrapFile, get_included_files())) {
+            require_once $this->bootstrapFile;
+            throw new ReloadJobConfigException();
+        }
+    }
 }

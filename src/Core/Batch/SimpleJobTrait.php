@@ -32,9 +32,24 @@ trait SimpleJobTrait
     use BatchDaemonTrait;
     use SysvTrait;
 
+    /**
+     * The simple loop function. This method is expected to be a blocking call.
+     */
     abstract public function run();
 
-    private function setSimpleJobProperties(array $options)
+    /**
+     * Registers this object as a SimpleJob.
+     *
+     * @param array $options [optional] {
+     *     Configuration options.
+     *
+     *     @type string $identifier An identifier for the simple job. This
+     *           value must be unique across all job configs.
+     *     @type ConfigStorageInterface $configStorage The configuration storage
+     *           used to save configuration.
+     * }
+     */
+    private function setSimpleJobProperties(array $options = [])
     {
         if (!isset($options['identifier'])) {
             throw new \InvalidArgumentException(
@@ -56,8 +71,8 @@ trait SimpleJobTrait
         $config = $configStorage->load();
         $config->registerJob(
             $identifier,
-            function ($idNum, $identifier) use ($options) {
-                return new SimpleJob($identifier, [$this, 'run'], $options);
+            function ($id) use ($identifier, $options) {
+                return new SimpleJob($identifier, [$this, 'run'], $id, $options);
             }
         );
         try {

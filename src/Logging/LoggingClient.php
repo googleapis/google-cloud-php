@@ -113,7 +113,7 @@ class LoggingClient
      *           more details.
      *           **Defaults to** ['batchSize' => 1000,
      *                            'callPeriod' => 2.0,
-     *                            'workerNum' => 2].
+     *                            'numWorkers' => 2].
      *     @type array $clientConfig Configuration options for the Logging client
      *           used to handle processing of batch items. For valid options
      *           please see
@@ -516,7 +516,7 @@ class LoggingClient
      *           more details.
      *           **Defaults to** ['batchSize' => 1000,
      *                            'callPeriod' => 2.0,
-     *                            'workerNum' => 2]. Applies only when
+     *                            'numWorkers' => 2]. Applies only when
      *           `batchEnabled` is set to `true`. Note that this option is
      *           currently considered **experimental** and is subject to change.
      *     @type array $clientConfig Configuration options for the Logging client

@@ -29,7 +29,7 @@ class Bootstrap
                 'batchEnabled' => true,
                 'debugOutput' => true,
                 'batchOptions' => [
-                    'workerNum' => 2
+                    'numWorkers' => 2
                 ]
             ]);
         register_shutdown_function([self::class, 'shutdownHandler']);

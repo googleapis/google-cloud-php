@@ -159,7 +159,7 @@ class Daemon
                 array_push($invalidBreakpoints, $breakpoint);
             }
         }
-
+var_dump($validBreakpoints);
         $this->storage->save(self::$debuggee, $validBreakpoints);
 
         if (!empty($invalidBreakpoints)) {

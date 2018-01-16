@@ -37,11 +37,6 @@ class SimpleJob implements JobInterface
     private $func;
 
     /**
-     * @var string
-     */
-    private $bootstrapFile;
-
-    /**
      * Creates a new Simple Job.
      *
      * @param string $identifier Unique identifier of the job.
@@ -54,11 +49,11 @@ class SimpleJob implements JobInterface
      *                   It's needed for registering global functions.
      * }
      */
-    public function __construct($identifier, $func, array $options = [])
+    public function __construct($identifier, $func, $id, array $options = [])
     {
         $this->identifier = $identifier;
         $this->func = $func;
-        $this->id = 1;
+        $this->id = $id;
 
         $options += [
             'bootstrapFile' => null
@@ -66,6 +61,9 @@ class SimpleJob implements JobInterface
         $this->bootstrapFile = $options['bootstrapFile'];
     }
 
+    /**
+     * Runs the job loop. This is expected to be a blocking call.
+     */
     public function run()
     {
         if ($this->bootstrapFile) {
@@ -73,28 +71,4 @@ class SimpleJob implements JobInterface
         }
         call_user_func($this->func);
     }
-
-    public function numWorkers()
-    {
-        return 1;
-    }
-
-    /**
-     * Returns the id number of this job
-     *
-     * @return int
-     */
-    public function id()
-    {
-        return 1;
-    }
-
-    public function __wakeup()
-    {
-        if ($this->bootstrapFile && !in_array($this->bootstrapFile, get_included_files())) {
-            require_once $this->bootstrapFile;
-            throw new ReloadJobConfigException();
-        }
-    }
-
 }
