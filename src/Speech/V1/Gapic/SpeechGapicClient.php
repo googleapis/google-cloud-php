@@ -224,10 +224,10 @@ class SpeechGapicClient
         $this->pluckArray([
             'serviceName',
             'clientConfigPath',
-            'restClientConfigPath',
             'descriptorsConfigPath',
         ], $options);
-        $this->operationsClient = new OperationsClient($options);
+        $this->operationsClient = $this->pluck('operationsClient', $options, false)
+            ?: new OperationsClient($options);
     }
 
     /**

@@ -1369,7 +1369,9 @@ class SubscriberGapicClient
             'SetIamPolicy',
             Policy::class,
             $optionalArgs,
-            $request
+            $request,
+            Call::UNARY_CALL,
+            'google.iam.v1.IAMPolicy'
         )->wait();
     }
 
@@ -1416,7 +1418,9 @@ class SubscriberGapicClient
             'GetIamPolicy',
             Policy::class,
             $optionalArgs,
-            $request
+            $request,
+            Call::UNARY_CALL,
+            'google.iam.v1.IAMPolicy'
         )->wait();
     }
 
@@ -1469,7 +1473,9 @@ class SubscriberGapicClient
             'TestIamPermissions',
             TestIamPermissionsResponse::class,
             $optionalArgs,
-            $request
+            $request,
+            Call::UNARY_CALL,
+            'google.iam.v1.IAMPolicy'
         )->wait();
     }
 }

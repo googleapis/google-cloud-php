@@ -154,5 +154,51 @@ return [
                 ],
             ],
         ],
+        'google.longrunning.Operations' => [
+            'ListOperations' => [
+                'method' => 'get',
+                'uriTemplate' => '/v2/{name=operations/projects/**}/operations',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetOperation' => [
+                'method' => 'get',
+                'uriTemplate' => '/v2/{name=operations/**}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'DeleteOperation' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v2/{name=operations/**}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'CancelOperation' => [
+                'method' => 'post',
+                'uriTemplate' => '/v2/{name=operations/**}:cancel',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+        ],
     ],
 ];

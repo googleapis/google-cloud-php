@@ -738,7 +738,9 @@ class PublisherGapicClient
             'SetIamPolicy',
             Policy::class,
             $optionalArgs,
-            $request
+            $request,
+            Call::UNARY_CALL,
+            'google.iam.v1.IAMPolicy'
         )->wait();
     }
 
@@ -785,7 +787,9 @@ class PublisherGapicClient
             'GetIamPolicy',
             Policy::class,
             $optionalArgs,
-            $request
+            $request,
+            Call::UNARY_CALL,
+            'google.iam.v1.IAMPolicy'
         )->wait();
     }
 
@@ -838,7 +842,9 @@ class PublisherGapicClient
             'TestIamPermissions',
             TestIamPermissionsResponse::class,
             $optionalArgs,
-            $request
+            $request,
+            Call::UNARY_CALL,
+            'google.iam.v1.IAMPolicy'
         )->wait();
     }
 }
