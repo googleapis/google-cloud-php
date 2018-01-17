@@ -58,10 +58,6 @@ trait LikelihoodTrait
 
         $levels = $this->likelihoodLevels[$strength];
 
-        if (in_array($value, $levels)) {
-            return true;
-        }
-
-        return false;
+        return in_array($value, $levels);
     }
 }

@@ -91,7 +91,7 @@ class Daemon
 
         $description = array_key_exists('description', $options)
             ? $options['description']
-            : $uniquifier;
+            : $this->defaultDescription();
 
         $this->debuggee = $client->debuggee(null, [
             'uniquifier' => $uniquifier,
@@ -118,15 +118,15 @@ class Daemon
      */
     public function run()
     {
-        $breakpoints = $this->debuggee->breakpoints();
-        $this->setBreakpoints($breakpoints);
+        $resp = $this->debuggee->breakpointsWithWaitToken();
+        $this->setBreakpoints($resp['breakpoints']);
 
-        while (array_key_exists('nextWaitToken', $breakpoints)) {
+        while (array_key_exists('nextWaitToken', $resp)) {
             try {
-                $breakpoints = $this->debuggee->breakpoints([
-                    'waitToken' => $breakpoints['nextWaitToken']
+                $resp = $this->debuggee->breakpointsWithWaitToken([
+                    'waitToken' => $resp['nextWaitToken']
                 ]);
-                $this->setBreakpoints($breakpoints);
+                $this->setBreakpoints($resp['breakpoints']);
             } catch (ConflictException $e) {
                 // Ignoring this exception
             }
@@ -156,6 +156,23 @@ class Daemon
 
     private function defaultUniquifier()
     {
+        $dir = new \RecursiveDirectoryIterator($this->sourceRoot);
+        $iterator = new \RecursiveIteratorIterator($dir);
+        $regex = new \RegexIterator(
+            $iterator,
+            '/^.+\.php$/i',
+            \RecursiveRegexIterator::GET_MATCH
+        );
+
+        $files = array_keys(iterator_to_array($regex));
+        return sha1(implode(':', array_map(function ($filename) {
+            $relativeFilename = str_replace($this->sourceRoot, '', $filename);
+            return $relativeFilename . ':' . filesize($filename);
+        }, $files)));
+    }
+
+    private function defaultDescription()
+    {
         if (isset($_SERVER['GAE_SERVICE'])) {
             return $_SERVER['GAE_SERVICE'] . ' - ' . $_SERVER['GAE_VERSION'];
         }
@@ -168,7 +185,7 @@ class Daemon
         if (file_exists($sourceContextFile)) {
             return json_decode(file_get_contents($sourceContextFile), true);
         } else {
-            return null;
+            return [];
         }
     }
 }

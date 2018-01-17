@@ -86,6 +86,29 @@ class DebuggeeTest extends SnippetTestCase
         }
     }
 
+    public function testBreakpointsWithWaitToken()
+    {
+        $this->connection->listBreakpoints(Argument::any())->willReturn([
+            'nextWaitToken' => 'token',
+            'breakpoints' => [
+                ['id' => 'breakpoint1']
+            ]
+        ]);
+        $debuggee = new Debuggee($this->connection->reveal(), ['project' => 'project']);
+        $snippet = $this->snippetFromMethod(Debuggee::class, 'breakpointsWithWaitToken');
+        $snippet->addLocal('debuggee', $debuggee);
+
+        $res = $snippet->invoke('breakpoints');
+        $breakpoints = $res->returnVal();
+        $this->assertCount(1, $breakpoints);
+        foreach ($breakpoints as $breakpoint) {
+            $this->assertInstanceOf(Breakpoint::class, $breakpoint);
+        }
+
+        $res = $snippet->invoke('nextWaitToken');
+        $this->assertEquals('token', $res->returnVal());
+    }
+
     public function testUpdateBreakpoint()
     {
         $this->connection->updateBreakpoint(Argument::any())->willReturn(true);

@@ -67,7 +67,7 @@ class LoggingClient
     use ArrayTrait;
     use ClientTrait;
 
-    const VERSION = '1.8.1';
+    const VERSION = '1.8.3';
 
     const FULL_CONTROL_SCOPE = 'https://www.googleapis.com/auth/logging.admin';
     const READ_ONLY_SCOPE = 'https://www.googleapis.com/auth/logging.read';
@@ -272,7 +272,7 @@ class LoggingClient
      *     @type string $pageToken A previously-returned page token used to
      *           resume the loading of results from a specific point.
      * }
-     * @return ItemIterator<Google\Cloud\Logging\Sink>
+     * @return ItemIterator<Sink>
      */
     public function sinks(array $options = [])
     {
@@ -373,7 +373,7 @@ class LoggingClient
      *     @type string $pageToken A previously-returned page token used to
      *           resume the loading of results from a specific point.
      * }
-     * @return ItemIterator<Google\Cloud\Logging\Metric>
+     * @return ItemIterator<Metric>
      */
     public function metrics(array $options = [])
     {
@@ -442,7 +442,7 @@ class LoggingClient
      *     @type string $pageToken A previously-returned page token used to
      *           resume the loading of results from a specific point.
      * }
-     * @return ItemIterator<Google\Cloud\Logging\Entry>
+     * @return ItemIterator<Entry>
      */
     public function entries(array $options = [])
     {

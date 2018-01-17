@@ -379,7 +379,7 @@ class Operation
      *     @type string $readConsistency See
      *           [ReadConsistency](https://cloud.google.com/datastore/reference/rest/v1/ReadOptions#ReadConsistency).
      * }
-     * @return EntityIterator<Google\Cloud\Datastore\Entity>
+     * @return EntityIterator<Entity>
      */
     public function runQuery(QueryInterface $query, array $options = [])
     {

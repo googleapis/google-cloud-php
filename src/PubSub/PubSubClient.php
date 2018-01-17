@@ -84,12 +84,12 @@ class PubSubClient
     use IncomingMessageTrait;
     use ResourceNameTrait;
 
-    const VERSION = '0.11.2';
+    const VERSION = '0.11.3';
 
     const FULL_CONTROL_SCOPE = 'https://www.googleapis.com/auth/pubsub';
 
     /**
-     * @var ConnectionInterface
+     * @var Connection\ConnectionInterface
      */
     protected $connection;
 
@@ -232,7 +232,7 @@ class PubSubClient
      *     @type string $pageToken A previously-returned page token used to
      *           resume the loading of results from a specific point.
      * }
-     * @return ItemIterator<Google\Cloud\PubSub\Topic>
+     * @return ItemIterator<Topic>
      */
     public function topics(array $options = [])
     {
@@ -331,7 +331,7 @@ class PubSubClient
      *     @type string $pageToken A previously-returned page token used to
      *           resume the loading of results from a specific point.
      * }
-     * @return ItemIterator<Google\Cloud\PubSub\Subscription>
+     * @return ItemIterator<Subscription>
      */
     public function subscriptions(array $options = [])
     {
@@ -424,7 +424,7 @@ class PubSubClient
      *     @type string $pageToken A previously-returned page token used to
      *           resume the loading of results from a specific point.
      * }
-     * @return ItemIterator<Google\Cloud\PubSub\Snapshot>
+     * @return ItemIterator<Snapshot>
      */
     public function snapshots(array $options = [])
     {

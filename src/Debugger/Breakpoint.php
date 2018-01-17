@@ -130,7 +130,7 @@ class Breakpoint implements \JsonSerializable
     private $userEmail;
 
     /**
-     * @var Status Breakpoint status. The status includes an error flag and a
+     * @var StatusMessage Breakpoint status. The status includes an error flag and a
      *      human readable message. This field is usually unset. The message can
      *      be either informational or an error message. Regardless, clients
      *      should always display the text message back to the user.

@@ -53,7 +53,7 @@ class FirestoreClient
     use SnapshotTrait;
     use ValidateTrait;
 
-    const VERSION = '0.3.2';
+    const VERSION = '0.3.4';
 
     const DEFAULT_DATABASE = '(default)';
 
@@ -62,7 +62,7 @@ class FirestoreClient
     const MAX_RETRIES = 5;
 
     /**
-     * @var ConnectionInterface
+     * @var Connection\ConnectionInterface
      */
     private $connection;
 
@@ -147,7 +147,10 @@ class FirestoreClient
         return new WriteBatch(
             $this->connection,
             $this->valueMapper,
-            $this->database
+            $this->databaseName(
+                $this->projectId,
+                $this->database
+            )
         );
     }
 
@@ -439,10 +442,7 @@ class FirestoreClient
         return $retry->execute(function (
             callable $callable,
             array $options
-        ) use (
-            &$transactionId,
-            $retryableErrors
-        ) {
+        ) use (&$transactionId) {
             $database = $this->databaseName($this->projectId, $this->database);
 
             $beginTransaction = $this->connection->beginTransaction(array_filter([
