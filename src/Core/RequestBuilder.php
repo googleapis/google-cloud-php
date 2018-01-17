@@ -45,6 +45,11 @@ class RequestBuilder
     private $resourceRoot;
 
     /**
+     * @var array
+     */
+    private $service;
+
+    /**
      * @param string $servicePath
      * @param string $baseUri
      * @param array  $resourceRoot [optional]

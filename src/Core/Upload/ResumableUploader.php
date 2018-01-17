@@ -46,7 +46,7 @@ class ResumableUploader extends AbstractUploader
     /**
      * @var string
      */
-    private $resumeUri;
+    protected $resumeUri;
 
     /**
      * @param RequestWrapper $requestWrapper

@@ -93,6 +93,14 @@ class Debuggee implements \JsonSerializable
     private $labels = [];
 
     /**
+     * @var string $status Human readable message to be displayed to the
+     *            user about this debuggee. Absence of this field indicates no
+     *            status. The message can be either informational or an error
+     *            status
+     */
+    private $status;
+
+    /**
      * Instantiate a new Debuggee.
      *
      * @param ConnectionInterface $connection

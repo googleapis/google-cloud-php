@@ -81,7 +81,7 @@ class DatastoreClient
     const FULL_CONTROL_SCOPE = 'https://www.googleapis.com/auth/datastore';
 
     /**
-     * @var ConnectionInterface
+     * @var Connection\ConnectionInterface
      */
     protected $connection;
 

@@ -47,7 +47,7 @@ class VisionClient
     const FULL_CONTROL_SCOPE = 'https://www.googleapis.com/auth/cloud-platform';
 
     /**
-     * @var ConnectionInterface
+     * @var Connection\ConnectionInterface
      */
     protected $connection;
 
