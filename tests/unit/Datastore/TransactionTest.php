@@ -167,9 +167,7 @@ class TransactionTest extends TestCase
     public function testLookup()
     {
         $this->operation->lookup(Argument::type('array'), Argument::that(function ($arg) {
-            if ($arg['transaction'] !== $this->transactionId) return false;
-
-            return true;
+            return $arg['transaction'] === $this->transactionId;
         }))->willReturn(['found' => ['foo']]);
 
         $this->transaction->setOperation($this->operation->reveal());
@@ -184,9 +182,7 @@ class TransactionTest extends TestCase
     public function testLookupBatch()
     {
         $this->operation->lookup(Argument::type('array'), Argument::that(function ($arg) {
-            if ($arg['transaction'] !== $this->transactionId) return false;
-
-            return true;
+            return $arg['transaction'] === $this->transactionId;
         }))->willReturn([]);
 
         $this->transaction->setOperation($this->operation->reveal());
@@ -199,9 +195,7 @@ class TransactionTest extends TestCase
     public function testRunQuery()
     {
         $this->operation->runQuery(Argument::type(QueryInterface::class), Argument::that(function ($arg) {
-            if ($arg['transaction'] !== $this->transactionId) return false;
-
-            return true;
+            return $arg['transaction'] === $this->transactionId;
         }))->willReturn('test');
 
         $this->transaction->setOperation($this->operation->reveal());
