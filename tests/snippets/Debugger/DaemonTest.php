@@ -50,7 +50,7 @@ class DaemonTest extends SnippetTestCase
             'storage' => $this->storage->reveal()
         ];
         $snippet = $this->snippetFromClass(Daemon::class);
-        $snippet->replace('new Daemon(\'/path/to/source/root\')', 'new Daemon(\'/path/to/source/root\', $options)');
+        $snippet->replace('new Daemon(\'/path/to/source/root\')', 'new Daemon(__DIR__, $options)');
         $snippet->addLocal('options', $options);
         $res = $snippet->invoke('daemon');
         $this->assertInstanceOf(Daemon::class, $res->returnVal());
@@ -62,7 +62,7 @@ class DaemonTest extends SnippetTestCase
             'client' => $this->client->reveal(),
             'storage' => $this->storage->reveal()
         ];
-        $daemon = new Daemon('/path', $options);
+        $daemon = new Daemon(__DIR__, $options);
         $snippet = $this->snippetFromMethod(Daemon::class, 'run');
         $snippet->addLocal('daemon', $daemon);
         $res = $snippet->invoke('daemon');
