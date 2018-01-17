@@ -632,20 +632,13 @@ class Breakpoint implements \JsonSerializable
         }
 
         // Check that the line is not a comment
-        switch ($line[0]) {
-            case '*':
-                // Check to see if we're in the middle of a multiline comment
-                if (!$this->inMultilineComment($file, $this->location->line() - 1)) {
-                    break;
-                }
-                // fall through and set the error message below
-            case '/':
-                $this->setError(
-                    StatusMessage::REFERENCE_BREAKPOINT_SOURCE_LOCATION,
-                    'Invalid breakpoint location - Invalid file line: $0.',
-                    [$this->location->line()]
-                );
-                return false;
+        if ($line[0] == '/' || ($line[0] == '*' && $this->inMultilineComment($file, $this->location->line() - 1))) {
+            $this->setError(
+                StatusMessage::REFERENCE_BREAKPOINT_SOURCE_LOCATION,
+                'Invalid breakpoint location - Invalid file line: $0.',
+                [$this->location->line()]
+            );
+            return false;
         }
 
         return true;
@@ -657,14 +650,10 @@ class Breakpoint implements \JsonSerializable
             return false;
         }
         $file->seek($lineNumber - 1);
-        $line = ltrim($file->current() || '');
-        switch ($line[0]) {
-            case '*':
-                return $this->inMultilineComment($file, $lineNumber - 1);
-            case '/':
-                return $line[1] === '*';
-        }
-        return false;
+        $line = ltrim($file->current() ?: '');
+
+        return substr($line, 0, 2) == '/*' ||
+            ($line[0] == '*' && $this->inMultilineComment($file, $lineNumber - 1));
     }
 
     private function validateCondition()
