@@ -608,7 +608,7 @@ class Breakpoint implements \JsonSerializable
         }
 
         // Ensure the file is a php file
-        if ($info->getExtension() !== "php") {
+        if (strtolower($info->getExtension()) !== "php") {
             $this->setError(
                 StatusMessage::REFERENCE_BREAKPOINT_SOURCE_LOCATION,
                 'Invalid breakpoint location - Invalid file type: $0.',
