@@ -608,7 +608,7 @@ class Breakpoint implements \JsonSerializable
         }
 
         // Ensure the file is a php file
-        if (strtolower($info->getExtension()) !== "php") {
+        if (strtolower($info->getExtension()) !== 'php') {
             $this->setError(
                 StatusMessage::REFERENCE_BREAKPOINT_SOURCE_LOCATION,
                 'Invalid breakpoint location - Invalid file type: $0.',
@@ -617,14 +617,12 @@ class Breakpoint implements \JsonSerializable
             return false;
         }
 
-        $file = $info->openFile("r");
+        $file = $info->openFile('r');
         $file->seek($this->location->line() - 1);
-        $line = $file->current();
+        $line = ltrim($file->current() ?: '');
 
-        // Ensure the line exists and is not a comment in the file
-        if ($line === false ||
-                preg_match('/^\s*[\/\*]+/', $line) ||
-                preg_match('/^\s*$/', $line)) {
+        // Ensure the line exists and is not empty
+        if ($line === '') {
             $this->setError(
                 StatusMessage::REFERENCE_BREAKPOINT_SOURCE_LOCATION,
                 'Invalid breakpoint location - Invalid file line: $0.',
@@ -633,7 +631,40 @@ class Breakpoint implements \JsonSerializable
             return false;
         }
 
+        // Check that the line is not a comment
+        switch ($line[0]) {
+            case '*':
+                // Check to see if we're in the middle of a multiline comment
+                if (!$this->inMultilineComment($file, $this->location->line() - 1)) {
+                    break;
+                }
+                // fall through and set the error message below
+            case '/':
+                $this->setError(
+                    StatusMessage::REFERENCE_BREAKPOINT_SOURCE_LOCATION,
+                    'Invalid breakpoint location - Invalid file line: $0.',
+                    [$this->location->line()]
+                );
+                return false;
+        }
+
         return true;
+    }
+
+    private function inMultilineComment($file, $lineNumber)
+    {
+        if ($lineNumber === 0) {
+            return false;
+        }
+        $file->seek($lineNumber - 1);
+        $line = ltrim($file->current() || '');
+        switch ($line[0]) {
+            case '*':
+                return $this->inMultilineComment($file, $lineNumber - 1);
+            case '/':
+                return $line[1] === '*';
+        }
+        return false;
     }
 
     private function validateCondition()

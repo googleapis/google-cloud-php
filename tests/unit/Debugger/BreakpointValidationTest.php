@@ -153,4 +153,18 @@ class BreakpointValidationTest extends TestCase
             $status['refersTo']
         );
     }
+
+    public function testValidatesNonCommentMultiplication()
+    {
+        $value = 6
+            * 3;
+
+        $breakpoint = new Breakpoint([
+            'location' => [
+                'path' => __FILE__,
+                'line' => __LINE__ - 5
+            ]
+        ]);
+        $this->assertTrue($breakpoint->validate());
+    }
 }
