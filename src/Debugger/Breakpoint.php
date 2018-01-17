@@ -540,7 +540,10 @@ class Breakpoint implements \JsonSerializable
 
     /**
      * Validate that this breakpoint can be executed. If not valid, the status
-     * field will be populated with the corresponding error message.
+     * field will be populated with the corresponding error message. This
+     * validation does not guarantee that the breakpoint will be reachable.
+     * The primary use case is to reject clearly invalid breakpoints and return
+     * a message to the developer via the Debugger console.
      *
      * Example:
      * ```
@@ -584,6 +587,17 @@ class Breakpoint implements \JsonSerializable
         return true;
     }
 
+    /**
+     * Validate that the source location is a valid. This means that:
+     *
+     * - The file exists
+     * - The file is readable
+     * - The file looks like a php file (ends in .php)
+     * - The line has code on it (non-empty and does not look like a comment)
+     *
+     * This validation is not perfect as we are not compiling the file to
+     * actually do the validation. We may miss cases.
+     */
     private function validateSourceLocation()
     {
         if (!$this->location) {
