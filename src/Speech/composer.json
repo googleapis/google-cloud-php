@@ -5,7 +5,7 @@
     "minimum-stability": "stable",
     "require": {
         "google/cloud-core": "^1.14",
-        "google/proto-client": "^0.29",
+        "google/proto-client": "^0.30",
         "google/gax": "^0.29"
     },
     "suggest": {
