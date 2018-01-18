@@ -72,7 +72,7 @@ class SourceLocationResolver
     {
         $basename = basename($location->path());
         $prefixes = $this->searchPrefixes($location->path());
-        $includePaths = explode(':', get_include_path());
+        $includePaths = explode(PATH_SEPARATOR, get_include_path());
 
         // Phase 1: search for an exact file match and try stripping off extra
         // folders
