@@ -644,6 +644,7 @@ class Breakpoint implements \JsonSerializable
         }
 
         $path = $this->resolvedLocation->path();
+        $lineNumber = $this->resolvedLocation->line();
         $info = new \SplFileInfo($path);
 
         // Ensure the file exists and is readable
@@ -667,7 +668,7 @@ class Breakpoint implements \JsonSerializable
         }
 
         $file = $info->openFile('r');
-        $file->seek($this->resolvedLocation->line() - 1);
+        $file->seek($lineNumber - 1);
         $line = ltrim($file->current() ?: '');
 
         // Ensure the line exists and is not empty
@@ -675,17 +676,17 @@ class Breakpoint implements \JsonSerializable
             $this->setError(
                 StatusMessage::REFERENCE_BREAKPOINT_SOURCE_LOCATION,
                 'Invalid breakpoint location - Invalid file line: $0.',
-                [$this->resolvedLocation->line()]
+                [$lineNumber]
             );
             return false;
         }
 
         // Check that the line is not a comment
-        if ($line[0] == '/' || ($line[0] == '*' && $this->inMultilineComment($file, $this->resolvedLocation->line() - 1))) {
+        if ($line[0] == '/' || ($line[0] == '*' && $this->inMultilineComment($file, $lineNumber - 1))) {
             $this->setError(
                 StatusMessage::REFERENCE_BREAKPOINT_SOURCE_LOCATION,
                 'Invalid breakpoint location - Invalid file line: $0.',
-                [$this->resolvedLocation->line()]
+                [$lineNumber]
             );
             return false;
         }
