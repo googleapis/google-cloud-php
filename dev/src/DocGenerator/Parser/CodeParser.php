@@ -610,11 +610,7 @@ class CodeParser implements ParserInterface
             return false;
         }
 
-        if ($description[0] === '{') {
-            return true;
-        }
-
-        return false;
+        return $description[0] === '{';
     }
 
     private function buildExceptions($exceptions)
@@ -727,11 +723,7 @@ class CodeParser implements ParserInterface
             return (strpos($type, $external['name']) !== false);
         });
 
-        if (count($types) === 0) {
-            return false;
-        }
-
-        return true;
+        return count($types) !== 0;
     }
 
     private function buildExternalType($type)

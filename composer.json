@@ -49,7 +49,7 @@
         "monolog/monolog": "~1",
         "psr/http-message": "1.0.*",
         "ramsey/uuid": "~3",
-        "google/proto-client": "^0.29.0",
+        "google/proto-client": "^0.30.0",
         "google/gax": "^0.29"
     },
     "require-dev": {
@@ -121,7 +121,7 @@
     "extra": {
         "component": {
             "id": "google-cloud",
-            "target": "git@github.com:jdpedrie-gcp/google-cloud-php.git",
+            "target": "git@github.com:GoogleCloudPlatform/google-cloud-php.git",
             "path": "src",
             "entry": [
                 "Version.php",

@@ -481,11 +481,7 @@ class EntityMapper
         }
 
         // Encode the string again
-        if (base64_encode($decoded) != $value) {
-            return false;
-        }
-
-        return true;
+        return base64_encode($decoded) == $value;
     }
 
     /**

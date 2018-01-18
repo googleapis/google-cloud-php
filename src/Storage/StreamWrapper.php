@@ -76,6 +76,11 @@ class StreamWrapper
     private $directoryIterator;
 
     /**
+     * @var StorageObject
+     */
+    private $object;
+
+    /**
      * Ensure we close the stream when this StreamWrapper is destroyed.
      */
     public function __destruct()

@@ -107,7 +107,6 @@ class Bootstrap
             default:
                 return 'NOTICE';
         }
-        return $prefix;
     }
 
     /**

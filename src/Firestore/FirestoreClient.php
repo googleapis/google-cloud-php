@@ -62,7 +62,7 @@ class FirestoreClient
     const MAX_RETRIES = 5;
 
     /**
-     * @var ConnectionInterface
+     * @var Connection\ConnectionInterface
      */
     private $connection;
 
@@ -442,10 +442,7 @@ class FirestoreClient
         return $retry->execute(function (
             callable $callable,
             array $options
-        ) use (
-            &$transactionId,
-            $retryableErrors
-        ) {
+        ) use (&$transactionId) {
             $database = $this->databaseName($this->projectId, $this->database);
 
             $beginTransaction = $this->connection->beginTransaction(array_filter([

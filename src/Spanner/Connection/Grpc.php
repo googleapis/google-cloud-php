@@ -61,7 +61,7 @@ class Grpc implements ConnectionInterface
     private $instanceAdminClient;
 
     /**
-     * @var DatabaseAdmin
+     * @var DatabaseAdminClient
      */
     private $databaseAdminClient;
 
@@ -71,7 +71,7 @@ class Grpc implements ConnectionInterface
     private $spannerClient;
 
     /**
-     * @var OperationsClient
+     * @var \Google\ApiCore\LongRunning\OperationsClient
      */
     private $operationsClient;
 

@@ -1032,11 +1032,7 @@ class Bucket
      */
     private function isObjectNameRequired($data)
     {
-        if (is_string($data) || is_null($data)) {
-            return true;
-        }
-
-        return false;
+        return is_string($data) || is_null($data);
     }
 
     /**

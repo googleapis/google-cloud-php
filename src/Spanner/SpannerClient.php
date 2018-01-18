@@ -79,7 +79,7 @@ class SpannerClient
     const ADMIN_SCOPE = 'https://www.googleapis.com/auth/spanner.admin';
 
     /**
-     * @var ConnectionInterface
+     * @var Connection\ConnectionInterface
      */
     protected $connection;
 

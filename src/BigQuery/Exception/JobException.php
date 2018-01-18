@@ -25,6 +25,11 @@ use Google\Cloud\BigQuery\Job;
 class JobException extends \RuntimeException
 {
     /**
+     * @var Job
+     */
+    private $job;
+
+    /**
      * @param string $message
      * @param Job $job
      */

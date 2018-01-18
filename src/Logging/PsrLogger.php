@@ -82,6 +82,11 @@ class PsrLogger implements LoggerInterface, \Serializable
     private $metadataProvider;
 
     /**
+     * @var string
+     */
+    private $logName;
+
+    /**
      * @param Logger $logger The logger used to write entries.
      * @param string $messageKey The key in the `jsonPayload` used to contain
      *        the logged message. **Defaults to** `message`.
