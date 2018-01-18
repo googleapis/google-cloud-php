@@ -31,6 +31,9 @@ namespace Google\Cloud\Debugger;
  */
 class MatchingFileIterator extends \FilterIterator
 {
+    /**
+     * @var string The file pattern to search for.
+     */
     private $file;
 
     /**
@@ -56,8 +59,8 @@ class MatchingFileIterator extends \FilterIterator
      * FilterIterator callback to determine whether or not the value should be
      * accepted.
      *
-     * @return boolean
      * @access private
+     * @return boolean
      */
     public function accept()
     {
