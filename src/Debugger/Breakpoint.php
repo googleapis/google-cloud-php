@@ -40,7 +40,7 @@ use Google\Cloud\Core\ArrayTrait;
  * @see https://cloud.google.com/debugger/api/reference/rest/v2/debugger.debuggees.breakpoints#Breakpoint Breakpoint model documentation
  * @codingStandardsIgnoreEnd
  */
-class Breakpoint implements \JsonSerializable
+class Breakpoint
 {
     use ArrayTrait;
 
@@ -267,6 +267,7 @@ class Breakpoint implements \JsonSerializable
             $data['evaluatedExpressions']
         );
 
+        $this->labels = $data['labels'];
         $this->variableTable = new VariableTable(
             array_map([Variable::class, 'fromJson'], $data['variableTable'])
         );
@@ -408,20 +409,46 @@ class Breakpoint implements \JsonSerializable
     }
 
     /**
-     * Callback to implement JsonSerializable interface
+     * Get the breakpoint data.
      *
-     * @access private
+     * Example:
+     * ```
+     * $info = $breakpoint->info();
+     * ```
+     *
      * @return array
      */
-    public function jsonSerialize()
+    public function info()
     {
-        $data = [];
-        foreach ($this as $key => $value) {
-            if ($value !== null && !empty($value)) {
-                $data[$key] = $value;
-            }
+        $info = [
+            'id' => $this->id,
+            'action' => $this->action,
+            'condition' => $this->condition,
+            'expressions' => $this->expressions,
+            'logMessageFormat' => $this->logMessageFormat,
+            'logLevel' => $this->logLevel,
+            'isFinalState' => $this->isFinalState,
+            'createTime' => $this->createTime,
+            'finalTime' => $this->finalTime,
+            'userEmail' => $this->userEmail,
+            'stackFrames' => array_map(function ($sf) {
+                return $sf->info();
+            }, $this->stackFrames),
+            'evaluatedExpressions' => array_map(function ($ee) {
+                return $ee->info();
+            }, $this->evaluatedExpressions),
+            'labels' => $this->labels
+        ];
+        if ($this->location) {
+            $info['location'] = $this->location->info();
         }
-        return $data;
+        if ($this->status) {
+            $info['status'] = $this->status->info();
+        }
+        if ($this->variableTable) {
+            $info['variableTable'] = $this->variableTable->info();
+        }
+        return $info;
     }
 
     /**

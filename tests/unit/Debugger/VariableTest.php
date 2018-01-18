@@ -25,7 +25,7 @@ use PHPUnit\Framework\TestCase;
  */
 class VariableTest extends TestCase
 {
-    use JsonTestTrait;
+    use SerializationTestTrait;
 
     public function testCreateBasicFromJson()
     {
@@ -36,7 +36,7 @@ class VariableTest extends TestCase
         ];
         $variable = Variable::fromJson($input);
 
-        $this->assertProducesEquivalentJson($input, $variable);
+        $this->assertEquivalentArrays($input, $variable->info());
     }
 
     public function testCreateReferenceFromJson()
@@ -48,7 +48,7 @@ class VariableTest extends TestCase
         ];
         $variable = Variable::fromJson($input);
 
-        $this->assertProducesEquivalentJson($input, $variable);
+        $this->assertEquivalentArrays($input, $variable->info());
     }
 
     public function testCreatesMembersFromJson()
@@ -72,6 +72,6 @@ class VariableTest extends TestCase
         ];
         $variable = Variable::fromJson($input);
 
-        $this->assertProducesEquivalentJson($input, $variable);
+        $this->assertEquivalentArrays($input, $variable->info());
     }
 }

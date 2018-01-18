@@ -32,7 +32,7 @@ use Google\Cloud\Debugger\Connection\ConnectionInterface;
  *
  * @see https://cloud.google.com/debugger/api/reference/rest/v2/Debuggee Debuggee API Documentation
  */
-class Debuggee implements \JsonSerializable
+class Debuggee
 {
     /**
      * @var ConnectionInterface $connection Represents a connection to Debugger
@@ -78,7 +78,7 @@ class Debuggee implements \JsonSerializable
     private $agentVersion;
 
     /**
-     * @var ExtendedSourceContext[] References to the locations and revisions of
+     * @var array References to the locations and revisions of
      *      the source code used in the deployed application. Contexts
      *      describing a remote repo related to the source code have a category
      *      label of remote_repo. Source snapshot source contexts have a
@@ -129,7 +129,7 @@ class Debuggee implements \JsonSerializable
      *            user about this debuggee. Absence of this field indicates no
      *            status. The message can be either informational or an error
      *            status.
-     *      @type ExtendedSourceContext[] $extSourceContexts References to the locations and
+     *      @type array $extSourceContexts References to the locations and
      *            revisions of the source code used in the deployed application.
      * }
      */
@@ -138,7 +138,7 @@ class Debuggee implements \JsonSerializable
         $this->connection = $connection;
 
         $info += [
-            'id' => null,
+            'id' => '',
             'isInactive' => false,
             'agentVersion' => DebuggerClient::DEFAULT_AGENT_VERSION,
             'status' => null,
@@ -173,6 +173,21 @@ class Debuggee implements \JsonSerializable
     }
 
     /**
+     * Return the debuggee description.
+     *
+     * Example:
+     * ```
+     * echo $debuggee->description();
+     * ```
+     *
+     * @return string
+     */
+    public function description()
+    {
+        return $this->description;
+    }
+
+    /**
      * Register this debuggee with the Stackdriver backend.
      *
      * Example:
@@ -190,7 +205,7 @@ class Debuggee implements \JsonSerializable
      */
     public function register(array $options = [])
     {
-        $resp = $this->connection->registerDebuggee(['debuggee' => $this] + $options);
+        $resp = $this->connection->registerDebuggee(['debuggee' => $this->info()] + $options);
         if (array_key_exists('debuggee', $resp)) {
             $this->id = $resp['debuggee']['id'];
             return true;
@@ -286,7 +301,7 @@ class Debuggee implements \JsonSerializable
         return $this->connection->updateBreakpoint([
             'debuggeeId' => $this->id,
             'id' => $breakpoint->id(),
-            'breakpoint' => $breakpoint
+            'breakpoint' => $breakpoint->info()
         ]);
     }
 
@@ -312,25 +327,32 @@ class Debuggee implements \JsonSerializable
     }
 
     /**
-     * Returns a JSON serializable array representation of the debuggee.
+     * Return the debuggee data.
      *
-     * @access private
+     * Example:
+     * ```
+     * $info = $debuggee->info();
+     * ```
+     *
      * @return array
      */
-    public function jsonSerialize()
+    public function info()
     {
-        return [
+        $info = [
             'id' => $this->id,
             'project' => $this->project,
             'uniquifier' => $this->uniquifier,
             'description' => $this->description,
             'isInactive' => $this->isInactive,
             'agentVersion' => $this->agentVersion,
-            'status' => $this->status,
             'sourceContexts' => array_map(function ($esc) {
-                return is_array($esc) ? $esc['context'] : $esc->context();
+                return $esc['context'];
             }, $this->extSourceContexts),
             'extSourceContexts' => $this->extSourceContexts
         ];
+        if ($this->status) {
+            $info['status'] = $this->status;
+        }
+        return $info;
     }
 }

@@ -15,20 +15,19 @@
  * limitations under the License.
  */
 
-namespace Google\Cloud\Tests\Snippets\Debugger;
+namespace Google\Cloud\Tests\Unit\Debugger;
 
-use Google\Cloud\Dev\Snippet\SnippetTestCase;
-use Google\Cloud\Debugger\ProjectRepoId;
-
-/**
- * @group debugger
- */
-class ProjectRepoIdTest extends SnippetTestCase
+trait SerializationTestTrait
 {
-    public function testClass()
+    private function assertEquivalentArrays($array1, $info)
     {
-        $snippet = $this->snippetFromClass(ProjectRepoId::class);
-        $res = $snippet->invoke('repoId');
-        $this->assertInstanceOf(ProjectRepoId::class, $res->returnVal());
+        foreach ($array1 as $key => $value) {
+            $this->assertArrayHasKey($key, $info);
+            if (is_array($value)) {
+                $this->assertEquivalentArrays($value, $info[$key]);
+            } else {
+                $this->assertEquals($value, $info[$key]);
+            }
+        }
     }
 }

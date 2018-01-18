@@ -31,7 +31,7 @@ namespace Google\Cloud\Debugger;
  * @see https://cloud.google.com/debugger/api/reference/rest/v2/debugger.debuggees.breakpoints#sourcelocation SourceLocation model documentation
  * @codingStandardsIgnoreEnd
  */
-class SourceLocation implements \JsonSerializable
+class SourceLocation
 {
     /**
      * @var string Path to the source file within the source context of the
@@ -120,12 +120,11 @@ class SourceLocation implements \JsonSerializable
     }
 
     /**
-     * Callback to implement JsonSerializable interface
+     * Return SourceLocation data.
      *
-     * @access private
      * @return array
      */
-    public function jsonSerialize()
+    public function info()
     {
         return [
             'path' => $this->path,

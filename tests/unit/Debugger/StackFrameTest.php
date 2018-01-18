@@ -27,7 +27,7 @@ use PHPUnit\Framework\TestCase;
  */
 class StackFrameTest extends TestCase
 {
-    use JsonTestTrait;
+    use SerializationTestTrait;
 
     public function testSerializes()
     {
@@ -41,7 +41,7 @@ class StackFrameTest extends TestCase
             'arguments' => [],
             'locals' => []
         ];
-        $this->assertProducesEquivalentJson($expected, $stackFrame);
+        $this->assertEquivalentArrays($expected, $stackFrame->info());
     }
 
     public function testAddLocal()
@@ -59,6 +59,6 @@ class StackFrameTest extends TestCase
                 ['name' => 'foo', 'type' => 'string', 'value' => 'bar']
             ]
         ];
-        $this->assertProducesEquivalentJson($expected, $stackFrame);
+        $this->assertEquivalentArrays($expected, $stackFrame->info());
     }
 }
