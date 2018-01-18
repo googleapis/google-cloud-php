@@ -567,6 +567,25 @@ class Breakpoint implements \JsonSerializable
             $this->validateExpressions();
     }
 
+    /**
+     * Attempts to resolve the real (full) path to the specified source
+     * location. Returns true if a location was resolved.
+     *
+     * Example:
+     * ```
+     * $found = $breakpoint->resolveLocation();
+     * ```
+     *
+     * @return bool
+     */
+    public function resolveLocation()
+    {
+        $resolver = new SourceLocationResolver();
+        $this->resolvedLocation = $resolver->resolve($this->location);
+
+        return $this->resolvedLocation !== null;
+    }
+
     private function setError($type, $message, array $parameters = [])
     {
         $this->status = new StatusMessage(
@@ -734,13 +753,5 @@ class Breakpoint implements \JsonSerializable
         }
 
         return true;
-    }
-
-    private function resolveLocation()
-    {
-        $resolver = new SourceLocationResolver();
-        $this->resolvedLocation = $resolver->resolve($this->location);
-
-        return $this->resolvedLocation !== null;
     }
 }
