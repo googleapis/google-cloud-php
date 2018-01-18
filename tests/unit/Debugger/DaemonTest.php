@@ -113,7 +113,6 @@ class DaemonTest extends TestCase
             ->willReturn($resp);
         $this->client->debuggee(null, Argument::withEntry('extSourceContexts', [$context]))
             ->willReturn($this->debuggee->reveal())->shouldBeCalled();
-        }))->willReturn($this->debuggee->reveal())->shouldBeCalled();
 
         $daemon = new Daemon([
             'storage' => $this->storage->reveal(),
