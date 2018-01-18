@@ -187,7 +187,7 @@ class Daemon
 
     private function defaultSourceContext()
     {
-        $sourceContextFile = implode(DIRECTOR_SEPARATOR, [$this->sourceRoot, 'source-context.json']);
+        $sourceContextFile = implode(DIRECTORY_SEPARATOR, [$this->sourceRoot, 'source-context.json']);
         if (file_exists($sourceContextFile)) {
             return json_decode(file_get_contents($sourceContextFile), true);
         }
