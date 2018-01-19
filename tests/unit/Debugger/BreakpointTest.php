@@ -176,7 +176,7 @@ class BreakpointTest extends TestCase
 
     public function testResolvedLocationNotIncludedInJson()
     {
-        $path = 'src/Debugger/DebuggerClient.php';
+        $path = 'Debugger/DebuggerClient.php';
         $breakpoint = new Breakpoint([
             'location' => [
                 'path' => $path,

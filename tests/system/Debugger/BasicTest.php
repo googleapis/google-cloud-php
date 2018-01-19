@@ -75,8 +75,8 @@ class BasicTest extends TestCase
         $client = new GapicClient();
         $breakpoint = new GapicBreakpoint();
         $location = new SourceLocation();
-        $location->setPath('web/app.php');
-        $location->setLine(10);
+        $location->setPath('tests/system/Debugger/BasicTest.php');
+        $location->setLine(__LINE__);
         $breakpoint->setLocation($location);
         $resp = $client->setBreakpoint($debuggee->id(), $breakpoint, 'google.com/php/v0.1');
         $bp = $resp->getBreakpoint();
@@ -92,8 +92,9 @@ class BasicTest extends TestCase
 
         // fulfill a breakpoint
         $breakpoint = $breakpoints[0];
+        $this->assertTrue($breakpoint->resolveLocation());
         $breakpoint->finalize();
-        $debuggee->updateBreakpoint($breakpoint);
+        $this->assertTrue($debuggee->updateBreakpoint($breakpoint));
     }
 
     public function getClient($transport)

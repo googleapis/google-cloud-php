@@ -434,6 +434,8 @@ class Breakpoint implements \JsonSerializable
     {
         $data = [];
         foreach ($this as $key => $value) {
+            if ($key == 'resolvedLocation') continue;
+
             if ($value !== null && !empty($value)) {
                 $data[$key] = $value;
             }

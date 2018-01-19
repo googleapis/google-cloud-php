@@ -80,7 +80,7 @@ class SourceLocationResolver
             foreach ($includePaths as $path) {
                 $file = implode(DIRECTORY_SEPARATOR, [$path, $prefix, $basename]);
                 if (file_exists($file)) {
-                    return new SourceLocation(realpath($file), $location->line());
+                    return new SourceLocation($this->realRelativePath($file, $path), $location->line());
                 }
             }
         }
@@ -92,7 +92,7 @@ class SourceLocationResolver
                 $location->path()
             );
             foreach ($iterator as $file => $info) {
-                return new SourceLocation(realpath($file), $location->line());
+                return new SourceLocation($this->realRelativePath($file, $includePath), $location->line());
             }
         }
 
@@ -116,5 +116,10 @@ class SourceLocationResolver
             array_shift($directoryParts);
         }
         return $directories;
+    }
+
+    private function realRelativePath($fullPath, $path)
+    {
+        return str_replace(realpath($path) . DIRECTORY_SEPARATOR, '', realpath($fullPath));
     }
 }
