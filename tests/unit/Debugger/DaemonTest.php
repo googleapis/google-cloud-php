@@ -61,7 +61,8 @@ class DaemonTest extends TestCase
             return preg_match('/[a-z0-9]{32}/', $options['uniquifier']);
         }))->willReturn($this->debuggee->reveal())->shouldBeCalled();
 
-        $daemon = new Daemon(__DIR__ . '/example', [
+        $root = implode(DIRECTORY_SEPARATOR, [__DIR__, 'data']);
+        $daemon = new Daemon($root, [
             'client' => $this->client->reveal(),
             'storage' => $this->storage->reveal()
         ]);
@@ -102,13 +103,34 @@ class DaemonTest extends TestCase
         ]);
     }
 
-    public function testDefaultSourceContext()
+    public function testEmptyDefaultSourceContext()
     {
         $this->debuggee->register(Argument::any())->shouldBeCalled();
         $this->client->debuggee(null, Argument::withEntry('extSourceContexts', []))
             ->willReturn($this->debuggee->reveal())->shouldBeCalled();
 
         $daemon = new Daemon('.', [
+            'client' => $this->client->reveal(),
+            'storage' => $this->storage->reveal()
+        ]);
+    }
+
+    public function testDefaultSourceContext()
+    {
+        $expectedSourceContext = [
+            'context' => [
+                'git' => [
+                    'revisionId' => '81b20d097da02ebb6c6fdfbf6900c67a90f2c54b',
+                    'url' => 'https://github.com/GoogleCloudPlatform/google-cloud-php.git'
+                ]
+            ]
+        ];
+        $this->debuggee->register(Argument::any())->shouldBeCalled();
+        $this->client->debuggee(null, Argument::withEntry('extSourceContexts', [$expectedSourceContext]))
+            ->willReturn($this->debuggee->reveal())->shouldBeCalled();
+
+        $root = implode(DIRECTORY_SEPARATOR, [__DIR__, 'data']);
+        $daemon = new Daemon($root, [
             'client' => $this->client->reveal(),
             'storage' => $this->storage->reveal()
         ]);

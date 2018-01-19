@@ -79,24 +79,30 @@ class Daemon
             ? $options['client']
             : new DebuggerClient();
 
+        $options += [
+            'sourceContext' => [],
+            'extSourceContext' => [],
+            'uniquifier' => null,
+            'description' => null
+        ];
+
         $this->sourceRoot = realpath($sourceRoot);
 
-        $extSourceContext = array_key_exists('extSourceContext', $options)
-            ? [$options['extSourceContext']]
-            : $this->defaultExtSourceContext();
+        $sourceContext = $options['sourceContext'] ?: $this->defaultSourceContext();
+        $extSourceContext = $options['extSourceContext'];
+        if (!$extSourceContext && $sourceContext) {
+            $extSourceContext = [
+                'context' => $sourceContext
+            ];
+        }
 
-        $uniquifier = array_key_exists('uniquifier', $options)
-            ? $options['uniquifier']
-            : $this->defaultUniquifier();
-
-        $description = array_key_exists('description', $options)
-            ? $options['description']
-            : $this->defaultDescription();
+        $uniquifier = $options['uniquifier'] ?: $this->defaultUniquifier();
+        $description = $options['description'] ?: $this->defaultDescription();
 
         $this->debuggee = $client->debuggee(null, [
             'uniquifier' => $uniquifier,
             'description' => $description,
-            'extSourceContexts' => $extSourceContext
+            'extSourceContexts' => $extSourceContext ? [$extSourceContext] : []
         ]);
 
         $this->debuggee->register();
@@ -179,13 +185,12 @@ class Daemon
         return gethostname() . ' - ' . getcwd();
     }
 
-    private function defaultExtSourceContext()
+    private function defaultSourceContext()
     {
-        $sourceContextFile = $this->sourceRoot . '/source-contexts.json';
+        $sourceContextFile = implode(DIRECTORY_SEPARATOR, [$this->sourceRoot, 'source-context.json']);
         if (file_exists($sourceContextFile)) {
             return json_decode(file_get_contents($sourceContextFile), true);
-        } else {
-            return [];
         }
+        return [];
     }
 }

@@ -67,6 +67,13 @@ class Breakpoint
     private $location;
 
     /**
+     * @var SourceLocation Resolved breakpoint location. The requested location
+     *      may not exactly match the path to the deployed source. This value
+     *      will be resolved by the Daemon to an existing file (if found).
+     */
+    private $resolvedLocation;
+
+    /**
      * @var string Condition that triggers the breakpoint. The condition is a
      *      compound boolean expression composed using expressions in a
      *      programming language at the source location
@@ -315,7 +322,7 @@ class Breakpoint
      */
     public function location()
     {
-        return $this->location;
+        return $this->resolvedLocation ?: $this->location;
     }
 
     /**
@@ -391,6 +398,16 @@ class Breakpoint
     public function stackFrames()
     {
         return $this->stackFrames;
+    }
+
+    /**
+     * Return the status for this breakpoint
+     *
+     * @return StatusMessage|null
+     */
+    public function status()
+    {
+        return $this->status;
     }
 
     /**
@@ -557,7 +574,10 @@ class Breakpoint
 
     /**
      * Validate that this breakpoint can be executed. If not valid, the status
-     * field will be populated with the corresponding error message.
+     * field will be populated with the corresponding error message. This
+     * validation does not guarantee that the breakpoint will be reachable.
+     * The primary use case is to reject clearly invalid breakpoints and return
+     * a message to the developer via the Debugger console.
      *
      * Example:
      * ```
@@ -568,46 +588,29 @@ class Breakpoint
      */
     public function validate()
     {
-        if (!extension_loaded('stackdriver_debugger')) {
-            $this->setError(
-                StatusMessage::REFERENCE_UNSPECIFIED,
-                'PHP extension not installed.'
-            );
-            return false;
-        }
+        return $this->ensureExtensionLoaded() &&
+            $this->validateSourceLocation() &&
+            $this->validateCondition() &&
+            $this->validateExpressions();
+    }
 
-        if ($this->condition()) {
-            // validate that the condition is ok for debugging
-            try {
-                if (!stackdriver_debugger_valid_statement($this->condition())) {
-                    $this->setError(
-                        StatusMessage::REFERENCE_BREAKPOINT_CONDITION,
-                        'Invalid breakpoint condition - Invalid operations: $0.',
-                        [$this->condition]
-                    );
-                    return false;
-                }
-            } catch (\ParseError $e) {
-                $this->setError(
-                    StatusMessage::REFERENCE_BREAKPOINT_CONDITION,
-                    'Invalid breakpoint condition - Parse error: $0.',
-                    [$this->condition]
-                );
-                return false;
-            }
-        }
+    /**
+     * Attempts to resolve the real (full) path to the specified source
+     * location. Returns true if a location was resolved.
+     *
+     * Example:
+     * ```
+     * $found = $breakpoint->resolveLocation();
+     * ```
+     *
+     * @return bool
+     */
+    public function resolveLocation()
+    {
+        $resolver = new SourceLocationResolver();
+        $this->resolvedLocation = $resolver->resolve($this->location);
 
-        foreach ($this->expressions as $expression) {
-            if (!stackdriver_debugger_valid_statement($expression)) {
-                $this->setError(
-                    StatusMessage::REFERENCE_BREAKPOINT_EXPRESSION,
-                    'Invalid breakpoint expression: $0',
-                    [$expression]
-                );
-                return false;
-            }
-        }
-        return true;
+        return $this->resolvedLocation !== null;
     }
 
     private function setError($type, $message, array $parameters = [])
@@ -623,5 +626,151 @@ class Breakpoint
     {
         $this->variableTable = $this->variableTable ?: new VariableTable();
         return $this->variableTable->register($name, $value);
+    }
+
+    private function ensureExtensionLoaded()
+    {
+        if (!extension_loaded('stackdriver_debugger')) {
+            $this->setError(
+                StatusMessage::REFERENCE_UNSPECIFIED,
+                'PHP extension not installed.'
+            );
+            return false;
+        }
+        return true;
+    }
+
+    /**
+     * Validate that the source location is a valid. This means that:
+     *
+     * - The file exists
+     * - The file is readable
+     * - The file looks like a php file (ends in .php)
+     * - The line has code on it (non-empty and does not look like a comment)
+     *
+     * This validation is not perfect as we are not compiling the file to
+     * actually do the validation. We may miss cases.
+     */
+    private function validateSourceLocation()
+    {
+        if (!$this->location) {
+            $this->setError(
+                StatusMessage::REFERENCE_BREAKPOINT_SOURCE_LOCATION,
+                'Invalid breakpoint location'
+            );
+            return false;
+        }
+
+        if (!$this->resolveLocation()) {
+            $this->setError(
+                StatusMessage::REFERENCE_BREAKPOINT_SOURCE_LOCATION,
+                'Could not find source location: $0',
+                [$this->location->path()]
+            );
+            return false;
+        }
+
+        $path = $this->resolvedLocation->path();
+        $lineNumber = $this->resolvedLocation->line();
+        $info = new \SplFileInfo($path);
+
+        // Ensure the file exists and is readable
+        if (!$info->isReadable()) {
+            $this->setError(
+                StatusMessage::REFERENCE_BREAKPOINT_SOURCE_LOCATION,
+                'Invalid breakpoint location - File not found or unreadable: $0.',
+                [$path]
+            );
+            return false;
+        }
+
+        // Ensure the file is a php file
+        if (strtolower($info->getExtension()) !== 'php') {
+            $this->setError(
+                StatusMessage::REFERENCE_BREAKPOINT_SOURCE_LOCATION,
+                'Invalid breakpoint location - Invalid file type: $0.',
+                [$info->getExtension()]
+            );
+            return false;
+        }
+
+        $file = $info->openFile('r');
+        $file->seek($lineNumber - 1);
+        $line = ltrim($file->current() ?: '');
+
+        // Ensure the line exists and is not empty
+        if ($line === '') {
+            $this->setError(
+                StatusMessage::REFERENCE_BREAKPOINT_SOURCE_LOCATION,
+                'Invalid breakpoint location - Invalid file line: $0.',
+                [$lineNumber]
+            );
+            return false;
+        }
+
+        // Check that the line is not a comment
+        if ($line[0] == '/' || ($line[0] == '*' && $this->inMultilineComment($file, $lineNumber - 1))) {
+            $this->setError(
+                StatusMessage::REFERENCE_BREAKPOINT_SOURCE_LOCATION,
+                'Invalid breakpoint location - Invalid file line: $0.',
+                [$lineNumber]
+            );
+            return false;
+        }
+
+        return true;
+    }
+
+    private function inMultilineComment($file, $lineNumber)
+    {
+        if ($lineNumber === 0) {
+            return false;
+        }
+        $file->seek($lineNumber - 1);
+        $line = ltrim($file->current() ?: '');
+
+        return substr($line, 0, 2) == '/*' ||
+            ($line[0] == '*' && $this->inMultilineComment($file, $lineNumber - 1));
+    }
+
+    private function validateCondition()
+    {
+        if (!$this->condition) {
+            return true;
+        }
+
+        try {
+            if (!@stackdriver_debugger_valid_statement($this->condition())) {
+                $this->setError(
+                    StatusMessage::REFERENCE_BREAKPOINT_CONDITION,
+                    'Invalid breakpoint condition - Invalid operations: $0.',
+                    [$this->condition]
+                );
+                return false;
+            }
+        } catch (\ParseError $e) {
+            $this->setError(
+                StatusMessage::REFERENCE_BREAKPOINT_CONDITION,
+                'Invalid breakpoint condition - Parse error: $0.',
+                [$this->condition]
+            );
+            return false;
+        }
+        return true;
+    }
+
+    private function validateExpressions()
+    {
+        foreach ($this->expressions as $expression) {
+            if (!@stackdriver_debugger_valid_statement($expression)) {
+                $this->setError(
+                    StatusMessage::REFERENCE_BREAKPOINT_EXPRESSION,
+                    'Invalid breakpoint expression: $0',
+                    [$expression]
+                );
+                return false;
+            }
+        }
+        return true;
     }
 }
