@@ -189,9 +189,9 @@ class BreakpointTest extends TestCase
 
         // resolved location should have changed the path
         $this->assertTrue(strlen($path) < strlen($breakpoint->location()->path()));
-        $json = json_decode(json_encode($breakpoint->jsonSerialize()), true);
+        $info = $breakpoint->info();
 
         // the serialized location should be unaffected
-        $this->assertEquals($path, $json['location']['path']);
+        $this->assertEquals($path, $info['location']['path']);
     }
 }
