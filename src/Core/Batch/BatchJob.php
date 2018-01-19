@@ -96,8 +96,6 @@ class BatchJob implements JobInterface
      */
     public function run()
     {
-        var_dump("run");
-        return false;
         $this->setupSignalHandlers();
 
         $sysvKey = $this->getSysvKey($this->id);

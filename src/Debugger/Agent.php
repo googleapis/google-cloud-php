@@ -86,7 +86,6 @@ class Agent
      */
     public function __construct(array $options = [])
     {
-
         $daemon = new Daemon([
             'sourceRoot' => $this->sourceRoot
         ]);
