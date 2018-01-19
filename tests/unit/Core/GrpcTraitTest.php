@@ -151,7 +151,8 @@ class GrpcTraitTest extends TestCase
             'credentialsLoader' => $fetcher,
             'enableCaching' => false,
             'libName' => 'gccl',
-            'libVersion' => $version
+            'libVersion' => $version,
+            'transport' => 'grpc',
         ];
 
         $this->assertEquals($expected, $this->implementation->call('getGaxConfig', [$version]));

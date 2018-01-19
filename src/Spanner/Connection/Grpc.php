@@ -461,19 +461,17 @@ class Grpc implements ConnectionInterface
     public function deleteSessionAsync(array $args)
     {
         $database = $this->pluck('database', $args);
-        $settings = new CallSettings($this->addResourcePrefixHeader($args, $database));
         $request = new DeleteSessionRequest();
         $request->setName($this->pluck('name', $args));
-        $transport = $this->spannerClient->getTransport();
-        $callable = $transport->getCallable($settings);
 
-        return $callable(
+        $transport = $this->spannerClient->getTransport();
+        return $transport->startUnaryCall(
             new Call(
                 'google.spanner.v1.Spanner/DeleteSession',
                 GPBEmpty::class,
                 $request
             ),
-            $settings
+            $this->addResourcePrefixHeader([], $database)
         );
     }
 

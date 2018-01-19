@@ -18,10 +18,9 @@
 namespace Google\Cloud\Tests\Unit\Spanner\Connection;
 
 use Google\ApiCore\Call;
-use Google\ApiCore\CallSettings;
 use Google\ApiCore\OperationResponse;
 use Google\ApiCore\Serializer;
-use Google\ApiCore\Transport\ApiTransportInterface;
+use Google\ApiCore\Transport\TransportInterface;
 use Google\Cloud\Core\GrpcRequestWrapper;
 use Google\Cloud\Core\GrpcTrait;
 use Google\Cloud\Spanner\Connection\Grpc;
@@ -56,7 +55,6 @@ class GrpcTest extends TestCase
 
     const PROJECT = 'projects/my-project';
 
-    private $requestWrapper;
     private $successMessage;
 
     public function setUp()
@@ -69,18 +67,18 @@ class GrpcTest extends TestCase
 
     public function testDeleteSessionAsync()
     {
-        $cb = function (Call $call, CallSettings $settings) {
-            return $this->prophesize(PromiseInterface::class)
-                ->reveal();
-        };
+        $promise = $this->prophesize(PromiseInterface::class)
+            ->reveal();
         $sessionName = 'session1';
         $databaseName = 'database1';
         $request = new DeleteSessionRequest();
         $request->setName($sessionName);
         $client = $this->prophesize(SpannerClient::class);
-        $transport = $this->prophesize(ApiTransportInterface::class);
-        $transport->getCallable(Argument::type(CallSettings::class))
-            ->willReturn($cb);
+        $transport = $this->prophesize(TransportInterface::class);
+        $transport->startUnaryCall(
+            Argument::type(Call::class),
+            Argument::type('array')
+        )->willReturn($promise);
         $client->getTransport()
             ->willReturn($transport->reveal());
         $grpc = new Grpc(['gapicSpannerClient' => $client->reveal()]);
