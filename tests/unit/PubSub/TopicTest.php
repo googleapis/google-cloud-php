@@ -149,9 +149,8 @@ class TopicTest extends TestCase
             if ($options['foo'] !== 'bar') return false;
 
             $message['data'] = base64_encode($message['data']);
-            if ($options['messages'] !== [$message]) return false;
 
-            return true;
+            return $options['messages'] === [$message];
         }))->willReturn($ids);
 
         $this->topic->setConnection($this->connection->reveal());
@@ -187,9 +186,8 @@ class TopicTest extends TestCase
 
             $messages[0]['data'] = base64_encode($messages[0]['data']);
             $messages[1]['data'] = base64_encode($messages[1]['data']);
-            if ($options['messages'] !== $messages) return false;
 
-            return true;
+            return $options['messages'] === $messages;
         }))->willReturn($ids);
 
         $this->topic->setConnection($this->connection->reveal());
