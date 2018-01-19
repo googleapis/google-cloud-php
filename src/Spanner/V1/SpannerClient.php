@@ -30,6 +30,7 @@
 
 namespace Google\Cloud\Spanner\V1;
 
+use Google\ApiCore\Transport\TransportInterface;
 use Google\Cloud\Spanner\V1\Gapic\SpannerGapicClient;
 
 /**
@@ -37,6 +38,15 @@ use Google\Cloud\Spanner\V1\Gapic\SpannerGapicClient;
  */
 class SpannerClient extends SpannerGapicClient
 {
-    // This class is intentionally empty, and is intended to hold manual
-    // additions to the generated {@see SpannerClientImpl} class.
+    /**
+     * Returns the underlying transport.
+     *
+     * @access private
+     * @return TransportInterface
+     * @experimental
+     */
+    public function getTransport()
+    {
+        return $this->transport;
+    }
 }
