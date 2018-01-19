@@ -149,14 +149,17 @@ class DaemonTest extends TestCase
             ]
         ];
         $this->debuggee->register(Argument::any())->shouldBeCalled();
+        $this->debuggee->breakpointsWithWaitToken()
+            ->willReturn(['breakpoints' => []]);
         $this->client->debuggee(null, Argument::withEntry('extSourceContexts', [$expectedSourceContext]))
             ->willReturn($this->debuggee->reveal())->shouldBeCalled();
 
         $root = implode(DIRECTORY_SEPARATOR, [__DIR__, 'data']);
-        $daemon = new Daemon($root, [
-            'client' => $this->client->reveal(),
+        $daemon = new Daemon([
+            'sourceRoot' => $root,
             'storage' => $this->storage->reveal()
         ]);
+        $daemon->run($this->client->reveal());
     }
 
     public function testFetchesBreakpoints()

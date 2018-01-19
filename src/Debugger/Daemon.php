@@ -50,6 +50,14 @@ class Daemon
      */
     private $storage;
 
+    private $clientOptions;
+
+    private $extSourceContext;
+
+    private $uniquifier;
+
+    private $description;
+
     /**
      * Creates a new Daemon instance.
      *
@@ -86,13 +94,13 @@ class Daemon
         $this->clientOptions = $options['clientOptions'];
         $this->sourceRoot = realpath($options['sourceRoot']);
         $sourceContext = $options['sourceContext'] ?: $this->defaultSourceContext();
-        $extSourceContext = $options['extSourceContext'];
-        if (!$extSourceContext && $sourceContext) {
-            $extSourceContext = [
+        $this->extSourceContext = $options['extSourceContext'];
+        if (!$this->extSourceContext && $sourceContext) {
+            $this->extSourceContext = [
                 'context' => $sourceContext
             ];
         }
-        $this->uniqifier = $options['uniquifier'];
+        $this->uniquifier = $options['uniquifier'];
         $this->description = $options['description'] ?: $this->defaultDescription();
         $this->storage = array_key_exists('storage', $options)
             ? $options['storage']
@@ -116,10 +124,11 @@ class Daemon
     public function run(DebuggerClient $client = null)
     {
         $client = $client ?: $this->defaultClient();
+        $extSourceContexts = $this->extSourceContext ? [$this->extSourceContext] : [];
         $debuggee = $client->debuggee(null, [
             'uniquifier' => $this->uniquifier ?: $this->defaultUniquifier(),
             'description' => $this->description,
-            'extSourceContexts' => $this->extSourceContext
+            'extSourceContexts' => $extSourceContexts
         ]);
         $debuggee->register();
 
