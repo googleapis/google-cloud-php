@@ -180,4 +180,19 @@ class BreakpointTest extends SnippetTestCase
 
         $res = $snippet->invoke('valid');
     }
+
+    public function testResolveLocation()
+    {
+        $breakpoint = new Breakpoint([
+            'location' => [
+                'path' => __FILE__,
+                'line' => 1
+            ]
+        ]);
+        $snippet = $this->snippetFromMethod(Breakpoint::class, 'resolveLocation');
+        $snippet->addLocal('breakpoint', $breakpoint);
+
+        $res = $snippet->invoke('found');
+        $this->assertTrue($res->returnVal());
+    }
 }

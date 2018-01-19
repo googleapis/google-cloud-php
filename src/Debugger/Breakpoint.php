@@ -67,6 +67,13 @@ class Breakpoint implements \JsonSerializable
     private $location;
 
     /**
+     * @var SourceLocation Resolved breakpoint location. The requested location
+     *      may not exactly match the path to the deployed source. This value
+     *      will be resolved by the Daemon to an existing file (if found).
+     */
+    private $resolvedLocation;
+
+    /**
      * @var string Condition that triggers the breakpoint. The condition is a
      *      compound boolean expression composed using expressions in a
      *      programming language at the source location
@@ -314,7 +321,7 @@ class Breakpoint implements \JsonSerializable
      */
     public function location()
     {
-        return $this->location;
+        return $this->resolvedLocation ?: $this->location;
     }
 
     /**
@@ -560,6 +567,25 @@ class Breakpoint implements \JsonSerializable
             $this->validateExpressions();
     }
 
+    /**
+     * Attempts to resolve the real (full) path to the specified source
+     * location. Returns true if a location was resolved.
+     *
+     * Example:
+     * ```
+     * $found = $breakpoint->resolveLocation();
+     * ```
+     *
+     * @return bool
+     */
+    public function resolveLocation()
+    {
+        $resolver = new SourceLocationResolver();
+        $this->resolvedLocation = $resolver->resolve($this->location);
+
+        return $this->resolvedLocation !== null;
+    }
+
     private function setError($type, $message, array $parameters = [])
     {
         $this->status = new StatusMessage(
@@ -608,7 +634,17 @@ class Breakpoint implements \JsonSerializable
             return false;
         }
 
-        $path = $this->location->path();
+        if (!$this->resolveLocation()) {
+            $this->setError(
+                StatusMessage::REFERENCE_BREAKPOINT_SOURCE_LOCATION,
+                'Could not find source location: $0',
+                [$this->location->path()]
+            );
+            return false;
+        }
+
+        $path = $this->resolvedLocation->path();
+        $lineNumber = $this->resolvedLocation->line();
         $info = new \SplFileInfo($path);
 
         // Ensure the file exists and is readable
@@ -632,7 +668,7 @@ class Breakpoint implements \JsonSerializable
         }
 
         $file = $info->openFile('r');
-        $file->seek($this->location->line() - 1);
+        $file->seek($lineNumber - 1);
         $line = ltrim($file->current() ?: '');
 
         // Ensure the line exists and is not empty
@@ -640,17 +676,17 @@ class Breakpoint implements \JsonSerializable
             $this->setError(
                 StatusMessage::REFERENCE_BREAKPOINT_SOURCE_LOCATION,
                 'Invalid breakpoint location - Invalid file line: $0.',
-                [$this->location->line()]
+                [$lineNumber]
             );
             return false;
         }
 
         // Check that the line is not a comment
-        if ($line[0] == '/' || ($line[0] == '*' && $this->inMultilineComment($file, $this->location->line() - 1))) {
+        if ($line[0] == '/' || ($line[0] == '*' && $this->inMultilineComment($file, $lineNumber - 1))) {
             $this->setError(
                 StatusMessage::REFERENCE_BREAKPOINT_SOURCE_LOCATION,
                 'Invalid breakpoint location - Invalid file line: $0.',
-                [$this->location->line()]
+                [$lineNumber]
             );
             return false;
         }
