@@ -50,12 +50,24 @@ class Daemon
      */
     private $storage;
 
+    /**
+     * @var array Configuration options for setting up the default DebuggerClient.
+     */
     private $clientOptions;
 
+    /**
+     * @var array Source context configuration.
+     */
     private $extSourceContext;
 
+    /**
+     * @var string The uniquifier for this daemon's debuggee.
+     */
     private $uniquifier;
 
+    /**
+     * @var string The description for this daemon's debuggee.
+     */
     private $description;
 
     /**
@@ -67,13 +79,16 @@ class Daemon
      *      @type string $sourceRoot The full path to the source root
      *      @type array $clientOptions The options to instantiate the default
      *            DebuggerClient.
-     *      @type array $extSourceContext The source code identifier. **Defaults
+     *      @type array $sourceContext The source code identifier. **Defaults
      *            to** values autodetected from the environment.
+     *      @type array $extSourceContext The source code identifier. **Defaults
+     *            to** the $sourceContext option.
      *      @type string $uniquifier A string when uniquely identifies this
      *            debuggee. **Defaults to** a value autodetected from the
      *            environment.
      *      @type string $description A display name for the debuggee in the
-     *            Stackdriver Debugger UI. **Defaults to** the uniquifier.
+     *            Stackdriver Debugger UI. **Defaults to** a value
+     *            autodetected from the environment.
      *      @type BreakpointStorageInterface $storage The breakpoint storage
      *            mechanism to use. **Defaults to** a new SysvBreakpointStorage
      *            instance.
