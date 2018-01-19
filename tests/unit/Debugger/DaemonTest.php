@@ -61,7 +61,8 @@ class DaemonTest extends TestCase
             return preg_match('/[a-z0-9]{32}/', $options['uniquifier']);
         }))->willReturn($this->debuggee->reveal())->shouldBeCalled();
 
-        $daemon = new Daemon(__DIR__ . '/example', [
+        $root = implode(DIRECTORY_SEPARATOR, [__DIR__, 'data']);
+        $daemon = new Daemon($root, [
             'client' => $this->client->reveal(),
             'storage' => $this->storage->reveal()
         ]);
@@ -128,7 +129,7 @@ class DaemonTest extends TestCase
         $this->client->debuggee(null, Argument::withEntry('extSourceContexts', [$expectedSourceContext]))
             ->willReturn($this->debuggee->reveal())->shouldBeCalled();
 
-        $root = implode(DIRECTORY_SEPARATOR, [__DIR__, 'example']);
+        $root = implode(DIRECTORY_SEPARATOR, [__DIR__, 'data']);
         $daemon = new Daemon($root, [
             'client' => $this->client->reveal(),
             'storage' => $this->storage->reveal()
