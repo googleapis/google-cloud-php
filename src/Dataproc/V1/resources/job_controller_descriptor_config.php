@@ -10,9 +10,9 @@ return [
                     'requestPageSizeGetMethod' => 'getPageSize',
                     'requestPageSizeSetMethod' => 'setPageSize',
                     'responsePageTokenGetMethod' => 'getNextPageToken',
-                    'resourcesGetMethod' => 'getJobs'
-                ]
+                    'resourcesGetMethod' => 'getJobs',
+                ],
             ],
-        ]
-    ]
+        ],
+    ],
 ];

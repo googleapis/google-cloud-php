@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2017 Google LLC
+ * Copyright 2018 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -21,9 +21,9 @@
  * https://github.com/google/googleapis/blob/master/google/cloud/dataproc/v1/jobs.proto
  * and updates to that file get reflected here through a refresh process.
  *
- * EXPERIMENTAL: this client library class has not yet been declared beta. This class may change
- * more frequently than those which have been declared beta or 1.0, including changes which break
- * backwards compatibility.
+ * EXPERIMENTAL: This client library class has not yet been declared GA (1.0). This means that
+ * even though we intend the surface to be stable, we may make backwards incompatible changes
+ * if necessary.
  *
  * @experimental
  */
@@ -31,20 +31,16 @@
 namespace Google\Cloud\Dataproc\V1\Gapic;
 
 use Google\ApiCore\ApiException;
+use Google\ApiCore\Call;
 use Google\ApiCore\GapicClientTrait;
-use Google\ApiCore\PathTemplate;
-use Google\ApiCore\RequestParamsHeaderDescriptor;
 use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
-use Google\ApiCore\ValidationException;
 use Google\Auth\CredentialsLoader;
 use Google\Cloud\Dataproc\V1\CancelJobRequest;
 use Google\Cloud\Dataproc\V1\DeleteJobRequest;
 use Google\Cloud\Dataproc\V1\GetJobRequest;
 use Google\Cloud\Dataproc\V1\Job;
-use Google\Cloud\Dataproc\V1\JobControllerGrpcClient;
 use Google\Cloud\Dataproc\V1\ListJobsRequest;
-use Google\Cloud\Dataproc\V1\ListJobsRequest_JobStateMatcher as JobStateMatcher;
 use Google\Cloud\Dataproc\V1\ListJobsResponse;
 use Google\Cloud\Dataproc\V1\SubmitJobRequest;
 use Google\Cloud\Dataproc\V1\UpdateJobRequest;
@@ -56,9 +52,9 @@ use Grpc\ChannelCredentials;
 /**
  * Service Description: The JobController provides methods to manage jobs.
  *
- * EXPERIMENTAL: this client library class has not yet been declared beta. This class may change
- * more frequently than those which have been declared beta or 1.0, including changes which break
- * backwards compatibility.
+ * EXPERIMENTAL: This client library class has not yet been declared GA (1.0). This means that
+ * even though we intend the surface to be stable, we may make backwards incompatible changes
+ * if necessary.
  *
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods. Sample code to get started:
@@ -91,7 +87,6 @@ class JobControllerGapicClient
      */
     const SERVICE_ADDRESS = 'dataproc.googleapis.com';
 
-
     /**
      * The default port of the service.
      */
@@ -107,9 +102,6 @@ class JobControllerGapicClient
      */
     const CODEGEN_VERSION = '0.0.5';
 
-
-
-
     private static function getClientDefaults()
     {
         return [
@@ -119,22 +111,18 @@ class JobControllerGapicClient
             'scopes' => [
                 'https://www.googleapis.com/auth/cloud-platform',
             ],
-            'clientConfigPath' => __DIR__ . '/../resources/job_controller_client_config.json',
-            'restClientConfigPath' => __DIR__ . '/../resources/job_controller_rest_client_config.php',
-            'descriptorsConfigPath' => __DIR__ . '/../resources/job_controller_descriptor_config.php',
-            'versionFile' => __DIR__ . '/../../VERSION'
+            'clientConfigPath' => __DIR__.'/../resources/job_controller_client_config.json',
+            'restClientConfigPath' => __DIR__.'/../resources/job_controller_rest_client_config.php',
+            'descriptorsConfigPath' => __DIR__.'/../resources/job_controller_descriptor_config.php',
+            'versionFile' => __DIR__.'/../../VERSION',
         ];
     }
-
-
-
-
 
     /**
      * Constructor.
      *
      * @param array $options {
-     *     Optional. Options for configuring the service API wrapper.
+     *                       Optional. Options for configuring the service API wrapper.
      *
      *     @type string $serviceAddress The domain name of the API remote host.
      *                                  Default 'dataproc.googleapis.com'.
@@ -205,12 +193,13 @@ class JobControllerGapicClient
      * }
      * ```
      *
-     * @param string $projectId Required. The ID of the Google Cloud Platform project that the job
-     * belongs to.
-     * @param string $region Required. The Cloud Dataproc region in which to handle the request.
-     * @param Job $job Required. The job resource.
-     * @param array $optionalArgs {
-     *     Optional.
+     * @param string $projectId    Required. The ID of the Google Cloud Platform project that the job
+     *                             belongs to.
+     * @param string $region       Required. The Cloud Dataproc region in which to handle the request.
+     * @param Job    $job          Required. The job resource.
+     * @param array  $optionalArgs {
+     *                             Optional.
+     *
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
@@ -254,12 +243,13 @@ class JobControllerGapicClient
      * }
      * ```
      *
-     * @param string $projectId Required. The ID of the Google Cloud Platform project that the job
-     * belongs to.
-     * @param string $region Required. The Cloud Dataproc region in which to handle the request.
-     * @param string $jobId Required. The job ID.
-     * @param array $optionalArgs {
-     *     Optional.
+     * @param string $projectId    Required. The ID of the Google Cloud Platform project that the job
+     *                             belongs to.
+     * @param string $region       Required. The Cloud Dataproc region in which to handle the request.
+     * @param string $jobId        Required. The job ID.
+     * @param array  $optionalArgs {
+     *                             Optional.
+     *
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
@@ -314,11 +304,12 @@ class JobControllerGapicClient
      * }
      * ```
      *
-     * @param string $projectId Required. The ID of the Google Cloud Platform project that the job
-     * belongs to.
-     * @param string $region Required. The Cloud Dataproc region in which to handle the request.
-     * @param array $optionalArgs {
-     *     Optional.
+     * @param string $projectId    Required. The ID of the Google Cloud Platform project that the job
+     *                             belongs to.
+     * @param string $region       Required. The Cloud Dataproc region in which to handle the request.
+     * @param array  $optionalArgs {
+     *                             Optional.
+     *
      *     @type int $pageSize
      *          The maximum number of resources contained in the underlying API
      *          response. The API may return fewer values in a page, even if
@@ -411,19 +402,20 @@ class JobControllerGapicClient
      * }
      * ```
      *
-     * @param string $projectId Required. The ID of the Google Cloud Platform project that the job
-     * belongs to.
-     * @param string $region Required. The Cloud Dataproc region in which to handle the request.
-     * @param string $jobId Required. The job ID.
-     * @param Job $job Required. The changes to the job.
-     * @param FieldMask $updateMask Required. Specifies the path, relative to <code>Job</code>, of
-     * the field to update. For example, to update the labels of a Job the
-     * <code>update_mask</code> parameter would be specified as
-     * <code>labels</code>, and the `PATCH` request body would specify the new
-     * value. <strong>Note:</strong> Currently, <code>labels</code> is the only
-     * field that can be updated.
-     * @param array $optionalArgs {
-     *     Optional.
+     * @param string    $projectId    Required. The ID of the Google Cloud Platform project that the job
+     *                                belongs to.
+     * @param string    $region       Required. The Cloud Dataproc region in which to handle the request.
+     * @param string    $jobId        Required. The job ID.
+     * @param Job       $job          Required. The changes to the job.
+     * @param FieldMask $updateMask   Required. Specifies the path, relative to <code>Job</code>, of
+     *                                the field to update. For example, to update the labels of a Job the
+     *                                <code>update_mask</code> parameter would be specified as
+     *                                <code>labels</code>, and the `PATCH` request body would specify the new
+     *                                value. <strong>Note:</strong> Currently, <code>labels</code> is the only
+     *                                field that can be updated.
+     * @param array     $optionalArgs {
+     *                                Optional.
+     *
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
@@ -472,12 +464,13 @@ class JobControllerGapicClient
      * }
      * ```
      *
-     * @param string $projectId Required. The ID of the Google Cloud Platform project that the job
-     * belongs to.
-     * @param string $region Required. The Cloud Dataproc region in which to handle the request.
-     * @param string $jobId Required. The job ID.
-     * @param array $optionalArgs {
-     *     Optional.
+     * @param string $projectId    Required. The ID of the Google Cloud Platform project that the job
+     *                             belongs to.
+     * @param string $region       Required. The Cloud Dataproc region in which to handle the request.
+     * @param string $jobId        Required. The job ID.
+     * @param array  $optionalArgs {
+     *                             Optional.
+     *
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
@@ -522,12 +515,13 @@ class JobControllerGapicClient
      * }
      * ```
      *
-     * @param string $projectId Required. The ID of the Google Cloud Platform project that the job
-     * belongs to.
-     * @param string $region Required. The Cloud Dataproc region in which to handle the request.
-     * @param string $jobId Required. The job ID.
-     * @param array $optionalArgs {
-     *     Optional.
+     * @param string $projectId    Required. The ID of the Google Cloud Platform project that the job
+     *                             belongs to.
+     * @param string $region       Required. The Cloud Dataproc region in which to handle the request.
+     * @param string $jobId        Required. The job ID.
+     * @param array  $optionalArgs {
+     *                             Optional.
+     *
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
@@ -552,5 +546,4 @@ class JobControllerGapicClient
             $request
         )->wait();
     }
-
 }

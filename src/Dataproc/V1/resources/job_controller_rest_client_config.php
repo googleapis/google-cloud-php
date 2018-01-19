@@ -18,7 +18,7 @@ return [
                             'getRegion',
                         ],
                     ],
-                ]
+                ],
             ],
             'GetJob' => [
                 'method' => 'get',
@@ -39,7 +39,7 @@ return [
                             'getJobId',
                         ],
                     ],
-                ]
+                ],
             ],
             'ListJobs' => [
                 'method' => 'get',
@@ -55,7 +55,7 @@ return [
                             'getRegion',
                         ],
                     ],
-                ]
+                ],
             ],
             'UpdateJob' => [
                 'method' => 'patch',
@@ -77,7 +77,7 @@ return [
                             'getJobId',
                         ],
                     ],
-                ]
+                ],
             ],
             'CancelJob' => [
                 'method' => 'post',
@@ -99,7 +99,7 @@ return [
                             'getJobId',
                         ],
                     ],
-                ]
+                ],
             ],
             'DeleteJob' => [
                 'method' => 'delete',
@@ -120,7 +120,7 @@ return [
                             'getJobId',
                         ],
                     ],
-                ]
+                ],
             ],
         ],
         'google.longrunning.Operations' => [
@@ -133,7 +133,7 @@ return [
                             'getName',
                         ],
                     ],
-                ]
+                ],
             ],
             'GetOperation' => [
                 'method' => 'get',
@@ -144,7 +144,7 @@ return [
                             'getName',
                         ],
                     ],
-                ]
+                ],
             ],
             'DeleteOperation' => [
                 'method' => 'delete',
@@ -155,7 +155,7 @@ return [
                             'getName',
                         ],
                     ],
-                ]
+                ],
             ],
             'CancelOperation' => [
                 'method' => 'post',
@@ -166,8 +166,8 @@ return [
                             'getName',
                         ],
                     ],
-                ]
+                ],
             ],
         ],
-    ]
+    ],
 ];

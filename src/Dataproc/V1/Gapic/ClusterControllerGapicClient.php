@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2017 Google LLC
+ * Copyright 2018 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -21,9 +21,9 @@
  * https://github.com/google/googleapis/blob/master/google/cloud/dataproc/v1/clusters.proto
  * and updates to that file get reflected here through a refresh process.
  *
- * EXPERIMENTAL: this client library class has not yet been declared beta. This class may change
- * more frequently than those which have been declared beta or 1.0, including changes which break
- * backwards compatibility.
+ * EXPERIMENTAL: This client library class has not yet been declared GA (1.0). This means that
+ * even though we intend the surface to be stable, we may make backwards incompatible changes
+ * if necessary.
  *
  * @experimental
  */
@@ -31,29 +31,23 @@
 namespace Google\Cloud\Dataproc\V1\Gapic;
 
 use Google\ApiCore\ApiException;
+use Google\ApiCore\Call;
 use Google\ApiCore\GapicClientTrait;
 use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\OperationResponse;
-use Google\ApiCore\PathTemplate;
-use Google\ApiCore\RequestParamsHeaderDescriptor;
 use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
-use Google\ApiCore\ValidationException;
 use Google\Auth\CredentialsLoader;
 use Google\Cloud\Dataproc\V1\Cluster;
-use Google\Cloud\Dataproc\V1\ClusterControllerGrpcClient;
-use Google\Cloud\Dataproc\V1\ClusterOperationMetadata;
 use Google\Cloud\Dataproc\V1\CreateClusterRequest;
 use Google\Cloud\Dataproc\V1\DeleteClusterRequest;
 use Google\Cloud\Dataproc\V1\DiagnoseClusterRequest;
-use Google\Cloud\Dataproc\V1\DiagnoseClusterResults;
 use Google\Cloud\Dataproc\V1\GetClusterRequest;
 use Google\Cloud\Dataproc\V1\ListClustersRequest;
 use Google\Cloud\Dataproc\V1\ListClustersResponse;
 use Google\Cloud\Dataproc\V1\UpdateClusterRequest;
 use Google\LongRunning\Operation;
 use Google\Protobuf\FieldMask;
-use Google\Protobuf\GPBEmpty;
 use Grpc\Channel;
 use Grpc\ChannelCredentials;
 
@@ -61,9 +55,9 @@ use Grpc\ChannelCredentials;
  * Service Description: The ClusterControllerService provides methods to manage clusters
  * of Google Compute Engine instances.
  *
- * EXPERIMENTAL: this client library class has not yet been declared beta. This class may change
- * more frequently than those which have been declared beta or 1.0, including changes which break
- * backwards compatibility.
+ * EXPERIMENTAL: This client library class has not yet been declared GA (1.0). This means that
+ * even though we intend the surface to be stable, we may make backwards incompatible changes
+ * if necessary.
  *
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods. Sample code to get started:
@@ -121,7 +115,6 @@ class ClusterControllerGapicClient
      */
     const SERVICE_ADDRESS = 'dataproc.googleapis.com';
 
-
     /**
      * The default port of the service.
      */
@@ -137,9 +130,8 @@ class ClusterControllerGapicClient
      */
     const CODEGEN_VERSION = '0.0.5';
 
-
-
     private $operationsClient;
+
     private static function getClientDefaults()
     {
         return [
@@ -149,14 +141,12 @@ class ClusterControllerGapicClient
             'scopes' => [
                 'https://www.googleapis.com/auth/cloud-platform',
             ],
-            'clientConfigPath' => __DIR__ . '/../resources/cluster_controller_client_config.json',
-            'restClientConfigPath' => __DIR__ . '/../resources/cluster_controller_rest_client_config.php',
-            'descriptorsConfigPath' => __DIR__ . '/../resources/cluster_controller_descriptor_config.php',
-            'versionFile' => __DIR__ . '/../../VERSION'
+            'clientConfigPath' => __DIR__.'/../resources/cluster_controller_client_config.json',
+            'restClientConfigPath' => __DIR__.'/../resources/cluster_controller_rest_client_config.php',
+            'descriptorsConfigPath' => __DIR__.'/../resources/cluster_controller_descriptor_config.php',
+            'versionFile' => __DIR__.'/../../VERSION',
         ];
     }
-
-
 
     /**
      * Return an OperationsClient object with the same endpoint as $this.
@@ -177,7 +167,8 @@ class ClusterControllerGapicClient
      * final response.
      *
      * @param string $operationName The name of the long running operation
-     * @param string $methodName The name of the method used to start the operation
+     * @param string $methodName    The name of the method used to start the operation
+     *
      * @return OperationResponse
      * @experimental
      */
@@ -188,6 +179,7 @@ class ClusterControllerGapicClient
             : [];
         $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
         $operation->reload();
+
         return $operation;
     }
 
@@ -195,7 +187,7 @@ class ClusterControllerGapicClient
      * Constructor.
      *
      * @param array $options {
-     *     Optional. Options for configuring the service API wrapper.
+     *                       Optional. Options for configuring the service API wrapper.
      *
      *     @type string $serviceAddress The domain name of the API remote host.
      *                                  Default 'dataproc.googleapis.com'.
@@ -252,10 +244,10 @@ class ClusterControllerGapicClient
         $this->pluckArray([
             'serviceName',
             'clientConfigPath',
-            'restClientConfigPath',
-            'descriptorsConfigPath'
+            'descriptorsConfigPath',
         ], $options);
-        $this->operationsClient = new OperationsClient($options);
+        $this->operationsClient = $this->pluck('operationsClient', $options, false)
+            ?: new OperationsClient($options);
     }
 
     /**
@@ -299,12 +291,13 @@ class ClusterControllerGapicClient
      * }
      * ```
      *
-     * @param string $projectId Required. The ID of the Google Cloud Platform project that the cluster
-     * belongs to.
-     * @param string $region Required. The Cloud Dataproc region in which to handle the request.
-     * @param Cluster $cluster Required. The cluster to create.
-     * @param array $optionalArgs {
-     *     Optional.
+     * @param string  $projectId    Required. The ID of the Google Cloud Platform project that the cluster
+     *                              belongs to.
+     * @param string  $region       Required. The Cloud Dataproc region in which to handle the request.
+     * @param Cluster $cluster      Required. The cluster to create.
+     * @param array   $optionalArgs {
+     *                              Optional.
+     *
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
@@ -375,16 +368,16 @@ class ClusterControllerGapicClient
      * }
      * ```
      *
-     * @param string $projectId Required. The ID of the Google Cloud Platform project the
-     * cluster belongs to.
-     * @param string $region Required. The Cloud Dataproc region in which to handle the request.
-     * @param string $clusterName Required. The cluster name.
-     * @param Cluster $cluster Required. The changes to the cluster.
-     * @param FieldMask $updateMask Required. Specifies the path, relative to `Cluster`, of
-     * the field to update. For example, to change the number of workers
-     * in a cluster to 5, the `update_mask` parameter would be
-     * specified as `config.worker_config.num_instances`,
-     * and the `PATCH` request body would specify the new value, as follows:
+     * @param string    $projectId   Required. The ID of the Google Cloud Platform project the
+     *                               cluster belongs to.
+     * @param string    $region      Required. The Cloud Dataproc region in which to handle the request.
+     * @param string    $clusterName Required. The cluster name.
+     * @param Cluster   $cluster     Required. The changes to the cluster.
+     * @param FieldMask $updateMask  Required. Specifies the path, relative to `Cluster`, of
+     *                               the field to update. For example, to change the number of workers
+     *                               in a cluster to 5, the `update_mask` parameter would be
+     *                               specified as `config.worker_config.num_instances`,
+     *                               and the `PATCH` request body would specify the new value, as follows:
      *
      *     {
      *       "config":{
@@ -428,7 +421,8 @@ class ClusterControllerGapicClient
      *  </tbody>
      *  </table>
      * @param array $optionalArgs {
-     *     Optional.
+     *                            Optional.
+     *
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
@@ -497,12 +491,13 @@ class ClusterControllerGapicClient
      * }
      * ```
      *
-     * @param string $projectId Required. The ID of the Google Cloud Platform project that the cluster
-     * belongs to.
-     * @param string $region Required. The Cloud Dataproc region in which to handle the request.
-     * @param string $clusterName Required. The cluster name.
-     * @param array $optionalArgs {
-     *     Optional.
+     * @param string $projectId    Required. The ID of the Google Cloud Platform project that the cluster
+     *                             belongs to.
+     * @param string $region       Required. The Cloud Dataproc region in which to handle the request.
+     * @param string $clusterName  Required. The cluster name.
+     * @param array  $optionalArgs {
+     *                             Optional.
+     *
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
@@ -546,12 +541,13 @@ class ClusterControllerGapicClient
      * }
      * ```
      *
-     * @param string $projectId Required. The ID of the Google Cloud Platform project that the cluster
-     * belongs to.
-     * @param string $region Required. The Cloud Dataproc region in which to handle the request.
-     * @param string $clusterName Required. The cluster name.
-     * @param array $optionalArgs {
-     *     Optional.
+     * @param string $projectId    Required. The ID of the Google Cloud Platform project that the cluster
+     *                             belongs to.
+     * @param string $region       Required. The Cloud Dataproc region in which to handle the request.
+     * @param string $clusterName  Required. The cluster name.
+     * @param array  $optionalArgs {
+     *                             Optional.
+     *
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
@@ -606,11 +602,12 @@ class ClusterControllerGapicClient
      * }
      * ```
      *
-     * @param string $projectId Required. The ID of the Google Cloud Platform project that the cluster
-     * belongs to.
-     * @param string $region Required. The Cloud Dataproc region in which to handle the request.
-     * @param array $optionalArgs {
-     *     Optional.
+     * @param string $projectId    Required. The ID of the Google Cloud Platform project that the cluster
+     *                             belongs to.
+     * @param string $region       Required. The Cloud Dataproc region in which to handle the request.
+     * @param array  $optionalArgs {
+     *                             Optional.
+     *
      *     @type string $filter
      *          Optional. A filter constraining the clusters to list. Filters are
      *          case-sensitive and have the following syntax:
@@ -716,12 +713,13 @@ class ClusterControllerGapicClient
      * }
      * ```
      *
-     * @param string $projectId Required. The ID of the Google Cloud Platform project that the cluster
-     * belongs to.
-     * @param string $region Required. The Cloud Dataproc region in which to handle the request.
-     * @param string $clusterName Required. The cluster name.
-     * @param array $optionalArgs {
-     *     Optional.
+     * @param string $projectId    Required. The ID of the Google Cloud Platform project that the cluster
+     *                             belongs to.
+     * @param string $region       Required. The Cloud Dataproc region in which to handle the request.
+     * @param string $clusterName  Required. The cluster name.
+     * @param array  $optionalArgs {
+     *                             Optional.
+     *
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
@@ -748,5 +746,4 @@ class ClusterControllerGapicClient
             $this->getOperationsClient()
         )->wait();
     }
-
 }

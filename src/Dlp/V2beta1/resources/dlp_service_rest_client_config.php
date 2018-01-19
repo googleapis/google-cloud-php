@@ -6,47 +6,72 @@ return [
             'ListOperations' => [
                 'method' => 'get',
                 'uriTemplate' => '/v2beta1/{name=inspect/operations}',
+                'additionalBindings' => [
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v2beta1/{name=riskAnalysis/operations}',
+                    ],
+                ]
                 'placeholders' => [
                     'name' => [
                         'getters' => [
                             'getName',
                         ],
                     ],
-                ],
+                ]
             ],
             'GetOperation' => [
                 'method' => 'get',
                 'uriTemplate' => '/v2beta1/{name=inspect/operations/*}',
+                'additionalBindings' => [
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v2beta1/{name=riskAnalysis/operations/*}',
+                    ],
+                ]
                 'placeholders' => [
                     'name' => [
                         'getters' => [
                             'getName',
                         ],
                     ],
-                ],
+                ]
             ],
             'DeleteOperation' => [
                 'method' => 'delete',
                 'uriTemplate' => '/v2beta1/{name=inspect/operations/*}',
+                'additionalBindings' => [
+                    [
+                        'method' => 'delete',
+                        'uriTemplate' => '/v2beta1/{name=riskAnalysis/operations/*}',
+                    ],
+                ]
                 'placeholders' => [
                     'name' => [
                         'getters' => [
                             'getName',
                         ],
                     ],
-                ],
+                ]
             ],
             'CancelOperation' => [
                 'method' => 'post',
                 'uriTemplate' => '/v2beta1/{name=inspect/operations/*}:cancel',
                 'body' => '*',
+                'additionalBindings' => [
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v2beta1/{name=riskAnalysis/operations/*}:cancel',
+                        'body' => '*',
+                    ],
+                ]
                 'placeholders' => [
                     'name' => [
                         'getters' => [
                             'getName',
                         ],
                     ],
-                ],
+                ]
             ],
         ],
         'google.privacy.dlp.v2beta1.DlpService' => [
@@ -84,7 +109,7 @@ return [
                             'getName',
                         ],
                     ],
-                ],
+                ]
             ],
             'ListInfoTypes' => [
                 'method' => 'get',
@@ -95,12 +120,12 @@ return [
                             'getCategory',
                         ],
                     ],
-                ],
+                ]
             ],
             'ListRootCategories' => [
                 'method' => 'get',
                 'uriTemplate' => '/v2beta1/rootCategories',
             ],
         ],
-    ],
+    ]
 ];

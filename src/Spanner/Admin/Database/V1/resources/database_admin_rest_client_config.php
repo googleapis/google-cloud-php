@@ -6,46 +6,70 @@ return [
             'GetOperation' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{name=projects/*/instances/*/databases/*/operations/*}',
+                'additionalBindings' => [
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1/{name=projects/*/instances/*/operations/*}',
+                    ],
+                ]
                 'placeholders' => [
                     'name' => [
                         'getters' => [
                             'getName',
                         ],
                     ],
-                ],
+                ]
             ],
             'ListOperations' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{name=projects/*/instances/*/databases/*/operations}',
+                'additionalBindings' => [
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1/{name=projects/*/instances/*/operations}',
+                    ],
+                ]
                 'placeholders' => [
                     'name' => [
                         'getters' => [
                             'getName',
                         ],
                     ],
-                ],
+                ]
             ],
             'CancelOperation' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{name=projects/*/instances/*/databases/*/operations/*}:cancel',
+                'additionalBindings' => [
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{name=projects/*/instances/*/operations/*}:cancel',
+                    ],
+                ]
                 'placeholders' => [
                     'name' => [
                         'getters' => [
                             'getName',
                         ],
                     ],
-                ],
+                ]
             ],
             'DeleteOperation' => [
                 'method' => 'delete',
                 'uriTemplate' => '/v1/{name=projects/*/instances/*/databases/*/operations/*}',
+                'additionalBindings' => [
+                    [
+                        'method' => 'delete',
+                        'uriTemplate' => '/v1/{name=projects/*/instances/*/operations/*}',
+                    ],
+                ]
                 'placeholders' => [
                     'name' => [
                         'getters' => [
                             'getName',
                         ],
                     ],
-                ],
+                ]
             ],
         ],
         'google.spanner.admin.database.v1.DatabaseAdmin' => [
@@ -58,7 +82,7 @@ return [
                             'getParent',
                         ],
                     ],
-                ],
+                ]
             ],
             'CreateDatabase' => [
                 'method' => 'post',
@@ -70,7 +94,7 @@ return [
                             'getParent',
                         ],
                     ],
-                ],
+                ]
             ],
             'GetDatabase' => [
                 'method' => 'get',
@@ -81,7 +105,7 @@ return [
                             'getName',
                         ],
                     ],
-                ],
+                ]
             ],
             'UpdateDatabaseDdl' => [
                 'method' => 'patch',
@@ -93,7 +117,7 @@ return [
                             'getDatabase',
                         ],
                     ],
-                ],
+                ]
             ],
             'DropDatabase' => [
                 'method' => 'delete',
@@ -104,7 +128,7 @@ return [
                             'getDatabase',
                         ],
                     ],
-                ],
+                ]
             ],
             'GetDatabaseDdl' => [
                 'method' => 'get',
@@ -115,7 +139,7 @@ return [
                             'getDatabase',
                         ],
                     ],
-                ],
+                ]
             ],
             'SetIamPolicy' => [
                 'method' => 'post',
@@ -127,7 +151,7 @@ return [
                             'getResource',
                         ],
                     ],
-                ],
+                ]
             ],
             'GetIamPolicy' => [
                 'method' => 'post',
@@ -139,7 +163,7 @@ return [
                             'getResource',
                         ],
                     ],
-                ],
+                ]
             ],
             'TestIamPermissions' => [
                 'method' => 'post',
@@ -151,8 +175,8 @@ return [
                             'getResource',
                         ],
                     ],
-                ],
+                ]
             ],
         ],
-    ],
+    ]
 ];
