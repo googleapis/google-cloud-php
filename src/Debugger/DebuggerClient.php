@@ -141,7 +141,7 @@ class DebuggerClient
      */
     public function debuggees(array $extras = [])
     {
-        $res = $this->connection->listDebuggees(['projectId' => $this->projectId] + $extras);
+        $res = $this->connection->listDebuggees(['project' => $this->projectId] + $extras);
         if (is_array($res) && array_key_exists('debuggees', $res)) {
             return array_map(function ($info) {
                 return new Debuggee($this->connection, $info);
