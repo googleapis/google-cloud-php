@@ -1,12 +1,12 @@
 <?php
 /*
- * Copyright 2017, Google LLC All rights reserved.
+ * Copyright 2018 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
+ *     https://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -21,8 +21,8 @@
  * https://github.com/google/googleapis/blob/master/google/cloud/oslogin/v1beta/oslogin.proto
  * and updates to that file get reflected here through a refresh process.
  *
- * EXPERIMENTAL: this client library class has not yet been declared GA (1.0). This means that
- * even though we intent the surface to be stable, we may make backwards incompatible changes
+ * EXPERIMENTAL: This client library class has not yet been declared GA (1.0). This means that
+ * even though we intend the surface to be stable, we may make backwards incompatible changes
  * if necessary.
  *
  * @experimental
@@ -30,22 +30,27 @@
 
 namespace Google\Cloud\OsLogin\V1beta\Gapic;
 
-use Google\ApiCore\AgentHeaderDescriptor;
-use Google\ApiCore\ApiCallable;
-use Google\ApiCore\CallSettings;
-use Google\ApiCore\GrpcCredentialsHelper;
+use Google\ApiCore\ApiException;
+use Google\ApiCore\Call;
+use Google\ApiCore\GapicClientTrait;
 use Google\ApiCore\PathTemplate;
+use Google\ApiCore\RetrySettings;
+use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
+use Google\Auth\CredentialsLoader;
 use Google\Cloud\OsLogin\Common\SshPublicKey;
 use Google\Cloud\OsLogin\V1beta\DeletePosixAccountRequest;
 use Google\Cloud\OsLogin\V1beta\DeleteSshPublicKeyRequest;
 use Google\Cloud\OsLogin\V1beta\GetLoginProfileRequest;
 use Google\Cloud\OsLogin\V1beta\GetSshPublicKeyRequest;
 use Google\Cloud\OsLogin\V1beta\ImportSshPublicKeyRequest;
-use Google\Cloud\OsLogin\V1beta\OsLoginServiceGrpcClient;
+use Google\Cloud\OsLogin\V1beta\ImportSshPublicKeyResponse;
+use Google\Cloud\OsLogin\V1beta\LoginProfile;
 use Google\Cloud\OsLogin\V1beta\UpdateSshPublicKeyRequest;
-use Google\Cloud\Version;
 use Google\Protobuf\FieldMask;
+use Google\Protobuf\GPBEmpty;
+use Grpc\Channel;
+use Grpc\ChannelCredentials;
 
 /**
  * Service Description: Cloud OS Login API.
@@ -53,16 +58,16 @@ use Google\Protobuf\FieldMask;
  * The Cloud OS Login API allows you to manage users and their associated SSH
  * public keys for logging into virtual machines on Google Cloud Platform.
  *
- * EXPERIMENTAL: this client library class has not yet been declared GA (1.0). This means that
- * even though we intent the surface to be stable, we may make backwards incompatible changes
+ * EXPERIMENTAL: This client library class has not yet been declared GA (1.0). This means that
+ * even though we intend the surface to be stable, we may make backwards incompatible changes
  * if necessary.
  *
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods. Sample code to get started:
  *
  * ```
+ * $osLoginServiceClient = new OsLoginServiceClient();
  * try {
- *     $osLoginServiceClient = new OsLoginServiceClient();
  *     $formattedName = $osLoginServiceClient->projectName('[USER]', '[PROJECT]');
  *     $osLoginServiceClient->deletePosixAccount($formattedName);
  * } finally {
@@ -79,6 +84,13 @@ use Google\Protobuf\FieldMask;
  */
 class OsLoginServiceGapicClient
 {
+    use GapicClientTrait;
+
+    /**
+     * The name of the service.
+     */
+    const SERVICE_NAME = 'google.cloud.oslogin.v1beta.OsLoginService';
+
     /**
      * The default address of the service.
      */
@@ -103,18 +115,29 @@ class OsLoginServiceGapicClient
     private static $projectNameTemplate;
     private static $fingerprintNameTemplate;
     private static $pathTemplateMap;
-    private static $gapicVersion;
-    private static $gapicVersionLoaded = false;
 
-    protected $grpcCredentialsHelper;
-    protected $osLoginServiceStub;
-    private $scopes;
-    private $defaultCallSettings;
-    private $descriptors;
+    private static function getClientDefaults()
+    {
+        return [
+            'serviceName' => self::SERVICE_NAME,
+            'serviceAddress' => self::SERVICE_ADDRESS,
+            'port' => self::DEFAULT_SERVICE_PORT,
+            'scopes' => [
+                'https://www.googleapis.com/auth/cloud-platform',
+                'https://www.googleapis.com/auth/cloud-platform.read-only',
+                'https://www.googleapis.com/auth/compute',
+                'https://www.googleapis.com/auth/compute.readonly',
+            ],
+            'clientConfigPath' => __DIR__.'/../resources/os_login_service_client_config.json',
+            'restClientConfigPath' => __DIR__.'/../resources/os_login_service_rest_client_config.php',
+            'descriptorsConfigPath' => __DIR__.'/../resources/os_login_service_descriptor_config.php',
+            'versionFile' => __DIR__.'/../../VERSION',
+        ];
+    }
 
     private static function getUserNameTemplate()
     {
-        if (self::$userNameTemplate == null) {
+        if (null == self::$userNameTemplate) {
             self::$userNameTemplate = new PathTemplate('users/{user}');
         }
 
@@ -123,7 +146,7 @@ class OsLoginServiceGapicClient
 
     private static function getProjectNameTemplate()
     {
-        if (self::$projectNameTemplate == null) {
+        if (null == self::$projectNameTemplate) {
             self::$projectNameTemplate = new PathTemplate('users/{user}/projects/{project}');
         }
 
@@ -132,7 +155,7 @@ class OsLoginServiceGapicClient
 
     private static function getFingerprintNameTemplate()
     {
-        if (self::$fingerprintNameTemplate == null) {
+        if (null == self::$fingerprintNameTemplate) {
             self::$fingerprintNameTemplate = new PathTemplate('users/{user}/sshPublicKeys/{fingerprint}');
         }
 
@@ -141,7 +164,7 @@ class OsLoginServiceGapicClient
 
     private static function getPathTemplateMap()
     {
-        if (self::$pathTemplateMap == null) {
+        if (null == self::$pathTemplateMap) {
             self::$pathTemplateMap = [
                 'user' => self::getUserNameTemplate(),
                 'project' => self::getProjectNameTemplate(),
@@ -150,20 +173,6 @@ class OsLoginServiceGapicClient
         }
 
         return self::$pathTemplateMap;
-    }
-
-    private static function getGapicVersion()
-    {
-        if (!self::$gapicVersionLoaded) {
-            if (file_exists(__DIR__.'/../VERSION')) {
-                self::$gapicVersion = trim(file_get_contents(__DIR__.'/../VERSION'));
-            } elseif (class_exists(Version::class)) {
-                self::$gapicVersion = Version::VERSION;
-            }
-            self::$gapicVersionLoaded = true;
-        }
-
-        return self::$gapicVersion;
     }
 
     /**
@@ -270,20 +279,23 @@ class OsLoginServiceGapicClient
      *     @type string $serviceAddress The domain name of the API remote host.
      *                                  Default 'oslogin.googleapis.com'.
      *     @type mixed $port The port on which to connect to the remote host. Default 443.
-     *     @type \Grpc\Channel $channel
-     *           A `Channel` object to be used by gRPC. If not specified, a channel will be constructed.
-     *     @type \Grpc\ChannelCredentials $sslCreds
+     *     @type Channel $channel
+     *           A `Channel` object. If not specified, a channel will be constructed.
+     *           NOTE: This option is only valid when utilizing the gRPC transport.
+     *     @type ChannelCredentials $sslCreds
      *           A `ChannelCredentials` object for use with an SSL-enabled channel.
      *           Default: a credentials object returned from
-     *           \Grpc\ChannelCredentials::createSsl()
-     *           NOTE: if the $channel optional argument is specified, then this argument is unused.
+     *           \Grpc\ChannelCredentials::createSsl().
+     *           NOTE: This option is only valid when utilizing the gRPC transport. Also, if the $channel
+     *           optional argument is specified, then this argument is unused.
      *     @type bool $forceNewChannel
      *           If true, this forces gRPC to create a new channel instead of using a persistent channel.
      *           Defaults to false.
-     *           NOTE: if the $channel optional argument is specified, then this option is unused.
-     *     @type \Google\Auth\CredentialsLoader $credentialsLoader
+     *           NOTE: This option is only valid when utilizing the gRPC transport. Also, if the $channel
+     *           optional argument is specified, then this option is unused.
+     *     @type CredentialsLoader $credentialsLoader
      *           A CredentialsLoader object created using the Google\Auth library.
-     *     @type array $scopes A string array of scopes to use when acquiring credentials.
+     *     @type string[] $scopes A string array of scopes to use when acquiring credentials.
      *                          Defaults to the scopes for the Google Cloud OS Login API.
      *     @type string $clientConfigPath
      *           Path to a JSON file containing client method configuration, including retry settings.
@@ -299,69 +311,22 @@ class OsLoginServiceGapicClient
      *           for example usage. Passing a value of null is equivalent to a value of
      *           ['retriesEnabled' => false]. Retry settings provided in this setting override the
      *           settings in $clientConfigPath.
+     *     @type callable $authHttpHandler A handler used to deliver PSR-7 requests specifically
+     *           for authentication. Should match a signature of
+     *           `function (RequestInterface $request, array $options) : ResponseInterface`.
+     *     @type callable $httpHandler A handler used to deliver PSR-7 requests. Should match a
+     *           signature of `function (RequestInterface $request, array $options) : PromiseInterface`.
+     *           NOTE: This option is only valid when utilizing the REST transport.
+     *     @type string|TransportInterface $transport The transport used for executing network
+     *           requests. May be either the string `rest` or `grpc`. Additionally, it is possible
+     *           to pass in an already instantiated transport. Defaults to `grpc` if gRPC support is
+     *           detected on the system.
      * }
      * @experimental
      */
     public function __construct($options = [])
     {
-        $defaultOptions = [
-            'serviceAddress' => self::SERVICE_ADDRESS,
-            'port' => self::DEFAULT_SERVICE_PORT,
-            'scopes' => [
-                'https://www.googleapis.com/auth/cloud-platform',
-                'https://www.googleapis.com/auth/cloud-platform.read-only',
-                'https://www.googleapis.com/auth/compute',
-                'https://www.googleapis.com/auth/compute.readonly',
-            ],
-            'retryingOverride' => null,
-            'libName' => null,
-            'libVersion' => null,
-            'clientConfigPath' => __DIR__.'/../resources/os_login_service_client_config.json',
-        ];
-        $options = array_merge($defaultOptions, $options);
-
-        $gapicVersion = $options['libVersion'] ?: self::getGapicVersion();
-
-        $headerDescriptor = new AgentHeaderDescriptor([
-            'libName' => $options['libName'],
-            'libVersion' => $options['libVersion'],
-            'gapicVersion' => $gapicVersion,
-        ]);
-
-        $defaultDescriptors = ['headerDescriptor' => $headerDescriptor];
-        $this->descriptors = [
-            'deletePosixAccount' => $defaultDescriptors,
-            'deleteSshPublicKey' => $defaultDescriptors,
-            'getLoginProfile' => $defaultDescriptors,
-            'getSshPublicKey' => $defaultDescriptors,
-            'importSshPublicKey' => $defaultDescriptors,
-            'updateSshPublicKey' => $defaultDescriptors,
-        ];
-
-        $clientConfigJsonString = file_get_contents($options['clientConfigPath']);
-        $clientConfig = json_decode($clientConfigJsonString, true);
-        $this->defaultCallSettings =
-                CallSettings::load(
-                    'google.cloud.oslogin.v1beta.OsLoginService',
-                    $clientConfig,
-                    $options['retryingOverride']
-                );
-
-        $this->scopes = $options['scopes'];
-
-        $createStubOptions = [];
-        if (array_key_exists('sslCreds', $options)) {
-            $createStubOptions['sslCreds'] = $options['sslCreds'];
-        }
-        $this->grpcCredentialsHelper = new GrpcCredentialsHelper($options);
-
-        $createOsLoginServiceStubFunction = function ($hostname, $opts, $channel) {
-            return new OsLoginServiceGrpcClient($hostname, $opts, $channel);
-        };
-        if (array_key_exists('createOsLoginServiceStubFunction', $options)) {
-            $createOsLoginServiceStubFunction = $options['createOsLoginServiceStubFunction'];
-        }
-        $this->osLoginServiceStub = $this->grpcCredentialsHelper->createStub($createOsLoginServiceStubFunction);
+        $this->setClientOptions($options + self::getClientDefaults());
     }
 
     /**
@@ -369,8 +334,8 @@ class OsLoginServiceGapicClient
      *
      * Sample code:
      * ```
+     * $osLoginServiceClient = new OsLoginServiceClient();
      * try {
-     *     $osLoginServiceClient = new OsLoginServiceClient();
      *     $formattedName = $osLoginServiceClient->projectName('[USER]', '[PROJECT]');
      *     $osLoginServiceClient->deletePosixAccount($formattedName);
      * } finally {
@@ -384,14 +349,14 @@ class OsLoginServiceGapicClient
      * @param array  $optionalArgs {
      *                             Optional.
      *
-     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
+     *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
      *          {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
-     * @throws \Google\ApiCore\ApiException if the remote call fails
+     * @throws ApiException if the remote call fails
      * @experimental
      */
     public function deletePosixAccount($name, $optionalArgs = [])
@@ -399,24 +364,12 @@ class OsLoginServiceGapicClient
         $request = new DeletePosixAccountRequest();
         $request->setName($name);
 
-        $defaultCallSettings = $this->defaultCallSettings['deletePosixAccount'];
-        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
-            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
-                $optionalArgs['retrySettings']
-            );
-        }
-        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
-        $callable = ApiCallable::createApiCall(
-            $this->osLoginServiceStub,
+        return $this->startCall(
             'DeletePosixAccount',
-            $mergedSettings,
-            $this->descriptors['deletePosixAccount']
-        );
-
-        return $callable(
-            $request,
-            [],
-            ['call_credentials_callback' => $this->createCredentialsCallback()]);
+            GPBEmpty::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**
@@ -424,8 +377,8 @@ class OsLoginServiceGapicClient
      *
      * Sample code:
      * ```
+     * $osLoginServiceClient = new OsLoginServiceClient();
      * try {
-     *     $osLoginServiceClient = new OsLoginServiceClient();
      *     $formattedName = $osLoginServiceClient->fingerprintName('[USER]', '[FINGERPRINT]');
      *     $osLoginServiceClient->deleteSshPublicKey($formattedName);
      * } finally {
@@ -439,14 +392,14 @@ class OsLoginServiceGapicClient
      * @param array  $optionalArgs {
      *                             Optional.
      *
-     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
+     *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
      *          {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
-     * @throws \Google\ApiCore\ApiException if the remote call fails
+     * @throws ApiException if the remote call fails
      * @experimental
      */
     public function deleteSshPublicKey($name, $optionalArgs = [])
@@ -454,24 +407,12 @@ class OsLoginServiceGapicClient
         $request = new DeleteSshPublicKeyRequest();
         $request->setName($name);
 
-        $defaultCallSettings = $this->defaultCallSettings['deleteSshPublicKey'];
-        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
-            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
-                $optionalArgs['retrySettings']
-            );
-        }
-        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
-        $callable = ApiCallable::createApiCall(
-            $this->osLoginServiceStub,
+        return $this->startCall(
             'DeleteSshPublicKey',
-            $mergedSettings,
-            $this->descriptors['deleteSshPublicKey']
-        );
-
-        return $callable(
-            $request,
-            [],
-            ['call_credentials_callback' => $this->createCredentialsCallback()]);
+            GPBEmpty::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**
@@ -480,8 +421,8 @@ class OsLoginServiceGapicClient
      *
      * Sample code:
      * ```
+     * $osLoginServiceClient = new OsLoginServiceClient();
      * try {
-     *     $osLoginServiceClient = new OsLoginServiceClient();
      *     $formattedName = $osLoginServiceClient->userName('[USER]');
      *     $response = $osLoginServiceClient->getLoginProfile($formattedName);
      * } finally {
@@ -493,7 +434,7 @@ class OsLoginServiceGapicClient
      * @param array  $optionalArgs {
      *                             Optional.
      *
-     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
+     *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
@@ -502,7 +443,7 @@ class OsLoginServiceGapicClient
      *
      * @return \Google\Cloud\OsLogin\V1beta\LoginProfile
      *
-     * @throws \Google\ApiCore\ApiException if the remote call fails
+     * @throws ApiException if the remote call fails
      * @experimental
      */
     public function getLoginProfile($name, $optionalArgs = [])
@@ -510,24 +451,12 @@ class OsLoginServiceGapicClient
         $request = new GetLoginProfileRequest();
         $request->setName($name);
 
-        $defaultCallSettings = $this->defaultCallSettings['getLoginProfile'];
-        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
-            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
-                $optionalArgs['retrySettings']
-            );
-        }
-        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
-        $callable = ApiCallable::createApiCall(
-            $this->osLoginServiceStub,
+        return $this->startCall(
             'GetLoginProfile',
-            $mergedSettings,
-            $this->descriptors['getLoginProfile']
-        );
-
-        return $callable(
-            $request,
-            [],
-            ['call_credentials_callback' => $this->createCredentialsCallback()]);
+            LoginProfile::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**
@@ -535,8 +464,8 @@ class OsLoginServiceGapicClient
      *
      * Sample code:
      * ```
+     * $osLoginServiceClient = new OsLoginServiceClient();
      * try {
-     *     $osLoginServiceClient = new OsLoginServiceClient();
      *     $formattedName = $osLoginServiceClient->fingerprintName('[USER]', '[FINGERPRINT]');
      *     $response = $osLoginServiceClient->getSshPublicKey($formattedName);
      * } finally {
@@ -550,7 +479,7 @@ class OsLoginServiceGapicClient
      * @param array  $optionalArgs {
      *                             Optional.
      *
-     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
+     *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
@@ -559,7 +488,7 @@ class OsLoginServiceGapicClient
      *
      * @return \Google\Cloud\OsLogin\Common\SshPublicKey
      *
-     * @throws \Google\ApiCore\ApiException if the remote call fails
+     * @throws ApiException if the remote call fails
      * @experimental
      */
     public function getSshPublicKey($name, $optionalArgs = [])
@@ -567,24 +496,12 @@ class OsLoginServiceGapicClient
         $request = new GetSshPublicKeyRequest();
         $request->setName($name);
 
-        $defaultCallSettings = $this->defaultCallSettings['getSshPublicKey'];
-        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
-            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
-                $optionalArgs['retrySettings']
-            );
-        }
-        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
-        $callable = ApiCallable::createApiCall(
-            $this->osLoginServiceStub,
+        return $this->startCall(
             'GetSshPublicKey',
-            $mergedSettings,
-            $this->descriptors['getSshPublicKey']
-        );
-
-        return $callable(
-            $request,
-            [],
-            ['call_credentials_callback' => $this->createCredentialsCallback()]);
+            SshPublicKey::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**
@@ -594,8 +511,8 @@ class OsLoginServiceGapicClient
      *
      * Sample code:
      * ```
+     * $osLoginServiceClient = new OsLoginServiceClient();
      * try {
-     *     $osLoginServiceClient = new OsLoginServiceClient();
      *     $formattedParent = $osLoginServiceClient->userName('[USER]');
      *     $sshPublicKey = new SshPublicKey();
      *     $response = $osLoginServiceClient->importSshPublicKey($formattedParent, $sshPublicKey);
@@ -611,7 +528,7 @@ class OsLoginServiceGapicClient
      *
      *     @type string $projectId
      *          The project ID of the Google Cloud Platform project.
-     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
+     *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
@@ -620,7 +537,7 @@ class OsLoginServiceGapicClient
      *
      * @return \Google\Cloud\OsLogin\V1beta\ImportSshPublicKeyResponse
      *
-     * @throws \Google\ApiCore\ApiException if the remote call fails
+     * @throws ApiException if the remote call fails
      * @experimental
      */
     public function importSshPublicKey($parent, $sshPublicKey, $optionalArgs = [])
@@ -632,24 +549,12 @@ class OsLoginServiceGapicClient
             $request->setProjectId($optionalArgs['projectId']);
         }
 
-        $defaultCallSettings = $this->defaultCallSettings['importSshPublicKey'];
-        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
-            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
-                $optionalArgs['retrySettings']
-            );
-        }
-        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
-        $callable = ApiCallable::createApiCall(
-            $this->osLoginServiceStub,
+        return $this->startCall(
             'ImportSshPublicKey',
-            $mergedSettings,
-            $this->descriptors['importSshPublicKey']
-        );
-
-        return $callable(
-            $request,
-            [],
-            ['call_credentials_callback' => $this->createCredentialsCallback()]);
+            ImportSshPublicKeyResponse::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**
@@ -658,8 +563,8 @@ class OsLoginServiceGapicClient
      *
      * Sample code:
      * ```
+     * $osLoginServiceClient = new OsLoginServiceClient();
      * try {
-     *     $osLoginServiceClient = new OsLoginServiceClient();
      *     $formattedName = $osLoginServiceClient->fingerprintName('[USER]', '[FINGERPRINT]');
      *     $sshPublicKey = new SshPublicKey();
      *     $response = $osLoginServiceClient->updateSshPublicKey($formattedName, $sshPublicKey);
@@ -677,7 +582,7 @@ class OsLoginServiceGapicClient
      *
      *     @type FieldMask $updateMask
      *          Mask to control which fields get updated. Updates all if not present.
-     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
+     *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
@@ -686,7 +591,7 @@ class OsLoginServiceGapicClient
      *
      * @return \Google\Cloud\OsLogin\Common\SshPublicKey
      *
-     * @throws \Google\ApiCore\ApiException if the remote call fails
+     * @throws ApiException if the remote call fails
      * @experimental
      */
     public function updateSshPublicKey($name, $sshPublicKey, $optionalArgs = [])
@@ -698,39 +603,11 @@ class OsLoginServiceGapicClient
             $request->setUpdateMask($optionalArgs['updateMask']);
         }
 
-        $defaultCallSettings = $this->defaultCallSettings['updateSshPublicKey'];
-        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
-            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
-                $optionalArgs['retrySettings']
-            );
-        }
-        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
-        $callable = ApiCallable::createApiCall(
-            $this->osLoginServiceStub,
+        return $this->startCall(
             'UpdateSshPublicKey',
-            $mergedSettings,
-            $this->descriptors['updateSshPublicKey']
-        );
-
-        return $callable(
-            $request,
-            [],
-            ['call_credentials_callback' => $this->createCredentialsCallback()]);
-    }
-
-    /**
-     * Initiates an orderly shutdown in which preexisting calls continue but new
-     * calls are immediately cancelled.
-     *
-     * @experimental
-     */
-    public function close()
-    {
-        $this->osLoginServiceStub->close();
-    }
-
-    private function createCredentialsCallback()
-    {
-        return $this->grpcCredentialsHelper->createCallCredentialsCallback();
+            SshPublicKey::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 }
