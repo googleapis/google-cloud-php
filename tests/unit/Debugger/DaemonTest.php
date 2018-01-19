@@ -74,6 +74,7 @@ class DaemonTest extends TestCase
         }))->willReturn($this->debuggee->reveal())->shouldBeCalled();
 
         $daemon = new Daemon([
+            'sourceRoot' => implode(DIRECTORY_SEPARATOR, [__DIR__, 'data']),
             'storage' => $this->storage->reveal()
         ]);
         $daemon->run($this->client->reveal());
@@ -123,7 +124,7 @@ class DaemonTest extends TestCase
         $daemon->run($this->client->reveal());
     }
 
-    public function testDefaultSourceContext()
+    public function testEmptyDefaultSourceContext()
     {
         $this->debuggee->register(Argument::any())->shouldBeCalled();
         $this->debuggee->breakpointsWithWaitToken()
@@ -135,6 +136,27 @@ class DaemonTest extends TestCase
             'storage' => $this->storage->reveal()
         ]);
         $daemon->run($this->client->reveal());
+    }
+
+    public function testDefaultSourceContext()
+    {
+        $expectedSourceContext = [
+            'context' => [
+                'git' => [
+                    'revisionId' => '81b20d097da02ebb6c6fdfbf6900c67a90f2c54b',
+                    'url' => 'https://github.com/GoogleCloudPlatform/google-cloud-php.git'
+                ]
+            ]
+        ];
+        $this->debuggee->register(Argument::any())->shouldBeCalled();
+        $this->client->debuggee(null, Argument::withEntry('extSourceContexts', [$expectedSourceContext]))
+            ->willReturn($this->debuggee->reveal())->shouldBeCalled();
+
+        $root = implode(DIRECTORY_SEPARATOR, [__DIR__, 'data']);
+        $daemon = new Daemon($root, [
+            'client' => $this->client->reveal(),
+            'storage' => $this->storage->reveal()
+        ]);
     }
 
     public function testFetchesBreakpoints()

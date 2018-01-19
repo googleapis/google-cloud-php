@@ -74,25 +74,26 @@ class Daemon
     public function __construct(array $options = [])
     {
         $options += [
-            'clientOptions' => [],
             'sourceRoot' => '.',
+            'sourceContext' => [],
+            'extSourceContext' => [],
+            'uniquifier' => null,
+            'description' => null,
+            'clientOptions' => [],
             'debuggee' => null
         ];
+
         $this->clientOptions = $options['clientOptions'];
         $this->sourceRoot = realpath($options['sourceRoot']);
-
-        $this->extSourceContext = array_key_exists('extSourceContext', $options)
-            ? [$options['extSourceContext']]
-            : $this->defaultExtSourceContext();
-
-        $this->uniquifier = array_key_exists('uniquifier', $options)
-            ? $options['uniquifier']
-            : $this->defaultUniquifier();
-
-        $this->description = array_key_exists('description', $options)
-            ? $options['description']
-            : $this->defaultDescription();
-
+        $sourceContext = $options['sourceContext'] ?: $this->defaultSourceContext();
+        $extSourceContext = $options['extSourceContext'];
+        if (!$extSourceContext && $sourceContext) {
+            $extSourceContext = [
+                'context' => $sourceContext
+            ];
+        }
+        $this->uniqifier = $options['uniquifier'];
+        $this->description = $options['description'] ?: $this->defaultDescription();
         $this->storage = array_key_exists('storage', $options)
             ? $options['storage']
             : new SysvBreakpointStorage();
@@ -116,7 +117,7 @@ class Daemon
     {
         $client = $client ?: $this->defaultClient();
         $debuggee = $client->debuggee(null, [
-            'uniquifier' => $this->uniquifier,
+            'uniquifier' => $this->uniquifier ?: $this->defaultUniquifier(),
             'description' => $this->description,
             'extSourceContexts' => $this->extSourceContext
         ]);
@@ -183,14 +184,13 @@ class Daemon
         return gethostname() . ' - ' . getcwd();
     }
 
-    private function defaultExtSourceContext()
+    private function defaultSourceContext()
     {
-        $sourceContextFile = $this->sourceRoot . '/source-contexts.json';
+        $sourceContextFile = implode(DIRECTORY_SEPARATOR, [$this->sourceRoot, 'source-context.json']);
         if (file_exists($sourceContextFile)) {
             return json_decode(file_get_contents($sourceContextFile), true);
-        } else {
-            return [];
         }
+        return [];
     }
 
     private function defaultClient()
