@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2017 Google LLC
+ * Copyright 2018 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -21,8 +21,8 @@
  * https://github.com/google/googleapis/blob/master/google/devtools/clouddebugger/v2/debugger.proto
  * and updates to that file get reflected here through a refresh process.
  *
- * EXPERIMENTAL: this client library class has not yet been declared GA (1.0). This means that
- * even though we intent the surface to be stable, we may make backwards incompatible changes
+ * EXPERIMENTAL: This client library class has not yet been declared GA (1.0). This means that
+ * even though we intend the surface to be stable, we may make backwards incompatible changes
  * if necessary.
  *
  * @experimental
@@ -30,19 +30,26 @@
 
 namespace Google\Cloud\Debugger\V2\Gapic;
 
-use Google\ApiCore\AgentHeaderDescriptor;
-use Google\ApiCore\ApiCallable;
-use Google\ApiCore\CallSettings;
-use Google\ApiCore\GrpcCredentialsHelper;
+use Google\ApiCore\ApiException;
+use Google\ApiCore\Call;
+use Google\ApiCore\GapicClientTrait;
+use Google\ApiCore\RetrySettings;
+use Google\ApiCore\Transport\TransportInterface;
+use Google\Auth\CredentialsLoader;
 use Google\Cloud\Debugger\V2\Breakpoint;
-use Google\Cloud\Debugger\V2\Debugger2GrpcClient;
 use Google\Cloud\Debugger\V2\DeleteBreakpointRequest;
 use Google\Cloud\Debugger\V2\GetBreakpointRequest;
+use Google\Cloud\Debugger\V2\GetBreakpointResponse;
 use Google\Cloud\Debugger\V2\ListBreakpointsRequest;
-use Google\Cloud\Debugger\V2\ListBreakpointsRequest_BreakpointActionValue as BreakpointActionValue;
+use Google\Cloud\Debugger\V2\ListBreakpointsRequest_BreakpointActionValue;
+use Google\Cloud\Debugger\V2\ListBreakpointsResponse;
 use Google\Cloud\Debugger\V2\ListDebuggeesRequest;
+use Google\Cloud\Debugger\V2\ListDebuggeesResponse;
 use Google\Cloud\Debugger\V2\SetBreakpointRequest;
-use Google\Cloud\Version;
+use Google\Cloud\Debugger\V2\SetBreakpointResponse;
+use Google\Protobuf\GPBEmpty;
+use Grpc\Channel;
+use Grpc\ChannelCredentials;
 
 /**
  * Service Description: The Debugger service provides the API that allows users to collect run-time
@@ -58,8 +65,8 @@ use Google\Cloud\Version;
  * The Debugger service enables the client to set one or more Breakpoints on a
  * Debuggee and collect the results of the set Breakpoints.
  *
- * EXPERIMENTAL: this client library class has not yet been declared GA (1.0). This means that
- * even though we intent the surface to be stable, we may make backwards incompatible changes
+ * EXPERIMENTAL: This client library class has not yet been declared GA (1.0). This means that
+ * even though we intend the surface to be stable, we may make backwards incompatible changes
  * if necessary.
  *
  * This class provides the ability to make remote calls to the backing service through method
@@ -81,6 +88,13 @@ use Google\Cloud\Version;
  */
 class Debugger2GapicClient
 {
+    use GapicClientTrait;
+
+    /**
+     * The name of the service.
+     */
+    const SERVICE_NAME = 'google.devtools.clouddebugger.v2.Debugger2';
+
     /**
      * The default address of the service.
      */
@@ -101,27 +115,21 @@ class Debugger2GapicClient
      */
     const CODEGEN_VERSION = '0.0.5';
 
-    private static $gapicVersion;
-    private static $gapicVersionLoaded = false;
-
-    protected $grpcCredentialsHelper;
-    protected $debugger2Stub;
-    private $scopes;
-    private $defaultCallSettings;
-    private $descriptors;
-
-    private static function getGapicVersion()
+    private static function getClientDefaults()
     {
-        if (!self::$gapicVersionLoaded) {
-            if (file_exists(__DIR__.'/../VERSION')) {
-                self::$gapicVersion = trim(file_get_contents(__DIR__.'/../VERSION'));
-            } elseif (class_exists(Version::class)) {
-                self::$gapicVersion = Version::VERSION;
-            }
-            self::$gapicVersionLoaded = true;
-        }
-
-        return self::$gapicVersion;
+        return [
+            'serviceName' => self::SERVICE_NAME,
+            'serviceAddress' => self::SERVICE_ADDRESS,
+            'port' => self::DEFAULT_SERVICE_PORT,
+            'scopes' => [
+                'https://www.googleapis.com/auth/cloud-platform',
+                'https://www.googleapis.com/auth/cloud_debugger',
+            ],
+            'clientConfigPath' => __DIR__.'/../resources/debugger2_client_config.json',
+            'restClientConfigPath' => __DIR__.'/../resources/debugger2_rest_client_config.php',
+            'descriptorsConfigPath' => __DIR__.'/../resources/debugger2_descriptor_config.php',
+            'versionFile' => __DIR__.'/../../VERSION',
+        ];
     }
 
     /**
@@ -133,20 +141,23 @@ class Debugger2GapicClient
      *     @type string $serviceAddress The domain name of the API remote host.
      *                                  Default 'clouddebugger.googleapis.com'.
      *     @type mixed $port The port on which to connect to the remote host. Default 443.
-     *     @type \Grpc\Channel $channel
-     *           A `Channel` object to be used by gRPC. If not specified, a channel will be constructed.
-     *     @type \Grpc\ChannelCredentials $sslCreds
+     *     @type Channel $channel
+     *           A `Channel` object. If not specified, a channel will be constructed.
+     *           NOTE: This option is only valid when utilizing the gRPC transport.
+     *     @type ChannelCredentials $sslCreds
      *           A `ChannelCredentials` object for use with an SSL-enabled channel.
      *           Default: a credentials object returned from
-     *           \Grpc\ChannelCredentials::createSsl()
-     *           NOTE: if the $channel optional argument is specified, then this argument is unused.
+     *           \Grpc\ChannelCredentials::createSsl().
+     *           NOTE: This option is only valid when utilizing the gRPC transport. Also, if the $channel
+     *           optional argument is specified, then this argument is unused.
      *     @type bool $forceNewChannel
      *           If true, this forces gRPC to create a new channel instead of using a persistent channel.
      *           Defaults to false.
-     *           NOTE: if the $channel optional argument is specified, then this option is unused.
-     *     @type \Google\Auth\CredentialsLoader $credentialsLoader
+     *           NOTE: This option is only valid when utilizing the gRPC transport. Also, if the $channel
+     *           optional argument is specified, then this option is unused.
+     *     @type CredentialsLoader $credentialsLoader
      *           A CredentialsLoader object created using the Google\Auth library.
-     *     @type array $scopes A string array of scopes to use when acquiring credentials.
+     *     @type string[] $scopes A string array of scopes to use when acquiring credentials.
      *                          Defaults to the scopes for the Stackdriver Debugger API.
      *     @type string $clientConfigPath
      *           Path to a JSON file containing client method configuration, including retry settings.
@@ -162,66 +173,22 @@ class Debugger2GapicClient
      *           for example usage. Passing a value of null is equivalent to a value of
      *           ['retriesEnabled' => false]. Retry settings provided in this setting override the
      *           settings in $clientConfigPath.
+     *     @type callable $authHttpHandler A handler used to deliver PSR-7 requests specifically
+     *           for authentication. Should match a signature of
+     *           `function (RequestInterface $request, array $options) : ResponseInterface`.
+     *     @type callable $httpHandler A handler used to deliver PSR-7 requests. Should match a
+     *           signature of `function (RequestInterface $request, array $options) : PromiseInterface`.
+     *           NOTE: This option is only valid when utilizing the REST transport.
+     *     @type string|TransportInterface $transport The transport used for executing network
+     *           requests. May be either the string `rest` or `grpc`. Additionally, it is possible
+     *           to pass in an already instantiated transport. Defaults to `grpc` if gRPC support is
+     *           detected on the system.
      * }
      * @experimental
      */
     public function __construct($options = [])
     {
-        $defaultOptions = [
-            'serviceAddress' => self::SERVICE_ADDRESS,
-            'port' => self::DEFAULT_SERVICE_PORT,
-            'scopes' => [
-                'https://www.googleapis.com/auth/cloud-platform',
-                'https://www.googleapis.com/auth/cloud_debugger',
-            ],
-            'retryingOverride' => null,
-            'libName' => null,
-            'libVersion' => null,
-            'clientConfigPath' => __DIR__.'/../resources/debugger2_client_config.json',
-        ];
-        $options = array_merge($defaultOptions, $options);
-
-        $gapicVersion = $options['libVersion'] ?: self::getGapicVersion();
-
-        $headerDescriptor = new AgentHeaderDescriptor([
-            'libName' => $options['libName'],
-            'libVersion' => $options['libVersion'],
-            'gapicVersion' => $gapicVersion,
-        ]);
-
-        $defaultDescriptors = ['headerDescriptor' => $headerDescriptor];
-        $this->descriptors = [
-            'setBreakpoint' => $defaultDescriptors,
-            'getBreakpoint' => $defaultDescriptors,
-            'deleteBreakpoint' => $defaultDescriptors,
-            'listBreakpoints' => $defaultDescriptors,
-            'listDebuggees' => $defaultDescriptors,
-        ];
-
-        $clientConfigJsonString = file_get_contents($options['clientConfigPath']);
-        $clientConfig = json_decode($clientConfigJsonString, true);
-        $this->defaultCallSettings =
-                CallSettings::load(
-                    'google.devtools.clouddebugger.v2.Debugger2',
-                    $clientConfig,
-                    $options['retryingOverride']
-                );
-
-        $this->scopes = $options['scopes'];
-
-        $createStubOptions = [];
-        if (array_key_exists('sslCreds', $options)) {
-            $createStubOptions['sslCreds'] = $options['sslCreds'];
-        }
-        $this->grpcCredentialsHelper = new GrpcCredentialsHelper($options);
-
-        $createDebugger2StubFunction = function ($hostname, $opts, $channel) {
-            return new Debugger2GrpcClient($hostname, $opts, $channel);
-        };
-        if (array_key_exists('createDebugger2StubFunction', $options)) {
-            $createDebugger2StubFunction = $options['createDebugger2StubFunction'];
-        }
-        $this->debugger2Stub = $this->grpcCredentialsHelper->createStub($createDebugger2StubFunction);
+        $this->setClientOptions($options + self::getClientDefaults());
     }
 
     /**
@@ -248,7 +215,7 @@ class Debugger2GapicClient
      * @param array      $optionalArgs  {
      *                                  Optional.
      *
-     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
+     *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
@@ -257,7 +224,7 @@ class Debugger2GapicClient
      *
      * @return \Google\Cloud\Debugger\V2\SetBreakpointResponse
      *
-     * @throws \Google\ApiCore\ApiException if the remote call fails
+     * @throws ApiException if the remote call fails
      * @experimental
      */
     public function setBreakpoint($debuggeeId, $breakpoint, $clientVersion, $optionalArgs = [])
@@ -267,24 +234,12 @@ class Debugger2GapicClient
         $request->setBreakpoint($breakpoint);
         $request->setClientVersion($clientVersion);
 
-        $defaultCallSettings = $this->defaultCallSettings['setBreakpoint'];
-        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
-            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
-                $optionalArgs['retrySettings']
-            );
-        }
-        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
-        $callable = ApiCallable::createApiCall(
-            $this->debugger2Stub,
+        return $this->startCall(
             'SetBreakpoint',
-            $mergedSettings,
-            $this->descriptors['setBreakpoint']
-        );
-
-        return $callable(
-            $request,
-            [],
-            ['call_credentials_callback' => $this->createCredentialsCallback()]);
+            SetBreakpointResponse::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**
@@ -310,7 +265,7 @@ class Debugger2GapicClient
      * @param array  $optionalArgs  {
      *                              Optional.
      *
-     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
+     *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
@@ -319,7 +274,7 @@ class Debugger2GapicClient
      *
      * @return \Google\Cloud\Debugger\V2\GetBreakpointResponse
      *
-     * @throws \Google\ApiCore\ApiException if the remote call fails
+     * @throws ApiException if the remote call fails
      * @experimental
      */
     public function getBreakpoint($debuggeeId, $breakpointId, $clientVersion, $optionalArgs = [])
@@ -329,24 +284,12 @@ class Debugger2GapicClient
         $request->setBreakpointId($breakpointId);
         $request->setClientVersion($clientVersion);
 
-        $defaultCallSettings = $this->defaultCallSettings['getBreakpoint'];
-        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
-            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
-                $optionalArgs['retrySettings']
-            );
-        }
-        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
-        $callable = ApiCallable::createApiCall(
-            $this->debugger2Stub,
+        return $this->startCall(
             'GetBreakpoint',
-            $mergedSettings,
-            $this->descriptors['getBreakpoint']
-        );
-
-        return $callable(
-            $request,
-            [],
-            ['call_credentials_callback' => $this->createCredentialsCallback()]);
+            GetBreakpointResponse::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**
@@ -372,14 +315,14 @@ class Debugger2GapicClient
      * @param array  $optionalArgs  {
      *                              Optional.
      *
-     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
+     *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
      *          {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
-     * @throws \Google\ApiCore\ApiException if the remote call fails
+     * @throws ApiException if the remote call fails
      * @experimental
      */
     public function deleteBreakpoint($debuggeeId, $breakpointId, $clientVersion, $optionalArgs = [])
@@ -389,24 +332,12 @@ class Debugger2GapicClient
         $request->setBreakpointId($breakpointId);
         $request->setClientVersion($clientVersion);
 
-        $defaultCallSettings = $this->defaultCallSettings['deleteBreakpoint'];
-        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
-            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
-                $optionalArgs['retrySettings']
-            );
-        }
-        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
-        $callable = ApiCallable::createApiCall(
-            $this->debugger2Stub,
+        return $this->startCall(
             'DeleteBreakpoint',
-            $mergedSettings,
-            $this->descriptors['deleteBreakpoint']
-        );
-
-        return $callable(
-            $request,
-            [],
-            ['call_credentials_callback' => $this->createCredentialsCallback()]);
+            GPBEmpty::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**
@@ -436,7 +367,7 @@ class Debugger2GapicClient
      *     @type bool $includeInactive
      *          When set to `true`, the response includes active and inactive
      *          breakpoints. Otherwise, it includes only active breakpoints.
-     *     @type BreakpointActionValue $action
+     *     @type ListBreakpointsRequest_BreakpointActionValue $action
      *          When set, the response includes only breakpoints with the specified action.
      *     @type bool $stripResults
      *          This field is deprecated. The following fields are always stripped out of
@@ -447,7 +378,7 @@ class Debugger2GapicClient
      *          should be set from the last response. The error code
      *          `google.rpc.Code.ABORTED` (RPC) is returned on wait timeout, which
      *          should be called again with the same `wait_token`.
-     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
+     *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
@@ -456,7 +387,7 @@ class Debugger2GapicClient
      *
      * @return \Google\Cloud\Debugger\V2\ListBreakpointsResponse
      *
-     * @throws \Google\ApiCore\ApiException if the remote call fails
+     * @throws ApiException if the remote call fails
      * @experimental
      */
     public function listBreakpoints($debuggeeId, $clientVersion, $optionalArgs = [])
@@ -480,24 +411,12 @@ class Debugger2GapicClient
             $request->setWaitToken($optionalArgs['waitToken']);
         }
 
-        $defaultCallSettings = $this->defaultCallSettings['listBreakpoints'];
-        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
-            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
-                $optionalArgs['retrySettings']
-            );
-        }
-        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
-        $callable = ApiCallable::createApiCall(
-            $this->debugger2Stub,
+        return $this->startCall(
             'ListBreakpoints',
-            $mergedSettings,
-            $this->descriptors['listBreakpoints']
-        );
-
-        return $callable(
-            $request,
-            [],
-            ['call_credentials_callback' => $this->createCredentialsCallback()]);
+            ListBreakpointsResponse::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**
@@ -524,7 +443,7 @@ class Debugger2GapicClient
      *     @type bool $includeInactive
      *          When set to `true`, the result includes all debuggees. Otherwise, the
      *          result includes only debuggees that are active.
-     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
+     *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
@@ -533,7 +452,7 @@ class Debugger2GapicClient
      *
      * @return \Google\Cloud\Debugger\V2\ListDebuggeesResponse
      *
-     * @throws \Google\ApiCore\ApiException if the remote call fails
+     * @throws ApiException if the remote call fails
      * @experimental
      */
     public function listDebuggees($project, $clientVersion, $optionalArgs = [])
@@ -545,39 +464,11 @@ class Debugger2GapicClient
             $request->setIncludeInactive($optionalArgs['includeInactive']);
         }
 
-        $defaultCallSettings = $this->defaultCallSettings['listDebuggees'];
-        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
-            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
-                $optionalArgs['retrySettings']
-            );
-        }
-        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
-        $callable = ApiCallable::createApiCall(
-            $this->debugger2Stub,
+        return $this->startCall(
             'ListDebuggees',
-            $mergedSettings,
-            $this->descriptors['listDebuggees']
-        );
-
-        return $callable(
-            $request,
-            [],
-            ['call_credentials_callback' => $this->createCredentialsCallback()]);
-    }
-
-    /**
-     * Initiates an orderly shutdown in which preexisting calls continue but new
-     * calls are immediately cancelled.
-     *
-     * @experimental
-     */
-    public function close()
-    {
-        $this->debugger2Stub->close();
-    }
-
-    private function createCredentialsCallback()
-    {
-        return $this->grpcCredentialsHelper->createCallCredentialsCallback();
+            ListDebuggeesResponse::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 }
