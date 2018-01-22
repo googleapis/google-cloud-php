@@ -20,7 +20,7 @@ sudo: required
 dist: trusty
 install:
   - travis_retry pecl install grpc
-  - if [[ $PROTOBUF_C_EXT =~ ^true ]]; then travis_retry pecl install protobuf-3.4.0; fi
+  - if [[ $PROTOBUF_C_EXT =~ ^true ]]; then travis_retry pecl install protobuf-3.5.1; fi
   - composer install
 script:
   - vendor/bin/phpunit --coverage-clover=coverage.xml

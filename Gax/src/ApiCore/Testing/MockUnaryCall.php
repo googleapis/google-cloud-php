@@ -42,12 +42,11 @@ use Google\Rpc\Code;
  * method, and an optional status. The response object and status are returned immediately from the
  * wait() method.
  */
-class MockUnaryCall
+class MockUnaryCall extends \Grpc\UnaryCall
 {
     use SerializationTrait;
 
     private $response;
-    private $deserialize;
     private $status;
 
     /**
@@ -72,7 +71,9 @@ class MockUnaryCall
      */
     public function wait()
     {
-        $obj = $this->deserializeMessage($this->response, $this->deserialize);
-        return [$obj, $this->status];
+        return [
+            $this->deserializeMessage($this->response, $this->deserialize),
+            $this->status,
+        ];
     }
 }

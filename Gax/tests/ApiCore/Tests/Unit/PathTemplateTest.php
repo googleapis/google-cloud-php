@@ -156,6 +156,51 @@ class PathTemplateTest extends TestCase
         );
     }
 
+    public function testMatchWildcardWithColonInMiddle()
+    {
+        $template = new PathTemplate('buckets/*:action/objects');
+        $this->assertEquals(
+            ['$0' => 'foo'],
+            $template->match('buckets/foo:action/objects')
+        );
+    }
+
+    public function testMatchWildcardWithColon()
+    {
+        $template = new PathTemplate('buckets/*:action');
+        $this->assertEquals(
+            ['$0' => 'foo'],
+            $template->match('buckets/foo:action')
+        );
+    }
+
+    public function testMatchColonInWildcardAndTemplate()
+    {
+        $template = new PathTemplate('buckets/*/*/*/objects/*:action');
+        $url = $template->render(
+            ['$0' => 'f', '$1' => 'o', '$2' => 'o', '$3' => 'google.com:a-b']
+        );
+        $this->assertEquals($url, 'buckets/f/o/o/objects/google.com:a-b:action');
+    }
+
+    public function testMatchUnboundedWildcardWithColon()
+    {
+        $template = new PathTemplate('buckets/*/objects/**:action');
+        $this->assertEquals(
+            ['$0' => 'foo', '$1' => 'bar/baz'],
+            $template->match('buckets/foo/objects/bar/baz:action')
+        );
+    }
+
+    public function testMatchUnboundedWildcardWithColonInMiddle()
+    {
+        $template = new PathTemplate('buckets/*/objects/**:action/path');
+        $this->assertEquals(
+            ['$0' => 'foo', '$1' => 'bar/baz'],
+            $template->match('buckets/foo/objects/bar/baz:action/path')
+        );
+    }
+
     public function testMatchTemplateWithUnboundedWildcard()
     {
         $template = new PathTemplate('buckets/*/objects/**');

@@ -31,31 +31,38 @@
  */
 namespace Google\ApiCore\Tests\Unit;
 
+use Google\ApiCore\Call;
+use Google\ApiCore\CallSettings;
 use Google\ApiCore\PagedListResponse;
 use Google\ApiCore\PageStreamingDescriptor;
-use Google\ApiCore\Tests\Unit\Mocks\MockStub;
-use Google\ApiCore\Tests\Unit\Mocks\MockPageStreamingRequest;
-use Google\ApiCore\Tests\Unit\Mocks\MockPageStreamingResponse;
 use PHPUnit\Framework\TestCase;
 
 class PagedListResponseTest extends TestCase
 {
+    use TestTrait;
+
     public function testNextPageToken()
     {
-        $mockRequest = MockPageStreamingRequest::createPageStreamingRequest('mockToken');
-        $descriptor = PageStreamingDescriptor::createFromFields([
+        $mockRequest = $this->createMockRequest('mockToken');
+
+        $mockResponse = $this->createMockResponse('nextPageToken1', ['resource1']);
+
+        $pageStreamingDescriptor = PageStreamingDescriptor::createFromFields([
             'requestPageTokenField' => 'pageToken',
             'responsePageTokenField' => 'nextPageToken',
             'resourceField' => 'resourcesList'
         ]);
-        $response = MockPageStreamingResponse::createPageStreamingResponse('nextPageToken1', ['resource1']);
-        $stub = MockStub::create($response);
-        $mockApiCall = function () use ($stub) {
-            list($response, $status) =
-                call_user_func_array(array($stub, 'takeAction'), func_get_args())->wait();
-            return $response;
+
+        $callable = function () use ($mockResponse) {
+            return $promise = new \GuzzleHttp\Promise\Promise(function () use (&$promise, $mockResponse) {
+                $promise->resolve($mockResponse);
+            });
         };
-        $pageAccessor = new PagedListResponse([$mockRequest, [], []], $mockApiCall, $descriptor);
+
+        $call = new Call('method', [], $mockRequest);
+        $options = [];
+
+        $pageAccessor = new PagedListResponse($call, $options, $callable, $pageStreamingDescriptor);
         $page = $pageAccessor->getPage();
         $this->assertEquals($page->getNextPageToken(), 'nextPageToken1');
         $this->assertEquals(iterator_to_array($page->getIterator()), ['resource1']);

@@ -104,10 +104,15 @@ class PathTemplate implements Countable
                         )
                     );
                 }
-                $out = array_merge(
-                    $out,
-                    (new self($bindings[$segment->literal]))->segments
-                );
+                if ($bindings[$segment->literal]) {
+                    $out = array_merge(
+                        $out,
+                        (new self($bindings[$segment->literal]))->segments
+                    );
+                } else {
+                    $out[] = new Segment(Segment::TERMINAL, '');
+                }
+
                 $binding = true;
             } elseif ($segment->kind == Segment::END_BINDING) {
                 $binding = false;
@@ -140,10 +145,22 @@ class PathTemplate implements Countable
         $segmentCount = $this->segmentCount;
         $pathIndex = 0;
         foreach ($segments as $segment) {
-            if ($pathIndex >= count($pathList)) {
-                break;
-            }
             if ($segment->kind == Segment::TERMINAL) {
+                if (':' == substr($segment->literal, 0, 1)) {
+                    $binding = $bindings[$currentVar];
+                    $bindingLength = strrpos($binding, $segment->literal);
+                    if ($bindingLength !== false
+                        && $bindingLength + strlen($segment->literal) == strlen($binding)
+                    ) {
+                        $bindings[$currentVar] = substr($binding, 0, $bindingLength);
+                    } else {
+                        $pathIndex += 1;
+                    }
+                    continue;
+                }
+                if ($pathIndex >= count($pathList)) {
+                    break;
+                }
                 $pathItem = $pathList[$pathIndex];
                 if ($segment->literal == '*') {
                     $bindings[$currentVar] = $pathItem;
@@ -190,7 +207,7 @@ class PathTemplate implements Countable
         $slash = true;
         foreach ($segments as $segment) {
             if ($segment->kind == Segment::TERMINAL) {
-                if ($slash) {
+                if ($slash && ':' !== substr($segment->literal, 0, 1)) {
                     $template .= '/';
                 }
                 $template .= $segment->literal;

@@ -40,12 +40,15 @@ use PHPUnit\Framework\TestCase;
 
 class InstantiateClassesTest extends TestCase
 {
+    use TestTrait;
+
     /**
      * @dataProvider classesProvider
      */
     public function testInstantiateProtobufClass($class)
     {
         if (strpos($class, 'GrpcClient') !== false) {
+            $this->requiresGrpcExtension();
             $instance = new $class('dummyhostname', ['credentials' => null]);
         } else {
             $instance = new $class();
@@ -57,6 +60,7 @@ class InstantiateClassesTest extends TestCase
     {
         $classes = iterator_to_array($this->classesProvider());
         $this->assertSame(102, count($classes));
+        $this->assertGreaterThan(0, count($classes));
     }
 
     public function classesProvider()
@@ -69,7 +73,6 @@ class InstantiateClassesTest extends TestCase
             'OperationsClient',
             'OperationsGapicClient',
             'OperationsGrpcClient',
-            'MockOperationsImpl',
         ];
         $dir = new RecursiveDirectoryIterator($folder);
         $it = new RecursiveIteratorIterator($dir);

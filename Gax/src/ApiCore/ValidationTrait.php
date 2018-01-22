@@ -38,9 +38,9 @@ trait ValidationTrait
      * @param array $requiredKeys List of keys to check for in $arr
      * @return array Returns $arr for fluent use
      */
-    public function validate($arr, $requiredKeys)
+    public static function validate($arr, $requiredKeys)
     {
-        return $this->validateImpl($arr, $requiredKeys, true);
+        return self::validateImpl($arr, $requiredKeys, true);
     }
 
     /**
@@ -48,12 +48,12 @@ trait ValidationTrait
      * @param array $requiredKeys List of keys to check for in $arr
      * @return array Returns $arr for fluent use
      */
-    public function validateNotNull($arr, $requiredKeys)
+    public static function validateNotNull($arr, $requiredKeys)
     {
-        return $this->validateImpl($arr, $requiredKeys, false);
+        return self::validateImpl($arr, $requiredKeys, false);
     }
 
-    private function validateImpl($arr, $requiredKeys, $allowNull)
+    private static function validateImpl($arr, $requiredKeys, $allowNull)
     {
         foreach ($requiredKeys as $requiredKey) {
             $valid = array_key_exists($requiredKey, $arr)

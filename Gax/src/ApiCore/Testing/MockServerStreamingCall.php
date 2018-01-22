@@ -40,12 +40,11 @@ use Grpc;
  * The MockServerStreamingCall class is used to mock out the \Grpc\ServerStreamingCall class
  * (https://github.com/grpc/grpc/blob/master/src/php/lib/Grpc/ServerStreamingCall.php)
  */
-class MockServerStreamingCall
+class MockServerStreamingCall extends \Grpc\ServerStreamingCall
 {
     use SerializationTrait;
 
     private $responses;
-    private $deserialize;
     private $status;
 
     /**

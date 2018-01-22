@@ -31,17 +31,13 @@
  */
 namespace Google\ApiCore;
 
-use Grpc;
-use Google\ApiCore\ApiException;
-use Google\ApiCore\ValidationException;
+use Google\Rpc\Code;
 
 /**
  * BidiStream is the response object from a gRPC bidirectional streaming API call.
  */
 class BidiStream
 {
-    use CallHelperTrait;
-
     private $call;
     private $isComplete = false;
     private $writesClosed = false;
@@ -52,27 +48,14 @@ class BidiStream
      * BidiStream constructor.
      *
      * @param \Grpc\BidiStreamingCall $bidiStreamingCall The gRPC bidirectional streaming call object
-     * @param array $grpcStreamingDescriptor
+     * @param array $streamingDescriptor
      */
-    public function __construct($bidiStreamingCall, $grpcStreamingDescriptor = [])
+    public function __construct($bidiStreamingCall, array $streamingDescriptor = [])
     {
         $this->call = $bidiStreamingCall;
-        if (array_key_exists('resourcesGetMethod', $grpcStreamingDescriptor)) {
-            $this->resourcesGetMethod = $grpcStreamingDescriptor['resourcesGetMethod'];
+        if (array_key_exists('resourcesGetMethod', $streamingDescriptor)) {
+            $this->resourcesGetMethod = $streamingDescriptor['resourcesGetMethod'];
         }
-    }
-
-    /**
-     * @param callable $callable
-     * @param mixed[] $grpcStreamingDescriptor
-     * @return callable ApiCall
-     */
-    public static function createApiCall($callable, $grpcStreamingDescriptor)
-    {
-        return function () use ($callable, $grpcStreamingDescriptor) {
-            $response = self::callWithoutRequest($callable, func_get_args());
-            return new BidiStream($response, $grpcStreamingDescriptor);
-        };
     }
 
     /**
@@ -156,7 +139,7 @@ class BidiStream
         if (is_null($result)) {
             $status = $this->call->getStatus();
             $this->isComplete = true;
-            if (!($status->code == Grpc\STATUS_OK)) {
+            if (!($status->code == Code::OK)) {
                 throw ApiException::createFromStdClass($status);
             }
         }

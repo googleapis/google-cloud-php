@@ -46,6 +46,7 @@
 "{"                     return 'LEFT_BRACE'
 "}"                     return 'RIGHT_BRACE'
 "="                     return 'EQUALS'
+":"                     return 'COLON'
 "**"                    return 'PATH_WILDCARD'
 "*"                     return 'WILDCARD'
 [^*=}{}\/]+             return 'LITERAL'
@@ -57,6 +58,7 @@
 %token 'LEFT_BRACE'
 %token 'RIGHT_BRACE'
 %token 'EQUALS'
+%token 'COLON'
 %token 'LITERAL'
 %token 'PATH_WILDCARD'
 %token 'WILDCARD'
@@ -81,6 +83,15 @@ bound_segments
     $t3 = $3->text;
     $$ = array_merge($t1, $t3);
 */}
+    | bound_segment COLON bound_segments
+        {/*php
+    $t1 = $1->text;
+    $t3 = $3->text;
+    Segment::decrementSegmentCount();
+    $t3[0] = new Segment($t3[0]->kind, ':' . $t3[0]->literal);
+    $$ = array_merge($t1, $t3);
+*/}
+}
     | bound_segment
         {//php    $$ = $1->text;
 }

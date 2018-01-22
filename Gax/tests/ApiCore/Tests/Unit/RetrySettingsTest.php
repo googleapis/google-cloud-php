@@ -32,11 +32,88 @@
 namespace Google\ApiCore\Tests\Unit;
 
 use Google\ApiCore\RetrySettings;
-use Google\ApiCore\ValidationException;
 use PHPUnit\Framework\TestCase;
 
 class RetrySettingsTest extends TestCase
 {
+    const SERVICE_NAME = 'test.interface.v1.api';
+
+    private static function buildInputConfig()
+    {
+        $contents = file_get_contents(__DIR__ . '/testdata/test_service_client_config.json');
+        return json_decode($contents, true);
+    }
+
+    private static function buildInvalidInputConfig()
+    {
+        $contents = file_get_contents(__DIR__ . '/testdata/test_service_invalid_client_config.json');
+        return json_decode($contents, true);
+    }
+
+
+    public function testConstructSettings()
+    {
+        $inputConfig = RetrySettingsTest::buildInputConfig();
+
+        $defaultRetrySettings =
+                RetrySettings::load(
+                    RetrySettingsTest::SERVICE_NAME,
+                    $inputConfig,
+                    []
+                );
+        $simpleMethod = $defaultRetrySettings['SimpleMethod'];
+        $this->assertTrue($simpleMethod->retriesEnabled());
+        $this->assertEquals(40000, $simpleMethod->getNoRetriesRpcTimeoutMillis());
+        $this->assertEquals(['DEADLINE_EXCEEDED', 'UNAVAILABLE'], $simpleMethod->getRetryableCodes());
+        $this->assertEquals(100, $simpleMethod->getInitialRetryDelayMillis());
+        $pageStreamingMethod = $defaultRetrySettings['PageStreamingMethod'];
+        $this->assertEquals(['INTERNAL'], $pageStreamingMethod->getRetryableCodes());
+        $timeoutOnlyMethod = $defaultRetrySettings['TimeoutOnlyMethod'];
+        $this->assertFalse($timeoutOnlyMethod->retriesEnabled());
+        $this->assertEquals(40000, $timeoutOnlyMethod->getNoRetriesRpcTimeoutMillis());
+    }
+
+    /**
+     * @expectedException \Google\ApiCore\ValidationException
+     */
+    public function testLoadInvalid()
+    {
+        $inputConfig = RetrySettingsTest::buildInvalidInputConfig();
+        RetrySettings::load(
+            RetrySettingsTest::SERVICE_NAME,
+            $inputConfig,
+            []
+        );
+    }
+
+    public function testConstructSettingsOverride()
+    {
+        $inputConfig = RetrySettingsTest::buildInputConfig();
+
+        // Turn off retries for simpleMethod
+        $retryingOverride = [
+            'SimpleMethod' => [
+                'retriesEnabled' => false,
+            ],
+            'TimeoutOnlyMethod' => [
+                'noRetriesRpcTimeoutMillis' => 20000
+            ]
+        ];
+        $defaultRetrySettings = RetrySettings::load(
+            RetrySettingsTest::SERVICE_NAME,
+            $inputConfig,
+            $retryingOverride
+        );
+        $simpleMethod = $defaultRetrySettings['SimpleMethod'];
+        $this->assertFalse($simpleMethod->retriesEnabled());
+        $this->assertEquals(40000, $simpleMethod->getNoRetriesRpcTimeoutMillis());
+        $pageStreamingMethod = $defaultRetrySettings['PageStreamingMethod'];
+        $this->assertEquals(['INTERNAL'], $pageStreamingMethod->getRetryableCodes());
+        $timeoutOnlyMethod = $defaultRetrySettings['TimeoutOnlyMethod'];
+        $this->assertFalse($timeoutOnlyMethod->retriesEnabled());
+        $this->assertEquals(20000, $timeoutOnlyMethod->getNoRetriesRpcTimeoutMillis());
+    }
+
     /**
      * @expectedException \Google\ApiCore\ValidationException
      */

@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2016, Google Inc.
+ * Copyright 2018, Google Inc.
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -30,14 +30,58 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-namespace Google\ApiCore\Tests\Unit\Mocks;
+namespace Google\ApiCore\Transport;
 
-class MockContext
+use Google\ApiCore\BidiStream;
+use Google\ApiCore\Call;
+use Google\ApiCore\ClientStream;
+use Google\ApiCore\ServerStream;
+use GuzzleHttp\Promise\PromiseInterface;
+
+interface TransportInterface
 {
-    public $service_url;
+    /**
+     * Starts a bidi streaming call.
+     *
+     * @param Call $call
+     * @param CallSettings $options
+     *
+     * @return BidiStream
+     */
+    public function startBidiStreamingCall(Call $call, array $options);
 
-    public function __construct($service_url)
-    {
-        $this->service_url = $service_url;
-    }
+    /**
+     * Starts a client streaming call.
+     *
+     * @param Call $call
+     * @param array $options
+     *
+     * @return ClientStream
+     */
+    public function startClientStreamingCall(Call $call, array $options);
+
+    /**
+     * Starts a server streaming call.
+     *
+     * @param Call $call
+     * @param array $options
+     *
+     * @return ServerStream
+     */
+    public function startServerStreamingCall(Call $call, array $options);
+
+    /**
+     * Returns a promise used to execute network requests.
+     *
+     * @param Call $call
+     * @param array $options
+     *
+     * @return PromiseInterface
+     */
+    public function startUnaryCall(Call $call, array $options);
+
+    /**
+     * Closes the connection, if one exists.
+     */
+    public function close();
 }

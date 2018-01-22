@@ -1,6 +1,7 @@
 <?php
 /*
- * Copyright 2017, Google LLC All rights reserved.
+ * Copyright 2018, Google Inc.
+ * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions are
@@ -12,7 +13,7 @@
  * copyright notice, this list of conditions and the following disclaimer
  * in the documentation and/or other materials provided with the
  * distribution.
- *     * Neither the name of Google LLC nor the names of its
+ *     * Neither the name of Google Inc. nor the names of its
  * contributors may be used to endorse or promote products derived from
  * this software without specific prior written permission.
  *
@@ -29,18 +30,38 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-/*
- * GENERATED CODE WARNING
- * This file was automatically generated - do not edit!
- */
+namespace Google\ApiCore\Tests\Unit;
 
-namespace Google\ApiCore\LongRunning\Tests\Unit;
+use Google\ApiCore\UriTrait;
+use PHPUnit\Framework\TestCase;
 
-use Google\ApiCore\Testing\MockStubTrait;
-use Google\LongRunning\OperationsGrpcClient;
-use Google\Protobuf\Any;
-
-class MockOperationsImpl extends OperationsGrpcClient
+class UriTraitTest extends TestCase
 {
-    use MockStubTrait;
+    private $implementation;
+
+    public function setUp()
+    {
+        $this->implementation = $this->getObjectForTrait(UriTrait::class);
+    }
+
+    /**
+     * @dataProvider queryProvider
+     */
+    public function testBuildsUriWithQuery($expectedQuery, $query)
+    {
+        $baseUri = 'http://www.example.com';
+        $uri = $this->implementation->buildUriWithQuery($baseUri, $query);
+
+        $this->assertEquals($baseUri . $expectedQuery, (string) $uri);
+    }
+
+    public function queryProvider()
+    {
+        return [
+            ['?narf=yes', ['narf' => 'yes']],
+            ['?narf=true', ['narf' => true]],
+            ['?narf=false', ['narf' => false]],
+            ['?narf=0', ['narf' => '0']]
+        ];
+    }
 }

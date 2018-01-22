@@ -84,6 +84,11 @@ class Segment extends ArrayObject
         self::$segmentCount++;
     }
 
+    public static function decrementSegmentCount()
+    {
+        self::$segmentCount--;
+    }
+
     public static function resetSegmentCount()
     {
         self::$segmentCount = 0;

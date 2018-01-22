@@ -31,59 +31,71 @@
  */
 namespace Google\ApiCore\Tests\Unit;
 
+use Google\ApiCore\Call;
+use Google\ApiCore\CallSettings;
 use Google\ApiCore\Page;
 use Google\ApiCore\FixedSizeCollection;
 use Google\ApiCore\PageStreamingDescriptor;
 use Google\ApiCore\Testing\MockStatus;
-use Google\ApiCore\Tests\Unit\Mocks\MockStub;
-use Google\ApiCore\Tests\Unit\Mocks\MockPageStreamingRequest;
-use Google\ApiCore\Tests\Unit\Mocks\MockPageStreamingResponse;
+use Google\Rpc\Code;
 use PHPUnit\Framework\TestCase;
-use Grpc;
 
 class FixedSizeCollectionTest extends TestCase
 {
-    private static function createPage($responseSequence)
+    use TestTrait;
+
+    private function createPage($responseSequence)
     {
-        $mockRequest = MockPageStreamingRequest::createPageStreamingRequest('token', 3);
-        $stub = MockStub::createWithResponseSequence($responseSequence);
-        $descriptor = PageStreamingDescriptor::createFromFields([
+        $mockRequest = $this->createMockRequest('token', 3);
+
+        $pageStreamingDescriptor = PageStreamingDescriptor::createFromFields([
             'requestPageTokenField' => 'pageToken',
             'requestPageSizeField' => 'pageSize',
             'responsePageTokenField' => 'nextPageToken',
             'resourceField' => 'resourcesList'
         ]);
-        $mockApiCall = function () use ($stub) {
-            list($response, $status) =
-                call_user_func_array(array($stub, 'takeAction'), func_get_args())->wait();
-            return $response;
+
+        $internalCall = $this->createCallWithResponseSequence($responseSequence);
+
+        $callable = function () use ($internalCall) {
+            list($response, $status) = call_user_func_array(
+                array($internalCall, 'takeAction'),
+                func_get_args()
+            );
+            return $promise = new \GuzzleHttp\Promise\Promise(function () use (&$promise, $response) {
+                $promise->resolve($response);
+            });
         };
-        return new Page([$mockRequest, [], []], $mockApiCall, $descriptor);
+
+        $call = new Call('method', 'decodeType', $mockRequest);
+        $options = [];
+
+        return new Page($call, $options, $callable, $pageStreamingDescriptor);
     }
 
     public function testFixedCollectionMethods()
     {
-        $responseA = MockPageStreamingResponse::createPageStreamingResponse(
+        $responseA = $this->createMockResponse(
             'nextPageToken1',
             ['resource1', 'resource2']
         );
-        $responseB = MockPageStreamingResponse::createPageStreamingResponse(
+        $responseB = $this->createMockResponse(
             'nextPageToken2',
             ['resource3', 'resource4', 'resource5']
         );
-        $responseC = MockPageStreamingResponse::createPageStreamingResponse(
+        $responseC = $this->createMockResponse(
             'nextPageToken3',
             ['resource6', 'resource7']
         );
-        $responseD = MockPageStreamingResponse::createPageStreamingResponse(
+        $responseD = $this->createMockResponse(
             '',
             ['resource8', 'resource9']
         );
-        $page = FixedSizeCollectionTest::createPage([
-            [$responseA, new MockStatus(Grpc\STATUS_OK, '')],
-            [$responseB, new MockStatus(Grpc\STATUS_OK, '')],
-            [$responseC, new MockStatus(Grpc\STATUS_OK, '')],
-            [$responseD, new MockStatus(Grpc\STATUS_OK, '')],
+        $page = $this->createPage([
+            [$responseA, new MockStatus(Code::OK, '')],
+            [$responseB, new MockStatus(Code::OK, '')],
+            [$responseC, new MockStatus(Code::OK, '')],
+            [$responseD, new MockStatus(Code::OK, '')],
         ]);
 
         $fixedSizeCollection = new FixedSizeCollection($page, 5);
@@ -107,5 +119,87 @@ class FixedSizeCollectionTest extends TestCase
             $results,
             ['resource6', 'resource7', 'resource8', 'resource9']
         );
+    }
+
+    public function testIterateCollections()
+    {
+        $responseA = $this->createMockResponse(
+            'nextPageToken1',
+            ['resource1', 'resource2']
+        );
+        $responseB = $this->createMockResponse(
+            '',
+            ['resource3', 'resource4']
+        );
+        $page = $this->createPage([
+            [$responseA, new MockStatus(Code::OK, '')],
+            [$responseB, new MockStatus(Code::OK, '')],
+        ]);
+
+        $collection = new FixedSizeCollection($page, 2);
+
+        $results = [];
+        $iterations = 0;
+        foreach ($collection->iterateCollections() as $nextCollection) {
+            $results = array_merge($results, iterator_to_array($nextCollection));
+            $iterations++;
+        }
+        $this->assertEquals(
+            $results,
+            ['resource1', 'resource2', 'resource3', 'resource4']
+        );
+        $this->assertEquals(2, $iterations);
+    }
+
+    /**
+     * @expectedException LengthException
+     * @expectedExceptionMessage API returned a number of elements exceeding the specified page size limit
+     */
+    public function testApiReturningMoreElementsThanPageSize()
+    {
+        $responseA = $this->createMockResponse(
+            'nextPageToken1',
+            ['resource1', 'resource2']
+        );
+        $responseB = $this->createMockResponse(
+            'nextPageToken2',
+            ['resource3', 'resource4', 'resource5']
+        );
+        $page = $this->createPage([
+            [$responseA, new MockStatus(Code::OK, '')],
+            [$responseB, new MockStatus(Code::OK, '')],
+        ]);
+
+        $collection = new FixedSizeCollection($page, 3);
+        $collection->getNextCollection();
+    }
+
+    /**
+     * @expectedException InvalidArgumentException
+     * @expectedExceptionMessage collectionSize must be > 0.
+     */
+    public function testEmptyCollectionThrowsException()
+    {
+        $collectionSize = 0;
+        $page = $this->getMockBuilder(Page::class)
+            ->disableOriginalConstructor()
+            ->getMock();
+        new FixedSizeCollection($page, $collectionSize);
+    }
+
+    /**
+     * @expectedException InvalidArgumentException
+     * @expectedExceptionMessage collectionSize must be greater than or equal to the number of elements in initialPage
+     */
+    public function testInvalidPageCount()
+    {
+        $collectionSize = 1;
+        $page = $this->getMockBuilder(Page::class)
+            ->disableOriginalConstructor()
+            ->getMock();
+        $page->expects($this->exactly(2))
+            ->method('getPageElementCount')
+            ->will($this->returnValue(2));
+        new FixedSizeCollection($page, $collectionSize);
     }
 }

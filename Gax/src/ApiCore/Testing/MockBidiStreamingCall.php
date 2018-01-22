@@ -40,12 +40,11 @@ use Grpc;
  * The MockBidiStreamingCall class is used to mock out the \Grpc\BidiStreamingCall class
  * (https://github.com/grpc/grpc/blob/master/src/php/lib/Grpc/BidiStreamingCall.php)
  */
-class MockBidiStreamingCall
+class MockBidiStreamingCall extends \Grpc\BidiStreamingCall
 {
     use SerializationTrait;
 
     private $responses;
-    private $deserialize;
     private $status;
     private $writesDone = false;
     private $receivedWrites = [];
@@ -110,7 +109,7 @@ class MockBidiStreamingCall
      * @param \Google\Protobuf\Internal\Message|mixed $request The request object
      * @throws ApiException
      */
-    public function write($request)
+    public function write($request, array $options = [])
     {
         if ($this->writesDone) {
             throw new ApiException("Cannot call write() after writesDone()", Grpc\STATUS_INTERNAL);
