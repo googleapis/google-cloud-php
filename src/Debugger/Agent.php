@@ -86,13 +86,18 @@ class Agent
      */
     public function __construct(array $options = [])
     {
-        $daemon = new Daemon([
-            'sourceRoot' => $this->sourceRoot
-        ]);
-
         $storage = isset($options['storage'])
             ? $options['storage']
             : $this->defaultStorage();
+
+        $this->sourceRoot = isset($options['sourceRoot'])
+            ? $options['sourceRoot']
+            : dirname(debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS, 1)[0]['file']);
+
+        $daemon = new Daemon([
+            'sourceRoot' => $this->sourceRoot,
+            'storage' => $storage
+        ]);
 
         $agentConfig = $storage->load();
         if (empty($agentConfig)) {
@@ -111,10 +116,6 @@ class Agent
         $this->logger = isset($options['logger'])
             ? $options['logger']
             : $this->defaultLogger();
-
-        $this->sourceRoot = isset($options['sourceRoot'])
-            ? $options['sourceRoot']
-            : dirname(debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS, 1)[0]['file']);
 
         if (empty($breakpoints)) {
             return;
