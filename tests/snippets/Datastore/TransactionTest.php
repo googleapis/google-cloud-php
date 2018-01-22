@@ -262,8 +262,7 @@ class TransactionTest extends SnippetTestCase
         $snippet->addLocal('transaction', $this->transaction);
 
         $this->connection->lookup(Argument::that(function ($args) {
-            if ($args['transaction'] !== $this->transactionId) return false;
-            return true;
+            return $args['transaction'] === $this->transactionId;
         }))
             ->shouldBeCalled()
             ->willReturn([
@@ -298,8 +297,7 @@ class TransactionTest extends SnippetTestCase
         $snippet->addLocal('transaction', $this->transaction);
 
         $this->connection->lookup(Argument::that(function ($args) {
-            if ($args['transaction'] !== $this->transactionId) return false;
-            return true;
+            return $args['transaction'] === $this->transactionId;
         }))
             ->shouldBeCalled()
             ->willReturn([
@@ -350,8 +348,7 @@ class TransactionTest extends SnippetTestCase
         $snippet->addLocal('query', $this->prophesize(QueryInterface::class)->reveal());
 
         $this->connection->runQuery(Argument::that(function ($args) {
-            if ($args['transaction'] !== $this->transactionId) return false;
-            return true;
+            return $args['transaction'] === $this->transactionId;
         }))
             ->shouldBeCalled()
             ->willReturn([
