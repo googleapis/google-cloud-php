@@ -94,13 +94,13 @@ class DebuggeeTest extends TestCase
     {
         $this->connection->updateBreakpoint(Argument::that(function ($args) {
             return $args['id'] == 'breakpoint1';
-        }))->willReturn(true);
+        }))->willReturn([]);
         $debuggee = new Debuggee($this->connection->reveal(), ['id' => 'debuggee1', 'project' => 'project1']);
 
         $breakpoint = new Breakpoint([
             'id' => 'breakpoint1'
         ]);
-        $this->assertTrue($debuggee->updateBreakpoint($breakpoint));
+        $debuggee->updateBreakpoint($breakpoint);
     }
 
     // Debug agents should populate both sourceContexts and extSourceContexts.

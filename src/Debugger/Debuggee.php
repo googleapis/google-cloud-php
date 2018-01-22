@@ -18,6 +18,7 @@
 namespace Google\Cloud\Debugger;
 
 use Google\Cloud\Debugger\Connection\ConnectionInterface;
+use Google\Cloud\Core\Exception\ServiceException;
 
 /**
  * This class represents a debuggee - a service that can handle breakpoints.
@@ -294,11 +295,12 @@ class Debuggee
      * @codingStandardsIgnoreEnd
      *
      * @param Breakpoint $breakpoint The modified breakpoint.
-     * @return bool
+     * @return void
+     * @throws ServiceException
      */
     public function updateBreakpoint(Breakpoint $breakpoint)
     {
-        return $this->connection->updateBreakpoint([
+        $this->connection->updateBreakpoint([
             'debuggeeId' => $this->id,
             'id' => $breakpoint->id(),
             'breakpoint' => $breakpoint->info()
@@ -318,6 +320,8 @@ class Debuggee
      * @codingStandardsIgnoreEnd
      *
      * @param Breakpoint[] $breakpoints The modified breakpoints.
+     * @return void
+     * @throws ServiceException
      */
     public function updateBreakpointBatch(array $breakpoints)
     {
