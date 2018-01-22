@@ -32,10 +32,13 @@
 namespace Google\ApiCore\Tests\Unit;
 
 use Google\ApiCore\PageStreamingDescriptor;
+use Google\Rpc\Code;
 use PHPUnit\Framework\TestCase;
 
-class PageStreamingDescriptorTest extends TestCase
+class ApiTest extends TestCase
 {
+    use TestTrait;
+
     /**
      * @expectedException \InvalidArgumentException
      */

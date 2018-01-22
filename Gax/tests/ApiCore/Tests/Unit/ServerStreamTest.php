@@ -34,13 +34,12 @@ namespace Google\ApiCore\Tests\Unit;
 use Google\ApiCore\ServerStream;
 use Google\ApiCore\Testing\MockServerStreamingCall;
 use Google\ApiCore\Testing\MockStatus;
-use Google\ApiCore\Tests\Unit\Mocks\MockPageStreamingResponse;
 use Google\Protobuf\Internal\GPBType;
 use Google\Protobuf\Internal\RepeatedField;
-use Grpc;
-use PHPUnit\Framework\TestCase;
+use Google\Rpc\Code;
+use PHPUnit_Framework_TestCase;
 
-class ServerStreamTest extends TestCase
+class ServerStreamTest extends PHPUnit_Framework_TestCase
 {
     use TestTrait;
 
@@ -59,7 +58,7 @@ class ServerStreamTest extends TestCase
      */
     public function testEmptyFailure()
     {
-        $call = new MockServerStreamingCall([], null, new MockStatus(Grpc\STATUS_INTERNAL, 'empty failure'));
+        $call = new MockServerStreamingCall([], null, new MockStatus(Code::INTERNAL, 'empty failure'));
         $stream = new ServerStream($call);
 
         $this->assertSame($call, $stream->getServerStreamingCall());
@@ -86,7 +85,7 @@ class ServerStreamTest extends TestCase
         $call = new MockServerStreamingCall(
             $responses,
             null,
-            new MockStatus(Grpc\STATUS_INTERNAL, 'strings failure')
+            new MockStatus(Code::INTERNAL, 'strings failure')
         );
         $stream = new ServerStream($call);
 
@@ -105,8 +104,8 @@ class ServerStreamTest extends TestCase
     public function testObjectsSuccess()
     {
         $responses = [
-            ServerStreamTest::createStatus(Grpc\STATUS_OK, 'response1'),
-            ServerStreamTest::createStatus(Grpc\STATUS_OK, 'response2')
+            $this->createStatus(Code::OK, 'response1'),
+            $this->createStatus(Code::OK, 'response2')
         ];
         $serializedResponses = [];
         foreach ($responses as $response) {
@@ -126,8 +125,8 @@ class ServerStreamTest extends TestCase
     public function testObjectsFailure()
     {
         $responses = [
-            ServerStreamTest::createStatus(Grpc\STATUS_OK, 'response1'),
-            ServerStreamTest::createStatus(Grpc\STATUS_OK, 'response2')
+            $this->createStatus(Code::OK, 'response1'),
+            $this->createStatus(Code::OK, 'response2')
         ];
         $serializedResponses = [];
         foreach ($responses as $response) {
@@ -136,7 +135,7 @@ class ServerStreamTest extends TestCase
         $call = new MockServerStreamingCall(
             $serializedResponses,
             ['\Google\Rpc\Status', 'mergeFromString'],
-            new MockStatus(Grpc\STATUS_INTERNAL, 'objects failure')
+            new MockStatus(Code::INTERNAL, 'objects failure')
         );
         $stream = new ServerStream($call);
 
@@ -161,8 +160,8 @@ class ServerStreamTest extends TestCase
         $repeatedField2[] = 'resource2';
         $repeatedField2[] = 'resource3';
         $responses = [
-            MockPageStreamingResponse::createPageStreamingResponse('nextPageToken1', $repeatedField1),
-            MockPageStreamingResponse::createPageStreamingResponse('nextPageToken1', $repeatedField2)
+            $this->createMockResponse('nextPageToken1', $repeatedField1),
+            $this->createMockResponse('nextPageToken1', $repeatedField2)
         ];
         $call = new MockServerStreamingCall($responses);
         $stream = new ServerStream($call, [
@@ -181,13 +180,13 @@ class ServerStreamTest extends TestCase
     {
         $resources = ['resource1', 'resource2', 'resource3'];
         $responses = [
-            MockPageStreamingResponse::createPageStreamingResponse('nextPageToken1', ['resource1']),
-            MockPageStreamingResponse::createPageStreamingResponse('nextPageToken1', ['resource2', 'resource3'])
+            $this->createMockResponse('nextPageToken1', ['resource1']),
+            $this->createMockResponse('nextPageToken1', ['resource2', 'resource3'])
         ];
         $call = new MockServerStreamingCall(
             $responses,
             null,
-            new MockStatus(Grpc\STATUS_INTERNAL, 'resources failure')
+            new MockStatus(Code::INTERNAL, 'resources failure')
         );
         $stream = new ServerStream($call, [
             'resourcesGetMethod' => 'getResourcesList'

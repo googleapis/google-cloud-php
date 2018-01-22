@@ -49,7 +49,7 @@ trait SerializationTrait
             $obj = new $className();
             if (method_exists($obj, $deserializeFunc)) {
                 $obj->$deserializeFunc($message);
-            } else {
+            } elseif (is_string($message)) {
                 $obj->mergeFromString($message);
             }
 

@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2016, Google Inc.
+ * Copyright 2018, Google Inc.
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -30,24 +30,37 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-namespace Google\ApiCore\Tests\Unit\Mocks;
+namespace Google\ApiCore;
 
-use Google\ApiCore\GrpcCredentialsHelper;
+use GuzzleHttp\Psr7;
+use Psr\Http\Message\UriInterface;
 
-class MockGrpcCredentialsHelper extends GrpcCredentialsHelper
+/**
+ * Provides a light wrapper around often used URI related functions.
+ */
+trait UriTrait
 {
-    protected function getADCCredentials($scopes)
+    /**
+     * @param string|UriInterface $uri
+     * @param array $query
+     * @return UriInterface
+     */
+    public function buildUriWithQuery($uri, array $query)
     {
-        return new MockCredentialsLoader($scopes, [
-            [
-                'access_token' => 'adcAccessToken',
-                'expires_in' => '100',
-            ],
-        ]);
-    }
+        $query = array_filter($query, function ($v) {
+            return $v !== null;
+        });
 
-    protected function createSslChannelCredentials()
-    {
-        return "DummySslCreds";
+        // Casts bools to their string representation
+        foreach ($query as $k => &$v) {
+            if (is_bool($v)) {
+                $v = $v ? 'true' : 'false';
+            }
+        }
+
+        return Psr7\uri_for($uri)
+            ->withQuery(
+                Psr7\build_query($query)
+            );
     }
 }

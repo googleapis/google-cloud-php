@@ -34,7 +34,7 @@ namespace Google\ApiCore\Tests\Unit;
 use Google\ApiCore\ClientStream;
 use Google\ApiCore\Testing\MockClientStreamingCall;
 use Google\ApiCore\Testing\MockStatus;
-use Grpc;
+use Google\Rpc\Code;
 use PHPUnit\Framework\TestCase;
 
 class ClientStreamTest extends TestCase
@@ -62,7 +62,7 @@ class ClientStreamTest extends TestCase
         $call = new MockClientStreamingCall(
             $response,
             null,
-            new MockStatus(Grpc\STATUS_INTERNAL, 'no writes failure')
+            new MockStatus(Code::INTERNAL, 'no writes failure')
         );
         $stream = new ClientStream($call);
 
@@ -74,10 +74,10 @@ class ClientStreamTest extends TestCase
     public function testManualWritesSuccess()
     {
         $requests = [
-            ClientStreamTest::createStatus(Grpc\STATUS_OK, 'request1'),
-            ClientStreamTest::createStatus(Grpc\STATUS_OK, 'request2')
+            $this->createStatus(Code::OK, 'request1'),
+            $this->createStatus(Code::OK, 'request2')
         ];
-        $response = ClientStreamTest::createStatus(Grpc\STATUS_OK, 'response');
+        $response = $this->createStatus(Code::OK, 'response');
         $call = new MockClientStreamingCall($response->serializeToString(), ['\Google\Rpc\Status', 'mergeFromString']);
         $stream = new ClientStream($call);
 
@@ -97,14 +97,14 @@ class ClientStreamTest extends TestCase
     public function testManualWritesFailure()
     {
         $requests = [
-            ClientStreamTest::createStatus(Grpc\STATUS_OK, 'request1'),
-            ClientStreamTest::createStatus(Grpc\STATUS_OK, 'request2')
+            $this->createStatus(Code::OK, 'request1'),
+            $this->createStatus(Code::OK, 'request2')
         ];
-        $response = ClientStreamTest::createStatus(Grpc\STATUS_OK, 'response');
+        $response = $this->createStatus(Code::OK, 'response');
         $call = new MockClientStreamingCall(
             $response->serializeToString(),
             ['\Google\Rpc\Status', 'mergeFromString'],
-            new MockStatus(Grpc\STATUS_INTERNAL, 'manual writes failure')
+            new MockStatus(Code::INTERNAL, 'manual writes failure')
         );
         $stream = new ClientStream($call);
 
@@ -120,10 +120,10 @@ class ClientStreamTest extends TestCase
     public function testWriteAllSuccess()
     {
         $requests = [
-            ClientStreamTest::createStatus(Grpc\STATUS_OK, 'request1'),
-            ClientStreamTest::createStatus(Grpc\STATUS_OK, 'request2')
+            $this->createStatus(Code::OK, 'request1'),
+            $this->createStatus(Code::OK, 'request2')
         ];
-        $response = ClientStreamTest::createStatus(Grpc\STATUS_OK, 'response');
+        $response = $this->createStatus(Code::OK, 'response');
         $call = new MockClientStreamingCall($response->serializeToString(), ['\Google\Rpc\Status', 'mergeFromString']);
         $stream = new ClientStream($call);
 
@@ -141,14 +141,14 @@ class ClientStreamTest extends TestCase
     public function testWriteAllFailure()
     {
         $requests = [
-            ClientStreamTest::createStatus(Grpc\STATUS_OK, 'request1'),
-            ClientStreamTest::createStatus(Grpc\STATUS_OK, 'request2')
+            $this->createStatus(Code::OK, 'request1'),
+            $this->createStatus(Code::OK, 'request2')
         ];
-        $response = ClientStreamTest::createStatus(Grpc\STATUS_OK, 'response');
+        $response = $this->createStatus(Code::OK, 'response');
         $call = new MockClientStreamingCall(
             $response->serializeToString(),
             ['\Google\Rpc\Status', 'mergeFromString'],
-            new MockStatus(Grpc\STATUS_INTERNAL, 'write all failure')
+            new MockStatus(Code::INTERNAL, 'write all failure')
         );
         $stream = new ClientStream($call);
 

@@ -32,9 +32,9 @@
 namespace Google\ApiCore\Tests\Unit;
 
 use Google\ApiCore\ApiException;
-use Google\ApiCore\Serializer;
 use Google\Protobuf\Duration;
 use Google\Rpc\BadRequest;
+use Google\Rpc\Code;
 use Google\Rpc\DebugInfo;
 use Google\Rpc\Help;
 use Google\Rpc\LocalizedMessage;
@@ -43,26 +43,25 @@ use Google\Rpc\RequestInfo;
 use Google\Rpc\ResourceInfo;
 use Google\Rpc\RetryInfo;
 use PHPUnit\Framework\TestCase;
-use Grpc;
 
 class ApiExceptionTest extends TestCase
 {
     public function testWithoutMetadata()
     {
         $status = new \stdClass();
-        $status->code = Grpc\STATUS_OK;
+        $status->code = Code::OK;
         $status->details = 'testWithoutMetadata';
 
         $apiException = ApiException::createFromStdClass($status);
 
         $expectedMessage = json_encode([
             'message' => 'testWithoutMetadata',
-            'code' => Grpc\STATUS_OK,
+            'code' => Code::OK,
             'status' => 'OK',
             'details' => []
         ], JSON_PRETTY_PRINT);
 
-        $this->assertSame(Grpc\STATUS_OK, $apiException->getCode());
+        $this->assertSame(Code::OK, $apiException->getCode());
         $this->assertSame($expectedMessage, $apiException->getMessage());
         $this->assertNull($apiException->getMetadata());
     }
@@ -73,7 +72,7 @@ class ApiExceptionTest extends TestCase
     public function testWithMetadata($metadata, $metadataArray)
     {
         $status = new \stdClass();
-        $status->code = Grpc\STATUS_OK;
+        $status->code = Code::OK;
         $status->details = 'testWithMetadata';
         $status->metadata = $metadata;
 
@@ -81,12 +80,12 @@ class ApiExceptionTest extends TestCase
 
         $expectedMessage = json_encode([
             'message' => 'testWithMetadata',
-            'code' => Grpc\STATUS_OK,
+            'code' => Code::OK,
             'status' => 'OK',
             'details' => $metadataArray
         ], JSON_PRETTY_PRINT);
 
-        $this->assertSame(Grpc\STATUS_OK, $apiException->getCode());
+        $this->assertSame(Code::OK, $apiException->getCode());
         $this->assertSame($expectedMessage, $apiException->getMessage());
         $this->assertSame($metadata, $apiException->getMetadata());
     }

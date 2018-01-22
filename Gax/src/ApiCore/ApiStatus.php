@@ -54,6 +54,7 @@ class ApiStatus
     const UNAUTHENTICATED = 'UNAUTHENTICATED';
 
     const UNRECOGNIZED_STATUS = 'UNRECOGNIZED_STATUS';
+    const UNRECOGNIZED_CODE = -1;
 
     private static $apiStatusToCodeMap = [
         ApiStatus::OK => Code::OK,
@@ -113,5 +114,17 @@ class ApiStatus
             return self::$codeToApiStatusMap[$code];
         }
         return ApiStatus::UNRECOGNIZED_STATUS;
+    }
+
+    /**
+     * @param string $status
+     * @return int
+     */
+    public static function rpcCodeFromStatus($status)
+    {
+        if (array_key_exists($status, self::$apiStatusToCodeMap)) {
+            return self::$apiStatusToCodeMap[$status];
+        }
+        return ApiStatus::UNRECOGNIZED_CODE;
     }
 }

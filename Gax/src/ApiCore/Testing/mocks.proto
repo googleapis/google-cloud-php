@@ -1,0 +1,26 @@
+syntax = "proto3";
+
+package google.apicore.testing;
+
+option php_namespace = "Google\\ApiCore\\Testing";
+
+message MockRequest {
+  // The value of the uninterpreted option, in whatever type the tokenizer
+  // identified it as during parsing. Exactly one of these should be set.
+  string page_token = 1;
+  uint64 page_size = 2;
+}
+
+message MockResponse {
+  string name = 1;
+  uint64 number = 2;
+}
+
+message MockRequestBody {
+  // The value of the uninterpreted option, in whatever type the tokenizer
+  // identified it as during parsing. Exactly one of these should be set.
+  string name = 1;
+  uint64 number = 2;
+  repeated string repeated_field = 3;
+  MockRequestBody nested_message = 4;
+}

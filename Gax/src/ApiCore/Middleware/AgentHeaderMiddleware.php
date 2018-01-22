@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2016, Google Inc.
+ * Copyright 2018, Google Inc.
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -29,47 +29,44 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
+namespace Google\ApiCore\Middleware;
 
-namespace Google\ApiCore\Tests\Unit\Mocks;
+use Google\ApiCore\Call;
+use Google\ApiCore\AgentHeaderDescriptor;
 
-use Google\ApiCore\Testing\MockStubTrait;
-use InvalidArgumentException;
-
-class MockServerStreamingStub
+/**
+* Middleware which configures headers for the request.
+*/
+class AgentHeaderMiddleware
 {
-    use MockStubTrait;
+    /** @var callable */
+    private $nextHandler;
 
-    private $deserialize;
+    /** @var AgentHeaderDescriptor */
+    private $headerDescriptor;
 
-    public function __construct($deserialize = null)
-    {
-        $this->deserialize = $deserialize;
+    public function __construct(
+        callable $nextHandler,
+        AgentHeaderDescriptor $headerDescriptor
+    ) {
+        $this->nextHandler = $nextHandler;
+        $this->headerDescriptor = $headerDescriptor;
     }
 
-    /**
-     * Creates a sequence such that the responses are returned in order.
-     * @param mixed[] $sequence
-     * @param $finalStatus
-     * @param callable $deserialize
-     * @return MockServerStreamingStub
-     */
-    public static function createWithResponseSequence($sequence, $finalStatus = null, $deserialize = null)
+    public function __invoke(Call $call, array $options)
     {
-        if (count($sequence) == 0) {
-            throw new InvalidArgumentException("createResponseSequence: need at least 1 response");
-        }
-        $stub = new MockServerStreamingStub($deserialize);
-        foreach ($sequence as $resp) {
-            $stub->addResponse($resp, null);
-        }
-        $stub->setStreamingStatus($finalStatus);
-        return $stub;
-    }
+        $next = $this->nextHandler;
+        $agentHeaders = $this->headerDescriptor->getHeader();
+        $userHeaders = isset($options['headers']) ? $options['headers'] : [];
 
-    public function __call($name, $arguments)
-    {
-        list($argument, $metadata, $options) = $arguments;
-        $newArgs = [$name, $argument, $this->deserialize, $metadata, $options];
-        return call_user_func_array(array($this, '_serverStreamRequest'), $newArgs);
+        $options['headers'] = array_merge(
+            $userHeaders,
+            $agentHeaders
+        );
+
+        return $next(
+            $call,
+            $options
+        );
     }
 }

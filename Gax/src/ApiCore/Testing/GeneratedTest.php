@@ -37,9 +37,8 @@ use Google\Protobuf\Internal\Message;
 use Google\Protobuf\Internal\RepeatedField;
 use PHPUnit\Framework\TestCase;
 
-class GeneratedTest extends TestCase
+abstract class GeneratedTest extends TestCase
 {
-
     public function assertProtobufEquals(&$expected, &$actual)
     {
         if ($expected === $actual) {
@@ -52,9 +51,13 @@ class GeneratedTest extends TestCase
             }
 
             $this->assertSame(count($expected), count($actual));
-            for ($i = 0; $i < count($expected); $i++) {
-                $expectedElement = $expected[$i];
-                $actualElement = $actual[$i];
+
+            $expectedValues = $this->getValues($expected);
+            $actualValues = $this->getValues($actual);
+
+            for ($i = 0; $i < count($expectedValues); $i++) {
+                $expectedElement = $expectedValues[$i];
+                $actualElement = $actualValues[$i];
                 $this->assertProtobufEquals($expectedElement, $actualElement);
             }
         } else {
@@ -73,5 +76,14 @@ class GeneratedTest extends TestCase
                 }
             }
         }
+    }
+
+    private function getValues($field)
+    {
+        return array_values(
+            is_array($field)
+                ? $field
+                : iterator_to_array($field)
+        );
     }
 }

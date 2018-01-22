@@ -44,7 +44,7 @@ use Grpc;
  * wait() method. It also provides a write() method that accepts request objects, and a
  * getAllRequests() method that returns all request objects passed to write(), and clears them.
  */
-class MockClientStreamingCall
+class MockClientStreamingCall extends \Grpc\ClientStreamingCall
 {
     private $mockUnaryCall;
     private $waitCalled = false;
@@ -76,7 +76,7 @@ class MockClientStreamingCall
      * @param \Google\Protobuf\Internal\Message|mixed $request The request object
      * @throws ApiException
      */
-    public function write($request)
+    public function write($request, array $options = [])
     {
         if ($this->waitCalled) {
             throw new ApiException("Cannot call write() after wait()", Grpc\STATUS_INTERNAL);
