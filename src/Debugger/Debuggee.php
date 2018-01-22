@@ -287,7 +287,7 @@ class Debuggee implements \JsonSerializable
             'debuggeeId' => $this->id,
             'id' => $breakpoint->id(),
             'breakpoint' => $breakpoint
-        ]) === [];
+        ]) === []; // rest connection returns empty data on success
     }
 
     /**
