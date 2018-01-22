@@ -17,16 +17,16 @@
 
 namespace Google\Cloud\Tests\Unit\Spanner\Connection;
 
-use Grpc\UnaryCall;
+use Google\ApiCore\Call;
+use Google\ApiCore\OperationResponse;
+use Google\ApiCore\Serializer;
+use Google\ApiCore\Transport\TransportInterface;
 use Google\Cloud\Core\GrpcRequestWrapper;
 use Google\Cloud\Core\GrpcTrait;
 use Google\Cloud\Spanner\Connection\Grpc;
 use Google\Cloud\Spanner\V1\SpannerClient;
 use Google\Cloud\Spanner\ValueMapper;
 use Google\Cloud\Tests\GrpcTestTrait;
-use Google\ApiCore\GrpcCredentialsHelper;
-use Google\ApiCore\OperationResponse;
-use Google\ApiCore\Serializer;
 use Google\Protobuf\FieldMask;
 use Google\Protobuf\Struct;
 use Google\Cloud\Spanner\Admin\Instance\V1\Instance;
@@ -41,6 +41,7 @@ use Google\Cloud\Spanner\V1\SpannerGrpcClient;
 use Google\Cloud\Spanner\V1\TransactionOptions;
 use Google\Cloud\Spanner\V1\TransactionSelector;
 use Google\Cloud\Spanner\V1\Type;
+use GuzzleHttp\Promise\PromiseInterface;
 use Prophecy\Argument;
 use PHPUnit\Framework\TestCase;
 
@@ -54,7 +55,6 @@ class GrpcTest extends TestCase
 
     const PROJECT = 'projects/my-project';
 
-    private $requestWrapper;
     private $successMessage;
 
     public function setUp()
@@ -67,33 +67,27 @@ class GrpcTest extends TestCase
 
     public function testDeleteSessionAsync()
     {
-        $cb = function () {};
+        $promise = $this->prophesize(PromiseInterface::class)
+            ->reveal();
         $sessionName = 'session1';
         $databaseName = 'database1';
         $request = new DeleteSessionRequest();
         $request->setName($sessionName);
-        $unaryCall = $this->prophesize(UnaryCall::class);
-        $credentialsHelper = $this->prophesize(GrpcCredentialsHelper::class);
         $client = $this->prophesize(SpannerClient::class);
-        $stub = $this->prophesize(SpannerGrpcClient::class);
-        $credentialsHelper->createCallCredentialsCallback()
-            ->willReturn($cb);
-        $stub->DeleteSession(
-            $request,
-            Argument::type('array'),
-            Argument::withKey('call_credentials_callback')
-        )->willReturn($unaryCall->reveal());
-        $client->getStub()
-            ->willReturn($stub->reveal());
-        $client->getCredentialsHelper()
-            ->willReturn($credentialsHelper->reveal());
+        $transport = $this->prophesize(TransportInterface::class);
+        $transport->startUnaryCall(
+            Argument::type(Call::class),
+            Argument::type('array')
+        )->willReturn($promise);
+        $client->getTransport()
+            ->willReturn($transport->reveal());
         $grpc = new Grpc(['gapicSpannerClient' => $client->reveal()]);
         $call = $grpc->deleteSessionAsync([
             'name' => $sessionName,
             'database' => $databaseName
         ]);
 
-        $this->assertInstanceOf(UnaryCall::class, $call);
+        $this->assertInstanceOf(PromiseInterface::class, $call);
     }
 
     /**

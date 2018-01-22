@@ -40,7 +40,6 @@ class GrpcTest extends TestCase
     use GrpcTestTrait;
     use GrpcTrait;
 
-    private $requestWrapper;
     private $successMessage;
 
     public function setUp()

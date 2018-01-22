@@ -45,7 +45,6 @@ class GrpcTest extends TestCase
     const PROJECT = 'example_project';
     const DATABASE = '(default)';
 
-    private $requestWrapper;
     private $successMessage;
 
     public function setUp()

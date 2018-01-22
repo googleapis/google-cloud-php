@@ -1,12 +1,12 @@
 <?php
 /*
- * Copyright 2017, Google LLC All rights reserved.
+ * Copyright 2017 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
+ *     https://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -21,8 +21,8 @@
  * https://github.com/google/googleapis/blob/master/google/spanner/v1/spanner.proto
  * and updates to that file get reflected here through a refresh process.
  *
- * EXPERIMENTAL: this client library class has not yet been declared GA (1.0). This means that
- * even though we intent the surface to be stable, we may make backwards incompatible changes
+ * EXPERIMENTAL: This client library class has not yet been declared GA (1.0). This means that
+ * even though we intend the surface to be stable, we may make backwards incompatible changes
  * if necessary.
  *
  * @experimental
@@ -30,31 +30,37 @@
 
 namespace Google\Cloud\Spanner\V1\Gapic;
 
-use Google\ApiCore\AgentHeaderDescriptor;
-use Google\ApiCore\ApiCallable;
-use Google\ApiCore\CallSettings;
-use Google\ApiCore\GrpcCredentialsHelper;
-use Google\ApiCore\PageStreamingDescriptor;
+use Google\ApiCore\ApiException;
+use Google\ApiCore\Call;
+use Google\ApiCore\GapicClientTrait;
 use Google\ApiCore\PathTemplate;
+use Google\ApiCore\RetrySettings;
+use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
+use Google\Auth\CredentialsLoader;
 use Google\Cloud\Spanner\V1\BeginTransactionRequest;
 use Google\Cloud\Spanner\V1\CommitRequest;
+use Google\Cloud\Spanner\V1\CommitResponse;
 use Google\Cloud\Spanner\V1\CreateSessionRequest;
 use Google\Cloud\Spanner\V1\DeleteSessionRequest;
 use Google\Cloud\Spanner\V1\ExecuteSqlRequest;
-use Google\Cloud\Spanner\V1\ExecuteSqlRequest_QueryMode as QueryMode;
 use Google\Cloud\Spanner\V1\GetSessionRequest;
 use Google\Cloud\Spanner\V1\KeySet;
 use Google\Cloud\Spanner\V1\ListSessionsRequest;
+use Google\Cloud\Spanner\V1\ListSessionsResponse;
 use Google\Cloud\Spanner\V1\Mutation;
+use Google\Cloud\Spanner\V1\PartialResultSet;
 use Google\Cloud\Spanner\V1\ReadRequest;
+use Google\Cloud\Spanner\V1\ResultSet;
 use Google\Cloud\Spanner\V1\RollbackRequest;
 use Google\Cloud\Spanner\V1\Session;
-use Google\Cloud\Spanner\V1\SpannerGrpcClient;
+use Google\Cloud\Spanner\V1\Transaction;
 use Google\Cloud\Spanner\V1\TransactionOptions;
 use Google\Cloud\Spanner\V1\TransactionSelector;
-use Google\Cloud\Version;
+use Google\Protobuf\GPBEmpty;
 use Google\Protobuf\Struct;
+use Grpc\Channel;
+use Grpc\ChannelCredentials;
 
 /**
  * Service Description: Cloud Spanner API.
@@ -62,16 +68,16 @@ use Google\Protobuf\Struct;
  * The Cloud Spanner API can be used to manage sessions and execute
  * transactions on data stored in Cloud Spanner databases.
  *
- * EXPERIMENTAL: this client library class has not yet been declared GA (1.0). This means that
- * even though we intent the surface to be stable, we may make backwards incompatible changes
+ * EXPERIMENTAL: This client library class has not yet been declared GA (1.0). This means that
+ * even though we intend the surface to be stable, we may make backwards incompatible changes
  * if necessary.
  *
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods. Sample code to get started:
  *
  * ```
+ * $spannerClient = new SpannerClient();
  * try {
- *     $spannerClient = new SpannerClient();
  *     $formattedDatabase = $spannerClient->databaseName('[PROJECT]', '[INSTANCE]', '[DATABASE]');
  *     $response = $spannerClient->createSession($formattedDatabase);
  * } finally {
@@ -88,6 +94,13 @@ use Google\Protobuf\Struct;
  */
 class SpannerGapicClient
 {
+    use GapicClientTrait;
+
+    /**
+     * The name of the service.
+     */
+    const SERVICE_NAME = 'google.spanner.v1.Spanner';
+
     /**
      * The default address of the service.
      */
@@ -111,18 +124,27 @@ class SpannerGapicClient
     private static $databaseNameTemplate;
     private static $sessionNameTemplate;
     private static $pathTemplateMap;
-    private static $gapicVersion;
-    private static $gapicVersionLoaded = false;
 
-    protected $grpcCredentialsHelper;
-    protected $spannerStub;
-    private $scopes;
-    private $defaultCallSettings;
-    private $descriptors;
+    private static function getClientDefaults()
+    {
+        return [
+            'serviceName' => self::SERVICE_NAME,
+            'serviceAddress' => self::SERVICE_ADDRESS,
+            'port' => self::DEFAULT_SERVICE_PORT,
+            'scopes' => [
+                'https://www.googleapis.com/auth/cloud-platform',
+                'https://www.googleapis.com/auth/spanner.data',
+            ],
+            'clientConfigPath' => __DIR__.'/../resources/spanner_client_config.json',
+            'restClientConfigPath' => __DIR__.'/../resources/spanner_rest_client_config.php',
+            'descriptorsConfigPath' => __DIR__.'/../resources/spanner_descriptor_config.php',
+            'versionFile' => __DIR__.'/../../VERSION',
+        ];
+    }
 
     private static function getDatabaseNameTemplate()
     {
-        if (self::$databaseNameTemplate == null) {
+        if (null == self::$databaseNameTemplate) {
             self::$databaseNameTemplate = new PathTemplate('projects/{project}/instances/{instance}/databases/{database}');
         }
 
@@ -131,7 +153,7 @@ class SpannerGapicClient
 
     private static function getSessionNameTemplate()
     {
-        if (self::$sessionNameTemplate == null) {
+        if (null == self::$sessionNameTemplate) {
             self::$sessionNameTemplate = new PathTemplate('projects/{project}/instances/{instance}/databases/{database}/sessions/{session}');
         }
 
@@ -140,7 +162,7 @@ class SpannerGapicClient
 
     private static function getPathTemplateMap()
     {
-        if (self::$pathTemplateMap == null) {
+        if (null == self::$pathTemplateMap) {
             self::$pathTemplateMap = [
                 'database' => self::getDatabaseNameTemplate(),
                 'session' => self::getSessionNameTemplate(),
@@ -148,51 +170,6 @@ class SpannerGapicClient
         }
 
         return self::$pathTemplateMap;
-    }
-
-    private static function getPageStreamingDescriptors()
-    {
-        $listSessionsPageStreamingDescriptor =
-                new PageStreamingDescriptor([
-                    'requestPageTokenGetMethod' => 'getPageToken',
-                    'requestPageTokenSetMethod' => 'setPageToken',
-                    'requestPageSizeGetMethod' => 'getPageSize',
-                    'requestPageSizeSetMethod' => 'setPageSize',
-                    'responsePageTokenGetMethod' => 'getNextPageToken',
-                    'resourcesGetMethod' => 'getSessions',
-                ]);
-
-        $pageStreamingDescriptors = [
-            'listSessions' => $listSessionsPageStreamingDescriptor,
-        ];
-
-        return $pageStreamingDescriptors;
-    }
-
-    private static function getGrpcStreamingDescriptors()
-    {
-        return [
-            'executeStreamingSql' => [
-                'grpcStreamingType' => 'ServerStreaming',
-            ],
-            'streamingRead' => [
-                'grpcStreamingType' => 'ServerStreaming',
-            ],
-        ];
-    }
-
-    private static function getGapicVersion()
-    {
-        if (!self::$gapicVersionLoaded) {
-            if (file_exists(__DIR__.'/../VERSION')) {
-                self::$gapicVersion = trim(file_get_contents(__DIR__.'/../VERSION'));
-            } elseif (class_exists(Version::class)) {
-                self::$gapicVersion = Version::VERSION;
-            }
-            self::$gapicVersionLoaded = true;
-        }
-
-        return self::$gapicVersion;
     }
 
     /**
@@ -288,20 +265,23 @@ class SpannerGapicClient
      *     @type string $serviceAddress The domain name of the API remote host.
      *                                  Default 'spanner.googleapis.com'.
      *     @type mixed $port The port on which to connect to the remote host. Default 443.
-     *     @type \Grpc\Channel $channel
-     *           A `Channel` object to be used by gRPC. If not specified, a channel will be constructed.
-     *     @type \Grpc\ChannelCredentials $sslCreds
+     *     @type Channel $channel
+     *           A `Channel` object. If not specified, a channel will be constructed.
+     *           NOTE: This option is only valid when utilizing the gRPC transport.
+     *     @type ChannelCredentials $sslCreds
      *           A `ChannelCredentials` object for use with an SSL-enabled channel.
      *           Default: a credentials object returned from
-     *           \Grpc\ChannelCredentials::createSsl()
-     *           NOTE: if the $channel optional argument is specified, then this argument is unused.
+     *           \Grpc\ChannelCredentials::createSsl().
+     *           NOTE: This option is only valid when utilizing the gRPC transport. Also, if the $channel
+     *           optional argument is specified, then this argument is unused.
      *     @type bool $forceNewChannel
      *           If true, this forces gRPC to create a new channel instead of using a persistent channel.
      *           Defaults to false.
-     *           NOTE: if the $channel optional argument is specified, then this option is unused.
-     *     @type \Google\Auth\CredentialsLoader $credentialsLoader
+     *           NOTE: This option is only valid when utilizing the gRPC transport. Also, if the $channel
+     *           optional argument is specified, then this option is unused.
+     *     @type CredentialsLoader $credentialsLoader
      *           A CredentialsLoader object created using the Google\Auth library.
-     *     @type array $scopes A string array of scopes to use when acquiring credentials.
+     *     @type string[] $scopes A string array of scopes to use when acquiring credentials.
      *                          Defaults to the scopes for the Cloud Spanner API.
      *     @type string $clientConfigPath
      *           Path to a JSON file containing client method configuration, including retry settings.
@@ -317,80 +297,22 @@ class SpannerGapicClient
      *           for example usage. Passing a value of null is equivalent to a value of
      *           ['retriesEnabled' => false]. Retry settings provided in this setting override the
      *           settings in $clientConfigPath.
+     *     @type callable $authHttpHandler A handler used to deliver PSR-7 requests specifically
+     *           for authentication. Should match a signature of
+     *           `function (RequestInterface $request, array $options) : ResponseInterface`.
+     *     @type callable $httpHandler A handler used to deliver PSR-7 requests. Should match a
+     *           signature of `function (RequestInterface $request, array $options) : PromiseInterface`.
+     *           NOTE: This option is only valid when utilizing the REST transport.
+     *     @type string|TransportInterface $transport The transport used for executing network
+     *           requests. May be either the string `rest` or `grpc`. Additionally, it is possible
+     *           to pass in an already instantiated transport. Defaults to `grpc` if gRPC support is
+     *           detected on the system.
      * }
      * @experimental
      */
     public function __construct($options = [])
     {
-        $defaultOptions = [
-            'serviceAddress' => self::SERVICE_ADDRESS,
-            'port' => self::DEFAULT_SERVICE_PORT,
-            'scopes' => [
-                'https://www.googleapis.com/auth/cloud-platform',
-                'https://www.googleapis.com/auth/spanner.data',
-            ],
-            'retryingOverride' => null,
-            'libName' => null,
-            'libVersion' => null,
-            'clientConfigPath' => __DIR__.'/../resources/spanner_client_config.json',
-        ];
-        $options = array_merge($defaultOptions, $options);
-
-        $gapicVersion = $options['libVersion'] ?: self::getGapicVersion();
-
-        $headerDescriptor = new AgentHeaderDescriptor([
-            'libName' => $options['libName'],
-            'libVersion' => $options['libVersion'],
-            'gapicVersion' => $gapicVersion,
-        ]);
-
-        $defaultDescriptors = ['headerDescriptor' => $headerDescriptor];
-        $this->descriptors = [
-            'createSession' => $defaultDescriptors,
-            'getSession' => $defaultDescriptors,
-            'listSessions' => $defaultDescriptors,
-            'deleteSession' => $defaultDescriptors,
-            'executeSql' => $defaultDescriptors,
-            'executeStreamingSql' => $defaultDescriptors,
-            'read' => $defaultDescriptors,
-            'streamingRead' => $defaultDescriptors,
-            'beginTransaction' => $defaultDescriptors,
-            'commit' => $defaultDescriptors,
-            'rollback' => $defaultDescriptors,
-        ];
-        $pageStreamingDescriptors = self::getPageStreamingDescriptors();
-        foreach ($pageStreamingDescriptors as $method => $pageStreamingDescriptor) {
-            $this->descriptors[$method]['pageStreamingDescriptor'] = $pageStreamingDescriptor;
-        }
-        $grpcStreamingDescriptors = self::getGrpcStreamingDescriptors();
-        foreach ($grpcStreamingDescriptors as $method => $grpcStreamingDescriptor) {
-            $this->descriptors[$method]['grpcStreamingDescriptor'] = $grpcStreamingDescriptor;
-        }
-
-        $clientConfigJsonString = file_get_contents($options['clientConfigPath']);
-        $clientConfig = json_decode($clientConfigJsonString, true);
-        $this->defaultCallSettings =
-                CallSettings::load(
-                    'google.spanner.v1.Spanner',
-                    $clientConfig,
-                    $options['retryingOverride']
-                );
-
-        $this->scopes = $options['scopes'];
-
-        $createStubOptions = [];
-        if (array_key_exists('sslCreds', $options)) {
-            $createStubOptions['sslCreds'] = $options['sslCreds'];
-        }
-        $this->grpcCredentialsHelper = new GrpcCredentialsHelper($options);
-
-        $createSpannerStubFunction = function ($hostname, $opts, $channel) {
-            return new SpannerGrpcClient($hostname, $opts, $channel);
-        };
-        if (array_key_exists('createSpannerStubFunction', $options)) {
-            $createSpannerStubFunction = $options['createSpannerStubFunction'];
-        }
-        $this->spannerStub = $this->grpcCredentialsHelper->createStub($createSpannerStubFunction);
+        $this->setClientOptions($options + self::getClientDefaults());
     }
 
     /**
@@ -416,8 +338,8 @@ class SpannerGapicClient
      *
      * Sample code:
      * ```
+     * $spannerClient = new SpannerClient();
      * try {
-     *     $spannerClient = new SpannerClient();
      *     $formattedDatabase = $spannerClient->databaseName('[PROJECT]', '[INSTANCE]', '[DATABASE]');
      *     $response = $spannerClient->createSession($formattedDatabase);
      * } finally {
@@ -431,7 +353,7 @@ class SpannerGapicClient
      *
      *     @type Session $session
      *          The session to create.
-     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
+     *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
@@ -440,7 +362,7 @@ class SpannerGapicClient
      *
      * @return \Google\Cloud\Spanner\V1\Session
      *
-     * @throws \Google\ApiCore\ApiException if the remote call fails
+     * @throws ApiException if the remote call fails
      * @experimental
      */
     public function createSession($database, $optionalArgs = [])
@@ -451,24 +373,12 @@ class SpannerGapicClient
             $request->setSession($optionalArgs['session']);
         }
 
-        $defaultCallSettings = $this->defaultCallSettings['createSession'];
-        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
-            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
-                $optionalArgs['retrySettings']
-            );
-        }
-        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
-        $callable = ApiCallable::createApiCall(
-            $this->spannerStub,
+        return $this->startCall(
             'CreateSession',
-            $mergedSettings,
-            $this->descriptors['createSession']
-        );
-
-        return $callable(
-            $request,
-            [],
-            ['call_credentials_callback' => $this->createCredentialsCallback()]);
+            Session::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**
@@ -478,8 +388,8 @@ class SpannerGapicClient
      *
      * Sample code:
      * ```
+     * $spannerClient = new SpannerClient();
      * try {
-     *     $spannerClient = new SpannerClient();
      *     $formattedName = $spannerClient->sessionName('[PROJECT]', '[INSTANCE]', '[DATABASE]', '[SESSION]');
      *     $response = $spannerClient->getSession($formattedName);
      * } finally {
@@ -491,7 +401,7 @@ class SpannerGapicClient
      * @param array  $optionalArgs {
      *                             Optional.
      *
-     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
+     *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
@@ -500,7 +410,7 @@ class SpannerGapicClient
      *
      * @return \Google\Cloud\Spanner\V1\Session
      *
-     * @throws \Google\ApiCore\ApiException if the remote call fails
+     * @throws ApiException if the remote call fails
      * @experimental
      */
     public function getSession($name, $optionalArgs = [])
@@ -508,24 +418,12 @@ class SpannerGapicClient
         $request = new GetSessionRequest();
         $request->setName($name);
 
-        $defaultCallSettings = $this->defaultCallSettings['getSession'];
-        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
-            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
-                $optionalArgs['retrySettings']
-            );
-        }
-        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
-        $callable = ApiCallable::createApiCall(
-            $this->spannerStub,
+        return $this->startCall(
             'GetSession',
-            $mergedSettings,
-            $this->descriptors['getSession']
-        );
-
-        return $callable(
-            $request,
-            [],
-            ['call_credentials_callback' => $this->createCredentialsCallback()]);
+            Session::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**
@@ -533,8 +431,8 @@ class SpannerGapicClient
      *
      * Sample code:
      * ```
+     * $spannerClient = new SpannerClient();
      * try {
-     *     $spannerClient = new SpannerClient();
      *     $formattedDatabase = $spannerClient->databaseName('[PROJECT]', '[INSTANCE]', '[DATABASE]');
      *     // Iterate through all elements
      *     $pagedResponse = $spannerClient->listSessions($formattedDatabase);
@@ -578,7 +476,7 @@ class SpannerGapicClient
      *            * `labels.env:*` --> The session has the label "env".
      *            * `labels.env:dev` --> The session has the label "env" and the value of
      *                                 the label contains the string "dev".
-     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
+     *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
@@ -587,7 +485,7 @@ class SpannerGapicClient
      *
      * @return \Google\ApiCore\PagedListResponse
      *
-     * @throws \Google\ApiCore\ApiException if the remote call fails
+     * @throws ApiException if the remote call fails
      * @experimental
      */
     public function listSessions($database, $optionalArgs = [])
@@ -604,24 +502,12 @@ class SpannerGapicClient
             $request->setFilter($optionalArgs['filter']);
         }
 
-        $defaultCallSettings = $this->defaultCallSettings['listSessions'];
-        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
-            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
-                $optionalArgs['retrySettings']
-            );
-        }
-        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
-        $callable = ApiCallable::createApiCall(
-            $this->spannerStub,
+        return $this->getPagedListResponse(
             'ListSessions',
-            $mergedSettings,
-            $this->descriptors['listSessions']
+            $optionalArgs,
+            ListSessionsResponse::class,
+            $request
         );
-
-        return $callable(
-            $request,
-            [],
-            ['call_credentials_callback' => $this->createCredentialsCallback()]);
     }
 
     /**
@@ -629,8 +515,8 @@ class SpannerGapicClient
      *
      * Sample code:
      * ```
+     * $spannerClient = new SpannerClient();
      * try {
-     *     $spannerClient = new SpannerClient();
      *     $formattedName = $spannerClient->sessionName('[PROJECT]', '[INSTANCE]', '[DATABASE]', '[SESSION]');
      *     $spannerClient->deleteSession($formattedName);
      * } finally {
@@ -642,14 +528,14 @@ class SpannerGapicClient
      * @param array  $optionalArgs {
      *                             Optional.
      *
-     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
+     *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
      *          {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
-     * @throws \Google\ApiCore\ApiException if the remote call fails
+     * @throws ApiException if the remote call fails
      * @experimental
      */
     public function deleteSession($name, $optionalArgs = [])
@@ -657,24 +543,12 @@ class SpannerGapicClient
         $request = new DeleteSessionRequest();
         $request->setName($name);
 
-        $defaultCallSettings = $this->defaultCallSettings['deleteSession'];
-        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
-            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
-                $optionalArgs['retrySettings']
-            );
-        }
-        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
-        $callable = ApiCallable::createApiCall(
-            $this->spannerStub,
+        return $this->startCall(
             'DeleteSession',
-            $mergedSettings,
-            $this->descriptors['deleteSession']
-        );
-
-        return $callable(
-            $request,
-            [],
-            ['call_credentials_callback' => $this->createCredentialsCallback()]);
+            GPBEmpty::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**
@@ -692,8 +566,8 @@ class SpannerGapicClient
      *
      * Sample code:
      * ```
+     * $spannerClient = new SpannerClient();
      * try {
-     *     $spannerClient = new SpannerClient();
      *     $formattedSession = $spannerClient->sessionName('[PROJECT]', '[INSTANCE]', '[DATABASE]', '[SESSION]');
      *     $sql = '';
      *     $response = $spannerClient->executeSql($formattedSession, $sql);
@@ -745,7 +619,7 @@ class SpannerGapicClient
      *          Used to control the amount of debugging information returned in
      *          [ResultSetStats][google.spanner.v1.ResultSetStats].
      *          For allowed values, use constants defined on {@see \Google\Cloud\Spanner\V1\ExecuteSqlRequest_QueryMode}
-     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
+     *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
@@ -754,7 +628,7 @@ class SpannerGapicClient
      *
      * @return \Google\Cloud\Spanner\V1\ResultSet
      *
-     * @throws \Google\ApiCore\ApiException if the remote call fails
+     * @throws ApiException if the remote call fails
      * @experimental
      */
     public function executeSql($session, $sql, $optionalArgs = [])
@@ -778,24 +652,12 @@ class SpannerGapicClient
             $request->setQueryMode($optionalArgs['queryMode']);
         }
 
-        $defaultCallSettings = $this->defaultCallSettings['executeSql'];
-        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
-            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
-                $optionalArgs['retrySettings']
-            );
-        }
-        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
-        $callable = ApiCallable::createApiCall(
-            $this->spannerStub,
+        return $this->startCall(
             'ExecuteSql',
-            $mergedSettings,
-            $this->descriptors['executeSql']
-        );
-
-        return $callable(
-            $request,
-            [],
-            ['call_credentials_callback' => $this->createCredentialsCallback()]);
+            ResultSet::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**
@@ -807,8 +669,8 @@ class SpannerGapicClient
      *
      * Sample code:
      * ```
+     * $spannerClient = new SpannerClient();
      * try {
-     *     $spannerClient = new SpannerClient();
      *     $formattedSession = $spannerClient->sessionName('[PROJECT]', '[INSTANCE]', '[DATABASE]', '[SESSION]');
      *     $sql = '';
      *     // Read all responses until the stream is complete
@@ -870,7 +732,7 @@ class SpannerGapicClient
      *
      * @return \Google\ApiCore\ServerStream
      *
-     * @throws \Google\ApiCore\ApiException if the remote call fails
+     * @throws ApiException if the remote call fails
      * @experimental
      */
     public function executeStreamingSql($session, $sql, $optionalArgs = [])
@@ -894,31 +756,13 @@ class SpannerGapicClient
             $request->setQueryMode($optionalArgs['queryMode']);
         }
 
-        if (array_key_exists('timeoutMillis', $optionalArgs)) {
-            $optionalArgs['retrySettings'] = [
-                'retriesEnabled' => false,
-                'noRetriesRpcTimeoutMillis' => $optionalArgs['timeoutMillis'],
-            ];
-        }
-
-        $defaultCallSettings = $this->defaultCallSettings['executeStreamingSql'];
-        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
-            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
-                $optionalArgs['retrySettings']
-            );
-        }
-        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
-        $callable = ApiCallable::createApiCall(
-            $this->spannerStub,
+        return $this->startCall(
             'ExecuteStreamingSql',
-            $mergedSettings,
-            $this->descriptors['executeStreamingSql']
-        );
-
-        return $callable(
+            PartialResultSet::class,
+            $optionalArgs,
             $request,
-            [],
-            ['call_credentials_callback' => $this->createCredentialsCallback()]);
+            Call::SERVER_STREAMING_CALL
+        );
     }
 
     /**
@@ -938,8 +782,8 @@ class SpannerGapicClient
      *
      * Sample code:
      * ```
+     * $spannerClient = new SpannerClient();
      * try {
-     *     $spannerClient = new SpannerClient();
      *     $formattedSession = $spannerClient->sessionName('[PROJECT]', '[INSTANCE]', '[DATABASE]', '[SESSION]');
      *     $table = '';
      *     $columns = [];
@@ -984,7 +828,7 @@ class SpannerGapicClient
      *          enables the new read to resume where the last read left off. The
      *          rest of the request parameters must exactly match the request
      *          that yielded this token.
-     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
+     *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
@@ -993,7 +837,7 @@ class SpannerGapicClient
      *
      * @return \Google\Cloud\Spanner\V1\ResultSet
      *
-     * @throws \Google\ApiCore\ApiException if the remote call fails
+     * @throws ApiException if the remote call fails
      * @experimental
      */
     public function read($session, $table, $columns, $keySet, $optionalArgs = [])
@@ -1016,24 +860,12 @@ class SpannerGapicClient
             $request->setResumeToken($optionalArgs['resumeToken']);
         }
 
-        $defaultCallSettings = $this->defaultCallSettings['read'];
-        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
-            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
-                $optionalArgs['retrySettings']
-            );
-        }
-        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
-        $callable = ApiCallable::createApiCall(
-            $this->spannerStub,
+        return $this->startCall(
             'Read',
-            $mergedSettings,
-            $this->descriptors['read']
-        );
-
-        return $callable(
-            $request,
-            [],
-            ['call_credentials_callback' => $this->createCredentialsCallback()]);
+            ResultSet::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**
@@ -1045,8 +877,8 @@ class SpannerGapicClient
      *
      * Sample code:
      * ```
+     * $spannerClient = new SpannerClient();
      * try {
-     *     $spannerClient = new SpannerClient();
      *     $formattedSession = $spannerClient->sessionName('[PROJECT]', '[INSTANCE]', '[DATABASE]', '[SESSION]');
      *     $table = '';
      *     $columns = [];
@@ -1101,7 +933,7 @@ class SpannerGapicClient
      *
      * @return \Google\ApiCore\ServerStream
      *
-     * @throws \Google\ApiCore\ApiException if the remote call fails
+     * @throws ApiException if the remote call fails
      * @experimental
      */
     public function streamingRead($session, $table, $columns, $keySet, $optionalArgs = [])
@@ -1124,31 +956,13 @@ class SpannerGapicClient
             $request->setResumeToken($optionalArgs['resumeToken']);
         }
 
-        if (array_key_exists('timeoutMillis', $optionalArgs)) {
-            $optionalArgs['retrySettings'] = [
-                'retriesEnabled' => false,
-                'noRetriesRpcTimeoutMillis' => $optionalArgs['timeoutMillis'],
-            ];
-        }
-
-        $defaultCallSettings = $this->defaultCallSettings['streamingRead'];
-        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
-            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
-                $optionalArgs['retrySettings']
-            );
-        }
-        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
-        $callable = ApiCallable::createApiCall(
-            $this->spannerStub,
+        return $this->startCall(
             'StreamingRead',
-            $mergedSettings,
-            $this->descriptors['streamingRead']
-        );
-
-        return $callable(
+            PartialResultSet::class,
+            $optionalArgs,
             $request,
-            [],
-            ['call_credentials_callback' => $this->createCredentialsCallback()]);
+            Call::SERVER_STREAMING_CALL
+        );
     }
 
     /**
@@ -1159,8 +973,8 @@ class SpannerGapicClient
      *
      * Sample code:
      * ```
+     * $spannerClient = new SpannerClient();
      * try {
-     *     $spannerClient = new SpannerClient();
      *     $formattedSession = $spannerClient->sessionName('[PROJECT]', '[INSTANCE]', '[DATABASE]', '[SESSION]');
      *     $options = new TransactionOptions();
      *     $response = $spannerClient->beginTransaction($formattedSession, $options);
@@ -1174,7 +988,7 @@ class SpannerGapicClient
      * @param array              $optionalArgs {
      *                                         Optional.
      *
-     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
+     *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
@@ -1183,7 +997,7 @@ class SpannerGapicClient
      *
      * @return \Google\Cloud\Spanner\V1\Transaction
      *
-     * @throws \Google\ApiCore\ApiException if the remote call fails
+     * @throws ApiException if the remote call fails
      * @experimental
      */
     public function beginTransaction($session, $options, $optionalArgs = [])
@@ -1192,24 +1006,12 @@ class SpannerGapicClient
         $request->setSession($session);
         $request->setOptions($options);
 
-        $defaultCallSettings = $this->defaultCallSettings['beginTransaction'];
-        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
-            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
-                $optionalArgs['retrySettings']
-            );
-        }
-        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
-        $callable = ApiCallable::createApiCall(
-            $this->spannerStub,
+        return $this->startCall(
             'BeginTransaction',
-            $mergedSettings,
-            $this->descriptors['beginTransaction']
-        );
-
-        return $callable(
-            $request,
-            [],
-            ['call_credentials_callback' => $this->createCredentialsCallback()]);
+            Transaction::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**
@@ -1224,8 +1026,8 @@ class SpannerGapicClient
      *
      * Sample code:
      * ```
+     * $spannerClient = new SpannerClient();
      * try {
-     *     $spannerClient = new SpannerClient();
      *     $formattedSession = $spannerClient->sessionName('[PROJECT]', '[INSTANCE]', '[DATABASE]', '[SESSION]');
      *     $mutations = [];
      *     $response = $spannerClient->commit($formattedSession, $mutations);
@@ -1253,7 +1055,7 @@ class SpannerGapicClient
      *          executed more than once. If this is undesirable, use
      *          [BeginTransaction][google.spanner.v1.Spanner.BeginTransaction] and
      *          [Commit][google.spanner.v1.Spanner.Commit] instead.
-     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
+     *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
@@ -1262,7 +1064,7 @@ class SpannerGapicClient
      *
      * @return \Google\Cloud\Spanner\V1\CommitResponse
      *
-     * @throws \Google\ApiCore\ApiException if the remote call fails
+     * @throws ApiException if the remote call fails
      * @experimental
      */
     public function commit($session, $mutations, $optionalArgs = [])
@@ -1277,24 +1079,12 @@ class SpannerGapicClient
             $request->setSingleUseTransaction($optionalArgs['singleUseTransaction']);
         }
 
-        $defaultCallSettings = $this->defaultCallSettings['commit'];
-        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
-            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
-                $optionalArgs['retrySettings']
-            );
-        }
-        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
-        $callable = ApiCallable::createApiCall(
-            $this->spannerStub,
+        return $this->startCall(
             'Commit',
-            $mergedSettings,
-            $this->descriptors['commit']
-        );
-
-        return $callable(
-            $request,
-            [],
-            ['call_credentials_callback' => $this->createCredentialsCallback()]);
+            CommitResponse::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**
@@ -1309,8 +1099,8 @@ class SpannerGapicClient
      *
      * Sample code:
      * ```
+     * $spannerClient = new SpannerClient();
      * try {
-     *     $spannerClient = new SpannerClient();
      *     $formattedSession = $spannerClient->sessionName('[PROJECT]', '[INSTANCE]', '[DATABASE]', '[SESSION]');
      *     $transactionId = '';
      *     $spannerClient->rollback($formattedSession, $transactionId);
@@ -1324,14 +1114,14 @@ class SpannerGapicClient
      * @param array  $optionalArgs  {
      *                              Optional.
      *
-     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
+     *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
      *          {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
-     * @throws \Google\ApiCore\ApiException if the remote call fails
+     * @throws ApiException if the remote call fails
      * @experimental
      */
     public function rollback($session, $transactionId, $optionalArgs = [])
@@ -1340,39 +1130,11 @@ class SpannerGapicClient
         $request->setSession($session);
         $request->setTransactionId($transactionId);
 
-        $defaultCallSettings = $this->defaultCallSettings['rollback'];
-        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
-            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
-                $optionalArgs['retrySettings']
-            );
-        }
-        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
-        $callable = ApiCallable::createApiCall(
-            $this->spannerStub,
+        return $this->startCall(
             'Rollback',
-            $mergedSettings,
-            $this->descriptors['rollback']
-        );
-
-        return $callable(
-            $request,
-            [],
-            ['call_credentials_callback' => $this->createCredentialsCallback()]);
-    }
-
-    /**
-     * Initiates an orderly shutdown in which preexisting calls continue but new
-     * calls are immediately cancelled.
-     *
-     * @experimental
-     */
-    public function close()
-    {
-        $this->spannerStub->close();
-    }
-
-    private function createCredentialsCallback()
-    {
-        return $this->grpcCredentialsHelper->createCallCredentialsCallback();
+            GPBEmpty::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 }

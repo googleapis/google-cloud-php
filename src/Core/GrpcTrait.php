@@ -98,7 +98,8 @@ trait GrpcTrait
             'credentialsLoader' => $this->requestWrapper->getCredentialsFetcher(),
             'enableCaching' => false,
             'libName' => 'gccl',
-            'libVersion' => $version
+            'libVersion' => $version,
+            'transport' => 'grpc'
         ];
     }
 
