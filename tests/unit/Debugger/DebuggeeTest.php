@@ -99,7 +99,7 @@ class DebuggeeTest extends TestCase
         $breakpoint = new Breakpoint([
             'id' => 'breakpoint1'
         ]);
-        $this->assertTrue($debuggee->updateBreakpoint($breakpoint));
+        $debuggee->updateBreakpoint($breakpoint);
     }
 
     // Debug agents should populate both sourceContexts and extSourceContexts.
