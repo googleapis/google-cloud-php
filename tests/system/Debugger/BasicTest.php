@@ -94,7 +94,7 @@ class BasicTest extends TestCase
         $breakpoint = $breakpoints[0];
         $this->assertTrue($breakpoint->resolveLocation());
         $breakpoint->finalize();
-        $this->assertTrue($debuggee->updateBreakpoint($breakpoint));
+        $debuggee->updateBreakpoint($breakpoint);
     }
 
     public function getClient($transport)
