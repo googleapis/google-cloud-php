@@ -6,7 +6,7 @@
     "require": {
         "google/cloud-logging": "^1.5.0",
         "google/proto-client": "^0.31",
-        "google/gax": "^0.29"
+        "google/gax": "^0.30"
     },
     "suggest": {
         "ext-grpc": "The gRPC extension allows more granular control over Error Reporting",
