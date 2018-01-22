@@ -176,7 +176,8 @@ trait ClientTrait
             'httpHandler' => null,
             'projectId' => null,
             'projectIdRequired' => false,
-            'hasEmulator' => false
+            'hasEmulator' => false,
+            'useNumericProjectId' => false
         ];
 
         if ($config['projectId']) {
@@ -197,7 +198,9 @@ trait ClientTrait
 
         if ($this->onGce($config['httpHandler'])) {
             $metadata = $this->getMetaData();
-            $projectId = $metadata->getProjectId();
+            $projectId = $config['useNumericProjectId']
+                ? $metadata->getNumericProjectId()
+                : $metadata->getProjectId();
             if ($projectId) {
                 return $projectId;
             }

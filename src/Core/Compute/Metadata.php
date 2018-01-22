@@ -107,6 +107,25 @@ class Metadata
     }
 
     /**
+     * Detect and return the numeric project ID
+     *
+     * Example:
+     * ```
+     * $projectId = $metadata->getNumericProjectId();
+     * ```
+     *
+     * @return string
+     */
+    public function getNumericProjectId()
+    {
+        if (!isset($this->projectId)) {
+            $this->projectId = $this->get('project/numeric-project-id');
+        }
+
+        return $this->projectId;
+    }
+
+    /**
      * Fetch an item from the project metadata
      *
      * Example:

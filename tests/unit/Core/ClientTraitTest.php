@@ -274,6 +274,21 @@ class ClientTraitTest extends TestCase
         $this->assertEquals($res, $projectId);
     }
 
+    public function testDetectNumericProjectIdOnGce()
+    {
+        $projectId = '1234567';
+
+        $m = $this->prophesize(Metadata::class);
+        $m->getNumericProjectId()->willReturn($projectId)->shouldBeCalled();
+
+        $trait = \Google\Cloud\Dev\impl(ClientTraitStubOnGce::class, ['metadata']);
+        $trait->___setProperty('metadata', $m);
+
+        $res = $trait->call('detectProjectId', [['useNumericProjectId' => true]]);
+
+        $this->assertEquals($res, $projectId);
+    }
+
     /**
      * @expectedException Google\Cloud\Core\Exception\GoogleException
      */
