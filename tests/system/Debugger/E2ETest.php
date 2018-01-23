@@ -21,6 +21,7 @@ use Google\Cloud\Debugger\V2\Gapic\Debugger2GapicClient as GapicClient;
 use Google\Cloud\Debugger\V2\Breakpoint;
 use Google\Cloud\Debugger\V2\SourceLocation;
 use Google\Cloud\TestUtils\EventuallyConsistentTestTrait;
+use Google\Cloud\TestUtils\AppEngineDeploymentTrait;
 use GuzzleHttp\Client;
 use PHPUnit\Framework\TestCase;
 
@@ -32,35 +33,35 @@ class E2ETest extends TestCase
     protected static $projectId;
     protected static $version = 'e2e-test';
     protected static $debuggeeId;
-    protected static $client;
+    protected static $httpClient;
 
+    use AppEngineDeploymentTrait;
     use EventuallyConsistentTestTrait;
 
     public static function setUpBeforeClass()
     {
-        $keyFilePath = getenv('GOOGLE_CLOUD_PHP_TESTS_KEY_PATH');
-        $data = json_decode(file_get_contents($keyFilePath), true);
-        self::$projectId = $data['project_id'];
         self::createComposerJson();
-        self::deploy();
+        self::deployApp();
+    }
 
-        $url = sprintf('https://%s-dot-%s.appspot.com/', self::$version, self::$projectId);
-        self::$client = new Client(['base_uri' => $url]);
+    public static function beforeDeploy()
+    {
+        self::$gcloudWrapper->setDir(implode(DIRECTORY_SEPARATOR, [__DIR__, 'app']));
+    }
 
-        $resp = self::$client->get('/debuggee');
+    public static function afterDeploy()
+    {
+        $url = self::$gcloudWrapper->getBaseUrl();
+        self::$httpClient = new Client(['base_uri' => $url]);
+
+        $resp = self::$httpClient->get('/debuggee');
         $data = json_decode($resp->getBody()->getContents(), true);
         self::$debuggeeId = $data['debuggeeId'];
     }
 
     public static function tearDownAfterClass()
     {
-        $cmd = sprintf(
-            'gcloud -q app versions delete --service default --project %s %s',
-            self::$projectId,
-            self::$version
-        );
-        printf("Deleting app: '%s'\n", $cmd);
-        exec($cmd);
+        self::deleteApp();
     }
 
     public static function createComposerJson()
@@ -92,24 +93,6 @@ class E2ETest extends TestCase
         file_put_contents($file, json_encode($data, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES));
     }
 
-    public static function deploy()
-    {
-        $cwd = getcwd();
-        chdir(implode(DIRECTORY_SEPARATOR, [__DIR__, 'app']));
-        $command = sprintf(
-            'gcloud -q app deploy --version %s --project %s --no-promote',
-            self::$version,
-            self::$projectId
-        );
-        printf("Executing command: '%s'\n", $command);
-
-        try {
-            exec($command, $output, $ret);
-        } finally {
-            chdir($cwd);
-        }
-    }
-
     public function testWithFullPath()
     {
         $this->setBreakpoint('web/app.php', 13);
@@ -118,7 +101,7 @@ class E2ETest extends TestCase
             $this->assertBreakpointCount(1);
         });
 
-        $resp = self::$client->get('hello/full');
+        $resp = self::$httpClient->get('hello/full');
         $this->assertEquals('200', $resp->getStatusCode(), 'hello/full status code');
         $this->assertContains('Hello, full', $resp->getBody()->getContents());
 
@@ -129,7 +112,7 @@ class E2ETest extends TestCase
 
     private function assertBreakpointCount($count)
     {
-        $resp = self::$client->get('/debuggee');
+        $resp = self::$httpClient->get('/debuggee');
         $data = json_decode($resp->getBody()->getContents(), true);
         $this->assertEquals($count, (int) $data['numBreakpoints']);
     }
@@ -142,7 +125,7 @@ class E2ETest extends TestCase
             $this->assertBreakpointCount(1);
         });
 
-        $resp = self::$client->get('hello/extra');
+        $resp = self::$httpClient->get('hello/extra');
         $this->assertEquals('200', $resp->getStatusCode(), 'hello/extra status code');
         $this->assertContains('Hello, extra', $resp->getBody()->getContents());
 
@@ -159,7 +142,7 @@ class E2ETest extends TestCase
             $this->assertBreakpointCount(1);
         });
 
-        $resp = self::$client->get('hello/missing');
+        $resp = self::$httpClient->get('hello/missing');
         $this->assertEquals('200', $resp->getStatusCode(), 'hello/missing status code');
         $this->assertContains('Hello, missing', $resp->getBody()->getContents());
 
