@@ -181,7 +181,7 @@ class TransactionTest extends TestCase
         $mutations = $this->transaction->___getProperty('mutations');
         $this->assertEquals('Posts', $mutations[0]['delete']['table']);
         $this->assertEquals('foo', $mutations[0]['delete']['keySet']['keys'][0]);
-        $this->assertFalse(isset($mutations[0]['delete']['keySet']['all']));
+        $this->assertArrayNotHasKey('all', $mutations[0]['delete']['keySet']);
     }
 
     public function testExecute()

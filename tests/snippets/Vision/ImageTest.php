@@ -100,7 +100,7 @@ class ImageTest extends SnippetTestCase
         );
 
         $res = $snippet->invoke('requestObj');
-        $this->assertTrue(array_key_exists('image', $res->returnVal()));
-        $this->assertTrue(array_key_exists('features', $res->returnVal()));
+        $this->assertArrayHasKey('image', $res->returnVal());
+        $this->assertArrayHasKey('features', $res->returnVal());
     }
 }
