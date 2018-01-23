@@ -132,7 +132,7 @@ class DatastoreClientTest extends SnippetTestCase
 
         $res = $snippet->invoke('keys');
         $this->assertInternalType('array', $res->returnVal());
-        $this->assertEquals(10, count($res->returnVal()));
+        $this->assertCount(10, $res->returnVal());
         $this->assertInstanceOf(Key::class, $res->returnVal()[0]);
         $this->assertEquals('Person', $res->returnVal()[0]->keyObject()['path'][0]['kind']);
     }
@@ -145,7 +145,7 @@ class DatastoreClientTest extends SnippetTestCase
         $res = $snippet->invoke('keys');
 
         $this->assertInternalType('array', $res->returnVal());
-        $this->assertEquals(3, count($res->returnVal()));
+        $this->assertCount(3, $res->returnVal());
         $this->assertInstanceOf(Key::class, $res->returnVal()[0]);
 
         $this->assertEquals(['kind' => 'Person'], $res->returnVal()[0]->keyObject()['path'][2]);

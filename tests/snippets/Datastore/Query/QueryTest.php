@@ -142,7 +142,7 @@ class QueryTest extends SnippetTestCase
 
         $snippet->invoke();
 
-        $this->assertEquals(2, count($this->query->queryObject()['filter']['compositeFilter']['filters']));
+        $this->assertCount(2, $this->query->queryObject()['filter']['compositeFilter']['filters']);
     }
 
     public function testHasAncestor()

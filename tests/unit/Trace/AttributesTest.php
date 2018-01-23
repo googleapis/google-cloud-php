@@ -28,13 +28,13 @@ class AttributesTest extends TestCase
     public function testArrayAccess()
     {
         $attributes = new Attributes();
-        $this->assertFalse(isset($attributes['foo']));
+        $this->assertArrayNotHasKey('foo', $attributes);
         $attributes['foo'] = 'bar';
         $this->assertArrayHasKey('foo', $attributes);
         $this->assertEquals('bar', $attributes['foo']);
-        $this->assertTrue(isset($attributes['foo']));
+        $this->assertArrayHasKey('foo', $attributes);
         unset($attributes['foo']);
-        $this->assertFalse(isset($attributes['foo']));
+        $this->assertArrayNotHasKey('foo', $attributes);
     }
 
     public function testSerializeBoolean()

@@ -88,7 +88,7 @@ class RunQueryTest extends DatastoreTestCase
         $this->assertEquals(self::$data[1], $results[1]->get());
         $this->assertEquals(self::$data[2], $results[2]->get());
         $this->assertEquals(self::$data[3], $results[3]->get());
-        $this->assertEquals(4, count($results));
+        $this->assertCount(4, $results);
     }
 
     public function testQueryWithFilter()
@@ -102,7 +102,7 @@ class RunQueryTest extends DatastoreTestCase
         $this->assertEquals(self::$data[0], $results[0]->get());
         $this->assertEquals(self::$data[1], $results[1]->get());
         $this->assertEquals(self::$data[3], $results[2]->get());
-        $this->assertEquals(3, count($results));
+        $this->assertCount(3, $results);
     }
 
     public function testQueryWithAncestor()
@@ -116,7 +116,7 @@ class RunQueryTest extends DatastoreTestCase
         $this->assertEquals(self::$data[0], $results[0]->get());
         $this->assertEquals(self::$data[1], $results[1]->get());
         $this->assertEquals(self::$data[2], $results[2]->get());
-        $this->assertEquals(3, count($results));
+        $this->assertCount(3, $results);
     }
 
     public function testQueryWithProjection()
@@ -138,7 +138,7 @@ class RunQueryTest extends DatastoreTestCase
         $this->assertEquals($data[1], $results[1]->get());
         $this->assertEquals($data[2], $results[2]->get());
         $this->assertEquals($data[3], $results[3]->get());
-        $this->assertEquals(4, count($results));
+        $this->assertCount(4, $results);
     }
 
     public function testQueryWithDistinctOn()
@@ -151,7 +151,7 @@ class RunQueryTest extends DatastoreTestCase
 
         $this->assertEquals(self::$data[0], $results[0]->get());
         $this->assertEquals(self::$data[2], $results[1]->get());
-        $this->assertEquals(2, count($results));
+        $this->assertCount(2, $results);
     }
 
     public function testQueryWithKeysOnly()
@@ -162,7 +162,7 @@ class RunQueryTest extends DatastoreTestCase
 
         $results = $this->runQueryAndSortResults($query);
 
-        $this->assertEquals(4, count($results));
+        $this->assertCount(4, $results);
         foreach ($results as $result) {
             $this->assertEmpty($result->get());
         }
@@ -177,7 +177,7 @@ class RunQueryTest extends DatastoreTestCase
         $results = $this->runQueryAndSortResults($query);
 
         $this->assertEquals(self::$data[3], $results[0]->get());
-        $this->assertEquals(1, count($results));
+        $this->assertCount(1, $results);
     }
 
     public function testQueryWithStartCursor()
@@ -197,7 +197,7 @@ class RunQueryTest extends DatastoreTestCase
         $this->assertEquals(self::$data[1], $results[0]->get());
         $this->assertEquals(self::$data[2], $results[1]->get());
         $this->assertEquals(self::$data[3], $results[2]->get());
-        $this->assertEquals(3, count($results));
+        $this->assertCount(3, $results);
     }
 
     public function testQueryWithEndCursor()
@@ -215,7 +215,7 @@ class RunQueryTest extends DatastoreTestCase
         $results = $this->runQueryAndSortResults($cursorQuery);
 
         $this->assertEquals(self::$data[0], $results[0]->get());
-        $this->assertEquals(1, count($results));
+        $this->assertCount(1, $results);
     }
 
     public function testQueryWithLimit()
@@ -227,7 +227,7 @@ class RunQueryTest extends DatastoreTestCase
         $results = $this->runQueryAndSortResults($query);
 
         $this->assertEquals(self::$data[0], $results[0]->get());
-        $this->assertEquals(1, count($results));
+        $this->assertCount(1, $results);
     }
 
     public function testGqlQueryWithBindings()
@@ -241,7 +241,7 @@ class RunQueryTest extends DatastoreTestCase
         $results = $this->runQueryAndSortResults($query);
 
         $this->assertEquals(self::$data[2], $results[0]->get());
-        $this->assertEquals(1, count($results));
+        $this->assertCount(1, $results);
     }
 
     public function testGqlQueryWithLiteral()
@@ -253,7 +253,7 @@ class RunQueryTest extends DatastoreTestCase
         $results = $this->runQueryAndSortResults($query);
 
         $this->assertEquals(self::$data[2], $results[0]->get());
-        $this->assertEquals(1, count($results));
+        $this->assertCount(1, $results);
     }
 
     private function runQueryAndSortResults($query)

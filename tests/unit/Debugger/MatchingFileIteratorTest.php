@@ -33,7 +33,7 @@ class MatchingFileIteratorTest extends TestCase
             $this->sourcePath(['Connection', 'RestTest.php'])
         );
         $matches = iterator_to_array($iterator);
-        $this->assertTrue(count($matches) > 2);
+        $this->assertGreaterThan(2, count($matches));
     }
 
     public function testNoMatches()
