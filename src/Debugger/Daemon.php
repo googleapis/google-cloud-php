@@ -79,24 +79,30 @@ class Daemon
             ? $options['client']
             : new DebuggerClient();
 
+        $options += [
+            'sourceContext' => [],
+            'extSourceContext' => [],
+            'uniquifier' => null,
+            'description' => null
+        ];
+
         $this->sourceRoot = realpath($sourceRoot);
 
-        $extSourceContext = array_key_exists('extSourceContext', $options)
-            ? [$options['extSourceContext']]
-            : $this->defaultExtSourceContext();
+        $sourceContext = $options['sourceContext'] ?: $this->defaultSourceContext();
+        $extSourceContext = $options['extSourceContext'];
+        if (!$extSourceContext && $sourceContext) {
+            $extSourceContext = [
+                'context' => $sourceContext
+            ];
+        }
 
-        $uniquifier = array_key_exists('uniquifier', $options)
-            ? $options['uniquifier']
-            : $this->defaultUniquifier();
-
-        $description = array_key_exists('description', $options)
-            ? $options['description']
-            : $uniquifier;
+        $uniquifier = $options['uniquifier'] ?: $this->defaultUniquifier();
+        $description = $options['description'] ?: $this->defaultDescription();
 
         $this->debuggee = $client->debuggee(null, [
             'uniquifier' => $uniquifier,
             'description' => $description,
-            'extSourceContexts' => $extSourceContext
+            'extSourceContexts' => $extSourceContext ? [$extSourceContext] : []
         ]);
 
         $this->debuggee->register();
@@ -118,15 +124,15 @@ class Daemon
      */
     public function run()
     {
-        $breakpoints = $this->debuggee->breakpoints();
-        $this->setBreakpoints($breakpoints);
+        $resp = $this->debuggee->breakpointsWithWaitToken();
+        $this->setBreakpoints($resp['breakpoints']);
 
-        while (array_key_exists('nextWaitToken', $breakpoints)) {
+        while (array_key_exists('nextWaitToken', $resp)) {
             try {
-                $breakpoints = $this->debuggee->breakpoints([
-                    'waitToken' => $breakpoints['nextWaitToken']
+                $resp = $this->debuggee->breakpointsWithWaitToken([
+                    'waitToken' => $resp['nextWaitToken']
                 ]);
-                $this->setBreakpoints($breakpoints);
+                $this->setBreakpoints($resp['breakpoints']);
             } catch (ConflictException $e) {
                 // Ignoring this exception
             }
@@ -156,19 +162,35 @@ class Daemon
 
     private function defaultUniquifier()
     {
+        $dir = new \RecursiveDirectoryIterator($this->sourceRoot);
+        $iterator = new \RecursiveIteratorIterator($dir);
+        $regex = new \RegexIterator(
+            $iterator,
+            '/^.+\.php$/i',
+            \RecursiveRegexIterator::GET_MATCH
+        );
+
+        $files = array_keys(iterator_to_array($regex));
+        return sha1(implode(':', array_map(function ($filename) {
+            $relativeFilename = str_replace($this->sourceRoot, '', $filename);
+            return $relativeFilename . ':' . filesize($filename);
+        }, $files)));
+    }
+
+    private function defaultDescription()
+    {
         if (isset($_SERVER['GAE_SERVICE'])) {
             return $_SERVER['GAE_SERVICE'] . ' - ' . $_SERVER['GAE_VERSION'];
         }
         return gethostname() . ' - ' . getcwd();
     }
 
-    private function defaultExtSourceContext()
+    private function defaultSourceContext()
     {
-        $sourceContextFile = $this->sourceRoot . '/source-contexts.json';
+        $sourceContextFile = implode(DIRECTORY_SEPARATOR, [$this->sourceRoot, 'source-context.json']);
         if (file_exists($sourceContextFile)) {
             return json_decode(file_get_contents($sourceContextFile), true);
-        } else {
-            return null;
         }
+        return [];
     }
 }

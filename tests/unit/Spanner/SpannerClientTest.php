@@ -150,9 +150,7 @@ class SpannerClientTest extends TestCase
     {
         $this->connection->createInstance(Argument::that(function ($arg) {
             if ($arg['name'] !== InstanceAdminClient::instanceName(self::PROJECT, self::INSTANCE)) return false;
-            if ($arg['config'] !== InstanceAdminClient::instanceConfigName(self::PROJECT, self::CONFIG)) return false;
-
-            return true;
+            return $arg['config'] === InstanceAdminClient::instanceConfigName(self::PROJECT, self::CONFIG);
         }))
             ->shouldBeCalled()
             ->willReturn([

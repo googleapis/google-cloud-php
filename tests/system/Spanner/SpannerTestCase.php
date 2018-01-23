@@ -75,6 +75,8 @@ class SpannerTestCase extends SystemTestCase
 
         self::$database = $db;
         self::$database2 = self::getDatabaseInstance(self::$dbName);
+
+        self::$hasSetUp = true;
     }
 
     private static function getClient()

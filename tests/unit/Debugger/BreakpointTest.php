@@ -173,4 +173,23 @@ class BreakpointTest extends TestCase
         $this->assertArrayHasKey('evaluatedExpressions', $json);
         $this->assertCount(2, $json['evaluatedExpressions']);
     }
+
+    public function testResolvedLocationNotIncludedInJson()
+    {
+        $path = implode(DIRECTORY_SEPARATOR, ['Debugger', 'DebuggerClient.php']);
+        $breakpoint = new Breakpoint([
+            'location' => [
+                'path' => $path,
+                'line' => 1
+            ]
+        ]);
+        $this->assertTrue($breakpoint->resolveLocation());
+
+        // resolved location should have changed the path
+        $this->assertLessThan(strlen($breakpoint->location()->path()), strlen($path));
+        $json = json_decode(json_encode($breakpoint->jsonSerialize()), true);
+
+        // the serialized location should be unaffected
+        $this->assertEquals($path, $json['location']['path']);
+    }
 }

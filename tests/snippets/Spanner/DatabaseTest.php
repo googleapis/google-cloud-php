@@ -412,8 +412,7 @@ class DatabaseTest extends SnippetTestCase
     public function testInsert()
     {
         $this->connection->commit(Argument::that(function ($args) {
-            if (!isset($args['mutations'][0]['insert'])) return false;
-            return true;
+            return isset($args['mutations'][0]['insert']);
         }))->shouldBeCalled()->willReturn([
             'commitTimestamp' => (new Timestamp(new \DateTime))->formatAsString()
         ]);
@@ -446,8 +445,7 @@ class DatabaseTest extends SnippetTestCase
     public function testUpdate()
     {
         $this->connection->commit(Argument::that(function ($args) {
-            if (!isset($args['mutations'][0]['update'])) return false;
-            return true;
+            return isset($args['mutations'][0]['update']);
         }))->shouldBeCalled()->willReturn([
             'commitTimestamp' => (new Timestamp(new \DateTime))->formatAsString()
         ]);
@@ -480,8 +478,7 @@ class DatabaseTest extends SnippetTestCase
     public function testInsertOrUpdate()
     {
         $this->connection->commit(Argument::that(function ($args) {
-            if (!isset($args['mutations'][0]['insertOrUpdate'])) return false;
-            return true;
+            return isset($args['mutations'][0]['insertOrUpdate']);
         }))->shouldBeCalled()->willReturn([
             'commitTimestamp' => (new Timestamp(new \DateTime))->formatAsString()
         ]);
@@ -514,8 +511,7 @@ class DatabaseTest extends SnippetTestCase
     public function testReplace()
     {
         $this->connection->commit(Argument::that(function ($args) {
-            if (!isset($args['mutations'][0]['replace'])) return false;
-            return true;
+            return isset($args['mutations'][0]['replace']);
         }))->shouldBeCalled()->willReturn([
             'commitTimestamp' => (new Timestamp(new \DateTime))->formatAsString()
         ]);
@@ -548,9 +544,7 @@ class DatabaseTest extends SnippetTestCase
     public function testDelete()
     {
         $this->connection->commit(Argument::that(function ($args) {
-            if (!isset($args['mutations'][0]['delete'])) return false;
-
-            return true;
+            return isset($args['mutations'][0]['delete']);
         }))->shouldBeCalled()->willReturn([
             'commitTimestamp' => (new Timestamp(new \DateTime))->formatAsString()
         ]);

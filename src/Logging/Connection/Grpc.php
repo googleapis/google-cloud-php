@@ -105,7 +105,12 @@ class Grpc implements ConnectionInterface
 
         $config['serializer'] = $this->serializer;
         $this->setRequestWrapper(new GrpcRequestWrapper($config));
-        $gaxConfig = $this->getGaxConfig(LoggingClient::VERSION);
+        $gaxConfig = $this->getGaxConfig(
+            LoggingClient::VERSION,
+            isset($config['authHttpHandler'])
+                ? $config['authHttpHandler']
+                : null
+        );
 
         $this->configClient = new ConfigServiceV2Client($gaxConfig);
         $this->loggingClient = new LoggingServiceV2Client($gaxConfig);

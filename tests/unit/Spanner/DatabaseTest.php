@@ -674,9 +674,7 @@ class DatabaseTest extends TestCase
         $sql = 'SELECT * FROM Table';
 
         $this->connection->executeStreamingSql(Argument::that(function ($arg) use ($sql) {
-            if ($arg['sql'] !== $sql) return false;
-
-            return true;
+            return $arg['sql'] === $sql;
         }))->shouldBeCalled()->willReturn($this->resultGenerator());
 
         $this->refreshOperation();

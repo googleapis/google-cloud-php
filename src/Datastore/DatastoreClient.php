@@ -76,12 +76,12 @@ class DatastoreClient
     use ClientTrait;
     use DatastoreTrait;
 
-    const VERSION = '1.2.0';
+    const VERSION = '1.2.2';
 
     const FULL_CONTROL_SCOPE = 'https://www.googleapis.com/auth/datastore';
 
     /**
-     * @var ConnectionInterface
+     * @var Connection\ConnectionInterface
      */
     protected $connection;
 
@@ -981,7 +981,7 @@ class DatastoreClient
      *     @type string $readConsistency See
      *           [ReadConsistency](https://cloud.google.com/datastore/reference/rest/v1/ReadOptions#ReadConsistency).
      * }
-     * @return EntityIterator<Google\Cloud\Datastore\Entity>
+     * @return EntityIterator<Entity>
      */
     public function runQuery(QueryInterface $query, array $options = [])
     {

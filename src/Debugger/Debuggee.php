@@ -18,6 +18,7 @@
 namespace Google\Cloud\Debugger;
 
 use Google\Cloud\Debugger\Connection\ConnectionInterface;
+use Google\Cloud\Core\Exception\ServiceException;
 
 /**
  * This class represents a debuggee - a service that can handle breakpoints.
@@ -91,6 +92,14 @@ class Debuggee implements \JsonSerializable
      *      to be displayed to the user.
      */
     private $labels = [];
+
+    /**
+     * @var string $status Human readable message to be displayed to the
+     *            user about this debuggee. Absence of this field indicates no
+     *            status. The message can be either informational or an error
+     *            status
+     */
+    private $status;
 
     /**
      * Instantiate a new Debuggee.
@@ -214,14 +223,48 @@ class Debuggee implements \JsonSerializable
      */
     public function breakpoints(array $options = [])
     {
+        $ret = $this->breakpointsWithWaitToken($options);
+        return $ret['breakpoints'];
+    }
+
+    /**
+     * Fetch the list of breakpoints this debugee should try to handle and a
+     * wait token for the next request. The return value is an associative array
+     * with keys of breakpoints and nextWaitToken.
+     *
+     * Example:
+     * ```
+     * $resp = $debuggee->breakpointsWithWaitToken();
+     * $nextWaitToken = $resp['nextWaitToken'];
+     * $breakpoints = $resp['breakpoints'];
+     * ```
+     *
+     * @codingStandardsIgnoreStart
+     * @see https://cloud.google.com/debugger/api/reference/rest/v2/controller.debuggees.breakpoints/list Breakpoints list API documentation.
+     * @codingStandardsIgnoreEnd
+     *
+     * @param array $options [optional] {
+     *      Configuration options.
+     *
+     *      @type string $waitToken A wait token that, if specified, blocks the
+     *            method call until the list of active breakpoints has changed,
+     *            or a server selected timeout has expired. The value should be
+     *            set from the last returned response.
+     * }
+     * @return array
+     */
+    public function breakpointsWithWaitToken(array $options = [])
+    {
         $ret = $this->connection->listBreakpoints(['debuggeeId' => $this->id] + $options);
 
         if (array_key_exists('breakpoints', $ret)) {
-            return array_map(function ($breakpointData) {
+            $ret['breakpoints'] = array_map(function ($breakpointData) {
                 return new Breakpoint($breakpointData);
             }, $ret['breakpoints']);
+        } else {
+            $ret['breakpoints'] = [];
         }
-        return [];
+        return $ret;
     }
 
     /**
@@ -237,11 +280,12 @@ class Debuggee implements \JsonSerializable
      * @codingStandardsIgnoreEnd
      *
      * @param Breakpoint $breakpoint The modified breakpoint.
-     * @return bool
+     * @return void
+     * @throws ServiceException
      */
     public function updateBreakpoint(Breakpoint $breakpoint)
     {
-        return $this->connection->updateBreakpoint([
+        $this->connection->updateBreakpoint([
             'debuggeeId' => $this->id,
             'id' => $breakpoint->id(),
             'breakpoint' => $breakpoint
@@ -261,6 +305,8 @@ class Debuggee implements \JsonSerializable
      * @codingStandardsIgnoreEnd
      *
      * @param Breakpoint[] $breakpoints The modified breakpoints.
+     * @return void
+     * @throws ServiceException
      */
     public function updateBreakpointBatch(array $breakpoints)
     {

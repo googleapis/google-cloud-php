@@ -310,9 +310,7 @@ class OperationTest extends TestCase
     public function testLookupWithoutReadOptions()
     {
         $this->connection->lookup(Argument::that(function ($args) {
-            if (isset($args['readOptions'])) return false;
-
-            return true;
+            return !isset($args['readOptions']);
         }))->shouldBeCalled()->willReturn([]);
 
         $this->operation->setConnection($this->connection->reveal());
@@ -532,9 +530,7 @@ class OperationTest extends TestCase
     public function testRunQueryWithoutReadOptions()
     {
         $this->connection->runQuery(Argument::that(function ($args) {
-            if (isset($args['readOptions'])) return false;
-
-            return true;
+            return !isset($args['readOptions']);
         }))->willReturn([]);
 
         $this->operation->setConnection($this->connection->reveal());
@@ -586,9 +582,7 @@ class OperationTest extends TestCase
     public function testCommitWithMutation()
     {
         $this->connection->commit(Argument::that(function($arg) {
-            if (count($arg['mutations']) !== 1) return false;
-
-            return true;
+            return count($arg['mutations']) === 1;
         }))
             ->shouldBeCalled()
             ->willReturn(['foo']);
@@ -617,9 +611,7 @@ class OperationTest extends TestCase
     public function testAllocateIdsToEntities()
     {
         $this->connection->allocateIds(Argument::that(function ($arg) {
-            if (count($arg['keys']) !== 1) return false;
-
-            return true;
+            return count($arg['keys']) === 1;
         }))
             ->shouldBeCalled()
             ->willReturn([
@@ -670,9 +662,7 @@ class OperationTest extends TestCase
     public function testMutateWithBaseVersion()
     {
         $this->connection->commit(Argument::that(function ($arg) {
-            if ($arg['mutations'][0]['baseVersion'] !== 1) return false;
-
-            return true;
+            return $arg['mutations'][0]['baseVersion'] === 1;
         }))->willReturn('foo');
 
         $this->operation->setConnection($this->connection->reveal());
@@ -834,9 +824,7 @@ class OperationTest extends TestCase
     public function testTransactionInReadOptions()
     {
         $this->connection->lookup(Argument::that(function ($arg) {
-            if (!isset($arg['readOptions']['transaction'])) return false;
-
-            return true;
+            return isset($arg['readOptions']['transaction']);
         }))
             ->willReturn([]);
 
@@ -852,9 +840,7 @@ class OperationTest extends TestCase
     public function testNonTransactionalReadOptions()
     {
         $this->connection->lookup(Argument::that(function ($arg) {
-            if (!isset($arg['readOptions']['transaction'])) return true;
-
-            return true;
+            return !isset($arg['readOptions']['transaction']);
         }))
             ->willReturn([]);
 

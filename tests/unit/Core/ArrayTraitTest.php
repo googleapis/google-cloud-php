@@ -97,12 +97,12 @@ class ArrayTraitTest extends TestCase
         ];
 
         $res = $this->implementation->call('arrayFilterRemoveNull', [$input]);
-        $this->assertFalse(array_key_exists('null', $res));
-        $this->assertTrue(array_key_exists('false', $res));
-        $this->assertTrue(array_key_exists('zero', $res));
-        $this->assertTrue(array_key_exists('float', $res));
-        $this->assertTrue(array_key_exists('empty', $res));
-        $this->assertTrue(array_key_exists('array', $res));
+        $this->assertArrayNotHasKey('null', $res);
+        $this->assertArrayHasKey('false', $res);
+        $this->assertArrayHasKey('zero', $res);
+        $this->assertArrayHasKey('float', $res);
+        $this->assertArrayHasKey('empty', $res);
+        $this->assertArrayHasKey('array', $res);
     }
 }
 

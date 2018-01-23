@@ -4,9 +4,8 @@
     "license": "Apache-2.0",
     "minimum-stability": "stable",
     "require": {
-        "ext-grpc": "*",
-        "google/proto-client": "^0.29",
-        "google/gax": "^0.29"
+        "google/proto-client": "^0.31",
+        "google/gax": "^0.30"
     },
     "suggest": {
         "ext-protobuf": "Provides a significant increase in throughput over the pure PHP protobuf implementation. See https://cloud.google.com/php/grpc for installation instructions."

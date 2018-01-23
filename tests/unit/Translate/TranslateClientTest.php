@@ -42,11 +42,7 @@ class TranslateClientTest extends TestCase
         $client = new TranslateTestClient();
 
         $this->connection->listTranslations(Argument::that(function($args) {
-            if (isset($args['key'])) {
-                return false;
-            }
-
-            return true;
+            return !isset($args['key']);
         }))->shouldBeCalled()->willReturn([]);
 
         $client->setConnection($this->connection->reveal());

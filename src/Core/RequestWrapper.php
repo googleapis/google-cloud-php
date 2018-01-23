@@ -80,6 +80,12 @@ class RequestWrapper
     private $restDelayFunction;
 
     /**
+     * @var callable Sets the conditions for determining how long to wait
+     * between attempts to retry.
+     */
+    private $delayFunction;
+
+    /**
      * @param array $config [optional] {
      *     Configuration options. Please see
      *     {@see Google\Cloud\Core\RequestWrapperTrait::setCommonDefaults()} for
@@ -220,7 +226,7 @@ class RequestWrapper
      * Convert any exception to a Google Exception.
      *
      * @param \Exception $ex
-     * @return ServiceException
+     * @return Exception\ServiceException
      */
     private function convertToGoogleException(\Exception $ex)
     {

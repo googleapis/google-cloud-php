@@ -104,9 +104,8 @@ class CollectionReferenceTest extends TestCase
             ];
 
             unset($args['writes'][0]['update']['name']);
-            if ($args !== $expected) return false;
-
-            return true;
+            
+            return $args === $expected;
         }))->shouldBeCalled()->willReturn([[]]);
 
         $this->collection->___setProperty('connection', $this->connection->reveal());

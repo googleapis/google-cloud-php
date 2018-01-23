@@ -37,7 +37,7 @@ class DebuggerClient
 {
     use ClientTrait;
 
-    const VERSION = '0.1.0';
+    const VERSION = '0.3.0';
     const DEFAULT_AGENT_VERSION = 'google.com/gcp-php/v0.1';
 
     const FULL_CONTROL_SCOPE = 'https://www.googleapis.com/auth/cloud-platform';
@@ -141,7 +141,7 @@ class DebuggerClient
      */
     public function debuggees(array $extras = [])
     {
-        $res = $this->connection->listDebuggees(['projectId' => $this->projectId] + $extras);
+        $res = $this->connection->listDebuggees(['project' => $this->projectId] + $extras);
         if (is_array($res) && array_key_exists('debuggees', $res)) {
             return array_map(function ($info) {
                 return new Debuggee($this->connection, $info);

@@ -62,8 +62,7 @@ class PsrLoggerTest extends SnippetTestCase
         $snippet->addLocal('psrLogger', $this->psr);
 
         $this->connection->writeEntries(Argument::that(function ($args) {
-            if ($args['entries'][0]['severity'] !== Logger::EMERGENCY) return false;
-            return true;
+            return $args['entries'][0]['severity'] === Logger::EMERGENCY;
         }))->shouldBeCalled();
 
         $this->psr->setConnection($this->connection->reveal());
@@ -77,8 +76,7 @@ class PsrLoggerTest extends SnippetTestCase
         $snippet->addLocal('psrLogger', $this->psr);
 
         $this->connection->writeEntries(Argument::that(function ($args) {
-            if ($args['entries'][0]['severity'] !== Logger::ALERT) return false;
-            return true;
+            return $args['entries'][0]['severity'] === Logger::ALERT;
         }))->shouldBeCalled();
 
         $this->psr->setConnection($this->connection->reveal());
@@ -92,8 +90,7 @@ class PsrLoggerTest extends SnippetTestCase
         $snippet->addLocal('psrLogger', $this->psr);
 
         $this->connection->writeEntries(Argument::that(function ($args) {
-            if ($args['entries'][0]['severity'] !== Logger::CRITICAL) return false;
-            return true;
+            return $args['entries'][0]['severity'] === Logger::CRITICAL;
         }))->shouldBeCalled();
 
         $this->psr->setConnection($this->connection->reveal());
@@ -107,8 +104,7 @@ class PsrLoggerTest extends SnippetTestCase
         $snippet->addLocal('psrLogger', $this->psr);
 
         $this->connection->writeEntries(Argument::that(function ($args) {
-            if ($args['entries'][0]['severity'] !== Logger::ERROR) return false;
-            return true;
+            return $args['entries'][0]['severity'] === Logger::ERROR;
         }))->shouldBeCalled();
 
         $this->psr->setConnection($this->connection->reveal());
@@ -122,8 +118,7 @@ class PsrLoggerTest extends SnippetTestCase
         $snippet->addLocal('psrLogger', $this->psr);
 
         $this->connection->writeEntries(Argument::that(function ($args) {
-            if ($args['entries'][0]['severity'] !== Logger::WARNING) return false;
-            return true;
+            return $args['entries'][0]['severity'] === Logger::WARNING;
         }))->shouldBeCalled();
 
         $this->psr->setConnection($this->connection->reveal());
@@ -137,8 +132,7 @@ class PsrLoggerTest extends SnippetTestCase
         $snippet->addLocal('psrLogger', $this->psr);
 
         $this->connection->writeEntries(Argument::that(function ($args) {
-            if ($args['entries'][0]['severity'] !== Logger::NOTICE) return false;
-            return true;
+            return $args['entries'][0]['severity'] === Logger::NOTICE;
         }))->shouldBeCalled();
 
         $this->psr->setConnection($this->connection->reveal());
@@ -152,8 +146,7 @@ class PsrLoggerTest extends SnippetTestCase
         $snippet->addLocal('psrLogger', $this->psr);
 
         $this->connection->writeEntries(Argument::that(function ($args) {
-            if ($args['entries'][0]['severity'] !== Logger::INFO) return false;
-            return true;
+            return $args['entries'][0]['severity'] === Logger::INFO;
         }))->shouldBeCalled();
 
         $this->psr->setConnection($this->connection->reveal());
@@ -167,8 +160,7 @@ class PsrLoggerTest extends SnippetTestCase
         $snippet->addLocal('psrLogger', $this->psr);
 
         $this->connection->writeEntries(Argument::that(function ($args) {
-            if ($args['entries'][0]['severity'] !== Logger::DEBUG) return false;
-            return true;
+            return $args['entries'][0]['severity'] === Logger::DEBUG;
         }))->shouldBeCalled();
 
         $this->psr->setConnection($this->connection->reveal());
@@ -182,8 +174,7 @@ class PsrLoggerTest extends SnippetTestCase
         $snippet->addLocal('psrLogger', $this->psr);
 
         $this->connection->writeEntries(Argument::that(function ($args) {
-            if ($args['entries'][0]['severity'] !== Logger::ALERT) return false;
-            return true;
+            return $args['entries'][0]['severity'] === Logger::ALERT;
         }))->shouldBeCalled();
 
         $this->psr->setConnection($this->connection->reveal());

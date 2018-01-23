@@ -74,7 +74,12 @@ class Grpc implements ConnectionInterface
 
         $config['serializer'] = $this->serializer;
         $this->setRequestWrapper(new GrpcRequestWrapper($config));
-        $grpcConfig = $this->getGaxConfig(PubSubClient::VERSION);
+        $grpcConfig = $this->getGaxConfig(
+            PubSubClient::VERSION,
+            isset($config['authHttpHandler'])
+                ? $config['authHttpHandler']
+                : null
+        );
 
         $config += ['emulatorHost' => null];
         $baseUri = self::BASE_URI;

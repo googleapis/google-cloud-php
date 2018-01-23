@@ -84,7 +84,7 @@ class GqlQueryTest extends SnippetTestCase
         $res = $snippet->invoke(['query', 'res']);
         $this->assertEquals('Google', $res->output());
         $this->assertInstanceOf(EntityIterator::class, $res->returnVal()[1]);
-        $this->assertTrue(array_key_exists('namedBindings', $res->returnVal()[0]->queryObject()));
+        $this->assertArrayHasKey('namedBindings', $res->returnVal()[0]->queryObject());
     }
 
     public function testClassPositionalBindings()
@@ -94,7 +94,7 @@ class GqlQueryTest extends SnippetTestCase
 
         $res = $snippet->invoke('query');
         $this->assertInstanceOf(GqlQuery::class, $res->returnVal());
-        $this->assertTrue(array_key_exists('positionalBindings', $res->returnVal()->queryObject()));
+        $this->assertArrayHasKey('positionalBindings', $res->returnVal()->queryObject());
     }
 
     public function testClassLiterals()
@@ -104,8 +104,8 @@ class GqlQueryTest extends SnippetTestCase
 
         $res = $snippet->invoke('query');
         $this->assertInstanceOf(GqlQuery::class, $res->returnVal());
-        $this->assertFalse(array_key_exists('positionalBindings', $res->returnVal()->queryObject()));
-        $this->assertFalse(array_key_exists('namedBindings', $res->returnVal()->queryObject()));
+        $this->assertArrayNotHasKey('positionalBindings', $res->returnVal()->queryObject());
+        $this->assertArrayNotHasKey('namedBindings', $res->returnVal()->queryObject());
         $this->assertTrue($res->returnVal()->queryObject()['allowLiterals']);
     }
 }

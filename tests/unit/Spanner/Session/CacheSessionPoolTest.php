@@ -25,6 +25,7 @@ use Google\Cloud\Spanner\Session\CacheSessionPool;
 use Google\Cloud\Spanner\Session\Session;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Grpc\UnaryCall;
+use GuzzleHttp\Promise\PromiseInterface;
 use Psr\Cache\CacheItemInterface;
 use Psr\Cache\CacheItemPoolInterface;
 use Prophecy\Argument;
@@ -631,17 +632,17 @@ class CacheSessionPoolTest extends TestCase
         $createdSession = $this->prophesize(Session::class);
         $session = $this->prophesize(Session::class);
         $connection = $this->prophesize(Grpc::class);
-        $unaryCall = $this->prophesize(UnaryCall::class);
+        $promise = $this->prophesize(PromiseInterface::class);
         $createdSession->expiration()
             ->willReturn($this->time + 3600);
         $session->expiration()
             ->willReturn($this->time + 3600);
         $session->exists()
             ->willReturn(false);
-        $unaryCall->wait()
+        $promise->wait()
             ->willReturn(null);
         $connection->deleteSessionAsync(Argument::any())
-            ->willReturn($unaryCall->reveal());
+            ->willReturn($promise->reveal());
 
         if ($willDeleteSessions) {
             $session->delete()

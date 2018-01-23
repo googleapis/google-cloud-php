@@ -292,7 +292,7 @@ class ValueMapperTest extends TestCase
         );
 
         $this->assertTrue(is_infinite($res['rowName']));
-        $this->assertTrue($res['rowName'] > 0);
+        $this->assertGreaterThan(0, $res['rowName']);
     }
 
     public function testDecodeValuesFloatNegativeInfinity()
@@ -304,7 +304,7 @@ class ValueMapperTest extends TestCase
         );
 
         $this->assertTrue(is_infinite($res['rowName']));
-        $this->assertTrue($res['rowName'] < 0);
+        $this->assertLessThan(0, $res['rowName']);
     }
 
     /**

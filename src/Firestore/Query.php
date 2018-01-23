@@ -158,7 +158,7 @@ class Query
     {
         $maxRetries = $this->pluck('maxRetries', $options, false) ?: FirestoreClient::MAX_RETRIES;
 
-        $rows = (new ExponentialBackoff($maxRetries))->execute(function () use ($maxRetries, $options) {
+        $rows = (new ExponentialBackoff($maxRetries))->execute(function () use ($options) {
             $generator = $this->connection->runQuery([
                 'parent' => $this->parent,
                 'structuredQuery' => $this->query,

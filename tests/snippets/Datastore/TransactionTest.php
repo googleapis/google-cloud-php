@@ -91,8 +91,7 @@ class TransactionTest extends SnippetTestCase
 
         $this->connection->commit(Argument::that(function ($args) {
             if ($args['transaction'] !== $this->transactionId) return false;
-            if (array_keys($args['mutations'][0])[0] !== 'insert') return false;
-            return true;
+            return array_keys($args['mutations'][0])[0] === 'insert';
         }))
             ->shouldBeCalled()
             ->willReturn([
@@ -114,8 +113,7 @@ class TransactionTest extends SnippetTestCase
 
         $this->connection->commit(Argument::that(function ($args) {
             if ($args['transaction'] !== $this->transactionId) return false;
-            if (array_keys($args['mutations'][0])[0] !== 'insert') return false;
-            return true;
+            return array_keys($args['mutations'][0])[0] === 'insert';
         }))
             ->shouldBeCalled()
             ->willReturn([
@@ -142,8 +140,7 @@ class TransactionTest extends SnippetTestCase
 
         $this->connection->commit(Argument::that(function ($args) {
             if ($args['transaction'] !== $this->transactionId) return false;
-            if (array_keys($args['mutations'][0])[0] !== 'update') return false;
-            return true;
+            return array_keys($args['mutations'][0])[0] === 'update';
         }))
             ->shouldBeCalled()
             ->willReturn([
@@ -169,8 +166,7 @@ class TransactionTest extends SnippetTestCase
 
         $this->connection->commit(Argument::that(function ($args) {
             if ($args['transaction'] !== $this->transactionId) return false;
-            if (array_keys($args['mutations'][0])[0] !== 'update') return false;
-            return true;
+            return array_keys($args['mutations'][0])[0] === 'update';
         }))
             ->shouldBeCalled();
 
@@ -188,8 +184,7 @@ class TransactionTest extends SnippetTestCase
 
         $this->connection->commit(Argument::that(function ($args) {
             if ($args['transaction'] !== $this->transactionId) return false;
-            if (array_keys($args['mutations'][0])[0] !== 'upsert') return false;
-            return true;
+            return array_keys($args['mutations'][0])[0] === 'upsert';
         }))
             ->shouldBeCalled()
             ->willReturn([
@@ -215,8 +210,7 @@ class TransactionTest extends SnippetTestCase
 
         $this->connection->commit(Argument::that(function ($args) {
             if ($args['transaction'] !== $this->transactionId) return false;
-            if (array_keys($args['mutations'][0])[0] !== 'upsert') return false;
-            return true;
+            return array_keys($args['mutations'][0])[0] === 'upsert';
         }))
             ->shouldBeCalled();
 
@@ -231,8 +225,7 @@ class TransactionTest extends SnippetTestCase
 
         $this->connection->commit(Argument::that(function ($args) {
             if ($args['transaction'] !== $this->transactionId) return false;
-            if (array_keys($args['mutations'][0])[0] !== 'delete') return false;
-            return true;
+            return array_keys($args['mutations'][0])[0] === 'delete';
         }))
             ->shouldBeCalled()
             ->willReturn([
@@ -269,8 +262,7 @@ class TransactionTest extends SnippetTestCase
         $snippet->addLocal('transaction', $this->transaction);
 
         $this->connection->lookup(Argument::that(function ($args) {
-            if ($args['transaction'] !== $this->transactionId) return false;
-            return true;
+            return $args['transaction'] === $this->transactionId;
         }))
             ->shouldBeCalled()
             ->willReturn([
@@ -305,8 +297,7 @@ class TransactionTest extends SnippetTestCase
         $snippet->addLocal('transaction', $this->transaction);
 
         $this->connection->lookup(Argument::that(function ($args) {
-            if ($args['transaction'] !== $this->transactionId) return false;
-            return true;
+            return $args['transaction'] === $this->transactionId;
         }))
             ->shouldBeCalled()
             ->willReturn([
@@ -357,8 +348,7 @@ class TransactionTest extends SnippetTestCase
         $snippet->addLocal('query', $this->prophesize(QueryInterface::class)->reveal());
 
         $this->connection->runQuery(Argument::that(function ($args) {
-            if ($args['transaction'] !== $this->transactionId) return false;
-            return true;
+            return $args['transaction'] === $this->transactionId;
         }))
             ->shouldBeCalled()
             ->willReturn([

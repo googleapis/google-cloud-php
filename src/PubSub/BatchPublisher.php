@@ -53,6 +53,11 @@ class BatchPublisher
     private static $topics = [];
 
     /**
+     * @var string
+     */
+    private $topicName;
+
+    /**
      * @param string $topicName The topic name.
      * @param array $options [optional] Please see
      *        {@see Google\Cloud\PubSub\Topic::batchPublisher()} for

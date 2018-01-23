@@ -181,7 +181,7 @@ class TransactionTest extends TestCase
         $mutations = $this->transaction->___getProperty('mutations');
         $this->assertEquals('Posts', $mutations[0]['delete']['table']);
         $this->assertEquals('foo', $mutations[0]['delete']['keySet']['keys'][0]);
-        $this->assertFalse(isset($mutations[0]['delete']['keySet']['all']));
+        $this->assertArrayNotHasKey('all', $mutations[0]['delete']['keySet']);
     }
 
     public function testExecute()
@@ -190,9 +190,7 @@ class TransactionTest extends TestCase
 
         $this->connection->executeStreamingSql(Argument::that(function ($arg) use ($sql) {
             if ($arg['transaction']['id'] !== self::TRANSACTION) return false;
-            if ($arg['sql'] !== $sql) return false;
-
-            return true;
+            return $arg['sql'] === $sql;
         }))->shouldBeCalled()->willReturn($this->resultGenerator());
 
         $this->refreshOperation();
@@ -212,9 +210,7 @@ class TransactionTest extends TestCase
             if ($arg['transaction']['id'] !== self::TRANSACTION) return false;
             if ($arg['table'] !== $table) return false;
             if ($arg['keySet']['all'] !== true) return false;
-            if ($arg['columns'] !== ['ID']) return false;
-
-            return true;
+            return $arg['columns'] === ['ID'];
         }))->shouldBeCalled()->willReturn($this->resultGenerator());
 
         $this->refreshOperation();

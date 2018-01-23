@@ -52,7 +52,7 @@ class RunTransactionTest extends DatastoreTestCase
         $transaction2->update($results[1]);
         $transaction2->commit();
 
-        $this->assertEquals(2, count($results));
+        $this->assertCount(2, $results);
 
         // transaction with lookup
         $transaction3 = self::$client->transaction();

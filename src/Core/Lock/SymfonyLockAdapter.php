@@ -50,7 +50,7 @@ class SymfonyLockAdapter implements LockInterface
         try {
             return $this->lock->acquire(true);
         } catch (\Exception $ex) {
-            throw new \RunTimeException($ex->getMessage());
+            throw new \RuntimeException($ex->getMessage());
         }
     }
 
@@ -64,7 +64,7 @@ class SymfonyLockAdapter implements LockInterface
         try {
             $this->lock->release();
         } catch (\Exception $ex) {
-            throw new \RunTimeException($ex->getMessage());
+            throw new \RuntimeException($ex->getMessage());
         }
     }
 }

@@ -278,7 +278,7 @@ class RequestWrapperTest extends TestCase
                 new Request('GET', 'http://www.example.com')
             );
         } catch (\Exception $ex) {
-            $this->assertTrue(strlen($ex->getMessage()) > 120);
+            $this->assertGreaterThan(120, strlen($ex->getMessage()));
         }
     }
 

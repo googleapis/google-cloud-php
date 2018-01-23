@@ -64,12 +64,12 @@ class EntityTest extends TestCase
         $this->assertEquals('magic value', $entity->magicProperty);
 
         $this->assertNull($entity->nonExistentMagicProperty);
-        $this->assertFalse(isset($entity->nonExistentMagicProperty));
+        $this->assertObjectNotHasAttribute('nonExistentMagicProperty', $entity);
 
         $this->assertTrue(isset($entity->magicProperty));
 
         unset($entity->magicProperty);
-        $this->assertFalse(isset($entity->magicProperty));
+        $this->assertObjectNotHasAttribute('magicProperty', $entity);
     }
 
     public function testGet()

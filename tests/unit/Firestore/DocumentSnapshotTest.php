@@ -171,8 +171,8 @@ class DocumentSnapshotTest extends TestCase
     {
         $this->snapshot->___setProperty('fields', ['foo' => 'bar']);
         $this->assertEquals('bar', $this->snapshot['foo']);
-        $this->assertTrue(isset($this->snapshot['foo']));
-        $this->assertFalse(isset($this->snapshot['baz']));
+        $this->assertArrayHasKey('foo', $this->snapshot);
+        $this->assertArrayNotHasKey('baz', $this->snapshot);
     }
 
     /**

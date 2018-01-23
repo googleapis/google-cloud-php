@@ -50,6 +50,11 @@ class Sink
     private $name;
 
     /**
+     * @var array The sink's metadata.
+     */
+    private $info;
+
+    /**
      * @param ConnectionInterface $connection Represents a connection to Cloud
      *        Logging.
      * @param string $name The sink's name.

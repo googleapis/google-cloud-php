@@ -44,9 +44,8 @@ class DaemonTest extends TestCase
     public function testSpecifyUniquifier()
     {
         $this->debuggee->register(Argument::any())->shouldBeCalled();
-        $this->client->debuggee(null, Argument::that(function ($options) {
-            return $options['uniquifier'] == 'some uniquifier';
-        }))->willReturn($this->debuggee->reveal())->shouldBeCalled();
+        $this->client->debuggee(null, Argument::withEntry('uniquifier', 'some uniquifier'))
+            ->willReturn($this->debuggee->reveal())->shouldBeCalled();
 
         $daemon = new Daemon('.', [
             'client' => $this->client->reveal(),
@@ -55,12 +54,25 @@ class DaemonTest extends TestCase
         ]);
     }
 
-    public function testSpecifyDescription()
+    public function testGeneratesDefaultUniquifier()
     {
         $this->debuggee->register(Argument::any())->shouldBeCalled();
         $this->client->debuggee(null, Argument::that(function ($options) {
-            return $options['description'] == 'some description';
+            return preg_match('/[a-z0-9]{32}/', $options['uniquifier']);
         }))->willReturn($this->debuggee->reveal())->shouldBeCalled();
+
+        $root = implode(DIRECTORY_SEPARATOR, [__DIR__, 'data']);
+        $daemon = new Daemon($root, [
+            'client' => $this->client->reveal(),
+            'storage' => $this->storage->reveal()
+        ]);
+    }
+
+    public function testSpecifyDescription()
+    {
+        $this->debuggee->register(Argument::any())->shouldBeCalled();
+        $this->client->debuggee(null, Argument::withEntry('description', 'some description'))
+            ->willReturn($this->debuggee->reveal())->shouldBeCalled();
 
         $daemon = new Daemon('.', [
             'client' => $this->client->reveal(),
@@ -81,9 +93,8 @@ class DaemonTest extends TestCase
             'labels' => []
         ];
         $this->debuggee->register(Argument::any())->shouldBeCalled();
-        $this->client->debuggee(null, Argument::that(function ($options) use ($context) {
-            return $options['extSourceContexts'] == [$context];
-        }))->willReturn($this->debuggee->reveal())->shouldBeCalled();
+        $this->client->debuggee(null, Argument::withEntry('extSourceContexts', [$context]))
+            ->willReturn($this->debuggee->reveal())->shouldBeCalled();
 
         $daemon = new Daemon('.', [
             'client' => $this->client->reveal(),
@@ -92,15 +103,48 @@ class DaemonTest extends TestCase
         ]);
     }
 
+    public function testEmptyDefaultSourceContext()
+    {
+        $this->debuggee->register(Argument::any())->shouldBeCalled();
+        $this->client->debuggee(null, Argument::withEntry('extSourceContexts', []))
+            ->willReturn($this->debuggee->reveal())->shouldBeCalled();
+
+        $daemon = new Daemon('.', [
+            'client' => $this->client->reveal(),
+            'storage' => $this->storage->reveal()
+        ]);
+    }
+
+    public function testDefaultSourceContext()
+    {
+        $expectedSourceContext = [
+            'context' => [
+                'git' => [
+                    'revisionId' => '81b20d097da02ebb6c6fdfbf6900c67a90f2c54b',
+                    'url' => 'https://github.com/GoogleCloudPlatform/google-cloud-php.git'
+                ]
+            ]
+        ];
+        $this->debuggee->register(Argument::any())->shouldBeCalled();
+        $this->client->debuggee(null, Argument::withEntry('extSourceContexts', [$expectedSourceContext]))
+            ->willReturn($this->debuggee->reveal())->shouldBeCalled();
+
+        $root = implode(DIRECTORY_SEPARATOR, [__DIR__, 'data']);
+        $daemon = new Daemon($root, [
+            'client' => $this->client->reveal(),
+            'storage' => $this->storage->reveal()
+        ]);
+    }
+
     public function testFetchesBreakpoints()
     {
-        $breakpoints = [
-            new Breakpoint(['id' => 'breakpoint1'])
+        $resp = [
+            'breakpoints' => [new Breakpoint(['id' => 'breakpoint1'])]
         ];
         $this->debuggee->register(Argument::any())
             ->shouldBeCalled();
-        $this->debuggee->breakpoints()
-            ->willReturn($breakpoints);
+        $this->debuggee->breakpointsWithWaitToken()
+            ->willReturn($resp);
         $this->debuggee->updateBreakpointBatch(Argument::any())
             ->willReturn(true);
         $this->client->debuggee(null, Argument::any())

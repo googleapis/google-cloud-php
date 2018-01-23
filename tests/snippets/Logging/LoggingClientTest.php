@@ -168,8 +168,7 @@ class LoggingClientTest extends SnippetTestCase
         $snippet->addLocal('logging', $this->client);
 
         $this->connection->listEntries(Argument::that(function ($arg) {
-            if (strpos($arg['filter'], 'logName') === false) return false;
-            return true;
+            return strpos($arg['filter'], 'logName') !== false;
         }))
             ->shouldBeCalled()
             ->willReturn([

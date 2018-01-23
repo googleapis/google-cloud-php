@@ -145,7 +145,7 @@ class TransactionTest extends SnippetTestCase
         $res = $snippet->invoke();
 
         $mutations = $this->transaction->___getProperty('mutations');
-        $this->assertTrue(isset($mutations[0]['insert']));
+        $this->assertArrayHasKey('insert', $mutations[0]);
     }
 
 
@@ -159,7 +159,7 @@ class TransactionTest extends SnippetTestCase
         $res = $snippet->invoke();
 
         $mutations = $this->transaction->___getProperty('mutations');
-        $this->assertTrue(isset($mutations[0]['insert']));
+        $this->assertArrayHasKey('insert', $mutations[0]);
     }
 
     public function testUpdate()
@@ -172,7 +172,7 @@ class TransactionTest extends SnippetTestCase
         $res = $snippet->invoke();
 
         $mutations = $this->transaction->___getProperty('mutations');
-        $this->assertTrue(isset($mutations[0]['update']));
+        $this->assertArrayHasKey('update', $mutations[0]);
     }
 
 
@@ -186,7 +186,7 @@ class TransactionTest extends SnippetTestCase
         $res = $snippet->invoke();
 
         $mutations = $this->transaction->___getProperty('mutations');
-        $this->assertTrue(isset($mutations[0]['update']));
+        $this->assertArrayHasKey('update', $mutations[0]);
     }
 
     public function testInsertOrUpdate()
@@ -199,7 +199,7 @@ class TransactionTest extends SnippetTestCase
         $res = $snippet->invoke();
 
         $mutations = $this->transaction->___getProperty('mutations');
-        $this->assertTrue(isset($mutations[0]['insertOrUpdate']));
+        $this->assertArrayHasKey('insertOrUpdate', $mutations[0]);
     }
 
 
@@ -215,7 +215,7 @@ class TransactionTest extends SnippetTestCase
         $res = $snippet->invoke();
 
         $mutations = $this->transaction->___getProperty('mutations');
-        $this->assertTrue(isset($mutations[0]['insertOrUpdate']));
+        $this->assertArrayHasKey('insertOrUpdate', $mutations[0]);
     }
 
     public function testReplace()
@@ -228,7 +228,7 @@ class TransactionTest extends SnippetTestCase
         $res = $snippet->invoke();
 
         $mutations = $this->transaction->___getProperty('mutations');
-        $this->assertTrue(isset($mutations[0]['replace']));
+        $this->assertArrayHasKey('replace', $mutations[0]);
     }
 
 
@@ -242,7 +242,7 @@ class TransactionTest extends SnippetTestCase
         $res = $snippet->invoke();
 
         $mutations = $this->transaction->___getProperty('mutations');
-        $this->assertTrue(isset($mutations[0]['replace']));
+        $this->assertArrayHasKey('replace', $mutations[0]);
     }
 
     public function testDelete()
@@ -256,7 +256,7 @@ class TransactionTest extends SnippetTestCase
         $res = $snippet->invoke();
 
         $mutations = $this->transaction->___getProperty('mutations');
-        $this->assertTrue(isset($mutations[0]['delete']));
+        $this->assertArrayHasKey('delete', $mutations[0]);
     }
 
     public function testRollback()

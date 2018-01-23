@@ -132,7 +132,7 @@ class DatastoreClientTest extends SnippetTestCase
 
         $res = $snippet->invoke('keys');
         $this->assertInternalType('array', $res->returnVal());
-        $this->assertEquals(10, count($res->returnVal()));
+        $this->assertCount(10, $res->returnVal());
         $this->assertInstanceOf(Key::class, $res->returnVal()[0]);
         $this->assertEquals('Person', $res->returnVal()[0]->keyObject()['path'][0]['kind']);
     }
@@ -145,7 +145,7 @@ class DatastoreClientTest extends SnippetTestCase
         $res = $snippet->invoke('keys');
 
         $this->assertInternalType('array', $res->returnVal());
-        $this->assertEquals(3, count($res->returnVal()));
+        $this->assertCount(3, $res->returnVal());
         $this->assertInstanceOf(Key::class, $res->returnVal()[0]);
 
         $this->assertEquals(['kind' => 'Person'], $res->returnVal()[0]->keyObject()['path'][2]);
@@ -305,8 +305,7 @@ class DatastoreClientTest extends SnippetTestCase
         $snippet->addLocal('datastore', $this->client);
 
         $this->connection->commit(Argument::that(function ($args) {
-            if (array_keys($args['mutations'][0])[0] !== 'insert') return false;
-            return true;
+            return array_keys($args['mutations'][0])[0] === 'insert';
         }))
             ->shouldBeCalled()
             ->willReturn([
@@ -328,8 +327,7 @@ class DatastoreClientTest extends SnippetTestCase
         $snippet->addLocal('datastore', $this->client);
 
         $this->connection->commit(Argument::that(function ($args) {
-            if (array_keys($args['mutations'][0])[0] !== 'insert') return false;
-            return true;
+            return array_keys($args['mutations'][0])[0] === 'insert';
         }))
             ->shouldBeCalled();
 
@@ -351,8 +349,7 @@ class DatastoreClientTest extends SnippetTestCase
         ]));
 
         $this->connection->commit(Argument::that(function ($args) {
-            if (array_keys($args['mutations'][0])[0] !== 'update') return false;
-            return true;
+            return array_keys($args['mutations'][0])[0] === 'update';
         }))
             ->shouldBeCalled()
             ->willReturn([
@@ -376,8 +373,7 @@ class DatastoreClientTest extends SnippetTestCase
         ]);
 
         $this->connection->commit(Argument::that(function ($args) {
-            if (array_keys($args['mutations'][0])[0] !== 'update') return false;
-            return true;
+            return array_keys($args['mutations'][0])[0] === 'update';
         }))
             ->shouldBeCalled();
 
@@ -390,8 +386,7 @@ class DatastoreClientTest extends SnippetTestCase
         $snippet->addLocal('datastore', $this->client);
 
         $this->connection->commit(Argument::that(function ($args) {
-            if (array_keys($args['mutations'][0])[0] !== 'upsert') return false;
-            return true;
+            return array_keys($args['mutations'][0])[0] === 'upsert';
         }))
             ->shouldBeCalled()
             ->willReturn([
@@ -411,8 +406,7 @@ class DatastoreClientTest extends SnippetTestCase
         $snippet->addLocal('datastore', $this->client);
 
         $this->connection->commit(Argument::that(function ($args) {
-            if (array_keys($args['mutations'][0])[0] !== 'upsert') return false;
-            return true;
+            return array_keys($args['mutations'][0])[0] === 'upsert';
         }))
             ->shouldBeCalled();
 
@@ -425,8 +419,7 @@ class DatastoreClientTest extends SnippetTestCase
         $snippet->addLocal('datastore', $this->client);
 
         $this->connection->commit(Argument::that(function ($args) {
-            if (array_keys($args['mutations'][0])[0] !== 'delete') return false;
-            return true;
+            return array_keys($args['mutations'][0])[0] === 'delete';
         }))
             ->shouldBeCalled()
             ->willReturn([
@@ -446,8 +439,7 @@ class DatastoreClientTest extends SnippetTestCase
         $snippet->addLocal('datastore', $this->client);
 
         $this->connection->commit(Argument::that(function ($args) {
-            if (array_keys($args['mutations'][0])[0] !== 'delete') return false;
-            return true;
+            return array_keys($args['mutations'][0])[0] === 'delete';
         }))
             ->shouldBeCalled();
 

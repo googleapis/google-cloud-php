@@ -27,6 +27,7 @@ use Google\ApiCore\Serializer;
 use Google\ApiCore\ServerStream;
 use Google\Protobuf\Internal\Message;
 use Google\Rpc\BadRequest;
+use Google\Rpc\Code;
 use Google\Rpc\RetryInfo;
 use Grpc;
 
@@ -58,10 +59,10 @@ class GrpcRequestWrapper
      * @var array gRPC retry codes.
      */
     private $grpcRetryCodes = [
-        Grpc\STATUS_UNKNOWN,
-        Grpc\STATUS_INTERNAL,
-        Grpc\STATUS_UNAVAILABLE,
-        Grpc\STATUS_DATA_LOSS
+        Code::UNKNOWN,
+        Code::INTERNAL,
+        Code::UNAVAILABLE,
+        Code::DATA_LOSS
     ];
 
     /**
@@ -123,11 +124,7 @@ class GrpcRequestWrapper
         $backoff = new ExponentialBackoff($retries, function (\Exception $ex) {
             $statusCode = $ex->getCode();
 
-            if (in_array($statusCode, $this->grpcRetryCodes)) {
-                return true;
-            }
-
-            return false;
+            return in_array($statusCode, $this->grpcRetryCodes);
         });
 
         if (!isset($grpcOptions['retrySettings'])) {
@@ -199,41 +196,41 @@ class GrpcRequestWrapper
      * Convert a ApiCore exception to a Google Exception.
      *
      * @param ApiException $ex
-     * @return ServiceException
+     * @return Exception\ServiceException
      */
     private function convertToGoogleException(ApiException $ex)
     {
         switch ($ex->getCode()) {
-            case Grpc\STATUS_INVALID_ARGUMENT:
+            case Code::INVALID_ARGUMENT:
                 $exception = Exception\BadRequestException::class;
                 break;
 
-            case Grpc\STATUS_NOT_FOUND:
-            case Grpc\STATUS_UNIMPLEMENTED:
+            case Code::NOT_FOUND:
+            case Code::UNIMPLEMENTED:
                 $exception = Exception\NotFoundException::class;
                 break;
 
-            case Grpc\STATUS_ALREADY_EXISTS:
+            case Code::ALREADY_EXISTS:
                 $exception = Exception\ConflictException::class;
                 break;
 
-            case Grpc\STATUS_FAILED_PRECONDITION:
+            case Code::FAILED_PRECONDITION:
                 $exception = Exception\FailedPreconditionException::class;
                 break;
 
-            case Grpc\STATUS_UNKNOWN:
+            case Code::UNKNOWN:
                 $exception = Exception\ServerException::class;
                 break;
 
-            case Grpc\STATUS_INTERNAL:
+            case Code::INTERNAL:
                 $exception = Exception\ServerException::class;
                 break;
 
-            case Grpc\STATUS_ABORTED:
+            case Code::ABORTED:
                 $exception = Exception\AbortedException::class;
                 break;
 
-            case Grpc\STATUS_DEADLINE_EXCEEDED:
+            case Code::DEADLINE_EXCEEDED:
                 $exception = Exception\DeadlineExceededException::class;
                 break;
 

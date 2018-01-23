@@ -5,8 +5,8 @@
     "minimum-stability": "stable",
     "require": {
         "google/cloud-core": "^1.14",
-        "google/proto-client": "^0.29",
-        "google/gax": "^0.29"
+        "google/proto-client": "^0.31",
+        "google/gax": "^0.30"
     },
     "suggest": {
         "ext-grpc": "The gRPC extension enables use of the performant gRPC transport",
