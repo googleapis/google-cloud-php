@@ -187,8 +187,8 @@ class BreakpointTest extends TestCase
         ]);
         $this->assertTrue($breakpoint->resolveLocation());
 
-        // resolved location should have changed the path
-        $this->assertTrue(strlen($path) < strlen($breakpoint->location()->path()));
+        // resolved location should
+        $this->assertLessThan(strlen($breakpoint->location()->path()), strlen($path));
         $info = $breakpoint->info();
 
         // the serialized location should be unaffected

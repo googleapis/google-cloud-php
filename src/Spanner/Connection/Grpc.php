@@ -17,7 +17,9 @@
 
 namespace Google\Cloud\Spanner\Connection;
 
-use Grpc\UnaryCall;
+use Google\ApiCore\Call;
+use Google\ApiCore\CallSettings;
+use Google\ApiCore\Serializer;
 use Google\Cloud\Core\GrpcRequestWrapper;
 use Google\Cloud\Core\GrpcTrait;
 use Google\Cloud\Core\LongRunning\OperationResponseTrait;
@@ -26,8 +28,6 @@ use Google\Cloud\Spanner\Admin\Instance\V1\InstanceAdminClient;
 use Google\Cloud\Spanner\Operation;
 use Google\Cloud\Spanner\SpannerClient as ManualSpannerClient;
 use Google\Cloud\Spanner\V1\SpannerClient;
-use Google\ApiCore\AgentHeaderDescriptor;
-use Google\ApiCore\Serializer;
 use Google\Protobuf;
 use Google\Protobuf\FieldMask;
 use Google\Protobuf\GPBEmpty;
@@ -46,6 +46,7 @@ use Google\Cloud\Spanner\V1\TransactionOptions_ReadOnly;
 use Google\Cloud\Spanner\V1\TransactionOptions_ReadWrite;
 use Google\Cloud\Spanner\V1\TransactionSelector;
 use Google\Cloud\Spanner\V1\Type;
+use GuzzleHttp\Promise\PromiseInterface;
 
 /**
  * Connection to Cloud Spanner over gRPC
@@ -120,11 +121,6 @@ class Grpc implements ConnectionInterface
     private $longRunningGrpcClients;
 
     /**
-     * @var AgentHeaderDescriptor
-     */
-    private $headerDescriptor;
-
-    /**
      * @param array $config [optional]
      */
     public function __construct(array $config = [])
@@ -150,7 +146,12 @@ class Grpc implements ConnectionInterface
 
         $config['serializer'] = $this->serializer;
         $this->setRequestWrapper(new GrpcRequestWrapper($config));
-        $grpcConfig = $this->getGaxConfig(ManualSpannerClient::VERSION);
+        $grpcConfig = $this->getGaxConfig(
+            ManualSpannerClient::VERSION,
+            isset($config['authHttpHandler'])
+                ? $config['authHttpHandler']
+                : null
+        );
         $this->spannerClient = isset($config['gapicSpannerClient'])
             ? $config['gapicSpannerClient']
             : new SpannerClient($grpcConfig);
@@ -161,9 +162,6 @@ class Grpc implements ConnectionInterface
             $this->instanceAdminClient,
             $this->databaseAdminClient
         ];
-        $this->headerDescriptor = new AgentHeaderDescriptor([
-            'gapicVersion' => trim(file_get_contents(__DIR__ . '/../VERSION'))
-        ]);
     }
 
     /**
@@ -462,27 +460,24 @@ class Grpc implements ConnectionInterface
      *
      * @access private
      * @param array $args
-     * @return UnaryCall
+     * @return PromiseInterface
      * @experimental
      */
     public function deleteSessionAsync(array $args)
     {
         $database = $this->pluck('database', $args);
-        $headers = $this->headerDescriptor->getHeader()
-            + $this->addResourcePrefixHeader($args, $database)['userHeaders'];
         $request = new DeleteSessionRequest();
         $request->setName($this->pluck('name', $args));
-        $credentialsCallback = $this->spannerClient
-            ->getCredentialsHelper()
-            ->createCallCredentialsCallback();
 
-        return $this->spannerClient
-            ->getStub()
-            ->DeleteSession(
-                $request,
-                $headers,
-                ['call_credentials_callback' => $credentialsCallback]
-            );
+        $transport = $this->spannerClient->getTransport();
+        return $transport->startUnaryCall(
+            new Call(
+                'google.spanner.v1.Spanner/DeleteSession',
+                GPBEmpty::class,
+                $request
+            ),
+            $this->addResourcePrefixHeader([], $database)
+        );
     }
 
     /**
@@ -880,7 +875,7 @@ class Grpc implements ConnectionInterface
      */
     private function addResourcePrefixHeader(array $args, $value)
     {
-        $args['userHeaders'] = [
+        $args['headers'] = [
             'google-cloud-resource-prefix' => [$value]
         ];
 

@@ -59,7 +59,7 @@ class KeyTest extends SnippetTestCase
         $snippet->addLocal('datastore', $ds->reveal());
 
         $res = $snippet->invoke('key');
-        $this->assertEquals(3, count($res->returnVal()->path()));
+        $this->assertCount(3, $res->returnVal()->path());
     }
 
     /**
