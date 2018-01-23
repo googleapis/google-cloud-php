@@ -80,7 +80,12 @@ class Grpc implements ConnectionInterface
         $config['serializer'] = $this->serializer;
         $this->setRequestWrapper(new GrpcRequestWrapper($config));
 
-        $grpcConfig = $this->getGaxConfig(ManualFirestoreClient::VERSION);
+        $grpcConfig = $this->getGaxConfig(
+            ManualFirestoreClient::VERSION,
+            isset($config['authHttpHandler'])
+                ? $config['authHttpHandler']
+                : null
+        );
         $this->firestore = new FirestoreClient($grpcConfig);
 
         $this->resourcePrefixHeader = FirestoreClient::databaseRootName(

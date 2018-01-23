@@ -90,16 +90,19 @@ trait GrpcTrait
     /**
      * Gets the default configuration for generated clients.
      *
+     * @param string $version
+     * @param callable|null $authHttpHandler
      * @return array
      */
-    private function getGaxConfig($version)
+    private function getGaxConfig($version, callable $authHttpHandler = null)
     {
         return [
             'credentialsLoader' => $this->requestWrapper->getCredentialsFetcher(),
             'enableCaching' => false,
             'libName' => 'gccl',
             'libVersion' => $version,
-            'transport' => 'grpc'
+            'transport' => 'grpc',
+            'authHttpHandler' => $authHttpHandler
         ];
     }
 

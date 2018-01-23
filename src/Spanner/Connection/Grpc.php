@@ -146,7 +146,12 @@ class Grpc implements ConnectionInterface
 
         $config['serializer'] = $this->serializer;
         $this->setRequestWrapper(new GrpcRequestWrapper($config));
-        $grpcConfig = $this->getGaxConfig(ManualSpannerClient::VERSION);
+        $grpcConfig = $this->getGaxConfig(
+            ManualSpannerClient::VERSION,
+            isset($config['authHttpHandler'])
+                ? $config['authHttpHandler']
+                : null
+        );
         $this->spannerClient = isset($config['gapicSpannerClient'])
             ? $config['gapicSpannerClient']
             : new SpannerClient($grpcConfig);

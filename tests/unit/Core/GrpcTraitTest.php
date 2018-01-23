@@ -153,9 +153,23 @@ class GrpcTraitTest extends TestCase
             'libName' => 'gccl',
             'libVersion' => $version,
             'transport' => 'grpc',
+            'authHttpHandler' => function () {
+                return true;
+            }
         ];
 
-        $this->assertEquals($expected, $this->implementation->call('getGaxConfig', [$version]));
+        $this->assertEquals(
+            $expected,
+            $this->implementation->call(
+                'getGaxConfig',
+                [
+                    $version,
+                    function () {
+                        return true;
+                    }
+                ]
+            )
+        );
     }
 
     public function testFormatsTimestamp()
