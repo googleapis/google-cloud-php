@@ -4,3 +4,6 @@ env: flex
 runtime_config:
   document_root: web
   enable_stackdriver_integration: true
+
+manual_scaling:
+  instances: 1

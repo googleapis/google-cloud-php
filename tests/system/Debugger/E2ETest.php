@@ -20,10 +20,8 @@ namespace Google\Cloud\Tests\System\Debugger;
 use Google\Cloud\Debugger\V2\Gapic\Debugger2GapicClient as GapicClient;
 use Google\Cloud\Debugger\V2\Breakpoint;
 use Google\Cloud\Debugger\V2\SourceLocation;
-
-use GuzzleHttp\Client;
 use Google\Cloud\TestUtils\EventuallyConsistentTestTrait;
-
+use GuzzleHttp\Client;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -183,5 +181,4 @@ class E2ETest extends TestCase
         $bp = $resp->getBreakpoint();
         $this->assertNotEmpty($bp->getId());
     }
-
 }
