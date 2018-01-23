@@ -870,7 +870,7 @@ class Grpc implements ConnectionInterface
      */
     private function addResourcePrefixHeader(array $args, $value)
     {
-        $args['userHeaders'] = [
+        $args['headers'] = [
             'google-cloud-resource-prefix' => [$value]
         ];
 

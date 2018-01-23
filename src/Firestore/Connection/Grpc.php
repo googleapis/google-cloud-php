@@ -183,7 +183,7 @@ class Grpc implements ConnectionInterface
      */
     private function addResourcePrefixHeader(array $args)
     {
-        $args['userHeaders'] = [
+        $args['headers'] = [
             'google-cloud-resource-prefix' => [$this->resourcePrefixHeader]
         ];
 

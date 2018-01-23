@@ -190,7 +190,7 @@ class GrpcTest extends TestCase
     private function header()
     {
         return [
-            "userHeaders" => [
+            "headers" => [
                 "google-cloud-resource-prefix" => ["projects/test/databases/(default)"]
             ]
         ];
