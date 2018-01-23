@@ -23,24 +23,4 @@ $app->get('/debuggee', function () use ($app, $agent) {
     ], 200, ['Content-Type' => 'application/json']);
 });
 
-$app->get('/env', function() use ($app) {
-    return $app->json($_SERVER, 200, ['Content-Type' => 'application/json']);
-});
-
-$app->get('/metadata/{key}', function($key) use ($app) {
-    $uri = 'http://metadata.google.internal/computeMetadata/v1/' . $key;
-
-    $client = new \GuzzleHttp\Client();
-    $resp = $client->get($uri, [
-        'headers' => [
-            'Metadata-Flavor' => 'Google'
-        ],
-        'query' => [
-            'recursive' => 'true'
-        ]
-    ]);
-    $response = new JsonResponse($resp->getBody(), 200, [], true);
-    return $response;
-})->value('key', '');
-
 $app->run();
