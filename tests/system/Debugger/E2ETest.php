@@ -38,14 +38,9 @@ class E2ETest extends TestCase
     use AppEngineDeploymentTrait;
     use EventuallyConsistentTestTrait;
 
-    public static function setUpBeforeClass()
-    {
-        self::createComposerJson();
-        self::deployApp();
-    }
-
     public static function beforeDeploy()
     {
+        self::createComposerJson();
         self::$gcloudWrapper->setDir(implode(DIRECTORY_SEPARATOR, [__DIR__, 'app']));
     }
 
