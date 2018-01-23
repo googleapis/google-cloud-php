@@ -60,7 +60,8 @@
         "erusev/parsedown": "^1.6",
         "vierbergenlars/php-semver": "^3.0",
         "symfony/lock": "3.3.x-dev#1ba6ac9",
-        "phpseclib/phpseclib": "^2"
+        "phpseclib/phpseclib": "^2",
+        "google/cloud-tools": "^0.6"
     },
     "replace": {
         "google/cloud-bigquery": "1.0.2",
