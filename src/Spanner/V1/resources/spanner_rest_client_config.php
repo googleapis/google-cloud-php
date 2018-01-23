@@ -11,7 +11,7 @@ return [
                         'method' => 'get',
                         'uriTemplate' => '/v1/{name=projects/*/instances/*/operations/*}',
                     ],
-                ]
+                ],
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -28,7 +28,7 @@ return [
                         'method' => 'get',
                         'uriTemplate' => '/v1/{name=projects/*/instances/*/operations}',
                     ],
-                ]
+                ],
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -45,7 +45,7 @@ return [
                         'method' => 'post',
                         'uriTemplate' => '/v1/{name=projects/*/instances/*/operations/*}:cancel',
                     ],
-                ]
+                ],
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -62,7 +62,7 @@ return [
                         'method' => 'delete',
                         'uriTemplate' => '/v1/{name=projects/*/instances/*/operations/*}',
                     ],
-                ]
+                ],
                 'placeholders' => [
                     'name' => [
                         'getters' => [
