@@ -26,6 +26,14 @@ use GuzzleHttp\Client;
 use PHPUnit\Framework\TestCase;
 
 /**
+ * The test deploys the sample app contained in the app folder to Google App
+ * Engine Flexible Environment. Before deployment, we generate a composer.json
+ * that uses the current branch of google/cloud to test against.
+ *
+ * Each test sets a breakpoint, ensures that the app has seen the breakpoint,
+ * then makes a request to the app that should trigger the breakpoint. We then
+ * ensure that the breakpoint has been fulfilled.
+ *
  * @group debugger
  */
 class E2ETest extends TestCase
