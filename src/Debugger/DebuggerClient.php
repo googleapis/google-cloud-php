@@ -77,9 +77,10 @@ class DebuggerClient
      */
     public function __construct(array $config = [])
     {
-        if (!isset($config['scopes'])) {
-            $config['scopes'] = [self::FULL_CONTROL_SCOPE];
-        }
+        $config += [
+            'scopes' => [self::FULL_CONTROL_SCOPE],
+            'preferNumericProjectId' => true
+        ];
 
         $connectionType = $this->getConnectionType($config);
         if ($connectionType === 'grpc') {
