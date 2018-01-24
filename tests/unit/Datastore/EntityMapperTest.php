@@ -408,7 +408,7 @@ class EntityMapperTest extends TestCase
         ];
 
         $res = $this->mapper->convertValue($type, $val);
-        $this->assertTrue(is_array($res));
+        $this->assertInternalType('array', $res);
         $this->assertEquals('test', $res['prop']);
         $this->assertEquals(['prop'], $res[Entity::EXCLUDE_FROM_INDEXES]);
     }

@@ -334,9 +334,7 @@ class TransactionTypeTest extends TestCase
             ->shouldNotbeCalled();
 
         $this->connection->executeStreamingSql(Argument::that(function ($arg) {
-            if (!$arg['transaction']['singleUse']['readOnly']['strong']) return false;
-
-            return true;
+            return $arg['transaction']['singleUse']['readOnly']['strong'];
         }))->shouldBeCalledTimes(1)->willReturn($this->resultGenerator($chunks));
 
         $database = $this->database($this->connection->reveal());
@@ -386,9 +384,7 @@ class TransactionTypeTest extends TestCase
             ->shouldNotbeCalled();
 
         $this->connection->executeStreamingSql(Argument::that(function ($arg) {
-            if (!$arg['transaction']['singleUse']['readOnly']['strong']) return false;
-
-            return true;
+            return $arg['transaction']['singleUse']['readOnly']['strong'];
         }))->shouldBeCalledTimes(1)->willReturn($this->resultGenerator($chunks));
 
         $database = $this->database($this->connection->reveal());
@@ -457,9 +453,7 @@ class TransactionTypeTest extends TestCase
     public function testDatabaseInsertSingleUseReadWrite()
     {
         $this->connection->commit(Argument::that(function ($arg) {
-            if ($arg['singleUseTransaction']['readWrite'] !== []) return false;
-
-            return true;
+            return $arg['singleUseTransaction']['readWrite'] === [];
         }))->shouldBeCalled()->willReturn([
             'commitTimestamp' => $this->timestamp
         ]);
@@ -474,9 +468,7 @@ class TransactionTypeTest extends TestCase
     public function testDatabaseInsertBatchSingleUseReadWrite()
     {
         $this->connection->commit(Argument::that(function ($arg) {
-            if ($arg['singleUseTransaction']['readWrite'] !== []) return false;
-
-            return true;
+            return $arg['singleUseTransaction']['readWrite'] === [];
         }))->shouldBeCalled()->willReturn([
             'commitTimestamp' => $this->timestamp
         ]);
@@ -491,9 +483,7 @@ class TransactionTypeTest extends TestCase
     public function testDatabaseUpdateSingleUseReadWrite()
     {
         $this->connection->commit(Argument::that(function ($arg) {
-            if ($arg['singleUseTransaction']['readWrite'] !== []) return false;
-
-            return true;
+            return $arg['singleUseTransaction']['readWrite'] === [];
         }))->shouldBeCalled()->willReturn([
             'commitTimestamp' => $this->timestamp
         ]);
@@ -508,9 +498,7 @@ class TransactionTypeTest extends TestCase
     public function testDatabaseUpdateBatchSingleUseReadWrite()
     {
         $this->connection->commit(Argument::that(function ($arg) {
-            if ($arg['singleUseTransaction']['readWrite'] !== []) return false;
-
-            return true;
+            return $arg['singleUseTransaction']['readWrite'] === [];
         }))->shouldBeCalled()->willReturn([
             'commitTimestamp' => $this->timestamp
         ]);
@@ -525,9 +513,7 @@ class TransactionTypeTest extends TestCase
     public function testDatabaseInsertOrUpdateSingleUseReadWrite()
     {
         $this->connection->commit(Argument::that(function ($arg) {
-            if ($arg['singleUseTransaction']['readWrite'] !== []) return false;
-
-            return true;
+            return $arg['singleUseTransaction']['readWrite'] === [];
         }))->shouldBeCalled()->willReturn([
             'commitTimestamp' => $this->timestamp
         ]);
@@ -542,9 +528,7 @@ class TransactionTypeTest extends TestCase
     public function testDatabaseInsertOrUpdateBatchSingleUseReadWrite()
     {
         $this->connection->commit(Argument::that(function ($arg) {
-            if ($arg['singleUseTransaction']['readWrite'] !== []) return false;
-
-            return true;
+            return $arg['singleUseTransaction']['readWrite'] === [];
         }))->shouldBeCalled()->willReturn([
             'commitTimestamp' => $this->timestamp
         ]);
@@ -559,9 +543,7 @@ class TransactionTypeTest extends TestCase
     public function testDatabaseReplaceSingleUseReadWrite()
     {
         $this->connection->commit(Argument::that(function ($arg) {
-            if ($arg['singleUseTransaction']['readWrite'] !== []) return false;
-
-            return true;
+            return $arg['singleUseTransaction']['readWrite'] === [];
         }))->shouldBeCalled()->willReturn([
             'commitTimestamp' => $this->timestamp
         ]);
@@ -576,9 +558,7 @@ class TransactionTypeTest extends TestCase
     public function testDatabaseReplaceBatchSingleUseReadWrite()
     {
         $this->connection->commit(Argument::that(function ($arg) {
-            if ($arg['singleUseTransaction']['readWrite'] !== []) return false;
-
-            return true;
+            return $arg['singleUseTransaction']['readWrite'] === [];
         }))->shouldBeCalled()->willReturn([
             'commitTimestamp' => $this->timestamp
         ]);
@@ -593,9 +573,7 @@ class TransactionTypeTest extends TestCase
     public function testDatabaseDeleteSingleUseReadWrite()
     {
         $this->connection->commit(Argument::that(function ($arg) {
-            if ($arg['singleUseTransaction']['readWrite'] !== []) return false;
-
-            return true;
+            return $arg['singleUseTransaction']['readWrite'] === [];
         }))->shouldBeCalled()->willReturn([
             'commitTimestamp' => $this->timestamp
         ]);
@@ -614,9 +592,7 @@ class TransactionTypeTest extends TestCase
             ->shouldNotbeCalled();
 
         $this->connection->executeStreamingSql(Argument::that(function ($arg) {
-            if (!$arg['transaction']['singleUse']['readOnly']['strong']) return false;
-
-            return true;
+            return $arg['transaction']['singleUse']['readOnly']['strong'];
         }))->shouldBeCalledTimes(1)->willReturn($this->resultGenerator($chunks));
 
         $database = $this->database($this->connection->reveal());
@@ -632,9 +608,7 @@ class TransactionTypeTest extends TestCase
             ->shouldNotbeCalled();
 
         $this->connection->executeStreamingSql(Argument::that(function ($arg) {
-            if (!$arg['transaction']['begin']['readOnly']['strong']) return false;
-
-            return true;
+            return $arg['transaction']['begin']['readOnly']['strong'];
         }))->shouldBeCalledTimes(1)->willReturn($this->resultGenerator($chunks));
 
         $database = $this->database($this->connection->reveal());
@@ -652,9 +626,7 @@ class TransactionTypeTest extends TestCase
             ->shouldNotbeCalled();
 
         $this->connection->executeStreamingSql(Argument::that(function ($arg) {
-            if ($arg['transaction']['begin']['readWrite'] !== []) return false;
-
-            return true;
+            return $arg['transaction']['begin']['readWrite'] === [];
         }))->shouldBeCalledTimes(1)->willReturn($this->resultGenerator($chunks));
 
         $database = $this->database($this->connection->reveal());
@@ -673,9 +645,7 @@ class TransactionTypeTest extends TestCase
             ->shouldNotbeCalled();
 
         $this->connection->streamingRead(Argument::that(function ($arg) {
-            if (!$arg['transaction']['singleUse']['readOnly']['strong']) return false;
-
-            return true;
+            return $arg['transaction']['singleUse']['readOnly']['strong'];
         }))->shouldBeCalledTimes(1)->willReturn($this->resultGenerator($chunks));
 
         $database = $this->database($this->connection->reveal());
@@ -691,9 +661,7 @@ class TransactionTypeTest extends TestCase
             ->shouldNotbeCalled();
 
         $this->connection->streamingRead(Argument::that(function ($arg) {
-            if (!$arg['transaction']['begin']['readOnly']['strong']) return false;
-
-            return true;
+            return $arg['transaction']['begin']['readOnly']['strong'];
         }))->shouldBeCalledTimes(1)->willReturn($this->resultGenerator($chunks));
 
         $database = $this->database($this->connection->reveal());
@@ -711,9 +679,7 @@ class TransactionTypeTest extends TestCase
             ->shouldNotbeCalled();
 
         $this->connection->streamingRead(Argument::that(function ($arg) {
-            if ($arg['transaction']['begin']['readWrite'] !== []) return false;
-
-            return true;
+            return $arg['transaction']['begin']['readWrite'] === [];
         }))->shouldBeCalledTimes(1)->willReturn($this->resultGenerator($chunks));
 
         $database = $this->database($this->connection->reveal());
@@ -726,9 +692,7 @@ class TransactionTypeTest extends TestCase
     public function testTransactionPreAllocatedRollback()
     {
         $this->connection->beginTransaction(Argument::that(function ($arg) {
-            if (!isset($arg['transactionOptions']['readWrite'])) return false;
-
-            return true;
+            return isset($arg['transactionOptions']['readWrite']);
         }))->shouldBeCalledTimes(1)->willReturn(['id' => self::TRANSACTION]);
 
         $this->connection->rollback(Argument::that(function ($arg) {

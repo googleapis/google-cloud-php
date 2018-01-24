@@ -99,9 +99,7 @@ class DatasetTest extends TestCase
     {
         $updateData = ['friendlyName' => 'wow a name', 'etag' => 'foo'];
         $this->connection->patchDataset(Argument::that(function ($args) {
-            if ($args['restOptions']['headers']['If-Match'] !== 'foo') return false;
-
-            return true;
+            return $args['restOptions']['headers']['If-Match'] === 'foo';
         }))
             ->willReturn($updateData)
             ->shouldBeCalledTimes(1);

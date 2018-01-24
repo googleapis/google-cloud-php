@@ -176,7 +176,7 @@ class BreakpointTest extends TestCase
 
     public function testResolvedLocationNotIncludedInJson()
     {
-        $path = 'src/Debugger/DebuggerClient.php';
+        $path = implode(DIRECTORY_SEPARATOR, ['Debugger', 'DebuggerClient.php']);
         $breakpoint = new Breakpoint([
             'location' => [
                 'path' => $path,
@@ -186,7 +186,7 @@ class BreakpointTest extends TestCase
         $this->assertTrue($breakpoint->resolveLocation());
 
         // resolved location should have changed the path
-        $this->assertTrue(strlen($path) < strlen($breakpoint->location()->path()));
+        $this->assertLessThan(strlen($breakpoint->location()->path()), strlen($path));
         $json = json_decode(json_encode($breakpoint->jsonSerialize()), true);
 
         // the serialized location should be unaffected
