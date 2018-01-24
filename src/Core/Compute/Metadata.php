@@ -45,14 +45,19 @@ use Google\Cloud\Core\Compute\Metadata\Readers\ReaderInterface;
 class Metadata
 {
     /**
-     * The metadata reader.
+     * @var StreamReader The metadata reader.
      */
     private $reader;
 
     /**
-     * The project id.
+     * @var string The project id.
      */
     private $projectId;
+
+    /**
+     * @var int The numeric project id.
+     */
+    private $numericProjectId;
 
     /**
      * We use StreamReader for the default implementation for fetching the URL.
@@ -118,11 +123,11 @@ class Metadata
      */
     public function getNumericProjectId()
     {
-        if (!isset($this->projectId)) {
-            $this->projectId = $this->get('project/numeric-project-id');
+        if (!isset($this->numericProjectId)) {
+            $this->numericProjectId = $this->get('project/numeric-project-id');
         }
 
-        return $this->projectId;
+        return $this->numericProjectId;
     }
 
     /**
