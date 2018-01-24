@@ -30,8 +30,6 @@ use PHPUnit\Framework\TestCase;
  */
 class E2ETest extends TestCase
 {
-    protected static $projectId;
-    protected static $version = 'e2e-test';
     protected static $debuggeeId;
     protected static $httpClient;
 
