@@ -92,9 +92,8 @@ class FormatMessage
     }
 
     /**
-     * Callback to implement JsonSerializable interface
+     * Return the FormatMessage data.
      *
-     * @access private
      * @return array
      */
     public function info()
