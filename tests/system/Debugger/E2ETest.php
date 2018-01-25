@@ -65,28 +65,37 @@ class E2ETest extends TestCase
         self::deleteApp();
     }
 
+    public static function getBranch()
+    {
+        $branch = getenv('TRAVIS_BRANCH') ?: getenv('BRANCH');
+        if ($branch === false) {
+            self::fail('Please set the BRANCH env var.');
+        }
+        return $branch;
+    }
+
+    public static function getRepo()
+    {
+        return getenv('TRAVIS_REPO_SLUG')
+            ?: getenv('REPO_SLUG')
+            ?: 'GoogleCloudPlatform/google-cloud-php';
+    }
+
     public static function createComposerJson()
     {
-        $branch = exec('git rev-parse --abbrev-ref HEAD');
-        $origin = exec('git remote get-url origin');
-        $repo = 'GoogleCloudPlatform/google-cloud-php';
-        if (preg_match('/[:\/](.+\/[^\/\.]+)(\.git)?/', $origin, $matches)) {
-            $repo = $matches[1];
-        }
-
         $data = [
             'name' => 'google/debugger-test-app',
             'type' => 'project',
             'require' => [
                 'php' => '^7.0',
                 'silex/silex' => '~2.0',
-                'google/cloud' => 'dev-' . $branch,
+                'google/cloud' => 'dev-' . self::getBranch(),
                 'ext-stackdriver_debugger' => '*'
             ],
             'repositories' => [
                 [
                     'type' => 'git',
-                    'url' => 'https://github.com/' . $repo
+                    'url' => 'https://github.com/' . self::getRepo()
                 ]
             ]
         ];
