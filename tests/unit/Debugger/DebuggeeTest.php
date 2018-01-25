@@ -106,8 +106,8 @@ class DebuggeeTest extends TestCase
     {
         $this->connection->setBreakpoint(Argument::that(function ($args) {
             return $args['debuggeeId'] == 'debuggee1' &&
-                $args['location']->path() == '/path/to/file.php' &&
-                $args['location']->line() == 10;
+                $args['location']['path'] == '/path/to/file.php' &&
+                $args['location']['line'] == 10;
         }))->willReturn(['breakpoint' => ['id' => 'breakpoint1']]);
         $debuggee = new Debuggee($this->connection->reveal(), ['id' => 'debuggee1', 'project' => 'project1']);
 
