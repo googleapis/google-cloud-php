@@ -293,6 +293,37 @@ class Debuggee implements \JsonSerializable
     }
 
     /**
+     * Set a breakpoint for this debuggee.
+     *
+     * Example:
+     * ```
+     * $breakpoint = $debuggee->setBreakpoint('DebuggerClient.php', 10);
+     * ```
+     *
+     * @codingStandardsIgnoreStart
+     * @see https://cloud.google.com/debugger/api/reference/rest/v2/debugger.debuggees.breakpoints/set Breakpoint set API documentation.
+     * @codingStandardsIgnoreEnd
+     *
+     * @param string $path Path to the source file.
+     * @param int $line Line within the source file.
+     * @param array $options [optional] Array of Breakpoint constructor arguments. See
+     *        {@see Google\Cloud\Debugger\Breakpoint::__construct()} for configuration details.
+     */
+    public function setBreakpoint($path, $line, array $options = [])
+    {
+        $breakpoint = new Breakpoint([
+            'location' => [
+                'path' => $path,
+                'line' => $line
+            ]
+        ] + $options);
+        $resp = $this->connection->setBreakpoint([
+            'debuggeeId' => $this->id
+        ] + $breakpoint->jsonSerialize());
+        return new Breakpoint($resp['breakpoint']);
+    }
+
+    /**
      * Update multiple breakpoints.
      *
      * Example:
