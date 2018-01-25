@@ -280,16 +280,19 @@ class Debuggee implements \JsonSerializable
      * @codingStandardsIgnoreEnd
      *
      * @param Breakpoint $breakpoint The modified breakpoint.
+     * @param array $options [optional] Configuration options. See
+     *        {@see Google\Cloud\Core\RequestWrapper::__construct()} for
+     *        configuration options which apply to all network requests.
      * @return void
      * @throws ServiceException
      */
-    public function updateBreakpoint(Breakpoint $breakpoint)
+    public function updateBreakpoint(Breakpoint $breakpoint, array $options = [])
     {
         $this->connection->updateBreakpoint([
             'debuggeeId' => $this->id,
             'id' => $breakpoint->id(),
             'breakpoint' => $breakpoint
-        ]);
+        ] + $options);
     }
 
     /**
@@ -307,19 +310,20 @@ class Debuggee implements \JsonSerializable
      * @param string $path Path to the source file.
      * @param int $line Line within the source file.
      * @param array $options [optional] Array of Breakpoint constructor arguments. See
-     *        {@see Google\Cloud\Debugger\Breakpoint::__construct()} for configuration details.
+     *        {@see Google\Cloud\Debugger\Breakpoint::__construct()} for
+     *        configuration details. See
+     *        {@see Google\Cloud\Core\RequestWrapper::__construct()} for
+     *        configuration options which apply to all network requests.
      */
     public function setBreakpoint($path, $line, array $options = [])
     {
-        $breakpoint = new Breakpoint([
+        $resp = $this->connection->setBreakpoint([
+            'debuggeeId' => $this->id,
             'location' => [
                 'path' => $path,
                 'line' => $line
             ]
         ] + $options);
-        $resp = $this->connection->setBreakpoint([
-            'debuggeeId' => $this->id
-        ] + $breakpoint->jsonSerialize());
         return new Breakpoint($resp['breakpoint']);
     }
 
@@ -336,13 +340,16 @@ class Debuggee implements \JsonSerializable
      * @codingStandardsIgnoreEnd
      *
      * @param Breakpoint[] $breakpoints The modified breakpoints.
+     * @param array $options [optional] Configuration options. See
+     *        {@see Google\Cloud\Core\RequestWrapper::__construct()} for
+     *        configuration options which apply to all network requests.
      * @return void
      * @throws ServiceException
      */
-    public function updateBreakpointBatch(array $breakpoints)
+    public function updateBreakpointBatch(array $breakpoints, array $options = [])
     {
         foreach ($breakpoints as $breakpoint) {
-            $this->updateBreakpoint($breakpoint);
+            $this->updateBreakpoint($breakpoint, $options);
         }
     }
 
