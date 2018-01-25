@@ -35,6 +35,7 @@ use PHPUnit\Framework\TestCase;
  * ensure that the breakpoint has been fulfilled.
  *
  * @group debugger
+ * @group e2e
  */
 class E2ETest extends TestCase
 {
