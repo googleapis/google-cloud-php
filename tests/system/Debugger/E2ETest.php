@@ -17,9 +17,8 @@
 
 namespace Google\Cloud\Tests\System\Debugger;
 
-use Google\Cloud\Debugger\V2\Gapic\Debugger2GapicClient as GapicClient;
-use Google\Cloud\Debugger\V2\Breakpoint;
-use Google\Cloud\Debugger\V2\SourceLocation;
+use Google\Cloud\Debugger\DebuggerClient;
+use Google\Cloud\Debugger\Breakpoint;
 use Google\Cloud\TestUtils\EventuallyConsistentTestTrait;
 use Google\Cloud\TestUtils\AppEngineDeploymentTrait;
 use GuzzleHttp\Client;
@@ -106,7 +105,7 @@ class E2ETest extends TestCase
 
     public function testWithFullPath()
     {
-        $this->setBreakpoint('web/app.php', 13);
+        $this->setBreakpoint('web/app.php', 29);
 
         $this->runEventuallyConsistentTest(function () {
             $this->assertBreakpointCount(1);
@@ -130,7 +129,7 @@ class E2ETest extends TestCase
 
     public function testWithExtraPath()
     {
-        $this->setBreakpoint('/extra/web/app.php', 13);
+        $this->setBreakpoint('/extra/web/app.php', 29);
 
         $this->runEventuallyConsistentTest(function () {
             $this->assertBreakpointCount(1);
@@ -147,7 +146,7 @@ class E2ETest extends TestCase
 
     public function testWithMissingPath()
     {
-        $this->setBreakpoint('app.php', 13);
+        $this->setBreakpoint('app.php', 29);
 
         $this->runEventuallyConsistentTest(function () {
             $this->assertBreakpointCount(1);
@@ -165,14 +164,12 @@ class E2ETest extends TestCase
     private function setBreakpoint($file, $line)
     {
         // Set a breakpoint
-        $client = new GapicClient();
-        $breakpoint = new Breakpoint();
-        $location = new SourceLocation();
-        $location->setPath($file);
-        $location->setLine($line);
-        $breakpoint->setLocation($location);
-        $resp = $client->setBreakpoint(self::$debuggeeId, $breakpoint, 'google.com/php/v0.1');
-        $bp = $resp->getBreakpoint();
-        $this->assertNotEmpty($bp->getId());
+        $client = new DebuggerClient([
+            'keyFilePath' => getenv('GOOGLE_CLOUD_PHP_TESTS_KEY_PATH')
+        ]);
+        $debuggee = $client->debuggee(self::$debuggeeId);
+        $breakpoint = $debuggee->setBreakpoint($file, $line);
+        $this->assertInstanceOf(Breakpoint::class, $breakpoint);
+        $this->assertNotNull($breakpoint->location());
     }
 }
