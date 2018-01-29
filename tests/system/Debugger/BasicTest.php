@@ -72,15 +72,9 @@ class BasicTest extends TestCase
         $this->assertNotEmpty($debuggee->id());
 
         // Set a breakpoint
-        $client = new GapicClient();
-        $breakpoint = new GapicBreakpoint();
-        $location = new SourceLocation();
-        $location->setPath('tests/system/Debugger/BasicTest.php');
-        $location->setLine(__LINE__);
-        $breakpoint->setLocation($location);
-        $resp = $client->setBreakpoint($debuggee->id(), $breakpoint, 'google.com/php/v0.1');
-        $bp = $resp->getBreakpoint();
-        $this->assertNotEmpty($bp->getId());
+        $breakpoint = $debuggee->setBreakpoint('tests/system/Debugger/BasicTest.php', __LINE__);
+        $this->assertInstanceOf(Breakpoint::class, $breakpoint);
+        $this->assertNotNull($breakpoint->location());
 
         // Fetch the list of breakpoints
         $breakpoints = $debuggee->breakpoints();
@@ -91,7 +85,6 @@ class BasicTest extends TestCase
         );
 
         // fulfill a breakpoint
-        $breakpoint = $breakpoints[0];
         $this->assertTrue($breakpoint->resolveLocation());
         $breakpoint->finalize();
         $debuggee->updateBreakpoint($breakpoint);

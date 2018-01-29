@@ -102,6 +102,21 @@ class MetadataTest extends SnippetTestCase
         $this->assertEquals(self::PROJECT, $res->returnVal());
     }
 
+    public function testGetNumericProjectId()
+    {
+        $this->reader->read('project/numeric-project-id')
+            ->shouldBeCalled()
+            ->willReturn(self::PROJECT);
+
+        $this->metadata->setReader($this->reader->reveal());
+
+        $snippet = $this->snippetFromMethod(Metadata::class, 'getNumericProjectId');
+        $snippet->addLocal('metadata', $this->metadata);
+        $res = $snippet->invoke('projectId');
+
+        $this->assertEquals(self::PROJECT, $res->returnVal());
+    }
+
     public function testGetProjectMetadata()
     {
         $val = 'hello world';

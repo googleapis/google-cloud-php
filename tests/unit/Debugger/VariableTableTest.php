@@ -75,7 +75,7 @@ class VariableTableTest extends TestCase
         $object1 = new Int64('123');
         $object2 = new Int64('123');
 
-        $this->assertTrue($object1 !== $object2);
+        $this->assertNotSame($object2, $object1);
 
         $variable1 = $variableTable->register('int', $object1);
         $variable2 = $variableTable->register('int2', $object2);

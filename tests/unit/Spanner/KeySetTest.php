@@ -88,7 +88,7 @@ class KeySetTest extends TestCase
         $this->assertTrue($set->keySetObject()['all']);
 
         $set->setMatchAll(false);
-        $this->assertFalse(isset($set->keySetObject()['all']));
+        $this->assertArrayNotHasKey('all', $set->keySetObject());
     }
 
     public function testRanges()

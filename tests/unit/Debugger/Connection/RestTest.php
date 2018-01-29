@@ -75,7 +75,8 @@ class RestTest extends TestCase
             ['listDebuggees'],
             ['registerDebuggee'],
             ['listBreakpoints'],
-            ['updateBreakpoint']
+            ['updateBreakpoint'],
+            ['setBreakpoint']
         ];
     }
 }

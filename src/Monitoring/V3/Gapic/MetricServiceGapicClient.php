@@ -1,12 +1,12 @@
 <?php
 /*
- * Copyright 2017, Google LLC All rights reserved.
+ * Copyright 2017 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
+ *     https://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -20,18 +20,26 @@
  * This file was generated from the file
  * https://github.com/google/googleapis/blob/master/google/monitoring/v3/metric_service.proto
  * and updates to that file get reflected here through a refresh process.
+ *
+ * EXPERIMENTAL: This client library class has not yet been declared GA (1.0). This means that
+ * even though we intend the surface to be stable, we may make backwards incompatible changes
+ * if necessary.
+ *
+ * @experimental
  */
 
 namespace Google\Cloud\Monitoring\V3\Gapic;
 
-use Google\ApiCore\AgentHeaderDescriptor;
-use Google\ApiCore\ApiCallable;
-use Google\ApiCore\CallSettings;
-use Google\ApiCore\GrpcCredentialsHelper;
-use Google\ApiCore\PageStreamingDescriptor;
+use Google\ApiCore\ApiException;
+use Google\ApiCore\Call;
+use Google\ApiCore\GapicClientTrait;
 use Google\ApiCore\PathTemplate;
+use Google\ApiCore\RetrySettings;
+use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
 use Google\Api\MetricDescriptor;
+use Google\Api\MonitoredResourceDescriptor;
+use Google\Auth\CredentialsLoader;
 use Google\Cloud\Monitoring\V3\Aggregation;
 use Google\Cloud\Monitoring\V3\CreateMetricDescriptorRequest;
 use Google\Cloud\Monitoring\V3\CreateTimeSeriesRequest;
@@ -39,24 +47,32 @@ use Google\Cloud\Monitoring\V3\DeleteMetricDescriptorRequest;
 use Google\Cloud\Monitoring\V3\GetMetricDescriptorRequest;
 use Google\Cloud\Monitoring\V3\GetMonitoredResourceDescriptorRequest;
 use Google\Cloud\Monitoring\V3\ListMetricDescriptorsRequest;
+use Google\Cloud\Monitoring\V3\ListMetricDescriptorsResponse;
 use Google\Cloud\Monitoring\V3\ListMonitoredResourceDescriptorsRequest;
+use Google\Cloud\Monitoring\V3\ListMonitoredResourceDescriptorsResponse;
 use Google\Cloud\Monitoring\V3\ListTimeSeriesRequest;
-use Google\Cloud\Monitoring\V3\ListTimeSeriesRequest_TimeSeriesView as TimeSeriesView;
-use Google\Cloud\Monitoring\V3\MetricServiceGrpcClient;
+use Google\Cloud\Monitoring\V3\ListTimeSeriesRequest_TimeSeriesView;
+use Google\Cloud\Monitoring\V3\ListTimeSeriesResponse;
 use Google\Cloud\Monitoring\V3\TimeInterval;
 use Google\Cloud\Monitoring\V3\TimeSeries;
-use Google\Cloud\Version;
+use Google\Protobuf\GPBEmpty;
+use Grpc\Channel;
+use Grpc\ChannelCredentials;
 
 /**
  * Service Description: Manages metric descriptors, monitored resource descriptors, and
  * time series data.
  *
+ * EXPERIMENTAL: This client library class has not yet been declared GA (1.0). This means that
+ * even though we intend the surface to be stable, we may make backwards incompatible changes
+ * if necessary.
+ *
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods. Sample code to get started:
  *
  * ```
+ * $metricServiceClient = new MetricServiceClient();
  * try {
- *     $metricServiceClient = new MetricServiceClient();
  *     $formattedName = $metricServiceClient->projectName('[PROJECT]');
  *     // Iterate through all elements
  *     $pagedResponse = $metricServiceClient->listMonitoredResourceDescriptors($formattedName);
@@ -80,9 +96,18 @@ use Google\Cloud\Version;
  * with these names, this class includes a format method for each type of name, and additionally
  * a parseName method to extract the individual identifiers contained within formatted names
  * that are returned by the API.
+ *
+ * @experimental
  */
 class MetricServiceGapicClient
 {
+    use GapicClientTrait;
+
+    /**
+     * The name of the service.
+     */
+    const SERVICE_NAME = 'google.monitoring.v3.MetricService';
+
     /**
      * The default address of the service.
      */
@@ -107,18 +132,29 @@ class MetricServiceGapicClient
     private static $metricDescriptorNameTemplate;
     private static $monitoredResourceDescriptorNameTemplate;
     private static $pathTemplateMap;
-    private static $gapicVersion;
-    private static $gapicVersionLoaded = false;
 
-    protected $grpcCredentialsHelper;
-    protected $metricServiceStub;
-    private $scopes;
-    private $defaultCallSettings;
-    private $descriptors;
+    private static function getClientDefaults()
+    {
+        return [
+            'serviceName' => self::SERVICE_NAME,
+            'serviceAddress' => self::SERVICE_ADDRESS,
+            'port' => self::DEFAULT_SERVICE_PORT,
+            'scopes' => [
+                'https://www.googleapis.com/auth/cloud-platform',
+                'https://www.googleapis.com/auth/monitoring',
+                'https://www.googleapis.com/auth/monitoring.read',
+                'https://www.googleapis.com/auth/monitoring.write',
+            ],
+            'clientConfigPath' => __DIR__.'/../resources/metric_service_client_config.json',
+            'restClientConfigPath' => __DIR__.'/../resources/metric_service_rest_client_config.php',
+            'descriptorsConfigPath' => __DIR__.'/../resources/metric_service_descriptor_config.php',
+            'versionFile' => __DIR__.'/../../VERSION',
+        ];
+    }
 
     private static function getProjectNameTemplate()
     {
-        if (self::$projectNameTemplate == null) {
+        if (null == self::$projectNameTemplate) {
             self::$projectNameTemplate = new PathTemplate('projects/{project}');
         }
 
@@ -127,7 +163,7 @@ class MetricServiceGapicClient
 
     private static function getMetricDescriptorNameTemplate()
     {
-        if (self::$metricDescriptorNameTemplate == null) {
+        if (null == self::$metricDescriptorNameTemplate) {
             self::$metricDescriptorNameTemplate = new PathTemplate('projects/{project}/metricDescriptors/{metric_descriptor=**}');
         }
 
@@ -136,7 +172,7 @@ class MetricServiceGapicClient
 
     private static function getMonitoredResourceDescriptorNameTemplate()
     {
-        if (self::$monitoredResourceDescriptorNameTemplate == null) {
+        if (null == self::$monitoredResourceDescriptorNameTemplate) {
             self::$monitoredResourceDescriptorNameTemplate = new PathTemplate('projects/{project}/monitoredResourceDescriptors/{monitored_resource_descriptor}');
         }
 
@@ -145,7 +181,7 @@ class MetricServiceGapicClient
 
     private static function getPathTemplateMap()
     {
-        if (self::$pathTemplateMap == null) {
+        if (null == self::$pathTemplateMap) {
             self::$pathTemplateMap = [
                 'project' => self::getProjectNameTemplate(),
                 'metricDescriptor' => self::getMetricDescriptorNameTemplate(),
@@ -154,59 +190,6 @@ class MetricServiceGapicClient
         }
 
         return self::$pathTemplateMap;
-    }
-
-    private static function getPageStreamingDescriptors()
-    {
-        $listMonitoredResourceDescriptorsPageStreamingDescriptor =
-                new PageStreamingDescriptor([
-                    'requestPageTokenGetMethod' => 'getPageToken',
-                    'requestPageTokenSetMethod' => 'setPageToken',
-                    'requestPageSizeGetMethod' => 'getPageSize',
-                    'requestPageSizeSetMethod' => 'setPageSize',
-                    'responsePageTokenGetMethod' => 'getNextPageToken',
-                    'resourcesGetMethod' => 'getResourceDescriptors',
-                ]);
-        $listMetricDescriptorsPageStreamingDescriptor =
-                new PageStreamingDescriptor([
-                    'requestPageTokenGetMethod' => 'getPageToken',
-                    'requestPageTokenSetMethod' => 'setPageToken',
-                    'requestPageSizeGetMethod' => 'getPageSize',
-                    'requestPageSizeSetMethod' => 'setPageSize',
-                    'responsePageTokenGetMethod' => 'getNextPageToken',
-                    'resourcesGetMethod' => 'getMetricDescriptors',
-                ]);
-        $listTimeSeriesPageStreamingDescriptor =
-                new PageStreamingDescriptor([
-                    'requestPageTokenGetMethod' => 'getPageToken',
-                    'requestPageTokenSetMethod' => 'setPageToken',
-                    'requestPageSizeGetMethod' => 'getPageSize',
-                    'requestPageSizeSetMethod' => 'setPageSize',
-                    'responsePageTokenGetMethod' => 'getNextPageToken',
-                    'resourcesGetMethod' => 'getTimeSeries',
-                ]);
-
-        $pageStreamingDescriptors = [
-            'listMonitoredResourceDescriptors' => $listMonitoredResourceDescriptorsPageStreamingDescriptor,
-            'listMetricDescriptors' => $listMetricDescriptorsPageStreamingDescriptor,
-            'listTimeSeries' => $listTimeSeriesPageStreamingDescriptor,
-        ];
-
-        return $pageStreamingDescriptors;
-    }
-
-    private static function getGapicVersion()
-    {
-        if (!self::$gapicVersionLoaded) {
-            if (file_exists(__DIR__.'/../VERSION')) {
-                self::$gapicVersion = trim(file_get_contents(__DIR__.'/../VERSION'));
-            } elseif (class_exists(Version::class)) {
-                self::$gapicVersion = Version::VERSION;
-            }
-            self::$gapicVersionLoaded = true;
-        }
-
-        return self::$gapicVersion;
     }
 
     /**
@@ -313,20 +296,23 @@ class MetricServiceGapicClient
      *     @type string $serviceAddress The domain name of the API remote host.
      *                                  Default 'monitoring.googleapis.com'.
      *     @type mixed $port The port on which to connect to the remote host. Default 443.
-     *     @type \Grpc\Channel $channel
-     *           A `Channel` object to be used by gRPC. If not specified, a channel will be constructed.
-     *     @type \Grpc\ChannelCredentials $sslCreds
+     *     @type Channel $channel
+     *           A `Channel` object. If not specified, a channel will be constructed.
+     *           NOTE: This option is only valid when utilizing the gRPC transport.
+     *     @type ChannelCredentials $sslCreds
      *           A `ChannelCredentials` object for use with an SSL-enabled channel.
      *           Default: a credentials object returned from
-     *           \Grpc\ChannelCredentials::createSsl()
-     *           NOTE: if the $channel optional argument is specified, then this argument is unused.
+     *           \Grpc\ChannelCredentials::createSsl().
+     *           NOTE: This option is only valid when utilizing the gRPC transport. Also, if the $channel
+     *           optional argument is specified, then this argument is unused.
      *     @type bool $forceNewChannel
      *           If true, this forces gRPC to create a new channel instead of using a persistent channel.
      *           Defaults to false.
-     *           NOTE: if the $channel optional argument is specified, then this option is unused.
-     *     @type \Google\Auth\CredentialsLoader $credentialsLoader
+     *           NOTE: This option is only valid when utilizing the gRPC transport. Also, if the $channel
+     *           optional argument is specified, then this option is unused.
+     *     @type CredentialsLoader $credentialsLoader
      *           A CredentialsLoader object created using the Google\Auth library.
-     *     @type array $scopes A string array of scopes to use when acquiring credentials.
+     *     @type string[] $scopes A string array of scopes to use when acquiring credentials.
      *                          Defaults to the scopes for the Stackdriver Monitoring API.
      *     @type string $clientConfigPath
      *           Path to a JSON file containing client method configuration, including retry settings.
@@ -342,75 +328,22 @@ class MetricServiceGapicClient
      *           for example usage. Passing a value of null is equivalent to a value of
      *           ['retriesEnabled' => false]. Retry settings provided in this setting override the
      *           settings in $clientConfigPath.
+     *     @type callable $authHttpHandler A handler used to deliver PSR-7 requests specifically
+     *           for authentication. Should match a signature of
+     *           `function (RequestInterface $request, array $options) : ResponseInterface`.
+     *     @type callable $httpHandler A handler used to deliver PSR-7 requests. Should match a
+     *           signature of `function (RequestInterface $request, array $options) : PromiseInterface`.
+     *           NOTE: This option is only valid when utilizing the REST transport.
+     *     @type string|TransportInterface $transport The transport used for executing network
+     *           requests. May be either the string `rest` or `grpc`. Additionally, it is possible
+     *           to pass in an already instantiated transport. Defaults to `grpc` if gRPC support is
+     *           detected on the system.
      * }
      * @experimental
      */
     public function __construct($options = [])
     {
-        $defaultOptions = [
-            'serviceAddress' => self::SERVICE_ADDRESS,
-            'port' => self::DEFAULT_SERVICE_PORT,
-            'scopes' => [
-                'https://www.googleapis.com/auth/cloud-platform',
-                'https://www.googleapis.com/auth/monitoring',
-                'https://www.googleapis.com/auth/monitoring.read',
-                'https://www.googleapis.com/auth/monitoring.write',
-            ],
-            'retryingOverride' => null,
-            'libName' => null,
-            'libVersion' => null,
-            'clientConfigPath' => __DIR__.'/../resources/metric_service_client_config.json',
-        ];
-        $options = array_merge($defaultOptions, $options);
-
-        $gapicVersion = $options['libVersion'] ?: self::getGapicVersion();
-
-        $headerDescriptor = new AgentHeaderDescriptor([
-            'libName' => $options['libName'],
-            'libVersion' => $options['libVersion'],
-            'gapicVersion' => $gapicVersion,
-        ]);
-
-        $defaultDescriptors = ['headerDescriptor' => $headerDescriptor];
-        $this->descriptors = [
-            'listMonitoredResourceDescriptors' => $defaultDescriptors,
-            'getMonitoredResourceDescriptor' => $defaultDescriptors,
-            'listMetricDescriptors' => $defaultDescriptors,
-            'getMetricDescriptor' => $defaultDescriptors,
-            'createMetricDescriptor' => $defaultDescriptors,
-            'deleteMetricDescriptor' => $defaultDescriptors,
-            'listTimeSeries' => $defaultDescriptors,
-            'createTimeSeries' => $defaultDescriptors,
-        ];
-        $pageStreamingDescriptors = self::getPageStreamingDescriptors();
-        foreach ($pageStreamingDescriptors as $method => $pageStreamingDescriptor) {
-            $this->descriptors[$method]['pageStreamingDescriptor'] = $pageStreamingDescriptor;
-        }
-
-        $clientConfigJsonString = file_get_contents($options['clientConfigPath']);
-        $clientConfig = json_decode($clientConfigJsonString, true);
-        $this->defaultCallSettings =
-                CallSettings::load(
-                    'google.monitoring.v3.MetricService',
-                    $clientConfig,
-                    $options['retryingOverride']
-                );
-
-        $this->scopes = $options['scopes'];
-
-        $createStubOptions = [];
-        if (array_key_exists('sslCreds', $options)) {
-            $createStubOptions['sslCreds'] = $options['sslCreds'];
-        }
-        $this->grpcCredentialsHelper = new GrpcCredentialsHelper($options);
-
-        $createMetricServiceStubFunction = function ($hostname, $opts, $channel) {
-            return new MetricServiceGrpcClient($hostname, $opts, $channel);
-        };
-        if (array_key_exists('createMetricServiceStubFunction', $options)) {
-            $createMetricServiceStubFunction = $options['createMetricServiceStubFunction'];
-        }
-        $this->metricServiceStub = $this->grpcCredentialsHelper->createStub($createMetricServiceStubFunction);
+        $this->setClientOptions($options + self::getClientDefaults());
     }
 
     /**
@@ -418,8 +351,8 @@ class MetricServiceGapicClient
      *
      * Sample code:
      * ```
+     * $metricServiceClient = new MetricServiceClient();
      * try {
-     *     $metricServiceClient = new MetricServiceClient();
      *     $formattedName = $metricServiceClient->projectName('[PROJECT]');
      *     // Iterate through all elements
      *     $pagedResponse = $metricServiceClient->listMonitoredResourceDescriptors($formattedName);
@@ -461,7 +394,7 @@ class MetricServiceGapicClient
      *          If no page token is specified (the default), the first page
      *          of values will be returned. Any page token used here must have
      *          been generated by a previous call to the API.
-     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
+     *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
@@ -470,7 +403,7 @@ class MetricServiceGapicClient
      *
      * @return \Google\ApiCore\PagedListResponse
      *
-     * @throws \Google\ApiCore\ApiException if the remote call fails
+     * @throws ApiException if the remote call fails
      * @experimental
      */
     public function listMonitoredResourceDescriptors($name, $optionalArgs = [])
@@ -487,24 +420,12 @@ class MetricServiceGapicClient
             $request->setPageToken($optionalArgs['pageToken']);
         }
 
-        $defaultCallSettings = $this->defaultCallSettings['listMonitoredResourceDescriptors'];
-        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
-            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
-                $optionalArgs['retrySettings']
-            );
-        }
-        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
-        $callable = ApiCallable::createApiCall(
-            $this->metricServiceStub,
+        return $this->getPagedListResponse(
             'ListMonitoredResourceDescriptors',
-            $mergedSettings,
-            $this->descriptors['listMonitoredResourceDescriptors']
+            $optionalArgs,
+            ListMonitoredResourceDescriptorsResponse::class,
+            $request
         );
-
-        return $callable(
-            $request,
-            [],
-            ['call_credentials_callback' => $this->createCredentialsCallback()]);
     }
 
     /**
@@ -512,8 +433,8 @@ class MetricServiceGapicClient
      *
      * Sample code:
      * ```
+     * $metricServiceClient = new MetricServiceClient();
      * try {
-     *     $metricServiceClient = new MetricServiceClient();
      *     $formattedName = $metricServiceClient->monitoredResourceDescriptorName('[PROJECT]', '[MONITORED_RESOURCE_DESCRIPTOR]');
      *     $response = $metricServiceClient->getMonitoredResourceDescriptor($formattedName);
      * } finally {
@@ -528,7 +449,7 @@ class MetricServiceGapicClient
      * @param array  $optionalArgs {
      *                             Optional.
      *
-     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
+     *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
@@ -537,7 +458,7 @@ class MetricServiceGapicClient
      *
      * @return \Google\Api\MonitoredResourceDescriptor
      *
-     * @throws \Google\ApiCore\ApiException if the remote call fails
+     * @throws ApiException if the remote call fails
      * @experimental
      */
     public function getMonitoredResourceDescriptor($name, $optionalArgs = [])
@@ -545,24 +466,12 @@ class MetricServiceGapicClient
         $request = new GetMonitoredResourceDescriptorRequest();
         $request->setName($name);
 
-        $defaultCallSettings = $this->defaultCallSettings['getMonitoredResourceDescriptor'];
-        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
-            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
-                $optionalArgs['retrySettings']
-            );
-        }
-        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
-        $callable = ApiCallable::createApiCall(
-            $this->metricServiceStub,
+        return $this->startCall(
             'GetMonitoredResourceDescriptor',
-            $mergedSettings,
-            $this->descriptors['getMonitoredResourceDescriptor']
-        );
-
-        return $callable(
-            $request,
-            [],
-            ['call_credentials_callback' => $this->createCredentialsCallback()]);
+            MonitoredResourceDescriptor::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**
@@ -570,8 +479,8 @@ class MetricServiceGapicClient
      *
      * Sample code:
      * ```
+     * $metricServiceClient = new MetricServiceClient();
      * try {
-     *     $metricServiceClient = new MetricServiceClient();
      *     $formattedName = $metricServiceClient->projectName('[PROJECT]');
      *     // Iterate through all elements
      *     $pagedResponse = $metricServiceClient->listMetricDescriptors($formattedName);
@@ -614,7 +523,7 @@ class MetricServiceGapicClient
      *          If no page token is specified (the default), the first page
      *          of values will be returned. Any page token used here must have
      *          been generated by a previous call to the API.
-     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
+     *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
@@ -623,7 +532,7 @@ class MetricServiceGapicClient
      *
      * @return \Google\ApiCore\PagedListResponse
      *
-     * @throws \Google\ApiCore\ApiException if the remote call fails
+     * @throws ApiException if the remote call fails
      * @experimental
      */
     public function listMetricDescriptors($name, $optionalArgs = [])
@@ -640,24 +549,12 @@ class MetricServiceGapicClient
             $request->setPageToken($optionalArgs['pageToken']);
         }
 
-        $defaultCallSettings = $this->defaultCallSettings['listMetricDescriptors'];
-        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
-            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
-                $optionalArgs['retrySettings']
-            );
-        }
-        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
-        $callable = ApiCallable::createApiCall(
-            $this->metricServiceStub,
+        return $this->getPagedListResponse(
             'ListMetricDescriptors',
-            $mergedSettings,
-            $this->descriptors['listMetricDescriptors']
+            $optionalArgs,
+            ListMetricDescriptorsResponse::class,
+            $request
         );
-
-        return $callable(
-            $request,
-            [],
-            ['call_credentials_callback' => $this->createCredentialsCallback()]);
     }
 
     /**
@@ -665,8 +562,8 @@ class MetricServiceGapicClient
      *
      * Sample code:
      * ```
+     * $metricServiceClient = new MetricServiceClient();
      * try {
-     *     $metricServiceClient = new MetricServiceClient();
      *     $formattedName = $metricServiceClient->metricDescriptorName('[PROJECT]', '[METRIC_DESCRIPTOR]');
      *     $response = $metricServiceClient->getMetricDescriptor($formattedName);
      * } finally {
@@ -681,7 +578,7 @@ class MetricServiceGapicClient
      * @param array  $optionalArgs {
      *                             Optional.
      *
-     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
+     *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
@@ -690,7 +587,7 @@ class MetricServiceGapicClient
      *
      * @return \Google\Api\MetricDescriptor
      *
-     * @throws \Google\ApiCore\ApiException if the remote call fails
+     * @throws ApiException if the remote call fails
      * @experimental
      */
     public function getMetricDescriptor($name, $optionalArgs = [])
@@ -698,24 +595,12 @@ class MetricServiceGapicClient
         $request = new GetMetricDescriptorRequest();
         $request->setName($name);
 
-        $defaultCallSettings = $this->defaultCallSettings['getMetricDescriptor'];
-        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
-            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
-                $optionalArgs['retrySettings']
-            );
-        }
-        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
-        $callable = ApiCallable::createApiCall(
-            $this->metricServiceStub,
+        return $this->startCall(
             'GetMetricDescriptor',
-            $mergedSettings,
-            $this->descriptors['getMetricDescriptor']
-        );
-
-        return $callable(
-            $request,
-            [],
-            ['call_credentials_callback' => $this->createCredentialsCallback()]);
+            MetricDescriptor::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**
@@ -725,8 +610,8 @@ class MetricServiceGapicClient
      *
      * Sample code:
      * ```
+     * $metricServiceClient = new MetricServiceClient();
      * try {
-     *     $metricServiceClient = new MetricServiceClient();
      *     $formattedName = $metricServiceClient->projectName('[PROJECT]');
      *     $metricDescriptor = new MetricDescriptor();
      *     $response = $metricServiceClient->createMetricDescriptor($formattedName, $metricDescriptor);
@@ -742,7 +627,7 @@ class MetricServiceGapicClient
      * @param array            $optionalArgs     {
      *                                           Optional.
      *
-     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
+     *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
@@ -751,7 +636,7 @@ class MetricServiceGapicClient
      *
      * @return \Google\Api\MetricDescriptor
      *
-     * @throws \Google\ApiCore\ApiException if the remote call fails
+     * @throws ApiException if the remote call fails
      * @experimental
      */
     public function createMetricDescriptor($name, $metricDescriptor, $optionalArgs = [])
@@ -760,24 +645,12 @@ class MetricServiceGapicClient
         $request->setName($name);
         $request->setMetricDescriptor($metricDescriptor);
 
-        $defaultCallSettings = $this->defaultCallSettings['createMetricDescriptor'];
-        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
-            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
-                $optionalArgs['retrySettings']
-            );
-        }
-        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
-        $callable = ApiCallable::createApiCall(
-            $this->metricServiceStub,
+        return $this->startCall(
             'CreateMetricDescriptor',
-            $mergedSettings,
-            $this->descriptors['createMetricDescriptor']
-        );
-
-        return $callable(
-            $request,
-            [],
-            ['call_credentials_callback' => $this->createCredentialsCallback()]);
+            MetricDescriptor::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**
@@ -786,8 +659,8 @@ class MetricServiceGapicClient
      *
      * Sample code:
      * ```
+     * $metricServiceClient = new MetricServiceClient();
      * try {
-     *     $metricServiceClient = new MetricServiceClient();
      *     $formattedName = $metricServiceClient->metricDescriptorName('[PROJECT]', '[METRIC_DESCRIPTOR]');
      *     $metricServiceClient->deleteMetricDescriptor($formattedName);
      * } finally {
@@ -802,14 +675,14 @@ class MetricServiceGapicClient
      * @param array  $optionalArgs {
      *                             Optional.
      *
-     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
+     *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
      *          {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
-     * @throws \Google\ApiCore\ApiException if the remote call fails
+     * @throws ApiException if the remote call fails
      * @experimental
      */
     public function deleteMetricDescriptor($name, $optionalArgs = [])
@@ -817,24 +690,12 @@ class MetricServiceGapicClient
         $request = new DeleteMetricDescriptorRequest();
         $request->setName($name);
 
-        $defaultCallSettings = $this->defaultCallSettings['deleteMetricDescriptor'];
-        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
-            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
-                $optionalArgs['retrySettings']
-            );
-        }
-        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
-        $callable = ApiCallable::createApiCall(
-            $this->metricServiceStub,
+        return $this->startCall(
             'DeleteMetricDescriptor',
-            $mergedSettings,
-            $this->descriptors['deleteMetricDescriptor']
-        );
-
-        return $callable(
-            $request,
-            [],
-            ['call_credentials_callback' => $this->createCredentialsCallback()]);
+            GPBEmpty::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**
@@ -842,12 +703,12 @@ class MetricServiceGapicClient
      *
      * Sample code:
      * ```
+     * $metricServiceClient = new MetricServiceClient();
      * try {
-     *     $metricServiceClient = new MetricServiceClient();
      *     $formattedName = $metricServiceClient->projectName('[PROJECT]');
      *     $filter = '';
      *     $interval = new TimeInterval();
-     *     $view = TimeSeriesView::FULL;
+     *     $view = ListTimeSeriesRequest_TimeSeriesView::FULL;
      *     // Iterate through all elements
      *     $pagedResponse = $metricServiceClient->listTimeSeries($formattedName, $filter, $interval, $view);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
@@ -900,7 +761,7 @@ class MetricServiceGapicClient
      *          If no page token is specified (the default), the first page
      *          of values will be returned. Any page token used here must have
      *          been generated by a previous call to the API.
-     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
+     *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
@@ -909,7 +770,7 @@ class MetricServiceGapicClient
      *
      * @return \Google\ApiCore\PagedListResponse
      *
-     * @throws \Google\ApiCore\ApiException if the remote call fails
+     * @throws ApiException if the remote call fails
      * @experimental
      */
     public function listTimeSeries($name, $filter, $interval, $view, $optionalArgs = [])
@@ -932,24 +793,12 @@ class MetricServiceGapicClient
             $request->setPageToken($optionalArgs['pageToken']);
         }
 
-        $defaultCallSettings = $this->defaultCallSettings['listTimeSeries'];
-        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
-            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
-                $optionalArgs['retrySettings']
-            );
-        }
-        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
-        $callable = ApiCallable::createApiCall(
-            $this->metricServiceStub,
+        return $this->getPagedListResponse(
             'ListTimeSeries',
-            $mergedSettings,
-            $this->descriptors['listTimeSeries']
+            $optionalArgs,
+            ListTimeSeriesResponse::class,
+            $request
         );
-
-        return $callable(
-            $request,
-            [],
-            ['call_credentials_callback' => $this->createCredentialsCallback()]);
     }
 
     /**
@@ -960,8 +809,8 @@ class MetricServiceGapicClient
      *
      * Sample code:
      * ```
+     * $metricServiceClient = new MetricServiceClient();
      * try {
-     *     $metricServiceClient = new MetricServiceClient();
      *     $formattedName = $metricServiceClient->projectName('[PROJECT]');
      *     $timeSeries = [];
      *     $metricServiceClient->createTimeSeries($formattedName, $timeSeries);
@@ -980,14 +829,14 @@ class MetricServiceGapicClient
      * @param array        $optionalArgs {
      *                                   Optional.
      *
-     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
+     *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
      *          {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
-     * @throws \Google\ApiCore\ApiException if the remote call fails
+     * @throws ApiException if the remote call fails
      * @experimental
      */
     public function createTimeSeries($name, $timeSeries, $optionalArgs = [])
@@ -996,39 +845,11 @@ class MetricServiceGapicClient
         $request->setName($name);
         $request->setTimeSeries($timeSeries);
 
-        $defaultCallSettings = $this->defaultCallSettings['createTimeSeries'];
-        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
-            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
-                $optionalArgs['retrySettings']
-            );
-        }
-        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
-        $callable = ApiCallable::createApiCall(
-            $this->metricServiceStub,
+        return $this->startCall(
             'CreateTimeSeries',
-            $mergedSettings,
-            $this->descriptors['createTimeSeries']
-        );
-
-        return $callable(
-            $request,
-            [],
-            ['call_credentials_callback' => $this->createCredentialsCallback()]);
-    }
-
-    /**
-     * Initiates an orderly shutdown in which preexisting calls continue but new
-     * calls are immediately cancelled.
-     *
-     * @experimental
-     */
-    public function close()
-    {
-        $this->metricServiceStub->close();
-    }
-
-    private function createCredentialsCallback()
-    {
-        return $this->grpcCredentialsHelper->createCallCredentialsCallback();
+            GPBEmpty::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 }

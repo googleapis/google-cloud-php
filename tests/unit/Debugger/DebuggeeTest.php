@@ -102,6 +102,20 @@ class DebuggeeTest extends TestCase
         $debuggee->updateBreakpoint($breakpoint);
     }
 
+    public function testSetsBreakpoint()
+    {
+        $this->connection->setBreakpoint(Argument::that(function ($args) {
+            return $args['debuggeeId'] == 'debuggee1' &&
+                $args['location']['path'] == '/path/to/file.php' &&
+                $args['location']['line'] == 10;
+        }))->willReturn(['breakpoint' => ['id' => 'breakpoint1']]);
+        $debuggee = new Debuggee($this->connection->reveal(), ['id' => 'debuggee1', 'project' => 'project1']);
+
+        $breakpoint = $debuggee->setBreakpoint('/path/to/file.php', 10);
+        $this->assertInstanceOf(Breakpoint::class, $breakpoint);
+        $this->assertEquals('breakpoint1', $breakpoint->id());
+    }
+
     // Debug agents should populate both sourceContexts and extSourceContexts.
     public function testProvidesDeprecatedSourceContext()
     {
