@@ -19,6 +19,8 @@ namespace Google\Cloud\Debugger;
 
 use Google\Cloud\Core\Batch\BatchRunner;
 use Google\Cloud\Core\Batch\BatchTrait;
+use Google\Cloud\Core\ExponentialBackoff;
+use Google\Cloud\Core\Exceptions\ServiceException;
 use Google\Cloud\Debugger\BreakpointStorage\BreakpointStorageInterface;
 use Google\Cloud\Debugger\BreakpointStorage\SysvBreakpointStorage;
 use Google\Cloud\Logging\LoggingClient;
@@ -191,12 +193,32 @@ class Agent
         }
     }
 
-    protected function getCallback()
+    /**
+     * Callback for batch runner to report a breakpoint.
+     *
+     * @access private
+     * @param Breakpoint[] $breakpoints
+     */
+    public function reportBreakpoints(array $breakpoints)
     {
         if (!isset(self::$debuggee)) {
             self::$debuggee = $this->defaultDebuggee();
         }
-        return [self::$debuggee, 'updateBreakpointBatch'];
+        foreach ($breakpoints as $breakpoint) {
+            $backoff = new ExponentialBackoff();
+            try {
+                $backoff->execute(function () use ($breakpoint) {
+                    self::$debuggee->updateBreakpoint($breakpoint);
+                });
+            } catch (ServiceException $e) {
+                // Ignore this error for now
+            }
+        }
+    }
+
+    protected function getCallback()
+    {
+        return [$this, 'reportBreakpoints'];
     }
 
     private function defaultStorage()

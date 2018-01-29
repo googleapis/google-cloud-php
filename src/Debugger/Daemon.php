@@ -19,6 +19,7 @@ namespace Google\Cloud\Debugger;
 
 use Google\Cloud\Core\Batch\SimpleJobTrait;
 use Google\Cloud\Core\Exception\ConflictException;
+use Google\Cloud\Core\ExponentialBackoff;
 use Google\Cloud\Debugger\BreakpointStorage\BreakpointStorageInterface;
 use Google\Cloud\Debugger\BreakpointStorage\SysvBreakpointStorage;
 
@@ -147,12 +148,12 @@ class Daemon
         ]);
         $debuggee->register();
 
-        $resp = $debuggee->breakpointsWithWaitToken();
+        $resp = $this->fetchBreakpointsWithRetry($debuggee);
         $this->setBreakpoints($debuggee, $resp['breakpoints']);
 
         while (array_key_exists('nextWaitToken', $resp)) {
             try {
-                $resp = $debuggee->breakpointsWithWaitToken([
+                $resp = $this->fetchBreakpointsWithRetry($debuggee, [
                     'waitToken' => $resp['nextWaitToken']
                 ]);
                 $this->setBreakpoints($debuggee, $resp['breakpoints']);
@@ -160,6 +161,14 @@ class Daemon
                 // Ignoring this exception
             }
         }
+    }
+
+    private function fetchBreakpointsWithRetry(Debuggee $debuggee, array $options = [])
+    {
+        $backoff = new ExponentialBackoff();
+        return $backoff->execute(function () use ($debuggee, $options) {
+            return $debuggee->breakpointsWithWaitToken($options);
+        });
     }
 
     private function setBreakpoints(Debuggee $debuggee, $breakpoints)
