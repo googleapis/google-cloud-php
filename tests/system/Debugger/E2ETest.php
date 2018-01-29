@@ -56,6 +56,13 @@ class E2ETest extends TestCase
         self::$httpClient = new Client(['base_uri' => $url]);
 
         $resp = self::$httpClient->get('/debuggee');
+        $attempts = 0;
+        while ($resp->getStatusCode() != 200 && $attempts < 5) {
+            sleep(pow(2, $attempts));
+            $resp = self::$httpClient->get('/debuggee');
+            $attempts++;
+        }
+
         $data = json_decode($resp->getBody()->getContents(), true);
         self::$debuggeeId = $data['debuggeeId'];
     }
