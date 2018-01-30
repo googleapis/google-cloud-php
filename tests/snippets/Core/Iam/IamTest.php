@@ -17,9 +17,11 @@
 
 namespace Google\Cloud\Tests\Snippets\Core\Iam;
 
+use Google\Cloud\Core\Testing\Functions;
 use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
 use Google\Cloud\Core\Iam\Iam;
 use Google\Cloud\Core\Iam\IamConnectionInterface;
+use Google\Cloud\PubSub\PubSubClient;
 use Prophecy\Argument;
 
 /**
@@ -38,7 +40,7 @@ class IamTest extends SnippetTestCase
         $this->resource = 'testObject';
 
         $this->connection = $this->prophesize(IamConnectionInterface::class);
-        $this->iam = \Google\Cloud\Core\Testing\Functions::stub(Iam::class, [$this->connection->reveal(), $this->resource]);
+        $this->iam = Functions::stub(Iam::class, [$this->connection->reveal(), $this->resource]);
         $this->iam->___setProperty('connection', $this->connection->reveal());
     }
 
@@ -46,7 +48,7 @@ class IamTest extends SnippetTestCase
     {
         $snippet = $this->snippetFromClass(Iam::class);
         $this->checkAndSkipTest([
-            '\Google\Cloud\PubSub\PubSubClient',
+            PubSubClient::class,
         ]);
         $res = $snippet->invoke('iam');
 
