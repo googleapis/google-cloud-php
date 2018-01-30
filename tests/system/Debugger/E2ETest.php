@@ -60,7 +60,7 @@ class E2ETest extends TestCase
             $this->assertEquals(200, $resp->getStatusCode());
             $data = json_decode($resp->getBody()->getContents(), true);
             $this->assertNotEmpty($data['debuggeeId']);
-            $this->$debuggeeId = $data['debuggeeId'];
+            $this->debuggeeId = $data['debuggeeId'];
         });
     }
 
