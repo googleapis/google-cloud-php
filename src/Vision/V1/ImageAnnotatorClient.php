@@ -30,6 +30,9 @@
 
 namespace Google\Cloud\Vision\V1;
 
+use Google\ApiCore\ApiException;
+use Google\ApiCore\RetrySettings;
+use Google\Cloud\Vision\SingleFeatureMethodTrait;
 use Google\Cloud\Vision\V1\Gapic\ImageAnnotatorGapicClient;
 
 /**
@@ -37,6 +40,141 @@ use Google\Cloud\Vision\V1\Gapic\ImageAnnotatorGapicClient;
  */
 class ImageAnnotatorClient extends ImageAnnotatorGapicClient
 {
-    // This class is intentionally empty, and is intended to hold manual
-    // additions to the generated {@see ImageAnnotatorClientImpl} class.
+    use SingleFeatureMethodTrait;
+
+    /**
+     * Run image detection and annotation for an image.
+     *
+     * Sample code:
+     * ```
+     * $imageAnnotatorClient = new ImageAnnotatorClient();
+     * try {
+     *     $imageContent = file_get_contents('path/to/image.jpg');
+     *     $image = new Image();
+     *     $image->setContent($imageContent);
+     *     $feature = new Feature();
+     *     $feature->setType(Feature_Type::FACE_DETECTION);
+     *     $features = [$feature];
+     *     $request = new AnnotateImageRequest();
+     *     $request->setImage($image);
+     *     $request->setFeatures($features);
+     *     $response = $imageAnnotatorClient->annotateImage($request);
+     * } finally {
+     *     $imageAnnotatorClient->close();
+     * }
+     * ```
+     *
+     * @param AnnotateImageRequest $request      An image annotation request.
+     * @param array                $optionalArgs {
+     *                                           Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return AnnotateImageResponse
+     *
+     * @throws ApiException if the remote call fails
+     * @experimental
+     */
+    public function annotateImage($request, $optionalArgs = [])
+    {
+        return $this->batchAnnotateImages([$request], $optionalArgs)->getResponses()[0];
+    }
+
+    /**
+     * Run face detection for an image.
+     *
+     * Sample code:
+     * ```
+     * $imageAnnotatorClient = new ImageAnnotatorClient();
+     * try {
+     *     $imageContent = file_get_contents('path/to/image.jpg');
+     *     $image = new Image();
+     *     $image->setContent($imageContent);
+     *     $response = $imageAnnotatorClient->faceDetection($image);
+     * } finally {
+     *     $imageAnnotatorClient->close();
+     * }
+     * ```
+     *
+     * @param Image $image        An image annotation request.
+     * @param array $optionalArgs {
+     *                            Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return AnnotateImageResponse
+     *
+     * @throws ApiException if the remote call fails
+     * @experimental
+     */
+    public function faceDetection($image, $optionalArgs = [])
+    {
+        return $this->annotateSingleFeature(
+            $image,
+            Feature_Type::FACE_DETECTION,
+            $optionalArgs
+        );
+    }
+
+    /**
+     * Run landmark detection for an image.
+     *
+     * Sample code:
+     * ```
+     * $imageAnnotatorClient = new ImageAnnotatorClient();
+     * try {
+     *     $imageContent = file_get_contents('path/to/image.jpg');
+     *     $image = new Image();
+     *     $image->setContent($imageContent);
+     *     $response = $imageAnnotatorClient->landmarkDetection($image);
+     * } finally {
+     *     $imageAnnotatorClient->close();
+     * }
+     * ```
+     *
+     * @param Image $image        An image annotation request.
+     * @param array $optionalArgs {
+     *                            Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return AnnotateImageResponse
+     *
+     * @throws ApiException if the remote call fails
+     * @experimental
+     */
+    public function landmarkDetection($image, $optionalArgs = [])
+    {
+        return $this->annotateSingleFeature(
+            $image,
+            Feature_Type::LANDMARK_DETECTION,
+            $optionalArgs
+        );
+    }
+
+    private function annotateSingleFeature($image, $featureType, $optionalArgs)
+    {
+        $request = $this->buildSingleFeatureRequest(
+            AnnotateImageRequest::class,
+            Feature::class,
+            $image,
+            $featureType
+        );
+        return $this->annotateImage($request, $optionalArgs);
+    }
 }
