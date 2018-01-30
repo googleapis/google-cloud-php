@@ -38,8 +38,8 @@ use PHPUnit\Framework\TestCase;
  */
 class E2ETest extends TestCase
 {
-    protected static $debuggeeId;
-    protected static $httpClient;
+    protected $debuggeeId;
+    protected $httpClient;
 
     use AppEngineDeploymentTrait;
     use EventuallyConsistentTestTrait;
@@ -50,21 +50,18 @@ class E2ETest extends TestCase
         self::$gcloudWrapper->setDir(implode(DIRECTORY_SEPARATOR, [__DIR__, 'app']));
     }
 
-    public static function afterDeploy()
+    public function setUp()
     {
         $url = self::$gcloudWrapper->getBaseUrl();
-        self::$httpClient = new Client(['base_uri' => $url]);
+        $this->httpClient = new Client(['base_uri' => $url]);
 
-        $resp = self::$httpClient->get('/debuggee');
-        $attempts = 0;
-        while ($resp->getStatusCode() != 200 && $attempts < 5) {
-            sleep(pow(2, $attempts));
-            $resp = self::$httpClient->get('/debuggee');
-            $attempts++;
-        }
-
-        $data = json_decode($resp->getBody()->getContents(), true);
-        self::$debuggeeId = $data['debuggeeId'];
+        $this->runEventuallyConsistentTest(function () {
+            $resp = $this->httpClient->get('/debuggee');
+            $this->assertEquals(200, $resp->getStatusCode());
+            $data = json_decode($resp->getBody()->getContents(), true);
+            $this->assertNotEmpty($data['debuggeeId']);
+            $this->$debuggeeId = $data['debuggeeId'];
+        });
     }
 
     public static function tearDownAfterClass()
@@ -118,7 +115,7 @@ class E2ETest extends TestCase
             $this->assertBreakpointCount(1);
         });
 
-        $resp = self::$httpClient->get('hello/full');
+        $resp = $this->httpClient->get('hello/full');
         $this->assertEquals('200', $resp->getStatusCode(), 'hello/full status code');
         $this->assertContains('Hello, full', $resp->getBody()->getContents());
 
@@ -129,7 +126,7 @@ class E2ETest extends TestCase
 
     private function assertBreakpointCount($count)
     {
-        $resp = self::$httpClient->get('/debuggee');
+        $resp = $this->httpClient->get('/debuggee');
         $data = json_decode($resp->getBody()->getContents(), true);
         $this->assertEquals($count, (int) $data['numBreakpoints']);
     }
@@ -142,7 +139,7 @@ class E2ETest extends TestCase
             $this->assertBreakpointCount(1);
         });
 
-        $resp = self::$httpClient->get('hello/extra');
+        $resp = $this->httpClient->get('hello/extra');
         $this->assertEquals('200', $resp->getStatusCode(), 'hello/extra status code');
         $this->assertContains('Hello, extra', $resp->getBody()->getContents());
 
@@ -159,7 +156,7 @@ class E2ETest extends TestCase
             $this->assertBreakpointCount(1);
         });
 
-        $resp = self::$httpClient->get('hello/missing');
+        $resp = $this->httpClient->get('hello/missing');
         $this->assertEquals('200', $resp->getStatusCode(), 'hello/missing status code');
         $this->assertContains('Hello, missing', $resp->getBody()->getContents());
 
@@ -174,7 +171,7 @@ class E2ETest extends TestCase
         $client = new DebuggerClient([
             'keyFilePath' => getenv('GOOGLE_CLOUD_PHP_TESTS_KEY_PATH')
         ]);
-        $debuggee = $client->debuggee(self::$debuggeeId);
+        $debuggee = $client->debuggee($this->debuggeeId);
         $breakpoint = $debuggee->setBreakpoint($file, $line);
         $this->assertInstanceOf(Breakpoint::class, $breakpoint);
         $this->assertNotNull($breakpoint->location());
