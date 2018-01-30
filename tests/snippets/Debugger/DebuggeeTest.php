@@ -151,4 +151,15 @@ class DebuggeeTest extends SnippetTestCase
         $res = $snippet->invoke('debuggee');
         $this->assertEquals('debuggee description', $res->output());
     }
+    
+    public function testSetBreakpoint()
+    {
+        $this->connection->setBreakpoint(Argument::any())->willReturn(['breakpoint' => ['id' => 'breakpoint1']])->shouldBeCalled();
+        $debuggee = new Debuggee($this->connection->reveal(), ['project' => 'project']);
+        $snippet = $this->snippetFromMethod(Debuggee::class, 'setBreakpoint');
+        $snippet->addLocal('debuggee', $debuggee);
+        $resp = $snippet->invoke('breakpoint');
+        $breakpoint = $resp->returnVal();
+        $this->assertInstanceOf(Breakpoint::class, $breakpoint);
+    }
 }
