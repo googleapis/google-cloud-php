@@ -11,6 +11,7 @@
             "name": "google/cloud",
             "defaultService": "readme",
             "versions": [
+                "v0.52.1",
                 "v0.52.0",
                 "v0.51.0",
                 "v0.50.1",
@@ -130,6 +131,7 @@
             "name": "google/cloud-core",
             "defaultService": "core/servicebuilder",
             "versions": [
+                "v1.15.3",
                 "v1.15.2",
                 "v1.15.1",
                 "v1.15.0",
@@ -205,6 +207,7 @@
             "name": "google/cloud-dlp",
             "defaultService": "dlp/readme",
             "versions": [
+                "v0.5.1",
                 "v0.5.0",
                 "v0.4.3",
                 "v0.4.2",
@@ -379,6 +382,7 @@
             "name": "google/cloud-spanner",
             "defaultService": "spanner/spannerclient",
             "versions": [
+                "v1.1.1",
                 "v1.1.0",
                 "v1.0.1",
                 "v1.0.0",

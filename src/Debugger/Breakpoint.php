@@ -694,7 +694,7 @@ class Breakpoint implements \JsonSerializable
             $this->setError(
                 StatusMessage::REFERENCE_BREAKPOINT_SOURCE_LOCATION,
                 'Invalid breakpoint location - Invalid file line: $0.',
-                [$lineNumber]
+                [(string) $lineNumber]
             );
             return false;
         }
@@ -704,7 +704,7 @@ class Breakpoint implements \JsonSerializable
             $this->setError(
                 StatusMessage::REFERENCE_BREAKPOINT_SOURCE_LOCATION,
                 'Invalid breakpoint location - Invalid file line: $0.',
-                [$lineNumber]
+                [(string) $lineNumber]
             );
             return false;
         }

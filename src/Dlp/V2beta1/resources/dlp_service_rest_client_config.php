@@ -11,7 +11,7 @@ return [
                         'method' => 'get',
                         'uriTemplate' => '/v2beta1/{name=riskAnalysis/operations}',
                     ],
-                ]
+                ],
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -28,7 +28,7 @@ return [
                         'method' => 'get',
                         'uriTemplate' => '/v2beta1/{name=riskAnalysis/operations/*}',
                     ],
-                ]
+                ],
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -45,7 +45,7 @@ return [
                         'method' => 'delete',
                         'uriTemplate' => '/v2beta1/{name=riskAnalysis/operations/*}',
                     ],
-                ]
+                ],
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -64,7 +64,7 @@ return [
                         'uriTemplate' => '/v2beta1/{name=riskAnalysis/operations/*}:cancel',
                         'body' => '*',
                     ],
-                ]
+                ],
                 'placeholders' => [
                     'name' => [
                         'getters' => [

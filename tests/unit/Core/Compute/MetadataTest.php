@@ -77,4 +77,18 @@ class MetadataTest extends TestCase
         // Ensure this value is cached thus we `read` only once.
         $this->metadata->getProjectId();
     }
+
+    public function testGetNumericProjectId()
+    {
+        $expected_path = 'project/numeric-project-id';
+        $expected_val = '1234567';
+        $this->mock->expects($this->once())
+            ->method('read')
+            ->with($this->equalTo($expected_path))
+            ->willReturn($expected_val);
+        $project_id = $this->metadata->getNumericProjectId();
+        $this->assertEquals($expected_val, $project_id);
+        // Ensure this value is cached thus we `read` only once.
+        $this->metadata->getNumericProjectId();
+    }
 }

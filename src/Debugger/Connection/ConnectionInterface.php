@@ -53,4 +53,11 @@ interface ConnectionInterface
      * @param array $args
      */
     public function updateBreakpoint(array $args);
+
+    /**
+     * Sets a breakpoint.
+     *
+     * @param array $args
+     */
+    public function setBreakpoint(array $args);
 }
