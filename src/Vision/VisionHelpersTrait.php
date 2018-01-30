@@ -1,0 +1,71 @@
+<?php
+/**
+ * Copyright 2018 Google Inc. All Rights Reserved.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+namespace Google\Cloud\Vision;
+
+use InvalidArgumentException;
+
+trait VisionHelpersTrait
+{
+    /**
+     * A list of allowed url schemes.
+     *
+     * @var array
+     */
+    private $urlSchemes = [
+        'http',
+        'https',
+        'gs'
+    ];
+
+    private function buildSingleFeatureRequest(
+        $requestClass,
+        $featureClass,
+        $image,
+        $featureType)
+    {
+        $feature = new $featureClass();
+        $feature->setType($featureType);
+        $features = [$feature];
+        $request = new $requestClass();
+        $request->setImage($image);
+        $request->setFeatures($features);
+        return $request;
+    }
+
+    private function createImageHelper($imageClass, $imageSourceClass, $imageInput)
+    {
+        $image = new $imageClass();
+        if (is_string($imageInput)) {
+            if (in_array(parse_url($imageInput, PHP_URL_SCHEME), $this->urlSchemes)) {
+                $imageSource = new $imageSourceClass();
+                $imageSource->setImageUri($imageInput);
+                $image->setSource($imageSource);
+            } else {
+                $image->setContent($imageInput);
+            }
+        } elseif (is_resource($imageInput)) {
+            $image->setContent(stream_get_contents($imageInput));
+        } else {
+            throw new InvalidArgumentException(
+                'Given image is not valid. ' .
+                'Image must be a string of bytes, a valid image URI, or a resource.'
+            );
+        }
+        return $image;
+    }
+}

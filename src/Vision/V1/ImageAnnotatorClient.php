@@ -32,15 +32,68 @@ namespace Google\Cloud\Vision\V1;
 
 use Google\ApiCore\ApiException;
 use Google\ApiCore\RetrySettings;
-use Google\Cloud\Vision\SingleFeatureMethodTrait;
+use Google\Cloud\Vision\VisionHelpersTrait;
 use Google\Cloud\Vision\V1\Gapic\ImageAnnotatorGapicClient;
+use InvalidArgumentException;
 
 /**
  * {@inheritdoc}
  */
 class ImageAnnotatorClient extends ImageAnnotatorGapicClient
 {
-    use SingleFeatureMethodTrait;
+    use VisionHelpersTrait;
+
+    /**
+     * Creates an Image object that can be used as part of an image annotation request.
+     *
+     * Sample code:
+     * ```
+     * // Create an Image object from a PHP resource.
+     * $client = new ImageAnnotatorClient();
+     * try {
+     *     $imageResource = fopen('path/to/image.jpg', 'r');
+     *     $image = $client->createImageObject($imageResource);
+     *     $response = $client->faceDetection($request);
+     * } finally {
+     *     $client->close();
+     * }
+     * ```
+     *
+     * ```
+     * // Create an Image object from raw image data.
+     * $client = new ImageAnnotatorClient();
+     * try {
+     *     $imageData = file_get_contents('path/to/image.jpg');
+     *     $image = $client->createImageObject($imageData);
+     *     $response = $client->faceDetection($request);
+     * } finally {
+     *     $client->close();
+     * }
+     * ```
+     *
+     * ```
+     * // Create an Image object from a Google Cloud Storage Uri.
+     * $client = new ImageAnnotatorClient();
+     * try {
+     *     $imageUri = "gs://my-bucket/image.jpg";
+     *     $image = $client->createImageObject($imageUri);
+     *     $response = $client->faceDetection($request);
+     * } finally {
+     *     $client->close();
+     * }
+     * ```
+     *
+     * @param  resource|string $imageInput An image to configure with
+     *         the given settings. This parameter will accept a resource, a
+     *         string of bytes, or the URI of an image in a publicly-accessible
+     *         web location.
+     * @return Image
+     * @throws InvalidArgumentException
+     */
+    public function createImageObject($imageInput)
+    {
+        return $this->createImageHelper(Image::class, ImageSource::class, $imageInput);
+    }
 
     /**
      * Run image detection and annotation for an image.
@@ -49,9 +102,8 @@ class ImageAnnotatorClient extends ImageAnnotatorGapicClient
      * ```
      * $imageAnnotatorClient = new ImageAnnotatorClient();
      * try {
-     *     $imageContent = file_get_contents('path/to/image.jpg');
-     *     $image = new Image();
-     *     $image->setContent($imageContent);
+     *     $imageResource = fopen('path/to/image.jpg', 'r');
+     *     $image = $this->createImageObject($imageResource);
      *     $feature = new Feature();
      *     $feature->setType(Feature_Type::FACE_DETECTION);
      *     $features = [$feature];
@@ -93,8 +145,7 @@ class ImageAnnotatorClient extends ImageAnnotatorGapicClient
      * $imageAnnotatorClient = new ImageAnnotatorClient();
      * try {
      *     $imageContent = file_get_contents('path/to/image.jpg');
-     *     $image = new Image();
-     *     $image->setContent($imageContent);
+     *     $image = $this->createImageObject($imageContent);
      *     $response = $imageAnnotatorClient->faceDetection($image);
      * } finally {
      *     $imageAnnotatorClient->close();
@@ -134,8 +185,7 @@ class ImageAnnotatorClient extends ImageAnnotatorGapicClient
      * $imageAnnotatorClient = new ImageAnnotatorClient();
      * try {
      *     $imageContent = file_get_contents('path/to/image.jpg');
-     *     $image = new Image();
-     *     $image->setContent($imageContent);
+     *     $image = $this->createImageObject($imageContent);
      *     $response = $imageAnnotatorClient->landmarkDetection($image);
      * } finally {
      *     $imageAnnotatorClient->close();
