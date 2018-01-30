@@ -160,6 +160,7 @@ class Daemon
             } catch (ConflictException $e) {
                 // Ignoring this exception
             }
+            gc_collect_cycles();
         }
     }
 
