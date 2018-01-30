@@ -121,6 +121,21 @@ class Grpc implements ConnectionInterface
         ]);
     }
 
+    /**
+     * Sets a breakpoint.
+     *
+     * @param array $args
+     */
+    public function setBreakpoint(array $args)
+    {
+        return $this->send([$this->debuggerClient, 'setBreakpoint'], [
+            $this->pluck('debuggeeId', $args),
+            $this->buildBreakpoint($this->pluck('breakpoint', $args)),
+            $this->pluck('agentVersion', $args),
+            $args
+        ]);
+    }
+
     private function buildBreakpoint($info)
     {
         if (isset($info['createTime'])) {

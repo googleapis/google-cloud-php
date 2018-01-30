@@ -242,7 +242,7 @@ class Breakpoint
             'isFinalState' => null,
             'createTime' => null,
             'finalTime' => null,
-            'userEmail' => null,
+            'userEmail' => '',
             'stackFrames' => [],
             'evaluatedExpressions' => [],
             'labels' => [],

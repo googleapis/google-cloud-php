@@ -334,10 +334,13 @@ class Debuggee
     {
         $resp = $this->connection->setBreakpoint([
             'debuggeeId' => $this->id,
-            'location' => [
-                'path' => $path,
-                'line' => $line
-            ]
+            'breakpoint' => [
+                'location' => [
+                    'path' => $path,
+                    'line' => $line
+                ],
+            ],
+            'agentVersion' => $this->agentVersion
         ] + $options);
         return new Breakpoint($resp['breakpoint']);
     }
