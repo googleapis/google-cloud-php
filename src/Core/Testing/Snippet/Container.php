@@ -15,26 +15,16 @@
  * limitations under the License.
  */
 
-namespace Google\Cloud\Dev\Snippet\Parser;
+namespace Google\Cloud\Core\Testing\Snippet;
 
-class InvokeResult
+/**
+ * Class Container
+ *
+ * @experimental
+ * @internal
+ */
+class Container
 {
-    private $returnVal;
-    private $output;
-
-    public function __construct($returnVal, $output)
-    {
-        $this->returnVal = $returnVal;
-        $this->output = $output;
-    }
-
-    public function returnVal()
-    {
-        return $this->returnVal;
-    }
-
-    public function output()
-    {
-        return $this->output;
-    }
+    public static $coverage;
+    public static $parser;
 }

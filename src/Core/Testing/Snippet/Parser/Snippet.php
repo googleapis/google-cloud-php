@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-namespace Google\Cloud\Dev\Snippet\Parser;
+namespace Google\Cloud\Core\Testing\Snippet\Parser;
 
 /**
  * Represents a single code snippet
@@ -149,7 +149,7 @@ class Snippet implements \JsonSerializable
             $content = implode("\n", $use) . $content;
         }
 
-        $cb = function($return) use ($content) {
+        $cb = function ($return) use ($content) {
             extract($this->locals);
 
             try {
@@ -276,6 +276,11 @@ class Snippet implements \JsonSerializable
         $this->config['content'] = preg_replace($pattern, $new, $this->config['content']);
     }
 
+    /**
+     * Serialize to json
+     *
+     * @return array
+     */
     public function jsonSerialize()
     {
         return $this->config;

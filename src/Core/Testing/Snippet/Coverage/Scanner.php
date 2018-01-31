@@ -15,14 +15,17 @@
  * limitations under the License.
  */
 
-namespace Google\Cloud\Dev\Snippet\Coverage;
+namespace Google\Cloud\Core\Testing\Snippet\Coverage;
 
-use Google\Cloud\Dev\Snippet\Parser\Parser;
+use Google\Cloud\Core\Testing\Snippet\Parser\Parser;
 use phpDocumentor\Reflection\FileReflector;
 
 /**
  * Scan a directory for files, a set of files for classes, and a set of classes
  * for code snippets.
+ *
+ * @experimental
+ * @internal
  */
 class Scanner implements ScannerInterface
 {
@@ -39,6 +42,9 @@ class Scanner implements ScannerInterface
     /**
      * @param Parser $parser An instance of the Snippet Parser.
      * @param string $basepath The path to scan for PHP files.
+     *
+     * @experimental
+     * @internal
      */
     public function __construct(Parser $parser, $basePath)
     {
@@ -47,7 +53,12 @@ class Scanner implements ScannerInterface
     }
 
     /**
-     * {@inheritDoc}
+     * Retrieve a list of PHP files to scan.
+     *
+     * @return string[]
+     *
+     * @experimental
+     * @internal
      */
     public function files()
     {
@@ -78,7 +89,12 @@ class Scanner implements ScannerInterface
     }
 
     /**
-     * {@inheritDoc}
+     * Retrieve a list of classes in the given PHP files.
+     *
+     * @return string[]
+     *
+     * @experimental
+     * @internal
      */
     public function classes(array $files, array $exclude = [])
     {
@@ -97,7 +113,12 @@ class Scanner implements ScannerInterface
     }
 
     /**
-     * {@inheritDoc}
+     * Get a list of all snippets from the given classes.
+     *
+     * @return \Google\Cloud\Core\Testing\Snippet\Parser\Snippet[]
+     *
+     * @experimental
+     * @internal
      */
     public function snippets(array $classes)
     {

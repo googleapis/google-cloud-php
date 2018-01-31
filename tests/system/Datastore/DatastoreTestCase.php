@@ -19,7 +19,7 @@ namespace Google\Cloud\Tests\System\Datastore;
 
 use Google\Cloud\Core\ExponentialBackoff;
 use Google\Cloud\Datastore\DatastoreClient;
-use Google\Cloud\Tests\System\DeletionQueue;
+use Google\Cloud\Core\Testing\System\DeletionQueue;
 use PHPUnit\Framework\TestCase;
 
 /**

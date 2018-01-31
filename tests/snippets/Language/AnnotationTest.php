@@ -17,7 +17,7 @@
 
 namespace Google\Cloud\Tests\Snippets\Language;
 
-use Google\Cloud\Dev\Snippet\SnippetTestCase;
+use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
 use Google\Cloud\Language\Annotation;
 use Google\Cloud\Language\Connection\ConnectionInterface;
 use Prophecy\Argument;

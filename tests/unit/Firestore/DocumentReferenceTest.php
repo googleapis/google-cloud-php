@@ -46,7 +46,7 @@ class DocumentReferenceTest extends TestCase
         $this->connection = $this->prophesize(ConnectionInterface::class);
 
         $valueMapper = new ValueMapper($this->connection->reveal(), false);
-        $this->document = \Google\Cloud\Dev\stub(DocumentReference::class, [
+        $this->document = \Google\Cloud\Core\Testing\TestHelpers::stub(DocumentReference::class, [
             $this->connection->reveal(),
             $valueMapper,
             new CollectionReference($this->connection->reveal(), $valueMapper, self::COLLECTION),

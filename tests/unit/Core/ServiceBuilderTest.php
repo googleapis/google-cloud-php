@@ -18,6 +18,8 @@ namespace Google\Cloud\Tests\Unit;
 
 use Google\Cloud\BigQuery\BigQueryClient;
 use Google\Cloud\Core\ServiceBuilder;
+use Google\Cloud\Core\Testing\CheckForClassTrait;
+use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Datastore\DatastoreClient;
 use Google\Cloud\Firestore\FirestoreClient;
 use Google\Cloud\Language\LanguageClient;
@@ -26,7 +28,7 @@ use Google\Cloud\PubSub\PubSubClient;
 use Google\Cloud\Spanner\SpannerClient;
 use Google\Cloud\Speech\SpeechClient;
 use Google\Cloud\Storage\StorageClient;
-use Google\Cloud\Tests\GrpcTestTrait;
+use Google\Cloud\Tests\Unit\Core\Fixtures;
 use Google\Cloud\Translate\TranslateClient;
 use Google\Cloud\Vision\VisionClient;
 use GuzzleHttp\Psr7\Response;
@@ -40,12 +42,15 @@ class ServiceBuilderTest extends TestCase
 {
 
     use GrpcTestTrait;
+    use CheckForClassTrait;
 
     /**
      * @dataProvider serviceProvider
      */
     public function testBuildsClients($serviceName, $expectedClient, array $args = [], callable $beforeCallable = null)
     {
+        $this->checkAndSkipTest([$expectedClient]);
+
         if ($beforeCallable) {
             call_user_func($beforeCallable);
         }
@@ -66,6 +71,8 @@ class ServiceBuilderTest extends TestCase
 
     public function testTranslateClientWithApiKey()
     {
+        $this->checkAndSkipTest([TranslateClient::class]);
+
         $config = ['key' => 'test_key'];
         $serviceBuilder = new ServiceBuilder($config);
 
@@ -82,11 +89,13 @@ class ServiceBuilderTest extends TestCase
         array $args = [],
         callable $beforeCallable = null
     ) {
+        $this->checkAndSkipTest([$expectedClient]);
+
         if ($beforeCallable) {
             call_user_func($beforeCallable);
         }
 
-        $kfPath = __DIR__ .'/../fixtures/json-key-fixture.json';
+        $kfPath = Fixtures::JSON_KEY_FIXTURE();
         $kf = json_decode(file_get_contents($kfPath), true);
 
         $adc = getenv('GOOGLE_APPLICATION_CREDENTIALS');
@@ -117,11 +126,13 @@ class ServiceBuilderTest extends TestCase
         array $args = [],
         callable $beforeCallable = null
     ) {
+        $this->checkAndSkipTest([$expectedClient]);
+
         if ($beforeCallable) {
             call_user_func($beforeCallable);
         }
 
-        $kfPath = __DIR__ .'/../fixtures/json-key-fixture.json';
+        $kfPath = Fixtures::JSON_KEY_FIXTURE();
         $kf = json_decode(file_get_contents($kfPath), true);
 
         $adc = getenv('GOOGLE_APPLICATION_CREDENTIALS');

@@ -30,7 +30,7 @@ use Google\Cloud\BigQuery\QueryResults;
 use Google\Cloud\BigQuery\ValueMapper;
 use Google\Cloud\Core\Int64;
 use Google\Cloud\Core\Iterator\ItemIterator;
-use Google\Cloud\Dev\Snippet\SnippetTestCase;
+use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
 use Prophecy\Argument;
 
 /**
@@ -70,7 +70,7 @@ class BigQueryClientTest extends SnippetTestCase
     public function setUp()
     {
         $this->connection = $this->prophesize(ConnectionInterface::class);
-        $this->client = \Google\Cloud\Dev\stub(BigQueryTestClient::class);
+        $this->client = \Google\Cloud\Core\Testing\TestHelpers::stub(BigQueryTestClient::class);
         $this->client->___setProperty('connection', $this->connection->reveal());
     }
 

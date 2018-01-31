@@ -15,13 +15,22 @@
  * limitations under the License.
  */
 
-namespace Google\Cloud\Tests;
+namespace Google\Cloud\Core\Testing;
 
 /**
  * Provides checks for whether to run gRPC tests
+ *
+ * @experimental
+ * @internal
  */
 trait GrpcTestTrait
 {
+    /**
+     * Checks for the grpc extension, and if it is missing, marked the test as skipped
+     *
+     * @experimental
+     * @internal
+     */
     public function checkAndSkipGrpcTests()
     {
         if (!extension_loaded('grpc')) {
@@ -32,6 +41,12 @@ trait GrpcTestTrait
         }
     }
 
+    /**
+     * @return bool True if grpc tests should be skipped, otherwise false
+     *
+     * @experimental
+     * @internal
+     */
     public function shouldSkipGrpcTests()
     {
         return !extension_loaded('grpc') || defined('HHVM_VERSION');

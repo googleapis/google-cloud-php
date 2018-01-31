@@ -15,21 +15,33 @@
  * limitations under the License.
  */
 
-namespace Google\Cloud\Dev\Snippet;
+namespace Google\Cloud\Core\Testing\Snippet;
 
-use Google\Cloud\Dev\Snippet\Container;
+use Google\Cloud\Core\Testing\CheckForClassTrait;
+use Google\Cloud\Core\Testing\Snippet\Container;
 use PHPUnit\Framework\TestCase;
 
 /**
  * Provide helpers for Snippet tests.
  *
  * Snippet test cases should extend this class.
+ *
+ * @experimental
+ * @internal
  */
 class SnippetTestCase extends TestCase
 {
+    use CheckForClassTrait;
+
     private static $coverage;
     private static $parser;
 
+    /**
+     * Run to set up class before testing
+     *
+     * @experimental
+     * @internal
+     */
     public static function setUpBeforeClass()
     {
         self::$coverage = Container::$coverage;
@@ -42,6 +54,9 @@ class SnippetTestCase extends TestCase
      * @param string $class The class name.
      * @param string|int $indexOrName The index of the snippet, or its name.
      * @return Snippet
+     *
+     * @experimental
+     * @internal
      */
     public function snippetFromClass($class, $indexOrName = 0)
     {
@@ -65,6 +80,9 @@ class SnippetTestCase extends TestCase
      * @param string $method The method name
      * @param string|int $indexOrName The index of the snippet, or its name.
      * @return Snippet
+     *
+     * @experimental
+     * @internal
      */
     public function snippetFromMagicMethod($class, $method, $indexOrName = 0)
     {
@@ -88,6 +106,9 @@ class SnippetTestCase extends TestCase
      * @param string $method The method name
      * @param string|int $indexOrName The index of the snippet, or its name.
      * @return Snippet
+     *
+     * @experimental
+     * @internal
      */
     public function snippetFromMethod($class, $method, $indexOrName = 0)
     {

@@ -17,8 +17,7 @@
 
 namespace Google\Cloud\Tests\Snippets\PubSub;
 
-use Google\Cloud\Dev\SetStubConnectionTrait;
-use Google\Cloud\Dev\Snippet\SnippetTestCase;
+use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
 use Google\Cloud\Core\Iam\Iam;
 use Google\Cloud\PubSub\Connection\ConnectionInterface;
 use Google\Cloud\PubSub\Message;
@@ -41,7 +40,7 @@ class SubscriptionTest extends SnippetTestCase
     public function setUp()
     {
         $this->connection = $this->prophesize(ConnectionInterface::class);
-        $this->subscription = \Google\Cloud\Dev\stub(Subscription::class, [
+        $this->subscription = \Google\Cloud\Core\Testing\TestHelpers::stub(Subscription::class, [
             $this->connection->reveal(),
             'foo',
             self::SUBSCRIPTION,
@@ -49,7 +48,7 @@ class SubscriptionTest extends SnippetTestCase
             false
         ]);
 
-        $this->pubsub = \Google\Cloud\Dev\stub(PubSubClient::class, [['transport' => 'rest']]);
+        $this->pubsub = \Google\Cloud\Core\Testing\TestHelpers::stub(PubSubClient::class, [['transport' => 'rest']]);
         $this->pubsub->___setProperty('connection', $this->connection->reveal());
     }
 

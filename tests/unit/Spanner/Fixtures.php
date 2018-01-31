@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright 2016 Google Inc.
+ * Copyright 2018 Google Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,28 +15,17 @@
  * limitations under the License.
  */
 
-namespace Google\Cloud\Dev\Snippet\Coverage;
+namespace Google\Cloud\Tests\Unit\Spanner;
 
-interface ScannerInterface
+class Fixtures
 {
-    /**
-     * Retrieve a list of PHP files to scan.
-     *
-     * @return string[]
-     */
-    public function files();
+    public static function STREAMING_READ_ACCEPTANCE_FIXTURE()
+    {
+        return __DIR__ . '/fixtures/streaming-read-acceptance-test.json';
+    }
 
-    /**
-     * Retrieve a list of classes in the given PHP files.
-     *
-     * @return string[]
-     */
-    public function classes(array $files);
-
-    /**
-     * Get a list of all snippets from the given classes.
-     *
-     * @return \Google\Cloud\Dev\Snippet\Parser\Snippet[]
-     */
-    public function snippets(array $classes);
+    public static function INSTANCE_FIXTURE()
+    {
+        return __DIR__ . '/fixtures/instance.json';
+    }
 }

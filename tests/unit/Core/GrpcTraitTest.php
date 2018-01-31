@@ -21,9 +21,9 @@ use Google\Auth\Cache\MemoryCacheItemPool;
 use Google\Auth\FetchAuthTokenCache;
 use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\Core\Exception\NotFoundException;
-use Google\Cloud\Tests\GrpcTestTrait;
 use Google\Cloud\Core\GrpcRequestWrapper;
 use Google\Cloud\Core\GrpcTrait;
+use Google\Cloud\Core\Testing\GrpcTestTrait;
 use google\protobuf;
 use Prophecy\Argument;
 use PHPUnit\Framework\TestCase;
@@ -42,7 +42,7 @@ class GrpcTraitTest extends TestCase
     {
         $this->checkAndSkipGrpcTests();
 
-        $this->implementation = \Google\Cloud\Dev\impl(GrpcTrait::class);
+        $this->implementation = \Google\Cloud\Core\Testing\TestHelpers::impl(GrpcTrait::class);
         $this->requestWrapper = $this->prophesize(GrpcRequestWrapper::class);
     }
 

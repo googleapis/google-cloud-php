@@ -17,7 +17,7 @@
 
 namespace Google\Cloud\Tests\Snippets\Storage;
 
-use Google\Cloud\Dev\Snippet\SnippetTestCase;
+use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
 use Google\Cloud\Storage\Acl;
 use Google\Cloud\Storage\Connection\ConnectionInterface;
 use Prophecy\Argument;
@@ -33,7 +33,7 @@ class AclTest extends SnippetTestCase
     public function setUp()
     {
         $this->connection = $this->prophesize(ConnectionInterface::class);
-        $this->acl = \Google\Cloud\Dev\stub(Acl::class, [
+        $this->acl = \Google\Cloud\Core\Testing\TestHelpers::stub(Acl::class, [
             $this->connection->reveal(),
             'bucketAccessControls',
             []

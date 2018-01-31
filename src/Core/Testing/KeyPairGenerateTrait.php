@@ -15,11 +15,17 @@
  * limitations under the License.
  */
 
-namespace Google\Cloud\Tests;
+namespace Google\Cloud\Core\Testing;
 
 use Google\Cloud\Storage\EncryptionTrait;
 use phpseclib\Crypt\RSA;
 
+/**
+ * Trait KeyPairGenerateTrait implements key pair generation functions used for testing
+ *
+ * @experimental
+ * @internal
+ */
 trait KeyPairGenerateTrait
 {
     use EncryptionTrait;

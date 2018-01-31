@@ -15,26 +15,41 @@
  * limitations under the License.
  */
 
-namespace Google\Cloud\Dev;
+namespace Google\Cloud\Core\Testing\Snippet\Parser;
 
-use phpDocumentor\Reflection\DocBlock;
-
-class DocBlockStripSpaces extends DocBlock
+/**
+ * Class InvokeResult
+ */
+class InvokeResult
 {
-    /**
-     * Strips extra whitespace from the DocBlock comment.
-     *
-     * @param string $comment String containing the comment text.
-     * @param int $spaces The number of spaces to strip.
-     *
-     * @return string
-     */
-    public function cleanInput($comment, $spaces = 4)
-    {
-        $lines = array_map(function ($line) use ($spaces) {
-            return substr($line, $spaces);
-        }, explode(PHP_EOL, $comment));
+    private $returnVal;
+    private $output;
 
-        return trim(implode(PHP_EOL, $lines));
+    /**
+     * InvokeResult constructor.
+     *
+     * @param $returnVal
+     * @param $output
+     */
+    public function __construct($returnVal, $output)
+    {
+        $this->returnVal = $returnVal;
+        $this->output = $output;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function returnVal()
+    {
+        return $this->returnVal;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function output()
+    {
+        return $this->output;
     }
 }

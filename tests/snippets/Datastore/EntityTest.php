@@ -19,7 +19,7 @@ namespace Google\Cloud\Tests\Snippets\Datastore;
 
 use Google\Cloud\Datastore\Entity;
 use Google\Cloud\Datastore\Key;
-use Google\Cloud\Dev\Snippet\SnippetTestCase;
+use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
 
 /**
  * @group datastore

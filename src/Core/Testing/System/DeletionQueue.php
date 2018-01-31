@@ -15,13 +15,16 @@
  * limitations under the License.
  */
 
-namespace Google\Cloud\Tests\System;
+namespace Google\Cloud\Core\Testing\System;
 
 use Google\Cloud\Core\Exception\NotFoundException;
 use Google\Cloud\Core\ExponentialBackoff;
 
 /**
  * Manage a queue of items to be cleaned up at the end of the test run.
+ *
+ * @experimental
+ * @internal
  */
 class DeletionQueue
 {
@@ -38,6 +41,9 @@ class DeletionQueue
     /**
      * @param bool $acceptAllInputs If false, only callables or objects with
      *        `delete` methods are allowed. **Defaults to** `false`.
+     *
+     * @experimental
+     * @internal
      */
     public function __construct($acceptAllInputs = false)
     {
@@ -51,6 +57,9 @@ class DeletionQueue
      *        `$acceptAllInputs = true`, either a callable with no arguments, or
      *        an object with a `delete` method.
      * @return void
+     *
+     * @experimental
+     * @internal
      */
     public function add($toDelete)
     {
@@ -62,7 +71,7 @@ class DeletionQueue
             }
 
             if (!is_callable($toDelete)) {
-                $toDelete = function() use ($toDelete) {
+                $toDelete = function () use ($toDelete) {
                     $toDelete->delete();
                 };
             }
@@ -75,6 +84,9 @@ class DeletionQueue
      * Process all items in the deletion queue.
      *
      * @return void
+     *
+     * @experimental
+     * @internal
      */
     public function process(callable $action = null)
     {
@@ -87,7 +99,8 @@ class DeletionQueue
                 $backoff->execute(function () use ($item) {
                     try {
                         call_user_func($item);
-                    } catch (NotFoundException $e) {}
+                    } catch (NotFoundException $e) {
+                    }
                 });
             }
         }

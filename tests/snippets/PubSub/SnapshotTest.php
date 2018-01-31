@@ -17,7 +17,7 @@
 
 namespace Google\Cloud\Tests\Snippets\PubSub;
 
-use Google\Cloud\Dev\Snippet\SnippetTestCase;
+use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
 use Google\Cloud\PubSub\Connection\ConnectionInterface;
 use Google\Cloud\PubSub\Snapshot;
 use Google\Cloud\PubSub\Subscription;
@@ -38,7 +38,7 @@ class SnapshotTest extends SnippetTestCase
     public function setUp()
     {
         $this->connection = $this->prophesize(ConnectionInterface::class);
-        $this->snapshot = \Google\Cloud\Dev\stub(Snapshot::class, [
+        $this->snapshot = \Google\Cloud\Core\Testing\TestHelpers::stub(Snapshot::class, [
             $this->connection->reveal(),
             self::PROJECT,
             self::SNAPSHOT,

@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright 2016 Google Inc.
+ * Copyright 2018 Google Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,10 +15,17 @@
  * limitations under the License.
  */
 
-namespace Google\Cloud\Dev\Snippet;
+namespace Google\Cloud\Tests\Unit\Vision;
 
-class Container
+class Fixtures
 {
-    public static $coverage;
-    public static $parser;
+    public static function FACE_LANDMARKS_FIXTURE()
+    {
+        return __DIR__ . '/fixtures/face-landmarks.json';
+    }
+
+    public static function EIFFEL_TOWER_FIXTURE()
+    {
+        return __DIR__ . '/fixtures/eiffel-tower.jpg';
+    }
 }

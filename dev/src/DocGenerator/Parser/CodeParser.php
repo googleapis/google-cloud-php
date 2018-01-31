@@ -17,7 +17,7 @@
 
 namespace Google\Cloud\Dev\DocGenerator\Parser;
 
-use Google\Cloud\Dev\DocBlockStripSpaces;
+use Google\Cloud\Core\Testing\DocBlockStripSpaces;
 use Google\Cloud\Dev\DocGenerator\ReflectorRegister;
 use Google\Cloud\Dev\GetComponentsTrait;
 use phpDocumentor\Reflection\ClassReflector;

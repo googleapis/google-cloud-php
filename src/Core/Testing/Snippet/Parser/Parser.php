@@ -15,10 +15,10 @@
  * limitations under the License.
  */
 
-namespace Google\Cloud\Dev\Snippet\Parser;
+namespace Google\Cloud\Core\Testing\Snippet\Parser;
 
 use DomDocument;
-use Google\Cloud\Dev\DocBlockStripSpaces;
+use Google\Cloud\Core\Testing\DocBlockStripSpaces;
 use Parsedown;
 use ReflectionClass;
 use ReflectionMethod;
@@ -29,6 +29,8 @@ use phpDocumentor\Reflection\DocBlock;
  *
  * Example:
  * ```
+ * use Google\Cloud\Core\Testing\Snippet\Parser\Parser;
+ *
  * $parser = new Parser;
  * ```
  */
@@ -41,6 +43,8 @@ class Parser
      *
      * Example:
      * ```
+     * use Google\Cloud\Core\Testing\Snippet\Parser\Parser;
+     *
      * $snippet = $parser->classExample(Parser::class);
      * ```
      *
@@ -74,10 +78,14 @@ class Parser
      *
      * Example:
      * ```
+     * use Google\Cloud\Core\Testing\Snippet\Parser\Parser;
+     *
      * $snippet = $parser->methodExample(Parser::class, 'methodExample');
      * ```
      *
      * ```
+     * use Google\Cloud\Core\Testing\Snippet\Parser\Parser;
+     *
      * // Get the 2nd example (index=1)
      * $snippet = $parser->methodExample(Parser::class, 'methodExample', 1);
      * ```
@@ -203,8 +211,7 @@ class Parser
      * $examples = $parser->allExamples($parser);
      * ```
      *
-     * @param object|ReflectionClass An instance or reflector of the class to
-     *        parse.
+     * @param object|ReflectionClass $class An instance or reflector of the class to parse.
      * @return array
      */
     public function allExamples($class)
@@ -225,12 +232,6 @@ class Parser
 
     /**
      * Parse examples from a DocBlock object.
-     *
-     * Example:
-     * ```
-     * // Yeah, this example is pretty useless.
-     * $examples = $parser->examples($docBlock);
-     * ```
      *
      * @param DocBlock $docBlock The DocBlock to parse
      * @param string $file The filename the docblock is in
@@ -288,6 +289,13 @@ class Parser
         return $res;
     }
 
+    /**
+     * Create identifier
+     *
+     * @param $fqn
+     * @param $indexOrName
+     * @return string
+     */
     public function createIdentifier($fqn, $indexOrName)
     {
         return sha1($fqn . $indexOrName);

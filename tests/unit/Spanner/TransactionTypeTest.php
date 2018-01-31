@@ -30,7 +30,7 @@ use Google\Cloud\Spanner\Snapshot;
 use Google\Cloud\Spanner\Timestamp;
 use Google\Cloud\Spanner\Transaction;
 use Google\Cloud\Spanner\V1\SpannerClient;
-use Google\Cloud\Tests\GrpcTestTrait;
+use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Prophecy\Argument;
 use PHPUnit\Framework\TestCase;
 
@@ -731,7 +731,7 @@ class TransactionTypeTest extends TestCase
         $instance = $this->prophesize(Instance::class);
         $instance->name()->willReturn(InstanceAdminClient::instanceName(self::PROJECT, self::INSTANCE));
 
-        $database = \Google\Cloud\Dev\stub(Database::class, [
+        $database = \Google\Cloud\Core\Testing\TestHelpers::stub(Database::class, [
             $connection,
             $instance->reveal(),
             $this->prophesize(LongRunningConnectionInterface::class)->reveal(),
