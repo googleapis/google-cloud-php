@@ -41,7 +41,7 @@ class LongRunningOperationTest extends SnippetTestCase
         $this->callables = [
             ['typeUrl' => self::TYPE, 'callable' => function($res) { return $res; }]
         ];
-        $this->operation = \Google\Cloud\Core\Testing\Functions::stub(LongRunningOperation::class, [
+        $this->operation = \Google\Cloud\Core\Testing\TestHelpers::stub(LongRunningOperation::class, [
             $this->connection->reveal(),
             self::NAME,
             $this->callables

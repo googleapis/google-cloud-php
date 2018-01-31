@@ -731,7 +731,7 @@ class TransactionTypeTest extends TestCase
         $instance = $this->prophesize(Instance::class);
         $instance->name()->willReturn(InstanceAdminClient::instanceName(self::PROJECT, self::INSTANCE));
 
-        $database = \Google\Cloud\Core\Testing\Functions::stub(Database::class, [
+        $database = \Google\Cloud\Core\Testing\TestHelpers::stub(Database::class, [
             $connection,
             $instance->reveal(),
             $this->prophesize(LongRunningConnectionInterface::class)->reveal(),

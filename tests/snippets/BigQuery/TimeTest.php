@@ -29,7 +29,7 @@ class TimeTest extends SnippetTestCase
     public function testClass()
     {
         $snippet = $this->snippetFromClass(Time::class);
-        $snippet->addLocal('bigQuery', \Google\Cloud\Core\Testing\Functions::stub(BigQueryClient::class));
+        $snippet->addLocal('bigQuery', \Google\Cloud\Core\Testing\TestHelpers::stub(BigQueryClient::class));
         $res = $snippet->invoke('time');
 
         $this->assertInstanceOf(Time::class, $res->returnVal());

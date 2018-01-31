@@ -31,7 +31,7 @@ class ConcurrencyControlTraitTest extends TestCase
 
     public function setUp()
     {
-        $this->trait = \Google\Cloud\Core\Testing\Functions::impl(ConcurrencyControlTrait::class);
+        $this->trait = \Google\Cloud\Core\Testing\TestHelpers::impl(ConcurrencyControlTrait::class);
     }
 
     public function testApplyEtagHeader()

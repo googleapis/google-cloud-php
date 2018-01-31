@@ -51,7 +51,7 @@ class QueryTest extends TestCase
     public function setUp()
     {
         $this->connection = $this->prophesize(ConnectionInterface::class);
-        $this->query = \Google\Cloud\Core\Testing\Functions::stub(Query::class, [
+        $this->query = \Google\Cloud\Core\Testing\TestHelpers::stub(Query::class, [
             $this->connection->reveal(),
             new ValueMapper($this->connection->reveal(), false),
             self::PARENT,

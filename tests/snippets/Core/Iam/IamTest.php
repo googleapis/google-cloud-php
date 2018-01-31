@@ -17,7 +17,7 @@
 
 namespace Google\Cloud\Tests\Snippets\Core\Iam;
 
-use Google\Cloud\Core\Testing\Functions;
+use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
 use Google\Cloud\Core\Iam\Iam;
 use Google\Cloud\Core\Iam\IamConnectionInterface;

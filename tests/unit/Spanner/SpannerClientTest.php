@@ -56,7 +56,7 @@ class SpannerClientTest extends TestCase
         $this->checkAndSkipGrpcTests();
 
         $this->connection = $this->prophesize(ConnectionInterface::class);
-        $this->client = \Google\Cloud\Core\Testing\Functions::stub(SpannerClient::class, [
+        $this->client = \Google\Cloud\Core\Testing\TestHelpers::stub(SpannerClient::class, [
             ['projectId' => self::PROJECT]
         ]);
     }

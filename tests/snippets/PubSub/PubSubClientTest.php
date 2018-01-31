@@ -44,7 +44,7 @@ class PubSubClientTest extends SnippetTestCase
     public function setUp()
     {
         $this->connection = $this->prophesize(ConnectionInterface::class);
-        $this->client = \Google\Cloud\Core\Testing\Functions::stub(PubSubClient::class, [['transport' => 'rest']]);
+        $this->client = \Google\Cloud\Core\Testing\TestHelpers::stub(PubSubClient::class, [['transport' => 'rest']]);
     }
 
     public function testClassExample()

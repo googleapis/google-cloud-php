@@ -34,7 +34,7 @@ class DebuggerClientTest extends SnippetTestCase
     public function setUp()
     {
         $this->connection = $this->prophesize(ConnectionInterface::class);
-        $this->client = \Google\Cloud\Core\Testing\Functions::stub(DebuggerClient::class);
+        $this->client = \Google\Cloud\Core\Testing\TestHelpers::stub(DebuggerClient::class);
         $this->client->___setProperty('connection', $this->connection->reveal());
     }
 

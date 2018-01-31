@@ -47,7 +47,7 @@ class BigQueryClientTest extends TestCase
     public function setUp()
     {
         $this->connection = $this->prophesize(ConnectionInterface::class);
-        $this->client = \Google\Cloud\Core\Testing\Functions::stub(BigQueryClient::class, ['options' => ['projectId' => self::PROJECT_ID]]);
+        $this->client = \Google\Cloud\Core\Testing\TestHelpers::stub(BigQueryClient::class, ['options' => ['projectId' => self::PROJECT_ID]]);
     }
 
     public function testQueryConfig()

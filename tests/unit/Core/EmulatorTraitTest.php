@@ -30,7 +30,7 @@ class EmulatorTraitTest extends TestCase
 
     public function setUp()
     {
-        $this->impl = \Google\Cloud\Core\Testing\Functions::impl(EmulatorTrait::class);
+        $this->impl = \Google\Cloud\Core\Testing\TestHelpers::impl(EmulatorTrait::class);
     }
 
     public function testEmulatorBaseUri()

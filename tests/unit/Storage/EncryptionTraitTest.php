@@ -32,7 +32,7 @@ class EncryptionTraitTest extends TestCase
 
     public function setUp()
     {
-        $this->implementation = \Google\Cloud\Core\Testing\Functions::impl(EncryptionTrait::class);
+        $this->implementation = \Google\Cloud\Core\Testing\TestHelpers::impl(EncryptionTrait::class);
     }
 
     public function testSignString()

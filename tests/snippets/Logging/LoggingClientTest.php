@@ -38,7 +38,7 @@ class LoggingClientTest extends SnippetTestCase
     public function setUp()
     {
         $this->connection = $this->prophesize(ConnectionInterface::class);
-        $this->client = \Google\Cloud\Core\Testing\Functions::stub(LoggingClient::class);
+        $this->client = \Google\Cloud\Core\Testing\TestHelpers::stub(LoggingClient::class);
         $this->client->___setProperty('connection', $this->connection->reveal());
     }
 

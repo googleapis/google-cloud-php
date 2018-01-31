@@ -19,12 +19,12 @@
 namespace Google\Cloud\Core\Testing;
 
 /**
- * Class Functions is used to hold static functions required for testing
+ * Class TestHelpers is used to hold static functions required for testing
  *
  * @experimental
  * @internal
  */
-class Functions
+class TestHelpers
 {
     /**
      * Create a test stub which extends a real class and allows overriding of private properties.

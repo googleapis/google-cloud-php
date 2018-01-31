@@ -29,7 +29,7 @@ class JsonTraitTest extends TestCase
 
     public function setUp()
     {
-        $this->implementation = \Google\Cloud\Core\Testing\Functions::impl(JsonTrait::class);
+        $this->implementation = \Google\Cloud\Core\Testing\TestHelpers::impl(JsonTrait::class);
     }
 
     public function testJsonEncode()

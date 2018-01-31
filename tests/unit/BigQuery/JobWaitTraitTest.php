@@ -31,7 +31,7 @@ class JobWaitTraitTest extends TestCase
 
     public function setUp()
     {
-        $this->trait = \Google\Cloud\Core\Testing\Functions::impl(JobWaitTrait::class);
+        $this->trait = \Google\Cloud\Core\Testing\TestHelpers::impl(JobWaitTrait::class);
         $this->job = $this->prophesize(Job::class)->reveal();
     }
 

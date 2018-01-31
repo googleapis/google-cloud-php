@@ -40,7 +40,7 @@ class QuerySnapshotTest extends SnippetTestCase
     public function setUp()
     {
         $this->connection = $this->prophesize(ConnectionInterface::class);
-        $this->snapshot = \Google\Cloud\Core\Testing\Functions::stub(QuerySnapshot::class, [
+        $this->snapshot = \Google\Cloud\Core\Testing\TestHelpers::stub(QuerySnapshot::class, [
             $this->prophesize(Query::class)->reveal(),
             []
         ], ['rows']);
@@ -54,7 +54,7 @@ class QuerySnapshotTest extends SnippetTestCase
             ->shouldBeCalled()
             ->willReturn(new \ArrayIterator([]));
 
-        $client = \Google\Cloud\Core\Testing\Functions::stub(FirestoreClient::class);
+        $client = \Google\Cloud\Core\Testing\TestHelpers::stub(FirestoreClient::class);
         $client->___setProperty('connection', $this->connection->reveal());
 
         $snippet = $this->snippetFromClass(QuerySnapshot::class);

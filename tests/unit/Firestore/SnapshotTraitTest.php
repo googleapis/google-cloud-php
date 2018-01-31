@@ -43,7 +43,7 @@ class SnapshotTraitTest extends TestCase
     public function setUp()
     {
         $this->connection = $this->prophesize(ConnectionInterface::class);
-        $this->impl = \Google\Cloud\Core\Testing\Functions::impl(SnapshotTrait::class);
+        $this->impl = \Google\Cloud\Core\Testing\TestHelpers::impl(SnapshotTrait::class);
 
         $this->valueMapper = new ValueMapper($this->connection->reveal(), false);
     }

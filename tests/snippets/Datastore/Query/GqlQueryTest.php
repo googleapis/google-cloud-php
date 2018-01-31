@@ -39,7 +39,7 @@ class GqlQueryTest extends SnippetTestCase
     {
         $this->datastore = new DatastoreClient;
         $this->connection = $this->prophesize(ConnectionInterface::class);
-        $this->operation = \Google\Cloud\Core\Testing\Functions::stub(Operation::class, [
+        $this->operation = \Google\Cloud\Core\Testing\TestHelpers::stub(Operation::class, [
             $this->connection->reveal(),
             'my-awesome-project',
             '',

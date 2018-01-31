@@ -45,7 +45,7 @@ class DocumentReferenceTest extends SnippetTestCase
     public function setUp()
     {
         $this->connection = $this->prophesize(ConnectionInterface::class);
-        $this->document = \Google\Cloud\Core\Testing\Functions::stub(DocumentReferenceStub::class, [
+        $this->document = \Google\Cloud\Core\Testing\TestHelpers::stub(DocumentReferenceStub::class, [
             $this->connection->reveal(),
             new ValueMapper($this->connection->reveal(), false),
             $this->prophesize(CollectionReference::class)->reveal(),

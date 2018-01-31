@@ -51,7 +51,7 @@ class FirestoreClientTest extends TestCase
         $this->checkAndSkipGrpcTests();
 
         $this->connection = $this->prophesize(ConnectionInterface::class);
-        $this->client = \Google\Cloud\Core\Testing\Functions::stub(FirestoreClient::class);
+        $this->client = \Google\Cloud\Core\Testing\TestHelpers::stub(FirestoreClient::class);
     }
 
     public function testBatch()

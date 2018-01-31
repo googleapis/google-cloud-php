@@ -43,7 +43,7 @@ class RequesterPaysTest extends TestCase
     public function setUp()
     {
         $this->connection = new Rest(['projectId' => self::PROJECT]);
-        $this->client = \Google\Cloud\Core\Testing\Functions::stub(StorageClient::class);
+        $this->client = \Google\Cloud\Core\Testing\TestHelpers::stub(StorageClient::class);
     }
 
     /**

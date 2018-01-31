@@ -43,7 +43,7 @@ class InstanceConfigurationTest extends SnippetTestCase
         $this->checkAndSkipGrpcTests();
 
         $this->connection = $this->prophesize(ConnectionInterface::class);
-        $this->config = \Google\Cloud\Core\Testing\Functions::stub(InstanceConfiguration::class, [
+        $this->config = \Google\Cloud\Core\Testing\TestHelpers::stub(InstanceConfiguration::class, [
             $this->connection->reveal(),
             self::PROJECT,
             self::CONFIG

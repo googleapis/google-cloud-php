@@ -48,7 +48,7 @@ class OperationTest extends SnippetTestCase
         ];
 
         $this->connection = $this->prophesize(ConnectionInterface::class);
-        $this->operation = \Google\Cloud\Core\Testing\Functions::stub(Operation::class, [
+        $this->operation = \Google\Cloud\Core\Testing\TestHelpers::stub(Operation::class, [
             $this->connection->reveal(),
             $this->opData['name'],
             $this->opData
