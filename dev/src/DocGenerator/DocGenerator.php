@@ -90,6 +90,10 @@ class DocGenerator
                     $this->isComponent
                 );
             } else {
+                if (strpos($file, '.github') !== false) {
+                    continue;
+                }
+
                 $content = file_get_contents($file);
                 $split = explode('src/', $file);
                 $parser = new MarkdownParser($split[1], $content);
