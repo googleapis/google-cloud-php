@@ -90,7 +90,7 @@ class BatchRunnerTest extends TestCase
 
     public function testRegisterJob()
     {
-        $this->batchConfig->registerJob('test', Argument::type(\Closure::class), [])
+        $this->batchConfig->registerJob('test', Argument::type(\Closure::class))
             ->shouldBeCalledTimes(1);
         $config = $this->batchConfig->reveal();
         $this->configStorage->lock()
