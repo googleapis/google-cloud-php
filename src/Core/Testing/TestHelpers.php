@@ -45,10 +45,12 @@ class TestHelpers
 
         $tpl = 'class %s extends %s {private $___props = \'%s\'; use \Google\Cloud\Core\Testing\StubTrait; }';
 
-        $name = 'Stub' . sha1($extends);
+        $props = json_encode($props);
+
+        $name = 'Stub' . sha1($extends . $props);
 
         if (!class_exists($name)) {
-            eval(sprintf($tpl, $name, $extends, json_encode($props)));
+            eval(sprintf($tpl, $name, $extends, $props));
         }
 
         $reflection = new \ReflectionClass($name);
