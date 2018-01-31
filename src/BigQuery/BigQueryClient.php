@@ -100,7 +100,7 @@ class BigQueryClient
      */
     public function __construct(array $config = [])
     {
-        $this->setHttpRetryCodes([]);
+        $this->setHttpRetryCodes([502]);
         $this->setHttpRetryMessages([
             'rateLimitExceeded',
             'backendError'
