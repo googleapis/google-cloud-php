@@ -38,17 +38,19 @@ class BatchJob implements JobInterface
     use InterruptTrait;
 
     /**
-     * @var callable
+     * @var callable The batch job handler. This callable accepts an array
+     *      of items and should return a boolean.
      */
     private $func;
 
     /**
-     * @var int
+     * @var int The size of the batch.
      */
     private $batchSize;
 
     /**
-     * @var float
+     * @var float The period in seconds from the last execution to force
+     *      executing the job.
      */
     private $callPeriod;
 
@@ -167,6 +169,9 @@ class BatchJob implements JobInterface
     }
 
     /**
+     * Returns the period in seconds from the last execution to force
+     * executing the job.
+     *
      * @return float
      */
     public function getCallPeriod()
@@ -175,6 +180,8 @@ class BatchJob implements JobInterface
     }
 
     /**
+     * Returns the batch size.
+     *
      * @return int
      */
     public function getBatchSize()

@@ -42,6 +42,7 @@ class SimpleJob implements JobInterface
      * @param string $identifier Unique identifier of the job.
      * @param callable $func Any Callable except for Closure. The callable
      *      should not accept arguments and should loop forever.
+     * @param int $id The job id.
      * @param array $options [optional] {
      *      Configuration options.
      *

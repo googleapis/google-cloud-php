@@ -86,17 +86,4 @@ trait JobTrait
     {
         return $this->bootstrapFile;
     }
-
-    /**
-     * Callback triggered when this job is deserialized. If there is a required
-     * bootstrapFile, we require the file and signal to the parent to retry
-     * deserialization.
-     */
-    public function __wakeup()
-    {
-        if ($this->bootstrapFile && !in_array($this->bootstrapFile, get_included_files())) {
-            require_once $this->bootstrapFile;
-            throw new ReloadJobConfigException();
-        }
-    }
 }

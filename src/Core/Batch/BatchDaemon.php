@@ -149,7 +149,7 @@ class BatchDaemon
     }
 
     /**
-     * Fetch the job by id
+     * Fetch the child job by id.
      *
      * @param int $idNum The id of the job to find
      * @return JobInterface

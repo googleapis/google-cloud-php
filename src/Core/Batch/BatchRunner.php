@@ -109,8 +109,7 @@ class BatchRunner
             $identifier,
             function ($id) use ($identifier, $func, $options) {
                 return new BatchJob($identifier, $func, $id, $options);
-            },
-            $options
+            }
         );
 
         try {
@@ -189,8 +188,6 @@ class BatchRunner
             throw new \RuntimeException('Failed to lock the configStorage');
         }
         try {
-            $result = $this->configStorage->load();
-        } catch (ReloadJobConfigException $e) {
             $result = $this->configStorage->load();
         } catch (\RuntimeException $e) {
             $this->configStorage->clear();

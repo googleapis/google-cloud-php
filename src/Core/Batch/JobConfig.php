@@ -28,17 +28,18 @@ namespace Google\Cloud\Core\Batch;
 class JobConfig
 {
     /**
-     * @var JobInterface[]
+     * @var array[string]JobInterface Associative array of JobInterface instances
+     *      keyed by identifier
      */
     private $jobs = [];
 
     /**
-     * @var array
+     * @var array[string]int Associative array of job identifier to job id.
      */
     private $identifierToId = [];
 
     /**
-     * @var array
+     * @var array[int]string Associative array of job id to job identifier.
      */
     private $idToIdentifier = [];
 
@@ -74,19 +75,8 @@ class JobConfig
      * Register a job for executing in batch.
      *
      * @param string $identifier Unique identifier of the job.
-     * @param callable $func Any Callable except for Closure. The callable
-     *        should accept an array of items as the first argument.
-     * @param array $options [optional] {
-     *     Configuration options.
-     *
-     *     @type int $batchSize The size of the batch.
-     *     @type float $callPeriod The period in seconds from the last execution
-     *                 to force executing the job.
-     *     @type int $numWorkers The number of child processes. It only takes
-     *               effect with the {@see \Google\Cloud\Core\Batch\BatchDaemon}.
-     *     @type string $bootstrapFile A file to load before executing the
-     *                  job. It's needed for registering global functions.
-     * }
+     * @param callable $callback Callback that accepts the job $idNum
+     *        and returns a JobInterface instance.
      * @return void
      */
     public function registerJob($identifier, $callback)
