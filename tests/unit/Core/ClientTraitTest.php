@@ -281,7 +281,7 @@ class ClientTraitTest extends TestCase
         $m = $this->prophesize(Metadata::class);
         $m->getNumericProjectId()->willReturn($projectId)->shouldBeCalled();
 
-        $trait = \Google\Cloud\Dev\impl(ClientTraitStubOnGce::class, ['metadata']);
+        $trait = \Google\Cloud\Core\Testing\Functions::impl(ClientTraitStubOnGce::class, ['metadata']);
         $trait->___setProperty('metadata', $m);
 
         $res = $trait->call('detectProjectId', [['preferNumericProjectId' => true]]);
