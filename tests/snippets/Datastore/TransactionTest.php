@@ -17,6 +17,8 @@
 
 namespace Google\Cloud\Tests\Snippets\Datastore;
 
+use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
+use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Datastore\Connection\ConnectionInterface;
 use Google\Cloud\Datastore\DatastoreClient;
 use Google\Cloud\Datastore\EntityMapper;
@@ -24,7 +26,6 @@ use Google\Cloud\Datastore\Key;
 use Google\Cloud\Datastore\Operation;
 use Google\Cloud\Datastore\Query\QueryInterface;
 use Google\Cloud\Datastore\Transaction;
-use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
 use Prophecy\Argument;
 
 /**
@@ -70,14 +71,11 @@ class TransactionTest extends SnippetTestCase
                 'transaction' => 'foo'
             ]);
 
+        $client = TestHelpers::stub(DatastoreClient::class);
+        $client->___setProperty('connection', $connectionStub->reveal());
         $snippet = $this->snippetFromClass(Transaction::class);
-        $snippet->insertAfterLine(3, '$reflection = new \ReflectionClass($datastore);
-            $property = $reflection->getProperty(\'connection\');
-            $property->setAccessible(true);
-            $property->setValue($datastore, $connectionStub);
-            $property->setAccessible(false);'
-        );
-        $snippet->addLocal('connectionStub', $connectionStub->reveal());
+        $snippet->setLine(2, '');
+        $snippet->addLocal('datastore', $client);
 
         $res = $snippet->invoke('transaction');
         $this->assertInstanceOf(Transaction::class, $res->returnVal());

@@ -17,6 +17,8 @@
 
 namespace Google\Cloud\Tests\Snippets\Datastore;
 
+use Google\Cloud\Core\Int64;
+use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
 use Google\Cloud\Datastore\Blob;
 use Google\Cloud\Datastore\Connection\ConnectionInterface;
 use Google\Cloud\Datastore\DatastoreClient;
@@ -28,9 +30,8 @@ use Google\Cloud\Datastore\Operation;
 use Google\Cloud\Datastore\Query\GqlQuery;
 use Google\Cloud\Datastore\Query\Query;
 use Google\Cloud\Datastore\Query\QueryInterface;
+use Google\Cloud\Datastore\ReadOnlyTransaction;
 use Google\Cloud\Datastore\Transaction;
-use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
-use Google\Cloud\Core\Int64;
 use Prophecy\Argument;
 
 /**
@@ -287,7 +288,7 @@ class DatastoreClientTest extends SnippetTestCase
         $snippet = $this->snippetFromMethod(DatastoreClient::class, 'transaction');
         $snippet->addLocal('datastore', $this->client);
 
-        $this->connection->beginTransaction(Argument::any())
+        $this->connection->beginTransaction($this->validateTransactionOptions('readWrite'))
             ->shouldBeCalled()
             ->willReturn([
                 'transaction' => 'foo'
@@ -297,6 +298,20 @@ class DatastoreClientTest extends SnippetTestCase
 
         $res = $snippet->invoke('transaction');
         $this->assertInstanceOf(Transaction::class, $res->returnVal());
+    }
+
+    public function testReadOnlyTransaction()
+    {
+        $snippet = $this->snippetFromMethod(DatastoreClient::class, 'readOnlyTransaction');
+        $snippet->addLocal('datastore', $this->client);
+        $this->connection->beginTransaction($this->validateTransactionOptions('readOnly'))
+            ->shouldBeCalled()
+            ->willReturn([
+                'transaction' => 'foo'
+            ]);
+        $this->client->setConnection($this->connection->reveal());
+        $res = $snippet->invoke('transaction');
+        $this->assertInstanceOf(ReadOnlyTransaction::class, $res->returnVal());
     }
 
     public function testInsert()
@@ -633,6 +648,28 @@ class DatastoreClientTest extends SnippetTestCase
             ]);
 
         return $this->connection->reveal();
+    }
+
+    private function validateTransactionOptions($type, array $options = [])
+    {
+        return Argument::that(function ($args) use ($type, $options) {
+            if (!isset($args['transactionOptions'])) {
+                echo 'missing opts';
+                return false;
+            }
+            if (!array_key_exists($type, $args['transactionOptions'])) {
+                echo 'missing key';
+                return false;
+            }
+
+            if (!empty((array) $options)) {
+                return $options === $args['transactionOptions'][$type];
+            } else {
+                return is_object($args['transactionOptions'][$type]) && empty((array) $args['transactionOptions'][$type]);
+            }
+
+            return true;
+        });
     }
 }
 

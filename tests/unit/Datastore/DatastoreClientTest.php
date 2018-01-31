@@ -17,6 +17,7 @@
 
 namespace Google\Cloud\Tests\Unit\Datastore;
 
+use Google\Cloud\Core\Int64;
 use Google\Cloud\Datastore\Blob;
 use Google\Cloud\Datastore\Connection\ConnectionInterface;
 use Google\Cloud\Datastore\DatastoreClient;
@@ -27,9 +28,10 @@ use Google\Cloud\Datastore\Operation;
 use Google\Cloud\Datastore\Query\GqlQuery;
 use Google\Cloud\Datastore\Query\Query;
 use Google\Cloud\Datastore\Query\QueryInterface;
+use Google\Cloud\Datastore\ReadOnlyTransaction;
 use Google\Cloud\Datastore\Transaction;
-use Prophecy\Argument;
 use PHPUnit\Framework\TestCase;
+use Prophecy\Argument;
 
 /**
  * @group datastore
@@ -154,6 +156,13 @@ class DatastoreClientTest extends TestCase
         $this->assertEquals('foo', (string) $blob);
     }
 
+    public function testInt64()
+    {
+        $int64 = $this->datastore->int64('12345');
+        $this->assertInstanceOf(Int64::class, $int64);
+        $this->assertEquals('12345', $int64->get());
+    }
+
     public function testGeoPoint()
     {
         $point = $this->datastore->geoPoint(1.1, 0.1);
@@ -197,7 +206,7 @@ class DatastoreClientTest extends TestCase
 
     public function testTransaction()
     {
-        $this->connection->beginTransaction(Argument::type('array'))
+        $this->connection->beginTransaction($this->validateTransactionOptions('readWrite'))
             ->shouldBeCalled()
             ->willReturn(['transaction' => '1234']);
 
@@ -206,6 +215,62 @@ class DatastoreClientTest extends TestCase
         $t = $this->datastore->transaction();
 
         $this->assertInstanceOf(Transaction::class, $t);
+    }
+
+    public function testTransactionPreviousTransaction()
+    {
+        $prev = 'foo';
+        $id = 'bar';
+
+        $this->connection->beginTransaction($this->validateTransactionOptions('readWrite', [
+            'previousTransaction' => $prev
+        ]))->shouldBeCalled()->willReturn(['transaction' => $id]);
+
+        $this->datastore->setConnection($this->connection->reveal());
+
+        $t = $this->datastore->transaction(['transactionOptions' => ['previousTransaction' => $prev]]);
+        $this->assertInstanceOf(Transaction::class, $t);
+    }
+
+    public function testTransactionWithOptions()
+    {
+        $id = 'bar';
+
+        $this->connection->beginTransaction($this->validateTransactionOptions('readWrite', [
+            'foo' => 'bar'
+        ]))->shouldBeCalled()->willReturn(['transaction' => $id]);
+
+        $this->datastore->setConnection($this->connection->reveal());
+
+        $t = $this->datastore->transaction(['transactionOptions' => ['foo' => 'bar']]);
+        $this->assertInstanceOf(Transaction::class, $t);
+    }
+
+    public function testReadOnlyTransaction()
+    {
+        $this->connection->beginTransaction($this->validateTransactionOptions('readOnly'))
+            ->shouldBeCalled()
+            ->willReturn(['transaction' => '1234']);
+
+        $this->datastore->setConnection($this->connection->reveal());
+
+        $t = $this->datastore->readOnlyTransaction();
+
+        $this->assertInstanceOf(ReadOnlyTransaction::class, $t);
+    }
+
+    public function testReadOnlyTransactionWithOptions()
+    {
+        $id = 'bar';
+
+        $this->connection->beginTransaction($this->validateTransactionOptions('readOnly', [
+                'foo' => 'bar'
+        ]))->shouldBeCalled()->willReturn(['transaction' => $id]);
+
+        $this->datastore->setConnection($this->connection->reveal());
+
+        $t = $this->datastore->readOnlyTransaction(['transactionOptions' => ['foo' => 'bar']]);
+        $this->assertInstanceOf(ReadOnlyTransaction::class, $t);
     }
 
     public function testInsert()
@@ -441,6 +506,28 @@ class DatastoreClientTest extends TestCase
         $res = $this->datastore->runQuery($q);
 
         $this->assertEquals($res, 'foo');
+    }
+
+    private function validateTransactionOptions($type, array $options = [])
+    {
+        return Argument::that(function ($args) use ($type, $options) {
+            if (!isset($args['transactionOptions'])) {
+                echo 'missing opts';
+                return false;
+            }
+            if (!array_key_exists($type, $args['transactionOptions'])) {
+                echo 'missing key';
+                return false;
+            }
+
+            if (!empty((array) $options)) {
+                return $options === $args['transactionOptions'][$type];
+            } else {
+                return is_object($args['transactionOptions'][$type]) && empty((array) $args['transactionOptions'][$type]);
+            }
+
+            return true;
+        });
     }
 }
 
