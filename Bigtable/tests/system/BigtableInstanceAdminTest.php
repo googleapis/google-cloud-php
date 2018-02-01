@@ -20,7 +20,7 @@ namespace Google\Cloud\Tests\System\Bigtable;
 use Google\Auth\CredentialsLoader;
 use Google\Cloud\Bigtable\Admin\V2\BigtableInstanceAdminClient;
 use Google\Cloud\Bigtable\Admin\V2\ListInstancesResponse;
-use Google\Cloud\Tests\System\SystemTestCase;
+use Google\Cloud\Core\Testing\System\SystemTestCase;
 
 class BigtableInstanceAdminClientTest extends SystemTestCase
 {
