@@ -23,7 +23,7 @@ namespace Google\Cloud\Debugger;
  *
  * Example:
  * ```
- * $iterator = new MatchingFileIterator('.', 'src/Debugger/DebuggerClient.php');
+ * $iterator = new MatchingFileIterator('.', 'Debugger/src/DebuggerClient.php');
  * $matches = iterator_to_array($iterator);
  * ```
  *
