@@ -18,9 +18,9 @@
 namespace Google\Cloud\Tests\System\Container;
 
 use Google\Auth\CredentialsLoader;
+use Google\Cloud\Core\Testing\System\SystemTestCase;
 use Google\Cloud\OsLogin\V1beta\OsLoginServiceClient;
 use Google\Cloud\OsLogin\V1beta\LoginProfile;
-use Google\Cloud\Tests\System\SystemTestCase;
 
 class OsLoginServiceClientTest extends SystemTestCase
 {

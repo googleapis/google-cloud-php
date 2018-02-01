@@ -19,9 +19,9 @@ namespace Google\Cloud\Tests\System\Container;
 
 use Google\Auth\CredentialsLoader;
 use Google\ApiCore\PagedListResponse;
+use Google\Cloud\Core\Testing\System\SystemTestCase;
 use Google\Cloud\Dataproc\V1\ClusterControllerClient;
 use Google\Cloud\Dataproc\V1\ListClustersResponse;
-use Google\Cloud\Tests\System\SystemTestCase;
 
 class ClusterControllerClientTest extends SystemTestCase
 {
