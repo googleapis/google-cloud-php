@@ -24,7 +24,7 @@ namespace Google\Cloud\Debugger;
  *
  * Example:
  * ```
- * $location = new SourceLocation('src/Debugger/DebuggerClient.php', 1);
+ * $location = new SourceLocation('Debugger/src/DebuggerClient.php', 1);
  * $resolver = new SourceLocationResolver();
  * $resolvedLocation = $resolver->resolve($location);
  * ```
@@ -43,7 +43,7 @@ class SourceLocationResolver
      *
      * Example:
      * ```
-     * $location = new SourceLocation('src/Debugger/DebuggerClient.php', 1);
+     * $location = new SourceLocation('Debugger/src/DebuggerClient.php', 1);
      * $resolver = new SourceLocationResolver();
      * $resolvedLocation = $resolver->resolve($location);
      * ```
@@ -52,7 +52,7 @@ class SourceLocationResolver
      *
      * Example:
      * ```
-     * $location = new SourceLocation('extra/folder/src/Debugger/DebuggerClient.php', 1);
+     * $location = new SourceLocation('extra/folder/Debugger/src/DebuggerClient.php', 1);
      * $resolver = new SourceLocationResolver();
      * $resolvedLocation = $resolver->resolve($location);
      * ```
@@ -61,7 +61,7 @@ class SourceLocationResolver
      *
      * Example:
      * ```
-     * $location = new SourceLocation('Debugger/DebuggerClient.php', 1);
+     * $location = new SourceLocation('src/DebuggerClient.php', 1);
      * $resolver = new SourceLocationResolver();
      * $resolvedLocation = $resolver->resolve($location);
      *
