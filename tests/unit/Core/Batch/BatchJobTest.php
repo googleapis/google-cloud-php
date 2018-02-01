@@ -60,15 +60,6 @@ class BatchJobTest extends TestCase
         $this->assertEquals('testing', $job->identifier());
     }
 
-    // public function testRun()
-    // {
-    //     $job = new BatchJob('testing', array($this, 'runJob'), 1);
-    //     $items = array('apple', 'orange', 'banana');
-    //     $expected = array('APPLE', 'ORANGE', 'BANANA');
-    //     $job->run($items);
-    //     $this->assertEquals($expected, $this->items);
-    // }
-
     /**
      * A method that we use for the test.
      */
