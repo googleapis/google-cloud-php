@@ -40,7 +40,7 @@ $filteredIterator = new ExcludeFilter(
 
 $parser = new Parser;
 $scanner = new Scanner($parser, $filteredIterator);
-$coverage = new Coverage($scanner, ['/\\\Google\\\Cloud\\\Core\\\Timestamp/']);
+$coverage = new Coverage($scanner);
 $coverage->buildListToCover();
 
 Container::$coverage = $coverage;
