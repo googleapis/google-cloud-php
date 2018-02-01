@@ -34,8 +34,8 @@ class ExcludeFilter extends FilterIterator {
 }
 
 $filteredIterator = new ExcludeFilter(
-    new GlobIterator(__DIR__ . '/../../*/src'),
-    ['dev/src']
+    new GlobIterator(__DIR__ . '/../../src'),
+    []
 );
 
 $parser = new Parser;

@@ -2,7 +2,6 @@
 
 require __DIR__ . '/../../vendor/autoload.php';
 
-use Google\Cloud\Tests\System\BigQuery\BigQueryTestCase;
 use Google\Cloud\Core\Testing\System\SystemTestCase;
 
 if (!getenv('GOOGLE_CLOUD_PHP_TESTS_KEY_PATH')) {
