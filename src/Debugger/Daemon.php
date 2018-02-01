@@ -17,6 +17,7 @@
 
 namespace Google\Cloud\Debugger;
 
+use Google\Cloud\Core\Report\MetadataProviderUtils;
 use Google\Cloud\Core\Exception\ConflictException;
 use Google\Cloud\Debugger\BreakpointStorage\BreakpointStorageInterface;
 use Google\Cloud\Debugger\BreakpointStorage\SysvBreakpointStorage;
@@ -200,12 +201,17 @@ class Daemon
     private function defaultLabels()
     {
         $labels = [];
-        if (isset($_SERVER['GAE_SERVICE'])) {
-            $labels['module'] = $_SERVER['GAE_SERVICE'];
+        $provider = MetadataProviderUtils::autoSelect($_SERVER);
+        if ($provider->projectId()) {
+            $labels['projectid'] = $provider->projectId();
         }
-        if (isset($_SERVER['GAE_VERSION'])) {
-            $labels['version'] = $_SERVER['GAE_VERSION'];
+        if ($provider->serviceId()) {
+            $labels['module'] = $provider->serviceId();
         }
+        if ($provider->versionId()) {
+            $labels['version'] = $provider->versionId();
+        }
+        var_dump($labels);
         return $labels;
     }
 }
