@@ -10,6 +10,8 @@
     "require-dev": {
         "phpunit/phpunit": "^4.8|^5.0",
         "squizlabs/php_codesniffer": "2.*",
+        "phpdocumentor/reflection": "^3.0",
+        "erusev/parsedown": "^1.6",
         "google/cloud-core": "dev-master as 1.14",
         "google/cloud-storage": "^1.3"
     },
@@ -28,6 +30,13 @@
     "autoload": {
         "psr-4": {
             "Google\\Cloud\\BigQuery\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Google\\Cloud\\Tests\\Unit\\BigQuery\\": "tests/unit",
+            "Google\\Cloud\\Tests\\Snippet\\BigQuery\\": "tests/snippets",
+            "Google\\Cloud\\Tests\\System\\BigQuery\\": "tests/system"
         }
     },
     "repositories": [{
