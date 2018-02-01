@@ -20,7 +20,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Google\\Cloud\\Bigtable\\": ""
+            "Google\\Cloud\\Bigtable\\": "src"
         }
     }
 }
