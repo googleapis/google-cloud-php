@@ -30,6 +30,7 @@
 
 namespace Google\Cloud\Bigtable\V2;
 
+use Google\Cloud\Bigtable\V2\ChunkFormatter;
 use Google\Cloud\Bigtable\V2\Gapic\BigtableGapicClient;
 
 /**
@@ -37,6 +38,24 @@ use Google\Cloud\Bigtable\V2\Gapic\BigtableGapicClient;
  */
 class BigtableClient extends BigtableGapicClient
 {
-    // This class is intentionally empty, and is intended to hold manual
-    // additions to the generated {@see BigtableClientImpl} class.
+	// This class is intentionally empty, and is intended to hold manual
+	// additions to the generated {@see BigtableClientImpl} class.
+
+	/*
+	 * @param string $table 		The unique name of the table to be deleted.
+	 *                          	Values are of the form
+	 *                          	`projects/<project>/instances/<instance>/tables/<table>`.
+	 * 
+	 * 
+	 * @param array  $optionalArgs {
+	 *                             Optional.
+	 *
+	 * @return  \Google\Cloud\Bigtable\V2\ChunkFormatter
+	 */
+	public function readRows($tableName, $optionalArgs = [])
+	{
+		$serverStream   = parent::readRows($tableName, $optionalArgs);
+		$chunkFormatter = new ChunkFormatter($serverStream, $optionalArgs);
+		return $chunkFormatter;
+	}
 }
