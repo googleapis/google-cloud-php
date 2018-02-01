@@ -9,11 +9,8 @@
     <whitelist>
       <directory suffix=".php">src</directory>
       <exclude>
-        <directory suffix=".php">src/Testing</directory>
+        <directory suffix=".php">src/V[!a-zA-Z]*</directory>
       </exclude>
     </whitelist>
   </filter>
-  <php>
-    <ini name="memory_limit" value="2048M"/>
-  </php>
 </phpunit>
