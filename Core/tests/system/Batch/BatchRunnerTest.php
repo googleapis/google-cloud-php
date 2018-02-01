@@ -60,7 +60,7 @@ class BatchRunnerTest extends TestCase
         @mkdir(self::$testDir);
         putenv('GOOGLE_CLOUD_BATCH_DAEMON_FAILURE_DIR=' . self::$testDir);
         $daemon_command = __DIR__
-            . '/../../../../src/Core/bin/google-cloud-batch daemon';
+            . '/../../../../Core/src/bin/google-cloud-batch daemon';
         self::$commandFile = tempnam(
             sys_get_temp_dir(),
             'batch-daemon-system-test'
