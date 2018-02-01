@@ -20,7 +20,7 @@ namespace Google\Cloud\Tests\System\Container;
 use Google\Auth\CredentialsLoader;
 use Google\Cloud\Container\V1\ClusterManagerClient;
 use Google\Cloud\Container\V1\ListOperationsResponse;
-use Google\Cloud\Tests\System\SystemTestCase;
+use Google\Cloud\Core\Testing\System\SystemTestCase;
 
 class ClusterManagerClientTest extends SystemTestCase
 {
