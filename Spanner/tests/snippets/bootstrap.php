@@ -34,13 +34,13 @@ class ExcludeFilter extends FilterIterator {
 }
 
 $filteredIterator = new ExcludeFilter(
-    new GlobIterator(__DIR__ . '/../../*/src'),
-    ['dev/src']
+    new GlobIterator(__DIR__ . '/../../src'),
+    []
 );
 
 $parser = new Parser;
 $scanner = new Scanner($parser, $filteredIterator);
-$coverage = new Coverage($scanner);
+$coverage = new Coverage($scanner, ['/\\\Google\\\Cloud\\\Core\\\Timestamp/']);
 $coverage->buildListToCover();
 
 Container::$coverage = $coverage;
