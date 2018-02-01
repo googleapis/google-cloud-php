@@ -145,7 +145,8 @@ class Debuggee implements \JsonSerializable
             'status' => null,
             'extSourceContexts' => [],
             'uniquifier' => null,
-            'description' => null
+            'description' => null,
+            'labels' => []
         ];
 
         $this->id = $info['id'];
@@ -156,6 +157,7 @@ class Debuggee implements \JsonSerializable
         $this->agentVersion = $info['agentVersion'];
         $this->isInactive = $info['isInactive'];
         $this->extSourceContexts = $info['extSourceContexts'];
+        $this->labels = $info['labels'];
     }
 
     /**
@@ -361,7 +363,7 @@ class Debuggee implements \JsonSerializable
      */
     public function jsonSerialize()
     {
-        return [
+        $info = [
             'id' => $this->id,
             'project' => $this->project,
             'uniquifier' => $this->uniquifier,
@@ -374,5 +376,9 @@ class Debuggee implements \JsonSerializable
             }, $this->extSourceContexts),
             'extSourceContexts' => $this->extSourceContexts
         ];
+        if (!empty($this->labels)) {
+            $info['labels'] = $this->labels;
+        }
+        return $info;
     }
 }

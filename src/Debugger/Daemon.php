@@ -83,7 +83,8 @@ class Daemon
             'sourceContext' => [],
             'extSourceContext' => [],
             'uniquifier' => null,
-            'description' => null
+            'description' => null,
+            'labels' => null
         ];
 
         $this->sourceRoot = realpath($sourceRoot);
@@ -98,11 +99,13 @@ class Daemon
 
         $uniquifier = $options['uniquifier'] ?: $this->defaultUniquifier();
         $description = $options['description'] ?: $this->defaultDescription();
+        $labels = $options['labels'] ?: $this->defaultLabels();
 
         $this->debuggee = $client->debuggee(null, [
             'uniquifier' => $uniquifier,
             'description' => $description,
-            'extSourceContexts' => $extSourceContext ? [$extSourceContext] : []
+            'extSourceContexts' => $extSourceContext ? [$extSourceContext] : [],
+            'labels' => $labels
         ]);
 
         $this->debuggee->register();
@@ -192,5 +195,17 @@ class Daemon
             return json_decode(file_get_contents($sourceContextFile), true);
         }
         return [];
+    }
+
+    private function defaultLabels()
+    {
+        $labels = [];
+        if (isset($_SERVER['GAE_SERVICE'])) {
+            $labels['module'] = $_SERVER['GAE_SERVICE'];
+        }
+        if (isset($_SERVER['GAE_VERSION'])) {
+            $labels['version'] = $_SERVER['GAE_VERSION'];
+        }
+        return $labels;
     }
 }
