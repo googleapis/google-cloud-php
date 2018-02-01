@@ -7,6 +7,12 @@
         "google/cloud-core": "^1.14",
         "ramsey/uuid": "~3"
     },
+    "require-dev": {
+        "phpunit/phpunit": "^4.8|^5.0",
+        "squizlabs/php_codesniffer": "2.*",
+        "google/cloud-core": "dev-master as 1.14",
+        "google/cloud-storage": "^1.3"
+    },
     "suggest": {
         "google/cloud-storage": "Makes it easier to load data from Cloud Storage into BigQuery"
     },
@@ -21,7 +27,11 @@
     },
     "autoload": {
         "psr-4": {
-            "Google\\Cloud\\BigQuery\\": ""
+            "Google\\Cloud\\BigQuery\\": "src"
         }
-    }
+    },
+    "repositories": [{
+        "type": "vcs",
+        "url": "/usr/local/google/home/michaelbausor/dev/veneer/google-cloud-php-core"
+    }]
 }
