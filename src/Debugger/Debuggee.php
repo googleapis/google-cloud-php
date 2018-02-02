@@ -130,8 +130,11 @@ class Debuggee implements \JsonSerializable
      *            user about this debuggee. Absence of this field indicates no
      *            status. The message can be either informational or an error
      *            status.
-     *      @type ExtendedSourceContext[] $extSourceContexts References to the locations and
-     *            revisions of the source code used in the deployed application.
+     *      @type ExtendedSourceContext[] $extSourceContexts References to the
+     *            locations and revisions of the source code used in the
+     *            deployed application.
+     *      @type array $labels  A set of custom debuggee properties, populated
+     *            by the agent, to be displayed to the user.
      * }
      */
     public function __construct(ConnectionInterface $connection, array $info = [])

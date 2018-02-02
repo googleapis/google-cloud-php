@@ -69,13 +69,17 @@ class Daemon
      *            debuggee. **Defaults to** a value autodetected from the
      *            environment.
      *      @type string $description A display name for the debuggee in the
-     *            Stackdriver Debugger UI. **Defaults to** the uniquifier.
+     *            Stackdriver Debugger UI. **Defaults to** a value detected
+     *            from the environment.
      *      @type BreakpointStorageInterface $storage The breakpoint storage
      *            mechanism to use. **Defaults to** a new SysvBreakpointStorage
      *            instance.
-     *     @type MetadataProviderInterface $metadataProvider **Defaults to** An
-     *           automatically chosen provider, based on detected environment
-     *           settings.
+     *      @type array $labels A set of custom debuggee properties, populated
+     *            by the agent, to be displayed to the user. **Defaults to**
+     *            labels detected from the environment.
+     *      @type MetadataProviderInterface $metadataProvider **Defaults to** An
+     *            automatically chosen provider, based on detected environment
+     *            settings.
      * }
      */
     public function __construct($sourceRoot, array $options = [])
