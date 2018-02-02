@@ -18,11 +18,11 @@
 namespace Google\Cloud\Tests\System\Container;
 
 use Google\Auth\CredentialsLoader;
-use Google\Cloud\Core\Testing\System\SystemTestCase;
 use Google\Cloud\OsLogin\V1beta\OsLoginServiceClient;
 use Google\Cloud\OsLogin\V1beta\LoginProfile;
+use PHPUnit\Framework\TestCase;
 
-class OsLoginServiceClientTest extends SystemTestCase
+class OsLoginServiceClientTest extends TestCase
 {
     protected static $grpcClient;
     protected static $restClient;

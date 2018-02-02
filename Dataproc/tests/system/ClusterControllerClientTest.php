@@ -19,11 +19,11 @@ namespace Google\Cloud\Tests\System\Container;
 
 use Google\Auth\CredentialsLoader;
 use Google\ApiCore\PagedListResponse;
-use Google\Cloud\Core\Testing\System\SystemTestCase;
 use Google\Cloud\Dataproc\V1\ClusterControllerClient;
 use Google\Cloud\Dataproc\V1\ListClustersResponse;
+use PHPUnit\Framework\TestCase;
 
-class ClusterControllerClientTest extends SystemTestCase
+class ClusterControllerClientTest extends TestCase
 {
     const REGION = 'global';
 
