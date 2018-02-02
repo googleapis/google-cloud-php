@@ -4,9 +4,9 @@ require __DIR__ . '/../../vendor/autoload.php';
 
 use Google\Cloud\Core\Testing\System\SystemTestCase;
 
-if (!getenv('GOOGLE_CLOUD_PHP_TESTS_KEY_PATH')) {
+if (!getenv('GOOGLE_CLOUD_PHP_FIRESTORE_TESTS_KEY_PATH')) {
     throw new \Exception(
-        'Please set the \'GOOGLE_CLOUD_PHP_TESTS_KEY_PATH\' env var to run the system tests'
+        'Please set the \'GOOGLE_CLOUD_PHP_FIRESTORE_TESTS_KEY_PATH\' env var to run the system tests'
     );
 }
 
