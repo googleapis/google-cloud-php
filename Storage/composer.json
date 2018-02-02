@@ -6,6 +6,15 @@
     "require": {
         "google/cloud-core": "^1.14"
     },
+    "require-dev": {
+        "phpunit/phpunit": "^4.8|^5.0",
+        "squizlabs/php_codesniffer": "2.*",
+        "phpdocumentor/reflection": "^3.0",
+        "erusev/parsedown": "^1.6",
+        "google/cloud-core": "dev-master as 1.14",
+        "phpseclib/phpseclib": "^2",
+        "google/cloud-pubsub": "^0.12"
+    },
     "suggest": {
         "phpseclib/phpseclib": "May be used in place of OpenSSL for creating signed Cloud Storage URLs. Please require version ^2.",
         "google/cloud-pubsub": "May be used to register a topic to receive bucket notifications."
@@ -20,7 +29,18 @@
     },
     "autoload": {
         "psr-4": {
-            "Google\\Cloud\\Storage\\": ""
+            "Google\\Cloud\\Storage\\": "src"
         }
-    }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Google\\Cloud\\Tests\\Unit\\Storage\\": "tests/unit",
+            "Google\\Cloud\\Tests\\Snippet\\Storage\\": "tests/snippets",
+            "Google\\Cloud\\Tests\\System\\Storage\\": "tests/system"
+        }
+    },
+    "repositories": [{
+        "type": "vcs",
+        "url": "/usr/local/google/home/michaelbausor/dev/veneer/google-cloud-php-core"
+    }]
 }

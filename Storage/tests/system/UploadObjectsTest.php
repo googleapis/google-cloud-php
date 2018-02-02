@@ -45,7 +45,7 @@ class UploadObjectsTest extends StorageTestCase
 
     public function testUploadsObjectFromResource()
     {
-        $path = __DIR__ . '/../data/CloudPlatform_128px_Retina.png';
+        $path = __DIR__ . '/data/CloudPlatform_128px_Retina.png';
         $object = self::$bucket->upload(
             fopen($path, 'r')
         );
@@ -56,7 +56,7 @@ class UploadObjectsTest extends StorageTestCase
 
     public function testUploadsLargeObjectFromResource()
     {
-        $path = __DIR__ . '/../data/5mb.txt';
+        $path = __DIR__ . '/data/5mb.txt';
         $object = self::$bucket->upload(
             fopen($path, 'r')
         );
@@ -96,7 +96,7 @@ class UploadObjectsTest extends StorageTestCase
 
     public function testUploadsObjectWithProgressTracking()
     {
-        $path = __DIR__ . '/../data/5mb.txt';
+        $path = __DIR__ . '/data/5mb.txt';
 
         $this->testFileSize = filesize($path);
 
@@ -119,7 +119,7 @@ class UploadObjectsTest extends StorageTestCase
         $this->assertFalse($this->testFileSize < $this->totalStoredBytes);
 
         if ($this->testFileSize == $this->totalStoredBytes) {
-            $this->assertEquals(filesize(__DIR__ . '/../data/5mb.txt'), $this->totalStoredBytes);
+            $this->assertEquals(filesize(__DIR__ . '/data/5mb.txt'), $this->totalStoredBytes);
         }
     }
 }
