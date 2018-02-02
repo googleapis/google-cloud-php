@@ -35,6 +35,6 @@
     },
     "repositories": [{
         "type": "vcs",
-        "url": "/usr/local/google/home/michaelbausor/dev/veneer/google-cloud-php-core"
+        "url": "https://github.com/michaelbausor/google-cloud-php-core.git"
     }]
 }
