@@ -60,7 +60,14 @@ class LoggingClientTest extends TestCase
 
     public function testPsrBatchLogger()
     {
-        $psrBatchLogger = LoggingClient::psrBatchLogger('app');
+        $psrBatchLogger = LoggingClient::psrBatchLogger(
+            'app',
+            [
+                'clientConfig' => [
+                    'projectId' => 'project',
+                ]
+            ]
+        );
         $this->assertInstanceOf(PsrLogger::class, $psrBatchLogger);
         $r = new \ReflectionObject($psrBatchLogger);
         $p = $r->getProperty('batchEnabled');
