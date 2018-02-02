@@ -175,7 +175,7 @@ class DatastoreClientTest extends TestCase
 
     public function testAllocateId()
     {
-        $datastore = new DatastoreClientStubNoService;
+        $datastore = new DatastoreClientStubNoService(['projectId' => 'foo']);
 
         $key = $datastore->key('Person');
 
@@ -453,7 +453,7 @@ class DatastoreClientTest extends TestCase
 
     public function testLookup()
     {
-        $ds = new DatastoreClientStubNoService;
+        $ds = new DatastoreClientStubNoService(['projectId' => 'foo']);
 
         $key = $ds->key('Kind', 'Value');
         $res = $ds->lookup($key);
