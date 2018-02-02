@@ -80,13 +80,11 @@ class DocGenerator
             if ($isPhp) {
                 $parser = new CodeParser(
                     $file,
-                    $currentFile,
                     $fileReflectorRegister,
                     dirname($this->executionPath),
                     $this->componentId,
                     $this->manifestPath,
                     $this->release,
-                    $basePath,
                     $this->isComponent
                 );
             } else {

@@ -39,7 +39,6 @@ class CodeParser implements ParserInterface
     private static $composerFiles = [];
 
     private $path;
-    private $fileName;
     private $register;
     private $markdown;
     private $projectRoot;
@@ -48,21 +47,17 @@ class CodeParser implements ParserInterface
     private $manifestPath;
     private $release;
     private $isComponent;
-    private $basePath;
 
     public function __construct(
         $path,
-        $fileName,
         ReflectorRegister $register,
         $projectRoot,
         $componentId,
         $manifestPath,
         $release,
-        $basePath,
         $isComponent = true
     ) {
         $this->path = $path;
-        $this->fileName = $fileName;
         $this->register = $register;
         $this->markdown = \Parsedown::instance();
         $this->projectRoot = $projectRoot;
@@ -70,7 +65,6 @@ class CodeParser implements ParserInterface
         $this->componentId = $componentId;
         $this->manifestPath = $manifestPath;
         $this->release = $release;
-        $this->basePath = $basePath;
         $this->isComponent = $isComponent;
     }
 
@@ -181,12 +175,7 @@ class CodeParser implements ParserInterface
 
     private function getPath($fileReflector)
     {
-        if (strpos($fileReflector->getFileName(), $this->basePath) !== false) {
-            $fileSplit = explode($this->basePath, trim($fileReflector->getFileName(), '/'));
-            return 'src/' . trim($fileSplit[1], '/');
-        }
-
-        return 'src/'. trim(explode('src', $fileReflector->getFileName())[1]);
+        return 'src' . trim(explode('src', $fileReflector->getFileName())[1]);
     }
 
     private function buildDocument($fileReflector, $reflector)
