@@ -17,6 +17,7 @@
 
 namespace Google\Cloud\Debugger;
 
+use Google\Cloud\Core\Report\MetadataProviderInterface;
 use Google\Cloud\Core\Report\MetadataProviderUtils;
 use Google\Cloud\Core\Exception\ConflictException;
 use Google\Cloud\Debugger\BreakpointStorage\BreakpointStorageInterface;
@@ -72,6 +73,9 @@ class Daemon
      *      @type BreakpointStorageInterface $storage The breakpoint storage
      *            mechanism to use. **Defaults to** a new SysvBreakpointStorage
      *            instance.
+     *     @type MetadataProviderInterface $metadataProvider **Defaults to** An
+     *           automatically chosen provider, based on detected environment
+     *           settings.
      * }
      */
     public function __construct($sourceRoot, array $options = [])
@@ -85,7 +89,8 @@ class Daemon
             'extSourceContext' => [],
             'uniquifier' => null,
             'description' => null,
-            'labels' => null
+            'labels' => null,
+            'metadataProvider' => null
         ];
 
         $this->sourceRoot = realpath($sourceRoot);
@@ -100,7 +105,7 @@ class Daemon
 
         $uniquifier = $options['uniquifier'] ?: $this->defaultUniquifier();
         $description = $options['description'] ?: $this->defaultDescription();
-        $labels = $options['labels'] ?: $this->defaultLabels();
+        $labels = $options['labels'] ?: $this->defaultLabels($options['metadataProvider']);
 
         $this->debuggee = $client->debuggee(null, [
             'uniquifier' => $uniquifier,
@@ -198,20 +203,19 @@ class Daemon
         return [];
     }
 
-    private function defaultLabels()
+    private function defaultLabels(MetadataProviderInterface $metadataProvider = null)
     {
+        $metadataProvider = $metadataProvider ?: MetadataProviderUtils::autoSelect($_SERVER);
         $labels = [];
-        $provider = MetadataProviderUtils::autoSelect($_SERVER);
-        if ($provider->projectId()) {
-            $labels['projectid'] = $provider->projectId();
+        if ($metadataProvider->projectId()) {
+            $labels['projectid'] = $metadataProvider->projectId();
         }
-        if ($provider->serviceId()) {
-            $labels['module'] = $provider->serviceId();
+        if ($metadataProvider->serviceId()) {
+            $labels['module'] = $metadataProvider->serviceId();
         }
-        if ($provider->versionId()) {
-            $labels['version'] = $provider->versionId();
+        if ($metadataProvider->versionId()) {
+            $labels['version'] = $metadataProvider->versionId();
         }
-        var_dump($labels);
         return $labels;
     }
 }
