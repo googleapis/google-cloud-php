@@ -6,6 +6,13 @@
     "require": {
         "google/cloud-core": "^1.14"
     },
+     "require-dev": {
+        "phpunit/phpunit": "^4.8|^5.0",
+        "squizlabs/php_codesniffer": "2.*",
+        "phpdocumentor/reflection": "^3.0",
+        "erusev/parsedown": "^1.6",
+        "google/cloud-core": "dev-master as 1.14"
+    },
     "extra": {
         "component": {
             "id": "cloud-translate",
@@ -16,7 +23,18 @@
     },
     "autoload": {
         "psr-4": {
-            "Google\\Cloud\\Translate\\": ""
+            "Google\\Cloud\\Translate\\": "src"
         }
-    }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Google\\Cloud\\Tests\\Unit\\Translate\\": "tests/unit",
+            "Google\\Cloud\\Tests\\Snippet\\Translate\\": "tests/snippets",
+            "Google\\Cloud\\Tests\\System\\Translate\\": "tests/system"
+        }
+    },
+    "repositories": [{
+        "type": "vcs",
+        "url": "/usr/local/google/home/michaelbausor/dev/veneer/google-cloud-php-core"
+    }]
 }
