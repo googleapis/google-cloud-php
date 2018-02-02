@@ -8,6 +8,14 @@
         "google/proto-client": "^0.34",
         "google/gax": "^0.30"
     },
+    "require-dev": {
+        "phpunit/phpunit": "^4.8|^5.0",
+        "squizlabs/php_codesniffer": "2.*",
+        "phpdocumentor/reflection": "^3.0",
+        "erusev/parsedown": "^1.6",
+        "google/cloud-core": "dev-master as 1.14",
+        "google/cloud-storage": "^1.3"
+    },
     "suggest": {
         "ext-grpc": "The gRPC extension enables use of the performant gRPC transport",
         "ext-protobuf": "Provides a significant increase in throughput over the pure PHP protobuf implementation. See https://cloud.google.com/php/grpc for installation instructions.",
@@ -23,7 +31,18 @@
     },
     "autoload": {
         "psr-4": {
-            "Google\\Cloud\\Vision\\": ""
+            "Google\\Cloud\\Vision\\": "src"
         }
-    }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Google\\Cloud\\Tests\\Unit\\Vision\\": "tests/unit",
+            "Google\\Cloud\\Tests\\Snippet\\Vision\\": "tests/snippets",
+            "Google\\Cloud\\Tests\\System\\Vision\\": "tests/system"
+        }
+    },
+    "repositories": [{
+        "type": "vcs",
+        "url": "/usr/local/google/home/michaelbausor/dev/veneer/google-cloud-php-core"
+    }]
 }
