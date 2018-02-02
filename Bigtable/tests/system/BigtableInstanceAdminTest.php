@@ -20,9 +20,9 @@ namespace Google\Cloud\Tests\System\Bigtable;
 use Google\Auth\CredentialsLoader;
 use Google\Cloud\Bigtable\Admin\V2\BigtableInstanceAdminClient;
 use Google\Cloud\Bigtable\Admin\V2\ListInstancesResponse;
-use Google\Cloud\Core\Testing\System\SystemTestCase;
+use PHPUnit\Framework\TestCase;
 
-class BigtableInstanceAdminClientTest extends SystemTestCase
+class BigtableInstanceAdminClientTest extends TestCase
 {
     protected static $grpcClient;
     protected static $restClient;

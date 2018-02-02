@@ -22,7 +22,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Google\\Cloud\\ErrorReporting\\": ""
+            "Google\\Cloud\\ErrorReporting\\": "src"
         }
     }
 }

@@ -20,9 +20,9 @@ namespace Google\Cloud\Tests\System\Container;
 use Google\Auth\CredentialsLoader;
 use Google\Cloud\Container\V1\ClusterManagerClient;
 use Google\Cloud\Container\V1\ListOperationsResponse;
-use Google\Cloud\Core\Testing\System\SystemTestCase;
+use PHPUnit\Framework\TestCase;
 
-class ClusterManagerClientTest extends SystemTestCase
+class ClusterManagerClientTest extends TestCase
 {
     const ZONE = 'us-central1-b';
 
