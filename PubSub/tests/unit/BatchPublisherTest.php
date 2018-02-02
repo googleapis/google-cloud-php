@@ -54,7 +54,7 @@ class BatchPublisherTest extends TestCase
 
     public function testGetCallback()
     {
-        $callbackArray = (new TestBatchPublisher(self::TOPIC_NAME))
+        $callbackArray = (new TestBatchPublisher(self::TOPIC_NAME, ['clientConfig' => ['projectId' => 'example_project']]))
             ->getCallbackArray();
 
         $this->assertInstanceOf(Topic::class, $callbackArray[0]);
