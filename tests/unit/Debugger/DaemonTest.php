@@ -175,7 +175,8 @@ class DaemonTest extends TestCase
 
         $daemon = new Daemon('.', [
             'metadataProvider' => $provider,
-            'client' => $this->client->reveal()
+            'client' => $this->client->reveal(),
+            'storage' => $this->storage->reveal()
         ]);
     }
 }
