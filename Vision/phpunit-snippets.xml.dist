@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<phpunit bootstrap="./tests/snippets/bootstrap.php" colors="true">
+<phpunit bootstrap="./tests/Snippet/bootstrap.php" colors="true">
   <testsuites>
     <testsuite>
-      <directory>tests/snippets</directory>
+      <directory>tests/Snippet</directory>
     </testsuite>
   </testsuites>
   <filter>
