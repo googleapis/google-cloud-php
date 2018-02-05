@@ -19,15 +19,15 @@
 namespace Google\Cloud\Core\Batch;
 
 // Load the autoloader
-if (file_exists(__DIR__ . '/../../../vendor/autoload.php')) {
+if (file_exists(__DIR__ . '/../vendor/autoload.php')) {
     // Called from local git clone.
-    require_once __DIR__ . '/../../../vendor/autoload.php';
+    require_once __DIR__ . '/../vendor/autoload.php';
 } elseif (file_exists(__DIR__ . '/../../../autoload.php')) {
     // Called from google/cloud-core installation.
     require_once __DIR__ . '/../../../autoload.php';
-} elseif (file_exists(__DIR__ . '/../../../../../autoload.php')) {
+} elseif (file_exists(__DIR__ . '/../../../../autoload.php')) {
     // Called from google/cloud installation.
-    require_once __DIR__ . '/../../../../../autoload.php';
+    require_once __DIR__ . '/../../../../autoload.php';
 } else {
     die('No autoloader found');
 }

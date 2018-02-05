@@ -60,7 +60,7 @@ class BatchRunnerTest extends TestCase
         @mkdir(self::$testDir);
         putenv('GOOGLE_CLOUD_BATCH_DAEMON_FAILURE_DIR=' . self::$testDir);
         $daemon_command = __DIR__
-            . '/../../../../Core/src/bin/google-cloud-batch daemon';
+            . '/../../../bin/google-cloud-batch daemon';
         self::$commandFile = tempnam(
             sys_get_temp_dir(),
             'batch-daemon-system-test'
@@ -155,7 +155,7 @@ class BatchRunnerTest extends TestCase
         unlink(self::$commandFile);
         if (self::$run_daemon) {
             $retry_command = __DIR__
-                . '/../../../../src/Core/bin/google-cloud-batch retry';
+                . '/../../../bin/google-cloud-batch retry';
             exec($retry_command);
         } else {
             // The in-memory implementation doesn't share the BatchConfig with

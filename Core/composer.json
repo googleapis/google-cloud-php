@@ -40,9 +40,7 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "Google\\Cloud\\Tests\\Unit\\Core\\": "tests/unit",
-            "Google\\Cloud\\Tests\\Snippet\\Core\\": "tests/snippets",
-            "Google\\Cloud\\Tests\\System\\Core\\": "tests/system"
+            "Google\\Cloud\\Core\\Tests\\": "tests"
         }
     }
 }
