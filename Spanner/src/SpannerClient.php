@@ -546,4 +546,23 @@ class SpannerClient
     {
         return new Duration($seconds, $nanos);
     }
+
+    /**
+     * Create a CommitTimestamp object.
+     *
+     * Commit Timestamps may be used to implement server-side commit timestamp
+     * tracking in tables. Refer to {@see Google\Cloud\Spanner\CommitTimestamp}
+     * for usage details.
+     *
+     * Example:
+     * ```
+     * $commitTimestamp = $spanner->commitTimestamp();
+     * ```
+     *
+     * @return CommitTimestamp
+     */
+    public function commitTimestamp()
+    {
+        return new CommitTimestamp;
+    }
 }

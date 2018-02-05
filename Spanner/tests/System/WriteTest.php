@@ -18,6 +18,7 @@
 namespace Google\Cloud\Spanner\Tests\System;
 
 use Google\Cloud\Spanner\Bytes;
+use Google\Cloud\Spanner\CommitTimestamp;
 use Google\Cloud\Spanner\Date;
 use Google\Cloud\Spanner\KeySet;
 use Google\Cloud\Spanner\Timestamp;
@@ -29,12 +30,13 @@ use Google\Cloud\Spanner\Timestamp;
 class WriteTest extends SpannerTestCase
 {
     const TABLE_NAME = 'Writes';
+    const COMMIT_TIMESTAMP_TABLE_NAME = 'CommitTimestamps';
 
     public static function setupBeforeClass()
     {
         parent::setUpBeforeClass();
 
-        self::$database->updateDdl(
+        self::$database->updateDdlBatch([
             'CREATE TABLE '. self::TABLE_NAME .' (
                 id INT64 NOT NULL,
                 arrayField ARRAY<INT64>,
@@ -51,8 +53,13 @@ class WriteTest extends SpannerTestCase
                 intField INT64,
                 stringField STRING(MAX),
                 timestampField TIMESTAMP
-            ) PRIMARY KEY (id)'
-        )->pollUntilComplete();
+            ) PRIMARY KEY (id)',
+            'CREATE TABLE '. self::COMMIT_TIMESTAMP_TABLE_NAME .' (
+                id INT64 NOT NULL,
+                commitTimestamp TIMESTAMP NOT NULL OPTIONS
+                    (allow_commit_timestamp=true)
+            ) PRIMARY KEY (id, commitTimestamp DESC)'
+        ])->pollUntilComplete();
     }
 
     public function fieldValueProvider()
@@ -408,5 +415,25 @@ class WriteTest extends SpannerTestCase
             [$this->randId(), new Bytes(base64_encode(random_bytes(rand(100,9999))))],
             [$this->randId(), new Bytes(base64_encode(random_bytes(rand(100,9999))))],
         ];
+    }
+
+    /**
+     * @group spanner-committimestamp
+     */
+    public function testCommitTimestamp()
+    {
+        $id = rand(1, 99999);
+        $ts = self::$database->insert(self::COMMIT_TIMESTAMP_TABLE_NAME, [
+            'id' => $id,
+            'commitTimestamp' => new CommitTimestamp
+        ]);
+
+        $res = self::$database->execute('SELECT * FROM '. self::COMMIT_TIMESTAMP_TABLE_NAME .' WHERE id = @id', [
+            'parameters' => [
+                'id' => $id
+            ]
+        ])->rows()->current()['commitTimestamp'];
+
+        $this->assertEquals($ts->formatAsString(), $res->formatAsString());
     }
 }
