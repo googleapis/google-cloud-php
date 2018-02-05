@@ -15,9 +15,9 @@
  * limitations under the License.
  */
 
-namespace Google\Cloud\Tests\System\Storage\StreamWrapper;
+namespace Google\Cloud\Storage\Tests\System\StreamWrapper;
 
-use Google\Cloud\Tests\System\Storage\StorageTestCase;
+use Google\Cloud\Storage\Tests\System\StorageTestCase;
 
 /**
  * @group storage

@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-namespace Google\Cloud\Tests\System\Storage;
+namespace Google\Cloud\Storage\Tests\System;
 
 use Google\Cloud\Core\Timestamp;
 use GuzzleHttp\Client;

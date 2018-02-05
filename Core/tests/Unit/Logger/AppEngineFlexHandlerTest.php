@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-namespace Google\Cloud\Tests\Unit\Core\Logger;
+namespace Google\Cloud\Core\Tests\Unit\Logger;
 
 use Google\Cloud\Core\Logger\AppEngineFlexHandler;
 use Monolog\Logger;

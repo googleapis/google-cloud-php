@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-namespace Google\Cloud\Tests\Unit\Debugger;
+namespace Google\Cloud\Debugger\Tests\Unit;
 
 use Google\Cloud\Core\Report\SimpleMetadataProvider;
 use Google\Cloud\Debugger\Breakpoint;

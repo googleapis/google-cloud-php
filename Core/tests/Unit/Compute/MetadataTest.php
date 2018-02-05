@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-namespace Google\Cloud\Tests\Unit\Core\Compute;
+namespace Google\Cloud\Core\Tests\Unit\Compute;
 
 use Google\Cloud\Core\Compute\Metadata;
 use Google\Cloud\Core\Compute\Metadata\Readers\StreamReader;

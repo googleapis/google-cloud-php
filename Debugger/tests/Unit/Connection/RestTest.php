@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-namespace Google\Cloud\Tests\Unit\Debugger\Connection;
+namespace Google\Cloud\Debugger\Tests\Unit\Connection;
 
 use Google\Cloud\Debugger\Connection\Rest;
 use Google\Cloud\Core\RequestBuilder;

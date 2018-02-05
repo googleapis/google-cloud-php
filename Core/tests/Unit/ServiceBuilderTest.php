@@ -28,7 +28,7 @@ use Google\Cloud\PubSub\PubSubClient;
 use Google\Cloud\Spanner\SpannerClient;
 use Google\Cloud\Speech\SpeechClient;
 use Google\Cloud\Storage\StorageClient;
-use Google\Cloud\Tests\Unit\Core\Fixtures;
+use Google\Cloud\Core\Tests\Unit\Fixtures;
 use Google\Cloud\Translate\TranslateClient;
 use Google\Cloud\Vision\VisionClient;
 use GuzzleHttp\Psr7\Response;

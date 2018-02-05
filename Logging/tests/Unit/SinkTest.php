@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-namespace Google\Cloud\Tests\Unit\Logging;
+namespace Google\Cloud\Logging\Tests\Unit;
 
 use Google\Cloud\Core\Exception\NotFoundException;
 use Google\Cloud\Logging\Sink;

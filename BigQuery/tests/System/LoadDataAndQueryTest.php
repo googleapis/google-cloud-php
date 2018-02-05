@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-namespace Google\Cloud\Tests\System\BigQuery;
+namespace Google\Cloud\BigQuery\Tests\System;
 
 use Google\Cloud\BigQuery\Bytes;
 use Google\Cloud\BigQuery\Date;

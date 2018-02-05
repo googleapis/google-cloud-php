@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-namespace Google\Cloud\Tests\Unit\Datastore\Query;
+namespace Google\Cloud\Datastore\Tests\Unit\Query;
 
 use Google\Cloud\Datastore\EntityMapper;
 use Google\Cloud\Datastore\Key;

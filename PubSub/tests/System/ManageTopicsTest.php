@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-namespace Google\Cloud\Tests\System\PubSub;
+namespace Google\Cloud\PubSub\Tests\System;
 
 use Google\Cloud\Core\ExponentialBackoff;
 

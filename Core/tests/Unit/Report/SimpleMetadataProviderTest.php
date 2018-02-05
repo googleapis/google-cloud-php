@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-namespace Google\Cloud\Tests\Unit\Core\Report;
+namespace Google\Cloud\Core\Tests\Unit\Report;
 
 use Google\Cloud\Core\Report\SimpleMetadataProvider;
 use PHPUnit\Framework\TestCase;

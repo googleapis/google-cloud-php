@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-namespace Google\Cloud\Tests\Unit\Core;
+namespace Google\Cloud\Core\Tests\Unit;
 
 use Google\Cloud\Core\ClientTrait;
 use Google\Cloud\Core\Compute\Metadata;

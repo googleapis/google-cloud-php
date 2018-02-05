@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-namespace Google\Cloud\Tests\Unit\Core\Iam;
+namespace Google\Cloud\Core\Tests\Unit\Iam;
 
 use Google\Cloud\Core\Iam\PolicyBuilder;
 use PHPUnit\Framework\TestCase;

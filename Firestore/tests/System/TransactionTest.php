@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-namespace Google\Cloud\Tests\System\Firestore;
+namespace Google\Cloud\Firestore\Tests\System;
 
 /**
  * @group firestore

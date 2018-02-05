@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-namespace Google\Cloud\Tests\System\Datastore;
+namespace Google\Cloud\Datastore\Tests\System;
 
 /**
  * @group datastore

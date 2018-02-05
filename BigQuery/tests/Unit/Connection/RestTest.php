@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-namespace Google\Cloud\Tests\Unit\BigQuery\Connection;
+namespace Google\Cloud\BigQuery\Tests\Unit\Connection;
 
 use Google\Cloud\BigQuery\BigQueryClient;
 use Google\Cloud\BigQuery\Connection\Rest;

@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-namespace Google\Cloud\Tests\Unit\SpannerAdmin;
+namespace Google\Cloud\Spanner\Tests\UnitAdmin;
 
 use Google\Cloud\Core\Exception\NotFoundException;
 use Google\Cloud\Spanner\Admin\Instance\V1\InstanceAdminClient;

@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-namespace Google\Cloud\Tests\Unit\Core\Report;
+namespace Google\Cloud\Core\Tests\Unit\Report;
 
 use Google\Cloud\Core\Report\EmptyMetadataProvider;
 use Google\Cloud\Core\Report\GAEFlexMetadataProvider;

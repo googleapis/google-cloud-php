@@ -5,7 +5,7 @@ include __DIR__ . '/forked-process-test.php';
 
 use Google\Cloud\Spanner\Database;
 use Google\Cloud\Spanner\KeySet;
-use Google\Cloud\Tests\System\Spanner\SpannerTestCase;
+use Google\Cloud\Spanner\Tests\System\SpannerTestCase;
 
 list ($dbName, $tableName, $id) = getInputArgs();
 

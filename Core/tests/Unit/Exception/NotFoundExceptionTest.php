@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-namespace Google\Cloud\Tests\Unit\Core\Exception;
+namespace Google\Cloud\Core\Tests\Unit\Exception;
 
 use Google\Cloud\Core\Exception\NotFoundException;
 use PHPUnit\Framework\TestCase;

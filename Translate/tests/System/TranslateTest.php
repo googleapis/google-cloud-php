@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-namespace Google\Cloud\Tests\System\Translate;
+namespace Google\Cloud\Translate\Tests\System;
 
 /**
  * @group translate

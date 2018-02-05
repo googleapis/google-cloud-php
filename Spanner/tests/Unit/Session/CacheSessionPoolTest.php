@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-namespace Google\Cloud\Tests\Unit\Spanner\Session;
+namespace Google\Cloud\Spanner\Tests\Unit\Session;
 
 use Google\Auth\Cache\MemoryCacheItemPool;
 use Google\Cloud\Core\Testing\Lock\MockValues;

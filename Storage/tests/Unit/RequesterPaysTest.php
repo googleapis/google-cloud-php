@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-namespace Google\Cloud\Tests\Unit\Storage;
+namespace Google\Cloud\Storage\Tests\Unit;
 
 use Prophecy\Argument;
 use Google\Cloud\Core\RequestWrapper;
