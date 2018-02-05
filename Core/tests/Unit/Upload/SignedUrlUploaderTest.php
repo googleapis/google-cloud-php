@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-namespace Google\Cloud\Tests\Unit\Core\Upload;
+namespace Google\Cloud\Core\Tests\Unit\Upload;
 
 use Google\Cloud\Core\Exception\GoogleException;
 use Google\Cloud\Core\RequestWrapper;

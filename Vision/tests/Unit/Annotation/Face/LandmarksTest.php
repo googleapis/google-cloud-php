@@ -15,9 +15,9 @@
  * limitations under the License.
  */
 
-namespace Google\Cloud\Tests\Unit\Vision\Annotation;
+namespace Google\Cloud\Vision\Tests\Unit\Annotation;
 
-use Google\Cloud\Tests\Unit\Vision\Fixtures;
+use Google\Cloud\Vision\Tests\Unit\Fixtures;
 use Google\Cloud\Vision\Annotation\Face\Landmarks;
 use PHPUnit\Framework\TestCase;
 

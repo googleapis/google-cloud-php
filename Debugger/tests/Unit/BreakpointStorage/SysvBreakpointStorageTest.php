@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-namespace Google\Cloud\Tests\Unit\Debugger\BreakpointStorage;
+namespace Google\Cloud\Debugger\Tests\Unit\BreakpointStorage;
 
 use Google\Cloud\Debugger\BreakpointStorage\SysvBreakpointStorage;
 use Google\Cloud\Debugger\Breakpoint;

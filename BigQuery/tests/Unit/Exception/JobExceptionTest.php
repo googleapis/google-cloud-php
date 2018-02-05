@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-namespace Google\Cloud\Tests\Unit\BigQuery\Exception;
+namespace Google\Cloud\BigQuery\Tests\Unit\Exception;
 
 use Google\Cloud\BigQuery\Exception\JobException;
 use Google\Cloud\BigQuery\Job;

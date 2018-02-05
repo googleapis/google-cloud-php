@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-namespace Google\Cloud\Tests\Unit\Datastore;
+namespace Google\Cloud\Datastore\Tests\Unit;
 
 use Google\Cloud\Datastore\EntityIterator;
 use Google\Cloud\Datastore\EntityPageIterator;

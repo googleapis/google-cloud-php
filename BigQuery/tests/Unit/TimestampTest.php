@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-namespace Google\Cloud\Tests\Unit\BigQuery;
+namespace Google\Cloud\BigQuery\Tests\Unit;
 
 use Google\Cloud\BigQuery\Timestamp;
 use PHPUnit\Framework\TestCase;

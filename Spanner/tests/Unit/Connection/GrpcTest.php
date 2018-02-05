@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-namespace Google\Cloud\Tests\Unit\Spanner\Connection;
+namespace Google\Cloud\Spanner\Tests\Unit\Connection;
 
 use Google\ApiCore\Call;
 use Google\ApiCore\OperationResponse;

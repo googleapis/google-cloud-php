@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-namespace Google\Cloud\Tests\Unit\ErrorReporting;
+namespace Google\Cloud\ErrorReporting\Tests\Unit;
 
 use Google\Cloud\Core\Report\SimpleMetadataProvider;
 use Google\Cloud\ErrorReporting\Bootstrap;

@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-namespace Google\Cloud\Tests\System\Language;
+namespace Google\Cloud\Language\Tests\System;
 
 use Google\Cloud\Core\ExponentialBackoff;
 use Google\Cloud\BigQuery\BigQueryClient;

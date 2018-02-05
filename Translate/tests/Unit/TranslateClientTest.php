@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-namespace Google\Cloud\Tests\Unit\Translate;
+namespace Google\Cloud\Translate\Tests\Unit;
 
 use Google\Cloud\Translate\Connection\ConnectionInterface;
 use Google\Cloud\Translate\TranslateClient;

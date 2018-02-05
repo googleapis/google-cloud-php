@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-namespace Google\Cloud\Tests\System\Storage;
+namespace Google\Cloud\Storage\Tests\System;
 
 use Google\Cloud\Core\AnonymousCredentials;
 use Google\Cloud\Core\Exception\NotFoundException;

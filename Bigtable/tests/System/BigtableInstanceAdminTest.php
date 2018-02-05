@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-namespace Google\Cloud\Tests\System\Bigtable;
+namespace Google\Cloud\Bigtable\Tests\System;
 
 use Google\Auth\CredentialsLoader;
 use Google\Cloud\Bigtable\Admin\V2\BigtableInstanceAdminClient;

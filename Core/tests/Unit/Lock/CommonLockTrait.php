@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-namespace Google\Cloud\Tests\Unit\Core\Lock;
+namespace Google\Cloud\Core\Tests\Unit\Lock;
 
 use Google\Cloud\Core\Testing\Lock\MockValues;
 use Google\Cloud\Core\Lock\SemaphoreLock;

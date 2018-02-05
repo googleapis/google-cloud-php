@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-namespace Google\Cloud\Tests\Unit\Storage;
+namespace Google\Cloud\Storage\Tests\Unit;
 
 use Google\Cloud\Core\Testing\KeyPairGenerateTrait;
 use Google\Cloud\Storage\EncryptionTrait;

@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-namespace Google\Cloud\Tests\Unit\Language;
+namespace Google\Cloud\Language\Tests\Unit;
 
 use Google\Cloud\Language\Annotation;
 use Google\Cloud\Language\Connection\ConnectionInterface;

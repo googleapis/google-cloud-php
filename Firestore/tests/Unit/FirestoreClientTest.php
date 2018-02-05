@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-namespace Google\Cloud\Tests\Unit\Firestore;
+namespace Google\Cloud\Firestore\Tests\Unit;
 
 use Google\Cloud\Core\Blob;
 use Google\Cloud\Core\Exception\AbortedException;

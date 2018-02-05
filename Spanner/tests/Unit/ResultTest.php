@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-namespace Google\Cloud\Tests\Unit\Spanner;
+namespace Google\Cloud\Spanner\Tests\Unit;
 
 use Google\Cloud\Core\Exception\ServiceException;
 use Google\Cloud\Spanner\Transaction;

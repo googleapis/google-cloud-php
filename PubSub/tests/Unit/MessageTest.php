@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-namespace Google\Cloud\Tests\Unit\PubSub;
+namespace Google\Cloud\PubSub\Tests\Unit;
 
 use Google\Cloud\PubSub\Message;
 use Google\Cloud\PubSub\Subscription;

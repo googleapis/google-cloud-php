@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-namespace Google\Cloud\Tests\Unit\Vision;
+namespace Google\Cloud\Vision\Tests\Unit;
 
 use Google\Cloud\Vision\Annotation;
 use Google\Cloud\Vision\Annotation\CropHint;

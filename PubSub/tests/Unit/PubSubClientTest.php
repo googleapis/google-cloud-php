@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-namespace Google\Cloud\Tests\Unit\PubSub;
+namespace Google\Cloud\PubSub\Tests\Unit;
 
 use Google\Cloud\Core\Duration;
 use Google\Cloud\Core\Iterator\ItemIterator;

@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-namespace Google\Cloud\Tests\System\Trace;
+namespace Google\Cloud\Trace\Tests\System;
 
 use Google\Cloud\Core\ExponentialBackoff;
 use Google\Cloud\Trace\Annotation;

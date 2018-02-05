@@ -34,9 +34,7 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "Google\\Cloud\\Tests\\Unit\\BigQuery\\": "tests/unit",
-            "Google\\Cloud\\Tests\\Snippet\\BigQuery\\": "tests/snippets",
-            "Google\\Cloud\\Tests\\System\\BigQuery\\": "tests/system"
+            "Google\\Cloud\\BigQuery\\Tests\\": "tests"
         }
     },
     "repositories": [{
