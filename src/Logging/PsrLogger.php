@@ -18,6 +18,7 @@
 namespace Google\Cloud\Logging;
 
 use Google\Cloud\Core\Batch\BatchTrait;
+use Google\Cloud\Core\Batch\ClosureSerializerInterface;
 use Google\Cloud\Core\Report\MetadataProviderInterface;
 use Google\Cloud\Core\Report\MetadataProviderUtils;
 use Monolog\Formatter\NormalizerFormatter;
@@ -118,6 +119,12 @@ class PsrLogger implements LoggerInterface, \Serializable
      *     @type BatchRunner $batchRunner A BatchRunner object. Mainly used for
      *           the tests to inject a mock. **Defaults to** a newly created
      *           BatchRunner. Applies only when `batchEnabled` is set to `true`.
+     *     @type ClosureSerializerInterface $closureSerializer An implementation
+     *           responsible for serializing closures used in the
+     *           `$clientConfig`. This is especially important when using the
+     *           batch daemon. **Defaults to**
+     *           {@see Google\Cloud\Core\Batch\OpisClosureSerializer} if the
+     *           `opis/closure` library is installed.
      * }
      */
     public function __construct(
@@ -458,7 +465,7 @@ class PsrLogger implements LoggerInterface, \Serializable
     protected function getCallback()
     {
         if (!array_key_exists($this->logName, self::$loggers)) {
-            $c = new LoggingClient($this->clientConfig);
+            $c = new LoggingClient($this->getUnwrappedClientConfig());
             self::$loggers[$this->logName] = $c->logger($this->logName);
         }
         return [self::$loggers[$this->logName], $this->batchMethod];

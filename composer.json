@@ -61,7 +61,8 @@
         "vierbergenlars/php-semver": "^3.0",
         "symfony/lock": "3.3.x-dev#1ba6ac9",
         "phpseclib/phpseclib": "^2",
-        "google/cloud-tools": "^0.6"
+        "google/cloud-tools": "^0.6",
+        "opis/closure": "^3.0"
     },
     "replace": {
         "google/cloud-bigquery": "1.0.3",
@@ -88,6 +89,7 @@
         "google/cloud-debugger": "0.4.0"
     },
     "suggest": {
+        "opis/closure": "May be used to serialize closures to process jobs in the batch daemon. Please require version ^3.",
         "phpseclib/phpseclib": "May be used in place of OpenSSL for creating signed Cloud Storage URLs. Please require version ^2.",
         "google/cloud-bigquerydatatransfer": "Client library for the BigQuery Data Transfer API."
     },
