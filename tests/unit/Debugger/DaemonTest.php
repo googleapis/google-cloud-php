@@ -193,14 +193,18 @@ class DaemonTest extends TestCase
         ];
         $this->debuggee->register(Argument::any())
             ->shouldBeCalled();
+        $this->debuggee->breakpointsWithWaitToken([])
+            ->willReturn(['breakpoints' => []]);
+        $this->debuggee->updateBreakpointBatch(Argument::any())
+            ->willReturn(true);
         $this->client->debuggee(null, Argument::withEntry('labels', $expectedLabels))
             ->willReturn($this->debuggee->reveal())
             ->shouldBeCalled();
 
-        $daemon = new Daemon('.', [
+        $daemon = new Daemon([
             'metadataProvider' => $provider,
-            'client' => $this->client->reveal(),
             'storage' => $this->storage->reveal()
         ]);
+        $daemon->run($this->client->reveal());
     }
 }

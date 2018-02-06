@@ -74,6 +74,12 @@ class Daemon
     private $description;
 
     /**
+     * @var array A set of custom debuggee properties, populated by the agent,
+     *      to be displayed to the user.
+     */
+    private $labels;
+
+    /**
      * Creates a new Daemon instance.
      *
      * @param array $options [optional] {
