@@ -266,6 +266,5 @@ class Daemon
             $labels['version'] = $metadataProvider->versionId();
         }
         return $labels;
-
     }
 }
