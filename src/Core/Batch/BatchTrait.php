@@ -17,6 +17,8 @@
 
 namespace Google\Cloud\Core\Batch;
 
+use Opis\Closure\SerializableClosure;
+
 /**
  * A trait to assist in the registering and processing of batch jobs.
  *
@@ -61,6 +63,11 @@ trait BatchTrait
      * @var resource
      */
     private $debugOutputResource;
+
+    /**
+     * @var ClosureSerializerInterface|null
+     */
+    private $closureSerializer;
 
     /**
      * Flushes items in the batch queue that have yet to be delivered. Please
@@ -155,6 +162,12 @@ trait BatchTrait
      *     @type string $identifier An identifier for the batch job.
      *     @type string $batchMethod The name of the batch method used to
      *           deliver items.
+     *     @type ClosureSerializerInterface $closureSerializer An implementation
+     *           responsible for serializing closures used in the
+     *           `$clientConfig`. This is especially important when using the
+     *           batch daemon. **Defaults to**
+     *           {@see Google\Cloud\Core\Batch\OpisClosureSerializer} if the
+     *           `opis/closure` library is installed.
      * }
      * @throws \InvalidArgumentException
      */
@@ -172,6 +185,9 @@ trait BatchTrait
             );
         }
 
+        $this->closureSerializer = isset($options['closureSerializer'])
+            ? $options['closureSerializer']
+            : $this->getDefaultClosureSerializer();
         $this->batchMethod = $options['batchMethod'];
         $this->identifier = $options['identifier'];
         $this->debugOutputResource = isset($options['debugOutputResource'])
@@ -180,9 +196,7 @@ trait BatchTrait
         $this->debugOutput = isset($options['debugOutput'])
             ? $options['debugOutput']
             : false;
-        $this->clientConfig = isset($options['clientConfig'])
-            ? $options['clientConfig']
-            : [];
+        $this->clientConfig = $this->setWrappedClientConfig($options);
         $batchOptions = isset($options['batchOptions'])
             ? $options['batchOptions']
             : [];
@@ -199,5 +213,44 @@ trait BatchTrait
             [$this, 'send'],
             $this->batchOptions
         );
+    }
+
+    /**
+     * @param array $options
+     * @return array
+     */
+    private function setWrappedClientConfig(array $options)
+    {
+        $config = isset($options['clientConfig'])
+            ? $options['clientConfig']
+            : [];
+
+        if ($config && $this->closureSerializer) {
+            $this->closureSerializer->wrapClosures($config);
+        }
+
+        return $config;
+    }
+
+    /**
+     * @return array
+     */
+    private function getUnwrappedClientConfig()
+    {
+        if ($this->clientConfig && $this->closureSerializer) {
+            $this->closureSerializer->unwrapClosures($this->clientConfig);
+        }
+
+        return $this->clientConfig;
+    }
+
+    /**
+     * @return ClosureSerializerInterface|null
+     */
+    private function getDefaultClosureSerializer()
+    {
+        if (class_exists(SerializableClosure::class)) {
+            return new OpisClosureSerializer();
+        }
     }
 }
