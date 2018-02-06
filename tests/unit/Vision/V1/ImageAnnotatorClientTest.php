@@ -40,7 +40,6 @@ class ImageAnnotatorClientTest extends TestCase
 {
     /** @var  ImageAnnotatorClient */
     private $client;
-
     private $transport;
 
     public function setUp()

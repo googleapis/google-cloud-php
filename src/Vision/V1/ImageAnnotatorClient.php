@@ -46,41 +46,26 @@ class ImageAnnotatorClient extends ImageAnnotatorGapicClient
     /**
      * Creates an Image object that can be used as part of an image annotation request.
      *
-     * Sample code:
+     * Example:
      * ```
-     * // Create an Image object from a PHP resource.
-     * $client = new ImageAnnotatorClient();
-     * try {
-     *     $imageResource = fopen('path/to/image.jpg', 'r');
-     *     $image = $client->createImageObject($imageResource);
-     *     $response = $client->faceDetection($request);
-     * } finally {
-     *     $client->close();
-     * }
+     * //[snippet=resource]
+     * $imageResource = fopen('path/to/image.jpg', 'r');
+     * $image = $imageAnnotatorClient->createImageObject($imageResource);
+     * $response = $imageAnnotatorClient->faceDetection($request);
      * ```
      *
      * ```
-     * // Create an Image object from raw image data.
-     * $client = new ImageAnnotatorClient();
-     * try {
-     *     $imageData = file_get_contents('path/to/image.jpg');
-     *     $image = $client->createImageObject($imageData);
-     *     $response = $client->faceDetection($request);
-     * } finally {
-     *     $client->close();
-     * }
+     * //[snippet=data]
+     * $imageData = file_get_contents('path/to/image.jpg');
+     * $image = $imageAnnotatorClient->createImageObject($imageData);
+     * $response = $imageAnnotatorClient->faceDetection($request);
      * ```
      *
      * ```
-     * // Create an Image object from a Google Cloud Storage Uri.
-     * $client = new ImageAnnotatorClient();
-     * try {
-     *     $imageUri = "gs://my-bucket/image.jpg";
-     *     $image = $client->createImageObject($imageUri);
-     *     $response = $client->faceDetection($request);
-     * } finally {
-     *     $client->close();
-     * }
+     * //[snippet=url]
+     * $imageUri = "gs://my-bucket/image.jpg";
+     * $image = $imageAnnotatorClient->createImageObject($imageUri);
+     * $response = $imageAnnotatorClient->faceDetection($request);
      * ```
      *
      * @param  resource|string $imageInput An image to configure with
@@ -98,22 +83,21 @@ class ImageAnnotatorClient extends ImageAnnotatorGapicClient
     /**
      * Run image detection and annotation for an image.
      *
-     * Sample code:
+     * Example:
      * ```
-     * $imageAnnotatorClient = new ImageAnnotatorClient();
-     * try {
-     *     $imageResource = fopen('path/to/image.jpg', 'r');
-     *     $image = $this->createImageObject($imageResource);
-     *     $feature = new Feature();
-     *     $feature->setType(Feature_Type::FACE_DETECTION);
-     *     $features = [$feature];
-     *     $request = new AnnotateImageRequest();
-     *     $request->setImage($image);
-     *     $request->setFeatures($features);
-     *     $response = $imageAnnotatorClient->annotateImage($request);
-     * } finally {
-     *     $imageAnnotatorClient->close();
-     * }
+     * use Google\Cloud\Vision\V1\Feature;
+     * use Google\Cloud\Vision\V1\Feature_Type;
+     * use Google\Cloud\Vision\V1\AnnotateImageRequest;
+     *
+     * $imageResource = fopen('path/to/image.jpg', 'r');
+     * $image = $imageAnnotatorClient->createImageObject($imageResource);
+     * $feature = new Feature();
+     * $feature->setType(Feature_Type::FACE_DETECTION);
+     * $features = [$feature];
+     * $request = new AnnotateImageRequest();
+     * $request->setImage($image);
+     * $request->setFeatures($features);
+     * $response = $imageAnnotatorClient->annotateImage($request);
      * ```
      *
      * @param AnnotateImageRequest $request      An image annotation request.
@@ -140,16 +124,11 @@ class ImageAnnotatorClient extends ImageAnnotatorGapicClient
     /**
      * Run face detection for an image.
      *
-     * Sample code:
+     * Example:
      * ```
-     * $imageAnnotatorClient = new ImageAnnotatorClient();
-     * try {
-     *     $imageContent = file_get_contents('path/to/image.jpg');
-     *     $image = $this->createImageObject($imageContent);
-     *     $response = $imageAnnotatorClient->faceDetection($image);
-     * } finally {
-     *     $imageAnnotatorClient->close();
-     * }
+     * $imageContent = file_get_contents('path/to/image.jpg');
+     * $image = $imageAnnotatorClient->createImageObject($imageContent);
+     * $response = $imageAnnotatorClient->faceDetection($image);
      * ```
      *
      * @param Image $image        An image annotation request.
@@ -180,16 +159,11 @@ class ImageAnnotatorClient extends ImageAnnotatorGapicClient
     /**
      * Run landmark detection for an image.
      *
-     * Sample code:
+     * Example:
      * ```
-     * $imageAnnotatorClient = new ImageAnnotatorClient();
-     * try {
-     *     $imageContent = file_get_contents('path/to/image.jpg');
-     *     $image = $this->createImageObject($imageContent);
-     *     $response = $imageAnnotatorClient->landmarkDetection($image);
-     * } finally {
-     *     $imageAnnotatorClient->close();
-     * }
+     * $imageContent = file_get_contents('path/to/image.jpg');
+     * $image = $imageAnnotatorClient->createImageObject($imageContent);
+     * $response = $imageAnnotatorClient->landmarkDetection($image);
      * ```
      *
      * @param Image $image        An image annotation request.
@@ -220,16 +194,11 @@ class ImageAnnotatorClient extends ImageAnnotatorGapicClient
     /**
      * Run logo detection for an image.
      *
-     * Sample code:
+     * Example:
      * ```
-     * $imageAnnotatorClient = new ImageAnnotatorClient();
-     * try {
-     *     $imageContent = file_get_contents('path/to/image.jpg');
-     *     $image = $this->createImageObject($imageContent);
-     *     $response = $imageAnnotatorClient->logoDetection($image);
-     * } finally {
-     *     $imageAnnotatorClient->close();
-     * }
+     * $imageContent = file_get_contents('path/to/image.jpg');
+     * $image = $imageAnnotatorClient->createImageObject($imageContent);
+     * $response = $imageAnnotatorClient->logoDetection($image);
      * ```
      *
      * @param Image $image        An image annotation request.
@@ -260,16 +229,11 @@ class ImageAnnotatorClient extends ImageAnnotatorGapicClient
     /**
      * Run label detection for an image.
      *
-     * Sample code:
+     * Example:
      * ```
-     * $imageAnnotatorClient = new ImageAnnotatorClient();
-     * try {
-     *     $imageContent = file_get_contents('path/to/image.jpg');
-     *     $image = $this->createImageObject($imageContent);
-     *     $response = $imageAnnotatorClient->labelDetection($image);
-     * } finally {
-     *     $imageAnnotatorClient->close();
-     * }
+     * $imageContent = file_get_contents('path/to/image.jpg');
+     * $image = $imageAnnotatorClient->createImageObject($imageContent);
+     * $response = $imageAnnotatorClient->labelDetection($image);
      * ```
      *
      * @param Image $image        An image annotation request.
@@ -300,16 +264,11 @@ class ImageAnnotatorClient extends ImageAnnotatorGapicClient
     /**
      * Run text detection for an image.
      *
-     * Sample code:
+     * Example:
      * ```
-     * $imageAnnotatorClient = new ImageAnnotatorClient();
-     * try {
-     *     $imageContent = file_get_contents('path/to/image.jpg');
-     *     $image = $this->createImageObject($imageContent);
-     *     $response = $imageAnnotatorClient->textDetection($image);
-     * } finally {
-     *     $imageAnnotatorClient->close();
-     * }
+     * $imageContent = file_get_contents('path/to/image.jpg');
+     * $image = $imageAnnotatorClient->createImageObject($imageContent);
+     * $response = $imageAnnotatorClient->textDetection($image);
      * ```
      *
      * @param Image $image        An image annotation request.
@@ -340,16 +299,11 @@ class ImageAnnotatorClient extends ImageAnnotatorGapicClient
     /**
      * Run document text detection for an image.
      *
-     * Sample code:
+     * Example:
      * ```
-     * $imageAnnotatorClient = new ImageAnnotatorClient();
-     * try {
-     *     $imageContent = file_get_contents('path/to/image.jpg');
-     *     $image = $this->createImageObject($imageContent);
-     *     $response = $imageAnnotatorClient->documentTextDetection($image);
-     * } finally {
-     *     $imageAnnotatorClient->close();
-     * }
+     * $imageContent = file_get_contents('path/to/image.jpg');
+     * $image = $imageAnnotatorClient->createImageObject($imageContent);
+     * $response = $imageAnnotatorClient->documentTextDetection($image);
      * ```
      *
      * @param Image $image        An image annotation request.
@@ -380,16 +334,11 @@ class ImageAnnotatorClient extends ImageAnnotatorGapicClient
     /**
      * Run safe search detection for an image.
      *
-     * Sample code:
+     * Example:
      * ```
-     * $imageAnnotatorClient = new ImageAnnotatorClient();
-     * try {
-     *     $imageContent = file_get_contents('path/to/image.jpg');
-     *     $image = $this->createImageObject($imageContent);
-     *     $response = $imageAnnotatorClient->safeSearchDetection($image);
-     * } finally {
-     *     $imageAnnotatorClient->close();
-     * }
+     * $imageContent = file_get_contents('path/to/image.jpg');
+     * $image = $imageAnnotatorClient->createImageObject($imageContent);
+     * $response = $imageAnnotatorClient->safeSearchDetection($image);
      * ```
      *
      * @param Image $image        An image annotation request.
@@ -420,16 +369,11 @@ class ImageAnnotatorClient extends ImageAnnotatorGapicClient
     /**
      * Run image properties detection for an image.
      *
-     * Sample code:
+     * Example:
      * ```
-     * $imageAnnotatorClient = new ImageAnnotatorClient();
-     * try {
-     *     $imageContent = file_get_contents('path/to/image.jpg');
-     *     $image = $this->createImageObject($imageContent);
-     *     $response = $imageAnnotatorClient->imagePropertiesDetection($image);
-     * } finally {
-     *     $imageAnnotatorClient->close();
-     * }
+     * $imageContent = file_get_contents('path/to/image.jpg');
+     * $image = $imageAnnotatorClient->createImageObject($imageContent);
+     * $response = $imageAnnotatorClient->imagePropertiesDetection($image);
      * ```
      *
      * @param Image $image        An image annotation request.
@@ -460,16 +404,11 @@ class ImageAnnotatorClient extends ImageAnnotatorGapicClient
     /**
      * Run crop hints detection for an image.
      *
-     * Sample code:
+     * Example:
      * ```
-     * $imageAnnotatorClient = new ImageAnnotatorClient();
-     * try {
-     *     $imageContent = file_get_contents('path/to/image.jpg');
-     *     $image = $this->createImageObject($imageContent);
-     *     $response = $imageAnnotatorClient->cropHintsDetection($image);
-     * } finally {
-     *     $imageAnnotatorClient->close();
-     * }
+     * $imageContent = file_get_contents('path/to/image.jpg');
+     * $image = $imageAnnotatorClient->createImageObject($imageContent);
+     * $response = $imageAnnotatorClient->cropHintsDetection($image);
      * ```
      *
      * @param Image $image        An image annotation request.
@@ -500,16 +439,11 @@ class ImageAnnotatorClient extends ImageAnnotatorGapicClient
     /**
      * Run web detection for an image.
      *
-     * Sample code:
+     * Example:
      * ```
-     * $imageAnnotatorClient = new ImageAnnotatorClient();
-     * try {
-     *     $imageContent = file_get_contents('path/to/image.jpg');
-     *     $image = $this->createImageObject($imageContent);
-     *     $response = $imageAnnotatorClient->webDetection($image);
-     * } finally {
-     *     $imageAnnotatorClient->close();
-     * }
+     * $imageContent = file_get_contents('path/to/image.jpg');
+     * $image = $imageAnnotatorClient->createImageObject($imageContent);
+     * $response = $imageAnnotatorClient->webDetection($image);
      * ```
      *
      * @param Image $image        An image annotation request.
