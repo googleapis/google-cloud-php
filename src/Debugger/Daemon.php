@@ -148,6 +148,9 @@ class Daemon
                 $this->setBreakpoints($resp['breakpoints']);
             } catch (ConflictException $e) {
                 // Ignoring this exception
+            } catch (AbortedException $e) {
+                echo $e->message();
+                sleep(10);
             }
         }
     }
