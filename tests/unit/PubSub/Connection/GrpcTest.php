@@ -20,7 +20,7 @@ namespace Google\Cloud\Tests\Unit\PubSub\Connection;
 use Google\Cloud\Core\GrpcRequestWrapper;
 use Google\Cloud\Core\GrpcTrait;
 use Google\Cloud\PubSub\Connection\Grpc;
-use Google\Cloud\Tests\GrpcTestTrait;
+use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\ApiCore\Serializer;
 use Google\Protobuf\FieldMask;
 use Google\Protobuf\Timestamp;

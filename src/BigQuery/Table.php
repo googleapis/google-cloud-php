@@ -88,7 +88,7 @@ class Table
             'datasetId' => $datasetId,
             'projectId' => $projectId
         ];
-        $this->setHttpRetryCodes([]);
+        $this->setHttpRetryCodes([502]);
         $this->setHttpRetryMessages([
             'rateLimitExceeded',
             'backendError'

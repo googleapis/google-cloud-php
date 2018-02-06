@@ -223,7 +223,7 @@ class OperationTest extends TestCase
 
     public function testLookupFound()
     {
-        $body = json_decode(file_get_contents(__DIR__ .'/../fixtures/datastore/entity-batch-lookup.json'), true);
+        $body = json_decode(file_get_contents(Fixtures::ENTITY_BATCH_LOOKUP_FIXTURE()), true);
         $this->connection->lookup(Argument::any())->willReturn([
             'found' => $body
         ]);
@@ -245,7 +245,7 @@ class OperationTest extends TestCase
 
     public function testLookupMissing()
     {
-        $body = json_decode(file_get_contents(__DIR__ .'/../fixtures/datastore/entity-batch-lookup.json'), true);
+        $body = json_decode(file_get_contents(Fixtures::ENTITY_BATCH_LOOKUP_FIXTURE()), true);
         $this->connection->lookup(Argument::any())->willReturn([
             'missing' => $body
         ]);
@@ -265,7 +265,7 @@ class OperationTest extends TestCase
 
     public function testLookupDeferred()
     {
-        $body = json_decode(file_get_contents(__DIR__ .'/../fixtures/datastore/entity-batch-lookup.json'), true);
+        $body = json_decode(file_get_contents(Fixtures::ENTITY_BATCH_LOOKUP_FIXTURE()), true);
         $this->connection->lookup(Argument::any())->willReturn([
             'deferred' => [ $body[0]['entity']['key'] ]
         ]);
@@ -324,7 +324,7 @@ class OperationTest extends TestCase
 
     public function testLookupWithSort()
     {
-        $data = json_decode(file_get_contents(__DIR__ .'/../fixtures/datastore/entity-lookup-bigsort.json'), true);
+        $data = json_decode(file_get_contents(Fixtures::ENTITY_LOOKUP_BIGSORT_FIXTURE()), true);
 
         $keys = [];
         foreach ($data['keys'] as $key) {
@@ -352,7 +352,7 @@ class OperationTest extends TestCase
 
     public function testLookupWithoutSort()
     {
-        $data = json_decode(file_get_contents(__DIR__ .'/../fixtures/datastore/entity-lookup-bigsort.json'), true);
+        $data = json_decode(file_get_contents(Fixtures::ENTITY_LOOKUP_BIGSORT_FIXTURE()), true);
 
         $keys = [];
         foreach ($data['keys'] as $key) {
@@ -379,7 +379,7 @@ class OperationTest extends TestCase
 
     public function testLookupWithSortAndMissingKey()
     {
-        $data = json_decode(file_get_contents(__DIR__ .'/../fixtures/datastore/entity-lookup-bigsort.json'), true);
+        $data = json_decode(file_get_contents(Fixtures::ENTITY_LOOKUP_BIGSORT_FIXTURE()), true);
 
         // Move an entity to missing.
         $missing = $data['entities'][5];
@@ -429,7 +429,7 @@ class OperationTest extends TestCase
 
     public function testRunQuery()
     {
-        $queryResult = json_decode(file_get_contents(__DIR__ .'/../fixtures/datastore/query-results.json'), true);
+        $queryResult = json_decode(file_get_contents(Fixtures::QUERY_RESULTS_FIXTURE()), true);
         $this->connection->runQuery(Argument::type('array'))
             ->willReturn($queryResult['notPaged']);
 
@@ -452,7 +452,7 @@ class OperationTest extends TestCase
 
     public function testRunQueryPaged()
     {
-        $queryResult = json_decode(file_get_contents(__DIR__ .'/../fixtures/datastore/query-results.json'), true);
+        $queryResult = json_decode(file_get_contents(Fixtures::QUERY_RESULTS_FIXTURE()), true);
         $this->connection->runQuery(Argument::type('array'))
             ->will(function($args, $mock) use ($queryResult) {
                 // The 2nd call will return the 2nd page of results!
@@ -480,7 +480,7 @@ class OperationTest extends TestCase
 
     public function testRunQueryNoResults()
     {
-        $queryResult = json_decode(file_get_contents(__DIR__ .'/../fixtures/datastore/query-results.json'), true);
+        $queryResult = json_decode(file_get_contents(Fixtures::QUERY_RESULTS_FIXTURE()), true);
         $this->connection->runQuery(Argument::type('array'))
             ->willReturn($queryResult['noResults']);
 
@@ -733,7 +733,7 @@ class OperationTest extends TestCase
 
     public function testMapEntityResult()
     {
-        $res = json_decode(file_get_contents(__DIR__ .'/../fixtures/datastore/entity-result.json'), true);
+        $res = json_decode(file_get_contents(Fixtures::ENTITY_RESULT_FIXTURE()), true);
 
         $this->connection->lookup(Argument::type('array'))
             ->willReturn([
@@ -755,7 +755,7 @@ class OperationTest extends TestCase
 
     public function testMapEntityResultWithoutProperties()
     {
-        $res = json_decode(file_get_contents(__DIR__ .'/../fixtures/datastore/entity-result-no-properties.json'), true);
+        $res = json_decode(file_get_contents(Fixtures::ENTITY_RESULT_NO_PROPERTIES_FIXTURE()), true);
 
         $this->connection->lookup(Argument::type('array'))
             ->willReturn([
@@ -776,7 +776,7 @@ class OperationTest extends TestCase
 
     public function testMapEntityResultArrayOfClassNames()
     {
-        $res = json_decode(file_get_contents(__DIR__ .'/../fixtures/datastore/entity-result.json'), true);
+        $res = json_decode(file_get_contents(Fixtures::ENTITY_RESULT_FIXTURE()), true);
 
         $this->connection->lookup(Argument::type('array'))
             ->willReturn([
@@ -802,7 +802,7 @@ class OperationTest extends TestCase
      */
     public function testMapEntityResultArrayOfClassNamesMissingKindMapItem()
     {
-        $res = json_decode(file_get_contents(__DIR__ .'/../fixtures/datastore/entity-result.json'), true);
+        $res = json_decode(file_get_contents(Fixtures::ENTITY_RESULT_FIXTURE()), true);
 
         $this->connection->lookup(Argument::type('array'))
             ->willReturn([

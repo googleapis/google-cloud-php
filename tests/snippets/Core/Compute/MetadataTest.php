@@ -19,7 +19,7 @@ namespace Google\Cloud\Tests\Snippets\Core\Compute;
 
 use Google\Cloud\Core\Compute\Metadata;
 use Google\Cloud\Core\Compute\Metadata\Readers\ReaderInterface;
-use Google\Cloud\Dev\Snippet\SnippetTestCase;
+use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
 use Prophecy\Argument;
 
 /**

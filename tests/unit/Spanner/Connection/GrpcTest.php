@@ -26,7 +26,7 @@ use Google\Cloud\Core\GrpcTrait;
 use Google\Cloud\Spanner\Connection\Grpc;
 use Google\Cloud\Spanner\V1\SpannerClient;
 use Google\Cloud\Spanner\ValueMapper;
-use Google\Cloud\Tests\GrpcTestTrait;
+use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Protobuf\FieldMask;
 use Google\Protobuf\Struct;
 use Google\Cloud\Spanner\Admin\Instance\V1\Instance;

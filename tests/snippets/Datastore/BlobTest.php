@@ -18,7 +18,7 @@
 namespace Google\Cloud\Tests\Snippets\Datastore;
 
 use Google\Cloud\Datastore\Blob;
-use Google\Cloud\Dev\Snippet\SnippetTestCase;
+use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
 use Psr\Http\Message\StreamInterface;
 
 /**

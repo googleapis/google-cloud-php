@@ -19,7 +19,7 @@ namespace Google\Cloud\Tests\System\Spanner;
 
 use Google\Cloud\Core\ExponentialBackoff;
 use Google\Cloud\Spanner\SpannerClient;
-use Google\Cloud\Tests\System\SystemTestCase;
+use Google\Cloud\Core\Testing\System\SystemTestCase;
 
 /**
  * @group spanner

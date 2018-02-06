@@ -17,7 +17,7 @@
 
 namespace Google\Cloud\Tests\Snippets\Logging;
 
-use Google\Cloud\Dev\Snippet\SnippetTestCase;
+use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
 use Google\Cloud\Logging\Connection\ConnectionInterface;
 use Google\Cloud\Logging\Metric;
 use Prophecy\Argument;
@@ -36,7 +36,7 @@ class MetricTest extends SnippetTestCase
     public function setUp()
     {
         $this->connection = $this->prophesize(ConnectionInterface::class);
-        $this->metric = \Google\Cloud\Dev\stub(Metric::class, [
+        $this->metric = \Google\Cloud\Core\Testing\TestHelpers::stub(Metric::class, [
             $this->connection->reveal(),
             self::METRIC,
             self::PROJECT

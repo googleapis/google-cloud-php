@@ -17,7 +17,7 @@
 
 namespace Google\Cloud\Tests\Unit\Storage;
 
-use Google\Cloud\Tests\KeyPairGenerateTrait;
+use Google\Cloud\Core\Testing\KeyPairGenerateTrait;
 use Google\Cloud\Storage\EncryptionTrait;
 use PHPUnit\Framework\TestCase;
 
@@ -32,7 +32,7 @@ class EncryptionTraitTest extends TestCase
 
     public function setUp()
     {
-        $this->implementation = \Google\Cloud\Dev\impl(EncryptionTrait::class);
+        $this->implementation = \Google\Cloud\Core\Testing\TestHelpers::impl(EncryptionTrait::class);
     }
 
     public function testSignString()

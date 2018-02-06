@@ -21,7 +21,7 @@ use Google\Cloud\Spanner\Duration;
 use Google\Cloud\Spanner\Session\SessionPoolInterface;
 use Google\Cloud\Spanner\Timestamp;
 use Google\Cloud\Spanner\TransactionConfigurationTrait;
-use Google\Cloud\Tests\GrpcTestTrait;
+use Google\Cloud\Core\Testing\GrpcTestTrait;
 use PHPUnit\Framework\TestCase;
 
 /**

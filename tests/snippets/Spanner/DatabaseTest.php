@@ -21,7 +21,7 @@ use Google\Cloud\Core\Iam\Iam;
 use Google\Cloud\Core\Iterator\ItemIterator;
 use Google\Cloud\Core\LongRunning\LongRunningConnectionInterface;
 use Google\Cloud\Core\LongRunning\LongRunningOperation;
-use Google\Cloud\Dev\Snippet\SnippetTestCase;
+use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
 use Google\Cloud\Spanner\Admin\Database\V1\DatabaseAdminClient;
 use Google\Cloud\Spanner\Admin\Instance\V1\InstanceAdminClient;
 use Google\Cloud\Spanner\Connection\ConnectionInterface;
@@ -36,7 +36,7 @@ use Google\Cloud\Spanner\Snapshot;
 use Google\Cloud\Spanner\Timestamp;
 use Google\Cloud\Spanner\Transaction;
 use Google\Cloud\Spanner\ValueMapper;
-use Google\Cloud\Tests\GrpcTestTrait;
+use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Prophecy\Argument;
 
 /**
@@ -70,7 +70,7 @@ class DatabaseTest extends SnippetTestCase
             ->willReturn(null);
 
         $this->connection = $this->prophesize(ConnectionInterface::class);
-        $this->database = \Google\Cloud\Dev\stub(Database::class, [
+        $this->database = \Google\Cloud\Core\Testing\TestHelpers::stub(Database::class, [
             $this->connection->reveal(),
             $instance->reveal(),
             $this->prophesize(LongRunningConnectionInterface::class)->reveal(),
@@ -83,7 +83,7 @@ class DatabaseTest extends SnippetTestCase
 
     private function stubOperation()
     {
-        $operation = \Google\Cloud\Dev\stub(Operation::class, [
+        $operation = \Google\Cloud\Core\Testing\TestHelpers::stub(Operation::class, [
             $this->connection->reveal(), false
         ]);
 

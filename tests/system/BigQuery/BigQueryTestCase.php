@@ -19,7 +19,7 @@ namespace Google\Cloud\Tests\System\BigQuery;
 
 use Google\Cloud\BigQuery\BigQueryClient;
 use Google\Cloud\Storage\StorageClient;
-use Google\Cloud\Tests\System\SystemTestCase;
+use Google\Cloud\Core\Testing\System\SystemTestCase;
 
 class BigQueryTestCase extends SystemTestCase
 {

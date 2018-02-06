@@ -63,7 +63,7 @@ class FirestoreTest extends TestCase
 
     public function setUp()
     {
-        $this->client = \Google\Cloud\Dev\stub(FirestoreClient::class, [
+        $this->client = \Google\Cloud\Core\Testing\TestHelpers::stub(FirestoreClient::class, [
             [
                 'projectId' => 'projectID'
             ]

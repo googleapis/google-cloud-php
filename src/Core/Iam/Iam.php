@@ -30,7 +30,7 @@ namespace Google\Cloud\Core\Iam;
  * ```
  * // IAM policies are obtained via resources which implement IAM.
  * // In this example, we'll use PubSub topics to demonstrate
- * // how IAM politices are managed.
+ * // how IAM policies are managed.
  *
  * use Google\Cloud\PubSub\PubSubClient;
  *

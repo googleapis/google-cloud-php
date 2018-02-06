@@ -21,7 +21,7 @@ namespace Google\Cloud\Tests\Unit\Core;
 use Google\Api\Http;
 use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\Core\Exception;
-use Google\Cloud\Tests\GrpcTestTrait;
+use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Core\GrpcRequestWrapper;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\ApiStatus;
@@ -153,7 +153,7 @@ class GrpcRequestWrapperTest extends TestCase
 
     public function credentialsProvider()
     {
-        $keyFilePath = __DIR__ . '/../fixtures/json-key-fixture.json';
+        $keyFilePath = Fixtures::JSON_KEY_FIXTURE();
         putenv("GOOGLE_APPLICATION_CREDENTIALS=$keyFilePath"); // for application default credentials
 
         $credentialsFetcher = $this->prophesize(FetchAuthTokenInterface::class);
@@ -168,7 +168,7 @@ class GrpcRequestWrapperTest extends TestCase
 
     public function keyFileCredentialsProvider()
     {
-        $keyFilePath = __DIR__ . '/../fixtures/json-key-fixture.json';
+        $keyFilePath = Fixtures::JSON_KEY_FIXTURE();
 
         return [
             [['keyFile' => json_decode(file_get_contents($keyFilePath), true)]], // keyFile

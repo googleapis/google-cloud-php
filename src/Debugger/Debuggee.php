@@ -132,6 +132,8 @@ class Debuggee
      *            status.
      *      @type array $extSourceContexts References to the locations and
      *            revisions of the source code used in the deployed application.
+     *      @type array $labels  A set of custom debuggee properties, populated
+     *            by the agent, to be displayed to the user.
      * }
      */
     public function __construct(ConnectionInterface $connection, array $info = [])
@@ -145,7 +147,8 @@ class Debuggee
             'status' => null,
             'extSourceContexts' => [],
             'uniquifier' => null,
-            'description' => null
+            'description' => null,
+            'labels' => []
         ];
 
         $this->id = $info['id'];
@@ -156,6 +159,7 @@ class Debuggee
         $this->agentVersion = $info['agentVersion'];
         $this->isInactive = $info['isInactive'];
         $this->extSourceContexts = $info['extSourceContexts'];
+        $this->labels = $info['labels'];
     }
 
     /**
@@ -397,6 +401,9 @@ class Debuggee
         ];
         if ($this->status) {
             $info['status'] = $this->status;
+        }
+        if (!empty($this->labels)) {
+            $info['labels'] = $this->labels;
         }
         return $info;
     }
