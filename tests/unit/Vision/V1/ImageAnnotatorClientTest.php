@@ -1,0 +1,143 @@
+<?php
+/**
+ * Copyright 2018 Google Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+namespace Google\Cloud\Tests\Unit\Vision\V1;
+
+use Google\ApiCore\Call;
+use Google\ApiCore\Transport\TransportInterface;
+use Google\Cloud\Vision\V1\AnnotateImageRequest;
+use Google\Cloud\Vision\V1\AnnotateImageResponse;
+use Google\Cloud\Vision\V1\BatchAnnotateImagesRequest;
+use Google\Cloud\Vision\V1\BatchAnnotateImagesResponse;
+use Google\Cloud\Vision\V1\Feature;
+use Google\Cloud\Vision\V1\Feature_Type;
+use Google\Cloud\Vision\V1\Image;
+use Google\Cloud\Vision\V1\ImageAnnotatorClient;
+use Google\Cloud\Vision\V1\ImageSource;
+use GuzzleHttp\Promise\FulfilledPromise;
+use Prophecy\Argument;
+use PHPUnit\Framework\TestCase;
+
+/**
+ * @group vision
+ * @group gapic
+ */
+class ImageAnnotatorClientTest extends TestCase
+{
+    /** @var  ImageAnnotatorClient */
+    private $client;
+
+    private $transport;
+
+    public function setUp()
+    {
+        $this->transport = $this->prophesize(TransportInterface::class);
+        $this->client = new ImageAnnotatorClient([
+            'transport' => $this->transport->reveal(),
+        ]);
+    }
+
+    public function testCreateImageObject()
+    {
+        $image = $this->client->createImageObject("gs://my-bucket/myimage.jpg");
+        $this->assertSame(Image::class, get_class($image));
+        $this->assertSame(ImageSource::class, get_class($image->getSource()));
+    }
+
+    public function testAnnotateImage()
+    {
+        $expectedAnnotationResponses = [new AnnotateImageResponse()];
+        $expectedResponse = new BatchAnnotateImagesResponse();
+        $expectedResponse->setResponses($expectedAnnotationResponses);
+        $this->transport->startUnaryCall(Argument::type(Call::class), Argument::type('array'))
+            ->shouldBeCalledTimes(1)
+            ->willReturn(
+                new FulfilledPromise(
+                    $expectedResponse
+                )
+            );
+
+        $image = $this->client->createImageObject('foobar');
+        $feature = new Feature();
+        $feature->setType(Feature_Type::FACE_DETECTION);
+        $features = [$feature];
+        $request = new AnnotateImageRequest();
+        $request->setImage($image);
+        $request->setFeatures($features);
+
+        $res = $this->client->annotateImage($request);
+
+        $this->assertInstanceOf(AnnotateImageResponse::class, $res);
+    }
+
+    /**
+     * @dataProvider detectionMethodDataProvider
+     */
+    public function testDetectionMethod($methodName, $featureType)
+    {
+        $image = $this->client->createImageObject('foobar');
+
+        $expectedFeature = new Feature();
+        $expectedFeature->setType($featureType);
+        $expectedFeatures = [$expectedFeature];
+        $expectedRequest = new AnnotateImageRequest();
+        $expectedRequest->setImage($image);
+        $expectedRequest->setFeatures($expectedFeatures);
+        $expectedRequests = [$expectedRequest];
+
+        $expectedMessage = new BatchAnnotateImagesRequest();
+        $expectedMessage->setRequests($expectedRequests);
+
+        $expectedAnnotationResponses = [new AnnotateImageResponse()];
+        $expectedResponse = new BatchAnnotateImagesResponse();
+        $expectedResponse->setResponses($expectedAnnotationResponses);
+        $this->transport->startUnaryCall(
+                Argument::allOf(
+                    Argument::type(Call::class),
+                    Argument::which('getMethod', 'google.cloud.vision.v1.ImageAnnotator/BatchAnnotateImages'),
+                    Argument::which('getMessage', $expectedMessage)
+                ),
+                Argument::type('array')
+            )
+            ->shouldBeCalledTimes(1)
+            ->willReturn(
+                new FulfilledPromise(
+                    $expectedResponse
+                )
+            );
+
+        $res = $this->client->$methodName($image);
+
+        $this->assertInstanceOf(AnnotateImageResponse::class, $res);
+    }
+
+    public function detectionMethodDataProvider()
+    {
+        return [
+            ['faceDetection', Feature_Type::FACE_DETECTION],
+            ['landmarkDetection', Feature_Type::LANDMARK_DETECTION],
+            ['logoDetection', Feature_Type::LOGO_DETECTION],
+            ['labelDetection', Feature_Type::LABEL_DETECTION],
+            ['textDetection', Feature_Type::TEXT_DETECTION],
+            ['documentTextDetection', Feature_Type::DOCUMENT_TEXT_DETECTION],
+            ['safeSearchDetection', Feature_Type::SAFE_SEARCH_DETECTION],
+            ['imagePropertiesDetection', Feature_Type::IMAGE_PROPERTIES],
+            ['cropHintsDetection', Feature_Type::CROP_HINTS],
+            ['webDetection', Feature_Type::WEB_DETECTION],
+        ];
+    }
+}

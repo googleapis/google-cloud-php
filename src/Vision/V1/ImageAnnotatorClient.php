@@ -217,6 +217,326 @@ class ImageAnnotatorClient extends ImageAnnotatorGapicClient
         );
     }
 
+    /**
+     * Run logo detection for an image.
+     *
+     * Sample code:
+     * ```
+     * $imageAnnotatorClient = new ImageAnnotatorClient();
+     * try {
+     *     $imageContent = file_get_contents('path/to/image.jpg');
+     *     $image = $this->createImageObject($imageContent);
+     *     $response = $imageAnnotatorClient->logoDetection($image);
+     * } finally {
+     *     $imageAnnotatorClient->close();
+     * }
+     * ```
+     *
+     * @param Image $image        An image annotation request.
+     * @param array $optionalArgs {
+     *                            Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return AnnotateImageResponse
+     *
+     * @throws ApiException if the remote call fails
+     * @experimental
+     */
+    public function logoDetection($image, $optionalArgs = [])
+    {
+        return $this->annotateSingleFeature(
+            $image,
+            Feature_Type::LOGO_DETECTION,
+            $optionalArgs
+        );
+    }
+
+    /**
+     * Run label detection for an image.
+     *
+     * Sample code:
+     * ```
+     * $imageAnnotatorClient = new ImageAnnotatorClient();
+     * try {
+     *     $imageContent = file_get_contents('path/to/image.jpg');
+     *     $image = $this->createImageObject($imageContent);
+     *     $response = $imageAnnotatorClient->labelDetection($image);
+     * } finally {
+     *     $imageAnnotatorClient->close();
+     * }
+     * ```
+     *
+     * @param Image $image        An image annotation request.
+     * @param array $optionalArgs {
+     *                            Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return AnnotateImageResponse
+     *
+     * @throws ApiException if the remote call fails
+     * @experimental
+     */
+    public function labelDetection($image, $optionalArgs = [])
+    {
+        return $this->annotateSingleFeature(
+            $image,
+            Feature_Type::LABEL_DETECTION,
+            $optionalArgs
+        );
+    }
+
+    /**
+     * Run text detection for an image.
+     *
+     * Sample code:
+     * ```
+     * $imageAnnotatorClient = new ImageAnnotatorClient();
+     * try {
+     *     $imageContent = file_get_contents('path/to/image.jpg');
+     *     $image = $this->createImageObject($imageContent);
+     *     $response = $imageAnnotatorClient->textDetection($image);
+     * } finally {
+     *     $imageAnnotatorClient->close();
+     * }
+     * ```
+     *
+     * @param Image $image        An image annotation request.
+     * @param array $optionalArgs {
+     *                            Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return AnnotateImageResponse
+     *
+     * @throws ApiException if the remote call fails
+     * @experimental
+     */
+    public function textDetection($image, $optionalArgs = [])
+    {
+        return $this->annotateSingleFeature(
+            $image,
+            Feature_Type::TEXT_DETECTION,
+            $optionalArgs
+        );
+    }
+
+    /**
+     * Run document text detection for an image.
+     *
+     * Sample code:
+     * ```
+     * $imageAnnotatorClient = new ImageAnnotatorClient();
+     * try {
+     *     $imageContent = file_get_contents('path/to/image.jpg');
+     *     $image = $this->createImageObject($imageContent);
+     *     $response = $imageAnnotatorClient->documentTextDetection($image);
+     * } finally {
+     *     $imageAnnotatorClient->close();
+     * }
+     * ```
+     *
+     * @param Image $image        An image annotation request.
+     * @param array $optionalArgs {
+     *                            Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return AnnotateImageResponse
+     *
+     * @throws ApiException if the remote call fails
+     * @experimental
+     */
+    public function documentTextDetection($image, $optionalArgs = [])
+    {
+        return $this->annotateSingleFeature(
+            $image,
+            Feature_Type::DOCUMENT_TEXT_DETECTION,
+            $optionalArgs
+        );
+    }
+
+    /**
+     * Run safe search detection for an image.
+     *
+     * Sample code:
+     * ```
+     * $imageAnnotatorClient = new ImageAnnotatorClient();
+     * try {
+     *     $imageContent = file_get_contents('path/to/image.jpg');
+     *     $image = $this->createImageObject($imageContent);
+     *     $response = $imageAnnotatorClient->safeSearchDetection($image);
+     * } finally {
+     *     $imageAnnotatorClient->close();
+     * }
+     * ```
+     *
+     * @param Image $image        An image annotation request.
+     * @param array $optionalArgs {
+     *                            Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return AnnotateImageResponse
+     *
+     * @throws ApiException if the remote call fails
+     * @experimental
+     */
+    public function safeSearchDetection($image, $optionalArgs = [])
+    {
+        return $this->annotateSingleFeature(
+            $image,
+            Feature_Type::SAFE_SEARCH_DETECTION,
+            $optionalArgs
+        );
+    }
+
+    /**
+     * Run image properties detection for an image.
+     *
+     * Sample code:
+     * ```
+     * $imageAnnotatorClient = new ImageAnnotatorClient();
+     * try {
+     *     $imageContent = file_get_contents('path/to/image.jpg');
+     *     $image = $this->createImageObject($imageContent);
+     *     $response = $imageAnnotatorClient->imagePropertiesDetection($image);
+     * } finally {
+     *     $imageAnnotatorClient->close();
+     * }
+     * ```
+     *
+     * @param Image $image        An image annotation request.
+     * @param array $optionalArgs {
+     *                            Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return AnnotateImageResponse
+     *
+     * @throws ApiException if the remote call fails
+     * @experimental
+     */
+    public function imagePropertiesDetection($image, $optionalArgs = [])
+    {
+        return $this->annotateSingleFeature(
+            $image,
+            Feature_Type::IMAGE_PROPERTIES,
+            $optionalArgs
+        );
+    }
+
+    /**
+     * Run crop hints detection for an image.
+     *
+     * Sample code:
+     * ```
+     * $imageAnnotatorClient = new ImageAnnotatorClient();
+     * try {
+     *     $imageContent = file_get_contents('path/to/image.jpg');
+     *     $image = $this->createImageObject($imageContent);
+     *     $response = $imageAnnotatorClient->cropHintsDetection($image);
+     * } finally {
+     *     $imageAnnotatorClient->close();
+     * }
+     * ```
+     *
+     * @param Image $image        An image annotation request.
+     * @param array $optionalArgs {
+     *                            Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return AnnotateImageResponse
+     *
+     * @throws ApiException if the remote call fails
+     * @experimental
+     */
+    public function cropHintsDetection($image, $optionalArgs = [])
+    {
+        return $this->annotateSingleFeature(
+            $image,
+            Feature_Type::CROP_HINTS,
+            $optionalArgs
+        );
+    }
+
+    /**
+     * Run web detection for an image.
+     *
+     * Sample code:
+     * ```
+     * $imageAnnotatorClient = new ImageAnnotatorClient();
+     * try {
+     *     $imageContent = file_get_contents('path/to/image.jpg');
+     *     $image = $this->createImageObject($imageContent);
+     *     $response = $imageAnnotatorClient->webDetection($image);
+     * } finally {
+     *     $imageAnnotatorClient->close();
+     * }
+     * ```
+     *
+     * @param Image $image        An image annotation request.
+     * @param array $optionalArgs {
+     *                            Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return AnnotateImageResponse
+     *
+     * @throws ApiException if the remote call fails
+     * @experimental
+     */
+    public function webDetection($image, $optionalArgs = [])
+    {
+        return $this->annotateSingleFeature(
+            $image,
+            Feature_Type::WEB_DETECTION,
+            $optionalArgs
+        );
+    }
+
     private function annotateSingleFeature($image, $featureType, $optionalArgs)
     {
         $request = $this->buildSingleFeatureRequest(
