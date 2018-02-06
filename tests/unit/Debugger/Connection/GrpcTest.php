@@ -20,7 +20,7 @@ namespace Google\Cloud\Tests\Unit\Debugger\Connection;
 use Google\Cloud\Core\GrpcRequestWrapper;
 use Google\Cloud\Core\GrpcTrait;
 use Google\Cloud\Debugger\Connection\Grpc;
-use Google\Cloud\Tests\GrpcTestTrait;
+use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Prophecy\Argument;
 use PHPUnit\Framework\TestCase;
 
