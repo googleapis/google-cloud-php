@@ -21,13 +21,13 @@ use Prophecy\Argument;
 use Google\Cloud\Core\Blob;
 use Google\Cloud\Core\GeoPoint;
 use Google\Cloud\Firestore\FieldPath;
-use Google\Cloud\Tests\GrpcTestTrait;
+use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Firestore\WriteBatch;
 use Google\Cloud\Firestore\Transaction;
 use Google\Cloud\Firestore\FirestoreClient;
 use Google\Cloud\Core\Iterator\ItemIterator;
 use Google\Cloud\Firestore\DocumentSnapshot;
-use Google\Cloud\Dev\Snippet\SnippetTestCase;
+use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
 use Google\Cloud\Firestore\DocumentReference;
 use Google\Cloud\Firestore\CollectionReference;
 use Google\Cloud\Firestore\Connection\ConnectionInterface;
@@ -51,7 +51,7 @@ class FirestoreClientTest extends SnippetTestCase
         $this->checkAndSkipGrpcTests();
 
         $this->connection = $this->prophesize(ConnectionInterface::class);
-        $this->client = \Google\Cloud\Dev\stub(FirestoreClient::class, [
+        $this->client = \Google\Cloud\Core\Testing\TestHelpers::stub(FirestoreClient::class, [
             ['projectId' => self::PROJECT]
         ]);
     }

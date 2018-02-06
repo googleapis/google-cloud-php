@@ -33,7 +33,7 @@ use Google\Cloud\Spanner\KeyRange;
 use Google\Cloud\Spanner\KeySet;
 use Google\Cloud\Spanner\SpannerClient;
 use Google\Cloud\Spanner\Timestamp;
-use Google\Cloud\Tests\GrpcTestTrait;
+use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Prophecy\Argument;
 use PHPUnit\Framework\TestCase;
 
@@ -56,7 +56,7 @@ class SpannerClientTest extends TestCase
         $this->checkAndSkipGrpcTests();
 
         $this->connection = $this->prophesize(ConnectionInterface::class);
-        $this->client = \Google\Cloud\Dev\stub(SpannerClient::class, [
+        $this->client = \Google\Cloud\Core\Testing\TestHelpers::stub(SpannerClient::class, [
             ['projectId' => self::PROJECT]
         ]);
     }

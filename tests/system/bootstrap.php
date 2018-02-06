@@ -8,7 +8,7 @@ use Google\Cloud\Tests\System\Logging\LoggingTestCase;
 use Google\Cloud\Tests\System\PubSub\PubSubTestCase;
 use Google\Cloud\Tests\System\Spanner\SpannerTestCase;
 use Google\Cloud\Tests\System\Storage\StorageTestCase;
-use Google\Cloud\Tests\System\SystemTestCase;
+use Google\Cloud\Core\Testing\System\SystemTestCase;
 use Google\Cloud\Tests\System\Whitelist\WhitelistTest;
 
 if (!getenv('GOOGLE_CLOUD_PHP_TESTS_KEY_PATH')) {

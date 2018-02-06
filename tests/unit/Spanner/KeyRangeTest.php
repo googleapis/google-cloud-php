@@ -18,7 +18,7 @@
 namespace Google\Cloud\Tests\Unit\Spanner;
 
 use Google\Cloud\Spanner\KeyRange;
-use Google\Cloud\Tests\GrpcTestTrait;
+use Google\Cloud\Core\Testing\GrpcTestTrait;
 use PHPUnit\Framework\TestCase;
 
 /**

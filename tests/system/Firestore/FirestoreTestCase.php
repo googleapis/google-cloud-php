@@ -18,7 +18,7 @@
 namespace Google\Cloud\Tests\System\Firestore;
 
 use Google\Cloud\Firestore\FirestoreClient;
-use Google\Cloud\Tests\System\SystemTestCase;
+use Google\Cloud\Core\Testing\System\SystemTestCase;
 
 class FirestoreTestCase extends SystemTestCase
 {

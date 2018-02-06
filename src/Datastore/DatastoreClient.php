@@ -18,6 +18,7 @@
 namespace Google\Cloud\Datastore;
 
 use DomainException;
+use Google\Cloud\Core\ArrayTrait;
 use Google\Cloud\Core\ClientTrait;
 use Google\Cloud\Core\Int64;
 use Google\Cloud\Datastore\Connection\Rest;
@@ -73,10 +74,11 @@ use Psr\Http\Message\StreamInterface;
  */
 class DatastoreClient
 {
+    use ArrayTrait;
     use ClientTrait;
     use DatastoreTrait;
 
-    const VERSION = '1.2.2';
+    const VERSION = '1.3.0';
 
     const FULL_CONTROL_SCOPE = 'https://www.googleapis.com/auth/datastore';
 
@@ -453,7 +455,7 @@ class DatastoreClient
     }
 
     /**
-     * Create a Transaction
+     * Create a Transaction.
      *
      * Example:
      * ```
@@ -461,17 +463,67 @@ class DatastoreClient
      * ```
      *
      * @see https://cloud.google.com/datastore/docs/concepts/transactions Datastore Transactions
+     * @see https://cloud.google.com/datastore/docs/reference/rest/v1/projects/beginTransaction beginTransaction
      *
-     * @param array $options [optional] Configuration options.
+     * @codingStandardsIgnoreStart
+     * @param array $options {
+     *     Configuration options.
+     *
+     *     @type array $transactionOptions Transaction configuration. See
+     *           [ReadWrite](https://cloud.google.com/datastore/docs/reference/rest/v1/projects/beginTransaction#ReadWrite).
+     * }
      * @return Transaction
+     * @codingStandardsIgnoreEnd
      */
     public function transaction(array $options = [])
     {
-        $res = $this->connection->beginTransaction($options + [
-            'projectId' => $this->projectId
-        ]);
+        $res = $this->connection->beginTransaction([
+            'projectId' => $this->projectId,
+            'transactionOptions' => [
+                // if empty, force request to encode as {} rather than [].
+                'readWrite' => $this->pluck('transactionOptions', $options, false) ?: (object) []
+            ]
+        ] + $options);
 
         return new Transaction(
+            clone $this->operation,
+            $this->projectId,
+            $res['transaction']
+        );
+    }
+    /**
+     * Create a Read-Only Transaction.
+     *
+     * Example:
+     * ```
+     * $transaction = $datastore->readOnlyTransaction();
+     * ```
+     *
+     * @see https://cloud.google.com/datastore/docs/concepts/transactions Datastore Transactions
+     * @see https://cloud.google.com/datastore/docs/reference/rest/v1/projects/beginTransaction beginTransaction
+     *
+     * @codingStandardsIgnoreStart
+     * @param array $options {
+     *     Configuration options.
+     *
+     *     @type array $transactionOptions See
+     *           [ReadOnly](https://cloud.google.com/datastore/docs/reference/rest/v1/projects/beginTransaction#ReadOnly).
+     * }
+     * @return ReadOnlyTransaction
+     * @codingStandardsIgnoreEnd
+     */
+    public function readOnlyTransaction(array $options = [])
+    {
+        $transactionOptions = $this->pluck('transactionOptions', $options, false) ?: [];
+        $res = $this->connection->beginTransaction([
+            'projectId' => $this->projectId,
+            'transactionOptions' => [
+                // if empty, force request to encode as {} rather than [].
+                'readOnly' => $transactionOptions ?: (object) []
+            ]
+        ] + $options);
+
+        return new ReadOnlyTransaction(
             clone $this->operation,
             $this->projectId,
             $res['transaction']
@@ -910,7 +962,7 @@ class DatastoreClient
      * // Literals must be provided as bound parameters by default:
      * $query = $datastore->gqlQuery('SELECT * FROM Companies WHERE companyName = @companyName', [
      *     'bindings' => [
-     *         'companyName' => 'Bob'
+     *         'companyName' => 'Google'
      *     ]
      * ]);
      * ```

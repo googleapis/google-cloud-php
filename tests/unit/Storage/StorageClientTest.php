@@ -38,7 +38,7 @@ class StorageClientTest extends TestCase
     public function setUp()
     {
         $this->connection = $this->prophesize(Rest::class);
-        $this->client = \Google\Cloud\Dev\stub(StorageClient::class, [['projectId' => self::PROJECT]]);
+        $this->client = \Google\Cloud\Core\Testing\TestHelpers::stub(StorageClient::class, [['projectId' => self::PROJECT]]);
     }
 
     public function testGetBucket()

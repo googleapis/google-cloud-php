@@ -102,7 +102,7 @@ trait ResultTestTrait
     private function getStreamingDataFixture()
     {
         return json_decode(
-            file_get_contents(__DIR__ .'/../fixtures/spanner/streaming-read-acceptance-test.json'),
+            file_get_contents(Fixtures::STREAMING_READ_ACCEPTANCE_FIXTURE()),
             true
         );
     }

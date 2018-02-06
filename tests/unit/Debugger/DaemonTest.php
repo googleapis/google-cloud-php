@@ -17,6 +17,7 @@
 
 namespace Google\Cloud\Tests\Unit\Debugger;
 
+use Google\Cloud\Core\Report\SimpleMetadataProvider;
 use Google\Cloud\Debugger\Breakpoint;
 use Google\Cloud\Debugger\BreakpointStorage\BreakpointStorageInterface;
 use Google\Cloud\Debugger\Daemon;
@@ -180,5 +181,26 @@ class DaemonTest extends TestCase
             'storage' => $this->storage->reveal()
         ]);
         $daemon->run($this->client->reveal());
+    }
+
+    public function testDetectsLabelsFromEnvironment()
+    {
+        $provider = new SimpleMetadataProvider([], 'project1', 'service1', 'version1');
+        $expectedLabels = [
+            'module' => 'service1',
+            'projectid' => 'project1',
+            'version' => 'version1'
+        ];
+        $this->debuggee->register(Argument::any())
+            ->shouldBeCalled();
+        $this->client->debuggee(null, Argument::withEntry('labels', $expectedLabels))
+            ->willReturn($this->debuggee->reveal())
+            ->shouldBeCalled();
+
+        $daemon = new Daemon('.', [
+            'metadataProvider' => $provider,
+            'client' => $this->client->reveal(),
+            'storage' => $this->storage->reveal()
+        ]);
     }
 }

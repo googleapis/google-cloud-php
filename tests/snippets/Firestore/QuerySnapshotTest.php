@@ -17,13 +17,13 @@
 
 namespace Google\Cloud\Tests\Snippets\Firestore;
 
-use Google\Cloud\Dev\Snippet\SnippetTestCase;
+use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
 use Google\Cloud\Firestore\Connection\ConnectionInterface;
 use Google\Cloud\Firestore\FirestoreClient;
 use Google\Cloud\Firestore\Query;
 use Google\Cloud\Firestore\QuerySnapshot;
 use Google\Cloud\Firestore\ValueMapper;
-use Google\Cloud\Tests\GrpcTestTrait;
+use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Prophecy\Argument;
 
 /**
@@ -40,7 +40,7 @@ class QuerySnapshotTest extends SnippetTestCase
     public function setUp()
     {
         $this->connection = $this->prophesize(ConnectionInterface::class);
-        $this->snapshot = \Google\Cloud\Dev\stub(QuerySnapshot::class, [
+        $this->snapshot = \Google\Cloud\Core\Testing\TestHelpers::stub(QuerySnapshot::class, [
             $this->prophesize(Query::class)->reveal(),
             []
         ], ['rows']);
@@ -54,7 +54,7 @@ class QuerySnapshotTest extends SnippetTestCase
             ->shouldBeCalled()
             ->willReturn(new \ArrayIterator([]));
 
-        $client = \Google\Cloud\Dev\stub(FirestoreClient::class);
+        $client = \Google\Cloud\Core\Testing\TestHelpers::stub(FirestoreClient::class);
         $client->___setProperty('connection', $this->connection->reveal());
 
         $snippet = $this->snippetFromClass(QuerySnapshot::class);

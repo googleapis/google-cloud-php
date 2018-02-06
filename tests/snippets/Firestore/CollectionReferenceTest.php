@@ -19,9 +19,9 @@ namespace Google\Cloud\Tests\Snippets\Firestore;
 
 use Prophecy\Argument;
 use Google\Cloud\Firestore\Query;
-use Google\Cloud\Tests\GrpcTestTrait;
+use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Firestore\ValueMapper;
-use Google\Cloud\Dev\Snippet\SnippetTestCase;
+use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
 use Google\Cloud\Firestore\DocumentReference;
 use Google\Cloud\Firestore\CollectionReference;
 use Google\Cloud\Firestore\Connection\ConnectionInterface;
@@ -44,7 +44,7 @@ class CollectionReferenceTest extends SnippetTestCase
     public function setUp()
     {
         $this->connection = $this->prophesize(ConnectionInterface::class);
-        $this->collection = \Google\Cloud\Dev\stub(CollectionReference::class, [
+        $this->collection = \Google\Cloud\Core\Testing\TestHelpers::stub(CollectionReference::class, [
             $this->connection->reveal(),
             new ValueMapper($this->connection->reveal(), false),
             self::NAME

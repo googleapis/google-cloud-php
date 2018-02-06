@@ -29,7 +29,7 @@ use Google\Cloud\Spanner\Connection\ConnectionInterface;
 use Google\Cloud\Spanner\Database;
 use Google\Cloud\Spanner\Instance;
 use Google\Cloud\Spanner\Session\SessionPoolInterface;
-use Google\Cloud\Tests\GrpcTestTrait;
+use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Prophecy\Argument;
 use PHPUnit\Framework\TestCase;
 
@@ -52,7 +52,7 @@ class InstanceTest extends TestCase
         $this->checkAndSkipGrpcTests();
 
         $this->connection = $this->prophesize(ConnectionInterface::class);
-        $this->instance = \Google\Cloud\Dev\stub(Instance::class, [
+        $this->instance = \Google\Cloud\Core\Testing\TestHelpers::stub(Instance::class, [
             $this->connection->reveal(),
             $this->prophesize(LongRunningConnectionInterface::class)->reveal(),
             [],
@@ -308,6 +308,6 @@ class InstanceTest extends TestCase
 
     private function getDefaultInstance()
     {
-        return json_decode(file_get_contents(__DIR__ .'/../fixtures/spanner/instance.json'), true);
+        return json_decode(file_get_contents(Fixtures::INSTANCE_FIXTURE()), true);
     }
 }

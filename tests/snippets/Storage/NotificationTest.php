@@ -17,7 +17,7 @@
 
 namespace Google\Cloud\Tests\Snippets\Storage;
 
-use Google\Cloud\Dev\Snippet\SnippetTestCase;
+use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
 use Google\Cloud\PubSub\PubSubClient;
 use Google\Cloud\PubSub\Topic;
 use Google\Cloud\Storage\Acl;
@@ -40,7 +40,7 @@ class NotificationTest extends SnippetTestCase
     public function setUp()
     {
         $this->connection = $this->prophesize(Rest::class);
-        $this->notification = \Google\Cloud\Dev\stub(Notification::class, [
+        $this->notification = \Google\Cloud\Core\Testing\TestHelpers::stub(Notification::class, [
             $this->connection->reveal(),
             self::NOTIFICATION_ID,
             self::BUCKET

@@ -7,5 +7,8 @@
   <rule ref="PSR1.Methods.CamelCapsMethodName">
     <exclude-pattern>src/Storage/StreamWrapper.php</exclude-pattern>
   </rule>
+  <rule ref="PSR1.Files.SideEffects.FoundWithSymbols">
+    <exclude-pattern>src/Core/Testing/Lock/MockValues.php</exclude-pattern>
+  </rule>
   <file>src</file>
 </ruleset>

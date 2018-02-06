@@ -18,7 +18,7 @@
 namespace Google\Cloud\Tests\Snippets\PubSub;
 
 use Google\Cloud\Core\Iam\Iam;
-use Google\Cloud\Dev\Snippet\SnippetTestCase;
+use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
 use Google\Cloud\PubSub\Connection\ConnectionInterface;
 use Google\Cloud\PubSub\BatchPublisher;
 use Google\Cloud\PubSub\PubSubClient;
@@ -42,8 +42,8 @@ class TopicTest extends SnippetTestCase
     public function setUp()
     {
         $this->connection = $this->prophesize(ConnectionInterface::class);
-        $this->pubsub = \Google\Cloud\Dev\stub(PubSubClient::class);
-        $this->topic = \Google\Cloud\Dev\stub(Topic::class, [
+        $this->pubsub = \Google\Cloud\Core\Testing\TestHelpers::stub(PubSubClient::class);
+        $this->topic = \Google\Cloud\Core\Testing\TestHelpers::stub(Topic::class, [
             $this->connection->reveal(),
             'my-awesome-project',
             self::TOPIC,

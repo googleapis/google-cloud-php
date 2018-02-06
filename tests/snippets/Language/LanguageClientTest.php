@@ -17,7 +17,7 @@
 
 namespace Google\Cloud\Tests\Snippets\Language;
 
-use Google\Cloud\Dev\Snippet\SnippetTestCase;
+use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
 use Google\Cloud\Language\Connection\ConnectionInterface;
 use Google\Cloud\Language\LanguageClient;
 use Prophecy\Argument;
@@ -33,7 +33,7 @@ class LanguageClientTest extends SnippetTestCase
     public function setUp()
     {
         $this->connection = $this->prophesize(ConnectionInterface::class);
-        $this->client = \Google\Cloud\Dev\stub(LanguageClient::class);
+        $this->client = \Google\Cloud\Core\Testing\TestHelpers::stub(LanguageClient::class);
         $this->client->___setProperty('connection', $this->connection->reveal());
     }
 

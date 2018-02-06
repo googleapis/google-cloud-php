@@ -12,6 +12,7 @@
         <directory suffix=".php">src/*/V[!a-zA-Z]*</directory>
         <directory suffix=".php">src/*/*/V[!a-zA-Z]*</directory>
         <directory suffix=".php">src/*/*/*/V[!a-zA-Z]*</directory>
+        <directory suffix=".php">src/Core/Testing</directory>
       </exclude>
     </whitelist>
   </filter>

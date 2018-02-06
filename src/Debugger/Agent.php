@@ -228,7 +228,7 @@ class Agent
 
     private function defaultDebuggee()
     {
-        $client = new DebuggerClient($this->clientConfig);
+        $client = new DebuggerClient($this->getUnwrappedClientConfig());
         return $client->debuggee($this->debuggeeId);
     }
 

@@ -18,13 +18,13 @@
 namespace Google\Cloud\Tests\Snippets\Firestore;
 
 use Google\Cloud\Core\Timestamp;
-use Google\Cloud\Dev\Snippet\SnippetTestCase;
+use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
 use Google\Cloud\Firestore\Connection\ConnectionInterface;
 use Google\Cloud\Firestore\DocumentReference;
 use Google\Cloud\Firestore\DocumentSnapshot;
 use Google\Cloud\Firestore\FirestoreClient;
 use Google\Cloud\Firestore\ValueMapper;
-use Google\Cloud\Tests\GrpcTestTrait;
+use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Prophecy\Argument;
 
 /**
@@ -47,7 +47,7 @@ class DocumentSnapshotTest extends SnippetTestCase
         $ref->id()->willReturn(array_pop($parts));
         $ref->path()->willReturn(explode('/documents/', self::DOCUMENT)[1]);
 
-        $this->snapshot = \Google\Cloud\Dev\stub(DocumentSnapshot::class, [
+        $this->snapshot = \Google\Cloud\Core\Testing\TestHelpers::stub(DocumentSnapshot::class, [
             $ref->reveal(),
             new ValueMapper($this->prophesize(ConnectionInterface::class)->reveal(), false),
             [],
@@ -67,7 +67,7 @@ class DocumentSnapshotTest extends SnippetTestCase
                 ['missing' => self::DOCUMENT]
             ]));
 
-        $client = \Google\Cloud\Dev\stub(FirestoreClient::class);
+        $client = \Google\Cloud\Core\Testing\TestHelpers::stub(FirestoreClient::class);
         $client->___setProperty('connection', $connection->reveal());
         $snippet = $this->snippetFromClass(DocumentSnapshot::class);
         $snippet->setLine(2, '');

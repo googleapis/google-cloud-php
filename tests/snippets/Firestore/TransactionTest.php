@@ -17,7 +17,7 @@
 
 namespace Google\Cloud\Tests\Snippets\Firestore;
 
-use Google\Cloud\Dev\Snippet\SnippetTestCase;
+use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
 use Google\Cloud\Firestore\CollectionReference;
 use Google\Cloud\Firestore\Connection\ConnectionInterface;
 use Google\Cloud\Firestore\DocumentReference;
@@ -29,7 +29,7 @@ use Google\Cloud\Firestore\QuerySnapshot;
 use Google\Cloud\Firestore\Transaction;
 use Google\Cloud\Firestore\ValueMapper;
 use Google\Cloud\Firestore\WriteBatch;
-use Google\Cloud\Tests\GrpcTestTrait;
+use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Prophecy\Argument;
 
 /**
@@ -52,7 +52,7 @@ class TransactionTest extends SnippetTestCase
     public function setUp()
     {
         $this->connection = $this->prophesize(ConnectionInterface::class);
-        $this->transaction = \Google\Cloud\Dev\stub(TransactionStub::class, [
+        $this->transaction = \Google\Cloud\Core\Testing\TestHelpers::stub(TransactionStub::class, [
             $this->connection->reveal(),
             new ValueMapper($this->connection->reveal(), false),
             self::DATABASE,
@@ -76,7 +76,7 @@ class TransactionTest extends SnippetTestCase
         $this->connection->rollback(Argument::any())
             ->shouldBeCalled();
 
-        $client = \Google\Cloud\Dev\stub(FirestoreClient::class);
+        $client = \Google\Cloud\Core\Testing\TestHelpers::stub(FirestoreClient::class);
         $client->___setProperty('connection', $this->connection->reveal());
 
         $snippet = $this->snippetFromClass(Transaction::class);
