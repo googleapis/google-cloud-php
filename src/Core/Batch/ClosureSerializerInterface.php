@@ -18,8 +18,7 @@
 namespace Google\Cloud\Core\Batch;
 
 /**
- * A closure serializer implementation utilzing
- * [Opis Closure](https://github.com/opis/closure).
+ * An interface for serializing closures.
  *
  * @experimental The experimental flag means that while we believe this method
  *      or class is ready for use, it may change before release in backwards-

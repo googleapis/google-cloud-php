@@ -31,7 +31,9 @@ use Opis\Closure\SerializableClosure;
 class OpisClosureSerializer implements ClosureSerializerInterface
 {
     /**
-     * {@inheritDoc}
+     * Recursively serializes closures.
+     *
+     * @param mixed $data
      */
     public function wrapClosures(&$data)
     {
@@ -41,7 +43,9 @@ class OpisClosureSerializer implements ClosureSerializerInterface
     }
 
     /**
-     * {@inheritDoc}
+     * Recursively unserializes closures.
+     *
+     * @param mixed $data
      */
     public function unwrapClosures(&$data)
     {

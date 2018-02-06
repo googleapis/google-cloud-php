@@ -196,7 +196,7 @@ trait BatchTrait
         $this->debugOutput = isset($options['debugOutput'])
             ? $options['debugOutput']
             : false;
-        $this->clientConfig = $this->setWrappedClientConfig($options);
+        $this->clientConfig = $this->getWrappedClientConfig($options);
         $batchOptions = isset($options['batchOptions'])
             ? $options['batchOptions']
             : [];
@@ -219,7 +219,7 @@ trait BatchTrait
      * @param array $options
      * @return array
      */
-    private function setWrappedClientConfig(array $options)
+    private function getWrappedClientConfig(array $options)
     {
         $config = isset($options['clientConfig'])
             ? $options['clientConfig']
