@@ -60,7 +60,7 @@ class Grpc implements ConnectionInterface
         ]);
         $config['serializer'] = $this->serializer;
         $this->setRequestWrapper(new GrpcRequestWrapper($config));
-        $gaxConfig = $this->getGaxConfig(DebuggerClient::VERSION);
+        $gaxConfig = $config + $this->getGaxConfig(DebuggerClient::VERSION);
 
         $this->controllerClient = new Controller2Client($gaxConfig);
         $this->debuggerClient = new Debugger2Client($gaxConfig);

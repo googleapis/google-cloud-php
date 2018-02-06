@@ -81,13 +81,8 @@ class DebuggerClient
             'scopes' => [self::FULL_CONTROL_SCOPE],
             'preferNumericProjectId' => true
         ];
-
-        $connectionType = $this->getConnectionType($config);
-        if ($connectionType === 'grpc') {
-            $this->connection = new Grpc($this->configureAuthentication($config));
-        } else {
-            $this->connection = new Rest($this->configureAuthentication($config));
-        }
+        $config['transport'] = $this->getConnectionType($config);
+        $this->connection = new Grpc($this->configureAuthentication($config));
     }
 
     /**
