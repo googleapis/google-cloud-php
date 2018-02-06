@@ -19,6 +19,7 @@ namespace Google\Cloud\Debugger;
 
 use Google\Cloud\Core\ClientTrait;
 use Google\Cloud\Debugger\Connection\ConnectionInterface;
+use Google\Cloud\Debugger\Connection\Grpc;
 use Google\Cloud\Debugger\Connection\Rest;
 
 /**
@@ -76,13 +77,12 @@ class DebuggerClient
      */
     public function __construct(array $config = [])
     {
-        if (!isset($config['scopes'])) {
-            $config['scopes'] = [self::FULL_CONTROL_SCOPE];
-        }
-
-        $this->connection = new Rest($this->configureAuthentication($config + [
+        $config += [
+            'scopes' => [self::FULL_CONTROL_SCOPE],
             'preferNumericProjectId' => true
-        ]));
+        ];
+        $config['transport'] = $this->getConnectionType($config);
+        $this->connection = new Grpc($this->configureAuthentication($config));
     }
 
     /**
@@ -117,7 +117,7 @@ class DebuggerClient
      *            user about this debuggee. Absence of this field indicates no
      *            status. The message can be either informational or an error
      *            status.
-     *      @type ExtendedSourceContext[] $extSourceContexts References to the locations and
+     *      @type array $extSourceContexts References to the locations and
      *            revisions of the source code used in the deployed application.
      * }
      * @return Debuggee
@@ -143,7 +143,10 @@ class DebuggerClient
      */
     public function debuggees(array $extras = [])
     {
-        $res = $this->connection->listDebuggees(['project' => $this->projectId] + $extras);
+        $res = $this->connection->listDebuggees([
+            'project' => $this->projectId,
+            'agentVersion' => self::DEFAULT_AGENT_VERSION
+        ] + $extras);
         if (is_array($res) && array_key_exists('debuggees', $res)) {
             return array_map(function ($info) {
                 return new Debuggee($this->connection, $info);

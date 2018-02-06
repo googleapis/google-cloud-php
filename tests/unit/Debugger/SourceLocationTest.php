@@ -25,7 +25,7 @@ use PHPUnit\Framework\TestCase;
  */
 class SourceLocationTest extends TestCase
 {
-    use JsonTestTrait;
+    use SerializationTestTrait;
 
     public function testSerializes()
     {
@@ -34,6 +34,6 @@ class SourceLocationTest extends TestCase
             'path' => 'path',
             'line' => 10
         ];
-        $this->assertProducesEquivalentJson($expected, $location);
+        $this->assertEquivalentArrays($expected, $location->info());
     }
 }

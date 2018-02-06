@@ -48,7 +48,7 @@ class BreakpointValidationTest extends TestCase
         ]);
         $this->assertEquals($expectedValid, $breakpoint->validate());
         if (!$expectedValid) {
-            $status = $breakpoint->status()->jsonSerialize();
+            $status = $breakpoint->status()->info();
             $this->assertTrue($status['isError']);
             $this->assertEquals(StatusMessage::REFERENCE_BREAKPOINT_CONDITION, $status['refersTo']);
         }
@@ -68,7 +68,7 @@ class BreakpointValidationTest extends TestCase
         ]);
         $this->assertEquals($expectedValid, $breakpoint->validate());
         if (!$expectedValid) {
-            $status = $breakpoint->status()->jsonSerialize();
+            $status = $breakpoint->status()->info();
             $this->assertTrue($status['isError']);
             $this->assertEquals(StatusMessage::REFERENCE_BREAKPOINT_EXPRESSION, $status['refersTo']);
         }
@@ -95,7 +95,7 @@ class BreakpointValidationTest extends TestCase
             ]
         ]);
         $this->assertFalse($breakpoint->validate());
-        $status = $breakpoint->status()->jsonSerialize();
+        $status = $breakpoint->status()->info();
         $this->assertTrue($status['isError']);
         $this->assertEquals(
             StatusMessage::REFERENCE_BREAKPOINT_SOURCE_LOCATION,
@@ -112,7 +112,7 @@ class BreakpointValidationTest extends TestCase
             ]
         ]);
         $this->assertFalse($breakpoint->validate());
-        $status = $breakpoint->status()->jsonSerialize();
+        $status = $breakpoint->status()->info();
         $this->assertTrue($status['isError']);
         $this->assertEquals(
             StatusMessage::REFERENCE_BREAKPOINT_SOURCE_LOCATION,
@@ -129,7 +129,7 @@ class BreakpointValidationTest extends TestCase
             ]
         ]);
         $this->assertFalse($breakpoint->validate());
-        $status = $breakpoint->status()->jsonSerialize();
+        $status = $breakpoint->status()->info();
         $this->assertTrue($status['isError']);
         $this->assertEquals(
             StatusMessage::REFERENCE_BREAKPOINT_SOURCE_LOCATION,
@@ -146,7 +146,7 @@ class BreakpointValidationTest extends TestCase
             ]
         ]);
         $this->assertFalse($breakpoint->validate());
-        $status = $breakpoint->status()->jsonSerialize();
+        $status = $breakpoint->status()->info();
         $this->assertTrue($status['isError']);
         $this->assertEquals(
             StatusMessage::REFERENCE_BREAKPOINT_SOURCE_LOCATION,

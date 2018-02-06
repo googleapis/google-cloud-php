@@ -181,6 +181,16 @@ class BreakpointTest extends SnippetTestCase
         $res = $snippet->invoke('valid');
     }
 
+    public function testInfo()
+    {
+        $breakpoint = new Breakpoint(['id' => 'breakpoint1']);
+        $snippet = $this->snippetFromMethod(Breakpoint::class, 'info');
+        $snippet->addLocal('breakpoint', $breakpoint);
+        $res = $snippet->invoke('info');
+        $info = $res->returnVal();
+        $this->assertEquals('breakpoint1', $info['id']);
+    }
+
     public function testResolveLocation()
     {
         $breakpoint = new Breakpoint([

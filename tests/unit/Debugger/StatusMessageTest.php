@@ -27,7 +27,7 @@ use PHPUnit\Framework\TestCase;
  */
 class StatusMessageTest extends TestCase
 {
-    use JsonTestTrait;
+    use SerializationTestTrait;
 
     public function testSerializes()
     {
@@ -40,6 +40,6 @@ class StatusMessageTest extends TestCase
                 'parameters' => ['param1', 'param2']
             ]
         ];
-        $this->assertProducesEquivalentJson($expected, $message);
+        $this->assertEquivalentArrays($expected, $message->info());
     }
 }

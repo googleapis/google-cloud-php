@@ -32,7 +32,7 @@ class VariableTableTest extends TestCase
         $object = new Int64('123');
 
         $variable = $variableTable->register('int', $object);
-        $data = $variable->jsonSerialize();
+        $data = $variable->info();
 
         $this->assertEquals('int', $data['name']);
         $this->assertEquals(0, $data['varTableIndex']);
@@ -44,7 +44,7 @@ class VariableTableTest extends TestCase
         $variables = $variableTable->variables();
         $this->assertCount(1, $variables);
 
-        $variableData = $variables[0]->jsonSerialize();
+        $variableData = $variables[0]->info();
         $this->assertEquals('int', $variableData['name']);
         $this->assertArrayNotHasKey('varTableIndex', $variableData);
         $this->assertEquals(Int64::class, $variableData['type']);
@@ -61,10 +61,10 @@ class VariableTableTest extends TestCase
         $variable2 = $variableTable->register('int2', $object);
 
         $data1 = $variable1;
-        $this->assertEquals(0, $data1->jsonSerialize()['varTableIndex']);
+        $this->assertEquals(0, $data1->info()['varTableIndex']);
 
         $data2 = $variable2;
-        $this->assertEquals(0, $data2->jsonSerialize()['varTableIndex']);
+        $this->assertEquals(0, $data2->info()['varTableIndex']);
 
         $this->assertCount(1, $variableTable->variables());
     }
@@ -81,10 +81,10 @@ class VariableTableTest extends TestCase
         $variable2 = $variableTable->register('int2', $object2);
 
         $data1 = $variable1;
-        $this->assertEquals(0, $data1->jsonSerialize()['varTableIndex']);
+        $this->assertEquals(0, $data1->info()['varTableIndex']);
 
         $data2 = $variable2;
-        $this->assertEquals(1, $data2->jsonSerialize()['varTableIndex']);
+        $this->assertEquals(1, $data2->info()['varTableIndex']);
 
         $this->assertCount(2, $variableTable->variables());
     }
@@ -99,10 +99,10 @@ class VariableTableTest extends TestCase
         $variable2 = $variableTable->register('int2', $object);
 
         $data1 = $variable1;
-        $this->assertEquals(0, $data1->jsonSerialize()['varTableIndex']);
+        $this->assertEquals(0, $data1->info()['varTableIndex']);
 
         $data2 = $variable2;
-        $this->assertEquals(0, $data2->jsonSerialize()['varTableIndex']);
+        $this->assertEquals(0, $data2->info()['varTableIndex']);
 
         $this->assertCount(1, $variableTable->variables());
     }
@@ -115,7 +115,7 @@ class VariableTableTest extends TestCase
         $variableTable = new VariableTable();
 
         $variable = $variableTable->register('primitive', $primitive);
-        $variableData = $variable->jsonSerialize();
+        $variableData = $variable->info();
         $this->assertEquals('primitive', $variableData['name']);
         $this->assertArrayNotHasKey('varTableIndex', $variableData);
         $this->assertEquals($expectedType, $variableData['type']);

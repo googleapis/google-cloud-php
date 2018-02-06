@@ -18,6 +18,7 @@
 namespace Google\Cloud\Debugger;
 
 use Google\Cloud\Core\ArrayTrait;
+use Google\Cloud\Debugger\V2\Breakpoint_Action;
 
 /**
  * This plain PHP class represents a debugger breakpoint resource.
@@ -40,12 +41,12 @@ use Google\Cloud\Core\ArrayTrait;
  * @see https://cloud.google.com/debugger/api/reference/rest/v2/debugger.debuggees.breakpoints#Breakpoint Breakpoint model documentation
  * @codingStandardsIgnoreEnd
  */
-class Breakpoint implements \JsonSerializable
+class Breakpoint
 {
     use ArrayTrait;
 
-    const ACTION_CAPTURE = 'CAPTURE';
-    const ACTION_LOG = 'LOG';
+    const ACTION_CAPTURE = Breakpoint_Action::CAPTURE;
+    const ACTION_LOG = Breakpoint_Action::LOG;
     const LOG_LEVEL_INFO = 'INFO';
     const LOG_LEVEL_WARNING = 'WARNING';
     const LOG_LEVEL_ERROR = 'ERROR';
@@ -242,7 +243,7 @@ class Breakpoint implements \JsonSerializable
             'isFinalState' => null,
             'createTime' => null,
             'finalTime' => null,
-            'userEmail' => null,
+            'userEmail' => '',
             'stackFrames' => [],
             'evaluatedExpressions' => [],
             'labels' => [],
@@ -274,6 +275,7 @@ class Breakpoint implements \JsonSerializable
             $data['evaluatedExpressions']
         );
 
+        $this->labels = $data['labels'];
         $this->variableTable = new VariableTable(
             array_map([Variable::class, 'fromJson'], $data['variableTable'])
         );
@@ -425,12 +427,16 @@ class Breakpoint implements \JsonSerializable
     }
 
     /**
-     * Callback to implement JsonSerializable interface
+     * Get the breakpoint data.
      *
-     * @access private
+     * Example:
+     * ```
+     * $info = $breakpoint->info();
+     * ```
+     *
      * @return array
      */
-    public function jsonSerialize()
+    public function info()
     {
         $info = [
             'id' => $this->id,
@@ -443,18 +449,22 @@ class Breakpoint implements \JsonSerializable
             'createTime' => $this->createTime,
             'finalTime' => $this->finalTime,
             'userEmail' => $this->userEmail,
-            'stackFrames' => $this->stackFrames,
-            'evaluatedExpressions' => $this->evaluatedExpressions,
+            'stackFrames' => array_map(function ($sf) {
+                return $sf->info();
+            }, $this->stackFrames),
+            'evaluatedExpressions' => array_map(function ($ee) {
+                return $ee->info();
+            }, $this->evaluatedExpressions),
             'labels' => $this->labels
         ];
         if ($this->location) {
-            $info['location'] = $this->location;
+            $info['location'] = $this->location->info();
         }
         if ($this->status) {
-            $info['status'] = $this->status;
+            $info['status'] = $this->status->info();
         }
         if ($this->variableTable) {
-            $info['variableTable'] = $this->variableTable;
+            $info['variableTable'] = $this->variableTable->info();
         }
         return $info;
     }

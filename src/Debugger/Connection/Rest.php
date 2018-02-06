@@ -84,6 +84,9 @@ class Rest implements ConnectionInterface
      */
     public function updateBreakpoint(array $args)
     {
+        if (empty($args['breakpoint']['labels'])) {
+            unset($args['breakpoint']['labels']);
+        }
         return $this->send('controller.resources.debuggees.resources.breakpoints', 'update', $args);
     }
 
@@ -94,6 +97,11 @@ class Rest implements ConnectionInterface
      */
     public function setBreakpoint(array $args)
     {
+        if (array_key_exists('breakpoint', $args)) {
+            $breakpoint = $args['breakpoint'];
+            $args += $breakpoint;
+            unset($args['breakpoint']);
+        }
         return $this->send('debugger.resources.debuggees.resources.breakpoints', 'set', $args);
     }
 }

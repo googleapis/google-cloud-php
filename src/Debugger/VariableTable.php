@@ -14,7 +14,7 @@ namespace Google\Cloud\Debugger;
  * $variableTable = new VariableTable();
  * ```
  */
-class VariableTable implements \JsonSerializable
+class VariableTable
 {
     const MAX_MEMBER_DEPTH = 5;
 
@@ -64,14 +64,15 @@ class VariableTable implements \JsonSerializable
     }
 
     /**
-     * Callback to implement JsonSerializable interface
+     * Return VariableTable data
      *
-     * @access private
      * @return array
      */
-    public function jsonSerialize()
+    public function info()
     {
-        return $this->variables;
+        return array_map(function ($var) {
+            return $var->info();
+        }, $this->variables);
     }
 
     /**

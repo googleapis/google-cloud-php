@@ -20,6 +20,7 @@ namespace Google\Cloud\Tests\Unit\Debugger;
 use Google\Cloud\Debugger\Breakpoint;
 use Google\Cloud\Debugger\Debuggee;
 use Google\Cloud\Debugger\ExtendedSourceContext;
+use Google\Cloud\Debugger\SourceContext;
 use Google\Cloud\Debugger\Connection\ConnectionInterface;
 use Prophecy\Argument;
 use PHPUnit\Framework\TestCase;
@@ -106,8 +107,8 @@ class DebuggeeTest extends TestCase
     {
         $this->connection->setBreakpoint(Argument::that(function ($args) {
             return $args['debuggeeId'] == 'debuggee1' &&
-                $args['location']['path'] == '/path/to/file.php' &&
-                $args['location']['line'] == 10;
+                $args['breakpoint']['location']['path'] == '/path/to/file.php' &&
+                $args['breakpoint']['location']['line'] == 10;
         }))->willReturn(['breakpoint' => ['id' => 'breakpoint1']]);
         $debuggee = new Debuggee($this->connection->reveal(), ['id' => 'debuggee1', 'project' => 'project1']);
 
@@ -119,24 +120,21 @@ class DebuggeeTest extends TestCase
     // Debug agents should populate both sourceContexts and extSourceContexts.
     public function testProvidesDeprecatedSourceContext()
     {
-        $extSourceContext = $this->prophesize(ExtendedSourceContext::class);
-        $extSourceContext->context()->willReturn(null);
-        $extSourceContext->jsonSerialize()->willReturn([]);
         $debuggee = new Debuggee($this->connection->reveal(), [
             'project' => 'project1',
-            'extSourceContexts' => [$extSourceContext->reveal()]
+            'extSourceContexts' => [['context' => ['foo' => 'bar']]]
         ]);
-        $json = $debuggee->jsonSerialize();
-        $this->assertArrayHasKey('extSourceContexts', $json);
-        $this->assertCount(1, $json['extSourceContexts']);
-        $this->assertArrayHasKey('sourceContexts', $json);
-        $this->assertCount(1, $json['sourceContexts']);
+        $info = $debuggee->info();
+        $this->assertArrayHasKey('extSourceContexts', $info);
+        $this->assertCount(1, $info['extSourceContexts']);
+        $this->assertArrayHasKey('sourceContexts', $info);
+        $this->assertCount(1, $info['sourceContexts']);
     }
 
     public function testRegisterSetsDebuggeeId()
     {
         $this->connection->registerDebuggee(Argument::that(function ($args) {
-            return $args['debuggee']->id() == null;
+            return $args['debuggee']['id'] == null;
         }), Argument::any())->willReturn([
             'debuggee' => [
                 'id' => 'debuggee1'

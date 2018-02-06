@@ -33,7 +33,7 @@ namespace Google\Cloud\Debugger;
  * @see https://cloud.google.com/debugger/api/reference/rest/v2/debugger.debuggees.breakpoints#stackframe StackFrame model documentation
  * @codingStandardsIgnoreEnd
  */
-class StackFrame implements \JsonSerializable
+class StackFrame
 {
     /**
      * @var string Demangled function name at the call site.
@@ -120,18 +120,21 @@ class StackFrame implements \JsonSerializable
     }
 
     /**
-     * Returns a JSON serializable array representation of the stack frame.
+     * Return StackFrame data.
      *
-     * @access private
      * @return array
      */
-    public function jsonSerialize()
+    public function info()
     {
         return [
             'function' => $this->function,
-            'location' => $this->location,
-            'arguments' => $this->arguments,
-            'locals' => $this->locals
+            'location' => $this->location->info(),
+            'arguments' => array_map(function ($arg) {
+                return $arg->info();
+            }, $this->arguments),
+            'locals' => array_map(function ($local) {
+                return $local->info();
+            }, $this->locals)
         ];
     }
 }
