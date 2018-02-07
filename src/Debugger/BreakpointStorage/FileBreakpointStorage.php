@@ -17,6 +17,8 @@
 
 namespace Google\Cloud\Debugger\BreakpointStorage;
 
+use Google\Cloud\Core\Lock\FlockLock;
+use Google\Cloud\Core\Lock\LockInterface;
 use Google\Cloud\Debugger\Breakpoint;
 use Google\Cloud\Debugger\Debuggee;
 
@@ -30,6 +32,9 @@ class FileBreakpointStorage implements BreakpointStorageInterface
     /* @var string */
     private $filename;
 
+    /* @var LockInterface */
+    private $lock;
+
     /**
      * Create a new FileBreakpointStorage instance.
      *
@@ -40,7 +45,7 @@ class FileBreakpointStorage implements BreakpointStorageInterface
     {
         $filename = $filename ?: self::DEFAULT_FILENAME;
         $this->filename = implode(DIRECTORY_SEPARATOR, [sys_get_temp_dir(), $filename]);
-        $this->lockFilename = $this->filename . '.lock';
+        $this->lock = new FlockLock($filename . '.lock');
     }
 
     /**
@@ -61,12 +66,16 @@ class FileBreakpointStorage implements BreakpointStorageInterface
 
         // Acquire an exclusive write lock (blocking). There should only be a
         // single Daemon that can call this.
-        $fp = fopen($this->lockFilename, 'w+');
-        if (flock($fp, LOCK_EX)) {
-            $success = file_put_contents($this->filename, serialize($data)) !== false;
-            flock($fp, LOCK_UN);
+        try {
+            $this->lock->acquire();
+            try {
+                $success = file_put_contents($this->filename, serialize($data)) !== false;
+            } finally {
+                $this->lock->release();
+            }
+        } catch (\RuntimeException $e) {
+            // Do nothing
         }
-        fclose($fp);
         return $success;
     }
 
@@ -78,23 +87,28 @@ class FileBreakpointStorage implements BreakpointStorageInterface
      */
     public function load()
     {
-        if (file_exists($this->filename)) {
-            $contents = '';
+        $debuggeeId = null;
+        $breakpoints = [];
 
-            // Acquire a read lock (non-blocking). If we fail (file is locked
-            // for writing), then we return an empty list of breakpoints and
-            // skip debugging for this request.
-            $fp = fopen($this->lockFilename, 'w+');
-            if (flock($fp, LOCK_SH | LOCK_NB)) {
+        // Acquire a read lock (non-blocking). If we fail (file is locked
+        // for writing), then we return an empty list of breakpoints and
+        // skip debugging for this request.
+        try {
+            $this->lock->acquire([
+                'blocking' => false,
+                'exclusive' => false
+            ]);
+            try {
                 $contents = file_get_contents($this->filename);
-                flock($fp, LOCK_UN);
-                fclose($fp);
                 $data = unserialize($contents);
-                return [
-                    $data['debuggeeId'], $data['breakpoints']
-                ];
+                $debuggeeId = $data['debuggeeId'];
+                $breakpoints = $data['breakpoints'];
+            } finally {
+                $this->lock->release();
             }
+        } catch (\RuntimeException $e) {
+            // Do nothing
         }
-        return [null, []];
+        return [$debuggeeId, $breakpoints];
     }
 }

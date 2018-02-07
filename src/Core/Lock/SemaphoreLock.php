@@ -64,18 +64,35 @@ class SemaphoreLock implements LockInterface
     /**
      * Acquires a lock that will block until released.
      *
+     * @param array $options [optional] {
+     *     Configuration options.
+     *
+     *     @type bool $blocking Whether the process should block while waiting
+     *           to acquire the lock. **Defaults to** true.
+     *     @type bool $exclusive If true, acquire an excluse (write) lock. If
+     *           false, acquire a shared (read) lock. **Defaults to** true.
+     * }
      * @return bool
      * @throws \RuntimeException If the lock fails to be acquired.
      */
-    public function acquire()
+    public function acquire(array $options = [])
     {
+        $options += [
+            'blocking' => true,
+            'exclusive' => true
+        ];
+
+        if (!$options['exclusive']) {
+            trigger_error('SemaphoreLock does not support shared locking.', E_USER_WARNING);
+        }
+
         if ($this->semaphoreId) {
             return true;
         }
 
         $this->semaphoreId = $this->initializeId();
 
-        if (!sem_acquire($this->semaphoreId)) {
+        if (!sem_acquire($this->semaphoreId, !$options['blocking'])) {
             $this->semaphoreId = null;
 
             throw new \RuntimeException('Failed to acquire lock.');

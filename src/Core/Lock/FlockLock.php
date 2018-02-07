@@ -62,10 +62,18 @@ class FlockLock implements LockInterface
     /**
      * Acquires a lock that will block until released.
      *
+     * @param array $options [optional] {
+     *     Configuration options.
+     *
+     *     @type bool $blocking Whether the process should block while waiting
+     *           to acquire the lock. **Defaults to** true.
+     *     @type bool $exclusive If true, acquire an excluse (write) lock. If
+     *           false, acquire a shared (read) lock. **Defaults to** true.
+     * }
      * @return bool
      * @throws \RuntimeException If the lock fails to be acquired.
      */
-    public function acquire()
+    public function acquire(array $options = [])
     {
         if ($this->handle) {
             return true;
@@ -73,7 +81,7 @@ class FlockLock implements LockInterface
 
         $this->handle = $this->initializeHandle();
 
-        if (!flock($this->handle, LOCK_EX)) {
+        if (!flock($this->handle, $this->lockType($options))) {
             fclose($this->handle);
             $this->handle = null;
 
@@ -116,5 +124,18 @@ class FlockLock implements LockInterface
         }
 
         return $handle;
+    }
+
+    private function lockType(array $options)
+    {
+        $options += [
+            'blocking' => true,
+            'exclusive' => true
+        ];
+        $lockType = $options['exclusive'] ? LOCK_EX : LOCK_SH;
+        if (!$options['blocking']) {
+            $lockType = $lockType | LOCK_UN;
+        }
+        return $lockType;
     }
 }

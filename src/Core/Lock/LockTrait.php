@@ -25,10 +25,18 @@ trait LockTrait
     /**
      * Acquires a lock that will block until released.
      *
+     * @param array $options [optional] {
+     *     Configuration options.
+     *
+     *     @type bool $blocking Whether the process should block while waiting
+     *           to acquire the lock. **Defaults to** true.
+     *     @type bool $exclusive If true, acquire an excluse (write) lock. If
+     *           false, acquire a shared (read) lock. **Defaults to** true.
+     * }
      * @return bool
-     * @throws \RuntimeException
+     * @throws \RuntimeException If the lock fails to be acquired.
      */
-    abstract public function acquire();
+    abstract public function acquire(array $options = []);
 
     /**
      * Releases the lock.

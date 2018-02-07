@@ -42,13 +42,30 @@ class SymfonyLockAdapter implements LockInterface
     /**
      * Acquires a lock that will block until released.
      *
+     * @param array $options [optional] {
+     *     Configuration options.
+     *
+     *     @type bool $blocking Whether the process should block while waiting
+     *           to acquire the lock. **Defaults to** true.
+     *     @type bool $exclusive If true, acquire an excluse (write) lock. If
+     *           false, acquire a shared (read) lock. **Defaults to** true.
+     * }
      * @return bool
-     * @throws \RuntimeException
+     * @throws \RuntimeException If the lock fails to be acquired.
      */
-    public function acquire()
+    public function acquire(array $options = [])
     {
+        $options += [
+            'blocking' => true,
+            'exclusive' => true
+        ];
+
+        if (!$options['exclusive']) {
+            trigger_error('SymfonyLockAdapter does not support shared locking.', E_USER_WARNING);
+        }
+
         try {
-            return $this->lock->acquire(true);
+            return $this->lock->acquire($options['blocking']);
         } catch (\Exception $ex) {
             throw new \RuntimeException($ex->getMessage());
         }
