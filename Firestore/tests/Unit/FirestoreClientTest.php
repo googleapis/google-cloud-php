@@ -181,10 +181,6 @@ class FirestoreClientTest extends TestCase
      */
     public function testDocuments(array $input, array $names)
     {
-        $name = function ($name) {
-            return sprintf('projects/%s/databases/%s/documents/%s', self::PROJECT, self::DATABASE, $name);
-        };
-
         $res = [
             [
                 'found' => [

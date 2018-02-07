@@ -172,15 +172,13 @@ class FirestoreClient
      */
     public function collection($name)
     {
-        if ($this->isRelative($name)) {
-            $name = $this->fullName($this->projectId, $this->database, $name);
-        }
-
-        if (!$this->isCollection($name)) {
-            throw new \InvalidArgumentException('Given path is not a valid collection path.');
-        }
-
-        return new CollectionReference($this->connection, $this->valueMapper, $name);
+        return $this->getCollectionReference(
+            $this->connection,
+            $this->valueMapper,
+            $this->projectId,
+            $this->database,
+            $name
+        );
     }
 
     /**
@@ -241,18 +239,11 @@ class FirestoreClient
      */
     public function document($name)
     {
-        if ($this->isRelative($name)) {
-            $name = $this->fullName($this->projectId, $this->database, $name);
-        }
-
-        if (!$this->isDocument($name)) {
-            throw new \InvalidArgumentException('Given path is not a valid document path.');
-        }
-
-        return new DocumentReference(
+        return $this->getDocumentReference(
             $this->connection,
             $this->valueMapper,
-            $this->collection($this->pathId($this->parentPath($name))),
+            $this->projectId,
+            $this->database,
             $name
         );
     }
@@ -299,46 +290,14 @@ class FirestoreClient
      */
     public function documents(array $paths, array $options = [])
     {
-        array_walk($paths, function (&$path) {
-            if ($path instanceof DocumentReference) {
-                $path = $path->name();
-            }
-
-            $path = $this->isRelative($path)
-                ? $this->fullName($this->projectId, $this->database, $path)
-                : $path;
-        });
-
-        $documents = $this->connection->batchGetDocuments([
-            'database' => $this->databaseName($this->projectId, $this->database),
-            'documents' => $paths,
-        ] + $options);
-
-        $res = [];
-        foreach ($documents as $document) {
-            $exists = isset($document['found']);
-            $data = $exists
-                ? $document['found'] + ['readTime' => $document['readTime']]
-                : ['readTime' => $document['readTime']];
-
-            $name = $exists
-                ? $document['found']['name']
-                : $document['missing'];
-
-            $res[$name] = $this->createSnapshotWithData(
-                $this->valueMapper,
-                $this->document($name),
-                $data,
-                $exists
-            );
-        }
-
-        $out = [];
-        foreach ($paths as $path) {
-            $out[] = $res[$path];
-        }
-
-        return $out;
+        return $this->getDocumentsByPaths(
+            $this->connection,
+            $this->valueMapper,
+            $this->projectId,
+            $this->database,
+            $paths,
+            $options
+        );
     }
 
     /**

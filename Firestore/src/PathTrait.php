@@ -52,6 +52,8 @@ trait PathTrait
     }
 
     /**
+     * Create a fully-qualified database name from a projectId and database id.
+     *
      * @param string $projectId The project ID.
      * @param string $database The database name.
      */
@@ -61,7 +63,10 @@ trait PathTrait
     }
 
     /**
-     * Get the database name from a path.
+     * Return the database name from a fully-qualified path name.
+     *
+     * This method returns a fully-qualified path. For the database ID, use
+     * {@see Google\Cloud\Firestore\PathTrait::databaseIdFromName()}.
      *
      * @param string $name
      * @return string
@@ -70,6 +75,43 @@ trait PathTrait
     {
         $parts = explode('/databases/', $name);
         return $parts[0] . '/databases/' . explode('/', $parts[1])[0];
+    }
+
+    /**
+     * Return the database ID from a fully-qualified path name.
+     *
+     * This method returns a bare database ID. For the fully-qualified database
+     * name, use {@see Google\Cloud\Firestore\PathTrait::databaseFromName()}.
+     *
+     * @param string $name
+     * @return string
+     */
+    private function databaseIdFromName($name)
+    {
+        $parts = explode('/databases/', $name);
+        if (count($parts) !== 2) {
+            return null;
+        }
+
+        $trailing = explode('/', $parts[1]);
+        return $trailing[0];
+    }
+
+    /**
+     * Get the project id from a path
+     *
+     * @param string $path
+     * @return string|null
+     */
+    private function projectIdFromName($name)
+    {
+        $name = trim($name, '/');
+        if (strpos($name, 'projects/') !== 0) {
+            return null;
+        }
+
+        $parts = explode('/', $name);
+        return $parts[1];
     }
 
     /**

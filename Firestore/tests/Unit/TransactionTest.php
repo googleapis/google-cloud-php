@@ -201,6 +201,126 @@ class TransactionTest extends TestCase
         ]);
     }
 
+    /**
+     * @dataProvider documents
+     */
+    public function testDocuments(array $input, array $names)
+    {
+        $name = function ($name) {
+            return sprintf('projects/%s/databases/%s/documents/%s', self::PROJECT, self::DATABASE, $name);
+        };
+
+        $res = [
+            [
+                'found' => [
+                    'name' => $names[0],
+                    'fields' => [
+                        'hello' => [
+                            'stringValue' => 'world'
+                        ]
+                    ]
+                ],
+                'readTime' => ['seconds' => 1, 'nanos' => 0]
+            ], [
+                'missing' => $names[1],
+                'readTime' => ['seconds' => 1, 'nanos' => 0]
+            ], [
+                'missing' => $names[2],
+                'readTime' => ['seconds' => 1, 'nanos' => 0]
+            ]
+        ];
+
+        $this->connection->batchGetDocuments(Argument::allOf(
+            Argument::withEntry('documents', $names),
+            Argument::withEntry('transaction', self::TRANSACTION)
+        ))->shouldBeCalled()->willReturn($res);
+
+        $this->transaction->___setProperty('connection', $this->connection->reveal());
+
+        $res = $this->transaction->documents($input);
+
+        $this->assertEquals('world', $res[0]['hello']);
+    }
+
+    public function documents()
+    {
+        $b = $this->prophesize(DocumentReference::class);
+        $b->name()->willReturn('a/b');
+
+        $c = $this->prophesize(DocumentReference::class);
+        $c->name()->willReturn('a/c');
+
+        $d = $this->prophesize(DocumentReference::class);
+        $d->name()->willReturn('a/d');
+        return [
+            [
+                [
+                    'a/b',
+                    'a/c',
+                    'a/d'
+                ], [
+                    'projects/'. self::PROJECT .'/databases/'. self::DATABASE .'/documents/a/b',
+                    'projects/'. self::PROJECT .'/databases/'. self::DATABASE .'/documents/a/c',
+                    'projects/'. self::PROJECT .'/databases/'. self::DATABASE .'/documents/a/d'
+                ]
+                ], [
+                    [
+                        'projects/'. self::PROJECT .'/databases/'. self::DATABASE .'/documents/a/b',
+                        'projects/'. self::PROJECT .'/databases/'. self::DATABASE .'/documents/a/c',
+                        'projects/'. self::PROJECT .'/databases/'. self::DATABASE .'/documents/a/d'
+                    ], [
+                        'projects/'. self::PROJECT .'/databases/'. self::DATABASE .'/documents/a/b',
+                        'projects/'. self::PROJECT .'/databases/'. self::DATABASE .'/documents/a/c',
+                        'projects/'. self::PROJECT .'/databases/'. self::DATABASE .'/documents/a/d'
+                    ]
+                ], [
+                    [
+                        $b->reveal(),
+                        $c->reveal(),
+                        $d->reveal()
+                    ], [
+                        'projects/'. self::PROJECT .'/databases/'. self::DATABASE .'/documents/a/b',
+                        'projects/'. self::PROJECT .'/databases/'. self::DATABASE .'/documents/a/c',
+                        'projects/'. self::PROJECT .'/databases/'. self::DATABASE .'/documents/a/d'
+                    ]
+                ]
+        ];
+    }
+
+    public function testDocumentsOrdered()
+    {
+        $tpl = 'projects/'. self::PROJECT .'/databases/'. self::DATABASE .'/documents/a/%s';
+        $names = [
+            sprintf($tpl, 'a'),
+            sprintf($tpl, 'b'),
+            sprintf($tpl, 'c'),
+        ];
+
+        $res = [
+            [
+                'missing' => $names[2],
+                'readTime' => ['seconds' => 1, 'nanos' => 0]
+            ], [
+                'missing' => $names[1],
+                'readTime' => ['seconds' => 1, 'nanos' => 0]
+            ], [
+                'missing' => $names[0],
+                'readTime' => ['seconds' => 1, 'nanos' => 0]
+            ]
+        ];
+
+        $this->connection->batchGetDocuments(Argument::withEntry('documents', $names))
+            ->shouldBeCalled()
+            ->willReturn($res);
+
+        $this->transaction->___setProperty('connection', $this->connection->reveal());
+
+        $res = $this->transaction->documents($names);
+        $this->assertEquals($names[0], $res[0]->name());
+        $this->assertEquals($names[1], $res[1]->name());
+        $this->assertEquals($names[2], $res[2]->name());
+    }
+
     private function expectAndInvoke(array $writes)
     {
         $this->connection->commit([

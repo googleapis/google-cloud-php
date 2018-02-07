@@ -17,11 +17,12 @@
 
 namespace Google\Cloud\Firestore;
 
-use Google\Cloud\Core\Timestamp;
 use Google\Cloud\Core\ArrayTrait;
-use Google\Cloud\Core\ValueMapperTrait;
 use Google\Cloud\Core\Exception\NotFoundException;
+use Google\Cloud\Core\Timestamp;
+use Google\Cloud\Core\ValueMapperTrait;
 use Google\Cloud\Firestore\Connection\ConnectionInterface;
+use Google\Cloud\Firestore\DocumentReference;
 
 /**
  * Methods common to representing Document Snapshots.
@@ -150,5 +151,119 @@ trait SnapshotTrait
             : null;
 
         return $data;
+    }
+
+    private function getDocumentsByPaths(
+        ConnectionInterface $connection,
+        ValueMapper $mapper,
+        $projectId,
+        $database,
+        array $paths,
+        array $options
+    ) {
+        array_walk($paths, function (&$path) use ($projectId, $database) {
+            if ($path instanceof DocumentReference) {
+                $path = $path->name();
+            }
+
+            if (!is_string($path)) {
+                throw new \InvalidArgumentException(
+                    'All members of $paths must be strings or instances of DocumentReference.'
+                );
+            }
+
+            $path = $this->isRelative($path)
+                ? $this->fullName($projectId, $database, $path)
+                : $path;
+        });
+
+        $documents = $this->connection->batchGetDocuments([
+            'database' => $this->databaseName($projectId, $database),
+            'documents' => $paths,
+        ] + $options);
+
+        $res = [];
+        foreach ($documents as $document) {
+            $exists = isset($document['found']);
+            $data = $exists
+                ? $document['found'] + ['readTime' => $document['readTime']]
+                : ['readTime' => $document['readTime']];
+
+            $name = $exists
+                ? $document['found']['name']
+                : $document['missing'];
+
+            $ref = $this->getDocumentReference(
+                $connection,
+                $mapper,
+                $projectId,
+                $database,
+                $name
+            );
+
+            $res[$name] = $this->createSnapshotWithData(
+                $mapper,
+                $ref,
+                $data,
+                $exists
+            );
+        }
+
+        $out = [];
+        foreach ($paths as $path) {
+            $out[] = $res[$path];
+        }
+
+        return $out;
+    }
+
+    private function getDocumentReference(
+        ConnectionInterface $connection,
+        ValueMapper $mapper,
+        $projectId,
+        $database,
+        $name
+    ) {
+        if ($this->isRelative($name)) {
+            $name = $this->fullName($projectId, $database, $name);
+        }
+
+        if (!$this->isDocument($name)) {
+            throw new \InvalidArgumentException('Given path is not a valid document path.');
+        }
+
+        return new DocumentReference(
+            $connection,
+            $mapper,
+            $this->getCollectionReference(
+                $connection,
+                $mapper,
+                $projectId,
+                $database,
+                $this->parentPath($name)
+            ),
+            $name
+        );
+    }
+
+    private function getCollectionReference(
+        ConnectionInterface $connection,
+        ValueMapper $mapper,
+        $projectId,
+        $database,
+        $name
+    ) {
+        if ($this->isRelative($name)) {
+            $name = $this->fullName($projectId, $database, $name);
+        }
+
+        if (!$this->isCollection($name)) {
+            throw new \InvalidArgumentException(sprintf(
+                'Given path `%s` is not a valid collection path.',
+                $name
+            ));
+        }
+
+        return new CollectionReference($connection, $mapper, $name);
     }
 }

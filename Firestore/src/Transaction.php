@@ -113,6 +113,60 @@ class Transaction
     }
 
     /**
+     * Get a list of documents by their path.
+     *
+     * The number of results generated will be equal to the number of documents
+     * requested, except in case of error.
+     *
+     * Note that this method will **always** return instances of
+     * {@see Google\Cloud\Firestore\DocumentSnapshot}, even if the documents
+     * requested do not exist. It is highly recommended that you check for
+     * existence before accessing document data.
+     *
+     * Example:
+     * ```
+     * $documents = $transaction->documents([
+     *     'users/john',
+     *     'users/dave'
+     * ]);
+     * ```
+     *
+     * ```
+     * // To check whether a given document exists, use `DocumentSnapshot::exists()`.
+     * $documents = $transaction->documents([
+     *     'users/deleted-user'
+     * ]);
+     *
+     * foreach ($documents as $document) {
+     *     if (!$document->exists()) {
+     *         echo $document->id() . ' Does Not Exist';
+     *     }
+     * }
+     * ```
+     *
+     * @codingStandardsIgnoreStart
+     * @see https://cloud.google.com/firestore/docs/reference/rpc/google.firestore.v1beta1#google.firestore.v1beta1.Firestore.BatchGetDocuments BatchGetDocuments
+     * @codingStandardsIgnoreEnd
+     *
+     * @param string[]|DocumentReference[] $paths Any combination of string paths or DocumentReference instances.
+     * @param array $options Configuration options.
+     * @return DocumentSnapshot[]
+     */
+    public function documents(array $paths, array $options = [])
+    {
+        return $this->getDocumentsByPaths(
+            $this->connection,
+            $this->valueMapper,
+            $this->projectIdFromName($this->database),
+            $this->databaseIdFromName($this->database),
+            $paths,
+            [
+                'transaction' => $this->transaction
+            ] + $options
+        );
+    }
+
+    /**
      * Run a Query inside the Transaction.
      *
      * Example:

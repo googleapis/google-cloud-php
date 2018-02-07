@@ -40,6 +40,8 @@ class TransactionTest extends SnippetTestCase
 {
     use GrpcTestTrait;
 
+    const PROJECT = 'example_project';
+    const DATABASE_ID = '(default)';
     const TRANSACTION = 'foobar';
     const DATABASE = 'projects/example_project/databases/(default)';
     const DOCUMENT = 'projects/example_project/databases/(default)/documents/a/b';
@@ -205,6 +207,59 @@ class TransactionTest extends SnippetTestCase
         $snippet->addLocal('transaction', $this->transaction);
         $snippet->addLocal('document', $this->document->reveal());
         $snippet->invoke();
+    }
+
+    public function testDocuments()
+    {
+        $tpl = 'projects/%s/databases/%s/documents/users/%s';
+
+        $this->connection->batchGetDocuments(Argument::any())
+            ->shouldBeCalled()
+            ->willReturn([
+                [
+                    'found' => [
+                        'name' => sprintf($tpl, self::PROJECT, self::DATABASE_ID, 'john'),
+                        'fields' => []
+                    ],
+                    'readTime' => ['seconds' => time()]
+                ], [
+                    'found' => [
+                        'name' => sprintf($tpl, self::PROJECT, self::DATABASE_ID, 'dave'),
+                        'fields' => []
+                    ],
+                    'readTime' => ['seconds' => time()]
+                ]
+            ]);
+
+        $this->transaction->___setProperty('connection', $this->connection->reveal());
+
+        $snippet = $this->snippetFromMethod(Transaction::class, 'documents');
+        $snippet->addLocal('transaction', $this->transaction);
+        $res = $snippet->invoke('documents')->returnVal();
+
+        $this->assertInstanceOf(DocumentSnapshot::class, $res[0]);
+        $this->assertEquals('john', $res[0]->id());
+    }
+
+    public function testDocumentsDoesntExist()
+    {
+        $tpl = 'projects/%s/databases/%s/documents/users/%s';
+        $this->connection->batchGetDocuments(Argument::any())
+            ->shouldBeCalled()
+            ->willReturn([
+                [
+                    'missing' => sprintf($tpl, self::PROJECT, self::DATABASE_ID, 'deleted-user'),
+                    'readTime' => ['seconds' => time()]
+                ]
+            ]);
+
+        $this->transaction->___setProperty('connection', $this->connection->reveal());
+
+        $snippet = $this->snippetFromMethod(Transaction::class, 'documents', 1);
+        $snippet->addLocal('transaction', $this->transaction);
+        $res = $snippet->invoke();
+
+        $this->assertEquals('deleted-user Does Not Exist', $res->output());
     }
 }
 
