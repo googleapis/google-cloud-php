@@ -19,7 +19,9 @@ namespace Google\Cloud\Debugger;
 
 use Google\Cloud\Core\Batch\BatchRunner;
 use Google\Cloud\Core\Batch\BatchTrait;
+use Google\Cloud\Core\SysvTrait;
 use Google\Cloud\Debugger\BreakpointStorage\BreakpointStorageInterface;
+use Google\Cloud\Debugger\BreakpointStorage\FileBreakpointStorage;
 use Google\Cloud\Debugger\BreakpointStorage\SysvBreakpointStorage;
 use Google\Cloud\Logging\LoggingClient;
 use Psr\Log\LoggerInterface;
@@ -39,6 +41,7 @@ use Psr\Log\LoggerInterface;
 class Agent
 {
     use BatchTrait;
+    use SysvTrait;
 
     /**
      * @var Debuggee
@@ -190,7 +193,9 @@ class Agent
 
     private function defaultStorage()
     {
-        return new SysvBreakpointStorage();
+        return $this->isSysvIPCLoaded()
+            ? new SysvBreakpointStorage()
+            : new FileBreakpointStorage();
     }
 
     private function defaultDebuggee()
