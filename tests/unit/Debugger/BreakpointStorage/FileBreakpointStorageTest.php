@@ -33,7 +33,6 @@ class FileBreakpointStorageTest extends TestCase
     public function setUp()
     {
         $this->storage = new FileBreakpointStorage();
-        var_dump($this->storage);
     }
 
     public function testSaveAndLoad()

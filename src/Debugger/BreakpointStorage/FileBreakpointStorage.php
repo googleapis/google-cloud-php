@@ -37,6 +37,7 @@ class FileBreakpointStorage implements BreakpointStorageInterface
     public function __construct($filename = null)
     {
         $this->filename = $filename ?: $this->defaultFilename();
+        $this->lockFilename = $this->filename . '.lock';
     }
 
     /**
@@ -54,9 +55,9 @@ class FileBreakpointStorage implements BreakpointStorageInterface
             'breakpoints' => $breakpoints
         ];
 
-        $fp = fopen($this->filename, 'r+');
+        $fp = fopen($this->lockFilename, 'w+');
         flock($fp, LOCK_EX);
-        $success = fwrite($fp, serialize($data)) !== false;
+        $success = file_put_contents($this->filename, serialize($data)) !== false;
         flock($fp, LOCK_UN);
         fclose($fp);
         return $success;
@@ -72,10 +73,10 @@ class FileBreakpointStorage implements BreakpointStorageInterface
     public function load()
     {
         if (file_exists($this->filename)) {
-            $fp = fopen($this->filename, 'r');
+            $fp = fopen($this->lockFilename, 'w+');
             $contents = '';
             flock($fp, LOCK_SH);
-            $contents = stream_get_contents($fp);
+            $contents = file_get_contents($this->filename);
             flock($fp, LOCK_UN);
             fclose($fp);
             $data = unserialize($contents);
@@ -91,6 +92,6 @@ class FileBreakpointStorage implements BreakpointStorageInterface
     {
         $bt = debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS, 3);
         $frame = $bt[2];
-        return tempnam(sys_get_temp_dir(), $frame['file'] . $frame['line']);
+        return implode(DIRECTORY_SEPARATOR, [sys_get_temp_dir(), basename($frame['file']) . $frame['line']]);
     }
 }
