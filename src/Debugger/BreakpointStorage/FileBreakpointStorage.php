@@ -71,23 +71,22 @@ class FileBreakpointStorage implements BreakpointStorageInterface
      * with the debuggee id and the list of breakpoints.
      *
      * @return array
-     * @throws \RuntimeException when failed to attach to the shared memory.
      */
     public function load()
     {
         if (file_exists($this->filename)) {
             $fp = fopen($this->lockFilename, 'w+');
             $contents = '';
-            flock($fp, LOCK_SH);
-            $contents = file_get_contents($this->filename);
-            flock($fp, LOCK_UN);
-            fclose($fp);
-            $data = unserialize($contents);
-            return [
-                $data['debuggeeId'], $data['breakpoints']
-            ];
-        } else {
-            return [];
+            if (flock($fp, LOCK_SH | LOCK_NB)) {
+                $contents = file_get_contents($this->filename);
+                flock($fp, LOCK_UN);
+                fclose($fp);
+                $data = unserialize($contents);
+                return [
+                    $data['debuggeeId'], $data['breakpoints']
+                ];
+            }
         }
+        return [null, []];
     }
 }
