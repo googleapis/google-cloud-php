@@ -18,9 +18,12 @@
 namespace Google\Cloud\Tests\Unit\Vision;
 
 use Google\Cloud\Vision\V1\AnnotateImageRequest;
+use Google\Cloud\Vision\V1\AnnotateImageResponse;
+use Google\Cloud\Vision\V1\BatchAnnotateImagesResponse;
 use Google\Cloud\Vision\V1\Feature;
 use Google\Cloud\Vision\V1\Feature_Type;
 use Google\Cloud\Vision\V1\Image;
+use Google\Cloud\Vision\V1\ImageContext;
 use Google\Cloud\Vision\V1\ImageSource;
 use Google\Cloud\Vision\VisionHelpersTrait;
 use InvalidArgumentException;
@@ -39,20 +42,42 @@ class VisionHelpersTraitTest extends TestCase
         $this->implementation = new VisionHelpersTraitStub();
     }
 
-    public function testBuildSingleFeatureRequest()
+    public function testAnnotateImageHelper()
     {
         $image = new Image();
         $featureType = Feature_Type::FACE_DETECTION;
-        $request = $this->implementation->call('buildSingleFeatureRequest', [
+        $feature = new Feature();
+        $feature->setType($featureType);
+        $features = [$feature];
+        $imageContext = new ImageContext();
+        $imageContext->setLanguageHints(['en']);
+
+        $cb = function ($requests, $optionalArgs) use ($image, $features, $imageContext) {
+
+            // Test that imageContext key is correctly stripped
+            $this->assertArrayNotHasKey('imageContext', $optionalArgs);
+
+            $this->assertSame(1, count($requests));
+            $request = $requests[0];
+            $this->assertEquals($image, $request->getImage());
+            // Use iterator_to_array to convert protobuf Repeated Field object to array for comparison
+            $this->assertSame($features, iterator_to_array($request->getFeatures()));
+            $this->assertSame($imageContext, $request->getImageContext());
+
+            $response = new BatchAnnotateImagesResponse();
+            $response->setResponses([new AnnotateImageResponse()]);
+            return $response;
+        };
+
+        $response = $this->implementation->call('annotateImageHelper', [
+            $cb,
             AnnotateImageRequest::class,
-            Feature::class,
             $image,
-            $featureType
+            $features,
+            ['imageContext' => $imageContext]
         ]);
-        $this->assertEquals(AnnotateImageRequest::class, get_class($request));
-        $this->assertSame($image, $request->getImage());
-        $this->assertSame(1, count($request->getFeatures()));
-        $this->assertSame($featureType, $request->getFeatures()[0]->getType());
+
+        $this->assertEquals(AnnotateImageResponse::class, get_class($response));
     }
 
     /**

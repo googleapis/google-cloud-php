@@ -27,6 +27,7 @@ use Google\Cloud\Vision\V1\Feature;
 use Google\Cloud\Vision\V1\Feature_Type;
 use Google\Cloud\Vision\V1\Image;
 use Google\Cloud\Vision\V1\ImageAnnotatorClient;
+use Google\Cloud\Vision\V1\ImageContext;
 use Google\Cloud\Vision\V1\ImageSource;
 use GuzzleHttp\Promise\FulfilledPromise;
 use Prophecy\Argument;
@@ -74,11 +75,55 @@ class ImageAnnotatorClientTest extends TestCase
         $feature = new Feature();
         $feature->setType(Feature_Type::FACE_DETECTION);
         $features = [$feature];
-        $request = new AnnotateImageRequest();
-        $request->setImage($image);
-        $request->setFeatures($features);
 
-        $res = $this->client->annotateImage($request);
+        $res = $this->client->annotateImage($image, $features);
+
+        $this->assertInstanceOf(AnnotateImageResponse::class, $res);
+    }
+
+    public function testAnnotateImageWithImageContext()
+    {
+        $image = $this->client->createImageObject('foobar');
+        $featureType = Feature_Type::FACE_DETECTION;
+        $imageContext = new ImageContext();
+        $imageContext->setLanguageHints(['en']);
+
+        $expectedFeature = new Feature();
+        $expectedFeature->setType($featureType);
+        $expectedFeatures = [$expectedFeature];
+        $expectedRequest = new AnnotateImageRequest();
+        $expectedRequest->setImage($image);
+        $expectedRequest->setFeatures($expectedFeatures);
+        $expectedRequest->setImageContext($imageContext);
+        $expectedRequests = [$expectedRequest];
+
+        $expectedMessage = new BatchAnnotateImagesRequest();
+        $expectedMessage->setRequests($expectedRequests);
+
+        $expectedAnnotationResponses = [new AnnotateImageResponse()];
+        $expectedResponse = new BatchAnnotateImagesResponse();
+        $expectedResponse->setResponses($expectedAnnotationResponses);
+        $this->transport->startUnaryCall( Argument::allOf(
+                    Argument::type(Call::class),
+                    Argument::which('getMethod', 'google.cloud.vision.v1.ImageAnnotator/BatchAnnotateImages'),
+                    Argument::which('getMessage', $expectedMessage)
+                ),
+                Argument::type('array')
+            )
+            ->shouldBeCalledTimes(1)
+            ->willReturn(
+                new FulfilledPromise(
+                    $expectedResponse
+                )
+            );
+
+        $feature = new Feature();
+        $feature->setType($featureType);
+        $features = [$feature];
+
+        $res = $this->client->annotateImage($image, $features, [
+            'imageContext' => $imageContext,
+        ]);
 
         $this->assertInstanceOf(AnnotateImageResponse::class, $res);
     }

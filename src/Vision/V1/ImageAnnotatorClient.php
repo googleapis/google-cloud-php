@@ -31,6 +31,7 @@
 namespace Google\Cloud\Vision\V1;
 
 use Google\ApiCore\ApiException;
+use Google\ApiCore\ArrayTrait;
 use Google\ApiCore\RetrySettings;
 use Google\Cloud\Vision\VisionHelpersTrait;
 use Google\Cloud\Vision\V1\Gapic\ImageAnnotatorGapicClient;
@@ -87,23 +88,21 @@ class ImageAnnotatorClient extends ImageAnnotatorGapicClient
      * ```
      * use Google\Cloud\Vision\V1\Feature;
      * use Google\Cloud\Vision\V1\Feature_Type;
-     * use Google\Cloud\Vision\V1\AnnotateImageRequest;
      *
      * $imageResource = fopen('path/to/image.jpg', 'r');
      * $image = $imageAnnotatorClient->createImageObject($imageResource);
      * $feature = new Feature();
      * $feature->setType(Feature_Type::FACE_DETECTION);
      * $features = [$feature];
-     * $request = new AnnotateImageRequest();
-     * $request->setImage($image);
-     * $request->setFeatures($features);
-     * $response = $imageAnnotatorClient->annotateImage($request);
+     * $response = $imageAnnotatorClient->annotateImage($image, $features);
      * ```
      *
-     * @param AnnotateImageRequest $request      An image annotation request.
-     * @param array                $optionalArgs {
-     *                                           Optional.
+     * @param Image     $image        The image to be processed.
+     * @param Feature[] $features     Requested features.
+     * @param array     $optionalArgs {
+     *                                Optional.
      *
+     *     @type ImageContext        $imageContext  Additional context that may accompany the image.
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
@@ -116,9 +115,15 @@ class ImageAnnotatorClient extends ImageAnnotatorGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function annotateImage($request, $optionalArgs = [])
+    public function annotateImage($image, $features, $optionalArgs = [])
     {
-        return $this->batchAnnotateImages([$request], $optionalArgs)->getResponses()[0];
+        return $this->annotateImageHelper(
+            [$this, 'batchAnnotateImages'],
+            AnnotateImageRequest::class,
+            $image,
+            $features,
+            $optionalArgs
+        );
     }
 
     /**
@@ -473,12 +478,10 @@ class ImageAnnotatorClient extends ImageAnnotatorGapicClient
 
     private function annotateSingleFeature($image, $featureType, $optionalArgs)
     {
-        $request = $this->buildSingleFeatureRequest(
-            AnnotateImageRequest::class,
+        $features = $this->buildFeatureList(
             Feature::class,
-            $image,
-            $featureType
+            [$featureType]
         );
-        return $this->annotateImage($request, $optionalArgs);
+        return $this->annotateImage($image, $features, $optionalArgs);
     }
 }

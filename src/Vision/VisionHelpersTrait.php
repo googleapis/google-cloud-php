@@ -17,10 +17,13 @@
 
 namespace Google\Cloud\Vision;
 
+use Google\ApiCore\ArrayTrait;
 use InvalidArgumentException;
 
 trait VisionHelpersTrait
 {
+    use ArrayTrait;
+
     /**
      * A list of allowed url schemes.
      *
@@ -32,19 +35,34 @@ trait VisionHelpersTrait
         'gs'
     ];
 
-    private function buildSingleFeatureRequest(
+    private function annotateImageHelper(
+        $callback,
         $requestClass,
-        $featureClass,
         $image,
-        $featureType)
+        $features,
+        $optionalArgs = [])
     {
-        $feature = new $featureClass();
-        $feature->setType($featureType);
-        $features = [$feature];
         $request = new $requestClass();
         $request->setImage($image);
         $request->setFeatures($features);
-        return $request;
+        $imageContext = $this->pluck('imageContext', $optionalArgs, false);
+        if (!is_null($imageContext)) {
+            $request->setImageContext($imageContext);
+        }
+        return $callback([$request], $optionalArgs)->getResponses()[0];
+    }
+
+    private function buildFeatureList(
+        $featureClass,
+        $featureTypes)
+    {
+        $features = [];
+        foreach ($featureTypes as $featureType) {
+            $feature = new $featureClass();
+            $feature->setType($featureType);
+            $features[] = $feature;
+        }
+        return $features;
     }
 
     private function createImageHelper($imageClass, $imageSourceClass, $imageInput)
