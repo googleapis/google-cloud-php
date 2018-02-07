@@ -25,6 +25,8 @@ use Google\Cloud\Debugger\Debuggee;
  */
 class FileBreakpointStorage implements BreakpointStorageInterface
 {
+    const DEFAULT_FILENAME = 'debugger-breakpoints';
+
     /* @var string */
     private $filename;
 
@@ -36,7 +38,8 @@ class FileBreakpointStorage implements BreakpointStorageInterface
      */
     public function __construct($filename = null)
     {
-        $this->filename = $filename ?: $this->defaultFilename();
+        $filename = $filename ?: self::DEFAULT_FILENAME;
+        $this->filename = implode(DIRECTORY_SEPARATOR, [sys_get_temp_dir(), $filename]);
         $this->lockFilename = $this->filename . '.lock';
     }
 
@@ -86,12 +89,5 @@ class FileBreakpointStorage implements BreakpointStorageInterface
         } else {
             return [];
         }
-    }
-
-    private function defaultFilename()
-    {
-        $bt = debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS, 3);
-        $frame = $bt[2];
-        return implode(DIRECTORY_SEPARATOR, [sys_get_temp_dir(), basename($frame['file']) . $frame['line']]);
     }
 }
