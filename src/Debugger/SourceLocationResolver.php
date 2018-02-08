@@ -93,7 +93,7 @@ class SourceLocationResolver
         foreach ($includePaths as $includePath) {
             $iterator = new MatchingFileIterator(
                 $includePath,
-                str_replace('/', DIRECTORY_SEPARATOR, $origPath)
+                $origPath
             );
             foreach ($iterator as $file => $info) {
                 return new SourceLocation($this->realRelativePath($file, $includePath), $location->line());
