@@ -44,7 +44,9 @@ trait LockTrait
     abstract public function release();
 
     /**
-     * Execute a callable within a lock.
+     * Execute a callable within a lock. If an exception is caught during
+     * execution of the callable the lock will first be released before throwing
+     * it.
      *
      * @param callable $func The callable to execute.
      * @param array $options [optional] {
