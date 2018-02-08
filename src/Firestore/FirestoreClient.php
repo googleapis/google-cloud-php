@@ -435,7 +435,7 @@ class FirestoreClient
         // must be provided to the subsequent `beginTransaction` rpc.
         // It also provides a convenient indication to the user whether the
         // transaction is retried or not.
-        $transactionId = null;
+        $transactionId = '';
 
         $retry = new Retry($options['maxRetries'], $delayFn, $retryFn);
 
