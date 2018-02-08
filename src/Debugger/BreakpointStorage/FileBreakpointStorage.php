@@ -67,12 +67,9 @@ class FileBreakpointStorage implements BreakpointStorageInterface
         // Acquire an exclusive write lock (blocking). There should only be a
         // single Daemon that can call this.
         try {
-            $this->lock->acquire();
-            try {
-                $success = file_put_contents($this->filename, serialize($data)) !== false;
-            } finally {
-                $this->lock->release();
-            }
+            $success = $this->lock->synchronize(function () use ($data) {
+                return file_put_contents($this->filename, serialize($data)) !== false;
+            });
         } catch (\RuntimeException $e) {
             // Do nothing
         }

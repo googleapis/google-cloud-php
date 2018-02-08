@@ -23,7 +23,7 @@ namespace Google\Cloud\Core\Lock;
 interface LockInterface
 {
     /**
-     * Acquires a lock that will block until released.
+     * Acquires a lock.
      *
      * @param array $options [optional] {
      *     Configuration options.
@@ -49,7 +49,15 @@ interface LockInterface
      * Execute a callable within a lock.
      *
      * @param callable $func The callable to execute.
+     * @param array $options [optional] {
+     *     Configuration options.
+     *
+     *     @type bool $blocking Whether the process should block while waiting
+     *           to acquire the lock. **Defaults to** true.
+     *     @type bool $exclusive If true, acquire an excluse (write) lock. If
+     *           false, acquire a shared (read) lock. **Defaults to** true.
+     * }
      * @return mixed
      */
-    public function synchronize(callable $func);
+    public function synchronize(callable $func, array $options = []);
 }

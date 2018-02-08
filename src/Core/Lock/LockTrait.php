@@ -46,19 +46,25 @@ trait LockTrait
     abstract public function release();
 
     /**
-     * Execute a callable within a lock. If an exception is caught during
-     * execution of the callable the lock will first be released before throwing
-     * it.
+     * Execute a callable within a lock.
      *
      * @param callable $func The callable to execute.
+     * @param array $options [optional] {
+     *     Configuration options.
+     *
+     *     @type bool $blocking Whether the process should block while waiting
+     *           to acquire the lock. **Defaults to** true.
+     *     @type bool $exclusive If true, acquire an excluse (write) lock. If
+     *           false, acquire a shared (read) lock. **Defaults to** true.
+     * }
      * @return mixed
      */
-    public function synchronize(callable $func)
+    public function synchronize(callable $func, array $options = [])
     {
         $result = null;
         $exception = null;
 
-        if ($this->acquire()) {
+        if ($this->acquire($options)) {
             try {
                 $result = $func();
             } catch (\Exception $ex) {
