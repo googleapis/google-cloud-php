@@ -19,7 +19,7 @@ namespace Google\Cloud\Tests\Snippets\Vision\V1;
 
 use Google\ApiCore\Call;
 use Google\ApiCore\Transport\TransportInterface;
-use Google\Cloud\Dev\Snippet\SnippetTestCase;
+use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
 use Google\Cloud\Vision\V1\AnnotateImageResponse;
 use Google\Cloud\Vision\V1\BatchAnnotateImagesResponse;
 use Google\Cloud\Vision\V1\Image;

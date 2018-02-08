@@ -40,8 +40,9 @@ trait VisionHelpersTrait
         $requestClass,
         $image,
         $features,
-        $optionalArgs = [])
-    {
+        $optionalArgs = []
+    ) {
+    
         $request = new $requestClass();
         $request->setImage($image);
         $request->setFeatures($features);
@@ -54,8 +55,9 @@ trait VisionHelpersTrait
 
     private function buildFeatureList(
         $featureClass,
-        $featureTypes)
-    {
+        $featureTypes
+    ) {
+    
         $features = [];
         foreach ($featureTypes as $featureType) {
             $feature = new $featureClass();
