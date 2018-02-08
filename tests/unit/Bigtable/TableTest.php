@@ -1,11 +1,11 @@
 <?php
 
 use Google\Cloud\Bigtable\src\BigtableTable;
-use Google\Bigtable\Admin\V2\Table;
+use Google\Cloud\Bigtable\Admin\V2\Table;
 use Google\Protobuf\GPBEmpty;
 
-use Google\Bigtable\Admin\V2\ColumnFamily;
-use Google\Bigtable\Admin\V2\GcRule;
+use Google\Cloud\Bigtable\Admin\V2\ColumnFamily;
+use Google\Cloud\Bigtable\Admin\V2\GcRule;
 
 use Google\Protobuf\Internal\GPBType;
 use Google\Protobuf\Internal\MapField;
@@ -15,13 +15,13 @@ use Google\Bigtable\Admin\V2\ModifyColumnFamiliesRequest_Modification as Modific
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
 
-use Google\Bigtable\V2\Mutation_SetCell;
-use Google\Bigtable\V2\Mutation;
+use Google\Cloud\Bigtable\V2\Mutation_SetCell;
+use Google\Cloud\Bigtable\V2\Mutation;
 
-use Google\Bigtable\V2\MutateRowResponse;
+use Google\Cloud\Bigtable\V2\MutateRowResponse;
 use Google\GAX\ServerStream;
 
-use Google\Bigtable\V2\MutateRowsRequest_Entry;
+use Google\Cloud\Bigtable\V2\MutateRowsRequest_Entry;
 use Google\Protobuf\Internal\RepeatedField;
 use Google\Cloud\Bigtable\V2\FlatRow;
 use Google\GAX\PagedListResponse;

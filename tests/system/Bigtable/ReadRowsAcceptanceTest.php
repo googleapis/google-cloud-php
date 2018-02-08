@@ -1,5 +1,4 @@
 <?php
-require '../vendor/autoload.php';
 
 use Google\Bigtable\V2\ReadRowsResponse;
 use Google\Bigtable\V2\ReadRowsResponse_CellChunk;

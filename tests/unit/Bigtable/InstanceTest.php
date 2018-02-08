@@ -4,10 +4,11 @@ use Google\Cloud\Bigtable\src\BigtableInstance;
 use PHPUnit\Framework\TestCase;
 use Google\GAX\ValidationException;
 use Google\GAX\OperationResponse;
-use Google\Bigtable\Admin\V2\Instance;
-use Google\Bigtable\Admin\V2\Instance_Type;
+// use Google\Bigtable\Admin\V2\Instance;
+use Google\Cloud\Bigtable\Admin\V2\Instance;
+use Google\Cloud\Bigtable\Admin\V2\Instance_Type;
 use Google\Protobuf\GPBEmpty;
-use Google\Bigtable\Admin\V2\ListInstancesResponse;
+use Google\Cloud\Bigtable\Admin\V2\ListInstancesResponse;
 
 use Prophecy\Argument;
 

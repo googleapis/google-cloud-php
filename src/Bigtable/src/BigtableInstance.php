@@ -2,25 +2,29 @@
 namespace Google\Cloud\Bigtable\src;
 
 use Google\Cloud\Bigtable\Admin\V2\BigtableInstanceAdminClient;
-use Google\Bigtable\Admin\V2\Instance;
-use Google\Bigtable\Admin\V2\Cluster;
-use Google\Protobuf\Internal\MapField;
-use Google\Protobuf\Internal\GPBType;
-use Google\Bigtable\Admin\V2\Instance_Type;
+use Google\Cloud\Bigtable\Admin\V2\Instance;
+use Google\Cloud\Bigtable\Admin\V2\Cluster;
+use Google\Cloud\Protobuf\Internal\MapField;
+use Google\Cloud\Protobuf\Internal\GPBType;
+use Google\Cloud\Bigtable\Admin\V2\Instance_Type;
 
 /**
-* 
+*
 */
 class BigtableInstance
 {
-	private $BigtableInstanceAdminClient;
+    private $InstanceAdmin;
 
-	public function __construct()
-	{
-		$this->BigtableInstanceAdminClient = new BigtableInstanceAdminClient();
+    /**
+     * Constructor.
+     *
+     */
+    public function __construct()
+    {
+        $this->InstanceAdmin = new BigtableInstanceAdminClient();
     }
     
-	/**
+    /**
      * Formats a string containing the fully-qualified path to represent
      * a project resource.
      *
@@ -28,41 +32,41 @@ class BigtableInstance
      *
      * @return string The formatted project resource.
      */
-	public function projectName($projectId)
-	{
-		$formattedParent = BigtableInstanceAdminClient::projectName($projectId);
-		return $formattedParent;
-	}
+    public function projectName($projectId)
+    {
+        $formattedParent = BigtableInstanceAdminClient::projectName($projectId);
+        return $formattedParent;
+    }
 
-	/**
+    /**
      * Formats a string containing the fully-qualified path to represent
      * a instance resource.
      *
      * @param string $projectId
-     * 
+     *
      * @param string $instanceId
      *
      * @return string The formatted instance resource.
      */
-	public function instanceName($projectId, $instanceId)
-	{
-		$formattedParent = BigtableInstanceAdminClient::instanceName($projectId, $instanceId);
-		return $formattedParent;
-	}
+    public function instanceName($projectId, $instanceId)
+    {
+        $formattedParent = BigtableInstanceAdminClient::instanceName($projectId, $instanceId);
+        return $formattedParent;
+    }
 
-	/**
+    /**
      * Create an instance within a project.
      *
      * @param string   $parent       The unique name of the project in which to create the new instance.
      *                               Values are of the form `projects/<project>`.
-     *                          
+     *
      * @param string   $instanceId   The ID to be used when referring to the new instance within its project,
      *                               e.g., just `myinstance` rather than
      *                               `projects/myproject/instances/myinstance`.
      *
      * @param string   $location     values should be of the form
      *                               `projects/<project>/locations/<zone>`.
-     *                               
+     *
      * @param string   $clusterId    cluseter id
      *
      * @param array    $optionalArgs {
@@ -76,11 +80,11 @@ class BigtableInstance
      * }
      *
      * @return \Google\GAX\OperationResponse
-	 *
+     *
      * @throws \Google\GAX\ApiException if the remote call fails
      */
-	public function createInstance($parent, $instanceId, $location, $clusterId, $optionalArgs = [])
-	{
+    public function createInstance($parent, $instanceId, $location, $clusterId, $optionalArgs = [])
+    {
         $instance = new Instance();
         $instance->setDisplayName($instanceId);
         $instance->setType(2);
@@ -89,14 +93,14 @@ class BigtableInstance
         $clusters->setName($clusterId);
         $clusters->setDefaultStorageType(2);
         $clusters->setLocation($location);
-        $MapField = new MapField(GPBType::STRING,GPBType::MESSAGE, Cluster::class);
+        $MapField = new MapField(GPBType::STRING, GPBType::MESSAGE, Cluster::class);
         $MapField[$clusterId] = $clusters;
 
-        $OperationResponse = $this->BigtableInstanceAdminClient->createInstance($parent, $instanceId, $instance, $MapField, $optionalArgs);
-        return $OperationResponse;
-	}
+        $Instance = $this->InstanceAdmin->createInstance($parent, $instanceId, $instance, $MapField, $optionalArgs);
+        return $Instance;
+    }
 
-	/**
+    /**
      * Updates an instance within a project.
      *
      *
@@ -107,8 +111,9 @@ class BigtableInstance
      *                             Can be changed at any time, but should be kept globally unique
      *                             to avoid confusion.
      * @param int    $type         The type of the instance. Defaults to `PRODUCTION`.
-     *                             For allowed values, use constants defined on {@see \Google\Bigtable\Admin\V2\Instance_Type}
-     * 
+     *                             For allowed values, use constants defined on
+     *                             {@see \Google\Bigtable\Admin\V2\Instance_Type}
+     *
      * @param array  $optionalArgs {
      *                             Optional.
      *
@@ -128,18 +133,18 @@ class BigtableInstance
      * @throws \Google\GAX\ApiException if the remote call fails
      * @experimental
      */
-	public function updateInstance($name, $displayName, $type, $optionalArgs = [])
-	{
-		$Instance = $this->BigtableInstanceAdminClient->updateInstance($name, $displayName, $type, $optionalArgs = []);
-		return $Instance;
-	}
+    public function updateInstance($name, $displayName, $type, $optionalArgs = [])
+    {
+        $Instance = $this->InstanceAdmin->updateInstance($name, $displayName, $type, $optionalArgs = []);
+        return $Instance;
+    }
 
-	/**
+    /**
      * Lists information about instances in a project.
      *
      * @param string $parent       The unique name of the project for which a list of instances is requested.
      *                             Values are of the form `projects/<project>`.
-     * 
+     *
      * @param array  $optionalArgs {
      *                             Optional.
      *
@@ -152,22 +157,22 @@ class BigtableInstance
      *          {@see Google\GAX\RetrySettings} for example usage.
      * }
      *
-	 * @return \Google\Bigtable\Admin\V2\ListInstancesResponse
-     * 
+     * @return \Google\Bigtable\Admin\V2\ListInstancesResponse
+     *
      * @throws \Google\GAX\ApiException if the remote call fails
     */
-	public function listInstances($parent, $optionalArgs = [])
-	{
-        $ListInstances = $this->BigtableInstanceAdminClient->listInstances($parent, $optionalArgs);
+    public function listInstances($parent, $optionalArgs = [])
+    {
+        $ListInstances = $this->InstanceAdmin->listInstances($parent, $optionalArgs);
         return $ListInstances;
-	}
+    }
 
-	/**
+    /**
      * Delete an instance from a project.
      *
      * @param string $formattedParent    The unique name of the instance to be deleted.
      *                                   Values are of the form `projects/<project>/instances/<instance>`.
-     * 
+     *
      * @param array  $optionalArgs {
      *                             Optional.
      *
@@ -177,14 +182,14 @@ class BigtableInstance
      *          of retry settings parameters. See the documentation on
      *          {@see Google\GAX\RetrySettings} for example usage.
      * }
-     * 
+     *
      * @return \Google\Protobuf\GPBEmpty
-     * 
+     *
      * @throws \Google\GAX\ApiException if the remote call fails
      */
-	public function deleteInstance($formattedParent, $optionalArgs = [])
-	{
-        $response = $this->BigtableInstanceAdminClient->deleteInstance($formattedParent, $optionalArgs);
+    public function deleteInstance($formattedParent, $optionalArgs = [])
+    {
+        $response = $this->InstanceAdmin->deleteInstance($formattedParent, $optionalArgs);
         return $response;
     }
 }
