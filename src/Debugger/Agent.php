@@ -104,12 +104,13 @@ class Agent
             'storage' => $storage
         ]);
 
-        $agentConfig = $storage->load();
-        if (empty($agentConfig)) {
+        list($this->debuggeeId, $breakpoints) = $storage->load();
+
+        // skip starting the Agent unless the Daemon has already started and
+        // registered the debuggee.
+        if (empty($this->debuggeeId)) {
             return;
         }
-
-        list($this->debuggeeId, $breakpoints) = $agentConfig;
 
         $this->setCommonBatchProperties($options + [
             'identifier' => 'stackdriver-debugger',
