@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright 2017 Google Inc.
+ * Copyright 2018 Google Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,29 +17,22 @@
 
 namespace Google\Cloud\Tests\Unit\Debugger\BreakpointStorage;
 
-use Google\Cloud\Debugger\BreakpointStorage\SysvBreakpointStorage;
+use Google\Cloud\Debugger\BreakpointStorage\FileBreakpointStorage;
 use Google\Cloud\Debugger\Breakpoint;
 use Google\Cloud\Debugger\Connection\ConnectionInterface;
 use Google\Cloud\Debugger\Debuggee;
-use Google\Cloud\Core\SysvTrait;
 use PHPUnit\Framework\TestCase;
 
 /**
  * @group debugger
  */
-class SysvBreakpointStorageTest extends TestCase
+class FileBreakpointStorageTest extends TestCase
 {
-    use SysvTrait;
-
     private $storage;
 
     public function setUp()
     {
-        if (!$this->isSysvIPCLoaded()) {
-            $this->markTestSkipped(
-                'Skipping because SystemV IPC extensions are not loaded');
-        }
-        $this->storage = new SysvBreakpointStorage();
+        $this->storage = new FileBreakpointStorage();
     }
 
     public function testSaveAndLoad()

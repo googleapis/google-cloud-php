@@ -25,10 +25,16 @@ trait LockTrait
     /**
      * Acquires a lock that will block until released.
      *
+     * @param array $options [optional] {
+     *     Configuration options.
+     *
+     *     @type bool $blocking Whether the process should block while waiting
+     *           to acquire the lock. **Defaults to** true.
+     * }
      * @return bool
-     * @throws \RuntimeException
+     * @throws \RuntimeException If the lock fails to be acquired.
      */
-    abstract public function acquire();
+    abstract public function acquire(array $options = []);
 
     /**
      * Releases the lock.
@@ -43,14 +49,20 @@ trait LockTrait
      * it.
      *
      * @param callable $func The callable to execute.
+     * @param array $options [optional] {
+     *     Configuration options.
+     *
+     *     @type bool $blocking Whether the process should block while waiting
+     *           to acquire the lock. **Defaults to** true.
+     * }
      * @return mixed
      */
-    public function synchronize(callable $func)
+    public function synchronize(callable $func, array $options = [])
     {
         $result = null;
         $exception = null;
 
-        if ($this->acquire()) {
+        if ($this->acquire($options)) {
             try {
                 $result = $func();
             } catch (\Exception $ex) {

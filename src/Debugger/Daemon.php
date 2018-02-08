@@ -19,11 +19,13 @@ namespace Google\Cloud\Debugger;
 
 use Google\Cloud\Core\Batch\SimpleJobTrait;
 use Google\Cloud\Core\Batch\SerializableClientTrait;
+use Google\Cloud\Core\SysvTrait;
 use Google\Cloud\Core\Report\MetadataProviderInterface;
 use Google\Cloud\Core\Report\MetadataProviderUtils;
 use Google\Cloud\Core\Exception\ConflictException;
 use Google\Cloud\Core\ExponentialBackoff;
 use Google\Cloud\Debugger\BreakpointStorage\BreakpointStorageInterface;
+use Google\Cloud\Debugger\BreakpointStorage\FileBreakpointStorage;
 use Google\Cloud\Debugger\BreakpointStorage\SysvBreakpointStorage;
 
 /**
@@ -43,7 +45,11 @@ use Google\Cloud\Debugger\BreakpointStorage\SysvBreakpointStorage;
 class Daemon
 {
     use SimpleJobTrait;
-    use SerializableClientTrait;
+
+    /**
+     * @var Debuggee
+     */
+    private $debuggee;
 
     /**
      * @var string The full path to the source root
@@ -142,7 +148,7 @@ class Daemon
         $this->labels = $options['labels'] ?: $this->defaultLabels($options['metadataProvider']);
         $this->storage = array_key_exists('storage', $options)
             ? $options['storage']
-            : new SysvBreakpointStorage();
+            : $this->defaultStorage();
 
         $this->setSimpleJobProperties($options + [
             'identifier' => 'debugger-daemon'
@@ -269,5 +275,12 @@ class Daemon
             $labels['version'] = $metadataProvider->versionId();
         }
         return $labels;
+    }
+
+    private function defaultStorage()
+    {
+        return $this->isSysvIPCLoaded()
+            ? new SysvBreakpointStorage()
+            : new FileBreakpointStorage();
     }
 }
