@@ -23,7 +23,7 @@ use Google\Cloud\Core\Iterator\ItemIterator;
 use Google\Cloud\Core\Upload\MultipartUploader;
 use Google\Cloud\Core\Upload\ResumableUploader;
 use Google\Cloud\Core\Upload\StreamableUploader;
-use Google\Cloud\Dev\Snippet\SnippetTestCase;
+use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
 use Google\Cloud\PubSub\PubSubClient;
 use Google\Cloud\PubSub\Topic;
 use Google\Cloud\Storage\Acl;
@@ -51,7 +51,7 @@ class BucketTest extends SnippetTestCase
         $this->connection = $this->prophesize(Rest::class);
         $this->connection->projectId()
             ->willReturn(self::PROJECT_ID);
-        $this->bucket = \Google\Cloud\Dev\stub(Bucket::class, [
+        $this->bucket = \Google\Cloud\Core\Testing\TestHelpers::stub(Bucket::class, [
             $this->connection->reveal(),
             self::BUCKET,
             []

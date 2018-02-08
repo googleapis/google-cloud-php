@@ -33,7 +33,7 @@ trait PathTrait
 
     private function scanDirectory($path, array $excludes = [])
     {
-        $excludes = ['..', '.', '.DS_Store', 'VERSION', 'LICENSE', 'CONTRIBUTING.md'] + $excludes;
+        $excludes = ['..', '.', '.DS_Store', 'VERSION', 'LICENSE', 'CONTRIBUTING.md', '.github'] + $excludes;
         return array_diff(scandir($path), $excludes);
     }
 }

@@ -17,6 +17,7 @@
 
 namespace Google\Cloud\Tests\Unit\Vision\Annotation;
 
+use Google\Cloud\Tests\Unit\Vision\Fixtures;
 use Google\Cloud\Vision\Annotation\Face\Landmarks;
 use PHPUnit\Framework\TestCase;
 
@@ -30,7 +31,7 @@ class LandmarksTest extends TestCase
 
     public function setUp()
     {
-        $this->data = json_decode(file_get_contents(__DIR__ .'/../../../fixtures/vision/face-landmarks.json'), true);
+        $this->data = json_decode(file_get_contents(Fixtures::FACE_LANDMARKS_FIXTURE()), true);
         $this->landmarks = new Landmarks($this->data);
     }
 

@@ -48,7 +48,7 @@ class TransactionTest extends TestCase
     {
         $this->connection = $this->prophesize(ConnectionInterface::class);
         $this->valueMapper = new ValueMapper($this->connection->reveal(), false);
-        $this->transaction = \Google\Cloud\Dev\stub(Transaction::class, [
+        $this->transaction = \Google\Cloud\Core\Testing\TestHelpers::stub(Transaction::class, [
             $this->connection->reveal(),
             $this->valueMapper,
             sprintf('projects/%s/databases/%s', self::PROJECT, self::DATABASE),

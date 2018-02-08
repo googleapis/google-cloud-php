@@ -17,7 +17,7 @@
 
 namespace Google\Cloud\Tests\Snippets\Trace;
 
-use Google\Cloud\Dev\Snippet\SnippetTestCase;
+use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
 use Google\Cloud\Trace\Connection\ConnectionInterface;
 use Google\Cloud\Trace\Trace;
 use Google\Cloud\Trace\TraceClient;
@@ -34,7 +34,7 @@ class TraceClientTest extends SnippetTestCase
     public function setUp()
     {
         $this->connection = $this->prophesize(ConnectionInterface::class);
-        $this->client = \Google\Cloud\Dev\stub(TraceClient::class);
+        $this->client = \Google\Cloud\Core\Testing\TestHelpers::stub(TraceClient::class);
         $this->client->___setProperty('connection', $this->connection->reveal());
     }
 

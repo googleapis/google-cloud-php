@@ -17,7 +17,7 @@
 
 namespace Google\Cloud\Tests\Snippets\Firestore;
 
-use Google\Cloud\Dev\Snippet\SnippetTestCase;
+use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
 use Google\Cloud\Firestore\CollectionReference;
 use Google\Cloud\Firestore\Connection\ConnectionInterface;
 use Google\Cloud\Firestore\DocumentReference;
@@ -26,7 +26,7 @@ use Google\Cloud\Firestore\FieldValue;
 use Google\Cloud\Firestore\FirestoreClient;
 use Google\Cloud\Firestore\ValueMapper;
 use Google\Cloud\Firestore\WriteBatch;
-use Google\Cloud\Tests\GrpcTestTrait;
+use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Prophecy\Argument;
 
 /**
@@ -45,7 +45,7 @@ class DocumentReferenceTest extends SnippetTestCase
     public function setUp()
     {
         $this->connection = $this->prophesize(ConnectionInterface::class);
-        $this->document = \Google\Cloud\Dev\stub(DocumentReferenceStub::class, [
+        $this->document = \Google\Cloud\Core\Testing\TestHelpers::stub(DocumentReferenceStub::class, [
             $this->connection->reveal(),
             new ValueMapper($this->connection->reveal(), false),
             $this->prophesize(CollectionReference::class)->reveal(),

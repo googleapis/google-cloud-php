@@ -17,7 +17,7 @@
 
 namespace Google\Cloud\Tests\Snippets\Spanner;
 
-use Google\Cloud\Dev\Snippet\SnippetTestCase;
+use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
 use Google\Cloud\Spanner\Connection\ConnectionInterface;
 use Google\Cloud\Spanner\Database;
 use Google\Cloud\Spanner\KeySet;
@@ -27,7 +27,7 @@ use Google\Cloud\Spanner\Session\Session;
 use Google\Cloud\Spanner\Timestamp;
 use Google\Cloud\Spanner\Transaction;
 use Google\Cloud\Spanner\ValueMapper;
-use Google\Cloud\Tests\GrpcTestTrait;
+use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Prophecy\Argument;
 
 /**
@@ -50,7 +50,7 @@ class TransactionTest extends SnippetTestCase
         $operation = $this->prophesize(Operation::class);
         $session = $this->prophesize(Session::class);
 
-        $this->transaction = \Google\Cloud\Dev\stub(Transaction::class, [
+        $this->transaction = \Google\Cloud\Core\Testing\TestHelpers::stub(Transaction::class, [
             $operation->reveal(),
             $session->reveal(),
             self::TRANSACTION
@@ -59,7 +59,7 @@ class TransactionTest extends SnippetTestCase
 
     private function stubOperation($stub = null)
     {
-        $operation = \Google\Cloud\Dev\stub(Operation::class, [
+        $operation = \Google\Cloud\Core\Testing\TestHelpers::stub(Operation::class, [
             $this->connection->reveal(), false
         ]);
 

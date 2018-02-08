@@ -29,7 +29,7 @@ use Google\Cloud\Spanner\Snapshot;
 use Google\Cloud\Spanner\Timestamp;
 use Google\Cloud\Spanner\Transaction;
 use Google\Cloud\Spanner\ValueMapper;
-use Google\Cloud\Tests\GrpcTestTrait;
+use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Prophecy\Argument;
 use PHPUnit\Framework\TestCase;
 
@@ -55,7 +55,7 @@ class OperationTest extends TestCase
 
         $this->connection = $this->prophesize(ConnectionInterface::class);
 
-        $this->operation = \Google\Cloud\Dev\stub(Operation::class, [
+        $this->operation = \Google\Cloud\Core\Testing\TestHelpers::stub(Operation::class, [
             $this->connection->reveal(),
             false
         ]);

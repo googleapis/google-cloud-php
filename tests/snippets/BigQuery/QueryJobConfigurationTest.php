@@ -20,7 +20,7 @@ namespace Google\Cloud\Tests\Snippets\BigQuery;
 use Google\Cloud\BigQuery\BigQueryClient;
 use Google\Cloud\BigQuery\QueryJobConfiguration;
 use Google\Cloud\BigQuery\ValueMapper;
-use Google\Cloud\Dev\Snippet\SnippetTestCase;
+use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
 
 /**
  * @group bigquery
@@ -72,7 +72,7 @@ class QueryJobConfigurationTest extends SnippetTestCase
 
     public function setterDataProvider()
     {
-        $bq = \Google\Cloud\Dev\stub(BigQueryClient::class, [
+        $bq = \Google\Cloud\Core\Testing\TestHelpers::stub(BigQueryClient::class, [
             ['projectId' => self::PROJECT_ID]
         ]);
 

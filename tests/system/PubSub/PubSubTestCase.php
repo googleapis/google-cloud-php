@@ -18,7 +18,7 @@
 namespace Google\Cloud\Tests\System\PubSub;
 
 use Google\Cloud\PubSub\PubSubClient;
-use Google\Cloud\Tests\System\SystemTestCase;
+use Google\Cloud\Core\Testing\System\SystemTestCase;
 
 class PubSubTestCase extends SystemTestCase
 {

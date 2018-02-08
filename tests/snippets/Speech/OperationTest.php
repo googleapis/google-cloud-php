@@ -17,7 +17,7 @@
 
 namespace Google\Cloud\Tests\Snippets\Speech;
 
-use Google\Cloud\Dev\Snippet\SnippetTestCase;
+use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
 use Google\Cloud\Speech\Connection\ConnectionInterface;
 use Google\Cloud\Speech\Operation;
 use Google\Cloud\Speech\Result;
@@ -48,7 +48,7 @@ class OperationTest extends SnippetTestCase
         ];
 
         $this->connection = $this->prophesize(ConnectionInterface::class);
-        $this->operation = \Google\Cloud\Dev\stub(Operation::class, [
+        $this->operation = \Google\Cloud\Core\Testing\TestHelpers::stub(Operation::class, [
             $this->connection->reveal(),
             $this->opData['name'],
             $this->opData

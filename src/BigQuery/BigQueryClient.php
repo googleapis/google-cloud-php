@@ -48,7 +48,7 @@ class BigQueryClient
     use ClientTrait;
     use RetryDeciderTrait;
 
-    const VERSION = '1.0.2';
+    const VERSION = '1.0.3';
 
     const MAX_DELAY_MICROSECONDS = 32000000;
 
@@ -100,7 +100,7 @@ class BigQueryClient
      */
     public function __construct(array $config = [])
     {
-        $this->setHttpRetryCodes([]);
+        $this->setHttpRetryCodes([502]);
         $this->setHttpRetryMessages([
             'rateLimitExceeded',
             'backendError'

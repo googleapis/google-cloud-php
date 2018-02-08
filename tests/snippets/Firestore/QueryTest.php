@@ -19,11 +19,11 @@ namespace Google\Cloud\Tests\Snippets\Firestore;
 
 use Prophecy\Argument;
 use Google\Cloud\Firestore\Query;
-use Google\Cloud\Tests\GrpcTestTrait;
+use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Firestore\ValueMapper;
 use Google\Cloud\Firestore\QuerySnapshot;
-use Google\Cloud\Dev\Snippet\Parser\Snippet;
-use Google\Cloud\Dev\Snippet\SnippetTestCase;
+use Google\Cloud\Core\Testing\Snippet\Parser\Snippet;
+use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
 use Google\Cloud\Firestore\Connection\ConnectionInterface;
 use Google\Cloud\Firestore\V1beta1\StructuredQuery_CompositeFilter_Operator;
 
@@ -43,7 +43,7 @@ class QueryTest extends SnippetTestCase
     public function setUp()
     {
         $this->connection = $this->prophesize(ConnectionInterface::class);
-        $this->query = \Google\Cloud\Dev\stub(Query::class, [
+        $this->query = \Google\Cloud\Core\Testing\TestHelpers::stub(Query::class, [
             $this->connection->reveal(),
             new ValueMapper($this->connection->reveal(), false),
             self::NAME,

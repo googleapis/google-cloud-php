@@ -22,7 +22,7 @@ use Google\Cloud\Core\ExponentialBackoff;
 use Google\Cloud\Logging\LoggingClient;
 use Google\Cloud\PubSub\PubSubClient;
 use Google\Cloud\Storage\StorageClient;
-use Google\Cloud\Tests\System\SystemTestCase;
+use Google\Cloud\Core\Testing\System\SystemTestCase;
 
 class LoggingTestCase extends SystemTestCase
 {

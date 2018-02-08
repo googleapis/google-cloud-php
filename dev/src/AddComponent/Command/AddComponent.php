@@ -22,6 +22,7 @@ use Google\Cloud\Dev\AddComponent\Contributing;
 use Google\Cloud\Dev\AddComponent\Info;
 use Google\Cloud\Dev\AddComponent\License;
 use Google\Cloud\Dev\AddComponent\Manifest;
+use Google\Cloud\Dev\AddComponent\PullRequestTemplate;
 use Google\Cloud\Dev\AddComponent\QuestionTrait;
 use Google\Cloud\Dev\AddComponent\Readmes;
 use Google\Cloud\Dev\AddComponent\TableOfContents;
@@ -84,6 +85,13 @@ class AddComponent extends Command
             'Contributing',
             'Creating CONTRIBUTING.md file by copying from template.'
         ));
+
+        $output->writeln($formatter->formatSection(
+            'Pull Request Template',
+            'Creating .github/pull_request_template.md file by copying from template.'
+        ));
+
+        (new PullRequestTemplate($this->cliBasePath, $info['path']))->run();
 
         (new Contributing($this->cliBasePath, $info['path']))->run();
 
