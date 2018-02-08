@@ -18,7 +18,6 @@
 namespace Google\Cloud\Debugger\BreakpointStorage;
 
 use Google\Cloud\Core\Lock\FlockLock;
-use Google\Cloud\Core\Lock\LockInterface;
 use Google\Cloud\Debugger\Breakpoint;
 use Google\Cloud\Debugger\Debuggee;
 
@@ -32,8 +31,8 @@ class FileBreakpointStorage implements BreakpointStorageInterface
     /* @var string */
     private $filename;
 
-    /* @var LockInterface */
-    private $lock;
+    /* @var string */
+    private $lockFilename;
 
     /**
      * Create a new FileBreakpointStorage instance.
@@ -45,7 +44,7 @@ class FileBreakpointStorage implements BreakpointStorageInterface
     {
         $filename = $filename ?: self::DEFAULT_FILENAME;
         $this->filename = implode(DIRECTORY_SEPARATOR, [sys_get_temp_dir(), $filename]);
-        $this->lock = new FlockLock($filename . '.lock');
+        $this->lockFilename = $filename . '.lock';
     }
 
     /**
@@ -67,7 +66,7 @@ class FileBreakpointStorage implements BreakpointStorageInterface
         // Acquire an exclusive write lock (blocking). There should only be a
         // single Daemon that can call this.
         try {
-            $success = $this->lock->synchronize(function () use ($data) {
+            $success = $this->getLock(true)->synchronize(function () use ($data) {
                 return file_put_contents($this->filename, serialize($data)) !== false;
             });
         } catch (\RuntimeException $e) {
@@ -91,21 +90,24 @@ class FileBreakpointStorage implements BreakpointStorageInterface
         // for writing), then we return an empty list of breakpoints and
         // skip debugging for this request.
         try {
-            $this->lock->acquire([
-                'blocking' => false,
-                'exclusive' => false
+            $contents = $this->getLock()->synchronize(function() {
+                return file_get_contents($this->filename);
+            }, [
+                'blocking' => false
             ]);
-            try {
-                $contents = file_get_contents($this->filename);
-                $data = unserialize($contents);
-                $debuggeeId = $data['debuggeeId'];
-                $breakpoints = $data['breakpoints'];
-            } finally {
-                $this->lock->release();
-            }
+            $data = unserialize($contents);
+            $debuggeeId = $data['debuggeeId'];
+            $breakpoints = $data['breakpoints'];
         } catch (\RuntimeException $e) {
             // Do nothing
         }
         return [$debuggeeId, $breakpoints];
+    }
+
+    private function getLock($exclusive = false)
+    {
+        return new FlockLock($this->lockFilename, [
+            'exclusive' => $exclusive
+        ]);
     }
 }

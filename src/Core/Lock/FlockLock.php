@@ -43,14 +43,30 @@ class FlockLock implements LockInterface
     private $handle;
 
     /**
+     * @var bool If true, we should acquire an exclusive lock.
+     */
+    private $exclusive;
+
+    /**
      * @param string $fileName The name of the file to use as a lock.
+     * @param array $options [optional] {
+     *     Configuration options.
+     *
+     *     @type bool $exclusive If true, acquire an excluse (write) lock. If
+     *           false, acquire a shared (read) lock. **Defaults to** true.
+     * }
      * @throws \InvalidArgumentException If an invalid fileName is provided.
      */
-    public function __construct($fileName)
+    public function __construct($fileName, array $options = [])
     {
         if (!is_string($fileName)) {
             throw new \InvalidArgumentException('$fileName must be a string.');
         }
+
+        $options += [
+            'exclusive' => true
+        ];
+        $this->exclusive = $options['exclusive'];
 
         $this->filePath = sprintf(
             self::FILE_PATH_TEMPLATE,
@@ -67,8 +83,6 @@ class FlockLock implements LockInterface
      *
      *     @type bool $blocking Whether the process should block while waiting
      *           to acquire the lock. **Defaults to** true.
-     *     @type bool $exclusive If true, acquire an excluse (write) lock. If
-     *           false, acquire a shared (read) lock. **Defaults to** true.
      * }
      * @return bool
      * @throws \RuntimeException If the lock fails to be acquired.
@@ -129,10 +143,9 @@ class FlockLock implements LockInterface
     private function lockType(array $options)
     {
         $options += [
-            'blocking' => true,
-            'exclusive' => true
+            'blocking' => true
         ];
-        $lockType = $options['exclusive'] ? LOCK_EX : LOCK_SH;
+        $lockType = $this->exclusive ? LOCK_EX : LOCK_SH;
         if (!$options['blocking']) {
             $lockType = $lockType | LOCK_UN;
         }

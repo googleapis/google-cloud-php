@@ -30,8 +30,6 @@ interface LockInterface
      *
      *     @type bool $blocking Whether the process should block while waiting
      *           to acquire the lock. **Defaults to** true.
-     *     @type bool $exclusive If true, acquire an excluse (write) lock. If
-     *           false, acquire a shared (read) lock. **Defaults to** true.
      * }
      * @return bool
      * @throws \RuntimeException If the lock fails to be acquired.
