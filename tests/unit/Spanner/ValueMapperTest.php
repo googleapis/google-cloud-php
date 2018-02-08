@@ -24,7 +24,7 @@ use Google\Cloud\Spanner\Date;
 use Google\Cloud\Spanner\Result;
 use Google\Cloud\Spanner\Timestamp;
 use Google\Cloud\Spanner\ValueMapper;
-use Google\Cloud\Tests\GrpcTestTrait;
+use Google\Cloud\Core\Testing\GrpcTestTrait;
 use PHPUnit\Framework\TestCase;
 
 /**

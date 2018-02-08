@@ -21,7 +21,7 @@ use Google\Cloud\Core\Exception\NotFoundException;
 use Google\Cloud\Spanner\Admin\Instance\V1\InstanceAdminClient;
 use Google\Cloud\Spanner\InstanceConfiguration;
 use Google\Cloud\Spanner\Connection\ConnectionInterface;
-use Google\Cloud\Tests\GrpcTestTrait;
+use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Prophecy\Argument;
 use PHPUnit\Framework\TestCase;
 
@@ -44,7 +44,7 @@ class InstanceConfigurationTest extends TestCase
         $this->checkAndSkipGrpcTests();
 
         $this->connection = $this->prophesize(ConnectionInterface::class);
-        $this->configuration = \Google\Cloud\Dev\stub(InstanceConfiguration::class, [
+        $this->configuration = \Google\Cloud\Core\Testing\TestHelpers::stub(InstanceConfiguration::class, [
             $this->connection->reveal(),
             self::PROJECT_ID,
             self::NAME
@@ -62,7 +62,7 @@ class InstanceConfigurationTest extends TestCase
         $this->configuration->___setProperty('connection', $this->connection->reveal());
 
         $info = ['foo' => 'bar'];
-        $config = \Google\Cloud\Dev\stub(InstanceConfiguration::class, [
+        $config = \Google\Cloud\Core\Testing\TestHelpers::stub(InstanceConfiguration::class, [
             $this->connection->reveal(),
             self::PROJECT_ID,
             self::NAME,

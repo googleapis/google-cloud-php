@@ -17,7 +17,7 @@
 
 namespace Google\Cloud\Debugger\Snippets\Trace;
 
-use Google\Cloud\Dev\Snippet\SnippetTestCase;
+use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
 use Google\Cloud\Debugger\Connection\ConnectionInterface;
 use Google\Cloud\Debugger\DebuggerClient;
 use Google\Cloud\Debugger\Debuggee;
@@ -34,7 +34,7 @@ class DebuggerClientTest extends SnippetTestCase
     public function setUp()
     {
         $this->connection = $this->prophesize(ConnectionInterface::class);
-        $this->client = \Google\Cloud\Dev\stub(DebuggerClient::class);
+        $this->client = \Google\Cloud\Core\Testing\TestHelpers::stub(DebuggerClient::class);
         $this->client->___setProperty('connection', $this->connection->reveal());
     }
 

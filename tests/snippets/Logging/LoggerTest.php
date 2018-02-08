@@ -17,7 +17,7 @@
 
 namespace Google\Cloud\Tests\Snippets\Logging;
 
-use Google\Cloud\Dev\Snippet\SnippetTestCase;
+use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
 use Google\Cloud\Logging\Connection\ConnectionInterface;
 use Google\Cloud\Logging\Entry;
 use Google\Cloud\Logging\Logger;
@@ -38,7 +38,7 @@ class LoggerTest extends SnippetTestCase
     public function setUp()
     {
         $this->connection = $this->prophesize(ConnectionInterface::class);
-        $this->logger = \Google\Cloud\Dev\stub(Logger::class, [
+        $this->logger = \Google\Cloud\Core\Testing\TestHelpers::stub(Logger::class, [
             $this->connection->reveal(),
             self::NAME,
             self::PROJECT

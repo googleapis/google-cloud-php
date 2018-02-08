@@ -99,7 +99,7 @@ class BatchPublisher
     protected function getCallback()
     {
         if (!array_key_exists($this->topicName, self::$topics)) {
-            $client = new PubSubClient($this->clientConfig);
+            $client = new PubSubClient($this->getUnwrappedClientConfig());
             self::$topics[$this->topicName] = $client->topic($this->topicName);
         }
 

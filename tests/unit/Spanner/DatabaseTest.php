@@ -36,7 +36,7 @@ use Google\Cloud\Spanner\Snapshot;
 use Google\Cloud\Spanner\Timestamp;
 use Google\Cloud\Spanner\Transaction;
 use Google\Cloud\Spanner\ValueMapper;
-use Google\Cloud\Tests\GrpcTestTrait;
+use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Prophecy\Argument;
 use PHPUnit\Framework\TestCase;
 
@@ -99,7 +99,7 @@ class DatabaseTest extends TestCase
             'connection', 'operation'
         ];
 
-        $this->database = \Google\Cloud\Dev\stub(Database::class, $args, $props);
+        $this->database = \Google\Cloud\Core\Testing\TestHelpers::stub(Database::class, $args, $props);
     }
 
     public function testName()

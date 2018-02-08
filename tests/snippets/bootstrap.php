@@ -4,10 +4,10 @@
 // start now) you don't need anything else.
 putenv('GOOGLE_APPLICATION_CREDENTIALS='. __DIR__ . '/keyfile-stub.json');
 
-use Google\Cloud\Dev\Snippet\Container;
-use Google\Cloud\Dev\Snippet\Coverage\Coverage;
-use Google\Cloud\Dev\Snippet\Coverage\Scanner;
-use Google\Cloud\Dev\Snippet\Parser\Parser;
+use Google\Cloud\Core\Testing\Snippet\Container;
+use Google\Cloud\Core\Testing\Snippet\Coverage\Coverage;
+use Google\Cloud\Core\Testing\Snippet\Coverage\Scanner;
+use Google\Cloud\Core\Testing\Snippet\Parser\Parser;
 
 require __DIR__ . '/../../vendor/autoload.php';
 

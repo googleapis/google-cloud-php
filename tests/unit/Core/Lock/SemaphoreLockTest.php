@@ -17,11 +17,9 @@
 
 namespace Google\Cloud\Tests\Unit\Core\Lock;
 
-require_once __DIR__ . '/MockGlobals.php';
-
-use Google\Cloud\Core\Lock\MockValues;
 use Google\Cloud\Core\Lock\SemaphoreLock;
-use Google\Cloud\Core\SysvTrait;;
+use Google\Cloud\Core\SysvTrait;
+use Google\Cloud\Core\Testing\Lock\MockValues;
 use PHPUnit\Framework\TestCase;
 
 /**

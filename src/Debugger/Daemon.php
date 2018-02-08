@@ -17,6 +17,8 @@
 
 namespace Google\Cloud\Debugger;
 
+use Google\Cloud\Core\Report\MetadataProviderInterface;
+use Google\Cloud\Core\Report\MetadataProviderUtils;
 use Google\Cloud\Core\Exception\ConflictException;
 use Google\Cloud\Debugger\BreakpointStorage\BreakpointStorageInterface;
 use Google\Cloud\Debugger\BreakpointStorage\SysvBreakpointStorage;
@@ -67,10 +69,17 @@ class Daemon
      *            debuggee. **Defaults to** a value autodetected from the
      *            environment.
      *      @type string $description A display name for the debuggee in the
-     *            Stackdriver Debugger UI. **Defaults to** the uniquifier.
+     *            Stackdriver Debugger UI. **Defaults to** a value detected
+     *            from the environment.
      *      @type BreakpointStorageInterface $storage The breakpoint storage
      *            mechanism to use. **Defaults to** a new SysvBreakpointStorage
      *            instance.
+     *      @type array $labels A set of custom debuggee properties, populated
+     *            by the agent, to be displayed to the user. **Defaults to**
+     *            labels detected from the environment.
+     *      @type MetadataProviderInterface $metadataProvider **Defaults to** An
+     *            automatically chosen provider, based on detected environment
+     *            settings.
      * }
      */
     public function __construct($sourceRoot, array $options = [])
@@ -83,7 +92,9 @@ class Daemon
             'sourceContext' => [],
             'extSourceContext' => [],
             'uniquifier' => null,
-            'description' => null
+            'description' => null,
+            'labels' => null,
+            'metadataProvider' => null
         ];
 
         $this->sourceRoot = realpath($sourceRoot);
@@ -98,11 +109,13 @@ class Daemon
 
         $uniquifier = $options['uniquifier'] ?: $this->defaultUniquifier();
         $description = $options['description'] ?: $this->defaultDescription();
+        $labels = $options['labels'] ?: $this->defaultLabels($options['metadataProvider']);
 
         $this->debuggee = $client->debuggee(null, [
             'uniquifier' => $uniquifier,
             'description' => $description,
-            'extSourceContexts' => $extSourceContext ? [$extSourceContext] : []
+            'extSourceContexts' => $extSourceContext ? [$extSourceContext] : [],
+            'labels' => $labels
         ]);
 
         $this->debuggee->register();
@@ -192,5 +205,21 @@ class Daemon
             return json_decode(file_get_contents($sourceContextFile), true);
         }
         return [];
+    }
+
+    private function defaultLabels(MetadataProviderInterface $metadataProvider = null)
+    {
+        $metadataProvider = $metadataProvider ?: MetadataProviderUtils::autoSelect($_SERVER);
+        $labels = [];
+        if ($metadataProvider->projectId()) {
+            $labels['projectid'] = $metadataProvider->projectId();
+        }
+        if ($metadataProvider->serviceId()) {
+            $labels['module'] = $metadataProvider->serviceId();
+        }
+        if ($metadataProvider->versionId()) {
+            $labels['version'] = $metadataProvider->versionId();
+        }
+        return $labels;
     }
 }

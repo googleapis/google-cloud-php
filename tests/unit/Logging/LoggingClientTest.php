@@ -24,7 +24,7 @@ use Google\Cloud\Logging\Metric;
 use Google\Cloud\Logging\PsrLogger;
 use Google\Cloud\Logging\Sink;
 use Google\Cloud\Logging\Connection\ConnectionInterface;
-use Google\Cloud\Tests\GrpcTestTrait;
+use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Prophecy\Argument;
 use PHPUnit\Framework\TestCase;
 
@@ -71,11 +71,12 @@ class LoggingClientTest extends TestCase
             ['clientConfig' => ['projectId' => 'my-project']]);
         $this->assertInstanceOf(PsrLogger::class, $psrBatchLogger);
         $r = new \ReflectionObject($psrBatchLogger);
-        $p = $r->getProperty('clientConfig');
-        $p->setAccessible(true);
+        $method = $r->getMethod('getUnwrappedClientConfig');
+        $method->setAccessible(true);
+
         $this->assertEquals(
             ['projectId' => 'my-project'],
-            $p->getValue($psrBatchLogger)
+            $method->invoke($psrBatchLogger)
         );
     }
 

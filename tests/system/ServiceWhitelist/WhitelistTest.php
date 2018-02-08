@@ -20,7 +20,7 @@ namespace Google\Cloud\Tests\System\Whitelist;
 use Google\Cloud\Core\Exception\NotFoundException;
 use Google\Cloud\Core\Timestamp;
 use Google\Cloud\PubSub\PubSubClient;
-use Google\Cloud\Tests\System\SystemTestCase;
+use Google\Cloud\Core\Testing\System\SystemTestCase;
 
 /**
  * @group whitelist

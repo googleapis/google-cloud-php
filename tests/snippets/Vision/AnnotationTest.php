@@ -17,7 +17,7 @@
 
 namespace Google\Cloud\Tests\Snippets\Vision;
 
-use Google\Cloud\Dev\Snippet\SnippetTestCase;
+use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
 use Google\Cloud\Vision\Annotation;
 use Google\Cloud\Vision\Annotation\CropHint;
 use Google\Cloud\Vision\Annotation\Document;

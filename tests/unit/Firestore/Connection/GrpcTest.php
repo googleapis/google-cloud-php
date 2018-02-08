@@ -19,8 +19,8 @@ namespace Google\Cloud\Tests\Unit\Firestore\Connection;
 
 use Google\Cloud\Core\GrpcRequestWrapper;
 use Google\Cloud\Core\GrpcTrait;
+use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Firestore\Connection\Grpc;
-use Google\Cloud\Tests\GrpcTestTrait;
 use Google\Cloud\Firestore\V1beta1\Document;
 use Google\Cloud\Firestore\V1beta1\DocumentMask;
 use Google\Cloud\Firestore\V1beta1\Precondition;

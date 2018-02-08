@@ -28,7 +28,7 @@ class ImageTest extends TestCase
 {
     public function testWithString()
     {
-        $bytes = file_get_contents(__DIR__ .'/../fixtures/vision/eiffel-tower.jpg');
+        $bytes = file_get_contents(Fixtures::EIFFEL_TOWER_FIXTURE());
         $image = new Image($bytes, ['landmarks']);
 
         $res = $image->requestObject();
@@ -54,8 +54,8 @@ class ImageTest extends TestCase
 
     public function testWithResource()
     {
-        $resource = fopen(__DIR__ .'/../fixtures/vision/eiffel-tower.jpg', 'r');
-        $bytes = file_get_contents(__DIR__ .'/../fixtures/vision/eiffel-tower.jpg');
+        $resource = fopen(Fixtures::EIFFEL_TOWER_FIXTURE(), 'r');
+        $bytes = file_get_contents(Fixtures::EIFFEL_TOWER_FIXTURE());
 
         $image = new Image($resource, ['landmarks']);
         $res = $image->requestObject();

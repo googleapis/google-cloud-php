@@ -17,7 +17,7 @@
 
 namespace Google\Cloud\Tests\Snippets\Spanner;
 
-use Google\Cloud\Dev\Snippet\SnippetTestCase;
+use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
 use Google\Cloud\Spanner\Connection\ConnectionInterface;
 use Google\Cloud\Spanner\Database;
 use Google\Cloud\Spanner\KeySet;
@@ -28,7 +28,7 @@ use Google\Cloud\Spanner\Snapshot;
 use Google\Cloud\Spanner\SpannerClient;
 use Google\Cloud\Spanner\Timestamp;
 use Google\Cloud\Spanner\ValueMapper;
-use Google\Cloud\Tests\GrpcTestTrait;
+use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Prophecy\Argument;
 
 /**
@@ -51,7 +51,7 @@ class SnapshotTest extends SnippetTestCase
         $operation = $this->prophesize(Operation::class);
         $session = $this->prophesize(Session::class);
 
-        $this->snapshot = \Google\Cloud\Dev\stub(Snapshot::class, [
+        $this->snapshot = \Google\Cloud\Core\Testing\TestHelpers::stub(Snapshot::class, [
             $operation->reveal(),
             $session->reveal(),
             [
@@ -63,7 +63,7 @@ class SnapshotTest extends SnippetTestCase
 
     private function stubOperation($stub = null)
     {
-        $operation = \Google\Cloud\Dev\stub(Operation::class, [
+        $operation = \Google\Cloud\Core\Testing\TestHelpers::stub(Operation::class, [
             $this->connection->reveal(), false
         ]);
 

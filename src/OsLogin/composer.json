@@ -17,7 +17,7 @@
         }
     },
     "require": {
-        "google/proto-client": "^0.31",
+        "google/proto-client": "^0.32",
         "google/gax": "^0.30"
     },
     "suggest": {
