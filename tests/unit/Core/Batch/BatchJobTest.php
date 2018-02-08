@@ -33,10 +33,10 @@ class BatchJobTest extends TestCase
         $job = new BatchJob('testing', array($this, 'runJob'), 1);
         $this->assertEquals(100, $job->getBatchSize());
         $this->assertEquals(2.0, $job->getCallPeriod());
-        $this->assertEquals(1, $job->getWorkerNum());
-        $this->assertNull($job->getBootstrapFile());
-        $this->assertEquals(1, $job->getIdNum());
-        $this->assertEquals('testing', $job->getIdentifier());
+        $this->assertEquals(1, $job->numWorkers());
+        $this->assertNull($job->bootstrapFile());
+        $this->assertEquals(1, $job->id());
+        $this->assertEquals('testing', $job->identifier());
     }
 
     public function testCustom()
@@ -49,24 +49,15 @@ class BatchJobTest extends TestCase
                 'batchSize' => 1000,
                 'callPeriod' => 1.0,
                 'bootstrapFile' => __FILE__,
-                'workerNum' => 10
+                'numWorkers' => 10
             )
         );
         $this->assertEquals(1000, $job->getBatchSize());
         $this->assertEquals(1.0, $job->getCallPeriod());
-        $this->assertEquals(10, $job->getWorkerNum());
-        $this->assertEquals(__FILE__, $job->getBootstrapFile());
-        $this->assertEquals(1, $job->getIdNum());
-        $this->assertEquals('testing', $job->getIdentifier());
-    }
-
-    public function testRun()
-    {
-        $job = new BatchJob('testing', array($this, 'runJob'), 1);
-        $items = array('apple', 'orange', 'banana');
-        $expected = array('APPLE', 'ORANGE', 'BANANA');
-        $job->run($items);
-        $this->assertEquals($expected, $this->items);
+        $this->assertEquals(10, $job->numWorkers());
+        $this->assertEquals(__FILE__, $job->bootstrapFile());
+        $this->assertEquals(1, $job->id());
+        $this->assertEquals('testing', $job->identifier());
     }
 
     /**

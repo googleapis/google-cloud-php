@@ -31,7 +31,7 @@ final class InMemoryConfigStorage implements
 {
     use HandleFailureTrait;
 
-    /* @var BatchConfig */
+    /* @var JobConfig */
     private $config;
 
     /* @var array */
@@ -87,7 +87,7 @@ final class InMemoryConfigStorage implements
      */
     private function __construct()
     {
-        $this->config = new BatchConfig();
+        $this->config = new JobConfig();
         $this->created = microtime(true);
         $this->initFailureFile();
         $this->hasShutdownHookRegistered = false;
@@ -114,22 +114,22 @@ final class InMemoryConfigStorage implements
     }
 
     /**
-     * Save the given BatchConfig.
+     * Save the given JobConfig.
      *
-     * @param BatchConfig $config A BatchConfig to save.
+     * @param JobConfig $config A JobConfig to save.
      * @return bool
      */
-    public function save(BatchConfig $config)
+    public function save(JobConfig $config)
     {
         $this->config = $config;
         return true;
     }
 
     /**
-     * Load a BatchConfig from the storage.
+     * Load a JobConfig from the storage.
      *
-     * @return BatchConfig
-     * @throws \RuntimeException when failed to load the BatchConfig.
+     * @return JobConfig
+     * @throws \RuntimeException when failed to load the JobConfig.
      */
     public function load()
     {
@@ -137,11 +137,11 @@ final class InMemoryConfigStorage implements
     }
 
     /**
-     * Clear the BatchConfig from storage.
+     * Clear the JobConfig from storage.
      */
     public function clear()
     {
-        $this->config = new BatchConfig();
+        $this->config = new JobConfig();
     }
 
     /**
@@ -191,7 +191,7 @@ final class InMemoryConfigStorage implements
         if (isset($this->items[$idNum])) {
             $job = $this->config->getJobFromIdNum($idNum);
 
-            if (!$job->run($this->items[$idNum])) {
+            if (!$job->flush($this->items[$idNum])) {
                 $this->handleFailure($idNum, $this->items[$idNum]);
             }
 

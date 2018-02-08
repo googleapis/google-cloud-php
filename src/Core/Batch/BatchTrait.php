@@ -29,15 +29,12 @@ use Opis\Closure\SerializableClosure;
  */
 trait BatchTrait
 {
-    /**
-     * @var array
-     */
-    private $batchOptions;
+    use SerializableClientTrait;
 
     /**
      * @var array
      */
-    private $clientConfig;
+    private $batchOptions;
 
     /**
      * @var BatchRunner
@@ -65,11 +62,6 @@ trait BatchTrait
     private $debugOutputResource;
 
     /**
-     * @var ClosureSerializerInterface|null
-     */
-    private $closureSerializer;
-
-    /**
      * Flushes items in the batch queue that have yet to be delivered. Please
      * note this will have no effect when using the batch daemon.
      *
@@ -79,7 +71,7 @@ trait BatchTrait
     {
         $id = $this->batchRunner
             ->getJobFromId($this->identifier)
-            ->getIdNum();
+            ->id();
 
         return $this->batchRunner
             ->getProcessor()
@@ -153,13 +145,14 @@ trait BatchTrait
      *           more details.
      *           **Defaults to** ['batchSize' => 1000,
      *                            'callPeriod' => 2.0,
-     *                            'workerNum' => 2].
+     *                            'numWorkers' => 2].
      *     @type array $clientConfig A config used to construct the client upon
      *           which requests will be made.
      *     @type BatchRunner $batchRunner A BatchRunner object. Mainly used for
      *           the tests to inject a mock. **Defaults to** a newly created
      *           BatchRunner.
-     *     @type string $identifier An identifier for the batch job.
+     *     @type string $identifier An identifier for the batch job. This
+     *           value must be unique across all job configs.
      *     @type string $batchMethod The name of the batch method used to
      *           deliver items.
      *     @type ClosureSerializerInterface $closureSerializer An implementation
@@ -171,7 +164,7 @@ trait BatchTrait
      * }
      * @throws \InvalidArgumentException
      */
-    private function setCommonBatchProperties(array $options)
+    private function setCommonBatchProperties(array $options = [])
     {
         if (!isset($options['identifier'])) {
             throw new \InvalidArgumentException(
@@ -185,9 +178,7 @@ trait BatchTrait
             );
         }
 
-        $this->closureSerializer = isset($options['closureSerializer'])
-            ? $options['closureSerializer']
-            : $this->getDefaultClosureSerializer();
+        $this->setSerializableClientOptions($options);
         $this->batchMethod = $options['batchMethod'];
         $this->identifier = $options['identifier'];
         $this->debugOutputResource = isset($options['debugOutputResource'])
@@ -196,14 +187,13 @@ trait BatchTrait
         $this->debugOutput = isset($options['debugOutput'])
             ? $options['debugOutput']
             : false;
-        $this->clientConfig = $this->getWrappedClientConfig($options);
         $batchOptions = isset($options['batchOptions'])
             ? $options['batchOptions']
             : [];
         $this->batchOptions = $batchOptions + [
             'batchSize' => 1000,
             'callPeriod' => 2.0,
-            'workerNum' => 2
+            'numWorkers' => 2
         ];
         $this->batchRunner = isset($options['batchRunner'])
             ? $options['batchRunner']
@@ -213,44 +203,5 @@ trait BatchTrait
             [$this, 'send'],
             $this->batchOptions
         );
-    }
-
-    /**
-     * @param array $options
-     * @return array
-     */
-    private function getWrappedClientConfig(array $options)
-    {
-        $config = isset($options['clientConfig'])
-            ? $options['clientConfig']
-            : [];
-
-        if ($config && $this->closureSerializer) {
-            $this->closureSerializer->wrapClosures($config);
-        }
-
-        return $config;
-    }
-
-    /**
-     * @return array
-     */
-    private function getUnwrappedClientConfig()
-    {
-        if ($this->clientConfig && $this->closureSerializer) {
-            $this->closureSerializer->unwrapClosures($this->clientConfig);
-        }
-
-        return $this->clientConfig;
-    }
-
-    /**
-     * @return ClosureSerializerInterface|null
-     */
-    private function getDefaultClosureSerializer()
-    {
-        if (class_exists(SerializableClosure::class)) {
-            return new OpisClosureSerializer();
-        }
     }
 }

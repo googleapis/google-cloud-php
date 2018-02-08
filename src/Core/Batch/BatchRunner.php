@@ -33,7 +33,7 @@ class BatchRunner
     use SysvTrait;
 
     /**
-     * @var BatchConfig
+     * @var JobConfig
      */
     private $config;
 
@@ -86,7 +86,7 @@ class BatchRunner
      *     @type int $batchSize The size of the batch.
      *     @type float $callPeriod The period in seconds from the last execution
      *                 to force executing the job.
-     *     @type int $workerNum The number of child processes. It only takes
+     *     @type int $numWorkers The number of child processes. It only takes
      *               effect with the {@see \Google\Cloud\Core\Batch\BatchDaemon}.
      *     @type string $bootstrapFile A file to load before executing the
      *                  job. It's needed for registering global functions.
@@ -105,7 +105,12 @@ class BatchRunner
             return false;
         }
         $this->config = $this->configStorage->load();
-        $this->config->registerJob($identifier, $func, $options);
+        $this->config->registerJob(
+            $identifier,
+            function ($id) use ($identifier, $func, $options) {
+                return new BatchJob($identifier, $func, $id, $options);
+            }
+        );
 
         try {
             $result = $this->configStorage->save($this->config);
@@ -132,7 +137,7 @@ class BatchRunner
                 "The identifier does not exist: $identifier"
             );
         }
-        $idNum = $job->getIdnum();
+        $idNum = $job->id();
         return $this->processor->submit($item, $idNum);
     }
 

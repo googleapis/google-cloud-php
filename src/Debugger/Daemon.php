@@ -17,10 +17,13 @@
 
 namespace Google\Cloud\Debugger;
 
+use Google\Cloud\Core\Batch\SimpleJobTrait;
+use Google\Cloud\Core\Batch\SerializableClientTrait;
 use Google\Cloud\Core\SysvTrait;
 use Google\Cloud\Core\Report\MetadataProviderInterface;
 use Google\Cloud\Core\Report\MetadataProviderUtils;
 use Google\Cloud\Core\Exception\ConflictException;
+use Google\Cloud\Core\ExponentialBackoff;
 use Google\Cloud\Debugger\BreakpointStorage\BreakpointStorageInterface;
 use Google\Cloud\Debugger\BreakpointStorage\FileBreakpointStorage;
 use Google\Cloud\Debugger\BreakpointStorage\SysvBreakpointStorage;
@@ -35,13 +38,13 @@ use Google\Cloud\Debugger\BreakpointStorage\SysvBreakpointStorage;
  * ```
  * use Google\Cloud\Debugger\Daemon;
  *
- * $daemon = new Daemon('/path/to/source/root');
+ * $daemon = new Daemon();
  * $daemon->run();
  * ```
  */
 class Daemon
 {
-    use SysvTrait;
+    use SimpleJobTrait;
 
     /**
      * @var Debuggee
@@ -59,22 +62,47 @@ class Daemon
     private $storage;
 
     /**
+     * @var array Source context configuration.
+     */
+    private $extSourceContext;
+
+    /**
+     * @var string The uniquifier for this daemon's debuggee.
+     */
+    private $uniquifier;
+
+    /**
+     * @var string The description for this daemon's debuggee.
+     */
+    private $description;
+
+    /**
+     * @var array A set of custom debuggee properties, populated by the agent,
+     *      to be displayed to the user.
+     */
+    private $labels;
+
+    /**
      * Creates a new Daemon instance.
      *
-     * @param string $sourceRoot The full path to the source root
      * @param array $options [optional] {
      *      Configuration options.
      *
-     *      @type DebuggerClient $client A DebuggerClient to use. **Defaults
-     *            to** a new DebuggerClient.
-     *      @type array $extSourceContext The source code identifier. **Defaults
+     *      @type string $sourceRoot The full path to the source root
+     *      @type array $clientConfig The options to instantiate the default
+     *            DebuggerClient.
+     *            {@see Google\Cloud\Debugger\DebuggerClient::__construct()}
+     *            for the available options.
+     *      @type array $sourceContext The source code identifier. **Defaults
      *            to** values autodetected from the environment.
+     *      @type array $extSourceContext The source code identifier. **Defaults
+     *            to** the $sourceContext option.
      *      @type string $uniquifier A string when uniquely identifies this
      *            debuggee. **Defaults to** a value autodetected from the
      *            environment.
      *      @type string $description A display name for the debuggee in the
-     *            Stackdriver Debugger UI. **Defaults to** a value detected
-     *            from the environment.
+     *            Stackdriver Debugger UI. **Defaults to** a value
+     *            autodetected from the environment.
      *      @type BreakpointStorageInterface $storage The breakpoint storage
      *            mechanism to use. **Defaults to** a new SysvBreakpointStorage
      *            instance.
@@ -84,49 +112,47 @@ class Daemon
      *      @type MetadataProviderInterface $metadataProvider **Defaults to** An
      *            automatically chosen provider, based on detected environment
      *            settings.
+     *      @type ClosureSerializerInterface $closureSerializer An implementation
+     *            responsible for serializing closures used in the
+     *            `$clientConfig`. This is especially important when using the
+     *            batch daemon. **Defaults to**
+     *            {@see Google\Cloud\Core\Batch\OpisClosureSerializer} if the
+     *            `opis/closure` library is installed.
      * }
      */
-    public function __construct($sourceRoot, array $options = [])
+    public function __construct(array $options = [])
     {
-        $client = array_key_exists('client', $options)
-            ? $options['client']
-            : new DebuggerClient();
-
         $options += [
+            'sourceRoot' => '.',
             'sourceContext' => [],
             'extSourceContext' => [],
             'uniquifier' => null,
             'description' => null,
+            'debuggee' => null,
             'labels' => null,
             'metadataProvider' => null
         ];
 
-        $this->sourceRoot = realpath($sourceRoot);
-
+        $this->setSerializableClientOptions($options);
+        $this->sourceRoot = realpath($options['sourceRoot']);
         $sourceContext = $options['sourceContext'] ?: $this->defaultSourceContext();
-        $extSourceContext = $options['extSourceContext'];
-        if (!$extSourceContext && $sourceContext) {
-            $extSourceContext = [
+        $this->extSourceContext = $options['extSourceContext'];
+        if (!$this->extSourceContext && $sourceContext) {
+            $this->extSourceContext = [
                 'context' => $sourceContext
             ];
         }
 
-        $uniquifier = $options['uniquifier'] ?: $this->defaultUniquifier();
-        $description = $options['description'] ?: $this->defaultDescription();
-        $labels = $options['labels'] ?: $this->defaultLabels($options['metadataProvider']);
-
-        $this->debuggee = $client->debuggee(null, [
-            'uniquifier' => $uniquifier,
-            'description' => $description,
-            'extSourceContexts' => $extSourceContext ? [$extSourceContext] : [],
-            'labels' => $labels
-        ]);
-
-        $this->debuggee->register();
-
+        $this->uniquifier = $options['uniquifier'];
+        $this->description = $options['description'] ?: $this->defaultDescription();
+        $this->labels = $options['labels'] ?: $this->defaultLabels($options['metadataProvider']);
         $this->storage = array_key_exists('storage', $options)
             ? $options['storage']
             : $this->defaultStorage();
+
+        $this->setSimpleJobProperties($options + [
+            'identifier' => 'debugger-daemon'
+        ]);
     }
 
     /**
@@ -139,24 +165,43 @@ class Daemon
      * $daemon->run();
      * ```
      */
-    public function run()
+    public function run(DebuggerClient $client = null)
     {
-        $resp = $this->debuggee->breakpointsWithWaitToken();
-        $this->setBreakpoints($resp['breakpoints']);
+        $client = $client ?: $this->defaultClient();
+        $extSourceContexts = $this->extSourceContext ? [$this->extSourceContext] : [];
+        $debuggee = $client->debuggee(null, [
+            'uniquifier' => $this->uniquifier ?: $this->defaultUniquifier(),
+            'description' => $this->description,
+            'extSourceContexts' => $extSourceContexts,
+            'labels' => $this->labels
+        ]);
+        $debuggee->register();
+
+        $resp = $this->fetchBreakpointsWithRetry($debuggee);
+        $this->setBreakpoints($debuggee, $resp['breakpoints']);
 
         while (array_key_exists('nextWaitToken', $resp)) {
             try {
-                $resp = $this->debuggee->breakpointsWithWaitToken([
+                $resp = $this->fetchBreakpointsWithRetry($debuggee, [
                     'waitToken' => $resp['nextWaitToken']
                 ]);
-                $this->setBreakpoints($resp['breakpoints']);
+                $this->setBreakpoints($debuggee, $resp['breakpoints']);
             } catch (ConflictException $e) {
                 // Ignoring this exception
             }
+            gc_collect_cycles();
         }
     }
 
-    private function setBreakpoints($breakpoints)
+    private function fetchBreakpointsWithRetry(Debuggee $debuggee, array $options = [])
+    {
+        $backoff = new ExponentialBackoff();
+        return $backoff->execute(function () use ($debuggee, $options) {
+            return $debuggee->breakpointsWithWaitToken($options);
+        });
+    }
+
+    private function setBreakpoints(Debuggee $debuggee, $breakpoints)
     {
         $validBreakpoints = [];
         $invalidBreakpoints = [];
@@ -170,10 +215,10 @@ class Daemon
             }
         }
 
-        $this->storage->save($this->debuggee, $validBreakpoints);
+        $this->storage->save($debuggee, $validBreakpoints);
 
         if (!empty($invalidBreakpoints)) {
-            $this->debuggee->updateBreakpointBatch($invalidBreakpoints);
+            $debuggee->updateBreakpointBatch($invalidBreakpoints);
         }
     }
 
@@ -209,6 +254,11 @@ class Daemon
             return json_decode(file_get_contents($sourceContextFile), true);
         }
         return [];
+    }
+
+    private function defaultClient()
+    {
+        return new DebuggerClient($this->getUnwrappedClientConfig());
     }
 
     private function defaultLabels(MetadataProviderInterface $metadataProvider = null)
