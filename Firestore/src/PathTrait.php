@@ -88,13 +88,13 @@ trait PathTrait
      */
     private function databaseIdFromName($name)
     {
-        $parts = explode('/databases/', $name);
-        if (count($parts) !== 2) {
+        $name = trim($name, '/');
+        $parts = explode('/', $name);
+        if ($parts[0] !== 'projects') {
             return null;
         }
 
-        $trailing = explode('/', $parts[1]);
-        return $trailing[0];
+        return $parts[3];
     }
 
     /**

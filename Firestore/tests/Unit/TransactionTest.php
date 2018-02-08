@@ -240,6 +240,7 @@ class TransactionTest extends TestCase
         $res = $this->transaction->documents($input);
 
         $this->assertEquals('world', $res[0]['hello']);
+        $this->assertCount(3, $res);
     }
 
     public function documents()
