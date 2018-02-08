@@ -77,13 +77,13 @@ class ChunkFormatter
             foreach ($readRowResponse->getChunks() as $chunk) {
                 switch ($this->state) {
                     case $this->RowStateEnum['NEW_ROW']:
-                        yield from$this->newRow($chunk);
+                        yield from $this->newRow($chunk);
                         break;
                     case $this->RowStateEnum['ROW_IN_PROGRESS']:
-                        yield from$this->rowInProgress($chunk);
+                        yield from $this->rowInProgress($chunk);
                         break;
                     case $this->RowStateEnum['CELL_IN_PROGRESS']:
-                        yield from$this->cellInProgress($chunk);
+                        yield from $this->cellInProgress($chunk);
                         break;
                 }
             }
@@ -236,7 +236,7 @@ class ChunkFormatter
         $this->cell->setTimestamp($timestamp);
         $this->cell->setValue($chunk->getValue());
         $this->flatRow->addCell($this->cell);
-        yield from$this->moveToNextState($chunk);
+        yield from $this->moveToNextState($chunk);
     }
 
     /**
@@ -309,7 +309,7 @@ class ChunkFormatter
 
         $flatRow = $this->flatRow;
         $flatRow->addCell($cell);
-        yield from$this->moveToNextState($chunk);
+        yield from $this->moveToNextState($chunk);
     }
 
     /**
@@ -335,6 +335,6 @@ class ChunkFormatter
             return $this->reset();
         }
         $this->cell->appendValue($chunk->getValue());
-        yield from$this->moveToNextState($chunk);
+        yield from $this->moveToNextState($chunk);
     }
 }

@@ -4,7 +4,7 @@ use Google\Cloud\Bigtable\src\BigtableInstance;
 use PHPUnit\Framework\TestCase;
 use Google\GAX\ValidationException;
 use Google\GAX\OperationResponse;
-// use Google\Bigtable\Admin\V2\Instance;
+
 use Google\Cloud\Bigtable\Admin\V2\Instance;
 use Google\Cloud\Bigtable\Admin\V2\Instance_Type;
 use Google\Protobuf\GPBEmpty;
@@ -20,7 +20,7 @@ class InstanceTest extends TestCase
     public function testProjectName()
     {
         $expected = 'projects/'.self::PROJECT_ID;
-        $mock = $this->createMock(BigtableInstance::class);
+        $mock = parent::createMock(BigtableInstance::class);
         $mock->method('projectName')
              ->willReturn($expected);
 
