@@ -37,12 +37,10 @@ class BatchDaemon
     use BatchDaemonTrait;
     use HandleFailureTrait;
     use SysvTrait;
+    use InterruptTrait;
 
     /* @var BatchRunner */
     private $runner;
-
-    /* @var bool */
-    private $shutdown;
 
     /* @var array */
     private $descriptorSpec;
@@ -72,33 +70,9 @@ class BatchDaemon
             1 => ['file', 'php://stdout', 'w'],
             2 => ['file', 'php://stderr', 'w']
         ];
-        // setup signal handlers
-        pcntl_signal(SIGTERM, [$this, "sigHandler"]);
-        pcntl_signal(SIGINT, [$this, "sigHandler"]);
-        pcntl_signal(SIGHUP, [$this, "sigHandler"]);
-        pcntl_signal(SIGALRM, [$this, "sigHandler"]);
+
         $this->command = sprintf('exec php -d auto_prepend_file="" %s daemon', $entrypoint);
         $this->initFailureFile();
-    }
-
-    /**
-     * A signal handler for setting the terminate switch.
-     * {@see http://php.net/manual/en/function.pcntl-signal.php}
-     *
-     * @param int $signo The received signal.
-     * @param mixed $siginfo [optional] An array representing the signal
-     *              information. **Defaults to** null.
-     *
-     * @return void
-     */
-    public function sigHandler($signo, $signinfo = null)
-    {
-        switch ($signo) {
-            case SIGINT:
-            case SIGTERM:
-                $this->shutdown = true;
-                break;
-        }
     }
 
     /**
@@ -106,19 +80,21 @@ class BatchDaemon
      *
      * @return void
      */
-    public function runParent()
+    public function run()
     {
+        $this->setupSignalHandlers();
+
         $procs = [];
         while (true) {
             $jobs = $this->runner->getJobs();
             foreach ($jobs as $job) {
-                if (! array_key_exists($job->getIdentifier(), $procs)) {
-                    $procs[$job->getIdentifier()] = [];
+                if (! array_key_exists($job->identifier(), $procs)) {
+                    $procs[$job->identifier()] = [];
                 }
-                while (count($procs[$job->getIdentifier()]) > $job->getWorkerNum()) {
+                while (count($procs[$job->identifier()]) > $job->numWorkers()) {
                     // Stopping an excessive child.
                     echo 'Stopping an excessive child.' . PHP_EOL;
-                    $proc = array_pop($procs[$job->getIdentifier()]);
+                    $proc = array_pop($procs[$job->identifier()]);
                     $status = proc_get_status($proc);
                     // Keep sending SIGTERM until the child exits.
                     while ($status['running'] === true) {
@@ -128,10 +104,10 @@ class BatchDaemon
                     }
                     @proc_close($proc);
                 }
-                for ($i = 0; $i < $job->getWorkerNum(); $i++) {
+                for ($i = 0; $i < $job->numWorkers(); $i++) {
                     $needStart = false;
-                    if (array_key_exists($i, $procs[$job->getIdentifier()])) {
-                        $status = proc_get_status($procs[$job->getIdentifier()][$i]);
+                    if (array_key_exists($i, $procs[$job->identifier()])) {
+                        $status = proc_get_status($procs[$job->identifier()][$i]);
                         if ($status['running'] !== true) {
                             $needStart = true;
                         }
@@ -140,8 +116,8 @@ class BatchDaemon
                     }
                     if ($needStart) {
                         echo 'Starting a child.' . PHP_EOL;
-                        $procs[$job->getIdentifier()][$i] = proc_open(
-                            sprintf('%s %d', $this->command, $job->getIdNum()),
+                        $procs[$job->identifier()][$i] = proc_open(
+                            sprintf('%s %d', $this->command, $job->id()),
                             $this->descriptorSpec,
                             $pipes
                         );
@@ -173,64 +149,13 @@ class BatchDaemon
     }
 
     /**
-     * A loop for the children.
+     * Fetch the child job by id.
      *
-     * @param int $idNum Numeric id for the job.
-     * @return void
+     * @param int $idNum The id of the job to find
+     * @return JobInterface
      */
-    public function runChild($idNum)
+    public function job($idNum)
     {
-        // child process
-        $sysvKey = $this->getSysvKey($idNum);
-        $q = msg_get_queue($sysvKey);
-        $items = [];
-        $job = $this->runner->getJobFromIdNum($idNum);
-        $period = $job->getCallPeriod();
-        $lastInvoked = microtime(true);
-        $batchSize = $job->getBatchSize();
-        while (true) {
-            // Fire SIGALRM after 1 second to unblock the blocking call.
-            pcntl_alarm(1);
-            if (msg_receive(
-                $q,
-                0,
-                $type,
-                8192,
-                $message,
-                true,
-                0, // blocking mode
-                $errorcode
-            )) {
-                if ($type === self::$typeDirect) {
-                    $items[] = $message;
-                } elseif ($type === self::$typeFile) {
-                    $items[] = unserialize(file_get_contents($message));
-                    @unlink($message);
-                }
-            }
-            pcntl_signal_dispatch();
-            // It runs the job when
-            // 1. Number of items reaches the batchSize.
-            // 2-a. Count is >0 and the current time is larger than lastInvoked + period.
-            // 2-b. Count is >0 and the shutdown flag is true.
-            if ((count($items) >= $batchSize)
-                || (count($items) > 0
-                    && (microtime(true) > $lastInvoked + $period
-                        || $this->shutdown))) {
-                printf(
-                    'Running the job with %d items' . PHP_EOL,
-                    count($items)
-                );
-                if (! $job->run($items)) {
-                    $this->handleFailure($idNum, $items);
-                }
-                $items = [];
-                $lastInvoked = microtime(true);
-            }
-            gc_collect_cycles();
-            if ($this->shutdown) {
-                exit;
-            }
-        }
+        return $this->runner->getJobFromIdNum($idNum);
     }
 }

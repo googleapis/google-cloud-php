@@ -19,7 +19,11 @@ namespace Google\Cloud\Debugger;
 
 use Google\Cloud\Core\Batch\BatchRunner;
 use Google\Cloud\Core\Batch\BatchTrait;
+use Google\Cloud\Core\ExponentialBackoff;
+use Google\Cloud\Core\Exceptions\ServiceException;
+use Google\Cloud\Core\SysvTrait;
 use Google\Cloud\Debugger\BreakpointStorage\BreakpointStorageInterface;
+use Google\Cloud\Debugger\BreakpointStorage\FileBreakpointStorage;
 use Google\Cloud\Debugger\BreakpointStorage\SysvBreakpointStorage;
 use Google\Cloud\Logging\LoggingClient;
 use Psr\Log\LoggerInterface;
@@ -39,6 +43,7 @@ use Psr\Log\LoggerInterface;
 class Agent
 {
     use BatchTrait;
+    use SysvTrait;
 
     /**
      * @var Debuggee
@@ -89,7 +94,23 @@ class Agent
         $storage = isset($options['storage'])
             ? $options['storage']
             : $this->defaultStorage();
+
+        $this->sourceRoot = isset($options['sourceRoot'])
+            ? $options['sourceRoot']
+            : dirname(debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS, 1)[0]['file']);
+
+        $daemon = new Daemon([
+            'sourceRoot' => $this->sourceRoot,
+            'storage' => $storage
+        ]);
+
         list($this->debuggeeId, $breakpoints) = $storage->load();
+
+        // skip starting the Agent unless the Daemon has already started and
+        // registered the debuggee.
+        if (empty($this->debuggeeId)) {
+            return;
+        }
 
         $this->setCommonBatchProperties($options + [
             'identifier' => 'stackdriver-debugger',
@@ -101,10 +122,6 @@ class Agent
         $this->logger = isset($options['logger'])
             ? $options['logger']
             : $this->defaultLogger();
-
-        $this->sourceRoot = isset($options['sourceRoot'])
-            ? $options['sourceRoot']
-            : dirname(debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS, 1)[0]['file']);
 
         if (empty($breakpoints)) {
             return;
@@ -180,17 +197,39 @@ class Agent
         }
     }
 
-    protected function getCallback()
+    /**
+     * Callback for batch runner to report a breakpoint.
+     *
+     * @access private
+     * @param Breakpoint[] $breakpoints
+     */
+    public function reportBreakpoints(array $breakpoints)
     {
         if (!isset(self::$debuggee)) {
             self::$debuggee = $this->defaultDebuggee();
         }
-        return [self::$debuggee, 'updateBreakpointBatch'];
+        foreach ($breakpoints as $breakpoint) {
+            $backoff = new ExponentialBackoff();
+            try {
+                $backoff->execute(function () use ($breakpoint) {
+                    self::$debuggee->updateBreakpoint($breakpoint);
+                });
+            } catch (ServiceException $e) {
+                // Ignore this error for now
+            }
+        }
+    }
+
+    protected function getCallback()
+    {
+        return [$this, 'reportBreakpoints'];
     }
 
     private function defaultStorage()
     {
-        return new SysvBreakpointStorage();
+        return $this->isSysvIPCLoaded()
+            ? new SysvBreakpointStorage()
+            : new FileBreakpointStorage();
     }
 
     private function defaultDebuggee()
