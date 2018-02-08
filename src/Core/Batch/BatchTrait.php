@@ -29,15 +29,12 @@ use Opis\Closure\SerializableClosure;
  */
 trait BatchTrait
 {
-    /**
-     * @var array
-     */
-    private $batchOptions;
+    use SerializableClientTrait;
 
     /**
      * @var array
      */
-    private $clientConfig;
+    private $batchOptions;
 
     /**
      * @var BatchRunner
@@ -63,11 +60,6 @@ trait BatchTrait
      * @var resource
      */
     private $debugOutputResource;
-
-    /**
-     * @var ClosureSerializerInterface|null
-     */
-    private $closureSerializer;
 
     /**
      * Flushes items in the batch queue that have yet to be delivered. Please
@@ -186,9 +178,7 @@ trait BatchTrait
             );
         }
 
-        $this->closureSerializer = isset($options['closureSerializer'])
-            ? $options['closureSerializer']
-            : $this->getDefaultClosureSerializer();
+        $this->setSerializableClientOptions($options);
         $this->batchMethod = $options['batchMethod'];
         $this->identifier = $options['identifier'];
         $this->debugOutputResource = isset($options['debugOutputResource'])
@@ -197,7 +187,6 @@ trait BatchTrait
         $this->debugOutput = isset($options['debugOutput'])
             ? $options['debugOutput']
             : false;
-        $this->clientConfig = $this->getWrappedClientConfig($options);
         $batchOptions = isset($options['batchOptions'])
             ? $options['batchOptions']
             : [];
@@ -214,44 +203,5 @@ trait BatchTrait
             [$this, 'send'],
             $this->batchOptions
         );
-    }
-
-    /**
-     * @param array $options
-     * @return array
-     */
-    private function getWrappedClientConfig(array $options)
-    {
-        $config = isset($options['clientConfig'])
-            ? $options['clientConfig']
-            : [];
-
-        if ($config && $this->closureSerializer) {
-            $this->closureSerializer->wrapClosures($config);
-        }
-
-        return $config;
-    }
-
-    /**
-     * @return array
-     */
-    private function getUnwrappedClientConfig()
-    {
-        if ($this->clientConfig && $this->closureSerializer) {
-            $this->closureSerializer->unwrapClosures($this->clientConfig);
-        }
-
-        return $this->clientConfig;
-    }
-
-    /**
-     * @return ClosureSerializerInterface|null
-     */
-    private function getDefaultClosureSerializer()
-    {
-        if (class_exists(SerializableClosure::class)) {
-            return new OpisClosureSerializer();
-        }
     }
 }

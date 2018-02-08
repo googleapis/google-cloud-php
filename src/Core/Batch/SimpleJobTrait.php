@@ -31,6 +31,7 @@ trait SimpleJobTrait
 {
     use BatchDaemonTrait;
     use SysvTrait;
+    use SerializableClientTrait;
 
     /**
      * The simple loop function. This method is expected to be a blocking call.
@@ -48,6 +49,14 @@ trait SimpleJobTrait
      *     @type ConfigStorageInterface $configStorage The configuration storage
      *           used to save configuration.
      *     @type int $numWorkers The number of workers for this job.
+     *     @type array $clientConfig A config used to construct the client upon
+     *           which requests will be made.
+     *     @type ClosureSerializerInterface $closureSerializer An implementation
+     *           responsible for serializing closures used in the
+     *           `$clientConfig`. This is especially important when using the
+     *           batch daemon. **Defaults to**
+     *           {@see Google\Cloud\Core\Batch\OpisClosureSerializer} if the
+     *           `opis/closure` library is installed.
      * }
      */
     private function setSimpleJobProperties(array $options = [])
@@ -62,6 +71,7 @@ trait SimpleJobTrait
             'configStorage' => null,
         ];
 
+        $this->setSerializableClientOptions($options);
         $identifier = $options['identifier'];
         $configStorage = $options['configStorage'] ?: $this->defaultConfigStorage();
 

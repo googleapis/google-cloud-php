@@ -18,6 +18,7 @@
 namespace Google\Cloud\Debugger;
 
 use Google\Cloud\Core\Batch\SimpleJobTrait;
+use Google\Cloud\Core\Batch\SerializableClientTrait;
 use Google\Cloud\Core\Report\MetadataProviderInterface;
 use Google\Cloud\Core\Report\MetadataProviderUtils;
 use Google\Cloud\Core\Exception\ConflictException;
@@ -42,6 +43,7 @@ use Google\Cloud\Debugger\BreakpointStorage\SysvBreakpointStorage;
 class Daemon
 {
     use SimpleJobTrait;
+    use SerializableClientTrait;
 
     /**
      * @var string The full path to the source root
@@ -52,11 +54,6 @@ class Daemon
      * @var BreakpointStorageInterface
      */
     private $storage;
-
-    /**
-     * @var array Configuration options for setting up the default DebuggerClient.
-     */
-    private $clientOptions;
 
     /**
      * @var array Source context configuration.
@@ -86,7 +83,7 @@ class Daemon
      *      Configuration options.
      *
      *      @type string $sourceRoot The full path to the source root
-     *      @type array $clientOptions The options to instantiate the default
+     *      @type array $clientConfig The options to instantiate the default
      *            DebuggerClient.
      *            {@see Google\Cloud\Debugger\DebuggerClient::__construct()}
      *            for the available options.
@@ -109,6 +106,12 @@ class Daemon
      *      @type MetadataProviderInterface $metadataProvider **Defaults to** An
      *            automatically chosen provider, based on detected environment
      *            settings.
+     *      @type ClosureSerializerInterface $closureSerializer An implementation
+     *            responsible for serializing closures used in the
+     *            `$clientConfig`. This is especially important when using the
+     *            batch daemon. **Defaults to**
+     *            {@see Google\Cloud\Core\Batch\OpisClosureSerializer} if the
+     *            `opis/closure` library is installed.
      * }
      */
     public function __construct(array $options = [])
@@ -119,13 +122,12 @@ class Daemon
             'extSourceContext' => [],
             'uniquifier' => null,
             'description' => null,
-            'clientOptions' => [],
             'debuggee' => null,
             'labels' => null,
             'metadataProvider' => null
         ];
 
-        $this->clientOptions = $options['clientOptions'];
+        $this->setSerializableClientOptions($options);
         $this->sourceRoot = realpath($options['sourceRoot']);
         $sourceContext = $options['sourceContext'] ?: $this->defaultSourceContext();
         $this->extSourceContext = $options['extSourceContext'];
@@ -250,7 +252,7 @@ class Daemon
 
     private function defaultClient()
     {
-        return new DebuggerClient($this->clientOptions);
+        return new DebuggerClient($this->getUnwrappedClientConfig());
     }
 
     private function defaultLabels(MetadataProviderInterface $metadataProvider = null)
