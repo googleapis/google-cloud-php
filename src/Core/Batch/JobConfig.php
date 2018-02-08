@@ -28,8 +28,8 @@ namespace Google\Cloud\Core\Batch;
 class JobConfig
 {
     /**
-     * @var array[string]JobInterface Associative array of JobInterface instances
-     *      keyed by identifier
+     * @var array Associative array of JobInterface instances keyed by
+     *      identifier.
      */
     private $jobs = [];
 

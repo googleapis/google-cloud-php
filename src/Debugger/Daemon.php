@@ -88,6 +88,8 @@ class Daemon
      *      @type string $sourceRoot The full path to the source root
      *      @type array $clientOptions The options to instantiate the default
      *            DebuggerClient.
+     *            {@see Google\Cloud\Debugger\DebuggerClient::__construct()}
+     *            for the available options.
      *      @type array $sourceContext The source code identifier. **Defaults
      *            to** values autodetected from the environment.
      *      @type array $extSourceContext The source code identifier. **Defaults
@@ -245,7 +247,6 @@ class Daemon
         }
         return [];
     }
-
 
     private function defaultClient()
     {
