@@ -90,7 +90,7 @@ class FileBreakpointStorage implements BreakpointStorageInterface
         // for writing), then we return an empty list of breakpoints and
         // skip debugging for this request.
         try {
-            $contents = $this->getLock()->synchronize(function() {
+            $contents = $this->getLock()->synchronize(function () {
                 return file_get_contents($this->filename);
             }, [
                 'blocking' => false
