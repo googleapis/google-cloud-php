@@ -70,9 +70,13 @@ class SourceLocationResolver
      */
     public function resolve(SourceLocation $location)
     {
-        $basename = basename($location->path());
-        $prefixes = $this->searchPrefixes($location->path());
-        $includePaths = explode(PATH_SEPARATOR, get_include_path());
+        $origPath = str_replace('/', DIRECTORY_SEPARATOR, $location->path());
+        $basename = basename($origPath);
+        $prefixes = $this->searchPrefixes($origPath);
+
+        $includePaths = array_filter(explode(PATH_SEPARATOR, get_include_path()), function ($path) {
+            return file_exists($path);
+        });
 
         // Phase 1: search for an exact file match and try stripping off extra
         // folders
@@ -85,11 +89,11 @@ class SourceLocationResolver
             }
         }
 
-        // Phase 2: recursively search folders for
+        // Phase 2: recursively search folders for a matching file
         foreach ($includePaths as $includePath) {
             $iterator = new MatchingFileIterator(
                 $includePath,
-                $location->path()
+                $origPath
             );
             foreach ($iterator as $file => $info) {
                 return new SourceLocation($this->realRelativePath($file, $includePath), $location->line());
