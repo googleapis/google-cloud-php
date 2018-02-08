@@ -445,10 +445,10 @@ class FirestoreClient
         ) use (&$transactionId) {
             $database = $this->databaseName($this->projectId, $this->database);
 
-            $beginTransaction = $this->connection->beginTransaction(array_filter([
+            $beginTransaction = $this->connection->beginTransaction([
                 'database' => $database,
                 'retryTransaction' => $transactionId
-            ]) + $options['begin']);
+            ] + $options['begin']);
 
             $transactionId = $beginTransaction['transaction'];
 
