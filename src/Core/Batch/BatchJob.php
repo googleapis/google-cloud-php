@@ -36,6 +36,7 @@ class BatchJob implements JobInterface
     use JobTrait;
     use SysvTrait;
     use InterruptTrait;
+    use HandleFailureTrait;
 
     /**
      * @var callable The batch job handler. This callable accepts an array

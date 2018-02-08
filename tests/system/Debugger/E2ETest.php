@@ -61,7 +61,7 @@ class E2ETest extends TestCase
             $data = json_decode($resp->getBody()->getContents(), true);
             $this->assertNotEmpty($data['debuggeeId']);
             $this->debuggeeId = $data['debuggeeId'];
-        });
+        }, 5, true);
     }
 
     public static function tearDownAfterClass()
