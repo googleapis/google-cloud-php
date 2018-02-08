@@ -47,6 +47,7 @@ trait SimpleJobTrait
      *           value must be unique across all job configs.
      *     @type ConfigStorageInterface $configStorage The configuration storage
      *           used to save configuration.
+     *     @type int $numWorkers The number of workers for this job.
      * }
      */
     private function setSimpleJobProperties(array $options = [])
@@ -58,7 +59,7 @@ trait SimpleJobTrait
         }
 
         $options += [
-            'configStorage' => null
+            'configStorage' => null,
         ];
 
         $identifier = $options['identifier'];

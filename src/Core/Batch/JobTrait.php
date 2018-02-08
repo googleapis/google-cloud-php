@@ -40,7 +40,7 @@ trait JobTrait
     /**
      * @var int The number of workers for this job.
      */
-    private $numWorkers = 1;
+    private $numWorkers;
 
     /**
      * @var string An optional file that is required to run this job.
@@ -85,5 +85,21 @@ trait JobTrait
     public function bootstrapFile()
     {
         return $this->bootstrapFile;
+    }
+
+    /**
+     * Runs the job loop. This is expected to be a blocking call.
+     */
+    abstract public function run();
+
+    /**
+     * Finish any pending activity for this job.
+     *
+     * @param array $items
+     * @return bool
+     */
+    public function flush(array $items = [])
+    {
+        return false;
     }
 }

@@ -47,7 +47,8 @@ class SimpleJob implements JobInterface
      *      Configuration options.
      *
      *      @type string $bootstrapFile A file to load before executing the job.
-     *                   It's needed for registering global functions.
+     *            It's needed for registering global functions.
+     *      @type int $numWorkers The number of workers for this job.
      * }
      */
     public function __construct($identifier, $func, $id, array $options = [])
@@ -57,8 +58,10 @@ class SimpleJob implements JobInterface
         $this->id = $id;
 
         $options += [
-            'bootstrapFile' => null
+            'bootstrapFile' => null,
+            'numWorkers' => 1
         ];
+        $this->numWorkers = $options['numWorkers'];
         $this->bootstrapFile = $options['bootstrapFile'];
     }
 
@@ -71,16 +74,5 @@ class SimpleJob implements JobInterface
             require_once $this->bootstrapFile;
         }
         call_user_func($this->func);
-    }
-
-    /**
-     * Finish any pending activity for this job.
-     *
-     * @param array $items
-     * @return bool
-     */
-    public function flush(array $items = [])
-    {
-        return false;
     }
 }
