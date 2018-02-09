@@ -30,6 +30,8 @@
 
 namespace Google\Cloud\Speech\V1beta1;
 
+use Generator;
+use Google\Cloud\Speech\SpeechHelpersTrait;
 use Google\Cloud\Speech\V1beta1\Gapic\SpeechGapicClient;
 
 /**
@@ -37,6 +39,66 @@ use Google\Cloud\Speech\V1beta1\Gapic\SpeechGapicClient;
  */
 class SpeechClient extends SpeechGapicClient
 {
-    // This class is intentionally empty, and is intended to hold manual
-    // additions to the generated {@see SpeechClientImpl} class.
+    use SpeechHelpersTrait;
+
+    /**
+     * Creates a stream of StreamingRecognizeRequest objects from a stream of audio data.
+     *
+     * @param iterable|string[] $chunks
+     * @return Generator|StreamingRecognizeRequest[]
+     */
+    public function createRequestStream($chunks)
+    {
+        return $this->createRequestStreamHelper(StreamingRecognizeRequest::class, $chunks);
+    }
+
+    /**
+     * Performs speech recognition on a stream of audio data. This method is only available via
+     * the gRPC API (not REST).
+     *
+     * Example:
+     * ```
+     * use Google\Cloud\Speech\V1beta1\RecognitionConfig_AudioEncoding;
+     * use Google\Cloud\Speech\V1beta1\RecognitionConfig;
+     * use Google\Cloud\Speech\V1beta1\StreamingRecognitionConfig;
+     *
+     * $encoding = RecognitionConfig_AudioEncoding::FLAC;
+     * $sampleRateHertz = 44100;
+     * $languageCode = 'en-US';
+     * $recognitionConfig = new RecognitionConfig();
+     * $recognitionConfig->setEncoding($encoding);
+     * $recognitionConfig->setSampleRate($sampleRateHertz);
+     * $recognitionConfig->setLanguageCode($languageCode);
+     * $config = new StreamingRecognitionConfig();
+     * $config->setConfig($recognitionConfig);
+     *
+     * $f = fopen('path/to/audio.flac', 'r');
+     * $audioStream = $speechClient->createAudioStream($f);
+     *
+     * foreach ($speechClient->recognizeAudioStream($config, $audioStream) as $element) {
+     *     // doSomethingWith($element);
+     * }
+     * ```
+     *
+     * @param StreamingRecognitionConfig  $config         *Required* Provides information to the recognizer that specifies how to
+     *                                                    process the request.
+     * @param iterable|string[]           $audioStream    *Required* A stream of audio data.
+     * @param array                       $optionalArgs   {
+     *                                                    Optional.
+     *
+     *     @type int $timeoutMillis
+     *          Timeout to use for this call.
+     * }
+     * @return StreamingRecognizeResponse[]
+     */
+    public function recognizeAudioStream($config, $audioStream, $optionalArgs = [])
+    {
+        $bidiStream = $this->streamingRecognize($optionalArgs);
+        return $this->recognizeRequestStreamHelper(
+            StreamingRecognizeRequest::class,
+            $bidiStream,
+            $config,
+            $this->createRequestStream($audioStream)
+        );
+    }
 }

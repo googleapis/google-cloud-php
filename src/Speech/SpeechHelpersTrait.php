@@ -30,7 +30,9 @@ trait SpeechHelpersTrait
     {
         while (!feof($resource)) {
             $chunk = fread($resource, $chunkSize);
-            yield $chunk;
+            if (strlen($chunk) > 0) {
+                yield $chunk;
+            }
         }
     }
 

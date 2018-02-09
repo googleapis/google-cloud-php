@@ -56,28 +56,29 @@ class SpeechClient extends SpeechGapicClient
      * Performs speech recognition on a stream of audio data. This method is only available via
      * the gRPC API (not REST).
      *
-     * Sample code:
+     * Example:
      * ```
-     * $client = new SpeechClient();
-     * try {
-     *     $encoding = RecognitionConfig_AudioEncoding::FLAC;
-     *     $sampleRateHertz = 44100;
-     *     $languageCode = 'en-US';
-     *     $recognitionConfig = new RecognitionConfig();
-     *     $recognitionConfig->setEncoding($encoding);
-     *     $recognitionConfig->setSampleRateHertz($sampleRateHertz);
-     *     $recognitionConfig->setLanguageCode($languageCode);
-     *     $config = new StreamingRecognitionConfig();
-     *     $config->setConfig($recognitionConfig);
+     * use Google\Cloud\Speech\V1\RecognitionConfig_AudioEncoding;
+     * use Google\Cloud\Speech\V1\RecognitionConfig;
+     * use Google\Cloud\Speech\V1\StreamingRecognitionConfig;
      *
-     *     $f = fopen('path/to/audio.flac');
-     *     $audioStream = $client->createAudioStream($f);
+     * $encoding = RecognitionConfig_AudioEncoding::FLAC;
+     * $sampleRateHertz = 44100;
+     * $languageCode = 'en-US';
+     * $recognitionConfig = new RecognitionConfig();
+     * $recognitionConfig->setEncoding($encoding);
+     * $recognitionConfig->setSampleRateHertz($sampleRateHertz);
+     * $recognitionConfig->setLanguageCode($languageCode);
+     * $config = new StreamingRecognitionConfig();
+     * $config->setConfig($recognitionConfig);
      *
-     *     foreach ($client->recognizeAudioStream($config, $audioStream) as $element) {
-     *         // doSomethingWith($element);
-     *     }
-     * } finally {
-     *     $client->close();
+     * $f = fopen('path/to/audio.flac', 'r');
+     * $audioStream = $speechClient->createAudioStream($f);
+     *
+     * $responseStream = $speechClient->recognizeAudioStream($config, $audioStream);
+     *
+     * foreach ($responseStream as $element) {
+     *     // doSomethingWith($element);
      * }
      * ```
      *
@@ -94,9 +95,10 @@ class SpeechClient extends SpeechGapicClient
      */
     public function recognizeAudioStream($config, $audioStream, $optionalArgs = [])
     {
+        $bidiStream = $this->streamingRecognize($optionalArgs);
         return $this->recognizeRequestStreamHelper(
             StreamingRecognizeRequest::class,
-            parent::streamingRecognize($optionalArgs),
+            $bidiStream,
             $config,
             $this->createRequestStream($audioStream)
         );
