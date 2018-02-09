@@ -55,7 +55,10 @@ class CliDaemon
         $config = $options['config'];
         $sourceRoot = $options['sourceRoot'];
 
-        if ($config && file_exists($config)) {
+        if ($config) {
+            if (!file_exists($config)) {
+                throw new \UnexpectedValueException("Config file '$config' does not exist.");
+            }
             // Load the config file. The config file should return a configured
             // Daemon instance.
             $this->daemon = require_once $config;
@@ -63,13 +66,18 @@ class CliDaemon
             if (!is_object($this->daemon) || get_class($this->daemon) !== Daemon::class) {
                 throw new \UnexpectedValueException('Config file does not return a Daemon instance.');
             }
-        } else {
+        } elseif ($sourceRoot) {
             if (!file_exists($sourceRoot)) {
                 throw new \UnexpectedValueException("Source root '$sourceRoot' does not exist.");
+            }
+            if (!is_dir($sourceRoot)) {
+                throw new \UnexpectedValueException("Source root '$sourceRoot' is not a directory.");
             }
             $this->daemon = new Daemon([
                 'sourceRoot' => $sourceRoot
             ]);
+        } else {
+            throw new \InvalidArgumentException('Must specify either config or sourceRoot');
         }
 
         // If the Daemon would be started by the BatchRunner, then don't run it here.
