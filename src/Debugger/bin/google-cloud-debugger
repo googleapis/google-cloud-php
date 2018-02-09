@@ -59,26 +59,13 @@ $options = getopt('c:s:', ['config:', 'source-root:'], $optind) + [
     's' => null,
     'source-root' => null
 ];
-$config = $options['c'] ?: $options['config'];
-if ($config) {
-    if (file_exists($config)) {
-        $daemon = require_once $config;
-        if (empty($daemon) || get_class($daemon) !== Daemon::class) {
-            fwrite(STDERR, 'Config file does not return a Daemon instance' . PHP_EOL);
-            showUsageAndDie();
-        }
-    } else {
-        showUsageAndDie();
-    }
-} else {
-    $sourceRoot = $options['s'] ?: $options['source-root'] ?: $argv[1];
-    if (realpath($sourceRoot) !== false) {
-        $daemon = new Daemon([
-            'sourceRoot' => $sourceRoot
-        ]);
-    } else {
-        showUsageAndDie();
-    }
+try {
+    $cli = new CliDaemon([
+        'config' => $options['c'] ?: $options['config'],
+        'sourceRoot' => $options['s'] ?: $options['source-root'] ?: $argv[1]
+    ]);
+} catch (\Exception $e) {
+    fwrite(STDERR, $e->getMessage() . PHP_EOL);
+    showUsageAndDie();
 }
-
-$daemon->run();
+$cli->run();
