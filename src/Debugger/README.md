@@ -21,7 +21,7 @@ that project.
 
     You may also need to enable the extension in your `php.ini` file:
 
-    ```
+    ```ini
     # on Unix
     extension=stackdriver_debugger.so
 
