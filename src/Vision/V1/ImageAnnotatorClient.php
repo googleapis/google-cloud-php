@@ -52,21 +52,21 @@ class ImageAnnotatorClient extends ImageAnnotatorGapicClient
      * //[snippet=resource]
      * $imageResource = fopen('path/to/image.jpg', 'r');
      * $image = $imageAnnotatorClient->createImageObject($imageResource);
-     * $response = $imageAnnotatorClient->faceDetection($request);
+     * $response = $imageAnnotatorClient->faceDetection($image);
      * ```
      *
      * ```
      * //[snippet=data]
      * $imageData = file_get_contents('path/to/image.jpg');
      * $image = $imageAnnotatorClient->createImageObject($imageData);
-     * $response = $imageAnnotatorClient->faceDetection($request);
+     * $response = $imageAnnotatorClient->faceDetection($image);
      * ```
      *
      * ```
      * //[snippet=url]
      * $imageUri = "gs://my-bucket/image.jpg";
      * $image = $imageAnnotatorClient->createImageObject($imageUri);
-     * $response = $imageAnnotatorClient->faceDetection($request);
+     * $response = $imageAnnotatorClient->faceDetection($image);
      * ```
      *
      * @param  resource|string $imageInput An image to configure with
