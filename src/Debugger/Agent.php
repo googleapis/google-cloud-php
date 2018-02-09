@@ -17,6 +17,7 @@
 
 namespace Google\Cloud\Debugger;
 
+use Google\Cloud\Core\Batch\BatchDaemonTrait;
 use Google\Cloud\Core\Batch\BatchRunner;
 use Google\Cloud\Core\Batch\BatchTrait;
 use Google\Cloud\Core\ExponentialBackoff;
