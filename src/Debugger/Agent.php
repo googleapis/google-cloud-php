@@ -43,6 +43,7 @@ use Psr\Log\LoggerInterface;
 class Agent
 {
     use BatchTrait;
+    use BatchDaemonTrait;
     use SysvTrait;
 
     /**
@@ -99,10 +100,13 @@ class Agent
             ? $options['sourceRoot']
             : dirname(debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS, 1)[0]['file']);
 
-        $daemon = new Daemon([
-            'sourceRoot' => $this->sourceRoot,
-            'storage' => $storage
-        ]);
+        if ($this->shouldStartDaemon()) {
+            $daemon = new Daemon([
+                'sourceRoot' => $this->sourceRoot,
+                'storage' => $storage,
+                'register' => true
+            ]);
+        }
 
         list($this->debuggeeId, $breakpoints) = $storage->load();
 
@@ -251,5 +255,10 @@ class Agent
         }
 
         return opcache_invalidate($this->sourceRoot . DIRECTORY_SEPARATOR . $breakpoint->location()->path(), true);
+    }
+
+    private function shouldStartDaemon()
+    {
+        return $this->isDaemonRunning() && $this->isSysvIPCLoaded();
     }
 }

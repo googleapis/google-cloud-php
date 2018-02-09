@@ -88,7 +88,8 @@ class Daemon
      * @param array $options [optional] {
      *      Configuration options.
      *
-     *      @type string $sourceRoot The full path to the source root
+     *      @type string $sourceRoot The full path to the source root.
+     *            **Defaults to** the current working directory.
      *      @type array $clientConfig The options to instantiate the default
      *            DebuggerClient.
      *            {@see Google\Cloud\Debugger\DebuggerClient::__construct()}
@@ -118,6 +119,8 @@ class Daemon
      *            batch daemon. **Defaults to**
      *            {@see Google\Cloud\Core\Batch\OpisClosureSerializer} if the
      *            `opis/closure` library is installed.
+     *      @type bool $register Whether to start the worker in the background
+     *            using the BatchRunner. **Defaults to** false.
      * }
      */
     public function __construct(array $options = [])
@@ -130,7 +133,8 @@ class Daemon
             'description' => null,
             'debuggee' => null,
             'labels' => null,
-            'metadataProvider' => null
+            'metadataProvider' => null,
+            'register' => false
         ];
 
         $this->setSerializableClientOptions($options);
@@ -150,9 +154,11 @@ class Daemon
             ? $options['storage']
             : $this->defaultStorage();
 
-        $this->setSimpleJobProperties($options + [
-            'identifier' => 'debugger-daemon'
-        ]);
+        if ($options['register']) {
+            $this->setSimpleJobProperties($options + [
+                'identifier' => 'debugger-daemon'
+            ]);
+        }
     }
 
     /**
