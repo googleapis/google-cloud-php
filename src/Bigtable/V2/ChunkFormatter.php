@@ -19,7 +19,7 @@ namespace Google\Cloud\Bigtable\V2;
 
 use Google\Cloud\Bigtable\V2\Cell;
 use Google\Cloud\Bigtable\V2\FlatRow;
-use Google\GAX\ValidationException;
+use Google\ApiCore\ValidationException;
 
 /**
  *
@@ -77,14 +77,17 @@ class ChunkFormatter
             foreach ($readRowResponse->getChunks() as $chunk) {
                 switch ($this->state) {
                     case $this->RowStateEnum['NEW_ROW']:
-                        yield from $this->newRow($chunk);
+                        $row = $this->newRow($chunk);
                         break;
                     case $this->RowStateEnum['ROW_IN_PROGRESS']:
-                        yield from $this->rowInProgress($chunk);
+                        $row = $this->rowInProgress($chunk);
                         break;
                     case $this->RowStateEnum['CELL_IN_PROGRESS']:
-                        yield from $this->cellInProgress($chunk);
+                        $row = $this->cellInProgress($chunk);
                         break;
+                }
+                if (!is_null($row)) {
+                    yield $row;
                 }
             }
         }
@@ -140,7 +143,6 @@ class ChunkFormatter
      */
     public function validateNewRow($chunk)
     {
-
         $prevRowKey = $this->prevRowKey;
         $newRowKey  = $chunk->getRowKey();
         $this->isError(
@@ -148,15 +150,12 @@ class ChunkFormatter
             'A new row cannot have existing state',
             $chunk
         );
-
         $this->isError(
             !$chunk->getRowKey() || $chunk->getRowKey() === '' || is_null($chunk->getRowKey()),
             'A row key must be set',
             $chunk
         );
-
         $this->isError($chunk->getResetRow(), 'A new row cannot be reset', $chunk);
-
         $this->isError(
             $prevRowKey === $newRowKey,
             'A commit happened but the same key followed',
@@ -205,7 +204,7 @@ class ChunkFormatter
         if ($chunk->getCommitRow()) {
             $flatRow = $this->flatRow;
             $this->commit();
-            yield $flatRow;
+            return $flatRow;
         } else {
             if ($chunk->getValueSize() > 0) {
                 $this->state = $this->RowStateEnum['CELL_IN_PROGRESS'];
@@ -236,7 +235,9 @@ class ChunkFormatter
         $this->cell->setTimestamp($timestamp);
         $this->cell->setValue($chunk->getValue());
         $this->flatRow->addCell($this->cell);
-        yield from $this->moveToNextState($chunk);
+        $test = $this->moveToNextState($chunk);
+        return $test;
+        // yield $test;
     }
 
     /**
@@ -309,7 +310,7 @@ class ChunkFormatter
 
         $flatRow = $this->flatRow;
         $flatRow->addCell($cell);
-        yield from $this->moveToNextState($chunk);
+        return $this->moveToNextState($chunk);
     }
 
     /**
@@ -335,6 +336,6 @@ class ChunkFormatter
             return $this->reset();
         }
         $this->cell->appendValue($chunk->getValue());
-        yield from $this->moveToNextState($chunk);
+        return $this->moveToNextState($chunk);
     }
 }
