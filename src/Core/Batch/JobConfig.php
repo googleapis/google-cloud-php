@@ -25,33 +25,34 @@ namespace Google\Cloud\Core\Batch;
  *      incompatible ways. Please use with caution, and test thoroughly when
  *      upgrading.
  */
-class BatchConfig
+class JobConfig
 {
     /**
-     * @var BatchJob[]
+     * @var array Associative array of JobInterface instances keyed by
+     *      identifier.
      */
     private $jobs = [];
 
     /**
-     * @var array
+     * @var array[string]int Associative array of job identifier to job id.
      */
-    private $idmap = [];
+    private $identifierToId = [];
 
     /**
-     * @var array
+     * @var array[int]string Associative array of job id to job identifier.
      */
-    private $idmap_reverse = [];
+    private $idToIdentifier = [];
 
     /**
      * Get the job with the given identifier.
      *
      * @param string $identifier Unique identifier of the job.
      *
-     * @return BatchJob|null
+     * @return JobInterface|null
      */
     public function getJobFromId($identifier)
     {
-        return array_key_exists($identifier, $this->idmap)
+        return array_key_exists($identifier, $this->identifierToId)
             ? $this->jobs[$identifier]
             : null;
     }
@@ -61,12 +62,12 @@ class BatchConfig
      *
      * @param int $idNum A numeric id of the job.
      *
-     * @return BatchJob|null
+     * @return JobInterface|null
      */
     public function getJobFromIdNum($idNum)
     {
-        return array_key_exists($idNum, $this->idmap_reverse)
-            ? $this->jobs[$this->idmap_reverse[$idNum]]
+        return array_key_exists($idNum, $this->idToIdentifier)
+            ? $this->jobs[$this->idToIdentifier[$idNum]]
             : null;
     }
 
@@ -74,42 +75,29 @@ class BatchConfig
      * Register a job for executing in batch.
      *
      * @param string $identifier Unique identifier of the job.
-     * @param callable $func Any Callable except for Closure. The callable
-     *        should accept an array of items as the first argument.
-     * @param array $options [optional] {
-     *     Configuration options.
-     *
-     *     @type int $batchSize The size of the batch.
-     *     @type float $callPeriod The period in seconds from the last execution
-     *                 to force executing the job.
-     *     @type int $workerNum The number of child processes. It only takes
-     *               effect with the {@see \Google\Cloud\Core\Batch\BatchDaemon}.
-     *     @type string $bootstrapFile A file to load before executing the
-     *                  job. It's needed for registering global functions.
-     * }
+     * @param callable $callback Callback that accepts the job $idNum
+     *        and returns a JobInterface instance.
      * @return void
      */
-    public function registerJob($identifier, $func, array $options = [])
+    public function registerJob($identifier, $callback)
     {
-        if (array_key_exists($identifier, $this->idmap)) {
-            $idNum = $this->idmap[$identifier];
+        if (array_key_exists($identifier, $this->identifierToId)) {
+            $idNum = $this->identifierToId[$identifier];
         } else {
-            $idNum = count($this->idmap) + 1;
-            $this->idmap_reverse[$idNum] = $identifier;
+            $idNum = count($this->identifierToId) + 1;
+            $this->idToIdentifier[$idNum] = $identifier;
         }
-        $this->jobs[$identifier] = new BatchJob(
-            $identifier,
-            $func,
-            $idNum,
-            $options
+        $this->jobs[$identifier] = call_user_func(
+            $callback,
+            $idNum
         );
-        $this->idmap[$identifier] = $idNum;
+        $this->identifierToId[$identifier] = $idNum;
     }
 
     /**
-     * Get all the jobs.
+     * Get all the jobs indexed by the job's identifier.
      *
-     * @return BatchJob[]
+     * @return array[string]JobInterface
      */
     public function getJobs()
     {

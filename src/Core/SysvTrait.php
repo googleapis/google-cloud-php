@@ -28,6 +28,8 @@ namespace Google\Cloud\Core;
 trait SysvTrait
 {
     private static $productionKey = 'P';
+    private static $typeDirect = 1;
+    private static $typeFile = 2;
 
     /**
      * Create a SystemV IPC key for the given id number.

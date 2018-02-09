@@ -23,12 +23,18 @@ namespace Google\Cloud\Core\Lock;
 interface LockInterface
 {
     /**
-     * Acquires a lock that will block until released.
+     * Acquires a lock.
      *
+     * @param array $options [optional] {
+     *     Configuration options.
+     *
+     *     @type bool $blocking Whether the process should block while waiting
+     *           to acquire the lock. **Defaults to** true.
+     * }
      * @return bool
-     * @throws \RuntimeException
+     * @throws \RuntimeException If the lock fails to be acquired.
      */
-    public function acquire();
+    public function acquire(array $options = []);
 
     /**
      * Releases the lock.
@@ -41,7 +47,13 @@ interface LockInterface
      * Execute a callable within a lock.
      *
      * @param callable $func The callable to execute.
+     * @param array $options [optional] {
+     *     Configuration options.
+     *
+     *     @type bool $blocking Whether the process should block while waiting
+     *           to acquire the lock. **Defaults to** true.
+     * }
      * @return mixed
      */
-    public function synchronize(callable $func);
+    public function synchronize(callable $func, array $options = []);
 }

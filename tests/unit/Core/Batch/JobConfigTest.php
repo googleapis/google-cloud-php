@@ -17,14 +17,15 @@
 
 namespace Google\Cloud\Tests\Unit\Core\Batch;
 
-use Google\Cloud\Core\Batch\BatchConfig;
+use Google\Cloud\Core\Batch\JobConfig;
+use Google\Cloud\Core\Batch\BatchJob;
 use PHPUnit\Framework\TestCase;
 
 /**
  * @group core
  * @group batch
  */
-class BatchConfigTest extends TestCase
+class JobConfigTest extends TestCase
 {
     private $config;
     private $identifier;
@@ -33,12 +34,14 @@ class BatchConfigTest extends TestCase
 
     public function setUp()
     {
-        $this->config = new BatchConfig();
+        $this->config = new JobConfig();
         $this->identifier = 'job1';
         $this->func = 'myFunc';
         $this->config->registerJob(
             $this->identifier,
-            $this->func,
+            function ($id) {
+                return new BatchJob($this->identifier, $this->func, $id);
+            },
             []
         );
         // It must have 1 as the idNum.
@@ -48,16 +51,16 @@ class BatchConfigTest extends TestCase
     public function testGetJobFromId()
     {
         $job = $this->config->getJobFromId($this->identifier);
-        $this->assertEquals($this->idNum, $job->getIdNum());
-        $this->assertEquals($this->identifier, $job->getIdentifier());
+        $this->assertEquals($this->idNum, $job->id());
+        $this->assertEquals($this->identifier, $job->identifier());
         $this->assertNull($this->config->getJobFromId('bogus'));
     }
 
     public function testGetJobFromIdNum()
     {
         $job = $this->config->getJobFromIdNum($this->idNum);
-        $this->assertEquals($this->idNum, $job->getIdNum());
-        $this->assertEquals($this->identifier, $job->getIdentifier());
+        $this->assertEquals($this->idNum, $job->id());
+        $this->assertEquals($this->identifier, $job->identifier());
         $this->assertNull($this->config->getJobFromIdNum(10));
     }
 
@@ -66,13 +69,15 @@ class BatchConfigTest extends TestCase
         $identifier = 'job2';
         $this->config->registerJob(
             $identifier,
-            $this->func,
+            function ($id) use ($identifier) {
+                return new BatchJob($identifier, $this->func, $id);
+            },
             []
         );
         // The idNum is 1 origin, incremented by 1
         $job = $this->config->getJobFromIdNum(2);
-        $this->assertEquals(2, $job->getIdNum());
-        $this->assertEquals($identifier, $job->getIdentifier());
+        $this->assertEquals(2, $job->id());
+        $this->assertEquals($identifier, $job->identifier());
     }
 
     public function testGetjobs()
@@ -80,12 +85,14 @@ class BatchConfigTest extends TestCase
         $identifier = 'job2';
         $this->config->registerJob(
             $identifier,
-            $this->func,
+            function ($id) use ($identifier) {
+                return new BatchJob($identifier, $this->func, $id);
+            },
             []
         );
         $jobs = $this->config->getJobs();
         $this->assertCount(2, $jobs);
-        $this->assertEquals($this->idNum, $jobs[$this->identifier]->getIdNum());
-        $this->assertEquals(2, $jobs[$identifier]->getIdNum());
+        $this->assertEquals($this->idNum, $jobs[$this->identifier]->id());
+        $this->assertEquals(2, $jobs[$identifier]->id());
     }
 }

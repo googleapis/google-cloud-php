@@ -110,7 +110,7 @@ class BatchRunnerTest extends TestCase
             'batch-daemon-system-test',
             array($myJob, 'runJob'),
             array(
-                'workerNum' => 1,
+                'numWorkers' => 1,
                 'batchSize' => 2,
                 'callPeriod' => 1,
             )
@@ -158,7 +158,7 @@ class BatchRunnerTest extends TestCase
                 . '/../../../../src/Core/bin/google-cloud-batch retry';
             exec($retry_command);
         } else {
-            // The in-memory implementation doesn't share the BatchConfig with
+            // The in-memory implementation doesn't share the JobConfig with
             // other processes, so we need to run retryAll in the same process.
             $retry = new Retry();
             $retry->retryAll();

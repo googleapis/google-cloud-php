@@ -17,9 +17,6 @@
             "entry": "DebuggerClient.php"
         }
     },
-    "bin": [
-        "bin/google-cloud-debugger"
-    ],
     "autoload": {
         "psr-4": {
             "Google\\Cloud\\Debugger\\": ""

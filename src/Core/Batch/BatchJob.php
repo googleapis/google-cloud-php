@@ -17,6 +17,8 @@
 
 namespace Google\Cloud\Core\Batch;
 
+use Google\Cloud\Core\SysvTrait;
+
 /**
  * Represent batch jobs.
  *
@@ -25,46 +27,33 @@ namespace Google\Cloud\Core\Batch;
  *      incompatible ways. Please use with caution, and test thoroughly when
  *      upgrading.
  */
-class BatchJob
+class BatchJob implements JobInterface
 {
     const DEFAULT_BATCH_SIZE = 100;
     const DEFAULT_CALL_PERIOD = 2.0;
     const DEFAULT_WORKERS = 1;
 
-    /**
-     * @var string
-     */
-    private $identifier;
+    use JobTrait;
+    use SysvTrait;
+    use InterruptTrait;
+    use HandleFailureTrait;
 
     /**
-     * @var callable
+     * @var callable The batch job handler. This callable accepts an array
+     *      of items and should return a boolean.
      */
     private $func;
 
     /**
-     * @var int
-     */
-    private $idNum;
-
-    /**
-     * @var string
-     */
-    private $bootstrapFile;
-
-    /**
-     * @var int
+     * @var int The size of the batch.
      */
     private $batchSize;
 
     /**
-     * @var float
+     * @var float The period in seconds from the last execution to force
+     *      executing the job.
      */
     private $callPeriod;
-
-    /**
-     * @var int
-     */
-    private $workerNum;
 
     /**
      * @param string $identifier Unique identifier of the job.
@@ -77,7 +66,7 @@ class BatchJob
      *     @type int $batchSize The size of the batch. **Defaults to** `100`.
      *     @type float $callPeriod The period in seconds from the last execution
      *                 to force executing the job. **Defaults to** `2.0`.
-     *     @type int $workerNum The number of child processes. It only takes
+     *     @type int $numWorkers The number of child processes. It only takes
      *               effect with the {@see \Google\Cloud\Core\Batch\BatchDaemon}.
      *               **Defaults to** `1`.
      *     @type string $bootstrapFile A file to load before executing the
@@ -90,55 +79,100 @@ class BatchJob
         $idNum,
         array $options = []
     ) {
+        $options += [
+            'batchSize' => self::DEFAULT_BATCH_SIZE,
+            'callPeriod' => self::DEFAULT_CALL_PERIOD,
+            'bootstrapFile' => null,
+            'numWorkers' => self::DEFAULT_WORKERS
+        ];
         $this->identifier = $identifier;
         $this->func = $func;
-        $this->idNum = $idNum;
-        $this->batchSize = array_key_exists('batchSize', $options)
-            ? $options['batchSize']
-            : self::DEFAULT_BATCH_SIZE;
-        $this->callPeriod = array_key_exists('callPeriod', $options)
-            ? $options['callPeriod']
-            : self::DEFAULT_CALL_PERIOD;
-        $this->bootstrapFile = array_key_exists('bootstrapFile', $options)
-            ? $options['bootstrapFile']
-            : null;
-        $this->workerNum = array_key_exists('workerNum', $options)
-            ? $options['workerNum']
-            : self::DEFAULT_WORKERS;
+        $this->id = $idNum;
+        $this->batchSize = $options['batchSize'];
+        $this->callPeriod = $options['callPeriod'];
+        $this->bootstrapFile = $options['bootstrapFile'];
+        $this->numWorkers = $options['numWorkers'];
     }
 
     /**
-     * Run the job with the given items.
-     *
-     * @param array $items An array of items.
-     *
-     * @return bool the result of the callback
+     * Run the job.
      */
-    public function run(array $items)
+    public function run()
     {
-        if (! is_null($this->bootstrapFile)) {
+        $this->setupSignalHandlers();
+
+        $sysvKey = $this->getSysvKey($this->id);
+        $q = msg_get_queue($sysvKey);
+        $items = [];
+        $lastInvoked = microtime(true);
+
+        if (!is_null($this->bootstrapFile)) {
             require_once($this->bootstrapFile);
         }
-        return call_user_func_array($this->func, [$items]);
+
+        while (true) {
+            // Fire SIGALRM after 1 second to unblock the blocking call.
+            pcntl_alarm(1);
+            if (msg_receive(
+                $q,
+                0,
+                $type,
+                8192,
+                $message,
+                true,
+                0, // blocking mode
+                $errorcode
+            )) {
+                if ($type === self::$typeDirect) {
+                    $items[] = $message;
+                } elseif ($type === self::$typeFile) {
+                    $items[] = unserialize(file_get_contents($message));
+                    @unlink($message);
+                }
+            }
+            pcntl_signal_dispatch();
+            // It runs the job when
+            // 1. Number of items reaches the batchSize.
+            // 2-a. Count is >0 and the current time is larger than lastInvoked + period.
+            // 2-b. Count is >0 and the shutdown flag is true.
+            if ((count($items) >= $this->batchSize)
+                || (count($items) > 0
+                    && (microtime(true) > $lastInvoked + $this->callPeriod
+                        || $this->shutdown))) {
+                printf(
+                    'Running the job with %d items' . PHP_EOL,
+                    count($items)
+                );
+                $this->flush($items);
+                $items = [];
+                $lastInvoked = microtime(true);
+            }
+            gc_collect_cycles();
+            if ($this->shutdown) {
+                return;
+            }
+        }
     }
 
     /**
-     * @return int
+     * Finish any pending activity for this job.
+     *
+     * @param array $items
+     * @return bool
      */
-    public function getIdNum()
+    public function flush(array $items = [])
     {
-        return $this->idNum;
+        if (!call_user_func_array($this->func, [$items])) {
+            $this->handleFailure($this->id, $items);
+            return false;
+        }
+        return true;
     }
 
     /**
-     * @return string
-     */
-    public function getIdentifier()
-    {
-        return $this->identifier;
-    }
-
-    /**
+     * Returns the period in seconds from the last execution to force
+     * executing the job.
+     *
      * @return float
      */
     public function getCallPeriod()
@@ -147,26 +181,12 @@ class BatchJob
     }
 
     /**
+     * Returns the batch size.
+     *
      * @return int
      */
     public function getBatchSize()
     {
         return $this->batchSize;
-    }
-
-    /**
-     * @return int
-     */
-    public function getWorkerNum()
-    {
-        return $this->workerNum;
-    }
-
-    /**
-     * @return string
-     */
-    public function getBootstrapFile()
-    {
-        return $this->bootstrapFile;
     }
 }

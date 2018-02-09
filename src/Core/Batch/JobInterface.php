@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright 2017 Google Inc. All Rights Reserved.
+ * Copyright 2018 Google Inc. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,27 +18,40 @@
 namespace Google\Cloud\Core\Batch;
 
 /**
- * A utility trait related to BatchDaemon functionality.
+ * The JobInterface represents any job that can be serialized and run in a
+ * separate process via the Batch daemon.
  *
  * @experimental The experimental flag means that while we believe this method
  *      or class is ready for use, it may change before release in backwards-
  *      incompatible ways. Please use with caution, and test thoroughly when
  *      upgrading.
  */
-trait BatchDaemonTrait
+interface JobInterface
 {
     /**
-     * Returns whether or not the BatchDaemon is running.
+     * Runs the job loop. This is expected to be a blocking call.
+     */
+    public function run();
+
+    /**
+     * Return the job identifier
      *
+     * @return string
+     */
+    public function identifier();
+
+    /**
+     * Returns the number of workers for this job.
+     *
+     * @return int
+     */
+    public function numWorkers();
+
+    /**
+     * Finish any pending activity for this job.
+     *
+     * @param array $items
      * @return bool
      */
-    private function isDaemonRunning()
-    {
-        $isDaemonRunning = filter_var(
-            getenv('IS_BATCH_DAEMON_RUNNING'),
-            FILTER_VALIDATE_BOOLEAN
-        );
-
-        return $isDaemonRunning !== false;
-    }
+    public function flush(array $items = []);
 }
