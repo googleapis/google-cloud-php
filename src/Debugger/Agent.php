@@ -246,7 +246,7 @@ class Agent
     private function defaultLogger()
     {
         $client = new LoggingClient();
-        return $client->psrBatchLogger('logpoints');
+        return $client->psrBatchLogger('appengine.googleapis.com/request_log"');
     }
 
     private function invalidateOpcache($breakpoint)
