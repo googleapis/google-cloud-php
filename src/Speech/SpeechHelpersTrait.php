@@ -19,6 +19,9 @@ namespace Google\Cloud\Speech;
 
 use Generator;
 
+/**
+ * Provides helper functions for generated Speech clients.
+ */
 trait SpeechHelpersTrait
 {
     /**
