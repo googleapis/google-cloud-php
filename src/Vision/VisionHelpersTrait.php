@@ -20,6 +20,9 @@ namespace Google\Cloud\Vision;
 use Google\ApiCore\ArrayTrait;
 use InvalidArgumentException;
 
+/**
+ * Provides helper methods for generated Vision clients.
+ */
 trait VisionHelpersTrait
 {
     use ArrayTrait;
@@ -42,7 +45,7 @@ trait VisionHelpersTrait
         $features,
         $optionalArgs = []
     ) {
-    
+
         $request = new $requestClass();
         $request->setImage($image);
         $request->setFeatures($features);
@@ -57,7 +60,7 @@ trait VisionHelpersTrait
         $featureClass,
         $featureTypes
     ) {
-    
+
         $features = [];
         foreach ($featureTypes as $featureType) {
             $feature = new $featureClass();
