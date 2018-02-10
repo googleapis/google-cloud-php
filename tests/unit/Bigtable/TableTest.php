@@ -1,4 +1,21 @@
 <?php
+/*
+ * Copyright 2017 Google LLC
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     https://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+namespace Google\Cloud\Tests\Unit\Bigtable;
 
 use Google\Cloud\Bigtable\src\BigtableTable;
 use Google\Cloud\Bigtable\Admin\V2\Table;
@@ -9,8 +26,8 @@ use Google\Cloud\Bigtable\Admin\V2\GcRule;
 
 use Google\Protobuf\Internal\GPBType;
 use Google\Protobuf\Internal\MapField;
-use Google\Bigtable\Admin\V2\ModifyColumnFamiliesRequest;
-use Google\Bigtable\Admin\V2\ModifyColumnFamiliesRequest_Modification as Modification;
+use Google\Cloud\Bigtable\Admin\V2\ModifyColumnFamiliesRequest;
+use Google\Cloud\Bigtable\Admin\V2\ModifyColumnFamiliesRequest_Modification as Modification;
 
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
@@ -35,15 +52,22 @@ class TableTest extends TestCase
     const INSTANCE_ID = 'php-perf';
     const TABLE_ID = 'myTableId';
 
+    public $mock;
+
+    public function setUp()
+    {
+        $this->mock = $this->getMockBuilder(BigtableTable::class)
+                            ->disableOriginalConstructor()
+                            ->getMock();
+    }
+
     public function testInstanceName()
     {
         $expected = 'projects/'.self::PROJECT_ID.'/instances/'.self::INSTANCE_ID;
-
-        $mock = $this->createMock(BigtableTable::class);
-        $mock->method('instanceName')
+        $this->mock->method('instanceName')
              ->willReturn($expected);
 
-        $formatedName = $mock->instanceName(Argument::type('string'), Argument::type('string'));
+        $formatedName = $this->mock->instanceName(Argument::type('string'), Argument::type('string'));
         $this->assertEquals($formatedName, $expected);
     }
     
@@ -53,11 +77,10 @@ class TableTest extends TestCase
         $fakeTable = new Table();
         $fakeTable->setName($parent);
 
-        $mock = $this->createMock(BigtableTable::class);
-        $mock->method('createTable')
+        $this->mock->method('createTable')
              ->willReturn($fakeTable);
 
-        $table = $mock->createTable(Argument::type('string'), Argument::type('string'));
+        $table = $this->mock->createTable(Argument::type('string'), Argument::type('string'));
         $this->assertEquals($table->getName(), $parent);
         $this->assertInstanceOf(Table::class, $table);
     }
@@ -65,12 +88,10 @@ class TableTest extends TestCase
     public function testTableName()
     {
         $expected = 'projects/'.self::PROJECT_ID.'/instances/'.self::INSTANCE_ID.'/tables/'.self::TABLE_ID;
-        
-        $mock = $this->createMock(BigtableTable::class);
-        $mock->method('tableName')
+        $this->mock->method('tableName')
              ->willReturn($expected);
 
-        $formatedName = $mock->tableName(Argument::type('string'), Argument::type('string'), Argument::type('string'));
+        $formatedName = $this->mock->tableName(Argument::type('string'), Argument::type('string'), Argument::type('string'));
         $this->assertEquals($formatedName, $expected);
     }
 
@@ -81,16 +102,23 @@ class TableTest extends TestCase
         
         $fakeTable = new Table();
         $fakeTable->setName($parent);
-        
-        $BigtableTable = new BigtableTable();
-        $MapField = $BigtableTable->columnFamily(3, $columnFamily);
+
+        //Set GcRule
+        $gcRule = new GcRule();
+		$gcRule->setMaxNumVersions(2);
+
+		$cf = new ColumnFamily();
+		$cf->setGcRule($gcRule);
+
+		$MapField = new MapField(GPBType::STRING, GPBType::MESSAGE, ColumnFamily::class );
+        $MapField[$columnFamily] = $cf;
+
         $fakeTable->setColumnFamilies($MapField);
         $fakeTable->setGranularity(2);
 
-        $mock = $this->createMock(BigtableTable::class);
-        $mock->method('createTableWithColumnFamily')
+        $this->mock->method('createTableWithColumnFamily')
              ->willReturn($fakeTable);
-        $table = $mock->createTableWithColumnFamily(Argument::type('string'), Argument::type('string'), Argument::type('string'));
+        $table = $this->mock->createTableWithColumnFamily(Argument::type('string'), Argument::type('string'), Argument::type('string'));
         
         $this->assertInstanceOf(Table::class, $table);
         $this->assertEquals($table->getName(), $parent);
@@ -108,10 +136,9 @@ class TableTest extends TestCase
 		$MapField = new MapField(GPBType::STRING, GPBType::MESSAGE, ColumnFamily::class );
         $MapField[$columnFamily] = $cf;
 
-        $mock = $this->createMock(BigtableTable::class);
-        $mock->method('columnFamily')
+        $this->mock->method('columnFamily')
              ->willReturn($MapField);
-        $MapField = $mock->columnFamily(Argument::type('integer'), Argument::type('string'));
+        $MapField = $this->mock->columnFamily(Argument::type('integer'), Argument::type('string'));
         
         $this->assertInstanceOf(MapField::class, $MapField);
     }
@@ -119,11 +146,10 @@ class TableTest extends TestCase
     public function testDeleteTable()
     {
         $GPBEmpty = new GPBEmpty();
-        $mock = $this->createMock(BigtableTable::class);
-        $mock->method('deleteTable')
+        $this->mock->method('deleteTable')
              ->willReturn($GPBEmpty);
 
-        $table = $mock->deleteTable(Argument::type('string'));
+        $table = $this->mock->deleteTable(Argument::type('string'));
         $this->assertInstanceOf(GPBEmpty::class, $table);
     }
 
@@ -133,10 +159,9 @@ class TableTest extends TestCase
         $fakeTable = new Table();
         $fakeTable->setName($expected);
 
-        $mock = $this->createMock(BigtableTable::class);
-        $mock->method('getTable')
+        $this->mock->method('getTable')
              ->willReturn($fakeTable);
-        $table = $mock->getTable(Argument::type('string'));
+        $table = $this->mock->getTable(Argument::type('string'));
 
         $this->assertInstanceOf(Table::class, $table);
         $this->assertEquals($table->getName(), $expected);
@@ -150,10 +175,9 @@ class TableTest extends TestCase
         $fakeTable = new Table();
         $fakeTable->setName($parent);
 
-        $mock = $this->createMock(BigtableTable::class);
-        $mock->method('addColumnFamilies')
+        $this->mock->method('addColumnFamilies')
              ->willReturn($fakeTable);
-        $table = $mock->addColumnFamilies(Argument::type('string'), Argument::type('string'));
+        $table = $this->mock->addColumnFamilies(Argument::type('string'), Argument::type('string'));
 
         $this->assertInstanceOf(Table::class, $table);
         $this->assertEquals($table->getName(), $parent);
@@ -162,72 +186,68 @@ class TableTest extends TestCase
     public function testDeleteColumnFamilies()
     {
         $fakeTable = new Table();
-        $mock = $this->createMock(BigtableTable::class);
-        $mock->method('deleteColumnFamilies')
+        $this->mock->method('deleteColumnFamilies')
              ->willReturn($fakeTable);
-        $table = $mock->deleteColumnFamilies(Argument::type('string'), Argument::type('string'));
+        $table = $this->mock->deleteColumnFamilies(Argument::type('string'), Argument::type('string'));
         $this->assertInstanceOf(Table::class, $table);
     }
 
     public function testMutateRow()
     {
         $MutateRowResponse = new MutateRowResponse();
-        $mock = $this->createMock(BigtableTable::class);
-        $mock->method('mutateRow')
+        $this->mock->method('mutateRow')
              ->willReturn($MutateRowResponse);
 
-        $mutateRow = $mock->mutateRow(Argument::type('string'), Argument::type('string'), Argument::type('array'));
+        $mutateRow = $this->mock->mutateRow(Argument::type('string'), Argument::type('string'), Argument::type('array'));
         $this->assertInstanceOf(MutateRowResponse::class, $mutateRow);
     }
     
     public function testMutationCell()
     {
-        $cell['cf'] = 'cf';
-        $cell['qualifier'] = 'qualifier';
-        $cell['value'] = 'value';
-
-        $utc_str           = gmdate("M d Y H:i:s", time());
-	$utc               = strtotime($utc_str);
-        $cell['timestamp'] = $utc;
-
+        $utc_str = gmdate("M d Y H:i:s", time());
+	    $utc = strtotime($utc_str);
         $Mutation_SetCell = new Mutation_SetCell();
-        $Mutation_SetCell->setFamilyName($cell['cf']);
-        $Mutation_SetCell->setColumnQualifier($cell['qualifier']);
-        $Mutation_SetCell->setValue($cell['value']);
-        $Mutation_SetCell->setTimestampMicros($cell['timestamp']);
+        $Mutation_SetCell->setFamilyName('cf');
+        $Mutation_SetCell->setColumnQualifier('qualifier');
+        $Mutation_SetCell->setValue('value');
+        $Mutation_SetCell->setTimestampMicros($utc*1000);
 
         $Mutation = new Mutation();
         $Mutation->setSetCell($Mutation_SetCell);
         
-        $mock = $this->createMock(BigtableTable::class);
-        $mock->method('mutationCell')
+        $this->mock->method('mutationCell')
              ->willReturn($Mutation);
 
-        $mutationCell = $mock->mutationCell(Argument::type('array'));
+        $mutationCell = $this->mock->mutationCell(Argument::type('array'));
         $this->assertInstanceOf(Mutation::class, $mutationCell);        
     }
 
     public function testMutateRowsRequest()
-    {   
-        $BigtableTable = new BigtableTable();
+    {
         $rowKey = 'perf';
         $utc_str           = gmdate("M d Y H:i:s", time());
         $utc               = strtotime($utc_str);
-        $cell['cf']        = 'cf';
-        $cell['qualifier'] = 'qualifier';
-        $cell['value']     = 'value';
-        $cell['timestamp'] = $utc*1000;
-        $mutations[] = $BigtableTable->mutationCell($cell);
+
+        //Set cell
+        $Mutation_SetCell = new Mutation_SetCell();
+        $Mutation_SetCell->setFamilyName('cf');
+        $Mutation_SetCell->setColumnQualifier('qualifier');
+        $Mutation_SetCell->setValue('value');
+        $Mutation_SetCell->setTimestampMicros($utc*1000);
+        
+        //Set mutations cell
+        $Mutation = new Mutation();
+        $Mutation->setSetCell($Mutation_SetCell);
+        $mutations[] = $Mutation;
                     
         $MutateRowsRequest_Entry = new MutateRowsRequest_Entry();
         $MutateRowsRequest_Entry->setRowKey($rowKey);
         $MutateRowsRequest_Entry->setMutations($mutations);
         
-        $mock = $this->createMock(BigtableTable::class);
-        $mock->method('mutateRowsRequest')
+        $this->mock->method('mutateRowsRequest')
              ->willReturn($MutateRowsRequest_Entry);
 
-        $mutateRowsRequest = $mock->mutateRowsRequest(Argument::type('string'), Argument::type('array'));
+        $mutateRowsRequest = $this->mock->mutateRowsRequest(Argument::type('string'), Argument::type('array'));
         $this->assertEquals($mutateRowsRequest->getRowKey(), $rowKey);
         $this->assertInstanceOf(RepeatedField::class, $mutateRowsRequest->getMutations());
         $this->assertInstanceOf(MutateRowsRequest_Entry::class, $mutateRowsRequest);
@@ -236,12 +256,10 @@ class TableTest extends TestCase
     public function testReadRows()
     {   
         $FlatRow = new FlatRow();
-        $mock = $this->createMock(BigtableTable::class);
-        $mock->method('readRows')
+        $this->mock->method('readRows')
              ->willReturn($FlatRow);
 
-        $readRows = $mock->readRows(Argument::type('string'));
+        $readRows = $this->mock->readRows(Argument::type('string'));
         $this->assertInstanceOf(FlatRow::class, $readRows);
     }
 }
-?>
