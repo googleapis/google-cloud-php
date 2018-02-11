@@ -435,7 +435,7 @@ class FirestoreClient
         // must be provided to the subsequent `beginTransaction` rpc.
         // It also provides a convenient indication to the user whether the
         // transaction is retried or not.
-        $transactionId = null;
+        $transactionId = '';
 
         $retry = new Retry($options['maxRetries'], $delayFn, $retryFn);
 
@@ -445,10 +445,10 @@ class FirestoreClient
         ) use (&$transactionId) {
             $database = $this->databaseName($this->projectId, $this->database);
 
-            $beginTransaction = $this->connection->beginTransaction(array_filter([
+            $beginTransaction = $this->connection->beginTransaction([
                 'database' => $database,
                 'retryTransaction' => $transactionId
-            ]) + $options['begin']);
+            ] + $options['begin']);
 
             $transactionId = $beginTransaction['transaction'];
 
