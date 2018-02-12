@@ -261,8 +261,7 @@ class Agent
 
     private function defaultLogger()
     {
-        $client = new LoggingClient();
-        return $client->psrBatchLogger(self::DEFAULT_LOGPOINT_LOG_NAME);
+        return LoggingClient::psrBatchLogger(self::DEFAULT_LOGPOINT_LOG_NAME);
     }
 
     private function invalidateOpcache($breakpoint)
