@@ -47,7 +47,7 @@ class Agent
     use BatchDaemonTrait;
     use SysvTrait;
 
-    const DEFAULT_LOGPOINT_LOG_NAME = 'appengine.googleapis.com/request_log';
+    const DEFAULT_LOGPOINT_LOG_NAME = 'appengine.googleapis.com%2Frequest_log';
 
     /**
      * @var Debuggee
