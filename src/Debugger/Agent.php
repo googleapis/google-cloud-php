@@ -169,7 +169,7 @@ class Agent
                             'snapshotId'    => $breakpoint->id(),
                             'condition'     => $breakpoint->condition(),
                             'expressions'   => $breakpoint->expressions(),
-                            'callback'      => [$this->logger, 'log'],
+                            'callback'      => [$this, 'handleLogpoint'],
                             'sourceRoot'    => $this->sourceRoot
                         ]
                     );
@@ -202,6 +202,20 @@ class Agent
             $breakpoint->addStackFrames($snapshot['stackframes']);
             $this->batchRunner->submitItem($this->identifier, $breakpoint);
         }
+    }
+
+    /**
+     * Callback for reporting a logpoint.
+     *
+     * @access private
+     * @param mixed $level
+     * @param string $message
+     * @param array $context
+     * @return void
+     */
+    public function handleLogpoint($level, $message, array $context = [])
+    {
+        $this->logger->log($level, "LOGPOINT: $message", $context);
     }
 
     /**
