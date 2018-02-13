@@ -23,6 +23,7 @@ use Google\Cloud\Core\SysvTrait;
 use Google\Cloud\Core\Report\MetadataProviderInterface;
 use Google\Cloud\Core\Report\MetadataProviderUtils;
 use Google\Cloud\Core\Exception\ConflictException;
+use Google\Cloud\Core\Exception\ServiceException;
 use Google\Cloud\Core\ExponentialBackoff;
 use Google\Cloud\Debugger\BreakpointStorage\BreakpointStorageInterface;
 use Google\Cloud\Debugger\BreakpointStorage\FileBreakpointStorage;
@@ -175,36 +176,41 @@ class Daemon
     {
         $client = $client ?: $this->defaultClient();
         $extSourceContexts = $this->extSourceContext ? [$this->extSourceContext] : [];
-        $debuggee = $client->debuggee(null, [
-            'uniquifier' => $this->uniquifier ?: $this->defaultUniquifier(),
-            'description' => $this->description,
-            'extSourceContexts' => $extSourceContexts,
-            'labels' => $this->labels
-        ]);
-        $debuggee->register();
+        $uniquifier = $this->uniquifier ?: $this->defaultUniquifier();
 
-        $resp = $this->fetchBreakpointsWithRetry($debuggee);
-        $this->setBreakpoints($debuggee, $resp['breakpoints']);
+        while (true) {
+            $debuggee = $client->debuggee(null, [
+                'uniquifier' => $uniquifier,
+                'description' => $this->description,
+                'extSourceContexts' => $extSourceContexts,
+                'labels' => $this->labels
+            ]);
 
-        while (array_key_exists('nextWaitToken', $resp)) {
+            // If registration with backoff fails, then propagate the exception.
+            $backoff = new ExponentialBackoff();
+            $backoff->execute(function () use ($debuggee) {
+                $debuggee->register();
+            });
+
             try {
-                $resp = $this->fetchBreakpointsWithRetry($debuggee, [
-                    'waitToken' => $resp['nextWaitToken']
-                ]);
-                $this->setBreakpoints($debuggee, $resp['breakpoints']);
-            } catch (ConflictException $e) {
-                // Ignoring this exception
+                $options = [];
+                while (true) {
+                    try {
+                        $resp = $debuggee->breakpointsWithWaitToken($options);
+                        $this->setBreakpoints($debuggee, $resp['breakpoints']);
+                        $options['waitToken'] = $resp['nextWaitToken'];
+                    } catch (ConflictException $e) {
+                        // The hanging GET call returns a 409 (Conflict) response
+                        // when the request times out with a status of 'ABORTED'.
+                        // In this case, we'll fetch again with the same waitToken.
+                    }
+                    gc_collect_cycles();
+                }
+            } catch (ServiceException $e) {
+                // For any other ServiceExceptions, re-register and start over.
             }
             gc_collect_cycles();
         }
-    }
-
-    private function fetchBreakpointsWithRetry(Debuggee $debuggee, array $options = [])
-    {
-        $backoff = new ExponentialBackoff();
-        return $backoff->execute(function () use ($debuggee, $options) {
-            return $debuggee->breakpointsWithWaitToken($options);
-        });
     }
 
     private function setBreakpoints(Debuggee $debuggee, $breakpoints)
