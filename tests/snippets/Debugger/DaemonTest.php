@@ -39,7 +39,11 @@ class DaemonTest extends SnippetTestCase
         $this->debuggee = $this->prophesize(Debuggee::class);
         $this->storage = $this->prophesize(BreakpointStorageInterface::class);
         $this->debuggee->register()->willReturn(true);
-        $this->debuggee->breakpointsWithWaitToken([])->willReturn(['breakpoints' => []]);
+        $resp = [
+            'breakpoints' => [],
+            'nextWaitToken' => 'abc123'
+        ];
+        $this->debuggee->breakpointsWithWaitToken([])->willReturn($resp);
         $this->client->debuggee(null, Argument::any())->willReturn($this->debuggee->reveal());
     }
 
@@ -50,7 +54,7 @@ class DaemonTest extends SnippetTestCase
         ];
         $snippet = $this->snippetFromClass(Daemon::class);
         $snippet->replace('new Daemon()', 'new Daemon($options)');
-        $snippet->replace('run()', 'run($client)');
+        $snippet->replace('run()', 'run($client, false)');
         $snippet->addLocal('options', $options);
         $snippet->addLocal('client', $this->client->reveal());
         $res = $snippet->invoke('daemon');
@@ -64,7 +68,7 @@ class DaemonTest extends SnippetTestCase
         ];
         $daemon = new Daemon($options);
         $snippet = $this->snippetFromMethod(Daemon::class, 'run');
-        $snippet->replace('run()', 'run($client)');
+        $snippet->replace('run()', 'run($client, false)');
         $snippet->addLocal('daemon', $daemon);
         $snippet->addLocal('client', $this->client->reveal());
         $res = $snippet->invoke('daemon');
