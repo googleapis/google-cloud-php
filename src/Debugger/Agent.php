@@ -224,7 +224,7 @@ class Agent
      */
     public function reportBreakpoints(array $breakpointsInfo)
     {
-        $client = $this->defaultDebuggerClient();
+        $client = $this->defaultClient();
         foreach ($breakpointsInfo as $breakpointInfo) {
             list($debuggeeId, $breakpoint) = $breakpointInfo;
             $debuggee = $client->debuggee($debuggeeId);
@@ -252,7 +252,7 @@ class Agent
             : new FileBreakpointStorage();
     }
 
-    private function defaultDebuggerClient()
+    private function defaultClient()
     {
         return new DebuggerClient($this->getUnwrappedClientConfig());
     }

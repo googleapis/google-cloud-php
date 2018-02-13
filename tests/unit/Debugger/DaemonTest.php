@@ -58,7 +58,7 @@ class DaemonTest extends TestCase
             'storage' => $this->storage->reveal(),
             'uniquifier' => 'some uniquifier'
         ]);
-        $daemon->run($this->client->reveal());
+        $daemon->run($this->client->reveal(), false);
     }
 
     public function testGeneratesDefaultUniquifier()
@@ -78,7 +78,7 @@ class DaemonTest extends TestCase
             'sourceRoot' => implode(DIRECTORY_SEPARATOR, [__DIR__, 'data']),
             'storage' => $this->storage->reveal()
         ]);
-        $daemon->run($this->client->reveal());
+        $daemon->run($this->client->reveal(), false);
     }
 
     public function testSpecifyDescription()
@@ -94,7 +94,7 @@ class DaemonTest extends TestCase
             'storage' => $this->storage->reveal(),
             'description' => 'some description'
         ]);
-        $daemon->run($this->client->reveal());
+        $daemon->run($this->client->reveal(), false);
     }
 
     public function testSpecifyExtSourceContext()
@@ -122,7 +122,7 @@ class DaemonTest extends TestCase
             'storage' => $this->storage->reveal(),
             'extSourceContext' => $context
         ]);
-        $daemon->run($this->client->reveal());
+        $daemon->run($this->client->reveal(), false);
     }
 
     public function testEmptyDefaultSourceContext()
@@ -136,7 +136,7 @@ class DaemonTest extends TestCase
         $daemon = new Daemon([
             'storage' => $this->storage->reveal()
         ]);
-        $daemon->run($this->client->reveal());
+        $daemon->run($this->client->reveal(), false);
     }
 
     public function testDefaultSourceContext()
@@ -160,7 +160,7 @@ class DaemonTest extends TestCase
             'sourceRoot' => $root,
             'storage' => $this->storage->reveal()
         ]);
-        $daemon->run($this->client->reveal());
+        $daemon->run($this->client->reveal(), false);
     }
 
     public function testFetchesBreakpoints()
@@ -180,7 +180,7 @@ class DaemonTest extends TestCase
         $daemon = new Daemon([
             'storage' => $this->storage->reveal()
         ]);
-        $daemon->run($this->client->reveal());
+        $daemon->run($this->client->reveal(), false);
     }
 
     public function testDetectsLabelsFromEnvironment()
@@ -205,6 +205,6 @@ class DaemonTest extends TestCase
             'metadataProvider' => $provider,
             'storage' => $this->storage->reveal()
         ]);
-        $daemon->run($this->client->reveal());
+        $daemon->run($this->client->reveal(), false);
     }
 }

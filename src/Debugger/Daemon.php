@@ -172,13 +172,13 @@ class Daemon
      * $daemon->run();
      * ```
      */
-    public function run(DebuggerClient $client = null)
+    public function run(DebuggerClient $client = null, $asDaemon = true)
     {
         $client = $client ?: $this->defaultClient();
         $extSourceContexts = $this->extSourceContext ? [$this->extSourceContext] : [];
         $uniquifier = $this->uniquifier ?: $this->defaultUniquifier();
 
-        while (true) {
+        do {
             $debuggee = $client->debuggee(null, [
                 'uniquifier' => $uniquifier,
                 'description' => $this->description,
@@ -194,7 +194,7 @@ class Daemon
 
             try {
                 $options = [];
-                while (true) {
+                do {
                     try {
                         $resp = $debuggee->breakpointsWithWaitToken($options);
                         $this->setBreakpoints($debuggee, $resp['breakpoints']);
@@ -205,12 +205,12 @@ class Daemon
                         // In this case, we'll fetch again with the same waitToken.
                     }
                     gc_collect_cycles();
-                }
+                } while ($asDaemon);
             } catch (ServiceException $e) {
                 // For any other ServiceExceptions, re-register and start over.
             }
             gc_collect_cycles();
-        }
+        } while ($asDaemon);
     }
 
     private function setBreakpoints(Debuggee $debuggee, $breakpoints)
