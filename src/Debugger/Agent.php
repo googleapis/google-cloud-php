@@ -47,7 +47,8 @@ class Agent
     use BatchDaemonTrait;
     use SysvTrait;
 
-    const DEFAULT_LOGPOINT_LOG_NAME = 'appengine.googleapis.com%2Frequest_log';
+    const DEFAULT_LOGPOINT_LOG_NAME = 'debugger_logpoints';
+    const DEFAULT_APP_ENGINE_LOG_NAME = 'appengine.googleapis.com%2Frequest_log';
 
     /**
      * @var Debuggee
@@ -261,7 +262,10 @@ class Agent
 
     private function defaultLogger()
     {
-        return LoggingClient::psrBatchLogger(self::DEFAULT_LOGPOINT_LOG_NAME);
+        $logName = isset($server['GAE_SERVICE'])
+            ? self::DEFAULT_APP_ENGINE_LOG_NAME
+            : self::DEFAULT_LOGPOINT_LOG_NAME;
+        return LoggingClient::psrBatchLogger($logName);
     }
 
     private function invalidateOpcache($breakpoint)
