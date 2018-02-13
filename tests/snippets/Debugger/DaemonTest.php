@@ -50,7 +50,7 @@ class DaemonTest extends SnippetTestCase
         ];
         $snippet = $this->snippetFromClass(Daemon::class);
         $snippet->replace('new Daemon()', 'new Daemon($options)');
-        $snippet->replace('run()', 'run($client)');
+        $snippet->replace('run()', 'run($client, false)');
         $snippet->addLocal('options', $options);
         $snippet->addLocal('client', $this->client->reveal());
         $res = $snippet->invoke('daemon');
@@ -64,7 +64,7 @@ class DaemonTest extends SnippetTestCase
         ];
         $daemon = new Daemon($options);
         $snippet = $this->snippetFromMethod(Daemon::class, 'run');
-        $snippet->replace('run()', 'run($client)');
+        $snippet->replace('run()', 'run($client, false)');
         $snippet->addLocal('daemon', $daemon);
         $snippet->addLocal('client', $this->client->reveal());
         $res = $snippet->invoke('daemon');
