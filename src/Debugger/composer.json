@@ -24,5 +24,8 @@
     },
     "archive": {
         "exclude": ["/ext"]
-    }
+    },
+    "bin": [
+        "bin/google-cloud-debugger"
+    ]
 }
