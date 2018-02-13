@@ -47,6 +47,9 @@ class Agent
     use BatchDaemonTrait;
     use SysvTrait;
 
+    const DEFAULT_LOGPOINT_LOG_NAME = 'debugger_logpoints';
+    const DEFAULT_APP_ENGINE_LOG_NAME = 'appengine.googleapis.com%2Frequest_log';
+
     /**
      * @var Debuggee
      */
@@ -167,7 +170,7 @@ class Agent
                             'snapshotId'    => $breakpoint->id(),
                             'condition'     => $breakpoint->condition(),
                             'expressions'   => $breakpoint->expressions(),
-                            'callback'      => [$this->logger, 'log'],
+                            'callback'      => [$this, 'handleLogpoint'],
                             'sourceRoot'    => $this->sourceRoot
                         ]
                     );
@@ -200,6 +203,20 @@ class Agent
             $breakpoint->addStackFrames($snapshot['stackframes']);
             $this->batchRunner->submitItem($this->identifier, $breakpoint);
         }
+    }
+
+    /**
+     * Callback for reporting a logpoint.
+     *
+     * @access private
+     * @param mixed $level
+     * @param string $message
+     * @param array $context
+     * @return void
+     */
+    public function handleLogpoint($level, $message, array $context = [])
+    {
+        $this->logger->log($level, "LOGPOINT: $message", $context);
     }
 
     /**
@@ -245,8 +262,10 @@ class Agent
 
     private function defaultLogger()
     {
-        $client = new LoggingClient();
-        return $client->psrBatchLogger('logpoints');
+        $logName = isset($server['GAE_SERVICE'])
+            ? self::DEFAULT_APP_ENGINE_LOG_NAME
+            : self::DEFAULT_LOGPOINT_LOG_NAME;
+        return LoggingClient::psrBatchLogger($logName);
     }
 
     private function invalidateOpcache($breakpoint)
