@@ -153,6 +153,19 @@ trait SnapshotTrait
         return $data;
     }
 
+    /**
+     * Fetches a list of documents by their paths, orders them to match the
+     * input order, creates a list of snapshots (whether the document exists or
+     * not), and returns.
+     *
+     * @param ConnectionInterface $connection A connection to Cloud Firestore.
+     * @param ValueMapper $mapper A Firestore value mapper.
+     * @param string $projectId The current project id.
+     * @param string $database The database id.
+     * @param string[] $paths A list of fully-qualified firestore document paths.
+     * @param array $options Configuration options.
+     * @return DocumentSnapshot[]
+     */
     private function getDocumentsByPaths(
         ConnectionInterface $connection,
         ValueMapper $mapper,
@@ -217,6 +230,17 @@ trait SnapshotTrait
         return $out;
     }
 
+    /**
+     * Creates a DocumentReference object.
+     *
+     * @param ConnectionInterface $connection A connection to Cloud Firestore.
+     * @param ValueMapper $mapper A Firestore value mapper.
+     * @param string $projectId The current project id.
+     * @param string $database The database id.
+     * @param string $name The document name, in absolute form, or relative to the database.
+     * @return DocumentReference
+     * @throws InvalidArgumentException if an invalid path is provided.
+     */
     private function getDocumentReference(
         ConnectionInterface $connection,
         ValueMapper $mapper,
@@ -246,6 +270,17 @@ trait SnapshotTrait
         );
     }
 
+    /**
+     * Creates a CollectionReference object.
+     *
+     * @param ConnectionInterface $connection A connection to Cloud Firestore.
+     * @param ValueMapper $mapper A Firestore value mapper.
+     * @param string $projectId The current project id.
+     * @param string $database The database id.
+     * @param string $name The collection name, in absolute form, or relative to the database.
+     * @return CollectionReference
+     * @throws InvalidArgumentException if an invalid path is provided.
+     */
     private function getCollectionReference(
         ConnectionInterface $connection,
         ValueMapper $mapper,
