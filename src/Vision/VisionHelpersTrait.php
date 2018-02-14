@@ -75,7 +75,6 @@ trait VisionHelpersTrait
      */
     private function buildFeatureList($featureClass, $featureTypes)
     {
-
         $features = [];
         foreach ($featureTypes as $featureType) {
             if (is_int($featureType)) {
