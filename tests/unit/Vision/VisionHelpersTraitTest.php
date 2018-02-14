@@ -39,7 +39,7 @@ class VisionHelpersTraitTest extends TestCase
 
     public function setUp()
     {
-        $this->implementation = new VisionHelpersTraitStub();
+        $this->implementation = \Google\Cloud\Core\Testing\TestHelpers::impl('\Google\Cloud\Vision\VisionHelpersTrait');
     }
 
     public function testAnnotateImageHelper()

@@ -58,7 +58,10 @@ class ImageAnnotatorClientTest extends TestCase
         $this->assertSame(ImageSource::class, get_class($image->getSource()));
     }
 
-    public function testAnnotateImage()
+    /**
+     * @dataProvider annotateImageDataProvider
+     */
+    public function testAnnotateImage($imageContent, $features)
     {
         $expectedAnnotationResponses = [new AnnotateImageResponse()];
         $expectedResponse = new BatchAnnotateImagesResponse();
@@ -71,14 +74,19 @@ class ImageAnnotatorClientTest extends TestCase
                 )
             );
 
-        $image = $this->client->createImageObject('foobar');
-        $feature = new Feature();
-        $feature->setType(Feature_Type::FACE_DETECTION);
-        $features = [$feature];
+        $image = $this->client->createImageObject($imageContent);
 
         $res = $this->client->annotateImage($image, $features);
 
         $this->assertInstanceOf(AnnotateImageResponse::class, $res);
+    }
+
+    public function annotateImageDataProvider()
+    {
+        return [
+            ['foobar', [(new Feature())->setType(Feature_Type::FACE_DETECTION)]],
+            ['foobar', [Feature_Type::FACE_DETECTION]],
+        ];
     }
 
     public function testAnnotateImageWithImageContext()

@@ -91,16 +91,14 @@ class ImageAnnotatorClient extends ImageAnnotatorGapicClient
      *
      * $imageResource = fopen('path/to/image.jpg', 'r');
      * $image = $imageAnnotatorClient->createImageObject($imageResource);
-     * $feature = new Feature();
-     * $feature->setType(Feature_Type::FACE_DETECTION);
-     * $features = [$feature];
+     * $features = [Feature_Type::FACE_DETECTION];
      * $response = $imageAnnotatorClient->annotateImage($image, $features);
      * ```
      *
-     * @param Image     $image        The image to be processed.
-     * @param Feature[] $features     Requested features.
-     * @param array     $optionalArgs {
-     *                                Optional.
+     * @param Image           $image        The image to be processed.
+     * @param Feature[]|int[] $features     Requested features.
+     * @param array           $optionalArgs {
+     *     Configuration Options.
      *
      *     @type ImageContext        $imageContext  Additional context that may accompany the image.
      *     @type RetrySettings|array $retrySettings
@@ -138,8 +136,9 @@ class ImageAnnotatorClient extends ImageAnnotatorGapicClient
      *
      * @param Image $image        An image annotation request.
      * @param array $optionalArgs {
-     *                            Optional.
+     *     Configuration Options.
      *
+     *     @type ImageContext        $imageContext  Additional context that may accompany the image.
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
@@ -173,8 +172,9 @@ class ImageAnnotatorClient extends ImageAnnotatorGapicClient
      *
      * @param Image $image        An image annotation request.
      * @param array $optionalArgs {
-     *                            Optional.
+     *     Configuration Options.
      *
+     *     @type ImageContext        $imageContext  Additional context that may accompany the image.
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
@@ -208,8 +208,9 @@ class ImageAnnotatorClient extends ImageAnnotatorGapicClient
      *
      * @param Image $image        An image annotation request.
      * @param array $optionalArgs {
-     *                            Optional.
+     *     Configuration Options.
      *
+     *     @type ImageContext        $imageContext  Additional context that may accompany the image.
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
@@ -243,8 +244,9 @@ class ImageAnnotatorClient extends ImageAnnotatorGapicClient
      *
      * @param Image $image        An image annotation request.
      * @param array $optionalArgs {
-     *                            Optional.
+     *     Configuration Options.
      *
+     *     @type ImageContext        $imageContext  Additional context that may accompany the image.
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
@@ -278,8 +280,9 @@ class ImageAnnotatorClient extends ImageAnnotatorGapicClient
      *
      * @param Image $image        An image annotation request.
      * @param array $optionalArgs {
-     *                            Optional.
+     *     Configuration Options.
      *
+     *     @type ImageContext        $imageContext  Additional context that may accompany the image.
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
@@ -313,8 +316,9 @@ class ImageAnnotatorClient extends ImageAnnotatorGapicClient
      *
      * @param Image $image        An image annotation request.
      * @param array $optionalArgs {
-     *                            Optional.
+     *     Configuration Options.
      *
+     *     @type ImageContext        $imageContext  Additional context that may accompany the image.
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
@@ -348,8 +352,9 @@ class ImageAnnotatorClient extends ImageAnnotatorGapicClient
      *
      * @param Image $image        An image annotation request.
      * @param array $optionalArgs {
-     *                            Optional.
+     *     Configuration Options.
      *
+     *     @type ImageContext        $imageContext  Additional context that may accompany the image.
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
@@ -383,8 +388,9 @@ class ImageAnnotatorClient extends ImageAnnotatorGapicClient
      *
      * @param Image $image        An image annotation request.
      * @param array $optionalArgs {
-     *                            Optional.
+     *     Configuration Options.
      *
+     *     @type ImageContext        $imageContext  Additional context that may accompany the image.
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
@@ -418,8 +424,9 @@ class ImageAnnotatorClient extends ImageAnnotatorGapicClient
      *
      * @param Image $image        An image annotation request.
      * @param array $optionalArgs {
-     *                            Optional.
+     *     Configuration Options.
      *
+     *     @type ImageContext        $imageContext  Additional context that may accompany the image.
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
@@ -453,8 +460,9 @@ class ImageAnnotatorClient extends ImageAnnotatorGapicClient
      *
      * @param Image $image        An image annotation request.
      * @param array $optionalArgs {
-     *                            Optional.
+     *     Configuration Options.
      *
+     *     @type ImageContext        $imageContext  Additional context that may accompany the image.
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
@@ -476,12 +484,14 @@ class ImageAnnotatorClient extends ImageAnnotatorGapicClient
         );
     }
 
+    /**
+     * @param Image $image
+     * @param Feature|int $featureType
+     * @param array $optionalArgs
+     * @return AnnotateImageResponse
+     */
     private function annotateSingleFeature($image, $featureType, $optionalArgs)
     {
-        $features = $this->buildFeatureList(
-            Feature::class,
-            [$featureType]
-        );
-        return $this->annotateImage($image, $features, $optionalArgs);
+        return $this->annotateImage($image, [$featureType], $optionalArgs);
     }
 }

@@ -18,6 +18,10 @@
 namespace Google\Cloud\Vision;
 
 use Google\ApiCore\ArrayTrait;
+use Google\Cloud\Vision\V1\AnnotateImageRequest;
+use Google\Cloud\Vision\V1\AnnotateImageResponse;
+use Google\Cloud\Vision\V1\Feature;
+use Google\Cloud\Vision\V1\Image;
 use InvalidArgumentException;
 
 /**
@@ -38,6 +42,14 @@ trait VisionHelpersTrait
         'gs'
     ];
 
+    /**
+     * @param callback $callback
+     * @param AnnotateImageRequest|mixed $requestClass
+     * @param Image|mixed $image
+     * @param Feature[]|int[] $features
+     * @param array $optionalArgs
+     * @return AnnotateImageResponse|mixed
+     */
     private function annotateImageHelper(
         $callback,
         $requestClass,
@@ -45,9 +57,9 @@ trait VisionHelpersTrait
         $features,
         $optionalArgs = []
     ) {
-
         $request = new $requestClass();
         $request->setImage($image);
+        $features = $this->buildFeatureList(Feature::class, $features);
         $request->setFeatures($features);
         $imageContext = $this->pluck('imageContext', $optionalArgs, false);
         if (!is_null($imageContext)) {
@@ -56,20 +68,32 @@ trait VisionHelpersTrait
         return $callback([$request], $optionalArgs)->getResponses()[0];
     }
 
-    private function buildFeatureList(
-        $featureClass,
-        $featureTypes
-    ) {
+    /**
+     * @param string $featureClass
+     * @param Feature[]|int[] $featureTypes
+     * @return Feature[]|array
+     */
+    private function buildFeatureList($featureClass, $featureTypes) {
 
         $features = [];
         foreach ($featureTypes as $featureType) {
-            $feature = new $featureClass();
-            $feature->setType($featureType);
+            if (is_int($featureType)) {
+                $feature = new $featureClass();
+                $feature->setType($featureType);
+            } else {
+                $feature = $featureType;
+            }
             $features[] = $feature;
         }
         return $features;
     }
 
+    /**
+     * @param string $imageClass
+     * @param string $imageSourceClass
+     * @param string|resource $imageInput
+     * @return Image|mixed
+     */
     private function createImageHelper($imageClass, $imageSourceClass, $imageInput)
     {
         $image = new $imageClass();
