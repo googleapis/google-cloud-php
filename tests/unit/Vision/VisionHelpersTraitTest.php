@@ -35,11 +35,13 @@ use PHPUnit\Framework\TestCase;
  */
 class VisionHelpersTraitTest extends TestCase
 {
+    use VisionHelpersTrait;
+
     private $implementation;
 
     public function setUp()
     {
-        $this->implementation = \Google\Cloud\Core\Testing\TestHelpers::impl('\Google\Cloud\Vision\VisionHelpersTrait');
+        $this->implementation = \Google\Cloud\Core\Testing\TestHelpers::impl(VisionHelpersTrait::class);
     }
 
     public function testAnnotateImageHelper()
@@ -133,12 +135,3 @@ class VisionHelpersTraitTest extends TestCase
     }
 }
 
-class VisionHelpersTraitStub
-{
-    use VisionHelpersTrait;
-
-    public function call($fn, array $args)
-    {
-        return call_user_func_array([$this, $fn], $args);
-    }
-}
