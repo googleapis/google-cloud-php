@@ -146,7 +146,7 @@ class ImageAnnotatorClientTest extends TestCase
         $expectedFeature->setType($featureType);
         $expectedFeatures = [$expectedFeature];
         $expectedRequest = new AnnotateImageRequest();
-        $expectedRequest->setImage($image);
+        $expectedRequest->setImage($this->createImageObject($image));
         $expectedRequest->setFeatures($expectedFeatures);
         $expectedRequests = [$expectedRequest];
 
@@ -194,6 +194,7 @@ class ImageAnnotatorClientTest extends TestCase
         foreach ($items as $item) {
             $item[] = 'foobar';
             $item[] = $this->createImageObject('foobar');
+            $data[] = $item;
         }
         return $data;
     }
