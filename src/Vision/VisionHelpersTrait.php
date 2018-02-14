@@ -73,7 +73,8 @@ trait VisionHelpersTrait
      * @param Feature[]|int[] $featureTypes
      * @return Feature[]|array
      */
-    private function buildFeatureList($featureClass, $featureTypes) {
+    private function buildFeatureList($featureClass, $featureTypes)
+    {
 
         $features = [];
         foreach ($featureTypes as $featureType) {
