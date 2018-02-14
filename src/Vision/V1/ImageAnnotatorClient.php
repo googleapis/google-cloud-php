@@ -90,14 +90,13 @@ class ImageAnnotatorClient extends ImageAnnotatorGapicClient
      * use Google\Cloud\Vision\V1\Feature_Type;
      *
      * $imageResource = fopen('path/to/image.jpg', 'r');
-     * $image = $imageAnnotatorClient->createImageObject($imageResource);
      * $features = [Feature_Type::FACE_DETECTION];
-     * $response = $imageAnnotatorClient->annotateImage($image, $features);
+     * $response = $imageAnnotatorClient->annotateImage($imageResource, $features);
      * ```
      *
-     * @param Image           $image        The image to be processed.
-     * @param Feature[]|int[] $features     Requested features.
-     * @param array           $optionalArgs {
+     * @param resource|string|Image $image        The image to be processed.
+     * @param Feature[]|int[]       $features     Requested features.
+     * @param array                 $optionalArgs {
      *     Configuration Options.
      *
      *     @type ImageContext        $imageContext  Additional context that may accompany the image.
@@ -115,6 +114,7 @@ class ImageAnnotatorClient extends ImageAnnotatorGapicClient
      */
     public function annotateImage($image, $features, $optionalArgs = [])
     {
+        $image = $this->createImageObject($image);
         return $this->annotateImageHelper(
             [$this, 'batchAnnotateImages'],
             AnnotateImageRequest::class,
@@ -130,8 +130,7 @@ class ImageAnnotatorClient extends ImageAnnotatorGapicClient
      * Example:
      * ```
      * $imageContent = file_get_contents('path/to/image.jpg');
-     * $image = $imageAnnotatorClient->createImageObject($imageContent);
-     * $response = $imageAnnotatorClient->faceDetection($image);
+     * $response = $imageAnnotatorClient->faceDetection($imageContent);
      * ```
      *
      * @param Image $image        An image annotation request.
@@ -166,8 +165,7 @@ class ImageAnnotatorClient extends ImageAnnotatorGapicClient
      * Example:
      * ```
      * $imageContent = file_get_contents('path/to/image.jpg');
-     * $image = $imageAnnotatorClient->createImageObject($imageContent);
-     * $response = $imageAnnotatorClient->landmarkDetection($image);
+     * $response = $imageAnnotatorClient->landmarkDetection($imageContent);
      * ```
      *
      * @param Image $image        An image annotation request.
@@ -202,8 +200,7 @@ class ImageAnnotatorClient extends ImageAnnotatorGapicClient
      * Example:
      * ```
      * $imageContent = file_get_contents('path/to/image.jpg');
-     * $image = $imageAnnotatorClient->createImageObject($imageContent);
-     * $response = $imageAnnotatorClient->logoDetection($image);
+     * $response = $imageAnnotatorClient->logoDetection($imageContent);
      * ```
      *
      * @param Image $image        An image annotation request.
@@ -238,8 +235,7 @@ class ImageAnnotatorClient extends ImageAnnotatorGapicClient
      * Example:
      * ```
      * $imageContent = file_get_contents('path/to/image.jpg');
-     * $image = $imageAnnotatorClient->createImageObject($imageContent);
-     * $response = $imageAnnotatorClient->labelDetection($image);
+     * $response = $imageAnnotatorClient->labelDetection($imageContent);
      * ```
      *
      * @param Image $image        An image annotation request.
@@ -274,8 +270,7 @@ class ImageAnnotatorClient extends ImageAnnotatorGapicClient
      * Example:
      * ```
      * $imageContent = file_get_contents('path/to/image.jpg');
-     * $image = $imageAnnotatorClient->createImageObject($imageContent);
-     * $response = $imageAnnotatorClient->textDetection($image);
+     * $response = $imageAnnotatorClient->textDetection($imageContent);
      * ```
      *
      * @param Image $image        An image annotation request.
@@ -310,8 +305,7 @@ class ImageAnnotatorClient extends ImageAnnotatorGapicClient
      * Example:
      * ```
      * $imageContent = file_get_contents('path/to/image.jpg');
-     * $image = $imageAnnotatorClient->createImageObject($imageContent);
-     * $response = $imageAnnotatorClient->documentTextDetection($image);
+     * $response = $imageAnnotatorClient->documentTextDetection($imageContent);
      * ```
      *
      * @param Image $image        An image annotation request.
@@ -346,8 +340,7 @@ class ImageAnnotatorClient extends ImageAnnotatorGapicClient
      * Example:
      * ```
      * $imageContent = file_get_contents('path/to/image.jpg');
-     * $image = $imageAnnotatorClient->createImageObject($imageContent);
-     * $response = $imageAnnotatorClient->safeSearchDetection($image);
+     * $response = $imageAnnotatorClient->safeSearchDetection($imageContent);
      * ```
      *
      * @param Image $image        An image annotation request.
@@ -382,8 +375,7 @@ class ImageAnnotatorClient extends ImageAnnotatorGapicClient
      * Example:
      * ```
      * $imageContent = file_get_contents('path/to/image.jpg');
-     * $image = $imageAnnotatorClient->createImageObject($imageContent);
-     * $response = $imageAnnotatorClient->imagePropertiesDetection($image);
+     * $response = $imageAnnotatorClient->imagePropertiesDetection($imageContent);
      * ```
      *
      * @param Image $image        An image annotation request.
@@ -418,8 +410,7 @@ class ImageAnnotatorClient extends ImageAnnotatorGapicClient
      * Example:
      * ```
      * $imageContent = file_get_contents('path/to/image.jpg');
-     * $image = $imageAnnotatorClient->createImageObject($imageContent);
-     * $response = $imageAnnotatorClient->cropHintsDetection($image);
+     * $response = $imageAnnotatorClient->cropHintsDetection($imageContent);
      * ```
      *
      * @param Image $image        An image annotation request.
@@ -454,8 +445,7 @@ class ImageAnnotatorClient extends ImageAnnotatorGapicClient
      * Example:
      * ```
      * $imageContent = file_get_contents('path/to/image.jpg');
-     * $image = $imageAnnotatorClient->createImageObject($imageContent);
-     * $response = $imageAnnotatorClient->webDetection($image);
+     * $response = $imageAnnotatorClient->webDetection($imageContent);
      * ```
      *
      * @param Image $image        An image annotation request.

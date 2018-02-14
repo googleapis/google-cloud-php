@@ -109,6 +109,16 @@ class VisionHelpersTraitTest extends TestCase
             ["gs://my_bucket/myimage.jpg", "", "gs://my_bucket/myimage.jpg"],
             ["abcdefxyz", "abcdefxyz", null],
             [$stream, $content, null],
+            [
+                $this->createImageHelper(Image::class, ImageSource::class, 'foobar'),
+                'foobar',
+                null
+            ],
+            [
+                $this->createImageHelper(Image::class, ImageSource::class, 'https://my.site/myimage.jpg'),
+                '',
+                'https://my.site/myimage.jpg'
+            ],
         ];
     }
 
@@ -129,7 +139,6 @@ class VisionHelpersTraitTest extends TestCase
     {
         return [
             [null],
-            [new Image()],
             [5],
         ];
     }

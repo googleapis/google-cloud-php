@@ -29,6 +29,7 @@ use Google\Cloud\Vision\V1\Image;
 use Google\Cloud\Vision\V1\ImageAnnotatorClient;
 use Google\Cloud\Vision\V1\ImageContext;
 use Google\Cloud\Vision\V1\ImageSource;
+use Google\Cloud\Vision\VisionHelpersTrait;
 use GuzzleHttp\Promise\FulfilledPromise;
 use Prophecy\Argument;
 use PHPUnit\Framework\TestCase;
@@ -39,7 +40,9 @@ use PHPUnit\Framework\TestCase;
  */
 class ImageAnnotatorClientTest extends TestCase
 {
-    /** @var  ImageAnnotatorClient */
+    use VisionHelpersTrait;
+
+    /** @var ImageAnnotatorClient */
     private $client;
     private $transport;
 
@@ -61,7 +64,7 @@ class ImageAnnotatorClientTest extends TestCase
     /**
      * @dataProvider annotateImageDataProvider
      */
-    public function testAnnotateImage($imageContent, $features)
+    public function testAnnotateImage($image, $features)
     {
         $expectedAnnotationResponses = [new AnnotateImageResponse()];
         $expectedResponse = new BatchAnnotateImagesResponse();
@@ -74,8 +77,6 @@ class ImageAnnotatorClientTest extends TestCase
                 )
             );
 
-        $image = $this->client->createImageObject($imageContent);
-
         $res = $this->client->annotateImage($image, $features);
 
         $this->assertInstanceOf(AnnotateImageResponse::class, $res);
@@ -84,7 +85,7 @@ class ImageAnnotatorClientTest extends TestCase
     public function annotateImageDataProvider()
     {
         return [
-            ['foobar', [(new Feature())->setType(Feature_Type::FACE_DETECTION)]],
+            [$this->createImageObject('foobar'), [(new Feature())->setType(Feature_Type::FACE_DETECTION)]],
             ['foobar', [Feature_Type::FACE_DETECTION]],
         ];
     }
@@ -139,10 +140,8 @@ class ImageAnnotatorClientTest extends TestCase
     /**
      * @dataProvider detectionMethodDataProvider
      */
-    public function testDetectionMethod($methodName, $featureType)
+    public function testDetectionMethod($methodName, $featureType, $image)
     {
-        $image = $this->client->createImageObject('foobar');
-
         $expectedFeature = new Feature();
         $expectedFeature->setType($featureType);
         $expectedFeatures = [$expectedFeature];
@@ -179,7 +178,7 @@ class ImageAnnotatorClientTest extends TestCase
 
     public function detectionMethodDataProvider()
     {
-        return [
+        $items = [
             ['faceDetection', Feature_Type::FACE_DETECTION],
             ['landmarkDetection', Feature_Type::LANDMARK_DETECTION],
             ['logoDetection', Feature_Type::LOGO_DETECTION],
@@ -191,5 +190,16 @@ class ImageAnnotatorClientTest extends TestCase
             ['cropHintsDetection', Feature_Type::CROP_HINTS],
             ['webDetection', Feature_Type::WEB_DETECTION],
         ];
+        $data = [];
+        foreach ($items as $item) {
+            $item[] = 'foobar';
+            $item[] = $this->createImageObject('foobar');
+        }
+        return $data;
+    }
+
+    private function createImageObject($imageInput)
+    {
+        return $this->createImageHelper(Image::class, ImageSource::class, $imageInput);
     }
 }

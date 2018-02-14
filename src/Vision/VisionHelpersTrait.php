@@ -89,13 +89,16 @@ trait VisionHelpersTrait
     }
 
     /**
-     * @param string $imageClass
-     * @param string $imageSourceClass
-     * @param string|resource $imageInput
+     * @param string                      $imageClass
+     * @param string                      $imageSourceClass
+     * @param string|resource|Image|mixed $imageInput
      * @return Image|mixed
      */
     private function createImageHelper($imageClass, $imageSourceClass, $imageInput)
     {
+        if (is_object($imageInput) && is_a($imageInput, $imageClass)) {
+            return $imageInput;
+        }
         $image = new $imageClass();
         if (is_string($imageInput)) {
             if (in_array(parse_url($imageInput, PHP_URL_SCHEME), $this->urlSchemes)) {
