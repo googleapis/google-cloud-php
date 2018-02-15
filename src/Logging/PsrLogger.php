@@ -109,7 +109,7 @@ class PsrLogger implements LoggerInterface, \Serializable
      *           more details.
      *           **Defaults to** ['batchSize' => 1000,
      *                            'callPeriod' => 2.0,
-     *                            'workerNum' => 2]. Applies only when
+     *                            'numWorkers' => 2]. Applies only when
      *           `batchEnabled` is set to `true`.
      *     @type array $clientConfig Configuration options for the Logging client
      *           used to handle processing of batch items. For valid options

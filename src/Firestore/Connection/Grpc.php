@@ -112,7 +112,10 @@ class Grpc implements ConnectionInterface
     public function beginTransaction(array $args)
     {
         $rw = new TransactionOptions_ReadWrite;
-        $rw->setRetryTransaction($this->pluck('retryTransaction', $args, false));
+        $retry = $this->pluck('retryTransaction', $args, false);
+        if ($retry) {
+            $rw->setRetryTransaction($retry);
+        }
 
         $args['options'] = new TransactionOptions;
         $args['options']->setReadWrite($rw);

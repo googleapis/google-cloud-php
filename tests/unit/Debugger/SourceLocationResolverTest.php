@@ -28,7 +28,7 @@ class SourceLocationResolverTest extends TestCase
 {
     public function testExactMatch()
     {
-        $location = new SourceLocation($this->sourcePath(['src', 'Debugger', 'DebuggerClient.php']), 1);
+        $location = new SourceLocation('src/Debugger/DebuggerClient.php', 1);
         $resolver = new SourceLocationResolver();
         $resolvedLocation = $resolver->resolve($location);
         $this->assertInstanceOf(SourceLocation::class, $resolvedLocation);
@@ -39,7 +39,7 @@ class SourceLocationResolverTest extends TestCase
 
     public function testExtraDirectories()
     {
-        $location = new SourceLocation($this->sourcePath(['extra', 'src', 'Debugger', 'DebuggerClient.php']), 1);
+        $location = new SourceLocation('extra/src/Debugger/DebuggerClient.php', 1);
         $resolver = new SourceLocationResolver();
         $resolvedLocation = $resolver->resolve($location);
         $this->assertInstanceOf(SourceLocation::class, $resolvedLocation);
@@ -50,7 +50,7 @@ class SourceLocationResolverTest extends TestCase
 
     public function testMissingDirectories()
     {
-        $location = new SourceLocation($this->sourcePath(['Debugger', 'DebuggerClient.php']), 1);
+        $location = new SourceLocation('Debugger/DebuggerClient.php', 1);
         $resolver = new SourceLocationResolver();
         $resolvedLocation = $resolver->resolve($location);
         $this->assertInstanceOf(SourceLocation::class, $resolvedLocation);

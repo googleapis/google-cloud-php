@@ -65,13 +65,13 @@ class SysvConfigStorage implements ConfigStorageInterface
     }
 
     /**
-     * Save the given BatchConfig.
+     * Save the given JobConfig.
      *
-     * @param BatchConfig $config A BatchConfig to save.
+     * @param JobConfig $config A JobConfig to save.
      * @return bool
      * @throws \RuntimeException when failed to attach to the shared memory or serialization fails
      */
-    public function save(BatchConfig $config)
+    public function save(JobConfig $config)
     {
         $shmid = shm_attach($this->sysvKey);
         if ($shmid === false) {
@@ -93,9 +93,9 @@ class SysvConfigStorage implements ConfigStorageInterface
     }
 
     /**
-     * Load a BatchConfig from the storage.
+     * Load a JobConfig from the storage.
      *
-     * @return BatchConfig
+     * @return JobConfig
      * @throws \RuntimeException when failed to attach to the shared memory or deserialization fails
      */
     public function load()
@@ -107,7 +107,7 @@ class SysvConfigStorage implements ConfigStorageInterface
             );
         }
         if (! shm_has_var($shmid, self::VAR_KEY)) {
-            $result = new BatchConfig();
+            $result = new JobConfig();
         } else {
             $result = shm_get_var($shmid, self::VAR_KEY);
         }
@@ -122,7 +122,7 @@ class SysvConfigStorage implements ConfigStorageInterface
     }
 
     /**
-     * Clear the BatchConfig from storage.
+     * Clear the JobConfig from storage.
      */
     public function clear()
     {
