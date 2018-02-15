@@ -988,6 +988,54 @@ Google Cloud BigQuery Data Transfer **must** be installed separately by requirin
 $ composer require google/cloud-bigquerydatatransfer
 ```
 
+## Generated Client Configuration Options
+
+Any methods which trigger a network request in our generated clients accept the same set of configuration options. Please see the details below for the accepted options:
+
+#### Accepted Options
+
+##### headers
+
+Headers to send along with the call.
+
+Accepted Types: `array`
+
+##### transportOptions
+
+Options proxied through to the underlying transport. Please specify a key with the transport type (either `rest` or `grpc`) along with the corresponding options. For example, the default HTTP handler for REST is [Guzzle](http://docs.guzzlephp.org/en/stable/), as a result any options supplied under the `rest` key will be proxied through to Guzzle.
+
+Accepted Types: `array`
+
+##### retrySettings
+
+Retry settings to use for this call. Can be a [Google\ApiCore\RetrySettings](https://github.com/googleapis/gax-php/blob/master/src/ApiCore/RetrySettings.php) object, or an associative array of retry settings parameters. See the documentation on [Google\ApiCore\RetrySettings](https://github.com/googleapis/gax-php/blob/master/src/ApiCore/RetrySettings.php) for example usage.
+
+Accepted Types: [`Google\ApiCore\RetrySettings`](https://github.com/googleapis/gax-php/blob/master/src/ApiCore/RetrySettings.php)|`array`
+
+##### timeoutMillis
+Timeout to use for this ca
+ll.
+
+Accepted Types: `int`
+
+#### Preview
+
+```php
+require 'vendor/autoload.php';
+
+use Google\Cloud\PubSub\V1\PublisherClient;
+
+$publisher = new PublisherClient();
+
+$publisher->createTopic('my-topic', [
+    'transportOptions' => [
+        'rest'=> [
+            'proxy' => 'https://localhost:8100'
+        ]
+    ]
+]);
+```
+
 ## Caching Access Tokens
 
 By default the library will use a simple in-memory caching implementation, however it is possible to override this behavior by passing a [PSR-6](http://www.php-fig.org/psr/psr-6/) caching implementation in to the desired client.
