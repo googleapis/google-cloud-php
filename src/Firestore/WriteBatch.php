@@ -104,7 +104,10 @@ class WriteBatch
      * ]);
      * ```
      *
-     * @param string $documentName The document to create.
+     * @param DocumentReference|string $document The document to target, either
+     *        as a string document name, or DocumentReference object. Please
+     *        note that DocumentReferences will be used only for the document
+     *        name. Field data must be provided in the `$fields` argument.
      * @param array $fields An array containing fields, where keys are the field
      *        names, and values are field values. Nested arrays are allowed.
      *        Note that unlike {@see Google\Cloud\Firestore\DocumentReference::update()},
@@ -113,7 +116,7 @@ class WriteBatch
      * @return WriteBatch
      * @throws \InvalidArgumentException If delete field sentinels are found in the fields list.
      */
-    public function create($documentName, array $fields, array $options = [])
+    public function create($document, array $fields, array $options = [])
     {
         $emptyDocument = count($fields) === 0;
 
@@ -127,7 +130,7 @@ class WriteBatch
 
         $transformOptions = [];
         if (!empty($fields) || $emptyDocument) {
-            $this->writes[] = $this->createDatabaseWrite(self::TYPE_UPDATE, $documentName, [
+            $this->writes[] = $this->createDatabaseWrite(self::TYPE_UPDATE, $document, [
                 'fields' => $this->valueMapper->encodeValues($fields),
                 'precondition' => $precondition
             ] + $options);
@@ -138,7 +141,7 @@ class WriteBatch
         }
 
         // Setting values to the server timestamp is implemented as a document tranformation.
-        $this->updateTransforms($documentName, $timestamps, $transformOptions);
+        $this->updateTransforms($document, $timestamps, $transformOptions);
 
         return $this;
     }
@@ -155,7 +158,10 @@ class WriteBatch
      * ]);
      *
      * @codingStandardsIgnoreStart
-     * @param string $documentName The document to update.
+     * @param DocumentReference|string $document The document to target, either
+     *        as a string document name, or DocumentReference object. Please
+     *        note that DocumentReferences will be used only for the document
+     *        name. Field data must be provided in the `$fields` argument.
      * @param array $fields An array containing fields, where keys are the field
      *        names, and values are field values. Nested arrays are allowed.
      *        Note that unlike {@see Google\Cloud\Firestore\WriteBatch::update()},
@@ -171,7 +177,7 @@ class WriteBatch
      * @codingStandardsIgnoreEnd
      * @throws \InvalidArgumentException If the fields list is empty when `$options.merge` is `true`.
      */
-    public function set($documentName, array $fields, array $options = [])
+    public function set($document, array $fields, array $options = [])
     {
         $merge = $this->pluck('merge', $options, false) ?: false;
 
@@ -187,11 +193,11 @@ class WriteBatch
                 'updateMask' => $merge ? $this->valueMapper->encodeFieldPaths($fields) : null
             ]);
 
-            $this->writes[] = $this->createDatabaseWrite(self::TYPE_UPDATE, $documentName, $write);
+            $this->writes[] = $this->createDatabaseWrite(self::TYPE_UPDATE, $document, $write);
         }
 
         // Setting values to the server timestamp is implemented as a document tranformation.
-        $this->updateTransforms($documentName, $timestamps);
+        $this->updateTransforms($document, $timestamps);
 
         return $this;
     }
@@ -244,14 +250,17 @@ class WriteBatch
      * ]);
      * ```
      *
-     * @param string $documentName The document name.
+     * @param DocumentReference|string $document The document to target, either
+     *        as a string document name, or DocumentReference object. Please
+     *        note that DocumentReferences will be used only for the document
+     *        name. Field data must be provided in the `$data` argument.
      * @param array[] $data A list of arrays of form `[FieldPath|string $path, mixed $value]`.
      * @param array $options Configuration options
      * @return WriteBatch
      * @throws \InvalidArgumentException If data is given in an invalid format or is empty.
      * @throws \InvalidArgumentException If any field paths are empty.
      */
-    public function update($documentName, array $data, array $options = [])
+    public function update($document, array $data, array $options = [])
     {
         if (!$data || $this->isAssoc($data)) {
             throw new \InvalidArgumentException(
@@ -306,7 +315,7 @@ class WriteBatch
                 }
             });
 
-            $this->writes[] = $this->createDatabaseWrite(self::TYPE_UPDATE, $documentName, [
+            $this->writes[] = $this->createDatabaseWrite(self::TYPE_UPDATE, $document, [
                 'fields' => $this->valueMapper->encodeValues($fields),
                 'updateMask' => array_unique(array_merge($updateMask, $deletes))
             ] + $options);
@@ -317,7 +326,7 @@ class WriteBatch
         }
 
         // Setting values to the server timestamp is implemented as a document tranformation.
-        $this->updateTransforms($documentName, $timestamps, $transformOptions);
+        $this->updateTransforms($document, $timestamps, $transformOptions);
 
         return $this;
     }
@@ -331,14 +340,15 @@ class WriteBatch
      * ```
      *
      * @codingStandardsIgnoreStart
-     * @param string $documentName The document to delete.
+     * @param DocumentReference|string $document The document to target, either
+     *        as a string document name, or DocumentReference object.
      * @param array $options Configuration Options
      * @return WriteBatch
      * @codingStandardsIgnoreEnd
      */
-    public function delete($documentName, array $options = [])
+    public function delete($document, array $options = [])
     {
-        $this->writes[] = $this->createDatabaseWrite(self::TYPE_DELETE, $documentName, $options);
+        $this->writes[] = $this->createDatabaseWrite(self::TYPE_DELETE, $document, $options);
 
         return $this;
     }
@@ -411,12 +421,13 @@ class WriteBatch
     /**
      * Enqueue transforms for sentinels found in UPDATE calls.
      *
-     * @param string $documentName
+     * @param DocumentReference|string $document The document to target, either
+     *        as a string document name, or DocumentReference object.
      * @param array $timestamps
      * @param array $options
      * @return void
      */
-    private function updateTransforms($documentName, array $timestamps, array $options = [])
+    private function updateTransforms($document, array $timestamps, array $options = [])
     {
         $transforms = [];
         foreach ($timestamps as $timestamp) {
@@ -427,7 +438,11 @@ class WriteBatch
         }
 
         if ($transforms) {
-            $this->writes[] = $this->createDatabaseWrite(self::TYPE_TRANSFORM, $documentName, [
+            $document = ($document instanceof DocumentReference)
+                ? $document->name()
+                : $document;
+
+            $this->writes[] = $this->createDatabaseWrite(self::TYPE_TRANSFORM, $document, [
                 'fieldTransforms' => $transforms
             ] + $options);
         }
@@ -435,7 +450,8 @@ class WriteBatch
 
     /**
      * @param string $type The write operation type.
-     * @param string $name The document name to update.
+     * @param DocumentReference|string $document The document to target, either
+     *        as a string document name, or DocumentReference object.
      * @param array $options {
      *     Configuration Options.
      *
@@ -446,7 +462,7 @@ class WriteBatch
      * }
      * @return array
      */
-    private function createDatabaseWrite($type, $name, array $options = [])
+    private function createDatabaseWrite($type, $document, array $options = [])
     {
         $mask = $this->pluck('updateMask', $options, false);
         if ($mask) {
@@ -454,10 +470,14 @@ class WriteBatch
             $mask = ['fieldPaths' => $mask];
         }
 
+        $document = ($document instanceof DocumentReference)
+            ? $document->name()
+            : $document;
+
         return array_filter([
             'updateMask' => $mask,
             'currentDocument' => $this->validatePrecondition($options),
-        ]) + $this->createDatabaseWriteOperation($type, $name, $options);
+        ]) + $this->createDatabaseWriteOperation($type, $document, $options);
     }
 
     /**
@@ -500,31 +520,32 @@ class WriteBatch
      * Create the write operation object.
      *
      * @param string $type The write type.
-     * @param string $name The document name.
+     * @param string $document The document to target, either
+     *        as a string document name, or DocumentReference object.
      * @param array $options Configuration Options.
      * @return array
      * @throws \InvalidArgumentException If $type is not a valid value.
      */
-    private function createDatabaseWriteOperation($type, $name, array $options = [])
+    private function createDatabaseWriteOperation($type, $document, array $options = [])
     {
         switch ($type) {
             case self::TYPE_UPDATE:
                 return [
                     'update' => [
-                        'name' => $name,
+                        'name' => $document,
                         'fields' => $this->pluck('fields', $options)
                     ]
                 ];
                 break;
 
             case self::TYPE_DELETE:
-                return ['delete' => $name];
+                return ['delete' => $document];
                 break;
 
             case self::TYPE_TRANSFORM:
                 return [
                     'transform' => [
-                        'document' => $name,
+                        'document' => $document,
                         'fieldTransforms' => $this->pluck('fieldTransforms', $options)
                     ]
                 ];
