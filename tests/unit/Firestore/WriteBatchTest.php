@@ -19,12 +19,13 @@ namespace Google\Cloud\Tests\Unit\Firestore;
 
 use Google\Cloud\Core\Timestamp;
 use Google\Cloud\Firestore\Connection\ConnectionInterface;
+use Google\Cloud\Firestore\DocumentReference;
 use Google\Cloud\Firestore\FieldPath;
 use Google\Cloud\Firestore\FieldValue;
 use Google\Cloud\Firestore\FirestoreClient;
+use Google\Cloud\Firestore\V1beta1\DocumentTransform_FieldTransform_ServerValue;
 use Google\Cloud\Firestore\ValueMapper;
 use Google\Cloud\Firestore\WriteBatch;
-use Google\Cloud\Firestore\V1beta1\DocumentTransform_FieldTransform_ServerValue;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
 
@@ -52,9 +53,12 @@ class WriteBatchTest extends TestCase
         ], ['connection', 'transaction']);
     }
 
-    public function testCreate()
+    /**
+     * @dataProvider documents
+     */
+    public function testCreate($name, $ref)
     {
-        $this->batch->create(self::DOCUMENT, [
+        $this->batch->create($ref, [
             'hello' => 'world'
         ]);
 
@@ -64,7 +68,7 @@ class WriteBatchTest extends TestCase
                 [
                     'currentDocument' => ['exists' => false],
                     'update' => [
-                        'name' => self::DOCUMENT,
+                        'name' => $name,
                         'fields' => ['hello' => ['stringValue' => 'world']]
                     ]
                 ]
@@ -72,9 +76,12 @@ class WriteBatchTest extends TestCase
         ]);
     }
 
-    public function testUpdate()
+    /**
+     * @dataProvider documents
+     */
+    public function testUpdate($name, $ref)
     {
-        $this->batch->update(self::DOCUMENT, [
+        $this->batch->update($ref, [
             [
                 'path' => 'hello.world',
                 'value' => 'world'
@@ -96,7 +103,7 @@ class WriteBatchTest extends TestCase
                     ],
                     'currentDocument' => ['exists' => true],
                     'update' => [
-                        'name' => self::DOCUMENT,
+                        'name' => $name,
                         'fields' => [
                             'hello' => [
                                 'mapValue' => [
@@ -136,9 +143,12 @@ class WriteBatchTest extends TestCase
         ];
     }
 
-    public function testUpdateSentinels()
+    /**
+     * @dataProvider documents
+     */
+    public function testUpdateSentinels($name, $ref)
     {
-        $this->batch->update(self::DOCUMENT, [
+        $this->batch->update($ref, [
             ['path' => 'foo', 'value' =>  'bar'],
             ['path' => 'hello', 'value' =>  FieldValue::deleteField()],
             ['path' => 'world', 'value' =>  FieldValue::serverTimestamp()],
@@ -151,14 +161,14 @@ class WriteBatchTest extends TestCase
                     'updateMask' => ['fieldPaths' => ['foo', 'hello']],
                     'currentDocument' => ['exists' => true],
                     'update' => [
-                        'name' => self::DOCUMENT,
+                        'name' => $name,
                         'fields' => [
                             'foo' => ['stringValue' => 'bar']
                         ]
                     ]
                 ], [
                     'transform' => [
-                        'document' => self::DOCUMENT,
+                        'document' => $name,
                         'fieldTransforms' => [
                             [
                                 'fieldPath' => 'world',
@@ -171,9 +181,12 @@ class WriteBatchTest extends TestCase
         ]);
     }
 
-    public function testSet()
+    /**
+     * @dataProvider documents
+     */
+    public function testSet($name, $ref)
     {
-        $this->batch->set(self::DOCUMENT, [
+        $this->batch->set($ref, [
             'hello' => 'world'
         ]);
 
@@ -182,7 +195,7 @@ class WriteBatchTest extends TestCase
             'writes' => [
                 [
                     'update' => [
-                        'name' => self::DOCUMENT,
+                        'name' => $name,
                         'fields' => ['hello' => ['stringValue' => 'world']]
                     ]
                 ]
@@ -190,9 +203,12 @@ class WriteBatchTest extends TestCase
         ]);
     }
 
-    public function testSetMerge()
+    /**
+     * @dataProvider documents
+     */
+    public function testSetMerge($name, $ref)
     {
-        $this->batch->set(self::DOCUMENT, [
+        $this->batch->set($ref, [
             'hello' => 'world'
         ], ['merge' => true]);
 
@@ -202,7 +218,7 @@ class WriteBatchTest extends TestCase
                 [
                     'updateMask' => ['fieldPaths' => ['hello']],
                     'update' => [
-                        'name' => self::DOCUMENT,
+                        'name' => $name,
                         'fields' => ['hello' => ['stringValue' => 'world']]
                     ]
                 ]
@@ -210,9 +226,12 @@ class WriteBatchTest extends TestCase
         ]);
     }
 
-    public function testSetSentinels()
+    /**
+     * @dataProvider documents
+     */
+    public function testSetSentinels($name, $ref)
     {
-        $this->batch->set(self::DOCUMENT, [
+        $this->batch->set($ref, [
             'hello' => FieldValue::deleteField(),
             'world' => FieldValue::serverTimestamp()
         ]);
@@ -222,7 +241,7 @@ class WriteBatchTest extends TestCase
             'writes' => [
                 [
                     'transform' => [
-                        'document' => self::DOCUMENT,
+                        'document' => $name,
                         'fieldTransforms' => [
                             [
                                 'fieldPath' => 'world',
@@ -235,28 +254,34 @@ class WriteBatchTest extends TestCase
         ]);
     }
 
-    public function testDelete()
+    /**
+     * @dataProvider documents
+     */
+    public function testDelete($name, $ref)
     {
-        $this->batch->delete(self::DOCUMENT);
+        $this->batch->delete($ref);
 
         $this->commitAndAssert([
             'database' => sprintf('projects/%s/databases/%s', self::PROJECT, self::DATABASE),
             'writes' => [
                 [
-                    'delete' => self::DOCUMENT
+                    'delete' => $name
                 ]
             ]
         ]);
     }
 
-    public function testWriteUpdateTimePrecondition()
+    /**
+     * @dataProvider documents
+     */
+    public function testWriteUpdateTimePrecondition($name, $ref)
     {
         $ts = [
             'seconds' => 10000,
             'nanos' => 5
         ];
 
-        $this->batch->delete(self::DOCUMENT, [
+        $this->batch->delete($ref, [
             'precondition' => [
                 'updateTime' => new Timestamp(\DateTimeImmutable::createFromFormat('U', (string) $ts['seconds']), $ts['nanos'])
             ]
@@ -266,13 +291,25 @@ class WriteBatchTest extends TestCase
             'database' => sprintf('projects/%s/databases/%s', self::PROJECT, self::DATABASE),
             'writes' => [
                 [
-                    'delete' => self::DOCUMENT,
+                    'delete' => $name,
                     'currentDocument' => [
                         'updateTime' => $ts
                     ]
                 ]
             ]
         ]);
+    }
+
+    public function documents()
+    {
+        $ref = $this->prophesize(DocumentReference::class);
+        $ref->name()->willReturn(self::DOCUMENT);
+        $doc = $ref->reveal();
+
+        return [
+            [self::DOCUMENT, self::DOCUMENT],
+            [self::DOCUMENT, $doc]
+        ];
     }
 
     /**
