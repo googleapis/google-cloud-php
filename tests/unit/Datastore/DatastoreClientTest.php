@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright 2016 Google Inc.
+ * Copyright 2017 Google Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,154 +18,126 @@
 namespace Google\Cloud\Tests\Unit\Datastore;
 
 use Google\Cloud\Core\Int64;
+use Google\Cloud\Core\Testing\DatastoreOperationRefreshTrait;
+use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Datastore\Blob;
 use Google\Cloud\Datastore\Connection\ConnectionInterface;
 use Google\Cloud\Datastore\DatastoreClient;
 use Google\Cloud\Datastore\Entity;
 use Google\Cloud\Datastore\GeoPoint;
 use Google\Cloud\Datastore\Key;
-use Google\Cloud\Datastore\Operation;
 use Google\Cloud\Datastore\Query\GqlQuery;
 use Google\Cloud\Datastore\Query\Query;
 use Google\Cloud\Datastore\Query\QueryInterface;
 use Google\Cloud\Datastore\ReadOnlyTransaction;
 use Google\Cloud\Datastore\Transaction;
-use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
 
 /**
  * @group datastore
+ * @group datastore-client
  */
-class DatastoreClientTest extends TestCase
+class DatastoreClientTest extends \PHPUnit_Framework_TestCase
 {
+    use DatastoreOperationRefreshTrait;
+
+    const PROJECT = 'example-project';
+    const TRANSACTION = 'transaction-id';
+
     private $connection;
-    private $operation;
-    private $datastore;
+    private $client;
 
     public function setUp()
     {
         $this->connection = $this->prophesize(ConnectionInterface::class);
-        $this->operation = $this->prophesize(Operation::class);
-        $this->datastore = new DatastoreClientStub(['projectId' => 'foo']);
+        $this->client = TestHelpers::stub(DatastoreClient::class, [
+            ['projectId' => self::PROJECT]
+        ], [
+            'operation'
+        ]);
     }
 
-    public function testKey()
+    public function testKeyIncomplete()
     {
-        $key = $this->datastore->key('Foo', 'Bar');
-
+        $key = $this->client->key('Person');
         $this->assertInstanceOf(Key::class, $key);
-
-        $this->assertEquals($key->keyObject()['path'][0]['kind'], 'Foo');
-        $this->assertEquals($key->keyObject()['path'][0]['name'], 'Bar');
-
-        $key = $this->datastore->key('Foo', '123');
-
-        $this->assertEquals($key->keyObject()['path'][0]['kind'], 'Foo');
-        $this->assertEquals($key->keyObject()['path'][0]['id'], '123');
-
-        $key = $this->datastore->key('Foo', 123);
-
-        $this->assertEquals($key->keyObject()['path'][0]['kind'], 'Foo');
-        $this->assertEquals($key->keyObject()['path'][0]['id'], '123');
+        $this->assertEquals(Key::STATE_INCOMPLETE, $key->state());
+        $this->assertEquals('Person', $key->pathEnd()['kind']);
     }
 
-    public function testKeyForceType()
+    public function testKeyComplete()
     {
-        $key = $this->datastore->key('Foo', '123');
-
-        $this->assertEquals($key->keyObject()['path'][0]['id'], '123');
-
-        $key = $this->datastore->key('Foo', '123', [
-            'identifierType' => Key::TYPE_NAME
-        ]);
-
-        $this->assertEquals($key->keyObject()['path'][0]['name'], '123');
+        $key = $this->client->key('Person', 'John');
+        $this->assertInstanceOf(Key::class, $key);
+        $this->assertEquals(Key::STATE_NAMED, $key->state());
+        $this->assertEquals('Person', $key->pathEnd()['kind']);
+        $this->assertEquals('John', $key->pathEnd()['name']);
     }
 
-    public function testKeyNamespaceId()
+    public function testKeyCompleteForceIdentifierType()
     {
-        $key = $this->datastore->key('Foo', 'Bar', [
-            'namespaceId' => 'MyApp'
-        ]);
-
-        $this->assertEquals($key->keyObject()['partitionId'], [
-            'projectId' => 'foo',
-            'namespaceId' => 'MyApp'
-        ]);
+        $key = $this->client->key('Person', 'John', ['identifierType' => Key::TYPE_ID]);
+        $this->assertInstanceOf(Key::class, $key);
+        $this->assertEquals(Key::STATE_NAMED, $key->state());
+        $this->assertEquals('Person', $key->pathEnd()['kind']);
+        $this->assertEquals('John', $key->pathEnd()['id']);
     }
 
     public function testKeys()
     {
-        $keys = $this->datastore->keys('Person', [
-            'allocateIds' => false
-        ]);
-
-        $this->assertInternalType('array', $keys);
-        $this->assertInstanceOf(Key::class, $keys[0]);
-        $this->assertEquals($keys[0]->keyObject()['path'][0]['kind'], 'Person');
+        $keys = $this->client->keys('Person');
+        $this->assertCount(1, $keys);
+        $this->assertContainsOnlyInstancesOf(Key::class, $keys);
+        $this->assertEquals(Key::STATE_INCOMPLETE, $keys[0]->state());
+        $this->assertEquals('Person', $keys[0]->pathEnd()['kind']);
     }
 
-    public function testKeysMultiple()
+    public function testKeysNumber()
     {
-        $keys = $this->datastore->keys('Person', [
-            'allocateIds' => false,
-            'number' => 5
-        ]);
-
-        $this->assertInternalType('array', $keys);
-        $this->assertInstanceOf(Key::class, $keys[0]);
-        $this->assertCount(5, $keys);
+        $keys = $this->client->keys('Person', ['number' => 10]);
+        $this->assertCount(10, $keys);
+        $this->assertContainsOnlyInstancesOf(Key::class, $keys);
+        $this->assertEquals(Key::STATE_INCOMPLETE, $keys[0]->state());
+        $this->assertEquals('Person', $keys[0]->pathEnd()['kind']);
     }
 
-    public function testKeysAncestors()
+    public function testKeysId()
     {
-        $ancestors = [
-            ['kind' => 'Parent1', 'id' => '123'],
-            ['kind' => 'Parent2', 'id' => '321']
-        ];
-
-        $keys = $this->datastore->keys('Person', [
-            'allocateIds' => false,
-            'ancestors' => $ancestors
-        ]);
-
-        $key = $keys[0];
-
-        $keyAncestors = $key->keyObject()['path'];
-        array_pop($keyAncestors);
-
-        $this->assertEquals($keyAncestors, $ancestors);
+        $keys = $this->client->keys('Person', ['id' => 'foo']);
+        $this->assertCount(1, $keys);
+        $this->assertContainsOnlyInstancesOf(Key::class, $keys);
+        $this->assertEquals(Key::STATE_NAMED, $keys[0]->state());
+        $this->assertEquals('Person', $keys[0]->pathEnd()['kind']);
+        $this->assertEquals('foo', $keys[0]->pathEnd()['id']);
     }
 
     public function testEntity()
     {
-        $key = $this->datastore->key('Person', 'Foo');
-
-        $entity = $this->datastore->entity($key, [
-            'foo' => 'bar'
-        ]);
-
+        $key = $this->client->key('Person', 'John');
+        $data = ['location' => 'Michigan'];
+        $entity = $this->client->entity($key, $data);
         $this->assertInstanceOf(Entity::class, $entity);
-        $this->assertEquals($entity['foo'], 'bar');
+        $this->assertEquals($key, $entity->key());
+        $this->assertEquals($data, $entity->get());
     }
 
     public function testBlob()
     {
-        $blob = $this->datastore->blob('foo');
+        $blob = $this->client->blob('foo');
         $this->assertInstanceOf(Blob::class, $blob);
         $this->assertEquals('foo', (string) $blob);
     }
 
     public function testInt64()
     {
-        $int64 = $this->datastore->int64('12345');
+        $int64 = $this->client->int64('12345');
         $this->assertInstanceOf(Int64::class, $int64);
         $this->assertEquals('12345', $int64->get());
     }
 
     public function testGeoPoint()
     {
-        $point = $this->datastore->geoPoint(1.1, 0.1);
+        $point = $this->client->geoPoint(1.1, 0.1);
         $this->assertInstanceOf(GeoPoint::class, $point);
         $this->assertEquals($point->point(), [
             'latitude' => 1.1,
@@ -173,401 +145,408 @@ class DatastoreClientTest extends TestCase
         ]);
     }
 
-    public function testAllocateId()
+    /**
+     * @dataProvider allocateIdProvider
+     */
+    public function testAllocateId($method, $batch = false)
     {
-        $datastore = new DatastoreClientStubNoService;
+        $key = new Key('foo');
+        $key->pathElement('Person');
+        $id = 12345;
+        $keyWithId = clone $key;
+        $keyWithId->setLastElementIdentifier($id);
 
-        $key = $datastore->key('Person');
+        $this->connection->allocateIds(Argument::withEntry('keys', [
+            $key->keyObject()
+        ]))->shouldBeCalled()->willReturn([
+            'keys' => [
+                $keyWithId->keyObject()
+            ]
+        ]);
 
-        $key = $datastore->allocateId($key);
+        $this->refreshOperation($this->client, $this->connection->reveal());
 
-        $this->assertInstanceOf(Key::class, $key);
-        $this->assertTrue($datastore->didCallAllocateIds);
+        $res = $batch
+            ? $this->client->$method([$key])[0]
+            : $this->client->$method($key);
+
+        $this->assertInstanceOf(Key::class, $res);
+        $this->assertEquals($id, $res->pathEnd()['id']);
+        $this->assertEquals('Person', $res->pathEnd()['kind']);
     }
 
-    public function testAllocateIds()
+    public function allocateIdProvider()
     {
-        $this->operation->allocateIds(Argument::type('array'), Argument::type('array'))
-            ->shouldBeCalled()
-            ->willReturn([]);
-
-        $this->datastore->setOperation($this->operation->reveal());
-
-        $key = $this->prophesize(Key::class);
-        $keys = [
-            $key->reveal(),
-            $key->reveal()
+        return [
+            ['allocateId'],
+            ['allocateIds', true]
         ];
-
-        $res = $this->datastore->allocateIds($keys);
-
-        $this->assertInternalType('array', $res);
-    }
-
-    public function testTransaction()
-    {
-        $this->connection->beginTransaction($this->validateTransactionOptions('readWrite'))
-            ->shouldBeCalled()
-            ->willReturn(['transaction' => '1234']);
-
-        $this->datastore->setConnection($this->connection->reveal());
-
-        $t = $this->datastore->transaction();
-
-        $this->assertInstanceOf(Transaction::class, $t);
-    }
-
-    public function testTransactionPreviousTransaction()
-    {
-        $prev = 'foo';
-        $id = 'bar';
-
-        $this->connection->beginTransaction($this->validateTransactionOptions('readWrite', [
-            'previousTransaction' => $prev
-        ]))->shouldBeCalled()->willReturn(['transaction' => $id]);
-
-        $this->datastore->setConnection($this->connection->reveal());
-
-        $t = $this->datastore->transaction(['transactionOptions' => ['previousTransaction' => $prev]]);
-        $this->assertInstanceOf(Transaction::class, $t);
-    }
-
-    public function testTransactionWithOptions()
-    {
-        $id = 'bar';
-
-        $this->connection->beginTransaction($this->validateTransactionOptions('readWrite', [
-            'foo' => 'bar'
-        ]))->shouldBeCalled()->willReturn(['transaction' => $id]);
-
-        $this->datastore->setConnection($this->connection->reveal());
-
-        $t = $this->datastore->transaction(['transactionOptions' => ['foo' => 'bar']]);
-        $this->assertInstanceOf(Transaction::class, $t);
-    }
-
-    public function testReadOnlyTransaction()
-    {
-        $this->connection->beginTransaction($this->validateTransactionOptions('readOnly'))
-            ->shouldBeCalled()
-            ->willReturn(['transaction' => '1234']);
-
-        $this->datastore->setConnection($this->connection->reveal());
-
-        $t = $this->datastore->readOnlyTransaction();
-
-        $this->assertInstanceOf(ReadOnlyTransaction::class, $t);
-    }
-
-    public function testReadOnlyTransactionWithOptions()
-    {
-        $id = 'bar';
-
-        $this->connection->beginTransaction($this->validateTransactionOptions('readOnly', [
-                'foo' => 'bar'
-        ]))->shouldBeCalled()->willReturn(['transaction' => $id]);
-
-        $this->datastore->setConnection($this->connection->reveal());
-
-        $t = $this->datastore->readOnlyTransaction(['transactionOptions' => ['foo' => 'bar']]);
-        $this->assertInstanceOf(ReadOnlyTransaction::class, $t);
-    }
-
-    public function testInsert()
-    {
-        $e = $this->prophesize(Entity::class);
-
-        $this->operation->allocateIdsToEntities(Argument::type('array'))
-            ->willReturn([$e->reveal()]);
-
-        $this->operation->mutation(Argument::exact('insert'), Argument::type(Entity::class), Argument::exact(Entity::class), Argument::exact(null))
-            ->shouldBeCalled();
-
-        $this->operation->commit(Argument::type('array'), Argument::type('array'))
-            ->shouldBeCalled()
-            ->willReturn(['mutationResults' => [['version' => '1234']]]);
-
-        $this->datastore->setOperation($this->operation->reveal());
-
-        $res = $this->datastore->insert($e->reveal());
-
-        $this->assertEquals($res, '1234');
     }
 
     /**
-     * @expectedException DomainException
+     * @dataProvider transactionProvider
      */
-    public function testInsertConflict()
+    public function testTransaction($method, $type, $key)
     {
-        $e = $this->prophesize(Entity::class);
+        $this->connection->beginTransaction(Argument::allOf(
+            Argument::withEntry('projectId', self::PROJECT),
+            // can't do direct comparisons between (object)[].
+            Argument::that(function ($arg) use ($key) {
+                if (!($arg['transactionOptions'][$key] instanceof \stdClass)) return false;
+                if ((array) $arg['transactionOptions'][$key]) return false;
 
-        $this->operation->allocateIdsToEntities(Argument::type('array'))
-            ->willReturn([$e->reveal()]);
+                return true;
+            })
+        ))->shouldBeCalled()->willReturn([
+            'transaction' => self::TRANSACTION
+        ]);
 
-        $this->operation->mutation(Argument::exact('insert'), Argument::type(Entity::class), Argument::exact(Entity::class), Argument::exact(null))
-            ->shouldBeCalled();
-
-        $this->operation->commit(Argument::type('array'), Argument::type('array'))
-            ->shouldBeCalled()
-            ->willReturn(['mutationResults' => [['version' => '1234', 'conflictDetected' => true]]]);
-
-        $this->datastore->setOperation($this->operation->reveal());
-
-        $res = $this->datastore->insert($e->reveal());
+        $this->refreshOperation($this->client, $this->connection->reveal(), ['projectId' => self::PROJECT]);
+        $res = $this->client->$method();
+        $this->assertInstanceOf($type, $res);
     }
 
-    public function testInsertBatch()
+    /**
+     * @dataProvider transactionProvider
+     */
+    public function testTransactionWithOptions($method, $type, $key)
     {
-        $e = $this->prophesize(Entity::class);
+        $options = ['foo' => 'bar'];
 
-        $this->operation->commit(Argument::type('array'), Argument::type('array'))
+        $this->connection->beginTransaction(Argument::allOf(
+            Argument::withEntry('projectId', self::PROJECT),
+            Argument::withEntry('transactionOptions', [
+                $key => $options
+            ])
+        ))->shouldBeCalled()->willReturn([
+            'transaction' => self::TRANSACTION
+        ]);
+
+        // Make sure the correct transaction ID was injected.
+        $this->connection->runQuery(Argument::withEntry('transaction', self::TRANSACTION))
             ->shouldBeCalled()
-            ->willReturn(['mutationResults' => [['version' => '1234']]]);
+            ->willReturn([]);
 
-        $this->operation->mutation(Argument::exact('insert'), Argument::type(Entity::class), Argument::exact(Entity::class), Argument::exact(null))
-            ->shouldBeCalled();
+        $this->refreshOperation($this->client, $this->connection->reveal());
 
-        $this->operation->allocateIdsToEntities(Argument::type('array'))
-            ->willReturn([$e->reveal()]);
+        $res = $this->client->$method(['transactionOptions' => $options]);
+        $this->assertInstanceOf($type, $res);
 
-        $this->datastore->setOperation($this->operation->reveal());
-
-        $res = $this->datastore->insertBatch([$e->reveal()]);
-
-        $this->assertEquals($res, ['mutationResults' => [['version' => '1234']]]);
+        iterator_to_array($res->runQuery($this->client->gqlQuery('SELECT 1=1')));
     }
 
-    public function testUpdate()
+    public function transactionProvider()
     {
-        $this->operation->commit(Argument::type('array'), Argument::type('array'))
-            ->shouldBeCalled()
-            ->willReturn(['mutationResults' => [['version' => '1234']]]);
-
-        $this->operation->mutation(Argument::exact('update'), Argument::type(Entity::class), Argument::exact(Entity::class), Argument::exact(null))
-            ->shouldBeCalled();
-
-        $this->operation->checkOverwrite(Argument::type('array'), Argument::type('bool'))
-            ->shouldBeCalled();
-
-        $this->datastore->setOperation($this->operation->reveal());
-
-        $e = $this->prophesize(Entity::class);
-
-        $res = $this->datastore->update($e->reveal());
-
-        $this->assertEquals($res, '1234');
+        return [
+            ['readOnlyTransaction', ReadOnlyTransaction::class, 'readOnly'],
+            ['transaction', Transaction::class, 'readWrite']
+        ];
     }
 
-    public function testUpdateBatch()
+    /**
+     * @dataProvider mutationsProvider
+     */
+    public function testEntityMutations($method, $mutation, $key)
     {
-        $this->operation->commit(Argument::type('array'), Argument::type('array'))
-            ->shouldBeCalled()
-            ->willReturn(['mutationResults' => [['version' => '1234']]]);
+        $this->connection->commit(Argument::allOf(
+            Argument::withEntry('transaction', null),
+            Argument::withEntry('mode', 'NON_TRANSACTIONAL'),
+            Argument::withEntry('mutations', [[$method => $mutation]])
+        ))->shouldBeCalled()->willReturn($this->commitResponse());
 
-        $this->operation->mutation(Argument::exact('update'), Argument::type(Entity::class), Argument::exact(Entity::class), Argument::exact(null))
-            ->shouldBeCalled();
+        $this->refreshOperation($this->client, $this->connection->reveal());
 
-        $this->operation->checkOverwrite(Argument::type('array'), Argument::type('bool'))
-            ->shouldBeCalled();
+        $entity = $this->client->entity($key, ['name' => 'John']);
+        $res = $this->client->$method($entity, ['allowOverwrite' => true]);
 
-        $this->datastore->setOperation($this->operation->reveal());
-
-        $e = $this->prophesize(Entity::class);
-
-        $res = $this->datastore->updateBatch([$e->reveal()]);
-
-        $this->assertEquals($res, ['mutationResults' => [['version' => '1234']]]);
+        $this->assertEquals($this->commitResponse()['mutationResults'][0]['version'], $res);
     }
 
-    public function testUpsert()
+    /**
+     * @dataProvider mutationsProvider
+     */
+    public function testEntityMutationsBatch($method, $mutation, $key)
     {
-        $this->operation->commit(Argument::type('array'), Argument::type('array'))
-            ->shouldBeCalled()
-            ->willReturn(['mutationResults' => [['version' => '1234']]]);
+        $this->connection->commit(Argument::allOf(
+            Argument::withEntry('transaction', null),
+            Argument::withEntry('mode', 'NON_TRANSACTIONAL'),
+            Argument::withEntry('mutations', [[$method => $mutation]])
+        ))->shouldBeCalled()->willReturn($this->commitResponse());
 
-        $this->operation->mutation(Argument::exact('upsert'), Argument::type(Entity::class), Argument::exact(Entity::class), Argument::exact(null))
-            ->shouldBeCalled();
+        $this->refreshOperation($this->client, $this->connection->reveal());
 
-        $this->datastore->setOperation($this->operation->reveal());
+        $method = $method . 'Batch';
 
-        $e = $this->prophesize(Entity::class);
+        $entity = $this->client->entity($key, ['name' => 'John']);
+        $res = $this->client->$method([$entity], ['allowOverwrite' => true]);
 
-        $res = $this->datastore->upsert($e->reveal());
-
-        $this->assertEquals($res, '1234');
+        $this->assertEquals($this->commitResponse(), $res);
     }
 
-    public function testUpsertBatch()
+    public function mutationsProvider()
     {
-        $this->operation->commit(Argument::type('array'), Argument::type('array'))
-            ->shouldBeCalled()
-            ->willReturn(['mutationResults' => [['version' => '1234']]]);
+        return $this->mutationsProviderProvider(123245);
+    }
 
-        $this->operation->mutation(Argument::exact('upsert'), Argument::type(Entity::class), Argument::exact(Entity::class), Argument::exact(null))
-            ->shouldBeCalled();
+    /**
+     * @dataProvider partialKeyMutationsProvider
+     */
+    public function testMutationsWithPartialKey($method, $mutation, $key, $id)
+    {
+        $this->connection->commit(Argument::allOf(
+            Argument::withEntry('transaction', null),
+            Argument::withEntry('mode', 'NON_TRANSACTIONAL'),
+            Argument::withEntry('mutations', [[$method => $mutation]])
+        ))->shouldBeCalled()->willReturn($this->commitResponse());
 
-        $this->datastore->setOperation($this->operation->reveal());
+        $keyWithId = clone $key;
+        $keyWithId->setLastElementIdentifier($id);
+        $this->connection->allocateIds(Argument::allOf(
+            Argument::withEntry('keys', [$key->keyObject()])
+        ))->shouldBeCalled()->willReturn([
+            'keys' => [
+                $keyWithId->keyObject()
+            ]
+        ]);
 
-        $e = $this->prophesize(Entity::class);
+        $this->refreshOperation($this->client, $this->connection->reveal());
 
-        $res = $this->datastore->upsertBatch([$e->reveal()]);
+        $entity = $this->client->entity($key, ['name' => 'John']);
+        $this->client->$method($entity);
+    }
 
-        $this->assertEquals($res, ['mutationResults' => [['version' => '1234']]]);
+    /**
+     * @dataProvider partialKeyMutationsProvider
+     */
+    public function testBatchMutationsWithPartialKey($method, $mutation, $key, $id)
+    {
+        $this->connection->commit(Argument::allOf(
+            Argument::withEntry('transaction', null),
+            Argument::withEntry('mode', 'NON_TRANSACTIONAL'),
+            Argument::withEntry('mutations', [[$method => $mutation]])
+        ))->shouldBeCalled()->willReturn($this->commitResponse());
+
+        $keyWithId = clone $key;
+        $keyWithId->setLastElementIdentifier($id);
+        $this->connection->allocateIds(Argument::allOf(
+            Argument::withEntry('keys', [$key->keyObject()])
+        ))->shouldBeCalled()->willReturn([
+            'keys' => [
+                $keyWithId->keyObject()
+            ]
+        ]);
+
+        $this->refreshOperation($this->client, $this->connection->reveal());
+
+        $method = $method . 'Batch';
+        $entity = $this->client->entity($key, ['name' => 'John']);
+        $this->client->$method([$entity]);
+    }
+
+    public function partialKeyMutationsProvider()
+    {
+        $res = $this->mutationsProviderProvider(12345, true);
+        return array_filter($res, function ($case) {
+            return $case[0] !== 'update';
+        });
     }
 
     public function testDelete()
     {
-        $this->operation->commit(Argument::type('array'), Argument::type('array'))
-            ->shouldBeCalled()
-            ->willReturn(['mutationResults' => [['version' => '1234']]]);
+        $key = $this->client->key('Person', 'John');
 
-        $this->operation->mutation(Argument::exact('delete'), Argument::type(Key::class), Argument::exact(Key::class), Argument::exact(null))
-            ->shouldBeCalled();
+        $this->connection->commit(Argument::allOf(
+            Argument::withEntry('transaction', null),
+            Argument::withEntry('mode', 'NON_TRANSACTIONAL'),
+            Argument::withEntry('mutations', [
+                [
+                    'delete' => $key->keyObject()
+                ]
+            ])
+        ))->shouldBeCalled()->willReturn($this->commitResponse());
 
-        $this->datastore->setOperation($this->operation->reveal());
+        $this->refreshOperation($this->client, $this->connection->reveal());
 
-        $key = $this->prophesize(Key::class);
+        $res = $this->client->delete($key);
 
-        $res = $this->datastore->delete($key->reveal());
-
-        $this->assertEquals($res, '1234');
+        $this->assertEquals($this->commitResponse()['mutationResults'][0]['version'], $res);
     }
 
     public function testDeleteBatch()
     {
-        $this->operation->commit(Argument::type('array'), Argument::type('array'))
-            ->shouldBeCalled()
-            ->willReturn(['mutationResults' => [['version' => '1234']]]);
+        $key = $this->client->key('Person', 'John');
 
-        $this->operation->mutation(Argument::exact('delete'), Argument::type(Key::class), Argument::exact(Key::class), Argument::exact(null))
-            ->shouldBeCalled();
+        $this->connection->commit(Argument::allOf(
+            Argument::withEntry('transaction', null),
+            Argument::withEntry('mode', 'NON_TRANSACTIONAL'),
+            Argument::withEntry('mutations', [
+                [
+                    'delete' => $key->keyObject()
+                ]
+            ])
+        ))->shouldBeCalled()->willReturn($this->commitResponse());
 
-        $this->datastore->setOperation($this->operation->reveal());
+        $this->refreshOperation($this->client, $this->connection->reveal());
 
-        $key = $this->prophesize(Key::class);
+        $res = $this->client->deleteBatch([$key]);
 
-        $res = $this->datastore->deleteBatch([$key->reveal()]);
-
-        $this->assertEquals($res, ['mutationResults' => [['version' => '1234']]]);
+        $this->assertEquals($this->commitResponse(), $res);
     }
 
     public function testLookup()
     {
-        $ds = new DatastoreClientStubNoService;
+        $key = $this->client->key('Person', 'John');
 
-        $key = $ds->key('Kind', 'Value');
-        $res = $ds->lookup($key);
+        $this->connection->lookup(
+            Argument::withEntry('keys', [$key->keyObject()])
+        )->shouldBeCalled()->willReturn([
+            'found' => [
+                [
+                    'entity' => $this->entityArray($key)
+                ]
+            ]
+        ]);
 
+        $this->refreshOperation($this->client, $this->connection->reveal());
+
+        $key = $this->client->key('Person', 'John');
+        $res = $this->client->lookup($key);
         $this->assertInstanceOf(Entity::class, $res);
-        $this->assertTrue($ds->didCallLookupBatch);
-        $this->assertEquals($key, $ds->keys[0]);
+        $this->assertEquals($key->keyObject(), $res->key()->keyObject());
+    }
+
+    public function testLookupMissing()
+    {
+        $key = $this->client->key('Person', 'John');
+
+        $this->connection->lookup(
+            Argument::withEntry('keys', [$key->keyObject()])
+        )->shouldBeCalled()->willReturn([
+            'missing' => [
+                [
+                    'entity' => $this->entityArray($key)
+                ]
+            ]
+        ]);
+
+        $this->refreshOperation($this->client, $this->connection->reveal());
+
+        $key = $this->client->key('Person', 'John');
+        $res = $this->client->lookup($key);
+        $this->assertNull($res);
     }
 
     public function testLookupBatch()
     {
-        $body = json_decode(file_get_contents(Fixtures::ENTITY_BATCH_LOOKUP_FIXTURE()), true);
-        $this->operation->lookup(Argument::type('array'), Argument::type('array'))
-            ->shouldBeCalled()
-            ->willReturn(['foo']);
+        $key = $this->client->key('Person', 'John');
 
-        $this->datastore->setOperation($this->operation->reveal());
+        $this->connection->lookup(
+            Argument::withEntry('keys', [$key->keyObject()])
+        )->shouldBeCalled()->willReturn([
+            'found' => [
+                [
+                    'entity' => $this->entityArray($key)
+                ]
+            ],
+            'missing' => [
+                [
+                    'entity' => $this->entityArray($key)
+                ]
+            ],
+            'deferred' => [
+                $key->keyObject()
+            ]
+        ]);
 
-        $key = $this->prophesize(Key::class);
+        $this->refreshOperation($this->client, $this->connection->reveal());
 
-        $res = $this->datastore->lookupBatch([$key->reveal()]);
-
-        $this->assertEquals($res, ['foo']);
+        $key = $this->client->key('Person', 'John');
+        $res = $this->client->lookupBatch([$key]);
+        $this->assertInstanceOf(Entity::class, $res['found'][0]);
+        $this->assertInstanceOf(Key::class, $res['missing'][0]);
+        $this->assertInstanceOf(Key::class, $res['deferred'][0]);
     }
 
     public function testQuery()
     {
-        $q = $this->datastore->query();
-
+        $query = ['foo' => 'bar'];
+        $q = $this->client->query($query);
         $this->assertInstanceOf(Query::class, $q);
+        $this->assertEquals(['query' => $query], $q->queryObject());
     }
 
     public function testGqlQuery()
     {
-        $q = $this->datastore->gqlQuery('foo');
+        $query = 'SELECT 1=1';
+        $q = $this->client->gqlQuery($query);
         $this->assertInstanceOf(GqlQuery::class, $q);
+        $this->assertEquals($query, $q->queryObject()['queryString']);
     }
 
     public function testRunQuery()
     {
-        $queryResult = json_decode(file_get_contents(Fixtures::QUERY_RESULTS_FIXTURE()), true);
+        $key = $this->client->key('Person', 'John');
 
-        $this->operation->runQuery(Argument::type(QueryInterface::class), Argument::type('array'))
-            ->shouldBeCalled()
-            ->willReturn('foo');
+        $this->connection->runQuery(Argument::allOf(
+            Argument::withEntry('partitionId', ['projectId' => self::PROJECT]),
+            Argument::withEntry('gqlQuery', ['queryString' => 'SELECT 1=1'])
+        ))->shouldBeCalled()->willReturn([
+            'batch' => [
+                'entityResults' => [
+                    [
+                        'entity' => $this->entityArray($key)
+                    ]
+                ]
+            ]
+        ]);
 
-        $this->datastore->setOperation($this->operation->reveal());
+        $this->refreshOperation($this->client, $this->connection->reveal());
 
-        $q = $this->datastore->query();
-        $res = $this->datastore->runQuery($q);
+        $query = $this->prophesize(QueryInterface::class);
+        $query->queryKey()->willReturn('gqlQuery');
+        $query->queryObject()->willReturn(['queryString' => 'SELECT 1=1']);
 
-        $this->assertEquals($res, 'foo');
+        $res = iterator_to_array($this->client->runQuery($query->reveal()));
+        $this->assertContainsOnlyInstancesOf(Entity::class, $res);
     }
 
-    private function validateTransactionOptions($type, array $options = [])
+    private function commitResponse()
     {
-        return Argument::that(function ($args) use ($type, $options) {
-            if (!isset($args['transactionOptions'])) {
-                echo 'missing opts';
-                return false;
-            }
-            if (!array_key_exists($type, $args['transactionOptions'])) {
-                echo 'missing key';
-                return false;
-            }
-
-            if (!empty((array) $options)) {
-                return $options === $args['transactionOptions'][$type];
-            } else {
-                return is_object($args['transactionOptions'][$type]) && empty((array) $args['transactionOptions'][$type]);
-            }
-
-            return true;
-        });
-    }
-}
-
-class DatastoreClientStub extends DatastoreClient
-{
-    public function setConnection($connection)
-    {
-        $this->connection = $connection;
+        return [
+            'mutationResults' => [
+                [
+                    'version' => 1
+                ]
+            ]
+        ];
     }
 
-    public function setOperation($operation)
+    private function entityArray(Key $key)
     {
-        $this->operation = $operation;
-    }
-}
-
-class DatastoreClientStubNoService extends DatastoreClientStub
-{
-    public $didCallAllocateIds = false;
-
-    public function allocateIds(array $keys, array $options = [])
-    {
-        $this->didCallAllocateIds = true;
-        return $keys;
+        return [
+            'key' => $key->keyObject(),
+            'properties' => [
+                'name' => [
+                    'stringValue' => 'John'
+                ]
+            ]
+        ];
     }
 
-    public $didCallBeginTransaction = false;
-
-    public function beginTransaction(array $options = [])
+    private function mutationsProviderProvider($id, $partialKey = false)
     {
-        $this->didCallBeginTransaction = true;
-        return new Transaction($this->connection, '', '');
-    }
+        $key = new Key(self::PROJECT);
+        $key->pathElement('Person', !$partialKey ? $id : null);
+        $mutation = $this->entityArray($key);
 
-    public $didCallLookupBatch = false;
-    public $keys = [];
-    public function lookupBatch(array $keys, array $options = [])
-    {
-        $this->keys = $keys;
-        $this->didCallLookupBatch = true;
-        return ['found' => [$this->entity($this->key('Kind', 'Value'), ['foo' => 'bar'])]];
+        if ($partialKey) {
+            $mutation['key']['path'][0]['id'] = $id;
+        }
+
+        return [
+            ['insert', $mutation, clone $key, $id],
+            ['update', $mutation, clone $key, $id],
+            ['upsert', $mutation, clone $key, $id],
+        ];
     }
 }

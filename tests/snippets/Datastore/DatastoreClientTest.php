@@ -18,7 +18,9 @@
 namespace Google\Cloud\Tests\Snippets\Datastore;
 
 use Google\Cloud\Core\Int64;
+use Google\Cloud\Core\Testing\DatastoreOperationRefreshTrait;
 use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
+use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Datastore\Blob;
 use Google\Cloud\Datastore\Connection\ConnectionInterface;
 use Google\Cloud\Datastore\DatastoreClient;
@@ -39,6 +41,8 @@ use Prophecy\Argument;
  */
 class DatastoreClientTest extends SnippetTestCase
 {
+    use DatastoreOperationRefreshTrait;
+
     private $connection;
     private $operation;
     private $client;
@@ -47,10 +51,7 @@ class DatastoreClientTest extends SnippetTestCase
     public function setUp()
     {
         $this->connection = $this->prophesize(ConnectionInterface::class);
-        $this->operation = $this->prophesize(Operation::class);
-
-        $this->client = new DatastoreClientStub();
-        $this->client->setConnection($this->connection->reveal());
+        $this->client = TestHelpers::stub(DatastoreClient::class, [], ['operation']);
 
         $this->key = new Key('my-awesome-project', [
             [
@@ -258,7 +259,7 @@ class DatastoreClientTest extends SnippetTestCase
         $snippet->addLocal('datastore', $this->client);
 
         $this->allocateIdsConnectionMock();
-        $this->client->setConnection($this->allocateIdsConnectionMock());
+        $this->refreshOperation($this->client, $this->connection->reveal());
 
         $res = $snippet->invoke('keyWithAllocatedId');
 
@@ -273,7 +274,7 @@ class DatastoreClientTest extends SnippetTestCase
         $snippet->addLocal('datastore', $this->client);
 
         $this->allocateIdsConnectionMock();
-        $this->client->setConnection($this->allocateIdsConnectionMock());
+        $this->refreshOperation($this->client, $this->connection->reveal());
 
         $res = $snippet->invoke('keysWithAllocatedIds');
 
@@ -294,7 +295,7 @@ class DatastoreClientTest extends SnippetTestCase
                 'transaction' => 'foo'
             ]);
 
-        $this->client->setConnection($this->connection->reveal());
+        $this->refreshOperation($this->client, $this->connection->reveal());
 
         $res = $snippet->invoke('transaction');
         $this->assertInstanceOf(Transaction::class, $res->returnVal());
@@ -309,7 +310,7 @@ class DatastoreClientTest extends SnippetTestCase
             ->willReturn([
                 'transaction' => 'foo'
             ]);
-        $this->client->setConnection($this->connection->reveal());
+        $this->refreshOperation($this->client, $this->connection->reveal());
         $res = $snippet->invoke('transaction');
         $this->assertInstanceOf(ReadOnlyTransaction::class, $res->returnVal());
     }
@@ -329,7 +330,7 @@ class DatastoreClientTest extends SnippetTestCase
                 ]
             ]);
 
-        $this->client->setConnection($this->connection->reveal());
+        $this->refreshOperation($this->client, $this->connection->reveal());
 
         $res = $snippet->invoke('entity');
 
@@ -348,7 +349,7 @@ class DatastoreClientTest extends SnippetTestCase
 
         $this->allocateIdsConnectionMock();
 
-        $this->client->setConnection($this->connection->reveal());
+        $this->refreshOperation($this->client, $this->connection->reveal());
 
         $res = $snippet->invoke('entities');
 
@@ -373,7 +374,7 @@ class DatastoreClientTest extends SnippetTestCase
                 ]
             ]);
 
-        $this->client->setConnection($this->connection->reveal());
+        $this->refreshOperation($this->client, $this->connection->reveal());
 
         $res = $snippet->invoke();
     }
@@ -389,8 +390,9 @@ class DatastoreClientTest extends SnippetTestCase
 
         $this->connection->commit(Argument::that(function ($args) {
             return array_keys($args['mutations'][0])[0] === 'update';
-        }))
-            ->shouldBeCalled();
+        }))->shouldBeCalled();
+
+        $this->refreshOperation($this->client, $this->connection->reveal());
 
         $res = $snippet->invoke();
     }
@@ -410,7 +412,7 @@ class DatastoreClientTest extends SnippetTestCase
                 ]
             ]);
 
-        $this->client->setConnection($this->connection->reveal());
+        $this->refreshOperation($this->client, $this->connection->reveal());
 
         $res = $snippet->invoke();
     }
@@ -422,8 +424,9 @@ class DatastoreClientTest extends SnippetTestCase
 
         $this->connection->commit(Argument::that(function ($args) {
             return array_keys($args['mutations'][0])[0] === 'upsert';
-        }))
-            ->shouldBeCalled();
+        }))->shouldBeCalled();
+
+        $this->refreshOperation($this->client, $this->connection->reveal());
 
         $res = $snippet->invoke();
     }
@@ -443,7 +446,7 @@ class DatastoreClientTest extends SnippetTestCase
                 ]
             ]);
 
-        $this->client->setConnection($this->connection->reveal());
+        $this->refreshOperation($this->client, $this->connection->reveal());
 
         $res = $snippet->invoke();
     }
@@ -455,8 +458,9 @@ class DatastoreClientTest extends SnippetTestCase
 
         $this->connection->commit(Argument::that(function ($args) {
             return array_keys($args['mutations'][0])[0] === 'delete';
-        }))
-            ->shouldBeCalled();
+        }))->shouldBeCalled();
+
+        $this->refreshOperation($this->client, $this->connection->reveal());
 
         $res = $snippet->invoke();
     }
@@ -487,7 +491,7 @@ class DatastoreClientTest extends SnippetTestCase
                 ]
             ]);
 
-        $this->client->setConnection($this->connection->reveal());
+        $this->refreshOperation($this->client, $this->connection->reveal());
 
         $res = $snippet->invoke();
         $this->assertEquals('Bob', $res->output());
@@ -533,7 +537,7 @@ class DatastoreClientTest extends SnippetTestCase
                 ]
             ]);
 
-        $this->client->setConnection($this->connection->reveal());
+        $this->refreshOperation($this->client, $this->connection->reveal());
 
         $res = $snippet->invoke();
         $this->assertEquals("Bob", explode("\n", $res->output())[0]);
@@ -614,7 +618,7 @@ class DatastoreClientTest extends SnippetTestCase
                 ]
             ]);
 
-        $this->client->setConnection($this->connection->reveal());
+        $this->refreshOperation($this->client, $this->connection->reveal());
 
         $res = $snippet->invoke('result');
         $this->assertEquals('Bob', $res->output());
@@ -646,8 +650,6 @@ class DatastoreClientTest extends SnippetTestCase
                     ]
                 ]
             ]);
-
-        return $this->connection->reveal();
     }
 
     private function validateTransactionOptions($type, array $options = [])
@@ -670,19 +672,5 @@ class DatastoreClientTest extends SnippetTestCase
 
             return true;
         });
-    }
-}
-
-class DatastoreClientStub extends DatastoreClient
-{
-    public function setConnection($connection)
-    {
-        $this->connection = $connection;
-        $this->operation = new Operation(
-            $this->connection,
-            'my-awesome-project',
-            '',
-            new EntityMapper('my-awesome-project', true, false)
-        );
     }
 }

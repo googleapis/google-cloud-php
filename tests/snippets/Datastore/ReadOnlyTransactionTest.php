@@ -17,6 +17,7 @@
 
 namespace Google\Cloud\Tests\Snippets\Datastore;
 
+use Google\Cloud\Core\Testing\DatastoreOperationRefreshTrait;
 use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
 use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Datastore\Connection\ConnectionInterface;
@@ -34,26 +35,35 @@ use Prophecy\Argument;
  */
 class ReadOnlyTransactionTest extends SnippetTestCase
 {
+    use DatastoreOperationRefreshTrait;
+
     const PROJECT = 'my-awesome-project';
+    const TRANSACTION = 'transaction-id';
 
     private $connection;
-    private $operation;
     private $transaction;
-    private $transactionId = 'foo';
-    private $datastore;
+    private $client;
     private $key;
 
     public function setUp()
     {
         $this->connection = $this->prophesize(ConnectionInterface::class);
-        $this->operation = TestHelpers::stub(Operation::class, [
+
+        $operation = new Operation(
             $this->connection->reveal(),
             self::PROJECT,
             '',
             new EntityMapper(self::PROJECT, false, false)
-        ]);
-        $this->transaction = new ReadOnlyTransaction($this->operation, self::PROJECT, $this->transactionId);
-        $this->datastore = new DatastoreClient;
+        );
+
+        $this->transaction = TestHelpers::stub(ReadOnlyTransaction::class, [
+            $operation,
+            self::PROJECT,
+            self::TRANSACTION
+        ], ['operation']);
+
+        $this->client = TestHelpers::stub(DatastoreClient::class, [], ['operation']);
+
         $this->key = new Key('my-awesome-project', [
             [
                 'path' => [
@@ -71,11 +81,11 @@ class ReadOnlyTransactionTest extends SnippetTestCase
                 'transaction' => 'foo'
             ]);
 
-        $client = TestHelpers::stub(DatastoreClient::class);
-        $client->___setProperty('connection', $this->connection->reveal());
+        $this->refreshOperation($this->client, $this->connection->reveal());
+
         $snippet = $this->snippetFromClass(ReadOnlyTransaction::class);
         $snippet->setLine(2, '');
-        $snippet->addLocal('datastore', $client);
+        $snippet->addLocal('datastore', $this->client);
 
         $res = $snippet->invoke('transaction');
         $this->assertInstanceOf(ReadOnlyTransaction::class, $res->returnVal());
@@ -96,14 +106,11 @@ class ReadOnlyTransactionTest extends SnippetTestCase
 
         $snippet = $this->snippetFromClass(ReadOnlyTransaction::class, 1);
 
-        $client = TestHelpers::stub(DatastoreClient::class, [], ['connection', 'operation']);
-        $this->operation->___setProperty('connection', $this->connection->reveal());
-        $client->___setProperty('operation', $this->operation);
-        $client->___setProperty('connection', $this->connection->reveal());
+        $this->refreshOperation($this->client, $this->connection->reveal());
 
-        $transaction = $client->readOnlyTransaction();
+        $transaction = $this->client->readOnlyTransaction();
 
-        $snippet->addLocal('datastore', $client);
+        $snippet->addLocal('datastore', $this->client);
         $snippet->addLocal('transaction', $transaction);
 
         $snippet->invoke('userData');
@@ -112,11 +119,11 @@ class ReadOnlyTransactionTest extends SnippetTestCase
     public function testLookup()
     {
         $snippet = $this->snippetFromMethod(ReadOnlyTransaction::class, 'lookup');
-        $snippet->addLocal('datastore', $this->datastore);
+        $snippet->addLocal('datastore', $this->client);
         $snippet->addLocal('transaction', $this->transaction);
 
         $this->connection->lookup(Argument::that(function ($args) {
-            if ($args['transaction'] !== $this->transactionId) return false;
+            if ($args['transaction'] !== self::TRANSACTION) return false;
             return true;
         }))
             ->shouldBeCalled()
@@ -139,7 +146,7 @@ class ReadOnlyTransactionTest extends SnippetTestCase
                 ]
             ]);
 
-        $this->operation->___setProperty('connection', $this->connection->reveal());
+        $this->refreshOperation($this->transaction, $this->connection->reveal());
 
         $res = $snippet->invoke();
         $this->assertEquals('Bob', $res->output());
@@ -148,11 +155,11 @@ class ReadOnlyTransactionTest extends SnippetTestCase
     public function testLookupBatch()
     {
         $snippet = $this->snippetFromMethod(ReadOnlyTransaction::class, 'lookupBatch');
-        $snippet->addLocal('datastore', $this->datastore);
+        $snippet->addLocal('datastore', $this->client);
         $snippet->addLocal('transaction', $this->transaction);
 
         $this->connection->lookup(Argument::that(function ($args) {
-            if ($args['transaction'] !== $this->transactionId) return false;
+            if ($args['transaction'] !== self::TRANSACTION) return false;
             return true;
         }))
             ->shouldBeCalled()
@@ -189,7 +196,7 @@ class ReadOnlyTransactionTest extends SnippetTestCase
                 ]
             ]);
 
-        $this->operation->___setProperty('connection', $this->connection->reveal());
+        $this->refreshOperation($this->transaction, $this->connection->reveal());
 
         $res = $snippet->invoke();
         $this->assertEquals("Bob", explode("\n", $res->output())[0]);
@@ -199,12 +206,12 @@ class ReadOnlyTransactionTest extends SnippetTestCase
     public function testRunQuery()
     {
         $snippet = $this->snippetFromMethod(ReadOnlyTransaction::class, 'runQuery');
-        $snippet->addLocal('datastore', $this->datastore);
+        $snippet->addLocal('datastore', $this->client);
         $snippet->addLocal('transaction', $this->transaction);
         $snippet->addLocal('query', $this->prophesize(QueryInterface::class)->reveal());
 
         $this->connection->runQuery(Argument::that(function ($args) {
-            if ($args['transaction'] !== $this->transactionId) return false;
+            if ($args['transaction'] !== self::TRANSACTION) return false;
             return true;
         }))
             ->shouldBeCalled()
@@ -229,7 +236,7 @@ class ReadOnlyTransactionTest extends SnippetTestCase
                 ]
             ]);
 
-        $this->operation->___setProperty('connection', $this->connection->reveal());
+        $this->refreshOperation($this->transaction, $this->connection->reveal());
 
         $res = $snippet->invoke('result');
         $this->assertEquals('Bob', $res->output());
@@ -243,7 +250,7 @@ class ReadOnlyTransactionTest extends SnippetTestCase
         $this->connection->rollback(Argument::any())
             ->shouldBeCalled();
 
-        $this->operation->___setProperty('connection', $this->connection->reveal());
+        $this->refreshOperation($this->transaction, $this->connection->reveal());
 
         $snippet->invoke();
     }

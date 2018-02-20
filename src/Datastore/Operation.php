@@ -228,6 +228,24 @@ class Operation
     }
 
     /**
+     * Begin a Datastore Transaction.
+     *
+     * @param array $transactionOptions
+     *        [Transaction Options](https://cloud.google.com/datastore/docs/reference/data/rest/v1/projects/beginTransaction#TransactionOptions)
+     * @param array $options Configuration options.
+     * @return string
+     */
+    public function beginTransaction($transactionOptions, array $options = [])
+    {
+        $res = $this->connection->beginTransaction([
+            'projectId' => $this->projectId,
+            'transactionOptions' => $transactionOptions
+        ] + $options);
+
+        return $res['transaction'];
+    }
+
+    /**
      * Allocate available IDs to a set of keys
      *
      * Keys MUST be in an incomplete state (i.e. including a kind but not an ID
@@ -248,7 +266,8 @@ class Operation
         // The API will throw a 400 if the key is named, but it's an easy
         // check we can handle before going to the API to save a request.
         // @todo replace with json schema
-        $this->validateBatch($keys, Key::class, function ($key) {
+        $serviceKeys = [];
+        $this->validateBatch($keys, Key::class, function ($key) use (&$serviceKeys) {
             if ($key->state() !== Key::STATE_INCOMPLETE) {
                 throw new InvalidArgumentException(sprintf(
                     'Given $key is in an invalid state. Can only allocate IDs for incomplete keys. ' .
@@ -256,11 +275,22 @@ class Operation
                     (string) $key
                 ));
             }
+
+            if (!isset($key->pathEnd()['kind'])) {
+                throw new InvalidArgumentException(sprintf(
+                    'Cannot allocate IDs because a path element was missing a kind. ' .
+                    'This usually means a key was created but no path elements were defined. ' .
+                    'Given path was %s',
+                    (string) $key
+                ));
+            }
+
+            $serviceKeys[] = $key->keyObject();
         });
 
         $res = $this->connection->allocateIds([
             'projectId' => $this->projectId,
-            'keys' => $keys
+            'keys' => $serviceKeys
         ] + $options);
 
         if (isset($res['keys'])) {
@@ -311,7 +341,8 @@ class Operation
             'sort' => false
         ];
 
-        $this->validateBatch($keys, Key::class, function ($key) {
+        $serviceKeys = [];
+        $this->validateBatch($keys, Key::class, function ($key) use (&$serviceKeys) {
             if ($key->state() !== Key::STATE_NAMED) {
                 throw new InvalidArgumentException(sprintf(
                     'Given $key is in an invalid state. Can only lookup records when given a complete key. ' .
@@ -319,11 +350,13 @@ class Operation
                     (string) $key
                 ));
             }
+
+            $serviceKeys[] = $key->keyObject();
         });
 
         $res = $this->connection->lookup($options + $this->readOptions($options) + [
             'projectId' => $this->projectId,
-            'keys' => $keys
+            'keys' => $serviceKeys
         ]);
 
         $result = [];
@@ -555,9 +588,9 @@ class Operation
             if (!$entity->populatedByService() && !$allowOverwrite) {
                 throw new InvalidArgumentException(sprintf(
                     'Given entity cannot be saved because it may overwrite an '.
-                    'existing record. When manually creating entities for '.
-                    'update operations, please set the options '.
-                    '`$allowOverwrite` flag to `true`. Invalid entity key was %s',
+                    'existing record. When updating manually created entities, '.
+                    'please set the options `$allowOverwrite` flag to `true`. '.
+                    'Invalid entity key was %s',
                     (string) $entity->key()
                 ));
             }

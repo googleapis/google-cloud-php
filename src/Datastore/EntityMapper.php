@@ -123,7 +123,7 @@ class EntityMapper
         }
 
         return array_filter([
-            'key' => $entity->key(),
+            'key' => $entity->key()->keyObject(),
             'properties' => $properties
         ]);
     }

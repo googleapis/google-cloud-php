@@ -17,221 +17,386 @@
 
 namespace Google\Cloud\Tests\Unit\Datastore;
 
+use Google\Cloud\Core\Testing\DatastoreOperationRefreshTrait;
+use Google\Cloud\Core\Testing\TestHelpers;
+use Google\Cloud\Datastore\Connection\ConnectionInterface;
 use Google\Cloud\Datastore\Entity;
+use Google\Cloud\Datastore\EntityMapper;
 use Google\Cloud\Datastore\Key;
 use Google\Cloud\Datastore\Operation;
 use Google\Cloud\Datastore\Query\QueryInterface;
+use Google\Cloud\Datastore\ReadOnlyTransaction;
 use Google\Cloud\Datastore\Transaction;
-use Prophecy\Argument;
 use PHPUnit\Framework\TestCase;
+use Prophecy\Argument;
 
 /**
+ * This test case includes a data provider to run tests on both rw and ro transactions.
+ *
  * @group datastore
+ * @group datastore-transaction
  */
 class TransactionTest extends TestCase
 {
-    private $operation;
-    private $transaction;
+    use DatastoreOperationRefreshTrait;
 
-    private $transactionId = 'transaction';
+    const PROJECT = 'example-project';
+    const TRANSACTION = 'transaction-id';
+
+    private $connection;
+    private $transaction;
+    private $readOnly;
+    private $key;
+    private $entity;
 
     public function setUp()
     {
-        $this->operation = $this->prophesize(Operation::class);
-        $this->transaction = new TransactionStub($this->operation->reveal(), 'foo', $this->transactionId);
+        $this->connection = $this->prophesize(ConnectionInterface::class);
+
+        $op = new Operation(
+            $this->connection->reveal(),
+            self::PROJECT,
+            null,
+            new EntityMapper(self::PROJECT, false, false)
+        );
+
+        $this->transaction = TestHelpers::stub(Transaction::class, [
+            $op, self::PROJECT, self::TRANSACTION
+        ], ['operation']);
+
+        $this->readOnly = TestHelpers::stub(ReadOnlyTransaction::class, [
+            $op, self::PROJECT, self::TRANSACTION
+        ], ['operation']);
+
+        $this->key = $op->key('Person', 12345);
+        $this->entity = $op->entity($this->key, ['name' => 'John']);
     }
 
-    public function testInsert()
+    /**
+     * @dataProvider transactionProvider
+     */
+    public function testLookup(callable $transaction)
     {
-        $e = $this->prophesize(Entity::class);
+        $this->connection->lookup(Argument::allOf(
+            Argument::withEntry('transaction', self::TRANSACTION),
+            Argument::withEntry('keys', [$this->key->keyObject()])
+        ))->shouldBeCalled()->willReturn([
+            'found' => [
+                [
+                    'entity' => $this->entityArray($this->key)
+                ]
+            ]
+        ]);
 
-        $this->operation->mutation(Argument::exact('insert'), Argument::type(Entity::class), Argument::exact(Entity::class, null))
-            ->shouldBeCalled()->willReturn(null);
+        $transaction = $transaction();
+        $this->refreshOperation($transaction, $this->connection->reveal());
 
-        $this->operation->commit()->shouldNotBeCalled();
-
-        $this->operation->allocateIdsToEntities(Argument::type('array'))
-            ->willReturn([$e->reveal()]);
-
-        $this->transaction->setOperation($this->operation->reveal());
-
-        $this->transaction->insert($e->reveal());
+        $res = $transaction->lookup($this->key);
+        $this->assertInstanceOf(Entity::class, $res);
+        $this->assertEquals($this->key->keyObject(), $res->key()->keyObject());
     }
 
-    public function testInsertBatch()
+    /**
+     * @dataProvider transactionProvider
+     */
+    public function testLookupMissing(callable $transaction)
     {
-        $e = $this->prophesize(Entity::class);
+        $this->connection->lookup(
+            Argument::withEntry('keys', [$this->key->keyObject()])
+        )->shouldBeCalled()->willReturn([
+            'missing' => [
+                [
+                    'entity' => $this->entityArray($this->key)
+                ]
+            ]
+        ]);
 
-        $this->operation->mutation(Argument::exact('insert'), Argument::type(Entity::class), Argument::exact(Entity::class, null))
-            ->shouldBeCalled()->willReturn(null);
+        $transaction = $transaction();
+        $this->refreshOperation($transaction, $this->connection->reveal());
 
-        $this->operation->commit()->shouldNotBeCalled();
-
-        $this->operation->allocateIdsToEntities(Argument::type('array'))
-            ->willReturn([$e->reveal()]);
-
-        $this->transaction->setOperation($this->operation->reveal());
-
-        $this->transaction->insertBatch([$e->reveal()]);
+        $res = $transaction->lookup($this->key);
+        $this->assertNull($res);
     }
 
-    public function testUpdate()
+    /**
+     * @dataProvider transactionProvider
+     */
+    public function testLookupBatch(callable $transaction)
     {
-        $e = $this->prophesize(Entity::class);
+        $this->connection->lookup(
+            Argument::withEntry('keys', [$this->key->keyObject()])
+        )->shouldBeCalled()->willReturn([
+            'found' => [
+                [
+                    'entity' => $this->entityArray($this->key)
+                ]
+            ],
+            'missing' => [
+                [
+                    'entity' => $this->entityArray($this->key)
+                ]
+            ],
+            'deferred' => [
+                $this->key->keyObject()
+            ]
+        ]);
 
-        $this->operation->mutation(Argument::exact('update'), Argument::type(Entity::class), Argument::exact(Entity::class, null))
-            ->shouldBeCalled()->willReturn(null);
+        $transaction = $transaction();
+        $this->refreshOperation($transaction, $this->connection->reveal());
 
-        $this->operation->commit()->shouldNotBeCalled();
-
-        $this->operation->checkOverwrite(Argument::type('array'), Argument::exact(false))->willReturn(null);
-
-        $this->transaction->setOperation($this->operation->reveal());
-
-        $this->transaction->update($e->reveal());
+        $res = $transaction->lookupBatch([$this->key]);
+        $this->assertInstanceOf(Entity::class, $res['found'][0]);
+        $this->assertInstanceOf(Key::class, $res['missing'][0]);
+        $this->assertInstanceOf(Key::class, $res['deferred'][0]);
     }
 
-    public function testUpdateBatch()
+    /**
+     * @dataProvider transactionProvider
+     */
+    public function testRunQuery(callable $transaction)
     {
-        $e = $this->prophesize(Entity::class);
+        $this->connection->runQuery(Argument::allOf(
+            Argument::withEntry('partitionId', ['projectId' => self::PROJECT]),
+            Argument::withEntry('gqlQuery', ['queryString' => 'SELECT 1=1'])
+        ))->shouldBeCalled()->willReturn([
+            'batch' => [
+                'entityResults' => [
+                    [
+                        'entity' => $this->entityArray($this->key)
+                    ]
+                ]
+            ]
+        ]);
 
-        $this->operation->mutation(Argument::exact('update'), Argument::type(Entity::class), Argument::exact(Entity::class, null))
-            ->shouldBeCalled()->willReturn(null);
+        $transaction = $transaction();
+        $this->refreshOperation($transaction, $this->connection->reveal());
 
-        $this->operation->commit()->shouldNotBeCalled();
+        $query = $this->prophesize(QueryInterface::class);
+        $query->queryKey()->willReturn('gqlQuery');
+        $query->queryObject()->willReturn(['queryString' => 'SELECT 1=1']);
 
-        $this->operation->checkOverwrite(Argument::type('array'), Argument::exact(false))->willReturn(null);
-
-        $this->transaction->setOperation($this->operation->reveal());
-
-        $this->transaction->updateBatch([$e->reveal()]);
+        $res = iterator_to_array($transaction->runQuery($query->reveal()));
+        $this->assertContainsOnlyInstancesOf(Entity::class, $res);
     }
 
-    public function testUpsert()
+    /**
+     * @dataProvider transactionProvider
+     */
+    public function testRollback(callable $transaction)
     {
-        $e = $this->prophesize(Entity::class);
+        $this->connection->rollback(Argument::withEntry('transaction', self::TRANSACTION))
+            ->shouldBeCalled();
 
-        $this->operation->mutation(Argument::exact('upsert'), Argument::type(Entity::class), Argument::exact(Entity::class, null))
-            ->shouldBeCalled()->willReturn(null);
+        $transaction = $transaction();
+        $this->refreshOperation($transaction, $this->connection->reveal());
 
-        $this->operation->commit()->shouldNotBeCalled();
-
-        $this->transaction->setOperation($this->operation->reveal());
-
-        $this->transaction->upsert($e->reveal());
+        $transaction->rollback();
     }
 
-    public function testUpsertBatch()
+    /**
+     * @dataProvider mutationsProvider
+     */
+    public function testEntityMutations($method, $mutation, $key)
     {
-        $e = $this->prophesize(Entity::class);
+        $this->connection->commit(Argument::allOf(
+            Argument::withEntry('transaction', self::TRANSACTION),
+            Argument::withEntry('mode', 'TRANSACTIONAL'),
+            Argument::withEntry('mutations', [[$method => $mutation]])
+        ))->shouldBeCalled()->willReturn($this->commitResponse());
 
-        $this->operation->mutation(Argument::exact('upsert'), Argument::type(Entity::class), Argument::exact(Entity::class, null))
-            ->shouldBeCalled()->willReturn(null);
+        $this->refreshOperation($this->transaction, $this->connection->reveal());
 
-        $this->operation->commit()->shouldNotBeCalled();
+        $this->transaction->$method($this->entity, ['allowOverwrite' => true]);
+        $res = $this->transaction->commit();
 
-        $this->transaction->setOperation($this->operation->reveal());
+        $this->assertEquals($this->commitResponse(), $res);
+    }
 
-        $this->transaction->upsertBatch([$e->reveal()]);
+    /**
+     * @dataProvider mutationsProvider
+     */
+    public function testEntityMutationsBatch($method, $mutation, $key)
+    {
+        $this->connection->commit(Argument::allOf(
+            Argument::withEntry('transaction', self::TRANSACTION),
+            Argument::withEntry('mode', 'TRANSACTIONAL'),
+            Argument::withEntry('mutations', [[$method => $mutation]])
+        ))->shouldBeCalled()->willReturn($this->commitResponse());
+
+        $this->refreshOperation($this->transaction, $this->connection->reveal());
+
+        $method = $method . 'Batch';
+
+        $this->transaction->$method([$this->entity], ['allowOverwrite' => true]);
+        $res = $this->transaction->commit();
+
+        $this->assertEquals($this->commitResponse(), $res);
+    }
+
+    public function mutationsProvider()
+    {
+        return $this->mutationsProviderProvider(12345);
+    }
+
+    /**
+     * @dataProvider partialKeyMutationsProvider
+     */
+    public function testMutationsWithPartialKey($method, $mutation, $key, $id)
+    {
+        $this->connection->commit(Argument::allOf(
+            Argument::withEntry('transaction', self::TRANSACTION),
+            Argument::withEntry('mode', 'TRANSACTIONAL'),
+            Argument::withEntry('mutations', [[$method => $mutation]])
+        ))->shouldBeCalled()->willReturn($this->commitResponse());
+
+        $keyWithId = clone $key;
+        $keyWithId->setLastElementIdentifier($id);
+        $this->connection->allocateIds(Argument::allOf(
+            Argument::withEntry('keys', [$key->keyObject()])
+        ))->shouldBeCalled()->willReturn([
+            'keys' => [
+                $keyWithId->keyObject()
+            ]
+        ]);
+
+        $this->refreshOperation($this->transaction, $this->connection->reveal());
+
+        $entity = new Entity($key, ['name' => 'John']);
+        $this->transaction->$method($entity);
+        $res = $this->transaction->commit();
+
+        $this->assertEquals($this->commitResponse(), $res);
+    }
+
+    /**
+     * @dataProvider partialKeyMutationsProvider
+     */
+    public function testBatchMutationsWithPartialKey($method, $mutation, $key, $id)
+    {
+        $this->connection->commit(Argument::allOf(
+            Argument::withEntry('transaction', self::TRANSACTION),
+            Argument::withEntry('mode', 'TRANSACTIONAL'),
+            Argument::withEntry('mutations', [[$method => $mutation]])
+        ))->shouldBeCalled()->willReturn($this->commitResponse());
+
+        $keyWithId = clone $key;
+        $keyWithId->setLastElementIdentifier($id);
+        $this->connection->allocateIds(Argument::allOf(
+            Argument::withEntry('keys', [$key->keyObject()])
+        ))->shouldBeCalled()->willReturn([
+            'keys' => [
+                $keyWithId->keyObject()
+            ]
+        ]);
+
+        $this->refreshOperation($this->transaction, $this->connection->reveal());
+
+        $method = $method . 'Batch';
+        $entity = new Entity($key, ['name' => 'John']);
+        $this->transaction->$method([$entity]);
+        $res = $this->transaction->commit();
+
+        $this->assertEquals($this->commitResponse(), $res);
+    }
+
+    public function partialKeyMutationsProvider()
+    {
+        $res = $this->mutationsProviderProvider(12345, true);
+        return array_filter($res, function ($case) {
+            return $case[0] !== 'update';
+        });
     }
 
     public function testDelete()
     {
-        $k = $this->prophesize(Key::class);
+        $this->connection->commit(Argument::allOf(
+            Argument::withEntry('transaction', self::TRANSACTION),
+            Argument::withEntry('mode', 'TRANSACTIONAL'),
+            Argument::withEntry('mutations', [
+                [
+                    'delete' => $this->key->keyObject()
+                ]
+            ])
+        ))->shouldBeCalled()->willReturn($this->commitResponse());
 
-        $this->operation->mutation(Argument::exact('delete'), Argument::type(Key::class), Argument::exact(Key::class, null))
-            ->shouldBeCalled()->willReturn(null);
+        $this->refreshOperation($this->transaction, $this->connection->reveal());
 
-        $this->operation->commit()->shouldNotBeCalled();
+        $this->transaction->delete($this->key);
+        $res = $this->transaction->commit();
 
-        $this->transaction->setOperation($this->operation->reveal());
-
-        $this->transaction->delete($k->reveal());
+        $this->assertEquals($this->commitResponse(), $res);
     }
 
     public function testDeleteBatch()
     {
-        $k = $this->prophesize(Key::class);
 
-        $this->operation->mutation(Argument::exact('delete'), Argument::type(Key::class), Argument::exact(Key::class, null))
-            ->shouldBeCalled()->willReturn(null);
+        $this->connection->commit(Argument::allOf(
+            Argument::withEntry('transaction', self::TRANSACTION),
+            Argument::withEntry('mode', 'TRANSACTIONAL'),
+            Argument::withEntry('mutations', [
+                [
+                    'delete' => $this->key->keyObject()
+                ]
+            ])
+        ))->shouldBeCalled()->willReturn($this->commitResponse());
 
-        $this->operation->commit()->shouldNotBeCalled();
+        $this->refreshOperation($this->transaction, $this->connection->reveal());
 
+        $this->transaction->deleteBatch([$this->key]);
+        $res = $this->transaction->commit();
 
-        $this->transaction->setOperation($this->operation->reveal());
-
-        $this->transaction->deleteBatch([$k->reveal()]);
+        $this->assertEquals($this->commitResponse(), $res);
     }
 
-    public function testLookup()
+    private function entityArray(Key $key)
     {
-        $this->operation->lookup(Argument::type('array'), Argument::that(function ($arg) {
-            return $arg['transaction'] === $this->transactionId;
-        }))->willReturn(['found' => ['foo']]);
-
-        $this->transaction->setOperation($this->operation->reveal());
-
-        $k = $this->prophesize(Key::class);
-
-        $res = $this->transaction->lookup($k->reveal());
-
-        $this->assertEquals($res, 'foo');
+        return [
+            'key' => $key->keyObject(),
+            'properties' => [
+                'name' => [
+                    'stringValue' => 'John'
+                ]
+            ]
+        ];
     }
 
-    public function testLookupBatch()
+    private function mutationsProviderProvider($id, $partialKey = false)
     {
-        $this->operation->lookup(Argument::type('array'), Argument::that(function ($arg) {
-            return $arg['transaction'] === $this->transactionId;
-        }))->willReturn([]);
+        $key = new Key(self::PROJECT);
+        $key->pathElement('Person', !$partialKey ? $id : null);
+        $mutation = $this->entityArray($key);
 
-        $this->transaction->setOperation($this->operation->reveal());
+        if ($partialKey) {
+            $mutation['key']['path'][0]['id'] = $id;
+        }
 
-        $k = $this->prophesize(Key::class);
-
-        $this->transaction->lookupBatch([$k->reveal()]);
+        return [
+            ['insert', $mutation, clone $key, $id],
+            ['update', $mutation, clone $key, $id],
+            ['upsert', $mutation, clone $key, $id],
+        ];
     }
 
-    public function testRunQuery()
+    private function commitResponse()
     {
-        $this->operation->runQuery(Argument::type(QueryInterface::class), Argument::that(function ($arg) {
-            return $arg['transaction'] === $this->transactionId;
-        }))->willReturn('test');
-
-        $this->transaction->setOperation($this->operation->reveal());
-
-        $q = $this->prophesize(QueryInterface::class);
-
-        $res = $this->transaction->runQuery($q->reveal());
-
-        $this->assertEquals($res, 'test');
+        return [
+            'mutationResults' => [
+                [
+                    'version' => 1
+                ]
+            ]
+        ];
     }
 
-    public function testCommit()
+    public function transactionProvider()
     {
-        $this->operation->commit(Argument::type('array'), Argument::that(function ($arg) {
-            if ($arg['transaction'] !== $this->transactionId) return false;
-        }));
+        // init so the callbacks have a reference to hold until invoked.
+        $this->setUp();
 
-        $this->transaction->setOperation($this->operation->reveal());
-
-        $this->transaction->commit();
-    }
-
-    public function testRollback()
-    {
-        $this->operation->rollback(Argument::exact($this->transactionId))
-            ->shouldBeCalled()
-            ->willReturn(null);
-
-        $this->transaction->rollback();
-    }
-}
-
-class TransactionStub extends Transaction
-{
-    public function setOperation($operation)
-    {
-        $this->operation = $operation;
+        return [
+            // return callables to get around phpunit's annoying habit of running data providers way too early.
+            [function () { return $this->transaction; }],
+            [function () { return $this->readOnly; }]
+        ];
     }
 }
