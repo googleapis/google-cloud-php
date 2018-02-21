@@ -11,7 +11,7 @@
     "extra": {
         "component": {
             "id": "cloud-container",
-            "path": "src/Container",
+            "path": "Container/src",
             "entry": null,
             "target": "GoogleCloudPlatform/google-cloud-php-container.git"
         }

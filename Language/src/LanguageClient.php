@@ -17,6 +17,7 @@
 
 namespace Google\Cloud\Language;
 
+use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\Core\ClientTrait;
 use Google\Cloud\Core\RetryDeciderTrait;
 use Google\Cloud\Language\Connection\ConnectionInterface;

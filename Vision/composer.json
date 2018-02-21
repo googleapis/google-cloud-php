@@ -25,7 +25,7 @@
         "component": {
             "id": "cloud-vision",
             "target": "GoogleCloudPlatform/google-cloud-php-vision.git",
-            "path": "src/Vision",
+            "path": "Vision/src",
             "entry": "VisionClient.php"
         }
     },

@@ -13,7 +13,7 @@
         "component": {
             "id": "cloud-debugger",
             "target": "GoogleCloudPlatform/google-cloud-php-debugger.git",
-            "path": "src/Debugger",
+            "path": "Debugger/src",
             "entry": "DebuggerClient.php"
         }
     },

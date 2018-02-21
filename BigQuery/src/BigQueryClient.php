@@ -17,6 +17,7 @@
 
 namespace Google\Cloud\BigQuery;
 
+use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\BigQuery\Connection\ConnectionInterface;
 use Google\Cloud\BigQuery\Connection\Rest;
 use Google\Cloud\BigQuery\Exception\JobException;

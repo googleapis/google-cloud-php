@@ -17,6 +17,7 @@
 
 namespace Google\Cloud\PubSub;
 
+use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\Core\ArrayTrait;
 use Google\Cloud\Core\ClientTrait;
 use Google\Cloud\Core\Duration;

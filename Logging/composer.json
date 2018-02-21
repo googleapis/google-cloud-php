@@ -26,7 +26,7 @@
         "component": {
             "id": "cloud-logging",
             "target": "GoogleCloudPlatform/google-cloud-php-logging.git",
-            "path": "src/Logging",
+            "path": "Logging/src",
             "entry": "LoggingClient.php"
         }
     },

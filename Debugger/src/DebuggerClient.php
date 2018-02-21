@@ -20,6 +20,7 @@ namespace Google\Cloud\Debugger;
 use Google\Cloud\Core\ClientTrait;
 use Google\Cloud\Debugger\Connection\ConnectionInterface;
 use Google\Cloud\Debugger\Connection\Rest;
+use Psr\Cache\CacheItemPoolInterface;
 
 /**
  * Google Stackdriver Debugger allows you to collect variable data from a live application

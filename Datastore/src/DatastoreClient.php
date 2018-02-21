@@ -18,6 +18,7 @@
 namespace Google\Cloud\Datastore;
 
 use DomainException;
+use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\Core\ArrayTrait;
 use Google\Cloud\Core\ClientTrait;
 use Google\Cloud\Core\Int64;

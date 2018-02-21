@@ -17,9 +17,11 @@
 
 namespace Google\Cloud\Translate;
 
+use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\Core\ClientTrait;
 use Google\Cloud\Translate\Connection\ConnectionInterface;
 use Google\Cloud\Translate\Connection\Rest;
+use Psr\Cache\CacheItemPoolInterface;
 
 /**
  * Google Cloud Translation provides the ability to dynamically translate

@@ -119,7 +119,7 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "Google\\Cloud\\": "src",
+            "Google\\Cloud\\Dev\\": "Dev/src",
             "Google\\Cloud\\Tests\\": "tests",
             "Google\\Cloud\\BigQuery\\Tests\\": "BigQuery/tests",
             "Google\\Cloud\\Bigtable\\Tests\\": "Bigtable/tests",

@@ -17,6 +17,7 @@
 
 namespace Google\Cloud\Logging;
 
+use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\Core\ArrayTrait;
 use Google\Cloud\Core\ClientTrait;
 use Google\Cloud\Core\Iterator\ItemIterator;

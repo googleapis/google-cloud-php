@@ -17,6 +17,7 @@
 
 namespace Google\Cloud\Trace;
 
+use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\Core\ClientTrait;
 use Google\Cloud\Core\Iterator\ItemIterator;
 use Google\Cloud\Core\Iterator\PageIterator;
@@ -24,6 +25,7 @@ use Google\Cloud\Trace\Connection\ConnectionInterface;
 use Google\Cloud\Trace\Connection\Rest;
 use Google\Cloud\Trace\Reporter\AsyncReporter;
 use Google\Cloud\Trace\Reporter\ReporterInterface;
+use Psr\Cache\CacheItemPoolInterface;
 
 /**
  * Google Stackdriver Trace allows you to collect latency data from

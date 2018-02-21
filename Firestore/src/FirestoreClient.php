@@ -28,6 +28,7 @@ use Google\Cloud\Core\Iterator\PageIterator;
 use Google\Cloud\Core\Retry;
 use Google\Cloud\Core\ValidateTrait;
 use Google\Cloud\Firestore\Connection\Grpc;
+use Psr\Cache\CacheItemPoolInterface;
 
 /**
  * Cloud Firestore is a flexible, scalable, realtime database for mobile, web, and server development.
