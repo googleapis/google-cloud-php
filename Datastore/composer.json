@@ -17,7 +17,7 @@
         "component": {
             "id": "cloud-datastore",
             "target": "GoogleCloudPlatform/google-cloud-php-datastore.git",
-            "path": "src/Datastore",
+            "path": "Datastore/src",
             "entry": "DatastoreClient.php"
         }
     },

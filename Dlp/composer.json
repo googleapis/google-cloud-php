@@ -17,7 +17,7 @@
         "component": {
             "id": "cloud-dlp",
             "target": "GoogleCloudPlatform/google-cloud-php-dlp.git",
-            "path": "src/Dlp",
+            "path": "Dlp/src",
             "entry": null
         }
     },

@@ -14,7 +14,7 @@
         "component": {
             "id": "cloud-videointelligence",
             "target": "GoogleCloudPlatform/google-cloud-php-videointelligence.git",
-            "path": "src/VideoIntelligence",
+            "path": "VideoIntelligence/src",
             "entry": null
         }
     },

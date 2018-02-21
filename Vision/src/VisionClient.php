@@ -17,6 +17,7 @@
 
 namespace Google\Cloud\Vision;
 
+use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\Core\ClientTrait;
 use Google\Cloud\Core\ValidateTrait;
 use Google\Cloud\Storage\StorageObject;

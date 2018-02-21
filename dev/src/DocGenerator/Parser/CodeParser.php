@@ -166,16 +166,11 @@ class CodeParser implements ParserInterface
             }
             $methods[$name] = [
                 'methodReflector' => $method,
-                'source' => $this->getPath($fileReflector),
+                'source' => $fileReflector->getFileName(),
                 'container' => $reflector->getName(),
             ];
         }
         return $methods;
-    }
-
-    private function getPath($fileReflector)
-    {
-        return 'src' . trim(explode('src', $fileReflector->getFileName())[1]);
     }
 
     private function buildDocument($fileReflector, $reflector)
@@ -407,7 +402,7 @@ class CodeParser implements ParserInterface
             'id' => $method->getName(),
             'type' => $method->getName() === '__construct' ? 'constructor' : 'instance',
             'name' => $method->getName(),
-            'source' => $methodInfo['source'] . '#L' . $method->getLineNumber(),
+            'source' => $this->getSource($methodInfo['source']) . '#L' . $method->getLineNumber(),
             'description' => $description,
             'examples' => $this->buildExamples($split['examples']),
             'resources' => $this->buildResources($resources),
@@ -439,7 +434,7 @@ class CodeParser implements ParserInterface
             'id' => $magicMethod->getMethodName(),
             'type' => $magicMethod->getMethodName() === '__construct' ? 'constructor' : 'instance',
             'name' => $magicMethod->getMethodName(),
-            'source' => $this->getSource(),
+            'source' => $this->getSource($this->path),
             'description' => $this->buildDescription($docBlock, $docText, $magicMethod),
             'examples' => $this->buildExamples($examples),
             'resources' => $this->buildResources($resources),
@@ -830,8 +825,22 @@ class CodeParser implements ParserInterface
         return false;
     }
 
-    private function getSource()
+    private function getSource($path)
     {
-        return 'src' . explode('src', $this->path)[1];
+        $filePieces = explode('/', $path);
+
+        $srcIdx = [];
+        array_walk($filePieces, function ($piece, $i) use (&$srcIdx) {
+            if ($piece === 'src') {
+                $srcIdx[] = $i;
+            }
+        });
+
+        // Just in case you're running inside a different src directory...
+        $realSrcIndex = end($srcIdx);
+
+        $base = $realSrcIndex - 1;
+
+        return implode('/', array_slice($filePieces, $base));
     }
 }

@@ -14,7 +14,7 @@
         "component": {
             "id": "cloud-monitoring",
             "target": "GoogleCloudPlatform/google-cloud-php-monitoring.git",
-            "path": "src/Monitoring",
+            "path": "Monitoring/src",
             "entry": null
         }
     },

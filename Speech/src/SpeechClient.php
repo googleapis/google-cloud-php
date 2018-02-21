@@ -17,6 +17,7 @@
 
 namespace Google\Cloud\Speech;
 
+use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\Core\ClientTrait;
 use Google\Cloud\Speech\Connection\ConnectionInterface;
 use Google\Cloud\Speech\Connection\Rest;

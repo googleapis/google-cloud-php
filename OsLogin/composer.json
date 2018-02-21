@@ -11,7 +11,7 @@
     "extra": {
         "component": {
             "id": "cloud-oslogin",
-            "path": "src/OsLogin",
+            "path": "OsLogin/src",
             "entry": null,
             "target": "GoogleCloudPlatform/google-cloud-php-oslogin.git"
         }

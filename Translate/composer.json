@@ -17,7 +17,7 @@
         "component": {
             "id": "cloud-translate",
             "target": "GoogleCloudPlatform/google-cloud-php-translate.git",
-            "path": "src/Translate",
+            "path": "Translate/src",
             "entry": "TranslateClient.php"
         }
     },
