@@ -143,7 +143,6 @@ class Agent
 
             switch ($breakpoint->action()) {
                 case Breakpoint::ACTION_CAPTURE:
-                    $this->invalidateOpcache($breakpoint);
                     stackdriver_debugger_add_snapshot(
                         $sourceLocation->path(),
                         $sourceLocation->line(),
@@ -157,7 +156,6 @@ class Agent
                     );
                     break;
                 case Breakpoint::ACTION_LOG:
-                    $this->invalidateOpcache($breakpoint);
                     stackdriver_debugger_add_logpoint(
                         $sourceLocation->path(),
                         $sourceLocation->line(),
@@ -263,15 +261,6 @@ class Agent
             ? self::DEFAULT_APP_ENGINE_LOG_NAME
             : self::DEFAULT_LOGPOINT_LOG_NAME;
         return LoggingClient::psrBatchLogger($logName);
-    }
-
-    private function invalidateOpcache($breakpoint)
-    {
-        if (!extension_loaded('Zend OPcache') || ini_get('opcache.enable') != '1') {
-            return false;
-        }
-
-        return opcache_invalidate($this->sourceRoot . DIRECTORY_SEPARATOR . $breakpoint->location()->path(), true);
     }
 
     private function shouldStartDaemon()
