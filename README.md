@@ -10,6 +10,7 @@ This client supports the following Google Cloud Platform services at a [General 
 * [Cloud Spanner](#cloud-spanner-ga) (GA)
 * [Google BigQuery](#google-bigquery-ga) (GA)
 * [Google Cloud Datastore](#google-cloud-datastore-ga) (GA)
+* [Google Cloud Pub/Sub](#google-cloud-pubsub-ga) (GA)
 * [Google Cloud Storage](#google-cloud-storage-ga) (GA)
 * [Google Cloud Translation](#google-cloud-translation-ga) (GA)
 * [Google Stackdriver Logging](#google-stackdriver-logging-ga) (GA)
@@ -22,7 +23,6 @@ This client supports the following Google Cloud Platform services at a [Beta](#v
 * [Google Cloud Dataproc](#google-cloud-dataproc-beta) (Beta)
 * [Google Cloud Natural Language](#google-cloud-natural-language-beta) (Beta)
 * [Google Cloud OsLogin](#google-cloud-oslogin-beta) (Beta)
-* [Google Cloud Pub/Sub](#google-cloud-pubsub-beta) (Beta)
 * [Google Cloud Video Intelligence](#google-cloud-video-intelligence-beta) (Beta)
 * [Google Cloud Vision](#google-cloud-vision-beta) (Beta)
 * [Google DLP](#google-dlp-beta) (Beta)
@@ -217,6 +217,53 @@ Google Cloud Datastore can be installed separately by requiring the `google/clou
 
 ```
 $ composer require google/cloud-datastore
+```
+
+## Google Cloud Pub/Sub (GA)
+
+- [API Documentation](http://googlecloudplatform.github.io/google-cloud-php/#/docs/latest/pubsub/pubsubclient)
+- [Official Documentation](https://cloud.google.com/pubsub/docs)
+
+#### Preview
+
+```php
+require 'vendor/autoload.php';
+
+use Google\Cloud\PubSub\PubSubClient;
+
+$pubSub = new PubSubClient([
+    'projectId' => 'my_project'
+]);
+
+// Get an instance of a previously created topic.
+$topic = $pubSub->topic('my_topic');
+
+// Publish a message to the topic.
+$topic->publish([
+    'data' => 'My new message.',
+    'attributes' => [
+        'location' => 'Detroit'
+    ]
+]);
+
+// Get an instance of a previously created subscription.
+$subscription = $pubSub->subscription('my_subscription');
+
+// Pull all available messages.
+$messages = $subscription->pull();
+
+foreach ($messages as $message) {
+    echo $message->data() . "\n";
+    echo $message->attribute('location');
+}
+```
+
+#### google/cloud-pubsub
+
+Google Cloud Pub/Sub can be installed separately by requiring the `google/cloud-pubsub` composer package:
+
+```
+$ composer require google/cloud-pubsub
 ```
 
 ## Google Cloud Storage (GA)
@@ -581,53 +628,6 @@ Google Cloud OsLogin can be installed separately by requiring the `google/cloud-
 
 ```
 $ composer require google/cloud-oslogin
-```
-
-## Google Cloud Pub/Sub (Beta)
-
-- [API Documentation](http://googlecloudplatform.github.io/google-cloud-php/#/docs/latest/pubsub/pubsubclient)
-- [Official Documentation](https://cloud.google.com/pubsub/docs)
-
-#### Preview
-
-```php
-require 'vendor/autoload.php';
-
-use Google\Cloud\PubSub\PubSubClient;
-
-$pubSub = new PubSubClient([
-    'projectId' => 'my_project'
-]);
-
-// Get an instance of a previously created topic.
-$topic = $pubSub->topic('my_topic');
-
-// Publish a message to the topic.
-$topic->publish([
-    'data' => 'My new message.',
-    'attributes' => [
-        'location' => 'Detroit'
-    ]
-]);
-
-// Get an instance of a previously created subscription.
-$subscription = $pubSub->subscription('my_subscription');
-
-// Pull all available messages.
-$messages = $subscription->pull();
-
-foreach ($messages as $message) {
-    echo $message->data() . "\n";
-    echo $message->attribute('location');
-}
-```
-
-#### google/cloud-pubsub
-
-Google Cloud Pub/Sub can be installed separately by requiring the `google/cloud-pubsub` composer package:
-
-```
-$ composer require google/cloud-pubsub
 ```
 
 ## Google Cloud Video Intelligence (Beta)

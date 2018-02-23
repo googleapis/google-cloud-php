@@ -11,14 +11,15 @@ init:
 
 environment:
   matrix:
-    - PHP_VERSION: "5.5.38-nts-Win32-VC11-x64"
-    - PHP_VERSION: "5.6.29-nts-Win32-VC11-x64"
-    - PHP_VERSION: "7.0.14-nts-Win32-VC14-x64"
-    - PHP_VERSION: "7.1.0-nts-Win32-VC14-x64"
+    - PHP_VERSION: 5.5
+    - PHP_VERSION: 5.6
+    - PHP_VERSION: 7.0
+    - PHP_VERSION: 7.1
 
 install:
   - cinst -y OpenSSL.Light
-  - ps: . .\appveyor_install_php.ps1
+  - ps: appveyor-retry cinst --params '""/InstallDir:C:\tools\php""' --ignore-checksums -y php --version ((choco search php --exact --all-versions -r | select-string -pattern $env:PHP_VERSION | sort { [version]($_ -split '\|' | select -last 1) } -Descending | Select-Object -first 1) -replace '[php|]','')
+  # - ps: . .\appveyor_install_php.ps1
   - cd c:\tools\php
   - echo extension_dir=ext >> php.ini
   - echo extension=php_openssl.dll >> php.ini

@@ -63,10 +63,14 @@ class Transaction
     private $mutations = [];
 
     /**
-     * Insert an entity
+     * Insert an entity.
      *
-     * No service requests are run when this method is called.
-     * Use {@see Google\Cloud\Datastore\Transaction::commit()} to commit changes.
+     * Changes are not immediately committed to Cloud Datastore when calling
+     * this method. Use {@see Google\Cloud\Datastore\Transaction::commit()} to
+     * commit changes and end the transaction.
+     *
+     * If entities with incomplete keys are provided, this method will immediately
+     * trigger a service call to allocate IDs to the entities.
      *
      * Example:
      * ```
@@ -86,10 +90,14 @@ class Transaction
     }
 
     /**
-     * Insert multiple entities
+     * Insert multiple entities.
      *
-     * No service requests are run when this method is called.
-     * Use {@see Google\Cloud\Datastore\Transaction::commit()} to commit changes.
+     * Changes are not immediately committed to Cloud Datastore when calling
+     * this method. Use {@see Google\Cloud\Datastore\Transaction::commit()} to
+     * commit changes and end the transaction.
+     *
+     * If entities with incomplete keys are provided, this method will immediately
+     * trigger a service call to allocate IDs to the entities.
      *
      * Example:
      * ```
@@ -116,10 +124,11 @@ class Transaction
     }
 
     /**
-     * Update an entity
+     * Update an entity.
      *
-     * No service requests are run when this method is called.
-     * Use {@see Google\Cloud\Datastore\Transaction::commit()} to commit changes.
+     * Changes are not immediately committed to Cloud Datastore when calling
+     * this method. Use {@see Google\Cloud\Datastore\Transaction::commit()} to
+     * commit changes and end the transaction.
      *
      * Example:
      * ```
@@ -154,10 +163,11 @@ class Transaction
     }
 
     /**
-     * Update multiple entities
+     * Update multiple entities.
      *
-     * No service requests are run when this method is called.
-     * Use {@see Google\Cloud\Datastore\Transaction::commit()} to commit changes.
+     * Changes are not immediately committed to Cloud Datastore when calling
+     * this method. Use {@see Google\Cloud\Datastore\Transaction::commit()} to
+     * commit changes and end the transaction.
      *
      * Example:
      * ```
@@ -198,13 +208,17 @@ class Transaction
     }
 
     /**
-     * Upsert an entity
+     * Upsert an entity.
      *
-     * No service requests are run when this method is called.
-     * Use {@see Google\Cloud\Datastore\Transaction::commit()} to commit changes.
+     * Changes are not immediately committed to Cloud Datastore when calling
+     * this method. Use {@see Google\Cloud\Datastore\Transaction::commit()} to
+     * commit changes and end the transaction.
      *
      * Upsert will create a record if one does not already exist, or overwrite
      * existing record if one already exists.
+     *
+     * If entities with incomplete keys are provided, this method will immediately
+     * trigger a service call to allocate IDs to the entities.
      *
      * Example:
      * ```
@@ -224,13 +238,17 @@ class Transaction
     }
 
     /**
-     * Upsert multiple entities
+     * Upsert multiple entities.
      *
-     * No service requests are run when this method is called.
-     * Use {@see Google\Cloud\Datastore\Transaction::commit()} to commit changes.
+     * Changes are not immediately committed to Cloud Datastore when calling
+     * this method. Use {@see Google\Cloud\Datastore\Transaction::commit()} to
+     * commit changes and end the transaction.
      *
      * Upsert will create a record if one does not already exist, or overwrite
      * existing record if one already exists.
+     *
+     * If entities with incomplete keys are provided, this method will immediately
+     * trigger a service call to allocate IDs to the entities.
      *
      * Example:
      * ```
@@ -253,6 +271,7 @@ class Transaction
      */
     public function upsertBatch(array $entities)
     {
+        $entities = $this->operation->allocateIdsToEntities($entities);
         foreach ($entities as $entity) {
             $this->mutations[] = $this->operation->mutation('upsert', $entity, Entity::class);
         }
@@ -261,10 +280,11 @@ class Transaction
     }
 
     /**
-     * Delete a record
+     * Delete a record.
      *
-     * No service requests are run when this method is called.
-     * Use {@see Google\Cloud\Datastore\Transaction::commit()} to commit changes.
+     * Changes are not immediately committed to Cloud Datastore when calling
+     * this method. Use {@see Google\Cloud\Datastore\Transaction::commit()} to
+     * commit changes and end the transaction.
      *
      * Example:
      * ```
@@ -283,10 +303,11 @@ class Transaction
     }
 
     /**
-     * Delete multiple records
+     * Delete multiple records.
      *
-     * No service requests are run when this method is called.
-     * Use {@see Google\Cloud\Datastore\Transaction::commit()} to commit changes.
+     * Changes are not immediately committed to Cloud Datastore when calling
+     * this method. Use {@see Google\Cloud\Datastore\Transaction::commit()} to
+     * commit changes and end the transaction.
      *
      * Example:
      * ```
@@ -312,7 +333,7 @@ class Transaction
     }
 
     /**
-     * Commit all mutations
+     * Commit all mutations.
      *
      * Calling this method will end the operation (and close the transaction,
      * if one is specified).

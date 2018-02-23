@@ -17,6 +17,7 @@
 
 namespace Google\Cloud\Datastore\Tests\Unit;
 
+use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Datastore\Connection\ConnectionInterface;
 use Google\Cloud\Datastore\Entity;
 use Google\Cloud\Datastore\EntityIterator;
@@ -24,23 +25,30 @@ use Google\Cloud\Datastore\EntityMapper;
 use Google\Cloud\Datastore\Key;
 use Google\Cloud\Datastore\Operation;
 use Google\Cloud\Datastore\Query\QueryInterface;
-use Prophecy\Argument;
 use PHPUnit\Framework\TestCase;
+use Prophecy\Argument;
 
 /**
  * @group datastore
+ * @group datastore-operation
  */
 class OperationTest extends TestCase
 {
+    const PROJECT = 'example-project';
+    const NAMESPACEID = 'namespace-id';
+
     private $operation;
-    private $mapper;
     private $connection;
 
     public function setUp()
     {
         $this->connection = $this->prophesize(ConnectionInterface::class);
-        $this->mapper = new EntityMapper('foo', true, false);
-        $this->operation = new OperationStub($this->connection->reveal(), 'foo', '', $this->mapper);
+        $this->operation = TestHelpers::stub(Operation::class, [
+            $this->connection->reveal(),
+            self::PROJECT,
+            null,
+            new EntityMapper('foo', true, false)
+        ], ['connection', 'namespaceId']);
     }
 
     public function testKey()
@@ -54,17 +62,17 @@ class OperationTest extends TestCase
 
     public function testKeyWithNamespaceId()
     {
-        $op = new Operation($this->connection->reveal(), 'foo', 'namespace', $this->mapper);
-        $key = $op->key('Person', 'Bob');
+        $this->operation->___setProperty('namespaceId', self::NAMESPACEID);
+        $key = $this->operation->key('Person', 'Bob');
         $obj = $key->keyObject();
 
-        $this->assertEquals('namespace', $obj['partitionId']['namespaceId']);
+        $this->assertEquals(self::NAMESPACEID, $obj['partitionId']['namespaceId']);
     }
 
     public function testKeyWithNamespaceIdOverride()
     {
-        $op = new Operation($this->connection->reveal(), 'foo', 'namespace', $this->mapper);
-        $key = $op->key('Person', 'Bob', [
+        $this->operation->___setProperty('namespaceId', self::NAMESPACEID);
+        $key = $this->operation->key('Person', 'Bob', [
             'namespaceId' => 'otherNamespace'
         ]);
         $obj = $key->keyObject();
@@ -126,8 +134,8 @@ class OperationTest extends TestCase
 
     public function testEntity()
     {
-        $key = $this->prophesize(Key::class);
-        $e = $this->operation->entity($key->reveal());
+        $key = $this->operation->key('Person');
+        $e = $this->operation->entity($key);
 
         $this->assertInstanceOf(Entity::class, $e);
     }
@@ -137,6 +145,7 @@ class OperationTest extends TestCase
         $e = $this->operation->entity('Foo');
         $this->assertInstanceOf(Entity::class, $e);
         $this->assertEquals($e->key()->state(), Key::STATE_INCOMPLETE);
+        $this->assertEquals('Foo', $e->key()->pathEnd()['kind']);
     }
 
     /**
@@ -168,28 +177,25 @@ class OperationTest extends TestCase
 
     public function testAllocateIds()
     {
-        $keys = [
-            $this->operation->key('foo')
-        ];
+        $key = $this->operation->key('foo');
 
-        $this->connection->allocateIds(Argument::type('array'))
+        $id = 12345;
+        $keyWithId = clone $key;
+        $keyWithId->setLastElementIdentifier($id);
+        $this->connection->allocateIds(Argument::withEntry('keys', [$key->keyObject()]))
             ->shouldBeCalled()
             ->willReturn([
                 'keys' => [
-                    [
-                        'path' => [
-                            ['kind' => 'foo', 'id' => '1']
-                        ]
-                    ]
+                    $keyWithId->keyObject()
                 ]
             ]);
 
-        $this->operation->setConnection($this->connection->reveal());
+        $this->operation->___setProperty('connection', $this->connection->reveal());
 
-        $res = $this->operation->allocateIds($keys);
+        $res = $this->operation->allocateIds([$key]);
 
         $this->assertEquals($res[0]->state(), Key::STATE_NAMED);
-        $this->assertEquals($res[0]->path()[0]['id'], '1');
+        $this->assertEquals($res[0]->path()[0]['id'], $id);
     }
 
     /**
@@ -197,26 +203,22 @@ class OperationTest extends TestCase
      */
     public function testAllocateIdsNamedKey()
     {
-        $keys = [
-            $this->operation->key('foo', 'Bar')
-        ];
+        $key = $this->operation->key('foo', 'Bar');
 
-        $this->operation->allocateIds($keys);
+        $this->operation->allocateIds([$key]);
     }
 
     public function testLookup()
     {
-        $keys = [
-            $this->operation->key('foo', 'Bar')
-        ];
+        $key = $this->operation->key('foo', 'Bar');
 
         $this->connection->lookup(Argument::type('array'))
             ->shouldBeCalled()
             ->willReturn([]);
 
-        $this->operation->setConnection($this->connection->reveal());
+        $this->operation->___setProperty('connection', $this->connection->reveal());
 
-        $res = $this->operation->lookup($keys);
+        $res = $this->operation->lookup([$key]);
 
         $this->assertInternalType('array', $res);
     }
@@ -228,7 +230,7 @@ class OperationTest extends TestCase
             'found' => $body
         ]);
 
-        $this->operation->setConnection($this->connection->reveal());
+        $this->operation->___setProperty('connection', $this->connection->reveal());
 
         $key = $this->operation->key('Kind', 'ID');
         $res = $this->operation->lookup([$key]);
@@ -250,7 +252,7 @@ class OperationTest extends TestCase
             'missing' => $body
         ]);
 
-        $this->operation->setConnection($this->connection->reveal());
+        $this->operation->___setProperty('connection', $this->connection->reveal());
 
         $key = $this->operation->key('Kind', 'ID');
 
@@ -270,7 +272,7 @@ class OperationTest extends TestCase
             'deferred' => [ $body[0]['entity']['key'] ]
         ]);
 
-        $this->operation->setConnection($this->connection->reveal());
+        $this->operation->___setProperty('connection', $this->connection->reveal());
 
         $key = $this->operation->key('Kind', 'ID');
 
@@ -285,7 +287,7 @@ class OperationTest extends TestCase
     {
         $this->connection->lookup(Argument::withKey('readOptions'))->shouldBeCalled()->willReturn([]);
 
-        $this->operation->setConnection($this->connection->reveal());
+        $this->operation->___setProperty('connection', $this->connection->reveal());
 
         $k = new Key('test-project', [
             'path' => [['kind' => 'kind', 'id' => '123']]
@@ -298,7 +300,7 @@ class OperationTest extends TestCase
     {
         $this->connection->lookup(Argument::withKey('readOptions'))->shouldBeCalled()->willReturn([]);
 
-        $this->operation->setConnection($this->connection->reveal());
+        $this->operation->___setProperty('connection', $this->connection->reveal());
 
         $k = new Key('test-project', [
             'path' => [['kind' => 'kind', 'id' => '123']]
@@ -313,7 +315,7 @@ class OperationTest extends TestCase
             return !isset($args['readOptions']);
         }))->shouldBeCalled()->willReturn([]);
 
-        $this->operation->setConnection($this->connection->reveal());
+        $this->operation->___setProperty('connection', $this->connection->reveal());
 
         $k = new Key('test-project', [
             'path' => [['kind' => 'kind', 'id' => '123']]
@@ -337,7 +339,7 @@ class OperationTest extends TestCase
             'found' => $data['entities']
         ]);
 
-        $this->operation->setConnection($this->connection->reveal());
+        $this->operation->___setProperty('connection', $this->connection->reveal());
 
         $res = $this->operation->lookup($keys, [
             'sort' => true
@@ -366,7 +368,7 @@ class OperationTest extends TestCase
             'missing' => $data['missing']
         ]);
 
-        $this->operation->setConnection($this->connection->reveal());
+        $this->operation->___setProperty('connection', $this->connection->reveal());
 
         $res = $this->operation->lookup($keys);
 
@@ -397,7 +399,7 @@ class OperationTest extends TestCase
             'found' => $data['entities']
         ]);
 
-        $this->operation->setConnection($this->connection->reveal());
+        $this->operation->___setProperty('connection', $this->connection->reveal());
 
         $res = $this->operation->lookup($keys, [
             'sort' => true
@@ -433,7 +435,7 @@ class OperationTest extends TestCase
         $this->connection->runQuery(Argument::type('array'))
             ->willReturn($queryResult['notPaged']);
 
-        $this->operation->setConnection($this->connection->reveal());
+        $this->operation->___setProperty('connection', $this->connection->reveal());
 
         $q = $this->prophesize(QueryInterface::class);
         $q->queryKey()->shouldBeCalled()->willReturn('query');
@@ -461,7 +463,7 @@ class OperationTest extends TestCase
                 return $queryResult['paged'][0];
             });
 
-        $this->operation->setConnection($this->connection->reveal());
+        $this->operation->___setProperty('connection', $this->connection->reveal());
 
         $q = $this->prophesize(QueryInterface::class);
         $q->queryKey()->shouldBeCalled()->willReturn('query');
@@ -484,7 +486,7 @@ class OperationTest extends TestCase
         $this->connection->runQuery(Argument::type('array'))
             ->willReturn($queryResult['noResults']);
 
-        $this->operation->setConnection($this->connection->reveal());
+        $this->operation->___setProperty('connection', $this->connection->reveal());
 
         $q = $this->prophesize(QueryInterface::class);
         $q->queryKey()->shouldBeCalled()->willReturn('query');
@@ -503,7 +505,7 @@ class OperationTest extends TestCase
     {
         $this->connection->runQuery(Argument::withKey('readOptions'))->willReturn([]);
 
-        $this->operation->setConnection($this->connection->reveal());
+        $this->operation->___setProperty('connection', $this->connection->reveal());
 
         $q = $this->prophesize(QueryInterface::class);
         $q->queryKey()->willReturn('query');
@@ -517,7 +519,7 @@ class OperationTest extends TestCase
     {
         $this->connection->runQuery(Argument::withKey('readOptions'))->willReturn([]);
 
-        $this->operation->setConnection($this->connection->reveal());
+        $this->operation->___setProperty('connection', $this->connection->reveal());
 
         $q = $this->prophesize(QueryInterface::class);
         $q->queryKey()->willReturn('query');
@@ -533,7 +535,7 @@ class OperationTest extends TestCase
             return !isset($args['readOptions']);
         }))->willReturn([]);
 
-        $this->operation->setConnection($this->connection->reveal());
+        $this->operation->___setProperty('connection', $this->connection->reveal());
 
         $q = $this->prophesize(QueryInterface::class);
         $q->queryKey()->willReturn('query');
@@ -555,7 +557,7 @@ class OperationTest extends TestCase
             ->shouldBeCalled()
             ->willReturn(['foo']);
 
-        $this->operation->setConnection($this->connection->reveal());
+        $this->operation->___setProperty('connection', $this->connection->reveal());
 
         $this->assertEquals(['foo'], $this->operation->commit([]));
     }
@@ -572,7 +574,7 @@ class OperationTest extends TestCase
             ->shouldBeCalled()
             ->willReturn(['foo']);
 
-        $this->operation->setConnection($this->connection->reveal());
+        $this->operation->___setProperty('connection', $this->connection->reveal());
 
         $this->operation->commit([], [
             'transaction' => '1234'
@@ -583,14 +585,12 @@ class OperationTest extends TestCase
     {
         $this->connection->commit(Argument::that(function($arg) {
             return count($arg['mutations']) === 1;
-        }))
-            ->shouldBeCalled()
-            ->willReturn(['foo']);
+        }))->shouldBeCalled()->willReturn(['foo']);
 
-        $this->operation->setConnection($this->connection->reveal());
+        $this->operation->___setProperty('connection', $this->connection->reveal());
 
-        $key = $this->prophesize(Key::class);
-        $e = new Entity($key->reveal());
+        $key = $this->operation->key('Person');
+        $e = new Entity($key);
 
         $mutation = $this->operation->mutation('insert', $e, Entity::class, null);
 
@@ -599,36 +599,37 @@ class OperationTest extends TestCase
 
     public function testRollback()
     {
-        $this->connection->rollback(Argument::exact(['projectId' => 'foo', 'transaction' => 'bar']))
-            ->shouldBeCalled()
-            ->willReturn(null);
+        $this->connection->rollback(Argument::allOf(
+            Argument::withEntry('projectId', self::PROJECT),
+            Argument::withEntry('transaction', 'bar')
+        ))->shouldBeCalled()->willReturn(null);
 
-        $this->operation->setConnection($this->connection->reveal());
+        $this->operation->___setProperty('connection', $this->connection->reveal());
 
         $this->operation->rollback('bar');
     }
 
     public function testAllocateIdsToEntities()
     {
-        $this->connection->allocateIds(Argument::that(function ($arg) {
-            return count($arg['keys']) === 1;
-        }))
+        $completeKey = $this->operation->key('Foo', 'Bar');
+        $partialKey = $this->operation->key('Foo');
+
+        $id = 12345;
+        $keyWithId = clone $partialKey;
+        $keyWithId->setLastElementIdentifier($id);
+        $this->connection->allocateIds(Argument::withEntry('keys', [$partialKey->keyObject()]))
             ->shouldBeCalled()
             ->willReturn([
                 'keys' => [
-                    [
-                        'path' => [
-                            ['kind' => 'foo', 'id' => '1']
-                        ]
-                    ]
+                    $keyWithId->keyObject()
                 ]
             ]);
 
-        $this->operation->setConnection($this->connection->reveal());
+        $this->operation->___setProperty('connection', $this->connection->reveal());
 
         $entities = [
-            $this->operation->entity($this->operation->key('Foo', 'Bar')),
-            $this->operation->entity($this->operation->key('Foo'))
+            $this->operation->entity($completeKey),
+            $this->operation->entity($partialKey)
         ];
 
         $res = $this->operation->allocateIdsToEntities($entities);
@@ -642,18 +643,20 @@ class OperationTest extends TestCase
 
     public function testMutate()
     {
+        $id = 12345;
+
         $this->connection->commit(Argument::that(function ($arg) {
             if (count($arg['mutations']) !== 1) return false;
 
             if (!isset($arg['mutations'][0]['insert'])) return false;
 
             return true;
-        }))->willReturn('foo');
+        }))->shouldBeCalled();
 
-        $this->operation->setConnection($this->connection->reveal());
+        $this->operation->___setProperty('connection', $this->connection->reveal());
 
-        $key = $this->prophesize(Key::class);
-        $e = new Entity($key->reveal());
+        $key = $this->operation->key('Person', $id);
+        $e = new Entity($key);
 
         $mutation = $this->operation->mutation('insert', $e, Entity::class, null);
         $this->operation->commit([$mutation]);
@@ -665,7 +668,7 @@ class OperationTest extends TestCase
             return $arg['mutations'][0]['baseVersion'] === 1;
         }))->willReturn('foo');
 
-        $this->operation->setConnection($this->connection->reveal());
+        $this->operation->___setProperty('connection', $this->connection->reveal());
 
         $key = $this->prophesize(Key::class);
         $e = new Entity($key->reveal(), [], [
@@ -685,7 +688,7 @@ class OperationTest extends TestCase
             return true;
         }))->willReturn('foo');
 
-        $this->operation->setConnection($this->connection->reveal());
+        $this->operation->___setProperty('connection', $this->connection->reveal());
 
         $key = new Key('foo', [
             'path' => [['kind' => 'foo', 'id' => 1]]
@@ -740,12 +743,11 @@ class OperationTest extends TestCase
                 'found' => $res
             ]);
 
-        $this->operation->setConnection($this->connection->reveal());
+        $this->operation->___setProperty('connection', $this->connection->reveal());
 
-        $k = $this->prophesize(Key::class);
-        $k->state()->willReturn(Key::STATE_NAMED);
+        $key = $this->operation->key('Person', 12345);
 
-        $entity = $this->operation->lookup([$k->reveal()]);
+        $entity = $this->operation->lookup([$key]);
         $this->assertInstanceOf(Entity::class, $entity['found'][0]);
 
         $this->assertEquals($entity['found'][0]->baseVersion(), $res[0]['version']);
@@ -762,12 +764,11 @@ class OperationTest extends TestCase
                 'found' => $res
             ]);
 
-        $this->operation->setConnection($this->connection->reveal());
+        $this->operation->___setProperty('connection', $this->connection->reveal());
 
-        $k = $this->prophesize(Key::class);
-        $k->state()->willReturn(Key::STATE_NAMED);
+        $key = $this->operation->key('Person', 12345);
 
-        $entity = $this->operation->lookup([$k->reveal()]);
+        $entity = $this->operation->lookup([$key]);
         $this->assertInstanceOf(Entity::class, $entity['found'][0]);
 
         $this->assertEquals($entity['found'][0]->baseVersion(), $res[0]['version']);
@@ -783,12 +784,11 @@ class OperationTest extends TestCase
                 'found' => $res
             ]);
 
-        $this->operation->setConnection($this->connection->reveal());
+        $this->operation->___setProperty('connection', $this->connection->reveal());
 
-        $k = $this->prophesize(Key::class);
-        $k->state()->willReturn(Key::STATE_NAMED);
+        $key = $this->operation->key('Person', 12345);
 
-        $entity = $this->operation->lookup([$k->reveal()], [
+        $entity = $this->operation->lookup([$key], [
             'className' => [
                 'Kind' => MyEntity::class
             ]
@@ -809,12 +809,11 @@ class OperationTest extends TestCase
                 'found' => $res
             ]);
 
-        $this->operation->setConnection($this->connection->reveal());
+        $this->operation->___setProperty('connection', $this->connection->reveal());
 
-        $k = $this->prophesize(Key::class);
-        $k->state()->willReturn(Key::STATE_NAMED);
+        $key = $this->operation->key('Person', 12345);
 
-        $entity = $this->operation->lookup([$k->reveal()], [
+        $entity = $this->operation->lookup([$key], [
             'className' => [
                 'Kind2' => MyEntity::class
             ]
@@ -828,11 +827,10 @@ class OperationTest extends TestCase
         }))
             ->willReturn([]);
 
-        $this->operation->setConnection($this->connection->reveal());
+        $this->operation->___setProperty('connection', $this->connection->reveal());
 
-        $k = $this->prophesize(Key::class);
-        $k->state()->willReturn(Key::STATE_NAMED);
-        $this->operation->lookup([$k->reveal()], [
+        $key = $this->operation->key('Person', 12345);
+        $this->operation->lookup([$key], [
             'transaction' => '1234'
         ]);
     }
@@ -844,11 +842,10 @@ class OperationTest extends TestCase
         }))
             ->willReturn([]);
 
-        $this->operation->setConnection($this->connection->reveal());
+        $this->operation->___setProperty('connection', $this->connection->reveal());
 
-        $k = $this->prophesize(Key::class);
-        $k->state()->willReturn(Key::STATE_NAMED);
-        $this->operation->lookup([$k->reveal()]);
+        $key = $this->operation->key('Person', 12345);
+        $this->operation->lookup([$key]);
     }
 
     public function testReadConsistencyInReadOptions()
@@ -860,11 +857,10 @@ class OperationTest extends TestCase
         }))
             ->willReturn([]);
 
-        $this->operation->setConnection($this->connection->reveal());
+        $this->operation->___setProperty('connection', $this->connection->reveal());
 
-        $k = $this->prophesize(Key::class);
-        $k->state()->willReturn(Key::STATE_NAMED);
-        $this->operation->lookup([$k->reveal()], [
+        $key = $this->operation->key('Person', 12345);
+        $this->operation->lookup([$key], [
             'readConsistency' => 'test'
         ]);
     }
@@ -875,19 +871,6 @@ class OperationTest extends TestCase
     public function testInvalidBatchType()
     {
         $this->operation->lookup(['foo']);
-    }
-}
-
-class OperationStub extends Operation
-{
-    // public function runQuery(QueryInterface $q, array $args = [])
-    // {
-    //     echo 'test';
-    //     exit;
-    // }
-    public function setConnection($connection)
-    {
-        $this->connection = $connection;
     }
 }
 

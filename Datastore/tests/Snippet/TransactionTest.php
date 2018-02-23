@@ -17,6 +17,7 @@
 
 namespace Google\Cloud\Tests\Snippets\Datastore;
 
+use Google\Cloud\Core\Testing\DatastoreOperationRefreshTrait;
 use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
 use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Datastore\Connection\ConnectionInterface;
@@ -33,26 +34,36 @@ use Prophecy\Argument;
  */
 class TransactionTest extends SnippetTestCase
 {
+    use DatastoreOperationRefreshTrait;
+
     const PROJECT = 'my-awesome-project';
+    const TRANSACTION = 'transaction-id';
 
     private $connection;
     private $operation;
     private $transaction;
-    private $transactionId = 'foo';
-    private $datastore;
+    private $client;
     private $key;
 
     public function setUp()
     {
         $this->connection = $this->prophesize(ConnectionInterface::class);
-        $this->operation = \Google\Cloud\Core\Testing\TestHelpers::stub(Operation::class, [
+
+        $operation = new Operation(
             $this->connection->reveal(),
             self::PROJECT,
             '',
             new EntityMapper(self::PROJECT, false, false)
-        ]);
-        $this->transaction = new Transaction($this->operation, self::PROJECT, $this->transactionId);
-        $this->datastore = new DatastoreClient;
+        );
+
+        $this->transaction = TestHelpers::stub(Transaction::class, [
+            $operation,
+            self::PROJECT,
+            self::TRANSACTION
+        ], ['operation']);
+
+        $this->client = TestHelpers::stub(DatastoreClient::class, [], ['operation']);
+
         $this->key = new Key('my-awesome-project', [
             [
                 'path' => [
@@ -64,18 +75,19 @@ class TransactionTest extends SnippetTestCase
 
     public function testClass()
     {
-        $connectionStub = $this->prophesize(ConnectionInterface::class);
-        $connectionStub->beginTransaction(Argument::any())
+        $this->connection->beginTransaction(Argument::any())
             ->shouldBeCalled()
             ->willReturn([
                 'transaction' => 'foo'
             ]);
 
-        $client = TestHelpers::stub(DatastoreClient::class);
-        $client->___setProperty('connection', $connectionStub->reveal());
+        $this->refreshOperation($this->client, $this->connection->reveal(), [
+            'projectId' => self::PROJECT
+        ]);
+
         $snippet = $this->snippetFromClass(Transaction::class);
         $snippet->setLine(2, '');
-        $snippet->addLocal('datastore', $client);
+        $snippet->addLocal('datastore', $this->client);
 
         $res = $snippet->invoke('transaction');
         $this->assertInstanceOf(Transaction::class, $res->returnVal());
@@ -84,11 +96,11 @@ class TransactionTest extends SnippetTestCase
     public function testInsert()
     {
         $snippet = $this->snippetFromMethod(Transaction::class, 'insert');
-        $snippet->addLocal('datastore', $this->datastore);
+        $snippet->addLocal('datastore', $this->client);
         $snippet->addLocal('transaction', $this->transaction);
 
         $this->connection->commit(Argument::that(function ($args) {
-            if ($args['transaction'] !== $this->transactionId) return false;
+            if ($args['transaction'] !== self::TRANSACTION) return false;
             return array_keys($args['mutations'][0])[0] === 'insert';
         }))
             ->shouldBeCalled()
@@ -98,7 +110,9 @@ class TransactionTest extends SnippetTestCase
                 ]
             ]);
 
-        $this->operation->___setProperty('connection', $this->connection->reveal());
+        $this->refreshOperation($this->transaction, $this->connection->reveal(), [
+            'projectId' => self::PROJECT
+        ]);
 
         $res = $snippet->invoke();
     }
@@ -106,11 +120,11 @@ class TransactionTest extends SnippetTestCase
     public function testInsertBatch()
     {
         $snippet = $this->snippetFromMethod(Transaction::class, 'insertBatch');
-        $snippet->addLocal('datastore', $this->datastore);
+        $snippet->addLocal('datastore', $this->client);
         $snippet->addLocal('transaction', $this->transaction);
 
         $this->connection->commit(Argument::that(function ($args) {
-            if ($args['transaction'] !== $this->transactionId) return false;
+            if ($args['transaction'] !== self::TRANSACTION) return false;
             return array_keys($args['mutations'][0])[0] === 'insert';
         }))
             ->shouldBeCalled()
@@ -122,7 +136,9 @@ class TransactionTest extends SnippetTestCase
 
         $this->allocateIdsConnectionMock();
 
-        $this->operation->___setProperty('connection', $this->connection->reveal());
+        $this->refreshOperation($this->transaction, $this->connection->reveal(), [
+            'projectId' => self::PROJECT
+        ]);
 
         $res = $snippet->invoke();
     }
@@ -130,14 +146,14 @@ class TransactionTest extends SnippetTestCase
     public function testUpdate()
     {
         $snippet = $this->snippetFromMethod(Transaction::class, 'update');
-        $snippet->addLocal('datastore', $this->datastore);
+        $snippet->addLocal('datastore', $this->client);
         $snippet->addLocal('transaction', $this->transaction);
-        $snippet->addLocal('entity', $this->datastore->entity($this->key, [], [
+        $snippet->addLocal('entity', $this->client->entity($this->key, [], [
             'populatedByService' => true
         ]));
 
         $this->connection->commit(Argument::that(function ($args) {
-            if ($args['transaction'] !== $this->transactionId) return false;
+            if ($args['transaction'] !== self::TRANSACTION) return false;
             return array_keys($args['mutations'][0])[0] === 'update';
         }))
             ->shouldBeCalled()
@@ -147,7 +163,9 @@ class TransactionTest extends SnippetTestCase
                 ]
             ]);
 
-        $this->operation->___setProperty('connection', $this->connection->reveal());
+        $this->refreshOperation($this->transaction, $this->connection->reveal(), [
+            'projectId' => self::PROJECT
+        ]);
 
         $res = $snippet->invoke();
     }
@@ -155,15 +173,15 @@ class TransactionTest extends SnippetTestCase
     public function testUpdateBatch()
     {
         $snippet = $this->snippetFromMethod(Transaction::class, 'updateBatch');
-        $snippet->addLocal('datastore', $this->datastore);
+        $snippet->addLocal('datastore', $this->client);
         $snippet->addLocal('transaction', $this->transaction);
         $snippet->addLocal('entities', [
-            $this->datastore->entity($this->datastore->key('Person', 'Bob'), [], ['populatedByService' => true]),
-            $this->datastore->entity($this->datastore->key('Person', 'John'), [], ['populatedByService' => true])
+            $this->client->entity($this->client->key('Person', 'Bob'), [], ['populatedByService' => true]),
+            $this->client->entity($this->client->key('Person', 'John'), [], ['populatedByService' => true])
         ]);
 
         $this->connection->commit(Argument::that(function ($args) {
-            if ($args['transaction'] !== $this->transactionId) return false;
+            if ($args['transaction'] !== self::TRANSACTION) return false;
             return array_keys($args['mutations'][0])[0] === 'update';
         }))
             ->shouldBeCalled();
@@ -174,14 +192,14 @@ class TransactionTest extends SnippetTestCase
     public function testUpsert()
     {
         $snippet = $this->snippetFromMethod(Transaction::class, 'upsert');
-        $snippet->addLocal('datastore', $this->datastore);
+        $snippet->addLocal('datastore', $this->client);
         $snippet->addLocal('transaction', $this->transaction);
-        $snippet->addLocal('entity', $this->datastore->entity($this->key, [], [
+        $snippet->addLocal('entity', $this->client->entity($this->key, [], [
             'populatedByService' => true
         ]));
 
         $this->connection->commit(Argument::that(function ($args) {
-            if ($args['transaction'] !== $this->transactionId) return false;
+            if ($args['transaction'] !== self::TRANSACTION) return false;
             return array_keys($args['mutations'][0])[0] === 'upsert';
         }))
             ->shouldBeCalled()
@@ -191,7 +209,9 @@ class TransactionTest extends SnippetTestCase
                 ]
             ]);
 
-        $this->operation->___setProperty('connection', $this->connection->reveal());
+        $this->refreshOperation($this->transaction, $this->connection->reveal(), [
+            'projectId' => self::PROJECT
+        ]);
 
         $res = $snippet->invoke();
     }
@@ -199,15 +219,15 @@ class TransactionTest extends SnippetTestCase
     public function testUpsertBatch()
     {
         $snippet = $this->snippetFromMethod(Transaction::class, 'upsertBatch');
-        $snippet->addLocal('datastore', $this->datastore);
+        $snippet->addLocal('datastore', $this->client);
         $snippet->addLocal('transaction', $this->transaction);
         $snippet->addLocal('entities', [
-            $this->datastore->entity($this->datastore->key('Person', 'Bob'), [], ['populatedByService' => true]),
-            $this->datastore->entity($this->datastore->key('Person', 'John'), [], ['populatedByService' => true])
+            $this->client->entity($this->client->key('Person', 'Bob'), [], ['populatedByService' => true]),
+            $this->client->entity($this->client->key('Person', 'John'), [], ['populatedByService' => true])
         ]);
 
         $this->connection->commit(Argument::that(function ($args) {
-            if ($args['transaction'] !== $this->transactionId) return false;
+            if ($args['transaction'] !== self::TRANSACTION) return false;
             return array_keys($args['mutations'][0])[0] === 'upsert';
         }))
             ->shouldBeCalled();
@@ -218,11 +238,11 @@ class TransactionTest extends SnippetTestCase
     public function testDelete()
     {
         $snippet = $this->snippetFromMethod(Transaction::class, 'delete');
-        $snippet->addLocal('datastore', $this->datastore);
+        $snippet->addLocal('datastore', $this->client);
         $snippet->addLocal('transaction', $this->transaction);
 
         $this->connection->commit(Argument::that(function ($args) {
-            if ($args['transaction'] !== $this->transactionId) return false;
+            if ($args['transaction'] !== self::TRANSACTION) return false;
             return array_keys($args['mutations'][0])[0] === 'delete';
         }))
             ->shouldBeCalled()
@@ -232,7 +252,9 @@ class TransactionTest extends SnippetTestCase
                 ]
             ]);
 
-        $this->operation->___setProperty('connection', $this->connection->reveal());
+        $this->refreshOperation($this->transaction, $this->connection->reveal(), [
+            'projectId' => self::PROJECT
+        ]);
 
         $res = $snippet->invoke();
     }
@@ -240,11 +262,11 @@ class TransactionTest extends SnippetTestCase
     public function testDeleteBatch()
     {
         $snippet = $this->snippetFromMethod(Transaction::class, 'deleteBatch');
-        $snippet->addLocal('datastore', $this->datastore);
+        $snippet->addLocal('datastore', $this->client);
         $snippet->addLocal('transaction', $this->transaction);
 
         $this->connection->commit(Argument::that(function ($args) {
-            if ($args['transaction'] !== $this->transactionId) return false;
+            if ($args['transaction'] !== self::TRANSACTION) return false;
             if (array_keys($args['mutations'][0])[0] !== 'delete') return false;
             return true;
         }))
@@ -256,12 +278,10 @@ class TransactionTest extends SnippetTestCase
     public function testLookup()
     {
         $snippet = $this->snippetFromMethod(Transaction::class, 'lookup');
-        $snippet->addLocal('datastore', $this->datastore);
+        $snippet->addLocal('datastore', $this->client);
         $snippet->addLocal('transaction', $this->transaction);
 
-        $this->connection->lookup(Argument::that(function ($args) {
-            return $args['transaction'] === $this->transactionId;
-        }))
+        $this->connection->lookup(Argument::withEntry('transaction', self::TRANSACTION))
             ->shouldBeCalled()
             ->willReturn([
                 'found' => [
@@ -282,7 +302,9 @@ class TransactionTest extends SnippetTestCase
                 ]
             ]);
 
-        $this->operation->___setProperty('connection', $this->connection->reveal());
+        $this->refreshOperation($this->transaction, $this->connection->reveal(), [
+            'projectId' => self::PROJECT
+        ]);
 
         $res = $snippet->invoke();
         $this->assertEquals('Bob', $res->output());
@@ -291,12 +313,10 @@ class TransactionTest extends SnippetTestCase
     public function testLookupBatch()
     {
         $snippet = $this->snippetFromMethod(Transaction::class, 'lookupBatch');
-        $snippet->addLocal('datastore', $this->datastore);
+        $snippet->addLocal('datastore', $this->client);
         $snippet->addLocal('transaction', $this->transaction);
 
-        $this->connection->lookup(Argument::that(function ($args) {
-            return $args['transaction'] === $this->transactionId;
-        }))
+        $this->connection->lookup(Argument::withEntry('transaction', self::TRANSACTION))
             ->shouldBeCalled()
             ->willReturn([
                 'found' => [
@@ -331,7 +351,9 @@ class TransactionTest extends SnippetTestCase
                 ]
             ]);
 
-        $this->operation->___setProperty('connection', $this->connection->reveal());
+        $this->refreshOperation($this->transaction, $this->connection->reveal(), [
+            'projectId' => self::PROJECT
+        ]);
 
         $res = $snippet->invoke();
         $this->assertEquals("Bob", explode("\n", $res->output())[0]);
@@ -341,13 +363,11 @@ class TransactionTest extends SnippetTestCase
     public function testRunQuery()
     {
         $snippet = $this->snippetFromMethod(Transaction::class, 'runQuery');
-        $snippet->addLocal('datastore', $this->datastore);
+        $snippet->addLocal('datastore', $this->client);
         $snippet->addLocal('transaction', $this->transaction);
         $snippet->addLocal('query', $this->prophesize(QueryInterface::class)->reveal());
 
-        $this->connection->runQuery(Argument::that(function ($args) {
-            return $args['transaction'] === $this->transactionId;
-        }))
+        $this->connection->runQuery(Argument::withEntry('transaction', self::TRANSACTION))
             ->shouldBeCalled()
             ->willReturn([
                 'batch' => [
@@ -370,7 +390,9 @@ class TransactionTest extends SnippetTestCase
                 ]
             ]);
 
-        $this->operation->___setProperty('connection', $this->connection->reveal());
+        $this->refreshOperation($this->transaction, $this->connection->reveal(), [
+            'projectId' => self::PROJECT
+        ]);
 
         $res = $snippet->invoke('result');
         $this->assertEquals('Bob', $res->output());
@@ -384,7 +406,9 @@ class TransactionTest extends SnippetTestCase
         $this->connection->commit(Argument::any())
             ->shouldBeCalled();
 
-        $this->operation->___setProperty('connection', $this->connection->reveal());
+        $this->refreshOperation($this->transaction, $this->connection->reveal(), [
+            'projectId' => self::PROJECT
+        ]);
 
         $snippet->invoke();
     }
@@ -397,7 +421,9 @@ class TransactionTest extends SnippetTestCase
         $this->connection->rollback(Argument::any())
             ->shouldBeCalled();
 
-        $this->operation->___setProperty('connection', $this->connection->reveal());
+        $this->refreshOperation($this->transaction, $this->connection->reveal(), [
+            'projectId' => self::PROJECT
+        ]);
 
         $snippet->invoke();
     }
