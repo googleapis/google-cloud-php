@@ -15,14 +15,13 @@
  * limitations under the License.
  */
 
-namespace Google\Cloud\Bigtable\V2;
+namespace Google\Cloud\Bigtable\src;
 
 /**
  *
  */
 class FlatRow
 {
-
     private $rowKey = null;
     private $cells  = [];
 
@@ -62,7 +61,7 @@ class FlatRow
     }
 
     /**
-     * @param $cell Google\Cloud\Bigtable\V2\Cell
+     * @param $cell Google\Cloud\Bigtable\src\Cell
      */
     public function setCells($cell)
     {
@@ -70,7 +69,7 @@ class FlatRow
     }
 
     /**
-     * @return Google\Cloud\Bigtable\V2\Cell
+     * @return Google\Cloud\Bigtable\src\Cell
      */
     public function getCells()
     {
@@ -78,7 +77,7 @@ class FlatRow
     }
 
     /**
-     * @param $cell Google\Cloud\Bigtable\V2\Cell
+     * @param $cell Google\Cloud\Bigtable\src\Cell
      */
     public function addCell($cell)
     {

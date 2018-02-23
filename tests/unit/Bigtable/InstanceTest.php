@@ -18,22 +18,24 @@
 namespace Google\Cloud\Tests\Unit\Bigtable;
 
 use Google\Cloud\Bigtable\src\BigtableInstance;
-use PHPUnit\Framework\TestCase;
-use Google\GAX\ValidationException;
-use Google\GAX\OperationResponse;
-
 use Google\Cloud\Bigtable\Admin\V2\Instance;
 use Google\Cloud\Bigtable\Admin\V2\Instance_Type;
-use Google\Protobuf\GPBEmpty;
 use Google\Cloud\Bigtable\Admin\V2\ListInstancesResponse;
-
+use Google\Cloud\Bigtable\Admin\V2\Cluster;
+use Google\Cloud\Bigtable\Admin\V2\ListClustersResponse;
+use Google\ApiCore\ValidationException;
+use Google\ApiCore\OperationResponse;
+use Google\Protobuf\GPBEmpty;
+use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
 
+/**
+ * 
+ */
 class InstanceTest extends TestCase
 {
     const PROJECT_ID = 'grass-clump-479';
     const INSTANCE_ID = 'my-instance';
-
     public $mock;
 
     public function setUp()
@@ -43,24 +45,13 @@ class InstanceTest extends TestCase
                             ->getMock();
     }
 
-    public function testProjectName()
+    public function testGetInstance()
     {
-        $expected = 'projects/'.self::PROJECT_ID;
-        $this->mock->method('projectName')
-             ->willReturn($expected);
-
-        $formatedName = $this->mock->projectName(Argument::type('string'));
-        $this->assertEquals($formatedName, $expected);
-    }
-
-    public function testInstanceName()
-    {
-        $expected = 'projects/'.self::PROJECT_ID.'/instances/'.self::INSTANCE_ID;
-        $this->mock->method('instanceName')
-             ->willReturn($expected);
-
-        $formatedName = $this->mock->instanceName(Argument::type('string'), Argument::type('string'));
-        $this->assertEquals($formatedName, $expected);
+        $Instance = new Instance();
+        $this->mock->method('getInstance')
+             ->willReturn($Instance);
+        $instances = $this->mock->getInstance(Argument::type('string'));
+        $this->assertInstanceOf(Instance::class, $instances);
     }
 
     public function testUpdateInstance()
@@ -78,14 +69,14 @@ class InstanceTest extends TestCase
         $instance = $this->mock->updateInstance(Argument::type('string'), Argument::type('string'), Argument::type('integer'));
         $this->assertEquals($instance->getDisplayName(), $displayName);
         $this->assertInstanceOf(Instance::class, $instance);
-	}
-
+    }
+    
     public function testListInstances()
     {
         $ListInstances = new ListInstancesResponse();
         $this->mock->method('listInstances')
              ->willReturn($ListInstances);
-        $instances = $this->mock->listInstances(Argument::type('string'));        
+        $instances = $this->mock->listInstances(Argument::type('string'));
         $this->assertInstanceOf(ListInstancesResponse::class, $instances);
     }
     
@@ -96,6 +87,34 @@ class InstanceTest extends TestCase
              ->willReturn($GPBEmpty);
         
         $res = $this->mock->deleteInstance(Argument::type('string'));
+        $this->assertInstanceOf(GPBEmpty::class, $res);
+    }
+
+    public function testGetCluster()
+    {
+        $Cluster = new Cluster();
+        $this->mock->method('getCluster')
+             ->willReturn($Cluster);
+        $cluster = $this->mock->getCluster(Argument::type('string'));
+        $this->assertInstanceOf(Cluster::class, $cluster);
+    }
+
+    public function testListClusters()
+    {
+        $listClusters = new ListClustersResponse();
+        $this->mock->method('listClusters')
+             ->willReturn($listClusters);
+        $clusters = $this->mock->listClusters(Argument::type('string'));
+        $this->assertInstanceOf(ListClustersResponse::class, $clusters);
+    }
+
+    public function testDeleteCluster()
+    {
+        $GPBEmpty = new GPBEmpty();
+        $this->mock->method('deleteCluster')
+             ->willReturn($GPBEmpty);
+        
+        $res = $this->mock->deleteCluster(Argument::type('string'));
         $this->assertInstanceOf(GPBEmpty::class, $res);
     }
 }

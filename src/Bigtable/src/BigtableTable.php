@@ -1,64 +1,81 @@
 <?php
+/*
+ * Copyright 2017, Google LLC All rights reserved.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 namespace Google\Cloud\Bigtable\src;
 
+use Google\Cloud\Bigtable\Admin\V2\BigtableTableAdminClient;
 use Google\Cloud\Bigtable\Admin\V2\ColumnFamily;
 use Google\Cloud\Bigtable\Admin\V2\GcRule;
 use Google\Cloud\Bigtable\Admin\V2\ModifyColumnFamiliesRequest_Modification as Modification;
 use Google\Cloud\Bigtable\Admin\V2\Table;
-use Google\Cloud\Bigtable\Admin\V2\BigtableTableAdminClient;
-
+use Google\Cloud\Bigtable\V2\BigtableClient;
 use Google\Cloud\Bigtable\V2\Mutation;
 use Google\Cloud\Bigtable\V2\Mutation_SetCell;
-use Google\Cloud\Bigtable\V2\RowFilter;
-use Google\Cloud\Bigtable\V2\RowSet;
 use Google\Cloud\Bigtable\V2\MutateRowsRequest_Entry;
 use Google\Cloud\Bigtable\V2\ReadModifyWriteRule;
-
-use Google\Cloud\Bigtable\V2\BigtableClient;
-
+use Google\Cloud\Bigtable\src\ChunkFormatter;
 use Google\Protobuf\Internal\GPBType;
 use Google\Protobuf\Internal\MapField;
 
-use Google\GAX\ValidationException;
-
 /**
+ * Service for creating, configuring, and deleting Cloud Bigtable tables.
  *
  */
-
 class BigtableTable
 {
     private $BigtableClient;
     private $BigtableTableAdminClient;
+    private $projectId;
+    private $instanceId;
+    private $tableId;
+    private $formattedInstance;
 
     /**
      * Constructor.
+     * @param array $args {
      *
+     *     @param string $projectId
+     *
+     *     @param string $instanceId
      */
-    public function __construct()
+    public function __construct($args)
     {
+        $this->projectId = $args['projectId'];
+        $this->instanceId = $args['instanceId'];
+        $this->formattedInstance = BigtableTableAdminClient::instanceName($this->projectId, $this->instanceId);
+
         $this->BigtableClient = new BigtableClient();
         $this->BigtableTableAdminClient = new BigtableTableAdminClient();
     }
 
     /**
      * Formats a string containing the fully-qualified path to represent
-     * a instance resource.
      *
-     * @param string $projectId
-     * @param string $instanceId
+     * @param string $tableId
      *
-     * @return string The formatted instance resource.
+     * @return string The formatted table resource.
      */
-    public function instanceName($projectId, $instanceId)
+    private function tableName($tableId)
     {
-        $formattedParent = BigtableTableAdminClient::instanceName($projectId, $instanceId);
-        return $formattedParent;
+        return BigtableTableAdminClient::tableName($this->projectId, $this->instanceId, $tableId);
     }
 
     /**
      * Creates a new table in the specified instance.
-     * @param string $parent       The unique name of the instance in which to create the table.
-     *                             Values are of the form `projects/<project>/instances/<instance>`.
      *
      * @param string $tableId      The name by which the new table should be referred to within the parent
      *                             instance, e.g., `foobar` rather than `<parent>/tables/foobar`.
@@ -93,30 +110,16 @@ class BigtableTable
      *
      * @throws \Google\GAX\ApiException if the remote call fails
      */
-    public function createTable($parent, $tableId, $optionalArgs = [])
+    public function createTable($tableId, $optionalArgs = [])
     {
+        $parent = $this->formattedInstance;
         $Table = $this->BigtableTableAdminClient->createTable($parent, $tableId, new Table(), $optionalArgs);
         return $Table;
     }
 
     /**
-     * Formats a string containing the fully-qualified path to represent
-     *
-     * @param string $projectId
-     * @param string $instanceId
-     * @param string $tableId
-     *
-     * @return string The formatted table resource.
-     */
-    public function tableName($projectId, $instanceId, $tableId)
-    {
-        return BigtableTableAdminClient::tableName($projectId, $instanceId, $tableId);
-    }
-
-    /**
      * Creates a new table in the specified instance with column family.
-     * @param string $parent       The unique name of the instance in which to create the table.
-     *                             Values are of the form `projects/<project>/instances/<instance>`.
+     *
      * @param string $tableId      The name by which the new table should be referred to within the parent
      *                             instance, e.g., `foobar` rather than `<parent>/tables/foobar`.
      * @param string $columnFamily e.g., `cf`
@@ -151,7 +154,7 @@ class BigtableTable
      *
      * @throws \Google\GAX\ApiException if the remote call fails
      */
-    public function createTableWithColumnFamily($parent, $tableId, $columnFamily, $optionalArgs = [])
+    public function createTableWithColumnFamily($tableId, $columnFamily, $optionalArgs = [])
     {
         $table = new Table();
         $table->setGranularity(3);
@@ -159,6 +162,7 @@ class BigtableTable
         $MapField = $this->columnFamily(3, $columnFamily);
         $table->setColumnFamilies($MapField);
 
+        $parent = $this->formattedInstance;
         $Table = $this->BigtableTableAdminClient->createTable($parent, $tableId, $table, $optionalArgs);
         return $Table;
     }
@@ -187,9 +191,8 @@ class BigtableTable
     /**
      * Permanently deletes a specified table and all of its data.
      *
-     * @param string $table         The unique name of the table to be deleted.
-     *                              Values are of the form
-     *                              `projects/<project>/instances/<instance>/tables/<table>`.
+     * @param string $tableId       The table should be deleted from the parent instance
+     *
      * @param array  $optionalArgs {
      *                             Optional.
      *
@@ -200,18 +203,20 @@ class BigtableTable
      *          {@see Google\GAX\RetrySettings} for example usage.
      * }
      *
+     *
+     * @return \Google\Protobuf\GPBEmpty
+     *
      * @throws \Google\GAX\ApiException if the remote call fails
      */
-    public function deleteTable($table, $optionalArgs = [])
+    public function deleteTable($tableId, $optionalArgs = [])
     {
-        return $this->BigtableTableAdminClient->deleteTable($table, $optionalArgs);
+        $formattedTable = $this->tableName($tableId);
+        return $this->BigtableTableAdminClient->deleteTable($formattedTable, $optionalArgs);
     }
 
     /**
      * Lists all tables served from a specified instance.
      *
-     * @param string $parent       The unique name of the instance for which tables should be listed.
-     *                             Values are of the form `projects/<project>/instances/<instance>`.
      * @param array  $optionalArgs {
      *                             Optional.
      *
@@ -233,34 +238,32 @@ class BigtableTable
      *
      * @return \Google\GAX\PagedListResponse
      */
-    public function listTables($parent, $optionalArgs = [])
+    public function listTables($optionalArgs = [])
     {
-        $PagedListResponse = $this->BigtableTableAdminClient->listTables($parent, $optionalArgs);
+        $PagedListResponse = $this->BigtableTableAdminClient->listTables($this->formattedInstance, $optionalArgs);
         return $PagedListResponse;
     }
 
     /**
      * Gets metadata information about the specified table.
      *
-     * @param string $table     The unique name of the requested table.
-     *                          Values are of the form
-     *                          `projects/<project>/instances/<instance>/tables/<table>`.
+     * @param string $tableId
      *
      * @return \Google\Bigtable\Admin\V2\Table
      *
      * @throws \Google\GAX\ApiException if the remote call fails
      */
-    public function getTable($table)
+    public function getTable($tableId)
     {
-        return $this->BigtableTableAdminClient->getTable($table);
+        $formattedTable = $this->tableName($tableId);
+        return $this->BigtableTableAdminClient->getTable($formattedTable);
     }
 
     /**
      * Modify column family to perticular table.
      *
-     * @param string $table         The unique name of the table whose families should be modified.
-     *                              Values are of the form
-     *                              `projects/<project>/instances/<instance>/tables/<table>`.
+     * @param string $tableId
+     *
      * @param string $cfName        Column family name.
      *
      * @param array $optionalArgs  {
@@ -277,8 +280,9 @@ class BigtableTable
      *
      * @throws \Google\GAX\ApiException if the remote call fails
      */
-    public function addColumnFamilies($table, $cfName, $optionalArgs = [])
+    public function addColumnFamilies($tableId, $cfName, $optionalArgs = [])
     {
+        $formattedTable = $this->tableName($tableId);
         $gc = new GcRule();
         $gc->setMaxNumVersions(3);
 
@@ -290,18 +294,17 @@ class BigtableTable
         $Modification->setCreate($cf);
 
         $Modifications    = [];
-        $Modifications[0] = $Modification;
+        $Modifications[] = $Modification;
 
-        $table = $this->BigtableTableAdminClient->modifyColumnFamilies($table, $Modifications, $optionalArgs);
+        $table = $this->BigtableTableAdminClient->modifyColumnFamilies($formattedTable, $Modifications, $optionalArgs);
         return $table;
     }
 
     /**
-     * delete column family from perticular table.
+     * update column family to perticular table.
      *
-     * @param string $table         The unique name of the table whose families should be modified.
-     *                              Values are of the form
-     *                              `projects/<project>/instances/<instance>/tables/<table>`.
+     * @param string $tableId
+     *
      * @param string $cfName        Column family name.
      *
      * @param array $optionalArgs  {
@@ -318,16 +321,90 @@ class BigtableTable
      *
      * @throws \Google\GAX\ApiException if the remote call fails
      */
-    public function deleteColumnFamilies($table, $cfName, $optionalArgs = [])
+    public function updateColumnFamilies($tableId, $cfName, $optionalArgs = [])
     {
+        $formattedTable = $this->tableName($tableId);
+        $gc = new GcRule();
+        $gc->setMaxNumVersions(3);
+
+        $cf = new ColumnFamily();
+        $cf->setGcRule($gc);
+
+        $Modification = new Modification();
+        $Modification->setId($cfName);
+        $Modification->setUpdate($cf);
+
+        $Modifications    = [];
+        $Modifications[] = $Modification;
+
+        $table = $this->BigtableTableAdminClient->modifyColumnFamilies($formattedTable, $Modifications, $optionalArgs);
+        return $table;
+    }
+
+    /**
+     * delete column family from perticular table.
+     *
+     * @param string $tableId
+     *
+     * @param string $cfName        Column family name.
+     *
+     * @param array $optionalArgs  {
+     *                              Optional.
+     *
+     *     @type \Google\GAX\RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\GAX\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\GAX\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Bigtable\Admin\V2\Table
+     *
+     * @throws \Google\GAX\ApiException if the remote call fails
+     */
+    public function deleteColumnFamilies($tableId, $cfName, $optionalArgs = [])
+    {
+        $formattedTable = $this->tableName($tableId);
         $Modification = new Modification();
         $Modification->setId($cfName);
         $Modification->setDrop(true);
         $Modifications = [];
         $Modifications[] = $Modification;
 
-        $table = $this->BigtableTableAdminClient->modifyColumnFamilies($table, $Modifications, $optionalArgs);
+        $table = $this->BigtableTableAdminClient->modifyColumnFamilies($formattedTable, $Modifications, $optionalArgs);
         return $table;
+    }
+
+    /**
+     * Permanently drop/delete a row range from a specified table. The request can
+     * specify whether to delete all rows in a table, or only those that match a
+     * particular prefix.
+     *
+     * @param string $tableId       The unique name of the table on which to drop a range of rows.
+     *
+     * @param array  $optionalArgs {
+     *                             Optional.
+     *
+     *     @type string $rowKeyPrefix
+     *          Delete all rows that start with this row key prefix. Prefix cannot be
+     *          zero length.
+     *     @type bool $deleteAllDataFromTable
+     *          Delete all rows in the table. Setting this to false is a no-op.
+     *     @type RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Protobuf\GPBEmpty
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function dropRowRange($tableId, $optionalArgs = [])
+    {
+        $formattedName = $this->tableName($tableId);
+        return $this->BigtableTableAdminClient->dropRowRange($formattedName, $optionalArgs);
     }
 
     /**
@@ -335,7 +412,8 @@ class BigtableTable
      * atomically as in MutateRow, but the entire batch is not executed
      * atomically.
      *
-     * @param string  $tableName    The unique name of the table to which the mutations should be applied.
+     * @param string $tableId
+     *
      * @param Entry[] $entries      The row keys and corresponding mutations to be applied in bulk.
      *                              Each entry is applied as an atomic mutation, but the entries may be
      *                              applied in arbitrary order (even between entries for the same row).
@@ -351,11 +429,11 @@ class BigtableTable
      * @return \Google\GAX\ServerStream
      *
      * @throws \Google\GAX\ApiException if the remote call fails
-     * @experimental
      */
-    public function mutateRows($table, $entries, $optionalArgs = [])
+    public function mutateRows($tableId, $entries, $optionalArgs = [])
     {
-        $ServerStream = $this->BigtableClient->mutateRows($table, $entries, $optionalArgs);
+        $formattedTable = $this->tableName($tableId);
+        $ServerStream = $this->BigtableClient->mutateRows($formattedTable, $entries, $optionalArgs);
         return $ServerStream;
     }
 
@@ -363,10 +441,10 @@ class BigtableTable
      * Mutates a row atomically. Cells already present in the row are left
      * unchanged unless explicitly changed by `mutation`.
      *
-     * @param string     $tableName    The unique name of the table to which the mutation should be applied.
-     *                                 Values are of the form
-     *                                 `projects/<project>/instances/<instance>/tables/<table>`.
+     * @param string $tableId
+     *
      * @param string     $rowKey       The key of the row to which the mutation should be applied.
+     *
      * @param Mutation[] $mutations    Changes to be atomically applied to the specified row. Entries are applied
      *                                 in order, meaning that earlier mutations can be masked by later ones.
      *                                 Must contain at least one entry and at most 100000.
@@ -384,9 +462,10 @@ class BigtableTable
      *
      * @throws \Google\GAX\ApiException if the remote call fails
      */
-    public function mutateRow($tableName, $rowKey, $mutations, $optionalArgs = [])
+    public function mutateRow($tableId, $rowKey, $mutations, $optionalArgs = [])
     {
-        $MutateRowResponse = $this->BigtableClient->mutateRow($tableName, $rowKey, $mutations, $optionalArgs);
+        $formattedTable = $this->tableName($tableId);
+        $MutateRowResponse = $this->BigtableClient->mutateRow($formattedTable, $rowKey, $mutations, $optionalArgs);
         return $MutateRowResponse;
     }
 
@@ -394,12 +473,12 @@ class BigtableTable
      * Set Mutation SetCell.
      *
      * @param array   $cell {
-     *                 @type    string cf            Column Family name
+     *                 @type    string cf           Column Family name
      *                 @type    string qualifier    Qualifier name
      *                 @type    string value        value
      *                 @type    string timestamp    Timestamp in micros
      *
-     * @return \Google\Bigtable\V2\Mutation_SetCell
+     * @return \Google\Bigtable\V2\Mutation
      */
     public function mutationCell($cell)
     {
@@ -441,45 +520,146 @@ class BigtableTable
 
     /**
      * Read rows from table.
-     * @param string $table     The unique name of the table whose families should be modified.
-     *                          Values are of the form
-     *                         `projects/<project>/instances/<instance>/tables/<table>`.
      *
-     * @param array $rowKeys    The row keys and/or ranges to read. If not specified, reads from all rows.
+     * @param string $tableId
      *
-     * @param int $rowsLimit    The read will terminate after committing to N rows' worth of results. The
-     *                          default (zero) is to return all results.
+     * @param array  $optionalArgs {
+     *                             Optional.
      *
-     * @param int $timeoutMillis Timeout to use for this call.
+     *     @type RowSet $rowKeys
+     *          The row keys and/or ranges to read. If not specified, reads from all rows.
+     *     @type RowFilter $filter
+     *          The filter to apply to the contents of the specified row(s). If unset,
+     *          reads the entirety of each row.
+     *     @type int $rowsLimit
+     *          The read will terminate after committing to N rows' worth of results. The
+     *          default (zero) is to return all results.
+     *     @type int $timeoutMillis
+     *          Timeout to use for this call.
      * }
      *
      * @return \Google\Cloud\Bigtable\V2\FlatRow
      *
      * @throws \Google\GAX\ApiException if the remote call fails
      */
-    public function readRows($table, $rowKeys = [], $rowsLimit = '', $timeoutMillis = '')
+    public function readRows($tableId, $optionalArgs = [])
     {
-        $optionalArgs = [];
-        if (count($rowKeys) > 0) {
-            $rowSet = new RowSet();
-            $rowSet->setRowKeys($rowKeys);
-            $optionalArgs['rows'] = $rowSet;
-        }
-
-        if ($rowsLimit) {
-            $optionalArgs['rowsLimit'] = $rowsLimit;
-        }
-
-        if ($timeoutMillis) {
-            $optionalArgs['timeoutMillis'] = $timeoutMillis;
-        }
-
-        $BigtableClient = new BigtableClient();//BigtableGapicClient();
-        $chunkFormatter = $BigtableClient->readRows($table, $optionalArgs);
+        $formattedTable = $this->tableName($tableId);
+        $serverStream   = $this->BigtableClient->readRows($formattedTable, $optionalArgs);
+        $chunkFormatter = new ChunkFormatter($serverStream, $optionalArgs);
         $rows           = [];
         foreach ($chunkFormatter->readAll() as $flatRow) {
             $rows[] = $flatRow;
         }
         return $rows;
+    }
+
+    /**
+     * Returns a sample of row keys in the table. The returned row keys will
+     * delimit contiguous sections of the table of approximately equal size,
+     * which can be used to break up the data for distributed tasks like
+     * mapreduces.
+     *
+     * @param string $tableId
+     *
+     * @param array  $optionalArgs {
+     *                             Optional.
+     *
+     *     @type int $timeoutMillis
+     *          Timeout to use for this call.
+     * }
+     *
+     * @return \Google\GAX\ServerStream
+     *
+     * @throws \Google\GAX\ApiException if the remote call fails
+     * @experimental
+     */
+    public function sampleRowKeys($tableId, $optionalArgs = [])
+    {
+        $formattedTable = $this->tableName($tableId);
+        $stream = $this->BigtableClient->sampleRowKeys($formattedTable, $optionalArgs);
+        return $stream;
+    }
+
+    /**
+     * Mutates a row atomically based on the output of a predicate Reader filter.
+     *
+     * @param string $tableId
+     *
+     * @param string $rowKey       The key of the row to which the conditional mutation should be applied.
+     * @param array  $optionalArgs {
+     *                             Optional.
+     *
+     *     @type RowFilter $predicateFilter
+     *          The filter to be applied to the contents of the specified row. Depending
+     *          on whether or not any results are yielded, either `true_mutations` or
+     *          `false_mutations` will be executed. If unset, checks that the row contains
+     *          any values at all.
+     *     @type Mutation[] $trueMutations
+     *          Changes to be atomically applied to the specified row if `predicate_filter`
+     *          yields at least one cell when applied to `row_key`. Entries are applied in
+     *          order, meaning that earlier mutations can be masked by later ones.
+     *          Must contain at least one entry if `false_mutations` is empty, and at most
+     *          100000.
+     *     @type Mutation[] $falseMutations
+     *          Changes to be atomically applied to the specified row if `predicate_filter`
+     *          does not yield any cells when applied to `row_key`. Entries are applied in
+     *          order, meaning that earlier mutations can be masked by later ones.
+     *          Must contain at least one entry if `true_mutations` is empty, and at most
+     *          100000.
+     *     @type \Google\GAX\RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\GAX\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\GAX\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Bigtable\V2\CheckAndMutateRowResponse
+     *
+     * @throws \Google\GAX\ApiException if the remote call fails
+     * @experimental
+     */
+    public function checkAndMutateRow($tableId, $rowKey, $optionalArgs = [])
+    {
+        $formattedTable = $this->tableName($tableId);
+        $response = $this->BigtableClient->checkAndMutateRow($formattedTable, $rowKey, $optionalArgs);
+        return $response;
+    }
+
+    /**
+     * Modifies a row atomically. The method reads the latest existing timestamp
+     * and value from the specified columns and writes a new entry based on
+     * pre-defined read/modify/write rules. The new value for the timestamp is the
+     * greater of the existing timestamp or the current server time. The method
+     * returns the new contents of all modified cells.
+     *
+     * @param string $tableId
+     *
+     * @param string                $rowKey       The key of the row to which the read/modify/write
+     *                                            rules should be applied.
+     * @param ReadModifyWriteRule[] $rules        Rules specifying how the specified row's
+     *                                            contents are to be transformed into writes.
+     *                                            Entries are applied in order, meaning that earlier rules will
+     *                                            affect the results of later ones.
+     * @param array                 $optionalArgs {
+     *                                            Optional.
+     *
+     *     @type \Google\GAX\RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\GAX\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\GAX\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Bigtable\V2\ReadModifyWriteRowResponse
+     *
+     * @throws \Google\GAX\ApiException if the remote call fails
+     * @experimental
+     */
+    public function readModifyWriteRow($tableId, $rowKey, $rules, $optionalArgs = [])
+    {
+        $formattedTable = $this->tableName($tableId);
+        $response = $this->BigtableClient->readModifyWriteRow($formattedTable, $rowKey, $rules, $optionalArgs);
+        return $response;
     }
 }

@@ -15,10 +15,10 @@
  * limitations under the License.
  */
 
-namespace Google\Cloud\Bigtable\V2;
+namespace Google\Cloud\Bigtable\src;
 
-use Google\Cloud\Bigtable\V2\Cell;
-use Google\Cloud\Bigtable\V2\FlatRow;
+use Google\Cloud\Bigtable\src\Cell;
+use Google\Cloud\Bigtable\src\FlatRow;
 use Google\ApiCore\ValidationException;
 
 /**
@@ -226,7 +226,12 @@ class ChunkFormatter
         $this->flatRow->setRowKey($newRowKey);
         $this->familyName    = $chunk->getFamilyName()->getValue();
         $this->qualifierName = $chunk->getQualifier()->getValue();
-        $labels              = ($chunk->getLabels()->getIterator()->valid())?$chunk->getLabels()->getIterator()->current():'';
+
+        if ($chunk->getLabels()->getIterator()->valid()) {
+            $labels = $chunk->getLabels()->getIterator()->current();
+        } else {
+            $labels = '';
+        }
         $timestamp           = $chunk->getTimestampMicros();
         $this->cell          = new Cell();
         $this->cell->setFamily($this->familyName);

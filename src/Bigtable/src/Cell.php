@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-namespace Google\Cloud\Bigtable\V2;
+namespace Google\Cloud\Bigtable\src;
 
 /**
 *
