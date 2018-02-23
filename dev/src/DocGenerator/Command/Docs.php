@@ -117,7 +117,8 @@ class Docs extends Command
             $projectRealPath .'/docs',
             $projectRealPath .'/tests',
             '.github',
-            new RegexFileFilter(str_replace('/', '\/', preg_quote($projectRealPath .'/') . '\w{0,}\.\w{0,}'))
+            new RegexFileFilter(str_replace('/', '\/', preg_quote($projectRealPath .'/') . '\w{0,}\.\w{0,}')),
+            'bootstrap.php'
         ]);
 
         // print_r($source);exit;
