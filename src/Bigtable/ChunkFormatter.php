@@ -15,10 +15,10 @@
  * limitations under the License.
  */
 
-namespace Google\Cloud\Bigtable\src;
+namespace Google\Cloud\Bigtable;
 
-use Google\Cloud\Bigtable\src\Cell;
-use Google\Cloud\Bigtable\src\FlatRow;
+use Google\Cloud\Bigtable\Cell;
+use Google\Cloud\Bigtable\FlatRow;
 use Google\ApiCore\ValidationException;
 
 /**

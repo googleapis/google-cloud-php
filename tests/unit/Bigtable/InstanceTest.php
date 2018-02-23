@@ -17,7 +17,7 @@
 
 namespace Google\Cloud\Tests\Unit\Bigtable;
 
-use Google\Cloud\Bigtable\src\BigtableInstance;
+use Google\Cloud\Bigtable\InstanceClient;
 use Google\Cloud\Bigtable\Admin\V2\Instance;
 use Google\Cloud\Bigtable\Admin\V2\Instance_Type;
 use Google\Cloud\Bigtable\Admin\V2\ListInstancesResponse;
@@ -40,7 +40,7 @@ class InstanceTest extends TestCase
 
     public function setUp()
     {
-        $this->mock = $this->getMockBuilder(BigtableInstance::class)
+        $this->mock = $this->getMockBuilder(InstanceClient::class)
                             ->disableOriginalConstructor()
                             ->getMock();
     }

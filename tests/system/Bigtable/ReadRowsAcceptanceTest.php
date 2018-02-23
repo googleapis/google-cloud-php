@@ -19,11 +19,11 @@ namespace Google\Cloud\Tests\System\Bigtable;
 
 require_once __DIR__ .'/../../../vendor/autoload.php';
 
+use Google\Cloud\Bigtable\Cell;
+use Google\Cloud\Bigtable\ChunkFormatter;
+use Google\Cloud\Bigtable\FlatRow;
 use Google\Cloud\Bigtable\V2\ReadRowsResponse;
 use Google\Cloud\Bigtable\V2\ReadRowsResponse_CellChunk;
-use Google\Cloud\Bigtable\src\Cell;
-use Google\Cloud\Bigtable\src\ChunkFormatter;
-use Google\Cloud\Bigtable\src\FlatRow;
 use Google\ApiCore\ServerStream;
 use Google\ApiCore\Testing\MockServerStreamingCall;
 use Google\ApiCore\ValidationException;

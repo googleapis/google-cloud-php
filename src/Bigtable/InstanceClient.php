@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-namespace Google\Cloud\Bigtable\src;
+namespace Google\Cloud\Bigtable;
 
 use Google\Cloud\Bigtable\Admin\V2\BigtableInstanceAdminClient;
 use Google\Cloud\Bigtable\Admin\V2\Instance;
@@ -30,7 +30,7 @@ use Google\Protobuf\FieldMask;
 /**
 *
 */
-class BigtableInstance
+class InstanceClient
 {
     private $InstanceAdmin;
     private $projectId;

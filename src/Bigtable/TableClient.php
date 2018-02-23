@@ -15,8 +15,9 @@
  * limitations under the License.
  */
 
-namespace Google\Cloud\Bigtable\src;
+namespace Google\Cloud\Bigtable;
 
+use Google\Cloud\Bigtable\ChunkFormatter;
 use Google\Cloud\Bigtable\Admin\V2\BigtableTableAdminClient;
 use Google\Cloud\Bigtable\Admin\V2\ColumnFamily;
 use Google\Cloud\Bigtable\Admin\V2\GcRule;
@@ -27,7 +28,6 @@ use Google\Cloud\Bigtable\V2\Mutation;
 use Google\Cloud\Bigtable\V2\Mutation_SetCell;
 use Google\Cloud\Bigtable\V2\MutateRowsRequest_Entry;
 use Google\Cloud\Bigtable\V2\ReadModifyWriteRule;
-use Google\Cloud\Bigtable\src\ChunkFormatter;
 use Google\Protobuf\Internal\GPBType;
 use Google\Protobuf\Internal\MapField;
 
@@ -35,7 +35,7 @@ use Google\Protobuf\Internal\MapField;
  * Service for creating, configuring, and deleting Cloud Bigtable tables.
  *
  */
-class BigtableTable
+class TableClient
 {
     private $BigtableClient;
     private $BigtableTableAdminClient;

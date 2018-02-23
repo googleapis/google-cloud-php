@@ -17,8 +17,8 @@
 
 namespace Google\Cloud\Tests\Unit\Bigtable;
 
-use Google\Cloud\Bigtable\src\BigtableTable;
-use Google\Cloud\Bigtable\src\FlatRow;
+use Google\Cloud\Bigtable\TableClient;
+use Google\Cloud\Bigtable\FlatRow;
 use Google\Cloud\Bigtable\V2\Mutation_SetCell;
 use Google\Cloud\Bigtable\V2\Mutation;
 use Google\Cloud\Bigtable\V2\MutateRowResponse;
@@ -55,7 +55,7 @@ class TableTest extends TestCase
 
     public function setUp()
     {
-        $this->mock = $this->getMockBuilder(BigtableTable::class)
+        $this->mock = $this->getMockBuilder(TableClient::class)
                             ->disableOriginalConstructor()
                             ->getMock();
     }
