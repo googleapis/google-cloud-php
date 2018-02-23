@@ -142,8 +142,11 @@ class EntityMapper
             );
         }
 
+        $key = $entity->key()
+            ? $entity->key()->keyObject()
+            : null;
         return array_filter([
-            'key' => $entity->key()->keyObject(),
+            'key' => $key,
             'properties' => $properties
         ]);
     }
