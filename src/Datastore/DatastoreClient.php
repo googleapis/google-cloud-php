@@ -83,7 +83,8 @@ class DatastoreClient
     const FULL_CONTROL_SCOPE = 'https://www.googleapis.com/auth/datastore';
 
     /**
-     * @var Connection\ConnectionInterface
+     * @deprecated
+     * @var ConnectionInterface
      */
     protected $connection;
 
@@ -146,13 +147,14 @@ class DatastoreClient
             'emulatorHost' => $emulatorHost
         ];
 
-        $this->connection = new Rest($this->configureAuthentication($config));
+        $connection = new Rest($this->configureAuthentication($config));
+        $this->connection = $connection;
 
         // The second parameter here should change to a variable
         // when gRPC support is added for variable encoding.
         $this->entityMapper = new EntityMapper($this->projectId, true, $config['returnInt64AsObject']);
         $this->operation = new Operation(
-            $this->connection,
+            $connection,
             $this->projectId,
             $config['namespaceId'],
             $this->entityMapper
@@ -477,18 +479,15 @@ class DatastoreClient
      */
     public function transaction(array $options = [])
     {
-        $res = $this->connection->beginTransaction([
-            'projectId' => $this->projectId,
-            'transactionOptions' => [
-                // if empty, force request to encode as {} rather than [].
-                'readWrite' => $this->pluck('transactionOptions', $options, false) ?: (object) []
-            ]
-        ] + $options);
+        $transaction = $this->operation->beginTransaction([
+            // if empty, force request to encode as {} rather than [].
+            'readWrite' => $this->pluck('transactionOptions', $options, false) ?: (object) []
+        ], $options);
 
         return new Transaction(
-            clone $this->operation,
+            $this->operation,
             $this->projectId,
-            $res['transaction']
+            $transaction
         );
     }
     /**
@@ -514,19 +513,15 @@ class DatastoreClient
      */
     public function readOnlyTransaction(array $options = [])
     {
-        $transactionOptions = $this->pluck('transactionOptions', $options, false) ?: [];
-        $res = $this->connection->beginTransaction([
-            'projectId' => $this->projectId,
-            'transactionOptions' => [
-                // if empty, force request to encode as {} rather than [].
-                'readOnly' => $transactionOptions ?: (object) []
-            ]
-        ] + $options);
+        $transaction = $this->operation->beginTransaction([
+            // if empty, force request to encode as {} rather than [].
+            'readOnly' => $this->pluck('transactionOptions', $options, false) ?: (object) []
+        ], $options);
 
         return new ReadOnlyTransaction(
-            clone $this->operation,
+            $this->operation,
             $this->projectId,
-            $res['transaction']
+            $transaction
         );
     }
 
@@ -697,6 +692,8 @@ class DatastoreClient
      * property is only possible by first retrieving the entire entity in its
      * existing state.
      *
+     * An entity with incomplete keys will be allocated an ID prior to insertion.
+     *
      * Upsert by this method is non-transactional. If you need transaction
      * support, use {@see Google\Cloud\Datastore\Transaction::upsert()}.
      *
@@ -732,6 +729,8 @@ class DatastoreClient
      * property is only possible by first retrieving the entire entity in its
      * existing state.
      *
+     * Any entity with incomplete keys will be allocated an ID prior to insertion.
+     *
      * Upsert by this method is non-transactional. If you need transaction
      * support, use {@see Google\Cloud\Datastore\Transaction::upsertBatch()}.
      *
@@ -758,6 +757,7 @@ class DatastoreClient
      */
     public function upsertBatch(array $entities, array $options = [])
     {
+        $entities = $this->operation->allocateIdsToEntities($entities);
         $mutations = [];
         foreach ($entities as $entity) {
             $mutations[] = $this->operation->mutation('upsert', $entity, Entity::class);

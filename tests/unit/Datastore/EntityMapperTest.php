@@ -249,7 +249,7 @@ class EntityMapperTest extends TestCase
         ]);
 
         $res = $this->mapper->objectToRequest($entity);
-        $this->assertEquals($key, $res['key']);
+        $this->assertEquals($key->keyObject(), $res['key']);
         $this->assertEquals('val', $res['properties']['key']['stringValue']);
     }
 
