@@ -18,6 +18,7 @@
 namespace Google\Cloud\Speech;
 
 use Generator;
+use Google\ApiCore\BidiStream;
 
 /**
  * Provides helper functions for generated Speech clients.
@@ -39,6 +40,11 @@ trait SpeechHelpersTrait
         }
     }
 
+    /**
+     * @param string $requestClass
+     * @param iterable|string[] $chunks
+     * @return Generator
+     */
     private function createRequestStreamHelper($requestClass, $chunks)
     {
         foreach ($chunks as $chunk) {
@@ -48,6 +54,13 @@ trait SpeechHelpersTrait
         }
     }
 
+    /**
+     * @param string $requestClass
+     * @param BidiStream $bidiStream
+     * @param mixed $config
+     * @param Generator $requestStream
+     * @return mixed
+     */
     private function recognizeRequestStreamHelper($requestClass, $bidiStream, $config, $requestStream)
     {
         $request = new $requestClass();

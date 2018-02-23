@@ -62,13 +62,10 @@ class SpeechClient extends SpeechGapicClient
      * use Google\Cloud\Speech\V1\RecognitionConfig;
      * use Google\Cloud\Speech\V1\StreamingRecognitionConfig;
      *
-     * $encoding = RecognitionConfig_AudioEncoding::FLAC;
-     * $sampleRateHertz = 44100;
-     * $languageCode = 'en-US';
      * $recognitionConfig = new RecognitionConfig();
-     * $recognitionConfig->setEncoding($encoding);
-     * $recognitionConfig->setSampleRateHertz($sampleRateHertz);
-     * $recognitionConfig->setLanguageCode($languageCode);
+     * $recognitionConfig->setEncoding(RecognitionConfig_AudioEncoding::FLAC);
+     * $recognitionConfig->setSampleRateHertz(44100);
+     * $recognitionConfig->setLanguageCode('en-US');
      * $config = new StreamingRecognitionConfig();
      * $config->setConfig($recognitionConfig);
      *

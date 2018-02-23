@@ -417,8 +417,6 @@ class SpeechGapicClient
      * }
      *
      * @return \Google\ApiCore\BidiStream
-     *
-     * @throws ApiException if the remote call fails
      * @experimental
      */
     public function streamingRecognize($optionalArgs = [])
