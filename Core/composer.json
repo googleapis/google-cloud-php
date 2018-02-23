@@ -20,6 +20,7 @@
         "google/gax": "^0.30"
     },
     "suggest": {
+        "opis/closure": "May be used to serialize closures to process jobs in the batch daemon. Please require version ^3.",
         "symfony/lock": "Required for the Spanner cached based session pool. Please require the following commit: 3.3.x-dev#1ba6ac9"
     },
     "extra": {

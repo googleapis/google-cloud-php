@@ -18,6 +18,7 @@
 namespace Google\Cloud\PubSub;
 
 use Google\Cloud\Core\ArrayTrait;
+use Google\Cloud\Core\Batch\ClosureSerializerInterface;
 use Google\Cloud\Core\Exception\NotFoundException;
 use Google\Cloud\Core\Iam\Iam;
 use Google\Cloud\Core\Iterator\ItemIterator;
@@ -369,7 +370,7 @@ class Topic
      *           more details.
      *           **Defaults to** ['batchSize' => 1000,
      *                            'callPeriod' => 2.0,
-     *                            'workerNum' => 2].
+     *                            'numWorkers' => 2].
      *     @type array $clientConfig Configuration options for the PubSub client
      *           used to handle processing of batch items. For valid options
      *           please see
@@ -382,6 +383,12 @@ class Topic
      *     @type string $identifier An identifier for the batch job.
      *           **Defaults to** `pubsub-topic-{topic-name}`.
      *           Example: `pubsub-topic-mytopic`.
+     *     @type ClosureSerializerInterface $closureSerializer An implementation
+     *           responsible for serializing closures used in the
+     *           `$clientConfig`. This is especially important when using the
+     *           batch daemon. **Defaults to**
+     *           {@see Google\Cloud\Core\Batch\OpisClosureSerializer} if the
+     *           `opis/closure` library is installed.
      * }
      * @return BatchPublisher
      * @experimental The experimental flag means that while we believe this method

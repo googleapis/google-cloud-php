@@ -38,7 +38,7 @@ class BatchTraitTest extends TestCase
         $idNum = 5;
         $returnVal = true;
         $job = $this->prophesize(BatchJob::class);
-        $job->getIdNum()
+        $job->id()
             ->willReturn($idNum)
             ->shouldBeCalledTimes(1);
         $processor = $this->prophesize(ProcessItemInterface::class);

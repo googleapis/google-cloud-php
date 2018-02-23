@@ -19,6 +19,7 @@ namespace Google\Cloud\Logging;
 
 use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\Core\ArrayTrait;
+use Google\Cloud\Core\Batch\ClosureSerializerInterface;
 use Google\Cloud\Core\ClientTrait;
 use Google\Cloud\Core\Iterator\ItemIterator;
 use Google\Cloud\Core\Iterator\PageIterator;
@@ -68,7 +69,7 @@ class LoggingClient
     use ArrayTrait;
     use ClientTrait;
 
-    const VERSION = '1.9.1';
+    const VERSION = '1.9.2';
 
     const FULL_CONTROL_SCOPE = 'https://www.googleapis.com/auth/logging.admin';
     const READ_ONLY_SCOPE = 'https://www.googleapis.com/auth/logging.read';
@@ -114,7 +115,7 @@ class LoggingClient
      *           more details.
      *           **Defaults to** ['batchSize' => 1000,
      *                            'callPeriod' => 2.0,
-     *                            'workerNum' => 2].
+     *                            'numWorkers' => 2].
      *     @type array $clientConfig Configuration options for the Logging client
      *           used to handle processing of batch items. For valid options
      *           please see
@@ -122,6 +123,12 @@ class LoggingClient
      *     @type BatchRunner $batchRunner A BatchRunner object. Mainly used for
      *           the tests to inject a mock. **Defaults to** a newly created
      *           BatchRunner.
+     *     @type ClosureSerializerInterface $closureSerializer An implementation
+     *           responsible for serializing closures used in the
+     *           `$clientConfig`. This is especially important when using the
+     *           batch daemon. **Defaults to**
+     *           {@see Google\Cloud\Core\Batch\OpisClosureSerializer} if the
+     *           `opis/closure` library is installed.
      * }
      * @return PsrLogger
      * @experimental The experimental flag means that while we believe this method
@@ -517,7 +524,7 @@ class LoggingClient
      *           more details.
      *           **Defaults to** ['batchSize' => 1000,
      *                            'callPeriod' => 2.0,
-     *                            'workerNum' => 2]. Applies only when
+     *                            'numWorkers' => 2]. Applies only when
      *           `batchEnabled` is set to `true`. Note that this option is
      *           currently considered **experimental** and is subject to change.
      *     @type array $clientConfig Configuration options for the Logging client

@@ -27,9 +27,6 @@ namespace Google\Cloud\Core\Batch;
  */
 trait BatchDaemonTrait
 {
-    private static $typeDirect = 1;
-    private static $typeFile = 2;
-
     /**
      * Returns whether or not the BatchDaemon is running.
      *

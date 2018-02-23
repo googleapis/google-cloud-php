@@ -130,8 +130,11 @@ class Debuggee implements \JsonSerializable
      *            user about this debuggee. Absence of this field indicates no
      *            status. The message can be either informational or an error
      *            status.
-     *      @type ExtendedSourceContext[] $extSourceContexts References to the locations and
-     *            revisions of the source code used in the deployed application.
+     *      @type ExtendedSourceContext[] $extSourceContexts References to the
+     *            locations and revisions of the source code used in the
+     *            deployed application.
+     *      @type array $labels  A set of custom debuggee properties, populated
+     *            by the agent, to be displayed to the user.
      * }
      */
     public function __construct(ConnectionInterface $connection, array $info = [])
@@ -145,7 +148,8 @@ class Debuggee implements \JsonSerializable
             'status' => null,
             'extSourceContexts' => [],
             'uniquifier' => null,
-            'description' => null
+            'description' => null,
+            'labels' => []
         ];
 
         $this->id = $info['id'];
@@ -156,6 +160,7 @@ class Debuggee implements \JsonSerializable
         $this->agentVersion = $info['agentVersion'];
         $this->isInactive = $info['isInactive'];
         $this->extSourceContexts = $info['extSourceContexts'];
+        $this->labels = $info['labels'];
     }
 
     /**
@@ -361,7 +366,7 @@ class Debuggee implements \JsonSerializable
      */
     public function jsonSerialize()
     {
-        return [
+        $info = [
             'id' => $this->id,
             'project' => $this->project,
             'uniquifier' => $this->uniquifier,
@@ -370,9 +375,16 @@ class Debuggee implements \JsonSerializable
             'agentVersion' => $this->agentVersion,
             'status' => $this->status,
             'sourceContexts' => array_map(function ($esc) {
+                if (empty($esc)) {
+                    return [];
+                }
                 return is_array($esc) ? $esc['context'] : $esc->context();
             }, $this->extSourceContexts),
             'extSourceContexts' => $this->extSourceContexts
         ];
+        if (!empty($this->labels)) {
+            $info['labels'] = $this->labels;
+        }
+        return $info;
     }
 }

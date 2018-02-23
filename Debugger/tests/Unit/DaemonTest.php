@@ -17,6 +17,7 @@
 
 namespace Google\Cloud\Debugger\Tests\Unit;
 
+use Google\Cloud\Core\Report\SimpleMetadataProvider;
 use Google\Cloud\Debugger\Breakpoint;
 use Google\Cloud\Debugger\BreakpointStorage\BreakpointStorageInterface;
 use Google\Cloud\Debugger\Daemon;
@@ -43,42 +44,63 @@ class DaemonTest extends TestCase
 
     public function testSpecifyUniquifier()
     {
-        $this->debuggee->register(Argument::any())->shouldBeCalled();
+        $resp = [
+            'breakpoints' => [],
+            'nextWaitToken' => 'abc123'
+        ];
+        $this->debuggee->register(Argument::any())
+            ->shouldBeCalled();
+        $this->debuggee->breakpointsWithWaitToken([])
+            ->willReturn($resp);
         $this->client->debuggee(null, Argument::withEntry('uniquifier', 'some uniquifier'))
             ->willReturn($this->debuggee->reveal())->shouldBeCalled();
 
-        $daemon = new Daemon('.', [
-            'client' => $this->client->reveal(),
+        $daemon = new Daemon([
             'storage' => $this->storage->reveal(),
             'uniquifier' => 'some uniquifier'
         ]);
+        $daemon->run($this->client->reveal(), false);
     }
 
     public function testGeneratesDefaultUniquifier()
     {
-        $this->debuggee->register(Argument::any())->shouldBeCalled();
+        $resp = [
+            'breakpoints' => [],
+            'nextWaitToken' => 'abc123'
+        ];
+        $this->debuggee->register(Argument::any())
+            ->shouldBeCalled();
+        $this->debuggee->breakpointsWithWaitToken([])
+            ->willReturn($resp);
         $this->client->debuggee(null, Argument::that(function ($options) {
             return preg_match('/[a-z0-9]{32}/', $options['uniquifier']);
         }))->willReturn($this->debuggee->reveal())->shouldBeCalled();
 
-        $root = implode(DIRECTORY_SEPARATOR, [__DIR__, 'data']);
-        $daemon = new Daemon($root, [
-            'client' => $this->client->reveal(),
+        $daemon = new Daemon([
+            'sourceRoot' => implode(DIRECTORY_SEPARATOR, [__DIR__, 'data']),
             'storage' => $this->storage->reveal()
         ]);
+        $daemon->run($this->client->reveal(), false);
     }
 
     public function testSpecifyDescription()
     {
+        $resp = [
+            'breakpoints' => [],
+            'nextWaitToken' => 'abc123'
+        ];
         $this->debuggee->register(Argument::any())->shouldBeCalled();
+        $this->debuggee->breakpointsWithWaitToken([])
+            ->willReturn($resp);
         $this->client->debuggee(null, Argument::withEntry('description', 'some description'))
             ->willReturn($this->debuggee->reveal())->shouldBeCalled();
 
-        $daemon = new Daemon('.', [
+        $daemon = new Daemon([
             'client' => $this->client->reveal(),
             'storage' => $this->storage->reveal(),
             'description' => 'some description'
         ]);
+        $daemon->run($this->client->reveal(), false);
     }
 
     public function testSpecifyExtSourceContext()
@@ -92,27 +114,40 @@ class DaemonTest extends TestCase
             ],
             'labels' => []
         ];
-        $this->debuggee->register(Argument::any())->shouldBeCalled();
+        $resp = [
+            'breakpoints' => [],
+            'nextWaitToken' => 'abc123'
+        ];
+        $this->debuggee->register(Argument::any())
+            ->shouldBeCalled();
+        $this->debuggee->breakpointsWithWaitToken([])
+            ->willReturn($resp);
         $this->client->debuggee(null, Argument::withEntry('extSourceContexts', [$context]))
             ->willReturn($this->debuggee->reveal())->shouldBeCalled();
 
-        $daemon = new Daemon('.', [
-            'client' => $this->client->reveal(),
+        $daemon = new Daemon([
             'storage' => $this->storage->reveal(),
             'extSourceContext' => $context
         ]);
+        $daemon->run($this->client->reveal(), false);
     }
 
     public function testEmptyDefaultSourceContext()
     {
+        $resp = [
+            'breakpoints' => [],
+            'nextWaitToken' => 'abc123'
+        ];
         $this->debuggee->register(Argument::any())->shouldBeCalled();
+        $this->debuggee->breakpointsWithWaitToken([])
+            ->willReturn($resp);
         $this->client->debuggee(null, Argument::withEntry('extSourceContexts', []))
             ->willReturn($this->debuggee->reveal())->shouldBeCalled();
 
-        $daemon = new Daemon('.', [
-            'client' => $this->client->reveal(),
+        $daemon = new Daemon([
             'storage' => $this->storage->reveal()
         ]);
+        $daemon->run($this->client->reveal(), false);
     }
 
     public function testDefaultSourceContext()
@@ -125,36 +160,71 @@ class DaemonTest extends TestCase
                 ]
             ]
         ];
+        $resp = [
+            'breakpoints' => [],
+            'nextWaitToken' => 'abc123'
+        ];
         $this->debuggee->register(Argument::any())->shouldBeCalled();
+        $this->debuggee->breakpointsWithWaitToken([])
+            ->willReturn($resp);
         $this->client->debuggee(null, Argument::withEntry('extSourceContexts', [$expectedSourceContext]))
             ->willReturn($this->debuggee->reveal())->shouldBeCalled();
 
         $root = implode(DIRECTORY_SEPARATOR, [__DIR__, 'data']);
-        $daemon = new Daemon($root, [
-            'client' => $this->client->reveal(),
+        $daemon = new Daemon([
+            'sourceRoot' => $root,
             'storage' => $this->storage->reveal()
         ]);
+        $daemon->run($this->client->reveal(), false);
     }
 
     public function testFetchesBreakpoints()
     {
         $resp = [
-            'breakpoints' => [new Breakpoint(['id' => 'breakpoint1'])]
+            'breakpoints' => [new Breakpoint(['id' => 'breakpoint1'])],
+            'nextWaitToken' => 'abc123'
         ];
         $this->debuggee->register(Argument::any())
             ->shouldBeCalled();
-        $this->debuggee->breakpointsWithWaitToken()
+        $this->debuggee->breakpointsWithWaitToken([])
             ->willReturn($resp);
         $this->debuggee->updateBreakpointBatch(Argument::any())
             ->willReturn(true);
         $this->client->debuggee(null, Argument::any())
+            ->willReturn($this->debuggee->reveal())->shouldBeCalled();
+
+        $daemon = new Daemon([
+            'storage' => $this->storage->reveal()
+        ]);
+        $daemon->run($this->client->reveal(), false);
+    }
+
+    public function testDetectsLabelsFromEnvironment()
+    {
+        $resp = [
+            'breakpoints' => [],
+            'nextWaitToken' => 'abc123'
+        ];
+        $provider = new SimpleMetadataProvider([], 'project1', 'service1', 'version1');
+        $expectedLabels = [
+            'module' => 'service1',
+            'projectid' => 'project1',
+            'version' => 'version1'
+        ];
+        $this->debuggee->register(Argument::any())
+            ->shouldBeCalled();
+        $this->debuggee->breakpointsWithWaitToken([])
+            ->willReturn($resp);
+        $this->debuggee->updateBreakpointBatch(Argument::any())
+            ->willReturn(true);
+        $this->client->debuggee(null, Argument::withEntry('labels', $expectedLabels))
             ->willReturn($this->debuggee->reveal())
             ->shouldBeCalled();
 
-        $daemon = new Daemon('.', [
-            'client' => $this->client->reveal(),
+        $daemon = new Daemon([
+            'metadataProvider' => $provider,
             'storage' => $this->storage->reveal()
         ]);
-        $daemon->run();
+        $daemon->run($this->client->reveal(), false);
     }
 }

@@ -17,6 +17,8 @@
 
 namespace Google\Cloud\Core\Batch;
 
+use Opis\Closure\SerializableClosure;
+
 /**
  * A trait to assist in the registering and processing of batch jobs.
  *
@@ -27,15 +29,12 @@ namespace Google\Cloud\Core\Batch;
  */
 trait BatchTrait
 {
-    /**
-     * @var array
-     */
-    private $batchOptions;
+    use SerializableClientTrait;
 
     /**
      * @var array
      */
-    private $clientConfig;
+    private $batchOptions;
 
     /**
      * @var BatchRunner
@@ -72,7 +71,7 @@ trait BatchTrait
     {
         $id = $this->batchRunner
             ->getJobFromId($this->identifier)
-            ->getIdNum();
+            ->id();
 
         return $this->batchRunner
             ->getProcessor()
@@ -146,19 +145,26 @@ trait BatchTrait
      *           more details.
      *           **Defaults to** ['batchSize' => 1000,
      *                            'callPeriod' => 2.0,
-     *                            'workerNum' => 2].
+     *                            'numWorkers' => 2].
      *     @type array $clientConfig A config used to construct the client upon
      *           which requests will be made.
      *     @type BatchRunner $batchRunner A BatchRunner object. Mainly used for
      *           the tests to inject a mock. **Defaults to** a newly created
      *           BatchRunner.
-     *     @type string $identifier An identifier for the batch job.
+     *     @type string $identifier An identifier for the batch job. This
+     *           value must be unique across all job configs.
      *     @type string $batchMethod The name of the batch method used to
      *           deliver items.
+     *     @type ClosureSerializerInterface $closureSerializer An implementation
+     *           responsible for serializing closures used in the
+     *           `$clientConfig`. This is especially important when using the
+     *           batch daemon. **Defaults to**
+     *           {@see Google\Cloud\Core\Batch\OpisClosureSerializer} if the
+     *           `opis/closure` library is installed.
      * }
      * @throws \InvalidArgumentException
      */
-    private function setCommonBatchProperties(array $options)
+    private function setCommonBatchProperties(array $options = [])
     {
         if (!isset($options['identifier'])) {
             throw new \InvalidArgumentException(
@@ -172,6 +178,7 @@ trait BatchTrait
             );
         }
 
+        $this->setSerializableClientOptions($options);
         $this->batchMethod = $options['batchMethod'];
         $this->identifier = $options['identifier'];
         $this->debugOutputResource = isset($options['debugOutputResource'])
@@ -180,16 +187,13 @@ trait BatchTrait
         $this->debugOutput = isset($options['debugOutput'])
             ? $options['debugOutput']
             : false;
-        $this->clientConfig = isset($options['clientConfig'])
-            ? $options['clientConfig']
-            : [];
         $batchOptions = isset($options['batchOptions'])
             ? $options['batchOptions']
             : [];
         $this->batchOptions = $batchOptions + [
             'batchSize' => 1000,
             'callPeriod' => 2.0,
-            'workerNum' => 2
+            'numWorkers' => 2
         ];
         $this->batchRunner = isset($options['batchRunner'])
             ? $options['batchRunner']

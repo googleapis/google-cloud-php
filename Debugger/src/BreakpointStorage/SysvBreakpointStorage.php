@@ -80,7 +80,7 @@ class SysvBreakpointStorage implements BreakpointStorageInterface
             );
         }
         if (!shm_has_var($shmid, self::VAR_KEY)) {
-            $result = [];
+            $result = [null, []];
         } else {
             $result = shm_get_var($shmid, self::VAR_KEY);
         }

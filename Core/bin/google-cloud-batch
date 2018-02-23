@@ -44,10 +44,11 @@ if (count($argv) < 2) {
 if ($argv[1] === 'daemon') {
     $daemon = new BatchDaemon(__FILE__);
     if (count($argv) == 2) {
-        $daemon->runParent();
+        $daemon->run();
     } else {
         $idNum = (int) $argv[2];
-        $daemon->runChild($idNum);
+        $job = $daemon->job($idNum);
+        $job->run();
     }
 } elseif ($argv[1] === 'retry') {
     $retry = new Retry();

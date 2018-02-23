@@ -78,11 +78,12 @@ class LoggingClientTest extends TestCase
             ['clientConfig' => ['projectId' => 'my-project']]);
         $this->assertInstanceOf(PsrLogger::class, $psrBatchLogger);
         $r = new \ReflectionObject($psrBatchLogger);
-        $p = $r->getProperty('clientConfig');
-        $p->setAccessible(true);
+        $method = $r->getMethod('getUnwrappedClientConfig');
+        $method->setAccessible(true);
+
         $this->assertEquals(
             ['projectId' => 'my-project'],
-            $p->getValue($psrBatchLogger)
+            $method->invoke($psrBatchLogger)
         );
     }
 

@@ -34,12 +34,38 @@ if (file_exists(__DIR__ . '/../../../vendor/autoload.php')) {
 
 function showUsageAndDie()
 {
-    die("usage: " . __FILE__ . " sourceRoot");
+    $filename = basename(__FILE__);
+    fwrite(STDERR, <<<EOS
+Usage:
+  $filename [options] | <source-root>
+
+Options:
+  -c, --config=CONFIG_FILE       If specified, load this file which should initialize and return a Debugger\Daemon instance.
+  -s, --source-root=SOURCE_ROOT  Sets the source root for the Daemon. Ignored if --config is specified.
+
+
+EOS
+);
+    die();
 }
 
 if (count($argv) < 2) {
     showUsageAndDie();
 }
 
-$daemon = new Daemon($argv[1]);
-$daemon->run();
+$options = getopt('c:s:', ['config:', 'source-root:'], $optind) + [
+    'c' => null,
+    'config' => null,
+    's' => null,
+    'source-root' => null
+];
+try {
+    $cli = new CliDaemon([
+        'config' => $options['c'] ?: $options['config'],
+        'sourceRoot' => $options['s'] ?: $options['source-root'] ?: $argv[1]
+    ]);
+} catch (\Exception $e) {
+    fwrite(STDERR, $e->getMessage() . PHP_EOL);
+    showUsageAndDie();
+}
+$cli->run();

@@ -75,6 +75,25 @@ class GrpcTest extends TestCase
     public function testBeginTransaction()
     {
         $args = [
+            'database' => sprintf('projects/%s/databases/%s', self::PROJECT, self::DATABASE),
+        ];
+
+        $rw = new TransactionOptions_ReadWrite;
+
+        $options = new TransactionOptions;
+        $options->setReadWrite($rw);
+
+        $expected = [
+            $args['database'],
+            ['options' => $options] + $this->header()
+        ];
+
+        $this->sendAndAssert('beginTransaction', $args, $expected);
+    }
+
+    public function testBeginTransactionWithPreviousTransactionId()
+    {
+        $args = [
             'retryTransaction' => 'foo',
             'database' => sprintf('projects/%s/databases/%s', self::PROJECT, self::DATABASE),
         ];

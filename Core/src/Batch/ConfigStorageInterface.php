@@ -42,22 +42,22 @@ interface ConfigStorageInterface
     public function unlock();
 
     /**
-     * saves the BatchConfig to the storage
-     * @param BatchConfig $config A BatchConfig to save.
+     * saves the JobConfig to the storage
+     * @param JobConfig $config A JobConfig to save.
      * @return bool true on success, false on failure
      */
-    public function save(BatchConfig $config);
+    public function save(JobConfig $config);
 
     /**
-     * loads the BatchConfig from the storage
+     * loads the JobConfig from the storage
      *
-     * @return BatchConfig
-     * @throws \RuntimeException when failed to load the BatchConfig.
+     * @return JobConfig
+     * @throws \RuntimeException when failed to load the JobConfig.
      */
     public function load();
 
     /**
-     * Clear the BatchConfig from storage.
+     * Clear the JobConfig from storage.
      */
     public function clear();
 }
