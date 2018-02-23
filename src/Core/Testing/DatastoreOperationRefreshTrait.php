@@ -31,15 +31,19 @@ trait DatastoreOperationRefreshTrait
      *
      * @param mixed $stub
      * @param ConnectionInterface $connection
-     * @param bool $returnInt64AsObject
+     * @param array $options {
+     *     Configuration Options
+     *
+     *     @type string $projectId the project id.
+     *     @type bool $returnInt64AsObject if true, will encode int64s as objects.
+     *     @type bool $encode whether to base64-encode certain values.
+     * }
      * @return mixed
      */
     public function refreshOperation($stub, ConnectionInterface $connection, array $options = [])
     {
         $options += [
-            'projectId' => defined('static::PROJECT')
-                ? static::PROJECT
-                : null,
+            'projectId' => null,
             'returnInt64AsObject' => false,
             'encode' => false
         ];

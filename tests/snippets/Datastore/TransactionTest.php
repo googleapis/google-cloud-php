@@ -81,7 +81,9 @@ class TransactionTest extends SnippetTestCase
                 'transaction' => 'foo'
             ]);
 
-        $this->refreshOperation($this->client, $this->connection->reveal());
+        $this->refreshOperation($this->client, $this->connection->reveal(), [
+            'projectId' => self::PROJECT
+        ]);
 
         $snippet = $this->snippetFromClass(Transaction::class);
         $snippet->setLine(2, '');
@@ -108,7 +110,9 @@ class TransactionTest extends SnippetTestCase
                 ]
             ]);
 
-        $this->refreshOperation($this->transaction, $this->connection->reveal());
+        $this->refreshOperation($this->transaction, $this->connection->reveal(), [
+            'projectId' => self::PROJECT
+        ]);
 
         $res = $snippet->invoke();
     }
@@ -132,7 +136,9 @@ class TransactionTest extends SnippetTestCase
 
         $this->allocateIdsConnectionMock();
 
-        $this->refreshOperation($this->transaction, $this->connection->reveal());
+        $this->refreshOperation($this->transaction, $this->connection->reveal(), [
+            'projectId' => self::PROJECT
+        ]);
 
         $res = $snippet->invoke();
     }
@@ -157,7 +163,9 @@ class TransactionTest extends SnippetTestCase
                 ]
             ]);
 
-        $this->refreshOperation($this->transaction, $this->connection->reveal());
+        $this->refreshOperation($this->transaction, $this->connection->reveal(), [
+            'projectId' => self::PROJECT
+        ]);
 
         $res = $snippet->invoke();
     }
@@ -201,7 +209,9 @@ class TransactionTest extends SnippetTestCase
                 ]
             ]);
 
-        $this->refreshOperation($this->transaction, $this->connection->reveal());
+        $this->refreshOperation($this->transaction, $this->connection->reveal(), [
+            'projectId' => self::PROJECT
+        ]);
 
         $res = $snippet->invoke();
     }
@@ -242,7 +252,9 @@ class TransactionTest extends SnippetTestCase
                 ]
             ]);
 
-        $this->refreshOperation($this->transaction, $this->connection->reveal());
+        $this->refreshOperation($this->transaction, $this->connection->reveal(), [
+            'projectId' => self::PROJECT
+        ]);
 
         $res = $snippet->invoke();
     }
@@ -290,7 +302,9 @@ class TransactionTest extends SnippetTestCase
                 ]
             ]);
 
-        $this->refreshOperation($this->transaction, $this->connection->reveal());
+        $this->refreshOperation($this->transaction, $this->connection->reveal(), [
+            'projectId' => self::PROJECT
+        ]);
 
         $res = $snippet->invoke();
         $this->assertEquals('Bob', $res->output());
@@ -337,7 +351,9 @@ class TransactionTest extends SnippetTestCase
                 ]
             ]);
 
-        $this->refreshOperation($this->transaction, $this->connection->reveal());
+        $this->refreshOperation($this->transaction, $this->connection->reveal(), [
+            'projectId' => self::PROJECT
+        ]);
 
         $res = $snippet->invoke();
         $this->assertEquals("Bob", explode("\n", $res->output())[0]);
@@ -374,7 +390,9 @@ class TransactionTest extends SnippetTestCase
                 ]
             ]);
 
-        $this->refreshOperation($this->transaction, $this->connection->reveal());
+        $this->refreshOperation($this->transaction, $this->connection->reveal(), [
+            'projectId' => self::PROJECT
+        ]);
 
         $res = $snippet->invoke('result');
         $this->assertEquals('Bob', $res->output());
@@ -388,7 +406,9 @@ class TransactionTest extends SnippetTestCase
         $this->connection->commit(Argument::any())
             ->shouldBeCalled();
 
-        $this->refreshOperation($this->transaction, $this->connection->reveal());
+        $this->refreshOperation($this->transaction, $this->connection->reveal(), [
+            'projectId' => self::PROJECT
+        ]);
 
         $snippet->invoke();
     }
@@ -401,7 +421,9 @@ class TransactionTest extends SnippetTestCase
         $this->connection->rollback(Argument::any())
             ->shouldBeCalled();
 
-        $this->refreshOperation($this->transaction, $this->connection->reveal());
+        $this->refreshOperation($this->transaction, $this->connection->reveal(), [
+            'projectId' => self::PROJECT
+        ]);
 
         $snippet->invoke();
     }

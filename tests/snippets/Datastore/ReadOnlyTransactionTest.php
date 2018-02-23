@@ -81,7 +81,9 @@ class ReadOnlyTransactionTest extends SnippetTestCase
                 'transaction' => 'foo'
             ]);
 
-        $this->refreshOperation($this->client, $this->connection->reveal());
+        $this->refreshOperation($this->client, $this->connection->reveal(), [
+            'projectId' => self::PROJECT
+        ]);
 
         $snippet = $this->snippetFromClass(ReadOnlyTransaction::class);
         $snippet->setLine(2, '');
@@ -106,7 +108,9 @@ class ReadOnlyTransactionTest extends SnippetTestCase
 
         $snippet = $this->snippetFromClass(ReadOnlyTransaction::class, 1);
 
-        $this->refreshOperation($this->client, $this->connection->reveal());
+        $this->refreshOperation($this->client, $this->connection->reveal(), [
+            'projectId' => self::PROJECT
+        ]);
 
         $transaction = $this->client->readOnlyTransaction();
 
@@ -146,7 +150,9 @@ class ReadOnlyTransactionTest extends SnippetTestCase
                 ]
             ]);
 
-        $this->refreshOperation($this->transaction, $this->connection->reveal());
+        $this->refreshOperation($this->transaction, $this->connection->reveal(), [
+            'projectId' => self::PROJECT
+        ]);
 
         $res = $snippet->invoke();
         $this->assertEquals('Bob', $res->output());
@@ -196,7 +202,9 @@ class ReadOnlyTransactionTest extends SnippetTestCase
                 ]
             ]);
 
-        $this->refreshOperation($this->transaction, $this->connection->reveal());
+        $this->refreshOperation($this->transaction, $this->connection->reveal(), [
+            'projectId' => self::PROJECT
+        ]);
 
         $res = $snippet->invoke();
         $this->assertEquals("Bob", explode("\n", $res->output())[0]);
@@ -236,7 +244,9 @@ class ReadOnlyTransactionTest extends SnippetTestCase
                 ]
             ]);
 
-        $this->refreshOperation($this->transaction, $this->connection->reveal());
+        $this->refreshOperation($this->transaction, $this->connection->reveal(), [
+            'projectId' => self::PROJECT
+        ]);
 
         $res = $snippet->invoke('result');
         $this->assertEquals('Bob', $res->output());
@@ -250,7 +260,9 @@ class ReadOnlyTransactionTest extends SnippetTestCase
         $this->connection->rollback(Argument::any())
             ->shouldBeCalled();
 
-        $this->refreshOperation($this->transaction, $this->connection->reveal());
+        $this->refreshOperation($this->transaction, $this->connection->reveal(), [
+            'projectId' => self::PROJECT
+        ]);
 
         $snippet->invoke();
     }

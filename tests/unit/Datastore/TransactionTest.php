@@ -89,7 +89,9 @@ class TransactionTest extends TestCase
         ]);
 
         $transaction = $transaction();
-        $this->refreshOperation($transaction, $this->connection->reveal());
+        $this->refreshOperation($transaction, $this->connection->reveal(), [
+            'projectId' => self::PROJECT
+        ]);
 
         $res = $transaction->lookup($this->key);
         $this->assertInstanceOf(Entity::class, $res);
@@ -112,7 +114,9 @@ class TransactionTest extends TestCase
         ]);
 
         $transaction = $transaction();
-        $this->refreshOperation($transaction, $this->connection->reveal());
+        $this->refreshOperation($transaction, $this->connection->reveal(), [
+            'projectId' => self::PROJECT
+        ]);
 
         $res = $transaction->lookup($this->key);
         $this->assertNull($res);
@@ -142,7 +146,9 @@ class TransactionTest extends TestCase
         ]);
 
         $transaction = $transaction();
-        $this->refreshOperation($transaction, $this->connection->reveal());
+        $this->refreshOperation($transaction, $this->connection->reveal(), [
+            'projectId' => self::PROJECT
+        ]);
 
         $res = $transaction->lookupBatch([$this->key]);
         $this->assertInstanceOf(Entity::class, $res['found'][0]);
@@ -169,7 +175,9 @@ class TransactionTest extends TestCase
         ]);
 
         $transaction = $transaction();
-        $this->refreshOperation($transaction, $this->connection->reveal());
+        $this->refreshOperation($transaction, $this->connection->reveal(), [
+            'projectId' => self::PROJECT
+        ]);
 
         $query = $this->prophesize(QueryInterface::class);
         $query->queryKey()->willReturn('gqlQuery');
@@ -188,7 +196,9 @@ class TransactionTest extends TestCase
             ->shouldBeCalled();
 
         $transaction = $transaction();
-        $this->refreshOperation($transaction, $this->connection->reveal());
+        $this->refreshOperation($transaction, $this->connection->reveal(), [
+            'projectId' => self::PROJECT
+        ]);
 
         $transaction->rollback();
     }
@@ -204,7 +214,9 @@ class TransactionTest extends TestCase
             Argument::withEntry('mutations', [[$method => $mutation]])
         ))->shouldBeCalled()->willReturn($this->commitResponse());
 
-        $this->refreshOperation($this->transaction, $this->connection->reveal());
+        $this->refreshOperation($this->transaction, $this->connection->reveal(), [
+            'projectId' => self::PROJECT
+        ]);
 
         $this->transaction->$method($this->entity, ['allowOverwrite' => true]);
         $res = $this->transaction->commit();
@@ -223,7 +235,9 @@ class TransactionTest extends TestCase
             Argument::withEntry('mutations', [[$method => $mutation]])
         ))->shouldBeCalled()->willReturn($this->commitResponse());
 
-        $this->refreshOperation($this->transaction, $this->connection->reveal());
+        $this->refreshOperation($this->transaction, $this->connection->reveal(), [
+            'projectId' => self::PROJECT
+        ]);
 
         $method = $method . 'Batch';
 
@@ -259,7 +273,9 @@ class TransactionTest extends TestCase
             ]
         ]);
 
-        $this->refreshOperation($this->transaction, $this->connection->reveal());
+        $this->refreshOperation($this->transaction, $this->connection->reveal(), [
+            'projectId' => self::PROJECT
+        ]);
 
         $entity = new Entity($key, ['name' => 'John']);
         $this->transaction->$method($entity);
@@ -289,7 +305,9 @@ class TransactionTest extends TestCase
             ]
         ]);
 
-        $this->refreshOperation($this->transaction, $this->connection->reveal());
+        $this->refreshOperation($this->transaction, $this->connection->reveal(), [
+            'projectId' => self::PROJECT
+        ]);
 
         $method = $method . 'Batch';
         $entity = new Entity($key, ['name' => 'John']);
@@ -319,7 +337,9 @@ class TransactionTest extends TestCase
             ])
         ))->shouldBeCalled()->willReturn($this->commitResponse());
 
-        $this->refreshOperation($this->transaction, $this->connection->reveal());
+        $this->refreshOperation($this->transaction, $this->connection->reveal(), [
+            'projectId' => self::PROJECT
+        ]);
 
         $this->transaction->delete($this->key);
         $res = $this->transaction->commit();
@@ -340,7 +360,9 @@ class TransactionTest extends TestCase
             ])
         ))->shouldBeCalled()->willReturn($this->commitResponse());
 
-        $this->refreshOperation($this->transaction, $this->connection->reveal());
+        $this->refreshOperation($this->transaction, $this->connection->reveal(), [
+            'projectId' => self::PROJECT
+        ]);
 
         $this->transaction->deleteBatch([$this->key]);
         $res = $this->transaction->commit();

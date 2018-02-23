@@ -1,3 +1,5 @@
+Add-Type -assembly "system.io.compression.filesystem"
+
 $file = "php-$env:PHP_VERSION.zip"
 $archiveUrl = "http://windows.php.net/downloads/releases/archives/$file"
 $url = "http://windows.php.net/downloads/releases/$file"
@@ -6,8 +8,14 @@ $client = New-Object NET.WebClient
 
 try {
     $client.DownloadFile($url, "$projectPath\$file")
+    "Downloaded file from $url"
 } catch {
     $client.DownloadFile($archiveUrl, "$projectPath\$file")
+    "Downloaded file from $archiveUrl"
 }
 
-7z x $file -oc:\tools\php
+if (![System.IO.File]::Exists("$projectPath\$file")) {
+    "File $projectPath\$file does not exist! This is not a good sign for the tests passing."
+}
+
+[io.compression.zipfile]::ExtractToDirectory("$projectPath\$file", "C:\tools\php")

@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright 2017 Google Inc.
+ * Copyright 2016 Google Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -31,13 +31,14 @@ use Google\Cloud\Datastore\Query\Query;
 use Google\Cloud\Datastore\Query\QueryInterface;
 use Google\Cloud\Datastore\ReadOnlyTransaction;
 use Google\Cloud\Datastore\Transaction;
+use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
 
 /**
  * @group datastore
  * @group datastore-client
  */
-class DatastoreClientTest extends \PHPUnit_Framework_TestCase
+class DatastoreClientTest extends TestCase
 {
     use DatastoreOperationRefreshTrait;
 
@@ -164,7 +165,9 @@ class DatastoreClientTest extends \PHPUnit_Framework_TestCase
             ]
         ]);
 
-        $this->refreshOperation($this->client, $this->connection->reveal());
+        $this->refreshOperation($this->client, $this->connection->reveal(), [
+            'projectId' => self::PROJECT
+        ]);
 
         $res = $batch
             ? $this->client->$method([$key])[0]
@@ -201,7 +204,10 @@ class DatastoreClientTest extends \PHPUnit_Framework_TestCase
             'transaction' => self::TRANSACTION
         ]);
 
-        $this->refreshOperation($this->client, $this->connection->reveal(), ['projectId' => self::PROJECT]);
+        $this->refreshOperation($this->client, $this->connection->reveal(), [
+            'projectId' => self::PROJECT
+        ]);
+
         $res = $this->client->$method();
         $this->assertInstanceOf($type, $res);
     }
@@ -227,7 +233,9 @@ class DatastoreClientTest extends \PHPUnit_Framework_TestCase
             ->shouldBeCalled()
             ->willReturn([]);
 
-        $this->refreshOperation($this->client, $this->connection->reveal());
+        $this->refreshOperation($this->client, $this->connection->reveal(), [
+            'projectId' => self::PROJECT
+        ]);
 
         $res = $this->client->$method(['transactionOptions' => $options]);
         $this->assertInstanceOf($type, $res);
@@ -254,7 +262,9 @@ class DatastoreClientTest extends \PHPUnit_Framework_TestCase
             Argument::withEntry('mutations', [[$method => $mutation]])
         ))->shouldBeCalled()->willReturn($this->commitResponse());
 
-        $this->refreshOperation($this->client, $this->connection->reveal());
+        $this->refreshOperation($this->client, $this->connection->reveal(), [
+            'projectId' => self::PROJECT
+        ]);
 
         $entity = $this->client->entity($key, ['name' => 'John']);
         $res = $this->client->$method($entity, ['allowOverwrite' => true]);
@@ -273,7 +283,9 @@ class DatastoreClientTest extends \PHPUnit_Framework_TestCase
             Argument::withEntry('mutations', [[$method => $mutation]])
         ))->shouldBeCalled()->willReturn($this->commitResponse());
 
-        $this->refreshOperation($this->client, $this->connection->reveal());
+        $this->refreshOperation($this->client, $this->connection->reveal(), [
+            'projectId' => self::PROJECT
+        ]);
 
         $method = $method . 'Batch';
 
@@ -309,7 +321,9 @@ class DatastoreClientTest extends \PHPUnit_Framework_TestCase
             ]
         ]);
 
-        $this->refreshOperation($this->client, $this->connection->reveal());
+        $this->refreshOperation($this->client, $this->connection->reveal(), [
+            'projectId' => self::PROJECT
+        ]);
 
         $entity = $this->client->entity($key, ['name' => 'John']);
         $this->client->$method($entity);
@@ -336,7 +350,9 @@ class DatastoreClientTest extends \PHPUnit_Framework_TestCase
             ]
         ]);
 
-        $this->refreshOperation($this->client, $this->connection->reveal());
+        $this->refreshOperation($this->client, $this->connection->reveal(), [
+            'projectId' => self::PROJECT
+        ]);
 
         $method = $method . 'Batch';
         $entity = $this->client->entity($key, ['name' => 'John']);
@@ -365,7 +381,9 @@ class DatastoreClientTest extends \PHPUnit_Framework_TestCase
             ])
         ))->shouldBeCalled()->willReturn($this->commitResponse());
 
-        $this->refreshOperation($this->client, $this->connection->reveal());
+        $this->refreshOperation($this->client, $this->connection->reveal(), [
+            'projectId' => self::PROJECT
+        ]);
 
         $res = $this->client->delete($key);
 
@@ -386,7 +404,9 @@ class DatastoreClientTest extends \PHPUnit_Framework_TestCase
             ])
         ))->shouldBeCalled()->willReturn($this->commitResponse());
 
-        $this->refreshOperation($this->client, $this->connection->reveal());
+        $this->refreshOperation($this->client, $this->connection->reveal(), [
+            'projectId' => self::PROJECT
+        ]);
 
         $res = $this->client->deleteBatch([$key]);
 
@@ -407,7 +427,9 @@ class DatastoreClientTest extends \PHPUnit_Framework_TestCase
             ]
         ]);
 
-        $this->refreshOperation($this->client, $this->connection->reveal());
+        $this->refreshOperation($this->client, $this->connection->reveal(), [
+            'projectId' => self::PROJECT
+        ]);
 
         $key = $this->client->key('Person', 'John');
         $res = $this->client->lookup($key);
@@ -429,7 +451,9 @@ class DatastoreClientTest extends \PHPUnit_Framework_TestCase
             ]
         ]);
 
-        $this->refreshOperation($this->client, $this->connection->reveal());
+        $this->refreshOperation($this->client, $this->connection->reveal(), [
+            'projectId' => self::PROJECT
+        ]);
 
         $key = $this->client->key('Person', 'John');
         $res = $this->client->lookup($key);
@@ -458,7 +482,9 @@ class DatastoreClientTest extends \PHPUnit_Framework_TestCase
             ]
         ]);
 
-        $this->refreshOperation($this->client, $this->connection->reveal());
+        $this->refreshOperation($this->client, $this->connection->reveal(), [
+            'projectId' => self::PROJECT
+        ]);
 
         $key = $this->client->key('Person', 'John');
         $res = $this->client->lookupBatch([$key]);
@@ -500,7 +526,9 @@ class DatastoreClientTest extends \PHPUnit_Framework_TestCase
             ]
         ]);
 
-        $this->refreshOperation($this->client, $this->connection->reveal());
+        $this->refreshOperation($this->client, $this->connection->reveal(), [
+            'projectId' => self::PROJECT
+        ]);
 
         $query = $this->prophesize(QueryInterface::class);
         $query->queryKey()->willReturn('gqlQuery');

@@ -266,8 +266,7 @@ class Operation
         // The API will throw a 400 if the key is named, but it's an easy
         // check we can handle before going to the API to save a request.
         // @todo replace with json schema
-        $serviceKeys = [];
-        $this->validateBatch($keys, Key::class, function ($key) use (&$serviceKeys) {
+        $this->validateBatch($keys, Key::class, function ($key) {
             if ($key->state() !== Key::STATE_INCOMPLETE) {
                 throw new InvalidArgumentException(sprintf(
                     'Given $key is in an invalid state. Can only allocate IDs for incomplete keys. ' .
@@ -284,9 +283,12 @@ class Operation
                     (string) $key
                 ));
             }
-
-            $serviceKeys[] = $key->keyObject();
         });
+
+        $serviceKeys = [];
+        foreach ($keys as $key) {
+            $serviceKeys[] = $key->keyObject();
+        }
 
         $res = $this->connection->allocateIds([
             'projectId' => $this->projectId,
