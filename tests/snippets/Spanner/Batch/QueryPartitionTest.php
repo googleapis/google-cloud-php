@@ -17,6 +17,7 @@
 
 namespace Google\Cloud\Tests\Snippets\Spanner\Batch;
 
+use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
 use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Spanner\Batch\BatchClient;
@@ -31,6 +32,7 @@ use Prophecy\Argument;
  */
 class QueryPartitionTest extends SnippetTestCase
 {
+    use GrpcTestTrait;
     use PartitionSharedSnippetTestTrait;
 
     const DATABASE = 'projects/example_project/instances/example_instance/databases/example_database';
@@ -43,6 +45,8 @@ class QueryPartitionTest extends SnippetTestCase
 
     public function setUp()
     {
+        $this->checkAndSkipGrpcTests();
+
         $this->time = time();
         $this->partition = new QueryPartition($this->token, $this->sql, $this->options);
     }

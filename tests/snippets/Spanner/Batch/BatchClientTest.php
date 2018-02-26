@@ -17,6 +17,7 @@
 
 namespace Google\Cloud\Tests\Snippets\Spanner\Batch;
 
+use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
 use Google\Cloud\Core\Testing\SpannerOperationRefreshTrait;
 use Google\Cloud\Core\Testing\TestHelpers;
@@ -37,6 +38,8 @@ use Prophecy\Argument;
  */
 class BatchClientTest extends SnippetTestCase
 {
+    use GrpcTestTrait;
+
     const DATABASE = 'projects/example_project/instances/example_instance/databases/example_database';
     const SESSION = 'projects/example_project/instances/example_instance/databases/example_database/sessions/session-id';
     const TRANSACTION = 'transaction-id';
@@ -48,6 +51,8 @@ class BatchClientTest extends SnippetTestCase
 
     public function setUp()
     {
+        $this->checkAndSkipGrpcTests();
+
         $this->connection = $this->prophesize(ConnectionInterface::class);
         $this->client = TestHelpers::stub(BatchClient::class, [
             new Operation($this->connection->reveal(), false),

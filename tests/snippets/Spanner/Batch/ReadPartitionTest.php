@@ -17,6 +17,7 @@
 
 namespace Google\Cloud\Tests\Snippets\Spanner\Batch;
 
+use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
 use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Spanner\Batch\BatchClient;
@@ -32,6 +33,7 @@ use Prophecy\Argument;
  */
 class ReadPartitionTest extends SnippetTestCase
 {
+    use GrpcTestTrait;
     use PartitionSharedSnippetTestTrait {
         provideGetters as private getters;
     }
@@ -48,6 +50,8 @@ class ReadPartitionTest extends SnippetTestCase
 
     public function setUp()
     {
+        $this->checkAndSkipGrpcTests();
+
         $this->time = time();
         $this->table = 'table';
         $this->keySet = new KeySet(['all' => true]);
