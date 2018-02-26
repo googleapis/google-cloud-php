@@ -127,16 +127,16 @@ class KeyRangeTest extends TestCase
     }
 
     /**
-     * @dataProvider fromObject
+     * @dataProvider fromArray
      */
-    public function testFromObject($startType, $endType)
+    public function testFromArray($startType, $endType)
     {
         $this->range->setStart($startType, ['foo']);
         $this->range->setEnd($endType, ['bar']);
 
         $res = $this->range->keyRangeObject();
 
-        $range2 = KeyRange::fromObject($res);
+        $range2 = KeyRange::fromArray($res);
         $obj = $range2->keyRangeObject();
 
         $this->assertEquals($res, $obj);
@@ -144,7 +144,7 @@ class KeyRangeTest extends TestCase
         $this->assertEquals(['bar'], $obj[($endType === KeyRange::TYPE_OPEN) ? 'endOpen' : 'endClosed']);
     }
 
-    public function fromObject()
+    public function fromArray()
     {
         return [
             [KeyRange::TYPE_OPEN, KeyRange::TYPE_CLOSED],

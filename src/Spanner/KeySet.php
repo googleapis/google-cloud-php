@@ -256,13 +256,13 @@ class KeySet
     }
 
     /**
-     * Create a KeySet from an object created by {@see Google\Cloud\Spanner\KeySet::keySetObject()}.
+     * Create a KeySet from an array created by {@see Google\Cloud\Spanner\KeySet::keySetObject()}.
      *
      * @param array $keySet An array of KeySet data.
      * @return KeySet
      * @access private
      */
-    public static function fromObject(array $keySet)
+    public static function fromArray(array $keySet)
     {
         $res = new self();
         if (isset($keySet['all'])) {
@@ -275,7 +275,7 @@ class KeySet
 
         if (isset($keySet['ranges'])) {
             foreach($keySet['ranges'] as $range) {
-                $res->addRange(KeyRange::fromObject($range));
+                $res->addRange(KeyRange::fromArray($range));
             }
         }
 

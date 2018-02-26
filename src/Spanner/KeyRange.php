@@ -258,13 +258,13 @@ class KeyRange
     }
 
     /**
-     * Create a KeyRange from an object created by {@see Google\Cloud\Spanner\KeyRange::keyRangeObject()}.
+     * Create a KeyRange from an array created by {@see Google\Cloud\Spanner\KeyRange::keyRangeObject()}.
      *
      * @param array $range An array of KeyRange data.
      * @return KeyRange
      * @access private
      */
-    public static function fromObject(array $range)
+    public static function fromArray(array $range)
     {
         $startType = null;
         $start = null;

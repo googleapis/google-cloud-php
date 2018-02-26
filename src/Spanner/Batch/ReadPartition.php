@@ -186,7 +186,7 @@ class ReadPartition implements PartitionInterface
         return new self(
             $data['token'],
             $data['table'],
-            KeySet::fromObject($data['keySet']),
+            KeySet::fromArray($data['keySet']),
             $data['columns'],
             $data['options']
         );
