@@ -104,6 +104,7 @@
             "Google\\Cloud\\Tests\\": "tests",
             "Google\\Cloud\\Tests\\Common\\": "tests/common",
             "Google\\Cloud\\Tests\\Perf\\": "tests/perf",
+            "Google\\Cloud\\Tests\\Snippets\\": "tests/snippets",
             "Google\\Cloud\\Tests\\System\\": "tests/system",
             "Google\\Cloud\\Tests\\Unit\\": "tests/unit"
         },
