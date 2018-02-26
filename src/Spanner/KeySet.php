@@ -274,7 +274,7 @@ class KeySet
         }
 
         if (isset($keySet['ranges'])) {
-            foreach($keySet['ranges'] as $range) {
+            foreach ($keySet['ranges'] as $range) {
                 $res->addRange(KeyRange::fromArray($range));
             }
         }
