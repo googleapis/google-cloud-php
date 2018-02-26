@@ -22,6 +22,7 @@ use Google\Cloud\Core\Iterator\ItemIterator;
 use Google\Cloud\Core\LongRunning\LongRunningOperation;
 use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
 use Google\Cloud\Spanner\Admin\Instance\V1\InstanceAdminClient;
+use Google\Cloud\Spanner\Batch\BatchClient;
 use Google\Cloud\Spanner\Bytes;
 use Google\Cloud\Spanner\Connection\ConnectionInterface;
 use Google\Cloud\Spanner\Database;
@@ -66,8 +67,16 @@ class SpannerClientTest extends SnippetTestCase
         $this->assertInstanceOf(SpannerClient::class, $res->returnVal());
     }
 
+    public function testBatch()
+    {
+        $snippet = $this->snippetFromMethod(SpannerClient::class, 'batch');
+        $snippet->addLocal('spanner', $this->client);
+        $res = $snippet->invoke('batch');
+        $this->assertInstanceOf(BatchClient::class, $res->returnVal());
+    }
+
     /**
-     * @group spanneradmin
+     * @group spanner-admin
      */
     public function testInstanceConfigurations()
     {
@@ -93,7 +102,7 @@ class SpannerClientTest extends SnippetTestCase
     }
 
     /**
-     * @group spanneradmin
+     * @group spanner-admin
      */
     public function testInstanceConfiguration()
     {
@@ -109,7 +118,7 @@ class SpannerClientTest extends SnippetTestCase
     }
 
     /**
-     * @group spanneradmin
+     * @group spanner-admin
      */
     public function testCreateInstance()
     {
@@ -128,7 +137,7 @@ class SpannerClientTest extends SnippetTestCase
     }
 
     /**
-     * @group spanneradmin
+     * @group spanner-admin
      */
     public function testInstance()
     {
@@ -141,7 +150,7 @@ class SpannerClientTest extends SnippetTestCase
     }
 
     /**
-     * @group spanneradmin
+     * @group spanner-admin
      */
     public function testInstances()
     {

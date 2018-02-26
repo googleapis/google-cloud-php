@@ -180,7 +180,7 @@ class Result implements \IteratorAggregate
                 $bufferedResults[] = $result;
                 $this->setResultData($result, $format);
 
-                if (!isset($result['values'])) {
+                if (!isset($result['values']) || $this->columnCount === 0) {
                     return;
                 }
 

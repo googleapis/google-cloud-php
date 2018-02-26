@@ -17,6 +17,9 @@
 
 namespace Google\Cloud\Tests\Unit\Spanner;
 
+use Google\Cloud\Core\Testing\GrpcTestTrait;
+use Google\Cloud\Spanner\Batch\QueryPartition;
+use Google\Cloud\Spanner\Batch\ReadPartition;
 use Google\Cloud\Spanner\Connection\ConnectionInterface;
 use Google\Cloud\Spanner\Database;
 use Google\Cloud\Spanner\KeyRange;
@@ -29,9 +32,8 @@ use Google\Cloud\Spanner\Snapshot;
 use Google\Cloud\Spanner\Timestamp;
 use Google\Cloud\Spanner\Transaction;
 use Google\Cloud\Spanner\ValueMapper;
-use Google\Cloud\Core\Testing\GrpcTestTrait;
-use Prophecy\Argument;
 use PHPUnit\Framework\TestCase;
+use Prophecy\Argument;
 
 /**
  * @group spanner
@@ -307,6 +309,83 @@ class OperationTest extends TestCase
         $this->assertInstanceOf(Snapshot::class, $snap);
         $this->assertEquals(self::TRANSACTION, $snap->id());
         $this->assertInstanceOf(Timestamp::class, $snap->readTimestamp());
+    }
+
+    public function testPartitionQuery()
+    {
+        $sql = 'SELECT * FROM Posts WHERE ID = @id';
+        $params = ['id' => 10];
+        $transactionId = 'foo';
+
+        $partitionToken1 = 'token1';
+        $partitionToken2 = 'token2';
+
+        $this->connection->partitionQuery(Argument::that(function ($arg) use ($sql, $params, $transactionId) {
+            if ($arg['sql'] !== $sql) return false;
+            if ($arg['session'] !== self::SESSION) return false;
+            if ($arg['params'] !== ['id' => '10']) return false;
+            if ($arg['paramTypes']['id']['code'] !== Database::TYPE_INT64) return false;
+            if ($arg['transactionId'] !== $transactionId) return false;
+
+            return true;
+        }))->shouldBeCalled()->willReturn([
+            'partitions' => [
+                [
+                    'partitionToken' => $partitionToken1
+                ], [
+                    'partitionToken' => $partitionToken2
+                ]
+            ]
+        ]);
+
+        $this->operation->___setProperty('connection', $this->connection->reveal());
+
+        $res = $this->operation->partitionQuery($this->session, $transactionId, $sql, [
+            'parameters' => $params
+        ]);
+
+        $this->assertContainsOnlyInstancesOf(QueryPartition::class, $res);
+        $this->assertCount(2, $res);
+        $this->assertEquals($partitionToken1, $res[0]->token());
+        $this->assertEquals($partitionToken2, $res[1]->token());
+    }
+
+    public function testPartitionRead()
+    {
+        $sql = 'SELECT * FROM Posts WHERE ID = @id';
+        $params = ['id' => 10];
+        $transactionId = 'foo';
+
+        $partitionToken1 = 'token1';
+        $partitionToken2 = 'token2';
+
+        $this->connection->partitionRead(Argument::that(function ($arg) {
+            if ($arg['table'] !== 'Posts') return false;
+            if ($arg['session'] !== self::SESSION) return false;
+            if ($arg['keySet']['all'] !== true) return false;
+            if ($arg['columns'] !== ['foo']) return false;
+
+            return true;
+        }))->shouldBeCalled()->willReturn([
+            'partitions' => [
+                [
+                    'partitionToken' => $partitionToken1
+                ], [
+                    'partitionToken' => $partitionToken2
+                ]
+            ]
+        ]);
+
+        $this->operation->___setProperty('connection', $this->connection->reveal());
+
+        $res = $this->operation->partitionRead($this->session, $transactionId, 'Posts', new KeySet(['all' => true]), ['foo'], [
+            'parameters' => $params
+        ]);
+
+        $this->assertContainsOnlyInstancesOf(ReadPartition::class, $res);
+        $this->assertCount(2, $res);
+        $this->assertEquals($partitionToken1, $res[0]->token());
+        $this->assertEquals($partitionToken2, $res[1]->token());
     }
 
     private function executeAndReadResponse(array $additionalMetadata = [])

@@ -254,4 +254,31 @@ class KeySet
 
         return $set;
     }
+
+    /**
+     * Create a KeySet from an object created by {@see Google\Cloud\Spanner\KeySet::keySetObject()}.
+     *
+     * @param array $keySet An array of KeySet data.
+     * @return KeySet
+     * @access private
+     */
+    public static function fromObject(array $keySet)
+    {
+        $res = new self();
+        if (isset($keySet['all'])) {
+            $res->setMatchAll($keySet['all']);
+        }
+
+        if (isset($keySet['keys'])) {
+            $res->setKeys($keySet['keys']);
+        }
+
+        if (isset($keySet['ranges'])) {
+            foreach($keySet['ranges'] as $range) {
+                $res->addRange(KeyRange::fromObject($range));
+            }
+        }
+
+        return $res;
+    }
 }

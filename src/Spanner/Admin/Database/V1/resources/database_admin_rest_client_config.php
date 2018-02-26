@@ -18,7 +18,7 @@ return [
                             'getName',
                         ],
                     ],
-                ]
+                ],
             ],
             'ListOperations' => [
                 'method' => 'get',
@@ -35,7 +35,7 @@ return [
                             'getName',
                         ],
                     ],
-                ]
+                ],
             ],
             'CancelOperation' => [
                 'method' => 'post',
@@ -52,7 +52,7 @@ return [
                             'getName',
                         ],
                     ],
-                ]
+                ],
             ],
             'DeleteOperation' => [
                 'method' => 'delete',
@@ -69,7 +69,7 @@ return [
                             'getName',
                         ],
                     ],
-                ]
+                ],
             ],
         ],
         'google.spanner.admin.database.v1.DatabaseAdmin' => [
@@ -82,7 +82,7 @@ return [
                             'getParent',
                         ],
                     ],
-                ]
+                ],
             ],
             'CreateDatabase' => [
                 'method' => 'post',
@@ -94,7 +94,7 @@ return [
                             'getParent',
                         ],
                     ],
-                ]
+                ],
             ],
             'GetDatabase' => [
                 'method' => 'get',
@@ -105,7 +105,7 @@ return [
                             'getName',
                         ],
                     ],
-                ]
+                ],
             ],
             'UpdateDatabaseDdl' => [
                 'method' => 'patch',
@@ -117,7 +117,7 @@ return [
                             'getDatabase',
                         ],
                     ],
-                ]
+                ],
             ],
             'DropDatabase' => [
                 'method' => 'delete',
@@ -128,7 +128,7 @@ return [
                             'getDatabase',
                         ],
                     ],
-                ]
+                ],
             ],
             'GetDatabaseDdl' => [
                 'method' => 'get',
@@ -139,7 +139,7 @@ return [
                             'getDatabase',
                         ],
                     ],
-                ]
+                ],
             ],
             'SetIamPolicy' => [
                 'method' => 'post',
@@ -151,7 +151,7 @@ return [
                             'getResource',
                         ],
                     ],
-                ]
+                ],
             ],
             'GetIamPolicy' => [
                 'method' => 'post',
@@ -163,7 +163,7 @@ return [
                             'getResource',
                         ],
                     ],
-                ]
+                ],
             ],
             'TestIamPermissions' => [
                 'method' => 'post',
@@ -175,8 +175,8 @@ return [
                             'getResource',
                         ],
                     ],
-                ]
+                ],
             ],
         ],
-    ]
+    ],
 ];

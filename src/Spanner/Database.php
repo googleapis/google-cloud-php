@@ -1409,11 +1409,7 @@ class Database
      */
     public function createSession(array $options = [])
     {
-        $res = $this->connection->createSession($options + [
-            'database' => $this->name
-        ]);
-
-        return $this->session($res['name']);
+        return $this->operation->createSession($this->name, $options);
     }
 
     /**
@@ -1425,19 +1421,12 @@ class Database
      * be called directly.
      *
      * @access private
-     * @param string $name The session's name.
+     * @param string $sessionName The session's name.
      * @return Session
      */
-    public function session($name)
+    public function session($sessionName)
     {
-        $sessionNameComponents = GapicSpannerClient::parseName($name);
-        return new Session(
-            $this->connection,
-            $this->projectId,
-            $sessionNameComponents['instance'],
-            $sessionNameComponents['database'],
-            $sessionNameComponents['session']
-        );
+        return $this->operation->session($sessionName);
     }
 
     /**
@@ -1506,7 +1495,7 @@ class Database
             return $this->session = $this->sessionPool->acquire($context);
         }
 
-        return $this->session = $this->createSession();
+        return $this->session = $this->operation->createSession($this->name);
     }
 
     private function commitInSingleUseTransaction(array $mutations, array $options = [])

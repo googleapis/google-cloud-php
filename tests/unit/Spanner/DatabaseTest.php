@@ -22,6 +22,8 @@ use Google\Cloud\Core\Exception\NotFoundException;
 use Google\Cloud\Core\Iam\Iam;
 use Google\Cloud\Core\LongRunning\LongRunningConnectionInterface;
 use Google\Cloud\Core\LongRunning\LongRunningOperation;
+use Google\Cloud\Core\Testing\GrpcTestTrait;
+use Google\Cloud\Core\Testing\SpannerOperationRefreshTrait;
 use Google\Cloud\Spanner\Admin\Database\V1\DatabaseAdminClient;
 use Google\Cloud\Spanner\Admin\Instance\V1\InstanceAdminClient;
 use Google\Cloud\Spanner\Connection\ConnectionInterface;
@@ -36,9 +38,8 @@ use Google\Cloud\Spanner\Snapshot;
 use Google\Cloud\Spanner\Timestamp;
 use Google\Cloud\Spanner\Transaction;
 use Google\Cloud\Spanner\ValueMapper;
-use Google\Cloud\Core\Testing\GrpcTestTrait;
-use Prophecy\Argument;
 use PHPUnit\Framework\TestCase;
+use Prophecy\Argument;
 
 /**
  * @group spanner
@@ -46,6 +47,7 @@ use PHPUnit\Framework\TestCase;
 class DatabaseTest extends TestCase
 {
     use GrpcTestTrait;
+    use SpannerOperationRefreshTrait;
 
     const PROJECT = 'my-awesome-project';
     const DATABASE = 'my-database';
@@ -283,7 +285,7 @@ class DatabaseTest extends TestCase
             ->shouldBeCalled()
             ->willReturn(['id' => self::TRANSACTION]);
 
-        $this->refreshOperation();
+        $this->refreshOperation($this->database, $this->connection->reveal());
 
         $res = $this->database->snapshot();
         $this->assertInstanceOf(Snapshot::class, $res);
@@ -317,7 +319,7 @@ class DatabaseTest extends TestCase
         $this->connection->rollback(Argument::any())
             ->shouldNotBeCalled();
 
-        $this->refreshOperation();
+        $this->refreshOperation($this->database, $this->connection->reveal());
 
         $this->database->runTransaction(function ($t) {
             $this->database->snapshot();
@@ -334,7 +336,7 @@ class DatabaseTest extends TestCase
             ->shouldBeCalled()
             ->willReturn(['commitTimestamp' => '2017-01-09T18:05:22.534799Z']);
 
-        $this->refreshOperation();
+        $this->refreshOperation($this->database, $this->connection->reveal());
 
         $hasTransaction = false;
 
@@ -359,7 +361,7 @@ class DatabaseTest extends TestCase
         $this->connection->rollback(Argument::any())
             ->shouldBeCalled();
 
-        $this->refreshOperation();
+        $this->refreshOperation($this->database, $this->connection->reveal());
 
         $this->database->runTransaction(function (Transaction $t) {});
     }
@@ -376,7 +378,7 @@ class DatabaseTest extends TestCase
         $this->connection->rollback(Argument::any())
             ->shouldNotBeCalled();
 
-        $this->refreshOperation();
+        $this->refreshOperation($this->database, $this->connection->reveal());
 
         $this->database->runTransaction(function ($t) {
             $this->database->runTransaction(function ($t) {});
@@ -410,7 +412,7 @@ class DatabaseTest extends TestCase
                 return ['commitTimestamp' => TransactionTest::TIMESTAMP];
             });
 
-        $this->refreshOperation();
+        $this->refreshOperation($this->database, $this->connection->reveal());
 
         $this->database->runTransaction(function($t) use ($it) {
             if ($it > 0) {
@@ -453,7 +455,7 @@ class DatabaseTest extends TestCase
                 return ['commitTimestamp' => TransactionTest::TIMESTAMP];
             });
 
-        $this->refreshOperation();
+        $this->refreshOperation($this->database, $this->connection->reveal());
 
         $this->database->runTransaction(function($t){$t->commit();});
     }
@@ -464,7 +466,7 @@ class DatabaseTest extends TestCase
             ->shouldBeCalled()
             ->willReturn(['id' => self::TRANSACTION]);
 
-        $this->refreshOperation();
+        $this->refreshOperation($this->database, $this->connection->reveal());
 
         $t = $this->database->transaction();
         $this->assertInstanceOf(Transaction::class, $t);
@@ -482,7 +484,7 @@ class DatabaseTest extends TestCase
         $this->connection->rollback(Argument::any())
             ->shouldNotBeCalled();
 
-        $this->refreshOperation();
+        $this->refreshOperation($this->database, $this->connection->reveal());
 
         $this->database->runTransaction(function ($t) {
             $this->database->transaction();
@@ -502,7 +504,7 @@ class DatabaseTest extends TestCase
             return true;
         }))->shouldBeCalled()->willReturn($this->commitResponse());
 
-        $this->refreshOperation();
+        $this->refreshOperation($this->database, $this->connection->reveal());
 
         $res = $this->database->insert($table, $row);
         $this->assertInstanceOf(Timestamp::class, $res);
@@ -522,7 +524,7 @@ class DatabaseTest extends TestCase
             return true;
         }))->shouldBeCalled()->willReturn($this->commitResponse());
 
-        $this->refreshOperation();
+        $this->refreshOperation($this->database, $this->connection->reveal());
 
         $res = $this->database->insertBatch($table, [$row]);
         $this->assertInstanceOf(Timestamp::class, $res);
@@ -542,7 +544,7 @@ class DatabaseTest extends TestCase
             return true;
         }))->shouldBeCalled()->willReturn($this->commitResponse());
 
-        $this->refreshOperation();
+        $this->refreshOperation($this->database, $this->connection->reveal());
 
         $res = $this->database->update($table, $row);
         $this->assertInstanceOf(Timestamp::class, $res);
@@ -562,7 +564,7 @@ class DatabaseTest extends TestCase
             return true;
         }))->shouldBeCalled()->willReturn($this->commitResponse());
 
-        $this->refreshOperation();
+        $this->refreshOperation($this->database, $this->connection->reveal());
 
         $res = $this->database->updateBatch($table, [$row]);
         $this->assertInstanceOf(Timestamp::class, $res);
@@ -582,7 +584,7 @@ class DatabaseTest extends TestCase
             return true;
         }))->shouldBeCalled()->willReturn($this->commitResponse());
 
-        $this->refreshOperation();
+        $this->refreshOperation($this->database, $this->connection->reveal());
 
         $res = $this->database->insertOrUpdate($table, $row);
         $this->assertInstanceOf(Timestamp::class, $res);
@@ -602,7 +604,7 @@ class DatabaseTest extends TestCase
             return true;
         }))->shouldBeCalled()->willReturn($this->commitResponse());
 
-        $this->refreshOperation();
+        $this->refreshOperation($this->database, $this->connection->reveal());
 
         $res = $this->database->insertOrUpdateBatch($table, [$row]);
         $this->assertInstanceOf(Timestamp::class, $res);
@@ -622,7 +624,7 @@ class DatabaseTest extends TestCase
             return true;
         }))->shouldBeCalled()->willReturn($this->commitResponse());
 
-        $this->refreshOperation();
+        $this->refreshOperation($this->database, $this->connection->reveal());
 
         $res = $this->database->replace($table, $row);
         $this->assertInstanceOf(Timestamp::class, $res);
@@ -642,7 +644,7 @@ class DatabaseTest extends TestCase
             return true;
         }))->shouldBeCalled()->willReturn($this->commitResponse());
 
-        $this->refreshOperation();
+        $this->refreshOperation($this->database, $this->connection->reveal());
 
         $res = $this->database->replaceBatch($table, [$row]);
         $this->assertInstanceOf(Timestamp::class, $res);
@@ -662,7 +664,7 @@ class DatabaseTest extends TestCase
             return true;
         }))->shouldBeCalled()->willReturn($this->commitResponse());
 
-        $this->refreshOperation();
+        $this->refreshOperation($this->database, $this->connection->reveal());
 
         $res = $this->database->delete($table, new KeySet(['keys' => $keys]));
         $this->assertInstanceOf(Timestamp::class, $res);
@@ -677,7 +679,7 @@ class DatabaseTest extends TestCase
             return $arg['sql'] === $sql;
         }))->shouldBeCalled()->willReturn($this->resultGenerator());
 
-        $this->refreshOperation();
+        $this->refreshOperation($this->database, $this->connection->reveal());
 
         $res = $this->database->execute($sql);
         $this->assertInstanceOf(Result::class, $res);
@@ -698,7 +700,7 @@ class DatabaseTest extends TestCase
             return true;
         }))->shouldBeCalled()->willReturn($this->resultGenerator());
 
-        $this->refreshOperation();
+        $this->refreshOperation($this->database, $this->connection->reveal());
 
         $res = $this->database->read($table, new KeySet(['all' => true]), ['ID']);
         $this->assertInstanceOf(Result::class, $res);
@@ -728,12 +730,6 @@ class DatabaseTest extends TestCase
                 '10'
             ]
         ];
-    }
-
-    private function refreshOperation()
-    {
-        $operation = new Operation($this->connection->reveal(), false);
-        $this->database->___setProperty('operation', $operation);
     }
 
     private function commitResponse()

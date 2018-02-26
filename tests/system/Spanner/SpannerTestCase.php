@@ -64,7 +64,8 @@ class SpannerTestCase extends SystemTestCase
             'CREATE TABLE '. self::TEST_TABLE_NAME .' (
                 id INT64 NOT NULL,
                 name STRING(MAX) NOT NULL,
-                birthday DATE NOT NULL
+                birthday DATE NOT NULL,
+                isBatch BOOL
             ) PRIMARY KEY (id)'
         )->pollUntilComplete();
 

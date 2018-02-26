@@ -133,4 +133,20 @@ class KeySetTest extends TestCase
     {
         new KeySet(['all' => 1]);
     }
+
+    public function testFromObject()
+    {
+        $range = new KeyRange(['start' => 'foo', 'end' => 'bar']);
+        $keys = ['a','b'];
+        $all = true;
+        $res = (new KeySet([
+            'keys' => $keys,
+            'ranges' => [$range, $range],
+            'all' => $all
+        ]))->keySetObject();
+
+        $set2 = KeySet::fromObject($res);
+
+        $this->assertEquals($res, $set2->keySetObject());
+    }
 }

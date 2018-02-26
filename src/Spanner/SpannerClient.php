@@ -29,8 +29,10 @@ use Google\Cloud\Core\LongRunning\LROTrait;
 use Google\Cloud\Core\ValidateTrait;
 use Google\Cloud\Spanner\Admin\Database\V1\DatabaseAdminClient;
 use Google\Cloud\Spanner\Admin\Instance\V1\InstanceAdminClient;
+use Google\Cloud\Spanner\Batch\BatchClient;
 use Google\Cloud\Spanner\Connection\Grpc;
 use Google\Cloud\Spanner\Connection\LongRunningConnection;
+use Google\Cloud\Spanner\V1\SpannerClient as GapicSpannerClient;
 use Psr\Http\StreamInterface;
 
 /**
@@ -160,6 +162,38 @@ class SpannerClient
                 }
             ]
         ]);
+    }
+
+    /**
+     * Get a Batch Client.
+     *
+     * Batch Clients allow you to execute reads of very large data sets, spread
+     * across multiple partitions.
+     *
+     * Example:
+     * ```
+     * $batch = $spanner->batch('instance-id', 'database-id');
+     * ```
+     *
+     * @param string $instanceId The instance to connect to.
+     * @param string $databaseId The database to connect to.
+     * @return BatchClient
+     */
+    public function batch($instanceId, $databaseId)
+    {
+        $operation = new Operation(
+            $this->connection,
+            $this->returnInt64AsObject
+        );
+
+        return new BatchClient(
+            $operation,
+            GapicSpannerClient::databaseName(
+                $this->projectId,
+                $instanceId,
+                $databaseId
+            )
+        );
     }
 
     /**
@@ -340,7 +374,7 @@ class SpannerClient
      *
      * Example:
      * ```
-     * $database = $spanner->connect('my-instance', 'my-application-database');
+     * $database = $spanner->connect('instance-id', 'database-id');
      * ```
      *
      * @param Instance|string $instance The instance object or instance name.
