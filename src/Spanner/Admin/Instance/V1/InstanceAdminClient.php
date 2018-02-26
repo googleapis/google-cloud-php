@@ -18,7 +18,7 @@
 /*
  * GENERATED CODE WARNING
  * This file was generated from the file
- * https://github.com/google/googleapis/blob/master/spanner_instance_admin.proto
+ * https://github.com/google/googleapis/blob/master/google/spanner/admin/instance/v1/spanner_instance_admin.proto
  * and updates to that file get reflected here through a refresh process.
  *
  * EXPERIMENTAL: This client library class has not yet been declared GA (1.0). This means that
