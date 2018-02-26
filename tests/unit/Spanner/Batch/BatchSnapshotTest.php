@@ -31,6 +31,7 @@ use Google\Cloud\Spanner\Result;
 use Google\Cloud\Spanner\Session\Session;
 use Google\Cloud\Spanner\Timestamp;
 use Google\Cloud\Spanner\V1\Gapic\SpannerGapicClient;
+use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
 
 /**
@@ -38,7 +39,7 @@ use Prophecy\Argument;
  * @group spanner-batch
  * @group spanner-batch-snapshot
  */
-class BatchSnapshotTest extends \PHPUnit_Framework_TestCase
+class BatchSnapshotTest extends TestCase
 {
     use SpannerOperationRefreshTrait;
 

@@ -26,6 +26,7 @@ use Google\Cloud\Spanner\Batch\ReadPartition;
 use Google\Cloud\Spanner\Connection\ConnectionInterface;
 use Google\Cloud\Spanner\KeySet;
 use Google\Cloud\Spanner\Operation;
+use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
 
 /**
@@ -33,7 +34,7 @@ use Prophecy\Argument;
  * @group spanner-batch
  * @group spanner-batch-client
  */
-class BatchClientTest extends \PHPUnit_Framework_TestCase
+class BatchClientTest extends TestCase
 {
     use SpannerOperationRefreshTrait;
 
