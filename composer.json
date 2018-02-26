@@ -49,7 +49,7 @@
         "psr/http-message": "1.0.*",
         "ramsey/uuid": "~3",
         "google/gax": "^0.30",
-        "google/proto-client": "dev-master"
+        "google/proto-client": "^0.33"
     },
     "require-dev": {
         "phpunit/phpunit": "^4.8|^5.0",
@@ -128,16 +128,5 @@
                 "ServiceBuilder.php"
             ]
         }
-<<<<<<< HEAD
     }
 }
-=======
-    },
-    "repositories": [
-        {
-            "type": "vcs",
-            "url": "git@github.com:jdpedrie/proto-client-php-private.git"
-        }
-    ]
-}
->>>>>>> 72e4bc4... Introduce Spanner Batch Query support

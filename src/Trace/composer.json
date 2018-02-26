@@ -7,7 +7,7 @@
         "google/cloud-core": "^1.14",
         "ramsey/uuid": "~3",
         "google/gax": "^0.30",
-        "google/proto-client": "^0.32"
+        "google/proto-client": "^0.33"
     },
     "suggest": {
         "ext-grpc": "The gRPC extension enables use of the performant gRPC transport",
