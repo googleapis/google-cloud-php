@@ -17,7 +17,9 @@
 
 namespace Google\Cloud\Tests\Snippets\Spanner;
 
+use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
+use Google\Cloud\Core\Testing\SpannerOperationRefreshTrait;
 use Google\Cloud\Spanner\Connection\ConnectionInterface;
 use Google\Cloud\Spanner\Database;
 use Google\Cloud\Spanner\KeySet;
@@ -27,7 +29,6 @@ use Google\Cloud\Spanner\Session\Session;
 use Google\Cloud\Spanner\Timestamp;
 use Google\Cloud\Spanner\Transaction;
 use Google\Cloud\Spanner\ValueMapper;
-use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Prophecy\Argument;
 
 /**
@@ -36,6 +37,7 @@ use Prophecy\Argument;
 class TransactionTest extends SnippetTestCase
 {
     use GrpcTestTrait;
+    use SpannerOperationRefreshTrait;
 
     const TRANSACTION = 'my-transaction';
 
@@ -55,19 +57,6 @@ class TransactionTest extends SnippetTestCase
             $session->reveal(),
             self::TRANSACTION
         ], ['operation', 'isRetry']);
-    }
-
-    private function stubOperation($stub = null)
-    {
-        $operation = \Google\Cloud\Core\Testing\TestHelpers::stub(Operation::class, [
-            $this->connection->reveal(), false
-        ]);
-
-        if (!$stub) {
-            $stub = $this->transaction;
-        }
-
-        $stub->___setProperty('operation', $operation);
     }
 
     public function testClass()
@@ -101,7 +90,7 @@ class TransactionTest extends SnippetTestCase
             ->shouldBeCalled()
             ->willReturn($this->resultGenerator());
 
-        $this->stubOperation();
+        $this->refreshOperation($this->transaction, $this->connection->reveal());
 
         $snippet = $this->snippetFromMagicMethod(Transaction::class, 'execute');
         $snippet->addLocal('transaction', $this->transaction);
@@ -116,7 +105,7 @@ class TransactionTest extends SnippetTestCase
             ->shouldBeCalled()
             ->willReturn($this->resultGenerator());
 
-        $this->stubOperation();
+        $this->refreshOperation($this->transaction, $this->connection->reveal());
 
         $snippet = $this->snippetFromMagicMethod(Transaction::class, 'read');
         $snippet->addLocal('transaction', $this->transaction);
@@ -140,7 +129,7 @@ class TransactionTest extends SnippetTestCase
         $snippet = $this->snippetFromMethod(Transaction::class, 'insert');
         $snippet->addLocal('transaction', $this->transaction);
 
-        $this->stubOperation();
+        $this->refreshOperation($this->transaction, $this->connection->reveal());
 
         $res = $snippet->invoke();
 
@@ -154,7 +143,7 @@ class TransactionTest extends SnippetTestCase
         $snippet = $this->snippetFromMethod(Transaction::class, 'insertBatch');
         $snippet->addLocal('transaction', $this->transaction);
 
-        $this->stubOperation();
+        $this->refreshOperation($this->transaction, $this->connection->reveal());
 
         $res = $snippet->invoke();
 
@@ -167,7 +156,7 @@ class TransactionTest extends SnippetTestCase
         $snippet = $this->snippetFromMethod(Transaction::class, 'update');
         $snippet->addLocal('transaction', $this->transaction);
 
-        $this->stubOperation();
+        $this->refreshOperation($this->transaction, $this->connection->reveal());
 
         $res = $snippet->invoke();
 
@@ -181,7 +170,7 @@ class TransactionTest extends SnippetTestCase
         $snippet = $this->snippetFromMethod(Transaction::class, 'updateBatch');
         $snippet->addLocal('transaction', $this->transaction);
 
-        $this->stubOperation();
+        $this->refreshOperation($this->transaction, $this->connection->reveal());
 
         $res = $snippet->invoke();
 
@@ -194,7 +183,7 @@ class TransactionTest extends SnippetTestCase
         $snippet = $this->snippetFromMethod(Transaction::class, 'insertOrUpdate');
         $snippet->addLocal('transaction', $this->transaction);
 
-        $this->stubOperation();
+        $this->refreshOperation($this->transaction, $this->connection->reveal());
 
         $res = $snippet->invoke();
 
@@ -205,12 +194,12 @@ class TransactionTest extends SnippetTestCase
 
     public function testInsertOrUpdateBatch()
     {
-        $this->stubOperation();
+        $this->refreshOperation($this->transaction, $this->connection->reveal());
 
         $snippet = $this->snippetFromMethod(Transaction::class, 'insertOrUpdateBatch');
         $snippet->addLocal('transaction', $this->transaction);
 
-        $this->stubOperation();
+        $this->refreshOperation($this->transaction, $this->connection->reveal());
 
         $res = $snippet->invoke();
 
@@ -223,7 +212,7 @@ class TransactionTest extends SnippetTestCase
         $snippet = $this->snippetFromMethod(Transaction::class, 'replace');
         $snippet->addLocal('transaction', $this->transaction);
 
-        $this->stubOperation();
+        $this->refreshOperation($this->transaction, $this->connection->reveal());
 
         $res = $snippet->invoke();
 
@@ -237,7 +226,7 @@ class TransactionTest extends SnippetTestCase
         $snippet = $this->snippetFromMethod(Transaction::class, 'replaceBatch');
         $snippet->addLocal('transaction', $this->transaction);
 
-        $this->stubOperation();
+        $this->refreshOperation($this->transaction, $this->connection->reveal());
 
         $res = $snippet->invoke();
 
@@ -251,7 +240,7 @@ class TransactionTest extends SnippetTestCase
         $snippet->addUse(KeySet::class);
         $snippet->addLocal('transaction', $this->transaction);
 
-        $this->stubOperation();
+        $this->refreshOperation($this->transaction, $this->connection->reveal());
 
         $res = $snippet->invoke();
 
@@ -264,7 +253,7 @@ class TransactionTest extends SnippetTestCase
         $this->connection->rollback(Argument::any())
             ->shouldBeCalled();
 
-        $this->stubOperation();
+        $this->refreshOperation($this->transaction, $this->connection->reveal());
 
         $snippet = $this->snippetFromMethod(Transaction::class, 'rollback');
         $snippet->addLocal('transaction', $this->transaction);
@@ -280,7 +269,7 @@ class TransactionTest extends SnippetTestCase
                 'commitTimestamp' => (new Timestamp(new \DateTime))->formatAsString()
             ]);
 
-        $this->stubOperation();
+        $this->refreshOperation($this->transaction, $this->connection->reveal());
 
         $snippet = $this->snippetFromMethod(Transaction::class, 'commit');
         $snippet->addLocal('transaction', $this->transaction);

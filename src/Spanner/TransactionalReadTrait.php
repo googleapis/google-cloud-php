@@ -17,6 +17,7 @@
 
 namespace Google\Cloud\Spanner;
 
+use Google\Cloud\Spanner\Session\Session;
 use Google\Cloud\Spanner\Session\SessionPoolInterface;
 
 /**
@@ -149,6 +150,17 @@ trait TransactionalReadTrait
     public function type()
     {
         return $this->type;
+    }
+
+    /**
+     * Get the Transaction Session
+     *
+     * @access private
+     * @return Session
+     */
+    public function session()
+    {
+        return $this->session;
     }
 
     /**

@@ -50,6 +50,10 @@ use Google\Cloud\Spanner\V1\ListSessionsRequest;
 use Google\Cloud\Spanner\V1\ListSessionsResponse;
 use Google\Cloud\Spanner\V1\Mutation;
 use Google\Cloud\Spanner\V1\PartialResultSet;
+use Google\Cloud\Spanner\V1\PartitionOptions;
+use Google\Cloud\Spanner\V1\PartitionQueryRequest;
+use Google\Cloud\Spanner\V1\PartitionReadRequest;
+use Google\Cloud\Spanner\V1\PartitionResponse;
 use Google\Cloud\Spanner\V1\ReadRequest;
 use Google\Cloud\Spanner\V1\ResultSet;
 use Google\Cloud\Spanner\V1\RollbackRequest;
@@ -133,6 +137,7 @@ class SpannerGapicClient
             'port' => self::DEFAULT_SERVICE_PORT,
             'scopes' => [
                 'https://www.googleapis.com/auth/cloud-platform',
+                'https://www.googleapis.com/auth/spanner.admin',
                 'https://www.googleapis.com/auth/spanner.data',
             ],
             'clientConfigPath' => __DIR__.'/../resources/spanner_client_config.json',
@@ -144,7 +149,7 @@ class SpannerGapicClient
 
     private static function getDatabaseNameTemplate()
     {
-        if (null == self::$databaseNameTemplate) {
+        if (self::$databaseNameTemplate == null) {
             self::$databaseNameTemplate = new PathTemplate('projects/{project}/instances/{instance}/databases/{database}');
         }
 
@@ -153,7 +158,7 @@ class SpannerGapicClient
 
     private static function getSessionNameTemplate()
     {
-        if (null == self::$sessionNameTemplate) {
+        if (self::$sessionNameTemplate == null) {
             self::$sessionNameTemplate = new PathTemplate('projects/{project}/instances/{instance}/databases/{database}/sessions/{session}');
         }
 
@@ -162,7 +167,7 @@ class SpannerGapicClient
 
     private static function getPathTemplateMap()
     {
-        if (null == self::$pathTemplateMap) {
+        if (self::$pathTemplateMap == null) {
             self::$pathTemplateMap = [
                 'database' => self::getDatabaseNameTemplate(),
                 'session' => self::getSessionNameTemplate(),
@@ -617,8 +622,14 @@ class SpannerGapicClient
      *          request that yielded this token.
      *     @type int $queryMode
      *          Used to control the amount of debugging information returned in
-     *          [ResultSetStats][google.spanner.v1.ResultSetStats].
+     *          [ResultSetStats][google.spanner.v1.ResultSetStats]. If [partition_token][google.spanner.v1.ExecuteSqlRequest.partition_token] is set, [query_mode][google.spanner.v1.ExecuteSqlRequest.query_mode] can only
+     *          be set to [QueryMode.NORMAL][google.spanner.v1.ExecuteSqlRequest.QueryMode.NORMAL].
      *          For allowed values, use constants defined on {@see \Google\Cloud\Spanner\V1\ExecuteSqlRequest_QueryMode}
+     *     @type string $partitionToken
+     *          If present, results will be restricted to the specified partition
+     *          previously created using PartitionQuery().  There must be an exact
+     *          match for the values of fields common to this message and the
+     *          PartitionQueryRequest message used to create this partition_token.
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
@@ -650,6 +661,9 @@ class SpannerGapicClient
         }
         if (isset($optionalArgs['queryMode'])) {
             $request->setQueryMode($optionalArgs['queryMode']);
+        }
+        if (isset($optionalArgs['partitionToken'])) {
+            $request->setPartitionToken($optionalArgs['partitionToken']);
         }
 
         return $this->startCall(
@@ -724,8 +738,14 @@ class SpannerGapicClient
      *          request that yielded this token.
      *     @type int $queryMode
      *          Used to control the amount of debugging information returned in
-     *          [ResultSetStats][google.spanner.v1.ResultSetStats].
+     *          [ResultSetStats][google.spanner.v1.ResultSetStats]. If [partition_token][google.spanner.v1.ExecuteSqlRequest.partition_token] is set, [query_mode][google.spanner.v1.ExecuteSqlRequest.query_mode] can only
+     *          be set to [QueryMode.NORMAL][google.spanner.v1.ExecuteSqlRequest.QueryMode.NORMAL].
      *          For allowed values, use constants defined on {@see \Google\Cloud\Spanner\V1\ExecuteSqlRequest_QueryMode}
+     *     @type string $partitionToken
+     *          If present, results will be restricted to the specified partition
+     *          previously created using PartitionQuery().  There must be an exact
+     *          match for the values of fields common to this message and the
+     *          PartitionQueryRequest message used to create this partition_token.
      *     @type int $timeoutMillis
      *          Timeout to use for this call.
      * }
@@ -754,6 +774,9 @@ class SpannerGapicClient
         }
         if (isset($optionalArgs['queryMode'])) {
             $request->setQueryMode($optionalArgs['queryMode']);
+        }
+        if (isset($optionalArgs['partitionToken'])) {
+            $request->setPartitionToken($optionalArgs['partitionToken']);
         }
 
         return $this->startCall(
@@ -803,8 +826,10 @@ class SpannerGapicClient
      *                          is present. If [index][google.spanner.v1.ReadRequest.index] is present, then [key_set][google.spanner.v1.ReadRequest.key_set] instead names
      *                          index keys in [index][google.spanner.v1.ReadRequest.index].
      *
-     * Rows are yielded in table primary key order (if [index][google.spanner.v1.ReadRequest.index] is empty)
-     * or index key order (if [index][google.spanner.v1.ReadRequest.index] is non-empty).
+     * If the [partition_token][google.spanner.v1.ReadRequest.partition_token] field is empty, rows are yielded
+     * in table primary key order (if [index][google.spanner.v1.ReadRequest.index] is empty) or index key order
+     * (if [index][google.spanner.v1.ReadRequest.index] is non-empty).  If the [partition_token][google.spanner.v1.ReadRequest.partition_token] field is not
+     * empty, rows will be yielded in an unspecified order.
      *
      * It is not an error for the `key_set` to name rows that do not
      * exist in the database. Read yields nothing for nonexistent rows.
@@ -820,7 +845,8 @@ class SpannerGapicClient
      *          and sorting result rows. See [key_set][google.spanner.v1.ReadRequest.key_set] for further information.
      *     @type int $limit
      *          If greater than zero, only the first `limit` rows are yielded. If `limit`
-     *          is zero, the default is no limit.
+     *          is zero, the default is no limit. A limit cannot be specified if
+     *          `partition_token` is set.
      *     @type string $resumeToken
      *          If this request is resuming a previously interrupted read,
      *          `resume_token` should be copied from the last
@@ -828,6 +854,11 @@ class SpannerGapicClient
      *          enables the new read to resume where the last read left off. The
      *          rest of the request parameters must exactly match the request
      *          that yielded this token.
+     *     @type string $partitionToken
+     *          If present, results will be restricted to the specified partition
+     *          previously created using PartitionRead().    There must be an exact
+     *          match for the values of fields common to this message and the
+     *          PartitionReadRequest message used to create this partition_token.
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
@@ -858,6 +889,9 @@ class SpannerGapicClient
         }
         if (isset($optionalArgs['resumeToken'])) {
             $request->setResumeToken($optionalArgs['resumeToken']);
+        }
+        if (isset($optionalArgs['partitionToken'])) {
+            $request->setPartitionToken($optionalArgs['partitionToken']);
         }
 
         return $this->startCall(
@@ -902,8 +936,10 @@ class SpannerGapicClient
      *                          is present. If [index][google.spanner.v1.ReadRequest.index] is present, then [key_set][google.spanner.v1.ReadRequest.key_set] instead names
      *                          index keys in [index][google.spanner.v1.ReadRequest.index].
      *
-     * Rows are yielded in table primary key order (if [index][google.spanner.v1.ReadRequest.index] is empty)
-     * or index key order (if [index][google.spanner.v1.ReadRequest.index] is non-empty).
+     * If the [partition_token][google.spanner.v1.ReadRequest.partition_token] field is empty, rows are yielded
+     * in table primary key order (if [index][google.spanner.v1.ReadRequest.index] is empty) or index key order
+     * (if [index][google.spanner.v1.ReadRequest.index] is non-empty).  If the [partition_token][google.spanner.v1.ReadRequest.partition_token] field is not
+     * empty, rows will be yielded in an unspecified order.
      *
      * It is not an error for the `key_set` to name rows that do not
      * exist in the database. Read yields nothing for nonexistent rows.
@@ -919,7 +955,8 @@ class SpannerGapicClient
      *          and sorting result rows. See [key_set][google.spanner.v1.ReadRequest.key_set] for further information.
      *     @type int $limit
      *          If greater than zero, only the first `limit` rows are yielded. If `limit`
-     *          is zero, the default is no limit.
+     *          is zero, the default is no limit. A limit cannot be specified if
+     *          `partition_token` is set.
      *     @type string $resumeToken
      *          If this request is resuming a previously interrupted read,
      *          `resume_token` should be copied from the last
@@ -927,6 +964,11 @@ class SpannerGapicClient
      *          enables the new read to resume where the last read left off. The
      *          rest of the request parameters must exactly match the request
      *          that yielded this token.
+     *     @type string $partitionToken
+     *          If present, results will be restricted to the specified partition
+     *          previously created using PartitionRead().    There must be an exact
+     *          match for the values of fields common to this message and the
+     *          PartitionReadRequest message used to create this partition_token.
      *     @type int $timeoutMillis
      *          Timeout to use for this call.
      * }
@@ -954,6 +996,9 @@ class SpannerGapicClient
         }
         if (isset($optionalArgs['resumeToken'])) {
             $request->setResumeToken($optionalArgs['resumeToken']);
+        }
+        if (isset($optionalArgs['partitionToken'])) {
+            $request->setPartitionToken($optionalArgs['partitionToken']);
         }
 
         return $this->startCall(
@@ -1133,6 +1178,191 @@ class SpannerGapicClient
         return $this->startCall(
             'Rollback',
             GPBEmpty::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
+     * Creates a set of partition tokens that can be used to execute a query
+     * operation in parallel.  Each of the returned partition tokens can be used
+     * by [ExecuteStreamingSql][google.spanner.v1.Spanner.ExecuteStreamingSql] to specify a subset
+     * of the query result to read.  The same session and read-only transaction
+     * must be used by the PartitionQueryRequest used to create the
+     * partition tokens and the ExecuteSqlRequests that use the partition tokens.
+     * Partition tokens become invalid when the session used to create them
+     * is deleted or begins a new transaction.
+     *
+     * Sample code:
+     * ```
+     * $spannerClient = new SpannerClient();
+     * try {
+     *     $formattedSession = $spannerClient->sessionName('[PROJECT]', '[INSTANCE]', '[DATABASE]', '[SESSION]');
+     *     $sql = '';
+     *     $response = $spannerClient->partitionQuery($formattedSession, $sql);
+     * } finally {
+     *     $spannerClient->close();
+     * }
+     * ```
+     *
+     * @param string $session      Required. The session used to create the partitions.
+     * @param string $sql          The query request to generate partitions for. The request will fail if
+     *                             the query is not root partitionable. The query plan of a root
+     *                             partitionable query has a single distributed union operator. A distributed
+     *                             union operator conceptually divides one or more tables into multiple
+     *                             splits, remotely evaluates a subquery independently on each split, and
+     *                             then unions all results.
+     * @param array  $optionalArgs {
+     *                             Optional.
+     *
+     *     @type TransactionSelector $transaction
+     *          Read only snapshot transactions are supported, read/write and single use
+     *          transactions are not.
+     *     @type Struct $params
+     *          The SQL query string can contain parameter placeholders. A parameter
+     *          placeholder consists of `'&#64;'` followed by the parameter
+     *          name. Parameter names consist of any combination of letters,
+     *          numbers, and underscores.
+     *
+     *          Parameters can appear anywhere that a literal value is expected.  The same
+     *          parameter name can be used more than once, for example:
+     *            `"WHERE id > &#64;msg_id AND id < &#64;msg_id + 100"`
+     *
+     *          It is an error to execute an SQL query with unbound parameters.
+     *
+     *          Parameter values are specified using `params`, which is a JSON
+     *          object whose keys are parameter names, and whose values are the
+     *          corresponding parameter values.
+     *     @type array $paramTypes
+     *          It is not always possible for Cloud Spanner to infer the right SQL type
+     *          from a JSON value.  For example, values of type `BYTES` and values
+     *          of type `STRING` both appear in [params][google.spanner.v1.PartitionQueryRequest.params] as JSON strings.
+     *
+     *          In these cases, `param_types` can be used to specify the exact
+     *          SQL type for some or all of the SQL query parameters. See the
+     *          definition of [Type][google.spanner.v1.Type] for more information
+     *          about SQL types.
+     *     @type PartitionOptions $partitionOptions
+     *          Additional options that affect how many partitions are created.
+     *     @type RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Spanner\V1\PartitionResponse
+     *
+     * @throws ApiException if the remote call fails
+     * @experimental
+     */
+    public function partitionQuery($session, $sql, $optionalArgs = [])
+    {
+        $request = new PartitionQueryRequest();
+        $request->setSession($session);
+        $request->setSql($sql);
+        if (isset($optionalArgs['transaction'])) {
+            $request->setTransaction($optionalArgs['transaction']);
+        }
+        if (isset($optionalArgs['params'])) {
+            $request->setParams($optionalArgs['params']);
+        }
+        if (isset($optionalArgs['paramTypes'])) {
+            $request->setParamTypes($optionalArgs['paramTypes']);
+        }
+        if (isset($optionalArgs['partitionOptions'])) {
+            $request->setPartitionOptions($optionalArgs['partitionOptions']);
+        }
+
+        return $this->startCall(
+            'PartitionQuery',
+            PartitionResponse::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
+     * Creates a set of partition tokens that can be used to execute a read
+     * operation in parallel.  Each of the returned partition tokens can be used
+     * by [StreamingRead][google.spanner.v1.Spanner.StreamingRead] to specify a subset of the read
+     * result to read.  The same session and read-only transaction must be used by
+     * the PartitionReadRequest used to create the partition tokens and the
+     * ReadRequests that use the partition tokens.
+     * Partition tokens become invalid when the session used to create them
+     * is deleted or begins a new transaction.
+     *
+     * Sample code:
+     * ```
+     * $spannerClient = new SpannerClient();
+     * try {
+     *     $formattedSession = $spannerClient->sessionName('[PROJECT]', '[INSTANCE]', '[DATABASE]', '[SESSION]');
+     *     $table = '';
+     *     $keySet = new KeySet();
+     *     $response = $spannerClient->partitionRead($formattedSession, $table, $keySet);
+     * } finally {
+     *     $spannerClient->close();
+     * }
+     * ```
+     *
+     * @param string $session Required. The session used to create the partitions.
+     * @param string $table   Required. The name of the table in the database to be read.
+     * @param KeySet $keySet  Required. `key_set` identifies the rows to be yielded. `key_set` names the
+     *                        primary keys of the rows in [table][google.spanner.v1.PartitionReadRequest.table] to be yielded, unless [index][google.spanner.v1.PartitionReadRequest.index]
+     *                        is present. If [index][google.spanner.v1.PartitionReadRequest.index] is present, then [key_set][google.spanner.v1.PartitionReadRequest.key_set] instead names
+     *                        index keys in [index][google.spanner.v1.PartitionReadRequest.index].
+     *
+     * It is not an error for the `key_set` to name rows that do not
+     * exist in the database. Read yields nothing for nonexistent rows.
+     * @param array $optionalArgs {
+     *                            Optional.
+     *
+     *     @type TransactionSelector $transaction
+     *          Read only snapshot transactions are supported, read/write and single use
+     *          transactions are not.
+     *     @type string $index
+     *          If non-empty, the name of an index on [table][google.spanner.v1.PartitionReadRequest.table]. This index is
+     *          used instead of the table primary key when interpreting [key_set][google.spanner.v1.PartitionReadRequest.key_set]
+     *          and sorting result rows. See [key_set][google.spanner.v1.PartitionReadRequest.key_set] for further information.
+     *     @type string[] $columns
+     *          The columns of [table][google.spanner.v1.PartitionReadRequest.table] to be returned for each row matching
+     *          this request.
+     *     @type PartitionOptions $partitionOptions
+     *          Additional options that affect how many partitions are created.
+     *     @type RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Spanner\V1\PartitionResponse
+     *
+     * @throws ApiException if the remote call fails
+     * @experimental
+     */
+    public function partitionRead($session, $table, $keySet, $optionalArgs = [])
+    {
+        $request = new PartitionReadRequest();
+        $request->setSession($session);
+        $request->setTable($table);
+        $request->setKeySet($keySet);
+        if (isset($optionalArgs['transaction'])) {
+            $request->setTransaction($optionalArgs['transaction']);
+        }
+        if (isset($optionalArgs['index'])) {
+            $request->setIndex($optionalArgs['index']);
+        }
+        if (isset($optionalArgs['columns'])) {
+            $request->setColumns($optionalArgs['columns']);
+        }
+        if (isset($optionalArgs['partitionOptions'])) {
+            $request->setPartitionOptions($optionalArgs['partitionOptions']);
+        }
+
+        return $this->startCall(
+            'PartitionRead',
+            PartitionResponse::class,
             $optionalArgs,
             $request
         )->wait();

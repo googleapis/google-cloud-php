@@ -178,4 +178,14 @@ interface ConnectionInterface
      * @param array $args
      */
     public function listOperations(array $args);
+
+    /**
+     * @param array $args
+     */
+    public function partitionQuery(array $args);
+
+    /**
+     * @param array $args
+     */
+    public function partitionRead(array $args);
 }

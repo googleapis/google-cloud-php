@@ -26,7 +26,7 @@ use Prophecy\Argument;
 
 /**
  * @group spanner
- * @group spanneradmin
+ * @group spanner-admin
  */
 class InstanceConfigurationTest extends SnippetTestCase
 {

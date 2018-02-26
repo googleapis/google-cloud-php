@@ -21,7 +21,9 @@ use Google\Cloud\Core\Iam\Iam;
 use Google\Cloud\Core\Iterator\ItemIterator;
 use Google\Cloud\Core\LongRunning\LongRunningConnectionInterface;
 use Google\Cloud\Core\LongRunning\LongRunningOperation;
+use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
+use Google\Cloud\Core\Testing\SpannerOperationRefreshTrait;
 use Google\Cloud\Spanner\Admin\Database\V1\DatabaseAdminClient;
 use Google\Cloud\Spanner\Admin\Instance\V1\InstanceAdminClient;
 use Google\Cloud\Spanner\Connection\ConnectionInterface;
@@ -36,7 +38,6 @@ use Google\Cloud\Spanner\Snapshot;
 use Google\Cloud\Spanner\Timestamp;
 use Google\Cloud\Spanner\Transaction;
 use Google\Cloud\Spanner\ValueMapper;
-use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Prophecy\Argument;
 
 /**
@@ -45,6 +46,7 @@ use Prophecy\Argument;
 class DatabaseTest extends SnippetTestCase
 {
     use GrpcTestTrait;
+    use SpannerOperationRefreshTrait;
 
     const PROJECT = 'my-awesome-project';
     const DATABASE = 'my-database';
@@ -81,15 +83,6 @@ class DatabaseTest extends SnippetTestCase
         ], ['connection', 'operation', 'lroConnection']);
     }
 
-    private function stubOperation()
-    {
-        $operation = \Google\Cloud\Core\Testing\TestHelpers::stub(Operation::class, [
-            $this->connection->reveal(), false
-        ]);
-
-        $this->database->___setProperty('operation', $operation);
-    }
-
     public function testClass()
     {
         $snippet = $this->snippetFromClass(Database::class);
@@ -119,7 +112,7 @@ class DatabaseTest extends SnippetTestCase
     }
 
     /**
-     * @group spanneradmin
+     * @group spanner-admin
      */
     public function testExists()
     {
@@ -137,7 +130,7 @@ class DatabaseTest extends SnippetTestCase
     }
 
     /**
-     * @group spanneradmin
+     * @group spanner-admin
      */
     public function testInfo()
     {
@@ -158,7 +151,7 @@ class DatabaseTest extends SnippetTestCase
     }
 
     /**
-     * @group spanneradmin
+     * @group spanner-admin
      */
     public function testReload()
     {
@@ -179,7 +172,7 @@ class DatabaseTest extends SnippetTestCase
     }
 
     /**
-     * @group spanneradmin
+     * @group spanner-admin
      */
     public function testCreate()
     {
@@ -199,7 +192,7 @@ class DatabaseTest extends SnippetTestCase
     }
 
     /**
-     * @group spanneradmin
+     * @group spanner-admin
      */
     public function testUpdateDdl()
     {
@@ -218,7 +211,7 @@ class DatabaseTest extends SnippetTestCase
     }
 
     /**
-     * @group spanneradmin
+     * @group spanner-admin
      */
     public function testUpdateDdlBatch()
     {
@@ -237,7 +230,7 @@ class DatabaseTest extends SnippetTestCase
     }
 
     /**
-     * @group spanneradmin
+     * @group spanner-admin
      */
     public function testDrop()
     {
@@ -253,7 +246,7 @@ class DatabaseTest extends SnippetTestCase
     }
 
     /**
-     * @group spanneradmin
+     * @group spanner-admin
      */
     public function testDdl()
     {
@@ -285,7 +278,7 @@ class DatabaseTest extends SnippetTestCase
                 'id' => self::TRANSACTION
             ]);
 
-        $this->stubOperation();
+        $this->refreshOperation($this->database, $this->connection->reveal());
 
         $snippet = $this->snippetFromMethod(Database::class, 'snapshot');
         $snippet->addLocal('database', $this->database);
@@ -303,7 +296,7 @@ class DatabaseTest extends SnippetTestCase
                 'readTimestamp' => (new Timestamp(new \DateTime))->formatAsString()
             ]);
 
-        $this->stubOperation();
+        $this->refreshOperation($this->database, $this->connection->reveal());
 
         $snippet = $this->snippetFromMethod(Database::class, 'snapshot', 1);
         $snippet->addLocal('database', $this->database);
@@ -347,7 +340,7 @@ class DatabaseTest extends SnippetTestCase
                 'values' => [0]
             ]));
 
-        $this->stubOperation();
+        $this->refreshOperation($this->database, $this->connection->reveal());
 
         $snippet = $this->snippetFromMethod(Database::class, 'runTransaction');
         $snippet->addUse(Transaction::class);
@@ -382,7 +375,7 @@ class DatabaseTest extends SnippetTestCase
                 ]
             ]));
 
-        $this->stubOperation();
+        $this->refreshOperation($this->database, $this->connection->reveal());
 
         $snippet = $this->snippetFromMethod(Database::class, 'runTransaction');
         $snippet->addUse(Transaction::class);
@@ -401,7 +394,7 @@ class DatabaseTest extends SnippetTestCase
                 'id' => self::TRANSACTION
             ]);
 
-        $this->stubOperation();
+        $this->refreshOperation($this->database, $this->connection->reveal());
 
         $snippet = $this->snippetFromMethod(Database::class, 'transaction');
         $snippet->addLocal('database', $this->database);
@@ -417,7 +410,7 @@ class DatabaseTest extends SnippetTestCase
             'commitTimestamp' => (new Timestamp(new \DateTime))->formatAsString()
         ]);
 
-        $this->stubOperation();
+        $this->refreshOperation($this->database, $this->connection->reveal());
 
         $snippet = $this->snippetFromMethod(Database::class, 'insert');
         $snippet->addLocal('database', $this->database);
@@ -435,7 +428,7 @@ class DatabaseTest extends SnippetTestCase
             'commitTimestamp' => (new Timestamp(new \DateTime))->formatAsString()
         ]);
 
-        $this->stubOperation();
+        $this->refreshOperation($this->database, $this->connection->reveal());
 
         $snippet = $this->snippetFromMethod(Database::class, 'insertBatch');
         $snippet->addLocal('database', $this->database);
@@ -450,7 +443,7 @@ class DatabaseTest extends SnippetTestCase
             'commitTimestamp' => (new Timestamp(new \DateTime))->formatAsString()
         ]);
 
-        $this->stubOperation();
+        $this->refreshOperation($this->database, $this->connection->reveal());
 
         $snippet = $this->snippetFromMethod(Database::class, 'update');
         $snippet->addLocal('database', $this->database);
@@ -468,7 +461,7 @@ class DatabaseTest extends SnippetTestCase
             'commitTimestamp' => (new Timestamp(new \DateTime))->formatAsString()
         ]);
 
-        $this->stubOperation();
+        $this->refreshOperation($this->database, $this->connection->reveal());
 
         $snippet = $this->snippetFromMethod(Database::class, 'updateBatch');
         $snippet->addLocal('database', $this->database);
@@ -483,7 +476,7 @@ class DatabaseTest extends SnippetTestCase
             'commitTimestamp' => (new Timestamp(new \DateTime))->formatAsString()
         ]);
 
-        $this->stubOperation();
+        $this->refreshOperation($this->database, $this->connection->reveal());
 
         $snippet = $this->snippetFromMethod(Database::class, 'insertOrUpdate');
         $snippet->addLocal('database', $this->database);
@@ -501,7 +494,7 @@ class DatabaseTest extends SnippetTestCase
             'commitTimestamp' => (new Timestamp(new \DateTime))->formatAsString()
         ]);
 
-        $this->stubOperation();
+        $this->refreshOperation($this->database, $this->connection->reveal());
 
         $snippet = $this->snippetFromMethod(Database::class, 'insertOrUpdateBatch');
         $snippet->addLocal('database', $this->database);
@@ -516,7 +509,7 @@ class DatabaseTest extends SnippetTestCase
             'commitTimestamp' => (new Timestamp(new \DateTime))->formatAsString()
         ]);
 
-        $this->stubOperation();
+        $this->refreshOperation($this->database, $this->connection->reveal());
 
         $snippet = $this->snippetFromMethod(Database::class, 'replace');
         $snippet->addLocal('database', $this->database);
@@ -534,7 +527,7 @@ class DatabaseTest extends SnippetTestCase
             'commitTimestamp' => (new Timestamp(new \DateTime))->formatAsString()
         ]);
 
-        $this->stubOperation();
+        $this->refreshOperation($this->database, $this->connection->reveal());
 
         $snippet = $this->snippetFromMethod(Database::class, 'replaceBatch');
         $snippet->addLocal('database', $this->database);
@@ -549,7 +542,7 @@ class DatabaseTest extends SnippetTestCase
             'commitTimestamp' => (new Timestamp(new \DateTime))->formatAsString()
         ]);
 
-        $this->stubOperation();
+        $this->refreshOperation($this->database, $this->connection->reveal());
 
         $snippet = $this->snippetFromMethod(Database::class, 'delete');
         $snippet->addUse(KeySet::class);
@@ -577,7 +570,7 @@ class DatabaseTest extends SnippetTestCase
                 'values' => [0]
             ]));
 
-        $this->stubOperation();
+        $this->refreshOperation($this->database, $this->connection->reveal());
 
         $snippet = $this->snippetFromMethod(Database::class, 'execute');
         $snippet->addLocal('database', $this->database);
@@ -609,7 +602,7 @@ class DatabaseTest extends SnippetTestCase
                 'values' => [0]
             ]));
 
-        $this->stubOperation();
+        $this->refreshOperation($this->database, $this->connection->reveal());
 
         $snippet = $this->snippetFromMethod(Database::class, 'execute', 1);
         $snippet->addLocal('database', $this->database);
@@ -643,7 +636,7 @@ class DatabaseTest extends SnippetTestCase
                 'values' => [0]
             ]));
 
-        $this->stubOperation();
+        $this->refreshOperation($this->database, $this->connection->reveal());
 
         $snippet = $this->snippetFromMethod(Database::class, 'execute', 2);
         $snippet->addLocal('database', $this->database);
@@ -678,7 +671,7 @@ class DatabaseTest extends SnippetTestCase
             'values' => [null]
         ]));
 
-        $this->stubOperation();
+        $this->refreshOperation($this->database, $this->connection->reveal());
 
         $snippet = $this->snippetFromMethod(Database::class, 'execute', 3);
         $snippet->addLocal('database', $this->database);
@@ -717,7 +710,7 @@ class DatabaseTest extends SnippetTestCase
             'values' => [[]]
         ]));
 
-        $this->stubOperation();
+        $this->refreshOperation($this->database, $this->connection->reveal());
 
         $snippet = $this->snippetFromMethod(Database::class, 'execute', 4);
         $snippet->addLocal('database', $this->database);
@@ -747,7 +740,7 @@ class DatabaseTest extends SnippetTestCase
                 'rows' => [0]
             ]));
 
-        $this->stubOperation();
+        $this->refreshOperation($this->database, $this->connection->reveal());
 
         $snippet = $this->snippetFromMethod(Database::class, 'read');
         $snippet->addLocal('database', $this->database);
@@ -780,7 +773,7 @@ class DatabaseTest extends SnippetTestCase
                 'values' => [0]
             ]));
 
-        $this->stubOperation();
+        $this->refreshOperation($this->database, $this->connection->reveal());
 
         $snippet = $this->snippetFromMethod(Database::class, 'read', 1);
         $snippet->addLocal('database', $this->database);
@@ -815,7 +808,7 @@ class DatabaseTest extends SnippetTestCase
                 'values' => [0]
             ]));
 
-        $this->stubOperation();
+        $this->refreshOperation($this->database, $this->connection->reveal());
 
         $snippet = $this->snippetFromMethod(Database::class, 'read', 2);
         $snippet->addLocal('database', $this->database);

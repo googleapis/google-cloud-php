@@ -107,12 +107,7 @@ use Google\Cloud\Spanner\Session\SessionPoolInterface;
  */
 class Snapshot implements TransactionalReadInterface
 {
-    use TransactionalReadTrait;
-
-    /**
-     * @var Timestamp
-     */
-    private $readTimestamp;
+    use SnapshotTrait;
 
     /**
      * @param Operation $operation The Operation instance.
@@ -125,48 +120,8 @@ class Snapshot implements TransactionalReadInterface
      *     @type Timestamp $readTimestamp The read timestamp.
      * }
      */
-    public function __construct(
-        Operation $operation,
-        Session $session,
-        array $options = []
-    ) {
-        $this->operation = $operation;
-        $this->session = $session;
-
-        $options += [
-            'id' => null,
-            'readTimestamp' => null
-        ];
-
-        if ($options['readTimestamp'] && !($options['readTimestamp'] instanceof Timestamp)) {
-            throw new \InvalidArgumentException('$options.readTimestamp must be an instance of Timestamp.');
-        }
-
-        $this->transactionId = $options['id'] ?: null;
-        $this->readTimestamp = $options['readTimestamp'];
-        $this->type = $options['id']
-            ? self::TYPE_PRE_ALLOCATED
-            : self::TYPE_SINGLE_USE;
-
-        $this->context = SessionPoolInterface::CONTEXT_READ;
-        $this->options = $options;
-    }
-
-    /**
-     * Retrieve the Read Timestamp.
-     *
-     * For snapshot read-only transactions, the read timestamp chosen for the
-     * transaction.
-     *
-     * Example:
-     * ```
-     * $timestamp = $snapshot->readTimestamp();
-     * ```
-     *
-     * @return Timestamp
-     */
-    public function readTimestamp()
+    public function __construct(Operation $operation, Session $session, array $options = [])
     {
-        return $this->readTimestamp;
+        $this->initialize($operation, $session, $options);
     }
 }

@@ -40,7 +40,6 @@ use PHPUnit\Framework\TestCase;
 class TransactionTypeTest extends TestCase
 {
     use GrpcTestTrait;
-
     use ResultTestTrait;
 
     const PROJECT = 'my-project';

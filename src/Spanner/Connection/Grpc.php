@@ -18,35 +18,35 @@
 namespace Google\Cloud\Spanner\Connection;
 
 use Google\ApiCore\Call;
-use Google\ApiCore\CallSettings;
 use Google\ApiCore\Serializer;
 use Google\Cloud\Core\GrpcRequestWrapper;
 use Google\Cloud\Core\GrpcTrait;
 use Google\Cloud\Core\LongRunning\OperationResponseTrait;
+use Google\Cloud\Spanner\Admin\Database\V1\Database;
 use Google\Cloud\Spanner\Admin\Database\V1\DatabaseAdminClient;
+use Google\Cloud\Spanner\Admin\Instance\V1\Instance;
 use Google\Cloud\Spanner\Admin\Instance\V1\InstanceAdminClient;
 use Google\Cloud\Spanner\Operation;
 use Google\Cloud\Spanner\SpannerClient as ManualSpannerClient;
+use Google\Cloud\Spanner\V1\DeleteSessionRequest;
+use Google\Cloud\Spanner\V1\KeySet;
+use Google\Cloud\Spanner\V1\Mutation;
+use Google\Cloud\Spanner\V1\Mutation_Delete;
+use Google\Cloud\Spanner\V1\Mutation_Write;
+use Google\Cloud\Spanner\V1\PartitionOptions;
 use Google\Cloud\Spanner\V1\SpannerClient;
+use Google\Cloud\Spanner\V1\TransactionOptions;
+use Google\Cloud\Spanner\V1\TransactionOptions_ReadOnly;
+use Google\Cloud\Spanner\V1\TransactionOptions_ReadWrite;
+use Google\Cloud\Spanner\V1\TransactionSelector;
+use Google\Cloud\Spanner\V1\Type;
 use Google\Protobuf;
 use Google\Protobuf\FieldMask;
 use Google\Protobuf\GPBEmpty;
 use Google\Protobuf\ListValue;
 use Google\Protobuf\Struct;
 use Google\Protobuf\Value;
-use Google\Cloud\Spanner\Admin\Database\V1\Database;
-use Google\Cloud\Spanner\Admin\Instance\V1\Instance;
-use Google\Cloud\Spanner\V1\DeleteSessionRequest;
-use Google\Cloud\Spanner\V1\KeySet;
-use Google\Cloud\Spanner\V1\Mutation;
-use Google\Cloud\Spanner\V1\Mutation_Delete;
-use Google\Cloud\Spanner\V1\Mutation_Write;
-use Google\Cloud\Spanner\V1\TransactionOptions;
-use Google\Cloud\Spanner\V1\TransactionOptions_ReadOnly;
-use Google\Cloud\Spanner\V1\TransactionOptions_ReadWrite;
-use Google\Cloud\Spanner\V1\TransactionSelector;
-use Google\Cloud\Spanner\V1\Type;
-use GuzzleHttp\Promise\PromiseInterface;
+use Grpc\UnaryCall;
 
 /**
  * Connection to Cloud Spanner over gRPC
@@ -486,22 +486,7 @@ class Grpc implements ConnectionInterface
      */
     public function executeStreamingSql(array $args)
     {
-        $params = $this->pluck('params', $args);
-        if ($params) {
-            $modifiedParams = [];
-            foreach ($params as $key => $param) {
-                $modifiedParams[$key] = $this->fieldValue($param);
-            }
-            $args['params'] = new Struct;
-            $args['params']->setFields($modifiedParams);
-        }
-
-        if (isset($args['paramTypes']) && is_array($args['paramTypes'])) {
-            foreach ($args['paramTypes'] as $key => $param) {
-                $args['paramTypes'][$key] = $this->serializer->decodeMessage(new Type, $param);
-            }
-        }
-
+        $args = $this->formatSqlParams($args);
         $args['transaction'] = $this->createTransactionSelector($args);
 
         $database = $this->pluck('database', $args);
@@ -696,6 +681,76 @@ class Grpc implements ConnectionInterface
             $filter,
             $args
         ]);
+    }
+
+    /**
+     * @param array $args
+     */
+    public function partitionQuery(array $args)
+    {
+        $args = $this->formatSqlParams($args);
+        $args['transaction'] = $this->createTransactionSelector($args);
+
+        $args['partitionOptions'] = $this->serializer->decodeMessage(
+            new PartitionOptions,
+            $this->pluck('partitionOptions', $args, false, [])
+        );
+
+        $database = $this->pluck('database', $args);
+        return $this->send([$this->spannerClient, 'partitionQuery'], [
+            $this->pluck('session', $args),
+            $this->pluck('sql', $args),
+            $this->addResourcePrefixHeader($args, $database)
+        ]);
+    }
+
+    /**
+     * @param array $args
+     */
+    public function partitionRead(array $args)
+    {
+        $keySet = $this->pluck('keySet', $args);
+        $keySet = $this->serializer->decodeMessage(new KeySet, $this->formatKeySet($keySet));
+
+        $args['transaction'] = $this->createTransactionSelector($args);
+
+        $args['partitionOptions'] = $this->serializer->decodeMessage(
+            new PartitionOptions,
+            $this->pluck('partitionOptions', $args, false, [])
+        );
+
+        $database = $this->pluck('database', $args);
+        return $this->send([$this->spannerClient, 'partitionRead'], [
+            $this->pluck('session', $args),
+            $this->pluck('table', $args),
+            $keySet,
+            $this->addResourcePrefixHeader($args, $database)
+        ]);
+    }
+
+    /**
+     * @param array $args
+     * @return array
+     */
+    private function formatSqlParams(array $args)
+    {
+        $params = $this->pluck('params', $args);
+        if ($params) {
+            $modifiedParams = [];
+            foreach ($params as $key => $param) {
+                $modifiedParams[$key] = $this->fieldValue($param);
+            }
+            $args['params'] = new Struct;
+            $args['params']->setFields($modifiedParams);
+        }
+
+        if (isset($args['paramTypes']) && is_array($args['paramTypes'])) {
+            foreach ($args['paramTypes'] as $key => $param) {
+                $args['paramTypes'][$key] = $this->serializer->decodeMessage(new Type, $param);
+            }
+        }
+
+        return $args;
     }
 
     /**
