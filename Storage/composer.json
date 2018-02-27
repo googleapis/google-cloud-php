@@ -23,8 +23,8 @@
         "component": {
             "id": "cloud-storage",
             "target": "GoogleCloudPlatform/google-cloud-php-storage.git",
-            "path": "Storage/src",
-            "entry": "StorageClient.php"
+            "path": "Storage",
+            "entry": "src/StorageClient.php"
         }
     },
     "autoload": {

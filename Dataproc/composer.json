@@ -11,7 +11,7 @@
     "extra": {
         "component": {
             "id": "cloud-dataproc",
-            "path": "Dataproc/src",
+            "path": "Dataproc",
             "entry": null,
             "target": "GoogleCloudPlatform/google-cloud-php-dataproc.git"
         }

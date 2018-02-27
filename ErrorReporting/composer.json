@@ -16,7 +16,7 @@
         "component": {
             "id": "cloud-error-reporting",
             "target": "GoogleCloudPlatform/google-cloud-php-errorreporting.git",
-            "path": "ErrorReporting/src",
+            "path": "ErrorReporting",
             "entry": null
         }
     },

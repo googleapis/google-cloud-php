@@ -23,8 +23,8 @@
             "displayName": "Google Cloud BigQuery",
             "id": "cloud-bigquery",
             "target": "GoogleCloudPlatform/google-cloud-php-bigquery.git",
-            "path": "BigQuery/src",
-            "entry": "BigQueryClient.php"
+            "path": "BigQuery",
+            "entry": "src/BigQueryClient.php"
         }
     },
     "autoload": {

@@ -27,8 +27,8 @@
         "component": {
             "id": "cloud-trace",
             "target": "GoogleCloudPlatform/google-cloud-php-trace.git",
-            "path": "Trace/src",
-            "entry": "TraceClient.php"
+            "path": "Trace",
+            "entry": "src/TraceClient.php"
         }
     },
     "autoload": {

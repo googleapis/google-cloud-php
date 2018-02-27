@@ -55,7 +55,7 @@ class Docs extends Command
 
     public function __construct($cliBasePath)
     {
-        $this->cliBasePath = $cliBasePath;
+        $this->cliBasePath = realpath($cliBasePath);
 
         parent::__construct();
     }
@@ -64,18 +64,15 @@ class Docs extends Command
     {
         $this->setName('docs')
             ->setDescription('Generate Documentation')
-            ->addOption('release', 'r', InputOption::VALUE_REQUIRED, 'If set, docs will be generated into tag folders' .
-                ' such as v1.0.0 rather than master.', false)
+            ->addOption('release', 'r', InputOption::VALUE_NONE, 'If set, docs will be generated into tag folders' .
+                ' such as v1.0.0 rather than master.')
             ->addOption('pretty', 'p', InputOption::VALUE_NONE, 'If set, json files will be written with pretty'.
                 ' formatting using PHP\'s JSON_PRETTY_PRINT flag');
     }
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $release = ($input->getOption('release') === false && $input->getOption('release') !== 'false')
-            ? null
-            : $input->getOption('release');
-
+        $release = $input->getOption('release');
         $pretty = $input->getOption('pretty');
 
         $paths = [
@@ -88,24 +85,24 @@ class Docs extends Command
             'overview' => $this->cliBasePath .'/../'. self::OVERVIEW_FILE
         ];
 
-        $components = $this->getComponents($paths['source']);
+        $components = $this->getComponents(dirname($this->cliBasePath), $paths['source']);
         $tocTemplate = json_decode(file_get_contents($paths['tocTemplate']), true);
 
-        // foreach ($components as $component) {
-        //     $input = $paths['project'] . $component['path'];
-        //     $source = $this->getFilesList($input, ['php', 'md'], [
-        //         'CONTRIBUTING.md'
-        //     ]);
-        //     $this->generateComponentDocumentation(
-        //         $output,
-        //         $source,
-        //         $component,
-        //         $paths,
-        //         $tocTemplate,
-        //         $release,
-        //         $pretty
-        //     );
-        // }
+        foreach ($components as $component) {
+            $input = $paths['project'] . $component['path'] .'/src';
+            $source = $this->getFilesList($input, ['php', 'md'], [
+                'CONTRIBUTING.md'
+            ]);
+            $this->generateComponentDocumentation(
+                $output,
+                $source,
+                $component,
+                $paths,
+                $tocTemplate,
+                $release,
+                $pretty
+            );
+        }
 
         $projectRealPath = realpath($paths['project']);
         $source = $this->getFilesList($projectRealPath, [
@@ -120,8 +117,6 @@ class Docs extends Command
             new RegexFileFilter(str_replace('/', '\/', preg_quote($projectRealPath .'/') . '\w{0,}\.\w{0,}')),
             'bootstrap.php'
         ]);
-
-        // print_r($source);exit;
 
         $component = [
             'id' => 'google-cloud',
