@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-namespace Google\Cloud\Tests\Snippets\Vision;
+namespace Google\Cloud\Vision\Tests\Snippet;
 
 use Google\Cloud\Core\ServiceBuilder;
 use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;

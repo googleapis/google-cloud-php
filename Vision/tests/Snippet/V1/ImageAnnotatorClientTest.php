@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-namespace Google\Cloud\Tests\Snippets\Vision\V1;
+namespace Google\Cloud\Vision\Tests\Snippet\V1;
 
 use Google\ApiCore\Call;
 use Google\ApiCore\Transport\TransportInterface;

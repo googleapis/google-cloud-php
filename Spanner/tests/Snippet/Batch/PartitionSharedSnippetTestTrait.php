@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-namespace Google\Cloud\Tests\Snippets\Spanner\Batch;
+namespace Google\Cloud\Spanner\Tests\Snippet\Batch;
 
 /**
  * Shared snippet tests for partitions.

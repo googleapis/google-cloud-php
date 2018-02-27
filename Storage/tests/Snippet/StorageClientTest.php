@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-namespace Google\Cloud\Tests\Snippets\Storage;
+namespace Google\Cloud\Storage\Tests\Snippet;
 
 use Google\Cloud\Core\Iterator\ItemIterator;
 use Google\Cloud\Core\RequestWrapper;

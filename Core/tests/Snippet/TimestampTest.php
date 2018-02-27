@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-namespace Google\Cloud\Tests\Snippets\Core;
+namespace Google\Cloud\Core\Tests\Snippet;
 
 use Google\Cloud\Core\Timestamp;
 use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;

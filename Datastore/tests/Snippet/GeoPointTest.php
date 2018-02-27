@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-namespace Google\Cloud\Tests\Snippets\Datastore;
+namespace Google\Cloud\Datastore\Tests\Snippet;
 
 use Google\Cloud\Datastore\GeoPoint;
 use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
