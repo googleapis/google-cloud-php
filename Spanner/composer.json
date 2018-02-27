@@ -23,8 +23,8 @@
         "component": {
             "id": "cloud-spanner",
             "target": "GoogleCloudPlatform/google-cloud-php-spanner.git",
-            "path": "Spanner/src",
-            "entry": "SpannerClient.php"
+            "path": "Spanner",
+            "entry": "src/SpannerClient.php"
         }
     },
     "autoload": {

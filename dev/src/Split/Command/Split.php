@@ -33,7 +33,7 @@ class Split extends Command
     const TAG_ENV = 'TRAVIS_TAG';
     const TARGET_REGEX = '/([a-zA-Z0-9-_]{1,})\/([a-zA-Z0-9-_]{1,})\.git/';
 
-    const COMPONENT_BASE = '%s/../src';
+    const COMPONENT_BASE = '%s/../';
     const SPLIT_SHELL = '%s/sh/split';
     const PATH_MANIFEST = '%s/../docs/manifest.json';
     const PARENT_TAG_NAME = 'https://github.com/GoogleCloudPlatform/google-cloud-php/releases/tag/%s';
@@ -55,7 +55,7 @@ class Split extends Command
 
     public function __construct($cliBasePath)
     {
-        $this->cliBasePath = $cliBasePath;
+        $this->cliBasePath = realpath($cliBasePath);
         $this->splitShell = sprintf(self::SPLIT_SHELL, $cliBasePath);
         $this->components = sprintf(self::COMPONENT_BASE, $cliBasePath);
         $this->manifest = sprintf(self::PATH_MANIFEST, $cliBasePath);
@@ -79,7 +79,7 @@ class Split extends Command
             return;
         }
 
-        $components = $this->getComponents($this->components);
+        $components = $this->getComponents(dirname($this->cliBasePath), $this->components);
 
         $tag = getenv(self::TAG_ENV);
 

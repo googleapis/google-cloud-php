@@ -17,7 +17,7 @@
         "component": {
             "id": "cloud-bigtable",
             "target": "GoogleCloudPlatform/google-cloud-php-bigtable.git",
-            "path": "Bigtable/src",
+            "path": "Bigtable",
             "entry": null
         }
     },
