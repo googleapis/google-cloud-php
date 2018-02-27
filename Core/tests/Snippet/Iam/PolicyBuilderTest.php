@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-namespace Google\Cloud\Tests\Snippets\Core\Iam;
+namespace Google\Cloud\Core\Tests\Snippet\Iam;
 
 use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
 use Google\Cloud\Core\Iam\PolicyBuilder;

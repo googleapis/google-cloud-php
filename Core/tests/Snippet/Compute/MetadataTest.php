@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-namespace Google\Cloud\Tests\Snippets\Core\Compute;
+namespace Google\Cloud\Core\Tests\Snippet\Compute;
 
 use Google\Cloud\Core\Compute\Metadata;
 use Google\Cloud\Core\Compute\Metadata\Readers\ReaderInterface;

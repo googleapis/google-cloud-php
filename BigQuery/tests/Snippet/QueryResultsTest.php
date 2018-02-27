@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-namespace Google\Cloud\Tests\Snippets\BigQuery;
+namespace Google\Cloud\BigQuery\Tests\Snippet;
 
 use Google\Cloud\BigQuery\Connection\ConnectionInterface;
 use Google\Cloud\BigQuery\Job;

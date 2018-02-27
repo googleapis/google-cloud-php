@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-namespace Google\Cloud\Tests\Snippets\Firestore;
+namespace Google\Cloud\Firestore\Tests\Snippet;
 
 use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
 use Google\Cloud\Firestore\Connection\ConnectionInterface;

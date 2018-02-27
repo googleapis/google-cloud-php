@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-namespace Google\Cloud\Tests\Snippets\Vision\Annotation\Face;
+namespace Google\Cloud\Vision\Tests\Snippet\Annotation\Face;
 
 use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
 use Google\Cloud\Vision\Annotation\Face\Landmarks;

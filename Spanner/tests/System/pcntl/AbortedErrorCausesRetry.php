@@ -4,7 +4,7 @@ include __DIR__ . '/../../../../vendor/autoload.php';
 include __DIR__ . '/forked-process-test.php';
 
 use Google\Cloud\Spanner\Database;
-use Google\Cloud\Spanner\Tests\System\SpannerTestCase;
+use Google\Cloud\Spanner\Spanner\Tests\SystemTestCase;
 
 list ($dbName, $tableName, $id) = getInputArgs();
 

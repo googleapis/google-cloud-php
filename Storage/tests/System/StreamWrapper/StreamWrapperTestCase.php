@@ -17,7 +17,7 @@
 
 namespace Google\Cloud\Storage\Tests\System\StreamWrapper;
 
-use Google\Cloud\Storage\Tests\System\StorageTestCase;
+use Google\Cloud\Storage\Storage\Tests\SystemTestCase;
 
 /**
  * @group storage

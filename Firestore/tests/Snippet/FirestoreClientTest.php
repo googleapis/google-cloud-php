@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-namespace Google\Cloud\Tests\Snippets\Firestore;
+namespace Google\Cloud\Firestore\Tests\Snippet;
 
 use Prophecy\Argument;
 use Google\Cloud\Core\Blob;

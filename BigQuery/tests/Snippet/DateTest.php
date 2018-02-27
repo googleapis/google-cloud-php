@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-namespace Google\Cloud\Tests\Snippets\BigQuery;
+namespace Google\Cloud\BigQuery\Tests\Snippet;
 
 use Google\Cloud\BigQuery\Date;
 use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;

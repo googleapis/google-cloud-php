@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-namespace Google\Cloud\Tests\Unit\Spanner\Batch;
+namespace Google\Cloud\Spanner\Tests\Unit\Batch;
 
 use Google\Cloud\Core\Testing\SpannerOperationRefreshTrait;
 use Google\Cloud\Core\Testing\TestHelpers;
