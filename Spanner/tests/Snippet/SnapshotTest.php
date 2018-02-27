@@ -17,7 +17,9 @@
 
 namespace Google\Cloud\Tests\Snippets\Spanner;
 
+use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
+use Google\Cloud\Core\Testing\SpannerOperationRefreshTrait;
 use Google\Cloud\Spanner\Connection\ConnectionInterface;
 use Google\Cloud\Spanner\Database;
 use Google\Cloud\Spanner\KeySet;
@@ -28,7 +30,6 @@ use Google\Cloud\Spanner\Snapshot;
 use Google\Cloud\Spanner\SpannerClient;
 use Google\Cloud\Spanner\Timestamp;
 use Google\Cloud\Spanner\ValueMapper;
-use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Prophecy\Argument;
 
 /**
@@ -37,6 +38,7 @@ use Prophecy\Argument;
 class SnapshotTest extends SnippetTestCase
 {
     use GrpcTestTrait;
+    use SpannerOperationRefreshTrait;
 
     const TRANSACTION = 'my-transaction';
 
@@ -59,19 +61,6 @@ class SnapshotTest extends SnippetTestCase
                 'readTimestamp' => new Timestamp(new \DateTime)
             ]
         ], ['operation']);
-    }
-
-    private function stubOperation($stub = null)
-    {
-        $operation = \Google\Cloud\Core\Testing\TestHelpers::stub(Operation::class, [
-            $this->connection->reveal(), false
-        ]);
-
-        if (!$stub) {
-            $stub = $this->snapshot;
-        }
-
-        $stub->___setProperty('operation', $operation);
     }
 
     public function testClass()
@@ -107,7 +96,7 @@ class SnapshotTest extends SnippetTestCase
                 'values' => [0]
             ]));
 
-        $this->stubOperation();
+        $this->refreshOperation($this->snapshot, $this->connection->reveal());
 
         $snippet = $this->snippetFromMagicMethod(Snapshot::class, 'execute');
         $snippet->addLocal('snapshot', $this->snapshot);
@@ -136,7 +125,7 @@ class SnapshotTest extends SnippetTestCase
                 'values' => [0]
             ]));
 
-        $this->stubOperation();
+        $this->refreshOperation($this->snapshot, $this->connection->reveal());
 
         $snippet = $this->snippetFromMagicMethod(Snapshot::class, 'read');
         $snippet->addLocal('snapshot', $this->snapshot);

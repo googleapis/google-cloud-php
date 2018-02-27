@@ -20,8 +20,10 @@ namespace Google\Cloud\Spanner\Tests\Unit;
 use Google\Cloud\Core\Int64;
 use Google\Cloud\Core\Iterator\ItemIterator;
 use Google\Cloud\Core\LongRunning\LongRunningOperation;
+use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Spanner\Admin\Database\V1\DatabaseAdminClient;
 use Google\Cloud\Spanner\Admin\Instance\V1\InstanceAdminClient;
+use Google\Cloud\Spanner\Batch\BatchClient;
 use Google\Cloud\Spanner\Bytes;
 use Google\Cloud\Spanner\Connection\ConnectionInterface;
 use Google\Cloud\Spanner\Database;
@@ -33,9 +35,8 @@ use Google\Cloud\Spanner\KeyRange;
 use Google\Cloud\Spanner\KeySet;
 use Google\Cloud\Spanner\SpannerClient;
 use Google\Cloud\Spanner\Timestamp;
-use Google\Cloud\Core\Testing\GrpcTestTrait;
-use Prophecy\Argument;
 use PHPUnit\Framework\TestCase;
+use Prophecy\Argument;
 
 /**
  * @group spanner
@@ -59,6 +60,21 @@ class SpannerClientTest extends TestCase
         $this->client = \Google\Cloud\Core\Testing\TestHelpers::stub(SpannerClient::class, [
             ['projectId' => self::PROJECT]
         ]);
+    }
+
+    public function testBatch()
+    {
+        $batch = $this->client->batch('foo', 'bar');
+        $this->assertInstanceOf(BatchClient::class, $batch);
+
+        $ref = new \ReflectionObject($batch);
+        $prop = $ref->getProperty('databaseName');
+        $prop->setAccessible(true);
+
+        $this->assertEquals(sprintf(
+            'projects/%s/instances/%s/databases/%s',
+            self::PROJECT, 'foo', 'bar'
+        ), $prop->getValue($batch));
     }
 
     /**

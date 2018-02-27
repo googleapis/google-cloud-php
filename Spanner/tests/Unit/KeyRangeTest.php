@@ -37,6 +37,17 @@ class KeyRangeTest extends TestCase
         $this->range = new KeyRange;
     }
 
+    public function testConstructWithScalars()
+    {
+        $range = new KeyRange([
+            'start' => 'foo',
+            'end' => 'bar'
+        ]);
+
+        $this->assertEquals(['foo'], $range->start());
+        $this->assertEquals(['bar'], $range->end());
+    }
+
     public function testPrefixMatch()
     {
         $key = ['foo'];
@@ -113,5 +124,31 @@ class KeyRangeTest extends TestCase
     public function testKeyRangeObjectBadRange()
     {
         $this->range->keyRangeObject();
+    }
+
+    /**
+     * @dataProvider fromArray
+     */
+    public function testFromArray($startType, $endType)
+    {
+        $this->range->setStart($startType, ['foo']);
+        $this->range->setEnd($endType, ['bar']);
+
+        $res = $this->range->keyRangeObject();
+
+        $range2 = KeyRange::fromArray($res);
+        $obj = $range2->keyRangeObject();
+
+        $this->assertEquals($res, $obj);
+        $this->assertEquals(['foo'], $obj[($startType === KeyRange::TYPE_OPEN) ? 'startOpen' : 'startClosed']);
+        $this->assertEquals(['bar'], $obj[($endType === KeyRange::TYPE_OPEN) ? 'endOpen' : 'endClosed']);
+    }
+
+    public function fromArray()
+    {
+        return [
+            [KeyRange::TYPE_OPEN, KeyRange::TYPE_CLOSED],
+            [KeyRange::TYPE_CLOSED, KeyRange::TYPE_OPEN]
+        ];
     }
 }

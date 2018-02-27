@@ -169,7 +169,7 @@ trait GrpcTrait
                     }
                     return $valueList;
                 case 'structValue':
-                    return $this->unpackStructFromApi($setValue['structValue']);
+                    return $this->unpackStructFromApi($value['structValue']);
                 default:
                     return $setValue;
             }

@@ -18,7 +18,7 @@ return [
                             'getName',
                         ],
                     ],
-                ]
+                ],
             ],
             'ListOperations' => [
                 'method' => 'get',
@@ -35,7 +35,7 @@ return [
                             'getName',
                         ],
                     ],
-                ]
+                ],
             ],
             'CancelOperation' => [
                 'method' => 'post',
@@ -52,7 +52,7 @@ return [
                             'getName',
                         ],
                     ],
-                ]
+                ],
             ],
             'DeleteOperation' => [
                 'method' => 'delete',
@@ -69,7 +69,7 @@ return [
                             'getName',
                         ],
                     ],
-                ]
+                ],
             ],
         ],
         'google.spanner.admin.instance.v1.InstanceAdmin' => [
@@ -82,7 +82,7 @@ return [
                             'getParent',
                         ],
                     ],
-                ]
+                ],
             ],
             'GetInstanceConfig' => [
                 'method' => 'get',
@@ -93,7 +93,7 @@ return [
                             'getName',
                         ],
                     ],
-                ]
+                ],
             ],
             'ListInstances' => [
                 'method' => 'get',
@@ -104,7 +104,7 @@ return [
                             'getParent',
                         ],
                     ],
-                ]
+                ],
             ],
             'GetInstance' => [
                 'method' => 'get',
@@ -115,7 +115,7 @@ return [
                             'getName',
                         ],
                     ],
-                ]
+                ],
             ],
             'CreateInstance' => [
                 'method' => 'post',
@@ -127,7 +127,7 @@ return [
                             'getParent',
                         ],
                     ],
-                ]
+                ],
             ],
             'UpdateInstance' => [
                 'method' => 'patch',
@@ -140,7 +140,7 @@ return [
                             'getName',
                         ],
                     ],
-                ]
+                ],
             ],
             'DeleteInstance' => [
                 'method' => 'delete',
@@ -151,7 +151,7 @@ return [
                             'getName',
                         ],
                     ],
-                ]
+                ],
             ],
             'SetIamPolicy' => [
                 'method' => 'post',
@@ -163,7 +163,7 @@ return [
                             'getResource',
                         ],
                     ],
-                ]
+                ],
             ],
             'GetIamPolicy' => [
                 'method' => 'post',
@@ -175,7 +175,7 @@ return [
                             'getResource',
                         ],
                     ],
-                ]
+                ],
             ],
             'TestIamPermissions' => [
                 'method' => 'post',
@@ -187,8 +187,8 @@ return [
                             'getResource',
                         ],
                     ],
-                ]
+                ],
             ],
         ],
-    ]
+    ],
 ];

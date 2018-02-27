@@ -33,7 +33,7 @@ use Prophecy\Argument;
 
 /**
  * @group spanner
- * @group spanneradmin
+ * @group spanner-admin
  */
 class InstanceTest extends SnippetTestCase
 {

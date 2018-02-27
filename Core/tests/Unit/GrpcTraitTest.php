@@ -270,14 +270,14 @@ class GrpcTraitTest extends TestCase
     }
 
     /**
-     * @dataProvider valueProvider
+     * @dataProvider formatValueProvider
      */
     public function testFormatsValue($value, $expected)
     {
         $this->assertEquals($expected, $this->implementation->call('formatValueForApi', [$value]));
     }
 
-    public function valueProvider()
+    public function formatValueProvider()
     {
         return [
             ['string', ['string_value' => 'string']],
@@ -302,6 +302,59 @@ class GrpcTraitTest extends TestCase
                         'fields' => [
                             'test' => [
                                 'string_value' => 'test'
+                            ]
+                        ]
+                    ]
+                ]
+            ]
+        ];
+    }
+
+    /**
+     * @dataProvider unpackValueProvider
+     */
+    public function testUnpackValue($expected, $value)
+    {
+        $this->assertEquals($expected, $this->implementation->call('unpackValue', [$value]));
+    }
+
+    public function unpackValueProvider()
+    {
+        return [
+            ['string', ['stringValue' => 'string']],
+            [
+                ['1'],
+                [
+                    'listValue' => [
+                        'values' => [
+                            [
+                                'stringValue' => '1'
+                            ]
+                        ]
+                    ]
+                ]
+            ],
+            [
+                [
+                    'test' =>'test',
+                    'nested' => [
+                        'test' => 'test'
+                    ]
+                ],
+                [
+                    'structValue' => [
+                        'fields' => [
+                            'test' => [
+                                'stringValue' => 'test'
+                            ],
+                            'nested' => [
+                                'structValue' => [
+                                    'fields' => [
+                                        'test' => [
+                                            'stringValue' => 'test'
+                                        ]
+                                    ]
+                                ]
                             ]
                         ]
                     ]

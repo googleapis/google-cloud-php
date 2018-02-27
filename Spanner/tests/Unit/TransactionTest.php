@@ -17,6 +17,8 @@
 
 namespace Google\Cloud\Spanner\Tests\Unit;
 
+use Google\Cloud\Core\Testing\GrpcTestTrait;
+use Google\Cloud\Core\Testing\SpannerOperationRefreshTrait;
 use Google\Cloud\Spanner\Connection\ConnectionInterface;
 use Google\Cloud\Spanner\Database;
 use Google\Cloud\Spanner\Instance;
@@ -28,9 +30,8 @@ use Google\Cloud\Spanner\Session\SessionPoolInterface;
 use Google\Cloud\Spanner\Timestamp;
 use Google\Cloud\Spanner\Transaction;
 use Google\Cloud\Spanner\ValueMapper;
-use Google\Cloud\Core\Testing\GrpcTestTrait;
-use Prophecy\Argument;
 use PHPUnit\Framework\TestCase;
+use Prophecy\Argument;
 
 /**
  * @group spanner
@@ -38,6 +39,7 @@ use PHPUnit\Framework\TestCase;
 class TransactionTest extends TestCase
 {
     use GrpcTestTrait;
+    use SpannerOperationRefreshTrait;
 
     const TIMESTAMP = '2017-01-09T18:05:22.534799Z';
 
@@ -193,7 +195,7 @@ class TransactionTest extends TestCase
             return $arg['sql'] === $sql;
         }))->shouldBeCalled()->willReturn($this->resultGenerator());
 
-        $this->refreshOperation();
+        $this->refreshOperation($this->transaction, $this->connection->reveal());
 
         $res = $this->transaction->execute($sql);
         $this->assertInstanceOf(Result::class, $res);
@@ -213,7 +215,7 @@ class TransactionTest extends TestCase
             return $arg['columns'] === ['ID'];
         }))->shouldBeCalled()->willReturn($this->resultGenerator());
 
-        $this->refreshOperation();
+        $this->refreshOperation($this->transaction, $this->connection->reveal());
 
         $res = $this->transaction->read($table, new KeySet(['all' => true]), ['ID']);
 
@@ -250,7 +252,7 @@ class TransactionTest extends TestCase
         $this->connection->rollback(Argument::any())
             ->shouldBeCalled();
 
-        $this->refreshOperation();
+        $this->refreshOperation($this->transaction, $this->connection->reveal());
 
         $this->transaction->rollback();
     }
@@ -326,12 +328,6 @@ class TransactionTest extends TestCase
                 '10'
             ]
         ];
-    }
-
-    private function refreshOperation()
-    {
-        $operation = new Operation($this->connection->reveal(), false);
-        $this->transaction->___setProperty('operation', $operation);
     }
 
     private function commitResponse()

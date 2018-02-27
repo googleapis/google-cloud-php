@@ -19,9 +19,12 @@ namespace Google\Cloud\Spanner;
 
 use Google\Cloud\Core\ArrayTrait;
 use Google\Cloud\Core\ValidateTrait;
+use Google\Cloud\Spanner\Batch\QueryPartition;
+use Google\Cloud\Spanner\Batch\ReadPartition;
 use Google\Cloud\Spanner\Connection\ConnectionInterface;
 use Google\Cloud\Spanner\Session\Session;
 use Google\Cloud\Spanner\Session\SessionPoolInterface;
+use Google\Cloud\Spanner\V1\SpannerClient as GapicSpannerClient;
 
 /**
  * Common interface for running operations against Cloud Spanner. This class is
@@ -270,37 +273,6 @@ class Operation
     }
 
     /**
-     * Create a read-only snapshot transaction.
-     *
-     * @see https://cloud.google.com/spanner/reference/rpc/google.spanner.v1#google.spanner.v1.BeginTransactionRequest BeginTransactionRequest
-     *
-     * @param Session $session The session to start the snapshot in.
-     * @param array $options [optional] {
-     *     Configuration Options.
-     *
-     *     @type bool $singleUse If true, a Transaction ID will not be allocated
-     *           up front. Instead, the transaction will be considered
-     *           "single-use", and may be used for only a single operation.
-     *           **Defaults to** `false`.
-     * }
-     * @return Snapshot
-     */
-    public function snapshot(Session $session, array $options = [])
-    {
-        $options += [
-            'singleUse' => false
-        ];
-
-        if (!$options['singleUse']) {
-            $res = $this->beginTransaction($session, $options);
-        } else {
-            $res = [];
-        }
-
-        return $this->createSnapshot($session, $res + $options);
-    }
-
-    /**
      * Create a Transaction instance from a response object.
      *
      * @param Session $session The session the transaction belongs to.
@@ -322,13 +294,55 @@ class Operation
     }
 
     /**
+     * Create a read-only snapshot transaction.
+     *
+     * @see https://cloud.google.com/spanner/reference/rpc/google.spanner.v1#google.spanner.v1.BeginTransactionRequest BeginTransactionRequest
+     *
+     * @param Session $session The session to start the snapshot in.
+     * @param array $options [optional] {
+     *     Configuration Options.
+     *
+     *     @type bool $singleUse If true, a Transaction ID will not be allocated
+     *           up front. Instead, the transaction will be considered
+     *           "single-use", and may be used for only a single operation.
+     *           **Defaults to** `false`.
+     *     @type string $className If set, an instance of the given class will
+     *           be instantiated. This setting is intended for internal use.
+     *           **Defaults to** `Google\Cloud\Spanner\Snapshot`.
+     * }
+     * @return Snapshot
+     */
+    public function snapshot(Session $session, array $options = [])
+    {
+        $options += [
+            'singleUse' => false,
+            'className' => Snapshot::class
+        ];
+
+        if (!$options['singleUse']) {
+            $res = $this->beginTransaction($session, $options);
+        } else {
+            $res = [];
+        }
+
+        $className = $this->pluck('className', $options);
+        return $this->createSnapshot(
+            $session,
+            $res + $options,
+            $className
+        );
+    }
+
+    /**
      * Create a Snapshot instance from a response object.
      *
      * @param Session $session The session the snapshot belongs to.
      * @param array $res [optional] The createTransaction response.
+     * @param string $className [optional] The class to instantiate with a
+     *        snapshot. **Defaults to** `Google\Cloud\Spanner\Snapshot`.
      * @return Snapshot
      */
-    public function createSnapshot(Session $session, array $res = [])
+    public function createSnapshot(Session $session, array $res = [], $className = Snapshot::class)
     {
         $res += [
             'id' => null,
@@ -339,7 +353,192 @@ class Operation
             $res['readTimestamp'] = $this->mapper->createTimestampWithNanos($res['readTimestamp'], Timestamp::class);
         }
 
-        return new Snapshot($this, $session, $res);
+        return new $className($this, $session, $res);
+    }
+
+    /**
+     * Create a new session.
+     *
+     * Sessions are handled behind the scenes and this method does not need to
+     * be called directly.
+     *
+     * @param string $databaseName The database name
+     * @param array $options [optional] Configuration options.
+     * @return Session
+     */
+    public function createSession($databaseName, array $options = [])
+    {
+        $res = $this->connection->createSession($options + [
+            'database' => $databaseName
+        ]);
+
+        return $this->session($res['name']);
+    }
+
+    /**
+     * Lazily instantiates a session. There are no network requests made at this
+     * point. To see the operations that can be performed on a session please
+     * see {@see Google\Cloud\Spanner\Session\Session}.
+     *
+     * Sessions are handled behind the scenes and this method does not need to
+     * be called directly.
+     *
+     * @param string $sessionName The session's name.
+     * @return Session
+     */
+    public function session($sessionName)
+    {
+        $sessionNameComponents = GapicSpannerClient::parseName($sessionName);
+        return new Session(
+            $this->connection,
+            $sessionNameComponents['project'],
+            $sessionNameComponents['instance'],
+            $sessionNameComponents['database'],
+            $sessionNameComponents['session']
+        );
+    }
+
+    /**
+     * Begin a partitioned SQL query.
+     *
+     * @param Session $session The session to run in.
+     * @param string $transactionId The transaction to run in.
+     * @param string $sql The query string to execute.
+     * @param array $options {
+     *     Configuration Options
+     *
+     *     @type int $maxPartitions The desired maximum number of partitions to
+     *           return. For example, this may be set to the number of workers
+     *           available. The maximum value is currently 200,000. This is only
+     *           a hint. The actual number of partitions returned may be smaller
+     *           than this maximum count request. **Defaults to** `10000`.
+     *     @type int $partitionSizeBytes The desired data size for each
+     *           partition generated. This is only a hint. The actual size of
+     *           each partition may be smaller or larger than this size request.
+     *           **Defaults to** `1000000000` (i.e. 1 GiB).
+     *     @type array $parameters A key/value array of Query Parameters, where
+     *           the key is represented in the query string prefixed by a `@`
+     *           symbol.
+     *     @type array $types A key/value array of Query Parameter types.
+     *           Generally, Google Cloud PHP can infer types. Explicit type
+     *           definitions are only necessary for null parameter values.
+     *           Accepted values are defined as constants on
+     *           {@see Google\Cloud\Spanner\ValueMapper}, and are as follows:
+     *           `Database::TYPE_BOOL`, `Database::TYPE_INT64`,
+     *           `Database::TYPE_FLOAT64`, `Database::TYPE_TIMESTAMP`,
+     *           `Database::TYPE_DATE`, `Database::TYPE_STRING`,
+     *           `Database::TYPE_BYTES`, `Database::TYPE_ARRAY` and
+     *           `Database::TYPE_STRUCT`. If the parameter type is an array,
+     *           the type should be given as an array, where the first element
+     *           is `Database::TYPE_ARRAY` and the second element is the
+     *           array type, for instance `[Database::TYPE_ARRAY, Database::TYPE_INT64]`.
+     * }
+     * @return QueryPartition[]
+     */
+    public function partitionQuery(Session $session, $transactionId, $sql, array $options = [])
+    {
+        // cache this to pass to the partition instance.
+        $originalOptions = $options;
+
+        $parameters = $this->pluck('parameters', $options, false) ?: [];
+        $types = $this->pluck('types', $options, false) ?: [];
+        $options += $this->mapper->formatParamsForExecuteSql($parameters, $types);
+
+        $options = $this->partitionOptions($options);
+
+        $res = $this->connection->partitionQuery([
+            'session' => $session->name(),
+            'database' => $session->info()['database'],
+            'transactionId' => $transactionId,
+            'sql' => $sql
+        ] + $options);
+
+        $partitions = [];
+        foreach ($res['partitions'] as $partition) {
+            $partitions[] = new QueryPartition(
+                $partition['partitionToken'],
+                $sql,
+                $originalOptions
+            );
+        }
+
+        return $partitions;
+    }
+
+    /**
+     * Begin a partitioned read.
+     *
+     * @param Session $session The session to run in.
+     * @param string $transactionId The transaction to run in.
+     * @param string $table The table name.
+     * @param KeySet $keySet The KeySet to select rows.
+     * @param array $columns A list of column names to return.
+     * @param array $options {
+     *     Configuration Options
+     *
+     *     @type int $maxPartitions The desired maximum number of partitions to
+     *           return. For example, this may be set to the number of workers
+     *           available. The maximum value is currently 200,000. This is only
+     *           a hint. The actual number of partitions returned may be smaller
+     *           than this maximum count request. **Defaults to** `10000`.
+     *     @type int $partitionSizeBytes The desired data size for each
+     *           partition generated. This is only a hint. The actual size of
+     *           each partition may be smaller or larger than this size request.
+     *           **Defaults to** `1000000000` (i.e. 1 GiB).
+     *     @type string $index The name of an index on the table.
+     * }
+     * @return ReadPartition[]
+     */
+    public function partitionRead(
+        Session $session,
+        $transactionId,
+        $table,
+        KeySet $keySet,
+        array $columns,
+        array $options = []
+    ) {
+        // cache this to pass to the partition instance.
+        $originalOptions = $options;
+
+        $options = $this->partitionOptions($options);
+
+        $res = $this->connection->partitionRead([
+            'session' => $session->name(),
+            'database' => $session->info()['database'],
+            'transactionId' => $transactionId,
+            'table' => $table,
+            'columns' => $columns,
+            'keySet' => $this->flattenKeySet($keySet)
+        ] + $options);
+
+        $partitions = [];
+        foreach ($res['partitions'] as $partition) {
+            $partitions[] = new ReadPartition(
+                $partition['partitionToken'],
+                $table,
+                $keySet,
+                $columns,
+                $originalOptions
+            );
+        }
+
+        return $partitions;
+    }
+
+    /**
+     * Normalize options for partition configuration.
+     *
+     * @param array $options
+     * @return array
+     */
+    private function partitionOptions(array $options)
+    {
+        $options['partitionOptions'] = array_filter([
+            'partitionSizeBytes' => $this->pluck('partitionSizeBytes', $options, false),
+            'maxPartitions' => $this->pluck('maxPartitions', $options, false)
+        ]);
+
+        return $options;
     }
 
     /**
