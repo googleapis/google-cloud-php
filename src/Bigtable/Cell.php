@@ -18,17 +18,55 @@
 namespace Google\Cloud\Bigtable;
 
 /**
-*
-*/
+ * Set and get row values
+ *
+ * Example:
+ * ```
+ * use Google\Cloud\Bigtable;
+ *
+ * $cell = new Cell();
+ *
+ * $family = 'cf';
+ * $cell->setFamily($family);
+ * ```
+ *
+ */
 class Cell
 {
+    /**
+     * @var string
+     */
     private $family;
+
+    /**
+     * @var string
+     */
     private $qualifier;
+
+    /**
+     * @var string
+     */
     private $timestamp;
+
+    /**
+     * @var string
+     */
     private $value;
+
+    /**
+     * @var string
+     */
     private $labels;
 
     /**
+     * Set the family name.
+     *
+     * Example:
+     * ```
+     * $family = 'cf';
+     * $cell->setFamily($family);
+     * ```
+     *
      * @param string $family
      */
     public function setFamily($family)
@@ -37,6 +75,13 @@ class Cell
     }
 
     /**
+     * Get the family name. It will return the family name.
+     *
+     * Example:
+     * ```
+     * $familyName = $cell->getFamily();
+     * ```
+     *
      * @return string
      */
     public function getFamily()
@@ -45,6 +90,14 @@ class Cell
     }
 
     /**
+     * Set the Qualifier name.
+     *
+     * Example:
+     * ```
+     * $qualifier = 'qualifier';
+     * $cell->setQualifier();
+     * ```
+     *
      * @param string $qualifier
      */
     public function setQualifier($qualifier)
@@ -53,6 +106,13 @@ class Cell
     }
 
     /**
+     * Get the qualifier name. It will return the qualifier name.
+     *
+     * Example:
+     * ```
+     * $qualifier = $cell->getQualifier();
+     * ```
+     *
      * @return string
      */
     public function getQualifier()
@@ -61,6 +121,14 @@ class Cell
     }
 
     /**
+     * Set the Timestamp.
+     *
+     * Example:
+     * ```
+     * $timestamp = '';
+     * $cell->setQualifier($timestamp);
+     * ```
+     *
      * @param integer $timestamp
      */
     public function setTimestamp($timestamp)
@@ -69,14 +137,29 @@ class Cell
     }
 
     /**
+     * Get the Timestamp. It will return the Timestamp.
+     *
+     * Example:
+     * ```
+     * $timestamp = $cell->getTimestamp();
+     * ```
+     *
      * @return integer
      */
     public function getTimestamp()
     {
         return $this->timestamp;
     }
-
+    
     /**
+     * Set the value.
+     *
+     * Example:
+     * ```
+     * $value = 'Val';
+     * $cell->setValue($value);
+     * ```
+     *
      * @param string $value
      */
     public function setValue($value)
@@ -85,6 +168,13 @@ class Cell
     }
 
     /**
+     * Get the value. It will return the value of row.
+     *
+     * Example:
+     * ```
+     * $value = $cell->getValue();
+     * ```
+     *
      * @return string
      */
     public function getValue()
@@ -93,6 +183,14 @@ class Cell
     }
 
     /**
+     * Set the label.
+     *
+     * Example:
+     * ```
+     * $label = '';
+     * $cell->setValue($label);
+     * ```
+     *
      * @param string $label
      */
     public function setLabels($label)
@@ -101,6 +199,13 @@ class Cell
     }
 
     /**
+     * Get the label. It will return the label of row.
+     *
+     * Example:
+     * ```
+     * $label = $cell->getLabels();
+     * ```
+     *
      * @return string
      */
     public function getLabels()
@@ -109,7 +214,14 @@ class Cell
     }
 
     /**
-     * Concat value
+     * Concat values of cell in progress state rows.
+     *
+     * Example:
+     * ```
+     * $value = '';
+     * $cell->appendValue($value);
+     * ```
+     *
      * @param string $value
      */
     public function appendValue($value)

@@ -17,8 +17,12 @@
 
 namespace Google\Cloud\Tests\Unit\Bigtable;
 
-use Google\Cloud\Bigtable\TableClient;
 use Google\Cloud\Bigtable\FlatRow;
+use Google\Cloud\Bigtable\Admin\V2\Table;
+use Google\Cloud\Bigtable\Admin\V2\ModifyColumnFamiliesRequest;
+use Google\Cloud\Bigtable\Admin\V2\ModifyColumnFamiliesRequest_Modification as Modification;
+use Google\Cloud\Bigtable\Admin\V2\ColumnFamily;
+use Google\Cloud\Bigtable\Admin\V2\GcRule;
 use Google\Cloud\Bigtable\V2\Mutation_SetCell;
 use Google\Cloud\Bigtable\V2\Mutation;
 use Google\Cloud\Bigtable\V2\MutateRowResponse;
@@ -27,18 +31,10 @@ use Google\Cloud\Bigtable\V2\RowFilter;
 use Google\Cloud\Bigtable\V2\CheckAndMutateRowResponse;
 use Google\Cloud\Bigtable\V2\ReadModifyWriteRule;
 use Google\Cloud\Bigtable\V2\ReadModifyWriteRowResponse;
-
-use Google\Cloud\Bigtable\Admin\V2\Table;
-use Google\Cloud\Bigtable\Admin\V2\ModifyColumnFamiliesRequest;
-use Google\Cloud\Bigtable\Admin\V2\ModifyColumnFamiliesRequest_Modification as Modification;
-use Google\Cloud\Bigtable\Admin\V2\ColumnFamily;
-use Google\Cloud\Bigtable\Admin\V2\GcRule;
-
 use Google\Protobuf\Internal\GPBType;
 use Google\Protobuf\Internal\MapField;
 use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\GPBEmpty;
-
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
 
@@ -55,7 +51,7 @@ class TableTest extends TestCase
 
     public function setUp()
     {
-        $this->mock = $this->getMockBuilder(TableClient::class)
+        $this->mock = $this->getMockBuilder(\Google\Cloud\Bigtable\Table::class)
                             ->disableOriginalConstructor()
                             ->getMock();
     }

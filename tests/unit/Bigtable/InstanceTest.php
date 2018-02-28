@@ -17,14 +17,13 @@
 
 namespace Google\Cloud\Tests\Unit\Bigtable;
 
-use Google\Cloud\Bigtable\InstanceClient;
+use Google\ApiCore\OperationResponse;
+use Google\ApiCore\ValidationException;
 use Google\Cloud\Bigtable\Admin\V2\Instance;
 use Google\Cloud\Bigtable\Admin\V2\Instance_Type;
 use Google\Cloud\Bigtable\Admin\V2\ListInstancesResponse;
 use Google\Cloud\Bigtable\Admin\V2\Cluster;
 use Google\Cloud\Bigtable\Admin\V2\ListClustersResponse;
-use Google\ApiCore\ValidationException;
-use Google\ApiCore\OperationResponse;
 use Google\Protobuf\GPBEmpty;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
@@ -40,7 +39,7 @@ class InstanceTest extends TestCase
 
     public function setUp()
     {
-        $this->mock = $this->getMockBuilder(InstanceClient::class)
+        $this->mock = $this->getMockBuilder(\Google\Cloud\Bigtable\Instance::class)
                             ->disableOriginalConstructor()
                             ->getMock();
     }

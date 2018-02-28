@@ -22,7 +22,6 @@ use Google\Cloud\Bigtable\Admin\V2\BigtableTableAdminClient;
 use Google\Cloud\Bigtable\Admin\V2\ColumnFamily;
 use Google\Cloud\Bigtable\Admin\V2\GcRule;
 use Google\Cloud\Bigtable\Admin\V2\ModifyColumnFamiliesRequest_Modification as Modification;
-use Google\Cloud\Bigtable\Admin\V2\Table;
 use Google\Cloud\Bigtable\V2\BigtableClient;
 use Google\Cloud\Bigtable\V2\Mutation;
 use Google\Cloud\Bigtable\V2\Mutation_SetCell;
@@ -34,32 +33,77 @@ use Google\Protobuf\Internal\MapField;
 /**
  * Service for creating, configuring, and deleting Cloud Bigtable tables.
  *
+ * Provides access to the table schemas
+ *
+ * This class provides the ability to make client calls to the backing service through method
+ * calls. Sample code to get started:
+ *
+ * Example:
+ * ```
+ * use Google\Cloud\Bigtable;
+ *
+ * $config = array('projectId' => '[PROJECT]', 'instanceId' => '[INSTANCE]')
+ * $table = new Table($config);
+ *
+ * $tableId = 'foobar';
+ * $response = $table->createTable($tableId);
+ * ```
+ *
+ * Many parameters require resource names to be formatted in a particular way. To assist
+ * with these names, this class includes a format method for each type of name, and additionally
+ * a parseName method to extract the individual identifiers contained within formatted names
+ * that are returned by the API.
  */
-class TableClient
+class Table
 {
-    private $BigtableClient;
-    private $BigtableTableAdminClient;
+    /**
+     * @var V2\BigtableClient
+     */
+    private $bigtableClient;
+
+    /**
+     * @var Admin\V2\BigtableTableAdminClient
+     */
+    private $bigtableTableAdminClient;
+
+    /**
+     * @var string
+     */
     private $projectId;
+
+    /**
+     * @var string
+     */
     private $instanceId;
+
+    /**
+     * @var string
+     */
     private $tableId;
+
+    /**
+     * @var string formatted instance name
+     */
     private $formattedInstance;
 
     /**
-     * Constructor.
-     * @param array $args {
+     * Create a Bigtable Client.
+     *
+     * @param array $config {
+     *      Configuration Options.
      *
      *     @param string $projectId
      *
      *     @param string $instanceId
      */
-    public function __construct($args)
+    public function __construct($config)
     {
-        $this->projectId = $args['projectId'];
-        $this->instanceId = $args['instanceId'];
+        $this->projectId = $config['projectId'];
+        $this->instanceId = $config['instanceId'];
         $this->formattedInstance = BigtableTableAdminClient::instanceName($this->projectId, $this->instanceId);
 
-        $this->BigtableClient = new BigtableClient();
-        $this->BigtableTableAdminClient = new BigtableTableAdminClient();
+        $this->bigtableClient = new BigtableClient();
+        $this->bigtableTableAdminClient = new BigtableTableAdminClient();
     }
 
     /**
@@ -76,6 +120,12 @@ class TableClient
 
     /**
      * Creates a new table in the specified instance.
+     *
+     * Example:
+     * ```
+     * $tableId = 'foobar';
+     * $response = $table->createTable($tableId);
+     * ```
      *
      * @param string $tableId      The name by which the new table should be referred to within the parent
      *                             instance, e.g., `foobar` rather than `<parent>/tables/foobar`.
@@ -113,12 +163,22 @@ class TableClient
     public function createTable($tableId, $optionalArgs = [])
     {
         $parent = $this->formattedInstance;
-        $Table = $this->BigtableTableAdminClient->createTable($parent, $tableId, new Table(), $optionalArgs);
+        $table = new \Google\Cloud\Bigtable\Admin\V2\Table();
+        $Table = $this->bigtableTableAdminClient->createTable($parent, $tableId, $table, $optionalArgs);
         return $Table;
     }
 
     /**
      * Creates a new table in the specified instance with column family.
+     * The table can be created with a full set of initial column families,
+     * specified in the request.
+     *
+     * Example:
+     * ```
+     * $tableId = 'foobar';
+     * $columnFamily = 'cf';
+     * $response = $table->createTableWithColumnFamily($tableId, $columnFamily);
+     * ```
      *
      * @param string $tableId      The name by which the new table should be referred to within the parent
      *                             instance, e.g., `foobar` rather than `<parent>/tables/foobar`.
@@ -152,24 +212,32 @@ class TableClient
      * }
      * @return \Google\Bigtable\Admin\V2\Table
      *
-     * @throws \Google\GAX\ApiException if the remote call fails
+     * @throws \Google\GAX\ApiException if the remote call fails.
      */
     public function createTableWithColumnFamily($tableId, $columnFamily, $optionalArgs = [])
     {
-        $table = new Table();
+        $table = new \Google\Cloud\Bigtable\Admin\V2\Table();
         $table->setGranularity(3);
 
         $MapField = $this->columnFamily(3, $columnFamily);
         $table->setColumnFamilies($MapField);
 
         $parent = $this->formattedInstance;
-        $Table = $this->BigtableTableAdminClient->createTable($parent, $tableId, $table, $optionalArgs);
+        $Table = $this->bigtableTableAdminClient->createTable($parent, $tableId, $table, $optionalArgs);
         return $Table;
     }
 
     /**
-     * Creates a new table in the specified instance with column family.
-     * @param integer $MaxNumVersions
+     * MapField of columnFamily.
+     *
+     * Example:
+     * ```
+     * $MaxNumVersions = 2;
+     * $columnFamily = 'cf';
+     * $MapField = $table->columnFamily($MaxNumVersions, $columnFamily);
+     * ```
+     *
+     * @param integer $MaxNumVersions   Set max num of versions to GcRule.
      *
      * @param string $columnFamily e.g., `cf`
      *
@@ -191,6 +259,12 @@ class TableClient
     /**
      * Permanently deletes a specified table and all of its data.
      *
+     * Example:
+     * ```
+     * $tableId = 'foobar';
+     * $table->deleteTable($tableId);
+     * ```
+     *
      * @param string $tableId       The table should be deleted from the parent instance
      *
      * @param array  $optionalArgs {
@@ -211,11 +285,21 @@ class TableClient
     public function deleteTable($tableId, $optionalArgs = [])
     {
         $formattedTable = $this->tableName($tableId);
-        return $this->BigtableTableAdminClient->deleteTable($formattedTable, $optionalArgs);
+        return $this->bigtableTableAdminClient->deleteTable($formattedTable, $optionalArgs);
     }
 
     /**
      * Lists all tables served from a specified instance.
+     *
+     * Example:
+     * ```
+     * $pagedResponse = $table->listTables();
+     * foreach ($pagedResponse->iteratePages() as $page) {
+     *      foreach ($page as $element) {
+     *          // doSomethingWith($element);
+     *      }
+     * }
+     * ```
      *
      * @param array  $optionalArgs {
      *                             Optional.
@@ -240,12 +324,20 @@ class TableClient
      */
     public function listTables($optionalArgs = [])
     {
-        $PagedListResponse = $this->BigtableTableAdminClient->listTables($this->formattedInstance, $optionalArgs);
+        $PagedListResponse = $this->bigtableTableAdminClient->listTables($this->formattedInstance, $optionalArgs);
         return $PagedListResponse;
     }
 
     /**
      * Gets metadata information about the specified table.
+     *
+     * Example:
+     * ```
+     * $tableId = 'foobar';
+     * $response = $table->getTable($tableId);
+     * ```
+     *
+     * $response = $bigtableTableAdminClient->getTable($formattedName);
      *
      * @param string $tableId
      *
@@ -256,11 +348,18 @@ class TableClient
     public function getTable($tableId)
     {
         $formattedTable = $this->tableName($tableId);
-        return $this->BigtableTableAdminClient->getTable($formattedTable);
+        return $this->bigtableTableAdminClient->getTable($formattedTable);
     }
 
     /**
-     * Modify column family to perticular table.
+     * Add column family to perticular table.
+     *
+     * Example:
+     * ```
+     * $tableId = 'foobar';
+     * $cfName = 'cf';
+     * $response = $table->addColumnFamilies($tableId, $cfName);
+     * ```
      *
      * @param string $tableId
      *
@@ -296,12 +395,19 @@ class TableClient
         $Modifications    = [];
         $Modifications[] = $Modification;
 
-        $table = $this->BigtableTableAdminClient->modifyColumnFamilies($formattedTable, $Modifications, $optionalArgs);
+        $table = $this->bigtableTableAdminClient->modifyColumnFamilies($formattedTable, $Modifications, $optionalArgs);
         return $table;
     }
 
     /**
-     * update column family to perticular table.
+     * Update column family to perticular table.
+     *
+     * Example:
+     * ```
+     * $tableId = 'foobar';
+     * $cfName = 'cf';
+     * $response = $table->updateColumnFamilies($tableId, $cfName);
+     * ```
      *
      * @param string $tableId
      *
@@ -337,12 +443,19 @@ class TableClient
         $Modifications    = [];
         $Modifications[] = $Modification;
 
-        $table = $this->BigtableTableAdminClient->modifyColumnFamilies($formattedTable, $Modifications, $optionalArgs);
+        $table = $this->bigtableTableAdminClient->modifyColumnFamilies($formattedTable, $Modifications, $optionalArgs);
         return $table;
     }
 
     /**
-     * delete column family from perticular table.
+     * Delete column family from perticular table.
+     *
+     * Example:
+     * ```
+     * $tableId = 'foobar';
+     * $cfName = 'cf';
+     * $response = $table->deleteColumnFamilies($tableId, $cfName);
+     * ```
      *
      * @param string $tableId
      *
@@ -371,7 +484,7 @@ class TableClient
         $Modifications = [];
         $Modifications[] = $Modification;
 
-        $table = $this->BigtableTableAdminClient->modifyColumnFamilies($formattedTable, $Modifications, $optionalArgs);
+        $table = $this->bigtableTableAdminClient->modifyColumnFamilies($formattedTable, $Modifications, $optionalArgs);
         return $table;
     }
 
@@ -379,6 +492,12 @@ class TableClient
      * Permanently drop/delete a row range from a specified table. The request can
      * specify whether to delete all rows in a table, or only those that match a
      * particular prefix.
+     *
+     * Example:
+     * ```
+     * $tableId = 'foobar';
+     * $table->dropRowRange($tableId);
+     * ```
      *
      * @param string $tableId       The unique name of the table on which to drop a range of rows.
      *
@@ -404,13 +523,35 @@ class TableClient
     public function dropRowRange($tableId, $optionalArgs = [])
     {
         $formattedName = $this->tableName($tableId);
-        return $this->BigtableTableAdminClient->dropRowRange($formattedName, $optionalArgs);
+        return $this->bigtableTableAdminClient->dropRowRange($formattedName, $optionalArgs);
     }
 
     /**
      * Mutates multiple rows in a batch. Each individual row is mutated
      * atomically as in MutateRow, but the entire batch is not executed
      * atomically.
+     *
+     * Example:
+     * ```
+     * $utc_str = gmdate("M d Y H:i:s", time());
+     * $utc     = strtotime($utc_str)*1000;
+     * $cell    = array(
+     *              'cf' => 'cf',
+     *              'qualifier' => 'field',
+     *              'value' => 'val',
+     *              'timestamp' => $utc
+     *              );
+     * $mutations[] = $table->mutationCell($cell);
+     *
+     * $rowKey = 'user00000000';
+     * $entries[] = $table->mutateRowsRequest($rowKey, $mutations);
+     *
+     * $tableId = 'foobar';
+     * $stream = $table->mutateRows($tableId, $entries);
+     * foreach ($stream->readAll() as $element) {
+     *      doSomethingWith($element);
+     * }
+     * ```
      *
      * @param string $tableId
      *
@@ -433,13 +574,30 @@ class TableClient
     public function mutateRows($tableId, $entries, $optionalArgs = [])
     {
         $formattedTable = $this->tableName($tableId);
-        $ServerStream = $this->BigtableClient->mutateRows($formattedTable, $entries, $optionalArgs);
+        $ServerStream = $this->bigtableClient->mutateRows($formattedTable, $entries, $optionalArgs);
         return $ServerStream;
     }
 
     /**
      * Mutates a row atomically. Cells already present in the row are left
      * unchanged unless explicitly changed by `mutation`.
+     *
+     * Example:
+     * ```
+     * $utc_str = gmdate("M d Y H:i:s", time());
+     * $utc     = strtotime($utc_str)*1000;
+     * $cell    = array(
+     *              'cf' => 'cf',
+     *              'qualifier' => 'field',
+     *              'value' => 'val',
+     *              'timestamp' => $utc
+     *            );
+     * $mutations[] = $table->mutationCell($cell);
+     *
+     * $rowKey = 'user0000000';
+     * $tableId = 'foobar';
+     * $response = $table->mutateRow($tableId, $rowKey, $mutations);
+     * ```
      *
      * @param string $tableId
      *
@@ -465,18 +623,31 @@ class TableClient
     public function mutateRow($tableId, $rowKey, $mutations, $optionalArgs = [])
     {
         $formattedTable = $this->tableName($tableId);
-        $MutateRowResponse = $this->BigtableClient->mutateRow($formattedTable, $rowKey, $mutations, $optionalArgs);
+        $MutateRowResponse = $this->bigtableClient->mutateRow($formattedTable, $rowKey, $mutations, $optionalArgs);
         return $MutateRowResponse;
     }
 
     /**
-     * Set Mutation SetCell.
+     * Set cell on Mutation.
+     *
+     * Example:
+     * ```
+     * $utc_str = gmdate("M d Y H:i:s", time());
+     * $utc     = strtotime($utc_str)*1000;
+     * $cell    = array(
+     *              'cf' => 'cf',
+     *              'qualifier' => 'field',
+     *              'value' => 'val',
+     *              'timestamp' => $utc
+     *            );
+     * $mutation = $table->mutationCell($cell);
+     * ```
      *
      * @param array   $cell {
-     *                 @type    string cf           Column Family name
-     *                 @type    string qualifier    Qualifier name
-     *                 @type    string value        value
-     *                 @type    string timestamp    Timestamp in micros
+     *                 @param    string cf           Column Family name
+     *                 @param    string qualifier    Qualifier name
+     *                 @param    string value        value
+     *                 @param    string timestamp    Timestamp in micros
      *
      * @return \Google\Bigtable\V2\Mutation
      */
@@ -502,7 +673,23 @@ class TableClient
     }
 
     /**
-     * Set Mutate Rows Request.
+     * Set mutations into mutate Rows Request.
+     *
+     * Example:
+     * ```
+     * $utc_str = gmdate("M d Y H:i:s", time());
+     * $utc     = strtotime($utc_str)*1000;
+     * $cell    = array(
+     *              'cf' => 'cf',
+     *              'qualifier' => 'field',
+     *              'value' => 'val',
+     *              'timestamp' => $utc
+     *            );
+     * $mutations[] = $table->mutationCell($cell);
+     *
+     * $rowKey = 'user00000000';
+     * $requestEntry = $table->mutateRowsRequest($rowKey, $mutations);
+     * ```
      *
      * @param string $rowKey
      *
@@ -520,6 +707,32 @@ class TableClient
 
     /**
      * Read rows from table.
+     * Streams back the contents of all requested rows in key order, optionally
+     * applying the same Reader filter to each. Depending on their size,
+     * rows and cells may be broken up across multiple responses, but
+     * atomicity of each row will still be preserved. See the
+     * ReadRowsResponse documentation for details.
+     *
+     * Example:
+     * ```
+     * $tableId = 'foobar';
+     * $flatRows = $table->readRows($tableId);
+     *
+     * // OR
+     *
+     * $rowKey = 'user00000000';
+     * $rowSet = new \Google\Bigtable\V2\RowSet();
+     * $rowSet->setRowKeys([$rowKey]);
+     *
+     * $rowFilter = new \Google\Bigtable\V2\RowFilter();
+     * $rowFilter->setCellsPerRowLimitFilter(1);
+     *
+     * $options['rows'] = $rowSet;
+     * $options['filter'] = $rowFilter;
+     *
+     * $tableId = 'foobar';
+     * $flatRows = $table->readRows($tableId, $options);
+     * ```
      *
      * @param string $tableId
      *
@@ -545,7 +758,7 @@ class TableClient
     public function readRows($tableId, $optionalArgs = [])
     {
         $formattedTable = $this->tableName($tableId);
-        $serverStream   = $this->BigtableClient->readRows($formattedTable, $optionalArgs);
+        $serverStream   = $this->bigtableClient->readRows($formattedTable, $optionalArgs);
         $chunkFormatter = new ChunkFormatter($serverStream, $optionalArgs);
         $rows           = [];
         foreach ($chunkFormatter->readAll() as $flatRow) {
@@ -559,6 +772,15 @@ class TableClient
      * delimit contiguous sections of the table of approximately equal size,
      * which can be used to break up the data for distributed tasks like
      * mapreduces.
+     *
+     * Example:
+     * ```
+     * $tableId = 'foobar';
+     * $stream = $table->sampleRowKeys($tableId);
+     * foreach ($stream->readAll() as $element) {
+     *      // doSomethingWith($element);
+     * }
+     * ```
      *
      * @param string $tableId
      *
@@ -577,12 +799,19 @@ class TableClient
     public function sampleRowKeys($tableId, $optionalArgs = [])
     {
         $formattedTable = $this->tableName($tableId);
-        $stream = $this->BigtableClient->sampleRowKeys($formattedTable, $optionalArgs);
+        $stream = $this->bigtableClient->sampleRowKeys($formattedTable, $optionalArgs);
         return $stream;
     }
 
     /**
      * Mutates a row atomically based on the output of a predicate Reader filter.
+     *
+     * Example:
+     * ```
+     * $tableId = 'foobar';
+     * $rowKey = 'user00000000';
+     * $response = $table->checkAndMutateRow($tableId, $rowKey);
+     * ```
      *
      * @param string $tableId
      *
@@ -622,7 +851,7 @@ class TableClient
     public function checkAndMutateRow($tableId, $rowKey, $optionalArgs = [])
     {
         $formattedTable = $this->tableName($tableId);
-        $response = $this->BigtableClient->checkAndMutateRow($formattedTable, $rowKey, $optionalArgs);
+        $response = $this->bigtableClient->checkAndMutateRow($formattedTable, $rowKey, $optionalArgs);
         return $response;
     }
 
@@ -632,6 +861,19 @@ class TableClient
      * pre-defined read/modify/write rules. The new value for the timestamp is the
      * greater of the existing timestamp or the current server time. The method
      * returns the new contents of all modified cells.
+     *
+     * Example:
+     * ```
+     * $_rules = array();
+     * $RowRules = new \Google\Bigtable\V2\ReadModifyWriteRule();
+     * $RowRules->setFamilyName('cf');
+     * $RowRules->setColumnQualifier('qualifier');
+     * $RowRules->setAppendValue('VAl');
+     * $_rules[] = $ReadModifyWriteRule;
+     * $tableId = 'foobar';
+     * $rowKey = 'user00000000';
+     * $response = $table->readModifyWriteRow($tableId, $rowKey, $_rules);
+     * ```
      *
      * @param string $tableId
      *
@@ -659,7 +901,7 @@ class TableClient
     public function readModifyWriteRow($tableId, $rowKey, $rules, $optionalArgs = [])
     {
         $formattedTable = $this->tableName($tableId);
-        $response = $this->BigtableClient->readModifyWriteRow($formattedTable, $rowKey, $rules, $optionalArgs);
+        $response = $this->bigtableClient->readModifyWriteRow($formattedTable, $rowKey, $rules, $optionalArgs);
         return $response;
     }
 }

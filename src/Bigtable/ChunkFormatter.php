@@ -22,20 +22,72 @@ use Google\Cloud\Bigtable\FlatRow;
 use Google\ApiCore\ValidationException;
 
 /**
+ * Chunk Formatter check the row state is NEW_ROW, ROW_IN_PROGRESS and CELL_IN_PROGRESS.
+ *
+ * Example:
+ * ```
+ * use Google\Cloud\Bigtable;
+ *
+ * $stream = new \Google\GAX\ServerStream();
+ * $options = [];
+ * $chunkFormatter = new ChunkFormatter($stream, $options);
+ * foreach ($chunkFormatter->readAll() as $flatRow) {
+ *       doSomething();
+ * }
+ * ```
  *
  */
 class ChunkFormatter
 {
+    /**
+     * @var array
+     */
     private $RowStateEnum;
+
+    /**
+     * @var string
+     */
     private $prevRowKey;
+
+    /**
+     * @var string
+     */
     private $familyName;
+
+    /**
+     * @var string
+     */
     private $qualifierName;
+
+    /**
+     * @var integer
+     */
     private $state;
+
+    /**
+     * @var Google\GAX\ServerStream
+     */
     private $serverStream;
     private $options;
+
+    /**
+     * @var Google\Cloud\Bigtable\FlatRow
+     */
     private $flatRow;
+
+    /**
+     * @var Google\Cloud\Bigtable\Cell
+     */
     private $cell;
+
+    /**
+     * @var integer
+     */
     private $timestamp;
+
+    /**
+     * @var string
+     */
     private $lables;
 
     /**
@@ -69,6 +121,9 @@ class ChunkFormatter
      *     be discarded.
      *
      * @public
+     *
+     * @return \Google\Cloud\Bigtable\FlatRow
+     *
      * @throws Error if it detects invalid state
      */
     public function readAll()

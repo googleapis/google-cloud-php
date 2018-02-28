@@ -19,18 +19,19 @@ namespace Google\Cloud\Tests\System\Bigtable;
 
 require_once __DIR__ .'/../../../vendor/autoload.php';
 
+use Google\ApiCore\ServerStream;
+use Google\ApiCore\ValidationException;
+use Google\ApiCore\Testing\MockServerStreamingCall;
 use Google\Cloud\Bigtable\Cell;
 use Google\Cloud\Bigtable\ChunkFormatter;
 use Google\Cloud\Bigtable\FlatRow;
 use Google\Cloud\Bigtable\V2\ReadRowsResponse;
 use Google\Cloud\Bigtable\V2\ReadRowsResponse_CellChunk;
-use Google\ApiCore\ServerStream;
-use Google\ApiCore\Testing\MockServerStreamingCall;
-use Google\ApiCore\ValidationException;
 use PHPUnit\Framework\TestCase;
 
 /**
- *
+ * Check the test cases for the row read rows of table
+ * Read the json file and chek the each test cases like New row, Row In Progress, Cell In Progress for the row
  */
 class ReadRowsAcceptanceTest extends TestCase
 {

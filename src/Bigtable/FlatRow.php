@@ -18,14 +18,42 @@
 namespace Google\Cloud\Bigtable;
 
 /**
+ * Set and get cell values.
+ *
+ * Example:
+ * ```
+ * use Google\Cloud\Bigtable;
+ *
+ * $flatRow = new FlatRow();
+ *
+ * $rowKey = 'perf';
+ * $cells = [];
+ * $flatRow->setFlatRow($rowKey, $cells);
+ * ```
  *
  */
 class FlatRow
 {
+    /**
+     * @var string
+     */
     private $rowKey = null;
+
+    /**
+     * @var array
+     */
     private $cells  = [];
 
     /**
+     * Set rowKey and cell values to be form in array.
+     *
+     * Example:
+     * ```
+     * $rowKey = 'perf';
+     * $cells = [];
+     * $flatRow->setFlatRow($rowKey, $cells);
+     * ```
+     *
      * @param string $rowKey
      * @param string $cells
      */
@@ -37,6 +65,12 @@ class FlatRow
 
     /**
      * Reset rowKey and cells
+     *
+     * Example:
+     * ```
+     * $flatRow->reSetFlatRow();
+     * ```
+     *
      */
     public function reSetFlatRow()
     {
@@ -45,6 +79,14 @@ class FlatRow
     }
 
     /**
+     * Set the rowKey of the row.
+     *
+     * Example:
+     * ```
+     * $rowKey = 'perf';
+     * $flatRow->setFlatRow($rowKey);
+     * ```
+     *
      * @param string $rowKey
      */
     public function setRowKey($rowKey)
@@ -53,6 +95,13 @@ class FlatRow
     }
 
     /**
+     * Get the rowKey of the row.
+     *
+     * Example:
+     * ```
+     * $rowKey = $flatRow->getRowKey();
+     * ```
+     *
      * @return string
      */
     public function getRowKey()
@@ -61,6 +110,14 @@ class FlatRow
     }
 
     /**
+     * Set the cell object.
+     *
+     * Example:
+     * ```
+     * $cell = new Cell();
+     * $flatRow->setCells($cell);
+     * ```
+     *
      * @param $cell Google\Cloud\Bigtable\Cell
      */
     public function setCells($cell)
@@ -69,6 +126,13 @@ class FlatRow
     }
 
     /**
+     * Get the cell object.
+     *
+     * Example:
+     * ```
+     * $cell = $flatRow->getCells();
+     * ```
+     *
      * @return Google\Cloud\Bigtable\Cell
      */
     public function getCells()
@@ -77,6 +141,14 @@ class FlatRow
     }
 
     /**
+     * Push ROW_IN_PROGRSS or ROW_IN_CELL to current row.
+     *
+     * Example:
+     * ```
+     * $cell = new Cell();
+     * $flatRow->addCell($cell);
+     * ```
+     *
      * @param $cell Google\Cloud\Bigtable\Cell
      */
     public function addCell($cell)
