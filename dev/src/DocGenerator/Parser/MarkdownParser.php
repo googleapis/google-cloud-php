@@ -35,7 +35,6 @@ class MarkdownParser implements ParserInterface
 
     public function parse()
     {
-        // echo $this->currentFile;exit;
         $html = $this->markdown->parse($this->content);
 
         $doc = new DOMDocument;
