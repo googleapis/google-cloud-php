@@ -6,32 +6,11 @@ putenv('GOOGLE_APPLICATION_CREDENTIALS='. __DIR__ . '/keyfile-stub.json');
 
 use Google\Cloud\Core\Testing\Snippet\Container;
 use Google\Cloud\Core\Testing\Snippet\Coverage\Coverage;
+use Google\Cloud\Core\Testing\Snippet\Coverage\ExcludeFilter;
 use Google\Cloud\Core\Testing\Snippet\Coverage\Scanner;
 use Google\Cloud\Core\Testing\Snippet\Parser\Parser;
 
 require __DIR__ . '/../../vendor/autoload.php';
-
-class ExcludeFilter extends FilterIterator {
-
-    private $excludeDirs;
-
-    public function __construct(Iterator $iterator, array $excludeDirs)
-    {
-        parent::__construct($iterator);
-        $this->excludeDirs = $excludeDirs;
-    }
-
-    public function accept() {
-        // Accept the current item if we can recurse into it
-        // or it is a value starting with "test"
-        foreach ($this->excludeDirs as $excludeDir) {
-            if (strpos($this->current(), $excludeDir) !== FALSE) {
-                return false;
-            }
-        }
-        return true;
-    }
-}
 
 $filteredIterator = new ExcludeFilter(
     new GlobIterator(__DIR__ . '/../../src'),

@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-namespace Google\Cloud\Tests\Perf;
+namespace Google\Cloud\BigQuery\Tests\Perf;
 
 use Google\Cloud\BigQuery\BigQueryClient;
 use PHPUnit\Framework\TestCase;
@@ -67,7 +67,7 @@ class BigQueryPerfTest extends TestCase
 
     public function queries()
     {
-        $queries = json_decode(file_get_contents(__DIR__ .'/fixtures/'. self::SOURCE), true);
+        $queries = json_decode(file_get_contents(__DIR__ . '/fixtures/' . self::SOURCE), true);
         foreach ($queries as $key => $q) {
             $queries[$key] = is_array($q)
                 ? $q
