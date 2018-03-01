@@ -13,7 +13,7 @@
         "erusev/parsedown": "^1.6",
         "google/cloud-core": "dev-master as 1.14",
         "phpseclib/phpseclib": "^2",
-        "google/cloud-pubsub": "^0.12"
+        "google/cloud-pubsub": "^1.0"
     },
     "suggest": {
         "phpseclib/phpseclib": "May be used in place of OpenSSL for creating signed Cloud Storage URLs. Please require version ^2.",
