@@ -2,7 +2,7 @@
 
 // Provide a project ID. If you're mocking your service calls (and if you aren't
 // start now) you don't need anything else.
-putenv('GOOGLE_APPLICATION_CREDENTIALS='. __DIR__ . '/keyfile-stub.json');
+putenv('GOOGLE_APPLICATION_CREDENTIALS='. __DIR__ . '/../../vendor/google/cloud-core/src/Testing/Snippet/keyfile-stub.json');
 
 use Google\Cloud\Core\Testing\Snippet\Container;
 use Google\Cloud\Core\Testing\Snippet\Coverage\Coverage;
