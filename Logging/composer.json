@@ -16,7 +16,7 @@
         "google/cloud-core": "dev-master as 1.14",
         "google/cloud-storage": "^1.3",
         "google/cloud-bigquery": "^1.0",
-        "google/cloud-pubsub": "^0.12"
+        "google/cloud-pubsub": "^1.0"
     },
     "suggest": {
         "ext-grpc": "The gRPC extension enables use of the performant gRPC transport",
