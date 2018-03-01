@@ -95,6 +95,7 @@
     },
     "autoload": {
         "psr-4": {
+            "Google\\Cloud\\": "src",
             "Google\\Cloud\\BigQuery\\": "BigQuery/src",
             "Google\\Cloud\\Bigtable\\": "Bigtable/src",
             "Google\\Cloud\\Container\\": "Container/src",
@@ -145,10 +146,7 @@
             "Google\\Cloud\\Translate\\Tests\\": "Translate/tests",
             "Google\\Cloud\\VideoIntelligence\\Tests\\": "VideoIntelligence/tests",
             "Google\\Cloud\\Vision\\Tests\\": "Vision/tests"
-        },
-        "classmap": [
-            "tests/conformance-fixtures"
-        ]
+        }
     },
     "scripts": {
         "google-cloud": "dev/google-cloud"

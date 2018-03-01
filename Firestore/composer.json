@@ -35,10 +35,11 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "Google\\Cloud\\Tests\\Unit\\Firestore\\": "tests/unit",
-            "Google\\Cloud\\Tests\\Snippet\\Firestore\\": "tests/snippets",
-            "Google\\Cloud\\Tests\\System\\Firestore\\": "tests/system"
-        }
+            "Google\\Cloud\\Firestore\\Tests\\": "tests"
+        },
+        "classmap": [
+            "tests/conformance-fixtures"
+        ]
     },
     "repositories": [{
         "type": "vcs",
