@@ -21,7 +21,6 @@ use Google\ApiCore\ArrayTrait;
 use Google\Cloud\Vision\V1\AnnotateImageRequest;
 use Google\Cloud\Vision\V1\AnnotateImageResponse;
 use Google\Cloud\Vision\V1\Feature;
-use Google\Cloud\Vision\V1\Image;
 use InvalidArgumentException;
 
 /**
