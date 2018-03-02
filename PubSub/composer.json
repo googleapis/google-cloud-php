@@ -34,9 +34,7 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "Google\\Cloud\\Tests\\Unit\\PubSub\\": "tests/unit",
-            "Google\\Cloud\\Tests\\Snippet\\PubSub\\": "tests/snippets",
-            "Google\\Cloud\\Tests\\System\\PubSub\\": "tests/system"
+            "Google\\Cloud\\PubSub\\Tests\\": "tests"
         }
     },
     "repositories": [{

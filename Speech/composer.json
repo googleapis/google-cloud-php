@@ -35,9 +35,7 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "Google\\Cloud\\Tests\\Unit\\Speech\\": "tests/unit",
-            "Google\\Cloud\\Tests\\Snippet\\Speech\\": "tests/snippets",
-            "Google\\Cloud\\Tests\\System\\Speech\\": "tests/system"
+            "Google\\Cloud\\Speech\\Tests\\": "tests"
         }
     },
     "repositories": [{

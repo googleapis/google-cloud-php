@@ -38,9 +38,7 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "Google\\Cloud\\Tests\\Unit\\Trace\\": "tests/unit",
-            "Google\\Cloud\\Tests\\Snippet\\Trace\\": "tests/snippets",
-            "Google\\Cloud\\Tests\\System\\Trace\\": "tests/system"
+            "Google\\Cloud\\Trace\\Tests\\": "tests"
         }
     },
     "repositories": [{

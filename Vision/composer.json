@@ -36,9 +36,7 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "Google\\Cloud\\Tests\\Unit\\Vision\\": "tests/unit",
-            "Google\\Cloud\\Tests\\Snippet\\Vision\\": "tests/snippets",
-            "Google\\Cloud\\Tests\\System\\Vision\\": "tests/system"
+            "Google\\Cloud\\Vision\\Tests\\": "tests"
         }
     },
     "repositories": [{
