@@ -95,7 +95,7 @@ class FaceTest extends SnippetTestCase
 
     public function testLandmarks()
     {
-        $snippet = $this->snippetFromMagicMethod(Face::class, 'landmarks');
+        $snippet = $this->snippetFromMethod(Face::class, 'landmarks');
         $snippet->addLocal('face', new Face([
             'landmarks' => [
                 [

@@ -35,13 +35,13 @@ class Scanner implements ScannerInterface
     protected $parser;
 
     /**
-     * @var string
+     * @var array
      */
     private $basePath;
 
     /**
      * @param Parser $parser An instance of the Snippet Parser.
-     * @param string $basepath The path to scan for PHP files.
+     * @param \Iterator|string $basepath The path(s) to scan for PHP files.
      *
      * @experimental
      * @internal
@@ -49,6 +49,9 @@ class Scanner implements ScannerInterface
     public function __construct(Parser $parser, $basePath)
     {
         $this->parser = $parser;
+        if (is_string($basePath)) {
+            $basePath = [$basePath];
+        }
         $this->basePath = $basePath;
     }
 
@@ -62,17 +65,19 @@ class Scanner implements ScannerInterface
      */
     public function files()
     {
-        $regexIterator = new \RegexIterator(
-            new \RecursiveIteratorIterator(
-                new \RecursiveDirectoryIterator($this->basePath)
-            ),
-            '/^.+\.php$/i',
-            \RecursiveRegexIterator::GET_MATCH
-        );
-
         $files = [];
-        foreach ($regexIterator as $item) {
-            array_push($files, $item[0]);
+        foreach ($this->basePath as $basePath) {
+            $regexIterator = new \RegexIterator(
+                new \RecursiveIteratorIterator(
+                    new \RecursiveDirectoryIterator($basePath)
+                ),
+                '/^.+\.php$/i',
+                \RecursiveRegexIterator::GET_MATCH
+            );
+
+            foreach ($regexIterator as $item) {
+                array_push($files, $item[0]);
+            }
         }
 
         return $files;
