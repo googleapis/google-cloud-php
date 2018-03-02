@@ -17,9 +17,15 @@
 
 namespace Google\Cloud\Core\Testing\Snippet;
 
+/**
+ * Fixtures that can be used for testing
+ */
 class Fixtures
 {
-    public static function KEYFILE_STUB_FIXTURE()
+    /**
+     * @return string Location of keyfile-stub fixture
+     */
+    public static function keyfileStubFixture()
     {
         return __DIR__ . '/keyfile-stub.json';
     }

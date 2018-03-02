@@ -20,21 +20,33 @@ namespace Google\Cloud\Core\Testing\Snippet\Coverage;
 use FilterIterator;
 use Iterator;
 
+/**
+ * ExcludeFilter can be used to exclude directories from an iterable list
+ */
 class ExcludeFilter extends FilterIterator
 {
     private $excludeDirs;
 
+    /**
+     * ExcludeFilter constructor.
+     * @param Iterator $iterator
+     * @param array $excludeDirs
+     */
     public function __construct(Iterator $iterator, array $excludeDirs)
     {
         parent::__construct($iterator);
         $this->excludeDirs = $excludeDirs;
     }
 
-    public function accept() {
+    /**
+     * @return bool
+     */
+    public function accept()
+    {
         // Accept the current item if we can recurse into it
         // or it is a value starting with "test"
         foreach ($this->excludeDirs as $excludeDir) {
-            if (strpos($this->current(), $excludeDir) !== FALSE) {
+            if (strpos($this->current(), $excludeDir) !== false) {
                 return false;
             }
         }
