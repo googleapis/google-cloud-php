@@ -36,9 +36,7 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "Google\\Cloud\\Tests\\Unit\\Language\\": "tests/unit",
-            "Google\\Cloud\\Tests\\Snippet\\Language\\": "tests/snippets",
-            "Google\\Cloud\\Tests\\System\\Language\\": "tests/system"
+            "Google\\Cloud\\Language\\Tests\\": "tests"
         }
     },
     "repositories": [{

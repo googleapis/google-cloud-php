@@ -34,9 +34,7 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "Google\\Cloud\\Tests\\Unit\\Spanner\\": "tests/unit",
-            "Google\\Cloud\\Tests\\Snippet\\Spanner\\": "tests/snippets",
-            "Google\\Cloud\\Tests\\System\\Spanner\\": "tests/system"
+            "Google\\Cloud\\Spanner\\Tests\\": "tests"
         }
     },
     "repositories": [{

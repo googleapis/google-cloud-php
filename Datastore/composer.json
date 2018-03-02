@@ -28,9 +28,7 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "Google\\Cloud\\Tests\\Unit\\Datastore\\": "tests/unit",
-            "Google\\Cloud\\Tests\\Snippet\\Datastore\\": "tests/snippets",
-            "Google\\Cloud\\Tests\\System\\Datastore\\": "tests/system"
+            "Google\\Cloud\\Datastore\\Tests\\": "tests"
         }
     },
     "repositories": [{
