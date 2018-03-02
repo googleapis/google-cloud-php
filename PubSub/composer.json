@@ -12,8 +12,7 @@
         "phpunit/phpunit": "^4.8|^5.0",
         "squizlabs/php_codesniffer": "2.*",
         "phpdocumentor/reflection": "^3.0",
-        "erusev/parsedown": "^1.6",
-        "google/cloud-core": "dev-master as 1.14"
+        "erusev/parsedown": "^1.6"
     },
     "suggest": {
         "ext-grpc": "The gRPC extension enables use of the performant gRPC transport",
@@ -36,9 +35,5 @@
         "psr-4": {
             "Google\\Cloud\\PubSub\\Tests\\": "tests"
         }
-    },
-    "repositories": [{
-        "type": "vcs",
-        "url": "https://github.com/michaelbausor/google-cloud-php-core.git"
-    }]
+    }
 }
