@@ -13,7 +13,6 @@
         "squizlabs/php_codesniffer": "2.*",
         "phpdocumentor/reflection": "^3.0",
         "erusev/parsedown": "^1.6",
-        "google/cloud-core": "dev-master as 1.14",
         "google/cloud-storage": "^1.3"
     },
     "suggest": {
@@ -38,9 +37,5 @@
         "psr-4": {
             "Google\\Cloud\\Vision\\Tests\\": "tests"
         }
-    },
-    "repositories": [{
-        "type": "vcs",
-        "url": "https://github.com/michaelbausor/google-cloud-php-core.git"
-    }]
+    }
 }
