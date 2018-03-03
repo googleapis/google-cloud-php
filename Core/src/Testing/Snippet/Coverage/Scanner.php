@@ -41,7 +41,7 @@ class Scanner implements ScannerInterface
 
     /**
      * @param Parser $parser An instance of the Snippet Parser.
-     * @param \Iterator|string $basepath The path(s) to scan for PHP files.
+     * @param \Iterator|string $basePath The path(s) to scan for PHP files.
      *
      * @experimental
      * @internal
@@ -96,6 +96,8 @@ class Scanner implements ScannerInterface
     /**
      * Retrieve a list of classes in the given PHP files.
      *
+     * @param array $files
+     * @param array $exclude
      * @return string[]
      *
      * @experimental
@@ -124,6 +126,7 @@ class Scanner implements ScannerInterface
      *
      * @experimental
      * @internal
+     * @throws \ReflectionException
      */
     public function snippets(array $classes)
     {
