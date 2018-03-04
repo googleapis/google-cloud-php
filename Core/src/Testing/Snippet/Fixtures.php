@@ -17,8 +17,14 @@
 
 namespace Google\Cloud\Core\Testing\Snippet;
 
+/**
+ * Class containing static functions to provide path to shared test fixtures
+ */
 class Fixtures
 {
+    /**
+     * @return string Path the keyfile-stub.json fixture
+     */
     public static function KEYFILE_STUB_FIXTURE()
     {
         return __DIR__ . '/keyfile-stub.json';
