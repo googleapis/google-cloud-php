@@ -24,6 +24,8 @@ namespace Google\Cloud\Datastore;
  */
 trait EntityTrait
 {
+    use EntityOptionsTrait;
+
     /**
      * @var Key
      */
@@ -33,11 +35,6 @@ trait EntityTrait
      * @var array
      */
     private $entity;
-
-    /**
-     * @var array
-     */
-    private $options;
 
     /**
      * @param Key $key The Entity's Key, defining its unique identifier.
@@ -147,120 +144,6 @@ trait EntityTrait
     public function key()
     {
         return $this->key;
-    }
-
-    /**
-     * Fetch the cursor
-     *
-     * This is only set when the entity was obtained from a query result. It
-     * can be used to manually paginate results.
-     *
-     * Example:
-     * ```
-     * $cursor = $entity->cursor();
-     * ```
-     *
-     * @see https://cloud.google.com/datastore/docs/reference/rest/v1/EntityResult EntityResult.cursor
-     *
-     * @return string|null
-     */
-    public function cursor()
-    {
-        return isset($this->options['cursor'])
-            ? $this->options['cursor']
-            : null;
-    }
-
-    /**
-     * Fetch the baseVersion
-     *
-     * This is only set when the entity was obtained from a query result. It
-     * is used for concurrency control internally.
-     *
-     * Example:
-     * ```
-     * $baseVersion = $entity->baseVersion();
-     * ```
-     *
-     * @see https://cloud.google.com/datastore/docs/reference/rest/v1/EntityResult EntitResult.version
-     *
-     * @return string|null
-     */
-    public function baseVersion()
-    {
-        return isset($this->options['baseVersion'])
-            ? $this->options['baseVersion']
-            : null;
-    }
-
-    /**
-     * Indicate whether the entity was created as the result of an API call.
-     *
-     * Example:
-     * ```
-     * $populatedByService = $entity->populatedByService();
-     * ```
-     *
-     * @return bool
-     */
-    public function populatedByService()
-    {
-        return isset($this->options['populatedByService'])
-            ? $this->options['populatedByService']
-            : false;
-    }
-
-    /**
-     * A list of entity properties to exclude from datastore indexes.
-     *
-     * Example:
-     * ```
-     * $entity['birthDate'] = new DateTime('December 31, 1969');
-     * $entity->setExcludeFromIndexes([
-     *     'birthDate'
-     * ]);
-     * ```
-     *
-     * @param array $properties A list of properties to exclude from indexes.
-     * @return void
-     */
-    public function setExcludeFromIndexes(array $properties)
-    {
-        $this->options['excludeFromIndexes'] = $properties;
-    }
-
-    /**
-     * Return a list of properties excluded from datastore indexes.
-     *
-     * Example:
-     * ```
-     * $excludedFromIndexes = $entity->excludedProperties();
-     * ```
-     *
-     * @return array
-     */
-    public function excludedProperties()
-    {
-        return isset($this->options['excludeFromIndexes'])
-            ? $this->options['excludeFromIndexes']
-            : [];
-    }
-
-    /**
-     * Return a list of meaning values.
-     *
-     * Example:
-     * ```
-     * $meanings = $entity->meanings();
-     * ```
-     *
-     * @return array
-     */
-    public function meanings()
-    {
-        return isset($this->options['meanings'])
-            ? $this->options['meanings']
-            : [];
     }
 
     /**
