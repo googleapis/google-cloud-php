@@ -18,14 +18,24 @@
 
 namespace Google\Cloud\Debugger;
 
-use Google\Cloud\Core\Daemon\DaemonUtils;
-
-$autoloader = DaemonUtils::locateAutoloader(__DIR__ . '/..');
-if (is_null($autoloader)) {
-    die('No autoloader found');
+$foundAutoloader = false;
+$autoloaderCandidates = [
+    '/../vendor/autoload.php',     // Git clone of google-cloud-php-debugger
+    '/../../vendor/autoload.php',  // Git clone of google-cloud-php
+    '/../../../autoload.php',      // google/cloud-debugger installation
+    '/../../../../autoload.php',   // google/cloud installation
+];
+foreach ($autoloaderCandidates as $candidate) {
+    if (file_exists($candidate)) {
+        require_once $candidate;
+        $foundAutoloader = true;
+        break;
+    }
 }
 
-require_once $autoloader;
+if (!$foundAutoloader) {
+    die('No autoloader found');
+}
 
 function showUsageAndDie()
 {
