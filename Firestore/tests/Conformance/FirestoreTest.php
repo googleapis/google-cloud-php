@@ -19,6 +19,7 @@ namespace Google\Cloud\Firestore\Tests\Conformance;
 
 use Google\ApiCore\Serializer;
 use Google\Cloud\Core\Testing\ArrayHasSameValuesToken;
+use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Core\Timestamp;
 use Google\Cloud\Firestore\CollectionReference;
@@ -41,6 +42,7 @@ use Prophecy\Exception\Call\UnexpectedCallException;
  */
 class FirestoreTest extends TestCase
 {
+    use GrpcTestTrait;
     use PathTrait;
 
     private static $cases = [];
@@ -66,6 +68,8 @@ class FirestoreTest extends TestCase
 
     public function setUp()
     {
+        $this->checkAndSkipGrpcTests();
+
         $this->client = TestHelpers::stub(FirestoreClient::class, [
             [
                 'projectId' => 'projectID'
