@@ -1,0 +1,39 @@
+{
+    "name": "google/cloud-spanner",
+    "description": "Cloud Spanner Client for PHP",
+    "license": "Apache-2.0",
+    "minimum-stability": "stable",
+    "require": {
+        "ext-grpc": "*",
+        "google/cloud-core": "^1.14",
+        "google/gax": "^0.30",
+        "google/proto-client": "^0.33"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^4.8|^5.0",
+        "squizlabs/php_codesniffer": "2.*",
+        "phpdocumentor/reflection": "^3.0",
+        "erusev/parsedown": "^1.6"
+    },
+    "suggest": {
+        "ext-protobuf": "Provides a significant increase in throughput over the pure PHP protobuf implementation. See https://cloud.google.com/php/grpc for installation instructions."
+    },
+    "extra": {
+        "component": {
+            "id": "cloud-spanner",
+            "target": "GoogleCloudPlatform/google-cloud-php-spanner.git",
+            "path": "Spanner",
+            "entry": "src/SpannerClient.php"
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "Google\\Cloud\\Spanner\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Google\\Cloud\\Spanner\\Tests\\": "tests"
+        }
+    }
+}

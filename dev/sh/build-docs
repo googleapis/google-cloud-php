@@ -9,7 +9,7 @@ function buildDocs () {
   if [ -z "$TRAVIS_TAG" ]; then
     ./dev/google-cloud docs
   else
-    ./dev/google-cloud docs -r ${TRAVIS_TAG}
+    ./dev/google-cloud docs -r
   fi
 
   echo "doc dir after generation:"

@@ -38,9 +38,11 @@ class Writer
             @mkdir(dirname($path), 0777, true);
         }
 
-        $content = ($this->pretty)
-            ? json_encode($this->content, JSON_PRETTY_PRINT)
-            : json_encode($this->content);
+        $options = $this->pretty
+            ? JSON_PRETTY_PRINT
+            : 0;
+
+        $content = json_encode($this->content, $options);
 
         file_put_contents($path, $content);
     }
