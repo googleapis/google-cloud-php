@@ -18,19 +18,14 @@
 
 namespace Google\Cloud\Debugger;
 
-// Load the autoloader
-if (file_exists(__DIR__ . '/../../../vendor/autoload.php')) {
-    // Called from local git clone.
-    require_once __DIR__ . '/../../../vendor/autoload.php';
-} elseif (file_exists(__DIR__ . '/../../../autoload.php')) {
-    // Called from google/cloud-core installation.
-    require_once __DIR__ . '/../../../autoload.php';
-} elseif (file_exists(__DIR__ . '/../../../../../autoload.php')) {
-    // Called from google/cloud installation.
-    require_once __DIR__ . '/../../../../../autoload.php';
-} else {
+use Google\Cloud\Core\Daemon\DaemonUtils;
+
+$autoloader = DaemonUtils::locateAutoloader(__DIR__ . '/..');
+if (is_null($autoloader)) {
     die('No autoloader found');
 }
+
+require_once $autoloader;
 
 function showUsageAndDie()
 {
