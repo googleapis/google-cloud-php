@@ -22,16 +22,19 @@ namespace Google\Cloud\Dev\DocGenerator;
  */
 class FileListFilterIterator extends \FilterIterator
 {
+    private $projectRootPath;
     private $fileTypes = [];
     private $testPaths = [];
     private $excludes = [];
 
     public function __construct(
+        $projectRootPath,
         \Iterator $iterator,
         array $fileTypes,
         array $testPaths,
         array $excludes
     ) {
+        $this->projectRootPath = $projectRootPath;
         $this->fileTypes = $fileTypes;
         $this->testPaths = $testPaths;
         $this->excludes = $excludes;
@@ -44,7 +47,7 @@ class FileListFilterIterator extends \FilterIterator
         /** @var \SplFileInfo */
         $file = parent::current();
 
-        $path = realpath($file->getPathName());
+        $path = '/' . trim(str_replace($this->projectRootPath, '', realpath($file->getPathName())), '/');
 
         if (!in_array($file->getExtension(), $this->fileTypes)) {
             return false;

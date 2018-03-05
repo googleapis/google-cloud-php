@@ -195,7 +195,7 @@ class CodeParser implements ParserInterface
         }
 
         if (is_null($docBlock)) {
-            throw new \Exception(sprintf('%s has no description', $fullName));
+            throw new \Exception(sprintf('%s has no description (%s)', $fullName, $fileReflector->getFilename()));
         }
 
         $split = $this->splitDescription($docBlock->getText());

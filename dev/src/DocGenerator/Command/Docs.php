@@ -51,6 +51,8 @@ class Docs extends Command
         'tests/Snippet',
         'tests/System',
         'tests/Conformance',
+        'tests/Perf',
+        'tests/conformance-fixtures'
     ];
 
     public function __construct($cliBasePath)
@@ -67,13 +69,15 @@ class Docs extends Command
             ->addOption('release', 'r', InputOption::VALUE_NONE, 'If set, docs will be generated into tag folders' .
                 ' such as v1.0.0 rather than master.')
             ->addOption('pretty', 'p', InputOption::VALUE_NONE, 'If set, json files will be written with pretty'.
-                ' formatting using PHP\'s JSON_PRETTY_PRINT flag');
+                ' formatting using PHP\'s JSON_PRETTY_PRINT flag')
+            ->addOption('component', 'c', InputOption::VALUE_OPTIONAL, 'Generate docs only for a single component.');
     }
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $release = $input->getOption('release');
         $pretty = $input->getOption('pretty');
+        $component = $input->getOption('component');
 
         $paths = [
             'source' => $this->cliBasePath .'/../'. self::DEFAULT_SOURCE_DIR,
@@ -88,11 +92,56 @@ class Docs extends Command
         $components = $this->getComponents(dirname($this->cliBasePath), $paths['source']);
         $tocTemplate = json_decode(file_get_contents($paths['tocTemplate']), true);
 
-        foreach ($components as $component) {
-            $input = $paths['project'] . $component['path'] .'/src';
-            $source = $this->getFilesList($input, ['php', 'md'], [
-                'CONTRIBUTING.md'
+        if ($component !== 'google-cloud') {
+            if ($component) {
+                $components = array_filter($components, function ($componentInfo) use ($component) {
+                    return $componentInfo['id'] === $component;
+                });
+
+                if (!$components) {
+                    throw new \RuntimeException(sprintf('Given component ID %s does not exist', $component));
+                }
+            }
+
+            foreach ($components as $component) {
+                $input = $paths['project'] . $component['path'] .'/src';
+                $source = $this->getFilesList($input, ['php', 'md'], [
+                    'CONTRIBUTING.md'
+                ]);
+                $this->generateComponentDocumentation(
+                    $output,
+                    $source,
+                    $component,
+                    $paths,
+                    $tocTemplate,
+                    $release,
+                    $pretty
+                );
+            }
+        }
+
+        if (!$component || $component === 'google-cloud') {
+            $projectRealPath = realpath($paths['project']);
+            $source = $this->getFilesList($projectRealPath, [
+                'php', 'md'
+            ], [
+                '/vendor',
+                '/dev',
+                '/build',
+                '/docs',
+                '/tests',
+                '.github',
+                '/CODE_OF_CONDUCT.md',
+                '/README.md',
+                'bootstrap.php'
             ]);
+
+
+            $component = [
+                'id' => 'google-cloud',
+                'path' => 'src/'
+            ];
+
             $this->generateComponentDocumentation(
                 $output,
                 $source,
@@ -100,39 +149,10 @@ class Docs extends Command
                 $paths,
                 $tocTemplate,
                 $release,
-                $pretty
+                $pretty,
+                false
             );
         }
-
-        $projectRealPath = realpath($paths['project']);
-        $source = $this->getFilesList($projectRealPath, [
-            'php', 'md'
-        ], [
-            $projectRealPath .'/vendor',
-            $projectRealPath .'/dev',
-            $projectRealPath .'/build',
-            $projectRealPath .'/docs',
-            $projectRealPath .'/tests',
-            '.github',
-            new RegexFileFilter(str_replace('/', '\/', preg_quote($projectRealPath .'/') . '\w{0,}\.\w{0,}')),
-            'bootstrap.php'
-        ]);
-
-        $component = [
-            'id' => 'google-cloud',
-            'path' => 'src/'
-        ];
-
-        $this->generateComponentDocumentation(
-            $output,
-            $source,
-            $component,
-            $paths,
-            $tocTemplate,
-            $release,
-            $pretty,
-            false
-        );
     }
 
     private function generateComponentDocumentation(
@@ -209,7 +229,13 @@ class Docs extends Command
         $directoryIterator = new RecursiveDirectoryIterator($source);
         $iterator = new RecursiveIteratorIterator($directoryIterator);
         // $regexIterator = new RegexIterator($iterator, $regex, RecursiveRegexIterator::GET_MATCH);
-        $fileList = new FileListFilterIterator($iterator, $types, $this->testPaths, $excludes);
+        $fileList = new FileListFilterIterator(
+            realpath($this->cliBasePath .'/../'),
+            $iterator,
+            $types,
+            $this->testPaths,
+            $excludes
+        );
         $files = [];
 
         foreach ($fileList as $item) {

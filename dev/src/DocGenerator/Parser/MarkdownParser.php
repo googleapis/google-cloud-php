@@ -31,18 +31,31 @@ class MarkdownParser implements ParserInterface
         $this->currentFile = $currentFile;
         $this->content = $content;
         $this->markdown = Parsedown::instance();
+
+        set_error_handler(function($number, $error){
+            if (preg_match('/^DOMDocument::loadHTML\(\): (.+)$/', $error, $m) === 1) {
+                throw new \Exception($m[1]);
+            }
+        });
     }
 
     public function parse()
     {
         $html = $this->markdown->parse($this->content);
 
-        $doc = new DOMDocument;
-        $doc->loadHTML($html);
+        try {
+            $doc = new DOMDocument;
+            $doc->loadHTML($html);
+        } catch (\Exception $e) {
+            throw new \RuntimeException($e->getMessage() .' ('. $this->currentFile .')');
+        }
 
         $headings = $doc->getElementsByTagName('h1');
         $heading = $headings->item(0);
 
+        if (!$heading) {
+            throw new \RuntimeException('Missing h1 tag ('. $this->currentFile .')');
+        }
         $heading->parentNode->removeChild($heading);
 
         $pathinfo = pathinfo($this->currentFile);
