@@ -32,6 +32,14 @@ class CallTraitTest extends TestCase
         $this->assertEquals('bar', $t->foo());
     }
 
+    public function testHas()
+    {
+        $t = new CallTraitStub(['foo' => 'bar']);
+
+        $this->assertTrue($t->has('foo'));
+        $this->assertFalse($t->has('bar'));
+    }
+
     /**
      * @expectedException PHPUnit_Framework_Error
      */

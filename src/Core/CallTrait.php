@@ -23,6 +23,24 @@ namespace Google\Cloud\Core;
 trait CallTrait
 {
     /**
+     * Determine if a property exists for this object.
+     *
+     * Example:
+     * ```
+     * if ($annotation->has('sentiment')) {
+     *     $sentiment = $annotation->sentiment();
+     * }
+     * ```
+     *
+     * @param $name the property name
+     * @return bool
+     */
+    public function has($name)
+    {
+        return isset($this->info()[$name]);
+    }
+
+    /**
      * @access private
      */
     public function __call($name, array $args)
