@@ -535,7 +535,8 @@ class Breakpoint implements \JsonSerializable
 
         foreach ($stackFrameData['locals'] as $local) {
             $value = isset($local['value']) ? $local['value'] : null;
-            $variable = $this->addVariable($local['name'], $value);
+            $hash = isset($local['id']) ? $local['id'] : null;
+            $variable = $this->addVariable($local['name'], $value, $hash);
             $sf->addLocal($variable);
         }
 
@@ -615,10 +616,10 @@ class Breakpoint implements \JsonSerializable
         );
     }
 
-    private function addVariable($name, $value)
+    private function addVariable($name, $value, $hash = null)
     {
         $this->variableTable = $this->variableTable ?: new VariableTable();
-        return $this->variableTable->register($name, $value);
+        return $this->variableTable->register($name, $value, $hash);
     }
 
     private function ensureExtensionLoaded()

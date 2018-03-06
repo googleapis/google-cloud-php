@@ -56,11 +56,12 @@ class VariableTable implements \JsonSerializable
      *
      * @param string $name The name of the variable
      * @param mixed $value The value of the variable
+     * @param string|null $hash [optional] The object hash to use for deduping
      * @return Variable
      */
-    public function register($name, $value)
+    public function register($name, $value, $hash = null)
     {
-        return $this->doRegister($name, $value, 0);
+        return $this->doRegister($name, $value, 0, $hash);
     }
 
     /**
@@ -89,55 +90,29 @@ class VariableTable implements \JsonSerializable
         return $this->variables;
     }
 
-    private function doRegister($name, $value, $depth, $index = null)
+    private function doRegister($name, $value, $depth, $hash)
     {
-        $name = (string)$name;
+        $type = $this->calcuateType($value);
         $members = [];
-        $shared = false;
-        $type = gettype($value);
-        $variableValue = null;
 
-        switch ($type) {
+        // If the variable already exists in the table (via object hash), then
+        // return a reference Variable to that VariableTable entry.
+        $hash = $hash ?: $this->calculateHash($value);
+        if ($hash && array_key_exists($hash, $this->sharedVariableIndex)) {
+            return new Variable($name, $type, [
+                'varTableIndex' => $this->sharedVariableIndex[$hash]
+            ]);
+        }
+
+        switch (gettype($value)) {
             case 'object':
-                $type = get_class($value);
-                $hash = spl_object_hash($value);
-
-                if (array_key_exists($hash, $this->sharedVariableIndex)) {
-                    $index = $this->sharedVariableIndex[$hash];
-                    $shared = true;
-                } else {
-                    $index = $this->nextIndex;
-                    $this->sharedVariableIndex[$hash] = $index;
-
-                    $members = [];
-                    if ($depth < self::MAX_MEMBER_DEPTH) {
-                        foreach (get_object_vars($value) as $key => $member) {
-                            array_push($members, $this->doRegister($key, $member, $depth + 1));
-                        }
-                    }
-
-                    $this->nextIndex++;
-                    array_push($this->variables, new Variable($name, $type, [
-                        'value' => "$type ($hash)",
-                        'members' => $members
-                    ]));
-                }
-                return new Variable($name, $type, [
-                    'varTableIndex' => $index
-                ]);
+                $variableValue = "$type ($hash)";
+                $members = $this->doRegisterMembers(get_object_vars($value), $depth);
                 break;
             case 'array':
                 $arraySize = count($value);
-                $members = [];
-                if ($depth < self::MAX_MEMBER_DEPTH) {
-                    foreach ($value as $key => $member) {
-                        array_push($members, $this->doRegister($key, $member, $depth + 1));
-                    }
-                }
-                return new Variable($name, $type, [
-                    'value' => "array ($arraySize)",
-                    'members' => $members
-                ]);
+                $variableValue = "array ($arraySize)";
+                $members = $this->doRegisterMembers($value, $depth);
                 break;
             case 'NULL':
                 $variableValue = 'NULL';
@@ -146,8 +121,49 @@ class VariableTable implements \JsonSerializable
                 $variableValue = (string)$value;
         }
 
-        return new Variable($name, $type, [
-            'value' => $variableValue
-        ]);
+        if ($hash) {
+            // If this variable has an object hash, then save it in the
+            // VariableTable and return a reference Variable to that entry.
+            $index = $this->nextIndex;
+            $this->sharedVariableIndex[$hash] = $index;
+            $this->nextIndex++;
+
+            array_push($this->variables, new Variable($name, $type, [
+                'value' => $variableValue,
+                'members' => $members
+            ]));
+            return new Variable($name, $type, [
+                'varTableIndex' => $index
+            ]);
+        } else {
+            return new Variable($name, $type, [
+                'value' => $variableValue,
+                'members' => $members
+            ]);
+        }
+    }
+
+    private function calcuateType($value)
+    {
+        return is_object($value)
+            ? get_class($value)
+            : gettype($value);
+    }
+
+    private function calculateHash($value)
+    {
+        return is_object($value) ? spl_object_hash($value) : null;
+    }
+
+    private function doRegisterMembers($array, $depth)
+    {
+        $members = [];
+        if ($depth < self::MAX_MEMBER_DEPTH) {
+            foreach ($array as $key => $member)
+            {
+                $members[] = $this->doRegister($key, $member, $depth + 1, null);
+            }
+        }
+        return $members;
     }
 }

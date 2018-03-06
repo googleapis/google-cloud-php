@@ -91,12 +91,11 @@ class VariableTableTest extends TestCase
 
     public function testRegistersArrayAsSameObjects()
     {
-        $this->markTestSkipped('Array deduping NYI');
         $variableTable = new VariableTable();
         $object = ['abc', 123];
 
-        $variable1 = $variableTable->register('int', $object);
-        $variable2 = $variableTable->register('int2', $object);
+        $variable1 = $variableTable->register('int', $object, 'hashid');
+        $variable2 = $variableTable->register('int2', $object, 'hashid');
 
         $data1 = $variable1;
         $this->assertEquals(0, $data1->jsonSerialize()['varTableIndex']);
@@ -134,5 +133,41 @@ class VariableTableTest extends TestCase
             [1234.2, 'double', '1234.2'],
             [NULL, 'NULL', 'NULL']
         ];
+    }
+
+    public function testRegisterObjectWithId()
+    {
+        $variableTable = new VariableTable();
+        $object = new Int64('123');
+        $object2 = new Int64('123');
+
+        $variable1 = $variableTable->register('int', $object, 'hashid');
+        $variable2 = $variableTable->register('int2', $object2, 'hashid');
+
+        $data1 = $variable1;
+        $this->assertEquals(0, $data1->jsonSerialize()['varTableIndex']);
+
+        $data2 = $variable2;
+        $this->assertEquals(0, $data2->jsonSerialize()['varTableIndex']);
+
+        $this->assertCount(1, $variableTable->variables());
+    }
+
+    public function testRegisterSameStrings()
+    {
+        $variableTable = new VariableTable();
+        $string = 'Hello world';
+        $string2 = 'Hello world';
+
+        $variable1 = $variableTable->register('int', $string, 'hashid');
+        $variable2 = $variableTable->register('int2', $string2, 'hashid');
+
+        $data1 = $variable1;
+        $this->assertEquals(0, $data1->jsonSerialize()['varTableIndex']);
+
+        $data2 = $variable2;
+        $this->assertEquals(0, $data2->jsonSerialize()['varTableIndex']);
+
+        $this->assertCount(1, $variableTable->variables());
     }
 }
