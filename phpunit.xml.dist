@@ -3,6 +3,7 @@
   <testsuites>
     <testsuite>
       <directory>*/tests/Unit</directory>
+      <directory>./tests/Unit</directory>
     </testsuite>
   </testsuites>
   <filter>
