@@ -22,8 +22,8 @@ use Google\Cloud\Bigtable\Admin\V2\Cluster;
 use Google\Cloud\Bigtable\Admin\V2\Instance_Type;
 use Google\Cloud\Bigtable\Admin\V2\StorageType;
 use Google\Protobuf\FieldMask;
-use Google\Protobuf\Internal\MapField;
 use Google\Protobuf\Internal\GPBType;
+use Google\Protobuf\Internal\MapField;
 
 /**
  * Service for creating, configuring, and deleting Cloud Bigtable Instances and
@@ -77,7 +77,7 @@ class Instance
      *     @param string $instanceId
      *
      */
-    public function __construct($args)
+    public function __construct(array $args)
     {
         $this->projectId = $args['projectId'];
         $this->instanceId = $args['instanceId'];
@@ -92,8 +92,7 @@ class Instance
      */
     private function projectName()
     {
-        $formattedParent = BigtableInstanceAdminClient::projectName($this->projectId);
-        return $formattedParent;
+        return BigtableInstanceAdminClient::projectName($this->projectId);
     }
 
     /**
@@ -109,8 +108,7 @@ class Instance
         if ($instanceId == '') {
             $instanceId = $this->instanceId;
         }
-        $formattedParent = BigtableInstanceAdminClient::instanceName($this->projectId, $instanceId);
-        return $formattedParent;
+        return BigtableInstanceAdminClient::instanceName($this->projectId, $instanceId);
     }
 
     /**
@@ -173,7 +171,7 @@ class Instance
      *
      * @throws \Google\GAX\ApiException if the remote call fails
      */
-    public function createInstance($instanceId, $locationId, $clusterId, $optionalArgs = [])
+    public function createInstance($instanceId, $locationId, $clusterId, array $optionalArgs = [])
     {
         $parent = $this->projectName();
         $formattedLocation = $this->locationName($locationId);
@@ -218,7 +216,7 @@ class Instance
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function getInstance($instanceId, $optionalArgs = [])
+    public function getInstance($instanceId, array $optionalArgs = [])
     {
         $formattedName = $this->instanceName($instanceId);
         return $this->instanceAdminClient->getInstance($formattedName);
@@ -271,7 +269,7 @@ class Instance
      *
      * @throws \Google\GAX\ApiException if the remote call fails
      */
-    public function updateInstance($displayName, $type, $labels, $optionalArgs = [])
+    public function updateInstance($displayName, $type, $labels, array $optionalArgs = [])
     {
         $name = $this->instanceName();
         return $this->instanceAdminClient->updateInstance($name, $displayName, $type, $labels, $optionalArgs);
@@ -301,7 +299,7 @@ class Instance
      *
      * @throws \Google\GAX\ApiException if the remote call fails
      */
-    public function listInstances($optionalArgs = [])
+    public function listInstances(array $optionalArgs = [])
     {
         $parent = $this->projectName();
         return $this->instanceAdminClient->listInstances($parent, $optionalArgs);
@@ -331,7 +329,7 @@ class Instance
      *
      * @throws \Google\GAX\ApiException if the remote call fails
      */
-    public function deleteInstance($instanceId, $optionalArgs = [])
+    public function deleteInstance($instanceId, array $optionalArgs = [])
     {
         $formattedParent = $this->instanceName($instanceId);
         return $this->instanceAdminClient->deleteInstance($formattedParent, $optionalArgs);
@@ -368,7 +366,7 @@ class Instance
      *
      * @throws ApiException if the remote call fails
      */
-    public function createCluster($locationId, $clusterId, $optionalArgs = [])
+    public function createCluster($locationId, $clusterId, array $optionalArgs = [])
     {
         $formattedParent = $this->instanceName();
         $cluster = new Cluster();
@@ -404,7 +402,7 @@ class Instance
      *
      * @throws ApiException if the remote call fails
      */
-    public function getCluster($clusterId, $optionalArgs = [])
+    public function getCluster($clusterId, array $optionalArgs = [])
     {
         $formattedName = $this->clusterName($clusterId);
         return $this->instanceAdminClient->getCluster($formattedName, $optionalArgs);
@@ -443,7 +441,7 @@ class Instance
      *
      * @throws ApiException if the remote call fails
      */
-    public function listClusters($instanceid = '', $optionalArgs = [])
+    public function listClusters($instanceid = '', array $optionalArgs = [])
     {
         $instanceName = $this->instanceName($instanceid);
         return $this->instanceAdminClient->listClusters($instanceName, $optionalArgs);
@@ -491,7 +489,7 @@ class Instance
      *
      * @throws ApiException if the remote call fails
      */
-    public function updateCluster($clusterId, $locationId, $serveNodes, $optionalArgs = [])
+    public function updateCluster($clusterId, $locationId, $serveNodes, array $optionalArgs = [])
     {
         $formattedName = $this->clusterName($clusterId);
         $location = $this->locationName($locationId);
@@ -519,11 +517,13 @@ class Instance
      *          {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
+     * @return \Google\Protobuf\GPBEmpty
+     *
      * @throws ApiException if the remote call fails
      */
-    public function deleteCluster($clusterId, $optionalArgs = [])
+    public function deleteCluster($clusterId, array $optionalArgs = [])
     {
         $formattedName = $this->clusterName($clusterId);
-        $this->instanceAdminClient->deleteCluster($formattedName);
+        return $this->instanceAdminClient->deleteCluster($formattedName);
     }
 }

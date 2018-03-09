@@ -197,16 +197,35 @@ class TableTest extends TestCase
 
     public function testMutateRow()
     {
+        $utc_str = gmdate("M d Y H:i:s", time());
+        $utc     = strtotime($utc_str)*1000;
+        $cell    = array(
+            'cf' => 'cf',
+            'qualifier' => 'field',
+            'value' => 'val',
+            'timestamp' => $utc
+        );
+        $mutations[] = \Google\Cloud\Bigtable\Table::mutationCell($cell);
+     
         $MutateRowResponse = new MutateRowResponse();
         $this->mock->method('mutateRow')
              ->willReturn($MutateRowResponse);
 
-        $mutateRow = $this->mock->mutateRow(Argument::type('string'), Argument::type('string'), Argument::type('array'));
+        $mutateRow = $this->mock->mutateRow(Argument::type('string'), Argument::type('string'), $mutations);
         $this->assertInstanceOf(MutateRowResponse::class, $mutateRow);
     }
     
     public function testMutationCell()
     {
+        $utc_str = gmdate("M d Y H:i:s", time());
+        $utc     = strtotime($utc_str)*1000;
+        $cell    = array(
+            'cf' => 'cf',
+            'qualifier' => 'field',
+            'value' => 'val',
+            'timestamp' => $utc
+        );
+
         $utc_str = gmdate("M d Y H:i:s", time());
 	    $utc = strtotime($utc_str);
         $Mutation_SetCell = new Mutation_SetCell();
@@ -221,7 +240,7 @@ class TableTest extends TestCase
         $this->mock->method('mutationCell')
              ->willReturn($Mutation);
 
-        $mutationCell = $this->mock->mutationCell(Argument::type('array'));
+        $mutationCell = $this->mock->mutationCell($cell);
         $this->assertInstanceOf(Mutation::class, $mutationCell);        
     }
 
@@ -250,7 +269,7 @@ class TableTest extends TestCase
         $this->mock->method('mutateRowsRequest')
              ->willReturn($MutateRowsRequest_Entry);
 
-        $mutateRowsRequest = $this->mock->mutateRowsRequest(Argument::type('string'), Argument::type('array'));
+        $mutateRowsRequest = $this->mock->mutateRowsRequest(Argument::type('string'), $mutations);
         $this->assertEquals($mutateRowsRequest->getRowKey(), $rowKey);
         $this->assertInstanceOf(RepeatedField::class, $mutateRowsRequest->getMutations());
         $this->assertInstanceOf(MutateRowsRequest_Entry::class, $mutateRowsRequest);

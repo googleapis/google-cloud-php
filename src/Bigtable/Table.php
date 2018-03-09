@@ -96,7 +96,7 @@ class Table
      *
      *     @param string $instanceId
      */
-    public function __construct($config)
+    public function __construct(array $config)
     {
         $this->projectId = $config['projectId'];
         $this->instanceId = $config['instanceId'];
@@ -160,12 +160,11 @@ class Table
      *
      * @throws \Google\GAX\ApiException if the remote call fails
      */
-    public function createTable($tableId, $optionalArgs = [])
+    public function createTable($tableId, array $optionalArgs = [])
     {
         $parent = $this->formattedInstance;
         $table = new \Google\Cloud\Bigtable\Admin\V2\Table();
-        $Table = $this->bigtableTableAdminClient->createTable($parent, $tableId, $table, $optionalArgs);
-        return $Table;
+        return $this->bigtableTableAdminClient->createTable($parent, $tableId, $table, $optionalArgs);
     }
 
     /**
@@ -214,17 +213,16 @@ class Table
      *
      * @throws \Google\GAX\ApiException if the remote call fails.
      */
-    public function createTableWithColumnFamily($tableId, $columnFamily, $optionalArgs = [])
+    public function createTableWithColumnFamily($tableId, $columnFamily, array $optionalArgs = [])
     {
         $table = new \Google\Cloud\Bigtable\Admin\V2\Table();
         $table->setGranularity(3);
 
-        $MapField = $this->columnFamily(3, $columnFamily);
-        $table->setColumnFamilies($MapField);
+        $mapField = $this->columnFamily(3, $columnFamily);
+        $table->setColumnFamilies($mapField);
 
         $parent = $this->formattedInstance;
-        $Table = $this->bigtableTableAdminClient->createTable($parent, $tableId, $table, $optionalArgs);
-        return $Table;
+        return $this->bigtableTableAdminClient->createTable($parent, $tableId, $table, $optionalArgs);
     }
 
     /**
@@ -282,7 +280,7 @@ class Table
      *
      * @throws \Google\GAX\ApiException if the remote call fails
      */
-    public function deleteTable($tableId, $optionalArgs = [])
+    public function deleteTable($tableId, array $optionalArgs = [])
     {
         $formattedTable = $this->tableName($tableId);
         return $this->bigtableTableAdminClient->deleteTable($formattedTable, $optionalArgs);
@@ -322,10 +320,9 @@ class Table
      *
      * @return \Google\GAX\PagedListResponse
      */
-    public function listTables($optionalArgs = [])
+    public function listTables(array $optionalArgs = [])
     {
-        $PagedListResponse = $this->bigtableTableAdminClient->listTables($this->formattedInstance, $optionalArgs);
-        return $PagedListResponse;
+        return $this->bigtableTableAdminClient->listTables($this->formattedInstance, $optionalArgs);
     }
 
     /**
@@ -379,7 +376,7 @@ class Table
      *
      * @throws \Google\GAX\ApiException if the remote call fails
      */
-    public function addColumnFamilies($tableId, $cfName, $optionalArgs = [])
+    public function addColumnFamilies($tableId, $cfName, array $optionalArgs = [])
     {
         $formattedTable = $this->tableName($tableId);
         $gc = new GcRule();
@@ -392,11 +389,10 @@ class Table
         $Modification->setId($cfName);
         $Modification->setCreate($cf);
 
-        $Modifications    = [];
+        $Modifications   = [];
         $Modifications[] = $Modification;
 
-        $table = $this->bigtableTableAdminClient->modifyColumnFamilies($formattedTable, $Modifications, $optionalArgs);
-        return $table;
+        return $this->bigtableTableAdminClient->modifyColumnFamilies($formattedTable, $Modifications, $optionalArgs);
     }
 
     /**
@@ -427,7 +423,7 @@ class Table
      *
      * @throws \Google\GAX\ApiException if the remote call fails
      */
-    public function updateColumnFamilies($tableId, $cfName, $optionalArgs = [])
+    public function updateColumnFamilies($tableId, $cfName, array $optionalArgs = [])
     {
         $formattedTable = $this->tableName($tableId);
         $gc = new GcRule();
@@ -443,8 +439,7 @@ class Table
         $Modifications    = [];
         $Modifications[] = $Modification;
 
-        $table = $this->bigtableTableAdminClient->modifyColumnFamilies($formattedTable, $Modifications, $optionalArgs);
-        return $table;
+        return $this->bigtableTableAdminClient->modifyColumnFamilies($formattedTable, $Modifications, $optionalArgs);
     }
 
     /**
@@ -475,7 +470,7 @@ class Table
      *
      * @throws \Google\GAX\ApiException if the remote call fails
      */
-    public function deleteColumnFamilies($tableId, $cfName, $optionalArgs = [])
+    public function deleteColumnFamilies($tableId, $cfName, array $optionalArgs = [])
     {
         $formattedTable = $this->tableName($tableId);
         $Modification = new Modification();
@@ -484,8 +479,7 @@ class Table
         $Modifications = [];
         $Modifications[] = $Modification;
 
-        $table = $this->bigtableTableAdminClient->modifyColumnFamilies($formattedTable, $Modifications, $optionalArgs);
-        return $table;
+        return $this->bigtableTableAdminClient->modifyColumnFamilies($formattedTable, $Modifications, $optionalArgs);
     }
 
     /**
@@ -520,7 +514,7 @@ class Table
      *
      * @throws ApiException if the remote call fails
      */
-    public function dropRowRange($tableId, $optionalArgs = [])
+    public function dropRowRange($tableId, array $optionalArgs = [])
     {
         $formattedName = $this->tableName($tableId);
         return $this->bigtableTableAdminClient->dropRowRange($formattedName, $optionalArgs);
@@ -571,11 +565,10 @@ class Table
      *
      * @throws \Google\GAX\ApiException if the remote call fails
      */
-    public function mutateRows($tableId, $entries, $optionalArgs = [])
+    public function mutateRows($tableId, array $entries, array $optionalArgs = [])
     {
         $formattedTable = $this->tableName($tableId);
-        $ServerStream = $this->bigtableClient->mutateRows($formattedTable, $entries, $optionalArgs);
-        return $ServerStream;
+        return $this->bigtableClient->mutateRows($formattedTable, $entries, $optionalArgs);
     }
 
     /**
@@ -620,11 +613,10 @@ class Table
      *
      * @throws \Google\GAX\ApiException if the remote call fails
      */
-    public function mutateRow($tableId, $rowKey, $mutations, $optionalArgs = [])
+    public function mutateRow($tableId, $rowKey, array $mutations, array $optionalArgs = [])
     {
         $formattedTable = $this->tableName($tableId);
-        $MutateRowResponse = $this->bigtableClient->mutateRow($formattedTable, $rowKey, $mutations, $optionalArgs);
-        return $MutateRowResponse;
+        return $this->bigtableClient->mutateRow($formattedTable, $rowKey, $mutations, $optionalArgs);
     }
 
     /**
@@ -651,7 +643,7 @@ class Table
      *
      * @return \Google\Bigtable\V2\Mutation
      */
-    public function mutationCell($cell)
+    public function mutationCell(array $cell)
     {
         $Mutation_SetCell = new Mutation_SetCell();
         if (isset($cell['cf'])) {
@@ -697,7 +689,7 @@ class Table
      *
      * @return \Google\Bigtable\V2\MutateRowsRequest_Entry
      */
-    public function mutateRowsRequest($rowKey, $mutations)
+    public function mutateRowsRequest($rowKey, array $mutations)
     {
         $MutateRowsRequest_Entry = new MutateRowsRequest_Entry();
         $MutateRowsRequest_Entry->setRowKey($rowKey);
@@ -796,11 +788,10 @@ class Table
      * @throws \Google\GAX\ApiException if the remote call fails
      * @experimental
      */
-    public function sampleRowKeys($tableId, $optionalArgs = [])
+    public function sampleRowKeys($tableId, array $optionalArgs = [])
     {
         $formattedTable = $this->tableName($tableId);
-        $stream = $this->bigtableClient->sampleRowKeys($formattedTable, $optionalArgs);
-        return $stream;
+        return $this->bigtableClient->sampleRowKeys($formattedTable, $optionalArgs);
     }
 
     /**
@@ -848,11 +839,10 @@ class Table
      * @throws \Google\GAX\ApiException if the remote call fails
      * @experimental
      */
-    public function checkAndMutateRow($tableId, $rowKey, $optionalArgs = [])
+    public function checkAndMutateRow($tableId, $rowKey, array $optionalArgs = [])
     {
         $formattedTable = $this->tableName($tableId);
-        $response = $this->bigtableClient->checkAndMutateRow($formattedTable, $rowKey, $optionalArgs);
-        return $response;
+        return $this->bigtableClient->checkAndMutateRow($formattedTable, $rowKey, $optionalArgs);
     }
 
     /**
@@ -898,10 +888,9 @@ class Table
      * @throws \Google\GAX\ApiException if the remote call fails
      * @experimental
      */
-    public function readModifyWriteRow($tableId, $rowKey, $rules, $optionalArgs = [])
+    public function readModifyWriteRow($tableId, $rowKey, array $rules, array $optionalArgs = [])
     {
         $formattedTable = $this->tableName($tableId);
-        $response = $this->bigtableClient->readModifyWriteRow($formattedTable, $rowKey, $rules, $optionalArgs);
-        return $response;
+        return $this->bigtableClient->readModifyWriteRow($formattedTable, $rowKey, $rules, $optionalArgs);
     }
 }

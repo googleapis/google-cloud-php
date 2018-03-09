@@ -75,7 +75,7 @@ class InstanceTest extends TestCase
         $ListInstances = new ListInstancesResponse();
         $this->mock->method('listInstances')
              ->willReturn($ListInstances);
-        $instances = $this->mock->listInstances(Argument::type('string'));
+        $instances = $this->mock->listInstances([]);
         $this->assertInstanceOf(ListInstancesResponse::class, $instances);
     }
     
