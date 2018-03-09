@@ -17,6 +17,7 @@
 
 namespace Google\Cloud\Core\Testing\Snippet\Coverage;
 
+use Google\Cloud\Core\Testing\FileListFilterIterator;
 use Google\Cloud\Core\Testing\Snippet\Parser\Parser;
 use phpDocumentor\Reflection\FileReflector;
 
@@ -40,19 +41,26 @@ class Scanner implements ScannerInterface
     private $basePath;
 
     /**
+     * @var array
+     */
+    private $exclude;
+
+    /**
      * @param Parser $parser An instance of the Snippet Parser.
      * @param \Iterator|string $basePath The path(s) to scan for PHP files.
+     * @param array $exclude A list of patterns to exclude.
      *
      * @experimental
      * @internal
      */
-    public function __construct(Parser $parser, $basePath)
+    public function __construct(Parser $parser, $basePath, array $exclude = [])
     {
         $this->parser = $parser;
         if (is_string($basePath)) {
             $basePath = [$basePath];
         }
         $this->basePath = $basePath;
+        $this->exclude = $exclude;
     }
 
     /**
@@ -66,17 +74,22 @@ class Scanner implements ScannerInterface
     public function files()
     {
         $files = [];
-        foreach ($this->basePath as $basePath) {
-            $regexIterator = new \RegexIterator(
-                new \RecursiveIteratorIterator(
-                    new \RecursiveDirectoryIterator($basePath)
-                ),
-                '/^.+\.php$/i',
-                \RecursiveRegexIterator::GET_MATCH
+
+        foreach ($this->basePath as $path) {
+            $directoryIterator = new \RecursiveDirectoryIterator($path);
+            $iterator = new \RecursiveIteratorIterator($directoryIterator);
+            $fileList = new FileListFilterIterator(
+                $path,
+                $iterator,
+                ['php'],
+                [
+                    '/tests/'
+                ],
+                $this->exclude
             );
 
-            foreach ($regexIterator as $item) {
-                array_push($files, $item[0]);
+            foreach ($fileList as $item) {
+                array_push($files, realPath($item->getPathName()));
             }
         }
 

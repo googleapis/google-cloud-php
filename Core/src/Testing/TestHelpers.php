@@ -18,6 +18,12 @@
 
 namespace Google\Cloud\Core\Testing;
 
+use Google\Cloud\Core\Testing\Snippet\Container;
+use Google\Cloud\Core\Testing\Snippet\Coverage\Coverage;
+use Google\Cloud\Core\Testing\Snippet\Coverage\ExcludeFilter;
+use Google\Cloud\Core\Testing\Snippet\Coverage\Scanner;
+use Google\Cloud\Core\Testing\Snippet\Parser\Parser;
+
 /**
  * Class TestHelpers is used to hold static functions required for testing
  *
@@ -88,5 +94,21 @@ class TestHelpers
         }
 
         return new $name;
+    }
+
+    public static function snippetBootstrap()
+    {
+        putenv('GOOGLE_APPLICATION_CREDENTIALS='. \Google\Cloud\Core\Testing\Snippet\Fixtures::KEYFILE_STUB_FIXTURE());
+
+        $ref = new \ReflectionClass(\Composer\Autoload\ClassLoader::class);
+        $base = dirname(dirname(dirname($ref->getFileName())));
+
+        $parser = new Parser;
+        $scanner = new Scanner($parser, $base, ['/vendor/']);
+        $coverage = new Coverage($scanner);
+        $coverage->buildListToCover();
+
+        Container::$coverage = $coverage;
+        Container::$parser = $parser;
     }
 }

@@ -27,4 +27,10 @@ class Container
 {
     public static $coverage;
     public static $parser;
+
+    public static function reset()
+    {
+        self::$coverage = null;
+        self::$parser = null;
+    }
 }

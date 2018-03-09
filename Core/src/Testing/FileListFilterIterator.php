@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-namespace Google\Cloud\Dev\DocGenerator;
+namespace Google\Cloud\Core\Testing;
 
 /**
  * Filter to create a list of only required files
