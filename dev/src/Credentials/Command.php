@@ -62,7 +62,13 @@ class Command extends SymfonyCommand
                 $output->writeln('Found valid json at environment variable `' . $kf);
             }
 
-            $path = $base . 'keys/' . $kf .'.json';
+            $dir = $base . '/keys/';
+            $path = $dir . $kf .'.json';
+
+            if (!file_exists($dir)) {
+                mkdir($dir);
+            }
+
             if (file_put_contents($path, $data) !== false) {
                 $output->writeln('Wrote keyfile contents to file `' . realpath($path) . '`');
             } else {
