@@ -23,9 +23,20 @@ use Google\Cloud\Core\Testing\Snippet\Container;
  * Augments the PHPUnit test run report with snippet info.
  *
  * Will report coverage status and perform cleanup steps for the next run.
+ *
+ * @experimental
+ * @internal
  */
 class ResultPrinter extends \PHPUnit_TextUI_ResultPrinter
 {
+    /**
+     * Show snippet results.
+     *
+     * @param \PHPUnit_Framework_TestResult $result The test result.
+     * @return void
+     * @experimental
+     * @internal
+     */
     public function printResult(\PHPUnit_Framework_TestResult $result)
     {
         parent::printResult($result);

@@ -148,6 +148,14 @@ class TestHelpers
         }
     }
 
+    /**
+     * Setup stuff needed for the system test runner.
+     *
+     * This method can only be called once per run. Subsequent calls will thrown \RuntimeException.
+     *
+     * @internal
+     * @experimental
+     */
     public static function systemBootstrap()
     {
         static $started = false;
