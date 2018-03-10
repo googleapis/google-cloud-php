@@ -198,14 +198,17 @@ class TableTest extends TestCase
     public function testMutateRow()
     {
         $utc_str = gmdate("M d Y H:i:s", time());
-        $utc     = strtotime($utc_str)*1000;
-        $cell    = array(
-            'cf' => 'cf',
-            'qualifier' => 'field',
-            'value' => 'val',
-            'timestamp' => $utc
-        );
-        $mutations[] = \Google\Cloud\Bigtable\Table::mutationCell($cell);
+	    $utc = strtotime($utc_str);
+        $Mutation_SetCell = new Mutation_SetCell();
+        $Mutation_SetCell->setFamilyName('cf');
+        $Mutation_SetCell->setColumnQualifier('qualifier');
+        $Mutation_SetCell->setValue('value');
+        $Mutation_SetCell->setTimestampMicros($utc*1000);
+
+        $Mutation = new Mutation();
+        $Mutation->setSetCell($Mutation_SetCell);
+
+        $mutations[] = $Mutation;
      
         $MutateRowResponse = new MutateRowResponse();
         $this->mock->method('mutateRow')
