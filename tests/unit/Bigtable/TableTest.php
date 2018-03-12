@@ -35,6 +35,8 @@ use Google\Protobuf\Internal\GPBType;
 use Google\Protobuf\Internal\MapField;
 use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\GPBEmpty;
+use Google\GAX\ServerStream;
+use Google\GAX\PagedListResponse;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
 
@@ -99,30 +101,6 @@ class TableTest extends TestCase
         $this->assertEquals($table->getName(), $parent);
     }
 
-    public function testDeleteTable()
-    {
-        $GPBEmpty = new GPBEmpty();
-        $this->mock->method('deleteTable')
-             ->willReturn($GPBEmpty);
-
-        $table = $this->mock->deleteTable(Argument::type('string'));
-        $this->assertInstanceOf(GPBEmpty::class, $table);
-    }
-    
-    public function testGetTable()
-    {
-        $expected = 'projects/'.self::PROJECT_ID.'/instances/'.self::INSTANCE_ID.'/tables/'.self::TABLE_ID;
-        $fakeTable = new Table();
-        $fakeTable->setName($expected);
-
-        $this->mock->method('getTable')
-             ->willReturn($fakeTable);
-        $table = $this->mock->getTable(Argument::type('string'));
-
-        $this->assertInstanceOf(Table::class, $table);
-        $this->assertEquals($table->getName(), $expected);
-    }
-    
     public function testColumnFamily()
     {
         $columnFamily = 'cf';
@@ -140,6 +118,38 @@ class TableTest extends TestCase
         $MapField = $this->mock->columnFamily(Argument::type('integer'), Argument::type('string'));
         
         $this->assertInstanceOf(MapField::class, $MapField);
+    }
+
+    public function testDeleteTable()
+    {
+        $GPBEmpty = new GPBEmpty();
+        $this->mock->method('deleteTable')
+             ->willReturn($GPBEmpty);
+
+        $table = $this->mock->deleteTable(Argument::type('string'));
+        $this->assertInstanceOf(GPBEmpty::class, $table);
+    }
+
+    public function testListTables()
+    {
+        $this->mock->method('listTables')
+             ->willReturn(PagedListResponse::class);
+        $response = $this->mock->listTables();
+        $this->assertEquals(PagedListResponse::class, $response);
+    }
+    
+    public function testGetTable()
+    {
+        $expected = 'projects/'.self::PROJECT_ID.'/instances/'.self::INSTANCE_ID.'/tables/'.self::TABLE_ID;
+        $fakeTable = new Table();
+        $fakeTable->setName($expected);
+
+        $this->mock->method('getTable')
+             ->willReturn($fakeTable);
+        $table = $this->mock->getTable(Argument::type('string'));
+
+        $this->assertInstanceOf(Table::class, $table);
+        $this->assertEquals($table->getName(), $expected);
     }
     
     public function testAddColumnFamilies()
@@ -195,6 +205,33 @@ class TableTest extends TestCase
         $this->assertInstanceOf(GPBEmpty::class, $empty);
     }
 
+    public function testMutateRows()
+    {
+        $utc_str = gmdate("M d Y H:i:s", time());
+	    $utc = strtotime($utc_str);
+        $Mutation_SetCell = new Mutation_SetCell();
+        $Mutation_SetCell->setFamilyName('cf');
+        $Mutation_SetCell->setColumnQualifier('qualifier');
+        $Mutation_SetCell->setValue('value');
+        $Mutation_SetCell->setTimestampMicros($utc*1000);
+
+        $Mutation = new Mutation();
+        $Mutation->setSetCell($Mutation_SetCell);
+        $mutations[] = $Mutation;
+
+        $rowKey = 'user00000000';
+        $MutateRowsRequest_Entry = new MutateRowsRequest_Entry();
+        $MutateRowsRequest_Entry->setRowKey($rowKey);
+        $MutateRowsRequest_Entry->setMutations($mutations);
+        $entries[] = $MutateRowsRequest_Entry;
+    
+        $this->mock->method('mutateRows')
+             ->willReturn(ServerStream::class);
+
+        $serverStream = $this->mock->mutateRows(Argument::type('string'), $entries);
+        $this->assertEquals(ServerStream::class, $serverStream);
+    }
+    
     public function testMutateRow()
     {
         $utc_str = gmdate("M d Y H:i:s", time());
@@ -207,7 +244,6 @@ class TableTest extends TestCase
 
         $Mutation = new Mutation();
         $Mutation->setSetCell($Mutation_SetCell);
-
         $mutations[] = $Mutation;
      
         $MutateRowResponse = new MutateRowResponse();
@@ -217,7 +253,7 @@ class TableTest extends TestCase
         $mutateRow = $this->mock->mutateRow(Argument::type('string'), Argument::type('string'), $mutations);
         $this->assertInstanceOf(MutateRowResponse::class, $mutateRow);
     }
-    
+
     public function testMutationCell()
     {
         $utc_str = gmdate("M d Y H:i:s", time());
@@ -286,6 +322,15 @@ class TableTest extends TestCase
 
         $readRows = $this->mock->readRows(Argument::type('string'));
         $this->assertInstanceOf(FlatRow::class, $readRows);
+    }
+
+    public function testSampleRowKeys()
+    {
+        $this->mock->method('sampleRowKeys')
+             ->willReturn(ServerStream::class);
+
+        $serverStream = $this->mock->sampleRowKeys(Argument::type('string'));
+        $this->assertEquals(ServerStream::class, $serverStream);
     }
 
     public function testCheckAndMutateRow()

@@ -44,6 +44,14 @@ class InstanceTest extends TestCase
                             ->getMock();
     }
 
+    public function testCreateInstance()
+    {
+        $this->mock->method('createInstance')
+             ->willReturn(OperationResponse::class);
+        $response = $this->mock->createInstance(Argument::type('string'), Argument::type('string'), Argument::type('string'));
+        $this->assertEquals(OperationResponse::class, $response);
+    }
+
     public function testGetInstance()
     {
         $Instance = new Instance();
@@ -75,7 +83,7 @@ class InstanceTest extends TestCase
         $ListInstances = new ListInstancesResponse();
         $this->mock->method('listInstances')
              ->willReturn($ListInstances);
-        $instances = $this->mock->listInstances([]);
+        $instances = $this->mock->listInstances();
         $this->assertInstanceOf(ListInstancesResponse::class, $instances);
     }
     
@@ -85,8 +93,16 @@ class InstanceTest extends TestCase
         $this->mock->method('deleteInstance')
              ->willReturn($GPBEmpty);
         
-        $res = $this->mock->deleteInstance(Argument::type('string'));
-        $this->assertInstanceOf(GPBEmpty::class, $res);
+        $response = $this->mock->deleteInstance(Argument::type('string'));
+        $this->assertInstanceOf(GPBEmpty::class, $response);
+    }
+
+    public function testCreateCluster()
+    {
+        $this->mock->method('createCluster')
+             ->willReturn(OperationResponse::class);
+        $response = $this->mock->createCluster(Argument::type('string'), Argument::type('string'));
+        $this->assertEquals(OperationResponse::class, $response);
     }
 
     public function testGetCluster()
@@ -105,6 +121,14 @@ class InstanceTest extends TestCase
              ->willReturn($listClusters);
         $clusters = $this->mock->listClusters(Argument::type('string'));
         $this->assertInstanceOf(ListClustersResponse::class, $clusters);
+    }
+
+    public function testUpdateCluster()
+    {
+        $this->mock->method('updateCluster')
+             ->willReturn(OperationResponse::class);
+        $response = $this->mock->updateCluster(Argument::type('string'), Argument::type('string'), 0);
+        $this->assertEquals(OperationResponse::class, $response);
     }
 
     public function testDeleteCluster()
