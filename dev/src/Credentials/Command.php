@@ -49,7 +49,8 @@ class Command extends SymfonyCommand
         $keyfiles = getenv('GOOGLE_CLOUD_PHP_KEYFILES');
         $decoded = json_decode(base64_decode($keyfiles), true);
         if (!$keyfiles || json_last_error() !== JSON_ERROR_NONE) {
-            throw new \RuntimeException('You must specify `GOOGLE_CLOUD_PHP_KEYFILES` as a base64-encoded json array of keyfile names.');
+            $output->writeln('<error>You must specify `GOOGLE_CLOUD_PHP_KEYFILES` as a base64-encoded json array of keyfile names.</error>');
+            return;
         }
 
         foreach ($decoded as $kf) {
@@ -57,9 +58,10 @@ class Command extends SymfonyCommand
 
             $data = base64_decode(getenv($kf . '_ENCODED'), true);
             if (json_last_error() !== JSON_ERROR_NONE) {
-                throw new \RuntimeException('Required environment variable `' . $kf . '_ENCODED` not set or invalid!');
+                $output->writeln('<error>Required environment variable `' . $kf . '_ENCODED` not set or invalid!</error>');
+                return;
             } else {
-                $output->writeln('Found valid json at environment variable `' . $kf);
+                $output->writeln('Found valid json at environment variable `' . $kf .'`');
             }
 
             $dir = $base . '/keys/';
@@ -72,8 +74,11 @@ class Command extends SymfonyCommand
             if (file_put_contents($path, $data) !== false) {
                 $output->writeln('Wrote keyfile contents to file `' . realpath($path) . '`');
             } else {
-                throw new \RuntimeException('Could not write to file');
+                $output->writeln('<error>Could not write to file</error>');
+                return;
             }
         }
+
+        $output->writeln('<info>Credentials configured!</info>');
     }
 }
