@@ -109,7 +109,7 @@ class TestHelpers
         putenv('GOOGLE_APPLICATION_CREDENTIALS='. \Google\Cloud\Core\Testing\Snippet\Fixtures::KEYFILE_STUB_FIXTURE());
 
         $parser = new Parser;
-        $scanner = new Scanner($parser, self::projectRoot(), ['/vendor/']);
+        $scanner = new Scanner($parser, self::projectRoot(), ['/vendor/', '/dev/']);
         $coverage = new Coverage($scanner);
         $coverage->buildListToCover();
 
