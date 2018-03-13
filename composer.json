@@ -85,7 +85,7 @@
         "google/cloud-trace": "0.6.2",
         "google/cloud-translate": "1.1.2",
         "google/cloud-videointelligence": "0.9.2",
-        "google/cloud-vision": "0.10.1",
+        "google/cloud-vision": "0.11.0",
         "google/cloud-debugger": "0.5.0"
     },
     "suggest": {
