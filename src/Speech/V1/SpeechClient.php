@@ -31,6 +31,8 @@
 namespace Google\Cloud\Speech\V1;
 
 use Generator;
+use Google\ApiCore\ApiException;
+use Google\ApiCore\OperationResponse;
 use Google\Cloud\Speech\SpeechHelpersTrait;
 use Google\Cloud\Speech\V1\Gapic\SpeechGapicClient;
 
@@ -42,14 +44,122 @@ class SpeechClient extends SpeechGapicClient
     use SpeechHelpersTrait;
 
     /**
-     * Creates a stream of StreamingRecognizeRequest objects from a stream of audio data.
+     * Performs synchronous speech recognition: receive results after all audio
+     * has been sent and processed.
      *
-     * @param iterable|string[] $chunks
-     * @return Generator|StreamingRecognizeRequest[]
+     * Sample code:
+     * ```
+     * $speechClient = new SpeechClient();
+     * try {
+     *     $encoding = RecognitionConfig_AudioEncoding::FLAC;
+     *     $sampleRateHertz = 44100;
+     *     $languageCode = 'en-US';
+     *     $config = new RecognitionConfig();
+     *     $config->setEncoding($encoding);
+     *     $config->setSampleRateHertz($sampleRateHertz);
+     *     $config->setLanguageCode($languageCode);
+     *     $audioUri = 'gs://bucket_name/file_name.flac';
+     *     $response = $speechClient->recognize($config, $audioUri);
+     * } finally {
+     *     $speechClient->close();
+     * }
+     * ```
+     *
+     * @param RecognitionConfig                $config       *Required* Provides information to the recognizer that specifies how to
+     *                                                       process the request.
+     * @param RecognitionAudio|resource|string $audio        *Required* The audio data to be recognized. This can be a RecognitionAudio
+     *                                                       object, a Google Cloud Storage URI, a resource object, or a string of bytes.
+     * @param array                            $optionalArgs {
+     *                                                        Optional.
+     *
+     * @type RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return RecognizeResponse
+     *
+     * @throws ApiException if the remote call fails
+     * @experimental
      */
-    public function createRequestStream($chunks)
+    public function recognize($config, $audio, $optionalArgs = [])
     {
-        return $this->createRequestStreamHelper(StreamingRecognizeRequest::class, $chunks);
+        return parent::recognize($config, $this->createRecognitionAudioHelper(RecognitionAudio::class, $audio), $optionalArgs);
+    }
+
+    /**
+     * Performs asynchronous speech recognition: receive results via the
+     * google.longrunning.Operations interface. Returns either an
+     * `Operation.error` or an `Operation.response` which contains
+     * a `LongRunningRecognizeResponse` message.
+     *
+     * Sample code:
+     * ```
+     * $speechClient = new SpeechClient();
+     * try {
+     *     $encoding = RecognitionConfig_AudioEncoding::FLAC;
+     *     $sampleRateHertz = 44100;
+     *     $languageCode = 'en-US';
+     *     $config = new RecognitionConfig();
+     *     $config->setEncoding($encoding);
+     *     $config->setSampleRateHertz($sampleRateHertz);
+     *     $config->setLanguageCode($languageCode);
+     *     $audioUri = 'gs://bucket_name/file_name.flac';
+     *     $operationResponse = $speechClient->longRunningRecognize($config, $audioUri);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *       $result = $operationResponse->getResult();
+     *       // doSomethingWith($result)
+     *     } else {
+     *       $error = $operationResponse->getError();
+     *       // handleError($error)
+     *     }
+     *
+     *     // OR start the operation, keep the operation name, and resume later
+     *     $operationResponse = $speechClient->longRunningRecognize($config, $audio);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $speechClient->resumeOperation($operationName, 'longRunningRecognize');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *       $result = $newOperationResponse->getResult();
+     *       // doSomethingWith($result)
+     *     } else {
+     *       $error = $newOperationResponse->getError();
+     *       // handleError($error)
+     *     }
+     * } finally {
+     *     $speechClient->close();
+     * }
+     * ```
+     *
+     * @param RecognitionConfig                $config       *Required* Provides information to the recognizer that specifies how to
+     *                                                       process the request.
+     * @param RecognitionAudio|resource|string $audio        *Required* The audio data to be recognized. This can be a RecognitionAudio
+     *                                                       object, a Google Cloud Storage URI, a resource object, or a string of bytes.
+     * @param array                            $optionalArgs {
+     *                                                        Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException if the remote call fails
+     * @experimental
+     */
+    public function longRunningRecognize($config, $audio, $optionalArgs = [])
+    {
+        return parent::longRunningRecognize($config, $this->createRecognitionAudioHelper(RecognitionAudio::class, $audio), $optionalArgs);
     }
 
     /**
@@ -69,10 +179,9 @@ class SpeechClient extends SpeechGapicClient
      * $config = new StreamingRecognitionConfig();
      * $config->setConfig($recognitionConfig);
      *
-     * $f = fopen('path/to/audio.flac', 'r');
-     * $audioStream = $speechClient->createAudioStream($f);
+     * $audioResource = fopen('path/to/audio.flac', 'r');
      *
-     * $responseStream = $speechClient->recognizeAudioStream($config, $audioStream);
+     * $responseStream = $speechClient->recognizeAudioStream($config, $audioResource);
      *
      * foreach ($responseStream as $element) {
      *     // doSomethingWith($element);
@@ -81,7 +190,8 @@ class SpeechClient extends SpeechGapicClient
      *
      * @param StreamingRecognitionConfig  $config         *Required* Provides information to the recognizer that specifies how to
      *                                                    process the request.
-     * @param iterable|string[]           $audioStream    *Required* A stream of audio data.
+     * @param iterable|resource|string    $audio          *Required* Audio data to be streamed. Can be a resource, a string of bytes,
+     *                                                    or an iterable of StreamingRecognizeRequest[] or string[].
      * @param array                       $optionalArgs   {
      *                                                    Optional.
      *
@@ -90,14 +200,10 @@ class SpeechClient extends SpeechGapicClient
      * }
      * @return StreamingRecognizeResponse[]
      */
-    public function recognizeAudioStream($config, $audioStream, $optionalArgs = [])
+    public function recognizeAudioStream($config, $audio, $optionalArgs = [])
     {
         $bidiStream = $this->streamingRecognize($optionalArgs);
-        return $this->recognizeRequestStreamHelper(
-            StreamingRecognizeRequest::class,
-            $bidiStream,
-            $config,
-            $this->createRequestStream($audioStream)
-        );
+        $bidiStream->writeAll($this->createAudioStreamHelper(StreamingRecognizeRequest::class, $config, $audio));
+        return $bidiStream->closeWriteAndReadAll();
     }
 }

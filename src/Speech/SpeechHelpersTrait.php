@@ -19,6 +19,7 @@ namespace Google\Cloud\Speech;
 
 use Generator;
 use Google\ApiCore\BidiStream;
+use InvalidArgumentException;
 
 /**
  * Provides helper functions for generated Speech clients.
@@ -26,11 +27,74 @@ use Google\ApiCore\BidiStream;
 trait SpeechHelpersTrait
 {
     /**
+     * A list of allowed url schemes.
+     *
+     * @var array
+     */
+    private $urlSchemes = [
+        'gs'
+    ];
+
+    private function createRecognitionAudioHelper($recognitionAudioClass, $audio)
+    {
+        if (is_object($audio) && $audio instanceof $recognitionAudioClass) {
+            return $audio;
+        }
+        $recognitionAudio = new $recognitionAudioClass();
+        if (is_string($audio)) {
+            if (in_array(parse_url($audio, PHP_URL_SCHEME), $this->urlSchemes)) {
+                $recognitionAudio->setUri($audio);
+            } else {
+                $recognitionAudio->setContent($audio);
+            }
+        } elseif (is_resource($audio)) {
+            $recognitionAudio->setContent(stream_get_contents($audio));
+        } else {
+            throw new InvalidArgumentException(
+                'Given $audio is not valid. ' .
+                'Audio must be a RecognitionAudio object, a string of bytes, a valid image URI, or a resource.'
+            );
+        }
+    }
+
+    /**
+     * @param string $requestClass
+     * @param StreamingRecognitionConfig $config
+     * @param iterable|resource|string $audio
+     * @return StreamingRecognizeRequest[]
+     */
+    private function createAudioStreamHelper($requestClass, $config, $audio)
+    {
+        // First, convert string/resource audio into an iterable
+        if (is_string($audio)) {
+            $audio = [$audio];
+        }
+        if (is_resource($audio)) {
+            $audio = $this->createAudioStreamFromResource($audio);
+        }
+
+        // First yield the config request
+        $request = new $requestClass();
+        $request->setStreamingConfig($config);
+        yield $request;
+
+        // For each chuck in iterable $audio, convert to a request if necessary
+        foreach ($audio as $audioChunk) {
+            if (is_object($audioChunk) && $audioChunk instanceof $requestClass) {
+                yield $audioChunk;
+            }
+            $request = new $requestClass();
+            $request->setAudioContent($audioChunk);
+            yield $request;
+        }
+    }
+
+    /**
      * @param resource $resource
      * @param int      $chunkSize
      * @return Generator|string[]
      */
-    public function createAudioStream($resource, $chunkSize = 32000)
+    private function createAudioStreamFromResource($resource, $chunkSize = 32000)
     {
         while (!feof($resource)) {
             $chunk = fread($resource, $chunkSize);
@@ -38,35 +102,5 @@ trait SpeechHelpersTrait
                 yield $chunk;
             }
         }
-    }
-
-    /**
-     * @param string $requestClass
-     * @param iterable|string[] $chunks
-     * @return Generator
-     */
-    private function createRequestStreamHelper($requestClass, $chunks)
-    {
-        foreach ($chunks as $chunk) {
-            $request = new $requestClass();
-            $request->setAudioContent($chunk);
-            yield $request;
-        }
-    }
-
-    /**
-     * @param string $requestClass
-     * @param BidiStream $bidiStream
-     * @param mixed $config
-     * @param Generator $requestStream
-     * @return mixed
-     */
-    private function recognizeRequestStreamHelper($requestClass, $bidiStream, $config, $requestStream)
-    {
-        $request = new $requestClass();
-        $request->setStreamingConfig($config);
-        $bidiStream->write($request);
-        $bidiStream->writeAll($requestStream);
-        return $bidiStream->closeWriteAndReadAll();
     }
 }
