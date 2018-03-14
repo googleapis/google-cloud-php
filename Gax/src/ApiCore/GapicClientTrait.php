@@ -48,12 +48,12 @@ trait GapicClientTrait
     use ArrayTrait;
     use ValidationTrait;
 
+    protected $transport;
     private static $gapicVersion;
     private $retrySettings;
     private $serviceName;
     private $agentHeaderDescriptor;
     private $descriptors;
-    private $transport;
     private $transportCallMethods = [
         Call::UNARY_CALL => 'startUnaryCall',
         Call::BIDI_STREAMING_CALL => 'startBidiStreamingCall',
