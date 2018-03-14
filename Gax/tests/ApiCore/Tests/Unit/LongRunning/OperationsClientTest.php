@@ -331,7 +331,7 @@ class OperationsClientTest extends GeneratedTest
 
 class MockOperationsClient extends OperationsClient
 {
-    private $transport;
+    protected $transport;
 
     public function __construct($args = [])
     {
