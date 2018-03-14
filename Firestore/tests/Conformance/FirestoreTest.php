@@ -36,6 +36,7 @@ use Prophecy\Exception\Call\UnexpectedCallException;
 
 /**
  * @group firestore
+ * @runTestsInSeparateProcesses
  */
 class FirestoreTest extends TestCase
 {
