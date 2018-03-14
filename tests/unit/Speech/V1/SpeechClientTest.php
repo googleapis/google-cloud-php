@@ -21,13 +21,21 @@ use Google\ApiCore\BidiStream;
 use Google\ApiCore\Call;
 use Google\ApiCore\Testing\MockBidiStreamingCall;
 use Google\ApiCore\Transport\TransportInterface;
+use Google\Cloud\Speech\V1\LongRunningRecognizeRequest;
+use Google\Cloud\Speech\V1\LongRunningRecognizeResponse;
+use Google\Cloud\Speech\V1\RecognitionAudio;
 use Google\Cloud\Speech\V1\RecognitionConfig;
 use Google\Cloud\Speech\V1\RecognitionConfig_AudioEncoding;
+use Google\Cloud\Speech\V1\RecognizeRequest;
+use Google\Cloud\Speech\V1\RecognizeResponse;
 use Google\Cloud\Speech\V1\SpeechClient;
 use Google\Cloud\Speech\V1\StreamingRecognitionConfig;
 use Google\Cloud\Speech\V1\StreamingRecognitionResult;
 use Google\Cloud\Speech\V1\StreamingRecognizeRequest;
 use Google\Cloud\Speech\V1\StreamingRecognizeResponse;
+use Google\LongRunning\Operation;
+use Google\Protobuf\Any;
+use GuzzleHttp\Promise\FulfilledPromise;
 use Prophecy\Argument;
 use PHPUnit\Framework\TestCase;
 
@@ -36,7 +44,9 @@ use PHPUnit\Framework\TestCase;
  */
 class SpeechClientTest extends TestCase
 {
+    /** @var SpeechClient */
     private $client;
+    /** @var TransportInterface */
     private $transport;
 
     public function setUp()
@@ -47,20 +57,7 @@ class SpeechClientTest extends TestCase
         ]);
     }
 
-    public function testCreateRequestStream()
-    {
-        $expectedStream = [
-            (new StreamingRecognizeRequest())->setAudioContent("abcd"),
-            (new StreamingRecognizeRequest())->setAudioContent("efg"),
-        ];
-
-        $chunks = ["abcd", "efg"];
-        $requestStream = $this->client->createRequestStream($chunks);
-
-        $this->assertEquals($expectedStream, iterator_to_array($requestStream));
-    }
-
-    public function testRecognizeAudioStream()
+    private function createRecognitionConfig()
     {
         $encoding = RecognitionConfig_AudioEncoding::FLAC;
         $sampleRateHertz = 44100;
@@ -69,11 +66,122 @@ class SpeechClientTest extends TestCase
         $recognitionConfig->setEncoding($encoding);
         $recognitionConfig->setSampleRateHertz($sampleRateHertz);
         $recognitionConfig->setLanguageCode($languageCode);
+        return $recognitionConfig;
+    }
+
+    /**
+     * @dataProvider recognizeDataProvider
+     */
+    public function testRecognize($audio, $expectedRequestMessage)
+    {
+        $recognitionConfig = $this->createRecognitionConfig();
+
+        $expectedResponse = new RecognizeResponse();
+
+        $this->transport->startUnaryCall(Argument::allOf(
+                    Argument::type(Call::class),
+                    Argument::which('getMethod', 'google.cloud.speech.v1.Speech/Recognize'),
+                    Argument::which('getMessage', $expectedRequestMessage)
+                ),
+                Argument::any()
+            )
+            ->shouldBeCalledTimes(1)
+            ->willReturn(new FulfilledPromise($expectedResponse));
+
+        $response = $this->client->recognize($recognitionConfig, $audio);
+
+        $this->assertSame($expectedResponse, $response);
+    }
+
+    /**
+     * @dataProvider longRunningRecognizeDataProvider
+     */
+    public function testLongRunningRecognize($audio, $expectedRequestMessage)
+    {
+        $recognitionConfig = $this->createRecognitionConfig();
+
+        $expectedRecognizeResponse = new LongRunningRecognizeResponse();
+        $expectedResponse = new Operation();
+        $expectedResponse->setResponse((new Any())->setValue($expectedRecognizeResponse->serializeToString()));
+        $expectedResponse->setDone(true);
+
+        $this->transport->startUnaryCall(Argument::allOf(
+            Argument::type(Call::class),
+            Argument::which('getMethod', 'google.cloud.speech.v1.Speech/LongRunningRecognize'),
+            Argument::which('getMessage', $expectedRequestMessage)
+        ),
+            Argument::any()
+        )
+            ->shouldBeCalledTimes(1)
+            ->willReturn(new FulfilledPromise($expectedResponse));
+
+        $response = $this->client->longRunningRecognize($recognitionConfig, $audio);
+
+        $this->assertEquals($expectedRecognizeResponse, $response->getResult());
+    }
+
+    public function recognizeDataProvider()
+    {
+        $uri = 'gs://my-bucket/my-audio.flac';
+        $data = 'abcdefgh';
+        $resourceData = 'zyxwvuts';
+        $resource = $this->createResource($resourceData);
+        $recognitionAudio = (new RecognitionAudio())
+            ->setContent('directRequestData');
+        return [
+            [$uri, (new RecognizeRequest())
+                ->setConfig($this->createRecognitionConfig())
+                ->setAudio((new RecognitionAudio())
+                    ->setUri($uri))],
+            [$data, (new RecognizeRequest())
+                ->setConfig($this->createRecognitionConfig())
+                ->setAudio((new RecognitionAudio())
+                    ->setContent($data))],
+            [$resource, (new RecognizeRequest())
+                ->setConfig($this->createRecognitionConfig())
+                ->setAudio((new RecognitionAudio())
+                    ->setContent($resourceData))],
+            [$recognitionAudio, (new RecognizeRequest())
+                ->setConfig($this->createRecognitionConfig())
+                ->setAudio($recognitionAudio)]
+        ];
+    }
+
+    public function longRunningRecognizeDataProvider()
+    {
+        $uri = 'gs://my-bucket/my-audio.flac';
+        $data = 'abcdefgh';
+        $resourceData = 'zyxwvuts';
+        $resource = $this->createResource($resourceData);
+        $recognitionAudio = (new RecognitionAudio())
+            ->setContent('directRequestData');
+        return [
+            [$uri, (new LongRunningRecognizeRequest())
+                ->setConfig($this->createRecognitionConfig())
+                ->setAudio((new RecognitionAudio())
+                    ->setUri($uri))],
+            [$data, (new LongRunningRecognizeRequest())
+                ->setConfig($this->createRecognitionConfig())
+                ->setAudio((new RecognitionAudio())
+                    ->setContent($data))],
+            [$resource, (new LongRunningRecognizeRequest())
+                ->setConfig($this->createRecognitionConfig())
+                ->setAudio((new RecognitionAudio())
+                    ->setContent($resourceData))],
+            [$recognitionAudio, (new LongRunningRecognizeRequest())
+                ->setConfig($this->createRecognitionConfig())
+                ->setAudio($recognitionAudio)]
+        ];
+    }
+
+    /**
+     * @dataProvider recognizeAudioStreamData
+     */
+    public function testRecognizeAudioStream($audio, $expectedContent)
+    {
+        $recognitionConfig = $this->createRecognitionConfig();
         $config = new StreamingRecognitionConfig();
         $config->setConfig($recognitionConfig);
-
-        $f = $this->createResource("abcdefgh");
-        $audioStream = $this->client->createAudioStream($f, 5);
 
         $expectedResponseStream = [
             new StreamingRecognizeResponse(),
@@ -83,15 +191,15 @@ class SpeechClientTest extends TestCase
         $mockBidiStreamingCall = new MockBidiStreamingCall($expectedResponseStream);
 
         $this->transport->startBidiStreamingCall(Argument::allOf(
-                    Argument::type(Call::class),
-                    Argument::which('getMethod', 'google.cloud.speech.v1.Speech/StreamingRecognize')
-                ),
-                Argument::type('array')
-            )
+            Argument::type(Call::class),
+            Argument::which('getMethod', 'google.cloud.speech.v1.Speech/StreamingRecognize')
+        ),
+            Argument::type('array')
+        )
             ->shouldBeCalledTimes(1)
             ->willReturn(new BidiStream($mockBidiStreamingCall));
 
-        $responseStream = $this->client->recognizeAudioStream($config, $audioStream);
+        $responseStream = $this->client->recognizeAudioStream($config, $audio);
 
         $this->assertSame($expectedResponseStream, iterator_to_array($responseStream));
 
@@ -101,10 +209,29 @@ class SpeechClientTest extends TestCase
         $expectedConfigMessage = new StreamingRecognizeRequest();
         $expectedConfigMessage->setStreamingConfig($config);
 
-        $this->assertSame(3, count($receivedCalls));
+        // Expect one extra call, for the config message
+        $this->assertSame(count($expectedContent) + 1, count($receivedCalls));
         $this->assertEquals($expectedConfigMessage, $receivedCalls[0]);
-        $this->assertSame("abcde", $receivedCalls[1]->getAudioContent());
-        $this->assertSame("fgh", $receivedCalls[2]->getAudioContent());
+        for ($i = 0; $i < count($expectedContent); $i++) {
+            $this->assertSame($expectedContent[$i], $receivedCalls[$i + 1]->getAudioContent());
+        }
+    }
+
+    public function recognizeAudioStreamData()
+    {
+        $data = 'abcdefgh';
+        $iterableData = ['abcd', 'efgh'];
+        $resourceData = 'zyxwvuts';
+        $streamingData = '12345678';
+        $resource = $this->createResource($resourceData);
+        $streamingRecognizeRequest = new StreamingRecognizeRequest();
+        $streamingRecognizeRequest->setAudioContent($streamingData);
+        return [
+            [$data, [$data]],
+            [$iterableData, $iterableData],
+            [[$streamingRecognizeRequest], [$streamingData]],
+            [$resource, [$resourceData]]
+        ];
     }
 
     private function createResource($data)

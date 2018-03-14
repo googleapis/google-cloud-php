@@ -52,9 +52,12 @@ trait SpeechHelpersTrait
         } else {
             throw new InvalidArgumentException(
                 'Given $audio is not valid. ' .
-                'Audio must be a RecognitionAudio object, a string of bytes, a valid image URI, or a resource.'
+                'Audio must be a RecognitionAudio ' .
+                'object, a string of bytes, a valid ' .
+                'Google Cloud Storage URI, or a resource.'
             );
         }
+        return $recognitionAudio;
     }
 
     /**
@@ -82,10 +85,18 @@ trait SpeechHelpersTrait
         foreach ($audio as $audioChunk) {
             if (is_object($audioChunk) && $audioChunk instanceof $requestClass) {
                 yield $audioChunk;
+            } elseif (is_string($audioChunk)) {
+                $request = new $requestClass();
+                $request->setAudioContent($audioChunk);
+                yield $request;
+            } else {
+                throw new InvalidArgumentException(
+                    'Found invalid audio chunk in $audio. ' .
+                    'Audio must be a resource, a string of ' .
+                    'bytes, or an iterable of StreamingRecognizeRequest[] ' .
+                    'or string[].'
+                );
             }
-            $request = new $requestClass();
-            $request->setAudioContent($audioChunk);
-            yield $request;
         }
     }
 

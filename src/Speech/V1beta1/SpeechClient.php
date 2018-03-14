@@ -82,9 +82,9 @@ class SpeechClient extends SpeechGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function recognize($config, $audio, $optionalArgs = [])
+    public function syncRecognize($config, $audio, $optionalArgs = [])
     {
-        return parent::recognize($config, $this->createRecognitionAudioHelper(RecognitionAudio::class, $audio), $optionalArgs);
+        return parent::syncRecognize($config, $this->createRecognitionAudioHelper(RecognitionAudio::class, $audio), $optionalArgs);
     }
 
     /**
@@ -155,9 +155,9 @@ class SpeechClient extends SpeechGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function longRunningRecognize($config, $audio, $optionalArgs = [])
+    public function asyncRecognize($config, $audio, $optionalArgs = [])
     {
-        return parent::longRunningRecognize($config, $this->createRecognitionAudioHelper(RecognitionAudio::class, $audio), $optionalArgs);
+        return parent::asyncRecognize($config, $this->createRecognitionAudioHelper(RecognitionAudio::class, $audio), $optionalArgs);
     }
 
     /**

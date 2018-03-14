@@ -31,18 +31,24 @@ class SpeechHelpersTraitTest extends TestCase
 
     public function setUp()
     {
-        $this->implementation = new SpeechHelpersTraitStub();
+        $this->implementation = \Google\Cloud\Core\Testing\TestHelpers::impl(SpeechHelpersTrait::class);
     }
 
     /**
      * @dataProvider createAudioStreamDataProvider
      */
-    public function testCreateAudioStream($resource, $chunkSize, $expectedData)
+    public function testCreateAudioStreamFromResource($resource, $chunkSize, $expectedData)
     {
         if (is_null($chunkSize)) {
-            $audioData = $this->implementation->createAudioStream($resource);
+            $audioData = $this->implementation->call(
+                'createAudioStreamFromResource',
+                [$resource]
+            );
         } else {
-            $audioData = $this->implementation->createAudioStream($resource, $chunkSize);
+            $audioData = $this->implementation->call(
+                'createAudioStreamFromResource',
+                [$resource, $chunkSize]
+            );
         }
 
         $this->assertSame($expectedData, iterator_to_array($audioData));
@@ -67,7 +73,3 @@ class SpeechHelpersTraitTest extends TestCase
     }
 }
 
-class SpeechHelpersTraitStub
-{
-    use SpeechHelpersTrait;
-}
