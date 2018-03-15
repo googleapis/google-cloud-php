@@ -22,9 +22,15 @@ use Google\ApiCore\Call;
 use Google\ApiCore\Testing\MockBidiStreamingCall;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
+use Google\Cloud\Speech\V1\LongRunningRecognizeResponse;
+use Google\Cloud\Speech\V1\RecognitionConfig;
+use Google\Cloud\Speech\V1\RecognizeResponse;
 use Google\Cloud\Speech\V1\SpeechClient;
 use Google\Cloud\Speech\V1\StreamingRecognitionConfig;
 use Google\Cloud\Speech\V1\StreamingRecognizeResponse;
+use Google\LongRunning\Operation;
+use Google\Protobuf\Any;
+use GuzzleHttp\Promise\FulfilledPromise;
 use Prophecy\Argument;
 
 /**
@@ -41,6 +47,76 @@ class SpeechClientTest extends SnippetTestCase
         $this->client = new SpeechClient([
             'transport' => $this->transport->reveal(),
         ]);
+    }
+
+    public function testRecognize()
+    {
+        $snippet = $this->snippetFromMethod(SpeechClient::class, 'recognize');
+        $snippet->addLocal('speechClient', $this->client);
+
+        $expectedResponse = new RecognizeResponse();
+
+        $this->transport->startUnaryCall(Argument::allOf(
+            Argument::type(Call::class),
+            Argument::which('getMethod', 'google.cloud.speech.v1.Speech/Recognize')
+        ),
+            Argument::type('array')
+        )
+            ->shouldBeCalledTimes(1)
+            ->willReturn(new FulfilledPromise($expectedResponse));
+
+        $res = $snippet->invoke();
+    }
+
+    public function testLongRunningRecognize()
+    {
+        $snippet = $this->snippetFromMethod(SpeechClient::class, 'longRunningRecognize');
+        $snippet->addLocal('speechClient', $this->client);
+
+        $expectedRecognizeResponse = new LongRunningRecognizeResponse();
+        $expectedResponse = new Operation();
+        $expectedResponse->setResponse((new Any())->setValue($expectedRecognizeResponse->serializeToString()));
+        $expectedResponse->setDone(true);
+
+        $this->transport->startUnaryCall(Argument::allOf(
+            Argument::type(Call::class),
+            Argument::which('getMethod', 'google.cloud.speech.v1.Speech/LongRunningRecognize')
+        ),
+            Argument::type('array')
+        )
+            ->shouldBeCalledTimes(1)
+            ->willReturn(new FulfilledPromise($expectedResponse));
+
+        $res = $snippet->invoke();
+    }
+
+    public function testLongRunningRecognizeResume()
+    {
+        $snippet = $this->snippetFromMethod(
+            SpeechClient::class,
+            'longRunningRecognize',
+            'resume'
+        );
+        $config = new RecognitionConfig();
+        $audioUri = 'gs://bucket_name/file_name.flac';
+        $snippet->addLocal('speechClient', $this->client);
+        $snippet->addLocal('config', $config);
+        $snippet->addLocal('audioUri', $audioUri);
+
+        $expectedRecognizeResponse = new LongRunningRecognizeResponse();
+        $expectedResponse = new Operation();
+        $expectedResponse->setResponse((new Any())->setValue($expectedRecognizeResponse->serializeToString()));
+        $expectedResponse->setDone(true);
+
+        $this->transport->startUnaryCall(Argument::allOf(
+            Argument::type(Call::class)
+        ),
+            Argument::type('array')
+        )
+            ->shouldBeCalledTimes(2)
+            ->willReturn(new FulfilledPromise($expectedResponse));
+
+        $res = $snippet->invoke();
     }
 
     public function testRecognizeAudioStream()

@@ -45,22 +45,20 @@ class SpeechClient extends SpeechGapicClient
      * Performs synchronous speech recognition: receive results after all audio
      * has been sent and processed.
      *
-     * Sample code:
+     * Example:
      * ```
-     * $speechClient = new SpeechClient();
-     * try {
-     *     $encoding = RecognitionConfig_AudioEncoding::FLAC;
-     *     $sampleRateHertz = 44100;
-     *     $languageCode = 'en-US';
-     *     $config = new RecognitionConfig();
-     *     $config->setEncoding($encoding);
-     *     $config->setSampleRateHertz($sampleRateHertz);
-     *     $config->setLanguageCode($languageCode);
-     *     $audioUri = 'gs://bucket_name/file_name.flac';
-     *     $response = $speechClient->recognize($config, $audioUri);
-     * } finally {
-     *     $speechClient->close();
-     * }
+     * use Google\Cloud\Speech\V1beta1\RecognitionConfig_AudioEncoding;
+     * use Google\Cloud\Speech\V1beta1\RecognitionConfig;
+     *
+     * $encoding = RecognitionConfig_AudioEncoding::FLAC;
+     * $sampleRateHertz = 44100;
+     * $languageCode = 'en-US';
+     * $config = new RecognitionConfig();
+     * $config->setEncoding($encoding);
+     * $config->setSampleRate($sampleRateHertz);
+     * $config->setLanguageCode($languageCode);
+     * $audioUri = 'gs://bucket_name/file_name.flac';
+     * $response = $speechClient->syncRecognize($config, $audioUri);
      * ```
      *
      * @param RecognitionConfig                $config       *Required* Provides information to the recognizer that specifies how to
@@ -93,46 +91,47 @@ class SpeechClient extends SpeechGapicClient
      * `Operation.error` or an `Operation.response` which contains
      * a `LongRunningRecognizeResponse` message.
      *
-     * Sample code:
+     * Example:
      * ```
-     * $speechClient = new SpeechClient();
-     * try {
-     *     $encoding = RecognitionConfig_AudioEncoding::FLAC;
-     *     $sampleRateHertz = 44100;
-     *     $languageCode = 'en-US';
-     *     $config = new RecognitionConfig();
-     *     $config->setEncoding($encoding);
-     *     $config->setSampleRateHertz($sampleRateHertz);
-     *     $config->setLanguageCode($languageCode);
-     *     $audioUri = 'gs://bucket_name/file_name.flac';
-     *     $operationResponse = $speechClient->longRunningRecognize($config, $audioUri);
-     *     $operationResponse->pollUntilComplete();
-     *     if ($operationResponse->operationSucceeded()) {
-     *       $result = $operationResponse->getResult();
-     *       // doSomethingWith($result)
-     *     } else {
-     *       $error = $operationResponse->getError();
-     *       // handleError($error)
-     *     }
+     * use Google\Cloud\Speech\V1beta1\RecognitionConfig_AudioEncoding;
+     * use Google\Cloud\Speech\V1beta1\RecognitionConfig;
      *
-     *     // OR start the operation, keep the operation name, and resume later
-     *     $operationResponse = $speechClient->longRunningRecognize($config, $audio);
-     *     $operationName = $operationResponse->getName();
+     * $encoding = RecognitionConfig_AudioEncoding::FLAC;
+     * $sampleRateHertz = 44100;
+     * $languageCode = 'en-US';
+     * $config = new RecognitionConfig();
+     * $config->setEncoding($encoding);
+     * $config->setSampleRate($sampleRateHertz);
+     * $config->setLanguageCode($languageCode);
+     * $audioUri = 'gs://bucket_name/file_name.flac';
+     * $operationResponse = $speechClient->asyncRecognize($config, $audioUri);
+     * $operationResponse->pollUntilComplete();
+     * if ($operationResponse->operationSucceeded()) {
+     *   $result = $operationResponse->getResult();
+     *   // doSomethingWith($result)
+     * } else {
+     *   $error = $operationResponse->getError();
+     *   // handleError($error)
+     * }
+     *```
+     *
+     * ```
+     * //[snippet=resume]
+     * // OR start the operation, keep the operation name, and resume later
+     * $operationResponse = $speechClient->asyncRecognize($config, $audioUri);
+     * $operationName = $operationResponse->getName();
+     * // ... do other work
+     * $newOperationResponse = $speechClient->resumeOperation($operationName, 'asyncRecognize');
+     * while (!$newOperationResponse->isDone()) {
      *     // ... do other work
-     *     $newOperationResponse = $speechClient->resumeOperation($operationName, 'longRunningRecognize');
-     *     while (!$newOperationResponse->isDone()) {
-     *         // ... do other work
-     *         $newOperationResponse->reload();
-     *     }
-     *     if ($newOperationResponse->operationSucceeded()) {
-     *       $result = $newOperationResponse->getResult();
-     *       // doSomethingWith($result)
-     *     } else {
-     *       $error = $newOperationResponse->getError();
-     *       // handleError($error)
-     *     }
-     * } finally {
-     *     $speechClient->close();
+     *     $newOperationResponse->reload();
+     * }
+     * if ($newOperationResponse->operationSucceeded()) {
+     *   $result = $newOperationResponse->getResult();
+     *   // doSomethingWith($result)
+     * } else {
+     *   $error = $newOperationResponse->getError();
+     *   // handleError($error)
      * }
      * ```
      *
@@ -172,7 +171,7 @@ class SpeechClient extends SpeechGapicClient
      *
      * $recognitionConfig = new RecognitionConfig();
      * $recognitionConfig->setEncoding(RecognitionConfig_AudioEncoding::FLAC);
-     * $recognitionConfig->setSampleRateHertz(44100);
+     * $recognitionConfig->setSampleRate(44100);
      * $recognitionConfig->setLanguageCode('en-US');
      * $config = new StreamingRecognitionConfig();
      * $config->setConfig($recognitionConfig);
