@@ -1427,7 +1427,11 @@ class DlpServiceGapicClient
      *                             Optional.
      *
      *     @type InspectJobConfig $inspectJob
+     *          The configuration details for an inspect job. Only one of $inspectJob and $riskJob
+     *          may be provided.
      *     @type RiskAnalysisJobConfig $riskJob
+     *          The configuration details for a risk analysis job. Only one of $inspectJob and $riskJob
+     *          may be provided.
      *     @type string $jobId
      *          The job id can contain uppercase and lowercase letters,
      *          numbers, and hyphens; that is, it must match the regular

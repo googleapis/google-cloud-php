@@ -14,5 +14,15 @@
             "title": "DlpServiceClient",
             "type": "dlp/v2beta1/dlpserviceclient"
         }]
+    }, {
+        "title": "v2",
+        "type": "dlp/v2/readme",
+        "patterns": [
+          "dlp/v2/\\w{1,}"
+        ],
+        "nav": [{
+            "title": "DlpServiceClient",
+            "type": "dlp/v2/dlpserviceclient"
+        }]
     }]
 }
