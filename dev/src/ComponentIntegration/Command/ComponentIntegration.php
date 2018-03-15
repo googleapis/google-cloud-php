@@ -83,10 +83,16 @@ class ComponentIntegration extends Command
             $component['tmpDir'] = $tmpDir;
         }
 
-        $this->updateComposerFiles($dest, $components);
+        $components = $this->updateComposerFiles($dest, $components);
 
         // run tests on each component.
         foreach ($components as $component) {
+            if (isset($component['missingDependency']) && $component['missingDependency']) {
+                $this->output->writeln('<comment>Skipping '. $component['id'] .' because a required PHP extension is missing.</comment>');
+                $this->output->writeln('');
+                continue;
+            }
+
             $this->testComponent($component);
         }
 
@@ -173,7 +179,7 @@ class ComponentIntegration extends Command
             $aliases[] = $component['id'];
         }
 
-        foreach ($components as $component) {
+        foreach ($components as &$component) {
             $composerFile = $component['tmpDir'] . DIRECTORY_SEPARATOR .'composer.json';
             $composer = json_decode(file_get_contents($composerFile), true);
             if (json_last_error() !== JSON_ERROR_NONE) {
@@ -195,12 +201,25 @@ class ComponentIntegration extends Command
                     ];
                 }
             }
+
+            $component['missingDependency'] = false;
+            foreach ($composer['require'] as $require => $version) {
+                if (strpos($require, 'ext-') === 0) {
+                    $ext = str_replace('ext-', '', $require);
+                    if (!extension_loaded($ext)) {
+                        $component['missingDependency'] = true;
+                        continue;
+                    }
+                }
+            }
         }
 
         foreach ($components as $component) {
             $composerFile = $component['tmpDir'] . DIRECTORY_SEPARATOR .'composer.json';
             $this->modifyComposerFile($composerFile, $repositories, $aliases);
         }
+
+        return $components;
     }
 
     private function testComponent(array $component)
