@@ -35,6 +35,11 @@ class AgentTest extends TestCase
         if (PHP_MAJOR_VERSION < 7) {
             $this->markTestSkipped('Can only run the Agent on PHP 7+');
         }
+
+        if (!extension_loaded('stackdriver_debugger')) {
+            $this->markTestSkipped('Requires stackdriver_debugger php extension.');
+        }
+
         $this->storage = $this->prophesize(BreakpointStorageInterface::class);
     }
 
