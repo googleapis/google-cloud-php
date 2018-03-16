@@ -531,4 +531,47 @@ class BucketTest extends TestCase
         $this->assertInstanceOf(Notification::class, $notifications[0]);
         $this->assertEquals($notificationID, $notifications[0]->id());
     }
+
+    /**
+     * @expectedException BadMethodCallException
+     */
+    public function testLockRetentionPolicyThrowsExceptionWithoutMetageneration()
+    {
+        $this->getBucket()->lockRetentionPolicy();
+    }
+
+    /**
+     * @dataProvider metagenerationProvider
+     */
+    public function testLockRetentionPolicy($metageneration)
+    {
+        $expectedLockArgs = [
+            'ifMetagenerationMatch' => 1,
+            'bucket' => self::BUCKET_NAME,
+            'userProject' => null
+        ];
+        $expectedReturn = ['metageneration' => 2];
+        $this->connection->getBucket(Argument::any())
+            ->willReturn(['metageneration' => 1]);
+        $this->connection->lockRetentionPolicy($expectedLockArgs)
+            ->shouldBeCalledTimes(1)
+            ->willReturn($expectedReturn);
+        $bucket = $this->getBucket();
+        $bucket->reload();
+
+        $this->assertEquals(
+            $expectedReturn,
+            $bucket->lockRetentionPolicy([
+                'ifMetagenerationMatch' => $metageneration
+            ])
+        );
+    }
+
+    public function metagenerationProvider()
+    {
+        return [
+            [1],
+            [null]
+        ];
+    }
 }

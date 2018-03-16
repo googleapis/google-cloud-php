@@ -557,6 +557,37 @@ class BucketTest extends SnippetTestCase
         $this->assertInstanceOf(Iam::class, $res->returnVal());
     }
 
+    public function testLockRetentionPolicy()
+    {
+        $snippet = $this->snippetFromMethod(Bucket::class, 'lockRetentionPolicy');
+        $snippet->addLocal('bucket', $this->bucket);
+        $patchArgs = [
+            'retentionPolicy' => [
+                'retentionPeriod' => 604800
+            ],
+            'bucket' => 'my-bucket',
+            'userProject' => null
+        ];
+        $lockArgs = [
+            'ifMetagenerationMatch' => 1,
+            'bucket' => 'my-bucket',
+            'userProject' => null
+        ];
+        $this->connection->patchBucket($patchArgs)
+            ->shouldBeCalled()
+            ->willReturn([
+                'metageneration' => 1
+            ]);
+        $this->connection->lockRetentionPolicy($lockArgs)
+            ->shouldBeCalled()
+            ->willReturn([
+                'metageneration' => 2
+            ]);
+        $this->bucket->___setProperty('connection', $this->connection->reveal());
+
+        $res = $snippet->invoke();
+    }
+
     private function assertSnippetBuildsNotification($snippet, $expectedArgs)
     {
         $this->connection->insertNotification($expectedArgs)
