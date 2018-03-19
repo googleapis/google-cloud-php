@@ -1,29 +1,24 @@
 {
-    "name": "google/cloud-oslogin",
-    "description": "Google Cloud OsLogin Client for PHP",
+    "name": "google/cloud-iot",
+    "description": "Google Cloud IoT Core Client for PHP",
     "license": "Apache-2.0",
     "minimum-stability": "stable",
     "autoload": {
         "psr-4": {
-            "Google\\Cloud\\OsLogin\\": "src"
+            "Google\\Cloud\\Iot\\": "src"
         }
     },
     "extra": {
         "component": {
-            "id": "cloud-oslogin",
-            "path": "OsLogin",
+            "id": "cloud-iot",
+            "path": "Iot",
             "entry": null,
-            "target": "GoogleCloudPlatform/google-cloud-php-oslogin.git"
+            "target": "GoogleCloudPlatform/google-cloud-php-iot.git"
         }
     },
     "require": {
         "google/proto-client": "^0.35",
         "google/gax": "^0.31"
-    },
-    "require-dev": {
-        "phpunit/phpunit": "^4.8|^5.0",
-        "google/cloud-core": "^1.14",
-        "phpdocumentor/reflection": "^3.0"
     },
     "suggest": {
         "ext-protobuf": "Provides a significant increase in throughput over the pure PHP protobuf implementation. See https://cloud.google.com/php/grpc for installation instructions."
