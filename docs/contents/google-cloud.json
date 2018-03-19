@@ -18,6 +18,7 @@
         "cloud-dlp",
         "cloud-error-reporting",
         "cloud-firestore",
+        "cloud-iot",
         "cloud-language",
         "cloud-logging",
         "cloud-monitoring",

@@ -48,8 +48,8 @@
         "monolog/monolog": "~1",
         "psr/http-message": "1.0.*",
         "ramsey/uuid": "~3",
-        "google/gax": "^0.30",
-        "google/proto-client": "^0.34"
+        "google/gax": "^0.31",
+        "google/proto-client": "^0.35"
     },
     "require-dev": {
         "phpunit/phpunit": "^4.8|^5.0",
@@ -75,6 +75,7 @@
         "google/cloud-dlp": "0.7.0",
         "google/cloud-error-reporting": "0.9.1",
         "google/cloud-firestore": "0.6.0",
+        "google/cloud-iot": "master",
         "google/cloud-language": "0.13.0",
         "google/cloud-logging": "1.10.0",
         "google/cloud-monitoring": "0.9.0",
@@ -108,6 +109,7 @@
             "Google\\Cloud\\Dlp\\": "Dlp/src",
             "Google\\Cloud\\ErrorReporting\\": "ErrorReporting/src",
             "Google\\Cloud\\Firestore\\": "Firestore/src",
+            "Google\\Cloud\\Iot\\": "Iot/src",
             "Google\\Cloud\\Language\\": "Language/src",
             "Google\\Cloud\\Logging\\": "Logging/src",
             "Google\\Cloud\\Monitoring\\": "Monitoring/src",
@@ -137,6 +139,7 @@
             "Google\\Cloud\\Dlp\\Tests\\": "Dlp/tests",
             "Google\\Cloud\\ErrorReporting\\Tests\\": "ErrorReporting/tests",
             "Google\\Cloud\\Firestore\\Tests\\": "Firestore/tests",
+            "Google\\Cloud\\Iot\\Tests\\": "Iot/tests",
             "Google\\Cloud\\Language\\Tests\\": "Language/tests",
             "Google\\Cloud\\Logging\\Tests\\": "Logging/tests",
             "Google\\Cloud\\Monitoring\\Tests\\": "Monitoring/tests",
