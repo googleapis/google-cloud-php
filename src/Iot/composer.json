@@ -1,0 +1,26 @@
+{
+    "name": "google/cloud-iot",
+    "description": "Google Cloud IoT Core Client for PHP",
+    "license": "Apache-2.0",
+    "minimum-stability": "stable",
+    "autoload": {
+        "psr-4": {
+            "Google\\Cloud\\Iot\\": ""
+        }
+    },
+    "extra": {
+        "component": {
+            "id": "cloud-iot",
+            "path": "src/Iot",
+            "entry": null,
+            "target": "GoogleCloudPlatform/google-cloud-php-iot.git"
+        }
+    },
+    "require": {
+        "google/proto-client": "^0.35.0",
+        "google/gax": "^0.30.0"
+    },
+    "suggest": {
+        "ext-protobuf": "Provides a significant increase in throughput over the pure PHP protobuf implementation. See https://cloud.google.com/php/grpc for installation instructions."
+    }
+}
