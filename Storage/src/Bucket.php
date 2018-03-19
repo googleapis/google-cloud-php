@@ -811,7 +811,7 @@ class Bucket
      *     @type array $retentionPolicy Defines the retention policy for a
      *           bucket. In order to lock a retention policy, please see
      *           {@see Google\Cloud\Storage\Bucket::lockRetentionPolicy()}.
-     *     @type int $retentionPolicy['retentionPeriod'] Specifies the duration
+     *     @type int $retentionPolicy.retentionPeriod Specifies the duration
      *           that objects need to be retained, in seconds. Retention
      *           duration must be greater than zero and less than 100 years.
      * }
@@ -1150,14 +1150,15 @@ class Bucket
     }
 
     /**
-     * Locks a provided retention policy on this bucket. Upon receiving a result
+     * Locks a provided retention policy on this bucket. Upon receiving a result,
      * the local bucket's data will be updated.
      *
      * Please note that in order for this call to succeed, the applicable
      * metageneration value will need to be available. It can either be supplied
      * explicitly through the `ifMetagenerationMatch` option or detected for you
      * by ensuring a value is cached locally (by calling
-     * {@see Google\Cloud\Storage\Bucket::reload()}, for example).
+     * {@see Google\Cloud\Storage\Bucket::reload()} or
+     * {@see Google\Cloud\Storage\Bucket::info()}, for example).
      *
      * Example:
      * ```

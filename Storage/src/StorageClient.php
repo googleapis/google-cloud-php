@@ -300,7 +300,7 @@ class StorageClient
      *     @type array $retentionPolicy Defines the retention policy for a
      *           bucket. In order to lock a retention policy, please see
      *           {@see Google\Cloud\Storage\Bucket::lockRetentionPolicy()}.
-     *     @type int $retentionPolicy['retentionPeriod'] Specifies the duration
+     *     @type int $retentionPolicy.retentionPeriod Specifies the duration
      *           that objects need to be retained, in seconds. Retention
      *           duration must be greater than zero and less than 100 years.
      * }
