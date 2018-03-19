@@ -161,7 +161,7 @@ trait GapicClientTrait
      *           The code generator version of the GAPIC library.
      * }
      */
-    private function setClientOptions(array $options)
+    protected function setClientOptions(array $options)
     {
         $this->validateNotNull($options, [
             'serviceName',
@@ -215,7 +215,7 @@ trait GapicClientTrait
      *
      * @return PromiseInterface|BidiStream|ClientStream|ServerStream
      */
-    private function startCall(
+    protected function startCall(
         $methodName,
         $decodeType,
         array $optionalArgs = [],
@@ -254,7 +254,7 @@ trait GapicClientTrait
      *
      * @return callable
      */
-    private function createCallStack(array $callConstructionOptions)
+    protected function createCallStack(array $callConstructionOptions)
     {
         return new RetryMiddleware(
             new AgentHeaderMiddleware(
@@ -279,7 +279,7 @@ trait GapicClientTrait
      *
      * @return array
      */
-    private function configureCallOptions(array $optionalArgs)
+    protected function configureCallOptions(array $optionalArgs)
     {
         return $this->pluckArray([
             'headers',
@@ -299,7 +299,7 @@ trait GapicClientTrait
      *
      * @return array
      */
-    private function configureCallConstructionOptions($methodName, array $optionalArgs)
+    protected function configureCallConstructionOptions($methodName, array $optionalArgs)
     {
         $retrySettings = $this->retrySettings[$methodName];
         // Allow for retry settings to be changed at call time
@@ -328,7 +328,7 @@ trait GapicClientTrait
      *
      * @return PromiseInterface
      */
-    private function startOperationsCall(
+    protected function startOperationsCall(
         $methodName,
         array $optionalArgs,
         Message $request,
@@ -361,7 +361,7 @@ trait GapicClientTrait
      *
      * @return PagedListResponse
      */
-    private function getPagedListResponse(
+    protected function getPagedListResponse(
         $methodName,
         array $optionalArgs,
         $decodeType,
@@ -391,7 +391,7 @@ trait GapicClientTrait
      *
      * @return string
      */
-    private function buildMethod($interfaceName, $methodName)
+    protected function buildMethod($interfaceName, $methodName)
     {
         return sprintf(
             '%s/%s',
