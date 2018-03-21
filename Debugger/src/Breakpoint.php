@@ -594,11 +594,13 @@ class Breakpoint implements \JsonSerializable
      * $found = $breakpoint->resolveLocation();
      * ```
      *
+     * @param SourceLocationResolver $resolver [optional] **Defaults to** a
+     *     resolver that uses the current include path.
      * @return bool
      */
-    public function resolveLocation()
+    public function resolveLocation(SourceLocationResolver $resolver = null)
     {
-        $resolver = new SourceLocationResolver();
+        $resolver = $resolver ?: new SourceLocationResolver();
         $this->resolvedLocation = $resolver->resolve($this->location);
 
         return $this->resolvedLocation !== null;
