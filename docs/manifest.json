@@ -11,6 +11,8 @@
             "name": "google/cloud",
             "defaultService": "readme",
             "versions": [
+                "v0.57.1",
+                "v0.57.0",
                 "v0.56.0",
                 "v0.55.0",
                 "v0.54.0",
