@@ -44,7 +44,8 @@ class DeviceManagerClient extends DeviceManagerGapicClient
             if ($options['transport'] == 'grpc') {
                 throw new InvalidArgumentException(
                     'The "grpc" transport is not currently supported, ' .
-                    'please use the "rest" transport.');
+                    'please use the "rest" transport.'
+                );
             }
             // If transport is set to anything other than grpc, take no action
             // and process as usual in setClientOptions
