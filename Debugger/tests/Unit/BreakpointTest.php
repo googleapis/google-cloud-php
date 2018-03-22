@@ -20,6 +20,7 @@ namespace Google\Cloud\Debugger\Tests\Unit;
 use Google\Cloud\Debugger\Action;
 use Google\Cloud\Debugger\Breakpoint;
 use Google\Cloud\Debugger\SourceLocation;
+use Google\Cloud\Debugger\SourceLocationResolver;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -176,14 +177,18 @@ class BreakpointTest extends TestCase
 
     public function testResolvedLocationNotIncludedInJson()
     {
-        $path = implode(DIRECTORY_SEPARATOR, ['src', 'DebuggerClient.php']);
+        // $this->markTestSkipped('unreliable paths');
+
+        $path = 'DebuggerClient.php';
         $breakpoint = new Breakpoint([
             'location' => [
                 'path' => $path,
                 'line' => 1
             ]
         ]);
-        $this->assertTrue($breakpoint->resolveLocation());
+        $cwd = realpath(implode(DIRECTORY_SEPARATOR, [__DIR__, '../../']));
+        $resolver = new SourceLocationResolver([$cwd]);
+        $this->assertTrue($breakpoint->resolveLocation($resolver));
 
         // resolved location should have changed the path
         $this->assertLessThan(strlen($breakpoint->location()->path()), strlen($path));

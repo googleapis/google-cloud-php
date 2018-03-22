@@ -45,7 +45,7 @@ class ExcludeFilter extends FilterIterator
         // Accept the current item if we can recurse into it
         // or it is a value starting with "test"
         foreach ($this->excludeDirs as $excludeDir) {
-            if (strpos($this->current(), $excludeDir) !== FALSE) {
+            if (strpos($this->current(), $excludeDir) !== false) {
                 return false;
             }
         }

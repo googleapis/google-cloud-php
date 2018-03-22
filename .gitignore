@@ -7,3 +7,4 @@ vendor/
 
 # do not delete
 keys/
+.testing

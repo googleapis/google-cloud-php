@@ -18,7 +18,7 @@ before_script:
   - if [[ $TRAVIS_PHP_VERSION =~ ^7 ]]; then pecl install stackdriver_debugger-alpha || echo 'Failed to install stackdriver_debugger'; fi
   - composer install
   - if [[ $TRAVIS_PHP_VERSION =~ ^hhvm ]]; then composer --no-interaction --dev remove google/protobuf google/gax google/proto-client; fi
-  - ./dev/sh/system-test-credentials
+  - dev/google-cloud credentials
 
 env:
   global:
@@ -34,7 +34,3 @@ after_success:
   - if [[ $TRAVIS_PHP_VERSION =~ ^hhvm ]]; then bash <(curl -s https://codecov.io/bash); fi
   - ./dev/sh/push-docs
   - ./dev/sh/trigger-split
-  - cat ./build/snippets-uncovered.json
-
-after_failure:
-  - echo "SNIPPET COVERAGE REPORT" && cat ./build/snippets-uncovered.json

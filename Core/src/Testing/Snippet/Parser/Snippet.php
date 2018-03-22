@@ -30,7 +30,7 @@ class Snippet implements \JsonSerializable
     /**
      * @var array
      */
-    private $options;
+    private $config;
 
     /**
      * @var array
@@ -82,6 +82,16 @@ class Snippet implements \JsonSerializable
     public function file()
     {
         return $this->config['file'];
+    }
+
+    /**
+     * The Snippet fully-qualified name.
+     *
+     * @return string
+     */
+    public function fqn()
+    {
+        return $this->config['fqn'];
     }
 
     /**

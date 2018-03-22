@@ -25,8 +25,7 @@ install:
   - ps: appveyor-retry cinst --params '""/InstallDir:C:\tools\php""' --ignore-checksums -y php --version ((choco search php --exact --all-versions -r | select-string -pattern $env:PHP_VERSION | sort { [version]($_ -split '\|' | select -last 1) } -Descending | Select-Object -first 1) -replace '[php|]','')
   - ps: . .\dev\appveyor-grpc.ps1
   - cd c:\projects\google-cloud
-  - appveyor DownloadFile https://getcomposer.org/download/1.2.1/composer.phar
-  - php composer.phar self-update
+  - appveyor DownloadFile https://getcomposer.org/composer.phar
   - php composer.phar install
 
 test_script:

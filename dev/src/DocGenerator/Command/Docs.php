@@ -17,8 +17,8 @@
 
 namespace Google\Cloud\Dev\DocGenerator\Command;
 
+use Google\Cloud\Core\Testing\FileListFilterIterator;
 use Google\Cloud\Dev\DocGenerator\DocGenerator;
-use Google\Cloud\Dev\DocGenerator\FileListFilterIterator;
 use Google\Cloud\Dev\DocGenerator\GuideGenerator;
 use Google\Cloud\Dev\DocGenerator\RegexFileFilter;
 use Google\Cloud\Dev\DocGenerator\TableOfContents;
@@ -228,7 +228,6 @@ class Docs extends Command
     {
         $directoryIterator = new RecursiveDirectoryIterator($source);
         $iterator = new RecursiveIteratorIterator($directoryIterator);
-        // $regexIterator = new RegexIterator($iterator, $regex, RecursiveRegexIterator::GET_MATCH);
         $fileList = new FileListFilterIterator(
             realpath($this->cliBasePath .'/../'),
             $iterator,

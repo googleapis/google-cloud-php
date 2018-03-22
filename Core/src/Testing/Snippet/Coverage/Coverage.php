@@ -17,6 +17,8 @@
 
 namespace Google\Cloud\Core\Testing\Snippet\Coverage;
 
+use Google\Cloud\Core\Testing\Snippet\Parser\Snippet;
+
 /**
  * Class Coverage
  *
@@ -35,7 +37,7 @@ class Coverage
     protected $scanner;
 
     /**
-     * @var \Google\Cloud\Core\Testing\Snippet\Parser\Snippet[]
+     * @var Snippet[]
      */
     private $snippets = [];
 
@@ -63,7 +65,7 @@ class Coverage
     /**
      * Creates a list of all snippets which should be covered.
      *
-     * @return \Google\Cloud\Core\Testing\Snippet\Parser\Snippet[]
+     * @return Snippet[]
      *
      * @experimental
      * @internal
@@ -95,7 +97,7 @@ class Coverage
     /**
      * Return a list of all snippets not marked a covered.
      *
-     * @return \Google\Cloud\Core\Testing\Snippet\Parser\Snippet[]
+     * @return Snippet[]
      *
      * @experimental
      * @internal
@@ -107,7 +109,7 @@ class Coverage
 
     /**
      * @param $identifier
-     * @return \Google\Cloud\Core\Testing\Snippet\Parser\Snippet|null
+     * @return Snippet|null
      *
      * @experimental
      * @internal

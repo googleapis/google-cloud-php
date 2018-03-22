@@ -15,10 +15,13 @@
  * limitations under the License.
  */
 
-namespace Google\Cloud\Dev\DocGenerator;
+namespace Google\Cloud\Core\Testing;
 
 /**
  * Filter to create a list of only required files
+ *
+ * @experimental
+ * @internal
  */
 class FileListFilterIterator extends \FilterIterator
 {
@@ -27,6 +30,15 @@ class FileListFilterIterator extends \FilterIterator
     private $testPaths = [];
     private $excludes = [];
 
+    /**
+     * @param string $projectRootPath The path to the root of the project.
+     * @param \Iterator $iterator The iterator to find files.
+     * @param array $fileTypes A list of file types to include
+     * @param array $testPaths A list of known patterns for test files.
+     * @param array $excludes A list of patterns to exclude from the result.
+     * @experimental
+     * @internal
+     */
     public function __construct(
         $projectRootPath,
         \Iterator $iterator,
@@ -42,6 +54,14 @@ class FileListFilterIterator extends \FilterIterator
         parent::__construct($iterator);
     }
 
+    /**
+     * Decides whether to include the file or exclude it.
+     *
+     * @return bool
+     *
+     * @experimental
+     * @internal
+     */
     public function accept()
     {
         /** @var \SplFileInfo */

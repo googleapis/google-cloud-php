@@ -42,7 +42,9 @@ class SystemTestCase extends TestCase
      */
     public static function setupQueue()
     {
-        self::$deletionQueue = new DeletionQueue;
+        if (!self::$deletionQueue) {
+            self::$deletionQueue = new DeletionQueue;
+        }
     }
 
     /**

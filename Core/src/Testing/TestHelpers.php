@@ -18,6 +18,13 @@
 
 namespace Google\Cloud\Core\Testing;
 
+use Google\Cloud\Core\Testing\Snippet\Container;
+use Google\Cloud\Core\Testing\Snippet\Coverage\Coverage;
+use Google\Cloud\Core\Testing\Snippet\Coverage\ExcludeFilter;
+use Google\Cloud\Core\Testing\Snippet\Coverage\Scanner;
+use Google\Cloud\Core\Testing\Snippet\Parser\Parser;
+use Google\Cloud\Core\Testing\System\SystemTestCase;
+
 /**
  * Class TestHelpers is used to hold static functions required for testing
  *
@@ -88,5 +95,131 @@ class TestHelpers
         }
 
         return new $name;
+    }
+
+    /**
+     * Setup snippet tests support.
+     *
+     * @return void
+     * @experimental
+     * @internal
+     */
+    public static function snippetBootstrap()
+    {
+        putenv('GOOGLE_APPLICATION_CREDENTIALS='. \Google\Cloud\Core\Testing\Snippet\Fixtures::KEYFILE_STUB_FIXTURE());
+
+        $parser = new Parser;
+        $scanner = new Scanner($parser, self::projectRoot(), ['/vendor/', '/dev/']);
+        $coverage = new Coverage($scanner);
+        $coverage->buildListToCover();
+
+        Container::$coverage = $coverage;
+        Container::$parser = $parser;
+    }
+
+    /**
+     * Check that the required environment variable keyfile paths are set and exist.
+     *
+     * @param array|string $env The environment variable(s) required.
+     * @throws \RuntimeException
+     * @experimental
+     * @internal
+     */
+    public static function requireKeyfile($env)
+    {
+        $env = is_array($env) ? $env : [$env];
+
+        foreach ($env as $var) {
+            if (!getenv($var)) {
+                throw new \RuntimeException(sprintf(
+                    'Please set the \'%s\' env var to run the system tests',
+                    $var
+                ));
+            }
+
+            $path = getenv($var);
+            if (!file_exists($path)) {
+                throw new \RuntimeException(sprintf(
+                    'The path \`%s\` specified in environment variable `%s` does not exist.',
+                    $path,
+                    $var
+                ));
+            }
+        }
+    }
+
+    /**
+     * Setup stuff needed for the system test runner.
+     *
+     * This method can only be called once per run. Subsequent calls will thrown \RuntimeException.
+     *
+     * @internal
+     * @experimental
+     */
+    public static function systemBootstrap()
+    {
+        static $started = false;
+
+        if ($started) {
+            throw new \RuntimeException('system tests cannot be bootstrapped more than once.');
+        }
+
+        SystemTestCase::setupQueue();
+
+        $bootstraps = glob(self::projectRoot() .'/*/tests/System/bootstrap.php');
+        foreach ($bootstraps as $bootstrap) {
+            require_once $bootstrap;
+        }
+
+        // This should always be last.
+        self::systemTestShutdown(function () {
+            SystemTestCase::processQueue();
+        });
+
+        $started = true;
+    }
+
+    /**
+     * Add cleanup function for system tests.
+     *
+     * Calls to this method enqueue a PHP shutdown function, scoped to the parent
+     * PID.
+     *
+     * @param callable $shutdown The shutdown function.
+     * @return void
+     * @experimental
+     * @internal
+     */
+    public static function systemTestShutdown(callable $shutdown)
+    {
+        $pid = getmypid();
+        register_shutdown_function(function () use ($pid, $shutdown) {
+            // Skip flushing deletion queue if exiting a forked process.
+            if ($pid !== getmypid()) {
+                return;
+            }
+
+            $shutdown();
+        });
+    }
+
+    /**
+     * Determine the path of the project root based on where the composer
+     * autoloader is located.
+     *
+     * @return string
+     * @experimental
+     * @internal
+     */
+    private static function projectRoot()
+    {
+        static $projectRoot;
+
+        if (!$projectRoot) {
+            $ref = new \ReflectionClass(\Composer\Autoload\ClassLoader::class);
+            $projectRoot = dirname(dirname(dirname($ref->getFileName())));
+        }
+
+        return $projectRoot;
     }
 }

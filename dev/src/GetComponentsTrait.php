@@ -139,7 +139,15 @@ trait GetComponentsTrait
      */
     private function getComponentComposer($libraryRootPath, $componentId)
     {
-        $components = $this->getComponents($libraryRootPath, $this->components, $this->defaultComponentComposer);
+        $defaultComposerPath = isset($this->defaultComponentComposer)
+            ? $this->defaultComponentComposer
+            : null;
+
+        $componentsDir = isset($this->components)
+            ? $this->components
+            : $libraryRootPath;
+
+        $components = $this->getComponents($libraryRootPath, $componentsDir, $defaultComposerPath);
 
         $components = array_values(array_filter($components, function ($component) use ($componentId) {
             return ($component['id'] === $componentId);

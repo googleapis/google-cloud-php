@@ -27,4 +27,16 @@ class Container
 {
     public static $coverage;
     public static $parser;
+
+    /**
+     * Reset the container statics.
+     *
+     * @experimental
+     * @internal
+     */
+    public static function reset()
+    {
+        self::$coverage = null;
+        self::$parser = null;
+    }
 }

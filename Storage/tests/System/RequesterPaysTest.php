@@ -34,7 +34,7 @@ class RequesterPaysTest extends StorageTestCase
     private $keyFilePath;
     private $requesterPaysClient;
     private $requesterProject;
-    private $user;
+    private $keyfileUser;
 
     private static $bucketName;
     private static $ownerBucketInstance;
@@ -71,13 +71,13 @@ class RequesterPaysTest extends StorageTestCase
 
     public function setUp()
     {
-        if (!defined('GOOGLE_CLOUD_WHITELIST_KEY_PATH')) {
-            $this->markTestSkipped('Missing whitelist keyfile path for whitelist system tests.');
-        }
+        $this->keyFilePath = getenv('GOOGLE_CLOUD_PHP_TESTS_WHITELIST_KEY_PATH');
 
-        $this->keyFilePath = GOOGLE_CLOUD_WHITELIST_KEY_PATH;
+        $keyfile = json_decode(file_get_contents(getenv('GOOGLE_CLOUD_PHP_TESTS_WHITELIST_KEY_PATH')), true);
+        $this->keyfileUser = $keyfile['client_email'];
+
         $this->requesterPaysClient = new StorageClient([
-            'keyFilePath' => $this->keyFilePath
+            'keyFile' => $keyfile
         ]);
 
         $parentKeyfile = json_decode(file_get_contents(getenv('GOOGLE_CLOUD_PHP_TESTS_KEY_PATH')), true);
@@ -175,49 +175,48 @@ class RequesterPaysTest extends StorageTestCase
 
     public function requesterPaysMethods()
     {
-        $keyfile = json_decode(file_get_contents(GOOGLE_CLOUD_WHITELIST_KEY_PATH), true);
-        $user = $keyfile['client_email'];
+        $this->setup();
 
         return [
             [
-                function (Bucket $bucket) use ($user) {
+                function (Bucket $bucket) {
                     $acl = $bucket->acl();
-                    $acl->add('user-'. $user, Acl::ROLE_READER);
+                    $acl->add('user-'. $this->keyfileUser, Acl::ROLE_READER);
                 }
             ], [
-                function (Bucket $bucket) use ($user) {
+                function (Bucket $bucket) {
                     $acl = $bucket->acl();
-                    $item = $acl->get(['entity' => 'user-'. $user]);
+                    $item = $acl->get(['entity' => 'user-'. $this->keyfileUser]);
                 }
             ], [
-                function (Bucket $bucket) use ($user) {
+                function (Bucket $bucket) {
                     $acl = $bucket->acl();
-                    $acl->update('user-'. $user, Acl::ROLE_OWNER);
+                    $acl->update('user-'. $this->keyfileUser, Acl::ROLE_OWNER);
                 }
             ], [
-                function (Bucket $bucket) use ($user) {
+                function (Bucket $bucket) {
                     $acl = $bucket->acl();
-                    $acl->delete('user-'. $user);
+                    $acl->delete('user-'. $this->keyfileUser);
                 }
             ], [
-                function (Bucket $bucket) use ($user) {
+                function (Bucket $bucket) {
                     $acl = $bucket->defaultAcl();
-                    $acl->add('user-'. $user, Acl::ROLE_READER);
+                    $acl->add('user-'. $this->keyfileUser, Acl::ROLE_READER);
                 }
             ], [
-                function (Bucket $bucket) use ($user) {
+                function (Bucket $bucket) {
                     $acl = $bucket->defaultAcl();
-                    $item = $acl->get(['entity' => 'user-'. $user]);
+                    $item = $acl->get(['entity' => 'user-'. $this->keyfileUser]);
                 }
             ], [
-                function (Bucket $bucket) use ($user) {
+                function (Bucket $bucket) {
                     $acl = $bucket->defaultAcl();
-                    $acl->update('user-'. $user, Acl::ROLE_OWNER);
+                    $acl->update('user-'. $this->keyfileUser, Acl::ROLE_OWNER);
                 }
             ], [
-                function (Bucket $bucket) use ($user) {
+                function (Bucket $bucket) {
                     $acl = $bucket->defaultAcl();
-                    $acl->delete('user-'. $user);
+                    $acl->delete('user-'. $this->keyfileUser);
                 }
             ], [
                 function (Bucket $bucket) {
@@ -272,24 +271,24 @@ class RequesterPaysTest extends StorageTestCase
                     $bucket->notification(self::$notificationId)->reload();
                 }
             ], [
-                function (Bucket $bucket, StorageObject $object) use ($user) {
+                function (Bucket $bucket, StorageObject $object) {
                     $acl = $object->acl();
-                    $acl->add('user-'. $user, Acl::ROLE_READER);
+                    $acl->add('user-'. $this->keyfileUser, Acl::ROLE_READER);
                 }
             ], [
-                function (Bucket $bucket, StorageObject $object) use ($user) {
+                function (Bucket $bucket, StorageObject $object) {
                     $acl = $object->acl();
-                    $item = $acl->get(['entity' => 'user-'. $user]);
+                    $item = $acl->get(['entity' => 'user-'. $this->keyfileUser]);
                 }
             ], [
-                function (Bucket $bucket, StorageObject $object) use ($user) {
+                function (Bucket $bucket, StorageObject $object) {
                     $acl = $object->acl();
-                    $acl->update('user-'. $user, Acl::ROLE_OWNER);
+                    $acl->update('user-'. $this->keyfileUser, Acl::ROLE_OWNER);
                 }
             ], [
-                function (Bucket $bucket, StorageObject $object) use ($user) {
+                function (Bucket $bucket, StorageObject $object) {
                     $acl = $object->acl();
-                    $acl->delete('user-'. $user);
+                    $acl->delete('user-'. $this->keyfileUser);
                 }
             ], [
                 function (Bucket $bucket, StorageObject $object) {

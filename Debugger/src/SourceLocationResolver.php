@@ -32,6 +32,22 @@ namespace Google\Cloud\Debugger;
 class SourceLocationResolver
 {
     /**
+     * @var string[] Search paths used to find matching source files.
+     */
+    private $includePaths = [];
+
+    /**
+     * Create a new SourceLocationResolver.
+     *
+     * @param string[]|null $includePaths The search paths used to find matching
+     *     source files. **Defaults to** the configured include path for PHP.
+     */
+    public function __construct($includePaths = null)
+    {
+        $this->includePaths = $includePaths ?: explode(PATH_SEPARATOR, get_include_path());
+    }
+
+    /**
      * Resolve the full path of an existing file in the application's source.
      * If no matching source file is found, then return null. If found, the
      * resolved location will include the full, absolute path to the source
@@ -74,7 +90,7 @@ class SourceLocationResolver
         $basename = basename($origPath);
         $prefixes = $this->searchPrefixes($origPath);
 
-        $includePaths = array_filter(explode(PATH_SEPARATOR, get_include_path()), function ($path) {
+        $includePaths = array_filter($this->includePaths, function ($path) {
             return file_exists($path);
         });
 
