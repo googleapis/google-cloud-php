@@ -32,6 +32,7 @@
 
 namespace Google\ApiCore\Tests\Unit\Transport;
 
+use Google\ApiCore\AuthWrapper;
 use Google\ApiCore\Call;
 use Google\ApiCore\RequestBuilder;
 use Google\ApiCore\Testing\MockRequest;
@@ -71,13 +72,17 @@ class RestTransportTest extends TestCase
         $credentialsLoader->method('fetchAuthToken')
             ->willReturn(['access_token' => 'abc']);
 
-        return new RestTransport(
-            $requestBuilder,
+        $authWrapper = new AuthWrapper(
             $credentialsLoader,
-            $httpHandler,
             function (RequestInterface $request, array $options = []) {
                 return null;
             }
+        );
+
+        return new RestTransport(
+            $requestBuilder,
+            $authWrapper,
+            $httpHandler
         );
     }
 
