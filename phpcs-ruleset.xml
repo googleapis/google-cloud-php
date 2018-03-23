@@ -2,13 +2,22 @@
 <ruleset name="Google-Cloud-PHP-PSR2">
   <rule ref="PSR2" />
   <rule ref="Generic.Files.LineLength">
-    <exclude-pattern>src/*/V[0-9]+</exclude-pattern>
+    <exclude-pattern>*/src/V[0-9]+</exclude-pattern>
+    <exclude-pattern>*/src/*/V[0-9]+</exclude-pattern>
+    <exclude-pattern>*/src/*/*/V[0-9]+</exclude-pattern>
   </rule>
   <rule ref="PSR1.Methods.CamelCapsMethodName">
-    <exclude-pattern>src/Storage/StreamWrapper.php</exclude-pattern>
+    <exclude-pattern>Storage/src/StreamWrapper.php</exclude-pattern>
   </rule>
   <rule ref="PSR1.Files.SideEffects.FoundWithSymbols">
-    <exclude-pattern>src/Core/Testing/Lock/MockValues.php</exclude-pattern>
+    <exclude-pattern>Core/src/Testing/Lock/MockValues.php</exclude-pattern>
   </rule>
-  <file>src</file>
+  <file>.</file>
+  <exclude-pattern>Core/src/Testing</exclude-pattern>
+  <exclude-pattern>*/tests</exclude-pattern>
+  <exclude-pattern>vendor</exclude-pattern>
+  <exclude-pattern>tests</exclude-pattern>
+  <exclude-pattern>dev</exclude-pattern>
+  <exclude-pattern>docs</exclude-pattern>
+  <arg name="extensions" value="php"/>
 </ruleset>

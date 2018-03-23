@@ -1,0 +1,43 @@
+{
+    "name": "google/cloud-trace",
+    "description": "Stackdriver Trace Client for PHP",
+    "license": "Apache-2.0",
+    "minimum-stability": "stable",
+    "require": {
+        "google/cloud-core": "^1.14",
+        "ramsey/uuid": "~3",
+        "google/gax": "^0.30",
+        "google/proto-client": "^0.34"
+    },
+     "require-dev": {
+        "phpunit/phpunit": "^4.8|^5.0",
+        "squizlabs/php_codesniffer": "2.*",
+        "phpdocumentor/reflection": "^3.0",
+        "erusev/parsedown": "^1.6"
+    },
+    "suggest": {
+        "ext-grpc": "The gRPC extension enables use of the performant gRPC transport",
+        "ext-protobuf": "Provides a significant increase in throughput over the pure PHP protobuf implementation. See https://cloud.google.com/php/grpc for installation instructions.",
+        "cache/apcu-adapter": "Enable QpsSampler to use apcu cache.",
+        "cache/apc-adapter": "Enable QpsSampler to use apc cache.",
+        "cache/memcached-adapter": "Enable QpsSampler to use memcached cache."
+    },
+    "extra": {
+        "component": {
+            "id": "cloud-trace",
+            "target": "GoogleCloudPlatform/google-cloud-php-trace.git",
+            "path": "Trace",
+            "entry": "src/TraceClient.php"
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "Google\\Cloud\\Trace\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Google\\Cloud\\Trace\\Tests\\": "tests"
+        }
+    }
+}

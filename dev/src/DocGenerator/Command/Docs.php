@@ -17,8 +17,10 @@
 
 namespace Google\Cloud\Dev\DocGenerator\Command;
 
+use Google\Cloud\Core\Testing\FileListFilterIterator;
 use Google\Cloud\Dev\DocGenerator\DocGenerator;
 use Google\Cloud\Dev\DocGenerator\GuideGenerator;
+use Google\Cloud\Dev\DocGenerator\RegexFileFilter;
 use Google\Cloud\Dev\DocGenerator\TableOfContents;
 use Google\Cloud\Dev\DocGenerator\TypeGenerator;
 use Google\Cloud\Dev\GetComponentsTrait;
@@ -40,13 +42,22 @@ class Docs extends Command
     const TOC_SOURCE_DIR = 'docs/contents';
     const TOC_TEMPLATE = 'docs/toc.json';
     const OVERVIEW_FILE = 'docs/overview.html';
-    const DEFAULT_SOURCE_DIR = 'src';
+    const DEFAULT_SOURCE_DIR = '';
 
     private $cliBasePath;
 
+    private $testPaths = [
+        'tests/Unit',
+        'tests/Snippet',
+        'tests/System',
+        'tests/Conformance',
+        'tests/Perf',
+        'tests/conformance-fixtures'
+    ];
+
     public function __construct($cliBasePath)
     {
-        $this->cliBasePath = $cliBasePath;
+        $this->cliBasePath = realpath($cliBasePath);
 
         parent::__construct();
     }
@@ -55,19 +66,18 @@ class Docs extends Command
     {
         $this->setName('docs')
             ->setDescription('Generate Documentation')
-            ->addOption('release', 'r', InputOption::VALUE_REQUIRED, 'If set, docs will be generated into tag folders' .
-                ' such as v1.0.0 rather than master.', false)
-            ->addOption('pretty', 'p', InputOption::VALUE_OPTIONAL, 'If set, json files will be written with pretty'.
-                ' formatting using PHP\'s JSON_PRETTY_PRINT flag', false);
+            ->addOption('release', 'r', InputOption::VALUE_NONE, 'If set, docs will be generated into tag folders' .
+                ' such as v1.0.0 rather than master.')
+            ->addOption('pretty', 'p', InputOption::VALUE_NONE, 'If set, json files will be written with pretty'.
+                ' formatting using PHP\'s JSON_PRETTY_PRINT flag')
+            ->addOption('component', 'c', InputOption::VALUE_OPTIONAL, 'Generate docs only for a single component.');
     }
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $release = ($input->getOption('release') === false && $input->getOption('release') !== 'false')
-            ? null
-            : $input->getOption('release');
-
-        $pretty = ($input->getOption('pretty') === false) ? false : true;
+        $release = $input->getOption('release');
+        $pretty = $input->getOption('pretty');
+        $component = $input->getOption('component');
 
         $paths = [
             'source' => $this->cliBasePath .'/../'. self::DEFAULT_SOURCE_DIR,
@@ -78,13 +88,67 @@ class Docs extends Command
             'tocTemplate' => $this->cliBasePath .'/../'. self::TOC_TEMPLATE,
             'overview' => $this->cliBasePath .'/../'. self::OVERVIEW_FILE
         ];
+        $commonExcludes = [
+            '.github',
+            'tests',
+            'CONTRIBUTING.md',
+            'bootstrap.php'
+        ];
 
-        $components = $this->getComponents($paths['source']);
+        $components = $this->getComponents(dirname($this->cliBasePath), $paths['source']);
         $tocTemplate = json_decode(file_get_contents($paths['tocTemplate']), true);
 
-        foreach ($components as $component) {
-            $input = $paths['project'] . $component['path'];
-            $source = $this->getFilesList($input);
+        if ($component !== 'google-cloud') {
+            if ($component) {
+                $components = array_filter($components, function ($componentInfo) use ($component) {
+                    return $componentInfo['id'] === $component;
+                });
+
+                if (!$components) {
+                    throw new \RuntimeException(sprintf('Given component ID %s does not exist', $component));
+                }
+            }
+
+            foreach ($components as $comp) {
+                $input = $paths['project'] . $comp['path'];
+                $source = $this->getFilesList(
+                    $input,
+                    ['php', 'md'],
+                    $commonExcludes
+                );
+                $this->generateComponentDocumentation(
+                    $output,
+                    $source,
+                    $comp,
+                    $paths,
+                    $tocTemplate,
+                    $release,
+                    $pretty
+                );
+            }
+        }
+
+        if (!$component || $component === 'google-cloud') {
+            $projectRealPath = realpath($paths['project']);
+            $source = $this->getFilesList(
+                $projectRealPath,
+                ['php', 'md'],
+                array_merge($commonExcludes, [
+                    '/vendor',
+                    '/dev',
+                    '/build',
+                    '/docs',
+                    '/tests',
+                    '/CODE_OF_CONDUCT.md',
+                    '/README.md',
+                ])
+            );
+
+            $component = [
+                'id' => 'google-cloud',
+                'path' => ''
+            ];
+
             $this->generateComponentDocumentation(
                 $output,
                 $source,
@@ -92,26 +156,10 @@ class Docs extends Command
                 $paths,
                 $tocTemplate,
                 $release,
-                $pretty
+                $pretty,
+                false
             );
         }
-
-        $source = $this->getFilesList($paths['project'] . '/src');
-        $component = [
-            'id' => 'google-cloud',
-            'path' => 'src/'
-        ];
-
-        $this->generateComponentDocumentation(
-            $output,
-            $source,
-            $component,
-            $paths,
-            $tocTemplate,
-            $release,
-            $pretty,
-            false
-        );
     }
 
     private function generateComponentDocumentation(
@@ -172,15 +220,32 @@ class Docs extends Command
         $output->writeln(' ');
     }
 
-    private function getFilesList($source)
+    /**
+     * @param string $source The base directory to iterate.
+     * @param string[] $types A list of file extensions to include. Do not
+     *        include the leading dot.
+     * @param string[] $excludes A list of directories or patterns to exclude.
+     *        If the string begins with a forward-slash it will be treated as an
+     *        absolute file path. Otherwise, the given string will be checked
+     *        for existence in the absolute file path and excluded if it is
+     *        found. (in other words, `strpos($exclude, $path) !== false`.)
+     * @return string[] A list of absolute paths to included files.
+     */
+    private function getFilesList($source, array $types, array $excludes = [])
     {
         $directoryIterator = new RecursiveDirectoryIterator($source);
         $iterator = new RecursiveIteratorIterator($directoryIterator);
-        $regexIterator = new RegexIterator($iterator, '/^.+\.php|^.+\.md$/i', RecursiveRegexIterator::GET_MATCH);
+        $fileList = new FileListFilterIterator(
+            realpath($this->cliBasePath .'/../'),
+            $iterator,
+            $types,
+            $this->testPaths,
+            $excludes
+        );
         $files = [];
 
-        foreach ($regexIterator as $item) {
-            array_push($files, $item[0]);
+        foreach ($fileList as $item) {
+            array_push($files, realPath($item->getPathName()));
         }
 
         return $files;

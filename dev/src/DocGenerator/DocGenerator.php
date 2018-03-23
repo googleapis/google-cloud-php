@@ -66,13 +66,15 @@ class DocGenerator
     public function generate($basePath, $pretty)
     {
         $fileReflectorRegister = new ReflectorRegister();
-        foreach ($this->files as $file) {
 
-            if ($basePath) {
-                $currentFileArr = explode($basePath, trim($file, '/'));
-                if (isset($currentFileArr[1])) {
-                    $currentFile = trim($currentFileArr[1], '/');
-                }
+        $rootPath = realpath(dirname($this->executionPath));
+        foreach ($this->files as $file) {
+            $currentFileArr = $this->isComponent
+                ? explode("/$basePath/", $file)
+                : explode("$rootPath/", $file);
+
+            if (isset($currentFileArr[1])) {
+                $currentFile = str_replace('src/', '', $currentFileArr[1]);
             }
 
             $isPhp = strrpos($file, '.php') == strlen($file) - strlen('.php');
@@ -88,13 +90,8 @@ class DocGenerator
                     $this->isComponent
                 );
             } else {
-                if (strpos($file, '.github') !== false) {
-                    continue;
-                }
-
                 $content = file_get_contents($file);
-                $split = explode('src/', $file);
-                $parser = new MarkdownParser($split[1], $content);
+                $parser = new MarkdownParser($currentFile, $content);
             }
 
             $document = $parser->parse();
