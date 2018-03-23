@@ -3,6 +3,7 @@
   <testsuites>
     <testsuite>
       <directory>*/tests/System</directory>
+      <directory>tests/System</directory>
     </testsuite>
   </testsuites>
   <filter>
