@@ -22,6 +22,9 @@ use Iterator;
 
 /**
  * Class ExcludeFilter is used to exclude directories from an iterable list
+ *
+ * @experimental
+ * @internal
  */
 class ExcludeFilter extends FilterIterator
 {
@@ -41,7 +44,8 @@ class ExcludeFilter extends FilterIterator
     /**
      * @return bool Determines whether to accept or exclude a path
      */
-    public function accept() {
+    public function accept()
+    {
         // Accept the current item if we can recurse into it
         // or it is a value starting with "test"
         foreach ($this->excludeDirs as $excludeDir) {

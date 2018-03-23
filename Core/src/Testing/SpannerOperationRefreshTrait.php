@@ -22,6 +22,9 @@ use Google\Cloud\Spanner\Operation;
 
 /**
  * Refresh Spanner operation class
+ *
+ * @experimental
+ * @internal
  */
 trait SpannerOperationRefreshTrait
 {

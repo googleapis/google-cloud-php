@@ -19,6 +19,9 @@ namespace Google\Cloud\Core\Testing\Snippet;
 
 /**
  * Class containing static functions to provide path to shared test fixtures
+ *
+ * @experimental
+ * @internal
  */
 class Fixtures
 {

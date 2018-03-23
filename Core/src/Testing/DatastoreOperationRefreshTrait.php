@@ -23,6 +23,9 @@ use Google\Cloud\Datastore\Operation;
 
 /**
  * Refresh Datastore operation class
+ *
+ * @experimental
+ * @internal
  */
 trait DatastoreOperationRefreshTrait
 {
