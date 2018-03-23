@@ -69,18 +69,12 @@ class DocGenerator
 
         $rootPath = realpath(dirname($this->executionPath));
         foreach ($this->files as $file) {
-            if ($basePath) {
-                // in umbrella package, folder order is reverse of expected.
-                // i.e. Foo/src/FooClient.php.
-                // this conditional strips the `src` and creates a path with the parent folder name.
-                if (!$this->isComponent) {
-                    $currentFile = str_replace('src/', '', trim(str_replace($rootPath, '', $file), '/'));
-                } else {
-                    $currentFileArr = explode($basePath, trim($file, '/'));
-                    if (isset($currentFileArr[1])) {
-                        $currentFile = trim($currentFileArr[1], '/');
-                    }
-                }
+            $currentFileArr = $this->isComponent
+                ? explode("/$basePath/", $file)
+                : explode("$rootPath/", $file);
+
+            if (isset($currentFileArr[1])) {
+                $currentFile = str_replace('src/', '', $currentFileArr[1]);
             }
 
             $isPhp = strrpos($file, '.php') == strlen($file) - strlen('.php');

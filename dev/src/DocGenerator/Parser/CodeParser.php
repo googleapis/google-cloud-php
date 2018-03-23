@@ -693,7 +693,10 @@ class CodeParser implements ParserInterface
             $matches = [];
             preg_match(self::CLASS_TYPE_REGEX, $type, $matches);
             $type = $matches[1];
-            $file = $this->projectRoot . '/src' . str_replace('\\', '/', substr($type, 12)) . '.php';
+            $parts = explode('/', str_replace('\\', '/', substr($type, 13)));
+            array_splice($parts, 1, 0, 'src');
+            $file = $this->projectRoot . '/' . implode('/', $parts) .  '.php';
+
             return file_exists($file);
         }
 

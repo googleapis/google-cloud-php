@@ -88,6 +88,12 @@ class Docs extends Command
             'tocTemplate' => $this->cliBasePath .'/../'. self::TOC_TEMPLATE,
             'overview' => $this->cliBasePath .'/../'. self::OVERVIEW_FILE
         ];
+        $commonExcludes = [
+            '.github',
+            'tests',
+            'CONTRIBUTING.md',
+            'bootstrap.php'
+        ];
 
         $components = $this->getComponents(dirname($this->cliBasePath), $paths['source']);
         $tocTemplate = json_decode(file_get_contents($paths['tocTemplate']), true);
@@ -103,15 +109,17 @@ class Docs extends Command
                 }
             }
 
-            foreach ($components as $component) {
-                $input = $paths['project'] . $component['path'] .'/src';
-                $source = $this->getFilesList($input, ['php', 'md'], [
-                    'CONTRIBUTING.md'
-                ]);
+            foreach ($components as $comp) {
+                $input = $paths['project'] . $comp['path'];
+                $source = $this->getFilesList(
+                    $input,
+                    ['php', 'md'],
+                    $commonExcludes
+                );
                 $this->generateComponentDocumentation(
                     $output,
                     $source,
-                    $component,
+                    $comp,
                     $paths,
                     $tocTemplate,
                     $release,
@@ -122,24 +130,23 @@ class Docs extends Command
 
         if (!$component || $component === 'google-cloud') {
             $projectRealPath = realpath($paths['project']);
-            $source = $this->getFilesList($projectRealPath, [
-                'php', 'md'
-            ], [
-                '/vendor',
-                '/dev',
-                '/build',
-                '/docs',
-                '/tests',
-                '.github',
-                '/CODE_OF_CONDUCT.md',
-                '/README.md',
-                'bootstrap.php'
-            ]);
-
+            $source = $this->getFilesList(
+                $projectRealPath,
+                ['php', 'md'],
+                array_merge($commonExcludes, [
+                    '/vendor',
+                    '/dev',
+                    '/build',
+                    '/docs',
+                    '/tests',
+                    '/CODE_OF_CONDUCT.md',
+                    '/README.md',
+                ])
+            );
 
             $component = [
                 'id' => 'google-cloud',
-                'path' => 'src/'
+                'path' => ''
             ];
 
             $this->generateComponentDocumentation(
