@@ -72,6 +72,9 @@ class GrpcTransportTest extends TestCase
         $credentialsLoader->expects($this->once())
             ->method('fetchAuthToken')
             ->willReturn(['access_token' => 'accessToken']);
+        $credentialsLoader->expects($this->once())
+            ->method('getLastReceivedToken')
+            ->willReturn(null);
 
         $transport = new MockGrpcTransport($this->createMockCall(), $credentialsLoader);
         $callbackResult = $this->callCredentialsCallback($transport);

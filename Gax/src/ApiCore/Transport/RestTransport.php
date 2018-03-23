@@ -33,9 +33,9 @@ namespace Google\ApiCore\Transport;
 
 use Google\ApiCore\ApiException;
 use Google\ApiCore\ApiStatus;
+use Google\ApiCore\AuthWrapper;
 use Google\ApiCore\Call;
 use Google\ApiCore\RequestBuilder;
-use Google\Auth\FetchAuthTokenInterface;
 use GuzzleHttp\Exception\RequestException;
 use Psr\Http\Message\ResponseInterface;
 
@@ -44,31 +44,24 @@ use Psr\Http\Message\ResponseInterface;
  */
 class RestTransport implements TransportInterface
 {
-    private $authHttpHandler;
-    private $credentialsLoader;
-    private $httpHandler;
     private $requestBuilder;
+    private $authWrapper;
+    private $httpHandler;
 
     /**
      * @param RequestBuilder $requestBuilder A builder responsible for creating
      *        a PSR-7 request from a set of request information.
-     * @param FetchAuthTokenInterface $credentialsLoader A credentials loader
-     *        used to fetch access tokens.
+     * @param AuthWrapper $authWrapper An AuthWrapper object.
      * @param callable $httpHandler A handler used to deliver PSR-7 requests.
-     * @param callable $authHttpHandler A handler used to deliver PSR-7 requests
-     *        specifically for authentication. Should match a signature of
-     *        `function (RequestInterface $request, array $options) : ResponseInterface`.
      */
     public function __construct(
         RequestBuilder $requestBuilder,
-        FetchAuthTokenInterface $credentialsLoader,
-        callable $httpHandler,
-        callable $authHttpHandler
+        AuthWrapper $authWrapper,
+        callable $httpHandler
     ) {
         $this->requestBuilder = $requestBuilder;
-        $this->credentialsLoader = $credentialsLoader;
+        $this->authWrapper = $authWrapper;
         $this->httpHandler = $httpHandler;
-        $this->authHttpHandler = $authHttpHandler;
     }
 
     /**
@@ -109,8 +102,7 @@ class RestTransport implements TransportInterface
 
         // If not already set, add an auth header to the request
         if (!isset($headers['Authorization'])) {
-            $token = $this->credentialsLoader->fetchAuthToken($this->authHttpHandler)['access_token'];
-            $headers['Authorization'] = 'Bearer ' . $token;
+            $headers['Authorization'] = $this->authWrapper->getBearerString();
         }
 
         // call the HTTP handler

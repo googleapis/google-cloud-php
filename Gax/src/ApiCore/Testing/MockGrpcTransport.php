@@ -32,6 +32,7 @@
 
 namespace Google\ApiCore\Testing;
 
+use Google\ApiCore\AuthWrapper;
 use Google\ApiCore\Transport\GrpcTransport;
 use Google\Auth\ApplicationDefaultCredentials;
 use Grpc\ChannelCredentials;
@@ -51,8 +52,9 @@ class MockGrpcTransport extends GrpcTransport
         $authHttpHandler = function (RequestInterface $request, array $options) {
             return new Response(200);
         };
+        $authWrapper = new AuthWrapper($credentialsLoader, $authHttpHandler);
         $opts = ['credentials' => ChannelCredentials::createSsl()];
-        parent::__construct('', $credentialsLoader, $authHttpHandler, $opts);
+        parent::__construct('', $authWrapper, $opts);
     }
 
     protected function _simpleRequest(
