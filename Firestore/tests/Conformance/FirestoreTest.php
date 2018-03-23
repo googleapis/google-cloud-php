@@ -37,7 +37,7 @@ class FirestoreTest extends TestCase
 {
     use PathTrait;
 
-    const TEST_FILE = 'https://raw.githubusercontent.com/GoogleCloudPlatform/google-cloud-common/master/testing/firestore/testdata/tests.binprotos';
+    const TEST_FILE = 'https://raw.githubusercontent.com/GoogleCloudPlatform/google-cloud-common/master/testing/firestore/testdata/test-suite.binprotos';
 
     private $client;
     private $connection;

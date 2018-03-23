@@ -118,6 +118,21 @@ class TestHelpers
     }
 
     /**
+     * Setup performance tests support.
+     *
+     * @return void
+     * @experimental
+     * @internal
+     */
+    public static function perfBootstrap()
+    {
+        $bootstraps = glob(self::projectRoot() .'/*/tests/Perf/bootstrap.php');
+        foreach ($bootstraps as $bootstrap) {
+            require_once $bootstrap;
+        }
+    }
+
+    /**
      * Check that the required environment variable keyfile paths are set and exist.
      *
      * @param array|string $env The environment variable(s) required.
@@ -132,7 +147,7 @@ class TestHelpers
         foreach ($env as $var) {
             if (!getenv($var)) {
                 throw new \RuntimeException(sprintf(
-                    'Please set the \'%s\' env var to run the system tests',
+                    'Please set the \'%s\' env var to run the tests',
                     $var
                 ));
             }
