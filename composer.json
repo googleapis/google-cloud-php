@@ -152,8 +152,8 @@
         "google-cloud": "dev/google-cloud"
     },
     "bin": [
-        "src/Core/bin/google-cloud-batch",
-        "src/Debugger/bin/google-cloud-debugger"
+        "Core/bin/google-cloud-batch",
+        "Debugger/bin/google-cloud-debugger"
     ],
     "extra": {
         "component": {
