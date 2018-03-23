@@ -2,7 +2,7 @@
     "title": "Bigtable",
     "pattern": "bigtable\/\\w{1,}",
     "services": [{
-        "title": "BigtableClient",
+        "title": "Overview",
         "type": "bigtable/readme"
     }, {
         "title": "v2",
