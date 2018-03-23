@@ -159,8 +159,7 @@ class VariableTable implements \JsonSerializable
     {
         $members = [];
         if ($depth < self::MAX_MEMBER_DEPTH) {
-            foreach ($array as $key => $member)
-            {
+            foreach ($array as $key => $member) {
                 $members[] = $this->doRegister($key, $member, $depth + 1, null);
             }
         }
