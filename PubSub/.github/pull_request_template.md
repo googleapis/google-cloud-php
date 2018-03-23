@@ -14,7 +14,7 @@ $ git clone git@github.com:GoogleCloudPlatform/google-cloud-php.git
 ```
 
 * Move your changes into the correct location in that library. Library code
-belongs in `src/PubSub`, and tests in `tests/*/PubSub`.
+belongs in `PubSub/src`, and tests in `PubSub/tests`.
 
 * Push the changes in a new branch to a fork, and open a new pull request
 [here](https://github.com/GoogleCloudPlatform/google-cloud-php).
