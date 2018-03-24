@@ -1,19 +1,19 @@
 # John Pedrie
 /dev/ @jdpedrie
-/src/Datastore/ @jdpedrie
-/src/Firestore/ @jdpedrie
-/src/PubSub/ @jdpedrie
-/src/Spanner/ @jdpedrie
-/src/Vision/ @jdpedrie
+/Datastore/ @jdpedrie
+/Firestore/ @jdpedrie
+/PubSub/ @jdpedrie
+/Spanner/ @jdpedrie
+/Vision/ @jdpedrie
 
 # David Supplee
-/src/BigQuery/ @dwsupplee
-/src/Language/ @dwsupplee
-/src/Logging/ @dwsupplee
-/src/Speech/ @dwsupplee
-/src/Storage/ @dwsupplee
-/src/Translate/ @dwsupplee
+/BigQuery/ @dwsupplee
+/Language/ @dwsupplee
+/Logging/ @dwsupplee
+/Speech/ @dwsupplee
+/Storage/ @dwsupplee
+/Translate/ @dwsupplee
 
 # PHP Silver Languages
-/src/Debugger/ @chingor13 @tmatsuo
-/src/Trace/ @chingor13 @tmatsuo
+/Debugger/ @chingor13 @tmatsuo
+/Trace/ @chingor13 @tmatsuo

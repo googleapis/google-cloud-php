@@ -1,0 +1,39 @@
+{
+    "name": "google/cloud-bigquery",
+    "description": "BigQuery Client for PHP",
+    "license": "Apache-2.0",
+    "minimum-stability": "stable",
+    "require": {
+        "google/cloud-core": "^1.14",
+        "ramsey/uuid": "~3"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^4.8|^5.0",
+        "squizlabs/php_codesniffer": "2.*",
+        "phpdocumentor/reflection": "^3.0",
+        "erusev/parsedown": "^1.6",
+        "google/cloud-storage": "^1.3"
+    },
+    "suggest": {
+        "google/cloud-storage": "Makes it easier to load data from Cloud Storage into BigQuery"
+    },
+    "extra": {
+        "component": {
+            "displayName": "Google Cloud BigQuery",
+            "id": "cloud-bigquery",
+            "target": "GoogleCloudPlatform/google-cloud-php-bigquery.git",
+            "path": "BigQuery",
+            "entry": "src/BigQueryClient.php"
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "Google\\Cloud\\BigQuery\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Google\\Cloud\\BigQuery\\Tests\\": "tests"
+        }
+    }
+}

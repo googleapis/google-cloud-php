@@ -24,8 +24,13 @@ trait GetComponentsTrait
     /**
      * If $defaultComposerPath is set, it will parse that path as a composer
      * file and add it to the components.
+     *
+     * @param string $libraryRootPath The root path of the library.
+     * @param string $componentsPath The base path, under which composer.json files will be discovered.
+     * @param string|null $defaultComposerPath If set, this path will be included as a component.
+     * @return array Component data.
      */
-    private function getComponents($componentsPath, $defaultComposerPath = null)
+    private function getComponents($libraryRootPath, $componentsPath, $defaultComposerPath = null)
     {
         $files = glob($componentsPath .'/*/composer.json');
 
@@ -35,20 +40,18 @@ trait GetComponentsTrait
 
         $components = [];
         foreach ($files as $file) {
+            $file = realpath($file);
             $json = json_decode(file_get_contents($file), true);
 
-            $path = explode('src', $file);
+            $path = trim(str_replace($libraryRootPath, '', $file), '/');
+
             $component = $json['extra']['component'];
             $component['name'] = $json['name'];
             if (!isset($component['displayName'])) {
                 $component['displayName'] = $json['name'];
             }
 
-            if (count($path) > 1) {
-                $component['prefix'] = dirname('src' . $path[1]);
-            } else {
-                $component['prefix'] = '';
-            }
+            $component['prefix'] = dirname($path);
 
             $components[] = $component;
         }
@@ -56,29 +59,61 @@ trait GetComponentsTrait
         return $components;
     }
 
+    /**
+     * Get the latest version for a given component.
+     *
+     * @param string $manifestPath The path to the manifest.
+     * @param string $componentId The component ID to fetch a version from.
+     * @return string
+     */
     private function getComponentVersion($manifestPath, $componentId)
     {
         $manifest = $this->getComponentManifest($manifestPath, $componentId);
         return $manifest['versions'][0];
     }
 
+    /**
+     * Return manifest data for the given component.
+     *
+     * @param string $manifestPath The path to the manifest.
+     * @param string $componentId The component ID to fetch.
+     * @return array
+     */
     private function getComponentManifest($manifestPath, $componentId)
     {
         $manifest = $this->getManifest($manifestPath);
-        $index = $this->getManifestComponentModuleIndex($manifestPath, $manifest, $componentId);
+        $index = $this->getManifestComponentModuleIndex($manifest, $componentId);
 
         return $manifest['modules'][$index];
     }
 
-    private function getManifestComponentModuleIndex($manifestPath, array $manifest, $componentId)
+    /**
+     * Get the manifest component index.
+     *
+     * @param string|array $manifest If a string, the path to the manifest. If
+     *        an array, the manifest contents.
+     * @param string $componentId The component ID to fetch
+     * @return int
+     */
+    private function getManifestComponentModuleIndex($manifest, $componentId)
     {
-        $modules = array_filter($this->getManifest($manifestPath)['modules'], function ($module) use ($componentId) {
+        $manifest = is_array($manifest)
+            ? $manifest
+            : $this->getManifest($manifest);
+
+        $modules = array_filter($manifest['modules'], function ($module) use ($componentId) {
             return ($module['id'] === $componentId);
         });
 
         return array_keys($modules)[0];
     }
 
+    /**
+     * Read the given file as a package manifest.
+     *
+     * @param string $manifestPath
+     * @return array
+     */
     private function getManifest($manifestPath)
     {
         if (self::$__manifest) {
@@ -96,9 +131,23 @@ trait GetComponentsTrait
         return $manifest;
     }
 
-    private function getComponentComposer($componentId)
+    /**
+     * Get the composer.json data for a given component.
+     *
+     * @param string $componentId
+     * @return array
+     */
+    private function getComponentComposer($libraryRootPath, $componentId)
     {
-        $components = $this->getComponents($this->components, $this->defaultComponentComposer);
+        $defaultComposerPath = isset($this->defaultComponentComposer)
+            ? $this->defaultComponentComposer
+            : null;
+
+        $componentsDir = isset($this->components)
+            ? $this->components
+            : $libraryRootPath;
+
+        $components = $this->getComponents($libraryRootPath, $componentsDir, $defaultComposerPath);
 
         $components = array_values(array_filter($components, function ($component) use ($componentId) {
             return ($component['id'] === $componentId);

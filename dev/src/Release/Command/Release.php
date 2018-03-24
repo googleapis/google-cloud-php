@@ -22,7 +22,6 @@ use RuntimeException;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
-use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use vierbergenlars\SemVer\version;
 
@@ -30,7 +29,7 @@ class Release extends Command
 {
     use GetComponentsTrait;
 
-    const COMPONENT_BASE = '%s/../src';
+    const COMPONENT_BASE = '%s/../';
     const DEFAULT_COMPONENT = 'google-cloud';
     const DEFAULT_COMPONENT_COMPOSER = '%s/../composer.json';
     const PATH_MANIFEST = '%s/../docs/manifest.json';
@@ -63,18 +62,13 @@ class Release extends Command
         $this->setName('release')
              ->setDescription('Prepares a new release')
              ->addArgument('version', InputArgument::REQUIRED, 'The new version number.')
-             ->addOption(
-                'component',
-                'c',
-                InputOption::VALUE_REQUIRED,
-                'The component for which the version should be updated.',
-                self::DEFAULT_COMPONENT
-            );
+             ->addArgument('component', InputArgument::OPTIONAL, '[optional] The component ID. Defaults to `google-cloud`.');
     }
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $component = $this->getComponentComposer($input->getOption('component'));
+        $componentInput = $input->getArgument('component') ?: self::DEFAULT_COMPONENT;
+        $component = $this->getComponentComposer(dirname($this->cliBasePath), $componentInput);
 
         $version = $input->getArgument('version');
 
@@ -162,7 +156,7 @@ class Release extends Command
     private function addToComponentManifest($version, array $component)
     {
         $manifest = $this->getManifest($this->manifest);
-        $index = $this->getManifestComponentModuleIndex($this->manifest, $manifest, $component['id']);
+        $index = $this->getManifestComponentModuleIndex($manifest, $component['id']);
 
         array_unshift($manifest['modules'][$index]['versions'], 'v'. $version);
 

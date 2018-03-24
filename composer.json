@@ -48,8 +48,8 @@
         "monolog/monolog": "~1",
         "psr/http-message": "1.0.*",
         "ramsey/uuid": "~3",
-        "google/proto-client": "^0.32",
-        "google/gax": "^0.30"
+        "google/gax": "^0.30",
+        "google/proto-client": "^0.34"
     },
     "require-dev": {
         "phpunit/phpunit": "^4.8|^5.0",
@@ -66,26 +66,26 @@
     },
     "replace": {
         "google/cloud-bigquery": "1.0.3",
-        "google/cloud-bigtable": "0.2.1",
-        "google/cloud-container": "0.2.1",
-        "google/cloud-core": "1.17.0",
-        "google/cloud-dataproc": "0.2.1",
-        "google/cloud-datastore": "1.3.0",
-        "google/cloud-dlp": "0.5.2",
-        "google/cloud-error-reporting": "0.8.2",
-        "google/cloud-firestore": "0.4.2",
-        "google/cloud-language": "0.12.1",
-        "google/cloud-logging": "1.9.2",
-        "google/cloud-monitoring": "0.8.1",
-        "google/cloud-oslogin": "0.2.1",
-        "google/cloud-pubsub": "0.12.2",
-        "google/cloud-spanner": "1.1.2",
-        "google/cloud-speech": "0.11.1",
+        "google/cloud-bigtable": "0.2.3",
+        "google/cloud-container": "0.2.3",
+        "google/cloud-core": "1.18.0",
+        "google/cloud-dataproc": "0.2.3",
+        "google/cloud-datastore": "1.3.1",
+        "google/cloud-dlp": "0.6.0",
+        "google/cloud-error-reporting": "0.8.4",
+        "google/cloud-firestore": "0.5.2",
+        "google/cloud-language": "0.12.3",
+        "google/cloud-logging": "1.9.4",
+        "google/cloud-monitoring": "0.8.3",
+        "google/cloud-oslogin": "0.2.3",
+        "google/cloud-pubsub": "1.0.2",
+        "google/cloud-spanner": "1.2.1",
+        "google/cloud-speech": "0.11.3",
         "google/cloud-storage": "1.3.4",
-        "google/cloud-trace": "0.6.1",
+        "google/cloud-trace": "0.6.3",
         "google/cloud-translate": "1.1.2",
-        "google/cloud-videointelligence": "0.9.1",
-        "google/cloud-vision": "0.10.0",
+        "google/cloud-videointelligence": "0.9.3",
+        "google/cloud-vision": "0.10.2",
         "google/cloud-debugger": "0.5.0"
     },
     "suggest": {
@@ -95,27 +95,65 @@
     },
     "autoload": {
         "psr-4": {
-            "Google\\Cloud\\": "src"
+            "Google\\Cloud\\": "src",
+            "Google\\Cloud\\BigQuery\\": "BigQuery/src",
+            "Google\\Cloud\\Bigtable\\": "Bigtable/src",
+            "Google\\Cloud\\Container\\": "Container/src",
+            "Google\\Cloud\\Core\\": "Core/src",
+            "Google\\Cloud\\Dataproc\\": "Dataproc/src",
+            "Google\\Cloud\\Datastore\\": "Datastore/src",
+            "Google\\Cloud\\Debugger\\": "Debugger/src",
+            "Google\\Cloud\\Dlp\\": "Dlp/src",
+            "Google\\Cloud\\ErrorReporting\\": "ErrorReporting/src",
+            "Google\\Cloud\\Firestore\\": "Firestore/src",
+            "Google\\Cloud\\Language\\": "Language/src",
+            "Google\\Cloud\\Logging\\": "Logging/src",
+            "Google\\Cloud\\Monitoring\\": "Monitoring/src",
+            "Google\\Cloud\\OsLogin\\": "OsLogin/src",
+            "Google\\Cloud\\PubSub\\": "PubSub/src",
+            "Google\\Cloud\\Spanner\\": "Spanner/src",
+            "Google\\Cloud\\Speech\\": "Speech/src",
+            "Google\\Cloud\\Storage\\": "Storage/src",
+            "Google\\Cloud\\Trace\\": "Trace/src",
+            "Google\\Cloud\\Translate\\": "Translate/src",
+            "Google\\Cloud\\VideoIntelligence\\": "VideoIntelligence/src",
+            "Google\\Cloud\\Vision\\": "Vision/src"
         }
     },
     "autoload-dev": {
         "psr-4": {
             "Google\\Cloud\\Dev\\": "dev/src",
             "Google\\Cloud\\Tests\\": "tests",
-            "Google\\Cloud\\Tests\\Perf\\": "tests/perf",
-            "Google\\Cloud\\Tests\\System\\": "tests/system",
-            "Google\\Cloud\\Tests\\Unit\\": "tests/unit"
-        },
-        "classmap": [
-            "tests/conformance-fixtures"
-        ]
+            "Google\\Cloud\\BigQuery\\Tests\\": "BigQuery/tests",
+            "Google\\Cloud\\Bigtable\\Tests\\": "Bigtable/tests",
+            "Google\\Cloud\\Container\\Tests\\": "Container/tests",
+            "Google\\Cloud\\Core\\Tests\\": "Core/tests",
+            "Google\\Cloud\\Dataproc\\Tests\\": "Dataproc/tests",
+            "Google\\Cloud\\Datastore\\Tests\\": "Datastore/tests",
+            "Google\\Cloud\\Debugger\\Tests\\": "Debugger/tests",
+            "Google\\Cloud\\Dlp\\Tests\\": "Dlp/tests",
+            "Google\\Cloud\\ErrorReporting\\Tests\\": "ErrorReporting/tests",
+            "Google\\Cloud\\Firestore\\Tests\\": "Firestore/tests",
+            "Google\\Cloud\\Language\\Tests\\": "Language/tests",
+            "Google\\Cloud\\Logging\\Tests\\": "Logging/tests",
+            "Google\\Cloud\\Monitoring\\Tests\\": "Monitoring/tests",
+            "Google\\Cloud\\OsLogin\\Tests\\": "OsLogin/tests",
+            "Google\\Cloud\\PubSub\\Tests\\": "PubSub/tests",
+            "Google\\Cloud\\Spanner\\Tests\\": "Spanner/tests",
+            "Google\\Cloud\\Speech\\Tests\\": "Speech/tests",
+            "Google\\Cloud\\Storage\\Tests\\": "Storage/tests",
+            "Google\\Cloud\\Trace\\Tests\\": "Trace/tests",
+            "Google\\Cloud\\Translate\\Tests\\": "Translate/tests",
+            "Google\\Cloud\\VideoIntelligence\\Tests\\": "VideoIntelligence/tests",
+            "Google\\Cloud\\Vision\\Tests\\": "Vision/tests"
+        }
     },
     "scripts": {
         "google-cloud": "dev/google-cloud"
     },
     "bin": [
-        "src/Core/bin/google-cloud-batch",
-        "src/Debugger/bin/google-cloud-debugger"
+        "Core/bin/google-cloud-batch",
+        "Debugger/bin/google-cloud-debugger"
     ],
     "extra": {
         "component": {

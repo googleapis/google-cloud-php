@@ -11,22 +11,23 @@ init:
 
 environment:
   matrix:
-    - PHP_VERSION: "5.5.38-nts-Win32-VC11-x64"
-    - PHP_VERSION: "5.6.29-nts-Win32-VC11-x64"
-    - PHP_VERSION: "7.0.14-nts-Win32-VC14-x64"
-    - PHP_VERSION: "7.1.0-nts-Win32-VC14-x64"
+    - PHP_VERSION: 5.5
+    - PHP_VERSION: 5.6
+    - PHP_VERSION: 7.0
+      GRPC_SRC: "http://windows.php.net/downloads/pecl/releases/grpc/1.9.0/php_grpc-1.9.0-7.0-nts-vc14-x64.zip"
+    - PHP_VERSION: 7.1
+      GRPC_SRC: "http://windows.php.net/downloads/pecl/releases/grpc/1.9.0/php_grpc-1.9.0-7.1-nts-vc14-x64.zip"
+    - PHP_VERSION: 7.2
+      GRPC_SRC: "http://windows.php.net/downloads/pecl/releases/grpc/1.9.0/php_grpc-1.9.0-7.2-nts-vc15-x64.zip"
 
 install:
   - cinst -y OpenSSL.Light
-  - ps: . .\appveyor_install_php.ps1
-  - cd c:\tools\php
-  - echo extension_dir=ext >> php.ini
-  - echo extension=php_openssl.dll >> php.ini
+  - ps: appveyor-retry cinst --params '""/InstallDir:C:\tools\php""' --ignore-checksums -y php --version ((choco search php --exact --all-versions -r | select-string -pattern $env:PHP_VERSION | sort { [version]($_ -split '\|' | select -last 1) } -Descending | Select-Object -first 1) -replace '[php|]','')
+  - ps: . .\dev\appveyor-grpc.ps1
   - cd c:\projects\google-cloud
-  - appveyor DownloadFile https://getcomposer.org/download/1.2.1/composer.phar
-  - php composer.phar self-update
+  - appveyor DownloadFile https://getcomposer.org/composer.phar
   - php composer.phar install
 
 test_script:
   - cd c:\projects\google-cloud
-  - vendor/bin/phpunit
+  - vendor/bin/phpunit -c phpunit.xml.dist

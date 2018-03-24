@@ -1,15 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<phpunit bootstrap="./tests/system/bootstrap.php" colors="true">
+<phpunit bootstrap="./Core/system-bootstrap.php" colors="true">
   <testsuites>
     <testsuite>
-      <directory>tests/system</directory>
+      <directory>*/tests/System</directory>
+      <directory>tests/System</directory>
     </testsuite>
   </testsuites>
   <filter>
     <whitelist>
+      <directory suffix=".php">*/src</directory>
       <directory suffix=".php">src</directory>
       <exclude>
-        <directory suffix=".php">src/*/V[!a-zA-Z]*</directory>
+        <directory suffix=".php">*/src/V[!a-zA-Z]*</directory>
+        <directory suffix=".php">*/src/*/V[!a-zA-Z]*</directory>
+        <directory suffix=".php">*/src/*/*/V[!a-zA-Z]*</directory>
+        <directory suffix=".php">Core/src/Testing</directory>
+        <directory suffix=".php">dev</directory>
       </exclude>
     </whitelist>
   </filter>
