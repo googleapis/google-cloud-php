@@ -11,7 +11,7 @@
     "extra": {
         "component": {
             "id": "cloud-iot",
-            "path": "src/Iot",
+            "path": "Iot",
             "entry": null,
             "target": "GoogleCloudPlatform/google-cloud-php-iot.git"
         }
