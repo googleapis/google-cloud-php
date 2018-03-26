@@ -17,6 +17,7 @@
 
 namespace Google\Cloud\Spanner\Tests\Snippet;
 
+use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
 use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Spanner\CommitTimestamp;
@@ -30,7 +31,14 @@ use Prophecy\Argument;
  */
 class CommitTimestampTest extends SnippetTestCase
 {
+    use GrpcTestTrait;
+
     const SESSION = 'projects/example_project/instances/example_instance/databases/example_database/sessions/session-id';
+
+    public function setUp()
+    {
+        $this->checkAndSkipGrpcTests();
+    }
 
     public function testClass()
     {
