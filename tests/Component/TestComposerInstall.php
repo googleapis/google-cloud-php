@@ -39,7 +39,8 @@ class GetComponentsImpl
     public function components()
     {
         return $this->getComponents(
-            BASE_PATH .'/src',
+            BASE_PATH .'/',
+            BASE_PATH .'/',
             BASE_PATH .'/composer.json'
         );
     }
@@ -61,7 +62,8 @@ foreach((new GetComponentsImpl)->components() as $component) {
     ];
 }
 
-file_put_contents(__DIR__ .'/composer.json', json_encode($composer, JSON_UNESCAPED_SLASHES));
+$composer = json_encode($composer, JSON_UNESCAPED_SLASHES);
+file_put_contents(__DIR__ .'/composer.json', $composer);
 
 $out = [];
 $return = null;
@@ -72,5 +74,6 @@ if ($return !== 0) {
     echo "Problem installing components!" . PHP_EOL . PHP_EOL;
 
     echo implode("\n", $out);
+    echo PHP_EOL . $composer.
     exit(1);
 }
