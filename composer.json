@@ -66,6 +66,7 @@
     },
     "replace": {
         "google/cloud-bigquery": "1.0.3",
+        "google/cloud-bigquerydatatransfer": "0.2.0",
         "google/cloud-bigtable": "0.2.3",
         "google/cloud-container": "0.2.3",
         "google/cloud-core": "1.18.0",
@@ -97,6 +98,7 @@
         "psr-4": {
             "Google\\Cloud\\": "src",
             "Google\\Cloud\\BigQuery\\": "BigQuery/src",
+            "Google\\Cloud\\BigQuery\\DataTransfer\\": "BigQueryDataTransfer/src",
             "Google\\Cloud\\Bigtable\\": "Bigtable/src",
             "Google\\Cloud\\Container\\": "Container/src",
             "Google\\Cloud\\Core\\": "Core/src",
@@ -125,6 +127,7 @@
             "Google\\Cloud\\Dev\\": "dev/src",
             "Google\\Cloud\\Tests\\": "tests",
             "Google\\Cloud\\BigQuery\\Tests\\": "BigQuery/tests",
+            "Google\\Cloud\\BigQuery\\DataTransfer\\Tests\\": "BigQueryDataTransfer/tests",
             "Google\\Cloud\\Bigtable\\Tests\\": "Bigtable/tests",
             "Google\\Cloud\\Container\\Tests\\": "Container/tests",
             "Google\\Cloud\\Core\\Tests\\": "Core/tests",
