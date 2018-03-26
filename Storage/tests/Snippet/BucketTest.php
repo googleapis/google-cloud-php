@@ -561,6 +561,8 @@ class BucketTest extends SnippetTestCase
     {
         $snippet = $this->snippetFromMethod(Bucket::class, 'lockRetentionPolicy');
         $snippet->addLocal('bucket', $this->bucket);
+        $effectiveTime = '2000-00-00T00:00:00.00Z';
+        $isLocked = true;
         $patchArgs = [
             'retentionPolicy' => [
                 'retentionPeriod' => 604800
@@ -581,11 +583,16 @@ class BucketTest extends SnippetTestCase
         $this->connection->lockRetentionPolicy($lockArgs)
             ->shouldBeCalled()
             ->willReturn([
+                'retentionPolicy' => [
+                    'effectiveTime' => $effectiveTime,
+                    'isLocked' => $isLocked
+                ],
                 'metageneration' => 2
             ]);
         $this->bucket->___setProperty('connection', $this->connection->reveal());
 
         $res = $snippet->invoke();
+        $this->assertEquals($effectiveTime . PHP_EOL . $isLocked, $res->output());
     }
 
     private function assertSnippetBuildsNotification($snippet, $expectedArgs)

@@ -1169,7 +1169,15 @@ class Bucket
      *     ]
      * ]);
      * // Lock in the policy.
-     * $bucket->lockRetentionPolicy();
+     * $info = $bucket->lockRetentionPolicy();
+     * $retentionPolicy = $info['retentionPolicy'];
+     *
+     * // View the time from which the policy was enforced and effective. (RFC 3339 format)
+     * echo $retentionPolicy['effectiveTime'] . PHP_EOL;
+     *
+     * // View whether or not the retention policy is locked. This will be
+     * // `true` after a successful call to `lockRetentionPolicy`.
+     * echo $retentionPolicy['isLocked'];
      * ```
      *
      * @param array $options [optional] {
