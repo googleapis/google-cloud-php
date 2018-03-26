@@ -74,6 +74,6 @@ if ($return !== 0) {
     echo "Problem installing components!" . PHP_EOL . PHP_EOL;
 
     echo implode("\n", $out);
-    echo PHP_EOL . $composer.
+    echo PHP_EOL . $composer;
     exit(1);
 }
