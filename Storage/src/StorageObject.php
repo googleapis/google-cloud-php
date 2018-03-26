@@ -222,12 +222,6 @@ class StorageObject
      *           be either 'full' or 'noAcl'.
      *     @type string $fields Selector which will cause the response to only
      *           return the specified fields.
-     *     @type bool $eventBasedHold When `true`, this object will be retained
-     *           indefinitely until an event occurs, signified by the hold's
-     *           release.
-     *     @type bool $temporaryHold When `true`, a temporary hold is enforced
-     *           on this object. It is protected against deletion and overwrites
-     *           until this flag is returned to `false`.
      * }
      * @return array
      */
