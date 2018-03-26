@@ -40,6 +40,14 @@ class BootstrapTest extends TestCase
         $this->psrBatchLogger = $this->prophesize(PsrLogger::class);
     }
 
+    public function testGetPrependFilePath()
+    {
+        $prependFileLocation = Bootstrap::prependFileLocation();
+        $this->assertFileExists(
+            $prependFileLocation,
+            "The prepend file doesn't exist at $prependFileLocation");
+    }
+
     /**
      * @dataProvider levelAndErrorPrefixProvider
      */
