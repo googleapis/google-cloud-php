@@ -41,6 +41,11 @@ class BucketLockRetentionPolicyTest extends StorageTestCase
             'name' => 'test.txt'
         ]);
         $bucket->lockRetentionPolicy();
+
+        $this->assertTrue(
+            $bucket->info()['retentionPolicy']['isLocked']
+        );
+
         try {
             $object->delete();
         } catch (ServiceException $ex) {
