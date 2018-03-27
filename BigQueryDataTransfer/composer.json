@@ -1,0 +1,26 @@
+{
+    "name": "google/cloud-bigquerydatatransfer",
+    "description": "BigQuery Data Transfer Client for PHP",
+    "license": "Apache-2.0",
+    "minimum-stability": "stable",
+    "autoload": {
+        "psr-4": {
+            "Google\\Cloud\\BigQuery\\DataTransfer\\": ""
+        }
+    },
+    "extra": {
+        "component": {
+            "id": "cloud-bigquerydatatransfer",
+            "path": "BigQueryDataTransfer",
+            "entry": null,
+            "target": "GoogleCloudPlatform/google-cloud-php-bigquerydatatransfer.git"
+        }
+    },
+    "require": {
+        "google/proto-client": "^0.35",
+        "google/gax": "^0.30"
+    },
+    "suggest": {
+        "ext-protobuf": "Provides a significant increase in throughput over the pure PHP protobuf implementation. See https://cloud.google.com/php/grpc for installation instructions."
+    }
+}

@@ -8,6 +8,7 @@
     ],
     "includes": [
         "cloud-bigquery",
+        "cloud-bigquerydatatransfer",
         "cloud-bigtable",
         "cloud-container",
         "cloud-core",
