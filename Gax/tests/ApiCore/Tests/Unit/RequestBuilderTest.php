@@ -199,8 +199,8 @@ class RequestBuilderTest extends TestCase
     }
 
     /**
-     * @expectedException Google\ApiCore\ValidationException
-     * @expectedExceptionMessage Failed to build the provided path (test.interface.v1.api/MethodWithAdditionalBindings) with the supplied message.
+     * @expectedException \Google\ApiCore\ValidationException
+     * @expectedExceptionMessage Could not map bindings for test.interface.v1.api/MethodWithAdditionalBindings to any Uri template.
      */
     public function testThrowsExceptionWithNonMatchingFormat()
     {
@@ -210,7 +210,7 @@ class RequestBuilderTest extends TestCase
     }
 
     /**
-     * @expectedException RuntimeException
+     * @expectedException \Google\ApiCore\ValidationException
      * @expectedExceptionMessage Failed to build request, as the provided path (myResource/doesntExist) was not found in the configuration.
      */
     public function testThrowsExceptionWithNonExistantMethod()

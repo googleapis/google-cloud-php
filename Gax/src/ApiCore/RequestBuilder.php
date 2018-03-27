@@ -65,102 +65,122 @@ class RequestBuilder
      * @param Message $message
      * @param array $headers
      * @return RequestInterface
-     * @throws \RuntimeException
+     * @throws ValidationException
      */
     public function build($path, Message $message, array $headers = [])
     {
         list($interface, $method) = explode('/', $path);
 
-        if (isset($this->restConfig['interfaces'][$interface][$method])) {
-            $config = $this->restConfig['interfaces'][$interface][$method] + [
-                'placeholders' => [],
-                'body' => null,
-                'additionalBindings' => null,
-            ];
-            $uri = $this->buildUri(
-                $config['uriTemplate'],
-                $config['placeholders'],
-                $message
-            );
-
-            if (!$uri && $config['additionalBindings']) {
-                foreach ($config['additionalBindings'] as $additionalBinding) {
-                    $additionalBindingConfig = $additionalBinding + $config;
-                    $uri = $this->buildUri(
-                        $additionalBindingConfig['uriTemplate'],
-                        $additionalBindingConfig['placeholders'],
-                        $message
-                    );
-                    if ($uri) {
-                        break;
-                    }
-                }
-            }
-
-            if (!$uri) {
-                throw new ValidationException("Failed to build the provided path ($path) with the supplied message.");
-            }
-
-            $body = null;
-
-            if ($config['body'] === '*') {
-                $body = $message->serializeToJsonString();
-            } else {
-                $queryParams = [];
-
-                foreach ($this->getAllProperties($message) as $name => $value) {
-                    if (array_key_exists($name, $config['placeholders'])) {
-                        continue;
-                    }
-
-                    $propertyValue = $this->getPrivatePropertyValue($message, $name);
-                    if ($name === $config['body']) {
-                        $body = $propertyValue->serializeToJsonString();
-                        continue;
-                    }
-
-                    $value = $this->getQuerystringValue($propertyValue);
-                    if ($propertyValue instanceof Message) {
-                        foreach ($value as $key => $value2) {
-                            $queryParams[$name . '.' . $key] = $value2;
-                        }
-                    } else {
-                        $queryParams[$name] = $value;
-                    }
-                }
-
-                if ($queryParams) {
-                    $uri = $this->buildUriWithQuery(
-                        $uri,
-                        $queryParams
-                    );
-                }
-            }
-
-            return new Request(
-                $config['method'],
-                $uri,
-                ['Content-Type' => 'application/json'] + $headers,
-                $body
+        if (!isset($this->restConfig['interfaces'][$interface][$method])) {
+            throw new ValidationException(
+                "Failed to build request, as the provided path ($path) was not found in the configuration."
             );
         }
 
-        throw new \RuntimeException(
-            "Failed to build request, as the provided path ($path) was not found in the configuration."
-        );
+        $methodConfig = $this->restConfig['interfaces'][$interface][$method];
+        $bindings = $this->buildBindings($methodConfig['placeholders'], $message);
+        $uriTemplateConfigs = $this->getConfigsForUriTemplates($methodConfig);
+
+        foreach ($uriTemplateConfigs as $config) {
+            $pathTemplate = $this->tryRenderPathTemplate($config['uriTemplate'], $bindings);
+
+            if ($pathTemplate) {
+                // We found a valid uriTemplate - now build and return the Request
+
+                list($body, $queryParams) = $this->constructBodyAndQueryParameters($message, $config);
+                $uri = $this->buildUri($pathTemplate, $queryParams);
+
+                return new Request(
+                    $config['method'],
+                    $uri,
+                    ['Content-Type' => 'application/json'] + $headers,
+                    $body
+                );
+            }
+        }
+
+        // No valid uriTemplate found - construct an exception
+        $uriTemplates = [];
+        foreach ($uriTemplateConfigs as $config) {
+            $uriTemplates[] = $config['uriTemplate'];
+        }
+
+        throw new ValidationException("Could not map bindings for $path to any Uri template.\n" .
+            "Bindings: " . print_r($bindings, true) .
+            "UriTemplates: " . print_r($uriTemplates, true));
     }
 
     /**
-     * @param string $uriTemplate
+     * Create a list of all possible configs using the additionalBindings
+     *
+     * @param array $config
+     * @return array[] An array of configs
+     */
+    private function getConfigsForUriTemplates($config)
+    {
+        $configWithDefaults = $config + [
+            'placeholders' => [],
+            'body' => null,
+            'additionalBindings' => null,
+        ];
+
+        $configs = [$configWithDefaults];
+
+        if ($configWithDefaults['additionalBindings']) {
+            foreach ($configWithDefaults['additionalBindings'] as $additionalBinding) {
+                $configs[] = $additionalBinding + $configWithDefaults;
+            }
+        }
+
+        return $configs;
+    }
+
+    /**
+     * @param $message
+     * @param $config
+     * @return array Tuple [$body, $queryParams]
+     */
+    private function constructBodyAndQueryParameters($message, $config)
+    {
+        if ($config['body'] === '*') {
+            return [$message->serializeToJsonString(), []];
+        }
+
+        $body = null;
+        $queryParams = [];
+
+        foreach ($this->getAllProperties($message) as $name => $value) {
+            if (array_key_exists($name, $config['placeholders'])) {
+                continue;
+            }
+
+            $propertyValue = $this->getPrivatePropertyValue($message, $name);
+            if ($name === $config['body']) {
+                $body = $propertyValue->serializeToJsonString();
+                continue;
+            }
+
+            $value = $this->getQuerystringValue($propertyValue);
+            if ($propertyValue instanceof Message) {
+                foreach ($value as $key => $value2) {
+                    $queryParams[$name . '.' . $key] = $value2;
+                }
+            } else {
+                $queryParams[$name] = $value;
+            }
+        }
+
+        return [$body, $queryParams];
+    }
+
+    /**
      * @param array $placeholders
      * @param Message $message
-     * @return UriInterface
+     * @return array Bindings from path template fields to values from message
      */
-    private function buildUri($uriTemplate, array $placeholders, Message $message)
+    private function buildBindings(array $placeholders, Message $message)
     {
-        $template = new PathTemplate($uriTemplate);
         $bindings = [];
-
         foreach ($placeholders as $placeholder => $metadata) {
             $value = array_reduce(
                 $metadata['getters'],
@@ -174,20 +194,47 @@ class RequestBuilder
 
             $bindings[$placeholder] = $value;
         }
+        return $bindings;
+    }
+
+    /**
+     * @param $uriTemplate
+     * @param array $bindings
+     * @return null|string
+     * @throws ValidationException
+     */
+    private function tryRenderPathTemplate($uriTemplate, array $bindings)
+    {
+        $template = new PathTemplate($uriTemplate);
 
         try {
-            $path = $template->render($bindings);
+            return $template->render($bindings);
         } catch (ValidationException $e) {
             return null;
         }
+    }
 
-        return Psr7\uri_for(
+    /**
+     * @param $path
+     * @param $queryParams
+     * @return UriInterface
+     */
+    private function buildUri($path, $queryParams)
+    {
+        $uri = Psr7\uri_for(
             sprintf(
                 'https://%s/%s',
                 $this->baseUri,
                 $path
             )
         );
+        if ($queryParams) {
+            $uri = $this->buildUriWithQuery(
+                $uri,
+                $queryParams
+            );
+        }
+        return $uri;
     }
 
     private function getPrivatePropertyValue(Message $message, $propertyName)
