@@ -72,7 +72,7 @@ class BasicTest extends TestCase
         $this->assertNotEmpty($debuggee->id());
 
         // Set a breakpoint
-        $breakpoint = $debuggee->setBreakpoint('Debugger/tests/System/BasicTest.php', __LINE__);
+        $breakpoint = $debuggee->setBreakpoint('tests/System/BasicTest.php', __LINE__);
         $this->assertInstanceOf(Breakpoint::class, $breakpoint);
         $this->assertNotNull($breakpoint->location());
 
