@@ -402,6 +402,16 @@ class ValueMapper
             return $this->encodeAssociativeArrayValue((array) $value);
         }
 
+        if ($value instanceof \DateTimeInterface) {
+            $value = new Timestamp($value);
+            return [
+                'timestampValue' => [
+                    'seconds' => $value->get()->format('U'),
+                    'nanos' => $value->nanoSeconds()
+                ]
+            ];
+        }
+
         if ($value instanceof Blob) {
             return ['bytesValue' => (string) $value];
         }
