@@ -26,8 +26,8 @@ $autoloaderCandidates = [
     '/../../../../autoload.php',   // google/cloud installation
 ];
 foreach ($autoloaderCandidates as $candidate) {
-    if (file_exists($candidate)) {
-        require_once $candidate;
+    if (file_exists(__DIR__ . $candidate)) {
+        require_once __DIR__ . $candidate;
         $foundAutoloader = true;
         break;
     }
