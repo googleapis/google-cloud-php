@@ -16,6 +16,17 @@ class Bootstrap
     public static $psrLogger;
 
     /**
+     * Return the full path of the prepend file.
+     *
+     * @return string
+     */
+    public static function prependFileLocation()
+    {
+        // Now it's in the same directory.
+        return realpath(__DIR__ . '/prepend.php');
+    }
+
+    /**
      * Register hooks for error reporting.
      *
      * @param PsrLogger $psrLogger
