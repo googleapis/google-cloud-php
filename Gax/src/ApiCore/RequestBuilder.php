@@ -221,7 +221,7 @@ class RequestBuilder
 
     private function messageToArray(Message $message)
     {
-        if (GPBUtil::hasSpecialJsonMapping($message)) {
+        if ($this->hasSpecialJsonMapping($message)) {
             return json_decode($message->serializeToJsonString(), true);
         }
         $messageArray = [];
@@ -230,5 +230,27 @@ class RequestBuilder
             $messageArray[$name] = $this->getQuerystringValue($propertyValue);
         }
         return $messageArray;
+    }
+
+    private function hasSpecialJsonMapping(Message $message)
+    {
+        return in_array(get_class($message), [
+            'Google\Protobuf\Any',
+            'Google\Protobuf\ListValue',
+            'Google\Protobuf\Struct',
+            'Google\Protobuf\Value',
+            'Google\Protobuf\Duration',
+            'Google\Protobuf\Timestamp',
+            'Google\Protobuf\FieldMask',
+            'Google\Protobuf\DoubleValue',
+            'Google\Protobuf\FloatValue',
+            'Google\Protobuf\Int64Value',
+            'Google\Protobuf\UInt64Value',
+            'Google\Protobuf\Int32Value',
+            'Google\Protobuf\UInt32Value',
+            'Google\Protobuf\BoolValue',
+            'Google\Protobuf\StringValue',
+            'Google\Protobuf\BytesValue'
+        ]);
     }
 }
