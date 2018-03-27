@@ -782,7 +782,7 @@ try {
 
 #### google/cloud-error-reporting
 
-[Google Stackdriver Error Reporting](https://github.com/GoogleCloudPlatform/google-cloud-php-error-reporting) can be installed separately by requiring the [`google/cloud-errorreporting`](https://packagist.org/packages/google/cloud-error-reporting) composer package:
+[Google Stackdriver Error Reporting](https://github.com/GoogleCloudPlatform/google-cloud-php-errorreporting) can be installed separately by requiring the [`google/cloud-errorreporting`](https://packagist.org/packages/google/cloud-error-reporting) composer package:
 
 ```
 $ composer require google/cloud-error-reporting
@@ -959,8 +959,6 @@ $ composer require google/cloud-trace
 ```
 
 ## Google Cloud BigQuery Data Transfer (Alpha)
-
-- [Source Code](https://github.com/GoogleCloudPlatform/google-cloud-php-bigquerydatatransfer)
 
 - [API Documentation](http://googlecloudplatform.github.io/google-cloud-php/#/docs/latest/bigquerydatatransfer/readme)
 - [Official Documentation](https://cloud.google.com/bigquery/docs/transfer-service-overview)
