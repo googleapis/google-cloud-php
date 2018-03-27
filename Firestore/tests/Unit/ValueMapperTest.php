@@ -191,7 +191,7 @@ class ValueMapperTest extends TestCase
         $blobValue = 'hello world';
         $blob = new Blob($blobValue);
 
-        $datetime = \DateTimeImmutable::createFromMutable(\DateTime::createFromFormat('U.u', microtime(true)));
+        $datetime = \DateTimeImmutable::createFromFormat('U.u', microtime(true));
         $now = (string) $datetime->format('U');
         $micros = intval($datetime->format('u'));
         $nanos = 10 + (intval($datetime->format('u')) * 1000);
