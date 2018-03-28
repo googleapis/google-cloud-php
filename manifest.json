@@ -11,6 +11,7 @@
             "name": "google/cloud",
             "defaultService": "servicebuilder",
             "versions": [
+                "v0.58.1",
                 "v0.58.0",
                 "v0.57.1",
                 "v0.57.0",
@@ -118,6 +119,7 @@
             "name": "google/cloud-bigquerydatatransfer",
             "defaultService": "bigquerydatatransfer/readme",
             "versions": [
+                "v0.3.1",
                 "v0.3.0",
                 "master"
             ]
@@ -272,6 +274,7 @@
             "name": "google/cloud-error-reporting",
             "defaultService": "errorreporting/readme",
             "versions": [
+                "v0.9.1",
                 "v0.9.0",
                 "v0.8.4",
                 "v0.8.3",
