@@ -9,7 +9,7 @@
         {
             "id": "google-cloud",
             "name": "google/cloud",
-            "defaultService": "readme",
+            "defaultService": "servicebuilder",
             "versions": [
                 "v0.58.0",
                 "v0.57.1",
