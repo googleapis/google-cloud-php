@@ -81,7 +81,7 @@
         "google/cloud-oslogin": "0.3.0",
         "google/cloud-pubsub": "1.1.0",
         "google/cloud-spanner": "1.3.0",
-        "google/cloud-speech": "0.11.3",
+        "google/cloud-speech": "0.12.0",
         "google/cloud-storage": "1.4.0",
         "google/cloud-trace": "0.7.0",
         "google/cloud-translate": "1.2.0",
