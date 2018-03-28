@@ -98,25 +98,20 @@ class DocGenerator
             if ($document) {
                 $writer = new Writer($document, $this->outputPath, $pretty);
                 $writer->write($currentFile);
+                $pathInfo = pathinfo($currentFile);
+                $servicePath = $pathInfo['dirname'] === '.'
+                    ? strtolower($pathInfo['filename'])
+                    : strtolower($pathInfo['dirname'] . '/' . $pathInfo['filename']);
+                $id = $this->isComponent
+                    ? strtolower($basePath) . '/' . $servicePath
+                    : $servicePath;
 
                 $this->types->addType([
-                    'id' => $document['id'],
+                    'id' => $id,
                     'title' => $document['title'],
-                    'contents' => ($this->isComponent)
-                        ? $this->prune($document['id'] . '.json')
-                        : $document['id'] . '.json'
+                    'contents' => $servicePath . '.json'
                 ]);
             }
         }
-    }
-
-    private function prune($contentsFileName)
-    {
-        $explode = explode('/', $contentsFileName);
-        if (count($explode) > 1) {
-            array_shift($explode);
-        }
-
-        return implode('/', $explode);
     }
 }

@@ -9,7 +9,7 @@
         {
             "id": "google-cloud",
             "name": "google/cloud",
-            "defaultService": "readme",
+            "defaultService": "servicebuilder",
             "versions": [
                 "v0.58.0",
                 "v0.57.1",
@@ -119,8 +119,6 @@
             "defaultService": "bigquerydatatransfer/readme",
             "versions": [
                 "v0.3.0",
-                "v0.2.0",
-                "v0.1.0",
                 "master"
             ]
         },
