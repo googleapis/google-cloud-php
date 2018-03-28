@@ -5,7 +5,7 @@
     "minimum-stability": "stable",
     "autoload": {
         "psr-4": {
-            "Google\\Cloud\\BigQuery\\DataTransfer\\": ""
+            "Google\\Cloud\\BigQuery\\DataTransfer\\": "src"
         }
     },
     "extra": {
@@ -19,6 +19,11 @@
     "require": {
         "google/proto-client": "^0.35",
         "google/gax": "^0.30"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^4.8|^5.0",
+        "google/cloud-core": "^1.14",
+        "phpdocumentor/reflection": "^3.0"
     },
     "suggest": {
         "ext-protobuf": "Provides a significant increase in throughput over the pure PHP protobuf implementation. See https://cloud.google.com/php/grpc for installation instructions."
