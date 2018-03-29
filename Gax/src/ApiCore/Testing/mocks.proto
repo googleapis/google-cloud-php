@@ -2,6 +2,9 @@ syntax = "proto3";
 
 package google.apicore.testing;
 
+import "google/protobuf/field_mask.proto";
+import "google/protobuf/wrappers.proto";
+
 option php_namespace = "Google\\ApiCore\\Testing";
 
 message MockRequest {
@@ -23,4 +26,6 @@ message MockRequestBody {
   uint64 number = 2;
   repeated string repeated_field = 3;
   MockRequestBody nested_message = 4;
+  google.protobuf.FieldMask field_mask = 5;
+  google.protobuf.StringValue string_value = 6;
 }

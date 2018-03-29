@@ -161,7 +161,7 @@ class RequestBuilder
             }
 
             $value = $this->getQuerystringValue($propertyValue);
-            if ($propertyValue instanceof Message) {
+            if ($propertyValue instanceof Message && is_array($value)) {
                 foreach ($value as $key => $value2) {
                     $queryParams[$name . '.' . $key] = $value2;
                 }
