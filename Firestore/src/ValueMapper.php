@@ -17,16 +17,16 @@
 
 namespace Google\Cloud\Firestore;
 
-use Google\Cloud\Core\Blob;
-use Google\Cloud\Core\Int64;
-use Google\Protobuf\NullValue;
-use Google\Cloud\Core\GeoPoint;
-use Google\Cloud\Core\Timestamp;
 use Google\Cloud\Core\ArrayTrait;
-use Google\Cloud\Core\ValidateTrait;
+use Google\Cloud\Core\Blob;
 use Google\Cloud\Core\DebugInfoTrait;
+use Google\Cloud\Core\GeoPoint;
+use Google\Cloud\Core\Int64;
+use Google\Cloud\Core\Timestamp;
+use Google\Cloud\Core\ValidateTrait;
 use Google\Cloud\Core\ValueMapperTrait;
 use Google\Cloud\Firestore\Connection\ConnectionInterface;
+use Google\Protobuf\NullValue;
 
 /**
  * Normalizes values between Google Cloud PHP and Cloud Firestore.
@@ -400,6 +400,15 @@ class ValueMapper
     {
         if ($value instanceof \stdClass) {
             return $this->encodeAssociativeArrayValue((array) $value);
+        }
+
+        if ($value instanceof \DateTimeInterface) {
+            return [
+                'timestampValue' => [
+                    'seconds' => $value->format('U'),
+                    'nanos' => (int)($value->format('u') * 1000)
+                ]
+            ];
         }
 
         if ($value instanceof Blob) {
