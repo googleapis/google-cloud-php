@@ -21,6 +21,7 @@ use Google\Cloud\Dev\GetComponentsTrait;
 use GuzzleHttp\Client;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use vierbergenlars\SemVer\version;
 
@@ -49,7 +50,8 @@ class ComponentIntegration extends Command
     protected function configure()
     {
         $this->setName('integration')
-            ->setDescription('Test each component individually.');
+            ->setDescription('Test each component individually.')
+            ->addOption('umbrella', 'u', InputOption::VALUE_NONE, 'If set, umbrella version update check will be skipped.');
     }
 
     protected function execute(InputInterface $input, OutputInterface $output)
@@ -67,6 +69,14 @@ class ComponentIntegration extends Command
         @mkdir($dest);
 
         $guzzle = new Client;
+
+        // Check that the umbrella version is updated.
+        $skipUmbrellaCheck = $input->getOption('umbrella');
+        $isUmbrellaUpdated = $this->checkUmbrellaUpdate($guzzle, $rootPath, $manifestPath);
+
+        if (!$skipUmbrellaCheck && !$isUmbrellaUpdated) {
+            throw new \RuntimeException('Umbrella package version has not been updated!');
+        }
 
         // do setup on components -- copy to tmp directory and check version info
         foreach ($components as &$component) {
@@ -97,6 +107,15 @@ class ComponentIntegration extends Command
         }
 
         $this->deleteTmp($dest);
+    }
+
+    private function checkUmbrellaUpdate(Client $guzzle, $rootPath, $manifestPath)
+    {
+        $component = $this->getComponentComposer($rootPath, 'google-cloud', $rootPath .'/composer.json');
+        $localLatestVersion = $this->getComponentVersion($manifestPath, $component['id']);
+        $remoteLatestVersion = $this->getRemoteLatestVersion($guzzle, $component);
+
+        return version::gt($localLatestVersion, $remoteLatestVersion);
     }
 
     private function copyComponent($rootPath, $dest, array $component)
