@@ -406,7 +406,7 @@ class ValueMapper
             return [
                 'timestampValue' => [
                     'seconds' => $value->format('U'),
-                    'nanos' => intval($value->format('u') * 1000)
+                    'nanos' => (int)($value->format('u') * 1000)
                 ]
             ];
         }
