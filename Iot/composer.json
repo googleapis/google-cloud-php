@@ -17,8 +17,8 @@
         }
     },
     "require": {
-        "google/proto-client": "^0.35.0",
-        "google/gax": "^0.30.0"
+        "google/proto-client": "^0.35",
+        "google/gax": "^0.31"
     },
     "suggest": {
         "ext-protobuf": "Provides a significant increase in throughput over the pure PHP protobuf implementation. See https://cloud.google.com/php/grpc for installation instructions."
