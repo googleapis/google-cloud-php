@@ -19,6 +19,8 @@ namespace Google\ApiCore\Tests\Unit;
 
 use Google\ApiCore\RequestBuilder;
 use Google\ApiCore\Testing\MockRequestBody;
+use Google\Protobuf\StringValue;
+use Google\Protobuf\FieldMask;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -196,6 +198,29 @@ class RequestBuilderTest extends TestCase
         $request = $this->builder->build(self::SERVICE_NAME . '/MethodWithAdditionalBindings', $message);
 
         $this->assertEquals('/v2/nested/foo/additional/bindings', $request->getUri()->getPath());
+    }
+
+    public function testMethodWithSpecialJsonMapping()
+    {
+        if (extension_loaded('protobuf')) {
+            $this->markTestSkipped('This is currently broken for the protobuf extension');
+        }
+
+        $stringValue = (new StringValue)
+            ->setValue('some-value');
+
+        $fieldMask = (new FieldMask)
+            ->setPaths(['path1', 'path2']);
+
+        $message = (new MockRequestBody())
+            ->setStringValue($stringValue)
+            ->setFieldMask($fieldMask);
+
+        $request = $this->builder->build(self::SERVICE_NAME . '/MethodWithSpecialJsonMapping', $message);
+
+        parse_str($request->getUri()->getQuery(), $query);
+        $this->assertEquals('path1,path2', $query['field_mask']);
+        $this->assertEquals('some-value', $query['string_value']);
     }
 
     /**
