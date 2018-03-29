@@ -137,11 +137,13 @@ trait GetComponentsTrait
      * @param string $componentId
      * @return array
      */
-    private function getComponentComposer($libraryRootPath, $componentId)
+    private function getComponentComposer($libraryRootPath, $componentId, $defaultComposerPath = null)
     {
-        $defaultComposerPath = isset($this->defaultComponentComposer)
-            ? $this->defaultComponentComposer
-            : null;
+        if (!$defaultComposerPath) {
+            $defaultComposerPath = isset($this->defaultComponentComposer)
+                ? $this->defaultComponentComposer
+                : null;
+        }
 
         $componentsDir = isset($this->components)
             ? $this->components
