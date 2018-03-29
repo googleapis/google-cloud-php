@@ -193,8 +193,8 @@ class ValueMapperTest extends TestCase
 
         $datetime = \DateTimeImmutable::createFromFormat('U.u', microtime(true));
         $now = (string) $datetime->format('U');
-        $micros = intval($datetime->format('u'));
-        $nanos = 10 + (intval($datetime->format('u')) * 1000);
+        $micros = (int) $datetime->format('u');
+        $nanos = (int) $datetime->format('u') * 1000 + 10;
         $timestamp = new Timestamp(\DateTimeImmutable::createFromFormat('U', $now), $nanos);
 
         $lat = 100.01;
