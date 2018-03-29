@@ -25,6 +25,7 @@ use Google\Cloud\Spanner\Admin\Database\V1\DatabaseAdminClient;
 use Google\Cloud\Spanner\Admin\Instance\V1\InstanceAdminClient;
 use Google\Cloud\Spanner\Batch\BatchClient;
 use Google\Cloud\Spanner\Bytes;
+use Google\Cloud\Spanner\CommitTimestamp;
 use Google\Cloud\Spanner\Connection\ConnectionInterface;
 use Google\Cloud\Spanner\Database;
 use Google\Cloud\Spanner\Date;
@@ -295,5 +296,11 @@ class SpannerClientTest extends TestCase
     {
         $d = $this->client->duration(10, 1);
         $this->assertInstanceOf(Duration::class, $d);
+    }
+
+    public function testCommitTimestamp()
+    {
+        $t = $this->client->commitTimestamp();
+        $this->assertInstanceOf(CommitTimestamp::class, $t);
     }
 }

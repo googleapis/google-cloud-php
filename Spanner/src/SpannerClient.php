@@ -76,7 +76,7 @@ class SpannerClient
     use LROTrait;
     use ValidateTrait;
 
-    const VERSION = '1.2.1';
+    const VERSION = '1.3.0';
 
     const FULL_CONTROL_SCOPE = 'https://www.googleapis.com/auth/spanner.data';
     const ADMIN_SCOPE = 'https://www.googleapis.com/auth/spanner.admin';
@@ -545,5 +545,24 @@ class SpannerClient
     public function duration($seconds, $nanos = 0)
     {
         return new Duration($seconds, $nanos);
+    }
+
+    /**
+     * Create a CommitTimestamp object.
+     *
+     * Commit Timestamps may be used to implement server-side commit timestamp
+     * tracking in tables. Refer to {@see Google\Cloud\Spanner\CommitTimestamp}
+     * for usage details.
+     *
+     * Example:
+     * ```
+     * $commitTimestamp = $spanner->commitTimestamp();
+     * ```
+     *
+     * @return CommitTimestamp
+     */
+    public function commitTimestamp()
+    {
+        return new CommitTimestamp;
     }
 }

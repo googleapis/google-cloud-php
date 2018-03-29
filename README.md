@@ -18,7 +18,6 @@ This client supports the following Google Cloud Platform services at a [General 
 This client supports the following Google Cloud Platform services at a [Beta](#versioning) quality level:
 
 * [Cloud Firestore](#cloud-firestore-beta) (Beta)
-* [Google Bigtable](#google-bigtable-beta) (Beta)
 * [Google Cloud Container](#google-cloud-container-beta) (Beta)
 * [Google Cloud Dataproc](#google-cloud-dataproc-beta) (Beta)
 * [Google Cloud Natural Language](#google-cloud-natural-language-beta) (Beta)
@@ -30,10 +29,11 @@ This client supports the following Google Cloud Platform services at a [Beta](#v
 * [Google Stackdriver Monitoring](#google-stackdriver-monitoring-beta) (Beta)
 
 This client supports the following Google Cloud Platform services at an [Alpha](#versioning) quality level:
+* [Google Bigtable](#google-bigtable-alpha) (Alpha)
 * [Google Cloud Speech](#google-cloud-speech-alpha) (Alpha)
 * [Google Stackdriver Debugger](#google-stackdriver-debugger-alpha) (Alpha)
 * [Google Stackdriver Trace](#google-stackdriver-trace-alpha) (Alpha)
-* [Google Cloud BigQuery Data Transfer](#google-cloud-bigquerydatatransfer-alpha) (Alpha)
+* [Google Cloud BigQuery Data Transfer](#google-cloud-bigquery-data-transfer-alpha) (Alpha)
 
 If you need support for other Google APIs, please check out the [Google APIs Client Library for PHP](https://github.com/google/google-api-php-client).
 
@@ -133,7 +133,7 @@ echo 'Hello ' . $user['firstName'];
 
 #### google/cloud-spanner
 
-Cloud Spanner can be installed separately by requiring the `google/cloud-spanner` composer package:
+[Cloud Spanner](https://github.com/GoogleCloudPlatform/google-cloud-php-spanner) can be installed separately by requiring the [`google/cloud-spanner`](https://packagist.org/packages/google/cloud-spanner) composer package:
 
 ```
 $ composer require google/cloud-spanner
@@ -174,7 +174,7 @@ foreach ($queryResults->rows() as $row) {
 
 #### google/cloud-bigquery
 
-Google BigQuery can be installed separately by requiring the `google/cloud-bigquery` composer package:
+[Google BigQuery](https://github.com/GoogleCloudPlatform/google-cloud-php-bigquery) can be installed separately by requiring the [`google/cloud-bigquery`](https://packagist.org/packages/google/cloud-bigquery) composer package:
 
 ```
 $ composer require google/cloud-bigquery
@@ -213,7 +213,7 @@ $entity = $datastore->lookup($key);
 
 #### google/cloud-datastore
 
-Google Cloud Datastore can be installed separately by requiring the `google/cloud-datastore` composer package:
+[Google Cloud Datastore](https://github.com/GoogleCloudPlatform/google-cloud-php-datastore) can be installed separately by requiring the [`google/cloud-datastore`](https://packagist.org/packages/google/cloud-datastore) composer package:
 
 ```
 $ composer require google/cloud-datastore
@@ -260,7 +260,7 @@ foreach ($messages as $message) {
 
 #### google/cloud-pubsub
 
-Google Cloud Pub/Sub can be installed separately by requiring the `google/cloud-pubsub` composer package:
+[Google Cloud Pub/Sub](https://github.com/GoogleCloudPlatform/google-cloud-php-pubsub) can be installed separately by requiring the [`google/cloud-pubsub`](https://packagist.org/packages/google/cloud-pubsub) composer package:
 
 ```
 $ composer require google/cloud-pubsub
@@ -320,7 +320,7 @@ $contents = file_get_contents('gs://my_bucket/file_backup.txt');
 
 #### google/cloud-storage
 
-Google Cloud Storage can be installed separately by requiring the `google/cloud-storage` composer package:
+[Google Cloud Storage](https://github.com/GoogleCloudPlatform/google-cloud-php-storage) can be installed separately by requiring the [`google/cloud-storage`](https://packagist.org/packages/google/cloud-storage) composer package:
 
 ```
 $ composer require google/cloud-storage
@@ -374,7 +374,7 @@ foreach ($languages as $language) {
 
 #### google/cloud-translate
 
-Google Cloud Translation can be installed separately by requiring the `google/cloud-translate` composer package:
+[Google Cloud Translation](https://github.com/GoogleCloudPlatform/google-cloud-php-translate) can be installed separately by requiring the [`google/cloud-translate`](https://packagist.org/packages/google/cloud-translate) composer package:
 
 ```
 $ composer require google/cloud-translate
@@ -414,7 +414,7 @@ foreach ($entries as $entry) {
 
 #### google/cloud-logging
 
-Google Stackdriver Logging can be installed separately by requiring the `google/cloud-logging` composer package:
+[Google Stackdriver Logging](https://github.com/GoogleCloudPlatform/google-cloud-php-logging) can be installed separately by requiring the [`google/cloud-logging`](https://packagist.org/packages/google/cloud-logging) composer package:
 
 ```
 $ composer require google/cloud-logging
@@ -445,43 +445,10 @@ echo "Hello " . $snapshot['firstName'];
 
 #### google/cloud-firestore
 
-Cloud Firestore can be installed separately by requiring the `google/cloud-firestore` composer package:
+[Cloud Firestore](https://github.com/GoogleCloudPlatform/google-cloud-php-firestore) can be installed separately by requiring the [`google/cloud-firestore`](https://packagist.org/packages/google/cloud-firestore) composer package:
 
 ```
 $ composer require google/cloud-firestore
-```
-
-## Google Bigtable (Beta)
-
-- [API Documentation](http://googlecloudplatform.github.io/google-cloud-php/#/docs/latest/bigtable/readme)
-- [Official Documentation](https://cloud.google.com/bigtable/docs)
-
-#### Preview
-
-```php
-require 'vendor/autoload.php';
-
-use Google\Cloud\Bigtable\V2\BigtableClient;
-
-$bigtableClient = new BigtableClient();
-$formattedTableName = $bigtableClient->tableName('[PROJECT]', '[INSTANCE]', '[TABLE]');
-
-try {
-    $stream = $bigtableClient->readRows($formattedTableName);
-    foreach ($stream->readAll() as $element) {
-        // doSomethingWith($element);
-    }
-} finally {
-    $bigtableClient->close();
-}
-```
-
-#### google/cloud-bigtable
-
-Google Bigtable can be installed separately by requiring the `google/cloud-bigtable` composer package:
-
-```
-$ composer require google/cloud-bigtable
 ```
 
 ## Google Cloud Container (Beta)
@@ -512,7 +479,7 @@ try {
 
 #### google/cloud-container
 
-Google Cloud Container can be installed separately by requiring the `google/cloud-container` composer package:
+[Google Cloud Container](https://github.com/GoogleCloudPlatform/google-cloud-php-container) can be installed separately by requiring the [`google/cloud-container`](https://packagist.org/packages/google/cloud-container) composer package:
 
 ```
 $ composer require google/cloud-container
@@ -552,7 +519,7 @@ $submittedJob = $jobControllerClient->submitJob($projectId, $region, $job);
 
 #### google/cloud-dataproc
 
-Google Cloud Dataproc can be installed separately by requiring the `google/cloud-dataproc` composer package:
+[Google Cloud Dataproc](https://github.com/GoogleCloudPlatform/google-cloud-php-dataproc) can be installed separately by requiring the [`google/cloud-dataproc`](https://packagist.org/packages/google/cloud-dataproc) composer package:
 
 ```
 $ composer require google/cloud-dataproc
@@ -599,7 +566,7 @@ foreach ($tokens as $token) {
 
 #### google/cloud-language
 
-Google Cloud Natural Language can be installed separately by requiring the `google/cloud-language` composer package:
+[Google Cloud Natural Language](https://github.com/GoogleCloudPlatform/google-cloud-php-language) can be installed separately by requiring the [`google/cloud-language`](https://packagist.org/packages/google/cloud-language) composer package:
 
 ```
 $ composer require google/cloud-language
@@ -624,7 +591,7 @@ $loginProfile = $osLoginServiceClient->getLoginProfile($formattedName);
 
 #### google/cloud-oslogin
 
-Google Cloud OsLogin can be installed separately by requiring the `google/cloud-oslogin` composer package:
+[Google Cloud OsLogin](https://github.com/GoogleCloudPlatform/google-cloud-php-oslogin) can be installed separately by requiring the [`google/cloud-oslogin`](https://packagist.org/packages/google/cloud-oslogin) composer package:
 
 ```
 $ composer require google/cloud-oslogin
@@ -666,7 +633,7 @@ if ($operationResponse->operationSucceeded()) {
 
 #### google/cloud-videointelligence
 
-Cloud Video Intelligence can be installed separately by requiring the `google/cloud-videointelligence` composer package:
+[Cloud Video Intelligence](https://github.com/GoogleCloudPlatform/google-cloud-php-videointelligence) can be installed separately by requiring the [`google/cloud-videointelligence`](https://packagist.org/packages/google/cloud-videointelligence) composer package:
 
 ```
 $ composer require google/cloud-videointelligence
@@ -706,7 +673,7 @@ foreach ($annotation->faces() as $key => $face) {
 
 #### google/cloud-vision
 
-Google Cloud Vision can be installed separately by requiring the `google/cloud-vision` composer package:
+[Google Cloud Vision](https://github.com/GoogleCloudPlatform/google-cloud-php-vision) can be installed separately by requiring the [`google/cloud-vision`](https://packagist.org/packages/google/cloud-vision) composer package:
 
 ```
 $ composer require google/cloud-vision
@@ -750,7 +717,7 @@ try {
 
 #### google/cloud-dlp
 
-Google DLP can be installed separately by requiring the `google/cloud-dlp` composer package:
+[Google DLP](https://github.com/GoogleCloudPlatform/google-cloud-php-dlp) can be installed separately by requiring the [`google/cloud-dlp`](https://packagist.org/packages/google/cloud-dlp) composer package:
 
 ```
 $ composer require google/cloud-dlp
@@ -782,7 +749,7 @@ try {
 
 #### google/cloud-error-reporting
 
-Google Stackdriver Error Reporting can be installed separately by requiring the `google/cloud-error-reporting` composer package:
+[Google Stackdriver Error Reporting](https://github.com/GoogleCloudPlatform/google-cloud-php-errorreporting) can be installed separately by requiring the [`google/cloud-errorreporting`](https://packagist.org/packages/google/cloud-error-reporting) composer package:
 
 ```
 $ composer require google/cloud-error-reporting
@@ -853,10 +820,43 @@ try {
 
 #### google/cloud-monitoring
 
-Google Stackdriver Monitoring can be installed separately by requiring the `google/cloud-monitoring` composer package:
+[Google Stackdriver Monitoring](https://github.com/GoogleCloudPlatform/google-cloud-php-monitoring) can be installed separately by requiring the [`google/cloud-monitoring`](https://packagist.org/packages/google/cloud-monitoring) composer package:
 
 ```
 $ composer require google/cloud-monitoring
+```
+
+## Google Bigtable (Alpha)
+
+- [API Documentation](http://googlecloudplatform.github.io/google-cloud-php/#/docs/latest/bigtable/readme)
+- [Official Documentation](https://cloud.google.com/bigtable/docs)
+
+#### Preview
+
+```php
+require 'vendor/autoload.php';
+
+use Google\Cloud\Bigtable\V2\BigtableClient;
+
+$bigtableClient = new BigtableClient();
+$formattedTableName = $bigtableClient->tableName('[PROJECT]', '[INSTANCE]', '[TABLE]');
+
+try {
+    $stream = $bigtableClient->readRows($formattedTableName);
+    foreach ($stream->readAll() as $element) {
+        // doSomethingWith($element);
+    }
+} finally {
+    $bigtableClient->close();
+}
+```
+
+#### google/cloud-bigtable
+
+[Google Bigtable](https://github.com/GoogleCloudPlatform/google-cloud-php-bigtable) can be installed separately by requiring the [`google/cloud-bigtable`](https://packagist.org/packages/google/cloud-bigtable) composer package:
+
+```
+$ composer require google/cloud-bigtable
 ```
 
 ## Google Cloud Speech (Alpha)
@@ -888,7 +888,7 @@ foreach ($results as $result) {
 
 #### google/cloud-speech
 
-Google Cloud Speech can be installed separately by requiring the `google/cloud-speech` composer package:
+[Google Cloud Speech](https://github.com/GoogleCloudPlatform/google-cloud-php-speech) can be installed separately by requiring the [`google/cloud-speech`](https://packagist.org/packages/google/cloud-speech) composer package:
 
 ```
 $ composer require google/cloud-speech
@@ -911,7 +911,7 @@ $debuggee->register();
 
 #### google/cloud-debugger
 
-Stackdriver Debugger can be installed separately by requiring the `google/cloud-debugger` composer package:
+[Stackdriver Debugger](https://github.com/GoogleCloudPlatform/google-cloud-php-debugger) can be installed separately by requiring the [`google/cloud-debugger`](https://packagist.org/packages/google/cloud-debugger) composer package:
 
 ```
 $ composer require google/cloud-debugger
@@ -952,7 +952,7 @@ foreach($traceClient->traces() as $trace) {
 
 #### google/cloud-trace
 
-Stackdriver Trace can be installed separately by requiring the `google/cloud-trace` composer package:
+[Stackdriver Trace](https://github.com/GoogleCloudPlatform/google-cloud-php-trace) can be installed separately by requiring the [`google/cloud-trace`](https://packagist.org/packages/google/cloud-trace) composer package:
 
 ```
 $ composer require google/cloud-trace
@@ -960,11 +960,8 @@ $ composer require google/cloud-trace
 
 ## Google Cloud BigQuery Data Transfer (Alpha)
 
-- [Source Code](https://github.com/GoogleCloudPlatform/google-cloud-php-bigquerydatatransfer)
-
-**NOTE:** The BigQuery Data Transfer client library is not included in
-google/cloud, and must be installed separately. See below for installation
-instructions.
+- [API Documentation](http://googlecloudplatform.github.io/google-cloud-php/#/docs/latest/bigquerydatatransfer/readme)
+- [Official Documentation](https://cloud.google.com/bigquery/docs/transfer-service-overview)
 
 #### Preview
 
@@ -982,7 +979,7 @@ $dataSources = $dataTransferServiceClient->listDataSources($formattedLocation);
 
 #### google/cloud-bigquerydatatransfer
 
-Google Cloud BigQuery Data Transfer **must** be installed separately by requiring the `google/cloud-bigquerydatatransfer` composer package:
+[Google Cloud BigQuery Data Transfer](https://github.com/GoogleCloudPlatform/google-cloud-php-bigquerydatatransfer) can be installed separately by requiring the [`google/cloud-bigquerydatatransfer`](https://packagist.org/packages/google/cloud-bigquerydatatransfer) composer package:
 
 ```
 $ composer require google/cloud-bigquerydatatransfer

@@ -26,7 +26,6 @@ use Google\Cloud\Firestore\Connection\ConnectionInterface;
 use Google\Cloud\Firestore\DocumentReference;
 use Google\Cloud\Firestore\FieldPath;
 use Google\Cloud\Firestore\FieldValue;
-use Google\Cloud\Firestore\FirestoreClient;
 use Google\Cloud\Firestore\ValueMapper;
 use Google\Protobuf\NullValue;
 use PHPUnit\Framework\TestCase;
@@ -192,9 +191,11 @@ class ValueMapperTest extends TestCase
         $blobValue = 'hello world';
         $blob = new Blob($blobValue);
 
-        $now = (string) time();
-        $nanos = 10;
-        $timestamp = new Timestamp(\DateTimeImmutable::createFromFormat('U', (string) $now), $nanos);
+        $datetime = \DateTimeImmutable::createFromFormat('U.u', microtime(true));
+        $now = (string) $datetime->format('U');
+        $micros = (int) $datetime->format('u');
+        $nanos = (int) $datetime->format('u') * 1000 + 10;
+        $timestamp = new Timestamp(\DateTimeImmutable::createFromFormat('U', $now), $nanos);
 
         $lat = 100.01;
         $lng = 100.25;
@@ -297,6 +298,14 @@ class ValueMapperTest extends TestCase
                 $blob,
                 function ($val) use ($blobValue) {
                     $this->assertEquals($blobValue, $val['bytesValue']);
+                }
+            ], [
+                $datetime,
+                function ($val) use ($now, $micros) {
+                    $this->assertEquals([
+                        'seconds' => $now,
+                        'nanos' => intval($micros * 1000)
+                    ], $val['timestampValue']);
                 }
             ], [
                 $timestamp,

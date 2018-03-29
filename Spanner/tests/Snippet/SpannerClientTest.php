@@ -20,10 +20,12 @@ namespace Google\Cloud\Spanner\Tests\Snippet;
 use Google\Cloud\Core\Int64;
 use Google\Cloud\Core\Iterator\ItemIterator;
 use Google\Cloud\Core\LongRunning\LongRunningOperation;
+use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
 use Google\Cloud\Spanner\Admin\Instance\V1\InstanceAdminClient;
 use Google\Cloud\Spanner\Batch\BatchClient;
 use Google\Cloud\Spanner\Bytes;
+use Google\Cloud\Spanner\CommitTimestamp;
 use Google\Cloud\Spanner\Connection\ConnectionInterface;
 use Google\Cloud\Spanner\Database;
 use Google\Cloud\Spanner\Date;
@@ -34,7 +36,6 @@ use Google\Cloud\Spanner\KeyRange;
 use Google\Cloud\Spanner\KeySet;
 use Google\Cloud\Spanner\SpannerClient;
 use Google\Cloud\Spanner\Timestamp;
-use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Prophecy\Argument;
 
 /**
@@ -222,49 +223,28 @@ class SpannerClientTest extends SnippetTestCase
         $res->returnVal()->keyRangeObject();
     }
 
-    public function testBytes()
+    /**
+     * @dataProvider factoriesProvider
+     */
+    public function testFactories($type, $name)
     {
-        $snippet = $this->snippetFromMethod(SpannerClient::class, 'bytes');
+        $snippet = $this->snippetFromMethod(SpannerClient::class, $name);
         $snippet->addLocal('spanner', $this->client);
 
-        $res = $snippet->invoke('bytes');
-        $this->assertInstanceOf(Bytes::class, $res->returnVal());
+        $res = $snippet->invoke($name);
+        $this->assertInstanceOf($type, $res->returnVal());
     }
 
-    public function testDate()
+    public function factoriesProvider()
     {
-        $snippet = $this->snippetFromMethod(SpannerClient::class, 'date');
-        $snippet->addLocal('spanner', $this->client);
-
-        $res = $snippet->invoke('date');
-        $this->assertInstanceOf(Date::class, $res->returnVal());
-    }
-
-    public function testTimestamp()
-    {
-        $snippet = $this->snippetFromMethod(SpannerClient::class, 'timestamp');
-        $snippet->addLocal('spanner', $this->client);
-
-        $res = $snippet->invoke('timestamp');
-        $this->assertInstanceOf(Timestamp::class, $res->returnVal());
-    }
-
-    public function testInt64()
-    {
-        $snippet = $this->snippetFromMethod(SpannerClient::class, 'int64');
-        $snippet->addLocal('spanner', $this->client);
-
-        $res = $snippet->invoke('int64');
-        $this->assertInstanceOf(Int64::class, $res->returnVal());
-    }
-
-    public function testDuration()
-    {
-        $snippet = $this->snippetFromMethod(SpannerClient::class, 'duration');
-        $snippet->addLocal('spanner', $this->client);
-
-        $res = $snippet->invoke('duration');
-        $this->assertInstanceOf(Duration::class, $res->returnVal());
+        return [
+            [Bytes::class, 'bytes'],
+            [Date::class, 'date'],
+            [Timestamp::class, 'timestamp'],
+            [Int64::class, 'int64'],
+            [Duration::class, 'duration'],
+            [CommitTimestamp::class, 'commitTimestamp'],
+        ];
     }
 
     public function testResumeOperation()
