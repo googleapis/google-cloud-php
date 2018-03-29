@@ -51,7 +51,10 @@ class ComponentIntegration extends Command
     {
         $this->setName('integration')
             ->setDescription('Test each component individually.')
-            ->addOption('umbrella', 'u', InputOption::VALUE_NONE, 'If set, umbrella version update check will be skipped.');
+            ->addOption('umbrella', 'u', InputOption::VALUE_NONE, 'If set, umbrella version update check will be skipped.')
+            ->addOption('preserve', 'p', InputOption::VALUE_NONE, 'If set, testing directory will not be deleted if an error occurs. ' .
+                'This may be a useful tool when debugging problems.'
+            );
     }
 
     protected function execute(InputInterface $input, OutputInterface $output)
@@ -67,6 +70,13 @@ class ComponentIntegration extends Command
         $dest = $rootPath . DIRECTORY_SEPARATOR . self::TESTING_DIR;
         $this->tmpDir = $dest;
         @mkdir($dest);
+
+        // If `--preserve|-p` is not provided, .testing will be deleted if an error occurs.
+        if (!$input->getOption('preserve')) {
+            register_shutdown_function(function () use ($dest) {
+                $this->deleteTmp($dest);
+            });
+        }
 
         $guzzle = new Client;
 
