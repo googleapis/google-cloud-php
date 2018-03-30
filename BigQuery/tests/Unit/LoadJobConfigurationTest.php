@@ -53,7 +53,8 @@ class LoadJobConfigurationTest extends TestCase
         ];
         $this->config = new LoadJobConfiguration(
             self::PROJECT_ID,
-            ['jobReference' => ['jobId' => self::JOB_ID]]
+            ['jobReference' => ['jobId' => self::JOB_ID]],
+            null
         );
     }
 

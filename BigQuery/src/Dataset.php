@@ -49,6 +49,11 @@ class Dataset
     private $info;
 
     /**
+     * @var string|null A default geographic location.
+     */
+    private $location;
+
+    /**
      * @var ValueMapper Maps values between PHP and BigQuery.
      */
     private $mapper;
@@ -59,13 +64,16 @@ class Dataset
      * @param string $id The dataset's ID.
      * @param string $projectId The project's ID.
      * @param array $info [optional] The dataset's metadata.
+     * @param string|null $location [optional] A default geographic location,
+     *        used when no dataset metadata exists.
      */
     public function __construct(
         ConnectionInterface $connection,
         $id,
         $projectId,
         ValueMapper $mapper,
-        array $info = []
+        array $info = [],
+        $location = null
     ) {
         $this->connection = $connection;
         $this->info = $info;
@@ -74,6 +82,7 @@ class Dataset
             'datasetId' => $id,
             'projectId' => $projectId
         ];
+        $this->location = $location;
     }
 
     /**
@@ -187,7 +196,11 @@ class Dataset
             $id,
             $this->identity['datasetId'],
             $this->identity['projectId'],
-            $this->mapper
+            $this->mapper,
+            [],
+            isset($this->info['location'])
+                ? $this->info['location']
+                : $this->location
         );
     }
 

@@ -37,7 +37,8 @@ class LoadJobConfigurationTest extends SnippetTestCase
     {
         $this->config = new LoadJobConfiguration(
             self::PROJECT_ID,
-            ['jobReference' => ['jobId' => self::JOB_ID]]
+            ['jobReference' => ['jobId' => self::JOB_ID]],
+            null
         );
     }
 

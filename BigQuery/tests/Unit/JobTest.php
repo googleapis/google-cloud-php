@@ -31,6 +31,7 @@ use PHPUnit\Framework\TestCase;
 class JobTest extends TestCase
 {
     public $connection;
+    public $location = 'asia-northeast1';
     public $projectId = 'myProjectId';
     public $jobId = 'myJobId';
     public $jobInfo = ['status' => ['state' => 'DONE']];
@@ -40,10 +41,10 @@ class JobTest extends TestCase
         $this->connection = $this->prophesize(ConnectionInterface::class);
     }
 
-    public function getJob($connection, array $data = [])
+    public function getJob($connection, array $data = [], $location = null)
     {
         $mapper = $this->prophesize(ValueMapper::class);
-        return new Job($connection->reveal(), $this->jobId, $this->projectId, $mapper->reveal(), $data);
+        return new Job($connection->reveal(), $this->jobId, $this->projectId, $mapper->reveal(), $data, $location);
     }
 
     public function testDoesExistTrue()
@@ -151,5 +152,23 @@ class JobTest extends TestCase
 
         $this->assertEquals($this->jobId, $job->identity()['jobId']);
         $this->assertEquals($this->projectId, $job->identity()['projectId']);
+    }
+
+    public function testDefaultLocationSurfaced()
+    {
+        $job = $this->getJob($this->connection, [], $this->location);
+
+        $this->assertEquals($this->location, $job->identity()['location']);
+    }
+
+    public function testMetadataLocationSurfaced()
+    {
+        $job = $this->getJob($this->connection, [
+            'jobReference' => [
+                'location' => $this->location
+            ]
+        ]);
+
+        $this->assertEquals($this->location, $job->identity()['location']);
     }
 }

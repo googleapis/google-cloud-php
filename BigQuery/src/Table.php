@@ -59,6 +59,11 @@ class Table
     private $info;
 
     /**
+     * @var string|null A default geographic location.
+     */
+    private $location;
+
+    /**
      * @var ValueMapper Maps values between PHP and BigQuery.
      */
     private $mapper;
@@ -71,6 +76,8 @@ class Table
      * @param string $projectId The project's id.
      * @param ValueMapper $mapper Maps values between PHP and BigQuery.
      * @param array $info [optional] The table's metadata.
+     * @param string|null $location [optional] A default geographic location,
+     *        used when no table metadata exists.
      */
     public function __construct(
         ConnectionInterface $connection,
@@ -78,7 +85,8 @@ class Table
         $datasetId,
         $projectId,
         ValueMapper $mapper,
-        array $info = []
+        array $info = [],
+        $location = null
     ) {
         $this->connection = $connection;
         $this->info = $info;
@@ -88,6 +96,7 @@ class Table
             'datasetId' => $datasetId,
             'projectId' => $projectId
         ];
+        $this->location = $location;
         $this->setHttpRetryCodes([502]);
         $this->setHttpRetryMessages([
             'rateLimitExceeded',
@@ -341,7 +350,10 @@ class Table
     {
         return (new CopyJobConfiguration(
             $this->identity['projectId'],
-            $options
+            $options,
+            isset($this->info['location'])
+                ? $this->info['location']
+                : $this->location
         ))
             ->destinationTable($destination)
             ->sourceTable($this);
@@ -380,7 +392,10 @@ class Table
 
         return (new ExtractJobConfiguration(
             $this->identity['projectId'],
-            $options
+            $options,
+            isset($this->info['location'])
+                ? $this->info['location']
+                : $this->location
         ))
             ->destinationUris([$destination])
             ->sourceTable($this);
@@ -411,7 +426,10 @@ class Table
     {
         $config = (new LoadJobConfiguration(
             $this->identity['projectId'],
-            $options
+            $options,
+            isset($this->info['location'])
+                ? $this->info['location']
+                : $this->location
         ))
             ->destinationTable($this);
 

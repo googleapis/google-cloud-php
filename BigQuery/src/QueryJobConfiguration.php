@@ -43,11 +43,17 @@ class QueryJobConfiguration implements JobConfigurationInterface
      * @param ValueMapper $mapper Maps values between PHP and BigQuery.
      * @param string $projectId The project's ID.
      * @param array $config A set of configuration options for a job.
+     * @param string|null $location The geographic location in which the job is
+     *        executed.
      */
-    public function __construct(ValueMapper $mapper, $projectId, array $config)
-    {
+    public function __construct(
+        ValueMapper $mapper,
+        $projectId,
+        array $config,
+        $location
+    ) {
         $this->mapper = $mapper;
-        $this->jobConfigurationProperties($projectId, $config);
+        $this->jobConfigurationProperties($projectId, $config, $location);
 
         if (!isset($this->config['configuration']['query']['useLegacySql'])) {
             $this->config['configuration']['query']['useLegacySql'] = false;

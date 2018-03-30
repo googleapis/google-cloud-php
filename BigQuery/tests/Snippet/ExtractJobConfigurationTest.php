@@ -38,7 +38,8 @@ class ExtractJobConfigurationTest extends SnippetTestCase
     {
         $this->config = new ExtractJobConfiguration(
             self::PROJECT_ID,
-            ['jobReference' => ['jobId' => self::JOB_ID]]
+            ['jobReference' => ['jobId' => self::JOB_ID]],
+            null
         );
     }
 

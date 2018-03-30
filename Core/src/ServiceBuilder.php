@@ -114,6 +114,12 @@ class ServiceBuilder
      *     @type bool $returnInt64AsObject If true, 64 bit integers will be
      *           returned as a {@see Google\Cloud\Core\Int64} object for 32 bit
      *           platform compatibility. **Defaults to** false.
+     *     @type string $location If provided, determines the default geographic
+     *           location used when creating datasets and managing jobs. Please
+     *           note: This is only required for jobs started outside of the US
+     *           and EU regions. Also, if location metadata has already been
+     *           fetched over the network it will take precedent over this
+     *           setting.
      * }
      * @return BigQueryClient
      */

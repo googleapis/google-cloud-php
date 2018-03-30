@@ -39,10 +39,12 @@ class LoadJobConfiguration implements JobConfigurationInterface
     /**
      * @param string $projectId The project's ID.
      * @param array $config A set of configuration options for a job.
+     * @param string|null $location The geographic location in which the job is
+     *        executed.
      */
-    public function __construct($projectId, array $config)
+    public function __construct($projectId, array $config, $location)
     {
-        $this->jobConfigurationProperties($projectId, $config);
+        $this->jobConfigurationProperties($projectId, $config, $location);
     }
 
     /**

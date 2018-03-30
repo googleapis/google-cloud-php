@@ -37,7 +37,8 @@ class CopyJobConfigurationTest extends SnippetTestCase
     {
         $this->config = new CopyJobConfiguration(
             self::PROJECT_ID,
-            ['jobReference' => ['jobId' => self::JOB_ID]]
+            ['jobReference' => ['jobId' => self::JOB_ID]],
+            null
         );
     }
 
