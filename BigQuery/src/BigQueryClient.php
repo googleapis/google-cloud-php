@@ -578,7 +578,7 @@ class BigQueryClient
             unset($options['metadata']);
         }
 
-        if (!isset($options['location']) && $this->location) {
+        if ($this->location && !isset($options['location'])) {
             $options['location'] = $this->location;
         }
 

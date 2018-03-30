@@ -56,7 +56,7 @@ trait JobConfigurationTrait
             'jobReference' => ['projectId' => $projectId]
         ], $config);
 
-        if (!isset($this->config['jobReference']['location']) && $location) {
+        if ($location && !isset($this->config['jobReference']['location'])) {
             $this->config['jobReference']['location'] = $location;
         }
 
