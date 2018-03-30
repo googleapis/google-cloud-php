@@ -17,6 +17,8 @@
 
 namespace Google\Cloud\Firestore;
 
+use Google\ApiCore\ValidationException;
+use Google\Cloud\Firestore\V1beta1\FirestoreClient as FirestoreGapicClient;
 use Ramsey\Uuid\Uuid;
 
 /**
@@ -34,8 +36,7 @@ trait PathTrait
      */
     private function fullName($projectId, $database, $relativeName)
     {
-        $template = 'projects/%s/databases/%s/documents/%s';
-        return sprintf($template, $projectId, $database, $relativeName);
+        return FirestoreGapicClient::documentPathName($projectId, $database, $relativeName);
     }
 
     /**
@@ -59,7 +60,7 @@ trait PathTrait
      */
     private function databaseName($projectId, $database)
     {
-        return sprintf('projects/%s/databases/%s', $projectId, $database);
+        return FirestoreGapicClient::databaseRootName($projectId, $database);
     }
 
     /**
@@ -84,17 +85,19 @@ trait PathTrait
      * name, use {@see Google\Cloud\Firestore\PathTrait::databaseFromName()}.
      *
      * @param string $name
-     * @return string
+     * @return string|null
      */
     private function databaseIdFromName($name)
     {
-        $name = trim($name, '/');
-        $parts = explode('/', $name);
-        if ($parts[0] !== 'projects') {
+        try {
+            $parsed = FirestoreGapicClient::parseName($name);
+        } catch (ValidationException $e) {
             return null;
         }
 
-        return $parts[3];
+        return isset($parsed['database'])
+            ? $parsed['database']
+            : null;
     }
 
     /**
@@ -105,13 +108,15 @@ trait PathTrait
      */
     private function projectIdFromName($name)
     {
-        $name = trim($name, '/');
-        if (strpos($name, 'projects/') !== 0) {
+        try {
+            $parsed = FirestoreGapicClient::parseName($name);
+        } catch (ValidationException $e) {
             return null;
         }
 
-        $parts = explode('/', $name);
-        return $parts[1];
+        return isset($parsed['project'])
+            ? $parsed['project']
+            : null;
     }
 
     /**
@@ -235,14 +240,15 @@ trait PathTrait
      */
     private function relativeName($name)
     {
-        $parts = $this->splitName($name);
-        if ($parts[0] === 'projects' && $parts[2] === 'databases') {
-            $parts = array_slice($parts, 5);
-
-            $name = implode('/', $parts);
+        try {
+            $parsed = FirestoreGapicClient::parseName($name, 'documentPath');
+        } catch (ValidationException $e) {
+            return null;
         }
 
-        return $name;
+        return isset($parsed['document_path'])
+            ? $parsed['document_path']
+            : null;
     }
 
     /**
