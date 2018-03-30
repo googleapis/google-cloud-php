@@ -26,12 +26,13 @@ use Google\Cloud\Core\Exception\ServiceException;
  */
 class RegionalizationTest extends BigQueryTestCase
 {
-    const REGION_ASIA = 'asia-northeast1';
-    const REGION_US = 'US';
+    const LOCATION_ASIA = 'asia-northeast1';
+    const LOCATION_US = 'US';
     const QUERY_TEMPLATE = 'SELECT 1 FROM `%s.%s`';
 
     private static $datasetAsia;
     private static $tableAsia;
+    private static $bucketAsia;
 
     public static function setUpBeforeClass()
     {
@@ -39,169 +40,211 @@ class RegionalizationTest extends BigQueryTestCase
         self::$datasetAsia = self::createDataset(
             self::$client,
             uniqid(self::TESTING_PREFIX),
-            ['location' => self::REGION_ASIA]
+            ['location' => self::LOCATION_ASIA]
         );
         self::$tableAsia = self::createTable(
             self::$datasetAsia,
             uniqid(self::TESTING_PREFIX)
         );
+        self::$bucketAsia = self::createBucket(
+            self::$storageClient,
+            uniqid(self::TESTING_PREFIX),
+            ['location' => self::LOCATION_ASIA]
+        );
+    }
+
+    public function testCopyJobSucceedsInAsia()
+    {
+        $targetTable = self::$datasetAsia
+            ->table(uniqid(self::TESTING_PREFIX));
+        $copyConfig = self::$tableAsia->copy($targetTable)
+            ->location(self::LOCATION_ASIA);
+        $results = self::$tableAsia->runJob($copyConfig);
+
+        $this->assertArrayNotHasKey(
+            'errorResult',
+            $results->info()['status']
+        );
+        $this->assertEquals(
+            self::$tableAsia->info()['location'],
+            $targetTable->reload()['location']
+        );
     }
 
     /**
-     * @dataProvider locationDataProvider
+     * @expectedException Google\Cloud\Core\Exception\NotFoundException
      */
-    public function testRunQuery($location)
+    public function testCopyJobThrowsNotFoundExceptionInUS()
     {
-        $caught = false;
-        $query = self::$client->query(
-            sprintf(
-                self::QUERY_TEMPLATE,
-                self::$datasetAsia->id(),
-                self::$tableAsia->id()
-            )
-        )->location($location);
+        $targetTable = self::$datasetAsia
+            ->table(uniqid(self::TESTING_PREFIX));
+        $copyConfig = self::$tableAsia->copy($targetTable)
+            ->location(self::LOCATION_US);
+        self::$tableAsia->runJob($copyConfig);
+    }
 
-        try {
-            self::$client->runQuery($query);
-        } catch (NotFoundException $e) {
-            $caught = true;
-        }
+    public function testExtractJobSucceedsInAsia()
+    {
+        $object = self::$bucketAsia->object(uniqid(self::TESTING_PREFIX));
+        $extractConfig = self::$tableAsia->extract($object)
+            ->destinationFormat('NEWLINE_DELIMITED_JSON')
+            ->location(self::LOCATION_ASIA);
+        $results = self::$tableAsia->runJob($extractConfig);
 
-        $this->assertExceptionShouldBeThrown($location, $caught);
+        $this->assertArrayNotHasKey(
+            'errorResult',
+            $results->info()['status']
+        );
+        $this->assertTrue($object->exists());
     }
 
     /**
-     * @dataProvider locationDataProvider
+     * @expectedException Google\Cloud\Core\Exception\NotFoundException
      */
-    public function testRunCopyJob($location)
+    public function testExtractJobThrowsNotFoundExceptionInUS()
     {
-        $caught = false;
-        $copyTable = self::$dataset->table(self::TESTING_PREFIX);
-        $copy = self::$tableAsia->copy($copyTable)
-            ->location($location);
-
-        try {
-            self::$tableAsia->startJob($copy);
-            self::$deletionQueue->add($copyTable);
-        } catch (NotFoundException $e) {
-            $caught = true;
-        } catch (ServiceException $e) {
-            // Swallow this, as the important bit is whether or not
-            // we get a 404.
-        }
-
-        $this->assertExceptionShouldBeThrown($location, $caught);
+        $object = self::$bucketAsia->object(uniqid(self::TESTING_PREFIX));
+        $extractConfig = self::$tableAsia->extract($object)
+            ->destinationFormat('NEWLINE_DELIMITED_JSON')
+            ->location(self::LOCATION_US);
+        self::$tableAsia->runJob($extractConfig);
     }
 
-    /**
-     * @dataProvider locationDataProvider
-     */
-    public function testRunExtractJob($location)
+    public function testLoadJobSucceedsInAsia()
     {
-        $caught = false;
-        $extract = self::$tableAsia->extract(
-            self::$bucket->object(self::TESTING_PREFIX)
-        )->location($location);
-
-        try {
-            self::$tableAsia->startJob($extract);
-        } catch (NotFoundException $e) {
-            $caught = true;
-        }
-
-        $this->assertExceptionShouldBeThrown($location, $caught);
-    }
-
-    /**
-     * @dataProvider locationDataProvider
-     */
-    public function testRunLoadJob($location)
-    {
-        $caught = false;
-        $load = self::$tableAsia->load(
+        $loadConfig = self::$tableAsia->load(
             file_get_contents(__DIR__ . '/data/table-data.json')
         )
             ->sourceFormat('NEWLINE_DELIMITED_JSON')
-            ->location($location);
+            ->location(self::LOCATION_ASIA);
+        $results = self::$tableAsia->runJob($loadConfig);
 
-        try {
-            self::$tableAsia->startJob($load);
-        }catch (ServiceException $e) {
-            $code = $e->getCode();
-            if ($code === 403 || $code === 404) {
-                $caught = true;
-            }
-        }
-
-        $this->assertExceptionShouldBeThrown($location, $caught);
+        $this->assertArrayNotHasKey(
+            'errorResult',
+            $results->info()['status']
+        );
+        $this->assertEquals(3, (int) self::$tableAsia->reload()['numRows']);
     }
 
     /**
-     * @dataProvider locationDataProvider
+     * @expectedException Google\Cloud\Core\Exception\NotFoundException
      */
-    public function testGetsJob($location)
+    public function testLoadJobThrowsNotFoundExceptionInUS()
     {
-        $caught = false;
-        $query = self::$client->query(
+        $loadConfig = self::$tableAsia->load(
+            file_get_contents(__DIR__ . '/data/table-data.json')
+        )
+            ->sourceFormat('NEWLINE_DELIMITED_JSON')
+            ->createDisposition('CREATE_NEVER')
+            ->location(self::LOCATION_US);
+        self::$tableAsia->runJob($loadConfig);
+    }
+
+    public function testRunQuerySucceedsInAsia()
+    {
+        $queryConfig = self::$client->query(
             sprintf(
                 self::QUERY_TEMPLATE,
                 self::$datasetAsia->id(),
                 self::$tableAsia->id()
             )
-        )->location(self::REGION_ASIA);
-        $job = self::$client->startQuery($query);
+        )->location(self::LOCATION_ASIA);
+        $results = self::$client->runQuery($queryConfig);
 
-        try {
-            self::$client->job($job->id(), [
-                'location' => $location
-            ])->reload();
-        }catch (NotFoundException $e) {
-            $caught = true;
-        }
-
-        $this->assertExceptionShouldBeThrown($location, $caught);
+        $this->assertArrayNotHasKey(
+            'errors',
+            $results->info()
+        );
+        $this->assertEquals(3, (int) $results->info()['totalRows']);
     }
 
     /**
-     * @dataProvider locationDataProvider
+     * @expectedException Google\Cloud\Core\Exception\NotFoundException
      */
-    public function testCancelsJob($location)
+    public function testRunQueryThrowsNotFoundExceptionInUS()
     {
-        $caught = false;
-        $query = self::$client->query(
+        $queryConfig = self::$client->query(
             sprintf(
                 self::QUERY_TEMPLATE,
                 self::$datasetAsia->id(),
                 self::$tableAsia->id()
             )
-        )->location(self::REGION_ASIA);
-        $job = self::$client->startQuery($query);
+        )->location(self::LOCATION_US);
+        self::$client->runQuery($queryConfig);
+    }
 
-        try {
+    public function testGetJobSucceedsInAsia()
+    {
+        $queryConfig = self::$client->query(
+            sprintf(
+                self::QUERY_TEMPLATE,
+                self::$datasetAsia->id(),
+                self::$tableAsia->id()
+            )
+        )->location(self::LOCATION_ASIA);
+        $job = self::$client->startQuery($queryConfig);
+
+        $this->assertEquals(
+            self::LOCATION_ASIA,
             self::$client->job($job->id(), [
-                'location' => $location
-            ])->cancel();
-        }catch (NotFoundException $e) {
-            $caught = true;
-        }
-
-        $this->assertExceptionShouldBeThrown($location, $caught);
+                'location' => self::LOCATION_ASIA
+            ])->reload()['jobReference']['location']
+        );
     }
 
-    public function locationDataProvider()
+    /**
+     * @expectedException Google\Cloud\Core\Exception\NotFoundException
+     */
+    public function testGetJobThrowsNotFoundExceptionInUS()
     {
-        return [
-            [self::REGION_ASIA],
-            [self::REGION_US]
-        ];
+        $queryConfig = self::$client->query(
+            sprintf(
+                self::QUERY_TEMPLATE,
+                self::$datasetAsia->id(),
+                self::$tableAsia->id()
+            )
+        )->location(self::LOCATION_ASIA);
+        $job = self::$client->startQuery($queryConfig);
+
+        self::$client->job($job->id(), [
+            'location' => self::LOCATION_US
+        ])->reload();
     }
 
-    private function assertExceptionShouldBeThrown($location, $caught)
+    public function testCancelJobSucceedsInAsia()
     {
-        if ($location === self::REGION_ASIA) {
-            $this->assertFalse($caught);
-        } else {
-            $this->assertTrue($caught);
-        }
+        $queryConfig = self::$client->query(
+            sprintf(
+                self::QUERY_TEMPLATE,
+                self::$datasetAsia->id(),
+                self::$tableAsia->id()
+            )
+        )->location(self::LOCATION_ASIA);
+        $job = self::$client->startQuery($queryConfig);
+
+        $this->assertNull(
+            self::$client->job($job->id(), [
+                'location' => self::LOCATION_ASIA
+            ])->cancel()
+        );
+    }
+
+    /**
+     * @expectedException Google\Cloud\Core\Exception\NotFoundException
+     */
+    public function testCancelJobThrowsNotFoundExceptionInUS()
+    {
+        $queryConfig = self::$client->query(
+            sprintf(
+                self::QUERY_TEMPLATE,
+                self::$datasetAsia->id(),
+                self::$tableAsia->id()
+            )
+        )->location(self::LOCATION_ASIA);
+        $job = self::$client->startQuery($queryConfig);
+
+        self::$client->job($job->id(), [
+            'location' => self::LOCATION_US
+        ])->cancel();
     }
 }
