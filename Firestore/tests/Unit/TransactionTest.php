@@ -206,10 +206,6 @@ class TransactionTest extends TestCase
      */
     public function testDocuments(array $input, array $names)
     {
-        $name = function ($name) {
-            return sprintf('projects/%s/databases/%s/documents/%s', self::PROJECT, self::DATABASE, $name);
-        };
-
         $res = [
             [
                 'found' => [
@@ -245,6 +241,8 @@ class TransactionTest extends TestCase
 
     public function documents()
     {
+        $pathBase = 'projects/'. self::PROJECT .'/databases/'. self::DATABASE .'/documents';
+
         $b = $this->prophesize(DocumentReference::class);
         $b->name()->willReturn('a/b');
 
@@ -260,19 +258,19 @@ class TransactionTest extends TestCase
                     'a/c',
                     'a/d'
                 ], [
-                    'projects/'. self::PROJECT .'/databases/'. self::DATABASE .'/documents/a/b',
-                    'projects/'. self::PROJECT .'/databases/'. self::DATABASE .'/documents/a/c',
-                    'projects/'. self::PROJECT .'/databases/'. self::DATABASE .'/documents/a/d'
+                    $pathBase . '/a/b',
+                    $pathBase . '/a/c',
+                    $pathBase . '/a/d'
                 ]
                 ], [
                     [
-                        'projects/'. self::PROJECT .'/databases/'. self::DATABASE .'/documents/a/b',
-                        'projects/'. self::PROJECT .'/databases/'. self::DATABASE .'/documents/a/c',
-                        'projects/'. self::PROJECT .'/databases/'. self::DATABASE .'/documents/a/d'
+                        $pathBase . '/a/b',
+                        $pathBase . '/a/c',
+                        $pathBase . '/a/d'
                     ], [
-                        'projects/'. self::PROJECT .'/databases/'. self::DATABASE .'/documents/a/b',
-                        'projects/'. self::PROJECT .'/databases/'. self::DATABASE .'/documents/a/c',
-                        'projects/'. self::PROJECT .'/databases/'. self::DATABASE .'/documents/a/d'
+                        $pathBase . '/a/b',
+                        $pathBase . '/a/c',
+                        $pathBase . '/a/d'
                     ]
                 ], [
                     [
@@ -280,9 +278,9 @@ class TransactionTest extends TestCase
                         $c->reveal(),
                         $d->reveal()
                     ], [
-                        'projects/'. self::PROJECT .'/databases/'. self::DATABASE .'/documents/a/b',
-                        'projects/'. self::PROJECT .'/databases/'. self::DATABASE .'/documents/a/c',
-                        'projects/'. self::PROJECT .'/databases/'. self::DATABASE .'/documents/a/d'
+                        $pathBase . '/a/b',
+                        $pathBase . '/a/c',
+                        $pathBase . '/a/d'
                     ]
                 ]
         ];

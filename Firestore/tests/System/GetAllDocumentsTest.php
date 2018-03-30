@@ -91,10 +91,10 @@ class GetAllDocumentsTest extends FirestoreTestCase
         }
     }
 
-    private function interleave($names = false)
+    private function interleave()
     {
-        $exist = $names ? array_keys(self::$refsExist) : array_values(self::$refsExist);
-        $nonExist = $names ? array_keys(self::$refsNonExist) : array_values(self::$refsNonExist);
+        $exist = array_values(self::$refsExist);
+        $nonExist = array_values(self::$refsNonExist);
         $docs = [];
         foreach ($exist as $i => $doc) {
             $docs[] = $doc;

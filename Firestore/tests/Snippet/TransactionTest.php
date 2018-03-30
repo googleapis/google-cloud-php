@@ -45,6 +45,7 @@ class TransactionTest extends SnippetTestCase
     const TRANSACTION = 'foobar';
     const DATABASE = 'projects/example_project/databases/(default)';
     const DOCUMENT = 'projects/example_project/databases/(default)/documents/a/b';
+    const DOCUMENT_TEMPLATE = 'projects/%s/databases/%s/documents/users/%s';
 
     private $connection;
     private $transaction;
@@ -211,20 +212,18 @@ class TransactionTest extends SnippetTestCase
 
     public function testDocuments()
     {
-        $tpl = 'projects/%s/databases/%s/documents/users/%s';
-
         $this->connection->batchGetDocuments(Argument::any())
             ->shouldBeCalled()
             ->willReturn([
                 [
                     'found' => [
-                        'name' => sprintf($tpl, self::PROJECT, self::DATABASE_ID, 'john'),
+                        'name' => sprintf(self::DOCUMENT_TEMPLATE, self::PROJECT, self::DATABASE_ID, 'john'),
                         'fields' => []
                     ],
                     'readTime' => ['seconds' => time()]
                 ], [
                     'found' => [
-                        'name' => sprintf($tpl, self::PROJECT, self::DATABASE_ID, 'dave'),
+                        'name' => sprintf(self::DOCUMENT_TEMPLATE, self::PROJECT, self::DATABASE_ID, 'dave'),
                         'fields' => []
                     ],
                     'readTime' => ['seconds' => time()]
@@ -243,12 +242,11 @@ class TransactionTest extends SnippetTestCase
 
     public function testDocumentsDoesntExist()
     {
-        $tpl = 'projects/%s/databases/%s/documents/users/%s';
         $this->connection->batchGetDocuments(Argument::any())
             ->shouldBeCalled()
             ->willReturn([
                 [
-                    'missing' => sprintf($tpl, self::PROJECT, self::DATABASE_ID, 'deleted-user'),
+                    'missing' => sprintf(self::DOCUMENT_TEMPLATE, self::PROJECT, self::DATABASE_ID, 'deleted-user'),
                     'readTime' => ['seconds' => time()]
                 ]
             ]);
