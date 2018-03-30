@@ -107,7 +107,8 @@ class BigQueryClient
      *           note: This is only required for jobs started outside of the US
      *           and EU regions. Also, if location metadata has already been
      *           fetched over the network it will take precedent over this
-     *           setting.
+     *           setting (by calling
+     *           {@see Google\Cloud\BigQuery\Table::reload()}, for example).
      * }
      */
     public function __construct(array $config = [])
