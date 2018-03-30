@@ -4,7 +4,7 @@ dist: trusty
 
 matrix:
   include:
-  - php: 7.0.25
+  - php: 7.0
   - php: 7.1
   - php: 7.2
   - php: 5.5.38
