@@ -48,7 +48,7 @@
         "monolog/monolog": "~1",
         "psr/http-message": "1.0.*",
         "ramsey/uuid": "~3",
-        "google/gax": "^0.30",
+        "google/gax": "^0.31",
         "google/proto-client": "^0.34"
     },
     "require-dev": {
