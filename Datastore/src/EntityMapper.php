@@ -207,7 +207,11 @@ class EntityMapper
                 break;
 
             case 'entityValue':
-                $decoded = $this->responseToEntityProperties($value['properties']);
+                $properties = isset($value['properties'])
+                    ? $value['properties']
+                    : [];
+
+                $decoded = $this->responseToEntityProperties($properties);
                 $props = $decoded['properties'];
                 $excludes = $decoded['excludes'];
 
@@ -228,7 +232,7 @@ class EntityMapper
                 } else {
                     $result = [];
 
-                    foreach ($value['properties'] as $key => $property) {
+                    foreach ($properties as $key => $property) {
                         $result[$key] = $this->getPropertyValue($property);
                     }
 
