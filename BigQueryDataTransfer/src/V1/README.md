@@ -3,7 +3,7 @@
 > Idiomatic PHP client for [BigQuery Data Transfer](https://cloud.google.com/bigquery/transfer/).
 
 * [Homepage](http://googlecloudplatform.github.io/google-cloud-php)
-* [API documentation](http://googlecloudplatform.github.io/google-cloud-php/#/docs/cloud-bigquerydatatransfer/latest/readme)
+* [API documentation](http://googlecloudplatform.github.io/google-cloud-php/#/docs/google-cloud/latest/bigquerydatatransfer/readme)
 
 **NOTE:** This repository a Read-Only subtree split of
 [Google Cloud PHP](https://github.com/googlecloudplatform/google-cloud-php). Any
