@@ -52,6 +52,7 @@
         "google/proto-client": "^0.34"
     },
     "require-dev": {
+        "stanley-cheung/protobuf-php": "*",
         "phpunit/phpunit": "^4.8|^5.0",
         "squizlabs/php_codesniffer": "2.*",
         "phpdocumentor/reflection": "^3.0",
