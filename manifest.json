@@ -323,14 +323,6 @@
             ]
         },
         {
-            "id": "cloud-iot",
-            "name": "google/cloud-iot",
-            "defaultService": "iot/readme",
-            "versions": [
-                "master"
-            ]
-        },
-        {
             "id": "cloud-language",
             "name": "google/cloud-language",
             "defaultService": "language/languageclient",
