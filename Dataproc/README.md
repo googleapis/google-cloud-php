@@ -3,7 +3,7 @@
 > Idiomatic PHP client for [Google Cloud Dataproc](https://cloud.google.com/dataproc).
 
 * [Homepage](http://googlecloudplatform.github.io/google-cloud-php)
-* [API documentation](http://googlecloudplatform.github.io/google-cloud-php/#/docs/cloud-dataproc/latest/readme)
+* [API documentation](http://googlecloudplatform.github.io/google-cloud-php/#/docs/cloud-dataproc/latest/dataproc/readme)
 
 **NOTE:** This repository a Read-Only subtree split of
 [Google Cloud PHP](https://github.com/googlecloudplatform/google-cloud-php). Any
