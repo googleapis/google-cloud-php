@@ -12,6 +12,12 @@ function unit () {
   fi
 }
 
+function style() {
+  echo "Running PHPCS Code Style Checker"
+
+  $(dirname $0)/style
+}
+
 function snippets() {
   echo "Running Snippet Test Suite"
 
@@ -30,6 +36,7 @@ function system () {
   $(dirname $0)/../../vendor/bin/phpunit -c phpunit-system.xml.dist
 }
 
+style
 unit
 snippets
 
