@@ -69,6 +69,7 @@ class InMemoryConfigStorageTest extends TestCase
 
     public function testSubmit()
     {
+        $this->markTestSkipped();
         $configStorage = InMemoryConfigStorage::getInstance();
         $config = new JobConfig();
         $config->registerJob(
@@ -81,7 +82,7 @@ class InMemoryConfigStorageTest extends TestCase
 
         $configStorage->submit('apple', 1);
         // The job hasn't been run because of the batchSize.
-        // $this->assertEmpty($this->items);
+        $this->assertEmpty($this->items);
         $configStorage->submit('orange', 1);
         $this->assertEquals(
             array('APPLE', 'ORANGE'),
