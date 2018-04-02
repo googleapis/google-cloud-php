@@ -18,7 +18,7 @@ You can sign these electronically (just scroll to the bottom). After that, we'll
 In order to use Google Cloud PHP, some setup is required!
 
 1. Install PHP.
-    Google Cloud PHP requires PHP 5.4 or higher. Installation of PHP varies depending on your system. Refer to the [PHP installation and configuration documentation](http://php.net/manual/en/install.php) for detailed instructions.
+    Google Cloud PHP requires PHP 5.5 or higher. Installation of PHP varies depending on your system. Refer to the [PHP installation and configuration documentation](http://php.net/manual/en/install.php) for detailed instructions.
 
 2. Install [Composer](https://getcomposer.org/download/).
 
@@ -40,7 +40,7 @@ This split occurs when a new version of Google Cloud PHP is released. Upon relea
 
 ## Tests
 
-Tests are very important part of Google Cloud PHP. All contributions should include tests that ensure the contributed code behaves as expected.
+Tests are a very important part of Google Cloud PHP. All contributions should include tests that ensure the contributed code behaves as expected.
 
 Google Cloud PHP includes several distinct but equally important test suites: Unit tests, snippet (documentation) tests, system tests, and code style tests.
 
@@ -91,13 +91,17 @@ To run the system tests for a package:
 $ vendor/bin/phpunit --group=datastore
 ```
 
-Or, if you prefer you can store the values in the `GCLOUD_TEST_PROJECT` and `GCLOUD_TEST_KEYFILE` environment variables:
+System test credentials should be provided via environment variable:
 
-``` sh
-$ cd <package-name>
-$ export GCLOUD_TEST_PROJECT=my-project-id
-$ export GCLOUD_TEST_KEYFILE=/path/to/keyfile.json
-$ rake acceptance
+```sh
+$ export GOOGLE_CLOUD_PHP_TESTS_KEY_PATH='/path/to/keyfile.json'
+$ export GOOGLE_CLOUD_PHP_TESTS_WHITELIST_KEY_PATH='/path/to/keyfile.json'
+```
+
+Please note that because Datastore and Firestore cannot be active in the same project, a separate environment variable is required to execute Firestore system tests:
+
+```sh
+$ export GOOGLE_CLOUD_PHP_FIRESTORE_TESTS_KEY_PATH='/path/to/keyfile.json'
 ```
 
 ## Coding Style
