@@ -110,6 +110,7 @@ class Readmes
                 $content = str_replace('{homepage}', $this->info['cloudPage'], $content);
                 $content = str_replace('{name}', $this->info['name'], $content);
                 $content = str_replace('{client}', 'readme', $content);
+                $content = str_replace('{directory}', strtolower(basename($this->info['path'])), $content);
 
                 file_put_contents($file, $content);
             }
