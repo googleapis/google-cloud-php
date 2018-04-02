@@ -3,7 +3,7 @@
 > Idiomatic PHP client for [Google Cloud Container](https://cloud.google.com/kubernetes-engine/).
 
 * [Homepage](http://googlecloudplatform.github.io/google-cloud-php)
-* [API documentation](http://googlecloudplatform.github.io/google-cloud-php/#/docs/cloud-container/latest/readme)
+* [API documentation](http://googlecloudplatform.github.io/google-cloud-php/#/docs/cloud-container/latest/container/readme)
 
 **NOTE:** This repository a Read-Only subtree split of
 [Google Cloud PHP](https://github.com/googlecloudplatform/google-cloud-php). Any
