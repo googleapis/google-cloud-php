@@ -43,13 +43,22 @@ trait JobConfigurationTrait
      * @access private
      * @param string $projectId The project's ID.
      * @param array $config A set of configuration options for a job.
+     * @param string|null $location The geographic location in which the job is
+     *        executed.
      */
-    public function jobConfigurationProperties($projectId, array $config)
-    {
+    public function jobConfigurationProperties(
+        $projectId,
+        array $config,
+        $location
+    ) {
         $this->config = array_replace_recursive([
             'projectId' => $projectId,
             'jobReference' => ['projectId' => $projectId]
         ], $config);
+
+        if ($location && !isset($this->config['jobReference']['location'])) {
+            $this->config['jobReference']['location'] = $location;
+        }
 
         if (!isset($this->config['jobReference']['jobId'])) {
             $this->config['jobReference']['jobId'] = $this->generateJobId();
@@ -60,7 +69,7 @@ trait JobConfigurationTrait
      * Specifies the default dataset to use for unqualified table names in the
      * query.
      *
-     * @param bool $dryRun
+     * @param bool $dryRun Whether or not to execute as a dry run.
      * @return JobConfigInterface
      */
     public function dryRun($dryRun)
@@ -88,12 +97,30 @@ trait JobConfigurationTrait
      * Specifies the default dataset to use for unqualified table names in the
      * query.
      *
-     * @param array $labels
+     * @param array $labels The labels to apply.
      * @return JobConfigInterface
      */
     public function labels(array $labels)
     {
         $this->config['configuration']['labels'] = $labels;
+
+        return $this;
+    }
+
+    /**
+     * Specifies the geographic location of the job. Required for jobs started
+     * outside of the US and EU regions.
+     *
+     * @param string $location The geographic location of the job.
+     *        **Defaults to** a location specified in the client configuration,
+     *        if provided, or through location metadata fetched by a network
+     *        request
+     *        (by calling {@see Google\Cloud\BigQuery\Table::reload()}, for example).
+     * @return JobConfigInterface
+     */
+    public function location($location)
+    {
+        $this->config['jobReference']['location'] = $location;
 
         return $this;
     }

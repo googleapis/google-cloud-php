@@ -28,6 +28,7 @@ use Google\Cloud\BigQuery\QueryResults;
 use Google\Cloud\BigQuery\Time;
 use Google\Cloud\BigQuery\Timestamp;
 use Google\Cloud\Core\Iterator\ItemIterator;
+use Google\Cloud\Core\Testing\TestHelpers;
 use Prophecy\Argument;
 use PHPUnit\Framework\TestCase;
 
@@ -39,27 +40,51 @@ class BigQueryClientTest extends TestCase
     const JOB_ID = 'myJobId';
     const PROJECT_ID = 'myProjectId';
     const DATASET_ID = 'myDatasetId';
+    const TABLE_ID = 'myTableId';
     const QUERY_STRING = 'someQuery';
+    const LOCATION = 'asia-northeast1';
 
     public $connection;
-    public $client;
 
     public function setUp()
     {
         $this->connection = $this->prophesize(ConnectionInterface::class);
-        $this->client = \Google\Cloud\Core\Testing\TestHelpers::stub(BigQueryClient::class, ['options' => ['projectId' => self::PROJECT_ID]]);
+    }
+
+    public function getClient($options = [])
+    {
+        return TestHelpers::stub(
+            BigQueryClient::class,
+            [
+                'options' => [
+                    'projectId' => self::PROJECT_ID
+                ] + $options
+            ]
+        );
     }
 
     public function testQueryConfig()
     {
-        $query = $this->client->queryConfig(self::QUERY_STRING);
+        $query = $this->getClient()->queryConfig(self::QUERY_STRING);
 
         $this->assertInstanceOf(QueryJobConfiguration::class, $query);
     }
 
+    public function testQueryUsesDefaultLocation()
+    {
+        $client = $this->getClient(['location' => self::LOCATION]);
+        $query = $client->queryConfig(self::QUERY_STRING);
+
+        $this->assertEquals(
+            self::LOCATION,
+            $query->toArray()['jobReference']['location']
+        );
+    }
+
     public function testRunsQuery()
     {
-        $query = $this->client->query(self::QUERY_STRING, [
+        $client = $this->getClient();
+        $query = $client->query(self::QUERY_STRING, [
             'jobReference' => ['jobId' => self::JOB_ID]
         ]);
         $this->connection->insertJob([
@@ -87,8 +112,8 @@ class BigQueryClientTest extends TestCase
                 'jobComplete' => true
             ])
             ->shouldBeCalledTimes(1);
-        $this->client->___setProperty('connection', $this->connection->reveal());
-        $queryResults = $this->client->runQuery($query);
+        $client->___setProperty('connection', $this->connection->reveal());
+        $queryResults = $client->runQuery($query);
 
         $this->assertInstanceOf(QueryResults::class, $queryResults);
         $this->assertEquals(self::JOB_ID, $queryResults->identity()['jobId']);
@@ -96,7 +121,8 @@ class BigQueryClientTest extends TestCase
 
     public function testRunsQueryWithRetry()
     {
-        $query = $this->client->query(self::QUERY_STRING, [
+        $client = $this->getClient();
+        $query = $client->query(self::QUERY_STRING, [
             'jobReference' => ['jobId' => self::JOB_ID]
         ]);
         $this->connection->insertJob([
@@ -128,8 +154,8 @@ class BigQueryClientTest extends TestCase
             ])
             ->shouldBeCalledTimes(1);
 
-        $this->client->___setProperty('connection', $this->connection->reveal());
-        $queryResults = $this->client->runQuery($query);
+        $client->___setProperty('connection', $this->connection->reveal());
+        $queryResults = $client->runQuery($query);
 
         $this->assertInstanceOf(QueryResults::class, $queryResults);
         $this->assertEquals(self::JOB_ID, $queryResults->identity()['jobId']);
@@ -137,7 +163,8 @@ class BigQueryClientTest extends TestCase
 
     public function testStartQuery()
     {
-        $query = $this->client->query(self::QUERY_STRING, [
+        $client = $this->getClient();
+        $query = $client->query(self::QUERY_STRING, [
             'jobReference' => ['jobId' => self::JOB_ID]
         ]);
         $this->connection->insertJob([
@@ -158,8 +185,8 @@ class BigQueryClientTest extends TestCase
             ])
             ->shouldBeCalledTimes(1);
 
-        $this->client->___setProperty('connection', $this->connection->reveal());
-        $job = $this->client->startQuery($query);
+        $client->___setProperty('connection', $this->connection->reveal());
+        $job = $client->startQuery($query);
 
         $this->assertInstanceOf(Job::class, $job);
         $this->assertEquals(self::JOB_ID, $job->id());
@@ -167,24 +194,27 @@ class BigQueryClientTest extends TestCase
 
     public function testGetsJob()
     {
-        $this->client->___setProperty('connection', $this->connection->reveal());
-        $this->assertInstanceOf(Job::class, $this->client->job(self::JOB_ID));
+        $client = $this->getClient();
+        $client->___setProperty('connection', $this->connection->reveal());
+        $this->assertInstanceOf(Job::class, $client->job(self::JOB_ID));
     }
 
     public function testGetsJobsWithNoResults()
     {
+        $client = $this->getClient();
         $this->connection->listJobs(['projectId' => self::PROJECT_ID])
             ->willReturn([])
             ->shouldBeCalledTimes(1);
 
-        $this->client->___setProperty('connection', $this->connection->reveal());
-        $jobs = iterator_to_array($this->client->jobs());
+        $client->___setProperty('connection', $this->connection->reveal());
+        $jobs = iterator_to_array($client->jobs());
 
         $this->assertEmpty($jobs);
     }
 
     public function testGetsJobsWithoutToken()
     {
+        $client = $this->getClient();
         $this->connection->listJobs(['projectId' => self::PROJECT_ID])
             ->willReturn([
                 'jobs' => [
@@ -193,14 +223,15 @@ class BigQueryClientTest extends TestCase
             ])
             ->shouldBeCalledTimes(1);
 
-        $this->client->___setProperty('connection', $this->connection->reveal());
-        $jobs = iterator_to_array($this->client->jobs());
+        $client->___setProperty('connection', $this->connection->reveal());
+        $jobs = iterator_to_array($client->jobs());
 
         $this->assertEquals(self::JOB_ID, $jobs[0]->id());
     }
 
     public function testGetsJobsWithToken()
     {
+        $client = $this->getClient();
         $token = 'token';
         $this->connection->listJobs(['projectId' => self::PROJECT_ID])
             ->willReturn([
@@ -219,32 +250,35 @@ class BigQueryClientTest extends TestCase
                 ]
             ])->shouldBeCalledTimes(1);
 
-        $this->client->___setProperty('connection', $this->connection->reveal());
-        $job = iterator_to_array($this->client->jobs());
+        $client->___setProperty('connection', $this->connection->reveal());
+        $job = iterator_to_array($client->jobs());
 
         $this->assertEquals(self::JOB_ID, $job[1]->id());
     }
 
     public function testGetsDataset()
     {
-        $this->client->___setProperty('connection', $this->connection->reveal());
-        $this->assertInstanceOf(Dataset::class, $this->client->dataset(self::DATASET_ID));
+        $client = $this->getClient();
+        $client->___setProperty('connection', $this->connection->reveal());
+        $this->assertInstanceOf(Dataset::class, $client->dataset(self::DATASET_ID));
     }
 
     public function testGetsDatasetsWithNoResults()
     {
+        $client = $this->getClient();
         $this->connection->listDatasets(Argument::any())
             ->willReturn([])
             ->shouldBeCalledTimes(1);
 
-        $this->client->___setProperty('connection', $this->connection->reveal());
-        $datasets = iterator_to_array($this->client->datasets());
+        $client->___setProperty('connection', $this->connection->reveal());
+        $datasets = iterator_to_array($client->datasets());
 
         $this->assertEmpty($datasets);
     }
 
     public function testGetsDatasetsWithoutToken()
     {
+        $client = $this->getClient();
         $this->connection->listDatasets(Argument::any())
             ->willReturn([
                 'datasets' => [
@@ -253,14 +287,15 @@ class BigQueryClientTest extends TestCase
             ])
             ->shouldBeCalledTimes(1);
 
-        $this->client->___setProperty('connection', $this->connection->reveal());
-        $datasets = iterator_to_array($this->client->datasets());
+        $client->___setProperty('connection', $this->connection->reveal());
+        $datasets = iterator_to_array($client->datasets());
 
         $this->assertEquals(self::DATASET_ID, $datasets[0]->id());
     }
 
     public function testGetsDatasetsWithToken()
     {
+        $client = $this->getClient();
         $this->connection->listDatasets(Argument::any())
             ->willReturn(
                 [
@@ -277,14 +312,15 @@ class BigQueryClientTest extends TestCase
             )
             ->shouldBeCalledTimes(2);
 
-        $this->client->___setProperty('connection', $this->connection->reveal());
-        $dataset = iterator_to_array($this->client->datasets());
+        $client->___setProperty('connection', $this->connection->reveal());
+        $dataset = iterator_to_array($client->datasets());
 
         $this->assertEquals(self::DATASET_ID, $dataset[1]->id());
     }
 
     public function testCreatesDataset()
     {
+        $client = $this->getClient();
         $this->connection->insertDataset(Argument::any())
             ->willReturn([
                 'datasetReference' => [
@@ -292,9 +328,38 @@ class BigQueryClientTest extends TestCase
                 ]
             ])
             ->shouldBeCalledTimes(1);
-        $this->client->___setProperty('connection', $this->connection->reveal());
+        $client->___setProperty('connection', $this->connection->reveal());
 
-        $dataset = $this->client->createDataset(self::DATASET_ID, [
+        $dataset = $client->createDataset(self::DATASET_ID, [
+            'metadata' => [
+                'friendlyName' => 'A dataset.'
+            ]
+        ]);
+
+        $this->assertInstanceOf(Dataset::class, $dataset);
+    }
+
+    public function testCreatesDatasetWithDefaultLocation()
+    {
+        $client = $this->getClient(['location' => self::LOCATION]);
+        $this->connection->insertDataset([
+            'friendlyName' => 'A dataset.',
+            'location' => self::LOCATION,
+            'projectId' => self::PROJECT_ID,
+            'datasetReference' => [
+                'datasetId' => self::DATASET_ID
+            ],
+            'retries' => 0
+        ])
+            ->willReturn([
+                'datasetReference' => [
+                    'datasetId' => self::DATASET_ID
+                ]
+            ])
+            ->shouldBeCalledTimes(1);
+        $client->___setProperty('connection', $this->connection->reveal());
+
+        $dataset = $client->createDataset(self::DATASET_ID, [
             'metadata' => [
                 'friendlyName' => 'A dataset.'
             ]
@@ -305,29 +370,64 @@ class BigQueryClientTest extends TestCase
 
     public function testGetsBytes()
     {
-        $bytes = $this->client->bytes('1234');
+        $bytes = $this->getClient()->bytes('1234');
 
         $this->assertInstanceOf(Bytes::class, $bytes);
     }
 
     public function testGetsDate()
     {
-        $bytes = $this->client->date(new \DateTime());
+        $date = $this->getClient()->date(new \DateTime());
 
-        $this->assertInstanceOf(Date::class, $bytes);
+        $this->assertInstanceOf(Date::class, $date);
     }
 
     public function testGetsTime()
     {
-        $bytes = $this->client->time(new \DateTime());
+        $time = $this->getClient()->time(new \DateTime());
 
-        $this->assertInstanceOf(Time::class, $bytes);
+        $this->assertInstanceOf(Time::class, $time);
     }
 
     public function testGetsTimestamp()
     {
-        $bytes = $this->client->timestamp(new \DateTime());
+        $timestamp = $this->getClient()->timestamp(new \DateTime());
 
-        $this->assertInstanceOf(Timestamp::class, $bytes);
+        $this->assertInstanceOf(Timestamp::class, $timestamp);
+    }
+
+    public function testDefaultLocationPropagatesToTable()
+    {
+        $client = $this->getClient(['location' => self::LOCATION]);
+        $table = $client->dataset(self::DATASET_ID)
+            ->table(self::TABLE_ID);
+
+        $this->assertEquals(
+            self::LOCATION,
+            $table->load('1234')->toArray()['jobReference']['location']
+        );
+    }
+
+    public function testDefaultLocationPropagatesToJob()
+    {
+        $client = $this->getClient(['location' => self::LOCATION]);
+
+        $this->assertEquals(
+            self::LOCATION,
+            $client->job(self::JOB_ID)->identity()['location']
+        );
+    }
+
+    public function testExplicitLocationPropagatesToJob()
+    {
+        $client = $this->getClient();
+
+        $this->assertEquals(
+            self::LOCATION,
+            $client->job(
+                self::JOB_ID,
+                ['location' => self::LOCATION]
+            )->identity()['location']
+        );
     }
 }

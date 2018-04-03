@@ -18,6 +18,7 @@
 namespace Google\Cloud\BigQuery\Tests\System;
 
 use Google\Cloud\BigQuery\BigQueryClient;
+use Google\Cloud\BigQuery\Dataset;
 use Google\Cloud\Storage\StorageClient;
 use Google\Cloud\Core\Testing\System\SystemTestCase;
 
@@ -26,6 +27,7 @@ class BigQueryTestCase extends SystemTestCase
     const TESTING_PREFIX = 'gcloud_testing_';
 
     protected static $bucket;
+    protected static $storageClient;
     protected static $client;
     protected static $dataset;
     protected static $table;
@@ -38,25 +40,30 @@ class BigQueryTestCase extends SystemTestCase
         }
 
         $keyFilePath = getenv('GOOGLE_CLOUD_PHP_TESTS_KEY_PATH');
-        $schema = json_decode(file_get_contents(__DIR__ . '/data/table-schema.json'), true);
 
-        $storage = new StorageClient([
+        self::$storageClient = new StorageClient([
             'keyFilePath' => $keyFilePath
         ]);
 
-        self::$bucket = self::createBucket($storage, uniqid(self::TESTING_PREFIX));
+        self::$bucket = self::createBucket(self::$storageClient, uniqid(self::TESTING_PREFIX));
 
         self::$client = new BigQueryClient([
             'keyFilePath' => $keyFilePath
         ]);
         self::$dataset = self::createDataset(self::$client, uniqid(self::TESTING_PREFIX));
-        self::$table = self::$dataset->createTable(uniqid(self::TESTING_PREFIX), [
-            'schema' => [
-                'fields' => $schema
-            ]
-        ]);
+        self::$table = self::createTable(self::$dataset, uniqid(self::TESTING_PREFIX));
 
         self::$hasSetUp = true;
+    }
+
+    protected static function createTable(Dataset $dataset, $name, array $options = [])
+    {
+        if (!isset($options['schema'])) {
+            $options['schema']['fields'] = json_decode(
+                file_get_contents(__DIR__ . '/data/table-schema.json'), true
+            );
+        }
+        return $dataset->createTable(uniqid(self::TESTING_PREFIX), $options);
     }
 }
 

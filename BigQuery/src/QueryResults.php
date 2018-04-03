@@ -88,12 +88,15 @@ class QueryResults implements \IteratorAggregate
     ) {
         $this->connection = $connection;
         $this->info = $info;
+        $this->job = $job;
         $this->identity = [
             'jobId' => $jobId,
-            'projectId' => $projectId
+            'projectId' => $projectId,
+            'location' => isset($info['jobReference']['location'])
+                ? $info['jobReference']['location']
+                : $job->identity()['location']
         ];
         $this->mapper = $mapper;
-        $this->job = $job;
         $this->queryResultsOptions = $queryResultsOptions;
     }
 

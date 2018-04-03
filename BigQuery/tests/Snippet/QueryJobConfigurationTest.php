@@ -39,7 +39,8 @@ class QueryJobConfigurationTest extends SnippetTestCase
         $this->config = new QueryJobConfiguration(
             new ValueMapper(false),
             self::PROJECT_ID,
-            ['jobReference' => ['jobId' => self::JOB_ID]]
+            ['jobReference' => ['jobId' => self::JOB_ID]],
+            null
         );
     }
 

@@ -45,7 +45,7 @@ class Job
     private $identity;
 
     /**
-     * @var array The job's metadata
+     * @var array The job's metadata.
      */
     private $info;
 
@@ -61,19 +61,25 @@ class Job
      * @param string $projectId The project's ID.
      * @param ValueMapper $mapper Maps values between PHP and BigQuery.
      * @param array $info [optional] The job's metadata.
+     * @param string|null $location [optional] A default geographic location,
+     *        used when no job metadata exists.
      */
     public function __construct(
         ConnectionInterface $connection,
         $id,
         $projectId,
         ValueMapper $mapper,
-        array $info = []
+        array $info = [],
+        $location = null
     ) {
         $this->connection = $connection;
         $this->info = $info;
         $this->identity = [
             'jobId' => $id,
-            'projectId' => $projectId
+            'projectId' => $projectId,
+            'location' => isset($info['jobReference']['location'])
+                ? $info['jobReference']['location']
+                : $location
         ];
         $this->mapper = $mapper;
     }

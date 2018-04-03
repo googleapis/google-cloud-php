@@ -28,6 +28,7 @@ class JobConfigurationTraitTest extends TestCase
 {
     const PROJECT_ID = 'project-id';
     const JOB_ID = '1234';
+    const LOCATION = 'asia-northeast1';
 
     private $trait;
 
@@ -40,7 +41,8 @@ class JobConfigurationTraitTest extends TestCase
     {
         $this->trait->call('jobConfigurationProperties', [
             self::PROJECT_ID,
-            ['jobReference' => ['jobId' => self::JOB_ID]]
+            ['jobReference' => ['jobId' => self::JOB_ID]],
+            null
         ]);
 
         $this->assertEquals([
@@ -52,11 +54,30 @@ class JobConfigurationTraitTest extends TestCase
         ], $this->trait->call('toArray'));
     }
 
+    public function testJobConfigurationPropertiesSetsDefaultLocationWhenOneIsProvided()
+    {
+        $this->trait->call('jobConfigurationProperties', [
+            self::PROJECT_ID,
+            ['jobReference' => ['jobId' => self::JOB_ID]],
+            self::LOCATION
+        ]);
+
+        $this->assertEquals([
+            'projectId' => self::PROJECT_ID,
+            'jobReference' => [
+                'jobId' => self::JOB_ID,
+                'projectId' => self::PROJECT_ID,
+                'location' => self::LOCATION
+            ]
+        ], $this->trait->call('toArray'));
+    }
+
     public function testJobConfigurationPropertiesSetsJobIDWhenNotProvided()
     {
         $this->trait->call('jobConfigurationProperties', [
             self::PROJECT_ID,
-            []
+            [],
+            null
         ]);
         $jobId = $this->trait->call('toArray')['jobReference']['jobId'];
 
@@ -80,7 +101,8 @@ class JobConfigurationTraitTest extends TestCase
         $jobIdPrefix = 'prefix';
         $this->trait->call('jobConfigurationProperties', [
             self::PROJECT_ID,
-            ['jobReference' => ['jobId' => self::JOB_ID]]
+            ['jobReference' => ['jobId' => self::JOB_ID]],
+            null
         ]);
         $this->trait->call('jobIdPrefix', [$jobIdPrefix]);
 
@@ -98,6 +120,16 @@ class JobConfigurationTraitTest extends TestCase
         $this->assertEquals(
             $labels,
             $this->trait->call('toArray')['configuration']['labels']
+        );
+    }
+
+    public function testLocation()
+    {
+        $this->trait->call('location', [self::LOCATION]);
+
+        $this->assertEquals(
+            self::LOCATION,
+            $this->trait->call('toArray')['jobReference']['location']
         );
     }
 

@@ -54,7 +54,8 @@ class ExtractJobConfigurationTest extends TestCase
         ];
         $this->config = new ExtractJobConfiguration(
             self::PROJECT_ID,
-            ['jobReference' => ['jobId' => self::JOB_ID]]
+            ['jobReference' => ['jobId' => self::JOB_ID]],
+            null
         );
     }
 

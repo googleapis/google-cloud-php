@@ -122,6 +122,19 @@ class BigQueryClientTest extends SnippetTestCase
         $this->assertEquals(self::CREATE_DISPOSITION, $array['configuration']['query']['createDisposition']);
     }
 
+    public function testQueryWithLocation()
+    {
+        $snippet = $this->snippetFromMethod(BigQueryClient::class, 'query', 3);
+        $snippet->addLocal('bigQuery', $this->client);
+        $config = $snippet->invoke('queryJobConfig')
+            ->returnVal();
+        $array = $config->toArray();
+
+        $this->assertInstanceOf(QueryJobConfiguration::class, $config);
+        $this->assertEquals('SELECT name FROM `my_project.users_dataset.users` LIMIT 100', $array['configuration']['query']['query']);
+        $this->assertEquals('asia-northeast1', $array['jobReference']['location']);
+    }
+
     public function testRunQuery()
     {
         $snippet = $this->snippetFromMethod(BigQueryClient::class, 'runQuery');
@@ -408,7 +421,8 @@ class BigQueryTestClient extends BigQueryClient
         return (new QueryJobConfigurationStub(
             new ValueMapper(false),
             BigQueryClientTest::PROJECT_ID,
-            $options
+            $options,
+            null
         ))->query($query);
     }
 }

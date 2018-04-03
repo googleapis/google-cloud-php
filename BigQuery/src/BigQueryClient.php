@@ -62,6 +62,11 @@ class BigQueryClient
     protected $connection;
 
     /**
+     * @var string The default geographic location.
+     */
+    private $location;
+
+    /**
      * @var ValueMapper Maps values between PHP and BigQuery.
      */
     private $mapper;
@@ -97,10 +102,18 @@ class BigQueryClient
      *     @type bool $returnInt64AsObject If true, 64 bit integers will be
      *           returned as a {@see Google\Cloud\Core\Int64} object for 32 bit
      *           platform compatibility. **Defaults to** false.
+     *     @type string $location If provided, determines the default geographic
+     *           location used when creating datasets and managing jobs. Please
+     *           note: This is only required for jobs started outside of the US
+     *           and EU regions. Also, if location metadata has already been
+     *           fetched over the network it will take precedent over this
+     *           setting (by calling
+     *           {@see Google\Cloud\BigQuery\Table::reload()}, for example).
      * }
      */
     public function __construct(array $config = [])
     {
+        $this->location = $this->pluck('location', $config, false);
         $this->setHttpRetryCodes([502]);
         $this->setHttpRetryMessages([
             'rateLimitExceeded',
@@ -164,6 +177,13 @@ class BigQueryClient
      * );
      * ```
      *
+     * ```
+     * // Set a region to run the job in.
+     * $queryJobConfig = $bigQuery->query(
+     *     'SELECT name FROM `my_project.users_dataset.users` LIMIT 100'
+     * )->location('asia-northeast1');
+     * ```
+     *
      * @param string $query A BigQuery SQL query.
      * @param array $options [optional] Please see the
      *        [API documentation for Job configuration](https://goo.gl/vSTbGp)
@@ -175,7 +195,8 @@ class BigQueryClient
         return (new QueryJobConfiguration(
             $this->mapper,
             $this->projectId,
-            $options
+            $options,
+            $this->location
         ))->query($query);
     }
 
@@ -368,11 +389,28 @@ class BigQueryClient
      * ```
      *
      * @param string $id The id of the already run or running job to request.
+     * @param array $options [optional] {
+     *     Configuration options.
+     *
+     *     @type string $location The geographic location of the job. Required
+     *           for jobs started outside of the US and EU regions.
+     *           **Defaults to** a location specified in the client
+     *           configuration.
+     * }
      * @return Job
      */
-    public function job($id)
+    public function job($id, array $options = [])
     {
-        return new Job($this->connection, $id, $this->projectId, $this->mapper);
+        return new Job(
+            $this->connection,
+            $id,
+            $this->projectId,
+            $this->mapper,
+            [],
+            isset($options['location'])
+                ? $options['location']
+                : $this->location
+        );
     }
 
     /**
@@ -451,7 +489,9 @@ class BigQueryClient
             $this->connection,
             $id,
             $this->projectId,
-            $this->mapper
+            $this->mapper,
+            [],
+            $this->location
         );
     }
 
@@ -511,7 +551,8 @@ class BigQueryClient
      * Creates a dataset.
      *
      * Please note that by default the library will not attempt to retry this
-     * call on your behalf.
+     * call on your behalf. Additionally, if a default location is provided in
+     * the client configuration it will be used when creating the dataset.
      *
      * Example:
      * ```
@@ -535,6 +576,10 @@ class BigQueryClient
         if (isset($options['metadata'])) {
             $options += $options['metadata'];
             unset($options['metadata']);
+        }
+
+        if ($this->location && !isset($options['location'])) {
+            $options['location'] = $this->location;
         }
 
         $response = $this->connection->insertDataset(
