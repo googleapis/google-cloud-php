@@ -33,6 +33,9 @@ namespace Google\ApiCore;
 
 use Google\Auth\FetchAuthTokenInterface;
 
+/**
+ * The AuthWrapper object provides a wrapper around a FetchAuthTokenInterface.
+ */
 class AuthWrapper
 {
     private $fetchAuthTokenInterface;
@@ -57,15 +60,47 @@ class AuthWrapper
      */
     public function getBearerString()
     {
-        return 'Bearer ' . $this->getToken();
+        return 'Bearer ' . self::getToken($this->fetchAuthTokenInterface, $this->authHttpHandler);
     }
 
-    private function getToken()
+    /**
+     * @return callable Callable function that returns an authorization header.
+     */
+    public function getAuthorizationHeaderCallback()
     {
-        $token = $this->fetchAuthTokenInterface->getLastReceivedToken();
-        if (is_null($token) || time() > $token['expires_at']) {
-            $token = $this->fetchAuthTokenInterface->fetchAuthToken($this->authHttpHandler);
+        $fetchAuthTokenInterface = $this->fetchAuthTokenInterface;
+        $authHttpHandler = $this->authHttpHandler;
+
+        // NOTE: changes to this function should be treated carefully and tested thoroughly. It will
+        // be passed into the gRPC c extension, and changes have the potential to trigger very
+        // difficult-to-diagnose segmentation faults.
+        return function () use ($fetchAuthTokenInterface, $authHttpHandler) {
+            return ['authorization' => ['Bearer ' . self::getToken($fetchAuthTokenInterface, $authHttpHandler)]];
+        };
+    }
+
+    private static function getToken($fetchAuthTokenInterface, $authHttpHandler)
+    {
+        $token = $fetchAuthTokenInterface->getLastReceivedToken();
+        if (self::isExpired($token)) {
+            $token = $fetchAuthTokenInterface->fetchAuthToken($authHttpHandler);
+            if (!self::isValid($token)) {
+                return '';
+            }
         }
         return $token['access_token'];
+    }
+
+    private static function isValid($token)
+    {
+        return is_array($token)
+            && array_key_exists('access_token', $token);
+    }
+
+    private static function isExpired($token)
+    {
+        return !(self::isValid($token)
+            && array_key_exists('expires_at', $token)
+            && $token['expires_at'] > time());
     }
 }
