@@ -87,7 +87,7 @@ class RetryMiddleware
             return $nextHandler($call, $options);
         }
 
-        return $nextHandler($call, $options)->then(null, function (Exception $e) use ($call, $options) {
+        return $nextHandler($call, $options)->then(null, function ($e) use ($call, $options) {
             if (!$e instanceof ApiException) {
                 throw $e;
             }
