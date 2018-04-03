@@ -1,100 +1,119 @@
-# How to contribute to gcloud
+# Contributing to Google Cloud PHP
 
-Thank you for your interest in contributing to [gcloud](https://github.com/GoogleCloudPlatform). The APIs of the [Google Cloud Platform](https://cloud.google.com/) constitute a huge offering that continues to expand at a rapid pace. Because there is so much work to do to make the gcloud libraries the best-ever way to access these APIs, we desperately need your help. Your contributions are more than just welcome, they are essential.
+1. **Sign one of the contributor license agreements below.**
+2. Fork the repo, develop and test your code changes.
+3. Send a pull request.
 
-Therefore, out of respect for your time and effort, we are trying hard to make contributing to gcloud a safe, efficient, and well-defined process. If you encounter any difficulty during the process, do not hesitate to [get in touch](/troubleshooting/readme.md).
+## Contributor License Agreements
 
-## Signing the Contributor License Agreement (CLA)
+Before we can accept your pull requests you'll need to sign a Contributor License Agreement (CLA):
 
-Open-source software licensing is a wonderful arrangement that benefits everyone, but in an imperfect world, we all need to exercise some legal prudence. In order to protect you, Google, and most of all, everyone who comes to depend on these libraries, we require that all contributors sign our short and human-readable Contributor License Agreement (CLA). We don't want to open the door to patent trolls, predatory lawyers, or anyone else who isn't on board with creating value and making the world a better place. We hope you will agree that the CLA offers very important protection and is easy to understand. Take a moment to read it carefully, and if you agree with what you read, please sign it now. If you believe you've already signed the appropriate CLA already for this or any other Google open-source project, you shouldn't have to do so again. You can review your signed CLAs at [cla.developers.google.com/clas](https://cla.developers.google.com/clas).
+- **If you are an individual writing original source code** and **you own the intellectual property**, then you'll need to sign an [individual CLA](https://developers.google.com/open-source/cla/individual).
+- **If you work for a company that wants to allow you to contribute your work**, then you'll need to sign a [corporate CLA](https://developers.google.com/open-source/cla/corporate).
 
-First, check that you are signed in to a [Google Account](https://accounts.google.com) that matches your [local Git email address](https://help.github.com/articles/setting-your-email-in-git/). Then choose one of the following:
+You can sign these electronically (just scroll to the bottom). After that, we'll be able to accept your pull requests.
 
-* If you are **an individual writing original source code** and **you own the intellectual property**, sign the [Individual CLA](https://developers.google.com/open-source/cla/individual).
-* If you work for **a company that wants to allow you to contribute**, sign the [Corporate CLA](https://developers.google.com/open-source/cla/corporate).
+## Setup
 
-You (and your authorized signer, if corporate) can sign the CLA electronically. After that, we'll be able to accept your contributions.
+In order to use Google Cloud PHP, some setup is required!
 
-## Opening an issue
+1. Install PHP.
+    Google Cloud PHP requires PHP 5.5 or higher. Installation of PHP varies depending on your system. Refer to the [PHP installation and configuration documentation](http://php.net/manual/en/install.php) for detailed instructions.
 
-If you've tried everything in our [Troubleshooting](https://github.com/GoogleCloudPlatform/gcloud-common/blob/master/troubleshooting/readme.md) guide and are still running into problems, it is probably time to open a GitHub issue. GitHub provides a guide, [Mastering Issues](https://guides.github.com/features/issues/), that is useful if you are unfamiliar with the process. Here are the specific steps for opening a gcloud issue:
+2. Install [Composer](https://getcomposer.org/download/).
 
-1. Go to the project issues page on GitHub.
-1. Click the green `New Issue` button located in the upper right corner.
-1. In the title field, write a single phrase that identifies your issue, including service, class, and method names if appropriate.
-1. In the main editor, describe your issue. The details of your description will vary depending on your issue type, as follows:
-    * `bug` - Document the steps to reproduce. List relevant details about your environment, especially your Ruby version. Include the full stack trace (backtrace) if there is an exception.
-    * `enhancement` - Put on your salesman hat and sell your proposed feature. If you can, link to some compelling external examples.
-    * `docs` - Helping us improve the project documentation should not be a hassle. Just quickly let us know where the problem is, and jot down a suggestion or two for making things better.
-1. Click the submit button.
+    Composer is a dependency manager for PHP, and is required to install and use Google Cloud PHP.
 
-Thank you. We will do our best to comment on your issue within one business day.
+3. Install the project dependencies.
 
-## Finding something to work on
+    ```sh
+    $ composer install
+    ```
 
-The GitHub project issues page is the place to look for shovel-ready work. Here are some suggestions for your first contribution, listed in ascending order of effort and difficulty.
+## Google Cloud PHP and subpackages
 
-* Confirm a `bug` issue by reproducing it in your own environment and adding a comment detailing what you found.
-* Review a pull request by checking out the creator's branch, and examining the change in your own environment.
-* Offer to work on a `docs` issue.
-* Offer to work on a `bug` issue.
+Google Cloud PHP is organized at the top level into folders for each supported API. Each API includes the client code, as well as all tests and metadata for the subpackage. For instance, `Datastore/src` contains the Datastore client code, and `Datastore/tests/Unit` contains all Datastore unit tests.
 
-If you can't find anything actionable, be sure to check back again in a week or so.
+All client library development, as well as issue tracking takes place in Google Cloud PHP (sometimes referred to as the umbrella package, and available on [packagist](https://packagist.org/packages/google/cloud) as `google/cloud`). However, for users who make use of only one or two Google Cloud services, Google Cloud PHP is split into many subpackages, such as `google/cloud-datastore` or `google/cloud-storage`.
 
-## Making changes to gcloud
+This split occurs when a new version of Google Cloud PHP is released. Upon release, an automated script is executed which splits each component into its own github repository and tags a new release if required.
 
-The following is a high-level overview of how to contribute to a gcloud client library:
+## Tests
 
-1. [Open an issue](#opening-an-issue) to ensure that your work is coordinated with the efforts of others.
+Tests are a very important part of Google Cloud PHP. All contributions should include tests that ensure the contributed code behaves as expected.
 
-1. Sign the [Contributor License Agreement (CLA)](#signing-the-contributor-license-agreement-cla).
+Google Cloud PHP includes several distinct but equally important test suites: Unit tests, snippet (documentation) tests, system tests, and code style tests.
 
-1. Clone the project repository from GitHub.
+To run all tests except system tests, the following command may be invoked:
 
-  ```sh
-  $ git clone git@github.com:GoogleCloudPlatform/<project-name>.git
-  ```
+```sh
+$ composer tests
+```
 
-1. Set up your local development environment.
+### Unit Tests
 
-1. Run the project tests. You need to be certain that all tests are passing in your local environment before you make any changes.
+Google Cloud PHP is tested using [PHPUnit](https://phpunit.de).
 
-1. Create a new local branch.
+Unit tests are organized into groups in order to make it simpler to test a single piece of the client library.
 
-  ```sh
-  $ git checkout -b <new-issue-name>
-  ```
+``` sh
+$ vendor/bin/phpunit --group=datastore
+```
 
-1. Make changes. Be sure to edit or add API documentation for your changes.
+### Snippet Tests
 
-1. Edit or add tests. All contributions must include tests that ensure the contributed code behaves as expected. (You did this in the previous step? Congrats, you just scored the TDD badge.)
+Documentation is an extremely important part of Google Cloud PHP, and it is crucial that all examples be correct. To support this goal, we implement a strict requirement that every public method must be accompanied by a code sample, and every code sample must be tested.
 
-1. Check your coding style. Please follow the style guide for the library.
+Running snippet tests can be accomplished as follows:
 
-1. Run the tests again.
+```sh
+$ vendor/bin/phpunit -c phpunit-snippets.xml.dist
+```
 
-1. Commit your code. Take a moment to write a [good commit message](http://tbaggery.com/2008/04/19/a-note-about-git-commit-messages.html). If you end up with several commits for one logical change, [squash](https://git-scm.com/book/en/v2/Git-Tools-Rewriting-History#Squashing-Commits) these commits for clarity.
+As with the unit test suite, tests are organized into groups.
 
-1. On GitHub, [create a fork](https://guides.github.com/activities/forking/) of the project.
+If any snippets are not covered by the snippet test suite, PHPUnit will report an error and exit with a failure code.
 
-1. Add your fork as a remote to your local repository:
+### System Tests
 
-  ```sh
-  $ git remote add <your-username> git@github.com:<your-username>/<project-name>.git
-  ```
+The Google Cloud PHP system tests interact with live Google Cloud Platform APIs to ensure correctness.
 
-1. Push your branch to your fork.
+Follow the instructions in the [Authentication guide](AUTHENTICATION.md) for enabling APIs. Some of the APIs may not yet be generally available, making it difficult for some contributors to successfully run the entire system test suite. However, please ensure that you do successfully run system tests for any code areas covered by your pull request.
 
-  ```sh
-  $ git push <your-username> <new-issue-name>
-  ```
+To run the system tests, first create and configure a project in the Google Developers Console, as described in the [Authentication guide](AUTHENTICATION.md). Be sure to download the JSON KEY file. Make note of the PROJECT_ID and the KEYFILE location on your system.
 
-1. On the GitHub page for your fork and branch, create a [pull request](https://help.github.com/articles/using-pull-requests/) by clicking `Compare & pull request`. Edit the message copied from your commit, adding more detail if needed, then click `Create pull request`.
 
-Your pull request is where we (and anyone else who is interested) will discuss your change.
+#### Running the system tests
 
-## Verifying your contribution
+To run the system tests for a package:
 
-Be sure to check your pull request for a `cla:yes` label. If you see a `cla:no` label, verify that you have [signed the CLA](#signing-the-contributor-license-agreement-cla) using a Google Account that matches your Git email. Once your pull request has the `cla:yes` label, look out for an email notification that either your pull request has been merged, or someone has requested a little more work on it. If more work is needed, repeat **steps 5**, **7-11**, and **14**. Then, let us know when you're done and we'll take another look.
+``` sh
+$ vendor/bin/phpunit --group=datastore
+```
 
-Happy contributing! And, once again, thank you.
+System test credentials should be provided via environment variable:
+
+```sh
+$ export GOOGLE_CLOUD_PHP_TESTS_KEY_PATH='/path/to/keyfile.json'
+$ export GOOGLE_CLOUD_PHP_TESTS_WHITELIST_KEY_PATH='/path/to/keyfile.json'
+```
+
+Please note that because Datastore and Firestore cannot be active in the same project, a separate environment variable is required to execute Firestore system tests:
+
+```sh
+$ export GOOGLE_CLOUD_PHP_FIRESTORE_TESTS_KEY_PATH='/path/to/keyfile.json'
+```
+
+## Coding Style
+
+Please follow the established coding style in the library. Google Cloud PHP follows the [PSR-2](https://www.php-fig.org/psr/psr-2/) Coding Style.
+
+You can check your code against these rules by running PHPCS with the proper ruleset, like this:
+
+```sh
+$ composer style
+```
+
+## Code of Conduct
+
+Please note that this project is released with a Contributor Code of Conduct. By participating in this project you agree to abide by its terms. See [Code of Conduct](CODE_OF_CONDUCT.md) for more information.

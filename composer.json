@@ -155,7 +155,9 @@
         }
     },
     "scripts": {
-        "google-cloud": "dev/google-cloud"
+        "google-cloud": "dev/google-cloud",
+        "style": "dev/sh/style",
+        "tests": "dev/sh/tests"
     },
     "bin": [
         "Core/bin/google-cloud-batch",
