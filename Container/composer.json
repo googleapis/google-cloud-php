@@ -17,8 +17,8 @@
         }
     },
     "require": {
-        "google/proto-client": "^0.34",
-        "google/gax": "^0.31"
+        "google/proto-client": "^0.35",
+        "google/gax": "^0.31.1"
     },
     "require-dev": {
         "phpunit/phpunit": "^4.8|^5.0",
