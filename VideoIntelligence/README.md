@@ -3,7 +3,7 @@
 [![Latest Stable Version](https://poser.pugx.org/google/cloud-videointelligence/v/stable)](https://packagist.org/packages/google/cloud-videointelligence) [![Packagist](https://img.shields.io/packagist/dm/google/cloud-videointelligence.svg)](https://packagist.org/packages/google/cloud-videointelligence)
 
 * [Homepage](http://googlecloudplatform.github.io/google-cloud-php)
-* [API documentation](http://googlecloudplatform.github.io/google-cloud-php/#/docs/cloud-videointelligence/latest/readme)
+* [API documentation](http://googlecloudplatform.github.io/google-cloud-php/#/docs/cloud-videointelligence/latest/videointelligence/readme)
 
 **NOTE:** This repository is part of [Google Cloud PHP](https://github.com/googlecloudplatform/google-cloud-php). Any
 support requests, bug reports, or development contributions should be directed to
