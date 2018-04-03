@@ -6,7 +6,7 @@
     "require": {
         "google/cloud-core": "^1.14",
         "ramsey/uuid": "~3",
-        "google/gax": "^0.31",
+        "google/gax": "^0.31.1",
         "google/proto-client": "^0.35"
     },
      "require-dev": {
