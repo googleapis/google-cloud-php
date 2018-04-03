@@ -92,8 +92,7 @@
     },
     "suggest": {
         "opis/closure": "May be used to serialize closures to process jobs in the batch daemon. Please require version ^3.",
-        "phpseclib/phpseclib": "May be used in place of OpenSSL for creating signed Cloud Storage URLs. Please require version ^2.",
-        "google/cloud-bigquerydatatransfer": "Client library for the BigQuery Data Transfer API."
+        "phpseclib/phpseclib": "May be used in place of OpenSSL for creating signed Cloud Storage URLs. Please require version ^2."
     },
     "autoload": {
         "psr-4": {
