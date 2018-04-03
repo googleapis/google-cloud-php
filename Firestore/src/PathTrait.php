@@ -17,6 +17,8 @@
 
 namespace Google\Cloud\Firestore;
 
+use Google\ApiCore\ValidationException;
+use Google\Cloud\Firestore\V1beta1\FirestoreClient as FirestoreGapicClient;
 use Ramsey\Uuid\Uuid;
 
 /**
@@ -34,8 +36,7 @@ trait PathTrait
      */
     private function fullName($projectId, $database, $relativeName)
     {
-        $template = 'projects/%s/databases/%s/documents/%s';
-        return sprintf($template, $projectId, $database, $relativeName);
+        return FirestoreGapicClient::documentPathName($projectId, $database, $relativeName);
     }
 
     /**
@@ -52,16 +53,21 @@ trait PathTrait
     }
 
     /**
+     * Create a fully-qualified database name from a projectId and database id.
+     *
      * @param string $projectId The project ID.
      * @param string $database The database name.
      */
     private function databaseName($projectId, $database)
     {
-        return sprintf('projects/%s/databases/%s', $projectId, $database);
+        return FirestoreGapicClient::databaseRootName($projectId, $database);
     }
 
     /**
-     * Get the database name from a path.
+     * Return the database name from a fully-qualified path name.
+     *
+     * This method returns a fully-qualified path. For the database ID, use
+     * {@see Google\Cloud\Firestore\PathTrait::databaseIdFromName()}.
      *
      * @param string $name
      * @return string
@@ -70,6 +76,47 @@ trait PathTrait
     {
         $parts = explode('/databases/', $name);
         return $parts[0] . '/databases/' . explode('/', $parts[1])[0];
+    }
+
+    /**
+     * Return the database ID from a fully-qualified path name.
+     *
+     * This method returns a bare database ID. For the fully-qualified database
+     * name, use {@see Google\Cloud\Firestore\PathTrait::databaseFromName()}.
+     *
+     * @param string $name
+     * @return string|null
+     */
+    private function databaseIdFromName($name)
+    {
+        try {
+            $parsed = FirestoreGapicClient::parseName($name);
+        } catch (ValidationException $e) {
+            return null;
+        }
+
+        return isset($parsed['database'])
+            ? $parsed['database']
+            : null;
+    }
+
+    /**
+     * Get the project id from a path
+     *
+     * @param string $path
+     * @return string|null
+     */
+    private function projectIdFromName($name)
+    {
+        try {
+            $parsed = FirestoreGapicClient::parseName($name);
+        } catch (ValidationException $e) {
+            return null;
+        }
+
+        return isset($parsed['project'])
+            ? $parsed['project']
+            : null;
     }
 
     /**
@@ -193,14 +240,15 @@ trait PathTrait
      */
     private function relativeName($name)
     {
-        $parts = $this->splitName($name);
-        if ($parts[0] === 'projects' && $parts[2] === 'databases') {
-            $parts = array_slice($parts, 5);
-
-            $name = implode('/', $parts);
+        try {
+            $parsed = FirestoreGapicClient::parseName($name, 'documentPath');
+        } catch (ValidationException $e) {
+            return null;
         }
 
-        return $name;
+        return isset($parsed['document_path'])
+            ? $parsed['document_path']
+            : null;
     }
 
     /**
