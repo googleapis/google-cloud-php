@@ -133,4 +133,25 @@ class SaveAndModifyTest extends DatastoreTestCase
         $e = self::$client->lookup($key);
         $this->assertEquals(['hello'], $e['foo'][Entity::EXCLUDE_FROM_INDEXES]);
     }
+
+    public function testEmptyArraySemantics()
+    {
+        $entity = self::$client->entity('Person', [
+            'listVal' => [],
+            'entityVal' => (object) [],
+            'n' => [
+                'foo',
+                []
+            ]
+        ]);
+        self::$client->insert($entity);
+
+        $key = $entity->key();
+        self::$localDeletionQueue->add($key);
+
+        $e = self::$client->lookup($key);
+        $this->assertEquals([], $e['listVal']);
+        $this->assertEquals([], $e['entityVal']);
+        $this->assertEquals([], $e['n'][1]);
+    }
 }

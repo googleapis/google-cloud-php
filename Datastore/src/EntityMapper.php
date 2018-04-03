@@ -207,7 +207,11 @@ class EntityMapper
                 break;
 
             case 'entityValue':
-                $decoded = $this->responseToEntityProperties($value['properties']);
+                $properties = isset($value['properties'])
+                    ? $value['properties']
+                    : [];
+
+                $decoded = $this->responseToEntityProperties($properties);
                 $props = $decoded['properties'];
                 $excludes = $decoded['excludes'];
 
@@ -228,7 +232,7 @@ class EntityMapper
                 } else {
                     $result = [];
 
-                    foreach ($value['properties'] as $key => $property) {
+                    foreach ($properties as $key => $property) {
                         $result[$key] = $this->getPropertyValue($property);
                     }
 
@@ -413,6 +417,9 @@ class EntityMapper
 
                 break;
 
+            case $value instanceof \stdClass:
+                return $this->convertArrayToEntityValue((array) $value);
+
             default:
                 throw new InvalidArgumentException(
                     sprintf('Value of type `%s` could not be serialized', get_class($value))
@@ -432,6 +439,13 @@ class EntityMapper
     {
         $values = [];
         foreach ($value as $val) {
+            // ListValues may not contain nested ListValues.
+            // Therefore, if an empty array is provided as part of an array,
+            // we can encode it as an EntityValue.
+            if (is_array($val) && empty($val)) {
+                $val = (object) $val;
+            }
+
             $values[] = $this->valueObject($val);
         }
 
@@ -458,6 +472,10 @@ class EntityMapper
                 $val,
                 in_array($key, $excludes)
             );
+        }
+
+        if (!$properties) {
+            $properties = (object) $properties;
         }
 
         return [

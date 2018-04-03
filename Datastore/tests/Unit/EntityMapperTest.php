@@ -27,6 +27,7 @@ use PHPUnit\Framework\TestCase;
 
 /**
  * @group datastore
+ * @group datastore-entity-mapper
  */
 class EntityMapperTest extends TestCase
 {
@@ -566,6 +567,21 @@ class EntityMapperTest extends TestCase
         $null = $this->mapper->valueObject(null);
 
         $this->assertNull($null['nullValue']);
+    }
+
+    public function testValueObjectNestedArrays()
+    {
+        $res = $this->mapper->valueObject([
+            'foo' => [
+                ['a' => 'b'],
+                ['a' => 'c'],
+                (object) [],
+                []
+            ]
+        ]);
+
+        $this->assertEmpty((array) $res['entityValue']['properties']['foo']['arrayValue']['values'][2]['entityValue']['properties']);
+        $this->assertEmpty((array) $res['entityValue']['properties']['foo']['arrayValue']['values'][3]['entityValue']['properties']);
     }
 
     public function testValueObjectResource()
