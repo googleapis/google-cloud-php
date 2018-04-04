@@ -42,7 +42,7 @@ class QueryTest extends FirestoreTestCase
 
         $expected = ['foo', 'good'];
         $res = $this->getQueryRow($this->query->select($expected));
-        $actual = array_keys($res->fields());
+        $actual = array_keys($res->data());
 
         $this->assertEmpty(array_merge(
             array_diff($expected, $actual),
@@ -57,7 +57,7 @@ class QueryTest extends FirestoreTestCase
         ]);
 
         $res = $this->getQueryRow($this->query->select([]));
-        $this->assertEmpty($res->fields());
+        $this->assertEmpty($res->data());
     }
 
     public function testWhere()

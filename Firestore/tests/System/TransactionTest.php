@@ -60,7 +60,7 @@ class TransactionTest extends FirestoreTestCase
         $this->assertEquals([
             'foo' => 'bar',
             'bat' => 'baz'
-        ], $this->document->snapshot()->fields());
+        ], $this->document->snapshot()->data());
     }
 
     public function testSet()
@@ -77,7 +77,7 @@ class TransactionTest extends FirestoreTestCase
 
         $this->assertEquals([
             'bat' => 'baz'
-        ], $this->document->snapshot()->fields());
+        ], $this->document->snapshot()->data());
     }
 
     public function testSetMerge()
@@ -95,7 +95,7 @@ class TransactionTest extends FirestoreTestCase
         $this->assertEquals([
             'foo' => 'bar',
             'bat' => 'baz'
-        ], $this->document->snapshot()->fields());
+        ], $this->document->snapshot()->data());
     }
 
     public function testDelete()

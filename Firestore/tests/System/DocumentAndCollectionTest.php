@@ -45,7 +45,7 @@ class DocumentAndCollectionTest extends FirestoreTestCase
         self::$deletionQueue->add($document);
         $document->create(['firstName' => 'Kate']);
         $this->assertTrue($document->snapshot()->exists());
-        $this->assertEquals(['firstName' => 'Kate'], $document->snapshot()->fields());
+        $this->assertEquals(['firstName' => 'Kate'], $document->snapshot()->data());
     }
 
     public function testUpdate()
@@ -66,7 +66,7 @@ class DocumentAndCollectionTest extends FirestoreTestCase
         $this->assertEquals([
             'firstName' => 'John',
             'country' => 'USA'
-        ], $this->document->snapshot()->fields());
+        ], $this->document->snapshot()->data());
 
         $this->document->set([
             'firstName' => 'Dave'
@@ -88,7 +88,7 @@ class DocumentAndCollectionTest extends FirestoreTestCase
         $this->assertEquals([
             'firstName' => 'John',
             'country' => 'USA'
-        ], $this->document->snapshot()->fields());
+        ], $this->document->snapshot()->data());
 
         $this->document->set([
             'firstName' => 'Dave'
