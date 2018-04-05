@@ -96,6 +96,27 @@ class OperationTest extends TestCase
         $this->assertCount(10, $keys);
     }
 
+    public function testKeysNumberCopy()
+    {
+        $keys = $this->operation->keys('Foo', [
+            'number' => 2
+        ]);
+
+        $keys[0]->setLastElementIdentifier(10);
+        $this->assertEquals(10, $keys[0]->pathEndIdentifier());
+        $this->assertNull($keys[1]->pathEndIdentifier());
+    }
+
+    /**
+     * @expectedException InvalidArgumentException
+     */
+    public function testKeysNumberZero()
+    {
+        $this->operation->keys('Foo', [
+            'number' => 0
+        ]);
+    }
+
     public function testKeysAncestors()
     {
         $keys = $this->operation->keys('Foo', [
