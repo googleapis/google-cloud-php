@@ -133,6 +133,7 @@ class Operation
      *     @type string $name The Name for the last pathElement.
      * }
      * @return Key[]
+     * @throws \InvalidArgumentException If the number of keys is less than 1.
      */
     public function keys($kind, array $options = [])
     {
@@ -142,6 +143,10 @@ class Operation
             'id' => null,
             'name' => null
         ];
+
+        if ($options['number'] < 1) {
+            throw new \InvalidArgumentException('Number of keys cannot be less than 1.');
+        }
 
         $path = [];
         if (count($options['ancestors']) > 0) {
@@ -159,7 +164,11 @@ class Operation
             'namespaceId' => $this->namespaceId
         ]);
 
-        $keys = array_fill(0, $options['number'], $key);
+        $keys = [$key];
+
+        for ($i = 1; $i < $options['number']; $i++) {
+            $keys[] = clone $key;
+        }
 
         return $keys;
     }
