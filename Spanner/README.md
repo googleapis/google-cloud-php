@@ -20,3 +20,43 @@ NOTE: In addition to the gRPC extension, we recommend installing the protobuf ex
 ```
 $ composer require google/cloud-spanner
 ```
+
+## Session warmup
+
+To issue a query against the Spanner service, the client library needs to request a session id to the server under the cover. This API call will add significant latency to your program. The Spanner client library provides a handy way to alleviate this problem by having a cached session pool.
+
+The following example shows how to use the `CacheSessionPool` with `SysVCacheItemPool` as well as how to configure a proper cache for authentication:
+
+```php
+require __DIR__ . '/vendor/autoload.php';
+
+use Google\Cloud\Spanner\SpannerClient;
+use Google\Cloud\Spanner\Session\CacheSessionPool;
+use Google\Auth\Cache\SysVCacheItemPool;
+
+$authCache = new SysVCacheItemPool();
+$sessionCache = new SysVCacheItemPool([
+    'proj' => 'B' // Use different from the default
+]);
+
+$spanner = new SpannerClient([
+    'authCache' => $cache
+]);
+
+$sessionPool = new CacheSessionPool(
+    $sessionCache,
+    ['minSession' => 10,
+     'maxSession' => 10] // Here it will create 10 sessions under the cover.
+);
+
+$database = $client->connect(
+    $instance,
+    $db,
+    ['sessionPool' => $sessionPool]
+);
+// `warmup` will actually create the session for the first time.
+$sessionPool->warmup();
+
+```
+
+By using a cache implementation like `SysVCacheItemPool`, you can share the cached sessions among multiple processes, so that for example, you can warmup the session upon the server startup, then all the other PHP processes will benefit from the warmed up sessions.

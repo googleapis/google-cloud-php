@@ -1005,6 +1005,21 @@ $storage = new StorageClient([
 ]);
 ```
 
+The [Google Auth library](https://github.com/google/google-auth-library-php) provides a PSR-6 implementation with the SystemV shared memory. This implementation is only available on *nix machines, but it's the one of the fastest implementations and you can share the cache among multiple processes. The following example shows how to use it.
+
+```php
+require __DIR__ . '/vendor/autoload.php';
+
+use Google\Cloud\Spanner\SpannerClient;
+use Google\Auth\Cache\SysVCacheItemPool;
+
+$cache = new SysVCacheItemPool();
+
+$spanner = new SpannerClient([
+    'authCache' => $cache
+]);
+```
+
 ## Versioning
 
 This library follows [Semantic Versioning](http://semver.org/).
