@@ -379,13 +379,13 @@ class WriteBatch
         ]) + $options);
 
         if (isset($response['commitTime'])) {
-            $response['commitTime'] = $this->valueMapper->createTimestampWithNanos($response['commitTime']);
+            $response['commitTime'] = Timestamp::createFromArray($response['commitTime']);
         }
 
         if (isset($response['writeResults'])) {
             foreach ($response['writeResults'] as &$result) {
                 if (isset($result['updateTime'])) {
-                    $result['updateTime'] = $this->valueMapper->createTimestampWithNanos($result['updateTime']);
+                    $result['updateTime'] = Timestamp::createFromArray($result['updateTime']);
                 }
             }
         }

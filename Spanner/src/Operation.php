@@ -134,7 +134,7 @@ class Operation
             'database' => $session->info()['database']
         ]) + $options);
 
-        return $this->mapper->createTimestampWithNanos($res['commitTimestamp'], Timestamp::class);
+        return Timestamp::createFromString($res['commitTimestamp'], Timestamp::PRECISION_NANOSECOND);
     }
 
     /**
@@ -350,7 +350,7 @@ class Operation
         ];
 
         if ($res['readTimestamp']) {
-            $res['readTimestamp'] = $this->mapper->createTimestampWithNanos($res['readTimestamp'], Timestamp::class);
+            $res['readTimestamp'] = Timestamp::createFromString($res['readTimestamp'], Timestamp::PRECISION_NANOSECOND);
         }
 
         return new $className($this, $session, $res);

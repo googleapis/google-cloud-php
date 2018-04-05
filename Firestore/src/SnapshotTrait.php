@@ -139,15 +139,15 @@ trait SnapshotTrait
     private function transformSnapshotTimestamps(ValueMapper $valueMapper, array $data)
     {
         $data['createTime'] = isset($data['createTime'])
-            ? $valueMapper->createTimestampWithNanos($data['createTime'])
+            ? Timestamp::createFromArray($data['createTime'])
             : null;
 
         $data['updateTime'] = isset($data['updateTime'])
-            ? $valueMapper->createTimestampWithNanos($data['updateTime'])
+            ? Timestamp::createFromArray($data['updateTime'])
             : null;
 
         $data['readTime'] = isset($data['readTime'])
-            ? $valueMapper->createTimestampWithNanos($data['readTime'])
+            ? Timestamp::createFromArray($data['readTime'])
             : null;
 
         return $data;

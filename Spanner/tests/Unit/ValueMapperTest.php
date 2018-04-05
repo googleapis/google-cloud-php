@@ -29,6 +29,7 @@ use PHPUnit\Framework\TestCase;
 
 /**
  * @group spanner
+ * @group spanner-value-mapper
  */
 class ValueMapperTest extends TestCase
 {
@@ -151,7 +152,8 @@ class ValueMapperTest extends TestCase
 
     public function testEncodeValuesAsSimpleType()
     {
-        $dt = new \DateTime;
+        $dt = (new \DateTime)->format(Timestamp::FORMAT);
+        $timestamp = Timestamp::createFromString($dt, Timestamp::PRECISION_NANOSECOND);
 
         $vals = [];
         $vals['bool'] = true;
@@ -160,8 +162,8 @@ class ValueMapperTest extends TestCase
         $vals['float'] = 3.1415;
         $vals['nan'] = NAN;
         $vals['inf'] = INF;
-        $vals['timestamp'] = new Timestamp($dt);
-        $vals['date'] = new Date($dt);
+        $vals['timestamp'] = $timestamp;
+        $vals['date'] = new Date($timestamp->get());
         $vals['string'] = 'foo';
         $vals['bytes'] = new Bytes('hello world');
         $vals['array'] = ['foo', 'bar'];
@@ -173,8 +175,8 @@ class ValueMapperTest extends TestCase
         $this->assertEquals((string) $vals['int'], $res[2]);
         $this->assertEquals($vals['float'], $res[3]);
         $this->assertEquals('Infinity', $res[5]);
-        $this->assertEquals($dt->format(Timestamp::FORMAT), $res[6]);
-        $this->assertEquals($dt->format(Date::FORMAT), $res[7]);
+        $this->assertEquals($timestamp->get()->format(Timestamp::FORMAT), $res[6]);
+        $this->assertEquals($timestamp->get()->format(Date::FORMAT), $res[7]);
         $this->assertEquals($vals['string'], $res[8]);
         $this->assertEquals(base64_encode('hello world'), $res[9]);
         $this->assertEquals($vals['array'], $res[10]);

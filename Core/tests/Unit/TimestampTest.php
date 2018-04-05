@@ -22,6 +22,7 @@ use PHPUnit\Framework\TestCase;
 
 /**
  * @group core
+ * @group core-timestamp
  */
 class TimestampTest extends TestCase
 {
@@ -53,5 +54,76 @@ class TimestampTest extends TestCase
             (new \DateTime($this->dt->format(Timestamp::FORMAT)))->format('U'),
             (new \DateTime((string)$this->ts))->format('U')
         );
+    }
+
+    /**
+     * @dataProvider timestampStrings
+     */
+    public function testCreateTimestampWithNanosTimestampStrings($timestampStr, $expected)
+    {
+        $timestamp = Timestamp::createFromString($timestampStr);
+
+        $this->assertInstanceOf(Timestamp::class, $timestamp);
+
+        $this->assertEquals($expected, $timestamp->formatAsString());
+    }
+
+    public function timestampStrings()
+    {
+        $today = (new \DateTime)->format('Y-m-d\TH:i:s');
+        return [
+            [$today . 'Z',              $today . '.000000Z'],
+            [$today . '.300000000Z',    $today . '.300000Z'],
+            [$today . '.000000003Z',    $today . '.000000003Z'],
+            [$today . '.000000000Z',    $today . '.000000Z'],
+            [$today . '.0Z',            $today . '.000000Z'],
+            [$today . '.1234Z',         $today . '.123400Z'],
+            [$today . '.004Z',          $today . '.004000Z'],
+            [$today . '.020001000Z',    $today . '.020001Z'],
+        ];
+    }
+
+    /**
+     * @dataProvider timestampNanos
+     */
+    public function testNanosFromApi(Timestamp $timestamp, $expected)
+    {
+        $this->assertEquals($expected, $timestamp->formatAsString());
+    }
+
+    public function timestampNanos()
+    {
+        $dt = (new \DateTime);
+        $today = $dt->format('Y-m-d\TH:i:s');
+        return [
+            [new Timestamp($dt, 1),             $today . '.000000001Z'],
+            [new Timestamp($dt, 1000),          $today . '.000001Z'],
+            [new Timestamp($dt, 100),           $today . '.000000100Z'],
+            [new Timestamp($dt, 100000001),     $today . '.100000001Z']
+        ];
+    }
+
+    /**
+     * @dataProvider timestampArrays
+     */
+    public function testCreateTimestampWithNanosArrays(array $input)
+    {
+        $timestamp = Timestamp::createFromArray($input);
+        $this->assertInstanceOf(Timestamp::class, $timestamp);
+
+        $this->assertEquals($input['seconds'], $timestamp->get()->format('U'));
+        $this->assertEquals($input['nanos'], $timestamp->nanoSeconds());
+    }
+
+    public function timestampArrays()
+    {
+        return [
+            [
+                ['seconds' => time(), 'nanos' => 3],
+                ['seconds' => time(), 'nanos' => 3000000000],
+                ['seconds' => time(), 'nanos' => 3000000001],
+                ['seconds' => time(), 'nanos' => 9999999999]
+            ]
+        ];
     }
 }

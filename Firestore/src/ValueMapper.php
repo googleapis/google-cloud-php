@@ -24,7 +24,6 @@ use Google\Cloud\Core\GeoPoint;
 use Google\Cloud\Core\Int64;
 use Google\Cloud\Core\Timestamp;
 use Google\Cloud\Core\ValidateTrait;
-use Google\Cloud\Core\ValueMapperTrait;
 use Google\Cloud\Firestore\Connection\ConnectionInterface;
 use Google\Protobuf\NullValue;
 
@@ -37,7 +36,6 @@ class ValueMapper
     use DebugInfoTrait;
     use PathTrait;
     use ValidateTrait;
-    use ValueMapperTrait;
 
     const VALID_FIELD_PATH = '/^[^*~\/[\]]+$/';
     const UNESCAPED_FIELD_NAME = '/^[_a-zA-Z][_a-zA-Z0-9]*$/';
@@ -279,7 +277,7 @@ class ValueMapper
                     : (int) $value;
 
             case 'timestampValue':
-                return $this->createTimestampWithNanos($value);
+                return Timestamp::createFromArray($value);
                 break;
 
             case 'geoPointValue':

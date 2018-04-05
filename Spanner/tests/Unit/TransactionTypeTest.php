@@ -18,6 +18,8 @@
 namespace Google\Cloud\Spanner\Tests\Unit;
 
 use Google\Cloud\Core\LongRunning\LongRunningConnectionInterface;
+use Google\Cloud\Core\Testing\GrpcTestTrait;
+use Google\Cloud\Core\ValueMapperTrait;
 use Google\Cloud\Spanner\Admin\Instance\V1\InstanceAdminClient;
 use Google\Cloud\Spanner\Connection\ConnectionInterface;
 use Google\Cloud\Spanner\Database;
@@ -30,17 +32,18 @@ use Google\Cloud\Spanner\Snapshot;
 use Google\Cloud\Spanner\Timestamp;
 use Google\Cloud\Spanner\Transaction;
 use Google\Cloud\Spanner\V1\SpannerClient;
-use Google\Cloud\Core\Testing\GrpcTestTrait;
-use Prophecy\Argument;
 use PHPUnit\Framework\TestCase;
+use Prophecy\Argument;
 
 /**
  * @group spanner
+ * @group spanner-transaction-type
  */
 class TransactionTypeTest extends TestCase
 {
     use GrpcTestTrait;
     use ResultTestTrait;
+    use ValueMapperTrait;
 
     const PROJECT = 'my-project';
     const INSTANCE = 'my-instance';
@@ -56,7 +59,7 @@ class TransactionTypeTest extends TestCase
     {
         $this->checkAndSkipGrpcTests();
 
-        $this->timestamp = (new \DateTimeImmutable)->format(Timestamp::FORMAT);
+        $this->timestamp = (new Timestamp(new \DateTime))->formatAsString();
 
         $this->connection = $this->prophesize(ConnectionInterface::class);
 
@@ -180,7 +183,7 @@ class TransactionTypeTest extends TestCase
         $seconds = 1;
         $nanos = 2;
 
-        $timestamp = new Timestamp(new \DateTimeImmutable($this->timestamp));
+        $timestamp = $this->createTimestampWithNanos($this->timestamp, Timestamp::class);
         $duration = new Duration($seconds, $nanos);
 
         $this->connection->beginTransaction(Argument::any())
@@ -212,7 +215,7 @@ class TransactionTypeTest extends TestCase
      */
     public function testDatabasePreAllocatedSnapshotMinReadTimestamp()
     {
-        $timestamp = new Timestamp(new \DateTimeImmutable($this->timestamp));
+        $timestamp = $this->createTimestampWithNanos($this->timestamp, Timestamp::class);
 
         $this->connection->beginTransaction(Argument::any())
             ->shouldNotbeCalled();
@@ -258,7 +261,7 @@ class TransactionTypeTest extends TestCase
         $seconds = 1;
         $nanos = 2;
 
-        $timestamp = new Timestamp(new \DateTimeImmutable($this->timestamp));
+        $timestamp = $this->createTimestampWithNanos($this->timestamp, Timestamp::class);
         $duration = new Duration($seconds, $nanos);
 
         $this->connection->beginTransaction(Argument::any())
@@ -293,7 +296,7 @@ class TransactionTypeTest extends TestCase
         $seconds = 1;
         $nanos = 2;
 
-        $timestamp = new Timestamp(new \DateTimeImmutable($this->timestamp));
+        $timestamp = $this->createTimestampWithNanos($this->timestamp, Timestamp::class);
         $duration = new Duration($seconds, $nanos);
 
         $this->connection->beginTransaction(Argument::that(function ($arg) use ($seconds, $nanos) {
