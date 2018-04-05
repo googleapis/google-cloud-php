@@ -265,8 +265,6 @@ class GrpcTest extends TestCase
         $mutation->setInsert($operation);
         $insertMutationsArr[] = $mutation;
 
-        $deleteSessionRequest = $this->prophesize(DeleteSessionRequest::class)->reveal();
-
         return [
             [
                 'listInstanceConfigs',
