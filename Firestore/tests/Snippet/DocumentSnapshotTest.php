@@ -53,7 +53,7 @@ class DocumentSnapshotTest extends SnippetTestCase
             [],
             [],
             true
-        ], ['info', 'fields', 'exists']);
+        ], ['info', 'data', 'exists']);
     }
 
     public function testClass()
@@ -79,7 +79,7 @@ class DocumentSnapshotTest extends SnippetTestCase
     public function testClassArrayAccess()
     {
         $fields = ['wallet' => ['cryptoCurrency' => ['bitcoin' => 1]]];
-        $this->snapshot->___setProperty('fields', $fields);
+        $this->snapshot->___setProperty('data', $fields);
 
         $snippet = $this->snippetFromClass(DocumentSnapshot::class, 1);
         $snippet->addLocal('snapshot', $this->snapshot);
@@ -154,14 +154,14 @@ class DocumentSnapshotTest extends SnippetTestCase
         ];
     }
 
-    public function testFields()
+    public function testData()
     {
-        $fields = ['foo' => 'bar'];
-        $this->snapshot->___setProperty('fields', $fields);
-        $snippet = $this->snippetFromMethod(DocumentSnapshot::class, 'fields');
+        $data = ['foo' => 'bar'];
+        $this->snapshot->___setProperty('data', $data);
+        $snippet = $this->snippetFromMethod(DocumentSnapshot::class, 'data');
         $snippet->addLocal('snapshot', $this->snapshot);
-        $res = $snippet->invoke('fields');
-        $this->assertEquals($fields, $res->returnVal());
+        $res = $snippet->invoke('data');
+        $this->assertEquals($data, $res->returnVal());
     }
 
     public function testExists()
@@ -182,7 +182,7 @@ class DocumentSnapshotTest extends SnippetTestCase
             ]
         ];
 
-        $this->snapshot->___setProperty('fields', $fields);
+        $this->snapshot->___setProperty('data', $fields);
         $snippet = $this->snippetFromMethod(DocumentSnapshot::class, 'get');
         $snippet->addLocal('snapshot', $this->snapshot);
         $res = $snippet->invoke('value');
@@ -199,7 +199,7 @@ class DocumentSnapshotTest extends SnippetTestCase
             ]
         ];
 
-        $this->snapshot->___setProperty('fields', $fields);
+        $this->snapshot->___setProperty('data', $fields);
         $snippet = $this->snippetFromMethod(DocumentSnapshot::class, 'get', 1);
         $snippet->addLocal('snapshot', $this->snapshot);
         $res = $snippet->invoke('value');

@@ -60,7 +60,7 @@ class DocumentSnapshot implements \ArrayAccess
     /**
      * @var array
      */
-    private $fields;
+    private $data;
 
     /**
      * @var bool
@@ -71,20 +71,20 @@ class DocumentSnapshot implements \ArrayAccess
      * @param DocumentReference $reference The document which created the snapshot.
      * @param ValueMapper $valueMapper A Firestore Value Mapper.
      * @param array $info Document information, such as create and update timestamps.
-     * @param array $fields Document field data.
+     * @param array $data Document field data.
      * @param bool $exists Whether the document exists in the Firestore database.
      */
     public function __construct(
         DocumentReference $reference,
         ValueMapper $valueMapper,
         array $info,
-        array $fields,
+        array $data,
         $exists
     ) {
         $this->reference = $reference;
         $this->valueMapper = $valueMapper;
         $this->info = $info;
-        $this->fields = $fields;
+        $this->data = $data;
         $this->exists = $exists;
     }
 
@@ -216,18 +216,20 @@ class DocumentSnapshot implements \ArrayAccess
     }
 
     /**
-     * Returns document field data as an array.
+     * Returns document data as an array, or null if the document does not exist.
      *
      * Example:
      * ```
-     * $fields = $snapshot->fields();
+     * $data = $snapshot->data();
      * ```
      *
-     * @return array
+     * @return array|null
      */
-    public function fields()
+    public function data()
     {
-        return $this->fields;
+        return $this->exists
+            ? $this->data
+            : null;
     }
 
     /**
@@ -285,7 +287,7 @@ class DocumentSnapshot implements \ArrayAccess
 
         $len = count($parts);
 
-        $fields = $this->fields;
+        $fields = $this->data;
         foreach ($parts as $idx => $part) {
             if ($idx === $len-1 && isset($fields[$part])) {
                 $res = $fields[$part];
@@ -315,7 +317,7 @@ class DocumentSnapshot implements \ArrayAccess
      */
     public function offsetExists($offset)
     {
-        return isset($this->fields[$offset]);
+        return isset($this->data[$offset]);
     }
 
     /**
@@ -342,6 +344,6 @@ class DocumentSnapshot implements \ArrayAccess
             // @codeCoverageIgnoreEnd
         }
 
-        return $this->fields[$offset];
+        return $this->data[$offset];
     }
 }

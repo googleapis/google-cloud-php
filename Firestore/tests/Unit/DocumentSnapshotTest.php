@@ -47,7 +47,7 @@ class DocumentSnapshotTest extends TestCase
             $ref->reveal(),
             new ValueMapper($this->prophesize(ConnectionInterface::class)->reveal(), false),
             [], [], true
-        ], ['info', 'fields', 'exists']);
+        ], ['info', 'data', 'exists']);
     }
 
     public function testReference()
@@ -98,12 +98,22 @@ class DocumentSnapshotTest extends TestCase
         ];
     }
 
-    public function testFields()
+    public function testData()
     {
-        $fields = ['foo' => 'bar'];
+        $data = ['foo' => 'bar'];
 
-        $this->snapshot->___setProperty('fields', $fields);
-        $this->assertEquals($fields, $this->snapshot->fields());
+        $this->snapshot->___setProperty('data', $data);
+        $this->assertEquals($data, $this->snapshot->data());
+    }
+
+    public function testDataDocumentDoesntExist()
+    {
+        $data = ['foo' => 'bar'];
+
+        $this->snapshot->___setProperty('data', $data);
+        $this->snapshot->___setProperty('exists', false);
+
+        $this->assertNull($this->snapshot->data());
     }
 
     public function testExists()
@@ -125,7 +135,7 @@ class DocumentSnapshotTest extends TestCase
             ]
         ];
 
-        $this->snapshot->___setProperty('fields', $fields);
+        $this->snapshot->___setProperty('data', $fields);
 
         $this->assertEquals('bar', $this->snapshot->get('foo'));
         $this->assertEquals('c', $this->snapshot->get('a.b'));
@@ -144,7 +154,7 @@ class DocumentSnapshotTest extends TestCase
             ]
         ];
 
-        $this->snapshot->___setProperty('fields', $fields);
+        $this->snapshot->___setProperty('data', $fields);
 
         $this->assertEquals('bar', $this->snapshot->get(new FieldPath(['foo'])));
         $this->assertEquals('c', $this->snapshot->get(new FieldPath(['a', 'b'])));
@@ -169,7 +179,7 @@ class DocumentSnapshotTest extends TestCase
 
     public function testArrayAccessRead()
     {
-        $this->snapshot->___setProperty('fields', ['foo' => 'bar']);
+        $this->snapshot->___setProperty('data', ['foo' => 'bar']);
         $this->assertEquals('bar', $this->snapshot['foo']);
         $this->assertArrayHasKey('foo', $this->snapshot);
         $this->assertArrayNotHasKey('baz', $this->snapshot);
