@@ -40,7 +40,7 @@ $sessionCache = new SysVCacheItemPool([
 ]);
 
 $spanner = new SpannerClient([
-    'authCache' => $cache
+    'authCache' => $authCache
 ]);
 
 $sessionPool = new CacheSessionPool(
