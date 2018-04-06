@@ -18,31 +18,10 @@
 namespace Google\Cloud\Bigtable;
 
 /**
- * Represents a connection to Cloud Bigtable.
- */
+* Represents a connection to Cloud Bigtable.
+*/
 interface ConnectionInterface
 {
-    /**
-     * Creates a new Admin in the specified instance.
-     *
-     * @param string $adminId      The name by which the new admin should be referred to within the parent
-     *                             instance.
-     *
-     * @param array  $optionalArgs {
-     *                               Optional.
-     *
-     *          @type \Google\GAX\RetrySettings|array $retrySettings
-     *          Retry settings to use for this call. Can be a
-     *          {@see Google\GAX\RetrySettings} object, or an associative array
-     *          of retry settings parameters. See the documentation on
-     *          {@see Google\GAX\RetrySettings} for example usage.
-     * }
-     * @return \Google\Bigtable\Admin\V2\Table
-     *
-     * @throws \Google\GAX\ApiException if the remote call fails
-     */
-    public function createInstanceAdmin(array $args);
-    public function createTableAdmin(array $args);
-    public function createsession(array $args);
+    //place holder interface which will be extended by other connection interface
 
 }
