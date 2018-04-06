@@ -76,7 +76,8 @@ trait ArrayTrait
      */
     private function isAssoc(array $arr)
     {
-        return array_keys($arr) !== range(0, count($arr) - 1);
+        $keys = array_keys($arr);
+        return isset($keys[0]) && $keys !== range(0, count($arr) - 1);
     }
 
     /**
