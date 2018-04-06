@@ -30,6 +30,11 @@ use Psr\Cache\CacheItemPoolInterface;
  * This session pool implementation accepts a PSR-6 compatible cache
  * implementation and utilizes it to store sessions between requests.
  *
+ * We provide `Google\Auth\Cache\SysVCacheItemPool`, which is a fast PSR-6
+ * implementation in `google/auth` library. If your PHP has `sysvshm`
+ * extension enabled (most binary distributions have it compiled in), consider
+ * using it.
+ *
  * Please note that when
  * {@see Google\Cloud\Spanner\Session\CacheSessionPool::acquire()} is called at
  * most only a single session is created. Due to this, it is possible to sit
@@ -56,12 +61,13 @@ use Psr\Cache\CacheItemPoolInterface;
  * {@see Google\Cloud\Spanner\Session\CacheSessionPool::clear()} in order to
  * delete any active sessions.
  *
- * Please note: While required for the session pool, a PSR-6 implementation is
- * not included in this library. It will be neccesary to include a separate
- * dependency to fulfill this requirement. The below example makes use of
+ * If you're on Windows, or your PHP doesn't have `sysvshm` extension,
+ * unfortunately you can not use `Google\Auth\Cache\SysVCacheItemPool`. In such
+ * cases, it will be neccesary to include a separate dependency to fulfill
+ * this requirement. The below example makes use of
  * [Symfony's Cache Component](https://github.com/symfony/cache). For more
- * implementations please see the
- * [Packagist PHP Package Repository](https://packagist.org/providers/psr/cache-implementation).
+ * implementations please see the [Packagist PHP Package
+ * Repository](https://packagist.org/providers/psr/cache-implementation).
  *
  * Example:
  * ```

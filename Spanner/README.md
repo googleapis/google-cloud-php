@@ -23,7 +23,9 @@ $ composer require google/cloud-spanner
 
 ## Session warmup
 
-To issue a query against the Spanner service, the client library needs to request a session id to the server under the cover. This API call will add significant latency to your program. The Spanner client library provides a handy way to alleviate this problem by having a cached session pool.
+To issue a query against the Spanner service, the client library needs to request a session id from the server under the cover. This API call will add significant latency to your program. The Spanner client library provides a handy way to alleviate this problem by having a cached session pool.
+
+For more details, see: https://github.com/GoogleCloudPlatform/google-cloud-php/blob/master/Spanner/src/Session/CacheSessionPool.php#L30
 
 The following example shows how to use the `CacheSessionPool` with `SysVCacheItemPool` as well as how to configure a proper cache for authentication:
 
@@ -36,7 +38,8 @@ use Google\Auth\Cache\SysVCacheItemPool;
 
 $authCache = new SysVCacheItemPool();
 $sessionCache = new SysVCacheItemPool([
-    'proj' => 'B' // Use different from the default
+    // Use a different project identifier for ftok than the default
+    'proj' => 'B'
 ]);
 
 $spanner = new SpannerClient([
@@ -45,16 +48,20 @@ $spanner = new SpannerClient([
 
 $sessionPool = new CacheSessionPool(
     $sessionCache,
-    ['minSession' => 10,
-     'maxSession' => 10] // Here it will create 10 sessions under the cover.
+    [
+        'minSession' => 10,
+        'maxSession' => 10  // Here it will create 10 sessions under the cover.
+    ]
 );
 
 $database = $client->connect(
-    $instance,
-    $db,
-    ['sessionPool' => $sessionPool]
+    'my-instance',
+    'my-db',
+    [
+        'sessionPool' => $sessionPool
+    ]
 );
-// `warmup` will actually create the session for the first time.
+// `warmup` will actually create the sessions for the first time.
 $sessionPool->warmup();
 
 ```
