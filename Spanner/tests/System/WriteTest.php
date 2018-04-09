@@ -486,6 +486,51 @@ class WriteTest extends SpannerTestCase
         $this->assertEquals($timestamp->formatAsString(), $res2->formatAsString());
     }
 
+    /**
+     * @group spanner-timestampprecision
+     * @dataProvider timestamps
+     */
+    public function testTimestampPrecisionLocale($timestamp)
+    {
+        setlocale(LC_ALL, 'fr_FR.UTF-8');
+        try {
+            $id = $this->randId();
+
+            $row = self::$database->insert(self::TABLE_NAME, [
+                'id' => $id,
+                'timestampField' => $timestamp
+            ]);
+
+            $res = self::$database->execute('SELECT timestampField FROM '. self::TABLE_NAME .' WHERE id = @id', [
+                'parameters' => [
+                    'id' => $id
+                ]
+            ])->rows()->current()['timestampField'];
+
+            // update and read back (what should be the same) value.
+            self::$database->update(self::TABLE_NAME, [
+                'id' => $id,
+                'timestampField' => $res
+            ]);
+
+            $res2 = self::$database->execute('SELECT timestampField FROM '. self::TABLE_NAME .' WHERE id = @id', [
+                'parameters' => [
+                    'id' => $id
+                ]
+            ])->rows()->current()['timestampField'];
+
+            $this->assertEquals($timestamp->get()->format('U'), $res->get()->format('U'));
+            $this->assertEquals($timestamp->nanoSeconds(), $res->nanoSeconds());
+            $this->assertEquals($timestamp->formatAsString(), $res->formatAsString());
+
+            $this->assertEquals($timestamp->get()->format('U'), $res2->get()->format('U'));
+            $this->assertEquals($timestamp->nanoSeconds(), $res2->nanoSeconds());
+            $this->assertEquals($timestamp->formatAsString(), $res2->formatAsString());
+        } finally {
+            setlocale(LC_ALL, null);
+        }
+    }
+
     public function timestamps()
     {
         $today = new \DateTime;

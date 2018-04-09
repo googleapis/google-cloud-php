@@ -39,10 +39,9 @@ namespace Google\Cloud\Core;
  */
 class Timestamp
 {
-    const FORMAT = 'Y-m-d\TH:i:s.u\Z';
+    const FORMAT = 'Y-m-d\TH:i:s.uP';
+    const FORMAT_NO_MS = 'Y-m-d\TH:i:sP';
     const FORMAT_INTERPOLATE = 'Y-m-d\TH:i:s.%\s\Z';
-    const PRECISION_MICROSECOND = 6;
-    const PRECISION_NANOSECOND = 9;
 
     /**
      * @var \DateTimeInterface
@@ -60,7 +59,9 @@ class Timestamp
     private $nanosFromDt = false;
 
     /**
-     * @param \DateTimeInterface $value The timestamp value.
+     * @param \DateTimeInterface $value The timestamp value. Use of
+     *        `DateTimeImmutable` is highly recommended over `DateTime` in order
+     *        to avoid side effects.
      * @param int $nanoSeconds [optional] The number of nanoseconds in the
      *        timestamp. If omitted, subsecond precision will be obtained from
      *        the instance of `\DateTimeInterface` provided in the first
@@ -90,24 +91,64 @@ class Timestamp
      * $timestamp = Timestamp::createFromString($timeString);
      * ```
      *
-     * @param string $timestamp A string representation of a point in time.
+     * @param string $timestamp A string representation of a timestamp, encoded
+     *        in RFC 3339 format (YYYY-MM-DDTHH-MM-SS.000000[000]TZ).
      * @return Timestamp
+     * @throws \InvalidArgumentException If the timestamp string is in an unrecognized format.
      */
     public static function createFromString($timestamp)
     {
-        $nanoRegex = '/(?:(\.\d{1,9})Z)|(?:Z)/';
+        $nanoRegex = '/\d{4}-\d{1,2}-\d{1,2}T\d{1,2}\:\d{1,2}\:\d{1,2}(?:\.(\d{1,}))?/';
 
-        $matches = [];
         preg_match($nanoRegex, $timestamp, $matches);
-        $timestamp = preg_replace($nanoRegex, '.000000Z', $timestamp);
+        $subSeconds = isset($matches[1])
+            ? $matches[1]
+            : '0';
 
-        $dt = \DateTimeImmutable::createFromFormat(static::FORMAT, str_replace('..', '.', $timestamp));
+        $timestamp = str_replace('.'. $subSeconds, '.' . substr($subSeconds, 0, 6), $timestamp);
 
-        $nanos = isset($matches[1])
-            ? $matches[1] * 1000000000
-            : 0;
+        $template = isset($matches[1])
+            ? static::FORMAT
+            : static::FORMAT_NO_MS;
+
+        $dt = \DateTimeImmutable::createFromFormat($template, str_replace('..', '.', $timestamp));
+        if (!$dt) {
+            throw new \InvalidArgumentException(sprintf(
+                'Could not create a DateTime instance from given timestamp %s.',
+                $timestamp
+            ));
+        }
+
+        $nanos = (int) str_pad($subSeconds, 9, '0', STR_PAD_RIGHT);
 
         return new static($dt, $nanos);
+    }
+
+    /**
+     * Convert an array to a string without the overhead of constructing a Timestamp instance.
+     *
+     * Example:
+     * ```
+     * $timeArray = [
+     *     'seconds' => time(),
+     *     'nanos' => 0
+     * ];
+     * $timestampString = Timestamp::formatArrayAsString($timeArray);
+     * ```
+     *
+     * @param array $timestamp An array representation of a point in time.
+     * @return string
+     */
+    public static function formatArrayAsString(array $timestamp)
+    {
+        $timestamp += [
+            'seconds' => 0,
+            'nanos' => 0
+        ];
+
+        $dt = self::createDateTimeFromSeconds($timestamp['seconds']);
+
+        return self::createString($dt, $timestamp['nanos']);
     }
 
     /**
@@ -134,7 +175,8 @@ class Timestamp
             'nanos' => 0
         ];
 
-        $dt = \DateTimeImmutable::createFromFormat('U', (string) $timestamp['seconds']);
+        $dt = self::createDateTimeFromSeconds($timestamp['seconds']);
+
         $nanos = $timestamp['nanos'];
 
         return new static($dt, $nanos);
@@ -181,51 +223,11 @@ class Timestamp
      * $value = $timestamp->formatAsString();
      * ```
      *
-     * @param int $precision [optional] The maximum precision of the subsecond
-     *        portion of the timestamp string. If nanoseconds were not provided
-     *        as a separate constructor argument, this option will be
-     *        disregarded. **Defaults to `6` (microsecond precision).
      * @return string
      */
-    public function formatAsString($precision = self::PRECISION_MICROSECOND)
+    public function formatAsString()
     {
-        $ns = str_pad((string) $this->nanoSeconds, 9, '0', STR_PAD_LEFT) ?: '0';
-
-        // If nanoseconds were obtained from the datetime object, always use μs.
-        // PHP datetime only supports micros, so further precision is unnecessary.
-        //
-        // If nanos were provided separately, we can still safely trim to
-        // microsecond precision if the last three digits are zero.
-        //
-        // Either of these cases take precedent over the user input.
-        if ($this->nanosFromDt) {
-            $precision = self::PRECISION_MICROSECOND;
-        } elseif ((string) substr($ns, strlen($ns) - 3, strlen($ns)) !== '000') {
-            $precision = self::PRECISION_NANOSECOND;
-        }
-
-        return sprintf(
-            $this->value->format(self::FORMAT_INTERPOLATE),
-            substr($ns, 0, (int) $precision)
-        );
-    }
-
-    /**
-     * Set the timezone of the underlying DateTime.
-     *
-     * Example:
-     * ```
-     * $timestamp->setTimeZone(new \DateTimeZone('America/New_York'));
-     * ```
-     *
-     * @param \DateTimeZone $timezone The timezone to use.
-     * @return Timestamp
-     */
-    public function setTimezone(\DateTimeZone $timezone)
-    {
-        // use assignment to update possible DateTimeImmutable.
-        $this->value = $this->value->setTimezone($timezone);
-        return $this;
+        return self::createString($this->value, $this->nanoSeconds, $this->nanosFromDt);
     }
 
     /**
@@ -250,5 +252,52 @@ class Timestamp
             'seconds' => (int)$this->value->format('U'),
             'nanos' => (int)$this->nanoSeconds
         ];
+    }
+
+    /**
+     * Create a DateTimeImmutable instance from a UNIX timestamp (i.e. seconds since epoch).
+     *
+     * @param int $seconds The unix timestamp.
+     * @return \DateTimeImmutable
+     */
+    private static function createDateTimeFromSeconds($seconds)
+    {
+        return \DateTimeImmutable::createFromFormat(
+            'U',
+            (string) $seconds,
+            new \DateTimeZone('UTC')
+        );
+    }
+
+    /**
+     * Create a Timestamp string in an API-compatible format.
+     *
+     * @param \DateTimeInterface $dateTime The date time object.
+     * @param int $ns The number of nanoseconds.
+     * @param bool $nanosFromDt [optional] Whether the nanoseconds were obtained from the DateTime object.
+     * @return string
+     */
+    private static function createString(\DateTimeInterface $dateTime, $ns, $nanosFromDt = false)
+    {
+        if (!preg_match('/[^0]/', $ns)) {
+            $ns = '000000';
+        }
+        else {
+            if (!$nanosFromDt) {
+                $ns = str_pad((string) $ns, 9, '0', STR_PAD_LEFT) ?: '0';
+
+                if (substr($ns, 6, 3) === '000') {
+                    $ns = substr($ns, 0, 6);
+                }
+            }
+        }
+
+        $dateTime = $dateTime->setTimeZone(new \DateTimeZone('UTC'));
+        $timestamp = sprintf(
+            $dateTime->format(self::FORMAT_INTERPOLATE),
+            $ns
+        );
+
+        return $timestamp;
     }
 }

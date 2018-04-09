@@ -68,6 +68,24 @@ class TimestampTest extends TestCase
         $this->assertEquals($expected, $timestamp->formatAsString());
     }
 
+    /**
+     * @dataProvider timestampStrings
+     */
+    public function testCreateTimestampWithNanosTimestampStringsLocale($timestampStr, $expected)
+    {
+        setlocale(LC_ALL, 'fr_FR.UTF-8');
+
+        try {
+            $timestamp = Timestamp::createFromString($timestampStr);
+
+            $this->assertInstanceOf(Timestamp::class, $timestamp);
+
+            $this->assertEquals($expected, $timestamp->formatAsString());
+        } finally {
+            setlocale(LC_ALL, null);
+        }
+    }
+
     public function timestampStrings()
     {
         $today = (new \DateTime)->format('Y-m-d\TH:i:s');
@@ -89,6 +107,19 @@ class TimestampTest extends TestCase
     public function testNanosFromApi(Timestamp $timestamp, $expected)
     {
         $this->assertEquals($expected, $timestamp->formatAsString());
+    }
+
+    /**
+     * @dataProvider timestampNanos
+     */
+    public function testNanosFromApiLocale(Timestamp $timestamp, $expected)
+    {
+        setlocale(LC_ALL, 'fr_FR.UTF-8');
+        try {
+            $this->assertEquals($expected, $timestamp->formatAsString());
+        } finally {
+            setlocale(LC_ALL, null);
+        }
     }
 
     public function timestampNanos()
@@ -113,6 +144,23 @@ class TimestampTest extends TestCase
 
         $this->assertEquals($input['seconds'], $timestamp->get()->format('U'));
         $this->assertEquals($input['nanos'], $timestamp->nanoSeconds());
+    }
+
+    /**
+     * @dataProvider timestampArrays
+     */
+    public function testCreateTimestampWithNanosArraysLocale(array $input)
+    {
+        setlocale(LC_ALL, 'fr_FR.UTF-8');
+        try {
+            $timestamp = Timestamp::createFromArray($input);
+            $this->assertInstanceOf(Timestamp::class, $timestamp);
+
+            $this->assertEquals($input['seconds'], $timestamp->get()->format('U'));
+            $this->assertEquals($input['nanos'], $timestamp->nanoSeconds());
+        } finally {
+            setlocale(LC_ALL, null);
+        }
     }
 
     public function timestampArrays()

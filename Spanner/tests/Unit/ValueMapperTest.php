@@ -334,14 +334,16 @@ class ValueMapperTest extends TestCase
     public function testDecodeValuesTimestamp()
     {
         $dt = new \DateTime;
+        $str = str_replace('+00:00', 'Z', $dt->format(Timestamp::FORMAT));
+
         $res = $this->mapper->decodeValues(
             $this->createField(Database::TYPE_TIMESTAMP),
-            $this->createRow($dt->format(Timestamp::FORMAT)),
+            $this->createRow($str),
             Result::RETURN_ASSOCIATIVE
         );
 
         $this->assertInstanceOf(Timestamp::class, $res['rowName']);
-        $this->assertEquals($dt->format(Timestamp::FORMAT), $res['rowName']->formatAsString());
+        $this->assertEquals($str, $res['rowName']->formatAsString());
     }
 
     public function testDecodeValuesDate()

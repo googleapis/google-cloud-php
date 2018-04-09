@@ -24,6 +24,7 @@ use Google\Auth\FetchAuthTokenCache;
 use Google\Cloud\Core\ArrayTrait;
 use Google\Cloud\Core\Exception\NotFoundException;
 use Google\Cloud\Core\GrpcRequestWrapper;
+use Google\Cloud\Core\Timestamp;
 use Google\Protobuf\NullValue;
 
 /**
@@ -114,18 +115,7 @@ trait GrpcTrait
      */
     private function formatTimestampFromApi(array $timestamp)
     {
-        $timestamp += [
-            'seconds' => 0,
-            'nanos' => 0
-        ];
-
-        $formattedTime = (new DateTime())
-            ->setTimeZone(new DateTimeZone('UTC'))
-            ->setTimestamp($timestamp['seconds'])
-            ->format('Y-m-d\TH:i:s');
-
-        $timestamp['nanos'] = str_pad($timestamp['nanos'], 9, '0', STR_PAD_LEFT);
-        return $formattedTime .= sprintf('.%sZ', rtrim($timestamp['nanos'], '0'));
+        return Timestamp::formatArrayAsString($timestamp);
     }
 
     /**
