@@ -250,22 +250,20 @@ class DocumentReferenceTest extends TestCase
     public function testWriteResult()
     {
         $time = time();
+        $ts = Timestamp::createFromArray(['seconds' => $time]);
+        $ts2 = Timestamp::createFromArray(['seconds' => $time + 100]);
 
         $this->connection->commit(Argument::any())
             ->shouldBeCalled()
             ->willReturn([
                 'writeResults' => [
                     [
-                        'updateTime' => [
-                            'seconds' => $time
-                        ]
+                        'updateTime' => $ts
                     ], [
-                        'updateTime' => [
-                            'seconds' => $time + 100
-                        ]
+                        'updateTime' => $ts2
                     ]
                 ],
-                'commitTime' => ['seconds' => $time]
+                'commitTime' => $ts
             ]);
 
         $this->document->___setProperty('connection', $this->connection->reveal());

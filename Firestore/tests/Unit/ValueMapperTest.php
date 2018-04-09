@@ -99,7 +99,7 @@ class ValueMapperTest extends TestCase
                     $this->assertEquals(15, $val);
                 }
             ], [
-                ['timestampValue' => ['seconds' => $now, 'nanos' => 10]],
+                ['timestampValue' => Timestamp::createFromArray(['seconds' => $now, 'nanos' => 10])],
                 function ($val) use ($now) {
                     $this->assertInstanceOf(Timestamp::class, $val);
                     $ts = new Timestamp(\DateTimeImmutable::createFromFormat('U', (string) $now), 10);
@@ -192,10 +192,9 @@ class ValueMapperTest extends TestCase
         $blob = new Blob($blobValue);
 
         $datetime = \DateTimeImmutable::createFromFormat('U.u', microtime(true));
+        $timestamp = new Timestamp($datetime);
         $now = (string) $datetime->format('U');
-        $micros = (int) $datetime->format('u');
-        $nanos = (int) $datetime->format('u') * 1000 + 10;
-        $timestamp = new Timestamp(\DateTimeImmutable::createFromFormat('U', $now), $nanos);
+        $nanos = (int) $datetime->format('u') * 1000;
 
         $lat = 100.01;
         $lng = 100.25;
@@ -301,10 +300,10 @@ class ValueMapperTest extends TestCase
                 }
             ], [
                 $datetime,
-                function ($val) use ($now, $micros) {
+                function ($val) use ($now, $nanos) {
                     $this->assertEquals([
                         'seconds' => $now,
-                        'nanos' => intval($micros * 1000)
+                        'nanos' => $nanos
                     ], $val['timestampValue']);
                 }
             ], [

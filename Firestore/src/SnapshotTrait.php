@@ -86,8 +86,6 @@ trait SnapshotTrait
             ? $valueMapper->decodeValues($this->pluck('fields', $document))
             : [];
 
-        $document = $this->transformSnapshotTimestamps($valueMapper, $document);
-
         return new DocumentSnapshot($reference, $valueMapper, $document, $fields, $exists);
     }
 
@@ -127,30 +125,6 @@ trait SnapshotTrait
         }
 
         return $snapshot['found'];
-    }
-
-    /**
-     * Convert snapshot timestamps to Google Cloud PHP types.
-     *
-     * @param ValueMapper $valueMapper A Firestore Value Mapper
-     * @param array $data The snapshot data.
-     * @return array
-     */
-    private function transformSnapshotTimestamps(ValueMapper $valueMapper, array $data)
-    {
-        $data['createTime'] = isset($data['createTime'])
-            ? Timestamp::createFromArray($data['createTime'])
-            : null;
-
-        $data['updateTime'] = isset($data['updateTime'])
-            ? Timestamp::createFromArray($data['updateTime'])
-            : null;
-
-        $data['readTime'] = isset($data['readTime'])
-            ? Timestamp::createFromArray($data['readTime'])
-            : null;
-
-        return $data;
     }
 
     /**

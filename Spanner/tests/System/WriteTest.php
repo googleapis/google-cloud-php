@@ -101,7 +101,12 @@ class WriteTest extends SpannerTestCase
         $keyset = new KeySet(['keys' => [$id]]);
         $read = $db->read(self::TABLE_NAME, $keyset, [$field]);
         $row = $read->rows()->current();
-        $this->assertEquals($value, $row[$field]);
+
+        if ($value instanceof Timestamp) {
+            $this->assertEquals($value->formatAsString(), $row[$field]->formatAsString());
+        } else {
+            $this->assertEquals($value, $row[$field]);
+        }
 
         // test result from executeSql
         $exec = $db->execute(sprintf('SELECT %s FROM %s WHERE id = @id', $field, self::TABLE_NAME), [
@@ -111,7 +116,11 @@ class WriteTest extends SpannerTestCase
         ]);
 
         $row = $exec->rows()->current();
-        $this->assertEquals($value, $row[$field]);
+        if ($value instanceof Timestamp) {
+            $this->assertEquals($value->formatAsString(), $row[$field]->formatAsString());
+        } else {
+            $this->assertEquals($value, $row[$field]);
+        }
     }
 
     /**

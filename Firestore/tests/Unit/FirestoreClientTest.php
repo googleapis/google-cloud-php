@@ -191,13 +191,13 @@ class FirestoreClientTest extends TestCase
                         ]
                     ]
                 ],
-                'readTime' => ['seconds' => 1, 'nanos' => 0]
+                'readTime' => Timestamp::createFromString((new \DateTime())->format(Timestamp::FORMAT))
             ], [
                 'missing' => $names[1],
-                'readTime' => ['seconds' => 1, 'nanos' => 0]
+                'readTime' => Timestamp::createFromString((new \DateTime())->format(Timestamp::FORMAT))
             ], [
                 'missing' => $names[2],
-                'readTime' => ['seconds' => 1, 'nanos' => 0]
+                'readTime' => Timestamp::createFromString((new \DateTime())->format(Timestamp::FORMAT))
             ]
         ];
 
@@ -269,13 +269,13 @@ class FirestoreClientTest extends TestCase
         $res = [
             [
                 'missing' => $names[2],
-                'readTime' => ['seconds' => 1, 'nanos' => 0]
+                'readTime' => Timestamp::createFromString((new \DateTime())->format(Timestamp::FORMAT))
             ], [
                 'missing' => $names[1],
-                'readTime' => ['seconds' => 1, 'nanos' => 0]
+                'readTime' => Timestamp::createFromString((new \DateTime())->format(Timestamp::FORMAT))
             ], [
                 'missing' => $names[0],
-                'readTime' => ['seconds' => 1, 'nanos' => 0]
+                'readTime' => Timestamp::createFromString((new \DateTime())->format(Timestamp::FORMAT))
             ]
         ];
 
@@ -294,7 +294,7 @@ class FirestoreClientTest extends TestCase
     public function testRunTransaction()
     {
         $transactionId = 'foobar';
-        $timestamp = ['seconds' => date('U')];
+        $timestamp = Timestamp::createFromString((new \DateTime())->format(Timestamp::FORMAT));
 
         $this->connection->beginTransaction([
             'database' => 'projects/'. self::PROJECT .'/databases/'. self::DATABASE
@@ -316,7 +316,7 @@ class FirestoreClientTest extends TestCase
     {
         $transactionId = 'foobar';
         $transactionId2 = 'barfoo';
-        $timestamp = ['seconds' => date('U')];
+        $timestamp = Timestamp::createFromString((new \DateTime())->format(Timestamp::FORMAT));
 
         $this->connection->beginTransaction([
             'database' => 'projects/'. self::PROJECT .'/databases/'. self::DATABASE
@@ -374,7 +374,7 @@ class FirestoreClientTest extends TestCase
     public function testRunTransactionNotRetryable()
     {
         $transactionId = 'foobar';
-        $timestamp = ['seconds' => date('U')];
+        $timestamp = Timestamp::createFromString((new \DateTime())->format(Timestamp::FORMAT));
 
         $this->connection->beginTransaction([
             'database' => 'projects/'. self::PROJECT .'/databases/'. self::DATABASE
@@ -400,7 +400,7 @@ class FirestoreClientTest extends TestCase
     public function testRunTransactionExceedsMaxRetries()
     {
         $transactionId = 'foobar';
-        $timestamp = ['seconds' => date('U')];
+        $timestamp = Timestamp::createFromString((new \DateTime())->format(Timestamp::FORMAT));
 
         $this->connection->beginTransaction(Argument::any())->shouldBeCalledTimes(6)->willReturn([
             'transaction' => $transactionId
@@ -427,7 +427,7 @@ class FirestoreClientTest extends TestCase
     public function testRunTransactionExceedsMaxRetriesLowerLimit()
     {
         $transactionId = 'foobar';
-        $timestamp = ['seconds' => date('U')];
+        $timestamp = Timestamp::createFromString((new \DateTime())->format(Timestamp::FORMAT));
 
         $this->connection->beginTransaction(Argument::any())->shouldBeCalledTimes(3)->willReturn([
             'transaction' => $transactionId

@@ -277,7 +277,7 @@ class ValueMapper
                     : (int) $value;
 
             case 'timestampValue':
-                return Timestamp::createFromArray($value);
+                return Timestamp::createFromString($value);
                 break;
 
             case 'geoPointValue':

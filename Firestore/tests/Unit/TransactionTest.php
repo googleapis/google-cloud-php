@@ -17,6 +17,7 @@
 
 namespace Google\Cloud\Firestore\Tests\Unit;
 
+use Google\Cloud\Core\Timestamp;
 use Google\Cloud\Firestore\Connection\ConnectionInterface;
 use Google\Cloud\Firestore\DocumentReference;
 use Google\Cloud\Firestore\DocumentSnapshot;
@@ -206,6 +207,8 @@ class TransactionTest extends TestCase
      */
     public function testDocuments(array $input, array $names)
     {
+        $timestamp = Timestamp::createFromString((new \DateTime())->format(Timestamp::FORMAT));
+
         $res = [
             [
                 'found' => [
@@ -216,13 +219,13 @@ class TransactionTest extends TestCase
                         ]
                     ]
                 ],
-                'readTime' => ['seconds' => 1, 'nanos' => 0]
+                'readTime' => $timestamp
             ], [
                 'missing' => $names[1],
-                'readTime' => ['seconds' => 1, 'nanos' => 0]
+                'readTime' => $timestamp
             ], [
                 'missing' => $names[2],
-                'readTime' => ['seconds' => 1, 'nanos' => 0]
+                'readTime' => $timestamp
             ]
         ];
 
@@ -288,6 +291,7 @@ class TransactionTest extends TestCase
 
     public function testDocumentsOrdered()
     {
+        $timestamp = Timestamp::createFromString((new \DateTime())->format(Timestamp::FORMAT));
         $tpl = 'projects/'. self::PROJECT .'/databases/'. self::DATABASE .'/documents/a/%s';
         $names = [
             sprintf($tpl, 'a'),
@@ -298,13 +302,13 @@ class TransactionTest extends TestCase
         $res = [
             [
                 'missing' => $names[2],
-                'readTime' => ['seconds' => 1, 'nanos' => 0]
+                'readTime' => $timestamp
             ], [
                 'missing' => $names[1],
-                'readTime' => ['seconds' => 1, 'nanos' => 0]
+                'readTime' => $timestamp
             ], [
                 'missing' => $names[0],
-                'readTime' => ['seconds' => 1, 'nanos' => 0]
+                'readTime' => $timestamp
             ]
         ];
 

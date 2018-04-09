@@ -17,16 +17,17 @@
 
 namespace Google\Cloud\Firestore\Tests\Unit;
 
+use Google\Cloud\Core\Timestamp;
 use Google\Cloud\Firestore\CollectionReference;
 use Google\Cloud\Firestore\Connection\ConnectionInterface;
 use Google\Cloud\Firestore\DocumentReference;
 use Google\Cloud\Firestore\DocumentSnapshot;
 use Google\Cloud\Firestore\FirestoreClient;
 use Google\Cloud\Firestore\Query;
-use Google\Cloud\Firestore\ValueMapper;
 use Google\Cloud\Firestore\V1beta1\StructuredQuery_CompositeFilter_Operator;
 use Google\Cloud\Firestore\V1beta1\StructuredQuery_Direction;
 use Google\Cloud\Firestore\V1beta1\StructuredQuery_FieldFilter_Operator;
+use Google\Cloud\Firestore\ValueMapper;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
 
@@ -87,9 +88,7 @@ class QueryTest extends TestCase
                             ]
                         ]
                     ],
-                    'readTime' => [
-                        'seconds' => time()
-                    ]
+                    'readTime' => Timestamp::createFromArray(['seconds' => time()])
                 ],
                 []
             ]));
