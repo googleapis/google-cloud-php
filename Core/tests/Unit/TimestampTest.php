@@ -93,7 +93,7 @@ class TimestampTest extends TestCase
 
     public function timestampNanos()
     {
-        $dt = (new \DateTime);
+        $dt = new \DateTime;
         $today = $dt->format('Y-m-d\TH:i:s');
         return [
             [new Timestamp($dt, 1),             $today . '.000000001Z'],

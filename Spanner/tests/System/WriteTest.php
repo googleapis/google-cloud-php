@@ -17,11 +17,11 @@
 
 namespace Google\Cloud\Spanner\Tests\System;
 
+use Google\Cloud\Spanner\Timestamp;
 use Google\Cloud\Spanner\Bytes;
 use Google\Cloud\Spanner\CommitTimestamp;
 use Google\Cloud\Spanner\Date;
 use Google\Cloud\Spanner\KeySet;
-use Google\Cloud\Spanner\Timestamp;
 
 /**
  * @group spanner
@@ -422,7 +422,7 @@ class WriteTest extends SpannerTestCase
      */
     public function testCommitTimestamp()
     {
-        $id = rand(1, 99999);
+        $id = $this->randId();
         $ts = self::$database->insert(self::COMMIT_TIMESTAMP_TABLE_NAME, [
             'id' => $id,
             'commitTimestamp' => new CommitTimestamp
@@ -435,5 +435,60 @@ class WriteTest extends SpannerTestCase
         ])->rows()->current()['commitTimestamp'];
 
         $this->assertEquals($ts->formatAsString(), $res->formatAsString());
+    }
+
+    /**
+     * @group spanner-timestampprecision
+     * @dataProvider timestamps
+     */
+    public function testTimestampPrecision($timestamp)
+    {
+        $id = $this->randId();
+
+        $row = self::$database->insert(self::TABLE_NAME, [
+            'id' => $id,
+            'timestampField' => $timestamp
+        ]);
+
+        $res = self::$database->execute('SELECT timestampField FROM '. self::TABLE_NAME .' WHERE id = @id', [
+            'parameters' => [
+                'id' => $id
+            ]
+        ])->rows()->current()['timestampField'];
+
+        // update and read back (what should be the same) value.
+        self::$database->update(self::TABLE_NAME, [
+            'id' => $id,
+            'timestampField' => $res
+        ]);
+
+        $res2 = self::$database->execute('SELECT timestampField FROM '. self::TABLE_NAME .' WHERE id = @id', [
+            'parameters' => [
+                'id' => $id
+            ]
+        ])->rows()->current()['timestampField'];
+
+        $this->assertEquals($timestamp->get()->format('U'), $res->get()->format('U'));
+        $this->assertEquals($timestamp->nanoSeconds(), $res->nanoSeconds());
+        $this->assertEquals($timestamp->formatAsString(), $res->formatAsString());
+
+        $this->assertEquals($timestamp->get()->format('U'), $res2->get()->format('U'));
+        $this->assertEquals($timestamp->nanoSeconds(), $res2->nanoSeconds());
+        $this->assertEquals($timestamp->formatAsString(), $res2->formatAsString());
+    }
+
+    public function timestamps()
+    {
+        $today = new \DateTime;
+        $str = $today->format('Y-m-d\TH:i:s');
+        return [
+            [new Timestamp($today)],
+            [new Timestamp($today, 0)],
+            [new Timestamp($today, 1)],
+            [new Timestamp($today, 000000001)],
+            [Timestamp::createFromString($str .'.100000000Z')],
+            [Timestamp::createFromString($str .'.000000001Z')],
+            [Timestamp::createFromString($str .'.101999119Z')],
+        ];
     }
 }

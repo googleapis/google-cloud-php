@@ -223,7 +223,9 @@ class Timestamp
      */
     public function setTimezone(\DateTimeZone $timezone)
     {
+        // use assignment to update possible DateTimeImmutable.
         $this->value = $this->value->setTimezone($timezone);
+        return $this;
     }
 
     /**

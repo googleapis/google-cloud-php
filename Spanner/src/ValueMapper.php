@@ -365,7 +365,8 @@ class ValueMapper
 
             default:
                 throw new \InvalidArgumentException(sprintf(
-                    'Unrecognized value type %s. Please ensure you are using the latest version of google/cloud.',
+                    'Unrecognized value type %s. ' .
+                    'Please ensure you are using the latest version of google/cloud or google/cloud-spanner.',
                     $phpType
                 ));
                 break;
@@ -391,7 +392,8 @@ class ValueMapper
         }
 
         throw new \InvalidArgumentException(sprintf(
-            'Unrecognized value type %s. Please ensure you are using the latest version of google/cloud.',
+            'Unrecognized value type %s. ' .
+            'Please ensure you are using the latest version of google/cloud or google/cloud-spanner.',
             get_class($value)
         ));
     }
