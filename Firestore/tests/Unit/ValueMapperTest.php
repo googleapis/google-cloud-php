@@ -328,7 +328,17 @@ class ValueMapperTest extends TestCase
                 function ($val) use ($docName) {
                     $this->assertEquals($docName, $val['referenceValue']);
                 }
-            ]
+            ], [
+                [],
+                function ($val) {
+                    $this->assertEquals(['values' => []], $val['arrayValue']);
+                }
+            ],  [
+                (object) [],
+                function ($val) {
+                    $this->assertEquals(['fields' => []], $val['mapValue']);
+                }
+            ],
         ];
     }
 

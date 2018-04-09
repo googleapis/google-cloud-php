@@ -366,7 +366,7 @@ class ValueMapper
                 break;
 
             case 'array':
-                if ($this->isAssoc($value)) {
+                if (!empty($value) && $this->isAssoc($value)) {
                     return $this->encodeAssociativeArrayValue($value);
                 }
 
