@@ -153,7 +153,7 @@ class ValueMapperTest extends TestCase
     public function testEncodeValuesAsSimpleType()
     {
         $dt = (new \DateTime)->format(Timestamp::FORMAT);
-        $timestamp = Timestamp::createFromString($dt, Timestamp::PRECISION_NANOSECOND);
+        $timestamp = Timestamp::createFromString($dt);
 
         $vals = [];
         $vals['bool'] = true;
@@ -175,7 +175,7 @@ class ValueMapperTest extends TestCase
         $this->assertEquals((string) $vals['int'], $res[2]);
         $this->assertEquals($vals['float'], $res[3]);
         $this->assertEquals('Infinity', $res[5]);
-        $this->assertEquals($timestamp->get()->format(Timestamp::FORMAT), $res[6]);
+        $this->assertEquals($timestamp->formatAsString(), $res[6]);
         $this->assertEquals($timestamp->get()->format(Date::FORMAT), $res[7]);
         $this->assertEquals($vals['string'], $res[8]);
         $this->assertEquals(base64_encode('hello world'), $res[9]);
