@@ -57,7 +57,7 @@ class Timestamp
     /**
      * @var bool
      */
-    private $fromDt = false;
+    private $nanosFromDt = false;
 
     /**
      * @param \DateTimeInterface $value The timestamp value.
@@ -75,7 +75,7 @@ class Timestamp
             $this->nanoSeconds = (int) $nanoSeconds;
         } else {
             $this->nanoSeconds = (int) $value->format('u') * 1000;
-            $this->fromDt = true;
+            $this->nanosFromDt = true;
         }
     }
 
@@ -198,7 +198,7 @@ class Timestamp
         // microsecond precision if the last three digits are zero.
         //
         // Either of these cases take precedent over the user input.
-        if ($this->fromDt) {
+        if ($this->nanosFromDt) {
             $precision = self::PRECISION_MICROSECOND;
         } elseif ((string) substr($ns, strlen($ns) - 3, strlen($ns)) !== '000') {
             $precision = self::PRECISION_NANOSECOND;

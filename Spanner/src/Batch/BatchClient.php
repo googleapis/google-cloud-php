@@ -215,7 +215,7 @@ class BatchClient
 
         return $this->operation->createSnapshot($session, [
             'id' => $data['transactionId'],
-            'readTimestamp' => Timestamp::createFromString($data['readTimestamp'], Timestamp::PRECISION_NANOSECOND)
+            'readTimestamp' => Timestamp::createFromString($data['readTimestamp'])
         ], BatchSnapshot::class);
     }
 

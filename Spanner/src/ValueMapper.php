@@ -204,7 +204,7 @@ class ValueMapper
                 break;
 
             case self::TYPE_TIMESTAMP:
-                $value = Timestamp::createFromString($value, Timestamp::PRECISION_NANOSECOND);
+                $value = Timestamp::createFromString($value);
                 break;
 
             case self::TYPE_DATE:

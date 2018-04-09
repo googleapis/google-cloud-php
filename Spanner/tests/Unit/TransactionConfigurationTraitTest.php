@@ -106,7 +106,7 @@ class TransactionConfigurationTraitTest extends TestCase
      */
     public function testConfigureSnapshotOptionsMinReadTimestamp($timestamp, $expected = null)
     {
-        $ts = Timestamp::createFromString($timestamp, Timestamp::PRECISION_NANOSECOND);
+        $ts = Timestamp::createFromString($timestamp);
         $args = ['minReadTimestamp' => $ts, 'singleUse' => true];
         $res = $this->impl->proxyConfigureSnapshotOptions($args);
         $this->assertEquals($expected ?: $timestamp, $res['readOnly']['minReadTimestamp']);
@@ -117,7 +117,7 @@ class TransactionConfigurationTraitTest extends TestCase
      */
     public function testConfigureSnapshotOptionsReadTimestamp($timestamp, $expected = null)
     {
-        $ts = Timestamp::createFromString($timestamp, Timestamp::PRECISION_NANOSECOND);
+        $ts = Timestamp::createFromString($timestamp);
         $args = ['readTimestamp' => $ts];
         $res = $this->impl->proxyConfigureSnapshotOptions($args);
         $this->assertEquals($expected ?: $timestamp, $res['readOnly']['readTimestamp']);

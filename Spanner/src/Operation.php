@@ -134,7 +134,7 @@ class Operation
             'database' => $session->info()['database']
         ]) + $options);
 
-        return Timestamp::createFromString($res['commitTimestamp'], Timestamp::PRECISION_NANOSECOND);
+        return Timestamp::createFromString($res['commitTimestamp']);
     }
 
     /**
@@ -350,7 +350,7 @@ class Operation
         ];
 
         if ($res['readTimestamp']) {
-            $res['readTimestamp'] = Timestamp::createFromString($res['readTimestamp'], Timestamp::PRECISION_NANOSECOND);
+            $res['readTimestamp'] = Timestamp::createFromString($res['readTimestamp']);
         }
 
         return new $className($this, $session, $res);
