@@ -1427,7 +1427,7 @@ class DlpServiceGapicClient
      * @param string $parent       The parent resource name, for example projects/my-project-id.
      * @param array  $optionalArgs {
      *                             Optional.
-
+     *
      *     @type InspectJobConfig $inspectJob
      *          The configuration details for an inspect job. Only one of $inspectJob and $riskJob
      *          may be provided.
