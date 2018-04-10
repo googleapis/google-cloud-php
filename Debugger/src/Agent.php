@@ -21,7 +21,7 @@ use Google\Cloud\Core\Batch\BatchDaemonTrait;
 use Google\Cloud\Core\Batch\BatchRunner;
 use Google\Cloud\Core\Batch\BatchTrait;
 use Google\Cloud\Core\ExponentialBackoff;
-use Google\Cloud\Core\Exceptions\ServiceException;
+use Google\Cloud\Core\Exception\ServiceException;
 use Google\Cloud\Core\SysvTrait;
 use Google\Cloud\Debugger\BreakpointStorage\BreakpointStorageInterface;
 use Google\Cloud\Debugger\BreakpointStorage\FileBreakpointStorage;

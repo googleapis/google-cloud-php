@@ -170,4 +170,15 @@ class VariableTableTest extends TestCase
 
         $this->assertCount(1, $variableTable->variables());
     }
+
+    public function testRegistersArrayMembers()
+    {
+        $variableTable = new VariableTable();
+        $variable = $variableTable->register('array', [1, 2, 3]);
+        $data = json_decode(json_encode($variable), true);
+        $this->assertCount(3, $data['members']);
+        foreach ($data['members'] as $member) {
+            $this->assertInternalType('string', $member['name']);
+        }
+    }
 }
