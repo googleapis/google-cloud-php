@@ -90,7 +90,7 @@ use Grpc\Channel;
 use Grpc\ChannelCredentials;
 
 /**
- * Service Description: The DLP API is a service that allows clients
+ * Service Description: The Cloud Data Loss Prevention (DLP) API is a service that allows clients
  * to detect the presence of Personally Identifiable Information (PII) and other
  * privacy-sensitive data in user-supplied, unstructured data streams, like text
  * blocks or images.
@@ -480,7 +480,7 @@ class DlpServiceGapicClient
      *     @type CredentialsLoader $credentialsLoader
      *           A CredentialsLoader object created using the Google\Auth library.
      *     @type string[] $scopes A string array of scopes to use when acquiring credentials.
-     *                          Defaults to the scopes for the DLP API.
+     *                          Defaults to the scopes for the Cloud Data Loss Prevention (DLP) API.
      *     @type string $clientConfigPath
      *           Path to a JSON file containing client method configuration, including retry settings.
      *           Specify this setting to specify the retry behavior of all methods on the client.
@@ -722,7 +722,7 @@ class DlpServiceGapicClient
     }
 
     /**
-     * Re-identify content that has been de-identified.
+     * Re-identifies content that has been de-identified.
      *
      * Sample code:
      * ```
@@ -807,7 +807,9 @@ class DlpServiceGapicClient
     }
 
     /**
-     * Returns sensitive information types DLP supports.
+     * Returns a list of the sensitive information types that the DLP API
+     * supports. For more information, see [Listing supported predefined
+     * infoTypes](https://cloud.google.com/dlp/docs/listing-infotypes).
      *
      * Sample code:
      * ```
@@ -861,7 +863,7 @@ class DlpServiceGapicClient
     }
 
     /**
-     * Creates an inspect template for re-using frequently used configuration
+     * Creates an InspectTemplate for re-using frequently used configuration
      * for inspecting content, images, and storage.
      *
      * Sample code:
@@ -919,7 +921,7 @@ class DlpServiceGapicClient
     }
 
     /**
-     * Updates the inspect template.
+     * Updates the InspectTemplate.
      *
      * Sample code:
      * ```
@@ -974,7 +976,7 @@ class DlpServiceGapicClient
     }
 
     /**
-     * Gets an inspect template.
+     * Gets an InspectTemplate.
      *
      * Sample code:
      * ```
@@ -1022,7 +1024,7 @@ class DlpServiceGapicClient
     }
 
     /**
-     * Lists inspect templates.
+     * Lists InspectTemplates.
      *
      * Sample code:
      * ```
@@ -1093,7 +1095,7 @@ class DlpServiceGapicClient
     }
 
     /**
-     * Deletes inspect templates.
+     * Deletes an InspectTemplate.
      *
      * Sample code:
      * ```
@@ -1136,8 +1138,8 @@ class DlpServiceGapicClient
     }
 
     /**
-     * Creates an Deidentify template for re-using frequently used configuration
-     * for Deidentifying content, images, and storage.
+     * Creates a DeidentifyTemplate for re-using frequently used configuration
+     * for de-identifying content, images, and storage.
      *
      * Sample code:
      * ```
@@ -1194,7 +1196,7 @@ class DlpServiceGapicClient
     }
 
     /**
-     * Updates the inspect template.
+     * Updates the DeidentifyTemplate.
      *
      * Sample code:
      * ```
@@ -1249,7 +1251,7 @@ class DlpServiceGapicClient
     }
 
     /**
-     * Gets an inspect template.
+     * Gets a DeidentifyTemplate.
      *
      * Sample code:
      * ```
@@ -1294,7 +1296,7 @@ class DlpServiceGapicClient
     }
 
     /**
-     * Lists inspect templates.
+     * Lists DeidentifyTemplates.
      *
      * Sample code:
      * ```
@@ -1365,7 +1367,7 @@ class DlpServiceGapicClient
     }
 
     /**
-     * Deletes inspect templates.
+     * Deletes a DeidentifyTemplate.
      *
      * Sample code:
      * ```
@@ -1408,8 +1410,8 @@ class DlpServiceGapicClient
     }
 
     /**
-     * Create a new job to inspect storage or calculate risk metrics [How-to
-     * guide](https://cloud.google.com/dlp/docs/compute-risk-analysis).
+     * Creates a new job to inspect storage or calculate risk metrics.
+     * [How-to guide](https://cloud.google.com/dlp/docs/compute-risk-analysis).
      *
      * Sample code:
      * ```
@@ -1661,7 +1663,7 @@ class DlpServiceGapicClient
     }
 
     /**
-     * Starts asynchronous cancellation on a long-running DlpJob.  The server
+     * Starts asynchronous cancellation on a long-running DlpJob. The server
      * makes a best effort to cancel the DlpJob, but success is not
      * guaranteed.
      *
@@ -1931,8 +1933,8 @@ class DlpServiceGapicClient
     }
 
     /**
-     * Creates a job to run DLP actions such as scanning storage for sensitive
-     * information on a set schedule.
+     * Creates a job trigger to run DLP actions such as scanning storage for
+     * sensitive information on a set schedule.
      *
      * Sample code:
      * ```
