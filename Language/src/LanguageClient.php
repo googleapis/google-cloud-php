@@ -44,7 +44,7 @@ class LanguageClient
     use ClientTrait;
     use RetryDeciderTrait;
 
-    const VERSION = '0.13.1';
+    const VERSION = '0.13.2';
 
     const FULL_CONTROL_SCOPE = 'https://www.googleapis.com/auth/cloud-platform';
 
