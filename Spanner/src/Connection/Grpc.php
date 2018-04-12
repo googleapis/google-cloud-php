@@ -879,6 +879,13 @@ class Grpc implements ConnectionInterface
                 break;
             case 'struct_value':
                 $setter = 'setStructValue';
+                $modifiedParams = [];
+                foreach ($param as $key => $value) {
+                    $modifiedParams[$key] = $this->fieldValue($value);
+                }
+                $value = new Struct;
+                $value->setFields($modifiedParams);
+
                 break;
             case 'list_value':
                 $setter = 'setListValue';

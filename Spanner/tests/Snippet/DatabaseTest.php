@@ -42,6 +42,7 @@ use Prophecy\Argument;
 
 /**
  * @group spanner
+ * @group spanner-database
  */
 class DatabaseTest extends SnippetTestCase
 {
@@ -718,6 +719,119 @@ class DatabaseTest extends SnippetTestCase
 
         $res = $snippet->invoke('emptyArray');
         $this->assertEmpty($res->returnVal());
+    }
+
+    public function testExecuteStruct()
+    {
+        $fields = [
+            [
+                'name' => 'firstName',
+                'type' => [
+                    'code' => Database::TYPE_STRING
+                ]
+            ], [
+                'name' => 'lastName',
+                'type' => [
+                    'code' => Database::TYPE_STRING
+                ]
+            ]
+        ];
+
+        $values = [
+            'John',
+            'Testuser'
+        ];
+
+        $this->connection->executeStreamingSql(Argument::allOf(
+            Argument::withEntry('sql', 'SELECT @userStruct.firstName, @userStruct.lastName'),
+            Argument::withEntry('params', [
+                'userStruct' => $values
+            ]),
+            Argument::withEntry('paramTypes', [
+                'userStruct' => [
+                    'code' => Database::TYPE_STRUCT,
+                    'structType' => [
+                        'fields' => $fields
+                    ]
+                ]
+            ])
+        ))->shouldBeCalled()->willReturn($this->resultGenerator([
+            'metadata' => [
+                'rowType' => [
+                    'fields' => $fields
+                ]
+            ],
+            'values' => $values
+        ]));
+
+        $this->refreshOperation($this->database, $this->connection->reveal());
+
+        $snippet = $this->snippetFromMethod(Database::class, 'execute', 5);
+        $snippet->addLocal('database', $this->database);
+        $snippet->addUse(Database::class);
+
+        $res = $snippet->invoke('fullName');
+        $this->assertEquals('John Testuser', $res->returnVal());
+    }
+
+    public function testExecuteStructDuplicateAndUnnamedFields()
+    {
+        $fields = [
+            [
+                'name' => 'foo',
+                'type' => [
+                    'code' => Database::TYPE_STRING
+                ]
+            ], [
+                'name' => 'foo',
+                'type' => [
+                    'code' => Database::TYPE_INT64
+                ]
+            ], [
+                'type' => [
+                    'code' => Database::TYPE_STRING
+                ]
+            ]
+        ];
+
+        $values = [
+            'bar',
+            2,
+            'a field has no name'
+        ];
+
+        $this->connection->executeStreamingSql(Argument::allOf(
+            Argument::withEntry('sql', 'SELECT * FROM UNNEST(ARRAY(SELECT @structParam))'),
+            Argument::withEntry('params', [
+                'structParam' => $values
+            ]),
+            Argument::withEntry('paramTypes', [
+                'structParam' => [
+                    'code' => Database::TYPE_STRUCT,
+                    'structType' => [
+                        'fields' => $fields
+                    ]
+                ]
+            ])
+        ))->shouldBeCalled()->willReturn($this->resultGenerator([
+            'metadata' => [
+                'rowType' => [
+                    'fields' => $fields
+                ]
+            ],
+            'values' => $values
+        ]));
+
+        $this->refreshOperation($this->database, $this->connection->reveal());
+
+        $snippet = $this->snippetFromMethod(Database::class, 'execute', 6);
+        $snippet->addLocal('database', $this->database);
+        $snippet->addUse(Database::class);
+
+        $res = explode(PHP_EOL, $snippet->invoke()->output());
+        $this->assertEquals('foo: bar', $res[0]);
+        $this->assertEquals('foo: 2', $res[1]);
+        $this->assertEquals('2: a field has no name', $res[2]);
     }
 
     public function testRead()

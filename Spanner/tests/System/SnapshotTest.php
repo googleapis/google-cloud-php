@@ -167,7 +167,7 @@ class SnapshotTest extends SpannerTestCase
             'returnReadTimestamp' => true
         ]);
 
-        $this->assertEquals($ts->get()->format('U'), $snapshot->readTimestamp()->get()->format('U'));
+        $this->assertGreaterThan($ts->get()->format('U.u'), $snapshot->readTimestamp()->get()->format('U.u'));
 
         $res = $this->getRow($snapshot, $id);
         $this->assertEquals($row, $res);
