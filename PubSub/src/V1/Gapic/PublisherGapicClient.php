@@ -252,6 +252,9 @@ class PublisherGapicClient
      *     defaults for serviceAddress, scopes, and other settings. For the full list of options,
      *     see the documentation on GapicClientTrait::setClientOptions.
      *
+     *     @type string $serviceAddress
+     *           The address of the API remote host, for example "example.googleapis.com. May also
+     *           include the port, for example "example.googleapis.com:443"
      *     @type bool $disableRetries Determines whether or not retries defined
      *           by the client configuration should be disabled. Defaults to `false`.
      *     @type string|array $clientConfig
@@ -259,18 +262,33 @@ class PublisherGapicClient
      *           path to a JSON file, or a PHP array containing the decoded JSON data.
      *           By default this settings points to the default client config file, which is provided
      *           in the resources folder.
-     *     @type mixed $auth
-     *           This option is used to configure auth for the client object, and accepts any of
-     *           the following as input:
-     *           - decoded credentials file as a PHP array
-     *           - path to a credentials file as a string
-     *           - a \Google\Auth\FetchAuthTokenInterface object
-     *           - a \Google\Auth\CredentialsLoader object
-     *           - an AuthWrapper object
-     *     @type string|TransportInterface $transport The transport used for executing network
-     *           requests. May be either the string `rest` or `grpc`. Additionally, it is possible
-     *           to pass in an already instantiated transport. Defaults to `grpc` if gRPC support is
-     *           detected on the system.
+     *     @type string|array $auth
+     *           The credentials to be used by the client to authorize API calls. This option
+     *           accepts either a path to a credentials file, or a decoded credentials file as a
+     *           PHP array.
+     *           *Advanced usage*: In addition, this option can also accept a pre-constructed
+     *           \Google\Auth\FetchAuthTokenInterface object or \Google\ApiCore\AuthWrapper
+     *           object. Note that when one of these objects are provided, any settings in
+     *           $authConfig will be ignored.
+     *     @type array $authConfig
+     *           Options used to configure auth, including auth token caching, for the client. For
+     *           a full list of supporting configuration options, see \Google\ApiCore\Auth::build.
+     *     @type string $transport The transport used for executing network
+     *           requests. May be either the string `rest` or `grpc`. Defaults to `grpc` if gRPC
+     *           support is detected on the system.
+     *           *Advanced usage*: Additionally, it is possible to pass in an already instantiated
+     *           TransportInterface object. Note that when this objects is provided, any settings in
+     *           $transportConfig, and any $serviceAddress setting, will be ignored.
+     *     @type array $transportConfig
+     *           Configuration options that will be used to construct the transport. Options for
+     *           each supported transport type should be passed in a key for that transport. For
+     *           example:
+     *           $transportConfig = [
+     *               'grpc' => [...],
+     *               'rest' => [...]
+     *           ];
+     *           See the GapicClientTrait::buildGrpcTransport and GapicClientTrait::buildRestTransport
+     *           methods for the supported options.
      * }
      * @experimental
      */
