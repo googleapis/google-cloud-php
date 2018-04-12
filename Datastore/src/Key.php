@@ -409,8 +409,6 @@ class Key implements JsonSerializable
      *
      * @access private
      * @return array
-     *
-     * @todo (major) rename to `toArray()`.
      */
     public function keyObject()
     {

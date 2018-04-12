@@ -17,12 +17,14 @@
 
 namespace Google\Cloud\Datastore\Tests\Unit;
 
+use Google\Cloud\Core\Int64;
 use Google\Cloud\Datastore\Blob;
+use Google\Cloud\Datastore\EntityTrait;
 use Google\Cloud\Datastore\Entity;
+use Google\Cloud\Datastore\EntityInterface;
 use Google\Cloud\Datastore\EntityMapper;
 use Google\Cloud\Datastore\GeoPoint;
 use Google\Cloud\Datastore\Key;
-use Google\Cloud\Core\Int64;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -32,6 +34,7 @@ use PHPUnit\Framework\TestCase;
 class EntityMapperTest extends TestCase
 {
     const DATE_FORMAT = 'Y-m-d\TH:i:s.uP';
+    const DATE_FORMAT_NO_MS = 'Y-m-d\TH:i:sP';
 
     private $mapper;
 
@@ -73,7 +76,7 @@ class EntityMapperTest extends TestCase
         $this->assertNull($res['foo']);
     }
 
-    public function testResponesToPropertiesBooleanValue()
+    public function testResponseToPropertiesBooleanValue()
     {
         $data = [
             'foo' => [
@@ -187,6 +190,80 @@ class EntityMapperTest extends TestCase
         $this->assertEquals('baz', $res['foo']['bar']);
     }
 
+    public function testResponseToPropertiesEntityValueCustomType()
+    {
+        $data = [
+            'foo' => [
+                'entityValue' => [
+                    'properties' => [
+                        'bar' => [
+                            'stringValue' => 'baz'
+                        ]
+                    ]
+                ]
+            ]
+        ];
+
+        $res = $this->mapper->responseToEntityProperties($data, TestEntity::class)['properties'];
+
+        $this->assertInstanceOf(TestEntity::class, $res['foo']);
+        $this->assertEquals('baz', $res['foo']->get()['bar']);
+    }
+
+    public function testResponseToPropertiesEntityNestedValueCustomType()
+    {
+        $data = [
+            'foo' => [
+                'entityValue' => [
+                    'properties' => [
+                        'nest' => [
+                            'entityValue' => [
+                                'properties' => [
+                                    'nest' => [
+                                        'entityValue' => [
+                                            'properties' => [
+                                                'foo' => [
+                                                    'stringValue' => 'bar'
+                                                ]
+                                            ]
+                                        ]
+                                    ]
+                                ]
+                            ]
+                        ]
+                    ]
+                ]
+            ]
+        ];
+
+        $res = $this->mapper->responseToEntityProperties($data, TestEntity::class)['properties'];
+
+        $this->assertInstanceOf(TestEntity::class, $res['foo']);
+        $this->assertInstanceOf(TestEntity::class, $res['foo']['nest']);
+        $this->assertInstanceOf(TestEntity::class, $res['foo']['nest']['nest']);
+        $this->assertEquals('bar', $res['foo']['nest']['nest']['foo']);
+    }
+
+    /**
+     * @expectedException \InvalidArgumentException
+     */
+    public function testResponseToPropertiesEntityValueInvalidType()
+    {
+        $data = [
+            'foo' => [
+                'entityValue' => [
+                    'properties' => [
+                        'bar' => [
+                            'stringValue' => 'baz'
+                        ]
+                    ]
+                ]
+            ]
+        ];
+
+        $this->mapper->responseToEntityProperties($data, static::class);
+    }
+
     public function testResponseToPropertiesArrayValue()
     {
         $arr = [
@@ -261,6 +338,15 @@ class EntityMapperTest extends TestCase
 
         $res = $this->mapper->convertValue($type, $val);
         $this->assertEquals($val, $res->format(self::DATE_FORMAT));
+    }
+
+    public function testConvertValueTimestampNoMs()
+    {
+        $type = 'timestampValue';
+        $val = (new \DateTime())->format(self::DATE_FORMAT_NO_MS);
+
+        $res = $this->mapper->convertValue($type, $val);
+        $this->assertEquals($val, $res->format(self::DATE_FORMAT_NO_MS));
     }
 
     public function testConvertValueKey()
@@ -737,5 +823,36 @@ class EntityMapperTest extends TestCase
         $this->assertEquals([
             'integerValue' => $int64->get()
         ], $res);
+    }
+}
+
+class TestEntity implements EntityInterface, \arrayaccess
+{
+    use EntityTrait;
+
+    public static $mappings = [
+        'nest' => TestEntity::class
+    ];
+
+    public function offsetSet($key, $val)
+    {
+        $this->entity[$key] = $val;
+    }
+
+    public function offsetExists($key)
+    {
+        return isset($this->entity[$key]);
+    }
+
+    public function offsetUnset($key)
+    {
+        unset($this->entity[$key]);
+    }
+
+    public function offsetGet($key)
+    {
+        return isset($this->entity[$key])
+            ? $this->entity[$key]
+            : null;
     }
 }

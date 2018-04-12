@@ -77,7 +77,7 @@ trait TransactionTrait
      *           Must be a subclass of {@see Google\Cloud\Datastore\Entity}.
      *           If not set, {@see Google\Cloud\Datastore\Entity} will be used.
      * }
-     * @return Entity|null
+     * @return EntityInterface|null
      */
     public function lookup(Key $key, array $options = [])
     {
@@ -150,7 +150,7 @@ trait TransactionTrait
      *           Must be a subclass of {@see Google\Cloud\Datastore\Entity}.
      *           If not set, {@see Google\Cloud\Datastore\Entity} will be used.
      * }
-     * @return EntityIterator<Google\Cloud\Datastore\Entity>
+     * @return EntityIterator<EntityInterface>
      */
     public function runQuery(QueryInterface $query, array $options = [])
     {

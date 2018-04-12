@@ -81,10 +81,10 @@ class Transaction
      * $transaction->commit();
      * ```
      *
-     * @param Entity $entity The entity to insert.
+     * @param EntityInterface $entity The entity to insert.
      * @return Transaction
      */
-    public function insert(Entity $entity)
+    public function insert(EntityInterface $entity)
     {
         return $this->insertBatch([$entity]);
     }
@@ -138,7 +138,7 @@ class Transaction
      * $transaction->commit();
      * ```
      *
-     * @param Entity $entity The entity to update.
+     * @param EntityInterface $entity The entity to update.
      * @param array $options [optional] {
      *     Configuration Options
      *
@@ -153,7 +153,7 @@ class Transaction
      * }
      * @return Transaction
      */
-    public function update(Entity $entity, array $options = [])
+    public function update(EntityInterface $entity, array $options = [])
     {
         $options += [
             'allowOverwrite' => false
@@ -229,10 +229,10 @@ class Transaction
      * $transaction->commit();
      * ```
      *
-     * @param Entity $entity The entity to upsert.
+     * @param EntityInterface $entity The entity to upsert.
      * @return Transaction
      */
-    public function upsert(Entity $entity)
+    public function upsert(EntityInterface $entity)
     {
         return $this->upsertBatch([$entity]);
     }

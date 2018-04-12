@@ -17,9 +17,15 @@
 
 namespace Google\Cloud\Datastore\Tests\Snippet;
 
-use Google\Cloud\Datastore\Entity;
-use Google\Cloud\Datastore\Key;
 use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
+use Google\Cloud\Core\Testing\TestHelpers;
+use Google\Cloud\Datastore\Connection\ConnectionInterface;
+use Google\Cloud\Datastore\DatastoreClient;
+use Google\Cloud\Datastore\Entity;
+use Google\Cloud\Datastore\EntityMapper;
+use Google\Cloud\Datastore\Key;
+use Google\Cloud\Datastore\Operation;
+use Prophecy\Argument;
 
 /**
  * @group datastore
@@ -56,6 +62,54 @@ class EntityTest extends SnippetTestCase
         $res = $snippet->invoke('entity');
         $this->assertInstanceOf(Entity::class, $res->returnVal());
         $this->assertEquals('Bob', $res->output());
+    }
+
+    public function testClassEntityType()
+    {
+        $client = TestHelpers::stub(DatastoreClient::class, [], [
+            'operation'
+        ]);
+
+        $connection = $this->prophesize(ConnectionInterface::class);
+        $connection->commit(Argument::any())->shouldBeCalled()->willReturn(['mutationResults' => [['version' => 1]]]);
+        $connection->lookup(Argument::any())->shouldBeCalled()->willReturn([
+            'found' => [
+                [
+                    'entity' => [
+                        'key' => [
+                            'path' => [['kind' => 'Business', 'name' => 'Google']]
+                        ],
+                        'properties' => [
+                            'name' => [
+                                'stringValue' => 'Google'
+                            ],
+                            'parent' => [
+                                'entityValue' => [
+                                    'properties' => [
+                                        'name' => [
+                                            'stringValue' => 'Alphabet'
+                                        ]
+                                    ]
+                                ]
+                            ]
+                        ]
+                    ]
+                ]
+            ]
+        ]);
+
+        $operation = new Operation(
+            $connection->reveal(),
+            'example_project',
+            'foo',
+            new EntityMapper('example_project', false, false)
+        );
+
+        $client->___setProperty('operation', $operation);
+
+        $snippet = $this->snippetFromClass(Entity::class, 1);
+        $snippet->addLocal('datastore', $client);
+        $this->assertEquals("BusinessBusiness", $snippet->invoke()->output());
     }
 
     public function testGet()
