@@ -231,15 +231,11 @@ class EntityMapper
                 break;
 
             case 'entityValue':
-<<<<<<< HEAD
                 $properties = isset($value['properties'])
                     ? $value['properties']
                     : [];
 
-                $decoded = $this->responseToEntityProperties($properties);
-=======
-                $decoded = $this->responseToEntityProperties($value['properties'], $className);
->>>>>>> 257a3e8... Improve support for datastore custom entity types
+                $decoded = $this->responseToEntityProperties($properties, $className);
                 $props = $decoded['properties'];
                 $excludes = $decoded['excludes'];
 
