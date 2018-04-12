@@ -247,10 +247,7 @@ class PublisherGapicClient
      * Constructor.
      *
      * @param array $options {
-     *                       Optional. Options for configuring the service API wrapper. In addition
-     *     to the options documented here, you can also provide options to override the client
-     *     defaults for serviceAddress, scopes, and other settings. For the full list of options,
-     *     see the documentation on GapicClientTrait::setClientOptions.
+     *                       Optional. Options for configuring the service API wrapper.
      *
      *     @type string $serviceAddress
      *           The address of the API remote host, for example "example.googleapis.com. May also
