@@ -33,6 +33,12 @@ class SysvConfigStorageTest extends TestCase
 
     private $storage;
 
+    private $originalShmSize;
+
+    private $originalPerm;
+
+    private $originalProject;
+
     public function setUp()
     {
         if (! $this->isSysvIPCLOaded()) {
@@ -40,6 +46,28 @@ class SysvConfigStorageTest extends TestCase
                 'Skipping because SystemV IPC extensions are not loaded');
         }
         $this->storage = new SysvConfigStorage();
+        $this->originalShmSize = getenv('GOOGLE_CLOUD_BATCH_SHM_SIZE');
+        $this->originalPerm = getenv('GOOGLE_CLOUD_BATCH_PERM');
+        $this->originalProject = getenv('GOOGLE_CLOUD_BATCH_PROJECT');
+    }
+
+    public function tearDown()
+    {
+        if ($this->originalShmSize === false) {
+            putenv("GOOGLE_CLOUD_BATCH_SHM_SIZE");
+        } else {
+            putenv("GOOGLE_CLOUD_BATCH_SHM_SIZE=$this->originalShmSize");
+        }
+        if ($this->originalPerm === false) {
+            putenv("GOOGLE_CLOUD_BATCH_PERM");
+        } else {
+            putenv("GOOGLE_CLOUD_BATCH_PERM=$this->originalPerm");
+        }
+        if ($this->originalProject === false) {
+            putenv("GOOGLE_CLOUD_BATCH_PROJECT");
+        } else {
+            putenv("GOOGLE_CLOUD_BATCH_PROJECT=$this->originalProject");
+        }
     }
 
     public function testLockAndUnlock()
@@ -78,13 +106,9 @@ class SysvConfigStorageTest extends TestCase
 
     public function testDefaultValues()
     {
-        if (getenv('GOOGLE_CLOUD_BATCH_SHM_SIZE')
-            || getenv('GOOGLE_CLOUD_BATCH_PERM')
-            || getenv('GOOGLE_CLOUD_BATCH_PROJECT')) {
-            $this->markTestAsSkipped(
-                'Remove GOOGLE_CLOUD_BATCH_* env vars to run this test'
-            );
-        }
+        putenv('GOOGLE_CLOUD_BATCH_SHM_SIZE');
+        putenv('GOOGLE_CLOUD_BATCH_PERM');
+        putenv('GOOGLE_CLOUD_BATCH_PROJECT');
         $r = new \ReflectionObject($this->storage);
         $p = $r->getProperty('shmSize');
         $p->setAccessible(true);
@@ -99,35 +123,20 @@ class SysvConfigStorageTest extends TestCase
 
     public function testEnvVarCustomization()
     {
-        $originalShmSize = getenv('GOOGLE_CLOUD_BATCH_SHM_SIZE');
-        $originalPerm = getenv('GOOGLE_CLOUD_BATCH_PERM');
-        $originalProject = getenv('GOOGLE_CLOUD_BATCH_PROJECT');
-        try {
-            putenv('GOOGLE_CLOUD_BATCH_SHM_SIZE=10');
-            putenv('GOOGLE_CLOUD_BATCH_PERM=0666');
-            putenv('GOOGLE_CLOUD_BATCH_PROJECT=B');
-            $storage = new SysvConfigStorage();
-            $r = new \ReflectionObject($storage);
-            $p = $r->getProperty('shmSize');
-            $p->setAccessible(true);
-            $this->assertEquals(10, $p->getValue($storage));
-            $p = $r->getProperty('perm');
-            $p->setAccessible(true);
-            $this->assertEquals(0666, $p->getValue($storage));
-            $p = $r->getProperty('project');
-            $p->setAccessible(true);
-            $this->assertEquals('B', $p->getValue($storage));
-        } finally {
-            if ($originalShmSize !== false) {
-                putenv("GOOGLE_CLOUD_BATCH_SHM_SIZE=$originalShmSize");
-            }
-            if ($originalPerm !== false) {
-                putenv("GOOGLE_CLOUD_BATCH_PERM=$originalPerm");
-            }
-            if ($originalProject !== false) {
-                putenv("GOOGLE_CLOUD_BATCH_PROJECT=$originalProject");
-            }
-        }
+        putenv('GOOGLE_CLOUD_BATCH_SHM_SIZE=10');
+        putenv('GOOGLE_CLOUD_BATCH_PERM=0666');
+        putenv('GOOGLE_CLOUD_BATCH_PROJECT=B');
+        $storage = new SysvConfigStorage();
+        $r = new \ReflectionObject($storage);
+        $p = $r->getProperty('shmSize');
+        $p->setAccessible(true);
+        $this->assertEquals(10, $p->getValue($storage));
+        $p = $r->getProperty('perm');
+        $p->setAccessible(true);
+        $this->assertEquals(0666, $p->getValue($storage));
+        $p = $r->getProperty('project');
+        $p->setAccessible(true);
+        $this->assertEquals('B', $p->getValue($storage));
     }
 }
 
