@@ -5,7 +5,7 @@
     "minimum-stability": "stable",
     "autoload": {
         "psr-4": {
-            "Google\\Cloud\\Dialogflow\\": ""
+            "Google\\Cloud\\Dialogflow\\": "src"
         }
     },
     "extra": {
