@@ -68,10 +68,66 @@ class SysvConfigStorageTest extends TestCase
         } catch (\RuntimeException $e) {
             // verify we didn't corrupt memory
             $this->storage->load();
+            // Just to avoid the test warning
+            $this->assertTrue(true);
             return;
         }
 
         $this->assertTrue(false, 'should have thrown an exception');
+    }
+
+    public function testDefaultValues()
+    {
+        if (getenv('GOOGLE_CLOUD_BATCH_SHM_SIZE')
+            || getenv('GOOGLE_CLOUD_BATCH_PERM')
+            || getenv('GOOGLE_CLOUD_BATCH_PROJECT')) {
+            $this->markTestAsSkipped(
+                'Remove GOOGLE_CLOUD_BATCH_* env vars to run this test'
+            );
+        }
+        $r = new \ReflectionObject($this->storage);
+        $p = $r->getProperty('shmSize');
+        $p->setAccessible(true);
+        $this->assertEquals(200000, $p->getValue($this->storage));
+        $p = $r->getProperty('perm');
+        $p->setAccessible(true);
+        $this->assertEquals(0600, $p->getValue($this->storage));
+        $p = $r->getProperty('project');
+        $p->setAccessible(true);
+        $this->assertEquals('A', $p->getValue($this->storage));
+    }
+
+    public function testEnvVarCustomization()
+    {
+        $originalShmSize = getenv('GOOGLE_CLOUD_BATCH_SHM_SIZE');
+        $originalPerm = getenv('GOOGLE_CLOUD_BATCH_PERM');
+        $originalProject = getenv('GOOGLE_CLOUD_BATCH_PROJECT');
+        try {
+            putenv('GOOGLE_CLOUD_BATCH_SHM_SIZE=10');
+            putenv('GOOGLE_CLOUD_BATCH_PERM=0666');
+            putenv('GOOGLE_CLOUD_BATCH_PROJECT=B');
+            $storage = new SysvConfigStorage();
+            $r = new \ReflectionObject($storage);
+            $p = $r->getProperty('shmSize');
+            $p->setAccessible(true);
+            $this->assertEquals(10, $p->getValue($storage));
+            $p = $r->getProperty('perm');
+            $p->setAccessible(true);
+            $this->assertEquals(0666, $p->getValue($storage));
+            $p = $r->getProperty('project');
+            $p->setAccessible(true);
+            $this->assertEquals('B', $p->getValue($storage));
+        } finally {
+            if ($originalShmSize !== false) {
+                putenv("GOOGLE_CLOUD_BATCH_SHM_SIZE=$originalShmSize");
+            }
+            if ($originalPerm !== false) {
+                putenv("GOOGLE_CLOUD_BATCH_PERM=$originalPerm");
+            }
+            if ($originalProject !== false) {
+                putenv("GOOGLE_CLOUD_BATCH_PROJECT=$originalProject");
+            }
+        }
     }
 }
 

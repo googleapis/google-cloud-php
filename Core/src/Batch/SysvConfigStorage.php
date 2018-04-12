@@ -29,19 +29,46 @@ class SysvConfigStorage implements ConfigStorageInterface
 {
     const VAR_KEY = 1;
 
+    const DEFAULT_SHM_SIZE = 200000;
+
+    const DEFAULT_PERM = 0600;
+
+    const DEFAULT_PROJECT = 'A';
+
     /* @var int */
     private $sysvKey;
 
     /* @var int */
     private $semid;
 
+    /* @var int */
+    private $shmSize;
+
+    /* @var int */
+    private $perm;
+
+    /* @var string */
+    private $project;
+
     /**
      * Prepare the key for semaphore and shared memory.
      */
     public function __construct()
     {
-        $this->sysvKey = ftok(__FILE__, 'A');
-        $this->semid = sem_get($this->sysvKey, 1, 0600, 1);
+        $this->shmSize = intval(getenv('GOOGLE_CLOUD_BATCH_SHM_SIZE'));
+        if ($this->shmSize === 0) {
+            $this->shmSize = self::DEFAULT_SHM_SIZE;
+        }
+        $this->perm = octdec(getenv('GOOGLE_CLOUD_BATCH_PERM'));
+        if ($this->perm === 0) {
+            $this->perm = self::DEFAULT_PERM;
+        }
+        $this->project = getenv('GOOGLE_CLOUD_BATCH_PROJECT');
+        if ($this->project === false) {
+            $this->project = self::DEFAULT_PROJECT;
+        }
+        $this->sysvKey = ftok(__FILE__, $this->project);
+        $this->semid = sem_get($this->sysvKey, 1, $this->perm, 1);
     }
 
     /**
@@ -73,7 +100,7 @@ class SysvConfigStorage implements ConfigStorageInterface
      */
     public function save(JobConfig $config)
     {
-        $shmid = shm_attach($this->sysvKey);
+        $shmid = shm_attach($this->sysvKey, $this->shmSize, $this->perm);
         if ($shmid === false) {
             throw new \RuntimeException(
                 'Failed to attach to the shared memory'
@@ -100,7 +127,7 @@ class SysvConfigStorage implements ConfigStorageInterface
      */
     public function load()
     {
-        $shmid = shm_attach($this->sysvKey);
+        $shmid = shm_attach($this->sysvKey, $this->shmSize, $this->perm);
         if ($shmid === false) {
             throw new \RuntimeException(
                 'Failed to attach to the shared memory'
@@ -126,7 +153,7 @@ class SysvConfigStorage implements ConfigStorageInterface
      */
     public function clear()
     {
-        $shmid = shm_attach($this->sysvKey);
+        $shmid = shm_attach($this->sysvKey, $this->shmSize, $this->perm);
         shm_remove_var($shmid, self::VAR_KEY);
     }
 }
