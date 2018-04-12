@@ -72,6 +72,8 @@
         "google/cloud-core": "1.19.1",
         "google/cloud-dataproc": "0.3.2",
         "google/cloud-datastore": "1.4.2",
+        "google/cloud-debugger": "0.6.2",
+        "google/cloud-dialogflow": "master",
         "google/cloud-dlp": "0.7.2",
         "google/cloud-error-reporting": "0.9.3",
         "google/cloud-firestore": "0.8.0",
@@ -87,8 +89,7 @@
         "google/cloud-trace": "0.7.2",
         "google/cloud-translate": "1.2.0",
         "google/cloud-videointelligence": "0.10.2",
-        "google/cloud-vision": "0.11.2",
-        "google/cloud-debugger": "0.6.2"
+        "google/cloud-vision": "0.11.2"
     },
     "suggest": {
         "opis/closure": "May be used to serialize closures to process jobs in the batch daemon. Please require version ^3.",

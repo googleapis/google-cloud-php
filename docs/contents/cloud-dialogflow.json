@@ -1,0 +1,10 @@
+{
+    "title": "Dialogflow",
+    "services": [
+        {
+            "title": "Overview",
+            "type": "\/readme"
+        }
+    ],
+    "pattern": "\/\\w{1,}"
+}

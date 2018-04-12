@@ -262,6 +262,14 @@
             ]
         },
         {
+            "id": "cloud-dialogflow",
+            "name": "google/cloud-dialogflow",
+            "defaultService": "dialogflow/readme",
+            "versions": [
+                "master"
+            ]
+        },
+        {
             "id": "cloud-dlp",
             "name": "google/cloud-dlp",
             "defaultService": "dlp/readme",
