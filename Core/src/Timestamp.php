@@ -39,6 +39,8 @@ namespace Google\Cloud\Core;
  */
 class Timestamp
 {
+    use TimeTrait;
+
     const FORMAT = 'Y-m-d\TH:i:s.uP';
     const FORMAT_NO_MS = 'Y-m-d\TH:i:sP';
     const FORMAT_INTERPOLATE = 'Y-m-d\TH:i:s.%\s\Z';
@@ -98,57 +100,9 @@ class Timestamp
      */
     public static function createFromString($timestamp)
     {
-        $nanoRegex = '/\d{4}-\d{1,2}-\d{1,2}T\d{1,2}\:\d{1,2}\:\d{1,2}(?:\.(\d{1,}))?/';
-
-        preg_match($nanoRegex, $timestamp, $matches);
-        $subSeconds = isset($matches[1])
-            ? $matches[1]
-            : '0';
-
-        $timestamp = str_replace('.'. $subSeconds, '.' . substr($subSeconds, 0, 6), $timestamp);
-
-        $template = isset($matches[1])
-            ? static::FORMAT
-            : static::FORMAT_NO_MS;
-
-        $dt = \DateTimeImmutable::createFromFormat($template, str_replace('..', '.', $timestamp));
-        if (!$dt) {
-            throw new \InvalidArgumentException(sprintf(
-                'Could not create a DateTime instance from given timestamp %s.',
-                $timestamp
-            ));
-        }
-
-        $nanos = (int) str_pad($subSeconds, 9, '0', STR_PAD_RIGHT);
+        list($dt, $nanos) = self::parseTimeString($timestamp);
 
         return new static($dt, $nanos);
-    }
-
-    /**
-     * Convert an array to a string without the overhead of constructing a Timestamp instance.
-     *
-     * Example:
-     * ```
-     * $timeArray = [
-     *     'seconds' => time(),
-     *     'nanos' => 0
-     * ];
-     * $timestampString = Timestamp::formatArrayAsString($timeArray);
-     * ```
-     *
-     * @param array $timestamp An array representation of a point in time.
-     * @return string
-     */
-    public static function formatArrayAsString(array $timestamp)
-    {
-        $timestamp += [
-            'seconds' => 0,
-            'nanos' => 0
-        ];
-
-        $dt = self::createDateTimeFromSeconds($timestamp['seconds']);
-
-        return self::createString($dt, $timestamp['nanos']);
     }
 
     /**
@@ -227,7 +181,11 @@ class Timestamp
      */
     public function formatAsString()
     {
-        return self::createString($this->value, $this->nanoSeconds, $this->nanosFromDt);
+        return $this->formatTimeAsString(
+            $this->value,
+            $this->nanoSeconds,
+            $this->nanosFromDt
+        );
     }
 
     /**
@@ -248,56 +206,6 @@ class Timestamp
      */
     public function formatForApi()
     {
-        return [
-            'seconds' => (int)$this->value->format('U'),
-            'nanos' => (int)$this->nanoSeconds
-        ];
-    }
-
-    /**
-     * Create a DateTimeImmutable instance from a UNIX timestamp (i.e. seconds since epoch).
-     *
-     * @param int $seconds The unix timestamp.
-     * @return \DateTimeImmutable
-     */
-    private static function createDateTimeFromSeconds($seconds)
-    {
-        return \DateTimeImmutable::createFromFormat(
-            'U',
-            (string) $seconds,
-            new \DateTimeZone('UTC')
-        );
-    }
-
-    /**
-     * Create a Timestamp string in an API-compatible format.
-     *
-     * @param \DateTimeInterface $dateTime The date time object.
-     * @param int $ns The number of nanoseconds.
-     * @param bool $nanosFromDt [optional] Whether the nanoseconds were obtained from the DateTime object.
-     * @return string
-     */
-    private static function createString(\DateTimeInterface $dateTime, $ns, $nanosFromDt = false)
-    {
-        if (!preg_match('/[^0]/', $ns)) {
-            $ns = '000000';
-        }
-        else {
-            if (!$nanosFromDt) {
-                $ns = str_pad((string) $ns, 9, '0', STR_PAD_LEFT) ?: '0';
-
-                if (substr($ns, 6, 3) === '000') {
-                    $ns = substr($ns, 0, 6);
-                }
-            }
-        }
-
-        $dateTime = $dateTime->setTimeZone(new \DateTimeZone('UTC'));
-        $timestamp = sprintf(
-            $dateTime->format(self::FORMAT_INTERPOLATE),
-            $ns
-        );
-
-        return $timestamp;
+        return $this->formatTimeAsArray($this->value, $this->nanoSeconds);
     }
 }
