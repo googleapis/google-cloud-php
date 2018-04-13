@@ -92,15 +92,13 @@ class Agent
     public function __construct(array $options = [])
     {
         $options += [
-            'daemonOptions' => []
+            'daemonOptions' => [],
+            'storage' => null,
+            'sourceRoot' => null
         ];
-        $storage = isset($options['storage'])
-            ? $options['storage']
-            : $this->defaultStorage();
-
-        $this->sourceRoot = isset($options['sourceRoot'])
-            ? $options['sourceRoot']
-            : dirname(debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS, 1)[0]['file']);
+        $storage = $options['storage'] ?: $this->defaultStorage();
+        $this->sourceRoot = $options['sourceRoot']
+            ?: dirname(debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS, 1)[0]['file']);
 
         if ($this->shouldStartDaemon()) {
             $daemon = new Daemon($options['daemonOptions'] + [
