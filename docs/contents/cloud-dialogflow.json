@@ -29,7 +29,7 @@
             }, {
               "title": "SessionsClient",
               "type": "dialogflow/v2/sessionsclient"
-            }
+            }]
         }
     ],
     "pattern": "\/\\w{1,}"
