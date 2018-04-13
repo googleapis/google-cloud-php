@@ -25,7 +25,11 @@ install:
   - ps: appveyor-retry cinst --params '""/InstallDir:C:\tools\php""' --ignore-checksums -y php --version ((choco search php --exact --all-versions -r | select-string -pattern $env:PHP_VERSION | sort { [version]($_ -split '\|' | select -last 1) } -Descending | Select-Object -first 1) -replace '[php|]','')
   - ps: . .\dev\appveyor-grpc.ps1
   - cd c:\projects\google-cloud
-  - appveyor DownloadFile https://getcomposer.org/composer.phar
+  - curl --connect-timeout 5 --max-time 10 --retry 5 --retry-delay 0 --retry-max-time 40 -o composer-setup.php https://getcomposer.org/installer
+  - curl --connect-timeout 5 --max-time 10 --retry 5 --retry-delay 0 --retry-max-time 40 -o composer-signature.sig https://composer.github.io/installer.sig
+  - php -r "if (hash_file('SHA384', 'composer-setup.php') === rtrim(file_get_contents('composer-signature.sig'))) {echo 'Installer verified';unlink('composer-signature.sig');} else {echo 'Installer corrupt';unlink('composer-setup.php');unlink('composer-signature.sig');exit (1);}"
+  - php .\composer-setup.php
+  - php -r "unlink('composer-setup.php');"
   - php composer.phar install
 
 test_script:
