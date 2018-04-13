@@ -6,6 +6,12 @@ return [
             'GetDataSource' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{name=projects/*/locations/*/dataSources/*}',
+                'additionalBindings' => [
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1/{name=projects/*/dataSources/*}',
+                    ],
+                ],
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -17,6 +23,12 @@ return [
             'ListDataSources' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{parent=projects/*/locations/*}/dataSources',
+                'additionalBindings' => [
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1/{parent=projects/*}/dataSources',
+                    ],
+                ],
                 'placeholders' => [
                     'parent' => [
                         'getters' => [
@@ -29,6 +41,13 @@ return [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{parent=projects/*/locations/*}/transferConfigs',
                 'body' => 'transfer_config',
+                'additionalBindings' => [
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{parent=projects/*}/transferConfigs',
+                        'body' => 'transfer_config',
+                    ],
+                ],
                 'placeholders' => [
                     'parent' => [
                         'getters' => [
@@ -41,6 +60,13 @@ return [
                 'method' => 'patch',
                 'uriTemplate' => '/v1/{transfer_config.name=projects/*/locations/*/transferConfigs/*}',
                 'body' => 'transfer_config',
+                'additionalBindings' => [
+                    [
+                        'method' => 'patch',
+                        'uriTemplate' => '/v1/{transfer_config.name=projects/*/transferConfigs/*}',
+                        'body' => 'transfer_config',
+                    ],
+                ],
                 'placeholders' => [
                     'transfer_config.name' => [
                         'getters' => [
@@ -53,6 +79,12 @@ return [
             'DeleteTransferConfig' => [
                 'method' => 'delete',
                 'uriTemplate' => '/v1/{name=projects/*/locations/*/transferConfigs/*}',
+                'additionalBindings' => [
+                    [
+                        'method' => 'delete',
+                        'uriTemplate' => '/v1/{name=projects/*/transferConfigs/*}',
+                    ],
+                ],
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -64,6 +96,12 @@ return [
             'GetTransferConfig' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{name=projects/*/locations/*/transferConfigs/*}',
+                'additionalBindings' => [
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1/{name=projects/*/transferConfigs/*}',
+                    ],
+                ],
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -75,6 +113,12 @@ return [
             'ListTransferConfigs' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{parent=projects/*/locations/*}/transferConfigs',
+                'additionalBindings' => [
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1/{parent=projects/*}/transferConfigs',
+                    ],
+                ],
                 'placeholders' => [
                     'parent' => [
                         'getters' => [
@@ -87,6 +131,13 @@ return [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{parent=projects/*/locations/*/transferConfigs/*}:scheduleRuns',
                 'body' => '*',
+                'additionalBindings' => [
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{parent=projects/*/transferConfigs/*}:scheduleRuns',
+                        'body' => '*',
+                    ],
+                ],
                 'placeholders' => [
                     'parent' => [
                         'getters' => [
@@ -98,6 +149,12 @@ return [
             'GetTransferRun' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{name=projects/*/locations/*/transferConfigs/*/runs/*}',
+                'additionalBindings' => [
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1/{name=projects/*/transferConfigs/*/runs/*}',
+                    ],
+                ],
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -109,6 +166,12 @@ return [
             'DeleteTransferRun' => [
                 'method' => 'delete',
                 'uriTemplate' => '/v1/{name=projects/*/locations/*/transferConfigs/*/runs/*}',
+                'additionalBindings' => [
+                    [
+                        'method' => 'delete',
+                        'uriTemplate' => '/v1/{name=projects/*/transferConfigs/*/runs/*}',
+                    ],
+                ],
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -120,6 +183,12 @@ return [
             'ListTransferRuns' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{parent=projects/*/locations/*/transferConfigs/*}/runs',
+                'additionalBindings' => [
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1/{parent=projects/*/transferConfigs/*}/runs',
+                    ],
+                ],
                 'placeholders' => [
                     'parent' => [
                         'getters' => [
@@ -131,6 +200,12 @@ return [
             'ListTransferLogs' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{parent=projects/*/locations/*/transferConfigs/*/runs/*}/transferLogs',
+                'additionalBindings' => [
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1/{parent=projects/*/transferConfigs/*/runs/*}/transferLogs',
+                    ],
+                ],
                 'placeholders' => [
                     'parent' => [
                         'getters' => [
@@ -143,6 +218,13 @@ return [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{name=projects/*/locations/*/dataSources/*}:checkValidCreds',
                 'body' => '*',
+                'additionalBindings' => [
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{name=projects/*/dataSources/*}:checkValidCreds',
+                        'body' => '*',
+                    ],
+                ],
                 'placeholders' => [
                     'name' => [
                         'getters' => [
