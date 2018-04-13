@@ -59,7 +59,7 @@ class TimestampTest extends TestCase
     /**
      * @dataProvider timestampStrings
      */
-    public function testCreateTimestampWithNanosTimestampStrings($timestampStr, $expected)
+    public function testCreateFromStringTimestampStrings($timestampStr, $expected)
     {
         $timestamp = Timestamp::createFromString($timestampStr);
 
@@ -71,7 +71,7 @@ class TimestampTest extends TestCase
     /**
      * @dataProvider timestampStrings
      */
-    public function testCreateTimestampWithNanosTimestampStringsLocale($timestampStr, $expected)
+    public function testCreateFromStringTimestampStringsLocale($timestampStr, $expected)
     {
         setlocale(LC_ALL, 'fr_FR.UTF-8');
 
@@ -137,7 +137,7 @@ class TimestampTest extends TestCase
     /**
      * @dataProvider timestampArrays
      */
-    public function testCreateTimestampWithNanosArrays(array $input)
+    public function testCreateFromStringArrays(array $input)
     {
         $timestamp = Timestamp::createFromArray($input);
         $this->assertInstanceOf(Timestamp::class, $timestamp);
@@ -149,7 +149,7 @@ class TimestampTest extends TestCase
     /**
      * @dataProvider timestampArrays
      */
-    public function testCreateTimestampWithNanosArraysLocale(array $input)
+    public function testCreateFromStringArraysLocale(array $input)
     {
         setlocale(LC_ALL, 'fr_FR.UTF-8');
         try {
