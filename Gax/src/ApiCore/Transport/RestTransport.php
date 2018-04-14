@@ -45,22 +45,18 @@ use Psr\Http\Message\ResponseInterface;
 class RestTransport implements TransportInterface
 {
     private $requestBuilder;
-    private $authWrapper;
     private $httpHandler;
 
     /**
      * @param RequestBuilder $requestBuilder A builder responsible for creating
      *        a PSR-7 request from a set of request information.
-     * @param AuthWrapper $authWrapper An AuthWrapper object.
      * @param callable $httpHandler A handler used to deliver PSR-7 requests.
      */
     public function __construct(
         RequestBuilder $requestBuilder,
-        AuthWrapper $authWrapper,
         callable $httpHandler
     ) {
         $this->requestBuilder = $requestBuilder;
-        $this->authWrapper = $authWrapper;
         $this->httpHandler = $httpHandler;
     }
 
@@ -101,8 +97,8 @@ class RestTransport implements TransportInterface
             : [];
 
         // If not already set, add an auth header to the request
-        if (!isset($headers['Authorization'])) {
-            $headers['Authorization'] = $this->authWrapper->getBearerString();
+        if (!isset($headers['Authorization']) && isset($options['authWrapper'])) {
+            $headers['Authorization'] = $options['authWrapper']->getBearerString();
         }
 
         // call the HTTP handler

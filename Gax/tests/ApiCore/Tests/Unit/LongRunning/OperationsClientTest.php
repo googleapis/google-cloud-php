@@ -335,6 +335,7 @@ class MockOperationsClient extends OperationsClient
 
     public function __construct($args = [])
     {
+        $args['scopes'] = [];
         $args['transport'] = new MockTransport;
         $this->transport = $args['transport'];
         parent::__construct($args);

@@ -45,16 +45,11 @@ class MockGrpcTransport extends GrpcTransport
     private $requestArguments;
     private $mockCall;
 
-    public function __construct($mockCall = null, $credentialsLoader = null)
+    public function __construct($mockCall = null)
     {
         $this->mockCall = $mockCall;
-        $credentialsLoader = $credentialsLoader ?: ApplicationDefaultCredentials::getCredentials();
-        $authHttpHandler = function (RequestInterface $request, array $options) {
-            return new Response(200);
-        };
-        $authWrapper = new AuthWrapper($credentialsLoader, $authHttpHandler);
         $opts = ['credentials' => ChannelCredentials::createSsl()];
-        parent::__construct('', $authWrapper, $opts);
+        parent::__construct('', $opts);
     }
 
     protected function _simpleRequest(

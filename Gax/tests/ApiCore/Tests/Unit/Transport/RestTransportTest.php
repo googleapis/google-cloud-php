@@ -72,16 +72,8 @@ class RestTransportTest extends TestCase
         $credentialsLoader->method('fetchAuthToken')
             ->willReturn(['access_token' => 'abc']);
 
-        $authWrapper = new AuthWrapper(
-            $credentialsLoader,
-            function (RequestInterface $request, array $options = []) {
-                return null;
-            }
-        );
-
         return new RestTransport(
             $requestBuilder,
-            $authWrapper,
             $httpHandler
         );
     }
@@ -124,7 +116,7 @@ class RestTransportTest extends TestCase
     }
 
     /**
-     * @expectedException Google\ApiCore\ApiException
+     * @expectedException \Google\ApiCore\ApiException
      */
     public function testStartUnaryCallThrowsRequestException()
     {

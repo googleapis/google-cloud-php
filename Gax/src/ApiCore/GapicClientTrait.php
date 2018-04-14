@@ -34,6 +34,7 @@ namespace Google\ApiCore;
 
 use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\Middleware\AgentHeaderMiddleware;
+use Google\ApiCore\Middleware\AuthWrapperMiddleware;
 use Google\ApiCore\Middleware\RetryMiddleware;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\LongRunning\Operation;
@@ -53,6 +54,7 @@ trait GapicClientTrait
     private $retrySettings;
     private $serviceName;
     private $agentHeaderDescriptor;
+    private $authWrapper;
     private $descriptors;
     private $transportCallMethods = [
         Call::UNARY_CALL => 'startUnaryCall',
@@ -160,6 +162,7 @@ trait GapicClientTrait
      *     @type string $gapicVersion
      *           The code generator version of the GAPIC library.
      * }
+     * @throws ValidationException
      */
     protected function setClientOptions(array $options)
     {
@@ -192,6 +195,14 @@ trait GapicClientTrait
 
         $descriptors = require($options['descriptorsConfigPath']);
         $this->descriptors = $descriptors['interfaces'][$this->serviceName];
+
+        if (isset($options['credentialsLoader'])) {
+            $authHttpHandler = isset($options['authHttpHandler']) ? $options['authHttpHandler'] : null;
+            $this->authWrapper = new AuthWrapper($options['credentialsLoader'], $authHttpHandler);
+        } else {
+            $this->authWrapper = AuthWrapper::build($options);
+        }
+
         $this->transport = $transport instanceof TransportInterface
             ? $transport
             : TransportFactory::build($options);
@@ -258,10 +269,13 @@ trait GapicClientTrait
     {
         return new RetryMiddleware(
             new AgentHeaderMiddleware(
-                function (Call $call, array $options) {
-                    $startCallMethod = $this->transportCallMethods[$call->getCallType()];
-                    return $this->transport->$startCallMethod($call, $options);
-                },
+                new AuthWrapperMiddleware(
+                    function (Call $call, array $options) {
+                        $startCallMethod = $this->transportCallMethods[$call->getCallType()];
+                        return $this->transport->$startCallMethod($call, $options);
+                    },
+                    $this->authWrapper
+                ),
                 $this->agentHeaderDescriptor
             ),
             $callConstructionOptions['retrySettings']
