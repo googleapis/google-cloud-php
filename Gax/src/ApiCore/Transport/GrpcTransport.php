@@ -48,22 +48,17 @@ use GuzzleHttp\Promise\Promise;
  */
 class GrpcTransport extends BaseStub implements TransportInterface
 {
-    private $authWrapper;
-
     /**
      * @param string $host The domain name and port of the API remote host.
-     * @param AuthWrapper $authWrapper An AuthWrapper object.
      * @param array $stubOpts An array of options used when creating a BaseStub.
      * @param Channel $channel An already instantiated channel to be used during
      *        creation of the BaseStub.
      */
     public function __construct(
         $host,
-        AuthWrapper $authWrapper,
         array $stubOpts,
         Channel $channel = null
     ) {
-        $this->authWrapper = $authWrapper;
         parent::__construct(
             $host,
             $stubOpts,
@@ -161,7 +156,9 @@ class GrpcTransport extends BaseStub implements TransportInterface
             ? $options['transportOptions']['grpcOptions']
             : [];
 
-        $callOptions += ['call_credentials_callback' => $this->authWrapper->getAuthorizationHeaderCallback()];
+        if (isset($options['authWrapper'])) {
+            $callOptions['call_credentials_callback'] = $options['authWrapper']->getAuthorizationHeaderCallback();
+        }
 
         if (isset($options['timeoutMillis'])) {
             $callOptions['timeout'] = $options['timeoutMillis'] * 1000;

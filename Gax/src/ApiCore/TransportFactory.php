@@ -125,8 +125,6 @@ class TransportFactory
 
         $args['transport'] = self::handleTransport($args['transport']);
 
-        $authWrapper = self::buildAuthWrapper($args);
-
         switch ($args['transport']) {
             case 'grpc':
                 if (!self::getGrpcDependencyStatus()) {
@@ -148,7 +146,6 @@ class TransportFactory
 
                 return new GrpcTransport(
                     $host,
-                    $authWrapper,
                     $stubOpts,
                     $args['channel']
                 );
@@ -160,7 +157,6 @@ class TransportFactory
                         $host,
                         $args['restClientConfigPath']
                     ),
-                    $authWrapper,
                     $args['httpHandler'] ?: [HttpHandlerFactory::build(), 'async']
                 );
             default:
@@ -177,18 +173,6 @@ class TransportFactory
     protected static function getGrpcDependencyStatus()
     {
         return extension_loaded('grpc');
-    }
-
-    /**
-     * Gets credentials from ADC. This exists to allow overriding in unit tests.
-     *
-     * @param string[] $scopes
-     * @param callable $httpHandler
-     * @return CredentialsLoader
-     */
-    protected static function getADCCredentials(array $scopes, callable $httpHandler)
-    {
-        return ApplicationDefaultCredentials::getCredentials($scopes, $httpHandler);
     }
 
     /**
@@ -216,39 +200,5 @@ class TransportFactory
             : 'rest';
 
         return $transport;
-    }
-
-    /**
-     * @param array $args
-     * @return AuthWrapper
-     */
-    private static function buildAuthWrapper(array $args)
-    {
-        $authHttpHandler = $args['authHttpHandler'] ?: HttpHandlerFactory::build();
-
-        if (isset($args['credentialsLoader'])) {
-            $credentialsLoader = $args['credentialsLoader'];
-        } else {
-            self::validateNotNull($args, ['scopes']);
-
-            $credentialsLoader = self::getADCCredentials(
-                $args['scopes'],
-                $authHttpHandler
-            );
-
-            if ($args['enableCaching']) {
-                if (!isset($args['authCache'])) {
-                    $args['authCache'] = new MemoryCacheItemPool();
-                }
-
-                $credentialsLoader = new FetchAuthTokenCache(
-                    $credentialsLoader,
-                    $args['authCacheOptions'],
-                    $args['authCache']
-                );
-            }
-        }
-
-        return new AuthWrapper($credentialsLoader, $authHttpHandler);
     }
 }
