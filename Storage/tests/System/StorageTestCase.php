@@ -19,9 +19,9 @@ namespace Google\Cloud\Storage\Tests\System;
 
 use Google\Cloud\Core\AnonymousCredentials;
 use Google\Cloud\Core\Exception\NotFoundException;
+use Google\Cloud\Core\Testing\System\SystemTestCase;
 use Google\Cloud\PubSub\PubSubClient;
 use Google\Cloud\Storage\StorageClient;
-use Google\Cloud\Core\Testing\System\SystemTestCase;
 
 /**
  * Refer to README.md in this directory for some important information
@@ -62,5 +62,11 @@ class StorageTestCase extends SystemTestCase
         self::$object = self::$bucket->upload('somedata', ['name' => uniqid(self::TESTING_PREFIX)]);
 
         self::$hasSetUp = true;
+    }
+
+    protected static function getProjectId($keyFilePath)
+    {
+        $data = json_decode(file_get_contents($keyFilePath), true);
+        return $data['project_id'];
     }
 }

@@ -273,7 +273,7 @@ class StorageClient
      *     @type array $versioning The bucket's versioning configuration.
      *     @type array $website The bucket's website configuration.
      *     @type array $billing The bucket's billing configuration.
-     *     @type bool $billing['requesterPays'] When `true`, requests to this bucket
+     *     @type bool $billing.requesterPays When `true`, requests to this bucket
      *           and objects within it must provide a project ID to which the
      *           request will be billed.
      *     @type array $labels The Bucket labels. Labels are represented as an
@@ -286,6 +286,12 @@ class StorageClient
      *           If false, `$options.userProject` will be used ONLY for the
      *           createBucket operation. If `$options.userProject` is not set,
      *           this option has no effect. **Defaults to** `true`.
+     *     @type array $encryption Encryption configuration used by default for
+     *           newly inserted objects.
+     *     @type string $encryption.defaultKmsKeyName A Cloud KMS Key used to
+     *           encrypt objects uploaded into this bucket. Should be in the
+     *           format
+     *           `projects/my-project/locations/global/keyRings/my-kr/cryptoKeys/my-key`.
      * }
      * @return Bucket
      * @throws GoogleException When a project ID has not been detected.

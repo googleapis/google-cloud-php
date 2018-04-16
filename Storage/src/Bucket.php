@@ -204,6 +204,18 @@ class Bucket
      * );
      * ```
      *
+     * ```
+     * // Upload an object utilizing an encryption key managed by the Cloud Key Management Service (KMS).
+     * $object = $bucket->upload(
+     *     fopen(__DIR__ . '/image.jpg', 'r'),
+     *     [
+     *         'metadata' => [
+     *             'kmsKeyName' => 'projects/my-project/locations/global/keyRings/my-kr/cryptoKeys/my-key'
+     *         ]
+     *     ]
+     * );
+     * ```
+     *
      * @see https://cloud.google.com/storage/docs/json_api/v1/how-tos/upload#resumable Learn more about resumable
      * uploads.
      * @see https://cloud.google.com/storage/docs/json_api/v1/objects/insert Objects insert API documentation.
@@ -242,7 +254,9 @@ class Bucket
      *           at the [JSON API docs](https://cloud.google.com/storage/docs/json_api/v1/objects/insert#request-body).
      *     @type array $metadata['metadata'] User-provided metadata, in key/value pairs.
      *     @type string $encryptionKey A base64 encoded AES-256 customer-supplied
-     *           encryption key.
+     *           encryption key. If you would prefer to manage encryption
+     *           utilizing the Cloud Key Management Service (KMS) please use the
+     *           $metadata['kmsKeyName'] setting.
      *     @type string $encryptionKeySHA256 Base64 encoded SHA256 hash of the
      *           customer-supplied encryption key. This value will be calculated
      *           from the `encryptionKey` on your behalf if not provided, but
@@ -318,7 +332,9 @@ class Bucket
      *     @type array $metadata The available options for metadata are outlined
      *           at the [JSON API docs](https://cloud.google.com/storage/docs/json_api/v1/objects/insert#request-body).
      *     @type string $encryptionKey A base64 encoded AES-256 customer-supplied
-     *           encryption key.
+     *           encryption key. If you would prefer to manage encryption
+     *           utilizing the Cloud Key Management Service (KMS) please use the
+     *           $metadata['kmsKeyName'] setting.
      *     @type string $encryptionKeySHA256 Base64 encoded SHA256 hash of the
      *           customer-supplied encryption key. This value will be calculated
      *           from the `encryptionKey` on your behalf if not provided, but
@@ -391,7 +407,9 @@ class Bucket
      *     @type array $metadata The available options for metadata are outlined
      *           at the [JSON API docs](https://cloud.google.com/storage/docs/json_api/v1/objects/insert#request-body).
      *     @type string $encryptionKey A base64 encoded AES-256 customer-supplied
-     *           encryption key.
+     *           encryption key. If you would prefer to manage encryption
+     *           utilizing the Cloud Key Management Service (KMS) please use the
+     *           $metadata['kmsKeyName'] setting.
      *     @type string $encryptionKeySHA256 Base64 encoded SHA256 hash of the
      *           customer-supplied encryption key. This value will be calculated
      *           from the `encryptionKey` on your behalf if not provided, but
@@ -770,12 +788,18 @@ class Bucket
      *     @type array $versioning The bucket's versioning configuration.
      *     @type array $website The bucket's website configuration.
      *     @type array $billing The bucket's billing configuration.
-     *     @type bool $billing['requesterPays'] When `true`, requests to this bucket
+     *     @type bool $billing.requesterPays When `true`, requests to this bucket
      *           and objects within it must provide a project ID to which the
      *           request will be billed.
      *     @type array $labels The Bucket labels. Labels are represented as an
      *           array of keys and values. To remove an existing label, set its
      *           value to `null`.
+     *     @type array $encryption Encryption configuration used by default for
+     *           newly inserted objects.
+     *     @type string $encryption.defaultKmsKeyName A Cloud KMS Key used to
+     *           encrypt objects uploaded into this bucket. Should be in the
+     *           format
+     *           `projects/my-project/locations/global/keyRings/my-kr/cryptoKeys/my-key`.
      * }
      * @return array
      */

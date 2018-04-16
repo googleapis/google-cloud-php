@@ -402,6 +402,9 @@ class StorageObject
      *           your behalf if not provided, but for best performance it is
      *           recommended to pass in a cached version of the already
      *           calculated SHA.
+     *     @type string $destinationKmsKeyName Name of the Cloud KMS key that
+     *           will be used to encrypt the object. Should be in the format
+     *           `projects/my-project/locations/global/keyRings/my-kr/cryptoKeys/my-key`.
      *     @type string $ifGenerationMatch Makes the operation conditional on
      *           whether the destination object's current generation matches the
      *           given value.
