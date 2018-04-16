@@ -1,0 +1,1104 @@
+<?php
+/*
+ * Copyright 2018 Google LLC
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     https://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+/*
+ * GENERATED CODE WARNING
+ * This file was generated from the file
+ * https://github.com/google/googleapis/blob/master/google/cloud/dialogflow/v2/entity_type.proto
+ * and updates to that file get reflected here through a refresh process.
+ *
+ * EXPERIMENTAL: This client library class has not yet been declared GA (1.0). This means that
+ * even though we intend the surface to be stable, we may make backwards incompatible changes
+ * if necessary.
+ *
+ * @experimental
+ */
+
+namespace Google\Cloud\Dialogflow\V2\Gapic;
+
+use Google\ApiCore\ApiException;
+use Google\ApiCore\Call;
+use Google\ApiCore\GapicClientTrait;
+use Google\ApiCore\LongRunning\OperationsClient;
+use Google\ApiCore\OperationResponse;
+use Google\ApiCore\PathTemplate;
+use Google\ApiCore\RetrySettings;
+use Google\ApiCore\Transport\TransportInterface;
+use Google\ApiCore\ValidationException;
+use Google\Auth\CredentialsLoader;
+use Google\Cloud\Dialogflow\V2\BatchCreateEntitiesRequest;
+use Google\Cloud\Dialogflow\V2\BatchDeleteEntitiesRequest;
+use Google\Cloud\Dialogflow\V2\BatchDeleteEntityTypesRequest;
+use Google\Cloud\Dialogflow\V2\BatchUpdateEntitiesRequest;
+use Google\Cloud\Dialogflow\V2\BatchUpdateEntityTypesRequest;
+use Google\Cloud\Dialogflow\V2\BatchUpdateEntityTypesResponse;
+use Google\Cloud\Dialogflow\V2\CreateEntityTypeRequest;
+use Google\Cloud\Dialogflow\V2\DeleteEntityTypeRequest;
+use Google\Cloud\Dialogflow\V2\EntityType;
+use Google\Cloud\Dialogflow\V2\EntityTypeBatch;
+use Google\Cloud\Dialogflow\V2\EntityType_Entity;
+use Google\Cloud\Dialogflow\V2\GetEntityTypeRequest;
+use Google\Cloud\Dialogflow\V2\ListEntityTypesRequest;
+use Google\Cloud\Dialogflow\V2\ListEntityTypesResponse;
+use Google\Cloud\Dialogflow\V2\UpdateEntityTypeRequest;
+use Google\LongRunning\Operation;
+use Google\Protobuf\FieldMask;
+use Google\Protobuf\GPBEmpty;
+use Google\Protobuf\Struct;
+use Grpc\Channel;
+use Grpc\ChannelCredentials;
+
+/**
+ * Service Description: Entities are extracted from user input and represent parameters that are
+ * meaningful to your application. For example, a date range, a proper name
+ * such as a geographic location or landmark, and so on. Entities represent
+ * actionable data for your application.
+ *
+ * When you define an entity, you can also include synonyms that all map to
+ * that entity. For example, "soft drink", "soda", "pop", and so on.
+ *
+ * There are three types of entities:
+ *
+ * *   **System** - entities that are defined by the Dialogflow API for common
+ *     data types such as date, time, currency, and so on. A system entity is
+ *     represented by the `EntityType` type.
+ *
+ * *   **Developer** - entities that are defined by you that represent
+ *     actionable data that is meaningful to your application. For example,
+ *     you could define a `pizza.sauce` entity for red or white pizza sauce,
+ *     a `pizza.cheese` entity for the different types of cheese on a pizza,
+ *     a `pizza.topping` entity for different toppings, and so on. A developer
+ *     entity is represented by the `EntityType` type.
+ *
+ * *   **User** - entities that are built for an individual user such as
+ *     favorites, preferences, playlists, and so on. A user entity is
+ *     represented by the [SessionEntityType][google.cloud.dialogflow.v2.SessionEntityType] type.
+ *
+ * For more information about entity types, see the
+ * [Dialogflow documentation](https://dialogflow.com/docs/entities).
+ *
+ * EXPERIMENTAL: This client library class has not yet been declared GA (1.0). This means that
+ * even though we intend the surface to be stable, we may make backwards incompatible changes
+ * if necessary.
+ *
+ * This class provides the ability to make remote calls to the backing service through method
+ * calls that map to API methods. Sample code to get started:
+ *
+ * ```
+ * $entityTypesClient = new EntityTypesClient();
+ * try {
+ *     $formattedParent = $entityTypesClient->projectAgentName('[PROJECT]');
+ *     // Iterate through all elements
+ *     $pagedResponse = $entityTypesClient->listEntityTypes($formattedParent);
+ *     foreach ($pagedResponse->iterateAllElements() as $element) {
+ *         // doSomethingWith($element);
+ *     }
+ *
+ *     // OR iterate over pages of elements
+ *     $pagedResponse = $entityTypesClient->listEntityTypes($formattedParent);
+ *     foreach ($pagedResponse->iteratePages() as $page) {
+ *         foreach ($page as $element) {
+ *             // doSomethingWith($element);
+ *         }
+ *     }
+ * } finally {
+ *     $entityTypesClient->close();
+ * }
+ * ```
+ *
+ * Many parameters require resource names to be formatted in a particular way. To assist
+ * with these names, this class includes a format method for each type of name, and additionally
+ * a parseName method to extract the individual identifiers contained within formatted names
+ * that are returned by the API.
+ *
+ * @experimental
+ */
+class EntityTypesGapicClient
+{
+    use GapicClientTrait;
+
+    /**
+     * The name of the service.
+     */
+    const SERVICE_NAME = 'google.cloud.dialogflow.v2.EntityTypes';
+
+    /**
+     * The default address of the service.
+     */
+    const SERVICE_ADDRESS = 'dialogflow.googleapis.com';
+
+    /**
+     * The default port of the service.
+     */
+    const DEFAULT_SERVICE_PORT = 443;
+
+    /**
+     * The name of the code generator, to be included in the agent header.
+     */
+    const CODEGEN_NAME = 'gapic';
+
+    /**
+     * The code generator version, to be included in the agent header.
+     */
+    const CODEGEN_VERSION = '0.0.5';
+
+    private static $projectAgentNameTemplate;
+    private static $entityTypeNameTemplate;
+    private static $pathTemplateMap;
+
+    private $operationsClient;
+
+    private static function getClientDefaults()
+    {
+        return [
+            'serviceName' => self::SERVICE_NAME,
+            'serviceAddress' => self::SERVICE_ADDRESS,
+            'port' => self::DEFAULT_SERVICE_PORT,
+            'scopes' => [
+                'https://www.googleapis.com/auth/cloud-platform',
+            ],
+            'clientConfigPath' => __DIR__.'/../resources/entity_types_client_config.json',
+            'restClientConfigPath' => __DIR__.'/../resources/entity_types_rest_client_config.php',
+            'descriptorsConfigPath' => __DIR__.'/../resources/entity_types_descriptor_config.php',
+            'versionFile' => __DIR__.'/../../VERSION',
+        ];
+    }
+
+    private static function getProjectAgentNameTemplate()
+    {
+        if (self::$projectAgentNameTemplate == null) {
+            self::$projectAgentNameTemplate = new PathTemplate('projects/{project}/agent');
+        }
+
+        return self::$projectAgentNameTemplate;
+    }
+
+    private static function getEntityTypeNameTemplate()
+    {
+        if (self::$entityTypeNameTemplate == null) {
+            self::$entityTypeNameTemplate = new PathTemplate('projects/{project}/agent/entityTypes/{entity_type}');
+        }
+
+        return self::$entityTypeNameTemplate;
+    }
+
+    private static function getPathTemplateMap()
+    {
+        if (self::$pathTemplateMap == null) {
+            self::$pathTemplateMap = [
+                'projectAgent' => self::getProjectAgentNameTemplate(),
+                'entityType' => self::getEntityTypeNameTemplate(),
+            ];
+        }
+
+        return self::$pathTemplateMap;
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent
+     * a project_agent resource.
+     *
+     * @param string $project
+     *
+     * @return string The formatted project_agent resource.
+     * @experimental
+     */
+    public static function projectAgentName($project)
+    {
+        return self::getProjectAgentNameTemplate()->render([
+            'project' => $project,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent
+     * a entity_type resource.
+     *
+     * @param string $project
+     * @param string $entityType
+     *
+     * @return string The formatted entity_type resource.
+     * @experimental
+     */
+    public static function entityTypeName($project, $entityType)
+    {
+        return self::getEntityTypeNameTemplate()->render([
+            'project' => $project,
+            'entity_type' => $entityType,
+        ]);
+    }
+
+    /**
+     * Parses a formatted name string and returns an associative array of the components in the name.
+     * The following name formats are supported:
+     * Template: Pattern
+     * - projectAgent: projects/{project}/agent
+     * - entityType: projects/{project}/agent/entityTypes/{entity_type}.
+     *
+     * The optional $template argument can be supplied to specify a particular pattern, and must
+     * match one of the templates listed above. If no $template argument is provided, or if the
+     * $template argument does not match one of the templates listed, then parseName will check
+     * each of the supported templates, and return the first match.
+     *
+     * @param string $formattedName The formatted name string
+     * @param string $template      Optional name of template to match
+     *
+     * @return array An associative array from name component IDs to component values.
+     *
+     * @throws ValidationException If $formattedName could not be matched.
+     * @experimental
+     */
+    public static function parseName($formattedName, $template = null)
+    {
+        $templateMap = self::getPathTemplateMap();
+
+        if ($template) {
+            if (!isset($templateMap[$template])) {
+                throw new ValidationException("Template name $template does not exist");
+            }
+
+            return $templateMap[$template]->match($formattedName);
+        }
+
+        foreach ($templateMap as $templateName => $pathTemplate) {
+            try {
+                return $pathTemplate->match($formattedName);
+            } catch (ValidationException $ex) {
+                // Swallow the exception to continue trying other path templates
+            }
+        }
+        throw new ValidationException("Input did not match any known format. Input: $formattedName");
+    }
+
+    /**
+     * Return an OperationsClient object with the same endpoint as $this.
+     *
+     * @return OperationsClient
+     * @experimental
+     */
+    public function getOperationsClient()
+    {
+        return $this->operationsClient;
+    }
+
+    /**
+     * Resume an existing long running operation that was previously started
+     * by a long running API method. If $methodName is not provided, or does
+     * not match a long running API method, then the operation can still be
+     * resumed, but the OperationResponse object will not deserialize the
+     * final response.
+     *
+     * @param string $operationName The name of the long running operation
+     * @param string $methodName    The name of the method used to start the operation
+     *
+     * @return OperationResponse
+     * @experimental
+     */
+    public function resumeOperation($operationName, $methodName = null)
+    {
+        $options = isset($this->descriptors[$methodName]['longRunning'])
+            ? $this->descriptors[$methodName]['longRunning']
+            : [];
+        $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
+        $operation->reload();
+
+        return $operation;
+    }
+
+    /**
+     * Constructor.
+     *
+     * @param array $options {
+     *                       Optional. Options for configuring the service API wrapper.
+     *
+     *     @type string $serviceAddress The domain name of the API remote host.
+     *                                  Default 'dialogflow.googleapis.com'.
+     *     @type mixed $port The port on which to connect to the remote host. Default 443.
+     *     @type Channel $channel
+     *           A `Channel` object. If not specified, a channel will be constructed.
+     *           NOTE: This option is only valid when utilizing the gRPC transport.
+     *     @type ChannelCredentials $sslCreds
+     *           A `ChannelCredentials` object for use with an SSL-enabled channel.
+     *           Default: a credentials object returned from
+     *           \Grpc\ChannelCredentials::createSsl().
+     *           NOTE: This option is only valid when utilizing the gRPC transport. Also, if the $channel
+     *           optional argument is specified, then this argument is unused.
+     *     @type bool $forceNewChannel
+     *           If true, this forces gRPC to create a new channel instead of using a persistent channel.
+     *           Defaults to false.
+     *           NOTE: This option is only valid when utilizing the gRPC transport. Also, if the $channel
+     *           optional argument is specified, then this option is unused.
+     *     @type CredentialsLoader $credentialsLoader
+     *           A CredentialsLoader object created using the Google\Auth library.
+     *     @type string[] $scopes A string array of scopes to use when acquiring credentials.
+     *                          Defaults to the scopes for the Dialogflow API.
+     *     @type string $clientConfigPath
+     *           Path to a JSON file containing client method configuration, including retry settings.
+     *           Specify this setting to specify the retry behavior of all methods on the client.
+     *           By default this settings points to the default client config file, which is provided
+     *           in the resources folder. The retry settings provided in this option can be overridden
+     *           by settings in $retryingOverride
+     *     @type array $retryingOverride
+     *           An associative array in which the keys are method names (e.g. 'createFoo'), and
+     *           the values are retry settings to use for that method. The retry settings for each
+     *           method can be a {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *           of retry settings parameters. See the documentation on {@see Google\ApiCore\RetrySettings}
+     *           for example usage. Passing a value of null is equivalent to a value of
+     *           ['retriesEnabled' => false]. Retry settings provided in this setting override the
+     *           settings in $clientConfigPath.
+     *     @type callable $authHttpHandler A handler used to deliver PSR-7 requests specifically
+     *           for authentication. Should match a signature of
+     *           `function (RequestInterface $request, array $options) : ResponseInterface`.
+     *     @type callable $httpHandler A handler used to deliver PSR-7 requests. Should match a
+     *           signature of `function (RequestInterface $request, array $options) : PromiseInterface`.
+     *           NOTE: This option is only valid when utilizing the REST transport.
+     *     @type string|TransportInterface $transport The transport used for executing network
+     *           requests. May be either the string `rest` or `grpc`. Additionally, it is possible
+     *           to pass in an already instantiated transport. Defaults to `grpc` if gRPC support is
+     *           detected on the system.
+     * }
+     * @experimental
+     */
+    public function __construct($options = [])
+    {
+        $options += self::getClientDefaults();
+        $this->setClientOptions($options);
+        $this->pluckArray([
+            'serviceName',
+            'clientConfigPath',
+            'descriptorsConfigPath',
+        ], $options);
+        $this->operationsClient = $this->pluck('operationsClient', $options, false)
+            ?: new OperationsClient($options);
+    }
+
+    /**
+     * Returns the list of all entity types in the specified agent.
+     *
+     * Sample code:
+     * ```
+     * $entityTypesClient = new EntityTypesClient();
+     * try {
+     *     $formattedParent = $entityTypesClient->projectAgentName('[PROJECT]');
+     *     // Iterate through all elements
+     *     $pagedResponse = $entityTypesClient->listEntityTypes($formattedParent);
+     *     foreach ($pagedResponse->iterateAllElements() as $element) {
+     *         // doSomethingWith($element);
+     *     }
+     *
+     *     // OR iterate over pages of elements
+     *     $pagedResponse = $entityTypesClient->listEntityTypes($formattedParent);
+     *     foreach ($pagedResponse->iteratePages() as $page) {
+     *         foreach ($page as $element) {
+     *             // doSomethingWith($element);
+     *         }
+     *     }
+     * } finally {
+     *     $entityTypesClient->close();
+     * }
+     * ```
+     *
+     * @param string $parent       Required. The agent to list all entity types from.
+     *                             Format: `projects/<Project ID>/agent`.
+     * @param array  $optionalArgs {
+     *                             Optional.
+     *
+     *     @type string $languageCode
+     *          Optional. The language to list entity synonyms for. If not specified,
+     *          the agent's default language is used.
+     *          [More than a dozen
+     *          languages](https://dialogflow.com/docs/reference/language) are supported.
+     *          Note: languages must be enabled in the agent, before they can be used.
+     *     @type int $pageSize
+     *          The maximum number of resources contained in the underlying API
+     *          response. The API may return fewer values in a page, even if
+     *          there are additional values to be retrieved.
+     *     @type string $pageToken
+     *          A page token is used to specify a page of values to be returned.
+     *          If no page token is specified (the default), the first page
+     *          of values will be returned. Any page token used here must have
+     *          been generated by a previous call to the API.
+     *     @type RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\PagedListResponse
+     *
+     * @throws ApiException if the remote call fails
+     * @experimental
+     */
+    public function listEntityTypes($parent, $optionalArgs = [])
+    {
+        $request = new ListEntityTypesRequest();
+        $request->setParent($parent);
+        if (isset($optionalArgs['languageCode'])) {
+            $request->setLanguageCode($optionalArgs['languageCode']);
+        }
+        if (isset($optionalArgs['pageSize'])) {
+            $request->setPageSize($optionalArgs['pageSize']);
+        }
+        if (isset($optionalArgs['pageToken'])) {
+            $request->setPageToken($optionalArgs['pageToken']);
+        }
+
+        return $this->getPagedListResponse(
+            'ListEntityTypes',
+            $optionalArgs,
+            ListEntityTypesResponse::class,
+            $request
+        );
+    }
+
+    /**
+     * Retrieves the specified entity type.
+     *
+     * Sample code:
+     * ```
+     * $entityTypesClient = new EntityTypesClient();
+     * try {
+     *     $formattedName = $entityTypesClient->entityTypeName('[PROJECT]', '[ENTITY_TYPE]');
+     *     $response = $entityTypesClient->getEntityType($formattedName);
+     * } finally {
+     *     $entityTypesClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. The name of the entity type.
+     *                             Format: `projects/<Project ID>/agent/entityTypes/<EntityType ID>`.
+     * @param array  $optionalArgs {
+     *                             Optional.
+     *
+     *     @type string $languageCode
+     *          Optional. The language to retrieve entity synonyms for. If not specified,
+     *          the agent's default language is used.
+     *          [More than a dozen
+     *          languages](https://dialogflow.com/docs/reference/language) are supported.
+     *          Note: languages must be enabled in the agent, before they can be used.
+     *     @type RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Dialogflow\V2\EntityType
+     *
+     * @throws ApiException if the remote call fails
+     * @experimental
+     */
+    public function getEntityType($name, $optionalArgs = [])
+    {
+        $request = new GetEntityTypeRequest();
+        $request->setName($name);
+        if (isset($optionalArgs['languageCode'])) {
+            $request->setLanguageCode($optionalArgs['languageCode']);
+        }
+
+        return $this->startCall(
+            'GetEntityType',
+            EntityType::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
+     * Creates an entity type in the specified agent.
+     *
+     * Sample code:
+     * ```
+     * $entityTypesClient = new EntityTypesClient();
+     * try {
+     *     $formattedParent = $entityTypesClient->projectAgentName('[PROJECT]');
+     *     $entityType = new EntityType();
+     *     $response = $entityTypesClient->createEntityType($formattedParent, $entityType);
+     * } finally {
+     *     $entityTypesClient->close();
+     * }
+     * ```
+     *
+     * @param string     $parent       Required. The agent to create a entity type for.
+     *                                 Format: `projects/<Project ID>/agent`.
+     * @param EntityType $entityType   Required. The entity type to create.
+     * @param array      $optionalArgs {
+     *                                 Optional.
+     *
+     *     @type string $languageCode
+     *          Optional. The language of entity synonyms defined in `entity_type`. If not
+     *          specified, the agent's default language is used.
+     *          [More than a dozen
+     *          languages](https://dialogflow.com/docs/reference/language) are supported.
+     *          Note: languages must be enabled in the agent, before they can be used.
+     *     @type RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Dialogflow\V2\EntityType
+     *
+     * @throws ApiException if the remote call fails
+     * @experimental
+     */
+    public function createEntityType($parent, $entityType, $optionalArgs = [])
+    {
+        $request = new CreateEntityTypeRequest();
+        $request->setParent($parent);
+        $request->setEntityType($entityType);
+        if (isset($optionalArgs['languageCode'])) {
+            $request->setLanguageCode($optionalArgs['languageCode']);
+        }
+
+        return $this->startCall(
+            'CreateEntityType',
+            EntityType::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
+     * Updates the specified entity type.
+     *
+     * Sample code:
+     * ```
+     * $entityTypesClient = new EntityTypesClient();
+     * try {
+     *     $entityType = new EntityType();
+     *     $response = $entityTypesClient->updateEntityType($entityType);
+     * } finally {
+     *     $entityTypesClient->close();
+     * }
+     * ```
+     *
+     * @param EntityType $entityType   Required. The entity type to update.
+     *                                 Format: `projects/<Project ID>/agent/entityTypes/<EntityType ID>`.
+     * @param array      $optionalArgs {
+     *                                 Optional.
+     *
+     *     @type string $languageCode
+     *          Optional. The language of entity synonyms defined in `entity_type`. If not
+     *          specified, the agent's default language is used.
+     *          [More than a dozen
+     *          languages](https://dialogflow.com/docs/reference/language) are supported.
+     *          Note: languages must be enabled in the agent, before they can be used.
+     *     @type FieldMask $updateMask
+     *          Optional. The mask to control which fields get updated.
+     *     @type RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Dialogflow\V2\EntityType
+     *
+     * @throws ApiException if the remote call fails
+     * @experimental
+     */
+    public function updateEntityType($entityType, $optionalArgs = [])
+    {
+        $request = new UpdateEntityTypeRequest();
+        $request->setEntityType($entityType);
+        if (isset($optionalArgs['languageCode'])) {
+            $request->setLanguageCode($optionalArgs['languageCode']);
+        }
+        if (isset($optionalArgs['updateMask'])) {
+            $request->setUpdateMask($optionalArgs['updateMask']);
+        }
+
+        return $this->startCall(
+            'UpdateEntityType',
+            EntityType::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
+     * Deletes the specified entity type.
+     *
+     * Sample code:
+     * ```
+     * $entityTypesClient = new EntityTypesClient();
+     * try {
+     *     $formattedName = $entityTypesClient->entityTypeName('[PROJECT]', '[ENTITY_TYPE]');
+     *     $entityTypesClient->deleteEntityType($formattedName);
+     * } finally {
+     *     $entityTypesClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. The name of the entity type to delete.
+     *                             Format: `projects/<Project ID>/agent/entityTypes/<EntityType ID>`.
+     * @param array  $optionalArgs {
+     *                             Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @throws ApiException if the remote call fails
+     * @experimental
+     */
+    public function deleteEntityType($name, $optionalArgs = [])
+    {
+        $request = new DeleteEntityTypeRequest();
+        $request->setName($name);
+
+        return $this->startCall(
+            'DeleteEntityType',
+            GPBEmpty::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
+     * Updates/Creates multiple entity types in the specified agent.
+     *
+     * Operation <response: [BatchUpdateEntityTypesResponse][google.cloud.dialogflow.v2.BatchUpdateEntityTypesResponse],
+     *            metadata: [google.protobuf.Struct][google.protobuf.Struct]>
+     *
+     * Sample code:
+     * ```
+     * $entityTypesClient = new EntityTypesClient();
+     * try {
+     *     $formattedParent = $entityTypesClient->projectAgentName('[PROJECT]');
+     *     $operationResponse = $entityTypesClient->batchUpdateEntityTypes($formattedParent);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *       $result = $operationResponse->getResult();
+     *       // doSomethingWith($result)
+     *     } else {
+     *       $error = $operationResponse->getError();
+     *       // handleError($error)
+     *     }
+     *
+     *     // OR start the operation, keep the operation name, and resume later
+     *     $operationResponse = $entityTypesClient->batchUpdateEntityTypes($formattedParent);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $entityTypesClient->resumeOperation($operationName, 'batchUpdateEntityTypes');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *       $result = $newOperationResponse->getResult();
+     *       // doSomethingWith($result)
+     *     } else {
+     *       $error = $newOperationResponse->getError();
+     *       // handleError($error)
+     *     }
+     * } finally {
+     *     $entityTypesClient->close();
+     * }
+     * ```
+     *
+     * @param string $parent       Required. The name of the agent to update or create entity types in.
+     *                             Format: `projects/<Project ID>/agent`.
+     * @param array  $optionalArgs {
+     *                             Optional.
+     *
+     *     @type string $entityTypeBatchUri
+     *          The URI to a Google Cloud Storage file containing entity types to update
+     *          or create. The file format can either be a serialized proto (of
+     *          EntityBatch type) or a JSON object. Note: The URI must start with
+     *          "gs://".
+     *     @type EntityTypeBatch $entityTypeBatchInline
+     *          The collection of entity type to update or create.
+     *     @type string $languageCode
+     *          Optional. The language of entity synonyms defined in `entity_types`. If not
+     *          specified, the agent's default language is used.
+     *          [More than a dozen
+     *          languages](https://dialogflow.com/docs/reference/language) are supported.
+     *          Note: languages must be enabled in the agent, before they can be used.
+     *     @type FieldMask $updateMask
+     *          Optional. The mask to control which fields get updated.
+     *     @type RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\OperationResponse
+     *
+     * @throws ApiException if the remote call fails
+     * @experimental
+     */
+    public function batchUpdateEntityTypes($parent, $optionalArgs = [])
+    {
+        $request = new BatchUpdateEntityTypesRequest();
+        $request->setParent($parent);
+        if (isset($optionalArgs['entityTypeBatchUri'])) {
+            $request->setEntityTypeBatchUri($optionalArgs['entityTypeBatchUri']);
+        }
+        if (isset($optionalArgs['entityTypeBatchInline'])) {
+            $request->setEntityTypeBatchInline($optionalArgs['entityTypeBatchInline']);
+        }
+        if (isset($optionalArgs['languageCode'])) {
+            $request->setLanguageCode($optionalArgs['languageCode']);
+        }
+        if (isset($optionalArgs['updateMask'])) {
+            $request->setUpdateMask($optionalArgs['updateMask']);
+        }
+
+        return $this->startOperationsCall(
+            'BatchUpdateEntityTypes',
+            $optionalArgs,
+            $request,
+            $this->getOperationsClient()
+        )->wait();
+    }
+
+    /**
+     * Deletes entity types in the specified agent.
+     *
+     * Operation <response: [google.protobuf.Empty][google.protobuf.Empty],
+     *            metadata: [google.protobuf.Struct][google.protobuf.Struct]>
+     *
+     * Sample code:
+     * ```
+     * $entityTypesClient = new EntityTypesClient();
+     * try {
+     *     $formattedParent = $entityTypesClient->projectAgentName('[PROJECT]');
+     *     $entityTypeNames = [];
+     *     $operationResponse = $entityTypesClient->batchDeleteEntityTypes($formattedParent, $entityTypeNames);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *       // operation succeeded and returns no value
+     *     } else {
+     *       $error = $operationResponse->getError();
+     *       // handleError($error)
+     *     }
+     *
+     *     // OR start the operation, keep the operation name, and resume later
+     *     $operationResponse = $entityTypesClient->batchDeleteEntityTypes($formattedParent, $entityTypeNames);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $entityTypesClient->resumeOperation($operationName, 'batchDeleteEntityTypes');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *       // operation succeeded and returns no value
+     *     } else {
+     *       $error = $newOperationResponse->getError();
+     *       // handleError($error)
+     *     }
+     * } finally {
+     *     $entityTypesClient->close();
+     * }
+     * ```
+     *
+     * @param string   $parent          Required. The name of the agent to delete all entities types for. Format:
+     *                                  `projects/<Project ID>/agent`.
+     * @param string[] $entityTypeNames Required. The names entity types to delete. All names must point to the
+     *                                  same agent as `parent`.
+     * @param array    $optionalArgs    {
+     *                                  Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\OperationResponse
+     *
+     * @throws ApiException if the remote call fails
+     * @experimental
+     */
+    public function batchDeleteEntityTypes($parent, $entityTypeNames, $optionalArgs = [])
+    {
+        $request = new BatchDeleteEntityTypesRequest();
+        $request->setParent($parent);
+        $request->setEntityTypeNames($entityTypeNames);
+
+        return $this->startOperationsCall(
+            'BatchDeleteEntityTypes',
+            $optionalArgs,
+            $request,
+            $this->getOperationsClient()
+        )->wait();
+    }
+
+    /**
+     * Creates multiple new entities in the specified entity type (extends the
+     * existing collection of entries).
+     *
+     * Operation <response: [google.protobuf.Empty][google.protobuf.Empty]>
+     *
+     * Sample code:
+     * ```
+     * $entityTypesClient = new EntityTypesClient();
+     * try {
+     *     $formattedParent = $entityTypesClient->entityTypeName('[PROJECT]', '[ENTITY_TYPE]');
+     *     $entities = [];
+     *     $operationResponse = $entityTypesClient->batchCreateEntities($formattedParent, $entities);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *       // operation succeeded and returns no value
+     *     } else {
+     *       $error = $operationResponse->getError();
+     *       // handleError($error)
+     *     }
+     *
+     *     // OR start the operation, keep the operation name, and resume later
+     *     $operationResponse = $entityTypesClient->batchCreateEntities($formattedParent, $entities);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $entityTypesClient->resumeOperation($operationName, 'batchCreateEntities');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *       // operation succeeded and returns no value
+     *     } else {
+     *       $error = $newOperationResponse->getError();
+     *       // handleError($error)
+     *     }
+     * } finally {
+     *     $entityTypesClient->close();
+     * }
+     * ```
+     *
+     * @param string              $parent       Required. The name of the entity type to create entities in. Format:
+     *                                          `projects/<Project ID>/agent/entityTypes/<Entity Type ID>`.
+     * @param EntityType_Entity[] $entities     Required. The collection of entities to create.
+     * @param array               $optionalArgs {
+     *                                          Optional.
+     *
+     *     @type string $languageCode
+     *          Optional. The language of entity synonyms defined in `entities`. If not
+     *          specified, the agent's default language is used.
+     *          [More than a dozen
+     *          languages](https://dialogflow.com/docs/reference/language) are supported.
+     *          Note: languages must be enabled in the agent, before they can be used.
+     *     @type RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\OperationResponse
+     *
+     * @throws ApiException if the remote call fails
+     * @experimental
+     */
+    public function batchCreateEntities($parent, $entities, $optionalArgs = [])
+    {
+        $request = new BatchCreateEntitiesRequest();
+        $request->setParent($parent);
+        $request->setEntities($entities);
+        if (isset($optionalArgs['languageCode'])) {
+            $request->setLanguageCode($optionalArgs['languageCode']);
+        }
+
+        return $this->startOperationsCall(
+            'BatchCreateEntities',
+            $optionalArgs,
+            $request,
+            $this->getOperationsClient()
+        )->wait();
+    }
+
+    /**
+     * Updates entities in the specified entity type (replaces the existing
+     * collection of entries).
+     *
+     * Operation <response: [google.protobuf.Empty][google.protobuf.Empty],
+     *            metadata: [google.protobuf.Struct][google.protobuf.Struct]>
+     *
+     * Sample code:
+     * ```
+     * $entityTypesClient = new EntityTypesClient();
+     * try {
+     *     $formattedParent = $entityTypesClient->entityTypeName('[PROJECT]', '[ENTITY_TYPE]');
+     *     $entities = [];
+     *     $operationResponse = $entityTypesClient->batchUpdateEntities($formattedParent, $entities);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *       // operation succeeded and returns no value
+     *     } else {
+     *       $error = $operationResponse->getError();
+     *       // handleError($error)
+     *     }
+     *
+     *     // OR start the operation, keep the operation name, and resume later
+     *     $operationResponse = $entityTypesClient->batchUpdateEntities($formattedParent, $entities);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $entityTypesClient->resumeOperation($operationName, 'batchUpdateEntities');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *       // operation succeeded and returns no value
+     *     } else {
+     *       $error = $newOperationResponse->getError();
+     *       // handleError($error)
+     *     }
+     * } finally {
+     *     $entityTypesClient->close();
+     * }
+     * ```
+     *
+     * @param string              $parent       Required. The name of the entity type to update the entities in. Format:
+     *                                          `projects/<Project ID>/agent/entityTypes/<Entity Type ID>`.
+     * @param EntityType_Entity[] $entities     Required. The collection of new entities to replace the existing entities.
+     * @param array               $optionalArgs {
+     *                                          Optional.
+     *
+     *     @type string $languageCode
+     *          Optional. The language of entity synonyms defined in `entities`. If not
+     *          specified, the agent's default language is used.
+     *          [More than a dozen
+     *          languages](https://dialogflow.com/docs/reference/language) are supported.
+     *          Note: languages must be enabled in the agent, before they can be used.
+     *     @type FieldMask $updateMask
+     *          Optional. The mask to control which fields get updated.
+     *     @type RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\OperationResponse
+     *
+     * @throws ApiException if the remote call fails
+     * @experimental
+     */
+    public function batchUpdateEntities($parent, $entities, $optionalArgs = [])
+    {
+        $request = new BatchUpdateEntitiesRequest();
+        $request->setParent($parent);
+        $request->setEntities($entities);
+        if (isset($optionalArgs['languageCode'])) {
+            $request->setLanguageCode($optionalArgs['languageCode']);
+        }
+        if (isset($optionalArgs['updateMask'])) {
+            $request->setUpdateMask($optionalArgs['updateMask']);
+        }
+
+        return $this->startOperationsCall(
+            'BatchUpdateEntities',
+            $optionalArgs,
+            $request,
+            $this->getOperationsClient()
+        )->wait();
+    }
+
+    /**
+     * Deletes entities in the specified entity type.
+     *
+     * Operation <response: [google.protobuf.Empty][google.protobuf.Empty],
+     *            metadata: [google.protobuf.Struct][google.protobuf.Struct]>
+     *
+     * Sample code:
+     * ```
+     * $entityTypesClient = new EntityTypesClient();
+     * try {
+     *     $formattedParent = $entityTypesClient->entityTypeName('[PROJECT]', '[ENTITY_TYPE]');
+     *     $entityValues = [];
+     *     $operationResponse = $entityTypesClient->batchDeleteEntities($formattedParent, $entityValues);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *       // operation succeeded and returns no value
+     *     } else {
+     *       $error = $operationResponse->getError();
+     *       // handleError($error)
+     *     }
+     *
+     *     // OR start the operation, keep the operation name, and resume later
+     *     $operationResponse = $entityTypesClient->batchDeleteEntities($formattedParent, $entityValues);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $entityTypesClient->resumeOperation($operationName, 'batchDeleteEntities');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *       // operation succeeded and returns no value
+     *     } else {
+     *       $error = $newOperationResponse->getError();
+     *       // handleError($error)
+     *     }
+     * } finally {
+     *     $entityTypesClient->close();
+     * }
+     * ```
+     *
+     * @param string   $parent       Required. The name of the entity type to delete entries for. Format:
+     *                               `projects/<Project ID>/agent/entityTypes/<Entity Type ID>`.
+     * @param string[] $entityValues Required. The canonical `values` of the entities to delete. Note that
+     *                               these are not fully-qualified names, i.e. they don't start with
+     *                               `projects/<Project ID>`.
+     * @param array    $optionalArgs {
+     *                               Optional.
+     *
+     *     @type string $languageCode
+     *          Optional. The language of entity synonyms defined in `entities`. If not
+     *          specified, the agent's default language is used.
+     *          [More than a dozen
+     *          languages](https://dialogflow.com/docs/reference/language) are supported.
+     *          Note: languages must be enabled in the agent, before they can be used.
+     *     @type RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\OperationResponse
+     *
+     * @throws ApiException if the remote call fails
+     * @experimental
+     */
+    public function batchDeleteEntities($parent, $entityValues, $optionalArgs = [])
+    {
+        $request = new BatchDeleteEntitiesRequest();
+        $request->setParent($parent);
+        $request->setEntityValues($entityValues);
+        if (isset($optionalArgs['languageCode'])) {
+            $request->setLanguageCode($optionalArgs['languageCode']);
+        }
+
+        return $this->startOperationsCall(
+            'BatchDeleteEntities',
+            $optionalArgs,
+            $request,
+            $this->getOperationsClient()
+        )->wait();
+    }
+}

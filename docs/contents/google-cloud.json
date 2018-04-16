@@ -15,6 +15,7 @@
         "cloud-dataproc",
         "cloud-datastore",
         "cloud-debugger",
+        "cloud-dialogflow",
         "cloud-dlp",
         "cloud-error-reporting",
         "cloud-firestore",
