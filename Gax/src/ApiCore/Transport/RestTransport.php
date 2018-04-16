@@ -156,15 +156,22 @@ class RestTransport implements TransportInterface
         return $callOptions;
     }
 
+    /**
+     * @param \Exception $ex
+     * @return ApiException
+     */
     private function convertToApiException(\Exception $ex)
     {
-        $res = (string) $ex->getResponse()->getBody();
-        $rObj = (object) json_decode($res, true)['error'];
-        // Overwrite the HTTP Status Code with the RPC code, derived from the "status" field.
-        $rObj->code = ApiStatus::rpcCodeFromStatus($rObj->status);
-        $rObj->metadata = property_exists($rObj, 'details') ? $rObj->details : null;
-        $rObj->details = $rObj->message;
-
-        return ApiException::createFromStdClass($rObj);
+        $res = $ex->getResponse();
+        $body = (string) $res->getBody();
+        if ($error = json_decode($body, true)['error']) {
+            $basicMessage = $error['message'];
+            $code = ApiStatus::rpcCodeFromStatus($error['status']);
+            $metadata = isset($error['details']) ? $error['details'] : null;
+            return ApiException::createFromApiResponse($basicMessage, $code, $metadata);
+        }
+        // Use the RPC code instead of the HTTP Status Code.
+        $code = ApiStatus::rpcCodeFromHttpStatusCode($res->getStatusCode());
+        return ApiException::createFromApiResponse($body, $code);
     }
 }
