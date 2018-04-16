@@ -19,6 +19,7 @@ namespace Google\Cloud\Dev\ComponentIntegration\Command;
 
 use Google\Cloud\Dev\GetComponentsTrait;
 use GuzzleHttp\Client;
+use GuzzleHttp\Exception\RequestException;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
@@ -179,7 +180,11 @@ class ComponentIntegration extends Command
             $uri .= '?access_token='. getenv('GH_OAUTH_TOKEN');
         }
 
-        $res = $guzzle->get($uri);
+        try {
+            $res = $guzzle->get($uri);
+        } catch (RequestException $e) {
+            return '0.0.0';
+        }
 
         $release = json_decode((string) $res->getBody(), true);
 
@@ -212,7 +217,11 @@ class ComponentIntegration extends Command
             $composerFile = $component['tmpDir'] . DIRECTORY_SEPARATOR .'composer.json';
             $composer = json_decode(file_get_contents($composerFile), true);
             if (json_last_error() !== JSON_ERROR_NONE) {
-                throw new \RuntimeException('Could not decode composer file '. $composerFile);
+                throw new \RuntimeException(sprintf(
+                    'Could not decode composer file %s. Got error %s',
+                    $composerFile,
+                    json_last_error_msg()
+                ));
             }
 
             foreach ($aliases as $alias) {
