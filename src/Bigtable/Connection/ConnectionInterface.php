@@ -22,6 +22,189 @@ namespace Google\Cloud\Bigtable;
 */
 interface ConnectionInterface
 {
-    //place holder interface which will be extended by other connection interface
 
+    /**
+    * @param array $args
+    */
+    public function CreateInstance(array $args);
+
+    /**
+    * @param array $args
+    */
+    public function GetInstance(array $args);
+
+    /**
+    * @param array $args
+    */
+    public function ListInstances(array $args);
+
+    /**
+    * @param array $args
+    */
+    public function UpdateInstance(array $args);
+
+    /**
+    * @param array $args
+    */
+    public function PartialUpdateInstance(array $args);
+
+    /**
+    * @param array $args
+    */
+    public function DeleteInstance(array $args);
+
+    /**
+    * @param array $args
+    */
+    public function CreateCluster(array $args);
+
+    /**
+    * @param array $args
+    */
+    public function GetCluster(array $args);
+
+    /**
+    * @param array $args
+    */
+    public function ListClusters(array $args);
+
+    /**
+    * @param array $args
+    */
+    public function UpdateCluster(array $args);
+
+    /**
+    * @param array $args
+    */
+    public function DeleteCluster(array $args);
+
+    /**
+    * @param array $args
+    */
+    public function CreateAppProfile(array $args);
+
+    /**
+    * @param array $args
+    */
+    public function GetAppProfile(array $args);
+
+    /**
+    * @param array $args
+    */
+    public function ListAppProfiles(array $args);
+
+    /**
+    * @param array $args
+    */
+    public function UpdateAppProfile(array $args);
+
+    /**
+    * @param array $args
+    */
+    public function DeleteAppProfile(array $args);
+
+    /**
+    * @param array $args
+    */
+    public function GetIamPolicy(array $args);
+
+    /**
+    * @param array $args
+    */
+    public function SetIamPolicy(array $args);
+    
+    /**
+    * @param array $args
+    */
+    public function CreateTable(array $args);
+    
+    /**
+    * @param array $args
+    */
+    public function CreateTableFromSnapshot(array $args);
+    
+    /**
+    * @param array $args
+    */
+    public function ListTables(array $args);
+    
+    /**
+    * @param array $args
+    */
+    public function GetTable(array $args);
+
+    /**
+    * @param array $args
+    */
+    public function DeleteTable(array $args);
+
+    /**
+    * @param array $args
+    */
+    public function ModifyColumnFamilies(array $args);
+
+    /**
+    * @param array $args
+    */
+    public function DropRowRange(array $args);
+
+    /**
+    * @param array $args
+    */
+    public function GenerateConsistencyToken(array $args);
+
+    /**
+    * @param array $args
+    */
+    public function CheckConsistency(array $args);
+
+    /**
+    * @param array $args
+    */
+    public function SnapshotTable(array $args);
+
+    /**
+    * @param array $args
+    */
+    public function GetSnapshot(array $args);
+
+    /**
+    * @param array $args
+    */
+    public function ListSnapshots(array $args);
+
+    /**
+    * @param array $args
+    */
+    public function DeleteSnapshot(array $args);
+
+    /**
+    * @param array $args
+    */
+    public function ReadRows(array $args);
+
+    /**
+    * @param array $args
+    */
+    public function SampleRowKeys(array $args);
+
+    /**
+    * @param array $args
+    */
+    public function MutateRow(array $args);
+    
+    /**
+    * @param array $args
+    */
+    public function MutateRows(array $args);
+    
+    /**
+    * @param array $args
+    */
+    public function CheckAndMutateRow(array $args);
+
+    /**
+    * @param array $args
+    */
+    public function ReadModifyWriteRow(array $args);
 }
