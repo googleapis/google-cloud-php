@@ -223,6 +223,29 @@ class RequestBuilderTest extends TestCase
         $this->assertEquals('some-value', $query['string_value']);
     }
 
+    public function testMethodWithoutPlaceholders()
+    {
+        if (extension_loaded('protobuf')) {
+            $this->markTestSkipped('This is currently broken for the protobuf extension');
+        }
+
+        $stringValue = (new StringValue)
+            ->setValue('some-value');
+
+        $fieldMask = (new FieldMask)
+            ->setPaths(['path1', 'path2']);
+
+        $message = (new MockRequestBody())
+            ->setStringValue($stringValue)
+            ->setFieldMask($fieldMask);
+
+        $request = $this->builder->build(self::SERVICE_NAME . '/MethodWithoutPlaceholders', $message);
+
+        parse_str($request->getUri()->getQuery(), $query);
+        $this->assertEquals('path1,path2', $query['field_mask']);
+        $this->assertEquals('some-value', $query['string_value']);
+    }
+
     /**
      * @expectedException \Google\ApiCore\ValidationException
      * @expectedExceptionMessage Could not map bindings for test.interface.v1.api/MethodWithAdditionalBindings to any Uri template.
