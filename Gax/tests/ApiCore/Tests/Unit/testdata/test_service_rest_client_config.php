@@ -124,6 +124,10 @@ return [
                 'uriTemplate' => '/v1/special/mapping',
                 'placeholders' => []
             ],
+            'MethodWithoutPlaceholders' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/fixedurl',
+            ],
         ],
     ],
 ];

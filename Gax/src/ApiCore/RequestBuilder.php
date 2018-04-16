@@ -77,7 +77,11 @@ class RequestBuilder
             );
         }
 
-        $methodConfig = $this->restConfig['interfaces'][$interface][$method];
+        $methodConfig = $this->restConfig['interfaces'][$interface][$method] + [
+            'placeholders' => [],
+            'body' => null,
+            'additionalBindings' => null,
+        ];
         $bindings = $this->buildBindings($methodConfig['placeholders'], $message);
         $uriTemplateConfigs = $this->getConfigsForUriTemplates($methodConfig);
 
@@ -118,17 +122,11 @@ class RequestBuilder
      */
     private function getConfigsForUriTemplates($config)
     {
-        $configWithDefaults = $config + [
-            'placeholders' => [],
-            'body' => null,
-            'additionalBindings' => null,
-        ];
+        $configs = [$config];
 
-        $configs = [$configWithDefaults];
-
-        if ($configWithDefaults['additionalBindings']) {
-            foreach ($configWithDefaults['additionalBindings'] as $additionalBinding) {
-                $configs[] = $additionalBinding + $configWithDefaults;
+        if ($config['additionalBindings']) {
+            foreach ($config['additionalBindings'] as $additionalBinding) {
+                $configs[] = $additionalBinding + $config;
             }
         }
 
