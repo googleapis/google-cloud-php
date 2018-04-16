@@ -30,8 +30,8 @@ class KmsTest extends StorageTestCase
 {
     const DATA = 'data';
     const KEY_RING_ID = 'kms-kr';
-    const KEY_NAME_1 = 'key1';
-    const KEY_NAME_2 = 'key2';
+    const CRYPTO_KEY_ID_1 = 'key1';
+    const CRYPTO_KEY_ID_2 = 'key2';
 
     private static $keyName1;
     private static $keyName2;
@@ -41,8 +41,8 @@ class KmsTest extends StorageTestCase
         parent::setUpBeforeClass();
         list(self::$keyName1, self::$keyName2) = self::getKeyNames(
             self::KEY_RING_ID,
-            self::KEY_NAME_1,
-            self::KEY_NAME_2
+            self::CRYPTO_KEY_ID_1,
+            self::CRYPTO_KEY_ID_2
         );
     }
 
