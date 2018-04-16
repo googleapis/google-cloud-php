@@ -85,20 +85,23 @@ class Agent
      *            **Defaults to** the directory of the calling file.
      *      @type LoggerInterface $logger PSR-3 compliant logger used to write
      *            logpoint records. **Defaults to** a new Stackdriver logger.
+     *      @type array $daemonOptions Additional options to provide to the
+     *            Daemon when registering.
      * }
      */
     public function __construct(array $options = [])
     {
-        $storage = isset($options['storage'])
-            ? $options['storage']
-            : $this->defaultStorage();
-
-        $this->sourceRoot = isset($options['sourceRoot'])
-            ? $options['sourceRoot']
-            : dirname(debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS, 1)[0]['file']);
+        $options += [
+            'daemonOptions' => [],
+            'storage' => null,
+            'sourceRoot' => null
+        ];
+        $storage = $options['storage'] ?: $this->defaultStorage();
+        $this->sourceRoot = $options['sourceRoot']
+            ?: dirname(debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS, 1)[0]['file']);
 
         if ($this->shouldStartDaemon()) {
-            $daemon = new Daemon([
+            $daemon = new Daemon($options['daemonOptions'] + [
                 'sourceRoot' => $this->sourceRoot,
                 'storage' => $storage,
                 'register' => true
