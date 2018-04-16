@@ -142,4 +142,29 @@ class RestTransportTest extends TestCase
             ->startUnaryCall($this->call, [])
             ->wait();
     }
+
+    /**
+     * @expectedException \Google\ApiCore\ApiException
+     * @expectedExceptionMessage <html><body>This is an HTML response<\/body><\/html>
+     * @expectedExceptionCode 5
+     */
+    public function testNonJsonResponseException()
+    {
+        $httpHandler = function (RequestInterface $request, array $options = []) {
+            return Promise\rejection_for(
+                RequestException::create(
+                    new Request('POST', 'http://www.example.com'),
+                    new Response(
+                        404,
+                        [],
+                        "<html><body>This is an HTML response</body></html>"
+                    )
+                )
+            );
+        };
+
+        $this->getTransport($httpHandler)
+            ->startUnaryCall($this->call, [])
+            ->wait();
+    }
 }
