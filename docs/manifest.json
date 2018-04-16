@@ -11,6 +11,7 @@
             "name": "google/cloud",
             "defaultService": "servicebuilder",
             "versions": [
+                "v0.61.0",
                 "v0.60.0",
                 "v0.59.0",
                 "v0.58.1",
@@ -122,6 +123,7 @@
             "name": "google/cloud-bigquerydatatransfer",
             "defaultService": "bigquerydatatransfer/readme",
             "versions": [
+                "v0.4.0",
                 "v0.3.3",
                 "v0.3.2",
                 "v0.3.1",
@@ -168,6 +170,7 @@
             "name": "google/cloud-core",
             "defaultService": "core/servicebuilder",
             "versions": [
+                "v1.19.2",
                 "v1.19.1",
                 "v1.19.0",
                 "v1.18.0",
@@ -274,6 +277,7 @@
             "name": "google/cloud-dlp",
             "defaultService": "dlp/readme",
             "versions": [
+                "v0.8.0",
                 "v0.7.2",
                 "v0.7.1",
                 "v0.7.0",
