@@ -62,8 +62,12 @@ class AgentTest extends TestCase
 
     public function testSpecifyStorage()
     {
+        $logger = $this->prophesize(LoggerInterface::class);
         $this->storage->load()->willReturn(['debuggeeId', []])->shouldBeCalled();
-        $agent = new Agent(['storage' => $this->storage->reveal()]);
+        $agent = new Agent([
+            'storage' => $this->storage->reveal(),
+            'logger' => $logger->reveal()
+        ]);
     }
 
     public function testSpecifyLogger()
@@ -79,9 +83,6 @@ class AgentTest extends TestCase
         $agent->handleLogpoint('INFO', 'message', ['context' => 'value']);
     }
 
-    /**
-     * @group focus
-     */
     public function testDaemonOptions()
     {
         putenv('IS_BATCH_DAEMON_RUNNING=true');
