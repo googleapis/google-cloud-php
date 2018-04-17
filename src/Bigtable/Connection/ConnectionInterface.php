@@ -18,187 +18,187 @@
 namespace Google\Cloud\Bigtable\Connection;
 
 /**
-* Represents a connection to Cloud Bigtable.
-*/
+ * Represents a connection to Cloud Bigtable.
+ */
 interface ConnectionInterface
 {
     /**
-    * @param array $args
-    */
+     * @param array $args
+     */
     public function createInstance(array $args);
 
     /**
-    * @param array $args
-    */
+     * @param array $args
+     */
     public function getInstance(array $args);
 
     /**
-    * @param array $args
-    */
+     * @param array $args
+     */
     public function listInstances(array $args);
 
     /**
-    * @param array $args
-    */
+     * @param array $args
+     */
     public function updateInstance(array $args);
 
     /**
-    * @param array $args
-    */
+     * @param array $args
+     */
     public function deleteInstance(array $args);
 
     /**
-    * @param array $args
-    */
+     * @param array $args
+     */
     public function createCluster(array $args);
 
     /**
-    * @param array $args
-    */
+     * @param array $args
+     */
     public function getCluster(array $args);
 
     /**
-    * @param array $args
-    */
+     * @param array $args
+     */
     public function listClusters(array $args);
 
     /**
-    * @param array $args
-    */
+     * @param array $args
+     */
     public function updateCluster(array $args);
 
     /**
-    * @param array $args
-    */
+     * @param array $args
+     */
     public function deleteCluster(array $args);
 
     /**
-    * @param array $args
-    */
+     * @param array $args
+     */
     public function createAppProfile(array $args);
 
     /**
-    * @param array $args
-    */
+     * @param array $args
+     */
     public function getAppProfile(array $args);
 
     /**
-    * @param array $args
-    */
+     * @param array $args
+     */
     public function listAppProfiles(array $args);
 
     /**
-    * @param array $args
-    */
+     * @param array $args
+     */
     public function updateAppProfile(array $args);
 
     /**
-    * @param array $args
-    */
+     * @param array $args
+     */
     public function deleteAppProfile(array $args);
 
     /**
-    * @param array $args
-    */
+     * @param array $args
+     */
     public function getIamPolicy(array $args);
 
     /**
-    * @param array $args
-    */
+     * @param array $args
+     */
     public function setIamPolicy(array $args);
 
     /**
-    * @param array $args
-    */
+     * @param array $args
+     */
     public function createTable(array $args);
 
     /**
-    * @param array $args
-    */
+     * @param array $args
+     */
     public function createTableFromSnapshot(array $args);
 
     /**
-    * @param array $args
-    */
+     * @param array $args
+     */
     public function listTables(array $args);
 
     /**
-    * @param array $args
-    */
+     * @param array $args
+     */
     public function getTable(array $args);
 
     /**
-    * @param array $args
-    */
+     * @param array $args
+     */
     public function deleteTable(array $args);
 
     /**
-    * @param array $args
-    */
+     * @param array $args
+     */
     public function modifyColumnFamilies(array $args);
 
     /**
-    * @param array $args
-    */
+     * @param array $args
+     */
     public function dropRowRange(array $args);
 
     /**
-    * @param array $args
-    */
+     * @param array $args
+     */
     public function waitForReplication(array $args);
 
     /**
-    * @param array $args
-    */
+     * @param array $args
+     */
     public function snapshotTable(array $args);
 
     /**
-    * @param array $args
-    */
+     * @param array $args
+     */
     public function getSnapshot(array $args);
 
     /**
-    * @param array $args
-    */
+     * @param array $args
+     */
     public function listSnapshots(array $args);
 
     /**
-    * @param array $args
-    */
+     * @param array $args
+     */
     public function deleteSnapshot(array $args);
 
     /**
-    * @param array $args
-    */
+     * @param array $args
+     */
     public function readRow(array $args);
 
     /**
-    * @param array $args
-    */
+     * @param array $args
+     */
     public function readRows(array $args);
-
+    
     /**
-    * @param array $args
-    */
+     * @param array $args
+     */
     public function sampleRowKeys(array $args);
 
     /**
-    * @param array $args
-    */
+     * @param array $args
+     */
     public function mutateRow(array $args);
 
     /**
-    * @param array $args
-    */
+     * @param array $args
+     */
     public function mutateRows(array $args);
 
     /**
-    * @param array $args
-    */
+     * @param array $args
+     */
     public function checkAndMutateRow(array $args);
 
     /**
-    * @param array $args
-    */
+     * @param array $args
+     */
     public function readModifyWriteRow(array $args);
 }
