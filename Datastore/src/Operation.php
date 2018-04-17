@@ -21,7 +21,6 @@ use Google\Cloud\Core\ValidateTrait;
 use Google\Cloud\Datastore\Connection\ConnectionInterface;
 use Google\Cloud\Datastore\Connection\Rest;
 use Google\Cloud\Datastore\Query\QueryInterface;
-use InvalidArgumentException;
 
 /**
  * Run lookups and queries and commit changes.
@@ -193,7 +192,7 @@ class Operation
      *
      * @see https://cloud.google.com/datastore/reference/rest/v1/Entity Entity
      *
-     * @param Key|string $key [optional] The key used to identify the record, or
+     * @param Key|string|null $key [optional] The key used to identify the record, or
      *        a string $kind. The key may be null only if the entity will be
      *        used as an embedded entity within another entity. Attempting to
      *        use keyless entities as root entities will result in error.
@@ -208,7 +207,7 @@ class Operation
      *     @type array $excludeFromIndexes A list of entity keys to exclude from
      *           datastore indexes.
      * }
-     * @return mixed
+     * @return EntityInterface
      * @throws InvalidArgumentException
      */
     public function entity($key = null, array $entity = [], array $options = [])
@@ -218,7 +217,7 @@ class Operation
         ];
 
         if ($key && !is_string($key) && !($key instanceof Key)) {
-            throw new InvalidArgumentException(
+            throw new \InvalidArgumentException(
                 '$key must be an instance of Key or a string'
             );
         }
@@ -229,7 +228,7 @@ class Operation
 
         $className = $options['className'];
         if (!is_null($className) && !is_subclass_of($className, EntityInterface::class)) {
-            throw new InvalidArgumentException(sprintf(
+            throw new \InvalidArgumentException(sprintf(
                 'Given classname %s must implement EntityInterface',
                 $className
             ));
@@ -239,7 +238,7 @@ class Operation
             $className = Entity::class;
         }
 
-        return $className::factory($key, $entity, $options);
+        return $className::build($key, $entity, $options);
     }
 
     /**
@@ -283,7 +282,7 @@ class Operation
         // @todo replace with json schema
         $this->validateBatch($keys, Key::class, function ($key) {
             if ($key->state() !== Key::STATE_INCOMPLETE) {
-                throw new InvalidArgumentException(sprintf(
+                throw new \InvalidArgumentException(sprintf(
                     'Given $key is in an invalid state. Can only allocate IDs for incomplete keys. ' .
                     'Given path was %s',
                     (string) $key
@@ -291,7 +290,7 @@ class Operation
             }
 
             if (!isset($key->pathEnd()['kind'])) {
-                throw new InvalidArgumentException(sprintf(
+                throw new \InvalidArgumentException(sprintf(
                     'Cannot allocate IDs because a path element was missing a kind. ' .
                     'This usually means a key was created but no path elements were defined. ' .
                     'Given path was %s',
@@ -362,7 +361,7 @@ class Operation
         $serviceKeys = [];
         $this->validateBatch($keys, Key::class, function ($key) use (&$serviceKeys) {
             if ($key->state() !== Key::STATE_NAMED) {
-                throw new InvalidArgumentException(sprintf(
+                throw new \InvalidArgumentException(sprintf(
                     'Given $key is in an invalid state. Can only lookup records when given a complete key. ' .
                     'Given path was %s',
                     (string) $key
@@ -568,7 +567,7 @@ class Operation
         } elseif ($input instanceof Key) {
             $data = $input->keyObject();
         } else {
-            throw new InvalidArgumentException(sprintf(
+            throw new \InvalidArgumentException(sprintf(
                 'Input must be a Key or Entity, %s given',
                 get_class($input)
             ));
@@ -609,7 +608,7 @@ class Operation
 
         foreach ($entities as $entity) {
             if (!$entity->populatedByService() && !$allowOverwrite) {
-                throw new InvalidArgumentException(sprintf(
+                throw new \InvalidArgumentException(sprintf(
                     'Given entity cannot be saved because it may overwrite an '.
                     'existing record. When updating manually created entities, '.
                     'please set the options `$allowOverwrite` flag to `true`. '.
@@ -650,7 +649,7 @@ class Operation
         if (is_array($class)) {
             $lastPathElement = $key->pathEnd();
             if (!array_key_exists($lastPathElement['kind'], $class)) {
-                throw new InvalidArgumentException(sprintf(
+                throw new \InvalidArgumentException(sprintf(
                     'No class found for kind %s',
                     $lastPathElement['kind']
                 ));

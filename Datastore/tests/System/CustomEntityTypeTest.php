@@ -15,12 +15,12 @@
  * limitations under the License.
  */
 
-namespace Google\Cloud\Tests\System\Datastore;
+namespace Google\Cloud\Datastore\Tests\System;
 
-use Google\Cloud\Tests\System\Datastore\Entities\Kingdom;
-use Google\Cloud\Tests\System\Datastore\Entities\Person;
-use Google\Cloud\Tests\System\Datastore\Entities\Pet;
-use Google\Cloud\Tests\System\Datastore\Entities\Species;
+use Google\Cloud\Datastore\Tests\System\Entities\Kingdom;
+use Google\Cloud\Datastore\Tests\System\Entities\Person;
+use Google\Cloud\Datastore\Tests\System\Entities\Pet;
+use Google\Cloud\Datastore\Tests\System\Entities\Species;
 
 /**
  * @group datastore
@@ -34,18 +34,24 @@ class CustomEntityTypeTest extends DatastoreTestCase
         $id = uniqid('MyDog');
         $key = $datastore->key('Pet', $id);
 
+        $owner = $datastore->entity(null, [
+            'name' => 'Kate'
+        ], ['className' => Person::class]);
+
+        $kingdom = $datastore->entity(null, [
+            'name' => 'Animalia'
+        ], ['className' => Kingdom::class]);
+
+        $species = $datastore->entity(null, [
+            'name' => 'C. lupus',
+            'kingdom' => $kingdom
+        ], ['className' => Species::class]);
+
         $myDog = $datastore->entity($key, [
             'name' => 'Scout',
             'age' => 10,
-            'owner' => $datastore->entity(null, [
-                'name' => 'Kate'
-            ], ['className' => Person::class]),
-            'species' => $datastore->entity(null, [
-                'name' => 'C. lupus',
-                'kingdom' => $datastore->entity(null, [
-                    'name' => 'Animalia'
-                ], ['className' => Kingdom::class])
-            ], ['className' => Species::class])
+            'owner' => $owner,
+            'species' => $species
         ], ['className' => Pet::class]);
 
         $datastore->insert($myDog);

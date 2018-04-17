@@ -210,6 +210,32 @@ class EntityMapperTest extends TestCase
         $this->assertEquals('baz', $res['foo']->get()['bar']);
     }
 
+    public function testResponseToPropertiesEntityValueCustomTypeNestedPropertyUsesDefaultType()
+    {
+        $data = [
+            'foo' => [
+                'entityValue' => [
+                    'properties' => [
+                        'bar' => [
+                            'entityValue' => [
+                                'properties' => [
+                                    'hello' => [
+                                        'stringValue' => 'world'
+                                    ]
+                                ]
+                            ]
+                        ]
+                    ]
+                ]
+            ]
+        ];
+
+        $res = $this->mapper->responseToEntityProperties($data, TestEntity::class)['properties'];
+
+        $this->assertInstanceOf(TestEntity::class, $res['foo']);
+        $this->assertTrue(is_array($res['foo']['bar']));
+    }
+
     public function testResponseToPropertiesEntityNestedValueCustomType()
     {
         $data = [
@@ -830,9 +856,13 @@ class TestEntity implements EntityInterface, \arrayaccess
 {
     use EntityTrait;
 
-    public static $mappings = [
-        'nest' => TestEntity::class
-    ];
+    public static function mappings()
+    {
+        return [
+            'foo' => TestEntity::class,
+            'nest' => TestEntity::class
+        ];
+    }
 
     public function offsetSet($key, $val)
     {

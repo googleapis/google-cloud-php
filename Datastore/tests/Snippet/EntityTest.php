@@ -123,6 +123,17 @@ class EntityTest extends SnippetTestCase
         $this->assertEquals(['firstName' => 'Bob'], $res->returnVal());
     }
 
+    public function testGetProperty()
+    {
+        $snippet = $this->snippetFromMethod(Entity::class, 'getProperty');
+        $snippet->addLocal('entity', $this->entity);
+
+        $this->entity['firstName'] = 'Bob';
+
+        $res = $snippet->invoke('value');
+        $this->assertEquals('Bob', $res->returnVal());
+    }
+
     public function testSet()
     {
         $snippet = $this->snippetFromMethod(Entity::class, 'set');

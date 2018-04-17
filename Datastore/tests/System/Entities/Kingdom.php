@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-namespace Google\Cloud\Tests\System\Datastore\Entities;
+namespace Google\Cloud\Datastore\Tests\System\Entities;
 
 use Google\Cloud\Datastore\EntityTrait;
 use Google\Cloud\Datastore\EntityInterface;

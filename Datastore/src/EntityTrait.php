@@ -27,7 +27,7 @@ trait EntityTrait
     use EntityOptionsTrait;
 
     /**
-     * @var Key
+     * @var Key|null
      */
     private $key;
 
@@ -37,8 +37,9 @@ trait EntityTrait
     private $entity;
 
     /**
-     * @param Key $key The Entity's Key, defining its unique identifier.
-     * @param array $entity [optional] The entity body.
+     * @param Key|null $key [optional] The Entity's Key, defining its unique
+     *        identifier. **Defaults to** `null`.
+     * @param array $entity [optional] The entity body. **Defaults to** `[]`.
      * @param array $options [optional] {
      *     Configuration Options
      *
@@ -71,8 +72,9 @@ trait EntityTrait
     /**
      * A factory method, used by the Datastore client to create entities.
      *
-     * @param Key $key The Entity's Key, defining its unique identifier.
-     * @param array $entity [optional] The entity body.
+     * @param Key|null $key [optional] The Entity's Key, defining its unique
+     *        identifier. **Defaults to** `null`.
+     * @param array $entity [optional] The entity body. **Defaults to** `[]`.
      * @param array $options [optional] {
      *     Configuration Options
      *
@@ -90,13 +92,13 @@ trait EntityTrait
      * }
      * @throws InvalidArgumentException
      */
-    public static function factory(Key $key = null, array $entity = [], array $options = [])
+    public static function build(Key $key = null, array $entity = [], array $options = [])
     {
         return new static($key, $entity, $options);
     }
 
     /**
-     * Get the entity data
+     * Get the entity data.
      *
      * Example:
      * ```
@@ -108,6 +110,26 @@ trait EntityTrait
     public function get()
     {
         return $this->entity;
+    }
+
+    /**
+     * Get a single property from the entity data.
+     *
+     * If the property does not exist, this method will return `null`.
+     *
+     * Example:
+     * ```
+     * $value = $entity->getProperty('firstName');
+     * ```
+     *
+     * @param string $property The name of an entity property to return.
+     * @return mixed|null
+     */
+    public function getProperty($property)
+    {
+        return isset($this->entity[$property])
+            ? $this->entity[$property]
+            : null;
     }
 
     /**

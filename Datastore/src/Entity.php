@@ -84,7 +84,7 @@ use Psr\Http\Message\StreamInterface;
  *
  * $alphabet = new Business;
  * $alphabet->set([
- *     'name' => 'Alphabet'
+ *     'companyName' => 'Alphabet'
  * ]);
  *
  * $key = $datastore->key('Business', 'Google');

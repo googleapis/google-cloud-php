@@ -200,13 +200,24 @@ class DatastoreClientTest extends SnippetTestCase
         $this->assertEquals(Key::STATE_INCOMPLETE, $res->returnVal()->key()->state());
     }
 
-    public function testCreateEntityCustomClass()
+    /**
+     * @dataProvider customClassSnippet
+     */
+    public function testCreateEntityCustomClass($snippet, $type)
     {
-        $snippet = $this->snippetFromMethod(DatastoreClient::class, 'entity', 'custom_class');
+        $snippet = $this->snippetFromMethod(DatastoreClient::class, 'entity', $snippet);
         $snippet->addLocal('datastore', $this->client);
 
         $res = $snippet->invoke();
-        $this->assertEquals('Person', $res->output());
+        $this->assertEquals($type, $res->output());
+    }
+
+    public function customClassSnippet()
+    {
+        return [
+            ['custom_class_extends', 'OtherPersonEntity'],
+            ['custom_class_interface', 'PersonEntity']
+        ];
     }
 
     public function testEntityExcludeIndexes()

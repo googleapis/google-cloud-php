@@ -298,18 +298,33 @@ class DatastoreClient
      * ```
      *
      * ```
-     * //[snippet=custom_class]
+     * //[snippet=custom_class_interface]
      * // Entities can be custom classes implementing the Datastore entity interface.
      * use Google\Cloud\Datastore\EntityTrait;
      * use Google\Cloud\Datastore\EntityInterface;
      *
-     * class Person implements EntityInterface
+     * class PersonEntity implements EntityInterface
      * {
      *     use EntityTrait;
      * }
      *
      * $person = $datastore->entity('Person', [ 'firstName' => 'Bob'], [
-     *     'className' => Person::class
+     *     'className' => PersonEntity::class
+     * ]);
+     *
+     * echo get_class($person); // `Person`
+     * ```
+     *
+     * ```
+     * //[snippet=custom_class_extends]
+     * // Custom entity types may also extend the built-in Entity class.
+     * use Google\Cloud\Datastore\Entity;
+     *
+     * class OtherPersonEntity extends Entity
+     * {}
+     *
+     * $person = $datastore->entity('Person', [ 'firstName' => 'Bob'], [
+     *     'className' => OtherPersonEntity::class
      * ]);
      *
      * echo get_class($person); // `Person`
@@ -332,12 +347,13 @@ class DatastoreClient
      *
      * @see https://cloud.google.com/datastore/reference/rest/v1/Entity Entity
      *
-     * @param Key|string $key [optional] The key used to identify the record, or
+     * @param Key|string|null $key [optional] The key used to identify the record, or
      *        a string $kind. The key may be null only if the entity will be
      *        used as an embedded entity within another entity. Attempting to
      *        use keyless entities as root entities will result in error.
+     *        **Defaults to** `null`.
      * @param array $entity [optional] The data, provided as an array of keys
-     *        and values to fill the entity with.
+     *        and values to fill the entity with. **Defaults to** `[]`.
      * @param array $options [optional] {
      *     Configuration Options
      *

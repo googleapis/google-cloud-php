@@ -110,7 +110,7 @@ class Transaction
      * $transaction->commit();
      * ```
      *
-     * @param Entity[] $entities The entities to insert.
+     * @param EntityInterface[] $entities The entities to insert.
      * @return Transaction
      */
     public function insertBatch(array $entities)
@@ -178,7 +178,7 @@ class Transaction
      * $transaction->commit();
      * ```
      *
-     * @param Entity[] $entities The entities to update.
+     * @param EntityInterface[] $entities The entities to update.
      * @param array $options [optional] {
      *     Configuration Options
      *
@@ -266,7 +266,7 @@ class Transaction
      * $transaction->commit();
      * ```
      *
-     * @param Entity[] $entities The entities to upsert.
+     * @param EntityInterface[] $entities The entities to upsert.
      * @return Transaction
      */
     public function upsertBatch(array $entities)

@@ -36,17 +36,18 @@ interface EntityInterface
      * implementation. This method is called by the Google Cloud PHP client to
      * create entities.
      *
-     * @param Key $key [optional] The Entity's Key, defining its unique identifier.
-     * @param array $entity [optional] The entity body.
+     * @param Key|null $key [optional] The Entity's Key, defining its unique
+     *        identifier. **Defaults to** `null`.
+     * @param array $entity [optional] The entity body. **Defaults to** `[]`.
      * @param array $options [optional] {
      *     Configuration Options
      *
      *     @type string $cursor Set only when the entity is obtained by a query
      *           result. If set, the entity cursor can be retrieved from
-     *           {@see Google\Cloud\Datastore\Entity::cursor()}.
+     *           {@see Google\Cloud\Datastore\EntityInterface::cursor()}.
      *     @type string $baseVersion Set only when the entity is obtained by a
      *           query result. If set, the entity cursor can be retrieved from
-     *           {@see Google\Cloud\Datastore\Entity::baseVersion()}.
+     *           {@see Google\Cloud\Datastore\EntityInterface::baseVersion()}.
      *     @type array $excludeFromIndexes A list of entity keys to exclude from
      *           datastore indexes.
      *     @type array $meanings A list of meaning values for entity properties.
@@ -54,7 +55,7 @@ interface EntityInterface
      *           created as the result of a service request.
      * }
      */
-    public static function factory(Key $key = null, array $entity = [], array $options = []);
+    public static function build(Key $key = null, array $entity = [], array $options = []);
 
     /**
      * Defines embedded entity mappings.
@@ -84,7 +85,7 @@ interface EntityInterface
      * @param array $entity The new entity body.
      * @return void
      */
-    public function set(array $entityData);
+    public function set(array $entity);
 
     /**
      * Return the Datastore key, or null if no key is present.
