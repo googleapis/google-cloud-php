@@ -520,12 +520,21 @@ class Breakpoint implements \JsonSerializable
      *      @type int $line The line number of the file executed.
      *      @type array $locals Captured local variables.
      * }
+     * @param array $options {
+     *      Configuration options.
+     *
+     *      @type bool $captureVariables Whether or not to record variables
+     *            for this stackframe. **Defaults to* true.
+     * }
      */
-    public function addStackFrame($stackFrameData)
+    public function addStackFrame($stackFrameData, array $options = [])
     {
         $stackFrameData += [
             'function' => null,
             'locals' => []
+        ];
+        $options += [
+            'captureVariables' => true
         ];
 
         $sf = new StackFrame(
@@ -533,11 +542,13 @@ class Breakpoint implements \JsonSerializable
             new SourceLocation($stackFrameData['filename'], $stackFrameData['line'])
         );
 
-        foreach ($stackFrameData['locals'] as $local) {
-            $value = isset($local['value']) ? $local['value'] : null;
-            $hash = isset($local['id']) ? $local['id'] : null;
-            $variable = $this->addVariable($local['name'], $value, $hash);
-            $sf->addLocal($variable);
+        if ($options['captureVariables']) {
+            foreach ($stackFrameData['locals'] as $local) {
+                $value = isset($local['value']) ? $local['value'] : null;
+                $hash = isset($local['id']) ? $local['id'] : null;
+                $variable = $this->addVariable($local['name'], $value, $hash);
+                $sf->addLocal($variable);
+            }
         }
 
         array_push($this->stackFrames, $sf);

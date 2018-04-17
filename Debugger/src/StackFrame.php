@@ -120,6 +120,21 @@ class StackFrame implements \JsonSerializable
     }
 
     /**
+     * Returns the captured locals for this stack frame.
+     *
+     * Example:
+     * ```
+     * $locals = $stackFrame->locals();
+     * ```
+     *
+     * @return Variable[]
+     */
+    public function locals()
+    {
+        return $this->locals;
+    }
+
+    /**
      * Returns a JSON serializable array representation of the stack frame.
      *
      * @access private
