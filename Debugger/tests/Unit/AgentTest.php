@@ -191,7 +191,7 @@ class AgentTest extends TestCase
             'storage' => $this->storage->reveal(),
             'logger' => $this->logger->reveal(),
             'batchRunner' => $batchRunner->reveal(),
-            'maxStackFrames' => 3
+            'maxDepth' => 3
         ]);
         $agent->handleSnapshot([
             'id' => 'snapshot1',
@@ -239,7 +239,7 @@ class AgentTest extends TestCase
             'storage' => $this->storage->reveal(),
             'logger' => $this->logger->reveal(),
             'batchRunner' => $batchRunner->reveal(),
-            'maxStackFrames' => INF
+            'maxDepth' => INF
         ]);
         $agent->handleSnapshot([
             'id' => 'snapshot1',
