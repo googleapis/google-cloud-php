@@ -17,9 +17,11 @@
 
 namespace Google\Cloud\Debugger\Tests\Unit;
 
+use Google\Cloud\Core\Batch\BatchRunner;
 use Google\Cloud\Core\Batch\ConfigStorageInterface;
 use Google\Cloud\Core\Batch\JobConfig;
 use Google\Cloud\Debugger\Agent;
+use Google\Cloud\Debugger\Breakpoint;
 use Google\Cloud\Debugger\Debuggee;
 use Google\Cloud\Debugger\BreakpointStorage\BreakpointStorageInterface;
 use Psr\Log\LoggerInterface;
@@ -31,6 +33,7 @@ use PHPUnit\Framework\TestCase;
  */
 class AgentTest extends TestCase
 {
+    private $logger;
     private $storage;
     private $oldDaemonEnv;
 
@@ -48,6 +51,7 @@ class AgentTest extends TestCase
         }
 
         $this->storage = $this->prophesize(BreakpointStorageInterface::class);
+        $this->logger = $this->prophesize(LoggerInterface::class);
     }
 
     public function tearDown()
@@ -62,23 +66,21 @@ class AgentTest extends TestCase
 
     public function testSpecifyStorage()
     {
-        $logger = $this->prophesize(LoggerInterface::class);
         $this->storage->load()->willReturn(['debuggeeId', []])->shouldBeCalled();
         $agent = new Agent([
             'storage' => $this->storage->reveal(),
-            'logger' => $logger->reveal()
+            'logger' => $this->logger->reveal()
         ]);
     }
 
     public function testSpecifyLogger()
     {
         $this->storage->load()->willReturn(['debuggeeId', []])->shouldBeCalled();
-        $logger = $this->prophesize(LoggerInterface::class);
-        $logger->log('INFO', 'LOGPOINT: message', ['context' => 'value'])->shouldBeCalled();
+        $this->logger->log('INFO', 'LOGPOINT: message', ['context' => 'value'])->shouldBeCalled();
 
         $agent = new Agent([
             'storage' => $this->storage->reveal(),
-            'logger' => $logger->reveal()
+            'logger' => $this->logger->reveal()
         ]);
         $agent->handleLogpoint('INFO', 'message', ['context' => 'value']);
     }
@@ -86,7 +88,7 @@ class AgentTest extends TestCase
     public function testDaemonOptions()
     {
         putenv('IS_BATCH_DAEMON_RUNNING=true');
-        $this->storage->load()->willReturn('debuggeeId', [])->shouldBeCalled();
+        $this->storage->load()->willReturn(['debuggeeId', []])->shouldBeCalled();
         $configStorage = $this->prophesize(ConfigStorageInterface::class);
         $configStorage->lock()->willReturn(true)->shouldBeCalled();
 
@@ -102,9 +104,153 @@ class AgentTest extends TestCase
 
         $agent = new Agent([
             'storage' => $this->storage->reveal(),
+            'logger' => $this->logger->reveal(),
             'daemonOptions' => [
                 'uniquifier' => 'some-value',
                 'configStorage' => $configStorage->reveal()
+            ]
+        ]);
+    }
+
+    public function testDefaultStackFrameLimit()
+    {
+        $breakpoints = [
+            new Breakpoint(['id' => 'snapshot1'])
+        ];
+        $this->storage->load()->willReturn(['debuggeeId', $breakpoints])->shouldBeCalled();
+        $batchRunner = $this->prophesize(BatchRunner::class);
+        $batchRunner->registerJob(
+            'stackdriver-debugger',
+            Argument::any(),
+            Argument::type('array')
+        )->shouldBeCalled();
+        $batchRunner->submitItem(
+            'stackdriver-debugger',
+            Argument::that(function ($item) {
+                $this->assertEquals('debuggeeId', $item[0]);
+                $this->assertInstanceOf(Breakpoint::class, $item[1]);
+                $stackframes = $item[1]->stackFrames();
+                $this->assertCount(6, $stackframes);
+                $this->assertCount(1, $stackframes[0]->locals());
+                $this->assertCount(1, $stackframes[1]->locals());
+                $this->assertCount(1, $stackframes[2]->locals());
+                $this->assertCount(1, $stackframes[3]->locals());
+                $this->assertCount(1, $stackframes[4]->locals());
+                $this->assertCount(0, $stackframes[5]->locals());
+                return true;
+            })
+        )->shouldBeCalled();
+        $agent = new Agent([
+            'storage' => $this->storage->reveal(),
+            'logger' => $this->logger->reveal(),
+            'batchRunner' => $batchRunner->reveal()
+        ]);
+        $agent->handleSnapshot([
+            'id' => 'snapshot1',
+            'evaluatedExpressions' => [],
+            'stackframes' => [
+                ['filename' => 'file1.php', 'line' => 20, 'locals' => [['name' => 'a', 'value' => 'a']]],
+                ['filename' => 'file2.php', 'line' => 20, 'locals' => [['name' => 'b', 'value' => 'b']]],
+                ['filename' => 'file3.php', 'line' => 20, 'locals' => [['name' => 'c', 'value' => 'c']]],
+                ['filename' => 'file4.php', 'line' => 20, 'locals' => [['name' => 'd', 'value' => 'd']]],
+                ['filename' => 'file5.php', 'line' => 20, 'locals' => [['name' => 'e', 'value' => 'e']]],
+                ['filename' => 'file6.php', 'line' => 20, 'locals' => [['name' => 'f', 'value' => 'f']]],
+            ]
+        ]);
+    }
+
+    public function testSetStackFrameLimit()
+    {
+        $breakpoints = [
+            new Breakpoint(['id' => 'snapshot1'])
+        ];
+        $this->storage->load()->willReturn(['debuggeeId', $breakpoints])->shouldBeCalled();
+        $batchRunner = $this->prophesize(BatchRunner::class);
+        $batchRunner->registerJob(
+            'stackdriver-debugger',
+            Argument::any(),
+            Argument::type('array')
+        )->shouldBeCalled();
+        $batchRunner->submitItem(
+            'stackdriver-debugger',
+            Argument::that(function ($item) {
+                $this->assertEquals('debuggeeId', $item[0]);
+                $this->assertInstanceOf(Breakpoint::class, $item[1]);
+                $stackframes = $item[1]->stackFrames();
+                $this->assertCount(6, $stackframes);
+                $this->assertCount(1, $stackframes[0]->locals());
+                $this->assertCount(1, $stackframes[1]->locals());
+                $this->assertCount(1, $stackframes[2]->locals());
+                $this->assertCount(0, $stackframes[3]->locals());
+                $this->assertCount(0, $stackframes[4]->locals());
+                $this->assertCount(0, $stackframes[5]->locals());
+                return true;
+            })
+        )->shouldBeCalled();
+        $agent = new Agent([
+            'storage' => $this->storage->reveal(),
+            'logger' => $this->logger->reveal(),
+            'batchRunner' => $batchRunner->reveal(),
+            'maxStackFrames' => 3
+        ]);
+        $agent->handleSnapshot([
+            'id' => 'snapshot1',
+            'evaluatedExpressions' => [],
+            'stackframes' => [
+                ['filename' => 'file1.php', 'line' => 20, 'locals' => [['name' => 'a', 'value' => 'a']]],
+                ['filename' => 'file2.php', 'line' => 20, 'locals' => [['name' => 'b', 'value' => 'b']]],
+                ['filename' => 'file3.php', 'line' => 20, 'locals' => [['name' => 'c', 'value' => 'c']]],
+                ['filename' => 'file4.php', 'line' => 20, 'locals' => [['name' => 'd', 'value' => 'd']]],
+                ['filename' => 'file5.php', 'line' => 20, 'locals' => [['name' => 'e', 'value' => 'e']]],
+                ['filename' => 'file6.php', 'line' => 20, 'locals' => [['name' => 'f', 'value' => 'f']]],
+            ]
+        ]);
+    }
+
+    public function testSetNoStackFrameLimit()
+    {
+        $breakpoints = [
+            new Breakpoint(['id' => 'snapshot1'])
+        ];
+        $this->storage->load()->willReturn(['debuggeeId', $breakpoints])->shouldBeCalled();
+        $batchRunner = $this->prophesize(BatchRunner::class);
+        $batchRunner->registerJob(
+            'stackdriver-debugger',
+            Argument::any(),
+            Argument::type('array')
+        )->shouldBeCalled();
+        $batchRunner->submitItem(
+            'stackdriver-debugger',
+            Argument::that(function ($item) {
+                $this->assertEquals('debuggeeId', $item[0]);
+                $this->assertInstanceOf(Breakpoint::class, $item[1]);
+                $stackframes = $item[1]->stackFrames();
+                $this->assertCount(6, $stackframes);
+                $this->assertCount(1, $stackframes[0]->locals());
+                $this->assertCount(1, $stackframes[1]->locals());
+                $this->assertCount(1, $stackframes[2]->locals());
+                $this->assertCount(1, $stackframes[3]->locals());
+                $this->assertCount(1, $stackframes[4]->locals());
+                $this->assertCount(1, $stackframes[5]->locals());
+                return true;
+            })
+        )->shouldBeCalled();
+        $agent = new Agent([
+            'storage' => $this->storage->reveal(),
+            'logger' => $this->logger->reveal(),
+            'batchRunner' => $batchRunner->reveal(),
+            'maxStackFrames' => INF
+        ]);
+        $agent->handleSnapshot([
+            'id' => 'snapshot1',
+            'evaluatedExpressions' => [],
+            'stackframes' => [
+                ['filename' => 'file1.php', 'line' => 20, 'locals' => [['name' => 'a', 'value' => 'a']]],
+                ['filename' => 'file2.php', 'line' => 20, 'locals' => [['name' => 'b', 'value' => 'b']]],
+                ['filename' => 'file3.php', 'line' => 20, 'locals' => [['name' => 'c', 'value' => 'c']]],
+                ['filename' => 'file4.php', 'line' => 20, 'locals' => [['name' => 'd', 'value' => 'd']]],
+                ['filename' => 'file5.php', 'line' => 20, 'locals' => [['name' => 'e', 'value' => 'e']]],
+                ['filename' => 'file6.php', 'line' => 20, 'locals' => [['name' => 'f', 'value' => 'f']]],
             ]
         ]);
     }
