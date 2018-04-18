@@ -29,11 +29,13 @@ This client supports the following Google Cloud Platform services at a [Beta](#v
 * [Google Stackdriver Monitoring](#google-stackdriver-monitoring-beta) (Beta)
 
 This client supports the following Google Cloud Platform services at an [Alpha](#versioning) quality level:
+* [Dialogflow API](#dialogflow-api-alpha) (Alpha)
 * [Google Bigtable](#google-bigtable-alpha) (Alpha)
+* [Google Cloud BigQuery Data Transfer](#google-cloud-bigquery-data-transfer-alpha) (Alpha)
+* [Google Cloud IoT](#google-cloud-iot-alpha) (Alpha)
 * [Google Cloud Speech](#google-cloud-speech-alpha) (Alpha)
 * [Google Stackdriver Debugger](#google-stackdriver-debugger-alpha) (Alpha)
 * [Google Stackdriver Trace](#google-stackdriver-trace-alpha) (Alpha)
-* [Google Cloud BigQuery Data Transfer](#google-cloud-bigquery-data-transfer-alpha) (Alpha)
 
 If you need support for other Google APIs, please check out the [Google APIs Client Library for PHP](https://github.com/google/google-api-php-client).
 
@@ -826,6 +828,19 @@ try {
 $ composer require google/cloud-monitoring
 ```
 
+## Dialogflow API (Alpha)
+
+- [API Documentation](http://googlecloudplatform.github.io/google-cloud-php/#/docs/latest/dialogflow/readme)
+- [Official Documentation](https://cloud.google.com/dialogflow-enterprise/docs/)
+
+#### google/cloud-dialogflow
+
+[Dialogflow](https://github.com/GoogleCloudPlatform/google-cloud-php-dialogflow) can be installed separately by requiring the [`google/cloud-dialogflow`](https://packagist.org/packages/google/cloud-dialogflow) composer package:
+
+```
+$ composer require google/cloud-dialogflow
+```
+
 ## Google Bigtable (Alpha)
 
 - [API Documentation](http://googlecloudplatform.github.io/google-cloud-php/#/docs/latest/bigtable/readme)
@@ -857,6 +872,46 @@ try {
 
 ```
 $ composer require google/cloud-bigtable
+```
+
+## Google Cloud BigQuery Data Transfer (Alpha)
+
+- [API Documentation](http://googlecloudplatform.github.io/google-cloud-php/#/docs/latest/bigquerydatatransfer/readme)
+- [Official Documentation](https://cloud.google.com/bigquery/docs/transfer-service-overview)
+
+#### Preview
+
+```php
+require 'vendor/autoload.php';
+
+use Google\Cloud\BigQuery\DataTransfer\V1\DataTransferServiceClient;
+
+$dataTransferServiceClient = new DataTransferServiceClient();
+$projectId = '[MY_PROJECT_ID]';
+$location = 'us-central1';
+$formattedLocation = $dataTransferServiceClient->locationName($projectId, $location);
+$dataSources = $dataTransferServiceClient->listDataSources($formattedLocation);
+```
+
+#### google/cloud-bigquerydatatransfer
+
+[Google Cloud BigQuery Data Transfer](https://github.com/GoogleCloudPlatform/google-cloud-php-bigquerydatatransfer) can be installed separately by requiring the [`google/cloud-bigquerydatatransfer`](https://packagist.org/packages/google/cloud-bigquerydatatransfer) composer package:
+
+```
+$ composer require google/cloud-bigquerydatatransfer
+```
+
+## Google Cloud IoT (Alpha)
+
+- [API Documentation](http://googlecloudplatform.github.io/google-cloud-php/#/docs/latest/iot/readme)
+- [Official Documentation](https://cloud.google.com/iot/docs/)
+
+#### google/cloud-iot
+
+[Google Cloud IoT](https://github.com/GoogleCloudPlatform/google-cloud-php-iot) can be installed separately by requiring the [`google/cloud-iot`](https://packagist.org/packages/google/cloud-iot) composer package:
+
+```
+$ composer require google/cloud-iot
 ```
 
 ## Google Cloud Speech (Alpha)
@@ -956,33 +1011,6 @@ foreach($traceClient->traces() as $trace) {
 
 ```
 $ composer require google/cloud-trace
-```
-
-## Google Cloud BigQuery Data Transfer (Alpha)
-
-- [API Documentation](http://googlecloudplatform.github.io/google-cloud-php/#/docs/latest/bigquerydatatransfer/readme)
-- [Official Documentation](https://cloud.google.com/bigquery/docs/transfer-service-overview)
-
-#### Preview
-
-```php
-require 'vendor/autoload.php';
-
-use Google\Cloud\BigQuery\DataTransfer\V1\DataTransferServiceClient;
-
-$dataTransferServiceClient = new DataTransferServiceClient();
-$projectId = '[MY_PROJECT_ID]';
-$location = 'us-central1';
-$formattedLocation = $dataTransferServiceClient->locationName($projectId, $location);
-$dataSources = $dataTransferServiceClient->listDataSources($formattedLocation);
-```
-
-#### google/cloud-bigquerydatatransfer
-
-[Google Cloud BigQuery Data Transfer](https://github.com/GoogleCloudPlatform/google-cloud-php-bigquerydatatransfer) can be installed separately by requiring the [`google/cloud-bigquerydatatransfer`](https://packagist.org/packages/google/cloud-bigquerydatatransfer) composer package:
-
-```
-$ composer require google/cloud-bigquerydatatransfer
 ```
 
 ## Caching Access Tokens
