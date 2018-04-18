@@ -239,7 +239,7 @@ class AgentTest extends TestCase
             'storage' => $this->storage->reveal(),
             'logger' => $this->logger->reveal(),
             'batchRunner' => $batchRunner->reveal(),
-            'maxDepth' => INF
+            'maxDepth' => PHP_INT_MAX
         ]);
         $agent->handleSnapshot([
             'id' => 'snapshot1',
