@@ -947,7 +947,8 @@ $devices = $deviceManager->listDevices($registryName);
 foreach ($devices->iterateAllElements() as $device) {
     printf('Device: %s : %s' . PHP_EOL,
         $device->getNumId(),
-        $device->getId());
+        $device->getId()
+    );
 }
 ```
 
