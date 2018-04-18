@@ -689,29 +689,32 @@ $ composer require google/cloud-vision
 ```php
 require 'vendor/autoload.php';
 
-use Google\Cloud\Dlp\V2beta1\DlpServiceClient;
-use Google\Cloud\Dlp\V2beta1\ContentItem;
-use Google\Cloud\Dlp\V2beta1\InfoType;
-use Google\Cloud\Dlp\V2beta1\InspectConfig;
+use Google\Cloud\Dlp\V2\DlpServiceClient;
+use Google\Cloud\Dlp\V2\ContentItem;
+use Google\Cloud\Dlp\V2\InfoType;
+use Google\Cloud\Dlp\V2\InspectConfig;
 
 $dlpServiceClient = new DlpServiceClient();
-$name = 'EMAIL_ADDRESS';
-$infoTypesElement = new InfoType();
-$infoTypesElement->setName($name);
-$infoTypes = [$infoTypesElement];
+$infoTypesElement = new InfoType()
+    ->setName('EMAIL_ADDRESS');
 $inspectConfig = new InspectConfig();
-$inspectConfig->setInfoTypes($infoTypes);
-$type = 'text/plain';
-$value = 'My email is example@example.com.';
-$itemsElement = new ContentItem();
-$itemsElement->setType($type);
-$itemsElement->setValue($value);
-$items = [$itemsElement];
+    ->setInfoTypes([$infoTypesElement]);
+$item = new ContentItem();
+    ->setValue('My email is example@example.com.');
 
-try {
-    $response = $dlpServiceClient->inspectContent($inspectConfig, $items);
-} finally {
-    $dlpServiceClient->close();
+$formattedParent = $dlpServiceClient
+    ->projectName('[PROJECT_ID]');
+$response = $dlpServiceClient->inspectContent($formattedParent, [
+    'inspectConfig' => $inspectConfig,
+    'item' => $item
+]);
+
+$findings = $response->getResult()
+    ->getFindings();
+
+foreach ($findings as $finding) {
+    print $finding->getInfoType()
+        ->getName() . PHP_EOL;
 }
 ```
 
