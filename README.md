@@ -833,6 +833,30 @@ $ composer require google/cloud-monitoring
 - [API Documentation](http://googlecloudplatform.github.io/google-cloud-php/#/docs/latest/dialogflow/readme)
 - [Official Documentation](https://cloud.google.com/dialogflow-enterprise/docs/)
 
+#### Preview
+
+```php
+require 'vendor/autoload.php';
+
+use Google\Cloud\Dialogflow\V2\EntityTypesClient;
+
+$entityTypesClient = new EntityTypesClient();
+$projectId = '[MY_PROJECT_ID]';
+$entityTypeId = '[ENTITY_TYPE_ID]';
+$formattedEntityTypeName = $entityTypesClient->entityTypeName($projectId, $entityTypeId);
+
+$entityType = $entityTypesClient->getEntityType($formattedEntityTypeName);
+foreach ($entityType->getEntities() as $entity) {
+    print(PHP_EOL);
+    printf('Entity value: %s' . PHP_EOL, $entity->getValue());
+    print('Synonyms: ');
+    foreach ($entity->getSynonyms() as $synonym) {
+        print($synonym . "\t");
+    }
+    print(PHP_EOL);
+}
+```
+
 #### google/cloud-dialogflow
 
 [Dialogflow](https://github.com/GoogleCloudPlatform/google-cloud-php-dialogflow) can be installed separately by requiring the [`google/cloud-dialogflow`](https://packagist.org/packages/google/cloud-dialogflow) composer package:
@@ -905,6 +929,27 @@ $ composer require google/cloud-bigquerydatatransfer
 
 - [API Documentation](http://googlecloudplatform.github.io/google-cloud-php/#/docs/latest/iot/readme)
 - [Official Documentation](https://cloud.google.com/iot/docs/)
+
+#### Preview
+
+```php
+require 'vendor/autoload.php';
+
+use Google\Cloud\Iot\V1\DeviceManagerClient;
+
+$deviceManager = new DeviceManagerClient();
+
+$projectId = '[MY_PROJECT_ID]';
+$location = 'us-central1';
+$registryId = '[MY_REGISTRY_ID]';
+$registryName = $deviceManager->registryName($projectId, $location, $registryId);
+$devices = $deviceManager->listDevices($registryName);
+foreach ($devices->iterateAllElements() as $device) {
+    printf('Device: %s : %s' . PHP_EOL,
+        $device->getNumId(),
+        $device->getId());
+}
+```
 
 #### google/cloud-iot
 
