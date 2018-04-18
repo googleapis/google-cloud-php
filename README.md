@@ -701,9 +701,9 @@ $inspectConfig = new InspectConfig()
     ->setInfoTypes([$infoTypesElement]);
 $item = new ContentItem()
     ->setValue('My email is example@example.com.');
-
 $formattedParent = $dlpServiceClient
     ->projectName('[PROJECT_ID]');
+
 $response = $dlpServiceClient->inspectContent($formattedParent, [
     'inspectConfig' => $inspectConfig,
     'item' => $item
