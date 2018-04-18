@@ -56,7 +56,7 @@ class StackFrameTest extends SnippetTestCase
     {
         $variable = new Variable('varName', 'string');
         $stackFrame = StackFrame::fromJson([]);
-        $stackFrame->addLocal($variable);
+        $stackFrame->addLocal('local', $variable);
         $snippet = $this->snippetFromMethod(StackFrame::class, 'locals');
         $snippet->addLocal('stackFrame', $stackFrame);
         $res = $snippet->invoke('locals');
