@@ -71,6 +71,8 @@ class KmsTest extends StorageTestCase
         self::$bucket->update([
             'encryption' => null
         ]);
+
+        $this->assertArrayNotHasKey('encryption', self::$bucket->info());
     }
 
     public function testUploadExplicitKmsKeyOverridesDefaultOnBucket()
@@ -94,6 +96,8 @@ class KmsTest extends StorageTestCase
         self::$bucket->update([
             'encryption' => null
         ]);
+
+        $this->assertArrayNotHasKey('encryption', self::$bucket->info());
     }
 
     public function testRotatesKmsKeys()
