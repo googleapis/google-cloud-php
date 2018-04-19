@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-namespace Google\Cloud\Tests\Core;
+namespace Google\Cloud\Core\Tests\Unit;
 
 use Google\Cloud\Core\Timestamp;
 use Google\Cloud\Core\TimeTrait;
