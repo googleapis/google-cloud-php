@@ -94,7 +94,8 @@ class Agent
      *      @type array $daemonOptions Additional options to provide to the
      *            Daemon when registering.
      *      @type int $maxDepth Limits the number of stackframes with
-     *            captured variables. **Defaults to** 5.
+     *            captured variables. To capture variables in all stackframes,
+     *            set to PHP_INT_MAX. **Defaults to** 5.
      * }
      */
     public function __construct(array $options = [])
