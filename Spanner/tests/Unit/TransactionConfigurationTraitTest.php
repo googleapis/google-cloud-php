@@ -18,6 +18,7 @@
 namespace Google\Cloud\Spanner\Tests\Unit;
 
 use Google\Cloud\Core\Testing\GrpcTestTrait;
+use Google\Cloud\Core\TimeTrait;
 use Google\Cloud\Spanner\Duration;
 use Google\Cloud\Spanner\Session\SessionPoolInterface;
 use Google\Cloud\Spanner\Timestamp;
@@ -31,6 +32,7 @@ use PHPUnit\Framework\TestCase;
 class TransactionConfigurationTraitTest extends TestCase
 {
     use GrpcTestTrait;
+    use TimeTrait;
 
     const TRANSACTION = 'my-transaction';
 
@@ -106,7 +108,8 @@ class TransactionConfigurationTraitTest extends TestCase
      */
     public function testConfigureSnapshotOptionsMinReadTimestamp($timestamp, $expected = null)
     {
-        $ts = Timestamp::createFromString($timestamp);
+        $time = $this->parseTimeString($timestamp);
+        $ts = new Timestamp($time[0], $time[1]);
         $args = ['minReadTimestamp' => $ts, 'singleUse' => true];
         $res = $this->impl->proxyConfigureSnapshotOptions($args);
         $this->assertEquals($expected ?: $timestamp, $res['readOnly']['minReadTimestamp']);
@@ -117,7 +120,8 @@ class TransactionConfigurationTraitTest extends TestCase
      */
     public function testConfigureSnapshotOptionsReadTimestamp($timestamp, $expected = null)
     {
-        $ts = Timestamp::createFromString($timestamp);
+        $time = $this->parseTimeString($timestamp);
+        $ts = new Timestamp($time[0], $time[1]);
         $args = ['readTimestamp' => $ts];
         $res = $this->impl->proxyConfigureSnapshotOptions($args);
         $this->assertEquals($expected ?: $timestamp, $res['readOnly']['readTimestamp']);

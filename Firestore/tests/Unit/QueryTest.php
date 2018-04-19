@@ -88,7 +88,7 @@ class QueryTest extends TestCase
                             ]
                         ]
                     ],
-                    'readTime' => Timestamp::createFromArray(['seconds' => time()])
+                    'readTime' => new Timestamp(new \DateTimeImmutable, 0)
                 ],
                 []
             ]));

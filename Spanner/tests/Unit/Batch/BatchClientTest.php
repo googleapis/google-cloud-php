@@ -20,6 +20,7 @@ namespace Google\Cloud\Spanner\Tests\Unit\Batch;
 use Google\Cloud\Core\Testing\SpannerOperationRefreshTrait;
 use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Core\Timestamp;
+use Google\Cloud\Core\TimeTrait;
 use Google\Cloud\Spanner\Batch\BatchClient;
 use Google\Cloud\Spanner\Batch\BatchSnapshot;
 use Google\Cloud\Spanner\Batch\QueryPartition;
@@ -38,6 +39,7 @@ use Prophecy\Argument;
 class BatchClientTest extends TestCase
 {
     use SpannerOperationRefreshTrait;
+    use TimeTrait;
 
     const DATABASE = 'projects/example_project/instances/example_instance/databases/example_database';
     const SESSION = 'projects/example_project/instances/example_instance/databases/example_database/sessions/session-id';

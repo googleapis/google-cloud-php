@@ -19,6 +19,7 @@ namespace Google\Cloud\Spanner\Tests\Unit;
 
 use Google\Cloud\Core\LongRunning\LongRunningConnectionInterface;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
+use Google\Cloud\Core\TimeTrait;
 use Google\Cloud\Spanner\Admin\Instance\V1\InstanceAdminClient;
 use Google\Cloud\Spanner\Connection\ConnectionInterface;
 use Google\Cloud\Spanner\Database;
@@ -42,6 +43,7 @@ class TransactionTypeTest extends TestCase
 {
     use GrpcTestTrait;
     use ResultTestTrait;
+    use TimeTrait;
 
     const PROJECT = 'my-project';
     const INSTANCE = 'my-instance';
@@ -181,7 +183,8 @@ class TransactionTypeTest extends TestCase
         $seconds = 1;
         $nanos = 2;
 
-        $timestamp = Timestamp::createFromString($this->timestamp);
+        $time = $this->parseTimeString($this->timestamp);
+        $timestamp = new Timestamp($time[0], $time[1]);
         $duration = new Duration($seconds, $nanos);
 
         $this->connection->beginTransaction(Argument::any())
@@ -215,7 +218,8 @@ class TransactionTypeTest extends TestCase
      */
     public function testDatabasePreAllocatedSnapshotMinReadTimestamp()
     {
-        $timestamp = Timestamp::createFromString($this->timestamp);
+        $time = $this->parseTimeString($this->timestamp);
+        $timestamp = new Timestamp($time[0], $time[1]);
 
         $this->connection->beginTransaction(Argument::any())
             ->shouldNotbeCalled();
@@ -261,7 +265,8 @@ class TransactionTypeTest extends TestCase
         $seconds = 1;
         $nanos = 2;
 
-        $timestamp = Timestamp::createFromString($this->timestamp);
+        $time = $this->parseTimeString($this->timestamp);
+        $timestamp = new Timestamp($time[0], $time[1]);
         $duration = new Duration($seconds, $nanos);
 
         $this->connection->beginTransaction(Argument::any())
@@ -300,7 +305,8 @@ class TransactionTypeTest extends TestCase
         $seconds = 1;
         $nanos = 2;
 
-        $timestamp = Timestamp::createFromString($this->timestamp);
+        $time = $this->parseTimeString($this->timestamp);
+        $timestamp = new Timestamp($time[0], $time[1]);
         $duration = new Duration($seconds, $nanos);
 
         $this->connection->beginTransaction(Argument::allOf(

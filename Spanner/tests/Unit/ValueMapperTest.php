@@ -152,8 +152,7 @@ class ValueMapperTest extends TestCase
 
     public function testEncodeValuesAsSimpleType()
     {
-        $dt = (new \DateTime)->format(Timestamp::FORMAT);
-        $timestamp = Timestamp::createFromString($dt);
+        $timestamp = new Timestamp(new \DateTimeImmutable);
 
         $vals = [];
         $vals['bool'] = true;

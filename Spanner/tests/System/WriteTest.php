@@ -17,11 +17,12 @@
 
 namespace Google\Cloud\Spanner\Tests\System;
 
-use Google\Cloud\Spanner\Timestamp;
+use Google\Cloud\Core\TimeTrait;
 use Google\Cloud\Spanner\Bytes;
 use Google\Cloud\Spanner\CommitTimestamp;
 use Google\Cloud\Spanner\Date;
 use Google\Cloud\Spanner\KeySet;
+use Google\Cloud\Spanner\Timestamp;
 
 /**
  * @group spanner
@@ -29,6 +30,8 @@ use Google\Cloud\Spanner\KeySet;
  */
 class WriteTest extends SpannerTestCase
 {
+    use TimeTrait;
+
     const TABLE_NAME = 'Writes';
     const COMMIT_TIMESTAMP_TABLE_NAME = 'CommitTimestamps';
 
@@ -535,14 +538,16 @@ class WriteTest extends SpannerTestCase
     {
         $today = new \DateTime;
         $str = $today->format('Y-m-d\TH:i:s');
+
+        $r = new \ReflectionClass(Timestamp::class);
         return [
             [new Timestamp($today)],
             [new Timestamp($today, 0)],
             [new Timestamp($today, 1)],
             [new Timestamp($today, 000000001)],
-            [Timestamp::createFromString($str .'.100000000Z')],
-            [Timestamp::createFromString($str .'.000000001Z')],
-            [Timestamp::createFromString($str .'.101999119Z')],
+            [$r->newInstanceArgs($this->parseTimeString($str .'.100000000Z'))],
+            [$r->newInstanceArgs($this->parseTimeString($str .'.000000001Z'))],
+            [$r->newInstanceArgs($this->parseTimeString($str .'.101999119Z'))],
         ];
     }
 }

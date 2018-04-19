@@ -18,6 +18,7 @@
 namespace Google\Cloud\Firestore\Tests\System;
 
 use Google\Cloud\Core\Timestamp;
+use Google\Cloud\Core\TimeTrait;
 
 /**
  * @group firestore
@@ -25,6 +26,8 @@ use Google\Cloud\Core\Timestamp;
  */
 class WriteTest extends FirestoreTestCase
 {
+    use TimeTrait;
+
     /**
      * @dataProvider timestamps
      */
@@ -88,13 +91,15 @@ class WriteTest extends FirestoreTestCase
     {
         $today = new \DateTime;
         $str = $today->format('Y-m-d\TH:i:s');
+
+        $r = new \ReflectionClass(Timestamp::class);
         return [
             [new Timestamp($today)],
             [new Timestamp($today, 0)],
             [new Timestamp($today, 1000)],
-            [Timestamp::createFromString($str .'.100000000Z')],
-            [Timestamp::createFromString($str .'.000001Z')],
-            [Timestamp::createFromString($str .'.101999Z')],
+            [$r->newInstanceArgs($this->parseTimeString($str .'.100000000Z'))],
+            [$r->newInstanceArgs($this->parseTimeString($str .'.000001Z'))],
+            [$r->newInstanceArgs($this->parseTimeString($str .'.101999Z'))],
         ];
     }
 }

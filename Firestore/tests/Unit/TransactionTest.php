@@ -207,7 +207,7 @@ class TransactionTest extends TestCase
      */
     public function testDocuments(array $input, array $names)
     {
-        $timestamp = Timestamp::createFromString((new \DateTime())->format(Timestamp::FORMAT));
+        $timestamp = (new Timestamp(new \DateTimeImmutable))->formatAsString();
 
         $res = [
             [
@@ -291,7 +291,7 @@ class TransactionTest extends TestCase
 
     public function testDocumentsOrdered()
     {
-        $timestamp = Timestamp::createFromString((new \DateTime())->format(Timestamp::FORMAT));
+        $timestamp = (new Timestamp(new \DateTimeImmutable))->formatAsString();
         $tpl = 'projects/'. self::PROJECT .'/databases/'. self::DATABASE .'/documents/a/%s';
         $names = [
             sprintf($tpl, 'a'),

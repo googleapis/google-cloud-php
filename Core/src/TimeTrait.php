@@ -30,7 +30,7 @@ trait TimeTrait
      * @return array [\DateTimeImmutable, integer]
      * @throws \InvalidArgumentException If the timestamp string is in an unrecognized format.
      */
-    private static function parseTimeString($timestamp)
+    private function parseTimeString($timestamp)
     {
         $nanoRegex = '/\d{4}-\d{1,2}-\d{1,2}T\d{1,2}\:\d{1,2}\:\d{1,2}(?:\.(\d{1,}))?/';
 
@@ -64,7 +64,7 @@ trait TimeTrait
      * @param int $seconds The unix timestamp.
      * @return \DateTimeImmutable
      */
-    private static function createDateTimeFromSeconds($seconds)
+    private function createDateTimeFromSeconds($seconds)
     {
         return \DateTimeImmutable::createFromFormat(
             'U',
@@ -109,7 +109,7 @@ trait TimeTrait
      *
      * @return array
      */
-    public function formatTimeAsArray(\DateTimeInterface $value, $nanoSeconds)
+    private function formatTimeAsArray(\DateTimeInterface $value, $nanoSeconds)
     {
         return [
             'seconds' => (int) $value->format('U'),

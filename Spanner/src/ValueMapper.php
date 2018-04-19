@@ -19,6 +19,7 @@ namespace Google\Cloud\Spanner;
 
 use Google\Cloud\Core\ArrayTrait;
 use Google\Cloud\Core\Int64;
+use Google\Cloud\Core\TimeTrait;
 use Google\Cloud\Spanner\V1\TypeCode;
 
 /**
@@ -27,6 +28,7 @@ use Google\Cloud\Spanner\V1\TypeCode;
 class ValueMapper
 {
     use ArrayTrait;
+    use TimeTrait;
 
     const TYPE_BOOL = TypeCode::BOOL;
     const TYPE_INT64 = TypeCode::INT64;
@@ -204,7 +206,8 @@ class ValueMapper
                 break;
 
             case self::TYPE_TIMESTAMP:
-                $value = Timestamp::createFromString($value);
+                $value = $this->parseTimeString($value);
+                $value = new Timestamp($value[0], $value[1]);
                 break;
 
             case self::TYPE_DATE:

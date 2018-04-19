@@ -21,6 +21,7 @@ use Google\Cloud\Core\Blob;
 use Google\Cloud\Core\GeoPoint;
 use Google\Cloud\Core\Int64;
 use Google\Cloud\Core\Timestamp;
+use Google\Cloud\Core\TimeTrait;
 use Google\Cloud\Firestore\CollectionReference;
 use Google\Cloud\Firestore\Connection\ConnectionInterface;
 use Google\Cloud\Firestore\DocumentReference;
@@ -36,6 +37,8 @@ use PHPUnit\Framework\TestCase;
  */
 class ValueMapperTest extends TestCase
 {
+    use TimeTrait;
+
     private $connection;
     private $mapper;
 
@@ -99,7 +102,7 @@ class ValueMapperTest extends TestCase
                     $this->assertEquals(15, $val);
                 }
             ], [
-                ['timestampValue' => Timestamp::createFromArray(['seconds' => $now, 'nanos' => 10])],
+                ['timestampValue' => new Timestamp($this->createDateTimeFromSeconds($now), 10)],
                 function ($val) use ($now) {
                     $this->assertInstanceOf(Timestamp::class, $val);
                     $ts = new Timestamp(\DateTimeImmutable::createFromFormat('U', (string) $now), 10);

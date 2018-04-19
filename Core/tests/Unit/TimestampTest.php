@@ -18,6 +18,7 @@
 namespace Google\Cloud\Tests\Core;
 
 use Google\Cloud\Core\Timestamp;
+use Google\Cloud\Core\TimeTrait;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -26,12 +27,14 @@ use PHPUnit\Framework\TestCase;
  */
 class TimestampTest extends TestCase
 {
+    use TimeTrait;
+
     private $dt;
     private $ts;
 
     public function setUp()
     {
-        $this->dt = new \DateTime('1989-10-11 08:58:00 +00:00');
+        $this->dt = new \DateTime();
         $this->ts = new Timestamp($this->dt);
     }
 
@@ -61,9 +64,8 @@ class TimestampTest extends TestCase
      */
     public function testCreateFromStringTimestampStrings($timestampStr, $expected)
     {
-        $timestamp = Timestamp::createFromString($timestampStr);
-
-        $this->assertInstanceOf(Timestamp::class, $timestamp);
+        $time = $this->parseTimeString($timestampStr);
+        $timestamp = new Timestamp($time[0], $time[1]);
 
         $this->assertEquals($expected, $timestamp->formatAsString());
     }
@@ -76,9 +78,8 @@ class TimestampTest extends TestCase
         setlocale(LC_ALL, 'fr_FR.UTF-8');
 
         try {
-            $timestamp = Timestamp::createFromString($timestampStr);
-
-            $this->assertInstanceOf(Timestamp::class, $timestamp);
+            $time = $this->parseTimeString($timestampStr);
+            $timestamp = new Timestamp($time[0], $time[1]);
 
             $this->assertEquals($expected, $timestamp->formatAsString());
         } finally {
@@ -139,8 +140,10 @@ class TimestampTest extends TestCase
      */
     public function testCreateFromStringArrays(array $input)
     {
-        $timestamp = Timestamp::createFromArray($input);
-        $this->assertInstanceOf(Timestamp::class, $timestamp);
+        $timestamp = new Timestamp(
+            $this->createDateTimeFromSeconds($input['seconds']),
+            $input['nanos']
+        );
 
         $this->assertEquals($input['seconds'], $timestamp->get()->format('U'));
         $this->assertEquals($input['nanos'], $timestamp->nanoSeconds());
@@ -153,8 +156,10 @@ class TimestampTest extends TestCase
     {
         setlocale(LC_ALL, 'fr_FR.UTF-8');
         try {
-            $timestamp = Timestamp::createFromArray($input);
-            $this->assertInstanceOf(Timestamp::class, $timestamp);
+            $timestamp = new Timestamp(
+                $this->createDateTimeFromSeconds($input['seconds']),
+                $input['nanos']
+            );
 
             $this->assertEquals($input['seconds'], $timestamp->get()->format('U'));
             $this->assertEquals($input['nanos'], $timestamp->nanoSeconds());

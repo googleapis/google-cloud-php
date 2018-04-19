@@ -18,6 +18,7 @@
 namespace Google\Cloud\Firestore\Tests\Unit;
 
 use Google\Cloud\Core\Timestamp;
+use Google\Cloud\Core\TimeTrait;
 use Google\Cloud\Firestore\CollectionReference;
 use Google\Cloud\Firestore\Connection\ConnectionInterface;
 use Google\Cloud\Firestore\DocumentReference;
@@ -33,6 +34,8 @@ use Prophecy\Argument;
  */
 class DocumentReferenceTest extends TestCase
 {
+    use TimeTrait;
+
     const PROJECT = 'example_project';
     const DATABASE = '(default)';
     const COLLECTION = 'projects/example_project/databases/(default)/documents/a';
@@ -250,8 +253,8 @@ class DocumentReferenceTest extends TestCase
     public function testWriteResult()
     {
         $time = time();
-        $ts = Timestamp::createFromArray(['seconds' => $time]);
-        $ts2 = Timestamp::createFromArray(['seconds' => $time + 100]);
+        $ts = new Timestamp($this->createDateTimeFromSeconds($time), 0);
+        $ts2 = new Timestamp($this->createDateTimeFromSeconds($time + 100), 0);
 
         $this->connection->commit(Argument::any())
             ->shouldBeCalled()

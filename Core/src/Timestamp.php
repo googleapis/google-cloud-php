@@ -83,60 +83,6 @@ class Timestamp
     }
 
     /**
-     * Convert a Timestamp string into a Google Cloud PHP object.
-     *
-     * Example:
-     * ```
-     * use Google\Cloud\Core\Timestamp;
-     *
-     * $timeString = '2018-01-01T23:59:59.000000Z';
-     * $timestamp = Timestamp::createFromString($timeString);
-     * ```
-     *
-     * @param string $timestamp A string representation of a timestamp, encoded
-     *        in RFC 3339 format (YYYY-MM-DDTHH-MM-SS.000000[000]TZ).
-     * @return Timestamp
-     * @throws \InvalidArgumentException If the timestamp string is in an unrecognized format.
-     */
-    public static function createFromString($timestamp)
-    {
-        list($dt, $nanos) = self::parseTimeString($timestamp);
-
-        return new static($dt, $nanos);
-    }
-
-    /**
-     * Convert a Timestamp array into a Google Cloud PHP object.
-     *
-     * Example:
-     * ```
-     * use Google\Cloud\Core\Timestamp;
-     *
-     * $timeArray = [
-     *     'seconds' => time(),
-     *     'nanos' => 0
-     * ];
-     * $timestamp = Timestamp::createFromArray($timeArray);
-     * ```
-     *
-     * @param array $timestamp An array representation of a point in time.
-     * @return Timestamp
-     */
-    public static function createFromArray(array $timestamp)
-    {
-        $timestamp += [
-            'seconds' => 0,
-            'nanos' => 0
-        ];
-
-        $dt = self::createDateTimeFromSeconds($timestamp['seconds']);
-
-        $nanos = $timestamp['nanos'];
-
-        return new static($dt, $nanos);
-    }
-
-    /**
      * Get the underlying `\DateTimeInterface` implementation.
      *
      * Please note that if you provided nanoseconds when creating the timestamp,
