@@ -21,7 +21,6 @@ use Google\Cloud\Core\ValidateTrait;
 use Google\Cloud\Datastore\Connection\ConnectionInterface;
 use Google\Cloud\Datastore\Connection\Rest;
 use Google\Cloud\Datastore\Query\QueryInterface;
-use InvalidArgumentException;
 
 /**
  * Run lookups and queries and commit changes.
@@ -184,35 +183,41 @@ class Operation
      * allocated for the entity upon insert. Additionally, if your entity
      * requires a complex key elementPath, you must create the key separately.
      *
-     * In complex applications you may want to create your own entity types.
-     * Google Cloud PHP supports subclassing of {@see Google\Cloud\Datastore\Entity}.
-     * If the name of a subclass of Entity is given in the options array, an
-     * instance of the subclass will be returned instead of Entity.
+     * In certain cases, you may want to create your own entity types.
+     * Google Cloud PHP supports custom types implementing
+     * {@see Google\Cloud\Datastore\EntityInterface}. If the name of an
+     * `EntityInterface` implementation is given in the options array, an
+     * instance of that class will be returned instead of
+     * {@see Google\Cloud\Datastore\Entity}.
      *
      * @see https://cloud.google.com/datastore/reference/rest/v1/Entity Entity
      *
-     * @param Key|string $key The key used to identify the record, or a string $kind.
+     * @param Key|string|null $key [optional] The key used to identify the record, or
+     *        a string $kind. The key may be null only if the entity will be
+     *        used as an embedded entity within another entity. Attempting to
+     *        use keyless entities as root entities will result in error.
      * @param array $entity [optional] The data to fill the entity with.
      * @param array $options [optional] {
      *     Configuration Options
      *
-     *     @type string $className The name of a class extending {@see Google\Cloud\Datastore\Entity}.
-     *           If provided, an instance of that class will be returned instead of Entity.
-     *           If not set, {@see Google\Cloud\Datastore\Entity} will be used.
+     *     @type string $className If set, the given class will be returned.
+     *           Value must be the name of a class implementing
+     *           {@see Google\Cloud\Datastore\EntityInterface}. **Defaults to**
+     *           {@see Google\Cloud\Datastore\Entity}.
      *     @type array $excludeFromIndexes A list of entity keys to exclude from
      *           datastore indexes.
      * }
-     * @return Entity
+     * @return EntityInterface
      * @throws InvalidArgumentException
      */
-    public function entity($key, array $entity = [], array $options = [])
+    public function entity($key = null, array $entity = [], array $options = [])
     {
         $options += [
             'className' => null
         ];
 
-        if (!is_string($key) && !($key instanceof Key)) {
-            throw new InvalidArgumentException(
+        if ($key && !is_string($key) && !($key instanceof Key)) {
+            throw new \InvalidArgumentException(
                 '$key must be an instance of Key or a string'
             );
         }
@@ -222,9 +227,9 @@ class Operation
         }
 
         $className = $options['className'];
-        if (!is_null($className) && !is_subclass_of($className, Entity::class)) {
-            throw new InvalidArgumentException(sprintf(
-                'Given classname %s is not a subclass of Entity',
+        if (!is_null($className) && !is_subclass_of($className, EntityInterface::class)) {
+            throw new \InvalidArgumentException(sprintf(
+                'Given classname %s must implement EntityInterface',
                 $className
             ));
         }
@@ -233,7 +238,7 @@ class Operation
             $className = Entity::class;
         }
 
-        return new $className($key, $entity, $options);
+        return $className::build($key, $entity, $options);
     }
 
     /**
@@ -277,7 +282,7 @@ class Operation
         // @todo replace with json schema
         $this->validateBatch($keys, Key::class, function ($key) {
             if ($key->state() !== Key::STATE_INCOMPLETE) {
-                throw new InvalidArgumentException(sprintf(
+                throw new \InvalidArgumentException(sprintf(
                     'Given $key is in an invalid state. Can only allocate IDs for incomplete keys. ' .
                     'Given path was %s',
                     (string) $key
@@ -285,7 +290,7 @@ class Operation
             }
 
             if (!isset($key->pathEnd()['kind'])) {
-                throw new InvalidArgumentException(sprintf(
+                throw new \InvalidArgumentException(sprintf(
                     'Cannot allocate IDs because a path element was missing a kind. ' .
                     'This usually means a key was created but no path elements were defined. ' .
                     'Given path was %s',
@@ -330,11 +335,12 @@ class Operation
      *           [ReadConsistency](https://cloud.google.com/datastore/reference/rest/v1/ReadOptions#ReadConsistency).
      *     @type string $transaction The transaction ID, if the query should be
      *           run in a transaction.
-     *     @type string|array $className If a string, the name of the class to return results as.
-     *           Must be a subclass of {@see Google\Cloud\Datastore\Entity}.
-     *           If not set, {@see Google\Cloud\Datastore\Entity} will be used.
+     *     @type string|array $className If a string, the given class will be
+     *           returned. Value must be the name of a class implementing
+     *           {@see Google\Cloud\Datastore\EntityInterface}.
      *           If an array is given, it must be an associative array, where
-     *           the key is a Kind and the value is the name of a subclass of
+     *           the key is a Kind and the value must implement
+     *           {@see Google\Cloud\Datastore\EntityInterface}. **Defaults to**
      *           {@see Google\Cloud\Datastore\Entity}.
      *     @type bool $sort If set to true, results in each set will be sorted
      *           to match the order given in $keys. **Defaults to** `false`.
@@ -348,14 +354,14 @@ class Operation
     public function lookup(array $keys, array $options = [])
     {
         $options += [
-            'className' => null,
+            'className' => Entity::class,
             'sort' => false
         ];
 
         $serviceKeys = [];
         $this->validateBatch($keys, Key::class, function ($key) use (&$serviceKeys) {
             if ($key->state() !== Key::STATE_NAMED) {
-                throw new InvalidArgumentException(sprintf(
+                throw new \InvalidArgumentException(sprintf(
                     'Given $key is in an invalid state. Can only lookup records when given a complete key. ' .
                     'Given path was %s',
                     (string) $key
@@ -417,18 +423,19 @@ class Operation
      *
      *     @type string $transaction The transaction ID, if the query should be
      *           run in a transaction.
-     *     @type string $className The name of the class to return results as.
-     *           Must be a subclass of {@see Google\Cloud\Datastore\Entity}.
-     *           If not set, {@see Google\Cloud\Datastore\Entity} will be used.
+     *     @type string $className If set, the given class will be returned.
+     *           Value must be the name of a class implementing
+     *           {@see Google\Cloud\Datastore\EntityInterface}. **Defaults to**
+     *           {@see Google\Cloud\Datastore\Entity}.
      *     @type string $readConsistency See
      *           [ReadConsistency](https://cloud.google.com/datastore/reference/rest/v1/ReadOptions#ReadConsistency).
      * }
-     * @return EntityIterator<Entity>
+     * @return EntityIterator<EntityInterface>
      */
     public function runQuery(QueryInterface $query, array $options = [])
     {
         $options += [
-            'className' => null,
+            'className' => Entity::class,
             'namespaceId' => $this->namespaceId
         ];
         $request = $options + $this->readOptions($options) + [
@@ -499,12 +506,12 @@ class Operation
      * Any incomplete keys will be allocated an ID. Named keys in the input
      * will remain unchanged.
      *
-     * @param Entity[] $entities A list of entities
-     * @return Entity[]
+     * @param EntityInterface[] $entities A list of entities
+     * @return EntityInterface[]
      */
     public function allocateIdsToEntities(array $entities)
     {
-        $this->validateBatch($entities, Entity::class);
+        $this->validateBatch($entities, EntityInterface::class);
 
         $incompleteKeys = [];
         foreach ($entities as $entity) {
@@ -535,7 +542,7 @@ class Operation
      *
      * @param string $operation The operation to execute. "Insert", "Upsert",
      *        "Update" or "Delete".
-     * @param Entity|Key $input The entity or key to mutate.
+     * @param EntityInterface|Key $input The entity or key to mutate.
      * @param string $type The type of the input array.
      * @param string $baseVersion [optional] The version of the entity that this mutation
      *        is being applied to. If this does not match the current version on
@@ -549,14 +556,18 @@ class Operation
         $type,
         $baseVersion = null
     ) {
-        // If the given element is an Entity, it will use that baseVersion.
-        if ($input instanceof Entity) {
+        // If the given element is an EntityInterface, it will use that baseVersion.
+        if ($input instanceof EntityInterface) {
             $baseVersion = $input->baseVersion();
             $data = $this->entityMapper->objectToRequest($input);
+
+            if (!$input->key()) {
+                throw new \InvalidArgumentException('Base entities must provide a datastore key.');
+            }
         } elseif ($input instanceof Key) {
             $data = $input->keyObject();
         } else {
-            throw new InvalidArgumentException(sprintf(
+            throw new \InvalidArgumentException(sprintf(
                 'Input must be a Key or Entity, %s given',
                 get_class($input)
             ));
@@ -585,7 +596,7 @@ class Operation
     /**
      * Check whether an update or upsert operation may proceed safely
      *
-     * @param Entity[] $entities the entities to be updated or upserted.
+     * @param EntityInterface[] $entities the entities to be updated or upserted.
      * @param bool $allowOverwrite If `true`, entities may be overwritten.
      *        **Defaults to** `false`.
      * @throws InvalidArgumentException
@@ -593,11 +604,11 @@ class Operation
      */
     public function checkOverwrite(array $entities, $allowOverwrite = false)
     {
-        $this->validateBatch($entities, Entity::class);
+        $this->validateBatch($entities, EntityInterface::class);
 
         foreach ($entities as $entity) {
             if (!$entity->populatedByService() && !$allowOverwrite) {
-                throw new InvalidArgumentException(sprintf(
+                throw new \InvalidArgumentException(sprintf(
                     'Given entity cannot be saved because it may overwrite an '.
                     'existing record. When updating manually created entities, '.
                     'please set the options `$allowOverwrite` flag to `true`. '.
@@ -615,28 +626,16 @@ class Operation
      *
      * @param array $result The EntityResult from a Lookup.
      * @param string|array $class If a string, the name of the class to return results as.
-     *        Must be a subclass of {@see Google\Cloud\Datastore\Entity}.
+     *        Must implement {@see Google\Cloud\Datastore\EntityInterface}.
      *        If not set, {@see Google\Cloud\Datastore\Entity} will be used.
      *        If an array is given, it must be an associative array, where
-     *        the key is a Kind and the value is the name of a subclass of
-     *        {@see Google\Cloud\Datastore\Entity}.
-     * @return Entity[]
+     *        the key is a Kind and the value is an object implementing
+     *        {@see Google\Cloud\Datastore\EntityInterface}.
+     * @return EntityInterface[]
      */
     private function mapEntityResult(array $result, $class)
     {
         $entity = $result['entity'];
-
-        $properties = [];
-        $excludes = [];
-        $meanings = [];
-
-        if (isset($entity['properties'])) {
-            $res = $this->entityMapper->responseToEntityProperties($entity['properties']);
-
-            $properties = $res['properties'];
-            $excludes = $res['excludes'];
-            $meanings = $res['meanings'];
-        }
 
         $namespaceId = (isset($entity['key']['partitionId']['namespaceId']))
             ? $entity['key']['partitionId']['namespaceId']
@@ -650,7 +649,7 @@ class Operation
         if (is_array($class)) {
             $lastPathElement = $key->pathEnd();
             if (!array_key_exists($lastPathElement['kind'], $class)) {
-                throw new InvalidArgumentException(sprintf(
+                throw new \InvalidArgumentException(sprintf(
                     'No class found for kind %s',
                     $lastPathElement['kind']
                 ));
@@ -659,6 +658,18 @@ class Operation
             $className = $class[$lastPathElement['kind']];
         } else {
             $className = $class;
+        }
+
+        $properties = [];
+        $excludes = [];
+        $meanings = [];
+
+        if (isset($entity['properties'])) {
+            $res = $this->entityMapper->responseToEntityProperties($entity['properties'], $className);
+
+            $properties = $res['properties'];
+            $excludes = $res['excludes'];
+            $meanings = $res['meanings'];
         }
 
         return $this->entity($key, $properties, [
@@ -707,9 +718,9 @@ class Operation
     /**
      * Sort entities into the order given in $keys.
      *
-     * @param Entity[] $entities
+     * @param EntityInterface[] $entities
      * @param Key[] $keys
-     * @return Entity[]
+     * @return EntityInterface[]
      */
     private function sortEntities(array $entities, array $keys)
     {

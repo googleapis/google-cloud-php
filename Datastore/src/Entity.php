@@ -64,216 +64,49 @@ use Psr\Http\Message\StreamInterface;
  * $entity['location'] = 'Detroit, MI';
  * ```
  *
+ * ```
+ * // Custom entity types can be created by implementing the datastore entity interface.
+ * // You can also define mappings to correctly fetch embedded entities.
+ * use Google\Cloud\Datastore\EntityTrait;
+ * use Google\Cloud\Datastore\EntityInterface;
+ *
+ * class Business implements EntityInterface
+ * {
+ *     use EntityTrait;
+ *
+ *     public static function mappings()
+ *     {
+ *         return [
+ *             'parent' => Business::class
+ *         ];
+ *     }
+ * }
+ *
+ * $alphabet = new Business;
+ * $alphabet->set([
+ *     'companyName' => 'Alphabet'
+ * ]);
+ *
+ * $key = $datastore->key('Business', 'Google');
+ * $google = $datastore->entity($key, [
+ *     'companyName' => 'Google',
+ *     'parent' => $alphabet
+ * ], [
+ *     'className' => Business::class
+ * ]);
+ *
+ * $datastore->insert($google);
+ *
+ * $google = $datastore->lookup($key, ['className' => Business::class]);
+ * echo get_class($google); // `Business`
+ * echo get_class($google->get()['parent']); // `Business`
+ * ```
+ *
  * @see https://cloud.google.com/datastore/docs/reference/rest/v1/Entity Entity API documentation
  */
-class Entity implements ArrayAccess
+class Entity implements ArrayAccess, EntityInterface
 {
-    use DatastoreTrait;
-
-    const EXCLUDE_FROM_INDEXES = '___GOOGLECLOUDPHP___EXCLUDEFROMINDEXES___';
-
-    /**
-     * @var Key
-     */
-    private $key;
-
-    /**
-     * @var array
-     */
-    private $entity;
-
-    /**
-     * @var array
-     */
-    private $options;
-
-    /**
-     * @param Key $key The Entity's Key, defining its unique identifier.
-     * @param array $entity [optional] The entity body.
-     * @param array $options [optional] {
-     *     Configuration Options
-     *
-     *     @type string $cursor Set only when the entity is obtained by a query
-     *           result. If set, the entity cursor can be retrieved from
-     *           {@see Google\Cloud\Datastore\Entity::cursor()}.
-     *     @type string $baseVersion Set only when the entity is obtained by a
-     *           query result. If set, the entity cursor can be retrieved from
-     *           {@see Google\Cloud\Datastore\Entity::baseVersion()}.
-     *     @type array $excludeFromIndexes A list of entity keys to exclude from
-     *           datastore indexes.
-     *     @type array $meanings A list of meaning values for entity properties.
-     *     @type bool $populatedByService Indicates whether the entity was
-     *           created as the result of a service request.
-     * }
-     * @throws InvalidArgumentException
-     */
-    public function __construct(Key $key, array $entity = [], array $options = [])
-    {
-        $this->key = $key;
-        $this->entity = $entity;
-        $this->options = $options + [
-            'cursor' => null,
-            'baseVersion' => null,
-            'populatedByService' => false,
-            'excludeFromIndexes' => [],
-            'meanings' => []
-        ];
-    }
-
-    /**
-     * Get the entity data
-     *
-     * Example:
-     * ```
-     * $data = $entity->get();
-     * ```
-     *
-     * @return array
-     */
-    public function get()
-    {
-        return $this->entity;
-    }
-
-    /**
-     * Set the entity data
-     *
-     * Calling this method replaces the entire entity body. To add or modify a
-     * single value on the entity, use the array syntax for assignment.
-     *
-     * Example:
-     * ```
-     * $entity->set([
-     *     'firstName' => 'Dave'
-     * ]);
-     * ```
-     *
-     * @param array $entity The new entity body.
-     * @return void
-     */
-    public function set(array $entity)
-    {
-        $this->entity = $entity;
-    }
-
-    /**
-     * Get the Entity Key
-     *
-     * Example:
-     * ```
-     * $key = $entity->key();
-     * ```
-     *
-     * @return Key
-     */
-    public function key()
-    {
-        return $this->key;
-    }
-
-    /**
-     * Fetch the cursor
-     *
-     * This is only set when the entity was obtained from a query result. It
-     * can be used to manually paginate results.
-     *
-     * Example:
-     * ```
-     * $cursor = $entity->cursor();
-     * ```
-     *
-     * @see https://cloud.google.com/datastore/docs/reference/rest/v1/EntityResult EntityResult.cursor
-     *
-     * @return string|null
-     */
-    public function cursor()
-    {
-        return $this->options['cursor'];
-    }
-
-    /**
-     * Fetch the baseVersion
-     *
-     * This is only set when the entity was obtained from a query result. It
-     * is used for concurrency control internally.
-     *
-     * Example:
-     * ```
-     * $baseVersion = $entity->baseVersion();
-     * ```
-     *
-     * @see https://cloud.google.com/datastore/docs/reference/rest/v1/EntityResult EntitResult.version
-     *
-     * @return string|null
-     */
-    public function baseVersion()
-    {
-        return $this->options['baseVersion'];
-    }
-
-    /**
-     * Indicate whether the entity was created as the result of an API call.
-     *
-     * Example:
-     * ```
-     * $populatedByService = $entity->populatedByService();
-     * ```
-     *
-     * @return bool
-     */
-    public function populatedByService()
-    {
-        return $this->options['populatedByService'];
-    }
-
-    /**
-     * A list of entity properties to exclude from datastore indexes.
-     *
-     * Example:
-     * ```
-     * $entity['birthDate'] = new DateTime('December 31, 1969');
-     * $entity->setExcludeFromIndexes([
-     *     'birthDate'
-     * ]);
-     * ```
-     *
-     * @param array $properties A list of properties to exclude from indexes.
-     * @return void
-     */
-    public function setExcludeFromIndexes(array $properties)
-    {
-        $this->options['excludeFromIndexes'] = $properties;
-    }
-
-    /**
-     * Return a list of properties excluded from datastore indexes
-     *
-     * Example:
-     * ```
-     * $excludedFromIndexes = $entity->excludedProperties();
-     * ```
-     *
-     * @return array
-     */
-    public function excludedProperties()
-    {
-        return $this->options['excludeFromIndexes'];
-    }
-
-    /**
-     * return a list of meaning values
-     *
-     * Example:
-     * ```
-     * $meanings = $entity->meanings();
-     * ```
-     *
-     * @return array
-     */
-    public function meanings()
-    {
-        return $this->options['meanings'];
-    }
+    use EntityTrait;
 
     /**
      * @param string $key The value name.

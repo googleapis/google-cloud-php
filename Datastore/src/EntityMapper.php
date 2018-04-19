@@ -22,8 +22,6 @@ use Google\Cloud\Datastore\Entity;
 use Google\Cloud\Datastore\GeoPoint;
 use Google\Cloud\Datastore\Key;
 use Google\Cloud\Core\Int64;
-use InvalidArgumentException;
-use RuntimeException;
 
 /**
  * Utility methods for mapping between datastore and {@see Google\Cloud\Datastore\Entity}.
@@ -71,16 +69,45 @@ class EntityMapper
      * Convert an entity response to properties, excludes and meanings.
      *
      * @param array $entityData The incoming entity
+     * @param string $className The name of a class to use as the entity. Must
+     *        implement {@see Google\Cloud\Datastore\EntityInterface}.
      * @return array
+     * @throws \InvalidArgumentException If the value of $className does not
+     *       implement {@see Google\Cloud\Datastore\EntityInterface}.
+     * @throws \InvalidArgumentException If the custom entity type containts invalid
+     *       mappings for embedded entities.
      */
-    public function responseToEntityProperties(array $entityData)
+    public function responseToEntityProperties(array $entityData, $className = Entity::class)
     {
+        if (!is_subclass_of($className, EntityInterface::class)) {
+            throw new \InvalidArgumentException(sprintf(
+                'Class %s must implement EntityInterface.',
+                $className
+            ));
+        }
+
         $properties = [];
         $excludes = [];
         $meanings = [];
 
+        $mappings = $className::mappings();
         foreach ($entityData as $key => $property) {
-            $properties[$key] = $this->getPropertyValue($property);
+            $mapClassName = Entity::class;
+            if (array_key_exists($key, $mappings)) {
+                $mapClassName = $mappings[$key];
+            }
+
+            if ($mapClassName) {
+                if (!is_subclass_of($mapClassName, EntityInterface::class)) {
+                    throw new \InvalidArgumentException(sprintf(
+                        'Class %s must implement EntityInterface. (Found in mappings on %s)',
+                        $mapClassName,
+                        $className
+                    ));
+                }
+            }
+
+            $properties[$key] = $this->getPropertyValue($property, $mapClassName);
 
             if (isset($property['excludeFromIndexes']) && $property['excludeFromIndexes']) {
                 $excludes[] = $key;
@@ -101,10 +128,10 @@ class EntityMapper
     /**
      * Translate an Entity to a datastore representation.
      *
-     * @param Entity $entity The input entity.
+     * @param EntityInterface $entity The input entity.
      * @return array A Datastore [Entity](https://cloud.google.com/datastore/reference/rest/v1/Entity)
      */
-    public function objectToRequest(Entity $entity)
+    public function objectToRequest(EntityInterface $entity)
     {
         $data = $entity->get();
 
@@ -122,8 +149,12 @@ class EntityMapper
             );
         }
 
+        $key = $entity->key()
+            ? $entity->key()->keyObject()
+            : null;
+
         return array_filter([
-            'key' => $entity->key()->keyObject(),
+            'key' => $key,
             'properties' => $properties
         ]);
     }
@@ -133,9 +164,10 @@ class EntityMapper
      *
      * @param string $type The value type
      * @param mixed $value The value
+     * @param string $className [optional] The object type to decode to, if type is entityValue.
      * @return mixed
      */
-    public function convertValue($type, $value)
+    public function convertValue($type, $value, $className = Entity::class)
     {
         $result = null;
 
@@ -211,21 +243,26 @@ class EntityMapper
                     ? $value['properties']
                     : [];
 
-                $decoded = $this->responseToEntityProperties($properties);
+                $decoded = $this->responseToEntityProperties($properties, $className);
                 $props = $decoded['properties'];
                 $excludes = $decoded['excludes'];
 
-                if (isset($value['key'])) {
-                    $namespaceId = (isset($value['key']['partitionId']['namespaceId']))
-                        ? $value['key']['partitionId']['namespaceId']
-                        : null;
+                // @todo (major) all embedded entities should be of type Entity or given EntityInterface type.
+                if (isset($value['key']) || $className !== Entity::class) {
+                    $key = null;
 
-                    $key = new Key($this->projectId, [
-                        'path' => $value['key']['path'],
-                        'namespaceId' => $namespaceId
-                    ]);
+                    if (isset($value['key']['path'])) {
+                        $namespaceId = (isset($value['key']['partitionId']['namespaceId']))
+                            ? $value['key']['partitionId']['namespaceId']
+                            : null;
 
-                    $result = new Entity($key, $props, [
+                        $key = new Key($this->projectId, [
+                            'path' => $value['key']['path'],
+                            'namespaceId' => $namespaceId
+                        ]);
+                    }
+
+                    $result = $className::build($key, $props, [
                         'populatedByService' => true,
                         'excludeFromIndexes' => $excludes
                     ]);
@@ -255,7 +292,7 @@ class EntityMapper
                 break;
 
             default:
-                throw new RuntimeException(sprintf(
+                throw new \RuntimeException(sprintf(
                     'Unrecognized value type %s. Please ensure you are using the latest version of google/cloud.',
                     $type
                 ));
@@ -337,14 +374,14 @@ class EntityMapper
 
             //@codeCoverageIgnoreStart
             case 'unknown type':
-                throw new InvalidArgumentException(sprintf(
+                throw new \InvalidArgumentException(sprintf(
                     'Unknown type for `%s',
                     $content
                 ));
                 break;
 
             default:
-                throw new InvalidArgumentException(sprintf(
+                throw new \InvalidArgumentException(sprintf(
                     'Invalid type for `%s',
                     $content
                 ));
@@ -396,7 +433,7 @@ class EntityMapper
 
                 break;
 
-            case $value instanceof Entity:
+            case $value instanceof EntityInterface:
                 return [
                     'entityValue' => $this->objectToRequest($value)
                 ];
@@ -421,7 +458,7 @@ class EntityMapper
                 return $this->convertArrayToEntityValue((array) $value);
 
             default:
-                throw new InvalidArgumentException(
+                throw new \InvalidArgumentException(
                     sprintf('Value of type `%s` could not be serialized', get_class($value))
                 );
 
@@ -506,12 +543,13 @@ class EntityMapper
      * Determine the property type and return a converted value
      *
      * @param array $property The API property
+     * @param string $className [optional] The type to decode into, if property is an entity.
      * @return mixed
      */
-    private function getPropertyValue(array $property)
+    private function getPropertyValue(array $property, $className = Entity::class)
     {
         $type = $this->getValueType($property);
-        return $this->convertValue($type, $property[$type]);
+        return $this->convertValue($type, $property[$type], $className);
     }
 
     /**
@@ -532,6 +570,6 @@ class EntityMapper
             return $types[0];
         }
 
-        throw new RuntimeException('Invalid entity property value given');
+        throw new \RuntimeException('Invalid entity property value given');
     }
 }

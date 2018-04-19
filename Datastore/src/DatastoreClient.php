@@ -298,13 +298,33 @@ class DatastoreClient
      * ```
      *
      * ```
-     * //[snippet=custom_class]
-     * // Entities can be custom classes extending the built-in Entity class.
-     * class Person extends Google\Cloud\Datastore\Entity
+     * //[snippet=custom_class_interface]
+     * // Entities can be custom classes implementing the Datastore entity interface.
+     * use Google\Cloud\Datastore\EntityTrait;
+     * use Google\Cloud\Datastore\EntityInterface;
+     *
+     * class PersonEntity implements EntityInterface
+     * {
+     *     use EntityTrait;
+     * }
+     *
+     * $person = $datastore->entity('Person', [ 'firstName' => 'Bob'], [
+     *     'className' => PersonEntity::class
+     * ]);
+     *
+     * echo get_class($person); // `Person`
+     * ```
+     *
+     * ```
+     * //[snippet=custom_class_extends]
+     * // Custom entity types may also extend the built-in Entity class.
+     * use Google\Cloud\Datastore\Entity;
+     *
+     * class OtherPersonEntity extends Entity
      * {}
      *
      * $person = $datastore->entity('Person', [ 'firstName' => 'Bob'], [
-     *     'className' => Person::class
+     *     'className' => OtherPersonEntity::class
      * ]);
      *
      * echo get_class($person); // `Person`
@@ -327,20 +347,26 @@ class DatastoreClient
      *
      * @see https://cloud.google.com/datastore/reference/rest/v1/Entity Entity
      *
-     * @param Key|string $key The key used to identify the record, or a string $kind.
-     * @param array $entity [optional] The data to fill the entity with.
+     * @param Key|string|null $key [optional] The key used to identify the record, or
+     *        a string $kind. The key may be null only if the entity will be
+     *        used as an embedded entity within another entity. Attempting to
+     *        use keyless entities as root entities will result in error.
+     *        **Defaults to** `null`.
+     * @param array $entity [optional] The data, provided as an array of keys
+     *        and values to fill the entity with. **Defaults to** `[]`.
      * @param array $options [optional] {
      *     Configuration Options
      *
-     *     @type string $className The name of a class extending {@see Google\Cloud\Datastore\Entity}.
-     *           If provided, an instance of that class will be returned instead of Entity.
-     *           If not set, {@see Google\Cloud\Datastore\Entity} will be used.
+     *     @type string $className If set, the given class will be returned.
+     *           Value must be the name of a class implementing
+     *           {@see Google\Cloud\Datastore\EntityInterface}. **Defaults to**
+     *           {@see Google\Cloud\Datastore\Entity}.
      *     @type array $excludeFromIndexes A list of entity keys to exclude from
      *           datastore indexes.
      * }
-     * @return Entity
+     * @return EntityInterface
      */
-    public function entity($key, array $entity = [], array $options = [])
+    public function entity($key = null, array $entity = [], array $options = [])
     {
         return $this->operation->entity($key, $entity, $options);
     }
@@ -544,12 +570,12 @@ class DatastoreClient
      *
      * @see https://cloud.google.com/datastore/docs/reference/rest/v1/projects/commit Commit API documentation
      *
-     * @param Entity $entity The entity to be inserted.
+     * @param EntityInterface $entity The entity to be inserted.
      * @param array $options [optional] Configuration options.
      * @return string The entity version.
      * @throws DomainException If a conflict occurs, fail.
      */
-    public function insert(Entity $entity, array $options = [])
+    public function insert(EntityInterface $entity, array $options = [])
     {
         $res = $this->insertBatch([$entity], $options);
         return $this->parseSingleMutationResult($res);
@@ -576,7 +602,7 @@ class DatastoreClient
      *
      * @see https://cloud.google.com/datastore/docs/reference/rest/v1/projects/commit Commit API documentation
      *
-     * @param Entity[] $entities The entities to be inserted.
+     * @param EntityInterface[] $entities The entities to be inserted.
      * @param array $options [optional] Configuration options.
      * @return array [Response Body](https://cloud.google.com/datastore/reference/rest/v1/projects/commit#response-body)
      */
@@ -610,7 +636,7 @@ class DatastoreClient
      *
      * @see https://cloud.google.com/datastore/docs/reference/rest/v1/projects/commit Commit API documentation
      *
-     * @param Entity $entity The entity to be updated.
+     * @param EntityInterface $entity The entity to be updated.
      * @param array $options [optional] {
      *     Configuration Options
      *
@@ -626,7 +652,7 @@ class DatastoreClient
      * @return string The entity version.
      * @throws DomainException If a conflict occurs, fail.
      */
-    public function update(Entity $entity, array $options = [])
+    public function update(EntityInterface $entity, array $options = [])
     {
         $res = $this->updateBatch([$entity], $options);
         return $this->parseSingleMutationResult($res);
@@ -652,7 +678,7 @@ class DatastoreClient
      *
      * @see https://cloud.google.com/datastore/docs/reference/rest/v1/projects/commit Commit API documentation
      *
-     * @param Entity[] $entities The entities to be updated.
+     * @param EntityInterface[] $entities The entities to be updated.
      * @param array $options [optional] {
      *     Configuration Options
      *
@@ -708,12 +734,12 @@ class DatastoreClient
      *
      * @see https://cloud.google.com/datastore/docs/reference/rest/v1/projects/commit Commit API documentation
      *
-     * @param Entity $entity The entity to be upserted.
+     * @param EntityInterface $entity The entity to be upserted.
      * @param array $options [optional] Configuration Options.
      * @return string The entity version.
      * @throws DomainException If a conflict occurs, fail.
      */
-    public function upsert(Entity $entity, array $options = [])
+    public function upsert(EntityInterface $entity, array $options = [])
     {
         $res = $this->upsertBatch([$entity], $options);
         return $this->parseSingleMutationResult($res);
@@ -752,7 +778,7 @@ class DatastoreClient
      *
      * @see https://cloud.google.com/datastore/docs/reference/rest/v1/projects/commit Commit API documentation
      *
-     * @param Entity[] $entities The entities to be upserted.
+     * @param EntityInterface[] $entities The entities to be upserted.
      * @param array $options [optional] Configuration Options.
      * @return array [Response Body](https://cloud.google.com/datastore/reference/rest/v1/projects/commit#response-body)
      */
@@ -867,11 +893,12 @@ class DatastoreClient
      *
      *     @type string $readConsistency See
      *           [ReadConsistency](https://cloud.google.com/datastore/reference/rest/v1/ReadOptions#ReadConsistency).
-     *     @type string $className The name of the class to return results as.
-     *           Must be a subclass of {@see Google\Cloud\Datastore\Entity}.
-     *           If not set, {@see Google\Cloud\Datastore\Entity} will be used.
+     *     @type string $className If set, the given class will be returned.
+     *           Value must be the name of a class implementing
+     *           {@see Google\Cloud\Datastore\EntityInterface}. **Defaults to**
+     *           {@see Google\Cloud\Datastore\Entity}.
      * }
-     * @return Entity|null
+     * @return EntityInterface|null
      */
     public function lookup(Key $key, array $options = [])
     {
@@ -910,11 +937,12 @@ class DatastoreClient
      *
      *     @type string $readConsistency See
      *           [ReadConsistency](https://cloud.google.com/datastore/reference/rest/v1/ReadOptions#ReadConsistency).
-     *     @type string|array $className If a string, the name of the class to return results as.
-     *           Must be a subclass of {@see Google\Cloud\Datastore\Entity}.
-     *           If not set, {@see Google\Cloud\Datastore\Entity} will be used.
+     *     @type string|array $className If a string, the given class will be
+     *           returned. Value must be the name of a class implementing
+     *           {@see Google\Cloud\Datastore\EntityInterface}.
      *           If an array is given, it must be an associative array, where
-     *           the key is a Kind and the value is the name of a subclass of
+     *           the key is a Kind and the value must implement
+     *           {@see Google\Cloud\Datastore\EntityInterface}. **Defaults to**
      *           {@see Google\Cloud\Datastore\Entity}.
      *     @type bool $sort If set to true, results in each set will be sorted
      *           to match the order given in $keys. **Defaults to** `false`.
@@ -1028,13 +1056,14 @@ class DatastoreClient
      * @param array $options [optional] {
      *     Configuration Options
      *
-     *     @type string $className The name of the class to return results as.
-     *           Must be a subclass of {@see Google\Cloud\Datastore\Entity}.
-     *           If not set, {@see Google\Cloud\Datastore\Entity} will be used.
+     *     @type string $className If set, the given class will be returned.
+     *           Value must be the name of a class implementing
+     *           {@see Google\Cloud\Datastore\EntityInterface}. **Defaults to**
+     *           {@see Google\Cloud\Datastore\Entity}.
      *     @type string $readConsistency See
      *           [ReadConsistency](https://cloud.google.com/datastore/reference/rest/v1/ReadOptions#ReadConsistency).
      * }
-     * @return EntityIterator<Entity>
+     * @return EntityIterator<EntityInterface>
      */
     public function runQuery(QueryInterface $query, array $options = [])
     {

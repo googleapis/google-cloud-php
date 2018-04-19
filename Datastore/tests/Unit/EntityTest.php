@@ -80,30 +80,81 @@ class EntityTest extends TestCase
         $this->assertEquals($data, $entity->get());
     }
 
+    public function testGetProperty()
+    {
+        $data = ['foo' => 'bar'];
+
+        $entity = new Entity($this->key, $data);
+        $this->assertEquals('bar', $entity->getProperty('foo'));
+    }
+
+    public function testGetPropertyNonExistent()
+    {
+        $data = ['foo' => 'bar'];
+
+        $entity = new Entity($this->key, $data);
+        $this->assertNull($entity->getProperty('nothanks'));
+    }
+
     public function testSet()
     {
         $data = ['foo' => 'bar'];
 
-        $entity = new Entity($this->key, []);
+        $entity = new Entity($this->key);
         $entity->set($data);
         $this->assertEquals($data, $entity->get());
     }
 
+    public function testSetProperty()
+    {
+        $data = ['foo' => 'bar'];
+
+        $entity = new Entity($this->key, $data);
+        $entity->setProperty('hello', 'world');
+        $this->assertEquals($data + ['hello' => 'world'], $entity->get());
+    }
+
     public function testKey()
     {
-        $entity = new Entity($this->key, []);
+        $entity = new Entity($this->key);
         $this->assertEquals($this->key, $entity->key());
     }
 
-    public function testCursor()
+    public function testExclude()
     {
-        $entity = new Entity($this->key, []);
-        $this->assertNull($entity->cursor());
+        $entity = new Entity($this->key);
+        $this->assertEquals([], $entity->excludedProperties());
+
+        $props = ['foo','bar'];
+        $entity->setExcludeFromIndexes($props);
+        $this->assertEquals($props, $entity->excludedProperties());
+    }
+
+    /**
+     * @dataProvider options
+     */
+    public function testOptionGetters($method, $unsetValue = null, $name = null)
+    {
+        $name = $name ?: $method;
+
+        $entity = new Entity($this->key);
+        $this->assertEquals($unsetValue, $entity->$method());
 
         $entity = new Entity($this->key, [], [
-            'cursor' => 'foo'
+            $name => 'foo'
         ]);
 
-        $this->assertEquals('foo', $entity->cursor());
+        $this->assertEquals('foo', $entity->$method());
+    }
+
+    public function options()
+    {
+        return [
+            ['cursor'],
+            ['baseVersion'],
+            ['populatedByService', false],
+            ['excludedProperties', [], 'excludeFromIndexes'],
+            ['meanings', []]
+        ];
     }
 }
