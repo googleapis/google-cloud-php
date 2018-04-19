@@ -539,9 +539,12 @@ class WriteTest extends SpannerTestCase
         $today = new \DateTime;
         $str = $today->format('Y-m-d\TH:i:s');
 
+        $todayLowMs = \DateTime::createFromFormat('U.u', time() .'.012345');
+
         $r = new \ReflectionClass(Timestamp::class);
         return [
             [new Timestamp($today)],
+            [new Timestamp($todayLowMs)],
             [new Timestamp($today, 0)],
             [new Timestamp($today, 1)],
             [new Timestamp($today, 000000001)],

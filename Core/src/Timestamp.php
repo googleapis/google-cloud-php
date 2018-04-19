@@ -56,11 +56,6 @@ class Timestamp
     private $nanoSeconds;
 
     /**
-     * @var bool
-     */
-    private $nanosFromDt = false;
-
-    /**
      * @param \DateTimeInterface $value The timestamp value. Use of
      *        `DateTimeImmutable` is highly recommended over `DateTime` in order
      *        to avoid side effects.
@@ -74,12 +69,9 @@ class Timestamp
     {
         $this->value = $value;
 
-        if ($nanoSeconds !== null) {
-            $this->nanoSeconds = (int) $nanoSeconds;
-        } else {
-            $this->nanoSeconds = (int) $value->format('u') * 1000;
-            $this->nanosFromDt = true;
-        }
+        $this->nanoSeconds = $nanoSeconds !== null
+            ? (int) $nanoSeconds
+            : null;
     }
 
     /**
@@ -112,7 +104,9 @@ class Timestamp
      */
     public function nanoSeconds()
     {
-        return $this->nanoSeconds;
+        return $this->nanoSeconds !== null
+            ? $this->nanoSeconds
+            : (int) $this->value->format('u') * 1000;
     }
 
     /**
@@ -129,8 +123,7 @@ class Timestamp
     {
         return $this->formatTimeAsString(
             $this->value,
-            $this->nanoSeconds,
-            $this->nanosFromDt
+            $this->nanoSeconds()
         );
     }
 
@@ -152,6 +145,6 @@ class Timestamp
      */
     public function formatForApi()
     {
-        return $this->formatTimeAsArray($this->value, $this->nanoSeconds);
+        return $this->formatTimeAsArray($this->value, $this->nanoSeconds());
     }
 }

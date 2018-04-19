@@ -78,21 +78,14 @@ trait TimeTrait
      *
      * @param \DateTimeInterface $dateTime The date time object.
      * @param int $ns The number of nanoseconds.
-     * @param bool $nanosFromDt [optional] Whether the nanoseconds were obtained from the DateTime object.
      * @return string
      */
-    private function formatTimeAsString(\DateTimeInterface $dateTime, $ns, $nanosFromDt = false)
+    private function formatTimeAsString(\DateTimeInterface $dateTime, $ns)
     {
-        if (!preg_match('/[^0]/', $ns)) {
-            $ns = '000000';
-        } else {
-            if (!$nanosFromDt) {
-                $ns = str_pad((string) $ns, 9, '0', STR_PAD_LEFT) ?: '0';
-
-                if (substr($ns, 6, 3) === '000') {
-                    $ns = substr($ns, 0, 6);
-                }
-            }
+        $ns = (string) $ns;
+        $ns = str_pad($ns, 9, '0', STR_PAD_LEFT) ?: '0';
+        if (substr($ns, 6, 3) === '000') {
+            $ns = substr($ns, 0, 6);
         }
 
         $dateTime = $dateTime->setTimeZone(new \DateTimeZone('UTC'));

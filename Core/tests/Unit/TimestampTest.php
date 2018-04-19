@@ -99,6 +99,35 @@ class TimestampTest extends TestCase
             [$today . '.1234Z',         $today . '.123400Z'],
             [$today . '.004Z',          $today . '.004000Z'],
             [$today . '.020001000Z',    $today . '.020001Z'],
+            [$today . '.012345Z',       $today . '.012345Z'],
+        ];
+    }
+
+    /**
+     * @dataProvider microSeconds
+     */
+    public function testNanoSecondsPadCorrectFromDateTime($micros)
+    {
+        $today = \DateTime::createFromFormat('U.u', time() .'.'. $micros);
+        $timestamp = new Timestamp($today);
+
+        $this->assertEquals($micros * 1000, $timestamp->nanoSeconds());
+        $this->assertEquals(
+            str_replace('+00:00', 'Z', $today->format(Timestamp::FORMAT)),
+            $timestamp->formatAsString()
+        );
+    }
+
+    public function microSeconds()
+    {
+        return [
+            ['012345'],
+            ['000001'],
+            ['123456'],
+            ['000100'],
+            ['101010'],
+            ['100001'],
+            ['001000']
         ];
     }
 
