@@ -105,6 +105,15 @@ class EntityTest extends TestCase
         $this->assertEquals($data, $entity->get());
     }
 
+    public function testSetProperty()
+    {
+        $data = ['foo' => 'bar'];
+
+        $entity = new Entity($this->key, $data);
+        $entity->setProperty('hello', 'world');
+        $this->assertEquals($data + ['hello' => 'world'], $entity->get());
+    }
+
     public function testKey()
     {
         $entity = new Entity($this->key);

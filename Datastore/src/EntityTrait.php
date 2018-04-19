@@ -154,6 +154,26 @@ trait EntityTrait
     }
 
     /**
+     * Set the value of a single entity property.
+     *
+     * If the property already exists, the value will be overwritten. If it does
+     * not exist, it will be added.
+     *
+     * Example:
+     * ```
+     * $entity->setProperty('firstName', 'Bob');
+     * ```
+     *
+     * @param string $property The property name.
+     * @param mixed $value The property value.
+     * @return void
+     */
+    public function setProperty($property, $value)
+    {
+        $this->entity[$property] = $value;
+    }
+
+    /**
      * Get the Entity Key
      *
      * Example:
