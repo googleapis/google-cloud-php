@@ -13,7 +13,8 @@
         "phpunit/phpunit": "^4.8|^5.0",
         "squizlabs/php_codesniffer": "2.*",
         "phpdocumentor/reflection": "^3.0",
-        "erusev/parsedown": "^1.6"
+        "erusev/parsedown": "^1.6",
+        "google/cloud-tools": "^0.6"
     },
     "extra": {
         "component": {
