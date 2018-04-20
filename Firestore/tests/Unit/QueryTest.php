@@ -88,7 +88,7 @@ class QueryTest extends TestCase
                             ]
                         ]
                     ],
-                    'readTime' => new Timestamp(new \DateTimeImmutable, 0)
+                    'readTime' => (new \DateTime)->format(Timestamp::FORMAT)
                 ],
                 []
             ]));
@@ -102,6 +102,38 @@ class QueryTest extends TestCase
         $current = $res->rows()[0];
         $this->assertEquals($name, $current->name());
         $this->assertEquals('world', $current['hello']);
+    }
+
+    public function testDocumentsMetadata()
+    {
+        $name = self::PARENT .'/foo';
+
+        $ts = (new \DateTime)->format(Timestamp::FORMAT);
+        $this->connection->runQuery(Argument::any())
+            ->shouldBeCalled()
+            ->willReturn(new \ArrayIterator([
+                [
+                    'document' => [
+                        'name' => $name,
+                        'fields' => [
+                            'hello' => [
+                                'stringValue' => 'world'
+                            ]
+                        ],
+                        'createTime' => $ts,
+                        'updateTime' => $ts
+                    ],
+                    'readTime' => $ts
+                ],
+                []
+            ]));
+
+        $this->query->___setProperty('connection', $this->connection->reveal());
+
+        $res = $this->query->documents()->rows()[0];
+        $this->assertInstanceOf(Timestamp::class, $res->createTime());
+        $this->assertInstanceOf(Timestamp::class, $res->updateTime());
+        $this->assertInstanceOf(Timestamp::class, $res->readTime());
     }
 
     public function testSelect()

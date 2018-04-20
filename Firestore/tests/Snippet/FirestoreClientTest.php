@@ -17,20 +17,21 @@
 
 namespace Google\Cloud\Firestore\Tests\Snippet;
 
-use Prophecy\Argument;
 use Google\Cloud\Core\Blob;
 use Google\Cloud\Core\GeoPoint;
-use Google\Cloud\Firestore\FieldPath;
-use Google\Cloud\Core\Testing\GrpcTestTrait;
-use Google\Cloud\Firestore\WriteBatch;
-use Google\Cloud\Firestore\Transaction;
-use Google\Cloud\Firestore\FirestoreClient;
 use Google\Cloud\Core\Iterator\ItemIterator;
-use Google\Cloud\Firestore\DocumentSnapshot;
+use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
-use Google\Cloud\Firestore\DocumentReference;
+use Google\Cloud\Core\Timestamp;
 use Google\Cloud\Firestore\CollectionReference;
 use Google\Cloud\Firestore\Connection\ConnectionInterface;
+use Google\Cloud\Firestore\DocumentReference;
+use Google\Cloud\Firestore\DocumentSnapshot;
+use Google\Cloud\Firestore\FieldPath;
+use Google\Cloud\Firestore\FirestoreClient;
+use Google\Cloud\Firestore\Transaction;
+use Google\Cloud\Firestore\WriteBatch;
+use Prophecy\Argument;
 
 /**
  * @group firestore
@@ -118,13 +119,13 @@ class FirestoreClientTest extends SnippetTestCase
                         'name' => sprintf($tpl, self::PROJECT, self::DATABASE, 'john'),
                         'fields' => []
                     ],
-                    'readTime' => ['seconds' => time()]
+                    'readTime' => (new \DateTime)->format(Timestamp::FORMAT)
                 ], [
                     'found' => [
                         'name' => sprintf($tpl, self::PROJECT, self::DATABASE, 'dave'),
                         'fields' => []
                     ],
-                    'readTime' => ['seconds' => time()]
+                    'readTime' => (new \DateTime)->format(Timestamp::FORMAT)
                 ]
             ]);
 
@@ -146,7 +147,7 @@ class FirestoreClientTest extends SnippetTestCase
             ->willReturn([
                 [
                     'missing' => sprintf($tpl, self::PROJECT, self::DATABASE, 'deleted-user'),
-                    'readTime' => ['seconds' => time()]
+                    'readTime' => (new \DateTime)->format(Timestamp::FORMAT)
                 ]
             ]);
 
@@ -174,7 +175,7 @@ class FirestoreClientTest extends SnippetTestCase
                 [
                     'found' => [
                         'name' => $from,
-                        'readTime' => ['seconds' => time()],
+                        'readTime' => (new \DateTime)->format(Timestamp::FORMAT),
                         'fields' => [
                             'balance' => [
                                 'doubleValue' => 1000.00
@@ -190,7 +191,7 @@ class FirestoreClientTest extends SnippetTestCase
                 [
                     'found' => [
                         'name' => $to,
-                        'readTime' => ['seconds' => time()],
+                        'readTime' => (new \DateTime)->format(Timestamp::FORMAT),
                         'fields' => [
                             'balance' => [
                                 'doubleValue' => 1000.00

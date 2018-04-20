@@ -17,7 +17,9 @@
 
 namespace Google\Cloud\Firestore\Tests\Snippet;
 
+use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
+use Google\Cloud\Core\Timestamp;
 use Google\Cloud\Firestore\CollectionReference;
 use Google\Cloud\Firestore\Connection\ConnectionInterface;
 use Google\Cloud\Firestore\DocumentReference;
@@ -29,7 +31,6 @@ use Google\Cloud\Firestore\QuerySnapshot;
 use Google\Cloud\Firestore\Transaction;
 use Google\Cloud\Firestore\ValueMapper;
 use Google\Cloud\Firestore\WriteBatch;
-use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Prophecy\Argument;
 
 /**
@@ -97,7 +98,7 @@ class TransactionTest extends SnippetTestCase
                     'found' => [
                         'name' => self::DOCUMENT,
                         'fields' => [],
-                        'readTime' => ['seconds' => time()]
+                        'readTime' => (new \DateTime)->format(Timestamp::FORMAT)
                     ]
                 ]
             ]));
@@ -220,13 +221,13 @@ class TransactionTest extends SnippetTestCase
                         'name' => sprintf(self::DOCUMENT_TEMPLATE, self::PROJECT, self::DATABASE_ID, 'john'),
                         'fields' => []
                     ],
-                    'readTime' => ['seconds' => time()]
+                    'readTime' => (new \DateTime)->format(Timestamp::FORMAT)
                 ], [
                     'found' => [
                         'name' => sprintf(self::DOCUMENT_TEMPLATE, self::PROJECT, self::DATABASE_ID, 'dave'),
                         'fields' => []
                     ],
-                    'readTime' => ['seconds' => time()]
+                    'readTime' => (new \DateTime)->format(Timestamp::FORMAT)
                 ]
             ]);
 
@@ -247,7 +248,7 @@ class TransactionTest extends SnippetTestCase
             ->willReturn([
                 [
                     'missing' => sprintf(self::DOCUMENT_TEMPLATE, self::PROJECT, self::DATABASE_ID, 'deleted-user'),
-                    'readTime' => ['seconds' => time()]
+                    'readTime' => (new \DateTime)->format(Timestamp::FORMAT)
                 ]
             ]);
 
