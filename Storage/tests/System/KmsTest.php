@@ -54,7 +54,7 @@ class KmsTest extends StorageTestCase
         $this->assertEquals(self::DATA, $object->downloadAsString());
     }
 
-    public function testUploadWithDefaultNameOnBucket()
+    public function testUploadWithDefaultKmsKeyNameOnBucket()
     {
         self::$bucket->update([
             'encryption' => [
