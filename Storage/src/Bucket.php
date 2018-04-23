@@ -210,7 +210,7 @@ class Bucket
      *     fopen(__DIR__ . '/image.jpg', 'r'),
      *     [
      *         'metadata' => [
-     *             'kmsKeyName' => 'projects/my-project/locations/global/keyRings/my-kr/cryptoKeys/my-key'
+     *             'kmsKeyName' => 'projects/my-project/locations/kr-location/keyRings/my-kr/cryptoKeys/my-key'
      *         ]
      *     ]
      * );
@@ -256,7 +256,8 @@ class Bucket
      *     @type string $encryptionKey A base64 encoded AES-256 customer-supplied
      *           encryption key. If you would prefer to manage encryption
      *           utilizing the Cloud Key Management Service (KMS) please use the
-     *           $metadata['kmsKeyName'] setting.
+     *           $metadata['kmsKeyName'] setting. Please note if using KMS the
+     *           key ring should use the same location as the bucket.
      *     @type string $encryptionKeySHA256 Base64 encoded SHA256 hash of the
      *           customer-supplied encryption key. This value will be calculated
      *           from the `encryptionKey` on your behalf if not provided, but
@@ -334,7 +335,8 @@ class Bucket
      *     @type string $encryptionKey A base64 encoded AES-256 customer-supplied
      *           encryption key. If you would prefer to manage encryption
      *           utilizing the Cloud Key Management Service (KMS) please use the
-     *           $metadata['kmsKeyName'] setting.
+     *           $metadata['kmsKeyName'] setting. Please note if using KMS the
+     *           key ring should use the same location as the bucket.
      *     @type string $encryptionKeySHA256 Base64 encoded SHA256 hash of the
      *           customer-supplied encryption key. This value will be calculated
      *           from the `encryptionKey` on your behalf if not provided, but
@@ -409,7 +411,8 @@ class Bucket
      *     @type string $encryptionKey A base64 encoded AES-256 customer-supplied
      *           encryption key. If you would prefer to manage encryption
      *           utilizing the Cloud Key Management Service (KMS) please use the
-     *           $metadata['kmsKeyName'] setting.
+     *           $metadata['kmsKeyName'] setting. Please note if using KMS the
+     *           key ring should use the same location as the bucket.
      *     @type string $encryptionKeySHA256 Base64 encoded SHA256 hash of the
      *           customer-supplied encryption key. This value will be calculated
      *           from the `encryptionKey` on your behalf if not provided, but
@@ -799,7 +802,9 @@ class Bucket
      *     @type string $encryption.defaultKmsKeyName A Cloud KMS Key used to
      *           encrypt objects uploaded into this bucket. Should be in the
      *           format
-     *           `projects/my-project/locations/global/keyRings/my-kr/cryptoKeys/my-key`.
+     *           `projects/my-project/locations/kr-location/keyRings/my-kr/cryptoKeys/my-key`.
+     *           Please note the KMS key ring should use the same location as
+     *           the bucket.
      * }
      * @return array
      */

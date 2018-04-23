@@ -404,7 +404,9 @@ class StorageObject
      *           calculated SHA.
      *     @type string $destinationKmsKeyName Name of the Cloud KMS key that
      *           will be used to encrypt the object. Should be in the format
-     *           `projects/my-project/locations/global/keyRings/my-kr/cryptoKeys/my-key`.
+     *           `projects/my-project/locations/kr-location/keyRings/my-kr/cryptoKeys/my-key`.
+     *           Please note the KMS key ring should use the same location as
+     *           the destination bucket.
      *     @type string $ifGenerationMatch Makes the operation conditional on
      *           whether the destination object's current generation matches the
      *           given value.

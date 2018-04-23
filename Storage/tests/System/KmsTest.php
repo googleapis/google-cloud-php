@@ -178,10 +178,22 @@ class KmsTest extends StorageTestCase
             'scopes' => ['https://www.googleapis.com/auth/cloud-platform']
         ]);
         $projectId = self::getProjectId($keyFilePath);
-
+        $serviceAccount = self::getServiceAccount($wrapper, $projectId);
         self::buildKeyRing($wrapper, $projectId, $keyRingId);
-        $keyNames[] = self::getCryptoKeyName($wrapper, $projectId, $keyRingId, $cryptoKeyId1);
-        $keyNames[] = self::getCryptoKeyName($wrapper, $projectId, $keyRingId, $cryptoKeyId2);
+        $keyNames[] = self::getCryptoKeyName(
+            $wrapper,
+            $serviceAccount,
+            $projectId,
+            $keyRingId,
+            $cryptoKeyId1
+        );
+        $keyNames[] = self::getCryptoKeyName(
+            $wrapper,
+            $serviceAccount,
+            $projectId,
+            $keyRingId,
+            $cryptoKeyId2
+        );
 
         return $keyNames;
     }
@@ -214,6 +226,7 @@ class KmsTest extends StorageTestCase
 
     /**
      * @param RequestWrapper $wrapper
+     * @param string $serviceAccount
      * @param string $projectId
      * @param string $keyRingId
      * @param string $cryptoKeyId
@@ -221,6 +234,7 @@ class KmsTest extends StorageTestCase
      */
     private static function getCryptoKeyName(
         RequestWrapper $wrapper,
+        $serviceAccount,
         $projectId,
         $keyRingId,
         $cryptoKeyId
@@ -258,12 +272,13 @@ class KmsTest extends StorageTestCase
                     [
                         'role' => 'roles/cloudkms.cryptoKeyEncrypterDecrypter',
                         'members' => [
-                            "serviceAccount:$projectId@gs-project-accounts.iam.gserviceaccount.com"
+                            "serviceAccount:$serviceAccount"
                         ]
                     ]
                 ]
             ]
         ];
+
         $wrapper->send(
             new Request(
                 'POST',
@@ -279,5 +294,28 @@ class KmsTest extends StorageTestCase
         );
 
         return $name;
+    }
+
+    /**
+     * @param RequestWrapper $wrapper
+     * @param string $projectId
+     * @return string
+     */
+    private static function getServiceAccount(RequestWrapper $wrapper, $projectId)
+    {
+        $response = $wrapper->send(
+            new Request(
+                'GET',
+                sprintf(
+                    'https://www.googleapis.com/storage/v1/projects/%s/serviceAccount',
+                    $projectId
+                )
+            )
+        );
+
+        return json_decode(
+            (string) $response->getBody(),
+            true
+        )['email_address'];
     }
 }

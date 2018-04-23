@@ -196,7 +196,7 @@ class BucketTest extends SnippetTestCase
 
         $this->connection->insertObject([
                 'metadata' => [
-                    'kmsKeyName' => 'projects/my-project/locations/global/keyRings/my-kr/cryptoKeys/my-key'
+                    'kmsKeyName' => 'projects/my-project/locations/kr-location/keyRings/my-kr/cryptoKeys/my-key'
                 ],
                 'bucket' => self::BUCKET,
                 'userProject' => null,
