@@ -697,11 +697,11 @@ use Google\Cloud\Dlp\V2\InfoType;
 use Google\Cloud\Dlp\V2\InspectConfig;
 
 $dlpServiceClient = new DlpServiceClient();
-$infoTypesElement = new InfoType()
+$infoTypesElement = (new InfoType())
     ->setName('EMAIL_ADDRESS');
-$inspectConfig = new InspectConfig()
+$inspectConfig = (new InspectConfig())
     ->setInfoTypes([$infoTypesElement]);
-$item = new ContentItem()
+$item = (new ContentItem())
     ->setValue('My email is example@example.com.');
 $formattedParent = $dlpServiceClient
     ->projectName('[PROJECT_ID]');
