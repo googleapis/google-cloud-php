@@ -48,7 +48,15 @@ class Rest implements ConnectionInterface
     }
 
     /**
-     * @param  array $args
+     * Sends new spans to new or existing traces. You cannot update existing
+     * spans.
+     *
+     * @param array $args {
+     *      Batch write params.
+     *
+     *      @type string $projectsId The ID of the Google Cloud Project
+     *      @type array $spans
+     * }
      */
     public function traceBatchWrite(array $args)
     {
@@ -56,7 +64,7 @@ class Rest implements ConnectionInterface
     }
 
     /**
-     * @param  array $args
+     * @param array $args
      */
     public function traceSpanCreate(array $args)
     {

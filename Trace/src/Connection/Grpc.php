@@ -47,29 +47,7 @@ class Grpc implements ConnectionInterface
      */
     public function __construct(array $config = [])
     {
-        $this->serializer = new Serializer([
-            'start_time' => function ($v) {
-                return $this->formatTimestampFromApi($v);
-            },
-            'end_time' => function ($v) {
-                return $this->formatTimestampFromApi($v);
-            }
-        ], [
-            'google.protobuf.Value' => function ($v) {
-                return $this->flattenValue($v);
-            },
-            'google.protobuf.ListValue' => function ($v) {
-                return $this->flattenListValue($v);
-            },
-            'google.protobuf.Struct' => function ($v) {
-                return $this->flattenStruct($v);
-            },
-            'google.protobuf.Timestamp' => function ($v) {
-                var_dump('TIMESTAMPPPPPPPPPPPPPP');
-                return $v;
-            }
-        ]);
-
+        $this->serializer = new Serializer();
         $config['serializer'] = $this->serializer;
         $this->setRequestWrapper(new GrpcRequestWrapper($config));
         $gaxConfig = $this->getGaxConfig(
@@ -83,7 +61,15 @@ class Grpc implements ConnectionInterface
     }
 
     /**
-     * @param  array $args
+     * Sends new spans to new or existing traces. You cannot update existing
+     * spans.
+     *
+     * @param array $args {
+     *      Batch write params.
+     *
+     *      @type string $projectsId The ID of the Google Cloud Project
+     *      @type array $spans
+     * }
      */
     public function traceBatchWrite(array $args)
     {
@@ -96,12 +82,17 @@ class Grpc implements ConnectionInterface
     }
 
     /**
-     * @param  array $args
+     * @param array $args
      */
     public function traceSpanCreate(array $args)
     {
         return $this->send([$this->traceClient, 'createSpan'], [
-
+            TraceServiceClient::projectName($this->pluck('projectsId', $args)),
+            $this->pluck('spanId', $args),
+            $this->pluck('displayName', $args),
+            $this->formatTimestampForApi($this->pluck('startTime', $args)),
+            $this->formatTimestampForApi($this->pluck('endTime', $args)),
+            $args
         ]);
     }
 
