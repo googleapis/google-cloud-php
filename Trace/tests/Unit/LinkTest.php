@@ -29,7 +29,7 @@ class LinkTest extends TestCase
     {
         $link = new Link('abcd1234', 'abcd2345');
 
-        $info = $link->jsonSerialize();
+        $info = $link->info();
         $this->assertArrayHasKey('type', $info);
         $this->assertEquals(Link::TYPE_UNSPECIFIED, $info['type']);
     }
@@ -39,9 +39,9 @@ class LinkTest extends TestCase
         $link = new Link('abcd1234', 'abcd2345');
         $link->addAttribute('foo', 'bar');
 
-        $info = $link->jsonSerialize();
+        $info = $link->info();
         $this->assertArrayHasKey('attributes', $info);
-        $this->assertEquals('bar', $info['attributes']['foo']);
+        $this->assertEquals('bar', $info['attributes']['attributeMap']['foo']['stringValue']['value']);
     }
 
     public function testCreatesAnAnnotionWithAttributes()
@@ -52,16 +52,16 @@ class LinkTest extends TestCase
             ]
         ]);
 
-        $info = $link->jsonSerialize();
+        $info = $link->info();
         $this->assertArrayHasKey('attributes', $info);
-        $this->assertEquals('bar', $info['attributes']['foo']);
+        $this->assertEquals('bar', $info['attributes']['attributeMap']['foo']['stringValue']['value']);
     }
 
     public function testCreatesWithTraceId()
     {
         $link = new Link('some trace id', 'abcd2345');
 
-        $info = $link->jsonSerialize();
+        $info = $link->info();
         $this->assertArrayHasKey('traceId', $info);
         $this->assertEquals('some trace id', $info['traceId']);
     }
@@ -70,7 +70,7 @@ class LinkTest extends TestCase
     {
         $link = new Link('abcd1234', 'some span id');
 
-        $info = $link->jsonSerialize();
+        $info = $link->info();
         $this->assertArrayHasKey('spanId', $info);
         $this->assertEquals('some span id', $info['spanId']);
     }
@@ -81,7 +81,7 @@ class LinkTest extends TestCase
             'type' => Link::TYPE_CHILD_LINKED_SPAN
         ]);
 
-        $info = $link->jsonSerialize();
+        $info = $link->info();
         $this->assertArrayHasKey('type', $info);
         $this->assertEquals(Link::TYPE_CHILD_LINKED_SPAN, $info['type']);
     }

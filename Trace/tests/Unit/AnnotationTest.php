@@ -28,7 +28,7 @@ class AnnotationTest extends TestCase
     public function testCreateAnAnnotation()
     {
         $annotation = new Annotation('some description');
-        $info = $annotation->jsonSerialize()['annotation'];
+        $info = $annotation->info()['annotation'];
 
         $this->assertArrayHasKey('description', $info);
         $this->assertEquals('some description', $info['description']['value']);
@@ -39,10 +39,10 @@ class AnnotationTest extends TestCase
     {
         $annotation = new Annotation('some description');
         $annotation->addAttribute('foo', 'bar');
-        $info = $annotation->jsonSerialize()['annotation'];
+        $info = $annotation->info()['annotation'];
 
         $this->assertArrayHasKey('attributes', $info);
-        $this->assertEquals('bar', $info['attributes']['foo']);
+        $this->assertEquals('bar', $info['attributes']['attributeMap']['foo']['stringValue']['value']);
     }
 
     public function testCreatesAnAnnotionWithAttributes()
@@ -52,9 +52,9 @@ class AnnotationTest extends TestCase
                 'foo' => 'bar'
             ]
         ]);
-        $info = $annotation->jsonSerialize()['annotation'];
+        $info = $annotation->info()['annotation'];
 
         $this->assertArrayHasKey('attributes', $info);
-        $this->assertEquals('bar', $info['attributes']['foo']);
+        $this->assertEquals('bar', $info['attributes']['attributeMap']['foo']['stringValue']['value']);
     }
 }
