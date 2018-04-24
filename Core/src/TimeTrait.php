@@ -26,8 +26,8 @@ trait TimeTrait
      * Parse a Timestamp string and return a DateTimeImmutable instance and nanoseconds as an integer.
      *
      * @param string $timestamp A string representation of a timestamp, encoded
-     *        in RFC 3339 format (YYYY-MM-DDTHH-MM-SS.000000[000]TZ).
-     * @return array [\DateTimeImmutable, integer]
+     *        in RFC 3339 format (YYYY-MM-DDTHH:MM:SS.000000[000]TZ).
+     * @return array [\DateTimeImmutable, int]
      * @throws \InvalidArgumentException If the timestamp string is in an unrecognized format.
      */
     private function parseTimeString($timestamp)
@@ -39,13 +39,15 @@ trait TimeTrait
             ? $matches[1]
             : '0';
 
-        $timestamp = str_replace('.'. $subSeconds, '.' . substr($subSeconds, 0, 6), $timestamp);
+        if (strlen($subSeconds) > 6) {
+            $timestamp = str_replace('.'. $subSeconds, '.' . substr($subSeconds, 0, 6), $timestamp);
+        }
 
         $template = isset($matches[1])
             ? Timestamp::FORMAT
             : Timestamp::FORMAT_NO_MS;
 
-        $dt = \DateTimeImmutable::createFromFormat($template, str_replace('..', '.', $timestamp));
+        $dt = \DateTimeImmutable::createFromFormat($template, $timestamp);
         if (!$dt) {
             throw new \InvalidArgumentException(sprintf(
                 'Could not create a DateTime instance from given timestamp %s.',
@@ -77,36 +79,47 @@ trait TimeTrait
      * Create a Timestamp string in an API-compatible format.
      *
      * @param \DateTimeInterface $dateTime The date time object.
-     * @param int $ns The number of nanoseconds.
+     * @param int|null $ns The number of nanoseconds. If null, subseconds from
+     *        $dateTime will be used instead.
      * @return string
      */
     private function formatTimeAsString(\DateTimeInterface $dateTime, $ns)
     {
-        $ns = (string) $ns;
-        $ns = str_pad($ns, 9, '0', STR_PAD_LEFT) ?: '0';
-        if (substr($ns, 6, 3) === '000') {
-            $ns = substr($ns, 0, 6);
+        $dateTime = $dateTime->setTimeZone(new \DateTimeZone('UTC'));
+        if ($ns === null) {
+            $result = $dateTime->format(Timestamp::FORMAT);
+        } else {
+            $ns = (string) $ns;
+            $ns = str_pad($ns, 9, '0', STR_PAD_LEFT);
+            if (substr($ns, 6, 3) === '000') {
+                $ns = substr($ns, 0, 6);
+            }
+
+            $result = sprintf(
+                $dateTime->format(Timestamp::FORMAT_INTERPOLATE),
+                $ns
+            );
         }
 
-        $dateTime = $dateTime->setTimeZone(new \DateTimeZone('UTC'));
-        $timestamp = sprintf(
-            $dateTime->format(Timestamp::FORMAT_INTERPOLATE),
-            $ns
-        );
-
-        return $timestamp;
+        return str_replace('+00:00', 'Z', $result);
     }
 
     /**
      * Format a timestamp for the API with nanosecond precision.
      *
+     * @param \DateTimeInterface $dateTime The date time object.
+     * @param int|null $ns The number of nanoseconds. If null, subseconds from
+     *        $dateTime will be used instead.
      * @return array
      */
-    private function formatTimeAsArray(\DateTimeInterface $value, $nanoSeconds)
+    private function formatTimeAsArray(\DateTimeInterface $dateTime, $ns)
     {
+        if ($ns === null) {
+            $ns = $dateTime->format('u');
+        }
         return [
-            'seconds' => (int) $value->format('U'),
-            'nanos' => (int) $nanoSeconds
+            'seconds' => (int) $dateTime->format('U'),
+            'nanos' => (int) $ns
         ];
     }
 }

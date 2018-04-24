@@ -353,8 +353,10 @@ class Operation
         ];
 
         if ($res['readTimestamp']) {
-            $time = $this->parseTimeString($res['readTimestamp']);
-            $res['readTimestamp'] = new Timestamp($time[0], $time[1]);
+            if (!($res['readTimestamp'] instanceof Timestamp)) {
+                $time = $this->parseTimeString($res['readTimestamp']);
+                $res['readTimestamp'] = new Timestamp($time[0], $time[1]);
+            }
         }
 
         return new $className($this, $session, $res);

@@ -43,7 +43,7 @@ class Timestamp
 
     const FORMAT = 'Y-m-d\TH:i:s.uP';
     const FORMAT_NO_MS = 'Y-m-d\TH:i:sP';
-    const FORMAT_INTERPOLATE = 'Y-m-d\TH:i:s.%\s\Z';
+    const FORMAT_INTERPOLATE = 'Y-m-d\TH:i:s.%\sP';
 
     /**
      * @var \DateTimeInterface
@@ -104,9 +104,9 @@ class Timestamp
      */
     public function nanoSeconds()
     {
-        return $this->nanoSeconds !== null
-            ? $this->nanoSeconds
-            : (int) $this->value->format('u') * 1000;
+        return $this->nanoSeconds === null
+            ? (int) $this->value->format('u') * 1000
+            : $this->nanoSeconds;
     }
 
     /**
@@ -123,7 +123,7 @@ class Timestamp
     {
         return $this->formatTimeAsString(
             $this->value,
-            $this->nanoSeconds()
+            $this->nanoSeconds
         );
     }
 

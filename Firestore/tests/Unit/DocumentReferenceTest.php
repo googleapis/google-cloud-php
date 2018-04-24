@@ -253,8 +253,8 @@ class DocumentReferenceTest extends TestCase
     public function testWriteResult()
     {
         $time = time();
-        $ts = new Timestamp($this->createDateTimeFromSeconds($time), 0);
-        $ts2 = new Timestamp($this->createDateTimeFromSeconds($time + 100), 0);
+        $ts = \DateTime::createFromFormat('U', $time)->format(Timestamp::FORMAT);
+        $ts2 = \DateTime::createFromFormat('U', $time+100)->format(Timestamp::FORMAT);
 
         $this->connection->commit(Argument::any())
             ->shouldBeCalled()

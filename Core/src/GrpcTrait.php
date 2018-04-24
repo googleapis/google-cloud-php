@@ -24,7 +24,6 @@ use Google\Auth\FetchAuthTokenCache;
 use Google\Cloud\Core\ArrayTrait;
 use Google\Cloud\Core\Exception\NotFoundException;
 use Google\Cloud\Core\GrpcRequestWrapper;
-use Google\Cloud\Core\Timestamp;
 use Google\Protobuf\NullValue;
 
 /**

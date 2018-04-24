@@ -48,7 +48,7 @@ class TimestampTest extends TestCase
     {
         $this->assertEquals(
             (new \DateTime($this->dt->format(Timestamp::FORMAT)))->format('U'),
-            (new \DateTime($this->ts->formatAsString(6)))->format('U')
+            (new \DateTime($this->ts->formatAsString()))->format('U')
         );
     }
 
