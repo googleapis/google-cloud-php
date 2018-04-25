@@ -31,8 +31,10 @@
  */
 namespace Google\ApiCore\Tests\Unit;
 
+use Google\ApiCore\LongRunning\Gapic\OperationsGapicClient;
+use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\OperationResponse;
-use Google\Longrunning\Operation;
+use Google\LongRunning\Operation;
 use Google\Protobuf\Any;
 use PHPUnit\Framework\TestCase;
 
@@ -66,7 +68,11 @@ class OperationResponseTest extends TestCase
         $this->assertEquals([
             'operationReturnType' => null,
             'metadataReturnType' => null,
-        ], $op->getReturnTypeOptions());
+            'initialPollDelayMillis' => 1000.0,
+            'pollDelayMultiplier' => 2.0,
+            'maxPollDelayMillis' => 60000.0,
+            'totalPollTimeoutMillis' => 0.0,
+        ], $op->getDescriptorOptions());
     }
 
     public function testWithResponse()
@@ -88,7 +94,11 @@ class OperationResponseTest extends TestCase
         $this->assertEquals([
             'operationReturnType' => null,
             'metadataReturnType' => null,
-        ], $op->getReturnTypeOptions());
+            'initialPollDelayMillis' => 1000.0,
+            'pollDelayMultiplier' => 2.0,
+            'maxPollDelayMillis' => 60000.0,
+            'totalPollTimeoutMillis' => 0.0,
+        ], $op->getDescriptorOptions());
 
         $response = $this->createAny($this->createStatus(0, "response"));
         $error = $this->createStatus(2, "error");
@@ -129,7 +139,12 @@ class OperationResponseTest extends TestCase
         $this->assertEquals([
             'operationReturnType' => '\Google\Rpc\Status',
             'metadataReturnType' => '\Google\Protobuf\Any',
-        ], $op->getReturnTypeOptions());
+            'initialPollDelayMillis' => 1000.0,
+            'pollDelayMultiplier' => 2.0,
+            'maxPollDelayMillis' => 60000.0,
+            'totalPollTimeoutMillis' => 0.0,
+
+        ], $op->getDescriptorOptions());
 
         $innerResponse = $this->createStatus(0, "response");
         $innerMetadata = new Any();
@@ -144,5 +159,86 @@ class OperationResponseTest extends TestCase
         $this->assertTrue($op->isDone());
         $this->assertEquals($innerResponse, $op->getResult());
         $this->assertEquals($innerMetadata, $op->getMetadata());
+    }
+
+    /**
+     * @dataProvider pollingDataProvider
+     */
+    public function testPolling($op, $pollArgs, $expectedSleeps, $expectedComplete)
+    {
+        $op->pollUntilComplete($pollArgs);
+
+        $this->assertEquals($op->isDone(), $expectedComplete);
+        $this->assertEquals($op->getSleeps(), $expectedSleeps);
+    }
+
+    public function pollingDataProvider()
+    {
+        $pollingArgs = [
+            'initialPollDelayMillis' => 10.0,
+            'pollDelayMultiplier' => 3.0,
+            'maxPollDelayMillis' => 50.0,
+            'totalPollTimeoutMillis' => 100.0,
+        ];
+        return [
+            [$this->createOperationResponse([], 3), [], [1000.0, 2000.0, 4000.0], true], // Defaults
+            [$this->createOperationResponse([], 3), $pollingArgs, [10, 30, 50], true], // Args to pollUntilComplete
+            [$this->createOperationResponse($pollingArgs, 3), [], [10, 30, 50], true], // Args to constructor
+            [$this->createOperationResponse([], 4), [
+                'totalPollTimeoutMillis' => 80.0,
+            ] + $pollingArgs, [10, 30, 50], false], // Polling timeout
+        ];
+    }
+
+    private function createOperationResponse($options, $reloadCount)
+    {
+        $opName = 'operations/opname';
+        return new FakeOperationResponse($opName, $this->createOperationClient($reloadCount), $options);
+    }
+
+    private function createOperationClient($reloadCount)
+    {
+        $opClient = $this->getMock(
+            OperationsClient::class,
+            ['getOperation'],
+            [[
+                'serviceAddress' => '',
+                'scopes' => [],
+            ]]
+        );
+        for ($i = 0; $i < $reloadCount - 1; $i++) {
+            $opClient->expects($this->at($i))
+                ->method('getOperation')
+                ->willReturn(new Operation());
+        }
+        $opClient->expects($this->at($reloadCount - 1))
+            ->method('getOperation')
+            ->willReturn((new Operation())->setDone(true));
+        return $opClient;
+    }
+}
+
+class FakeOperationResponse extends OperationResponse
+{
+    private $currentTime = 0;
+    public function getSleeps()
+    {
+        return $this->sleeps;
+    }
+
+    public function sleepMillis($millis)
+    {
+        $this->currentTime += $millis;
+        $this->sleeps[] = $millis;
+    }
+
+    public function setTimes($times)
+    {
+        $this->times = $times;
+    }
+
+    public function getCurrentTimeMillis()
+    {
+        return $this->currentTime;
     }
 }
