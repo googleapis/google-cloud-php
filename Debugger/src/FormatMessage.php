@@ -31,7 +31,7 @@ namespace Google\Cloud\Debugger;
  * @see https://cloud.google.com/debugger/api/reference/rest/v2/debugger.debuggees.breakpoints#formatmessage FormatMessage model documentation
  * @codingStandardsIgnoreEnd
  */
-class FormatMessage implements \JsonSerializable
+class FormatMessage
 {
     /**
      * @var string Format template for the message. The format uses placeholders
@@ -97,7 +97,7 @@ class FormatMessage implements \JsonSerializable
      * @access private
      * @return array
      */
-    public function jsonSerialize()
+    public function info()
     {
         return [
             'format' => $this->format,

@@ -144,7 +144,7 @@ class StackFrame
     {
         return [
             'function' => $this->function,
-            'location' => $this->location,
+            'location' => $this->location->info(),
             'arguments' => array_map(function ($v) {
                 return $v->info();
             }, $this->arguments),

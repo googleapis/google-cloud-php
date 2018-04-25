@@ -28,8 +28,6 @@ use PHPUnit\Framework\TestCase;
  */
 class CloudWorkspaceSourceContextTest extends TestCase
 {
-    use JsonTestTrait;
-
     public function testSerializes()
     {
         $workspaceId = new CloudWorkspaceId(new RepoId(new ProjectRepoId('projectId', 'repoName'), 'uid'), 'name');
@@ -49,7 +47,6 @@ class CloudWorkspaceSourceContextTest extends TestCase
                 'snapshotId' => 'snapshotId'
             ]
         ];
-
-        $this->assertProducesEquivalentJson($expected, $sourceContext);
+        $this->assertEquals($expected, $sourceContext->info());
     }
 }

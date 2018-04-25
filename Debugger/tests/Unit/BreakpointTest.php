@@ -51,7 +51,7 @@ class BreakpointTest extends TestCase
         $this->assertEquals('/path/to/file.php', $breakpoint->location()->path());
         $this->assertEquals(45, $breakpoint->location()->line());
 
-        $this->assertProducesEquivalentJson($input, $breakpoint);
+        $this->assertProducesEquivalentJson($input, $breakpoint->info());
     }
 
     public function testParsesConditionFromJson()
@@ -64,7 +64,7 @@ class BreakpointTest extends TestCase
         $breakpoint = new Breakpoint($input);
         $this->assertEquals('$foo == "bar"', $breakpoint->condition());
 
-        $this->assertProducesEquivalentJson($input, $breakpoint);
+        $this->assertProducesEquivalentJson($input, $breakpoint->info());
     }
 
     public function testParsesExpressionsFromJson()
@@ -79,7 +79,7 @@ class BreakpointTest extends TestCase
 
         $breakpoint = new Breakpoint($input);
         $this->assertCount(2, $breakpoint->expressions());
-        $this->assertProducesEquivalentJson($input, $breakpoint);
+        $this->assertProducesEquivalentJson($input, $breakpoint->info());
     }
 
     public function testDefaultsLogLevel()
@@ -96,7 +96,7 @@ class BreakpointTest extends TestCase
         ];
         $breakpoint = new Breakpoint($input);
         $this->assertEquals(Breakpoint::LOG_LEVEL_ERROR, $breakpoint->logLevel());
-        $this->assertProducesEquivalentJson($input, $breakpoint);
+        $this->assertProducesEquivalentJson($input, $breakpoint->info());
     }
 
     public function testParsesLogMessageFormat()
@@ -107,14 +107,14 @@ class BreakpointTest extends TestCase
         ];
         $breakpoint = new Breakpoint($input);
         $this->assertEQuals('some log message', $breakpoint->logMessageFormat());
-        $this->assertProducesEquivalentJson($input, $breakpoint);
+        $this->assertProducesEquivalentJson($input, $breakpoint->info());
     }
 
     public function testFinalizeSetsFinalStateAndTime()
     {
         $breakpoint = new Breakpoint();
         $breakpoint->finalize();
-        $info = $breakpoint->jsonSerialize();
+        $info = $breakpoint->info();
 
         $this->assertArrayHasKey('finalTime', $info);
         $this->assertArrayHasKey('isFinalState', $info);
@@ -170,7 +170,7 @@ class BreakpointTest extends TestCase
             '2 + 3' => 5,
             'false' => false
         ]);
-        $json = $breakpoint->jsonSerialize();
+        $json = $breakpoint->info();
         $this->assertArrayHasKey('evaluatedExpressions', $json);
         $this->assertCount(2, $json['evaluatedExpressions']);
     }
@@ -192,7 +192,7 @@ class BreakpointTest extends TestCase
 
         // resolved location should have changed the path
         $this->assertLessThan(strlen($breakpoint->location()->path()), strlen($path));
-        $json = json_decode(json_encode($breakpoint->jsonSerialize()), true);
+        $json = $breakpoint->info();
 
         // the serialized location should be unaffected
         $this->assertEquals($path, $json['location']['path']);

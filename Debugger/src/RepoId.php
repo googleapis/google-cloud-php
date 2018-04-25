@@ -66,7 +66,7 @@ class RepoId
      * @access private
      * @return array
      */
-    public function jsonSerialize()
+    public function info()
     {
         return [
             'projectRepoId' => $this->projectRepoId->info(),

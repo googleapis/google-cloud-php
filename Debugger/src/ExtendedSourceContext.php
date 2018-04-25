@@ -83,7 +83,7 @@ class ExtendedSourceContext implements SourceContext
     public function contextData()
     {
         return [
-            'context' => $this->context,
+            'context' => $this->context->info(),
             'labels' => $this->labels
         ];
     }

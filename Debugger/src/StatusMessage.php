@@ -128,7 +128,7 @@ class StatusMessage
         return [
             'isError' => $this->isError,
             'refersTo' => $this->refersTo,
-            'description' => $this->description
+            'description' => $this->description->info()
         ];
     }
 }

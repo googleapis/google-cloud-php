@@ -29,4 +29,6 @@ interface SourceContext
      * @return array
      */
     public function contextData();
+
+    public function info();
 }

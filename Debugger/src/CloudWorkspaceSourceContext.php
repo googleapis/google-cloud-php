@@ -76,7 +76,7 @@ class CloudWorkspaceSourceContext implements SourceContext
     {
         return [
             'cloudWorkspace' => [
-                'workspaceId' => $this->workspaceId,
+                'workspaceId' => $this->workspaceId->info(),
                 'snapshotId' => $this->snapshotId
             ]
         ];
