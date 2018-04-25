@@ -34,7 +34,7 @@ class BreakpointTest extends TestCase
     {
         $input = [
             'id' => 'breakpointid',
-            'action' => 'CAPTURE',
+            'action' => Breakpoint::ACTION_CAPTURE,
             'location' => [
                 'path' => '/path/to/file.php',
                 'line' => 45

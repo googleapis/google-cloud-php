@@ -54,12 +54,21 @@ class Grpc implements ConnectionInterface
      */
     public function __construct(array $config = [])
     {
-        $this->serializer = new Serializer([
-            'create_time' => function ($v) {
+        $this->serializer = new Serializer([], [
+            'google.protobuf.Timestamp' => function ($v) {
                 return $this->formatTimestampFromApi($v);
             },
-            'final_time' => function ($v) {
-                return $this->formatTimestampFromApi($v);
+            'google.protobuf.Int32Value' => function ($v) {
+                return $this->flattenValue($v);
+            }
+        ], [], [
+            'google.protobuf.Timestamp' => function ($v) {
+                return $this->formatTimestampForApi($v);
+            },
+            'google.protobuf.Int32Value' => function ($v) {
+                return [
+                    'value' => $v
+                ];
             }
         ]);
         $config['serializer'] = $this->serializer;
@@ -83,12 +92,11 @@ class Grpc implements ConnectionInterface
      */
     public function listDebuggees(array $args = [])
     {
-        $resp = $this->send([$this->debuggerClient, 'listDebuggees'], [
+        return $this->send([$this->debuggerClient, 'listDebuggees'], [
             $this->pluck('project', $args),
             DebuggerClient::VERSION,
             $args
         ]);
-        return $resp; // FIXME
     }
 
     /**
@@ -98,11 +106,13 @@ class Grpc implements ConnectionInterface
      */
     public function registerDebuggee(array $args = [])
     {
-        $resp = $this->send([$this->controllerClient, 'registerDebuggee'], [
-            $this->buildDebuggee($this->pluck('debuggee', $args)),
+        return $this->send([$this->controllerClient, 'registerDebuggee'], [
+            $this->serializer->decodeMessage(
+                new Debuggee(),
+                $this->pluck('debuggee', $args)
+            ),
             $args
         ]);
-        return $resp; // FIXME
     }
 
     /**
@@ -112,11 +122,10 @@ class Grpc implements ConnectionInterface
      */
     public function listBreakpoints(array $args = [])
     {
-        $resp = $this->send([$this->controllerClient, 'listActiveBreakpoints'], [
+        return $this->send([$this->controllerClient, 'listActiveBreakpoints'], [
             $this->pluck('debuggeeId', $args),
             $args
         ]);
-        return $resp; // FIXME
     }
 
     /**
@@ -126,12 +135,14 @@ class Grpc implements ConnectionInterface
      */
     public function updateBreakpoint(array $args)
     {
-        $resp = $this->send([$this->controllerClient, 'updateActiveBreakpoint'], [
+        return $this->send([$this->controllerClient, 'updateActiveBreakpoint'], [
             $this->pluck('debuggeeId', $args),
-            $this->buildBreakpoint($this->pluck('breakpoint', $args)),
+            $this->serializer->decodeMessage(
+                new Breakpoint(),
+                $this->pluck('breakpoint', $args)
+            ),
             $args
         ]);
-        return $resp; // FIXME
     }
 
     /**
@@ -147,25 +158,9 @@ class Grpc implements ConnectionInterface
     {
         return $this->send([$this->debuggerClient, 'setBreakpoint'], [
             $this->pluck('debuggeeId', $args),
-            $this->buildBreakpoint($args),
+            $this->serializer->decodeMessage(new Breakpoint(), $args),
             DebuggerClient::VERSION,
             $args
         ]);
-    }
-
-    private function buildDebuggee($args)
-    {
-        return $this->serializer->decodeMessage(new Debuggee(), $args);
-    }
-
-    private function buildBreakpoint($args)
-    {
-        if (isset($args['createTime'])) {
-            $args['createTime'] = $this->formatTimestampForApi($args['createTime']);
-        }
-        if (isset($args['finalTime'])) {
-            $args['finalTime'] = $this->formatTimestampForApi($args['finalTime']);
-        }
-        return $this->serializer->decodeMessage(new Breakpoint(), $args);
     }
 }

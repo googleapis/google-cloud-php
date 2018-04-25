@@ -157,9 +157,7 @@ class Variable
             $data['value'] = $this->value;
         }
         if ($this->varTableIndex !== null) {
-            $data['varTableIndex'] = [
-                'value' => $this->varTableIndex
-            ];
+            $data['varTableIndex'] = $this->varTableIndex;
         }
         if ($this->members) {
             $data['members'] = array_map(function ($v) {

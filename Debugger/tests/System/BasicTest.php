@@ -121,7 +121,7 @@ class BasicTest extends TestCase
     {
         return [
             ['grpc'],
-            // ['rest']
+            ['rest']
         ];
     }
 }
