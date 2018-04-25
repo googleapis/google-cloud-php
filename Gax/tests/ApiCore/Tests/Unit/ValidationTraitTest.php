@@ -30,7 +30,7 @@ class ValidationTraitTest extends TestCase
     }
 
     /**
-     * @expectedException Google\ApiCore\ValidationException
+     * @expectedException \Google\ApiCore\ValidationException
      * @expectedExceptionMessage Missing required argument
      */
     public function testValidateMissingRequiredKey()
@@ -56,7 +56,7 @@ class ValidationTraitTest extends TestCase
     }
 
     /**
-     * @expectedException Google\ApiCore\ValidationException
+     * @expectedException \Google\ApiCore\ValidationException
      * @expectedExceptionMessage Missing required argument
      */
     public function testValidateNotNullWithNullRequiredKey()

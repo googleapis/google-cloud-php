@@ -66,7 +66,7 @@ trait ArrayTrait
     /**
      * Pluck a subset of an array.
      *
-     * @param string $keys
+     * @param array $keys
      * @param array $arr
      * @return array
      */
@@ -109,5 +109,20 @@ trait ArrayTrait
 
             return false;
         });
+    }
+
+    /**
+     * Return a subset of an array, like pluckArray, without modifying the original array.
+     *
+     * @param array $keys
+     * @param array $arr
+     * @return array
+     */
+    private function subsetArray(array $keys, $arr)
+    {
+        return array_intersect_key(
+            $arr,
+            array_flip($keys)
+        );
     }
 }

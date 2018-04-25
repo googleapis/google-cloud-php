@@ -32,18 +32,16 @@
 
 namespace Google\ApiCore\Tests\Unit\Transport;
 
-use Google\ApiCore\Transport\GrpcTransport;
 use Google\ApiCore\Call;
-use Google\ApiCore\CallSettings;
 use Google\ApiCore\Tests\Unit\TestTrait;
 use Google\ApiCore\Testing\MockGrpcTransport;
-use Google\ApiCore\Testing\MockRequest;
+use Google\ApiCore\Transport\GrpcTransport;
 use Google\Auth\FetchAuthTokenInterface;
-use Google\Protobuf\Internal\Message;
 use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBType;
 use Google\Rpc\Code;
-use Grpc\ChannelCredentials;
+use Google\Rpc\Status;
+use Grpc\ClientStreamingCall;
 use PHPUnit\Framework\TestCase;
 use stdClass;
 
@@ -68,14 +66,14 @@ class GrpcTransportTest extends TestCase
 
     public function testClientStreamingSuccessObject()
     {
-        $response = new \Google\Rpc\Status();
-        $response->setCode(\Google\Rpc\Code::OK);
+        $response = new Status();
+        $response->setCode(Code::OK);
         $response->setMessage('response');
 
         $status = new stdClass;
         $status->code = Code::OK;
 
-        $clientStreamingCall = $this->getMockBuilder(\Grpc\ClientStreamingCall::class)
+        $clientStreamingCall = $this->getMockBuilder(ClientStreamingCall::class)
             ->disableOriginalConstructor()
             ->getMock();
         $clientStreamingCall->method('write');
@@ -89,7 +87,7 @@ class GrpcTransportTest extends TestCase
             []
         );
 
-        /* @var $stream \Google\ApiCore\ClientStreamInterface */
+        /* @var $stream \Google\ApiCore\ClientStream */
         $actualResponse = $stream->writeAllAndReadResponse([]);
         $this->assertEquals($response, $actualResponse);
     }
@@ -107,7 +105,7 @@ class GrpcTransportTest extends TestCase
         $status->code = Code::INTERNAL;
         $status->details = 'client streaming failure';
 
-        $clientStreamingCall = $this->getMockBuilder(\Grpc\ClientStreamingCall::class)
+        $clientStreamingCall = $this->getMockBuilder(ClientStreamingCall::class)
             ->disableOriginalConstructor()
             ->getMock();
         $clientStreamingCall->method('wait')
@@ -265,7 +263,7 @@ class GrpcTransportTest extends TestCase
 
     public function testBidiStreamingSuccessObject()
     {
-        $response = new \Google\Rpc\Status();
+        $response = new Status();
         $response->setCode(Code::OK);
         $response->setMessage('response');
 
@@ -368,5 +366,70 @@ class GrpcTransportTest extends TestCase
         foreach ($stream->closeWriteAndReadAll() as $actualResponse) {
             // for loop to trigger generator and API exception
         }
+    }
+
+    /**
+     * @dataProvider buildDataGrpc
+     */
+    public function testBuildGrpc($serviceAddress, $config, $expectedTransport)
+    {
+        $actualTransport = GrpcTransport::build($serviceAddress, $config);
+        $this->assertEquals($expectedTransport, $actualTransport);
+    }
+
+    public function buildDataGrpc()
+    {
+        $uri = "address.com";
+        $serviceAddress = "$uri:447";
+        $serviceAddressDefaultPort = "$uri:443";
+        return [
+            [
+                $serviceAddress,
+                [],
+                new GrpcTransport(
+                    $serviceAddress,
+                    [
+                        'credentials' => null,
+                    ],
+                    null
+                ),
+            ],
+            [
+                $uri,
+                [],
+                new GrpcTransport(
+                    $serviceAddressDefaultPort,
+                    [
+                        'credentials' => null,
+                    ],
+                    null
+                ),
+            ],
+        ];
+    }
+
+    /**
+     * @dataProvider buildInvalidData
+     * @expectedException \Google\ApiCore\ValidationException
+     */
+    public function testBuildInvalid($serviceAddress, $args)
+    {
+        GrpcTransport::build($serviceAddress, $args);
+    }
+
+    public function buildInvalidData()
+    {
+        return [
+            [
+                "addresswithtoo:many:segments",
+                [],
+            ],
+            [
+                'serviceaddress.com',
+                [
+                    'channel' => 'not a channel',
+                ]
+            ]
+        ];
     }
 }
