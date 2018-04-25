@@ -41,7 +41,7 @@ namespace Google\Cloud\Debugger;
  * @see https://cloud.google.com/debugger/api/reference/rest/v2/Debuggee#cloudworkspaceid CloudWorkspaceId model documentation
  * @codingStandardsIgnoreEnd
  */
-class CloudWorkspaceId implements \JsonSerializable
+class CloudWorkspaceId
 {
     /**
      * @var RepoId The ID of the repo containing the workspace.
@@ -75,10 +75,10 @@ class CloudWorkspaceId implements \JsonSerializable
      * @access private
      * @return array
      */
-    public function jsonSerialize()
+    public function info()
     {
         return [
-            'repoId' => $this->repoId,
+            'repoId' => $this->repoId->info(),
             'name' => $this->name
         ];
     }

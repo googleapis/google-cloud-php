@@ -33,7 +33,7 @@ use Google\Cloud\Core\Exception\ServiceException;
  *
  * @see https://cloud.google.com/debugger/api/reference/rest/v2/Debuggee Debuggee API Documentation
  */
-class Debuggee implements \JsonSerializable
+class Debuggee
 {
     /**
      * @var ConnectionInterface $connection Represents a connection to Debugger
@@ -196,7 +196,7 @@ class Debuggee implements \JsonSerializable
      */
     public function register(array $options = [])
     {
-        $resp = $this->connection->registerDebuggee(['debuggee' => $this] + $options);
+        $resp = $this->connection->registerDebuggee(['debuggee' => $this->info()] + $options);
         if (array_key_exists('debuggee', $resp)) {
             $this->id = $resp['debuggee']['id'];
             return true;
@@ -296,7 +296,7 @@ class Debuggee implements \JsonSerializable
         $this->connection->updateBreakpoint([
             'debuggeeId' => $this->id,
             'id' => $breakpoint->id(),
-            'breakpoint' => $breakpoint
+            'breakpoint' => $breakpoint->info()
         ] + $options);
     }
 
@@ -364,7 +364,7 @@ class Debuggee implements \JsonSerializable
      * @access private
      * @return array
      */
-    public function jsonSerialize()
+    public function info()
     {
         $info = [
             'id' => $this->id,
@@ -373,15 +373,19 @@ class Debuggee implements \JsonSerializable
             'description' => $this->description,
             'isInactive' => $this->isInactive,
             'agentVersion' => $this->agentVersion,
-            'status' => $this->status,
             'sourceContexts' => array_map(function ($esc) {
                 if (empty($esc)) {
                     return [];
                 }
-                return is_array($esc) ? $esc['context'] : $esc->context();
+                return is_array($esc) ? $esc['context'] : $esc->context()->info();
             }, $this->extSourceContexts),
-            'extSourceContexts' => $this->extSourceContexts
+            'extSourceContexts' => array_map(function ($esc) {
+                return $esc->info();
+            }, $this->extSourceContexts)
         ];
+        if ($this->status) {
+            $info['status'] = $this->status->info();
+        }
         if (!empty($this->labels)) {
             $info['labels'] = $this->labels;
         }

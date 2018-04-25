@@ -42,7 +42,7 @@ namespace Google\Cloud\Debugger;
  * @see https://cloud.google.com/debugger/api/reference/rest/v2/Debuggee#cloudreposourcecontext CloudRepoSourceContext model documentation
  * @codingStandardsIgnoreEnd
  */
-class CloudRepoSourceContext implements SourceContext, \JsonSerializable
+class CloudRepoSourceContext implements SourceContext
 {
     /**
      * @var RepoId The ID of the repo.
@@ -82,9 +82,9 @@ class CloudRepoSourceContext implements SourceContext, \JsonSerializable
     {
         return [
             'cloudRepo' => [
-                'repoId' => $this->repoId,
+                'repoId' => $this->repoId->info(),
                 'revisionId' => $this->revisionId,
-                'aliasContext' => $this->aliasContext
+                'aliasContext' => $this->aliasContext->info()
             ]
         ];
     }
@@ -95,7 +95,7 @@ class CloudRepoSourceContext implements SourceContext, \JsonSerializable
      * @access private
      * @return array
      */
-    public function jsonSerialize()
+    public function info()
     {
         return $this->contextData();
     }

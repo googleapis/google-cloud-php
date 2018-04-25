@@ -34,7 +34,7 @@ namespace Google\Cloud\Debugger;
  * @see https://cloud.google.com/debugger/api/reference/rest/v2/Debuggee#extendedsourcecontext ExtendedSourceContext model documentation
  * @codingStandardsIgnoreEnd
  */
-class ExtendedSourceContext implements SourceContext, \JsonSerializable
+class ExtendedSourceContext implements SourceContext
 {
     /**
      * @var SourceContext Any source context.
@@ -94,7 +94,7 @@ class ExtendedSourceContext implements SourceContext, \JsonSerializable
      * @access private
      * @return array
      */
-    public function jsonSerialize()
+    public function info()
     {
         return $this->contextData();
     }

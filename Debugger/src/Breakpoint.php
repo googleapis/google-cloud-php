@@ -40,7 +40,7 @@ use Google\Cloud\Core\ArrayTrait;
  * @see https://cloud.google.com/debugger/api/reference/rest/v2/debugger.debuggees.breakpoints#Breakpoint Breakpoint model documentation
  * @codingStandardsIgnoreEnd
  */
-class Breakpoint implements \JsonSerializable
+class Breakpoint
 {
     use ArrayTrait;
 
@@ -430,7 +430,7 @@ class Breakpoint implements \JsonSerializable
      * @access private
      * @return array
      */
-    public function jsonSerialize()
+    public function info()
     {
         $info = [
             'id' => $this->id,
@@ -442,19 +442,23 @@ class Breakpoint implements \JsonSerializable
             'isFinalState' => $this->isFinalState,
             'createTime' => $this->createTime,
             'finalTime' => $this->finalTime,
-            'userEmail' => $this->userEmail,
             'stackFrames' => $this->stackFrames,
-            'evaluatedExpressions' => $this->evaluatedExpressions,
-            'labels' => $this->labels
+            'evaluatedExpressions' => $this->evaluatedExpressions
         ];
+        if ($this->labels) {
+            $info['labels'] = $this->labels;
+        }
+        if ($this->userEmail) {
+            $info['userEmail'] = $this->userEmail;
+        }
         if ($this->location) {
-            $info['location'] = $this->location;
+            $info['location'] = $this->location->info();
         }
         if ($this->status) {
-            $info['status'] = $this->status;
+            $info['status'] = $this->status->info();
         }
         if ($this->variableTable) {
-            $info['variableTable'] = $this->variableTable;
+            $info['variableTable'] = $this->variableTable->info();
         }
         return $info;
     }

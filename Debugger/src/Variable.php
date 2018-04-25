@@ -31,7 +31,7 @@ namespace Google\Cloud\Debugger;
  * @see https://cloud.google.com/debugger/api/reference/rest/v2/debugger.debuggees.breakpoints#variable Variable model documentation
  * @codingStandardsIgnoreEnd
  */
-class Variable implements \JsonSerializable
+class Variable
 {
     /**
      * @var string Name of the variable, if any.
@@ -147,7 +147,7 @@ class Variable implements \JsonSerializable
      * @access private
      * @return array
      */
-    public function jsonSerialize()
+    public function info()
     {
         $data = [
             'name' => $this->name,
@@ -160,10 +160,12 @@ class Variable implements \JsonSerializable
             $data['varTableIndex'] = $this->varTableIndex;
         }
         if ($this->members) {
-            $data['members'] = $this->members;
+            $data['members'] = array_map(function ($v) {
+                return $v->info();
+            }, $this->members);
         }
         if ($this->status) {
-            $data['status'] = $this->status;
+            $data['status'] = $this->status->info();
         }
         return $data;
     }

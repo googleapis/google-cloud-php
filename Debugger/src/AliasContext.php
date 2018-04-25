@@ -31,7 +31,7 @@ namespace Google\Cloud\Debugger;
  * @see https://cloud.google.com/debugger/api/reference/rest/v2/Debuggee#aliascontext AliasContext model documentation
  * @codingStandardsIgnoreEnd
  */
-class AliasContext implements \JsonSerializable
+class AliasContext
 {
     const KIND_ANY = 'ANY';
     const KIND_FIXED = 'FIXED';
@@ -66,7 +66,7 @@ class AliasContext implements \JsonSerializable
      * @access private
      * @return array
      */
-    public function jsonSerialize()
+    public function info()
     {
         return [
             'kind' => $this->kind,

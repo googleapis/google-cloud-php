@@ -19,6 +19,7 @@ namespace Google\Cloud\Debugger;
 
 use Google\Cloud\Core\ClientTrait;
 use Google\Cloud\Debugger\Connection\ConnectionInterface;
+use Google\Cloud\Debugger\Connection\Grpc;
 use Google\Cloud\Debugger\Connection\Rest;
 use Psr\Cache\CacheItemPoolInterface;
 
@@ -77,13 +78,19 @@ class DebuggerClient
      */
     public function __construct(array $config = [])
     {
-        if (!isset($config['scopes'])) {
-            $config['scopes'] = [self::FULL_CONTROL_SCOPE];
-        }
+        $connectionType = $this->getConnectionType($config);
+        $config += [
+            'scopes' => [self::FULL_CONTROL_SCOPE],
+            'projectIdRequired' => true
+        ];
+        $this->connection = $connectionType === 'grpc'
+            ? new Grpc($this->configureAuthentication($config + [
+                'preferNumericProjectId' => true
+              ]))
+            : new Rest($this->configureAuthentication($config + [
+                'preferNumericProjectId' => true
+              ]));
 
-        $this->connection = new Rest($this->configureAuthentication($config + [
-            'preferNumericProjectId' => true
-        ]));
     }
 
     /**

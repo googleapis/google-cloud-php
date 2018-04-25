@@ -31,15 +31,6 @@ use PHPUnit\Framework\TestCase;
  */
 class BasicTest extends TestCase
 {
-    private $debuggerClient;
-
-    public function setUp()
-    {
-        $this->debuggerClient = new DebuggerClient([
-            'keyFilePath' => getenv('GOOGLE_CLOUD_PHP_TESTS_KEY_PATH')
-        ]);
-    }
-
     /**
      * @dataProvider transports
      */
@@ -102,7 +93,7 @@ class BasicTest extends TestCase
     {
         return [
             ['grpc'],
-            ['rest']
+            // ['rest']
         ];
     }
 }

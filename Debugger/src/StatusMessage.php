@@ -36,7 +36,7 @@ namespace Google\Cloud\Debugger;
  * @see https://cloud.google.com/debugger/api/reference/rest/v2/debugger.debuggees.breakpoints#statusmessage StatusMessage model documentation
  * @codingStandardsIgnoreEnd
  */
-class StatusMessage implements \JsonSerializable
+class StatusMessage
 {
     const REFERENCE_UNSPECIFIED = 'UNSPECIFIED';
     const REFERENCE_BREAKPOINT_SOURCE_LOCATION = 'BREAKPOINT_SOURCE_LOCATION';
@@ -121,7 +121,7 @@ class StatusMessage implements \JsonSerializable
      * @access private
      * @return array
      */
-    public function jsonSerialize()
+    public function info()
     {
         return [
             'isError' => $this->isError,
