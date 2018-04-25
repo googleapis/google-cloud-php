@@ -17,6 +17,8 @@
 
 namespace Google\Cloud\Debugger;
 
+use Google\Cloud\Debugger\V2\StatusMessage_Reference;
+
 /**
  * Represents a contextual status message. The message can indicate an error or
  * informational status, and refer to specific parts of the containing object.
@@ -38,13 +40,13 @@ namespace Google\Cloud\Debugger;
  */
 class StatusMessage
 {
-    const REFERENCE_UNSPECIFIED = 'UNSPECIFIED';
-    const REFERENCE_BREAKPOINT_SOURCE_LOCATION = 'BREAKPOINT_SOURCE_LOCATION';
-    const REFERENCE_BREAKPOINT_CONDITION = 'BREAKPOINT_CONDITION';
-    const REFERENCE_BREAKPOINT_EXPRESSION = 'BREAKPOINT_EXPRESSION';
-    const REFERENCE_BREAKPOINT_AGE = 'BREAKPOINT_AGE';
-    const REFERENCE_VARIABLE_NAME = 'VARIABLE_NAME';
-    const REFERENCE_VARIABLE_VALUE = 'VARIABLE_VALUE';
+    const REFERENCE_UNSPECIFIED = StatusMessage_Reference::UNSPECIFIED;
+    const REFERENCE_BREAKPOINT_SOURCE_LOCATION = StatusMessage_Reference::BREAKPOINT_SOURCE_LOCATION;
+    const REFERENCE_BREAKPOINT_CONDITION = StatusMessage_Reference::BREAKPOINT_CONDITION;
+    const REFERENCE_BREAKPOINT_EXPRESSION = StatusMessage_Reference::BREAKPOINT_EXPRESSION;
+    const REFERENCE_BREAKPOINT_AGE = StatusMessage_Reference::BREAKPOINT_AGE;
+    const REFERENCE_VARIABLE_NAME = StatusMessage_Reference::VARIABLE_NAME;
+    const REFERENCE_VARIABLE_VALUE = StatusMessage_Reference::VARIABLE_VALUE;
 
     /**
      * @var bool Distinguishes errors from informational messages.

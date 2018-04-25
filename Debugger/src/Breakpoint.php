@@ -18,6 +18,8 @@
 namespace Google\Cloud\Debugger;
 
 use Google\Cloud\Core\ArrayTrait;
+use Google\Cloud\Debugger\V2\Breakpoint_Action;
+use Google\Cloud\Debugger\V2\Breakpoint_LogLevel;
 
 /**
  * This plain PHP class represents a debugger breakpoint resource.
@@ -44,11 +46,11 @@ class Breakpoint
 {
     use ArrayTrait;
 
-    const ACTION_CAPTURE = 'CAPTURE';
-    const ACTION_LOG = 'LOG';
-    const LOG_LEVEL_INFO = 'INFO';
-    const LOG_LEVEL_WARNING = 'WARNING';
-    const LOG_LEVEL_ERROR = 'ERROR';
+    const ACTION_CAPTURE = Breakpoint_Action::CAPTURE;
+    const ACTION_LOG = Breakpoint_Action::LOG;
+    const LOG_LEVEL_INFO = Breakpoint_LogLevel::INFO;
+    const LOG_LEVEL_WARNING = Breakpoint_LogLevel::WARNING;
+    const LOG_LEVEL_ERROR = Breakpoint_LogLevel::ERROR;
 
     /**
      * @var string Breakpoint identifier, unique in the scope of the debuggee.
@@ -442,7 +444,9 @@ class Breakpoint
             'isFinalState' => $this->isFinalState,
             'createTime' => $this->createTime,
             'finalTime' => $this->finalTime,
-            'stackFrames' => $this->stackFrames,
+            'stackFrames' => array_map(function ($sf) {
+                return $sf->info();
+            }, $this->stackFrames),
             'evaluatedExpressions' => $this->evaluatedExpressions
         ];
         if ($this->labels) {
@@ -534,7 +538,7 @@ class Breakpoint
     public function addStackFrame($stackFrameData, array $options = [])
     {
         $stackFrameData += [
-            'function' => null,
+            'function' => '',
             'locals' => []
         ];
         $options += [

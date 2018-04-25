@@ -77,6 +77,34 @@ class BasicTest extends TestCase
 
         // fulfill a breakpoint
         $this->assertTrue($breakpoint->resolveLocation());
+        $breakpoint->addStackFrame([
+            'filename' => __FILE__,
+            'line' => __LINE__,
+            'locals' => [
+                [
+                    'name' => 'transport',
+                    'value' => $transport
+                ],
+                [
+                    'name' => 'shared_var',
+                    'value' => $this
+                ]
+            ]
+        ]);
+        $breakpoint->addStackFrame([
+            'filename' => __FILE__,
+            'line' => __LINE__,
+            'locals' => [
+                [
+                    'name' => 'transport',
+                    'value' => $transport
+                ],
+                [
+                    'name' => 'shared_var',
+                    'value' => $this
+                ]
+            ]
+        ]);
         $breakpoint->finalize();
         $debuggee->updateBreakpoint($breakpoint);
     }
