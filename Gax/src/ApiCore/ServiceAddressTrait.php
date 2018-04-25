@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2017, Google Inc.
+ * Copyright 2018, Google Inc.
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -29,50 +29,32 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
+
 namespace Google\ApiCore;
 
-trait ValidationTrait
+/**
+ * Provides helper methods for service address handling.
+ */
+trait ServiceAddressTrait
 {
-    /**
-     * @param array $arr Associative array
-     * @param array $requiredKeys List of keys to check for in $arr
-     * @return array Returns $arr for fluent use
-     */
-    public static function validate($arr, $requiredKeys)
-    {
-        return self::validateImpl($arr, $requiredKeys, true);
-    }
+    private static $defaultPort = 443;
 
     /**
-     * @param array $arr Associative array
-     * @param array $requiredKeys List of keys to check for in $arr
-     * @return array Returns $arr for fluent use
-     */
-    public static function validateNotNull($arr, $requiredKeys)
-    {
-        return self::validateImpl($arr, $requiredKeys, false);
-    }
-
-    private static function validateImpl($arr, $requiredKeys, $allowNull)
-    {
-        foreach ($requiredKeys as $requiredKey) {
-            $valid = array_key_exists($requiredKey, $arr)
-                && ($allowNull || !is_null($arr[$requiredKey]));
-            if (!$valid) {
-                throw new ValidationException("Missing required argument $requiredKey");
-            }
-        }
-        return $arr;
-    }
-
-    /**
-     * @param string $filePath
+     * @param string $serviceAddress
+     * @return array
      * @throws ValidationException
      */
-    private static function validateFileExists($filePath)
+    private static function normalizeServiceAddress($serviceAddress)
     {
-        if (!file_exists($filePath)) {
-            throw new ValidationException("Could not find specified file: $filePath");
+        $components = explode(':', $serviceAddress);
+        if (count($components) == 2) {
+            // Port is included in service address
+            return [$components[0], $components[1]];
+        } elseif (count($components) == 1) {
+            // Port is not included - append default port
+            return [$components[0], self::$defaultPort];
+        } else {
+            throw new ValidationException("Invalid serviceAddress: $serviceAddress");
         }
     }
 }

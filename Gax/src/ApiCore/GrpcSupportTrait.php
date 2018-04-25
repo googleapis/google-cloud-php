@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2017, Google Inc.
+ * Copyright 2018, Google Inc.
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -29,50 +29,33 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
+
 namespace Google\ApiCore;
 
-trait ValidationTrait
+/**
+ * Provides helper methods for gRPC support.
+ */
+trait GrpcSupportTrait
 {
     /**
-     * @param array $arr Associative array
-     * @param array $requiredKeys List of keys to check for in $arr
-     * @return array Returns $arr for fluent use
+     * @return bool
      */
-    public static function validate($arr, $requiredKeys)
+    private static function getGrpcDependencyStatus()
     {
-        return self::validateImpl($arr, $requiredKeys, true);
+        return extension_loaded('grpc');
     }
 
     /**
-     * @param array $arr Associative array
-     * @param array $requiredKeys List of keys to check for in $arr
-     * @return array Returns $arr for fluent use
-     */
-    public static function validateNotNull($arr, $requiredKeys)
-    {
-        return self::validateImpl($arr, $requiredKeys, false);
-    }
-
-    private static function validateImpl($arr, $requiredKeys, $allowNull)
-    {
-        foreach ($requiredKeys as $requiredKey) {
-            $valid = array_key_exists($requiredKey, $arr)
-                && ($allowNull || !is_null($arr[$requiredKey]));
-            if (!$valid) {
-                throw new ValidationException("Missing required argument $requiredKey");
-            }
-        }
-        return $arr;
-    }
-
-    /**
-     * @param string $filePath
      * @throws ValidationException
      */
-    private static function validateFileExists($filePath)
+    private static function validateGrpcSupport()
     {
-        if (!file_exists($filePath)) {
-            throw new ValidationException("Could not find specified file: $filePath");
+        if (!self::getGrpcDependencyStatus()) {
+            throw new ValidationException(
+                'gRPC support has been requested but required dependencies ' .
+                'have not been found. For details on how to install the ' .
+                'gRPC extension please see https://cloud.google.com/php/grpc.'
+            );
         }
     }
 }

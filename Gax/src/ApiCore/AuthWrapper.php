@@ -36,6 +36,7 @@ use Exception;
 use Google\Auth\ApplicationDefaultCredentials;
 use Google\Auth\Cache\MemoryCacheItemPool;
 use Google\Auth\CredentialsLoader;
+use Google\Auth\FetchAuthTokenCache;
 use Google\Auth\FetchAuthTokenInterface;
 use Google\Auth\HttpHandler\Guzzle5HttpHandler;
 use Google\Auth\HttpHandler\Guzzle6HttpHandler;
@@ -68,9 +69,15 @@ class AuthWrapper
     }
 
     /**
+     * Factory method to create an AuthWrapper from an array of options.
+     *
      * @param array $args {
      *     An array of optional arguments.
      *
+     *     @type string|array $keyFile
+     *           Credentials to be used. Accepts either a path to a credentials file, or a decoded
+     *           credentials file as a PHP array. If this is not specified, application default
+     *           credentials will be used.
      *     @type string[] $scopes
      *           A string array of scopes to use when acquiring credentials.
      *     @type callable $authHttpHandler
@@ -90,28 +97,42 @@ class AuthWrapper
     public static function build(array $args = [])
     {
         $args += [
+            'keyFile'           => null,
             'scopes'            => null,
             'authHttpHandler'   => null,
             'enableCaching'     => true,
             'authCache'         => null,
-            'authCacheOptions'  => null,
+            'authCacheOptions'  => [],
         ];
+        $keyFile = $args['keyFile'];
         $authHttpHandler = $args['authHttpHandler'] ?: self::buildHttpHandlerFactory();
-        $authCacheOptions = $args['authCacheOptions'];
-        if ($args['enableCaching']) {
-            $authCache = $args['authCache'] ?: new MemoryCacheItemPool();
+
+        if (is_null($keyFile)) {
+            $loader = self::buildApplicationDefaultCredentials(
+                $args['scopes'],
+                $authHttpHandler
+            );
         } else {
-            $authCache = null;
+            if (is_string($keyFile)) {
+                if (!file_exists($keyFile)) {
+                    throw new ValidationException("Could not find keyfile: $keyFile");
+                }
+                $keyFile = json_decode(file_get_contents($keyFile), true);
+            }
+
+            $loader = CredentialsLoader::makeCredentials($args['scopes'], $keyFile);
         }
 
-        $credentialsLoader = self::buildApplicationDefaultCredentials(
-            $args['scopes'],
-            $authHttpHandler,
-            $authCacheOptions,
-            $authCache
-        );
+        if ($args['enableCaching']) {
+            $authCache = $args['authCache'] ?: new MemoryCacheItemPool();
+            $loader = new FetchAuthTokenCache(
+                $loader,
+                $args['authCacheOptions'],
+                $authCache
+            );
+        }
 
-        return new AuthWrapper($credentialsLoader, $authHttpHandler);
+        return new AuthWrapper($loader, $authHttpHandler);
     }
 
     /**

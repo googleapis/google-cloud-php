@@ -46,6 +46,7 @@ use Psr\Http\Message\UriInterface;
 class RequestBuilder
 {
     use UriTrait;
+    use ValidationTrait;
 
     private $baseUri;
     private $restConfig;
@@ -53,9 +54,11 @@ class RequestBuilder
     /**
      * @param string $baseUri
      * @param string $restConfigPath
+     * @throws ValidationException
      */
     public function __construct($baseUri, $restConfigPath)
     {
+        self::validateFileExists($restConfigPath);
         $this->baseUri = $baseUri;
         $this->restConfig = require($restConfigPath);
     }

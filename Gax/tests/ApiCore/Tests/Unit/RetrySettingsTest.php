@@ -55,12 +55,10 @@ class RetrySettingsTest extends TestCase
     {
         $inputConfig = RetrySettingsTest::buildInputConfig();
 
-        $defaultRetrySettings =
-                RetrySettings::load(
-                    RetrySettingsTest::SERVICE_NAME,
-                    $inputConfig,
-                    []
-                );
+        $defaultRetrySettings = RetrySettings::load(
+            RetrySettingsTest::SERVICE_NAME,
+            $inputConfig
+        );
         $simpleMethod = $defaultRetrySettings['SimpleMethod'];
         $this->assertTrue($simpleMethod->retriesEnabled());
         $this->assertEquals(40000, $simpleMethod->getNoRetriesRpcTimeoutMillis());
@@ -81,28 +79,18 @@ class RetrySettingsTest extends TestCase
         $inputConfig = RetrySettingsTest::buildInvalidInputConfig();
         RetrySettings::load(
             RetrySettingsTest::SERVICE_NAME,
-            $inputConfig,
-            []
+            $inputConfig
         );
     }
 
-    public function testConstructSettingsOverride()
+    public function testDisableRetries()
     {
         $inputConfig = RetrySettingsTest::buildInputConfig();
 
-        // Turn off retries for simpleMethod
-        $retryingOverride = [
-            'SimpleMethod' => [
-                'retriesEnabled' => false,
-            ],
-            'TimeoutOnlyMethod' => [
-                'noRetriesRpcTimeoutMillis' => 20000
-            ]
-        ];
         $defaultRetrySettings = RetrySettings::load(
             RetrySettingsTest::SERVICE_NAME,
             $inputConfig,
-            $retryingOverride
+            true
         );
         $simpleMethod = $defaultRetrySettings['SimpleMethod'];
         $this->assertFalse($simpleMethod->retriesEnabled());
@@ -111,7 +99,7 @@ class RetrySettingsTest extends TestCase
         $this->assertEquals(['INTERNAL'], $pageStreamingMethod->getRetryableCodes());
         $timeoutOnlyMethod = $defaultRetrySettings['TimeoutOnlyMethod'];
         $this->assertFalse($timeoutOnlyMethod->retriesEnabled());
-        $this->assertEquals(20000, $timeoutOnlyMethod->getNoRetriesRpcTimeoutMillis());
+        $this->assertEquals(40000, $timeoutOnlyMethod->getNoRetriesRpcTimeoutMillis());
     }
 
     /**

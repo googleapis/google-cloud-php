@@ -31,11 +31,17 @@
  */
 namespace Google\ApiCore\Transport;
 
+use Exception;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\ApiStatus;
 use Google\ApiCore\AuthWrapper;
 use Google\ApiCore\Call;
+use Google\ApiCore\GrpcSupportTrait;
 use Google\ApiCore\RequestBuilder;
+use Google\ApiCore\ServiceAddressTrait;
+use Google\ApiCore\ValidationException;
+use Google\ApiCore\ValidationTrait;
+use Google\Auth\HttpHandler\HttpHandlerFactory;
 use GuzzleHttp\Exception\RequestException;
 use Psr\Http\Message\ResponseInterface;
 
@@ -44,6 +50,9 @@ use Psr\Http\Message\ResponseInterface;
  */
 class RestTransport implements TransportInterface
 {
+    use ValidationTrait;
+    use ServiceAddressTrait;
+
     private $requestBuilder;
     private $httpHandler;
 
@@ -58,6 +67,32 @@ class RestTransport implements TransportInterface
     ) {
         $this->requestBuilder = $requestBuilder;
         $this->httpHandler = $httpHandler;
+    }
+
+    /**
+     * Builds a RestTransport.
+     *
+     * @param string $serviceAddress
+     *        The address of the API remote host, for example "example.googleapis.com".
+     * @param string $restConfigPath
+     *        Path to rest config file.
+     * @param array $config {
+     *    Config options used to construct the gRPC transport.
+     *
+     *    @type callable $httpHandler A handler used to deliver PSR-7 requests.
+     * }
+     * @return RestTransport
+     * @throws ValidationException
+     */
+    public static function build($serviceAddress, $restConfigPath, array $config = [])
+    {
+        $config += [
+            'httpHandler'  => null,
+        ];
+        list($baseUri, $port) = self::normalizeServiceAddress($serviceAddress);
+        $requestBuilder = new RequestBuilder($baseUri, $restConfigPath);
+        $httpHandler = $config['httpHandler'] ?: self::buildHttpHandlerAsync();
+        return new RestTransport($requestBuilder, $httpHandler);
     }
 
     /**
@@ -173,5 +208,18 @@ class RestTransport implements TransportInterface
         // Use the RPC code instead of the HTTP Status Code.
         $code = ApiStatus::rpcCodeFromHttpStatusCode($res->getStatusCode());
         return ApiException::createFromApiResponse($body, $code);
+    }
+
+    /**
+     * @return callable
+     * @throws ValidationException
+     */
+    private static function buildHttpHandlerAsync()
+    {
+        try {
+            return [HttpHandlerFactory::build(), 'async'];
+        } catch (Exception $ex) {
+            throw new ValidationException("Failed to build HttpHandler", $ex->getCode(), $ex);
+        }
     }
 }

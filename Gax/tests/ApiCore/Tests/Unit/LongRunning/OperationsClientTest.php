@@ -55,7 +55,9 @@ class OperationsClientTest extends GeneratedTest
 {
     public function setUp($options = [])
     {
-        $this->client = new MockOperationsClient();
+        $this->client = new MockOperationsClient([
+            'serviceAddress' => 'test.service.address:443'
+        ]);
     }
 
     /**

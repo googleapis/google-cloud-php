@@ -115,6 +115,45 @@ class ArrayTraitTest extends TestCase
         $this->assertTrue(array_key_exists('empty', $res));
         $this->assertTrue(array_key_exists('array', $res));
     }
+
+    /**
+     * @dataProvider subsetArrayData
+     */
+    public function testSubsetArray($keys, $array, $expectedSubset)
+    {
+        $actualSubset = $this->implementation->call('subsetArray', [$keys, $array]);
+        $this->assertSame($expectedSubset, $actualSubset);
+    }
+
+    public function subsetArrayData()
+    {
+        return [
+            [
+                ['one', 2],
+                [
+                    'one' => 'value-of-one',
+                    2 => 'value-of-two',
+                    'three' => 'value-of-three'
+                ],
+                [
+                    'one' => 'value-of-one',
+                    2 => 'value-of-two',
+                ],
+            ],
+            [
+                ['one', 2, 'four'],
+                [
+                    'one' => 'value-of-one',
+                    2 => 'value-of-two',
+                    'three' => 'value-of-three'
+                ],
+                [
+                    'one' => 'value-of-one',
+                    2 => 'value-of-two',
+                ],
+            ]
+        ];
+    }
 }
 
 class ArrayTraitStub
