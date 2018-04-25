@@ -292,8 +292,8 @@ class StorageClient
      *           encrypt objects uploaded into this bucket. Should be in the
      *           format
      *           `projects/my-project/locations/kr-location/keyRings/my-kr/cryptoKeys/my-key`.
-     *           Please note the KMS key ring should use the same location as
-     *           the bucket.
+     *           Please note the KMS key ring must use the same location as the
+     *           bucket.
      * }
      * @return Bucket
      * @throws GoogleException When a project ID has not been detected.

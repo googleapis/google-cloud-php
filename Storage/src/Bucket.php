@@ -257,7 +257,7 @@ class Bucket
      *           encryption key. If you would prefer to manage encryption
      *           utilizing the Cloud Key Management Service (KMS) please use the
      *           $metadata['kmsKeyName'] setting. Please note if using KMS the
-     *           key ring should use the same location as the bucket.
+     *           key ring must use the same location as the bucket.
      *     @type string $encryptionKeySHA256 Base64 encoded SHA256 hash of the
      *           customer-supplied encryption key. This value will be calculated
      *           from the `encryptionKey` on your behalf if not provided, but
@@ -336,7 +336,7 @@ class Bucket
      *           encryption key. If you would prefer to manage encryption
      *           utilizing the Cloud Key Management Service (KMS) please use the
      *           $metadata['kmsKeyName'] setting. Please note if using KMS the
-     *           key ring should use the same location as the bucket.
+     *           key ring must use the same location as the bucket.
      *     @type string $encryptionKeySHA256 Base64 encoded SHA256 hash of the
      *           customer-supplied encryption key. This value will be calculated
      *           from the `encryptionKey` on your behalf if not provided, but
@@ -412,7 +412,7 @@ class Bucket
      *           encryption key. If you would prefer to manage encryption
      *           utilizing the Cloud Key Management Service (KMS) please use the
      *           $metadata['kmsKeyName'] setting. Please note if using KMS the
-     *           key ring should use the same location as the bucket.
+     *           key ring must use the same location as the bucket.
      *     @type string $encryptionKeySHA256 Base64 encoded SHA256 hash of the
      *           customer-supplied encryption key. This value will be calculated
      *           from the `encryptionKey` on your behalf if not provided, but
@@ -803,8 +803,8 @@ class Bucket
      *           encrypt objects uploaded into this bucket. Should be in the
      *           format
      *           `projects/my-project/locations/kr-location/keyRings/my-kr/cryptoKeys/my-key`.
-     *           Please note the KMS key ring should use the same location as
-     *           the bucket.
+     *           Please note the KMS key ring must use the same location as the
+     *           bucket.
      * }
      * @return array
      */
