@@ -32,6 +32,10 @@
 
 namespace Google\ApiCore;
 
+use Google\ApiCore\LongRunning\OperationsClient;
+use Google\LongRunning\Operation;
+use Google\Rpc\Status;
+
 /**
  * Response object from a long running API method.
  *
@@ -48,12 +52,25 @@ namespace Google\ApiCore;
  */
 class OperationResponse
 {
-    const DEFAULT_POLLING_INTERVAL = 1.0;
+    use PollingTrait;
+
+    const DEFAULT_POLLING_INTERVAL = 1000;
+    const DEFAULT_POLLING_MULTIPLIER = 2;
+    const DEFAULT_MAX_POLLING_INTERVAL = 60000;
+    const DEFAULT_MAX_POLLING_DURATION = 0;
 
     private $operationName;
     private $operationsClient;
+
     private $operationReturnType;
     private $metadataReturnType;
+    private $defaultPollSettings = [
+        'initialPollDelayMillis' => self::DEFAULT_POLLING_INTERVAL,
+        'pollDelayMultiplier' => self::DEFAULT_POLLING_MULTIPLIER,
+        'maxPollDelayMillis' => self::DEFAULT_MAX_POLLING_INTERVAL,
+        'totalPollTimeoutMillis' => self::DEFAULT_MAX_POLLING_DURATION,
+    ];
+
     private $lastProtoResponse;
     private $deleted = false;
 
@@ -61,13 +78,17 @@ class OperationResponse
      * OperationResponse constructor.
      *
      * @param string $operationName
-     * @param \Google\ApiCore\LongRunning\OperationsClient $operationsClient
+     * @param OperationsClient $operationsClient
      * @param array $options {
      *                       Optional. Options for configuring the Operation response object.
      *
      *     @type string $operationReturnType The return type of the longrunning operation.
      *     @type string $metadataReturnType The type of the metadata returned in the Operation response.
-     *     @type \google\longrunning\Operation $lastProtoResponse A response already received from the server.
+     *     @type int $initialPollDelayMillis    The initial polling interval to use, in milliseconds.
+     *     @type int $pollDelayMultiplier Multiplier applied to the polling interval on each retry.
+     *     @type int $maxPollDelayMillis The maximum polling interval to use, in milliseconds.
+     *     @type int $totalPollTimeoutMillis The maximum amount of time to continue polling.
+     *     @type Operation $lastProtoResponse A response already received from the server.
      * }
      */
     public function __construct($operationName, $operationsClient, $options = [])
@@ -79,6 +100,18 @@ class OperationResponse
         }
         if (isset($options['metadataReturnType'])) {
             $this->metadataReturnType = $options['metadataReturnType'];
+        }
+        if (isset($options['initialPollDelayMillis'])) {
+            $this->defaultPollSettings['initialPollDelayMillis'] = $options['initialPollDelayMillis'];
+        }
+        if (isset($options['pollDelayMultiplier'])) {
+            $this->defaultPollSettings['pollDelayMultiplier'] = $options['pollDelayMultiplier'];
+        }
+        if (isset($options['maxPollDelayMillis'])) {
+            $this->defaultPollSettings['maxPollDelayMillis'] = $options['maxPollDelayMillis'];
+        }
+        if (isset($options['totalPollTimeoutMillis'])) {
+            $this->defaultPollSettings['totalPollTimeoutMillis'] = $options['totalPollTimeoutMillis'];
         }
         if (isset($options['lastProtoResponse'])) {
             $this->lastProtoResponse = $options['lastProtoResponse'];
@@ -133,40 +166,33 @@ class OperationResponse
      * Poll the server in a loop until the operation is complete.
      *
      * Return true if the operation completed, otherwise return false. If the
-     * $options['maxPollingDuration'] setting is not set (or set <= 0.0) then
+     * $options['totalPollTimeoutMillis'] setting is not set (or set <= 0) then
      * pollUntilComplete will continue polling until the operation completes,
      * and therefore will always return true.
      *
      * @param array $options {
      *                       Options for configuring the polling behaviour.
      *
-     *     @type float $pollingIntervalSeconds The polling interval to use, in seconds.
-     *                                          Default: 1.0
-     *     @type float $maxPollingDurationSeconds The maximum amount of time to continue polling.
-     *                                            Default: 0.0 (no maximum)
+     *     @type int $initialPollDelayMillis The initial polling interval to use, in milliseconds.
+     *     @type int $pollDelayMultiplier    Multiplier applied to the polling interval on each retry.
+     *     @type int $maxPollDelayMillis     The maximum polling interval to use, in milliseconds.
+     *     @type int $totalPollTimeoutMillis The maximum amount of time to continue polling, in milliseconds.
      * }
      * @throws ApiException If an API call fails.
+     * @throws ValidationException
      * @return bool Indicates if the operation completed.
      */
     public function pollUntilComplete($options = [])
     {
-        $defaultPollSettings = [
-            'pollingIntervalSeconds' => $this::DEFAULT_POLLING_INTERVAL,
-            'maxPollingDurationSeconds' => 0.0,
-        ];
-        $pollSettings = array_merge($defaultPollSettings, $options);
-
-        $pollingIntervalMicros = $pollSettings['pollingIntervalSeconds'] * 1000000;
-        $maxPollingDuration = $pollSettings['maxPollingDurationSeconds'];
-
-        $hasMaxPollingDuration = $maxPollingDuration > 0.0;
-        $endTime = microtime(true) + $maxPollingDuration;
-        while (!$this->isDone() && (!$hasMaxPollingDuration || microtime(true) < $endTime)) {
-            usleep($pollingIntervalMicros);
-            $this->reload();
+        if ($this->isDone()) {
+            return true;
         }
 
-        return $this->isDone();
+        $pollSettings = array_merge($this->defaultPollSettings, $options);
+        return $this->poll(function () {
+            $this->reload();
+            return $this->isDone();
+        }, $pollSettings);
     }
 
     /**
@@ -208,7 +234,7 @@ class OperationResponse
     /**
      * If the operation failed, return the status. If operationFailed() is false, return null.
      *
-     * @return \google\rpc\Status|null The status of the operation in case of failure, or null if
+     * @return Status|null The status of the operation in case of failure, or null if
      *                                 operationFailed() is false.
      */
     public function getError()
@@ -220,22 +246,23 @@ class OperationResponse
     }
 
     /**
-     * Get an array containing the values of 'operationReturnType' and 'metadataReturnType' (which
-     * may be null). The array can be passed as the $options argument to the constructor when
-     * creating another OperationResponse object.
+     * Get an array containing the values of 'operationReturnType', 'metadataReturnType', and
+     * the polling options `initialPollDelayMillis`, `pollDelayMultiplier`, `maxPollDelayMillis`,
+     * and `totalPollTimeoutMillis`. The array can be passed as the $options argument to the
+     * constructor when creating another OperationResponse object.
      *
      * @return array
      */
-    public function getReturnTypeOptions()
+    public function getDescriptorOptions()
     {
         return [
             'operationReturnType' => $this->operationReturnType,
             'metadataReturnType' => $this->metadataReturnType,
-        ];
+        ] + $this->defaultPollSettings;
     }
 
     /**
-     * @return \google\longrunning\Operation|null The last Operation object received from the server.
+     * @return Operation|null The last Operation object received from the server.
      */
     public function getLastProtoResponse()
     {
@@ -243,7 +270,7 @@ class OperationResponse
     }
 
     /**
-     * @return \Google\ApiCore\LongRunning\OperationsClient The OperationsClient object used to make
+     * @return OperationsClient The OperationsClient object used to make
      * requests to the operations API.
      */
     public function getOperationsClient()
@@ -255,12 +282,12 @@ class OperationResponse
      * Starts asynchronous cancellation on a long-running operation. The server
      * makes a best effort to cancel the operation, but success is not
      * guaranteed. If the server doesn't support this method, it will throw an
-     * ApiException with code \google\rpc\Code::UNIMPLEMENTED. Clients can continue
+     * ApiException with code \Google\Rpc\Code::UNIMPLEMENTED. Clients can continue
      * to use reload and pollUntilComplete methods to check whether the cancellation
      * succeeded or whether the operation completed despite cancellation.
      * On successful cancellation, the operation is not deleted; instead, it becomes
-     * an operation with a getError() value with a \google\rpc\Status code of 1,
-     * corresponding to \google\rpc\Code::CANCELLED.
+     * an operation with a getError() value with a \Google\Rpc\Status code of 1,
+     * corresponding to \Google\Rpc\Code::CANCELLED.
      *
      * @throws ApiException If the API call fails.
      */
@@ -273,7 +300,7 @@ class OperationResponse
      * Delete the long-running operation. This method indicates that the client is
      * no longer interested in the operation result. It does not cancel the operation.
      * If the server doesn't support this method, it will throw an ApiException with
-     * code google\rpc\Code::UNIMPLEMENTED.
+     * code \Google\Rpc\Code::UNIMPLEMENTED.
      *
      * @throws ApiException If the API call fails.
      */

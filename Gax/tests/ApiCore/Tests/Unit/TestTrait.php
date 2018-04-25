@@ -100,11 +100,9 @@ trait TestTrait
         $this->requiresGrpcExtension();
 
         $client = new OperationsClient([
-            'createTransportFunction' => function ($hostname, $opts) use ($transport) {
-                return $transport;
-            },
             'serviceAddress' => '',
             'scopes' => [],
+            'transport' => $transport,
         ]);
 
         return $client;
