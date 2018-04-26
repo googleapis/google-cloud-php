@@ -333,7 +333,7 @@ class ValueMapperTest extends TestCase
     public function testDecodeValuesTimestamp()
     {
         $dt = new \DateTime;
-        $str = str_replace('+00:00', 'Z', $dt->format(Timestamp::FORMAT));
+        $str = $dt->format(Timestamp::FORMAT);
 
         $res = $this->mapper->decodeValues(
             $this->createField(Database::TYPE_TIMESTAMP),

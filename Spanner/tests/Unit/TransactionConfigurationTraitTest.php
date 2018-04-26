@@ -118,13 +118,13 @@ class TransactionConfigurationTraitTest extends TestCase
     /**
      * @dataProvider timestamps
      */
-    public function testConfigureSnapshotOptionsReadTimestamp($timestamp, $expected = null)
+    public function testConfigureSnapshotOptionsReadTimestamp($timestamp)
     {
         $time = $this->parseTimeString($timestamp);
         $ts = new Timestamp($time[0], $time[1]);
         $args = ['readTimestamp' => $ts];
         $res = $this->impl->proxyConfigureSnapshotOptions($args);
-        $this->assertEquals($expected ?: $timestamp, $res['readOnly']['readTimestamp']);
+        $this->assertEquals($timestamp, $res['readOnly']['readTimestamp']);
     }
 
     public function testConfigureSnapshotOptionsMaxStaleness()
