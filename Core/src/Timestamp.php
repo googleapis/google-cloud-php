@@ -41,9 +41,9 @@ class Timestamp
 {
     use TimeTrait;
 
-    const FORMAT = 'Y-m-d\TH:i:s.uP';
-    const FORMAT_NO_MS = 'Y-m-d\TH:i:sP';
-    const FORMAT_INTERPOLATE = 'Y-m-d\TH:i:s.%\sP';
+    const FORMAT = 'Y-m-d\TH:i:s.u\Z';
+    const FORMAT_NO_MS = 'Y-m-d\TH:i:s\Z';
+    const FORMAT_INTERPOLATE = 'Y-m-d\TH:i:s.%\s\Z';
 
     /**
      * @var \DateTimeInterface

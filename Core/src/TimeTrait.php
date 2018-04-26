@@ -43,11 +43,7 @@ trait TimeTrait
             $timestamp = str_replace('.'. $subSeconds, '.' . substr($subSeconds, 0, 6), $timestamp);
         }
 
-        $template = isset($matches[1])
-            ? Timestamp::FORMAT
-            : Timestamp::FORMAT_NO_MS;
-
-        $dt = \DateTimeImmutable::createFromFormat($template, $timestamp);
+        $dt = new \DateTimeImmutable($timestamp);
         if (!$dt) {
             throw new \InvalidArgumentException(sprintf(
                 'Could not create a DateTime instance from given timestamp %s.',
@@ -87,7 +83,7 @@ trait TimeTrait
     {
         $dateTime = $dateTime->setTimeZone(new \DateTimeZone('UTC'));
         if ($ns === null) {
-            $result = $dateTime->format(Timestamp::FORMAT);
+            return $dateTime->format(Timestamp::FORMAT);
         } else {
             $ns = (string) $ns;
             $ns = str_pad($ns, 9, '0', STR_PAD_LEFT);
@@ -95,13 +91,11 @@ trait TimeTrait
                 $ns = substr($ns, 0, 6);
             }
 
-            $result = sprintf(
+            return sprintf(
                 $dateTime->format(Timestamp::FORMAT_INTERPOLATE),
                 $ns
             );
         }
-
-        return str_replace('+00:00', 'Z', $result);
     }
 
     /**
