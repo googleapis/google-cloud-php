@@ -19,7 +19,7 @@ namespace Google\Cloud\Spanner;
 
 use Google\Cloud\Core\ArrayTrait;
 use Google\Cloud\Core\Int64;
-use Google\Cloud\Core\ValueMapperTrait;
+use Google\Cloud\Core\TimeTrait;
 use Google\Cloud\Spanner\V1\TypeCode;
 
 /**
@@ -28,7 +28,7 @@ use Google\Cloud\Spanner\V1\TypeCode;
 class ValueMapper
 {
     use ArrayTrait;
-    use ValueMapperTrait;
+    use TimeTrait;
 
     const TYPE_BOOL = TypeCode::BOOL;
     const TYPE_INT64 = TypeCode::INT64;
@@ -206,7 +206,8 @@ class ValueMapper
                 break;
 
             case self::TYPE_TIMESTAMP:
-                $value = $this->createTimestampWithNanos($value, Timestamp::class);
+                $value = $this->parseTimeString($value);
+                $value = new Timestamp($value[0], $value[1]);
                 break;
 
             case self::TYPE_DATE:
@@ -367,7 +368,8 @@ class ValueMapper
 
             default:
                 throw new \InvalidArgumentException(sprintf(
-                    'Unrecognized value type %s. Please ensure you are using the latest version of google/cloud.',
+                    'Unrecognized value type %s. ' .
+                    'Please ensure you are using the latest version of google/cloud or google/cloud-spanner.',
                     $phpType
                 ));
                 break;
@@ -393,7 +395,8 @@ class ValueMapper
         }
 
         throw new \InvalidArgumentException(sprintf(
-            'Unrecognized value type %s. Please ensure you are using the latest version of google/cloud.',
+            'Unrecognized value type %s. ' .
+            'Please ensure you are using the latest version of google/cloud or google/cloud-spanner.',
             get_class($value)
         ));
     }

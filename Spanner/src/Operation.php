@@ -18,6 +18,7 @@
 namespace Google\Cloud\Spanner;
 
 use Google\Cloud\Core\ArrayTrait;
+use Google\Cloud\Core\TimeTrait;
 use Google\Cloud\Core\ValidateTrait;
 use Google\Cloud\Spanner\Batch\QueryPartition;
 use Google\Cloud\Spanner\Batch\ReadPartition;
@@ -39,6 +40,7 @@ use Google\Cloud\Spanner\V1\SpannerClient as GapicSpannerClient;
 class Operation
 {
     use ArrayTrait;
+    use TimeTrait;
     use ValidateTrait;
 
     const OP_INSERT = 'insert';
@@ -134,7 +136,8 @@ class Operation
             'database' => $session->info()['database']
         ]) + $options);
 
-        return $this->mapper->createTimestampWithNanos($res['commitTimestamp'], Timestamp::class);
+        $time = $this->parseTimeString($res['commitTimestamp']);
+        return new Timestamp($time[0], $time[1]);
     }
 
     /**
@@ -350,7 +353,10 @@ class Operation
         ];
 
         if ($res['readTimestamp']) {
-            $res['readTimestamp'] = $this->mapper->createTimestampWithNanos($res['readTimestamp'], Timestamp::class);
+            if (!($res['readTimestamp'] instanceof Timestamp)) {
+                $time = $this->parseTimeString($res['readTimestamp']);
+                $res['readTimestamp'] = new Timestamp($time[0], $time[1]);
+            }
         }
 
         return new $className($this, $session, $res);

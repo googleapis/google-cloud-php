@@ -32,6 +32,7 @@ use Google\Protobuf\NullValue;
 trait GrpcTrait
 {
     use ArrayTrait;
+    use TimeTrait;
     use WhitelistTrait;
 
     /**
@@ -104,28 +105,6 @@ trait GrpcTrait
             'transport' => 'grpc',
             'authHttpHandler' => $authHttpHandler
         ];
-    }
-
-    /**
-     * Format a gRPC timestamp to match the format returned by the REST API.
-     *
-     * @param array $timestamp
-     * @return string
-     */
-    private function formatTimestampFromApi(array $timestamp)
-    {
-        $timestamp += [
-            'seconds' => 0,
-            'nanos' => 0
-        ];
-
-        $formattedTime = (new DateTime())
-            ->setTimeZone(new DateTimeZone('UTC'))
-            ->setTimestamp($timestamp['seconds'])
-            ->format('Y-m-d\TH:i:s');
-
-        $timestamp['nanos'] = str_pad($timestamp['nanos'], 9, '0', STR_PAD_LEFT);
-        return $formattedTime .= sprintf('.%sZ', rtrim($timestamp['nanos'], '0'));
     }
 
     /**
@@ -246,6 +225,24 @@ trait GrpcTrait
     }
 
     /**
+     * Format a gRPC timestamp to match the format returned by the REST API.
+     *
+     * @param array $timestamp
+     * @return string
+     */
+    private function formatTimestampFromApi(array $timestamp)
+    {
+        $timestamp += [
+            'seconds' => 0,
+            'nanos' => 0
+        ];
+
+        $dt = $this->createDateTimeFromSeconds($timestamp['seconds']);
+
+        return $this->formatTimeAsString($dt, $timestamp['nanos']);
+    }
+
+    /**
      * Format a timestamp for the API with nanosecond precision.
      *
      * @param string $value
@@ -253,14 +250,11 @@ trait GrpcTrait
      */
     private function formatTimestampForApi($value)
     {
-        preg_match('/\.(\d{1,9})Z/', $value, $matches);
-        $value = preg_replace('/\.(\d{1,9})Z/', '.000000Z', $value);
-        $dt = \DateTimeImmutable::createFromFormat('Y-m-d\TH:i:s.u\Z', $value, new \DateTimeZone('UTC'));
-        $nanos = (isset($matches[1])) ? str_pad($matches[1], 9, '0') : 0;
+        list ($dt, $nanos) = $this->parseTimeString($value);
 
         return [
-            'seconds' => (int)$dt->format('U'),
-            'nanos' => (int)$nanos
+            'seconds' => (int) $dt->format('U'),
+            'nanos' => (int) $nanos
         ];
     }
 }

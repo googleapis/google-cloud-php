@@ -17,7 +17,7 @@
 
 namespace Google\Cloud\Spanner\Batch;
 
-use Google\Cloud\Core\ValueMapperTrait;
+use Google\Cloud\Core\TimeTrait;
 use Google\Cloud\Spanner\Operation;
 use Google\Cloud\Spanner\Timestamp;
 use Google\Cloud\Spanner\TransactionConfigurationTrait;
@@ -103,8 +103,8 @@ use Google\Cloud\Spanner\TransactionConfigurationTrait;
  */
 class BatchClient
 {
+    use TimeTrait;
     use TransactionConfigurationTrait;
-    use ValueMapperTrait;
 
     const PARTITION_TYPE_KEY = '__partitionTypeName';
 
@@ -215,9 +215,10 @@ class BatchClient
 
         $session = $this->operation->session($data['sessionName']);
 
+        $readTime = $this->parseTimeString($data['readTimestamp']);
         return $this->operation->createSnapshot($session, [
             'id' => $data['transactionId'],
-            'readTimestamp' => $this->createTimestampWithNanos($data['readTimestamp'], Timestamp::class)
+            'readTimestamp' => $data['readTimestamp']
         ], BatchSnapshot::class);
     }
 

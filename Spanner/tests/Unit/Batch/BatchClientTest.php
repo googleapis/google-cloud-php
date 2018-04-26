@@ -19,6 +19,8 @@ namespace Google\Cloud\Spanner\Tests\Unit\Batch;
 
 use Google\Cloud\Core\Testing\SpannerOperationRefreshTrait;
 use Google\Cloud\Core\Testing\TestHelpers;
+use Google\Cloud\Core\Timestamp;
+use Google\Cloud\Core\TimeTrait;
 use Google\Cloud\Spanner\Batch\BatchClient;
 use Google\Cloud\Spanner\Batch\BatchSnapshot;
 use Google\Cloud\Spanner\Batch\QueryPartition;
@@ -37,6 +39,7 @@ use Prophecy\Argument;
 class BatchClientTest extends TestCase
 {
     use SpannerOperationRefreshTrait;
+    use TimeTrait;
 
     const DATABASE = 'projects/example_project/instances/example_instance/databases/example_database';
     const SESSION = 'projects/example_project/instances/example_instance/databases/example_database/sessions/session-id';
@@ -77,10 +80,7 @@ class BatchClientTest extends TestCase
         }))->shouldBeCalled()
             ->willReturn([
                 'id' => self::TRANSACTION,
-                'readTimestamp' => [
-                    'seconds' => $time,
-                    'nanos' => 0
-                ]
+                'readTimestamp' => \DateTime::createFromFormat('U', (string) $time)->format(Timestamp::FORMAT)
             ]);
 
         $this->refreshOperation($this->client, $this->connection->reveal());
@@ -89,6 +89,9 @@ class BatchClientTest extends TestCase
         $this->assertInstanceOf(BatchSnapshot::class, $snapshot);
     }
 
+    /**
+     * @group foo
+     */
     public function testSnapshotFromString()
     {
         $time = time();
@@ -96,7 +99,7 @@ class BatchClientTest extends TestCase
         $identifier = base64_encode(json_encode([
             'sessionName' => self::SESSION,
             'transactionId' => self::TRANSACTION,
-            'readTimestamp' => ['seconds' => $time, 'nanos' => 0]
+            'readTimestamp' => \DateTime::createFromFormat('U', (string) $time)->format(Timestamp::FORMAT)
         ]));
 
         $snapshot = $this->client->snapshotFromString($identifier);
