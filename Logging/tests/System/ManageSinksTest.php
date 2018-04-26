@@ -79,7 +79,7 @@ class ManageSinksTest extends LoggingTestCase
     {
         self::setUpBeforeClass();
         $bucket = self::$bucket;
-        $bucket->acl()->add('group-cloud-logs@google.com', 'OWNER');-
+        $bucket->acl()->add('group-cloud-logs@google.com', 'OWNER');
         $bucketDest = sprintf('storage.googleapis.com/%s', $bucket->name());
         $datasetDest = sprintf(
             'bigquery.googleapis.com/projects/%s/datasets/%s',
