@@ -39,6 +39,7 @@ use Google\Protobuf\ListValue;
 use Google\Protobuf\Struct;
 use Google\Protobuf\Value;
 use Google\Rpc\Status;
+use Google\Type\Color;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -215,5 +216,76 @@ class SerializerTest extends TestCase
         ];
 
         $this->verifySerializeAndDeserialize($message, $encodedMessage);
+    }
+
+    public function testSpecialEncodingDecodingByFieldName()
+    {
+        $serializer = new Serializer([
+            'red' => function ($v) {
+                return $v * 2;
+            }
+        ], [], [
+            'red' => function ($v) {
+                return $v / 2;
+            }
+        ]);
+        $data = [
+            'red' => 0.2,
+            'green' => 0.3,
+            'blue' => 0.4,
+            'alpha' => [
+                'value' => 1.0
+            ]
+        ];
+        $color = $serializer->decodeMessage(new Color(), $data);
+        $this->assertEquals(0.1, $color->getRed(), '', 0.0000001);
+        $this->assertEquals(0.3, $color->getGreen(), '', 0.0000001);
+        $this->assertEquals(0.4, $color->getBlue(), '', 0.0000001);
+        $alpha = $color->getAlpha();
+        $this->assertEquals(1.0, $alpha->getValue(), '', 0.0000001);
+
+        $array = $serializer->encodeMessage($color);
+        $this->assertEquals($data['red'], $array['red'], '', 0.0000001);
+        $this->assertEquals($data['green'], $array['green'], '', 0.0000001);
+        $this->assertEquals($data['blue'], $array['blue'], '', 0.0000001);
+        $this->assertEquals($data['alpha']['value'], $array['alpha']['value'], '', 0.0000001);
+    }
+
+    public function testSpecialEncodingDecodingByFieldType()
+    {
+        $serializer = new Serializer([], [
+            'google.protobuf.FloatValue' => function ($v) {
+                return [
+                    'value' => $v['value'] * 2
+                ];
+            }
+        ], [], [
+            'google.protobuf.FloatValue' => function ($v) {
+                return [
+                    'value' => $v['value'] / 2
+                ];
+            }
+        ]);
+        $data = [
+            'red' => 0.2,
+            'green' => 0.3,
+            'blue' => 0.4,
+            'alpha' => [
+                'value' => 1.0
+            ]
+        ];
+
+        $color = $serializer->decodeMessage(new Color(), $data);
+        $this->assertEquals(0.2, $color->getRed(), '', 0.0000001);
+        $this->assertEquals(0.3, $color->getGreen(), '', 0.0000001);
+        $this->assertEquals(0.4, $color->getBlue(), '', 0.0000001);
+        $alpha = $color->getAlpha();
+        $this->assertEquals(0.5, $alpha->getValue(), '', 0.0000001);
+
+        $array = $serializer->encodeMessage($color);
+        $this->assertEquals($data['red'], $array['red'], '', 0.0000001);
+        $this->assertEquals($data['green'], $array['green'], '', 0.0000001);
+        $this->assertEquals($data['blue'], $array['blue'], '', 0.0000001);
+        $this->assertEquals($data['alpha']['value'], $array['alpha']['value'], '', 0.0000001);
     }
 }
