@@ -58,7 +58,11 @@ class StorageTestCase extends SystemTestCase
         self::$pubsubClient = new PubSubClient($config);
 
         self::$mainBucketName = getenv('BUCKET') ?: uniqid(self::TESTING_PREFIX);
-        self::$bucket = self::createBucket(self::$client, self::$mainBucketName);
+        self::$bucket = self::createBucket(
+            self::$client,
+            self::$mainBucketName,
+            ['location' => 'us-west1']
+        );
         self::$object = self::$bucket->upload('somedata', ['name' => uniqid(self::TESTING_PREFIX)]);
 
         self::$hasSetUp = true;

@@ -213,7 +213,7 @@ class KmsTest extends StorageTestCase
                 new Request(
                     'POST',
                     sprintf(
-                        'https://cloudkms.googleapis.com/v1/projects/%s/locations/global/keyRings?keyRingId=%s',
+                        'https://cloudkms.googleapis.com/v1/projects/%s/locations/us-west1/keyRings?keyRingId=%s',
                         $projectId,
                         $keyRingId
                     )
@@ -246,7 +246,7 @@ class KmsTest extends StorageTestCase
                 new Request(
                     'POST',
                     sprintf(
-                        'https://cloudkms.googleapis.com/v1/projects/%s/locations/global/keyRings/%s/cryptoKeys?cryptoKeyId=%s',
+                        'https://cloudkms.googleapis.com/v1/projects/%s/locations/us-west1/keyRings/%s/cryptoKeys?cryptoKeyId=%s',
                         $projectId,
                         $keyRingId,
                         $cryptoKeyId
@@ -259,7 +259,7 @@ class KmsTest extends StorageTestCase
             $name = json_decode((string) $response->getBody(), true)['name'];
         } catch (ConflictException $ex) {
             $name = sprintf(
-                'projects/%s/locations/global/keyRings/%s/cryptoKeys/%s',
+                'projects/%s/locations/us-west1/keyRings/%s/cryptoKeys/%s',
                 $projectId,
                 $keyRingId,
                 $cryptoKeyId
@@ -283,7 +283,7 @@ class KmsTest extends StorageTestCase
             new Request(
                 'POST',
                 sprintf(
-                    'https://cloudkms.googleapis.com/v1/projects/%s/locations/global/keyRings/%s/cryptoKeys/%s:setIamPolicy',
+                    'https://cloudkms.googleapis.com/v1/projects/%s/locations/us-west1/keyRings/%s/cryptoKeys/%s:setIamPolicy',
                     $projectId,
                     $keyRingId,
                     $cryptoKeyId
