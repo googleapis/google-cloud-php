@@ -59,6 +59,8 @@ class Serializer
 
     private $fieldTransformers;
     private $messageTypeTransformers;
+    private $decodeFieldTransformers;
+    private $decodeMessageTypeTransformers;
 
     private $descriptorMaps = [];
 
@@ -67,11 +69,19 @@ class Serializer
      *
      * @param array $fieldTransformers An array mapping field names to transformation functions
      * @param array $messageTypeTransformers An array mapping message names to transformation functions
+     * @param array $decodeFieldTransformers An array mapping field names to transformation functions
+     * @param array $decodeMessageTypeTransformers An array mapping message names to transformation functions
      */
-    public function __construct($fieldTransformers = [], $messageTypeTransformers = [])
-    {
+    public function __construct(
+        $fieldTransformers = [],
+        $messageTypeTransformers = [],
+        $decodeFieldTransformers = [],
+        $decodeMessageTypeTransformers = []
+    ) {
         $this->fieldTransformers = $fieldTransformers;
         $this->messageTypeTransformers = $messageTypeTransformers;
+        $this->decodeFieldTransformers = $decodeFieldTransformers;
+        $this->decodeMessageTypeTransformers = $decodeMessageTypeTransformers;
     }
 
     /**
@@ -263,14 +273,22 @@ class Serializer
 
     private function decodeElement(FieldDescriptor $field, $data)
     {
+        if (isset($this->decodeFieldTransformers[$field->getName()])) {
+            $data = $this->decodeFieldTransformers[$field->getName()]($data);
+        }
+
         switch ($field->getType()) {
             case GPBType::MESSAGE:
                 if ($data instanceof \Google\Protobuf\Internal\Message) {
                     return $data;
                 }
                 $messageType = $field->getMessageType();
+                $messageTypeName = $messageType->getFullName();
                 $klass = $messageType->getClass();
                 $msg = new $klass();
+                if (isset($this->decodeMessageTypeTransformers[$messageTypeName])) {
+                    $data = $this->decodeMessageTypeTransformers[$messageTypeName]($data);
+                }
 
                 return $this->decodeMessageImpl($msg, $messageType, $data);
             default:
