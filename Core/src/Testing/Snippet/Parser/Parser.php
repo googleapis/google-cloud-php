@@ -224,9 +224,10 @@ class Parser
 
         $methods = $class->getMethods();
         foreach ($methods as $method) {
-            if ($method->getDeclaringClass() !== $class->getName()) {
+            if ($method->getDeclaringClass()->name !== $class->getName()) {
                 continue;
             }
+
             $snippets = array_merge($snippets, $this->examplesFromMethod($class, $method));
         }
 
