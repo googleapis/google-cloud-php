@@ -31,7 +31,8 @@ interface ConnectionInterface
      *      Batch write params.
      *
      *      @type string $projectsId The ID of the Google Cloud Project
-     *      @type array $spans
+     *      @type array $spans Array of associative array span data. See
+     *          {@see Google\Cloud\Trace\Span::info()} for format.
      * }
      */
     public function traceBatchWrite(array $args);

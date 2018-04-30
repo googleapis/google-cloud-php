@@ -47,7 +47,20 @@ class Grpc implements ConnectionInterface
      */
     public function __construct(array $config = [])
     {
-        $this->serializer = new Serializer();
+        $this->serializer = new Serializer(
+            [],
+            [
+                'google.protobuf.Timestamp' => function ($v) {
+                    return $this->formatTimestampFromApi($v);
+                }
+            ],
+            [],
+            [
+                'google.protobuf.Timestamp' => function ($v) {
+                    return $this->formatTimestampForApi($v);
+                }
+            ]
+        );
         $config['serializer'] = $this->serializer;
         $this->setRequestWrapper(new GrpcRequestWrapper($config));
         $gaxConfig = $this->getGaxConfig(
@@ -68,7 +81,8 @@ class Grpc implements ConnectionInterface
      *      Batch write params.
      *
      *      @type string $projectsId The ID of the Google Cloud Project
-     *      @type array $spans
+     *      @type array $spans Array of associative array span data. See
+     *          {@see Google\Cloud\Trace\Span::info()} for format.
      * }
      */
     public function traceBatchWrite(array $args)
@@ -76,7 +90,9 @@ class Grpc implements ConnectionInterface
         $spans = $this->pluck('spans', $args);
         return $this->send([$this->traceClient, 'batchWriteSpans'], [
             TraceServiceClient::projectName($this->pluck('projectsId', $args)),
-            array_map([$this, 'buildSpan'], $spans),
+            array_map(function (array $span) {
+                return $this->serializer->decodeMessage(new Span(), $span);
+            }, $spans),
             $args
         ]);
     }
@@ -94,23 +110,5 @@ class Grpc implements ConnectionInterface
             $this->formatTimestampForApi($this->pluck('endTime', $args)),
             $args
         ]);
-    }
-
-    private function buildSpan(array $span)
-    {
-        if (isset($span['startTime'])) {
-            $span['startTime'] = $this->formatTimestampForApi($span['startTime']);
-        }
-        if (isset($span['endTime'])) {
-            $span['endTime'] = $this->formatTimestampForApi($span['endTime']);
-        }
-        if (isset($span['timeEvents'])) {
-            foreach ($span['timeEvents']['timeEvent'] as &$timeEvent) {
-                if (isset($timeEvent['time'])) {
-                    $timeEvent['time'] = $this->formatTimestampForApi($timeEvent['time']);
-                }
-            }
-        }
-        return $this->serializer->decodeMessage(new Span(), $span);
     }
 }
