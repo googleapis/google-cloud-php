@@ -359,7 +359,7 @@ class Debuggee
     }
 
     /**
-     * Returns a JSON serializable array representation of the debuggee.
+     * Return a serializable version of this object
      *
      * @access private
      * @return array

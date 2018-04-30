@@ -135,7 +135,7 @@ class StackFrame
     }
 
     /**
-     * Returns a JSON serializable array representation of the stack frame.
+     * Return a serializable version of this object
      *
      * @access private
      * @return array

@@ -68,11 +68,12 @@ class CloudWorkspaceSourceContext implements SourceContext
     }
 
     /**
-     * Return context data.
+     * Return a serializable version of this object
      *
+     * @access private
      * @return array
      */
-    public function contextData()
+    public function info()
     {
         return [
             'cloudWorkspace' => [
@@ -80,16 +81,5 @@ class CloudWorkspaceSourceContext implements SourceContext
                 'snapshotId' => $this->snapshotId
             ]
         ];
-    }
-
-    /**
-     * Callback to implement JsonSerializable interface
-     *
-     * @access private
-     * @return array
-     */
-    public function info()
-    {
-        return $this->contextData();
     }
 }

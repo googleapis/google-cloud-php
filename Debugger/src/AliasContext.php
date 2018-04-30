@@ -63,7 +63,7 @@ class AliasContext
     }
 
     /**
-     * Callback to implement JsonSerializable interface
+     * Return a serializable version of this object
      *
      * @access private
      * @return array

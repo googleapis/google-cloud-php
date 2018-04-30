@@ -76,26 +76,16 @@ class ExtendedSourceContext implements SourceContext
     }
 
     /**
-     * Return context data.
-     *
-     * @return array
-     */
-    public function contextData()
-    {
-        return [
-            'context' => $this->context->info(),
-            'labels' => $this->labels
-        ];
-    }
-
-    /**
-     * Callback to implement JsonSerializable interface
+     * Return a serializable version of this object
      *
      * @access private
      * @return array
      */
     public function info()
     {
-        return $this->contextData();
+        return [
+            'context' => $this->context->info(),
+            'labels' => $this->labels
+        ];
     }
 }

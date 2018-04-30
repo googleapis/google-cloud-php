@@ -60,11 +60,12 @@ class GitSourceContext implements SourceContext
     }
 
     /**
-     * Return context data.
+     * Return a serializable version of this object
      *
+     * @access private
      * @return array
      */
-    public function contextData()
+    public function info()
     {
         return [
             'git' => [
@@ -72,16 +73,5 @@ class GitSourceContext implements SourceContext
                 'revisionId' => $this->revisionId
             ]
         ];
-    }
-
-    /**
-     * Callback to implement JsonSerializable interface
-     *
-     * @access private
-     * @return array
-     */
-    public function info()
-    {
-        return $this->contextData();
     }
 }

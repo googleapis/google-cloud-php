@@ -87,7 +87,7 @@ class Grpc implements ConnectionInterface
      * List all registered debuggees.
      *
      * @param array $args {
-     *     @type string $project
+     *     @type string $project The project ID
      * }
      */
     public function listDebuggees(array $args = [])
@@ -149,8 +149,8 @@ class Grpc implements ConnectionInterface
      * Sets a breakpoint.
      *
      * @param array $args {
-     *     @type string $debuggeeId
-     *     @type array $location
+     *     @type string $debuggeeId The Debuggee ID
+     *     @type array $location The source location
      * }
      * @return array
      */

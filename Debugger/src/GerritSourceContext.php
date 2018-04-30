@@ -84,11 +84,12 @@ class GerritSourceContext implements SourceContext
     }
 
     /**
-     * Return context data.
+     * Return a serializable version of this object
      *
+     * @access private
      * @return array
      */
-    public function contextData()
+    public function info()
     {
         return [
             'gerrit' => [
@@ -98,16 +99,5 @@ class GerritSourceContext implements SourceContext
                 'aliasContext' => $this->aliasContext->info()
             ]
         ];
-    }
-
-    /**
-     * Callback to implement JsonSerializable interface
-     *
-     * @access private
-     * @return array
-     */
-    public function info()
-    {
-        return $this->contextData();
     }
 }
