@@ -11,6 +11,7 @@
             "name": "google/cloud",
             "defaultService": "servicebuilder",
             "versions": [
+                "v0.62.0",
                 "v0.61.0",
                 "v0.60.0",
                 "v0.59.0",
@@ -98,6 +99,7 @@
             "name": "google/cloud-bigquery",
             "defaultService": "bigquery/bigqueryclient",
             "versions": [
+                "v1.2.1",
                 "v1.2.0",
                 "v1.1.0",
                 "v1.0.3",
@@ -172,6 +174,7 @@
             "name": "google/cloud-core",
             "defaultService": "core/servicebuilder",
             "versions": [
+                "v1.20.0",
                 "v1.19.2",
                 "v1.19.1",
                 "v1.19.0",
@@ -234,6 +237,7 @@
             "name": "google/cloud-datastore",
             "defaultService": "datastore/datastoreclient",
             "versions": [
+                "v1.5.0",
                 "v1.4.2",
                 "v1.4.1",
                 "v1.4.0",
@@ -256,6 +260,7 @@
             "name": "google/cloud-debugger",
             "defaultService": "debugger/debuggerclient",
             "versions": [
+                "v0.8.0",
                 "v0.7.0",
                 "v0.6.2",
                 "v0.6.1",
@@ -342,6 +347,7 @@
             "name": "google/cloud-firestore",
             "defaultService": "firestore/firestoreclient",
             "versions": [
+                "v0.9.0",
                 "v0.8.1",
                 "v0.8.0",
                 "v0.7.0",
@@ -411,6 +417,7 @@
             "name": "google/cloud-logging",
             "defaultService": "logging/loggingclient",
             "versions": [
+                "v1.10.4",
                 "v1.10.3",
                 "v1.10.2",
                 "v1.10.1",
@@ -531,6 +538,7 @@
             "name": "google/cloud-spanner",
             "defaultService": "spanner/spannerclient",
             "versions": [
+                "v1.4.0",
                 "v1.3.3",
                 "v1.3.2",
                 "v1.3.1",
