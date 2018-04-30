@@ -18,6 +18,7 @@
 namespace Google\Cloud\Spanner\Tests\Snippet;
 
 use Google\Cloud\Core\LongRunning\LongRunningConnectionInterface;
+use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
 use Google\Cloud\Core\Testing\SpannerOperationRefreshTrait;
 use Google\Cloud\Spanner\Admin\Instance\V1\InstanceAdminClient;
@@ -35,6 +36,7 @@ use Prophecy\Argument;
  */
 class StructValueTest extends SnippetTestCase
 {
+    use GrpcTestTrait;
     use SpannerOperationRefreshTrait;
 
     const PROJECT = 'my-awesome-project';
@@ -47,6 +49,8 @@ class StructValueTest extends SnippetTestCase
 
     public function setUp()
     {
+        $this->checkAndSkipGrpcTests();
+
         $instance = $this->prophesize(Instance::class);
         $instance->name()->willReturn(InstanceAdminClient::instanceName(self::PROJECT, self::INSTANCE));
 
@@ -95,7 +99,7 @@ class StructValueTest extends SnippetTestCase
         $values = [
             'bar',
             2,
-            'a field has no name'
+            'this field is unnamed'
         ];
 
         $this->connection->executeStreamingSql(Argument::allOf(
@@ -130,7 +134,7 @@ class StructValueTest extends SnippetTestCase
         $res = explode(PHP_EOL, $snippet->invoke()->output());
         $this->assertEquals('foo: bar', $res[0]);
         $this->assertEquals('foo: 2', $res[1]);
-        $this->assertEquals('2: a field has no name', $res[2]);
+        $this->assertEquals('2: this field is unnamed', $res[2]);
     }
 
     public function testAdd()

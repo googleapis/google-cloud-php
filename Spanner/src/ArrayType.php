@@ -106,7 +106,7 @@ class ArrayType
             $err = 'When struct definition is provided, array type must be `Database::TYPE_STRUCT`.';
 
             if ($constantName) {
-                $err .= 'Instead got `Database::%s`.';
+                $err .= ' Instead got `Database::%s`.';
             }
 
             throw new \InvalidArgumentException(sprintf(

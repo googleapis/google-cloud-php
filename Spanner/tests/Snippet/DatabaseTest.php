@@ -797,7 +797,7 @@ class DatabaseTest extends SnippetTestCase
         $values = [
             'bar',
             2,
-            'a field has no name'
+            'this field is unnamed'
         ];
 
         $this->connection->executeStreamingSql(Argument::allOf(
@@ -831,7 +831,7 @@ class DatabaseTest extends SnippetTestCase
         $res = explode(PHP_EOL, $snippet->invoke()->output());
         $this->assertEquals('foo: bar', $res[0]);
         $this->assertEquals('foo: 2', $res[1]);
-        $this->assertEquals('2: a field has no name', $res[2]);
+        $this->assertEquals('2: this field is unnamed', $res[2]);
     }
 
     public function testRead()
