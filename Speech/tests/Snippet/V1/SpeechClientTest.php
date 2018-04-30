@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-namespace Google\Cloud\Speech\Tests\Snippets\V1;
+namespace Google\Cloud\Tests\Snippets\Speech\V1;
 
 use Google\ApiCore\BidiStream;
 use Google\ApiCore\Call;
@@ -47,76 +47,6 @@ class SpeechClientTest extends SnippetTestCase
         $this->client = new SpeechClient([
             'transport' => $this->transport->reveal(),
         ]);
-    }
-
-    public function testRecognize()
-    {
-        $snippet = $this->snippetFromMethod(SpeechClient::class, 'recognize');
-        $snippet->addLocal('speechClient', $this->client);
-
-        $expectedResponse = new RecognizeResponse();
-
-        $this->transport->startUnaryCall(Argument::allOf(
-            Argument::type(Call::class),
-            Argument::which('getMethod', 'google.cloud.speech.v1.Speech/Recognize')
-        ),
-            Argument::type('array')
-        )
-            ->shouldBeCalledTimes(1)
-            ->willReturn(new FulfilledPromise($expectedResponse));
-
-        $res = $snippet->invoke();
-    }
-
-    public function testLongRunningRecognize()
-    {
-        $snippet = $this->snippetFromMethod(SpeechClient::class, 'longRunningRecognize');
-        $snippet->addLocal('speechClient', $this->client);
-
-        $expectedRecognizeResponse = new LongRunningRecognizeResponse();
-        $expectedResponse = new Operation();
-        $expectedResponse->setResponse((new Any())->setValue($expectedRecognizeResponse->serializeToString()));
-        $expectedResponse->setDone(true);
-
-        $this->transport->startUnaryCall(Argument::allOf(
-            Argument::type(Call::class),
-            Argument::which('getMethod', 'google.cloud.speech.v1.Speech/LongRunningRecognize')
-        ),
-            Argument::type('array')
-        )
-            ->shouldBeCalledTimes(1)
-            ->willReturn(new FulfilledPromise($expectedResponse));
-
-        $res = $snippet->invoke();
-    }
-
-    public function testLongRunningRecognizeResume()
-    {
-        $snippet = $this->snippetFromMethod(
-            SpeechClient::class,
-            'longRunningRecognize',
-            'resume'
-        );
-        $config = new RecognitionConfig();
-        $audioUri = 'gs://bucket_name/file_name.flac';
-        $snippet->addLocal('speechClient', $this->client);
-        $snippet->addLocal('config', $config);
-        $snippet->addLocal('audioUri', $audioUri);
-
-        $expectedRecognizeResponse = new LongRunningRecognizeResponse();
-        $expectedResponse = new Operation();
-        $expectedResponse->setResponse((new Any())->setValue($expectedRecognizeResponse->serializeToString()));
-        $expectedResponse->setDone(true);
-
-        $this->transport->startUnaryCall(Argument::allOf(
-            Argument::type(Call::class)
-        ),
-            Argument::type('array')
-        )
-            ->shouldBeCalledTimes(2)
-            ->willReturn(new FulfilledPromise($expectedResponse));
-
-        $res = $snippet->invoke();
     }
 
     public function testRecognizeAudioStream()

@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-namespace Google\Cloud\Speech\Tests\Unit;
+namespace Google\Cloud\Tests\Unit\Speech;
 
 use Google\Cloud\Speech\SpeechHelpersTrait;
 use PHPUnit\Framework\TestCase;

@@ -18,7 +18,6 @@
 namespace Google\Cloud\Speech;
 
 use Generator;
-use Google\ApiCore\BidiStream;
 use InvalidArgumentException;
 
 /**
@@ -35,6 +34,11 @@ trait SpeechHelpersTrait
         'gs'
     ];
 
+    /**
+     * @param string                           $recognitionAudioClass
+     * @param resource|string|RecognitionAudio $audio
+     * @return RecognitionAudio
+     */
     private function createRecognitionAudioHelper($recognitionAudioClass, $audio)
     {
         if (is_object($audio) && $audio instanceof $recognitionAudioClass) {
@@ -75,9 +79,11 @@ trait SpeechHelpersTrait
             $audio = $this->createAudioStreamFromResource($audio);
         }
 
-        // For each chuck in iterable $audio, convert to a request
+        // For each chuck in iterable $audio, convert to a request if necessary
         foreach ($audio as $audioChunk) {
-            if (is_string($audioChunk)) {
+            if (is_object($audioChunk) && $audioChunk instanceof $requestClass) {
+                yield $audioChunk;
+            } elseif (is_string($audioChunk)) {
                 $request = new $requestClass();
                 $request->setAudioContent($audioChunk);
                 yield $request;
@@ -85,7 +91,8 @@ trait SpeechHelpersTrait
                 throw new InvalidArgumentException(
                     'Found invalid audio chunk in $audio. ' .
                     'Audio must be a resource, a string of ' .
-                    'bytes, or an iterable of string[].'
+                    'bytes, or an iterable of StreamingRecognizeRequest[] ' .
+                    'or string[].'
                 );
             }
         }
