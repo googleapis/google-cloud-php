@@ -31,7 +31,7 @@ use PHPUnit\Framework\TestCase;
 class BasicTest extends TestCase
 {
     /**
-     * @dataProvider connectionTypes
+     * @dataProvider transports
      */
     public function testCanCreateTraces($connectionType)
     {
@@ -55,8 +55,7 @@ class BasicTest extends TestCase
     }
 
     /**
-     * @dataProvider connectionTypes
-     * @group focus
+     * @dataProvider transports
      */
     public function testCanCreateComplexTrace($connectionType)
     {
@@ -112,7 +111,7 @@ class BasicTest extends TestCase
         $this->assertTrue($traceClient->insert($trace));
     }
 
-    public function connectionTypes()
+    public function transports()
     {
         return [
             ['grpc'],
