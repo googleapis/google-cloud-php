@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-namespace Google\Cloud\Tests\Unit\Speech\V1beta1;
+namespace Google\Cloud\Speech\Tests\Unit\V1beta1;
 
 use Google\ApiCore\BidiStream;
 use Google\ApiCore\Call;
@@ -200,7 +200,9 @@ class SpeechClientTest extends TestCase
             ->shouldBeCalledTimes(1)
             ->willReturn(new BidiStream($mockBidiStreamingCall));
 
-        $responseStream = $this->client->recognizeAudioStream($config, $audio);
+        $bidiStream = $this->client->recognizeAudioStream($config);
+        $bidiStream->writeAll($this->client->createStreamingRequests($audio));
+        $responseStream = $bidiStream->closeWriteAndReadAll();
 
         $this->assertSame($expectedResponseStream, iterator_to_array($responseStream));
 
@@ -223,14 +225,10 @@ class SpeechClientTest extends TestCase
         $data = 'abcdefgh';
         $iterableData = ['abcd', 'efgh'];
         $resourceData = 'zyxwvuts';
-        $streamingData = '12345678';
         $resource = $this->createResource($resourceData);
-        $streamingRecognizeRequest = new StreamingRecognizeRequest();
-        $streamingRecognizeRequest->setAudioContent($streamingData);
         return [
             [$data, [$data]],
             [$iterableData, $iterableData],
-            [[$streamingRecognizeRequest], [$streamingData]],
             [$resource, [$resourceData]]
         ];
     }

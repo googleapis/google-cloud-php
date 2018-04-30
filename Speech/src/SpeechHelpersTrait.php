@@ -101,6 +101,37 @@ trait SpeechHelpersTrait
     }
 
     /**
+     * @param string $requestClass
+     * @param iterable|resource|string $audio
+     * @return StreamingRecognizeRequest[]
+     */
+    private function createStreamingRequestsHelper($requestClass, $audio)
+    {
+        // First, convert string/resource audio into an iterable
+        if (is_string($audio)) {
+            $audio = [$audio];
+        }
+        if (is_resource($audio)) {
+            $audio = $this->createAudioStreamFromResource($audio);
+        }
+
+        // For each chuck in iterable $audio, convert to a request
+        foreach ($audio as $audioChunk) {
+            if (is_string($audioChunk)) {
+                $request = new $requestClass();
+                $request->setAudioContent($audioChunk);
+                yield $request;
+            } else {
+                throw new InvalidArgumentException(
+                    'Found invalid audio chunk in $audio. ' .
+                    'Audio must be a resource, a string of ' .
+                    'bytes, or an iterable of string[].'
+                );
+            }
+        }
+    }
+
+    /**
      * @param resource $resource
      * @param int      $chunkSize
      * @return Generator|string[]

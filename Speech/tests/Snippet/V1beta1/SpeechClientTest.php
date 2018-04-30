@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-namespace Google\Cloud\Tests\Snippets\Speech\V1beta1;
+namespace Google\Cloud\Speech\Tests\Snippets\V1beta1;
 
 use Google\ApiCore\BidiStream;
 use Google\ApiCore\Call;

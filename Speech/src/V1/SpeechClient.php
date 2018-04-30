@@ -30,7 +30,6 @@
 
 namespace Google\Cloud\Speech\V1;
 
-use Generator;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
 use Google\Cloud\Speech\SpeechHelpersTrait;
@@ -178,10 +177,12 @@ class SpeechClient extends SpeechGapicClient
      * $config = new StreamingRecognitionConfig();
      * $config->setConfig($recognitionConfig);
      *
-     * $audioResource = fopen('path/to/audio.flac', 'r');
+     * $bidiStream = $speechClient->recognizeAudioStream($config);
      *
-     * $responseStream = $speechClient->recognizeAudioStream($config, $audioResource);
+     * $audioResource = $speechClient->createStreamingRequests(fopen('path/to/audio.flac', 'r'));
+     * $bidiStream->writeAll($audioResource);
      *
+     * $responseStream = $bidiStream->closeWriteAndReadAll();
      * foreach ($responseStream as $element) {
      *     // doSomethingWith($element);
      * }
@@ -189,20 +190,30 @@ class SpeechClient extends SpeechGapicClient
      *
      * @param StreamingRecognitionConfig  $config         *Required* Provides information to the recognizer that specifies how to
      *                                                    process the request.
-     * @param iterable|resource|string    $audio          *Required* Audio data to be streamed. Can be a resource, a string of bytes,
-     *                                                    or an iterable of StreamingRecognizeRequest[] or string[].
      * @param array                       $optionalArgs   {
      *                                                    Optional.
      *
      *     @type int $timeoutMillis
      *          Timeout to use for this call.
      * }
-     * @return StreamingRecognizeResponse[]
+     * @return \Google\ApiCore\BidiStream
      */
-    public function recognizeAudioStream($config, $audio, $optionalArgs = [])
+    public function recognizeAudioStream($config, $optionalArgs = [])
     {
         $bidiStream = $this->streamingRecognize($optionalArgs);
-        $bidiStream->writeAll($this->createAudioStreamHelper(StreamingRecognizeRequest::class, $config, $audio));
-        return $bidiStream->closeWriteAndReadAll();
+        $request = new StreamingRecognizeRequest();
+        $request->setStreamingConfig($config);
+        $bidiStream->write($request);
+        return $bidiStream;
+    }
+
+    /**
+     * @param resource|string|string[] $audio *Required* The audio data to be converted into a stream of requests. This
+     *                                        can be a resource, a string of bytes, or an iterable of string[].
+     * @return StreamingRecognizeRequest[]
+     */
+    public function createStreamingRequests($audio)
+    {
+        return $this->createStreamingRequestsHelper(StreamingRecognizeRequest::class, $audio);
     }
 }
