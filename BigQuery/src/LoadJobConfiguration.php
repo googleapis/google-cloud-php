@@ -444,8 +444,8 @@ class LoadJobConfiguration implements JobConfigurationInterface
      * ```
      *
      * @param string $sourceFormat The source format. Acceptable values include
-     *        `"CSV"`, `"DATASTORE_BACKUP"`. `"NEWLINE_DELIMITED_JSON"`,
-     *        `"AVRO"`. **Defaults to** `"CSV"`.
+     *        `"CSV"`, `"DATASTORE_BACKUP"`, `"NEWLINE_DELIMITED_JSON"`,
+     *        `"AVRO"`, `"PARQUET"`. **Defaults to** `"CSV"`.
      * @return LoadJobConfiguration
      */
     public function sourceFormat($sourceFormat)
