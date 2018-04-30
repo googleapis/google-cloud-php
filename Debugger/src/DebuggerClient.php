@@ -90,7 +90,6 @@ class DebuggerClient
             : new Rest($this->configureAuthentication($config + [
                 'preferNumericProjectId' => true
               ]));
-
     }
 
     /**
