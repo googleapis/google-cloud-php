@@ -22,15 +22,8 @@ use Google\ApiCore\Call;
 use Google\ApiCore\Testing\MockBidiStreamingCall;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
-use Google\Cloud\Speech\V1beta1\AsyncRecognizeResponse;
-use Google\Cloud\Speech\V1beta1\RecognitionConfig;
 use Google\Cloud\Speech\V1beta1\SpeechClient;
-use Google\Cloud\Speech\V1beta1\StreamingRecognitionConfig;
 use Google\Cloud\Speech\V1beta1\StreamingRecognizeResponse;
-use Google\Cloud\Speech\V1beta1\SyncRecognizeResponse;
-use Google\LongRunning\Operation;
-use Google\Protobuf\Any;
-use GuzzleHttp\Promise\FulfilledPromise;
 use Prophecy\Argument;
 
 /**

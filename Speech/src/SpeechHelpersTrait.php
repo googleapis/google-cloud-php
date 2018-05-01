@@ -30,23 +30,23 @@ trait SpeechHelpersTrait
      *
      * @var array
      */
-    private $urlSchemes = [
+    private static $urlSchemes = [
         'gs'
     ];
 
     /**
      * @param string                           $recognitionAudioClass
      * @param resource|string|RecognitionAudio $audio
-     * @return RecognitionAudio
+     * @return mixed A RecognitionAudio instance matching the requested version of Speech
      */
     private function createRecognitionAudioHelper($recognitionAudioClass, $audio)
     {
-        if (is_object($audio) && $audio instanceof $recognitionAudioClass) {
+        if ($audio instanceof $recognitionAudioClass) {
             return $audio;
         }
         $recognitionAudio = new $recognitionAudioClass();
         if (is_string($audio)) {
-            if (in_array(parse_url($audio, PHP_URL_SCHEME), $this->urlSchemes)) {
+            if (in_array(parse_url($audio, PHP_URL_SCHEME), self::$urlSchemes)) {
                 $recognitionAudio->setUri($audio);
             } else {
                 $recognitionAudio->setContent($audio);
@@ -67,7 +67,7 @@ trait SpeechHelpersTrait
     /**
      * @param string $requestClass
      * @param iterable|resource|string $audio
-     * @return StreamingRecognizeRequest[]
+     * @return mixed An iterable of StreamingRecognizeRequest instances matching the requested version of Speech
      */
     private function createStreamingRequestsHelper($requestClass, $audio)
     {
@@ -101,7 +101,7 @@ trait SpeechHelpersTrait
     /**
      * @param resource $resource
      * @param int      $chunkSize
-     * @return Generator|string[]
+     * @return Generator<string>
      */
     private function createAudioStreamFromResource($resource, $chunkSize = 32000)
     {

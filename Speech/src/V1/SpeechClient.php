@@ -30,9 +30,6 @@
 
 namespace Google\Cloud\Speech\V1;
 
-use Generator;
-use Google\ApiCore\ApiException;
-use Google\ApiCore\OperationResponse;
 use Google\Cloud\Speech\SpeechHelpersTrait;
 use Google\Cloud\Speech\V1\Gapic\SpeechGapicClient;
 
@@ -87,9 +84,9 @@ class SpeechClient extends SpeechGapicClient
      *
      * $audioResource = fopen('path/to/audio.flac', 'r');
      *
-     * $responseStream = $speechClient->recognizeAudioStream($config, $audioResource);
+     * $responses = $speechClient->recognizeAudioStream($config, $audioResource);
      *
-     * foreach ($responseStream as $element) {
+     * foreach ($responses as $element) {
      *     // doSomethingWith($element);
      * }
      * ```

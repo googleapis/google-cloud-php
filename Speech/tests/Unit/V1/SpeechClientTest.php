@@ -21,21 +21,13 @@ use Google\ApiCore\BidiStream;
 use Google\ApiCore\Call;
 use Google\ApiCore\Testing\MockBidiStreamingCall;
 use Google\ApiCore\Transport\TransportInterface;
-use Google\Cloud\Speech\V1\LongRunningRecognizeRequest;
-use Google\Cloud\Speech\V1\LongRunningRecognizeResponse;
 use Google\Cloud\Speech\V1\RecognitionAudio;
 use Google\Cloud\Speech\V1\RecognitionConfig;
 use Google\Cloud\Speech\V1\RecognitionConfig_AudioEncoding;
-use Google\Cloud\Speech\V1\RecognizeRequest;
-use Google\Cloud\Speech\V1\RecognizeResponse;
 use Google\Cloud\Speech\V1\SpeechClient;
 use Google\Cloud\Speech\V1\StreamingRecognitionConfig;
-use Google\Cloud\Speech\V1\StreamingRecognitionResult;
 use Google\Cloud\Speech\V1\StreamingRecognizeRequest;
 use Google\Cloud\Speech\V1\StreamingRecognizeResponse;
-use Google\LongRunning\Operation;
-use Google\Protobuf\Any;
-use GuzzleHttp\Promise\FulfilledPromise;
 use Prophecy\Argument;
 use PHPUnit\Framework\TestCase;
 
@@ -134,9 +126,10 @@ class SpeechClientTest extends TestCase
 
         // Expect one extra call, for the config message
         $this->assertSame(count($expectedContent) + 1, count($receivedCalls));
-        $this->assertEquals($expectedConfigMessage, $receivedCalls[0]);
+        $initialReceivedCall = array_shift($receivedCalls);
+        $this->assertEquals($expectedConfigMessage, $initialReceivedCall);
         for ($i = 0; $i < count($expectedContent); $i++) {
-            $this->assertSame($expectedContent[$i], $receivedCalls[$i + 1]->getAudioContent());
+            $this->assertSame($expectedContent[$i], $receivedCalls[$i]->getAudioContent());
         }
     }
 
