@@ -99,11 +99,13 @@ trait SpeechHelpersTrait
     }
 
     /**
-     * @param resource $resource
-     * @param int      $chunkSize
-     * @return Generator<string>
+     * Convert a PHP resource instance into an iterable of data "chunks".
+     *
+     * @param resource $resource   The resource object to read data from.
+     * @param int      $chunkSize  The chunk size to use, in bytes. Defaults to 32000
+     * @return Generator<string>   An iterable of strings that have been read from the resource.
      */
-    private function createAudioStreamFromResource($resource, $chunkSize = 32000)
+    public function createAudioStreamFromResource($resource, $chunkSize = 32000)
     {
         while (!feof($resource)) {
             $chunk = fread($resource, $chunkSize);
