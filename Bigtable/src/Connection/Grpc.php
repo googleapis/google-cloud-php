@@ -17,11 +17,10 @@
 
 namespace Google\Cloud\Bigtable\Connection;
 
-use Google\ApiCore\Serializer;
 use Google\Cloud\Bigtable\Admin\V2\BigtableInstanceAdminClient;
+use Google\Cloud\Bigtable\Admin\V2\BigtableTableAdminClient;
 use Google\Cloud\Bigtable\Admin\V2\Instance;
-use Google\Cloud\Bigtable\Admin\V2\Gapic\BigtableTableAdminGapicClient;
-use Google\Cloud\Bigtable\V2\Gapic\BigtableGapicClient;
+use Google\Cloud\Bigtable\V2\BigtableClient;
 use Google\Cloud\Core\GrpcRequestWrapper;
 use Google\Cloud\Core\GrpcTrait;
 
@@ -33,36 +32,29 @@ class Grpc implements ConnectionInterface
     use GrpcTrait;
 
     /**
-     * @var Serializer
-     */
-    private $serializer;
-
-    /**
      * @var BigtableInstanceAdminClient
      */
     private $bigtableInstanceAdminClient;
 
     /**
-     * @var bigtableGapicClient
+     * @var BigtableClient
      */
-    private $bigtableGapicClient;
+    private $bigtableClient;
 
     /**
-     * @var BigtableTableAdminGapicClient
+     * @var BigtableTableAdminClient
      */
-    private $bigtableTableAdminGapicClient;
+    private $bigtableTableAdminClient;
     
     /**
      * @param array $config [optional]
      */
     public function __construct(array $config = [])
     {
-        $this->serializer = new Serializer();
-        $config['serializer'] = $this->serializer;
-        $this->setRequestWrapper(new GrpcRequestWrapper($config));
+        $this->setRequestWrapper(new GrpcRequestWrapper());
         $this->bigtableInstanceAdminClient = new BigtableInstanceAdminClient();
-        $this->bigtableGapicClient = new BigtableGapicClient();
-        $this->bigtableTableAdminGapicClient = new BigtableTableAdminGapicClient();
+        $this->bigtableClient = new BigtableClient();
+        $this->bigtableTableAdminClient = new BigtableTableAdminClient();
     }
 
     /**
@@ -307,7 +299,7 @@ class Grpc implements ConnectionInterface
     {
         $parent = $this->pluck('parent', $args);
         $tableId = $this->pluck('tableId', $args);
-        return $this->send([$this->bigtableTableAdminGapicClient, 'createTable'], [
+        return $this->send([$this->bigtableTableAdminClient, 'createTable'], [
             $parent,
             $tableId,
             new Table(),
@@ -323,7 +315,7 @@ class Grpc implements ConnectionInterface
         $parent = $this->pluck('parent', $args);
         $tableId = $this->pluck('tableId', $args);
         $sourceSnapshot = $this->pluck('sourceSnapshot', $args);
-        return $this->send([$this->bigtableTableAdminGapicClient, 'createTableFromSnapshot'], [
+        return $this->send([$this->bigtableTableAdminClient, 'createTableFromSnapshot'], [
             $parent,
             $tableId,
             $sourceSnapshot,
@@ -337,7 +329,7 @@ class Grpc implements ConnectionInterface
     public function listTables(array $args)
     {
         $parent = $this->pluck('parent', $args);
-        return $this->send([$this->bigtableTableAdminGapicClient, 'listTables'], [
+        return $this->send([$this->bigtableTableAdminClient, 'listTables'], [
             $parent,
             $this->addResourcePrefixHeader($args, $parent)
         ]);
@@ -349,7 +341,7 @@ class Grpc implements ConnectionInterface
     public function getTable(array $args)
     {
         $name = $this->pluck('name', $args);
-        return $this->send([$this->bigtableTableAdminGapicClient, 'getTable'], [
+        return $this->send([$this->bigtableTableAdminClient, 'getTable'], [
             $name,
             $this->addResourcePrefixHeader($args, $name)
         ]);
@@ -361,7 +353,7 @@ class Grpc implements ConnectionInterface
     public function deleteTable(array $args)
     {
         $name = $this->pluck('name', $args);
-        return $this->send([$this->bigtableTableAdminGapicClient, 'deleteTable'], [
+        return $this->send([$this->bigtableTableAdminClient, 'deleteTable'], [
             $name,
             $this->addResourcePrefixHeader($args, $name)
         ]);
@@ -374,7 +366,7 @@ class Grpc implements ConnectionInterface
     {
         $name = $this->pluck('name', $args);
         $modifications = $this->pluck('modifications', $args);
-        return $this->send([$this->bigtableTableAdminGapicClient, 'modifyColumnFamilies'], [
+        return $this->send([$this->bigtableTableAdminClient, 'modifyColumnFamilies'], [
             $name,
             $modifications,
             $this->addResourcePrefixHeader($args, $name)
@@ -388,7 +380,7 @@ class Grpc implements ConnectionInterface
     {
         $name = $this->pluck('name', $args);
         $optionalArgs = $this->pluck('optionalArgs', $args);
-        return $this->send([$this->bigtableTableAdminGapicClient, 'dropRowRange'], [
+        return $this->send([$this->bigtableTableAdminClient, 'dropRowRange'], [
             $name,
             $optionalArgs,
             $this->addResourcePrefixHeader($args, $name)
@@ -404,7 +396,7 @@ class Grpc implements ConnectionInterface
         $cluster = $this->pluck('cluster', $args);
         $snapshotId = $this->pluck('snapshotId', $args);
         $description = $this->pluck('description', $args);
-        return $this->send([$this->bigtableTableAdminGapicClient, 'snapshotTable'], [
+        return $this->send([$this->bigtableTableAdminClient, 'snapshotTable'], [
             $name,
             $cluster,
             $snapshotId,
@@ -419,7 +411,7 @@ class Grpc implements ConnectionInterface
     public function getSnapshot(array $args)
     {
         $name = $this->pluck('name', $args);
-        return $this->send([$this->bigtableTableAdminGapicClient, 'getSnapshot'], [
+        return $this->send([$this->bigtableTableAdminClient, 'getSnapshot'], [
             $name,
             $this->addResourcePrefixHeader($args, $name)
         ]);
@@ -431,7 +423,7 @@ class Grpc implements ConnectionInterface
     public function listSnapshots(array $args)
     {
         $parent = $this->pluck('parent', $args);
-        return $this->send([$this->bigtableTableAdminGapicClient, 'listSnapshots'], [
+        return $this->send([$this->bigtableTableAdminClient, 'listSnapshots'], [
             $parent,
             $this->addResourcePrefixHeader($args, $parent)
         ]);
@@ -443,7 +435,7 @@ class Grpc implements ConnectionInterface
     public function deleteSnapshot(array $args)
     {
         $name = $this->pluck('name', $args);
-        return $this->send([$this->bigtableTableAdminGapicClient, 'deleteSnapshot'], [
+        return $this->send([$this->bigtableTableAdminClient, 'deleteSnapshot'], [
             $name,
             $this->addResourcePrefixHeader($args, $name)
         ]);
@@ -455,7 +447,7 @@ class Grpc implements ConnectionInterface
     public function readRows(array $args)
     {
         $tableName = $this->pluck('tableName', $args);
-        return $this->send([$this->bigtableGapicClient, 'readRows'], [
+        return $this->send([$this->bigtableClient, 'readRows'], [
             $tableName,
             $this->addResourcePrefixHeader($args, $tableName)
         ]);
@@ -467,7 +459,7 @@ class Grpc implements ConnectionInterface
     public function sampleRowKeys(array $args)
     {
         $tableName = $this->pluck('tableName', $args);
-        return $this->send([$this->bigtableGapicClient, 'sampleRowKeys'], [
+        return $this->send([$this->bigtableClient, 'sampleRowKeys'], [
             $tableName,
             $this->addResourcePrefixHeader($args, $tableName)
         ]);
@@ -481,7 +473,7 @@ class Grpc implements ConnectionInterface
         $tableName = $this->pluck('tableName', $args);
         $rowKey = $this->pluck('rowKey', $args);
         $mutations = $this->pluck('mutations', $args);
-        return $this->send([$this->bigtableGapicClient, 'mutateRow'], [
+        return $this->send([$this->bigtableClient, 'mutateRow'], [
             $tableName,
             $rowKey,
             $mutations,
@@ -496,7 +488,7 @@ class Grpc implements ConnectionInterface
     {
         $tableName = $this->pluck('tableName', $args);
         $entries = $this->pluck('entries', $args);
-        return $this->send([$this->bigtableGapicClient, 'mutateRows'], [
+        return $this->send([$this->bigtableClient, 'mutateRows'], [
             $tableName,
             $entries,
             $this->addResourcePrefixHeader($args, $tableName)
@@ -511,7 +503,7 @@ class Grpc implements ConnectionInterface
         $tableName = $this->pluck('tableName', $args);
         $rowKey = $this->pluck('rowKey', $args);
         $optionalArgs = $this->pluck('optionalArgs', $args);
-        return $this->send([$this->bigtableGapicClient, 'checkAndMutateRow'], [
+        return $this->send([$this->bigtableClient, 'checkAndMutateRow'], [
             $tableName,
             $rowKey,
             $optionalArgs,
@@ -527,7 +519,7 @@ class Grpc implements ConnectionInterface
         $tableName = $this->pluck('tableName', $args);
         $rowKey = $this->pluck('rowKey', $args);
         $rules = $this->pluck('rules', $args);
-        return $this->send([$this->bigtableGapicClient, 'readModifyWriteRow'], [
+        return $this->send([$this->bigtableClient, 'readModifyWriteRow'], [
             $tableName,
             $rowKey,
             $rules,
