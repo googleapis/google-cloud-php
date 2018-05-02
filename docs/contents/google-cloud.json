@@ -25,6 +25,7 @@
         "cloud-monitoring",
         "cloud-oslogin",
         "cloud-pubsub",
+        "cloud-redis",
         "cloud-spanner",
         "cloud-speech",
         "cloud-storage",

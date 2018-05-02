@@ -1,0 +1,26 @@
+{
+    "name": "google/cloud-redis",
+    "description": "Google Cloud Redis Client for PHP",
+    "license": "Apache-2.0",
+    "minimum-stability": "stable",
+    "autoload": {
+        "psr-4": {
+            "Google\\Cloud\\Redis\\": ""
+        }
+    },
+    "extra": {
+        "component": {
+            "id": "cloud-redis",
+            "path": "src/",
+            "entry": null,
+            "target": "GoogleCloudPlatform/google-cloud-php-redis.git"
+        }
+    },
+    "require": {
+        "google/proto-client": "^0.37.0",
+        "google/gax": "^0.31.0"
+    },
+    "suggest": {
+        "ext-grpc": "Enables use of gRPC, a universal high-performance RPC framework created by Google."
+    }
+}

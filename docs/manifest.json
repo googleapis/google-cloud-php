@@ -535,6 +535,14 @@
             ]
         },
         {
+            "id": "cloud-redis",
+            "name": "google/cloud-redis",
+            "defaultService": "redis/readme",
+            "versions": [
+                "master"
+            ]
+        },
+        {
             "id": "cloud-spanner",
             "name": "google/cloud-spanner",
             "defaultService": "spanner/spannerclient",
