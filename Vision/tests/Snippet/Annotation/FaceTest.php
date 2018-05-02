@@ -20,6 +20,7 @@ namespace Google\Cloud\Vision\Tests\Snippet\Annotation;
 use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
 use Google\Cloud\Vision\Annotation\Face;
 use Google\Cloud\Vision\Connection\ConnectionInterface;
+use Google\Cloud\Vision\VisionClient;
 use Prophecy\Argument;
 
 /**
@@ -58,6 +59,7 @@ class FaceTest extends SnippetTestCase
         $connectionStub = $this->prophesize(ConnectionInterface::class);
 
         $connectionStub->annotate(Argument::any())
+            ->shouldBeCalled()
             ->willReturn([
                 'responses' => [
                     [
@@ -72,18 +74,18 @@ class FaceTest extends SnippetTestCase
                 ]
             ]);
 
+        $vision = \Google\Cloud\Core\Testing\TestHelpers::stub(VisionClient::class);
+        $vision->___setProperty('connection', $connectionStub->reveal());
+
         $snippet = $this->snippetFromClass(Face::class);
-        $snippet->addLocal('connectionStub', $connectionStub->reveal());
+        $snippet->replace('$vision = new VisionClient();', '');
+        $snippet->addLocal('vision', $vision);
         $snippet->replace(
             "__DIR__ . '/assets/family-photo.jpg'",
             "'php://temp'"
         );
-        $snippet->insertAfterLine(3, '$reflection = new \ReflectionClass($vision);
-            $property = $reflection->getProperty(\'connection\');
-            $property->setAccessible(true);
-            $property->setValue($vision, $connectionStub);
-            $property->setAccessible(false);'
-        );
+
+        $snippet->invoke();
     }
 
     public function testInfo()

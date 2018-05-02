@@ -379,7 +379,7 @@ class WriteBatchTest extends TestCase
         $this->connection->rollback([
             'database' => sprintf('projects/%s/databases/%s', self::PROJECT, self::DATABASE),
             'transaction' => self::TRANSACTION
-        ]);
+        ])->shouldBeCalled();
 
         $this->batch->___setProperty('connection', $this->connection->reveal());
         $this->batch->___setProperty('transaction', self::TRANSACTION);

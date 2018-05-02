@@ -18,22 +18,26 @@
 namespace Google\Cloud\Tests\Storage;
 
 use Google\Cloud\Core\Exception\NotFoundException;
+use Google\Cloud\Core\Testing\ExpectExceptionTrait;
 use Google\Cloud\Core\Upload\StreamableUploader;
 use Google\Cloud\Storage\Bucket;
 use Google\Cloud\Storage\StorageClient;
 use Google\Cloud\Storage\StorageObject;
 use Google\Cloud\Storage\StreamWrapper;
 use GuzzleHttp\Psr7;
+use PHPUnit\Framework\Error\Warning;
+use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
 use Prophecy\Promise\CallbackPromise;
 use Prophecy\Prophecy\ObjectProphecy;
-use PHPUnit\Framework\TestCase;
 
 /**
  * @group storage
  */
 class StreamWrapperTest extends TestCase
 {
+    use ExpectExceptionTrait;
+
     private $originalDefaultContext;
 
     private $connection;
@@ -197,10 +201,11 @@ class StreamWrapperTest extends TestCase
 
     /**
      * @group storageInfo
-     * @expectedException PHPUnit_Framework_Error_Warning
      */
     public function testStatOnNonExistentFile()
     {
+        $this->expectsException(Warning::class);
+
         $object = $this->prophesize(StorageObject::class);
         $object->info()->willThrow(NotFoundException::class);
         $this->bucket->object('non-existent/file.txt')->willReturn($object->reveal());

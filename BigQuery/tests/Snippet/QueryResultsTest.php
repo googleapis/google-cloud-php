@@ -90,6 +90,9 @@ class QueryResultsTest extends SnippetTestCase
         $this->assertEquals('abcd', trim($res->output()));
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testWaitUntilComplete()
     {
         $snippet = $this->snippetFromMethod(QueryResults::class, 'waitUntilComplete');

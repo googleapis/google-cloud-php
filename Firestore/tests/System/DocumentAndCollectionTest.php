@@ -20,6 +20,7 @@ namespace Google\Cloud\Firestore\Tests\System;
 use Google\Cloud\Core\Timestamp;
 use Google\Cloud\Firestore\FieldValue;
 use Google\Cloud\Firestore\FirestoreClient;
+use PHPUnit\Framework\Error\Notice;
 
 /**
  * @group firestore
@@ -79,6 +80,8 @@ class DocumentAndCollectionTest extends FirestoreTestCase
             $snapshot['country'];
             $this->assertTrue(false);
         } catch (\PHPUnit_Framework_Error_Notice $e) {
+            $this->assertTrue(true);
+        } catch (Notice $e) {
             $this->assertTrue(true);
         }
     }

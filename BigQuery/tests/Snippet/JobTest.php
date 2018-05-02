@@ -99,6 +99,9 @@ class JobTest extends SnippetTestCase
         $this->assertInstanceOf(QueryResults::class, $res->returnVal());
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testWaitUntilComplete()
     {
         $job = $this->getJob($this->connection, [
@@ -106,6 +109,7 @@ class JobTest extends SnippetTestCase
                 'state' => 'DONE'
             ]
         ]);
+
         $snippet = $this->snippetFromMethod(Job::class, 'waitUntilComplete');
         $snippet->addLocal('job', $job);
         $snippet->invoke();

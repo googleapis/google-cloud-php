@@ -18,6 +18,13 @@
 namespace Google\Cloud\Core\Testing\Snippet\Coverage;
 
 use Google\Cloud\Core\Testing\Snippet\Container;
+use PHPUnit\Framework\TestResult;
+use PHPUnit\TextUI\ResultPrinter as PHPUnitResultPrinter;
+
+if (!class_exists(PHPUnitResultPrinter::class)) {
+    class_alias(\PHPUnit_TextUI_ResultPrinter::class, PHPUnitResultPrinter::class);
+    class_alias(\PHPUnit_Framework_TestResult::class, TestResult::class);
+}
 
 /**
  * Augments the PHPUnit test run report with snippet info.
@@ -27,7 +34,7 @@ use Google\Cloud\Core\Testing\Snippet\Container;
  * @experimental
  * @internal
  */
-class ResultPrinter extends \PHPUnit_TextUI_ResultPrinter
+class ResultPrinter extends PHPUnitResultPrinter
 {
     /**
      * Show snippet results.
@@ -37,10 +44,9 @@ class ResultPrinter extends \PHPUnit_TextUI_ResultPrinter
      * @experimental
      * @internal
      */
-    public function printResult(\PHPUnit_Framework_TestResult $result)
+    public function printResult(TestResult $result)
     {
         parent::printResult($result);
-
         $uncovered = Container::$coverage->uncovered();
         Container::reset();
 

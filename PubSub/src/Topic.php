@@ -348,8 +348,8 @@ class Topic
      *
      * Example:
      * ```
-     * $topic->batchPublisher()
-     *     ->publish([
+     * $publisher = $topic->batchPublisher();
+     * $publisher->publish([
      *         'data' => 'New User Registered',
      *         'attributes' => [
      *             'id' => '2',

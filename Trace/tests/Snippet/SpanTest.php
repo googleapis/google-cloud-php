@@ -145,6 +145,9 @@ class SpanTest extends SnippetTestCase
         $this->assertEquals('span name', $res->output());
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testAddTimeEvents()
     {
         $snippet = $this->snippetFromMethod(Span::class, 'addTimeEvents');
@@ -154,6 +157,9 @@ class SpanTest extends SnippetTestCase
         $res = $snippet->invoke('span');
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testAddTimeEvent()
     {
         $snippet = $this->snippetFromMethod(Span::class, 'addTimeEvent');
@@ -162,6 +168,9 @@ class SpanTest extends SnippetTestCase
         $res = $snippet->invoke('span');
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testAddLinks()
     {
         $snippet = $this->snippetFromMethod(Span::class, 'addLinks');
@@ -170,6 +179,9 @@ class SpanTest extends SnippetTestCase
         $res = $snippet->invoke('span');
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testAddLink()
     {
         $snippet = $this->snippetFromMethod(Span::class, 'addLink');

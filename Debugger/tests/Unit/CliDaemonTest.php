@@ -25,6 +25,9 @@ use PHPUnit\Framework\TestCase;
  */
 class CliDaemonTest extends TestCase
 {
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testClientConfig()
     {
         new CliDaemon([
@@ -52,6 +55,9 @@ class CliDaemonTest extends TestCase
         ]);
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testSourceRoot()
     {
         new CliDaemon([

@@ -56,6 +56,9 @@ class ManageJobsTest extends BigQueryTestCase
         $this->assertFalse(self::$client->job('not_a_job')->exists());
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testCancelsJob()
     {
         $query = self::$client->query(sprintf(

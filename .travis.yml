@@ -17,6 +17,7 @@ before_script:
   - pecl install grpc || echo 'Failed to install grpc'
   - if [[ $TRAVIS_PHP_VERSION =~ ^7 ]]; then pecl install stackdriver_debugger-alpha || echo 'Failed to install stackdriver_debugger'; fi
   - composer install
+  - if [[ $TRAVIS_PHP_VERSION =~ ^hhvm ]]; then composer --no-interaction --dev remove phpunit/phpunit; composer require --dev phpunit/phpunit:^5.7; fi
   - if [[ $TRAVIS_PHP_VERSION =~ ^hhvm ]]; then composer --no-interaction --dev remove google/protobuf google/gax google/proto-client; fi
   - dev/google-cloud credentials
 

@@ -86,11 +86,6 @@ class AnnotationsTest extends VisionTestCase
         $this->assertInstanceOf(Web::class, $res->web());
         $this->assertInstanceOf(WebEntity::class, $res->web()->entities()[0]);
 
-        $desc = array_filter($res->web()->entities(), function ($e) {
-            return ($e->description() === 'Eiffel Tower');
-        });
-        $this->assertGreaterThan(0, $desc);
-
         $this->assertInstanceOf(WebImage::class, $res->web()->matchingImages()[0]);
         $this->assertInstanceOf(WebImage::class, $res->web()->partialMatchingImages()[0]);
         $this->assertInstanceOf(WebPage::class, $res->web()->pages()[0]);

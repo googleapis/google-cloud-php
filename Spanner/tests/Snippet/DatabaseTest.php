@@ -829,6 +829,9 @@ class DatabaseTest extends SnippetTestCase
         $this->assertInstanceOf(SessionPoolInterface::class, $res->returnVal());
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testClose()
     {
         $snippet = $this->snippetFromMethod(Database::class, 'close');

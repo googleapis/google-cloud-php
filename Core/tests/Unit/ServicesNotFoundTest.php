@@ -23,6 +23,7 @@ use PHPUnit\Framework\TestCase;
 
 /**
  * @group core
+ * @group core-services
  */
 class ServicesNotFoundTest extends TestCase
 {
@@ -104,10 +105,18 @@ class ServicesNotFoundTest extends TestCase
      */
     public function testServicesNotFound($method)
     {
-        $this->setExpectedException(\Exception::class, sprintf(
+        $exception = \Exception::class;
+        $message = sprintf(
             'The google/cloud-%s package is missing and must be installed.',
             strtolower($method)
-        ));
+        );
+
+        if (method_exists($this, 'setExpectedException')) {
+            $this->setExpectedException($exception, $message);
+        } else {
+            $this->expectException($exception);
+            $this->expectExceptionMessage($message);
+        }
 
         self::$cloud->$method();
     }

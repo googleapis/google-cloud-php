@@ -58,16 +58,6 @@ class HandleFailureTraitTest extends TestCase
         putenv('GOOGLE_CLOUD_BATCH_DAEMON_FAILURE_DIR');
     }
 
-    /**
-     * @ExpectedException \RuntimeException
-     */
-    public function testInitFailureFileThrowsException()
-    {
-        putenv(
-            'GOOGLE_CLOUD_BATCH_DAEMON_FAILURE_DIR=/tmp/non-existent/subdir');
-        $this->impl->initFailureFile();
-    }
-
     public function testInitFailureFile()
     {
         $this->impl->initFailureFile();

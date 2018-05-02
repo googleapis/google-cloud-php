@@ -57,20 +57,16 @@ class OperationTest extends SnippetTestCase
 
     public function testClass()
     {
-        $snippet = $this->snippetFromClass(Operation::class);
-
-        $connectionStub = $this->prophesize(ConnectionInterface::class);
-
-        $connectionStub->longRunningRecognize(Argument::any())
+        $this->connection->longRunningRecognize(Argument::any())
+            ->shouldBeCalled()
             ->willReturn(['name' => 'foo']);
 
-        $snippet->addLocal('connectionStub', $connectionStub->reveal());
-        $snippet->insertAfterLine(4, '$reflection = new \ReflectionClass($speech);
-            $property = $reflection->getProperty(\'connection\');
-            $property->setAccessible(true);
-            $property->setValue($speech, $connectionStub);
-            $property->setAccessible(false);'
-        );
+        $speech = \Google\Cloud\Core\Testing\TestHelpers::stub(SpeechClient::class, [['languageCode' => 'en-US']]);
+        $speech->___setProperty('connection', $this->connection->reveal());
+
+        $snippet = $this->snippetFromClass(Operation::class);
+        $snippet->replace('$speech = new SpeechClient([' . PHP_EOL . '    \'languageCode\' => \'en-US\'' . PHP_EOL .']);', '');
+        $snippet->addLocal('speech', $speech);
 
         $snippet->replace("__DIR__  . '/audio.flac'", '"php://temp"');
 

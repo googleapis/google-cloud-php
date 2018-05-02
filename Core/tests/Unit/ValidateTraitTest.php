@@ -32,6 +32,9 @@ class ValidateTraitTest extends TestCase
         $this->stub = new ValidateTraitStub;
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testValidateBatch()
     {
         $input = [

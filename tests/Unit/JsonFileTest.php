@@ -49,27 +49,37 @@ class JsonFileTest extends TestCase
         $this->assertFalse($validator->fails());
     }
 
-    public function testComponentComposer()
+    /**
+     * @dataProvider componentComposer
+     */
+    public function testComponentComposer($file)
     {
-        $files = glob(__DIR__ .'/../../src/*/composer.json');
-        foreach ($files as $file) {
-            $json = json_decode(file_get_contents($file));
-            $this->assertEquals(JSON_ERROR_NONE, json_last_error());
+        $json = json_decode(file_get_contents($file));
+        $this->assertEquals(JSON_ERROR_NONE, json_last_error());
 
-            $deref  = new Dereferencer();
-            $schema = $deref->dereference(json_decode(file_get_contents(sprintf(
-                self::SCHEMA_PATH,
-                __DIR__, 'composer.json.schema'
-            ))));
+        $deref  = new Dereferencer();
+        $schema = $deref->dereference(json_decode(file_get_contents(sprintf(
+            self::SCHEMA_PATH,
+            __DIR__, 'composer.json.schema'
+        ))));
 
-            $validator = new Validator($json, $schema);
+        $validator = new Validator($json, $schema);
 
-            if ($validator->fails()) {
-                print_r($validator->errors());
-            }
-
-            $this->assertFalse($validator->fails());
+        if ($validator->fails()) {
+            print_r($validator->errors());
         }
+
+        $this->assertFalse($validator->fails());
+    }
+
+    public function componentComposer()
+    {
+        $files = glob(__DIR__ .'/../../*/composer.json');
+        array_walk($files, function (&$file) {
+            $file = [$file];
+        });
+
+        return $files;
     }
 
     public function testManifest()
