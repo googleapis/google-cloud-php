@@ -211,7 +211,8 @@ class StructType
      * Fetch the defined fields list.
      *
      * @access private
-     * @return array[]
+     * @return array[] An array containing a field definition. Each field
+     *        is of form `[(string|null) $name, (int) $type, ArrayType|StructType|null $child]`.
      */
     public function fields()
     {

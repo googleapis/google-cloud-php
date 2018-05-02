@@ -18,13 +18,17 @@
 namespace Google\Cloud\Spanner;
 
 /**
- * Represents a Struct Parameter with its field values.
+ * Defines a struct parameter value with its fields.
  *
  * This class is included to provide a fluent interface to build complex struct
  * parameter values for your queries against Cloud Spanner. For the simplest case,
  * you may prefer to specify struct parameters as associative arrays. However,
  * if your struct does or may include unnamed fields, or duplicate field names,
  * you must use a StructValue.
+ *
+ * Please note that query results expressed as structs will not be returned using
+ * this class. Query results will always be expressed as a PHP array. This class
+ * is intended to be used to create complex struct values only.
  *
  * Example:
  * ```

@@ -44,7 +44,7 @@ namespace Google\Cloud\Spanner;
  * ```
  *
  * ```
- * // Arrays may contain structs.
+ * // Arrays may contain structTypes.
  * $arrayType = new ArrayType(
  *     Database::TYPE_STRUCT,
  *     (new StructType)
@@ -63,7 +63,7 @@ class ArrayType
     /**
      * @var mixed
      */
-    private $struct;
+    private $structType;
 
     /**
      * @param int|null $type A value type code. Accepted values are defined as
@@ -75,13 +75,13 @@ class ArrayType
      *        are not supported in Cloud Spanner, and attempts to use
      *        `Database::TYPE_ARRAY` will result in an exception. If null is given,
      *        Google Cloud PHP will attempt to infer the array type.
-     * @param StructType $struct [optional] A nested struct parameter type
+     * @param StructType $structType [optional] A nested struct parameter type
      *        declaration.
      * @throws \InvalidArgumentException If an invalid type is provided, or if
      *        a struct is defined but the given type is not
      *        `Database::TYPE_STRUCT`.
      */
-    public function __construct($type, StructType $struct = null)
+    public function __construct($type, StructType $structType = null)
     {
         if ($type && !in_array($type, ValueMapper::$allowedTypes)) {
             throw new \InvalidArgumentException(sprintf(
@@ -96,7 +96,7 @@ class ArrayType
             );
         }
 
-        if ($struct !== null && $type !== Database::TYPE_STRUCT) {
+        if ($structType !== null && $type !== Database::TYPE_STRUCT) {
             $refl = new \ReflectionClass(Database::class);
             $constants = array_flip($refl->getConstants());
             $constantName = isset($constants[$type])
@@ -116,7 +116,7 @@ class ArrayType
         }
 
         $this->type = $type;
-        $this->struct = $struct;
+        $this->structType = $structType;
     }
 
     /**
@@ -136,8 +136,8 @@ class ArrayType
      * @access private
      * @return StructType|null
      */
-    public function struct()
+    public function structType()
     {
-        return $this->struct;
+        return $this->structType;
     }
 }

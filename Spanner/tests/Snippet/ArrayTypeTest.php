@@ -128,7 +128,7 @@ class ArrayTypeTest extends SnippetTestCase
         $snippet->addUse(StructType::class);
         $res = $snippet->invoke('arrayType')->returnVal();
         $this->assertEquals(Database::TYPE_STRUCT, $res->type());
-        $this->assertInstanceOf(StructType::class, $res->struct());
+        $this->assertInstanceOf(StructType::class, $res->structType());
     }
 
     private function resultGenerator(array $data)

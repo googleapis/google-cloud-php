@@ -526,7 +526,7 @@ class ValueMapper
                 $type = $this->paramType(
                     $element,
                     $arrayType->type() === Database::TYPE_STRUCT ? $arrayType->type() : null,
-                    $arrayType->struct()
+                    $arrayType->structType()
                 );
 
                 $res[] = $type[0];
@@ -540,7 +540,7 @@ class ValueMapper
             throw new \InvalidArgumentException('Array values may not be of mixed type');
         }
 
-        $nested = $arrayType->struct();
+        $nested = $arrayType->structType();
         $arrayType = $arrayType->type();
 
         if (!empty($value) && $arrayType && $arrayType !== $inferredTypes[0]) {

@@ -40,7 +40,7 @@ class ArrayTypeTest extends TestCase
         $struct->add('foo', Database::TYPE_STRING);
 
         $arr = new ArrayType(Database::TYPE_STRUCT, $struct);
-        $this->assertEquals($struct, $arr->struct());
+        $this->assertEquals($struct, $arr->structType());
     }
 
     /**
