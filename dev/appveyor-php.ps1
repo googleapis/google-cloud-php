@@ -3,6 +3,7 @@ cd c:\tools\php
 
 Add-Content php.ini "`nextension_dir=ext"
 Add-Content php.ini "`nextension=php_openssl.dll"
+Add-Content php.ini "`nextension=php_mbstring.dll"
 
 if (Test-Path 'env:GRPC_SRC') {
     "Downloading $env:GRPC_SRC as grpc.zip"

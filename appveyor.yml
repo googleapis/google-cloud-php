@@ -23,7 +23,7 @@ environment:
 install:
   - cinst -y OpenSSL.Light
   - ps: appveyor-retry cinst --params '""/InstallDir:C:\tools\php""' --ignore-checksums -y php --version ((choco search php --exact --all-versions -r | select-string -pattern $env:PHP_VERSION | sort { [version]($_ -split '\|' | select -last 1) } -Descending | Select-Object -first 1) -replace '[php|]','')
-  - ps: . .\dev\appveyor-grpc.ps1
+  - ps: . .\dev\appveyor-php.ps1
   - cd c:\projects\google-cloud
   - curl --connect-timeout 5 --max-time 10 --retry 5 --retry-delay 0 --retry-max-time 40 -o composer-setup.php https://getcomposer.org/installer
   - curl --connect-timeout 5 --max-time 10 --retry 5 --retry-delay 0 --retry-max-time 40 -o composer-signature.sig https://composer.github.io/installer.sig
