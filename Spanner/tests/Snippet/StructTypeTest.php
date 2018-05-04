@@ -163,7 +163,7 @@ class StructTypeTest extends SnippetTestCase
                     ->add('phone', Database::TYPE_STRING)
                     ->add('email', Database::TYPE_STRING)
                     ->add('lastOrderDate', Database::TYPE_DATE)
-                    ->add('orderIds', Database::TYPE_ARRAY, new ArrayType(Database::TYPE_INT64))
+                    ->add('orderIds', new ArrayType(Database::TYPE_INT64))
             ]
         ], $this->type->fields());
     }

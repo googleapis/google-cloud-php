@@ -55,7 +55,7 @@ class StructType
 
     /**
      * @param array[] $fields An array containing a field definition. Each field
-     *        must be of form `[(string|null) $name, (int) $type, ArrayType|StructType|null $child]`.
+     *        must be of form `[(string|null) $name, (int) $type, (ArrayType|StructType|null) $child]`.
      */
     public function __construct(array $fields = [])
     {
@@ -66,7 +66,11 @@ class StructType
                 'child' => null
             ];
 
-            $this->add($field['name'], $field['type'], $field['child']);
+            $type = $field['child'] === null
+                ? $field['type']
+                : $field['child'];
+
+            $this->add($field['name'], $type);
         }
     }
 
@@ -97,82 +101,52 @@ class StructType
      *
      * // Create an array to nest within the customer type definition.
      * $orderIds = new ArrayType(Database::TYPE_INT64);
-     * $customer->add('orderIds', Database::TYPE_ARRAY, $orderIds);
+     * $customer->add('orderIds', $orderIds);
      *
      * // Add the customer definition to the parameter definition.
-     * $structType->add('customer', Database::TYPE_STRUCT, $customer);
+     * $structType->add('customer', $customer);
      * ```
      *
      * @param string $name The field name.
-     * @param int $type The field type.
-     * @param ArrayType|StructType $child [optional] A definition for structured
-     *        data within the struct field.
+     * @param int|ArrayType|StructType $type $type A value type code or nested
+     *        struct or array definition. Accepted integer values are defined as
+     *        constants on {@see Google\Cloud\Spanner\Database}, and are as
+     *        follows: `Database::TYPE_BOOL`, `Database::TYPE_INT64`,
+     *        `Database::TYPE_FLOAT64`, `Database::TYPE_TIMESTAMP`,
+     *        `Database::TYPE_DATE`, `Database::TYPE_STRING` and
+     *        `Database::TYPE_BYTES`
      * @return StructType The current instance, for chaining additional field
      *        definitions.
-     * @throws \InvalidArgumentException If an invalid type is provided, or if a
-     *        child is given but is not an instance of
-     *        {@see Google\Cloud\Spanner\ArrayType} or
-     *        {@see Google\Cloud\Spanner\StructType}.
+     * @throws \InvalidArgumentException If an invalid type is provided.
      */
-    public function add($name, $type, $child = null)
+    public function add($name, $type)
     {
+        $invalidIntTypes = [
+            Database::TYPE_STRUCT,
+            Database::TYPE_ARRAY
+        ];
+
+        if (is_int($type) && in_array($type, $invalidIntTypes)) {
+            throw new \InvalidArgumentException(
+                '`Database::TYPE_ARRAY` and `Database::TYPE_STRUCT` are not valid as struct types. ' .
+                'Instead provide `Google\Cloud\Spanner\ArrayType` or `Google\Cloud\Spanner\StructType`.'
+            );
+        }
+
+        $child = null;
+        if ($type instanceof StructType) {
+            $child = $type;
+            $type = Database::TYPE_STRUCT;
+        } elseif ($type instanceof ArrayType) {
+            $child = $type;
+            $type = Database::TYPE_ARRAY;
+        }
+
         if (!in_array($type, ValueMapper::$allowedTypes)) {
             throw new \InvalidArgumentException(sprintf(
                 'Field type `%s` is not valid.',
                 $type
             ));
-        }
-
-        $typesRequiringChild = [
-            Database::TYPE_STRUCT,
-            Database::TYPE_ARRAY
-        ];
-
-        if (in_array($type, $typesRequiringChild) && !$child) {
-            throw new \InvalidArgumentException(
-                'If type is `Database::TYPE_ARRAY` or `Database::TYPE_STRUCT`, `$child` definition must be provided.'
-            );
-        }
-
-        if ($child) {
-            if (!in_array($type, $typesRequiringChild)) {
-                throw new \InvalidArgumentException(
-                    'Struct field child may only be provided if field is of ' .
-                    'type `Database::TYPE_ARRAY` or `Database::TYPE_STRUCT`.'
-                );
-            }
-
-            $errTpl = 'Field child must be an instance of `%s`. Got `%s`.';
-
-            $childTypes = [
-                Database::TYPE_ARRAY => ArrayType::class,
-                Database::TYPE_STRUCT => StructType::class
-            ];
-
-            if (!is_object($child)) {
-                throw new \InvalidArgumentException(sprintf(
-                    $errTpl,
-                    $childTypes[$type],
-                    gettype($child)
-                ));
-            }
-
-            $childType = get_class($child);
-            if (!in_array($childType, $childTypes)) {
-                throw new \InvalidArgumentException(sprintf(
-                    $errTpl,
-                    $childTypes[$type],
-                    $childType
-                ));
-            }
-
-            if ($childType !== $childTypes[$type]) {
-                throw new \InvalidArgumentException(sprintf(
-                    $errTpl,
-                    $childTypes[$type],
-                    $childType
-                ));
-            }
         }
 
         $this->fields[] = [
@@ -192,19 +166,20 @@ class StructType
      * $structType->addUnnamed(Database::TYPE_STRING);
      * ```
      *
-     * @param int $type The field type.
-     * @param ArrayType|StructType $child [optional] A definition for structured
-     *        data within the struct field.
+     * @param int|ArrayType|StructType $type $type A value type code or nested
+     *        struct or array definition. Accepted integer values are defined as
+     *        constants on {@see Google\Cloud\Spanner\Database}, and are as
+     *        follows: `Database::TYPE_BOOL`, `Database::TYPE_INT64`,
+     *        `Database::TYPE_FLOAT64`, `Database::TYPE_TIMESTAMP`,
+     *        `Database::TYPE_DATE`, `Database::TYPE_STRING` and
+     *        `Database::TYPE_BYTES`
      * @return StructType The current instance, for chaining additional field
      *        definitions.
-     * @throws \InvalidArgumentException If an invalid type is provided, or if a
-     *        child is given but is not an instance of
-     *        {@see Google\Cloud\Spanner\ArrayType} or
-     *        {@see Google\Cloud\Spanner\StructType}.
+     * @throws \InvalidArgumentException If an invalid type is provided.
      */
-    public function addUnnamed($type, $child = null)
+    public function addUnnamed($type)
     {
-        return $this->add(null, $type, $child);
+        return $this->add(null, $type);
     }
 
     /**
@@ -212,7 +187,7 @@ class StructType
      *
      * @access private
      * @return array[] An array containing a field definition. Each field
-     *        is of form `[(string|null) $name, (int) $type, ArrayType|StructType|null $child]`.
+     *        is of form `[(string|null) $name, (int) $type, (ArrayType|StructType|null) $child]`.
      */
     public function fields()
     {

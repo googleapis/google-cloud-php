@@ -202,8 +202,7 @@ class ValueMapperTest extends TestCase
         ];
 
         $types = [
-            'foo' => new ArrayType(Database::TYPE_STRUCT, (new StructType)
-                ->add('hello', Database::TYPE_STRING))
+            'foo' => new ArrayType((new StructType)->add('hello', Database::TYPE_STRING))
         ];
 
         $res = $this->mapper->formatParamsForExecuteSql($params, $types);
@@ -326,7 +325,7 @@ class ValueMapperTest extends TestCase
             'foo' => (new StructType)
                 ->add('name', Database::TYPE_STRING)
                 ->add('age', Database::TYPE_INT64)
-                ->add('jobs', Database::TYPE_ARRAY, new ArrayType(Database::TYPE_STRING))
+                ->add('jobs', new ArrayType(Database::TYPE_STRING))
         ];
 
         $res = $this->mapper->formatParamsForExecuteSql($params, $types);
@@ -575,7 +574,7 @@ class ValueMapperTest extends TestCase
 
     public function simpleTypeValues()
     {
-        $dt = new \DateTimeImmutable;
+        $dt = new \DateTimeImmutable('now', new \DateTimeZone('UTC'));
         $timestamp = new Timestamp($dt);
 
         return [

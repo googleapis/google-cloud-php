@@ -39,7 +39,7 @@ class ArrayTypeTest extends TestCase
         $struct = new StructType;
         $struct->add('foo', Database::TYPE_STRING);
 
-        $arr = new ArrayType(Database::TYPE_STRUCT, $struct);
+        $arr = new ArrayType($struct);
         $this->assertEquals($struct, $arr->structType());
     }
 
@@ -60,14 +60,5 @@ class ArrayTypeTest extends TestCase
             [3.1415],
             [Database::TYPE_ARRAY]
         ];
-    }
-
-    /**
-     * @expectedException \InvalidArgumentException
-     * @expectedExceptionMessage When struct definition is provided, array type must be `Database::TYPE_STRUCT`. Instead got `Database::TYPE_STRING`.
-     */
-    public function testFailsOnInvalidStruct()
-    {
-        new ArrayType(Database::TYPE_STRING, new StructType);
     }
 }

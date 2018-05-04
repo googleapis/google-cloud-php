@@ -121,8 +121,8 @@ class SnapshotTest extends SpannerTestCase
 
         $db->insert(self::$tableName, $row);
         sleep(1);
-        $ts = new Timestamp(new \DateTimeImmutable);
-        sleep(1);
+        $ts = new Timestamp(new \DateTimeImmutable('now', new \DateTimeZone('UTC')));
+        sleep(2);
 
         $newRow = $row;
         $newRow['number'] = 2;

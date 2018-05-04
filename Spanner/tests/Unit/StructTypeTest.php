@@ -46,9 +46,7 @@ class StructTypeTest extends TestCase
 
     public function testEnqueueInConstructor()
     {
-
         $type = new StructType($this->definition);
-
         $this->definition[0]['child'] = null;
         $this->assertEquals($this->definition, $type->fields());
     }
@@ -57,7 +55,7 @@ class StructTypeTest extends TestCase
     {
         $type = new StructType;
         $type->add($this->definition[0]['name'], $this->definition[0]['type'])
-            ->add($this->definition[1]['name'], $this->definition[1]['type'], $this->definition[1]['child']);
+            ->add($this->definition[1]['name'], $this->definition[1]['child']);
 
         $this->definition[0]['child'] = null;
         $this->assertEquals($this->definition, $type->fields());
@@ -83,78 +81,5 @@ class StructTypeTest extends TestCase
     public function testAddInvalidType()
     {
         (new StructType)->add('name', 'foo');
-    }
-
-    /**
-     * @expectedException \InvalidArgumentException
-     * @expectedExceptionMessage Field child must be an instance of `Google\Cloud\Spanner\StructType`. Got `integer`.
-     */
-    public function testChildInvalidStructType()
-    {
-        (new StructType)->add('foo', Database::TYPE_STRUCT, 10);
-    }
-
-    /**
-     * @expectedException \InvalidArgumentException
-     * @expectedExceptionMessage Field child must be an instance of `Google\Cloud\Spanner\ArrayType`. Got `integer`.
-     */
-    public function testChildInvalidArrayType()
-    {
-        (new StructType)->add('foo', Database::TYPE_ARRAY, 10);
-    }
-
-    /**
-     * @expectedException \InvalidArgumentException
-     * @expectedExceptionMessage Field child must be an instance of `Google\Cloud\Spanner\ArrayType`. Got `Google\Cloud\Spanner\StructType`.
-     */
-    public function testChildMismatchedType()
-    {
-        (new StructType)->add('foo', Database::TYPE_ARRAY, new StructType);
-    }
-
-    /**
-     * @expectedException \InvalidArgumentException
-     * @expectedExceptionMessage Field child must be an instance of `Google\Cloud\Spanner\ArrayType`. Got `stdClass`.
-     */
-    public function testChildInvalidObjectType()
-    {
-        (new StructType)->add('foo', Database::TYPE_ARRAY, (object)[]);
-    }
-
-    /**
-     * @expectedException \InvalidArgumentException
-     * @expectedExceptionMessage If type is `Database::TYPE_ARRAY` or `Database::TYPE_STRUCT`, `$child` definition must be provided.
-     * @dataProvider typeNeedsChild
-     */
-    public function testChildNotProvided($type)
-    {
-        (new StructType)->add('foo', $type);
-    }
-
-    public function typeNeedsChild()
-    {
-        return [
-            [Database::TYPE_ARRAY],
-            [Database::TYPE_STRUCT]
-        ];
-    }
-
-    /**
-     * @dataProvider typeDoesntNeedChild
-     * @expectedException \InvalidArgumentException
-     * @expectedExceptionMessage Struct field child may only be provided if field is of type `Database::TYPE_ARRAY` or `Database::TYPE_STRUCT`.
-     */
-    public function testChildProvidedButNotAllowed($type)
-    {
-        (new StructType)->add('foo', $type, new StructType);
-    }
-
-    public function typeDoesntNeedChild()
-    {
-        return [
-            [Database::TYPE_STRING],
-            [Database::TYPE_INT64],
-            [Database::TYPE_TIMESTAMP]
-        ];
     }
 }
