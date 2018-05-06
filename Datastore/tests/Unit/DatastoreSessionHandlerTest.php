@@ -19,6 +19,7 @@ namespace Google\Cloud\Datastore\Tests\Unit;
 
 
 use Exception;
+use Google\Cloud\Core\Testing\ExpectExceptionTrait;
 use Google\Cloud\Datastore\DatastoreClient;
 use Google\Cloud\Datastore\DatastoreSessionHandler;
 use Google\Cloud\Datastore\Entity;
@@ -26,14 +27,17 @@ use Google\Cloud\Datastore\Key;
 use Google\Cloud\Datastore\Query\Query;
 use Google\Cloud\Datastore\Transaction;
 use InvalidArgumentException;
-use Prophecy\Argument;
+use PHPUnit\Framework\Error\Warning;
 use PHPUnit\Framework\TestCase;
+use Prophecy\Argument;
 
 /**
  * @group datastore
  */
 class DatastoreSessionHandlerTest extends TestCase
 {
+    use ExpectExceptionTrait;
+
     const KIND = 'PHPSESSID';
     const NAMESPACE_ID = 'sessions';
 
@@ -118,11 +122,10 @@ class DatastoreSessionHandlerTest extends TestCase
         $this->assertEquals('', $ret);
     }
 
-    /**
-     * @expectedException PHPUnit_Framework_Error_Warning
-     */
     public function testReadWithException()
     {
+        $this->expectsException(Warning::class);
+
         $this->datastore->transaction()
             ->shouldBeCalledTimes(1)
             ->willReturn($this->transaction->reveal());
@@ -211,11 +214,10 @@ class DatastoreSessionHandlerTest extends TestCase
         $this->assertTrue($ret);
     }
 
-    /**
-     * @expectedException PHPUnit_Framework_Error_Warning
-     */
     public function testWriteWithException()
     {
+        $this->expectsException(Warning::class);
+
         $data = 'sessiondata';
         $key = new Key('projectid');
         $key->pathElement(self::KIND, 'sessionid');
@@ -402,11 +404,10 @@ class DatastoreSessionHandlerTest extends TestCase
         $this->assertTrue($ret);
     }
 
-    /**
-     * @expectedException PHPUnit_Framework_Error_Warning
-     */
     public function testDestroyWithException()
     {
+        $this->expectsException(Warning::class);
+
         $key = new Key('projectid');
         $key->pathElement(self::KIND, 'sessionid');
         $this->transaction->delete($key)
@@ -522,11 +523,10 @@ class DatastoreSessionHandlerTest extends TestCase
         $this->assertTrue($ret);
     }
 
-    /**
-     * @expectedException PHPUnit_Framework_Error_Warning
-     */
     public function testGcWithException()
     {
+        $this->expectsException(Warning::class);
+
         $key1 = new Key('projectid');
         $key1->pathElement(self::KIND, 'sessionid1');
         $key2 = new Key('projectid');

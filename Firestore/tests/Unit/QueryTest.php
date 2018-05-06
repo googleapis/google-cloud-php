@@ -267,6 +267,7 @@ class QueryTest extends TestCase
 
     /**
      * @dataProvider whereOperators
+     * @doesNotPerformAssertions
      */
     public function testWhereOperators($operator)
     {
@@ -339,8 +340,9 @@ class QueryTest extends TestCase
 
     /**
      * @dataProvider orderOperators
+     * @doesNotPerformAssertions
      */
-    public function testorderOperators($operator)
+    public function testOrderOperators($operator)
     {
         $this->query->orderBy('foo', $operator);
     }

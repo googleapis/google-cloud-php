@@ -184,7 +184,7 @@ class DatabaseTest extends TestCase
         $this->connection->updateDatabaseDdl([
             'name' => DatabaseAdminClient::databaseName(self::PROJECT, self::INSTANCE, self::DATABASE),
             'statements' => [$statement]
-        ])->willReturn([
+        ])->shouldBeCalled()->willReturn([
             'name' => 'my-operation'
         ]);
 
@@ -202,7 +202,7 @@ class DatabaseTest extends TestCase
         $this->connection->updateDatabaseDdl([
             'name' => DatabaseAdminClient::databaseName(self::PROJECT, self::INSTANCE, self::DATABASE),
             'statements' => $statements
-        ])->willReturn([
+        ])->shouldBeCalled()->willReturn([
             'name' => 'my-operation'
         ]);
 

@@ -49,7 +49,7 @@ trait HandleFailureTrait
                 sys_get_temp_dir()
             );
         }
-        if (! is_dir($this->baseDir)) {
+        if (!is_dir($this->baseDir)) {
             if (@mkdir($this->baseDir, 0700, true) === false) {
                 throw new \RuntimeException(
                     sprintf(

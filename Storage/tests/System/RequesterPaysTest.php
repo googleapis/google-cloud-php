@@ -71,6 +71,10 @@ class RequesterPaysTest extends StorageTestCase
 
     public function setUp()
     {
+        if (!self::$hasSetUp) {
+            self::setupBeforeClass();
+        }
+
         $this->keyFilePath = getenv('GOOGLE_CLOUD_PHP_TESTS_WHITELIST_KEY_PATH');
 
         $keyfile = json_decode(file_get_contents(getenv('GOOGLE_CLOUD_PHP_TESTS_WHITELIST_KEY_PATH')), true);

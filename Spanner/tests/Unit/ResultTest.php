@@ -199,6 +199,9 @@ class ResultTest extends TestCase
         $this->assertInstanceOf(Snapshot::class, $result->snapshot());
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testUsesCorrectDefaultFormatOption()
     {
         $mapper = $this->prophesize(ValueMapper::class);
@@ -215,8 +218,9 @@ class ResultTest extends TestCase
 
     /**
      * @dataProvider formatProvider
+     * @doesNotPerformAssertions
      */
-    public function testRecievesCorrectFormatOption($format)
+    public function testReceivesCorrectFormatOption($format)
     {
         $mapper = $this->prophesize(ValueMapper::class);
         $mapper->decodeValues(

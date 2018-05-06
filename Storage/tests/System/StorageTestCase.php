@@ -38,7 +38,7 @@ class StorageTestCase extends SystemTestCase
     protected static $pubsubClient;
     protected static $object;
     protected static $mainBucketName;
-    private static $hasSetUp = false;
+    protected static $hasSetUp = false;
 
     public static function setUpBeforeClass()
     {

@@ -197,31 +197,6 @@ class TopicTest extends TestCase
         $this->assertEquals($res, $ids);
     }
 
-    public function testPublishBatchUnencoded()
-    {
-        $message = [
-            'data' => 'hello world',
-            'attributes' => [
-                'key' => 'value'
-            ]
-        ];
-
-        $this->connection->publishMessage(Argument::that(function ($options) use ($message) {
-            if ($options['foo'] !== 'bar') return false;
-
-            if ($options['messages'] !== [$message]) return false;
-
-            // If the message was encoded, this will fail the test.
-            if ($options['messages'][0]['data'] !== $message['data']) return false;
-
-            return true;
-        }));
-
-        $this->topic->setConnection($this->connection->reveal());
-
-        $res = $this->topic->publishBatch([$message], ['foo' => 'bar', 'encode' => false]);
-    }
-
     /**
      * @expectedException InvalidArgumentException
      */

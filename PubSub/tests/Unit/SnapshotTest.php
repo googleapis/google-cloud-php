@@ -114,7 +114,7 @@ class SnapshotTest extends TestCase
     {
         $this->connection->deleteSnapshot([
             'snapshot' => 'projects/'. self::PROJECT .'/snapshots/'. self::NAME
-        ]);
+        ])->shouldBeCalled();
 
         $this->snapshot->setConnection($this->connection->reveal());
 

@@ -56,6 +56,9 @@ class TransactionTest extends SpannerTestCase
         )->pollUntilComplete();
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testRunTransaction()
     {
         $db = self::$database;

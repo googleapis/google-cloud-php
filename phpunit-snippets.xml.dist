@@ -3,7 +3,7 @@
   bootstrap="./Core/snippet-bootstrap.php"
   colors="true"
   printerClass="Google\Cloud\Core\Testing\Snippet\Coverage\ResultPrinter"
-  >
+  failOnRisky="true">
   <testsuites>
     <testsuite>
       <directory>*/tests/Snippet</directory>

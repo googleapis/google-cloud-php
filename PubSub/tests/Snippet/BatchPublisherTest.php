@@ -39,6 +39,9 @@ class BatchPublisherTest extends SnippetTestCase
             ->willReturn(true);
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testClass()
     {
         $snippet = $this->snippetFromClass(BatchPublisher::class);
@@ -54,6 +57,9 @@ class BatchPublisherTest extends SnippetTestCase
         $snippet->invoke();
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testPublish()
     {
         $snippet = $this->snippetFromMethod(BatchPublisher::class, 'publish');

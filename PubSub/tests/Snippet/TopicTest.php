@@ -188,13 +188,17 @@ class TopicTest extends SnippetTestCase
         $snippet = $this->snippetFromMethod(Topic::class, 'batchPublisher');
         $batchPublisher = $this->prophesize(BatchPublisher::class);
         $batchPublisher->publish(Argument::type('array'))
+            ->shouldBeCalled()
             ->willReturn(true);
         $topic = $this->prophesize(Topic::class);
         $topic->batchPublisher()
+            ->shouldBeCalled()
             ->willReturn($batchPublisher->reveal());
         $snippet->addLocal('topic', $topic->reveal());
 
-        $snippet->invoke();
+        $res = $snippet->invoke('publisher');
+
+        $this->assertInstanceOf(BatchPublisher::class, $res->returnVal());
     }
 
     public function testSubscribe()

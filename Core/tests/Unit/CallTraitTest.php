@@ -18,13 +18,18 @@
 namespace Google\Cloud\Core\Tests\Unit;
 
 use Google\Cloud\Core\CallTrait;
+use Google\Cloud\Core\Testing\ExpectExceptionTrait;
+use PHPUnit\Framework\Error\Error;
 use PHPUnit\Framework\TestCase;
 
 /**
  * @group core
+ * @group core-calltrait
  */
 class CallTraitTest extends TestCase
 {
+    use ExpectExceptionTrait;
+
     public function testCall()
     {
         $t = new CallTraitStub(['foo' => 'bar']);
@@ -32,11 +37,10 @@ class CallTraitTest extends TestCase
         $this->assertEquals('bar', $t->foo());
     }
 
-    /**
-     * @expectedException PHPUnit_Framework_Error
-     */
     public function testErr()
     {
+        $this->expectsException(Error::class);
+
         $t = new CallTraitStub(['foo' => 'bar']);
 
         $t->bar();

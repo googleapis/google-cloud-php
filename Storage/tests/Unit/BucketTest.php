@@ -391,7 +391,7 @@ class BucketTest extends TestCase
     public function testRequesterPays()
     {
         $this->connection->getBucket(Argument::withEntry('userProject', 'foo'))
-            ->willReturn([]);
+            ->shouldBeCalled()->willReturn([]);
 
         $bucket = $this->getBucket(['requesterProjectId' => 'foo']);
 

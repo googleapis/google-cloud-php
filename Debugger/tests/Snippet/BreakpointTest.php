@@ -172,6 +172,9 @@ class BreakpointTest extends SnippetTestCase
         $this->assertInstanceOf(Breakpoint::class, $res->returnVal());
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testValidate()
     {
         $breakpoint = new Breakpoint(['id' => 'breakpoint1']);

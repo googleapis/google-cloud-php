@@ -49,7 +49,11 @@ class StorageClientTest extends TestCase
 
     public function testGetBucketRequesterPaysDefaultProjectId()
     {
-        $this->connection->getBucket(Argument::withEntry('userProject', self::PROJECT));
+        $this->connection->getBucket(Argument::withEntry('userProject', self::PROJECT))
+            ->shouldBeCalled();
+
+        $this->connection->projectId()->willReturn(self::PROJECT);
+
         $this->client->___setProperty('connection', $this->connection->reveal());
         $bucket = $this->client->bucket('myBucket', true);
 

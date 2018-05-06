@@ -111,7 +111,10 @@ class DebuggeeTest extends SnippetTestCase
 
     public function testUpdateBreakpoint()
     {
-        $this->connection->updateBreakpoint(Argument::any())->willReturn(true);
+        $this->connection->updateBreakpoint(Argument::any())
+            ->shouldBeCalled()
+            ->willReturn(true);
+
         $debuggee = new Debuggee($this->connection->reveal(), ['project' => 'project']);
         $breakpoint = new Breakpoint(['id' => 'breakpoint1']);
         $snippet = $this->snippetFromMethod(Debuggee::class, 'updateBreakpoint');

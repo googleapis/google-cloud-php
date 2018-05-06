@@ -17,12 +17,14 @@
 
 namespace Google\Cloud\Firestore\Tests\Unit;
 
+use Google\Cloud\Core\Testing\ExpectExceptionTrait;
 use Google\Cloud\Core\Timestamp;
 use Google\Cloud\Firestore\Connection\ConnectionInterface;
 use Google\Cloud\Firestore\DocumentReference;
 use Google\Cloud\Firestore\DocumentSnapshot;
 use Google\Cloud\Firestore\FieldPath;
 use Google\Cloud\Firestore\ValueMapper;
+use PHPUnit\Framework\Error\Notice;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -31,6 +33,8 @@ use PHPUnit\Framework\TestCase;
  */
 class DocumentSnapshotTest extends TestCase
 {
+    use ExpectExceptionTrait;
+
     const NAME = 'projects/example_project/databases/(default)/documents/a/b';
     const ID = 'b';
 
@@ -201,11 +205,10 @@ class DocumentSnapshotTest extends TestCase
         unset($this->snapshot['name']);
     }
 
-    /**
-     * @expectedException PHPUnit_Framework_Error_Notice
-     */
     public function testArrayAccessNonExistentIndex()
     {
+        $this->expectsException(Notice::class);
+
         $this->snapshot['name'];
     }
 }
