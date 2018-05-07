@@ -6,7 +6,6 @@ return [
             'CreateInstance' => [
                 'longRunning' => [
                     'operationReturnType' => '\Google\Cloud\Redis\V1beta1\Instance',
-                    'metadataReturnType' => '\Google\Protobuf\Any',
                     'initialPollDelayMillis' => '60000',
                     'pollDelayMultiplier' => '1.5',
                     'maxPollDelayMillis' => '360000',
@@ -16,7 +15,6 @@ return [
             'UpdateInstance' => [
                 'longRunning' => [
                     'operationReturnType' => '\Google\Cloud\Redis\V1beta1\Instance',
-                    'metadataReturnType' => '\Google\Protobuf\Any',
                     'initialPollDelayMillis' => '60000',
                     'pollDelayMultiplier' => '1.5',
                     'maxPollDelayMillis' => '360000',
@@ -26,7 +24,6 @@ return [
             'DeleteInstance' => [
                 'longRunning' => [
                     'operationReturnType' => '\Google\Protobuf\GPBEmpty',
-                    'metadataReturnType' => '\Google\Protobuf\Any',
                     'initialPollDelayMillis' => '60000',
                     'pollDelayMultiplier' => '1.5',
                     'maxPollDelayMillis' => '360000',

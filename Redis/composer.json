@@ -17,6 +17,7 @@
         }
     },
     "require": {
+        "ext-grpc": "*",
         "google/proto-client": "^0.38.0",
         "google/gax": "^0.31.0"
     },

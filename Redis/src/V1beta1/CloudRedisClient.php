@@ -31,12 +31,28 @@
 namespace Google\Cloud\Redis\V1beta1;
 
 use Google\Cloud\Redis\V1beta1\Gapic\CloudRedisGapicClient;
+use InvalidArgumentException;
 
 /**
  * {@inheritdoc}
  */
 class CloudRedisClient extends CloudRedisGapicClient
 {
-    // This class is intentionally empty, and is intended to hold manual
-    // additions to the generated {@see CloudRedisClientImpl} class.
+    protected function setClientOptions(array $options)
+    {
+        if (isset($options['transport'])) {
+            if ($options['transport'] == 'rest') {
+                throw new InvalidArgumentException(
+                    'The "rest" transport is not currently supported, ' .
+                    'please use the "grpc" transport.'
+                );
+            }
+            // If transport is set to anything other than rest, take no action
+            // and process as usual in setClientOptions
+        } else {
+            // If transport is not set, default to grpc.
+            $options['transport'] = 'grpc';
+        }
+        parent::setClientOptions($options);
+    }
 }
