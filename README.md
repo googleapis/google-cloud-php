@@ -33,6 +33,7 @@ This client supports the following Google Cloud Platform services at an [Alpha](
 * [Google Bigtable](#google-bigtable-alpha) (Alpha)
 * [Google Cloud BigQuery Data Transfer](#google-cloud-bigquery-data-transfer-alpha) (Alpha)
 * [Google Cloud IoT](#google-cloud-iot-alpha) (Alpha)
+* [Google Cloud Redis](#google-cloud-redis-alpha) (Alpha)
 * [Google Cloud Speech](#google-cloud-speech-alpha) (Alpha)
 * [Google Stackdriver Debugger](#google-stackdriver-debugger-alpha) (Alpha)
 * [Google Stackdriver Trace](#google-stackdriver-trace-alpha) (Alpha)
@@ -961,6 +962,41 @@ foreach ($devices->iterateAllElements() as $device) {
 
 ```
 $ composer require google/cloud-iot
+```
+
+## Google Cloud Redis (Alpha)
+
+- [API Documentation](http://googlecloudplatform.github.io/google-cloud-php/#/docs/latest/redis/readme)
+- [Official Documentation](https://cloud.google.com/redis/docs)
+
+#### Preview
+
+```php
+require 'vendor/autoload.php';
+
+use Google\Cloud\Redis\V1beta1\CloudRedisClient;
+
+$client = new CloudRedisClient();
+
+$projectId = '[MY_PROJECT_ID]';
+$location = '-';
+$formattedLocationName = $client->locationName($projectId, $location);
+$response = $client->listInstances($formattedLocationName);
+foreach ($response->iterateAllElements() as $instance) {
+    printf('Instance: %s : %s' . PHP_EOL,
+        $device->getDisplayName(),
+        $device->getName()
+    );
+}
+
+```
+
+#### google/cloud-redis
+
+[Google Cloud Redis](https://github.com/GoogleCloudPlatform/google-cloud-php-redis) can be installed separately by requiring the [`google/cloud-redis`](https://packagist.org/packages/google/cloud-redis) composer package:
+
+```
+$ composer require google/cloud-redis
 ```
 
 ## Google Cloud Speech (Alpha)
