@@ -979,7 +979,7 @@ use Google\Cloud\Redis\V1beta1\CloudRedisClient;
 $client = new CloudRedisClient();
 
 $projectId = '[MY_PROJECT_ID]';
-$location = '-';
+$location = '-'; // The '-' wildcard refers to all regions available to the project for the listInstances method
 $formattedLocationName = $client->locationName($projectId, $location);
 $response = $client->listInstances($formattedLocationName);
 foreach ($response->iterateAllElements() as $instance) {
