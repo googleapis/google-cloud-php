@@ -82,4 +82,41 @@ class StructTypeTest extends TestCase
     {
         (new StructType)->add('name', 'foo');
     }
+
+    /**
+     * @expectedException \InvalidArgumentException
+     * @dataProvider definitionTypes
+     */
+    public function testInvalidTypeDefinition($type)
+    {
+        (new StructType)->add('foo', $type);
+    }
+
+    public function definitionTypes()
+    {
+        return [
+            [Database::TYPE_ARRAY],
+            [Database::TYPE_STRUCT]
+        ];
+    }
+
+    public function testAddChildStruct()
+    {
+        $str = new StructType;
+        $str->add('foo', new StructType);
+
+        $fields = $str->fields();
+        $this->assertEquals(Database::TYPE_STRUCT, $fields[0]['type']);
+        $this->assertInstanceOf(StructType::class, $fields[0]['child']);
+    }
+
+    public function testAddChildArray()
+    {
+        $str = new StructType;
+        $str->add('foo', new ArrayType(null));
+
+        $fields = $str->fields();
+        $this->assertEquals(Database::TYPE_ARRAY, $fields[0]['type']);
+        $this->assertInstanceOf(ArrayType::class, $fields[0]['child']);
+    }
 }

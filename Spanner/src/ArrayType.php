@@ -109,25 +109,6 @@ class ArrayType
             );
         }
 
-        if ($structType !== null && $type !== Database::TYPE_STRUCT) {
-            $refl = new \ReflectionClass(Database::class);
-            $constants = array_flip($refl->getConstants());
-            $constantName = isset($constants[$type])
-                ? $constants[$type]
-                : null;
-
-            $err = 'When struct definition is provided, array type must be `Database::TYPE_STRUCT`.';
-
-            if ($constantName) {
-                $err .= ' Instead got `Database::%s`.';
-            }
-
-            throw new \InvalidArgumentException(sprintf(
-                $err,
-                $constantName
-            ));
-        }
-
         $this->type = $type;
         $this->structType = $structType;
     }

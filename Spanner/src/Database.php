@@ -1120,39 +1120,7 @@ class Database
      *     ]
      * ]);
      *
-     * $firstRow = $result
-     *     ->rows()
-     *     ->current();
-     * ```
-     *
-     * ```
-     * // Execute a read and return a new Snapshot for further reads.
-     * $result = $database->execute('SELECT * FROM Posts WHERE ID = @postId', [
-     *      'parameters' => [
-     *         'postId' => 1337
-     *     ],
-     *     'begin' => true,
-     *     'transactionType' => SessionPoolInterface::CONTEXT_READ
-     * ]);
-     *
-     * $result->rows()->current();
-     *
-     * $snapshot = $result->snapshot();
-     * ```
-     *
-     * ```
-     * // Execute a read and return a new Transaction for further reads and writes.
-     * $result = $database->execute('SELECT * FROM Posts WHERE ID = @postId', [
-     *      'parameters' => [
-     *         'postId' => 1337
-     *     ],
-     *     'begin' => true,
-     *     'transactionType' => SessionPoolInterface::CONTEXT_READWRITE
-     * ]);
-     *
-     * $result->rows()->current();
-     *
-     * $transaction = $result->transaction();
+     * $firstRow = $result->rows()->current();
      * ```
      *
      * ```
@@ -1187,7 +1155,11 @@ class Database
      * ```
      *
      * ```
-     * // Struct parameters must always declare types.
+     * // Struct parameters provide a type definition. Fields within a Struct may
+     * // be inferred following the same rules as top-level parameters. Any
+     * // nested structs must be an instance of `Google\Cloud\Spanner\StructType`,
+     * // and any values which could be of type `null` must explicitly specify
+     * // their type.
      * use Google\Cloud\Spanner\StructType;
      *
      * $result = $database->execute('SELECT @userStruct.firstName, @userStruct.lastName', [
@@ -1233,6 +1205,36 @@ class Database
      * echo $res[0]['name'] . ': ' . $res[0]['value'] . PHP_EOL; // "foo: bar"
      * echo $res[1]['name'] . ': ' . $res[1]['value'] . PHP_EOL; // "foo: 2"
      * echo $res[2]['name'] . ': ' . $res[2]['value'] . PHP_EOL; // "2: this field is unnamed"
+     * ```
+     *
+     * ```
+     * // Execute a read and return a new Snapshot for further reads.
+     * $result = $database->execute('SELECT * FROM Posts WHERE ID = @postId', [
+     *      'parameters' => [
+     *         'postId' => 1337
+     *     ],
+     *     'begin' => true,
+     *     'transactionType' => SessionPoolInterface::CONTEXT_READ
+     * ]);
+     *
+     * $result->rows()->current();
+     *
+     * $snapshot = $result->snapshot();
+     * ```
+     *
+     * ```
+     * // Execute a read and return a new Transaction for further reads and writes.
+     * $result = $database->execute('SELECT * FROM Posts WHERE ID = @postId', [
+     *      'parameters' => [
+     *         'postId' => 1337
+     *     ],
+     *     'begin' => true,
+     *     'transactionType' => SessionPoolInterface::CONTEXT_READWRITE
+     * ]);
+     *
+     * $result->rows()->current();
+     *
+     * $transaction = $result->transaction();
      * ```
      *
      * @codingStandardsIgnoreStart
@@ -1312,6 +1314,7 @@ class Database
      *
      * Example:
      * ```
+     * use Google\Cloud\Spanner\KeySet;
      * $keySet = new KeySet([
      *     'keys' => [1337]
      * ]);
@@ -1320,9 +1323,7 @@ class Database
      *
      * $result = $database->read('Posts', $keySet, $columns);
      *
-     * $firstRow = $result
-     *     ->rows()
-     *     ->current();
+     * $firstRow = $result->rows()->current();
      * ```
      *
      * ```

@@ -72,73 +72,14 @@ class SnapshotTest extends SnippetTestCase
         $snippet->replace('$database =', '//$database =');
         $snippet->addLocal('database', $database->reveal());
 
-        $res = $snippet->invoke('snapshot');
+        $res = $snippet->invoke('transaction');
         $this->assertEquals('foo', $res->returnVal());
-    }
-
-    public function testExecute()
-    {
-        $this->connection->executeStreamingSql(Argument::any())
-            ->shouldBeCalled()
-            ->willReturn($this->resultGenerator([
-                'metadata' => [
-                    'rowType' => [
-                        'fields' => [
-                            [
-                                'name' => 'loginCount',
-                                'type' => [
-                                    'code' => Database::TYPE_INT64
-                                ]
-                            ]
-                        ]
-                    ]
-                ],
-                'values' => [0]
-            ]));
-
-        $this->refreshOperation($this->snapshot, $this->connection->reveal());
-
-        $snippet = $this->snippetFromMagicMethod(Snapshot::class, 'execute');
-        $snippet->addLocal('snapshot', $this->snapshot);
-        $res = $snippet->invoke('result');
-
-        $this->assertInstanceOf(Result::class, $res->returnVal());
-    }
-
-    public function testRead()
-    {
-        $this->connection->streamingRead(Argument::any())
-            ->shouldBeCalled()
-            ->willReturn($this->resultGenerator([
-                'metadata' => [
-                    'rowType' => [
-                        'fields' => [
-                            [
-                                'name' => 'loginCount',
-                                'type' => [
-                                    'code' => Database::TYPE_INT64
-                                ]
-                            ]
-                        ]
-                    ]
-                ],
-                'values' => [0]
-            ]));
-
-        $this->refreshOperation($this->snapshot, $this->connection->reveal());
-
-        $snippet = $this->snippetFromMagicMethod(Snapshot::class, 'read');
-        $snippet->addLocal('snapshot', $this->snapshot);
-        $snippet->addUse(KeySet::class);
-        $res = $snippet->invoke('result');
-
-        $this->assertInstanceOf(Result::class, $res->returnVal());
     }
 
     public function testId()
     {
         $snippet = $this->snippetFromMagicMethod(Snapshot::class, 'id');
-        $snippet->addLocal('snapshot', $this->snapshot);
+        $snippet->addLocal('transaction', $this->snapshot);
 
         $res = $snippet->invoke('id');
         $this->assertEquals(self::TRANSACTION, $res->returnVal());

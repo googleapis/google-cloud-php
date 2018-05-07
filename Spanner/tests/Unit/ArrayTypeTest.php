@@ -58,7 +58,8 @@ class ArrayTypeTest extends TestCase
             ['hello'],
             [100],
             [3.1415],
-            [Database::TYPE_ARRAY]
+            [Database::TYPE_ARRAY],
+            [Database::TYPE_STRUCT]
         ];
     }
 }

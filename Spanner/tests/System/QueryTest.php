@@ -1055,4 +1055,66 @@ class QueryTest extends SpannerTestCase
         ], $res[2]);
         $this->assertFalse($res[3]);
     }
+
+    public function testBindStructInferredParameterTypes()
+    {
+        $values = [
+            'arr' => ['a', 'b'],
+            'str' => 'hello',
+            'num' => 10,
+        ];
+
+        $db = self::$database;
+        $res = $db->execute('SELECT * FROM UNNEST(ARRAY(SELECT @structParam))', [
+            'parameters' => [
+                'structParam' => $values
+            ],
+            'types' => [
+                'structParam' => (new StructType)
+                    ->add('str', Database::TYPE_STRING)
+            ]
+        ])->rows()->current();
+
+        $this->assertEquals($values, $res);
+    }
+
+    public function testBindStructInferredParameterTypesWithUnnamed()
+    {
+        $values = [
+            'arr' => ['a', 'b'],
+            'str' => 'hello',
+            'num' => 10,
+        ];
+
+        $db = self::$database;
+        $res = $db->execute('SELECT * FROM UNNEST(ARRAY(SELECT @structParam))', [
+            'parameters' => [
+                'structParam' => (new StructValue)
+                    ->add('arr', ['a', 'b'])
+                    ->addUnnamed('hello')
+                    ->addUnnamed(10)
+                    ->add('str', 'world')
+            ],
+            'types' => [
+                'structParam' => (new StructType)
+                    ->add('str', Database::TYPE_STRING)
+            ]
+        ])->rows(Result::RETURN_NAME_VALUE_PAIR)->current();
+
+        $this->assertEquals([
+            [
+                'name' => 'arr',
+                'value' => ['a', 'b']
+            ], [
+                'name' => 1,
+                'value' => 'hello',
+            ], [
+                'name' => 2,
+                'value' => 10
+            ], [
+                'name' => 'str',
+                'value' => 'world'
+            ]
+        ], $res);
+    }
 }

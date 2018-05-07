@@ -433,19 +433,29 @@ class ValueMapper
 
         // iterate through types and values separately to accurately align
         // unnamed and fields with duplicate names.
+        // We also record the original position in order to return values in
+        // the order given.
         $values = [];
         if (is_array($value)) {
-            foreach ($value as $key => $val) {
-                $name = $key;
+            $keys = array_keys($value);
+            $vals = array_values($value);
+            foreach ($vals as $idx => $val) {
+                $name = $keys[$idx];
 
                 if (!isset($values[$name])) {
                     $values[$name] = [];
                 }
 
-                $values[$name][] = $val;
+                // Nest values inside an array keyed by field name.
+                // This allows for duplicate field names, and aligning
+                // definitions by position.
+                $values[$name][] = [
+                    'index' => $idx,
+                    'value' => $val
+                ];
             }
         } elseif ($value instanceof StructValue) {
-            foreach ($value->values() as $val) {
+            foreach ($value->values() as $idx => $val) {
                 $name = $val['name'];
                 $valValue = $val['value'];
 
@@ -453,38 +463,81 @@ class ValueMapper
                     $values[$name] = [];
                 }
 
-                $values[$name][] = $valValue;
+                $values[$name][] = [
+                    'index' => $idx,
+                    'value' => $valValue
+                ];
             }
         }
 
+        // Iterate through given type fields and align them with corresponding values.
         $res = [];
         $fields = [];
         $names = [];
-        foreach ($typeFields as $paramType) {
+        foreach ($typeFields as $typeIndex => $paramType) {
             $fieldName = $paramType['name'];
 
+            // Count the number of times the field name has been encountered thus far.
+            // This lets us pick the correct index for duplicate fields.
             if (isset($names[$fieldName])) {
                 $names[$fieldName]++;
             } else {
                 $names[$fieldName] = 0;
             }
 
+            // Get the value which corresponds to the current type.
             $index = $names[$fieldName];
             $paramValue = isset($values[$fieldName][$index])
                 ? $values[$fieldName][$index]
                 : null;
 
-            $param = $this->paramType($paramValue, $paramType['type'], $paramType['child']);
+            // If the value didn't exist in the values structure, set it to null.
+            // The $typeIndex will give us a hook to order fields properly.
+            // Otherwise, remove the current field value from the list of values.
+            if ($paramValue === null) {
+                $paramValue = ['value' => null, 'index' => $typeIndex];
+            } else {
+                unset($values[$fieldName][$index]);
+            }
 
-            $fields[] = array_filter([
+            $param = $this->paramType($paramValue['value'], $paramType['type'], $paramType['child']);
+
+            $fields[$paramValue['index']] = array_filter([
                 'name' => $fieldName,
                 'type' => $param[1]
             ]);
 
-            if ($value !== null) {
-                $res[] = $param[0];
+            $res[$paramValue['index']] = $param[0];
+        }
+
+        // Iterate over any remaining fields. If anything is left here, it means
+        // no type was defined and its type must be inferred.
+        foreach ($values as $name => $list) {
+            foreach ($list as $value) {
+                $index = $value['index'];
+                $val = $value['value'];
+
+                $type = null;
+                $def = null;
+                if (is_array($val) && !$this->isAssoc($val)) {
+                    $type = Database::TYPE_ARRAY;
+                    $def = new ArrayType(null);
+                }
+
+                $param = $this->paramType($val, $type, $def);
+
+                $fields[$index] = array_filter([
+                    'name' => $name,
+                    'type' => $param[1]
+                ]);
+
+                $res[$index] = $param[0];
             }
         }
+
+        // Sort values and fields by key to reset back to the order given by the user.
+        ksort($res);
+        ksort($fields);
 
         $type = [
             'code' => self::TYPE_STRUCT,

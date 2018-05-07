@@ -511,6 +511,85 @@ class ValueMapperTest extends TestCase
         ], $res['paramTypes']);
     }
 
+    public function testFormatParamsForExecuteSqlInferredStructValueType()
+    {
+        $params = [
+            'foo' => [
+                'hello' => 'world',
+                'foo' => 'bar',
+                'num' => 10,
+                'arr' => ['a', 'b']
+            ]
+        ];
+
+        $types = [
+            'foo' => (new StructType)
+                ->add('hello', Database::TYPE_STRING)
+                ->add('num', Database::TYPE_INT64)
+        ];
+
+        $res = $this->mapper->formatParamsForExecuteSql($params, $types);
+
+        $this->assertEquals([
+            'world', 'bar', 10, ['a', 'b']
+        ], $res['params']['foo']);
+
+        $this->assertEquals([
+            [
+                'name' => 'hello',
+                'type' => ['code' => Database::TYPE_STRING]
+            ], [
+                'name' => 'foo',
+                'type' => ['code' => Database::TYPE_STRING]
+            ], [
+                'name' => 'num',
+                'type' => ['code' => Database::TYPE_INT64]
+            ], [
+                'name' => 'arr',
+                'type' => [
+                    'code' => Database::TYPE_ARRAY,
+                    'arrayElementType' => [
+                        'code' => Database::TYPE_STRING
+                    ]
+                ]
+            ]
+        ], $res['paramTypes']['foo']['structType']['fields']);
+    }
+
+    public function testFormatParamsForExecuteSqlInferredStructValueTypeWithUnnamed()
+    {
+        $params = [
+            'foo' => (new StructValue)
+                ->add('hello', 'world')
+                ->addUnnamed('foo')
+                ->add('num', 10)
+        ];
+
+        $types = [
+            'foo' => (new StructType)
+                ->add('hello', Database::TYPE_STRING)
+                ->add('num', Database::TYPE_INT64)
+        ];
+
+        $res = $this->mapper->formatParamsForExecuteSql($params, $types);
+
+        $this->assertEquals([
+            'world', 'foo', 10
+        ], $res['params']['foo']);
+
+        $this->assertEquals([
+            [
+                'name' => 'hello',
+                'type' => ['code' => Database::TYPE_STRING]
+            ], [
+                'type' => ['code' => Database::TYPE_STRING]
+            ], [
+                'name' => 'num',
+                'type' => ['code' => Database::TYPE_INT64]
+            ]
+        ], $res['paramTypes']['foo']['structType']['fields']);
+    }
+
     public function testFormatParamsForExecuteSqlStdClassValue()
     {
         $params = [
