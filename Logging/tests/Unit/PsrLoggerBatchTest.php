@@ -120,7 +120,7 @@ class PsrLoggerBatchTest extends TestCase
             [
                 'batchEnabled' => true,
                 'batchRunner' => $this->runner->reveal(),
-                'metadataProvider' => new GaeFlexMetadataProvider($server)
+                'metadataProvider' => new GAEFlexMetadataProvider($server)
             ]
         );
         $psrBatchLogger->info(
