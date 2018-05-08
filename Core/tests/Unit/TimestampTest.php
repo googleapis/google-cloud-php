@@ -208,4 +208,28 @@ class TimestampTest extends TestCase
             ]
         ];
     }
+
+    /**
+     * @dataProvider timezones
+     */
+    public function testTimezones($tz)
+    {
+        $time = new \DateTimeImmutable('now', new \DateTimeZone($tz));
+        $timestamp = new Timestamp($time);
+
+        $utc = $time->setTimeZone(new \DateTimeZone('UTC'));
+        $utcTs = new Timestamp($utc);
+
+        $this->assertEquals($utcTs->formatAsString(), $timestamp->formatAsString());
+    }
+
+    public function timezones()
+    {
+        return [
+            ['America/Detroit'],
+            ['Australia/Sydney'],
+            ['Pacific/Guam'],
+            ['Africa/Johannesburg'],
+        ];
+    }
 }
