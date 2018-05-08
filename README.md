@@ -967,7 +967,6 @@ $ composer require google/cloud-iot
 ## Google Cloud Redis (Alpha)
 
 - [API Documentation](http://googlecloudplatform.github.io/google-cloud-php/#/docs/latest/redis/readme)
-- [Official Documentation](https://cloud.google.com/redis/docs)
 
 #### Preview
 
