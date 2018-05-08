@@ -144,7 +144,7 @@ class TransactionalReadMethodsTest extends SnippetTestCase
                 'rowType' => [
                     'fields' => [
                         [
-                            'name' => 'lastModifiedTime',
+                            'name' => 'timestamp',
                             'type' => [
                                 'code' => Database::TYPE_TIMESTAMP
                             ]
@@ -158,11 +158,9 @@ class TransactionalReadMethodsTest extends SnippetTestCase
         $this->refreshOperation($client, $this->connection->reveal());
 
         $snippet->addLocal($localName, $client);
-        $snippet->addLocal('timestamp', null);
-        $snippet->addUse(Database::class);
 
-        $res = $snippet->invoke('neverEditedPosts');
-        $this->assertNull($res->returnVal()->current()['lastModifiedTime']);
+        $res = $snippet->invoke('timestamp');
+        $this->assertNull($res->returnVal());
     }
 
     public function clientAndSnippetExecuteEmptyArray()
@@ -211,7 +209,6 @@ class TransactionalReadMethodsTest extends SnippetTestCase
         $this->refreshOperation($client, $this->connection->reveal());
 
         $snippet->addLocal($localName, $client);
-        $snippet->addUse(Database::class);
 
         $res = $snippet->invoke('emptyArray');
         $this->assertEmpty($res->returnVal());
@@ -278,7 +275,6 @@ class TransactionalReadMethodsTest extends SnippetTestCase
         $this->refreshOperation($client, $this->connection->reveal());
 
         $snippet->addLocal($localName, $client);
-        $snippet->addUse(Database::class);
 
         $res = $snippet->invoke('fullName');
         $this->assertEquals('John Testuser', $res->returnVal());
@@ -350,7 +346,6 @@ class TransactionalReadMethodsTest extends SnippetTestCase
         $this->refreshOperation($client, $this->connection->reveal());
 
         $snippet->addLocal($localName, $client);
-        $snippet->addUse(Database::class);
 
         $res = explode(PHP_EOL, $snippet->invoke()->output());
         $this->assertEquals('foo: bar', $res[0]);

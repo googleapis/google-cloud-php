@@ -18,7 +18,10 @@
 namespace Google\Cloud\Spanner;
 
 /**
- * Represents an array type declaration.
+ * Represents a Spanner SQL Query array type declaration.
+ *
+ * Array types may usually be inferred. Types are only required if the array
+ * is nullable, or if it contains structs.
  *
  * Example:
  * ```

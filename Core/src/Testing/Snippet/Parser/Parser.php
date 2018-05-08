@@ -227,6 +227,7 @@ class Parser
             if ($method->getDeclaringClass()->name !== $class->getName()) {
                 continue;
             }
+
             $snippets = array_merge($snippets, $this->examplesFromMethod($class, $method));
         }
 

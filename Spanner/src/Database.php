@@ -1110,7 +1110,9 @@ class Database
      * {@see Google\Cloud\Spanner\StructType}. Struct values may be expressed as
      * an associative array, however if the struct contains any unnamed fields,
      * or any fields with duplicate names, the struct must be expressed using an
-     * instance of {@see Google\Cloud\Spanner\StructValue}.
+     * instance of {@see Google\Cloud\Spanner\StructValue}. Struct value types
+     * may be inferred with the same caveats as top-level parameters (in other
+     * words, so long as they are not nullable and do not contain nested structs).
      *
      * Example:
      * ```
@@ -1125,21 +1127,30 @@ class Database
      *
      * ```
      * // Parameters which may be null must include an expected parameter type.
-     * $result = $database->execute('SELECT @timestamp', [
+     * use Google\Cloud\Spanner\Database;
+     * use Google\Cloud\Spanner\Timestamp;
+     *
+     * $values = [
+     *     new Timestamp(new \DateTimeImmutable),
+     *     null
+     * ];
+     *
+     * $result = $database->execute('SELECT @timestamp as timestamp', [
      *     'parameters' => [
-     *         'timestamp' => $timestamp
+     *         'timestamp' => array_rand($values)
      *     ],
      *     'types' => [
      *         'timestamp' => Database::TYPE_TIMESTAMP
      *     ]
      * ]);
      *
-     * $neverEditedPosts = $result->rows();
+     * $timestamp = $result->rows()->current()['timestamp'];
      * ```
      *
      * ```
      * // Array parameters which may be null or empty must include the array value type.
      * use Google\Cloud\Spanner\ArrayType;
+     * use Google\Cloud\Spanner\Database;
      *
      * $result = $database->execute('SELECT @emptyArrayOfIntegers as numbers', [
      *     'parameters' => [
@@ -1160,6 +1171,7 @@ class Database
      * // nested structs must be an instance of `Google\Cloud\Spanner\StructType`,
      * // and any values which could be of type `null` must explicitly specify
      * // their type.
+     * use Google\Cloud\Spanner\Database;
      * use Google\Cloud\Spanner\StructType;
      *
      * $result = $database->execute('SELECT @userStruct.firstName, @userStruct.lastName', [
@@ -1183,6 +1195,7 @@ class Database
      * ```
      * // If a struct contains unnamed fields, or multiple fields with the same
      * // name, it must be defined using {@see Google\Cloud\Spanner\StructValue}.
+     * use Google\Cloud\Spanner\Database;
      * use Google\Cloud\Spanner\Result;
      * use Google\Cloud\Spanner\StructValue;
      * use Google\Cloud\Spanner\StructType;
@@ -1209,6 +1222,8 @@ class Database
      *
      * ```
      * // Execute a read and return a new Snapshot for further reads.
+     * use Google\Cloud\Spanner\Session\SessionPoolInterface;
+     *
      * $result = $database->execute('SELECT * FROM Posts WHERE ID = @postId', [
      *      'parameters' => [
      *         'postId' => 1337
@@ -1224,6 +1239,8 @@ class Database
      *
      * ```
      * // Execute a read and return a new Transaction for further reads and writes.
+     * use Google\Cloud\Spanner\Session\SessionPoolInterface;
+     *
      * $result = $database->execute('SELECT * FROM Posts WHERE ID = @postId', [
      *      'parameters' => [
      *         'postId' => 1337
@@ -1315,6 +1332,7 @@ class Database
      * Example:
      * ```
      * use Google\Cloud\Spanner\KeySet;
+     *
      * $keySet = new KeySet([
      *     'keys' => [1337]
      * ]);
@@ -1328,6 +1346,9 @@ class Database
      *
      * ```
      * // Execute a read and return a new Snapshot for further reads.
+     * use Google\Cloud\Spanner\KeySet;
+     * use Google\Cloud\Spanner\Session\SessionPoolInterface;
+     *
      * $keySet = new KeySet([
      *     'keys' => [1337]
      * ]);
@@ -1346,6 +1367,9 @@ class Database
      *
      * ```
      * // Execute a read and return a new Transaction for further reads and writes.
+     * use Google\Cloud\Spanner\KeySet;
+     * use Google\Cloud\Spanner\Session\SessionPoolInterface;
+     *
      * $keySet = new KeySet([
      *     'keys' => [1337]
      * ]);

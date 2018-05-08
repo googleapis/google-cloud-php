@@ -88,7 +88,9 @@ trait TransactionalReadTrait
      * {@see Google\Cloud\Spanner\StructType}. Struct values may be expressed as
      * an associative array, however if the struct contains any unnamed fields,
      * or any fields with duplicate names, the struct must be expressed using an
-     * instance of {@see Google\Cloud\Spanner\StructValue}.
+     * instance of {@see Google\Cloud\Spanner\StructValue}. Struct value types
+     * may be inferred with the same caveats as top-level parameters (in other
+     * words, so long as they are not nullable and do not contain nested structs).
      *
      * Example:
      * ```
@@ -103,21 +105,30 @@ trait TransactionalReadTrait
      *
      * ```
      * // Parameters which may be null must include an expected parameter type.
-     * $result = $transaction->execute('SELECT @timestamp', [
+     * use Google\Cloud\Spanner\Database;
+     * use Google\Cloud\Spanner\Timestamp;
+     *
+     * $values = [
+     *     new Timestamp(new \DateTimeImmutable),
+     *     null
+     * ];
+     *
+     * $result = $transaction->execute('SELECT @timestamp as timestamp', [
      *     'parameters' => [
-     *         'timestamp' => $timestamp
+     *         'timestamp' => array_rand($values)
      *     ],
      *     'types' => [
      *         'timestamp' => Database::TYPE_TIMESTAMP
      *     ]
      * ]);
      *
-     * $neverEditedPosts = $result->rows();
+     * $timestamp = $result->rows()->current()['timestamp'];
      * ```
      *
      * ```
      * // Array parameters which may be null or empty must include the array value type.
      * use Google\Cloud\Spanner\ArrayType;
+     * use Google\Cloud\Spanner\Database;
      *
      * $result = $transaction->execute('SELECT @emptyArrayOfIntegers as numbers', [
      *     'parameters' => [
@@ -138,6 +149,7 @@ trait TransactionalReadTrait
      * // nested structs must be an instance of `Google\Cloud\Spanner\StructType`,
      * // and any values which could be of type `null` must explicitly specify
      * // their type.
+     * use Google\Cloud\Spanner\Database;
      * use Google\Cloud\Spanner\StructType;
      *
      * $result = $transaction->execute('SELECT @userStruct.firstName, @userStruct.lastName', [
@@ -161,6 +173,7 @@ trait TransactionalReadTrait
      * ```
      * // If a struct contains unnamed fields, or multiple fields with the same
      * // name, it must be defined using {@see Google\Cloud\Spanner\StructValue}.
+     * use Google\Cloud\Spanner\Database;
      * use Google\Cloud\Spanner\Result;
      * use Google\Cloud\Spanner\StructValue;
      * use Google\Cloud\Spanner\StructType;
