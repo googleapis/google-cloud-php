@@ -1,22 +1,23 @@
 {
-    "name": "google/cloud-dialogflow",
-    "description": "Google Cloud Dialogflow Client for PHP",
+    "name": "google/cloud-redis",
+    "description": "Google Cloud Redis Client for PHP",
     "license": "Apache-2.0",
     "minimum-stability": "stable",
     "autoload": {
         "psr-4": {
-            "Google\\Cloud\\Dialogflow\\": "src"
+            "Google\\Cloud\\Redis\\": "src"
         }
     },
     "extra": {
         "component": {
-            "id": "cloud-dialogflow",
-            "path": "Dialogflow",
+            "id": "cloud-redis",
+            "path": "Redis",
             "entry": null,
-            "target": "GoogleCloudPlatform/google-cloud-php-dialogflow.git"
+            "target": "GoogleCloudPlatform/google-cloud-php-redis.git"
         }
     },
     "require": {
+        "ext-grpc": "*",
         "google/proto-client": "^0.38.0",
         "google/gax": "^0.31.0"
     },
