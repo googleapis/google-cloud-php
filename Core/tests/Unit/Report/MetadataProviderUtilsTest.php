@@ -33,7 +33,7 @@ class MetadataProviderUtilsTest extends TestCase
     {
         $metadataProvider = MetadataProviderUtils::autoSelect($this->envs);
         $this->assertInstanceOf(
-            GaeFlexMetadataProvider::class,
+            GAEFlexMetadataProvider::class,
             $metadataProvider
         );
         $metadataProvider = MetadataProviderUtils::autoSelect([]);

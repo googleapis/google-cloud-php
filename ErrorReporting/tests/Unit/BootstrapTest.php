@@ -193,7 +193,7 @@ class BootstrapTest extends TestCase
         )->shouldBeCalledTimes(1);
         Bootstrap::$psrLogger = $this->psrBatchLogger->reveal();
         MockValues::$errorReporting = $error['type']; // always match
-        BootStrap::errorHandler(
+        Bootstrap::errorHandler(
             $error['type'],
             $error['message'],
             $error['file'],
@@ -205,7 +205,7 @@ class BootstrapTest extends TestCase
     {
         Bootstrap::$psrLogger = null;
         MockValues::$errorReporting = 0;
-        $result = BootStrap::errorHandler(
+        $result = Bootstrap::errorHandler(
             E_ERROR,
             'message',
             'file',
@@ -217,7 +217,7 @@ class BootstrapTest extends TestCase
     public function testErrorHandlerWithoutLogger() {
         Bootstrap::$psrLogger = null;
         MockValues::$errorReporting = E_ERROR;
-        $result = BootStrap::errorHandler(
+        $result = Bootstrap::errorHandler(
             E_ERROR,
             'message',
             'file',
@@ -253,7 +253,7 @@ class BootstrapTest extends TestCase
             // The shutdownHandler should not do anything, so it should pass
             // with the empty psrBatchLogger mock.
             Bootstrap::$psrLogger = $this->psrBatchLogger->reveal();
-            $this->assertNull(BootStrap::shutdownHandler());
+            $this->assertNull(Bootstrap::shutdownHandler());
             return;
         }
         $this->psrBatchLogger->getMetadataProvider()
@@ -285,7 +285,7 @@ class BootstrapTest extends TestCase
             $expectedContext
         )->shouldBeCalledTimes(1);
         Bootstrap::$psrLogger = $this->psrBatchLogger->reveal();
-        BootStrap::shutdownHandler();
+        Bootstrap::shutdownHandler();
     }
 
     public function errorsAndMetadataProvider()

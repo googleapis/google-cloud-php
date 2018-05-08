@@ -196,7 +196,7 @@ class KeyTest extends TestCase
             ]
         ]);
 
-        $this->assertEquals($key->state(), key::STATE_NAMED);
+        $this->assertEquals($key->state(), Key::STATE_NAMED);
     }
 
     public function testStateIncomplete()
@@ -207,7 +207,7 @@ class KeyTest extends TestCase
             ]
         ]);
 
-        $this->assertEquals($key->state(), key::STATE_INCOMPLETE);
+        $this->assertEquals($key->state(), Key::STATE_INCOMPLETE);
     }
 
     public function testPath()
