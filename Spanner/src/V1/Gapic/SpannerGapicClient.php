@@ -781,7 +781,6 @@ class SpannerGapicClient
             $request->setPartitionToken($optionalArgs['partitionToken']);
         }
 
-        // print_r((new Serializer)->encodeMessage($request));exit;
         return $this->startCall(
             'ExecuteStreamingSql',
             PartialResultSet::class,
