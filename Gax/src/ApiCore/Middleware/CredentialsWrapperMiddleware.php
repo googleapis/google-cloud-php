@@ -31,23 +31,23 @@
  */
 namespace Google\ApiCore\Middleware;
 
-use Google\ApiCore\AuthWrapper;
+use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Call;
 
 /**
 * Middleware which adds an AuthWrapper object to the call options.
 */
-class AuthWrapperMiddleware
+class CredentialsWrapperMiddleware
 {
     /** @var callable */
     private $nextHandler;
 
-    /** @var AuthWrapper */
+    /** @var CredentialsWrapper */
     private $authWrapper;
 
     public function __construct(
         callable $nextHandler,
-        AuthWrapper $authWrapper
+        CredentialsWrapper $authWrapper
     ) {
         $this->nextHandler = $nextHandler;
         $this->authWrapper = $authWrapper;

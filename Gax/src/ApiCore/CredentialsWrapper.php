@@ -44,9 +44,9 @@ use Google\Auth\HttpHandler\HttpHandlerFactory;
 use Psr\Cache\CacheItemPoolInterface;
 
 /**
- * The AuthWrapper object provides a wrapper around a FetchAuthTokenInterface.
+ * The CredentialsWrapper object provides a wrapper around a FetchAuthTokenInterface.
  */
-class AuthWrapper
+class CredentialsWrapper
 {
     use ValidationTrait;
 
@@ -54,7 +54,7 @@ class AuthWrapper
     private $authHttpHandler;
 
     /**
-     * AuthWrapper constructor.
+     * CredentialsWrapper constructor.
      * @param FetchAuthTokenInterface $credentialsFetcher A credentials loader
      *        used to fetch access tokens.
      * @param callable $authHttpHandler A handler used to deliver PSR-7 requests
@@ -69,7 +69,7 @@ class AuthWrapper
     }
 
     /**
-     * Factory method to create an AuthWrapper from an array of options.
+     * Factory method to create a CredentialsWrapper from an array of options.
      *
      * @param array $args {
      *     An array of optional arguments.
@@ -91,7 +91,7 @@ class AuthWrapper
      *     @type array $authCacheOptions
      *           Cache configuration options.
      * }
-     * @return AuthWrapper
+     * @return CredentialsWrapper
      * @throws ValidationException
      */
     public static function build(array $args = [])
@@ -132,7 +132,7 @@ class AuthWrapper
             );
         }
 
-        return new AuthWrapper($loader, $authHttpHandler);
+        return new CredentialsWrapper($loader, $authHttpHandler);
     }
 
     /**

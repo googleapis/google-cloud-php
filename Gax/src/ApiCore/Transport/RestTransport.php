@@ -34,7 +34,7 @@ namespace Google\ApiCore\Transport;
 use Exception;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\ApiStatus;
-use Google\ApiCore\AuthWrapper;
+use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Call;
 use Google\ApiCore\GrpcSupportTrait;
 use Google\ApiCore\RequestBuilder;

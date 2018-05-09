@@ -32,7 +32,7 @@
 
 namespace Google\ApiCore\Testing;
 
-use Google\ApiCore\AuthWrapper;
+use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Transport\GrpcTransport;
 use Google\Auth\ApplicationDefaultCredentials;
 use Grpc\ChannelCredentials;

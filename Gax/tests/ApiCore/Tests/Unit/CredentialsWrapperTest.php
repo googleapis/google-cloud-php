@@ -32,7 +32,7 @@
 
 namespace Google\ApiCore\Tests\Unit;
 
-use Google\ApiCore\AuthWrapper;
+use Google\ApiCore\CredentialsWrapper;
 use Google\Auth\ApplicationDefaultCredentials;
 use Google\Auth\Cache\MemoryCacheItemPool;
 use Google\Auth\Cache\SysVCacheItemPool;
@@ -44,14 +44,14 @@ use GPBMetadata\Google\Api\Auth;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
 
-class AuthWrapperTest extends TestCase
+class CredentialsWrapperTest extends TestCase
 {
     /**
      * @dataProvider buildData
      */
     public function testBuild($args, $expectedAuthWrapper)
     {
-        $actualAuthWrapper = AuthWrapper::build($args);
+        $actualAuthWrapper = CredentialsWrapper::build($args);
         $this->assertEquals($expectedAuthWrapper, $actualAuthWrapper);
     }
 
@@ -74,27 +74,27 @@ class AuthWrapperTest extends TestCase
         return [
             [
                 [],
-                new AuthWrapper(ApplicationDefaultCredentials::getCredentials(null, $defaultAuthHttpHandler, null, $defaultAuthCache), $defaultAuthHttpHandler),
+                new CredentialsWrapper(ApplicationDefaultCredentials::getCredentials(null, $defaultAuthHttpHandler, null, $defaultAuthCache), $defaultAuthHttpHandler),
             ],
             [
                 ['scopes' => $scopes],
-                new AuthWrapper(ApplicationDefaultCredentials::getCredentials($scopes, $defaultAuthHttpHandler, null, $defaultAuthCache), $defaultAuthHttpHandler),
+                new CredentialsWrapper(ApplicationDefaultCredentials::getCredentials($scopes, $defaultAuthHttpHandler, null, $defaultAuthCache), $defaultAuthHttpHandler),
             ],
             [
                 ['scopes' => $scopes, 'authHttpHandler' => $asyncAuthHttpHandler],
-                new AuthWrapper(ApplicationDefaultCredentials::getCredentials($scopes, $asyncAuthHttpHandler, null, $defaultAuthCache), $asyncAuthHttpHandler),
+                new CredentialsWrapper(ApplicationDefaultCredentials::getCredentials($scopes, $asyncAuthHttpHandler, null, $defaultAuthCache), $asyncAuthHttpHandler),
             ],
             [
                 ['enableCaching' => false],
-                new AuthWrapper(ApplicationDefaultCredentials::getCredentials(null, $defaultAuthHttpHandler, null, null), $defaultAuthHttpHandler),
+                new CredentialsWrapper(ApplicationDefaultCredentials::getCredentials(null, $defaultAuthHttpHandler, null, null), $defaultAuthHttpHandler),
             ],
             [
                 ['authCacheOptions' => $authCacheOptions],
-                new AuthWrapper(ApplicationDefaultCredentials::getCredentials(null, $defaultAuthHttpHandler, $authCacheOptions, $defaultAuthCache), $defaultAuthHttpHandler),
+                new CredentialsWrapper(ApplicationDefaultCredentials::getCredentials(null, $defaultAuthHttpHandler, $authCacheOptions, $defaultAuthCache), $defaultAuthHttpHandler),
             ],
             [
                 ['authCache' => $authCache],
-                new AuthWrapper(ApplicationDefaultCredentials::getCredentials(null, $defaultAuthHttpHandler, null, $authCache), $defaultAuthHttpHandler),
+                new CredentialsWrapper(ApplicationDefaultCredentials::getCredentials(null, $defaultAuthHttpHandler, null, $authCache), $defaultAuthHttpHandler),
             ],
         ];
     }
@@ -147,7 +147,7 @@ class AuthWrapperTest extends TestCase
         if ($cache) {
             $loader = new FetchAuthTokenCache($loader, $cacheConfig, $cache);
         }
-        return new AuthWrapper($loader, $httpHandler);
+        return new CredentialsWrapper($loader, $httpHandler);
     }
 
     /**
@@ -155,7 +155,7 @@ class AuthWrapperTest extends TestCase
      */
     public function testGetBearerString($fetcher, $expectedBearerString)
     {
-        $authWrapper = new AuthWrapper($fetcher);
+        $authWrapper = new CredentialsWrapper($fetcher);
         $bearerString = $authWrapper->getBearerString();
         $this->assertSame($expectedBearerString, $bearerString);
     }
@@ -190,7 +190,7 @@ class AuthWrapperTest extends TestCase
      */
     public function testGetAuthorizationHeaderCallback($fetcher, $expectedCallbackResponse)
     {
-        $authWrapper = new AuthWrapper($fetcher);
+        $authWrapper = new CredentialsWrapper($fetcher);
         $callback = $authWrapper->getAuthorizationHeaderCallback();
         $actualResponse = $callback();
         $this->assertSame($expectedCallbackResponse, $actualResponse);

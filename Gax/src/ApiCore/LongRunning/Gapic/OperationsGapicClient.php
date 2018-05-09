@@ -49,8 +49,6 @@ use Google\ApiCore\Call;
 use Google\ApiCore\GapicClientTrait;
 use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
-use Google\ApiCore\ValidationException;
-use Google\Auth\CredentialsLoader;
 use Google\LongRunning\CancelOperationRequest;
 use Google\LongRunning\DeleteOperationRequest;
 use Google\LongRunning\GetOperationRequest;
@@ -58,8 +56,6 @@ use Google\LongRunning\ListOperationsRequest;
 use Google\LongRunning\ListOperationsResponse;
 use Google\LongRunning\Operation;
 use Google\Protobuf\GPBEmpty;
-use Grpc\Channel;
-use Grpc\ChannelCredentials;
 
 /**
  * Service Description: Manages long-running operations with an API service.
@@ -116,25 +112,18 @@ class OperationsGapicClient
      */
     const CODEGEN_NAME = 'gapic';
 
-    /**
-     * The code generator version, to be included in the agent header.
-     */
-    const CODEGEN_VERSION = '0.0.5';
-
     private static function getClientDefaults()
     {
         return [
             'serviceName' => self::SERVICE_NAME,
-            'descriptorsConfigPath' => __DIR__.'/../resources/operations_descriptor_config.php',
             'clientConfig' => __DIR__.'/../resources/operations_client_config.json',
-            'disableRetries' => false,
-            'auth' => null,
-            'authConfig' => null,
-            'transport' => null,
+            'descriptorsConfigPath' => __DIR__.'/../resources/operations_descriptor_config.php',
+            'credentialsConfig' => [
+            ],
             'transportConfig' => [
                 'rest' => [
-                    'restClientConfigPath' => __DIR__.'/../resources/operations_rest_client_config.php',
-                ]
+                    'restClientConfigPath' => __DIR__.'/../resources/operations_rest_client_config.php'
+                ],
             ],
         ];
     }
@@ -147,29 +136,31 @@ class OperationsGapicClient
      *                       that must be provided are marked as Required.
      *
      *     @type string $serviceAddress
-     *           The address of the API remote host, for example "example.googleapis.com. May also
-     *           include the port, for example "example.googleapis.com:443"
-     *     @type bool $disableRetries Determines whether or not retries defined
-     *           by the client configuration should be disabled. Defaults to `false`.
+     *           Required. The address of the API remote host. May optionally include the port,
+     *           formatted as "<uri>:<port>".
+     *     @type string|array $credentials
+     *           The credentials to be used by the client to authorize API calls. This option
+     *           accepts either a path to a credentials file, or a decoded credentials file as a
+     *           PHP array.
+     *           *Advanced usage*: In addition, this option can also accept a pre-constructed
+     *           \Google\Auth\FetchAuthTokenInterface object or \Google\ApiCore\CredentialsWrapper
+     *           object. Note that when one of these objects are provided, any settings in
+     *           $credentialsConfig will be ignored.
+     *     @type array $credentialsConfig
+     *           Options used to configure credentials, including auth token caching, for the client. For
+     *           a full list of supporting configuration options, see
+     *           \Google\ApiCore\CredentialsWrapper::build.
+     *     @type bool $disableRetries
+     *           Determines whether or not retries defined by the client configuration should be
+     *           disabled. Defaults to `false`.
      *     @type string|array $clientConfig
      *           Client method configuration, including retry settings. This option can be either a
      *           path to a JSON file, or a PHP array containing the decoded JSON data.
      *           By default this settings points to the default client config file, which is provided
      *           in the resources folder.
-     *     @type string|array $auth
-     *           The credentials to be used by the client to authorize API calls. This option
-     *           accepts either a path to a credentials file, or a decoded credentials file as a
-     *           PHP array.
-     *           *Advanced usage*: In addition, this option can also accept a pre-constructed
-     *           \Google\Auth\FetchAuthTokenInterface object or \Google\ApiCore\AuthWrapper
-     *           object. Note that when one of these objects are provided, any settings in
-     *           $authConfig will be ignored.
-     *     @type array $authConfig
-     *           Options used to configure auth, including auth token caching, for the client. For
-     *           a full list of supporting configuration options, see \Google\ApiCore\Auth::build.
-     *     @type string $transport The transport used for executing network
-     *           requests. May be either the string `rest` or `grpc`. Defaults to `grpc` if gRPC
-     *           support is detected on the system.
+     *     @type string $transport
+     *           The transport used for executing network requests. May be either the string `rest`
+     *           or `grpc`. Defaults to `grpc` if gRPC support is detected on the system.
      *           *Advanced usage*: Additionally, it is possible to pass in an already instantiated
      *           TransportInterface object. Note that when this objects is provided, any settings in
      *           $transportConfig, and any $serviceAddress setting, will be ignored.
@@ -181,15 +172,15 @@ class OperationsGapicClient
      *               'grpc' => [...],
      *               'rest' => [...]
      *           ];
-     *           See the GapicClientTrait::buildGrpcTransport and GapicClientTrait::buildRestTransport
-     *           methods for the supported options.
+     *           See the GrpcTransport::build and RestTransport::build methods for the supported
+     *           options.
      * }
-     * @throws ValidationException
      * @experimental
      */
     public function __construct($options = [])
     {
-        $this->setClientOptions($options + self::getClientDefaults());
+        $clientOptions = $this->buildClientOptions($options);
+        $this->setClientOptions($clientOptions);
     }
 
     /**
