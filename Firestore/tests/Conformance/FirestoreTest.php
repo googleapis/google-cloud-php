@@ -17,6 +17,7 @@
 
 namespace Google\Cloud\Firestore\Tests\Conformance;
 
+use Google\ApiCore\Serializer;
 use Google\Cloud\Core\Testing\ArrayHasSameValuesToken;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Core\Testing\TestHelpers;
@@ -40,7 +41,6 @@ use Prophecy\Exception\Call\UnexpectedCallException;
  */
 class FirestoreTest extends TestCase
 {
-    use ConformanceTestTrait;
     use GrpcTestTrait;
     use PathTrait;
 
@@ -449,5 +449,84 @@ class FirestoreTest extends TestCase
         }
 
         return $value;
+    }
+
+    private static $cases = [];
+    private static $skipped = [];
+
+    private function setupCases($suite, array $types, array $excludes)
+    {
+        if (self::$cases) {
+            return self::$cases;
+        }
+
+        $serializer = new Serializer;
+
+        $str = file_get_contents($suite);
+        $suite = new TestSuite;
+        $suite->mergeFromString($str);
+
+        $cases = [];
+        foreach ($suite->getTests() as $test) {
+            $case = $serializer->encodeMessage($test);
+            $matches = array_values(array_intersect($types, array_keys($case)));
+            if (!$matches) {
+                $keys = array_keys($case);
+                throw new \Exception(sprintf(
+                    'Unknown test type! Keys were `%s`',
+                    implode(', ', $keys)
+                ));
+            }
+
+            $type = $matches[0];
+
+            if (in_array($case['description'], $excludes)) {
+                self::$skipped[] = [$case['description']];
+                continue;
+            }
+
+            $cases[] = [
+                'description' => $case['description'],
+                'type' => $type,
+                'test' => $case[$type]
+            ];
+        }
+
+        self::$cases = $cases;
+        return $cases;
+    }
+
+    /**
+     * Report skipped cases for measurement purposes.
+     *
+     * @dataProvider skippedCases
+     */
+    public function testSkipped($desc)
+    {
+        $this->markTestSkipped($desc);
+    }
+
+    public function skippedCases()
+    {
+        return self::$skipped;
+    }
+
+    public function cases($type)
+    {
+        if (strpos($type, 'test') === 0) {
+            $type = lcfirst(str_replace('test', '', $type));
+        }
+
+        $suite = __DIR__ . '/proto/'. self::SUITE_FILENAME;
+        $cases = array_filter($this->setupCases($suite, $this->testTypes, $this->excludes), function ($case) use ($type) {
+            return $case['type'] === $type;
+        });
+
+        $res = [];
+        foreach ($cases as $case) {
+            $res[$case['description']] = [$case['test'], $case['description']];
+        }
+
+        return $res;
     }
 }
