@@ -36,9 +36,16 @@ function system () {
   $(dirname $0)/../../vendor/bin/phpunit -c phpunit-system.xml.dist
 }
 
+function conformance() {
+  echo "Running Conformance Test Suite"
+
+  $(dirname $0)/../../vendor/bin/phpunit -c phpunit-conformance.xml.dist
+}
+
 style
 unit
 snippets
+conformance
 
 if [ "${TRAVIS_EVENT_TYPE}" == "cron" ]; then
   composer
