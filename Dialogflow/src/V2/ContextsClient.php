@@ -38,5 +38,5 @@ use Google\Cloud\Dialogflow\V2\Gapic\ContextsGapicClient;
 class ContextsClient extends ContextsGapicClient
 {
     // This class is intentionally empty, and is intended to hold manual
-    // additions to the generated {@see ContextsClientImpl} class.
+    // additions to the generated {@see ContextsGapicClient} class.
 }

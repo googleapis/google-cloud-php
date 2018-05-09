@@ -38,5 +38,5 @@ use Google\Cloud\Dialogflow\V2\Gapic\IntentsGapicClient;
 class IntentsClient extends IntentsGapicClient
 {
     // This class is intentionally empty, and is intended to hold manual
-    // additions to the generated {@see IntentsClientImpl} class.
+    // additions to the generated {@see IntentsGapicClient} class.
 }

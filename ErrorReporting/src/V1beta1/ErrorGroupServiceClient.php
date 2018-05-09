@@ -38,5 +38,5 @@ use Google\Cloud\ErrorReporting\V1beta1\Gapic\ErrorGroupServiceGapicClient;
 class ErrorGroupServiceClient extends ErrorGroupServiceGapicClient
 {
     // This class is intentionally empty, and is intended to hold manual
-    // additions to the generated {@see ErrorGroupServiceClientImpl} class.
+    // additions to the generated {@see ErrorGroupServiceGapicClient} class.
 }

@@ -38,5 +38,5 @@ use Google\Cloud\Monitoring\V3\Gapic\GroupServiceGapicClient;
 class GroupServiceClient extends GroupServiceGapicClient
 {
     // This class is intentionally empty, and is intended to hold manual
-    // additions to the generated {@see GroupServiceClientImpl} class.
+    // additions to the generated {@see GroupServiceGapicClient} class.
 }

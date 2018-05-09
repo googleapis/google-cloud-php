@@ -38,5 +38,5 @@ use Google\Cloud\Logging\V2\Gapic\LoggingServiceV2GapicClient;
 class LoggingServiceV2Client extends LoggingServiceV2GapicClient
 {
     // This class is intentionally empty, and is intended to hold manual
-    // additions to the generated {@see LoggingServiceV2ClientImpl} class.
+    // additions to the generated {@see LoggingServiceV2GapicClient} class.
 }

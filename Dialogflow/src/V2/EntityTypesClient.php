@@ -38,5 +38,5 @@ use Google\Cloud\Dialogflow\V2\Gapic\EntityTypesGapicClient;
 class EntityTypesClient extends EntityTypesGapicClient
 {
     // This class is intentionally empty, and is intended to hold manual
-    // additions to the generated {@see EntityTypesClientImpl} class.
+    // additions to the generated {@see EntityTypesGapicClient} class.
 }

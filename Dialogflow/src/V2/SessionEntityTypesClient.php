@@ -38,5 +38,5 @@ use Google\Cloud\Dialogflow\V2\Gapic\SessionEntityTypesGapicClient;
 class SessionEntityTypesClient extends SessionEntityTypesGapicClient
 {
     // This class is intentionally empty, and is intended to hold manual
-    // additions to the generated {@see SessionEntityTypesClientImpl} class.
+    // additions to the generated {@see SessionEntityTypesGapicClient} class.
 }

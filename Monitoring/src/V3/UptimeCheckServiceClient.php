@@ -38,5 +38,5 @@ use Google\Cloud\Monitoring\V3\Gapic\UptimeCheckServiceGapicClient;
 class UptimeCheckServiceClient extends UptimeCheckServiceGapicClient
 {
     // This class is intentionally empty, and is intended to hold manual
-    // additions to the generated {@see UptimeCheckServiceClientImpl} class.
+    // additions to the generated {@see UptimeCheckServiceGapicClient} class.
 }

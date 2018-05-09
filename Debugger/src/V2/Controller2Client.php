@@ -38,5 +38,5 @@ use Google\Cloud\Debugger\V2\Gapic\Controller2GapicClient;
 class Controller2Client extends Controller2GapicClient
 {
     // This class is intentionally empty, and is intended to hold manual
-    // additions to the generated {@see Controller2ClientImpl} class.
+    // additions to the generated {@see Controller2GapicClient} class.
 }

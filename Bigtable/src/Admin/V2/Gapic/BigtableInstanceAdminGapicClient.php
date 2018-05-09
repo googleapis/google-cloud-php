@@ -36,10 +36,10 @@ use Google\ApiCore\GapicClientTrait;
 use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\OperationResponse;
 use Google\ApiCore\PathTemplate;
+use Google\ApiCore\RequestParamsHeaderDescriptor;
 use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
-use Google\Auth\CredentialsLoader;
 use Google\Cloud\Bigtable\Admin\V2\AppProfile;
 use Google\Cloud\Bigtable\Admin\V2\Cluster;
 use Google\Cloud\Bigtable\Admin\V2\CreateAppProfileRequest;
@@ -69,8 +69,6 @@ use Google\Cloud\Iam\V1\TestIamPermissionsResponse;
 use Google\LongRunning\Operation;
 use Google\Protobuf\FieldMask;
 use Google\Protobuf\GPBEmpty;
-use Grpc\Channel;
-use Grpc\ChannelCredentials;
 
 /**
  * Service Description: Service for creating, configuring, and deleting Cloud Bigtable Instances and
@@ -154,10 +152,19 @@ class BigtableInstanceAdminGapicClient
     const CODEGEN_NAME = 'gapic';
 
     /**
-     * The code generator version, to be included in the agent header.
+     * The default scopes required by the service.
      */
-    const CODEGEN_VERSION = '0.0.5';
-
+    public static $serviceScopes = [
+        'https://www.googleapis.com/auth/bigtable.admin',
+        'https://www.googleapis.com/auth/bigtable.admin.cluster',
+        'https://www.googleapis.com/auth/bigtable.admin.instance',
+        'https://www.googleapis.com/auth/bigtable.admin.table',
+        'https://www.googleapis.com/auth/cloud-bigtable.admin',
+        'https://www.googleapis.com/auth/cloud-bigtable.admin.cluster',
+        'https://www.googleapis.com/auth/cloud-bigtable.admin.table',
+        'https://www.googleapis.com/auth/cloud-platform',
+        'https://www.googleapis.com/auth/cloud-platform.read-only',
+    ];
     private static $projectNameTemplate;
     private static $instanceNameTemplate;
     private static $appProfileNameTemplate;
@@ -171,29 +178,24 @@ class BigtableInstanceAdminGapicClient
     {
         return [
             'serviceName' => self::SERVICE_NAME,
-            'serviceAddress' => self::SERVICE_ADDRESS,
-            'port' => self::DEFAULT_SERVICE_PORT,
-            'scopes' => [
-                'https://www.googleapis.com/auth/bigtable.admin',
-                'https://www.googleapis.com/auth/bigtable.admin.cluster',
-                'https://www.googleapis.com/auth/bigtable.admin.instance',
-                'https://www.googleapis.com/auth/bigtable.admin.table',
-                'https://www.googleapis.com/auth/cloud-bigtable.admin',
-                'https://www.googleapis.com/auth/cloud-bigtable.admin.cluster',
-                'https://www.googleapis.com/auth/cloud-bigtable.admin.table',
-                'https://www.googleapis.com/auth/cloud-platform',
-                'https://www.googleapis.com/auth/cloud-platform.read-only',
-            ],
-            'clientConfigPath' => __DIR__.'/../resources/bigtable_instance_admin_client_config.json',
-            'restClientConfigPath' => __DIR__.'/../resources/bigtable_instance_admin_rest_client_config.php',
+            'serviceAddress' => self::SERVICE_ADDRESS.':'.self::DEFAULT_SERVICE_PORT,
+            'clientConfig' => __DIR__.'/../resources/bigtable_instance_admin_client_config.json',
             'descriptorsConfigPath' => __DIR__.'/../resources/bigtable_instance_admin_descriptor_config.php',
-            'versionFile' => __DIR__.'/../../VERSION',
+            'credentialsConfig' => [
+                'scopes' => self::$serviceScopes,
+            ],
+            'transportConfig' => [
+                'rest' => [
+                    'restClientConfigPath' => __DIR__.'/../resources/bigtable_instance_admin_rest_client_config.php',
+                ],
+            ],
+            'versionFile' => __DIR__.'/../../../VERSION',
         ];
     }
 
     private static function getProjectNameTemplate()
     {
-        if (null == self::$projectNameTemplate) {
+        if (self::$projectNameTemplate == null) {
             self::$projectNameTemplate = new PathTemplate('projects/{project}');
         }
 
@@ -202,7 +204,7 @@ class BigtableInstanceAdminGapicClient
 
     private static function getInstanceNameTemplate()
     {
-        if (null == self::$instanceNameTemplate) {
+        if (self::$instanceNameTemplate == null) {
             self::$instanceNameTemplate = new PathTemplate('projects/{project}/instances/{instance}');
         }
 
@@ -211,7 +213,7 @@ class BigtableInstanceAdminGapicClient
 
     private static function getAppProfileNameTemplate()
     {
-        if (null == self::$appProfileNameTemplate) {
+        if (self::$appProfileNameTemplate == null) {
             self::$appProfileNameTemplate = new PathTemplate('projects/{project}/instances/{instance}/appProfiles/{app_profile}');
         }
 
@@ -220,7 +222,7 @@ class BigtableInstanceAdminGapicClient
 
     private static function getClusterNameTemplate()
     {
-        if (null == self::$clusterNameTemplate) {
+        if (self::$clusterNameTemplate == null) {
             self::$clusterNameTemplate = new PathTemplate('projects/{project}/instances/{instance}/clusters/{cluster}');
         }
 
@@ -229,7 +231,7 @@ class BigtableInstanceAdminGapicClient
 
     private static function getLocationNameTemplate()
     {
-        if (null == self::$locationNameTemplate) {
+        if (self::$locationNameTemplate == null) {
             self::$locationNameTemplate = new PathTemplate('projects/{project}/locations/{location}');
         }
 
@@ -238,7 +240,7 @@ class BigtableInstanceAdminGapicClient
 
     private static function getPathTemplateMap()
     {
-        if (null == self::$pathTemplateMap) {
+        if (self::$pathTemplateMap == null) {
             self::$pathTemplateMap = [
                 'project' => self::getProjectNameTemplate(),
                 'instance' => self::getInstanceNameTemplate(),
@@ -429,65 +431,57 @@ class BigtableInstanceAdminGapicClient
      * @param array $options {
      *                       Optional. Options for configuring the service API wrapper.
      *
-     *     @type string $serviceAddress The domain name of the API remote host.
-     *                                  Default 'bigtableadmin.googleapis.com'.
-     *     @type mixed $port The port on which to connect to the remote host. Default 443.
-     *     @type Channel $channel
-     *           A `Channel` object. If not specified, a channel will be constructed.
-     *           NOTE: This option is only valid when utilizing the gRPC transport.
-     *     @type ChannelCredentials $sslCreds
-     *           A `ChannelCredentials` object for use with an SSL-enabled channel.
-     *           Default: a credentials object returned from
-     *           \Grpc\ChannelCredentials::createSsl().
-     *           NOTE: This option is only valid when utilizing the gRPC transport. Also, if the $channel
-     *           optional argument is specified, then this argument is unused.
-     *     @type bool $forceNewChannel
-     *           If true, this forces gRPC to create a new channel instead of using a persistent channel.
-     *           Defaults to false.
-     *           NOTE: This option is only valid when utilizing the gRPC transport. Also, if the $channel
-     *           optional argument is specified, then this option is unused.
-     *     @type CredentialsLoader $credentialsLoader
-     *           A CredentialsLoader object created using the Google\Auth library.
-     *     @type string[] $scopes A string array of scopes to use when acquiring credentials.
-     *                          Defaults to the scopes for the Cloud Bigtable Admin API.
-     *     @type string $clientConfigPath
-     *           Path to a JSON file containing client method configuration, including retry settings.
-     *           Specify this setting to specify the retry behavior of all methods on the client.
+     *     @type string $serviceAddress
+     *           The address of the API remote host. May optionally include the port, formatted
+     *           as "<uri>:<port>". Default 'bigtableadmin.googleapis.com:443'.
+     *     @type string|array|FetchAuthTokenInterface|CredentialsWrapper $credentials
+     *           The credentials to be used by the client to authorize API calls. This option
+     *           accepts either a path to a credentials file, or a decoded credentials file as a
+     *           PHP array.
+     *           *Advanced usage*: In addition, this option can also accept a pre-constructed
+     *           {@see \Google\Auth\FetchAuthTokenInterface} object or
+     *           {@see \Google\ApiCore\CredentialsWrapper} object. Note that when one of these
+     *           objects are provided, any settings in $credentialsConfig will be ignored.
+     *     @type array $credentialsConfig
+     *           Options used to configure credentials, including auth token caching, for the client.
+     *           For a full list of supporting configuration options, see
+     *           {@see \Google\ApiCore\CredentialsWrapper::build()}.
+     *     @type bool $disableRetries
+     *           Determines whether or not retries defined by the client configuration should be
+     *           disabled. Defaults to `false`.
+     *     @type string|array $clientConfig
+     *           Client method configuration, including retry settings. This option can be either a
+     *           path to a JSON file, or a PHP array containing the decoded JSON data.
      *           By default this settings points to the default client config file, which is provided
-     *           in the resources folder. The retry settings provided in this option can be overridden
-     *           by settings in $retryingOverride
-     *     @type array $retryingOverride
-     *           An associative array in which the keys are method names (e.g. 'createFoo'), and
-     *           the values are retry settings to use for that method. The retry settings for each
-     *           method can be a {@see Google\ApiCore\RetrySettings} object, or an associative array
-     *           of retry settings parameters. See the documentation on {@see Google\ApiCore\RetrySettings}
-     *           for example usage. Passing a value of null is equivalent to a value of
-     *           ['retriesEnabled' => false]. Retry settings provided in this setting override the
-     *           settings in $clientConfigPath.
-     *     @type callable $authHttpHandler A handler used to deliver PSR-7 requests specifically
-     *           for authentication. Should match a signature of
-     *           `function (RequestInterface $request, array $options) : ResponseInterface`.
-     *     @type callable $httpHandler A handler used to deliver PSR-7 requests. Should match a
-     *           signature of `function (RequestInterface $request, array $options) : PromiseInterface`.
-     *           NOTE: This option is only valid when utilizing the REST transport.
-     *     @type string|TransportInterface $transport The transport used for executing network
-     *           requests. May be either the string `rest` or `grpc`. Additionally, it is possible
-     *           to pass in an already instantiated transport. Defaults to `grpc` if gRPC support is
-     *           detected on the system.
+     *           in the resources folder.
+     *     @type string|TransportInterface $transport
+     *           The transport used for executing network requests. May be either the string `rest`
+     *           or `grpc`. Defaults to `grpc` if gRPC support is detected on the system.
+     *           *Advanced usage*: Additionally, it is possible to pass in an already instantiated
+     *           {@see \Google\ApiCore\Transport\TransportInterface} object. Note that when this
+     *           object is provided, any settings in $transportConfig, and any $serviceAddress
+     *           setting, will be ignored.
+     *     @type array $transportConfig
+     *           Configuration options that will be used to construct the transport. Options for
+     *           each supported transport type should be passed in a key for that transport. For
+     *           example:
+     *           $transportConfig = [
+     *               'grpc' => [...],
+     *               'rest' => [...]
+     *           ];
+     *           See the {@see \Google\Cloud\ApiCore\Transport\GrpcTransport::build()} and
+     *           {@see \Google\Cloud\ApiCore\Transport\RestTransport::build()} methods for the
+     *           supported options.
      * }
+     *
+     * @throws ValidationException
      * @experimental
      */
     public function __construct($options = [])
     {
-        $options += self::getClientDefaults();
-        $this->setClientOptions($options);
-        $this->pluckArray([
-            'serviceName',
-            'clientConfigPath',
-            'descriptorsConfigPath',
-        ], $options);
-        $this->operationsClient = $this->pluck('operationsClient', $options, false)
-            ?: new OperationsClient($options);
+        $clientOptions = $this->buildClientOptions($options);
+        $this->setClientOptions($clientOptions);
+        $this->operationsClient = $this->createOperationsClient($clientOptions);
     }
 
     /**
@@ -567,6 +561,13 @@ class BigtableInstanceAdminGapicClient
         $request->setInstance($instance);
         $request->setClusters($clusters);
 
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'parent' => $request->getParent(),
+        ]);
+        $optionalArgs['userHeaders'] = isset($optionalArgs['userHeaders'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['userHeaders'])
+            : $requestParams->getHeader();
+
         return $this->startOperationsCall(
             'CreateInstance',
             $optionalArgs,
@@ -610,6 +611,13 @@ class BigtableInstanceAdminGapicClient
     {
         $request = new GetInstanceRequest();
         $request->setName($name);
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'name' => $request->getName(),
+        ]);
+        $optionalArgs['userHeaders'] = isset($optionalArgs['userHeaders'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['userHeaders'])
+            : $requestParams->getHeader();
 
         return $this->startCall(
             'GetInstance',
@@ -659,6 +667,13 @@ class BigtableInstanceAdminGapicClient
         if (isset($optionalArgs['pageToken'])) {
             $request->setPageToken($optionalArgs['pageToken']);
         }
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'parent' => $request->getParent(),
+        ]);
+        $optionalArgs['userHeaders'] = isset($optionalArgs['userHeaders'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['userHeaders'])
+            : $requestParams->getHeader();
 
         return $this->startCall(
             'ListInstances',
@@ -734,6 +749,13 @@ class BigtableInstanceAdminGapicClient
             $request->setState($optionalArgs['state']);
         }
 
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'name' => $request->getName(),
+        ]);
+        $optionalArgs['userHeaders'] = isset($optionalArgs['userHeaders'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['userHeaders'])
+            : $requestParams->getHeader();
+
         return $this->startCall(
             'UpdateInstance',
             Instance::class,
@@ -751,7 +773,32 @@ class BigtableInstanceAdminGapicClient
      * try {
      *     $instance = new Instance();
      *     $updateMask = new FieldMask();
-     *     $response = $bigtableInstanceAdminClient->partialUpdateInstance($instance, $updateMask);
+     *     $operationResponse = $bigtableInstanceAdminClient->partialUpdateInstance($instance, $updateMask);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *       $result = $operationResponse->getResult();
+     *       // doSomethingWith($result)
+     *     } else {
+     *       $error = $operationResponse->getError();
+     *       // handleError($error)
+     *     }
+     *
+     *     // OR start the operation, keep the operation name, and resume later
+     *     $operationResponse = $bigtableInstanceAdminClient->partialUpdateInstance($instance, $updateMask);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $bigtableInstanceAdminClient->resumeOperation($operationName, 'partialUpdateInstance');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *       $result = $newOperationResponse->getResult();
+     *       // doSomethingWith($result)
+     *     } else {
+     *       $error = $newOperationResponse->getError();
+     *       // handleError($error)
+     *     }
      * } finally {
      *     $bigtableInstanceAdminClient->close();
      * }
@@ -770,7 +817,7 @@ class BigtableInstanceAdminGapicClient
      *          {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
-     * @return \Google\LongRunning\Operation
+     * @return \Google\ApiCore\OperationResponse
      *
      * @throws ApiException if the remote call fails
      * @experimental
@@ -781,11 +828,18 @@ class BigtableInstanceAdminGapicClient
         $request->setInstance($instance);
         $request->setUpdateMask($updateMask);
 
-        return $this->startCall(
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'instance.name' => $request->getInstance()->getName(),
+        ]);
+        $optionalArgs['userHeaders'] = isset($optionalArgs['userHeaders'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['userHeaders'])
+            : $requestParams->getHeader();
+
+        return $this->startOperationsCall(
             'PartialUpdateInstance',
-            Operation::class,
             $optionalArgs,
-            $request
+            $request,
+            $this->getOperationsClient()
         )->wait();
     }
 
@@ -822,6 +876,13 @@ class BigtableInstanceAdminGapicClient
     {
         $request = new DeleteInstanceRequest();
         $request->setName($name);
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'name' => $request->getName(),
+        ]);
+        $optionalArgs['userHeaders'] = isset($optionalArgs['userHeaders'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['userHeaders'])
+            : $requestParams->getHeader();
 
         return $this->startCall(
             'DeleteInstance',
@@ -902,6 +963,13 @@ class BigtableInstanceAdminGapicClient
         $request->setClusterId($clusterId);
         $request->setCluster($cluster);
 
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'parent' => $request->getParent(),
+        ]);
+        $optionalArgs['userHeaders'] = isset($optionalArgs['userHeaders'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['userHeaders'])
+            : $requestParams->getHeader();
+
         return $this->startOperationsCall(
             'CreateCluster',
             $optionalArgs,
@@ -945,6 +1013,13 @@ class BigtableInstanceAdminGapicClient
     {
         $request = new GetClusterRequest();
         $request->setName($name);
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'name' => $request->getName(),
+        ]);
+        $optionalArgs['userHeaders'] = isset($optionalArgs['userHeaders'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['userHeaders'])
+            : $requestParams->getHeader();
 
         return $this->startCall(
             'GetCluster',
@@ -996,6 +1071,13 @@ class BigtableInstanceAdminGapicClient
         if (isset($optionalArgs['pageToken'])) {
             $request->setPageToken($optionalArgs['pageToken']);
         }
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'parent' => $request->getParent(),
+        ]);
+        $optionalArgs['userHeaders'] = isset($optionalArgs['userHeaders'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['userHeaders'])
+            : $requestParams->getHeader();
 
         return $this->startCall(
             'ListClusters',
@@ -1093,6 +1175,13 @@ class BigtableInstanceAdminGapicClient
             $request->setDefaultStorageType($optionalArgs['defaultStorageType']);
         }
 
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'name' => $request->getName(),
+        ]);
+        $optionalArgs['userHeaders'] = isset($optionalArgs['userHeaders'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['userHeaders'])
+            : $requestParams->getHeader();
+
         return $this->startOperationsCall(
             'UpdateCluster',
             $optionalArgs,
@@ -1134,6 +1223,13 @@ class BigtableInstanceAdminGapicClient
     {
         $request = new DeleteClusterRequest();
         $request->setName($name);
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'name' => $request->getName(),
+        ]);
+        $optionalArgs['userHeaders'] = isset($optionalArgs['userHeaders'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['userHeaders'])
+            : $requestParams->getHeader();
 
         return $this->startCall(
             'DeleteCluster',
@@ -1199,6 +1295,13 @@ class BigtableInstanceAdminGapicClient
             $request->setIgnoreWarnings($optionalArgs['ignoreWarnings']);
         }
 
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'parent' => $request->getParent(),
+        ]);
+        $optionalArgs['userHeaders'] = isset($optionalArgs['userHeaders'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['userHeaders'])
+            : $requestParams->getHeader();
+
         return $this->startCall(
             'CreateAppProfile',
             AppProfile::class,
@@ -1247,6 +1350,13 @@ class BigtableInstanceAdminGapicClient
     {
         $request = new GetAppProfileRequest();
         $request->setName($name);
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'name' => $request->getName(),
+        ]);
+        $optionalArgs['userHeaders'] = isset($optionalArgs['userHeaders'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['userHeaders'])
+            : $requestParams->getHeader();
 
         return $this->startCall(
             'GetAppProfile',
@@ -1318,6 +1428,13 @@ class BigtableInstanceAdminGapicClient
             $request->setPageToken($optionalArgs['pageToken']);
         }
 
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'parent' => $request->getParent(),
+        ]);
+        $optionalArgs['userHeaders'] = isset($optionalArgs['userHeaders'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['userHeaders'])
+            : $requestParams->getHeader();
+
         return $this->getPagedListResponse(
             'ListAppProfiles',
             $optionalArgs,
@@ -1340,7 +1457,32 @@ class BigtableInstanceAdminGapicClient
      * try {
      *     $appProfile = new AppProfile();
      *     $updateMask = new FieldMask();
-     *     $response = $bigtableInstanceAdminClient->updateAppProfile($appProfile, $updateMask);
+     *     $operationResponse = $bigtableInstanceAdminClient->updateAppProfile($appProfile, $updateMask);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *       $result = $operationResponse->getResult();
+     *       // doSomethingWith($result)
+     *     } else {
+     *       $error = $operationResponse->getError();
+     *       // handleError($error)
+     *     }
+     *
+     *     // OR start the operation, keep the operation name, and resume later
+     *     $operationResponse = $bigtableInstanceAdminClient->updateAppProfile($appProfile, $updateMask);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $bigtableInstanceAdminClient->resumeOperation($operationName, 'updateAppProfile');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *       $result = $newOperationResponse->getResult();
+     *       // doSomethingWith($result)
+     *     } else {
+     *       $error = $newOperationResponse->getError();
+     *       // handleError($error)
+     *     }
      * } finally {
      *     $bigtableInstanceAdminClient->close();
      * }
@@ -1361,7 +1503,7 @@ class BigtableInstanceAdminGapicClient
      *          {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
-     * @return \Google\LongRunning\Operation
+     * @return \Google\ApiCore\OperationResponse
      *
      * @throws ApiException if the remote call fails
      * @experimental
@@ -1375,11 +1517,18 @@ class BigtableInstanceAdminGapicClient
             $request->setIgnoreWarnings($optionalArgs['ignoreWarnings']);
         }
 
-        return $this->startCall(
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'app_profile.name' => $request->getAppProfile()->getName(),
+        ]);
+        $optionalArgs['userHeaders'] = isset($optionalArgs['userHeaders'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['userHeaders'])
+            : $requestParams->getHeader();
+
+        return $this->startOperationsCall(
             'UpdateAppProfile',
-            Operation::class,
             $optionalArgs,
-            $request
+            $request,
+            $this->getOperationsClient()
         )->wait();
     }
 
@@ -1424,6 +1573,13 @@ class BigtableInstanceAdminGapicClient
         $request = new DeleteAppProfileRequest();
         $request->setName($name);
         $request->setIgnoreWarnings($ignoreWarnings);
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'name' => $request->getName(),
+        ]);
+        $optionalArgs['userHeaders'] = isset($optionalArgs['userHeaders'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['userHeaders'])
+            : $requestParams->getHeader();
 
         return $this->startCall(
             'DeleteAppProfile',
@@ -1476,6 +1632,13 @@ class BigtableInstanceAdminGapicClient
     {
         $request = new GetIamPolicyRequest();
         $request->setResource($resource);
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'resource' => $request->getResource(),
+        ]);
+        $optionalArgs['userHeaders'] = isset($optionalArgs['userHeaders'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['userHeaders'])
+            : $requestParams->getHeader();
 
         return $this->startCall(
             'GetIamPolicy',
@@ -1535,6 +1698,13 @@ class BigtableInstanceAdminGapicClient
         $request->setResource($resource);
         $request->setPolicy($policy);
 
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'resource' => $request->getResource(),
+        ]);
+        $optionalArgs['userHeaders'] = isset($optionalArgs['userHeaders'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['userHeaders'])
+            : $requestParams->getHeader();
+
         return $this->startCall(
             'SetIamPolicy',
             Policy::class,
@@ -1591,6 +1761,13 @@ class BigtableInstanceAdminGapicClient
         $request = new TestIamPermissionsRequest();
         $request->setResource($resource);
         $request->setPermissions($permissions);
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'resource' => $request->getResource(),
+        ]);
+        $optionalArgs['userHeaders'] = isset($optionalArgs['userHeaders'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['userHeaders'])
+            : $requestParams->getHeader();
 
         return $this->startCall(
             'TestIamPermissions',

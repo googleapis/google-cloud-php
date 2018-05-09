@@ -15,18 +15,22 @@
  * limitations under the License.
  */
 
-namespace Google\Cloud\Container\Tests\System;
+namespace Google\Cloud\VideoIntelligence\Tests\System\V1;
 
-use Google\Auth\CredentialsLoader;
-use Google\Cloud\OsLogin\V1beta\OsLoginServiceClient;
-use Google\Cloud\OsLogin\V1beta\LoginProfile;
+use Google\ApiCore\OperationResponse;
+use Google\Cloud\VideoIntelligence\V1\AnnotateVideoResponse;
+use Google\Cloud\VideoIntelligence\V1\VideoIntelligenceServiceClient;
+use Google\Cloud\VideoIntelligence\V1\Feature;
 use PHPUnit\Framework\TestCase;
 
-class OsLoginServiceClientTest extends TestCase
+/**
+ * @group video
+ */
+class VideoIntelligenceServiceClientTest extends TestCase
 {
     protected static $grpcClient;
     protected static $restClient;
-    protected static $clientEmail;
+    protected static $projectId;
     private static $hasSetUp = false;
 
     public function clientProvider()
@@ -48,17 +52,17 @@ class OsLoginServiceClientTest extends TestCase
         $keyFilePath = getenv('GOOGLE_CLOUD_PHP_TESTS_KEY_PATH');
         $keyFileData = json_decode(file_get_contents($keyFilePath), true);
 
-        self::$restClient = new OsLoginServiceClient([
+        self::$restClient = new VideoIntelligenceServiceClient([
             'credentials' => $keyFilePath,
             'transport' => 'rest'
         ]);
 
-        self::$grpcClient = new OsLoginServiceClient([
+        self::$grpcClient = new VideoIntelligenceServiceClient([
             'credentials' => $keyFilePath,
             'transport' => 'grpc'
         ]);
 
-        self::$clientEmail = $keyFileData['client_email'];
+        self::$projectId = $keyFileData['project_id'];
 
         self::$hasSetUp = true;
     }
@@ -66,12 +70,26 @@ class OsLoginServiceClientTest extends TestCase
     /**
      * @dataProvider clientProvider
      */
-    public function testListOperations(OsLoginServiceClient $client)
+    public function testAnnotateVideo(VideoIntelligenceServiceClient $client)
     {
-        $response = $client->getLoginProfile(
-            $client->userName(self::$clientEmail)
-        );
+        $inputUri = "gs://cloudmleap/video/next/animals.mp4";
+        $features = [
+            Feature::LABEL_DETECTION,
+            Feature::SHOT_CHANGE_DETECTION,
+        ];
 
-        $this->assertInstanceOf(LoginProfile::class, $response);
+        $operationResponse = $client->annotateVideo([
+            'inputUri' => $inputUri,
+            'features' => $features
+        ]);
+
+        $this->assertInstanceOf(OperationResponse::class, $operationResponse);
+
+        $operationResponse->pollUntilComplete();
+        $this->assertTrue($operationResponse->operationSucceeded());
+
+        $results = $operationResponse->getResult();
+        $this->assertInstanceOf(AnnotateVideoResponse::class, $results);
+
     }
 }
