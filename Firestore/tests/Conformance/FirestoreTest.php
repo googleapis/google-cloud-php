@@ -17,14 +17,17 @@
 
 namespace Google\Cloud\Firestore\Tests\Conformance;
 
+use Google\ApiCore\Serializer;
+use Google\Cloud\Core\Testing\ArrayHasSameValuesToken;
+use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Core\Timestamp;
 use Google\Cloud\Firestore\Connection\ConnectionInterface;
 use Google\Cloud\Firestore\FieldPath;
 use Google\Cloud\Firestore\FieldValue;
 use Google\Cloud\Firestore\FirestoreClient;
 use Google\Cloud\Firestore\PathTrait;
-use Google\Cloud\Tests\ArrayHasSameValuesToken;
-use Google\ApiCore\Serializer;
+use Google\Cloud\Tests\Conformance\Firestore\FirestoreTestSuite as Message;
+use Google\Protobuf\Internal\CodedInputStream;
 use GuzzleHttp\Client;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
@@ -37,33 +40,38 @@ class FirestoreTest extends TestCase
 {
     use PathTrait;
 
-    const TEST_FILE = 'https://raw.githubusercontent.com/GoogleCloudPlatform/google-cloud-common/master/testing/firestore/testdata/test-suite.binprotos';
+    const TEST_FILE = 'https://github.com/GoogleCloudPlatform/google-cloud-common/raw/master/testing/firestore/testdata/test-suite.binproto';
 
+    private $testTypes = ['get', 'create', 'set', 'update', 'updatePaths', 'delete', 'query'];
     private $client;
     private $connection;
 
     private $skipped = [
-        'create: nested ServerTimestamp field', // need to strip empty maps
-        'create: multiple ServerTimestamp fields', // need to strip empty maps
-        'set: nested ServerTimestamp field', // need to strip empty maps
-        'set: multiple ServerTimestamp fields', //
-        'set-merge: Merge with a field', // need mergeFields support
-        'set-merge: Merge with a nested field', // need mergeFields support
-        'set-merge: Merge field is not a leaf', // need mergeFields support
-        'set-merge: Merge with FieldPaths', // need mergeFields support
-        'set-merge: ServerTimestamp with Merge of both fields', // need mergeFields support
-        'set-merge: If is ServerTimestamp not in Merge, no transform', // need mergeFields support
-        'set-merge: If no ordinary values in Merge, no write', // need mergeFields support
-        'update: ServerTimestamp with dotted field', // need to strip empty maps
-        'update: nested ServerTimestamp field', // need to strip empty maps
-        'update: multiple ServerTimestamp fields', // need to strip empty maps
-        'update-paths: nested ServerTimestamp field', // need to strip empty maps
-        'update-paths: multiple ServerTimestamp fields', // need to strip empty maps
+        // need mergeFields support
+        'set-merge: Merge with a field',
+        'set-merge: Merge with a nested field',
+        'set-merge: Merge field is not a leaf',
+        'set-merge: Merge with FieldPaths',
+        'set-merge: ServerTimestamp with Merge of both fields',
+        'set-merge: If is ServerTimestamp not in Merge, no transform',
+        'set-merge: If no ordinary values in Merge, no write',
+        'set-merge: non-leaf merge field with ServerTimestamp',
+        'set-merge: non-leaf merge field with ServerTimestamp alone',
+
+        // need to strip empty maps
+        'create: nested ServerTimestamp field',
+        'create: multiple ServerTimestamp fields',
+        'set: nested ServerTimestamp field',
+        'update: ServerTimestamp with dotted field',
+        'update: nested ServerTimestamp field',
+        'update: multiple ServerTimestamp fields',
+        'update-paths: nested ServerTimestamp field',
+        'update-paths: multiple ServerTimestamp fields',
     ];
 
     public function setUp()
     {
-        $this->client = \Google\Cloud\Core\Testing\TestHelpers::stub(FirestoreClient::class, [
+        $this->client = TestHelpers::stub(FirestoreClient::class, [
             [
                 'projectId' => 'projectID'
             ]
@@ -107,8 +115,10 @@ class FirestoreTest extends TestCase
                 break;
 
             default :
-                throw \Exception('Invalid test type '. $type);
-                break;
+                $this->markTestSkipped(sprintf(
+                    'Skipped because test type `%s` does not have a handler.',
+                    $type
+                ));
         }
 
         return $this->$method($test);
@@ -361,30 +371,34 @@ class FirestoreTest extends TestCase
 
     public function cases()
     {
-        $types = ['get', 'create', 'set', 'update', 'updatePaths', 'delete'];
-
         $serializer = new Serializer;
+
         $bytes = (new Client)->get(self::TEST_FILE)->getBody();
+        $str = (string)$bytes;
+        $suite = new Message;
+        $suite->mergeFromString($str);
 
-        $index = 0;
-        $len = strlen($bytes);
-        $protos = [];
-        while ($index < $len) {
-            list($proto, $index) = $this->loadProto($bytes, $index);
-            $case = $serializer->encodeMessage($proto);
+        $cases = [];
+        foreach ($suite->getTests() as $test) {
+            $case = $serializer->encodeMessage($test);
+            $matches = array_values(array_intersect($this->testTypes, array_keys($case)));
+            if (!$matches) {
+                $keys = array_keys($case);
+                throw new \Exception(sprintf(
+                    'Unknown test type! Keys were `%s`',
+                    implode(', ', $keys)
+                ));
+            }
 
-            $type = array_values(array_intersect($types, array_keys($case)))[0];
+            $type = $matches[0];
 
-            $protos[] = [$case['description'], $type, $case[$type]];
+            $cases[] = [
+                $case['description'],
+                $type,
+                $case[$type]
+            ];
         }
-        return $protos;
-    }
 
-    private static function loadProto($bytes, $index) {
-        list($num, $index) = \VarInt::decode($bytes, $index);
-        $binProto = substr($bytes, $index, $num);
-        $testProto = new \Tests\Test();
-        $testProto->mergeFromString($binProto);
-        return [$testProto, $index + $num];
+        return $cases;
     }
 }

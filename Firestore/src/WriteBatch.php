@@ -183,16 +183,25 @@ class WriteBatch
     {
         $merge = $this->pluck('merge', $options, false) ?: false;
 
-        if ($merge && empty($fields)) {
+        // If merge is enabled and no fields were provided, error.
+        if ($merge && !$fields) {
             throw new \InvalidArgumentException('Fields list cannot be empty when merging fields.');
         }
 
-        list($fields, $timestamps) = $this->valueMapper->findSentinels($fields);
+        // search for sentinel values and remove them from the list of fields.
+        list($filteredFields, $timestamps, $deletes) = $this->valueMapper->findSentinels($fields);
 
-        if ($fields) {
-            $write = array_filter([
-                'fields' => $this->valueMapper->encodeValues($fields),
-                'updateMask' => $merge ? $this->valueMapper->encodeFieldPaths($fields) : null
+        $hasOnlyTimestamps = !$filteredFields && count($fields) === count($timestamps);
+
+        // Enqueue a write if any of the following conditions are met
+        // - if there are still fields remaining after sentinels were removed
+        // - if the user provided an empty set to begin with
+        // - if the user provided only server timestamp sentinel values AND did not specify merge behavior
+        // - if the user provided only delete sentinel field values.
+        if ($filteredFields || !$fields || ($hasOnlyTimestamps && !$merge) || $deletes) {
+            $write = $this->arrayFilterRemoveNull([
+                'fields' => $this->valueMapper->encodeValues($filteredFields),
+                'updateMask' => $merge ? $this->valueMapper->encodeFieldPaths($filteredFields) : null
             ]);
 
             $this->writes[] = $this->createDatabaseWrite(self::TYPE_UPDATE, $document, $write);
