@@ -1,6 +1,6 @@
 # Google Cloud Redis for PHP
 
-> Idiomatic PHP client for [Google Cloud Redis](https://cloud.google.com/redis).
+> Idiomatic PHP client for [Google Cloud Redis](https://cloud.google.com/memorystore).
 
 [![Latest Stable Version](https://poser.pugx.org/google/cloud-redis/v/stable)](https://packagist.org/packages/google/cloud-redis) [![Packagist](https://img.shields.io/packagist/dm/google/cloud-redis.svg)](https://packagist.org/packages/google/cloud-redis)
 
