@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2017, Google LLC All rights reserved.
+ * Copyright 2017 Google LLC
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions are
@@ -48,15 +48,27 @@ use Google\Rpc\Code;
 use stdClass;
 
 /**
- * @group long_running
+ * @group longrunning
  * @group grpc
  */
 class OperationsClientTest extends GeneratedTest
 {
-    public function setUp($options = [])
+    /**
+     * @return TransportInterface
+     */
+    private function createTransport($deserialize = null)
     {
-        $this->client = new MockOperationsClient([
-            'serviceAddress' => 'test.service.address:443'
+        return new MockTransport($deserialize);
+    }
+
+    /**
+     * @return OperationsClient
+     */
+    private function createClient(array $options = [])
+    {
+        return new OperationsClient($options + [
+            'serviceAddress' => '',
+            'scopes' => [],
         ]);
     }
 
@@ -65,7 +77,10 @@ class OperationsClientTest extends GeneratedTest
      */
     public function getOperationTest()
     {
-        $this->assertTrue($this->client->isExhausted());
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
+
+        $this->assertTrue($transport->isExhausted());
 
         // Mock response
         $name2 = 'name2-1052831874';
@@ -73,23 +88,24 @@ class OperationsClientTest extends GeneratedTest
         $expectedResponse = new Operation();
         $expectedResponse->setName($name2);
         $expectedResponse->setDone($done);
-        $this->client->addResponse($expectedResponse);
+        $transport->addResponse($expectedResponse);
 
         // Mock request
         $name = 'name3373707';
 
-        $response = $this->client->getOperation($name);
+        $response = $client->getOperation($name);
         $this->assertEquals($expectedResponse, $response);
-        $actualRequests = $this->client->popReceivedCalls();
+        $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.longrunning.Operations/GetOperation', $actualFuncCall);
 
-        $val = $actualRequestObject->getName();
-        $this->assertProtobufEquals($name, $val);
+        $actualValue = $actualRequestObject->getName();
 
-        $this->assertTrue($this->client->isExhausted());
+        $this->assertProtobufEquals($name, $actualValue);
+
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -97,7 +113,10 @@ class OperationsClientTest extends GeneratedTest
      */
     public function getOperationExceptionTest()
     {
-        $this->assertTrue($this->client->isExhausted());
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
+
+        $this->assertTrue($transport->isExhausted());
 
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
@@ -109,14 +128,14 @@ class OperationsClientTest extends GeneratedTest
            'status' => 'DATA_LOSS',
            'details' => [],
         ], JSON_PRETTY_PRINT);
-        $this->client->addResponse(null, $status);
+        $transport->addResponse(null, $status);
 
         // Mock request
         $name = 'name3373707';
 
         try {
-            $this->client->getOperation($name);
-            // If the $this->client method call did not throw, fail the test
+            $client->getOperation($name);
+            // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -124,8 +143,8 @@ class OperationsClientTest extends GeneratedTest
         }
 
         // Call popReceivedCalls to ensure the stub is exhausted
-        $this->client->popReceivedCalls();
-        $this->assertTrue($this->client->isExhausted());
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -133,7 +152,10 @@ class OperationsClientTest extends GeneratedTest
      */
     public function listOperationsTest()
     {
-        $this->assertTrue($this->client->isExhausted());
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
+
+        $this->assertTrue($transport->isExhausted());
 
         // Mock response
         $nextPageToken = '';
@@ -142,29 +164,31 @@ class OperationsClientTest extends GeneratedTest
         $expectedResponse = new ListOperationsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setOperations($operations);
-        $this->client->addResponse($expectedResponse);
+        $transport->addResponse($expectedResponse);
 
         // Mock request
         $name = 'name3373707';
         $filter = 'filter-1274492040';
 
-        $response = $this->client->listOperations($name, $filter);
+        $response = $client->listOperations($name, $filter);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
         $this->assertEquals($expectedResponse->getOperations()[0], $resources[0]);
 
-        $actualRequests = $this->client->popReceivedCalls();
+        $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.longrunning.Operations/ListOperations', $actualFuncCall);
 
-        $actualName = $actualRequestObject->getName();
-        $this->assertProtobufEquals($name, $actualName);
-        $actualFilter = $actualRequestObject->getFilter();
-        $this->assertProtobufEquals($filter, $actualFilter);
-        $this->assertTrue($this->client->isExhausted());
+        $actualValue = $actualRequestObject->getName();
+
+        $this->assertProtobufEquals($name, $actualValue);
+        $actualValue = $actualRequestObject->getFilter();
+
+        $this->assertProtobufEquals($filter, $actualValue);
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -172,7 +196,10 @@ class OperationsClientTest extends GeneratedTest
      */
     public function listOperationsExceptionTest()
     {
-        $this->assertTrue($this->client->isExhausted());
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
+
+        $this->assertTrue($transport->isExhausted());
 
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
@@ -184,15 +211,15 @@ class OperationsClientTest extends GeneratedTest
            'status' => 'DATA_LOSS',
            'details' => [],
         ], JSON_PRETTY_PRINT);
-        $this->client->addResponse(null, $status);
+        $transport->addResponse(null, $status);
 
         // Mock request
         $name = 'name3373707';
         $filter = 'filter-1274492040';
 
         try {
-            $this->client->listOperations($name, $filter);
-            // If the $this->client method call did not throw, fail the test
+            $client->listOperations($name, $filter);
+            // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -200,8 +227,8 @@ class OperationsClientTest extends GeneratedTest
         }
 
         // Call popReceivedCalls to ensure the stub is exhausted
-        $this->client->popReceivedCalls();
-        $this->assertTrue($this->client->isExhausted());
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -209,26 +236,30 @@ class OperationsClientTest extends GeneratedTest
      */
     public function cancelOperationTest()
     {
-        $this->assertTrue($this->client->isExhausted());
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
+
+        $this->assertTrue($transport->isExhausted());
 
         // Mock response
         $expectedResponse = new GPBEmpty();
-        $this->client->addResponse($expectedResponse);
+        $transport->addResponse($expectedResponse);
 
         // Mock request
         $name = 'name3373707';
 
-        $this->client->cancelOperation($name);
-        $actualRequests = $this->client->popReceivedCalls();
+        $client->cancelOperation($name);
+        $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.longrunning.Operations/CancelOperation', $actualFuncCall);
 
-        $actualName = $actualRequestObject->getName();
-        $this->assertProtobufEquals($name, $actualName);
+        $actualValue = $actualRequestObject->getName();
 
-        $this->assertTrue($this->client->isExhausted());
+        $this->assertProtobufEquals($name, $actualValue);
+
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -236,7 +267,10 @@ class OperationsClientTest extends GeneratedTest
      */
     public function cancelOperationExceptionTest()
     {
-        $this->assertTrue($this->client->isExhausted());
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
+
+        $this->assertTrue($transport->isExhausted());
 
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
@@ -248,14 +282,14 @@ class OperationsClientTest extends GeneratedTest
            'status' => 'DATA_LOSS',
            'details' => [],
         ], JSON_PRETTY_PRINT);
-        $this->client->addResponse(null, $status);
+        $transport->addResponse(null, $status);
 
         // Mock request
         $name = 'name3373707';
 
         try {
-            $this->client->cancelOperation($name);
-            // If the $this->client method call did not throw, fail the test
+            $client->cancelOperation($name);
+            // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -263,8 +297,8 @@ class OperationsClientTest extends GeneratedTest
         }
 
         // Call popReceivedCalls to ensure the stub is exhausted
-        $this->client->popReceivedCalls();
-        $this->assertTrue($this->client->isExhausted());
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -272,26 +306,30 @@ class OperationsClientTest extends GeneratedTest
      */
     public function deleteOperationTest()
     {
-        $this->assertTrue($this->client->isExhausted());
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
+
+        $this->assertTrue($transport->isExhausted());
 
         // Mock response
         $expectedResponse = new GPBEmpty();
-        $this->client->addResponse($expectedResponse);
+        $transport->addResponse($expectedResponse);
 
         // Mock request
         $name = 'name3373707';
 
-        $this->client->deleteOperation($name);
-        $actualRequests = $this->client->popReceivedCalls();
+        $client->deleteOperation($name);
+        $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.longrunning.Operations/DeleteOperation', $actualFuncCall);
 
-        $actualName = $actualRequestObject->getName();
-        $this->assertProtobufEquals($name, $actualName);
+        $actualValue = $actualRequestObject->getName();
 
-        $this->assertTrue($this->client->isExhausted());
+        $this->assertProtobufEquals($name, $actualValue);
+
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -299,7 +337,10 @@ class OperationsClientTest extends GeneratedTest
      */
     public function deleteOperationExceptionTest()
     {
-        $this->assertTrue($this->client->isExhausted());
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
+
+        $this->assertTrue($transport->isExhausted());
 
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
@@ -311,14 +352,14 @@ class OperationsClientTest extends GeneratedTest
            'status' => 'DATA_LOSS',
            'details' => [],
         ], JSON_PRETTY_PRINT);
-        $this->client->addResponse(null, $status);
+        $transport->addResponse(null, $status);
 
         // Mock request
         $name = 'name3373707';
 
         try {
-            $this->client->deleteOperation($name);
-            // If the $this->client method call did not throw, fail the test
+            $client->deleteOperation($name);
+            // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -326,36 +367,7 @@ class OperationsClientTest extends GeneratedTest
         }
 
         // Call popReceivedCalls to ensure the stub is exhausted
-        $this->client->popReceivedCalls();
-        $this->assertTrue($this->client->isExhausted());
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
     }
 }
-
-class MockOperationsClient extends OperationsClient
-{
-    protected $transport;
-
-    public function __construct($args = [])
-    {
-        $args['scopes'] = [];
-        $args['transport'] = new MockTransport;
-        $this->transport = $args['transport'];
-        parent::__construct($args);
-    }
-
-    public function isExhausted()
-    {
-        return $this->transport->isExhausted();
-    }
-
-    public function addResponse($response, $status = null)
-    {
-        return $this->transport->addResponse($response, $status);
-    }
-
-    public function popReceivedCalls()
-    {
-        return $this->transport->popReceivedCalls();
-    }
-}
-

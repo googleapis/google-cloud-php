@@ -32,7 +32,7 @@
 
 namespace Google\ApiCore\Tests\Unit\Transport;
 
-use Google\ApiCore\AuthWrapper;
+use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Call;
 use Google\ApiCore\RequestBuilder;
 use Google\ApiCore\Testing\MockRequest;
