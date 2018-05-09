@@ -21,14 +21,17 @@ use Google\ApiCore\Serializer;
 use Google\Cloud\Core\Testing\ArrayHasSameValuesToken;
 use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Core\Timestamp;
+use Google\Cloud\Firestore\CollectionReference;
 use Google\Cloud\Firestore\Connection\ConnectionInterface;
+use Google\Cloud\Firestore\DocumentReference;
+use Google\Cloud\Firestore\DocumentSnapshot;
 use Google\Cloud\Firestore\FieldPath;
 use Google\Cloud\Firestore\FieldValue;
 use Google\Cloud\Firestore\FirestoreClient;
 use Google\Cloud\Firestore\PathTrait;
+use Google\Cloud\Firestore\ValueMapper;
 use Google\Cloud\Tests\Conformance\Firestore\FirestoreTestSuite as Message;
 use Google\Protobuf\Internal\CodedInputStream;
-use GuzzleHttp\Client;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
 use Prophecy\Exception\Call\UnexpectedCallException;
@@ -40,13 +43,14 @@ class FirestoreTest extends TestCase
 {
     use PathTrait;
 
-    const TEST_FILE = 'https://github.com/GoogleCloudPlatform/google-cloud-common/raw/master/testing/firestore/testdata/test-suite.binproto';
+    private static $cases = [];
+    private static $skipped = [];
 
     private $testTypes = ['get', 'create', 'set', 'update', 'updatePaths', 'delete', 'query'];
     private $client;
     private $connection;
 
-    private $skipped = [
+    private $excludes = [
         // need mergeFields support
         'set-merge: Merge with a field',
         'set-merge: Merge with a nested field',
@@ -57,16 +61,7 @@ class FirestoreTest extends TestCase
         'set-merge: If no ordinary values in Merge, no write',
         'set-merge: non-leaf merge field with ServerTimestamp',
         'set-merge: non-leaf merge field with ServerTimestamp alone',
-
-        // need to strip empty maps
-        'create: nested ServerTimestamp field',
-        'create: multiple ServerTimestamp fields',
-        'set: nested ServerTimestamp field',
-        'update: ServerTimestamp with dotted field',
-        'update: nested ServerTimestamp field',
-        'update: multiple ServerTimestamp fields',
-        'update-paths: nested ServerTimestamp field',
-        'update-paths: multiple ServerTimestamp fields',
+        "set-merge: Delete with merge",
     ];
 
     public function setUp()
@@ -80,51 +75,10 @@ class FirestoreTest extends TestCase
     }
 
     /**
-     * @dataProvider cases
+     * @dataProvider getCases
+     * @group firestore-get
      */
-    public function testConformance($description, $type, array $test)
-    {
-        if (in_array($description, $this->skipped)) {
-            $this->markTestSkipped('manually skipped '. $description);
-            return;
-        }
-
-        switch ($type) {
-            case 'get':
-                $method = 'runGet';
-                break;
-
-            case 'create':
-                $method = 'runCreate';
-                break;
-
-            case 'set':
-                $method = 'runSet';
-                break;
-
-            case 'update':
-                $method = 'runUpdate';
-                break;
-
-            case 'updatePaths':
-                $method = 'runUpdatePaths';
-                break;
-
-            case 'delete':
-                $method = 'runDelete';
-                break;
-
-            default :
-                $this->markTestSkipped(sprintf(
-                    'Skipped because test type `%s` does not have a handler.',
-                    $type
-                ));
-        }
-
-        return $this->$method($test);
-    }
-
-    private function runGet($test)
+    public function testGet($test)
     {
         $this->connection->batchGetDocuments(Argument::withEntry('documents', [$test['request']['name']]))
             ->shouldBeCalled()
@@ -134,7 +88,11 @@ class FirestoreTest extends TestCase
         $this->client->document($this->relativeName($test['docRefPath']))->snapshot();
     }
 
-    private function runCreate($test)
+    /**
+     * @dataProvider createCases
+     * @group firestore-create
+     */
+    public function testCreate($test)
     {
         if (isset($test['request'])) {
             $request = $test['request'];
@@ -164,7 +122,11 @@ class FirestoreTest extends TestCase
         }
     }
 
-    private function runSet($test)
+    /**
+     * @dataProvider setCases
+     * @group firestore-set
+     */
+    public function testSet($test)
     {
         if (isset($test['request'])) {
             $request = $test['request'];
@@ -199,7 +161,11 @@ class FirestoreTest extends TestCase
         }
     }
 
-    private function runUpdate($test)
+    /**
+     * @dataProvider updateCases
+     * @group firestore-update
+     */
+    public function testUpdate($test)
     {
         if (isset($test['request'])) {
             $request = $test['request'];
@@ -238,7 +204,11 @@ class FirestoreTest extends TestCase
         }
     }
 
-    private function runUpdatePaths($test)
+    /**
+     * @dataProvider updatePathsCases
+     * @group firestore-updatepaths
+     */
+    public function testUpdatePaths($test)
     {
         if (isset($test['request'])) {
             $request = $test['request'];
@@ -281,7 +251,11 @@ class FirestoreTest extends TestCase
         }
     }
 
-    private function runDelete($test)
+    /**
+     * @dataProvider deleteCases
+     * @group firestore-delete
+     */
+    public function testDelete($test)
     {
         if (isset($test['request'])) {
             $request = $test['request'];
@@ -311,6 +285,122 @@ class FirestoreTest extends TestCase
         if (isset($test['isError']) && $test['isError']) {
             $this->assertTrue($hasError);
         }
+    }
+
+    /**
+     * @dataProvider queryCases
+     * @group firestore-query
+     */
+    public function testQuery($test, $desc)
+    {
+        $times = (isset($test['isError']) && $test['isError']) ? 0 : 1;
+        $this->connection->runQuery(new ArrayHasSameValuesToken([
+            'parent' => $this->parentPath($test['collPath']),
+            'structuredQuery' => isset($test['query']) ? $test['query'] : [],
+            'retries' => 0
+        ]))->shouldBeCalledTimes($times)->willReturn(new \ArrayIterator([]));
+
+        $this->client->___setProperty('connection', $this->connection->reveal());
+
+        $query = $this->client->collection($this->relativeName($test['collPath']));
+
+        $hasError = false;
+        try {
+            foreach ($test['clauses'] as $clause) {
+                $name = array_keys($clause)[0];
+                switch ($name) {
+                    case 'select':
+                        $fields = [];
+                        foreach ($clause['select']['fields'] as $field) {
+                            $fields[] = $field['field'][0];
+                        }
+
+                        $query = $query->select($fields);
+                        break;
+
+                    case 'where':
+                        $query = $query->where(
+                            $clause['where']['path']['field'][0],
+                            $clause['where']['op'],
+                            $this->injectSentinel(json_decode($clause['where']['jsonValue'], true))
+                        );
+                        break;
+
+                    case 'offset':
+                        $query = $query->offset($clause['offset']);
+                        break;
+
+                    case 'limit':
+                        $query = $query->limit($clause['limit']);
+                        break;
+
+                    case 'orderBy':
+                        $query = $query->orderBy(
+                            $clause['orderBy']['path']['field'][0],
+                            $clause['orderBy']['direction']
+                        );
+                        break;
+
+                    case 'startAt':
+                    case 'startAfter':
+                    case 'endBefore':
+                    case 'endAt':
+                        $values = [];
+                        if (isset($clause[$name]['jsonValues'])) {
+                            foreach ($clause[$name]['jsonValues'] as $value) {
+                                $values[] = $this->injectSentinel(json_decode($value, true));
+                            }
+                        }
+
+                        if (isset($clause[$name]['docSnapshot'])) {
+                            $coll = $this->prophesize(CollectionReference::class);
+                            $coll->name()->willReturn($this->parentPath($clause[$name]['docSnapshot']['path']));
+                            $ref = $this->prophesize(DocumentReference::class);
+                            $ref->parent()->willReturn($coll->reveal());
+                            $ref->name()->willReturn($clause[$name]['docSnapshot']['path']);
+
+                            $mapper = new ValueMapper(
+                                $this->prophesize(ConnectionInterface::class)->reveal(),
+                                false
+                            );
+
+                            $values = new DocumentSnapshot(
+                                $ref->reveal(),
+                                $mapper,
+                                [],
+                                json_decode($clause[$name]['docSnapshot']['jsonData'], true),
+                                true
+                            );
+                        }
+
+                        $query = $query->$name($values);
+                        break;
+
+                    default:
+                        throw new \RuntimeException('clause '. $name .' is not handled');
+                }
+            }
+
+            $query->documents(['maxRetries' => 0]);
+        } catch (UnexpectedCallException $e) {
+            throw $e;
+        } catch (\Exception $e) {
+            $hasError = true;
+        }
+
+        if (isset($test['isError']) && $test['isError']) {
+            $this->assertTrue($hasError);
+        }
+    }
+
+    /**
+     * Report skipped cases for measurement purposes.
+     *
+     * @dataProvider skippedCases
+     */
+    public function testSkipped($desc)
+    {
+        $this->markTestSkipped($desc);
     }
 
     private function formatOptions(array $test)
@@ -369,12 +459,29 @@ class FirestoreTest extends TestCase
         return $value;
     }
 
-    public function cases()
+    public function cases($type)
     {
+        $cases = array_filter($this->setupCases(), function ($case) use ($type) {
+            return $case['type'] === $type;
+        });
+
+        $res = [];
+        foreach ($cases as $case) {
+            $res[$case['description']] = [$case['test'], $case['description']];
+        }
+
+        return $res;
+    }
+
+    private function setupCases()
+    {
+        if (self::$cases) {
+            return self::$cases;
+        }
+
         $serializer = new Serializer;
 
-        $bytes = (new Client)->get(self::TEST_FILE)->getBody();
-        $str = (string)$bytes;
+        $str = file_get_contents(__DIR__ . '/proto/firestore-test-suite.binproto');
         $suite = new Message;
         $suite->mergeFromString($str);
 
@@ -392,13 +499,28 @@ class FirestoreTest extends TestCase
 
             $type = $matches[0];
 
+            if (in_array($case['description'], $this->excludes)) {
+                self::$skipped[] = [$case['description']];
+                continue;
+            }
+
             $cases[] = [
-                $case['description'],
-                $type,
-                $case[$type]
+                'description' => $case['description'],
+                'type' => $type,
+                'test' => $case[$type]
             ];
         }
 
+        self::$cases = $cases;
         return $cases;
     }
+
+    public function getCases() { return $this->cases('get'); }
+    public function createCases() { return $this->cases('create'); }
+    public function setCases() { return $this->cases('set'); }
+    public function updateCases() { return $this->cases('update'); }
+    public function updatePathsCases() { return $this->cases('updatePaths'); }
+    public function deleteCases() { return $this->cases('delete'); }
+    public function queryCases() { return $this->cases('query'); }
+    public function skippedCases() { return self::$skipped; }
 }

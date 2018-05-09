@@ -233,6 +233,9 @@ class ValueMapper
             $currPath = $path . (string) $this->escapePathPart($key);
             if (is_array($value)) {
                 $fields[$key] = $this->removeSentinel($value, $timestamps, $deletes, $currPath);
+                if (empty($fields[$key])) {
+                    unset($fields[$key]);
+                }
             } else {
                 if ($value === FieldValue::deleteField() || $value === FieldValue::serverTimestamp()) {
                     if ($value === FieldValue::deleteField()) {
@@ -429,7 +432,7 @@ class ValueMapper
             return ['geoPointValue' => $value->point()];
         }
 
-        if ($value instanceof DocumentReference) {
+        if ($value instanceof DocumentReference || $value instanceof DocumentSnapshot) {
             return ['referenceValue' => $value->name()];
         }
 

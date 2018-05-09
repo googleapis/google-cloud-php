@@ -199,9 +199,13 @@ class WriteBatch
         // - if the user provided only server timestamp sentinel values AND did not specify merge behavior
         // - if the user provided only delete sentinel field values.
         if ($filteredFields || !$fields || ($hasOnlyTimestamps && !$merge) || $deletes) {
+            $mask = $merge
+                ? array_merge($this->valueMapper->encodeFieldPaths($filteredFields), $deletes)
+                : null;
+
             $write = $this->arrayFilterRemoveNull([
                 'fields' => $this->valueMapper->encodeValues($filteredFields),
-                'updateMask' => $merge ? $this->valueMapper->encodeFieldPaths($filteredFields) : null
+                'updateMask' => $mask
             ]);
 
             $this->writes[] = $this->createDatabaseWrite(self::TYPE_UPDATE, $document, $write);

@@ -233,13 +233,23 @@ class WriteBatchTest extends TestCase
     {
         $this->batch->set($ref, [
             'hello' => FieldValue::deleteField(),
-            'world' => FieldValue::serverTimestamp()
+            'world' => FieldValue::serverTimestamp(),
+            'foo' => 'bar'
         ]);
 
         $this->commitAndAssert([
             'database' => sprintf('projects/%s/databases/%s', self::PROJECT, self::DATABASE),
             'writes' => [
                 [
+                    'update' => [
+                        'name' => $name,
+                        'fields' => [
+                            'foo' => [
+                                'stringValue' => 'bar'
+                            ]
+                        ]
+                    ]
+                ], [
                     'transform' => [
                         'document' => $name,
                         'fieldTransforms' => [
