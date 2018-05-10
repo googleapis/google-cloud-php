@@ -202,7 +202,6 @@ class ValueMapper
         $definition = null;
         if (is_array($type)) {
             $type += [
-                0 => null,
                 1 => null,
                 2 => null
             ];
@@ -437,11 +436,8 @@ class ValueMapper
         // the order given.
         $values = [];
         if (is_array($value)) {
-            $keys = array_keys($value);
-            $vals = array_values($value);
-            foreach ($vals as $idx => $val) {
-                $name = $keys[$idx];
-
+            $idx = 0;
+            foreach ($value as $name => $val) {
                 if (!isset($values[$name])) {
                     $values[$name] = [];
                 }
@@ -453,6 +449,8 @@ class ValueMapper
                     'index' => $idx,
                     'value' => $val
                 ];
+
+                $idx++;
             }
         } elseif ($value instanceof StructValue) {
             foreach ($value->values() as $idx => $val) {

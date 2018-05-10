@@ -27,7 +27,7 @@ use Google\Cloud\Core\Testing\System\SystemTestCase;
 class SpannerTestCase extends SystemTestCase
 {
     const TESTING_PREFIX = 'gcloud_testing_';
-    const INSTANCE_NAME = 'jdp-spanner-devel'; //'google-cloud-php-system-tests';
+    const INSTANCE_NAME = 'google-cloud-php-system-tests';
 
     const TEST_TABLE_NAME = 'Users';
     const TEST_INDEX_NAME = 'uniqueIndex';

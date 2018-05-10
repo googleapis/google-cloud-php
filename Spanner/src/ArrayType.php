@@ -48,6 +48,10 @@ namespace Google\Cloud\Spanner;
  *
  * ```
  * // Arrays may contain structs.
+ * use Google\Cloud\Spanner\ArrayType;
+ * use Google\Cloud\Spanner\Database;
+ * use Google\Cloud\Spanner\StructType;
+ *
  * $arrayType = new ArrayType(
  *     (new StructType)
  *         ->add('companyName', Database::TYPE_STRING)
@@ -58,12 +62,12 @@ namespace Google\Cloud\Spanner;
 class ArrayType
 {
     /**
-     * @var int
+     * @var int|null
      */
     private $type;
 
     /**
-     * @var mixed
+     * @var StructType|null
      */
     private $structType;
 
@@ -78,8 +82,6 @@ class ArrayType
      *        Spanner, and attempts to use `Database::TYPE_ARRAY` will result in
      *        an exception. If null is given, Google Cloud PHP will attempt to
      *        infer the array type.
-     * @param StructType $structType [optional] A nested struct parameter type
-     *        declaration.
      * @throws \InvalidArgumentException If an invalid type is provided, or if
      *        a struct is defined but the given type is not
      *        `Database::TYPE_STRUCT`.
@@ -120,7 +122,7 @@ class ArrayType
      * Get the array value type.
      *
      * @access private
-     * @return int
+     * @return int|null
      */
     public function type()
     {

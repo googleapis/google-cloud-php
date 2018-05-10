@@ -130,6 +130,12 @@ class StructTypeTest extends SnippetTestCase
         $this->assertEquals('John Testuser', $res->returnVal());
     }
 
+    public function testConstruct()
+    {
+        $snippet = $this->snippetFromMethod(StructType::class, '__construct');
+        $snippet->invoke();
+    }
+
     public function testAdd()
     {
         $snippet = $this->snippetFromMethod(StructType::class, 'add');

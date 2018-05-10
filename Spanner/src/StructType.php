@@ -54,6 +54,25 @@ class StructType
     private $fields = [];
 
     /**
+     * Example:
+     * ```
+     * use Google\Cloud\Spanner\ArrayType;
+     * use Google\Cloud\Spanner\Database;
+     * use Google\Cloud\Spanner\StructType;
+     *
+     * $structType = new StructType([
+     *     [
+     *         'name' => 'stringField',
+     *         'type' => Database::TYPE_STRING
+     *     ],
+     *     [
+     *         'name' => 'arrayField',
+     *         'type' => Database::TYPE_ARRAY,
+     *         'child' => new ArrayType(Database::TYPE_STRING)
+     *     ]
+     * ]);
+     * ```
+     *
      * @param array[] $fields An array containing a field definition. Each field
      *        must be of form `[(string|null) $name, (int) $type, (ArrayType|StructType|null) $child]`.
      */
@@ -107,7 +126,7 @@ class StructType
      * $structType->add('customer', $customer);
      * ```
      *
-     * @param string $name The field name.
+     * @param string|null $name The field name.
      * @param int|ArrayType|StructType $type $type A value type code or nested
      *        struct or array definition. Accepted integer values are defined as
      *        constants on {@see Google\Cloud\Spanner\Database}, and are as

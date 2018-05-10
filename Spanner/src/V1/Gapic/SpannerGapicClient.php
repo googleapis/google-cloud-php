@@ -31,8 +31,6 @@
 namespace Google\Cloud\Spanner\V1\Gapic;
 
 use Google\ApiCore\ApiException;
-use Google\ApiCore\Serializer;
-
 use Google\ApiCore\Call;
 use Google\ApiCore\GapicClientTrait;
 use Google\ApiCore\PathTemplate;

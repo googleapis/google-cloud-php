@@ -267,7 +267,6 @@ trait TransactionalReadTrait
      *
      * @see https://cloud.google.com/spanner/reference/rpc/google.spanner.v1#google.spanner.v1.ReadRequest ReadRequest
      *
-     * @codingStandardsIgnoreStart
      * @param string $table The table name.
      * @param KeySet $keySet The KeySet to select rows.
      * @param array $columns A list of column names to return.
@@ -277,7 +276,6 @@ trait TransactionalReadTrait
      *     @type string $index The name of an index on the table.
      *     @type int $limit The number of results to return.
      * }
-     * @codingStandardsIgnoreEnd
      * @return Result
      */
     public function read($table, KeySet $keySet, array $columns, array $options = [])
