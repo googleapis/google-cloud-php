@@ -87,7 +87,7 @@ class QueryTest extends \Google\Protobuf\Internal\Message
 
     /**
      * Generated from protobuf field <code>.google.firestore.v1beta1.StructuredQuery query = 3;</code>
-     * @return \Google\Firestore\V1beta1\StructuredQuery
+     * @return \Google\Cloud\Firestore\V1beta1\StructuredQuery
      */
     public function getQuery()
     {
@@ -96,12 +96,12 @@ class QueryTest extends \Google\Protobuf\Internal\Message
 
     /**
      * Generated from protobuf field <code>.google.firestore.v1beta1.StructuredQuery query = 3;</code>
-     * @param \Google\Firestore\V1beta1\StructuredQuery $var
+     * @param \Google\Cloud\Firestore\V1beta1\StructuredQuery $var
      * @return $this
      */
     public function setQuery($var)
     {
-        GPBUtil::checkMessage($var, \Google\Firestore\V1beta1\StructuredQuery::class);
+        GPBUtil::checkMessage($var, \Google\Cloud\Firestore\V1beta1\StructuredQuery::class);
         $this->query = $var;
 
         return $this;

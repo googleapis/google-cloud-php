@@ -63,7 +63,7 @@ class GetTest extends \Google\Protobuf\Internal\Message
      * The request that the call should send to the Firestore service.
      *
      * Generated from protobuf field <code>.google.firestore.v1beta1.GetDocumentRequest request = 2;</code>
-     * @return \Google\Firestore\V1beta1\GetDocumentRequest
+     * @return \Google\Cloud\Firestore\V1beta1\GetDocumentRequest
      */
     public function getRequest()
     {
@@ -74,12 +74,12 @@ class GetTest extends \Google\Protobuf\Internal\Message
      * The request that the call should send to the Firestore service.
      *
      * Generated from protobuf field <code>.google.firestore.v1beta1.GetDocumentRequest request = 2;</code>
-     * @param \Google\Firestore\V1beta1\GetDocumentRequest $var
+     * @param \Google\Cloud\Firestore\V1beta1\GetDocumentRequest $var
      * @return $this
      */
     public function setRequest($var)
     {
-        GPBUtil::checkMessage($var, \Google\Firestore\V1beta1\GetDocumentRequest::class);
+        GPBUtil::checkMessage($var, \Google\Cloud\Firestore\V1beta1\GetDocumentRequest::class);
         $this->request = $var;
 
         return $this;

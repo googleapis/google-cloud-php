@@ -232,7 +232,6 @@ class WriteBatchTest extends TestCase
     public function testSetSentinels($name, $ref)
     {
         $this->batch->set($ref, [
-            'hello' => FieldValue::deleteField(),
             'world' => FieldValue::serverTimestamp(),
             'foo' => 'bar'
         ]);
@@ -261,6 +260,18 @@ class WriteBatchTest extends TestCase
                     ]
                 ]
             ]
+        ]);
+    }
+
+    /**
+     * @dataProvider documents
+     * @expectedException InvalidArgumentException
+     * @expectedExceptionMessage Delete cannot appear in data unless `$options['merge']` is set.
+     */
+    public function testSetSentinelsDeleteRequiresMerge($name, $ref)
+    {
+        $this->batch->set($ref, [
+            'hello' => FieldValue::DeleteField(),
         ]);
     }
 

@@ -52,12 +52,12 @@ class ListenTest extends \Google\Protobuf\Internal\Message
 
     /**
      * Generated from protobuf field <code>repeated .google.firestore.v1beta1.ListenResponse responses = 1;</code>
-     * @param \Google\Firestore\V1beta1\ListenResponse[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Firestore\V1beta1\ListenResponse[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setResponses($var)
     {
-        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Firestore\V1beta1\ListenResponse::class);
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Firestore\V1beta1\ListenResponse::class);
         $this->responses = $arr;
 
         return $this;

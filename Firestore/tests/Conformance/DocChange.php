@@ -59,7 +59,7 @@ class DocChange extends \Google\Protobuf\Internal\Message
 
     /**
      * Generated from protobuf field <code>.google.firestore.v1beta1.Document doc = 2;</code>
-     * @return \Google\Firestore\V1beta1\Document
+     * @return \Google\Cloud\Firestore\V1beta1\Document
      */
     public function getDoc()
     {
@@ -68,12 +68,12 @@ class DocChange extends \Google\Protobuf\Internal\Message
 
     /**
      * Generated from protobuf field <code>.google.firestore.v1beta1.Document doc = 2;</code>
-     * @param \Google\Firestore\V1beta1\Document $var
+     * @param \Google\Cloud\Firestore\V1beta1\Document $var
      * @return $this
      */
     public function setDoc($var)
     {
-        GPBUtil::checkMessage($var, \Google\Firestore\V1beta1\Document::class);
+        GPBUtil::checkMessage($var, \Google\Cloud\Firestore\V1beta1\Document::class);
         $this->doc = $var;
 
         return $this;

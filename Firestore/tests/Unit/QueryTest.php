@@ -817,6 +817,10 @@ class QueryTest extends TestCase
     {
         $ref = $this->prophesize(DocumentReference::class);
         $ref->name()->willReturn(self::PARENT .'/whatev/john');
+
+        $col = $this->prophesize(CollectionReference::class);
+        $col->name()->willReturn(self::PARENT .'/whatev/john');
+        $ref->parent()->willReturn($col->reveal());
         $this->query->orderBy(Query::DOCUMENT_ID)->startAt([$ref->reveal()]);
     }
 

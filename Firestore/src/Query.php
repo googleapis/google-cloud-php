@@ -276,7 +276,7 @@ class Query
     public function where($fieldPath, $operator, $value)
     {
         if (FieldValue::isSentinelValue($value)) {
-            throw new \InvalidArgumentException('Value cannot be a sentinel value.');
+            throw new \InvalidArgumentException('Value cannot be a `Google\Cloud\Firestore\FieldType` value.');
         }
 
         $escapedFieldPath = $this->valueMapper->escapeFieldPath($fieldPath);
@@ -566,7 +566,7 @@ class Query
                 }
 
                 if (FieldValue::isSentinelValue($value)) {
-                    throw new \InvalidArgumentException('Value cannot be a sentinel value.');
+                    throw new \InvalidArgumentException('Value cannot be a `Google\Cloud\Firestore\FieldType` value.');
                 }
             }
         }
@@ -586,20 +586,33 @@ class Query
                 );
 
                 if (is_string($value)) {
-                    $c = new CollectionReference(
+                    $parent = new CollectionReference(
                         $this->connection,
                         $this->valueMapper,
                         $collection
                     );
 
+                    $name = $this->childPath($collection, $value);
                     $value = new DocumentReference(
                         $this->connection,
                         $this->valueMapper,
-                        $c,
-                        $this->childPath($collection, $value)
+                        $parent,
+                        $name
                     );
-                } elseif ($value instanceof DocumentReference || $value instanceof DocumentSnapshot) {
-                    $name = $value->name();
+                } else {
+                    if ($value instanceof DocumentReference) {
+                        $name = $value->name();
+                        $parent = $value->parent()->name();
+                    } elseif ($value instanceof DocumentSnapshot) {
+                        $name = $value->name();
+                        $parent = $value->reference()->parent()->name();
+                    } else {
+                        throw new \InvalidArgumentException(
+                            'The corresponding value for DOCUMENT_ID must be a ' .
+                            'string or a DocumentReference.'
+                        );
+                    }
+
                     if (!$this->isPrefixOf($collection, $name)) {
                         throw new \InvalidArgumentException(sprintf(
                             '%s is not a part of the query result set and ' .
@@ -607,21 +620,12 @@ class Query
                             $name
                         ));
                     }
-                } else {
-                    throw new \InvalidArgumentException(
-                        'The corresponding value for DOCUMENT_ID must be a ' .
-                        'string or a DocumentReference.'
-                    );
-                }
 
-                $parent = ($value instanceof DocumentReference)
-                    ? $value->parent()->name()
-                    : $value->reference()->parent()->name();
-
-                if ($parent !== $collection) {
-                    throw new \InvalidArgumentException(
-                        'Only direct children may be used as query boundaries.'
-                    );
+                    if ($parent !== $collection) {
+                        throw new \InvalidArgumentException(
+                            'Only direct children may be used as query boundaries.'
+                        );
+                    }
                 }
             }
         }
@@ -643,46 +647,41 @@ class Query
      */
     private function snapshotPosition(DocumentSnapshot $snapshot, array $orderBy)
     {
-        $append = true;
+        $appendName = true;
         $direction = self::DIR_ASCENDING;
 
         $fieldValues = [];
 
         // If the list of orderBy clauses already contains __name__, use it unchanged.
-        $append = !(bool) array_filter($orderBy, function ($order) {
+        $appendName = !(bool) array_filter($orderBy, function ($order) {
             return $order['field']['fieldPath'] === self::DOCUMENT_ID;
         });
 
-        // If there is inequality filter (anything other than equals),
-        // append orderBy(the last inequality filter’s path, ascending).
-        if (!$orderBy && $this->queryHas('where') && $append) {
-            $filters = $this->query['where']['compositeFilter']['filters'];
-            $inequality = array_filter($filters, function ($filter) {
-                $type = array_keys($filter)[0];
-                return $filter[$type]['op'] !== self::OP_EQUAL;
-            });
+        if ($appendName) {
+            // If there is inequality filter (anything other than equals),
+            // append orderBy(the last inequality filter’s path, ascending).
+            if (!$orderBy && $this->queryHas('where')) {
+                $filters = $this->query['where']['compositeFilter']['filters'];
+                $inequality = array_filter($filters, function ($filter) {
+                    $type = array_keys($filter)[0];
+                    return $filter[$type]['op'] !== self::OP_EQUAL;
+                });
 
-            if ($inequality) {
-                $filter = end($inequality);
-                $type = array_keys($filter)[0];
-                $orderBy[] = [
-                    'field' => [
-                        'fieldPath' => $filter[$type]['field']['fieldPath'],
-                    ],
-                    'direction' => self::DIR_ASCENDING
-                ];
+                if ($inequality) {
+                    $filter = end($inequality);
+                    $type = array_keys($filter)[0];
+                    $orderBy[] = [
+                        'field' => [
+                            'fieldPath' => $filter[$type]['field']['fieldPath'],
+                        ],
+                        'direction' => self::DIR_ASCENDING
+                    ];
+                }
             }
-        }
 
-        // If the query has existing orderBy constraints
-        if ($orderBy) {
-            // If the list of orderBy clauses already contains __name__, use it unchanged.
-            $append = !(bool) array_filter($orderBy, function ($order) {
-                return $order['field']['fieldPath'] === self::DOCUMENT_ID;
-            });
-
-            // Append orderBy(__name__, direction of last orderBy clause)
-            if ($append) {
+            // If the query has existing orderBy constraints
+            if ($orderBy) {
+                // Append orderBy(__name__, direction of last orderBy clause)
                 $lastOrderDirection = end($orderBy)['direction'];
                 $fieldValues[] = $snapshot;
                 $orderBy[] = [
@@ -691,22 +690,22 @@ class Query
                     ],
                     'direction' => $lastOrderDirection
                 ];
+
+                // read the orderBy constraints and create cursor values using the given snapshot.
+                $fieldValues = $this->snapshotCursorValues($snapshot, $orderBy);
+            } else {
+                // no existing orderBy constraints
+
+                // Otherwise append orderBy(__name__, ‘asc’)
+                $orderBy[] = [
+                    'field' => [
+                        'fieldPath' => self::DOCUMENT_ID
+                    ],
+                    'direction' => self::DIR_ASCENDING
+                ];
+
+                $fieldValues[] = $snapshot;
             }
-
-            // read the orderBy constraints and create cursor values using the given snapshot.
-            $fieldValues = $this->snapshotCursorValues($snapshot, $orderBy);
-        } else {
-            // no existing orderBy constraints
-
-            // Otherwise append orderBy(__name__, ‘asc’)
-            $orderBy[] = [
-                'field' => [
-                    'fieldPath' => self::DOCUMENT_ID
-                ],
-                'direction' => self::DIR_ASCENDING
-            ];
-
-            $fieldValues[] = $snapshot;
         }
 
         return [

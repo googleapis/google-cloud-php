@@ -37,7 +37,6 @@ use Prophecy\Exception\Call\UnexpectedCallException;
 
 /**
  * @group firestore
- * @runTestsInSeparateProcesses
  */
 class FirestoreTest extends TestCase
 {
@@ -45,6 +44,9 @@ class FirestoreTest extends TestCase
     use PathTrait;
 
     const SUITE_FILENAME = 'firestore-test-suite.binproto';
+
+    private static $cases = [];
+    private static $skipped = [];
 
     private $testTypes = ['get', 'create', 'set', 'update', 'updatePaths', 'delete', 'query'];
     private $client;
@@ -74,6 +76,7 @@ class FirestoreTest extends TestCase
             ]
         ]);
         $this->connection = $this->prophesize(ConnectionInterface::class);
+
     }
 
     /**
@@ -107,29 +110,22 @@ class FirestoreTest extends TestCase
             $this->client->___setProperty('connection', $this->connection->reveal());
         }
 
-        $hasError = false;
-        try {
+        $this->executeAndHandleError($test, function ($test) {
             $this->client->document($this->relativeName($test['docRefPath']))
                 ->create($this->generateFields($test['jsonData']));
-        } catch (\Exception $e) {
-            if ($e instanceof UnexpectedCallException) {
-                throw $e;
-            }
-
-            $hasError = true;
-        }
-
-        if (isset($test['isError']) && $test['isError']) {
-            $this->assertTrue($hasError);
-        }
+        });
     }
 
     /**
      * @dataProvider cases
      * @group firestore-set
      */
-    public function testSet($test)
+    public function testSet($test, $description)
     {
+        if ($description !== 'set: ServerTimestamp cannot be in an array value') {
+            return;
+        }
+
         if (isset($test['request'])) {
             $request = $test['request'];
             if (isset($request['transaction']) && !$request['transaction']) {
@@ -138,11 +134,11 @@ class FirestoreTest extends TestCase
 
             $this->connection->commit(new ArrayHasSameValuesToken($request))
                 ->shouldBeCalled()->willReturn([]);
-            $this->client->___setProperty('connection', $this->connection->reveal());
         }
 
-        $hasError = false;
-        try {
+        $this->client->___setProperty('connection', $this->connection->reveal());
+
+        $this->executeAndHandleError($test, function ($test) {
             $options = [];
             if (isset($test['option']['all']) && $test['option']['all']) {
                 $options = ['merge' => true];
@@ -150,17 +146,7 @@ class FirestoreTest extends TestCase
 
             $this->client->document($this->relativeName($test['docRefPath']))
                 ->set($this->generateFields($test['jsonData']), $options);
-        } catch (\Exception $e) {
-            if ($e instanceof UnexpectedCallException) {
-                throw $e;
-            }
-
-            $hasError = true;
-        }
-
-        if (isset($test['isError']) && $test['isError']) {
-            $this->assertTrue($hasError);
-        }
+        });
     }
 
     /**
@@ -187,23 +173,10 @@ class FirestoreTest extends TestCase
 
         $options = $this->formatOptions($test);
 
-        $hasError = false;
-        try {
+        $this->executeAndHandleError($test, function ($test) {
             $this->client->document($this->relativeName($test['docRefPath']))
                 ->update($fields, $options);
-        } catch (\Exception $e) {
-            if ($e instanceof UnexpectedCallException) {
-                throw $e;
-            }
-
-            $hasError = true;
-        }
-
-        if (isset($test['isError']) && $test['isError']) {
-            $this->assertTrue($hasError);
-        } elseif (isset($e)) {
-            throw $e;
-        }
+        });
     }
 
     /**
@@ -236,21 +209,10 @@ class FirestoreTest extends TestCase
 
         $options = $this->formatOptions($test);
 
-        $hasError = false;
-        try {
+        $this->executeAndHandleError($test, function ($test) {
             $this->client->document($this->relativeName($test['docRefPath']))
                 ->update($data, $options);
-        } catch (\Exception $e) {
-            if ($e instanceof UnexpectedCallException) {
-                throw $e;
-            }
-
-            $hasError = true;
-        }
-
-        if (isset($test['isError']) && $test['isError']) {
-            $this->assertTrue($hasError);
-        }
+        });
     }
 
     /**
@@ -272,21 +234,10 @@ class FirestoreTest extends TestCase
 
         $options = $this->formatOptions($test);
 
-        $hasError = false;
-        try {
+        $this->executeAndHandleError($test, function ($test) {
             $this->client->document($this->relativeName($test['docRefPath']))
                 ->delete($options);
-        } catch (\Exception $e) {
-            if ($e instanceof UnexpectedCallException) {
-                throw $e;
-            }
-
-            $hasError = true;
-        }
-
-        if (isset($test['isError']) && $test['isError']) {
-            $this->assertTrue($hasError);
-        }
+        });
     }
 
     /**
@@ -306,8 +257,7 @@ class FirestoreTest extends TestCase
 
         $query = $this->client->collection($this->relativeName($test['collPath']));
 
-        $hasError = false;
-        try {
+        $this->executeAndHandleError($test, function ($test) {
             foreach ($test['clauses'] as $clause) {
                 $name = array_keys($clause)[0];
                 switch ($name) {
@@ -384,14 +334,26 @@ class FirestoreTest extends TestCase
             }
 
             $query->documents(['maxRetries' => 0]);
-        } catch (UnexpectedCallException $e) {
-            throw $e;
+        });
+    }
+
+    private function executeAndHandleError(array $test, callable $executeTest)
+    {
+        $hasError = false;
+        try {
+            $executeTest($test);
         } catch (\Exception $e) {
-            $hasError = true;
+            if ($e instanceof UnexpectedCallException) {
+                throw $e;
+            }
+
+            $hasError = $e;
         }
 
         if (isset($test['isError']) && $test['isError']) {
-            $this->assertTrue($hasError);
+            $this->assertTrue((bool) $hasError);
+        } elseif ($hasError) {
+            throw $hasError;
         }
     }
 
@@ -451,9 +413,6 @@ class FirestoreTest extends TestCase
         return $value;
     }
 
-    private static $cases = [];
-    private static $skipped = [];
-
     private function setupCases($suite, array $types, array $excludes)
     {
         if (self::$cases) {
@@ -471,11 +430,12 @@ class FirestoreTest extends TestCase
             $case = $serializer->encodeMessage($test);
             $matches = array_values(array_intersect($types, array_keys($case)));
             if (!$matches) {
-                $keys = array_keys($case);
-                throw new \Exception(sprintf(
-                    'Unknown test type! Keys were `%s`',
-                    implode(', ', $keys)
-                ));
+                if (in_array($case['description'], $excludes)) {
+                    self::$skipped[] = [$case['description']];
+                    continue;
+                }
+
+                continue;
             }
 
             $type = $matches[0];

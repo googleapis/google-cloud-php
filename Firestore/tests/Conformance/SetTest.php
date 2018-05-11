@@ -133,7 +133,7 @@ class SetTest extends \Google\Protobuf\Internal\Message
      * expected request
      *
      * Generated from protobuf field <code>.google.firestore.v1beta1.CommitRequest request = 4;</code>
-     * @return \Google\Firestore\V1beta1\CommitRequest
+     * @return \Google\Cloud\Firestore\V1beta1\CommitRequest
      */
     public function getRequest()
     {
@@ -144,12 +144,12 @@ class SetTest extends \Google\Protobuf\Internal\Message
      * expected request
      *
      * Generated from protobuf field <code>.google.firestore.v1beta1.CommitRequest request = 4;</code>
-     * @param \Google\Firestore\V1beta1\CommitRequest $var
+     * @param \Google\Cloud\Firestore\V1beta1\CommitRequest $var
      * @return $this
      */
     public function setRequest($var)
     {
-        GPBUtil::checkMessage($var, \Google\Firestore\V1beta1\CommitRequest::class);
+        GPBUtil::checkMessage($var, \Google\Cloud\Firestore\V1beta1\CommitRequest::class);
         $this->request = $var;
 
         return $this;

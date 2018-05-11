@@ -42,12 +42,12 @@ class Snapshot extends \Google\Protobuf\Internal\Message
 
     /**
      * Generated from protobuf field <code>repeated .google.firestore.v1beta1.Document docs = 1;</code>
-     * @param \Google\Firestore\V1beta1\Document[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Firestore\V1beta1\Document[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setDocs($var)
     {
-        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Firestore\V1beta1\Document::class);
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Firestore\V1beta1\Document::class);
         $this->docs = $arr;
 
         return $this;

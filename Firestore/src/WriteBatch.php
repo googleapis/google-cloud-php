@@ -193,6 +193,10 @@ class WriteBatch
 
         $hasOnlyTimestamps = !$filteredFields && count($fields) === count($timestamps);
 
+        if (!$merge && $deletes) {
+            throw new \InvalidArgumentException('Delete cannot appear in data unless `$options[\'merge\']` is set.');
+        }
+
         // Enqueue a write if any of the following conditions are met
         // - if there are still fields remaining after sentinels were removed
         // - if the user provided an empty set to begin with
