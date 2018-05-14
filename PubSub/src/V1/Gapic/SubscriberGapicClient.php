@@ -31,7 +31,8 @@
 namespace Google\Cloud\PubSub\V1\Gapic;
 
 use Google\ApiCore\ApiException;
-use Google\ApiCore\Call;
+use Google\ApiCore\CredentialsWrapper;
+use Google\ApiCore\FetchAuthTokenInterface;
 use Google\ApiCore\GapicClientTrait;
 use Google\ApiCore\PathTemplate;
 use Google\ApiCore\RetrySettings;
@@ -68,7 +69,6 @@ use Google\Protobuf\Duration;
 use Google\Protobuf\FieldMask;
 use Google\Protobuf\GPBEmpty;
 use Google\Protobuf\Timestamp;
-use Grpc\Channel;
 
 /**
  * Service Description: The service that an application uses to manipulate subscriptions and to

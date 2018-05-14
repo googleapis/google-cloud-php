@@ -31,7 +31,8 @@
 namespace Google\Cloud\Monitoring\V3\Gapic;
 
 use Google\ApiCore\ApiException;
-use Google\ApiCore\Call;
+use Google\ApiCore\CredentialsWrapper;
+use Google\ApiCore\FetchAuthTokenInterface;
 use Google\ApiCore\GapicClientTrait;
 use Google\ApiCore\PathTemplate;
 use Google\ApiCore\RetrySettings;
@@ -50,7 +51,6 @@ use Google\Cloud\Monitoring\V3\NotificationChannelDescriptor;
 use Google\Cloud\Monitoring\V3\UpdateNotificationChannelRequest;
 use Google\Protobuf\FieldMask;
 use Google\Protobuf\GPBEmpty;
-use Grpc\Channel;
 
 /**
  * Service Description: The Notification Channel API provides access to configuration that
