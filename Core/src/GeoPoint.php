@@ -51,8 +51,12 @@ class GeoPoint
      * Ints will be converted to floats. Values not passing the `is_numeric()`
      * check will result in an exception.
      *
-     * @param float|int $latitude The GeoPoint Latitude.
-     * @param float|int $longitude The GeoPoint Longitude.
+     * @param float|int|null $latitude The GeoPoint Latitude. **Note** that
+     *        `null` is not a generally valid value, and will throw an
+     *        `InvalidArgumentException` unless `$allowNull` is set to `true`.
+     * @param float|int|null $longitude The GeoPoint Longitude. **Note** that
+     *        `null` is not a generally valid value, and will throw an
+     *        `InvalidArgumentException` unless `$allowNull` is set to `true`.
      * @param bool $allowNull [optional] If true, null values will be allowed
      *        in the constructor only. This switch exists to handle a rare case
      *        wherein a geopoint may be empty and is not intended for use from
