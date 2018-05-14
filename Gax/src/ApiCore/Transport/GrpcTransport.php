@@ -165,7 +165,7 @@ class GrpcTransport extends BaseStub implements TransportInterface
      */
     public function startUnaryCall(Call $call, array $options)
     {
-        $call = $this->_simpleRequest(
+        $unaryCall = $this->_simpleRequest(
             '/' . $call->getMethod(),
             $call->getMessage(),
             [$call->getDecodeType(), 'decode'],
@@ -174,16 +174,20 @@ class GrpcTransport extends BaseStub implements TransportInterface
         );
 
         $promise = new Promise(
-            function () use ($call, &$promise) {
-                list($response, $status) = $call->wait();
+            function () use ($unaryCall, $options, &$promise) {
+                list($response, $status) = $unaryCall->wait();
 
                 if ($status->code == Code::OK) {
+                    if (isset($options['metadataCallback'])) {
+                        $metadataCallback = $options['metadataCallback'];
+                        $metadataCallback($unaryCall->getMetadata());
+                    }
                     $promise->resolve($response);
                 } else {
                     throw ApiException::createFromStdClass($status);
                 }
             },
-            [$call, 'cancel']
+            [$unaryCall, 'cancel']
         );
 
         return $promise;
@@ -195,8 +199,9 @@ class GrpcTransport extends BaseStub implements TransportInterface
             ? $options['transportOptions']['grpcOptions']
             : [];
 
-        if (isset($options['authWrapper'])) {
-            $callOptions['call_credentials_callback'] = $options['authWrapper']->getAuthorizationHeaderCallback();
+        if (isset($options['credentialsWrapper'])) {
+            $credentialsWrapper = $options['credentialsWrapper'];
+            $callOptions['call_credentials_callback'] = $credentialsWrapper->getAuthorizationHeaderCallback();
         }
 
         if (isset($options['timeoutMillis'])) {

@@ -70,7 +70,8 @@ class FixedSizeCollectionTest extends TestCase
         $call = new Call('method', 'decodeType', $mockRequest);
         $options = [];
 
-        return new Page($call, $options, $callable, $pageStreamingDescriptor);
+        $response = $callable($call, $options)->wait();
+        return new Page($call, $options, $callable, $pageStreamingDescriptor, $response);
     }
 
     public function testFixedCollectionMethods()

@@ -29,36 +29,38 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
+
 namespace Google\ApiCore\Middleware;
 
-use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Call;
 
 /**
-* Middleware which adds a CredentialsWrapper object to the call options.
-*/
-class CredentialsWrapperMiddleware
+ * Middleware to add fixed headers to an API call.
+ */
+class FixedHeaderMiddleware
 {
     /** @var callable */
     private $nextHandler;
 
-    /** @var CredentialsWrapper */
-    private $credentialsWrapper;
+    private $headers;
 
-    public function __construct(
-        callable $nextHandler,
-        CredentialsWrapper $credentialsWrapper
-    ) {
+    public function __construct(callable $nextHandler, array $headers)
+    {
         $this->nextHandler = $nextHandler;
-        $this->credentialsWrapper = $credentialsWrapper;
+        $this->headers = $headers;
     }
 
     public function __invoke(Call $call, array $options)
     {
+        if (isset($options['headers'])) {
+            $options['headers'] = $options['headers'] + $this->headers;
+        } else {
+            $options['headers'] = $this->headers;
+        }
         $next = $this->nextHandler;
         return $next(
             $call,
-            $options + ['credentialsWrapper' => $this->credentialsWrapper]
+            $options
         );
     }
 }

@@ -49,10 +49,10 @@ class CredentialsWrapperTest extends TestCase
     /**
      * @dataProvider buildData
      */
-    public function testBuild($args, $expectedAuthWrapper)
+    public function testBuild($args, $expectedCredentialsWrapper)
     {
-        $actualAuthWrapper = CredentialsWrapper::build($args);
-        $this->assertEquals($expectedAuthWrapper, $actualAuthWrapper);
+        $actualCredentialsWrapper = CredentialsWrapper::build($args);
+        $this->assertEquals($expectedCredentialsWrapper, $actualCredentialsWrapper);
     }
 
     public function buildData()
@@ -155,8 +155,8 @@ class CredentialsWrapperTest extends TestCase
      */
     public function testGetBearerString($fetcher, $expectedBearerString)
     {
-        $authWrapper = new CredentialsWrapper($fetcher);
-        $bearerString = $authWrapper->getBearerString();
+        $credentialsWrapper = new CredentialsWrapper($fetcher);
+        $bearerString = $credentialsWrapper->getBearerString();
         $this->assertSame($expectedBearerString, $bearerString);
     }
 
@@ -190,8 +190,8 @@ class CredentialsWrapperTest extends TestCase
      */
     public function testGetAuthorizationHeaderCallback($fetcher, $expectedCallbackResponse)
     {
-        $authWrapper = new CredentialsWrapper($fetcher);
-        $callback = $authWrapper->getAuthorizationHeaderCallback();
+        $credentialsWrapper = new CredentialsWrapper($fetcher);
+        $callback = $credentialsWrapper->getAuthorizationHeaderCallback();
         $actualResponse = $callback();
         $this->assertSame($expectedCallbackResponse, $actualResponse);
     }

@@ -21,6 +21,14 @@ class MockResponse extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>uint64 number = 2;</code>
      */
     private $number = 0;
+    /**
+     * Generated from protobuf field <code>repeated string resources_list = 3;</code>
+     */
+    private $resources_list;
+    /**
+     * Generated from protobuf field <code>string next_page_token = 4;</code>
+     */
+    private $next_page_token = '';
 
     public function __construct() {
         \GPBMetadata\ApiCore\Testing\Mocks::initOnce();
@@ -67,6 +75,50 @@ class MockResponse extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkUint64($var);
         $this->number = $var;
+
+        return $this;
+    }
+
+    /**
+     * Generated from protobuf field <code>repeated string resources_list = 3;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getResourcesList()
+    {
+        return $this->resources_list;
+    }
+
+    /**
+     * Generated from protobuf field <code>repeated string resources_list = 3;</code>
+     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setResourcesList($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->resources_list = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Generated from protobuf field <code>string next_page_token = 4;</code>
+     * @return string
+     */
+    public function getNextPageToken()
+    {
+        return $this->next_page_token;
+    }
+
+    /**
+     * Generated from protobuf field <code>string next_page_token = 4;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setNextPageToken($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->next_page_token = $var;
 
         return $this;
     }

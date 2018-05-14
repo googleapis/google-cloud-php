@@ -50,35 +50,17 @@ use Generator;
  */
 class PagedListResponse
 {
-    private $call;
-    private $callable;
-    private $pageStreamingDescriptor;
-    private $options;
-
     private $firstPage;
 
     /**
      * PagedListResponse constructor.
      *
-     * @param Call $call
-     * @param array $options
-     * @param callable $callable the callable object that makes the API method calls.
-     * @param PageStreamingDescriptor $pageStreamingDescriptor the descriptor that
-     *     contains the field names related to page-streaming.
+     * @param Page $firstPage A page containing response details.
      */
     public function __construct(
-        Call $call,
-        array $options,
-        callable $callable,
-        PageStreamingDescriptor $pageStreamingDescriptor
+        Page $firstPage
     ) {
-        $this->call = $call;
-        $this->options = $options;
-        $this->callable = $callable;
-        $this->pageStreamingDescriptor = $pageStreamingDescriptor;
-
-        // Eagerly construct the first page
-        $this->getPage();
+        $this->firstPage = $firstPage;
     }
 
     /**
@@ -97,22 +79,12 @@ class PagedListResponse
     }
 
     /**
-     * Return the current page of results. If the page has not
-     * previously been accessed, it will be retrieved with a call to
-     * the underlying API.
+     * Return the current page of results.
      *
      * @return Page
      */
     public function getPage()
     {
-        if (!isset($this->firstPage)) {
-            $this->firstPage = new Page(
-                $this->call,
-                $this->options,
-                $this->callable,
-                $this->pageStreamingDescriptor
-            );
-        }
         return $this->firstPage;
     }
 
@@ -144,35 +116,7 @@ class PagedListResponse
      */
     public function expandToFixedSizeCollection($collectionSize)
     {
-        if (!$this->pageStreamingDescriptor->requestHasPageSizeField()) {
-            throw new ValidationException(
-                "FixedSizeCollection is not supported for this method, because " .
-                "the method does not support an optional argument to set the " .
-                "page size."
-            );
-        }
-        // The first page has been eagerly constructed, so we do not need to
-        // update the page size parameter before calling getPage
-        $page = $this->getPage();
-        $request = $page->getRequestObject();
-        $pageSizeGetMethod = $this->pageStreamingDescriptor->getRequestPageSizeGetMethod();
-        $pageSize = $request->$pageSizeGetMethod();
-        if (is_null($pageSize)) {
-            throw new ValidationException(
-                "Error while expanding Page to FixedSizeCollection: No page size " .
-                "parameter found. The page size parameter must be set in the API " .
-                "optional arguments array, and must be less than the collectionSize " .
-                "parameter, in order to create a FixedSizeCollection object."
-            );
-        }
-        if ($pageSize > $collectionSize) {
-            throw new ValidationException(
-                "Error while expanding Page to FixedSizeCollection: collectionSize " .
-                "parameter is less than the page size optional argument specified in " .
-                "the API call. collectionSize: $collectionSize, page size: $pageSize"
-            );
-        }
-        return new FixedSizeCollection($this->getPage(), $collectionSize);
+        return $this->getPage()->expandToFixedSizeCollection($collectionSize);
     }
 
     /**
