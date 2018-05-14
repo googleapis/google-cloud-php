@@ -371,8 +371,9 @@ class GrpcTransportTest extends TestCase
     /**
      * @dataProvider buildDataGrpc
      */
-    public function testBuildGrpc($serviceAddress, $config, $expectedTransport)
+    public function testBuildGrpc($serviceAddress, $config, $expectedTransportProvider)
     {
+        $expectedTransport = $expectedTransportProvider();
         $actualTransport = GrpcTransport::build($serviceAddress, $config);
         $this->assertEquals($expectedTransport, $actualTransport);
     }
@@ -386,24 +387,28 @@ class GrpcTransportTest extends TestCase
             [
                 $serviceAddress,
                 [],
-                new GrpcTransport(
-                    $serviceAddress,
-                    [
-                        'credentials' => null,
-                    ],
-                    null
-                ),
+                function () use ($serviceAddress) {
+                    return new GrpcTransport(
+                        $serviceAddress,
+                        [
+                            'credentials' => null,
+                        ],
+                        null
+                    );
+                },
             ],
             [
                 $uri,
                 [],
-                new GrpcTransport(
-                    $serviceAddressDefaultPort,
-                    [
-                        'credentials' => null,
-                    ],
-                    null
-                ),
+                function () use ($serviceAddressDefaultPort) {
+                    return new GrpcTransport(
+                        $serviceAddressDefaultPort,
+                        [
+                            'credentials' => null,
+                        ],
+                        null
+                    );
+                },
             ],
         ];
     }

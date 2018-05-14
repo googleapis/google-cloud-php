@@ -31,26 +31,33 @@
  */
 namespace Google\ApiCore\Middleware;
 
-use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Call;
+use Google\ApiCore\LongRunning\OperationsClient;
+use Google\ApiCore\OperationResponse;
+use Google\Protobuf\Internal\Message;
 
 /**
-* Middleware which adds a CredentialsWrapper object to the call options.
-*/
-class CredentialsWrapperMiddleware
+ * Middleware which wraps the response in an OperationResponse object.
+ */
+class OperationsMiddleware
 {
     /** @var callable */
     private $nextHandler;
 
-    /** @var CredentialsWrapper */
-    private $credentialsWrapper;
+    /** @var OperationsClient */
+    private $client;
+
+    /** @var array */
+    private $descriptor;
 
     public function __construct(
         callable $nextHandler,
-        CredentialsWrapper $credentialsWrapper
+        OperationsClient $client,
+        array $descriptor
     ) {
         $this->nextHandler = $nextHandler;
-        $this->credentialsWrapper = $credentialsWrapper;
+        $this->client = $client;
+        $this->descriptor = $descriptor;
     }
 
     public function __invoke(Call $call, array $options)
@@ -58,7 +65,12 @@ class CredentialsWrapperMiddleware
         $next = $this->nextHandler;
         return $next(
             $call,
-            $options + ['credentialsWrapper' => $this->credentialsWrapper]
-        );
+            $options
+        )->then(function (Message $response) {
+            $options = $this->descriptor + [
+                'lastProtoResponse' => $response
+            ];
+            return new OperationResponse($response->getName(), $this->client, $options);
+        });
     }
 }

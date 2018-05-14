@@ -33,6 +33,7 @@ namespace Google\ApiCore\Tests\Unit;
 
 use Google\ApiCore\Call;
 use Google\ApiCore\CallSettings;
+use Google\ApiCore\Page;
 use Google\ApiCore\PagedListResponse;
 use Google\ApiCore\PageStreamingDescriptor;
 use PHPUnit\Framework\TestCase;
@@ -62,7 +63,10 @@ class PagedListResponseTest extends TestCase
         $call = new Call('method', [], $mockRequest);
         $options = [];
 
-        $pageAccessor = new PagedListResponse($call, $options, $callable, $pageStreamingDescriptor);
+        $response = $callable($call, $options)->wait();
+
+        $page = new Page($call, $options, $callable, $pageStreamingDescriptor, $response);
+        $pageAccessor = new PagedListResponse($page);
         $page = $pageAccessor->getPage();
         $this->assertEquals($page->getNextPageToken(), 'nextPageToken1');
         $this->assertEquals(iterator_to_array($page->getIterator()), ['resource1']);

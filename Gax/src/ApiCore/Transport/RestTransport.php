@@ -132,8 +132,8 @@ class RestTransport implements TransportInterface
             : [];
 
         // If not already set, add an auth header to the request
-        if (!isset($headers['Authorization']) && isset($options['authWrapper'])) {
-            $headers['Authorization'] = $options['authWrapper']->getBearerString();
+        if (!isset($headers['Authorization']) && isset($options['credentialsWrapper'])) {
+            $headers['Authorization'] = $options['credentialsWrapper']->getBearerString();
         }
 
         // call the HTTP handler
@@ -146,12 +146,17 @@ class RestTransport implements TransportInterface
             ),
             $this->getCallOptions($options)
         )->then(
-            function (ResponseInterface $response) use ($call) {
+            function (ResponseInterface $response) use ($call, $options) {
                 $decodeType = $call->getDecodeType();
                 $return = new $decodeType;
                 $return->mergeFromJsonString(
                     (string) $response->getBody()
                 );
+
+                if (isset($options['metadataCallback'])) {
+                    $metadataCallback = $options['metadataCallback'];
+                    $metadataCallback($response->getHeaders());
+                }
 
                 return $return;
             },

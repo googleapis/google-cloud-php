@@ -32,6 +32,7 @@
 namespace Google\ApiCore\Tests\Unit;
 
 use Grpc\UnaryCall;
+use Google\ApiCore\Testing\MockResponse;
 use Google\ApiCore\Testing\MockRequest;
 use Google\ApiCore\Testing\MockStatus;
 use Google\ApiCore\LongRunning\OperationsClient;
@@ -55,14 +56,13 @@ trait TestTrait
 
     public function createMockResponse($pageToken = null, $resourcesList = [])
     {
-        $mockResponse = $this->getMockBuilder(MockResponse::class)
-            ->setMethods(['getResourcesList', 'getNextPageToken'])
-            ->getMock();
-        $mockResponse->method('getNextPageToken')
-            ->willReturn($pageToken);
-        $mockResponse->method('getResourcesList')
-            ->willReturn($resourcesList);
-
+        $mockResponse = new MockResponse();
+        if ($pageToken) {
+            $mockResponse->setNextPageToken($pageToken);
+        }
+        if ($resourcesList) {
+            $mockResponse->setResourcesList($resourcesList);
+        }
         return $mockResponse;
     }
 

@@ -8,8 +8,6 @@ import "google/protobuf/wrappers.proto";
 option php_namespace = "Google\\ApiCore\\Testing";
 
 message MockRequest {
-  // The value of the uninterpreted option, in whatever type the tokenizer
-  // identified it as during parsing. Exactly one of these should be set.
   string page_token = 1;
   uint64 page_size = 2;
 }
@@ -17,11 +15,11 @@ message MockRequest {
 message MockResponse {
   string name = 1;
   uint64 number = 2;
+  repeated string resources_list = 3;
+  string next_page_token = 4;
 }
 
 message MockRequestBody {
-  // The value of the uninterpreted option, in whatever type the tokenizer
-  // identified it as during parsing. Exactly one of these should be set.
   string name = 1;
   uint64 number = 2;
   repeated string repeated_field = 3;

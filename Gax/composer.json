@@ -35,5 +35,8 @@
             "Google\\": "tests",
             "GPBMetadata\\": "metadata"
         }
+    },
+    "scripts": {
+        "regenerate-test-protos": "dev/sh/regenerate-test-protos.sh"
     }
 }

@@ -31,34 +31,42 @@
  */
 namespace Google\ApiCore\Middleware;
 
-use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Call;
+use Google\Protobuf\Internal\Message;
+use GuzzleHttp\Promise\Promise;
+use GuzzleHttp\Promise\PromiseInterface;
 
 /**
-* Middleware which adds a CredentialsWrapper object to the call options.
-*/
-class CredentialsWrapperMiddleware
+ * Middleware which transforms $response into [$response, $metadata]
+ */
+class ResponseMetadataMiddleware
 {
     /** @var callable */
     private $nextHandler;
 
-    /** @var CredentialsWrapper */
-    private $credentialsWrapper;
-
-    public function __construct(
-        callable $nextHandler,
-        CredentialsWrapper $credentialsWrapper
-    ) {
+    /**
+     * @param callable $nextHandler
+     */
+    public function __construct(callable $nextHandler)
+    {
         $this->nextHandler = $nextHandler;
-        $this->credentialsWrapper = $credentialsWrapper;
     }
 
     public function __invoke(Call $call, array $options)
     {
+        $metadataReceiver = new Promise();
+        $options['metadataCallback'] = function ($metadata) use ($metadataReceiver) {
+            $metadataReceiver->resolve($metadata);
+        };
         $next = $this->nextHandler;
-        return $next(
-            $call,
-            $options + ['credentialsWrapper' => $this->credentialsWrapper]
+        return $next($call, $options)->then(
+            function ($response) use ($metadataReceiver) {
+                if ($metadataReceiver->getState() === PromiseInterface::FULFILLED) {
+                    return [$response, $metadataReceiver->wait()];
+                } else {
+                    return [$response, []];
+                }
+            }
         );
     }
 }

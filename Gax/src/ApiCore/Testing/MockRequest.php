@@ -14,9 +14,6 @@ use Google\Protobuf\Internal\GPBUtil;
 class MockRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The value of the uninterpreted option, in whatever type the tokenizer
-     * identified it as during parsing. Exactly one of these should be set.
-     *
      * Generated from protobuf field <code>string page_token = 1;</code>
      */
     private $page_token = '';
@@ -31,9 +28,6 @@ class MockRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The value of the uninterpreted option, in whatever type the tokenizer
-     * identified it as during parsing. Exactly one of these should be set.
-     *
      * Generated from protobuf field <code>string page_token = 1;</code>
      * @return string
      */
@@ -43,9 +37,6 @@ class MockRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The value of the uninterpreted option, in whatever type the tokenizer
-     * identified it as during parsing. Exactly one of these should be set.
-     *
      * Generated from protobuf field <code>string page_token = 1;</code>
      * @param string $var
      * @return $this
