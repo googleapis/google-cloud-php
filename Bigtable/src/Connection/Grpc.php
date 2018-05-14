@@ -19,9 +19,9 @@ namespace Google\Cloud\Bigtable\Connection;
 
 use Google\ApiCore\Serializer;
 use Google\Cloud\Bigtable\Admin\V2\BigtableInstanceAdminClient;
+use Google\Cloud\Bigtable\Admin\V2\BigtableTableAdminClient;
 use Google\Cloud\Bigtable\Admin\V2\Instance;
-use Google\Cloud\Bigtable\Admin\V2\Gapic\BigtableTableAdminGapicClient;
-use Google\Cloud\Bigtable\V2\Gapic\BigtableGapicClient;
+use Google\Cloud\Bigtable\V2\BigtableClient;
 use Google\Cloud\Core\GrpcRequestWrapper;
 use Google\Cloud\Core\GrpcTrait;
 use Google\Cloud\Core\LongRunning\OperationResponseTrait;
@@ -44,19 +44,19 @@ class Grpc implements ConnectionInterface
     private $serializer;
 
     /**
+     * @var BigtableClient
+     */
+    private $bigtableClient;
+
+    /**
+     * @var BigtableTableAdminClient
+     */
+    private $bigtableTableAdminClient;
+
+    /**
      * @var BigtableInstanceAdminClient
      */
     private $bigtableInstanceAdminClient;
-
-    /**
-     * @var bigtableGapicClient
-     */
-    private $bigtableGapicClient;
-
-    /**
-     * @var BigtableTableAdminGapicClient
-     */
-    private $bigtableTableAdminGapicClient;
     
     /**
      * @param array $config [optional]
@@ -84,9 +84,9 @@ class Grpc implements ConnectionInterface
 
         $config['serializer'] = $this->serializer;
         $this->setRequestWrapper(new GrpcRequestWrapper($config));
+        $this->bigtableClient = new BigtableClient();
+        $this->bigtableTableAdminClient = new BigtableTableAdminClient();
         $this->bigtableInstanceAdminClient = new BigtableInstanceAdminClient();
-        $this->bigtableGapicClient = new BigtableGapicClient();
-        $this->bigtableTableAdminGapicClient = new BigtableTableAdminGapicClient();
     }
 
     /**
