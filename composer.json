@@ -48,7 +48,7 @@
         "monolog/monolog": "~1",
         "psr/http-message": "1.0.*",
         "ramsey/uuid": "~3",
-        "google/gax": "dev-option-construction-fixes",
+        "google/gax": "dev-master",
         "google/proto-client": "^0.38.0"
     },
     "require-dev": {
