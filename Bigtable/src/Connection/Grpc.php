@@ -17,12 +17,18 @@
 
 namespace Google\Cloud\Bigtable\Connection;
 
+use Google\ApiCore\Serializer;
 use Google\Cloud\Bigtable\Admin\V2\BigtableInstanceAdminClient;
-use Google\Cloud\Bigtable\Admin\V2\BigtableTableAdminClient;
 use Google\Cloud\Bigtable\Admin\V2\Instance;
-use Google\Cloud\Bigtable\V2\BigtableClient;
+use Google\Cloud\Bigtable\Admin\V2\Gapic\BigtableTableAdminGapicClient;
+use Google\Cloud\Bigtable\V2\Gapic\BigtableGapicClient;
 use Google\Cloud\Core\GrpcRequestWrapper;
 use Google\Cloud\Core\GrpcTrait;
+use Google\Cloud\Core\LongRunning\OperationResponseTrait;
+use Google\Cloud\Bigtable\Admin\V2\Cluster;
+use Google\Protobuf\Internal\GPBType;
+use Google\Protobuf\Internal\MapField;
+
 
 /**
  * Connection to Cloud Bigtable over GRPC
@@ -30,6 +36,12 @@ use Google\Cloud\Core\GrpcTrait;
 class Grpc implements ConnectionInterface
 {
     use GrpcTrait;
+    use OperationResponseTrait;
+
+    /**
+     * @var Serializer
+     */
+    private $serializer;
 
     /**
      * @var BigtableInstanceAdminClient
@@ -37,24 +49,44 @@ class Grpc implements ConnectionInterface
     private $bigtableInstanceAdminClient;
 
     /**
-     * @var BigtableClient
+     * @var bigtableGapicClient
      */
-    private $bigtableClient;
+    private $bigtableGapicClient;
 
     /**
-     * @var BigtableTableAdminClient
+     * @var BigtableTableAdminGapicClient
      */
-    private $bigtableTableAdminClient;
+    private $bigtableTableAdminGapicClient;
     
     /**
      * @param array $config [optional]
      */
     public function __construct(array $config = [])
     {
-        $this->setRequestWrapper(new GrpcRequestWrapper());
+        $this->serializer = new Serializer([
+            'commit_timestamp' => function ($v) {
+                return $this->formatTimestampFromApi($v);
+            },
+            'read_timestamp' => function ($v) {
+                return $this->formatTimestampFromApi($v);
+            }
+        ], [
+            'google.protobuf.Value' => function ($v) {
+                return $this->flattenValue($v);
+            },
+            'google.protobuf.ListValue' => function ($v) {
+                return $this->flattenListValue($v);
+            },
+            'google.protobuf.Struct' => function ($v) {
+                return $this->flattenStruct($v);
+            },
+        ]);
+
+        $config['serializer'] = $this->serializer;
+        $this->setRequestWrapper(new GrpcRequestWrapper($config));
         $this->bigtableInstanceAdminClient = new BigtableInstanceAdminClient();
-        $this->bigtableClient = new BigtableClient();
-        $this->bigtableTableAdminClient = new BigtableTableAdminClient();
+        $this->bigtableGapicClient = new BigtableGapicClient();
+        $this->bigtableTableAdminGapicClient = new BigtableTableAdminGapicClient();
     }
 
     /**
@@ -62,469 +94,83 @@ class Grpc implements ConnectionInterface
      */
     public function createInstance(array $args)
     {
-        $parent = $this->pluck('parent', $args);
-        $instanceId = $this->pluck('instanceId', $args);
+        $parent = $args['parent'];
         $instance = $this->pluck('instance', $args);
-        $clusters = $this->pluck('clusters', $args);
+        $clusters = $this->pluck('clusters', $args); 
         return $this->send([$this->bigtableInstanceAdminClient, 'createInstance'], [
             $parent,
-            $instanceId,
-            $instance,
-            $clusters,
+            $this->pluck('instanceId', $args),
+            $this->instanceObject($instance),
+            $this->mapOfClusterObject($clusters),
             $this->addResourcePrefixHeader($args, $parent)
         ]);
     }
 
     /**
      * @param array $args
+     * @param bool $required
      */
-    public function getInstance(array $args)
+    private function instanceObject(array &$args, $required = false)
     {
-        $name = $this->pluck('name', $args);
-        return $this->send([$this->bigtableInstanceAdminClient, 'getInstance'], [
-            $name,
-            $this->addResourcePrefixHeader($args, $name)
-        ]);
+        return $this->serializer->decodeMessage(
+            new Instance(),
+            $this->instanceArray($args, $required)
+        );
     }
 
     /**
      * @param array $args
+     * @param bool $required
+     * @return array
      */
-    public function listInstances(array $args)
+    private function instanceArray(array &$args, $required = false)
     {
-        $parent = $this->pluck('parent', $args);
-        return $this->send([$this->bigtableInstanceAdminClient, 'listInstances'], [
-            $parent,
-            $this->addResourcePrefixHeader($args, $parent)
-        ]);
+        $argsCopy = $args;
+        return array_intersect_key([
+            'name' => $this->pluck('name', $args, $required),
+            'displayName' => $this->pluck('displayName', $args, $required),
+            'type' => $this->pluck('type', $args, $required)
+        ], $argsCopy);
     }
 
     /**
      * @param array $args
+     * @param bool $required
      */
-    public function updateInstance(array $args)
+    private function mapOfClusterObject(array &$args, $required = false)
     {
-        $name = $this->pluck('name', $args);
-        $displayName = $this->pluck('displayName', $args);
-        $type = $this->pluck('type', $args);
-        $labels = $this->pluck('labels', $args);
-        return $this->send([$this->bigtableInstanceAdminClient, 'updateInstance'], [
-            $name,
-            $displayName,
-            $type,
-            $labels,
-            $this->addResourcePrefixHeader($args, $name)
-        ]);
+        $clusters = new MapField(GPBType::STRING, GPBType::MESSAGE, Cluster::class);
+        foreach ($args as $key => $value) {
+            $clusters[$value['name']] = $this->clusterObject($value, $required);;
+        }
+        return $clusters;
     }
 
     /**
      * @param array $args
+     * @param bool $required
      */
-    public function deleteInstance(array $args)
+    private function clusterObject(array &$args, $required = false)
     {
-        $name = $this->pluck('name', $args);
-        return $this->send([$this->bigtableInstanceAdminClient, 'deleteInstance'], [
-            $name,
-            $this->addResourcePrefixHeader($args, $name)
-        ]);
+        return $this->serializer->decodeMessage(
+            new Cluster(),
+            $this->clusterArray($args, $required)
+        );
     }
 
     /**
      * @param array $args
+     * @param bool $required
+     * @return array
      */
-    public function createCluster(array $args)
+    private function clusterArray(array &$args, $required = false)
     {
-        $parent = $this->pluck('parent', $args);
-        $clusterId = $this->pluck('clusterId', $args);
-        $cluster = $this->pluck('cluster', $args);
-        return $this->send([$this->bigtableInstanceAdminClient, 'createCluster'], [
-            $parent,
-            $clusterId,
-            $cluster,
-            $this->addResourcePrefixHeader($args, $parent)
-        ]);
-    }
-
-    /**
-     * @param array $args
-     */
-    public function getCluster(array $args)
-    {
-        $name = $this->pluck('name', $args);
-        return $this->send([$this->bigtableInstanceAdminClient, 'getCluster'], [
-            $name,
-            $this->addResourcePrefixHeader($args, $name)
-        ]);
-    }
-
-    /**
-     * @param array $args
-     */
-    public function listClusters(array $args)
-    {
-        $parent = $this->pluck('parent', $args);
-        return $this->send([$this->bigtableInstanceAdminClient, 'listClusters'], [
-            $parent,
-            $this->addResourcePrefixHeader($args, $parent)
-        ]);
-    }
-
-    /**
-     * @param array $args
-     */
-    public function updateCluster(array $args)
-    {
-        $name = $this->pluck('name', $args);
-        $location = $this->pluck('location', $args);
-        $serveNodes = $this->pluck('serveNodes', $args);
-        return $this->send([$this->bigtableInstanceAdminClient, 'updateCluster'], [
-            $name,
-            $location,
-            $serveNodes,
-            $this->addResourcePrefixHeader($args, $name)
-        ]);
-    }
-
-    /**
-     * @param array $args
-     */
-    public function deleteCluster(array $args)
-    {
-        $name = $this->pluck('name', $args);
-        return $this->send([$this->bigtableInstanceAdminClient, 'deleteCluster'], [
-            $name,
-            $this->addResourcePrefixHeader($args, $name)
-        ]);
-    }
-
-    /**
-     * @param array $args
-     */
-    public function createAppProfile(array $args)
-    {
-        $parent = $this->pluck('parent', $args);
-        $appProfileId = $this->pluck('appProfileId', $args);
-        $appProfile = $this->pluck('appProfile', $args);
-        return $this->send([$this->bigtableInstanceAdminClient, 'createAppProfile'], [
-            $parent,
-            $appProfileId,
-            $appProfile,
-            $this->addResourcePrefixHeader($args, $parent)
-        ]);
-    }
-
-    /**
-     * @param array $args
-     */
-    public function getAppProfile(array $args)
-    {
-        $name = $this->pluck('name', $args);
-        return $this->send([$this->bigtableInstanceAdminClient, 'getAppProfile'], [
-            $name,
-            $this->addResourcePrefixHeader($args, $name)
-        ]);
-    }
-
-    /**
-     * @param array $args
-     */
-    public function listAppProfiles(array $args)
-    {
-        $parent = $this->pluck('parent', $args);
-        return $this->send([$this->bigtableInstanceAdminClient, 'listAppProfiles'], [
-            $parent,
-            $this->addResourcePrefixHeader($args, $parent)
-        ]);
-    }
-
-    /**
-     * @param array $args
-     */
-    public function updateAppProfile(array $args)
-    {
-        $name = $this->pluck('name', $args);
-        $appProfile = $this->pluck('appProfile', $args);
-        $updateMask = $this->pluck('updateMask', $args);
-        return $this->send([$this->bigtableInstanceAdminClient, 'updateAppProfile'], [
-            $appProfile,
-            $updateMask,
-            $this->addResourcePrefixHeader($args, $name)
-        ]);
-    }
-
-    /**
-     * @param array $args
-     */
-    public function deleteAppProfile(array $args)
-    {
-        $name = $this->pluck('name', $args);
-        $ignoreWarnings = $this->pluck('ignoreWarnings', $args);
-        return $this->send([$this->bigtableInstanceAdminClient, 'deleteAppProfile'], [
-            $name,
-            $ignoreWarnings,
-            $this->addResourcePrefixHeader($args, $name)
-        ]);
-    }
-
-    /**
-     * @param array $args
-     */
-    public function getIamPolicy(array $args)
-    {
-        $resource = $this->pluck('resource', $args);
-        return $this->send([$this->bigtableInstanceAdminClient, 'getIamPolicy'], [
-            $resource,
-            $this->addResourcePrefixHeader($args, $resource)
-        ]);
-    }
-
-    /**
-     * @param array $args
-     */
-    public function setIamPolicy(array $args)
-    {
-        $resource = $this->pluck('resource', $args);
-        $policy = $this->pluck('policy', $args);
-        return $this->send([$this->bigtableInstanceAdminClient, 'setIamPolicy'], [
-            $resource,
-            $policy,
-            $this->addResourcePrefixHeader($args, $resource)
-        ]);
-    }
-
-    /**
-     * @param array $args
-     */
-    public function createTable(array $args)
-    {
-        $parent = $this->pluck('parent', $args);
-        $tableId = $this->pluck('tableId', $args);
-        return $this->send([$this->bigtableTableAdminClient, 'createTable'], [
-            $parent,
-            $tableId,
-            new Table(),
-            $this->addResourcePrefixHeader($args, $parent)
-        ]);
-    }
-
-    /**
-     * @param array $args
-     */
-    public function createTableFromSnapshot(array $args)
-    {
-        $parent = $this->pluck('parent', $args);
-        $tableId = $this->pluck('tableId', $args);
-        $sourceSnapshot = $this->pluck('sourceSnapshot', $args);
-        return $this->send([$this->bigtableTableAdminClient, 'createTableFromSnapshot'], [
-            $parent,
-            $tableId,
-            $sourceSnapshot,
-            $this->addResourcePrefixHeader($args, $parent)
-        ]);
-    }
-
-    /**
-     * @param array $args
-     */
-    public function listTables(array $args)
-    {
-        $parent = $this->pluck('parent', $args);
-        return $this->send([$this->bigtableTableAdminClient, 'listTables'], [
-            $parent,
-            $this->addResourcePrefixHeader($args, $parent)
-        ]);
-    }
-
-    /**
-     * @param array $args
-     */
-    public function getTable(array $args)
-    {
-        $name = $this->pluck('name', $args);
-        return $this->send([$this->bigtableTableAdminClient, 'getTable'], [
-            $name,
-            $this->addResourcePrefixHeader($args, $name)
-        ]);
-    }
-
-    /**
-     * @param array $args
-     */
-    public function deleteTable(array $args)
-    {
-        $name = $this->pluck('name', $args);
-        return $this->send([$this->bigtableTableAdminClient, 'deleteTable'], [
-            $name,
-            $this->addResourcePrefixHeader($args, $name)
-        ]);
-    }
-
-    /**
-     * @param array $args
-     */
-    public function modifyColumnFamilies(array $args)
-    {
-        $name = $this->pluck('name', $args);
-        $modifications = $this->pluck('modifications', $args);
-        return $this->send([$this->bigtableTableAdminClient, 'modifyColumnFamilies'], [
-            $name,
-            $modifications,
-            $this->addResourcePrefixHeader($args, $name)
-        ]);
-    }
-
-    /**
-     * @param array $args
-     */
-    public function dropRowRange(array $args)
-    {
-        $name = $this->pluck('name', $args);
-        $optionalArgs = $this->pluck('optionalArgs', $args);
-        return $this->send([$this->bigtableTableAdminClient, 'dropRowRange'], [
-            $name,
-            $optionalArgs,
-            $this->addResourcePrefixHeader($args, $name)
-        ]);
-    }
-
-    /**
-     * @param array $args
-     */
-    public function snapshotTable(array $args)
-    {
-        $name = $this->pluck('name', $args);
-        $cluster = $this->pluck('cluster', $args);
-        $snapshotId = $this->pluck('snapshotId', $args);
-        $description = $this->pluck('description', $args);
-        return $this->send([$this->bigtableTableAdminClient, 'snapshotTable'], [
-            $name,
-            $cluster,
-            $snapshotId,
-            $description,
-            $this->addResourcePrefixHeader($args, $name)
-        ]);
-    }
-
-    /**
-     * @param array $args
-     */
-    public function getSnapshot(array $args)
-    {
-        $name = $this->pluck('name', $args);
-        return $this->send([$this->bigtableTableAdminClient, 'getSnapshot'], [
-            $name,
-            $this->addResourcePrefixHeader($args, $name)
-        ]);
-    }
-
-    /**
-     * @param array $args
-     */
-    public function listSnapshots(array $args)
-    {
-        $parent = $this->pluck('parent', $args);
-        return $this->send([$this->bigtableTableAdminClient, 'listSnapshots'], [
-            $parent,
-            $this->addResourcePrefixHeader($args, $parent)
-        ]);
-    }
-
-    /**
-     * @param array $args
-     */
-    public function deleteSnapshot(array $args)
-    {
-        $name = $this->pluck('name', $args);
-        return $this->send([$this->bigtableTableAdminClient, 'deleteSnapshot'], [
-            $name,
-            $this->addResourcePrefixHeader($args, $name)
-        ]);
-    }
-
-    /**
-     * @param array $args
-     */
-    public function readRows(array $args)
-    {
-        $tableName = $this->pluck('tableName', $args);
-        return $this->send([$this->bigtableClient, 'readRows'], [
-            $tableName,
-            $this->addResourcePrefixHeader($args, $tableName)
-        ]);
-    }
-
-    /**
-     * @param array $args
-     */
-    public function sampleRowKeys(array $args)
-    {
-        $tableName = $this->pluck('tableName', $args);
-        return $this->send([$this->bigtableClient, 'sampleRowKeys'], [
-            $tableName,
-            $this->addResourcePrefixHeader($args, $tableName)
-        ]);
-    }
-
-    /**
-     * @param array $args
-     */
-    public function mutateRow(array $args)
-    {
-        $tableName = $this->pluck('tableName', $args);
-        $rowKey = $this->pluck('rowKey', $args);
-        $mutations = $this->pluck('mutations', $args);
-        return $this->send([$this->bigtableClient, 'mutateRow'], [
-            $tableName,
-            $rowKey,
-            $mutations,
-            $this->addResourcePrefixHeader($args, $tableName)
-        ]);
-    }
-
-    /**
-     * @param array $args
-     */
-    public function mutateRows(array $args)
-    {
-        $tableName = $this->pluck('tableName', $args);
-        $entries = $this->pluck('entries', $args);
-        return $this->send([$this->bigtableClient, 'mutateRows'], [
-            $tableName,
-            $entries,
-            $this->addResourcePrefixHeader($args, $tableName)
-        ]);
-    }
-
-    /**
-     * @param array $args
-     */
-    public function checkAndMutateRow(array $args)
-    {
-        $tableName = $this->pluck('tableName', $args);
-        $rowKey = $this->pluck('rowKey', $args);
-        $optionalArgs = $this->pluck('optionalArgs', $args);
-        return $this->send([$this->bigtableClient, 'checkAndMutateRow'], [
-            $tableName,
-            $rowKey,
-            $optionalArgs,
-            $this->addResourcePrefixHeader($args, $tableName)
-        ]);
-    }
-
-    /**
-     * @param array $args
-     */
-    public function readModifyWriteRow(array $args)
-    {
-        $tableName = $this->pluck('tableName', $args);
-        $rowKey = $this->pluck('rowKey', $args);
-        $rules = $this->pluck('rules', $args);
-        return $this->send([$this->bigtableClient, 'readModifyWriteRow'], [
-            $tableName,
-            $rowKey,
-            $rules,
-            $this->addResourcePrefixHeader($args, $tableName)
-        ]);
+        $argsCopy = $args;
+        return array_intersect_key([
+            'location' => $this->pluck('location', $args, $required),
+            'serveNodes' => $this->pluck('serveNodes', $args, $required),
+            'defaultStorageType' => $this->pluck('defaultStorageType', $args, $required)
+        ], $argsCopy);
     }
 
     /**
