@@ -63,7 +63,9 @@ class FirestoreTest extends TestCase
         'set-merge: If no ordinary values in Merge, no write',
         'set-merge: non-leaf merge field with ServerTimestamp',
         'set-merge: non-leaf merge field with ServerTimestamp alone',
-        "set-merge: Delete with merge",
+        'set-merge: Delete with merge',
+        'set-merge: Merge fields must all be present in data',
+        'set-merge: One merge path cannot be the prefix of another',
     ];
 
     public function setUp()
@@ -122,10 +124,6 @@ class FirestoreTest extends TestCase
      */
     public function testSet($test, $description)
     {
-        if ($description !== 'set: ServerTimestamp cannot be in an array value') {
-            return;
-        }
-
         if (isset($test['request'])) {
             $request = $test['request'];
             if (isset($request['transaction']) && !$request['transaction']) {
@@ -173,7 +171,7 @@ class FirestoreTest extends TestCase
 
         $options = $this->formatOptions($test);
 
-        $this->executeAndHandleError($test, function ($test) {
+        $this->executeAndHandleError($test, function ($test) use ($fields, $options) {
             $this->client->document($this->relativeName($test['docRefPath']))
                 ->update($fields, $options);
         });
@@ -199,9 +197,9 @@ class FirestoreTest extends TestCase
             $this->client->___setProperty('connection', $this->connection->reveal());
         }
 
-        $data = [];
+        $fields = [];
         foreach ($test['fieldPaths'] as $key => $val) {
-            $data[] = [
+            $fields[] = [
                 'path' => new FieldPath($val['field']),
                 'value' => $this->injectSentinel(json_decode($test['jsonValues'][$key], true))
             ];
@@ -209,9 +207,9 @@ class FirestoreTest extends TestCase
 
         $options = $this->formatOptions($test);
 
-        $this->executeAndHandleError($test, function ($test) {
+        $this->executeAndHandleError($test, function ($test) use ($fields, $options) {
             $this->client->document($this->relativeName($test['docRefPath']))
-                ->update($data, $options);
+                ->update($fields, $options);
         });
     }
 
@@ -234,7 +232,7 @@ class FirestoreTest extends TestCase
 
         $options = $this->formatOptions($test);
 
-        $this->executeAndHandleError($test, function ($test) {
+        $this->executeAndHandleError($test, function ($test) use ($options) {
             $this->client->document($this->relativeName($test['docRefPath']))
                 ->delete($options);
         });
@@ -244,8 +242,12 @@ class FirestoreTest extends TestCase
      * @dataProvider cases
      * @group firestore-query
      */
-    public function testQuery($test, $desc)
+    public function testQuery($test, $description)
     {
+        // if ($description !== 'query: cursor method, doc snapshot, existing orderBy __name__') {
+        //     return;
+        // }
+
         $times = (isset($test['isError']) && $test['isError']) ? 0 : 1;
         $this->connection->runQuery(new ArrayHasSameValuesToken([
             'parent' => $this->parentPath($test['collPath']),
@@ -257,7 +259,7 @@ class FirestoreTest extends TestCase
 
         $query = $this->client->collection($this->relativeName($test['collPath']));
 
-        $this->executeAndHandleError($test, function ($test) {
+        $this->executeAndHandleError($test, function ($test) use ($query) {
             foreach ($test['clauses'] as $clause) {
                 $name = array_keys($clause)[0];
                 switch ($name) {
@@ -274,7 +276,7 @@ class FirestoreTest extends TestCase
                         $query = $query->where(
                             $clause['where']['path']['field'][0],
                             $clause['where']['op'],
-                            $this->injectSentinel(json_decode($clause['where']['jsonValue'], true))
+                            $this->injectWhere($this->injectSentinel(json_decode($clause['where']['jsonValue'], true)))
                         );
                         break;
 
@@ -399,15 +401,24 @@ class FirestoreTest extends TestCase
     private function injectSentinel($value)
     {
         if (is_array($value)) {
-            $value = $this->injectSentinels($value);
+            return $this->injectSentinels($value);
         }
 
         if ($value === 'Delete') {
-            $value = FieldValue::deleteField();
+            return FieldValue::deleteField();
         }
 
         if ($value === 'ServerTimestamp') {
-            $value = FieldValue::serverTimestamp();
+            return FieldValue::serverTimestamp();
+        }
+
+        return $value;
+    }
+
+    private function injectWhere($value)
+    {
+        if ($value === 'NaN') {
+            return NAN;
         }
 
         return $value;

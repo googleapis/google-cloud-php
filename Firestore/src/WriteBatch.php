@@ -182,11 +182,7 @@ class WriteBatch
     public function set($document, array $fields, array $options = [])
     {
         $merge = $this->pluck('merge', $options, false) ?: false;
-
-        // If merge is enabled and no fields were provided, error.
-        if ($merge && !$fields) {
-            throw new \InvalidArgumentException('Fields list cannot be empty when merging fields.');
-        }
+        // $isEmpty = !$fields;
 
         // search for sentinel values and remove them from the list of fields.
         list($filteredFields, $timestamps, $deletes) = $this->valueMapper->findSentinels($fields);
@@ -486,7 +482,7 @@ class WriteBatch
     private function createDatabaseWrite($type, $document, array $options = [])
     {
         $mask = $this->pluck('updateMask', $options, false);
-        if ($mask) {
+        if ($mask !== null) {
             sort($mask);
             $mask = ['fieldPaths' => $mask];
         }

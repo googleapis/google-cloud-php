@@ -683,16 +683,12 @@ class Query
             if ($orderBy) {
                 // Append orderBy(__name__, direction of last orderBy clause)
                 $lastOrderDirection = end($orderBy)['direction'];
-                $fieldValues[] = $snapshot;
                 $orderBy[] = [
                     'field' => [
                         'fieldPath' => self::DOCUMENT_ID
                     ],
                     'direction' => $lastOrderDirection
                 ];
-
-                // read the orderBy constraints and create cursor values using the given snapshot.
-                $fieldValues = $this->snapshotCursorValues($snapshot, $orderBy);
             } else {
                 // no existing orderBy constraints
 
@@ -703,10 +699,10 @@ class Query
                     ],
                     'direction' => self::DIR_ASCENDING
                 ];
-
-                $fieldValues[] = $snapshot;
             }
         }
+
+        $fieldValues = $this->snapshotCursorValues($snapshot, $orderBy);
 
         return [
             $fieldValues,
