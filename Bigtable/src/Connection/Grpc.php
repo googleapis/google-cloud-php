@@ -127,9 +127,9 @@ class Grpc implements ConnectionInterface
     {
         $argsCopy = $args;
         return array_intersect_key([
-            'name' => $this->pluck('name', $args, $required),
             'displayName' => $this->pluck('displayName', $args, $required),
-            'type' => $this->pluck('type', $args, $required)
+            'type' => $this->pluck('type', $args, $required),
+            'labels' => $this->pluck('labels', $args, $required),
         ], $argsCopy);
     }
 
