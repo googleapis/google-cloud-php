@@ -31,6 +31,7 @@
 namespace Google\Cloud\Bigtable\V2\Gapic;
 
 use Google\ApiCore\ApiException;
+use Google\ApiCore\Call;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\FetchAuthTokenInterface;
 use Google\ApiCore\GapicClientTrait;
