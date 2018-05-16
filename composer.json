@@ -178,9 +178,5 @@
                 "ServiceBuilder.php"
             ]
         }
-    },
-    "repositories": [{
-        "type": "vcs",
-        "url": "https://github.com/michaelbausor/gax-php.git"
-    }]
+    }
 }

@@ -53,13 +53,8 @@ class CloudRedisClientTest extends TestCase
         $keyFilePath = getenv('GOOGLE_CLOUD_PHP_TESTS_KEY_PATH');
         $keyFileData = json_decode(file_get_contents($keyFilePath), true);
 
-        $credentialsLoader = CredentialsLoader::makeCredentials(
-            ['https://www.googleapis.com/auth/cloud-platform'],
-            $keyFileData
-        );
-
         self::$grpcClient = new CloudRedisClient([
-            'credentialsLoader' => $credentialsLoader,
+            'credentials' => $keyFilePath,
             'transport' => 'grpc'
         ]);
 
