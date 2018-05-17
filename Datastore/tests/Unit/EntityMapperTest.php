@@ -171,6 +171,23 @@ class EntityMapperTest extends TestCase
         $this->assertEquals($point, $res['foo']->point());
     }
 
+    public function testResponseToPropertiesGeoPointNull()
+    {
+        $data = [
+            'foo' => [
+                'geoPointValue' => []
+            ]
+        ];
+
+        $res = $this->mapper->responseToEntityProperties($data)['properties'];
+
+        $this->assertInstanceOf(GeoPoint::class, $res['foo']);
+        $this->assertEquals([
+            'latitude' => null,
+            'longitude' => null
+        ], $res['foo']->point());
+    }
+
     public function testResponseToPropertiesEntityValue()
     {
         $data = [

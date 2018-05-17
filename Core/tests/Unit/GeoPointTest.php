@@ -15,13 +15,14 @@
  * limitations under the License.
  */
 
-namespace Google\Cloud\Datastore\Tests\Unit;
+namespace Google\Cloud\Core\Tests\Unit;
 
-use Google\Cloud\Datastore\GeoPoint;
+use Google\Cloud\Core\GeoPoint;
 use PHPUnit\Framework\TestCase;
 
 /**
- * @group datastore
+ * @group core
+ * @group core-geopoint
  */
 class GeoPointTest extends TestCase
 {
@@ -52,38 +53,51 @@ class GeoPointTest extends TestCase
     }
 
     /**
+     * @dataProvider methods
      * @expectedException InvalidArgumentException
      */
-    public function testCheckContextLatitude()
+    public function testCheckContext($method)
     {
         $point = new GeoPoint(1.1, 2.2);
-        $point->latitude(222.33);
+        $point->$method(222.33);
     }
 
     /**
+     * @dataProvider methods
      * @expectedException InvalidArgumentException
      */
-    public function testCheckContextLongitude()
+    public function testInvalidType($method)
     {
+        $method = 'set' . ucfirst($method);
         $point = new GeoPoint(1.1, 2.2);
-        $point->longitude(222.33);
+        $point->$method('foo');
     }
 
     /**
+     * @dataProvider methods
      * @expectedException InvalidArgumentException
      */
-    public function testInvalidTypeLatitude()
+    public function testSetNullValue($method)
     {
-        $point = new GeoPoint(1.1, 2.2);
-        $point->setLatitude('foo');
+        $method = 'set' . ucfirst($method);
+        $point = new GeoPoint(1.1, 2.2, true);
+        $point->$method(null);
     }
 
-    /**
-     * @expectedException InvalidArgumentException
-     */
-    public function testInvalidTypeLongitude()
+    public function testConstructWithNulls()
     {
-        $point = new GeoPoint(1.1, 2.2);
-        $point->setLongitude('bar');
+        $point = new GeoPoint(null, null, true);
+        $this->assertEquals([
+            'latitude' => null,
+            'longitude' => null
+        ], $point->point());
+    }
+
+    public function methods()
+    {
+        return [
+            ['latitude'],
+            ['longitude']
+        ];
     }
 }
