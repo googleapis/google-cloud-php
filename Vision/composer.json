@@ -5,7 +5,6 @@
     "minimum-stability": "stable",
     "require": {
         "google/cloud-core": "^1.14",
-        "google/proto-client": "^0.40",
         "google/gax": "^0.33"
     },
     "require-dev": {
@@ -30,7 +29,8 @@
     },
     "autoload": {
         "psr-4": {
-            "Google\\Cloud\\Vision\\": "src"
+            "Google\\Cloud\\Vision\\": "src",
+            "GPBMetadata\\Google\\Cloud\\Vision\\": "metadata"
         }
     },
     "autoload-dev": {

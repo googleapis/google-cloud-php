@@ -4,7 +4,6 @@
     "license": "Apache-2.0",
     "minimum-stability": "stable",
     "require": {
-        "google/proto-client": "^0.40",
         "google/gax": "^0.33"
     },
     "require-dev": {
@@ -25,7 +24,8 @@
     },
     "autoload": {
         "psr-4": {
-            "Google\\Cloud\\VideoIntelligence\\": "src"
+            "Google\\Cloud\\VideoIntelligence\\": "src",
+            "GPBMetadata\\Google\\Cloud\\Videointelligence\\": "metadata"
         }
     }
 }

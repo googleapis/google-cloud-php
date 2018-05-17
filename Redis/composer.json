@@ -5,7 +5,8 @@
     "minimum-stability": "stable",
     "autoload": {
         "psr-4": {
-            "Google\\Cloud\\Redis\\": "src"
+            "Google\\Cloud\\Redis\\": "src",
+            "GPBMetadata\\Google\\Cloud\\Redis\\": "metadata"
         }
     },
     "extra": {
@@ -18,7 +19,6 @@
     },
     "require": {
         "ext-grpc": "*",
-        "google/proto-client": "^0.40",
         "google/gax": "^0.33"
     },
     "require-dev": {

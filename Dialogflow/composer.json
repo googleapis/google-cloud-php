@@ -5,7 +5,8 @@
     "minimum-stability": "stable",
     "autoload": {
         "psr-4": {
-            "Google\\Cloud\\Dialogflow\\": "src"
+            "Google\\Cloud\\Dialogflow\\": "src",
+            "GPBMetadata\\Google\\Cloud\\Dialogflow\\": "metadata"
         }
     },
     "extra": {
@@ -17,7 +18,6 @@
         }
     },
     "require": {
-        "google/proto-client": "^0.40",
         "google/gax": "^0.33"
     },
     "require-dev": {

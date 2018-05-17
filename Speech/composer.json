@@ -5,7 +5,6 @@
     "minimum-stability": "stable",
     "require": {
         "google/cloud-core": "^1.14",
-        "google/proto-client": "^0.40",
         "google/gax": "^0.33"
     },
     "require-dev": {
@@ -29,7 +28,8 @@
     },
     "autoload": {
         "psr-4": {
-            "Google\\Cloud\\Speech\\": "src"
+            "Google\\Cloud\\Speech\\": "src",
+            "GPBMetadata\\Google\\Cloud\\Speech\\": "metadata"
         }
     },
     "autoload-dev": {
