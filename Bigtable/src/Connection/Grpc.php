@@ -20,15 +20,12 @@ namespace Google\Cloud\Bigtable\Connection;
 use Google\ApiCore\Serializer;
 use Google\Cloud\Bigtable\Admin\V2\BigtableInstanceAdminClient;
 use Google\Cloud\Bigtable\Admin\V2\BigtableTableAdminClient;
+use Google\Cloud\Bigtable\Admin\V2\Cluster;
 use Google\Cloud\Bigtable\Admin\V2\Instance;
 use Google\Cloud\Bigtable\V2\BigtableClient;
 use Google\Cloud\Core\GrpcRequestWrapper;
 use Google\Cloud\Core\GrpcTrait;
 use Google\Cloud\Core\LongRunning\OperationResponseTrait;
-use Google\Cloud\Bigtable\Admin\V2\Cluster;
-use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\MapField;
-
 
 /**
  * Connection to Cloud Bigtable over GRPC
@@ -57,31 +54,24 @@ class Grpc implements ConnectionInterface
      * @var BigtableInstanceAdminClient
      */
     private $bigtableInstanceAdminClient;
-    
+
+    /**
+     * @var array
+     */
+    private $lroResponseMappers = [
+        [
+            'method' => 'createInstance',
+            'typeUrl' => 'type.googleapis.com/google.bigtable.admin.instance.v2.CreateInstanceMetadata',
+            'message' => Instance::class
+        ]
+    ];
+
     /**
      * @param array $config [optional]
      */
     public function __construct(array $config = [])
     {
-        $this->serializer = new Serializer([
-            'commit_timestamp' => function ($v) {
-                return $this->formatTimestampFromApi($v);
-            },
-            'read_timestamp' => function ($v) {
-                return $this->formatTimestampFromApi($v);
-            }
-        ], [
-            'google.protobuf.Value' => function ($v) {
-                return $this->flattenValue($v);
-            },
-            'google.protobuf.ListValue' => function ($v) {
-                return $this->flattenListValue($v);
-            },
-            'google.protobuf.Struct' => function ($v) {
-                return $this->flattenStruct($v);
-            },
-        ]);
-
+        $this->serializer = new Serializer();
         $config['serializer'] = $this->serializer;
         $this->setRequestWrapper(new GrpcRequestWrapper($config));
         $this->bigtableClient = new BigtableClient();
@@ -94,83 +84,54 @@ class Grpc implements ConnectionInterface
      */
     public function createInstance(array $args)
     {
-        $parent = $args['parent'];
+        $parent = $this->pluck('parent', $args);
         $instance = $this->pluck('instance', $args);
-        $clusters = $this->pluck('clusters', $args); 
-        return $this->send([$this->bigtableInstanceAdminClient, 'createInstance'], [
+        $clusters = $this->pluck('clusters', $args);
+        $response = $this->send([$this->bigtableInstanceAdminClient, 'createInstance'], [
             $parent,
             $this->pluck('instanceId', $args),
             $this->instanceObject($instance),
-            $this->mapOfClusterObject($clusters),
+            array_map([$this, 'clusterObject'], $clusters),
             $this->addResourcePrefixHeader($args, $parent)
         ]);
+
+        return $this->operationToArray(
+            $response,
+            $this->serializer,
+            $this->lroResponseMappers
+        );
     }
 
     /**
-     * @param array $args
-     * @param bool $required
+     * @param array $instance
+     * @return Instance
      */
-    private function instanceObject(array &$args, $required = false)
+    private function instanceObject(array $instance)
     {
         return $this->serializer->decodeMessage(
             new Instance(),
-            $this->instanceArray($args, $required)
+            $this->pluckArray([
+                'displayName',
+                'type',
+                'labels'
+            ], $instance)
         );
     }
 
     /**
-     * @param array $args
-     * @param bool $required
-     * @return array
+     * @param array $cluster
+     * @return Cluster
      */
-    private function instanceArray(array &$args, $required = false)
-    {
-        $argsCopy = $args;
-        return array_intersect_key([
-            'displayName' => $this->pluck('displayName', $args, $required),
-            'type' => $this->pluck('type', $args, $required),
-            'labels' => $this->pluck('labels', $args, $required),
-        ], $argsCopy);
-    }
-
-    /**
-     * @param array $args
-     * @param bool $required
-     */
-    private function mapOfClusterObject(array &$args, $required = false)
-    {
-        $clusters = new MapField(GPBType::STRING, GPBType::MESSAGE, Cluster::class);
-        foreach ($args as $key => $value) {
-            $clusters[$value['name']] = $this->clusterObject($value, $required);;
-        }
-        return $clusters;
-    }
-
-    /**
-     * @param array $args
-     * @param bool $required
-     */
-    private function clusterObject(array &$args, $required = false)
+    private function clusterObject(array $cluster)
     {
         return $this->serializer->decodeMessage(
             new Cluster(),
-            $this->clusterArray($args, $required)
+            $this->pluckArray([
+                'location',
+                'serveNodes',
+                'defaultStorageType'
+            ], $cluster)
         );
-    }
-
-    /**
-     * @param array $args
-     * @param bool $required
-     * @return array
-     */
-    private function clusterArray(array &$args, $required = false)
-    {
-        $argsCopy = $args;
-        return array_intersect_key([
-            'location' => $this->pluck('location', $args, $required),
-            'serveNodes' => $this->pluck('serveNodes', $args, $required),
-            'defaultStorageType' => $this->pluck('defaultStorageType', $args, $required)
-        ], $argsCopy);
     }
 
     /**
