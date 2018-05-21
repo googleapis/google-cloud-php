@@ -190,7 +190,7 @@ class BigtableInstanceAdminGapicClient
                     'restClientConfigPath' => __DIR__.'/../resources/bigtable_instance_admin_rest_client_config.php',
                 ],
             ],
-            'versionFile' => __DIR__.'/../../../VERSION',
+            'versionFile' => __DIR__.'/../../../../VERSION',
         ];
     }
 
