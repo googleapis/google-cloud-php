@@ -565,8 +565,8 @@ class BigtableInstanceAdminGapicClient
         $requestParams = new RequestParamsHeaderDescriptor([
           'parent' => $request->getParent(),
         ]);
-        $optionalArgs['userHeaders'] = isset($optionalArgs['userHeaders'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['userHeaders'])
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
             : $requestParams->getHeader();
 
         return $this->startOperationsCall(
@@ -616,8 +616,8 @@ class BigtableInstanceAdminGapicClient
         $requestParams = new RequestParamsHeaderDescriptor([
           'name' => $request->getName(),
         ]);
-        $optionalArgs['userHeaders'] = isset($optionalArgs['userHeaders'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['userHeaders'])
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
             : $requestParams->getHeader();
 
         return $this->startCall(
@@ -672,8 +672,8 @@ class BigtableInstanceAdminGapicClient
         $requestParams = new RequestParamsHeaderDescriptor([
           'parent' => $request->getParent(),
         ]);
-        $optionalArgs['userHeaders'] = isset($optionalArgs['userHeaders'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['userHeaders'])
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
             : $requestParams->getHeader();
 
         return $this->startCall(
@@ -753,8 +753,8 @@ class BigtableInstanceAdminGapicClient
         $requestParams = new RequestParamsHeaderDescriptor([
           'name' => $request->getName(),
         ]);
-        $optionalArgs['userHeaders'] = isset($optionalArgs['userHeaders'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['userHeaders'])
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
             : $requestParams->getHeader();
 
         return $this->startCall(
@@ -832,8 +832,8 @@ class BigtableInstanceAdminGapicClient
         $requestParams = new RequestParamsHeaderDescriptor([
           'instance.name' => $request->getInstance()->getName(),
         ]);
-        $optionalArgs['userHeaders'] = isset($optionalArgs['userHeaders'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['userHeaders'])
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
             : $requestParams->getHeader();
 
         return $this->startOperationsCall(
@@ -881,8 +881,8 @@ class BigtableInstanceAdminGapicClient
         $requestParams = new RequestParamsHeaderDescriptor([
           'name' => $request->getName(),
         ]);
-        $optionalArgs['userHeaders'] = isset($optionalArgs['userHeaders'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['userHeaders'])
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
             : $requestParams->getHeader();
 
         return $this->startCall(
@@ -967,8 +967,8 @@ class BigtableInstanceAdminGapicClient
         $requestParams = new RequestParamsHeaderDescriptor([
           'parent' => $request->getParent(),
         ]);
-        $optionalArgs['userHeaders'] = isset($optionalArgs['userHeaders'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['userHeaders'])
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
             : $requestParams->getHeader();
 
         return $this->startOperationsCall(
@@ -1018,8 +1018,8 @@ class BigtableInstanceAdminGapicClient
         $requestParams = new RequestParamsHeaderDescriptor([
           'name' => $request->getName(),
         ]);
-        $optionalArgs['userHeaders'] = isset($optionalArgs['userHeaders'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['userHeaders'])
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
             : $requestParams->getHeader();
 
         return $this->startCall(
@@ -1076,8 +1076,8 @@ class BigtableInstanceAdminGapicClient
         $requestParams = new RequestParamsHeaderDescriptor([
           'parent' => $request->getParent(),
         ]);
-        $optionalArgs['userHeaders'] = isset($optionalArgs['userHeaders'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['userHeaders'])
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
             : $requestParams->getHeader();
 
         return $this->startCall(
@@ -1179,8 +1179,8 @@ class BigtableInstanceAdminGapicClient
         $requestParams = new RequestParamsHeaderDescriptor([
           'name' => $request->getName(),
         ]);
-        $optionalArgs['userHeaders'] = isset($optionalArgs['userHeaders'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['userHeaders'])
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
             : $requestParams->getHeader();
 
         return $this->startOperationsCall(
@@ -1228,8 +1228,8 @@ class BigtableInstanceAdminGapicClient
         $requestParams = new RequestParamsHeaderDescriptor([
           'name' => $request->getName(),
         ]);
-        $optionalArgs['userHeaders'] = isset($optionalArgs['userHeaders'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['userHeaders'])
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
             : $requestParams->getHeader();
 
         return $this->startCall(
@@ -1299,8 +1299,8 @@ class BigtableInstanceAdminGapicClient
         $requestParams = new RequestParamsHeaderDescriptor([
           'parent' => $request->getParent(),
         ]);
-        $optionalArgs['userHeaders'] = isset($optionalArgs['userHeaders'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['userHeaders'])
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
             : $requestParams->getHeader();
 
         return $this->startCall(
@@ -1355,8 +1355,8 @@ class BigtableInstanceAdminGapicClient
         $requestParams = new RequestParamsHeaderDescriptor([
           'name' => $request->getName(),
         ]);
-        $optionalArgs['userHeaders'] = isset($optionalArgs['userHeaders'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['userHeaders'])
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
             : $requestParams->getHeader();
 
         return $this->startCall(
@@ -1432,8 +1432,8 @@ class BigtableInstanceAdminGapicClient
         $requestParams = new RequestParamsHeaderDescriptor([
           'parent' => $request->getParent(),
         ]);
-        $optionalArgs['userHeaders'] = isset($optionalArgs['userHeaders'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['userHeaders'])
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
             : $requestParams->getHeader();
 
         return $this->getPagedListResponse(
@@ -1521,8 +1521,8 @@ class BigtableInstanceAdminGapicClient
         $requestParams = new RequestParamsHeaderDescriptor([
           'app_profile.name' => $request->getAppProfile()->getName(),
         ]);
-        $optionalArgs['userHeaders'] = isset($optionalArgs['userHeaders'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['userHeaders'])
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
             : $requestParams->getHeader();
 
         return $this->startOperationsCall(
@@ -1578,8 +1578,8 @@ class BigtableInstanceAdminGapicClient
         $requestParams = new RequestParamsHeaderDescriptor([
           'name' => $request->getName(),
         ]);
-        $optionalArgs['userHeaders'] = isset($optionalArgs['userHeaders'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['userHeaders'])
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
             : $requestParams->getHeader();
 
         return $this->startCall(
@@ -1637,8 +1637,8 @@ class BigtableInstanceAdminGapicClient
         $requestParams = new RequestParamsHeaderDescriptor([
           'resource' => $request->getResource(),
         ]);
-        $optionalArgs['userHeaders'] = isset($optionalArgs['userHeaders'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['userHeaders'])
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
             : $requestParams->getHeader();
 
         return $this->startCall(
@@ -1702,8 +1702,8 @@ class BigtableInstanceAdminGapicClient
         $requestParams = new RequestParamsHeaderDescriptor([
           'resource' => $request->getResource(),
         ]);
-        $optionalArgs['userHeaders'] = isset($optionalArgs['userHeaders'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['userHeaders'])
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
             : $requestParams->getHeader();
 
         return $this->startCall(
@@ -1766,8 +1766,8 @@ class BigtableInstanceAdminGapicClient
         $requestParams = new RequestParamsHeaderDescriptor([
           'resource' => $request->getResource(),
         ]);
-        $optionalArgs['userHeaders'] = isset($optionalArgs['userHeaders'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['userHeaders'])
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
             : $requestParams->getHeader();
 
         return $this->startCall(

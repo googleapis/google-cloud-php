@@ -396,8 +396,8 @@ class DeviceManagerGapicClient
         $requestParams = new RequestParamsHeaderDescriptor([
           'parent' => $request->getParent(),
         ]);
-        $optionalArgs['userHeaders'] = isset($optionalArgs['userHeaders'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['userHeaders'])
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
             : $requestParams->getHeader();
 
         return $this->startCall(
@@ -447,8 +447,8 @@ class DeviceManagerGapicClient
         $requestParams = new RequestParamsHeaderDescriptor([
           'name' => $request->getName(),
         ]);
-        $optionalArgs['userHeaders'] = isset($optionalArgs['userHeaders'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['userHeaders'])
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
             : $requestParams->getHeader();
 
         return $this->startCall(
@@ -506,8 +506,8 @@ class DeviceManagerGapicClient
         $requestParams = new RequestParamsHeaderDescriptor([
           'device_registry.name' => $request->getDeviceRegistry()->getName(),
         ]);
-        $optionalArgs['userHeaders'] = isset($optionalArgs['userHeaders'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['userHeaders'])
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
             : $requestParams->getHeader();
 
         return $this->startCall(
@@ -555,8 +555,8 @@ class DeviceManagerGapicClient
         $requestParams = new RequestParamsHeaderDescriptor([
           'name' => $request->getName(),
         ]);
-        $optionalArgs['userHeaders'] = isset($optionalArgs['userHeaders'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['userHeaders'])
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
             : $requestParams->getHeader();
 
         return $this->startCall(
@@ -633,8 +633,8 @@ class DeviceManagerGapicClient
         $requestParams = new RequestParamsHeaderDescriptor([
           'parent' => $request->getParent(),
         ]);
-        $optionalArgs['userHeaders'] = isset($optionalArgs['userHeaders'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['userHeaders'])
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
             : $requestParams->getHeader();
 
         return $this->getPagedListResponse(
@@ -690,8 +690,8 @@ class DeviceManagerGapicClient
         $requestParams = new RequestParamsHeaderDescriptor([
           'parent' => $request->getParent(),
         ]);
-        $optionalArgs['userHeaders'] = isset($optionalArgs['userHeaders'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['userHeaders'])
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
             : $requestParams->getHeader();
 
         return $this->startCall(
@@ -748,8 +748,8 @@ class DeviceManagerGapicClient
         $requestParams = new RequestParamsHeaderDescriptor([
           'name' => $request->getName(),
         ]);
-        $optionalArgs['userHeaders'] = isset($optionalArgs['userHeaders'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['userHeaders'])
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
             : $requestParams->getHeader();
 
         return $this->startCall(
@@ -807,8 +807,8 @@ class DeviceManagerGapicClient
         $requestParams = new RequestParamsHeaderDescriptor([
           'device.name' => $request->getDevice()->getName(),
         ]);
-        $optionalArgs['userHeaders'] = isset($optionalArgs['userHeaders'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['userHeaders'])
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
             : $requestParams->getHeader();
 
         return $this->startCall(
@@ -857,8 +857,8 @@ class DeviceManagerGapicClient
         $requestParams = new RequestParamsHeaderDescriptor([
           'name' => $request->getName(),
         ]);
-        $optionalArgs['userHeaders'] = isset($optionalArgs['userHeaders'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['userHeaders'])
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
             : $requestParams->getHeader();
 
         return $this->startCall(
@@ -955,8 +955,8 @@ class DeviceManagerGapicClient
         $requestParams = new RequestParamsHeaderDescriptor([
           'parent' => $request->getParent(),
         ]);
-        $optionalArgs['userHeaders'] = isset($optionalArgs['userHeaders'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['userHeaders'])
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
             : $requestParams->getHeader();
 
         return $this->getPagedListResponse(
@@ -1021,8 +1021,8 @@ class DeviceManagerGapicClient
         $requestParams = new RequestParamsHeaderDescriptor([
           'name' => $request->getName(),
         ]);
-        $optionalArgs['userHeaders'] = isset($optionalArgs['userHeaders'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['userHeaders'])
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
             : $requestParams->getHeader();
 
         return $this->startCall(
@@ -1081,8 +1081,8 @@ class DeviceManagerGapicClient
         $requestParams = new RequestParamsHeaderDescriptor([
           'name' => $request->getName(),
         ]);
-        $optionalArgs['userHeaders'] = isset($optionalArgs['userHeaders'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['userHeaders'])
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
             : $requestParams->getHeader();
 
         return $this->startCall(
@@ -1141,8 +1141,8 @@ class DeviceManagerGapicClient
         $requestParams = new RequestParamsHeaderDescriptor([
           'name' => $request->getName(),
         ]);
-        $optionalArgs['userHeaders'] = isset($optionalArgs['userHeaders'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['userHeaders'])
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
             : $requestParams->getHeader();
 
         return $this->startCall(
@@ -1200,8 +1200,8 @@ class DeviceManagerGapicClient
         $requestParams = new RequestParamsHeaderDescriptor([
           'resource' => $request->getResource(),
         ]);
-        $optionalArgs['userHeaders'] = isset($optionalArgs['userHeaders'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['userHeaders'])
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
             : $requestParams->getHeader();
 
         return $this->startCall(
@@ -1254,8 +1254,8 @@ class DeviceManagerGapicClient
         $requestParams = new RequestParamsHeaderDescriptor([
           'resource' => $request->getResource(),
         ]);
-        $optionalArgs['userHeaders'] = isset($optionalArgs['userHeaders'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['userHeaders'])
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
             : $requestParams->getHeader();
 
         return $this->startCall(
@@ -1314,8 +1314,8 @@ class DeviceManagerGapicClient
         $requestParams = new RequestParamsHeaderDescriptor([
           'resource' => $request->getResource(),
         ]);
-        $optionalArgs['userHeaders'] = isset($optionalArgs['userHeaders'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['userHeaders'])
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
             : $requestParams->getHeader();
 
         return $this->startCall(
