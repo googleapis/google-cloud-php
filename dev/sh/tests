@@ -6,7 +6,7 @@ function unit () {
   echo "Running Unit Test Suite"
 
   if [ "${TRAVIS}" == "true" ]; then
-    $(dirname $0)/../../vendor/bin/phpunit --coverage-clover=build/clover.xml
+    phpdbg -qrr $(dirname $0)/../../vendor/bin/phpunit --coverage-clover=build/clover.xml
   else
     $(dirname $0)/../../vendor/bin/phpunit
   fi
