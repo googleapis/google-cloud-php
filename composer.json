@@ -56,13 +56,13 @@
         "squizlabs/php_codesniffer": "2.*",
         "phpdocumentor/reflection": "^3.0",
         "symfony/console": "^3.0",
-        "league/json-guard": "^0.3",
         "erusev/parsedown": "^1.6",
         "vierbergenlars/php-semver": "^3.0",
         "symfony/lock": "3.3.x-dev#1ba6ac9",
         "phpseclib/phpseclib": "^2",
         "google/cloud-tools": "^0.6",
-        "opis/closure": "^3.0"
+        "opis/closure": "^3.0",
+        "swaggest/json-schema": "^0.12.0"
     },
     "replace": {
         "google/cloud-bigquery": "1.2.1",
