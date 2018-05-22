@@ -268,7 +268,7 @@ class SpeechGapicClient
      *          {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
-     * @return \Google\Cloud\Speech\V1\RecognizeResponse
+     * @return \Google\Cloud\Speech\V1p1beta1\RecognizeResponse
      *
      * @throws ApiException if the remote call fails
      * @experimental
