@@ -302,13 +302,18 @@ class Serializer
         foreach ($data as $key => $v) {
             // Get the field by tag number or name
             $fieldName = self::toSnakeCase($key);
-            /** @var $field FieldDescriptor */
-            $field = $fieldsByName[$fieldName];
 
             // Unknown field found
-            if (!$field) {
-                throw new RuntimeException("cannot handle unknown field: $fieldName");
+            if (!isset($fieldsByName[$fieldName])) {
+                throw new RuntimeException(sprintf(
+                    "cannot handle unknown field %s on message %s",
+                    $fieldName,
+                    $messageType->getFullName()
+                ));
             }
+
+            /** @var $field FieldDescriptor */
+            $field = $fieldsByName[$fieldName];
 
             if ($field->isMap()) {
                 list($mapFieldsByName, $_) = $this->getDescriptorMaps($field->getMessageType());
