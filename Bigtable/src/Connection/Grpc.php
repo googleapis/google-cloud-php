@@ -135,6 +135,286 @@ class Grpc implements ConnectionInterface
     }
 
     /**
+     * @param array $args
+     */
+    public function getInstance(array $args)
+    {
+        throw new \BadMethodCallException('Not implemented');
+    }
+
+    /**
+     * @param array $args
+     */
+    public function listInstances(array $args)
+    {
+        throw new \BadMethodCallException('Not implemented');
+    }
+
+    /**
+     * @param array $args
+     */
+    public function updateInstance(array $args)
+    {
+        throw new \BadMethodCallException('Not implemented');
+    }
+
+        /**
+     * @param array $args
+     */
+    public function deleteInstance(array $args)
+    {
+        throw new \BadMethodCallException('Not implemented');
+    }
+
+    /**
+     * @param array $args
+     */
+    public function createCluster(array $args)
+    {
+        throw new \BadMethodCallException('Not implemented');
+    }
+
+    /**
+     * @param array $args
+     */
+    public function getCluster(array $args)
+    {
+        throw new \BadMethodCallException('Not implemented');
+    }
+
+    /**
+     * @param array $args
+     */
+    public function listClusters(array $args)
+    {
+        throw new \BadMethodCallException('Not implemented');
+    }
+
+    /**
+     * @param array $args
+     */
+    public function updateCluster(array $args)
+    {
+        throw new \BadMethodCallException('Not implemented');
+    }
+
+    /**
+     * @param array $args
+     */
+    public function deleteCluster(array $args)
+    {
+        throw new \BadMethodCallException('Not implemented');
+    }
+
+    /**
+     * @param array $args
+     */
+    public function createAppProfile(array $args)
+    {
+        throw new \BadMethodCallException('Not implemented');
+    }
+
+    /**
+     * @param array $args
+     */
+    public function getAppProfile(array $args)
+    {
+        throw new \BadMethodCallException('Not implemented');
+    }
+
+    /**
+     * @param array $args
+     */
+    public function listAppProfiles(array $args)
+    {
+        throw new \BadMethodCallException('Not implemented');
+    }
+
+    /**
+     * @param array $args
+     */
+    public function updateAppProfile(array $args)
+    {
+        throw new \BadMethodCallException('Not implemented');
+    }
+
+    /**
+     * @param array $args
+     */
+    public function deleteAppProfile(array $args)
+    {
+        throw new \BadMethodCallException('Not implemented');
+    }
+
+    /**
+     * @param array $args
+     */
+    public function getIamPolicy(array $args)
+    {
+        throw new \BadMethodCallException('Not implemented');
+    }
+
+    /**
+     * @param array $args
+     */
+    public function setIamPolicy(array $args)
+    {
+        throw new \BadMethodCallException('Not implemented');
+    }
+
+    /**
+     * @param array $args
+     */
+    public function createTable(array $args)
+    {
+        throw new \BadMethodCallException('Not implemented');
+    }
+
+    /**
+     * @param array $args
+     */
+    public function createTableFromSnapshot(array $args)
+    {
+        throw new \BadMethodCallException('Not implemented');
+    }
+
+    /**
+     * @param array $args
+     */
+    public function listTables(array $args)
+    {
+        throw new \BadMethodCallException('Not implemented');
+    }
+
+    /**
+     * @param array $args
+     */
+    public function getTable(array $args)
+    {
+        throw new \BadMethodCallException('Not implemented');
+    }
+
+    /**
+     * @param array $args
+     */
+    public function deleteTable(array $args)
+    {
+        throw new \BadMethodCallException('Not implemented');
+    }
+
+    /**
+     * @param array $args
+     */
+    public function modifyColumnFamilies(array $args)
+    {
+        throw new \BadMethodCallException('Not implemented');
+    }
+
+    /**
+     * @param array $args
+     */
+    public function dropRowRange(array $args)
+    {
+        throw new \BadMethodCallException('Not implemented');
+    }
+
+    /**
+     * @param array $args
+     */
+    public function waitForReplication(array $args)
+    {
+        throw new \BadMethodCallException('Not implemented');
+    }
+
+    /**
+     * @param array $args
+     */
+    public function snapshotTable(array $args)
+    {
+        throw new \BadMethodCallException('Not implemented');
+    }
+
+    /**
+     * @param array $args
+     */
+    public function getSnapshot(array $args)
+    {
+        throw new \BadMethodCallException('Not implemented');
+    }
+
+    /**
+     * @param array $args
+     */
+    public function listSnapshots(array $args)
+    {
+        throw new \BadMethodCallException('Not implemented');
+    }
+
+    /**
+     * @param array $args
+     */
+    public function deleteSnapshot(array $args)
+    {
+        throw new \BadMethodCallException('Not implemented');
+    }
+
+    /**
+     * @param array $args
+     */
+    public function readRow(array $args)
+    {
+        throw new \BadMethodCallException('Not implemented');
+    }
+
+    /**
+     * @param array $args
+     */
+    public function readRows(array $args)
+    {
+        throw new \BadMethodCallException('Not implemented');
+    }
+    
+    /**
+     * @param array $args
+     */
+    public function sampleRowKeys(array $args)
+    {
+        throw new \BadMethodCallException('Not implemented');
+    }
+
+    /**
+     * @param array $args
+     */
+    public function mutateRow(array $args)
+    {
+        throw new \BadMethodCallException('Not implemented');
+    }
+
+    /**
+     * @param array $args
+     */
+    public function mutateRows(array $args)
+    {
+        throw new \BadMethodCallException('Not implemented');
+    }
+
+    /**
+     * @param array $args
+     */
+    public function checkAndMutateRow(array $args)
+    {
+        throw new \BadMethodCallException('Not implemented');
+    }
+
+    /**
+     * @param array $args
+     */
+    public function readModifyWriteRow(array $args)
+    {
+        throw new \BadMethodCallException('Not implemented');
+    }
+
+    /**
      * Add the `google-cloud-resource-prefix` header value to the request.
      *
      * @param array $args
