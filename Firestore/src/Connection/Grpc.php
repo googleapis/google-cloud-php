@@ -55,17 +55,7 @@ class Grpc implements ConnectionInterface
      */
     public function __construct(array $config = [])
     {
-        $this->serializer = new Serializer([
-            'create_time' => function ($v) {
-                return $this->formatTimestampFromApi($v);
-            },
-            'update_time' => function ($v) {
-                return $this->formatTimestampFromApi($v);
-            },
-            'commit_time' => function ($v) {
-                return $this->formatTimestampFromApi($v);
-            },
-        ], [
+        $this->serializer = new Serializer([], [
             'google.protobuf.Value' => function ($v) {
                 return $this->flattenValue($v);
             },
@@ -74,6 +64,9 @@ class Grpc implements ConnectionInterface
             },
             'google.protobuf.Struct' => function ($v) {
                 return $this->flattenStruct($v);
+            },
+            'google.protobuf.Timestamp' => function ($v) {
+                return $this->formatTimestampFromApi($v);
             },
         ]);
 

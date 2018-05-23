@@ -32,7 +32,7 @@ namespace Google\Cloud\Datastore;
  * Mutations (i.e. insert, update and delete) are not executed immediately.
  * Calls to those methods (and their batch equivalents) will enqueue a new
  * mutation. Calling {@see Google\Cloud\Datastore\Transaction::commit()} will
- * execute all the mutationsin the order they were enqueued, and end the
+ * execute all the mutations in the order they were enqueued, and end the
  * transaction.
  *
  * Lookups and queries can be run in a transaction, so long as they are run

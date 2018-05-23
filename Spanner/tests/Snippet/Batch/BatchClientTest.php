@@ -164,10 +164,7 @@ class BatchClientTest extends SnippetTestCase
             ->shouldBeCalled()
             ->willReturn([
                 'id' => self::TRANSACTION,
-                'readTimestamp' => [
-                    'seconds' => $time,
-                    'nanos' => 0
-                ]
+                'readTimestamp' => \DateTime::createFromFormat('U', (string) $time)->format(Timestamp::FORMAT)
             ]);
 
         $this->connection->deleteSession(Argument::any())
@@ -205,10 +202,7 @@ class BatchClientTest extends SnippetTestCase
             ->shouldBeCalled()
             ->willReturn([
                 'id' => self::TRANSACTION,
-                'readTimestamp' => [
-                    'seconds' => $time,
-                    'nanos' => 0
-                ]
+                'readTimestamp' => \DateTime::createFromFormat('U', (string) $time)->format(Timestamp::FORMAT)
             ]);
 
         $this->refreshOperation($this->client, $this->connection->reveal());

@@ -85,10 +85,7 @@ class BatchSnapshotTest extends SnippetTestCase
             ->shouldBeCalled()
             ->willReturn([
                 'id' => self::TRANSACTION,
-                'readTimestamp' => [
-                    'seconds' => $this->time,
-                    'nanos' => 0
-                ]
+                'readTimestamp' => \DateTime::createFromFormat('U', (string) $this->time)->format(Timestamp::FORMAT)
             ]);
 
         $client = TestHelpers::stub(BatchClient::class, [

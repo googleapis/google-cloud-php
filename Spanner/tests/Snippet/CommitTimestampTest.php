@@ -20,6 +20,7 @@ namespace Google\Cloud\Spanner\Tests\Snippet;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
 use Google\Cloud\Core\Testing\TestHelpers;
+use Google\Cloud\Core\Timestamp;
 use Google\Cloud\Spanner\CommitTimestamp;
 use Google\Cloud\Spanner\Connection\ConnectionInterface;
 use Google\Cloud\Spanner\SpannerClient;
@@ -60,7 +61,7 @@ class CommitTimestampTest extends SnippetTestCase
         ];
 
         $conn->commit(Argument::withEntry('mutations', [$mutation]))->shouldBeCalled()->willReturn([
-            'commitTimestamp' => ['seconds' => time()]
+            'commitTimestamp' => \DateTime::createFromFormat('U', (string) time())->format(Timestamp::FORMAT)
         ]);
 
         $client->___setProperty('connection', $conn->reveal());

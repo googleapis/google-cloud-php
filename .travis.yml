@@ -9,7 +9,7 @@ matrix:
   - php: 7.2
   - php: 5.5.38
   - php: 5.6.25
-  - php: hhvm
+  - php: hhvm-3.24
     group: edge
   fast_finish: true
 

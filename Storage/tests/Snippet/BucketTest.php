@@ -178,6 +178,39 @@ class BucketTest extends SnippetTestCase
         $this->assertInstanceOf(StorageObject::class, $res->returnVal());
     }
 
+    public function testUploadKms()
+    {
+        $snippet = $this->snippetFromMethod(Bucket::class, 'upload', 3);
+        $snippet->addLocal('bucket', $this->bucket);
+        $fh = fopen('php://temp', 'r');
+        $snippet->addLocal('fh', $fh);
+        $snippet->replace("fopen(__DIR__ . '/image.jpg', 'r')", '$fh');
+
+        $uploader = $this->prophesize(MultipartUploader::class);
+        $uploader->upload()
+            ->shouldBeCalled()
+            ->willReturn([
+                'name' => 'Foo',
+                'generation' => 'Bar'
+            ]);
+
+        $this->connection->insertObject([
+                'metadata' => [
+                    'kmsKeyName' => 'projects/my-project/locations/kr-location/keyRings/my-kr/cryptoKeys/my-key'
+                ],
+                'bucket' => self::BUCKET,
+                'userProject' => null,
+                'data' => $fh
+            ])
+            ->shouldBeCalled()
+            ->willReturn($uploader->reveal());
+
+        $this->bucket->___setProperty('connection', $this->connection->reveal());
+
+        $res = $snippet->invoke('object');
+        $this->assertInstanceOf(StorageObject::class, $res->returnVal());
+    }
+
     public function testGetResumableUploader()
     {
         $snippet = $this->snippetFromMethod(Bucket::class, 'getResumableUploader');

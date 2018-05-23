@@ -339,12 +339,7 @@ class WriteBatchTest extends TestCase
         $now = time();
         $nanos = 10;
 
-        $timestamp = [
-            'seconds' => $now,
-            'nanos' => $nanos
-        ];
-
-        $tsObj = new Timestamp(\DateTimeImmutable::createFromFormat('U', (string) $now), $nanos);
+        $timestamp = new Timestamp(\DateTimeImmutable::createFromFormat('U', (string) $now), $nanos);
 
         $this->connection->commit(Argument::any())
             ->shouldBeCalled()
@@ -363,9 +358,9 @@ class WriteBatchTest extends TestCase
 
         $res = $this->batch->commit();
 
-        $this->assertEquals($tsObj, $res['commitTime']);
-        $this->assertEquals($tsObj, $res['writeResults'][0]['updateTime']);
-        $this->assertEquals($tsObj, $res['writeResults'][1]['updateTime']);
+        $this->assertEquals($timestamp, $res['commitTime']);
+        $this->assertEquals($timestamp, $res['writeResults'][0]['updateTime']);
+        $this->assertEquals($timestamp, $res['writeResults'][1]['updateTime']);
     }
 
     public function testCommitWithTransaction()

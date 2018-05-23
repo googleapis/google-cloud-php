@@ -56,7 +56,7 @@ class TimestampTest extends TestCase
     {
         $this->assertEquals(
             (new \DateTime($this->dt->format(Timestamp::FORMAT)))->format('U'),
-            (new \DateTime((string)$this->ts))->format('U')
+            (new \DateTime(str_replace('000000000', '000000', (string)$this->ts)))->format('U')
         );
     }
 

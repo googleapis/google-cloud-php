@@ -58,6 +58,14 @@ class TimestampTest extends SnippetTestCase
         $this->assertEquals($this->dt, $res->returnVal());
     }
 
+    public function testNanoSeconds()
+    {
+        $snippet = $this->snippetFromMethod(Timestamp::class, 'nanoSeconds');
+        $snippet->addLocal('timestamp', new Timestamp(new \DateTime, 10));
+        $res = $snippet->invoke('nanos');
+        $this->assertEquals(10, $res->returnVal());
+    }
+
     public function testFormatAsString()
     {
         $snippet = $this->snippetFromMethod(Timestamp::class, 'formatAsString');

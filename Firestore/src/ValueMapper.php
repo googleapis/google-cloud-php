@@ -23,8 +23,8 @@ use Google\Cloud\Core\DebugInfoTrait;
 use Google\Cloud\Core\GeoPoint;
 use Google\Cloud\Core\Int64;
 use Google\Cloud\Core\Timestamp;
+use Google\Cloud\Core\TimeTrait;
 use Google\Cloud\Core\ValidateTrait;
-use Google\Cloud\Core\ValueMapperTrait;
 use Google\Cloud\Firestore\Connection\ConnectionInterface;
 use Google\Protobuf\NullValue;
 
@@ -36,8 +36,8 @@ class ValueMapper
     use ArrayTrait;
     use DebugInfoTrait;
     use PathTrait;
+    use TimeTrait;
     use ValidateTrait;
-    use ValueMapperTrait;
 
     const VALID_FIELD_PATH = '/^[^*~\/[\]]+$/';
     const UNESCAPED_FIELD_NAME = '/^[_a-zA-Z][_a-zA-Z0-9]*$/';
@@ -279,7 +279,8 @@ class ValueMapper
                     : (int) $value;
 
             case 'timestampValue':
-                return $this->createTimestampWithNanos($value);
+                $time = $this->parseTimeString($value);
+                return new Timestamp($time[0], $time[1]);
                 break;
 
             case 'geoPointValue':
@@ -402,6 +403,10 @@ class ValueMapper
             return $this->encodeAssociativeArrayValue((array) $value);
         }
 
+        if ($value instanceof Blob) {
+            return ['bytesValue' => (string) $value];
+        }
+
         if ($value instanceof \DateTimeInterface) {
             return [
                 'timestampValue' => [
@@ -409,10 +414,6 @@ class ValueMapper
                     'nanos' => (int)($value->format('u') * 1000)
                 ]
             ];
-        }
-
-        if ($value instanceof Blob) {
-            return ['bytesValue' => (string) $value];
         }
 
         if ($value instanceof Timestamp) {

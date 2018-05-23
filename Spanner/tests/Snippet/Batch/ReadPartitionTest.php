@@ -25,6 +25,7 @@ use Google\Cloud\Spanner\Batch\ReadPartition;
 use Google\Cloud\Spanner\Connection\ConnectionInterface;
 use Google\Cloud\Spanner\KeySet;
 use Google\Cloud\Spanner\Operation;
+use Google\Cloud\Spanner\Timestamp;
 use Prophecy\Argument;
 
 /**
@@ -71,10 +72,7 @@ class ReadPartitionTest extends SnippetTestCase
             ->shouldBeCalled()
             ->willReturn([
                 'id' => self::TRANSACTION,
-                'readTimestamp' => [
-                    'seconds' => $this->time,
-                    'nanos' => 0
-                ]
+                'readTimestamp' => \DateTime::createFromFormat('U', (string) $this->time)->format(Timestamp::FORMAT)
             ]);
         $connection->partitionRead(Argument::any())
             ->shouldBeCalled()

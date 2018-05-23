@@ -22,9 +22,13 @@ namespace Google\Cloud\Core;
  */
 trait ValueMapperTrait
 {
+    use TimeTrait;
+
     /**
      * Convert a timestamp (represented as a string or an array) to a Timestamp
      * class with nanosecond support.
+     *
+     * @deprecated Use methods on {@see Google\Cloud\Core\TimeTrait}.
      *
      * @param string|array $timestamp The timestamp as a string or an array.
      * @param string $returnType The type to create and return. Any object used
@@ -34,27 +38,16 @@ trait ValueMapperTrait
      */
     public function createTimestampWithNanos($timestamp, $returnType = Timestamp::class)
     {
-        $nanos = 0;
         if (is_array($timestamp)) {
-            $timestamp = $timestamp + [
+            $timestamp += [
                 'seconds' => 0,
                 'nanos' => 0
             ];
 
-            $dt = \DateTimeImmutable::createFromFormat('U', (string) $timestamp['seconds']);
+            $dt = $this->createDateTimeFromSeconds($timestamp['seconds']);
             $nanos = $timestamp['nanos'];
         } else {
-            $nanoRegex = '/(?:\.(\d{1,9})Z)|(?:Z)/';
-
-            $matches = [];
-            preg_match($nanoRegex, $timestamp, $matches);
-            $timestamp = preg_replace($nanoRegex, '.000000Z', $timestamp);
-
-            $dt = \DateTimeImmutable::createFromFormat(Timestamp::FORMAT, str_replace('..', '.', $timestamp));
-
-            $nanos = isset($matches[1])
-                ? $matches[1]
-                : 0;
+            list ($dt, $nanos) = $this->parseTimeString($timestamp);
         }
 
         return new $returnType($dt, $nanos);
