@@ -32,7 +32,9 @@ class Rest implements ConnectionInterface
     const BASE_URI = 'https://cloudtrace.googleapis.com/';
 
     /**
-     * @param array $config
+     * @param array $config [optional] Configuration options. Please see
+     *        {@see Google\Cloud\Core\RequestWrapper::__construct()} for
+     *        the available options.
      */
     public function __construct(array $config = [])
     {
