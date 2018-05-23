@@ -50,7 +50,9 @@ class Grpc implements ConnectionInterface
     private $debuggerClient;
 
     /**
-     * @param array $config
+     * @param array $config [optional] Configuration options. Please see
+     *        {@see Google\Cloud\Core\GrpcRequestWrapper::__construct()} for
+     *        the available options.
      */
     public function __construct(array $config = [])
     {
