@@ -6,8 +6,8 @@
     "require": {
         "google/cloud-core": "^1.14",
         "ramsey/uuid": "~3",
-        "google/gax": "^0.32",
-        "google/proto-client": "^0.38.0"
+        "google/gax": "^0.33",
+        "google/proto-client": "^0.39"
     },
      "require-dev": {
         "phpunit/phpunit": "^4.8|^5.0",
