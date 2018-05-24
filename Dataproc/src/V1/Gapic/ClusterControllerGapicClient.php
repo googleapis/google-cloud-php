@@ -148,7 +148,6 @@ class ClusterControllerGapicClient
                     'restClientConfigPath' => __DIR__.'/../resources/cluster_controller_rest_client_config.php',
                 ],
             ],
-            'versionFile' => __DIR__.'/../../../VERSION',
         ];
     }
 

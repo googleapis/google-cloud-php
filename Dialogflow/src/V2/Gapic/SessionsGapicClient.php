@@ -125,7 +125,6 @@ class SessionsGapicClient
                     'restClientConfigPath' => __DIR__.'/../resources/sessions_rest_client_config.php',
                 ],
             ],
-            'versionFile' => __DIR__.'/../../../VERSION',
         ];
     }
 

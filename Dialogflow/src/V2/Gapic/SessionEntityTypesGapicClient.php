@@ -147,7 +147,6 @@ class SessionEntityTypesGapicClient
                     'restClientConfigPath' => __DIR__.'/../resources/session_entity_types_rest_client_config.php',
                 ],
             ],
-            'versionFile' => __DIR__.'/../../../VERSION',
         ];
     }
 

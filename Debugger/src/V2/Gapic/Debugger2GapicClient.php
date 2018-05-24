@@ -132,7 +132,6 @@ class Debugger2GapicClient
                     'restClientConfigPath' => __DIR__.'/../resources/debugger2_rest_client_config.php',
                 ],
             ],
-            'versionFile' => __DIR__.'/../../../VERSION',
         ];
     }
 

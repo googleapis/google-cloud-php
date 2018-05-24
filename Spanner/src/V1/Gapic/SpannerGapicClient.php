@@ -145,7 +145,6 @@ class SpannerGapicClient
                     'restClientConfigPath' => __DIR__.'/../resources/spanner_rest_client_config.php',
                 ],
             ],
-            'versionFile' => __DIR__.'/../../../VERSION',
         ];
     }
 

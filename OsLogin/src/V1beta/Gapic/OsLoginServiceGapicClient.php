@@ -133,7 +133,6 @@ class OsLoginServiceGapicClient
                     'restClientConfigPath' => __DIR__.'/../resources/os_login_service_rest_client_config.php',
                 ],
             ],
-            'versionFile' => __DIR__.'/../../../VERSION',
         ];
     }
 

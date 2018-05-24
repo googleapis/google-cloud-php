@@ -150,7 +150,6 @@ class MetricServiceGapicClient
                     'restClientConfigPath' => __DIR__.'/../resources/metric_service_rest_client_config.php',
                 ],
             ],
-            'versionFile' => __DIR__.'/../../../VERSION',
         ];
     }
 

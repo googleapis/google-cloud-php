@@ -117,7 +117,6 @@ class ErrorGroupServiceGapicClient
                     'restClientConfigPath' => __DIR__.'/../resources/error_group_service_rest_client_config.php',
                 ],
             ],
-            'versionFile' => __DIR__.'/../../../VERSION',
         ];
     }
 

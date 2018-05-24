@@ -133,7 +133,6 @@ class TraceServiceGapicClient
                     'restClientConfigPath' => __DIR__.'/../resources/trace_service_rest_client_config.php',
                 ],
             ],
-            'versionFile' => __DIR__.'/../../../VERSION',
         ];
     }
 

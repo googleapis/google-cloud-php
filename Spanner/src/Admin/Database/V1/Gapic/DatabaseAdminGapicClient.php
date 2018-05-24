@@ -154,7 +154,6 @@ class DatabaseAdminGapicClient
                     'restClientConfigPath' => __DIR__.'/../resources/database_admin_rest_client_config.php',
                 ],
             ],
-            'versionFile' => __DIR__.'/../../../../../VERSION',
         ];
     }
 

@@ -164,7 +164,6 @@ class FirestoreGapicClient
                     'restClientConfigPath' => __DIR__.'/../resources/firestore_rest_client_config.php',
                 ],
             ],
-            'versionFile' => __DIR__.'/../../../VERSION',
         ];
     }
 
