@@ -38,5 +38,5 @@ use Google\Cloud\ErrorReporting\V1beta1\Gapic\ErrorStatsServiceGapicClient;
 class ErrorStatsServiceClient extends ErrorStatsServiceGapicClient
 {
     // This class is intentionally empty, and is intended to hold manual
-    // additions to the generated {@see ErrorStatsServiceClientImpl} class.
+    // additions to the generated {@see ErrorStatsServiceGapicClient} class.
 }

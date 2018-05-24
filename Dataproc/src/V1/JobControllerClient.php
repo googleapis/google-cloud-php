@@ -38,5 +38,5 @@ use Google\Cloud\Dataproc\V1\Gapic\JobControllerGapicClient;
 class JobControllerClient extends JobControllerGapicClient
 {
     // This class is intentionally empty, and is intended to hold manual
-    // additions to the generated {@see JobControllerClientImpl} class.
+    // additions to the generated {@see JobControllerGapicClient} class.
 }

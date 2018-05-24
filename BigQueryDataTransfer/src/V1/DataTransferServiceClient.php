@@ -38,5 +38,5 @@ use Google\Cloud\BigQuery\DataTransfer\V1\Gapic\DataTransferServiceGapicClient;
 class DataTransferServiceClient extends DataTransferServiceGapicClient
 {
     // This class is intentionally empty, and is intended to hold manual
-    // additions to the generated {@see DataTransferServiceClientImpl} class.
+    // additions to the generated {@see DataTransferServiceGapicClient} class.
 }

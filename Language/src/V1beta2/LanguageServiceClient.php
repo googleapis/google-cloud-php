@@ -38,5 +38,5 @@ use Google\Cloud\Language\V1beta2\Gapic\LanguageServiceGapicClient;
 class LanguageServiceClient extends LanguageServiceGapicClient
 {
     // This class is intentionally empty, and is intended to hold manual
-    // additions to the generated {@see LanguageServiceClientImpl} class.
+    // additions to the generated {@see LanguageServiceGapicClient} class.
 }

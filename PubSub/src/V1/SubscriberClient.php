@@ -38,5 +38,5 @@ use Google\Cloud\PubSub\V1\Gapic\SubscriberGapicClient;
 class SubscriberClient extends SubscriberGapicClient
 {
     // This class is intentionally empty, and is intended to hold manual
-    // additions to the generated {@see SubscriberClientImpl} class.
+    // additions to the generated {@see SubscriberGapicClient} class.
 }

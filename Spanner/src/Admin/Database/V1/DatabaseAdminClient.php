@@ -38,5 +38,5 @@ use Google\Cloud\Spanner\Admin\Database\V1\Gapic\DatabaseAdminGapicClient;
 class DatabaseAdminClient extends DatabaseAdminGapicClient
 {
     // This class is intentionally empty, and is intended to hold manual
-    // additions to the generated {@see DatabaseAdminClientImpl} class.
+    // additions to the generated {@see DatabaseAdminGapicClient} class.
 }
