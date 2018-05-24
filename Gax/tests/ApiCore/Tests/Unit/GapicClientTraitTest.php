@@ -168,15 +168,16 @@ class GapicClientTraitTest extends TestCase
 
     public function testGetGapicVersionWithVersionFile()
     {
+        require_once __DIR__ . '/testdata/src/GapicClientStub.php';
         $version = '1.2.3-dev';
-        $tmpFile = sys_get_temp_dir() . '/VERSION';
-        file_put_contents($tmpFile, $version);
+        $client = new \GapicClientStub();
+        $this->assertEquals($version, $client->call('getGapicVersion', [[]]));
+    }
+
+    public function testGetGapicVersionWithNoAvailableVersion()
+    {
         $client = new GapicClientTraitStub();
-        $client->set('gapicVersion', $version, true);
-        $options = ['versionFile' => $tmpFile];
-        $this->assertEquals($version, $client->call('getGapicVersion', [
-            $options
-        ]));
+        $this->assertNull($client->call('getGapicVersion', [[]]));
     }
 
     public function testGetGapicVersionWithLibVersion()
