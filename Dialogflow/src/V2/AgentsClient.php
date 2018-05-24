@@ -38,5 +38,5 @@ use Google\Cloud\Dialogflow\V2\Gapic\AgentsGapicClient;
 class AgentsClient extends AgentsGapicClient
 {
     // This class is intentionally empty, and is intended to hold manual
-    // additions to the generated {@see AgentsClientImpl} class.
+    // additions to the generated {@see AgentsGapicClient} class.
 }

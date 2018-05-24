@@ -38,5 +38,5 @@ use Google\Cloud\OsLogin\V1beta\Gapic\OsLoginServiceGapicClient;
 class OsLoginServiceClient extends OsLoginServiceGapicClient
 {
     // This class is intentionally empty, and is intended to hold manual
-    // additions to the generated {@see OsLoginServiceClientImpl} class.
+    // additions to the generated {@see OsLoginServiceGapicClient} class.
 }

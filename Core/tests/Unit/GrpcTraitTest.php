@@ -17,6 +17,7 @@
 
 namespace Google\Cloud\Core\Tests\Unit;
 
+use Google\ApiCore\CredentialsWrapper;
 use Google\Auth\Cache\MemoryCacheItemPool;
 use Google\Auth\FetchAuthTokenCache;
 use Google\Auth\FetchAuthTokenInterface;
@@ -148,14 +149,10 @@ class GrpcTraitTest extends TestCase
         $this->requestWrapper->getCredentialsFetcher()->willReturn($fetcher);
         $this->implementation->setRequestWrapper($this->requestWrapper->reveal());
         $expected = [
-            'credentialsLoader' => $fetcher,
-            'enableCaching' => false,
             'libName' => 'gccl',
             'libVersion' => $version,
             'transport' => 'grpc',
-            'authHttpHandler' => function () {
-                return true;
-            }
+            'credentials' => new CredentialsWrapper($fetcher, function () { return true; })
         ];
 
         $this->assertEquals(

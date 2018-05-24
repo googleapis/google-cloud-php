@@ -51,14 +51,22 @@ class GeoPoint
      * Ints will be converted to floats. Values not passing the `is_numeric()`
      * check will result in an exception.
      *
-     * @param float|int $latitude
-     * @param float|int $longitude
+     * @param float|int|null $latitude The GeoPoint Latitude. **Note** that
+     *        `null` is not a generally valid value, and will throw an
+     *        `InvalidArgumentException` unless `$allowNull` is set to `true`.
+     * @param float|int|null $longitude The GeoPoint Longitude. **Note** that
+     *        `null` is not a generally valid value, and will throw an
+     *        `InvalidArgumentException` unless `$allowNull` is set to `true`.
+     * @param bool $allowNull [optional] If true, null values will be allowed
+     *        in the constructor only. This switch exists to handle a rare case
+     *        wherein a geopoint may be empty and is not intended for use from
+     *        outside the client. **Defaults to** `false`.
      * @throws InvalidArgumentException
      */
-    public function __construct($latitude, $longitude)
+    public function __construct($latitude, $longitude, $allowNull = false)
     {
-        $this->setLatitude($latitude);
-        $this->setLongitude($longitude);
+        $this->latitude = $this->validateValue($latitude, 'latitude', $allowNull);
+        $this->longitude = $this->validateValue($longitude, 'longitude', $allowNull);
     }
 
     /**
@@ -69,7 +77,7 @@ class GeoPoint
      * $latitude = $point->latitude();
      * ```
      *
-     * @return float
+     * @return float|null
      */
     public function latitude()
     {
@@ -93,13 +101,7 @@ class GeoPoint
      */
     public function setLatitude($latitude)
     {
-        if (is_numeric($latitude)) {
-            $latitude = (float) $latitude;
-        } else {
-            throw new InvalidArgumentException('Given latitude must be a float');
-        }
-
-        $this->latitude = $latitude;
+        $this->latitude = $this->validateValue($latitude, 'latitude');
 
         return $this;
     }
@@ -112,7 +114,7 @@ class GeoPoint
      * $longitude = $point->longitude();
      * ```
      *
-     * @return float
+     * @return float|null
      */
     public function longitude()
     {
@@ -136,13 +138,7 @@ class GeoPoint
      */
     public function setLongitude($longitude)
     {
-        if (is_numeric($longitude)) {
-            $longitude = (float) $longitude;
-        } else {
-            throw new InvalidArgumentException('Given longitude must be a float');
-        }
-
-        $this->longitude = $longitude;
+        $this->longitude = $this->validateValue($longitude, 'longitude');
 
         return $this;
     }
@@ -181,5 +177,31 @@ class GeoPoint
                 $method
             ));
         }
+    }
+
+    /**
+     * Check a given value's validity as a coordinate.
+     *
+     * Numeric values will be cast to type `float`. All other values will raise
+     * an exception with the exception of `null`, if `$allowNull` is set to true.
+     *
+     * @param mixed $value The coordinate value.
+     * @param string $type The coordinate type for error reporting.
+     * @param bool $allowNull [optional] Whether null values should be allowed.
+     *        **Defaults to** `false`.
+     * @return float|null
+     */
+    private function validateValue($value, $type, $allowNull = false)
+    {
+        if (!is_numeric($value) && (!$allowNull || ($allowNull && $value !== null))) {
+            throw new InvalidArgumentException(sprintf(
+                'Given %s must be a numeric value.',
+                $type
+            ));
+        }
+
+        return $allowNull && $value === null
+            ? $value
+            : (float) $value;
     }
 }

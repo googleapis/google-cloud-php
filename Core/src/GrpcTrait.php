@@ -19,6 +19,7 @@ namespace Google\Cloud\Core;
 
 use DateTime;
 use DateTimeZone;
+use Google\ApiCore\CredentialsWrapper;
 use Google\Auth\Cache\MemoryCacheItemPool;
 use Google\Auth\FetchAuthTokenCache;
 use Google\Cloud\Core\ArrayTrait;
@@ -98,12 +99,13 @@ trait GrpcTrait
     private function getGaxConfig($version, callable $authHttpHandler = null)
     {
         return [
-            'credentialsLoader' => $this->requestWrapper->getCredentialsFetcher(),
-            'enableCaching' => false,
+            'credentials' => new CredentialsWrapper(
+                $this->requestWrapper->getCredentialsFetcher(),
+                $authHttpHandler
+            ),
             'libName' => 'gccl',
             'libVersion' => $version,
             'transport' => 'grpc',
-            'authHttpHandler' => $authHttpHandler
         ];
     }
 

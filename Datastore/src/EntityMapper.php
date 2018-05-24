@@ -234,7 +234,7 @@ class EntityMapper
                     'longitude' => null
                 ];
 
-                $result = new GeoPoint($value['latitude'], $value['longitude']);
+                $result = new GeoPoint($value['latitude'], $value['longitude'], true);
 
                 break;
 

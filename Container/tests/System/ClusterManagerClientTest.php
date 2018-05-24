@@ -22,6 +22,9 @@ use Google\Cloud\Container\V1\ClusterManagerClient;
 use Google\Cloud\Container\V1\ListOperationsResponse;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * @group container
+ */
 class ClusterManagerClientTest extends TestCase
 {
     const ZONE = 'us-central1-b';
@@ -50,18 +53,13 @@ class ClusterManagerClientTest extends TestCase
         $keyFilePath = getenv('GOOGLE_CLOUD_PHP_TESTS_KEY_PATH');
         $keyFileData = json_decode(file_get_contents($keyFilePath), true);
 
-        $credentialsLoader = CredentialsLoader::makeCredentials(
-            ['https://www.googleapis.com/auth/cloud-platform'],
-            $keyFileData
-        );
-
         self::$restClient = new ClusterManagerClient([
-            'credentialsLoader' => $credentialsLoader,
+            'credentials' => $keyFilePath,
             'transport' => 'rest'
         ]);
 
         self::$grpcClient = new ClusterManagerClient([
-            'credentialsLoader' => $credentialsLoader,
+            'credentials' => $keyFilePath,
             'transport' => 'grpc'
         ]);
 

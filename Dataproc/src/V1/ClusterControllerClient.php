@@ -38,5 +38,5 @@ use Google\Cloud\Dataproc\V1\Gapic\ClusterControllerGapicClient;
 class ClusterControllerClient extends ClusterControllerGapicClient
 {
     // This class is intentionally empty, and is intended to hold manual
-    // additions to the generated {@see ClusterControllerClientImpl} class.
+    // additions to the generated {@see ClusterControllerGapicClient} class.
 }
