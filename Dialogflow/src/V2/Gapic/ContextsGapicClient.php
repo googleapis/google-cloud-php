@@ -153,7 +153,6 @@ class ContextsGapicClient
                     'restClientConfigPath' => __DIR__.'/../resources/contexts_rest_client_config.php',
                 ],
             ],
-            'versionFile' => __DIR__.'/../../../VERSION',
         ];
     }
 

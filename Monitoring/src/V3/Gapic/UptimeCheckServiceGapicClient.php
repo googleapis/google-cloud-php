@@ -148,7 +148,6 @@ class UptimeCheckServiceGapicClient
                     'restClientConfigPath' => __DIR__.'/../resources/uptime_check_service_rest_client_config.php',
                 ],
             ],
-            'versionFile' => __DIR__.'/../../../VERSION',
         ];
     }
 

@@ -118,7 +118,6 @@ class JobControllerGapicClient
                     'restClientConfigPath' => __DIR__.'/../resources/job_controller_rest_client_config.php',
                 ],
             ],
-            'versionFile' => __DIR__.'/../../../VERSION',
         ];
     }
 

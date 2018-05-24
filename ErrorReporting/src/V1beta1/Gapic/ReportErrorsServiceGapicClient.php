@@ -118,7 +118,6 @@ class ReportErrorsServiceGapicClient
                     'restClientConfigPath' => __DIR__.'/../resources/report_errors_service_rest_client_config.php',
                 ],
             ],
-            'versionFile' => __DIR__.'/../../../VERSION',
         ];
     }
 

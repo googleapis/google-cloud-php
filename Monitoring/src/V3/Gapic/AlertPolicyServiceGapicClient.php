@@ -148,7 +148,6 @@ class AlertPolicyServiceGapicClient
                     'restClientConfigPath' => __DIR__.'/../resources/alert_policy_service_rest_client_config.php',
                 ],
             ],
-            'versionFile' => __DIR__.'/../../../VERSION',
         ];
     }
 

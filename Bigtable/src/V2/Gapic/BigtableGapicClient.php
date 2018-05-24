@@ -142,7 +142,6 @@ class BigtableGapicClient
                     'restClientConfigPath' => __DIR__.'/../resources/bigtable_rest_client_config.php',
                 ],
             ],
-            'versionFile' => __DIR__.'/../../../VERSION',
         ];
     }
 
@@ -314,11 +313,6 @@ class BigtableGapicClient
      *                             Optional.
      *
      *     @type string $appProfileId
-     *          This is a private alpha release of Cloud Bigtable replication. This feature
-     *          is not currently available to most Cloud Bigtable customers. This feature
-     *          might be changed in backward-incompatible ways and is not recommended for
-     *          production use. It is not subject to any SLA or deprecation policy.
-     *
      *          This value specifies routing for replication. If not specified, the
      *          "default" application profile will be used.
      *     @type RowSet $rows
@@ -399,11 +393,6 @@ class BigtableGapicClient
      *                             Optional.
      *
      *     @type string $appProfileId
-     *          This is a private alpha release of Cloud Bigtable replication. This feature
-     *          is not currently available to most Cloud Bigtable customers. This feature
-     *          might be changed in backward-incompatible ways and is not recommended for
-     *          production use. It is not subject to any SLA or deprecation policy.
-     *
      *          This value specifies routing for replication. If not specified, the
      *          "default" application profile will be used.
      *     @type int $timeoutMillis
@@ -467,11 +456,6 @@ class BigtableGapicClient
      *                                 Optional.
      *
      *     @type string $appProfileId
-     *          This is a private alpha release of Cloud Bigtable replication. This feature
-     *          is not currently available to most Cloud Bigtable customers. This feature
-     *          might be changed in backward-incompatible ways and is not recommended for
-     *          production use. It is not subject to any SLA or deprecation policy.
-     *
      *          This value specifies routing for replication. If not specified, the
      *          "default" application profile will be used.
      *     @type RetrySettings|array $retrySettings
@@ -542,11 +526,6 @@ class BigtableGapicClient
      *                                                Optional.
      *
      *     @type string $appProfileId
-     *          This is a private alpha release of Cloud Bigtable replication. This feature
-     *          is not currently available to most Cloud Bigtable customers. This feature
-     *          might be changed in backward-incompatible ways and is not recommended for
-     *          production use. It is not subject to any SLA or deprecation policy.
-     *
      *          This value specifies routing for replication. If not specified, the
      *          "default" application profile will be used.
      *     @type int $timeoutMillis
@@ -607,11 +586,6 @@ class BigtableGapicClient
      *                             Optional.
      *
      *     @type string $appProfileId
-     *          This is a private alpha release of Cloud Bigtable replication. This feature
-     *          is not currently available to most Cloud Bigtable customers. This feature
-     *          might be changed in backward-incompatible ways and is not recommended for
-     *          production use. It is not subject to any SLA or deprecation policy.
-     *
      *          This value specifies routing for replication. If not specified, the
      *          "default" application profile will be used.
      *     @type RowFilter $predicateFilter
@@ -708,11 +682,6 @@ class BigtableGapicClient
      *                                            Optional.
      *
      *     @type string $appProfileId
-     *          This is a private alpha release of Cloud Bigtable replication. This feature
-     *          is not currently available to most Cloud Bigtable customers. This feature
-     *          might be changed in backward-incompatible ways and is not recommended for
-     *          production use. It is not subject to any SLA or deprecation policy.
-     *
      *          This value specifies routing for replication. If not specified, the
      *          "default" application profile will be used.
      *     @type RetrySettings|array $retrySettings

@@ -155,7 +155,6 @@ class CloudRedisGapicClient
                     'restClientConfigPath' => __DIR__.'/../resources/cloud_redis_rest_client_config.php',
                 ],
             ],
-            'versionFile' => __DIR__.'/../../../VERSION',
         ];
     }
 

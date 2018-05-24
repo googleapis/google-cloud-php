@@ -122,7 +122,6 @@ class LanguageServiceGapicClient
                     'restClientConfigPath' => __DIR__.'/../resources/language_service_rest_client_config.php',
                 ],
             ],
-            'versionFile' => __DIR__.'/../../../VERSION',
         ];
     }
 

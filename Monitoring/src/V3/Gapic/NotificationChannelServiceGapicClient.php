@@ -145,7 +145,6 @@ class NotificationChannelServiceGapicClient
                     'restClientConfigPath' => __DIR__.'/../resources/notification_channel_service_rest_client_config.php',
                 ],
             ],
-            'versionFile' => __DIR__.'/../../../VERSION',
         ];
     }
 

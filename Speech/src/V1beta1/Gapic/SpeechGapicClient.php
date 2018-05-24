@@ -127,7 +127,6 @@ class SpeechGapicClient
                     'restClientConfigPath' => __DIR__.'/../resources/speech_rest_client_config.php',
                 ],
             ],
-            'versionFile' => __DIR__.'/../../../VERSION',
         ];
     }
 

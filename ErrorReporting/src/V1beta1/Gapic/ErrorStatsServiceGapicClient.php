@@ -138,7 +138,6 @@ class ErrorStatsServiceGapicClient
                     'restClientConfigPath' => __DIR__.'/../resources/error_stats_service_rest_client_config.php',
                 ],
             ],
-            'versionFile' => __DIR__.'/../../../VERSION',
         ];
     }
 

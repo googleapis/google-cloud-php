@@ -174,7 +174,6 @@ class DlpServiceGapicClient
                     'restClientConfigPath' => __DIR__.'/../resources/dlp_service_rest_client_config.php',
                 ],
             ],
-            'versionFile' => __DIR__.'/../../../VERSION',
         ];
     }
 

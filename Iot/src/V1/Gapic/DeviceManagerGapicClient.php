@@ -147,7 +147,6 @@ class DeviceManagerGapicClient
                     'restClientConfigPath' => __DIR__.'/../resources/device_manager_rest_client_config.php',
                 ],
             ],
-            'versionFile' => __DIR__.'/../../../VERSION',
         ];
     }
 

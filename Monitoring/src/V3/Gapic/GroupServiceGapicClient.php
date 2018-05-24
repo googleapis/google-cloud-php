@@ -152,7 +152,6 @@ class GroupServiceGapicClient
                     'restClientConfigPath' => __DIR__.'/../resources/group_service_rest_client_config.php',
                 ],
             ],
-            'versionFile' => __DIR__.'/../../../VERSION',
         ];
     }
 

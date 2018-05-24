@@ -145,7 +145,6 @@ class DataTransferServiceGapicClient
                     'restClientConfigPath' => __DIR__.'/../resources/data_transfer_service_rest_client_config.php',
                 ],
             ],
-            'versionFile' => __DIR__.'/../../../VERSION',
         ];
     }
 

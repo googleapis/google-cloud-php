@@ -131,7 +131,6 @@ class LoggingServiceV2GapicClient
                     'restClientConfigPath' => __DIR__.'/../resources/logging_service_v2_rest_client_config.php',
                 ],
             ],
-            'versionFile' => __DIR__.'/../../../VERSION',
         ];
     }
 

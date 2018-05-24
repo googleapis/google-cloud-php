@@ -112,7 +112,6 @@ class ImageAnnotatorGapicClient
                     'restClientConfigPath' => __DIR__.'/../resources/image_annotator_rest_client_config.php',
                 ],
             ],
-            'versionFile' => __DIR__.'/../../../VERSION',
         ];
     }
 

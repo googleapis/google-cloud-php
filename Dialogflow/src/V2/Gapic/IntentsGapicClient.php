@@ -177,7 +177,6 @@ class IntentsGapicClient
                     'restClientConfigPath' => __DIR__.'/../resources/intents_rest_client_config.php',
                 ],
             ],
-            'versionFile' => __DIR__.'/../../../VERSION',
         ];
     }
 
