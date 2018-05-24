@@ -40,7 +40,7 @@ class DebuggerClient
     use ClientTrait;
 
     const VERSION = '0.8.0';
-    const DEFAULT_AGENT_VERSION = 'google.com/gcp-php/' . self::VERSION;
+    const DEFAULT_AGENT_VERSION = 'google.com/gcp-php/v0.8';
 
     const FULL_CONTROL_SCOPE = 'https://www.googleapis.com/auth/cloud-platform';
     const READ_ONLY_SCOPE = 'https://www.googleapis.com/auth/debugger.readonly';
