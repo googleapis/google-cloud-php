@@ -20,6 +20,7 @@ namespace Google\Cloud\Debugger\Connection;
 use Google\Cloud\Core\RequestBuilder;
 use Google\Cloud\Core\RequestWrapper;
 use Google\Cloud\Core\RestTrait;
+use Google\Cloud\Debugger\DebuggerClient;
 
 /**
  * Implementation of the
@@ -96,6 +97,9 @@ class Rest implements ConnectionInterface
      */
     public function setBreakpoint(array $args)
     {
+        $args += [
+            'clientVersion' => DebuggerClient::DEFAULT_AGENT_VERSION
+        ];
         return $this->send('debugger.resources.debuggees.resources.breakpoints', 'set', $args);
     }
 }

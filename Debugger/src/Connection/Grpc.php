@@ -161,7 +161,7 @@ class Grpc implements ConnectionInterface
         return $this->send([$this->debuggerClient, 'setBreakpoint'], [
             $this->pluck('debuggeeId', $args),
             $this->serializer->decodeMessage(new Breakpoint(), $args),
-            DebuggerClient::VERSION,
+            DebuggerClient::DEFAULT_AGENT_VERSION,
             $args
         ]);
     }
