@@ -48,8 +48,8 @@
         "monolog/monolog": "~1",
         "psr/http-message": "1.0.*",
         "ramsey/uuid": "~3",
-        "google/gax": "^0.32",
-        "google/proto-client": "^0.38.0"
+        "google/gax": "^0.33",
+        "google/proto-client": "^0.39"
     },
     "require-dev": {
         "phpunit/phpunit": "^4.8|^5.0",
