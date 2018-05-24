@@ -6,6 +6,7 @@
     "require": {
         "google/cloud-core": "^1.4",
         "google/cloud-logging": "^1.4",
+        "google/proto-client": "^0.39",
         "google/gax": "^0.33",
         "psr/log": "^1.0"
     },
@@ -17,6 +18,8 @@
         "google/cloud-tools": "^0.6"
     },
     "suggest": {
+        "ext-grpc": "The gRPC extension enables use of the performant gRPC transport",
+        "ext-protobuf": "Provides a significant increase in throughput over the pure PHP protobuf implementation. See https://cloud.google.com/php/grpc for installation instructions.",
         "ext-stackdriver_debugger": "*"
     },
     "extra": {
