@@ -7,8 +7,7 @@
         "google/cloud-core": "^1.4",
         "google/cloud-logging": "^1.4",
         "google/gax": "^0.33",
-        "psr/log": "^1.0",
-        "ext-stackdriver_debugger": "*"
+        "psr/log": "^1.0"
     },
     "require-dev": {
         "phpunit/phpunit": "^4.8|^5.0",
@@ -16,6 +15,9 @@
         "phpdocumentor/reflection": "^3.0",
         "erusev/parsedown": "^1.6",
         "google/cloud-tools": "^0.6"
+    },
+    "suggest": {
+        "ext-stackdriver_debugger": "*"
     },
     "extra": {
         "component": {
