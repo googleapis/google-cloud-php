@@ -51,6 +51,8 @@ class ValueMapperTest extends FirestoreTestCase
         $snapshot = self::$document->snapshot();
         if ($expectation) {
             $this->assertTrue($expectation($snapshot[self::FIELD]));
+        } elseif ($input instanceof Timestamp) {
+            $this->assertEquals($input->formatAsString(), $snapshot[self::FIELD]->formatAsString());
         } else {
             $this->assertEquals($input, $snapshot[self::FIELD]);
         }

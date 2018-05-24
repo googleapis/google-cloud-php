@@ -24,6 +24,7 @@ use Google\Cloud\Spanner\Batch\BatchClient;
 use Google\Cloud\Spanner\Batch\QueryPartition;
 use Google\Cloud\Spanner\Connection\ConnectionInterface;
 use Google\Cloud\Spanner\Operation;
+use Google\Cloud\Spanner\Timestamp;
 use Prophecy\Argument;
 
 /**
@@ -63,10 +64,7 @@ class QueryPartitionTest extends SnippetTestCase
             ->shouldBeCalled()
             ->willReturn([
                 'id' => self::TRANSACTION,
-                'readTimestamp' => [
-                    'seconds' => $this->time,
-                    'nanos' => 0
-                ]
+                'readTimestamp' => \DateTime::createFromFormat('U', (string) $this->time)->format(Timestamp::FORMAT)
             ]);
         $connection->partitionQuery(Argument::any())
             ->shouldBeCalled()

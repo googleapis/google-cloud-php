@@ -17,10 +17,11 @@
 
 namespace Google\Cloud\Firestore;
 
-use Google\Cloud\Core\Timestamp;
 use Google\Cloud\Core\ArrayTrait;
-use Google\Cloud\Core\ValidateTrait;
 use Google\Cloud\Core\DebugInfoTrait;
+use Google\Cloud\Core\Timestamp;
+use Google\Cloud\Core\TimeTrait;
+use Google\Cloud\Core\ValidateTrait;
 use Google\Cloud\Firestore\Connection\ConnectionInterface;
 use Google\Cloud\Firestore\V1beta1\DocumentTransform_FieldTransform_ServerValue;
 
@@ -44,6 +45,7 @@ class WriteBatch
 {
     use ArrayTrait;
     use DebugInfoTrait;
+    use TimeTrait;
     use ValidateTrait;
 
     const TYPE_UPDATE = 'update';
@@ -379,13 +381,15 @@ class WriteBatch
         ]) + $options);
 
         if (isset($response['commitTime'])) {
-            $response['commitTime'] = $this->valueMapper->createTimestampWithNanos($response['commitTime']);
+            $time = $this->parseTimeString($response['commitTime']);
+            $response['commitTime'] = new Timestamp($time[0], $time[1]);
         }
 
         if (isset($response['writeResults'])) {
             foreach ($response['writeResults'] as &$result) {
                 if (isset($result['updateTime'])) {
-                    $result['updateTime'] = $this->valueMapper->createTimestampWithNanos($result['updateTime']);
+                    $time = $this->parseTimeString($result['updateTime']);
+                    $result['updateTime'] = new Timestamp($time[0], $time[1]);
                 }
             }
         }

@@ -21,7 +21,7 @@ function style() {
 function snippets() {
   echo "Running Snippet Test Suite"
 
-  $(dirname $0)/../../vendor/bin/phpunit -c phpunit-snippets.xml.dist
+  $(dirname $0)/../../vendor/bin/phpunit -c phpunit-snippets.xml.dist --verbose
 }
 
 function composer() {

@@ -30,7 +30,6 @@ namespace Google\Cloud\Core;
  * use Google\Cloud\Core\Timestamp;
  *
  * $timestamp = new Timestamp(new \DateTime('2003-02-05 11:15:02.421827Z'));
- *
  * ```
  *
  * ```
@@ -40,7 +39,10 @@ namespace Google\Cloud\Core;
  */
 class Timestamp
 {
+    use TimeTrait;
+
     const FORMAT = 'Y-m-d\TH:i:s.u\Z';
+    const FORMAT_NO_MS = 'Y-m-d\TH:i:s\Z';
     const FORMAT_INTERPOLATE = 'Y-m-d\TH:i:s.%\s\Z';
 
     /**
@@ -54,19 +56,29 @@ class Timestamp
     private $nanoSeconds;
 
     /**
-     * @param \DateTimeInterface $value The timestamp value.
-     * @param int $nanoSeconds [optional] The number of nanoseconds in the timestamp.
+     * @param \DateTimeInterface $value The timestamp value. Use of
+     *        `DateTimeImmutable` is highly recommended over `DateTime` in order
+     *        to avoid side effects.
+     * @param int $nanoSeconds [optional] The number of nanoseconds in the
+     *        timestamp. If omitted, subsecond precision will be obtained from
+     *        the instance of `\DateTimeInterface` provided in the first
+     *        argument. If provided, any precision in `$value` below seconds
+     *        will be disregarded.
      */
     public function __construct(\DateTimeInterface $value, $nanoSeconds = null)
     {
         $this->value = $value;
-        $this->nanoSeconds = $nanoSeconds ?: (int) $this->value->format('u');
+
+        $this->nanoSeconds = $nanoSeconds !== null
+            ? (int) $nanoSeconds
+            : null;
     }
 
     /**
      * Get the underlying `\DateTimeInterface` implementation.
      *
-     * Please note that nanosecond precision is not present in this method.
+     * Please note that if you provided nanoseconds when creating the timestamp,
+     * they will not be included in this value.
      *
      * Example:
      * ```
@@ -83,17 +95,22 @@ class Timestamp
     /**
      * Return the number of nanoseconds.
      *
+     * Example:
+     * ```
+     * $nanos = $timestamp->nanoSeconds();
+     * ```
+     *
      * @return int
      */
     public function nanoSeconds()
     {
-        return $this->nanoSeconds;
+        return $this->nanoSeconds === null
+            ? (int) $this->value->format('u') * 1000
+            : $this->nanoSeconds;
     }
 
     /**
      * Format the value as a string.
-     *
-     * This method retains nanosecond precision, if available.
      *
      * Example:
      * ```
@@ -104,9 +121,10 @@ class Timestamp
      */
     public function formatAsString()
     {
-        $this->value->setTimezone(new \DateTimeZone('UTC'));
-        $ns = str_pad((string) $this->nanoSeconds, 6, '0', STR_PAD_LEFT);
-        return sprintf($this->value->format(self::FORMAT_INTERPOLATE), $ns);
+        return $this->formatTimeAsString(
+            $this->value,
+            $this->nanoSeconds
+        );
     }
 
     /**
@@ -127,9 +145,6 @@ class Timestamp
      */
     public function formatForApi()
     {
-        return [
-            'seconds' => (int)$this->value->format('U'),
-            'nanos' => (int)$this->nanoSeconds
-        ];
+        return $this->formatTimeAsArray($this->value, $this->nanoSeconds());
     }
 }

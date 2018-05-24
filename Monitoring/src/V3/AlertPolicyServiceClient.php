@@ -38,5 +38,5 @@ use Google\Cloud\Monitoring\V3\Gapic\AlertPolicyServiceGapicClient;
 class AlertPolicyServiceClient extends AlertPolicyServiceGapicClient
 {
     // This class is intentionally empty, and is intended to hold manual
-    // additions to the generated {@see AlertPolicyServiceClientImpl} class.
+    // additions to the generated {@see AlertPolicyServiceGapicClient} class.
 }

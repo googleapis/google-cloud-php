@@ -38,5 +38,5 @@ use Google\Cloud\Container\V1\Gapic\ClusterManagerGapicClient;
 class ClusterManagerClient extends ClusterManagerGapicClient
 {
     // This class is intentionally empty, and is intended to hold manual
-    // additions to the generated {@see ClusterManagerClientImpl} class.
+    // additions to the generated {@see ClusterManagerGapicClient} class.
 }

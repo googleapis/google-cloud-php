@@ -38,5 +38,5 @@ use Google\Cloud\Monitoring\V3\Gapic\MetricServiceGapicClient;
 class MetricServiceClient extends MetricServiceGapicClient
 {
     // This class is intentionally empty, and is intended to hold manual
-    // additions to the generated {@see MetricServiceClientImpl} class.
+    // additions to the generated {@see MetricServiceGapicClient} class.
 }

@@ -17,23 +17,24 @@
 
 namespace Google\Cloud\Spanner\Tests\Unit;
 
+use Google\Cloud\Core\Testing\GrpcTestTrait;
+use Google\Cloud\Core\TimeTrait;
 use Google\Cloud\Spanner\Duration;
 use Google\Cloud\Spanner\Session\SessionPoolInterface;
 use Google\Cloud\Spanner\Timestamp;
 use Google\Cloud\Spanner\TransactionConfigurationTrait;
-use Google\Cloud\Core\Testing\GrpcTestTrait;
 use PHPUnit\Framework\TestCase;
 
 /**
  * @group spanner
+ * @group spanner-transaction-configuration-trait
  */
 class TransactionConfigurationTraitTest extends TestCase
 {
     use GrpcTestTrait;
+    use TimeTrait;
 
     const TRANSACTION = 'my-transaction';
-    const TIMESTAMP = '2017-01-09T18:05:22.534799Z';
-    const NANOS = '534799';
 
     private $impl;
     private $ts;
@@ -45,8 +46,7 @@ class TransactionConfigurationTraitTest extends TestCase
         $this->checkAndSkipGrpcTests();
 
         $this->impl = new TransactionConfigurationTraitImplementation;
-        $this->ts = new Timestamp(new \DateTime(self::TIMESTAMP), self::NANOS);
-        $this->duration = new Duration(10,1);
+        $this->duration = new Duration(10, 1);
         $this->dur = ['seconds' => 10, 'nanos' => 1];
     }
 
@@ -103,18 +103,28 @@ class TransactionConfigurationTraitTest extends TestCase
         $this->assertTrue($res['readOnly']['strong']);
     }
 
-    public function testConfigureSnapshotOptionsMinReadTimestamp()
+    /**
+     * @dataProvider timestamps
+     */
+    public function testConfigureSnapshotOptionsMinReadTimestamp($timestamp, $expected = null)
     {
-        $args = ['minReadTimestamp' => $this->ts, 'singleUse' => true];
+        $time = $this->parseTimeString($timestamp);
+        $ts = new Timestamp($time[0], $time[1]);
+        $args = ['minReadTimestamp' => $ts, 'singleUse' => true];
         $res = $this->impl->proxyConfigureSnapshotOptions($args);
-        $this->assertEquals(self::TIMESTAMP, $res['readOnly']['minReadTimestamp']);
+        $this->assertEquals($expected ?: $timestamp, $res['readOnly']['minReadTimestamp']);
     }
 
-    public function testConfigureSnapshotOptionsReadTimestamp()
+    /**
+     * @dataProvider timestamps
+     */
+    public function testConfigureSnapshotOptionsReadTimestamp($timestamp)
     {
-        $args = ['readTimestamp' => $this->ts];
+        $time = $this->parseTimeString($timestamp);
+        $ts = new Timestamp($time[0], $time[1]);
+        $args = ['readTimestamp' => $ts];
         $res = $this->impl->proxyConfigureSnapshotOptions($args);
-        $this->assertEquals(self::TIMESTAMP, $res['readOnly']['readTimestamp']);
+        $this->assertEquals($timestamp, $res['readOnly']['readTimestamp']);
     }
 
     public function testConfigureSnapshotOptionsMaxStaleness()
@@ -174,6 +184,14 @@ class TransactionConfigurationTraitTest extends TestCase
     {
         $args = ['readTimestamp' => 'foo'];
         $this->impl->proxyConfigureSnapshotOptions($args);
+    }
+
+    public function timestamps()
+    {
+        return [
+            ['2017-01-09T18:05:22.534799Z'],
+            ['2017-01-09T18:05:22.235534799Z'],
+        ];
     }
 }
 

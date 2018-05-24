@@ -164,47 +164,4 @@ class SnapshotTraitTest extends TestCase
             self::NAME
         ]);
     }
-
-    public function testTransformSnapshotTimestampsEmpty()
-    {
-        $res = $this->impl->call('transformSnapshotTimestamps', [
-            $this->valueMapper,
-            []
-        ]);
-        $this->assertEquals([
-            'createTime' => null,
-            'updateTime' => null,
-            'readTime' => null
-        ], $res);
-    }
-
-    public function testTransformSnapshotTimestamps()
-    {
-        $now = time();
-        $ts = [
-            'seconds' => $now,
-            'nanos' => 100
-        ];
-
-        $input = [
-            'createTime' => $ts,
-            'updateTime' => $ts,
-            'readTime' => $ts
-        ];
-
-        $res = $this->impl->call('transformSnapshotTimestamps', [
-            $this->valueMapper,
-            $input
-        ]);
-
-        $timestamp = new Timestamp(\DateTimeImmutable::createFromFormat('U', (string) $now), $ts['nanos']);
-
-        $expected = [
-            'createTime' => $timestamp,
-            'updateTime' => $timestamp,
-            'readTime' => $timestamp
-        ];
-
-        $this->assertEquals($expected, $res);
-    }
 }

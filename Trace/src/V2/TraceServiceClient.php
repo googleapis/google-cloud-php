@@ -38,5 +38,5 @@ use Google\Cloud\Trace\V2\Gapic\TraceServiceGapicClient;
 class TraceServiceClient extends TraceServiceGapicClient
 {
     // This class is intentionally empty, and is intended to hold manual
-    // additions to the generated {@see TraceServiceClientImpl} class.
+    // additions to the generated {@see TraceServiceGapicClient} class.
 }

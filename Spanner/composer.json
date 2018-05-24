@@ -6,8 +6,8 @@
     "require": {
         "ext-grpc": "*",
         "google/cloud-core": "^1.14",
-        "google/gax": "^0.31.1",
-        "google/proto-client": "^0.37"
+        "google/gax": "^0.32",
+        "google/proto-client": "^0.38.0"
     },
     "require-dev": {
         "phpunit/phpunit": "^4.8|^5.0",

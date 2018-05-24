@@ -38,5 +38,5 @@ use Google\Cloud\Firestore\V1beta1\Gapic\FirestoreGapicClient;
 class FirestoreClient extends FirestoreGapicClient
 {
     // This class is intentionally empty, and is intended to hold manual
-    // additions to the generated {@see FirestoreClientImpl} class.
+    // additions to the generated {@see FirestoreGapicClient} class.
 }

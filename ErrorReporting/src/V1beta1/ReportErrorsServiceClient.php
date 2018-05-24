@@ -38,5 +38,5 @@ use Google\Cloud\ErrorReporting\V1beta1\Gapic\ReportErrorsServiceGapicClient;
 class ReportErrorsServiceClient extends ReportErrorsServiceGapicClient
 {
     // This class is intentionally empty, and is intended to hold manual
-    // additions to the generated {@see ReportErrorsServiceClientImpl} class.
+    // additions to the generated {@see ReportErrorsServiceGapicClient} class.
 }

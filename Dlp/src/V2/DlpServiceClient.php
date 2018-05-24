@@ -38,5 +38,5 @@ use Google\Cloud\Dlp\V2\Gapic\DlpServiceGapicClient;
 class DlpServiceClient extends DlpServiceGapicClient
 {
     // This class is intentionally empty, and is intended to hold manual
-    // additions to the generated {@see DlpServiceClientImpl} class.
+    // additions to the generated {@see DlpServiceGapicClient} class.
 }

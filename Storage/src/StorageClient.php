@@ -47,7 +47,7 @@ class StorageClient
     use ArrayTrait;
     use ClientTrait;
 
-    const VERSION = '1.4.0';
+    const VERSION = '1.5.0';
 
     const FULL_CONTROL_SCOPE = 'https://www.googleapis.com/auth/devstorage.full_control';
     const READ_ONLY_SCOPE = 'https://www.googleapis.com/auth/devstorage.read_only';
@@ -273,7 +273,7 @@ class StorageClient
      *     @type array $versioning The bucket's versioning configuration.
      *     @type array $website The bucket's website configuration.
      *     @type array $billing The bucket's billing configuration.
-     *     @type bool $billing['requesterPays'] When `true`, requests to this bucket
+     *     @type bool $billing.requesterPays When `true`, requests to this bucket
      *           and objects within it must provide a project ID to which the
      *           request will be billed.
      *     @type array $labels The Bucket labels. Labels are represented as an
@@ -286,6 +286,14 @@ class StorageClient
      *           If false, `$options.userProject` will be used ONLY for the
      *           createBucket operation. If `$options.userProject` is not set,
      *           this option has no effect. **Defaults to** `true`.
+     *     @type array $encryption Encryption configuration used by default for
+     *           newly inserted objects.
+     *     @type string $encryption.defaultKmsKeyName A Cloud KMS Key used to
+     *           encrypt objects uploaded into this bucket. Should be in the
+     *           format
+     *           `projects/my-project/locations/kr-location/keyRings/my-kr/cryptoKeys/my-key`.
+     *           Please note the KMS key ring must use the same location as the
+     *           bucket.
      * }
      * @return Bucket
      * @throws GoogleException When a project ID has not been detected.

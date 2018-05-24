@@ -17,8 +17,7 @@
 
 namespace Google\Cloud\Tests\Unit;
 
-use League\JsonGuard\Dereferencer;
-use League\JsonGuard\Validator;
+use Swaggest\JsonSchema\Schema;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -34,42 +33,30 @@ class JsonFileTest extends TestCase
         $json = json_decode($file);
         $this->assertEquals(JSON_ERROR_NONE, json_last_error());
 
-        $deref  = new Dereferencer();
-        $schema = $deref->dereference(json_decode(file_get_contents(sprintf(
-            self::SCHEMA_PATH,
-            __DIR__, 'composer.json.schema'
-        ))));
+        $this->validateAndAssert($json, 'composer.json.schema');
 
-        $validator = new Validator($json, $schema);
-
-        if ($validator->fails()) {
-            print_r($validator->errors());
-        }
-
-        $this->assertFalse($validator->fails());
     }
 
-    public function testComponentComposer()
+    /**
+     * @dataProvider components
+     */
+    public function testComponentComposer($component)
     {
-        $files = glob(__DIR__ .'/../../src/*/composer.json');
-        foreach ($files as $file) {
-            $json = json_decode(file_get_contents($file));
-            $this->assertEquals(JSON_ERROR_NONE, json_last_error());
+        $file = file_get_contents($component);
+        $json = json_decode($file);
+        $this->assertEquals(JSON_ERROR_NONE, json_last_error());
 
-            $deref  = new Dereferencer();
-            $schema = $deref->dereference(json_decode(file_get_contents(sprintf(
-                self::SCHEMA_PATH,
-                __DIR__, 'composer.json.schema'
-            ))));
+        $this->validateAndAssert($json, 'composer.json.schema');
+    }
 
-            $validator = new Validator($json, $schema);
+    public function components()
+    {
+        $files = glob(__DIR__ .'/../../*/composer.json');
+        array_walk($files, function (&$file) {
+            $file = [realpath($file)];
+        });
 
-            if ($validator->fails()) {
-                print_r($validator->errors());
-            }
-
-            $this->assertFalse($validator->fails());
-        }
+        return $files;
     }
 
     public function testManifest()
@@ -78,19 +65,7 @@ class JsonFileTest extends TestCase
         $json = json_decode($file);
         $this->assertEquals(JSON_ERROR_NONE, json_last_error());
 
-        $deref  = new Dereferencer();
-        $schema = $deref->dereference(json_decode(file_get_contents(sprintf(
-            self::SCHEMA_PATH,
-            __DIR__, 'manifest.json.schema'
-        ))));
-
-        $validator = new Validator($json, $schema);
-
-        if ($validator->fails()) {
-            print_r($validator->errors());
-        }
-
-        $this->assertFalse($validator->fails());
+        $this->validateAndAssert($json, 'manifest.json.schema');
     }
 
     public function testToc()
@@ -99,18 +74,27 @@ class JsonFileTest extends TestCase
         $json = json_decode($file);
         $this->assertEquals(JSON_ERROR_NONE, json_last_error());
 
-        $deref  = new Dereferencer();
-        $schema = $deref->dereference(json_decode(file_get_contents(sprintf(
+        $this->validateAndAssert($json, 'toc.json.schema');
+    }
+
+    private function validateAndAssert($input, $schemaPath)
+    {
+        $schema = file_get_contents(sprintf(
             self::SCHEMA_PATH,
-            __DIR__, 'toc.json.schema'
-        ))));
+            __DIR__, $schemaPath
+        ));
 
-        $validator = new Validator($json, $schema);
+        $validator = Schema::import(json_decode($schema));
 
-        if ($validator->fails()) {
-            print_r($validator->errors());
+        $valid = false;
+        $msg = '';
+        try {
+            $validator->in($input);
+            $valid = true;
+        } catch (\Exception $e) {
+            $msg = $e->getMessage();
         }
 
-        $this->assertFalse($validator->fails());
+        $this->assertTrue($valid, $msg);
     }
 }

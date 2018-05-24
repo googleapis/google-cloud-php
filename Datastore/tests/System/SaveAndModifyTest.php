@@ -19,6 +19,7 @@ namespace Google\Cloud\Datastore\Tests\System;
 
 use Google\Cloud\Core\Int64;
 use Google\Cloud\Datastore\Entity;
+use Google\Cloud\Datastore\GeoPoint;
 
 /**
  * @group datastore
@@ -153,5 +154,28 @@ class SaveAndModifyTest extends DatastoreTestCase
         $this->assertEquals([], $e['listVal']);
         $this->assertEquals([], $e['entityVal']);
         $this->assertEquals([], $e['n'][1]);
+    }
+
+    public function testEmptyGeoPoint()
+    {
+        $entity = self::$client->entity('GeoPoint', [
+            'geo' => new GeoPoint(null, null, true)
+        ]);
+        self::$client->insert($entity);
+
+        $key = $entity->key();
+        self::$localDeletionQueue->add($key);
+
+        $e = self::$client->lookup($key);
+        $this->assertInstanceOf(GeoPoint::class, $e['geo']);
+        $this->assertNull($e['geo']->latitude());
+        $this->assertNull($e['geo']->longitude());
+
+        self::$client->upsert($e);
+
+        $e = self::$client->lookup($key);
+        $this->assertInstanceOf(GeoPoint::class, $e['geo']);
+        $this->assertNull($e['geo']->latitude());
+        $this->assertNull($e['geo']->longitude());
     }
 }

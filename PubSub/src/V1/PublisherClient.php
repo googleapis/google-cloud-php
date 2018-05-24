@@ -38,5 +38,5 @@ use Google\Cloud\PubSub\V1\Gapic\PublisherGapicClient;
 class PublisherClient extends PublisherGapicClient
 {
     // This class is intentionally empty, and is intended to hold manual
-    // additions to the generated {@see PublisherClientImpl} class.
+    // additions to the generated {@see PublisherGapicClient} class.
 }
