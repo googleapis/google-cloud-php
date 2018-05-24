@@ -81,15 +81,12 @@ class DebuggerClient
         $connectionType = $this->getConnectionType($config);
         $config += [
             'scopes' => [self::FULL_CONTROL_SCOPE],
-            'projectIdRequired' => true
+            'projectIdRequired' => true,
+            'preferNumericProjectId' => true
         ];
         $this->connection = $connectionType === 'grpc'
-            ? new Grpc($this->configureAuthentication($config + [
-                'preferNumericProjectId' => true
-              ]))
-            : new Rest($this->configureAuthentication($config + [
-                'preferNumericProjectId' => true
-              ]));
+            ? new Grpc($this->configureAuthentication($config))
+            : new Rest($this->configureAuthentication($config));
     }
 
     /**
