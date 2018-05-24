@@ -86,16 +86,24 @@ trait GapicClientTrait
     private static function getGapicVersion(array $options)
     {
         if (!self::$gapicVersion) {
-            if (isset($options['versionFile']) && file_exists($options['versionFile'])) {
-                self::$gapicVersion = trim(file_get_contents(
-                    $options['versionFile']
-                ));
-            } elseif (isset($options['libVersion'])) {
-                self::$gapicVersion = $options['libVersion'];
-            }
+            self::$gapicVersion = isset($options['libVersion'])
+                ? $options['libVersion']
+                : self::getVersionFileContents();
         }
 
         return self::$gapicVersion;
+    }
+
+    private static function getVersionFileContents()
+    {
+        $clientFile = (new \ReflectionClass(__CLASS__))->getFileName();
+        $versionFile = substr(
+            $clientFile,
+            0,
+            strrpos($clientFile, DIRECTORY_SEPARATOR . 'src' . DIRECTORY_SEPARATOR)
+        ) . DIRECTORY_SEPARATOR . 'VERSION';
+
+        return @file_get_contents($versionFile) ?: null;
     }
 
     /**
@@ -122,7 +130,7 @@ trait GapicClientTrait
             'credentialsConfig' => [],
             'transport' => null,
             'transportConfig' => [],
-            'gapicVersion' => null,
+            'gapicVersion' => self::getGapicVersion($options),
             'libName' => null,
             'libVersion' => null,
         ];
@@ -233,12 +241,13 @@ trait GapicClientTrait
             $clientConfig,
             $options['disableRetries']
         );
-        $this->agentHeaderDescriptor = new AgentHeaderDescriptor([
-            'libName' => $options['libName'],
-            'libVersion' => $options['libVersion'],
-            'gapicVersion' => $options['gapicVersion'] ?: self::getGapicVersion($options),
-        ]);
-
+        $this->agentHeaderDescriptor = new AgentHeaderDescriptor(
+            $this->pluckArray([
+                'libName',
+                'libVersion',
+                'gapicVersion'
+            ], $options)
+        );
         self::validateFileExists($options['descriptorsConfigPath']);
         $descriptors = require($options['descriptorsConfigPath']);
         $this->descriptors = $descriptors['interfaces'][$this->serviceName];
@@ -395,7 +404,7 @@ trait GapicClientTrait
                 $this->modifyStreamingCallable($callStack);
                 break;
         }
-        
+
         return $callStack($call, $optionalArgs);
     }
 
@@ -524,7 +533,7 @@ trait GapicClientTrait
             [],
             Call::UNARY_CALL
         );
-        
+
         $this->modifyUnaryCallable($callStack);
         return $callStack($call, $optionalArgs)->wait();
     }
