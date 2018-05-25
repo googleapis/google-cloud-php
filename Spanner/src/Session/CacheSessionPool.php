@@ -298,14 +298,17 @@ class CacheSessionPool implements SessionPoolInterface
         $this->config['lock']->synchronize(function () use ($session) {
             $item = $this->cacheItemPool->getItem($this->cacheKey);
             $data = $item->get();
+            $name = $session->name();
 
-            unset($data['inUse'][$session->name()]);
-            array_push($data['queue'], [
-                'name' => $session->name(),
-                'expiration' => $session->expiration()
-                    ?: $this->time() + SessionPoolInterface::SESSION_EXPIRATION_SECONDS
-            ]);
-            $this->cacheItemPool->save($item->set($data));
+            if (isset($data['inUse'][$name])) {
+                unset($data['inUse'][$name]);
+                array_push($data['queue'], [
+                    'name' => $name,
+                    'expiration' => $session->expiration()
+                        ?: $this->time() + SessionPoolInterface::SESSION_EXPIRATION_SECONDS
+                ]);
+                $this->cacheItemPool->save($item->set($data));
+            }
         });
     }
 
