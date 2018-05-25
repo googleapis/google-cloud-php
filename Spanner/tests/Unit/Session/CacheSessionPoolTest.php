@@ -354,7 +354,6 @@ class CacheSessionPoolTest extends TestCase
         $this->assertNull($cacheData);
 
         $pool->release($session);
-
         $cacheData = $itemPool->getItem(
             sprintf(self::CACHE_KEY_TEMPLATE, self::PROJECT_ID, self::INSTANCE_NAME, self::DATABASE_NAME)
         )->get();
