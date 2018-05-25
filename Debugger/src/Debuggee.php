@@ -144,7 +144,7 @@ class Debuggee
         $info += [
             'id' => null,
             'isInactive' => false,
-            'agentVersion' => DebuggerClient::DEFAULT_AGENT_VERSION,
+            'agentVersion' => DebuggerClient::getDefaultAgentVersion(),
             'status' => null,
             'extSourceContexts' => [],
             'uniquifier' => null,

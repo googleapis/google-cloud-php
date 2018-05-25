@@ -98,7 +98,7 @@ class Rest implements ConnectionInterface
     public function setBreakpoint(array $args)
     {
         $args += [
-            'clientVersion' => DebuggerClient::DEFAULT_AGENT_VERSION
+            'clientVersion' => DebuggerClient::getDefaultAgentVersion()
         ];
         return $this->send('debugger.resources.debuggees.resources.breakpoints', 'set', $args);
     }

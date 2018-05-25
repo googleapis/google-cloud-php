@@ -86,7 +86,7 @@ class GrpcTest extends TestCase
             [
                 'listDebuggees',
                 ['project' => 'my-project-id'],
-                ['my-project-id', DebuggerClient::DEFAULT_AGENT_VERSION, []]
+                ['my-project-id', DebuggerClient::getDefaultAgentVersion(), []]
             ],
             [
                 'registerDebuggee',
@@ -106,7 +106,7 @@ class GrpcTest extends TestCase
             [
                 'setBreakpoint',
                 ['debuggeeId' => 'my-debuggee-id'] + $breakpointData,
-                ['my-debuggee-id', $pbBreakpoint, DebuggerClient::DEFAULT_AGENT_VERSION, []]
+                ['my-debuggee-id', $pbBreakpoint, DebuggerClient::getDefaultAgentVersion(), []]
             ]
         ];
     }

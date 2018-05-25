@@ -40,7 +40,6 @@ class DebuggerClient
     use ClientTrait;
 
     const VERSION = '0.9.0';
-    const DEFAULT_AGENT_VERSION = 'google.com/gcp-php/v0.9';
 
     const FULL_CONTROL_SCOPE = 'https://www.googleapis.com/auth/cloud-platform';
     const READ_ONLY_SCOPE = 'https://www.googleapis.com/auth/debugger.readonly';
@@ -49,6 +48,16 @@ class DebuggerClient
      * @var ConnectionInterface $connection Represents a connection to Debugger
      */
     protected $connection;
+
+    /**
+     * Returns the default Agent version string
+     *
+     * @return string
+     */
+    public static function getDefaultAgentVersion()
+    {
+        return 'google.com/gcp-php/' . self::VERSION;
+    }
 
     /**
      * Create a Debugger client.
@@ -131,7 +140,7 @@ class DebuggerClient
         return new Debuggee($this->connection, [
             'id' => $id,
             'project' => $this->projectId,
-            'agentVersion' => self::DEFAULT_AGENT_VERSION
+            'agentVersion' => self::getDefaultAgentVersion()
         ] + $options);
     }
 
