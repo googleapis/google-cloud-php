@@ -11,6 +11,7 @@
             "name": "google/cloud",
             "defaultService": "servicebuilder",
             "versions": [
+                "v0.66.1",
                 "v0.66.0",
                 "v0.65.0",
                 "v0.64.0",
@@ -587,6 +588,7 @@
             "name": "google/cloud-spanner",
             "defaultService": "spanner/spannerclient",
             "versions": [
+                "v1.5.1",
                 "v1.5.0",
                 "v1.4.1",
                 "v1.4.0",
