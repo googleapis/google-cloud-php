@@ -21,6 +21,12 @@ class BoundingPoly extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated .google.cloud.vision.v1.Vertex vertices = 1;</code>
      */
     private $vertices;
+    /**
+     * The bounding polygon normalized vertices.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.vision.v1.NormalizedVertex normalized_vertices = 2;</code>
+     */
+    private $normalized_vertices;
 
     public function __construct() {
         \GPBMetadata\Google\Cloud\Vision\V1\Geometry::initOnce();
@@ -49,6 +55,32 @@ class BoundingPoly extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Vision\V1\Vertex::class);
         $this->vertices = $arr;
+
+        return $this;
+    }
+
+    /**
+     * The bounding polygon normalized vertices.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.vision.v1.NormalizedVertex normalized_vertices = 2;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getNormalizedVertices()
+    {
+        return $this->normalized_vertices;
+    }
+
+    /**
+     * The bounding polygon normalized vertices.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.vision.v1.NormalizedVertex normalized_vertices = 2;</code>
+     * @param \Google\Cloud\Vision\V1\NormalizedVertex[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setNormalizedVertices($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Vision\V1\NormalizedVertex::class);
+        $this->normalized_vertices = $arr;
 
         return $this;
     }

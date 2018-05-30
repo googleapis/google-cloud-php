@@ -9,8 +9,6 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * A column with a semantic tag attached.
- *
  * Generated from protobuf message <code>google.privacy.dlp.v2.PrivacyMetric.KMapEstimationConfig.TaggedField</code>
  */
 class PrivacyMetric_KMapEstimationConfig_TaggedField extends \Google\Protobuf\Internal\Message

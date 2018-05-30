@@ -16,7 +16,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class ImageContext extends \Google\Protobuf\Internal\Message
 {
     /**
-     * lat/long rectangle that specifies the location of the image.
+     * Not used.
      *
      * Generated from protobuf field <code>.google.cloud.vision.v1.LatLongRect lat_long_rect = 1;</code>
      */
@@ -53,7 +53,7 @@ class ImageContext extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * lat/long rectangle that specifies the location of the image.
+     * Not used.
      *
      * Generated from protobuf field <code>.google.cloud.vision.v1.LatLongRect lat_long_rect = 1;</code>
      * @return \Google\Cloud\Vision\V1\LatLongRect
@@ -64,7 +64,7 @@ class ImageContext extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * lat/long rectangle that specifies the location of the image.
+     * Not used.
      *
      * Generated from protobuf field <code>.google.cloud.vision.v1.LatLongRect lat_long_rect = 1;</code>
      * @param \Google\Cloud\Vision\V1\LatLongRect $var

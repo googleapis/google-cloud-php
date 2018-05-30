@@ -2,7 +2,7 @@
 // GENERATED CODE -- DO NOT EDIT!
 
 // Original file comments:
-// Copyright 2017 Google Inc.
+// Copyright 2018 Google Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -189,11 +189,6 @@ class BigtableInstanceAdminGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * This is a private alpha release of Cloud Bigtable replication. This feature
-     * is not currently available to most Cloud Bigtable customers. This feature
-     * might be changed in backward-incompatible ways and is not recommended for
-     * production use. It is not subject to any SLA or deprecation policy.
-     *
      * Creates an app profile within an instance.
      * @param \Google\Cloud\Bigtable\Admin\V2\CreateAppProfileRequest $argument input argument
      * @param array $metadata metadata
@@ -208,11 +203,6 @@ class BigtableInstanceAdminGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * This is a private alpha release of Cloud Bigtable replication. This feature
-     * is not currently available to most Cloud Bigtable customers. This feature
-     * might be changed in backward-incompatible ways and is not recommended for
-     * production use. It is not subject to any SLA or deprecation policy.
-     *
      * Gets information about an app profile.
      * @param \Google\Cloud\Bigtable\Admin\V2\GetAppProfileRequest $argument input argument
      * @param array $metadata metadata
@@ -227,11 +217,6 @@ class BigtableInstanceAdminGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * This is a private alpha release of Cloud Bigtable replication. This feature
-     * is not currently available to most Cloud Bigtable customers. This feature
-     * might be changed in backward-incompatible ways and is not recommended for
-     * production use. It is not subject to any SLA or deprecation policy.
-     *
      * Lists information about app profiles in an instance.
      * @param \Google\Cloud\Bigtable\Admin\V2\ListAppProfilesRequest $argument input argument
      * @param array $metadata metadata
@@ -246,11 +231,6 @@ class BigtableInstanceAdminGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * This is a private alpha release of Cloud Bigtable replication. This feature
-     * is not currently available to most Cloud Bigtable customers. This feature
-     * might be changed in backward-incompatible ways and is not recommended for
-     * production use. It is not subject to any SLA or deprecation policy.
-     *
      * Updates an app profile within an instance.
      * @param \Google\Cloud\Bigtable\Admin\V2\UpdateAppProfileRequest $argument input argument
      * @param array $metadata metadata
@@ -265,11 +245,6 @@ class BigtableInstanceAdminGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * This is a private alpha release of Cloud Bigtable replication. This feature
-     * is not currently available to most Cloud Bigtable customers. This feature
-     * might be changed in backward-incompatible ways and is not recommended for
-     * production use. It is not subject to any SLA or deprecation policy.
-     *
      * Deletes an app profile from an instance.
      * @param \Google\Cloud\Bigtable\Admin\V2\DeleteAppProfileRequest $argument input argument
      * @param array $metadata metadata
@@ -284,12 +259,6 @@ class BigtableInstanceAdminGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * This is a private alpha release of Cloud Bigtable instance level
-     * permissions. This feature is not currently available to most Cloud Bigtable
-     * customers. This feature might be changed in backward-incompatible ways and
-     * is not recommended for production use. It is not subject to any SLA or
-     * deprecation policy.
-     *
      * Gets the access control policy for an instance resource. Returns an empty
      * policy if an instance exists but does not have a policy set.
      * @param \Google\Cloud\Iam\V1\GetIamPolicyRequest $argument input argument
@@ -305,12 +274,6 @@ class BigtableInstanceAdminGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * This is a private alpha release of Cloud Bigtable instance level
-     * permissions. This feature is not currently available to most Cloud Bigtable
-     * customers. This feature might be changed in backward-incompatible ways and
-     * is not recommended for production use. It is not subject to any SLA or
-     * deprecation policy.
-     *
      * Sets the access control policy on an instance resource. Replaces any
      * existing policy.
      * @param \Google\Cloud\Iam\V1\SetIamPolicyRequest $argument input argument
@@ -326,12 +289,6 @@ class BigtableInstanceAdminGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * This is a private alpha release of Cloud Bigtable instance level
-     * permissions. This feature is not currently available to most Cloud Bigtable
-     * customers. This feature might be changed in backward-incompatible ways and
-     * is not recommended for production use. It is not subject to any SLA or
-     * deprecation policy.
-     *
      * Returns permissions that the caller has on the specified instance resource.
      * @param \Google\Cloud\Iam\V1\TestIamPermissionsRequest $argument input argument
      * @param array $metadata metadata

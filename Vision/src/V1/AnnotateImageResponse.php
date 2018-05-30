@@ -86,6 +86,13 @@ class AnnotateImageResponse extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.rpc.Status error = 9;</code>
      */
     private $error = null;
+    /**
+     * If present, contextual information is needed to understand where this image
+     * comes from.
+     *
+     * Generated from protobuf field <code>.google.cloud.vision.v1.ImageAnnotationContext context = 21;</code>
+     */
+    private $context = null;
 
     public function __construct() {
         \GPBMetadata\Google\Cloud\Vision\V1\ImageAnnotator::initOnce();
@@ -384,6 +391,34 @@ class AnnotateImageResponse extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Rpc\Status::class);
         $this->error = $var;
+
+        return $this;
+    }
+
+    /**
+     * If present, contextual information is needed to understand where this image
+     * comes from.
+     *
+     * Generated from protobuf field <code>.google.cloud.vision.v1.ImageAnnotationContext context = 21;</code>
+     * @return \Google\Cloud\Vision\V1\ImageAnnotationContext
+     */
+    public function getContext()
+    {
+        return $this->context;
+    }
+
+    /**
+     * If present, contextual information is needed to understand where this image
+     * comes from.
+     *
+     * Generated from protobuf field <code>.google.cloud.vision.v1.ImageAnnotationContext context = 21;</code>
+     * @param \Google\Cloud\Vision\V1\ImageAnnotationContext $var
+     * @return $this
+     */
+    public function setContext($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Vision\V1\ImageAnnotationContext::class);
+        $this->context = $var;
 
         return $this;
     }

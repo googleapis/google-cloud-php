@@ -48,4 +48,23 @@ class ImageAnnotatorGrpcClient extends \Grpc\BaseStub {
         $metadata, $options);
     }
 
+    /**
+     * Run asynchronous image detection and annotation for a list of generic
+     * files, such as PDF files, which may contain multiple pages and multiple
+     * images per page. Progress and results can be retrieved through the
+     * `google.longrunning.Operations` interface.
+     * `Operation.metadata` contains `OperationMetadata` (metadata).
+     * `Operation.response` contains `AsyncBatchAnnotateFilesResponse` (results).
+     * @param \Google\Cloud\Vision\V1\AsyncBatchAnnotateFilesRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     */
+    public function AsyncBatchAnnotateFiles(\Google\Cloud\Vision\V1\AsyncBatchAnnotateFilesRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.vision.v1.ImageAnnotator/AsyncBatchAnnotateFiles',
+        $argument,
+        ['\Google\LongRunning\Operation', 'decode'],
+        $metadata, $options);
+    }
+
 }

@@ -22,13 +22,15 @@ class Page extends \Google\Protobuf\Internal\Message
      */
     private $property = null;
     /**
-     * Page width in pixels.
+     * Page width. For PDFs the unit is points. For images (including
+     * TIFFs) the unit is pixels.
      *
      * Generated from protobuf field <code>int32 width = 2;</code>
      */
     private $width = 0;
     /**
-     * Page height in pixels.
+     * Page height. For PDFs the unit is points. For images (including
+     * TIFFs) the unit is pixels.
      *
      * Generated from protobuf field <code>int32 height = 3;</code>
      */
@@ -78,7 +80,8 @@ class Page extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Page width in pixels.
+     * Page width. For PDFs the unit is points. For images (including
+     * TIFFs) the unit is pixels.
      *
      * Generated from protobuf field <code>int32 width = 2;</code>
      * @return int
@@ -89,7 +92,8 @@ class Page extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Page width in pixels.
+     * Page width. For PDFs the unit is points. For images (including
+     * TIFFs) the unit is pixels.
      *
      * Generated from protobuf field <code>int32 width = 2;</code>
      * @param int $var
@@ -104,7 +108,8 @@ class Page extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Page height in pixels.
+     * Page height. For PDFs the unit is points. For images (including
+     * TIFFs) the unit is pixels.
      *
      * Generated from protobuf field <code>int32 height = 3;</code>
      * @return int
@@ -115,7 +120,8 @@ class Page extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Page height in pixels.
+     * Page height. For PDFs the unit is points. For images (including
+     * TIFFs) the unit is pixels.
      *
      * Generated from protobuf field <code>int32 height = 3;</code>
      * @param int $var

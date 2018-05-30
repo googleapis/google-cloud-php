@@ -15,6 +15,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * using publicly available data (like the US Census), or using a custom
  * statistical model (indicated as one or several BigQuery tables), or by
  * extrapolating from the distribution of values in the input dataset.
+ * A column with a semantic tag attached.
  *
  * Generated from protobuf message <code>google.privacy.dlp.v2.PrivacyMetric.KMapEstimationConfig</code>
  */

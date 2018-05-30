@@ -25,6 +25,20 @@ class PrivacyMetric_KAnonymityConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.FieldId quasi_ids = 1;</code>
      */
     private $quasi_ids;
+    /**
+     * Optional message indicating that multiple rows might be associated to a
+     * single individual. If the same entity_id is associated to multiple
+     * quasi-identifier tuples over distict rows, we consider the entire
+     * collection of tuples as the composite quasi-identifier. This collection
+     * is a multiset: the order in which the different tuples appear in the
+     * dataset is ignored, but their frequency is taken into account.
+     * Important note: a maximum of 1000 rows can be associated to a single
+     * entity ID. If more rows are associated with the same entity ID, some
+     * might be ignored.
+     *
+     * Generated from protobuf field <code>.google.privacy.dlp.v2.EntityId entity_id = 2;</code>
+     */
+    private $entity_id = null;
 
     public function __construct() {
         \GPBMetadata\Google\Privacy\Dlp\V2\Dlp::initOnce();
@@ -61,6 +75,48 @@ class PrivacyMetric_KAnonymityConfig extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Dlp\V2\FieldId::class);
         $this->quasi_ids = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional message indicating that multiple rows might be associated to a
+     * single individual. If the same entity_id is associated to multiple
+     * quasi-identifier tuples over distict rows, we consider the entire
+     * collection of tuples as the composite quasi-identifier. This collection
+     * is a multiset: the order in which the different tuples appear in the
+     * dataset is ignored, but their frequency is taken into account.
+     * Important note: a maximum of 1000 rows can be associated to a single
+     * entity ID. If more rows are associated with the same entity ID, some
+     * might be ignored.
+     *
+     * Generated from protobuf field <code>.google.privacy.dlp.v2.EntityId entity_id = 2;</code>
+     * @return \Google\Cloud\Dlp\V2\EntityId
+     */
+    public function getEntityId()
+    {
+        return $this->entity_id;
+    }
+
+    /**
+     * Optional message indicating that multiple rows might be associated to a
+     * single individual. If the same entity_id is associated to multiple
+     * quasi-identifier tuples over distict rows, we consider the entire
+     * collection of tuples as the composite quasi-identifier. This collection
+     * is a multiset: the order in which the different tuples appear in the
+     * dataset is ignored, but their frequency is taken into account.
+     * Important note: a maximum of 1000 rows can be associated to a single
+     * entity ID. If more rows are associated with the same entity ID, some
+     * might be ignored.
+     *
+     * Generated from protobuf field <code>.google.privacy.dlp.v2.EntityId entity_id = 2;</code>
+     * @param \Google\Cloud\Dlp\V2\EntityId $var
+     * @return $this
+     */
+    public function setEntityId($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Dlp\V2\EntityId::class);
+        $this->entity_id = $var;
 
         return $this;
     }

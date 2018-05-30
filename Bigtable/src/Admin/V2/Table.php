@@ -20,22 +20,18 @@ class Table extends \Google\Protobuf\Internal\Message
      * (`OutputOnly`)
      * The unique name of the table. Values are of the form
      * `projects/<project>/instances/<instance>/tables/[_a-zA-Z0-9][-_.a-zA-Z0-9]*`.
-     * Views: `NAME_ONLY`, `SCHEMA_VIEW`, `FULL`
+     * Views: `NAME_ONLY`, `SCHEMA_VIEW`, `REPLICATION_VIEW`, `FULL`
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
     private $name = '';
     /**
-     * This is a private alpha release of Cloud Bigtable replication. This feature
-     * is not currently available to most Cloud Bigtable customers. This feature
-     * might be changed in backward-incompatible ways and is not recommended for
-     * production use. It is not subject to any SLA or deprecation policy.
      * (`OutputOnly`)
      * Map from cluster ID to per-cluster table state.
      * If it could not be determined whether or not the table has data in a
      * particular cluster (for example, if its zone is unavailable), then
      * there will be an entry for the cluster with UNKNOWN `replication_status`.
-     * Views: `FULL`
+     * Views: `REPLICATION_VIEW`, `FULL`
      *
      * Generated from protobuf field <code>map<string, .google.bigtable.admin.v2.Table.ClusterState> cluster_states = 2;</code>
      */
@@ -50,7 +46,7 @@ class Table extends \Google\Protobuf\Internal\Message
     private $column_families;
     /**
      * (`CreationOnly`)
-     * The granularity (e.g. `MILLIS`, `MICROS`) at which timestamps are stored in
+     * The granularity (i.e. `MILLIS`) at which timestamps are stored in
      * this table. Timestamps not matching the granularity will be rejected.
      * If unspecified at creation time, the value will be set to `MILLIS`.
      * Views: `SCHEMA_VIEW`, `FULL`
@@ -68,7 +64,7 @@ class Table extends \Google\Protobuf\Internal\Message
      * (`OutputOnly`)
      * The unique name of the table. Values are of the form
      * `projects/<project>/instances/<instance>/tables/[_a-zA-Z0-9][-_.a-zA-Z0-9]*`.
-     * Views: `NAME_ONLY`, `SCHEMA_VIEW`, `FULL`
+     * Views: `NAME_ONLY`, `SCHEMA_VIEW`, `REPLICATION_VIEW`, `FULL`
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @return string
@@ -82,7 +78,7 @@ class Table extends \Google\Protobuf\Internal\Message
      * (`OutputOnly`)
      * The unique name of the table. Values are of the form
      * `projects/<project>/instances/<instance>/tables/[_a-zA-Z0-9][-_.a-zA-Z0-9]*`.
-     * Views: `NAME_ONLY`, `SCHEMA_VIEW`, `FULL`
+     * Views: `NAME_ONLY`, `SCHEMA_VIEW`, `REPLICATION_VIEW`, `FULL`
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @param string $var
@@ -97,16 +93,12 @@ class Table extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * This is a private alpha release of Cloud Bigtable replication. This feature
-     * is not currently available to most Cloud Bigtable customers. This feature
-     * might be changed in backward-incompatible ways and is not recommended for
-     * production use. It is not subject to any SLA or deprecation policy.
      * (`OutputOnly`)
      * Map from cluster ID to per-cluster table state.
      * If it could not be determined whether or not the table has data in a
      * particular cluster (for example, if its zone is unavailable), then
      * there will be an entry for the cluster with UNKNOWN `replication_status`.
-     * Views: `FULL`
+     * Views: `REPLICATION_VIEW`, `FULL`
      *
      * Generated from protobuf field <code>map<string, .google.bigtable.admin.v2.Table.ClusterState> cluster_states = 2;</code>
      * @return \Google\Protobuf\Internal\MapField
@@ -117,16 +109,12 @@ class Table extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * This is a private alpha release of Cloud Bigtable replication. This feature
-     * is not currently available to most Cloud Bigtable customers. This feature
-     * might be changed in backward-incompatible ways and is not recommended for
-     * production use. It is not subject to any SLA or deprecation policy.
      * (`OutputOnly`)
      * Map from cluster ID to per-cluster table state.
      * If it could not be determined whether or not the table has data in a
      * particular cluster (for example, if its zone is unavailable), then
      * there will be an entry for the cluster with UNKNOWN `replication_status`.
-     * Views: `FULL`
+     * Views: `REPLICATION_VIEW`, `FULL`
      *
      * Generated from protobuf field <code>map<string, .google.bigtable.admin.v2.Table.ClusterState> cluster_states = 2;</code>
      * @param array|\Google\Protobuf\Internal\MapField $var
@@ -172,7 +160,7 @@ class Table extends \Google\Protobuf\Internal\Message
 
     /**
      * (`CreationOnly`)
-     * The granularity (e.g. `MILLIS`, `MICROS`) at which timestamps are stored in
+     * The granularity (i.e. `MILLIS`) at which timestamps are stored in
      * this table. Timestamps not matching the granularity will be rejected.
      * If unspecified at creation time, the value will be set to `MILLIS`.
      * Views: `SCHEMA_VIEW`, `FULL`
@@ -187,7 +175,7 @@ class Table extends \Google\Protobuf\Internal\Message
 
     /**
      * (`CreationOnly`)
-     * The granularity (e.g. `MILLIS`, `MICROS`) at which timestamps are stored in
+     * The granularity (i.e. `MILLIS`) at which timestamps are stored in
      * this table. Timestamps not matching the granularity will be rejected.
      * If unspecified at creation time, the value will be set to `MILLIS`.
      * Views: `SCHEMA_VIEW`, `FULL`

@@ -35,6 +35,18 @@ class CloudStorageOptions extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.FileType file_types = 5;</code>
      */
     private $file_types;
+    /**
+     * Generated from protobuf field <code>.google.privacy.dlp.v2.CloudStorageOptions.SampleMethod sample_method = 6;</code>
+     */
+    private $sample_method = 0;
+    /**
+     * Limits the number of files to scan to this percentage of the input FileSet.
+     * Number of files scanned is rounded down. Must be between 0 and 100,
+     * inclusively. Both 0 and 100 means no limit. Defaults to 0.
+     *
+     * Generated from protobuf field <code>int32 files_limit_percent = 7;</code>
+     */
+    private $files_limit_percent = 0;
 
     public function __construct() {
         \GPBMetadata\Google\Privacy\Dlp\V2\Storage::initOnce();
@@ -117,6 +129,58 @@ class CloudStorageOptions extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::ENUM, \Google\Cloud\Dlp\V2\FileType::class);
         $this->file_types = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Generated from protobuf field <code>.google.privacy.dlp.v2.CloudStorageOptions.SampleMethod sample_method = 6;</code>
+     * @return int
+     */
+    public function getSampleMethod()
+    {
+        return $this->sample_method;
+    }
+
+    /**
+     * Generated from protobuf field <code>.google.privacy.dlp.v2.CloudStorageOptions.SampleMethod sample_method = 6;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setSampleMethod($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\Dlp\V2\CloudStorageOptions_SampleMethod::class);
+        $this->sample_method = $var;
+
+        return $this;
+    }
+
+    /**
+     * Limits the number of files to scan to this percentage of the input FileSet.
+     * Number of files scanned is rounded down. Must be between 0 and 100,
+     * inclusively. Both 0 and 100 means no limit. Defaults to 0.
+     *
+     * Generated from protobuf field <code>int32 files_limit_percent = 7;</code>
+     * @return int
+     */
+    public function getFilesLimitPercent()
+    {
+        return $this->files_limit_percent;
+    }
+
+    /**
+     * Limits the number of files to scan to this percentage of the input FileSet.
+     * Number of files scanned is rounded down. Must be between 0 and 100,
+     * inclusively. Both 0 and 100 means no limit. Defaults to 0.
+     *
+     * Generated from protobuf field <code>int32 files_limit_percent = 7;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setFilesLimitPercent($var)
+    {
+        GPBUtil::checkInt32($var);
+        $this->files_limit_percent = $var;
 
         return $this;
     }

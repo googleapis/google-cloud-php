@@ -24,7 +24,9 @@ class CreateDeviceRequest extends \Google\Protobuf\Internal\Message
      */
     private $parent = '';
     /**
-     * The device registration details.
+     * The device registration details. The field `name` must be empty. The server
+     * will generate that field from the device registry `id` provided and the
+     * `parent` field.
      *
      * Generated from protobuf field <code>.google.cloud.iot.v1.Device device = 2;</code>
      */
@@ -66,7 +68,9 @@ class CreateDeviceRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The device registration details.
+     * The device registration details. The field `name` must be empty. The server
+     * will generate that field from the device registry `id` provided and the
+     * `parent` field.
      *
      * Generated from protobuf field <code>.google.cloud.iot.v1.Device device = 2;</code>
      * @return \Google\Cloud\Iot\V1\Device
@@ -77,7 +81,9 @@ class CreateDeviceRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The device registration details.
+     * The device registration details. The field `name` must be empty. The server
+     * will generate that field from the device registry `id` provided and the
+     * `parent` field.
      *
      * Generated from protobuf field <code>.google.cloud.iot.v1.Device device = 2;</code>
      * @param \Google\Cloud\Iot\V1\Device $var

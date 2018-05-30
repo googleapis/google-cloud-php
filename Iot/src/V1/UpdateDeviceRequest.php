@@ -28,7 +28,7 @@ class UpdateDeviceRequest extends \Google\Protobuf\Internal\Message
      * Only updates the `device` fields indicated by this mask.
      * The field mask must not be empty, and it must not contain fields that
      * are immutable or only set by the server.
-     * Mutable top-level fields: `credentials`, `enabled_state`, and `metadata`
+     * Mutable top-level fields: `credentials`, `blocked`, and `metadata`
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 3;</code>
      */
@@ -75,7 +75,7 @@ class UpdateDeviceRequest extends \Google\Protobuf\Internal\Message
      * Only updates the `device` fields indicated by this mask.
      * The field mask must not be empty, and it must not contain fields that
      * are immutable or only set by the server.
-     * Mutable top-level fields: `credentials`, `enabled_state`, and `metadata`
+     * Mutable top-level fields: `credentials`, `blocked`, and `metadata`
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 3;</code>
      * @return \Google\Protobuf\FieldMask
@@ -89,7 +89,7 @@ class UpdateDeviceRequest extends \Google\Protobuf\Internal\Message
      * Only updates the `device` fields indicated by this mask.
      * The field mask must not be empty, and it must not contain fields that
      * are immutable or only set by the server.
-     * Mutable top-level fields: `credentials`, `enabled_state`, and `metadata`
+     * Mutable top-level fields: `credentials`, `blocked`, and `metadata`
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 3;</code>
      * @param \Google\Protobuf\FieldMask $var

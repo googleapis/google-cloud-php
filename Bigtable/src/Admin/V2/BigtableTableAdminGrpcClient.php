@@ -2,7 +2,7 @@
 // GENERATED CODE -- DO NOT EDIT!
 
 // Original file comments:
-// Copyright 2017 Google Inc.
+// Copyright 2018 Google Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -53,13 +53,14 @@ class BigtableTableAdminGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * This is a private alpha release of Cloud Bigtable snapshots. This feature
-     * is not currently available to most Cloud Bigtable customers. This feature
-     * might be changed in backward-incompatible ways and is not recommended for
-     * production use. It is not subject to any SLA or deprecation policy.
-     *
      * Creates a new table from the specified snapshot. The target table must
      * not exist. The snapshot and the table must be in the same instance.
+     *
+     * Note: This is a private alpha release of Cloud Bigtable snapshots. This
+     * feature is not currently available to most Cloud Bigtable customers. This
+     * feature might be changed in backward-incompatible ways and is not
+     * recommended for production use. It is not subject to any SLA or deprecation
+     * policy.
      * @param \Google\Cloud\Bigtable\Admin\V2\CreateTableFromSnapshotRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -148,11 +149,6 @@ class BigtableTableAdminGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * This is a private alpha release of Cloud Bigtable replication. This feature
-     * is not currently available to most Cloud Bigtable customers. This feature
-     * might be changed in backward-incompatible ways and is not recommended for
-     * production use. It is not subject to any SLA or deprecation policy.
-     *
      * Generates a consistency token for a Table, which can be used in
      * CheckConsistency to check whether mutations to the table that finished
      * before this call started have been replicated. The tokens will be available
@@ -170,11 +166,6 @@ class BigtableTableAdminGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * This is a private alpha release of Cloud Bigtable replication. This feature
-     * is not currently available to most Cloud Bigtable customers. This feature
-     * might be changed in backward-incompatible ways and is not recommended for
-     * production use. It is not subject to any SLA or deprecation policy.
-     *
      * Checks replication consistency based on a consistency token, that is, if
      * replication has caught up based on the conditions specified in the token
      * and the check request.
@@ -191,13 +182,14 @@ class BigtableTableAdminGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * This is a private alpha release of Cloud Bigtable snapshots. This feature
-     * is not currently available to most Cloud Bigtable customers. This feature
-     * might be changed in backward-incompatible ways and is not recommended for
-     * production use. It is not subject to any SLA or deprecation policy.
-     *
      * Creates a new snapshot in the specified cluster from the specified
      * source table. The cluster and the table must be in the same instance.
+     *
+     * Note: This is a private alpha release of Cloud Bigtable snapshots. This
+     * feature is not currently available to most Cloud Bigtable customers. This
+     * feature might be changed in backward-incompatible ways and is not
+     * recommended for production use. It is not subject to any SLA or deprecation
+     * policy.
      * @param \Google\Cloud\Bigtable\Admin\V2\SnapshotTableRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -211,12 +203,13 @@ class BigtableTableAdminGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * This is a private alpha release of Cloud Bigtable snapshots. This feature
-     * is not currently available to most Cloud Bigtable customers. This feature
-     * might be changed in backward-incompatible ways and is not recommended for
-     * production use. It is not subject to any SLA or deprecation policy.
-     *
      * Gets metadata information about the specified snapshot.
+     *
+     * Note: This is a private alpha release of Cloud Bigtable snapshots. This
+     * feature is not currently available to most Cloud Bigtable customers. This
+     * feature might be changed in backward-incompatible ways and is not
+     * recommended for production use. It is not subject to any SLA or deprecation
+     * policy.
      * @param \Google\Cloud\Bigtable\Admin\V2\GetSnapshotRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -230,12 +223,13 @@ class BigtableTableAdminGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * This is a private alpha release of Cloud Bigtable snapshots. This feature
-     * is not currently available to most Cloud Bigtable customers. This feature
-     * might be changed in backward-incompatible ways and is not recommended for
-     * production use. It is not subject to any SLA or deprecation policy.
-     *
      * Lists all snapshots associated with the specified cluster.
+     *
+     * Note: This is a private alpha release of Cloud Bigtable snapshots. This
+     * feature is not currently available to most Cloud Bigtable customers. This
+     * feature might be changed in backward-incompatible ways and is not
+     * recommended for production use. It is not subject to any SLA or deprecation
+     * policy.
      * @param \Google\Cloud\Bigtable\Admin\V2\ListSnapshotsRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -249,12 +243,13 @@ class BigtableTableAdminGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * This is a private alpha release of Cloud Bigtable snapshots. This feature
-     * is not currently available to most Cloud Bigtable customers. This feature
-     * might be changed in backward-incompatible ways and is not recommended for
-     * production use. It is not subject to any SLA or deprecation policy.
-     *
      * Permanently deletes the specified snapshot.
+     *
+     * Note: This is a private alpha release of Cloud Bigtable snapshots. This
+     * feature is not currently available to most Cloud Bigtable customers. This
+     * feature might be changed in backward-incompatible ways and is not
+     * recommended for production use. It is not subject to any SLA or deprecation
+     * policy.
      * @param \Google\Cloud\Bigtable\Admin\V2\DeleteSnapshotRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options

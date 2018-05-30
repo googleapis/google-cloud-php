@@ -75,6 +75,32 @@ class Action extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Publish summary to Cloud Security Command Center (Alpha).
+     *
+     * Generated from protobuf field <code>.google.privacy.dlp.v2.Action.PublishSummaryToCscc publish_summary_to_cscc = 3;</code>
+     * @return \Google\Cloud\Dlp\V2\Action_PublishSummaryToCscc
+     */
+    public function getPublishSummaryToCscc()
+    {
+        return $this->readOneof(3);
+    }
+
+    /**
+     * Publish summary to Cloud Security Command Center (Alpha).
+     *
+     * Generated from protobuf field <code>.google.privacy.dlp.v2.Action.PublishSummaryToCscc publish_summary_to_cscc = 3;</code>
+     * @param \Google\Cloud\Dlp\V2\Action_PublishSummaryToCscc $var
+     * @return $this
+     */
+    public function setPublishSummaryToCscc($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Dlp\V2\Action_PublishSummaryToCscc::class);
+        $this->writeOneof(3, $var);
+
+        return $this;
+    }
+
+    /**
      * @return string
      */
     public function getAction()

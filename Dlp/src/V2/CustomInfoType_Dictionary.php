@@ -65,6 +65,34 @@ class CustomInfoType_Dictionary extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Newline-delimited file of words in Cloud Storage. Only a single file
+     * is accepted.
+     *
+     * Generated from protobuf field <code>.google.privacy.dlp.v2.CloudStoragePath cloud_storage_path = 3;</code>
+     * @return \Google\Cloud\Dlp\V2\CloudStoragePath
+     */
+    public function getCloudStoragePath()
+    {
+        return $this->readOneof(3);
+    }
+
+    /**
+     * Newline-delimited file of words in Cloud Storage. Only a single file
+     * is accepted.
+     *
+     * Generated from protobuf field <code>.google.privacy.dlp.v2.CloudStoragePath cloud_storage_path = 3;</code>
+     * @param \Google\Cloud\Dlp\V2\CloudStoragePath $var
+     * @return $this
+     */
+    public function setCloudStoragePath($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Dlp\V2\CloudStoragePath::class);
+        $this->writeOneof(3, $var);
+
+        return $this;
+    }
+
+    /**
      * @return string
      */
     public function getSource()

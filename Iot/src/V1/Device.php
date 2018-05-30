@@ -51,9 +51,11 @@ class Device extends \Google\Protobuf\Internal\Message
      */
     private $credentials;
     /**
-     * [Output only] The last time a heartbeat was received. Timestamps are
-     * periodically collected and written to storage; they may be stale by a few
-     * minutes. This field is only for devices connecting through MQTT.
+     * [Output only] The last time an MQTT `PINGREQ` was received. This field
+     * applies only to devices connecting through MQTT. MQTT clients usually only
+     * send `PINGREQ` messages if the connection is idle, and no other messages
+     * have been sent. Timestamps are periodically collected and written to
+     * storage; they may be stale by a few minutes.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp last_heartbeat_time = 7;</code>
      */
@@ -136,8 +138,8 @@ class Device extends \Google\Protobuf\Internal\Message
      * The metadata key-value pairs assigned to the device. This metadata is not
      * interpreted or indexed by Cloud IoT Core. It can be used to add contextual
      * information for the device.
-     * Keys must conform to the regular expression [a-zA-Z0-9-_]+ and be less than
-     * 128 bytes in length.
+     * Keys must conform to the regular expression [a-zA-Z][a-zA-Z0-9-_.+~%]+ and
+     * be less than 128 bytes in length.
      * Values are free-form strings. Each value must be less than or equal to 32
      * KB in size.
      * The total size of all keys and values must be less than 256 KB, and the
@@ -279,9 +281,11 @@ class Device extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output only] The last time a heartbeat was received. Timestamps are
-     * periodically collected and written to storage; they may be stale by a few
-     * minutes. This field is only for devices connecting through MQTT.
+     * [Output only] The last time an MQTT `PINGREQ` was received. This field
+     * applies only to devices connecting through MQTT. MQTT clients usually only
+     * send `PINGREQ` messages if the connection is idle, and no other messages
+     * have been sent. Timestamps are periodically collected and written to
+     * storage; they may be stale by a few minutes.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp last_heartbeat_time = 7;</code>
      * @return \Google\Protobuf\Timestamp
@@ -292,9 +296,11 @@ class Device extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output only] The last time a heartbeat was received. Timestamps are
-     * periodically collected and written to storage; they may be stale by a few
-     * minutes. This field is only for devices connecting through MQTT.
+     * [Output only] The last time an MQTT `PINGREQ` was received. This field
+     * applies only to devices connecting through MQTT. MQTT clients usually only
+     * send `PINGREQ` messages if the connection is idle, and no other messages
+     * have been sent. Timestamps are periodically collected and written to
+     * storage; they may be stale by a few minutes.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp last_heartbeat_time = 7;</code>
      * @param \Google\Protobuf\Timestamp $var
@@ -586,8 +592,8 @@ class Device extends \Google\Protobuf\Internal\Message
      * The metadata key-value pairs assigned to the device. This metadata is not
      * interpreted or indexed by Cloud IoT Core. It can be used to add contextual
      * information for the device.
-     * Keys must conform to the regular expression [a-zA-Z0-9-_]+ and be less than
-     * 128 bytes in length.
+     * Keys must conform to the regular expression [a-zA-Z][a-zA-Z0-9-_.+~%]+ and
+     * be less than 128 bytes in length.
      * Values are free-form strings. Each value must be less than or equal to 32
      * KB in size.
      * The total size of all keys and values must be less than 256 KB, and the
@@ -605,8 +611,8 @@ class Device extends \Google\Protobuf\Internal\Message
      * The metadata key-value pairs assigned to the device. This metadata is not
      * interpreted or indexed by Cloud IoT Core. It can be used to add contextual
      * information for the device.
-     * Keys must conform to the regular expression [a-zA-Z0-9-_]+ and be less than
-     * 128 bytes in length.
+     * Keys must conform to the regular expression [a-zA-Z][a-zA-Z0-9-_.+~%]+ and
+     * be less than 128 bytes in length.
      * Values are free-form strings. Each value must be less than or equal to 32
      * KB in size.
      * The total size of all keys and values must be less than 256 KB, and the

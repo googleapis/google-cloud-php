@@ -9,12 +9,12 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * This is a private alpha release of Cloud Bigtable snapshots. This feature
- * is not currently available to most Cloud Bigtable customers. This feature
- * might be changed in backward-incompatible ways and is not recommended for
- * production use. It is not subject to any SLA or deprecation policy.
  * A snapshot of a table at a particular time. A snapshot can be used as a
  * checkpoint for data restoration or a data source for a new table.
+ * Note: This is a private alpha release of Cloud Bigtable snapshots. This
+ * feature is not currently available to most Cloud Bigtable customers. This
+ * feature might be changed in backward-incompatible ways and is not recommended
+ * for production use. It is not subject to any SLA or deprecation policy.
  *
  * Generated from protobuf message <code>google.bigtable.admin.v2.Snapshot</code>
  */

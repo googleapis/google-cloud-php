@@ -20,33 +20,29 @@ class Table_ClusterState_ReplicationState
     /**
      * The cluster was recently created, and the table must finish copying
      * over pre-existing data from other clusters before it can begin
-     * receiving live replication updates and serving
-     * [Data API][google.bigtable.v2.Bigtable] requests.
+     * receiving live replication updates and serving Data API requests.
      *
      * Generated from protobuf enum <code>INITIALIZING = 1;</code>
      */
     const INITIALIZING = 1;
     /**
-     * The table is temporarily unable to serve
-     * [Data API][google.bigtable.v2.Bigtable] requests from this
+     * The table is temporarily unable to serve Data API requests from this
      * cluster due to planned internal maintenance.
      *
      * Generated from protobuf enum <code>PLANNED_MAINTENANCE = 2;</code>
      */
     const PLANNED_MAINTENANCE = 2;
     /**
-     * The table is temporarily unable to serve
-     * [Data API][google.bigtable.v2.Bigtable] requests from this
+     * The table is temporarily unable to serve Data API requests from this
      * cluster due to unplanned or emergency maintenance.
      *
      * Generated from protobuf enum <code>UNPLANNED_MAINTENANCE = 3;</code>
      */
     const UNPLANNED_MAINTENANCE = 3;
     /**
-     * The table can serve
-     * [Data API][google.bigtable.v2.Bigtable] requests from this
-     * cluster. Depending on replication delay, reads may not immediately
-     * reflect the state of the table in other clusters.
+     * The table can serve Data API requests from this cluster. Depending on
+     * replication delay, reads may not immediately reflect the state of the
+     * table in other clusters.
      *
      * Generated from protobuf enum <code>READY = 4;</code>
      */

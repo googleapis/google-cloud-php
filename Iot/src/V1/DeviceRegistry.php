@@ -32,11 +32,12 @@ class DeviceRegistry extends \Google\Protobuf\Internal\Message
      * The configuration for notification of telemetry events received from the
      * device. All telemetry events that were successfully published by the
      * device and acknowledged by Cloud IoT Core are guaranteed to be
-     * delivered to Cloud Pub/Sub. Only the first configuration is used. If you
-     * try to publish a device telemetry event using MQTT without specifying a
-     * Cloud Pub/Sub topic for the device's registry, the connection closes
-     * automatically. If you try to do so using an HTTP connection, an error
-     * is returned.
+     * delivered to Cloud Pub/Sub. If multiple configurations match a message,
+     * only the first matching configuration is used. If you try to publish a
+     * device telemetry event using MQTT without specifying a Cloud Pub/Sub topic
+     * for the device's registry, the connection closes automatically. If you try
+     * to do so using an HTTP connection, an error is returned. Up to 10
+     * configurations may be provided.
      *
      * Generated from protobuf field <code>repeated .google.cloud.iot.v1.EventNotificationConfig event_notification_configs = 10;</code>
      */
@@ -143,11 +144,12 @@ class DeviceRegistry extends \Google\Protobuf\Internal\Message
      * The configuration for notification of telemetry events received from the
      * device. All telemetry events that were successfully published by the
      * device and acknowledged by Cloud IoT Core are guaranteed to be
-     * delivered to Cloud Pub/Sub. Only the first configuration is used. If you
-     * try to publish a device telemetry event using MQTT without specifying a
-     * Cloud Pub/Sub topic for the device's registry, the connection closes
-     * automatically. If you try to do so using an HTTP connection, an error
-     * is returned.
+     * delivered to Cloud Pub/Sub. If multiple configurations match a message,
+     * only the first matching configuration is used. If you try to publish a
+     * device telemetry event using MQTT without specifying a Cloud Pub/Sub topic
+     * for the device's registry, the connection closes automatically. If you try
+     * to do so using an HTTP connection, an error is returned. Up to 10
+     * configurations may be provided.
      *
      * Generated from protobuf field <code>repeated .google.cloud.iot.v1.EventNotificationConfig event_notification_configs = 10;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -161,11 +163,12 @@ class DeviceRegistry extends \Google\Protobuf\Internal\Message
      * The configuration for notification of telemetry events received from the
      * device. All telemetry events that were successfully published by the
      * device and acknowledged by Cloud IoT Core are guaranteed to be
-     * delivered to Cloud Pub/Sub. Only the first configuration is used. If you
-     * try to publish a device telemetry event using MQTT without specifying a
-     * Cloud Pub/Sub topic for the device's registry, the connection closes
-     * automatically. If you try to do so using an HTTP connection, an error
-     * is returned.
+     * delivered to Cloud Pub/Sub. If multiple configurations match a message,
+     * only the first matching configuration is used. If you try to publish a
+     * device telemetry event using MQTT without specifying a Cloud Pub/Sub topic
+     * for the device's registry, the connection closes automatically. If you try
+     * to do so using an HTTP connection, an error is returned. Up to 10
+     * configurations may be provided.
      *
      * Generated from protobuf field <code>repeated .google.cloud.iot.v1.EventNotificationConfig event_notification_configs = 10;</code>
      * @param \Google\Cloud\Iot\V1\EventNotificationConfig[]|\Google\Protobuf\Internal\RepeatedField $var

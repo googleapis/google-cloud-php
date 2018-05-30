@@ -18,18 +18,18 @@ class FileType
      */
     const FILE_TYPE_UNSPECIFIED = 0;
     /**
-     * Includes all file extensions not covered by other types.
+     * Includes all file extensions not covered by text file types.
      *
      * Generated from protobuf enum <code>BINARY_FILE = 1;</code>
      */
     const BINARY_FILE = 1;
     /**
      * Included file extensions:
-     *   c, cc, cpp, cxx, c++, cs, css, dart, eml, go, h, hh, hpp, hxx, h++, hs,
-     *   html, htm, shtml, shtm, xhtml, lhs, ini, java, js, json, ocaml, md, mkd,
-     *   markdown, m, ml, mli, pl, pm, php, phtml, pht, py, pyw, rb, rbw, rs, rc,
-     *   scala, sh, sql, tex, txt, asc, text, brf, vcard, vcs, wml, xml, xsl, xsd,
-     *   yml, yaml.
+     *   asc, brf, c, cc, cpp, csv, cxx, c++, cs, css, dart, eml, go, h, hh, hpp,
+     *   hxx, h++, hs, html, htm, shtml, shtm, xhtml, lhs, ini, java, js, json,
+     *   ocaml, md, mkd, markdown, m, ml, mli, pl, pm, php, phtml, pht, py, pyw,
+     *   rb, rbw, rs, rc, scala, sh, sql, tex, txt, text, tsv, vcard, vcs, wml,
+     *   xml, xsl, xsd, yml, yaml.
      *
      * Generated from protobuf enum <code>TEXT_FILE = 2;</code>
      */
