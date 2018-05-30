@@ -38,9 +38,6 @@ namespace Google\ApiCore;
 class AgentHeaderDescriptor
 {
     const AGENT_HEADER_KEY = 'x-goog-api-client';
-    // TODO(michaelbausor): include bumping this version in a streamlined
-    // release process. Issue: https://github.com/googleapis/gax-php/issues/48
-    const API_CORE_VERSION = '0.33.0';
     const UNKNOWN_VERSION = '';
 
     private $metricsHeaders;
@@ -88,7 +85,7 @@ class AgentHeaderDescriptor
 
         $apiCoreVersion = isset($headerInfo['apiCoreVersion'])
             ? $headerInfo['apiCoreVersion']
-            : self::API_CORE_VERSION;
+            : Version::getApiCoreVersion();
         $metricsHeaders['gax'] = $apiCoreVersion;
 
         $grpcVersion = isset($headerInfo['grpcVersion'])

@@ -65,6 +65,10 @@ class MockBidiStreamingCall extends \Grpc\BidiStreamingCall
         $this->status = $status;
     }
 
+    /**
+     * @return mixed|null
+     * @throws ApiException
+     */
     public function read()
     {
         if (count($this->responses) > 0) {
@@ -82,23 +86,33 @@ class MockBidiStreamingCall extends \Grpc\BidiStreamingCall
         } elseif ($this->writesDone) {
             return null;
         } else {
-            throw new ApiException("No more responses to read, but closeWrite() not called - "
-                . "this would be blocking", Grpc\STATUS_INTERNAL);
+            throw new ApiException(
+                "No more responses to read, but closeWrite() not called - "
+                . "this would be blocking",
+                Grpc\STATUS_INTERNAL,
+                null
+            );
         }
     }
 
+    /**
+     * @return MockStatus|null|\stdClass
+     * @throws ApiException
+     */
     public function getStatus()
     {
         if (count($this->responses) > 0) {
             throw new ApiException(
                 "Calls to getStatus() will block if all responses are not read",
-                Grpc\STATUS_INTERNAL
+                Grpc\STATUS_INTERNAL,
+                null
             );
         }
         if (!$this->writesDone) {
             throw new ApiException(
                 "Calls to getStatus() will block if closeWrite() not called",
-                Grpc\STATUS_INTERNAL
+                Grpc\STATUS_INTERNAL,
+                null
             );
         }
         return $this->status;
@@ -107,12 +121,17 @@ class MockBidiStreamingCall extends \Grpc\BidiStreamingCall
     /**
      * Save the request object, to be retrieved via getReceivedCalls()
      * @param \Google\Protobuf\Internal\Message|mixed $request The request object
+     * @param array $options An array of options.
      * @throws ApiException
      */
     public function write($request, array $options = [])
     {
         if ($this->writesDone) {
-            throw new ApiException("Cannot call write() after writesDone()", Grpc\STATUS_INTERNAL);
+            throw new ApiException(
+                "Cannot call write() after writesDone()",
+                Grpc\STATUS_INTERNAL,
+                null
+            );
         }
         if (is_a($request, '\Google\Protobuf\Internal\Message')) {
             $newRequest = new $request();
