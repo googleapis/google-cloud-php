@@ -20,6 +20,7 @@ namespace Google\Cloud\Dev\DocGenerator\Parser;
 use Google\Cloud\Core\Testing\DocBlockStripSpaces;
 use Google\Cloud\Dev\DocGenerator\ReflectorRegister;
 use Google\Cloud\Dev\GetComponentsTrait;
+use Symfony\Component\Console\Output\OutputInterface;
 use phpDocumentor\Reflection\ClassReflector;
 use phpDocumentor\Reflection\DocBlock\Description;
 use phpDocumentor\Reflection\DocBlock\Tag;
@@ -55,6 +56,8 @@ class CodeParser implements ParserInterface
         $componentId,
         $manifestPath,
         $release,
+        OutputInterface $output,
+        $id,
         $isComponent = true
     ) {
         $this->path = $path;
@@ -65,6 +68,8 @@ class CodeParser implements ParserInterface
         $this->componentId = $componentId;
         $this->manifestPath = $manifestPath;
         $this->release = $release;
+        $this->output = $output;
+        $this->id = $id;
         $this->isComponent = $isComponent;
     }
 
@@ -177,8 +182,6 @@ class CodeParser implements ParserInterface
     {
         $name = $reflector->getShortName();
         $fullName = $reflector->getName();
-        $id = substr($fullName, 14);
-        $id = str_replace('\\', '/', $id);
         // @todo see if there is a better way to determine the type
         $parts = explode('_', get_class($reflector->getNode()));
         $type = end($parts);
@@ -211,7 +214,7 @@ class CodeParser implements ParserInterface
         }
 
         return [
-            'id' => strtolower($id),
+            'id' => $this->id,
             'type' => strtolower($type),
             'title' => $reflector->getNamespace() . '\\' . $name,
             'name' => $name,
@@ -230,7 +233,13 @@ class CodeParser implements ParserInterface
 
     private function buildDescription($docBlock, $content = null, $reflector = null)
     {
-        return $this->markdown->parse($this->buildDescriptionContent($docBlock, $content, $reflector));
+        return $this->markdown->parse(
+            $this->buildDescriptionContent(
+                $docBlock,
+                $content,
+                $reflector
+            )
+        );
     }
 
     private function buildClassDescription($classInfo, $docBlock, $content = null, $reflector = null)
@@ -301,9 +310,9 @@ class CodeParser implements ParserInterface
     private function buildReference($reference, $default = null)
     {
         if ($this->hasInternalType($reference)) {
-            return $this->buildLink($reference);
+            return $this->buildInternalLink($reference);
         } elseif ($this->hasExternalType($reference)) {
-            return $this->buildExternalType($reference);
+            return $this->buildExternalLink($reference);
         } else {
             return isset($default) ? $default : $reference;
         }
@@ -349,7 +358,8 @@ class CodeParser implements ParserInterface
 
             $docBlock = $method->getDocBlock();
             if (is_null($docBlock)) {
-                throw new \Exception(sprintf('%s::%s has no description', $className, $name));
+                $this->output->writeln(sprintf('%s::%s has no description', $className, $name));
+                continue;
             }
 
             $access = $docBlock->getTagsByName('access');
@@ -647,18 +657,12 @@ class CodeParser implements ParserInterface
             $matches = [];
 
             if (preg_match('/\\\\?(.*?)\<(.*?)\>/', $type, $matches)) {
-                $matches[1] = $this->resolveTypeAlias($matches[1], $aliases, $namespace);
-                $matches[2] = $this->resolveTypeAlias($matches[2], $aliases, $namespace);
-
-                $iteratorType = $matches[1];
-                if (strpos($matches[1], '\\') !== FALSE) {
-                    $matches[1] = $this->buildLink($matches[1]);
-                }
-
-                $typeLink = $matches[2];
-                if (strpos($matches[2], '\\') !== FALSE) {
-                    $matches[2] = $this->buildLink($matches[2]);
-                }
+                $matches[1] = $this->buildReference(
+                    $this->resolveTypeAlias($matches[1], $aliases, $namespace)
+                );
+                $matches[2] = $this->buildReference(
+                    $this->resolveTypeAlias($matches[2], $aliases, $namespace)
+                );
 
                 $type = sprintf(htmlentities('%s<%s>'), $matches[1], $matches[2]);
             } else {
@@ -689,15 +693,16 @@ class CodeParser implements ParserInterface
     private function hasInternalType($type)
     {
         $type = trim($type, '\\');
-        if (substr_compare($type, 'Google\\Cloud', 0, 12) === 0) {
-            $matches = [];
-            preg_match(self::CLASS_TYPE_REGEX, $type, $matches);
-            $type = $matches[1];
-            $parts = explode('/', str_replace('\\', '/', substr($type, 13)));
-            array_splice($parts, 1, 0, 'src');
-            $file = $this->projectRoot . '/' . implode('/', $parts) .  '.php';
 
-            return file_exists($file);
+        if (substr_compare($type, 'Google\\Cloud', 0, 12) === 0) {
+            $ref = $this->getReflectionClass($type);
+
+            $vendorPath = "$this->projectRoot/vendor";
+            if (substr($ref->getFileName(), 0, strlen($vendorPath)) === $vendorPath) {
+                return false;
+            }
+
+            return true;
         }
 
         return false;
@@ -713,7 +718,7 @@ class CodeParser implements ParserInterface
         return count($types) !== 0;
     }
 
-    private function buildExternalType($type)
+    private function buildExternalLink($type)
     {
         $type = trim($type, '\\');
         $types = array_values(array_filter($this->externalTypes, function ($external) use ($type) {
@@ -721,8 +726,14 @@ class CodeParser implements ParserInterface
         }));
 
         $external = $types[0];
-
-        $href = sprintf($external['uri'], str_replace($external['name'], '', $type));
+        $href = sprintf(
+            $external['uri'],
+            str_replace(
+                $external['name'],
+                '',
+                str_replace('[]', '', $type)
+            )
+        );
         return sprintf(
             '<a href="%s" target="_blank">%s</a>',
             $href,
@@ -730,52 +741,20 @@ class CodeParser implements ParserInterface
         );
     }
 
-    private function buildLink($content)
+    private function buildInternalLink($content)
     {
         $componentId = null;
-        if ($this->isComponent && substr_compare(trim($content, '\\'), 'Google\Cloud', 0, 12) === 0) {
-            try {
-                $matches = [];
-                preg_match(self::CLASS_TYPE_REGEX, $content, $matches);
-                $ref = new \ReflectionClass($matches[1]);
-            } catch (\ReflectionException $e) {
-                throw new \Exception(sprintf(
-                    'Reflection Exception: %s in %s. Given class was %s',
-                    $e->getMessage(),
-                    realpath($this->path),
-                    $content
-                ));
-            }
+        $ref = $this->getReflectionClass($content);
+        $fileName = $ref->getFileName();
 
-            $recurse = true;
-            $file = $ref->getFileName();
-
-            if (strpos($file, dirname(realpath($this->path))) !== false) {
-                $recurse = false;
-            }
-
-            do {
-                $composer = dirname($file) .'/composer.json';
-                if (file_exists($composer) && $component = $this->isComponent($composer)) {
-                    $componentId = $component['id'];
-                    if ($componentId === $this->componentId) {
-                        $componentId = null;
-                    }
-                    $recurse = false;
-                } elseif (trim($file, '/') === trim($this->projectRoot, '/')) {
-                    $recurse = false;
-                } else {
-                    $file = dirname($file);
-                }
-            } while($recurse);
+        if ($this->isComponent) {
+            $composer = $this->getComponentComposerFile($fileName);
+            $componentId = $composer['extra']['component']['id'];
         }
 
         $content = trim($content, '\\');
-
-        $displayName = $content;
-        $content = substr($content, 13);
         $parts = explode('::', $content);
-        $type = strtolower(str_replace('\\', '/', $parts[0]));
+        $type = $this->fileNameToType($fileName);
 
         if ($componentId) {
             $version = ($this->release)
@@ -785,16 +764,57 @@ class CodeParser implements ParserInterface
             $type = $componentId .'/'. $version .'/'. $type;
         }
 
-        $openTag = '<a data-custom-type="' . $type . '"';
+        $openTag = "<a data-custom-type=\"$type\"";
 
         if (isset($parts[1])) {
             $method = str_replace('()', '', $parts[1]);
-            $openTag .= ' data-method="' . $method . '">';
+            $openTag .= " data-method=\"$method\">";
         } else {
             $openTag .= '>';
         }
 
-        return $openTag . $displayName . '</a>';
+        return "$openTag$content</a>";
+    }
+
+    private function getComponentComposerFile($fileName)
+    {
+        $recurse = true;
+
+        do {
+            $composer = dirname($fileName) .'/composer.json';
+            if (file_exists($composer)) {
+                if (isset(self::$composerFiles[$composer])) {
+                    return self::$composerFiles[$composer];
+                }
+
+                $contents = json_decode(file_get_contents($composer), true);
+
+                if (isset($contents['extra']['component'])) {
+                    self::$composerFiles[$composer] = $contents;
+                    return $contents;
+                }
+
+                $recurse = false;
+            } elseif (trim($fileName, '/') === trim($this->projectRoot, '/')) {
+                $recurse = false;
+            } else {
+                $fileName = dirname($fileName);
+            }
+        } while($recurse);
+
+        throw new \Exception(sprintf(
+            'Unable to find composer file for %s',
+            $fileName
+        ));
+    }
+
+    private function fileNameToType($fileName)
+    {
+        return str_replace('src/', '', substr(
+            strtolower($fileName),
+            strlen($this->projectRoot) + 1,
+            -4
+        ));
     }
 
     private function splitDescription($description)
@@ -810,22 +830,6 @@ class CodeParser implements ParserInterface
             'description' => $parts[0],
             'examples' => $examples
         ];
-    }
-
-    private function isComponent($composerPath)
-    {
-        if (isset(self::$composerFiles[$composerPath])) {
-            $contents = self::$composerFiles[$composerPath];
-        } else {
-            $contents = json_decode(file_get_contents($composerPath), true);
-            self::$composerFiles[$composerPath] = $contents;
-        }
-
-        if (isset($contents['extra']['component'])) {
-            return $contents['extra']['component'];
-        }
-
-        return false;
     }
 
     private function getSource($path)
@@ -845,5 +849,21 @@ class CodeParser implements ParserInterface
         $base = $realSrcIndex - 1;
 
         return implode('/', array_slice($filePieces, $base));
+    }
+
+    private function getReflectionClass($type)
+    {
+        try {
+            $matches = [];
+            preg_match(self::CLASS_TYPE_REGEX, $type, $matches);
+            return new \ReflectionClass($matches[1]);
+        } catch (\ReflectionException $e) {
+            throw new \Exception(sprintf(
+                'Reflection Exception: %s in %s. Given class was %s',
+                $e->getMessage(),
+                realpath($this->path),
+                $type
+            ));
+        }
     }
 }

@@ -19,6 +19,7 @@ namespace Google\Cloud\Dev\DocGenerator;
 
 use Google\Cloud\Dev\DocGenerator\Parser\CodeParser;
 use Google\Cloud\Dev\DocGenerator\Parser\MarkdownParser;
+use Symfony\Component\Console\Output\OutputInterface;
 use phpDocumentor\Reflection\FileReflector;
 
 /**
@@ -33,10 +34,19 @@ class DocGenerator
     private $componentId;
     private $manifestPath;
     private $release;
+    private $output;
     private $isComponent;
 
     /**
+     * @param TypeGenerator $types
      * @param array $files
+     * @param string $outputPath
+     * @param string $executionPath
+     * @param string $componentId
+     * @param string $manifestPath
+     * @param string $release
+     * @param OutputInterface $output
+     * @param bool $isComponent
      */
     public function __construct(
         TypeGenerator $types,
@@ -46,6 +56,7 @@ class DocGenerator
         $componentId,
         $manifestPath,
         $release,
+        OutputInterface $output,
         $isComponent = true
     ) {
         $this->types = $types;
@@ -55,6 +66,7 @@ class DocGenerator
         $this->componentId = $componentId;
         $this->manifestPath = $manifestPath;
         $this->release = $release;
+        $this->output = $output;
         $this->isComponent = $isComponent;
     }
 
@@ -78,6 +90,13 @@ class DocGenerator
             }
 
             $isPhp = strrpos($file, '.php') == strlen($file) - strlen('.php');
+            $pathInfo = pathinfo($currentFile);
+            $servicePath = $pathInfo['dirname'] === '.'
+                ? strtolower($pathInfo['filename'])
+                : strtolower($pathInfo['dirname'] . '/' . $pathInfo['filename']);
+            $id = $this->isComponent
+                ? strtolower($basePath) . '/' . $servicePath
+                : $servicePath;
 
             if ($isPhp) {
                 $parser = new CodeParser(
@@ -87,24 +106,19 @@ class DocGenerator
                     $this->componentId,
                     $this->manifestPath,
                     $this->release,
+                    $this->output,
+                    $id,
                     $this->isComponent
                 );
             } else {
                 $content = file_get_contents($file);
-                $parser = new MarkdownParser($currentFile, $content);
+                $parser = new MarkdownParser($currentFile, $content, $id);
             }
 
             $document = $parser->parse();
             if ($document) {
                 $writer = new Writer($document, $this->outputPath, $pretty);
                 $writer->write($currentFile);
-                $pathInfo = pathinfo($currentFile);
-                $servicePath = $pathInfo['dirname'] === '.'
-                    ? strtolower($pathInfo['filename'])
-                    : strtolower($pathInfo['dirname'] . '/' . $pathInfo['filename']);
-                $id = $this->isComponent
-                    ? strtolower($basePath) . '/' . $servicePath
-                    : $servicePath;
 
                 $this->types->addType([
                     'id' => $id,

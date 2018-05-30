@@ -42,7 +42,6 @@ class Docs extends GoogleCloudCommand
     const DEFAULT_OUTPUT_DIR = 'docs/json';
     const TOC_SOURCE_DIR = 'docs/contents';
     const TOC_TEMPLATE = 'docs/toc.json';
-    const OVERVIEW_FILE = 'docs/overview.html';
     const DEFAULT_SOURCE_DIR = '';
 
     private $testPaths = [
@@ -78,11 +77,11 @@ class Docs extends GoogleCloudCommand
             'manifest' => $this->rootPath .'/docs/manifest.json',
             'toc' => $this->rootPath .'/'. self::TOC_SOURCE_DIR,
             'tocTemplate' => $this->rootPath .'/'. self::TOC_TEMPLATE,
-            'overview' => $this->rootPath .'/'. self::OVERVIEW_FILE
         ];
         $commonExcludes = [
             '.github',
             'tests',
+            'metadata',
             'CONTRIBUTING.md',
             'bootstrap.php'
         ];
@@ -126,11 +125,11 @@ class Docs extends GoogleCloudCommand
                 $projectRealPath,
                 ['php', 'md'],
                 array_merge($commonExcludes, [
-                    '/vendor',
-                    '/dev',
                     '/build',
+                    '/dev',
                     '/docs',
                     '/tests',
+                    '/vendor',
                     '/CODE_OF_CONDUCT.md',
                     '/README.md',
                 ])
@@ -185,6 +184,7 @@ class Docs extends GoogleCloudCommand
             $component['id'],
             $paths['manifest'],
             $release,
+            $output,
             $isComponent
         );
 
@@ -204,9 +204,6 @@ class Docs extends GoogleCloudCommand
             $release
         );
         $toc->generate($pretty);
-
-        $output->writeln(sprintf('Copying overview.html to %s', realpath($outputPath)));
-        copy($paths['overview'], $outputPath .'/overview.html');
 
         $output->writeln(' ');
         $output->writeln(' ');
