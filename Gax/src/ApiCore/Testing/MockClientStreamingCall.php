@@ -74,6 +74,7 @@ class MockClientStreamingCall extends \Grpc\ClientStreamingCall
     /**
      * Save the request object, to be retrieved via getReceivedCalls()
      * @param \Google\Protobuf\Internal\Message|mixed $request The request object
+     * @param array $options An array of options
      * @throws ApiException
      */
     public function write($request, array $options = [])

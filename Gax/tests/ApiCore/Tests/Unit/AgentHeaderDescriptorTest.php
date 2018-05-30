@@ -32,6 +32,7 @@
 namespace Google\ApiCore\Tests\Unit;
 
 use Google\ApiCore\AgentHeaderDescriptor;
+use Google\ApiCore\Version;
 use PHPUnit\Framework\TestCase;
 
 class AgentHeaderDescriptorTest extends TestCase
@@ -41,7 +42,7 @@ class AgentHeaderDescriptorTest extends TestCase
         $expectedHeader = [AgentHeaderDescriptor::AGENT_HEADER_KEY => [
             'gl-php/' . phpversion() .
             ' gapic/' .
-            ' gax/' . AgentHeaderDescriptor::API_CORE_VERSION .
+            ' gax/' . Version::getApiCoreVersion() .
             ' grpc/' . phpversion('grpc')
         ]];
 
@@ -74,7 +75,7 @@ class AgentHeaderDescriptorTest extends TestCase
     {
         $expectedHeader = [AgentHeaderDescriptor::AGENT_HEADER_KEY => [
             'gl-php/' . phpversion() .
-            ' gccl/ gapic/ gax/' . AgentHeaderDescriptor::API_CORE_VERSION .
+            ' gccl/ gapic/ gax/' . Version::getApiCoreVersion() .
             ' grpc/' . phpversion('grpc')
         ]];
 
@@ -90,7 +91,7 @@ class AgentHeaderDescriptorTest extends TestCase
     {
         $expectedHeader = [AgentHeaderDescriptor::AGENT_HEADER_KEY => [
             'gl-php/' . phpversion() .
-            ' gccl/ gapic/ gax/' . AgentHeaderDescriptor::API_CORE_VERSION .
+            ' gccl/ gapic/ gax/' . Version::getApiCoreVersion() .
             ' grpc/' . phpversion('grpc')
         ]];
 
