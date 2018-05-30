@@ -64,13 +64,11 @@ class Status
      *        in English. Any user-facing error message should be localized and
      *        sent in the google.rpc.Status.details field, or localized by the
      *        client.
-     * @param array $options [optional] {
-     *     Configuration options.
-     *
-     *     @type array $details A list of messages that carry the error details. There is a
-     *           common set of message types for APIs to use. An object containing fields
-     *           of an arbitrary type. An additional field "@type" contains a URI
-     *           identifying the type.
+     * @param array $options [optional] Configuration options.
+     * @param array $options['details'] [optional] A list of messages that carry the error details. There is a
+     *        common set of message types for APIs to use. An object containing fields
+     *        of an arbitrary type. An additional field "@type" contains a URI
+     *        identifying the type.
      */
     public function __construct($code, $message, array $options = [])
     {

@@ -199,8 +199,9 @@ class Transaction
      * @param DocumentReference $document The document to create.
      * @param array $fields An array containing fields, where keys are the field
      *        names, and values are field values. Nested arrays are allowed.
-     *        Note that unlike {@see Google\Cloud\Firestore\Document::update()},
-     *        field paths are NOT supported by this method.
+     *        Note that unlike
+     *        {@see Google\Cloud\Firestore\DocumentReference::update()}, field
+     *        paths are NOT supported by this method.
      * @return Transaction
      */
     public function create(DocumentReference $document, array $fields)

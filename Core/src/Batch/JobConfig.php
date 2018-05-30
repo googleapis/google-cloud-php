@@ -97,7 +97,8 @@ class JobConfig
     /**
      * Get all the jobs indexed by the job's identifier.
      *
-     * @return array[string]JobInterface
+     * @return array Associative array of JobInterface instances keyed by a
+     *         string identifier.
      */
     public function getJobs()
     {

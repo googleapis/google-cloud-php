@@ -18,6 +18,7 @@
 namespace Google\Cloud\PubSub;
 
 use Google\Cloud\Core\ArrayTrait;
+use Google\Cloud\Core\Batch\BatchRunner;
 use Google\Cloud\Core\Batch\ClosureSerializerInterface;
 use Google\Cloud\Core\Exception\NotFoundException;
 use Google\Cloud\Core\Iam\Iam;

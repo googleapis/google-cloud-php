@@ -17,6 +17,8 @@
 
 namespace Google\Cloud\BigQuery;
 
+use Psr\Http\Message\StreamInterface;
+
 /**
  * Represents a configuration for a load job. For more information on the
  * available settings please see the
