@@ -1,5 +1,6 @@
 {
     "title": "OsLogin",
+    "defaultService": "oslogin\/readme",
     "services": [
         {
             "title": "Overview",

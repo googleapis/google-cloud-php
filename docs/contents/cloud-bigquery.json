@@ -1,7 +1,11 @@
 {
     "title": "BigQuery",
     "pattern": "bigquery\/\\w{1,}",
+    "defaultService": "bigquery/readme",
     "services": [{
+        "title": "Overview",
+        "type": "bigquery/readme"
+    }, {
         "title": "BigQueryClient",
         "type": "bigquery/bigqueryclient"
     }, {

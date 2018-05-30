@@ -1,7 +1,11 @@
 {
     "title": "Firestore",
     "pattern": "firestore\/\\w{1,}",
+    "defaultService": "firestore/readme",
     "services": [{
+        "title": "Overview",
+        "type": "firestore/readme"
+    },{
         "title": "FirestoreClient",
         "type": "firestore/firestoreclient"
     }, {

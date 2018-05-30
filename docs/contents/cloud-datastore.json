@@ -1,7 +1,11 @@
 {
     "title": "Datastore",
     "pattern": "datastore\/\\w{1,}",
+    "defaultService": "datastore/readme",
     "services": [{
+        "title": "Overview",
+        "type": "datastore/readme"
+    }, {
         "title": "DatastoreClient",
         "type": "datastore/datastoreclient"
     }, {
