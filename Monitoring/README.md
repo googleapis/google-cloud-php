@@ -2,19 +2,100 @@
 
 [![Latest Stable Version](https://poser.pugx.org/google/cloud-monitoring/v/stable)](https://packagist.org/packages/google/cloud-monitoring) [![Packagist](https://img.shields.io/packagist/dm/google/cloud-monitoring.svg)](https://packagist.org/packages/google/cloud-monitoring)
 
+* [API documentation](http://googlecloudplatform.github.io/google-cloud-php/#/docs/cloud-monitoring/latest)
+
+**NOTE:** This repository is part of [Google Cloud PHP](https://github.com/googlecloudplatform/google-cloud-php). Any
+support requests, bug reports, or development contributions should be directed to
+that project.
+
 Stackdriver Monitoring provides visibility into the performance, uptime, and overall health of cloud-powered applications.
 
-For more information, see [cloud.google.com](https://cloud.google.com/monitoring/).
+### Installation
 
-* [Homepage](http://googlecloudplatform.github.io/google-cloud-php)
-* [API documentation](http://googlecloudplatform.github.io/google-cloud-php/#/docs/cloud-monitoring/latest/monitoring/readme)
+To begin, install the preferred dependency manager for PHP, [Composer](https://getcomposer.org/).
 
-If it is not already installed, you will also require the gRPC extension. For installation instructions, [see here](https://cloud.google.com/php/grpc).
+Now to install just this component:
 
-NOTE: In addition to the gRPC extension, we recommend installing the protobuf extension for improved performance. For installation instructions, [see here](https://cloud.google.com/php/grpc#install_the_protobuf_runtime_library).
-
-## Installation
-
-```
+```sh
 $ composer require google/cloud-monitoring
 ```
+
+Or to install the entire suite of components at once:
+
+```sh
+$ composer require google/cloud
+```
+
+This component supports both REST over HTTP/1.1 and gRPC. In order to take advantage of the benefits offered by gRPC (such as streaming methods)
+please see our [gRPC installation guide](https://cloud.google.com/php/grpc).
+
+### Authentication
+
+Please see our [Authentication guide](https://github.com/GoogleCloudPlatform/google-cloud-php/blob/master/AUTHENTICATION.md) for more information
+on authenticating your client. Once authenticated, you'll be ready to start making requests.
+
+### Sample
+
+```php
+use Google\Api\Metric;
+use Google\Api\MonitoredResource;
+use Google\Cloud\Monitoring\V3\MetricServiceClient;
+use Google\Cloud\Monitoring\V3\Point;
+use Google\Cloud\Monitoring\V3\TimeInterval;
+use Google\Cloud\Monitoring\V3\TimeSeries;
+use Google\Cloud\Monitoring\V3\TypedValue;
+use Google\Protobuf\Timestamp;
+
+$metricServiceClient = new MetricServiceClient();
+$formattedProjectName = $metricServiceClient->projectName($projectId);
+$labels = [
+    'instance_id' => $instanceId,
+    'zone' => $zone,
+];
+
+$m = new Metric();
+$m->setType('custom.googleapis.com/my_metric');
+
+$r = new MonitoredResource();
+$r->setType('gce_instance');
+$r->setLabels($labels);
+
+$value = new TypedValue();
+$value->setDoubleValue(3.14);
+
+$timestamp = new Timestamp();
+$timestamp->setSeconds(time());
+
+$interval = new TimeInterval();
+$interval->setStartTime($timestamp);
+$interval->setEndTime($timestamp);
+
+$point = new Point();
+$point->setValue($value);
+$point->setInterval($interval);
+$points = [$point];
+
+$timeSeries = new TimeSeries();
+$timeSeries->setMetric($m);
+$timeSeries->setResource($r);
+$timeSeries->setPoints($points);
+
+try {
+    $metricServiceClient->createTimeSeries($formattedProjectName, [$timeSeries]);
+    print('Successfully submitted a time series' . PHP_EOL);
+} finally {
+    $metricServiceClient->close();
+}
+```
+
+### Version
+
+This component is considered beta. As such, it should be expected to be mostly
+stable and we're working towards a release candidate. We will address issues
+and requests with a higher priority.
+
+### Next Steps
+
+1. Understand the [official documentation](https://cloud.google.com/monitoring/docs/).
+2. Take a look at [in-depth usage samples](https://github.com/GoogleCloudPlatform/php-docs-samples/tree/master/monitoring/).
+

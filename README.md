@@ -117,9 +117,7 @@ require 'vendor/autoload.php';
 
 use Google\Cloud\Spanner\SpannerClient;
 
-$spanner = new SpannerClient([
-    'projectId' => 'my_project'
-]);
+$spanner = new SpannerClient();
 
 $db = $spanner->connect('my-instance', 'my-database');
 
@@ -154,23 +152,23 @@ require 'vendor/autoload.php';
 
 use Google\Cloud\BigQuery\BigQueryClient;
 
-$bigQuery = new BigQueryClient([
-    'projectId' => 'my_project'
-]);
+$bigQuery = new BigQueryClient();
 
 // Get an instance of a previously created table.
 $dataset = $bigQuery->dataset('my_dataset');
 $table = $dataset->table('my_table');
 
 // Begin a job to import data from a CSV file into the table.
-$job = $table->load(
+$loadJobConfig = $table->load(
     fopen('/data/my_data.csv', 'r')
 );
+$job = $table->runJob($loadJobConfig);
 
 // Run a query and inspect the results.
-$queryResults = $bigQuery->runQuery('SELECT * FROM [my_project:my_dataset.my_table]');
+$queryJobConfig = 'SELECT * FROM [my_project:my_dataset.my_table]';
+$queryResults = $bigQuery->runQuery($queryConfig);
 
-foreach ($queryResults->rows() as $row) {
+foreach ($queryResults as $row) {
     print_r($row);
 }
 ```
@@ -195,9 +193,7 @@ require 'vendor/autoload.php';
 
 use Google\Cloud\Datastore\DatastoreClient;
 
-$datastore = new DatastoreClient([
-    'projectId' => 'my_project'
-]);
+$datastore = new DatastoreClient();
 
 // Create an entity
 $bob = $datastore->entity('Person');
@@ -234,9 +230,7 @@ require 'vendor/autoload.php';
 
 use Google\Cloud\PubSub\PubSubClient;
 
-$pubSub = new PubSubClient([
-    'projectId' => 'my_project'
-]);
+$pubSub = new PubSubClient();
 
 // Get an instance of a previously created topic.
 $topic = $pubSub->topic('my_topic');
@@ -281,9 +275,7 @@ require 'vendor/autoload.php';
 
 use Google\Cloud\Storage\StorageClient;
 
-$storage = new StorageClient([
-    'projectId' => 'my_project'
-]);
+$storage = new StorageClient();
 
 $bucket = $storage->bucket('my_bucket');
 
@@ -313,9 +305,7 @@ require 'vendor/autoload.php';
 
 use Google\Cloud\Storage\StorageClient;
 
-$storage = new StorageClient([
-    'projectId' => 'my_project'
-]);
+$storage = new StorageClient();
 $storage->registerStreamWrapper();
 
 $contents = file_get_contents('gs://my_bucket/file_backup.txt');
@@ -395,9 +385,7 @@ require 'vendor/autoload.php';
 
 use Google\Cloud\Logging\LoggingClient;
 
-$logging = new LoggingClient([
-    'projectId' => 'my_project'
-]);
+$logging = new LoggingClient();
 
 // Get a logger instance.
 $logger = $logging->logger('my_log');
@@ -435,9 +423,7 @@ require 'vendor/autoload.php';
 
 use Google\Cloud\Firestore\FirestoreClient;
 
-$firestore = new FirestoreClient([
-    'projectId' => 'my_project'
-]);
+$firestore = new FirestoreClient();
 
 $collectionReference = $firestore->collection('Users');
 $documentReference = $collectionReference->document($userId);
@@ -460,7 +446,6 @@ $ composer require google/cloud-firestore
 - [Official Documentation](https://cloud.google.com/kubernetes-engine/docs)
 
 ```php
-<?php
 require 'vendor/autoload.php';
 
 use Google\Cloud\Container\V1\ClusterManagerClient;
@@ -494,7 +479,6 @@ $ composer require google/cloud-container
 - [Official Documentation](https://cloud.google.com/dataproc/docs)
 
 ```php
-<?php
 require 'vendor/autoload.php';
 
 use Google\Cloud\Dataproc\V1\JobControllerClient;
@@ -540,9 +524,7 @@ require 'vendor/autoload.php';
 
 use Google\Cloud\Language\LanguageClient;
 
-$language = new LanguageClient([
-    'projectId' => 'my_project'
-]);
+$language = new LanguageClient();
 
 // Analyze a sentence.
 $annotation = $language->annotateText('Greetings from Michigan!');
@@ -581,7 +563,6 @@ $ composer require google/cloud-language
 - [Official Documentation](https://cloud.google.com/compute/docs/oslogin/rest/)
 
 ```php
-<?php
 require 'vendor/autoload.php';
 
 use Google\Cloud\OsLogin\V1beta\OsLoginServiceClient;
@@ -654,9 +635,7 @@ require 'vendor/autoload.php';
 
 use Google\Cloud\Vision\VisionClient;
 
-$vision = new VisionClient([
-    'projectId' => 'my_project'
-]);
+$vision = new VisionClient();
 
 // Annotate an image, detecting faces.
 $image = $vision->image(
@@ -740,7 +719,7 @@ $ composer require google/cloud-dlp
 require 'vendor/autoload.php';
 
 use Google\Cloud\ErrorReporting\V1beta1\ReportErrorsServiceClient;
-use Google\Cloud\ErrorReporting\\V1beta1\ReportedErrorEvent;
+use Google\Cloud\ErrorReporting\V1beta1\ReportedErrorEvent;
 
 $reportErrorsServiceClient = new ReportErrorsServiceClient();
 $formattedProjectName = $reportErrorsServiceClient->projectName('[PROJECT]');
@@ -758,7 +737,7 @@ try {
 [Google Stackdriver Error Reporting](https://github.com/GoogleCloudPlatform/google-cloud-php-errorreporting) can be installed separately by requiring the [`google/cloud-errorreporting`](https://packagist.org/packages/google/cloud-error-reporting) composer package:
 
 ```
-$ composer require google/cloud-error-reporting
+$ composer require google/cloud-errorreporting
 ```
 
 ## Google Stackdriver Monitoring (Beta)
@@ -770,8 +749,6 @@ $ composer require google/cloud-error-reporting
 
 ```php
 require 'vendor/autoload.php';
-
-<?php
 
 use Google\Api\Metric;
 use Google\Api\MonitoredResource;
@@ -1012,7 +989,6 @@ require 'vendor/autoload.php';
 use Google\Cloud\Speech\SpeechClient;
 
 $speech = new SpeechClient([
-    'projectId' => 'my_project',
     'languageCode' => 'en-US'
 ]);
 
@@ -1069,9 +1045,7 @@ require 'vendor/autoload.php';
 
 use Google\Cloud\Trace\TraceClient;
 
-$traceClient = new TraceClient([
-    'projectId' => 'my_project'
-]);
+$traceClient = new TraceClient();
 
 // Create a Trace
 $trace = $traceClient->trace();

@@ -1,18 +1,29 @@
-# Google Cloud Dataproc for PHP
+# Google Cloud Dataproc V1 generated client for PHP
 
-> Idiomatic PHP client for [Google Cloud Dataproc](https://cloud.google.com/dataproc).
+### Sample
 
-* [Homepage](http://googlecloudplatform.github.io/google-cloud-php)
-* [API documentation](http://googlecloudplatform.github.io/google-cloud-php/#/docs/cloud-dataproc/latest/dataproc/readme)
+```php
+require 'vendor/autoload.php';
 
-**NOTE:** This repository a Read-Only subtree split of
-[Google Cloud PHP](https://github.com/googlecloudplatform/google-cloud-php). Any
-support requests, bug reports, or development contributions should be directed to
-that project. Additional tests and build information can also be found at the
-parent project.
+use Google\Cloud\Dataproc\V1\JobControllerClient;
+use Google\Cloud\Dataproc\V1\Job;
+use Google\Cloud\Dataproc\V1\HadoopJob;
+use Google\Cloud\Dataproc\V1\JobPlacement;
 
-## Installation
+$projectId = '[MY_PROJECT_ID]';
+$region = 'global';
+$clusterName = '[MY_CLUSTER]';
 
-```
-$ composer require google/cloud-dataproc
+$jobPlacement = new JobPlacement();
+$jobPlacement->setClusterName($clusterName);
+
+$hadoopJob = new HadoopJob();
+$hadoopJob->setMainJarFileUri('gs://my-bucket/my-hadoop-job.jar');
+
+$job = new Job();
+$job->setPlacement($jobPlacement);
+$job->setHadoopJob($hadoopJob);
+
+$jobControllerClient = new JobControllerClient();
+$submittedJob = $jobControllerClient->submitJob($projectId, $region, $job);
 ```

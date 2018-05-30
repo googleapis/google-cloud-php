@@ -1,16 +1,21 @@
-# Google Cloud PHP Bigtable
+# Google Cloud Bigtable V2 generated client for PHP
 
-> Idiomatic PHP client for [Bigtable](https://cloud.google.com/bigtable/).
+### Sample
 
-* [Homepage](http://googlecloudplatform.github.io/google-cloud-php)
-* [API documentation](http://googlecloudplatform.github.io/google-cloud-php/#/docs/cloud-bigtable/latest/bigtable/bigtableclient)
+```php
+require 'vendor/autoload.php';
 
-**NOTE:** This repository is part of [Google Cloud PHP](https://github.com/googlecloudplatform/google-cloud-php). Any
-support requests, bug reports, or development contributions should be directed to
-that project.
+use Google\Cloud\Bigtable\V2\BigtableClient;
 
-## Installation
+$bigtableClient = new BigtableClient();
+$formattedTableName = $bigtableClient->tableName('[PROJECT]', '[INSTANCE]', '[TABLE]');
 
-```
-$ composer require google/cloud-bigtable
+try {
+    $stream = $bigtableClient->readRows($formattedTableName);
+    foreach ($stream->readAll() as $element) {
+        // doSomethingWith($element);
+    }
+} finally {
+    $bigtableClient->close();
+}
 ```

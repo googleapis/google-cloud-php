@@ -1,21 +1,60 @@
 # Google Cloud BigQuery Data Transfer for PHP
 
-[![Latest Stable Version](https://poser.pugx.org/google/cloud-bigquerydatatransfer/v/stable)](https://packagist.org/packages/google/cloud-bigquerydatatransfer) [![Packagist](https://img.shields.io/packagist/dm/google/cloud-bigquerydatatransfer.svg)](https://packagist.org/packages/google/cloud-bigquerydatatransfer)
-
 > Idiomatic PHP client for [Google Cloud BigQuery Data Transfer](https://cloud.google.com/bigquery/transfer/).
 
-**NOTE:** This repository a Read-Only subtree split of
-[Google Cloud PHP](https://github.com/googlecloudplatform/google-cloud-php). Any
+[![Latest Stable Version](https://poser.pugx.org/google/cloud-bigquerydatatransfer/v/stable)](https://packagist.org/packages/google/cloud-bigquerydatatransfer) [![Packagist](https://img.shields.io/packagist/dm/google/cloud-bigquerydatatransfer.svg)](https://packagist.org/packages/google/cloud-bigquerydatatransfer)
+
+* [API Documentation](https://googlecloudplatform.github.io/google-cloud-php/#/docs/cloud-bigquerydatatransfer/latest)
+
+**NOTE:** This repository is part of [Google Cloud PHP](https://github.com/googlecloudplatform/google-cloud-php). Any
 support requests, bug reports, or development contributions should be directed to
-that project. Additional tests and build information can also be found at the
-parent project.
+that project.
 
-If it is not already installed, you will also require the gRPC extension. For installation instructions, [see here](https://cloud.google.com/php/grpc).
+Transfers data from partner SaaS applications to Google BigQuery on a scheduled, managed basis.
 
-NOTE: In addition to the gRPC extension, we recommend installing the protobuf extension for improved performance. For installation instructions, [see here](https://cloud.google.com/php/grpc#install_the_protobuf_runtime_library).
+### Installation
 
-## Installation
+To begin, install the preferred dependency manager for PHP, [Composer](https://getcomposer.org/).
 
-```
+Now to install just this component:
+
+```sh
 $ composer require google/cloud-bigquerydatatransfer
 ```
+
+Or to install the entire suite of components at once:
+
+```sh
+$ composer require google/cloud
+```
+
+This component supports both REST over HTTP/1.1 and gRPC. In order to take advantage of the benefits offered by gRPC (such as streaming methods)
+please see our [gRPC installation guide](https://cloud.google.com/php/grpc).
+
+### Authentication
+
+Please see our [Authentication guide](https://github.com/GoogleCloudPlatform/google-cloud-php/blob/master/AUTHENTICATION.md) for more information
+on authenticating your client. Once authenticated, you'll be ready to start making requests.
+
+### Sample
+
+```php
+require 'vendor/autoload.php';
+
+use Google\Cloud\BigQuery\DataTransfer\V1\DataTransferServiceClient;
+
+$dataTransferServiceClient = new DataTransferServiceClient();
+$projectId = '[MY_PROJECT_ID]';
+$location = 'us-central1';
+$formattedLocation = $dataTransferServiceClient->locationName($projectId, $location);
+$dataSources = $dataTransferServiceClient->listDataSources($formattedLocation);
+```
+
+### Version
+
+This component is considered alpha. As such, it is still a work-in-progress and is more likely to get backwards-incompatible updates.
+
+### Next Steps
+
+1. Understand the [official documentation](https://cloud.google.com/bigquery/docs/transfer-service-overview).
+2. Take a look at [in-depth usage samples](https://github.com/GoogleCloudPlatform/php-docs-samples/tree/master/bigquerydatatransfer).
