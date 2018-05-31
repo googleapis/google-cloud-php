@@ -8,7 +8,7 @@
 support requests, bug reports, or development contributions should be directed to
 that project.
 
-## Installation
+### Installation
 
 **NOTE** This package is not intended for direct use. It provides common infrastructure
 to the rest of the Google Cloud PHP components.
