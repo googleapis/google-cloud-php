@@ -22,6 +22,7 @@ use Google\Cloud\Core\ClientTrait;
 use Google\Cloud\Core\Iterator\ItemIterator;
 use Google\Cloud\Core\Iterator\PageIterator;
 use Google\Cloud\Trace\Connection\ConnectionInterface;
+use Google\Cloud\Trace\Connection\Grpc;
 use Google\Cloud\Trace\Connection\Rest;
 use Google\Cloud\Trace\Reporter\AsyncReporter;
 use Google\Cloud\Trace\Reporter\ReporterInterface;
@@ -90,12 +91,15 @@ class TraceClient
     public function __construct(array $config = [])
     {
         $this->clientConfig = $config;
+        $connectionType = $this->getConnectionType($config);
         $config += [
             'scopes' => [self::FULL_CONTROL_SCOPE],
             'projectIdRequired' => true
         ];
 
-        $this->connection = new Rest($this->configureAuthentication($config));
+        $this->connection = $connectionType === 'grpc'
+            ? new Grpc($this->configureAuthentication($config))
+            : new Rest($this->configureAuthentication($config));
     }
 
     /**
@@ -139,10 +143,16 @@ class TraceClient
      */
     public function insertBatch(array $traces, array $options = [])
     {
+        $spans = [];
+        foreach ($traces as $trace) {
+            foreach ($trace->spans() as $span) {
+                $spans[] = $this->transformSpan($span);
+            }
+        }
         // throws ServiceException on failure
         $this->connection->traceBatchWrite([
             'projectsId' => $this->projectId,
-            'spans' => array_map([$this, 'transformSpan'], $traces)
+            'spans' => $spans
         ] + $options);
         return true;
     }
@@ -172,17 +182,15 @@ class TraceClient
         return new Trace($this->projectId, $traceId);
     }
 
-    private function transformSpan($trace)
+    private function transformSpan(Span $span)
     {
-        return array_map(function ($span) {
-            $data = $span->jsonSerialize();
-            $data['name'] = sprintf(
-                'projects/%s/traces/%s/spans/%s',
-                $this->projectId,
-                $span->traceId(),
-                $span->spanId()
-            );
-            return $data;
-        }, $trace->spans());
+        $data = $span->info();
+        $data['name'] = sprintf(
+            'projects/%s/traces/%s/spans/%s',
+            $this->projectId,
+            $span->traceId(),
+            $span->spanId()
+        );
+        return $data;
     }
 }

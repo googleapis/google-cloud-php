@@ -31,7 +31,7 @@ namespace Google\Cloud\Trace;
  *
  * @see https://cloud.google.com/trace/docs/reference/v2/rest/v2/Status Status model documentation
  */
-class Status implements \JsonSerializable
+class Status
 {
     /**
      * @var int The status code, which should be an enum value of google.rpc.Code.
@@ -88,7 +88,7 @@ class Status implements \JsonSerializable
      * @access private
      * @return array
      */
-    public function jsonSerialize()
+    public function info()
     {
         $data = [
             'code' => $this->code,

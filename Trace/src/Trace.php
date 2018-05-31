@@ -34,7 +34,7 @@ use Ramsey\Uuid\Uuid;
  * $trace = $traceClient->trace();
  * ```
  */
-class Trace implements \JsonSerializable
+class Trace
 {
     use ValidateTrait;
 
@@ -99,7 +99,7 @@ class Trace implements \JsonSerializable
      * @access private
      * @return array
      */
-    public function jsonSerialize()
+    public function info()
     {
         return [
             'projectId' => $this->projectId,
