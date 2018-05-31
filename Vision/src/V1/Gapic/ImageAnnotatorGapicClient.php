@@ -34,12 +34,19 @@ use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\FetchAuthTokenInterface;
 use Google\ApiCore\GapicClientTrait;
+use Google\ApiCore\LongRunning\OperationsClient;
+use Google\ApiCore\OperationResponse;
 use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
 use Google\Cloud\Vision\V1\AnnotateImageRequest;
+use Google\Cloud\Vision\V1\AsyncAnnotateFileRequest;
+use Google\Cloud\Vision\V1\AsyncBatchAnnotateFilesRequest;
+use Google\Cloud\Vision\V1\AsyncBatchAnnotateFilesResponse;
 use Google\Cloud\Vision\V1\BatchAnnotateImagesRequest;
 use Google\Cloud\Vision\V1\BatchAnnotateImagesResponse;
+use Google\Cloud\Vision\V1\OperationMetadata;
+use Google\LongRunning\Operation;
 
 /**
  * Service Description: Service that performs Google Cloud Vision API detection tasks over client
@@ -97,6 +104,8 @@ class ImageAnnotatorGapicClient
         'https://www.googleapis.com/auth/cloud-vision',
     ];
 
+    private $operationsClient;
+
     private static function getClientDefaults()
     {
         return [
@@ -113,6 +122,41 @@ class ImageAnnotatorGapicClient
                 ],
             ],
         ];
+    }
+
+    /**
+     * Return an OperationsClient object with the same endpoint as $this.
+     *
+     * @return OperationsClient
+     * @experimental
+     */
+    public function getOperationsClient()
+    {
+        return $this->operationsClient;
+    }
+
+    /**
+     * Resume an existing long running operation that was previously started
+     * by a long running API method. If $methodName is not provided, or does
+     * not match a long running API method, then the operation can still be
+     * resumed, but the OperationResponse object will not deserialize the
+     * final response.
+     *
+     * @param string $operationName The name of the long running operation
+     * @param string $methodName    The name of the method used to start the operation
+     *
+     * @return OperationResponse
+     * @experimental
+     */
+    public function resumeOperation($operationName, $methodName = null)
+    {
+        $options = isset($this->descriptors[$methodName]['longRunning'])
+            ? $this->descriptors[$methodName]['longRunning']
+            : [];
+        $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
+        $operation->reload();
+
+        return $operation;
     }
 
     /**
@@ -171,6 +215,7 @@ class ImageAnnotatorGapicClient
     {
         $clientOptions = $this->buildClientOptions($options);
         $this->setClientOptions($clientOptions);
+        $this->operationsClient = $this->createOperationsClient($clientOptions);
     }
 
     /**
@@ -213,6 +258,79 @@ class ImageAnnotatorGapicClient
             BatchAnnotateImagesResponse::class,
             $optionalArgs,
             $request
+        )->wait();
+    }
+
+    /**
+     * Run asynchronous image detection and annotation for a list of generic
+     * files, such as PDF files, which may contain multiple pages and multiple
+     * images per page. Progress and results can be retrieved through the
+     * `google.longrunning.Operations` interface.
+     * `Operation.metadata` contains `OperationMetadata` (metadata).
+     * `Operation.response` contains `AsyncBatchAnnotateFilesResponse` (results).
+     *
+     * Sample code:
+     * ```
+     * $imageAnnotatorClient = new ImageAnnotatorClient();
+     * try {
+     *     $requests = [];
+     *     $operationResponse = $imageAnnotatorClient->asyncBatchAnnotateFiles($requests);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *       $result = $operationResponse->getResult();
+     *       // doSomethingWith($result)
+     *     } else {
+     *       $error = $operationResponse->getError();
+     *       // handleError($error)
+     *     }
+     *
+     *     // OR start the operation, keep the operation name, and resume later
+     *     $operationResponse = $imageAnnotatorClient->asyncBatchAnnotateFiles($requests);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $imageAnnotatorClient->resumeOperation($operationName, 'asyncBatchAnnotateFiles');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *       $result = $newOperationResponse->getResult();
+     *       // doSomethingWith($result)
+     *     } else {
+     *       $error = $newOperationResponse->getError();
+     *       // handleError($error)
+     *     }
+     * } finally {
+     *     $imageAnnotatorClient->close();
+     * }
+     * ```
+     *
+     * @param AsyncAnnotateFileRequest[] $requests     Individual async file annotation requests for this batch.
+     * @param array                      $optionalArgs {
+     *                                                 Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\OperationResponse
+     *
+     * @throws ApiException if the remote call fails
+     * @experimental
+     */
+    public function asyncBatchAnnotateFiles($requests, $optionalArgs = [])
+    {
+        $request = new AsyncBatchAnnotateFilesRequest();
+        $request->setRequests($requests);
+
+        return $this->startOperationsCall(
+            'AsyncBatchAnnotateFiles',
+            $optionalArgs,
+            $request,
+            $this->getOperationsClient()
         )->wait();
     }
 }
