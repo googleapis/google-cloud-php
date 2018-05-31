@@ -416,9 +416,9 @@ class CodeParser implements ParserInterface
             'description' => $description,
             'examples' => $this->buildExamples($split['examples']),
             'resources' => $this->buildResources($resources),
-            'params' => $this->buildParams($params),
+            'params' => $this->buildParams($params, $description),
             'exceptions' => $this->buildExceptions($exceptions),
-            'returns' => $this->buildReturns($returns)
+            'returns' => $this->buildReturns($returns, $className)
         ];
     }
 
@@ -519,7 +519,7 @@ class CodeParser implements ParserInterface
         return $resourcesArray;
     }
 
-    private function buildParams($params)
+    private function buildParams($params, $methodDescription = null)
     {
         if (count($params) === 0) {
             return $params;
@@ -532,6 +532,15 @@ class CodeParser implements ParserInterface
 
             $descriptionString = $this->buildDescription($param->getDocBlock(), $description, $param);
             $nestedParamsArray = [];
+
+            // To handle generated protobuf files
+            if ($descriptionString === '' && $methodDescription) {
+                $pos = strpos($methodDescription, '<p>Generated from protobuf field');
+                if ($pos) {
+                    $descriptionString = substr($methodDescription, 0, $pos);
+                    var_dump($descriptionString);
+                }
+            }
 
             if (strpos($param->getType(), 'array') === 0 && $this->hasNestedParams($description)) {
                 $nestedParamString = trim(str_replace('[optional]', '', $description));
@@ -625,7 +634,7 @@ class CodeParser implements ParserInterface
         return $exceptionsArray;
     }
 
-    private function buildReturns($returns)
+    private function buildReturns($returns, $className = null)
     {
         if (count($returns) === 0) {
             return $returns;
@@ -635,13 +644,12 @@ class CodeParser implements ParserInterface
 
         foreach ($returns as $return) {
             $context = $return->getDocBlock()->getContext();
-            $aliases = $context ? $context->getNamespaceAliases() : [];
 
             $returnsArray[] = [
                 'types' => $this->handleTypes(
                     $return->getTypes(),
-                    $aliases,
-                    $context ? $context->getNamespace() : null
+                    $context,
+                    $className
                 ),
                 'description' => $this->buildDescription(null, $return->getDescription(), $return)
             ];
@@ -650,13 +658,19 @@ class CodeParser implements ParserInterface
         return $returnsArray;
     }
 
-    private function handleTypes($types, array $aliases = [], $namespace = null)
+    private function handleTypes($types, $context = null, $className = null)
     {
         $res = [];
         foreach ($types as $type) {
             $matches = [];
 
             if (preg_match('/\\\\?(.*?)\<(.*?)\>/', $type, $matches)) {
+                $aliases = $context
+                    ? $context->getNamespaceAliases()
+                    : [];
+                $namespace = $context
+                    ? $context->getNamespace()
+                    : null;
                 $matches[1] = $this->buildReference(
                     $this->resolveTypeAlias($matches[1], $aliases, $namespace)
                 );
@@ -665,6 +679,8 @@ class CodeParser implements ParserInterface
                 );
 
                 $type = sprintf(htmlentities('%s<%s>'), $matches[1], $matches[2]);
+            } elseif ($type === '$this') {
+                $type = $this->buildReference($className);
             } else {
                 $type = $this->buildReference($type);
             }
