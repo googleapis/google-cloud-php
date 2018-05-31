@@ -187,7 +187,7 @@ class VariableTableTest extends TestCase
         $variableTable = new VariableTable();
         $var = str_repeat("1234567890", 100);
         $variable = $variableTable->register('foo', $var);
-        $data = json_decode(json_encode($variable), true);
+        $data = $variable->info();
         $this->assertStringEndsWith('...', $data['value']);
     }
 
@@ -198,7 +198,7 @@ class VariableTableTest extends TestCase
         ]);
         $var = str_repeat("1234567890", 10);
         $variable = $variableTable->register('foo', $var);
-        $data = json_decode(json_encode($variable), true);
+        $data = $variable->info();
         $this->assertEquals('123456789012...', $data['value']);
     }
 
@@ -221,10 +221,10 @@ class VariableTableTest extends TestCase
             ]
         ];
         $variable = $variableTable->register('deeplyNested', $var);
-        $data = json_decode(json_encode($variable), true);
-
+        $data = $variable->info();
         $depth = 5;
         while ($depth > 0) {
+            $this->assertArrayHasKey('members', $data);
             $this->assertCount(1, $data['members']);
             $data = $data['members'][0];
             $depth--;
@@ -254,7 +254,7 @@ class VariableTableTest extends TestCase
             ]
         ];
         $variable = $variableTable->register('deeplyNested', $var);
-        $data = json_decode(json_encode($variable), true);
+        $data = $variable->info();
 
         $depth = 3;
         while ($depth > 0) {
@@ -266,13 +266,23 @@ class VariableTableTest extends TestCase
         $this->assertArrayNotHasKey('members', $data);
     }
 
+    /**
+     * @group focus
+     */
     public function testLimitsTotalSize()
     {
         $variableTable = new VariableTable();
         for ($i = 0; $i < 1000; $i++) {
-            $v = $variableTable->register('var' . $i, array_fill(0, $i, $i));
+            $v = $variableTable->register('var' . $i, array_fill(0, $i, $i), $i);
         }
-        var_dump($variableTable->variables());
-        $this->assertTrue(count($variableTable->variables() < 1000));
+        $variables = $variableTable->variables();
+        $this->assertNotEmpty($variables);
+        $this->assertTrue(count($variableTable->variables()) < 1000);
+
+        $bufferFullReference = $variableTable->bufferFullVariable();
+        $index = $bufferFullReference->info()['varTableIndex'];
+
+        $bufferFullVariable = $variables[$index];
+        $this->assertEquals(VariableTable::BUFFER_FULL_MESSAGE, $bufferFullVariable->info()['status']['description']['format']);
     }
 }

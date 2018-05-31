@@ -142,7 +142,7 @@ class Variable
     }
 
     /**
-     * Return the approximate size of this object in bytes.
+     * Return the approximate size of this object in bytes
      *
      * @return int
      */
@@ -150,10 +150,19 @@ class Variable
     {
         return mb_strlen($this->name) +
                 mb_strlen($this->type) +
-                mb_strlen($this->value) +
-                array_sum(array_map(function ($v) {
-                    return $v->byteSize();
-                }, $this->members));
+                mb_strlen($this->value);
+    }
+
+    /**
+     * Returns the approximate size of this object including all members in bytes
+     *
+     * @return int
+     */
+    public function fullByteSize()
+    {
+        return $this->byteSize() + array_sum(array_map(function ($v) {
+            return $v->fullByteSize();
+        }, $this->members));
     }
 
     /**

@@ -145,7 +145,6 @@ class VariableTable
      */
     public function isFull()
     {
-        var_dump($this->bytesRemaining);
         return $this->bytesRemaining < self::MIN_REQUIRED_SIZE;
     }
 
