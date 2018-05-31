@@ -35,7 +35,7 @@ namespace Google\Cloud\Debugger;
  * @see https://cloud.google.com/debugger/api/reference/rest/v2/Debuggee#repoid RepoId model documentation
  * @codingStandardsIgnoreEnd
  */
-class RepoId implements \JsonSerializable
+class RepoId
 {
     /**
      * @var ProjectRepoId A combination of a project ID and a repo name.
@@ -61,15 +61,15 @@ class RepoId implements \JsonSerializable
     }
 
     /**
-     * Callback to implement JsonSerializable interface
+     * Return a serializable version of this object
      *
      * @access private
      * @return array
      */
-    public function jsonSerialize()
+    public function info()
     {
         return [
-            'projectRepoId' => $this->projectRepoId,
+            'projectRepoId' => $this->projectRepoId->info(),
             'uid' => $this->uid
         ];
     }

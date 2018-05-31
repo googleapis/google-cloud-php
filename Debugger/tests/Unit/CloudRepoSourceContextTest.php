@@ -28,8 +28,6 @@ use PHPUnit\Framework\TestCase;
  */
 class CloudRepoSourceContextTest extends TestCase
 {
-    use JsonTestTrait;
-
     public function testSerializes()
     {
         $sourceContext = new CloudRepoSourceContext(
@@ -57,6 +55,6 @@ class CloudRepoSourceContextTest extends TestCase
             ]
         ];
 
-        $this->assertProducesEquivalentJson($expected, $sourceContext);
+        $this->assertEquals($expected, $sourceContext->info());
     }
 }

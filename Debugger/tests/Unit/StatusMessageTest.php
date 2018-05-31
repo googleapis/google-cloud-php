@@ -27,19 +27,21 @@ use PHPUnit\Framework\TestCase;
  */
 class StatusMessageTest extends TestCase
 {
-    use JsonTestTrait;
-
     public function testSerializes()
     {
-        $message = new StatusMessage(false, StatusMessage::REFERENCE_VARIABLE_NAME, new FormatMessage('format', ['param1', 'param2']));
+        $message = new StatusMessage(
+            false,
+            StatusMessage::REFERENCE_VARIABLE_NAME,
+            new FormatMessage('format', ['param1', 'param2'])
+        );
         $expected = [
             'isError' => false,
-            'refersTo' => 'VARIABLE_NAME',
+            'refersTo' => StatusMessage::REFERENCE_VARIABLE_NAME,
             'description' => [
                 'format' => 'format',
                 'parameters' => ['param1', 'param2']
             ]
         ];
-        $this->assertProducesEquivalentJson($expected, $message);
+        $this->assertEquals($expected, $message->info());
     }
 }

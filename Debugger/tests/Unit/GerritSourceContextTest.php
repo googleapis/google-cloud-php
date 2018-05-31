@@ -26,8 +26,6 @@ use PHPUnit\Framework\TestCase;
  */
 class GerritSourceContextTest extends TestCase
 {
-    use JsonTestTrait;
-
     public function testSerializes()
     {
         $sourceContext = new GerritSourceContext(
@@ -47,7 +45,6 @@ class GerritSourceContextTest extends TestCase
                 ]
             ]
         ];
-
-        $this->assertProducesEquivalentJson($expected, $sourceContext);
+        $this->assertEquals($expected, $sourceContext->info());
     }
 }

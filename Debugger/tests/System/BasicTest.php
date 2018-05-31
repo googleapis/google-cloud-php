@@ -31,15 +31,6 @@ use PHPUnit\Framework\TestCase;
  */
 class BasicTest extends TestCase
 {
-    private $debuggerClient;
-
-    public function setUp()
-    {
-        $this->debuggerClient = new DebuggerClient([
-            'keyFilePath' => getenv('GOOGLE_CLOUD_PHP_TESTS_KEY_PATH')
-        ]);
-    }
-
     /**
      * @dataProvider transports
      */
@@ -86,6 +77,34 @@ class BasicTest extends TestCase
 
         // fulfill a breakpoint
         $this->assertTrue($breakpoint->resolveLocation());
+        $breakpoint->addStackFrame([
+            'filename' => __FILE__,
+            'line' => __LINE__,
+            'locals' => [
+                [
+                    'name' => 'transport',
+                    'value' => $transport
+                ],
+                [
+                    'name' => 'shared_var',
+                    'value' => $this
+                ]
+            ]
+        ]);
+        $breakpoint->addStackFrame([
+            'filename' => __FILE__,
+            'line' => __LINE__,
+            'locals' => [
+                [
+                    'name' => 'transport',
+                    'value' => $transport
+                ],
+                [
+                    'name' => 'shared_var',
+                    'value' => $this
+                ]
+            ]
+        ]);
         $breakpoint->finalize();
         $debuggee->updateBreakpoint($breakpoint);
     }

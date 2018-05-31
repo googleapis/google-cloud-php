@@ -21,9 +21,6 @@ trait JsonTestTrait
 {
     private function assertProducesEquivalentJson($array1, $array2)
     {
-        if (!is_array($array2)) {
-            $array2 = json_decode(json_encode($array2), true);
-        }
         foreach ($array1 as $key => $value) {
             $this->assertArrayHasKey($key, $array2);
             if (is_array($value)) {
