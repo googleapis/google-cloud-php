@@ -181,4 +181,98 @@ class VariableTableTest extends TestCase
             $this->assertInternalType('string', $member['name']);
         }
     }
+
+    public function testLimitsStringLength()
+    {
+        $variableTable = new VariableTable();
+        $var = str_repeat("1234567890", 100);
+        $variable = $variableTable->register('foo', $var);
+        $data = json_decode(json_encode($variable), true);
+        $this->assertStringEndsWith('...', $data['value']);
+    }
+
+    public function testConfiguresStringLimit()
+    {
+        $variableTable = new VariableTable([], [
+            'maxValueLength' => 15
+        ]);
+        $var = str_repeat("1234567890", 10);
+        $variable = $variableTable->register('foo', $var);
+        $data = json_decode(json_encode($variable), true);
+        $this->assertEquals('123456789012...', $data['value']);
+    }
+
+    public function testLimitsCompoundVariableDepth()
+    {
+        $variableTable = new VariableTable();
+        $var = [
+            [
+                [
+                    [
+                        [
+                            [
+                                [
+                                    1
+                                ]
+                            ]
+                        ]
+                    ]
+                ]
+            ]
+        ];
+        $variable = $variableTable->register('deeplyNested', $var);
+        $data = json_decode(json_encode($variable), true);
+
+        $depth = 5;
+        while ($depth > 0) {
+            $this->assertCount(1, $data['members']);
+            $data = $data['members'][0];
+            $depth--;
+        }
+        $this->assertEquals('array (1)', $data['value']);
+        $this->assertArrayNotHasKey('members', $data);
+    }
+
+    public function testConfiguresCompoundVariableDepthLimit()
+    {
+        $variableTable = new VariableTable([], [
+            'maxMemberDepth' => 3
+        ]);
+        $var = [
+            [
+                [
+                    [
+                        [
+                            [
+                                [
+                                    1
+                                ]
+                            ]
+                        ]
+                    ]
+                ]
+            ]
+        ];
+        $variable = $variableTable->register('deeplyNested', $var);
+        $data = json_decode(json_encode($variable), true);
+
+        $depth = 3;
+        while ($depth > 0) {
+            $this->assertCount(1, $data['members']);
+            $data = $data['members'][0];
+            $depth--;
+        }
+        $this->assertEquals('array (1)', $data['value']);
+        $this->assertArrayNotHasKey('members', $data);
+    }
+
+    public function testLimitsTotalSize()
+    {
+        $variableTable = new VariableTable();
+        for ($i = 0; $i < 1000; $i++) {
+            $v = $variableTable->register('var' . $i, array_fill(0, $i, $i));
+        }
+        var_dump($variableTable->variables());
+        $this->assertTrue(count($variableTable->variables() < 1000));
+    }
 }

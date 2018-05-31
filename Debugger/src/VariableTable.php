@@ -16,7 +16,12 @@ namespace Google\Cloud\Debugger;
  */
 class VariableTable
 {
-    const MAX_MEMBER_DEPTH = 5;
+    const DEFAULT_MAX_MEMBER_DEPTH = 5;
+    const DEFAULT_MAX_PAYLOAD_SIZE = 32768; // 32KB
+    const DEFAULT_MAX_MEMBERS = 1000;
+    const BUFFER_FULL_MESSAGE = 'Buffer full. Use an expression to see more data.';
+    const MIN_REQUIRED_SIZE = 100;
+    const DEFAULT_MAX_STRING_LENGTH = 500;
 
     /**
      * @var int The next index to use for the variable table
@@ -34,15 +39,57 @@ class VariableTable
     private $sharedVariableIndex;
 
     /**
+     * @var int Maximum depth of member variables to capture.
+     */
+    private $maxMemberDepth;
+
+    /**
+     * @var int Maximum string length of the captured variable value.
+     */
+    private $maxValueLength;
+
+    /**
+     * @var int Max number of variables to evaluate in compound variables.
+     */
+    private $maxMembers;
+
+    /**
+     * @var int|null The index of the shared "buffer-full" variable.
+     */
+    private $bufferFullVariableIndex;
+
+    /**
+     * @var int The amount of space remaining for captured data.
+     */
+    private $bytesRemaining;
+
+    /**
      * Initialize a new VariableTable with optional initial values.
      *
      * @param Variable[] $initialVariables
+     * @param array $options [optional] {
+     *     Configuration options.
+     *
+     *     @type int $maxMemberDepth Maximum depth of member variables to capture.
+     *         **Defaults to** 5.
+     *     @type int $maxPayloadSize Maximum amount of space of captured data.
+     *         **Defaults to** 32768.
+     * }
      */
-    public function __construct(array $initialVariables = [])
+    public function __construct(array $initialVariables = [], array $options = [])
     {
+        $options += [
+            'maxMemberDepth' => self::DEFAULT_MAX_MEMBER_DEPTH,
+            'maxPayloadSize' => self::DEFAULT_MAX_PAYLOAD_SIZE,
+            'maxMembers' => self::DEFAULT_MAX_MEMBERS,
+            'maxValueLength' => self::DEFAULT_MAX_STRING_LENGTH
+        ];
         $this->variables = $initialVariables;
         $this->nextIndex = count($this->variables);
         $this->sharedVariableIndex = [];
+        $this->maxMemberDepth = $options['maxMemberDepth'];
+        $this->bytesRemaining = $options['maxPayloadSize'];
+        $this->maxValueLength = $options['maxValueLength'];
     }
 
     /**
@@ -61,7 +108,45 @@ class VariableTable
      */
     public function register($name, $value, $hash = null)
     {
+        if ($this->isFull()) {
+            return $this->bufferFullVariable();
+        }
         return $this->doRegister($name, $value, 0, $hash);
+    }
+
+    /**
+     * Returns the reference for the buffer full variable.
+     *
+     * @return Variable
+     */
+    public function bufferFullVariable()
+    {
+        if (!$this->bufferFullVariableIndex) {
+            $this->bufferFullVariableIndex = $this->nextIndex++;
+            $this->variables[] = new Variable('', '', [
+                'status' => new StatusMessage(
+                    true,
+                    StatusMessage::REFERENCE_VARIABLE_VALUE,
+                    new FormatMessage(
+                        self::BUFFER_FULL_MESSAGE
+                    )
+                )
+            ]);
+        }
+        return new Variable('', '', [
+            'varTableIndex' => $this->bufferFullVariableIndex
+        ]);
+    }
+
+    /**
+     * Returns whether or not the variable table is full or not.
+     *
+     * @return bool
+     */
+    public function isFull()
+    {
+        var_dump($this->bytesRemaining);
+        return $this->bytesRemaining < self::MIN_REQUIRED_SIZE;
     }
 
     /**
@@ -120,7 +205,7 @@ class VariableTable
                 $variableValue = 'NULL';
                 break;
             default:
-                $variableValue = (string)$value;
+                $variableValue = $this->truncatedStringValue($value);
         }
 
         if ($hash) {
@@ -130,19 +215,38 @@ class VariableTable
             $this->sharedVariableIndex[$hash] = $index;
             $this->nextIndex++;
 
-            array_push($this->variables, new Variable($name, $type, [
+            $newVariable = new Variable($name, $type, [
                 'value' => $variableValue,
                 'members' => $members
-            ]));
+            ]);
+            $this->variables[] = $newVariable;
+
+            // Deduct the size from the bytes remaining.
+            $this->bytesRemaining -= $newVariable->byteSize();
+
             return new Variable($name, $type, [
                 'varTableIndex' => $index
             ]);
         } else {
-            return new Variable($name, $type, [
+            $newVariable = new Variable($name, $type, [
                 'value' => $variableValue,
                 'members' => $members
             ]);
+
+            // Deduct the size from the bytes remaining.
+            $this->bytesRemaining -= $newVariable->byteSize();
+
+            return $newVariable;
         }
+    }
+
+    private function truncatedStringValue($value)
+    {
+        $ret = (string)$value;
+        if (strlen($ret) > $this->maxValueLength) {
+            $ret = substr($ret, 0, $this->maxValueLength - 3) . '...';
+        }
+        return $ret;
     }
 
     private function calcuateType($value)
@@ -160,7 +264,7 @@ class VariableTable
     private function doRegisterMembers($array, $depth)
     {
         $members = [];
-        if ($depth < self::MAX_MEMBER_DEPTH) {
+        if ($depth < $this->maxMemberDepth) {
             foreach ($array as $key => $member) {
                 $members[] = $this->doRegister((string) $key, $member, $depth + 1, null);
             }

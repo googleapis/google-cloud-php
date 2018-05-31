@@ -142,6 +142,21 @@ class Variable
     }
 
     /**
+     * Return the approximate size of this object in bytes.
+     *
+     * @return int
+     */
+    public function byteSize()
+    {
+        return mb_strlen($this->name) +
+                mb_strlen($this->type) +
+                mb_strlen($this->value) +
+                array_sum(array_map(function ($v) {
+                    return $v->byteSize();
+                }, $this->members));
+    }
+
+    /**
      * Return a serializable version of this object
      *
      * @access private
