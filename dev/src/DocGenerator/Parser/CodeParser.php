@@ -538,7 +538,6 @@ class CodeParser implements ParserInterface
                 $pos = strpos($methodDescription, '<p>Generated from protobuf field');
                 if ($pos) {
                     $descriptionString = substr($methodDescription, 0, $pos);
-                    var_dump($descriptionString);
                 }
             }
 
