@@ -6,7 +6,7 @@
     "require": {
         "google/cloud-core": "^1.4",
         "google/cloud-logging": "^1.4",
-        "google/proto-client": "^0.39",
+        "google/proto-client": "^0.40",
         "google/gax": "^0.33",
         "psr/log": "^1.0"
     },
