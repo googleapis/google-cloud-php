@@ -39,7 +39,7 @@ class DebuggerClient
 {
     use ClientTrait;
 
-    const VERSION = '0.9.0';
+    const VERSION = '0.10.0';
 
     const FULL_CONTROL_SCOPE = 'https://www.googleapis.com/auth/cloud-platform';
     const READ_ONLY_SCOPE = 'https://www.googleapis.com/auth/debugger.readonly';
