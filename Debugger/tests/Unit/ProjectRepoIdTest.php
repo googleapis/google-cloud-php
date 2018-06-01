@@ -25,8 +25,6 @@ use PHPUnit\Framework\TestCase;
  */
 class ProjectRepoIdTest extends TestCase
 {
-    use JsonTestTrait;
-
     public function testSerializes()
     {
         $repoId = new ProjectRepoId('projectId', 'repoName');
@@ -34,6 +32,6 @@ class ProjectRepoIdTest extends TestCase
             'projectId' => 'projectId',
             'repoName' => 'repoName'
         ];
-        $this->assertProducesEquivalentJson($expected, $repoId);
+        $this->assertEquals($expected, $repoId->info());
     }
 }

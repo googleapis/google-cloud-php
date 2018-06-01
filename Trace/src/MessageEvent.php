@@ -17,6 +17,8 @@
 
 namespace Google\Cloud\Trace;
 
+use Google\Cloud\Trace\V2\Span_TimeEvent_MessageEvent_Type;
+
 /**
  * This plain PHP class represents an MessageEvent resource. An event describing
  * a message sent/received between Spans.
@@ -35,9 +37,9 @@ namespace Google\Cloud\Trace;
  */
 class MessageEvent extends TimeEvent
 {
-    const TYPE_UNSPECIFIED = 'TYPE_UNSPECIFIED';
-    const TYPE_SENT = 'SENT';
-    const TYPE_RECEIVED = 'RECEIVED';
+    const TYPE_UNSPECIFIED = Span_TimeEvent_MessageEvent_Type::TYPE_UNSPECIFIED;
+    const TYPE_SENT = Span_TimeEvent_MessageEvent_Type::SENT;
+    const TYPE_RECEIVED = Span_TimeEvent_MessageEvent_Type::RECEIVED;
 
     /**
      * @var string Type of MessageEvent. Indicates whether the message was sent
@@ -102,7 +104,7 @@ class MessageEvent extends TimeEvent
      * @access private
      * @return array
      */
-    public function jsonSerialize()
+    public function info()
     {
         $data = [
             'id' => $this->id,

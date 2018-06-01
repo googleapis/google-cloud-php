@@ -25,8 +25,6 @@ use PHPUnit\Framework\TestCase;
  */
 class FormatMessageTest extends TestCase
 {
-    use JsonTestTrait;
-
     public function testSerializes()
     {
         $message = new FormatMessage('format', ['param1', 'param2']);
@@ -34,6 +32,6 @@ class FormatMessageTest extends TestCase
             'format' => 'format',
             'parameters' => ['param1', 'param2']
         ];
-        $this->assertProducesEquivalentJson($expected, $message);
+        $this->assertEquals($expected, $message->info());
     }
 }

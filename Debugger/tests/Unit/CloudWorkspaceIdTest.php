@@ -27,11 +27,9 @@ use PHPUnit\Framework\TestCase;
  */
 class CloudWorkspaceIdTest extends TestCase
 {
-    use JsonTestTrait;
-
     public function testSerializes()
     {
-        $object = new CloudWorkspaceId(new RepoId(new ProjectRepoId('projectId', 'repoName'), 'uid'), 'name');
+        $workspace = new CloudWorkspaceId(new RepoId(new ProjectRepoId('projectId', 'repoName'), 'uid'), 'name');
         $expected = [
             'repoId' => [
                 'projectRepoId' => [
@@ -43,6 +41,6 @@ class CloudWorkspaceIdTest extends TestCase
             'name' => 'name'
         ];
 
-        $this->assertProducesEquivalentJson($expected, $object);
+        $this->assertEquals($expected, $workspace->info());
     }
 }

@@ -7,7 +7,7 @@
         "ext-grpc": "*",
         "google/cloud-core": "^1.14",
         "google/gax": "^0.33",
-        "google/proto-client": "^0.39",
+        "google/proto-client": "^0.40",
         "ramsey/uuid": "~3"
     },
     "require-dev": {

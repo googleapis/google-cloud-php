@@ -42,7 +42,7 @@ class AttributesTest extends TestCase
         $attributes = new Attributes();
         $attributes['foo'] = true;
         $attributes['bar'] = false;
-        $json = $attributes->jsonSerialize();
+        $json = $attributes->info();
         $this->assertArrayHasKey('attributeMap', $json);
         $data = $json['attributeMap'];
 
@@ -57,7 +57,7 @@ class AttributesTest extends TestCase
     {
         $attributes = new Attributes();
         $attributes['foo'] = 123;
-        $json = $attributes->jsonSerialize();
+        $json = $attributes->info();
         $this->assertArrayHasKey('attributeMap', $json);
         $data = $json['attributeMap'];
 
@@ -70,7 +70,7 @@ class AttributesTest extends TestCase
     {
         $attributes = new Attributes();
         $attributes['foo'] = 'some string';
-        $json = $attributes->jsonSerialize();
+        $json = $attributes->info();
 
         $this->assertArrayHasKey('attributeMap', $json);
         $data = $json['attributeMap'];

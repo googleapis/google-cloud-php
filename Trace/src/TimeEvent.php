@@ -22,7 +22,7 @@ namespace Google\Cloud\Trace;
  *
  * @see https://cloud.google.com/trace/docs/reference/v2/rest/v2/TimeEvents#timeevent TimeEvent model documentation
  */
-abstract class TimeEvent implements \JsonSerializable
+abstract class TimeEvent
 {
     use TimestampTrait;
 

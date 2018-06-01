@@ -36,7 +36,7 @@ class VariableTest extends TestCase
         ];
         $variable = Variable::fromJson($input);
 
-        $this->assertProducesEquivalentJson($input, $variable);
+        $this->assertProducesEquivalentJson($input, $variable->info());
     }
 
     public function testCreateReferenceFromJson()
@@ -44,11 +44,13 @@ class VariableTest extends TestCase
         $input = [
             'name' => 'foo',
             'type' => 'int',
-            'varTableIndex' => 4
+            'varTableIndex' => [
+                'value' => 4
+            ]
         ];
         $variable = Variable::fromJson($input);
 
-        $this->assertProducesEquivalentJson($input, $variable);
+        $this->assertProducesEquivalentJson($input, $variable->info());
     }
 
     public function testCreatesMembersFromJson()
@@ -72,6 +74,6 @@ class VariableTest extends TestCase
         ];
         $variable = Variable::fromJson($input);
 
-        $this->assertProducesEquivalentJson($input, $variable);
+        $this->assertProducesEquivalentJson($input, $variable->info());
     }
 }

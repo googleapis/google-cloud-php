@@ -19,6 +19,7 @@ namespace Google\Cloud\Dev\AddComponent\Command;
 
 use Google\Cloud\Dev\AddComponent\Composer;
 use Google\Cloud\Dev\AddComponent\Contributing;
+use Google\Cloud\Dev\AddComponent\GitAttributes;
 use Google\Cloud\Dev\AddComponent\Info;
 use Google\Cloud\Dev\AddComponent\License;
 use Google\Cloud\Dev\AddComponent\Manifest;
@@ -69,18 +70,25 @@ class AddComponent extends GoogleCloudCommand
         (new License($this->rootPath, $info['path']))->run();
 
         $output->writeln($formatter->formatSection(
-            'Contributing',
-            'Creating CONTRIBUTING.md file by copying from template.'
-        ));
-
-        $output->writeln($formatter->formatSection(
             'Pull Request Template',
             'Creating .github/pull_request_template.md file by copying from template.'
         ));
 
         (new PullRequestTemplate($this->rootPath, $info['path']))->run();
 
+        $output->writeln($formatter->formatSection(
+            'Contributing Guide',
+            'Creating CONTRIBUTING.md file by copying from template.'
+        ));
+
         (new Contributing($this->rootPath, $info['path']))->run();
+
+        $output->writeln($formatter->formatSection(
+            'Git Attributes',
+            'Creating .gitattributes file by copying from template.'
+        ));
+
+        (new GitAttributes($this->cliBasePath, $info['path']))->run();
 
         $output->writeln($formatter->formatSection(
             'Readme',

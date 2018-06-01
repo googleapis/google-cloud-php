@@ -28,7 +28,7 @@ class StatusTest extends TestCase
     public function testCreate()
     {
         $status = new Status(200, 'some status message');
-        $data = $status->jsonSerialize();
+        $data = $status->info();
         $this->assertArrayHasKey('code', $data);
         $this->assertEquals(200, $data['code']);
         $this->assertArrayHasKey('message', $data);
@@ -44,7 +44,7 @@ class StatusTest extends TestCase
         $status = new Status(200, 'some status message', [
             'details' => $details
         ]);
-        $data = $status->jsonSerialize();
+        $data = $status->info();
         $this->assertArrayHasKey('details', $data);
         $this->assertEquals($details, $data['details']);
     }

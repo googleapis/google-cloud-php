@@ -17,6 +17,8 @@
 
 namespace Google\Cloud\Trace;
 
+use Google\Cloud\Trace\V2\Span_Link_Type;
+
 /**
  * This plain PHP class represents a Link resource. A pointer from the current
  * span to another span in the same trace or in a different trace. For example,
@@ -34,13 +36,13 @@ namespace Google\Cloud\Trace;
  *
  * @see https://cloud.google.com/trace/docs/reference/v2/rest/v2/Links#link Link model documentation
  */
-class Link implements \JsonSerializable
+class Link
 {
     use AttributeTrait;
 
-    const TYPE_UNSPECIFIED = 'TYPE_UNSPECIFIED';
-    const TYPE_CHILD_LINKED_SPAN = 'CHILD_LINKED_SPAN';
-    const TYPE_PARENT_LINKED_SPAN = 'PARENT_LINKED_SPAN';
+    const TYPE_UNSPECIFIED = Span_Link_Type::TYPE_UNSPECIFIED;
+    const TYPE_CHILD_LINKED_SPAN = Span_Link_Type::CHILD_LINKED_SPAN;
+    const TYPE_PARENT_LINKED_SPAN = Span_Link_Type::PARENT_LINKED_SPAN;
 
     /**
      * @var string The [TRACE_ID] for a trace within a project.
@@ -94,7 +96,7 @@ class Link implements \JsonSerializable
      * @access private
      * @return array
      */
-    public function jsonSerialize()
+    public function info()
     {
         $data = [
             'traceId' => $this->traceId,
@@ -102,7 +104,7 @@ class Link implements \JsonSerializable
             'type' => $this->type
         ];
         if ($this->attributes) {
-            $data['attributes'] = $this->attributes;
+            $data['attributes'] = $this->attributes->info();
         }
 
         return $data;
