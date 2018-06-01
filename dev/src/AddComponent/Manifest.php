@@ -47,7 +47,7 @@ class Manifest
     /**
      * @var string
      */
-    private $cliBasePath;
+    private $rootPath;
 
     /**
      * @var string
@@ -72,20 +72,20 @@ class Manifest
         QuestionHelper $questionHelper,
         InputInterface $input,
         OutputInterface $output,
-        $cliBasePath,
+        $rootPath,
         array $info
     ) {
         $this->questionHelper = $questionHelper;
         $this->input = $input;
         $this->output = $output;
-        $this->cliBasePath = $cliBasePath;
+        $this->rootPath = $rootPath;
         $this->path = $info['path'];
         $this->info = $info;
     }
 
     public function run()
     {
-        $path = $this->cliBasePath .'/../docs/manifest.json';
+        $path = $this->rootPath .'/docs/manifest.json';
         $manifest = json_decode(file_get_contents($path), true);
 
         $modules = $manifest['modules'];

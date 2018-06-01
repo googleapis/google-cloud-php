@@ -49,18 +49,18 @@ class Info
     /**
      * @var string
      */
-    private $cliBasePath;
+    private $rootPath;
 
     public function __construct(
         QuestionHelper $questionHelper,
         InputInterface $input,
         OutputInterface $output,
-        $cliBasePath
+        $rootPath
     ) {
         $this->questionHelper = $questionHelper;
         $this->input = $input;
         $this->output = $output;
-        $this->cliBasePath = $cliBasePath;
+        $this->rootPath = $rootPath;
     }
 
     public function run()
@@ -90,12 +90,22 @@ class Info
         );
 
         $default = str_replace(' ', '', ucwords(str_replace('-', ' ', $info['shortName'])));
-        $base = $this->cliBasePath . '/../src/';
+        $base = $this->rootPath;
         $q = $this->question(
-            'Please enter the directory name, relative to `src/`, where the component is found. Be sure to verify correct casing.',
+            'Please enter the directory name, relative to the google-cloud-php root, where the component is found. Be sure to verify correct casing.',
             $default
         )->setValidator(function ($answer) use ($base) {
-            $path = realpath($base . $answer);
+            $relativePath = $base . $answer;
+            $path = realpath($relativePath);
+
+            if (!$path) {
+                if ($this->askQuestion($this->confirm("Directory '$answer' does not exist. Do you want to create it?"))) {
+                    if (!mkdir($relativePath, 0777, true)) {
+                        throw new \RuntimeException("Failed to create directory: '$relativePath'");
+                    }
+                    $path = realpath($relativePath);
+                }
+            }
 
             if (!is_dir($path)) {
                 throw new \RuntimeException(

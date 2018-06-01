@@ -56,7 +56,7 @@ class TableOfContents
     /**
      * @var string
      */
-    private $cliBasePath;
+    private $rootPath;
 
     /**
      * @var string
@@ -68,14 +68,14 @@ class TableOfContents
         QuestionHelper $questionHelper,
         InputInterface $input,
         OutputInterface $output,
-        $cliBasePath,
+        $rootPath,
         $path
     ) {
         $this->formatter = $formatter;
         $this->questionHelper = $questionHelper;
         $this->input = $input;
         $this->output = $output;
-        $this->cliBasePath = $cliBasePath;
+        $this->rootPath = $rootPath;
         $this->path = $path;
     }
 
@@ -249,7 +249,7 @@ class TableOfContents
         }
 
         $withoutExt = explode('.', $file)[0];
-        $base = trim(explode('src', realpath($path))[1], '/');
+        $base = trim(substr($path, strlen($this->rootPath)), '/');
 
         if (strpos($file, 'README.md') !== false) {
             $parts = explode('/', $path);
@@ -273,13 +273,13 @@ class TableOfContents
 
     private function writeToc($name, array $toc)
     {
-        $path = $this->cliBasePath .'/../'. self::TOC_PATH .'/'. $name .'.json';
+        $path = $this->rootPath .'/'. self::TOC_PATH .'/'. $name .'.json';
         file_put_contents($path, json_encode($toc, JSON_PRETTY_PRINT) . PHP_EOL);
     }
 
     private function addToIncludes($name)
     {
-        $path = $this->cliBasePath .'/../'. self::TOC_PATH .'/google-cloud.json';
+        $path = $this->rootPath .'/'. self::TOC_PATH .'/google-cloud.json';
         $toc = json_decode(file_get_contents($path), true);
         $toc['includes'][] = $name;
         sort($toc['includes']);

@@ -52,7 +52,7 @@ class Readmes
     /**
      * @var string
      */
-    private $cliBasePath;
+    private $rootPath;
 
     /**
      * @var array
@@ -68,16 +68,16 @@ class Readmes
         QuestionHelper $questionHelper,
         InputInterface $input,
         OutputInterface $output,
-        $cliBasePath,
+        $rootPath,
         array $info
     ) {
         $this->questionHelper = $questionHelper;
         $this->input = $input;
         $this->output = $output;
-        $this->cliBasePath = $cliBasePath;
+        $this->rootPath = $rootPath;
         $this->info = $info;
 
-        $this->templatesPath = $this->cliBasePath .'/src/AddComponent/templates';
+        $this->templatesPath = $this->rootPath .'/dev/src/AddComponent/templates';
     }
 
     public function run()

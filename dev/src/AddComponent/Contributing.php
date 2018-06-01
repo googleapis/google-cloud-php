@@ -27,7 +27,7 @@ class Contributing
     /**
      * @var string
      */
-    private $cliBasePath;
+    private $rootPath;
 
     /**
      * @var string
@@ -35,15 +35,15 @@ class Contributing
     private $path;
 
 
-    public function __construct($cliBasePath, $path)
+    public function __construct($rootPath, $path)
     {
-        $this->cliBasePath = $cliBasePath;
+        $this->rootPath = $rootPath;
         $this->path = $path;
     }
 
     public function run()
     {
-        $source = $this->cliBasePath . '/src/AddComponent/templates/' . self::CONTRIBUTING_TPL;
+        $source = $this->rootPath . '/dev/src/AddComponent/templates/' . self::CONTRIBUTING_TPL;
         $dest = $this->path .'/CONTRIBUTING.md';
 
         copy($source, $dest);

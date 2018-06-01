@@ -26,32 +26,19 @@ use Google\Cloud\Dev\AddComponent\PullRequestTemplate;
 use Google\Cloud\Dev\AddComponent\QuestionTrait;
 use Google\Cloud\Dev\AddComponent\Readmes;
 use Google\Cloud\Dev\AddComponent\TableOfContents;
-use Symfony\Component\Console\Command\Command;
+use Google\Cloud\Dev\Command\GoogleCloudCommand;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
-use Symfony\Component\Console\Question\ChoiceQuestion;
-use Symfony\Component\Console\Question\ConfirmationQuestion;
-use Symfony\Component\Console\Question\Question;
 
 /**
  * Add a Component
  */
-class AddComponent extends Command
+class AddComponent extends GoogleCloudCommand
 {
     use QuestionTrait;
 
-    private $cliBasePath;
-    private $templatesPath;
-
     private $input;
     private $output;
-
-    public function __construct($cliBasePath)
-    {
-        $this->cliBasePath = $cliBasePath;
-
-        parent::__construct();
-    }
 
     protected function configure()
     {
@@ -71,7 +58,7 @@ class AddComponent extends Command
             $this->getHelper('question'),
             $input,
             $output,
-            $this->cliBasePath
+            $this->rootPath
         ))->run();
 
         $output->writeln($formatter->formatSection(
@@ -79,7 +66,7 @@ class AddComponent extends Command
             'Creating LICENSE file by copying from repository base.'
         ));
 
-        (new License($this->cliBasePath, $info['path']))->run();
+        (new License($this->rootPath, $info['path']))->run();
 
         $output->writeln($formatter->formatSection(
             'Contributing',
@@ -91,9 +78,9 @@ class AddComponent extends Command
             'Creating .github/pull_request_template.md file by copying from template.'
         ));
 
-        (new PullRequestTemplate($this->cliBasePath, $info['path']))->run();
+        (new PullRequestTemplate($this->rootPath, $info['path']))->run();
 
-        (new Contributing($this->cliBasePath, $info['path']))->run();
+        (new Contributing($this->rootPath, $info['path']))->run();
 
         $output->writeln($formatter->formatSection(
             'Readme',
@@ -110,7 +97,7 @@ class AddComponent extends Command
             $this->getHelper('question'),
             $input,
             $output,
-            $this->cliBasePath,
+            $this->rootPath,
             $info
         );
         $readme->run();
@@ -129,7 +116,7 @@ class AddComponent extends Command
             $this->getHelper('question'),
             $input,
             $output,
-            $this->cliBasePath,
+            $this->rootPath,
             $info['path']
         ))->run($info['name']);
 
@@ -148,7 +135,7 @@ class AddComponent extends Command
             $this->getHelper('question'),
             $input,
             $output,
-            $this->cliBasePath,
+            $this->rootPath,
             $info
         ))->run();
 
@@ -161,7 +148,7 @@ class AddComponent extends Command
             $this->getHelper('question'),
             $input,
             $output,
-            $this->cliBasePath,
+            $this->rootPath,
             $info
         ))->run();
 
