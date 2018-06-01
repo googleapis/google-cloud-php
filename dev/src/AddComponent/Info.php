@@ -95,17 +95,7 @@ class Info
             'Please enter the directory name, relative to the google-cloud-php root, where the component is found. Be sure to verify correct casing.',
             $default
         )->setValidator(function ($answer) use ($base) {
-            $relativePath = $base . $answer;
             $path = realpath($relativePath);
-
-            if (!$path) {
-                if ($this->askQuestion($this->confirm("Directory '$answer' does not exist. Do you want to create it?"))) {
-                    if (!mkdir($relativePath, 0777, true)) {
-                        throw new \RuntimeException("Failed to create directory: '$relativePath'");
-                    }
-                    $path = realpath($relativePath);
-                }
-            }
 
             if (!is_dir($path)) {
                 throw new \RuntimeException(
