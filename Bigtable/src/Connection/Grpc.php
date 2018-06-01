@@ -139,7 +139,7 @@ class Grpc implements ConnectionInterface
      */
     public function getInstance(array $args)
     {
-        throw new \BadMethodCallException('Not implemented');
+        throw new \BadMethodCallException('This method is not implemented yet');
     }
 
     /**
@@ -147,7 +147,7 @@ class Grpc implements ConnectionInterface
      */
     public function listInstances(array $args)
     {
-        throw new \BadMethodCallException('Not implemented');
+        throw new \BadMethodCallException('This method is not implemented yet');
     }
 
     /**
@@ -155,7 +155,7 @@ class Grpc implements ConnectionInterface
      */
     public function updateInstance(array $args)
     {
-        throw new \BadMethodCallException('Not implemented');
+        throw new \BadMethodCallException('This method is not implemented yet');
     }
 
         /**
@@ -163,7 +163,7 @@ class Grpc implements ConnectionInterface
      */
     public function deleteInstance(array $args)
     {
-        throw new \BadMethodCallException('Not implemented');
+        throw new \BadMethodCallException('This method is not implemented yet');
     }
 
     /**
@@ -171,7 +171,7 @@ class Grpc implements ConnectionInterface
      */
     public function createCluster(array $args)
     {
-        throw new \BadMethodCallException('Not implemented');
+        throw new \BadMethodCallException('This method is not implemented yet');
     }
 
     /**
@@ -179,7 +179,7 @@ class Grpc implements ConnectionInterface
      */
     public function getCluster(array $args)
     {
-        throw new \BadMethodCallException('Not implemented');
+        throw new \BadMethodCallException('This method is not implemented yet');
     }
 
     /**
@@ -187,7 +187,7 @@ class Grpc implements ConnectionInterface
      */
     public function listClusters(array $args)
     {
-        throw new \BadMethodCallException('Not implemented');
+        throw new \BadMethodCallException('This method is not implemented yet');
     }
 
     /**
@@ -195,7 +195,7 @@ class Grpc implements ConnectionInterface
      */
     public function updateCluster(array $args)
     {
-        throw new \BadMethodCallException('Not implemented');
+        throw new \BadMethodCallException('This method is not implemented yet');
     }
 
     /**
@@ -203,7 +203,7 @@ class Grpc implements ConnectionInterface
      */
     public function deleteCluster(array $args)
     {
-        throw new \BadMethodCallException('Not implemented');
+        throw new \BadMethodCallException('This method is not implemented yet');
     }
 
     /**
@@ -211,7 +211,7 @@ class Grpc implements ConnectionInterface
      */
     public function createAppProfile(array $args)
     {
-        throw new \BadMethodCallException('Not implemented');
+        throw new \BadMethodCallException('This method is not implemented yet');
     }
 
     /**
@@ -219,7 +219,7 @@ class Grpc implements ConnectionInterface
      */
     public function getAppProfile(array $args)
     {
-        throw new \BadMethodCallException('Not implemented');
+        throw new \BadMethodCallException('This method is not implemented yet');
     }
 
     /**
@@ -227,7 +227,7 @@ class Grpc implements ConnectionInterface
      */
     public function listAppProfiles(array $args)
     {
-        throw new \BadMethodCallException('Not implemented');
+        throw new \BadMethodCallException('This method is not implemented yet');
     }
 
     /**
@@ -235,7 +235,7 @@ class Grpc implements ConnectionInterface
      */
     public function updateAppProfile(array $args)
     {
-        throw new \BadMethodCallException('Not implemented');
+        throw new \BadMethodCallException('This method is not implemented yet');
     }
 
     /**
@@ -243,7 +243,7 @@ class Grpc implements ConnectionInterface
      */
     public function deleteAppProfile(array $args)
     {
-        throw new \BadMethodCallException('Not implemented');
+        throw new \BadMethodCallException('This method is not implemented yet');
     }
 
     /**
@@ -251,7 +251,7 @@ class Grpc implements ConnectionInterface
      */
     public function getIamPolicy(array $args)
     {
-        throw new \BadMethodCallException('Not implemented');
+        throw new \BadMethodCallException('This method is not implemented yet');
     }
 
     /**
@@ -259,7 +259,7 @@ class Grpc implements ConnectionInterface
      */
     public function setIamPolicy(array $args)
     {
-        throw new \BadMethodCallException('Not implemented');
+        throw new \BadMethodCallException('This method is not implemented yet');
     }
 
     /**
@@ -267,7 +267,7 @@ class Grpc implements ConnectionInterface
      */
     public function createTable(array $args)
     {
-        throw new \BadMethodCallException('Not implemented');
+        throw new \BadMethodCallException('This method is not implemented yet');
     }
 
     /**
@@ -275,7 +275,7 @@ class Grpc implements ConnectionInterface
      */
     public function createTableFromSnapshot(array $args)
     {
-        throw new \BadMethodCallException('Not implemented');
+        throw new \BadMethodCallException('This method is not implemented yet');
     }
 
     /**
@@ -283,7 +283,7 @@ class Grpc implements ConnectionInterface
      */
     public function listTables(array $args)
     {
-        throw new \BadMethodCallException('Not implemented');
+        throw new \BadMethodCallException('This method is not implemented yet');
     }
 
     /**
@@ -291,7 +291,7 @@ class Grpc implements ConnectionInterface
      */
     public function getTable(array $args)
     {
-        throw new \BadMethodCallException('Not implemented');
+        throw new \BadMethodCallException('This method is not implemented yet');
     }
 
     /**
@@ -299,7 +299,7 @@ class Grpc implements ConnectionInterface
      */
     public function deleteTable(array $args)
     {
-        throw new \BadMethodCallException('Not implemented');
+        throw new \BadMethodCallException('This method is not implemented yet');
     }
 
     /**
@@ -307,7 +307,7 @@ class Grpc implements ConnectionInterface
      */
     public function modifyColumnFamilies(array $args)
     {
-        throw new \BadMethodCallException('Not implemented');
+        throw new \BadMethodCallException('This method is not implemented yet');
     }
 
     /**
@@ -315,7 +315,7 @@ class Grpc implements ConnectionInterface
      */
     public function dropRowRange(array $args)
     {
-        throw new \BadMethodCallException('Not implemented');
+        throw new \BadMethodCallException('This method is not implemented yet');
     }
 
     /**
@@ -323,7 +323,7 @@ class Grpc implements ConnectionInterface
      */
     public function waitForReplication(array $args)
     {
-        throw new \BadMethodCallException('Not implemented');
+        throw new \BadMethodCallException('This method is not implemented yet');
     }
 
     /**
@@ -331,7 +331,7 @@ class Grpc implements ConnectionInterface
      */
     public function snapshotTable(array $args)
     {
-        throw new \BadMethodCallException('Not implemented');
+        throw new \BadMethodCallException('This method is not implemented yet');
     }
 
     /**
@@ -339,7 +339,7 @@ class Grpc implements ConnectionInterface
      */
     public function getSnapshot(array $args)
     {
-        throw new \BadMethodCallException('Not implemented');
+        throw new \BadMethodCallException('This method is not implemented yet');
     }
 
     /**
@@ -347,7 +347,7 @@ class Grpc implements ConnectionInterface
      */
     public function listSnapshots(array $args)
     {
-        throw new \BadMethodCallException('Not implemented');
+        throw new \BadMethodCallException('This method is not implemented yet');
     }
 
     /**
@@ -355,7 +355,7 @@ class Grpc implements ConnectionInterface
      */
     public function deleteSnapshot(array $args)
     {
-        throw new \BadMethodCallException('Not implemented');
+        throw new \BadMethodCallException('This method is not implemented yet');
     }
 
     /**
@@ -363,7 +363,7 @@ class Grpc implements ConnectionInterface
      */
     public function readRow(array $args)
     {
-        throw new \BadMethodCallException('Not implemented');
+        throw new \BadMethodCallException('This method is not implemented yet');
     }
 
     /**
@@ -371,7 +371,7 @@ class Grpc implements ConnectionInterface
      */
     public function readRows(array $args)
     {
-        throw new \BadMethodCallException('Not implemented');
+        throw new \BadMethodCallException('This method is not implemented yet');
     }
     
     /**
@@ -379,7 +379,7 @@ class Grpc implements ConnectionInterface
      */
     public function sampleRowKeys(array $args)
     {
-        throw new \BadMethodCallException('Not implemented');
+        throw new \BadMethodCallException('This method is not implemented yet');
     }
 
     /**
@@ -387,7 +387,7 @@ class Grpc implements ConnectionInterface
      */
     public function mutateRow(array $args)
     {
-        throw new \BadMethodCallException('Not implemented');
+        throw new \BadMethodCallException('This method is not implemented yet');
     }
 
     /**
@@ -395,7 +395,7 @@ class Grpc implements ConnectionInterface
      */
     public function mutateRows(array $args)
     {
-        throw new \BadMethodCallException('Not implemented');
+        throw new \BadMethodCallException('This method is not implemented yet');
     }
 
     /**
@@ -403,7 +403,7 @@ class Grpc implements ConnectionInterface
      */
     public function checkAndMutateRow(array $args)
     {
-        throw new \BadMethodCallException('Not implemented');
+        throw new \BadMethodCallException('This method is not implemented yet');
     }
 
     /**
@@ -411,7 +411,7 @@ class Grpc implements ConnectionInterface
      */
     public function readModifyWriteRow(array $args)
     {
-        throw new \BadMethodCallException('Not implemented');
+        throw new \BadMethodCallException('This method is not implemented yet');
     }
 
     /**
