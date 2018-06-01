@@ -66,7 +66,6 @@ class Composer
      * @var array
      */
     private $defaultDeps = [
-        'google/proto-client',
         'google/gax'
     ];
 
@@ -137,7 +136,10 @@ class Composer
             $last
         );
         $composer['autoload']['psr-4'] = [
-            'Google\\Cloud\\' . $namespace .'\\' => 'src'
+            'Google\\Cloud\\' . $namespace .'\\' => 'src',
+            // This will need manual fixing in many cases
+            // TODO: derive the correct value somehow
+            'GPBMetadata\\Google\\Cloud\\' . $namespace .'\\' => 'metadata'
         ];
         $composer['autoload-dev']['psr-4'] = [
             'Google\\Cloud\\' . $namespace .'\\Tests\\' => 'tests'
@@ -186,7 +188,7 @@ class Composer
         } while ($hasMoreDependencies);
 
         foreach ($this->defaultDevDeps as $dep => $ver) {
-            if (array_key_exists($dep, $composer['require'])) {
+            if (array_key_exists('require', $composer) && array_key_exists($dep, $composer['require'])) {
                 continue;
             }
 
@@ -203,7 +205,7 @@ class Composer
         }
 
         foreach ($this->defaultSuggests as $dep => $val) {
-            if (array_key_exists($dep, $composer['require'])) {
+            if (array_key_exists('require', $composer) && array_key_exists($dep, $composer['require'])) {
                 continue;
             }
 

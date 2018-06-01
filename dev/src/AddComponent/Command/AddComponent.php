@@ -84,12 +84,10 @@ class AddComponent extends GoogleCloudCommand
 
         $output->writeln($formatter->formatSection(
             'Readme',
-            'Every directory which contains documented classes should contain a README file. ' .
+            'README files will be created in the root, and in any "V*" folders. ' .
             'README files are populated using information you already supplied. ' .
             'When a directory does not contain a single entry point, or a main client class, ' .
-            'README functions as a main service. In certain cases, README files are not ' .
-            'desirable. In clients with GAPICs, the `Gapic` and `resources` folders generally should not ' .
-            'include READMEs, because the Gapic client is documented in the parent class.' .
+            'README functions as a main service. ' .
             PHP_EOL
         ));
 

@@ -29,6 +29,7 @@ class TableOfContents
 {
     const SUGGESTION_TEXT = ' (leave blank to select this option)';
     const TOC_PATH = 'docs/contents';
+    const SKIP_TEXT = 'skip directory';
 
     use PathTrait;
     use QuestionTrait;
@@ -81,23 +82,10 @@ class TableOfContents
 
     public function run($name)
     {
-        $toc = $this->buildToc($this->path, false, true);
+        $toc = $this->buildTopLevelToc($this->path);
         $this->writeToc($name, $toc);
 
         $this->addToIncludes($name);
-    }
-
-    private function directoryHasPhpFile(array $choices)
-    {
-        $res = false;
-        foreach ($choices as $choice) {
-            $res = strpos($choice, '.php') !== false;
-            if ($res) {
-                return $res;
-            }
-        }
-
-        return $res;
     }
 
     private function stripDirectories($path, array $files)
@@ -111,7 +99,7 @@ class TableOfContents
         return array_values($files);
     }
 
-    private function buildToc($path, $main = false, $isTopLevel = false)
+    private function buildToc($path)
     {
         $this->output->writeln($this->formatter->formatSection(
             'Table of Contents',
@@ -120,111 +108,150 @@ class TableOfContents
 
         $files = $this->scanDirectory($path);
 
-        if (!$main) {
-            $skipText = 'skip directory';
+        if (strpos($path, 'Gapic') !== false || strpos($path, 'resources') !== false) {
+            return [];
+        }
 
-            if (strpos($path, 'Gapic') !== false || strpos($path, 'resources') !== false) {
-                return;
-            }
+        $choices = $this->stripDirectories($path, array_values($files));
 
-            $choices = $this->stripDirectories($path, array_values($files));
-            $choices[] = $skipText;
-
-            $default = null;
-            if ($this->pathIsGapic($path) || !$this->directoryHasPhpFile($choices)) {
-                foreach ($choices as $index => &$choice) {
-                    if ($choice === 'README.md') {
-                        $default = $index;
-                        $choice = 'README.md' . self::SUGGESTION_TEXT;
-                    }
+        if (count($choices) === 0) {
+            // No choices, so instead skip to iterating over subdirs
+            $this->output->writeln($this->formatter->formatSection(
+                'Table of Contents',
+                sprintf('Eliding directory with no files:`%s`', realpath($path)) . PHP_EOL
+            ));
+            $tocs = [];
+            foreach ($files as $file) {
+                if (is_dir($path .'/'. $file)) {
+                    $tocs = array_merge($tocs, $this->buildToc($path .'/'. $file));
                 }
             }
+            return $tocs;
+        }
 
-            $setDefault = function ($answer) use ($default) {
-                if (empty($answer) && $answer !== 0 && $answer !== '0' && $default !== null) {
-                    return (string) $default;
-                }
+        $q = $this->buildMainServiceQuestion($choices);
 
-                return $answer;
-            };
+        $mainSelection = $this->askQuestion($q);
+        if ($mainSelection === self::SKIP_TEXT) {
+            return [];
+        }
 
-            $validator = function ($answer) use ($choices) {
-                if (!array_key_exists((int)$answer, $choices)) {
-                    throw new \RuntimeException('Invalid selection.');
-                }
+        $entries = $this->buildSingleTocEntry(new \SplFileInfo($mainSelection), $path, true);
+        if (count($entries) !== 1) {
+            throw new \RuntimeException("Unexpected number of entries for main: $mainSelection");
+        }
+        $main = $entries[0];
 
-                $answer = $choices[$answer];
-                if ($answer === 'README.md' . self::SUGGESTION_TEXT) {
-                    $answer = 'README.md';
-                }
+        $services = $this->buildServices($path, $files, [$mainSelection, 'README.md']);
 
-                return $answer;
-            };
+        $parent = $this->calculateParent($main['type']);
+        $pattern = $parent .'/\w{1,}';
 
-            $q = $this->choice('Please select the main service.', $choices)
-                ->setValidator($this->validators([
-                    $setDefault,
-                    $this->preventEmpty(),
-                    $validator,
-                ]));
+        $main['nav'] = $services;
+        $main['patterns'] = [$pattern];
+        return [$main];
+    }
 
-            $main = $this->askQuestion($q);
-            if ($main === $skipText) {
-                return;
-            }
+    private function buildTopLevelToc($path)
+    {
+        $this->output->writeln($this->formatter->formatSection(
+            'Table of Contents',
+            sprintf('Working in directory `%s`', realpath($path)) . PHP_EOL
+        ));
 
-            $i = array_search($main, $files);
+        $files = $this->scanDirectory($path);
+        $choices = $this->stripDirectories($path, array_values($files));
+        $q = $this->buildMainServiceQuestion($choices);
+        $mainSelection = $this->askQuestion($q);
+        if ($mainSelection === self::SKIP_TEXT) {
+            return [];
+        }
+
+        $entries = $this->buildSingleTocEntry(new \SplFileInfo($mainSelection), $path, true);
+        if (count($entries) !== 1) {
+            throw new \RuntimeException("Unexpected number of entries for main: $mainSelection");
+        }
+        $main = $entries[0];
+
+        $services = [];
+        $services[] = [
+            'title' => 'Overview',
+            'type' => $main['type']
+        ];
+
+        $services = array_merge($services, $this->buildServices($path, $files, [$mainSelection, 'README.md']));
+
+        $parent = $this->calculateParent($services[0]['type']);
+        $pattern = $parent .'/\w{1,}';
+
+        $main['defaultService'] = $main['type'];
+        $main['services'] = $services;
+        $main['pattern'] = $pattern;
+        unset($main['type']);
+
+        return $main;
+    }
+
+    private function buildServices($path, $files, $exclude = [])
+    {
+        foreach ($exclude as $ex) {
+            $i = array_search($ex, $files);
             unset($files[$i]);
         }
 
         $services = [];
-        $main = $this->buildSingleTocEntry(new \SplFileInfo($main), $path, true);
-
-        if ($isTopLevel) {
-            $services[] = [
-                'title' => 'Overview',
-                'type' => $main['type']
-            ];
-
-            unset($main['type']);
-        }
-
-        $i = array_search('README.md', $files);
-        unset($files[$i]);
-
-        $i = array_search($main, $files);
-        unset($files[$i]);
-
         foreach ($files as $file) {
-            $service = $this->buildSingleTocEntry(new \SplFileInfo($file), $path);
-            if (!empty($service)) {
-                $services[] = $service;
+            $services = array_merge($services, $this->buildSingleTocEntry(new \SplFileInfo($file), $path));
+        }
+        return $services;
+    }
+
+    private function calculateParent($child)
+    {
+        $parts = explode('/', $child);
+        array_pop($parts);
+        return implode('/', $parts);
+    }
+
+    private function buildMainServiceQuestion($choices)
+    {
+        $choices[] = self::SKIP_TEXT;
+
+        $default = null;
+        foreach ($choices as $index => &$choice) {
+            if ($choice === 'README.md') {
+                $default = $index;
+                $choice = 'README.md' . self::SUGGESTION_TEXT;
             }
         }
 
-        if ($isTopLevel) {
-            $parent = explode('/', $services[0]['type']);
-        } else {
-            $parent = explode('/', $main['type']);
-        }
+        $setDefault = function ($answer) use ($default) {
+            if (empty($answer) && $answer !== 0 && $answer !== '0' && $default !== null) {
+                return (string) $default;
+            }
 
-        array_pop($parent);
-        $parent = implode('/', $parent);
+            return $answer;
+        };
 
-        if ($isTopLevel) {
-            $main['services'] = $services;
-        } else {
-            $main['nav'] = $services;
-        }
+        $validator = function ($answer) use ($choices) {
+            if (!array_key_exists((int)$answer, $choices)) {
+                throw new \RuntimeException('Invalid selection.');
+            }
 
-        $pattern = $parent .'/\w{1,}';
-        if ($isTopLevel) {
-            $main['pattern'] = $pattern;
-        } else {
-            $main['patterns'] = [$pattern];
-        }
+            $answer = $choices[$answer];
+            if ($answer === 'README.md' . self::SUGGESTION_TEXT) {
+                $answer = 'README.md';
+            }
 
-        return $main;
+            return $answer;
+        };
+
+        return $this->choice('Please select the main service.', $choices)
+            ->setValidator($this->validators([
+                $setDefault,
+                $this->preventEmpty(),
+                $validator,
+            ]));
     }
 
     private function buildSingleTocEntry(\SplFileInfo $file, $path, $isMain = false)
@@ -235,7 +262,7 @@ class TableOfContents
 
         $file = new \SplFileInfo($file);
         if (!in_array($file->getExtension(), ['php', 'md'])) {
-            return;
+            return [];
         }
 
         $file = trim($file, '/');
@@ -244,7 +271,7 @@ class TableOfContents
             $q = $this->confirm(sprintf('Should %s be included in the table of contents?', $file));
             $include = $this->askQuestion($q);
             if (!$include) {
-                return;
+                return [];
             }
         }
 
@@ -264,11 +291,22 @@ class TableOfContents
         }
 
         $title = $this->ask('Enter the service title', $suggestedTitle);
+        $type = $this->removeSrcDir(strtolower($base .'/'. $withoutExt));
 
-        return [
+        return [[
             'title' => $title,
-            'type' => strtolower($base .'/'. $withoutExt)
-        ];
+            'type' => $type,
+        ]];
+    }
+
+    private function removeSrcDir($type)
+    {
+        $parts = explode('/', $type);
+        $i = array_search('src', $parts);
+        if ($i !== false) {
+            unset($parts[$i]);
+        }
+        return implode('/', $parts);
     }
 
     private function writeToc($name, array $toc)
