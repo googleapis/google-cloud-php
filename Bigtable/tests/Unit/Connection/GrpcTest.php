@@ -79,7 +79,7 @@ class GrpcTest extends TestCase
         $clusterArgs = [
             'location' => self::LOCATION,
             'serveNodes' => 3,
-            'default_storage_type' => 0,
+            'defaultStorageType' => 0,
             'state'=>0
         ];
         $cluster = $serializer->decodeMessage(
@@ -111,8 +111,7 @@ class GrpcTest extends TestCase
                     'clusters' => [
                         'test-cluster3' => [
                             'location' => self::LOCATION,
-                            'serveNodes' => 3,
-                            'default_storage_type'=> 1
+                            'serveNodes' => 3
                         ]
                     ]
                 ],
