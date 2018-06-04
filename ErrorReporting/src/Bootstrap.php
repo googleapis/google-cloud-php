@@ -130,6 +130,15 @@ class Bootstrap
             $service = self::$psrLogger->getMetadataProvider()->serviceId();
             $version = self::$psrLogger->getMetadataProvider()->versionId();
             self::$psrLogger->error($message, [
+                'context' => [
+                    'reportLocation' => [
+                        'filePath' => $ex->getFile(),
+                        'lineNumber' => $ex->getLine(),
+                        'functionName' => isset($ex->getTrace()[0]['function'])
+                            ? $ex->getTrace()[0]['function']
+                            : 'none'
+                    ]
+                ],
                 'serviceContext' => [
                     'service' => $service,
                     'version' => $version,

@@ -114,6 +114,13 @@ class BootstrapTest extends TestCase
     ) {
         $expectedMessage = sprintf('PHP Notice: %s', (string)$exception);
         $expectedContext = [
+            'context' => [
+                'reportLocation' => [
+                    'filePath' => $exception->getFile(),
+                    'lineNumber' => $exception->getLine(),
+                    'functionName' => $exception->getTrace()[0]['function']
+                ]
+            ],
             'serviceContext' => [
                 'service' => '',
                 'version' => ''
