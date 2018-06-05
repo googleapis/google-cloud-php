@@ -14,7 +14,7 @@ regenerate_dlp_v2
 regenerate_errorreporting_v1beta1
 regenerate_firestore_v1beta1
 regenerate_iot_v1
-regenerate_language_v1
+#regenerate_language_v1
 regenerate_language_v1beta2
 regenerate_logging_v2
 regenerate_monitoring_v3
@@ -25,9 +25,9 @@ regenerate_spanner_v1
 regenerate_speech_v1
 regenerate_speech_v1beta1
 regenerate_speech_v1p1beta1
-regenerate_tasks_v2beta2
+#regenerate_tasks_v2beta2
 regenerate_trace_v2
-regenerate_tts_v1
+#regenerate_tts_v1
 regenerate_video_v1
 regenerate_video_v1beta2
 regenerate_vision_v1

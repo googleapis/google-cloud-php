@@ -6,7 +6,7 @@ function setup_environment() {
   GOOGLE_CLOUD_PHP_ROOT_DIR=$(pwd)
 
   ARTMAN_OUTPUT_DIR="$GOOGLE_CLOUD_PHP_ROOT_DIR/artman-output"
-  ARTMAN_IMAGE="googleapis/artman:latest"
+  ARTMAN_IMAGE="googleapis/artman:0.11.0"
   GOOGLEAPIS_DIR="$GOOGLE_CLOUD_PHP_ROOT_DIR/googleapis"
 
   if [ ! -d "$GOOGLEAPIS_DIR" ]; then
