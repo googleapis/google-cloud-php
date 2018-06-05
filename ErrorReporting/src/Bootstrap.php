@@ -134,9 +134,8 @@ class Bootstrap
                     'reportLocation' => [
                         'filePath' => $ex->getFile(),
                         'lineNumber' => $ex->getLine(),
-                        'functionName' => isset($ex->getTrace()[0]['function'])
-                            ? $ex->getTrace()[0]['function']
-                            : 'none'
+                        'functionName' =>
+                            self::getFunctionNameForReport($ex->getTrace()),
                     ]
                 ],
                 'serviceContext' => [
@@ -177,7 +176,8 @@ class Bootstrap
                 'reportLocation' => [
                     'filePath' => $file,
                     'lineNumber' => $line,
-                    'functionName' => 'unknown'
+                    'functionName' =>
+                        self::getFunctionNameForReport(null),
                 ]
             ],
             'serviceContext' => [
@@ -222,7 +222,8 @@ class Bootstrap
                             'reportLocation' => [
                                 'filePath' => $err['file'],
                                 'lineNumber' => $err['line'],
-                                'functionName' => 'unknown'
+                                'functionName' =>
+                                    self::getFunctionNameForReport(null),
                             ]
                         ],
                         'serviceContext' => [
@@ -240,5 +241,23 @@ class Bootstrap
                     break;
             }
         }
+    }
+
+    public static function getFunctionNameForReport($trace = [])
+    {
+        if (null === $trace) {
+            return '<unknown function>';
+        }
+        if (empty($trace[0]['function'])) {
+            return '<none>';
+        }
+        $functionName = [$trace[0]['function']];
+        if (isset($trace[0]['type'])) {
+            $functionName[] = $trace[0]['type'];
+        }
+        if (isset($trace[0]['class'])) {
+            $functionName[] = $trace[0]['class'];
+        }
+        return implode('', array_reverse($functionName));
     }
 }

@@ -118,7 +118,9 @@ class BootstrapTest extends TestCase
                 'reportLocation' => [
                     'filePath' => $exception->getFile(),
                     'lineNumber' => $exception->getLine(),
-                    'functionName' => $exception->getTrace()[0]['function']
+                    'functionName' => Bootstrap::getFunctionNameForReport(
+                        $exception->getTrace()
+                    )
                 ]
             ],
             'serviceContext' => [
@@ -185,7 +187,7 @@ class BootstrapTest extends TestCase
                 'reportLocation' => [
                     'filePath' => $error['file'],
                     'lineNumber' => $error['line'],
-                    'functionName' => 'unknown'
+                    'functionName' => '<unknown function>'
                 ]
             ],
             'serviceContext' => [
@@ -278,7 +280,7 @@ class BootstrapTest extends TestCase
                 'reportLocation' => [
                     'filePath' => $error['file'],
                     'lineNumber' => $error['line'],
-                    'functionName' => 'unknown'
+                    'functionName' => '<unknown function>'
                 ]
             ],
             'serviceContext' => [
