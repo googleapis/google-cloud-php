@@ -248,6 +248,13 @@ function regenerate_dlp_v2() {
   API_METADATA_NAMESPACE_DIR="GPBMetadata/Google/Privacy/Dlp"
 
   regenerate_api "$API_ARTMAN_YAML" "$API_ARTMAN_OUTPUT_DIR" "$API_GCP_FOLDER_NAME" "$API_NAMESPACE_DIR" "$API_METADATA_NAMESPACE_DIR"
+
+  # Post-process to insert missing documentation.
+  COMMENTS_TO_INSERT='\     \*          The configuration details for an inspect job. Only one of $inspectJob and $riskJob\n     \*          may be provided.'
+  sed -i "/@type InspectJobConfig \$inspectJob/a $COMMENTS_TO_INSERT" Dlp/src/V2/Gapic/DlpServiceGapicClient.php
+
+  COMMENTS_TO_INSERT='\     \*          The configuration details for a risk analysis job. Only one of $inspectJob and $riskJob\n     \*          may be provided.'
+  sed -i "/@type RiskAnalysisJobConfig \$riskJob/a $COMMENTS_TO_INSERT" Dlp/src/V2/Gapic/DlpServiceGapicClient.php
 }
 
 function regenerate_errorreporting_v1beta1() {
@@ -348,6 +355,10 @@ function regenerate_redis_v1beta1() {
   API_METADATA_NAMESPACE_DIR=""
 
   regenerate_api "$API_ARTMAN_YAML" "$API_ARTMAN_OUTPUT_DIR" "$API_GCP_FOLDER_NAME" "$API_NAMESPACE_DIR" "$API_METADATA_NAMESPACE_DIR"
+
+  # Post-processing to remove the metadataReturnType setting from descriptor config.
+  # This is required because the returned metadata type is not available.
+  sed -i "/[[:blank:]]*'metadataReturnType' => '\\\\Google\\\\Protobuf\\\\Any',/d" $GOOGLE_CLOUD_PHP_ROOT_DIR/Redis/src/V1beta1/resources/cloud_redis_descriptor_config.php
 }
 
 function regenerate_spanner_v1() {
