@@ -118,9 +118,7 @@ class BootstrapTest extends TestCase
                 'reportLocation' => [
                     'filePath' => $exception->getFile(),
                     'lineNumber' => $exception->getLine(),
-                    'functionName' => Bootstrap::getFunctionNameForReport(
-                        $exception->getTrace()
-                    )
+                    'functionName' => 'Google\Cloud\ErrorReporting\Tests\Unit\BootstrapTest->exceptionProvider',
                 ]
             ],
             'serviceContext' => [

@@ -177,7 +177,7 @@ class Bootstrap
                     'filePath' => $file,
                     'lineNumber' => $line,
                     'functionName' =>
-                        self::getFunctionNameForReport(null),
+                        self::getFunctionNameForReport(),
                 ]
             ],
             'serviceContext' => [
@@ -223,7 +223,7 @@ class Bootstrap
                                 'filePath' => $err['file'],
                                 'lineNumber' => $err['line'],
                                 'functionName' =>
-                                    self::getFunctionNameForReport(null),
+                                    self::getFunctionNameForReport(),
                             ]
                         ],
                         'serviceContext' => [
@@ -243,7 +243,14 @@ class Bootstrap
         }
     }
 
-    public static function getFunctionNameForReport($trace = [])
+    /**
+     * Format the function name from a stack trace. This could be a global
+     * function (function_name), a class function (Class->function), or a static
+     * function (Class::function).
+     *
+     * @param array $trace The stack trace returned from Exception::getTrace()
+     */
+    private static function getFunctionNameForReport(array $trace = null)
     {
         if (null === $trace) {
             return '<unknown function>';
