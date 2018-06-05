@@ -88,7 +88,7 @@ class AddComponent extends GoogleCloudCommand
             'Creating .gitattributes file by copying from template.'
         ));
 
-        (new GitAttributes($this->cliBasePath, $info['path']))->run();
+        (new GitAttributes($this->rootPath, $info['path']))->run();
 
         $output->writeln($formatter->formatSection(
             'Readme',
@@ -161,6 +161,11 @@ class AddComponent extends GoogleCloudCommand
         $output->writeln('');
         $output->writeln('');
         $output->writeln('Success!');
+        $output->writeln(
+            "All done! Before committing, be sure to complete the following manual steps:\n"
+            . "1. Check the PSR-4 Namespace value for GPBMetadata in /path/to/Folder/composer.json.\n"
+            . "2. Add a code sample to /path/to/Folder/README.md"
+        );
     }
 
     protected function questionHelper()

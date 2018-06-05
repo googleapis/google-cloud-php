@@ -27,7 +27,7 @@ class GitAttributes
     /**
      * @var string
      */
-    private $cliBasePath;
+    private $rootPath;
 
     /**
      * @var string
@@ -35,15 +35,15 @@ class GitAttributes
     private $path;
 
 
-    public function __construct($cliBasePath, $path)
+    public function __construct($rootPath, $path)
     {
-        $this->cliBasePath = $cliBasePath;
+        $this->rootPath = $rootPath;
         $this->path = $path;
     }
 
     public function run()
     {
-        $source = $this->cliBasePath . '/src/AddComponent/templates/' . self::ATTRIBUTES_TPL;
+        $source = $this->rootPath . '/dev/src/AddComponent/templates/' . self::ATTRIBUTES_TPL;
         $dest = $this->path .'/.gitattributes';
 
         copy($source, $dest);

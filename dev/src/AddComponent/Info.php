@@ -95,7 +95,7 @@ class Info
             'Please enter the directory name, relative to the google-cloud-php root, where the component is found. Be sure to verify correct casing.',
             $default
         )->setValidator(function ($answer) use ($base) {
-            $path = realpath($relativePath);
+            $path = realpath($base . '/' . $answer);
 
             if (!is_dir($path)) {
                 throw new \RuntimeException(
