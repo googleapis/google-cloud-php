@@ -1,10 +1,10 @@
 {
     "title": "Logging",
     "pattern": "logging\/\\w{1,}",
-    "defaultService": "logging/overview",
+    "defaultService": "logging/readme",
     "services": [{
         "title": "Overview",
-        "type": "logging/overview"
+        "type": "logging/readme"
     },{
         "title": "LoggingClient",
         "type": "logging/loggingclient"

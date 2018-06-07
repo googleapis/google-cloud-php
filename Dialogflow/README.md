@@ -10,7 +10,7 @@
 support requests, bug reports, or development contributions should be directed to
 that project.
 
-Dialogflow Enterprise Edition is the enterprise tier of Dialogflow which is anatural language understanding platform
+Dialogflow Enterprise Edition is the enterprise tier of Dialogflow which is a natural language understanding platform
 that makes it easy for you to design and integrate a conversational user interface into your mobile app, web application,
 device, bot, and so on. Using Dialogflow you can provide users new and engaging ways to interact with your product using
 both voice recognition and text input.

@@ -834,10 +834,11 @@ class CodeParser implements ParserInterface
 
     private function splitDescription($description)
     {
-        $parts = explode('Example:', $description);
         $examples = null;
+        $parts = [];
 
-        if (strpos($description, 'Example:') !== false) {
+        if (strpos($description, 'Example:' . PHP_EOL . '```') !== false) {
+            $parts = explode('Example:' . PHP_EOL, $description);
             $examples = $parts[1];
         }
 

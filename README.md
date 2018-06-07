@@ -737,7 +737,7 @@ try {
 [Google Stackdriver Error Reporting](https://github.com/GoogleCloudPlatform/google-cloud-php-errorreporting) can be installed separately by requiring the [`google/cloud-errorreporting`](https://packagist.org/packages/google/cloud-error-reporting) composer package:
 
 ```
-$ composer require google/cloud-errorreporting
+$ composer require google/cloud-error-reporting
 ```
 
 ## Google Stackdriver Monitoring (Beta)

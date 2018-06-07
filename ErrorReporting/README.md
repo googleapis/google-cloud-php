@@ -19,7 +19,7 @@ To begin, install the preferred dependency manager for PHP, [Composer](https://g
 Now to install just this component:
 
 ```sh
-$ composer require google/cloud-errorreporting
+$ composer require google/cloud-error-reporting
 ```
 
 Or to install the entire suite of components at once:

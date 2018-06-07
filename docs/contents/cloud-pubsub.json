@@ -1,7 +1,7 @@
 {
     "title": "Pub/Sub",
     "pattern": "pubsub\/\\w{1,}",
-    "defaultService": "pubsub/overview",
+    "defaultService": "pubsub/readme",
     "services": [{
         "title": "Overview",
         "type": "pubsub/readme"
