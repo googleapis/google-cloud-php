@@ -22,10 +22,9 @@ function pushDocs () {
   fi
 }
 
-if [ "${TRAVIS_BRANCH}" == "master" ] && [ "${TRAVIS_PULL_REQUEST}" == "false" ]; then
-  pushDocs $TRAVIS_BRANCH
+if [ -z "$1" ]; then
+    echo "Provide a target"
+    exit 1;
 fi
 
-if [[ ! -z $TRAVIS_TAG ]]; then
-  pushDocs $TRAVIS_TAG
-fi
+pushDocs $1
