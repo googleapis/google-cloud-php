@@ -56,14 +56,13 @@ trait GapicClientTrait
     use ValidationTrait;
     use GrpcSupportTrait;
 
-    /** @access private */
-    protected $transport;
+    private $transport;
+    private $credentialsWrapper;
 
     private static $gapicVersion;
     private $retrySettings;
     private $serviceName;
     private $agentHeaderDescriptor;
-    private $credentialsWrapper;
     private $descriptors;
     private $transportCallMethods = [
         Call::UNARY_CALL => 'startUnaryCall',
@@ -81,6 +80,30 @@ trait GapicClientTrait
     public function close()
     {
         $this->transport->close();
+    }
+
+    /**
+     * Get the transport for the client. This method is protected to support
+     * use by customized clients.
+     *
+     * @access private
+     * @return TransportInterface
+     */
+    protected function getTransport()
+    {
+        return $this->transport;
+    }
+
+    /**
+     * Get the credentials for the client. This method is protected to support
+     * use by customized clients.
+     *
+     * @access private
+     * @return CredentialsWrapper
+     */
+    protected function getCredentialsWrapper()
+    {
+        return $this->credentialsWrapper;
     }
 
     private static function getGapicVersion(array $options)

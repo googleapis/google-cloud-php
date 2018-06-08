@@ -635,6 +635,24 @@ class GapicClientTraitTest extends TestCase
             ],
         ];
     }
+
+    public function testGetTransport()
+    {
+        $transport = $this->getMock(TransportInterface::class);
+        $client = new GapicClientTraitStub();
+        $client->set('transport', $transport);
+        $this->assertEquals($transport, $client->call('getTransport'));
+    }
+
+    public function testGetCredentialsWrapper()
+    {
+        $credentialsWrapper = $this->getMockBuilder(CredentialsWrapper::class)
+            ->disableOriginalConstructor()
+            ->getMock();
+        $client = new GapicClientTraitStub();
+        $client->set('credentialsWrapper', $credentialsWrapper);
+        $this->assertEquals($credentialsWrapper, $client->call('getCredentialsWrapper'));
+    }
 }
 
 class GapicClientTraitStub
