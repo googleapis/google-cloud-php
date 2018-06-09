@@ -23,7 +23,7 @@ use Google\Cloud\Core\Exception\GoogleException;
 use Google\Cloud\Core\Int64;
 use Google\Cloud\Core\LongRunning\LongRunningOperation;
 use Google\Cloud\Core\LongRunning\LROTrait;
-use Google\Cloud\Bigtable\Admin\V2\BigtableInstanceAdminClient AS InstanceAdminClient;
+use Google\Cloud\Bigtable\Admin\V2\BigtableInstanceAdminClient as InstanceAdminClient;
 use Google\Cloud\Bigtable\Connection\Grpc;
 use Google\Cloud\Bigtable\Connection\LongRunningConnection;
 

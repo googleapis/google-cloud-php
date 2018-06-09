@@ -18,7 +18,7 @@
 namespace Google\Cloud\Bigtable;
 
 use Google\ApiCore\ValidationException;
-use Google\Cloud\Bigtable\Admin\V2\BigtableInstanceAdminClient AS InstanceAdminClient;
+use Google\Cloud\Bigtable\Admin\V2\BigtableInstanceAdminClient as InstanceAdminClient;
 use Google\Cloud\Bigtable\Admin\V2\Instance_Type;
 use Google\Cloud\Bigtable\Connection\ConnectionInterface;
 use Google\Cloud\Core\Exception\NotFoundException;
