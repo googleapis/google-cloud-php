@@ -49,18 +49,18 @@ class Info
     /**
      * @var string
      */
-    private $cliBasePath;
+    private $rootPath;
 
     public function __construct(
         QuestionHelper $questionHelper,
         InputInterface $input,
         OutputInterface $output,
-        $cliBasePath
+        $rootPath
     ) {
         $this->questionHelper = $questionHelper;
         $this->input = $input;
         $this->output = $output;
-        $this->cliBasePath = $cliBasePath;
+        $this->rootPath = $rootPath;
     }
 
     public function run()
@@ -90,12 +90,12 @@ class Info
         );
 
         $default = str_replace(' ', '', ucwords(str_replace('-', ' ', $info['shortName'])));
-        $base = $this->cliBasePath . '/../src/';
+        $base = $this->rootPath;
         $q = $this->question(
-            'Please enter the directory name, relative to `src/`, where the component is found. Be sure to verify correct casing.',
+            'Please enter the directory name, relative to the google-cloud-php root, where the component is found. Be sure to verify correct casing.',
             $default
         )->setValidator(function ($answer) use ($base) {
-            $path = realpath($base . $answer);
+            $path = realpath($base . '/' . $answer);
 
             if (!is_dir($path)) {
                 throw new \RuntimeException(

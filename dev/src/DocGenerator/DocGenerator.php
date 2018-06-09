@@ -67,7 +67,7 @@ class DocGenerator
     {
         $fileReflectorRegister = new ReflectorRegister();
 
-        $rootPath = realpath(dirname($this->executionPath));
+        $rootPath = $this->executionPath;
         foreach ($this->files as $file) {
             $currentFileArr = $this->isComponent
                 ? explode("/$basePath/", $file)
@@ -83,7 +83,7 @@ class DocGenerator
                 $parser = new CodeParser(
                     $file,
                     $fileReflectorRegister,
-                    dirname($this->executionPath),
+                    $rootPath,
                     $this->componentId,
                     $this->manifestPath,
                     $this->release,

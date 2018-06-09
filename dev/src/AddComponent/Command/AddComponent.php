@@ -27,32 +27,19 @@ use Google\Cloud\Dev\AddComponent\PullRequestTemplate;
 use Google\Cloud\Dev\AddComponent\QuestionTrait;
 use Google\Cloud\Dev\AddComponent\Readmes;
 use Google\Cloud\Dev\AddComponent\TableOfContents;
-use Symfony\Component\Console\Command\Command;
+use Google\Cloud\Dev\Command\GoogleCloudCommand;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
-use Symfony\Component\Console\Question\ChoiceQuestion;
-use Symfony\Component\Console\Question\ConfirmationQuestion;
-use Symfony\Component\Console\Question\Question;
 
 /**
  * Add a Component
  */
-class AddComponent extends Command
+class AddComponent extends GoogleCloudCommand
 {
     use QuestionTrait;
 
-    private $cliBasePath;
-    private $templatesPath;
-
     private $input;
     private $output;
-
-    public function __construct($cliBasePath)
-    {
-        $this->cliBasePath = $cliBasePath;
-
-        parent::__construct();
-    }
 
     protected function configure()
     {
@@ -72,7 +59,7 @@ class AddComponent extends Command
             $this->getHelper('question'),
             $input,
             $output,
-            $this->cliBasePath
+            $this->rootPath
         ))->run();
 
         $output->writeln($formatter->formatSection(
@@ -80,37 +67,35 @@ class AddComponent extends Command
             'Creating LICENSE file by copying from repository base.'
         ));
 
-        (new License($this->cliBasePath, $info['path']))->run();
+        (new License($this->rootPath, $info['path']))->run();
 
         $output->writeln($formatter->formatSection(
             'Pull Request Template',
             'Creating .github/pull_request_template.md file by copying from template.'
         ));
 
-        (new PullRequestTemplate($this->cliBasePath, $info['path']))->run();
+        (new PullRequestTemplate($this->rootPath, $info['path']))->run();
 
         $output->writeln($formatter->formatSection(
             'Contributing Guide',
             'Creating CONTRIBUTING.md file by copying from template.'
         ));
 
-        (new Contributing($this->cliBasePath, $info['path']))->run();
+        (new Contributing($this->rootPath, $info['path']))->run();
 
         $output->writeln($formatter->formatSection(
             'Git Attributes',
             'Creating .gitattributes file by copying from template.'
         ));
 
-        (new GitAttributes($this->cliBasePath, $info['path']))->run();
+        (new GitAttributes($this->rootPath, $info['path']))->run();
 
         $output->writeln($formatter->formatSection(
             'Readme',
-            'Every directory which contains documented classes should contain a README file. ' .
+            'README files will be created in the root, and in any "V*" folders. ' .
             'README files are populated using information you already supplied. ' .
             'When a directory does not contain a single entry point, or a main client class, ' .
-            'README functions as a main service. In certain cases, README files are not ' .
-            'desirable. In clients with GAPICs, the `Gapic` and `resources` folders generally should not ' .
-            'include READMEs, because the Gapic client is documented in the parent class.' .
+            'README functions as a main service. ' .
             PHP_EOL
         ));
 
@@ -118,7 +103,7 @@ class AddComponent extends Command
             $this->getHelper('question'),
             $input,
             $output,
-            $this->cliBasePath,
+            $this->rootPath,
             $info
         );
         $readme->run();
@@ -137,7 +122,7 @@ class AddComponent extends Command
             $this->getHelper('question'),
             $input,
             $output,
-            $this->cliBasePath,
+            $this->rootPath,
             $info['path']
         ))->run($info['name']);
 
@@ -156,7 +141,7 @@ class AddComponent extends Command
             $this->getHelper('question'),
             $input,
             $output,
-            $this->cliBasePath,
+            $this->rootPath,
             $info
         ))->run();
 
@@ -169,13 +154,18 @@ class AddComponent extends Command
             $this->getHelper('question'),
             $input,
             $output,
-            $this->cliBasePath,
+            $this->rootPath,
             $info
         ))->run();
 
         $output->writeln('');
         $output->writeln('');
         $output->writeln('Success!');
+        $output->writeln(
+            "All done! Before committing, be sure to complete the following manual steps:\n"
+            . "1. Check the PSR-4 Namespace value for GPBMetadata in /path/to/Folder/composer.json.\n"
+            . "2. Add a code sample to /path/to/Folder/README.md"
+        );
     }
 
     protected function questionHelper()

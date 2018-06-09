@@ -25,7 +25,7 @@ class PullRequestTemplate
     /**
      * @var string
      */
-    private $cliBasePath;
+    private $rootPath;
 
     /**
      * @var string
@@ -33,15 +33,15 @@ class PullRequestTemplate
     private $path;
 
 
-    public function __construct($cliBasePath, $path)
+    public function __construct($rootPath, $path)
     {
-        $this->cliBasePath = $cliBasePath;
+        $this->rootPath = $rootPath;
         $this->path = $path;
     }
 
     public function run()
     {
-        $source = $this->cliBasePath . '/src/AddComponent/templates/template-pull_request_template.md.txt';
+        $source = $this->rootPath . '/dev/src/AddComponent/templates/template-pull_request_template.md.txt';
         $dir = $this->path .'/.github';
         $dest = $dir . '/pull_request_template.md';
         @mkdir($dir);

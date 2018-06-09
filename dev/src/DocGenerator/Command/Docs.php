@@ -18,6 +18,7 @@
 namespace Google\Cloud\Dev\DocGenerator\Command;
 
 use Google\Cloud\Core\Testing\FileListFilterIterator;
+use Google\Cloud\Dev\Command\GoogleCloudCommand;
 use Google\Cloud\Dev\DocGenerator\DocGenerator;
 use Google\Cloud\Dev\DocGenerator\GuideGenerator;
 use Google\Cloud\Dev\DocGenerator\RegexFileFilter;
@@ -34,7 +35,7 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 
-class Docs extends Command
+class Docs extends GoogleCloudCommand
 {
     use GetComponentsTrait;
 
@@ -44,8 +45,6 @@ class Docs extends Command
     const OVERVIEW_FILE = 'docs/overview.html';
     const DEFAULT_SOURCE_DIR = '';
 
-    private $cliBasePath;
-
     private $testPaths = [
         'tests/Unit',
         'tests/Snippet',
@@ -54,13 +53,6 @@ class Docs extends Command
         'tests/Perf',
         'tests/conformance-fixtures'
     ];
-
-    public function __construct($cliBasePath)
-    {
-        $this->cliBasePath = realpath($cliBasePath);
-
-        parent::__construct();
-    }
 
     protected function configure()
     {
@@ -80,13 +72,13 @@ class Docs extends Command
         $component = $input->getOption('component');
 
         $paths = [
-            'source' => $this->cliBasePath .'/../'. self::DEFAULT_SOURCE_DIR,
-            'output' => $this->cliBasePath .'/../'. self::DEFAULT_OUTPUT_DIR,
-            'project' => $this->cliBasePath .'/../',
-            'manifest' => $this->cliBasePath .'/../docs/manifest.json',
-            'toc' => $this->cliBasePath .'/../'. self::TOC_SOURCE_DIR,
-            'tocTemplate' => $this->cliBasePath .'/../'. self::TOC_TEMPLATE,
-            'overview' => $this->cliBasePath .'/../'. self::OVERVIEW_FILE
+            'source' => $this->rootPath .'/'. self::DEFAULT_SOURCE_DIR,
+            'output' => $this->rootPath .'/'. self::DEFAULT_OUTPUT_DIR,
+            'project' => $this->rootPath .'/',
+            'manifest' => $this->rootPath .'/docs/manifest.json',
+            'toc' => $this->rootPath .'/'. self::TOC_SOURCE_DIR,
+            'tocTemplate' => $this->rootPath .'/'. self::TOC_TEMPLATE,
+            'overview' => $this->rootPath .'/'. self::OVERVIEW_FILE
         ];
         $commonExcludes = [
             '.github',
@@ -95,7 +87,7 @@ class Docs extends Command
             'bootstrap.php'
         ];
 
-        $components = $this->getComponents(dirname($this->cliBasePath), $paths['source']);
+        $components = $this->getComponents($this->rootPath, $paths['source']);
         $tocTemplate = json_decode(file_get_contents($paths['tocTemplate']), true);
 
         if ($component !== 'google-cloud') {
@@ -189,7 +181,7 @@ class Docs extends Command
             $types,
             $source,
             $outputPath,
-            $this->cliBasePath,
+            $this->rootPath,
             $component['id'],
             $paths['manifest'],
             $release,
@@ -236,7 +228,7 @@ class Docs extends Command
         $directoryIterator = new RecursiveDirectoryIterator($source);
         $iterator = new RecursiveIteratorIterator($directoryIterator);
         $fileList = new FileListFilterIterator(
-            realpath($this->cliBasePath .'/../'),
+            $this->rootPath,
             $iterator,
             $types,
             $this->testPaths,

@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright 2017 Google Inc.
+ * Copyright 2018 Google Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,37 +15,18 @@
  * limitations under the License.
  */
 
-namespace Google\Cloud\Dev\AddComponent;
+namespace Google\Cloud\Dev\Command;
 
-/**
- * Create .gitattributes file.
- */
-class GitAttributes
+use Symfony\Component\Console\Command\Command;
+
+abstract class GoogleCloudCommand extends Command
 {
-    const ATTRIBUTES_TPL = 'template-gitattributes.txt';
+    protected $rootPath;
 
-    /**
-     * @var string
-     */
-    private $rootPath;
-
-    /**
-     * @var string
-     */
-    private $path;
-
-
-    public function __construct($rootPath, $path)
+    public function __construct($rootPath)
     {
         $this->rootPath = $rootPath;
-        $this->path = $path;
-    }
 
-    public function run()
-    {
-        $source = $this->rootPath . '/dev/src/AddComponent/templates/' . self::ATTRIBUTES_TPL;
-        $dest = $this->path .'/.gitattributes';
-
-        copy($source, $dest);
+        parent::__construct();
     }
 }
