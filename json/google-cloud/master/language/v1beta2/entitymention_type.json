@@ -1,0 +1,1 @@
+{"id":"language\/v1beta2\/entitymention_type","type":"","title":"Google\\Cloud\\Language\\V1beta2\\EntityMention_Type","name":"EntityMention_Type","description":"<p>The supported types of mentions.<\/p>\n<p>Protobuf enum <code>Google\\Cloud\\Language\\V1beta2\\EntityMention\\Type<\/code><\/p>","examples":[],"resources":[],"methods":[]}

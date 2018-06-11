@@ -1,0 +1,1 @@
+{"id":"dataproc\/v1\/clusteroperationstatus_state","type":"","title":"Google\\Cloud\\Dataproc\\V1\\ClusterOperationStatus_State","name":"ClusterOperationStatus_State","description":"<p>The operation state.<\/p>\n<p>Protobuf enum <code>Google\\Cloud\\Dataproc\\V1\\ClusterOperationStatus\\State<\/code><\/p>","examples":[],"resources":[],"methods":[]}
