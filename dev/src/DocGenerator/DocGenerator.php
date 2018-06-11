@@ -71,10 +71,14 @@ class DocGenerator
         foreach ($this->files as $file) {
             $currentFileArr = $this->isComponent
                 ? explode("/$basePath/", $file)
-                : explode("$rootPath/", $file);
+                : explode("$rootPath", $file);
 
             if (isset($currentFileArr[1])) {
                 $currentFile = str_replace('src/', '', $currentFileArr[1]);
+            } else {
+                throw new \Exception(
+                    sprintf('Failed to determine currentFile: %s', $file)
+                );
             }
 
             $isPhp = strrpos($file, '.php') == strlen($file) - strlen('.php');
