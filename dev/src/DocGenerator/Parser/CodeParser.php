@@ -712,7 +712,7 @@ class CodeParser implements ParserInterface
         if (substr_compare($type, 'Google\\Cloud', 0, 12) === 0) {
             $ref = $this->getReflectionClass($type);
 
-            $vendorPath = "$this->projectRoot/vendor";
+            $vendorPath = $this->projectRoot . 'vendor';
             if (substr($ref->getFileName(), 0, strlen($vendorPath)) === $vendorPath) {
                 return false;
             }
@@ -793,6 +793,7 @@ class CodeParser implements ParserInterface
 
     private function getComponentComposerFile($fileName)
     {
+        $originalFileName = $fileName;
         $recurse = true;
 
         do {
@@ -819,7 +820,7 @@ class CodeParser implements ParserInterface
 
         throw new \Exception(sprintf(
             'Unable to find composer file for %s',
-            $fileName
+            $originalFileName
         ));
     }
 
