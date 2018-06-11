@@ -112,7 +112,111 @@ class AgentTest extends TestCase
         ]);
     }
 
-    public function testDefaultStackFrameLimit()
+    public function testDefaultMaxStringLength()
+    {
+        $itemMatcher = function ($item) {
+            $this->assertEquals('debuggeeId', $item[0]);
+            $this->assertInstanceOf(Breakpoint::class, $item[1]);
+            $stackframes = $item[1]->stackFrames();
+            $this->assertCount(1, $stackframes);
+            $this->assertEquals(1, count($stackframes[0]->locals()));
+            $variable = $stackframes[0]->locals()[0];
+            $this->assertEquals(500, strlen($variable->info()['value']));
+            return true;
+        };
+        $agent = $this->setupAgent($itemMatcher, []);
+        $locals = [[
+            'name' => 'longString',
+            'value' => str_repeat('a', 10000)
+        ]];
+        $agent->handleSnapshot([
+            'id' => 'snapshot1',
+            'evaluatedExpressions' => [],
+            'stackframes' => [
+                ['filename' => 'file1.php', 'line' => 20, 'locals' => $locals]
+            ]
+        ]);
+    }
+
+    public function testSetsMaxStringLength()
+    {
+        $itemMatcher = function ($item) {
+            $this->assertEquals('debuggeeId', $item[0]);
+            $this->assertInstanceOf(Breakpoint::class, $item[1]);
+            $stackframes = $item[1]->stackFrames();
+            $this->assertCount(1, $stackframes);
+            $this->assertEquals(1, count($stackframes[0]->locals()));
+            $variable = $stackframes[0]->locals()[0];
+            $this->assertEquals(1000, strlen($variable->info()['value']));
+            return true;
+        };
+        $agent = $this->setupAgent($itemMatcher, [
+            'maxValueLength' => 1000
+        ]);
+        $locals = [[
+            'name' => 'longString',
+            'value' => str_repeat('a', 10000)
+        ]];
+        $agent->handleSnapshot([
+            'id' => 'snapshot1',
+            'evaluatedExpressions' => [],
+            'stackframes' => [
+                ['filename' => 'file1.php', 'line' => 20, 'locals' => $locals]
+            ]
+        ]);
+    }
+
+    public function testDefaultMaxPayloadSize()
+    {
+        $itemMatcher = function ($item) {
+            $this->assertEquals('debuggeeId', $item[0]);
+            $this->assertInstanceOf(Breakpoint::class, $item[1]);
+            $stackframes = $item[1]->stackFrames();
+            $this->assertCount(1, $stackframes);
+            $this->assertEquals(245, count($stackframes[0]->locals()));
+            return true;
+        };
+        $agent = $this->setupAgent($itemMatcher, []);
+        $locals = [];
+        for ($i = 0; $i < 1000; $i++) {
+            $locals[] = ['name' => 'var' . $i, 'value' => str_repeat('.', $i)];
+        }
+        $agent->handleSnapshot([
+            'id' => 'snapshot1',
+            'evaluatedExpressions' => [],
+            'stackframes' => [
+                ['filename' => 'file1.php', 'line' => 20, 'locals' => $locals]
+            ]
+        ]);
+    }
+
+    public function testSetsMaxPayloadSize()
+    {
+        $itemMatcher = function ($item) {
+            $this->assertEquals('debuggeeId', $item[0]);
+            $this->assertInstanceOf(Breakpoint::class, $item[1]);
+            $stackframes = $item[1]->stackFrames();
+            $this->assertCount(1, $stackframes);
+            $this->assertEquals(34, count($stackframes[0]->locals()));
+            return true;
+        };
+        $agent = $this->setupAgent($itemMatcher, [
+            'maxPayloadSize' => 1000
+        ]);
+        $locals = [];
+        for ($i = 0; $i < 1000; $i++) {
+            $locals[] = ['name' => 'var' . $i, 'value' => str_repeat('.', $i)];
+        }
+        $agent->handleSnapshot([
+            'id' => 'snapshot1',
+            'evaluatedExpressions' => [],
+            'stackframes' => [
+                ['filename' => 'file1.php', 'line' => 20, 'locals' => $locals]
+            ]
+        ]);
+    }
+
+    private function setupAgent(callable $itemMatcher, array $agentConfig)
     {
         $breakpoints = [
             new Breakpoint(['id' => 'snapshot1'])
@@ -126,131 +230,167 @@ class AgentTest extends TestCase
         )->shouldBeCalled();
         $batchRunner->submitItem(
             'stackdriver-debugger',
-            Argument::that(function ($item) {
-                $this->assertEquals('debuggeeId', $item[0]);
-                $this->assertInstanceOf(Breakpoint::class, $item[1]);
-                $stackframes = $item[1]->stackFrames();
-                $this->assertCount(6, $stackframes);
-                $this->assertCount(1, $stackframes[0]->locals());
-                $this->assertCount(1, $stackframes[1]->locals());
-                $this->assertCount(1, $stackframes[2]->locals());
-                $this->assertCount(1, $stackframes[3]->locals());
-                $this->assertCount(1, $stackframes[4]->locals());
-                $this->assertCount(0, $stackframes[5]->locals());
-                return true;
-            })
+            Argument::that($itemMatcher)
         )->shouldBeCalled();
-        $agent = new Agent([
+        return new Agent([
             'storage' => $this->storage->reveal(),
             'logger' => $this->logger->reveal(),
             'batchRunner' => $batchRunner->reveal()
-        ]);
+        ] + $agentConfig);
+    }
+
+    public function testDefaultMaxMemberDepth()
+    {
+        $itemMatcher = function ($item) {
+            $this->assertEquals('debuggeeId', $item[0]);
+            $this->assertInstanceOf(Breakpoint::class, $item[1]);
+            $stackframes = $item[1]->stackFrames();
+            $this->assertCount(1, $stackframes);
+            $this->assertEquals(1, count($stackframes[0]->locals()));
+
+            $data = $stackframes[0]->locals()[0]->info();
+            $depth = 5;
+            while ($depth > 0) {
+                $this->assertCount(1, $data['members']);
+                $data = $data['members'][0];
+                $depth--;
+            }
+            $this->assertEquals('array (1)', $data['value']);
+            $this->assertArrayNotHasKey('members', $data);
+            return true;
+        };
+        $agent = $this->setupAgent($itemMatcher, []);
+        $locals = [
+            [
+                'name' => 'var',
+                'value' => [
+                    [
+                        [
+                            [
+                                [
+                                    [
+                                        [
+                                            1
+                                        ]
+                                    ]
+                                ]
+                            ]
+                        ]
+                    ]
+                ]
+            ]
+        ];
         $agent->handleSnapshot([
             'id' => 'snapshot1',
             'evaluatedExpressions' => [],
             'stackframes' => [
-                ['filename' => 'file1.php', 'line' => 20, 'locals' => [['name' => 'a', 'value' => 'a']]],
-                ['filename' => 'file2.php', 'line' => 20, 'locals' => [['name' => 'b', 'value' => 'b']]],
-                ['filename' => 'file3.php', 'line' => 20, 'locals' => [['name' => 'c', 'value' => 'c']]],
-                ['filename' => 'file4.php', 'line' => 20, 'locals' => [['name' => 'd', 'value' => 'd']]],
-                ['filename' => 'file5.php', 'line' => 20, 'locals' => [['name' => 'e', 'value' => 'e']]],
-                ['filename' => 'file6.php', 'line' => 20, 'locals' => [['name' => 'f', 'value' => 'f']]],
+                ['filename' => 'file1.php', 'line' => 20, 'locals' => $locals]
             ]
         ]);
     }
 
-    public function testSetStackFrameLimit()
+    public function testSetsMaxMemberDepth()
     {
-        $breakpoints = [
-            new Breakpoint(['id' => 'snapshot1'])
-        ];
-        $this->storage->load()->willReturn(['debuggeeId', $breakpoints])->shouldBeCalled();
-        $batchRunner = $this->prophesize(BatchRunner::class);
-        $batchRunner->registerJob(
-            'stackdriver-debugger',
-            Argument::any(),
-            Argument::type('array')
-        )->shouldBeCalled();
-        $batchRunner->submitItem(
-            'stackdriver-debugger',
-            Argument::that(function ($item) {
-                $this->assertEquals('debuggeeId', $item[0]);
-                $this->assertInstanceOf(Breakpoint::class, $item[1]);
-                $stackframes = $item[1]->stackFrames();
-                $this->assertCount(6, $stackframes);
-                $this->assertCount(1, $stackframes[0]->locals());
-                $this->assertCount(1, $stackframes[1]->locals());
-                $this->assertCount(1, $stackframes[2]->locals());
-                $this->assertCount(0, $stackframes[3]->locals());
-                $this->assertCount(0, $stackframes[4]->locals());
-                $this->assertCount(0, $stackframes[5]->locals());
-                return true;
-            })
-        )->shouldBeCalled();
-        $agent = new Agent([
-            'storage' => $this->storage->reveal(),
-            'logger' => $this->logger->reveal(),
-            'batchRunner' => $batchRunner->reveal(),
-            'maxDepth' => 3
+        $itemMatcher = function ($item) {
+            $this->assertEquals('debuggeeId', $item[0]);
+            $this->assertInstanceOf(Breakpoint::class, $item[1]);
+            $stackframes = $item[1]->stackFrames();
+            $this->assertCount(1, $stackframes);
+            $this->assertEquals(1, count($stackframes[0]->locals()));
+
+            $data = $stackframes[0]->locals()[0]->info();
+            $depth = 3;
+            while ($depth > 0) {
+                $this->assertCount(1, $data['members']);
+                $data = $data['members'][0];
+                $depth--;
+            }
+            $this->assertEquals('array (1)', $data['value']);
+            $this->assertArrayNotHasKey('members', $data);
+            return true;
+        };
+        $agent = $this->setupAgent($itemMatcher, [
+            'maxMemberDepth' => 3
         ]);
+        $locals = [
+            [
+                'name' => 'var',
+                'value' => [
+                    [
+                        [
+                            [
+                                [
+                                    [
+                                        [
+                                            1
+                                        ]
+                                    ]
+                                ]
+                            ]
+                        ]
+                    ]
+                ]
+            ]
+        ];
         $agent->handleSnapshot([
             'id' => 'snapshot1',
             'evaluatedExpressions' => [],
             'stackframes' => [
-                ['filename' => 'file1.php', 'line' => 20, 'locals' => [['name' => 'a', 'value' => 'a']]],
-                ['filename' => 'file2.php', 'line' => 20, 'locals' => [['name' => 'b', 'value' => 'b']]],
-                ['filename' => 'file3.php', 'line' => 20, 'locals' => [['name' => 'c', 'value' => 'c']]],
-                ['filename' => 'file4.php', 'line' => 20, 'locals' => [['name' => 'd', 'value' => 'd']]],
-                ['filename' => 'file5.php', 'line' => 20, 'locals' => [['name' => 'e', 'value' => 'e']]],
-                ['filename' => 'file6.php', 'line' => 20, 'locals' => [['name' => 'f', 'value' => 'f']]],
+                ['filename' => 'file1.php', 'line' => 20, 'locals' => $locals]
             ]
         ]);
     }
 
-    public function testSetNoStackFrameLimit()
+    public function testDefaultMaxMembers()
     {
-        $breakpoints = [
-            new Breakpoint(['id' => 'snapshot1'])
-        ];
-        $this->storage->load()->willReturn(['debuggeeId', $breakpoints])->shouldBeCalled();
-        $batchRunner = $this->prophesize(BatchRunner::class);
-        $batchRunner->registerJob(
-            'stackdriver-debugger',
-            Argument::any(),
-            Argument::type('array')
-        )->shouldBeCalled();
-        $batchRunner->submitItem(
-            'stackdriver-debugger',
-            Argument::that(function ($item) {
-                $this->assertEquals('debuggeeId', $item[0]);
-                $this->assertInstanceOf(Breakpoint::class, $item[1]);
-                $stackframes = $item[1]->stackFrames();
-                $this->assertCount(6, $stackframes);
-                $this->assertCount(1, $stackframes[0]->locals());
-                $this->assertCount(1, $stackframes[1]->locals());
-                $this->assertCount(1, $stackframes[2]->locals());
-                $this->assertCount(1, $stackframes[3]->locals());
-                $this->assertCount(1, $stackframes[4]->locals());
-                $this->assertCount(1, $stackframes[5]->locals());
-                return true;
-            })
-        )->shouldBeCalled();
-        $agent = new Agent([
-            'storage' => $this->storage->reveal(),
-            'logger' => $this->logger->reveal(),
-            'batchRunner' => $batchRunner->reveal(),
-            'maxDepth' => PHP_INT_MAX
-        ]);
+        $itemMatcher = function ($item) {
+            $this->assertEquals('debuggeeId', $item[0]);
+            $this->assertInstanceOf(Breakpoint::class, $item[1]);
+            $stackframes = $item[1]->stackFrames();
+            $this->assertCount(1, $stackframes);
+            $this->assertEquals(1, count($stackframes[0]->locals()));
+            $variable = $stackframes[0]->locals()[0];
+            $this->assertCount(1000, $variable->info()['members']);
+            return true;
+        };
+        $agent = $this->setupAgent($itemMatcher, []);
+        $locals = [[
+            'name' => 'longString',
+            'value' => array_fill(0, 2000, 'a')
+        ]];
         $agent->handleSnapshot([
             'id' => 'snapshot1',
             'evaluatedExpressions' => [],
             'stackframes' => [
-                ['filename' => 'file1.php', 'line' => 20, 'locals' => [['name' => 'a', 'value' => 'a']]],
-                ['filename' => 'file2.php', 'line' => 20, 'locals' => [['name' => 'b', 'value' => 'b']]],
-                ['filename' => 'file3.php', 'line' => 20, 'locals' => [['name' => 'c', 'value' => 'c']]],
-                ['filename' => 'file4.php', 'line' => 20, 'locals' => [['name' => 'd', 'value' => 'd']]],
-                ['filename' => 'file5.php', 'line' => 20, 'locals' => [['name' => 'e', 'value' => 'e']]],
-                ['filename' => 'file6.php', 'line' => 20, 'locals' => [['name' => 'f', 'value' => 'f']]],
+                ['filename' => 'file1.php', 'line' => 20, 'locals' => $locals]
+            ]
+        ]);
+    }
+
+    public function testSetsMaxMembers()
+    {
+        $itemMatcher = function ($item) {
+            $this->assertEquals('debuggeeId', $item[0]);
+            $this->assertInstanceOf(Breakpoint::class, $item[1]);
+            $stackframes = $item[1]->stackFrames();
+            $this->assertCount(1, $stackframes);
+            $this->assertEquals(1, count($stackframes[0]->locals()));
+            $variable = $stackframes[0]->locals()[0];
+            $this->assertCount(5, $variable->info()['members']);
+            return true;
+        };
+        $agent = $this->setupAgent($itemMatcher, [
+            'maxMembers' => 5
+        ]);
+        $locals = [[
+            'name' => 'longString',
+            'value' => array_fill(0, 2000, 'a')
+        ]];
+        $agent->handleSnapshot([
+            'id' => 'snapshot1',
+            'evaluatedExpressions' => [],
+            'stackframes' => [
+                ['filename' => 'file1.php', 'line' => 20, 'locals' => $locals]
             ]
         ]);
     }

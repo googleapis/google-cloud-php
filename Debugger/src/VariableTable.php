@@ -59,9 +59,14 @@ class VariableTable
     private $bufferFullVariableIndex;
 
     /**
-     * @var int The amount of space remaining for captured data.
+     * @var int Maximum amount of space of captured data.
      */
-    private $bytesRemaining;
+    private $maxPayloadSize;
+
+    /**
+     * @var int The amount of space used for captured data.
+     */
+    private $bytesUsed = 0;
 
     /**
      * Initialize a new VariableTable with optional initial values.
@@ -74,9 +79,37 @@ class VariableTable
      *         **Defaults to** 5.
      *     @type int $maxPayloadSize Maximum amount of space of captured data.
      *         **Defaults to** 32768.
+     *     @type int $maxMembers Maximum number of member variables captured per
+     *         variable. **Defaults to** 1000.
+     *     @type int $maxValueLength Maximum length of the string representing
+     *         the captured variable. **Defaults to** 500.
      * }
      */
     public function __construct(array $initialVariables = [], array $options = [])
+    {
+        $this->variables = $initialVariables;
+        $this->nextIndex = count($this->variables);
+        $this->setOptions($options);
+        $this->sharedVariableIndex = [];
+    }
+
+    /**
+     * Update evaluation options.
+     *
+     * @param array $options [optional] {
+     *     Configuration options.
+     *
+     *     @type int $maxMemberDepth Maximum depth of member variables to capture.
+     *         **Defaults to** 5.
+     *     @type int $maxPayloadSize Maximum amount of space of captured data.
+     *         **Defaults to** 32768.
+     *     @type int $maxMembers Maximum number of member variables captured per
+     *         variable. **Defaults to** 1000.
+     *     @type int $maxValueLength Maximum length of the string representing
+     *         the captured variable. **Defaults to** 500.
+     * }
+     */
+    public function setOptions(array $options = [])
     {
         $options += [
             'maxMemberDepth' => self::DEFAULT_MAX_MEMBER_DEPTH,
@@ -84,12 +117,10 @@ class VariableTable
             'maxMembers' => self::DEFAULT_MAX_MEMBERS,
             'maxValueLength' => self::DEFAULT_MAX_STRING_LENGTH
         ];
-        $this->variables = $initialVariables;
-        $this->nextIndex = count($this->variables);
-        $this->sharedVariableIndex = [];
         $this->maxMemberDepth = $options['maxMemberDepth'];
-        $this->bytesRemaining = $options['maxPayloadSize'];
+        $this->maxPayloadSize = $options['maxPayloadSize'];
         $this->maxValueLength = $options['maxValueLength'];
+        $this->maxMembers = $options['maxMembers'];
     }
 
     /**
@@ -108,9 +139,6 @@ class VariableTable
      */
     public function register($name, $value, $hash = null)
     {
-        if ($this->isFull()) {
-            return $this->bufferFullVariable();
-        }
         return $this->doRegister($name, $value, 0, $hash);
     }
 
@@ -145,7 +173,7 @@ class VariableTable
      */
     public function isFull()
     {
-        return $this->bytesRemaining < self::MIN_REQUIRED_SIZE;
+        return $this->maxPayloadSize - $this->bytesUsed < self::MIN_REQUIRED_SIZE;
     }
 
     /**
@@ -178,6 +206,10 @@ class VariableTable
 
     private function doRegister($name, $value, $depth, $hash)
     {
+        if ($this->isFull()) {
+            throw new BufferFullException();
+        }
+
         $type = $this->calcuateType($value);
         $members = [];
 
@@ -221,7 +253,7 @@ class VariableTable
             $this->variables[] = $newVariable;
 
             // Deduct the size from the bytes remaining.
-            $this->bytesRemaining -= $newVariable->byteSize();
+            $this->bytesUsed += $newVariable->byteSize();
 
             return new Variable($name, $type, [
                 'varTableIndex' => $index
@@ -233,7 +265,7 @@ class VariableTable
             ]);
 
             // Deduct the size from the bytes remaining.
-            $this->bytesRemaining -= $newVariable->byteSize();
+            $this->bytesUsed += $newVariable->byteSize();
 
             return $newVariable;
         }
@@ -265,7 +297,12 @@ class VariableTable
         $members = [];
         if ($depth < $this->maxMemberDepth) {
             foreach ($array as $key => $member) {
-                $members[] = $this->doRegister((string) $key, $member, $depth + 1, null);
+                try {
+                    $members[] = $this->doRegister((string) $key, $member, $depth + 1, null);
+                } catch (BufferFullException $e) {
+                    $members[] = $this->bufferFullVariable();
+                    break;
+                }
             }
         }
         return $members;

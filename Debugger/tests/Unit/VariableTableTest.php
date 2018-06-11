@@ -266,9 +266,6 @@ class VariableTableTest extends TestCase
         $this->assertArrayNotHasKey('members', $data);
     }
 
-    /**
-     * @group focus
-     */
     public function testLimitsTotalSize()
     {
         $variableTable = new VariableTable();

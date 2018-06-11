@@ -426,6 +426,16 @@ class Breakpoint
         return $this->variableTable;
     }
 
+    public function evaluate(array $evaluatedExpressions, array $stackframes, array $options = [])
+    {
+        $this->variableTable->setOptions($options);
+        $this->finalize();
+        $this->addEvaluatedExpressions($evaluatedExpressions);
+        foreach ($stackframes as $stackframe) {
+            $this->addStackFrame($stackframe);
+        }
+    }
+
     /**
      * Return a serializable version of this object
      *
@@ -527,22 +537,12 @@ class Breakpoint
      *      @type string $filename The name of the file executed.
      *      @type int $line The line number of the file executed.
      *      @type array $locals Captured local variables.
-     * }
-     * @param array $options {
-     *      Configuration options.
-     *
-     *      @type bool $captureVariables Whether or not to record variables
-     *            for this stackframe. **Defaults to* true.
-     * }
      */
-    public function addStackFrame($stackFrameData, array $options = [])
+    public function addStackFrame($stackFrameData)
     {
         $stackFrameData += [
             'function' => '',
             'locals' => []
-        ];
-        $options += [
-            'captureVariables' => true
         ];
 
         $sf = new StackFrame(
@@ -550,13 +550,19 @@ class Breakpoint
             new SourceLocation($stackFrameData['filename'], $stackFrameData['line'])
         );
 
-        if ($options['captureVariables']) {
-            foreach ($stackFrameData['locals'] as $local) {
-                $value = isset($local['value']) ? $local['value'] : null;
-                $hash = isset($local['id']) ? $local['id'] : null;
-                $variable = $this->addVariable($local['name'], $value, $hash);
-                $sf->addLocal($variable);
+        foreach ($stackFrameData['locals'] as $local) {
+            if ($this->variableTable->isFull()) {
+                break;
             }
+            $value = isset($local['value']) ? $local['value'] : null;
+            $hash = isset($local['id']) ? $local['id'] : null;
+            try {
+                $variable = $this->addVariable($local['name'], $value, $hash);
+            } catch (BufferFullException $e) {
+                $sf->addLocal($this->variableTable->bufferFullVariable());
+                break;
+            }
+            $sf->addLocal($variable);
         }
 
         array_push($this->stackFrames, $sf);
@@ -579,7 +585,11 @@ class Breakpoint
     public function addEvaluatedExpressions(array $expressions)
     {
         foreach ($expressions as $expression => $result) {
-            $this->evaluatedExpressions[] = $this->addVariable($expression, $result);
+            try {
+                $this->evaluatedExpressions[] = $this->addVariable($expression, $result);
+            } catch (BufferFullException $e) {
+                $this->evaluatedExpressions[] = $this->variableTable->bufferFullVariable();
+            }
         }
     }
 
