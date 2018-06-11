@@ -18,9 +18,14 @@
 namespace Google\Cloud\Spanner\Tests\System;
 
 use Google\Cloud\Core\Int64;
+use Google\Cloud\Spanner\ArrayType;
 use Google\Cloud\Spanner\Bytes;
 use Google\Cloud\Spanner\Database;
 use Google\Cloud\Spanner\Date;
+use Google\Cloud\Spanner\Result;
+use Google\Cloud\Spanner\StructParameterValue;
+use Google\Cloud\Spanner\StructType;
+use Google\Cloud\Spanner\StructValue;
 use Google\Cloud\Spanner\Timestamp;
 
 /**
@@ -291,7 +296,7 @@ class QueryTest extends SpannerTestCase
     {
         $db = self::$database;
 
-        $ts = new Timestamp(new \DateTimeImmutable);
+        $ts = new Timestamp(new \DateTimeImmutable('now', new \DateTimeZone('UTC')));
 
         $res = $db->execute('SELECT @param as foo', [
             'parameters' => [
@@ -407,7 +412,7 @@ class QueryTest extends SpannerTestCase
      * covers 56
      * @dataProvider arrayTypesEmpty
      */
-    public function testBindEmptyArrayOfType($type)
+    public function testBindEmptyArrayOfTypeLegacy($type)
     {
         $db = self::$database;
 
@@ -423,6 +428,61 @@ class QueryTest extends SpannerTestCase
         $row = $res->rows()->current();
 
         $this->assertEmpty($row['foo']);
+    }
+
+    /**
+     * covers 41
+     * covers 44
+     * covers 47
+     * covers 50
+     * covers 53
+     * covers 56
+     * @dataProvider arrayTypesEmpty
+     */
+    public function testBindEmptyArrayOfType($type)
+    {
+        $db = self::$database;
+
+        $res = $db->execute('SELECT @param as foo', [
+            'parameters' => [
+                'param' => []
+            ],
+            'types' => [
+                'param' => new ArrayType($type)
+            ]
+        ]);
+
+        $row = $res->rows()->current();
+
+        $this->assertEmpty($row['foo']);
+    }
+
+    /**
+     * covers 39
+     * covers 42
+     * covers 45
+     * covers 48
+     * covers 51
+     * covers 54
+     * covers 56
+     * @dataProvider arrayTypesNull
+     */
+    public function testBindNullArrayOfTypeLegacy($type)
+    {
+        $db = self::$database;
+
+        $res = $db->execute('SELECT @param as foo', [
+            'parameters' => [
+                'param' => null
+            ],
+            'types' => [
+                'param' => [Database::TYPE_ARRAY, $type]
+            ]
+        ]);
+
+        $row = $res->rows()->current();
+
+        $this->assertNull($row['foo']);
     }
 
     /**
@@ -444,7 +504,7 @@ class QueryTest extends SpannerTestCase
                 'param' => null
             ],
             'types' => [
-                'param' => [Database::TYPE_ARRAY, $type]
+                'param' => new ArrayType($type)
             ]
         ]);
 
@@ -607,5 +667,454 @@ class QueryTest extends SpannerTestCase
             [Database::TYPE_TIMESTAMP],
             [Database::TYPE_DATE],
         ];
+    }
+
+    /**
+     * @group spanner-query-struct
+     */
+    public function testBindStructParameter()
+    {
+        $db = self::$database;
+
+        $res = $db->execute('SELECT @structParam.userf, @p4', [
+            'parameters' => [
+                'structParam' => [
+                    'userf' => 'bob',
+                    'threadf' => 1
+                ],
+                'p4' => 10
+            ],
+            'types' => [
+                'structParam' => (new StructType)
+                    ->add('userf', Database::TYPE_STRING)
+                    ->add('threadf', Database::TYPE_INT64)
+            ]
+        ]);
+
+        $row = $res->rows()->current();
+
+        $this->assertEquals('bob', $row['userf']);
+        $this->assertEquals(10, $row[1]);
+    }
+
+    /**
+     * @group spanner-query-struct
+     */
+    public function testBindNullStructParameter()
+    {
+        $db = self::$database;
+
+        $res = $db->execute('SELECT @structParam.userf', [
+            'parameters' => [
+                'structParam' => null
+            ],
+            'types' => [
+                'structParam' => (new StructType)
+                    ->add('userf', Database::TYPE_STRING)
+                    ->add('threadf', Database::TYPE_INT64)
+            ]
+        ]);
+
+        $row = $res->rows()->current();
+        $this->assertNull($row['userf']);
+    }
+
+    /**
+     * @group spanner-query-struct
+     */
+    public function testBindNestedStructParameter()
+    {
+        $db = self::$database;
+
+        $res = $db->execute('SELECT @structParam.structf.nestedf', [
+            'parameters' => [
+                'structParam' => [
+                    'structf' => [
+                        'nestedf' => 'bob'
+                    ]
+                ]
+            ],
+            'types' => [
+                'structParam' => (new StructType)
+                    ->add(
+                        'structf',
+                        (new StructType)->add('nestedf', Database::TYPE_STRING)
+                    )
+            ]
+        ]);
+
+        $row = $res->rows()->current();
+        $this->assertEquals('bob', $row['nestedf']);
+    }
+
+    /**
+     * @group spanner-query-struct
+     */
+    public function testBindNullNestedStructParameter()
+    {
+        $db = self::$database;
+
+        $res = $db->execute('SELECT @structParam.structf.nestedf', [
+            'parameters' => [
+                'structParam' => null
+            ],
+            'types' => [
+                'structParam' => (new StructType)
+                    ->add(
+                        'structf',
+                        (new StructType)->add('nestedf', Database::TYPE_STRING)
+                    )
+            ]
+        ]);
+
+        $row = $res->rows()->current();
+        $this->assertNull($row['nestedf']);
+    }
+
+    /**
+     * @group spanner-query-struct
+     */
+    public function testBindEmptyStructParameter()
+    {
+        $db = self::$database;
+        $res = $db->execute('SELECT @structParam IS NULL', [
+            'parameters' => [
+                'structParam' => []
+            ],
+            'types' => [
+                'structParam' => new StructType
+            ]
+        ]);
+
+        $row = $res->rows()->current();
+
+        $this->assertFalse($row[0]);
+    }
+
+    /**
+     * @group spanner-query-struct
+     */
+    public function testBindStructNoFieldsParameter()
+    {
+        $db = self::$database;
+        $res = $db->execute('SELECT @structParam IS NULL', [
+            'parameters' => [
+                'structParam' => null
+            ],
+            'types' => [
+                'structParam' => new StructType
+            ]
+        ]);
+
+        $row = $res->rows()->current();
+
+        $this->assertTrue($row[0]);
+    }
+
+    /**
+     * @group spanner-query-struct
+     */
+    public function testBindStructParameterNullFields()
+    {
+        $db = self::$database;
+        $res = $db->execute('SELECT @structParam.f1', [
+            'parameters' => [
+                'structParam' => [
+                    'f1' => null
+                ]
+            ],
+            'types' => [
+                'structParam' => (new StructType)
+                    ->add('f1', Database::TYPE_INT64)
+            ]
+        ]);
+
+        $row = $res->rows()->current();
+        $this->assertNull($row['f1']);
+    }
+
+    /**
+     * @group spanner-query-struct
+     */
+    public function testBindStructParameterEqualityCheck()
+    {
+        $db = self::$database;
+        $res = $db->execute('SELECT @structParam = STRUCT<threadf INT64, userf STRING>(1, "bob")', [
+            'parameters' => [
+                'structParam' => [
+                    'threadf' => 1,
+                    'userf' => 'bob',
+                ]
+            ],
+            'types' => [
+                'structParam' => (new StructType)
+                    ->add('threadf', Database::TYPE_INT64)
+                    ->add('userf', Database::TYPE_STRING)
+            ]
+        ]);
+
+        $row = $res->rows()->current();
+    }
+
+    /**
+     * @group spanner-query-struct
+     */
+    public function testBindStructParameterNullCheck()
+    {
+        $db = self::$database;
+        $res = $db->execute('SELECT @structParam IS NULL', [
+            'parameters' => [
+                'structParam' => [
+                    'userf' => 'bob',
+                    'threadf' => 1
+                ]
+            ],
+            'types' => [
+                'structParam' => (new StructType)
+                    ->add('userf', Database::TYPE_STRING)
+                    ->add('threadf', Database::TYPE_INT64)
+            ]
+        ]);
+
+        $row = $res->rows()->current();
+        $this->assertFalse($row[0]);
+    }
+
+    /**
+     * @group spanner-query-struct
+     */
+    public function testBindArrayOfStructsParameter()
+    {
+        $db = self::$database;
+        $res = $db->execute('SELECT a.threadid FROM UNNEST(@structParam.arraysf) a', [
+            'parameters' => [
+                'structParam' => [
+                    'intf' => 10,
+                    'arraysf' => [
+                        [
+                            'threadid' => 1
+                        ]
+                    ]
+                ],
+            ],
+            'types' => [
+                'structParam' => (new StructType)
+                    ->add('arraysf', new ArrayType(
+                        (new StructType)->add('threadid', Database::TYPE_INT64)
+                    ))
+            ]
+        ]);
+
+        $row = $res->rows()->current();
+        $this->assertEquals(1, $row['threadid']);
+    }
+
+    /**
+     * @group spanner-query-struct
+     */
+    public function testBindArrayOfStructsNullParameter()
+    {
+        $db = self::$database;
+        $res = $db->execute('SELECT a.threadid FROM UNNEST(@structParam.arraysf) a', [
+            'parameters' => [
+                'structParam' => [
+                    'intf' => 10,
+                    'arraysf' => null
+                ],
+            ],
+            'types' => [
+                'structParam' => (new StructType)
+                    ->add('arraysf', new ArrayType(
+                        (new StructType)->add('threadid', Database::TYPE_INT64)
+                    ))
+            ]
+        ]);
+
+        $row = $res->rows()->current();
+        $this->assertNull($row);
+    }
+
+    /**
+     * @group spanner-query-struct
+     */
+    public function testBindNullArrayOfStructsParameter()
+    {
+        $db = self::$database;
+        $res = $db->execute('SELECT a.threadid FROM UNNEST(@structParam.arraysf) a', [
+            'parameters' => [
+                'structParam' => null
+            ],
+            'types' => [
+                'structParam' => (new StructType)
+                    ->add('arraysf', new ArrayType(
+                        (new StructType)->add('threadid', Database::TYPE_INT64)
+                    ))
+            ]
+        ]);
+
+        $row = $res->rows()->current();
+        $this->assertNull($row);
+    }
+
+    /**
+     * @group spanner-query-struct
+     */
+    public function testBindArrayOfStructsDuplicateFieldName()
+    {
+        $db = self::$database;
+        $res = $db->execute('SELECT * FROM UNNEST(ARRAY(SELECT @structParam))', [
+            'parameters' => [
+                'structParam' => (new StructValue)
+                    ->add('hello', 'world')
+                    ->add('foo', 'bar')
+                    ->add('foo', 2)
+            ],
+            'types' => [
+                'structParam' => (new StructType)
+                    ->add('hello', Database::TYPE_STRING)
+                    ->add('foo', Database::TYPE_STRING)
+                    ->add('foo', Database::TYPE_INT64)
+            ]
+        ])->rows(Result::RETURN_NAME_VALUE_PAIR)->current();
+
+        $this->assertEquals([
+            'name' => 'hello',
+            'value' => 'world'
+        ], $res[0]);
+
+        $this->assertEquals([
+            'name' => 'foo',
+            'value' => 'bar'
+        ], $res[1]);
+
+        $this->assertEquals([
+            'name' => 'foo',
+            'value' => 2
+        ], $res[2]);
+    }
+
+    /**
+     * @group spanner-query-struct
+     */
+    public function testBindStructWithMixedUnnamedParameters()
+    {
+        $db = self::$database;
+        $res = $db->execute('SELECT * FROM UNNEST(ARRAY(SELECT @structParam))', [
+            'parameters' => [
+                'structParam' => (new StructValue)
+                    ->addUnnamed(1)
+                    ->add('f1', 2)
+                    ->addUnnamed([
+                        'a','b','c'
+                    ])
+            ],
+            'types' => [
+                'structParam' => (new StructType)
+                    ->addUnnamed(Database::TYPE_INT64)
+                    ->add('f1', Database::TYPE_INT64)
+                    ->addUnnamed(new ArrayType(Database::TYPE_STRING))
+            ]
+        ])->rows()->current();
+
+        $this->assertEquals(1, $res[0]);
+        $this->assertEquals(2, $res['f1']);
+        $this->assertEquals([
+            'a','b','c'
+        ], $res[2]);
+    }
+
+    /**
+     * @group spanner-query-struct
+     */
+    public function testBindStructWithAllUnnamedParameters()
+    {
+        $db = self::$database;
+        $res = $db->execute('SELECT * FROM UNNEST(ARRAY(SELECT @structParam))', [
+            'parameters' => [
+                'structParam' => (new StructValue)
+                    ->addUnnamed(1)
+                    ->addUnnamed('field')
+                    ->addUnnamed([
+                        'a','b','c'
+                    ])
+                    ->addUnnamed(false)
+            ],
+            'types' => [
+                'structParam' => (new StructType)
+                    ->addUnnamed(Database::TYPE_INT64)
+                    ->addUnnamed(Database::TYPE_STRING)
+                    ->addUnnamed(new ArrayType(Database::TYPE_STRING))
+                    ->addUnnamed(Database::TYPE_BOOL)
+            ]
+        ])->rows()->current();
+
+        $this->assertEquals(1, $res[0]);
+        $this->assertEquals('field', $res[1]);
+        $this->assertEquals([
+            'a','b','c'
+        ], $res[2]);
+        $this->assertFalse($res[3]);
+    }
+
+    public function testBindStructInferredParameterTypes()
+    {
+        $values = [
+            'arr' => ['a', 'b'],
+            'str' => 'hello',
+            'num' => 10,
+        ];
+
+        $db = self::$database;
+        $res = $db->execute('SELECT * FROM UNNEST(ARRAY(SELECT @structParam))', [
+            'parameters' => [
+                'structParam' => $values
+            ],
+            'types' => [
+                'structParam' => (new StructType)
+                    ->add('str', Database::TYPE_STRING)
+            ]
+        ])->rows()->current();
+
+        $this->assertEquals($values, $res);
+    }
+
+    public function testBindStructInferredParameterTypesWithUnnamed()
+    {
+        $values = [
+            'arr' => ['a', 'b'],
+            'str' => 'hello',
+            'num' => 10,
+        ];
+
+        $db = self::$database;
+        $res = $db->execute('SELECT * FROM UNNEST(ARRAY(SELECT @structParam))', [
+            'parameters' => [
+                'structParam' => (new StructValue)
+                    ->add('arr', ['a', 'b'])
+                    ->addUnnamed('hello')
+                    ->addUnnamed(10)
+                    ->add('str', 'world')
+            ],
+            'types' => [
+                'structParam' => (new StructType)
+                    ->add('str', Database::TYPE_STRING)
+            ]
+        ])->rows(Result::RETURN_NAME_VALUE_PAIR)->current();
+
+        $this->assertEquals([
+            [
+                'name' => 'arr',
+                'value' => ['a', 'b']
+            ], [
+                'name' => 1,
+                'value' => 'hello',
+            ], [
+                'name' => 2,
+                'value' => 10
+            ], [
+                'name' => 'str',
+                'value' => 'world'
+            ]
+        ], $res);
     }
 }

@@ -37,11 +37,11 @@ use Google\Cloud\Spanner\Session\SessionPoolInterface;
 use Google\Cloud\Spanner\Snapshot;
 use Google\Cloud\Spanner\Timestamp;
 use Google\Cloud\Spanner\Transaction;
-use Google\Cloud\Spanner\ValueMapper;
 use Prophecy\Argument;
 
 /**
  * @group spanner
+ * @group spanner-database
  */
 class DatabaseTest extends SnippetTestCase
 {
@@ -550,35 +550,6 @@ class DatabaseTest extends SnippetTestCase
         $snippet->invoke();
     }
 
-    public function testExecute()
-    {
-        $this->connection->executeStreamingSql(Argument::any())
-            ->shouldBeCalled()
-            ->willReturn($this->resultGenerator([
-                'metadata' => [
-                    'rowType' => [
-                        'fields' => [
-                            [
-                                'name' => 'loginCount',
-                                'type' => [
-                                    'code' => Database::TYPE_INT64
-                                ]
-                            ]
-                        ]
-                    ]
-                ],
-                'values' => [0]
-            ]));
-
-        $this->refreshOperation($this->database, $this->connection->reveal());
-
-        $snippet = $this->snippetFromMethod(Database::class, 'execute');
-        $snippet->addLocal('database', $this->database);
-
-        $res = $snippet->invoke('result');
-        $this->assertInstanceOf(Result::class, $res->returnVal());
-    }
-
     public function testExecuteBeginSnapshot()
     {
         $this->connection->executeStreamingSql(Argument::any())
@@ -604,9 +575,8 @@ class DatabaseTest extends SnippetTestCase
 
         $this->refreshOperation($this->database, $this->connection->reveal());
 
-        $snippet = $this->snippetFromMethod(Database::class, 'execute', 1);
+        $snippet = $this->snippetFromMethod(Database::class, 'execute', 5);
         $snippet->addLocal('database', $this->database);
-        $snippet->addUse(SessionPoolInterface::class);
 
         $res = $snippet->invoke('result');
         $this->assertInstanceOf(Result::class, $res->returnVal());
@@ -638,116 +608,12 @@ class DatabaseTest extends SnippetTestCase
 
         $this->refreshOperation($this->database, $this->connection->reveal());
 
-        $snippet = $this->snippetFromMethod(Database::class, 'execute', 2);
+        $snippet = $this->snippetFromMethod(Database::class, 'execute', 6);
         $snippet->addLocal('database', $this->database);
-        $snippet->addUse(SessionPoolInterface::class);
 
         $res = $snippet->invoke('result');
         $this->assertInstanceOf(Result::class, $res->returnVal());
         $this->assertInstanceOf(Transaction::class, $res->returnVal()->transaction());
-    }
-
-    public function testExecuteWithParameterType()
-    {
-        $this->connection->executeStreamingSql(Argument::that(function ($arg) {
-            if (!isset($arg['params'])) return false;
-            if (!isset($arg['paramTypes'])) return false;
-            if ($arg['paramTypes']['timestamp']['code'] !== Database::TYPE_TIMESTAMP) return false;
-
-            return true;
-        }))->shouldBeCalled()->willReturn($this->resultGenerator([
-            'metadata' => [
-                'rowType' => [
-                    'fields' => [
-                        [
-                            'name' => 'lastModifiedTime',
-                            'type' => [
-                                'code' => Database::TYPE_TIMESTAMP
-                            ]
-                        ]
-                    ]
-                ]
-            ],
-            'values' => [null]
-        ]));
-
-        $this->refreshOperation($this->database, $this->connection->reveal());
-
-        $snippet = $this->snippetFromMethod(Database::class, 'execute', 3);
-        $snippet->addLocal('database', $this->database);
-        $snippet->addLocal('timestamp', null);
-        $snippet->addUse(Database::class);
-
-        $res = $snippet->invoke('neverEditedPosts');
-        $this->assertNull($res->returnVal()->current()['lastModifiedTime']);
-    }
-
-    public function testExecuteWithEmptyArray()
-    {
-        $this->connection->executeStreamingSql(Argument::that(function ($arg) {
-            if (!isset($arg['params'])) return false;
-            if (!isset($arg['paramTypes'])) return false;
-            if ($arg['paramTypes']['emptyArrayOfIntegers']['code'] !== Database::TYPE_ARRAY) return false;
-            if ($arg['paramTypes']['emptyArrayOfIntegers']['arrayElementType']['code'] !== Database::TYPE_INT64) return false;
-
-            return true;
-        }))->shouldBeCalled()->willReturn($this->resultGenerator([
-            'metadata' => [
-                'rowType' => [
-                    'fields' => [
-                        [
-                            'name' => 'numbers',
-                            'type' => [
-                                'code' => Database::TYPE_ARRAY,
-                                'arrayElementType' => [
-                                    'code' => Database::TYPE_INT64
-                                ]
-                            ]
-                        ]
-                    ]
-                ]
-            ],
-            'values' => [[]]
-        ]));
-
-        $this->refreshOperation($this->database, $this->connection->reveal());
-
-        $snippet = $this->snippetFromMethod(Database::class, 'execute', 4);
-        $snippet->addLocal('database', $this->database);
-        $snippet->addUse(Database::class);
-
-        $res = $snippet->invoke('emptyArray');
-        $this->assertEmpty($res->returnVal());
-    }
-
-    public function testRead()
-    {
-        $this->connection->streamingRead(Argument::any())
-            ->shouldBeCalled()
-            ->willReturn($this->resultGenerator([
-                'metadata' => [
-                    'rowType' => [
-                        'fields' => [
-                            [
-                                'name' => 'loginCount',
-                                'type' => [
-                                    'code' => Database::TYPE_INT64
-                                ]
-                            ]
-                        ]
-                    ]
-                ],
-                'rows' => [0]
-            ]));
-
-        $this->refreshOperation($this->database, $this->connection->reveal());
-
-        $snippet = $this->snippetFromMethod(Database::class, 'read');
-        $snippet->addLocal('database', $this->database);
-        $snippet->addUse(KeySet::class);
-
-        $res = $snippet->invoke('result');
-        $this->assertInstanceOf(Result::class, $res->returnVal());
     }
 
     public function testReadWithSnapshot()
@@ -777,8 +643,6 @@ class DatabaseTest extends SnippetTestCase
 
         $snippet = $this->snippetFromMethod(Database::class, 'read', 1);
         $snippet->addLocal('database', $this->database);
-        $snippet->addUse(KeySet::class);
-        $snippet->addUse(SessionPoolInterface::class);
 
         $res = $snippet->invoke('result');
         $this->assertInstanceOf(Result::class, $res->returnVal());
@@ -812,8 +676,6 @@ class DatabaseTest extends SnippetTestCase
 
         $snippet = $this->snippetFromMethod(Database::class, 'read', 2);
         $snippet->addLocal('database', $this->database);
-        $snippet->addUse(KeySet::class);
-        $snippet->addUse(SessionPoolInterface::class);
 
         $res = $snippet->invoke('result');
         $this->assertInstanceOf(Result::class, $res->returnVal());

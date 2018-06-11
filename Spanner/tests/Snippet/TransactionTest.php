@@ -84,37 +84,6 @@ class TransactionTest extends SnippetTestCase
         $this->assertEquals('foo', $res->returnVal());
     }
 
-    public function testExecute()
-    {
-        $this->connection->executeStreamingSql(Argument::any())
-            ->shouldBeCalled()
-            ->willReturn($this->resultGenerator());
-
-        $this->refreshOperation($this->transaction, $this->connection->reveal());
-
-        $snippet = $this->snippetFromMagicMethod(Transaction::class, 'execute');
-        $snippet->addLocal('transaction', $this->transaction);
-        $res = $snippet->invoke('result');
-
-        $this->assertInstanceOf(Result::class, $res->returnVal());
-    }
-
-    public function testRead()
-    {
-        $this->connection->streamingRead(Argument::any())
-            ->shouldBeCalled()
-            ->willReturn($this->resultGenerator());
-
-        $this->refreshOperation($this->transaction, $this->connection->reveal());
-
-        $snippet = $this->snippetFromMagicMethod(Transaction::class, 'read');
-        $snippet->addLocal('transaction', $this->transaction);
-        $snippet->addUse(KeySet::class);
-        $res = $snippet->invoke('result');
-
-        $this->assertInstanceOf(Result::class, $res->returnVal());
-    }
-
     public function testId()
     {
         $snippet = $this->snippetFromMagicMethod(Transaction::class, 'id');

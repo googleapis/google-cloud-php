@@ -18,18 +18,21 @@
 namespace Google\Cloud\Spanner\Tests\Unit;
 
 use Google\Cloud\Core\Int64;
+use Google\Cloud\Core\Testing\GrpcTestTrait;
+use Google\Cloud\Spanner\ArrayType;
 use Google\Cloud\Spanner\Bytes;
 use Google\Cloud\Spanner\Database;
 use Google\Cloud\Spanner\Date;
 use Google\Cloud\Spanner\Result;
+use Google\Cloud\Spanner\StructType;
+use Google\Cloud\Spanner\StructValue;
 use Google\Cloud\Spanner\Timestamp;
 use Google\Cloud\Spanner\ValueMapper;
-use Google\Cloud\Core\Testing\GrpcTestTrait;
 use PHPUnit\Framework\TestCase;
 
 /**
  * @group spanner
- * @group spanner-value-mapper
+ * @group spanner-valuemapper
  */
 class ValueMapperTest extends TestCase
 {
@@ -45,22 +48,25 @@ class ValueMapperTest extends TestCase
         $this->mapper = new ValueMapper(false);
     }
 
-    public function testFormatParamsForExecuteSqlSimpleTypes()
+    /**
+     * @dataProvider simpleTypes
+     */
+    public function testFormatParamsForExecuteSqlSimpleTypes($value, $type)
     {
-        $params = [
-            'id' => 1,
-            'name' => 'john',
-            'pi' => 3.1515,
-            'isCool' => false,
+        $res = $this->mapper->formatParamsForExecuteSql(['param' => $value]);
+
+        $this->assertEquals(['param' => $value], $res['params']);
+        $this->assertEquals($type, $res['paramTypes']['param']['code']);
+    }
+
+    public function simpleTypes()
+    {
+        return [
+            [1, Database::TYPE_INT64],
+            ['john', Database::TYPE_STRING],
+            [3.1415, Database::TYPE_FLOAT64],
+            [false, Database::TYPE_BOOL]
         ];
-
-        $res = $this->mapper->formatParamsForExecuteSql($params);
-
-        $this->assertEquals($params, $res['params']);
-        $this->assertEquals(Database::TYPE_INT64, $res['paramTypes']['id']['code']);
-        $this->assertEquals(Database::TYPE_STRING, $res['paramTypes']['name']['code']);
-        $this->assertEquals(Database::TYPE_FLOAT64, $res['paramTypes']['pi']['code']);
-        $this->assertEquals(Database::TYPE_BOOL, $res['paramTypes']['isCool']['code']);
     }
 
     public function testFormatParamsForExecuteSqlResource()
@@ -96,17 +102,7 @@ class ValueMapperTest extends TestCase
     }
 
     /**
-     * @expectedException BadMethodCallException
-     */
-    public function testFormatParamsForExecuteSqlArrayInvalidAssoc()
-    {
-        $this->mapper->formatParamsForExecuteSql(['array' => [
-            'foo' => 'bar'
-        ]]);
-    }
-
-    /**
-     * @expectedException BadMethodCallException
+     * @expectedException InvalidArgumentException
      */
     public function testFormatParamsForExecuteSqlInvalidTypes()
     {
@@ -150,35 +146,530 @@ class ValueMapperTest extends TestCase
         $this->mapper->formatParamsForExecuteSql($params);
     }
 
-    public function testEncodeValuesAsSimpleType()
+    /**
+     * @expectedException BadMethodCallException
+     */
+    public function testFormatParamsForExecuteSqlNullValueMissingType()
     {
-        $timestamp = new Timestamp(new \DateTimeImmutable);
+        $params = [
+            'null' => null
+        ];
 
-        $vals = [];
-        $vals['bool'] = true;
-        $vals['int'] = 555555;
-        $vals['intObj'] = new Int64((string) $vals['int']);
-        $vals['float'] = 3.1415;
-        $vals['nan'] = NAN;
-        $vals['inf'] = INF;
-        $vals['timestamp'] = $timestamp;
-        $vals['date'] = new Date($timestamp->get());
-        $vals['string'] = 'foo';
-        $vals['bytes'] = new Bytes('hello world');
-        $vals['array'] = ['foo', 'bar'];
+        $this->mapper->formatParamsForExecuteSql($params);
+    }
 
-        $res = $this->mapper->encodeValuesAsSimpleType($vals);
+    /**
+     * @dataProvider arrayTypes
+     */
+    public function testFormatParamsForExecuteSqlArrayType($type)
+    {
+        $params = [
+            'foo' => ['bar', 'str', null]
+        ];
 
-        $this->assertTrue($res[0]);
-        $this->assertEquals((string) $vals['int'], $res[1]);
-        $this->assertEquals((string) $vals['int'], $res[2]);
-        $this->assertEquals($vals['float'], $res[3]);
-        $this->assertEquals('Infinity', $res[5]);
-        $this->assertEquals($timestamp->formatAsString(), $res[6]);
-        $this->assertEquals($timestamp->get()->format(Date::FORMAT), $res[7]);
-        $this->assertEquals($vals['string'], $res[8]);
-        $this->assertEquals(base64_encode('hello world'), $res[9]);
-        $this->assertEquals($vals['array'], $res[10]);
+        $types = [
+            'foo' => $type
+        ];
+
+        $res = $this->mapper->formatParamsForExecuteSql($params, $types);
+        $this->assertEquals($params, $res['params']);
+        $this->assertEquals([
+            'code' => Database::TYPE_ARRAY,
+            'arrayElementType' => [
+                'code' => Database::TYPE_STRING
+            ]
+        ], $res['paramTypes']['foo']);
+    }
+
+    public function arrayTypes()
+    {
+        return [
+            [[Database::TYPE_ARRAY, Database::TYPE_STRING]],
+            [new ArrayType(Database::TYPE_STRING)]
+        ];
+    }
+
+    public function testFormatParamsForExecuteSqlArrayTypeNestedStruct()
+    {
+        $params = [
+            'foo' => [
+                [
+                    'hello' => 'bar'
+                ], [
+                    'hello' => 'baz'
+                ]
+            ]
+        ];
+
+        $types = [
+            'foo' => new ArrayType((new StructType)->add('hello', Database::TYPE_STRING))
+        ];
+
+        $res = $this->mapper->formatParamsForExecuteSql($params, $types);
+        $this->assertEquals([
+            'foo' => [
+                ['bar'],
+                ['baz']
+            ]
+        ], $res['params']);
+
+        $this->assertEquals([
+            'foo' => [
+                'code' => Database::TYPE_ARRAY,
+                'arrayElementType' => [
+                    'code' => Database::TYPE_STRUCT,
+                    'structType' => [
+                        'fields' => [
+                            [
+                                'name' => 'hello',
+                                'type' => [
+                                    'code' => Database::TYPE_STRING
+                                ]
+                            ]
+                        ]
+                    ]
+                ]
+            ]
+        ], $res['paramTypes']);
+    }
+
+    public function testFormatParamsForExecuteSqlNullArray()
+    {
+        $params = [
+            'foo' => null
+        ];
+
+        $types = [
+            'foo' => new ArrayType(Database::TYPE_STRING)
+        ];
+
+        $res = $this->mapper->formatParamsForExecuteSql($params, $types);
+
+        $this->assertNull($res['params']['foo']);
+
+        $this->assertEquals([
+            'foo' => [
+                'code' => Database::TYPE_ARRAY,
+                'arrayElementType' => [
+                    'code' => Database::TYPE_STRING
+                ]
+            ]
+        ], $res['paramTypes']);
+    }
+
+    /**
+     * @expectedException InvalidArgumentException
+     * @expectedExceptionMessage Array data does not match given array parameter type.
+     */
+    public function testFormatParamsForExecuteSqlArrayMismatchedDefinition()
+    {
+        $params = [
+            'foo' => [1,2,3]
+        ];
+
+        $types = [
+            'foo' => new ArrayType(Database::TYPE_STRING)
+        ];
+
+        $this->mapper->formatParamsForExecuteSql($params, $types);
+    }
+
+    /**
+     * @expectedException InvalidArgumentException
+     * @expectedExceptionMessage Array parameter types must be an instance of Google\Cloud\Spanner\ArrayType.
+     */
+    public function testFormatParamsForExecuteSqlArrayInvalidDefinition()
+    {
+        $params = [
+            'foo' => ['bar']
+        ];
+
+        $types = [
+            'foo' => Database::TYPE_ARRAY
+        ];
+
+        $this->mapper->formatParamsForExecuteSql($params, $types);
+    }
+
+    /**
+     * @expectedException InvalidArgumentException
+     * @expectedExceptionMessage Array value must be an array or null.
+     */
+    public function testFormatParamsForExecuteSqlArrayInvalidValue()
+    {
+        $params = [
+            'foo' => 'hello'
+        ];
+
+        $types = [
+            'foo' => new ArrayType(Database::TYPE_STRING)
+        ];
+
+        $this->mapper->formatParamsForExecuteSql($params, $types);
+    }
+
+    public function testFormatParamsForExecuteSqlStruct()
+    {
+        $params = [
+            'foo' => [
+                'name' => 'steve',
+                'age' => 39,
+                'jobs' => [
+                    'programmer',
+                    'renaissance man'
+                ]
+            ]
+        ];
+
+        $types = [
+            'foo' => (new StructType)
+                ->add('name', Database::TYPE_STRING)
+                ->add('age', Database::TYPE_INT64)
+                ->add('jobs', new ArrayType(Database::TYPE_STRING))
+        ];
+
+        $res = $this->mapper->formatParamsForExecuteSql($params, $types);
+        $this->assertEquals([
+            'foo' => [
+                'steve',
+                39,
+                [
+                    'programmer',
+                    'renaissance man'
+                ]
+            ]
+        ], $res['params']);
+
+        $this->assertEquals([
+            'foo' => [
+                'code' => Database::TYPE_STRUCT,
+                'structType' => [
+                    'fields' => [
+                        [
+                            'name' => 'name',
+                            'type' => [
+                                'code' => Database::TYPE_STRING
+                            ]
+                        ], [
+                            'name' => 'age',
+                            'type' => [
+                                'code' => Database::TYPE_INT64
+                            ]
+                        ], [
+                            'name' => 'jobs',
+                            'type' => [
+                                'code' => Database::TYPE_ARRAY,
+                                'arrayElementType' => [
+                                    'code' => Database::TYPE_STRING
+                                ]
+                            ]
+                        ]
+                    ]
+                ]
+            ]
+        ], $res['paramTypes']);
+    }
+
+    /**
+     * @expectedException InvalidArgumentException
+     * @expectedExceptionMessage Struct parameter types must be declared explicitly, and must be an instance of Google\Cloud\Spanner\StructType.
+     */
+    public function testFormatParamsForExecuteSqlStructInvalidDefinition()
+    {
+        $params = [
+            'foo' => [
+                'hello' => 'world'
+            ]
+        ];
+
+        $types = [
+            'foo' => Database::TYPE_STRUCT
+        ];
+
+        $this->mapper->formatParamsForExecuteSql($params, $types);
+    }
+
+    /**
+     * @expectedException InvalidArgumentException
+     * @expectedExceptionMessage Struct value must be an array an instance of `Google\Cloud\Spanner\StructValue` or null.
+     */
+    public function testFormatParamsForExecuteSqlInvalidStructValue()
+    {
+        $params = [
+            'foo' => 'bar'
+        ];
+
+        $types = [
+            'foo' => new StructType
+        ];
+
+        $this->mapper->formatParamsForExecuteSql($params, $types);
+    }
+
+    public function testFormatParamsForExecuteSqlStructDuplicateFieldNames()
+    {
+        $params = [
+            'foo' => (new StructValue)
+                ->add('hello', 'world')
+                ->add('hello', 10)
+                ->add('hello', 'goodbye')
+        ];
+
+        $types = [
+            'foo' => (new StructType)
+                ->add('hello', Database::TYPE_STRING)
+                ->add('hello', Database::TYPE_INT64)
+                ->add('hello', Database::TYPE_STRING)
+        ];
+
+        $res = $this->mapper->formatParamsForExecuteSql($params, $types);
+        $this->assertEquals([
+            'foo' => [
+                'world', 10, 'goodbye'
+            ]
+        ], $res['params']);
+
+        $this->assertEquals([
+            'foo' => [
+                'code' => Database::TYPE_STRUCT,
+                'structType' => [
+                    'fields' => [
+                        [
+                            'name' => 'hello',
+                            'type' => [
+                                'code' => Database::TYPE_STRING
+                            ]
+                        ], [
+                            'name' => 'hello',
+                            'type' => [
+                                'code' => Database::TYPE_INT64
+                            ]
+                        ], [
+                            'name' => 'hello',
+                            'type' => [
+                                'code' => Database::TYPE_STRING
+                            ]
+                        ]
+                    ]
+                ]
+            ]
+        ], $res['paramTypes']);
+    }
+
+    public function testFormatParamsForExecuteSqlStructUnnamedFields()
+    {
+        $params = [
+            'foo' => (new StructValue)
+                ->addUnnamed('hello')
+                ->addUnnamed(10)
+                ->add('key', 'val')
+                ->addUnnamed('goodbye')
+        ];
+
+        $types = [
+            'foo' => (new StructType)
+                ->add(null, Database::TYPE_STRING)
+                ->addUnnamed(Database::TYPE_INT64)
+                ->add('key', Database::TYPE_STRING)
+                ->addUnnamed(Database::TYPE_STRING)
+        ];
+
+        $res = $this->mapper->formatParamsForExecuteSql($params, $types);
+
+        $this->assertEquals([
+            'foo' => [
+                'hello', 10, 'val', 'goodbye'
+            ]
+        ], $res['params']);
+
+        $this->assertEquals([
+            'foo' => [
+                'code' => Database::TYPE_STRUCT,
+                'structType' => [
+                    'fields' => [
+                        [
+                            'type' => [
+                                'code' => Database::TYPE_STRING
+                            ]
+                        ], [
+                            'type' => [
+                                'code' => Database::TYPE_INT64
+                            ]
+                        ], [
+                            'name' => 'key',
+                            'type' => [
+                                'code' => Database::TYPE_STRING
+                            ]
+                        ], [
+                            'type' => [
+                                'code' => Database::TYPE_STRING
+                            ]
+                        ]
+                    ]
+                ]
+            ]
+        ], $res['paramTypes']);
+    }
+
+    public function testFormatParamsForExecuteSqlInferredStructValueType()
+    {
+        $params = [
+            'foo' => [
+                'hello' => 'world',
+                'foo' => 'bar',
+                'num' => 10,
+                'arr' => ['a', 'b']
+            ]
+        ];
+
+        $types = [
+            'foo' => (new StructType)
+                ->add('hello', Database::TYPE_STRING)
+                ->add('num', Database::TYPE_INT64)
+        ];
+
+        $res = $this->mapper->formatParamsForExecuteSql($params, $types);
+
+        $this->assertEquals([
+            'world', 'bar', 10, ['a', 'b']
+        ], $res['params']['foo']);
+
+        $this->assertEquals([
+            [
+                'name' => 'hello',
+                'type' => ['code' => Database::TYPE_STRING]
+            ], [
+                'name' => 'foo',
+                'type' => ['code' => Database::TYPE_STRING]
+            ], [
+                'name' => 'num',
+                'type' => ['code' => Database::TYPE_INT64]
+            ], [
+                'name' => 'arr',
+                'type' => [
+                    'code' => Database::TYPE_ARRAY,
+                    'arrayElementType' => [
+                        'code' => Database::TYPE_STRING
+                    ]
+                ]
+            ]
+        ], $res['paramTypes']['foo']['structType']['fields']);
+    }
+
+    public function testFormatParamsForExecuteSqlInferredStructValueTypeWithUnnamed()
+    {
+        $params = [
+            'foo' => (new StructValue)
+                ->add('hello', 'world')
+                ->addUnnamed('foo')
+                ->add('num', 10)
+        ];
+
+        $types = [
+            'foo' => (new StructType)
+                ->add('hello', Database::TYPE_STRING)
+                ->add('num', Database::TYPE_INT64)
+        ];
+
+        $res = $this->mapper->formatParamsForExecuteSql($params, $types);
+
+        $this->assertEquals([
+            'world', 'foo', 10
+        ], $res['params']['foo']);
+
+        $this->assertEquals([
+            [
+                'name' => 'hello',
+                'type' => ['code' => Database::TYPE_STRING]
+            ], [
+                'type' => ['code' => Database::TYPE_STRING]
+            ], [
+                'name' => 'num',
+                'type' => ['code' => Database::TYPE_INT64]
+            ]
+        ], $res['paramTypes']['foo']['structType']['fields']);
+    }
+
+    public function testFormatParamsForExecuteSqlStdClassValue()
+    {
+        $params = [
+            'foo' => (object) [
+                'hello' => 'world'
+            ]
+        ];
+
+        $types = [
+            'foo' => (new StructType)
+                ->add('hello', Database::TYPE_STRING)
+        ];
+
+        $res = $this->mapper->formatParamsForExecuteSql($params, $types);
+
+        $this->assertEquals([
+            'foo' => ['world']
+        ], $res['params']);
+
+        $this->assertEquals([
+            'foo' => [
+                'code' => Database::TYPE_STRUCT,
+                'structType' => [
+                    'fields' => [
+                        [
+                            'name' => 'hello',
+                            'type' => [
+                                'code' => Database::TYPE_STRING
+                            ]
+                        ]
+                    ]
+                ]
+            ]
+        ], $res['paramTypes']);
+    }
+
+    /**
+     * @expectedException InvalidArgumentException
+     * @expectedExceptionMessage Values of type `\stdClass` are interpreted as structs and must define their types.
+     */
+    public function testFormatParamsForExecuteSqlStdClassMissingDefinition()
+    {
+        $this->mapper->formatParamsForExecuteSql([
+            'foo' => (object) ['foo' => 'bar']
+        ]);
+    }
+
+    /**
+     * @dataProvider simpleTypeValues
+     * @group foo
+     */
+    public function testEncodeValuesAsSimpleType($value, $expected = null)
+    {
+        if ($expected === null) {
+            $expected = $value;
+        }
+
+        $res = $this->mapper->encodeValuesAsSimpleType([$value]);
+        $this->assertEquals($expected, $res[0]);
+    }
+
+    public function simpleTypeValues()
+    {
+        $dt = new \DateTimeImmutable('now', new \DateTimeZone('UTC'));
+        $timestamp = new Timestamp($dt);
+
+        return [
+            [true],
+            [55555, '55555'],
+            [new Int64('55555'), '55555'],
+            [3.1415],
+            [NAN, 'NaN'],
+            [INF, 'Infinity'],
+            [-INF, '-Infinity'],
+            [$timestamp, $dt->format(Timestamp::FORMAT)],
+            [new Date($dt), $dt->format(Date::FORMAT)],
+            ['foo'],
+            [new Bytes('hello world'), base64_encode('hello world')],
+            [['foo', 'bar']]
+        ];
     }
 
     /**
