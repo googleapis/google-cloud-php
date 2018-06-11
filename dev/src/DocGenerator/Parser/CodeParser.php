@@ -828,7 +828,7 @@ class CodeParser implements ParserInterface
     {
         return str_replace('src/', '', substr(
             strtolower($fileName),
-            strlen($this->projectRoot) + 1,
+            strlen($this->projectRoot),
             -4
         ));
     }

@@ -77,9 +77,6 @@
   "name": "Google\\LongRunning\\",
   "uri": "https://googleapis.github.io/gax-php/#Google/LongRunning/%s.html"
 }, {
-  "name": "Google\\Protobuf\\",
-  "uri": "https://googleapis.github.io/gax-php/#Google/Protobuf/%s.html"
-}, {
   "name": "Google\\Rpc\\",
   "uri": "https://googleapis.github.io/gax-php/#Google/Rpc/%s.html"
 }, {
