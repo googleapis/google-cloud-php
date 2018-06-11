@@ -230,8 +230,8 @@ class ClusterControllerGapicClient
      *               'grpc' => [...],
      *               'rest' => [...]
      *           ];
-     *           See the {@see \Google\Cloud\ApiCore\Transport\GrpcTransport::build()} and
-     *           {@see \Google\Cloud\ApiCore\Transport\RestTransport::build()} methods for the
+     *           See the {@see \Google\ApiCore\Transport\GrpcTransport::build()} and
+     *           {@see \Google\ApiCore\Transport\RestTransport::build()} methods for the
      *           supported options.
      * }
      *

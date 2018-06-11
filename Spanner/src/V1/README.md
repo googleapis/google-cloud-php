@@ -1,16 +1,17 @@
-# Google Cloud PHP Spanner
+# Google Cloud Spanner V1 generated client for PHP
 
-> Idiomatic PHP client for [Cloud Spanner](https://cloud.google.com/spanner/).
+### Sample
 
-* [Homepage](http://googlecloudplatform.github.io/google-cloud-php)
-* [API documentation](http://googlecloudplatform.github.io/google-cloud-php/#/docs/cloud-spanner/latest/spanner/spannerclient)
+```php
+require 'vendor/autoload.php';
 
-**NOTE:** This repository is part of [Google Cloud PHP](https://github.com/googlecloudplatform/google-cloud-php). Any
-support requests, bug reports, or development contributions should be directed to
-that project.
+use Google\Cloud\Spanner\V1\SpannerClient;
 
-## Installation
-
-```
-$ composer require google/cloud-spanner
+$spannerClient = new SpannerClient();
+try {
+    $formattedDatabase = $spannerClient->databaseName('[PROJECT]', '[INSTANCE]', '[DATABASE]');
+    $response = $spannerClient->createSession($formattedDatabase);
+} finally {
+    $spannerClient->close();
+}
 ```

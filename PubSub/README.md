@@ -1,22 +1,79 @@
-# Google Cloud PHP PubSub
+# Google Cloud PubSub for PHP
 
 > Idiomatic PHP client for [Cloud Pub/Sub](https://cloud.google.com/pubsub/).
 
 [![Latest Stable Version](https://poser.pugx.org/google/cloud-pubsub/v/stable)](https://packagist.org/packages/google/cloud-pubsub) [![Packagist](https://img.shields.io/packagist/dm/google/cloud-pubsub.svg)](https://packagist.org/packages/google/cloud-pubsub)
 
-* [Homepage](http://googlecloudplatform.github.io/google-cloud-php)
-* [API documentation](http://googlecloudplatform.github.io/google-cloud-php/#/docs/cloud-pubsub/latest/pubsub/pubsubclient)
+* [API documentation](http://googlecloudplatform.github.io/google-cloud-php/#/docs/cloud-pubsub/latest)
 
 **NOTE:** This repository is part of [Google Cloud PHP](https://github.com/googlecloudplatform/google-cloud-php). Any
 support requests, bug reports, or development contributions should be directed to
 that project.
 
-If gRPC is not installed, this client uses REST over HTTP/1.1. For improved performance, or to make use of the generated clients, we recommend installing the gRPC PHP extension. For installation instructions, [see here](https://cloud.google.com/php/grpc).
+A fully-managed real-time messaging service that allows you to send and receive messages between independent applications.
 
-NOTE: In addition to the gRPC extension, we recommend installing the protobuf extension for improved performance. For installation instructions, [see here](https://cloud.google.com/php/grpc#install_the_protobuf_runtime_library).
+### Installation
 
-## Installation
+To begin, install the preferred dependency manager for PHP, [Composer](https://getcomposer.org/).
 
-```
+Now to install just this component:
+
+```sh
 $ composer require google/cloud-pubsub
 ```
+
+Or to install the entire suite of components at once:
+
+```sh
+$ composer require google/cloud
+```
+
+This component supports both REST over HTTP/1.1 and gRPC. In order to take advantage of the benefits offered by gRPC (such as streaming methods)
+please see our [gRPC installation guide](https://cloud.google.com/php/grpc).
+
+### Authentication
+
+Please see our [Authentication guide](https://github.com/GoogleCloudPlatform/google-cloud-php/blob/master/AUTHENTICATION.md) for more information
+on authenticating your client. Once authenticated, you'll be ready to start making requests.
+
+### Sample
+
+```php
+require 'vendor/autoload.php';
+
+use Google\Cloud\PubSub\PubSubClient;
+
+$pubSub = new PubSubClient();
+
+// Get an instance of a previously created topic.
+$topic = $pubSub->topic('my_topic');
+
+// Publish a message to the topic.
+$topic->publish([
+    'data' => 'My new message.',
+    'attributes' => [
+        'location' => 'Detroit'
+    ]
+]);
+
+// Get an instance of a previously created subscription.
+$subscription = $pubSub->subscription('my_subscription');
+
+// Pull all available messages.
+$messages = $subscription->pull();
+
+foreach ($messages as $message) {
+    echo $message->data() . "\n";
+    echo $message->attribute('location');
+}
+```
+
+### Version
+
+This component is considered GA (generally available). As such, it will not introduce backwards-incompatible changes in
+any minor or patch releases. We will address issues and requests with the highest priority.
+
+### Next Steps
+
+1. Understand the [official documentation](https://cloud.google.com/pubsub/docs/).
+2. Take a look at [in-depth usage samples](https://github.com/GoogleCloudPlatform/php-docs-samples/tree/master/pubsub/).

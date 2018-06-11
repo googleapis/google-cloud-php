@@ -2,6 +2,9 @@
   "name": "array",
   "uri": "http://php.net/manual/en/language.types.array.php"
 }, {
+  "name": "Traversable",
+  "uri": "http://php.net/manual/en/class.traversable.php"
+}, {
   "name": "bool",
   "uri": "http://php.net/manual/en/language.types.boolean.php"
 }, {
@@ -65,6 +68,9 @@
   "name": "Google\\Api\\",
   "uri": "https://googleapis.github.io/gax-php/#Google/Api/%s.html"
 }, {
+  "name": "Google\\Cloud\\",
+  "uri": "https://googleapis.github.io/gax-php/#Google/Cloud/%s.html"
+}, {
   "name": "Google\\Iam\\V1\\",
   "uri": "https://googleapis.github.io/gax-php/#Google/Iam/V1/%s.html"
 }, {
@@ -79,8 +85,5 @@
 }, {
   "name": "Google\\Type\\",
   "uri": "https://googleapis.github.io/gax-php/#Google/Type/%s.html"
-}, {
-  "name": "Google\\Cloud\\",
-  "uri": "https://googleapis.github.io/gax-php/#Google/Cloud/%s.html"
 }]
 

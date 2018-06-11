@@ -1,5 +1,6 @@
 {
     "title": "Redis",
+    "defaultService": "redis\/readme",
     "services": [
         {
             "title": "Overview",

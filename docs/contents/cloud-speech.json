@@ -1,7 +1,11 @@
 {
     "title": "Speech",
     "pattern": "speech\/\\w{1,}",
+    "defaultService": "speech/readme",
     "services": [{
+        "title": "Overview",
+        "type": "speech/readme"
+    },{
         "title": "SpeechClient",
         "type": "speech/speechclient"
     }, {

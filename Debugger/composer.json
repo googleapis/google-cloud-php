@@ -6,8 +6,7 @@
     "require": {
         "google/cloud-core": "^1.4",
         "google/cloud-logging": "^1.4",
-        "google/proto-client": "^0.40",
-        "google/gax": "^0.33",
+        "google/gax": "^0.34",
         "psr/log": "^1.0"
     },
     "require-dev": {
@@ -32,7 +31,8 @@
     },
     "autoload": {
         "psr-4": {
-            "Google\\Cloud\\Debugger\\": "src"
+            "Google\\Cloud\\Debugger\\": "src",
+            "GPBMetadata\\Google\\Devtools\\Clouddebugger\\": "metadata"
         }
     },
     "autoload-dev": {

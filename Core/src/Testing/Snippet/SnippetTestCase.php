@@ -19,6 +19,7 @@ namespace Google\Cloud\Core\Testing\Snippet;
 
 use Google\Cloud\Core\Testing\CheckForClassTrait;
 use Google\Cloud\Core\Testing\Snippet\Container;
+use Google\Cloud\Core\Testing\Snippet\Parser\Snippet;
 use PHPUnit\Framework\TestCase;
 
 /**

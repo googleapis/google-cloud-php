@@ -1,5 +1,20 @@
-# Stackdriver Error Reporting
+# Stackdriver Error Reporting V1beta1 generated client for PHP
 
-Stackdriver Error Reporting counts, analyzes and aggregates the crashes in your running cloud services.
+### Sample
 
-For more information, see [cloud.google.com](https://cloud.google.com/error-reporting/).
+```php
+require 'vendor/autoload.php';
+
+use Google\Cloud\ErrorReporting\V1beta1\ReportErrorsServiceClient;
+use Google\Cloud\ErrorReporting\\V1beta1\ReportedErrorEvent;
+
+$reportErrorsServiceClient = new ReportErrorsServiceClient();
+$formattedProjectName = $reportErrorsServiceClient->projectName('[PROJECT]');
+$event = new ReportedErrorEvent();
+
+try {
+    $response = $reportErrorsServiceClient->reportErrorEvent($formattedProjectName, $event);
+} finally {
+    $reportErrorsServiceClient->close();
+}
+```

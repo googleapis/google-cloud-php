@@ -6,8 +6,7 @@
     "require": {
         "ext-grpc": "*",
         "google/cloud-core": "^1.14",
-        "google/gax": "^0.33",
-        "google/proto-client": "^0.40",
+        "google/gax": "^0.34",
         "ramsey/uuid": "~3"
     },
     "require-dev": {
@@ -29,7 +28,8 @@
     },
     "autoload": {
         "psr-4": {
-            "Google\\Cloud\\Firestore\\": "src"
+            "Google\\Cloud\\Firestore\\": "src",
+            "GPBMetadata\\Google\\Firestore\\": "metadata"
         }
     },
     "autoload-dev": {

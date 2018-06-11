@@ -17,10 +17,12 @@
 
 namespace Google\Cloud\Logging;
 
+use Google\Cloud\Core\Batch\BatchRunner;
 use Google\Cloud\Core\Batch\BatchTrait;
 use Google\Cloud\Core\Batch\ClosureSerializerInterface;
 use Google\Cloud\Core\Report\MetadataProviderInterface;
 use Google\Cloud\Core\Report\MetadataProviderUtils;
+use Google\Cloud\Core\Timestamp;
 use Monolog\Formatter\NormalizerFormatter;
 use Monolog\Processor\PsrLogMessageProcessor;
 use Psr\Log\InvalidArgumentException;

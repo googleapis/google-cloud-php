@@ -49,6 +49,8 @@ Here are the environment variables that Google Cloud PHP checks for credentials:
 Each Google Cloud PHP client may be authenticated in code when creating a client library instance.
 
 ```php
+require 'vendor/autoload.php';
+
 use Google\Cloud\Storage\StorageClient;
 
 // Authenticating with keyfile data.
@@ -64,6 +66,24 @@ $storage = new StorageClient([
 // Providing the Google Cloud project ID.
 $storage = new StorageClient([
     'projectId' => 'myProject'
+]);
+```
+
+Generated clients use a slightly different method to provide authentication in code.
+
+```php
+require 'vendor/autoload.php';
+
+use Google\Cloud\VideoIntelligence\V1\VideoIntelligenceServiceClient;
+
+// Authenticating with keyfile data.
+$video = new VideoIntelligenceServiceClient([
+    'credentials' => json_decode(file_get_contents('/path/to/keyfile.json'), true)
+]);
+
+// Authenticating with a keyfile path.
+$video = new VideoIntelligenceServiceClient([
+    'credentials' => '/path/to/keyfile.json'
 ]);
 ```
 

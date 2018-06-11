@@ -19,6 +19,7 @@ namespace Google\Cloud\Logging;
 
 use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\Core\ArrayTrait;
+use Google\Cloud\Core\Batch\BatchRunner;
 use Google\Cloud\Core\Batch\ClosureSerializerInterface;
 use Google\Cloud\Core\ClientTrait;
 use Google\Cloud\Core\Iterator\ItemIterator;

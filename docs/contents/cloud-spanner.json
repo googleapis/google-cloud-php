@@ -1,7 +1,11 @@
 {
     "title": "Spanner",
     "pattern": "spanner\/\\w{1,}",
+    "defaultService": "spanner/readme",
     "services": [{
+        "title": "Overview",
+        "type": "spanner/readme"
+    },{
         "title": "SpannerClient",
         "type": "spanner/spannerclient"
     }, {

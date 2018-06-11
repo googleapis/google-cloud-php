@@ -756,7 +756,7 @@
         {
             "id": "cloud-videointelligence",
             "name": "google/cloud-videointelligence",
-            "defaultService": "videointelligence/videointelligenceserviceclient",
+            "defaultService": "videointelligence/readme",
             "versions": [
                 "v0.11.1",
                 "v0.11.0",

@@ -245,14 +245,11 @@ class Parser
     public function examples(DocBlock $docBlock, $fullyQualifiedName, $file, $line, array $magicMethods = [])
     {
         $text = $docBlock->getText();
-        // $return = $docBlock->getTagsByName('return');
-        // if (!empty($return)) {
-        //     print_r($return[0]->getTypes());exit;
-        // }
+        $parts = [];
 
-        $parts = explode('Example:', $text);
-
-        if (strpos($text, 'Example:') === false) {
+        if (strpos($text, 'Example:' . PHP_EOL . '```') !== false) {
+            $parts = explode('Example:' . PHP_EOL, $text);
+        } else {
             return [];
         }
 

@@ -1,6 +1,18 @@
-# Cloud Natural Language
+# Cloud Natural Language V1beta2 generated client for PHP
 
-Google Cloud Natural Language API reveals the structure and meaning of text by
-offering powerful machine learning models in an easy to use API.
+### Sample
 
-For more information, see [cloud.google.com](https://cloud.google.com/natural-language/).
+```php
+require 'vendor/autoload.php';
+
+use Google\Cloud\Language\V1beta2\Document;
+use Google\Cloud\Language\V1beta2\LanguageServiceClient;
+
+$languageServiceClient = new LanguageServiceClient();
+try {
+    $document = new Document();
+    $response = $languageServiceClient->analyzeSentiment($document);
+} finally {
+    $languageServiceClient->close();
+}
+```

@@ -1,5 +1,17 @@
-# Stackdriver Logging
+# Stackdriver Logging V2 generated client for PHP
 
-Stackdriver Logging allows you to store, search, analyze, monitor, and alert on log data and events from Google Cloud Platform and Amazon Web Services (AWS).
+### Sample
 
-For more information, see [cloud.google.com](https://cloud.google.com/logging/).
+```php
+require 'vendor/autoload.php';
+
+use Google\Cloud\Logging\V2\LoggingServiceV2Client;
+
+$loggingServiceV2Client = new LoggingServiceV2Client();
+try {
+    $formattedLogName = $loggingServiceV2Client->logName('[PROJECT]', '[LOG]');
+    $loggingServiceV2Client->deleteLog($formattedLogName);
+} finally {
+    $loggingServiceV2Client->close();
+}
+```

@@ -1,38 +1,68 @@
-# Google PHP Stackdriver Trace
+# Stackdriver Trace for PHP
 
 > Idiomatic PHP client for [Stackdriver Trace][stackdriver-trace].
 
 [![Latest Stable Version](https://poser.pugx.org/google/cloud-trace/v/stable)](https://packagist.org/packages/google/cloud-trace) [![Packagist](https://img.shields.io/packagist/dm/google/cloud-trace.svg)](https://packagist.org/packages/google/cloud-trace)
 
-* [Homepage][homepage]
 * [API documentation][api-docs]
 
 **NOTE:** This repository is part of [Google Cloud PHP][github-home]. Any
 support requests, bug reports, or development contributions should be directed to
 that project.
 
-Use of the included generated clients requires installation of the gRPC PHP extension. For instructions, [see here](https://cloud.google.com/php/grpc).
+A distributed tracing system for Google Cloud Platform that collects latency
+data from App Engine applications and displays it in near real time in the
+Google Cloud Platform Console.
 
-NOTE: In addition to the gRPC extension, we recommend installing the protobuf extension for improved performance. For installation instructions, [see here](https://cloud.google.com/php/grpc#install_the_protobuf_runtime_library).
+### Installation
 
-## Installation
+To begin, install the preferred dependency manager for PHP, [Composer](https://getcomposer.org/).
 
-Install with `composer` or add to your `composer.json`.
+Now to install just this component:
 
-```
+```sh
 $ composer require google/cloud-trace
 ```
 
-Use of the included generated clients requires installation of the gRPC PHP
-extension. For instructions, [see here](https://cloud.google.com/php/grpc).
+Or to install the entire suite of components at once:
 
-NOTE: In addition to the gRPC extension, we recommend installing the protobuf
-extension for improved performance. For installation instructions,
-[see here](https://cloud.google.com/php/grpc#install_the_protobuf_runtime_library).
+```sh
+$ composer require google/cloud
+```
 
-## Usage
+This component supports both REST over HTTP/1.1 and gRPC. In order to take advantage of the benefits offered by gRPC (such as streaming methods)
+please see our [gRPC installation guide](https://cloud.google.com/php/grpc).
 
-This library contains code to interact with the Stackdriver Trace V2 API.
+### Authentication
+
+Please see our [Authentication guide](https://github.com/GoogleCloudPlatform/google-cloud-php/blob/master/AUTHENTICATION.md) for more information
+on authenticating your client. Once authenticated, you'll be ready to start making requests.
+
+### Sample
+
+```php
+require 'vendor/autoload.php';
+
+use Google\Cloud\Trace\TraceClient;
+
+$traceClient = new TraceClient();
+
+// Create a Trace
+$trace = $traceClient->trace();
+$span = $trace->span([
+    'name' => 'main'
+]);
+$span->setStart();
+$span->setEnd();
+
+$trace->setSpans([$span]);
+$traceClient->insert($trace);
+
+// List recent Traces
+foreach($traceClient->traces() as $trace) {
+    var_dump($trace->traceId());
+}
+```
 
 ### Creating a Trace
 
@@ -58,7 +88,7 @@ out the [migration guide to OpenCensus][opencensus-migration].
 
 Install with `composer` or add to your `composer.json`.
 
-```
+```sh
 $ composer require opencensus/opencensus
 ```
 
@@ -74,10 +104,21 @@ Tracer::start(new StackdriverExporter());
 See the [OpenCensus documentation][opencensus-php] for more configuration
 options and features.
 
+### Version
+
+This component is considered alpha. As such, it is still a work-in-progress and is more likely to get backwards-incompatible updates.
+
+### Next Steps
+
+1. Understand the [official documentation][official-documentation].
+2. Take a look at [in-depth usage samples][usage-samples].
+
+
 [stackdriver-trace]: https://cloud.google.com/trace/
 [homepage]: http://googlecloudplatform.github.io/google-cloud-php
-[api-docs]: http://googlecloudplatform.github.io/google-cloud-php/#/docs/cloud-trace/latest/trace/traceclient
-[github-home]: https://github.com/googlecloudplatform/google-cloud-php
+[api-docs]: http://googlecloudplatform.github.io/google-cloud-php/#/docs/cloud-trace/latest
 [opencensus]: http://opencensus.io
 [opencensus-php]: https://github.com/census-instrumentation/opencensus-php
 [opencensus-migration]: http://opencensus.io/opencensus-php/migrating-stackdriver-trace
+[official-documentation]: https://cloud.google.com/trace/docs/
+[usage-samples]: https://github.com/GoogleCloudPlatform/php-docs-samples/tree/master/trace/

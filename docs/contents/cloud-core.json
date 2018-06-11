@@ -1,9 +1,13 @@
 {
     "title": "Core",
     "pattern": "core\/\\w{1,}",
+    "defaultService": "core/readme",
     "services": [{
         "title": "Overview",
         "type": "core/readme"
+    }, {
+        "title": "ServiceBuilder",
+        "type": "core/servicebuilder"
     }, {
         "title": "IAM",
         "type": "core/iam/iam",

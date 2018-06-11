@@ -1,24 +1,23 @@
-# Google Cloud IoT Core for PHP
+# Google Cloud IoT Core V1 generated client for PHP
 
-> Idiomatic PHP client for [Google Cloud IoT Core](https://cloud.google.com/iot-core/).
+### Sample
 
-[![Latest Stable Version](https://poser.pugx.org/google/cloud-iot/v/stable)](https://packagist.org/packages/google/cloud-iot) [![Packagist](https://img.shields.io/packagist/dm/google/cloud-iot.svg)](https://packagist.org/packages/google/cloud-iot)
+```php
+require 'vendor/autoload.php';
 
-* [Homepage](http://googlecloudplatform.github.io/google-cloud-php)
-* [API documentation](http://googlecloudplatform.github.io/google-cloud-php/#/docs/cloud-iot/latest/readme)
+use Google\Cloud\Iot\V1\DeviceManagerClient;
 
-**NOTE:** This repository a Read-Only subtree split of
-[Google Cloud PHP](https://github.com/googlecloudplatform/google-cloud-php). Any
-support requests, bug reports, or development contributions should be directed to
-that project. Additional tests and build information can also be found at the
-parent project.
+$deviceManager = new DeviceManagerClient();
 
-If it is not already installed, you will also require the gRPC extension. For installation instructions, [see here](https://cloud.google.com/php/grpc).
-
-NOTE: In addition to the gRPC extension, we recommend installing the protobuf extension for improved performance. For installation instructions, [see here](https://cloud.google.com/php/grpc#install_the_protobuf_runtime_library).
-
-## Installation
-
-```
-$ composer require google/cloud-iot
+$projectId = '[MY_PROJECT_ID]';
+$location = 'us-central1';
+$registryId = '[MY_REGISTRY_ID]';
+$registryName = $deviceManager->registryName($projectId, $location, $registryId);
+$devices = $deviceManager->listDevices($registryName);
+foreach ($devices->iterateAllElements() as $device) {
+    printf('Device: %s : %s' . PHP_EOL,
+        $device->getNumId(),
+        $device->getId()
+    );
+}
 ```

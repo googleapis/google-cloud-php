@@ -64,7 +64,6 @@ class Manifest
      */
     private $defaultDeps = [
         'ext-grpc',
-        'google/proto-client',
         'google/gax'
     ];
 

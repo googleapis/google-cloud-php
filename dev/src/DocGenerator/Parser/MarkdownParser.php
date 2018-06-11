@@ -19,18 +19,27 @@ namespace Google\Cloud\Dev\DocGenerator\Parser;
 
 use Parsedown;
 use DOMDocument;
+use DOMElement;
 
 class MarkdownParser implements ParserInterface
 {
+    /**
+     * A trigger to determine if the file being parsed is the README in the
+     * component root
+     */
+    const ROOT_README_TRIGGER = 'Latest Stable Version';
+
     private $currentFile;
     private $content;
     private $markdown;
+    private $id;
 
-    public function __construct($currentFile, $content)
+    public function __construct($currentFile, $content, $id)
     {
         $this->currentFile = $currentFile;
         $this->content = $content;
         $this->markdown = Parsedown::instance();
+        $this->id = $id;
 
         set_error_handler(function($number, $error){
             if (preg_match('/^DOMDocument::loadHTML\(\): (.+)$/', $error, $m) === 1) {
@@ -45,6 +54,7 @@ class MarkdownParser implements ParserInterface
 
         try {
             $doc = new DOMDocument;
+            $doc->preserveWhiteSpace = false;
             $doc->loadHTML($html);
         } catch (\Exception $e) {
             throw new \RuntimeException($e->getMessage() .' ('. $this->currentFile .')');
@@ -52,22 +62,59 @@ class MarkdownParser implements ParserInterface
 
         $headings = $doc->getElementsByTagName('h1');
         $heading = $headings->item(0);
-
         if (!$heading) {
             throw new \RuntimeException('Missing h1 tag ('. $this->currentFile .')');
         }
         $heading->parentNode->removeChild($heading);
 
-        $pathinfo = pathinfo($this->currentFile);
+        $this->pruneGitSpecificData($doc);
         $body = $doc->getElementsByTagName('body')->item(0);
 
         return [
-            'id' => strtolower(trim($pathinfo['dirname'] .'/'. $pathinfo['filename'], '/.')),
+            'id' => $this->id,
             'type' => 'guide',
             'title' => $heading->textContent,
             'name' => $heading->textContent,
             'description' => $doc->saveHTML($body),
             'methods' => []
         ];
+    }
+
+    /**
+     * @todo If the README isn't in a specific format, things can go south. Make
+     *       this less fragile.
+     * @param DOMDocument $doc
+     */
+    private function pruneGitSpecificData($doc)
+    {
+        $img = $doc->getElementsByTagName('img')
+            ->item(0);
+        if (!$img) {
+            return;
+        }
+        $alt = $img->attributes->getNamedItem('alt');
+        if (!$alt) {
+            return;
+        }
+        if (strpos($alt->textContent, self::ROOT_README_TRIGGER) === false) {
+            return;
+        }
+
+        $blockquotes = $doc->getElementsByTagName('blockquote');
+        $blockquote = $blockquotes->item(0);
+
+        if ($blockquote) {
+            $blockquote->parentNode->removeChild($blockquote);
+        }
+
+        $lists = $doc->getElementsByTagName('ul');
+        $list = $lists->item(0);
+        $list->parentNode->removeChild($list);
+
+        $paragraphs = $doc->getElementsByTagName('p');
+        $p0 = $paragraphs->item(0);
+        $p1 = $paragraphs->item(1);
+        $p0->parentNode->removeChild($p0);
+        $p1->parentNode->removeChild($p1);
     }
 }

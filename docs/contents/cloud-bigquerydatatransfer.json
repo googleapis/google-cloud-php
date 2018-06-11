@@ -1,5 +1,6 @@
 {
     "title": "BigQuery Data Transfer",
+    "defaultService": "bigquerydatatransfer\/readme",
     "services": [
         {
             "title": "Overview",
@@ -7,11 +8,7 @@
         },
         {
             "title": "DataTransferServiceClient",
-            "type": "bigquerydatatransfer\/v1\/datatransferserviceclient",
-            "nav": [],
-            "patterns": [
-                "bigquerydatatransfer\/v1\/\\w{1,}"
-            ]
+            "type": "bigquerydatatransfer\/v1\/datatransferserviceclient"
         }
     ],
     "pattern": "bigquerydatatransfer\/\\w{1,}"

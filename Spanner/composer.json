@@ -6,8 +6,7 @@
     "require": {
         "ext-grpc": "*",
         "google/cloud-core": "^1.14",
-        "google/gax": "^0.33",
-        "google/proto-client": "^0.40"
+        "google/gax": "^0.34"
     },
     "require-dev": {
         "phpunit/phpunit": "^4.8|^5.0",
@@ -29,7 +28,8 @@
     },
     "autoload": {
         "psr-4": {
-            "Google\\Cloud\\Spanner\\": "src"
+            "Google\\Cloud\\Spanner\\": "src",
+            "GPBMetadata\\Google\\Spanner\\": "metadata"
         }
     },
     "autoload-dev": {

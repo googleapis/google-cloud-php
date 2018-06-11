@@ -17,6 +17,7 @@
 
 namespace Google\Cloud\Debugger;
 
+use Google\Cloud\Core\Batch\ClosureSerializerInterface;
 use Google\Cloud\Core\Batch\SimpleJobTrait;
 use Google\Cloud\Core\Batch\SerializableClientTrait;
 use Google\Cloud\Core\SysvTrait;
