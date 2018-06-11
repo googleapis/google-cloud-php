@@ -13,6 +13,7 @@ This client supports the following Google Cloud Platform services at a [General 
 * [Google Cloud Pub/Sub](#google-cloud-pubsub-ga) (GA)
 * [Google Cloud Storage](#google-cloud-storage-ga) (GA)
 * [Google Cloud Translation](#google-cloud-translation-ga) (GA)
+* [Google Cloud Video Intelligence](#google-cloud-video-intelligence-ga) (GA)
 * [Google Stackdriver Logging](#google-stackdriver-logging-ga) (GA)
 
 This client supports the following Google Cloud Platform services at a [Beta](#versioning) quality level:
@@ -22,7 +23,6 @@ This client supports the following Google Cloud Platform services at a [Beta](#v
 * [Google Cloud Dataproc](#google-cloud-dataproc-beta) (Beta)
 * [Google Cloud Natural Language](#google-cloud-natural-language-beta) (Beta)
 * [Google Cloud OsLogin](#google-cloud-oslogin-beta) (Beta)
-* [Google Cloud Video Intelligence](#google-cloud-video-intelligence-beta) (Beta)
 * [Google Cloud Vision](#google-cloud-vision-beta) (Beta)
 * [Google DLP](#google-dlp-beta) (Beta)
 * [Google Stackdriver Error Reporting](#google-stackdriver-error-reporting-beta) (Beta)
@@ -373,6 +373,48 @@ foreach ($languages as $language) {
 $ composer require google/cloud-translate
 ```
 
+## Google Cloud Video Intelligence (GA)
+
+- [API Documentation](http://googlecloudplatform.github.io/google-cloud-php/#/docs/latest/videointelligence/readme)
+- [Official Documentation](https://cloud.google.com/video-intelligence/docs)
+
+#### Preview
+
+```php
+require __DIR__ . '/vendor/autoload.php';
+
+use Google\Cloud\VideoIntelligence\V1\VideoIntelligenceServiceClient;
+use Google\Cloud\VideoIntelligence\V1\Feature;
+
+$videoIntelligenceServiceClient = new VideoIntelligenceServiceClient();
+
+$inputUri = "gs://example-bucket/example-video.mp4";
+$features = [
+    Feature::LABEL_DETECTION,
+];
+$operationResponse = $videoIntelligenceServiceClient->annotateVideo($inputUri, $features);
+$operationResponse->pollUntilComplete();
+if ($operationResponse->operationSucceeded()) {
+    $results = $operationResponse->getResult();
+    foreach ($results->getAnnotationResultsList() as $result) {
+        foreach ($result->getLabelAnnotationsList() as $labelAnnotation) {
+            echo "Label: " . $labelAnnotation->getDescription() . "\n";
+        }
+    }
+} else {
+    $error = $operationResponse->getError();
+    echo "error: " . $error->getMessage() . "\n";
+}
+```
+
+#### google/cloud-videointelligence
+
+[Cloud Video Intelligence](https://github.com/GoogleCloudPlatform/google-cloud-php-videointelligence) can be installed separately by requiring the [`google/cloud-videointelligence`](https://packagist.org/packages/google/cloud-videointelligence) composer package:
+
+```
+$ composer require google/cloud-videointelligence
+```
+
 ## Google Stackdriver Logging (GA)
 
 - [API Documentation](http://googlecloudplatform.github.io/google-cloud-php/#/docs/latest/logging/loggingclient)
@@ -579,48 +621,6 @@ $loginProfile = $osLoginServiceClient->getLoginProfile($formattedName);
 
 ```
 $ composer require google/cloud-oslogin
-```
-
-## Google Cloud Video Intelligence (Beta)
-
-- [API Documentation](http://googlecloudplatform.github.io/google-cloud-php/#/docs/latest/videointelligence/readme)
-- [Official Documentation](https://cloud.google.com/video-intelligence/docs)
-
-#### Preview
-
-```php
-require __DIR__ . '/vendor/autoload.php';
-
-use Google\Cloud\VideoIntelligence\V1\VideoIntelligenceServiceClient;
-use Google\Cloud\VideoIntelligence\V1\Feature;
-
-$videoIntelligenceServiceClient = new VideoIntelligenceServiceClient();
-
-$inputUri = "gs://example-bucket/example-video.mp4";
-$features = [
-    Feature::LABEL_DETECTION,
-];
-$operationResponse = $videoIntelligenceServiceClient->annotateVideo($inputUri, $features);
-$operationResponse->pollUntilComplete();
-if ($operationResponse->operationSucceeded()) {
-    $results = $operationResponse->getResult();
-    foreach ($results->getAnnotationResultsList() as $result) {
-        foreach ($result->getLabelAnnotationsList() as $labelAnnotation) {
-            echo "Label: " . $labelAnnotation->getDescription() . "\n";
-        }
-    }
-} else {
-    $error = $operationResponse->getError();
-    echo "error: " . $error->getMessage() . "\n";
-}
-```
-
-#### google/cloud-videointelligence
-
-[Cloud Video Intelligence](https://github.com/GoogleCloudPlatform/google-cloud-php-videointelligence) can be installed separately by requiring the [`google/cloud-videointelligence`](https://packagist.org/packages/google/cloud-videointelligence) composer package:
-
-```
-$ composer require google/cloud-videointelligence
 ```
 
 ## Google Cloud Vision (Beta)
@@ -1116,7 +1116,11 @@ Please note it is currently under active development. Any release versioned
 
 **GA**: Libraries defined at a GA quality level are stable, and will not
 introduce backwards-incompatible changes in any minor or patch releases. We will
-address issues and requests with the highest priority.
+address issues and requests with the highest priority. Please note, for any
+components which include generated clients the GA guarantee will only apply to
+clients which interact with stable services. For example, in a component which
+hosts V1 and V1beta1 generated clients, the GA guarantee will only apply to the
+V1 client as the service it interacts with is considered stable.
 
 **Beta**: Libraries defined at a Beta quality level are expected to be mostly
 stable and we're working towards their release candidate. We will address issues
