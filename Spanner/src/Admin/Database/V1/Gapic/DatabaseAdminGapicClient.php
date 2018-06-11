@@ -354,7 +354,7 @@ class DatabaseAdminGapicClient
      * @throws ValidationException
      * @experimental
      */
-    public function __construct($options = [])
+    public function __construct(array $options = [])
     {
         $clientOptions = $this->buildClientOptions($options);
         $this->setClientOptions($clientOptions);
@@ -413,7 +413,7 @@ class DatabaseAdminGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function listDatabases($parent, $optionalArgs = [])
+    public function listDatabases($parent, array $optionalArgs = [])
     {
         $request = new ListDatabasesRequest();
         $request->setParent($parent);
@@ -506,7 +506,7 @@ class DatabaseAdminGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function createDatabase($parent, $createStatement, $optionalArgs = [])
+    public function createDatabase($parent, $createStatement, array $optionalArgs = [])
     {
         $request = new CreateDatabaseRequest();
         $request->setParent($parent);
@@ -554,7 +554,7 @@ class DatabaseAdminGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function getDatabase($name, $optionalArgs = [])
+    public function getDatabase($name, array $optionalArgs = [])
     {
         $request = new GetDatabaseRequest();
         $request->setName($name);
@@ -648,7 +648,7 @@ class DatabaseAdminGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function updateDatabaseDdl($database, $statements, $optionalArgs = [])
+    public function updateDatabaseDdl($database, $statements, array $optionalArgs = [])
     {
         $request = new UpdateDatabaseDdlRequest();
         $request->setDatabase($database);
@@ -693,7 +693,7 @@ class DatabaseAdminGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function dropDatabase($database, $optionalArgs = [])
+    public function dropDatabase($database, array $optionalArgs = [])
     {
         $request = new DropDatabaseRequest();
         $request->setDatabase($database);
@@ -738,7 +738,7 @@ class DatabaseAdminGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function getDatabaseDdl($database, $optionalArgs = [])
+    public function getDatabaseDdl($database, array $optionalArgs = [])
     {
         $request = new GetDatabaseDdlRequest();
         $request->setDatabase($database);
@@ -792,7 +792,7 @@ class DatabaseAdminGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function setIamPolicy($resource, $policy, $optionalArgs = [])
+    public function setIamPolicy($resource, $policy, array $optionalArgs = [])
     {
         $request = new SetIamPolicyRequest();
         $request->setResource($resource);
@@ -842,7 +842,7 @@ class DatabaseAdminGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function getIamPolicy($resource, $optionalArgs = [])
+    public function getIamPolicy($resource, array $optionalArgs = [])
     {
         $request = new GetIamPolicyRequest();
         $request->setResource($resource);
@@ -897,7 +897,7 @@ class DatabaseAdminGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function testIamPermissions($resource, $permissions, $optionalArgs = [])
+    public function testIamPermissions($resource, $permissions, array $optionalArgs = [])
     {
         $request = new TestIamPermissionsRequest();
         $request->setResource($resource);

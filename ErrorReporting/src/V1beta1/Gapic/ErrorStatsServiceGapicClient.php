@@ -270,7 +270,7 @@ class ErrorStatsServiceGapicClient
      * @throws ValidationException
      * @experimental
      */
-    public function __construct($options = [])
+    public function __construct(array $options = [])
     {
         $clientOptions = $this->buildClientOptions($options);
         $this->setClientOptions($clientOptions);
@@ -360,7 +360,7 @@ class ErrorStatsServiceGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function listGroupStats($projectName, $timeRange, $optionalArgs = [])
+    public function listGroupStats($projectName, $timeRange, array $optionalArgs = [])
     {
         $request = new ListGroupStatsRequest();
         $request->setProjectName($projectName);
@@ -463,7 +463,7 @@ class ErrorStatsServiceGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function listEvents($projectName, $groupId, $optionalArgs = [])
+    public function listEvents($projectName, $groupId, array $optionalArgs = [])
     {
         $request = new ListEventsRequest();
         $request->setProjectName($projectName);
@@ -523,7 +523,7 @@ class ErrorStatsServiceGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function deleteEvents($projectName, $optionalArgs = [])
+    public function deleteEvents($projectName, array $optionalArgs = [])
     {
         $request = new DeleteEventsRequest();
         $request->setProjectName($projectName);

@@ -189,7 +189,7 @@ class Controller2GapicClient
      * @throws ValidationException
      * @experimental
      */
-    public function __construct($options = [])
+    public function __construct(array $options = [])
     {
         $clientOptions = $this->buildClientOptions($options);
         $this->setClientOptions($clientOptions);
@@ -236,7 +236,7 @@ class Controller2GapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function registerDebuggee($debuggee, $optionalArgs = [])
+    public function registerDebuggee($debuggee, array $optionalArgs = [])
     {
         $request = new RegisterDebuggeeRequest();
         $request->setDebuggee($debuggee);
@@ -303,7 +303,7 @@ class Controller2GapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function listActiveBreakpoints($debuggeeId, $optionalArgs = [])
+    public function listActiveBreakpoints($debuggeeId, array $optionalArgs = [])
     {
         $request = new ListActiveBreakpointsRequest();
         $request->setDebuggeeId($debuggeeId);
@@ -363,7 +363,7 @@ class Controller2GapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function updateActiveBreakpoint($debuggeeId, $breakpoint, $optionalArgs = [])
+    public function updateActiveBreakpoint($debuggeeId, $breakpoint, array $optionalArgs = [])
     {
         $request = new UpdateActiveBreakpointRequest();
         $request->setDebuggeeId($debuggeeId);

@@ -371,7 +371,7 @@ class SubscriberGapicClient
      * @throws ValidationException
      * @experimental
      */
-    public function __construct($options = [])
+    public function __construct(array $options = [])
     {
         $clientOptions = $this->buildClientOptions($options);
         $this->setClientOptions($clientOptions);
@@ -464,7 +464,7 @@ class SubscriberGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function createSubscription($name, $topic, $optionalArgs = [])
+    public function createSubscription($name, $topic, array $optionalArgs = [])
     {
         $request = new Subscription();
         $request->setName($name);
@@ -524,7 +524,7 @@ class SubscriberGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function getSubscription($subscription, $optionalArgs = [])
+    public function getSubscription($subscription, array $optionalArgs = [])
     {
         $request = new GetSubscriptionRequest();
         $request->setSubscription($subscription);
@@ -580,7 +580,7 @@ class SubscriberGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function updateSubscription($subscription, $updateMask, $optionalArgs = [])
+    public function updateSubscription($subscription, $updateMask, array $optionalArgs = [])
     {
         $request = new UpdateSubscriptionRequest();
         $request->setSubscription($subscription);
@@ -646,7 +646,7 @@ class SubscriberGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function listSubscriptions($project, $optionalArgs = [])
+    public function listSubscriptions($project, array $optionalArgs = [])
     {
         $request = new ListSubscriptionsRequest();
         $request->setProject($project);
@@ -698,7 +698,7 @@ class SubscriberGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function deleteSubscription($subscription, $optionalArgs = [])
+    public function deleteSubscription($subscription, array $optionalArgs = [])
     {
         $request = new DeleteSubscriptionRequest();
         $request->setSubscription($subscription);
@@ -754,7 +754,7 @@ class SubscriberGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function modifyAckDeadline($subscription, $ackIds, $ackDeadlineSeconds, $optionalArgs = [])
+    public function modifyAckDeadline($subscription, $ackIds, $ackDeadlineSeconds, array $optionalArgs = [])
     {
         $request = new ModifyAckDeadlineRequest();
         $request->setSubscription($subscription);
@@ -807,7 +807,7 @@ class SubscriberGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function acknowledge($subscription, $ackIds, $optionalArgs = [])
+    public function acknowledge($subscription, $ackIds, array $optionalArgs = [])
     {
         $request = new AcknowledgeRequest();
         $request->setSubscription($subscription);
@@ -865,7 +865,7 @@ class SubscriberGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function pull($subscription, $maxMessages, $optionalArgs = [])
+    public function pull($subscription, $maxMessages, array $optionalArgs = [])
     {
         $request = new PullRequest();
         $request->setSubscription($subscription);
@@ -948,7 +948,7 @@ class SubscriberGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function streamingPull($optionalArgs = [])
+    public function streamingPull(array $optionalArgs = [])
     {
         return $this->startCall(
             'StreamingPull',
@@ -1000,7 +1000,7 @@ class SubscriberGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function modifyPushConfig($subscription, $pushConfig, $optionalArgs = [])
+    public function modifyPushConfig($subscription, $pushConfig, array $optionalArgs = [])
     {
         $request = new ModifyPushConfigRequest();
         $request->setSubscription($subscription);
@@ -1066,7 +1066,7 @@ class SubscriberGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function listSnapshots($project, $optionalArgs = [])
+    public function listSnapshots($project, array $optionalArgs = [])
     {
         $request = new ListSnapshotsRequest();
         $request->setProject($project);
@@ -1138,7 +1138,7 @@ class SubscriberGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function createSnapshot($name, $subscription, $optionalArgs = [])
+    public function createSnapshot($name, $subscription, array $optionalArgs = [])
     {
         $request = new CreateSnapshotRequest();
         $request->setName($name);
@@ -1197,7 +1197,7 @@ class SubscriberGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function updateSnapshot($snapshot, $updateMask, $optionalArgs = [])
+    public function updateSnapshot($snapshot, $updateMask, array $optionalArgs = [])
     {
         $request = new UpdateSnapshotRequest();
         $request->setSnapshot($snapshot);
@@ -1243,7 +1243,7 @@ class SubscriberGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function deleteSnapshot($snapshot, $optionalArgs = [])
+    public function deleteSnapshot($snapshot, array $optionalArgs = [])
     {
         $request = new DeleteSnapshotRequest();
         $request->setSnapshot($snapshot);
@@ -1303,7 +1303,7 @@ class SubscriberGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function seek($subscription, $optionalArgs = [])
+    public function seek($subscription, array $optionalArgs = [])
     {
         $request = new SeekRequest();
         $request->setSubscription($subscription);
@@ -1360,7 +1360,7 @@ class SubscriberGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function setIamPolicy($resource, $policy, $optionalArgs = [])
+    public function setIamPolicy($resource, $policy, array $optionalArgs = [])
     {
         $request = new SetIamPolicyRequest();
         $request->setResource($resource);
@@ -1410,7 +1410,7 @@ class SubscriberGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function getIamPolicy($resource, $optionalArgs = [])
+    public function getIamPolicy($resource, array $optionalArgs = [])
     {
         $request = new GetIamPolicyRequest();
         $request->setResource($resource);
@@ -1464,7 +1464,7 @@ class SubscriberGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function testIamPermissions($resource, $permissions, $optionalArgs = [])
+    public function testIamPermissions($resource, $permissions, array $optionalArgs = [])
     {
         $request = new TestIamPermissionsRequest();
         $request->setResource($resource);

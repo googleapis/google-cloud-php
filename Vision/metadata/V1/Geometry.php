@@ -35,3 +35,4 @@ class Geometry
         static::$is_initialized = true;
     }
 }
+

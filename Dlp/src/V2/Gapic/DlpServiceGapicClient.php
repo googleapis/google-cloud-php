@@ -507,7 +507,7 @@ class DlpServiceGapicClient
      * @throws ValidationException
      * @experimental
      */
-    public function __construct($options = [])
+    public function __construct(array $options = [])
     {
         $clientOptions = $this->buildClientOptions($options);
         $this->setClientOptions($clientOptions);
@@ -557,7 +557,7 @@ class DlpServiceGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function inspectContent($parent, $optionalArgs = [])
+    public function inspectContent($parent, array $optionalArgs = [])
     {
         $request = new InspectContentRequest();
         $request->setParent($parent);
@@ -617,7 +617,7 @@ class DlpServiceGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function redactImage($parent, $optionalArgs = [])
+    public function redactImage($parent, array $optionalArgs = [])
     {
         $request = new RedactImageRequest();
         $request->setParent($parent);
@@ -693,7 +693,7 @@ class DlpServiceGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function deidentifyContent($parent, $optionalArgs = [])
+    public function deidentifyContent($parent, array $optionalArgs = [])
     {
         $request = new DeidentifyContentRequest();
         $request->setParent($parent);
@@ -778,7 +778,7 @@ class DlpServiceGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function reidentifyContent($parent, $optionalArgs = [])
+    public function reidentifyContent($parent, array $optionalArgs = [])
     {
         $request = new ReidentifyContentRequest();
         $request->setParent($parent);
@@ -844,7 +844,7 @@ class DlpServiceGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function listInfoTypes($optionalArgs = [])
+    public function listInfoTypes(array $optionalArgs = [])
     {
         $request = new ListInfoTypesRequest();
         if (isset($optionalArgs['languageCode'])) {
@@ -901,7 +901,7 @@ class DlpServiceGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function createInspectTemplate($parent, $optionalArgs = [])
+    public function createInspectTemplate($parent, array $optionalArgs = [])
     {
         $request = new CreateInspectTemplateRequest();
         $request->setParent($parent);
@@ -956,7 +956,7 @@ class DlpServiceGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function updateInspectTemplate($name, $optionalArgs = [])
+    public function updateInspectTemplate($name, array $optionalArgs = [])
     {
         $request = new UpdateInspectTemplateRequest();
         $request->setName($name);
@@ -1008,7 +1008,7 @@ class DlpServiceGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function getInspectTemplate($optionalArgs = [])
+    public function getInspectTemplate(array $optionalArgs = [])
     {
         $request = new GetInspectTemplateRequest();
         if (isset($optionalArgs['name'])) {
@@ -1075,7 +1075,7 @@ class DlpServiceGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function listInspectTemplates($parent, $optionalArgs = [])
+    public function listInspectTemplates($parent, array $optionalArgs = [])
     {
         $request = new ListInspectTemplatesRequest();
         $request->setParent($parent);
@@ -1124,7 +1124,7 @@ class DlpServiceGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function deleteInspectTemplate($name, $optionalArgs = [])
+    public function deleteInspectTemplate($name, array $optionalArgs = [])
     {
         $request = new DeleteInspectTemplateRequest();
         $request->setName($name);
@@ -1176,7 +1176,7 @@ class DlpServiceGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function createDeidentifyTemplate($parent, $optionalArgs = [])
+    public function createDeidentifyTemplate($parent, array $optionalArgs = [])
     {
         $request = new CreateDeidentifyTemplateRequest();
         $request->setParent($parent);
@@ -1231,7 +1231,7 @@ class DlpServiceGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function updateDeidentifyTemplate($name, $optionalArgs = [])
+    public function updateDeidentifyTemplate($name, array $optionalArgs = [])
     {
         $request = new UpdateDeidentifyTemplateRequest();
         $request->setName($name);
@@ -1282,7 +1282,7 @@ class DlpServiceGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function getDeidentifyTemplate($name, $optionalArgs = [])
+    public function getDeidentifyTemplate($name, array $optionalArgs = [])
     {
         $request = new GetDeidentifyTemplateRequest();
         $request->setName($name);
@@ -1347,7 +1347,7 @@ class DlpServiceGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function listDeidentifyTemplates($parent, $optionalArgs = [])
+    public function listDeidentifyTemplates($parent, array $optionalArgs = [])
     {
         $request = new ListDeidentifyTemplatesRequest();
         $request->setParent($parent);
@@ -1396,7 +1396,7 @@ class DlpServiceGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function deleteDeidentifyTemplate($name, $optionalArgs = [])
+    public function deleteDeidentifyTemplate($name, array $optionalArgs = [])
     {
         $request = new DeleteDeidentifyTemplateRequest();
         $request->setName($name);
@@ -1451,7 +1451,7 @@ class DlpServiceGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function createDlpJob($parent, $optionalArgs = [])
+    public function createDlpJob($parent, array $optionalArgs = [])
     {
         $request = new CreateDlpJobRequest();
         $request->setParent($parent);
@@ -1551,7 +1551,7 @@ class DlpServiceGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function listDlpJobs($parent, $optionalArgs = [])
+    public function listDlpJobs($parent, array $optionalArgs = [])
     {
         $request = new ListDlpJobsRequest();
         $request->setParent($parent);
@@ -1606,7 +1606,7 @@ class DlpServiceGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function getDlpJob($name, $optionalArgs = [])
+    public function getDlpJob($name, array $optionalArgs = [])
     {
         $request = new GetDlpJobRequest();
         $request->setName($name);
@@ -1649,7 +1649,7 @@ class DlpServiceGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function deleteDlpJob($name, $optionalArgs = [])
+    public function deleteDlpJob($name, array $optionalArgs = [])
     {
         $request = new DeleteDlpJobRequest();
         $request->setName($name);
@@ -1692,7 +1692,7 @@ class DlpServiceGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function cancelDlpJob($name, $optionalArgs = [])
+    public function cancelDlpJob($name, array $optionalArgs = [])
     {
         $request = new CancelDlpJobRequest();
         $request->setName($name);
@@ -1770,7 +1770,7 @@ class DlpServiceGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function listJobTriggers($parent, $optionalArgs = [])
+    public function listJobTriggers($parent, array $optionalArgs = [])
     {
         $request = new ListJobTriggersRequest();
         $request->setParent($parent);
@@ -1823,7 +1823,7 @@ class DlpServiceGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function getJobTrigger($name, $optionalArgs = [])
+    public function getJobTrigger($name, array $optionalArgs = [])
     {
         $request = new GetJobTriggerRequest();
         $request->setName($name);
@@ -1865,7 +1865,7 @@ class DlpServiceGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function deleteJobTrigger($name, $optionalArgs = [])
+    public function deleteJobTrigger($name, array $optionalArgs = [])
     {
         $request = new DeleteJobTriggerRequest();
         $request->setName($name);
@@ -1913,7 +1913,7 @@ class DlpServiceGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function updateJobTrigger($name, $optionalArgs = [])
+    public function updateJobTrigger($name, array $optionalArgs = [])
     {
         $request = new UpdateJobTriggerRequest();
         $request->setName($name);
@@ -1970,7 +1970,7 @@ class DlpServiceGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function createJobTrigger($parent, $optionalArgs = [])
+    public function createJobTrigger($parent, array $optionalArgs = [])
     {
         $request = new CreateJobTriggerRequest();
         $request->setParent($parent);

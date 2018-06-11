@@ -366,7 +366,7 @@ class DataTransferServiceGapicClient
      * @throws ValidationException
      * @experimental
      */
-    public function __construct($options = [])
+    public function __construct(array $options = [])
     {
         $clientOptions = $this->buildClientOptions($options);
         $this->setClientOptions($clientOptions);
@@ -404,7 +404,7 @@ class DataTransferServiceGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function getDataSource($name, $optionalArgs = [])
+    public function getDataSource($name, array $optionalArgs = [])
     {
         $request = new GetDataSourceRequest();
         $request->setName($name);
@@ -470,7 +470,7 @@ class DataTransferServiceGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function listDataSources($parent, $optionalArgs = [])
+    public function listDataSources($parent, array $optionalArgs = [])
     {
         $request = new ListDataSourcesRequest();
         $request->setParent($parent);
@@ -541,7 +541,7 @@ class DataTransferServiceGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function createTransferConfig($parent, $transferConfig, $optionalArgs = [])
+    public function createTransferConfig($parent, $transferConfig, array $optionalArgs = [])
     {
         $request = new CreateTransferConfigRequest();
         $request->setParent($parent);
@@ -608,7 +608,7 @@ class DataTransferServiceGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function updateTransferConfig($transferConfig, $updateMask, $optionalArgs = [])
+    public function updateTransferConfig($transferConfig, $updateMask, array $optionalArgs = [])
     {
         $request = new UpdateTransferConfigRequest();
         $request->setTransferConfig($transferConfig);
@@ -655,7 +655,7 @@ class DataTransferServiceGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function deleteTransferConfig($name, $optionalArgs = [])
+    public function deleteTransferConfig($name, array $optionalArgs = [])
     {
         $request = new DeleteTransferConfigRequest();
         $request->setName($name);
@@ -699,7 +699,7 @@ class DataTransferServiceGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function getTransferConfig($name, $optionalArgs = [])
+    public function getTransferConfig($name, array $optionalArgs = [])
     {
         $request = new GetTransferConfigRequest();
         $request->setName($name);
@@ -766,7 +766,7 @@ class DataTransferServiceGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function listTransferConfigs($parent, $optionalArgs = [])
+    public function listTransferConfigs($parent, array $optionalArgs = [])
     {
         $request = new ListTransferConfigsRequest();
         $request->setParent($parent);
@@ -828,7 +828,7 @@ class DataTransferServiceGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function scheduleTransferRuns($parent, $startTime, $endTime, $optionalArgs = [])
+    public function scheduleTransferRuns($parent, $startTime, $endTime, array $optionalArgs = [])
     {
         $request = new ScheduleTransferRunsRequest();
         $request->setParent($parent);
@@ -874,7 +874,7 @@ class DataTransferServiceGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function getTransferRun($name, $optionalArgs = [])
+    public function getTransferRun($name, array $optionalArgs = [])
     {
         $request = new GetTransferRunRequest();
         $request->setName($name);
@@ -916,7 +916,7 @@ class DataTransferServiceGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function deleteTransferRun($name, $optionalArgs = [])
+    public function deleteTransferRun($name, array $optionalArgs = [])
     {
         $request = new DeleteTransferRunRequest();
         $request->setName($name);
@@ -988,7 +988,7 @@ class DataTransferServiceGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function listTransferRuns($parent, $optionalArgs = [])
+    public function listTransferRuns($parent, array $optionalArgs = [])
     {
         $request = new ListTransferRunsRequest();
         $request->setParent($parent);
@@ -1069,7 +1069,7 @@ class DataTransferServiceGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function listTransferLogs($parent, $optionalArgs = [])
+    public function listTransferLogs($parent, array $optionalArgs = [])
     {
         $request = new ListTransferLogsRequest();
         $request->setParent($parent);
@@ -1127,7 +1127,7 @@ class DataTransferServiceGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function checkValidCreds($name, $optionalArgs = [])
+    public function checkValidCreds($name, array $optionalArgs = [])
     {
         $request = new CheckValidCredsRequest();
         $request->setName($name);

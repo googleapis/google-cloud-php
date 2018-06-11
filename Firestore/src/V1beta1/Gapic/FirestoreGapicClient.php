@@ -391,7 +391,7 @@ class FirestoreGapicClient
      * @throws ValidationException
      * @experimental
      */
-    public function __construct($options = [])
+    public function __construct(array $options = [])
     {
         $clientOptions = $this->buildClientOptions($options);
         $this->setClientOptions($clientOptions);
@@ -438,7 +438,7 @@ class FirestoreGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function getDocument($name, $optionalArgs = [])
+    public function getDocument($name, array $optionalArgs = [])
     {
         $request = new GetDocumentRequest();
         $request->setName($name);
@@ -539,7 +539,7 @@ class FirestoreGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function listDocuments($parent, $collectionId, $optionalArgs = [])
+    public function listDocuments($parent, $collectionId, array $optionalArgs = [])
     {
         $request = new ListDocumentsRequest();
         $request->setParent($parent);
@@ -619,7 +619,7 @@ class FirestoreGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function createDocument($parent, $collectionId, $documentId, $document, $optionalArgs = [])
+    public function createDocument($parent, $collectionId, $documentId, $document, array $optionalArgs = [])
     {
         $request = new CreateDocumentRequest();
         $request->setParent($parent);
@@ -685,7 +685,7 @@ class FirestoreGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function updateDocument($document, $updateMask, $optionalArgs = [])
+    public function updateDocument($document, $updateMask, array $optionalArgs = [])
     {
         $request = new UpdateDocumentRequest();
         $request->setDocument($document);
@@ -737,7 +737,7 @@ class FirestoreGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function deleteDocument($name, $optionalArgs = [])
+    public function deleteDocument($name, array $optionalArgs = [])
     {
         $request = new DeleteDocumentRequest();
         $request->setName($name);
@@ -808,7 +808,7 @@ class FirestoreGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function batchGetDocuments($database, $documents, $optionalArgs = [])
+    public function batchGetDocuments($database, $documents, array $optionalArgs = [])
     {
         $request = new BatchGetDocumentsRequest();
         $request->setDatabase($database);
@@ -869,7 +869,7 @@ class FirestoreGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function beginTransaction($database, $optionalArgs = [])
+    public function beginTransaction($database, array $optionalArgs = [])
     {
         $request = new BeginTransactionRequest();
         $request->setDatabase($database);
@@ -922,7 +922,7 @@ class FirestoreGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function commit($database, $writes, $optionalArgs = [])
+    public function commit($database, $writes, array $optionalArgs = [])
     {
         $request = new CommitRequest();
         $request->setDatabase($database);
@@ -970,7 +970,7 @@ class FirestoreGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function rollback($database, $transaction, $optionalArgs = [])
+    public function rollback($database, $transaction, array $optionalArgs = [])
     {
         $request = new RollbackRequest();
         $request->setDatabase($database);
@@ -1032,7 +1032,7 @@ class FirestoreGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function runQuery($parent, $optionalArgs = [])
+    public function runQuery($parent, array $optionalArgs = [])
     {
         $request = new RunQueryRequest();
         $request->setParent($parent);
@@ -1111,7 +1111,7 @@ class FirestoreGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function write($optionalArgs = [])
+    public function write(array $optionalArgs = [])
     {
         return $this->startCall(
             'Write',
@@ -1175,7 +1175,7 @@ class FirestoreGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function listen($optionalArgs = [])
+    public function listen(array $optionalArgs = [])
     {
         return $this->startCall(
             'Listen',
@@ -1240,7 +1240,7 @@ class FirestoreGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function listCollectionIds($parent, $optionalArgs = [])
+    public function listCollectionIds($parent, array $optionalArgs = [])
     {
         $request = new ListCollectionIdsRequest();
         $request->setParent($parent);

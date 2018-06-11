@@ -399,7 +399,7 @@ class InstanceAdminGapicClient
      * @throws ValidationException
      * @experimental
      */
-    public function __construct($options = [])
+    public function __construct(array $options = [])
     {
         $clientOptions = $this->buildClientOptions($options);
         $this->setClientOptions($clientOptions);
@@ -459,7 +459,7 @@ class InstanceAdminGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function listInstanceConfigs($parent, $optionalArgs = [])
+    public function listInstanceConfigs($parent, array $optionalArgs = [])
     {
         $request = new ListInstanceConfigsRequest();
         $request->setParent($parent);
@@ -509,7 +509,7 @@ class InstanceAdminGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function getInstanceConfig($name, $optionalArgs = [])
+    public function getInstanceConfig($name, array $optionalArgs = [])
     {
         $request = new GetInstanceConfigRequest();
         $request->setName($name);
@@ -594,7 +594,7 @@ class InstanceAdminGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function listInstances($parent, $optionalArgs = [])
+    public function listInstances($parent, array $optionalArgs = [])
     {
         $request = new ListInstancesRequest();
         $request->setParent($parent);
@@ -647,7 +647,7 @@ class InstanceAdminGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function getInstance($name, $optionalArgs = [])
+    public function getInstance($name, array $optionalArgs = [])
     {
         $request = new GetInstanceRequest();
         $request->setName($name);
@@ -756,7 +756,7 @@ class InstanceAdminGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function createInstance($parent, $instanceId, $instance, $optionalArgs = [])
+    public function createInstance($parent, $instanceId, $instance, array $optionalArgs = [])
     {
         $request = new CreateInstanceRequest();
         $request->setParent($parent);
@@ -871,7 +871,7 @@ class InstanceAdminGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function updateInstance($instance, $fieldMask, $optionalArgs = [])
+    public function updateInstance($instance, $fieldMask, array $optionalArgs = [])
     {
         $request = new UpdateInstanceRequest();
         $request->setInstance($instance);
@@ -924,7 +924,7 @@ class InstanceAdminGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function deleteInstance($name, $optionalArgs = [])
+    public function deleteInstance($name, array $optionalArgs = [])
     {
         $request = new DeleteInstanceRequest();
         $request->setName($name);
@@ -978,7 +978,7 @@ class InstanceAdminGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function setIamPolicy($resource, $policy, $optionalArgs = [])
+    public function setIamPolicy($resource, $policy, array $optionalArgs = [])
     {
         $request = new SetIamPolicyRequest();
         $request->setResource($resource);
@@ -1028,7 +1028,7 @@ class InstanceAdminGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function getIamPolicy($resource, $optionalArgs = [])
+    public function getIamPolicy($resource, array $optionalArgs = [])
     {
         $request = new GetIamPolicyRequest();
         $request->setResource($resource);
@@ -1083,7 +1083,7 @@ class InstanceAdminGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function testIamPermissions($resource, $permissions, $optionalArgs = [])
+    public function testIamPermissions($resource, $permissions, array $optionalArgs = [])
     {
         $request = new TestIamPermissionsRequest();
         $request->setResource($resource);

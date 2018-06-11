@@ -187,7 +187,7 @@ class Debugger2GapicClient
      * @throws ValidationException
      * @experimental
      */
-    public function __construct($options = [])
+    public function __construct(array $options = [])
     {
         $clientOptions = $this->buildClientOptions($options);
         $this->setClientOptions($clientOptions);
@@ -229,7 +229,7 @@ class Debugger2GapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function setBreakpoint($debuggeeId, $breakpoint, $clientVersion, $optionalArgs = [])
+    public function setBreakpoint($debuggeeId, $breakpoint, $clientVersion, array $optionalArgs = [])
     {
         $request = new SetBreakpointRequest();
         $request->setDebuggeeId($debuggeeId);
@@ -279,7 +279,7 @@ class Debugger2GapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function getBreakpoint($debuggeeId, $breakpointId, $clientVersion, $optionalArgs = [])
+    public function getBreakpoint($debuggeeId, $breakpointId, $clientVersion, array $optionalArgs = [])
     {
         $request = new GetBreakpointRequest();
         $request->setDebuggeeId($debuggeeId);
@@ -327,7 +327,7 @@ class Debugger2GapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function deleteBreakpoint($debuggeeId, $breakpointId, $clientVersion, $optionalArgs = [])
+    public function deleteBreakpoint($debuggeeId, $breakpointId, $clientVersion, array $optionalArgs = [])
     {
         $request = new DeleteBreakpointRequest();
         $request->setDebuggeeId($debuggeeId);
@@ -392,7 +392,7 @@ class Debugger2GapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function listBreakpoints($debuggeeId, $clientVersion, $optionalArgs = [])
+    public function listBreakpoints($debuggeeId, $clientVersion, array $optionalArgs = [])
     {
         $request = new ListBreakpointsRequest();
         $request->setDebuggeeId($debuggeeId);
@@ -457,7 +457,7 @@ class Debugger2GapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function listDebuggees($project, $clientVersion, $optionalArgs = [])
+    public function listDebuggees($project, $clientVersion, array $optionalArgs = [])
     {
         $request = new ListDebuggeesRequest();
         $request->setProject($project);

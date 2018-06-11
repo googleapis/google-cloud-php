@@ -309,7 +309,7 @@ class UptimeCheckServiceGapicClient
      * @throws ValidationException
      * @experimental
      */
-    public function __construct($options = [])
+    public function __construct(array $options = [])
     {
         $clientOptions = $this->buildClientOptions($options);
         $this->setClientOptions($clientOptions);
@@ -369,7 +369,7 @@ class UptimeCheckServiceGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function listUptimeCheckConfigs($parent, $optionalArgs = [])
+    public function listUptimeCheckConfigs($parent, array $optionalArgs = [])
     {
         $request = new ListUptimeCheckConfigsRequest();
         $request->setParent($parent);
@@ -420,7 +420,7 @@ class UptimeCheckServiceGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function getUptimeCheckConfig($name, $optionalArgs = [])
+    public function getUptimeCheckConfig($name, array $optionalArgs = [])
     {
         $request = new GetUptimeCheckConfigRequest();
         $request->setName($name);
@@ -467,7 +467,7 @@ class UptimeCheckServiceGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function createUptimeCheckConfig($parent, $uptimeCheckConfig, $optionalArgs = [])
+    public function createUptimeCheckConfig($parent, $uptimeCheckConfig, array $optionalArgs = [])
     {
         $request = new CreateUptimeCheckConfigRequest();
         $request->setParent($parent);
@@ -525,7 +525,7 @@ class UptimeCheckServiceGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function updateUptimeCheckConfig($uptimeCheckConfig, $optionalArgs = [])
+    public function updateUptimeCheckConfig($uptimeCheckConfig, array $optionalArgs = [])
     {
         $request = new UpdateUptimeCheckConfigRequest();
         $request->setUptimeCheckConfig($uptimeCheckConfig);
@@ -573,7 +573,7 @@ class UptimeCheckServiceGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function deleteUptimeCheckConfig($name, $optionalArgs = [])
+    public function deleteUptimeCheckConfig($name, array $optionalArgs = [])
     {
         $request = new DeleteUptimeCheckConfigRequest();
         $request->setName($name);
@@ -636,7 +636,7 @@ class UptimeCheckServiceGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function listUptimeCheckIps($optionalArgs = [])
+    public function listUptimeCheckIps(array $optionalArgs = [])
     {
         $request = new ListUptimeCheckIpsRequest();
         if (isset($optionalArgs['pageSize'])) {

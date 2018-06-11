@@ -251,7 +251,7 @@ class ErrorGroupServiceGapicClient
      * @throws ValidationException
      * @experimental
      */
-    public function __construct($options = [])
+    public function __construct(array $options = [])
     {
         $clientOptions = $this->buildClientOptions($options);
         $this->setClientOptions($clientOptions);
@@ -294,7 +294,7 @@ class ErrorGroupServiceGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function getGroup($groupName, $optionalArgs = [])
+    public function getGroup($groupName, array $optionalArgs = [])
     {
         $request = new GetGroupRequest();
         $request->setGroupName($groupName);
@@ -338,7 +338,7 @@ class ErrorGroupServiceGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function updateGroup($group, $optionalArgs = [])
+    public function updateGroup($group, array $optionalArgs = [])
     {
         $request = new UpdateGroupRequest();
         $request->setGroup($group);

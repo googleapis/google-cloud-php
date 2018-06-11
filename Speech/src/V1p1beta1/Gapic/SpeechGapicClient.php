@@ -219,7 +219,7 @@ class SpeechGapicClient
      * @throws ValidationException
      * @experimental
      */
-    public function __construct($options = [])
+    public function __construct(array $options = [])
     {
         $clientOptions = $this->buildClientOptions($options);
         $this->setClientOptions($clientOptions);
@@ -268,7 +268,7 @@ class SpeechGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function recognize($config, $audio, $optionalArgs = [])
+    public function recognize($config, $audio, array $optionalArgs = [])
     {
         $request = new RecognizeRequest();
         $request->setConfig($config);
@@ -351,7 +351,7 @@ class SpeechGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function longRunningRecognize($config, $audio, $optionalArgs = [])
+    public function longRunningRecognize($config, $audio, array $optionalArgs = [])
     {
         $request = new LongRunningRecognizeRequest();
         $request->setConfig($config);
@@ -417,7 +417,7 @@ class SpeechGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function streamingRecognize($optionalArgs = [])
+    public function streamingRecognize(array $optionalArgs = [])
     {
         return $this->startCall(
             'StreamingRecognize',

@@ -314,7 +314,7 @@ class SpannerGapicClient
      * @throws ValidationException
      * @experimental
      */
-    public function __construct($options = [])
+    public function __construct(array $options = [])
     {
         $clientOptions = $this->buildClientOptions($options);
         $this->setClientOptions($clientOptions);
@@ -370,7 +370,7 @@ class SpannerGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function createSession($database, $optionalArgs = [])
+    public function createSession($database, array $optionalArgs = [])
     {
         $request = new CreateSessionRequest();
         $request->setDatabase($database);
@@ -418,7 +418,7 @@ class SpannerGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function getSession($name, $optionalArgs = [])
+    public function getSession($name, array $optionalArgs = [])
     {
         $request = new GetSessionRequest();
         $request->setName($name);
@@ -493,7 +493,7 @@ class SpannerGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function listSessions($database, $optionalArgs = [])
+    public function listSessions($database, array $optionalArgs = [])
     {
         $request = new ListSessionsRequest();
         $request->setDatabase($database);
@@ -543,7 +543,7 @@ class SpannerGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function deleteSession($name, $optionalArgs = [])
+    public function deleteSession($name, array $optionalArgs = [])
     {
         $request = new DeleteSessionRequest();
         $request->setName($name);
@@ -642,7 +642,7 @@ class SpannerGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function executeSql($session, $sql, $optionalArgs = [])
+    public function executeSql($session, $sql, array $optionalArgs = [])
     {
         $request = new ExecuteSqlRequest();
         $request->setSession($session);
@@ -755,7 +755,7 @@ class SpannerGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function executeStreamingSql($session, $sql, $optionalArgs = [])
+    public function executeStreamingSql($session, $sql, array $optionalArgs = [])
     {
         $request = new ExecuteSqlRequest();
         $request->setSession($session);
@@ -871,7 +871,7 @@ class SpannerGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function read($session, $table, $columns, $keySet, $optionalArgs = [])
+    public function read($session, $table, $columns, $keySet, array $optionalArgs = [])
     {
         $request = new ReadRequest();
         $request->setSession($session);
@@ -978,7 +978,7 @@ class SpannerGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function streamingRead($session, $table, $columns, $keySet, $optionalArgs = [])
+    public function streamingRead($session, $table, $columns, $keySet, array $optionalArgs = [])
     {
         $request = new ReadRequest();
         $request->setSession($session);
@@ -1045,7 +1045,7 @@ class SpannerGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function beginTransaction($session, $options, $optionalArgs = [])
+    public function beginTransaction($session, $options, array $optionalArgs = [])
     {
         $request = new BeginTransactionRequest();
         $request->setSession($session);
@@ -1112,7 +1112,7 @@ class SpannerGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function commit($session, $mutations, $optionalArgs = [])
+    public function commit($session, $mutations, array $optionalArgs = [])
     {
         $request = new CommitRequest();
         $request->setSession($session);
@@ -1169,7 +1169,7 @@ class SpannerGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function rollback($session, $transactionId, $optionalArgs = [])
+    public function rollback($session, $transactionId, array $optionalArgs = [])
     {
         $request = new RollbackRequest();
         $request->setSession($session);
@@ -1256,7 +1256,7 @@ class SpannerGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function partitionQuery($session, $sql, $optionalArgs = [])
+    public function partitionQuery($session, $sql, array $optionalArgs = [])
     {
         $request = new PartitionQueryRequest();
         $request->setSession($session);
@@ -1341,7 +1341,7 @@ class SpannerGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function partitionRead($session, $table, $keySet, $optionalArgs = [])
+    public function partitionRead($session, $table, $keySet, array $optionalArgs = [])
     {
         $request = new PartitionReadRequest();
         $request->setSession($session);

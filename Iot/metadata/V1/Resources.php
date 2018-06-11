@@ -123,3 +123,4 @@ class Resources
         static::$is_initialized = true;
     }
 }
+

@@ -345,7 +345,7 @@ class DeviceManagerGapicClient
      * @throws ValidationException
      * @experimental
      */
-    public function __construct($options = [])
+    public function __construct(array $options = [])
     {
         $clientOptions = $this->buildClientOptions($options);
         $this->setClientOptions($clientOptions);
@@ -386,7 +386,7 @@ class DeviceManagerGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function createDeviceRegistry($parent, $deviceRegistry, $optionalArgs = [])
+    public function createDeviceRegistry($parent, $deviceRegistry, array $optionalArgs = [])
     {
         $request = new CreateDeviceRegistryRequest();
         $request->setParent($parent);
@@ -438,7 +438,7 @@ class DeviceManagerGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function getDeviceRegistry($name, $optionalArgs = [])
+    public function getDeviceRegistry($name, array $optionalArgs = [])
     {
         $request = new GetDeviceRegistryRequest();
         $request->setName($name);
@@ -496,7 +496,7 @@ class DeviceManagerGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function updateDeviceRegistry($deviceRegistry, $updateMask, $optionalArgs = [])
+    public function updateDeviceRegistry($deviceRegistry, $updateMask, array $optionalArgs = [])
     {
         $request = new UpdateDeviceRegistryRequest();
         $request->setDeviceRegistry($deviceRegistry);
@@ -546,7 +546,7 @@ class DeviceManagerGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function deleteDeviceRegistry($name, $optionalArgs = [])
+    public function deleteDeviceRegistry($name, array $optionalArgs = [])
     {
         $request = new DeleteDeviceRegistryRequest();
         $request->setName($name);
@@ -618,7 +618,7 @@ class DeviceManagerGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function listDeviceRegistries($parent, $optionalArgs = [])
+    public function listDeviceRegistries($parent, array $optionalArgs = [])
     {
         $request = new ListDeviceRegistriesRequest();
         $request->setParent($parent);
@@ -680,7 +680,7 @@ class DeviceManagerGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function createDevice($parent, $device, $optionalArgs = [])
+    public function createDevice($parent, $device, array $optionalArgs = [])
     {
         $request = new CreateDeviceRequest();
         $request->setParent($parent);
@@ -736,7 +736,7 @@ class DeviceManagerGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function getDevice($name, $optionalArgs = [])
+    public function getDevice($name, array $optionalArgs = [])
     {
         $request = new GetDeviceRequest();
         $request->setName($name);
@@ -797,7 +797,7 @@ class DeviceManagerGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function updateDevice($device, $updateMask, $optionalArgs = [])
+    public function updateDevice($device, $updateMask, array $optionalArgs = [])
     {
         $request = new UpdateDeviceRequest();
         $request->setDevice($device);
@@ -848,7 +848,7 @@ class DeviceManagerGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function deleteDevice($name, $optionalArgs = [])
+    public function deleteDevice($name, array $optionalArgs = [])
     {
         $request = new DeleteDeviceRequest();
         $request->setName($name);
@@ -931,7 +931,7 @@ class DeviceManagerGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function listDevices($parent, $optionalArgs = [])
+    public function listDevices($parent, array $optionalArgs = [])
     {
         $request = new ListDevicesRequest();
         $request->setParent($parent);
@@ -1008,7 +1008,7 @@ class DeviceManagerGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function modifyCloudToDeviceConfig($name, $binaryData, $optionalArgs = [])
+    public function modifyCloudToDeviceConfig($name, $binaryData, array $optionalArgs = [])
     {
         $request = new ModifyCloudToDeviceConfigRequest();
         $request->setName($name);
@@ -1069,7 +1069,7 @@ class DeviceManagerGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function listDeviceConfigVersions($name, $optionalArgs = [])
+    public function listDeviceConfigVersions($name, array $optionalArgs = [])
     {
         $request = new ListDeviceConfigVersionsRequest();
         $request->setName($name);
@@ -1129,7 +1129,7 @@ class DeviceManagerGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function listDeviceStates($name, $optionalArgs = [])
+    public function listDeviceStates($name, array $optionalArgs = [])
     {
         $request = new ListDeviceStatesRequest();
         $request->setName($name);
@@ -1190,7 +1190,7 @@ class DeviceManagerGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function setIamPolicy($resource, $policy, $optionalArgs = [])
+    public function setIamPolicy($resource, $policy, array $optionalArgs = [])
     {
         $request = new SetIamPolicyRequest();
         $request->setResource($resource);
@@ -1245,7 +1245,7 @@ class DeviceManagerGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function getIamPolicy($resource, $optionalArgs = [])
+    public function getIamPolicy($resource, array $optionalArgs = [])
     {
         $request = new GetIamPolicyRequest();
         $request->setResource($resource);
@@ -1304,7 +1304,7 @@ class DeviceManagerGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function testIamPermissions($resource, $permissions, $optionalArgs = [])
+    public function testIamPermissions($resource, $permissions, array $optionalArgs = [])
     {
         $request = new TestIamPermissionsRequest();
         $request->setResource($resource);

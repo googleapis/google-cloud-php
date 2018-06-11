@@ -177,7 +177,7 @@ class LanguageServiceGapicClient
      * @throws ValidationException
      * @experimental
      */
-    public function __construct($options = [])
+    public function __construct(array $options = [])
     {
         $clientOptions = $this->buildClientOptions($options);
         $this->setClientOptions($clientOptions);
@@ -217,7 +217,7 @@ class LanguageServiceGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function analyzeSentiment($document, $optionalArgs = [])
+    public function analyzeSentiment($document, array $optionalArgs = [])
     {
         $request = new AnalyzeSentimentRequest();
         $request->setDocument($document);
@@ -268,7 +268,7 @@ class LanguageServiceGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function analyzeEntities($document, $optionalArgs = [])
+    public function analyzeEntities($document, array $optionalArgs = [])
     {
         $request = new AnalyzeEntitiesRequest();
         $request->setDocument($document);
@@ -318,7 +318,7 @@ class LanguageServiceGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function analyzeEntitySentiment($document, $optionalArgs = [])
+    public function analyzeEntitySentiment($document, array $optionalArgs = [])
     {
         $request = new AnalyzeEntitySentimentRequest();
         $request->setDocument($document);
@@ -369,7 +369,7 @@ class LanguageServiceGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function analyzeSyntax($document, $optionalArgs = [])
+    public function analyzeSyntax($document, array $optionalArgs = [])
     {
         $request = new AnalyzeSyntaxRequest();
         $request->setDocument($document);
@@ -415,7 +415,7 @@ class LanguageServiceGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function classifyText($document, $optionalArgs = [])
+    public function classifyText($document, array $optionalArgs = [])
     {
         $request = new ClassifyTextRequest();
         $request->setDocument($document);
@@ -464,7 +464,7 @@ class LanguageServiceGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function annotateText($document, $features, $optionalArgs = [])
+    public function annotateText($document, $features, array $optionalArgs = [])
     {
         $request = new AnnotateTextRequest();
         $request->setDocument($document);

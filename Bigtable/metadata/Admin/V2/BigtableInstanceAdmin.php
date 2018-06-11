@@ -228,3 +228,4 @@ class BigtableInstanceAdmin
         static::$is_initialized = true;
     }
 }
+

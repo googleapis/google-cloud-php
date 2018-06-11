@@ -208,7 +208,7 @@ class ClusterManagerGapicClient
      * @throws ValidationException
      * @experimental
      */
-    public function __construct($options = [])
+    public function __construct(array $options = [])
     {
         $clientOptions = $this->buildClientOptions($options);
         $this->setClientOptions($clientOptions);
@@ -250,7 +250,7 @@ class ClusterManagerGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function listClusters($projectId, $zone, $optionalArgs = [])
+    public function listClusters($projectId, $zone, array $optionalArgs = [])
     {
         $request = new ListClustersRequest();
         $request->setProjectId($projectId);
@@ -301,7 +301,7 @@ class ClusterManagerGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function getCluster($projectId, $zone, $clusterId, $optionalArgs = [])
+    public function getCluster($projectId, $zone, $clusterId, array $optionalArgs = [])
     {
         $request = new GetClusterRequest();
         $request->setProjectId($projectId);
@@ -366,7 +366,7 @@ class ClusterManagerGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function createCluster($projectId, $zone, $cluster, $optionalArgs = [])
+    public function createCluster($projectId, $zone, $cluster, array $optionalArgs = [])
     {
         $request = new CreateClusterRequest();
         $request->setProjectId($projectId);
@@ -420,7 +420,7 @@ class ClusterManagerGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function updateCluster($projectId, $zone, $clusterId, $update, $optionalArgs = [])
+    public function updateCluster($projectId, $zone, $clusterId, $update, array $optionalArgs = [])
     {
         $request = new UpdateClusterRequest();
         $request->setProjectId($projectId);
@@ -481,7 +481,7 @@ class ClusterManagerGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function updateNodePool($projectId, $zone, $clusterId, $nodePoolId, $nodeVersion, $imageType, $optionalArgs = [])
+    public function updateNodePool($projectId, $zone, $clusterId, $nodePoolId, $nodeVersion, $imageType, array $optionalArgs = [])
     {
         $request = new UpdateNodePoolRequest();
         $request->setProjectId($projectId);
@@ -540,7 +540,7 @@ class ClusterManagerGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function setNodePoolAutoscaling($projectId, $zone, $clusterId, $nodePoolId, $autoscaling, $optionalArgs = [])
+    public function setNodePoolAutoscaling($projectId, $zone, $clusterId, $nodePoolId, $autoscaling, array $optionalArgs = [])
     {
         $request = new SetNodePoolAutoscalingRequest();
         $request->setProjectId($projectId);
@@ -600,7 +600,7 @@ class ClusterManagerGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function setLoggingService($projectId, $zone, $clusterId, $loggingService, $optionalArgs = [])
+    public function setLoggingService($projectId, $zone, $clusterId, $loggingService, array $optionalArgs = [])
     {
         $request = new SetLoggingServiceRequest();
         $request->setProjectId($projectId);
@@ -659,7 +659,7 @@ class ClusterManagerGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function setMonitoringService($projectId, $zone, $clusterId, $monitoringService, $optionalArgs = [])
+    public function setMonitoringService($projectId, $zone, $clusterId, $monitoringService, array $optionalArgs = [])
     {
         $request = new SetMonitoringServiceRequest();
         $request->setProjectId($projectId);
@@ -715,7 +715,7 @@ class ClusterManagerGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function setAddonsConfig($projectId, $zone, $clusterId, $addonsConfig, $optionalArgs = [])
+    public function setAddonsConfig($projectId, $zone, $clusterId, $addonsConfig, array $optionalArgs = [])
     {
         $request = new SetAddonsConfigRequest();
         $request->setProjectId($projectId);
@@ -776,7 +776,7 @@ class ClusterManagerGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function setLocations($projectId, $zone, $clusterId, $locations, $optionalArgs = [])
+    public function setLocations($projectId, $zone, $clusterId, $locations, array $optionalArgs = [])
     {
         $request = new SetLocationsRequest();
         $request->setProjectId($projectId);
@@ -833,7 +833,7 @@ class ClusterManagerGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function updateMaster($projectId, $zone, $clusterId, $masterVersion, $optionalArgs = [])
+    public function updateMaster($projectId, $zone, $clusterId, $masterVersion, array $optionalArgs = [])
     {
         $request = new UpdateMasterRequest();
         $request->setProjectId($projectId);
@@ -893,7 +893,7 @@ class ClusterManagerGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function setMasterAuth($projectId, $zone, $clusterId, $action, $update, $optionalArgs = [])
+    public function setMasterAuth($projectId, $zone, $clusterId, $action, $update, array $optionalArgs = [])
     {
         $request = new SetMasterAuthRequest();
         $request->setProjectId($projectId);
@@ -955,7 +955,7 @@ class ClusterManagerGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function deleteCluster($projectId, $zone, $clusterId, $optionalArgs = [])
+    public function deleteCluster($projectId, $zone, $clusterId, array $optionalArgs = [])
     {
         $request = new DeleteClusterRequest();
         $request->setProjectId($projectId);
@@ -1004,7 +1004,7 @@ class ClusterManagerGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function listOperations($projectId, $zone, $optionalArgs = [])
+    public function listOperations($projectId, $zone, array $optionalArgs = [])
     {
         $request = new ListOperationsRequest();
         $request->setProjectId($projectId);
@@ -1055,7 +1055,7 @@ class ClusterManagerGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function getOperation($projectId, $zone, $operationId, $optionalArgs = [])
+    public function getOperation($projectId, $zone, $operationId, array $optionalArgs = [])
     {
         $request = new GetOperationRequest();
         $request->setProjectId($projectId);
@@ -1104,7 +1104,7 @@ class ClusterManagerGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function cancelOperation($projectId, $zone, $operationId, $optionalArgs = [])
+    public function cancelOperation($projectId, $zone, $operationId, array $optionalArgs = [])
     {
         $request = new CancelOperationRequest();
         $request->setProjectId($projectId);
@@ -1153,7 +1153,7 @@ class ClusterManagerGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function getServerConfig($projectId, $zone, $optionalArgs = [])
+    public function getServerConfig($projectId, $zone, array $optionalArgs = [])
     {
         $request = new GetServerConfigRequest();
         $request->setProjectId($projectId);
@@ -1204,7 +1204,7 @@ class ClusterManagerGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function listNodePools($projectId, $zone, $clusterId, $optionalArgs = [])
+    public function listNodePools($projectId, $zone, $clusterId, array $optionalArgs = [])
     {
         $request = new ListNodePoolsRequest();
         $request->setProjectId($projectId);
@@ -1258,7 +1258,7 @@ class ClusterManagerGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function getNodePool($projectId, $zone, $clusterId, $nodePoolId, $optionalArgs = [])
+    public function getNodePool($projectId, $zone, $clusterId, $nodePoolId, array $optionalArgs = [])
     {
         $request = new GetNodePoolRequest();
         $request->setProjectId($projectId);
@@ -1313,7 +1313,7 @@ class ClusterManagerGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function createNodePool($projectId, $zone, $clusterId, $nodePool, $optionalArgs = [])
+    public function createNodePool($projectId, $zone, $clusterId, $nodePool, array $optionalArgs = [])
     {
         $request = new CreateNodePoolRequest();
         $request->setProjectId($projectId);
@@ -1368,7 +1368,7 @@ class ClusterManagerGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function deleteNodePool($projectId, $zone, $clusterId, $nodePoolId, $optionalArgs = [])
+    public function deleteNodePool($projectId, $zone, $clusterId, $nodePoolId, array $optionalArgs = [])
     {
         $request = new DeleteNodePoolRequest();
         $request->setProjectId($projectId);
@@ -1424,7 +1424,7 @@ class ClusterManagerGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function rollbackNodePoolUpgrade($projectId, $zone, $clusterId, $nodePoolId, $optionalArgs = [])
+    public function rollbackNodePoolUpgrade($projectId, $zone, $clusterId, $nodePoolId, array $optionalArgs = [])
     {
         $request = new RollbackNodePoolUpgradeRequest();
         $request->setProjectId($projectId);
@@ -1481,7 +1481,7 @@ class ClusterManagerGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function setNodePoolManagement($projectId, $zone, $clusterId, $nodePoolId, $management, $optionalArgs = [])
+    public function setNodePoolManagement($projectId, $zone, $clusterId, $nodePoolId, $management, array $optionalArgs = [])
     {
         $request = new SetNodePoolManagementRequest();
         $request->setProjectId($projectId);
@@ -1544,7 +1544,7 @@ class ClusterManagerGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function setLabels($projectId, $zone, $clusterId, $resourceLabels, $labelFingerprint, $optionalArgs = [])
+    public function setLabels($projectId, $zone, $clusterId, $resourceLabels, $labelFingerprint, array $optionalArgs = [])
     {
         $request = new SetLabelsRequest();
         $request->setProjectId($projectId);
@@ -1600,7 +1600,7 @@ class ClusterManagerGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function setLegacyAbac($projectId, $zone, $clusterId, $enabled, $optionalArgs = [])
+    public function setLegacyAbac($projectId, $zone, $clusterId, $enabled, array $optionalArgs = [])
     {
         $request = new SetLegacyAbacRequest();
         $request->setProjectId($projectId);
@@ -1653,7 +1653,7 @@ class ClusterManagerGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function startIPRotation($projectId, $zone, $clusterId, $optionalArgs = [])
+    public function startIPRotation($projectId, $zone, $clusterId, array $optionalArgs = [])
     {
         $request = new StartIPRotationRequest();
         $request->setProjectId($projectId);
@@ -1705,7 +1705,7 @@ class ClusterManagerGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function completeIPRotation($projectId, $zone, $clusterId, $optionalArgs = [])
+    public function completeIPRotation($projectId, $zone, $clusterId, array $optionalArgs = [])
     {
         $request = new CompleteIPRotationRequest();
         $request->setProjectId($projectId);
@@ -1761,7 +1761,7 @@ class ClusterManagerGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function setNodePoolSize($projectId, $zone, $clusterId, $nodePoolId, $nodeCount, $optionalArgs = [])
+    public function setNodePoolSize($projectId, $zone, $clusterId, $nodePoolId, $nodeCount, array $optionalArgs = [])
     {
         $request = new SetNodePoolSizeRequest();
         $request->setProjectId($projectId);
@@ -1817,7 +1817,7 @@ class ClusterManagerGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function setNetworkPolicy($projectId, $zone, $clusterId, $networkPolicy, $optionalArgs = [])
+    public function setNetworkPolicy($projectId, $zone, $clusterId, $networkPolicy, array $optionalArgs = [])
     {
         $request = new SetNetworkPolicyRequest();
         $request->setProjectId($projectId);
@@ -1873,7 +1873,7 @@ class ClusterManagerGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function setMaintenancePolicy($projectId, $zone, $clusterId, $maintenancePolicy, $optionalArgs = [])
+    public function setMaintenancePolicy($projectId, $zone, $clusterId, $maintenancePolicy, array $optionalArgs = [])
     {
         $request = new SetMaintenancePolicyRequest();
         $request->setProjectId($projectId);

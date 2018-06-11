@@ -300,7 +300,7 @@ class MetricsServiceV2GapicClient
      * @throws ValidationException
      * @experimental
      */
-    public function __construct($options = [])
+    public function __construct(array $options = [])
     {
         $clientOptions = $this->buildClientOptions($options);
         $this->setClientOptions($clientOptions);
@@ -359,7 +359,7 @@ class MetricsServiceV2GapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function listLogMetrics($parent, $optionalArgs = [])
+    public function listLogMetrics($parent, array $optionalArgs = [])
     {
         $request = new ListLogMetricsRequest();
         $request->setParent($parent);
@@ -410,7 +410,7 @@ class MetricsServiceV2GapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function getLogMetric($metricName, $optionalArgs = [])
+    public function getLogMetric($metricName, array $optionalArgs = [])
     {
         $request = new GetLogMetricRequest();
         $request->setMetricName($metricName);
@@ -460,7 +460,7 @@ class MetricsServiceV2GapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function createLogMetric($parent, $metric, $optionalArgs = [])
+    public function createLogMetric($parent, $metric, array $optionalArgs = [])
     {
         $request = new CreateLogMetricRequest();
         $request->setParent($parent);
@@ -512,7 +512,7 @@ class MetricsServiceV2GapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function updateLogMetric($metricName, $metric, $optionalArgs = [])
+    public function updateLogMetric($metricName, $metric, array $optionalArgs = [])
     {
         $request = new UpdateLogMetricRequest();
         $request->setMetricName($metricName);
@@ -556,7 +556,7 @@ class MetricsServiceV2GapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function deleteLogMetric($metricName, $optionalArgs = [])
+    public function deleteLogMetric($metricName, array $optionalArgs = [])
     {
         $request = new DeleteLogMetricRequest();
         $request->setMetricName($metricName);

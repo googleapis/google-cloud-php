@@ -477,7 +477,7 @@ class BigtableInstanceAdminGapicClient
      * @throws ValidationException
      * @experimental
      */
-    public function __construct($options = [])
+    public function __construct(array $options = [])
     {
         $clientOptions = $this->buildClientOptions($options);
         $this->setClientOptions($clientOptions);
@@ -553,7 +553,7 @@ class BigtableInstanceAdminGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function createInstance($parent, $instanceId, $instance, $clusters, $optionalArgs = [])
+    public function createInstance($parent, $instanceId, $instance, $clusters, array $optionalArgs = [])
     {
         $request = new CreateInstanceRequest();
         $request->setParent($parent);
@@ -607,7 +607,7 @@ class BigtableInstanceAdminGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function getInstance($name, $optionalArgs = [])
+    public function getInstance($name, array $optionalArgs = [])
     {
         $request = new GetInstanceRequest();
         $request->setName($name);
@@ -660,7 +660,7 @@ class BigtableInstanceAdminGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function listInstances($parent, $optionalArgs = [])
+    public function listInstances($parent, array $optionalArgs = [])
     {
         $request = new ListInstancesRequest();
         $request->setParent($parent);
@@ -738,7 +738,7 @@ class BigtableInstanceAdminGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function updateInstance($name, $displayName, $type, $labels, $optionalArgs = [])
+    public function updateInstance($name, $displayName, $type, $labels, array $optionalArgs = [])
     {
         $request = new Instance();
         $request->setName($name);
@@ -822,7 +822,7 @@ class BigtableInstanceAdminGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function partialUpdateInstance($instance, $updateMask, $optionalArgs = [])
+    public function partialUpdateInstance($instance, $updateMask, array $optionalArgs = [])
     {
         $request = new PartialUpdateInstanceRequest();
         $request->setInstance($instance);
@@ -872,7 +872,7 @@ class BigtableInstanceAdminGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function deleteInstance($name, $optionalArgs = [])
+    public function deleteInstance($name, array $optionalArgs = [])
     {
         $request = new DeleteInstanceRequest();
         $request->setName($name);
@@ -956,7 +956,7 @@ class BigtableInstanceAdminGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function createCluster($parent, $clusterId, $cluster, $optionalArgs = [])
+    public function createCluster($parent, $clusterId, $cluster, array $optionalArgs = [])
     {
         $request = new CreateClusterRequest();
         $request->setParent($parent);
@@ -1009,7 +1009,7 @@ class BigtableInstanceAdminGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function getCluster($name, $optionalArgs = [])
+    public function getCluster($name, array $optionalArgs = [])
     {
         $request = new GetClusterRequest();
         $request->setName($name);
@@ -1064,7 +1064,7 @@ class BigtableInstanceAdminGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function listClusters($parent, $optionalArgs = [])
+    public function listClusters($parent, array $optionalArgs = [])
     {
         $request = new ListClustersRequest();
         $request->setParent($parent);
@@ -1162,7 +1162,7 @@ class BigtableInstanceAdminGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function updateCluster($name, $location, $serveNodes, $optionalArgs = [])
+    public function updateCluster($name, $location, $serveNodes, array $optionalArgs = [])
     {
         $request = new Cluster();
         $request->setName($name);
@@ -1219,7 +1219,7 @@ class BigtableInstanceAdminGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function deleteCluster($name, $optionalArgs = [])
+    public function deleteCluster($name, array $optionalArgs = [])
     {
         $request = new DeleteClusterRequest();
         $request->setName($name);
@@ -1280,7 +1280,7 @@ class BigtableInstanceAdminGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function createAppProfile($parent, $appProfileId, $appProfile, $optionalArgs = [])
+    public function createAppProfile($parent, $appProfileId, $appProfile, array $optionalArgs = [])
     {
         $request = new CreateAppProfileRequest();
         $request->setParent($parent);
@@ -1336,7 +1336,7 @@ class BigtableInstanceAdminGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function getAppProfile($name, $optionalArgs = [])
+    public function getAppProfile($name, array $optionalArgs = [])
     {
         $request = new GetAppProfileRequest();
         $request->setName($name);
@@ -1405,7 +1405,7 @@ class BigtableInstanceAdminGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function listAppProfiles($parent, $optionalArgs = [])
+    public function listAppProfiles($parent, array $optionalArgs = [])
     {
         $request = new ListAppProfilesRequest();
         $request->setParent($parent);
@@ -1488,7 +1488,7 @@ class BigtableInstanceAdminGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function updateAppProfile($appProfile, $updateMask, $optionalArgs = [])
+    public function updateAppProfile($appProfile, $updateMask, array $optionalArgs = [])
     {
         $request = new UpdateAppProfileRequest();
         $request->setAppProfile($appProfile);
@@ -1543,7 +1543,7 @@ class BigtableInstanceAdminGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function deleteAppProfile($name, $ignoreWarnings, $optionalArgs = [])
+    public function deleteAppProfile($name, $ignoreWarnings, array $optionalArgs = [])
     {
         $request = new DeleteAppProfileRequest();
         $request->setName($name);
@@ -1597,7 +1597,7 @@ class BigtableInstanceAdminGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function getIamPolicy($resource, $optionalArgs = [])
+    public function getIamPolicy($resource, array $optionalArgs = [])
     {
         $request = new GetIamPolicyRequest();
         $request->setResource($resource);
@@ -1655,7 +1655,7 @@ class BigtableInstanceAdminGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function setIamPolicy($resource, $policy, $optionalArgs = [])
+    public function setIamPolicy($resource, $policy, array $optionalArgs = [])
     {
         $request = new SetIamPolicyRequest();
         $request->setResource($resource);
@@ -1713,7 +1713,7 @@ class BigtableInstanceAdminGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function testIamPermissions($resource, $permissions, $optionalArgs = [])
+    public function testIamPermissions($resource, $permissions, array $optionalArgs = [])
     {
         $request = new TestIamPermissionsRequest();
         $request->setResource($resource);

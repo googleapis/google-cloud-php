@@ -312,7 +312,7 @@ class SessionEntityTypesGapicClient
      * @throws ValidationException
      * @experimental
      */
-    public function __construct($options = [])
+    public function __construct(array $options = [])
     {
         $clientOptions = $this->buildClientOptions($options);
         $this->setClientOptions($clientOptions);
@@ -370,7 +370,7 @@ class SessionEntityTypesGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function listSessionEntityTypes($parent, $optionalArgs = [])
+    public function listSessionEntityTypes($parent, array $optionalArgs = [])
     {
         $request = new ListSessionEntityTypesRequest();
         $request->setParent($parent);
@@ -421,7 +421,7 @@ class SessionEntityTypesGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function getSessionEntityType($name, $optionalArgs = [])
+    public function getSessionEntityType($name, array $optionalArgs = [])
     {
         $request = new GetSessionEntityTypeRequest();
         $request->setName($name);
@@ -467,7 +467,7 @@ class SessionEntityTypesGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function createSessionEntityType($parent, $sessionEntityType, $optionalArgs = [])
+    public function createSessionEntityType($parent, $sessionEntityType, array $optionalArgs = [])
     {
         $request = new CreateSessionEntityTypeRequest();
         $request->setParent($parent);
@@ -515,7 +515,7 @@ class SessionEntityTypesGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function updateSessionEntityType($sessionEntityType, $optionalArgs = [])
+    public function updateSessionEntityType($sessionEntityType, array $optionalArgs = [])
     {
         $request = new UpdateSessionEntityTypeRequest();
         $request->setSessionEntityType($sessionEntityType);
@@ -561,7 +561,7 @@ class SessionEntityTypesGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function deleteSessionEntityType($name, $optionalArgs = [])
+    public function deleteSessionEntityType($name, array $optionalArgs = [])
     {
         $request = new DeleteSessionEntityTypeRequest();
         $request->setName($name);

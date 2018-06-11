@@ -323,7 +323,7 @@ class OsLoginServiceGapicClient
      * @throws ValidationException
      * @experimental
      */
-    public function __construct($options = [])
+    public function __construct(array $options = [])
     {
         $clientOptions = $this->buildClientOptions($options);
         $this->setClientOptions($clientOptions);
@@ -359,7 +359,7 @@ class OsLoginServiceGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function deletePosixAccount($name, $optionalArgs = [])
+    public function deletePosixAccount($name, array $optionalArgs = [])
     {
         $request = new DeletePosixAccountRequest();
         $request->setName($name);
@@ -402,7 +402,7 @@ class OsLoginServiceGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function deleteSshPublicKey($name, $optionalArgs = [])
+    public function deleteSshPublicKey($name, array $optionalArgs = [])
     {
         $request = new DeleteSshPublicKeyRequest();
         $request->setName($name);
@@ -446,7 +446,7 @@ class OsLoginServiceGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function getLoginProfile($name, $optionalArgs = [])
+    public function getLoginProfile($name, array $optionalArgs = [])
     {
         $request = new GetLoginProfileRequest();
         $request->setName($name);
@@ -491,7 +491,7 @@ class OsLoginServiceGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function getSshPublicKey($name, $optionalArgs = [])
+    public function getSshPublicKey($name, array $optionalArgs = [])
     {
         $request = new GetSshPublicKeyRequest();
         $request->setName($name);
@@ -540,7 +540,7 @@ class OsLoginServiceGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function importSshPublicKey($parent, $sshPublicKey, $optionalArgs = [])
+    public function importSshPublicKey($parent, $sshPublicKey, array $optionalArgs = [])
     {
         $request = new ImportSshPublicKeyRequest();
         $request->setParent($parent);
@@ -594,7 +594,7 @@ class OsLoginServiceGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function updateSshPublicKey($name, $sshPublicKey, $optionalArgs = [])
+    public function updateSshPublicKey($name, $sshPublicKey, array $optionalArgs = [])
     {
         $request = new UpdateSshPublicKeyRequest();
         $request->setName($name);
