@@ -4,10 +4,11 @@ function setup_environment() {
   # This function expects to be executed from the root of
   # google-cloud-php
   GOOGLE_CLOUD_PHP_ROOT_DIR=$(pwd)
+  REGENERATION_WORKING_DIR="$GOOGLE_CLOUD_PHP_ROOT_DIR/gapic-generation-workspace"
 
-  ARTMAN_OUTPUT_DIR="$GOOGLE_CLOUD_PHP_ROOT_DIR/artman-output"
-  ARTMAN_IMAGE="googleapis/artman:0.11.0"
-  GOOGLEAPIS_DIR="$GOOGLE_CLOUD_PHP_ROOT_DIR/googleapis"
+  ARTMAN_OUTPUT_DIR="$REGENERATION_WORKING_DIR/artman-output"
+  ARTMAN_IMAGE="googleapis/artman:0.11.1-dev"
+  GOOGLEAPIS_DIR="$REGENERATION_WORKING_DIR/googleapis"
 
   if [ ! -d "$GOOGLEAPIS_DIR" ]; then
     git clone git@github.com:googleapis/googleapis.git $GOOGLEAPIS_DIR
@@ -58,11 +59,18 @@ function copy_artman_output_to_google_cloud_php() {
 
   mkdir -p $GOOGLE_CLOUD_PHP_API_DIR/src
   mkdir -p $GOOGLE_CLOUD_PHP_API_DIR/metadata
-  # mkdir -p $GOOGLE_CLOUD_PHP_API_DIR/tests
 
   cp -r $GENERATED_ROOT_DIR/src/* $GOOGLE_CLOUD_PHP_API_DIR/src/
   cp -r $GENERATED_ROOT_DIR/metadata/* $GOOGLE_CLOUD_PHP_API_DIR/metadata/
-  # cp -r $GENERATED_ROOT_DIR/tests/* $GOOGLE_CLOUD_PHP_API_DIR/tests/
+}
+
+function copy_artman_test_output_to_google_cloud_php() {
+  GENERATED_ROOT_DIR="$1"         # Absolute path to root of generated package
+  GOOGLE_CLOUD_PHP_API_DIR="$2"   # Absolute path to API dir in google-cloud-php
+
+  mkdir -p $GOOGLE_CLOUD_PHP_API_DIR/tests
+
+  cp -r $GENERATED_ROOT_DIR/tests/* $GOOGLE_CLOUD_PHP_API_DIR/tests/
 }
 
 # For some APIs such as Admin APIs, the generated structure is incorrect
@@ -79,6 +87,8 @@ function restructure_generated_package() {
   RESTRUCTURED_SRC_DIR="$GENERATED_ROOT_DIR/src/$DIRECTORY_STRUCTURE_TO_INSERT"
 
   GENERATED_TEST_DIR="$GENERATED_ROOT_DIR/tests"
+  TEMP_GENERATED_TEST_DIR="$GENERATED_ROOT_DIR/testsTempDir"
+  RESTRUCTURED_TEST_DIR="$GENERATED_ROOT_DIR/tests/$DIRECTORY_STRUCTURE_TO_INSERT"
 
   # Move existing `src` folder, then grab its contents after
   # creating the new directory
@@ -86,6 +96,14 @@ function restructure_generated_package() {
   mkdir -p $RESTRUCTURED_SRC_DIR
   mv $TEMP_GENERATED_SRC_DIR/* $RESTRUCTURED_SRC_DIR/
   rm -r $TEMP_GENERATED_SRC_DIR
+
+  # Move existing `tests` folder, then grab its contents after
+  # creating the new directory
+  mv $GENERATED_TEST_DIR $TEMP_GENERATED_TEST_DIR
+  mkdir -p $RESTRUCTURED_TEST_DIR
+
+  mv $TEMP_GENERATED_TEST_DIR/* $RESTRUCTURED_TEST_DIR/
+  rm -r $TEMP_GENERATED_TEST_DIR
 }
 
 function run_artman() {
@@ -115,6 +133,7 @@ function regenerate_api() {
   run_artman "$GOOGLEAPIS_DIR/$API_ARTMAN_YAML"
   merge_proto_into_src $ABSOLUTE_API_ARTMAN_OUTPUT_DIR $API_NAMESPACE_DIR $API_METADATA_NAMESPACE_DIR
   copy_artman_output_to_google_cloud_php $ABSOLUTE_API_ARTMAN_OUTPUT_DIR $GOOGLE_CLOUD_PHP_API_DIR
+  copy_artman_test_output_to_google_cloud_php $ABSOLUTE_API_ARTMAN_OUTPUT_DIR $GOOGLE_CLOUD_PHP_API_DIR
 }
 
 function post_regenerate() {
@@ -476,8 +495,6 @@ function regenerate_vision_v1() {
   regenerate_api "$API_ARTMAN_YAML" "$API_ARTMAN_OUTPUT_DIR" "$API_GCP_FOLDER_NAME" "$API_NAMESPACE_DIR" "$API_METADATA_NAMESPACE_DIR"
 }
 
-# Uncomment this line and set to the appropriate path
-# to use a python virtualenv installation of artman
-source ./env/bin/activate
+source ./gapic-generation-workspace/env/bin/activate
 
 set -ev

@@ -6,6 +6,7 @@ docs/json/**/*
 vendor/
 .idea/
 *.iml
+gapic-generation-workspace/
 
 # do not delete
 keys/
