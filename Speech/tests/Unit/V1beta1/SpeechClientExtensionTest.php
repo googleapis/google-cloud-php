@@ -34,7 +34,7 @@ use PHPUnit\Framework\TestCase;
 /**
  * @group speech
  */
-class SpeechClientTest extends TestCase
+class SpeechClientExtensionTest extends TestCase
 {
     /** @var SpeechClient */
     private $client;

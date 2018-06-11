@@ -38,7 +38,7 @@ use PHPUnit\Framework\TestCase;
  * @group vision
  * @group gapic
  */
-class ImageAnnotatorClientTest extends TestCase
+class ImageAnnotatorClientExtensionTest extends TestCase
 {
     use VisionHelpersTrait;
 
