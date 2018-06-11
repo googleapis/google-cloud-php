@@ -45,23 +45,6 @@ class StreamingRecognitionResult extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>float stability = 3;</code>
      */
     private $stability = 0.0;
-    /**
-     * For multi-channel audio, this is the channel number corresponding to the
-     * recognized result for the audio from that channel.
-     * For audio_channel_count = N, its output values can range from '1' to 'N'.
-     *
-     * Generated from protobuf field <code>int32 channel_tag = 5;</code>
-     */
-    private $channel_tag = 0;
-    /**
-     * Output only. The
-     * [BCP-47](https://www.rfc-editor.org/rfc/bcp/bcp47.txt) language tag of the
-     * language in this result. This language code was detected to have the most
-     * likelihood of being spoken in the audio.
-     *
-     * Generated from protobuf field <code>string language_code = 6;</code>
-     */
-    private $language_code = '';
 
     public function __construct() {
         \GPBMetadata\Google\Cloud\Speech\V1P1Beta1\CloudSpeech::initOnce();
@@ -164,68 +147,6 @@ class StreamingRecognitionResult extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkFloat($var);
         $this->stability = $var;
-
-        return $this;
-    }
-
-    /**
-     * For multi-channel audio, this is the channel number corresponding to the
-     * recognized result for the audio from that channel.
-     * For audio_channel_count = N, its output values can range from '1' to 'N'.
-     *
-     * Generated from protobuf field <code>int32 channel_tag = 5;</code>
-     * @return int
-     */
-    public function getChannelTag()
-    {
-        return $this->channel_tag;
-    }
-
-    /**
-     * For multi-channel audio, this is the channel number corresponding to the
-     * recognized result for the audio from that channel.
-     * For audio_channel_count = N, its output values can range from '1' to 'N'.
-     *
-     * Generated from protobuf field <code>int32 channel_tag = 5;</code>
-     * @param int $var
-     * @return $this
-     */
-    public function setChannelTag($var)
-    {
-        GPBUtil::checkInt32($var);
-        $this->channel_tag = $var;
-
-        return $this;
-    }
-
-    /**
-     * Output only. The
-     * [BCP-47](https://www.rfc-editor.org/rfc/bcp/bcp47.txt) language tag of the
-     * language in this result. This language code was detected to have the most
-     * likelihood of being spoken in the audio.
-     *
-     * Generated from protobuf field <code>string language_code = 6;</code>
-     * @return string
-     */
-    public function getLanguageCode()
-    {
-        return $this->language_code;
-    }
-
-    /**
-     * Output only. The
-     * [BCP-47](https://www.rfc-editor.org/rfc/bcp/bcp47.txt) language tag of the
-     * language in this result. This language code was detected to have the most
-     * likelihood of being spoken in the audio.
-     *
-     * Generated from protobuf field <code>string language_code = 6;</code>
-     * @param string $var
-     * @return $this
-     */
-    public function setLanguageCode($var)
-    {
-        GPBUtil::checkString($var, True);
-        $this->language_code = $var;
 
         return $this;
     }

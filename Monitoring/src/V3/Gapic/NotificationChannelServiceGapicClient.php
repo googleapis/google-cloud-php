@@ -335,7 +335,7 @@ class NotificationChannelServiceGapicClient
      * @throws ValidationException
      * @experimental
      */
-    public function __construct($options = [])
+    public function __construct(array $options = [])
     {
         $clientOptions = $this->buildClientOptions($options);
         $this->setClientOptions($clientOptions);
@@ -401,7 +401,7 @@ class NotificationChannelServiceGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function listNotificationChannelDescriptors($name, $optionalArgs = [])
+    public function listNotificationChannelDescriptors($name, array $optionalArgs = [])
     {
         $request = new ListNotificationChannelDescriptorsRequest();
         $request->setName($name);
@@ -452,7 +452,7 @@ class NotificationChannelServiceGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function getNotificationChannelDescriptor($name, $optionalArgs = [])
+    public function getNotificationChannelDescriptor($name, array $optionalArgs = [])
     {
         $request = new GetNotificationChannelDescriptorRequest();
         $request->setName($name);
@@ -534,7 +534,7 @@ class NotificationChannelServiceGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function listNotificationChannels($name, $optionalArgs = [])
+    public function listNotificationChannels($name, array $optionalArgs = [])
     {
         $request = new ListNotificationChannelsRequest();
         $request->setName($name);
@@ -594,7 +594,7 @@ class NotificationChannelServiceGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function getNotificationChannel($name, $optionalArgs = [])
+    public function getNotificationChannel($name, array $optionalArgs = [])
     {
         $request = new GetNotificationChannelRequest();
         $request->setName($name);
@@ -647,7 +647,7 @@ class NotificationChannelServiceGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function createNotificationChannel($name, $notificationChannel, $optionalArgs = [])
+    public function createNotificationChannel($name, $notificationChannel, array $optionalArgs = [])
     {
         $request = new CreateNotificationChannelRequest();
         $request->setName($name);
@@ -697,7 +697,7 @@ class NotificationChannelServiceGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function updateNotificationChannel($notificationChannel, $optionalArgs = [])
+    public function updateNotificationChannel($notificationChannel, array $optionalArgs = [])
     {
         $request = new UpdateNotificationChannelRequest();
         $request->setNotificationChannel($notificationChannel);
@@ -747,7 +747,7 @@ class NotificationChannelServiceGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function deleteNotificationChannel($name, $optionalArgs = [])
+    public function deleteNotificationChannel($name, array $optionalArgs = [])
     {
         $request = new DeleteNotificationChannelRequest();
         $request->setName($name);

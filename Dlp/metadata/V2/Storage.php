@@ -151,3 +151,4 @@ class Storage
         static::$is_initialized = true;
     }
 }
+

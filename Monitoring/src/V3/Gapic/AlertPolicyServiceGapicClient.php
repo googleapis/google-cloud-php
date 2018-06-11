@@ -340,7 +340,7 @@ class AlertPolicyServiceGapicClient
      * @throws ValidationException
      * @experimental
      */
-    public function __construct($options = [])
+    public function __construct(array $options = [])
     {
         $clientOptions = $this->buildClientOptions($options);
         $this->setClientOptions($clientOptions);
@@ -418,7 +418,7 @@ class AlertPolicyServiceGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function listAlertPolicies($name, $optionalArgs = [])
+    public function listAlertPolicies($name, array $optionalArgs = [])
     {
         $request = new ListAlertPoliciesRequest();
         $request->setName($name);
@@ -475,7 +475,7 @@ class AlertPolicyServiceGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function getAlertPolicy($name, $optionalArgs = [])
+    public function getAlertPolicy($name, array $optionalArgs = [])
     {
         $request = new GetAlertPolicyRequest();
         $request->setName($name);
@@ -529,7 +529,7 @@ class AlertPolicyServiceGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function createAlertPolicy($name, $alertPolicy, $optionalArgs = [])
+    public function createAlertPolicy($name, $alertPolicy, array $optionalArgs = [])
     {
         $request = new CreateAlertPolicyRequest();
         $request->setName($name);
@@ -575,7 +575,7 @@ class AlertPolicyServiceGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function deleteAlertPolicy($name, $optionalArgs = [])
+    public function deleteAlertPolicy($name, array $optionalArgs = [])
     {
         $request = new DeleteAlertPolicyRequest();
         $request->setName($name);
@@ -646,7 +646,7 @@ class AlertPolicyServiceGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function updateAlertPolicy($alertPolicy, $optionalArgs = [])
+    public function updateAlertPolicy($alertPolicy, array $optionalArgs = [])
     {
         $request = new UpdateAlertPolicyRequest();
         $request->setAlertPolicy($alertPolicy);

@@ -339,7 +339,7 @@ class ConfigServiceV2GapicClient
      * @throws ValidationException
      * @experimental
      */
-    public function __construct($options = [])
+    public function __construct(array $options = [])
     {
         $clientOptions = $this->buildClientOptions($options);
         $this->setClientOptions($clientOptions);
@@ -401,7 +401,7 @@ class ConfigServiceV2GapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function listSinks($parent, $optionalArgs = [])
+    public function listSinks($parent, array $optionalArgs = [])
     {
         $request = new ListSinksRequest();
         $request->setParent($parent);
@@ -457,7 +457,7 @@ class ConfigServiceV2GapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function getSink($sinkName, $optionalArgs = [])
+    public function getSink($sinkName, array $optionalArgs = [])
     {
         $request = new GetSinkRequest();
         $request->setSinkName($sinkName);
@@ -525,7 +525,7 @@ class ConfigServiceV2GapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function createSink($parent, $sink, $optionalArgs = [])
+    public function createSink($parent, $sink, array $optionalArgs = [])
     {
         $request = new CreateSinkRequest();
         $request->setParent($parent);
@@ -614,7 +614,7 @@ class ConfigServiceV2GapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function updateSink($sinkName, $sink, $optionalArgs = [])
+    public function updateSink($sinkName, $sink, array $optionalArgs = [])
     {
         $request = new UpdateSinkRequest();
         $request->setSinkName($sinkName);
@@ -671,7 +671,7 @@ class ConfigServiceV2GapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function deleteSink($sinkName, $optionalArgs = [])
+    public function deleteSink($sinkName, array $optionalArgs = [])
     {
         $request = new DeleteSinkRequest();
         $request->setSinkName($sinkName);
@@ -740,7 +740,7 @@ class ConfigServiceV2GapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function listExclusions($parent, $optionalArgs = [])
+    public function listExclusions($parent, array $optionalArgs = [])
     {
         $request = new ListExclusionsRequest();
         $request->setParent($parent);
@@ -796,7 +796,7 @@ class ConfigServiceV2GapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function getExclusion($name, $optionalArgs = [])
+    public function getExclusion($name, array $optionalArgs = [])
     {
         $request = new GetExclusionRequest();
         $request->setName($name);
@@ -851,7 +851,7 @@ class ConfigServiceV2GapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function createExclusion($parent, $exclusion, $optionalArgs = [])
+    public function createExclusion($parent, $exclusion, array $optionalArgs = [])
     {
         $request = new CreateExclusionRequest();
         $request->setParent($parent);
@@ -913,7 +913,7 @@ class ConfigServiceV2GapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function updateExclusion($name, $exclusion, $updateMask, $optionalArgs = [])
+    public function updateExclusion($name, $exclusion, $updateMask, array $optionalArgs = [])
     {
         $request = new UpdateExclusionRequest();
         $request->setName($name);
@@ -963,7 +963,7 @@ class ConfigServiceV2GapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function deleteExclusion($name, $optionalArgs = [])
+    public function deleteExclusion($name, array $optionalArgs = [])
     {
         $request = new DeleteExclusionRequest();
         $request->setName($name);

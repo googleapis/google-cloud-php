@@ -372,7 +372,7 @@ class EntityTypesGapicClient
      * @throws ValidationException
      * @experimental
      */
-    public function __construct($options = [])
+    public function __construct(array $options = [])
     {
         $clientOptions = $this->buildClientOptions($options);
         $this->setClientOptions($clientOptions);
@@ -437,7 +437,7 @@ class EntityTypesGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function listEntityTypes($parent, $optionalArgs = [])
+    public function listEntityTypes($parent, array $optionalArgs = [])
     {
         $request = new ListEntityTypesRequest();
         $request->setParent($parent);
@@ -496,7 +496,7 @@ class EntityTypesGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function getEntityType($name, $optionalArgs = [])
+    public function getEntityType($name, array $optionalArgs = [])
     {
         $request = new GetEntityTypeRequest();
         $request->setName($name);
@@ -551,7 +551,7 @@ class EntityTypesGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function createEntityType($parent, $entityType, $optionalArgs = [])
+    public function createEntityType($parent, $entityType, array $optionalArgs = [])
     {
         $request = new CreateEntityTypeRequest();
         $request->setParent($parent);
@@ -607,7 +607,7 @@ class EntityTypesGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function updateEntityType($entityType, $optionalArgs = [])
+    public function updateEntityType($entityType, array $optionalArgs = [])
     {
         $request = new UpdateEntityTypeRequest();
         $request->setEntityType($entityType);
@@ -655,7 +655,7 @@ class EntityTypesGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function deleteEntityType($name, $optionalArgs = [])
+    public function deleteEntityType($name, array $optionalArgs = [])
     {
         $request = new DeleteEntityTypeRequest();
         $request->setName($name);
@@ -742,7 +742,7 @@ class EntityTypesGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function batchUpdateEntityTypes($parent, $optionalArgs = [])
+    public function batchUpdateEntityTypes($parent, array $optionalArgs = [])
     {
         $request = new BatchUpdateEntityTypesRequest();
         $request->setParent($parent);
@@ -827,7 +827,7 @@ class EntityTypesGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function batchDeleteEntityTypes($parent, $entityTypeNames, $optionalArgs = [])
+    public function batchDeleteEntityTypes($parent, $entityTypeNames, array $optionalArgs = [])
     {
         $request = new BatchDeleteEntityTypesRequest();
         $request->setParent($parent);
@@ -906,7 +906,7 @@ class EntityTypesGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function batchCreateEntities($parent, $entities, $optionalArgs = [])
+    public function batchCreateEntities($parent, $entities, array $optionalArgs = [])
     {
         $request = new BatchCreateEntitiesRequest();
         $request->setParent($parent);
@@ -991,7 +991,7 @@ class EntityTypesGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function batchUpdateEntities($parent, $entities, $optionalArgs = [])
+    public function batchUpdateEntities($parent, $entities, array $optionalArgs = [])
     {
         $request = new BatchUpdateEntitiesRequest();
         $request->setParent($parent);
@@ -1078,7 +1078,7 @@ class EntityTypesGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function batchDeleteEntities($parent, $entityValues, $optionalArgs = [])
+    public function batchDeleteEntities($parent, $entityValues, array $optionalArgs = [])
     {
         $request = new BatchDeleteEntitiesRequest();
         $request->setParent($parent);

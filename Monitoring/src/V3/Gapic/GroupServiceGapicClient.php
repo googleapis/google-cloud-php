@@ -313,7 +313,7 @@ class GroupServiceGapicClient
      * @throws ValidationException
      * @experimental
      */
-    public function __construct($options = [])
+    public function __construct(array $options = [])
     {
         $clientOptions = $this->buildClientOptions($options);
         $this->setClientOptions($clientOptions);
@@ -386,7 +386,7 @@ class GroupServiceGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function listGroups($name, $optionalArgs = [])
+    public function listGroups($name, array $optionalArgs = [])
     {
         $request = new ListGroupsRequest();
         $request->setName($name);
@@ -445,7 +445,7 @@ class GroupServiceGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function getGroup($name, $optionalArgs = [])
+    public function getGroup($name, array $optionalArgs = [])
     {
         $request = new GetGroupRequest();
         $request->setName($name);
@@ -494,7 +494,7 @@ class GroupServiceGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function createGroup($name, $group, $optionalArgs = [])
+    public function createGroup($name, $group, array $optionalArgs = [])
     {
         $request = new CreateGroupRequest();
         $request->setName($name);
@@ -545,7 +545,7 @@ class GroupServiceGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function updateGroup($group, $optionalArgs = [])
+    public function updateGroup($group, array $optionalArgs = [])
     {
         $request = new UpdateGroupRequest();
         $request->setGroup($group);
@@ -590,7 +590,7 @@ class GroupServiceGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function deleteGroup($name, $optionalArgs = [])
+    public function deleteGroup($name, array $optionalArgs = [])
     {
         $request = new DeleteGroupRequest();
         $request->setName($name);
@@ -668,7 +668,7 @@ class GroupServiceGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function listGroupMembers($name, $optionalArgs = [])
+    public function listGroupMembers($name, array $optionalArgs = [])
     {
         $request = new ListGroupMembersRequest();
         $request->setName($name);

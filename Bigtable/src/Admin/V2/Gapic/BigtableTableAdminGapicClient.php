@@ -424,7 +424,7 @@ class BigtableTableAdminGapicClient
      * @throws ValidationException
      * @experimental
      */
-    public function __construct($options = [])
+    public function __construct(array $options = [])
     {
         $clientOptions = $this->buildClientOptions($options);
         $this->setClientOptions($clientOptions);
@@ -486,7 +486,7 @@ class BigtableTableAdminGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function createTable($parent, $tableId, $table, $optionalArgs = [])
+    public function createTable($parent, $tableId, $table, array $optionalArgs = [])
     {
         $request = new CreateTableRequest();
         $request->setParent($parent);
@@ -582,7 +582,7 @@ class BigtableTableAdminGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function createTableFromSnapshot($parent, $tableId, $sourceSnapshot, $optionalArgs = [])
+    public function createTableFromSnapshot($parent, $tableId, $sourceSnapshot, array $optionalArgs = [])
     {
         $request = new CreateTableFromSnapshotRequest();
         $request->setParent($parent);
@@ -656,7 +656,7 @@ class BigtableTableAdminGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function listTables($parent, $optionalArgs = [])
+    public function listTables($parent, array $optionalArgs = [])
     {
         $request = new ListTablesRequest();
         $request->setParent($parent);
@@ -718,7 +718,7 @@ class BigtableTableAdminGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function getTable($name, $optionalArgs = [])
+    public function getTable($name, array $optionalArgs = [])
     {
         $request = new GetTableRequest();
         $request->setName($name);
@@ -771,7 +771,7 @@ class BigtableTableAdminGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function deleteTable($name, $optionalArgs = [])
+    public function deleteTable($name, array $optionalArgs = [])
     {
         $request = new DeleteTableRequest();
         $request->setName($name);
@@ -831,7 +831,7 @@ class BigtableTableAdminGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function modifyColumnFamilies($name, $modifications, $optionalArgs = [])
+    public function modifyColumnFamilies($name, $modifications, array $optionalArgs = [])
     {
         $request = new ModifyColumnFamiliesRequest();
         $request->setName($name);
@@ -889,7 +889,7 @@ class BigtableTableAdminGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function dropRowRange($name, $optionalArgs = [])
+    public function dropRowRange($name, array $optionalArgs = [])
     {
         $request = new DropRowRangeRequest();
         $request->setName($name);
@@ -950,7 +950,7 @@ class BigtableTableAdminGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function generateConsistencyToken($name, $optionalArgs = [])
+    public function generateConsistencyToken($name, array $optionalArgs = [])
     {
         $request = new GenerateConsistencyTokenRequest();
         $request->setName($name);
@@ -1006,7 +1006,7 @@ class BigtableTableAdminGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function checkConsistency($name, $consistencyToken, $optionalArgs = [])
+    public function checkConsistency($name, $consistencyToken, array $optionalArgs = [])
     {
         $request = new CheckConsistencyRequest();
         $request->setName($name);
@@ -1107,7 +1107,7 @@ class BigtableTableAdminGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function snapshotTable($name, $cluster, $snapshotId, $description, $optionalArgs = [])
+    public function snapshotTable($name, $cluster, $snapshotId, $description, array $optionalArgs = [])
     {
         $request = new SnapshotTableRequest();
         $request->setName($name);
@@ -1171,7 +1171,7 @@ class BigtableTableAdminGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function getSnapshot($name, $optionalArgs = [])
+    public function getSnapshot($name, array $optionalArgs = [])
     {
         $request = new GetSnapshotRequest();
         $request->setName($name);
@@ -1252,7 +1252,7 @@ class BigtableTableAdminGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function listSnapshots($parent, $optionalArgs = [])
+    public function listSnapshots($parent, array $optionalArgs = [])
     {
         $request = new ListSnapshotsRequest();
         $request->setParent($parent);
@@ -1314,7 +1314,7 @@ class BigtableTableAdminGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function deleteSnapshot($name, $optionalArgs = [])
+    public function deleteSnapshot($name, array $optionalArgs = [])
     {
         $request = new DeleteSnapshotRequest();
         $request->setName($name);

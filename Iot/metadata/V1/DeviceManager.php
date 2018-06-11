@@ -214,3 +214,4 @@ class DeviceManager
         static::$is_initialized = true;
     }
 }
+

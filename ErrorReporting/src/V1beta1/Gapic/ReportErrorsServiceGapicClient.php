@@ -250,7 +250,7 @@ class ReportErrorsServiceGapicClient
      * @throws ValidationException
      * @experimental
      */
-    public function __construct($options = [])
+    public function __construct(array $options = [])
     {
         $clientOptions = $this->buildClientOptions($options);
         $this->setClientOptions($clientOptions);
@@ -298,7 +298,7 @@ class ReportErrorsServiceGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function reportErrorEvent($projectName, $event, $optionalArgs = [])
+    public function reportErrorEvent($projectName, $event, array $optionalArgs = [])
     {
         $request = new ReportErrorEventRequest();
         $request->setProjectName($projectName);

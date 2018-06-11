@@ -238,7 +238,7 @@ class ClusterControllerGapicClient
      * @throws ValidationException
      * @experimental
      */
-    public function __construct($options = [])
+    public function __construct(array $options = [])
     {
         $clientOptions = $this->buildClientOptions($options);
         $this->setClientOptions($clientOptions);
@@ -305,7 +305,7 @@ class ClusterControllerGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function createCluster($projectId, $region, $cluster, $optionalArgs = [])
+    public function createCluster($projectId, $region, $cluster, array $optionalArgs = [])
     {
         $request = new CreateClusterRequest();
         $request->setProjectId($projectId);
@@ -430,7 +430,7 @@ class ClusterControllerGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function updateCluster($projectId, $region, $clusterName, $cluster, $updateMask, $optionalArgs = [])
+    public function updateCluster($projectId, $region, $clusterName, $cluster, $updateMask, array $optionalArgs = [])
     {
         $request = new UpdateClusterRequest();
         $request->setProjectId($projectId);
@@ -505,7 +505,7 @@ class ClusterControllerGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function deleteCluster($projectId, $region, $clusterName, $optionalArgs = [])
+    public function deleteCluster($projectId, $region, $clusterName, array $optionalArgs = [])
     {
         $request = new DeleteClusterRequest();
         $request->setProjectId($projectId);
@@ -555,7 +555,7 @@ class ClusterControllerGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function getCluster($projectId, $region, $clusterName, $optionalArgs = [])
+    public function getCluster($projectId, $region, $clusterName, array $optionalArgs = [])
     {
         $request = new GetClusterRequest();
         $request->setProjectId($projectId);
@@ -644,7 +644,7 @@ class ClusterControllerGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function listClusters($projectId, $region, $optionalArgs = [])
+    public function listClusters($projectId, $region, array $optionalArgs = [])
     {
         $request = new ListClustersRequest();
         $request->setProjectId($projectId);
@@ -727,7 +727,7 @@ class ClusterControllerGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function diagnoseCluster($projectId, $region, $clusterName, $optionalArgs = [])
+    public function diagnoseCluster($projectId, $region, $clusterName, array $optionalArgs = [])
     {
         $request = new DiagnoseClusterRequest();
         $request->setProjectId($projectId);

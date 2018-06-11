@@ -292,7 +292,7 @@ class LoggingServiceV2GapicClient
      * @throws ValidationException
      * @experimental
      */
-    public function __construct($options = [])
+    public function __construct(array $options = [])
     {
         $clientOptions = $this->buildClientOptions($options);
         $this->setClientOptions($clientOptions);
@@ -340,7 +340,7 @@ class LoggingServiceV2GapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function deleteLog($logName, $optionalArgs = [])
+    public function deleteLog($logName, array $optionalArgs = [])
     {
         $request = new DeleteLogRequest();
         $request->setLogName($logName);
@@ -443,7 +443,7 @@ class LoggingServiceV2GapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function writeLogEntries($entries, $optionalArgs = [])
+    public function writeLogEntries($entries, array $optionalArgs = [])
     {
         $request = new WriteLogEntriesRequest();
         $request->setEntries($entries);
@@ -550,7 +550,7 @@ class LoggingServiceV2GapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function listLogEntries($resourceNames, $optionalArgs = [])
+    public function listLogEntries($resourceNames, array $optionalArgs = [])
     {
         $request = new ListLogEntriesRequest();
         $request->setResourceNames($resourceNames);
@@ -629,7 +629,7 @@ class LoggingServiceV2GapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function listMonitoredResourceDescriptors($optionalArgs = [])
+    public function listMonitoredResourceDescriptors(array $optionalArgs = [])
     {
         $request = new ListMonitoredResourceDescriptorsRequest();
         if (isset($optionalArgs['pageSize'])) {
@@ -704,7 +704,7 @@ class LoggingServiceV2GapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function listLogs($parent, $optionalArgs = [])
+    public function listLogs($parent, array $optionalArgs = [])
     {
         $request = new ListLogsRequest();
         $request->setParent($parent);

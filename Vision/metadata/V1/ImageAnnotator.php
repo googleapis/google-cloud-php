@@ -270,3 +270,4 @@ class ImageAnnotator
         static::$is_initialized = true;
     }
 }
+

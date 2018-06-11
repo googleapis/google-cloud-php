@@ -355,7 +355,7 @@ class CloudRedisGapicClient
      * @throws ValidationException
      * @experimental
      */
-    public function __construct($options = [])
+    public function __construct(array $options = [])
     {
         $clientOptions = $this->buildClientOptions($options);
         $this->setClientOptions($clientOptions);
@@ -422,7 +422,7 @@ class CloudRedisGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function listInstances($parent, $optionalArgs = [])
+    public function listInstances($parent, array $optionalArgs = [])
     {
         $request = new ListInstancesRequest();
         $request->setParent($parent);
@@ -473,7 +473,7 @@ class CloudRedisGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function getInstance($name, $optionalArgs = [])
+    public function getInstance($name, array $optionalArgs = [])
     {
         $request = new GetInstanceRequest();
         $request->setName($name);
@@ -569,7 +569,7 @@ class CloudRedisGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function createInstance($parent, $instanceId, $instance, $optionalArgs = [])
+    public function createInstance($parent, $instanceId, $instance, array $optionalArgs = [])
     {
         $request = new CreateInstanceRequest();
         $request->setParent($parent);
@@ -660,7 +660,7 @@ class CloudRedisGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function updateInstance($updateMask, $instance, $optionalArgs = [])
+    public function updateInstance($updateMask, $instance, array $optionalArgs = [])
     {
         $request = new UpdateInstanceRequest();
         $request->setUpdateMask($updateMask);
@@ -730,7 +730,7 @@ class CloudRedisGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function deleteInstance($name, $optionalArgs = [])
+    public function deleteInstance($name, array $optionalArgs = [])
     {
         $request = new DeleteInstanceRequest();
         $request->setName($name);

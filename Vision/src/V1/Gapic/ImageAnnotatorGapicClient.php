@@ -211,7 +211,7 @@ class ImageAnnotatorGapicClient
      * @throws ValidationException
      * @experimental
      */
-    public function __construct($options = [])
+    public function __construct(array $options = [])
     {
         $clientOptions = $this->buildClientOptions($options);
         $this->setClientOptions($clientOptions);
@@ -248,7 +248,7 @@ class ImageAnnotatorGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function batchAnnotateImages($requests, $optionalArgs = [])
+    public function batchAnnotateImages($requests, array $optionalArgs = [])
     {
         $request = new BatchAnnotateImagesRequest();
         $request->setRequests($requests);
@@ -321,7 +321,7 @@ class ImageAnnotatorGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function asyncBatchAnnotateFiles($requests, $optionalArgs = [])
+    public function asyncBatchAnnotateFiles($requests, array $optionalArgs = [])
     {
         $request = new AsyncBatchAnnotateFilesRequest();
         $request->setRequests($requests);

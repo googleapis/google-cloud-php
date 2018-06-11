@@ -340,7 +340,7 @@ class MetricServiceGapicClient
      * @throws ValidationException
      * @experimental
      */
-    public function __construct($options = [])
+    public function __construct(array $options = [])
     {
         $clientOptions = $this->buildClientOptions($options);
         $this->setClientOptions($clientOptions);
@@ -406,7 +406,7 @@ class MetricServiceGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function listMonitoredResourceDescriptors($name, $optionalArgs = [])
+    public function listMonitoredResourceDescriptors($name, array $optionalArgs = [])
     {
         $request = new ListMonitoredResourceDescriptorsRequest();
         $request->setName($name);
@@ -461,7 +461,7 @@ class MetricServiceGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function getMonitoredResourceDescriptor($name, $optionalArgs = [])
+    public function getMonitoredResourceDescriptor($name, array $optionalArgs = [])
     {
         $request = new GetMonitoredResourceDescriptorRequest();
         $request->setName($name);
@@ -535,7 +535,7 @@ class MetricServiceGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function listMetricDescriptors($name, $optionalArgs = [])
+    public function listMetricDescriptors($name, array $optionalArgs = [])
     {
         $request = new ListMetricDescriptorsRequest();
         $request->setName($name);
@@ -590,7 +590,7 @@ class MetricServiceGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function getMetricDescriptor($name, $optionalArgs = [])
+    public function getMetricDescriptor($name, array $optionalArgs = [])
     {
         $request = new GetMetricDescriptorRequest();
         $request->setName($name);
@@ -639,7 +639,7 @@ class MetricServiceGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function createMetricDescriptor($name, $metricDescriptor, $optionalArgs = [])
+    public function createMetricDescriptor($name, $metricDescriptor, array $optionalArgs = [])
     {
         $request = new CreateMetricDescriptorRequest();
         $request->setName($name);
@@ -685,7 +685,7 @@ class MetricServiceGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function deleteMetricDescriptor($name, $optionalArgs = [])
+    public function deleteMetricDescriptor($name, array $optionalArgs = [])
     {
         $request = new DeleteMetricDescriptorRequest();
         $request->setName($name);
@@ -773,7 +773,7 @@ class MetricServiceGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function listTimeSeries($name, $filter, $interval, $view, $optionalArgs = [])
+    public function listTimeSeries($name, $filter, $interval, $view, array $optionalArgs = [])
     {
         $request = new ListTimeSeriesRequest();
         $request->setName($name);
@@ -839,7 +839,7 @@ class MetricServiceGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function createTimeSeries($name, $timeSeries, $optionalArgs = [])
+    public function createTimeSeries($name, $timeSeries, array $optionalArgs = [])
     {
         $request = new CreateTimeSeriesRequest();
         $request->setName($name);

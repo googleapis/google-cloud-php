@@ -278,7 +278,7 @@ class BigtableGapicClient
      * @throws ValidationException
      * @experimental
      */
-    public function __construct($options = [])
+    public function __construct(array $options = [])
     {
         $clientOptions = $this->buildClientOptions($options);
         $this->setClientOptions($clientOptions);
@@ -332,7 +332,7 @@ class BigtableGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function readRows($tableName, $optionalArgs = [])
+    public function readRows($tableName, array $optionalArgs = [])
     {
         $request = new ReadRowsRequest();
         $request->setTableName($tableName);
@@ -404,7 +404,7 @@ class BigtableGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function sampleRowKeys($tableName, $optionalArgs = [])
+    public function sampleRowKeys($tableName, array $optionalArgs = [])
     {
         $request = new SampleRowKeysRequest();
         $request->setTableName($tableName);
@@ -470,7 +470,7 @@ class BigtableGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function mutateRow($tableName, $rowKey, $mutations, $optionalArgs = [])
+    public function mutateRow($tableName, $rowKey, $mutations, array $optionalArgs = [])
     {
         $request = new MutateRowRequest();
         $request->setTableName($tableName);
@@ -537,7 +537,7 @@ class BigtableGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function mutateRows($tableName, $entries, $optionalArgs = [])
+    public function mutateRows($tableName, $entries, array $optionalArgs = [])
     {
         $request = new MutateRowsRequest();
         $request->setTableName($tableName);
@@ -617,7 +617,7 @@ class BigtableGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function checkAndMutateRow($tableName, $rowKey, $optionalArgs = [])
+    public function checkAndMutateRow($tableName, $rowKey, array $optionalArgs = [])
     {
         $request = new CheckAndMutateRowRequest();
         $request->setTableName($tableName);
@@ -696,7 +696,7 @@ class BigtableGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function readModifyWriteRow($tableName, $rowKey, $rules, $optionalArgs = [])
+    public function readModifyWriteRow($tableName, $rowKey, $rules, array $optionalArgs = [])
     {
         $request = new ReadModifyWriteRowRequest();
         $request->setTableName($tableName);

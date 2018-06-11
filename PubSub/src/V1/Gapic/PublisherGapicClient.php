@@ -297,7 +297,7 @@ class PublisherGapicClient
      * @throws ValidationException
      * @experimental
      */
-    public function __construct($options = [])
+    public function __construct(array $options = [])
     {
         $clientOptions = $this->buildClientOptions($options);
         $this->setClientOptions($clientOptions);
@@ -340,7 +340,7 @@ class PublisherGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function createTopic($name, $optionalArgs = [])
+    public function createTopic($name, array $optionalArgs = [])
     {
         $request = new Topic();
         $request->setName($name);
@@ -394,7 +394,7 @@ class PublisherGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function updateTopic($topic, $updateMask, $optionalArgs = [])
+    public function updateTopic($topic, $updateMask, array $optionalArgs = [])
     {
         $request = new UpdateTopicRequest();
         $request->setTopic($topic);
@@ -446,7 +446,7 @@ class PublisherGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function publish($topic, $messages, $optionalArgs = [])
+    public function publish($topic, $messages, array $optionalArgs = [])
     {
         $request = new PublishRequest();
         $request->setTopic($topic);
@@ -491,7 +491,7 @@ class PublisherGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function getTopic($topic, $optionalArgs = [])
+    public function getTopic($topic, array $optionalArgs = [])
     {
         $request = new GetTopicRequest();
         $request->setTopic($topic);
@@ -556,7 +556,7 @@ class PublisherGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function listTopics($project, $optionalArgs = [])
+    public function listTopics($project, array $optionalArgs = [])
     {
         $request = new ListTopicsRequest();
         $request->setProject($project);
@@ -627,7 +627,7 @@ class PublisherGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function listTopicSubscriptions($topic, $optionalArgs = [])
+    public function listTopicSubscriptions($topic, array $optionalArgs = [])
     {
         $request = new ListTopicSubscriptionsRequest();
         $request->setTopic($topic);
@@ -679,7 +679,7 @@ class PublisherGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function deleteTopic($topic, $optionalArgs = [])
+    public function deleteTopic($topic, array $optionalArgs = [])
     {
         $request = new DeleteTopicRequest();
         $request->setTopic($topic);
@@ -730,7 +730,7 @@ class PublisherGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function setIamPolicy($resource, $policy, $optionalArgs = [])
+    public function setIamPolicy($resource, $policy, array $optionalArgs = [])
     {
         $request = new SetIamPolicyRequest();
         $request->setResource($resource);
@@ -780,7 +780,7 @@ class PublisherGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function getIamPolicy($resource, $optionalArgs = [])
+    public function getIamPolicy($resource, array $optionalArgs = [])
     {
         $request = new GetIamPolicyRequest();
         $request->setResource($resource);
@@ -834,7 +834,7 @@ class PublisherGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function testIamPermissions($resource, $permissions, $optionalArgs = [])
+    public function testIamPermissions($resource, $permissions, array $optionalArgs = [])
     {
         $request = new TestIamPermissionsRequest();
         $request->setResource($resource);

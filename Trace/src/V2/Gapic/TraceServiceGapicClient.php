@@ -296,7 +296,7 @@ class TraceServiceGapicClient
      * @throws ValidationException
      * @experimental
      */
-    public function __construct($options = [])
+    public function __construct(array $options = [])
     {
         $clientOptions = $this->buildClientOptions($options);
         $this->setClientOptions($clientOptions);
@@ -335,7 +335,7 @@ class TraceServiceGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function batchWriteSpans($name, $spans, $optionalArgs = [])
+    public function batchWriteSpans($name, $spans, array $optionalArgs = [])
     {
         $request = new BatchWriteSpansRequest();
         $request->setName($name);
@@ -428,7 +428,7 @@ class TraceServiceGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function createSpan($name, $spanId, $displayName, $startTime, $endTime, $optionalArgs = [])
+    public function createSpan($name, $spanId, $displayName, $startTime, $endTime, array $optionalArgs = [])
     {
         $request = new Span();
         $request->setName($name);
