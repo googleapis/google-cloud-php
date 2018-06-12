@@ -17,6 +17,7 @@
 
 namespace Google\Cloud\Debugger\Tests\Unit;
 
+use Google\Cloud\Debugger\BufferFullException;
 use Google\Cloud\Debugger\VariableTable;
 use Google\Cloud\Core\Int64;
 use PHPUnit\Framework\TestCase;
@@ -268,10 +269,16 @@ class VariableTableTest extends TestCase
 
     public function testLimitsTotalSize()
     {
+        $exceptionThrown = false;
         $variableTable = new VariableTable();
         for ($i = 0; $i < 1000; $i++) {
-            $v = $variableTable->register('var' . $i, array_fill(0, $i, $i), $i);
+            try {
+                $v = $variableTable->register('var' . $i, array_fill(0, $i, $i), $i);
+            } catch (BufferFullException $e) {
+                $exceptionThrown = true;
+            }
         }
+        $this->assertTrue($exceptionThrown);
         $variables = $variableTable->variables();
         $this->assertNotEmpty($variables);
         $this->assertTrue(count($variableTable->variables()) < 1000);
