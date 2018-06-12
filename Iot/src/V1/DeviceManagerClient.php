@@ -38,7 +38,7 @@ use InvalidArgumentException;
  */
 class DeviceManagerClient extends DeviceManagerGapicClient
 {
-    protected function setClientOptions(array $options)
+    protected function modifyClientOptions(array &$options)
     {
         if (isset($options['transport'])) {
             if ($options['transport'] == 'grpc') {
@@ -53,6 +53,5 @@ class DeviceManagerClient extends DeviceManagerGapicClient
             // If transport is not set, default to rest
             $options['transport'] = 'rest';
         }
-        parent::setClientOptions($options);
     }
 }
