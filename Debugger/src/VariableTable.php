@@ -294,15 +294,22 @@ class VariableTable
 
     private function doRegisterMembers($array, $depth)
     {
+        if ($depth >= $this->maxMemberDepth) {
+            return [];
+        }
+
         $members = [];
-        if ($depth < $this->maxMemberDepth) {
-            foreach ($array as $key => $member) {
-                try {
-                    $members[] = $this->doRegister((string) $key, $member, $depth + 1, null);
-                } catch (BufferFullException $e) {
-                    $members[] = $this->bufferFullVariable();
-                    break;
-                }
+        $i = 0;
+        foreach ($array as $key => $member) {
+            if ($i >= $this->maxMembers) {
+                break;
+            }
+            try {
+                $members[] = $this->doRegister((string) $key, $member, $depth + 1, null);
+                $i++;
+            } catch (BufferFullException $e) {
+                $members[] = $this->bufferFullVariable();
+                break;
             }
         }
         return $members;
