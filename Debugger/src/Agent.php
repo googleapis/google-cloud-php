@@ -79,6 +79,9 @@ class Agent
      */
     private $maxDepth;
 
+    /**
+     * @var array Configuration options for limiting size of captured breakpoints.
+     */
     private $evaluationOptions;
 
     /**
@@ -100,6 +103,14 @@ class Agent
      *      @type int $maxDepth Limits the number of stackframes with
      *            captured variables. To capture variables in all stackframes,
      *            set to PHP_INT_MAX. **Defaults to** 5.
+     *      @type int $maxMemberDepth Maximum depth of member variables to capture.
+     *            **Defaults to** 5.
+     *      @type int $maxPayloadSize Maximum amount of space of captured data.
+     *            **Defaults to** 32768.
+     *      @type int $maxMembers Maximum number of member variables captured per
+     *            variable. **Defaults to** 1000.
+     *      @type int $maxValueLength Maximum length of the string representing
+     *            the captured variable. **Defaults to** 500.
      * }
      */
     public function __construct(array $options = [])

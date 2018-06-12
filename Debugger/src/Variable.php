@@ -160,9 +160,11 @@ class Variable
      */
     public function fullByteSize()
     {
-        return $this->byteSize() + array_sum(array_map(function ($v) {
-            return $v->fullByteSize();
-        }, $this->members));
+        $size = $this->byteSize();
+        foreach ($this->members as $variable) {
+            $size += $variable->fullByteSize();
+        }
+        return $size;
     }
 
     /**

@@ -426,14 +426,33 @@ class Breakpoint
         return $this->variableTable;
     }
 
+    /**
+     * Evaluate this breakpoint with the provided evaluated expressions and
+     * captured stackframe data.
+     *
+     * @access private
+     * @param array $expressions Key is the expression executed. Value is the
+     *        execution result.
+     * @param array $stackFrames Array of stackframe data.
+     * @param array $options [optional] {
+     *      Configuration options.
+     *
+     *      @type int $maxMemberDepth Maximum depth of member variables to capture.
+     *            **Defaults to** 5.
+     *      @type int $maxPayloadSize Maximum amount of space of captured data.
+     *            **Defaults to** 32768.
+     *      @type int $maxMembers Maximum number of member variables captured per
+     *            variable. **Defaults to** 1000.
+     *      @type int $maxValueLength Maximum length of the string representing
+     *            the captured variable. **Defaults to** 500.
+     * }
+     */
     public function evaluate(array $evaluatedExpressions, array $stackframes, array $options = [])
     {
         $this->variableTable->setOptions($options);
-        $this->finalize();
         $this->addEvaluatedExpressions($evaluatedExpressions);
-        foreach ($stackframes as $stackframe) {
-            $this->addStackFrame($stackframe);
-        }
+        $this->addStackFrames($stackframes);
+        $this->finalize();
     }
 
     /**
