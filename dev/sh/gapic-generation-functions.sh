@@ -7,7 +7,7 @@ function setup_environment() {
   REGENERATION_WORKING_DIR="$GOOGLE_CLOUD_PHP_ROOT_DIR/gapic-generation-workspace"
 
   ARTMAN_OUTPUT_DIR="$REGENERATION_WORKING_DIR/artman-output"
-  ARTMAN_IMAGE="googleapis/artman:0.11.1-dev"
+  ARTMAN_IMAGE="googleapis/artman:latest"
   GOOGLEAPIS_DIR="$REGENERATION_WORKING_DIR/googleapis"
 
   if [ ! -d "$GOOGLEAPIS_DIR" ]; then
@@ -494,6 +494,23 @@ function regenerate_vision_v1() {
 
   regenerate_api "$API_ARTMAN_YAML" "$API_ARTMAN_OUTPUT_DIR" "$API_GCP_FOLDER_NAME" "$API_NAMESPACE_DIR" "$API_METADATA_NAMESPACE_DIR"
 }
+
+if [ ! -d "./gapic-generation-workspace/env" ]; then
+  ERROR_MESSAGE=$(cat <<'EOM'
+Could not find expected python virtualenv folder 'gapic-generation-workspace/env'.
+To create this required virtualenv folder, you need to have python and virtualenv
+installed on your machine, and run the following commands:
+$ mkdir -p gapic-generation-workspace
+$ cd gapic-generation-workspace
+$ virtualenv env
+$ source env/bin/activate
+$ pip install googleapis-artman
+$ deactivate
+$ cd -
+EOM
+)
+  echo >&2 "$ERROR_MESSAGE"; exit 1;
+fi
 
 source ./gapic-generation-workspace/env/bin/activate
 
