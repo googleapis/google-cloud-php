@@ -27,7 +27,7 @@ use Google\ApiCore\Testing\GeneratedTest;
 
 /**
  * @group dataproc
- * @group grpc
+ * @group gapic
  */
 class ClusterControllerSmokeTest extends GeneratedTest
 {

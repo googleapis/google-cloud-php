@@ -40,7 +40,7 @@ use stdClass;
 
 /**
  * @group dialogflow
- * @group grpc
+ * @group gapic
  */
 class AgentsClientTest extends GeneratedTest
 {

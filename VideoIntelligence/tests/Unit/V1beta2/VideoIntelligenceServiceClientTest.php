@@ -38,7 +38,7 @@ use stdClass;
 
 /**
  * @group video-intelligence
- * @group grpc
+ * @group gapic
  */
 class VideoIntelligenceServiceClientTest extends GeneratedTest
 {

@@ -44,7 +44,7 @@ use stdClass;
 
 /**
  * @group spanner
- * @group grpc
+ * @group gapic
  */
 class SpannerClientTest extends GeneratedTest
 {

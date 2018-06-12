@@ -40,7 +40,7 @@ use stdClass;
 
 /**
  * @group dialogflow
- * @group grpc
+ * @group gapic
  */
 class IntentsClientTest extends GeneratedTest
 {

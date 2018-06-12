@@ -41,7 +41,7 @@ use stdClass;
 
 /**
  * @group redis
- * @group grpc
+ * @group gapic
  */
 class CloudRedisClientTest extends GeneratedTest
 {

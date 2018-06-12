@@ -36,7 +36,7 @@ use stdClass;
 
 /**
  * @group logging
- * @group grpc
+ * @group gapic
  */
 class MetricsServiceV2ClientTest extends GeneratedTest
 {

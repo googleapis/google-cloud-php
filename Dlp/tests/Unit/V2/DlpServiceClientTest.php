@@ -47,7 +47,7 @@ use stdClass;
 
 /**
  * @group dlp
- * @group grpc
+ * @group gapic
  */
 class DlpServiceClientTest extends GeneratedTest
 {

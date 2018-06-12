@@ -37,7 +37,7 @@ use stdClass;
 
 /**
  * @group dataproc
- * @group grpc
+ * @group gapic
  */
 class JobControllerClientTest extends GeneratedTest
 {

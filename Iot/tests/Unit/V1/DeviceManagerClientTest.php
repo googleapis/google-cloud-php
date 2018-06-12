@@ -44,7 +44,7 @@ use stdClass;
 
 /**
  * @group iot
- * @group grpc
+ * @group gapic
  */
 class DeviceManagerClientTest extends GeneratedTest
 {

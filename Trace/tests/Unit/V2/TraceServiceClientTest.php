@@ -37,7 +37,7 @@ use stdClass;
 
 /**
  * @group trace
- * @group grpc
+ * @group gapic
  */
 class TraceServiceClientTest extends GeneratedTest
 {

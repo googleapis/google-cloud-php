@@ -37,7 +37,7 @@ use stdClass;
 
 /**
  * @group os-login
- * @group grpc
+ * @group gapic
  */
 class OsLoginServiceClientTest extends GeneratedTest
 {

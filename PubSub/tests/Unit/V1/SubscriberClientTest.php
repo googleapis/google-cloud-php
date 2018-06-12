@@ -49,7 +49,7 @@ use stdClass;
 
 /**
  * @group pubsub
- * @group grpc
+ * @group gapic
  */
 class SubscriberClientTest extends GeneratedTest
 {

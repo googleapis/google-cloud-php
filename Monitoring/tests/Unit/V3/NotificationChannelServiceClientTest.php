@@ -38,7 +38,7 @@ use stdClass;
 
 /**
  * @group monitoring
- * @group grpc
+ * @group gapic
  */
 class NotificationChannelServiceClientTest extends GeneratedTest
 {

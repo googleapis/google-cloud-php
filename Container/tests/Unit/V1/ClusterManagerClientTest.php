@@ -49,7 +49,7 @@ use stdClass;
 
 /**
  * @group container
- * @group grpc
+ * @group gapic
  */
 class ClusterManagerClientTest extends GeneratedTest
 {

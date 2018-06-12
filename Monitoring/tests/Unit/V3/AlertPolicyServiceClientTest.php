@@ -36,7 +36,7 @@ use stdClass;
 
 /**
  * @group monitoring
- * @group grpc
+ * @group gapic
  */
 class AlertPolicyServiceClientTest extends GeneratedTest
 {

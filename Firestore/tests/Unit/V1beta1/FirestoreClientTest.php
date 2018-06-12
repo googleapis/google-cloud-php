@@ -49,7 +49,7 @@ use stdClass;
 
 /**
  * @group firestore
- * @group grpc
+ * @group gapic
  */
 class FirestoreClientTest extends GeneratedTest
 {

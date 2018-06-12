@@ -39,7 +39,7 @@ use stdClass;
 
 /**
  * @group logging
- * @group grpc
+ * @group gapic
  */
 class ConfigServiceV2ClientTest extends GeneratedTest
 {

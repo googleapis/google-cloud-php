@@ -27,7 +27,7 @@ use Google\ApiCore\Testing\GeneratedTest;
 
 /**
  * @group pubsub
- * @group grpc
+ * @group gapic
  */
 class PublisherSmokeTest extends GeneratedTest
 {

@@ -27,7 +27,7 @@ use Google\ApiCore\Testing\GeneratedTest;
 
 /**
  * @group iot
- * @group grpc
+ * @group gapic
  */
 class DeviceManagerSmokeTest extends GeneratedTest
 {

@@ -42,7 +42,7 @@ use stdClass;
 
 /**
  * @group monitoring
- * @group grpc
+ * @group gapic
  */
 class MetricServiceClientTest extends GeneratedTest
 {

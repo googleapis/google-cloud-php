@@ -32,7 +32,7 @@ use Google\Cloud\Vision\V1\ImageSource;
 
 /**
  * @group vision
- * @group grpc
+ * @group gapic
  */
 class ImageAnnotatorSmokeTest extends GeneratedTest
 {

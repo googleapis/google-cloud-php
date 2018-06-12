@@ -27,7 +27,7 @@ use Google\ApiCore\Testing\GeneratedTest;
 
 /**
  * @group container
- * @group grpc
+ * @group gapic
  */
 class ClusterManagerSmokeTest extends GeneratedTest
 {

@@ -30,7 +30,7 @@ use Google\Cloud\Speech\V1p1beta1\RecognitionConfig_AudioEncoding;
 
 /**
  * @group speech
- * @group grpc
+ * @group gapic
  */
 class SpeechSmokeTest extends GeneratedTest
 {

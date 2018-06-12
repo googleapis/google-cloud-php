@@ -34,7 +34,7 @@ use stdClass;
 
 /**
  * @group error-reporting
- * @group grpc
+ * @group gapic
  */
 class ErrorGroupServiceClientTest extends GeneratedTest
 {

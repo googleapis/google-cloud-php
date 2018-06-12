@@ -38,7 +38,7 @@ use stdClass;
 
 /**
  * @group vision
- * @group grpc
+ * @group gapic
  */
 class ImageAnnotatorClientTest extends GeneratedTest
 {

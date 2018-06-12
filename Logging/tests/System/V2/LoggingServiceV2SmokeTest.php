@@ -28,7 +28,7 @@ use Google\Api\MonitoredResource;
 
 /**
  * @group logging
- * @group grpc
+ * @group gapic
  */
 class LoggingServiceV2SmokeTest extends GeneratedTest
 {

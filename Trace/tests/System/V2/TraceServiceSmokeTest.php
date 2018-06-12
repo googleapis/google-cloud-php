@@ -27,7 +27,7 @@ use Google\ApiCore\Testing\GeneratedTest;
 
 /**
  * @group trace
- * @group grpc
+ * @group gapic
  */
 class TraceServiceSmokeTest extends GeneratedTest
 {

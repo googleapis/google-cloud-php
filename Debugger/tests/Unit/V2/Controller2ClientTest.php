@@ -38,7 +38,7 @@ use stdClass;
 
 /**
  * @group debugger
- * @group grpc
+ * @group gapic
  */
 class Controller2ClientTest extends GeneratedTest
 {

@@ -27,7 +27,7 @@ use Google\ApiCore\Testing\GeneratedTest;
 
 /**
  * @group bigquerydatatransfer
- * @group grpc
+ * @group gapic
  */
 class DataTransferServiceSmokeTest extends GeneratedTest
 {

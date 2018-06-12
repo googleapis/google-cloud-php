@@ -39,7 +39,7 @@ use stdClass;
 
 /**
  * @group debugger
- * @group grpc
+ * @group gapic
  */
 class Debugger2ClientTest extends GeneratedTest
 {

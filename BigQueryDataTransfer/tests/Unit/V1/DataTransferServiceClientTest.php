@@ -46,7 +46,7 @@ use stdClass;
 
 /**
  * @group bigquerydatatransfer
- * @group grpc
+ * @group gapic
  */
 class DataTransferServiceClientTest extends GeneratedTest
 {

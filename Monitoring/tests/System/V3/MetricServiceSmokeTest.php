@@ -27,7 +27,7 @@ use Google\ApiCore\Testing\GeneratedTest;
 
 /**
  * @group monitoring
- * @group grpc
+ * @group gapic
  */
 class MetricServiceSmokeTest extends GeneratedTest
 {

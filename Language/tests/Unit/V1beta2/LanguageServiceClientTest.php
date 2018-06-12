@@ -41,7 +41,7 @@ use stdClass;
 
 /**
  * @group language
- * @group grpc
+ * @group gapic
  */
 class LanguageServiceClientTest extends GeneratedTest
 {

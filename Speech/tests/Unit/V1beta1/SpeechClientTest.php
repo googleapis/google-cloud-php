@@ -44,7 +44,7 @@ use stdClass;
 
 /**
  * @group speech
- * @group grpc
+ * @group gapic
  */
 class SpeechClientTest extends GeneratedTest
 {

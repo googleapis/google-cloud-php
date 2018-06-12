@@ -40,7 +40,7 @@ use stdClass;
 
 /**
  * @group bigtable
- * @group grpc
+ * @group gapic
  */
 class BigtableClientTest extends GeneratedTest
 {

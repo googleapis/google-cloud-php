@@ -31,7 +31,7 @@ use Google\Cloud\ErrorReporting\V1beta1\SourceLocation;
 
 /**
  * @group error-reporting
- * @group grpc
+ * @group gapic
  */
 class ReportErrorsServiceSmokeTest extends GeneratedTest
 {

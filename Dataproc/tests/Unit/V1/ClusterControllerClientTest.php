@@ -40,7 +40,7 @@ use stdClass;
 
 /**
  * @group dataproc
- * @group grpc
+ * @group gapic
  */
 class ClusterControllerClientTest extends GeneratedTest
 {

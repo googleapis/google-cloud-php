@@ -42,7 +42,7 @@ use stdClass;
 
 /**
  * @group pubsub
- * @group grpc
+ * @group gapic
  */
 class PublisherClientTest extends GeneratedTest
 {
