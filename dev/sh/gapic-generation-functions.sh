@@ -139,12 +139,12 @@ function regenerate_api() {
 function post_regenerate() {
 
   # Revert changes in clients with partial veneers
-  git ch Iot/src/V1/DeviceManagerClient.php
-  git ch Redis/src/V1beta1/CloudRedisClient.php
-  git ch Spanner/src/V1/SpannerClient.php
-  git ch Speech/src/V1/SpeechClient.php
-  git ch Speech/src/V1beta1/SpeechClient.php
-  git ch Vision/src/V1/ImageAnnotatorClient.php
+  git checkout Iot/src/V1/DeviceManagerClient.php
+  git checkout Redis/src/V1beta1/CloudRedisClient.php
+  git checkout Spanner/src/V1/SpannerClient.php
+  git checkout Speech/src/V1/SpeechClient.php
+  git checkout Speech/src/V1beta1/SpeechClient.php
+  git checkout Vision/src/V1/ImageAnnotatorClient.php
 
   # Revert changes in copyright files for generated clients
   FOLDERS_2016=(
