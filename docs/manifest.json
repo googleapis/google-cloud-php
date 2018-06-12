@@ -783,7 +783,7 @@
             "name": "google/cloud-videointelligence",
             "defaultService": "videointelligence/readme",
             "versions": [
-                "v1.0.0",
+                "v0.12.0",
                 "v0.11.1",
                 "v0.11.0",
                 "v0.10.4",
