@@ -1,0 +1,1 @@
+{"id":"language\/v1beta2\/partofspeech_mood","type":"","title":"Google\\Cloud\\Language\\V1beta2\\PartOfSpeech_Mood","name":"PartOfSpeech_Mood","description":"<p>The grammatical feature of verbs, used for showing modality and attitude.<\/p>\n<p>Protobuf enum <code>Google\\Cloud\\Language\\V1beta2\\PartOfSpeech\\Mood<\/code><\/p>","examples":[],"resources":[],"methods":[]}

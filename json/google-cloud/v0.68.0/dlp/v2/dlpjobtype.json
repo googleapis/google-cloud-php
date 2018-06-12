@@ -1,0 +1,1 @@
+{"id":"dlp\/v2\/dlpjobtype","type":"","title":"Google\\Cloud\\Dlp\\V2\\DlpJobType","name":"DlpJobType","description":"<p>An enum to represent the various type of DLP jobs.<\/p>\n<p>Protobuf enum <code>Google\\Privacy\\Dlp\\V2\\DlpJobType<\/code><\/p>","examples":[],"resources":[],"methods":[]}
