@@ -40,7 +40,7 @@ use Google\Cloud\Bigtable\Connection\LongRunningConnection;
  * $ pecl install protobuf
  * ```
  *
- * Example:
+ * Example
  * ```
  * use Google\Cloud\Bigtable\BigtableClient;
  *
@@ -147,7 +147,7 @@ class BigtableClient
     /**
      * Create a new instance.
      *
-     * Example:
+     * Example
      * ```
      * $operation = $bigtable->createInstance($configuration, 'my-instance');
      * ```
@@ -179,7 +179,7 @@ class BigtableClient
     /**
      * Lazily instantiate an instance.
      *
-     * Example:
+     * Example
      * ```
      * $instance = $bigtable->instance('my-instance');
      * ```

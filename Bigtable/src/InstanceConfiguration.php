@@ -25,7 +25,7 @@ use Google\Cloud\Core\Exception\NotFoundException;
 /**
  * Represents a Cloud Bigtable Instance Configuration.
  *
- * Example:
+ * Example
  * ```
  * use Google\Cloud\Bigtable\BigtableClient;
  *
@@ -81,7 +81,7 @@ class InstanceConfiguration
     /**
      * Return the configuration name.
      *
-     * Example:
+     * Example
      * ```
      * $name = $configuration->name();
      * ```
@@ -100,7 +100,7 @@ class InstanceConfiguration
      *
      * **NOTE**: Requires `https://www.googleapis.com/auth/bigtable.admin` scope.
      *
-     * Example:
+     * Example
      * ```
      * $info = $configuration->info();
      * ```
@@ -126,7 +126,7 @@ class InstanceConfiguration
      *
      * **NOTE**: Requires `https://www.googleapis.com/auth/bigtable.admin` scope.
      *
-     * Example:
+     * Example
      * ```
      * if ($configuration->exists()) {
      *    echo 'Configuration exists!';
@@ -151,7 +151,7 @@ class InstanceConfiguration
      *
      * **NOTE**: Requires `https://www.googleapis.com/auth/bigtable.admin` scope.
      *
-     * Example:
+     * Example
      * ```
      * $info = $configuration->reload();
      * ```
