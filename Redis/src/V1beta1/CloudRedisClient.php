@@ -38,7 +38,7 @@ use InvalidArgumentException;
  */
 class CloudRedisClient extends CloudRedisGapicClient
 {
-    protected function setClientOptions(array $options)
+    protected function modifyClientOptions(array &$options)
     {
         if (isset($options['transport'])) {
             if ($options['transport'] == 'rest') {
@@ -53,6 +53,5 @@ class CloudRedisClient extends CloudRedisGapicClient
             // If transport is not set, default to grpc.
             $options['transport'] = 'grpc';
         }
-        parent::setClientOptions($options);
     }
 }
