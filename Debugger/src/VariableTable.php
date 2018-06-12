@@ -76,13 +76,13 @@ class VariableTable
      *     Configuration options.
      *
      *     @type int $maxMemberDepth Maximum depth of member variables to capture.
-     *         **Defaults to** 5.
+     *           **Defaults to** 5.
      *     @type int $maxPayloadSize Maximum amount of space of captured data.
-     *         **Defaults to** 32768.
+     *           **Defaults to** 32768.
      *     @type int $maxMembers Maximum number of member variables captured per
-     *         variable. **Defaults to** 1000.
+     *           variable. **Defaults to** 1000.
      *     @type int $maxValueLength Maximum length of the string representing
-     *         the captured variable. **Defaults to** 500.
+     *           the captured variable. **Defaults to** 500.
      * }
      */
     public function __construct(array $initialVariables = [], array $options = [])
