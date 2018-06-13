@@ -273,7 +273,7 @@ class VariableTableTest extends TestCase
         $variableTable = new VariableTable();
         for ($i = 0; $i < 1000; $i++) {
             try {
-                $v = $variableTable->register('var' . $i, array_fill(0, $i, $i), $i);
+                $v = $variableTable->register('var' . $i, array_fill(0, $i + 1, $i), $i);
             } catch (BufferFullException $e) {
                 $exceptionThrown = true;
             }
