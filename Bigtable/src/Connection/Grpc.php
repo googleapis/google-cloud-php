@@ -26,6 +26,7 @@ use Google\Cloud\Bigtable\V2\BigtableClient;
 use Google\Cloud\Core\GrpcRequestWrapper;
 use Google\Cloud\Core\GrpcTrait;
 use Google\Cloud\Core\LongRunning\OperationResponseTrait;
+use Google\Protobuf\FieldMask;
 
 /**
  * Connection to Cloud Bigtable over GRPC
@@ -139,7 +140,11 @@ class Grpc implements ConnectionInterface
      */
     public function getInstance(array $args)
     {
-        throw new \BadMethodCallException('This method is not implemented yet');
+        $name = $this->pluck('name', $args);
+        return $this->send([$this->bigtableInstanceAdminClient, 'getInstance'], [
+            $name,
+            $this->addResourcePrefixHeader($args, $name)
+        ]);
     }
 
     /**
@@ -147,7 +152,11 @@ class Grpc implements ConnectionInterface
      */
     public function listInstances(array $args)
     {
-        throw new \BadMethodCallException('This method is not implemented yet');
+        $parent = $this->pluck('parent', $args);
+        return $this->send([$this->bigtableInstanceAdminClient, 'listInstances'], [
+            $parent,
+            $this->addResourcePrefixHeader($args, $parent)
+        ]);
     }
 
     /**
@@ -155,15 +164,63 @@ class Grpc implements ConnectionInterface
      */
     public function updateInstance(array $args)
     {
-        throw new \BadMethodCallException('This method is not implemented yet');
+        $name = $this->pluck('name', $args);
+        $displayName = $this->pluck('displayName', $args);
+        $type = $this->pluck('type', $args);
+        $labels = $this->pluck('labels', $args);
+        return $this->send([$this->bigtableInstanceAdminClient, 'updateInstance'], [
+            $name,
+            $displayName,
+            $type,
+            $labels,
+            $this->addResourcePrefixHeader($args, $name)
+        ]);
     }
 
-        /**
+    /**
+     * @param array $args
+     */
+    public function partialUpdateInstance(array $args)
+    {
+        $parent = $this->pluck('parent', $args);
+        $instance = $this->pluck('instance', $args);
+        $updateMask = $this->pluck('updateMask', $args);
+        $response = $this->send([$this->bigtableInstanceAdminClient, 'partialUpdateInstance'], [
+            $this->instanceObject($instance),
+            $this->updateMaskObject($updateMask),
+            $this->addResourcePrefixHeader($args, $parent)
+        ]);
+         return $this->operationToArray(
+            $response,
+            $this->serializer,
+            $this->lroResponseMappers
+        );
+    }
+
+    /**
+     * @param array $updateMask
+     * @return FieldMask
+     */
+    private function updateMaskObject(array $updateMask)
+    {
+        return $this->serializer->decodeMessage(
+            new FieldMask(),
+            $this->pluckArray([
+                'paths',
+            ], $updateMask)
+        );
+    }
+
+    /**
      * @param array $args
      */
     public function deleteInstance(array $args)
     {
-        throw new \BadMethodCallException('This method is not implemented yet');
+        $name = $this->pluck('name', $args);
+        return $this->send([$this->bigtableInstanceAdminClient, 'deleteInstance'], [
+            $name,
+            $this->addResourcePrefixHeader($args, $name)
+        ]);
     }
 
     /**
