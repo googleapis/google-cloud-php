@@ -150,4 +150,21 @@ class DebuggeeTest extends TestCase
         $this->assertTrue($debuggee->register());
         $this->assertEquals('debuggee1', $debuggee->id());
     }
+
+    public function testDebuggeeExtendedSourceContextSerialization()
+    {
+        $debuggee = new Debuggee($this->connection->reveal(), [
+            'project' => 'project1',
+            'extSourceContexts' => [
+                [
+                    'context' => []
+                ]
+            ]
+        ]);
+        $info = $debuggee->info();
+        $this->assertArrayHasKey('extSourceContexts', $info);
+        $this->assertCount(1, $info['extSourceContexts']);
+        $this->assertArrayHasKey('sourceContexts', $info);
+        $this->assertCount(1, $info['sourceContexts']);
+    }
 }
