@@ -45,11 +45,6 @@ interface ConnectionInterface
     /**
      * @param array $args
      */
-    public function partialUpdateInstance(array $args);
-    
-    /**
-     * @param array $args
-     */
     public function deleteInstance(array $args);
 
     /**
