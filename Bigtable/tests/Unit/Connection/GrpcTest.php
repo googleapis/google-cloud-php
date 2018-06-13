@@ -27,6 +27,7 @@ use Google\Cloud\Bigtable\Connection\Grpc;
 use Google\Cloud\Core\GrpcTrait;
 use Google\Cloud\Core\GrpcRequestWrapper;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
+use Google\Protobuf\FieldMask; 
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
 
@@ -95,6 +96,13 @@ class GrpcTest extends TestCase
             new Instance(),
             $instanceArgs
         );
+        $updateMaskArgs = [
+            'paths' => [],
+        ];
+        $updateMask = $serializer->decodeMessage(
+            new FieldMask(),
+            $updateMaskArgs
+        );
         $lro = $this->prophesize(OperationResponse::class)->reveal();
 
         return [
@@ -118,6 +126,54 @@ class GrpcTest extends TestCase
                 [self::PROJECT, $instanceName, $instance, ['test-cluster3' =>$cluster], ['headers' => ['google-cloud-resource-prefix' => [self::PROJECT]]]],
                 $lro,
                 null
+            ],
+            [
+                'getInstance',
+                ['name' => 'projects/grass-clump-479/instances/test-instance3'],
+                ['projects/grass-clump-479/instances/test-instance3', ['headers' => ['google-cloud-resource-prefix' => ['projects/grass-clump-479/instances/test-instance3']]]]
+            ],
+            [
+
+                'listInstances',
+                ['parent' => self::PROJECT],
+                [self::PROJECT,['headers' => ['google-cloud-resource-prefix' => [self::PROJECT]]]]
+            ],
+            [
+                'updateInstance',
+                ['name' => 'projects/grass-clump-479/instances/test-instance3',
+                 'displayName' => $instanceName,
+                 'type' => Instance_Type::PRODUCTION,
+                 'labels' => []
+                ],
+                [
+                    'projects/grass-clump-479/instances/test-instance3',
+                    $instanceName,Instance_Type::PRODUCTION,[],['headers' => ['google-cloud-resource-prefix' => ['projects/grass-clump-479/instances/test-instance3']]]
+
+                ]
+            ],
+            [
+                'partialUpdateInstance',
+                [
+                    'parent' => 'projects/grass-clump-479/instances/test-instance3',
+                    'instance' => [
+                        'displayName' => $instanceName,
+                           'type' => Instance_Type::PRODUCTION,
+                           'labels' => []
+                    ],
+                    'updateMask' => [
+
+                            'paths' => []
+
+                    ]
+                ],
+                [$instance,$updateMask, ['headers' => ['google-cloud-resource-prefix' => ['projects/grass-clump-479/instances/test-instance3']]]],
+                $lro,
+                null
+            ],
+            [
+                'deleteInstance',
+                ['name' => 'projects/grass-clump-479/instances/test-instance3'],
+                ['projects/grass-clump-479/instances/test-instance3', ['headers' => ['google-cloud-resource-prefix' => ['projects/grass-clump-479/instances/test-instance3']]]]
             ]
         ];
     }
