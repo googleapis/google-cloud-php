@@ -380,7 +380,7 @@ class Debuggee
                 return is_array($esc) ? $esc['context'] : $esc->context()->info();
             }, $this->extSourceContexts),
             'extSourceContexts' => array_map(function ($esc) {
-                return is_array($esc) ? $exc : $esc->info();
+                return is_array($esc) ? $esc : $esc->info();
             }, $this->extSourceContexts)
         ];
         if ($this->status) {
