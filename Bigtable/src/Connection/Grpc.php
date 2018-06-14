@@ -165,13 +165,25 @@ class Grpc implements ConnectionInterface
     {
         throw new \BadMethodCallException('This method is not implemented yet');
     }
-
+    
     /**
      * @param array $args
      */
     public function createCluster(array $args)
     {
-        throw new \BadMethodCallException('This method is not implemented yet');
+        $parent = $this->pluck('parent', $args);
+        $clusters = $this->pluck('clusters', $args);
+        $response = $this->send([$this->bigtableInstanceAdminClient, 'createCluster'], [
+            $parent,
+            $this->pluck('clusterId', $args),
+            $this->clusterObject($clusters),
+            $this->addResourcePrefixHeader($args, $parent)
+        ]);
+        return $this->operationToArray(
+            $response,
+            $this->serializer,
+            $this->lroResponseMappers
+        );
     }
 
     /**
@@ -179,7 +191,11 @@ class Grpc implements ConnectionInterface
      */
     public function getCluster(array $args)
     {
-        throw new \BadMethodCallException('This method is not implemented yet');
+        $name = $this->pluck('name', $args);
+        return $this->send([$this->bigtableInstanceAdminClient, 'getCluster'], [
+            $name,
+            $this->addResourcePrefixHeader($args, $name)
+        ]);
     }
 
     /**
@@ -187,7 +203,11 @@ class Grpc implements ConnectionInterface
      */
     public function listClusters(array $args)
     {
-        throw new \BadMethodCallException('This method is not implemented yet');
+        $parent = $this->pluck('parent', $args);
+        return $this->send([$this->bigtableInstanceAdminClient, 'listClusters'], [
+            $parent,
+            $this->addResourcePrefixHeader($args, $parent)
+        ]);
     }
 
     /**
@@ -195,7 +215,15 @@ class Grpc implements ConnectionInterface
      */
     public function updateCluster(array $args)
     {
-        throw new \BadMethodCallException('This method is not implemented yet');
+        $name = $this->pluck('name', $args);
+        $location = $this->pluck('location', $args);
+        $serveNodes = $this->pluck('serveNodes', $args);
+        return $this->send([$this->bigtableInstanceAdminClient, 'updateCluster'], [
+            $name,
+            $location,
+            $serveNodes,
+            $this->addResourcePrefixHeader($args, $name)
+        ]);
     }
 
     /**
@@ -203,7 +231,11 @@ class Grpc implements ConnectionInterface
      */
     public function deleteCluster(array $args)
     {
-        throw new \BadMethodCallException('This method is not implemented yet');
+        $name = $this->pluck('name', $args);
+        return $this->send([$this->bigtableInstanceAdminClient, 'deleteCluster'], [
+            $name,
+            $this->addResourcePrefixHeader($args, $name)
+        ]);
     }
 
     /**

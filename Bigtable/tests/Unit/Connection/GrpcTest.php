@@ -73,7 +73,7 @@ class GrpcTest extends TestCase
             return [];
         }
         $serializer = new Serializer();
-        $instanceName = 'test-instance3';
+        $instanceName = 'test-instance';
         $clusterName = 'test-cluster';
  
         $clusterArgs = [
@@ -109,15 +109,56 @@ class GrpcTest extends TestCase
                            'labels' => []
                     ],
                     'clusters' => [
-                        'test-cluster3' => [
+                        'test-cluster' => [
                             'location' => self::LOCATION,
                             'serveNodes' => 3
                         ]
                     ]
                 ],
-                [self::PROJECT, $instanceName, $instance, ['test-cluster3' =>$cluster], ['headers' => ['google-cloud-resource-prefix' => [self::PROJECT]]]],
+                [self::PROJECT, $instanceName, $instance, ['test-cluster' =>$cluster], ['headers' => ['google-cloud-resource-prefix' => [self::PROJECT]]]],
                 $lro,
                 null
+            ],
+            [
+                'createCluster',
+                ['parent' => 'projects/grass-clump-479/instances/test-instance', 
+                   'clusterId' => 'test-cluster', 
+                   'clusters' => [
+                        'location' => self::LOCATION,
+                        'serveNodes' => 3
+                    ]
+                ],
+                ['projects/grass-clump-479/instances/test-instance','test-cluster', $cluster, ['headers' => ['google-cloud-resource-prefix' => ['projects/grass-clump-479/instances/test-instance']]]],
+                $lro,
+                null
+            ],
+            [
+                'getCluster',
+                ['name' => 'projects/grass-clump-479/instances/test-instance/clusters/test-cluster'],
+                ['projects/grass-clump-479/instances/test-instance/clusters/test-cluster', ['headers' => ['google-cloud-resource-prefix' => ['projects/grass-clump-479/instances/test-instance/clusters/test-cluster']]]]
+            ],
+            [
+
+                'listClusters',
+                ['parent' => 'projects/grass-clump-479/instances/test-instance'],
+                ['projects/grass-clump-479/instances/test-instance',['headers' => ['google-cloud-resource-prefix' => ['projects/grass-clump-479/instances/test-instance']]]]
+            ],
+            [
+                'updateCluster',
+                ['name' => 'projects/grass-clump-479/instances/test-instance/clusters/test-cluster',
+                 'location' => self::LOCATION,
+                 'serveNodes' => 3,
+                ],
+                [
+                    'projects/grass-clump-479/instances/test-instance/clusters/test-cluster',
+                    self::LOCATION,3,['headers' => ['google-cloud-resource-prefix' => ['projects/grass-clump-479/instances/test-instance/clusters/test-cluster']]]
+
+                ]
+            ],
+            [
+                'deleteCluster',
+                ['name' => 'projects/grass-clump-479/instances/test-instance/clusters/test-cluster'],
+                ['projects/grass-clump-479/instances/test-instance/clusters/test-cluster', ['headers' => ['google-cloud-resource-prefix' => ['projects/grass-clump-479/instances/test-instance/clusters/test-cluster']]]]
             ]
         ];
     }
