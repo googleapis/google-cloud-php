@@ -17,10 +17,7 @@
 
 namespace Google\Cloud\Bigtable;
 
-use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\Core\ClientTrait;
-use Google\Cloud\Core\Exception\GoogleException;
-use Google\Cloud\Core\Int64;
 use Google\Cloud\Core\LongRunning\LongRunningOperation;
 use Google\Cloud\Core\LongRunning\LROTrait;
 use Google\Cloud\Bigtable\Admin\V2\BigtableInstanceAdminClient as InstanceAdminClient;
@@ -50,7 +47,7 @@ use Google\Cloud\Bigtable\Connection\LongRunningConnection;
  * @method resumeOperation() {
  *     Resume a Long Running Operation
  *
- *     Example:
+ *     Example
  *     ```
  *     $operation = $bigtable->resumeOperation($operationName);
  *     ```
@@ -60,7 +57,6 @@ use Google\Cloud\Bigtable\Connection\LongRunningConnection;
  *     @return LongRunningOperation
  * }
  */
-
 class BigtableClient
 {
     use ClientTrait;
