@@ -14,7 +14,6 @@ ROOT_DIR=$(pwd)
 DOC_OUTPUT_DIR=${ROOT_DIR}/tmp_gh-pages
 INDEX_FILE=${DOC_OUTPUT_DIR}/index.html
 VERSION_FILE=${ROOT_DIR}/VERSION
-PROTO_CLIENT_PHP_DIR=${ROOT_DIR}/proto-client-php
 SAMI_EXECUTABLE=${ROOT_DIR}/vendor/sami/sami/sami.php
 SAMI_CONFIG=${ROOT_DIR}/dev/src/Docs/sami-config.php
 
@@ -39,20 +38,7 @@ function checkVersionFile() {
 
 function buildDocs() {
   DOCS_VERSION_TO_BUILD=${1}
-
-  # Include the contents of proto-client-php in the doc site
-  # as a temporary measure until protobuf files are moved to
-  # google-cloud-php.
-  if [ -d "${PROTO_CLIENT_PHP_DIR}" ]; then
-    echo ERROR: proto-client-php directory already exists
-    exit 1
-  fi
-  git clone https://github.com/googleapis/proto-client-php.git ${PROTO_CLIENT_PHP_DIR}
-
   API_CORE_DOCS_VERSION=${DOCS_VERSION_TO_BUILD} php ${SAMI_EXECUTABLE} update ${SAMI_CONFIG} -v
-
-  # Clean up after doc gen completes
-  rm -rf ${PROTO_CLIENT_PHP_DIR}
 }
 
 if [[ ! -z ${TRAVIS_TAG} ]]; then

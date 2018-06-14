@@ -56,7 +56,6 @@ class SamiConfigBuilder
             ->name('*.php')
             ->exclude('GPBMetadata')
             ->in($dir = "$gaxRootDir/src")
-            ->in("$gaxRootDir/proto-client-php/src")
         ;
 
         return new Sami($iterator, array(
