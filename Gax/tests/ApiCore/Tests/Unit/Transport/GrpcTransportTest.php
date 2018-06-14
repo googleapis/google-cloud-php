@@ -36,7 +36,6 @@ use Google\ApiCore\Call;
 use Google\ApiCore\Tests\Unit\TestTrait;
 use Google\ApiCore\Testing\MockGrpcTransport;
 use Google\ApiCore\Transport\GrpcTransport;
-use Google\Auth\FetchAuthTokenInterface;
 use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBType;
 use Google\Rpc\Code;

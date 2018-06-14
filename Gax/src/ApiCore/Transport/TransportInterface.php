@@ -44,7 +44,7 @@ interface TransportInterface
      * Starts a bidi streaming call.
      *
      * @param Call $call
-     * @param CallSettings $options
+     * @param array $options
      *
      * @return BidiStream
      */
