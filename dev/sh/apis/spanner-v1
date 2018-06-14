@@ -1,0 +1,9 @@
+#!/bin/bash
+
+source ./dev/sh/gapic-generation-functions.sh
+
+setup_environment
+
+regenerate_spanner_v1
+
+post_regenerate
