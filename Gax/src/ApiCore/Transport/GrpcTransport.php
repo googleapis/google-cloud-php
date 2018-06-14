@@ -40,6 +40,7 @@ use Google\ApiCore\ClientStream;
 use Google\ApiCore\GrpcSupportTrait;
 use Google\ApiCore\ServerStream;
 use Google\ApiCore\ServiceAddressTrait;
+use Google\ApiCore\Transport\Grpc\UnaryInterceptorInterface;
 use Google\ApiCore\ValidationException;
 use Google\ApiCore\ValidationTrait;
 use Google\Rpc\Code;
@@ -57,6 +58,25 @@ class GrpcTransport extends BaseStub implements TransportInterface
     use GrpcSupportTrait;
     use ServiceAddressTrait;
 
+    // Interceptors, ordered so that the first in the list is the inner-most interceptor.
+    private $interceptors = [];
+
+    /**
+     * @param string $hostname
+     * @param array $opts
+     *  - 'update_metadata': (optional) a callback function which takes in a
+     * metadata array, and returns an updated metadata array
+     *  - 'grpc.primary_user_agent': (optional) a user-agent string
+     * @param Channel $channel An already created Channel object (optional)
+     * @param array $interceptors *EXPERIMENTAL* Interceptor support, required until
+     *                                           gRPC interceptors are available.
+     */
+    public function __construct($hostname, $opts, Channel $channel = null, array $interceptors = [])
+    {
+        parent::__construct($hostname, $opts, $channel);
+        $this->interceptors = $interceptors;
+    }
+
     /**
      * Builds a GrpcTransport.
      *
@@ -68,6 +88,8 @@ class GrpcTransport extends BaseStub implements TransportInterface
      *
      *    @type array $stubOpts Options used to construct the gRPC stub.
      *    @type Channel $channel Grpc channel to be used.
+     *    @type UnaryInterceptorInterface[] $interceptors *EXPERIMENTAL* Interceptor support, required until
+     *                                           gRPC interceptors are available.
      * }
      * @return GrpcTransport
      * @throws ValidationException
@@ -76,8 +98,9 @@ class GrpcTransport extends BaseStub implements TransportInterface
     {
         self::validateGrpcSupport();
         $config += [
-            'stubOpts' => [],
-            'channel'  => null,
+            'stubOpts'     => [],
+            'channel'      => null,
+            'interceptors' => [],
         ];
         list($addr, $port) = self::normalizeServiceAddress($serviceAddress);
         $host = "$addr:$port";
@@ -95,7 +118,7 @@ class GrpcTransport extends BaseStub implements TransportInterface
             );
         }
         try {
-            return new GrpcTransport($host, $stubOpts, $channel);
+            return new GrpcTransport($host, $stubOpts, $channel, $config['interceptors']);
         } catch (Exception $ex) {
             throw new ValidationException(
                 "Failed to build GrpcTransport: " . $ex->getMessage(),
@@ -158,6 +181,45 @@ class GrpcTransport extends BaseStub implements TransportInterface
             ),
             $call->getDescriptor()
         );
+    }
+
+    private function wrapExecuteWithInterceptor(callable $execute, UnaryInterceptorInterface $interceptor)
+    {
+        return function (
+            $method,
+            $argument,
+            array $metadata = [],
+            array $options = []
+        ) use (
+            $execute,
+            $interceptor
+        ) {
+            return $interceptor->interceptUnaryUnary($method, $argument, $metadata, $options, $execute);
+        };
+    }
+
+    protected function _simpleRequest(
+        $method,
+        $argument,
+        $deserialize,
+        array $metadata = [],
+        array $options = []
+    ) {
+    
+        $execute = function ($method, $argument, $metadata, array $options) use ($deserialize) {
+            return parent::_simpleRequest(
+                $method,
+                $argument,
+                $deserialize,
+                $metadata,
+                $options
+            );
+        };
+        foreach ($this->interceptors as $interceptor) {
+            $execute  = $this->wrapExecuteWithInterceptor($execute, $interceptor);
+        }
+
+        return $execute($method, $argument, $metadata, $options);
     }
 
     /**
