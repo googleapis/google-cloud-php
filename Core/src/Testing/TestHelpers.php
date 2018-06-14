@@ -195,6 +195,22 @@ class TestHelpers
     }
 
     /**
+     * Setup stuff needed for the generated system tests.
+     * @internal
+     * @experimental
+     */
+    public static function generatedSystemTestBootstrap()
+    {
+        // For generated system tests, we need to set GOOGLE_APPLICATION_CREDENTIALS
+        // and PROJECT_ID to appropriate values
+        $keyFilePath = getenv('GOOGLE_CLOUD_PHP_TESTS_KEY_PATH');
+        putenv("GOOGLE_APPLICATION_CREDENTIALS=$keyFilePath");
+        $keyFileData = json_decode(file_get_contents($keyFilePath), true);
+        putenv('PROJECT_ID=' . $keyFileData['project_id']);
+
+    }
+
+    /**
      * Add cleanup function for system tests.
      *
      * Calls to this method enqueue a PHP shutdown function, scoped to the parent
