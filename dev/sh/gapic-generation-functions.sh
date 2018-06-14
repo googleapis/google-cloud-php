@@ -188,6 +188,12 @@ function post_regenerate() {
   update_copyright 2016 "${FOLDERS_2016[@]}"
   update_copyright 2017 "${FOLDERS_2017[@]}"
   update_copyright 2018 "${FOLDERS_2018[@]}"
+
+  function remove_experimental_tags {
+    find $1 -name *.php -exec ex -s -c "%s/\(\n\W*\*\W*\)\?\n\W*\* @experimental\W*//ge | x" {} \;
+  }
+
+  remove_experimental_tags VideoIntelligence/src/V1/
 }
 
 function regenerate_bigtable_v2() {
@@ -437,7 +443,7 @@ function regenerate_speech_v1p1beta1() {
 
 function regenerate_tasks_v2beta2() {
   API_ARTMAN_YAML="google/cloud/tasks/artman_cloudtasks.yaml"
-  API_ARTMAN_OUTPUT_DIR="google-cloud-cloudtasks-v2beta2"
+  API_ARTMAN_OUTPUT_DIR="google-cloud-cloud-tasks-v2beta2"
   API_GCP_FOLDER_NAME="Tasks"
   API_NAMESPACE_DIR=""
   API_METADATA_NAMESPACE_DIR=""
