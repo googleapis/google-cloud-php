@@ -520,6 +520,8 @@ class LoggingClient
      *           Please note debug output currently only applies in CLI based
      *           applications. **Defaults to** `false`. Applies only when
      *           `batchEnabled` is set to `true`.
+     *     @type resource $debugOutputResource A resource to output debug output
+     *           to. Applies only when `batchEnabled` is set to `true`.
      *     @type array $batchOptions A set of options for a BatchJob.
      *           {@see \Google\Cloud\Core\Batch\BatchJob::__construct()} for
      *           more details.
@@ -537,6 +539,12 @@ class LoggingClient
      *     @type BatchRunner $batchRunner A BatchRunner object. Mainly used for
      *           the tests to inject a mock. **Defaults to** a newly created
      *           BatchRunner. Applies only when `batchEnabled` is set to `true`.
+     *     @type ClosureSerializerInterface $closureSerializer An implementation
+     *           responsible for serializing closures used in the
+     *           `$clientConfig`. This is especially important when using the
+     *           batch daemon. **Defaults to**
+     *           {@see Google\Cloud\Core\Batch\OpisClosureSerializer} if the
+     *           `opis/closure` library is installed.
      * }
      * @return PsrLogger
      */
@@ -555,7 +563,9 @@ class LoggingClient
             'debugOutput',
             'batchOptions',
             'clientConfig',
-            'batchRunner'
+            'batchRunner',
+            'closureSerializer',
+            'debugOutputResource'
         ], $options);
 
         return new PsrLogger(

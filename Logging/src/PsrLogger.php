@@ -102,6 +102,8 @@ class PsrLogger implements LoggerInterface, \Serializable
      *     @type bool $batchEnabled Determines whether or not to use background
      *           batching. **Defaults to** `false`. Note that this option is
      *           currently considered **experimental** and is subject to change.
+     *     @type resource $debugOutputResource A resource to output debug output
+     *           to.
      *     @type bool $debugOutput Whether or not to output debug information.
      *           Please note debug output currently only applies in CLI based
      *           applications. **Defaults to** `false`. Applies only when
@@ -435,7 +437,8 @@ class PsrLogger implements LoggerInterface, \Serializable
             $this->debugOutput,
             $this->clientConfig,
             $this->batchMethod,
-            $this->logName
+            $this->logName,
+            $this->debugOutputResource
         ]);
     }
 
@@ -454,7 +457,8 @@ class PsrLogger implements LoggerInterface, \Serializable
             $this->debugOutput,
             $this->clientConfig,
             $this->batchMethod,
-            $this->logName
+            $this->logName,
+            $this->debugOutputResource
         ) = unserialize($data);
     }
 
