@@ -30,7 +30,7 @@ use Google\Cloud\Core\LongRunning\LROTrait;
 /**
  * Represents a Cloud Bigtable instance
  *
- * Example
+ * Example:
  * ```
  * use Google\Cloud\Bigtable\BigtableClient;
  *
@@ -42,7 +42,7 @@ use Google\Cloud\Core\LongRunning\LROTrait;
  * @method resumeOperation() {
  *     Resume a Long Running Operation
  *
- *     Example
+ *     Example:
  *     ```
  *     $operation = $instance->resumeOperation($operationName);
  *     ```
@@ -54,7 +54,7 @@ use Google\Cloud\Core\LongRunning\LROTrait;
  * @method longRunningOperations() {
  *     List long running operations.
  *
- *     Example
+ *     Example:
  *     ```
  *     $operations = $instance->longRunningOperations();
  *     ```
@@ -140,7 +140,7 @@ class Instance
     /**
      * Return the instance name.
      *
-     * Example
+     * Example:
      * ```
      * $name = $instance->name();
      * ```
@@ -157,7 +157,7 @@ class Instance
      *
      * This method may require a service call.
      *
-     * Example
+     * Example:
      * ```
      * $info = $instance->info();
      * echo $info['nodeCount'];
@@ -180,7 +180,7 @@ class Instance
      *
      * This method requires a service call.
      *
-     * Example
+     * Example:
      * ```
      * if ($instance->exists()) {
      *    echo 'Instance exists!';
@@ -204,7 +204,7 @@ class Instance
     /**
      * Fetch a fresh representation of the instance from the service.
      *
-     * Example
+     * Example:
      * ```
      * $info = $instance->reload();
      * ```
@@ -229,7 +229,7 @@ class Instance
     /**
      * Create a new instance.
      *
-     * Example
+     * Example:
      * ```
      * $operation = $instance->create($configuration);
      * ```
