@@ -427,6 +427,35 @@ class Breakpoint
     }
 
     /**
+     * Evaluate this breakpoint with the provided evaluated expressions and
+     * captured stackframe data.
+     *
+     * @access private
+     * @param array $expressions Key is the expression executed. Value is the
+     *        execution result.
+     * @param array $stackFrames Array of stackframe data.
+     * @param array $options [optional] {
+     *      Configuration options.
+     *
+     *      @type int $maxMemberDepth Maximum depth of member variables to capture.
+     *            **Defaults to** 5.
+     *      @type int $maxPayloadSize Maximum amount of space of captured data.
+     *            **Defaults to** 32768.
+     *      @type int $maxMembers Maximum number of member variables captured per
+     *            variable. **Defaults to** 1000.
+     *      @type int $maxValueLength Maximum length of the string representing
+     *            the captured variable. **Defaults to** 500.
+     * }
+     */
+    public function evaluate(array $evaluatedExpressions, array $stackframes, array $options = [])
+    {
+        $this->variableTable->setOptions($options);
+        $this->addEvaluatedExpressions($evaluatedExpressions);
+        $this->addStackFrames($stackframes);
+        $this->finalize();
+    }
+
+    /**
      * Return a serializable version of this object
      *
      * @access private
@@ -527,22 +556,12 @@ class Breakpoint
      *      @type string $filename The name of the file executed.
      *      @type int $line The line number of the file executed.
      *      @type array $locals Captured local variables.
-     * }
-     * @param array $options {
-     *      Configuration options.
-     *
-     *      @type bool $captureVariables Whether or not to record variables
-     *            for this stackframe. **Defaults to* true.
-     * }
      */
-    public function addStackFrame($stackFrameData, array $options = [])
+    public function addStackFrame($stackFrameData)
     {
         $stackFrameData += [
             'function' => '',
             'locals' => []
-        ];
-        $options += [
-            'captureVariables' => true
         ];
 
         $sf = new StackFrame(
@@ -550,13 +569,19 @@ class Breakpoint
             new SourceLocation($stackFrameData['filename'], $stackFrameData['line'])
         );
 
-        if ($options['captureVariables']) {
-            foreach ($stackFrameData['locals'] as $local) {
-                $value = isset($local['value']) ? $local['value'] : null;
-                $hash = isset($local['id']) ? $local['id'] : null;
-                $variable = $this->addVariable($local['name'], $value, $hash);
-                $sf->addLocal($variable);
+        foreach ($stackFrameData['locals'] as $local) {
+            if ($this->variableTable->isFull()) {
+                break;
             }
+            $value = isset($local['value']) ? $local['value'] : null;
+            $hash = isset($local['id']) ? $local['id'] : null;
+            try {
+                $variable = $this->addVariable($local['name'], $value, $hash);
+            } catch (BufferFullException $e) {
+                $sf->addLocal($this->variableTable->bufferFullVariable());
+                break;
+            }
+            $sf->addLocal($variable);
         }
 
         array_push($this->stackFrames, $sf);
@@ -579,7 +604,11 @@ class Breakpoint
     public function addEvaluatedExpressions(array $expressions)
     {
         foreach ($expressions as $expression => $result) {
-            $this->evaluatedExpressions[] = $this->addVariable($expression, $result);
+            try {
+                $this->evaluatedExpressions[] = $this->addVariable($expression, $result);
+            } catch (BufferFullException $e) {
+                $this->evaluatedExpressions[] = $this->variableTable->bufferFullVariable();
+            }
         }
     }
 

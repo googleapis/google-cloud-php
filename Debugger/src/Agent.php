@@ -17,6 +17,7 @@
 
 namespace Google\Cloud\Debugger;
 
+use Google\Cloud\Core\ArrayTrait;
 use Google\Cloud\Core\Batch\BatchDaemonTrait;
 use Google\Cloud\Core\Batch\BatchRunner;
 use Google\Cloud\Core\Batch\BatchTrait;
@@ -43,6 +44,7 @@ use Psr\Log\LoggerInterface;
  */
 class Agent
 {
+    use ArrayTrait;
     use BatchTrait;
     use BatchDaemonTrait;
     use SysvTrait;
@@ -78,6 +80,11 @@ class Agent
     private $maxDepth;
 
     /**
+     * @var array Configuration options for limiting size of captured breakpoints.
+     */
+    private $evaluationOptions;
+
+    /**
      * Create a new Debugger Agent, registers all breakpoints for collection
      * or execution, and registers a shutdown function for reporting results.
      *
@@ -96,6 +103,14 @@ class Agent
      *      @type int $maxDepth Limits the number of stackframes with
      *            captured variables. To capture variables in all stackframes,
      *            set to PHP_INT_MAX. **Defaults to** 5.
+     *      @type int $maxMemberDepth Maximum depth of member variables to capture.
+     *            **Defaults to** 5.
+     *      @type int $maxPayloadSize Maximum amount of space of captured data.
+     *            **Defaults to** 32768.
+     *      @type int $maxMembers Maximum number of member variables captured per
+     *            variable. **Defaults to** 1000.
+     *      @type int $maxValueLength Maximum length of the string representing
+     *            the captured variable. **Defaults to** 500.
      * }
      */
     public function __construct(array $options = [])
@@ -110,6 +125,12 @@ class Agent
         $this->sourceRoot = $options['sourceRoot']
             ?: dirname(debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS, 1)[0]['file']);
         $this->maxDepth = $options['maxDepth'];
+        $this->evaluationOptions = $this->pluckArray([
+            'maxMemberDepth',
+            'maxPayloadSize',
+            'maxMembers',
+            'maxValueLength',
+        ], $options);
 
         if ($this->shouldStartDaemon()) {
             $daemon = new Daemon($options['daemonOptions'] + [
@@ -208,13 +229,9 @@ class Agent
     {
         if (array_key_exists($snapshot['id'], $this->breakpointsById)) {
             $breakpoint = $this->breakpointsById[$snapshot['id']];
-            $breakpoint->finalize();
-            $breakpoint->addEvaluatedExpressions($snapshot['evaluatedExpressions']);
-            foreach ($snapshot['stackframes'] as $index => $stackframe) {
-                $breakpoint->addStackFrame($stackframe, [
-                    'captureVariables' => $index < $this->maxDepth
-                ]);
-            }
+            $evaluatedExpressions = $snapshot['evaluatedExpressions'];
+            $stackframes = $snapshot['stackframes'];
+            $breakpoint->evaluate($evaluatedExpressions, $stackframes, $this->evaluationOptions);
             $this->batchRunner->submitItem($this->identifier, [$this->debuggeeId, $breakpoint]);
         }
     }
