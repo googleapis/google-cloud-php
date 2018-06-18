@@ -163,7 +163,7 @@ class InstanceConfiguration
      */
     public function reload(array $options = [])
     {
-        $this->info = $this->connection->getInstanceConfig($options + [
+        $this->info = $this->connection->getInstance($options + [
             'name' => $this->name,
             'projectId' => $this->projectId
         ]);

@@ -19,6 +19,7 @@ namespace Google\Cloud\Spanner\Tests\Bigtable;
 
 use Google\Cloud\Bigtable\Admin\V2\BigtableInstanceAdminClient as InstanceAdminClient;
 use Google\Cloud\Bigtable\BigtableClient;
+use Google\Cloud\Bigtable\Instance;
 use Google\Cloud\Bigtable\Connection\ConnectionInterface;
 use Google\Cloud\Core\LongRunning\LongRunningOperation;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
@@ -32,7 +33,7 @@ class BigtableClientTest extends SnippetTestCase
 {
     use GrpcTestTrait;
 
-    const PROJECT = 'grass-clump-479';
+    const PROJECT = 'my-awesome-project';
     const INSTANCE = 'my-instance';
 
     private $client;
@@ -50,7 +51,7 @@ class BigtableClientTest extends SnippetTestCase
     public function testClass()
     {
         $snippet = $this->snippetFromClass(BigtableClient::class);
-        $res = $snippet->invoke('spanner');
+        $res = $snippet->invoke('bigtable');
         $this->assertInstanceOf(BigtableClient::class, $res->returnVal());
     }
 
@@ -78,10 +79,20 @@ class BigtableClientTest extends SnippetTestCase
     public function testInstance()
     {
         $snippet = $this->snippetFromMethod(BigtableClient::class, 'instance');
-        $snippet->addLocal('spanner', $this->client);
+        $snippet->addLocal('bigtable', $this->client);
 
         $res = $snippet->invoke('instance');
         $this->assertInstanceOf(Instance::class, $res->returnVal());
         $this->assertEquals(InstanceAdminClient::instanceName(self::PROJECT, self::INSTANCE), $res->returnVal()->name());
+    }
+
+    public function testResumeOperation()
+    {
+        $snippet = $this->snippetFromMagicMethod(BigtableClient::class, 'resumeOperation');
+        $snippet->addLocal('bigtable', $this->client);
+        $snippet->addLocal('operationName', 'operations/foo');
+
+        $res = $snippet->invoke('operation');
+        $this->assertInstanceOf(LongRunningOperation::class, $res->returnVal());
     }
 }

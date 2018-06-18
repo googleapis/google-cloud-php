@@ -32,7 +32,7 @@ class InstanceConfigurationTest extends SnippetTestCase
 {
     use GrpcTestTrait;
 
-    const PROJECT = 'grass-clump-479';
+    const PROJECT = 'my-awesome-project';
     const INSTANCE = 'my-instance';
 
     private $connection;
@@ -54,6 +54,7 @@ class InstanceConfigurationTest extends SnippetTestCase
     {
         $snippet = $this->snippetFromClass(InstanceConfiguration::class);
         $res = $snippet->invoke('configuration');
+
         $this->assertInstanceOf(InstanceConfiguration::class, $res->returnVal());
         $this->assertEquals(InstanceAdminClient::instanceName(self::PROJECT, self::INSTANCE), $res->returnVal()->name());
     }
@@ -77,7 +78,7 @@ class InstanceConfigurationTest extends SnippetTestCase
             'displayName' => self::INSTANCE
         ];
 
-        $this->connection->getInstanceConfig(Argument::any())
+        $this->connection->getInstance(Argument::any())
             ->shouldBeCalled()
             ->willReturn($info);
 
@@ -92,7 +93,7 @@ class InstanceConfigurationTest extends SnippetTestCase
         $snippet = $this->snippetFromMethod(InstanceConfiguration::class, 'exists');
         $snippet->addLocal('configuration', $this->config);
 
-        $this->connection->getInstanceConfig(Argument::any())
+        $this->connection->getInstance(Argument::any())
             ->shouldBeCalled()
             ->willReturn([
                 'name' => InstanceAdminClient::instanceName(self::PROJECT, self::INSTANCE),
@@ -115,7 +116,7 @@ class InstanceConfigurationTest extends SnippetTestCase
         $snippet = $this->snippetFromMethod(InstanceConfiguration::class, 'reload');
         $snippet->addLocal('configuration', $this->config);
 
-        $this->connection->getInstanceConfig(Argument::any())
+        $this->connection->getInstance(Argument::any())
             ->shouldBeCalled()
             ->willReturn($info);
 

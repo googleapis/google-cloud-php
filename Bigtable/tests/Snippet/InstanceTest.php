@@ -64,28 +64,6 @@ class InstanceTest extends SnippetTestCase
         $this->assertEquals(InstanceAdminClient::instanceName(self::PROJECT, self::INSTANCE), $res->returnVal()->name());
     }
 
-    /**
-     * @group spanneradmin
-     */
-    public function testCreate()
-    {
-        $config = $this->prophesize(InstanceConfiguration::class);
-        $config->name()->willReturn(InstanceAdminClient::instanceName(self::PROJECT, 'foo'));
-
-        $snippet = $this->snippetFromMethod(Instance::class, 'create');
-        $snippet->addLocal('configuration', $config->reveal());
-        $snippet->addLocal('instance', $this->instance);
-
-        $this->connection->createInstance(Argument::any())
-            ->shouldBeCalled()
-            ->willReturn(['name' => 'operations/foo']);
-
-        $this->instance->___setProperty('connection', $this->connection->reveal());
-
-        $res = $snippet->invoke('operation');
-        $this->assertInstanceOf(LongRunningOperation::class, $res->returnVal());
-    }
-
     public function testName()
     {
         $snippet = $this->snippetFromMethod(Instance::class, 'name');
@@ -139,6 +117,28 @@ class InstanceTest extends SnippetTestCase
         $res = $snippet->invoke('info');
         $info = $this->instance->info();
         $this->assertEquals($info, $res->returnVal());
+    }
+
+    /**
+     * @group bigtabladmin
+     */
+    public function testCreate()
+    {
+        $config = $this->prophesize(InstanceConfiguration::class);
+        $config->name()->willReturn(InstanceAdminClient::instanceName(self::PROJECT, 'foo'));
+
+        $snippet = $this->snippetFromMethod(Instance::class, 'create');
+        $snippet->addLocal('configuration', $config->reveal());
+        $snippet->addLocal('instance', $this->instance);
+
+        $this->connection->createInstance(Argument::any())
+            ->shouldBeCalled()
+            ->willReturn(['name' => 'operations/foo']);
+
+        $this->instance->___setProperty('connection', $this->connection->reveal());
+
+        $res = $snippet->invoke('operation');
+        $this->assertInstanceOf(LongRunningOperation::class, $res->returnVal());
     }
 
     public function testResumeOperation()
