@@ -197,7 +197,10 @@ class AgentTest extends TestCase
             $this->assertInstanceOf(Breakpoint::class, $item[1]);
             $stackframes = $item[1]->stackFrames();
             $this->assertCount(1, $stackframes);
-            $this->assertEquals(34, count($stackframes[0]->locals()));
+            // Each entry takes 6 + 3 + 10 bytes = 19 bytes
+            // We stop after 900 bytes (1000 - 100 buffer)
+            // 19 bytes * 48 = 912 bytes
+            $this->assertEquals(48, count($stackframes[0]->locals()));
             return true;
         };
         $agent = $this->setupAgent($itemMatcher, [
@@ -205,7 +208,7 @@ class AgentTest extends TestCase
         ]);
         $locals = [];
         for ($i = 0; $i < 1000; $i++) {
-            $locals[] = ['name' => 'var' . $i, 'value' => str_repeat('.', $i)];
+            $locals[] = ['name' => 'var', 'value' => 'some value'];
         }
         $agent->handleSnapshot([
             'id' => 'snapshot1',
