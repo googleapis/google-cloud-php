@@ -7,19 +7,6 @@
             "type": "texttospeech\/readme"
         },
         {
-            "title": "v1",
-            "type": "texttospeech\/metadata\/v1\/readme",
-            "nav": [
-                {
-                    "title": "CloudTts",
-                    "type": "texttospeech\/metadata\/v1\/cloudtts"
-                }
-            ],
-            "patterns": [
-                "texttospeech\/metadata\/v1\/\\w{1,}"
-            ]
-        },
-        {
             "title": "TextToSpeechClient",
             "type": "texttospeech\/v1\/texttospeechclient",
             "nav": [],
