@@ -265,6 +265,14 @@ class Grpc implements ConnectionInterface
     /**
      * @param array $args
      */
+    public function testIamPermissions(array $args)
+    {
+        throw new \BadMethodCallException('This method is not implemented yet');
+    }
+
+    /**
+     * @param array $args
+     */
     public function createTable(array $args)
     {
         throw new \BadMethodCallException('This method is not implemented yet');
@@ -314,6 +322,22 @@ class Grpc implements ConnectionInterface
      * @param array $args
      */
     public function dropRowRange(array $args)
+    {
+        throw new \BadMethodCallException('This method is not implemented yet');
+    }
+
+    /**
+     * @param array $args
+     */
+    public function checkConsistency(array $args)
+    {
+        throw new \BadMethodCallException('This method is not implemented yet');
+    }
+
+    /**
+     * @param array $args
+     */
+    public function generateConsistencyToken(array $args)
     {
         throw new \BadMethodCallException('This method is not implemented yet');
     }

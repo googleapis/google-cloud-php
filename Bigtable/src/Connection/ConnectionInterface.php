@@ -110,6 +110,11 @@ interface ConnectionInterface
     /**
      * @param array $args
      */
+    public function testIamPermissions(array $args);
+
+    /**
+     * @param array $args
+     */
     public function createTable(array $args);
 
     /**
@@ -145,6 +150,16 @@ interface ConnectionInterface
     /**
      * @param array $args
      */
+    public function checkConsistency(array $args);
+
+    /**
+     * @param array $args
+     */
+    public function generateConsistencyToken(array $args);
+
+    /**
+     * @param array $args
+     */
     public function waitForReplication(array $args);
 
     /**
@@ -176,7 +191,7 @@ interface ConnectionInterface
      * @param array $args
      */
     public function readRows(array $args);
-    
+
     /**
      * @param array $args
      */
