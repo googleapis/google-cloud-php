@@ -430,6 +430,15 @@ class PsrLogger implements LoggerInterface, \Serializable
      */
     public function serialize()
     {
+        $debugOutputResource = null;
+        if (is_resource($this->debugOutputResource))     {
+            $metadata = stream_get_meta_data($this->debugOutputResource);
+            $debugOutputResource = [
+                'uri' => $metadata['uri'],
+                'mode' => $metadata['mode']
+            ];
+        }
+
         return serialize([
             $this->messageKey,
             $this->batchEnabled,
@@ -438,7 +447,7 @@ class PsrLogger implements LoggerInterface, \Serializable
             $this->clientConfig,
             $this->batchMethod,
             $this->logName,
-            $this->debugOutputResource
+            $debugOutputResource
         ]);
     }
 
@@ -458,8 +467,15 @@ class PsrLogger implements LoggerInterface, \Serializable
             $this->clientConfig,
             $this->batchMethod,
             $this->logName,
-            $this->debugOutputResource
+            $debugOutputResource
         ) = unserialize($data);
+
+        if (is_array($debugOutputResource)) {
+            $this->debugOutputResource = fopen(
+                $debugOutputResource['uri'],
+                $debugOutputResource['mode']
+            );
+        }
     }
 
     /**

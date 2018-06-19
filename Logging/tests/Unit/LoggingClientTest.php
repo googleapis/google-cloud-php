@@ -17,6 +17,10 @@
 
 namespace Google\Cloud\Logging\Tests\Unit;
 
+use Google\Cloud\Core\Batch\BatchRunner;
+use Google\Cloud\Core\Batch\OpisClosureSerializer;
+use Google\Cloud\Core\Report\EmptyMetadataProvider;
+use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Logging\Connection\Grpc;
 use Google\Cloud\Logging\Logger;
 use Google\Cloud\Logging\LoggingClient;
@@ -24,8 +28,8 @@ use Google\Cloud\Logging\Metric;
 use Google\Cloud\Logging\PsrLogger;
 use Google\Cloud\Logging\Sink;
 use Google\Cloud\Logging\Connection\ConnectionInterface;
-use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Prophecy\Argument;
+use PHPUnit\Framework\Assert;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -308,6 +312,37 @@ class LoggingClientTest extends TestCase
     {
         $this->client->setConnection($this->connection->reveal());
         $this->assertInstanceOf(PsrLogger::class, $this->client->psrLogger('myLogger'));
+    }
+
+    public function testOptionsArePassedToPsrLogger()
+    {
+        $options = [
+            'metadataProvider' => new EmptyMetadataProvider,
+            'batchEnabled' => true,
+            'debugOutput' => true,
+            'batchOptions' => [
+                'batchSize' => 100,
+                'callPeriod' => 2.0,
+                'numWorkers' => 2
+            ],
+            'clientConfig' => [
+                'projectId' => 'test'
+            ],
+            'batchRunner' => new BatchRunner,
+            'closureSerializer' => new OpisClosureSerializer,
+            'debugOutputResource' => fopen('php://temp', 'wb')
+        ];
+
+        $this->client->setConnection($this->connection->reveal());
+        $psrLogger = $this->client->psrLogger('myLogger', $options);
+
+        foreach ($options as $name => $value) {
+            $this->assertEquals(
+                $value,
+                Assert::readAttribute($psrLogger, $name),
+                "$name assertion failed."
+            );
+        }
     }
 
     public function testGetsLogger()
