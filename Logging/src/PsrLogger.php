@@ -431,7 +431,7 @@ class PsrLogger implements LoggerInterface, \Serializable
     public function serialize()
     {
         $debugOutputResource = null;
-        if (is_resource($this->debugOutputResource))     {
+        if (is_resource($this->debugOutputResource)) {
             $metadata = stream_get_meta_data($this->debugOutputResource);
             $debugOutputResource = [
                 'uri' => $metadata['uri'],
