@@ -24,8 +24,8 @@ use Google\Cloud\Logging\Logger;
 use Google\Cloud\Logging\PsrLogger;
 use Google\Cloud\Logging\Connection\ConnectionInterface;
 use Prophecy\Argument;
-use PHPUnit\Framework\Assert;
 use PHPUnit\Framework\TestCase;
+use PHPUnit_Framework_Assert;
 
 /**
  * @group logging
@@ -257,18 +257,39 @@ class PsrLoggerTest extends TestCase
         $options['logName'] = $this->logName;
         $psrLogger = unserialize(serialize($psrLogger));
         $debugResourceMetadata = stream_get_meta_data(
-            Assert::readAttribute($psrLogger, 'debugOutputResource')
+            PHPUnit_Framework_Assert::readAttribute($psrLogger, 'debugOutputResource')
         );
         $expectedDebugResourceMetadata = stream_get_meta_data($expectedDebugResource);
 
         $this->assertEquals($debugResourceMetadata['uri'], $expectedDebugResourceMetadata['uri']);
         $this->assertEquals($debugResourceMetadata['mode'], $expectedDebugResourceMetadata['mode']);
-        $this->assertEquals(Assert::readAttribute($psrLogger, 'metadataProvider'), $options['metadataProvider']);
-        $this->assertEquals(Assert::readAttribute($psrLogger, 'batchEnabled'), $options['batchEnabled']);
-        $this->assertEquals(Assert::readAttribute($psrLogger, 'debugOutput'), $options['debugOutput']);
-        $this->assertEquals(Assert::readAttribute($psrLogger, 'clientConfig'), $options['clientConfig']);
-        $this->assertEquals(Assert::readAttribute($psrLogger, 'messageKey'), $options['messageKey']);
-        $this->assertEquals(Assert::readAttribute($psrLogger, 'batchMethod'), $options['batchMethod']);
-        $this->assertEquals(Assert::readAttribute($psrLogger, 'logName'), $this->logName);
+        $this->assertEquals(
+            PHPUnit_Framework_Assert::readAttribute($psrLogger, 'metadataProvider'),
+            $options['metadataProvider']
+        );
+        $this->assertEquals(
+            PHPUnit_Framework_Assert::readAttribute($psrLogger, 'batchEnabled'),
+            $options['batchEnabled']
+        );
+        $this->assertEquals(
+            PHPUnit_Framework_Assert::readAttribute($psrLogger, 'debugOutput'),
+            $options['debugOutput']
+        );
+        $this->assertEquals(
+            PHPUnit_Framework_Assert::readAttribute($psrLogger, 'clientConfig'),
+            $options['clientConfig']
+        );
+        $this->assertEquals(
+            PHPUnit_Framework_Assert::readAttribute($psrLogger, 'messageKey'),
+            $options['messageKey']
+        );
+        $this->assertEquals(
+            PHPUnit_Framework_Assert::readAttribute($psrLogger, 'batchMethod'),
+            $options['batchMethod']
+        );
+        $this->assertEquals(
+            PHPUnit_Framework_Assert::readAttribute($psrLogger, 'logName'),
+            $this->logName
+        );
     }
 }
