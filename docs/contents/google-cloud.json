@@ -29,6 +29,7 @@
         "cloud-spanner",
         "cloud-speech",
         "cloud-storage",
+        "cloud-text-to-speech",
         "cloud-trace",
         "cloud-translate",
         "cloud-videointelligence",
