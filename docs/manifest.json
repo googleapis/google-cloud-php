@@ -11,6 +11,7 @@
             "name": "google/cloud",
             "defaultService": "servicebuilder",
             "versions": [
+                "v0.69.0",
                 "v0.68.0",
                 "v0.67.0",
                 "v0.66.1",
@@ -294,6 +295,7 @@
             "name": "google/cloud-debugger",
             "defaultService": "debugger/debuggerclient",
             "versions": [
+                "v0.12.0",
                 "v0.11.0",
                 "v0.10.0",
                 "v0.9.0",
@@ -478,6 +480,7 @@
             "name": "google/cloud-logging",
             "defaultService": "logging/loggingclient",
             "versions": [
+                "v1.12.1",
                 "v1.12.0",
                 "v1.11.1",
                 "v1.11.0",
@@ -783,6 +786,7 @@
             "name": "google/cloud-videointelligence",
             "defaultService": "videointelligence/readme",
             "versions": [
+                "v1.0.0",
                 "v0.12.0",
                 "v0.11.1",
                 "v0.11.0",
