@@ -6,7 +6,7 @@
     "autoload": {
         "psr-4": {
             "Google\\Cloud\\TextToSpeech\\": "src",
-            "GPBMetadata\\Google\\Cloud\\TextToSpeech\\": "metadata"
+            "GPBMetadata\\Google\\Cloud\\Texttospeech\\": "metadata"
         }
     },
     "autoload-dev": {

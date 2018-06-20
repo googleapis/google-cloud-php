@@ -136,7 +136,7 @@
             "GPBMetadata\\Google\\Cloud\\Oslogin\\": "OsLogin/metadata",
             "GPBMetadata\\Google\\Cloud\\Redis\\": "Redis/metadata",
             "GPBMetadata\\Google\\Cloud\\Speech\\": "Speech/metadata",
-            "GPBMetadata\\Google\\Cloud\\TextToSpeech\\": "TextToSpeech/metadata",
+            "GPBMetadata\\Google\\Cloud\\Texttospeech\\": "TextToSpeech/metadata",
             "GPBMetadata\\Google\\Cloud\\Videointelligence\\": "VideoIntelligence/metadata",
             "GPBMetadata\\Google\\Cloud\\Vision\\": "Vision/metadata",
             "GPBMetadata\\Google\\Devtools\\Clouddebugger\\": "Debugger/metadata",
