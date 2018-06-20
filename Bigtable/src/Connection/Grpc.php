@@ -21,11 +21,19 @@ use Google\ApiCore\Serializer;
 use Google\Cloud\Bigtable\Admin\V2\BigtableInstanceAdminClient;
 use Google\Cloud\Bigtable\Admin\V2\BigtableTableAdminClient;
 use Google\Cloud\Bigtable\Admin\V2\Cluster;
+use Google\Cloud\Bigtable\Admin\V2\ColumnFamily;
+use Google\Cloud\Bigtable\Admin\V2\GcRule;
 use Google\Cloud\Bigtable\Admin\V2\Instance;
+use Google\Cloud\Bigtable\Admin\V2\ModifyColumnFamiliesRequest_Modification as Modification;
+use Google\Cloud\Bigtable\Admin\V2\Table;
 use Google\Cloud\Bigtable\V2\BigtableClient;
+use Google\Cloud\Bigtable\V2\Mutation;
+use Google\Cloud\Bigtable\V2\Mutation_SetCell;
 use Google\Cloud\Core\GrpcRequestWrapper;
 use Google\Cloud\Core\GrpcTrait;
 use Google\Cloud\Core\LongRunning\OperationResponseTrait;
+use Google\Protobuf\Internal\GPBType;
+use Google\Protobuf\Internal\MapField;
 
 /**
  * Connection to Cloud Bigtable over GRPC
@@ -267,7 +275,64 @@ class Grpc implements ConnectionInterface
      */
     public function createTable(array $args)
     {
-        throw new \BadMethodCallException('This method is not implemented yet');
+        $parent = $this->pluck('parent', $args);
+        $columnFamilies = $this->pluck('columnFamilies', $args);
+        $mapField['column_families'] = $this->mapFieldObject($columnFamilies);
+        return $this->send([$this->bigtableTableAdminClient, 'createTable'], [
+            $parent,
+            $this->pluck('tableId', $args),
+            $this->tableObject($mapField),
+            $this->addResourcePrefixHeader($args, $parent)
+        ]);
+    }
+
+    /**
+     * @param array $args
+     * @return Table
+     */
+    private function tableObject(array $args)
+    {
+        return $this->serializer->decodeMessage(
+            new Table(),
+            $this->pluckArray([
+                'column_families'
+            ], $args)
+        );
+    }
+
+    /**
+     * @param array $args
+     * @return MapField
+     */
+    private function mapFieldObject(array $args)
+    {
+        $mapField = new MapField(GPBType::STRING, GPBType::MESSAGE, ColumnFamily::class);
+        foreach ($args as $key => $value) {
+            $id = $this->pluck('id', $value);
+            $mapField[$id] = $this->columnFamilyObject($value);
+        }
+        return $mapField;
+    }
+
+    /**
+     * @param array $args
+     * @return ColumnFamily
+     */
+    private function columnFamilyObject(array $args)
+    {
+        $gcRule['gc_rule'] = $this->serializer->decodeMessage(
+            new GcRule(),
+            $this->pluckArray([
+                'max_num_versions'
+            ], $args)
+        );
+
+        return $this->serializer->decodeMessage(
+            new ColumnFamily(),
+            $this->pluckArray([
+                'gc_rule'
+            ], $gcRule)
+        );
     }
 
     /**
@@ -275,7 +340,13 @@ class Grpc implements ConnectionInterface
      */
     public function createTableFromSnapshot(array $args)
     {
-        throw new \BadMethodCallException('This method is not implemented yet');
+        $parent = $this->pluck('parent', $args);
+        return $this->send([$this->bigtableTableAdminClient, 'createTableFromSnapshot'], [
+            $parent,
+            $this->pluck('tableId', $args),
+            $this->pluck('sourceSnapshot', $args),
+            $this->addResourcePrefixHeader($args, $parent)
+        ]);
     }
 
     /**
@@ -283,7 +354,11 @@ class Grpc implements ConnectionInterface
      */
     public function listTables(array $args)
     {
-        throw new \BadMethodCallException('This method is not implemented yet');
+        $parent = $this->pluck('parent', $args);
+        return $this->send([$this->bigtableTableAdminClient, 'listTables'], [
+            $parent,
+            $this->addResourcePrefixHeader($args, $parent)
+        ]);
     }
 
     /**
@@ -291,7 +366,11 @@ class Grpc implements ConnectionInterface
      */
     public function getTable(array $args)
     {
-        throw new \BadMethodCallException('This method is not implemented yet');
+        $name = $this->pluck('name', $args);
+        return $this->send([$this->bigtableTableAdminClient, 'getTable'], [
+            $name,
+            $this->addResourcePrefixHeader($args, $name)
+        ]);
     }
 
     /**
@@ -299,7 +378,11 @@ class Grpc implements ConnectionInterface
      */
     public function deleteTable(array $args)
     {
-        throw new \BadMethodCallException('This method is not implemented yet');
+        $name = $this->pluck('name', $args);
+        return $this->send([$this->bigtableTableAdminClient, 'deleteTable'], [
+            $name,
+            $this->addResourcePrefixHeader($args, $name)
+        ]);
     }
 
     /**
@@ -307,7 +390,43 @@ class Grpc implements ConnectionInterface
      */
     public function modifyColumnFamilies(array $args)
     {
-        throw new \BadMethodCallException('This method is not implemented yet');
+        $name = $this->pluck('name', $args);
+        $columnFamilies = $this->pluck('columnFamilies', $args);
+        return $this->send([$this->bigtableTableAdminClient, 'modifyColumnFamilies'], [
+            $name,
+            array_map([$this, 'modifications'], $columnFamilies),
+            $this->addResourcePrefixHeader($args, $name)
+        ]);
+    }
+
+    /**
+     * @param array $args
+     * @return ModifyColumnFamiliesRequest_Modification
+     */
+    private function modifications($args)
+    {
+        $action = $this->pluck('action', $args);
+        $columnFamily['id'] = $this->pluck('id', $args);
+        if($action == 'drop'){
+            $columnFamily['drop'] = true;
+            return $this->serializer->decodeMessage(
+                new Modification(),
+                $this->pluckArray([
+                    'id',
+                    'drop'
+                ], $columnFamily)
+            );
+        }
+        else{
+            $columnFamily['create'] = $this->columnFamilyObject($args);
+            return $this->serializer->decodeMessage(
+                new Modification(),
+                $this->pluckArray([
+                    'id',
+                    'create'
+                ], $columnFamily)
+            );
+        }
     }
 
     /**
@@ -315,7 +434,12 @@ class Grpc implements ConnectionInterface
      */
     public function dropRowRange(array $args)
     {
-        throw new \BadMethodCallException('This method is not implemented yet');
+        $name = $this->pluck('name', $args);
+        return $this->send([$this->bigtableTableAdminClient, 'dropRowRange'], [
+            $name,
+            $this->pluck('optionalArgs', $args),
+            $this->addResourcePrefixHeader($args, $name)
+        ]);
     }
 
     /**
@@ -331,7 +455,14 @@ class Grpc implements ConnectionInterface
      */
     public function snapshotTable(array $args)
     {
-        throw new \BadMethodCallException('This method is not implemented yet');
+        $name = $this->pluck('name', $args);
+        return $this->send([$this->bigtableTableAdminClient, 'snapshotTable'], [
+            $name,
+            $this->pluck('cluster', $args),
+            $this->pluck('snapshotId', $args),
+            $this->pluck('description', $args),
+            $this->addResourcePrefixHeader($args, $name)
+        ]);
     }
 
     /**
@@ -339,7 +470,11 @@ class Grpc implements ConnectionInterface
      */
     public function getSnapshot(array $args)
     {
-        throw new \BadMethodCallException('This method is not implemented yet');
+        $name = $this->pluck('name', $args);
+        return $this->send([$this->bigtableTableAdminClient, 'getSnapshot'], [
+            $name,
+            $this->addResourcePrefixHeader($args, $name)
+        ]);
     }
 
     /**
@@ -347,7 +482,11 @@ class Grpc implements ConnectionInterface
      */
     public function listSnapshots(array $args)
     {
-        throw new \BadMethodCallException('This method is not implemented yet');
+        $parent = $this->pluck('parent', $args);
+        return $this->send([$this->bigtableTableAdminClient, 'listSnapshots'], [
+            $parent,
+            $this->addResourcePrefixHeader($args, $parent)
+        ]);
     }
 
     /**
@@ -355,7 +494,11 @@ class Grpc implements ConnectionInterface
      */
     public function deleteSnapshot(array $args)
     {
-        throw new \BadMethodCallException('This method is not implemented yet');
+        $name = $this->pluck('name', $args);
+        return $this->send([$this->bigtableTableAdminClient, 'deleteSnapshot'], [
+            $name,
+            $this->addResourcePrefixHeader($args, $name)
+        ]);
     }
 
     /**
