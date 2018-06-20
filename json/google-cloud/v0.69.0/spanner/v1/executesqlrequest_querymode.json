@@ -1,0 +1,1 @@
+{"id":"spanner\/v1\/executesqlrequest_querymode","type":"","title":"Google\\Cloud\\Spanner\\V1\\ExecuteSqlRequest_QueryMode","name":"ExecuteSqlRequest_QueryMode","description":"<p>Mode in which the query must be processed.<\/p>\n<p>Protobuf enum <code>Google\\Spanner\\V1\\ExecuteSqlRequest\\QueryMode<\/code><\/p>","examples":[],"resources":[],"methods":[]}

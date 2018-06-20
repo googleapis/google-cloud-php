@@ -1,0 +1,1 @@
+{"id":"vision\/v1\/feature_type","type":"","title":"Google\\Cloud\\Vision\\V1\\Feature_Type","name":"Feature_Type","description":"<p>Type of Google Cloud Vision API feature to be extracted.<\/p>\n<p>Protobuf enum <code>Google\\Cloud\\Vision\\V1\\Feature\\Type<\/code><\/p>","examples":[],"resources":[],"methods":[]}
