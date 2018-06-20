@@ -47,14 +47,15 @@ use Google\Cloud\TextToSpeech\V1\VoiceSelectionParams;
 $textToSpeechClient = new TextToSpeechClient();
 
 $input = new SynthesisInput();
-$input->setText('Japan national team won against Colombia!');
+$input->setText('Japan national soccer team won against Colombia!');
 $voice = new VoiceSelectionParams();
 $voice->setLanguageCode('en-US');
 $audioConfig = new AudioConfig();
 $audioConfig->setAudioEncoding(AudioEncoding::MP3);
 
 $resp = $textToSpeechClient->synthesizeSpeech($input, $voice, $audioConfig);
-TODO: complete this sample
+file_put_contents('test.mp3', $resp->getAudioContent());
+
 ```
 
 ### Version
