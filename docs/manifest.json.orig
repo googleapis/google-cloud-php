@@ -11,7 +11,6 @@
             "name": "google/cloud",
             "defaultService": "servicebuilder",
             "versions": [
-                "v0.69.1",
                 "v0.69.0",
                 "v0.68.0",
                 "v0.67.0",
@@ -197,7 +196,6 @@
             "name": "google/cloud-core",
             "defaultService": "core/servicebuilder",
             "versions": [
-                "v1.20.6",
                 "v1.20.5",
                 "v1.20.4",
                 "v1.20.3",
@@ -400,7 +398,6 @@
             "name": "google/cloud-firestore",
             "defaultService": "firestore/firestoreclient",
             "versions": [
-                "v0.11.1",
                 "v0.11.0",
                 "v0.10.1",
                 "v0.10.0",
@@ -483,7 +480,6 @@
             "name": "google/cloud-logging",
             "defaultService": "logging/loggingclient",
             "versions": [
-                "v1.12.2",
                 "v1.12.1",
                 "v1.12.0",
                 "v1.11.1",
@@ -737,22 +733,6 @@
             ]
         },
         {
-            "id": "cloud-tasks",
-            "name": "google/cloud-tasks",
-            "defaultService": "tasks/readme",
-            "versions": [
-                "master"
-            ]
-        },
-        {
-            "id": "cloud-text-to-speech",
-            "name": "google/cloud-text-to-speech",
-            "defaultService": "texttospeech/readme",
-            "versions": [
-                "master"
-            ]
-        },
-        {
             "id": "cloud-trace",
             "name": "google/cloud-trace",
             "defaultService": "trace/traceclient",
@@ -806,7 +786,6 @@
             "name": "google/cloud-videointelligence",
             "defaultService": "videointelligence/readme",
             "versions": [
-                "v1.0.1",
                 "v1.0.0",
                 "v0.12.0",
                 "v0.11.1",
@@ -842,7 +821,6 @@
             "name": "google/cloud-vision",
             "defaultService": "vision/visionclient",
             "versions": [
-                "v0.14.1",
                 "v0.14.0",
                 "v0.13.0",
                 "v0.12.0",
