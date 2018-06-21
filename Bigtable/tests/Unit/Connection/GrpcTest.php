@@ -44,12 +44,12 @@ class GrpcTest extends TestCase
     use GrpcTestTrait;
     use GrpcTrait;
 
-    const PROJECT = 'projects/grass-clump-479';
-    const LOCATION = self::PROJECT.'/locations/us-east1-b';
-    const INSTANCE = self::PROJECT.'/instances/my-instance';
-    const CLUSTER = self::PROJECT.'/clusters/my-cluster';
-    const TABLE = self::INSTANCE.'/tables/my-table';
-    const SNAPSHOT = self::CLUSTER.'/snapshots/my-snapshot';
+    const PROJECT  = 'projects/grass-clump-479';
+    const LOCATION = 'projects/grass-clump-479/locations/us-east1-b';
+    const INSTANCE = 'projects/grass-clump-479/instances/my-instance';
+    const CLUSTER  = 'projects/grass-clump-479/clusters/my-cluster';
+    const TABLE    = 'projects/grass-clump-479/instances/my-instance/tables/my-table';
+    const SNAPSHOT = 'projects/grass-clump-479/clusters/my-cluster/snapshots/my-snapshot';
 
     private $successMessage;
     
