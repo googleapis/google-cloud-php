@@ -56,10 +56,10 @@ $inputUri = "gs://example-bucket/example-video.mp4";
 $features = [
     Feature::LABEL_DETECTION,
 ];
-$operationResponse = $videoIntelligenceServiceClient->annotateVideo(
-    ['inputUri' => $inputUri,
-     'features' => $features]
-);
+$operationResponse = $videoIntelligenceServiceClient->annotateVideo([
+    'inputUri' => $inputUri,
+    'features' => $features
+]);
 $operationResponse->pollUntilComplete();
 if ($operationResponse->operationSucceeded()) {
     $results = $operationResponse->getResult();
