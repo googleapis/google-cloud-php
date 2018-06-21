@@ -35,14 +35,11 @@ class DocumentAndCollectionTest extends FirestoreTestCase
             'firstName' => 'John',
             'country' => 'USA'
         ]);
-
-        self::$deletionQueue->add($this->document);
     }
 
     public function testCreate()
     {
         $document = self::$collection->newDocument();
-        self::$deletionQueue->add($document);
         $document->create(['firstName' => 'Kate']);
         $this->assertTrue($document->snapshot()->exists());
         $this->assertEquals(['firstName' => 'Kate'], $document->snapshot()->data());
@@ -108,12 +105,14 @@ class DocumentAndCollectionTest extends FirestoreTestCase
 
     public function testCollections()
     {
-        $doc = $this->document->collection('foo')->add(['name' => 'John']);
-        self::$deletionQueue->add($doc);
+        $childName = uniqid(self::COLLECTION_NAME);
+        $child = $this->document->collection($childName);
+        self::$localDeletionQueue->add($child);
+        $doc = $child->add(['name' => 'John']);
 
         $collection = $this->document->collections()->current();
 
-        $this->assertEquals('foo', $collection->id());
+        $this->assertEquals($childName, $collection->id());
     }
 
     public function testDeleteField()

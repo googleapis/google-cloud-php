@@ -23,13 +23,12 @@ namespace Google\Cloud\Firestore\Tests\System;
  */
 class QueryTest extends FirestoreTestCase
 {
-    const QUERY_COLLECTION = 'system-test-query';
-
     private $query;
 
     public function setUp()
     {
-        $this->query = self::$client->collection(self::QUERY_COLLECTION);
+        $this->query = self::$client->collection(uniqid(self::COLLECTION_NAME));
+        self::$localDeletionQueue->add($this->query);
     }
 
     public function testSelect()
@@ -94,7 +93,6 @@ class QueryTest extends FirestoreTestCase
     private function insertDoc(array $fields)
     {
         $doc = $this->query->add($fields);
-        self::$deletionQueue->add($doc);
 
         return $doc;
     }
