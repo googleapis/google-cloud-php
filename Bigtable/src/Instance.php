@@ -21,6 +21,7 @@ use Google\ApiCore\ValidationException;
 use Google\Cloud\Bigtable\Admin\V2\BigtableInstanceAdminClient as InstanceAdminClient;
 use Google\Cloud\Bigtable\Admin\V2\Instance_Type;
 use Google\Cloud\Bigtable\Connection\ConnectionInterface;
+use Google\Cloud\Core\ArrayTrait;
 use Google\Cloud\Core\Exception\NotFoundException;
 use Google\Cloud\Core\Iterator\ItemIterator;
 use Google\Cloud\Core\LongRunning\LongRunningConnectionInterface;
@@ -76,6 +77,7 @@ use Google\Cloud\Core\LongRunning\LROTrait;
  */
 class Instance
 {
+    use ArrayTrait;
     use LROTrait;
 
     const DEFAULT_NODE_COUNT = 1;
@@ -96,11 +98,6 @@ class Instance
     private $name;
 
     /**
-     * @var bool
-     */
-    private $returnInt64AsObject;
-
-    /**
      * @var array
      */
     private $info;
@@ -114,10 +111,7 @@ class Instance
      *        mapping to methods which handle LRO resolution in the service.
      * @param array $lroCallables
      * @param string $projectId The project ID.
-     * @param string $name The instance name or ID.
-     * @param bool $returnInt64AsObject [optional] If true, 64 bit integers will be
-     *        returned as a {@see Google\Cloud\Core\Int64} object for 32 bit platform
-     *        compatibility. **Defaults to** false.
+     * @param string $instanceId The instance ID.
      * @param array $info [optional] A representation of the instance object.
      */
     public function __construct(
@@ -125,14 +119,12 @@ class Instance
         LongRunningConnectionInterface $lroConnection,
         array $lroCallables,
         $projectId,
-        $name,
-        $returnInt64AsObject = false,
+        $instanceId,
         array $info = []
     ) {
         $this->connection = $connection;
         $this->projectId = $projectId;
-        $this->name = $this->fullyQualifiedInstanceName($name, $projectId);
-        $this->returnInt64AsObject = $returnInt64AsObject;
+        $this->name = $this->fullyQualifiedInstanceName($instanceId, $projectId);
         $this->info = $info;
         $this->setLroProperties($lroConnection, $lroCallables, $this->name);
     }
@@ -231,14 +223,12 @@ class Instance
      *
      * Example:
      * ```
-     * $operation = $instance->create($configuration);
+     * $operation = $instance->create($clusterId, $locationId);
      * ```
      *
      * @codingStandardsIgnoreStart
      * @see https://cloud.google.com/bigtable/docs/reference/admin/rpc/google.bigtable.admin.v2#CreateInstanceRequest CreateInstanceRequest
      *
-     * @param InstanceConfiguration $config The configuration to use
-     * @param string $name The instance name
      * @param string $cluster The cluster ID.
      * @param string $location The location ID.
      * @param array $options [optional] {
@@ -252,11 +242,11 @@ class Instance
      * @return LongRunningOperation<Instance>
      * @codingStandardsIgnoreEnd
      */
-    public function create(InstanceConfiguration $config, $cluster, $location, array $options = [])
+    public function create($clusterId, $locationId, array $options = [])
     {
         $instanceId = InstanceAdminClient::parseName($this->name)['instance'];
         $projectName = InstanceAdminClient::projectName($this->projectId);
-        $locationName = InstanceAdminClient::locationName($this->projectId, $location);
+        $locationName = InstanceAdminClient::locationName($this->projectId, $locationId);
         $serverNodes = isset($options['nodeCount']) ? $options['nodeCount'] : 1;
 
         $operation = $this->connection->createInstance([
@@ -268,31 +258,31 @@ class Instance
                 'labels' => []
             ],
             'clusters' => [
-                $cluster => [
+                $clusterId => [
                     'location' => $locationName,
                     'serveNodes' => $serverNodes
                 ]
             ]
-        ]+ $options);
+        ]);
         return $this->resumeOperation($operation['name'], $operation);
     }
 
     /**
      * Convert the simple instance name to a fully qualified name.
      *
-     * @param string $name The instance name.
-     * @param string $project The project ID.
+     * @param string $instanceId The instance ID.
+     * @param string $projectId The project ID.
      * @return string
      */
-    private function fullyQualifiedInstanceName($name, $project)
+    private function fullyQualifiedInstanceName($instanceId, $projectId)
     {
         try {
             return InstanceAdminClient::instanceName(
-                $project,
-                $name
+                $projectId,
+                $instanceId
             );
         } catch (ValidationException $e) {
-            return $name;
+            return $instanceId;
         }
     }
 

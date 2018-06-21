@@ -17,12 +17,13 @@
 
 namespace Google\Cloud\Bigtable;
 
-use Google\Cloud\Core\ClientTrait;
-use Google\Cloud\Core\LongRunning\LongRunningOperation;
-use Google\Cloud\Core\LongRunning\LROTrait;
 use Google\Cloud\Bigtable\Admin\V2\BigtableInstanceAdminClient as InstanceAdminClient;
 use Google\Cloud\Bigtable\Connection\Grpc;
 use Google\Cloud\Bigtable\Connection\LongRunningConnection;
+use Google\Cloud\Core\ArrayTrait;
+use Google\Cloud\Core\ClientTrait;
+use Google\Cloud\Core\LongRunning\LongRunningOperation;
+use Google\Cloud\Core\LongRunning\LROTrait;
 
 /**
  * Cloud Bigtable is a highly scalable, transactional, managed, NewSQL
@@ -59,6 +60,7 @@ use Google\Cloud\Bigtable\Connection\LongRunningConnection;
  */
 class BigtableClient
 {
+    use ArrayTrait;
     use ClientTrait;
     use LROTrait;
 
@@ -71,11 +73,6 @@ class BigtableClient
     protected $connection;
 
     /**
-     * @var bool
-     */
-    private $returnInt64AsObject;
-
-    /**
      * Create a Bigtable client. Please note that this client requires
      * [the gRPC extension](https://cloud.google.com/php/grpc).
      *
@@ -84,8 +81,6 @@ class BigtableClient
      *
      *     @type string $projectId The project ID from the Google Developer's
      *           Console.
-     *     @type CacheItemPoolInterface $authCache A cache for storing access
-     *           tokens. **Defaults to** a simple in memory implementation.
      *     @type array $authCacheOptions Cache configuration options.
      *     @type callable $authHttpHandler A handler used to deliver Psr7
      *           requests specifically for authentication.
@@ -104,9 +99,6 @@ class BigtableClient
      *     @type int $retries Number of retries for a failed request.
      *           **Defaults to** `3`.
      *     @type array $scopes Scopes to be used for the request.
-     *     @type bool $returnInt64AsObject If true, 64 bit integers will be
-     *           returned as a {@see Google\Cloud\Core\Int64} object for 32 bit
-     *           platform compatibility. **Defaults to** false.
      * }
      * @throws GoogleException If the gRPC extension is not enabled.
      */
@@ -118,11 +110,9 @@ class BigtableClient
                 self::FULL_CONTROL_SCOPE,
                 self::ADMIN_SCOPE
             ],
-            'returnInt64AsObject' => false,
             'projectIdRequired' => true
         ];
         $this->connection = new Grpc($this->configureAuthentication($config));
-        $this->returnInt64AsObject = $config['returnInt64AsObject'];
         $this->setLroProperties(new LongRunningConnection($this->connection), [
             [
                 'typeUrl' => 'type.googleapis.com/google.bigtable.admin.instance.v2.UpdateInstanceMetadata',
@@ -145,16 +135,15 @@ class BigtableClient
      *
      * Example:
      * ```
-     * $operation = $bigtable->createInstance($configuration, 'my-instance');
+     * $operation = $bigtable->createInstance('my-instance', 'my-cluster', 'us-east-b');
      * ```
      *
      * @codingStandardsIgnoreStart
      * @see https://cloud.google.com/bigtable/docs/reference/admin/rpc/google.bigtable.admin.v2#CreateInstanceRequest CreateInstanceRequest
      *
-     * @param InstanceConfiguration $config The configuration to use
-     * @param string $name The instance name.
-     * @param string $cluster The cluster ID.
-     * @param string $location The location ID.
+     * @param string $instanceId The instance ID.
+     * @param string $clusterId The cluster ID.
+     * @param string $locationId The location ID.
      * @param array $options [optional] {
      *     Configuration options
      *
@@ -166,10 +155,14 @@ class BigtableClient
      * @return LongRunningOperation<Instance>
      * @codingStandardsIgnoreEnd
      */
-    public function createInstance(InstanceConfiguration $config, $name, $cluster, $location, array $options = [])
-    {
-        $instance = $this->instance($name);
-        return $instance->create($config, $cluster, $location, $options);
+    public function createInstance(
+        $instanceId,
+        $clusterId,
+        $locationId,
+        array $options = []
+    ) {
+        $instance = $this->instance($instanceId);
+        return $instance->create($clusterId, $locationId, $options);
     }
 
     /**
@@ -180,18 +173,17 @@ class BigtableClient
      * $instance = $bigtable->instance('my-instance');
      * ```
      *
-     * @param string $name The instance name
+     * @param string $instanceId The instance ID
      * @return Instance
      */
-    public function instance($name, array $instance = [])
+    public function instance($instanceId, array $instance = [])
     {
         return new Instance(
             $this->connection,
             $this->lroConnection,
             $this->lroCallables,
             $this->projectId,
-            $name,
-            $this->returnInt64AsObject,
+            $instanceId,
             $instance
         );
     }

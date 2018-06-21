@@ -21,6 +21,7 @@ use Google\Cloud\Bigtable\Admin\V2\BigtableInstanceAdminClient as InstanceAdminC
 use Google\Cloud\Bigtable\BigtableClient;
 use Google\Cloud\Bigtable\Instance;
 use Google\Cloud\Bigtable\Connection\ConnectionInterface;
+use Google\Cloud\Core\Iterator\ItemIterator;
 use Google\Cloud\Core\LongRunning\LongRunningOperation;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
@@ -35,6 +36,7 @@ class BigtableClientTest extends SnippetTestCase
 
     const PROJECT = 'my-awesome-project';
     const INSTANCE = 'my-instance';
+    const CONFIG = 'foo';
 
     private $client;
     private $connection;
@@ -63,7 +65,7 @@ class BigtableClientTest extends SnippetTestCase
         $snippet = $this->snippetFromMethod(BigtableClient::class, 'createInstance');
         $snippet->addLocal('bigtable', $this->client);
 
-        $this->connection->createInstance(Argument::any())
+        $this->connection->createInstance(Argument::any(), Argument::any(), Argument::any())
             ->shouldBeCalled()
             ->willReturn(['name' => 'operations/foo']);
 

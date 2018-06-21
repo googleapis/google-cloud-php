@@ -20,7 +20,6 @@ namespace Google\Cloud\Bigtable\Tests\Snippet;
 use Google\Cloud\Bigtable\Admin\V2\BigtableInstanceAdminClient as InstanceAdminClient;
 use Google\Cloud\Bigtable\Connection\ConnectionInterface;
 use Google\Cloud\Bigtable\Instance;
-use Google\Cloud\Bigtable\InstanceConfiguration;
 use Google\Cloud\Core\Iterator\ItemIterator;
 use Google\Cloud\Core\LongRunning\LongRunningConnectionInterface;
 use Google\Cloud\Core\LongRunning\LongRunningOperation;
@@ -38,6 +37,8 @@ class InstanceTest extends SnippetTestCase
 
     const PROJECT = 'my-awesome-project';
     const INSTANCE = 'my-instance';
+    const CLUSTER = 'my-cluster';
+    const LOCATION = 'us-east-b';
 
     private $connection;
     private $instance;
@@ -60,6 +61,7 @@ class InstanceTest extends SnippetTestCase
     {
         $snippet = $this->snippetFromClass(Instance::class);
         $res = $snippet->invoke('instance');
+
         $this->assertInstanceOf(Instance::class, $res->returnVal());
         $this->assertEquals(InstanceAdminClient::instanceName(self::PROJECT, self::INSTANCE), $res->returnVal()->name());
     }
@@ -124,14 +126,16 @@ class InstanceTest extends SnippetTestCase
      */
     public function testCreate()
     {
-        $config = $this->prophesize(InstanceConfiguration::class);
+        $config = $this->prophesize(Instance::class);
         $config->name()->willReturn(InstanceAdminClient::instanceName(self::PROJECT, 'foo'));
 
         $snippet = $this->snippetFromMethod(Instance::class, 'create');
         $snippet->addLocal('configuration', $config->reveal());
         $snippet->addLocal('instance', $this->instance);
+        $snippet->addLocal('clusterId', self::CLUSTER);
+        $snippet->addLocal('locationId', self::LOCATION);
 
-        $this->connection->createInstance(Argument::any())
+        $this->connection->createInstance(Argument::any(), Argument::any(), Argument::any())
             ->shouldBeCalled()
             ->willReturn(['name' => 'operations/foo']);
 
