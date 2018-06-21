@@ -82,7 +82,7 @@ if ($operationResponse->operationSucceeded()) {
     }
 } else {
     $error = $operationResponse->getError();
-    echo "error: " . $error->getMessage() . "\n";
+    echo "error: " . $error->getMessage() . PHP_EOL;
 
 }
 ```
