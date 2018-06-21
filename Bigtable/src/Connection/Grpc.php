@@ -407,7 +407,7 @@ class Grpc implements ConnectionInterface
     {
         $action = $this->pluck('action', $args);
         $columnFamily['id'] = $this->pluck('id', $args);
-        if($action == 'drop'){
+        if ($action == 'drop') {
             $columnFamily['drop'] = true;
             return $this->serializer->decodeMessage(
                 new Modification(),
@@ -416,8 +416,7 @@ class Grpc implements ConnectionInterface
                     'drop'
                 ], $columnFamily)
             );
-        }
-        else{
+        } else {
             $columnFamily['create'] = $this->columnFamilyObject($args);
             return $this->serializer->decodeMessage(
                 new Modification(),
