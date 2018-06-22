@@ -226,7 +226,25 @@ trait SnapshotTrait
         $name
     ) {
         if ($this->isRelative($name)) {
-            $name = $this->fullName($projectId, $database, $name);
+            try {
+                $name = $this->fullName($projectId, $database, $name);
+            } catch (\Exception $e) {
+                // The GAPIC parser does not support special characters in paths,
+                // but Firestore does. If an exception is raised by the parser,
+                // we'll check for special characters. If they exist, we'll
+                // manually construct a document path.
+                $hasSpecialChars = !ctype_alnum(strtr($name, [
+                    '/' => '',
+                    ' ' => ''
+                ]));
+
+                if (!$hasSpecialChars) {
+                    throw $e;
+                }
+
+                $base = $this->databaseName($projectId, $database);
+                $name = $base .'/documents/'. $name;
+            }
         }
 
         if (!$this->isDocument($name)) {

@@ -157,6 +157,15 @@ class FirestoreClientTest extends TestCase
         $this->assertEquals('b', $document->id());
     }
 
+    public function testDocumentPathSpecialChars()
+    {
+        $id = 'a!@#$%^&*(){[{}]+=-_|';
+        $document = $this->client->document('a/' . $id);
+
+        $this->assertInstanceOf(DocumentReference::class, $document);
+        $this->assertEquals($id, $document->id());
+    }
+
     /**
      * @dataProvider paths
      * @expectedException InvalidArgumentException
