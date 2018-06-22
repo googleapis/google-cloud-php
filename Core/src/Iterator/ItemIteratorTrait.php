@@ -82,7 +82,7 @@ trait ItemIteratorTrait
     /**
      * Get the current item.
      *
-     * @return array|null
+     * @return mixed
      */
     public function current()
     {
