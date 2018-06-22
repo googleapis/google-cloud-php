@@ -1,6 +1,6 @@
 # Google Cloud Tasks for PHP
 
-> Idiomatic PHP client for [Google Cloud Tasks](https://cloud.google.com/tasks/).
+> Idiomatic PHP client for [Google Cloud Tasks](https://cloud.google.com/cloud-tasks/).
 
 [![Latest Stable Version](https://poser.pugx.org/google/cloud-tasks/v/stable)](https://packagist.org/packages/google/cloud-tasks) [![Packagist](https://img.shields.io/packagist/dm/google/cloud-tasks.svg)](https://packagist.org/packages/google/cloud-tasks)
 
@@ -38,6 +38,64 @@ on authenticating your client. Once authenticated, you'll be ready to start maki
 ### Sample
 
 ```php
+require_once __DIR__ . '/vendor/autoload.php';
+
+use Google\Cloud\Tasks\V2beta2\CloudTasksClient;
+use Google\Cloud\Tasks\V2beta2\LeaseDuration;
+use Google\Cloud\Tasks\V2beta2\PullMessage;
+use Google\Cloud\Tasks\V2beta2\PullTarget;
+use Google\Cloud\Tasks\V2beta2\Queue;
+use Google\Cloud\Tasks\V2beta2\Task;
+use Google\Cloud\Tasks\V2beta2\Task_View;
+use Google\Protobuf\Duration;
+
+$client = new CloudTasksClient();
+
+$project = 'example-project';
+$location = 'us-central1';
+$queue = 'example-queue';
+$queueName = $client::queueName($project, $location, $queue);
+
+// Create a queue beforehand with gcloud
+// gcloud alpha tasks queues create-pull-queue example-queue
+
+// or the code below
+// Create a pull queue
+// $locationName = $client::locationName($project, $location);
+// $queue = new Queue();
+// $queue->setName($queueName);
+// $queue->setPullTarget(new PullTarget());
+// $client->createQueue($locationName, $queue);
+
+// After the creation, wait at least a minute
+
+// Create a task
+$pullMessage = new PullMessage();
+$payload = 'a message for the consumer: ' . uniqid();
+$pullMessage->setPayload($payload);
+$task = new Task();
+$task->setPullMessage($pullMessage);
+$client->createTask($queueName, $task);
+
+// Lease a task
+$leaseDuration = new Duration();
+$leaseDuration->setSeconds(600);
+$resp = $client->leaseTasks(
+    $queueName,
+    $leaseDuration,
+    [
+        'maxTasks' => 1,
+        'responseView' => Task_View::FULL
+    ]
+);
+$task = $resp->getTasks()[0];
+assert($task->getPullMessage()->getPayload() === $payload);
+
+// Acknowledge the task
+$client->acknowledgeTask($task->getName(), $task->getScheduleTime());
+
+// Delete the queue
+// $client->deleteQueue($queueName);
 ```
 
 ### Version
@@ -46,4 +104,4 @@ This component is considered alpha. As such, it is still a work-in-progress and 
 
 ### Next Steps
 
-1. Understand the [official documentation](https://cloud.google.com/tasks/docs/).
+1. Understand the [official documentation](https://cloud.google.com/cloud-tasks/docs/).
