@@ -223,48 +223,75 @@ class Instance
      *
      * Example:
      * ```
-     * $operation = $instance->create($clusterId, $locationId);
+     * $operation = $instance->create();
      * ```
      *
      * @codingStandardsIgnoreStart
      * @see https://cloud.google.com/bigtable/docs/reference/admin/rpc/google.bigtable.admin.v2#CreateInstanceRequest CreateInstanceRequest
      *
-     * @param string $cluster The cluster ID.
-     * @param string $location The location ID.
      * @param array $options [optional] {
      *     Configuration options
      *
      *     @type string $displayName **Defaults to** the value of $name.
-     *     @type int $nodeCount **Defaults to** `1`.
+     *     @type int $instanceType **Defaults to** `0`.
      *     @type array $labels For more information, see
      *           [Using labels to organize Google Cloud Platform resources](https://cloudplatform.googleblog.com/2015/10/using-labels-to-organize-Google-Cloud-Platform-resources.html).
+     *     @type array $clusters [] {
+     *           array {
+     *                 string $clusterId
+     *                 string $locationId
+     *                 int $nodeCount **Defaults to** `1`.
+     *                 int $storageType **Defaults to** `0`.
+     *          }
      * }
      * @return LongRunningOperation<Instance>
      * @codingStandardsIgnoreEnd
      */
-    public function create($clusterId, $locationId, array $options = [])
+    public function create(array $options = [])
     {
-        $instanceId = InstanceAdminClient::parseName($this->name)['instance'];
         $projectName = InstanceAdminClient::projectName($this->projectId);
-        $locationName = InstanceAdminClient::locationName($this->projectId, $locationId);
-        $serverNodes = isset($options['nodeCount']) ? $options['nodeCount'] : 1;
+        $instanceId = InstanceAdminClient::parseName($this->name)['instance'];
+        $displayName = isset($options['displayName']) ? $options['displayName'] : $instanceId;
+        $type = isset($options['instanceType']) ? $options['instanceType'] : 0;
+        $labels = isset($options['labels']) ? $options['labels'] : [];
+        $clusters = isset($options['clusters']) ? $options['clusters'] : [];
 
         $operation = $this->connection->createInstance([
             'parent' => $projectName,
             'instanceId' => $instanceId,
             'instance' => [
-                'displayName' => $instanceId,
-                'type' => Instance_Type::PRODUCTION,
-                'labels' => []
+                'displayName' => $displayName,
+                'type' => $type,
+                'labels' => $labels
             ],
-            'clusters' => [
-                $clusterId => [
-                    'location' => $locationName,
-                    'serveNodes' => $serverNodes
-                ]
-            ]
+            'clusters' => $this->clustersArray($clusters)
         ]);
         return $this->resumeOperation($operation['name'], $operation);
+    }
+
+    /**
+     * @param array $args [] {
+     *      array {
+     *             string $clusterId
+     *             string $locationId
+     *             int $nodeCount **Defaults to** `1`.
+     *             int $storageType **Defaults to** `0`.
+     *      }
+     * }
+     * @return array
+    */
+    private function clustersArray($args)
+    {
+        $clusters = [];
+        foreach ($args as $value) {
+            $id = $value['clusterId'];
+            $clusters[$id] = [
+                'location' => InstanceAdminClient::locationName($this->projectId, $value['locationId']),
+                'serveNodes' => isset($value['nodeCount']) ? $value['nodeCount'] : 1,
+                'defaultStorageType' => isset($value['storageType']) ? $value['storageType'] : 0
+            ];
+        }
+        return $clusters;
     }
 
     /**

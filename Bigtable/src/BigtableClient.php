@@ -17,11 +17,11 @@
 
 namespace Google\Cloud\Bigtable;
 
+use Google\Cloud\Core\ArrayTrait;
+use Google\Cloud\Core\ClientTrait;
 use Google\Cloud\Bigtable\Admin\V2\BigtableInstanceAdminClient as InstanceAdminClient;
 use Google\Cloud\Bigtable\Connection\Grpc;
 use Google\Cloud\Bigtable\Connection\LongRunningConnection;
-use Google\Cloud\Core\ArrayTrait;
-use Google\Cloud\Core\ClientTrait;
 use Google\Cloud\Core\LongRunning\LongRunningOperation;
 use Google\Cloud\Core\LongRunning\LROTrait;
 
@@ -135,34 +135,35 @@ class BigtableClient
      *
      * Example:
      * ```
-     * $operation = $bigtable->createInstance('my-instance', 'my-cluster', 'us-east-b');
+     * $operation = $bigtable->createInstance('my-instance');
      * ```
      *
      * @codingStandardsIgnoreStart
      * @see https://cloud.google.com/bigtable/docs/reference/admin/rpc/google.bigtable.admin.v2#CreateInstanceRequest CreateInstanceRequest
      *
      * @param string $instanceId The instance ID.
-     * @param string $clusterId The cluster ID.
-     * @param string $locationId The location ID.
      * @param array $options [optional] {
      *     Configuration options
      *
      *     @type string $displayName **Defaults to** the value of $name.
-     *     @type int $nodeCount **Defaults to** `1`.
+     *     @type int $instanceType **Defaults to** `0`.
      *     @type array $labels For more information, see
      *           [Using labels to organize Google Cloud Platform resources](https://cloudplatform.googleblog.com/2015/10/using-labels-to-organize-Google-Cloud-Platform-resources.html).
+     *     @type array $clusters []{
+     *           array {
+     *                 string $clusterId
+     *                 string $locationId
+     *                 int $nodeCount **Defaults to** `1`.
+     *                 int $storageType **Defaults to** `0`.
+     *          }
      * }
      * @return LongRunningOperation<Instance>
      * @codingStandardsIgnoreEnd
      */
-    public function createInstance(
-        $instanceId,
-        $clusterId,
-        $locationId,
-        array $options = []
-    ) {
+    public function createInstance($instanceId, array $options = [])
+    {
         $instance = $this->instance($instanceId);
-        return $instance->create($clusterId, $locationId, $options);
+        return $instance->create($options);
     }
 
     /**

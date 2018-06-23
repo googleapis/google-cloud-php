@@ -65,7 +65,7 @@ class BigtableClientTest extends SnippetTestCase
         $snippet = $this->snippetFromMethod(BigtableClient::class, 'createInstance');
         $snippet->addLocal('bigtable', $this->client);
 
-        $this->connection->createInstance(Argument::any(), Argument::any(), Argument::any())
+        $this->connection->createInstance(Argument::any())
             ->shouldBeCalled()
             ->willReturn(['name' => 'operations/foo']);
 

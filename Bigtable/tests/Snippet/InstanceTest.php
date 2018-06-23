@@ -130,10 +130,7 @@ class InstanceTest extends SnippetTestCase
         $config->name()->willReturn(InstanceAdminClient::instanceName(self::PROJECT, 'foo'));
 
         $snippet = $this->snippetFromMethod(Instance::class, 'create');
-        $snippet->addLocal('configuration', $config->reveal());
         $snippet->addLocal('instance', $this->instance);
-        $snippet->addLocal('clusterId', self::CLUSTER);
-        $snippet->addLocal('locationId', self::LOCATION);
 
         $this->connection->createInstance(Argument::any(), Argument::any(), Argument::any())
             ->shouldBeCalled()
