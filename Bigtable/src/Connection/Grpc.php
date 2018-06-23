@@ -23,6 +23,13 @@ use Google\Cloud\Bigtable\Admin\V2\BigtableTableAdminClient;
 use Google\Cloud\Bigtable\Admin\V2\Cluster;
 use Google\Cloud\Bigtable\Admin\V2\Instance;
 use Google\Cloud\Bigtable\V2\BigtableClient;
+use Google\Cloud\Bigtable\V2\MutateRowsRequest_Entry;
+use Google\Cloud\Bigtable\V2\Mutation;
+use Google\Cloud\Bigtable\V2\Mutation_SetCell;
+use Google\Cloud\Bigtable\V2\ReadModifyWriteRule;
+use Google\Cloud\Bigtable\V2\RowFilter;
+use Google\Cloud\Bigtable\V2\RowSet;
+use Google\Cloud\Bigtable\V2\RowRange;
 use Google\Cloud\Core\GrpcRequestWrapper;
 use Google\Cloud\Core\GrpcTrait;
 use Google\Cloud\Core\LongRunning\OperationResponseTrait;
@@ -371,7 +378,81 @@ class Grpc implements ConnectionInterface
      */
     public function readRows(array $args)
     {
-        throw new \BadMethodCallException('This method is not implemented yet');
+        $tableName = $this->pluck('tableName', $args);
+        $optionalArgs = [];
+        if (isset($args['options'])) {
+            $options = $this->pluck('options', $args);
+            if (isset($options['appProfileId'])) {
+                $optionalArgs['appProfileId'] = $this->pluck('appProfileId', $options);
+            }
+            if (isset($options['rows'])) {
+                $optionalArgs['rows'] = $this->rowSetObject($this->pluck('rows', $options));
+            }
+            if (isset($options['filter'])) {
+                $optionalArgs['filter'] = $this->rowFilterObject($this->pluck('filter', $options));
+            }
+            if (isset($options['rowsLimit'])) {
+                $optionalArgs['rowsLimit'] = $this->pluck('rowsLimit', $options);
+            }
+        }
+        return $this->send([$this->bigtableClient, 'readRows'], [
+            $tableName,
+            $optionalArgs,
+            $this->addResourcePrefixHeader($args, $tableName)
+        ]);
+    }
+
+    /**
+     * @param array $args
+     * @return RowSet
+     */
+    private function rowSetObject(array $args)
+    {
+        $rowSet = [];
+        if (isset($args['rowkeys'])) {
+            $rowSet['row_keys'] = $this->pluck('rowkeys', $args);
+        }
+        if (isset($args['rowRanges'])) {
+            $rowSet['row_ranges'] = array_map([$this, 'rowRangesObject'], $this->pluck('rowRanges', $args));
+        }
+        return $this->serializer->decodeMessage(
+            new RowSet(),
+            $this->pluckArray([
+                'row_keys',
+                'row_ranges'
+            ], $args)
+        );
+    }
+
+    /**
+     * @param array $args
+     * @return RowRange
+     */
+    private function rowRangesObject(array $args)
+    {
+        return $this->serializer->decodeMessage(
+            new RowRange(),
+            $this->pluckArray([
+                'start_key_closed',
+                'start_key_open',
+                'end_key_open',
+                'end_key_closed'
+            ], $args)
+        );
+    }
+
+    /**
+     * @param array $args
+     * @return RowFilter
+     */
+    private function rowFilterObject(array $args)
+    {
+        return $this->serializer->decodeMessage(
+            new RowFilter(),
+            $this->pluckArray([
+                'cells_per_row_limit_filter'
+            ], $args)
+        );
     }
     
     /**
@@ -379,7 +460,19 @@ class Grpc implements ConnectionInterface
      */
     public function sampleRowKeys(array $args)
     {
-        throw new \BadMethodCallException('This method is not implemented yet');
+        $tableName = $this->pluck('tableName', $args);
+        $optionalArgs = [];
+        if (isset($args['options'])) {
+            $options = $this->pluck('options', $args);
+            if (isset($options['appProfileId'])) {
+                $optionalArgs['appProfileId'] = $this->pluck('appProfileId', $options);
+            }
+        }
+        return $this->send([$this->bigtableClient, 'sampleRowKeys'], [
+            $tableName,
+            $optionalArgs,
+            $this->addResourcePrefixHeader($args, $tableName)
+        ]);
     }
 
     /**
@@ -387,7 +480,46 @@ class Grpc implements ConnectionInterface
      */
     public function mutateRow(array $args)
     {
-        throw new \BadMethodCallException('This method is not implemented yet');
+        $tableName = $this->pluck('tableName', $args);
+        $cells = $this->pluck('cells', $args);
+        $optionalArgs = [];
+        if (isset($args['options'])) {
+            $options = $this->pluck('options', $args);
+            if (isset($options['appProfileId'])) {
+                $optionalArgs['appProfileId'] = $this->pluck('appProfileId', $options);
+            }
+        }
+        return $this->send([$this->bigtableClient, 'mutateRow'], [
+            $tableName,
+            $this->pluck('rowKey', $args),
+            array_map([$this, 'mutationObject'], $cells),
+            $optionalArgs,
+            $this->addResourcePrefixHeader($args, $tableName)
+        ]);
+    }
+
+    /**
+     * @param array $args
+     * @return Mutation
+     */
+    private function mutationObject(array $args)
+    {
+        $cellObject['set_cell'] = $this->serializer->decodeMessage(
+            new Mutation_SetCell(),
+            $this->pluckArray([
+                'family_name',
+                'column_qualifier',
+                'value',
+                'timestamp_micros'
+            ], $args)
+        );
+
+        return $this->serializer->decodeMessage(
+            new Mutation(),
+            $this->pluckArray([
+                'set_cell'
+            ], $cellObject)
+        );
     }
 
     /**
@@ -395,7 +527,50 @@ class Grpc implements ConnectionInterface
      */
     public function mutateRows(array $args)
     {
-        throw new \BadMethodCallException('This method is not implemented yet');
+        $tableName = $this->pluck('tableName', $args);
+        $cells = $this->pluck('cells', $args);
+        $entries = array_map([$this, 'mutationsArray'], $cells);
+        $optionalArgs = [];
+        if (isset($args['options'])) {
+            $options = $this->pluck('options', $args);
+            if (isset($options['appProfileId'])) {
+                $optionalArgs['appProfileId'] = $this->pluck('appProfileId', $options);
+            }
+        }
+        return $this->send([$this->bigtableClient, 'mutateRows'], [
+            $tableName,
+            array_map([$this, 'mutateRowsRequestEntryObject'], $entries),
+            $optionalArgs,
+            $this->addResourcePrefixHeader($args, $tableName)
+        ]);
+    }
+
+    /**
+     * @param array $args
+     * @return MutateRowsRequest_Entry
+     */
+    private function mutateRowsRequestEntryObject(array $args)
+    {
+        return $this->serializer->decodeMessage(
+            new MutateRowsRequest_Entry(),
+            $this->pluckArray([
+                'row_key',
+                'mutations'
+            ], $args)
+        );
+    }
+
+    /**
+     * @param array $args
+     * @return array
+     */
+    private function mutationsArray(array $args)
+    {
+        $cell = $this->pluck('cell', $args);
+        return([
+            'row_key' => $this->pluck('rowKey', $args),
+            'mutations' => array_map([$this, 'mutationObject'], $cell)
+        ]);
     }
 
     /**
@@ -403,7 +578,31 @@ class Grpc implements ConnectionInterface
      */
     public function checkAndMutateRow(array $args)
     {
-        throw new \BadMethodCallException('This method is not implemented yet');
+        $tableName = $this->pluck('tableName', $args);
+        $optionalArgs =[];
+        if (isset($args['options'])) {
+            $options =  $this->pluck('options', $args);
+            if (isset($options['appProfileId'])) {
+                $optionalArgs['appProfileId'] = $this->pluck('appProfileId', $options);
+            }
+            if (isset($options['predicateFilter'])) {
+                $optionalArgs['predicateFilter'] = $this->rowFilterObject($this->pluck('predicateFilter', $options));
+            }
+            if (isset($options['trueMutations'])) {
+                $cell = $this->pluck('trueMutations', $options);
+                $optionalArgs['trueMutations'] = array_map([$this, 'mutationObject'], $cell);
+            }
+            if (isset($options['falseMutations'])) {
+                $cell = $this->pluck('falseMutations', $options);
+                $optionalArgs['falseMutations'] = array_map([$this, 'mutationObject'], $cell);
+            }
+        }
+        return $this->send([$this->bigtableClient, 'checkAndMutateRow'], [
+            $tableName,
+            $this->pluck('rowKey', $args),
+            $optionalArgs,
+            $this->addResourcePrefixHeader($args, $tableName)
+        ]);
     }
 
     /**
@@ -411,7 +610,38 @@ class Grpc implements ConnectionInterface
      */
     public function readModifyWriteRow(array $args)
     {
-        throw new \BadMethodCallException('This method is not implemented yet');
+        $tableName = $this->pluck('tableName', $args);
+        $rules = $this->pluck('rules', $args);
+        $optionalArgs =[];
+        if (isset($args['options'])) {
+            $options =  $this->pluck('options', $args);
+            if (isset($options['appProfileId'])) {
+                $optionalArgs['appProfileId'] = $this->pluck('appProfileId', $options);
+            }
+        }
+        return $this->send([$this->bigtableClient, 'readModifyWriteRow'], [
+            $tableName,
+            $this->pluck('rowKey', $args),
+            array_map([$this, 'readModifyWriteRuleObject'], $rules),
+            $optionalArgs,
+            $this->addResourcePrefixHeader($args, $tableName)
+        ]);
+    }
+
+    /**
+     * @param array $args
+     * @return ReadModifyWriteRule
+     */
+    private function readModifyWriteRuleObject(array $args)
+    {
+        return $this->serializer->decodeMessage(
+            new ReadModifyWriteRule(),
+            $this->pluckArray([
+                'family_name',
+                'column_qualifier',
+                'append_value'
+            ], $args)
+        );
     }
 
     /**

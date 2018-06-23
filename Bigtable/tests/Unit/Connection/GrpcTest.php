@@ -24,6 +24,10 @@ use Google\Cloud\Bigtable\Admin\V2\Instance;
 use Google\Cloud\Bigtable\Admin\V2\Instance_Type;
 use Google\Cloud\Bigtable\Admin\V2\Cluster;
 use Google\Cloud\Bigtable\Connection\Grpc;
+use Google\Cloud\Bigtable\V2\MutateRowsRequest_Entry;
+use Google\Cloud\Bigtable\V2\Mutation;
+use Google\Cloud\Bigtable\V2\Mutation_SetCell;
+use Google\Cloud\Bigtable\V2\ReadModifyWriteRule;
 use Google\Cloud\Core\GrpcTrait;
 use Google\Cloud\Core\GrpcRequestWrapper;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
@@ -97,6 +101,62 @@ class GrpcTest extends TestCase
         );
         $lro = $this->prophesize(OperationResponse::class)->reveal();
 
+        /*** MutateRow ***/
+        $rowKey = 'user0000000';
+        $utc = strtotime(gmdate("M d Y H:i:s", time()))*1000;
+        $mutateRowcell = [
+            [
+                'family_name' => 'cf',
+                'column_qualifier' => 'field',
+                'value' => 'val',
+                'timestamp_micros' => $utc
+            ]
+        ];
+        $mutationArr = $this->mutationsArr($serializer ,$mutateRowcell);
+
+        /*** MutateRows ***/
+        $mutateRowscell = [
+            [
+                'rowKey' => $rowKey,
+                'cell' => [
+                    [
+                        'family_name' => 'cf',
+                        'column_qualifier' => 'field',
+                        'value' => 'val',
+                        'timestamp_micros' => $utc
+                    ],
+                    [
+                        'family_name' => 'cf',
+                        'column_qualifier' => 'field5',
+                        'value' => 'val5',
+                        'timestamp_micros' => $utc
+                    ]
+                ]
+            ]
+        ];
+        $mutations = [];
+        foreach ($mutateRowscell as $val) {
+            array_push($mutations, [
+                'row_key' => $val['rowKey'],
+                'mutations' => $this->mutationsArr($serializer, $val['cell'])
+            ]);
+        }
+        foreach ($mutations as $val) {
+            $entries[] = $this->mutateRowsRequestEntryObject($serializer, $val);
+        }
+
+        /*** readModifyWriteRow ***/
+        $rules = [
+            [
+                'family_name' => 'cf2',
+                'column_qualifier' => 'qualifier',
+                'append_value' => 'Val2'
+            ]
+        ];
+        foreach ($rules as $value) {
+            $rulesArr[] = $this->readModifyWriteRuleObject($serializer, $value);
+        }
+
         return [
             [
                 'createInstance',
@@ -118,7 +178,103 @@ class GrpcTest extends TestCase
                 [self::PROJECT, $instanceName, $instance, ['test-cluster3' =>$cluster], ['headers' => ['google-cloud-resource-prefix' => [self::PROJECT]]]],
                 $lro,
                 null
+            ],
+            [
+                'readRows',
+                ['tableName' => self::TABLE],
+                [self::TABLE, [], ['headers' => ['google-cloud-resource-prefix' => [self::TABLE]]]]
+            ],
+            [
+                'sampleRowKeys',
+                ['tableName' => self::TABLE],
+                [self::TABLE, [], ['headers' => ['google-cloud-resource-prefix' => [self::TABLE]]]]
+            ],
+            [
+                'mutateRow',
+                [
+                    'tableName' => self::TABLE,
+                    'rowKey' => $rowKey,
+                    'cells' => $mutateRowcell
+                ],
+                [self::TABLE, $rowKey, $mutationArr, [], ['headers' => ['google-cloud-resource-prefix' => [self::TABLE]]]]
+            ],
+            [
+                'mutateRows',
+                [
+                    'tableName' => self::TABLE,
+                    'cells' => $mutateRowscell
+                ],
+                [self::TABLE, $entries, [], ['headers' => ['google-cloud-resource-prefix' => [self::TABLE]]]]
+            ],
+            [
+                'checkAndMutateRow',
+                [
+                    'tableName' => self::TABLE,
+                    'rowKey' => $rowKey
+                ],
+                [self::TABLE, $rowKey, [], ['headers' => ['google-cloud-resource-prefix' => [self::TABLE]]]]
+            ],
+            [
+                'readModifyWriteRow',
+                [
+                    'tableName' => self::TABLE,
+                    'rowKey' => $rowKey,
+                    'rules' => $rules
+                ],
+                [self::TABLE, $rowKey, $rulesArr, [], ['headers' => ['google-cloud-resource-prefix' => [self::TABLE]]]]
             ]
         ];
+    }
+
+    private function mutationObject($serializer, $args)
+    {
+        $cellObject['set_cell'] = $serializer->decodeMessage(
+            new Mutation_SetCell(),
+            $this->pluckArray([
+                'family_name',
+                'column_qualifier',
+                'value',
+                'timestamp_micros'
+            ], $args)
+        );
+
+        return $serializer->decodeMessage(
+            new Mutation(),
+            $this->pluckArray([
+                'set_cell'
+            ], $cellObject)
+        );
+    }
+
+    private  function mutationsArr($serializer ,$cells)
+    {
+        $tmpArr = [];
+        foreach ($cells as $val) {
+            $tmpArr[] = $this->mutationObject($serializer, $val);
+        }
+        return $tmpArr;
+    }
+
+    private function mutateRowsRequestEntryObject($serializer, $args)
+    {
+        return $serializer->decodeMessage(
+            new MutateRowsRequest_Entry(),
+            $this->pluckArray([
+                'row_key',
+                'mutations'
+            ], $args)
+        );
+    }
+
+    private function readModifyWriteRuleObject($serializer, $args)
+    {
+        return $serializer->decodeMessage(
+            new ReadModifyWriteRule(),
+            $this->pluckArray([
+                'family_name',
+                'column_qualifier',
+                'append_value'
+            ], $args)
+        );
     }
 }
