@@ -7,12 +7,8 @@
             "type": "tasks\/readme"
         },
         {
-            "title": "Cloudtasks",
-            "type": "tasks\/metadata\/v2beta2\/cloudtasks",
-            "nav": [],
-            "patterns": [
-                "tasks\/metadata\/v2beta2\/\\w{1,}"
-            ]
+            "title": "CloudTasksClient",
+            "type": "tasks/v2beta2/cloudtasksclient"
         }
     ],
     "pattern": "tasks\/\\w{1,}"
