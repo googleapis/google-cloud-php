@@ -28,8 +28,8 @@ use Google\Cloud\Bigtable\V2\MutateRowsRequest_Entry;
 use Google\Cloud\Bigtable\V2\Mutation;
 use Google\Cloud\Bigtable\V2\Mutation_SetCell;
 use Google\Cloud\Bigtable\V2\ReadModifyWriteRule;
-use Google\Cloud\Core\GrpcTrait;
 use Google\Cloud\Core\GrpcRequestWrapper;
+use Google\Cloud\Core\GrpcTrait;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
@@ -42,8 +42,9 @@ class GrpcTest extends TestCase
     use GrpcTestTrait;
     use GrpcTrait;
 
-    const PROJECT = 'projects/grass-clump-479';
+    const PROJECT  = 'projects/grass-clump-479';
     const LOCATION = 'projects/grass-clump-479/locations/us-east1-b';
+    const TABLE    = 'projects/grass-clump-479/instances/my-instance/tables/my-table';
 
     private $successMessage;
     
