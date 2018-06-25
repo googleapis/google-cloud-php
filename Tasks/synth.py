@@ -31,6 +31,6 @@ v2beta2_library = gapic._generate_code(
 
 
 s.copy(v2beta2_library / f'src/')
-s.copy(v2beta2_library / f'proto/src/GPBMetadata/Google/Cloud/Tasks/V2Beta2', f'metadata/V2Beta2')
-s.copy(v2beta2_library / f'proto/src/Google/Cloud/Tasks/V2beta2', f'src/V2beta2')
+s.copy(v2beta2_library / f'proto/src/GPBMetadata/Google/Cloud/Tasks', f'metadata')
+s.copy(v2beta2_library / f'proto/src/Google/Cloud/Tasks', f'src')
 s.copy(v2beta2_library / f'tests')
