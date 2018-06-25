@@ -35,10 +35,14 @@ s.move(v1_library / f'src/V1/resources')
 
 # copy proto files to src also
 s.move(v1_library / f'proto/src/Google/Cloud/Vision/', f'src/')
-s.move(v1_library / f'test/')
+s.move(v1_library / f'tests/')
 
 # fix year
 s.replace(
     '**/Gapic/*GapicClient.php',
     r'Copyright \d{4}',
     r'Copyright 2017')
+s.replace(
+    'tests/**/V1/*Test.php',
+    r'Copyright \d{4}',
+    r'Copyright 2018')
