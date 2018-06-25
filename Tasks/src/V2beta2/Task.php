@@ -16,6 +16,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class Task extends \Google\Protobuf\Internal\Message
 {
     /**
+     * Optionally caller-specified in [CreateTask][google.cloud.tasks.v2beta2.CloudTasks.CreateTask].
      * The task name.
      * The task name must have the following format:
      * `projects/PROJECT_ID/locations/LOCATION_ID/queues/QUEUE_ID/tasks/TASK_ID`
@@ -31,7 +32,6 @@ class Task extends \Google\Protobuf\Internal\Message
      *   hyphens (-). The maximum length is 100 characters.
      * * `TASK_ID` can contain only letters ([A-Za-z]), numbers ([0-9]),
      *   hyphens (-), or underscores (_). The maximum length is 500 characters.
-     * Optionally caller-specified in [CreateTask][google.cloud.tasks.v2beta2.CloudTasks.CreateTask].
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
@@ -76,6 +76,7 @@ class Task extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Optionally caller-specified in [CreateTask][google.cloud.tasks.v2beta2.CloudTasks.CreateTask].
      * The task name.
      * The task name must have the following format:
      * `projects/PROJECT_ID/locations/LOCATION_ID/queues/QUEUE_ID/tasks/TASK_ID`
@@ -91,7 +92,6 @@ class Task extends \Google\Protobuf\Internal\Message
      *   hyphens (-). The maximum length is 100 characters.
      * * `TASK_ID` can contain only letters ([A-Za-z]), numbers ([0-9]),
      *   hyphens (-), or underscores (_). The maximum length is 500 characters.
-     * Optionally caller-specified in [CreateTask][google.cloud.tasks.v2beta2.CloudTasks.CreateTask].
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @return string
@@ -102,6 +102,7 @@ class Task extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Optionally caller-specified in [CreateTask][google.cloud.tasks.v2beta2.CloudTasks.CreateTask].
      * The task name.
      * The task name must have the following format:
      * `projects/PROJECT_ID/locations/LOCATION_ID/queues/QUEUE_ID/tasks/TASK_ID`
@@ -117,7 +118,6 @@ class Task extends \Google\Protobuf\Internal\Message
      *   hyphens (-). The maximum length is 100 characters.
      * * `TASK_ID` can contain only letters ([A-Za-z]), numbers ([0-9]),
      *   hyphens (-), or underscores (_). The maximum length is 500 characters.
-     * Optionally caller-specified in [CreateTask][google.cloud.tasks.v2beta2.CloudTasks.CreateTask].
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @param string $var

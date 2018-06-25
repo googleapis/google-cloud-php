@@ -18,6 +18,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class Queue extends \Google\Protobuf\Internal\Message
 {
     /**
+     * Caller-specified and required in [CreateQueue][google.cloud.tasks.v2beta2.CloudTasks.CreateQueue],
+     * after which it becomes output only.
      * The queue name.
      * The queue name must have the following format:
      * `projects/PROJECT_ID/locations/LOCATION_ID/queues/QUEUE_ID`
@@ -31,8 +33,6 @@ class Queue extends \Google\Protobuf\Internal\Message
      *    For more information, see https://cloud.google.com/about/locations/.
      * * `QUEUE_ID` can contain letters ([A-Za-z]), numbers ([0-9]), or
      *   hyphens (-). The maximum length is 100 characters.
-     * Caller-specified and required in [CreateQueue][google.cloud.tasks.v2beta2.CloudTasks.CreateQueue],
-     * after which it becomes output only.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
@@ -99,6 +99,8 @@ class Queue extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Caller-specified and required in [CreateQueue][google.cloud.tasks.v2beta2.CloudTasks.CreateQueue],
+     * after which it becomes output only.
      * The queue name.
      * The queue name must have the following format:
      * `projects/PROJECT_ID/locations/LOCATION_ID/queues/QUEUE_ID`
@@ -112,8 +114,6 @@ class Queue extends \Google\Protobuf\Internal\Message
      *    For more information, see https://cloud.google.com/about/locations/.
      * * `QUEUE_ID` can contain letters ([A-Za-z]), numbers ([0-9]), or
      *   hyphens (-). The maximum length is 100 characters.
-     * Caller-specified and required in [CreateQueue][google.cloud.tasks.v2beta2.CloudTasks.CreateQueue],
-     * after which it becomes output only.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @return string
@@ -124,6 +124,8 @@ class Queue extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Caller-specified and required in [CreateQueue][google.cloud.tasks.v2beta2.CloudTasks.CreateQueue],
+     * after which it becomes output only.
      * The queue name.
      * The queue name must have the following format:
      * `projects/PROJECT_ID/locations/LOCATION_ID/queues/QUEUE_ID`
@@ -137,8 +139,6 @@ class Queue extends \Google\Protobuf\Internal\Message
      *    For more information, see https://cloud.google.com/about/locations/.
      * * `QUEUE_ID` can contain letters ([A-Za-z]), numbers ([0-9]), or
      *   hyphens (-). The maximum length is 100 characters.
-     * Caller-specified and required in [CreateQueue][google.cloud.tasks.v2beta2.CloudTasks.CreateQueue],
-     * after which it becomes output only.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @param string $var
