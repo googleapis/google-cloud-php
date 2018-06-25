@@ -30,7 +30,7 @@ v1_library = gapic._generate_code(
     artman_output_name='google-cloud-vision-v1')
 
 # copy all src except ImageAnnotatorClient.php
-s.move(v1_library / f'src/V1/gapic')
+s.move(v1_library / f'src/V1/Gapic')
 s.move(v1_library / f'src/V1/resources')
 
 # copy proto files to src also
