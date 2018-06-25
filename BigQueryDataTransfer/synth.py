@@ -25,28 +25,28 @@ common = gcp.CommonTemplates()
 
 # tasks has two product names, and a poorly named artman yaml
 library = gapic.php_library(
-    service='clouddebugger',
-    version='v2',
-    config_path='/google/devtools/artman_clouddebugger.yaml',
-    artman_output_name='google-cloud-debugger-v2')
+    service='bigquerydatatransfer',
+    version='v1',
+    config_path='/google/cloud/bigquery/datatransfer/artman_bigquerydatatransfer.yaml',
+    artman_output_name='google-cloud-bigquerydatatransfer-v1')
 
 # copy all src except partial veneer classes
-s.move(library / f'src/V2/Gapic')
-s.move(library / f'src/V2/resources')
+s.move(library / f'src/V1/Gapic')
+s.move(library / f'src/V1/resources')
 
 # copy proto files to src also
-s.move(library / f'proto/src/Google/Cloud/Debugger/', f'src/')
+s.move(library / f'proto/src/Google/Cloud/BigQuery/DataTransfer/', f'src/')
 s.move(library / f'tests/')
 
 # copy GPBMetadata file to metadata
-s.move(library / f'proto/src/GPBMetadata/Google/Devtools/Clouddebugger', f'metadata/')
+s.move(library / f'proto/src/GPBMetadata/Google/Cloud/Bigquery/Datatransfer', f'metadata/')
 
 # fix year
 s.replace(
     '**/Gapic/*GapicClient.php',
     r'Copyright \d{4}',
-    r'Copyright 2018')
+    r'Copyright 2017')
 s.replace(
     'tests/**/V2/*Test.php',
     r'Copyright \d{4}',
-    r'Copyright 2018')
+    r'Copyright 2017')
