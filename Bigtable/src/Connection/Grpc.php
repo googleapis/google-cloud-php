@@ -18,6 +18,7 @@
 namespace Google\Cloud\Bigtable\Connection;
 
 use Google\ApiCore\Serializer;
+use Google\Cloud\Bigtable\Admin\V2\AppProfile;
 use Google\Cloud\Bigtable\Admin\V2\BigtableInstanceAdminClient;
 use Google\Cloud\Bigtable\Admin\V2\BigtableTableAdminClient;
 use Google\Cloud\Bigtable\Admin\V2\Cluster;
@@ -26,6 +27,7 @@ use Google\Cloud\Bigtable\V2\BigtableClient;
 use Google\Cloud\Core\GrpcRequestWrapper;
 use Google\Cloud\Core\GrpcTrait;
 use Google\Cloud\Core\LongRunning\OperationResponseTrait;
+use Google\Protobuf\FieldMask;
 
 /**
  * Connection to Cloud Bigtable over GRPC
@@ -211,7 +213,31 @@ class Grpc implements ConnectionInterface
      */
     public function createAppProfile(array $args)
     {
-        throw new \BadMethodCallException('This method is not implemented yet');
+        $parent = $this->pluck('parent', $args);
+        $appProfile = $this->pluck('appProfile', $args);
+        return $this->send([$this->bigtableInstanceAdminClient, 'createAppProfile'], [
+            $parent,
+            $this->pluck('appProfileId', $args),
+            $this->appProfileObject($appProfile),
+            $this->addResourcePrefixHeader($args, $parent)
+        ]);
+    }
+
+    /**
+     * @param array $args
+     * @return AppProfile
+     */
+    private function appProfileObject(array $args)
+    {
+        return $this->serializer->decodeMessage(
+            new AppProfile(),
+            $this->pluckArray([
+                'name',
+                'etag',
+                'description',
+                'singleClusterRouting',
+            ], $args)
+        );
     }
 
     /**
@@ -219,7 +245,11 @@ class Grpc implements ConnectionInterface
      */
     public function getAppProfile(array $args)
     {
-        throw new \BadMethodCallException('This method is not implemented yet');
+        $name = $this->pluck('name', $args);
+        return $this->send([$this->bigtableInstanceAdminClient, 'getAppProfile'], [
+            $name,
+            $this->addResourcePrefixHeader($args, $name)
+        ]);
     }
 
     /**
@@ -227,7 +257,11 @@ class Grpc implements ConnectionInterface
      */
     public function listAppProfiles(array $args)
     {
-        throw new \BadMethodCallException('This method is not implemented yet');
+        $parent = $this->pluck('parent', $args);
+        return $this->send([$this->bigtableInstanceAdminClient, 'listAppProfiles'], [
+            $parent,
+            $this->addResourcePrefixHeader($args, $parent)
+        ]);
     }
 
     /**
@@ -235,7 +269,35 @@ class Grpc implements ConnectionInterface
      */
     public function updateAppProfile(array $args)
     {
-        throw new \BadMethodCallException('This method is not implemented yet');
+        $name = $this->pluck('name', $args);
+        $appProfile = $this->pluck('appProfile', $args);
+        return $this->send([$this->bigtableInstanceAdminClient, 'updateAppProfile'], [
+            $this->appProfileObject($appProfile),
+            $this->updateMaskObject($appProfile),
+            $this->addResourcePrefixHeader($args, $name)
+        ]);
+    }
+
+    /**
+     * @param array $args
+     * @return FieldMask
+     */
+    private function updateMaskObject(array $args)
+    {
+        $mask = array_map([$this, 'serializerObject'], array_keys($args));
+        return $this->serializer->decodeMessage(
+            new FieldMask(),
+            ['paths' => $mask]
+        );
+    }
+
+    /**
+     * @param string $key
+     * @return Serializer
+     */
+    private function serializerObject($key)
+    {
+        return Serializer::toSnakeCase($key);
     }
 
     /**
@@ -243,7 +305,12 @@ class Grpc implements ConnectionInterface
      */
     public function deleteAppProfile(array $args)
     {
-        throw new \BadMethodCallException('This method is not implemented yet');
+        $name = $this->pluck('name', $args);
+        return $this->send([$this->bigtableInstanceAdminClient, 'deleteAppProfile'], [
+            $name,
+            $this->pluck('ignoreWarnings', $args),
+            $this->addResourcePrefixHeader($args, $name)
+        ]);
     }
 
     /**
