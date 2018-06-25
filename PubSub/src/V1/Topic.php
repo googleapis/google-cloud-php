@@ -32,6 +32,17 @@ class Topic extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>map<string, string> labels = 2;</code>
      */
     private $labels;
+    /**
+     * Policy constraining how messages published to the topic may be stored. It
+     * is determined when the topic is created based on the policy configured at
+     * the project level. It must not be set by the caller in the request to
+     * CreateTopic or to UpdateTopic. This field will be populated in the
+     * responses for GetTopic, CreateTopic, and UpdateTopic: if not present in the
+     * response, then no constraints are in effect.
+     *
+     * Generated from protobuf field <code>.google.pubsub.v1.MessageStoragePolicy message_storage_policy = 3;</code>
+     */
+    private $message_storage_policy = null;
 
     public function __construct() {
         \GPBMetadata\Google\Pubsub\V1\Pubsub::initOnce();
@@ -96,6 +107,42 @@ class Topic extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::STRING);
         $this->labels = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Policy constraining how messages published to the topic may be stored. It
+     * is determined when the topic is created based on the policy configured at
+     * the project level. It must not be set by the caller in the request to
+     * CreateTopic or to UpdateTopic. This field will be populated in the
+     * responses for GetTopic, CreateTopic, and UpdateTopic: if not present in the
+     * response, then no constraints are in effect.
+     *
+     * Generated from protobuf field <code>.google.pubsub.v1.MessageStoragePolicy message_storage_policy = 3;</code>
+     * @return \Google\Cloud\PubSub\V1\MessageStoragePolicy
+     */
+    public function getMessageStoragePolicy()
+    {
+        return $this->message_storage_policy;
+    }
+
+    /**
+     * Policy constraining how messages published to the topic may be stored. It
+     * is determined when the topic is created based on the policy configured at
+     * the project level. It must not be set by the caller in the request to
+     * CreateTopic or to UpdateTopic. This field will be populated in the
+     * responses for GetTopic, CreateTopic, and UpdateTopic: if not present in the
+     * response, then no constraints are in effect.
+     *
+     * Generated from protobuf field <code>.google.pubsub.v1.MessageStoragePolicy message_storage_policy = 3;</code>
+     * @param \Google\Cloud\PubSub\V1\MessageStoragePolicy $var
+     * @return $this
+     */
+    public function setMessageStoragePolicy($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\PubSub\V1\MessageStoragePolicy::class);
+        $this->message_storage_policy = $var;
 
         return $this;
     }

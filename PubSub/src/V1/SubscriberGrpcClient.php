@@ -2,7 +2,7 @@
 // GENERATED CODE -- DO NOT EDIT!
 
 // Original file comments:
-// Copyright 2017 Google Inc.
+// Copyright 2018 Google Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -20,7 +20,8 @@ namespace Google\Cloud\PubSub\V1;
 
 /**
  * The service that an application uses to manipulate subscriptions and to
- * consume messages from a subscription via the `Pull` method.
+ * consume messages from a subscription via the `Pull` method or by
+ * establishing a bi-directional stream using the `StreamingPull` method.
  */
 class SubscriberGrpcClient extends \Grpc\BaseStub {
 
@@ -34,7 +35,8 @@ class SubscriberGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * Creates a subscription to a given topic.
+     * Creates a subscription to a given topic. See the
+     * <a href="/pubsub/docs/admin#resource_names"> resource name rules</a>.
      * If the subscription already exists, returns `ALREADY_EXISTS`.
      * If the corresponding topic doesn't exist, returns `NOT_FOUND`.
      *
@@ -73,10 +75,6 @@ class SubscriberGrpcClient extends \Grpc\BaseStub {
     /**
      * Updates an existing subscription. Note that certain properties of a
      * subscription, such as its topic, are not modifiable.
-     * NOTE:  The style guide requires body: "subscription" instead of body: "*".
-     * Keeping the latter for internal consistency in V1, however it should be
-     * corrected in V2.  See
-     * https://cloud.google.com/apis/design/standard_methods#update for details.
      * @param \Google\Cloud\PubSub\V1\UpdateSubscriptionRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -177,18 +175,13 @@ class SubscriberGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * (EXPERIMENTAL) StreamingPull is an experimental feature. This RPC will
-     * respond with UNIMPLEMENTED errors unless you have been invited to test
-     * this feature. Contact cloud-pubsub@google.com with any questions.
-     *
      * Establishes a stream with the server, which sends messages down to the
      * client. The client streams acknowledgements and ack deadline modifications
      * back to the server. The server will close the stream and return the status
-     * on any error. The server may close the stream with status `OK` to reassign
-     * server-side resources, in which case, the client should re-establish the
-     * stream. `UNAVAILABLE` may also be returned in the case of a transient error
-     * (e.g., a server restart). These should also be retried by the client. Flow
-     * control can be achieved by configuring the underlying RPC channel.
+     * on any error. The server may close the stream with status `UNAVAILABLE` to
+     * reassign server-side resources, in which case, the client should
+     * re-establish the stream. Flow control can be achieved by configuring the
+     * underlying RPC channel.
      * @param array $metadata metadata
      * @param array $options call options
      */
@@ -218,7 +211,27 @@ class SubscriberGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * Lists the existing snapshots.
+     * Gets the configuration details of a snapshot.<br><br>
+     * <b>ALPHA:</b> This feature is part of an alpha release. This API might be
+     * changed in backward-incompatible ways and is not recommended for production
+     * use. It is not subject to any SLA or deprecation policy.
+     * @param \Google\Cloud\PubSub\V1\GetSnapshotRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     */
+    public function GetSnapshot(\Google\Cloud\PubSub\V1\GetSnapshotRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.pubsub.v1.Subscriber/GetSnapshot',
+        $argument,
+        ['\Google\Cloud\PubSub\V1\Snapshot', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Lists the existing snapshots.<br><br>
+     * <b>ALPHA:</b> This feature is part of an alpha release. This API might be
+     * changed in backward-incompatible ways and is not recommended for production
+     * use. It is not subject to any SLA or deprecation policy.
      * @param \Google\Cloud\PubSub\V1\ListSnapshotsRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -232,16 +245,21 @@ class SubscriberGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * Creates a snapshot from the requested subscription.
+     * Creates a snapshot from the requested subscription.<br><br>
+     * <b>ALPHA:</b> This feature is part of an alpha release. This API might be
+     * changed in backward-incompatible ways and is not recommended for production
+     * use. It is not subject to any SLA or deprecation policy.
      * If the snapshot already exists, returns `ALREADY_EXISTS`.
      * If the requested subscription doesn't exist, returns `NOT_FOUND`.
-     *
-     * If the name is not provided in the request, the server will assign a random
+     * If the backlog in the subscription is too old -- and the resulting snapshot
+     * would expire in less than 1 hour -- then `FAILED_PRECONDITION` is returned.
+     * See also the `Snapshot.expire_time` field. If the name is not provided in
+     * the request, the server will assign a random
      * name for this snapshot on the same project as the subscription, conforming
-     * to the
-     * [resource name format](https://cloud.google.com/pubsub/docs/overview#names).
-     * The generated name is populated in the returned Snapshot object.
-     * Note that for REST API requests, you must specify a name in the request.
+     * to the [resource name format](https://cloud.google.com/pubsub/docs/overview#names).
+     * The generated
+     * name is populated in the returned Snapshot object. Note that for REST API
+     * requests, you must specify a name in the request.
      * @param \Google\Cloud\PubSub\V1\CreateSnapshotRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -255,12 +273,11 @@ class SubscriberGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * Updates an existing snapshot. Note that certain properties of a snapshot
-     * are not modifiable.
-     * NOTE:  The style guide requires body: "snapshot" instead of body: "*".
-     * Keeping the latter for internal consistency in V1, however it should be
-     * corrected in V2.  See
-     * https://cloud.google.com/apis/design/standard_methods#update for details.
+     * Updates an existing snapshot.<br><br>
+     * <b>ALPHA:</b> This feature is part of an alpha release. This API might be
+     * changed in backward-incompatible ways and is not recommended for production
+     * use. It is not subject to any SLA or deprecation policy.
+     * Note that certain properties of a snapshot are not modifiable.
      * @param \Google\Cloud\PubSub\V1\UpdateSnapshotRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -274,7 +291,11 @@ class SubscriberGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * Removes an existing snapshot. All messages retained in the snapshot
+     * Removes an existing snapshot. <br><br>
+     * <b>ALPHA:</b> This feature is part of an alpha release. This API might be
+     * changed in backward-incompatible ways and is not recommended for production
+     * use. It is not subject to any SLA or deprecation policy.
+     * When the snapshot is deleted, all messages retained in the snapshot
      * are immediately dropped. After a snapshot is deleted, a new one may be
      * created with the same name, but the new one has no association with the old
      * snapshot or its subscription, unless the same subscription is specified.
@@ -292,7 +313,10 @@ class SubscriberGrpcClient extends \Grpc\BaseStub {
 
     /**
      * Seeks an existing subscription to a point in time or to a given snapshot,
-     * whichever is provided in the request.
+     * whichever is provided in the request.<br><br>
+     * <b>ALPHA:</b> This feature is part of an alpha release. This API might be
+     * changed in backward-incompatible ways and is not recommended for production
+     * use. It is not subject to any SLA or deprecation policy.
      * @param \Google\Cloud\PubSub\V1\SeekRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options

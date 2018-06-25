@@ -2,7 +2,7 @@
 // GENERATED CODE -- DO NOT EDIT!
 
 // Original file comments:
-// Copyright 2017 Google Inc.
+// Copyright 2018 Google Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -34,7 +34,8 @@ class PublisherGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * Creates the given topic with the given name.
+     * Creates the given topic with the given name. See the
+     * <a href="/pubsub/docs/admin#resource_names"> resource name rules</a>.
      * @param \Google\Cloud\PubSub\V1\Topic $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -48,12 +49,8 @@ class PublisherGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * Updates an existing topic. Note that certain properties of a topic are not
-     * modifiable.  Options settings follow the style guide:
-     * NOTE:  The style guide requires body: "topic" instead of body: "*".
-     * Keeping the latter for internal consistency in V1, however it should be
-     * corrected in V2.  See
-     * https://cloud.google.com/apis/design/standard_methods#update for details.
+     * Updates an existing topic. Note that certain properties of a
+     * topic are not modifiable.
      * @param \Google\Cloud\PubSub\V1\UpdateTopicRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -111,7 +108,7 @@ class PublisherGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * Lists the name of the subscriptions for this topic.
+     * Lists the names of the subscriptions on this topic.
      * @param \Google\Cloud\PubSub\V1\ListTopicSubscriptionsRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -121,6 +118,23 @@ class PublisherGrpcClient extends \Grpc\BaseStub {
         return $this->_simpleRequest('/google.pubsub.v1.Publisher/ListTopicSubscriptions',
         $argument,
         ['\Google\Cloud\PubSub\V1\ListTopicSubscriptionsResponse', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Lists the names of the snapshots on this topic.<br><br>
+     * <b>ALPHA:</b> This feature is part of an alpha release. This API might be
+     * changed in backward-incompatible ways and is not recommended for production
+     * use. It is not subject to any SLA or deprecation policy.
+     * @param \Google\Cloud\PubSub\V1\ListTopicSnapshotsRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     */
+    public function ListTopicSnapshots(\Google\Cloud\PubSub\V1\ListTopicSnapshotsRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.pubsub.v1.Publisher/ListTopicSnapshots',
+        $argument,
+        ['\Google\Cloud\PubSub\V1\ListTopicSnapshotsResponse', 'decode'],
         $metadata, $options);
     }
 

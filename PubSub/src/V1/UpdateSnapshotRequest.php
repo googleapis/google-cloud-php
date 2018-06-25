@@ -9,14 +9,17 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request for the UpdateSnapshot method.
+ * Request for the UpdateSnapshot method.<br><br>
+ * <b>ALPHA:</b> This feature is part of an alpha release. This API might be
+ * changed in backward-incompatible ways and is not recommended for production
+ * use. It is not subject to any SLA or deprecation policy.
  *
  * Generated from protobuf message <code>google.pubsub.v1.UpdateSnapshotRequest</code>
  */
 class UpdateSnapshotRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The updated snpashot object.
+     * The updated snapshot object.
      *
      * Generated from protobuf field <code>.google.pubsub.v1.Snapshot snapshot = 1;</code>
      */
@@ -35,7 +38,7 @@ class UpdateSnapshotRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The updated snpashot object.
+     * The updated snapshot object.
      *
      * Generated from protobuf field <code>.google.pubsub.v1.Snapshot snapshot = 1;</code>
      * @return \Google\Cloud\PubSub\V1\Snapshot
@@ -46,7 +49,7 @@ class UpdateSnapshotRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The updated snpashot object.
+     * The updated snapshot object.
      *
      * Generated from protobuf field <code>.google.pubsub.v1.Snapshot snapshot = 1;</code>
      * @param \Google\Cloud\PubSub\V1\Snapshot $var

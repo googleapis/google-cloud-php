@@ -9,7 +9,10 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * A snapshot resource.
+ * A snapshot resource.<br><br>
+ * <b>ALPHA:</b> This feature is part of an alpha release. This API might be
+ * changed in backward-incompatible ways and is not recommended for production
+ * use. It is not subject to any SLA or deprecation policy.
  *
  * Generated from protobuf message <code>google.pubsub.v1.Snapshot</code>
  */
@@ -36,7 +39,8 @@ class Snapshot extends \Google\Protobuf\Internal\Message
      * For example, consider a subscription whose oldest unacked message is 3 days
      * old. If a snapshot is created from this subscription, the snapshot -- which
      * will always capture this 3-day-old backlog as long as the snapshot
-     * exists -- will expire in 4 days.
+     * exists -- will expire in 4 days. The service will refuse to create a
+     * snapshot that would expire in less than 1 hour after creation.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp expire_time = 3;</code>
      */
@@ -114,7 +118,8 @@ class Snapshot extends \Google\Protobuf\Internal\Message
      * For example, consider a subscription whose oldest unacked message is 3 days
      * old. If a snapshot is created from this subscription, the snapshot -- which
      * will always capture this 3-day-old backlog as long as the snapshot
-     * exists -- will expire in 4 days.
+     * exists -- will expire in 4 days. The service will refuse to create a
+     * snapshot that would expire in less than 1 hour after creation.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp expire_time = 3;</code>
      * @return \Google\Protobuf\Timestamp
@@ -133,7 +138,8 @@ class Snapshot extends \Google\Protobuf\Internal\Message
      * For example, consider a subscription whose oldest unacked message is 3 days
      * old. If a snapshot is created from this subscription, the snapshot -- which
      * will always capture this 3-day-old backlog as long as the snapshot
-     * exists -- will expire in 4 days.
+     * exists -- will expire in 4 days. The service will refuse to create a
+     * snapshot that would expire in less than 1 hour after creation.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp expire_time = 3;</code>
      * @param \Google\Protobuf\Timestamp $var

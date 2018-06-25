@@ -52,7 +52,8 @@ class Subscription extends \Google\Protobuf\Internal\Message
      * For pull subscriptions, this value is used as the initial value for the ack
      * deadline. To override this value for a given message, call
      * `ModifyAckDeadline` with the corresponding `ack_id` if using
-     * pull.
+     * non-streaming pull or send the `ack_id` in a
+     * `StreamingModifyAckDeadlineRequest` if using streaming pull.
      * The minimum custom deadline you can specify is 10 seconds.
      * The maximum custom deadline you can specify is 600 seconds (10 minutes).
      * If this parameter is 0, a default value of 10 seconds is used.
@@ -68,7 +69,10 @@ class Subscription extends \Google\Protobuf\Internal\Message
      * Indicates whether to retain acknowledged messages. If true, then
      * messages are not expunged from the subscription's backlog, even if they are
      * acknowledged, until they fall out of the `message_retention_duration`
-     * window.
+     * window.<br><br>
+     * <b>ALPHA:</b> This feature is part of an alpha release. This API might be
+     * changed in backward-incompatible ways and is not recommended for production
+     * use. It is not subject to any SLA or deprecation policy.
      *
      * Generated from protobuf field <code>bool retain_acked_messages = 7;</code>
      */
@@ -79,7 +83,10 @@ class Subscription extends \Google\Protobuf\Internal\Message
      * If `retain_acked_messages` is true, then this also configures the retention
      * of acknowledged messages, and thus configures how far back in time a `Seek`
      * can be done. Defaults to 7 days. Cannot be more than 7 days or less than 10
-     * minutes.
+     * minutes.<br><br>
+     * <b>ALPHA:</b> This feature is part of an alpha release. This API might be
+     * changed in backward-incompatible ways and is not recommended for production
+     * use. It is not subject to any SLA or deprecation policy.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration message_retention_duration = 8;</code>
      */
@@ -203,7 +210,8 @@ class Subscription extends \Google\Protobuf\Internal\Message
      * For pull subscriptions, this value is used as the initial value for the ack
      * deadline. To override this value for a given message, call
      * `ModifyAckDeadline` with the corresponding `ack_id` if using
-     * pull.
+     * non-streaming pull or send the `ack_id` in a
+     * `StreamingModifyAckDeadlineRequest` if using streaming pull.
      * The minimum custom deadline you can specify is 10 seconds.
      * The maximum custom deadline you can specify is 600 seconds (10 minutes).
      * If this parameter is 0, a default value of 10 seconds is used.
@@ -229,7 +237,8 @@ class Subscription extends \Google\Protobuf\Internal\Message
      * For pull subscriptions, this value is used as the initial value for the ack
      * deadline. To override this value for a given message, call
      * `ModifyAckDeadline` with the corresponding `ack_id` if using
-     * pull.
+     * non-streaming pull or send the `ack_id` in a
+     * `StreamingModifyAckDeadlineRequest` if using streaming pull.
      * The minimum custom deadline you can specify is 10 seconds.
      * The maximum custom deadline you can specify is 600 seconds (10 minutes).
      * If this parameter is 0, a default value of 10 seconds is used.
@@ -254,7 +263,10 @@ class Subscription extends \Google\Protobuf\Internal\Message
      * Indicates whether to retain acknowledged messages. If true, then
      * messages are not expunged from the subscription's backlog, even if they are
      * acknowledged, until they fall out of the `message_retention_duration`
-     * window.
+     * window.<br><br>
+     * <b>ALPHA:</b> This feature is part of an alpha release. This API might be
+     * changed in backward-incompatible ways and is not recommended for production
+     * use. It is not subject to any SLA or deprecation policy.
      *
      * Generated from protobuf field <code>bool retain_acked_messages = 7;</code>
      * @return bool
@@ -268,7 +280,10 @@ class Subscription extends \Google\Protobuf\Internal\Message
      * Indicates whether to retain acknowledged messages. If true, then
      * messages are not expunged from the subscription's backlog, even if they are
      * acknowledged, until they fall out of the `message_retention_duration`
-     * window.
+     * window.<br><br>
+     * <b>ALPHA:</b> This feature is part of an alpha release. This API might be
+     * changed in backward-incompatible ways and is not recommended for production
+     * use. It is not subject to any SLA or deprecation policy.
      *
      * Generated from protobuf field <code>bool retain_acked_messages = 7;</code>
      * @param bool $var
@@ -288,7 +303,10 @@ class Subscription extends \Google\Protobuf\Internal\Message
      * If `retain_acked_messages` is true, then this also configures the retention
      * of acknowledged messages, and thus configures how far back in time a `Seek`
      * can be done. Defaults to 7 days. Cannot be more than 7 days or less than 10
-     * minutes.
+     * minutes.<br><br>
+     * <b>ALPHA:</b> This feature is part of an alpha release. This API might be
+     * changed in backward-incompatible ways and is not recommended for production
+     * use. It is not subject to any SLA or deprecation policy.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration message_retention_duration = 8;</code>
      * @return \Google\Protobuf\Duration
@@ -304,7 +322,10 @@ class Subscription extends \Google\Protobuf\Internal\Message
      * If `retain_acked_messages` is true, then this also configures the retention
      * of acknowledged messages, and thus configures how far back in time a `Seek`
      * can be done. Defaults to 7 days. Cannot be more than 7 days or less than 10
-     * minutes.
+     * minutes.<br><br>
+     * <b>ALPHA:</b> This feature is part of an alpha release. This API might be
+     * changed in backward-incompatible ways and is not recommended for production
+     * use. It is not subject to any SLA or deprecation policy.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration message_retention_duration = 8;</code>
      * @param \Google\Protobuf\Duration $var

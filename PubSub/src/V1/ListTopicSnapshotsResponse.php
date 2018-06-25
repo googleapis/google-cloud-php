@@ -9,24 +9,25 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Response for the `ListSnapshots` method.<br><br>
+ * Response for the `ListTopicSnapshots` method.<br><br>
  * <b>ALPHA:</b> This feature is part of an alpha release. This API might be
  * changed in backward-incompatible ways and is not recommended for production
  * use. It is not subject to any SLA or deprecation policy.
  *
- * Generated from protobuf message <code>google.pubsub.v1.ListSnapshotsResponse</code>
+ * Generated from protobuf message <code>google.pubsub.v1.ListTopicSnapshotsResponse</code>
  */
-class ListSnapshotsResponse extends \Google\Protobuf\Internal\Message
+class ListTopicSnapshotsResponse extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The resulting snapshots.
+     * The names of the snapshots that match the request.
      *
-     * Generated from protobuf field <code>repeated .google.pubsub.v1.Snapshot snapshots = 1;</code>
+     * Generated from protobuf field <code>repeated string snapshots = 1;</code>
      */
     private $snapshots;
     /**
-     * If not empty, indicates that there may be more snapshot that match the
-     * request; this value should be passed in a new `ListSnapshotsRequest`.
+     * If not empty, indicates that there may be more snapshots that match
+     * the request; this value should be passed in a new
+     * `ListTopicSnapshotsRequest` to get more snapshots.
      *
      * Generated from protobuf field <code>string next_page_token = 2;</code>
      */
@@ -38,9 +39,9 @@ class ListSnapshotsResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The resulting snapshots.
+     * The names of the snapshots that match the request.
      *
-     * Generated from protobuf field <code>repeated .google.pubsub.v1.Snapshot snapshots = 1;</code>
+     * Generated from protobuf field <code>repeated string snapshots = 1;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getSnapshots()
@@ -49,23 +50,24 @@ class ListSnapshotsResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The resulting snapshots.
+     * The names of the snapshots that match the request.
      *
-     * Generated from protobuf field <code>repeated .google.pubsub.v1.Snapshot snapshots = 1;</code>
-     * @param \Google\Cloud\PubSub\V1\Snapshot[]|\Google\Protobuf\Internal\RepeatedField $var
+     * Generated from protobuf field <code>repeated string snapshots = 1;</code>
+     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setSnapshots($var)
     {
-        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\PubSub\V1\Snapshot::class);
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
         $this->snapshots = $arr;
 
         return $this;
     }
 
     /**
-     * If not empty, indicates that there may be more snapshot that match the
-     * request; this value should be passed in a new `ListSnapshotsRequest`.
+     * If not empty, indicates that there may be more snapshots that match
+     * the request; this value should be passed in a new
+     * `ListTopicSnapshotsRequest` to get more snapshots.
      *
      * Generated from protobuf field <code>string next_page_token = 2;</code>
      * @return string
@@ -76,8 +78,9 @@ class ListSnapshotsResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If not empty, indicates that there may be more snapshot that match the
-     * request; this value should be passed in a new `ListSnapshotsRequest`.
+     * If not empty, indicates that there may be more snapshots that match
+     * the request; this value should be passed in a new
+     * `ListTopicSnapshotsRequest` to get more snapshots.
      *
      * Generated from protobuf field <code>string next_page_token = 2;</code>
      * @param string $var

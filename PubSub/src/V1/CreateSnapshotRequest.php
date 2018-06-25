@@ -9,7 +9,10 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request for the `CreateSnapshot` method.
+ * Request for the `CreateSnapshot` method.<br><br>
+ * <b>ALPHA:</b> This feature is part of an alpha release. This API might be changed in
+ * backward-incompatible ways and is not recommended for production use.
+ * It is not subject to any SLA or deprecation policy.
  *
  * Generated from protobuf message <code>google.pubsub.v1.CreateSnapshotRequest</code>
  */
@@ -39,6 +42,12 @@ class CreateSnapshotRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string subscription = 2;</code>
      */
     private $subscription = '';
+    /**
+     * User labels.
+     *
+     * Generated from protobuf field <code>map<string, string> labels = 3;</code>
+     */
+    private $labels;
 
     public function __construct() {
         \GPBMetadata\Google\Pubsub\V1\Pubsub::initOnce();
@@ -117,6 +126,32 @@ class CreateSnapshotRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->subscription = $var;
+
+        return $this;
+    }
+
+    /**
+     * User labels.
+     *
+     * Generated from protobuf field <code>map<string, string> labels = 3;</code>
+     * @return \Google\Protobuf\Internal\MapField
+     */
+    public function getLabels()
+    {
+        return $this->labels;
+    }
+
+    /**
+     * User labels.
+     *
+     * Generated from protobuf field <code>map<string, string> labels = 3;</code>
+     * @param array|\Google\Protobuf\Internal\MapField $var
+     * @return $this
+     */
+    public function setLabels($var)
+    {
+        $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->labels = $arr;
 
         return $this;
     }

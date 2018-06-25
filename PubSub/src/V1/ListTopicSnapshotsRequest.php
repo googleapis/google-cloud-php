@@ -9,32 +9,32 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request for the `ListSnapshots` method.<br><br>
+ * Request for the `ListTopicSnapshots` method.<br><br>
  * <b>ALPHA:</b> This feature is part of an alpha release. This API might be
  * changed in backward-incompatible ways and is not recommended for production
  * use. It is not subject to any SLA or deprecation policy.
  *
- * Generated from protobuf message <code>google.pubsub.v1.ListSnapshotsRequest</code>
+ * Generated from protobuf message <code>google.pubsub.v1.ListTopicSnapshotsRequest</code>
  */
-class ListSnapshotsRequest extends \Google\Protobuf\Internal\Message
+class ListTopicSnapshotsRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The name of the cloud project that snapshots belong to.
-     * Format is `projects/{project}`.
+     * The name of the topic that snapshots are attached to.
+     * Format is `projects/{project}/topics/{topic}`.
      *
-     * Generated from protobuf field <code>string project = 1;</code>
+     * Generated from protobuf field <code>string topic = 1;</code>
      */
-    private $project = '';
+    private $topic = '';
     /**
-     * Maximum number of snapshots to return.
+     * Maximum number of snapshot names to return.
      *
      * Generated from protobuf field <code>int32 page_size = 2;</code>
      */
     private $page_size = 0;
     /**
-     * The value returned by the last `ListSnapshotsResponse`; indicates that this
-     * is a continuation of a prior `ListSnapshots` call, and that the system
-     * should return the next page of data.
+     * The value returned by the last `ListTopicSnapshotsResponse`; indicates
+     * that this is a continuation of a prior `ListTopicSnapshots` call, and
+     * that the system should return the next page of data.
      *
      * Generated from protobuf field <code>string page_token = 3;</code>
      */
@@ -46,35 +46,35 @@ class ListSnapshotsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The name of the cloud project that snapshots belong to.
-     * Format is `projects/{project}`.
+     * The name of the topic that snapshots are attached to.
+     * Format is `projects/{project}/topics/{topic}`.
      *
-     * Generated from protobuf field <code>string project = 1;</code>
+     * Generated from protobuf field <code>string topic = 1;</code>
      * @return string
      */
-    public function getProject()
+    public function getTopic()
     {
-        return $this->project;
+        return $this->topic;
     }
 
     /**
-     * The name of the cloud project that snapshots belong to.
-     * Format is `projects/{project}`.
+     * The name of the topic that snapshots are attached to.
+     * Format is `projects/{project}/topics/{topic}`.
      *
-     * Generated from protobuf field <code>string project = 1;</code>
+     * Generated from protobuf field <code>string topic = 1;</code>
      * @param string $var
      * @return $this
      */
-    public function setProject($var)
+    public function setTopic($var)
     {
         GPBUtil::checkString($var, True);
-        $this->project = $var;
+        $this->topic = $var;
 
         return $this;
     }
 
     /**
-     * Maximum number of snapshots to return.
+     * Maximum number of snapshot names to return.
      *
      * Generated from protobuf field <code>int32 page_size = 2;</code>
      * @return int
@@ -85,7 +85,7 @@ class ListSnapshotsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Maximum number of snapshots to return.
+     * Maximum number of snapshot names to return.
      *
      * Generated from protobuf field <code>int32 page_size = 2;</code>
      * @param int $var
@@ -100,9 +100,9 @@ class ListSnapshotsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The value returned by the last `ListSnapshotsResponse`; indicates that this
-     * is a continuation of a prior `ListSnapshots` call, and that the system
-     * should return the next page of data.
+     * The value returned by the last `ListTopicSnapshotsResponse`; indicates
+     * that this is a continuation of a prior `ListTopicSnapshots` call, and
+     * that the system should return the next page of data.
      *
      * Generated from protobuf field <code>string page_token = 3;</code>
      * @return string
@@ -113,9 +113,9 @@ class ListSnapshotsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The value returned by the last `ListSnapshotsResponse`; indicates that this
-     * is a continuation of a prior `ListSnapshots` call, and that the system
-     * should return the next page of data.
+     * The value returned by the last `ListTopicSnapshotsResponse`; indicates
+     * that this is a continuation of a prior `ListTopicSnapshots` call, and
+     * that the system should return the next page of data.
      *
      * Generated from protobuf field <code>string page_token = 3;</code>
      * @param string $var
