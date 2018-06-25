@@ -34,8 +34,11 @@ s.move(v1_library / f'src/V1/Gapic')
 s.move(v1_library / f'src/V1/resources')
 
 # copy proto files to src also
-s.move(v1_library / f'proto/src/Google/Cloud/Vision/', f'src/')
+s.move(v1_library / f'proto/src/Google/Cloud/Vision', f'src/')
 s.move(v1_library / f'tests/')
+
+# copy GPBMetadata file to metadata
+s.move(v1_library / f'proto/src/GPBMetadata/Google/Cloud/Vision', f'metadata/')
 
 # fix year
 s.replace(
