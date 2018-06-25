@@ -38,6 +38,9 @@ s.move(library / f'src/V2/resources')
 s.move(library / f'proto/src/Google/Cloud/Debugger/', f'src/')
 s.move(library / f'tests/')
 
+# copy GPBMetadata file to metadata
+s.move(library / f'proto/src/GPBMetadata/Google/Devtools/Clouddebugger', f'metadata/')
+
 # fix year
 s.replace(
     '**/Gapic/*GapicClient.php',
