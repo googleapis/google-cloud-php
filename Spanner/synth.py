@@ -23,7 +23,6 @@ logging.basicConfig(level=logging.DEBUG)
 gapic = gcp.GAPICGenerator()
 common = gcp.CommonTemplates()
 
-# Spanner has two product names, and a poorly named artman yaml
 library = gapic.php_library(
     service='spanner',
     version='v1',
@@ -75,7 +74,7 @@ s.replace(
     r'Copyright \d{4}',
     r'Copyright 2017')
 s.replace(
-    'tests/**/V2/*Test.php',
+    'tests/**/Admin/Database/V1/*Test.php',
     r'Copyright \d{4}',
     r'Copyright 2018')
 
@@ -103,6 +102,6 @@ s.replace(
     r'Copyright \d{4}',
     r'Copyright 2017')
 s.replace(
-    'tests/**/V2/*Test.php',
+    'tests/**/Admin/Instance/V1/*Test.php',
     r'Copyright \d{4}',
     r'Copyright 2018')

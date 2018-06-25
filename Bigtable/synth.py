@@ -23,7 +23,6 @@ logging.basicConfig(level=logging.DEBUG)
 gapic = gcp.GAPICGenerator()
 common = gcp.CommonTemplates()
 
-# Bigtable has two product names, and a poorly named artman yaml
 library = gapic.php_library(
     service='bigtable',
     version='v2',
@@ -75,6 +74,6 @@ s.replace(
     r'Copyright \d{4}',
     r'Copyright 2017')
 s.replace(
-    'tests/**/V2/*Test.php',
+    'tests/**/Admin/V2/*Test.php',
     r'Copyright \d{4}',
     r'Copyright 2018')

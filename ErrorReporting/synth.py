@@ -23,7 +23,6 @@ logging.basicConfig(level=logging.DEBUG)
 gapic = gcp.GAPICGenerator()
 common = gcp.CommonTemplates()
 
-# tasks has two product names, and a poorly named artman yaml
 library = gapic.php_library(
     service='clouderrorreporting',
     version='v1beta1',
