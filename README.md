@@ -664,21 +664,21 @@ $client = new CloudTasksClient();
 
 $project = 'example-project';
 $location = 'us-central1';
-$queue = 'example-queue';
+$queue = 'example-queue-' . uniqud();
 $queueName = $client::queueName($project, $location, $queue);
 
-// Create a queue beforehand with gcloud
-// gcloud alpha tasks queues create-pull-queue example-queue
-
-// or the code below
 // Create a pull queue
-// $locationName = $client::locationName($project, $location);
-// $queue = new Queue();
-// $queue->setName($queueName);
-// $queue->setPullTarget(new PullTarget());
-// $client->createQueue($locationName, $queue);
+$locationName = $client::locationName($project, $location);
+$queue = new Queue();
+$queue->setName($queueName);
+$queue->setPullTarget(new PullTarget());
+$client->createQueue($locationName, $queue);
+
+echo "$queueName created." . PHP_EOL;
 
 // After the creation, wait at least a minute
+echo 'Waiting for the queue to settle...' . PHP_EOL;
+sleep(60);
 
 // Create a task
 $pullMessage = new PullMessage();
