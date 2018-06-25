@@ -133,6 +133,7 @@ class CloudTasksGapicClient
     public static $serviceScopes = [
         'https://www.googleapis.com/auth/cloud-platform',
     ];
+    private static $projectNameTemplate;
     private static $locationNameTemplate;
     private static $queueNameTemplate;
     private static $taskNameTemplate;
@@ -154,6 +155,15 @@ class CloudTasksGapicClient
                 ],
             ],
         ];
+    }
+
+    private static function getProjectNameTemplate()
+    {
+        if (self::$projectNameTemplate == null) {
+            self::$projectNameTemplate = new PathTemplate('projects/{project}');
+        }
+
+        return self::$projectNameTemplate;
     }
 
     private static function getLocationNameTemplate()
@@ -187,6 +197,7 @@ class CloudTasksGapicClient
     {
         if (self::$pathTemplateMap == null) {
             self::$pathTemplateMap = [
+                'project' => self::getProjectNameTemplate(),
                 'location' => self::getLocationNameTemplate(),
                 'queue' => self::getQueueNameTemplate(),
                 'task' => self::getTaskNameTemplate(),
@@ -194,6 +205,22 @@ class CloudTasksGapicClient
         }
 
         return self::$pathTemplateMap;
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent
+     * a project resource.
+     *
+     * @param string $project
+     *
+     * @return string The formatted project resource.
+     * @experimental
+     */
+    public static function projectName($project)
+    {
+        return self::getProjectNameTemplate()->render([
+            'project' => $project,
+        ]);
     }
 
     /**
@@ -260,6 +287,7 @@ class CloudTasksGapicClient
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
+     * - project: projects/{project}
      * - location: projects/{project}/locations/{location}
      * - queue: projects/{project}/locations/{location}/queues/{queue}
      * - task: projects/{project}/locations/{location}/queues/{queue}/tasks/{task}.
@@ -1495,8 +1523,12 @@ class CloudTasksGapicClient
      *                            Optional.
      *
      *     @type int $maxTasks
-     *          The maximum number of tasks to lease. The maximum that can be
-     *          requested is 1000.
+     *          The maximum number of tasks to lease.
+     *
+     *          The system will make a best effort to return as close to as
+     *          `max_tasks` as possible.
+     *
+     *          The largest that `max_tasks` can be is 1000.
      *     @type int $responseView
      *          The response_view specifies which subset of the [Task][google.cloud.tasks.v2beta2.Task] will be
      *          returned.

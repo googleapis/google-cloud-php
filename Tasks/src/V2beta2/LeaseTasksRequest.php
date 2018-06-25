@@ -24,8 +24,10 @@ class LeaseTasksRequest extends \Google\Protobuf\Internal\Message
      */
     private $parent = '';
     /**
-     * The maximum number of tasks to lease. The maximum that can be
-     * requested is 1000.
+     * The maximum number of tasks to lease.
+     * The system will make a best effort to return as close to as
+     * `max_tasks` as possible.
+     * The largest that `max_tasks` can be is 1000.
      *
      * Generated from protobuf field <code>int32 max_tasks = 2;</code>
      */
@@ -121,8 +123,10 @@ class LeaseTasksRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The maximum number of tasks to lease. The maximum that can be
-     * requested is 1000.
+     * The maximum number of tasks to lease.
+     * The system will make a best effort to return as close to as
+     * `max_tasks` as possible.
+     * The largest that `max_tasks` can be is 1000.
      *
      * Generated from protobuf field <code>int32 max_tasks = 2;</code>
      * @return int
@@ -133,8 +137,10 @@ class LeaseTasksRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The maximum number of tasks to lease. The maximum that can be
-     * requested is 1000.
+     * The maximum number of tasks to lease.
+     * The system will make a best effort to return as close to as
+     * `max_tasks` as possible.
+     * The largest that `max_tasks` can be is 1000.
      *
      * Generated from protobuf field <code>int32 max_tasks = 2;</code>
      * @param int $var
