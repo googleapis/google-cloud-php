@@ -21,10 +21,6 @@
  * https://github.com/google/googleapis/blob/master/google/cloud/language/v1beta2/language_service.proto
  * and updates to that file get reflected here through a refresh process.
  *
- * EXPERIMENTAL: This client library class has not yet been declared GA (1.0). This means that
- * even though we intend the surface to be stable, we may make backwards incompatible changes
- * if necessary.
- *
  * @experimental
  */
 
@@ -56,10 +52,6 @@ use Google\Cloud\Language\V1beta2\EncodingType;
 /**
  * Service Description: Provides text analysis operations such as sentiment analysis and entity
  * recognition.
- *
- * EXPERIMENTAL: This client library class has not yet been declared GA (1.0). This means that
- * even though we intend the surface to be stable, we may make backwards incompatible changes
- * if necessary.
  *
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods. Sample code to get started:
