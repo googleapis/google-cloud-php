@@ -20,6 +20,7 @@ namespace Google\Cloud\Bigtable;
 use Google\ApiCore\ValidationException;
 use Google\Cloud\Bigtable\Admin\V2\BigtableInstanceAdminClient as InstanceAdminClient;
 use Google\Cloud\Bigtable\Admin\V2\Instance_Type;
+use Google\Cloud\Bigtable\Admin\V2\StorageType;
 use Google\Cloud\Bigtable\Connection\ConnectionInterface;
 use Google\Cloud\Core\ArrayTrait;
 use Google\Cloud\Core\Exception\NotFoundException;
@@ -80,7 +81,17 @@ class Instance
     use ArrayTrait;
     use LROTrait;
 
-    const DEFAULT_NODE_COUNT = 1;
+    const STORAGE_TYPE_UNSPECIFIED = StorageType::STORAGE_TYPE_UNSPECIFIED;
+
+    const STORAGE_TYPE_SSD = StorageType::SSD;
+
+    const STORAGE_TYPE_HDD = StorageType::HDD;
+
+    const INSTANCE_TYPE_UNSPECIFIED = Instance_Type::TYPE_UNSPECIFIED;
+
+    const INSTANCE_TYPE_PRODUCTION = Instance_Type::PRODUCTION;
+
+    const INSTANCE_TYPE_DEVELOPMENT = Instance_Type::DEVELOPMENT;
 
     /**
      * @var ConnectionInterface
@@ -232,16 +243,21 @@ class Instance
      * @param array $options [optional] {
      *     Configuration options
      *
-     *     @type string $displayName **Defaults to** the value of $name.
-     *     @type int $instanceType **Defaults to** `0`.
+     *     @type string $displayName **Defaults to** the value of $instanceId.
+     *     @type int $instanceType  Possible values include `Instance_Type::PRODUCTION`
+     *                              and `Instance_Type::DEVELOPMENT`.
+     *                              **Defaults to** `Instance_Type::TYPE_UNSPECIFIED`.
      *     @type array $labels For more information, see
      *           [Using labels to organize Google Cloud Platform resources](https://cloudplatform.googleblog.com/2015/10/using-labels-to-organize-Google-Cloud-Platform-resources.html).
      *     @type array $clusters [] {
      *           array {
      *                 string $clusterId
      *                 string $locationId
-     *                 int $nodeCount **Defaults to** `1`.
-     *                 int $storageType **Defaults to** `0`.
+     *                 int $serveNodes
+     *                 int $storageType The storage media type for persisting Bigtable data.
+     *                                  Possible values include `Instance::STORAGE_TYPE_SSD`
+     *                                  and `Instance::STORAGE_TYPE_HDD`.
+     *                                  **Defaults to** `Instance::STORAGE_TYPE_UNSPECIFIED`.
      *          }
      * }
      * @return LongRunningOperation<Instance>
@@ -252,7 +268,7 @@ class Instance
         $projectName = InstanceAdminClient::projectName($this->projectId);
         $instanceId = InstanceAdminClient::parseName($this->name)['instance'];
         $displayName = isset($options['displayName']) ? $options['displayName'] : $instanceId;
-        $type = isset($options['instanceType']) ? $options['instanceType'] : 0;
+        $type = isset($options['instanceType']) ? $options['instanceType'] : self::INSTANCE_TYPE_UNSPECIFIED;
         $labels = isset($options['labels']) ? $options['labels'] : [];
         $clusters = isset($options['clusters']) ? $options['clusters'] : [];
 
@@ -274,8 +290,8 @@ class Instance
      *      array {
      *             string $clusterId
      *             string $locationId
-     *             int $nodeCount **Defaults to** `1`.
-     *             int $storageType **Defaults to** `0`.
+     *             int $serveNodes
+     *             int $storageType **Defaults to** `StorageType::STORAGE_TYPE_UNSPECIFIED`.
      *      }
      * }
      * @return array
@@ -287,8 +303,9 @@ class Instance
             $id = $value['clusterId'];
             $clusters[$id] = [
                 'location' => InstanceAdminClient::locationName($this->projectId, $value['locationId']),
-                'serveNodes' => isset($value['nodeCount']) ? $value['nodeCount'] : 1,
-                'defaultStorageType' => isset($value['storageType']) ? $value['storageType'] : 0
+                'serveNodes' => isset($value['serveNodes']) ? $value['serveNodes'] : '',
+                'defaultStorageType' => isset($value['storageType'])?$value['storageType']
+                :self::STORAGE_TYPE_UNSPECIFIED
             ];
         }
         return $clusters;

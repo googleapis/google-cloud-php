@@ -86,8 +86,6 @@ class BigtableClient
      *           requests specifically for authentication.
      *     @type FetchAuthTokenInterface $credentialsFetcher A credentials
      *           fetcher instance.
-     *     @type callable $httpHandler A handler used to deliver Psr7 requests.
-     *           Only valid for requests sent over REST.
      *     @type array $keyFile The contents of the service account credentials
      *           .json file retrieved from the Google Developer's Console.
      *           Ex: `json_decode(file_get_contents($path), true)`.
@@ -98,7 +96,6 @@ class BigtableClient
      *           request. **Defaults to** `0` with REST and `60` with gRPC.
      *     @type int $retries Number of retries for a failed request.
      *           **Defaults to** `3`.
-     *     @type array $scopes Scopes to be used for the request.
      * }
      * @throws GoogleException If the gRPC extension is not enabled.
      */
@@ -145,16 +142,21 @@ class BigtableClient
      * @param array $options [optional] {
      *     Configuration options
      *
-     *     @type string $displayName **Defaults to** the value of $name.
-     *     @type int $instanceType **Defaults to** `0`.
+     *     @type string $displayName **Defaults to** the value of $instanceId.
+     *     @type int $instanceType  Possible values include `Instance_Type::PRODUCTION`
+     *                              and `Instance_Type::DEVELOPMENT`.
+     *                              **Defaults to** `Instance_Type::TYPE_UNSPECIFIED`.
      *     @type array $labels For more information, see
      *           [Using labels to organize Google Cloud Platform resources](https://cloudplatform.googleblog.com/2015/10/using-labels-to-organize-Google-Cloud-Platform-resources.html).
-     *     @type array $clusters []{
+     *     @type array $clusters [] {
      *           array {
      *                 string $clusterId
      *                 string $locationId
-     *                 int $nodeCount **Defaults to** `1`.
-     *                 int $storageType **Defaults to** `0`.
+     *                 int $serveNodes
+     *                 int $storageType The storage media type for persisting Bigtable data.
+     *                                  Possible values include `Instance::STORAGE_TYPE_SSD`
+     *                                  and `Instance::STORAGE_TYPE_HDD`.
+     *                                  **Defaults to** `Instance::STORAGE_TYPE_UNSPECIFIED`.
      *          }
      * }
      * @return LongRunningOperation<Instance>
