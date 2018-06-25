@@ -21,10 +21,6 @@
  * https://github.com/google/googleapis/blob/master/google/cloud/dialogflow/v2/context.proto
  * and updates to that file get reflected here through a refresh process.
  *
- * EXPERIMENTAL: This client library class has not yet been declared GA (1.0). This means that
- * even though we intend the surface to be stable, we may make backwards incompatible changes
- * if necessary.
- *
  * @experimental
  */
 
@@ -67,10 +63,6 @@ use Google\Protobuf\GPBEmpty;
  *
  * For more information about contexts, see the
  * [Dialogflow documentation](https://dialogflow.com/docs/contexts).
- *
- * EXPERIMENTAL: This client library class has not yet been declared GA (1.0). This means that
- * even though we intend the surface to be stable, we may make backwards incompatible changes
- * if necessary.
  *
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods. Sample code to get started:
