@@ -27,7 +27,7 @@ common = gcp.CommonTemplates()
 v2beta2_library = gapic._generate_code(
     'tasks', 'v2beta2', 'php',
     config_path='artman_cloudtasks.yaml',
-    artman_output_name='google-cloud-cloud-tasks-v2beta2')
+    artman_output_name='google-cloud-tasks-v2beta2')
 
 
 s.copy(v2beta2_library / f'src/')
