@@ -53,7 +53,7 @@ $client = new CloudTasksClient();
 
 $project = 'example-project';
 $location = 'us-central1';
-$queue = 'example-queue-' . uniqud();
+$queue = uniqid('example-queue-');
 $queueName = $client::queueName($project, $location, $queue);
 
 // Create a pull queue
