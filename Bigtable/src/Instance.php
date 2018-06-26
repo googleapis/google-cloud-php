@@ -82,15 +82,11 @@ class Instance
     use LROTrait;
 
     const STORAGE_TYPE_UNSPECIFIED = StorageType::STORAGE_TYPE_UNSPECIFIED;
-
     const STORAGE_TYPE_SSD = StorageType::SSD;
-
     const STORAGE_TYPE_HDD = StorageType::HDD;
 
     const INSTANCE_TYPE_UNSPECIFIED = Instance_Type::TYPE_UNSPECIFIED;
-
     const INSTANCE_TYPE_PRODUCTION = Instance_Type::PRODUCTION;
-
     const INSTANCE_TYPE_DEVELOPMENT = Instance_Type::DEVELOPMENT;
 
     /**
@@ -244,8 +240,7 @@ class Instance
      *     Configuration options
      *
      *     @type string $displayName **Defaults to** the value of $instanceId.
-     *     @type int $instanceType  Possible values include `Instance_Type::PRODUCTION`
-     *           and `Instance_Type::DEVELOPMENT`.
+     *     @type int $instanceType  Possible values include `Instance_Type::PRODUCTION` and `Instance_Type::DEVELOPMENT`.
      *           **Defaults to** `Instance_Type::TYPE_UNSPECIFIED`.
      *     @type array $labels For more information, see
      *           [Using labels to organize Google Cloud Platform resources](https://cloudplatform.googleblog.com/2015/10/using-labels-to-organize-Google-Cloud-Platform-resources.html).
@@ -254,9 +249,7 @@ class Instance
      *                 string $clusterId
      *                 string $locationId
      *                 int $serveNodes
-     *                 int $storageType The storage media type for persisting Bigtable data.
-     *                 Possible values include `Instance::STORAGE_TYPE_SSD`
-     *                 and `Instance::STORAGE_TYPE_HDD`.
+     *                 int $storageType The storage media type for persisting Bigtable data. Possible values include `Instance::STORAGE_TYPE_SSD` and `Instance::STORAGE_TYPE_HDD`.
      *                 **Defaults to** `Instance::STORAGE_TYPE_UNSPECIFIED`.
      *          }
      * }
