@@ -46,8 +46,15 @@ for version in ['V1', 'V1beta2']:
 s.replace(
     '**/Gapic/*GapicClient.php',
     r'Copyright \d{4}',
-    r'Copyright 2017')
+    'Copyright 2017')
 s.replace(
     'tests/**/V1*/*Test.php',
     r'Copyright \d{4}',
-    r'Copyright 2018')
+    'Copyright 2018')
+
+# V1 is GA, so remove @experimental tags
+s.replace(
+    'src/V1/Gapic/*GapicClient.php',
+    r'^(\s+\*\n)?\s+\*\s@experimental\n',
+    ''
+)
