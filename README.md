@@ -218,7 +218,7 @@ $entity = $datastore->lookup($key);
 $ composer require google/cloud-datastore
 ```
 
-## Google Cloud OsLogin (Beta)
+## Google Cloud OsLogin (GA)
 
 - [API Documentation](http://googlecloudplatform.github.io/google-cloud-php/#/docs/latest/oslogin/readme)
 - [Official Documentation](https://cloud.google.com/compute/docs/oslogin/rest/)
