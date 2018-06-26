@@ -48,6 +48,13 @@ s.move(v1 / f'tests/')
 s.move(v1beta / f'proto/src/GPBMetadata/Google/Cloud/Oslogin', f'metadata/')
 s.move(v1 / f'proto/src/GPBMetadata/Google/Cloud/Oslogin', f'metadata/')
 
+# Remove @experimental tags from the V1 code
+s.replace(
+    'src/V1/**/*.php',
+    r'^(\s+\*\n)?\s+\*\s@experimental\n',
+    ''
+)
+
 # fix year
 s.replace(
     'src/V1beta/Gapic/*GapicClient.php',
