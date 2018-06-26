@@ -10,7 +10,6 @@ This client supports the following Google Cloud Platform services at a [General 
 * [Cloud Spanner](#cloud-spanner-ga) (GA)
 * [Google BigQuery](#google-bigquery-ga) (GA)
 * [Google Cloud Datastore](#google-cloud-datastore-ga) (GA)
-* [Google Cloud OsLogin](#google-cloud-oslogin-ga) (GA)
 * [Google Cloud Pub/Sub](#google-cloud-pubsub-ga) (GA)
 * [Google Cloud Storage](#google-cloud-storage-ga) (GA)
 * [Google Cloud Translation](#google-cloud-translation-ga) (GA)
@@ -23,6 +22,7 @@ This client supports the following Google Cloud Platform services at a [Beta](#v
 * [Google Cloud Container](#google-cloud-container-beta) (Beta)
 * [Google Cloud Dataproc](#google-cloud-dataproc-beta) (Beta)
 * [Google Cloud Natural Language](#google-cloud-natural-language-beta) (Beta)
+* [Google Cloud OsLogin](#google-cloud-oslogin-beta) (Beta)
 * [Google Cloud Vision](#google-cloud-vision-beta) (Beta)
 * [Google DLP](#google-dlp-beta) (Beta)
 * [Google Stackdriver Error Reporting](#google-stackdriver-error-reporting-beta) (Beta)
@@ -216,30 +216,6 @@ $entity = $datastore->lookup($key);
 
 ```
 $ composer require google/cloud-datastore
-```
-
-## Google Cloud OsLogin (GA)
-
-- [API Documentation](http://googlecloudplatform.github.io/google-cloud-php/#/docs/latest/oslogin/readme)
-- [Official Documentation](https://cloud.google.com/compute/docs/oslogin/rest/)
-
-```php
-require 'vendor/autoload.php';
-
-use Google\Cloud\OsLogin\V1\OsLoginServiceClient;
-
-$osLoginServiceClient = new OsLoginServiceClient();
-$userId = '[MY_USER_ID]';
-$formattedName = $osLoginServiceClient->userName($userId);
-$loginProfile = $osLoginServiceClient->getLoginProfile($formattedName);
-```
-
-#### google/cloud-oslogin
-
-[Google Cloud OsLogin](https://github.com/GoogleCloudPlatform/google-cloud-php-oslogin) can be installed separately by requiring the [`google/cloud-oslogin`](https://packagist.org/packages/google/cloud-oslogin) composer package:
-
-```
-$ composer require google/cloud-oslogin
 ```
 
 ## Google Cloud Pub/Sub (GA)
@@ -638,6 +614,30 @@ foreach ($tokens as $token) {
 
 ```
 $ composer require google/cloud-language
+```
+
+## Google Cloud OsLogin (Beta)
+
+- [API Documentation](http://googlecloudplatform.github.io/google-cloud-php/#/docs/latest/oslogin/readme)
+- [Official Documentation](https://cloud.google.com/compute/docs/oslogin/rest/)
+
+```php
+require 'vendor/autoload.php';
+
+use Google\Cloud\OsLogin\V1\OsLoginServiceClient;
+
+$osLoginServiceClient = new OsLoginServiceClient();
+$userId = '[MY_USER_ID]';
+$formattedName = $osLoginServiceClient->userName($userId);
+$loginProfile = $osLoginServiceClient->getLoginProfile($formattedName);
+```
+
+#### google/cloud-oslogin
+
+[Google Cloud OsLogin](https://github.com/GoogleCloudPlatform/google-cloud-php-oslogin) can be installed separately by requiring the [`google/cloud-oslogin`](https://packagist.org/packages/google/cloud-oslogin) composer package:
+
+```
+$ composer require google/cloud-oslogin
 ```
 
 ## Google Cloud Vision (Beta)
