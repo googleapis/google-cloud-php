@@ -26,7 +26,6 @@ Or to install the entire suite of components at once:
 $ composer require google/cloud
 ```
 
-
 ### Authentication
 
 Please see our [Authentication guide](https://github.com/GoogleCloudPlatform/google-cloud-php/blob/master/AUTHENTICATION.md) for more information
@@ -43,7 +42,6 @@ use Google\Cloud\TextToSpeech\V1\SynthesisInput;
 use Google\Cloud\TextToSpeech\V1\TextToSpeechClient;
 use Google\Cloud\TextToSpeech\V1\VoiceSelectionParams;
 
-
 $textToSpeechClient = new TextToSpeechClient();
 
 $input = new SynthesisInput();
@@ -55,12 +53,13 @@ $audioConfig->setAudioEncoding(AudioEncoding::MP3);
 
 $resp = $textToSpeechClient->synthesizeSpeech($input, $voice, $audioConfig);
 file_put_contents('test.mp3', $resp->getAudioContent());
-
 ```
 
 ### Version
 
-This component is considered alpha. As such, it is still a work-in-progress and is more likely to get backwards-incompatible updates.
+This component is considered beta. As such, it should be expected to be mostly
+stable and we're working towards a release candidate. We will address issues
+and requests with a higher priority.
 
 ### Next Steps
 

@@ -23,11 +23,11 @@
         }
     },
     "require": {
-        "google/gax": "^0.35.0"
+        "google/gax": "^0.34.0"
     },
     "require-dev": {
         "phpunit/phpunit": "^4.8|^5.0",
-        "google/cloud-core": "^1.14",
+        "google/cloud-core": "^1.20.5",
         "phpdocumentor/reflection": "^3.0"
     },
     "suggest": {

@@ -23,14 +23,22 @@ logging.basicConfig(level=logging.DEBUG)
 gapic = gcp.GAPICGenerator()
 common = gcp.CommonTemplates()
 
-# tasks has two product names, and a poorly named artman yaml
 v1_library = gapic._generate_code(
     'texttospeech', 'v1', 'php',
     config_path='artman_texttospeech_v1.yaml',
     artman_output_name='google-cloud-texttospeech-v1')
 
-
 s.copy(v1_library / f'src/')
 s.copy(v1_library / f'proto/src/GPBMetadata/Google/Cloud/Texttospeech', f'metadata')
 s.copy(v1_library / f'proto/src/Google/Cloud/TextToSpeech', f'src')
 s.copy(v1_library / f'tests')
+
+# fix copyright year
+s.replace(
+    'src/V1/**/*Client.php',
+    r'Copyright \d{4}',
+    r'Copyright 2018')
+s.replace(
+    'tests/**/V1/*Test.php',
+    r'Copyright \d{4}',
+    r'Copyright 2018')
