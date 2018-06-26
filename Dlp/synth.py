@@ -49,3 +49,15 @@ s.replace(
     'tests/**/V2/*Test.php',
     r'Copyright \d{4}',
     r'Copyright 2018')
+
+# Fix missing documentation
+s.replace(
+    'src/V2/Gapic/DlpServiceGapicClient.php',
+    r'@type InspectJobConfig \$inspectJob\n',
+    '@type InspectJobConfig $inspectJob The configuration details for an inspect\n'
+    '     *          job. Only one of $inspectJob and $riskJob may be provided.\n')
+s.replace(
+    'src/V2/Gapic/DlpServiceGapicClient.php',
+    r'@type RiskAnalysisJobConfig \$riskJob\n',
+    '@type RiskAnalysisJobConfig $riskJob The configuration details for a risk\n'
+    '     *          analysis job. Only one of $inspectJob and $riskJob may be provided.\n')
