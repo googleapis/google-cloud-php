@@ -50,6 +50,12 @@ $formattedName = $osLoginServiceClient->userName($userId);
 $loginProfile = $osLoginServiceClient->getLoginProfile($formattedName);
 ```
 
+### Version
+
+This component is considered beta. As such, it should be expected to be mostly
+stable and we're working towards a release candidate. We will address issues
+and requests with a higher priority.
+
 ### Next Steps
 
 Take a look at and understand the [official documentation](https://cloud.google.com/compute/docs/oslogin/rest/).

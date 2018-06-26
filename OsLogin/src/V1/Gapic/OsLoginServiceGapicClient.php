@@ -20,6 +20,8 @@
  * This file was generated from the file
  * https://github.com/google/googleapis/blob/master/google/cloud/oslogin/v1/oslogin.proto
  * and updates to that file get reflected here through a refresh process.
+ *
+ * @experimental
  */
 
 namespace Google\Cloud\OsLogin\V1\Gapic;
@@ -67,6 +69,8 @@ use Google\Protobuf\GPBEmpty;
  * with these names, this class includes a format method for each type of name, and additionally
  * a parseName method to extract the individual identifiers contained within formatted names
  * that are returned by the API.
+ *
+ * @experimental
  */
 class OsLoginServiceGapicClient
 {
@@ -171,6 +175,7 @@ class OsLoginServiceGapicClient
      * @param string $user
      *
      * @return string The formatted user resource.
+     * @experimental
      */
     public static function userName($user)
     {
@@ -187,6 +192,7 @@ class OsLoginServiceGapicClient
      * @param string $project
      *
      * @return string The formatted project resource.
+     * @experimental
      */
     public static function projectName($user, $project)
     {
@@ -204,6 +210,7 @@ class OsLoginServiceGapicClient
      * @param string $fingerprint
      *
      * @return string The formatted fingerprint resource.
+     * @experimental
      */
     public static function fingerprintName($user, $fingerprint)
     {
@@ -232,6 +239,7 @@ class OsLoginServiceGapicClient
      * @return array An associative array from name component IDs to component values.
      *
      * @throws ValidationException If $formattedName could not be matched.
+     * @experimental
      */
     public static function parseName($formattedName, $template = null)
     {
@@ -305,6 +313,7 @@ class OsLoginServiceGapicClient
      * }
      *
      * @throws ValidationException
+     * @experimental
      */
     public function __construct(array $options = [])
     {
@@ -340,6 +349,7 @@ class OsLoginServiceGapicClient
      * }
      *
      * @throws ApiException if the remote call fails
+     * @experimental
      */
     public function deletePosixAccount($name, array $optionalArgs = [])
     {
@@ -382,6 +392,7 @@ class OsLoginServiceGapicClient
      * }
      *
      * @throws ApiException if the remote call fails
+     * @experimental
      */
     public function deleteSshPublicKey($name, array $optionalArgs = [])
     {
@@ -425,6 +436,7 @@ class OsLoginServiceGapicClient
      * @return \Google\Cloud\OsLogin\V1\LoginProfile
      *
      * @throws ApiException if the remote call fails
+     * @experimental
      */
     public function getLoginProfile($name, array $optionalArgs = [])
     {
@@ -469,6 +481,7 @@ class OsLoginServiceGapicClient
      * @return \Google\Cloud\OsLogin\Common\SshPublicKey
      *
      * @throws ApiException if the remote call fails
+     * @experimental
      */
     public function getSshPublicKey($name, array $optionalArgs = [])
     {
@@ -517,6 +530,7 @@ class OsLoginServiceGapicClient
      * @return \Google\Cloud\OsLogin\V1\ImportSshPublicKeyResponse
      *
      * @throws ApiException if the remote call fails
+     * @experimental
      */
     public function importSshPublicKey($parent, $sshPublicKey, array $optionalArgs = [])
     {
@@ -570,6 +584,7 @@ class OsLoginServiceGapicClient
      * @return \Google\Cloud\OsLogin\Common\SshPublicKey
      *
      * @throws ApiException if the remote call fails
+     * @experimental
      */
     public function updateSshPublicKey($name, $sshPublicKey, array $optionalArgs = [])
     {
