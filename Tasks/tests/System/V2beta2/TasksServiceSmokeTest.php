@@ -34,22 +34,6 @@ use Google\Protobuf\Duration;
  */
 class TasksServiceSmokeTest extends SystemTestCase
 {
-    private function waitForQueue($client, $queueName)
-    {
-        $Attempts = 20;
-        while (true) {
-            sleep(10);
-            $queue = $client->getQueue($queueName);
-            if ($queue->getState() == Queue_State::RUNNING) {
-                return;
-            }
-            if (--$maxAttempt < 0) {
-                $this->fail('The queue never gets active.');
-                return;
-            }
-        }
-    }
-
     private function createQueue($client, $locationName, $queue)
     {
         $backoff = new ExponentialBackoff(8);
@@ -61,7 +45,7 @@ class TasksServiceSmokeTest extends SystemTestCase
                 $client->deleteQueue($queue->getName());
             });
         });
-        $this->waitForQueue($client, $queue->getName());
+        sleep(120);
     }
     /**
      * @test
