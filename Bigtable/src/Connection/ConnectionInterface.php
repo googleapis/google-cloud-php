@@ -160,11 +160,6 @@ interface ConnectionInterface
     /**
      * @param array $args
      */
-    public function waitForReplication(array $args);
-
-    /**
-     * @param array $args
-     */
     public function snapshotTable(array $args);
 
     /**
