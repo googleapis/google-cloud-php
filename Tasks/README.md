@@ -100,7 +100,9 @@ $client->acknowledgeTask($task->getName(), $task->getScheduleTime());
 
 ### Version
 
-This component is considered alpha. As such, it is still a work-in-progress and is more likely to get backwards-incompatible updates.
+This component is considered beta. As such, it should be expected to be mostly
+stable and we're working towards a release candidate. We will address issues
+and requests with a higher priority.
 
 ### Next Steps
 

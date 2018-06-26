@@ -663,7 +663,7 @@ $client = new CloudTasksClient();
 
 $project = 'example-project';
 $location = 'us-central1';
-$queue = 'example-queue-' . uniqud();
+$queue = uniqud('example-queue-');
 $queueName = $client::queueName($project, $location, $queue);
 
 // Create a pull queue
@@ -705,7 +705,7 @@ assert($task->getPullMessage()->getPayload() === $payload);
 $client->acknowledgeTask($task->getName(), $task->getScheduleTime());
 
 // Delete the queue
-// $client->deleteQueue($queueName);
+$client->deleteQueue($queueName);
 ```
 
 #### google/cloud-tasks

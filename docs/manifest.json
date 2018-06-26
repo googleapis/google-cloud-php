@@ -737,7 +737,6 @@
             "name": "google/cloud-tasks",
             "defaultService": "tasks/readme",
             "versions": [
-                "v0.1.0",
                 "master"
             ]
         },

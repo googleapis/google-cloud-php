@@ -23,6 +23,7 @@ use Google\Cloud\Tasks\V2beta2\LeaseDuration;
 use Google\Cloud\Tasks\V2beta2\PullMessage;
 use Google\Cloud\Tasks\V2beta2\PullTarget;
 use Google\Cloud\Tasks\V2beta2\Queue;
+use Google\Cloud\Tasks\V2beta2\Queue_State;
 use Google\Cloud\Tasks\V2beta2\Task;
 use Google\Cloud\Tasks\V2beta2\Task_View;
 use Google\Protobuf\Duration;
@@ -33,8 +34,23 @@ use Google\Protobuf\Duration;
  */
 class TasksServiceSmokeTest extends SystemTestCase
 {
+    private function waitForQueue($client, $queueName)
+    {
+        $Attempts = 20;
+        while (true) {
+            sleep(10);
+            $queue = $client->getQueue($queueName);
+            if ($queue->getState() == Queue_State::RUNNING) {
+                return;
+            }
+            if (--$maxAttempt < 0) {
+                $this->fail('The queue never gets active.');
+                return;
+            }
+        }
+    }
 
-    public function createQueue($client, $locationName, $queue)
+    private function createQueue($client, $locationName, $queue)
     {
         $backoff = new ExponentialBackoff(8);
         $backoff->execute(function () use ($client, $locationName, $queue) {
@@ -45,7 +61,7 @@ class TasksServiceSmokeTest extends SystemTestCase
                 $client->deleteQueue($queue->getName());
             });
         });
-        sleep(120);
+        $this->waitForQueue($client, $queue->getName());
     }
     /**
      * @test
