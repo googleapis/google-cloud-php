@@ -26,6 +26,8 @@ use Google\Cloud\Firestore\DocumentSnapshot;
  */
 class GetAllDocumentsTest extends FirestoreTestCase
 {
+    const COLLECTION_NAME = 'system-test-get-all-documents';
+
     private static $refsExist = [];
     private static $refsNonExist = [];
 
@@ -33,13 +35,14 @@ class GetAllDocumentsTest extends FirestoreTestCase
     {
         parent::setupBeforeClass();
 
-        $c = self::$client->collection('getAllDocumentsTest');
+        $c = self::$client->collection(uniqid(self::COLLECTION_NAME));
+        self::$localDeletionQueue->add($c);
+
         for ($i = 0; $i < 5; $i++) {
             $doc = $c->add([
                 'name' => 'foo'
             ]);
             self::$refsExist[$doc->name()] = $doc;
-            self::$deletionQueue->add($doc);
         }
 
         for ($i = 0; $i < 5; $i++) {

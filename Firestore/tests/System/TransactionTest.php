@@ -28,7 +28,6 @@ class TransactionTest extends FirestoreTestCase
     public function setUp()
     {
         $doc = self::$collection->newDocument();
-        self::$deletionQueue->add($doc);
         $this->document = $doc;
     }
 

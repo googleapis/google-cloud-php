@@ -17,15 +17,18 @@
 
 namespace Google\Cloud\Firestore\Tests\System;
 
-use Google\Cloud\Firestore\FirestoreClient;
+use Google\Cloud\Core\ExponentialBackoff;
+use Google\Cloud\Core\Testing\System\DeletionQueue;
 use Google\Cloud\Core\Testing\System\SystemTestCase;
+use Google\Cloud\Firestore\FirestoreClient;
 
 class FirestoreTestCase extends SystemTestCase
 {
-    const COLLECTION = 'system-test';
+    const COLLECTION_NAME = 'system-test';
 
     protected static $client;
     protected static $collection;
+    protected static $localDeletionQueue;
     private static $hasSetUp = false;
 
     public static function setupBeforeClass()
@@ -34,12 +37,35 @@ class FirestoreTestCase extends SystemTestCase
             return;
         }
 
+        self::$localDeletionQueue = new DeletionQueue(true);
+
         $keyFilePath = getenv('GOOGLE_CLOUD_PHP_FIRESTORE_TESTS_KEY_PATH');
         self::$client = new FirestoreClient([
             'keyFilePath' => $keyFilePath
         ]);
-        self::$collection = self::$client->collection(self::COLLECTION);
+        self::$collection = self::$client->collection(uniqid(self::COLLECTION_NAME));
+        self::$localDeletionQueue->add(self::$collection);
+
 
         self::$hasSetUp = true;
+    }
+
+    public static function tearDownFixtures()
+    {
+        if (empty(self::$localDeletionQueue)) {
+            return;
+        }
+
+        $backoff = new ExponentialBackoff(8);
+
+        self::$localDeletionQueue->process(function ($items) use ($backoff) {
+            foreach ($items as $collection) {
+                $backoff->execute(function() use ($collection) {
+                    foreach ($collection->documents() as $document) {
+                        $document->reference()->delete();
+                    }
+                });
+            }
+        });
     }
 }
