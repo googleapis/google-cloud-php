@@ -95,7 +95,7 @@ assert($task->getPullMessage()->getPayload() === $payload);
 $client->acknowledgeTask($task->getName(), $task->getScheduleTime());
 
 // Delete the queue
-// $client->deleteQueue($queueName);
+$client->deleteQueue($queueName);
 ```
 
 ### Version
