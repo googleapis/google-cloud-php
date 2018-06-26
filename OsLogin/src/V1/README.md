@@ -1,4 +1,4 @@
-# Google Cloud OsLogin V1beta generated client for PHP
+# Google Cloud OsLogin V1 generated client for PHP
 
 ### Sample
 
