@@ -273,41 +273,44 @@ class Grpc implements ConnectionInterface
     /**
      * @param array $args
      */
+    public function testIamPermissions(array $args)
+    {
+        throw new \BadMethodCallException('This method is not implemented yet');
+    }
+
+    /**
+     * @param array $args
+     */
     public function createTable(array $args)
     {
         $parent = $this->pluck('parent', $args);
-        $columnFamilies = $this->pluck('columnFamilies', $args);
-        $mapField['column_families'] = $this->mapFieldObject($columnFamilies);
         return $this->send([$this->bigtableTableAdminClient, 'createTable'], [
             $parent,
             $this->pluck('tableId', $args),
-            $this->tableObject($mapField),
+            $this->tableObject($this->pluck('columnFamilies', $args)),
             $this->addResourcePrefixHeader($args, $parent)
         ]);
     }
 
     /**
-     * @param array $args
+     * @param array $columnFamilies
      * @return Table
      */
-    private function tableObject(array $args)
+    private function tableObject(array $columnFamilies)
     {
-        return $this->serializer->decodeMessage(
-            new Table(),
-            $this->pluckArray([
-                'column_families'
-            ], $args)
-        );
+        return $this->serializer->decodeMessage(new Table(), [
+            'columnFamilies' => $this->mapFieldObject($columnFamilies)
+        ]);
     }
 
     /**
-     * @param array $args
+     * @param array $columnFamilies
      * @return MapField
      */
-    private function mapFieldObject(array $args)
+    private function mapFieldObject(array $columnFamilies)
     {
         $mapField = new MapField(GPBType::STRING, GPBType::MESSAGE, ColumnFamily::class);
-        foreach ($args as $key => $value) {
+        foreach ($columnFamilies as $key => $value) {
             $id = $this->pluck('id', $value);
             $mapField[$id] = $this->columnFamilyObject($value);
         }
@@ -315,23 +318,24 @@ class Grpc implements ConnectionInterface
     }
 
     /**
-     * @param array $args
+     * @param array $gcRule
      * @return ColumnFamily
      */
-    private function columnFamilyObject(array $args)
+    private function columnFamilyObject(array $gcRule)
     {
-        $gcRule['gc_rule'] = $this->serializer->decodeMessage(
+        $columnFamily = [];
+        $columnFamily['gcRule'] = $this->serializer->decodeMessage(
             new GcRule(),
             $this->pluckArray([
-                'max_num_versions'
-            ], $args)
+                'maxNumVersions'
+            ], $gcRule)
         );
 
         return $this->serializer->decodeMessage(
             new ColumnFamily(),
             $this->pluckArray([
-                'gc_rule'
-            ], $gcRule)
+                'gcRule'
+            ], $columnFamily)
         );
     }
 
@@ -394,36 +398,37 @@ class Grpc implements ConnectionInterface
         $columnFamilies = $this->pluck('columnFamilies', $args);
         return $this->send([$this->bigtableTableAdminClient, 'modifyColumnFamilies'], [
             $name,
-            array_map([$this, 'modifications'], $columnFamilies),
+            array_map([$this, 'buildColumnFamilyModification'], $columnFamilies),
             $this->addResourcePrefixHeader($args, $name)
         ]);
     }
 
     /**
-     * @param array $args
+     * @param array $columnFamily
      * @return ModifyColumnFamiliesRequest_Modification
      */
-    private function modifications($args)
+    private function buildColumnFamilyModification($columnFamily)
     {
-        $action = $this->pluck('action', $args);
-        $columnFamily['id'] = $this->pluck('id', $args);
+        $action = $this->pluck('action', $columnFamily);
+        $modification = [];
+        $modification['id'] = $this->pluck('id', $columnFamily);
         if ($action == 'drop') {
-            $columnFamily['drop'] = true;
+            $modification['drop'] = true;
             return $this->serializer->decodeMessage(
                 new Modification(),
                 $this->pluckArray([
                     'id',
                     'drop'
-                ], $columnFamily)
+                ], $modification)
             );
         } else {
-            $columnFamily['create'] = $this->columnFamilyObject($args);
+            $modification['create'] = $this->columnFamilyObject($columnFamily);
             return $this->serializer->decodeMessage(
                 new Modification(),
                 $this->pluckArray([
                     'id',
                     'create'
-                ], $columnFamily)
+                ], $modification)
             );
         }
     }
@@ -444,7 +449,15 @@ class Grpc implements ConnectionInterface
     /**
      * @param array $args
      */
-    public function waitForReplication(array $args)
+    public function checkConsistency(array $args)
+    {
+        throw new \BadMethodCallException('This method is not implemented yet');
+    }
+
+    /**
+     * @param array $args
+     */
+    public function generateConsistencyToken(array $args)
     {
         throw new \BadMethodCallException('This method is not implemented yet');
     }

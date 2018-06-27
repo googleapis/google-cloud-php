@@ -44,12 +44,12 @@ class GrpcTest extends TestCase
     use GrpcTestTrait;
     use GrpcTrait;
 
-    const PROJECT  = 'projects/grass-clump-479';
-    const LOCATION = 'projects/grass-clump-479/locations/us-east1-b';
-    const INSTANCE = 'projects/grass-clump-479/instances/my-instance';
-    const CLUSTER  = 'projects/grass-clump-479/clusters/my-cluster';
-    const TABLE    = 'projects/grass-clump-479/instances/my-instance/tables/my-table';
-    const SNAPSHOT = 'projects/grass-clump-479/clusters/my-cluster/snapshots/my-snapshot';
+    const PROJECT  = 'projects/my-awesome-project';
+    const LOCATION = 'projects/my-awesome-project/locations/us-east1-b';
+    const INSTANCE = 'projects/my-awesome-project/instances/my-instance';
+    const CLUSTER  = 'projects/my-awesome-project/clusters/my-cluster';
+    const TABLE    = 'projects/my-awesome-project/instances/my-instance/tables/my-table';
+    const SNAPSHOT = 'projects/my-awesome-project/clusters/my-cluster/snapshots/my-snapshot';
 
     private $successMessage;
     
@@ -116,7 +116,7 @@ class GrpcTest extends TestCase
         $mapField[$columnFamilyId] = $columnFamily;
 
         $tableArgs = [
-            'column_families' => $mapField
+            'columnFamilies' => $mapField
         ];
         $table = $serializer->decodeMessage(
             new Table(),
@@ -127,7 +127,7 @@ class GrpcTest extends TestCase
 
         $cfArr = [
             ['id' => 'cf', 'action' => 'drop'],
-            ['id' => 'cf2', 'action' => 'create', 'max_num_versions' => 2],
+            ['id' => 'cf2', 'action' => 'create', 'maxNumVersions' => 2],
         ];
         $modifications = [];
         foreach ($cfArr as $key => $value) {
@@ -141,7 +141,7 @@ class GrpcTest extends TestCase
                 );
             }
             else{
-                $maxnum = ($value['max_num_versions']) ? $value['max_num_versions'] : null;
+                $maxnum = ($value['maxNumVersions']) ? $value['maxNumVersions'] : null;
                 $args['create'] = $this->columnFamilyObject($serializer, $maxnum);
                 $modifications[] = $serializer->decodeMessage(
                     new Modification(),
@@ -182,7 +182,7 @@ class GrpcTest extends TestCase
                     'parent' => self::INSTANCE,
                     'tableId' => $tableId,
                     'columnFamilies' => [
-                        ['id' => $columnFamilyId, 'max_num_versions' => $maxNumVersions]
+                        ['id' => $columnFamilyId, 'maxNumVersions' => $maxNumVersions]
                     ]
                 ],
                 [self::INSTANCE, $tableId, $table, ['headers' => ['google-cloud-resource-prefix' => [self::INSTANCE]]]]
@@ -217,7 +217,7 @@ class GrpcTest extends TestCase
                     'name' => self::TABLE,
                     'columnFamilies' => [
                         ['id' => 'cf', 'action' => 'drop'],
-                        ['id' => 'cf2', 'action' => 'create', 'max_num_versions' => 2],
+                        ['id' => 'cf2', 'action' => 'create', 'maxNumVersions' => 2],
                     ]
                 ],
                 [self::TABLE, $modifications, ['headers' => ['google-cloud-resource-prefix' => [self::TABLE]]]]
@@ -256,13 +256,15 @@ class GrpcTest extends TestCase
 
     private function columnFamilyObject($serializer, $maxNumVersions)
     {
-        $gcRuleArgs['max_num_versions'] = $maxNumVersions;
+        $gcRuleArgs = [];
+        $gcRuleArgs['maxNumVersions'] = $maxNumVersions;
         $gcRule = $serializer->decodeMessage(
             new GcRule(),
             $gcRuleArgs
         );
 
-        $columnFamilyArgs['gc_rule'] = $gcRule;
+        $columnFamilyArgs = [];
+        $columnFamilyArgs['gcRule'] = $gcRule;
         return $serializer->decodeMessage(
             new ColumnFamily(),
             $columnFamilyArgs
