@@ -50,7 +50,7 @@ s.replace(
     r'Copyright \d{4}',
     r'Copyright 2018')
 
-# Fix missing documentation
+# Fix missing documentation. See https://github.com/googleapis/gapic-generator/issues/1915
 s.replace(
     'src/V2/Gapic/DlpServiceGapicClient.php',
     r'@type InspectJobConfig \$inspectJob\n',
