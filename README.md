@@ -23,7 +23,6 @@ This client supports the following Google Cloud Platform services at a [Beta](#v
 * [Google Cloud Dataproc](#google-cloud-dataproc-beta) (Beta)
 * [Google Cloud Natural Language](#google-cloud-natural-language-beta) (Beta)
 * [Google Cloud OsLogin](#google-cloud-oslogin-beta) (Beta)
-* [Google Cloud Tasks](#google-cloud-tasks-beta) (Beta)
 * [Google Cloud Vision](#google-cloud-vision-beta) (Beta)
 * [Google DLP](#google-dlp-beta) (Beta)
 * [Google Stackdriver Error Reporting](#google-stackdriver-error-reporting-beta) (Beta)
@@ -639,81 +638,6 @@ $loginProfile = $osLoginServiceClient->getLoginProfile($formattedName);
 
 ```
 $ composer require google/cloud-oslogin
-```
-
-## Google Cloud Tasks (Beta)
-- [API Documentation](http://googlecloudplatform.github.io/google-cloud-php/#/docs/latest/tasks/cloudtasksclient)
-- [Official Documentation](https://cloud.google.com/cloud-tasks/docs)
-
-#### Preview
-
-```php
-require_once __DIR__ . '/vendor/autoload.php';
-
-use Google\Cloud\Tasks\V2beta2\CloudTasksClient;
-use Google\Cloud\Tasks\V2beta2\LeaseDuration;
-use Google\Cloud\Tasks\V2beta2\PullMessage;
-use Google\Cloud\Tasks\V2beta2\PullTarget;
-use Google\Cloud\Tasks\V2beta2\Queue;
-use Google\Cloud\Tasks\V2beta2\Task;
-use Google\Cloud\Tasks\V2beta2\Task_View;
-use Google\Protobuf\Duration;
-
-$client = new CloudTasksClient();
-
-$project = 'example-project';
-$location = 'us-central1';
-$queue = uniqid('example-queue-');
-$queueName = $client::queueName($project, $location, $queue);
-
-// Create a pull queue
-$locationName = $client::locationName($project, $location);
-$queue = new Queue();
-$queue->setName($queueName);
-$queue->setPullTarget(new PullTarget());
-$client->createQueue($locationName, $queue);
-
-echo "$queueName created." . PHP_EOL;
-
-// After the creation, wait at least a minute
-echo 'Waiting for the queue to settle...' . PHP_EOL;
-sleep(60);
-
-// Create a task
-$pullMessage = new PullMessage();
-$payload = 'a message for the consumer: ' . uniqid();
-$pullMessage->setPayload($payload);
-$task = new Task();
-$task->setPullMessage($pullMessage);
-$client->createTask($queueName, $task);
-
-// Lease a task
-$leaseDuration = new Duration();
-$leaseDuration->setSeconds(600);
-$resp = $client->leaseTasks(
-    $queueName,
-    $leaseDuration,
-    [
-        'maxTasks' => 1,
-        'responseView' => Task_View::FULL
-    ]
-);
-$task = $resp->getTasks()[0];
-assert($task->getPullMessage()->getPayload() === $payload);
-
-// Acknowledge the task
-$client->acknowledgeTask($task->getName(), $task->getScheduleTime());
-
-// Delete the queue
-$client->deleteQueue($queueName);
-```
-
-#### google/cloud-tasks
-
-[Google Cloud Tasks](https://github.com/GoogleCloudPlatform/google-cloud-php-tasks) can be installed separately by requiring the [`google/cloud-tasks`](https://packagist.org/packages/google/cloud-tasks) composer package:
-
-```
-$ composer require google/cloud-tasks
 ```
 
 ## Google Cloud Vision (Beta)
