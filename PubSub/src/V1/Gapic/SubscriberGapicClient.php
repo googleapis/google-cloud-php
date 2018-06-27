@@ -21,10 +21,6 @@
  * https://github.com/google/googleapis/blob/master/google/pubsub/v1/pubsub.proto
  * and updates to that file get reflected here through a refresh process.
  *
- * EXPERIMENTAL: This client library class has not yet been declared GA (1.0). This means that
- * even though we intend the surface to be stable, we may make backwards incompatible changes
- * if necessary.
- *
  * @experimental
  */
 
@@ -73,11 +69,8 @@ use Google\Protobuf\Timestamp;
 
 /**
  * Service Description: The service that an application uses to manipulate subscriptions and to
- * consume messages from a subscription via the `Pull` method.
- *
- * EXPERIMENTAL: This client library class has not yet been declared GA (1.0). This means that
- * even though we intend the surface to be stable, we may make backwards incompatible changes
- * if necessary.
+ * consume messages from a subscription via the `Pull` method or by
+ * establishing a bi-directional stream using the `StreamingPull` method.
  *
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods. Sample code to get started:
@@ -378,7 +371,8 @@ class SubscriberGapicClient
     }
 
     /**
-     * Creates a subscription to a given topic.
+     * Creates a subscription to a given topic. See the
+     * <a href="/pubsub/docs/admin#resource_names"> resource name rules</a>.
      * If the subscription already exists, returns `ALREADY_EXISTS`.
      * If the corresponding topic doesn't exist, returns `NOT_FOUND`.
      *
@@ -428,7 +422,8 @@ class SubscriberGapicClient
      *          For pull subscriptions, this value is used as the initial value for the ack
      *          deadline. To override this value for a given message, call
      *          `ModifyAckDeadline` with the corresponding `ack_id` if using
-     *          pull.
+     *          non-streaming pull or send the `ack_id` in a
+     *          `StreamingModifyAckDeadlineRequest` if using streaming pull.
      *          The minimum custom deadline you can specify is 10 seconds.
      *          The maximum custom deadline you can specify is 600 seconds (10 minutes).
      *          If this parameter is 0, a default value of 10 seconds is used.
@@ -442,14 +437,20 @@ class SubscriberGapicClient
      *          Indicates whether to retain acknowledged messages. If true, then
      *          messages are not expunged from the subscription's backlog, even if they are
      *          acknowledged, until they fall out of the `message_retention_duration`
-     *          window.
+     *          window.<br><br>
+     *          <b>ALPHA:</b> This feature is part of an alpha release. This API might be
+     *          changed in backward-incompatible ways and is not recommended for production
+     *          use. It is not subject to any SLA or deprecation policy.
      *     @type Duration $messageRetentionDuration
      *          How long to retain unacknowledged messages in the subscription's backlog,
      *          from the moment a message is published.
      *          If `retain_acked_messages` is true, then this also configures the retention
      *          of acknowledged messages, and thus configures how far back in time a `Seek`
      *          can be done. Defaults to 7 days. Cannot be more than 7 days or less than 10
-     *          minutes.
+     *          minutes.<br><br>
+     *          <b>ALPHA:</b> This feature is part of an alpha release. This API might be
+     *          changed in backward-incompatible ways and is not recommended for production
+     *          use. It is not subject to any SLA or deprecation policy.
      *     @type array $labels
      *          User labels.
      *     @type RetrySettings|array $retrySettings
@@ -540,10 +541,6 @@ class SubscriberGapicClient
     /**
      * Updates an existing subscription. Note that certain properties of a
      * subscription, such as its topic, are not modifiable.
-     * NOTE:  The style guide requires body: "subscription" instead of body: "*".
-     * Keeping the latter for internal consistency in V1, however it should be
-     * corrected in V2.  See
-     * https://cloud.google.com/apis/design/standard_methods#update for details.
      *
      * Sample code:
      * ```
@@ -883,18 +880,13 @@ class SubscriberGapicClient
     }
 
     /**
-     * (EXPERIMENTAL) StreamingPull is an experimental feature. This RPC will
-     * respond with UNIMPLEMENTED errors unless you have been invited to test
-     * this feature. Contact cloud-pubsub&#64;google.com with any questions.
-     *
      * Establishes a stream with the server, which sends messages down to the
      * client. The client streams acknowledgements and ack deadline modifications
      * back to the server. The server will close the stream and return the status
-     * on any error. The server may close the stream with status `OK` to reassign
-     * server-side resources, in which case, the client should re-establish the
-     * stream. `UNAVAILABLE` may also be returned in the case of a transient error
-     * (e.g., a server restart). These should also be retried by the client. Flow
-     * control can be achieved by configuring the underlying RPC channel.
+     * on any error. The server may close the stream with status `UNAVAILABLE` to
+     * reassign server-side resources, in which case, the client should
+     * re-establish the stream. Flow control can be achieved by configuring the
+     * underlying RPC channel.
      *
      * Sample code:
      * ```
@@ -986,7 +978,7 @@ class SubscriberGapicClient
      * An empty `pushConfig` indicates that the Pub/Sub system should
      * stop pushing messages from the given subscription and allow
      * messages to be pulled and acknowledged - effectively pausing
-     * the subscription if `Pull` is not called.
+     * the subscription if `Pull` or `StreamingPull` is not called.
      * @param array $optionalArgs {
      *                            Optional.
      *
@@ -1015,7 +1007,10 @@ class SubscriberGapicClient
     }
 
     /**
-     * Lists the existing snapshots.
+     * Lists the existing snapshots.<br><br>
+     * <b>ALPHA:</b> This feature is part of an alpha release. This API might be
+     * changed in backward-incompatible ways and is not recommended for production
+     * use. It is not subject to any SLA or deprecation policy.
      *
      * Sample code:
      * ```
@@ -1086,16 +1081,21 @@ class SubscriberGapicClient
     }
 
     /**
-     * Creates a snapshot from the requested subscription.
+     * Creates a snapshot from the requested subscription.<br><br>
+     * <b>ALPHA:</b> This feature is part of an alpha release. This API might be
+     * changed in backward-incompatible ways and is not recommended for production
+     * use. It is not subject to any SLA or deprecation policy.
      * If the snapshot already exists, returns `ALREADY_EXISTS`.
      * If the requested subscription doesn't exist, returns `NOT_FOUND`.
-     *
-     * If the name is not provided in the request, the server will assign a random
+     * If the backlog in the subscription is too old -- and the resulting snapshot
+     * would expire in less than 1 hour -- then `FAILED_PRECONDITION` is returned.
+     * See also the `Snapshot.expire_time` field. If the name is not provided in
+     * the request, the server will assign a random
      * name for this snapshot on the same project as the subscription, conforming
-     * to the
-     * [resource name format](https://cloud.google.com/pubsub/docs/overview#names).
-     * The generated name is populated in the returned Snapshot object.
-     * Note that for REST API requests, you must specify a name in the request.
+     * to the [resource name format](https://cloud.google.com/pubsub/docs/overview#names).
+     * The generated
+     * name is populated in the returned Snapshot object. Note that for REST API
+     * requests, you must specify a name in the request.
      *
      * Sample code:
      * ```
@@ -1126,6 +1126,8 @@ class SubscriberGapicClient
      * @param array  $optionalArgs {
      *                             Optional.
      *
+     *     @type array $labels
+     *          User labels.
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
@@ -1143,6 +1145,9 @@ class SubscriberGapicClient
         $request = new CreateSnapshotRequest();
         $request->setName($name);
         $request->setSubscription($subscription);
+        if (isset($optionalArgs['labels'])) {
+            $request->setLabels($optionalArgs['labels']);
+        }
 
         return $this->startCall(
             'CreateSnapshot',
@@ -1153,12 +1158,11 @@ class SubscriberGapicClient
     }
 
     /**
-     * Updates an existing snapshot. Note that certain properties of a snapshot
-     * are not modifiable.
-     * NOTE:  The style guide requires body: "snapshot" instead of body: "*".
-     * Keeping the latter for internal consistency in V1, however it should be
-     * corrected in V2.  See
-     * https://cloud.google.com/apis/design/standard_methods#update for details.
+     * Updates an existing snapshot.<br><br>
+     * <b>ALPHA:</b> This feature is part of an alpha release. This API might be
+     * changed in backward-incompatible ways and is not recommended for production
+     * use. It is not subject to any SLA or deprecation policy.
+     * Note that certain properties of a snapshot are not modifiable.
      *
      * Sample code:
      * ```
@@ -1179,7 +1183,7 @@ class SubscriberGapicClient
      * }
      * ```
      *
-     * @param Snapshot  $snapshot     The updated snpashot object.
+     * @param Snapshot  $snapshot     The updated snapshot object.
      * @param FieldMask $updateMask   Indicates which fields in the provided snapshot to update.
      *                                Must be specified and non-empty.
      * @param array     $optionalArgs {
@@ -1212,7 +1216,11 @@ class SubscriberGapicClient
     }
 
     /**
-     * Removes an existing snapshot. All messages retained in the snapshot
+     * Removes an existing snapshot. <br><br>
+     * <b>ALPHA:</b> This feature is part of an alpha release. This API might be
+     * changed in backward-incompatible ways and is not recommended for production
+     * use. It is not subject to any SLA or deprecation policy.
+     * When the snapshot is deleted, all messages retained in the snapshot
      * are immediately dropped. After a snapshot is deleted, a new one may be
      * created with the same name, but the new one has no association with the old
      * snapshot or its subscription, unless the same subscription is specified.
@@ -1258,7 +1266,10 @@ class SubscriberGapicClient
 
     /**
      * Seeks an existing subscription to a point in time or to a given snapshot,
-     * whichever is provided in the request.
+     * whichever is provided in the request.<br><br>
+     * <b>ALPHA:</b> This feature is part of an alpha release. This API might be
+     * changed in backward-incompatible ways and is not recommended for production
+     * use. It is not subject to any SLA or deprecation policy.
      *
      * Sample code:
      * ```

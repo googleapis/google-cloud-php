@@ -21,10 +21,6 @@
  * https://github.com/google/googleapis/blob/master/google/pubsub/v1/pubsub.proto
  * and updates to that file get reflected here through a refresh process.
  *
- * EXPERIMENTAL: This client library class has not yet been declared GA (1.0). This means that
- * even though we intend the surface to be stable, we may make backwards incompatible changes
- * if necessary.
- *
  * @experimental
  */
 
@@ -50,6 +46,7 @@ use Google\Cloud\PubSub\V1\ListTopicSubscriptionsRequest;
 use Google\Cloud\PubSub\V1\ListTopicSubscriptionsResponse;
 use Google\Cloud\PubSub\V1\ListTopicsRequest;
 use Google\Cloud\PubSub\V1\ListTopicsResponse;
+use Google\Cloud\PubSub\V1\MessageStoragePolicy;
 use Google\Cloud\PubSub\V1\PublishRequest;
 use Google\Cloud\PubSub\V1\PublishResponse;
 use Google\Cloud\PubSub\V1\PubsubMessage;
@@ -61,10 +58,6 @@ use Google\Protobuf\GPBEmpty;
 /**
  * Service Description: The service that an application uses to manipulate topics, and to send
  * messages to a topic.
- *
- * EXPERIMENTAL: This client library class has not yet been declared GA (1.0). This means that
- * even though we intend the surface to be stable, we may make backwards incompatible changes
- * if necessary.
  *
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods. Sample code to get started:
@@ -304,7 +297,8 @@ class PublisherGapicClient
     }
 
     /**
-     * Creates the given topic with the given name.
+     * Creates the given topic with the given name. See the
+     * <a href="/pubsub/docs/admin#resource_names"> resource name rules</a>.
      *
      * Sample code:
      * ```
@@ -328,6 +322,13 @@ class PublisherGapicClient
      *
      *     @type array $labels
      *          User labels.
+     *     @type MessageStoragePolicy $messageStoragePolicy
+     *          Policy constraining how messages published to the topic may be stored. It
+     *          is determined when the topic is created based on the policy configured at
+     *          the project level. It must not be set by the caller in the request to
+     *          CreateTopic or to UpdateTopic. This field will be populated in the
+     *          responses for GetTopic, CreateTopic, and UpdateTopic: if not present in the
+     *          response, then no constraints are in effect.
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
@@ -347,6 +348,9 @@ class PublisherGapicClient
         if (isset($optionalArgs['labels'])) {
             $request->setLabels($optionalArgs['labels']);
         }
+        if (isset($optionalArgs['messageStoragePolicy'])) {
+            $request->setMessageStoragePolicy($optionalArgs['messageStoragePolicy']);
+        }
 
         return $this->startCall(
             'CreateTopic',
@@ -357,12 +361,8 @@ class PublisherGapicClient
     }
 
     /**
-     * Updates an existing topic. Note that certain properties of a topic are not
-     * modifiable.  Options settings follow the style guide:
-     * NOTE:  The style guide requires body: "topic" instead of body: "*".
-     * Keeping the latter for internal consistency in V1, however it should be
-     * corrected in V2.  See
-     * https://cloud.google.com/apis/design/standard_methods#update for details.
+     * Updates an existing topic. Note that certain properties of a
+     * topic are not modifiable.
      *
      * Sample code:
      * ```
@@ -376,9 +376,12 @@ class PublisherGapicClient
      * }
      * ```
      *
-     * @param Topic     $topic        The topic to update.
-     * @param FieldMask $updateMask   Indicates which fields in the provided topic to update.
-     *                                Must be specified and non-empty.
+     * @param Topic     $topic        The updated topic object.
+     * @param FieldMask $updateMask   Indicates which fields in the provided topic to update. Must be specified
+     *                                and non-empty. Note that if `update_mask` contains
+     *                                "message_storage_policy" then the new value will be determined based on the
+     *                                policy configured at the project or organization level. The
+     *                                `message_storage_policy` must not be set in the `topic` provided above.
      * @param array     $optionalArgs {
      *                                Optional.
      *
@@ -576,7 +579,7 @@ class PublisherGapicClient
     }
 
     /**
-     * Lists the name of the subscriptions for this topic.
+     * Lists the names of the subscriptions on this topic.
      *
      * Sample code:
      * ```

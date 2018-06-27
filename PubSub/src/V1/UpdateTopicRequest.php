@@ -16,14 +16,17 @@ use Google\Protobuf\Internal\GPBUtil;
 class UpdateTopicRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The topic to update.
+     * The updated topic object.
      *
      * Generated from protobuf field <code>.google.pubsub.v1.Topic topic = 1;</code>
      */
     private $topic = null;
     /**
-     * Indicates which fields in the provided topic to update.
-     * Must be specified and non-empty.
+     * Indicates which fields in the provided topic to update. Must be specified
+     * and non-empty. Note that if `update_mask` contains
+     * "message_storage_policy" then the new value will be determined based on the
+     * policy configured at the project or organization level. The
+     * `message_storage_policy` must not be set in the `topic` provided above.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
      */
@@ -35,7 +38,7 @@ class UpdateTopicRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The topic to update.
+     * The updated topic object.
      *
      * Generated from protobuf field <code>.google.pubsub.v1.Topic topic = 1;</code>
      * @return \Google\Cloud\PubSub\V1\Topic
@@ -46,7 +49,7 @@ class UpdateTopicRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The topic to update.
+     * The updated topic object.
      *
      * Generated from protobuf field <code>.google.pubsub.v1.Topic topic = 1;</code>
      * @param \Google\Cloud\PubSub\V1\Topic $var
@@ -61,8 +64,11 @@ class UpdateTopicRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Indicates which fields in the provided topic to update.
-     * Must be specified and non-empty.
+     * Indicates which fields in the provided topic to update. Must be specified
+     * and non-empty. Note that if `update_mask` contains
+     * "message_storage_policy" then the new value will be determined based on the
+     * policy configured at the project or organization level. The
+     * `message_storage_policy` must not be set in the `topic` provided above.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
      * @return \Google\Protobuf\FieldMask
@@ -73,8 +79,11 @@ class UpdateTopicRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Indicates which fields in the provided topic to update.
-     * Must be specified and non-empty.
+     * Indicates which fields in the provided topic to update. Must be specified
+     * and non-empty. Note that if `update_mask` contains
+     * "message_storage_policy" then the new value will be determined based on the
+     * policy configured at the project or organization level. The
+     * `message_storage_policy` must not be set in the `topic` provided above.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
      * @param \Google\Protobuf\FieldMask $var

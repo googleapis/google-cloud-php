@@ -21,10 +21,6 @@
  * https://github.com/google/googleapis/blob/master/google/privacy/dlp/v2/dlp.proto
  * and updates to that file get reflected here through a refresh process.
  *
- * EXPERIMENTAL: This client library class has not yet been declared GA (1.0). This means that
- * even though we intend the surface to be stable, we may make backwards incompatible changes
- * if necessary.
- *
  * @experimental
  */
 
@@ -94,10 +90,6 @@ use Google\Protobuf\GPBEmpty;
  * blocks or images.
  * The service also includes methods for sensitive data redaction and
  * scheduling of data scans on Google Cloud Platform based data sets.
- *
- * EXPERIMENTAL: This client library class has not yet been declared GA (1.0). This means that
- * even though we intend the surface to be stable, we may make backwards incompatible changes
- * if necessary.
  *
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods. Sample code to get started:
@@ -1428,12 +1420,10 @@ class DlpServiceGapicClient
      * @param array  $optionalArgs {
      *                             Optional.
      *
-     *     @type InspectJobConfig $inspectJob
-     *          The configuration details for an inspect job. Only one of $inspectJob and $riskJob
-     *          may be provided.
-     *     @type RiskAnalysisJobConfig $riskJob
-     *          The configuration details for a risk analysis job. Only one of $inspectJob and $riskJob
-     *          may be provided.
+     *     @type InspectJobConfig $inspectJob The configuration details for an inspect
+     *          job. Only one of $inspectJob and $riskJob may be provided.
+     *     @type RiskAnalysisJobConfig $riskJob The configuration details for a risk
+     *          analysis job. Only one of $inspectJob and $riskJob may be provided.
      *     @type string $jobId
      *          The job id can contain uppercase and lowercase letters,
      *          numbers, and hyphens; that is, it must match the regular

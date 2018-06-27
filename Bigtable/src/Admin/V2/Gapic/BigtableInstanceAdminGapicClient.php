@@ -21,10 +21,6 @@
  * https://github.com/google/googleapis/blob/master/google/bigtable/admin/v2/bigtable_instance_admin.proto
  * and updates to that file get reflected here through a refresh process.
  *
- * EXPERIMENTAL: This client library class has not yet been declared GA (1.0). This means that
- * even though we intend the surface to be stable, we may make backwards incompatible changes
- * if necessary.
- *
  * @experimental
  */
 
@@ -75,10 +71,6 @@ use Google\Protobuf\GPBEmpty;
  * Service Description: Service for creating, configuring, and deleting Cloud Bigtable Instances and
  * Clusters. Provides access to the Instance and Cluster schemas only, not the
  * tables' metadata or data stored in those tables.
- *
- * EXPERIMENTAL: This client library class has not yet been declared GA (1.0). This means that
- * even though we intend the surface to be stable, we may make backwards incompatible changes
- * if necessary.
  *
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods. Sample code to get started:

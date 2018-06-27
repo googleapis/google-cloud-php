@@ -23,13 +23,12 @@ logging.basicConfig(level=logging.DEBUG)
 gapic = gcp.GAPICGenerator()
 common = gcp.CommonTemplates()
 
-# tasks has two product names, and a poorly named artman yaml
-v1_library = gapic._generate_code(
-    'vision', 'v1', 'php',
-    config_path='artman_vision_v1.yaml',
+v1_library = gapic.php_library(
+    service='vision',
+    version='v1',
     artman_output_name='google-cloud-vision-v1')
 
-# copy all src except ImageAnnotatorClient.php
+# copy all src except partial veneer classes
 s.move(v1_library / f'src/V1/Gapic')
 s.move(v1_library / f'src/V1/resources')
 

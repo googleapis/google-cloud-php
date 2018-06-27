@@ -21,10 +21,6 @@
  * https://github.com/google/googleapis/blob/master/google/devtools/cloudtrace/v2/tracing.proto
  * and updates to that file get reflected here through a refresh process.
  *
- * EXPERIMENTAL: This client library class has not yet been declared GA (1.0). This means that
- * even though we intend the surface to be stable, we may make backwards incompatible changes
- * if necessary.
- *
  * @experimental
  */
 
@@ -57,10 +53,6 @@ use Google\Rpc\Status;
  * operation or set of operations for an application. A span is an individual
  * timed event which forms a node of the trace tree. A single trace may
  * contain span(s) from multiple services.
- *
- * EXPERIMENTAL: This client library class has not yet been declared GA (1.0). This means that
- * even though we intend the surface to be stable, we may make backwards incompatible changes
- * if necessary.
  *
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods. Sample code to get started:
