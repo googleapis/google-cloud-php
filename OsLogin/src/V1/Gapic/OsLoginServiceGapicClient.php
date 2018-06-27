@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2017 Google LLC
+ * Copyright 2018 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,13 +18,13 @@
 /*
  * GENERATED CODE WARNING
  * This file was generated from the file
- * https://github.com/google/googleapis/blob/master/google/cloud/oslogin/v1beta/oslogin.proto
+ * https://github.com/google/googleapis/blob/master/google/cloud/oslogin/v1/oslogin.proto
  * and updates to that file get reflected here through a refresh process.
  *
  * @experimental
  */
 
-namespace Google\Cloud\OsLogin\V1beta\Gapic;
+namespace Google\Cloud\OsLogin\V1\Gapic;
 
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
@@ -35,14 +35,14 @@ use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
 use Google\Cloud\OsLogin\Common\SshPublicKey;
-use Google\Cloud\OsLogin\V1beta\DeletePosixAccountRequest;
-use Google\Cloud\OsLogin\V1beta\DeleteSshPublicKeyRequest;
-use Google\Cloud\OsLogin\V1beta\GetLoginProfileRequest;
-use Google\Cloud\OsLogin\V1beta\GetSshPublicKeyRequest;
-use Google\Cloud\OsLogin\V1beta\ImportSshPublicKeyRequest;
-use Google\Cloud\OsLogin\V1beta\ImportSshPublicKeyResponse;
-use Google\Cloud\OsLogin\V1beta\LoginProfile;
-use Google\Cloud\OsLogin\V1beta\UpdateSshPublicKeyRequest;
+use Google\Cloud\OsLogin\V1\DeletePosixAccountRequest;
+use Google\Cloud\OsLogin\V1\DeleteSshPublicKeyRequest;
+use Google\Cloud\OsLogin\V1\GetLoginProfileRequest;
+use Google\Cloud\OsLogin\V1\GetSshPublicKeyRequest;
+use Google\Cloud\OsLogin\V1\ImportSshPublicKeyRequest;
+use Google\Cloud\OsLogin\V1\ImportSshPublicKeyResponse;
+use Google\Cloud\OsLogin\V1\LoginProfile;
+use Google\Cloud\OsLogin\V1\UpdateSshPublicKeyRequest;
 use Google\Protobuf\FieldMask;
 use Google\Protobuf\GPBEmpty;
 
@@ -79,7 +79,7 @@ class OsLoginServiceGapicClient
     /**
      * The name of the service.
      */
-    const SERVICE_NAME = 'google.cloud.oslogin.v1beta.OsLoginService';
+    const SERVICE_NAME = 'google.cloud.oslogin.v1.OsLoginService';
 
     /**
      * The default address of the service.
@@ -433,7 +433,7 @@ class OsLoginServiceGapicClient
      *          {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
-     * @return \Google\Cloud\OsLogin\V1beta\LoginProfile
+     * @return \Google\Cloud\OsLogin\V1\LoginProfile
      *
      * @throws ApiException if the remote call fails
      * @experimental
@@ -527,7 +527,7 @@ class OsLoginServiceGapicClient
      *          {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
-     * @return \Google\Cloud\OsLogin\V1beta\ImportSshPublicKeyResponse
+     * @return \Google\Cloud\OsLogin\V1\ImportSshPublicKeyResponse
      *
      * @throws ApiException if the remote call fails
      * @experimental

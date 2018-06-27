@@ -42,7 +42,7 @@ on authenticating your client. Once authenticated, you'll be ready to start maki
 ```php
 require 'vendor/autoload.php';
 
-use Google\Cloud\OsLogin\V1beta\OsLoginServiceClient;
+use Google\Cloud\OsLogin\V1\OsLoginServiceClient;
 
 $osLoginServiceClient = new OsLoginServiceClient();
 $userId = '[MY_USER_ID]';

@@ -624,7 +624,7 @@ $ composer require google/cloud-language
 ```php
 require 'vendor/autoload.php';
 
-use Google\Cloud\OsLogin\V1beta\OsLoginServiceClient;
+use Google\Cloud\OsLogin\V1\OsLoginServiceClient;
 
 $osLoginServiceClient = new OsLoginServiceClient();
 $userId = '[MY_USER_ID]';

@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2017 Google LLC
+ * Copyright 2018 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,15 +18,15 @@
 /*
  * GENERATED CODE WARNING
  * This file was generated from the file
- * https://github.com/google/googleapis/blob/master/google/cloud/oslogin/v1beta/oslogin.proto
+ * https://github.com/google/googleapis/blob/master/google/cloud/oslogin/v1/oslogin.proto
  * and updates to that file get reflected here through a refresh process.
  *
  * @experimental
  */
 
-namespace Google\Cloud\OsLogin\V1beta;
+namespace Google\Cloud\OsLogin\V1;
 
-use Google\Cloud\OsLogin\V1beta\Gapic\OsLoginServiceGapicClient;
+use Google\Cloud\OsLogin\V1\Gapic\OsLoginServiceGapicClient;
 
 /**
  * {@inheritdoc}
