@@ -76,6 +76,7 @@ jobs:
             - dwsupplee@gmail.com
             - michaelbausor@google.com
             - tmatsuo@google.com
+            - chingor@google.com
           on_success: always
           on_failure: always
 
