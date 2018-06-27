@@ -42,7 +42,7 @@ class GrpcTest extends TestCase
     const LOCATION = 'projects/grass-clump-479/locations/us-east1-b';
 
     private $successMessage;
-    
+
     private $requestWrapper;
 
     public function setUp()
@@ -51,7 +51,7 @@ class GrpcTest extends TestCase
         $this->requestWrapper = $this->prophesize(GrpcRequestWrapper::class);
         $this->successMessage = 'success';
     }
-    
+
     /**
      * @dataProvider methodProvider
      */
@@ -75,7 +75,9 @@ class GrpcTest extends TestCase
         $serializer = new Serializer();
         $instanceName = 'test-instance3';
         $clusterName = 'test-cluster';
- 
+        $permissions = ['permission1','permission2'];
+        $policy = ['foo' => 'bar'];
+
         $clusterArgs = [
             'location' => self::LOCATION,
             'serveNodes' => 3,
@@ -118,6 +120,21 @@ class GrpcTest extends TestCase
                 [self::PROJECT, $instanceName, $instance, ['test-cluster3' =>$cluster], ['headers' => ['google-cloud-resource-prefix' => [self::PROJECT]]]],
                 $lro,
                 null
+            ],
+            [
+                'setIamPolicy',
+                ['resource' => $instanceName, 'policy' => $policy],
+                [$instanceName, $policy, ['headers' => ['google-cloud-resource-prefix' => [$instanceName]]]]
+            ],
+            [
+                'getIamPolicy',
+                ['resource' => $instanceName],
+                [$instanceName, ['headers' => ['google-cloud-resource-prefix' => [$instanceName]]]]
+            ],
+            [
+                'testIamPermissions',
+                ['resource' => $instanceName, 'permissions' => $permissions],
+                [$instanceName, $permissions, ['headers' => ['google-cloud-resource-prefix' => [$instanceName]]]]
             ]
         ];
     }
