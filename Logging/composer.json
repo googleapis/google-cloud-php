@@ -14,7 +14,8 @@
         "erusev/parsedown": "^1.6",
         "google/cloud-storage": "^1.3",
         "google/cloud-bigquery": "^1.0",
-        "google/cloud-pubsub": "^1.0"
+        "google/cloud-pubsub": "^1.0",
+        "opis/closure": "^3"
     },
     "suggest": {
         "ext-grpc": "The gRPC extension enables use of the performant gRPC transport",
