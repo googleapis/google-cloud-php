@@ -251,7 +251,11 @@ class Grpc implements ConnectionInterface
      */
     public function getIamPolicy(array $args)
     {
-        throw new \BadMethodCallException('This method is not implemented yet');
+        $resource = $this->pluck('resource', $args);
+        return $this->send([$this->bigtableInstanceAdminClient, 'getIamPolicy'], [
+            $resource,
+            $this->addResourcePrefixHeader($args, $resource)
+        ]);
     }
 
     /**
@@ -259,7 +263,12 @@ class Grpc implements ConnectionInterface
      */
     public function setIamPolicy(array $args)
     {
-        throw new \BadMethodCallException('This method is not implemented yet');
+        $resource = $this->pluck('resource', $args);
+        return $this->send([$this->bigtableInstanceAdminClient, 'setIamPolicy'], [
+            $resource,
+            $this->pluck('policy', $args),
+            $this->addResourcePrefixHeader($args, $resource)
+        ]);
     }
 
     /**
@@ -267,7 +276,12 @@ class Grpc implements ConnectionInterface
      */
     public function testIamPermissions(array $args)
     {
-        throw new \BadMethodCallException('This method is not implemented yet');
+        $resource = $this->pluck('resource', $args);
+        return $this->send([$this->bigtableInstanceAdminClient, 'testIamPermissions'], [
+            $resource,
+            $this->pluck('permissions', $args),
+            $this->addResourcePrefixHeader($args, $resource)
+        ]);
     }
 
     /**
