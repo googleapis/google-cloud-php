@@ -733,6 +733,14 @@
             ]
         },
         {
+            "id": "cloud-tasks",
+            "name": "google/cloud-tasks",
+            "defaultService": "tasks/readme",
+            "versions": [
+                "master"
+            ]
+        },
+        {
             "id": "cloud-trace",
             "name": "google/cloud-trace",
             "defaultService": "trace/traceclient",
