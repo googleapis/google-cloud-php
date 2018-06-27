@@ -40,16 +40,6 @@ s.move(library / f'tests/')
 # copy GPBMetadata file to metadata
 s.move(library / f'proto/src/GPBMetadata/Google/Bigtable', f'metadata/')
 
-# fix year
-s.replace(
-    '**/Gapic/*GapicClient.php',
-    r'Copyright \d{4}',
-    r'Copyright 2017')
-s.replace(
-    'tests/**/V2/*Test.php',
-    r'Copyright \d{4}',
-    r'Copyright 2018')
-
 # Bigtable Admin also lives here
 admin_library = gapic.php_library(
     service='bigtable-admin',
@@ -74,6 +64,6 @@ s.replace(
     r'Copyright \d{4}',
     r'Copyright 2017')
 s.replace(
-    'tests/**/Admin/V2/*Test.php',
+    'tests/**/V2/*Test.php',
     r'Copyright \d{4}',
     r'Copyright 2018')

@@ -56,5 +56,4 @@ s.replace(
 s.replace(
     'src/V1/Gapic/*GapicClient.php',
     r'^(\s+\*\n)?\s+\*\s@experimental\n',
-    ''
-)
+    '')

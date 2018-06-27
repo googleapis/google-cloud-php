@@ -46,6 +46,10 @@ s.replace(
     r'Copyright \d{4}',
     r'Copyright 2016')
 s.replace(
+    '**/*GrpcClient.php',
+    r'Copyright \d{4}',
+    r'Copyright 2017')
+s.replace(
     'tests/**/V1/*Test.php',
     r'Copyright \d{4}',
     r'Copyright 2018')

@@ -34,7 +34,7 @@ s.move(library / f'src/V1beta1/Gapic')
 s.move(library / f'src/V1beta1/resources')
 
 # copy proto files to src also
-s.move(library / f'proto/src/Google/Cloud/ErrorReporting/', f'src/')
+s.move(library / f'proto/src/Google/Cloud/ErrorReporting', f'src/')
 s.move(library / f'tests/')
 
 # copy GPBMetadata file to metadata
