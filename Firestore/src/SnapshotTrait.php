@@ -17,6 +17,7 @@
 
 namespace Google\Cloud\Firestore;
 
+use Google\ApiCore\ValidationException;
 use Google\Cloud\Core\ArrayTrait;
 use Google\Cloud\Core\Exception\NotFoundException;
 use Google\Cloud\Core\Timestamp;
@@ -228,15 +229,12 @@ trait SnapshotTrait
         if ($this->isRelative($name)) {
             try {
                 $name = $this->fullName($projectId, $database, $name);
-            } catch (\Exception $e) {
+            } catch (ValidationException $e) {
                 // The GAPIC parser does not support special characters in paths,
                 // but Firestore does. If an exception is raised by the parser,
                 // we'll check for special characters. If they exist, we'll
                 // manually construct a document path.
-                $hasSpecialChars = !ctype_alnum(strtr($name, [
-                    '/' => '',
-                    ' ' => ''
-                ]));
+                $hasSpecialChars = preg_match('/[!@#$%^&*(),.?":{}|<>]/', $name) === 1;
 
                 if (!$hasSpecialChars) {
                     throw $e;
