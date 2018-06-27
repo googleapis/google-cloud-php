@@ -17,11 +17,12 @@
 
 namespace Google\Cloud\Bigtable;
 
-use Google\Cloud\Core\ArrayTrait;
+use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\Core\ClientTrait;
 use Google\Cloud\Bigtable\Admin\V2\BigtableInstanceAdminClient as InstanceAdminClient;
 use Google\Cloud\Bigtable\Connection\Grpc;
 use Google\Cloud\Bigtable\Connection\LongRunningConnection;
+use Google\Cloud\Core\Exception\GoogleException;
 use Google\Cloud\Core\LongRunning\LongRunningOperation;
 use Google\Cloud\Core\LongRunning\LROTrait;
 
@@ -60,7 +61,6 @@ use Google\Cloud\Core\LongRunning\LROTrait;
  */
 class BigtableClient
 {
-    use ArrayTrait;
     use ClientTrait;
     use LROTrait;
 
@@ -136,24 +136,23 @@ class BigtableClient
      * ```
      *
      * @codingStandardsIgnoreStart
-     * @see https://cloud.google.com/bigtable/docs/reference/admin/rpc/google.bigtable.admin.v2#CreateInstanceRequest CreateInstanceRequest
+     * @see https://cloud.google.com/bigtable/docs/reference/admin/rpc/google.bigtable.admin.v2#google.bigtable.admin.v2.CreateInstanceRequest CreateInstanceRequest
      *
      * @param string $instanceId The instance ID.
      * @param array $options [optional] {
      *     Configuration options
      *
      *     @type string $displayName **Defaults to** the value of $instanceId.
-     *     @type int $instanceType  Possible values include `Instance_Type::PRODUCTION` and `Instance_Type::DEVELOPMENT`.
-     *           **Defaults to**`Instance_Type::TYPE_UNSPECIFIED`.
-     *     @type array $labels For more information, see
+     *     @type int $instanceType Possible values include @var Instance::INSTANCE_TYPE_PRODUCTION  and @var Instance::INSTANCE_TYPE_DEVELOPMENT.
+     *           **Defaults to** @var Instance::INSTANCE_TYPE_UNSPECIFIED.
+     *     @type array $labels as key/value pair ['foo' => 'bar']. For more information, see
      *           [Using labels to organize Google Cloud Platform resources](https://cloudplatform.googleblog.com/2015/10/using-labels-to-organize-Google-Cloud-Platform-resources.html).
-     *     @type array $clusters [] {
-     *           array {
-     *                 string $clusterId
-     *                 string $locationId
-     *                 int $serveNodes
-     *                 int $storageType The storage media type for persisting Bigtable data. Possible values include `Instance::STORAGE_TYPE_SSD` and `Instance::STORAGE_TYPE_HDD`.
-     *                 **Defaults to** `Instance::STORAGE_TYPE_UNSPECIFIED`.
+     *     @type Cluster[] $clusters {
+     *         string $clusterId
+     *         string $locationId
+     *         int $serveNodes
+     *         int $storageType The storage media type for persisting Bigtable data. Possible values include @var Instance::STORAGE_TYPE_SSD and @var Instance::STORAGE_TYPE_HDD.
+     *             **Defaults to** @var Instance::STORAGE_TYPE_UNSPECIFIED.
      *          }
      * }
      * @return LongRunningOperation<Instance>
@@ -174,6 +173,16 @@ class BigtableClient
      * ```
      *
      * @param string $instanceId The instance ID
+     * @param array $instance [optional] {
+     *     Configuration options
+     *
+     *     @type string $displayName **Defaults to** the value of $instanceId.
+     *     @type int $instanceType Possible values include @var Instance::INSTANCE_TYPE_PRODUCTION and
+     *           @var Instance::INSTANCE_TYPE_DEVELOPMENT.
+     *           **Defaults to** @var Instance::INSTANCE_TYPE_UNSPECIFIED.
+     *     @type array $labels as key/value pair ['foo' => 'bar']. For more information, see
+     *           [Using labels to organize Google Cloud Platform resources](https://cloudplatform.googleblog.com/2015/10/using-labels-to-organize-Google-Cloud-Platform-resources.html).
+     * }
      * @return Instance
      */
     public function instance($instanceId, array $instance = [])

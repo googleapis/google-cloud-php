@@ -116,7 +116,7 @@ class Instance
      *        Cloud Bigtable Admin API.
      * @param LongRunningConnectionInterface $lroConnection An implementation
      *        mapping to methods which handle LRO resolution in the service.
-     * @param array $lroCallables
+     * @param array $lroCallables Grpc object.
      * @param string $projectId The project ID.
      * @param string $instanceId The instance ID.
      * @param array $info [optional] A representation of the instance object.
@@ -159,7 +159,7 @@ class Instance
      * Example:
      * ```
      * $info = $instance->info();
-     * echo $info['nodeCount'];
+     * echo $info['serveNodes'];
      * ```
      *
      * @param array $options [optional] Configuration options.
@@ -182,7 +182,7 @@ class Instance
      * Example:
      * ```
      * if ($instance->exists()) {
-     *    echo 'Instance exists!';
+     *     echo 'Instance exists!';
      * }
      * ```
      *
@@ -192,7 +192,7 @@ class Instance
     public function exists(array $options = [])
     {
         try {
-            $this->reload($options = []);
+            $this->reload($options);
         } catch (NotFoundException $e) {
             return false;
         }
@@ -210,6 +210,7 @@ class Instance
      *
      * @codingStandardsIgnoreStart
      * @see https://cloud.google.com/bigtable/docs/reference/admin/rpc/google.bigtable.admin.v2#google.bigtable.admin.v2.GetInstanceRequest GetInstanceRequest
+     * @see https://cloud.google.com/bigtable/docs/reference/admin/rpc/google.bigtable.admin.v2#google.bigtable.admin.v2.Instance Instance
      * @codingStandardsIgnoreEnd
      *
      * @param array $options [optional] Configuration options.
@@ -240,17 +241,16 @@ class Instance
      *     Configuration options
      *
      *     @type string $displayName **Defaults to** the value of $instanceId.
-     *     @type int $instanceType  Possible values include `Instance_Type::PRODUCTION` and `Instance_Type::DEVELOPMENT`.
-     *           **Defaults to** `Instance_Type::TYPE_UNSPECIFIED`.
-     *     @type array $labels For more information, see
+     *     @type int $instanceType Possible values include @var Instance::INSTANCE_TYPE_PRODUCTION  and @var Instance::INSTANCE_TYPE_DEVELOPMENT.
+     *           **Defaults to** @var Instance::INSTANCE_TYPE_UNSPECIFIED.
+     *     @type array $labels as key/value pair ['foo' => 'bar']. For more information, see
      *           [Using labels to organize Google Cloud Platform resources](https://cloudplatform.googleblog.com/2015/10/using-labels-to-organize-Google-Cloud-Platform-resources.html).
-     *     @type array $clusters [] {
-     *           array {
-     *                 string $clusterId
-     *                 string $locationId
-     *                 int $serveNodes
-     *                 int $storageType The storage media type for persisting Bigtable data. Possible values include `Instance::STORAGE_TYPE_SSD` and `Instance::STORAGE_TYPE_HDD`.
-     *                 **Defaults to** `Instance::STORAGE_TYPE_UNSPECIFIED`.
+     *     @type Cluster[] $clusters {
+     *         string $clusterId
+     *         string $locationId
+     *         int $serveNodes
+     *         int $storageType The storage media type for persisting Bigtable data. Possible values include @var Instance::STORAGE_TYPE_SSD and @var Instance::STORAGE_TYPE_HDD.
+     *             **Defaults to** @var Instance::STORAGE_TYPE_UNSPECIFIED.
      *          }
      * }
      * @return LongRunningOperation<Instance>
@@ -265,6 +265,12 @@ class Instance
         $labels = isset($options['labels']) ? $options['labels'] : [];
         $clusters = isset($options['clusters']) ? $options['clusters'] : [];
 
+        $clustersArray = [];
+        foreach ($clusters as $value) {
+            $id = $value['clusterId'];
+            $clustersArray[$id] = $this->cluster($value);
+        }
+
         $operation = $this->connection->createInstance([
             'parent' => $projectName,
             'instanceId' => $instanceId,
@@ -273,35 +279,31 @@ class Instance
                 'type' => $type,
                 'labels' => $labels
             ],
-            'clusters' => $this->clustersArray($clusters)
+            'clusters' => $clustersArray
         ]);
+
         return $this->resumeOperation($operation['name'], $operation);
     }
 
     /**
-     * @param array $args [] {
-     *      array {
-     *             string $clusterId
-     *             string $locationId
-     *             int $serveNodes
-     *             int $storageType **Defaults to** `StorageType::STORAGE_TYPE_UNSPECIFIED`.
-     *      }
+     * @param array $args {
+     *     @type string $locationId
+     *     @type int $serveNodes
+     *     @type int $storageType **Defaults to** `StorageType::STORAGE_TYPE_UNSPECIFIED`.
      * }
      * @return array
-    */
-    private function clustersArray($args)
+     */
+    private function cluster($args)
     {
-        $clusters = [];
-        foreach ($args as $value) {
-            $id = $value['clusterId'];
-            $clusters[$id] = [
-                'location' => InstanceAdminClient::locationName($this->projectId, $value['locationId']),
-                'serveNodes' => isset($value['serveNodes']) ? $value['serveNodes'] : '',
-                'defaultStorageType' => isset($value['storageType'])?$value['storageType']
-                :self::STORAGE_TYPE_UNSPECIFIED
-            ];
+        $cluster = [];
+        $cluster['location'] = InstanceAdminClient::locationName($this->projectId, $args['locationId']);
+        $cluster['defaultStorageType'] = isset($args['storageType'])
+            ? $args['storageType'] : self::STORAGE_TYPE_UNSPECIFIED;
+        if (isset($args['serveNodes'])) {
+            $cluster['serveNodes'] = $args['serveNodes'];
         }
-        return $clusters;
+
+        return $cluster;
     }
 
     /**
@@ -313,14 +315,7 @@ class Instance
      */
     private function fullyQualifiedInstanceName($instanceId, $projectId)
     {
-        try {
-            return InstanceAdminClient::instanceName(
-                $projectId,
-                $instanceId
-            );
-        } catch (ValidationException $e) {
-            return $instanceId;
-        }
+        return InstanceAdminClient::instanceName($projectId, $instanceId);
     }
 
     /**

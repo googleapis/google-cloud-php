@@ -19,8 +19,8 @@ namespace Google\Cloud\Spanner\Tests\Bigtable;
 
 use Google\Cloud\Bigtable\Admin\V2\BigtableInstanceAdminClient as InstanceAdminClient;
 use Google\Cloud\Bigtable\BigtableClient;
-use Google\Cloud\Bigtable\Instance;
 use Google\Cloud\Bigtable\Connection\ConnectionInterface;
+use Google\Cloud\Bigtable\Instance;
 use Google\Cloud\Core\Iterator\ItemIterator;
 use Google\Cloud\Core\LongRunning\LongRunningOperation;
 use Google\Cloud\Core\Testing\GrpcTestTrait;

@@ -82,7 +82,7 @@ class InstanceTest extends SnippetTestCase
 
         $this->connection->getInstance(Argument::any())
             ->shouldBeCalled()
-            ->willReturn(['nodeCount' => 1]);
+            ->willReturn(['serveNodes' => 1]);
 
         $this->instance->___setProperty('connection', $this->connection->reveal());
 
@@ -121,9 +121,6 @@ class InstanceTest extends SnippetTestCase
         $this->assertEquals($info, $res->returnVal());
     }
 
-    /**
-     * @group bigtabladmin
-     */
     public function testCreate()
     {
         $config = $this->prophesize(Instance::class);
