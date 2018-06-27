@@ -40,10 +40,10 @@ class GrpcTest extends TestCase
     use GrpcTestTrait;
     use GrpcTrait;
 
-    const PROJECT = 'projects/grass-clump-479';
-    const LOCATION = 'projects/grass-clump-479/locations/us-east1-b';
-    const INSTANCE = 'projects/grass-clump-479/instances/my-instance';
-    const APPPROFILE = 'projects/grass-clump-479/instances/test-instance/appProfiles/my-profile';
+    const PROJECT = 'projects/my-awesome-project';
+    const LOCATION = 'projects/my-awesome-project/locations/us-east1-b';
+    const INSTANCE = 'projects/my-awesome-project/instances/my-instance';
+    const APPPROFILE = 'projects/my-awesome-project/instances/test-instance/appProfiles/my-profile';
 
     private $successMessage;
 

@@ -284,7 +284,7 @@ class Grpc implements ConnectionInterface
      */
     private function updateMaskObject(array $args)
     {
-        $mask = array_map([$this, 'serializerObject'], array_keys($args));
+        $mask = array_map([$this, 'convertToSnakeCase'], array_keys($args));
         return $this->serializer->decodeMessage(
             new FieldMask(),
             ['paths' => $mask]
@@ -293,9 +293,9 @@ class Grpc implements ConnectionInterface
 
     /**
      * @param string $key
-     * @return Serializer
+     * @return string
      */
-    private function serializerObject($key)
+    private function convertToSnakeCase($key)
     {
         return Serializer::toSnakeCase($key);
     }
