@@ -29,23 +29,26 @@ library = gapic.php_library(
     config_path='/google/cloud/bigquery/datatransfer/artman_bigquerydatatransfer.yaml',
     artman_output_name='google-cloud-bigquerydatatransfer-v1')
 
-# copy all src except partial veneer classes
-s.move(library / f'src/V1/Gapic')
-s.move(library / f'src/V1/resources')
+# copy all src including partial veneer classes
+s.move(library / 'src')
 
 # copy proto files to src also
-s.move(library / f'proto/src/Google/Cloud/BigQuery/DataTransfer', f'src/')
-s.move(library / f'tests/')
+s.move(library / 'proto/src/Google/Cloud/BigQuery/DataTransfer', 'src/')
+s.move(library / 'tests/')
 
 # copy GPBMetadata file to metadata
-s.move(library / f'proto/src/GPBMetadata/Google/Cloud/Bigquery/Datatransfer', f'metadata/')
+s.move(library / 'proto/src/GPBMetadata/Google/Cloud/Bigquery/Datatransfer', 'metadata/')
 
 # fix year
 s.replace(
     '**/Gapic/*GapicClient.php',
     r'Copyright \d{4}',
-    r'Copyright 2017')
+    'Copyright 2017')
 s.replace(
-    'tests/**/V2/*Test.php',
+    '**/V1/DataTransferServiceClient.php',
     r'Copyright \d{4}',
-    r'Copyright 2017')
+    'Copyright 2017')
+s.replace(
+    'tests/**/V1/*Test.php',
+    r'Copyright \d{4}',
+    'Copyright 2018')

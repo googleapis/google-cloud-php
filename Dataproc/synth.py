@@ -28,23 +28,30 @@ library = gapic.php_library(
     version='v1',
     artman_output_name='google-cloud-dataproc-v1')
 
-# copy all src except partial veneer classes
-s.move(library / f'src/V1/Gapic')
-s.move(library / f'src/V1/resources')
+# copy all src including partial veneer classes
+s.move(library / 'src')
 
 # copy proto files to src also
-s.move(library / f'proto/src/Google/Cloud/Dataproc', f'src/')
-s.move(library / f'tests/')
+s.move(library / 'proto/src/Google/Cloud/Dataproc', 'src/')
+s.move(library / 'tests/')
 
 # copy GPBMetadata file to metadata
-s.move(library / f'proto/src/GPBMetadata/Google/Cloud/Dataproc', f'metadata/')
+s.move(library / 'proto/src/GPBMetadata/Google/Cloud/Dataproc', 'metadata/')
 
 # fix year
 s.replace(
     '**/Gapic/*GapicClient.php',
     r'Copyright \d{4}',
-    r'Copyright 2017')
+    'Copyright 2017')
+s.replace(
+    '**/V1/ClusterControllerClient.php',
+    r'Copyright \d{4}',
+    'Copyright 2017')
+s.replace(
+    '**/V1/JobControllerClient.php',
+    r'Copyright \d{4}',
+    'Copyright 2017')
 s.replace(
     'tests/**/V1/*Test.php',
     r'Copyright \d{4}',
-    r'Copyright 2018')
+    'Copyright 2018')

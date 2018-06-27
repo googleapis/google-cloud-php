@@ -28,23 +28,27 @@ library = gapic.php_library(
     version='v2',
     artman_output_name='google-cloud-dialogflow-v2')
 
-# copy all src except partial veneer classes
-s.move(library / f'src/V2/Gapic')
-s.move(library / f'src/V2/resources')
+# copy all src including partial veneer classes
+s.move(library / 'src')
 
 # copy proto files to src also
-s.move(library / f'proto/src/Google/Cloud/Dialogflow', f'src/')
-s.move(library / f'tests/')
+s.move(library / 'proto/src/Google/Cloud/Dialogflow', 'src/')
+s.move(library / 'tests/')
 
 # copy GPBMetadata file to metadata
-s.move(library / f'proto/src/GPBMetadata/Google/Cloud/Dialogflow', f'metadata/')
+s.move(library / 'proto/src/GPBMetadata/Google/Cloud/Dialogflow', 'metadata/')
 
 # fix year
 s.replace(
     '**/Gapic/*GapicClient.php',
     r'Copyright \d{4}',
-    r'Copyright 2018')
+    'Copyright 2018')
+for client in ['Agents', 'Contexts', 'EntityTypes', 'Intents', 'SessionEntityTypes', 'Sessions']:
+    s.replace(
+        f'**/V1/{client}Client.php',
+        r'Copyright \d{4}',
+        'Copyright 2018')
 s.replace(
     'tests/**/V2/*Test.php',
     r'Copyright \d{4}',
-    r'Copyright 2018')
+    'Copyright 2018')

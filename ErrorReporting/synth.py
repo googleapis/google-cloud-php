@@ -29,23 +29,27 @@ library = gapic.php_library(
     config_path='/google/devtools/clouderrorreporting/artman_errorreporting.yaml',
     artman_output_name='google-cloud-error-reporting-v1beta1')
 
-# copy all src except partial veneer classes
-s.move(library / f'src/V1beta1/Gapic')
-s.move(library / f'src/V1beta1/resources')
+# copy all src including partial veneer classes
+s.move(library / 'src')
 
 # copy proto files to src also
-s.move(library / f'proto/src/Google/Cloud/ErrorReporting', f'src/')
-s.move(library / f'tests/')
+s.move(library / 'proto/src/Google/Cloud/ErrorReporting', 'src/')
+s.move(library / 'tests/')
 
 # copy GPBMetadata file to metadata
-s.move(library / f'proto/src/GPBMetadata/Google/Devtools/Clouderrorreporting', f'metadata/')
+s.move(library / 'proto/src/GPBMetadata/Google/Devtools/Clouderrorreporting', 'metadata/')
 
 # fix year
 s.replace(
     '**/Gapic/*GapicClient.php',
     r'Copyright \d{4}',
-    r'Copyright 2017')
+    'Copyright 2017')
+for client in ['ErrorGroupService', 'ErrorStatsService', 'ReportErrorsService']:
+    s.replace(
+        f'**/V1beta1/{client}Client.php',
+        r'Copyright \d{4}',
+        'Copyright 2017')
 s.replace(
     'tests/**/V1beta1/*Test.php',
     r'Copyright \d{4}',
-    r'Copyright 2018')
+    'Copyright 2018')

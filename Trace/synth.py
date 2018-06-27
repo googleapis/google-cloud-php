@@ -29,23 +29,26 @@ library = gapic.php_library(
     config_path='/google/devtools/cloudtrace/artman_cloudtrace_v2.yaml',
     artman_output_name='google-cloud-trace-v2')
 
-# copy all src except partial veneer classes
-s.move(library / f'src/V2/Gapic')
-s.move(library / f'src/V2/resources')
+# copy all src including partial veneer classes
+s.move(library / 'src')
 
 # copy proto files to src also
-s.move(library / f'proto/src/Google/Cloud/Trace', f'src/')
-s.move(library / f'tests/')
+s.move(library / 'proto/src/Google/Cloud/Trace', 'src/')
+s.move(library / 'tests/')
 
 # copy GPBMetadata file to metadata
-s.move(library / f'proto/src/GPBMetadata/Google/Devtools/Cloudtrace', f'metadata/')
+s.move(library / 'proto/src/GPBMetadata/Google/Devtools/Cloudtrace', 'metadata/')
 
 # fix year
 s.replace(
     '**/Gapic/*GapicClient.php',
     r'Copyright \d{4}',
-    r'Copyright 2017')
+    'Copyright 2017')
+s.replace(
+    '**/V2/TraceServiceClient.php',
+    r'Copyright \d{4}',
+    'Copyright 2017')
 s.replace(
     'tests/**/V2/*Test.php',
     r'Copyright \d{4}',
-    r'Copyright 2018')
+    'Copyright 2018')

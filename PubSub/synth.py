@@ -29,27 +29,31 @@ library = gapic.php_library(
     config_path='/google/pubsub/artman_pubsub.yaml',
     artman_output_name='google-cloud-pubsub-v1')
 
-# copy all src except partial veneer classes
-s.move(library / f'src/V1/Gapic')
-s.move(library / f'src/V1/resources')
+# copy all src including partial veneer classes
+s.move(library / 'src')
 
 # copy proto files to src also
-s.move(library / f'proto/src/Google/Cloud/PubSub', f'src/')
-s.move(library / f'tests/')
+s.move(library / 'proto/src/Google/Cloud/PubSub', 'src/')
+s.move(library / 'tests/')
 
 # copy GPBMetadata file to metadata
-s.move(library / f'proto/src/GPBMetadata/Google/Pubsub', f'metadata/')
+s.move(library / 'proto/src/GPBMetadata/Google/Pubsub', 'metadata/')
 
 # fix year
 s.replace(
     '**/Gapic/*GapicClient.php',
     r'Copyright \d{4}',
-    r'Copyright 2016')
-s.replace(
-    '**/*GrpcClient.php',
-    r'Copyright \d{4}',
-    r'Copyright 2017')
+    'Copyright 2016')
+for client in ['Publisher', 'Subscriber']:
+    s.replace(
+        f'**/V1/{client}Client.php',
+        r'Copyright \d{4}',
+        'Copyright 2016')
+    s.replace(
+        f'**/V1/{client}GrpcClient.php',
+        r'Copyright \d{4}',
+        'Copyright 2017')
 s.replace(
     'tests/**/V1/*Test.php',
     r'Copyright \d{4}',
-    r'Copyright 2018')
+    'Copyright 2018')

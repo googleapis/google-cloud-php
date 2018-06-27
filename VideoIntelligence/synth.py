@@ -31,20 +31,23 @@ for version in ['V1', 'V1beta2']:
         version=lower_version,
         artman_output_name=f'google-cloud-video-intelligence-{lower_version}')
 
-    # copy all src except partial veneer classes
-    s.move(library / f'src/{version}/Gapic')
-    s.move(library / f'src/{version}/resources')
+    # copy all src including partial veneer classes
+    s.move(library / 'src')
 
     # copy proto files to src also
-    s.move(library / f'proto/src/Google/Cloud/VideoIntelligence', f'src/')
-    s.move(library / f'tests/')
+    s.move(library / 'proto/src/Google/Cloud/VideoIntelligence', 'src/')
+    s.move(library / 'tests/')
 
     # copy GPBMetadata file to metadata
-    s.move(library / f'proto/src/GPBMetadata/Google/Cloud/Videointelligence', f'metadata/')
+    s.move(library / 'proto/src/GPBMetadata/Google/Cloud/Videointelligence', 'metadata/')
 
 # fix year
 s.replace(
     '**/Gapic/*GapicClient.php',
+    r'Copyright \d{4}',
+    'Copyright 2017')
+s.replace(
+    '**/V1*/VideoIntelligenceServiceClient.php',
     r'Copyright \d{4}',
     'Copyright 2017')
 s.replace(
@@ -53,6 +56,10 @@ s.replace(
     'Copyright 2018')
 
 # V1 is GA, so remove @experimental tags
+s.replace(
+    'src/V1/VideoIntelligenceServiceClient.php',
+    r'^(\s+\*\n)?\s+\*\s@experimental\n',
+    '')
 s.replace(
     'src/V1/Gapic/*GapicClient.php',
     r'^(\s+\*\n)?\s+\*\s@experimental\n',

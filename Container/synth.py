@@ -29,23 +29,26 @@ v1_library = gapic.php_library(
     config_path='/google/container/artman_container.yaml',
     artman_output_name='google-cloud-container-v1')
 
-# copy all src except partial veneer classes
-s.move(v1_library / f'src/V1/Gapic')
-s.move(v1_library / f'src/V1/resources')
+# copy all src including partial veneer classes
+s.move(v1_library / 'src')
 
 # copy proto files to src also
-s.move(v1_library / f'proto/src/Google/Cloud/Container', f'src/')
-s.move(v1_library / f'tests/')
+s.move(v1_library / 'proto/src/Google/Cloud/Container', 'src/')
+s.move(v1_library / 'tests/')
 
 # copy GPBMetadata file to metadata
-s.move(v1_library / f'proto/src/GPBMetadata/Google/Cloud/Container', f'metadata/')
+s.move(v1_library / 'proto/src/GPBMetadata/Google/Cloud/Container', 'metadata/')
 
 # fix year
 s.replace(
     '**/Gapic/*GapicClient.php',
     r'Copyright \d{4}',
-    r'Copyright 2017')
+    'Copyright 2017')
+s.replace(
+    '**/V1/ClusterManagerClient.php',
+    r'Copyright \d{4}',
+    'Copyright 2017')
 s.replace(
     'tests/**/V1/*Test.php',
     r'Copyright \d{4}',
-    r'Copyright 2018')
+    'Copyright 2018')

@@ -29,26 +29,29 @@ library = gapic.php_library(
     config_path='/google/privacy/dlp/artman_dlp_v2.yaml',
     artman_output_name='google-cloud-dlp-v2')
 
-# copy all src except partial veneer classes
-s.move(library / f'src/V2/Gapic')
-s.move(library / f'src/V2/resources')
+# copy all src including partial veneer classes
+s.move(library / 'src')
 
 # copy proto files to src also
-s.move(library / f'proto/src/Google/Cloud/Dlp', f'src/')
-s.move(library / f'tests/')
+s.move(library / 'proto/src/Google/Cloud/Dlp', 'src/')
+s.move(library / 'tests/')
 
 # copy GPBMetadata file to metadata
-s.move(library / f'proto/src/GPBMetadata/Google/Privacy/Dlp', f'metadata/')
+s.move(library / 'proto/src/GPBMetadata/Google/Privacy/Dlp', 'metadata/')
 
 # fix year
 s.replace(
     '**/Gapic/*GapicClient.php',
     r'Copyright \d{4}',
-    r'Copyright 2018')
+    'Copyright 2018')
+s.replace(
+    '**/V2/DlpServiceClient.php',
+    r'Copyright \d{4}',
+    'Copyright 2018')
 s.replace(
     'tests/**/V2/*Test.php',
     r'Copyright \d{4}',
-    r'Copyright 2018')
+    'Copyright 2018')
 
 # Fix missing documentation. See https://github.com/googleapis/gapic-generator/issues/1915
 s.replace(

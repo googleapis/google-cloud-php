@@ -29,31 +29,36 @@ library = gapic.php_library(
     config_path='/google/monitoring/artman_monitoring.yaml',
     artman_output_name='google-cloud-monitoring-v3')
 
-# copy all src except partial veneer classes
-s.move(library / f'src/V3/Gapic')
-s.move(library / f'src/V3/resources')
+# copy all src including partial veneer classes
+s.move(library / 'src')
 
 # copy proto files to src also
-s.move(library / f'proto/src/Google/Cloud/Monitoring', f'src/')
-s.move(library / f'tests/')
+s.move(library / 'proto/src/Google/Cloud/Monitoring', 'src/')
+s.move(library / 'tests/')
 
 # copy GPBMetadata file to metadata
-s.move(library / f'proto/src/GPBMetadata/Google/Monitoring', f'metadata/')
+s.move(library / 'proto/src/GPBMetadata/Google/Monitoring', 'metadata/')
 
 # fix year
-s.replace(
-    '**/Gapic/*GapicClient.php',
-    r'Copyright \d{4}',
-    r'Copyright 2017')
-s.replace(
-    '**/Gapic/AlertPolicyServiceGapicClient.php',
-    r'Copyright \d{4}',
-    r'Copyright 2018')
-s.replace(
-    '**/Gapic/NotificationChannelServiceGapicClient.php',
-    r'Copyright \d{4}',
-    r'Copyright 2018')
+for client in ['GroupService', 'MetricService', 'UptimeCheckService']:
+    s.replace(
+        f'**/Gapic/{client}GapicClient.php',
+        r'Copyright \d{4}',
+        'Copyright 2017')
+    s.replace(
+        f'**/V3/{client}Client.php',
+        r'Copyright \d{4}',
+        'Copyright 2017')
+for client in ['AlertPolicyService', 'NotificationChannelService']:
+    s.replace(
+        f'**/Gapic/{client}GapicClient.php',
+        r'Copyright \d{4}',
+        'Copyright 2018')
+    s.replace(
+        f'**/V3/{client}Client.php',
+        r'Copyright \d{4}',
+        'Copyright 2018')
 s.replace(
     'tests/**/V3/*Test.php',
     r'Copyright \d{4}',
-    r'Copyright 2018')
+    'Copyright 2018')
