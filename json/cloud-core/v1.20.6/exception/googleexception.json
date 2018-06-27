@@ -1,0 +1,1 @@
+{"id":"core\/exception\/googleexception","type":"","title":"Google\\Cloud\\Core\\Exception\\GoogleException","name":"GoogleException","description":"<p>Exception thrown when a request fails.<\/p>\n<p>Extends <a href=\"http:\/\/php.net\/manual\/en\/class.exception.php\" target=\"_blank\">Exception<\/a><\/p>","examples":[],"resources":[],"methods":[]}

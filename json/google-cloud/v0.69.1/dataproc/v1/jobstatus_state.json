@@ -1,0 +1,1 @@
+{"id":"dataproc\/v1\/jobstatus_state","type":"","title":"Google\\Cloud\\Dataproc\\V1\\JobStatus_State","name":"JobStatus_State","description":"<p>The job state.<\/p>\n<p>Protobuf enum <code>Google\\Cloud\\Dataproc\\V1\\JobStatus\\State<\/code><\/p>","examples":[],"resources":[],"methods":[]}
