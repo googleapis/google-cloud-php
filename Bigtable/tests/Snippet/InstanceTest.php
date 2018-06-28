@@ -82,12 +82,12 @@ class InstanceTest extends SnippetTestCase
 
         $this->connection->getInstance(Argument::any())
             ->shouldBeCalled()
-            ->willReturn(['serveNodes' => 1]);
+            ->willReturn(['displayName' => 'My Instance']);
 
         $this->instance->___setProperty('connection', $this->connection->reveal());
 
         $res = $snippet->invoke();
-        $this->assertEquals('1', $res->output());
+        $this->assertEquals('My Instance', $res->output());
     }
 
     public function testExists()

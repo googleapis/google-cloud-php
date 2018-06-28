@@ -159,7 +159,7 @@ class Instance
      * Example:
      * ```
      * $info = $instance->info();
-     * echo $info['serveNodes'];
+     * echo $info['displayName'];
      * ```
      *
      * @param array $options [optional] Configuration options.
@@ -241,16 +241,16 @@ class Instance
      *     Configuration options
      *
      *     @type string $displayName **Defaults to** the value of $instanceId.
-     *     @type int $instanceType Possible values include @var Instance::INSTANCE_TYPE_PRODUCTION  and @var Instance::INSTANCE_TYPE_DEVELOPMENT.
-     *           **Defaults to** @var Instance::INSTANCE_TYPE_UNSPECIFIED.
+     *     @type int $instanceType Possible values are represented by the following constants: `Google\Cloud\Bigtable\Instance::INSTANCE_TYPE_PRODUCTION`, `Google\Cloud\Bigtable\Instance::INSTANCE_TYPE_DEVELOPMENT` and `Google\Cloud\Bigtable\Instance::INSTANCE_TYPE_UNSPECIFIED`.
+     *           **Defaults to** using `Google\Cloud\Bigtable\Instance::INSTANCE_TYPE_UNSPECIFIED`.
      *     @type array $labels as key/value pair ['foo' => 'bar']. For more information, see
      *           [Using labels to organize Google Cloud Platform resources](https://cloudplatform.googleblog.com/2015/10/using-labels-to-organize-Google-Cloud-Platform-resources.html).
      *     @type Cluster[] $clusters {
      *         string $clusterId
      *         string $locationId
      *         int $serveNodes
-     *         int $storageType The storage media type for persisting Bigtable data. Possible values include @var Instance::STORAGE_TYPE_SSD and @var Instance::STORAGE_TYPE_HDD.
-     *             **Defaults to** @var Instance::STORAGE_TYPE_UNSPECIFIED.
+     *         int $storageType The storage media type for persisting Bigtable data. Possible values include `Google\Cloud\Bigtable\Instance::STORAGE_TYPE_SSD` and `Google\Cloud\Bigtable\Instance::STORAGE_TYPE_HDD`.
+     *             **Defaults to** `Google\Cloud\Bigtable\Instance::STORAGE_TYPE_UNSPECIFIED`.
      *          }
      * }
      * @return LongRunningOperation<Instance>
@@ -298,7 +298,8 @@ class Instance
         $cluster = [];
         $cluster['location'] = InstanceAdminClient::locationName($this->projectId, $args['locationId']);
         $cluster['defaultStorageType'] = isset($args['storageType'])
-            ? $args['storageType'] : self::STORAGE_TYPE_UNSPECIFIED;
+            ? $args['storageType']
+            : self::STORAGE_TYPE_UNSPECIFIED;
         if (isset($args['serveNodes'])) {
             $cluster['serveNodes'] = $args['serveNodes'];
         }
