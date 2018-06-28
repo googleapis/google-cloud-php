@@ -18,7 +18,7 @@ class Finding extends \Google\Protobuf\Internal\Message
     /**
      * The content that was found. Even if the content is not textual, it
      * may be converted to a textual representation here.
-     * Provided if requested by the `InspectConfig` and the finding is
+     * Provided if `include_quote` is true and the finding is
      * less than or equal to 4096 bytes long. If the finding exceeds 4096 bytes
      * in length, the quote may be omitted.
      *
@@ -27,13 +27,13 @@ class Finding extends \Google\Protobuf\Internal\Message
     private $quote = '';
     /**
      * The type of content that might have been found.
-     * Provided if requested by the `InspectConfig`.
+     * Provided if `excluded_types` is false.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.InfoType info_type = 2;</code>
      */
     private $info_type = null;
     /**
-     * Estimate of how likely it is that the `info_type` is correct.
+     * Confidence of how likely it is that the `info_type` is correct.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.Likelihood likelihood = 3;</code>
      */
@@ -67,7 +67,7 @@ class Finding extends \Google\Protobuf\Internal\Message
     /**
      * The content that was found. Even if the content is not textual, it
      * may be converted to a textual representation here.
-     * Provided if requested by the `InspectConfig` and the finding is
+     * Provided if `include_quote` is true and the finding is
      * less than or equal to 4096 bytes long. If the finding exceeds 4096 bytes
      * in length, the quote may be omitted.
      *
@@ -82,7 +82,7 @@ class Finding extends \Google\Protobuf\Internal\Message
     /**
      * The content that was found. Even if the content is not textual, it
      * may be converted to a textual representation here.
-     * Provided if requested by the `InspectConfig` and the finding is
+     * Provided if `include_quote` is true and the finding is
      * less than or equal to 4096 bytes long. If the finding exceeds 4096 bytes
      * in length, the quote may be omitted.
      *
@@ -100,7 +100,7 @@ class Finding extends \Google\Protobuf\Internal\Message
 
     /**
      * The type of content that might have been found.
-     * Provided if requested by the `InspectConfig`.
+     * Provided if `excluded_types` is false.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.InfoType info_type = 2;</code>
      * @return \Google\Cloud\Dlp\V2\InfoType
@@ -112,7 +112,7 @@ class Finding extends \Google\Protobuf\Internal\Message
 
     /**
      * The type of content that might have been found.
-     * Provided if requested by the `InspectConfig`.
+     * Provided if `excluded_types` is false.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.InfoType info_type = 2;</code>
      * @param \Google\Cloud\Dlp\V2\InfoType $var
@@ -127,7 +127,7 @@ class Finding extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Estimate of how likely it is that the `info_type` is correct.
+     * Confidence of how likely it is that the `info_type` is correct.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.Likelihood likelihood = 3;</code>
      * @return int
@@ -138,7 +138,7 @@ class Finding extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Estimate of how likely it is that the `info_type` is correct.
+     * Confidence of how likely it is that the `info_type` is correct.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.Likelihood likelihood = 3;</code>
      * @param int $var

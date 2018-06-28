@@ -19,7 +19,11 @@ class InspectConfig extends \Google\Protobuf\Internal\Message
 {
     /**
      * Restricts what info_types to look for. The values must correspond to
-     * InfoType values returned by ListInfoTypes or found in documentation.
+     * InfoType values returned by ListInfoTypes or listed at
+     * https://cloud.google.com/dlp/docs/infotypes-reference.
+     * When no InfoTypes or CustomInfoTypes are specified in a request, the
+     * system may automatically choose what detectors to run. By default this may
+     * be all types, but may change over time as detectors are updated.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.InfoType info_types = 1;</code>
      */
@@ -27,6 +31,7 @@ class InspectConfig extends \Google\Protobuf\Internal\Message
     /**
      * Only returns findings equal or above this threshold. The default is
      * POSSIBLE.
+     * See https://cloud.google.com/dlp/docs/likelihood to learn more.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.Likelihood min_likelihood = 2;</code>
      */
@@ -49,7 +54,8 @@ class InspectConfig extends \Google\Protobuf\Internal\Message
      */
     private $exclude_info_types = false;
     /**
-     * Custom infoTypes provided by the user.
+     * CustomInfoTypes provided by the user. See
+     * https://cloud.google.com/dlp/docs/creating-custom-infotypes to learn more.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.CustomInfoType custom_info_types = 6;</code>
      */
@@ -69,7 +75,11 @@ class InspectConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * Restricts what info_types to look for. The values must correspond to
-     * InfoType values returned by ListInfoTypes or found in documentation.
+     * InfoType values returned by ListInfoTypes or listed at
+     * https://cloud.google.com/dlp/docs/infotypes-reference.
+     * When no InfoTypes or CustomInfoTypes are specified in a request, the
+     * system may automatically choose what detectors to run. By default this may
+     * be all types, but may change over time as detectors are updated.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.InfoType info_types = 1;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -81,7 +91,11 @@ class InspectConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * Restricts what info_types to look for. The values must correspond to
-     * InfoType values returned by ListInfoTypes or found in documentation.
+     * InfoType values returned by ListInfoTypes or listed at
+     * https://cloud.google.com/dlp/docs/infotypes-reference.
+     * When no InfoTypes or CustomInfoTypes are specified in a request, the
+     * system may automatically choose what detectors to run. By default this may
+     * be all types, but may change over time as detectors are updated.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.InfoType info_types = 1;</code>
      * @param \Google\Cloud\Dlp\V2\InfoType[]|\Google\Protobuf\Internal\RepeatedField $var
@@ -98,6 +112,7 @@ class InspectConfig extends \Google\Protobuf\Internal\Message
     /**
      * Only returns findings equal or above this threshold. The default is
      * POSSIBLE.
+     * See https://cloud.google.com/dlp/docs/likelihood to learn more.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.Likelihood min_likelihood = 2;</code>
      * @return int
@@ -110,6 +125,7 @@ class InspectConfig extends \Google\Protobuf\Internal\Message
     /**
      * Only returns findings equal or above this threshold. The default is
      * POSSIBLE.
+     * See https://cloud.google.com/dlp/docs/likelihood to learn more.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.Likelihood min_likelihood = 2;</code>
      * @param int $var
@@ -200,7 +216,8 @@ class InspectConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Custom infoTypes provided by the user.
+     * CustomInfoTypes provided by the user. See
+     * https://cloud.google.com/dlp/docs/creating-custom-infotypes to learn more.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.CustomInfoType custom_info_types = 6;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -211,7 +228,8 @@ class InspectConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Custom infoTypes provided by the user.
+     * CustomInfoTypes provided by the user. See
+     * https://cloud.google.com/dlp/docs/creating-custom-infotypes to learn more.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.CustomInfoType custom_info_types = 6;</code>
      * @param \Google\Cloud\Dlp\V2\CustomInfoType[]|\Google\Protobuf\Internal\RepeatedField $var

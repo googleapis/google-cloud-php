@@ -91,6 +91,9 @@ use Google\Protobuf\GPBEmpty;
  * The service also includes methods for sensitive data redaction and
  * scheduling of data scans on Google Cloud Platform based data sets.
  *
+ * To learn more about concepts and find how-to guides see
+ * https://cloud.google.com/dlp/docs/.
+ *
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods. Sample code to get started:
  *
@@ -508,8 +511,13 @@ class DlpServiceGapicClient
     /**
      * Finds potentially sensitive info in content.
      * This method has limits on input size, processing time, and output size.
-     * [How-to guide for text](https://cloud.google.com/dlp/docs/inspecting-text), [How-to guide for
-     * images](https://cloud.google.com/dlp/docs/inspecting-images).
+     *
+     * When no InfoTypes or CustomInfoTypes are specified in this request, the
+     * system will automatically choose what detectors to run. By default this may
+     * be all types, but may change over time as detectors are updated.
+     *
+     * For how to guides, see https://cloud.google.com/dlp/docs/inspecting-images
+     * and https://cloud.google.com/dlp/docs/inspecting-text,
      *
      * Sample code:
      * ```
@@ -574,7 +582,12 @@ class DlpServiceGapicClient
     /**
      * Redacts potentially sensitive info from an image.
      * This method has limits on input size, processing time, and output size.
-     * [How-to guide](https://cloud.google.com/dlp/docs/redacting-sensitive-data-images).
+     * See https://cloud.google.com/dlp/docs/redacting-sensitive-data-images to
+     * learn more.
+     *
+     * When no InfoTypes or CustomInfoTypes are specified in this request, the
+     * system will automatically choose what detectors to run. By default this may
+     * be all types, but may change over time as detectors are updated.
      *
      * Sample code:
      * ```
@@ -595,6 +608,9 @@ class DlpServiceGapicClient
      *          Configuration for the inspector.
      *     @type RedactImageRequest_ImageRedactionConfig[] $imageRedactionConfigs
      *          The configuration for specifying what content to redact from images.
+     *     @type bool $includeFindings
+     *          Whether the response should include findings along with the redacted
+     *          image.
      *     @type ByteContentItem $byteItem
      *          The content must be PNG, JPEG, SVG or BMP.
      *     @type RetrySettings|array $retrySettings
@@ -619,6 +635,9 @@ class DlpServiceGapicClient
         if (isset($optionalArgs['imageRedactionConfigs'])) {
             $request->setImageRedactionConfigs($optionalArgs['imageRedactionConfigs']);
         }
+        if (isset($optionalArgs['includeFindings'])) {
+            $request->setIncludeFindings($optionalArgs['includeFindings']);
+        }
         if (isset($optionalArgs['byteItem'])) {
             $request->setByteItem($optionalArgs['byteItem']);
         }
@@ -634,7 +653,12 @@ class DlpServiceGapicClient
     /**
      * De-identifies potentially sensitive info from a ContentItem.
      * This method has limits on input size and output size.
-     * [How-to guide](https://cloud.google.com/dlp/docs/deidentify-sensitive-data).
+     * See https://cloud.google.com/dlp/docs/deidentify-sensitive-data to
+     * learn more.
+     *
+     * When no InfoTypes or CustomInfoTypes are specified in this request, the
+     * system will automatically choose what detectors to run. By default this may
+     * be all types, but may change over time as detectors are updated.
      *
      * Sample code:
      * ```
@@ -715,6 +739,9 @@ class DlpServiceGapicClient
 
     /**
      * Re-identifies content that has been de-identified.
+     * See
+     * https://cloud.google.com/dlp/docs/pseudonymization#re-identification_in_free_text_code_example
+     * to learn more.
      *
      * Sample code:
      * ```
@@ -800,8 +827,8 @@ class DlpServiceGapicClient
 
     /**
      * Returns a list of the sensitive information types that the DLP API
-     * supports. For more information, see [Listing supported predefined
-     * infoTypes](https://cloud.google.com/dlp/docs/listing-infotypes).
+     * supports. See https://cloud.google.com/dlp/docs/infotypes-reference to
+     * learn more.
      *
      * Sample code:
      * ```
@@ -857,6 +884,7 @@ class DlpServiceGapicClient
     /**
      * Creates an InspectTemplate for re-using frequently used configuration
      * for inspecting content, images, and storage.
+     * See https://cloud.google.com/dlp/docs/creating-templates to learn more.
      *
      * Sample code:
      * ```
@@ -914,6 +942,7 @@ class DlpServiceGapicClient
 
     /**
      * Updates the InspectTemplate.
+     * See https://cloud.google.com/dlp/docs/creating-templates to learn more.
      *
      * Sample code:
      * ```
@@ -969,6 +998,7 @@ class DlpServiceGapicClient
 
     /**
      * Gets an InspectTemplate.
+     * See https://cloud.google.com/dlp/docs/creating-templates to learn more.
      *
      * Sample code:
      * ```
@@ -1017,6 +1047,7 @@ class DlpServiceGapicClient
 
     /**
      * Lists InspectTemplates.
+     * See https://cloud.google.com/dlp/docs/creating-templates to learn more.
      *
      * Sample code:
      * ```
@@ -1088,6 +1119,7 @@ class DlpServiceGapicClient
 
     /**
      * Deletes an InspectTemplate.
+     * See https://cloud.google.com/dlp/docs/creating-templates to learn more.
      *
      * Sample code:
      * ```
@@ -1132,6 +1164,8 @@ class DlpServiceGapicClient
     /**
      * Creates a DeidentifyTemplate for re-using frequently used configuration
      * for de-identifying content, images, and storage.
+     * See https://cloud.google.com/dlp/docs/creating-templates-deid to learn
+     * more.
      *
      * Sample code:
      * ```
@@ -1189,6 +1223,8 @@ class DlpServiceGapicClient
 
     /**
      * Updates the DeidentifyTemplate.
+     * See https://cloud.google.com/dlp/docs/creating-templates-deid to learn
+     * more.
      *
      * Sample code:
      * ```
@@ -1244,6 +1280,8 @@ class DlpServiceGapicClient
 
     /**
      * Gets a DeidentifyTemplate.
+     * See https://cloud.google.com/dlp/docs/creating-templates-deid to learn
+     * more.
      *
      * Sample code:
      * ```
@@ -1289,6 +1327,8 @@ class DlpServiceGapicClient
 
     /**
      * Lists DeidentifyTemplates.
+     * See https://cloud.google.com/dlp/docs/creating-templates-deid to learn
+     * more.
      *
      * Sample code:
      * ```
@@ -1360,6 +1400,8 @@ class DlpServiceGapicClient
 
     /**
      * Deletes a DeidentifyTemplate.
+     * See https://cloud.google.com/dlp/docs/creating-templates-deid to learn
+     * more.
      *
      * Sample code:
      * ```
@@ -1403,7 +1445,12 @@ class DlpServiceGapicClient
 
     /**
      * Creates a new job to inspect storage or calculate risk metrics.
-     * [How-to guide](https://cloud.google.com/dlp/docs/compute-risk-analysis).
+     * See https://cloud.google.com/dlp/docs/inspecting-storage and
+     * https://cloud.google.com/dlp/docs/compute-risk-analysis to learn more.
+     *
+     * When no InfoTypes or CustomInfoTypes are specified in inspect jobs, the
+     * system will automatically choose what detectors to run. By default this may
+     * be all types, but may change over time as detectors are updated.
      *
      * Sample code:
      * ```
@@ -1465,6 +1512,8 @@ class DlpServiceGapicClient
 
     /**
      * Lists DlpJobs that match the specified filter in the request.
+     * See https://cloud.google.com/dlp/docs/inspecting-storage and
+     * https://cloud.google.com/dlp/docs/compute-risk-analysis to learn more.
      *
      * Sample code:
      * ```
@@ -1568,6 +1617,8 @@ class DlpServiceGapicClient
 
     /**
      * Gets the latest state of a long-running DlpJob.
+     * See https://cloud.google.com/dlp/docs/inspecting-storage and
+     * https://cloud.google.com/dlp/docs/compute-risk-analysis to learn more.
      *
      * Sample code:
      * ```
@@ -1613,6 +1664,8 @@ class DlpServiceGapicClient
      * Deletes a long-running DlpJob. This method indicates that the client is
      * no longer interested in the DlpJob result. The job will be cancelled if
      * possible.
+     * See https://cloud.google.com/dlp/docs/inspecting-storage and
+     * https://cloud.google.com/dlp/docs/compute-risk-analysis to learn more.
      *
      * Sample code:
      * ```
@@ -1656,6 +1709,8 @@ class DlpServiceGapicClient
      * Starts asynchronous cancellation on a long-running DlpJob. The server
      * makes a best effort to cancel the DlpJob, but success is not
      * guaranteed.
+     * See https://cloud.google.com/dlp/docs/inspecting-storage and
+     * https://cloud.google.com/dlp/docs/compute-risk-analysis to learn more.
      *
      * Sample code:
      * ```
@@ -1697,6 +1752,7 @@ class DlpServiceGapicClient
 
     /**
      * Lists job triggers.
+     * See https://cloud.google.com/dlp/docs/creating-job-triggers to learn more.
      *
      * Sample code:
      * ```
@@ -1721,7 +1777,7 @@ class DlpServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent       The parent resource name, for example projects/my-project-id.
+     * @param string $parent       The parent resource name, for example `projects/my-project-id`.
      * @param array  $optionalArgs {
      *                             Optional.
      *
@@ -1736,18 +1792,17 @@ class DlpServiceGapicClient
      *          there are additional values to be retrieved.
      *     @type string $orderBy
      *          Optional comma separated list of triggeredJob fields to order by,
-     *          followed by 'asc/desc' postfix, i.e.
-     *          `"create_time asc,name desc,schedule_mode asc"`. This list is
-     *          case-insensitive.
+     *          followed by `asc` or `desc` postfix. This list is case-insensitive,
+     *          default sorting order is ascending, redundant space characters are
+     *          insignificant.
      *
-     *          Example: `"name asc,schedule_mode desc, status desc"`
+     *          Example: `name asc,update_time, create_time desc`
      *
-     *          Supported filters keys and values are:
+     *          Supported fields are:
      *
      *          - `create_time`: corresponds to time the triggeredJob was created.
      *          - `update_time`: corresponds to time the triggeredJob was last updated.
-     *          - `name`: corresponds to JobTrigger's display name.
-     *          - `status`: corresponds to the triggeredJob status.
+     *          - `name`: corresponds to JobTrigger's name.
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
@@ -1784,6 +1839,7 @@ class DlpServiceGapicClient
 
     /**
      * Gets a job trigger.
+     * See https://cloud.google.com/dlp/docs/creating-job-triggers to learn more.
      *
      * Sample code:
      * ```
@@ -1828,6 +1884,7 @@ class DlpServiceGapicClient
 
     /**
      * Deletes a job trigger.
+     * See https://cloud.google.com/dlp/docs/creating-job-triggers to learn more.
      *
      * Sample code:
      * ```
@@ -1870,6 +1927,7 @@ class DlpServiceGapicClient
 
     /**
      * Updates a job trigger.
+     * See https://cloud.google.com/dlp/docs/creating-job-triggers to learn more.
      *
      * Sample code:
      * ```
@@ -1925,6 +1983,7 @@ class DlpServiceGapicClient
     /**
      * Creates a job trigger to run DLP actions such as scanning storage for
      * sensitive information on a set schedule.
+     * See https://cloud.google.com/dlp/docs/creating-job-triggers to learn more.
      *
      * Sample code:
      * ```

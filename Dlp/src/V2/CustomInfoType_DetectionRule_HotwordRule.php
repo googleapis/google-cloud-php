@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Detection rule that adjusts the likelihood of findings within a certain
+ * The rule that adjusts the likelihood of findings within a certain
  * proximity of hotwords.
  *
  * Generated from protobuf message <code>google.privacy.dlp.v2.CustomInfoType.DetectionRule.HotwordRule</code>
@@ -17,7 +17,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class CustomInfoType_DetectionRule_HotwordRule extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Regex pattern defining what qualifies as a hotword.
+     * Regular expression pattern defining what qualifies as a hotword.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.CustomInfoType.Regex hotword_regex = 1;</code>
      */
@@ -48,7 +48,7 @@ class CustomInfoType_DetectionRule_HotwordRule extends \Google\Protobuf\Internal
     }
 
     /**
-     * Regex pattern defining what qualifies as a hotword.
+     * Regular expression pattern defining what qualifies as a hotword.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.CustomInfoType.Regex hotword_regex = 1;</code>
      * @return \Google\Cloud\Dlp\V2\CustomInfoType_Regex
@@ -59,7 +59,7 @@ class CustomInfoType_DetectionRule_HotwordRule extends \Google\Protobuf\Internal
     }
 
     /**
-     * Regex pattern defining what qualifies as a hotword.
+     * Regular expression pattern defining what qualifies as a hotword.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.CustomInfoType.Regex hotword_regex = 1;</code>
      * @param \Google\Cloud\Dlp\V2\CustomInfoType_Regex $var

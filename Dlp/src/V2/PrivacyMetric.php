@@ -133,6 +133,28 @@ class PrivacyMetric extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Generated from protobuf field <code>.google.privacy.dlp.v2.PrivacyMetric.DeltaPresenceEstimationConfig delta_presence_estimation_config = 6;</code>
+     * @return \Google\Cloud\Dlp\V2\PrivacyMetric_DeltaPresenceEstimationConfig
+     */
+    public function getDeltaPresenceEstimationConfig()
+    {
+        return $this->readOneof(6);
+    }
+
+    /**
+     * Generated from protobuf field <code>.google.privacy.dlp.v2.PrivacyMetric.DeltaPresenceEstimationConfig delta_presence_estimation_config = 6;</code>
+     * @param \Google\Cloud\Dlp\V2\PrivacyMetric_DeltaPresenceEstimationConfig $var
+     * @return $this
+     */
+    public function setDeltaPresenceEstimationConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Dlp\V2\PrivacyMetric_DeltaPresenceEstimationConfig::class);
+        $this->writeOneof(6, $var);
+
+        return $this;
+    }
+
+    /**
      * @return string
      */
     public function getType()

@@ -17,14 +17,14 @@ use Google\Protobuf\Internal\GPBUtil;
 class CustomInfoType extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Info type configuration. All custom info types must have configurations
-     * that do not conflict with built-in info types or other custom info types.
+     * All CustomInfoTypes must have a name
+     * that does not conflict with built-in InfoTypes or other CustomInfoTypes.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.InfoType info_type = 1;</code>
      */
     private $info_type = null;
     /**
-     * Likelihood to return for this custom info type. This base value can be
+     * Likelihood to return for this CustomInfoType. This base value can be
      * altered by a detection rule if the finding meets the criteria specified by
      * the rule. Defaults to `VERY_LIKELY` if not specified.
      *
@@ -32,9 +32,9 @@ class CustomInfoType extends \Google\Protobuf\Internal\Message
      */
     private $likelihood = 0;
     /**
-     * Set of detection rules to apply to all findings of this custom info type.
+     * Set of detection rules to apply to all findings of this CustomInfoType.
      * Rules are applied in order that they are specified. Not supported for the
-     * `surrogate_type` custom info type.
+     * `surrogate_type` CustomInfoType.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.CustomInfoType.DetectionRule detection_rules = 7;</code>
      */
@@ -47,8 +47,8 @@ class CustomInfoType extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Info type configuration. All custom info types must have configurations
-     * that do not conflict with built-in info types or other custom info types.
+     * All CustomInfoTypes must have a name
+     * that does not conflict with built-in InfoTypes or other CustomInfoTypes.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.InfoType info_type = 1;</code>
      * @return \Google\Cloud\Dlp\V2\InfoType
@@ -59,8 +59,8 @@ class CustomInfoType extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Info type configuration. All custom info types must have configurations
-     * that do not conflict with built-in info types or other custom info types.
+     * All CustomInfoTypes must have a name
+     * that does not conflict with built-in InfoTypes or other CustomInfoTypes.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.InfoType info_type = 1;</code>
      * @param \Google\Cloud\Dlp\V2\InfoType $var
@@ -75,7 +75,7 @@ class CustomInfoType extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Likelihood to return for this custom info type. This base value can be
+     * Likelihood to return for this CustomInfoType. This base value can be
      * altered by a detection rule if the finding meets the criteria specified by
      * the rule. Defaults to `VERY_LIKELY` if not specified.
      *
@@ -88,7 +88,7 @@ class CustomInfoType extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Likelihood to return for this custom info type. This base value can be
+     * Likelihood to return for this CustomInfoType. This base value can be
      * altered by a detection rule if the finding meets the criteria specified by
      * the rule. Defaults to `VERY_LIKELY` if not specified.
      *
@@ -105,7 +105,7 @@ class CustomInfoType extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Dictionary-based custom info type.
+     * A list of phrases to detect as a CustomInfoType.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.CustomInfoType.Dictionary dictionary = 2;</code>
      * @return \Google\Cloud\Dlp\V2\CustomInfoType_Dictionary
@@ -116,7 +116,7 @@ class CustomInfoType extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Dictionary-based custom info type.
+     * A list of phrases to detect as a CustomInfoType.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.CustomInfoType.Dictionary dictionary = 2;</code>
      * @param \Google\Cloud\Dlp\V2\CustomInfoType_Dictionary $var
@@ -131,7 +131,7 @@ class CustomInfoType extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Regex-based custom info type.
+     * Regular expression based CustomInfoType.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.CustomInfoType.Regex regex = 3;</code>
      * @return \Google\Cloud\Dlp\V2\CustomInfoType_Regex
@@ -142,7 +142,7 @@ class CustomInfoType extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Regex-based custom info type.
+     * Regular expression based CustomInfoType.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.CustomInfoType.Regex regex = 3;</code>
      * @param \Google\Cloud\Dlp\V2\CustomInfoType_Regex $var
@@ -157,7 +157,8 @@ class CustomInfoType extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Surrogate info type.
+     * Message for detecting output from deidentification transformations that
+     * support reversing.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.CustomInfoType.SurrogateType surrogate_type = 4;</code>
      * @return \Google\Cloud\Dlp\V2\CustomInfoType_SurrogateType
@@ -168,7 +169,8 @@ class CustomInfoType extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Surrogate info type.
+     * Message for detecting output from deidentification transformations that
+     * support reversing.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.CustomInfoType.SurrogateType surrogate_type = 4;</code>
      * @param \Google\Cloud\Dlp\V2\CustomInfoType_SurrogateType $var
@@ -183,9 +185,9 @@ class CustomInfoType extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Set of detection rules to apply to all findings of this custom info type.
+     * Set of detection rules to apply to all findings of this CustomInfoType.
      * Rules are applied in order that they are specified. Not supported for the
-     * `surrogate_type` custom info type.
+     * `surrogate_type` CustomInfoType.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.CustomInfoType.DetectionRule detection_rules = 7;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -196,9 +198,9 @@ class CustomInfoType extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Set of detection rules to apply to all findings of this custom info type.
+     * Set of detection rules to apply to all findings of this CustomInfoType.
      * Rules are applied in order that they are specified. Not supported for the
-     * `surrogate_type` custom info type.
+     * `surrogate_type` CustomInfoType.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.CustomInfoType.DetectionRule detection_rules = 7;</code>
      * @param \Google\Cloud\Dlp\V2\CustomInfoType_DetectionRule[]|\Google\Protobuf\Internal\RepeatedField $var

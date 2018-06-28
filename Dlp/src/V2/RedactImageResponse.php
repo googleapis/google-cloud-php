@@ -29,6 +29,12 @@ class RedactImageResponse extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string extracted_text = 2;</code>
      */
     private $extracted_text = '';
+    /**
+     * The findings. Populated when include_findings in the request is true.
+     *
+     * Generated from protobuf field <code>.google.privacy.dlp.v2.InspectResult inspect_result = 3;</code>
+     */
+    private $inspect_result = null;
 
     public function __construct() {
         \GPBMetadata\Google\Privacy\Dlp\V2\Dlp::initOnce();
@@ -87,6 +93,32 @@ class RedactImageResponse extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->extracted_text = $var;
+
+        return $this;
+    }
+
+    /**
+     * The findings. Populated when include_findings in the request is true.
+     *
+     * Generated from protobuf field <code>.google.privacy.dlp.v2.InspectResult inspect_result = 3;</code>
+     * @return \Google\Cloud\Dlp\V2\InspectResult
+     */
+    public function getInspectResult()
+    {
+        return $this->inspect_result;
+    }
+
+    /**
+     * The findings. Populated when include_findings in the request is true.
+     *
+     * Generated from protobuf field <code>.google.privacy.dlp.v2.InspectResult inspect_result = 3;</code>
+     * @param \Google\Cloud\Dlp\V2\InspectResult $var
+     * @return $this
+     */
+    public function setInspectResult($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Dlp\V2\InspectResult::class);
+        $this->inspect_result = $var;
 
         return $this;
     }
