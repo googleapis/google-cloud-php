@@ -15,7 +15,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * These types of transformations are
  * those that perform pseudonymization, thereby producing a "surrogate" as
  * output. This should be used in conjunction with a field on the
- * transformation such as `surrogate_info_type`. This custom info type does
+ * transformation such as `surrogate_info_type`. This CustomInfoType does
  * not support the use of `detection_rules`.
  *
  * Generated from protobuf message <code>google.privacy.dlp.v2.CustomInfoType.SurrogateType</code>

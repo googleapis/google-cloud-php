@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Rule for modifying a custom info type to alter behavior under certain
+ * Rule for modifying a CustomInfoType to alter behavior under certain
  * circumstances, depending on the specific details of the rule. Not supported
  * for the `surrogate_type` custom info type.
  *

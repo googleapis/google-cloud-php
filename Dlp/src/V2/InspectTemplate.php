@@ -11,7 +11,8 @@ use Google\Protobuf\Internal\GPBUtil;
 /**
  * The inspectTemplate contains a configuration (set of types of sensitive data
  * to be detected) to be used anywhere you otherwise would normally specify
- * InspectConfig.
+ * InspectConfig. See https://cloud.google.com/dlp/docs/concepts-templates
+ * to learn more.
  *
  * Generated from protobuf message <code>google.privacy.dlp.v2.InspectTemplate</code>
  */

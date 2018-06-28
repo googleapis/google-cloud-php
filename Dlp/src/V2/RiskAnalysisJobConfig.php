@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Configuration for a risk analysis job.
+ * Configuration for a risk analysis job. See
+ * https://cloud.google.com/dlp/docs/concepts-risk-analysis to learn more.
  *
  * Generated from protobuf message <code>google.privacy.dlp.v2.RiskAnalysisJobConfig</code>
  */

@@ -63,7 +63,7 @@ class RedactImageRequest_ImageRedactionConfig extends \Google\Protobuf\Internal\
 
     /**
      * If true, all text found in the image, regardless whether it matches an
-     * info_type, is redacted.
+     * info_type, is redacted. Only one should be provided.
      *
      * Generated from protobuf field <code>bool redact_all_text = 2;</code>
      * @return bool
@@ -75,7 +75,7 @@ class RedactImageRequest_ImageRedactionConfig extends \Google\Protobuf\Internal\
 
     /**
      * If true, all text found in the image, regardless whether it matches an
-     * info_type, is redacted.
+     * info_type, is redacted. Only one should be provided.
      *
      * Generated from protobuf field <code>bool redact_all_text = 2;</code>
      * @param bool $var

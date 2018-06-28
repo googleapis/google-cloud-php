@@ -197,6 +197,28 @@ class AnalyzeDataSourceRiskDetails extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Generated from protobuf field <code>.google.privacy.dlp.v2.AnalyzeDataSourceRiskDetails.DeltaPresenceEstimationResult delta_presence_estimation_result = 9;</code>
+     * @return \Google\Cloud\Dlp\V2\AnalyzeDataSourceRiskDetails_DeltaPresenceEstimationResult
+     */
+    public function getDeltaPresenceEstimationResult()
+    {
+        return $this->readOneof(9);
+    }
+
+    /**
+     * Generated from protobuf field <code>.google.privacy.dlp.v2.AnalyzeDataSourceRiskDetails.DeltaPresenceEstimationResult delta_presence_estimation_result = 9;</code>
+     * @param \Google\Cloud\Dlp\V2\AnalyzeDataSourceRiskDetails_DeltaPresenceEstimationResult $var
+     * @return $this
+     */
+    public function setDeltaPresenceEstimationResult($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Dlp\V2\AnalyzeDataSourceRiskDetails_DeltaPresenceEstimationResult::class);
+        $this->writeOneof(9, $var);
+
+        return $this;
+    }
+
+    /**
      * @return string
      */
     public function getResult()

@@ -20,6 +20,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * If the bound Value type differs from the type of data
  * being transformed, we will first attempt converting the type of the data to
  * be transformed to match the type of the bound before comparing.
+ * See https://cloud.google.com/dlp/docs/concepts-bucketing to learn more.
  *
  * Generated from protobuf message <code>google.privacy.dlp.v2.FixedSizeBucketingConfig</code>
  */

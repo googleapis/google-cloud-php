@@ -12,7 +12,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * If set, the detailed findings will be persisted to the specified
  * OutputStorageConfig. Only a single instance of this action can be
  * specified.
- * Compatible with: Inspect
+ * Compatible with: Inspect, Risk
  *
  * Generated from protobuf message <code>google.privacy.dlp.v2.Action.SaveFindings</code>
  */

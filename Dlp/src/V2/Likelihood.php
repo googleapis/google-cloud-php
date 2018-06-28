@@ -13,7 +13,7 @@ namespace Google\Cloud\Dlp\V2;
 class Likelihood
 {
     /**
-     * Default value; information with all likelihoods is included.
+     * Default value; same as POSSIBLE.
      *
      * Generated from protobuf enum <code>LIKELIHOOD_UNSPECIFIED = 0;</code>
      */

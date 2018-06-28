@@ -49,7 +49,9 @@ class ContentItem extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Structured content for inspection.
+     * Structured content for inspection. See
+     * https://cloud.google.com/dlp/docs/inspecting-text#inspecting_a_table to
+     * learn more.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.Table table = 4;</code>
      * @return \Google\Cloud\Dlp\V2\Table
@@ -60,7 +62,9 @@ class ContentItem extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Structured content for inspection.
+     * Structured content for inspection. See
+     * https://cloud.google.com/dlp/docs/inspecting-text#inspecting_a_table to
+     * learn more.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.Table table = 4;</code>
      * @param \Google\Cloud\Dlp\V2\Table $var

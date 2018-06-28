@@ -9,8 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request to search for potentially sensitive info in a list of items
- * and replace it with a default or provided content.
+ * Request to search for potentially sensitive info in an image and redact it
+ * by covering it with a colored rectangle.
  *
  * Generated from protobuf message <code>google.privacy.dlp.v2.RedactImageRequest</code>
  */
@@ -34,6 +34,13 @@ class RedactImageRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.RedactImageRequest.ImageRedactionConfig image_redaction_configs = 5;</code>
      */
     private $image_redaction_configs;
+    /**
+     * Whether the response should include findings along with the redacted
+     * image.
+     *
+     * Generated from protobuf field <code>bool include_findings = 6;</code>
+     */
+    private $include_findings = false;
     /**
      * The content must be PNG, JPEG, SVG or BMP.
      *
@@ -120,6 +127,34 @@ class RedactImageRequest extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Dlp\V2\RedactImageRequest_ImageRedactionConfig::class);
         $this->image_redaction_configs = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Whether the response should include findings along with the redacted
+     * image.
+     *
+     * Generated from protobuf field <code>bool include_findings = 6;</code>
+     * @return bool
+     */
+    public function getIncludeFindings()
+    {
+        return $this->include_findings;
+    }
+
+    /**
+     * Whether the response should include findings along with the redacted
+     * image.
+     *
+     * Generated from protobuf field <code>bool include_findings = 6;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setIncludeFindings($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->include_findings = $var;
 
         return $this;
     }

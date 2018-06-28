@@ -17,8 +17,9 @@ use Google\Protobuf\Internal\GPBUtil;
 class InfoTypeTransformations_InfoTypeTransformation extends \Google\Protobuf\Internal\Message
 {
     /**
-     * InfoTypes to apply the transformation to. Empty list will match all
-     * available infoTypes for this transformation.
+     * InfoTypes to apply the transformation to. An empty list will cause
+     * this transformation to apply to all findings that correspond to
+     * infoTypes that were requested in `InspectConfig`.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.InfoType info_types = 1;</code>
      */
@@ -36,8 +37,9 @@ class InfoTypeTransformations_InfoTypeTransformation extends \Google\Protobuf\In
     }
 
     /**
-     * InfoTypes to apply the transformation to. Empty list will match all
-     * available infoTypes for this transformation.
+     * InfoTypes to apply the transformation to. An empty list will cause
+     * this transformation to apply to all findings that correspond to
+     * infoTypes that were requested in `InspectConfig`.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.InfoType info_types = 1;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -48,8 +50,9 @@ class InfoTypeTransformations_InfoTypeTransformation extends \Google\Protobuf\In
     }
 
     /**
-     * InfoTypes to apply the transformation to. Empty list will match all
-     * available infoTypes for this transformation.
+     * InfoTypes to apply the transformation to. An empty list will cause
+     * this transformation to apply to all findings that correspond to
+     * infoTypes that were requested in `InspectConfig`.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.InfoType info_types = 1;</code>
      * @param \Google\Cloud\Dlp\V2\InfoType[]|\Google\Protobuf\Internal\RepeatedField $var
