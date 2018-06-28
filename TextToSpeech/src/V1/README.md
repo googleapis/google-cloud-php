@@ -14,7 +14,7 @@ use Google\Cloud\TextToSpeech\V1\VoiceSelectionParams;
 $textToSpeechClient = new TextToSpeechClient();
 
 $input = new SynthesisInput();
-$input->setText('Japan national soccer team won against Colombia!');
+$input->setText('Japan\'s national soccer team won against Colombia!');
 $voice = new VoiceSelectionParams();
 $voice->setLanguageCode('en-US');
 $audioConfig = new AudioConfig();
