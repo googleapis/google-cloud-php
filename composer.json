@@ -180,6 +180,8 @@
             "Google\\Cloud\\Spanner\\Tests\\": "Spanner/tests",
             "Google\\Cloud\\Speech\\Tests\\": "Speech/tests",
             "Google\\Cloud\\Storage\\Tests\\": "Storage/tests",
+            "Google\\Cloud\\Tasks\\Tests\\": "Tasks/tests",
+            "Google\\Cloud\\TextToSpeech\\Tests\\": "TextToSpeech/tests",
             "Google\\Cloud\\Trace\\Tests\\": "Trace/tests",
             "Google\\Cloud\\Translate\\Tests\\": "Translate/tests",
             "Google\\Cloud\\VideoIntelligence\\Tests\\": "VideoIntelligence/tests",
