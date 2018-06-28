@@ -345,7 +345,12 @@ class Grpc implements ConnectionInterface
      */
     public function checkConsistency(array $args)
     {
-        throw new \BadMethodCallException('This method is not implemented yet');
+        $name = $this->pluck('name', $args);
+        return $this->send([$this->bigtableTableAdminClient, 'checkConsistency'], [
+            $name,
+            $this->pluck('consistencyToken', $args),
+            $this->addResourcePrefixHeader($args, $name)
+        ]);
     }
 
     /**
@@ -353,7 +358,11 @@ class Grpc implements ConnectionInterface
      */
     public function generateConsistencyToken(array $args)
     {
-        throw new \BadMethodCallException('This method is not implemented yet');
+        $name = $this->pluck('name', $args);
+        return $this->send([$this->bigtableTableAdminClient, 'generateConsistencyToken'], [
+            $name,
+            $this->addResourcePrefixHeader($args, $name)
+        ]);
     }
 
     /**
