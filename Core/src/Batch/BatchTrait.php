@@ -94,7 +94,7 @@ trait BatchTrait
             if ($this->debugOutput) {
                 fwrite(
                     $this->debugOutputResource ?: STDERR,
-                    $e->getMessage() . PHP_EOL
+                    $e->getMessage() . PHP_EOL . $e->getTraceAsString()
                 );
             }
 
