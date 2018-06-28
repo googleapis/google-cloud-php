@@ -644,7 +644,6 @@ $ composer require google/cloud-oslogin
 
 ## Google Cloud Tasks (Beta)
 - [API Documentation](http://googlecloudplatform.github.io/google-cloud-php/#/docs/latest/tasks/cloudtasksclient)
-- [Official Documentation](https://cloud.google.com/cloud-tasks/docs)
 
 #### Preview
 
