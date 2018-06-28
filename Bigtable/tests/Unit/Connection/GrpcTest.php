@@ -75,8 +75,10 @@ class GrpcTest extends TestCase
         $serializer = new Serializer();
         $instanceName = 'test-instance3';
         $clusterName = 'test-cluster';
+        $tableName = 'test-table';
         $permissions = ['permission1','permission2'];
         $policy = ['foo' => 'bar'];
+        $consistencyToken = 'a1b2c3d4';
 
         $clusterArgs = [
             'location' => self::LOCATION,
@@ -135,6 +137,16 @@ class GrpcTest extends TestCase
                 'testIamPermissions',
                 ['resource' => $instanceName, 'permissions' => $permissions],
                 [$instanceName, $permissions, ['headers' => ['google-cloud-resource-prefix' => [$instanceName]]]]
+            ],
+            [
+                'checkConsistency',
+                ['name' => $tableName, 'consistencyToken' => $consistencyToken],
+                [$tableName, $consistencyToken, ['headers' => ['google-cloud-resource-prefix' => [$tableName]]]]
+            ],
+            [
+                'generateConsistencyToken',
+                ['name' => $tableName],
+                [$tableName, ['headers' => ['google-cloud-resource-prefix' => [$tableName]]]]
             ]
         ];
     }
