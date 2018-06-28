@@ -4,7 +4,7 @@
 
 [![Latest Stable Version](https://poser.pugx.org/google/cloud-tasks/v/stable)](https://packagist.org/packages/google/cloud-tasks) [![Packagist](https://img.shields.io/packagist/dm/google/cloud-tasks.svg)](https://packagist.org/packages/google/cloud-tasks)
 
-* The official documentation is coming soon.
+* [API documentation](http://googlecloudplatform.github.io/google-cloud-php/#/docs/cloud-tasks/latest/tasks/readme)
 
 **NOTE:** This repository is part of [Google Cloud PHP](https://github.com/googlecloudplatform/google-cloud-php). Any
 support requests, bug reports, or development contributions should be directed to
@@ -103,7 +103,3 @@ $client->deleteQueue($queueName);
 This component is considered beta. As such, it should be expected to be mostly
 stable and we're working towards a release candidate. We will address issues
 and requests with a higher priority.
-
-### Next Steps
-
-1. Understand the [official documentation](https://cloud.google.com/cloud-tasks/docs/).
