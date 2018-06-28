@@ -749,6 +749,7 @@ file_put_contents('test.mp3', $resp->getAudioContent());
 
 ```
 $ composer require google/cloud-text-to-speech
+```
 
 ## Google Cloud Vision (Beta)
 
