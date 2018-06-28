@@ -1,5 +1,5 @@
 <?php
-/*
+/**
  * Copyright 2018, Google LLC All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -20,6 +20,7 @@ namespace Google\Cloud\Bigtable;
 use Google\ApiCore\ValidationException;
 use Google\Cloud\Bigtable\Admin\V2\BigtableInstanceAdminClient as InstanceAdminClient;
 use Google\Cloud\Bigtable\Admin\V2\Instance_Type;
+use Google\Cloud\Bigtable\Admin\V2\Instance_State;
 use Google\Cloud\Bigtable\Admin\V2\StorageType;
 use Google\Cloud\Bigtable\Connection\ConnectionInterface;
 use Google\Cloud\Core\ArrayTrait;
@@ -88,6 +89,10 @@ class Instance
     const INSTANCE_TYPE_UNSPECIFIED = Instance_Type::TYPE_UNSPECIFIED;
     const INSTANCE_TYPE_PRODUCTION = Instance_Type::PRODUCTION;
     const INSTANCE_TYPE_DEVELOPMENT = Instance_Type::DEVELOPMENT;
+
+    const STATE_TYPE_STATE_NOT_KNOWN = Instance_State::STATE_NOT_KNOWN;
+    const STATE_TYPE_READY = Instance_State::READY;
+    const STATE_TYPE_CREATING = Instance_State::CREATING;
 
     /**
      * @var ConnectionInterface
@@ -283,6 +288,31 @@ class Instance
         ]);
 
         return $this->resumeOperation($operation['name'], $operation);
+    }
+
+    /**
+     * Return the instance state.
+     *
+     * When instances are created or updated, they may take some time before
+     * they are ready for use. This method allows for checking whether an
+     * instance is ready.
+     *
+     * Example:
+     * ```
+     * if ($instance->state() === Instance::STATE_READY) {
+     *     echo 'Instance is ready!';
+     * }
+     * ```
+     *
+     * @param array $options [optional] Configuration options.
+     * @return string|null
+     */
+    public function state(array $options = [])
+    {
+        $info = $this->info($options);
+        return (isset($info['state']))
+            ? $info['state']
+            : null;
     }
 
     /**
