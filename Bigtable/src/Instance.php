@@ -232,6 +232,31 @@ class Instance
     }
 
     /**
+     * Return the instance state.
+     *
+     * When instances are created or updated, they may take some time before
+     * they are ready for use. This method allows for checking whether an
+     * instance is ready.
+     *
+     * Example:
+     * ```
+     * if ($instance->state() === Instance::STATE_TYPE_READY) {
+     *     echo 'Instance is ready!';
+     * }
+     * ```
+     *
+     * @param array $options [optional] Configuration options.
+     * @return string|null
+     */
+    public function state(array $options = [])
+    {
+        $info = $this->info($options);
+        return (isset($info['state']))
+            ? $info['state']
+            : null;
+    }
+
+    /**
      * Create a new instance.
      *
      * Example:
@@ -288,31 +313,6 @@ class Instance
         ]);
 
         return $this->resumeOperation($operation['name'], $operation);
-    }
-
-    /**
-     * Return the instance state.
-     *
-     * When instances are created or updated, they may take some time before
-     * they are ready for use. This method allows for checking whether an
-     * instance is ready.
-     *
-     * Example:
-     * ```
-     * if ($instance->state() === Instance::STATE_READY) {
-     *     echo 'Instance is ready!';
-     * }
-     * ```
-     *
-     * @param array $options [optional] Configuration options.
-     * @return string|null
-     */
-    public function state(array $options = [])
-    {
-        $info = $this->info($options);
-        return (isset($info['state']))
-            ? $info['state']
-            : null;
     }
 
     /**

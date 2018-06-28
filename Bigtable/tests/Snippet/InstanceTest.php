@@ -121,6 +121,19 @@ class InstanceTest extends SnippetTestCase
         $this->assertEquals($info, $res->returnVal());
     }
 
+    public function testState()
+    {
+        $snippet = $this->snippetFromMethod(Instance::class, 'state');
+        $snippet->addLocal('instance', $this->instance);
+        $snippet->addUse(Instance::class);
+        $this->connection->getInstance(Argument::any())
+            ->shouldBeCalledTimes(1)
+            ->willReturn(['state' => Instance::STATE_TYPE_READY]);
+        $this->instance->___setProperty('connection', $this->connection->reveal());
+        $res = $snippet->invoke();
+        $this->assertEquals('Instance is ready!', $res->output());
+    }
+
     public function testCreate()
     {
         $config = $this->prophesize(Instance::class);
