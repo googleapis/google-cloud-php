@@ -272,6 +272,14 @@ class Grpc implements ConnectionInterface
     /**
      * @param array $args
      */
+    public function testIamPermissions(array $args)
+    {
+        throw new \BadMethodCallException('This method is not implemented yet');
+    }
+
+    /**
+     * @param array $args
+     */
     public function createTable(array $args)
     {
         throw new \BadMethodCallException('This method is not implemented yet');
@@ -328,7 +336,15 @@ class Grpc implements ConnectionInterface
     /**
      * @param array $args
      */
-    public function waitForReplication(array $args)
+    public function checkConsistency(array $args)
+    {
+        throw new \BadMethodCallException('This method is not implemented yet');
+    }
+
+    /**
+     * @param array $args
+     */
+    public function generateConsistencyToken(array $args)
     {
         throw new \BadMethodCallException('This method is not implemented yet');
     }
@@ -379,79 +395,65 @@ class Grpc implements ConnectionInterface
     public function readRows(array $args)
     {
         $tableName = $this->pluck('tableName', $args);
-        $optionalArgs = [];
-        if (isset($args['options'])) {
-            $options = $this->pluck('options', $args);
-            if (isset($options['appProfileId'])) {
-                $optionalArgs['appProfileId'] = $this->pluck('appProfileId', $options);
-            }
-            if (isset($options['rows'])) {
-                $optionalArgs['rows'] = $this->rowSetObject($this->pluck('rows', $options));
-            }
-            if (isset($options['filter'])) {
-                $optionalArgs['filter'] = $this->rowFilterObject($this->pluck('filter', $options));
-            }
-            if (isset($options['rowsLimit'])) {
-                $optionalArgs['rowsLimit'] = $this->pluck('rowsLimit', $options);
-            }
+        if (isset($args['rows'])) {
+            $args['rows'] = $this->rowSetObject($this->pluck('rows', $args));
+        }
+        if (isset($args['filter'])) {
+            $args['filter'] = $this->rowFilterObject($this->pluck('filter', $args));
         }
         return $this->send([$this->bigtableClient, 'readRows'], [
             $tableName,
-            $optionalArgs,
+            $args,
             $this->addResourcePrefixHeader($args, $tableName)
         ]);
     }
 
     /**
-     * @param array $args
+     * @param array $rows
      * @return RowSet
      */
-    private function rowSetObject(array $args)
+    private function rowSetObject(array $rows)
     {
-        $rowSet = [];
-        if (isset($args['rowkeys'])) {
-            $rowSet['row_keys'] = $this->pluck('rowkeys', $args);
-        }
-        if (isset($args['rowRanges'])) {
-            $rowSet['row_ranges'] = array_map([$this, 'rowRangesObject'], $this->pluck('rowRanges', $args));
+        if (isset($rows['rowRanges'])) {
+            $rows['rowRanges'] = array_map([$this, 'rowRangesObject'], $this->pluck('rowRanges', $rows));
         }
         return $this->serializer->decodeMessage(
             new RowSet(),
             $this->pluckArray([
-                'row_keys',
-                'row_ranges'
-            ], $args)
+                'rowkeys',
+                'rowRanges'
+            ], $rows)
         );
     }
 
     /**
-     * @param array $args
+     * @param array $rowRange
      * @return RowRange
      */
-    private function rowRangesObject(array $args)
+    private function rowRangesObject(array $rowRange)
     {
         return $this->serializer->decodeMessage(
             new RowRange(),
             $this->pluckArray([
-                'start_key_closed',
-                'start_key_open',
-                'end_key_open',
-                'end_key_closed'
-            ], $args)
+                'startKeyClosed',
+                'startKeyOpen',
+                'endKeyOpen',
+                'endKeyClosed'
+            ], $rowRange)
         );
     }
 
     /**
-     * @param array $args
+     * @param array $filter
      * @return RowFilter
      */
-    private function rowFilterObject(array $args)
+    private function rowFilterObject(array $filter)
     {
         return $this->serializer->decodeMessage(
             new RowFilter(),
             $this->pluckArray([
-                'cells_per_row_limit_filter'
-            ], $args)
+                'cellsPerRowLimitFilter'
+            ], $filter)
         );
     }
     
@@ -461,16 +463,9 @@ class Grpc implements ConnectionInterface
     public function sampleRowKeys(array $args)
     {
         $tableName = $this->pluck('tableName', $args);
-        $optionalArgs = [];
-        if (isset($args['options'])) {
-            $options = $this->pluck('options', $args);
-            if (isset($options['appProfileId'])) {
-                $optionalArgs['appProfileId'] = $this->pluck('appProfileId', $options);
-            }
-        }
         return $this->send([$this->bigtableClient, 'sampleRowKeys'], [
             $tableName,
-            $optionalArgs,
+            $args,
             $this->addResourcePrefixHeader($args, $tableName)
         ]);
     }
@@ -482,42 +477,36 @@ class Grpc implements ConnectionInterface
     {
         $tableName = $this->pluck('tableName', $args);
         $cells = $this->pluck('cells', $args);
-        $optionalArgs = [];
-        if (isset($args['options'])) {
-            $options = $this->pluck('options', $args);
-            if (isset($options['appProfileId'])) {
-                $optionalArgs['appProfileId'] = $this->pluck('appProfileId', $options);
-            }
-        }
         return $this->send([$this->bigtableClient, 'mutateRow'], [
             $tableName,
             $this->pluck('rowKey', $args),
             array_map([$this, 'mutationObject'], $cells),
-            $optionalArgs,
+            $args,
             $this->addResourcePrefixHeader($args, $tableName)
         ]);
     }
 
     /**
-     * @param array $args
+     * @param array $cell
      * @return Mutation
      */
-    private function mutationObject(array $args)
+    private function mutationObject(array $cell)
     {
-        $cellObject['set_cell'] = $this->serializer->decodeMessage(
+        $cellObject = [];
+        $cellObject['setCell'] = $this->serializer->decodeMessage(
             new Mutation_SetCell(),
             $this->pluckArray([
-                'family_name',
-                'column_qualifier',
+                'familyName',
+                'columnQualifier',
                 'value',
-                'timestamp_micros'
-            ], $args)
+                'timestampMicros'
+            ], $cell)
         );
 
         return $this->serializer->decodeMessage(
             new Mutation(),
             $this->pluckArray([
-                'set_cell'
+                'setCell'
             ], $cellObject)
         );
     }
@@ -528,48 +517,39 @@ class Grpc implements ConnectionInterface
     public function mutateRows(array $args)
     {
         $tableName = $this->pluck('tableName', $args);
-        $cells = $this->pluck('cells', $args);
-        $entries = array_map([$this, 'mutationsArray'], $cells);
-        $optionalArgs = [];
-        if (isset($args['options'])) {
-            $options = $this->pluck('options', $args);
-            if (isset($options['appProfileId'])) {
-                $optionalArgs['appProfileId'] = $this->pluck('appProfileId', $options);
-            }
-        }
+        $entries = array_map([$this, 'mutationsArray'], $this->pluck('cells', $args));
         return $this->send([$this->bigtableClient, 'mutateRows'], [
             $tableName,
             array_map([$this, 'mutateRowsRequestEntryObject'], $entries),
-            $optionalArgs,
+            $args,
             $this->addResourcePrefixHeader($args, $tableName)
         ]);
     }
 
     /**
-     * @param array $args
+     * @param array $mutateRow
      * @return MutateRowsRequest_Entry
      */
-    private function mutateRowsRequestEntryObject(array $args)
+    private function mutateRowsRequestEntryObject(array $mutateRow)
     {
         return $this->serializer->decodeMessage(
             new MutateRowsRequest_Entry(),
             $this->pluckArray([
-                'row_key',
+                'rowKey',
                 'mutations'
-            ], $args)
+            ], $mutateRow)
         );
     }
 
     /**
-     * @param array $args
+     * @param array $row
      * @return array
      */
-    private function mutationsArray(array $args)
+    private function mutationsArray(array $row)
     {
-        $cell = $this->pluck('cell', $args);
         return([
-            'row_key' => $this->pluck('rowKey', $args),
-            'mutations' => array_map([$this, 'mutationObject'], $cell)
+            'rowKey' => $this->pluck('rowKey', $row),
+            'mutations' => array_map([$this, 'mutationObject'], $this->pluck('cell', $row))
         ]);
     }
 
@@ -579,28 +559,19 @@ class Grpc implements ConnectionInterface
     public function checkAndMutateRow(array $args)
     {
         $tableName = $this->pluck('tableName', $args);
-        $optionalArgs =[];
-        if (isset($args['options'])) {
-            $options =  $this->pluck('options', $args);
-            if (isset($options['appProfileId'])) {
-                $optionalArgs['appProfileId'] = $this->pluck('appProfileId', $options);
-            }
-            if (isset($options['predicateFilter'])) {
-                $optionalArgs['predicateFilter'] = $this->rowFilterObject($this->pluck('predicateFilter', $options));
-            }
-            if (isset($options['trueMutations'])) {
-                $cell = $this->pluck('trueMutations', $options);
-                $optionalArgs['trueMutations'] = array_map([$this, 'mutationObject'], $cell);
-            }
-            if (isset($options['falseMutations'])) {
-                $cell = $this->pluck('falseMutations', $options);
-                $optionalArgs['falseMutations'] = array_map([$this, 'mutationObject'], $cell);
-            }
+        if (isset($args['predicateFilter'])) {
+            $args['predicateFilter'] = $this->rowFilterObject($this->pluck('predicateFilter', $args));
+        }
+        if (isset($args['trueMutations'])) {
+            $args['trueMutations'] = array_map([$this, 'mutationObject'], $this->pluck('trueMutations', $args));
+        }
+        if (isset($args['falseMutations'])) {
+            $args['falseMutations'] = array_map([$this, 'mutationObject'], $this->pluck('falseMutations', $args));
         }
         return $this->send([$this->bigtableClient, 'checkAndMutateRow'], [
             $tableName,
             $this->pluck('rowKey', $args),
-            $optionalArgs,
+            $args,
             $this->addResourcePrefixHeader($args, $tableName)
         ]);
     }
@@ -611,36 +582,29 @@ class Grpc implements ConnectionInterface
     public function readModifyWriteRow(array $args)
     {
         $tableName = $this->pluck('tableName', $args);
-        $rules = $this->pluck('rules', $args);
-        $optionalArgs =[];
-        if (isset($args['options'])) {
-            $options =  $this->pluck('options', $args);
-            if (isset($options['appProfileId'])) {
-                $optionalArgs['appProfileId'] = $this->pluck('appProfileId', $options);
-            }
-        }
+        $cells = $this->pluck('cells', $args);
         return $this->send([$this->bigtableClient, 'readModifyWriteRow'], [
             $tableName,
             $this->pluck('rowKey', $args),
-            array_map([$this, 'readModifyWriteRuleObject'], $rules),
-            $optionalArgs,
+            array_map([$this, 'readModifyWriteRuleObject'], $cells),
+            $args,
             $this->addResourcePrefixHeader($args, $tableName)
         ]);
     }
 
     /**
-     * @param array $args
+     * @param array $cell
      * @return ReadModifyWriteRule
      */
-    private function readModifyWriteRuleObject(array $args)
+    private function readModifyWriteRuleObject(array $cell)
     {
         return $this->serializer->decodeMessage(
             new ReadModifyWriteRule(),
             $this->pluckArray([
-                'family_name',
-                'column_qualifier',
-                'append_value'
-            ], $args)
+                'familyName',
+                'columnQualifier',
+                'appendValue'
+            ], $cell)
         );
     }
 

@@ -42,9 +42,9 @@ class GrpcTest extends TestCase
     use GrpcTestTrait;
     use GrpcTrait;
 
-    const PROJECT  = 'projects/grass-clump-479';
-    const LOCATION = 'projects/grass-clump-479/locations/us-east1-b';
-    const TABLE    = 'projects/grass-clump-479/instances/my-instance/tables/my-table';
+    const PROJECT  = 'projects/my-awesome-project';
+    const LOCATION = 'projects/my-awesome-project/locations/us-east1-b';
+    const TABLE    = 'projects/my-awesome-project/instances/my-instance/tables/my-table';
 
     private $successMessage;
     
@@ -107,10 +107,10 @@ class GrpcTest extends TestCase
         $utc = strtotime(gmdate("M d Y H:i:s", time()))*1000;
         $mutateRowcell = [
             [
-                'family_name' => 'cf',
-                'column_qualifier' => 'field',
+                'familyName' => 'cf',
+                'columnQualifier' => 'field',
                 'value' => 'val',
-                'timestamp_micros' => $utc
+                'timestampMicros' => $utc
             ]
         ];
         $mutationArr = $this->mutationsArr($serializer ,$mutateRowcell);
@@ -121,16 +121,16 @@ class GrpcTest extends TestCase
                 'rowKey' => $rowKey,
                 'cell' => [
                     [
-                        'family_name' => 'cf',
-                        'column_qualifier' => 'field',
+                        'familyName' => 'cf',
+                        'columnQualifier' => 'field',
                         'value' => 'val',
-                        'timestamp_micros' => $utc
+                        'timestampMicros' => $utc
                     ],
                     [
-                        'family_name' => 'cf',
-                        'column_qualifier' => 'field5',
+                        'familyName' => 'cf',
+                        'columnQualifier' => 'field5',
                         'value' => 'val5',
-                        'timestamp_micros' => $utc
+                        'timestampMicros' => $utc
                     ]
                 ]
             ]
@@ -138,23 +138,25 @@ class GrpcTest extends TestCase
         $mutations = [];
         foreach ($mutateRowscell as $val) {
             array_push($mutations, [
-                'row_key' => $val['rowKey'],
+                'rowKey' => $val['rowKey'],
                 'mutations' => $this->mutationsArr($serializer, $val['cell'])
             ]);
         }
+        $entries = [];
         foreach ($mutations as $val) {
             $entries[] = $this->mutateRowsRequestEntryObject($serializer, $val);
         }
 
         /*** readModifyWriteRow ***/
-        $rules = [
+        $modifyCells = [
             [
-                'family_name' => 'cf2',
-                'column_qualifier' => 'qualifier',
-                'append_value' => 'Val2'
+                'familyName' => 'cf2',
+                'columnQualifier' => 'qualifier',
+                'appendValue' => 'Val2'
             ]
         ];
-        foreach ($rules as $value) {
+        $rulesArr = [];
+        foreach ($modifyCells as $value) {
             $rulesArr[] = $this->readModifyWriteRuleObject($serializer, $value);
         }
 
@@ -220,7 +222,7 @@ class GrpcTest extends TestCase
                 [
                     'tableName' => self::TABLE,
                     'rowKey' => $rowKey,
-                    'rules' => $rules
+                    'cells' => $modifyCells
                 ],
                 [self::TABLE, $rowKey, $rulesArr, [], ['headers' => ['google-cloud-resource-prefix' => [self::TABLE]]]]
             ]
@@ -229,31 +231,32 @@ class GrpcTest extends TestCase
 
     private function mutationObject($serializer, $args)
     {
-        $cellObject['set_cell'] = $serializer->decodeMessage(
+        $cellObject = [];
+        $cellObject['setCell'] = $serializer->decodeMessage(
             new Mutation_SetCell(),
             $this->pluckArray([
-                'family_name',
-                'column_qualifier',
+                'familyName',
+                'columnQualifier',
                 'value',
-                'timestamp_micros'
+                'timestampMicros'
             ], $args)
         );
 
         return $serializer->decodeMessage(
             new Mutation(),
             $this->pluckArray([
-                'set_cell'
+                'setCell'
             ], $cellObject)
         );
     }
 
-    private  function mutationsArr($serializer ,$cells)
+    private function mutationsArr($serializer ,$cells)
     {
-        $tmpArr = [];
+        $mutationsObjArray = [];
         foreach ($cells as $val) {
-            $tmpArr[] = $this->mutationObject($serializer, $val);
+            $mutationsObjArray[] = $this->mutationObject($serializer, $val);
         }
-        return $tmpArr;
+        return $mutationsObjArray;
     }
 
     private function mutateRowsRequestEntryObject($serializer, $args)
@@ -261,7 +264,7 @@ class GrpcTest extends TestCase
         return $serializer->decodeMessage(
             new MutateRowsRequest_Entry(),
             $this->pluckArray([
-                'row_key',
+                'rowKey',
                 'mutations'
             ], $args)
         );
@@ -272,9 +275,9 @@ class GrpcTest extends TestCase
         return $serializer->decodeMessage(
             new ReadModifyWriteRule(),
             $this->pluckArray([
-                'family_name',
-                'column_qualifier',
-                'append_value'
+                'familyName',
+                'columnQualifier',
+                'appendValue'
             ], $args)
         );
     }
