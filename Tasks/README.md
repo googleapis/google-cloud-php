@@ -1,10 +1,10 @@
 # Google Cloud Tasks for PHP
 
-> Idiomatic PHP client for [Google Cloud Tasks](https://cloud.google.com/cloud-tasks/).
+> Idiomatic PHP client for Google Cloud Tasks.
 
 [![Latest Stable Version](https://poser.pugx.org/google/cloud-tasks/v/stable)](https://packagist.org/packages/google/cloud-tasks) [![Packagist](https://img.shields.io/packagist/dm/google/cloud-tasks.svg)](https://packagist.org/packages/google/cloud-tasks)
 
-* [API documentation](http://googlecloudplatform.github.io/google-cloud-php/#/docs/cloud-tasks/latest/tasks/readme)
+* The official documentation is coming soon.
 
 **NOTE:** This repository is part of [Google Cloud PHP](https://github.com/googlecloudplatform/google-cloud-php). Any
 support requests, bug reports, or development contributions should be directed to
