@@ -147,13 +147,13 @@ class BigtableClient
      *           **Defaults to** using `Google\Cloud\Bigtable\Instance::INSTANCE_TYPE_UNSPECIFIED`.
      *     @type array $labels as key/value pair ['foo' => 'bar']. For more information, see
      *           [Using labels to organize Google Cloud Platform resources](https://cloudplatform.googleblog.com/2015/10/using-labels-to-organize-Google-Cloud-Platform-resources.html).
-     *     @type Cluster[] $clusters {
+     *     @type array $clusters {
      *         string $clusterId
      *         string $locationId
      *         int $serveNodes
      *         int $storageType The storage media type for persisting Bigtable data. Possible values include `Google\Cloud\Bigtable\Instance::STORAGE_TYPE_SSD` and `Google\Cloud\Bigtable\Instance::STORAGE_TYPE_HDD`.
      *             **Defaults to** `Google\Cloud\Bigtable\Instance::STORAGE_TYPE_UNSPECIFIED`.
-     *          }
+     *     }
      * }
      * @return LongRunningOperation<Instance>
      * @codingStandardsIgnoreEnd
