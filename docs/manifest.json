@@ -737,6 +737,14 @@
             ]
         },
         {
+            "id": "cloud-tasks",
+            "name": "google/cloud-tasks",
+            "defaultService": "tasks/readme",
+            "versions": [
+                "master"
+            ]
+        },
+        {
             "id": "cloud-text-to-speech",
             "name": "google/cloud-text-to-speech",
             "defaultService": "texttospeech/readme",
