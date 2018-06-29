@@ -130,7 +130,6 @@ class Docs extends GoogleCloudCommand
                     '/dev',
                     '/docs',
                     '/tests',
-                    '/vendor',
                     '/CODE_OF_CONDUCT.md',
                     '/README.md',
                 ])
