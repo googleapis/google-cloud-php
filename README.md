@@ -583,9 +583,9 @@ $ composer require google/cloud-dataproc
 require __DIR__ . '/vendor/autoload.php';
 
 use Google\ApiCore\ApiException;
-use Google\Cloud\Kms\V1\KeyManagementServiceClient;
 use Google\Cloud\Kms\V1\CryptoKey;
 use Google\Cloud\Kms\V1\CryptoKey_CryptoKeyPurpose;
+use Google\Cloud\Kms\V1\KeyManagementServiceClient;
 use Google\Cloud\Kms\V1\KeyRing;
 
 $client = new KeyManagementServiceClient();
