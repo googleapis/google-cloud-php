@@ -81,6 +81,8 @@ class BigtableClient
      *
      *     @type string $projectId The project ID from the Google Developer's
      *           Console.
+     *     @type CacheItemPoolInterface $authCache A cache for storing access
+     *           tokens. **Defaults to** a simple in memory implementation.
      *     @type array $authCacheOptions Cache configuration options.
      *     @type callable $authHttpHandler A handler used to deliver Psr7
      *           requests specifically for authentication.
