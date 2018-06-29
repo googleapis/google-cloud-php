@@ -23,6 +23,7 @@ This client supports the following Google Cloud Platform services at a [Beta](#v
 * [Google Cloud Dataproc](#google-cloud-dataproc-beta) (Beta)
 * [Google Cloud Natural Language](#google-cloud-natural-language-beta) (Beta)
 * [Google Cloud OsLogin](#google-cloud-oslogin-beta) (Beta)
+* [Google Cloud KMS](#google-cloud-kms-beta) (Beta)
 * [Google Cloud Tasks](#google-cloud-tasks-beta) (Beta)
 * [Google Cloud Text-to-Speech](#google-cloud-text-to-speech-beta) (Beta)
 * [Google Cloud Vision](#google-cloud-vision-beta) (Beta)
@@ -640,6 +641,73 @@ $loginProfile = $osLoginServiceClient->getLoginProfile($formattedName);
 
 ```
 $ composer require google/cloud-oslogin
+```
+
+## Google Cloud KMS (Beta)
+
+- [API Documentation](http://googlecloudplatform.github.io/google-cloud-php/#/docs/latest/kms/readme)
+- [Official Documentation](https://cloud.google.com/kms/docs/reference/rest/)
+
+```php
+require __DIR__ . '/vendor/autoload.php';
+
+use Google\Cloud\Kms\V1\KeyManagementServiceClient;
+use Google\Cloud\Kms\V1\CryptoKey;
+use Google\Cloud\Kms\V1\CryptoKey_CryptoKeyPurpose;
+use Google\Cloud\Kms\V1\KeyRing;
+
+$client = new KeyManagementServiceClient();
+
+$projectId = 'example-project';
+$location = 'global';
+
+// Create a keyring
+$keyRingId = 'example-keyring';
+$locationName = $client::locationName($projectId, $location);
+$keyRingName = $client::keyRingName($projectId, $location, $keyRingId);
+
+try {
+    $keyRing = $client->getKeyRing($keyRingName);
+} catch (\Google\ApiCore\ApiException $e) {
+    if ($e->getStatus() === 'NOT_FOUND') {
+        $keyRing = new KeyRing();
+        $keyRing->setName($keyRingName);
+        $client->createKeyRing($locationName, $keyRingId, $keyRing);
+    }
+}
+
+// Create a cryptokey
+$keyId = 'example-key';
+$keyName = $client::cryptoKeyName($projectId, $location, $keyRingId, $keyId);
+
+try {
+    $cryptoKey = $client->getCryptoKey($keyName);
+} catch (\Google\ApiCore\ApiException $e) {
+    if ($e->getStatus() === 'NOT_FOUND') {
+        $cryptoKey = new CryptoKey();
+        $cryptoKey->setPurpose(CryptoKey_CryptoKeyPurpose::ENCRYPT_DECRYPT);
+        $cryptoKey = $client->createCryptoKey($keyRingName, $keyId, $cryptoKey);
+    }
+}
+
+// Encrypt and decrypt
+$secret = 'My secret text';
+$response = $client->encrypt($keyName, $secret);
+$cipherText = $response->getCiphertext();
+
+$response = $client->decrypt($keyName, $cipherText);
+
+$plainText = $response->getPlaintext();
+
+assert($secret === $plainText);
+```
+
+#### google/cloud-kms
+
+[Google Cloud KMS](https://github.com/GoogleCloudPlatform/google-cloud-php-kms) can be installed separately by requiring the [`google/cloud-kms`](https://packagist.org/packages/google/cloud-kms) composer package:
+
+```
+$ composer require google/cloud-kms
 ```
 
 ## Google Cloud Tasks (Beta)
