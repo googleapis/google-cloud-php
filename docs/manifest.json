@@ -443,6 +443,14 @@
             ]
         },
         {
+            "id": "cloud-kms",
+            "name": "google/cloud-kms",
+            "defaultService": "kms/readme",
+            "versions": [
+                "master"
+            ]
+        },
+        {
             "id": "cloud-language",
             "name": "google/cloud-language",
             "defaultService": "language/languageclient",

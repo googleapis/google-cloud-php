@@ -1,0 +1,19 @@
+{
+    "title": "Kms",
+    "defaultService": "kms\/readme",
+    "services": [
+        {
+            "title": "Overview",
+            "type": "kms\/readme"
+        },
+        {
+            "title": "KeyManagementServiceClient",
+            "type": "kms\/v1\/kmsclient",
+            "nav": [],
+            "patterns": [
+                "kms\/v1\/\\w{1,}"
+            ]
+        }
+    ],
+    "pattern": "kms\/\\w{1,}"
+}
