@@ -26,7 +26,6 @@ Or to install the entire suite of components at once:
 $ composer require google/cloud
 ```
 {notice}
-
 ### Authentication
 
 Please see our [Authentication guide](https://github.com/GoogleCloudPlatform/google-cloud-php/blob/master/AUTHENTICATION.md) for more information
