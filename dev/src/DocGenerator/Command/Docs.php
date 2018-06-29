@@ -83,7 +83,8 @@ class Docs extends GoogleCloudCommand
             'tests',
             'metadata',
             'CONTRIBUTING.md',
-            'bootstrap.php'
+            'bootstrap.php',
+            'vendor/'
         ];
 
         $components = $this->getComponents($this->rootPath, $paths['source']);
