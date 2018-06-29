@@ -257,7 +257,7 @@ class Daemon
         if (isset($_SERVER['GAE_SERVICE'])) {
             return $_SERVER['GAE_SERVICE'] . ' - ' . $_SERVER['GAE_VERSION'];
         }
-        return gethostname() . ' - ' . getcwd();
+        return php_uname('n') . ' - ' . getcwd();
     }
 
     private function defaultSourceContext()

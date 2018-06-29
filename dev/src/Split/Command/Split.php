@@ -84,16 +84,24 @@ class Split extends GoogleCloudCommand
 
         $parentTagSource = sprintf(self::PARENT_TAG_NAME, $tag);
 
+        $errors = [];
         foreach ($components as $component) {
             $output->writeln('');
             $output->writeln(sprintf('<info>Starting on component %s</info>', $component['id']));
+            $output->writeln(sprintf('Using target %s', $component['target']));
             $output->writeln('------------');
-            shell_exec(sprintf(
+            exec(sprintf(
                 '%s %s %s',
                 $this->splitShell,
                 $component['prefix'],
                 $component['target']
-            ));
+            ), $shellOutput, $return);
+
+            echo implode(PHP_EOL, $shellOutput);
+            if ($return !== 0) {
+                $errors[] = $component['id'] .': splitsh or git push failure';
+                continue;
+            }
 
             $target = $component['target'];
             $matches = [];
@@ -111,6 +119,8 @@ class Split extends GoogleCloudCommand
                     $component['id'],
                     $version
                 ));
+
+                $errors[] = $component['id'] .': given version invalid.';
                 continue;
             }
 
@@ -135,6 +145,12 @@ class Split extends GoogleCloudCommand
                 $version,
                 $component['id']
             ));
+        }
+
+        if ($errors) {
+            $output->writeln(PHP_EOL . '<error>One or more errors occurred!</error>');
+            $output->writeln('- ' . implode(PHP_EOL .'- ', $errors));
+            return 1;
         }
     }
 
