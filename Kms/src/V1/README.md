@@ -5,6 +5,7 @@
 ```php
 require __DIR__ . '/vendor/autoload.php';
 
+use Google\ApiCore\ApiException;
 use Google\Cloud\Kms\V1\KeyManagementServiceClient;
 use Google\Cloud\Kms\V1\CryptoKey;
 use Google\Cloud\Kms\V1\CryptoKey_CryptoKeyPurpose;
@@ -22,7 +23,7 @@ $keyRingName = $client::keyRingName($projectId, $location, $keyRingId);
 
 try {
     $keyRing = $client->getKeyRing($keyRingName);
-} catch (\Google\ApiCore\ApiException $e) {
+} catch (ApiException $e) {
     if ($e->getStatus() === 'NOT_FOUND') {
         $keyRing = new KeyRing();
         $keyRing->setName($keyRingName);
@@ -36,7 +37,7 @@ $keyName = $client::cryptoKeyName($projectId, $location, $keyRingId, $keyId);
 
 try {
     $cryptoKey = $client->getCryptoKey($keyName);
-} catch (\Google\ApiCore\ApiException $e) {
+} catch (ApiException $e) {
     if ($e->getStatus() === 'NOT_FOUND') {
         $cryptoKey = new CryptoKey();
         $cryptoKey->setPurpose(CryptoKey_CryptoKeyPurpose::ENCRYPT_DECRYPT);
