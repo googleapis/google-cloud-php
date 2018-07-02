@@ -189,13 +189,8 @@ class ClientTraitTest extends TestCase
      */
     public function testDetectProjectIdWithNoProjectIdAvailable()
     {
-        $keyFilePath = Fixtures::JSON_KEY_FIXTURE();
-        $keyFile = json_decode(file_get_contents($keyFilePath), true);
-        unset($keyFile['project_id']);
-
         $conf = $this->impl->call('detectProjectId', [[
             'projectIdRequired' => true,
-            'keyFile' => $keyFile,
             'httpHandler' => function ($request, $options = []) {
                 return new Response(500);
             }
@@ -330,6 +325,18 @@ class ClientTraitTest extends TestCase
         }
 
         $this->assertEquals($projectId, $res);
+    }
+
+    /**
+     * @expectedException PHPUnit_Framework_Error_Notice
+     */
+    public function testDetectProjectIdWithKeyfileMissingProjectId()
+    {
+        $trait = TestHelpers::impl(ClientTrait::class);
+
+        $res = $trait->call('detectProjectId', [[
+            'keyFile' => []
+        ]]);
     }
 }
 

@@ -184,8 +184,16 @@ trait ClientTrait
             return $config['projectId'];
         }
 
-        if (isset($config['keyFile']['project_id'])) {
-            return $config['keyFile']['project_id'];
+        if (isset($config['keyFile'])) {
+            if (isset($config['keyFile']['project_id'])) {
+                return $config['keyFile']['project_id'];
+            }
+
+            trigger_error(
+                'A keyfile was given, but it does not contain a project ID. ' .
+                'This can indicate an old and obsolete keyfile, in which case you should create a new one.',
+                E_USER_NOTICE
+            );
         }
 
         if (getenv('GOOGLE_CLOUD_PROJECT')) {
