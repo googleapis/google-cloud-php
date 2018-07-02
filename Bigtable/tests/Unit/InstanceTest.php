@@ -23,6 +23,7 @@ use Google\Cloud\Bigtable\Instance;
 use Google\Cloud\Core\Exception\NotFoundException;
 use Google\Cloud\Core\LongRunning\LongRunningConnectionInterface;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
+use Google\Cloud\Core\Testing\TestHelpers;
 use Prophecy\Argument;
 use PHPUnit\Framework\TestCase;
 
@@ -45,7 +46,7 @@ class InstanceTest extends TestCase
         $this->checkAndSkipGrpcTests();
 
         $this->connection = $this->prophesize(ConnectionInterface::class);
-        $this->instance = \Google\Cloud\Core\Testing\TestHelpers::stub(Instance::class, [
+        $this->instance = TestHelpers::stub(Instance::class, [
             $this->connection->reveal(),
             $this->prophesize(LongRunningConnectionInterface::class)->reveal(),
             [],

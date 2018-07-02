@@ -17,7 +17,6 @@
 
 namespace Google\Cloud\Bigtable;
 
-use Google\ApiCore\ValidationException;
 use Google\Cloud\Bigtable\Admin\V2\BigtableInstanceAdminClient as InstanceAdminClient;
 use Google\Cloud\Bigtable\Admin\V2\Instance_Type;
 use Google\Cloud\Bigtable\Admin\V2\Instance_State;
@@ -275,13 +274,27 @@ class Instance
      *           **Defaults to** using `Google\Cloud\Bigtable\Instance::INSTANCE_TYPE_UNSPECIFIED`.
      *     @type array $labels as key/value pair ['foo' => 'bar']. For more information, see
      *           [Using labels to organize Google Cloud Platform resources](https://cloudplatform.googleblog.com/2015/10/using-labels-to-organize-Google-Cloud-Platform-resources.html).
-     *     @type Cluster[] $clusters {
+     *     @type array $clusters [{
      *         string $clusterId
      *         string $locationId
      *         int $serveNodes
      *         int $storageType The storage media type for persisting Bigtable data. Possible values include `Google\Cloud\Bigtable\Instance::STORAGE_TYPE_SSD` and `Google\Cloud\Bigtable\Instance::STORAGE_TYPE_HDD`.
      *             **Defaults to** `Google\Cloud\Bigtable\Instance::STORAGE_TYPE_UNSPECIFIED`.
-     *          }
+     *     }]
+     *     Ex. [
+     *           [
+     *               clusterId => 'my-cluster1',
+     *               location => 'us-east1-c',
+     *               serveNodes => 3,
+     *               storageType => Google\Cloud\Bigtable\Instance::STORAGE_TYPE_SSD
+     *           ],
+     *           [
+     *               clusterId => 'my-cluster2',
+     *               location => 'us-east1-b',
+     *               serveNodes => 3,
+     *               storageType => Google\Cloud\Bigtable\Instance::STORAGE_TYPE_SSD
+     *           ]
+     *     ]
      * }
      * @return LongRunningOperation<Instance>
      * @codingStandardsIgnoreEnd

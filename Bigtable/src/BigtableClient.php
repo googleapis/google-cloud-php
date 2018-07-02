@@ -25,6 +25,7 @@ use Google\Cloud\Bigtable\Connection\LongRunningConnection;
 use Google\Cloud\Core\Exception\GoogleException;
 use Google\Cloud\Core\LongRunning\LongRunningOperation;
 use Google\Cloud\Core\LongRunning\LROTrait;
+use Psr\Cache\CacheItemPoolInterface;
 
 /**
  * Cloud Bigtable is a highly scalable, transactional, managed, NewSQL
@@ -149,13 +150,27 @@ class BigtableClient
      *           **Defaults to** using `Google\Cloud\Bigtable\Instance::INSTANCE_TYPE_UNSPECIFIED`.
      *     @type array $labels as key/value pair ['foo' => 'bar']. For more information, see
      *           [Using labels to organize Google Cloud Platform resources](https://cloudplatform.googleblog.com/2015/10/using-labels-to-organize-Google-Cloud-Platform-resources.html).
-     *     @type array $clusters {
+     *     @type array $clusters [{
      *         string $clusterId
      *         string $locationId
      *         int $serveNodes
      *         int $storageType The storage media type for persisting Bigtable data. Possible values include `Google\Cloud\Bigtable\Instance::STORAGE_TYPE_SSD` and `Google\Cloud\Bigtable\Instance::STORAGE_TYPE_HDD`.
      *             **Defaults to** `Google\Cloud\Bigtable\Instance::STORAGE_TYPE_UNSPECIFIED`.
-     *     }
+     *     }]
+     *     Ex. [
+     *           [
+     *               clusterId => 'my-cluster1',
+     *               location => 'us-east1-c',
+     *               serveNodes => 3,
+     *               storageType => Google\Cloud\Bigtable\Instance::STORAGE_TYPE_SSD
+     *           ],
+     *           [
+     *               clusterId => 'my-cluster2',
+     *               location => 'us-east1-b',
+     *               serveNodes => 3,
+     *               storageType => Google\Cloud\Bigtable\Instance::STORAGE_TYPE_SSD
+     *           ]
+     *     ]
      * }
      * @return LongRunningOperation<Instance>
      * @codingStandardsIgnoreEnd

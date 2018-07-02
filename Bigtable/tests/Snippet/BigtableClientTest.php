@@ -15,16 +15,16 @@
  * limitations under the License.
  */
 
-namespace Google\Cloud\Spanner\Tests\Bigtable;
+namespace Google\Cloud\Bigtable\Tests\Bigtable;
 
 use Google\Cloud\Bigtable\Admin\V2\BigtableInstanceAdminClient as InstanceAdminClient;
 use Google\Cloud\Bigtable\BigtableClient;
 use Google\Cloud\Bigtable\Connection\ConnectionInterface;
 use Google\Cloud\Bigtable\Instance;
-use Google\Cloud\Core\Iterator\ItemIterator;
 use Google\Cloud\Core\LongRunning\LongRunningOperation;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
+use Google\Cloud\Core\Testing\TestHelpers;
 use Prophecy\Argument;
 
 /**
@@ -46,7 +46,7 @@ class BigtableClientTest extends SnippetTestCase
         $this->checkAndSkipGrpcTests();
 
         $this->connection = $this->prophesize(ConnectionInterface::class);
-        $this->client = \Google\Cloud\Core\Testing\TestHelpers::stub(BigtableClient::class);
+        $this->client = TestHelpers::stub(BigtableClient::class);
         $this->client->___setProperty('connection', $this->connection->reveal());
     }
 
@@ -58,7 +58,7 @@ class BigtableClientTest extends SnippetTestCase
     }
 
     /**
-     * @group bigtable-admin
+     * @group bigtableadmin
      */
     public function testCreateInstance()
     {
@@ -76,7 +76,7 @@ class BigtableClientTest extends SnippetTestCase
     }
 
     /**
-     * @group bigtable-admin
+     * @group bigtableadmin
      */
     public function testInstance()
     {
@@ -85,7 +85,10 @@ class BigtableClientTest extends SnippetTestCase
 
         $res = $snippet->invoke('instance');
         $this->assertInstanceOf(Instance::class, $res->returnVal());
-        $this->assertEquals(InstanceAdminClient::instanceName(self::PROJECT, self::INSTANCE), $res->returnVal()->name());
+        $this->assertEquals(
+            InstanceAdminClient::instanceName(self::PROJECT, self::INSTANCE),
+            $res->returnVal()->name()
+        );
     }
 
     public function testResumeOperation()

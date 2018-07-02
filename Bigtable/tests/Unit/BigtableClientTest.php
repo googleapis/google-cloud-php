@@ -23,6 +23,7 @@ use Google\Cloud\Bigtable\Connection\ConnectionInterface;
 use Google\Cloud\Bigtable\Instance;
 use Google\Cloud\Core\LongRunning\LongRunningOperation;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
+use Google\Cloud\Core\Testing\TestHelpers;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
 
@@ -37,13 +38,14 @@ class BigtableClientTest extends TestCase
     const INSTANCE = 'inst';
 
     private $client;
+    private $connection;
 
     public function setUp()
     {
         $this->checkAndSkipGrpcTests();
 
         $this->connection = $this->prophesize(ConnectionInterface::class);
-        $this->client = \Google\Cloud\Core\Testing\TestHelpers::stub(BigtableClient::class, [
+        $this->client = TestHelpers::stub(BigtableClient::class, [
             ['projectId' => self::PROJECT]
         ]);
     }
@@ -62,8 +64,8 @@ class BigtableClientTest extends TestCase
 
     public function testInstance()
     {
-        $insatnce = $this->client->instance('foo');
-        $this->assertInstanceOf(Instance::class, $insatnce);
-        $this->assertEquals('foo', InstanceAdminClient::parseName($insatnce->name())['instance']);
+        $instance = $this->client->instance('foo');
+        $this->assertInstanceOf(Instance::class, $instance);
+        $this->assertEquals('foo', InstanceAdminClient::parseName($instance->name())['instance']);
     }
 }
