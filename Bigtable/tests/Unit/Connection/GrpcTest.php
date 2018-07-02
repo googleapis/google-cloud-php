@@ -20,13 +20,15 @@ namespace Google\Cloud\Bigtable\Tests\Unit\Connection;
 use Google\ApiCore\Call;
 use Google\ApiCore\OperationResponse;
 use Google\ApiCore\Serializer;
+use Google\Cloud\Bigtable\Admin\V2\AppProfile;
+use Google\Cloud\Bigtable\Admin\V2\Cluster;
 use Google\Cloud\Bigtable\Admin\V2\Instance;
 use Google\Cloud\Bigtable\Admin\V2\Instance_Type;
-use Google\Cloud\Bigtable\Admin\V2\Cluster;
 use Google\Cloud\Bigtable\Connection\Grpc;
-use Google\Cloud\Core\GrpcTrait;
 use Google\Cloud\Core\GrpcRequestWrapper;
+use Google\Cloud\Core\GrpcTrait;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
+use Google\Protobuf\FieldMask;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
 
@@ -38,8 +40,10 @@ class GrpcTest extends TestCase
     use GrpcTestTrait;
     use GrpcTrait;
 
-    const PROJECT = 'projects/grass-clump-479';
-    const LOCATION = 'projects/grass-clump-479/locations/us-east1-b';
+    const PROJECT = 'projects/my-awesome-project';
+    const LOCATION = 'projects/my-awesome-project/locations/us-east1-b';
+    const INSTANCE = 'projects/my-awesome-project/instances/my-instance';
+    const APPPROFILE = 'projects/my-awesome-project/instances/test-instance/appProfiles/my-profile';
 
     private $successMessage;
 
@@ -101,6 +105,25 @@ class GrpcTest extends TestCase
         );
         $lro = $this->prophesize(OperationResponse::class)->reveal();
 
+        $appProfileId = 'test-profile';
+        $appProfileArgs = [
+           'name' => $appProfileId,
+           'etag' => 'E Tag',
+           'description' => 'My App Profile.',
+           'singleClusterRouting'=> [
+                'clusterId' => $clusterName,
+                'allowTransactionalWrites'=> '1'
+            ]
+        ];
+        $appProfile = $serializer->decodeMessage(
+            new AppProfile(),
+            $appProfileArgs
+        );
+        foreach (array_keys($appProfileArgs) as $key) {
+            $mask[] = Serializer::toSnakeCase($key);
+        }
+        $updateMask = $serializer->decodeMessage(new FieldMask(), ['paths' => $mask]);
+
         return [
             [
                 'createInstance',
@@ -147,6 +170,39 @@ class GrpcTest extends TestCase
                 'generateConsistencyToken',
                 ['name' => $tableName],
                 [$tableName, ['headers' => ['google-cloud-resource-prefix' => [$tableName]]]]
+            ],
+            [
+                'createAppProfile',
+                [
+                    'parent' => self::INSTANCE,
+                    'appProfileId' => $appProfileId,
+                    'appProfile' => $appProfileArgs,
+                ],
+                [self::INSTANCE, $appProfileId, $appProfile, ['headers' => ['google-cloud-resource-prefix' => [self::INSTANCE]]]]
+            ],
+            [
+                'getAppProfile',
+                ['name' => self::APPPROFILE],
+                [self::APPPROFILE, ['headers' => ['google-cloud-resource-prefix' => [self::APPPROFILE]]]]
+            ],
+            [
+
+                'listAppProfiles',
+                ['parent' => self::INSTANCE],
+                [self::INSTANCE,['headers' => ['google-cloud-resource-prefix' => [self::INSTANCE]]]]
+            ],
+            [
+                'updateAppProfile',
+                [
+                    'name' => self::APPPROFILE,
+                    'appProfile' => $appProfileArgs
+                ],
+                [$appProfile, $updateMask, ['headers' => ['google-cloud-resource-prefix' => [self::APPPROFILE]]]]
+            ],
+            [
+                'deleteAppProfile',
+                ['name' => self::APPPROFILE,'ignoreWarnings' => true],
+                [self::APPPROFILE, true, ['headers' => ['google-cloud-resource-prefix' => [self::APPPROFILE]]]]
             ]
         ];
     }
