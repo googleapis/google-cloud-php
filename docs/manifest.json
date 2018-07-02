@@ -207,6 +207,7 @@
             "name": "google/cloud-core",
             "defaultService": "core/servicebuilder",
             "versions": [
+                "v1.20.7",
                 "v1.21.0",
                 "v1.20.6",
                 "v1.20.5",
