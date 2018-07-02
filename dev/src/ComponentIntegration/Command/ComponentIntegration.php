@@ -135,8 +135,21 @@ class ComponentIntegration extends GoogleCloudCommand
         $this->output->writeln('');
 
         @mkdir($dest);
+        $filteredIterator = new \RecursiveCallbackFilterIterator(
+            new \RecursiveDirectoryIterator(
+                $src,
+                \RecursiveDirectoryIterator::SKIP_DOTS
+            ),
+            function ($current, $key, $iterator) {
+                // Exclude the vendor dir and the composer.lock file
+                if ($current->isDir()) {
+                    return $current->getFilename() !== 'vendor';
+                }
+                return $current->getFilename() !== 'composer.lock';
+            }
+        );
         $iterator = new \RecursiveIteratorIterator(
-            new \RecursiveDirectoryIterator($src, \RecursiveDirectoryIterator::SKIP_DOTS),
+            $filteredIterator,
             \RecursiveIteratorIterator::SELF_FIRST
         );
 
