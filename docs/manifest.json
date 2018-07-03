@@ -776,6 +776,14 @@
             ]
         },
         {
+            "id": "cloud-text-to-speech",
+            "name": "google/cloud-text-to-speech",
+            "defaultService": "texttospeech/readme",
+            "versions": [
+                "master"
+            ]
+        },
+        {
             "id": "cloud-trace",
             "name": "google/cloud-trace",
             "defaultService": "trace/traceclient",
