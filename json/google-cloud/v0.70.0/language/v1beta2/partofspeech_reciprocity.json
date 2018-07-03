@@ -1,0 +1,1 @@
+{"id":"language\/v1beta2\/partofspeech_reciprocity","type":"","title":"Google\\Cloud\\Language\\V1beta2\\PartOfSpeech_Reciprocity","name":"PartOfSpeech_Reciprocity","description":"<p>Reciprocal features of a pronoun.<\/p>\n<p>Protobuf enum <code>Google\\Cloud\\Language\\V1beta2\\PartOfSpeech\\Reciprocity<\/code><\/p>","examples":[],"resources":[],"methods":[]}

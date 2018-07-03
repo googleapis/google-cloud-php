@@ -1,0 +1,1 @@
+{"id":"debugger\/v2\/breakpoint_loglevel","type":"","title":"Google\\Cloud\\Debugger\\V2\\Breakpoint_LogLevel","name":"Breakpoint_LogLevel","description":"<p>Log severity levels.<\/p>\n<p>Protobuf enum <code>Google\\Devtools\\Clouddebugger\\V2\\Breakpoint\\LogLevel<\/code><\/p>","examples":[],"resources":[],"methods":[]}

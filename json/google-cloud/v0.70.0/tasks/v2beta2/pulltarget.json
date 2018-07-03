@@ -1,0 +1,1 @@
+{"id":"tasks\/v2beta2\/pulltarget","type":"","title":"Google\\Cloud\\Tasks\\V2beta2\\PullTarget","name":"PullTarget","description":"<p>Pull target.<\/p>\n<p>Generated from protobuf message <code>google.cloud.tasks.v2beta2.PullTarget<\/code><\/p>\n<p>Extends \\Google\\Protobuf\\Internal\\Message<\/p>","examples":[],"resources":[],"methods":[]}
