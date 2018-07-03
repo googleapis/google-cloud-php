@@ -503,7 +503,7 @@ $ composer require google/cloud-firestore
 
 ## Google Cloud Container (Beta)
 
-- [API Documentation](http://googlecloudplatform.github.io/google-cloud-php/#/docs/latest/monitoring/readme)
+- [API Documentation](http://googlecloudplatform.github.io/google-cloud-php/#/docs/latest/container/readme)
 - [Official Documentation](https://cloud.google.com/kubernetes-engine/docs)
 
 ```php
@@ -711,7 +711,7 @@ $ composer require google/cloud-oslogin
 ```
 
 ## Google Cloud Tasks (Beta)
-- [API Documentation](http://googlecloudplatform.github.io/google-cloud-php/#/docs/latest/tasks/cloudtasksclient)
+- [API Documentation](http://googlecloudplatform.github.io/google-cloud-php/#/docs/latest/tasks/readme)
 
 #### Preview
 
