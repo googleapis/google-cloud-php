@@ -36,6 +36,8 @@ class BigtableClientTest extends TestCase
 
     const PROJECT = 'my-awesome-project';
     const INSTANCE = 'inst';
+    const CLUSTER = 'my-cluster';
+    const LOCATION = 'us-east1-b';
 
     private $client;
     private $connection;
@@ -59,7 +61,7 @@ class BigtableClientTest extends TestCase
 
     public function testClusterMetadata()
     {
-        $instance = $this->client->clusterMetadata('foo');
-        $this->assertEquals($instance['location'], InstanceAdminClient::locationName(self::PROJECT, 'foo'));
+        $instance = $this->client->clusterMetadata(self::CLUSTER, self::LOCATION);
+        $this->assertEquals($instance['location'], InstanceAdminClient::locationName(self::PROJECT, self::LOCATION));
     }
 }

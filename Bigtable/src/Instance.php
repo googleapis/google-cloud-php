@@ -267,7 +267,7 @@ class Instance
      * @see https://cloud.google.com/bigtable/docs/reference/admin/rpc/google.bigtable.admin.v2#CreateInstanceRequest CreateInstanceRequest
      *
      * @param string $displayName **Defaults to** the value of $instanceId.
-     * @param string $type Possible values are represented by the following constants: `Google\Cloud\Bigtable\Instance::INSTANCE_TYPE_PRODUCTION`, `Google\Cloud\Bigtable\Instance::INSTANCE_TYPE_DEVELOPMENT` and `Google\Cloud\Bigtable\Instance::INSTANCE_TYPE_UNSPECIFIED`.
+     * @param int $type Possible values are represented by the following constants: `Google\Cloud\Bigtable\Instance::INSTANCE_TYPE_PRODUCTION`, `Google\Cloud\Bigtable\Instance::INSTANCE_TYPE_DEVELOPMENT` and `Google\Cloud\Bigtable\Instance::INSTANCE_TYPE_UNSPECIFIED`.
      *        **Defaults to** using `Google\Cloud\Bigtable\Instance::INSTANCE_TYPE_UNSPECIFIED`.
      * @param array $labels as key/value pair ['foo' => 'bar']. For more information, see
      *        [Using labels to organize Google Cloud Platform resources](https://cloudplatform.googleblog.com/2015/10/using-labels-to-organize-Google-Cloud-Platform-resources.html).

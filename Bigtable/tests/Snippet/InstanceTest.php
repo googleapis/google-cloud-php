@@ -79,65 +79,6 @@ class InstanceTest extends SnippetTestCase
         $this->assertEquals(InstanceAdminClient::instanceName(self::PROJECT, self::INSTANCE), $res->returnVal());
     }
 
-    public function testInfo()
-    {
-        $snippet = $this->snippetFromMethod(Instance::class, 'info');
-        $snippet->addLocal('instance', $this->instance);
-
-        $this->connection->getInstance(Argument::any())
-            ->shouldBeCalled()
-            ->willReturn(['displayName' => 'My Instance']);
-
-        $this->instance->___setProperty('connection', $this->connection->reveal());
-
-        $res = $snippet->invoke();
-        $this->assertEquals('My Instance', $res->output());
-    }
-
-    public function testExists()
-    {
-        $snippet = $this->snippetFromMethod(Instance::class, 'exists');
-        $snippet->addLocal('instance', $this->instance);
-
-        $this->connection->getInstance(Argument::any())
-            ->shouldBeCalled()
-            ->willReturn(['foo' => 'bar']);
-
-        $this->instance->___setProperty('connection', $this->connection->reveal());
-
-        $res = $snippet->invoke();
-        $this->assertEquals('Instance exists!', $res->output());
-    }
-
-    public function testReload()
-    {
-        $snippet = $this->snippetFromMethod(Instance::class, 'reload');
-        $snippet->addLocal('instance', $this->instance);
-
-        $this->connection->getInstance(Argument::any())
-            ->shouldBeCalledTimes(1)
-            ->willReturn(['nodeCount' => 1]);
-
-        $this->instance->___setProperty('connection', $this->connection->reveal());
-
-        $res = $snippet->invoke('info');
-        $info = $this->instance->info();
-        $this->assertEquals($info, $res->returnVal());
-    }
-
-    public function testState()
-    {
-        $snippet = $this->snippetFromMethod(Instance::class, 'state');
-        $snippet->addLocal('instance', $this->instance);
-        $snippet->addUse(Instance::class);
-        $this->connection->getInstance(Argument::any())
-            ->shouldBeCalledTimes(1)
-            ->willReturn(['state' => Instance::STATE_TYPE_READY]);
-        $this->instance->___setProperty('connection', $this->connection->reveal());
-        $res = $snippet->invoke();
-        $this->assertEquals('Instance is ready!', $res->output());
-    }
-
     public function testCreate()
     {
         $config = $this->prophesize(Instance::class);
