@@ -160,22 +160,12 @@ class Instance
      *
      * This method may require a service call.
      *
-     * Example:
-     * ```
-     * $info = $instance->info();
-     * echo $info['displayName'];
-     * ```
      *
      * @param array $options [optional] Configuration options.
-     * @return array
      */
     public function info(array $options = [])
     {
-        if (!$this->info) {
-            $this->reload($options);
-        }
-
-        return $this->info;
+        throw new \BadMethodCallException('This method is not implemented yet');
     }
 
     /**
@@ -183,34 +173,17 @@ class Instance
      *
      * This method requires a service call.
      *
-     * Example:
-     * ```
-     * if ($instance->exists()) {
-     *     echo 'Instance exists!';
-     * }
-     * ```
      *
      * @param array $options [optional] Configuration options.
-     * @return bool
      */
     public function exists(array $options = [])
     {
-        try {
-            $this->reload($options);
-        } catch (NotFoundException $e) {
-            return false;
-        }
-
-        return true;
+        throw new \BadMethodCallException('This method is not implemented yet');
     }
 
     /**
      * Fetch a fresh representation of the instance from the service.
      *
-     * Example:
-     * ```
-     * $info = $instance->reload();
-     * ```
      *
      * @codingStandardsIgnoreStart
      * @see https://cloud.google.com/bigtable/docs/reference/admin/rpc/google.bigtable.admin.v2#google.bigtable.admin.v2.GetInstanceRequest GetInstanceRequest
@@ -218,16 +191,10 @@ class Instance
      * @codingStandardsIgnoreEnd
      *
      * @param array $options [optional] Configuration options.
-     * @return array
      */
     public function reload(array $options = [])
     {
-        $this->info = $this->connection->getInstance($options + [
-            'name' => $this->name,
-            'projectId' => $this->projectId
-        ]);
-
-        return $this->info;
+        throw new \BadMethodCallException('This method is not implemented yet');
     }
 
     /**
@@ -237,22 +204,12 @@ class Instance
      * they are ready for use. This method allows for checking whether an
      * instance is ready.
      *
-     * Example:
-     * ```
-     * if ($instance->state() === Instance::STATE_TYPE_READY) {
-     *     echo 'Instance is ready!';
-     * }
-     * ```
      *
      * @param array $options [optional] Configuration options.
-     * @return string|null
      */
     public function state(array $options = [])
     {
-        $info = $this->info($options);
-        return (isset($info['state']))
-            ? $info['state']
-            : null;
+        throw new \BadMethodCallException('This method is not implemented yet');
     }
 
     /**
@@ -260,18 +217,24 @@ class Instance
      *
      * Example:
      * ```
-     * $operation = $instance->create('My Instance', 1, [], []);
+     * $operation = $instance->create('instanceId', Instance_Type::PRODUCTION, ['foo'=>'bar'], $bigtable->clusterMetadata());
      * ```
      *
      * @codingStandardsIgnoreStart
      * @see https://cloud.google.com/bigtable/docs/reference/admin/rpc/google.bigtable.admin.v2#CreateInstanceRequest CreateInstanceRequest
      *
      * @param string $displayName **Defaults to** the value of $instanceId.
-     * @param int $type Possible values are represented by the following constants: `Google\Cloud\Bigtable\Instance::INSTANCE_TYPE_PRODUCTION`, `Google\Cloud\Bigtable\Instance::INSTANCE_TYPE_DEVELOPMENT` and `Google\Cloud\Bigtable\Instance::INSTANCE_TYPE_UNSPECIFIED`.
-     *        **Defaults to** using `Google\Cloud\Bigtable\Instance::INSTANCE_TYPE_UNSPECIFIED`.
+     * @param int $type Possible values are represented by the following constants: 
+     *            `Google\Cloud\Bigtable\Instance::INSTANCE_TYPE_PRODUCTION`, 
+     *            `Google\Cloud\Bigtable\Instance::INSTANCE_TYPE_DEVELOPMENT` and
+     *            `Google\Cloud\Bigtable\Instance::INSTANCE_TYPE_UNSPECIFIED`.
+     *            **Defaults to** using `Google\Cloud\Bigtable\Instance::INSTANCE_TYPE_UNSPECIFIED`.
      * @param array $labels as key/value pair ['foo' => 'bar']. For more information, see
      *        [Using labels to organize Google Cloud Platform resources](https://cloudplatform.googleblog.com/2015/10/using-labels-to-organize-Google-Cloud-Platform-resources.html).
-     * @param array $clustersMetadata value in the form of key/value pair ['clusterId' => $bigtable->clusterMetadata()]
+     * @param array $clustersMetadata [
+     *        $bigtable->clusterMetadata('clusterId1', 'locationId1', 'SSD', 3), 
+     *        $bigtable->clusterMetadata('clusterId2', 'locationId2', 'SSD', 3)
+     * ]
      *
      * @return LongRunningOperation<Instance>
      * @codingStandardsIgnoreEnd
@@ -285,6 +248,12 @@ class Instance
             : InstanceAdminClient::parseName($this->name)['instance'];
         $type = ($type) ? $type : self::INSTANCE_TYPE_UNSPECIFIED;
         $labels = ($labels) ? $labels : [];
+        
+        $clustersArray = [];
+        foreach ($clustersMetadata as $value) {
+            $id = $value['clusterId'];
+            $clustersArray[$id] = $value;
+        }
 
         $operation = $this->connection->createInstance([
             'parent' => $projectName,
@@ -294,7 +263,7 @@ class Instance
                 'type' => $type,
                 'labels' => $labels
             ],
-            'clusters' => $clustersMetadata
+            'clusters' => $clustersArray
         ]);
 
         return $this->resumeOperation($operation['name'], $operation);

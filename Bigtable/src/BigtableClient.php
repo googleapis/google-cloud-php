@@ -174,16 +174,26 @@ class BigtableClient
      *
      * @param string $locationId The location ID
      * @param int $storageType The storage media type for persisting Bigtable data. Possible values include
-     *            `Google\Cloud\Bigtable\Instance::STORAGE_TYPE_SSD` and
-     *            `Google\Cloud\Bigtable\Instance::STORAGE_TYPE_HDD`.
+     *            `Google\Cloud\Bigtable\Instance::STORAGE_TYPE_SSD`,
+     *            `Google\Cloud\Bigtable\Instance::STORAGE_TYPE_HDD` and
+     *            `Google\Cloud\Bigtable\Instance::STORAGE_TYPE_UNSPECIFIED`.
      *            **Defaults to** `Google\Cloud\Bigtable\Instance::STORAGE_TYPE_UNSPECIFIED`.
      * @param int $serveNodes
      *
      * @return array
      */
-    public function clusterMetadata($locationId, $storageType = null, $serveNodes = null)
+    public function clusterMetadata($clusterId, $locationId, $storageType = null, $serveNodes = null)
     {
+        if ($clusterId == '') {
+            throw new \ValidationException('clusterId must be set');
+        }
+
+        if ($locationId == '') {
+            throw new \ValidationException('locationId must be set');
+        }
+
         $cluster = array(
+            'clusterId' => $clusterId,
             'location' => InstanceAdminClient::locationName($this->projectId, $locationId),
             'defaultStorageType' => ($storageType) ? $storageType : Instance::STORAGE_TYPE_UNSPECIFIED
         );
