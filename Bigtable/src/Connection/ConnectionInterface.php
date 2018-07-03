@@ -211,4 +211,24 @@ interface ConnectionInterface
      * @param array $args
      */
     public function readModifyWriteRow(array $args);
+
+    /**
+     * @param array $args
+     */
+    public function getOperation(array $args);
+
+    /**
+     * @param array $args
+     */
+    public function cancelOperation(array $args);
+
+    /**
+     * @param array $args
+     */
+    public function deleteOperation(array $args);
+
+    /**
+     * @param array $args
+     */
+    public function listOperations(array $args);
 }

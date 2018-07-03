@@ -454,6 +454,38 @@ class Grpc implements ConnectionInterface
     }
 
     /**
+     * @param array $args
+     */
+    public function getOperation(array $args)
+    {
+        throw new \BadMethodCallException('This method is not implemented yet');
+    }
+
+    /**
+     * @param array $args
+     */
+    public function cancelOperation(array $args)
+    {
+        throw new \BadMethodCallException('This method is not implemented yet');
+    }
+
+    /**
+     * @param array $args
+     */
+    public function deleteOperation(array $args)
+    {
+        throw new \BadMethodCallException('This method is not implemented yet');
+    }
+
+    /**
+     * @param array $args
+     */
+    public function listOperations(array $args)
+    {
+        throw new \BadMethodCallException('This method is not implemented yet');
+    }
+
+    /**
      * Add the `google-cloud-resource-prefix` header value to the request.
      *
      * @param array $args
