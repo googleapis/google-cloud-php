@@ -24,7 +24,7 @@ use PHPUnit\Framework\TestCase;
 
 /**
  * @group bigtable
- * @group bigtable-admin
+ * @group bigtableadmin
  */
 class LongRunningConnectionTest extends TestCase
 {
