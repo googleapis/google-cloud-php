@@ -217,7 +217,8 @@ class Instance
      *
      * Example:
      * ```
-     * $operation = $instance->create('instanceId', Instance_Type::PRODUCTION, ['foo'=>'bar'], $bigtable->clusterMetadata());
+     * $instanceType = Instance_Type::PRODUCTION
+     * $operation = $instance->create('instanceId', $instanceType, ['foo'=>'bar'], $bigtable->clusterMetadata());
      * ```
      *
      * @codingStandardsIgnoreStart
