@@ -31,6 +31,7 @@
         "cloud-speech",
         "cloud-storage",
         "cloud-tasks",
+        "cloud-text-to-speech",
         "cloud-trace",
         "cloud-translate",
         "cloud-videointelligence",
