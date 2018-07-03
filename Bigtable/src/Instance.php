@@ -214,7 +214,7 @@ class Instance
      *
      * @codingStandardsIgnoreStart
      * @see https://cloud.google.com/bigtable/docs/reference/admin/rpc/google.bigtable.admin.v2#google.bigtable.admin.v2.GetInstanceRequest GetInstanceRequest
-     * @see https://cloud.google.com/bigtable/docs/reference/admin/rpc/google.bigtable.admin.v2#google.bigtable.admin.v2.Instance Instance
+     * @see https://cloud.google.com/bigtable/docs/reference/admin/rpc/google.bigtable.admin.v2#instance Instance
      * @codingStandardsIgnoreEnd
      *
      * @param array $options [optional] Configuration options.
