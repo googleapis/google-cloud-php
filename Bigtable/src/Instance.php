@@ -40,41 +40,6 @@ use Google\Cloud\Core\LongRunning\LROTrait;
  *
  * $instance = $bigtable->instance('my-instance');
  * ```
- *
- * @method resumeOperation() {
- *     Resume a Long Running Operation
- *
- *     Example:
- *     ```
- *     $operation = $instance->resumeOperation($operationName);
- *     ```
- *
- *     @param string $operationName The Long Running Operation name.
- *     @param array $info [optional] The operation data.
- *     @return LongRunningOperation
- * }
- * @method longRunningOperations() {
- *     List long running operations.
- *
- *     Example:
- *     ```
- *     $operations = $instance->longRunningOperations();
- *     ```
- *
- *     @param array $options [optional] {
- *         Configuration Options.
- *
- *         @type string $name The name of the operation collection.
- *         @type string $filter The standard list filter.
- *         @type int $pageSize Maximum number of results to return per
- *               request.
- *         @type int $resultLimit Limit the number of results returned in total.
- *               **Defaults to** `0` (return all results).
- *         @type string $pageToken A previously-returned page token used to
- *               resume the loading of results from a specific point.
- *     }
- *     @return ItemIterator<LongRunningOperation>
- * }
  */
 class Instance
 {
@@ -217,8 +182,15 @@ class Instance
      *
      * Example:
      * ```
-     * $instanceType = Instance_Type::PRODUCTION
-     * $operation = $instance->create('instanceId', $instanceType, ['foo'=>'bar'], $bigtable->clusterMetadata());
+     * use Google\Cloud\Bigtable\BigtableClient;
+     * $bigtable = new BigtableClient();
+     * $instanceType = Google\Cloud\Bigtable\Instance::INSTANCE_TYPE_DEVELOPMENT;
+     * $operation = $instance->create(
+     *     'instanceId',
+     *     $instanceType,
+     *     ['foo' => 'bar'],
+     *     [$bigtable->clusterMetadata('my-cluster', 'us-east1-b')]
+     * );
      * ```
      *
      * @codingStandardsIgnoreStart
@@ -236,7 +208,6 @@ class Instance
      *        $bigtable->clusterMetadata('clusterId1', 'locationId1', 'SSD', 3), 
      *        $bigtable->clusterMetadata('clusterId2', 'locationId2', 'SSD', 3)
      * ]
-     *
      * @return LongRunningOperation<Instance>
      * @codingStandardsIgnoreEnd
      */

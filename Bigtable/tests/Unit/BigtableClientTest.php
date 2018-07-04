@@ -62,6 +62,7 @@ class BigtableClientTest extends TestCase
     public function testClusterMetadata()
     {
         $instance = $this->client->clusterMetadata(self::CLUSTER, self::LOCATION);
+        $this->assertEquals($instance['clusterId'], self::CLUSTER);
         $this->assertEquals($instance['location'], InstanceAdminClient::locationName(self::PROJECT, self::LOCATION));
     }
 }

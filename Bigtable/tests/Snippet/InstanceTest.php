@@ -96,38 +96,4 @@ class InstanceTest extends SnippetTestCase
         $res = $snippet->invoke('operation');
         $this->assertInstanceOf(LongRunningOperation::class, $res->returnVal());
     }
-
-    public function testResumeOperation()
-    {
-        $snippet = $this->snippetFromMagicMethod(Instance::class, 'resumeOperation');
-        $snippet->addLocal('instance', $this->instance);
-        $snippet->addLocal('operationName', 'foo');
-
-        $res = $snippet->invoke('operation');
-        $this->assertInstanceOf(LongRunningOperation::class, $res->returnVal());
-        $this->assertEquals('foo', $res->returnVal()->name());
-    }
-
-    public function testLongRunningOperations()
-    {
-        $snippet = $this->snippetFromMethod(Instance::class, 'longRunningOperations');
-        $snippet->addLocal('instance', $this->instance);
-
-        $lroConnection = $this->prophesize(LongRunningConnectionInterface::class);
-        $lroConnection->operations(Argument::any())
-            ->shouldBeCalled()
-            ->willReturn([
-                'operations' => [
-                    [
-                        'name' => 'foo'
-                    ]
-                ]
-            ]);
-
-        $this->instance->___setProperty('lroConnection', $lroConnection->reveal());
-
-        $res = $snippet->invoke('operations');
-        $this->assertInstanceOf(ItemIterator::class, $res->returnVal());
-        $this->assertContainsOnlyInstancesOf(LongRunningOperation::class, $res->returnVal());
-    }
 }

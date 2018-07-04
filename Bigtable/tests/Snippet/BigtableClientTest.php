@@ -37,6 +37,7 @@ class BigtableClientTest extends SnippetTestCase
 
     const PROJECT = 'my-awesome-project';
     const INSTANCE = 'my-instance';
+    const LOCATION = 'us-east1-b';
 
     private $client;
     private $connection;
@@ -75,19 +76,12 @@ class BigtableClientTest extends SnippetTestCase
         $snippet = $this->snippetFromMethod(BigtableClient::class, 'clusterMetadata');
         $snippet->addLocal('bigtable', $this->client);
         $snippet->addLocal('clusterid', 'my-cluster');
-        $snippet->addLocal('clusterMetadata', 'projects/my-awesome-project/locations/us-east1-b');
+        $snippet->addLocal('clusterMetadata', InstanceAdminClient::locationName(self::PROJECT, self::LOCATION));
 
         $res = $snippet->invoke('clusterMetadata');
-        $this->assertEquals(InstanceAdminClient::locationName(self::PROJECT, 'us-east1-b'), $res->returnVal());
-    }
-
-    public function testResumeOperation()
-    {
-        $snippet = $this->snippetFromMagicMethod(BigtableClient::class, 'resumeOperation');
-        $snippet->addLocal('bigtable', $this->client);
-        $snippet->addLocal('operationName', 'operations/foo');
-
-        $res = $snippet->invoke('operation');
-        $this->assertInstanceOf(LongRunningOperation::class, $res->returnVal());
+        $this->assertEquals(
+            InstanceAdminClient::locationName(self::PROJECT, self::LOCATION),
+            $res->returnVal()
+        );
     }
 }

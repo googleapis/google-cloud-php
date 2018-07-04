@@ -21,6 +21,7 @@ use Google\Cloud\Bigtable\Admin\V2\BigtableInstanceAdminClient as InstanceAdminC
 use Google\Cloud\Bigtable\Connection\ConnectionInterface;
 use Google\Cloud\Bigtable\Instance;
 use Google\Cloud\Core\Exception\NotFoundException;
+use Google\Cloud\Core\LongRunning\LongRunningOperation;
 use Google\Cloud\Core\LongRunning\LongRunningConnectionInterface;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Core\Testing\TestHelpers;
@@ -35,8 +36,8 @@ class InstanceTest extends TestCase
 {
     use GrpcTestTrait;
 
-    const PROJECT_ID = 'test-project';
-    const NAME = 'instance-name';
+    const PROJECT = 'my-awesome-project';
+    const INSTANCE = 'my-instance';
 
     private $connection;
     private $instance;
@@ -50,8 +51,8 @@ class InstanceTest extends TestCase
             $this->connection->reveal(),
             $this->prophesize(LongRunningConnectionInterface::class)->reveal(),
             [],
-            self::PROJECT_ID,
-            self::NAME
+            self::PROJECT,
+            self::INSTANCE
         ], [
             'info',
             'connection'
@@ -60,6 +61,22 @@ class InstanceTest extends TestCase
 
     public function testName()
     {
-        $this->assertEquals(self::NAME, InstanceAdminClient::parseName($this->instance->name())['instance']);
+        $this->assertEquals(self::INSTANCE, InstanceAdminClient::parseName($this->instance->name())['instance']);
+    }
+
+    public function testCreate()
+    {
+        $this->connection->createInstance(Argument::any())
+            ->shouldBeCalled()
+            ->willReturn(['name' => InstanceAdminClient::instanceName(self::PROJECT, self::INSTANCE)]);
+        $this->instance->___setProperty('connection', $this->connection->reveal());
+        $instance = $this->instance->create(
+            'My Insatnce',
+            Instance::INSTANCE_TYPE_DEVELOPMENT,
+            ['foo' => 'bar'],
+            []
+        );
+        $this->assertInstanceOf(LongRunningOperation::class, $instance);
+        $this->assertEquals(InstanceAdminClient::instanceName(self::PROJECT, self::INSTANCE), $instance->name());
     }
 }

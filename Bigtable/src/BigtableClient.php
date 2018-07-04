@@ -46,19 +46,6 @@ use Psr\Cache\CacheItemPoolInterface;
  *
  * $bigtable = new BigtableClient();
  * ```
- *
- * @method resumeOperation() {
- *     Resume a Long Running Operation
- *
- *     Example:
- *     ```
- *     $operation = $bigtable->resumeOperation($operationName);
- *     ```
- *
- *     @param string $operationName The Long Running Operation name.
- *     @param array $info [optional] The operation data.
- *     @return LongRunningOperation
- * }
  */
 class BigtableClient
 {
@@ -69,7 +56,7 @@ class BigtableClient
     const ADMIN_SCOPE = 'https://www.googleapis.com/auth/bigtable.admin';
 
     /**
-     * @var Connection\ConnectionInterface
+     *  @var Google\Cloud\Bigtable\Connection\Grpc
      */
     protected $connection;
 
@@ -165,11 +152,11 @@ class BigtableClient
     }
 
     /**
-     * Cluster metadata.
+     * Constructs an array that contains cluster metadata.
      *
      * Example:
      * ```
-     * $cluster = $bigtable->clusterMetadata('us-east-b');
+     * $cluster = $bigtable->clusterMetadata('my-cluster', 'us-east-b');
      * ```
      *
      * @param string $locationId The location ID
@@ -192,15 +179,15 @@ class BigtableClient
             throw new \ValidationException('locationId must be set');
         }
 
-        $cluster = array(
+        $metaData = array(
             'clusterId' => $clusterId,
             'location' => InstanceAdminClient::locationName($this->projectId, $locationId),
             'defaultStorageType' => ($storageType) ? $storageType : Instance::STORAGE_TYPE_UNSPECIFIED
         );
         if ($serveNodes !== null) {
-            $cluster['serveNodes'] = $serveNodes;
+            $metaData['serveNodes'] = $serveNodes;
         }
 
-        return $cluster;
+        return $metaData;
     }
 }
