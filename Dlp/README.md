@@ -1,6 +1,6 @@
 # Data Loss Prevention for PHP
 
-> Idiomatic PHP client for [Google DLP](https://cloud.google.com/dlp).
+> Idiomatic PHP client for [Google DLP](https://cloud.google.com/dlp/).
 
 [![Latest Stable Version](https://poser.pugx.org/google/cloud-dlp/v/stable)](https://packagist.org/packages/google/cloud-dlp) [![Packagist](https://img.shields.io/packagist/dm/google/cloud-dlp.svg)](https://packagist.org/packages/google/cloud-dlp)
 

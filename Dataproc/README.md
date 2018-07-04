@@ -1,6 +1,6 @@
 # Google Cloud Dataproc for PHP
 
-> Idiomatic PHP client for [Google Cloud Dataproc](https://cloud.google.com/dataproc).
+> Idiomatic PHP client for [Google Cloud Dataproc](https://cloud.google.com/dataproc/).
 
 [![Latest Stable Version](https://poser.pugx.org/google/cloud-bigtable/v/stable)](https://packagist.org/packages/google/cloud-bigtable) [![Packagist](https://img.shields.io/packagist/dm/google/cloud-bigtable.svg)](https://packagist.org/packages/google/cloud-bigtable)
 

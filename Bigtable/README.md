@@ -1,6 +1,6 @@
 # Google Cloud Bigtable for PHP
 
-> Idiomatic PHP client for [Google Cloud Bigtable](https://cloud.google.com/bigtable/docs/).
+> Idiomatic PHP client for [Google Cloud Bigtable](https://cloud.google.com/bigtable/).
 
 [![Latest Stable Version](https://poser.pugx.org/google/cloud-bigtable/v/stable)](https://packagist.org/packages/google/cloud-bigtable) [![Packagist](https://img.shields.io/packagist/dm/google/cloud-bigtable.svg)](https://packagist.org/packages/google/cloud-bigtable)
 
