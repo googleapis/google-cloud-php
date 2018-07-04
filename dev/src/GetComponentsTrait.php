@@ -17,6 +17,9 @@
 
 namespace Google\Cloud\Dev;
 
+/**
+ * Helper for managing components.
+ */
 trait GetComponentsTrait
 {
     private static $__manifest;
@@ -122,13 +125,18 @@ trait GetComponentsTrait
             $manifest = json_decode(file_get_contents($manifestPath), true);
 
             if (json_last_error() !== JSON_ERROR_NONE) {
-                throw new RuntimeException('Could not decode manifest json');
+                throw new \RuntimeException('Could not decode manifest json');
             }
 
             self::$__manifest = $manifest;
         }
 
         return $manifest;
+    }
+
+    private function setManifest(array $manifest)
+    {
+        self::$__manifest = $manifest;
     }
 
     /**
