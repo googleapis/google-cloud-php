@@ -17,11 +17,13 @@
 
 namespace Google\Cloud\Firestore\Tests\Unit;
 
+use Google\Cloud\Core\Testing\ArrayHasSameValuesToken;
 use Google\Cloud\Core\Timestamp;
 use Google\Cloud\Firestore\CollectionReference;
 use Google\Cloud\Firestore\Connection\ConnectionInterface;
 use Google\Cloud\Firestore\DocumentReference;
 use Google\Cloud\Firestore\DocumentSnapshot;
+use Google\Cloud\Firestore\FieldValue;
 use Google\Cloud\Firestore\FirestoreClient;
 use Google\Cloud\Firestore\Query;
 use Google\Cloud\Firestore\V1beta1\StructuredQuery_CompositeFilter_Operator;
@@ -95,7 +97,7 @@ class QueryTest extends TestCase
 
         $this->query->___setProperty('connection', $this->connection->reveal());
 
-        $res = $this->query->documents();
+        $res = $this->query->documents(['maxRetries' => 0]);
         $this->assertContainsOnlyInstancesOf(DocumentSnapshot::class, $res);
         $this->assertCount(1, $res->rows());
 
@@ -145,7 +147,6 @@ class QueryTest extends TestCase
 
         $this->runAndAssert(function (Query $q) use ($paths) {
             $res = $q->select($paths);
-            $res = $res->select(['users.dan']);
 
             return $res;
         }, [
@@ -156,6 +157,30 @@ class QueryTest extends TestCase
                     'fields' => [
                         [ 'fieldPath' => 'users.john' ],
                         [ 'fieldPath' => 'users.dave' ],
+                    ]
+                ]
+            ]
+        ]);
+    }
+
+    public function testSelectOverride()
+    {
+        $paths = [
+            'users.john',
+            'users.dave'
+        ];
+
+        $this->runAndAssert(function (Query $q) use ($paths) {
+            $res = $q->select($paths);
+            $res = $res->select(['users.dan']);
+
+            return $res;
+        }, [
+            'parent' => self::PARENT,
+            'structuredQuery' => [
+                'from' => $this->queryFrom(),
+                'select' => [
+                    'fields' => [
                         [ 'fieldPath' => 'users.dan' ],
                     ]
                 ]
@@ -243,6 +268,23 @@ class QueryTest extends TestCase
     }
 
     /**
+     * @dataProvider sentinelProvider
+     * @expectedException InvalidArgumentException
+     */
+    public function testWhereSentinelValue($value)
+    {
+        $this->query->where('foo', '=', $value);
+    }
+
+    public function sentinelProvider()
+    {
+        return [
+            [FieldValue::serverTimestamp()],
+            [FieldValue::deleteField()]
+        ];
+    }
+
+    /**
      * @dataProvider invalidUnaryComparisonOperators
      * @expectedException InvalidArgumentException
      */
@@ -286,6 +328,8 @@ class QueryTest extends TestCase
             ['>'],
             ['>='],
             ['='],
+            ['=='],
+            ['==='],
         ];
     }
 
@@ -590,8 +634,176 @@ class QueryTest extends TestCase
         ]);
     }
 
+    public function testPositionWithDocumentSnapshot()
+    {
+        $c = $this->prophesize(CollectionReference::class);
+        $c->name()->willReturn(self::PARENT .'/'. $this->queryFrom()[0]['collectionId']);
+
+        $ref = $this->prophesize(DocumentReference::class);
+        $ref->name()->willReturn(self::PARENT .'/'. $this->queryFrom()[0]['collectionId'] .'/john');
+        $ref->parent()->willReturn($c->reveal());
+
+        $snapshot = $this->prophesize(DocumentSnapshot::class);
+        $snapshot->name()->willReturn(self::PARENT .'/'. $this->queryFrom()[0]['collectionId'] .'/john');
+        $snapshot->reference()->willReturn($ref->reveal());
+
+        $this->runAndAssert(function (Query $q) use ($snapshot) {
+            return $this->query->startAt($snapshot->reveal());
+        }, [
+            'parent' => self::PARENT,
+            'structuredQuery' => [
+                'from' => $this->queryFrom(),
+                'orderBy' => [
+                    [
+                        'field' => [
+                            'fieldPath' => Query::DOCUMENT_ID
+                        ],
+                        'direction' => Query::DIR_ASCENDING
+                    ]
+                ],
+                'startAt' => [
+                    'before' => true,
+                    'values' => [
+                        [
+                            'referenceValue' => self::PARENT .'/'. $this->queryFrom()[0]['collectionId'] .'/john'
+                        ]
+                    ]
+                ]
+            ]
+        ]);
+    }
+
     /**
-     * @expectedException BadMethodCallException
+     * @expectedException InvalidArgumentException
+     */
+    public function testSnapshotInFieldValue()
+    {
+        $snapshot = $this->prophesize(DocumentSnapshot::class);
+        $this->query->startAt([$snapshot->reveal()]);
+    }
+
+    /**
+     * @expectedException InvalidArgumentException
+     */
+    public function testInvalidFieldValues()
+    {
+        $this->query->startAt('foo');
+    }
+
+    public function testPositionSnapshotOrderBy()
+    {
+        $c = $this->prophesize(CollectionReference::class);
+        $c->name()->willReturn(self::PARENT .'/'. $this->queryFrom()[0]['collectionId']);
+
+        $ref = $this->prophesize(DocumentReference::class);
+        $ref->name()->willReturn(self::PARENT .'/'. $this->queryFrom()[0]['collectionId'] .'/john');
+        $ref->parent()->willReturn($c->reveal());
+
+        $snapshot = $this->prophesize(DocumentSnapshot::class);
+        $snapshot->name()->willReturn(self::PARENT .'/'. $this->queryFrom()[0]['collectionId'] .'/john');
+        $snapshot->reference()->willReturn($ref->reveal());
+        $snapshot->get('a')->willReturn('b');
+        $snapshot->get('c')->willReturn('d');
+
+        $this->runAndAssert(function (Query $q) use ($snapshot) {
+            $query = $this->query->orderBy('a')->orderBy('c');
+            return $query->startAt($snapshot->reveal());
+        }, [
+            'parent' => self::PARENT,
+            'structuredQuery' => [
+                'from' => $this->queryFrom(),
+                'orderBy' => [
+                    [
+                        'field' => [
+                            'fieldPath' => 'a'
+                        ],
+                        'direction' => Query::DIR_ASCENDING
+                    ], [
+                        'field' => [
+                            'fieldPath' => 'c'
+                        ],
+                        'direction' => Query::DIR_ASCENDING
+                    ], [
+                        'field' => [
+                            'fieldPath' => Query::DOCUMENT_ID
+                        ],
+                        'direction' => Query::DIR_ASCENDING
+                    ]
+                ],
+                'startAt' => [
+                    'before' => true,
+                    'values' => [
+                        ['stringValue' => 'b'],
+                        ['stringValue' => 'd'],
+                        [
+                            'referenceValue' => self::PARENT .'/'. $this->queryFrom()[0]['collectionId'] .'/john'
+                        ]
+                    ]
+                ]
+            ]
+        ]);
+    }
+
+    public function testPositionInequalityFilter()
+    {
+        $c = $this->prophesize(CollectionReference::class);
+        $c->name()->willReturn(self::PARENT .'/'. $this->queryFrom()[0]['collectionId']);
+
+        $ref = $this->prophesize(DocumentReference::class);
+        $ref->name()->willReturn(self::PARENT .'/'. $this->queryFrom()[0]['collectionId'] .'/john');
+        $ref->parent()->willReturn($c->reveal());
+
+        $snapshot = $this->prophesize(DocumentSnapshot::class);
+        $snapshot->name()->willReturn(self::PARENT .'/'. $this->queryFrom()[0]['collectionId'] .'/john');
+        $snapshot->reference()->willReturn($ref->reveal());
+        $snapshot->get('foo')->willReturn('bar');
+
+        $this->runAndAssert(function (Query $q) use ($snapshot) {
+            $query = $this->query->where('foo', '>', 'bar');
+            return $query->startAt($snapshot->reveal());
+        }, [
+            'parent' => self::PARENT,
+            'structuredQuery' => [
+                'from' => $this->queryFrom(),
+                'orderBy' => [
+                    [
+                        'field' => [
+                            'fieldPath' => 'foo'
+                        ],
+                        'direction' => Query::DIR_ASCENDING
+                    ], [
+                        'field' => [
+                            'fieldPath' => Query::DOCUMENT_ID
+                        ],
+                        'direction' => Query::DIR_ASCENDING
+                    ]
+                ],
+                'startAt' => [
+                    'before' => true,
+                    'values' => [
+                        [
+                            'stringValue' => 'bar'
+                        ], [
+                            'referenceValue' => self::PARENT .'/'. $this->queryFrom()[0]['collectionId'] .'/john'
+                        ]
+                    ]
+                ],
+                "where" => [
+                "fieldFilter" => [
+                    "field" => [
+                        "fieldPath" => "foo"
+                    ],
+                    "op" => 3,
+                    "value" => [
+                        "stringValue" => "bar"
+                    ]
+                ]
+            ]
+        ]]);
+    }
+
+    /**
+     * @expectedException InvalidArgumentException
      */
     public function testBuildPositionTooManyCursorValues()
     {
@@ -599,17 +811,21 @@ class QueryTest extends TestCase
     }
 
     /**
-     * @expectedException BadMethodCallException
+     * @expectedException InvalidArgumentException
      */
     public function testBuildPositionOutOfBounds()
     {
         $ref = $this->prophesize(DocumentReference::class);
         $ref->name()->willReturn(self::PARENT .'/whatev/john');
+
+        $col = $this->prophesize(CollectionReference::class);
+        $col->name()->willReturn(self::PARENT .'/whatev/john');
+        $ref->parent()->willReturn($col->reveal());
         $this->query->orderBy(Query::DOCUMENT_ID)->startAt([$ref->reveal()]);
     }
 
     /**
-     * @expectedException BadMethodCallException
+     * @expectedException InvalidArgumentException
      */
     public function testBuildPositionInvalidCursorType()
     {
@@ -617,7 +833,7 @@ class QueryTest extends TestCase
     }
 
     /**
-     * @expectedException BadMethodCallException
+     * @expectedException InvalidArgumentException
      */
     public function testBuildPositionNestedChild()
     {
@@ -634,8 +850,15 @@ class QueryTest extends TestCase
     private function runAndAssert(callable $filters, $assertion)
     {
         if (is_array($assertion)) {
-            $this->connection->runQuery($assertion + ['retries' => 0])
-            ->shouldBeCalledTimes(1)->willReturn(new \ArrayIterator([
+            if (isset($assertion['structuredQuery'])) {
+                $assertion['structuredQuery'] = array_merge([
+                    'orderBy' => [],
+                    'offset' => 0
+                ], $assertion['structuredQuery']);
+            }
+            $this->connection->runQuery(
+                new ArrayHasSameValuesToken($assertion + ['retries' => 0])
+            )->shouldBeCalledTimes(1)->willReturn(new \ArrayIterator([
                 []
             ]));
         } elseif (is_callable($assertion)) {
@@ -650,7 +873,7 @@ class QueryTest extends TestCase
         $this->assertInstanceOf(Query::class, $query);
         $this->assertNotEquals($immutable, $query);
 
-        $query->documents(['maxRetries' => 0]);
+        iterator_to_array($query->documents(['maxRetries' => 0]));
     }
 
     private function queryFrom()

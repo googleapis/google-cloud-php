@@ -17,15 +17,16 @@
 
 namespace Google\Cloud\Firestore\Tests\Snippet;
 
-use Prophecy\Argument;
-use Google\Cloud\Firestore\Query;
+use Google\Cloud\Core\Testing\ArrayHasSameValuesToken;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
-use Google\Cloud\Firestore\ValueMapper;
-use Google\Cloud\Firestore\QuerySnapshot;
 use Google\Cloud\Core\Testing\Snippet\Parser\Snippet;
 use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
 use Google\Cloud\Firestore\Connection\ConnectionInterface;
+use Google\Cloud\Firestore\Query;
+use Google\Cloud\Firestore\QuerySnapshot;
 use Google\Cloud\Firestore\V1beta1\StructuredQuery_CompositeFilter_Operator;
+use Google\Cloud\Firestore\ValueMapper;
+use Prophecy\Argument;
 
 /**
  * @group firestore
@@ -86,20 +87,13 @@ class QueryTest extends SnippetTestCase
     {
         $snippet = $this->snippetFromMethod(Query::class, 'where');
         $this->runAndAssert($snippet, 'where', [
-            'compositeFilter' => [
-                'op' => StructuredQuery_CompositeFilter_Operator::PBAND,
-                'filters' => [
-                    [
-                        'fieldFilter' => [
-                            'field' => [
-                                'fieldPath' => 'firstName'
-                            ],
-                            'op' => Query::OP_EQUAL,
-                            'value' => [
-                                'stringValue' => 'John'
-                            ]
-                        ]
-                    ]
+            'fieldFilter' => [
+                'field' => [
+                    'fieldPath' => 'firstName'
+                ],
+                'op' => Query::OP_EQUAL,
+                'value' => [
+                    'stringValue' => 'John'
                 ]
             ]
         ]);
@@ -109,18 +103,11 @@ class QueryTest extends SnippetTestCase
     {
         $snippet = $this->snippetFromMethod(Query::class, 'where', 1);
         $this->runAndAssert($snippet, 'where', [
-            'compositeFilter' => [
-                'op' => StructuredQuery_CompositeFilter_Operator::PBAND,
-                'filters' => [
-                    [
-                        'unaryFilter' => [
-                            'field' => [
-                                'fieldPath' => 'coolnessPercentage'
-                            ],
-                            'op' => Query::OP_NAN,
-                        ]
-                    ]
-                ]
+            'unaryFilter' => [
+                'field' => [
+                    'fieldPath' => 'coolnessPercentage'
+                ],
+                'op' => Query::OP_NAN,
             ]
         ]);
     }
@@ -196,18 +183,21 @@ class QueryTest extends SnippetTestCase
 
     private function runAndAssertArray(Snippet $snippet, array $query)
     {
-        $this->connection->runQuery([
+        $this->connection->runQuery(new ArrayHasSameValuesToken([
             'parent' => self::NAME,
             'retries' => 0,
             'structuredQuery' => array_filter([
                 'from' => self::NAME,
-            ]) + $query
-        ])->shouldBeCalled()->willReturn(new \ArrayIterator([[]]));
+            ]) + $query + [
+                'offset' => 0,
+                'orderBy' => []
+            ]
+        ]))->shouldBeCalled()->willReturn(new \ArrayIterator([[]]));
 
         $this->query->___setProperty('connection', $this->connection->reveal());
         $snippet->addLocal('query', $this->query);
         $res = $snippet->invoke('query');
-        $res->returnVal()->documents(['retries' => 0]);
+        $res->returnVal()->documents(['maxRetries' => 0]);
         $this->assertInstanceOf(Query::class, $res->returnVal());
     }
 }

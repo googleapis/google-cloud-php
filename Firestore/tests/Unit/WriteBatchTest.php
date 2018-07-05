@@ -232,14 +232,23 @@ class WriteBatchTest extends TestCase
     public function testSetSentinels($name, $ref)
     {
         $this->batch->set($ref, [
-            'hello' => FieldValue::deleteField(),
-            'world' => FieldValue::serverTimestamp()
+            'world' => FieldValue::serverTimestamp(),
+            'foo' => 'bar'
         ]);
 
         $this->commitAndAssert([
             'database' => sprintf('projects/%s/databases/%s', self::PROJECT, self::DATABASE),
             'writes' => [
                 [
+                    'update' => [
+                        'name' => $name,
+                        'fields' => [
+                            'foo' => [
+                                'stringValue' => 'bar'
+                            ]
+                        ]
+                    ]
+                ], [
                     'transform' => [
                         'document' => $name,
                         'fieldTransforms' => [
@@ -251,6 +260,18 @@ class WriteBatchTest extends TestCase
                     ]
                 ]
             ]
+        ]);
+    }
+
+    /**
+     * @dataProvider documents
+     * @expectedException InvalidArgumentException
+     * @expectedExceptionMessage Delete cannot appear in data unless `$options['merge']` is set.
+     */
+    public function testSetSentinelsDeleteRequiresMerge($name, $ref)
+    {
+        $this->batch->set($ref, [
+            'hello' => FieldValue::DeleteField(),
         ]);
     }
 
@@ -393,14 +414,6 @@ class WriteBatchTest extends TestCase
     public function testRollbackFailsWithoutTransaction()
     {
         $this->batch->rollback();
-    }
-
-    /**
-     * @expectedException InvalidArgumentException
-     */
-    public function testSetEmptyFails()
-    {
-        $this->batch->set(self::DOCUMENT, [], ['merge' => true]);
     }
 
     /**

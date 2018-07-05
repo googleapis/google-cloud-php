@@ -17,15 +17,20 @@
 
 namespace Google\Cloud\Firestore\Tests\Conformance;
 
+use Google\ApiCore\Serializer;
+use Google\Cloud\Core\Testing\ArrayHasSameValuesToken;
+use Google\Cloud\Core\Testing\GrpcTestTrait;
+use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Core\Timestamp;
+use Google\Cloud\Firestore\CollectionReference;
 use Google\Cloud\Firestore\Connection\ConnectionInterface;
+use Google\Cloud\Firestore\DocumentReference;
+use Google\Cloud\Firestore\DocumentSnapshot;
 use Google\Cloud\Firestore\FieldPath;
 use Google\Cloud\Firestore\FieldValue;
 use Google\Cloud\Firestore\FirestoreClient;
 use Google\Cloud\Firestore\PathTrait;
-use Google\Cloud\Tests\ArrayHasSameValuesToken;
-use Google\ApiCore\Serializer;
-use GuzzleHttp\Client;
+use Google\Cloud\Firestore\ValueMapper;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
 use Prophecy\Exception\Call\UnexpectedCallException;
@@ -35,86 +40,52 @@ use Prophecy\Exception\Call\UnexpectedCallException;
  */
 class FirestoreTest extends TestCase
 {
+    use GrpcTestTrait;
     use PathTrait;
 
-    const TEST_FILE = 'https://raw.githubusercontent.com/GoogleCloudPlatform/google-cloud-common/master/testing/firestore/testdata/test-suite.binprotos';
+    const SUITE_FILENAME = 'firestore-test-suite.binproto';
 
+    private static $cases = [];
+    private static $skipped = [];
+
+    private $testTypes = ['get', 'create', 'set', 'update', 'updatePaths', 'delete', 'query'];
     private $client;
     private $connection;
 
-    private $skipped = [
-        'create: nested ServerTimestamp field', // need to strip empty maps
-        'create: multiple ServerTimestamp fields', // need to strip empty maps
-        'set: nested ServerTimestamp field', // need to strip empty maps
-        'set: multiple ServerTimestamp fields', //
-        'set-merge: Merge with a field', // need mergeFields support
-        'set-merge: Merge with a nested field', // need mergeFields support
-        'set-merge: Merge field is not a leaf', // need mergeFields support
-        'set-merge: Merge with FieldPaths', // need mergeFields support
-        'set-merge: ServerTimestamp with Merge of both fields', // need mergeFields support
-        'set-merge: If is ServerTimestamp not in Merge, no transform', // need mergeFields support
-        'set-merge: If no ordinary values in Merge, no write', // need mergeFields support
-        'update: ServerTimestamp with dotted field', // need to strip empty maps
-        'update: nested ServerTimestamp field', // need to strip empty maps
-        'update: multiple ServerTimestamp fields', // need to strip empty maps
-        'update-paths: nested ServerTimestamp field', // need to strip empty maps
-        'update-paths: multiple ServerTimestamp fields', // need to strip empty maps
+    private $excludes = [
+        // need mergeFields support
+        'set-merge: Merge with a field',
+        'set-merge: Merge with a nested field',
+        'set-merge: Merge field is not a leaf',
+        'set-merge: Merge with FieldPaths',
+        'set-merge: ServerTimestamp with Merge of both fields',
+        'set-merge: If is ServerTimestamp not in Merge, no transform',
+        'set-merge: If no ordinary values in Merge, no write',
+        'set-merge: non-leaf merge field with ServerTimestamp',
+        'set-merge: non-leaf merge field with ServerTimestamp alone',
+        'set-merge: Delete with merge',
+        'set-merge: Merge fields must all be present in data',
+        'set-merge: One merge path cannot be the prefix of another',
     ];
 
     public function setUp()
     {
-        $this->client = \Google\Cloud\Core\Testing\TestHelpers::stub(FirestoreClient::class, [
+        $this->checkAndSkipGrpcTests();
+
+        $this->client = TestHelpers::stub(FirestoreClient::class, [
             [
                 'projectId' => 'projectID'
             ]
         ]);
         $this->connection = $this->prophesize(ConnectionInterface::class);
+
     }
 
     /**
      * @dataProvider cases
+     * @group firestore-get
      */
-    public function testConformance($description, $type, array $test)
-    {
-        if (in_array($description, $this->skipped)) {
-            $this->markTestSkipped('manually skipped '. $description);
-            return;
-        }
-
-        switch ($type) {
-            case 'get':
-                $method = 'runGet';
-                break;
-
-            case 'create':
-                $method = 'runCreate';
-                break;
-
-            case 'set':
-                $method = 'runSet';
-                break;
-
-            case 'update':
-                $method = 'runUpdate';
-                break;
-
-            case 'updatePaths':
-                $method = 'runUpdatePaths';
-                break;
-
-            case 'delete':
-                $method = 'runDelete';
-                break;
-
-            default :
-                throw \Exception('Invalid test type '. $type);
-                break;
-        }
-
-        return $this->$method($test);
-    }
-
-    private function runGet($test)
+    public function testGet($test)
     {
         $this->connection->batchGetDocuments(Argument::withEntry('documents', [$test['request']['name']]))
             ->shouldBeCalled()
@@ -124,7 +95,11 @@ class FirestoreTest extends TestCase
         $this->client->document($this->relativeName($test['docRefPath']))->snapshot();
     }
 
-    private function runCreate($test)
+    /**
+     * @dataProvider cases
+     * @group firestore-create
+     */
+    public function testCreate($test)
     {
         if (isset($test['request'])) {
             $request = $test['request'];
@@ -137,24 +112,17 @@ class FirestoreTest extends TestCase
             $this->client->___setProperty('connection', $this->connection->reveal());
         }
 
-        $hasError = false;
-        try {
+        $this->executeAndHandleError($test, function ($test) {
             $this->client->document($this->relativeName($test['docRefPath']))
                 ->create($this->generateFields($test['jsonData']));
-        } catch (\Exception $e) {
-            if ($e instanceof UnexpectedCallException) {
-                throw $e;
-            }
-
-            $hasError = true;
-        }
-
-        if (isset($test['isError']) && $test['isError']) {
-            $this->assertTrue($hasError);
-        }
+        });
     }
 
-    private function runSet($test)
+    /**
+     * @dataProvider cases
+     * @group firestore-set
+     */
+    public function testSet($test, $description)
     {
         if (isset($test['request'])) {
             $request = $test['request'];
@@ -164,11 +132,11 @@ class FirestoreTest extends TestCase
 
             $this->connection->commit(new ArrayHasSameValuesToken($request))
                 ->shouldBeCalled()->willReturn([]);
-            $this->client->___setProperty('connection', $this->connection->reveal());
         }
 
-        $hasError = false;
-        try {
+        $this->client->___setProperty('connection', $this->connection->reveal());
+
+        $this->executeAndHandleError($test, function ($test) {
             $options = [];
             if (isset($test['option']['all']) && $test['option']['all']) {
                 $options = ['merge' => true];
@@ -176,20 +144,14 @@ class FirestoreTest extends TestCase
 
             $this->client->document($this->relativeName($test['docRefPath']))
                 ->set($this->generateFields($test['jsonData']), $options);
-        } catch (\Exception $e) {
-            if ($e instanceof UnexpectedCallException) {
-                throw $e;
-            }
-
-            $hasError = true;
-        }
-
-        if (isset($test['isError']) && $test['isError']) {
-            $this->assertTrue($hasError);
-        }
+        });
     }
 
-    private function runUpdate($test)
+    /**
+     * @dataProvider cases
+     * @group firestore-update
+     */
+    public function testUpdate($test)
     {
         if (isset($test['request'])) {
             $request = $test['request'];
@@ -209,26 +171,17 @@ class FirestoreTest extends TestCase
 
         $options = $this->formatOptions($test);
 
-        $hasError = false;
-        try {
+        $this->executeAndHandleError($test, function ($test) use ($fields, $options) {
             $this->client->document($this->relativeName($test['docRefPath']))
                 ->update($fields, $options);
-        } catch (\Exception $e) {
-            if ($e instanceof UnexpectedCallException) {
-                throw $e;
-            }
-
-            $hasError = true;
-        }
-
-        if (isset($test['isError']) && $test['isError']) {
-            $this->assertTrue($hasError);
-        } elseif (isset($e)) {
-            throw $e;
-        }
+        });
     }
 
-    private function runUpdatePaths($test)
+    /**
+     * @dataProvider cases
+     * @group firestore-updatepaths
+     */
+    public function testUpdatePaths($test)
     {
         if (isset($test['request'])) {
             $request = $test['request'];
@@ -244,9 +197,9 @@ class FirestoreTest extends TestCase
             $this->client->___setProperty('connection', $this->connection->reveal());
         }
 
-        $data = [];
+        $fields = [];
         foreach ($test['fieldPaths'] as $key => $val) {
-            $data[] = [
+            $fields[] = [
                 'path' => new FieldPath($val['field']),
                 'value' => $this->injectSentinel(json_decode($test['jsonValues'][$key], true))
             ];
@@ -254,24 +207,17 @@ class FirestoreTest extends TestCase
 
         $options = $this->formatOptions($test);
 
-        $hasError = false;
-        try {
+        $this->executeAndHandleError($test, function ($test) use ($fields, $options) {
             $this->client->document($this->relativeName($test['docRefPath']))
-                ->update($data, $options);
-        } catch (\Exception $e) {
-            if ($e instanceof UnexpectedCallException) {
-                throw $e;
-            }
-
-            $hasError = true;
-        }
-
-        if (isset($test['isError']) && $test['isError']) {
-            $this->assertTrue($hasError);
-        }
+                ->update($fields, $options);
+        });
     }
 
-    private function runDelete($test)
+    /**
+     * @dataProvider cases
+     * @group firestore-delete
+     */
+    public function testDelete($test)
     {
         if (isset($test['request'])) {
             $request = $test['request'];
@@ -286,20 +232,130 @@ class FirestoreTest extends TestCase
 
         $options = $this->formatOptions($test);
 
-        $hasError = false;
-        try {
+        $this->executeAndHandleError($test, function ($test) use ($options) {
             $this->client->document($this->relativeName($test['docRefPath']))
                 ->delete($options);
+        });
+    }
+
+    /**
+     * @dataProvider cases
+     * @group firestore-query
+     */
+    public function testQuery($test, $description)
+    {
+        // if ($description !== 'query: cursor method, doc snapshot, existing orderBy __name__') {
+        //     return;
+        // }
+
+        $times = (isset($test['isError']) && $test['isError']) ? 0 : 1;
+        $this->connection->runQuery(new ArrayHasSameValuesToken([
+            'parent' => $this->parentPath($test['collPath']),
+            'structuredQuery' => isset($test['query']) ? $test['query'] : [],
+            'retries' => 0
+        ]))->shouldBeCalledTimes($times)->willReturn(new \ArrayIterator([]));
+
+        $this->client->___setProperty('connection', $this->connection->reveal());
+
+        $query = $this->client->collection($this->relativeName($test['collPath']));
+
+        $this->executeAndHandleError($test, function ($test) use ($query) {
+            foreach ($test['clauses'] as $clause) {
+                $name = array_keys($clause)[0];
+                switch ($name) {
+                    case 'select':
+                        $fields = [];
+                        foreach ($clause['select']['fields'] as $field) {
+                            $fields[] = $field['field'][0];
+                        }
+
+                        $query = $query->select($fields);
+                        break;
+
+                    case 'where':
+                        $query = $query->where(
+                            $clause['where']['path']['field'][0],
+                            $clause['where']['op'],
+                            $this->injectWhere($this->injectSentinel(json_decode($clause['where']['jsonValue'], true)))
+                        );
+                        break;
+
+                    case 'offset':
+                        $query = $query->offset($clause['offset']);
+                        break;
+
+                    case 'limit':
+                        $query = $query->limit($clause['limit']);
+                        break;
+
+                    case 'orderBy':
+                        $query = $query->orderBy(
+                            $clause['orderBy']['path']['field'][0],
+                            $clause['orderBy']['direction']
+                        );
+                        break;
+
+                    case 'startAt':
+                    case 'startAfter':
+                    case 'endBefore':
+                    case 'endAt':
+                        $values = [];
+                        if (isset($clause[$name]['jsonValues'])) {
+                            foreach ($clause[$name]['jsonValues'] as $value) {
+                                $values[] = $this->injectSentinel(json_decode($value, true));
+                            }
+                        }
+
+                        if (isset($clause[$name]['docSnapshot'])) {
+                            $coll = $this->prophesize(CollectionReference::class);
+                            $coll->name()->willReturn($this->parentPath($clause[$name]['docSnapshot']['path']));
+                            $ref = $this->prophesize(DocumentReference::class);
+                            $ref->parent()->willReturn($coll->reveal());
+                            $ref->name()->willReturn($clause[$name]['docSnapshot']['path']);
+
+                            $mapper = new ValueMapper(
+                                $this->prophesize(ConnectionInterface::class)->reveal(),
+                                false
+                            );
+
+                            $values = new DocumentSnapshot(
+                                $ref->reveal(),
+                                $mapper,
+                                [],
+                                json_decode($clause[$name]['docSnapshot']['jsonData'], true),
+                                true
+                            );
+                        }
+
+                        $query = $query->$name($values);
+                        break;
+
+                    default:
+                        throw new \RuntimeException('clause '. $name .' is not handled');
+                }
+            }
+
+            $query->documents(['maxRetries' => 0]);
+        });
+    }
+
+    private function executeAndHandleError(array $test, callable $executeTest)
+    {
+        $hasError = false;
+        try {
+            $executeTest($test);
         } catch (\Exception $e) {
             if ($e instanceof UnexpectedCallException) {
                 throw $e;
             }
 
-            $hasError = true;
+            $hasError = $e;
         }
 
         if (isset($test['isError']) && $test['isError']) {
-            $this->assertTrue($hasError);
+            $this->assertTrue((bool) $hasError);
+        } elseif ($hasError) {
+            throw $hasError;
         }
     }
 
@@ -345,46 +401,103 @@ class FirestoreTest extends TestCase
     private function injectSentinel($value)
     {
         if (is_array($value)) {
-            $value = $this->injectSentinels($value);
+            return $this->injectSentinels($value);
         }
 
         if ($value === 'Delete') {
-            $value = FieldValue::deleteField();
+            return FieldValue::deleteField();
         }
 
         if ($value === 'ServerTimestamp') {
-            $value = FieldValue::serverTimestamp();
+            return FieldValue::serverTimestamp();
         }
 
         return $value;
     }
 
-    public function cases()
+    private function injectWhere($value)
     {
-        $types = ['get', 'create', 'set', 'update', 'updatePaths', 'delete'];
-
-        $serializer = new Serializer;
-        $bytes = (new Client)->get(self::TEST_FILE)->getBody();
-
-        $index = 0;
-        $len = strlen($bytes);
-        $protos = [];
-        while ($index < $len) {
-            list($proto, $index) = $this->loadProto($bytes, $index);
-            $case = $serializer->encodeMessage($proto);
-
-            $type = array_values(array_intersect($types, array_keys($case)))[0];
-
-            $protos[] = [$case['description'], $type, $case[$type]];
+        if ($value === 'NaN') {
+            return NAN;
         }
-        return $protos;
+
+        return $value;
     }
 
-    private static function loadProto($bytes, $index) {
-        list($num, $index) = \VarInt::decode($bytes, $index);
-        $binProto = substr($bytes, $index, $num);
-        $testProto = new \Tests\Test();
-        $testProto->mergeFromString($binProto);
-        return [$testProto, $index + $num];
+    private function setupCases($suite, array $types, array $excludes)
+    {
+        if (self::$cases) {
+            return self::$cases;
+        }
+
+        $serializer = new Serializer;
+
+        $str = file_get_contents($suite);
+        $suite = new TestSuite;
+        $suite->mergeFromString($str);
+
+        $cases = [];
+        foreach ($suite->getTests() as $test) {
+            $case = $serializer->encodeMessage($test);
+            $matches = array_values(array_intersect($types, array_keys($case)));
+            if (!$matches) {
+                if (in_array($case['description'], $excludes)) {
+                    self::$skipped[] = [$case['description']];
+                    continue;
+                }
+
+                continue;
+            }
+
+            $type = $matches[0];
+
+            if (in_array($case['description'], $excludes)) {
+                self::$skipped[] = [$case['description']];
+                continue;
+            }
+
+            $cases[] = [
+                'description' => $case['description'],
+                'type' => $type,
+                'test' => $case[$type]
+            ];
+        }
+
+        self::$cases = $cases;
+        return $cases;
+    }
+
+    /**
+     * Report skipped cases for measurement purposes.
+     *
+     * @dataProvider skippedCases
+     */
+    public function testSkipped($desc)
+    {
+        $this->markTestSkipped($desc);
+    }
+
+    public function skippedCases()
+    {
+        return self::$skipped;
+    }
+
+    public function cases($type)
+    {
+        if (strpos($type, 'test') === 0) {
+            $type = lcfirst(str_replace('test', '', $type));
+        }
+
+        $suite = __DIR__ . '/proto/'. self::SUITE_FILENAME;
+        $cases = array_filter($this->setupCases($suite, $this->testTypes, $this->excludes), function ($case) use ($type) {
+            return $case['type'] === $type;
+        });
+
+        $res = [];
+        foreach ($cases as $case) {
+            $res[$case['description']] = [$case['test'], $case['description']];
+        }
+
+        return $res;
     }
 }

@@ -182,17 +182,30 @@ class WriteBatch
     public function set($document, array $fields, array $options = [])
     {
         $merge = $this->pluck('merge', $options, false) ?: false;
+        // $isEmpty = !$fields;
 
-        if ($merge && empty($fields)) {
-            throw new \InvalidArgumentException('Fields list cannot be empty when merging fields.');
+        // search for sentinel values and remove them from the list of fields.
+        list($filteredFields, $timestamps, $deletes) = $this->valueMapper->findSentinels($fields);
+
+        $hasOnlyTimestamps = !$filteredFields && count($fields) === count($timestamps);
+
+        if (!$merge && $deletes) {
+            throw new \InvalidArgumentException('Delete cannot appear in data unless `$options[\'merge\']` is set.');
         }
 
-        list($fields, $timestamps) = $this->valueMapper->findSentinels($fields);
+        // Enqueue a write if any of the following conditions are met
+        // - if there are still fields remaining after sentinels were removed
+        // - if the user provided an empty set to begin with
+        // - if the user provided only server timestamp sentinel values AND did not specify merge behavior
+        // - if the user provided only delete sentinel field values.
+        if ($filteredFields || !$fields || ($hasOnlyTimestamps && !$merge) || $deletes) {
+            $mask = $merge
+                ? array_merge($this->valueMapper->encodeFieldPaths($filteredFields), $deletes)
+                : null;
 
-        if ($fields) {
-            $write = array_filter([
-                'fields' => $this->valueMapper->encodeValues($fields),
-                'updateMask' => $merge ? $this->valueMapper->encodeFieldPaths($fields) : null
+            $write = $this->arrayFilterRemoveNull([
+                'fields' => $this->valueMapper->encodeValues($filteredFields),
+                'updateMask' => $mask
             ]);
 
             $this->writes[] = $this->createDatabaseWrite(self::TYPE_UPDATE, $document, $write);
@@ -469,7 +482,7 @@ class WriteBatch
     private function createDatabaseWrite($type, $document, array $options = [])
     {
         $mask = $this->pluck('updateMask', $options, false);
-        if ($mask) {
+        if ($mask !== null) {
             sort($mask);
             $mask = ['fieldPaths' => $mask];
         }

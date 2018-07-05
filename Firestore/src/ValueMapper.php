@@ -221,10 +221,17 @@ class ValueMapper
      * @param array $timestamps The timestamps field paths. (reference)
      * @param array $deletes the deletes field paths. (reference)
      * @param string $path The current field path.
+     * @param bool $isInNonAssocArray Whether the current path is or descends from
+     *        a Firestore array value.
      * @return array
      */
-    private function removeSentinel(array $fields, array &$timestamps, array &$deletes, $path = '')
-    {
+    private function removeSentinel(
+        array $fields,
+        array &$timestamps,
+        array &$deletes,
+        $path = '',
+        $isInNonAssocArray = false
+    ) {
         if ($path !== '') {
             $path .= '.';
         }
@@ -232,9 +239,26 @@ class ValueMapper
         foreach ($fields as $key => $value) {
             $currPath = $path . (string) $this->escapePathPart($key);
             if (is_array($value)) {
-                $fields[$key] = $this->removeSentinel($value, $timestamps, $deletes, $currPath);
+                $isInNonAssocArray = $isInNonAssocArray || (!empty($value) && !$this->isAssoc($value));
+                $fields[$key] = $this->removeSentinel(
+                    $value,
+                    $timestamps,
+                    $deletes,
+                    $currPath,
+                    $isInNonAssocArray
+                );
+
+                if (empty($fields[$key])) {
+                    unset($fields[$key]);
+                }
             } else {
                 if ($value === FieldValue::deleteField() || $value === FieldValue::serverTimestamp()) {
+                    if ($isInNonAssocArray) {
+                        throw new \InvalidArgumentException(
+                            'Arrays cannot contain `Google\Cloud\Firestore\FieldType` values.'
+                        );
+                    }
+
                     if ($value === FieldValue::deleteField()) {
                         $deletes[] = $currPath;
                     }
@@ -429,7 +453,7 @@ class ValueMapper
             return ['geoPointValue' => $value->point()];
         }
 
-        if ($value instanceof DocumentReference) {
+        if ($value instanceof DocumentReference || $value instanceof DocumentSnapshot) {
             return ['referenceValue' => $value->name()];
         }
 
