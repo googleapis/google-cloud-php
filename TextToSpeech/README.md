@@ -1,6 +1,6 @@
 # Cloud Text-to-Speech for PHP
 
-> Idiomatic PHP client for [Cloud Text-to-Speech](https://cloud.google.com/text-to-speech).
+> Idiomatic PHP client for [Cloud Text-to-Speech](https://cloud.google.com/text-to-speech/).
 
 [![Latest Stable Version](https://poser.pugx.org/google/cloud-text-to-speech/v/stable)](https://packagist.org/packages/google/cloud-text-to-speech) [![Packagist](https://img.shields.io/packagist/dm/google/cloud-text-to-speech.svg)](https://packagist.org/packages/google/cloud-text-to-speech)
 

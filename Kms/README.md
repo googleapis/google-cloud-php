@@ -1,6 +1,6 @@
 # Cloud KMS for PHP
 
-> Idiomatic PHP client for [Cloud KMS](https://cloud.google.com/kms).
+> Idiomatic PHP client for [Cloud KMS](https://cloud.google.com/kms/).
 
 [![Latest Stable Version](https://poser.pugx.org/google/cloud-kms/v/stable)](https://packagist.org/packages/google/cloud-kms) [![Packagist](https://img.shields.io/packagist/dm/google/cloud-kms.svg)](https://packagist.org/packages/google/cloud-kms)
 
