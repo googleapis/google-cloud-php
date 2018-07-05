@@ -22,7 +22,6 @@ use Google\Cloud\Bigtable\Admin\V2\Instance_Type;
 use Google\Cloud\Bigtable\Admin\V2\Instance_State;
 use Google\Cloud\Bigtable\Admin\V2\StorageType;
 use Google\Cloud\Bigtable\Connection\ConnectionInterface;
-use Google\Cloud\Core\ArrayTrait;
 use Google\Cloud\Core\Exception\NotFoundException;
 use Google\Cloud\Core\Iterator\ItemIterator;
 use Google\Cloud\Core\LongRunning\LongRunningConnectionInterface;
@@ -43,7 +42,6 @@ use Google\Cloud\Core\LongRunning\LROTrait;
  */
 class Instance
 {
-    use ArrayTrait;
     use LROTrait;
 
     const STORAGE_TYPE_UNSPECIFIED = StorageType::STORAGE_TYPE_UNSPECIFIED;
@@ -71,6 +69,11 @@ class Instance
     /**
      * @var string
      */
+    private $id;
+
+    /**
+     * @var string
+     */
     private $name;
 
     /**
@@ -85,7 +88,7 @@ class Instance
      *        Cloud Bigtable Admin API.
      * @param LongRunningConnectionInterface $lroConnection An implementation
      *        mapping to methods which handle LRO resolution in the service.
-     * @param array $lroCallables Grpc object.
+     * @param array $lroCallables
      * @param string $projectId The project ID.
      * @param string $instanceId The instance ID.
      * @param array $info [optional] A representation of the instance object.
@@ -100,7 +103,20 @@ class Instance
     ) {
         $this->connection = $connection;
         $this->projectId = $projectId;
-        $this->name = $this->fullyQualifiedInstanceName($instanceId, $projectId);
+        
+        if (strpos($instanceId, '/') !== false) {
+            $namePrefix = 'projects/' .$projectId. '/instances/';
+            if (substr($instanceId, 0, strlen($namePrefix)) === $namePrefix) {
+                $name = $instanceId;
+            } else {
+                throw new \Exception('Instance id ' .$instanceId. ' is not formatted correctly.
+                Please use the format `my-instance` or ' .$namePrefix. 'my-instance.');
+            }
+        } else {
+            $name = $this->fullyQualifiedInstanceName($instanceId, $projectId);
+        }
+        $this->name = $name;
+        $this->id = InstanceAdminClient::parseName($this->name)['instance'];
         $this->info = $info;
         $this->setLroProperties($lroConnection, $lroCallables, $this->name);
     }
@@ -118,6 +134,21 @@ class Instance
     public function name()
     {
         return $this->name;
+    }
+
+    /**
+     * Return the instance id.
+     *
+     * Example:
+     * ```
+     * $instanceId = $instance->id();
+     * ```
+     *
+     * @return string
+     */
+    public function id()
+    {
+        return $this->id;
     }
 
     /**
@@ -182,54 +213,53 @@ class Instance
      *
      * Example:
      * ```
-     * use Google\Cloud\Bigtable\BigtableClient;
-     * $bigtable = new BigtableClient();
+     * $bigtable = new Google\Cloud\Bigtable\BigtableClient();
      * $instanceType = Google\Cloud\Bigtable\Instance::INSTANCE_TYPE_DEVELOPMENT;
      * $operation = $instance->create(
-     *     'instanceId',
-     *     $instanceType,
+     *     [$bigtable->clusterMetadata('my-cluster', 'us-east1-b')],
+     *     'My Instance',
      *     ['foo' => 'bar'],
-     *     [$bigtable->clusterMetadata('my-cluster', 'us-east1-b')]
+     *     $instanceType
      * );
      * ```
      *
      * @codingStandardsIgnoreStart
      * @see https://cloud.google.com/bigtable/docs/reference/admin/rpc/google.bigtable.admin.v2#CreateInstanceRequest CreateInstanceRequest
+     * @codingStandardsIgnoreEnd
      *
+     * @param array $clusterMetadataArray [
+     *        $bigtable->clusterMetadata('clusterId1', 'locationId1', 'SSD', 3),
+     *        $bigtable->clusterMetadata('clusterId2', 'locationId2', 'SSD', 3)
+     * ]
      * @param string $displayName **Defaults to** the value of $instanceId.
-     * @param int $type Possible values are represented by the following constants: 
-     *            `Google\Cloud\Bigtable\Instance::INSTANCE_TYPE_PRODUCTION`, 
+     * @param array $labels as key/value pair ['foo' => 'bar']. For more information, see
+     *        [Using labels to organize Google Cloud Platform resources](https://cloudplatform.googleblog.com/2015/10/using-labels-to-organize-Google-Cloud-Platform-resources.html).
+     * @param int $type Possible values are represented by the following constants:
+     *            `Google\Cloud\Bigtable\Instance::INSTANCE_TYPE_PRODUCTION`,
      *            `Google\Cloud\Bigtable\Instance::INSTANCE_TYPE_DEVELOPMENT` and
      *            `Google\Cloud\Bigtable\Instance::INSTANCE_TYPE_UNSPECIFIED`.
      *            **Defaults to** using `Google\Cloud\Bigtable\Instance::INSTANCE_TYPE_UNSPECIFIED`.
-     * @param array $labels as key/value pair ['foo' => 'bar']. For more information, see
-     *        [Using labels to organize Google Cloud Platform resources](https://cloudplatform.googleblog.com/2015/10/using-labels-to-organize-Google-Cloud-Platform-resources.html).
-     * @param array $clustersMetadata [
-     *        $bigtable->clusterMetadata('clusterId1', 'locationId1', 'SSD', 3), 
-     *        $bigtable->clusterMetadata('clusterId2', 'locationId2', 'SSD', 3)
-     * ]
+     *
      * @return LongRunningOperation<Instance>
-     * @codingStandardsIgnoreEnd
      */
-    public function create($displayName, $type, $labels, $clustersMetadata)
-    {
+    public function create(
+        array $clusterMetadataArray,
+        $displayName = null,
+        array $labels = [],
+        $type = self::INSTANCE_TYPE_UNSPECIFIED
+    ) {
         $projectName = InstanceAdminClient::projectName($this->projectId);
-        $instanceId = InstanceAdminClient::parseName($this->name)['instance'];
-        $displayName = ($displayName)
-            ? $displayName
-            : InstanceAdminClient::parseName($this->name)['instance'];
-        $type = ($type) ? $type : self::INSTANCE_TYPE_UNSPECIFIED;
-        $labels = ($labels) ? $labels : [];
-        
+        $displayName = ($displayName) ? $displayName : $this->id;
+
         $clustersArray = [];
-        foreach ($clustersMetadata as $value) {
+        foreach ($clusterMetadataArray as $value) {
             $id = $value['clusterId'];
             $clustersArray[$id] = $value;
         }
 
         $operation = $this->connection->createInstance([
             'parent' => $projectName,
-            'instanceId' => $instanceId,
+            'instanceId' => $this->id,
             'instance' => [
                 'displayName' => $displayName,
                 'type' => $type,
@@ -264,6 +294,7 @@ class Instance
         return [
             'connection' => get_class($this->connection),
             'projectId' => $this->projectId,
+            'instanceId' => $this->id,
             'name' => $this->name,
             'info' => $this->info
         ];

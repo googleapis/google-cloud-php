@@ -36,8 +36,9 @@ class InstanceTest extends TestCase
 {
     use GrpcTestTrait;
 
-    const PROJECT = 'my-awesome-project';
-    const INSTANCE = 'my-instance';
+    const PROJECT_ID = 'my-awesome-project';
+    const INSTANCE_ID = 'my-instance';
+    const INSTANCE_NAME = 'projects/my-awesome-project/instances/my-instance';
 
     private $connection;
     private $instance;
@@ -51,8 +52,8 @@ class InstanceTest extends TestCase
             $this->connection->reveal(),
             $this->prophesize(LongRunningConnectionInterface::class)->reveal(),
             [],
-            self::PROJECT,
-            self::INSTANCE
+            self::PROJECT_ID,
+            self::INSTANCE_ID
         ], [
             'info',
             'connection'
@@ -61,22 +62,70 @@ class InstanceTest extends TestCase
 
     public function testName()
     {
-        $this->assertEquals(self::INSTANCE, InstanceAdminClient::parseName($this->instance->name())['instance']);
+        $this->assertEquals(self::INSTANCE_NAME, $this->instance->name());
+    }
+
+    public function testId()
+    {
+        $this->assertEquals(self::INSTANCE_ID, $this->instance->id());
+    }
+
+    public function testInsatnceWhenNameIsPassed()
+    {
+        $instance = TestHelpers::stub(Instance::class, [
+            $this->connection->reveal(),
+            $this->prophesize(LongRunningConnectionInterface::class)->reveal(),
+            [],
+            self::PROJECT_ID,
+            self::INSTANCE_NAME
+        ], [
+            'info',
+            'connection'
+        ]);
+
+        $this->assertEquals(self::INSTANCE_NAME, $instance->name());
+        $this->assertEquals(self::INSTANCE_ID, $instance->id());
+    }
+
+    public function testInsatnceWhenBadIdFormatPassed()
+    {
+        $badInstanceId = 'badformat/my-instance';
+        try{
+            $badInstance = TestHelpers::stub(Instance::class, [
+                $this->connection->reveal(),
+                $this->prophesize(LongRunningConnectionInterface::class)->reveal(),
+                [],
+                self::PROJECT_ID,
+                $badInstanceId
+            ], [
+                'info',
+                'connection'
+            ]);
+        }catch(\Exception $e){
+            $error = 'Instance id '. $badInstanceId. ' is not formatted correctly.
+                Please use the format `my-instance` or projects/my-awesome-project/instances/my-instance.';
+            $this->assertEquals($error, $e->getMessage());
+        }
+    }
+
+    public function testInstanceId()
+    {
+        $instanceId = InstanceAdminClient::parseName($this->instance->name())['instance'];
+        $this->assertEquals($this->instance->id(), $instanceId);
     }
 
     public function testCreate()
     {
         $this->connection->createInstance(Argument::any())
             ->shouldBeCalled()
-            ->willReturn(['name' => InstanceAdminClient::instanceName(self::PROJECT, self::INSTANCE)]);
+            ->willReturn(['name' => self::INSTANCE_NAME]);
         $this->instance->___setProperty('connection', $this->connection->reveal());
         $instance = $this->instance->create(
+            [],
             'My Insatnce',
-            Instance::INSTANCE_TYPE_DEVELOPMENT,
-            ['foo' => 'bar'],
-            []
+            ['foo' => 'bar']
         );
         $this->assertInstanceOf(LongRunningOperation::class, $instance);
-        $this->assertEquals(InstanceAdminClient::instanceName(self::PROJECT, self::INSTANCE), $instance->name());
+        $this->assertEquals(self::INSTANCE_NAME, $instance->name());
     }
 }

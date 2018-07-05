@@ -35,9 +35,10 @@ class BigtableClientTest extends SnippetTestCase
 {
     use GrpcTestTrait;
 
-    const PROJECT = 'my-awesome-project';
-    const INSTANCE = 'my-instance';
-    const LOCATION = 'us-east1-b';
+    const PROJECT_ID = 'my-awesome-project';
+    const INSTANCE_ID = 'my-instance';
+    const INSTANCE_NAME = 'projects/my-awesome-project/instances/my-instance';
+    const LOCATION_NAME = 'projects/my-awesome-project/locations/us-east1-b';
 
     private $client;
     private $connection;
@@ -66,7 +67,7 @@ class BigtableClientTest extends SnippetTestCase
         $res = $snippet->invoke('instance');
         $this->assertInstanceOf(Instance::class, $res->returnVal());
         $this->assertEquals(
-            InstanceAdminClient::instanceName(self::PROJECT, self::INSTANCE),
+            self::INSTANCE_NAME,
             $res->returnVal()->name()
         );
     }
@@ -76,11 +77,11 @@ class BigtableClientTest extends SnippetTestCase
         $snippet = $this->snippetFromMethod(BigtableClient::class, 'clusterMetadata');
         $snippet->addLocal('bigtable', $this->client);
         $snippet->addLocal('clusterid', 'my-cluster');
-        $snippet->addLocal('clusterMetadata', InstanceAdminClient::locationName(self::PROJECT, self::LOCATION));
+        $snippet->addLocal('clusterMetadata', self::LOCATION_NAME);
 
         $res = $snippet->invoke('clusterMetadata');
         $this->assertEquals(
-            InstanceAdminClient::locationName(self::PROJECT, self::LOCATION),
+            self::LOCATION_NAME,
             $res->returnVal()
         );
     }

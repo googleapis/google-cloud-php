@@ -36,10 +36,9 @@ class InstanceTest extends SnippetTestCase
 {
     use GrpcTestTrait;
 
-    const PROJECT = 'my-awesome-project';
-    const INSTANCE = 'my-instance';
-    const CLUSTER = 'my-cluster';
-    const LOCATION = 'us-east-b';
+    const PROJECT_ID = 'my-awesome-project';
+    const INSTANCE_ID = 'my-instance';
+    const INSTANCE_NAME = 'projects/my-awesome-project/instances/my-instance';
 
     private $connection;
     private $instance;
@@ -53,8 +52,8 @@ class InstanceTest extends SnippetTestCase
             $this->connection->reveal(),
             $this->prophesize(LongRunningConnectionInterface::class)->reveal(),
             [],
-            self::PROJECT,
-            self::INSTANCE
+            self::PROJECT_ID,
+            self::INSTANCE_ID
         ], ['connection', 'lroConnection']);
     }
 
@@ -64,10 +63,7 @@ class InstanceTest extends SnippetTestCase
         $res = $snippet->invoke('instance');
 
         $this->assertInstanceOf(Instance::class, $res->returnVal());
-        $this->assertEquals(
-            InstanceAdminClient::instanceName(self::PROJECT, self::INSTANCE),
-            $res->returnVal()->name()
-        );
+        $this->assertEquals(self::INSTANCE_NAME, $res->returnVal()->name());
     }
 
     public function testName()
@@ -76,13 +72,23 @@ class InstanceTest extends SnippetTestCase
         $snippet->addLocal('instance', $this->instance);
 
         $res = $snippet->invoke('name');
-        $this->assertEquals(InstanceAdminClient::instanceName(self::PROJECT, self::INSTANCE), $res->returnVal());
+        $this->assertEquals(self::INSTANCE_NAME, $res->returnVal());
+    }
+
+    public function testId()
+    {
+        $snippet = $this->snippetFromMethod(Instance::class, 'id');
+        $snippet->addLocal('instance', $this->instance);
+        $snippet->addLocal('id', self::INSTANCE_ID);
+
+        $res = $snippet->invoke('id');
+        $this->assertEquals(self::INSTANCE_ID, $res->returnVal());
     }
 
     public function testCreate()
     {
         $config = $this->prophesize(Instance::class);
-        $config->name()->willReturn(InstanceAdminClient::instanceName(self::PROJECT, 'foo'));
+        $config->name()->willReturn(self::INSTANCE_NAME);
 
         $snippet = $this->snippetFromMethod(Instance::class, 'create');
         $snippet->addLocal('instance', $this->instance);

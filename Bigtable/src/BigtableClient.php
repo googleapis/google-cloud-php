@@ -56,7 +56,7 @@ class BigtableClient
     const ADMIN_SCOPE = 'https://www.googleapis.com/auth/bigtable.admin';
 
     /**
-     *  @var Google\Cloud\Bigtable\Connection\Grpc
+     *  @var Google\Cloud\Bigtable\Connection\ConnectionInterface
      */
     protected $connection;
 
@@ -158,7 +158,7 @@ class BigtableClient
      * ```
      * $cluster = $bigtable->clusterMetadata('my-cluster', 'us-east-b');
      * ```
-     *
+     * @param string $clusterId The cluster ID
      * @param string $locationId The location ID
      * @param int $storageType The storage media type for persisting Bigtable data. Possible values include
      *            `Google\Cloud\Bigtable\Instance::STORAGE_TYPE_SSD`,
@@ -169,21 +169,25 @@ class BigtableClient
      *
      * @return array
      */
-    public function clusterMetadata($clusterId, $locationId, $storageType = null, $serveNodes = null)
-    {
-        if ($clusterId == '') {
-            throw new \ValidationException('clusterId must be set');
+    public function clusterMetadata(
+        $clusterId,
+        $locationId,
+        $storageType = Instance::STORAGE_TYPE_UNSPECIFIED,
+        $serveNodes = null
+    ) {
+        if (empty($clusterId)) {
+            throw new \Exception('clusterId must be set');
         }
 
-        if ($locationId == '') {
-            throw new \ValidationException('locationId must be set');
+        if (empty($locationId)) {
+            throw new \Exception('locationId must be set');
         }
 
-        $metaData = array(
+        $metaData = [
             'clusterId' => $clusterId,
             'location' => InstanceAdminClient::locationName($this->projectId, $locationId),
-            'defaultStorageType' => ($storageType) ? $storageType : Instance::STORAGE_TYPE_UNSPECIFIED
-        );
+            'defaultStorageType' => $storageType
+        ];
         if ($serveNodes !== null) {
             $metaData['serveNodes'] = $serveNodes;
         }

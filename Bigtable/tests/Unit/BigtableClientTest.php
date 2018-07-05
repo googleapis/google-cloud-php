@@ -34,10 +34,12 @@ class BigtableClientTest extends TestCase
 {
     use GrpcTestTrait;
 
-    const PROJECT = 'my-awesome-project';
-    const INSTANCE = 'inst';
-    const CLUSTER = 'my-cluster';
-    const LOCATION = 'us-east1-b';
+    const PROJECT_ID = 'my-awesome-project';
+    const INSTANCE_ID = 'inst';
+    const CLUSTER_ID = 'my-cluster';
+    const LOCATION_ID = 'us-east1-b';
+    const LOCATION_NAME = 'projects/my-awesome-project/locations/us-east1-b';
+
 
     private $client;
     private $connection;
@@ -48,21 +50,41 @@ class BigtableClientTest extends TestCase
 
         $this->connection = $this->prophesize(ConnectionInterface::class);
         $this->client = TestHelpers::stub(BigtableClient::class, [
-            ['projectId' => self::PROJECT]
+            ['projectId' => self::PROJECT_ID]
         ]);
     }
 
     public function testInstance()
     {
-        $instance = $this->client->instance('foo');
+        $instance = $this->client->instance(self::INSTANCE_ID);
         $this->assertInstanceOf(Instance::class, $instance);
-        $this->assertEquals('foo', InstanceAdminClient::parseName($instance->name())['instance']);
+        $this->assertEquals(self::INSTANCE_ID, InstanceAdminClient::parseName($instance->name())['instance']);
     }
 
     public function testClusterMetadata()
     {
-        $instance = $this->client->clusterMetadata(self::CLUSTER, self::LOCATION);
-        $this->assertEquals($instance['clusterId'], self::CLUSTER);
-        $this->assertEquals($instance['location'], InstanceAdminClient::locationName(self::PROJECT, self::LOCATION));
+        $instance = $this->client->clusterMetadata(self::CLUSTER_ID, self::LOCATION_ID);
+        $this->assertEquals($instance['clusterId'], self::CLUSTER_ID);
+        $this->assertEquals($instance['location'], self::LOCATION_NAME);
+    }
+
+    public function testClusterMetadataWhenClusterIdPassedBlank()
+    {
+        try{
+            $this->client->clusterMetadata(null, self::LOCATION_ID);
+        }catch(\Exception $e){
+            $error = 'clusterId must be set';
+            $this->assertEquals($error, $e->getMessage());
+        }
+    }
+
+    public function testClusterMetadataWhenLocationIdPassedBlank()
+    {
+        try{
+            $this->client->clusterMetadata(self::CLUSTER_ID, null);
+        }catch(\Exception $e){
+            $error = 'locationId must be set';
+            $this->assertEquals($error, $e->getMessage());
+        }
     }
 }
