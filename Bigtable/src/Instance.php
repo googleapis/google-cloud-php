@@ -298,16 +298,15 @@ class Instance
     }
 
     /**
-     * Check invalid exception
+     * Validate format of ID.
      *
-     * @param string $value value to be validated for emptiness or containing '/' character.
+     * @param string $value value to be validated whether it contains '/' character.
      * @param string $text type of value to be validated.
      *
-     * @return InvalidArgumentException
      */
     private function validate($value, $text)
     {
-        if (empty($value) || strpos($value, '/') !== false) {
+        if (strpos($value, '/') !== false) {
             throw new \InvalidArgumentException("Please pass just {$text}Id as '$text'");
         }
     }
