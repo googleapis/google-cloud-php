@@ -73,14 +73,16 @@ class CollectionReference extends Query
         $this->valueMapper = $valueMapper;
         $this->name = $name;
 
+        $parent = $this->parentPath($this->name);
+
         parent::__construct(
             $connection,
             $valueMapper,
-            $this->parentPath($this->name),
+            $parent,
             [
                 'from' => [
                     [
-                        'collectionId' => $this->pathId($this->name)
+                        'collectionId' => $this->pathId($this->name),
                     ]
                 ]
             ]
