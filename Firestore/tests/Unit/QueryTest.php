@@ -95,7 +95,7 @@ class QueryTest extends TestCase
 
         $this->query->___setProperty('connection', $this->connection->reveal());
 
-        $res = $this->query->documents();
+        $res = $this->query->documents(['maxRetries' => 0]);
         $this->assertContainsOnlyInstancesOf(DocumentSnapshot::class, $res);
         $this->assertCount(1, $res->rows());
 
@@ -145,7 +145,6 @@ class QueryTest extends TestCase
 
         $this->runAndAssert(function (Query $q) use ($paths) {
             $res = $q->select($paths);
-            $res = $res->select(['users.dan']);
 
             return $res;
         }, [
@@ -156,6 +155,29 @@ class QueryTest extends TestCase
                     'fields' => [
                         [ 'fieldPath' => 'users.john' ],
                         [ 'fieldPath' => 'users.dave' ],
+                    ]
+                ]
+            ]
+        ]);
+    }
+
+    public function testSelectOverride()
+    {
+        $paths = [
+            'users.john',
+            'users.dave'
+        ];
+
+        $this->runAndAssert(function (Query $q) use ($paths) {
+            $res = $q->select($paths);
+            $res = $res->select(['users.dan']);
+            return $res;
+        }, [
+            'parent' => self::PARENT,
+            'structuredQuery' => [
+                'from' => $this->queryFrom(),
+                'select' => [
+                    'fields' => [
                         [ 'fieldPath' => 'users.dan' ],
                     ]
                 ]
