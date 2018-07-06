@@ -40,7 +40,6 @@ class BigtableClientTest extends TestCase
     const LOCATION_ID = 'us-east1-b';
     const LOCATION_NAME = 'projects/my-awesome-project/locations/us-east1-b';
 
-
     private $client;
     private $connection;
 
@@ -65,26 +64,6 @@ class BigtableClientTest extends TestCase
     {
         $instance = $this->client->clusterMetadata(self::CLUSTER_ID, self::LOCATION_ID);
         $this->assertEquals($instance['clusterId'], self::CLUSTER_ID);
-        $this->assertEquals($instance['location'], self::LOCATION_NAME);
-    }
-
-    public function testClusterMetadataWhenClusterIdPassedBlank()
-    {
-        try{
-            $this->client->clusterMetadata(null, self::LOCATION_ID);
-        }catch(\Exception $e){
-            $error = 'clusterId must be set';
-            $this->assertEquals($error, $e->getMessage());
-        }
-    }
-
-    public function testClusterMetadataWhenLocationIdPassedBlank()
-    {
-        try{
-            $this->client->clusterMetadata(self::CLUSTER_ID, null);
-        }catch(\Exception $e){
-            $error = 'locationId must be set';
-            $this->assertEquals($error, $e->getMessage());
-        }
+        $this->assertEquals($instance['locationId'], self::LOCATION_ID);
     }
 }

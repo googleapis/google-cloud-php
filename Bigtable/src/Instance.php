@@ -88,7 +88,10 @@ class Instance
      *        Cloud Bigtable Admin API.
      * @param LongRunningConnectionInterface $lroConnection An implementation
      *        mapping to methods which handle LRO resolution in the service.
-     * @param array $lroCallables
+     * @param array $lroCallables An collection of form [(string) typeUrl, (callable) callable]
+     *        providing a function to invoke when an operation completes. The
+     *        callable Type should correspond to an expected value of
+     *        operation.metadata.typeUrl.
      * @param string $projectId The project ID.
      * @param string $instanceId The instance ID.
      * @param array $info [optional] A representation of the instance object.
@@ -104,19 +107,9 @@ class Instance
         $this->connection = $connection;
         $this->projectId = $projectId;
         
-        if (strpos($instanceId, '/') !== false) {
-            $namePrefix = 'projects/' .$projectId. '/instances/';
-            if (substr($instanceId, 0, strlen($namePrefix)) === $namePrefix) {
-                $name = $instanceId;
-            } else {
-                throw new \Exception('Instance id ' .$instanceId. ' is not formatted correctly.
-                Please use the format `my-instance` or ' .$namePrefix. 'my-instance.');
-            }
-        } else {
-            $name = $this->fullyQualifiedInstanceName($instanceId, $projectId);
-        }
-        $this->name = $name;
-        $this->id = InstanceAdminClient::parseName($this->name)['instance'];
+        $this->validate($instanceId, 'instance');
+        $this->name = InstanceAdminClient::instanceName($projectId, $instanceId);
+        $this->id = $instanceId;
         $this->info = $info;
         $this->setLroProperties($lroConnection, $lroCallables, $this->name);
     }
@@ -214,12 +207,8 @@ class Instance
      * Example:
      * ```
      * $bigtable = new Google\Cloud\Bigtable\BigtableClient();
-     * $instanceType = Google\Cloud\Bigtable\Instance::INSTANCE_TYPE_DEVELOPMENT;
      * $operation = $instance->create(
-     *     [$bigtable->clusterMetadata('my-cluster', 'us-east1-b')],
-     *     'My Instance',
-     *     ['foo' => 'bar'],
-     *     $instanceType
+     *     $bigtable->clusterMetadata(['clusterId' => 'my-cluster', 'locationId' => 'us-east1-c'])
      * );
      * ```
      *
@@ -227,7 +216,7 @@ class Instance
      * @see https://cloud.google.com/bigtable/docs/reference/admin/rpc/google.bigtable.admin.v2#CreateInstanceRequest CreateInstanceRequest
      * @codingStandardsIgnoreEnd
      *
-     * @param array $clusterMetadataArray [
+     * @param array $clusterMetadataList [
      *        $bigtable->clusterMetadata('clusterId1', 'locationId1', 'SSD', 3),
      *        $bigtable->clusterMetadata('clusterId2', 'locationId2', 'SSD', 3)
      * ]
@@ -235,26 +224,46 @@ class Instance
      * @param array $labels as key/value pair ['foo' => 'bar']. For more information, see
      *        [Using labels to organize Google Cloud Platform resources](https://cloudplatform.googleblog.com/2015/10/using-labels-to-organize-Google-Cloud-Platform-resources.html).
      * @param int $type Possible values are represented by the following constants:
-     *            `Google\Cloud\Bigtable\Instance::INSTANCE_TYPE_PRODUCTION`,
-     *            `Google\Cloud\Bigtable\Instance::INSTANCE_TYPE_DEVELOPMENT` and
-     *            `Google\Cloud\Bigtable\Instance::INSTANCE_TYPE_UNSPECIFIED`.
-     *            **Defaults to** using `Google\Cloud\Bigtable\Instance::INSTANCE_TYPE_UNSPECIFIED`.
+     *        `Google\Cloud\Bigtable\Instance::INSTANCE_TYPE_PRODUCTION`,
+     *        `Google\Cloud\Bigtable\Instance::INSTANCE_TYPE_DEVELOPMENT` and
+     *        `Google\Cloud\Bigtable\Instance::INSTANCE_TYPE_UNSPECIFIED`.
+     *        **Defaults to** using `Google\Cloud\Bigtable\Instance::INSTANCE_TYPE_UNSPECIFIED`.
      *
      * @return LongRunningOperation<Instance>
      */
     public function create(
-        array $clusterMetadataArray,
+        array $clusterMetadataList,
         $displayName = null,
         array $labels = [],
         $type = self::INSTANCE_TYPE_UNSPECIFIED
     ) {
+        if (empty($clusterMetadataList)) {
+            throw new \InvalidArgumentException('At least one clusterMetadata must be passed');
+        }
         $projectName = InstanceAdminClient::projectName($this->projectId);
         $displayName = ($displayName) ? $displayName : $this->id;
 
         $clustersArray = [];
-        foreach ($clusterMetadataArray as $value) {
-            $id = $value['clusterId'];
-            $clustersArray[$id] = $value;
+        foreach ($clusterMetadataList as $value) {
+            if (!isset($value['clusterId'])) {
+                throw new \InvalidArgumentException("Cluster id must be set");
+            }
+            $this->validate($value['clusterId'], 'cluster');
+            $clusterId = $value['clusterId'];
+
+            if (!isset($value['locationId'])) {
+                throw new \InvalidArgumentException("Location id must be set");
+            }
+            $this->validate($value['locationId'], 'location');
+            $locationId = $value['locationId'];
+
+            $value['location'] = InstanceAdminClient::locationName($this->projectId, $locationId);
+
+            $value['defaultStorageType'] = isset($value['storageType'])
+                ? $value['storageType']
+                : self::STORAGE_TYPE_UNSPECIFIED;
+
+            $clustersArray[$clusterId] = $value;
         }
 
         $operation = $this->connection->createInstance([
@@ -272,18 +281,6 @@ class Instance
     }
 
     /**
-     * Convert the simple instance name to a fully qualified name.
-     *
-     * @param string $instanceId The instance ID.
-     * @param string $projectId The project ID.
-     * @return string
-     */
-    private function fullyQualifiedInstanceName($instanceId, $projectId)
-    {
-        return InstanceAdminClient::instanceName($projectId, $instanceId);
-    }
-
-    /**
      * Represent the class in a more readable and digestable fashion.
      *
      * @access private
@@ -298,5 +295,20 @@ class Instance
             'name' => $this->name,
             'info' => $this->info
         ];
+    }
+
+    /**
+     * Check invalid exception
+     *
+     * @param string $value value to be validated for emptiness or containing '/' character.
+     * @param string $text type of value to be validated.
+     *
+     * @return InvalidArgumentException
+     */
+    private function validate($value, $text)
+    {
+        if (empty($value) || strpos($value, '/') !== false) {
+            throw new \InvalidArgumentException("Please pass just {$text}Id as '$text'");
+        }
     }
 }

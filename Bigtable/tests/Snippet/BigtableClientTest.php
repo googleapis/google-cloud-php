@@ -38,6 +38,7 @@ class BigtableClientTest extends SnippetTestCase
     const PROJECT_ID = 'my-awesome-project';
     const INSTANCE_ID = 'my-instance';
     const INSTANCE_NAME = 'projects/my-awesome-project/instances/my-instance';
+    const CLUSTER_ID = 'my-cluster';
     const LOCATION_NAME = 'projects/my-awesome-project/locations/us-east1-b';
 
     private $client;
@@ -66,23 +67,16 @@ class BigtableClientTest extends SnippetTestCase
 
         $res = $snippet->invoke('instance');
         $this->assertInstanceOf(Instance::class, $res->returnVal());
-        $this->assertEquals(
-            self::INSTANCE_NAME,
-            $res->returnVal()->name()
-        );
+        $this->assertEquals(self::INSTANCE_NAME, $res->returnVal()->name());
     }
 
     public function testClusterMetadata()
     {
         $snippet = $this->snippetFromMethod(BigtableClient::class, 'clusterMetadata');
         $snippet->addLocal('bigtable', $this->client);
-        $snippet->addLocal('clusterid', 'my-cluster');
-        $snippet->addLocal('clusterMetadata', self::LOCATION_NAME);
+        $snippet->addLocal('clusterMetadata', ['clusterId' => self::CLUSTER_ID]);
 
         $res = $snippet->invoke('clusterMetadata');
-        $this->assertEquals(
-            self::LOCATION_NAME,
-            $res->returnVal()
-        );
+        $this->assertEquals(self::CLUSTER_ID, $res->returnVal()['clusterId']);
     }
 }

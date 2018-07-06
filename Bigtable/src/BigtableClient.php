@@ -19,6 +19,7 @@ namespace Google\Cloud\Bigtable;
 
 use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\Bigtable\Admin\V2\BigtableInstanceAdminClient as InstanceAdminClient;
+use Google\Cloud\Bigtable\Connection\ConnectionInterface;
 use Google\Cloud\Bigtable\Connection\Grpc;
 use Google\Cloud\Bigtable\Connection\LongRunningConnection;
 use Google\Cloud\Core\ClientTrait;
@@ -56,7 +57,7 @@ class BigtableClient
     const ADMIN_SCOPE = 'https://www.googleapis.com/auth/bigtable.admin';
 
     /**
-     *  @var Google\Cloud\Bigtable\Connection\ConnectionInterface
+     *  @var ConnectionInterface
      */
     protected $connection;
 
@@ -156,39 +157,37 @@ class BigtableClient
      *
      * Example:
      * ```
-     * $cluster = $bigtable->clusterMetadata('my-cluster', 'us-east-b');
+     * $cluster = $bigtable->clusterMetadata();
      * ```
      * @param string $clusterId The cluster ID
      * @param string $locationId The location ID
      * @param int $storageType The storage media type for persisting Bigtable data. Possible values include
-     *            `Google\Cloud\Bigtable\Instance::STORAGE_TYPE_SSD`,
-     *            `Google\Cloud\Bigtable\Instance::STORAGE_TYPE_HDD` and
-     *            `Google\Cloud\Bigtable\Instance::STORAGE_TYPE_UNSPECIFIED`.
-     *            **Defaults to** `Google\Cloud\Bigtable\Instance::STORAGE_TYPE_UNSPECIFIED`.
-     * @param int $serveNodes
-     *
+     *        `Google\Cloud\Bigtable\Instance::STORAGE_TYPE_SSD`,
+     *        `Google\Cloud\Bigtable\Instance::STORAGE_TYPE_HDD` and
+     *        `Google\Cloud\Bigtable\Instance::STORAGE_TYPE_UNSPECIFIED`.
+     *        **Defaults to** `Google\Cloud\Bigtable\Instance::STORAGE_TYPE_UNSPECIFIED`.
+     * @param int $serveNodes The number of nodes allocated to this cluster.
+     *        More nodes enable higher throughput and more consistent performance.
+     * }
      * @return array
      */
     public function clusterMetadata(
-        $clusterId,
-        $locationId,
-        $storageType = Instance::STORAGE_TYPE_UNSPECIFIED,
+        $clusterId = null,
+        $locationId = null,
+        $storageType = null,
         $serveNodes = null
     ) {
-        if (empty($clusterId)) {
-            throw new \Exception('clusterId must be set');
+        $metaData = [];
+        if (!empty($clusterId)) {
+            $metaData['clusterId'] = $clusterId;
         }
-
-        if (empty($locationId)) {
-            throw new \Exception('locationId must be set');
+        if (!empty($locationId)) {
+            $metaData['locationId'] = $locationId;
         }
-
-        $metaData = [
-            'clusterId' => $clusterId,
-            'location' => InstanceAdminClient::locationName($this->projectId, $locationId),
-            'defaultStorageType' => $storageType
-        ];
-        if ($serveNodes !== null) {
+        if (!empty($storageType)) {
+            $metaData['defaultStorageType'] = $storageType;
+        }
+        if (!empty($serveNodes)) {
             $metaData['serveNodes'] = $serveNodes;
         }
 

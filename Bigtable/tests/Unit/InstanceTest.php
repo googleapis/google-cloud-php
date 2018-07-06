@@ -14,19 +14,19 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 namespace Google\Cloud\Bigtable\Tests\Unit;
 
 use Google\Cloud\Bigtable\Admin\V2\BigtableInstanceAdminClient as InstanceAdminClient;
+use Google\Cloud\Bigtable\BigtableClient;
 use Google\Cloud\Bigtable\Connection\ConnectionInterface;
 use Google\Cloud\Bigtable\Instance;
 use Google\Cloud\Core\Exception\NotFoundException;
-use Google\Cloud\Core\LongRunning\LongRunningOperation;
 use Google\Cloud\Core\LongRunning\LongRunningConnectionInterface;
+use Google\Cloud\Core\LongRunning\LongRunningOperation;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Core\Testing\TestHelpers;
-use Prophecy\Argument;
 use PHPUnit\Framework\TestCase;
+use Prophecy\Argument;
 
 /**
  * @group bigtable
@@ -39,14 +39,18 @@ class InstanceTest extends TestCase
     const PROJECT_ID = 'my-awesome-project';
     const INSTANCE_ID = 'my-instance';
     const INSTANCE_NAME = 'projects/my-awesome-project/instances/my-instance';
+    const CLUSTER_ID = 'my-cluster';
+    const LOCATION_ID = 'us-east1-b';
 
     private $connection;
     private $instance;
+    private $bigtableClient;
 
     public function setUp()
     {
         $this->checkAndSkipGrpcTests();
 
+        $this->bigtableClient = new BigtableClient();
         $this->connection = $this->prophesize(ConnectionInterface::class);
         $this->instance = TestHelpers::stub(Instance::class, [
             $this->connection->reveal(),
@@ -70,28 +74,11 @@ class InstanceTest extends TestCase
         $this->assertEquals(self::INSTANCE_ID, $this->instance->id());
     }
 
-    public function testInsatnceWhenNameIsPassed()
-    {
-        $instance = TestHelpers::stub(Instance::class, [
-            $this->connection->reveal(),
-            $this->prophesize(LongRunningConnectionInterface::class)->reveal(),
-            [],
-            self::PROJECT_ID,
-            self::INSTANCE_NAME
-        ], [
-            'info',
-            'connection'
-        ]);
-
-        $this->assertEquals(self::INSTANCE_NAME, $instance->name());
-        $this->assertEquals(self::INSTANCE_ID, $instance->id());
-    }
-
-    public function testInsatnceWhenBadIdFormatPassed()
+    public function testInstanceWhenBadIdFormatPassed()
     {
         $badInstanceId = 'badformat/my-instance';
-        try{
-            $badInstance = TestHelpers::stub(Instance::class, [
+        try {
+            $instance = TestHelpers::stub(Instance::class, [
                 $this->connection->reveal(),
                 $this->prophesize(LongRunningConnectionInterface::class)->reveal(),
                 [],
@@ -101,9 +88,8 @@ class InstanceTest extends TestCase
                 'info',
                 'connection'
             ]);
-        }catch(\Exception $e){
-            $error = 'Instance id '. $badInstanceId. ' is not formatted correctly.
-                Please use the format `my-instance` or projects/my-awesome-project/instances/my-instance.';
+        } catch(\Exception $e) {
+            $error = "Please pass just instanceId as 'instance'";
             $this->assertEquals($error, $e->getMessage());
         }
     }
@@ -114,16 +100,96 @@ class InstanceTest extends TestCase
         $this->assertEquals($this->instance->id(), $instanceId);
     }
 
+    public function testCreateWithoutClusterMetadata()
+    {
+        try {
+            $this->instance->create(
+                [],
+                []
+            );
+        }  catch(\Exception $e) {
+            $error = 'At least one clusterMetadata must be passed';
+            $this->assertEquals($error, $e->getMessage());
+        }
+    }
+
+    public function testCreateWithoutClusterId()
+    {
+        $clusterMetadataList = $this->bigtableClient->clusterMetadata();
+        try {
+            $this->instance->create(
+                [$clusterMetadataList],
+                []
+            );
+        }  catch(\Exception $e) {
+            $error = 'Cluster id must be set';
+            $this->assertEquals($error, $e->getMessage());
+        }
+    }
+
+    public function testCreateWithClusterIdBadFormat()
+    {
+        $badClusterId = 'badformat/my-cluster';
+        $clusterMetadataList = $this->bigtableClient->clusterMetadata($badClusterId);
+        try {
+            $this->instance->create(
+                [$clusterMetadataList],
+                []
+            );
+        }  catch(\Exception $e) {
+            $error = "Please pass just clusterId as 'cluster'";
+            $this->assertEquals($error, $e->getMessage());
+        }
+    }
+
+    public function testCreateWithoutLocationId()
+    {
+        $clusterMetadataList = $this->bigtableClient->clusterMetadata(self::CLUSTER_ID);
+        try {
+            $this->instance->create(
+                [$clusterMetadataList],
+                []
+            );
+        }  catch(\Exception $e) {
+            $error = 'Location id must be set';
+            $this->assertEquals($error, $e->getMessage());
+        }
+    }
+
+    public function testCreateWithLocationIdBadFormat()
+    {
+        $badLocationId = 'badformat/my-locations';
+        $clusterMetadataList = $this->bigtableClient->clusterMetadata(
+            self::CLUSTER_ID,
+            $badLocationId
+        );
+        try {
+            $this->instance->create(
+                [$clusterMetadataList],
+                []
+            );
+        }  catch(\Exception $e) {
+            $error = "Please pass just locationId as 'location'";
+            $this->assertEquals($error, $e->getMessage());
+        }
+    }
+
     public function testCreate()
     {
         $this->connection->createInstance(Argument::any())
             ->shouldBeCalled()
             ->willReturn(['name' => self::INSTANCE_NAME]);
         $this->instance->___setProperty('connection', $this->connection->reveal());
+
+        $clusterMetadataList = $this->bigtableClient->clusterMetadata(
+            self::CLUSTER_ID,
+            self::LOCATION_ID
+        );
         $instance = $this->instance->create(
-            [],
+            [$clusterMetadataList],
             'My Insatnce',
-            ['foo' => 'bar']
+            ['foo' => 'bar'],
+            Instance::INSTANCE_TYPE_DEVELOPMENT
         );
         $this->assertInstanceOf(LongRunningOperation::class, $instance);
         $this->assertEquals(self::INSTANCE_NAME, $instance->name());
