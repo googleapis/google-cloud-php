@@ -4,48 +4,13 @@
 
 namespace Google\Cloud\Kms\V1;
 
-/**
- * The state of a [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion], indicating if it can be used.
- *
- * Protobuf enum <code>Google\Cloud\Kms\V1\CryptoKeyVersion\CryptoKeyVersionState</code>
- */
-class CryptoKeyVersion_CryptoKeyVersionState
-{
+if (false) {
     /**
-     * Not specified.
-     *
-     * Generated from protobuf enum <code>CRYPTO_KEY_VERSION_STATE_UNSPECIFIED = 0;</code>
+     * This class is deprecated. Use Google\Cloud\Kms\V1\CryptoKeyVersion\CryptoKeyVersionState instead.
+     * @deprecated
      */
-    const CRYPTO_KEY_VERSION_STATE_UNSPECIFIED = 0;
-    /**
-     * This version may be used in [Encrypt][google.cloud.kms.v1.KeyManagementService.Encrypt] and
-     * [Decrypt][google.cloud.kms.v1.KeyManagementService.Decrypt] requests.
-     *
-     * Generated from protobuf enum <code>ENABLED = 1;</code>
-     */
-    const ENABLED = 1;
-    /**
-     * This version may not be used, but the key material is still available,
-     * and the version can be placed back into the [ENABLED][google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionState.ENABLED] state.
-     *
-     * Generated from protobuf enum <code>DISABLED = 2;</code>
-     */
-    const DISABLED = 2;
-    /**
-     * This version is destroyed, and the key material is no longer stored.
-     * A version may not leave this state once entered.
-     *
-     * Generated from protobuf enum <code>DESTROYED = 3;</code>
-     */
-    const DESTROYED = 3;
-    /**
-     * This version is scheduled for destruction, and will be destroyed soon.
-     * Call
-     * [RestoreCryptoKeyVersion][google.cloud.kms.v1.KeyManagementService.RestoreCryptoKeyVersion]
-     * to put it back into the [DISABLED][google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionState.DISABLED] state.
-     *
-     * Generated from protobuf enum <code>DESTROY_SCHEDULED = 4;</code>
-     */
-    const DESTROY_SCHEDULED = 4;
+    class CryptoKeyVersion_CryptoKeyVersionState {}
 }
+class_exists(CryptoKeyVersion\CryptoKeyVersionState::class);
+@trigger_error('Google\Cloud\Kms\V1\CryptoKeyVersion_CryptoKeyVersionState is deprecated and will be removed in the next major release. Use Google\Cloud\Kms\V1\CryptoKeyVersion\CryptoKeyVersionState instead', E_USER_DEPRECATED);
 

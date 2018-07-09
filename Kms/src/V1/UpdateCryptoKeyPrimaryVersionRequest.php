@@ -28,9 +28,21 @@ class UpdateCryptoKeyPrimaryVersionRequest extends \Google\Protobuf\Internal\Mes
      */
     private $crypto_key_version_id = '';
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $name
+     *           The resource name of the [CryptoKey][google.cloud.kms.v1.CryptoKey] to update.
+     *     @type string $crypto_key_version_id
+     *           The id of the child [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] to use as primary.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Kms\V1\Service::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

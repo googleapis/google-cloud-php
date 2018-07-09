@@ -29,9 +29,22 @@ class CreateCryptoKeyVersionRequest extends \Google\Protobuf\Internal\Message
      */
     private $crypto_key_version = null;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $parent
+     *           Required. The [name][google.cloud.kms.v1.CryptoKey.name] of the [CryptoKey][google.cloud.kms.v1.CryptoKey] associated with
+     *           the [CryptoKeyVersions][google.cloud.kms.v1.CryptoKeyVersion].
+     *     @type \Google\Cloud\Kms\V1\CryptoKeyVersion $crypto_key_version
+     *           A [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] with initial field values.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Kms\V1\Service::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**
