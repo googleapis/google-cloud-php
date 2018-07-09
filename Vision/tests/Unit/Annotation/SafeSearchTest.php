@@ -33,7 +33,8 @@ class SafeSearchTest extends TestCase
             'adult' => 'VERY_LIKELY',
             'spoof' => 'VERY_LIKELY',
             'medical' => 'VERY_LIKELY',
-            'violence' => 'VERY_LIKELY'
+            'violence' => 'VERY_LIKELY',
+            'racy' => 'VERY_LIKELY'
         ]);
     }
 
@@ -55,6 +56,11 @@ class SafeSearchTest extends TestCase
     public function testIsViolent()
     {
         $this->assertTrue($this->safeSearch->isViolent());
+    }
+
+    public function testIsRacy()
+    {
+        $this->assertTrue($this->safeSearch->isRacy());
     }
 
     public function testCall()
