@@ -157,7 +157,7 @@ class BigtableClient
      *
      * Example:
      * ```
-     * $cluster = $bigtable->clusterMetadata();
+     * $cluster = $bigtable->clusterMetadata('cluster-id', 'location-id');
      * ```
      * @param string $clusterId The cluster ID
      * @param string $locationId The location ID
@@ -172,22 +172,24 @@ class BigtableClient
      * @return array
      */
     public function clusterMetadata(
-        $clusterId = null,
-        $locationId = null,
-        $storageType = null,
+        $clusterId,
+        $locationId,
+        $storageType = Instance::STORAGE_TYPE_UNSPECIFIED,
         $serveNodes = null
     ) {
         $metaData = [];
-        if (!empty($clusterId)) {
-            $metaData['clusterId'] = $clusterId;
+        if (empty($clusterId)) {
+            throw new \InvalidArgumentException("Cluster id must be set");
         }
-        if (!empty($locationId)) {
-            $metaData['locationId'] = $locationId;
+        $metaData['clusterId'] = $clusterId;
+
+        if (empty($locationId)) {
+            throw new \InvalidArgumentException("Location id must be set");
         }
-        if (!empty($storageType)) {
-            $metaData['defaultStorageType'] = $storageType;
-        }
-        if (!empty($serveNodes)) {
+        $metaData['locationId'] = $locationId;
+        $metaData['defaultStorageType'] = $storageType;
+
+        if ($serveNodes !== null) {
             $metaData['serveNodes'] = $serveNodes;
         }
 

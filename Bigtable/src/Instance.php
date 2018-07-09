@@ -208,7 +208,7 @@ class Instance
      * ```
      * $bigtable = new Google\Cloud\Bigtable\BigtableClient();
      * $operation = $instance->create(
-     *     $bigtable->clusterMetadata(['clusterId' => 'my-cluster', 'locationId' => 'us-east1-c'])
+     *     [$bigtable->clusterMetadata('my-cluster', 'my-location', null, 3)]
      * );
      * ```
      *
@@ -230,6 +230,8 @@ class Instance
      *        **Defaults to** using `Google\Cloud\Bigtable\Instance::INSTANCE_TYPE_UNSPECIFIED`.
      *
      * @return LongRunningOperation<Instance>
+     *
+     * @throws InvalidArgumentException if invalid argument
      */
     public function create(
         array $clusterMetadataList,
@@ -263,6 +265,11 @@ class Instance
                 ? $value['storageType']
                 : self::STORAGE_TYPE_UNSPECIFIED;
 
+            if ($type == self::INSTANCE_TYPE_DEVELOPMENT) {
+                unset($value['serveNodes']);
+            } elseif (!isset($value['serveNodes']) || $value['serveNodes'] <= 0) {
+                throw new \InvalidArgumentException("When creating Production instance, serveNodes must be > 0");
+            }
             $clustersArray[$clusterId] = $value;
         }
 
@@ -298,16 +305,17 @@ class Instance
     }
 
     /**
-     * Validate format of ID.
+     * Check invalid exception
      *
-     * @param string $value value to be validated whether it contains '/' character.
+     * @param string $value value to be validated for emptiness or containing '/' character.
      * @param string $text type of value to be validated.
      *
+     * @throws InvalidArgumentException
      */
     private function validate($value, $text)
     {
-        if (strpos($value, '/') !== false) {
-            throw new \InvalidArgumentException("Please pass just {$text}Id as '$text'");
+        if (empty($value) || strpos($value, '/') !== false) {
+            throw new \InvalidArgumentException("Please pass just {$text}Id as '{$text}-id'");
         }
     }
 }

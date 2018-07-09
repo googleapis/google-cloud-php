@@ -89,7 +89,7 @@ class InstanceTest extends TestCase
                 'connection'
             ]);
         } catch(\Exception $e) {
-            $error = "Please pass just instanceId as 'instance'";
+            $error = "Please pass just instanceId as 'instance-id'";
             $this->assertEquals($error, $e->getMessage());
         }
     }
@@ -104,7 +104,6 @@ class InstanceTest extends TestCase
     {
         try {
             $this->instance->create(
-                [],
                 []
             );
         }  catch(\Exception $e) {
@@ -115,11 +114,10 @@ class InstanceTest extends TestCase
 
     public function testCreateWithoutClusterId()
     {
-        $clusterMetadataList = $this->bigtableClient->clusterMetadata();
         try {
+            $clusterMetadataList = $this->bigtableClient->clusterMetadata(null, null);
             $this->instance->create(
-                [$clusterMetadataList],
-                []
+                [$clusterMetadataList]
             );
         }  catch(\Exception $e) {
             $error = 'Cluster id must be set';
@@ -129,26 +127,24 @@ class InstanceTest extends TestCase
 
     public function testCreateWithClusterIdBadFormat()
     {
-        $badClusterId = 'badformat/my-cluster';
-        $clusterMetadataList = $this->bigtableClient->clusterMetadata($badClusterId);
         try {
+            $badClusterId = 'badformat/my-cluster';
+            $clusterMetadataList = $this->bigtableClient->clusterMetadata($badClusterId, 'location-id');
             $this->instance->create(
-                [$clusterMetadataList],
-                []
+                [$clusterMetadataList]
             );
         }  catch(\Exception $e) {
-            $error = "Please pass just clusterId as 'cluster'";
+            $error = "Please pass just clusterId as 'cluster-id'";
             $this->assertEquals($error, $e->getMessage());
         }
     }
 
     public function testCreateWithoutLocationId()
     {
-        $clusterMetadataList = $this->bigtableClient->clusterMetadata(self::CLUSTER_ID);
         try {
+            $clusterMetadataList = $this->bigtableClient->clusterMetadata(self::CLUSTER_ID, null);
             $this->instance->create(
-                [$clusterMetadataList],
-                []
+                [$clusterMetadataList]
             );
         }  catch(\Exception $e) {
             $error = 'Location id must be set';
@@ -165,11 +161,28 @@ class InstanceTest extends TestCase
         );
         try {
             $this->instance->create(
-                [$clusterMetadataList],
-                []
+                [$clusterMetadataList]
             );
         }  catch(\Exception $e) {
-            $error = "Please pass just locationId as 'location'";
+            $error = "Please pass just locationId as 'location-id'";
+            $this->assertEquals($error, $e->getMessage());
+        }
+    }
+
+    public function testCreateWithServeNodeIsZero()
+    {
+        $clusterMetadataList = $this->bigtableClient->clusterMetadata(
+            self::CLUSTER_ID,
+            self::LOCATION_ID,
+            null,
+            0
+        );
+        try {
+            $this->instance->create(
+                [$clusterMetadataList]
+            );
+        }  catch(\Exception $e) {
+            $error = "When creating Production instance, serveNodes must be > 0";
             $this->assertEquals($error, $e->getMessage());
         }
     }
@@ -183,7 +196,9 @@ class InstanceTest extends TestCase
 
         $clusterMetadataList = $this->bigtableClient->clusterMetadata(
             self::CLUSTER_ID,
-            self::LOCATION_ID
+            self::LOCATION_ID,
+            Instance::STORAGE_TYPE_HDD,
+            2
         );
         $instance = $this->instance->create(
             [$clusterMetadataList],
