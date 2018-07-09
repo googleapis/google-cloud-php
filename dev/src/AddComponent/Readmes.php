@@ -28,6 +28,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 class Readmes
 {
     const README_TPL = 'template-README.md.txt';
+    const README_GEN_CLIENT_TPL = 'template-README.md-generated-client.txt';
     const GRPC_NOTICE_TPL = 'template-README.md-%s.txt';
     const SUGGESTION_TEXT = ' (skip suggested based on path name)';
 
@@ -52,7 +53,7 @@ class Readmes
     /**
      * @var string
      */
-    private $cliBasePath;
+    private $rootPath;
 
     /**
      * @var array
@@ -68,16 +69,16 @@ class Readmes
         QuestionHelper $questionHelper,
         InputInterface $input,
         OutputInterface $output,
-        $cliBasePath,
+        $rootPath,
         array $info
     ) {
         $this->questionHelper = $questionHelper;
         $this->input = $input;
         $this->output = $output;
-        $this->cliBasePath = $cliBasePath;
+        $this->rootPath = $rootPath;
         $this->info = $info;
 
-        $this->templatesPath = $this->cliBasePath .'/src/AddComponent/templates';
+        $this->templatesPath = $this->rootPath .'/dev/src/AddComponent/templates';
     }
 
     public function run()
@@ -85,18 +86,46 @@ class Readmes
         $this->createReadmes($this->info['path']);
     }
 
+    /**
+     * Recursively search for paths that contain /V*, and create a minimal generated client readme.
+     * @param $path
+     */
+    private function createReadmesInGeneratedClientRoot($path)
+    {
+        if ($this->pathIsGapic($path)) {
+            $questionText = sprintf('%s ' . PHP_EOL . 'Create README.md?', $path);
+            $q = $this->confirm($questionText);
+            $create = $this->askQuestion($q);
+            if ($create) {
+                $file = $path .'/README.md';
+                $content = file_get_contents($this->templatesPath .'/'. self::README_GEN_CLIENT_TPL);
+
+                $content = str_replace('{notice}', file_get_contents(
+                    $this->templatesPath .'/'. sprintf(self::GRPC_NOTICE_TPL, $this->info['type'])
+                ), $content);
+                $content = str_replace('{display}', $this->info['display'], $content);
+                $content = str_replace('{version}', $this->getVersionFromPath($path), $content);
+
+                file_put_contents($file, $content);
+            }
+            return;
+        }
+
+        $files = $this->scanDirectory($path);
+        foreach ($files as $file) {
+            $file = $path .'/'. $file;
+            if (is_dir($file)) {
+                $this->createReadmesInGeneratedClientRoot($file);
+            }
+        }
+    }
+
     private function createReadmes($path)
     {
         $files = $this->scanDirectory($path);
         if (!in_array('README.md', $files)) {
             $questionText = sprintf('%s '. PHP_EOL .'Create README.md?', $path);
-            $suggest = true;
-            if (strpos($path, 'Gapic') !== false || strpos($path, 'resources') !== false) {
-                $suggest = false;
-                $questionText = $questionText . self::SUGGESTION_TEXT;
-            }
-
-            $q = $this->confirm($questionText, $suggest);
+            $q = $this->confirm($questionText);
             $create = $this->askQuestion($q);
 
             if ($create) {
@@ -108,6 +137,7 @@ class Readmes
                 ), $content);
                 $content = str_replace('{display}', $this->info['display'], $content);
                 $content = str_replace('{homepage}', $this->info['cloudPage'], $content);
+                $content = str_replace('{docspage}', $this->info['docsPage'], $content);
                 $content = str_replace('{name}', $this->info['name'], $content);
                 $content = str_replace('{client}', 'readme', $content);
                 $content = str_replace('{directory}', strtolower(basename($this->info['path'])), $content);
@@ -119,7 +149,7 @@ class Readmes
         foreach ($files as $file) {
             $file = $path .'/'. $file;
             if (is_dir($file)) {
-                $this->createReadmes($file);
+                $this->createReadmesInGeneratedClientRoot($file);
             }
         }
     }

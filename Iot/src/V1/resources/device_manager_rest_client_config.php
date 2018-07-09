@@ -76,6 +76,12 @@ return [
             'GetDevice' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{name=projects/*/locations/*/registries/*/devices/*}',
+                'additionalBindings' => [
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1/{name=projects/*/locations/*/registries/*/groups/*/devices/*}',
+                    ],
+                ],
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -88,6 +94,13 @@ return [
                 'method' => 'patch',
                 'uriTemplate' => '/v1/{device.name=projects/*/locations/*/registries/*/devices/*}',
                 'body' => 'device',
+                'additionalBindings' => [
+                    [
+                        'method' => 'patch',
+                        'uriTemplate' => '/v1/{device.name=projects/*/locations/*/registries/*/groups/*/devices/*}',
+                        'body' => 'device',
+                    ],
+                ],
                 'placeholders' => [
                     'device.name' => [
                         'getters' => [
@@ -100,6 +113,12 @@ return [
             'DeleteDevice' => [
                 'method' => 'delete',
                 'uriTemplate' => '/v1/{name=projects/*/locations/*/registries/*/devices/*}',
+                'additionalBindings' => [
+                    [
+                        'method' => 'delete',
+                        'uriTemplate' => '/v1/{name=projects/*/locations/*/registries/*/groups/*/devices/*}',
+                    ],
+                ],
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -111,6 +130,12 @@ return [
             'ListDevices' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{parent=projects/*/locations/*/registries/*}/devices',
+                'additionalBindings' => [
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1/{parent=projects/*/locations/*/groups/*}/devices',
+                    ],
+                ],
                 'placeholders' => [
                     'parent' => [
                         'getters' => [
@@ -123,6 +148,13 @@ return [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{name=projects/*/locations/*/registries/*/devices/*}:modifyCloudToDeviceConfig',
                 'body' => '*',
+                'additionalBindings' => [
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{name=projects/*/locations/*/registries/*/groups/*/devices/*}:modifyCloudToDeviceConfig',
+                        'body' => '*',
+                    ],
+                ],
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -134,6 +166,12 @@ return [
             'ListDeviceConfigVersions' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{name=projects/*/locations/*/registries/*/devices/*}/configVersions',
+                'additionalBindings' => [
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1/{name=projects/*/locations/*/registries/*/groups/*/devices/*}/configVersions',
+                    ],
+                ],
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -145,6 +183,12 @@ return [
             'ListDeviceStates' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{name=projects/*/locations/*/registries/*/devices/*}/states',
+                'additionalBindings' => [
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1/{name=projects/*/locations/*/registries/*/groups/*/devices/*}/states',
+                    ],
+                ],
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -157,6 +201,13 @@ return [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{resource=projects/*/locations/*/registries/*}:setIamPolicy',
                 'body' => '*',
+                'additionalBindings' => [
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{resource=projects/*/locations/*/registries/*/groups/*}:setIamPolicy',
+                        'body' => '*',
+                    ],
+                ],
                 'placeholders' => [
                     'resource' => [
                         'getters' => [
@@ -169,6 +220,13 @@ return [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{resource=projects/*/locations/*/registries/*}:getIamPolicy',
                 'body' => '*',
+                'additionalBindings' => [
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{resource=projects/*/locations/*/registries/*/groups/*}:getIamPolicy',
+                        'body' => '*',
+                    ],
+                ],
                 'placeholders' => [
                     'resource' => [
                         'getters' => [
@@ -181,6 +239,13 @@ return [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{resource=projects/*/locations/*/registries/*}:testIamPermissions',
                 'body' => '*',
+                'additionalBindings' => [
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{resource=projects/*/locations/*/registries/*/groups/*}:testIamPermissions',
+                        'body' => '*',
+                    ],
+                ],
                 'placeholders' => [
                     'resource' => [
                         'getters' => [

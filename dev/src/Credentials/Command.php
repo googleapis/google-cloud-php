@@ -17,24 +17,15 @@
 
 namespace Google\Cloud\Dev\Credentials;
 
-use Symfony\Component\Console\Command\Command as SymfonyCommand;
+use Google\Cloud\Dev\Command\GoogleCloudCommand;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
 /**
  * Configure credentials for tests.
  */
-class Command extends SymfonyCommand
+class Command extends GoogleCloudCommand
 {
-    private $cliBasePath;
-
-    public function __construct($cliBasePath)
-    {
-        $this->cliBasePath = $cliBasePath;
-
-        parent::__construct();
-    }
-
     protected function configure()
     {
         $this->setName('credentials')
@@ -44,7 +35,7 @@ class Command extends SymfonyCommand
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $base = realpath($this->cliBasePath .'/../');
+        $base = $this->rootPath;
 
         $keyfiles = getenv('GOOGLE_CLOUD_PHP_KEYFILES');
         $decoded = json_decode(base64_decode($keyfiles), true);

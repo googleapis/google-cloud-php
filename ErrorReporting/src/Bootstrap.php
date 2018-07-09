@@ -130,6 +130,14 @@ class Bootstrap
             $service = self::$psrLogger->getMetadataProvider()->serviceId();
             $version = self::$psrLogger->getMetadataProvider()->versionId();
             self::$psrLogger->error($message, [
+                'context' => [
+                    'reportLocation' => [
+                        'filePath' => $ex->getFile(),
+                        'lineNumber' => $ex->getLine(),
+                        'functionName' =>
+                            self::getFunctionNameForReport($ex->getTrace()),
+                    ]
+                ],
                 'serviceContext' => [
                     'service' => $service,
                     'version' => $version,
@@ -168,7 +176,8 @@ class Bootstrap
                 'reportLocation' => [
                     'filePath' => $file,
                     'lineNumber' => $line,
-                    'functionName' => 'unknown'
+                    'functionName' =>
+                        self::getFunctionNameForReport(),
                 ]
             ],
             'serviceContext' => [
@@ -213,7 +222,8 @@ class Bootstrap
                             'reportLocation' => [
                                 'filePath' => $err['file'],
                                 'lineNumber' => $err['line'],
-                                'functionName' => 'unknown'
+                                'functionName' =>
+                                    self::getFunctionNameForReport(),
                             ]
                         ],
                         'serviceContext' => [
@@ -231,5 +241,30 @@ class Bootstrap
                     break;
             }
         }
+    }
+
+    /**
+     * Format the function name from a stack trace. This could be a global
+     * function (function_name), a class function (Class->function), or a static
+     * function (Class::function).
+     *
+     * @param array $trace The stack trace returned from Exception::getTrace()
+     */
+    private static function getFunctionNameForReport(array $trace = null)
+    {
+        if (null === $trace) {
+            return '<unknown function>';
+        }
+        if (empty($trace[0]['function'])) {
+            return '<none>';
+        }
+        $functionName = [$trace[0]['function']];
+        if (isset($trace[0]['type'])) {
+            $functionName[] = $trace[0]['type'];
+        }
+        if (isset($trace[0]['class'])) {
+            $functionName[] = $trace[0]['class'];
+        }
+        return implode('', array_reverse($functionName));
     }
 }

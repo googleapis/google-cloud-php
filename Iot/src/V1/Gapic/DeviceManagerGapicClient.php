@@ -21,24 +21,20 @@
  * https://github.com/google/googleapis/blob/master/google/cloud/iot/v1/device_manager.proto
  * and updates to that file get reflected here through a refresh process.
  *
- * EXPERIMENTAL: This client library class has not yet been declared GA (1.0). This means that
- * even though we intend the surface to be stable, we may make backwards incompatible changes
- * if necessary.
- *
  * @experimental
  */
 
 namespace Google\Cloud\Iot\V1\Gapic;
 
 use Google\ApiCore\ApiException;
-use Google\ApiCore\Call;
+use Google\ApiCore\CredentialsWrapper;
+use Google\ApiCore\FetchAuthTokenInterface;
 use Google\ApiCore\GapicClientTrait;
 use Google\ApiCore\PathTemplate;
 use Google\ApiCore\RequestParamsHeaderDescriptor;
 use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
-use Google\Auth\CredentialsLoader;
 use Google\Cloud\Iam\V1\GetIamPolicyRequest;
 use Google\Cloud\Iam\V1\Policy;
 use Google\Cloud\Iam\V1\SetIamPolicyRequest;
@@ -66,16 +62,10 @@ use Google\Cloud\Iot\V1\UpdateDeviceRegistryRequest;
 use Google\Cloud\Iot\V1\UpdateDeviceRequest;
 use Google\Protobuf\FieldMask;
 use Google\Protobuf\GPBEmpty;
-use Grpc\Channel;
-use Grpc\ChannelCredentials;
 
 /**
  * Service Description: Internet of things (IoT) service. Allows to manipulate device registry
  * instances and the registration of devices (Things) to the cloud.
- *
- * EXPERIMENTAL: This client library class has not yet been declared GA (1.0). This means that
- * even though we intend the surface to be stable, we may make backwards incompatible changes
- * if necessary.
  *
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods. Sample code to get started:
@@ -123,10 +113,12 @@ class DeviceManagerGapicClient
     const CODEGEN_NAME = 'gapic';
 
     /**
-     * The code generator version, to be included in the agent header.
+     * The default scopes required by the service.
      */
-    const CODEGEN_VERSION = '0.0.5';
-
+    public static $serviceScopes = [
+        'https://www.googleapis.com/auth/cloud-platform',
+        'https://www.googleapis.com/auth/cloudiot',
+    ];
     private static $locationNameTemplate;
     private static $registryNameTemplate;
     private static $deviceNameTemplate;
@@ -136,16 +128,17 @@ class DeviceManagerGapicClient
     {
         return [
             'serviceName' => self::SERVICE_NAME,
-            'serviceAddress' => self::SERVICE_ADDRESS,
-            'port' => self::DEFAULT_SERVICE_PORT,
-            'scopes' => [
-                'https://www.googleapis.com/auth/cloud-platform',
-                'https://www.googleapis.com/auth/cloudiot',
-            ],
-            'clientConfigPath' => __DIR__.'/../resources/device_manager_client_config.json',
-            'restClientConfigPath' => __DIR__.'/../resources/device_manager_rest_client_config.php',
+            'serviceAddress' => self::SERVICE_ADDRESS.':'.self::DEFAULT_SERVICE_PORT,
+            'clientConfig' => __DIR__.'/../resources/device_manager_client_config.json',
             'descriptorsConfigPath' => __DIR__.'/../resources/device_manager_descriptor_config.php',
-            'versionFile' => __DIR__.'/../../VERSION',
+            'credentialsConfig' => [
+                'scopes' => self::$serviceScopes,
+            ],
+            'transportConfig' => [
+                'rest' => [
+                    'restClientConfigPath' => __DIR__.'/../resources/device_manager_rest_client_config.php',
+                ],
+            ],
         ];
     }
 
@@ -298,57 +291,56 @@ class DeviceManagerGapicClient
      * @param array $options {
      *                       Optional. Options for configuring the service API wrapper.
      *
-     *     @type string $serviceAddress The domain name of the API remote host.
-     *                                  Default 'cloudiot.googleapis.com'.
-     *     @type mixed $port The port on which to connect to the remote host. Default 443.
-     *     @type Channel $channel
-     *           A `Channel` object. If not specified, a channel will be constructed.
-     *           NOTE: This option is only valid when utilizing the gRPC transport.
-     *     @type ChannelCredentials $sslCreds
-     *           A `ChannelCredentials` object for use with an SSL-enabled channel.
-     *           Default: a credentials object returned from
-     *           \Grpc\ChannelCredentials::createSsl().
-     *           NOTE: This option is only valid when utilizing the gRPC transport. Also, if the $channel
-     *           optional argument is specified, then this argument is unused.
-     *     @type bool $forceNewChannel
-     *           If true, this forces gRPC to create a new channel instead of using a persistent channel.
-     *           Defaults to false.
-     *           NOTE: This option is only valid when utilizing the gRPC transport. Also, if the $channel
-     *           optional argument is specified, then this option is unused.
-     *     @type CredentialsLoader $credentialsLoader
-     *           A CredentialsLoader object created using the Google\Auth library.
-     *     @type string[] $scopes A string array of scopes to use when acquiring credentials.
-     *                          Defaults to the scopes for the Google Cloud IoT API.
-     *     @type string $clientConfigPath
-     *           Path to a JSON file containing client method configuration, including retry settings.
-     *           Specify this setting to specify the retry behavior of all methods on the client.
+     *     @type string $serviceAddress
+     *           The address of the API remote host. May optionally include the port, formatted
+     *           as "<uri>:<port>". Default 'cloudiot.googleapis.com:443'.
+     *     @type string|array|FetchAuthTokenInterface|CredentialsWrapper $credentials
+     *           The credentials to be used by the client to authorize API calls. This option
+     *           accepts either a path to a credentials file, or a decoded credentials file as a
+     *           PHP array.
+     *           *Advanced usage*: In addition, this option can also accept a pre-constructed
+     *           {@see \Google\Auth\FetchAuthTokenInterface} object or
+     *           {@see \Google\ApiCore\CredentialsWrapper} object. Note that when one of these
+     *           objects are provided, any settings in $credentialsConfig will be ignored.
+     *     @type array $credentialsConfig
+     *           Options used to configure credentials, including auth token caching, for the client.
+     *           For a full list of supporting configuration options, see
+     *           {@see \Google\ApiCore\CredentialsWrapper::build()}.
+     *     @type bool $disableRetries
+     *           Determines whether or not retries defined by the client configuration should be
+     *           disabled. Defaults to `false`.
+     *     @type string|array $clientConfig
+     *           Client method configuration, including retry settings. This option can be either a
+     *           path to a JSON file, or a PHP array containing the decoded JSON data.
      *           By default this settings points to the default client config file, which is provided
-     *           in the resources folder. The retry settings provided in this option can be overridden
-     *           by settings in $retryingOverride
-     *     @type array $retryingOverride
-     *           An associative array in which the keys are method names (e.g. 'createFoo'), and
-     *           the values are retry settings to use for that method. The retry settings for each
-     *           method can be a {@see Google\ApiCore\RetrySettings} object, or an associative array
-     *           of retry settings parameters. See the documentation on {@see Google\ApiCore\RetrySettings}
-     *           for example usage. Passing a value of null is equivalent to a value of
-     *           ['retriesEnabled' => false]. Retry settings provided in this setting override the
-     *           settings in $clientConfigPath.
-     *     @type callable $authHttpHandler A handler used to deliver PSR-7 requests specifically
-     *           for authentication. Should match a signature of
-     *           `function (RequestInterface $request, array $options) : ResponseInterface`.
-     *     @type callable $httpHandler A handler used to deliver PSR-7 requests. Should match a
-     *           signature of `function (RequestInterface $request, array $options) : PromiseInterface`.
-     *           NOTE: This option is only valid when utilizing the REST transport.
-     *     @type string|TransportInterface $transport The transport used for executing network
-     *           requests. May be either the string `rest` or `grpc`. Additionally, it is possible
-     *           to pass in an already instantiated transport. Defaults to `grpc` if gRPC support is
-     *           detected on the system.
+     *           in the resources folder.
+     *     @type string|TransportInterface $transport
+     *           The transport used for executing network requests. May be either the string `rest`
+     *           or `grpc`. Defaults to `grpc` if gRPC support is detected on the system.
+     *           *Advanced usage*: Additionally, it is possible to pass in an already instantiated
+     *           {@see \Google\ApiCore\Transport\TransportInterface} object. Note that when this
+     *           object is provided, any settings in $transportConfig, and any $serviceAddress
+     *           setting, will be ignored.
+     *     @type array $transportConfig
+     *           Configuration options that will be used to construct the transport. Options for
+     *           each supported transport type should be passed in a key for that transport. For
+     *           example:
+     *           $transportConfig = [
+     *               'grpc' => [...],
+     *               'rest' => [...]
+     *           ];
+     *           See the {@see \Google\ApiCore\Transport\GrpcTransport::build()} and
+     *           {@see \Google\ApiCore\Transport\RestTransport::build()} methods for the
+     *           supported options.
      * }
+     *
+     * @throws ValidationException
      * @experimental
      */
-    public function __construct($options = [])
+    public function __construct(array $options = [])
     {
-        $this->setClientOptions($options + self::getClientDefaults());
+        $clientOptions = $this->buildClientOptions($options);
+        $this->setClientOptions($clientOptions);
     }
 
     /**
@@ -386,7 +378,7 @@ class DeviceManagerGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function createDeviceRegistry($parent, $deviceRegistry, $optionalArgs = [])
+    public function createDeviceRegistry($parent, $deviceRegistry, array $optionalArgs = [])
     {
         $request = new CreateDeviceRegistryRequest();
         $request->setParent($parent);
@@ -395,8 +387,8 @@ class DeviceManagerGapicClient
         $requestParams = new RequestParamsHeaderDescriptor([
           'parent' => $request->getParent(),
         ]);
-        $optionalArgs['userHeaders'] = isset($optionalArgs['userHeaders'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['userHeaders'])
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
             : $requestParams->getHeader();
 
         return $this->startCall(
@@ -438,7 +430,7 @@ class DeviceManagerGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function getDeviceRegistry($name, $optionalArgs = [])
+    public function getDeviceRegistry($name, array $optionalArgs = [])
     {
         $request = new GetDeviceRegistryRequest();
         $request->setName($name);
@@ -446,8 +438,8 @@ class DeviceManagerGapicClient
         $requestParams = new RequestParamsHeaderDescriptor([
           'name' => $request->getName(),
         ]);
-        $optionalArgs['userHeaders'] = isset($optionalArgs['userHeaders'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['userHeaders'])
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
             : $requestParams->getHeader();
 
         return $this->startCall(
@@ -496,7 +488,7 @@ class DeviceManagerGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function updateDeviceRegistry($deviceRegistry, $updateMask, $optionalArgs = [])
+    public function updateDeviceRegistry($deviceRegistry, $updateMask, array $optionalArgs = [])
     {
         $request = new UpdateDeviceRegistryRequest();
         $request->setDeviceRegistry($deviceRegistry);
@@ -505,8 +497,8 @@ class DeviceManagerGapicClient
         $requestParams = new RequestParamsHeaderDescriptor([
           'device_registry.name' => $request->getDeviceRegistry()->getName(),
         ]);
-        $optionalArgs['userHeaders'] = isset($optionalArgs['userHeaders'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['userHeaders'])
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
             : $requestParams->getHeader();
 
         return $this->startCall(
@@ -546,7 +538,7 @@ class DeviceManagerGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function deleteDeviceRegistry($name, $optionalArgs = [])
+    public function deleteDeviceRegistry($name, array $optionalArgs = [])
     {
         $request = new DeleteDeviceRegistryRequest();
         $request->setName($name);
@@ -554,8 +546,8 @@ class DeviceManagerGapicClient
         $requestParams = new RequestParamsHeaderDescriptor([
           'name' => $request->getName(),
         ]);
-        $optionalArgs['userHeaders'] = isset($optionalArgs['userHeaders'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['userHeaders'])
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
             : $requestParams->getHeader();
 
         return $this->startCall(
@@ -618,7 +610,7 @@ class DeviceManagerGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function listDeviceRegistries($parent, $optionalArgs = [])
+    public function listDeviceRegistries($parent, array $optionalArgs = [])
     {
         $request = new ListDeviceRegistriesRequest();
         $request->setParent($parent);
@@ -632,8 +624,8 @@ class DeviceManagerGapicClient
         $requestParams = new RequestParamsHeaderDescriptor([
           'parent' => $request->getParent(),
         ]);
-        $optionalArgs['userHeaders'] = isset($optionalArgs['userHeaders'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['userHeaders'])
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
             : $requestParams->getHeader();
 
         return $this->getPagedListResponse(
@@ -662,7 +654,9 @@ class DeviceManagerGapicClient
      * @param string $parent       The name of the device registry where this device should be created.
      *                             For example,
      *                             `projects/example-project/locations/us-central1/registries/my-registry`.
-     * @param Device $device       The device registration details.
+     * @param Device $device       The device registration details. The field `name` must be empty. The server
+     *                             will generate that field from the device registry `id` provided and the
+     *                             `parent` field.
      * @param array  $optionalArgs {
      *                             Optional.
      *
@@ -678,7 +672,7 @@ class DeviceManagerGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function createDevice($parent, $device, $optionalArgs = [])
+    public function createDevice($parent, $device, array $optionalArgs = [])
     {
         $request = new CreateDeviceRequest();
         $request->setParent($parent);
@@ -687,8 +681,8 @@ class DeviceManagerGapicClient
         $requestParams = new RequestParamsHeaderDescriptor([
           'parent' => $request->getParent(),
         ]);
-        $optionalArgs['userHeaders'] = isset($optionalArgs['userHeaders'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['userHeaders'])
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
             : $requestParams->getHeader();
 
         return $this->startCall(
@@ -734,7 +728,7 @@ class DeviceManagerGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function getDevice($name, $optionalArgs = [])
+    public function getDevice($name, array $optionalArgs = [])
     {
         $request = new GetDeviceRequest();
         $request->setName($name);
@@ -745,8 +739,8 @@ class DeviceManagerGapicClient
         $requestParams = new RequestParamsHeaderDescriptor([
           'name' => $request->getName(),
         ]);
-        $optionalArgs['userHeaders'] = isset($optionalArgs['userHeaders'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['userHeaders'])
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
             : $requestParams->getHeader();
 
         return $this->startCall(
@@ -779,7 +773,7 @@ class DeviceManagerGapicClient
      * @param FieldMask $updateMask   Only updates the `device` fields indicated by this mask.
      *                                The field mask must not be empty, and it must not contain fields that
      *                                are immutable or only set by the server.
-     *                                Mutable top-level fields: `credentials`, `enabled_state`, and `metadata`
+     *                                Mutable top-level fields: `credentials`, `blocked`, and `metadata`
      * @param array     $optionalArgs {
      *                                Optional.
      *
@@ -795,7 +789,7 @@ class DeviceManagerGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function updateDevice($device, $updateMask, $optionalArgs = [])
+    public function updateDevice($device, $updateMask, array $optionalArgs = [])
     {
         $request = new UpdateDeviceRequest();
         $request->setDevice($device);
@@ -804,8 +798,8 @@ class DeviceManagerGapicClient
         $requestParams = new RequestParamsHeaderDescriptor([
           'device.name' => $request->getDevice()->getName(),
         ]);
-        $optionalArgs['userHeaders'] = isset($optionalArgs['userHeaders'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['userHeaders'])
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
             : $requestParams->getHeader();
 
         return $this->startCall(
@@ -846,7 +840,7 @@ class DeviceManagerGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function deleteDevice($name, $optionalArgs = [])
+    public function deleteDevice($name, array $optionalArgs = [])
     {
         $request = new DeleteDeviceRequest();
         $request->setName($name);
@@ -854,8 +848,8 @@ class DeviceManagerGapicClient
         $requestParams = new RequestParamsHeaderDescriptor([
           'name' => $request->getName(),
         ]);
-        $optionalArgs['userHeaders'] = isset($optionalArgs['userHeaders'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['userHeaders'])
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
             : $requestParams->getHeader();
 
         return $this->startCall(
@@ -929,7 +923,7 @@ class DeviceManagerGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function listDevices($parent, $optionalArgs = [])
+    public function listDevices($parent, array $optionalArgs = [])
     {
         $request = new ListDevicesRequest();
         $request->setParent($parent);
@@ -952,8 +946,8 @@ class DeviceManagerGapicClient
         $requestParams = new RequestParamsHeaderDescriptor([
           'parent' => $request->getParent(),
         ]);
-        $optionalArgs['userHeaders'] = isset($optionalArgs['userHeaders'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['userHeaders'])
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
             : $requestParams->getHeader();
 
         return $this->getPagedListResponse(
@@ -1006,7 +1000,7 @@ class DeviceManagerGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function modifyCloudToDeviceConfig($name, $binaryData, $optionalArgs = [])
+    public function modifyCloudToDeviceConfig($name, $binaryData, array $optionalArgs = [])
     {
         $request = new ModifyCloudToDeviceConfigRequest();
         $request->setName($name);
@@ -1018,8 +1012,8 @@ class DeviceManagerGapicClient
         $requestParams = new RequestParamsHeaderDescriptor([
           'name' => $request->getName(),
         ]);
-        $optionalArgs['userHeaders'] = isset($optionalArgs['userHeaders'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['userHeaders'])
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
             : $requestParams->getHeader();
 
         return $this->startCall(
@@ -1067,7 +1061,7 @@ class DeviceManagerGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function listDeviceConfigVersions($name, $optionalArgs = [])
+    public function listDeviceConfigVersions($name, array $optionalArgs = [])
     {
         $request = new ListDeviceConfigVersionsRequest();
         $request->setName($name);
@@ -1078,8 +1072,8 @@ class DeviceManagerGapicClient
         $requestParams = new RequestParamsHeaderDescriptor([
           'name' => $request->getName(),
         ]);
-        $optionalArgs['userHeaders'] = isset($optionalArgs['userHeaders'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['userHeaders'])
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
             : $requestParams->getHeader();
 
         return $this->startCall(
@@ -1127,7 +1121,7 @@ class DeviceManagerGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function listDeviceStates($name, $optionalArgs = [])
+    public function listDeviceStates($name, array $optionalArgs = [])
     {
         $request = new ListDeviceStatesRequest();
         $request->setName($name);
@@ -1138,8 +1132,8 @@ class DeviceManagerGapicClient
         $requestParams = new RequestParamsHeaderDescriptor([
           'name' => $request->getName(),
         ]);
-        $optionalArgs['userHeaders'] = isset($optionalArgs['userHeaders'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['userHeaders'])
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
             : $requestParams->getHeader();
 
         return $this->startCall(
@@ -1188,7 +1182,7 @@ class DeviceManagerGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function setIamPolicy($resource, $policy, $optionalArgs = [])
+    public function setIamPolicy($resource, $policy, array $optionalArgs = [])
     {
         $request = new SetIamPolicyRequest();
         $request->setResource($resource);
@@ -1197,8 +1191,8 @@ class DeviceManagerGapicClient
         $requestParams = new RequestParamsHeaderDescriptor([
           'resource' => $request->getResource(),
         ]);
-        $optionalArgs['userHeaders'] = isset($optionalArgs['userHeaders'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['userHeaders'])
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
             : $requestParams->getHeader();
 
         return $this->startCall(
@@ -1243,7 +1237,7 @@ class DeviceManagerGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function getIamPolicy($resource, $optionalArgs = [])
+    public function getIamPolicy($resource, array $optionalArgs = [])
     {
         $request = new GetIamPolicyRequest();
         $request->setResource($resource);
@@ -1251,8 +1245,8 @@ class DeviceManagerGapicClient
         $requestParams = new RequestParamsHeaderDescriptor([
           'resource' => $request->getResource(),
         ]);
-        $optionalArgs['userHeaders'] = isset($optionalArgs['userHeaders'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['userHeaders'])
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
             : $requestParams->getHeader();
 
         return $this->startCall(
@@ -1302,7 +1296,7 @@ class DeviceManagerGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function testIamPermissions($resource, $permissions, $optionalArgs = [])
+    public function testIamPermissions($resource, $permissions, array $optionalArgs = [])
     {
         $request = new TestIamPermissionsRequest();
         $request->setResource($resource);
@@ -1311,8 +1305,8 @@ class DeviceManagerGapicClient
         $requestParams = new RequestParamsHeaderDescriptor([
           'resource' => $request->getResource(),
         ]);
-        $optionalArgs['userHeaders'] = isset($optionalArgs['userHeaders'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['userHeaders'])
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
             : $requestParams->getHeader();
 
         return $this->startCall(

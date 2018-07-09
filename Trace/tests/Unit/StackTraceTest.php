@@ -29,7 +29,7 @@ class StackTraceTest extends TestCase
     {
         $backtrace = debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS);
         $stackTrace = new StackTrace($backtrace);
-        $data = $stackTrace->jsonSerialize();
+        $data = $stackTrace->info();
         $this->assertStackFramesJsonFormat($data);
     }
 
@@ -39,7 +39,7 @@ class StackTraceTest extends TestCase
             return debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS);
         });
         $stackTrace = new StackTrace($backtrace);
-        $data = $stackTrace->jsonSerialize();
+        $data = $stackTrace->info();
         $this->assertStackFramesJsonFormat($data);
     }
 

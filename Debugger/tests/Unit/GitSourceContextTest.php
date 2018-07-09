@@ -25,8 +25,6 @@ use PHPUnit\Framework\TestCase;
  */
 class GitSourceContextTest extends TestCase
 {
-    use JsonTestTrait;
-
     public function testSerializes()
     {
         $sourceContext = new GitSourceContext(
@@ -40,6 +38,6 @@ class GitSourceContextTest extends TestCase
             ]
         ];
 
-        $this->assertProducesEquivalentJson($expected, $sourceContext);
+        $this->assertEquals($expected, $sourceContext->info());
     }
 }

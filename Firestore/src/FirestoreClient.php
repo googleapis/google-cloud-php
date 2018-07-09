@@ -29,6 +29,7 @@ use Google\Cloud\Core\Retry;
 use Google\Cloud\Core\ValidateTrait;
 use Google\Cloud\Firestore\Connection\Grpc;
 use Psr\Cache\CacheItemPoolInterface;
+use Psr\Http\Message\StreamInterface;
 
 /**
  * Cloud Firestore is a flexible, scalable, realtime database for mobile, web, and server development.
@@ -54,7 +55,7 @@ class FirestoreClient
     use SnapshotTrait;
     use ValidateTrait;
 
-    const VERSION = '0.9.1';
+    const VERSION = '0.11.2';
 
     const DEFAULT_DATABASE = '(default)';
 

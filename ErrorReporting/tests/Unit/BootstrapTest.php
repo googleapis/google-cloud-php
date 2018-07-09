@@ -114,6 +114,13 @@ class BootstrapTest extends TestCase
     ) {
         $expectedMessage = sprintf('PHP Notice: %s', (string)$exception);
         $expectedContext = [
+            'context' => [
+                'reportLocation' => [
+                    'filePath' => $exception->getFile(),
+                    'lineNumber' => $exception->getLine(),
+                    'functionName' => 'Google\Cloud\ErrorReporting\Tests\Unit\BootstrapTest->exceptionProvider',
+                ]
+            ],
             'serviceContext' => [
                 'service' => '',
                 'version' => ''
@@ -178,7 +185,7 @@ class BootstrapTest extends TestCase
                 'reportLocation' => [
                     'filePath' => $error['file'],
                     'lineNumber' => $error['line'],
-                    'functionName' => 'unknown'
+                    'functionName' => '<unknown function>'
                 ]
             ],
             'serviceContext' => [
@@ -271,7 +278,7 @@ class BootstrapTest extends TestCase
                 'reportLocation' => [
                     'filePath' => $error['file'],
                     'lineNumber' => $error['line'],
-                    'functionName' => 'unknown'
+                    'functionName' => '<unknown function>'
                 ]
             ],
             'serviceContext' => [

@@ -2,14 +2,19 @@
 
 > Idiomatic PHP client for [Stackdriver Debugger](https://cloud.google.com/debugger/).
 
-* [Homepage](http://googlecloudplatform.github.io/google-cloud-php)
-* [API documentation](http://googlecloudplatform.github.io/google-cloud-php/#/docs/cloud-debugger/latest/debugger/debuggerclient)
+[![Latest Stable Version](https://poser.pugx.org/google/cloud-debugger/v/stable)](https://packagist.org/packages/google/cloud-debugger) [![Packagist](https://img.shields.io/packagist/dm/google/cloud-debugger.svg)](https://packagist.org/packages/google/cloud-debugger)
+
+* [API documentation](http://googlecloudplatform.github.io/google-cloud-php/#/docs/cloud-debugger/latest)
 
 **NOTE:** This repository is part of [Google Cloud PHP](https://github.com/googlecloudplatform/google-cloud-php). Any
 support requests, bug reports, or development contributions should be directed to
 that project.
 
-## Installation
+A feature of Google Cloud Platform that lets you inspect the state of an application, at any code location, without
+stopping or slowing down the running app. Stackdriver Debugger makes it easier to view the application state without
+adding logging statements.
+
+### Installation
 
 1. Install the PHP extension from PECL.
 
@@ -77,9 +82,27 @@ application:
     ]);
     ```
 
-## Configuration
+This component supports both REST over HTTP/1.1 and gRPC. In order to take advantage of the benefits offered by gRPC (such as streaming methods)
+please see our [gRPC installation guide](https://cloud.google.com/php/grpc).
 
-### Snapshots
+### Authentication
+
+Please see our [Authentication guide](https://github.com/GoogleCloudPlatform/google-cloud-php/blob/master/AUTHENTICATION.md) for more information
+on authenticating your client. Once authenticated, you'll be ready to start making requests.
+
+### Sample
+
+```php
+use Google\Cloud\Debugger\DebuggerClient;
+
+$debugger = new DebuggerClient();
+$debuggee = $debugger->debugee();
+$debuggee->register();
+```
+
+### Configuration
+
+#### Snapshots
 
 Debugger snapshots allow you to capture and inspect the call stack and local
 variables in your application without stopping or slowing it down. In general,
@@ -89,7 +112,7 @@ you will set breakpoints via the Stackdriver Debugger UI in the
 See [Using Debug Snapshots][using-debug-snapshots] for more information on
 snapshots.
 
-### Logpoints
+#### Logpoints
 
 Debugger logpoints allow you to inject logging into running services without
 restarting or interfering with the normal function of the service. This can be
@@ -108,6 +131,15 @@ $agent = new Google\Cloud\Debugger\Agent([
 See [Using Debug Logpoints][using-debug-logpoints] for more information on
 logpoints.
 
+### Version
+
+This component is considered alpha. As such, it is still a work-in-progress and is more likely to get backwards-incompatible updates.
+
+### Next Steps
+
+1. Understand the [official documentation][official-documentation].
+2. Take a look at [in-depth usage samples][usage-samples].
+
 [semaphore-extensions]: http://php.net/manual/en/book.sem.php
 [batch-daemon]: https://github.com/GoogleCloudPlatform/google-cloud-php/blob/master/src/Core/Batch/BatchDaemon.php
 [debugger-daemon]: http://googlecloudplatform.github.io/google-cloud-php/#/docs/cloud-debugger/master/debugger/daemon
@@ -115,3 +147,5 @@ logpoints.
 [debugger-console]: https://console.cloud.google.com/debug
 [using-debug-snapshots]: https://cloud.google.com/debugger/docs/debugging
 [using-debug-logpoints]: https://cloud.google.com/debugger/docs/logpoints
+[official-documentation]: https://cloud.google.com/debugger/docs/
+[usage-samples]: https://github.com/GoogleCloudPlatform/php-docs-samples/tree/master/debugger

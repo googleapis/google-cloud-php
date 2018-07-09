@@ -1,5 +1,6 @@
 {
     "title": "Iot",
+    "defaultService": "iot\/readme",
     "services": [
         {
             "title": "Overview",
@@ -7,11 +8,7 @@
         },
         {
             "title": "DeviceManagerClient",
-            "type": "iot\/v1\/devicemanagerclient",
-            "nav": [],
-            "patterns": [
-                "iot\/v1\/\\w{1,}"
-            ]
+            "type": "iot\/v1\/devicemanagerclient"
         }
     ],
     "pattern": "iot\/\\w{1,}"

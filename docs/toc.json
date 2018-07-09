@@ -1,5 +1,4 @@
 {
-    "overview": "overview.html",
     "guides": [{
         "title": "Authentication",
         "id": "authentication",

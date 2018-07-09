@@ -65,27 +65,171 @@ trait TransactionalReadTrait
     /**
      * Run a query.
      *
+     * Google Cloud PHP will infer parameter types for all primitive types and
+     * all values implementing {@see Google\Cloud\Spanner\ValueInterface}, with
+     * the exception of `null`. Non-associative arrays will be interpreted as
+     * a Spanner ARRAY type, and must contain only a single type of value.
+     * Associative arrays or values of type {@see Google\Cloud\Spanner\StructValue}
+     * will be interpreted as Spanner STRUCT type. Structs MUST always explicitly
+     * define their field types.
+     *
+     * In any case where the value of a parameter may be `null`, you MUST
+     * explicitly define the parameter's type.
+     *
+     * With the exception of arrays and structs, types are defined using a type
+     * constant defined on {@see Google\Cloud\Spanner\Database}. Examples include
+     * but are not limited to `Database::TYPE_STRING` and `Database::TYPE_INT64`.
+     *
+     * Arrays, when explicitly typing, should use an instance of
+     * {@see Google\Cloud\Spanner\ArrayType} to declare their type and the types
+     * of any values contained within the array elements.
+     *
+     * Structs must always declare their type using an instance of
+     * {@see Google\Cloud\Spanner\StructType}. Struct values may be expressed as
+     * an associative array, however if the struct contains any unnamed fields,
+     * or any fields with duplicate names, the struct must be expressed using an
+     * instance of {@see Google\Cloud\Spanner\StructValue}. Struct value types
+     * may be inferred with the same caveats as top-level parameters (in other
+     * words, so long as they are not nullable and do not contain nested structs).
+     *
+     * Example:
+     * ```
+     * $result = $transaction->execute('SELECT * FROM Posts WHERE ID = @postId', [
+     *     'parameters' => [
+     *         'postId' => 1337
+     *     ]
+     * ]);
+     *
+     * $firstRow = $result->rows()->current();
+     * ```
+     *
+     * ```
+     * // Parameters which may be null must include an expected parameter type.
+     * use Google\Cloud\Spanner\Database;
+     * use Google\Cloud\Spanner\Timestamp;
+     *
+     * $values = [
+     *     new Timestamp(new \DateTimeImmutable),
+     *     null
+     * ];
+     *
+     * $result = $transaction->execute('SELECT @timestamp as timestamp', [
+     *     'parameters' => [
+     *         'timestamp' => array_rand($values)
+     *     ],
+     *     'types' => [
+     *         'timestamp' => Database::TYPE_TIMESTAMP
+     *     ]
+     * ]);
+     *
+     * $timestamp = $result->rows()->current()['timestamp'];
+     * ```
+     *
+     * ```
+     * // Array parameters which may be null or empty must include the array value type.
+     * use Google\Cloud\Spanner\ArrayType;
+     * use Google\Cloud\Spanner\Database;
+     *
+     * $result = $transaction->execute('SELECT @emptyArrayOfIntegers as numbers', [
+     *     'parameters' => [
+     *         'emptyArrayOfIntegers' => []
+     *     ],
+     *     'types' => [
+     *         'emptyArrayOfIntegers' => new ArrayType(Database::TYPE_INT64)
+     *     ]
+     * ]);
+     *
+     * $row = $result->rows()->current();
+     * $emptyArray = $row['numbers'];
+     * ```
+     *
+     * ```
+     * // Struct parameters provide a type definition. Fields within a Struct may
+     * // be inferred following the same rules as top-level parameters. Any
+     * // nested structs must be an instance of `Google\Cloud\Spanner\StructType`,
+     * // and any values which could be of type `null` must explicitly specify
+     * // their type.
+     * use Google\Cloud\Spanner\Database;
+     * use Google\Cloud\Spanner\StructType;
+     *
+     * $result = $transaction->execute('SELECT @userStruct.firstName, @userStruct.lastName', [
+     *     'parameters' => [
+     *         'userStruct' => [
+     *             'firstName' => 'John',
+     *             'lastName' => 'Testuser'
+     *         ]
+     *     ],
+     *     'types' => [
+     *         'userStruct' => (new StructType())
+     *             ->add('firstName', Database::TYPE_STRING)
+     *             ->add('lastName', Database::TYPE_STRING)
+     *     ]
+     * ]);
+     *
+     * $row = $result->rows()->current();
+     * $fullName = $row['firstName'] . ' ' . $row['lastName']; // `John Testuser`
+     * ```
+     *
+     * ```
+     * // If a struct contains unnamed fields, or multiple fields with the same
+     * // name, it must be defined using {@see Google\Cloud\Spanner\StructValue}.
+     * use Google\Cloud\Spanner\Database;
+     * use Google\Cloud\Spanner\Result;
+     * use Google\Cloud\Spanner\StructValue;
+     * use Google\Cloud\Spanner\StructType;
+     *
+     * $res = $transaction->execute('SELECT * FROM UNNEST(ARRAY(SELECT @structParam))', [
+     *     'parameters' => [
+     *         'structParam' => (new StructValue)
+     *             ->add('foo', 'bar')
+     *             ->add('foo', 2)
+     *             ->addUnnamed('this field is unnamed')
+     *     ],
+     *     'types' => [
+     *         'structParam' => (new StructType)
+     *             ->add('foo', Database::TYPE_STRING)
+     *             ->add('foo', Database::TYPE_INT64)
+     *             ->addUnnamed(Database::TYPE_STRING)
+     *     ]
+     * ])->rows(Result::RETURN_NAME_VALUE_PAIR)->current();
+     *
+     * echo $res[0]['name'] . ': ' . $res[0]['value'] . PHP_EOL; // "foo: bar"
+     * echo $res[1]['name'] . ': ' . $res[1]['value'] . PHP_EOL; // "foo: 2"
+     * echo $res[2]['name'] . ': ' . $res[2]['value'] . PHP_EOL; // "2: this field is unnamed"
+     * ```
+     *
+     * @codingStandardsIgnoreStart
+     * @see https://cloud.google.com/spanner/reference/rpc/google.spanner.v1#google.spanner.v1.ExecuteStreamingSqlRequest ExecuteStreamingSqlRequest
+     * @codingStandardsIgnoreEnd
+     *
+     * @codingStandardsIgnoreStart
      * @param string $sql The query string to execute.
      * @param array $options [optional] {
-     *     Configuration options.
+     *     Configuration Options.
+     *     See [TransactionOptions](https://cloud.google.com/spanner/docs/reference/rpc/google.spanner.v1#google.spanner.v1.TransactionOptions)
+     *     for detailed description of available transaction options. Please
+     *     note that only one of `$strong`, `$minReadTimestamp`,
+     *     `$maxStaleness`, `$readTimestamp` or `$exactStaleness` may be set in
+     *     a request.
      *
      *     @type array $parameters A key/value array of Query Parameters, where
      *           the key is represented in the query string prefixed by a `@`
      *           symbol.
      *     @type array $types A key/value array of Query Parameter types.
      *           Generally, Google Cloud PHP can infer types. Explicit type
-     *           definitions are only necessary for null parameter values.
-     *           Accepted values are defined as constants on
-     *           {@see Google\Cloud\Spanner\ValueMapper}, and are as follows:
+     *           declarations are required in the case of struct parameters,
+     *           or when a null value exists as a parameter.
+     *           Accepted values for primitive types are defined as constants on
+     *           {@see Google\Cloud\Spanner\Database}, and are as follows:
      *           `Database::TYPE_BOOL`, `Database::TYPE_INT64`,
      *           `Database::TYPE_FLOAT64`, `Database::TYPE_TIMESTAMP`,
      *           `Database::TYPE_DATE`, `Database::TYPE_STRING`,
-     *           `Database::TYPE_BYTES`, `Database::TYPE_ARRAY` and
-     *           `Database::TYPE_STRUCT`. If the parameter type is an array,
-     *           the type should be given as an array, where the first element
-     *           is `Database::TYPE_ARRAY` and the second element is the
-     *           array type, for instance `[Database::TYPE_ARRAY, Database::TYPE_INT64]`.
+     *           `Database::TYPE_BYTES`. If the value is an array, use
+     *           {@see Google\Cloud\Spanner\ArrayType} to declare the array
+     *           parameter types. Likewise, for structs, use
+     *           {@see Google\Cloud\Spanner\StructType}.
      * }
+     * @codingStandardsIgnoreEnd
      * @return Result
      */
     public function execute($sql, array $options = [])
@@ -105,6 +249,23 @@ trait TransactionalReadTrait
 
     /**
      * Lookup rows in a table.
+     *
+     * Example:
+     * ```
+     * use Google\Cloud\Spanner\KeySet;
+     *
+     * $keySet = new KeySet([
+     *     'keys' => [1337]
+     * ]);
+     *
+     * $columns = ['ID', 'title', 'content'];
+     *
+     * $result = $transaction->read('Posts', $keySet, $columns);
+     *
+     * $firstRow = $result->rows()->current();
+     * ```
+     *
+     * @see https://cloud.google.com/spanner/reference/rpc/google.spanner.v1#google.spanner.v1.ReadRequest ReadRequest
      *
      * @param string $table The table name.
      * @param KeySet $keySet The KeySet to select rows.
@@ -135,6 +296,11 @@ trait TransactionalReadTrait
     /**
      * Retrieve the Transaction ID.
      *
+     * Example:
+     * ```
+     * $id = $transaction->id();
+     * ```
+     *
      * @return string|null
      */
     public function id()
@@ -145,6 +311,7 @@ trait TransactionalReadTrait
     /**
      * Get the Transaction Type.
      *
+     * @access private
      * @return int
      */
     public function type()

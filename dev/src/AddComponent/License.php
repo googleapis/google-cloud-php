@@ -25,7 +25,7 @@ class License
     /**
      * @var string
      */
-    private $cliBasePath;
+    private $rootPath;
 
     /**
      * @var string
@@ -33,15 +33,15 @@ class License
     private $path;
 
 
-    public function __construct($cliBasePath, $path)
+    public function __construct($rootPath, $path)
     {
-        $this->cliBasePath = $cliBasePath;
+        $this->rootPath = $rootPath;
         $this->path = $path;
     }
 
     public function run()
     {
-        $source = $this->cliBasePath .'/../LICENSE';
+        $source = $this->rootPath .'/LICENSE';
         $dest = $this->path .'/LICENSE';
 
         copy($source, $dest);

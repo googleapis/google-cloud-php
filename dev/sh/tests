@@ -6,7 +6,10 @@ function unit () {
   echo "Running Unit Test Suite"
 
   if [ "${TRAVIS}" == "true" ]; then
-    $(dirname $0)/../../vendor/bin/phpunit --coverage-clover=build/clover.xml
+    # TODO: re-enable code coverage once issues with xdebug and empty
+    # coverage reports are resolved.
+    # $(dirname $0)/../../vendor/bin/phpunit --coverage-clover=build/clover.xml
+    $(dirname $0)/../../vendor/bin/phpunit
   else
     $(dirname $0)/../../vendor/bin/phpunit
   fi

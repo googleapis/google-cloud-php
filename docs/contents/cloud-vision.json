@@ -1,7 +1,11 @@
 {
     "title": "Vision",
     "pattern": "vision\/\\w{1,}",
+    "defaultService": "vision/readme",
     "services": [{
+        "title": "Overview",
+        "type": "vision/readme"
+    }, {
         "title": "VisionClient",
         "type": "vision/visionclient"
     }, {

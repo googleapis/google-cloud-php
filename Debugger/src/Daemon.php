@@ -17,6 +17,7 @@
 
 namespace Google\Cloud\Debugger;
 
+use Google\Cloud\Core\Batch\ClosureSerializerInterface;
 use Google\Cloud\Core\Batch\SimpleJobTrait;
 use Google\Cloud\Core\Batch\SerializableClientTrait;
 use Google\Cloud\Core\SysvTrait;
@@ -256,7 +257,7 @@ class Daemon
         if (isset($_SERVER['GAE_SERVICE'])) {
             return $_SERVER['GAE_SERVICE'] . ' - ' . $_SERVER['GAE_VERSION'];
         }
-        return gethostname() . ' - ' . getcwd();
+        return php_uname('n') . ' - ' . getcwd();
     }
 
     private function defaultSourceContext()

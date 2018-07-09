@@ -24,12 +24,21 @@ namespace Google\Cloud\Trace\Connection;
 interface ConnectionInterface
 {
     /**
-     * @param  array $args
+     * Sends new spans to new or existing traces. You cannot update existing
+     * spans.
+     *
+     * @param array $args {
+     *      Batch write params.
+     *
+     *      @type string $projectsId The ID of the Google Cloud Project
+     *      @type array $spans Array of associative array span data. See
+     *          {@see Google\Cloud\Trace\Span::info()} for format.
+     * }
      */
     public function traceBatchWrite(array $args);
 
     /**
-     * @param  array $args
+     * @param array $args
      */
     public function traceSpanCreate(array $args);
 }

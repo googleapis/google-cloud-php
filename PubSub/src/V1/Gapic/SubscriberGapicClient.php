@@ -21,10 +21,6 @@
  * https://github.com/google/googleapis/blob/master/google/pubsub/v1/pubsub.proto
  * and updates to that file get reflected here through a refresh process.
  *
- * EXPERIMENTAL: This client library class has not yet been declared GA (1.0). This means that
- * even though we intend the surface to be stable, we may make backwards incompatible changes
- * if necessary.
- *
  * @experimental
  */
 
@@ -32,12 +28,13 @@ namespace Google\Cloud\PubSub\V1\Gapic;
 
 use Google\ApiCore\ApiException;
 use Google\ApiCore\Call;
+use Google\ApiCore\CredentialsWrapper;
+use Google\ApiCore\FetchAuthTokenInterface;
 use Google\ApiCore\GapicClientTrait;
 use Google\ApiCore\PathTemplate;
 use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
-use Google\Auth\CredentialsLoader;
 use Google\Cloud\Iam\V1\GetIamPolicyRequest;
 use Google\Cloud\Iam\V1\Policy;
 use Google\Cloud\Iam\V1\SetIamPolicyRequest;
@@ -69,16 +66,11 @@ use Google\Protobuf\Duration;
 use Google\Protobuf\FieldMask;
 use Google\Protobuf\GPBEmpty;
 use Google\Protobuf\Timestamp;
-use Grpc\Channel;
-use Grpc\ChannelCredentials;
 
 /**
  * Service Description: The service that an application uses to manipulate subscriptions and to
- * consume messages from a subscription via the `Pull` method.
- *
- * EXPERIMENTAL: This client library class has not yet been declared GA (1.0). This means that
- * even though we intend the surface to be stable, we may make backwards incompatible changes
- * if necessary.
+ * consume messages from a subscription via the `Pull` method or by
+ * establishing a bi-directional stream using the `StreamingPull` method.
  *
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods. Sample code to get started:
@@ -126,54 +118,39 @@ class SubscriberGapicClient
     const CODEGEN_NAME = 'gapic';
 
     /**
-     * The code generator version, to be included in the agent header.
+     * The default scopes required by the service.
      */
-    const CODEGEN_VERSION = '0.0.5';
-
-    private static $projectNameTemplate;
-    private static $snapshotNameTemplate;
+    public static $serviceScopes = [
+        'https://www.googleapis.com/auth/cloud-platform',
+        'https://www.googleapis.com/auth/pubsub',
+    ];
     private static $subscriptionNameTemplate;
     private static $topicNameTemplate;
+    private static $projectNameTemplate;
+    private static $snapshotNameTemplate;
     private static $pathTemplateMap;
 
     private static function getClientDefaults()
     {
         return [
             'serviceName' => self::SERVICE_NAME,
-            'serviceAddress' => self::SERVICE_ADDRESS,
-            'port' => self::DEFAULT_SERVICE_PORT,
-            'scopes' => [
-                'https://www.googleapis.com/auth/cloud-platform',
-                'https://www.googleapis.com/auth/pubsub',
-            ],
-            'clientConfigPath' => __DIR__.'/../resources/subscriber_client_config.json',
-            'restClientConfigPath' => __DIR__.'/../resources/subscriber_rest_client_config.php',
+            'serviceAddress' => self::SERVICE_ADDRESS.':'.self::DEFAULT_SERVICE_PORT,
+            'clientConfig' => __DIR__.'/../resources/subscriber_client_config.json',
             'descriptorsConfigPath' => __DIR__.'/../resources/subscriber_descriptor_config.php',
-            'versionFile' => __DIR__.'/../../VERSION',
+            'credentialsConfig' => [
+                'scopes' => self::$serviceScopes,
+            ],
+            'transportConfig' => [
+                'rest' => [
+                    'restClientConfigPath' => __DIR__.'/../resources/subscriber_rest_client_config.php',
+                ],
+            ],
         ];
-    }
-
-    private static function getProjectNameTemplate()
-    {
-        if (null == self::$projectNameTemplate) {
-            self::$projectNameTemplate = new PathTemplate('projects/{project}');
-        }
-
-        return self::$projectNameTemplate;
-    }
-
-    private static function getSnapshotNameTemplate()
-    {
-        if (null == self::$snapshotNameTemplate) {
-            self::$snapshotNameTemplate = new PathTemplate('projects/{project}/snapshots/{snapshot}');
-        }
-
-        return self::$snapshotNameTemplate;
     }
 
     private static function getSubscriptionNameTemplate()
     {
-        if (null == self::$subscriptionNameTemplate) {
+        if (self::$subscriptionNameTemplate == null) {
             self::$subscriptionNameTemplate = new PathTemplate('projects/{project}/subscriptions/{subscription}');
         }
 
@@ -182,59 +159,43 @@ class SubscriberGapicClient
 
     private static function getTopicNameTemplate()
     {
-        if (null == self::$topicNameTemplate) {
+        if (self::$topicNameTemplate == null) {
             self::$topicNameTemplate = new PathTemplate('projects/{project}/topics/{topic}');
         }
 
         return self::$topicNameTemplate;
     }
 
+    private static function getProjectNameTemplate()
+    {
+        if (self::$projectNameTemplate == null) {
+            self::$projectNameTemplate = new PathTemplate('projects/{project}');
+        }
+
+        return self::$projectNameTemplate;
+    }
+
+    private static function getSnapshotNameTemplate()
+    {
+        if (self::$snapshotNameTemplate == null) {
+            self::$snapshotNameTemplate = new PathTemplate('projects/{project}/snapshots/{snapshot}');
+        }
+
+        return self::$snapshotNameTemplate;
+    }
+
     private static function getPathTemplateMap()
     {
-        if (null == self::$pathTemplateMap) {
+        if (self::$pathTemplateMap == null) {
             self::$pathTemplateMap = [
-                'project' => self::getProjectNameTemplate(),
-                'snapshot' => self::getSnapshotNameTemplate(),
                 'subscription' => self::getSubscriptionNameTemplate(),
                 'topic' => self::getTopicNameTemplate(),
+                'project' => self::getProjectNameTemplate(),
+                'snapshot' => self::getSnapshotNameTemplate(),
             ];
         }
 
         return self::$pathTemplateMap;
-    }
-
-    /**
-     * Formats a string containing the fully-qualified path to represent
-     * a project resource.
-     *
-     * @param string $project
-     *
-     * @return string The formatted project resource.
-     * @experimental
-     */
-    public static function projectName($project)
-    {
-        return self::getProjectNameTemplate()->render([
-            'project' => $project,
-        ]);
-    }
-
-    /**
-     * Formats a string containing the fully-qualified path to represent
-     * a snapshot resource.
-     *
-     * @param string $project
-     * @param string $snapshot
-     *
-     * @return string The formatted snapshot resource.
-     * @experimental
-     */
-    public static function snapshotName($project, $snapshot)
-    {
-        return self::getSnapshotNameTemplate()->render([
-            'project' => $project,
-            'snapshot' => $snapshot,
-        ]);
     }
 
     /**
@@ -274,13 +235,47 @@ class SubscriberGapicClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent
+     * a project resource.
+     *
+     * @param string $project
+     *
+     * @return string The formatted project resource.
+     * @experimental
+     */
+    public static function projectName($project)
+    {
+        return self::getProjectNameTemplate()->render([
+            'project' => $project,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent
+     * a snapshot resource.
+     *
+     * @param string $project
+     * @param string $snapshot
+     *
+     * @return string The formatted snapshot resource.
+     * @experimental
+     */
+    public static function snapshotName($project, $snapshot)
+    {
+        return self::getSnapshotNameTemplate()->render([
+            'project' => $project,
+            'snapshot' => $snapshot,
+        ]);
+    }
+
+    /**
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
-     * - project: projects/{project}
-     * - snapshot: projects/{project}/snapshots/{snapshot}
      * - subscription: projects/{project}/subscriptions/{subscription}
-     * - topic: projects/{project}/topics/{topic}.
+     * - topic: projects/{project}/topics/{topic}
+     * - project: projects/{project}
+     * - snapshot: projects/{project}/snapshots/{snapshot}.
      *
      * The optional $template argument can be supplied to specify a particular pattern, and must
      * match one of the templates listed above. If no $template argument is provided, or if the
@@ -323,61 +318,61 @@ class SubscriberGapicClient
      * @param array $options {
      *                       Optional. Options for configuring the service API wrapper.
      *
-     *     @type string $serviceAddress The domain name of the API remote host.
-     *                                  Default 'pubsub.googleapis.com'.
-     *     @type mixed $port The port on which to connect to the remote host. Default 443.
-     *     @type Channel $channel
-     *           A `Channel` object. If not specified, a channel will be constructed.
-     *           NOTE: This option is only valid when utilizing the gRPC transport.
-     *     @type ChannelCredentials $sslCreds
-     *           A `ChannelCredentials` object for use with an SSL-enabled channel.
-     *           Default: a credentials object returned from
-     *           \Grpc\ChannelCredentials::createSsl().
-     *           NOTE: This option is only valid when utilizing the gRPC transport. Also, if the $channel
-     *           optional argument is specified, then this argument is unused.
-     *     @type bool $forceNewChannel
-     *           If true, this forces gRPC to create a new channel instead of using a persistent channel.
-     *           Defaults to false.
-     *           NOTE: This option is only valid when utilizing the gRPC transport. Also, if the $channel
-     *           optional argument is specified, then this option is unused.
-     *     @type CredentialsLoader $credentialsLoader
-     *           A CredentialsLoader object created using the Google\Auth library.
-     *     @type string[] $scopes A string array of scopes to use when acquiring credentials.
-     *                          Defaults to the scopes for the Google Cloud Pub/Sub API.
-     *     @type string $clientConfigPath
-     *           Path to a JSON file containing client method configuration, including retry settings.
-     *           Specify this setting to specify the retry behavior of all methods on the client.
+     *     @type string $serviceAddress
+     *           The address of the API remote host. May optionally include the port, formatted
+     *           as "<uri>:<port>". Default 'pubsub.googleapis.com:443'.
+     *     @type string|array|FetchAuthTokenInterface|CredentialsWrapper $credentials
+     *           The credentials to be used by the client to authorize API calls. This option
+     *           accepts either a path to a credentials file, or a decoded credentials file as a
+     *           PHP array.
+     *           *Advanced usage*: In addition, this option can also accept a pre-constructed
+     *           {@see \Google\Auth\FetchAuthTokenInterface} object or
+     *           {@see \Google\ApiCore\CredentialsWrapper} object. Note that when one of these
+     *           objects are provided, any settings in $credentialsConfig will be ignored.
+     *     @type array $credentialsConfig
+     *           Options used to configure credentials, including auth token caching, for the client.
+     *           For a full list of supporting configuration options, see
+     *           {@see \Google\ApiCore\CredentialsWrapper::build()}.
+     *     @type bool $disableRetries
+     *           Determines whether or not retries defined by the client configuration should be
+     *           disabled. Defaults to `false`.
+     *     @type string|array $clientConfig
+     *           Client method configuration, including retry settings. This option can be either a
+     *           path to a JSON file, or a PHP array containing the decoded JSON data.
      *           By default this settings points to the default client config file, which is provided
-     *           in the resources folder. The retry settings provided in this option can be overridden
-     *           by settings in $retryingOverride
-     *     @type array $retryingOverride
-     *           An associative array in which the keys are method names (e.g. 'createFoo'), and
-     *           the values are retry settings to use for that method. The retry settings for each
-     *           method can be a {@see Google\ApiCore\RetrySettings} object, or an associative array
-     *           of retry settings parameters. See the documentation on {@see Google\ApiCore\RetrySettings}
-     *           for example usage. Passing a value of null is equivalent to a value of
-     *           ['retriesEnabled' => false]. Retry settings provided in this setting override the
-     *           settings in $clientConfigPath.
-     *     @type callable $authHttpHandler A handler used to deliver PSR-7 requests specifically
-     *           for authentication. Should match a signature of
-     *           `function (RequestInterface $request, array $options) : ResponseInterface`.
-     *     @type callable $httpHandler A handler used to deliver PSR-7 requests. Should match a
-     *           signature of `function (RequestInterface $request, array $options) : PromiseInterface`.
-     *           NOTE: This option is only valid when utilizing the REST transport.
-     *     @type string|TransportInterface $transport The transport used for executing network
-     *           requests. May be either the string `rest` or `grpc`. Additionally, it is possible
-     *           to pass in an already instantiated transport. Defaults to `grpc` if gRPC support is
-     *           detected on the system.
+     *           in the resources folder.
+     *     @type string|TransportInterface $transport
+     *           The transport used for executing network requests. May be either the string `rest`
+     *           or `grpc`. Defaults to `grpc` if gRPC support is detected on the system.
+     *           *Advanced usage*: Additionally, it is possible to pass in an already instantiated
+     *           {@see \Google\ApiCore\Transport\TransportInterface} object. Note that when this
+     *           object is provided, any settings in $transportConfig, and any $serviceAddress
+     *           setting, will be ignored.
+     *     @type array $transportConfig
+     *           Configuration options that will be used to construct the transport. Options for
+     *           each supported transport type should be passed in a key for that transport. For
+     *           example:
+     *           $transportConfig = [
+     *               'grpc' => [...],
+     *               'rest' => [...]
+     *           ];
+     *           See the {@see \Google\ApiCore\Transport\GrpcTransport::build()} and
+     *           {@see \Google\ApiCore\Transport\RestTransport::build()} methods for the
+     *           supported options.
      * }
+     *
+     * @throws ValidationException
      * @experimental
      */
-    public function __construct($options = [])
+    public function __construct(array $options = [])
     {
-        $this->setClientOptions($options + self::getClientDefaults());
+        $clientOptions = $this->buildClientOptions($options);
+        $this->setClientOptions($clientOptions);
     }
 
     /**
-     * Creates a subscription to a given topic.
+     * Creates a subscription to a given topic. See the
+     * <a href="/pubsub/docs/admin#resource_names"> resource name rules</a>.
      * If the subscription already exists, returns `ALREADY_EXISTS`.
      * If the corresponding topic doesn't exist, returns `NOT_FOUND`.
      *
@@ -405,7 +400,7 @@ class SubscriberGapicClient
      *                             start with a letter, and contain only letters (`[A-Za-z]`), numbers
      *                             (`[0-9]`), dashes (`-`), underscores (`_`), periods (`.`), tildes (`~`),
      *                             plus (`+`) or percent signs (`%`). It must be between 3 and 255 characters
-     *                             in length, and it must not start with `"goog"`.
+     *                             in length, and it must not start with `"goog"`
      * @param string $topic        The name of the topic from which this subscription is receiving messages.
      *                             Format is `projects/{project}/topics/{topic}`.
      *                             The value of this field will be `_deleted-topic_` if the topic has been
@@ -427,7 +422,8 @@ class SubscriberGapicClient
      *          For pull subscriptions, this value is used as the initial value for the ack
      *          deadline. To override this value for a given message, call
      *          `ModifyAckDeadline` with the corresponding `ack_id` if using
-     *          pull.
+     *          non-streaming pull or send the `ack_id` in a
+     *          `StreamingModifyAckDeadlineRequest` if using streaming pull.
      *          The minimum custom deadline you can specify is 10 seconds.
      *          The maximum custom deadline you can specify is 600 seconds (10 minutes).
      *          If this parameter is 0, a default value of 10 seconds is used.
@@ -441,14 +437,20 @@ class SubscriberGapicClient
      *          Indicates whether to retain acknowledged messages. If true, then
      *          messages are not expunged from the subscription's backlog, even if they are
      *          acknowledged, until they fall out of the `message_retention_duration`
-     *          window.
+     *          window.<br><br>
+     *          <b>ALPHA:</b> This feature is part of an alpha release. This API might be
+     *          changed in backward-incompatible ways and is not recommended for production
+     *          use. It is not subject to any SLA or deprecation policy.
      *     @type Duration $messageRetentionDuration
      *          How long to retain unacknowledged messages in the subscription's backlog,
      *          from the moment a message is published.
      *          If `retain_acked_messages` is true, then this also configures the retention
      *          of acknowledged messages, and thus configures how far back in time a `Seek`
      *          can be done. Defaults to 7 days. Cannot be more than 7 days or less than 10
-     *          minutes.
+     *          minutes.<br><br>
+     *          <b>ALPHA:</b> This feature is part of an alpha release. This API might be
+     *          changed in backward-incompatible ways and is not recommended for production
+     *          use. It is not subject to any SLA or deprecation policy.
      *     @type array $labels
      *          User labels.
      *     @type RetrySettings|array $retrySettings
@@ -463,7 +465,7 @@ class SubscriberGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function createSubscription($name, $topic, $optionalArgs = [])
+    public function createSubscription($name, $topic, array $optionalArgs = [])
     {
         $request = new Subscription();
         $request->setName($name);
@@ -523,7 +525,7 @@ class SubscriberGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function getSubscription($subscription, $optionalArgs = [])
+    public function getSubscription($subscription, array $optionalArgs = [])
     {
         $request = new GetSubscriptionRequest();
         $request->setSubscription($subscription);
@@ -539,10 +541,6 @@ class SubscriberGapicClient
     /**
      * Updates an existing subscription. Note that certain properties of a
      * subscription, such as its topic, are not modifiable.
-     * NOTE:  The style guide requires body: "subscription" instead of body: "*".
-     * Keeping the latter for internal consistency in V1, however it should be
-     * corrected in V2.  See
-     * https://cloud.google.com/apis/design/standard_methods#update for details.
      *
      * Sample code:
      * ```
@@ -579,7 +577,7 @@ class SubscriberGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function updateSubscription($subscription, $updateMask, $optionalArgs = [])
+    public function updateSubscription($subscription, $updateMask, array $optionalArgs = [])
     {
         $request = new UpdateSubscriptionRequest();
         $request->setSubscription($subscription);
@@ -645,7 +643,7 @@ class SubscriberGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function listSubscriptions($project, $optionalArgs = [])
+    public function listSubscriptions($project, array $optionalArgs = [])
     {
         $request = new ListSubscriptionsRequest();
         $request->setProject($project);
@@ -697,7 +695,7 @@ class SubscriberGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function deleteSubscription($subscription, $optionalArgs = [])
+    public function deleteSubscription($subscription, array $optionalArgs = [])
     {
         $request = new DeleteSubscriptionRequest();
         $request->setSubscription($subscription);
@@ -753,7 +751,7 @@ class SubscriberGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function modifyAckDeadline($subscription, $ackIds, $ackDeadlineSeconds, $optionalArgs = [])
+    public function modifyAckDeadline($subscription, $ackIds, $ackDeadlineSeconds, array $optionalArgs = [])
     {
         $request = new ModifyAckDeadlineRequest();
         $request->setSubscription($subscription);
@@ -806,7 +804,7 @@ class SubscriberGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function acknowledge($subscription, $ackIds, $optionalArgs = [])
+    public function acknowledge($subscription, $ackIds, array $optionalArgs = [])
     {
         $request = new AcknowledgeRequest();
         $request->setSubscription($subscription);
@@ -864,7 +862,7 @@ class SubscriberGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function pull($subscription, $maxMessages, $optionalArgs = [])
+    public function pull($subscription, $maxMessages, array $optionalArgs = [])
     {
         $request = new PullRequest();
         $request->setSubscription($subscription);
@@ -882,18 +880,13 @@ class SubscriberGapicClient
     }
 
     /**
-     * (EXPERIMENTAL) StreamingPull is an experimental feature. This RPC will
-     * respond with UNIMPLEMENTED errors unless you have been invited to test
-     * this feature. Contact cloud-pubsub&#64;google.com with any questions.
-     *
      * Establishes a stream with the server, which sends messages down to the
      * client. The client streams acknowledgements and ack deadline modifications
      * back to the server. The server will close the stream and return the status
-     * on any error. The server may close the stream with status `OK` to reassign
-     * server-side resources, in which case, the client should re-establish the
-     * stream. `UNAVAILABLE` may also be returned in the case of a transient error
-     * (e.g., a server restart). These should also be retried by the client. Flow
-     * control can be achieved by configuring the underlying RPC channel.
+     * on any error. The server may close the stream with status `UNAVAILABLE` to
+     * reassign server-side resources, in which case, the client should
+     * re-establish the stream. Flow control can be achieved by configuring the
+     * underlying RPC channel.
      *
      * Sample code:
      * ```
@@ -947,7 +940,7 @@ class SubscriberGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function streamingPull($optionalArgs = [])
+    public function streamingPull(array $optionalArgs = [])
     {
         return $this->startCall(
             'StreamingPull',
@@ -985,7 +978,7 @@ class SubscriberGapicClient
      * An empty `pushConfig` indicates that the Pub/Sub system should
      * stop pushing messages from the given subscription and allow
      * messages to be pulled and acknowledged - effectively pausing
-     * the subscription if `Pull` is not called.
+     * the subscription if `Pull` or `StreamingPull` is not called.
      * @param array $optionalArgs {
      *                            Optional.
      *
@@ -999,7 +992,7 @@ class SubscriberGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function modifyPushConfig($subscription, $pushConfig, $optionalArgs = [])
+    public function modifyPushConfig($subscription, $pushConfig, array $optionalArgs = [])
     {
         $request = new ModifyPushConfigRequest();
         $request->setSubscription($subscription);
@@ -1014,7 +1007,10 @@ class SubscriberGapicClient
     }
 
     /**
-     * Lists the existing snapshots.
+     * Lists the existing snapshots.<br><br>
+     * <b>ALPHA:</b> This feature is part of an alpha release. This API might be
+     * changed in backward-incompatible ways and is not recommended for production
+     * use. It is not subject to any SLA or deprecation policy.
      *
      * Sample code:
      * ```
@@ -1065,7 +1061,7 @@ class SubscriberGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function listSnapshots($project, $optionalArgs = [])
+    public function listSnapshots($project, array $optionalArgs = [])
     {
         $request = new ListSnapshotsRequest();
         $request->setProject($project);
@@ -1085,16 +1081,21 @@ class SubscriberGapicClient
     }
 
     /**
-     * Creates a snapshot from the requested subscription.
+     * Creates a snapshot from the requested subscription.<br><br>
+     * <b>ALPHA:</b> This feature is part of an alpha release. This API might be
+     * changed in backward-incompatible ways and is not recommended for production
+     * use. It is not subject to any SLA or deprecation policy.
      * If the snapshot already exists, returns `ALREADY_EXISTS`.
      * If the requested subscription doesn't exist, returns `NOT_FOUND`.
-     *
-     * If the name is not provided in the request, the server will assign a random
+     * If the backlog in the subscription is too old -- and the resulting snapshot
+     * would expire in less than 1 hour -- then `FAILED_PRECONDITION` is returned.
+     * See also the `Snapshot.expire_time` field. If the name is not provided in
+     * the request, the server will assign a random
      * name for this snapshot on the same project as the subscription, conforming
-     * to the
-     * [resource name format](https://cloud.google.com/pubsub/docs/overview#names).
-     * The generated name is populated in the returned Snapshot object.
-     * Note that for REST API requests, you must specify a name in the request.
+     * to the [resource name format](https://cloud.google.com/pubsub/docs/overview#names).
+     * The generated
+     * name is populated in the returned Snapshot object. Note that for REST API
+     * requests, you must specify a name in the request.
      *
      * Sample code:
      * ```
@@ -1125,6 +1126,8 @@ class SubscriberGapicClient
      * @param array  $optionalArgs {
      *                             Optional.
      *
+     *     @type array $labels
+     *          User labels.
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
@@ -1137,11 +1140,14 @@ class SubscriberGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function createSnapshot($name, $subscription, $optionalArgs = [])
+    public function createSnapshot($name, $subscription, array $optionalArgs = [])
     {
         $request = new CreateSnapshotRequest();
         $request->setName($name);
         $request->setSubscription($subscription);
+        if (isset($optionalArgs['labels'])) {
+            $request->setLabels($optionalArgs['labels']);
+        }
 
         return $this->startCall(
             'CreateSnapshot',
@@ -1152,12 +1158,11 @@ class SubscriberGapicClient
     }
 
     /**
-     * Updates an existing snapshot. Note that certain properties of a snapshot
-     * are not modifiable.
-     * NOTE:  The style guide requires body: "snapshot" instead of body: "*".
-     * Keeping the latter for internal consistency in V1, however it should be
-     * corrected in V2.  See
-     * https://cloud.google.com/apis/design/standard_methods#update for details.
+     * Updates an existing snapshot.<br><br>
+     * <b>ALPHA:</b> This feature is part of an alpha release. This API might be
+     * changed in backward-incompatible ways and is not recommended for production
+     * use. It is not subject to any SLA or deprecation policy.
+     * Note that certain properties of a snapshot are not modifiable.
      *
      * Sample code:
      * ```
@@ -1178,7 +1183,7 @@ class SubscriberGapicClient
      * }
      * ```
      *
-     * @param Snapshot  $snapshot     The updated snpashot object.
+     * @param Snapshot  $snapshot     The updated snapshot object.
      * @param FieldMask $updateMask   Indicates which fields in the provided snapshot to update.
      *                                Must be specified and non-empty.
      * @param array     $optionalArgs {
@@ -1196,7 +1201,7 @@ class SubscriberGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function updateSnapshot($snapshot, $updateMask, $optionalArgs = [])
+    public function updateSnapshot($snapshot, $updateMask, array $optionalArgs = [])
     {
         $request = new UpdateSnapshotRequest();
         $request->setSnapshot($snapshot);
@@ -1211,7 +1216,11 @@ class SubscriberGapicClient
     }
 
     /**
-     * Removes an existing snapshot. All messages retained in the snapshot
+     * Removes an existing snapshot. <br><br>
+     * <b>ALPHA:</b> This feature is part of an alpha release. This API might be
+     * changed in backward-incompatible ways and is not recommended for production
+     * use. It is not subject to any SLA or deprecation policy.
+     * When the snapshot is deleted, all messages retained in the snapshot
      * are immediately dropped. After a snapshot is deleted, a new one may be
      * created with the same name, but the new one has no association with the old
      * snapshot or its subscription, unless the same subscription is specified.
@@ -1242,7 +1251,7 @@ class SubscriberGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function deleteSnapshot($snapshot, $optionalArgs = [])
+    public function deleteSnapshot($snapshot, array $optionalArgs = [])
     {
         $request = new DeleteSnapshotRequest();
         $request->setSnapshot($snapshot);
@@ -1257,7 +1266,10 @@ class SubscriberGapicClient
 
     /**
      * Seeks an existing subscription to a point in time or to a given snapshot,
-     * whichever is provided in the request.
+     * whichever is provided in the request.<br><br>
+     * <b>ALPHA:</b> This feature is part of an alpha release. This API might be
+     * changed in backward-incompatible ways and is not recommended for production
+     * use. It is not subject to any SLA or deprecation policy.
      *
      * Sample code:
      * ```
@@ -1302,7 +1314,7 @@ class SubscriberGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function seek($subscription, $optionalArgs = [])
+    public function seek($subscription, array $optionalArgs = [])
     {
         $request = new SeekRequest();
         $request->setSubscription($subscription);
@@ -1359,7 +1371,7 @@ class SubscriberGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function setIamPolicy($resource, $policy, $optionalArgs = [])
+    public function setIamPolicy($resource, $policy, array $optionalArgs = [])
     {
         $request = new SetIamPolicyRequest();
         $request->setResource($resource);
@@ -1409,7 +1421,7 @@ class SubscriberGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function getIamPolicy($resource, $optionalArgs = [])
+    public function getIamPolicy($resource, array $optionalArgs = [])
     {
         $request = new GetIamPolicyRequest();
         $request->setResource($resource);
@@ -1463,7 +1475,7 @@ class SubscriberGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function testIamPermissions($resource, $permissions, $optionalArgs = [])
+    public function testIamPermissions($resource, $permissions, array $optionalArgs = [])
     {
         $request = new TestIamPermissionsRequest();
         $request->setResource($resource);

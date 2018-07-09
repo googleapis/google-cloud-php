@@ -17,10 +17,10 @@
 
 namespace Google\Cloud\Dev\ComponentIntegration\Command;
 
+use Google\Cloud\Dev\Command\GoogleCloudCommand;
 use Google\Cloud\Dev\GetComponentsTrait;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\RequestException;
-use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -29,7 +29,7 @@ use vierbergenlars\SemVer\version;
 /**
  * Test component integration.
  */
-class ComponentIntegration extends Command
+class ComponentIntegration extends GoogleCloudCommand
 {
     use GetComponentsTrait;
 
@@ -39,14 +39,6 @@ class ComponentIntegration extends Command
     private $execute = false;
     private $tmpDir;
     private $output;
-    private $cliBasePath;
-
-    public function __construct($cliBasePath)
-    {
-        $this->cliBasePath = $cliBasePath;
-
-        parent::__construct();
-    }
 
     protected function configure()
     {
@@ -63,7 +55,7 @@ class ComponentIntegration extends Command
         $this->execute = true;
         $this->output = $output;
 
-        $rootPath = dirname($this->cliBasePath);
+        $rootPath = $this->rootPath;
         $manifestPath = $rootPath . DIRECTORY_SEPARATOR . self::MANIFEST_PATH;
 
         $components = $this->getComponents($rootPath, $rootPath);
@@ -143,8 +135,21 @@ class ComponentIntegration extends Command
         $this->output->writeln('');
 
         @mkdir($dest);
+        $filteredIterator = new \RecursiveCallbackFilterIterator(
+            new \RecursiveDirectoryIterator(
+                $src,
+                \RecursiveDirectoryIterator::SKIP_DOTS
+            ),
+            function ($current, $key, $iterator) {
+                // Exclude the vendor dir and the composer.lock file
+                if ($current->isDir()) {
+                    return $current->getFilename() !== 'vendor';
+                }
+                return $current->getFilename() !== 'composer.lock';
+            }
+        );
         $iterator = new \RecursiveIteratorIterator(
-            new \RecursiveDirectoryIterator($src, \RecursiveDirectoryIterator::SKIP_DOTS),
+            $filteredIterator,
             \RecursiveIteratorIterator::SELF_FIRST
         );
 

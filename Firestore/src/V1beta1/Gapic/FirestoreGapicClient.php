@@ -21,10 +21,6 @@
  * https://github.com/google/googleapis/blob/master/google/firestore/v1beta1/firestore.proto
  * and updates to that file get reflected here through a refresh process.
  *
- * EXPERIMENTAL: This client library class has not yet been declared GA (1.0). This means that
- * even though we intend the surface to be stable, we may make backwards incompatible changes
- * if necessary.
- *
  * @experimental
  */
 
@@ -32,12 +28,13 @@ namespace Google\Cloud\Firestore\V1beta1\Gapic;
 
 use Google\ApiCore\ApiException;
 use Google\ApiCore\Call;
+use Google\ApiCore\CredentialsWrapper;
+use Google\ApiCore\FetchAuthTokenInterface;
 use Google\ApiCore\GapicClientTrait;
 use Google\ApiCore\PathTemplate;
 use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
-use Google\Auth\CredentialsLoader;
 use Google\Cloud\Firestore\V1beta1\BatchGetDocumentsRequest;
 use Google\Cloud\Firestore\V1beta1\BatchGetDocumentsResponse;
 use Google\Cloud\Firestore\V1beta1\BeginTransactionRequest;
@@ -68,8 +65,6 @@ use Google\Cloud\Firestore\V1beta1\WriteRequest;
 use Google\Cloud\Firestore\V1beta1\WriteResponse;
 use Google\Protobuf\GPBEmpty;
 use Google\Protobuf\Timestamp;
-use Grpc\Channel;
-use Grpc\ChannelCredentials;
 
 /**
  * Service Description: The Cloud Firestore service.
@@ -88,10 +83,6 @@ use Grpc\ChannelCredentials;
  * *    `commit_time` - The time at which the writes in a transaction were
  *      committed. Any read with an equal or greater `read_time` is guaranteed
  *      to see the effects of the transaction.
- *
- * EXPERIMENTAL: This client library class has not yet been declared GA (1.0). This means that
- * even though we intend the surface to be stable, we may make backwards incompatible changes
- * if necessary.
  *
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods. Sample code to get started:
@@ -138,10 +129,12 @@ class FirestoreGapicClient
     const CODEGEN_NAME = 'gapic';
 
     /**
-     * The code generator version, to be included in the agent header.
+     * The default scopes required by the service.
      */
-    const CODEGEN_VERSION = '0.0.5';
-
+    public static $serviceScopes = [
+        'https://www.googleapis.com/auth/cloud-platform',
+        'https://www.googleapis.com/auth/datastore',
+    ];
     private static $databaseRootNameTemplate;
     private static $documentRootNameTemplate;
     private static $documentPathNameTemplate;
@@ -152,22 +145,23 @@ class FirestoreGapicClient
     {
         return [
             'serviceName' => self::SERVICE_NAME,
-            'serviceAddress' => self::SERVICE_ADDRESS,
-            'port' => self::DEFAULT_SERVICE_PORT,
-            'scopes' => [
-                'https://www.googleapis.com/auth/cloud-platform',
-                'https://www.googleapis.com/auth/datastore',
-            ],
-            'clientConfigPath' => __DIR__.'/../resources/firestore_client_config.json',
-            'restClientConfigPath' => __DIR__.'/../resources/firestore_rest_client_config.php',
+            'serviceAddress' => self::SERVICE_ADDRESS.':'.self::DEFAULT_SERVICE_PORT,
+            'clientConfig' => __DIR__.'/../resources/firestore_client_config.json',
             'descriptorsConfigPath' => __DIR__.'/../resources/firestore_descriptor_config.php',
-            'versionFile' => __DIR__.'/../../VERSION',
+            'credentialsConfig' => [
+                'scopes' => self::$serviceScopes,
+            ],
+            'transportConfig' => [
+                'rest' => [
+                    'restClientConfigPath' => __DIR__.'/../resources/firestore_rest_client_config.php',
+                ],
+            ],
         ];
     }
 
     private static function getDatabaseRootNameTemplate()
     {
-        if (null == self::$databaseRootNameTemplate) {
+        if (self::$databaseRootNameTemplate == null) {
             self::$databaseRootNameTemplate = new PathTemplate('projects/{project}/databases/{database}');
         }
 
@@ -176,7 +170,7 @@ class FirestoreGapicClient
 
     private static function getDocumentRootNameTemplate()
     {
-        if (null == self::$documentRootNameTemplate) {
+        if (self::$documentRootNameTemplate == null) {
             self::$documentRootNameTemplate = new PathTemplate('projects/{project}/databases/{database}/documents');
         }
 
@@ -185,7 +179,7 @@ class FirestoreGapicClient
 
     private static function getDocumentPathNameTemplate()
     {
-        if (null == self::$documentPathNameTemplate) {
+        if (self::$documentPathNameTemplate == null) {
             self::$documentPathNameTemplate = new PathTemplate('projects/{project}/databases/{database}/documents/{document_path=**}');
         }
 
@@ -194,7 +188,7 @@ class FirestoreGapicClient
 
     private static function getAnyPathNameTemplate()
     {
-        if (null == self::$anyPathNameTemplate) {
+        if (self::$anyPathNameTemplate == null) {
             self::$anyPathNameTemplate = new PathTemplate('projects/{project}/databases/{database}/documents/{document}/{any_path=**}');
         }
 
@@ -203,7 +197,7 @@ class FirestoreGapicClient
 
     private static function getPathTemplateMap()
     {
-        if (null == self::$pathTemplateMap) {
+        if (self::$pathTemplateMap == null) {
             self::$pathTemplateMap = [
                 'databaseRoot' => self::getDatabaseRootNameTemplate(),
                 'documentRoot' => self::getDocumentRootNameTemplate(),
@@ -343,57 +337,56 @@ class FirestoreGapicClient
      * @param array $options {
      *                       Optional. Options for configuring the service API wrapper.
      *
-     *     @type string $serviceAddress The domain name of the API remote host.
-     *                                  Default 'firestore.googleapis.com'.
-     *     @type mixed $port The port on which to connect to the remote host. Default 443.
-     *     @type Channel $channel
-     *           A `Channel` object. If not specified, a channel will be constructed.
-     *           NOTE: This option is only valid when utilizing the gRPC transport.
-     *     @type ChannelCredentials $sslCreds
-     *           A `ChannelCredentials` object for use with an SSL-enabled channel.
-     *           Default: a credentials object returned from
-     *           \Grpc\ChannelCredentials::createSsl().
-     *           NOTE: This option is only valid when utilizing the gRPC transport. Also, if the $channel
-     *           optional argument is specified, then this argument is unused.
-     *     @type bool $forceNewChannel
-     *           If true, this forces gRPC to create a new channel instead of using a persistent channel.
-     *           Defaults to false.
-     *           NOTE: This option is only valid when utilizing the gRPC transport. Also, if the $channel
-     *           optional argument is specified, then this option is unused.
-     *     @type CredentialsLoader $credentialsLoader
-     *           A CredentialsLoader object created using the Google\Auth library.
-     *     @type string[] $scopes A string array of scopes to use when acquiring credentials.
-     *                          Defaults to the scopes for the Google Cloud Firestore API.
-     *     @type string $clientConfigPath
-     *           Path to a JSON file containing client method configuration, including retry settings.
-     *           Specify this setting to specify the retry behavior of all methods on the client.
+     *     @type string $serviceAddress
+     *           The address of the API remote host. May optionally include the port, formatted
+     *           as "<uri>:<port>". Default 'firestore.googleapis.com:443'.
+     *     @type string|array|FetchAuthTokenInterface|CredentialsWrapper $credentials
+     *           The credentials to be used by the client to authorize API calls. This option
+     *           accepts either a path to a credentials file, or a decoded credentials file as a
+     *           PHP array.
+     *           *Advanced usage*: In addition, this option can also accept a pre-constructed
+     *           {@see \Google\Auth\FetchAuthTokenInterface} object or
+     *           {@see \Google\ApiCore\CredentialsWrapper} object. Note that when one of these
+     *           objects are provided, any settings in $credentialsConfig will be ignored.
+     *     @type array $credentialsConfig
+     *           Options used to configure credentials, including auth token caching, for the client.
+     *           For a full list of supporting configuration options, see
+     *           {@see \Google\ApiCore\CredentialsWrapper::build()}.
+     *     @type bool $disableRetries
+     *           Determines whether or not retries defined by the client configuration should be
+     *           disabled. Defaults to `false`.
+     *     @type string|array $clientConfig
+     *           Client method configuration, including retry settings. This option can be either a
+     *           path to a JSON file, or a PHP array containing the decoded JSON data.
      *           By default this settings points to the default client config file, which is provided
-     *           in the resources folder. The retry settings provided in this option can be overridden
-     *           by settings in $retryingOverride
-     *     @type array $retryingOverride
-     *           An associative array in which the keys are method names (e.g. 'createFoo'), and
-     *           the values are retry settings to use for that method. The retry settings for each
-     *           method can be a {@see Google\ApiCore\RetrySettings} object, or an associative array
-     *           of retry settings parameters. See the documentation on {@see Google\ApiCore\RetrySettings}
-     *           for example usage. Passing a value of null is equivalent to a value of
-     *           ['retriesEnabled' => false]. Retry settings provided in this setting override the
-     *           settings in $clientConfigPath.
-     *     @type callable $authHttpHandler A handler used to deliver PSR-7 requests specifically
-     *           for authentication. Should match a signature of
-     *           `function (RequestInterface $request, array $options) : ResponseInterface`.
-     *     @type callable $httpHandler A handler used to deliver PSR-7 requests. Should match a
-     *           signature of `function (RequestInterface $request, array $options) : PromiseInterface`.
-     *           NOTE: This option is only valid when utilizing the REST transport.
-     *     @type string|TransportInterface $transport The transport used for executing network
-     *           requests. May be either the string `rest` or `grpc`. Additionally, it is possible
-     *           to pass in an already instantiated transport. Defaults to `grpc` if gRPC support is
-     *           detected on the system.
+     *           in the resources folder.
+     *     @type string|TransportInterface $transport
+     *           The transport used for executing network requests. May be either the string `rest`
+     *           or `grpc`. Defaults to `grpc` if gRPC support is detected on the system.
+     *           *Advanced usage*: Additionally, it is possible to pass in an already instantiated
+     *           {@see \Google\ApiCore\Transport\TransportInterface} object. Note that when this
+     *           object is provided, any settings in $transportConfig, and any $serviceAddress
+     *           setting, will be ignored.
+     *     @type array $transportConfig
+     *           Configuration options that will be used to construct the transport. Options for
+     *           each supported transport type should be passed in a key for that transport. For
+     *           example:
+     *           $transportConfig = [
+     *               'grpc' => [...],
+     *               'rest' => [...]
+     *           ];
+     *           See the {@see \Google\ApiCore\Transport\GrpcTransport::build()} and
+     *           {@see \Google\ApiCore\Transport\RestTransport::build()} methods for the
+     *           supported options.
      * }
+     *
+     * @throws ValidationException
      * @experimental
      */
-    public function __construct($options = [])
+    public function __construct(array $options = [])
     {
-        $this->setClientOptions($options + self::getClientDefaults());
+        $clientOptions = $this->buildClientOptions($options);
+        $this->setClientOptions($clientOptions);
     }
 
     /**
@@ -437,7 +430,7 @@ class FirestoreGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function getDocument($name, $optionalArgs = [])
+    public function getDocument($name, array $optionalArgs = [])
     {
         $request = new GetDocumentRequest();
         $request->setName($name);
@@ -538,7 +531,7 @@ class FirestoreGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function listDocuments($parent, $collectionId, $optionalArgs = [])
+    public function listDocuments($parent, $collectionId, array $optionalArgs = [])
     {
         $request = new ListDocumentsRequest();
         $request->setParent($parent);
@@ -618,7 +611,7 @@ class FirestoreGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function createDocument($parent, $collectionId, $documentId, $document, $optionalArgs = [])
+    public function createDocument($parent, $collectionId, $documentId, $document, array $optionalArgs = [])
     {
         $request = new CreateDocumentRequest();
         $request->setParent($parent);
@@ -684,7 +677,7 @@ class FirestoreGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function updateDocument($document, $updateMask, $optionalArgs = [])
+    public function updateDocument($document, $updateMask, array $optionalArgs = [])
     {
         $request = new UpdateDocumentRequest();
         $request->setDocument($document);
@@ -736,7 +729,7 @@ class FirestoreGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function deleteDocument($name, $optionalArgs = [])
+    public function deleteDocument($name, array $optionalArgs = [])
     {
         $request = new DeleteDocumentRequest();
         $request->setName($name);
@@ -807,7 +800,7 @@ class FirestoreGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function batchGetDocuments($database, $documents, $optionalArgs = [])
+    public function batchGetDocuments($database, $documents, array $optionalArgs = [])
     {
         $request = new BatchGetDocumentsRequest();
         $request->setDatabase($database);
@@ -868,7 +861,7 @@ class FirestoreGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function beginTransaction($database, $optionalArgs = [])
+    public function beginTransaction($database, array $optionalArgs = [])
     {
         $request = new BeginTransactionRequest();
         $request->setDatabase($database);
@@ -921,7 +914,7 @@ class FirestoreGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function commit($database, $writes, $optionalArgs = [])
+    public function commit($database, $writes, array $optionalArgs = [])
     {
         $request = new CommitRequest();
         $request->setDatabase($database);
@@ -969,7 +962,7 @@ class FirestoreGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function rollback($database, $transaction, $optionalArgs = [])
+    public function rollback($database, $transaction, array $optionalArgs = [])
     {
         $request = new RollbackRequest();
         $request->setDatabase($database);
@@ -1031,7 +1024,7 @@ class FirestoreGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function runQuery($parent, $optionalArgs = [])
+    public function runQuery($parent, array $optionalArgs = [])
     {
         $request = new RunQueryRequest();
         $request->setParent($parent);
@@ -1110,7 +1103,7 @@ class FirestoreGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function write($optionalArgs = [])
+    public function write(array $optionalArgs = [])
     {
         return $this->startCall(
             'Write',
@@ -1174,7 +1167,7 @@ class FirestoreGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function listen($optionalArgs = [])
+    public function listen(array $optionalArgs = [])
     {
         return $this->startCall(
             'Listen',
@@ -1239,7 +1232,7 @@ class FirestoreGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function listCollectionIds($parent, $optionalArgs = [])
+    public function listCollectionIds($parent, array $optionalArgs = [])
     {
         $request = new ListCollectionIdsRequest();
         $request->setParent($parent);

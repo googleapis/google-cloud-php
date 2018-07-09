@@ -70,7 +70,7 @@ trait JobConfigurationTrait
      * query.
      *
      * @param bool $dryRun Whether or not to execute as a dry run.
-     * @return JobConfigInterface
+     * @return JobConfigurationInterface
      */
     public function dryRun($dryRun)
     {
@@ -84,7 +84,7 @@ trait JobConfigurationTrait
      *
      * @param string $jobIdPrefix If provided, the job ID will be of format
      *        `{$jobIdPrefix}-{jobId}`.
-     * @return JobConfigInterface
+     * @return JobConfigurationInterface
      */
     public function jobIdPrefix($jobIdPrefix)
     {
@@ -98,7 +98,7 @@ trait JobConfigurationTrait
      * query.
      *
      * @param array $labels The labels to apply.
-     * @return JobConfigInterface
+     * @return JobConfigurationInterface
      */
     public function labels(array $labels)
     {
@@ -116,7 +116,7 @@ trait JobConfigurationTrait
      *        if provided, or through location metadata fetched by a network
      *        request
      *        (by calling {@see Google\Cloud\BigQuery\Table::reload()}, for example).
-     * @return JobConfigInterface
+     * @return JobConfigurationInterface
      */
     public function location($location)
     {

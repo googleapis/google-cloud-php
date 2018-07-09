@@ -340,6 +340,27 @@ class CacheSessionPoolTest extends TestCase
         $this->assertNull($actualCacheData);
     }
 
+    public function testReleaseSessionAfterClearingPoolSucceeds()
+    {
+        $pool = new CacheSessionPoolStub($this->getCacheItemPool());
+        $pool->setDatabase($this->getDatabase());
+        $session = $pool->acquire();
+        $itemPool = $pool->cacheItemPool();
+        $pool->clear();
+        $cacheData = $itemPool->getItem(
+            sprintf(self::CACHE_KEY_TEMPLATE, self::PROJECT_ID, self::INSTANCE_NAME, self::DATABASE_NAME)
+        )->get();
+
+        $this->assertNull($cacheData);
+
+        $pool->release($session);
+        $cacheData = $itemPool->getItem(
+            sprintf(self::CACHE_KEY_TEMPLATE, self::PROJECT_ID, self::INSTANCE_NAME, self::DATABASE_NAME)
+        )->get();
+
+        $this->assertNull($cacheData);
+    }
+
     /**
      * @dataProvider acquireDataProvider
      */

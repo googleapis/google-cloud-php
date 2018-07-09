@@ -17,24 +17,22 @@
 
 namespace Google\Cloud\Dev\Release\Command;
 
+use Google\Cloud\Dev\Command\GoogleCloudCommand;
 use Google\Cloud\Dev\GetComponentsTrait;
 use RuntimeException;
-use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use vierbergenlars\SemVer\version;
 
-class Release extends Command
+class Release extends GoogleCloudCommand
 {
     use GetComponentsTrait;
 
-    const COMPONENT_BASE = '%s/../';
+    const COMPONENT_BASE = '%s/';
     const DEFAULT_COMPONENT = 'google-cloud';
-    const DEFAULT_COMPONENT_COMPOSER = '%s/../composer.json';
-    const PATH_MANIFEST = '%s/../docs/manifest.json';
-
-    private $cliBasePath;
+    const DEFAULT_COMPONENT_COMPOSER = '%s/composer.json';
+    const PATH_MANIFEST = '%s/docs/manifest.json';
 
     private $manifest;
 
@@ -46,15 +44,13 @@ class Release extends Command
         'major', 'minor', 'patch'
     ];
 
-    public function __construct($cliBasePath)
+    public function __construct($rootPath)
     {
-        $this->cliBasePath = $cliBasePath;
+        $this->manifest = sprintf(self::PATH_MANIFEST, $rootPath);
+        $this->defaultComponentComposer = sprintf(self::DEFAULT_COMPONENT_COMPOSER, $rootPath);
+        $this->components = sprintf(self::COMPONENT_BASE, $rootPath);
 
-        $this->manifest = sprintf(self::PATH_MANIFEST, $cliBasePath);
-        $this->defaultComponentComposer = sprintf(self::DEFAULT_COMPONENT_COMPOSER, $cliBasePath);
-        $this->components = sprintf(self::COMPONENT_BASE, $cliBasePath);
-
-        parent::__construct();
+        parent::__construct($rootPath);
     }
 
     protected function configure()
@@ -68,7 +64,7 @@ class Release extends Command
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $componentInput = $input->getArgument('component') ?: self::DEFAULT_COMPONENT;
-        $component = $this->getComponentComposer(dirname($this->cliBasePath), $componentInput);
+        $component = $this->getComponentComposer($this->rootPath, $componentInput);
 
         $version = $input->getArgument('version');
 
@@ -174,7 +170,7 @@ class Release extends Command
             return false;
         }
 
-        $path = $this->cliBasePath .'/../'. $componentPath .'/'. $componentEntry;
+        $path = $this->rootPath .'/'. $componentPath .'/'. $componentEntry;
         if (!file_exists($path)) {
             throw new \RuntimeException(sprintf(
                 'Component entry file %s does not exist',
@@ -199,7 +195,7 @@ class Release extends Command
 
     private function updateComponentVersionFile($version, array $component)
     {
-        $path = $this->cliBasePath .'/../'. $component['path'] .'/VERSION';
+        $path = $this->rootPath .'/'. $component['path'] .'/VERSION';
         $result = file_put_contents($path, $version);
 
         if (!$result) {
@@ -211,7 +207,7 @@ class Release extends Command
 
     private function updateComposerReplacesVersion($version, array $component)
     {
-        $composer = $this->cliBasePath .'/../composer.json';
+        $composer = $this->rootPath .'/composer.json';
         if (!file_exists($composer)) {
             throw new \Exception('Invalid composer.json path');
         }

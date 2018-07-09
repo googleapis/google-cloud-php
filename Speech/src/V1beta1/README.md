@@ -1,5 +1,24 @@
-# Cloud Speech V1beta1
+# Google Cloud Speech V1beta1 generated client for PHP
 
-Google Cloud Speech API enables developers to convert audio to text by applying powerful neural network models in an easy to use API.
+### Sample
 
-For more information, see [cloud.google.com](https://cloud.google.com/speech/).
+```php
+use Google\Cloud\Speech\V1beta1\RecognitionConfig_AudioEncoding;
+use Google\Cloud\Speech\V1beta1\RecognitionConfig;
+use Google\Cloud\Speech\V1beta1\StreamingRecognitionConfig;
+
+$recognitionConfig = new RecognitionConfig();
+$recognitionConfig->setEncoding(RecognitionConfig_AudioEncoding::FLAC);
+$recognitionConfig->setSampleRate(44100);
+$recognitionConfig->setLanguageCode('en-US');
+$config = new StreamingRecognitionConfig();
+$config->setConfig($recognitionConfig);
+
+$audioResource = fopen('path/to/audio.flac', 'r');
+
+$responses = $speechClient->recognizeAudioStream($config, $audioResource);
+
+foreach ($responses as $element) {
+    // doSomethingWith($element);
+}
+```

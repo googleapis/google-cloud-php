@@ -68,7 +68,7 @@ class Annotation extends TimeEvent
      * @access private
      * @return array
      */
-    public function jsonSerialize()
+    public function info()
     {
         $data = [
             'description' => [
@@ -76,7 +76,7 @@ class Annotation extends TimeEvent
             ]
         ];
         if ($this->attributes) {
-            $data['attributes'] = $this->attributes;
+            $data['attributes'] = $this->attributes->info();
         }
 
         return [

@@ -7,12 +7,20 @@ return [
                 'longRunning' => [
                     'operationReturnType' => '\Google\Cloud\Spanner\Admin\Instance\V1\Instance',
                     'metadataReturnType' => '\Google\Cloud\Spanner\Admin\Instance\V1\CreateInstanceMetadata',
+                    'initialPollDelayMillis' => '20000',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '45000',
+                    'totalPollTimeoutMillis' => '86400000',
                 ],
             ],
             'UpdateInstance' => [
                 'longRunning' => [
                     'operationReturnType' => '\Google\Cloud\Spanner\Admin\Instance\V1\Instance',
                     'metadataReturnType' => '\Google\Cloud\Spanner\Admin\Instance\V1\UpdateInstanceMetadata',
+                    'initialPollDelayMillis' => '20000',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '45000',
+                    'totalPollTimeoutMillis' => '86400000',
                 ],
             ],
             'ListInstanceConfigs' => [

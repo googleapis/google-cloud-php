@@ -17,6 +17,7 @@
 
 namespace Google\Cloud\Dev\Split\Command;
 
+use Google\Cloud\Dev\Command\GoogleCloudCommand;
 use Google\Cloud\Dev\GetComponentsTrait;
 use GuzzleHttp\Client;
 use Symfony\Component\Console\Command\Command;
@@ -25,7 +26,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 use vierbergenlars\SemVer\SemVerException;
 use vierbergenlars\SemVer\version;
 
-class Split extends Command
+class Split extends GoogleCloudCommand
 {
     use GetComponentsTrait;
 
@@ -33,15 +34,13 @@ class Split extends Command
     const TAG_ENV = 'TRAVIS_TAG';
     const TARGET_REGEX = '/([a-zA-Z0-9-_]{1,})\/([a-zA-Z0-9-_]{1,})\.git/';
 
-    const COMPONENT_BASE = '%s/../';
-    const SPLIT_SHELL = '%s/sh/split';
-    const PATH_MANIFEST = '%s/../docs/manifest.json';
+    const COMPONENT_BASE = '%s/';
+    const SPLIT_SHELL = '%s/dev/sh/split';
+    const PATH_MANIFEST = '%s/docs/manifest.json';
     const PARENT_TAG_NAME = 'https://github.com/GoogleCloudPlatform/google-cloud-php/releases/tag/%s';
 
     const GITHUB_RELEASES_ENDPOINT = 'https://api.github.com/repos/%s/%s/releases/tags/%s';
     const GITHUB_RELEASE_CREATE_ENDPOINT = 'https://api.github.com/repos/%s/%s/releases';
-
-    private $cliBasePath;
 
     private $splitShell;
 
@@ -53,17 +52,17 @@ class Split extends Command
 
     private $token;
 
-    public function __construct($cliBasePath)
+    public function __construct($rootPath)
     {
-        $this->cliBasePath = realpath($cliBasePath);
-        $this->splitShell = sprintf(self::SPLIT_SHELL, $cliBasePath);
-        $this->components = sprintf(self::COMPONENT_BASE, $cliBasePath);
-        $this->manifest = sprintf(self::PATH_MANIFEST, $cliBasePath);
+        $this->rootPath = realpath($rootPath);
+        $this->splitShell = sprintf(self::SPLIT_SHELL, $rootPath);
+        $this->components = sprintf(self::COMPONENT_BASE, $rootPath);
+        $this->manifest = sprintf(self::PATH_MANIFEST, $rootPath);
 
         $this->http = new Client;
         $this->token = getenv(self::TOKEN_ENV);
 
-        parent::__construct();
+        parent::__construct($rootPath);
     }
 
     protected function configure()
@@ -79,22 +78,30 @@ class Split extends Command
             return;
         }
 
-        $components = $this->getComponents(dirname($this->cliBasePath), $this->components);
+        $components = $this->getComponents($this->rootPath, $this->components);
 
         $tag = getenv(self::TAG_ENV);
 
         $parentTagSource = sprintf(self::PARENT_TAG_NAME, $tag);
 
+        $errors = [];
         foreach ($components as $component) {
             $output->writeln('');
             $output->writeln(sprintf('<info>Starting on component %s</info>', $component['id']));
+            $output->writeln(sprintf('Using target %s', $component['target']));
             $output->writeln('------------');
-            shell_exec(sprintf(
+            exec(sprintf(
                 '%s %s %s',
                 $this->splitShell,
                 $component['prefix'],
                 $component['target']
-            ));
+            ), $shellOutput, $return);
+
+            echo implode(PHP_EOL, $shellOutput);
+            if ($return !== 0) {
+                $errors[] = $component['id'] .': splitsh or git push failure';
+                continue;
+            }
 
             $target = $component['target'];
             $matches = [];
@@ -112,6 +119,8 @@ class Split extends Command
                     $component['id'],
                     $version
                 ));
+
+                $errors[] = $component['id'] .': given version invalid.';
                 continue;
             }
 
@@ -136,6 +145,12 @@ class Split extends Command
                 $version,
                 $component['id']
             ));
+        }
+
+        if ($errors) {
+            $output->writeln(PHP_EOL . '<error>One or more errors occurred!</error>');
+            $output->writeln('- ' . implode(PHP_EOL .'- ', $errors));
+            return 1;
         }
     }
 

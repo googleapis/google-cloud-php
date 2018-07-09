@@ -47,6 +47,6 @@ class SpannerClient extends SpannerGapicClient
      */
     public function getTransport()
     {
-        return $this->transport;
+        return parent::getTransport();
     }
 }

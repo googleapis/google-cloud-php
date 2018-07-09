@@ -58,7 +58,7 @@ if (count($argv) < 2) {
     showUsageAndDie();
 }
 
-$options = getopt('c:s:', ['config:', 'source-root:'], $optind) + [
+$options = getopt('c:s:', ['config:', 'source-root:']) + [
     'c' => null,
     'config' => null,
     's' => null,

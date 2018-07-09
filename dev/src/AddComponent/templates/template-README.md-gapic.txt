@@ -1,4 +1,3 @@
 
-If it is not already installed, you will also require the gRPC extension. For installation instructions, [see here](https://cloud.google.com/php/grpc).
-
-NOTE: In addition to the gRPC extension, we recommend installing the protobuf extension for improved performance. For installation instructions, [see here](https://cloud.google.com/php/grpc#install_the_protobuf_runtime_library).
+This component supports both REST over HTTP/1.1 and gRPC. In order to take advantage of the benefits offered by gRPC (such as streaming methods)
+please see our [gRPC installation guide](https://cloud.google.com/php/grpc).

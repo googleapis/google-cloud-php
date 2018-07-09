@@ -32,7 +32,9 @@ class Rest implements ConnectionInterface
     const BASE_URI = 'https://cloudtrace.googleapis.com/';
 
     /**
-     * @param array $config
+     * @param array $config [optional] Configuration options. Please see
+     *        {@see Google\Cloud\Core\RequestWrapper::__construct()} for
+     *        the available options.
      */
     public function __construct(array $config = [])
     {
@@ -48,7 +50,16 @@ class Rest implements ConnectionInterface
     }
 
     /**
-     * @param  array $args
+     * Sends new spans to new or existing traces. You cannot update existing
+     * spans.
+     *
+     * @param array $args {
+     *      Batch write params.
+     *
+     *      @type string $projectsId The ID of the Google Cloud Project
+     *      @type array $spans Array of associative array span data. See
+     *          {@see Google\Cloud\Trace\Span::info()} for format.
+     * }
      */
     public function traceBatchWrite(array $args)
     {
@@ -56,7 +67,7 @@ class Rest implements ConnectionInterface
     }
 
     /**
-     * @param  array $args
+     * @param array $args
      */
     public function traceSpanCreate(array $args)
     {

@@ -17,7 +17,6 @@
 
 namespace Google\Cloud\Speech;
 
-use Generator;
 use InvalidArgumentException;
 
 /**
@@ -103,7 +102,7 @@ trait SpeechHelpersTrait
      *
      * @param resource $resource   The resource object to read data from.
      * @param int      $chunkSize  The chunk size to use, in bytes. Defaults to 32000
-     * @return Generator<string>   An iterable of strings that have been read from the resource.
+     * @return \Generator<string>   An iterable of strings that have been read from the resource.
      */
     public function createAudioStreamFromResource($resource, $chunkSize = 32000)
     {

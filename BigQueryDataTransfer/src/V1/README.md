@@ -1,18 +1,15 @@
-# BigQuery Data Transfer for PHP
+# BigQuery Data Transfer V1 generated client for PHP
 
-> Idiomatic PHP client for [BigQuery Data Transfer](https://cloud.google.com/bigquery/transfer/).
+### Sample
 
-* [Homepage](http://googlecloudplatform.github.io/google-cloud-php)
-* [API documentation](http://googlecloudplatform.github.io/google-cloud-php/#/docs/cloud-bigquerydatatransfer/latest/bigquerydatatransfer/readme)
+```php
+require 'vendor/autoload.php';
 
-**NOTE:** This repository a Read-Only subtree split of
-[Google Cloud PHP](https://github.com/googlecloudplatform/google-cloud-php). Any
-support requests, bug reports, or development contributions should be directed to
-that project. Additional tests and build information can also be found at the
-parent project.
+use Google\Cloud\BigQuery\DataTransfer\V1\DataTransferServiceClient;
 
-## Installation
-
-```
-$ composer require google/cloud-bigquerydatatransfer
+$dataTransferServiceClient = new DataTransferServiceClient();
+$projectId = '[MY_PROJECT_ID]';
+$location = 'us-central1';
+$formattedLocation = $dataTransferServiceClient->locationName($projectId, $location);
+$dataSources = $dataTransferServiceClient->listDataSources($formattedLocation);
 ```

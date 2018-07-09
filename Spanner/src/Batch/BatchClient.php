@@ -18,6 +18,7 @@
 namespace Google\Cloud\Spanner\Batch;
 
 use Google\Cloud\Core\TimeTrait;
+use Google\Cloud\Spanner\Duration;
 use Google\Cloud\Spanner\Operation;
 use Google\Cloud\Spanner\Timestamp;
 use Google\Cloud\Spanner\TransactionConfigurationTrait;

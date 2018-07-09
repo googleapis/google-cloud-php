@@ -5,7 +5,8 @@
     "minimum-stability": "stable",
     "autoload": {
         "psr-4": {
-            "Google\\Cloud\\Redis\\": "src"
+            "Google\\Cloud\\Redis\\": "src",
+            "GPBMetadata\\Google\\Cloud\\Redis\\": "metadata"
         }
     },
     "extra": {
@@ -18,8 +19,7 @@
     },
     "require": {
         "ext-grpc": "*",
-        "google/proto-client": "^0.38.0",
-        "google/gax": "^0.31.0"
+        "google/gax": "^0.34"
     },
     "require-dev": {
         "phpunit/phpunit": "^4.8|^5.0",

@@ -21,10 +21,6 @@
  * https://github.com/google/googleapis/blob/master/google/pubsub/v1/pubsub.proto
  * and updates to that file get reflected here through a refresh process.
  *
- * EXPERIMENTAL: This client library class has not yet been declared GA (1.0). This means that
- * even though we intend the surface to be stable, we may make backwards incompatible changes
- * if necessary.
- *
  * @experimental
  */
 
@@ -32,12 +28,13 @@ namespace Google\Cloud\PubSub\V1\Gapic;
 
 use Google\ApiCore\ApiException;
 use Google\ApiCore\Call;
+use Google\ApiCore\CredentialsWrapper;
+use Google\ApiCore\FetchAuthTokenInterface;
 use Google\ApiCore\GapicClientTrait;
 use Google\ApiCore\PathTemplate;
 use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
-use Google\Auth\CredentialsLoader;
 use Google\Cloud\Iam\V1\GetIamPolicyRequest;
 use Google\Cloud\Iam\V1\Policy;
 use Google\Cloud\Iam\V1\SetIamPolicyRequest;
@@ -49,6 +46,7 @@ use Google\Cloud\PubSub\V1\ListTopicSubscriptionsRequest;
 use Google\Cloud\PubSub\V1\ListTopicSubscriptionsResponse;
 use Google\Cloud\PubSub\V1\ListTopicsRequest;
 use Google\Cloud\PubSub\V1\ListTopicsResponse;
+use Google\Cloud\PubSub\V1\MessageStoragePolicy;
 use Google\Cloud\PubSub\V1\PublishRequest;
 use Google\Cloud\PubSub\V1\PublishResponse;
 use Google\Cloud\PubSub\V1\PubsubMessage;
@@ -56,16 +54,10 @@ use Google\Cloud\PubSub\V1\Topic;
 use Google\Cloud\PubSub\V1\UpdateTopicRequest;
 use Google\Protobuf\FieldMask;
 use Google\Protobuf\GPBEmpty;
-use Grpc\Channel;
-use Grpc\ChannelCredentials;
 
 /**
  * Service Description: The service that an application uses to manipulate topics, and to send
  * messages to a topic.
- *
- * EXPERIMENTAL: This client library class has not yet been declared GA (1.0). This means that
- * even though we intend the surface to be stable, we may make backwards incompatible changes
- * if necessary.
  *
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods. Sample code to get started:
@@ -112,75 +104,62 @@ class PublisherGapicClient
     const CODEGEN_NAME = 'gapic';
 
     /**
-     * The code generator version, to be included in the agent header.
+     * The default scopes required by the service.
      */
-    const CODEGEN_VERSION = '0.0.5';
-
-    private static $projectNameTemplate;
+    public static $serviceScopes = [
+        'https://www.googleapis.com/auth/cloud-platform',
+        'https://www.googleapis.com/auth/pubsub',
+    ];
     private static $topicNameTemplate;
+    private static $projectNameTemplate;
     private static $pathTemplateMap;
 
     private static function getClientDefaults()
     {
         return [
             'serviceName' => self::SERVICE_NAME,
-            'serviceAddress' => self::SERVICE_ADDRESS,
-            'port' => self::DEFAULT_SERVICE_PORT,
-            'scopes' => [
-                'https://www.googleapis.com/auth/cloud-platform',
-                'https://www.googleapis.com/auth/pubsub',
-            ],
-            'clientConfigPath' => __DIR__.'/../resources/publisher_client_config.json',
-            'restClientConfigPath' => __DIR__.'/../resources/publisher_rest_client_config.php',
+            'serviceAddress' => self::SERVICE_ADDRESS.':'.self::DEFAULT_SERVICE_PORT,
+            'clientConfig' => __DIR__.'/../resources/publisher_client_config.json',
             'descriptorsConfigPath' => __DIR__.'/../resources/publisher_descriptor_config.php',
-            'versionFile' => __DIR__.'/../../VERSION',
+            'credentialsConfig' => [
+                'scopes' => self::$serviceScopes,
+            ],
+            'transportConfig' => [
+                'rest' => [
+                    'restClientConfigPath' => __DIR__.'/../resources/publisher_rest_client_config.php',
+                ],
+            ],
         ];
-    }
-
-    private static function getProjectNameTemplate()
-    {
-        if (null == self::$projectNameTemplate) {
-            self::$projectNameTemplate = new PathTemplate('projects/{project}');
-        }
-
-        return self::$projectNameTemplate;
     }
 
     private static function getTopicNameTemplate()
     {
-        if (null == self::$topicNameTemplate) {
+        if (self::$topicNameTemplate == null) {
             self::$topicNameTemplate = new PathTemplate('projects/{project}/topics/{topic}');
         }
 
         return self::$topicNameTemplate;
     }
 
+    private static function getProjectNameTemplate()
+    {
+        if (self::$projectNameTemplate == null) {
+            self::$projectNameTemplate = new PathTemplate('projects/{project}');
+        }
+
+        return self::$projectNameTemplate;
+    }
+
     private static function getPathTemplateMap()
     {
-        if (null == self::$pathTemplateMap) {
+        if (self::$pathTemplateMap == null) {
             self::$pathTemplateMap = [
-                'project' => self::getProjectNameTemplate(),
                 'topic' => self::getTopicNameTemplate(),
+                'project' => self::getProjectNameTemplate(),
             ];
         }
 
         return self::$pathTemplateMap;
-    }
-
-    /**
-     * Formats a string containing the fully-qualified path to represent
-     * a project resource.
-     *
-     * @param string $project
-     *
-     * @return string The formatted project resource.
-     * @experimental
-     */
-    public static function projectName($project)
-    {
-        return self::getProjectNameTemplate()->render([
-            'project' => $project,
-        ]);
     }
 
     /**
@@ -202,11 +181,27 @@ class PublisherGapicClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent
+     * a project resource.
+     *
+     * @param string $project
+     *
+     * @return string The formatted project resource.
+     * @experimental
+     */
+    public static function projectName($project)
+    {
+        return self::getProjectNameTemplate()->render([
+            'project' => $project,
+        ]);
+    }
+
+    /**
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
-     * - project: projects/{project}
-     * - topic: projects/{project}/topics/{topic}.
+     * - topic: projects/{project}/topics/{topic}
+     * - project: projects/{project}.
      *
      * The optional $template argument can be supplied to specify a particular pattern, and must
      * match one of the templates listed above. If no $template argument is provided, or if the
@@ -249,61 +244,61 @@ class PublisherGapicClient
      * @param array $options {
      *                       Optional. Options for configuring the service API wrapper.
      *
-     *     @type string $serviceAddress The domain name of the API remote host.
-     *                                  Default 'pubsub.googleapis.com'.
-     *     @type mixed $port The port on which to connect to the remote host. Default 443.
-     *     @type Channel $channel
-     *           A `Channel` object. If not specified, a channel will be constructed.
-     *           NOTE: This option is only valid when utilizing the gRPC transport.
-     *     @type ChannelCredentials $sslCreds
-     *           A `ChannelCredentials` object for use with an SSL-enabled channel.
-     *           Default: a credentials object returned from
-     *           \Grpc\ChannelCredentials::createSsl().
-     *           NOTE: This option is only valid when utilizing the gRPC transport. Also, if the $channel
-     *           optional argument is specified, then this argument is unused.
-     *     @type bool $forceNewChannel
-     *           If true, this forces gRPC to create a new channel instead of using a persistent channel.
-     *           Defaults to false.
-     *           NOTE: This option is only valid when utilizing the gRPC transport. Also, if the $channel
-     *           optional argument is specified, then this option is unused.
-     *     @type CredentialsLoader $credentialsLoader
-     *           A CredentialsLoader object created using the Google\Auth library.
-     *     @type string[] $scopes A string array of scopes to use when acquiring credentials.
-     *                          Defaults to the scopes for the Google Cloud Pub/Sub API.
-     *     @type string $clientConfigPath
-     *           Path to a JSON file containing client method configuration, including retry settings.
-     *           Specify this setting to specify the retry behavior of all methods on the client.
+     *     @type string $serviceAddress
+     *           The address of the API remote host. May optionally include the port, formatted
+     *           as "<uri>:<port>". Default 'pubsub.googleapis.com:443'.
+     *     @type string|array|FetchAuthTokenInterface|CredentialsWrapper $credentials
+     *           The credentials to be used by the client to authorize API calls. This option
+     *           accepts either a path to a credentials file, or a decoded credentials file as a
+     *           PHP array.
+     *           *Advanced usage*: In addition, this option can also accept a pre-constructed
+     *           {@see \Google\Auth\FetchAuthTokenInterface} object or
+     *           {@see \Google\ApiCore\CredentialsWrapper} object. Note that when one of these
+     *           objects are provided, any settings in $credentialsConfig will be ignored.
+     *     @type array $credentialsConfig
+     *           Options used to configure credentials, including auth token caching, for the client.
+     *           For a full list of supporting configuration options, see
+     *           {@see \Google\ApiCore\CredentialsWrapper::build()}.
+     *     @type bool $disableRetries
+     *           Determines whether or not retries defined by the client configuration should be
+     *           disabled. Defaults to `false`.
+     *     @type string|array $clientConfig
+     *           Client method configuration, including retry settings. This option can be either a
+     *           path to a JSON file, or a PHP array containing the decoded JSON data.
      *           By default this settings points to the default client config file, which is provided
-     *           in the resources folder. The retry settings provided in this option can be overridden
-     *           by settings in $retryingOverride
-     *     @type array $retryingOverride
-     *           An associative array in which the keys are method names (e.g. 'createFoo'), and
-     *           the values are retry settings to use for that method. The retry settings for each
-     *           method can be a {@see Google\ApiCore\RetrySettings} object, or an associative array
-     *           of retry settings parameters. See the documentation on {@see Google\ApiCore\RetrySettings}
-     *           for example usage. Passing a value of null is equivalent to a value of
-     *           ['retriesEnabled' => false]. Retry settings provided in this setting override the
-     *           settings in $clientConfigPath.
-     *     @type callable $authHttpHandler A handler used to deliver PSR-7 requests specifically
-     *           for authentication. Should match a signature of
-     *           `function (RequestInterface $request, array $options) : ResponseInterface`.
-     *     @type callable $httpHandler A handler used to deliver PSR-7 requests. Should match a
-     *           signature of `function (RequestInterface $request, array $options) : PromiseInterface`.
-     *           NOTE: This option is only valid when utilizing the REST transport.
-     *     @type string|TransportInterface $transport The transport used for executing network
-     *           requests. May be either the string `rest` or `grpc`. Additionally, it is possible
-     *           to pass in an already instantiated transport. Defaults to `grpc` if gRPC support is
-     *           detected on the system.
+     *           in the resources folder.
+     *     @type string|TransportInterface $transport
+     *           The transport used for executing network requests. May be either the string `rest`
+     *           or `grpc`. Defaults to `grpc` if gRPC support is detected on the system.
+     *           *Advanced usage*: Additionally, it is possible to pass in an already instantiated
+     *           {@see \Google\ApiCore\Transport\TransportInterface} object. Note that when this
+     *           object is provided, any settings in $transportConfig, and any $serviceAddress
+     *           setting, will be ignored.
+     *     @type array $transportConfig
+     *           Configuration options that will be used to construct the transport. Options for
+     *           each supported transport type should be passed in a key for that transport. For
+     *           example:
+     *           $transportConfig = [
+     *               'grpc' => [...],
+     *               'rest' => [...]
+     *           ];
+     *           See the {@see \Google\ApiCore\Transport\GrpcTransport::build()} and
+     *           {@see \Google\ApiCore\Transport\RestTransport::build()} methods for the
+     *           supported options.
      * }
+     *
+     * @throws ValidationException
      * @experimental
      */
-    public function __construct($options = [])
+    public function __construct(array $options = [])
     {
-        $this->setClientOptions($options + self::getClientDefaults());
+        $clientOptions = $this->buildClientOptions($options);
+        $this->setClientOptions($clientOptions);
     }
 
     /**
-     * Creates the given topic with the given name.
+     * Creates the given topic with the given name. See the
+     * <a href="/pubsub/docs/admin#resource_names"> resource name rules</a>.
      *
      * Sample code:
      * ```
@@ -327,6 +322,13 @@ class PublisherGapicClient
      *
      *     @type array $labels
      *          User labels.
+     *     @type MessageStoragePolicy $messageStoragePolicy
+     *          Policy constraining how messages published to the topic may be stored. It
+     *          is determined when the topic is created based on the policy configured at
+     *          the project level. It must not be set by the caller in the request to
+     *          CreateTopic or to UpdateTopic. This field will be populated in the
+     *          responses for GetTopic, CreateTopic, and UpdateTopic: if not present in the
+     *          response, then no constraints are in effect.
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
@@ -339,12 +341,15 @@ class PublisherGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function createTopic($name, $optionalArgs = [])
+    public function createTopic($name, array $optionalArgs = [])
     {
         $request = new Topic();
         $request->setName($name);
         if (isset($optionalArgs['labels'])) {
             $request->setLabels($optionalArgs['labels']);
+        }
+        if (isset($optionalArgs['messageStoragePolicy'])) {
+            $request->setMessageStoragePolicy($optionalArgs['messageStoragePolicy']);
         }
 
         return $this->startCall(
@@ -356,12 +361,8 @@ class PublisherGapicClient
     }
 
     /**
-     * Updates an existing topic. Note that certain properties of a topic are not
-     * modifiable.  Options settings follow the style guide:
-     * NOTE:  The style guide requires body: "topic" instead of body: "*".
-     * Keeping the latter for internal consistency in V1, however it should be
-     * corrected in V2.  See
-     * https://cloud.google.com/apis/design/standard_methods#update for details.
+     * Updates an existing topic. Note that certain properties of a
+     * topic are not modifiable.
      *
      * Sample code:
      * ```
@@ -375,9 +376,12 @@ class PublisherGapicClient
      * }
      * ```
      *
-     * @param Topic     $topic        The topic to update.
-     * @param FieldMask $updateMask   Indicates which fields in the provided topic to update.
-     *                                Must be specified and non-empty.
+     * @param Topic     $topic        The updated topic object.
+     * @param FieldMask $updateMask   Indicates which fields in the provided topic to update. Must be specified
+     *                                and non-empty. Note that if `update_mask` contains
+     *                                "message_storage_policy" then the new value will be determined based on the
+     *                                policy configured at the project or organization level. The
+     *                                `message_storage_policy` must not be set in the `topic` provided above.
      * @param array     $optionalArgs {
      *                                Optional.
      *
@@ -393,7 +397,7 @@ class PublisherGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function updateTopic($topic, $updateMask, $optionalArgs = [])
+    public function updateTopic($topic, $updateMask, array $optionalArgs = [])
     {
         $request = new UpdateTopicRequest();
         $request->setTopic($topic);
@@ -445,7 +449,7 @@ class PublisherGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function publish($topic, $messages, $optionalArgs = [])
+    public function publish($topic, $messages, array $optionalArgs = [])
     {
         $request = new PublishRequest();
         $request->setTopic($topic);
@@ -490,7 +494,7 @@ class PublisherGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function getTopic($topic, $optionalArgs = [])
+    public function getTopic($topic, array $optionalArgs = [])
     {
         $request = new GetTopicRequest();
         $request->setTopic($topic);
@@ -555,7 +559,7 @@ class PublisherGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function listTopics($project, $optionalArgs = [])
+    public function listTopics($project, array $optionalArgs = [])
     {
         $request = new ListTopicsRequest();
         $request->setProject($project);
@@ -575,7 +579,7 @@ class PublisherGapicClient
     }
 
     /**
-     * Lists the name of the subscriptions for this topic.
+     * Lists the names of the subscriptions on this topic.
      *
      * Sample code:
      * ```
@@ -626,7 +630,7 @@ class PublisherGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function listTopicSubscriptions($topic, $optionalArgs = [])
+    public function listTopicSubscriptions($topic, array $optionalArgs = [])
     {
         $request = new ListTopicSubscriptionsRequest();
         $request->setTopic($topic);
@@ -678,7 +682,7 @@ class PublisherGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function deleteTopic($topic, $optionalArgs = [])
+    public function deleteTopic($topic, array $optionalArgs = [])
     {
         $request = new DeleteTopicRequest();
         $request->setTopic($topic);
@@ -729,7 +733,7 @@ class PublisherGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function setIamPolicy($resource, $policy, $optionalArgs = [])
+    public function setIamPolicy($resource, $policy, array $optionalArgs = [])
     {
         $request = new SetIamPolicyRequest();
         $request->setResource($resource);
@@ -779,7 +783,7 @@ class PublisherGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function getIamPolicy($resource, $optionalArgs = [])
+    public function getIamPolicy($resource, array $optionalArgs = [])
     {
         $request = new GetIamPolicyRequest();
         $request->setResource($resource);
@@ -833,7 +837,7 @@ class PublisherGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function testIamPermissions($resource, $permissions, $optionalArgs = [])
+    public function testIamPermissions($resource, $permissions, array $optionalArgs = [])
     {
         $request = new TestIamPermissionsRequest();
         $request->setResource($resource);

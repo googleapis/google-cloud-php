@@ -37,7 +37,7 @@ namespace Google\Cloud\Debugger;
  * @see https://cloud.google.com/debugger/api/reference/rest/v2/Debuggee#gerritsourcecontext GerritSourceContext model documentation
  * @codingStandardsIgnoreEnd
  */
-class GerritSourceContext implements SourceContext, \JsonSerializable
+class GerritSourceContext implements SourceContext
 {
     /**
      * @var string The URI of a running Gerrit instance.
@@ -84,30 +84,20 @@ class GerritSourceContext implements SourceContext, \JsonSerializable
     }
 
     /**
-     * Return context data.
+     * Return a serializable version of this object
      *
+     * @access private
      * @return array
      */
-    public function contextData()
+    public function info()
     {
         return [
             'gerrit' => [
                 'hostUri' => $this->hostUri,
                 'gerritProject' => $this->gerritProject,
                 'revisionId' => $this->revisionId,
-                'aliasContext' => $this->aliasContext
+                'aliasContext' => $this->aliasContext->info()
             ]
         ];
-    }
-
-    /**
-     * Callback to implement JsonSerializable interface
-     *
-     * @access private
-     * @return array
-     */
-    public function jsonSerialize()
-    {
-        return $this->contextData();
     }
 }

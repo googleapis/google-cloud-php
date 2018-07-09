@@ -55,9 +55,9 @@ class SpeechClient extends SpeechGapicClient
     /**
      * Helper method to create a stream of StreamingRecognizeRequest objects from audio data.
      *
-     * @param iterable|resource|string      $audio *Required* The audio data to be converted into a stream of requests. This
-     *                                             can be a resource, a string of bytes, or an iterable of
-     *                                             StreamingRecognizeRequest[] or string[].
+     * @param \Traversable|resource|string $audio *Required* The audio data to be converted into a stream of requests. This
+     *                                            can be a resource, a string of bytes, or an iterable of
+     *                                            StreamingRecognizeRequest[] or string[].
      * @return StreamingRecognizeRequest[]
      */
     public function createStreamingRequests($audio)
@@ -91,12 +91,12 @@ class SpeechClient extends SpeechGapicClient
      * }
      * ```
      *
-     * @param StreamingRecognitionConfig  $config         *Required* Provides information to the recognizer that specifies how to
-     *                                                    process the request.
-     * @param iterable|resource|string    $audio          *Required* Audio data to be streamed. Can be a resource, a string of bytes,
-     *                                                    or an iterable of StreamingRecognizeRequest[] or string[].
-     * @param array                       $optionalArgs   {
-     *                                                    Optional.
+     * @param StreamingRecognitionConfig   $config       *Required* Provides information to the recognizer that specifies how to
+     *                                                   process the request.
+     * @param \Traversable|resource|string $audio        *Required* Audio data to be streamed. Can be a resource, a string of bytes,
+     *                                                   or an iterable of StreamingRecognizeRequest[] or string[].
+     * @param array                        $optionalArgs {
+     *                                                   Optional.
      *
      *     @type int $timeoutMillis
      *          Timeout to use for this call.
