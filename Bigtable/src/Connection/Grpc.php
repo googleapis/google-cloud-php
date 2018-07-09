@@ -165,7 +165,7 @@ class Grpc implements ConnectionInterface
     {
         throw new \BadMethodCallException('This method is not implemented yet');
     }
-    
+
     /**
      * @param array $args
      */
@@ -283,7 +283,11 @@ class Grpc implements ConnectionInterface
      */
     public function getIamPolicy(array $args)
     {
-        throw new \BadMethodCallException('This method is not implemented yet');
+        $resource = $this->pluck('resource', $args);
+        return $this->send([$this->bigtableInstanceAdminClient, 'getIamPolicy'], [
+            $resource,
+            $this->addResourcePrefixHeader($args, $resource)
+        ]);
     }
 
     /**
@@ -291,7 +295,25 @@ class Grpc implements ConnectionInterface
      */
     public function setIamPolicy(array $args)
     {
-        throw new \BadMethodCallException('This method is not implemented yet');
+        $resource = $this->pluck('resource', $args);
+        return $this->send([$this->bigtableInstanceAdminClient, 'setIamPolicy'], [
+            $resource,
+            $this->pluck('policy', $args),
+            $this->addResourcePrefixHeader($args, $resource)
+        ]);
+    }
+
+    /**
+     * @param array $args
+     */
+    public function testIamPermissions(array $args)
+    {
+        $resource = $this->pluck('resource', $args);
+        return $this->send([$this->bigtableInstanceAdminClient, 'testIamPermissions'], [
+            $resource,
+            $this->pluck('permissions', $args),
+            $this->addResourcePrefixHeader($args, $resource)
+        ]);
     }
 
     /**
@@ -353,9 +375,26 @@ class Grpc implements ConnectionInterface
     /**
      * @param array $args
      */
-    public function waitForReplication(array $args)
+  public function checkConsistency(array $args)
     {
-        throw new \BadMethodCallException('This method is not implemented yet');
+        $name = $this->pluck('name', $args);
+        return $this->send([$this->bigtableTableAdminClient, 'checkConsistency'], [
+            $name,
+            $this->pluck('consistencyToken', $args),
+            $this->addResourcePrefixHeader($args, $name)
+        ]);
+    }
+
+    /**
+     * @param array $args
+     */
+    public function generateConsistencyToken(array $args)
+    {
+        $name = $this->pluck('name', $args);
+        return $this->send([$this->bigtableTableAdminClient, 'generateConsistencyToken'], [
+            $name,
+            $this->addResourcePrefixHeader($args, $name)
+        ]);
     }
 
     /**
@@ -442,6 +481,38 @@ class Grpc implements ConnectionInterface
      * @param array $args
      */
     public function readModifyWriteRow(array $args)
+    {
+        throw new \BadMethodCallException('This method is not implemented yet');
+    }
+
+    /**
+     * @param array $args
+     */
+    public function getOperation(array $args)
+    {
+        throw new \BadMethodCallException('This method is not implemented yet');
+    }
+
+    /**
+     * @param array $args
+     */
+    public function cancelOperation(array $args)
+    {
+        throw new \BadMethodCallException('This method is not implemented yet');
+    }
+
+    /**
+     * @param array $args
+     */
+    public function deleteOperation(array $args)
+    {
+        throw new \BadMethodCallException('This method is not implemented yet');
+    }
+
+    /**
+     * @param array $args
+     */
+    public function listOperations(array $args)
     {
         throw new \BadMethodCallException('This method is not implemented yet');
     }

@@ -31,7 +31,7 @@ namespace Google\Cloud\Trace;
  *
  * @see https://cloud.google.com/trace/docs/reference/v2/rest/v2/Status Status model documentation
  */
-class Status implements \JsonSerializable
+class Status
 {
     /**
      * @var int The status code, which should be an enum value of google.rpc.Code.
@@ -64,13 +64,11 @@ class Status implements \JsonSerializable
      *        in English. Any user-facing error message should be localized and
      *        sent in the google.rpc.Status.details field, or localized by the
      *        client.
-     * @param array $options [optional] {
-     *     Configuration options.
-     *
-     *     @type array $details A list of messages that carry the error details. There is a
-     *           common set of message types for APIs to use. An object containing fields
-     *           of an arbitrary type. An additional field "@type" contains a URI
-     *           identifying the type.
+     * @param array $options [optional] Configuration options.
+     * @param array $options['details'] [optional] A list of messages that carry the error details. There is a
+     *        common set of message types for APIs to use. An object containing fields
+     *        of an arbitrary type. An additional field "@type" contains a URI
+     *        identifying the type.
      */
     public function __construct($code, $message, array $options = [])
     {
@@ -88,7 +86,7 @@ class Status implements \JsonSerializable
      * @access private
      * @return array
      */
-    public function jsonSerialize()
+    public function info()
     {
         $data = [
             'code' => $this->code,

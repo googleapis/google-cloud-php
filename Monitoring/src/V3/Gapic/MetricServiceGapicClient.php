@@ -21,17 +21,14 @@
  * https://github.com/google/googleapis/blob/master/google/monitoring/v3/metric_service.proto
  * and updates to that file get reflected here through a refresh process.
  *
- * EXPERIMENTAL: This client library class has not yet been declared GA (1.0). This means that
- * even though we intend the surface to be stable, we may make backwards incompatible changes
- * if necessary.
- *
  * @experimental
  */
 
 namespace Google\Cloud\Monitoring\V3\Gapic;
 
 use Google\ApiCore\ApiException;
-use Google\ApiCore\Call;
+use Google\ApiCore\CredentialsWrapper;
+use Google\ApiCore\FetchAuthTokenInterface;
 use Google\ApiCore\GapicClientTrait;
 use Google\ApiCore\PathTemplate;
 use Google\ApiCore\RetrySettings;
@@ -39,7 +36,6 @@ use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
 use Google\Api\MetricDescriptor;
 use Google\Api\MonitoredResourceDescriptor;
-use Google\Auth\CredentialsLoader;
 use Google\Cloud\Monitoring\V3\Aggregation;
 use Google\Cloud\Monitoring\V3\CreateMetricDescriptorRequest;
 use Google\Cloud\Monitoring\V3\CreateTimeSeriesRequest;
@@ -56,16 +52,10 @@ use Google\Cloud\Monitoring\V3\ListTimeSeriesResponse;
 use Google\Cloud\Monitoring\V3\TimeInterval;
 use Google\Cloud\Monitoring\V3\TimeSeries;
 use Google\Protobuf\GPBEmpty;
-use Grpc\Channel;
-use Grpc\ChannelCredentials;
 
 /**
  * Service Description: Manages metric descriptors, monitored resource descriptors, and
  * time series data.
- *
- * EXPERIMENTAL: This client library class has not yet been declared GA (1.0). This means that
- * even though we intend the surface to be stable, we may make backwards incompatible changes
- * if necessary.
  *
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods. Sample code to get started:
@@ -124,10 +114,14 @@ class MetricServiceGapicClient
     const CODEGEN_NAME = 'gapic';
 
     /**
-     * The code generator version, to be included in the agent header.
+     * The default scopes required by the service.
      */
-    const CODEGEN_VERSION = '0.0.5';
-
+    public static $serviceScopes = [
+        'https://www.googleapis.com/auth/cloud-platform',
+        'https://www.googleapis.com/auth/monitoring',
+        'https://www.googleapis.com/auth/monitoring.read',
+        'https://www.googleapis.com/auth/monitoring.write',
+    ];
     private static $projectNameTemplate;
     private static $metricDescriptorNameTemplate;
     private static $monitoredResourceDescriptorNameTemplate;
@@ -137,24 +131,23 @@ class MetricServiceGapicClient
     {
         return [
             'serviceName' => self::SERVICE_NAME,
-            'serviceAddress' => self::SERVICE_ADDRESS,
-            'port' => self::DEFAULT_SERVICE_PORT,
-            'scopes' => [
-                'https://www.googleapis.com/auth/cloud-platform',
-                'https://www.googleapis.com/auth/monitoring',
-                'https://www.googleapis.com/auth/monitoring.read',
-                'https://www.googleapis.com/auth/monitoring.write',
-            ],
-            'clientConfigPath' => __DIR__.'/../resources/metric_service_client_config.json',
-            'restClientConfigPath' => __DIR__.'/../resources/metric_service_rest_client_config.php',
+            'serviceAddress' => self::SERVICE_ADDRESS.':'.self::DEFAULT_SERVICE_PORT,
+            'clientConfig' => __DIR__.'/../resources/metric_service_client_config.json',
             'descriptorsConfigPath' => __DIR__.'/../resources/metric_service_descriptor_config.php',
-            'versionFile' => __DIR__.'/../../VERSION',
+            'credentialsConfig' => [
+                'scopes' => self::$serviceScopes,
+            ],
+            'transportConfig' => [
+                'rest' => [
+                    'restClientConfigPath' => __DIR__.'/../resources/metric_service_rest_client_config.php',
+                ],
+            ],
         ];
     }
 
     private static function getProjectNameTemplate()
     {
-        if (null == self::$projectNameTemplate) {
+        if (self::$projectNameTemplate == null) {
             self::$projectNameTemplate = new PathTemplate('projects/{project}');
         }
 
@@ -163,7 +156,7 @@ class MetricServiceGapicClient
 
     private static function getMetricDescriptorNameTemplate()
     {
-        if (null == self::$metricDescriptorNameTemplate) {
+        if (self::$metricDescriptorNameTemplate == null) {
             self::$metricDescriptorNameTemplate = new PathTemplate('projects/{project}/metricDescriptors/{metric_descriptor=**}');
         }
 
@@ -172,7 +165,7 @@ class MetricServiceGapicClient
 
     private static function getMonitoredResourceDescriptorNameTemplate()
     {
-        if (null == self::$monitoredResourceDescriptorNameTemplate) {
+        if (self::$monitoredResourceDescriptorNameTemplate == null) {
             self::$monitoredResourceDescriptorNameTemplate = new PathTemplate('projects/{project}/monitoredResourceDescriptors/{monitored_resource_descriptor}');
         }
 
@@ -181,7 +174,7 @@ class MetricServiceGapicClient
 
     private static function getPathTemplateMap()
     {
-        if (null == self::$pathTemplateMap) {
+        if (self::$pathTemplateMap == null) {
             self::$pathTemplateMap = [
                 'project' => self::getProjectNameTemplate(),
                 'metricDescriptor' => self::getMetricDescriptorNameTemplate(),
@@ -293,57 +286,56 @@ class MetricServiceGapicClient
      * @param array $options {
      *                       Optional. Options for configuring the service API wrapper.
      *
-     *     @type string $serviceAddress The domain name of the API remote host.
-     *                                  Default 'monitoring.googleapis.com'.
-     *     @type mixed $port The port on which to connect to the remote host. Default 443.
-     *     @type Channel $channel
-     *           A `Channel` object. If not specified, a channel will be constructed.
-     *           NOTE: This option is only valid when utilizing the gRPC transport.
-     *     @type ChannelCredentials $sslCreds
-     *           A `ChannelCredentials` object for use with an SSL-enabled channel.
-     *           Default: a credentials object returned from
-     *           \Grpc\ChannelCredentials::createSsl().
-     *           NOTE: This option is only valid when utilizing the gRPC transport. Also, if the $channel
-     *           optional argument is specified, then this argument is unused.
-     *     @type bool $forceNewChannel
-     *           If true, this forces gRPC to create a new channel instead of using a persistent channel.
-     *           Defaults to false.
-     *           NOTE: This option is only valid when utilizing the gRPC transport. Also, if the $channel
-     *           optional argument is specified, then this option is unused.
-     *     @type CredentialsLoader $credentialsLoader
-     *           A CredentialsLoader object created using the Google\Auth library.
-     *     @type string[] $scopes A string array of scopes to use when acquiring credentials.
-     *                          Defaults to the scopes for the Stackdriver Monitoring API.
-     *     @type string $clientConfigPath
-     *           Path to a JSON file containing client method configuration, including retry settings.
-     *           Specify this setting to specify the retry behavior of all methods on the client.
+     *     @type string $serviceAddress
+     *           The address of the API remote host. May optionally include the port, formatted
+     *           as "<uri>:<port>". Default 'monitoring.googleapis.com:443'.
+     *     @type string|array|FetchAuthTokenInterface|CredentialsWrapper $credentials
+     *           The credentials to be used by the client to authorize API calls. This option
+     *           accepts either a path to a credentials file, or a decoded credentials file as a
+     *           PHP array.
+     *           *Advanced usage*: In addition, this option can also accept a pre-constructed
+     *           {@see \Google\Auth\FetchAuthTokenInterface} object or
+     *           {@see \Google\ApiCore\CredentialsWrapper} object. Note that when one of these
+     *           objects are provided, any settings in $credentialsConfig will be ignored.
+     *     @type array $credentialsConfig
+     *           Options used to configure credentials, including auth token caching, for the client.
+     *           For a full list of supporting configuration options, see
+     *           {@see \Google\ApiCore\CredentialsWrapper::build()}.
+     *     @type bool $disableRetries
+     *           Determines whether or not retries defined by the client configuration should be
+     *           disabled. Defaults to `false`.
+     *     @type string|array $clientConfig
+     *           Client method configuration, including retry settings. This option can be either a
+     *           path to a JSON file, or a PHP array containing the decoded JSON data.
      *           By default this settings points to the default client config file, which is provided
-     *           in the resources folder. The retry settings provided in this option can be overridden
-     *           by settings in $retryingOverride
-     *     @type array $retryingOverride
-     *           An associative array in which the keys are method names (e.g. 'createFoo'), and
-     *           the values are retry settings to use for that method. The retry settings for each
-     *           method can be a {@see Google\ApiCore\RetrySettings} object, or an associative array
-     *           of retry settings parameters. See the documentation on {@see Google\ApiCore\RetrySettings}
-     *           for example usage. Passing a value of null is equivalent to a value of
-     *           ['retriesEnabled' => false]. Retry settings provided in this setting override the
-     *           settings in $clientConfigPath.
-     *     @type callable $authHttpHandler A handler used to deliver PSR-7 requests specifically
-     *           for authentication. Should match a signature of
-     *           `function (RequestInterface $request, array $options) : ResponseInterface`.
-     *     @type callable $httpHandler A handler used to deliver PSR-7 requests. Should match a
-     *           signature of `function (RequestInterface $request, array $options) : PromiseInterface`.
-     *           NOTE: This option is only valid when utilizing the REST transport.
-     *     @type string|TransportInterface $transport The transport used for executing network
-     *           requests. May be either the string `rest` or `grpc`. Additionally, it is possible
-     *           to pass in an already instantiated transport. Defaults to `grpc` if gRPC support is
-     *           detected on the system.
+     *           in the resources folder.
+     *     @type string|TransportInterface $transport
+     *           The transport used for executing network requests. May be either the string `rest`
+     *           or `grpc`. Defaults to `grpc` if gRPC support is detected on the system.
+     *           *Advanced usage*: Additionally, it is possible to pass in an already instantiated
+     *           {@see \Google\ApiCore\Transport\TransportInterface} object. Note that when this
+     *           object is provided, any settings in $transportConfig, and any $serviceAddress
+     *           setting, will be ignored.
+     *     @type array $transportConfig
+     *           Configuration options that will be used to construct the transport. Options for
+     *           each supported transport type should be passed in a key for that transport. For
+     *           example:
+     *           $transportConfig = [
+     *               'grpc' => [...],
+     *               'rest' => [...]
+     *           ];
+     *           See the {@see \Google\ApiCore\Transport\GrpcTransport::build()} and
+     *           {@see \Google\ApiCore\Transport\RestTransport::build()} methods for the
+     *           supported options.
      * }
+     *
+     * @throws ValidationException
      * @experimental
      */
-    public function __construct($options = [])
+    public function __construct(array $options = [])
     {
-        $this->setClientOptions($options + self::getClientDefaults());
+        $clientOptions = $this->buildClientOptions($options);
+        $this->setClientOptions($clientOptions);
     }
 
     /**
@@ -406,7 +398,7 @@ class MetricServiceGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function listMonitoredResourceDescriptors($name, $optionalArgs = [])
+    public function listMonitoredResourceDescriptors($name, array $optionalArgs = [])
     {
         $request = new ListMonitoredResourceDescriptorsRequest();
         $request->setName($name);
@@ -461,7 +453,7 @@ class MetricServiceGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function getMonitoredResourceDescriptor($name, $optionalArgs = [])
+    public function getMonitoredResourceDescriptor($name, array $optionalArgs = [])
     {
         $request = new GetMonitoredResourceDescriptorRequest();
         $request->setName($name);
@@ -535,7 +527,7 @@ class MetricServiceGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function listMetricDescriptors($name, $optionalArgs = [])
+    public function listMetricDescriptors($name, array $optionalArgs = [])
     {
         $request = new ListMetricDescriptorsRequest();
         $request->setName($name);
@@ -590,7 +582,7 @@ class MetricServiceGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function getMetricDescriptor($name, $optionalArgs = [])
+    public function getMetricDescriptor($name, array $optionalArgs = [])
     {
         $request = new GetMetricDescriptorRequest();
         $request->setName($name);
@@ -639,7 +631,7 @@ class MetricServiceGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function createMetricDescriptor($name, $metricDescriptor, $optionalArgs = [])
+    public function createMetricDescriptor($name, $metricDescriptor, array $optionalArgs = [])
     {
         $request = new CreateMetricDescriptorRequest();
         $request->setName($name);
@@ -685,7 +677,7 @@ class MetricServiceGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function deleteMetricDescriptor($name, $optionalArgs = [])
+    public function deleteMetricDescriptor($name, array $optionalArgs = [])
     {
         $request = new DeleteMetricDescriptorRequest();
         $request->setName($name);
@@ -773,7 +765,7 @@ class MetricServiceGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function listTimeSeries($name, $filter, $interval, $view, $optionalArgs = [])
+    public function listTimeSeries($name, $filter, $interval, $view, array $optionalArgs = [])
     {
         $request = new ListTimeSeriesRequest();
         $request->setName($name);
@@ -839,7 +831,7 @@ class MetricServiceGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function createTimeSeries($name, $timeSeries, $optionalArgs = [])
+    public function createTimeSeries($name, $timeSeries, array $optionalArgs = [])
     {
         $request = new CreateTimeSeriesRequest();
         $request->setName($name);

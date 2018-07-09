@@ -25,8 +25,6 @@ use PHPUnit\Framework\TestCase;
  */
 class AliasContextTest extends TestCase
 {
-    use JsonTestTrait;
-
     public function testSerializes()
     {
         $aliasContext = new AliasContext('kind', 'name');
@@ -34,6 +32,6 @@ class AliasContextTest extends TestCase
             'kind' => 'kind',
             'name' => 'name'
         ];
-        $this->assertProducesEquivalentJson($expected, $aliasContext);
+        $this->assertEquals($expected, $aliasContext->info());
     }
 }

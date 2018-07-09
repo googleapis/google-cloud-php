@@ -1,5 +1,18 @@
-# Cloud Firestore
+# Cloud Firestore V1beta1 generated client for PHP
 
-Cloud Firestore is a flexible, scalable, realtime database for mobile, web, and server development.
+### Sample
 
-For more information, see [cloud.google.com](https://cloud.google.com/firestore/).
+```php
+require 'vendor/autoload.php';
+
+use Google\Cloud\Firestore\V1beta1\FirestoreClient;
+
+$firestoreClient = new FirestoreClient();
+try {
+    $formattedName = $firestoreClient->anyPathName('[PROJECT]', '[DATABASE]', '[DOCUMENT]', '[ANY_PATH]');
+    $response = $firestoreClient->getDocument($formattedName);
+} finally {
+    $firestoreClient->close();
+}
+```
+

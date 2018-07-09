@@ -44,7 +44,7 @@ namespace Google\Cloud\Trace;
  * @see https://cloud.google.com/trace/docs/reference/v2/rest/v2/projects.traces/batchWrite#Span Span model documentation
  * @codingStandardsIgnoreEnd
  */
-class Span implements \JsonSerializable
+class Span
 {
     use AttributeTrait;
     use TimestampTrait;
@@ -366,7 +366,7 @@ class Span implements \JsonSerializable
      * @access private
      * @return array
      */
-    public function jsonSerialize()
+    public function info()
     {
         $data = [
             'displayName' => [
@@ -380,23 +380,27 @@ class Span implements \JsonSerializable
             $data['parentSpanId'] = $this->parentSpanId;
         }
         if ($this->attributes) {
-            $data['attributes'] = $this->attributes;
+            $data['attributes'] = $this->attributes->info();
         }
         if ($this->timeEvents) {
             $data['timeEvents'] = [
-                'timeEvent' => $this->timeEvents
+                'timeEvent' => array_map(function ($timeEvent) {
+                    return $timeEvent->info();
+                }, $this->timeEvents)
             ];
         }
         if ($this->links) {
             $data['links'] = [
-                'link' => $this->links
+                'link' => array_map(function ($link) {
+                    return $link->info();
+                }, $this->links)
             ];
         }
         if ($this->status) {
-            $data['status'] = $this->status;
+            $data['status'] = $this->status->info();
         }
         if ($this->stackTrace) {
-            $data['stackTrace'] = $this->stackTrace;
+            $data['stackTrace'] = $this->stackTrace->info();
         }
         if ($this->sameProcessAsParentSpan !== null) {
             $data['sameProcessAsParentSpan'] = $this->sameProcessAsParentSpan;

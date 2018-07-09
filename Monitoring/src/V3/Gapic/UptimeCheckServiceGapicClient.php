@@ -21,23 +21,19 @@
  * https://github.com/google/googleapis/blob/master/google/monitoring/v3/uptime_service.proto
  * and updates to that file get reflected here through a refresh process.
  *
- * EXPERIMENTAL: This client library class has not yet been declared GA (1.0). This means that
- * even though we intend the surface to be stable, we may make backwards incompatible changes
- * if necessary.
- *
  * @experimental
  */
 
 namespace Google\Cloud\Monitoring\V3\Gapic;
 
 use Google\ApiCore\ApiException;
-use Google\ApiCore\Call;
+use Google\ApiCore\CredentialsWrapper;
+use Google\ApiCore\FetchAuthTokenInterface;
 use Google\ApiCore\GapicClientTrait;
 use Google\ApiCore\PathTemplate;
 use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
-use Google\Auth\CredentialsLoader;
 use Google\Cloud\Monitoring\V3\CreateUptimeCheckConfigRequest;
 use Google\Cloud\Monitoring\V3\DeleteUptimeCheckConfigRequest;
 use Google\Cloud\Monitoring\V3\GetUptimeCheckConfigRequest;
@@ -49,8 +45,6 @@ use Google\Cloud\Monitoring\V3\UpdateUptimeCheckConfigRequest;
 use Google\Cloud\Monitoring\V3\UptimeCheckConfig;
 use Google\Protobuf\FieldMask;
 use Google\Protobuf\GPBEmpty;
-use Grpc\Channel;
-use Grpc\ChannelCredentials;
 
 /**
  * Service Description: The UptimeCheckService API is used to manage (list, create, delete, edit)
@@ -61,10 +55,6 @@ use Grpc\ChannelCredentials;
  * (http://console.cloud.google.com), selecting the appropriate project,
  * clicking on "Monitoring" on the left-hand side to navigate to Stackdriver,
  * and then clicking on "Uptime".
- *
- * EXPERIMENTAL: This client library class has not yet been declared GA (1.0). This means that
- * even though we intend the surface to be stable, we may make backwards incompatible changes
- * if necessary.
  *
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods. Sample code to get started:
@@ -123,10 +113,14 @@ class UptimeCheckServiceGapicClient
     const CODEGEN_NAME = 'gapic';
 
     /**
-     * The code generator version, to be included in the agent header.
+     * The default scopes required by the service.
      */
-    const CODEGEN_VERSION = '0.0.5';
-
+    public static $serviceScopes = [
+        'https://www.googleapis.com/auth/cloud-platform',
+        'https://www.googleapis.com/auth/monitoring',
+        'https://www.googleapis.com/auth/monitoring.read',
+        'https://www.googleapis.com/auth/monitoring.write',
+    ];
     private static $projectNameTemplate;
     private static $uptimeCheckConfigNameTemplate;
     private static $pathTemplateMap;
@@ -135,24 +129,23 @@ class UptimeCheckServiceGapicClient
     {
         return [
             'serviceName' => self::SERVICE_NAME,
-            'serviceAddress' => self::SERVICE_ADDRESS,
-            'port' => self::DEFAULT_SERVICE_PORT,
-            'scopes' => [
-                'https://www.googleapis.com/auth/cloud-platform',
-                'https://www.googleapis.com/auth/monitoring',
-                'https://www.googleapis.com/auth/monitoring.read',
-                'https://www.googleapis.com/auth/monitoring.write',
-            ],
-            'clientConfigPath' => __DIR__.'/../resources/uptime_check_service_client_config.json',
-            'restClientConfigPath' => __DIR__.'/../resources/uptime_check_service_rest_client_config.php',
+            'serviceAddress' => self::SERVICE_ADDRESS.':'.self::DEFAULT_SERVICE_PORT,
+            'clientConfig' => __DIR__.'/../resources/uptime_check_service_client_config.json',
             'descriptorsConfigPath' => __DIR__.'/../resources/uptime_check_service_descriptor_config.php',
-            'versionFile' => __DIR__.'/../../VERSION',
+            'credentialsConfig' => [
+                'scopes' => self::$serviceScopes,
+            ],
+            'transportConfig' => [
+                'rest' => [
+                    'restClientConfigPath' => __DIR__.'/../resources/uptime_check_service_rest_client_config.php',
+                ],
+            ],
         ];
     }
 
     private static function getProjectNameTemplate()
     {
-        if (null == self::$projectNameTemplate) {
+        if (self::$projectNameTemplate == null) {
             self::$projectNameTemplate = new PathTemplate('projects/{project}');
         }
 
@@ -161,7 +154,7 @@ class UptimeCheckServiceGapicClient
 
     private static function getUptimeCheckConfigNameTemplate()
     {
-        if (null == self::$uptimeCheckConfigNameTemplate) {
+        if (self::$uptimeCheckConfigNameTemplate == null) {
             self::$uptimeCheckConfigNameTemplate = new PathTemplate('projects/{project}/uptimeCheckConfigs/{uptime_check_config}');
         }
 
@@ -170,7 +163,7 @@ class UptimeCheckServiceGapicClient
 
     private static function getPathTemplateMap()
     {
-        if (null == self::$pathTemplateMap) {
+        if (self::$pathTemplateMap == null) {
             self::$pathTemplateMap = [
                 'project' => self::getProjectNameTemplate(),
                 'uptimeCheckConfig' => self::getUptimeCheckConfigNameTemplate(),
@@ -262,57 +255,56 @@ class UptimeCheckServiceGapicClient
      * @param array $options {
      *                       Optional. Options for configuring the service API wrapper.
      *
-     *     @type string $serviceAddress The domain name of the API remote host.
-     *                                  Default 'monitoring.googleapis.com'.
-     *     @type mixed $port The port on which to connect to the remote host. Default 443.
-     *     @type Channel $channel
-     *           A `Channel` object. If not specified, a channel will be constructed.
-     *           NOTE: This option is only valid when utilizing the gRPC transport.
-     *     @type ChannelCredentials $sslCreds
-     *           A `ChannelCredentials` object for use with an SSL-enabled channel.
-     *           Default: a credentials object returned from
-     *           \Grpc\ChannelCredentials::createSsl().
-     *           NOTE: This option is only valid when utilizing the gRPC transport. Also, if the $channel
-     *           optional argument is specified, then this argument is unused.
-     *     @type bool $forceNewChannel
-     *           If true, this forces gRPC to create a new channel instead of using a persistent channel.
-     *           Defaults to false.
-     *           NOTE: This option is only valid when utilizing the gRPC transport. Also, if the $channel
-     *           optional argument is specified, then this option is unused.
-     *     @type CredentialsLoader $credentialsLoader
-     *           A CredentialsLoader object created using the Google\Auth library.
-     *     @type string[] $scopes A string array of scopes to use when acquiring credentials.
-     *                          Defaults to the scopes for the Stackdriver Monitoring API.
-     *     @type string $clientConfigPath
-     *           Path to a JSON file containing client method configuration, including retry settings.
-     *           Specify this setting to specify the retry behavior of all methods on the client.
+     *     @type string $serviceAddress
+     *           The address of the API remote host. May optionally include the port, formatted
+     *           as "<uri>:<port>". Default 'monitoring.googleapis.com:443'.
+     *     @type string|array|FetchAuthTokenInterface|CredentialsWrapper $credentials
+     *           The credentials to be used by the client to authorize API calls. This option
+     *           accepts either a path to a credentials file, or a decoded credentials file as a
+     *           PHP array.
+     *           *Advanced usage*: In addition, this option can also accept a pre-constructed
+     *           {@see \Google\Auth\FetchAuthTokenInterface} object or
+     *           {@see \Google\ApiCore\CredentialsWrapper} object. Note that when one of these
+     *           objects are provided, any settings in $credentialsConfig will be ignored.
+     *     @type array $credentialsConfig
+     *           Options used to configure credentials, including auth token caching, for the client.
+     *           For a full list of supporting configuration options, see
+     *           {@see \Google\ApiCore\CredentialsWrapper::build()}.
+     *     @type bool $disableRetries
+     *           Determines whether or not retries defined by the client configuration should be
+     *           disabled. Defaults to `false`.
+     *     @type string|array $clientConfig
+     *           Client method configuration, including retry settings. This option can be either a
+     *           path to a JSON file, or a PHP array containing the decoded JSON data.
      *           By default this settings points to the default client config file, which is provided
-     *           in the resources folder. The retry settings provided in this option can be overridden
-     *           by settings in $retryingOverride
-     *     @type array $retryingOverride
-     *           An associative array in which the keys are method names (e.g. 'createFoo'), and
-     *           the values are retry settings to use for that method. The retry settings for each
-     *           method can be a {@see Google\ApiCore\RetrySettings} object, or an associative array
-     *           of retry settings parameters. See the documentation on {@see Google\ApiCore\RetrySettings}
-     *           for example usage. Passing a value of null is equivalent to a value of
-     *           ['retriesEnabled' => false]. Retry settings provided in this setting override the
-     *           settings in $clientConfigPath.
-     *     @type callable $authHttpHandler A handler used to deliver PSR-7 requests specifically
-     *           for authentication. Should match a signature of
-     *           `function (RequestInterface $request, array $options) : ResponseInterface`.
-     *     @type callable $httpHandler A handler used to deliver PSR-7 requests. Should match a
-     *           signature of `function (RequestInterface $request, array $options) : PromiseInterface`.
-     *           NOTE: This option is only valid when utilizing the REST transport.
-     *     @type string|TransportInterface $transport The transport used for executing network
-     *           requests. May be either the string `rest` or `grpc`. Additionally, it is possible
-     *           to pass in an already instantiated transport. Defaults to `grpc` if gRPC support is
-     *           detected on the system.
+     *           in the resources folder.
+     *     @type string|TransportInterface $transport
+     *           The transport used for executing network requests. May be either the string `rest`
+     *           or `grpc`. Defaults to `grpc` if gRPC support is detected on the system.
+     *           *Advanced usage*: Additionally, it is possible to pass in an already instantiated
+     *           {@see \Google\ApiCore\Transport\TransportInterface} object. Note that when this
+     *           object is provided, any settings in $transportConfig, and any $serviceAddress
+     *           setting, will be ignored.
+     *     @type array $transportConfig
+     *           Configuration options that will be used to construct the transport. Options for
+     *           each supported transport type should be passed in a key for that transport. For
+     *           example:
+     *           $transportConfig = [
+     *               'grpc' => [...],
+     *               'rest' => [...]
+     *           ];
+     *           See the {@see \Google\ApiCore\Transport\GrpcTransport::build()} and
+     *           {@see \Google\ApiCore\Transport\RestTransport::build()} methods for the
+     *           supported options.
      * }
+     *
+     * @throws ValidationException
      * @experimental
      */
-    public function __construct($options = [])
+    public function __construct(array $options = [])
     {
-        $this->setClientOptions($options + self::getClientDefaults());
+        $clientOptions = $this->buildClientOptions($options);
+        $this->setClientOptions($clientOptions);
     }
 
     /**
@@ -369,7 +361,7 @@ class UptimeCheckServiceGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function listUptimeCheckConfigs($parent, $optionalArgs = [])
+    public function listUptimeCheckConfigs($parent, array $optionalArgs = [])
     {
         $request = new ListUptimeCheckConfigsRequest();
         $request->setParent($parent);
@@ -420,7 +412,7 @@ class UptimeCheckServiceGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function getUptimeCheckConfig($name, $optionalArgs = [])
+    public function getUptimeCheckConfig($name, array $optionalArgs = [])
     {
         $request = new GetUptimeCheckConfigRequest();
         $request->setName($name);
@@ -467,7 +459,7 @@ class UptimeCheckServiceGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function createUptimeCheckConfig($parent, $uptimeCheckConfig, $optionalArgs = [])
+    public function createUptimeCheckConfig($parent, $uptimeCheckConfig, array $optionalArgs = [])
     {
         $request = new CreateUptimeCheckConfigRequest();
         $request->setParent($parent);
@@ -525,7 +517,7 @@ class UptimeCheckServiceGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function updateUptimeCheckConfig($uptimeCheckConfig, $optionalArgs = [])
+    public function updateUptimeCheckConfig($uptimeCheckConfig, array $optionalArgs = [])
     {
         $request = new UpdateUptimeCheckConfigRequest();
         $request->setUptimeCheckConfig($uptimeCheckConfig);
@@ -573,7 +565,7 @@ class UptimeCheckServiceGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function deleteUptimeCheckConfig($name, $optionalArgs = [])
+    public function deleteUptimeCheckConfig($name, array $optionalArgs = [])
     {
         $request = new DeleteUptimeCheckConfigRequest();
         $request->setName($name);
@@ -636,7 +628,7 @@ class UptimeCheckServiceGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function listUptimeCheckIps($optionalArgs = [])
+    public function listUptimeCheckIps(array $optionalArgs = [])
     {
         $request = new ListUptimeCheckIpsRequest();
         if (isset($optionalArgs['pageSize'])) {

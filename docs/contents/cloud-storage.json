@@ -1,7 +1,11 @@
 {
     "title": "Storage",
     "pattern": "storage\/\\w{1,}",
+    "defaultService": "storage/readme",
     "services": [{
+        "title": "Overview",
+        "type": "storage/readme"
+    },{
         "title": "StorageClient",
         "type": "storage/storageclient"
     }, {

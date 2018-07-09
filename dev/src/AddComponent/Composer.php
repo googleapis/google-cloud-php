@@ -50,7 +50,7 @@ class Composer
     /**
      * @var string
      */
-    private $cliBasePath;
+    private $rootPath;
 
     /**
      * @var string
@@ -66,9 +66,16 @@ class Composer
      * @var array
      */
     private $defaultDeps = [
-        'ext-grpc',
-        'google/proto-client',
         'google/gax'
+    ];
+
+    /**
+     * @var array
+     */
+    private $defaultDevDeps = [
+        "phpunit/phpunit" => "^4.8|^5.0",
+        "google/cloud-core" => "^1.14",
+        "phpdocumentor/reflection" => "^3.0"
     ];
 
     /**
@@ -84,13 +91,13 @@ class Composer
         QuestionHelper $questionHelper,
         InputInterface $input,
         OutputInterface $output,
-        $cliBasePath,
+        $rootPath,
         array $info
     ) {
         $this->questionHelper = $questionHelper;
         $this->input = $input;
         $this->output = $output;
-        $this->cliBasePath = $cliBasePath;
+        $this->rootPath = $rootPath;
         $this->path = $info['path'];
         $this->info = $info;
     }
@@ -103,7 +110,7 @@ class Composer
 
     private function updateMainComposer()
     {
-        $path = $this->cliBasePath .'/../composer.json';
+        $path = $this->rootPath .'/composer.json';
         $composer = json_decode(file_get_contents($path), true);
         $composer['replace']['google/'. $this->info['name']] = 'master';
         ksort($composer['replace']);
@@ -129,7 +136,13 @@ class Composer
             $last
         );
         $composer['autoload']['psr-4'] = [
-            'Google\\Cloud\\' . $namespace .'\\' => ''
+            'Google\\Cloud\\' . $namespace .'\\' => 'src',
+            // This will need manual fixing in many cases
+            // TODO: derive the correct value somehow
+            'GPBMetadata\\Google\\Cloud\\' . $namespace .'\\' => 'metadata'
+        ];
+        $composer['autoload-dev']['psr-4'] = [
+            'Google\\Cloud\\' . $namespace .'\\Tests\\' => 'tests'
         ];
 
         $target = $this->ask(
@@ -140,14 +153,13 @@ class Composer
 
         $entry = $this->ask(
             'Enter the entry service for the component, relative to the folder. ' .
-            'For instance, for path `src/Foo/FooClient.php`, enter `FooClient.php`. ' .
+            'For instance, for path `Foo/src/FooClient.php`, enter `src/FooClient.php`. ' .
             'Gapic-only clients should leave this blank.'
         );
 
-        $path = 'src/' . trim(explode('src', $this->path)[1], '/');
         $composer['extra']['component'] = [
             'id' => $this->info['name'],
-            'path' => $path,
+            'path' => $last,
             'entry' => $entry ?: null,
             'target' => $target
         ];
@@ -175,8 +187,25 @@ class Composer
             }
         } while ($hasMoreDependencies);
 
+        foreach ($this->defaultDevDeps as $dep => $ver) {
+            if (array_key_exists('require', $composer) && array_key_exists($dep, $composer['require'])) {
+                continue;
+            }
+
+            $confirm = $this->confirm(sprintf('Should `%s` be included in require-dev?', $dep));
+            if (!$this->askQuestion($confirm)) {
+                continue;
+            }
+
+            if (!isset($composer['require-dev'])) {
+                $composer['require-dev'] = [];
+            }
+
+            $composer['require-dev'][$dep] = $ver;
+        }
+
         foreach ($this->defaultSuggests as $dep => $val) {
-            if (array_key_exists($dep, $composer['require'])) {
+            if (array_key_exists('require', $composer) && array_key_exists($dep, $composer['require'])) {
                 continue;
             }
 
@@ -189,7 +218,7 @@ class Composer
                 $composer['suggest'] = [];
             }
 
-            $composer['suggest'][$dep] = $this->defaultSuggests[$dep];
+            $composer['suggest'][$dep] = $val;
         }
 
         file_put_contents(

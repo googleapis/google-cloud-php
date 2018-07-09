@@ -212,6 +212,15 @@ class BatchSnapshotTest extends SnippetTestCase
         $this->assertInstanceOf(Timestamp::class, $res->returnVal());
     }
 
+    public function testId()
+    {
+        $snippet = $this->snippetFromMethod(BatchSnapshot::class, 'id');
+        $snippet->addLocal('transaction', $this->snapshot);
+
+        $res = $snippet->invoke('id');
+        $this->assertEquals(self::TRANSACTION, $res->returnVal());
+    }
+
     private function resultGenerator(array $data)
     {
         yield $data;

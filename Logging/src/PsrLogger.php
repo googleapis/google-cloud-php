@@ -17,10 +17,12 @@
 
 namespace Google\Cloud\Logging;
 
+use Google\Cloud\Core\Batch\BatchRunner;
 use Google\Cloud\Core\Batch\BatchTrait;
 use Google\Cloud\Core\Batch\ClosureSerializerInterface;
 use Google\Cloud\Core\Report\MetadataProviderInterface;
 use Google\Cloud\Core\Report\MetadataProviderUtils;
+use Google\Cloud\Core\Timestamp;
 use Monolog\Formatter\NormalizerFormatter;
 use Monolog\Processor\PsrLogMessageProcessor;
 use Psr\Log\InvalidArgumentException;
@@ -100,6 +102,8 @@ class PsrLogger implements LoggerInterface, \Serializable
      *     @type bool $batchEnabled Determines whether or not to use background
      *           batching. **Defaults to** `false`. Note that this option is
      *           currently considered **experimental** and is subject to change.
+     *     @type resource $debugOutputResource A resource to output debug output
+     *           to.
      *     @type bool $debugOutput Whether or not to output debug information.
      *           Please note debug output currently only applies in CLI based
      *           applications. **Defaults to** `false`. Applies only when
@@ -426,6 +430,15 @@ class PsrLogger implements LoggerInterface, \Serializable
      */
     public function serialize()
     {
+        $debugOutputResource = null;
+        if (is_resource($this->debugOutputResource)) {
+            $metadata = stream_get_meta_data($this->debugOutputResource);
+            $debugOutputResource = [
+                'uri' => $metadata['uri'],
+                'mode' => $metadata['mode']
+            ];
+        }
+
         return serialize([
             $this->messageKey,
             $this->batchEnabled,
@@ -433,7 +446,8 @@ class PsrLogger implements LoggerInterface, \Serializable
             $this->debugOutput,
             $this->clientConfig,
             $this->batchMethod,
-            $this->logName
+            $this->logName,
+            $debugOutputResource
         ]);
     }
 
@@ -452,8 +466,16 @@ class PsrLogger implements LoggerInterface, \Serializable
             $this->debugOutput,
             $this->clientConfig,
             $this->batchMethod,
-            $this->logName
+            $this->logName,
+            $debugOutputResource
         ) = unserialize($data);
+
+        if (is_array($debugOutputResource)) {
+            $this->debugOutputResource = fopen(
+                $debugOutputResource['uri'],
+                $debugOutputResource['mode']
+            );
+        }
     }
 
     /**

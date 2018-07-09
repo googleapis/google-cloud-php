@@ -19,6 +19,7 @@ namespace Google\Cloud\Debugger\Tests\Unit;
 
 use Google\Cloud\Debugger\Breakpoint;
 use Google\Cloud\Debugger\Debuggee;
+use Google\Cloud\Debugger\SourceContext;
 use Google\Cloud\Debugger\ExtendedSourceContext;
 use Google\Cloud\Debugger\Connection\ConnectionInterface;
 use Prophecy\Argument;
@@ -119,14 +120,16 @@ class DebuggeeTest extends TestCase
     // Debug agents should populate both sourceContexts and extSourceContexts.
     public function testProvidesDeprecatedSourceContext()
     {
+        $sourceContext = $this->prophesize(SourceContext::class);
+        $sourceContext->info()->willReturn([]);
         $extSourceContext = $this->prophesize(ExtendedSourceContext::class);
-        $extSourceContext->context()->willReturn(null);
-        $extSourceContext->jsonSerialize()->willReturn([]);
+        $extSourceContext->context()->willReturn($sourceContext->reveal());
+        $extSourceContext->info()->willReturn([]);
         $debuggee = new Debuggee($this->connection->reveal(), [
             'project' => 'project1',
             'extSourceContexts' => [$extSourceContext->reveal()]
         ]);
-        $json = $debuggee->jsonSerialize();
+        $json = $debuggee->info();
         $this->assertArrayHasKey('extSourceContexts', $json);
         $this->assertCount(1, $json['extSourceContexts']);
         $this->assertArrayHasKey('sourceContexts', $json);
@@ -136,7 +139,7 @@ class DebuggeeTest extends TestCase
     public function testRegisterSetsDebuggeeId()
     {
         $this->connection->registerDebuggee(Argument::that(function ($args) {
-            return $args['debuggee']->id() == null;
+            return $args['debuggee']['id'] == null;
         }), Argument::any())->willReturn([
             'debuggee' => [
                 'id' => 'debuggee1'
@@ -146,5 +149,22 @@ class DebuggeeTest extends TestCase
         $debuggee = new Debuggee($this->connection->reveal(), ['project' => 'project1']);
         $this->assertTrue($debuggee->register());
         $this->assertEquals('debuggee1', $debuggee->id());
+    }
+
+    public function testDebuggeeExtendedSourceContextSerialization()
+    {
+        $debuggee = new Debuggee($this->connection->reveal(), [
+            'project' => 'project1',
+            'extSourceContexts' => [
+                [
+                    'context' => []
+                ]
+            ]
+        ]);
+        $info = $debuggee->info();
+        $this->assertArrayHasKey('extSourceContexts', $info);
+        $this->assertCount(1, $info['extSourceContexts']);
+        $this->assertArrayHasKey('sourceContexts', $info);
+        $this->assertCount(1, $info['sourceContexts']);
     }
 }

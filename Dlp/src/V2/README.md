@@ -1,14 +1,35 @@
-# Data Loss Prevention
+# Data Loss Prevention V2 generated client for PHP
 
-The DLP API lets you understand and manage sensitive data.
+### Sample
 
-For more information, see [cloud.google.com](https://cloud.google.com/dlp/).
+```php
+require 'vendor/autoload.php';
 
-* [Homepage](http://googlecloudplatform.github.io/google-cloud-php)
-* [API documentation](http://googlecloudplatform.github.io/google-cloud-php/#/docs/cloud-dlp/latest/dlp/readme)
+use Google\Cloud\Dlp\V2\DlpServiceClient;
+use Google\Cloud\Dlp\V2\ContentItem;
+use Google\Cloud\Dlp\V2\InfoType;
+use Google\Cloud\Dlp\V2\InspectConfig;
 
-## Installation
+$dlpServiceClient = new DlpServiceClient();
+$infoTypesElement = (new InfoType())
+    ->setName('EMAIL_ADDRESS');
+$inspectConfig = (new InspectConfig())
+    ->setInfoTypes([$infoTypesElement]);
+$item = (new ContentItem())
+    ->setValue('My email is example@example.com.');
+$formattedParent = $dlpServiceClient
+    ->projectName('[PROJECT_ID]');
 
-```
-$ composer require google/cloud-dlp
+$response = $dlpServiceClient->inspectContent($formattedParent, [
+    'inspectConfig' => $inspectConfig,
+    'item' => $item
+]);
+
+$findings = $response->getResult()
+    ->getFindings();
+
+foreach ($findings as $finding) {
+    print $finding->getInfoType()
+        ->getName() . PHP_EOL;
+}
 ```

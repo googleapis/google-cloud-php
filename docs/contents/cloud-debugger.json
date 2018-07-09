@@ -1,7 +1,11 @@
 {
     "title": "Debugger",
     "pattern": "debugger\/\\w{1,}",
+    "defaultService": "debugger/readme",
     "services": [{
+        "title": "Overview",
+        "type": "debugger/readme"
+    },{
         "title": "DebuggerClient",
         "type": "debugger/debuggerclient"
     }, {
@@ -10,5 +14,18 @@
     }, {
         "title": "Daemon",
         "type": "debugger/daemon"
+    }, {
+        "title": "v2",
+        "type": "debugger/v2/readme",
+        "patterns": [
+          "debugger/v2/\\w{1,}"
+        ],
+        "nav": [{
+            "title": "Controller2Client",
+            "type": "debugger/v2/controller2client"
+        }, {
+            "title": "Debugger2Client",
+            "type": "debugger/v2/debugger2client"
+        }]
     }]
 }

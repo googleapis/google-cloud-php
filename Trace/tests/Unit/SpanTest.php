@@ -31,7 +31,7 @@ class SpanTest extends TestCase
     public function testGeneratesDefaultSpanId()
     {
         $span = new Span(self::TRACE_ID);
-        $info = $span->jsonSerialize();
+        $info = $span->info();
         $this->assertArrayHasKey('spanId', $info);
         $this->assertRegExp('/^[0-9a-f]{16}$/', $info['spanId']);
         $this->assertEquals($info['spanId'], $span->spanId());
@@ -40,7 +40,7 @@ class SpanTest extends TestCase
     public function testReadsSpanId()
     {
         $span = new Span(self::TRACE_ID, ['spanId' => '1234']);
-        $info = $span->jsonSerialize();
+        $info = $span->info();
         $this->assertArrayHasKey('spanId', $info);
         $this->assertEquals('1234', $info['spanId']);
     }
@@ -48,31 +48,31 @@ class SpanTest extends TestCase
     public function testReadsAttributes()
     {
         $span = new Span(self::TRACE_ID, ['attributes' => ['foo' => 'bar']]);
-        $info = $span->jsonSerialize();
+        $info = $span->info();
         $this->assertArrayHasKey('attributes', $info);
-        $this->assertEquals('bar', $info['attributes']['foo']);
+        $this->assertEquals('bar', $info['attributes']['attributeMap']['foo']['stringValue']['value']);
     }
 
     public function testCanAddAttribute()
     {
         $span = new Span(self::TRACE_ID);
         $span->addAttribute('foo', 'bar');
-        $info = $span->jsonSerialize();
+        $info = $span->info();
         $this->assertArrayHasKey('attributes', $info);
-        $this->assertEquals('bar', $info['attributes']['foo']);
+        $this->assertEquals('bar', $info['attributes']['attributeMap']['foo']['stringValue']['value']);
     }
 
     public function testNoAttributes()
     {
         $span = new Span(self::TRACE_ID);
-        $info = $span->jsonSerialize();
+        $info = $span->info();
         $this->assertArrayNotHasKey('attributes', $info);
     }
 
     public function testEmptyAttributes()
     {
         $span = new Span(self::TRACE_ID, ['attributes' => []]);
-        $info = $span->jsonSerialize();
+        $info = $span->info();
         $this->assertArrayNotHasKey('attributes', $info);
     }
 
@@ -91,7 +91,7 @@ class SpanTest extends TestCase
     public function testSerializedDisplayName()
     {
         $span  = new Span(self::TRACE_ID, ['name' => 'myspan']);
-        $info = $span->jsonSerialize();
+        $info = $span->info();
         $this->assertArrayHasKey('displayName', $info);
         $this->assertEquals('myspan', $info['displayName']['value']);
     }
@@ -100,7 +100,7 @@ class SpanTest extends TestCase
     {
         $span = new Span(self::TRACE_ID);
         $span->setStartTime();
-        $info = $span->jsonSerialize();
+        $info = $span->info();
         $this->assertArrayHasKey('startTime', $info);
         $this->assertRegExp(self::EXPECTED_TIMESTAMP_FORMAT, $info['startTime']);
     }
@@ -109,7 +109,7 @@ class SpanTest extends TestCase
     {
         $span = new Span(self::TRACE_ID);
         $span->setEndTime();
-        $info = $span->jsonSerialize();
+        $info = $span->info();
         $this->assertArrayHasKey('endTime', $info);
         $this->assertRegExp(self::EXPECTED_TIMESTAMP_FORMAT, $info['endTime']);
     }
@@ -117,14 +117,14 @@ class SpanTest extends TestCase
     public function testIgnoresUnknownFields()
     {
         $span = new Span(self::TRACE_ID, ['extravalue' => 'something']);
-        $info = $span->jsonSerialize();
+        $info = $span->info();
         $this->assertArrayNotHasKey('extravalue', $info);
     }
 
     public function testSameProcessAsParentSpan()
     {
         $span = new Span(self::TRACE_ID, ['sameProcessAsParentSpan' => false]);
-        $info = $span->jsonSerialize();
+        $info = $span->info();
         $this->assertArrayHasKey('sameProcessAsParentSpan', $info);
         $this->assertFalse($info['sameProcessAsParentSpan']);
     }
@@ -135,7 +135,7 @@ class SpanTest extends TestCase
     public function testCanFormatTimestamps($field, $timestamp, $expected)
     {
         $span = new Span(self::TRACE_ID, [$field => $timestamp]);
-        $this->assertEquals($expected, $span->jsonSerialize()[$field]);
+        $this->assertEquals($expected, $span->info()[$field]);
     }
 
     public function timestampFields()

@@ -1,5 +1,17 @@
-# Cloud Vision V1
+# Google Cloud Vision V1 generated client for PHP
 
-Google Cloud Vision API enables developers to understand the content of an image by encapsulating powerful machine learning models in an easy to use API.
+### Sample
 
-For more information, see [cloud.google.com](https://cloud.google.com/vision/).
+```php
+require 'vendor/autoload.php';
+
+use Google\Cloud\Vision\V1\ImageAnnotatorClient;
+
+$imageAnnotatorClient = new ImageAnnotatorClient();
+try {
+    $requests = [];
+    $response = $imageAnnotatorClient->batchAnnotateImages($requests);
+} finally {
+    $imageAnnotatorClient->close();
+}
+```

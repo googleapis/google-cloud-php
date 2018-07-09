@@ -38,5 +38,5 @@ use Google\Cloud\Spanner\Admin\Instance\V1\Gapic\InstanceAdminGapicClient;
 class InstanceAdminClient extends InstanceAdminGapicClient
 {
     // This class is intentionally empty, and is intended to hold manual
-    // additions to the generated {@see InstanceAdminClientImpl} class.
+    // additions to the generated {@see InstanceAdminGapicClient} class.
 }

@@ -36,7 +36,7 @@ class VariableTest extends TestCase
         ];
         $variable = Variable::fromJson($input);
 
-        $this->assertProducesEquivalentJson($input, $variable);
+        $this->assertProducesEquivalentJson($input, $variable->info());
     }
 
     public function testCreateReferenceFromJson()
@@ -44,11 +44,13 @@ class VariableTest extends TestCase
         $input = [
             'name' => 'foo',
             'type' => 'int',
-            'varTableIndex' => 4
+            'varTableIndex' => [
+                'value' => 4
+            ]
         ];
         $variable = Variable::fromJson($input);
 
-        $this->assertProducesEquivalentJson($input, $variable);
+        $this->assertProducesEquivalentJson($input, $variable->info());
     }
 
     public function testCreatesMembersFromJson()
@@ -72,6 +74,33 @@ class VariableTest extends TestCase
         ];
         $variable = Variable::fromJson($input);
 
-        $this->assertProducesEquivalentJson($input, $variable);
+        $this->assertProducesEquivalentJson($input, $variable->info());
+    }
+
+    public function testByteSize()
+    {
+        $variable = new Variable('varname', 'vartype', [
+            'value' => 'varvalue'
+        ]);
+        $this->assertEquals(22, $variable->byteSize());
+        $this->assertEquals(22, $variable->fullByteSize());
+    }
+
+    public function testByteSizeWithMembers()
+    {
+        $variable2 = new Variable('varname2', 'vartype2', [
+            'value' => 'varvalue2'
+        ]);
+        $variable = new Variable('varname', 'vartype', [
+            'value' => 'varvalue',
+            'members' => [
+                $variable2
+            ]
+        ]);
+
+        $this->assertEquals(22, $variable->byteSize());
+        $this->assertEQuals(47, $variable->fullByteSize());
+        $this->assertEquals(25, $variable2->byteSize());
+        $this->assertEquals(25, $variable2->fullByteSize());
     }
 }

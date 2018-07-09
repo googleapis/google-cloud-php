@@ -21,23 +21,19 @@
  * https://github.com/google/googleapis/blob/master/google/privacy/dlp/v2/dlp.proto
  * and updates to that file get reflected here through a refresh process.
  *
- * EXPERIMENTAL: This client library class has not yet been declared GA (1.0). This means that
- * even though we intend the surface to be stable, we may make backwards incompatible changes
- * if necessary.
- *
  * @experimental
  */
 
 namespace Google\Cloud\Dlp\V2\Gapic;
 
 use Google\ApiCore\ApiException;
-use Google\ApiCore\Call;
+use Google\ApiCore\CredentialsWrapper;
+use Google\ApiCore\FetchAuthTokenInterface;
 use Google\ApiCore\GapicClientTrait;
 use Google\ApiCore\PathTemplate;
 use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
-use Google\Auth\CredentialsLoader;
 use Google\Cloud\Dlp\V2\ByteContentItem;
 use Google\Cloud\Dlp\V2\CancelDlpJobRequest;
 use Google\Cloud\Dlp\V2\ContentItem;
@@ -86,8 +82,6 @@ use Google\Cloud\Dlp\V2\UpdateInspectTemplateRequest;
 use Google\Cloud\Dlp\V2\UpdateJobTriggerRequest;
 use Google\Protobuf\FieldMask;
 use Google\Protobuf\GPBEmpty;
-use Grpc\Channel;
-use Grpc\ChannelCredentials;
 
 /**
  * Service Description: The Cloud Data Loss Prevention (DLP) API is a service that allows clients
@@ -97,9 +91,8 @@ use Grpc\ChannelCredentials;
  * The service also includes methods for sensitive data redaction and
  * scheduling of data scans on Google Cloud Platform based data sets.
  *
- * EXPERIMENTAL: This client library class has not yet been declared GA (1.0). This means that
- * even though we intend the surface to be stable, we may make backwards incompatible changes
- * if necessary.
+ * To learn more about concepts and find how-to guides see
+ * https://cloud.google.com/dlp/docs/.
  *
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods. Sample code to get started:
@@ -146,10 +139,11 @@ class DlpServiceGapicClient
     const CODEGEN_NAME = 'gapic';
 
     /**
-     * The code generator version, to be included in the agent header.
+     * The default scopes required by the service.
      */
-    const CODEGEN_VERSION = '0.0.5';
-
+    public static $serviceScopes = [
+        'https://www.googleapis.com/auth/cloud-platform',
+    ];
     private static $organizationNameTemplate;
     private static $organizationDeidentifyTemplateNameTemplate;
     private static $projectDeidentifyTemplateNameTemplate;
@@ -164,15 +158,17 @@ class DlpServiceGapicClient
     {
         return [
             'serviceName' => self::SERVICE_NAME,
-            'serviceAddress' => self::SERVICE_ADDRESS,
-            'port' => self::DEFAULT_SERVICE_PORT,
-            'scopes' => [
-                'https://www.googleapis.com/auth/cloud-platform',
-            ],
-            'clientConfigPath' => __DIR__.'/../resources/dlp_service_client_config.json',
-            'restClientConfigPath' => __DIR__.'/../resources/dlp_service_rest_client_config.php',
+            'serviceAddress' => self::SERVICE_ADDRESS.':'.self::DEFAULT_SERVICE_PORT,
+            'clientConfig' => __DIR__.'/../resources/dlp_service_client_config.json',
             'descriptorsConfigPath' => __DIR__.'/../resources/dlp_service_descriptor_config.php',
-            'versionFile' => __DIR__.'/../../VERSION',
+            'credentialsConfig' => [
+                'scopes' => self::$serviceScopes,
+            ],
+            'transportConfig' => [
+                'rest' => [
+                    'restClientConfigPath' => __DIR__.'/../resources/dlp_service_rest_client_config.php',
+                ],
+            ],
         ];
     }
 
@@ -460,64 +456,68 @@ class DlpServiceGapicClient
      * @param array $options {
      *                       Optional. Options for configuring the service API wrapper.
      *
-     *     @type string $serviceAddress The domain name of the API remote host.
-     *                                  Default 'dlp.googleapis.com'.
-     *     @type mixed $port The port on which to connect to the remote host. Default 443.
-     *     @type Channel $channel
-     *           A `Channel` object. If not specified, a channel will be constructed.
-     *           NOTE: This option is only valid when utilizing the gRPC transport.
-     *     @type ChannelCredentials $sslCreds
-     *           A `ChannelCredentials` object for use with an SSL-enabled channel.
-     *           Default: a credentials object returned from
-     *           \Grpc\ChannelCredentials::createSsl().
-     *           NOTE: This option is only valid when utilizing the gRPC transport. Also, if the $channel
-     *           optional argument is specified, then this argument is unused.
-     *     @type bool $forceNewChannel
-     *           If true, this forces gRPC to create a new channel instead of using a persistent channel.
-     *           Defaults to false.
-     *           NOTE: This option is only valid when utilizing the gRPC transport. Also, if the $channel
-     *           optional argument is specified, then this option is unused.
-     *     @type CredentialsLoader $credentialsLoader
-     *           A CredentialsLoader object created using the Google\Auth library.
-     *     @type string[] $scopes A string array of scopes to use when acquiring credentials.
-     *                          Defaults to the scopes for the Cloud Data Loss Prevention (DLP) API.
-     *     @type string $clientConfigPath
-     *           Path to a JSON file containing client method configuration, including retry settings.
-     *           Specify this setting to specify the retry behavior of all methods on the client.
+     *     @type string $serviceAddress
+     *           The address of the API remote host. May optionally include the port, formatted
+     *           as "<uri>:<port>". Default 'dlp.googleapis.com:443'.
+     *     @type string|array|FetchAuthTokenInterface|CredentialsWrapper $credentials
+     *           The credentials to be used by the client to authorize API calls. This option
+     *           accepts either a path to a credentials file, or a decoded credentials file as a
+     *           PHP array.
+     *           *Advanced usage*: In addition, this option can also accept a pre-constructed
+     *           {@see \Google\Auth\FetchAuthTokenInterface} object or
+     *           {@see \Google\ApiCore\CredentialsWrapper} object. Note that when one of these
+     *           objects are provided, any settings in $credentialsConfig will be ignored.
+     *     @type array $credentialsConfig
+     *           Options used to configure credentials, including auth token caching, for the client.
+     *           For a full list of supporting configuration options, see
+     *           {@see \Google\ApiCore\CredentialsWrapper::build()}.
+     *     @type bool $disableRetries
+     *           Determines whether or not retries defined by the client configuration should be
+     *           disabled. Defaults to `false`.
+     *     @type string|array $clientConfig
+     *           Client method configuration, including retry settings. This option can be either a
+     *           path to a JSON file, or a PHP array containing the decoded JSON data.
      *           By default this settings points to the default client config file, which is provided
-     *           in the resources folder. The retry settings provided in this option can be overridden
-     *           by settings in $retryingOverride
-     *     @type array $retryingOverride
-     *           An associative array in which the keys are method names (e.g. 'createFoo'), and
-     *           the values are retry settings to use for that method. The retry settings for each
-     *           method can be a {@see Google\ApiCore\RetrySettings} object, or an associative array
-     *           of retry settings parameters. See the documentation on {@see Google\ApiCore\RetrySettings}
-     *           for example usage. Passing a value of null is equivalent to a value of
-     *           ['retriesEnabled' => false]. Retry settings provided in this setting override the
-     *           settings in $clientConfigPath.
-     *     @type callable $authHttpHandler A handler used to deliver PSR-7 requests specifically
-     *           for authentication. Should match a signature of
-     *           `function (RequestInterface $request, array $options) : ResponseInterface`.
-     *     @type callable $httpHandler A handler used to deliver PSR-7 requests. Should match a
-     *           signature of `function (RequestInterface $request, array $options) : PromiseInterface`.
-     *           NOTE: This option is only valid when utilizing the REST transport.
-     *     @type string|TransportInterface $transport The transport used for executing network
-     *           requests. May be either the string `rest` or `grpc`. Additionally, it is possible
-     *           to pass in an already instantiated transport. Defaults to `grpc` if gRPC support is
-     *           detected on the system.
+     *           in the resources folder.
+     *     @type string|TransportInterface $transport
+     *           The transport used for executing network requests. May be either the string `rest`
+     *           or `grpc`. Defaults to `grpc` if gRPC support is detected on the system.
+     *           *Advanced usage*: Additionally, it is possible to pass in an already instantiated
+     *           {@see \Google\ApiCore\Transport\TransportInterface} object. Note that when this
+     *           object is provided, any settings in $transportConfig, and any $serviceAddress
+     *           setting, will be ignored.
+     *     @type array $transportConfig
+     *           Configuration options that will be used to construct the transport. Options for
+     *           each supported transport type should be passed in a key for that transport. For
+     *           example:
+     *           $transportConfig = [
+     *               'grpc' => [...],
+     *               'rest' => [...]
+     *           ];
+     *           See the {@see \Google\ApiCore\Transport\GrpcTransport::build()} and
+     *           {@see \Google\ApiCore\Transport\RestTransport::build()} methods for the
+     *           supported options.
      * }
+     *
+     * @throws ValidationException
      * @experimental
      */
-    public function __construct($options = [])
+    public function __construct(array $options = [])
     {
-        $this->setClientOptions($options + self::getClientDefaults());
+        $clientOptions = $this->buildClientOptions($options);
+        $this->setClientOptions($clientOptions);
     }
 
     /**
      * Finds potentially sensitive info in content.
      * This method has limits on input size, processing time, and output size.
-     * [How-to guide for text](https://cloud.google.com/dlp/docs/inspecting-text), [How-to guide for
-     * images](https://cloud.google.com/dlp/docs/inspecting-images).
+     *
+     * When no InfoTypes or CustomInfoTypes are specified in this request, the
+     * system will automatically choose what detectors to run. By default this may
+     * be all types, but may change over time as detectors are updated.
+     *
+     * For how to guides, see https://cloud.google.com/dlp/docs/inspecting-images
+     * and https://cloud.google.com/dlp/docs/inspecting-text,
      *
      * Sample code:
      * ```
@@ -557,7 +557,7 @@ class DlpServiceGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function inspectContent($parent, $optionalArgs = [])
+    public function inspectContent($parent, array $optionalArgs = [])
     {
         $request = new InspectContentRequest();
         $request->setParent($parent);
@@ -582,7 +582,12 @@ class DlpServiceGapicClient
     /**
      * Redacts potentially sensitive info from an image.
      * This method has limits on input size, processing time, and output size.
-     * [How-to guide](https://cloud.google.com/dlp/docs/redacting-sensitive-data-images).
+     * See https://cloud.google.com/dlp/docs/redacting-sensitive-data-images to
+     * learn more.
+     *
+     * When no InfoTypes or CustomInfoTypes are specified in this request, the
+     * system will automatically choose what detectors to run. By default this may
+     * be all types, but may change over time as detectors are updated.
      *
      * Sample code:
      * ```
@@ -603,6 +608,9 @@ class DlpServiceGapicClient
      *          Configuration for the inspector.
      *     @type RedactImageRequest_ImageRedactionConfig[] $imageRedactionConfigs
      *          The configuration for specifying what content to redact from images.
+     *     @type bool $includeFindings
+     *          Whether the response should include findings along with the redacted
+     *          image.
      *     @type ByteContentItem $byteItem
      *          The content must be PNG, JPEG, SVG or BMP.
      *     @type RetrySettings|array $retrySettings
@@ -617,7 +625,7 @@ class DlpServiceGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function redactImage($parent, $optionalArgs = [])
+    public function redactImage($parent, array $optionalArgs = [])
     {
         $request = new RedactImageRequest();
         $request->setParent($parent);
@@ -626,6 +634,9 @@ class DlpServiceGapicClient
         }
         if (isset($optionalArgs['imageRedactionConfigs'])) {
             $request->setImageRedactionConfigs($optionalArgs['imageRedactionConfigs']);
+        }
+        if (isset($optionalArgs['includeFindings'])) {
+            $request->setIncludeFindings($optionalArgs['includeFindings']);
         }
         if (isset($optionalArgs['byteItem'])) {
             $request->setByteItem($optionalArgs['byteItem']);
@@ -642,7 +653,12 @@ class DlpServiceGapicClient
     /**
      * De-identifies potentially sensitive info from a ContentItem.
      * This method has limits on input size and output size.
-     * [How-to guide](https://cloud.google.com/dlp/docs/deidentify-sensitive-data).
+     * See https://cloud.google.com/dlp/docs/deidentify-sensitive-data to
+     * learn more.
+     *
+     * When no InfoTypes or CustomInfoTypes are specified in this request, the
+     * system will automatically choose what detectors to run. By default this may
+     * be all types, but may change over time as detectors are updated.
      *
      * Sample code:
      * ```
@@ -693,7 +709,7 @@ class DlpServiceGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function deidentifyContent($parent, $optionalArgs = [])
+    public function deidentifyContent($parent, array $optionalArgs = [])
     {
         $request = new DeidentifyContentRequest();
         $request->setParent($parent);
@@ -723,6 +739,9 @@ class DlpServiceGapicClient
 
     /**
      * Re-identifies content that has been de-identified.
+     * See
+     * https://cloud.google.com/dlp/docs/pseudonymization#re-identification_in_free_text_code_example
+     * to learn more.
      *
      * Sample code:
      * ```
@@ -778,7 +797,7 @@ class DlpServiceGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function reidentifyContent($parent, $optionalArgs = [])
+    public function reidentifyContent($parent, array $optionalArgs = [])
     {
         $request = new ReidentifyContentRequest();
         $request->setParent($parent);
@@ -808,8 +827,8 @@ class DlpServiceGapicClient
 
     /**
      * Returns a list of the sensitive information types that the DLP API
-     * supports. For more information, see [Listing supported predefined
-     * infoTypes](https://cloud.google.com/dlp/docs/listing-infotypes).
+     * supports. See https://cloud.google.com/dlp/docs/infotypes-reference to
+     * learn more.
      *
      * Sample code:
      * ```
@@ -844,7 +863,7 @@ class DlpServiceGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function listInfoTypes($optionalArgs = [])
+    public function listInfoTypes(array $optionalArgs = [])
     {
         $request = new ListInfoTypesRequest();
         if (isset($optionalArgs['languageCode'])) {
@@ -865,6 +884,7 @@ class DlpServiceGapicClient
     /**
      * Creates an InspectTemplate for re-using frequently used configuration
      * for inspecting content, images, and storage.
+     * See https://cloud.google.com/dlp/docs/creating-templates to learn more.
      *
      * Sample code:
      * ```
@@ -901,7 +921,7 @@ class DlpServiceGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function createInspectTemplate($parent, $optionalArgs = [])
+    public function createInspectTemplate($parent, array $optionalArgs = [])
     {
         $request = new CreateInspectTemplateRequest();
         $request->setParent($parent);
@@ -922,6 +942,7 @@ class DlpServiceGapicClient
 
     /**
      * Updates the InspectTemplate.
+     * See https://cloud.google.com/dlp/docs/creating-templates to learn more.
      *
      * Sample code:
      * ```
@@ -956,7 +977,7 @@ class DlpServiceGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function updateInspectTemplate($name, $optionalArgs = [])
+    public function updateInspectTemplate($name, array $optionalArgs = [])
     {
         $request = new UpdateInspectTemplateRequest();
         $request->setName($name);
@@ -977,6 +998,7 @@ class DlpServiceGapicClient
 
     /**
      * Gets an InspectTemplate.
+     * See https://cloud.google.com/dlp/docs/creating-templates to learn more.
      *
      * Sample code:
      * ```
@@ -1008,7 +1030,7 @@ class DlpServiceGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function getInspectTemplate($optionalArgs = [])
+    public function getInspectTemplate(array $optionalArgs = [])
     {
         $request = new GetInspectTemplateRequest();
         if (isset($optionalArgs['name'])) {
@@ -1025,6 +1047,7 @@ class DlpServiceGapicClient
 
     /**
      * Lists InspectTemplates.
+     * See https://cloud.google.com/dlp/docs/creating-templates to learn more.
      *
      * Sample code:
      * ```
@@ -1075,7 +1098,7 @@ class DlpServiceGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function listInspectTemplates($parent, $optionalArgs = [])
+    public function listInspectTemplates($parent, array $optionalArgs = [])
     {
         $request = new ListInspectTemplatesRequest();
         $request->setParent($parent);
@@ -1096,6 +1119,7 @@ class DlpServiceGapicClient
 
     /**
      * Deletes an InspectTemplate.
+     * See https://cloud.google.com/dlp/docs/creating-templates to learn more.
      *
      * Sample code:
      * ```
@@ -1124,7 +1148,7 @@ class DlpServiceGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function deleteInspectTemplate($name, $optionalArgs = [])
+    public function deleteInspectTemplate($name, array $optionalArgs = [])
     {
         $request = new DeleteInspectTemplateRequest();
         $request->setName($name);
@@ -1140,6 +1164,8 @@ class DlpServiceGapicClient
     /**
      * Creates a DeidentifyTemplate for re-using frequently used configuration
      * for de-identifying content, images, and storage.
+     * See https://cloud.google.com/dlp/docs/creating-templates-deid to learn
+     * more.
      *
      * Sample code:
      * ```
@@ -1176,7 +1202,7 @@ class DlpServiceGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function createDeidentifyTemplate($parent, $optionalArgs = [])
+    public function createDeidentifyTemplate($parent, array $optionalArgs = [])
     {
         $request = new CreateDeidentifyTemplateRequest();
         $request->setParent($parent);
@@ -1197,6 +1223,8 @@ class DlpServiceGapicClient
 
     /**
      * Updates the DeidentifyTemplate.
+     * See https://cloud.google.com/dlp/docs/creating-templates-deid to learn
+     * more.
      *
      * Sample code:
      * ```
@@ -1231,7 +1259,7 @@ class DlpServiceGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function updateDeidentifyTemplate($name, $optionalArgs = [])
+    public function updateDeidentifyTemplate($name, array $optionalArgs = [])
     {
         $request = new UpdateDeidentifyTemplateRequest();
         $request->setName($name);
@@ -1252,6 +1280,8 @@ class DlpServiceGapicClient
 
     /**
      * Gets a DeidentifyTemplate.
+     * See https://cloud.google.com/dlp/docs/creating-templates-deid to learn
+     * more.
      *
      * Sample code:
      * ```
@@ -1282,7 +1312,7 @@ class DlpServiceGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function getDeidentifyTemplate($name, $optionalArgs = [])
+    public function getDeidentifyTemplate($name, array $optionalArgs = [])
     {
         $request = new GetDeidentifyTemplateRequest();
         $request->setName($name);
@@ -1297,6 +1327,8 @@ class DlpServiceGapicClient
 
     /**
      * Lists DeidentifyTemplates.
+     * See https://cloud.google.com/dlp/docs/creating-templates-deid to learn
+     * more.
      *
      * Sample code:
      * ```
@@ -1347,7 +1379,7 @@ class DlpServiceGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function listDeidentifyTemplates($parent, $optionalArgs = [])
+    public function listDeidentifyTemplates($parent, array $optionalArgs = [])
     {
         $request = new ListDeidentifyTemplatesRequest();
         $request->setParent($parent);
@@ -1368,6 +1400,8 @@ class DlpServiceGapicClient
 
     /**
      * Deletes a DeidentifyTemplate.
+     * See https://cloud.google.com/dlp/docs/creating-templates-deid to learn
+     * more.
      *
      * Sample code:
      * ```
@@ -1396,7 +1430,7 @@ class DlpServiceGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function deleteDeidentifyTemplate($name, $optionalArgs = [])
+    public function deleteDeidentifyTemplate($name, array $optionalArgs = [])
     {
         $request = new DeleteDeidentifyTemplateRequest();
         $request->setName($name);
@@ -1411,7 +1445,12 @@ class DlpServiceGapicClient
 
     /**
      * Creates a new job to inspect storage or calculate risk metrics.
-     * [How-to guide](https://cloud.google.com/dlp/docs/compute-risk-analysis).
+     * See https://cloud.google.com/dlp/docs/inspecting-storage and
+     * https://cloud.google.com/dlp/docs/compute-risk-analysis to learn more.
+     *
+     * When no InfoTypes or CustomInfoTypes are specified in inspect jobs, the
+     * system will automatically choose what detectors to run. By default this may
+     * be all types, but may change over time as detectors are updated.
      *
      * Sample code:
      * ```
@@ -1428,12 +1467,10 @@ class DlpServiceGapicClient
      * @param array  $optionalArgs {
      *                             Optional.
      *
-     *     @type InspectJobConfig $inspectJob
-     *          The configuration details for an inspect job. Only one of $inspectJob and $riskJob
-     *          may be provided.
-     *     @type RiskAnalysisJobConfig $riskJob
-     *          The configuration details for a risk analysis job. Only one of $inspectJob and $riskJob
-     *          may be provided.
+     *     @type InspectJobConfig $inspectJob The configuration details for an inspect
+     *          job. Only one of $inspectJob and $riskJob may be provided.
+     *     @type RiskAnalysisJobConfig $riskJob The configuration details for a risk
+     *          analysis job. Only one of $inspectJob and $riskJob may be provided.
      *     @type string $jobId
      *          The job id can contain uppercase and lowercase letters,
      *          numbers, and hyphens; that is, it must match the regular
@@ -1451,7 +1488,7 @@ class DlpServiceGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function createDlpJob($parent, $optionalArgs = [])
+    public function createDlpJob($parent, array $optionalArgs = [])
     {
         $request = new CreateDlpJobRequest();
         $request->setParent($parent);
@@ -1475,6 +1512,8 @@ class DlpServiceGapicClient
 
     /**
      * Lists DlpJobs that match the specified filter in the request.
+     * See https://cloud.google.com/dlp/docs/inspecting-storage and
+     * https://cloud.google.com/dlp/docs/compute-risk-analysis to learn more.
      *
      * Sample code:
      * ```
@@ -1551,7 +1590,7 @@ class DlpServiceGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function listDlpJobs($parent, $optionalArgs = [])
+    public function listDlpJobs($parent, array $optionalArgs = [])
     {
         $request = new ListDlpJobsRequest();
         $request->setParent($parent);
@@ -1578,6 +1617,8 @@ class DlpServiceGapicClient
 
     /**
      * Gets the latest state of a long-running DlpJob.
+     * See https://cloud.google.com/dlp/docs/inspecting-storage and
+     * https://cloud.google.com/dlp/docs/compute-risk-analysis to learn more.
      *
      * Sample code:
      * ```
@@ -1606,7 +1647,7 @@ class DlpServiceGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function getDlpJob($name, $optionalArgs = [])
+    public function getDlpJob($name, array $optionalArgs = [])
     {
         $request = new GetDlpJobRequest();
         $request->setName($name);
@@ -1623,6 +1664,8 @@ class DlpServiceGapicClient
      * Deletes a long-running DlpJob. This method indicates that the client is
      * no longer interested in the DlpJob result. The job will be cancelled if
      * possible.
+     * See https://cloud.google.com/dlp/docs/inspecting-storage and
+     * https://cloud.google.com/dlp/docs/compute-risk-analysis to learn more.
      *
      * Sample code:
      * ```
@@ -1649,7 +1692,7 @@ class DlpServiceGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function deleteDlpJob($name, $optionalArgs = [])
+    public function deleteDlpJob($name, array $optionalArgs = [])
     {
         $request = new DeleteDlpJobRequest();
         $request->setName($name);
@@ -1666,6 +1709,8 @@ class DlpServiceGapicClient
      * Starts asynchronous cancellation on a long-running DlpJob. The server
      * makes a best effort to cancel the DlpJob, but success is not
      * guaranteed.
+     * See https://cloud.google.com/dlp/docs/inspecting-storage and
+     * https://cloud.google.com/dlp/docs/compute-risk-analysis to learn more.
      *
      * Sample code:
      * ```
@@ -1692,7 +1737,7 @@ class DlpServiceGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function cancelDlpJob($name, $optionalArgs = [])
+    public function cancelDlpJob($name, array $optionalArgs = [])
     {
         $request = new CancelDlpJobRequest();
         $request->setName($name);
@@ -1707,6 +1752,7 @@ class DlpServiceGapicClient
 
     /**
      * Lists job triggers.
+     * See https://cloud.google.com/dlp/docs/creating-job-triggers to learn more.
      *
      * Sample code:
      * ```
@@ -1731,7 +1777,7 @@ class DlpServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent       The parent resource name, for example projects/my-project-id.
+     * @param string $parent       The parent resource name, for example `projects/my-project-id`.
      * @param array  $optionalArgs {
      *                             Optional.
      *
@@ -1746,18 +1792,17 @@ class DlpServiceGapicClient
      *          there are additional values to be retrieved.
      *     @type string $orderBy
      *          Optional comma separated list of triggeredJob fields to order by,
-     *          followed by 'asc/desc' postfix, i.e.
-     *          `"create_time asc,name desc,schedule_mode asc"`. This list is
-     *          case-insensitive.
+     *          followed by `asc` or `desc` postfix. This list is case-insensitive,
+     *          default sorting order is ascending, redundant space characters are
+     *          insignificant.
      *
-     *          Example: `"name asc,schedule_mode desc, status desc"`
+     *          Example: `name asc,update_time, create_time desc`
      *
-     *          Supported filters keys and values are:
+     *          Supported fields are:
      *
      *          - `create_time`: corresponds to time the triggeredJob was created.
      *          - `update_time`: corresponds to time the triggeredJob was last updated.
-     *          - `name`: corresponds to JobTrigger's display name.
-     *          - `status`: corresponds to the triggeredJob status.
+     *          - `name`: corresponds to JobTrigger's name.
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
@@ -1770,7 +1815,7 @@ class DlpServiceGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function listJobTriggers($parent, $optionalArgs = [])
+    public function listJobTriggers($parent, array $optionalArgs = [])
     {
         $request = new ListJobTriggersRequest();
         $request->setParent($parent);
@@ -1794,6 +1839,7 @@ class DlpServiceGapicClient
 
     /**
      * Gets a job trigger.
+     * See https://cloud.google.com/dlp/docs/creating-job-triggers to learn more.
      *
      * Sample code:
      * ```
@@ -1823,7 +1869,7 @@ class DlpServiceGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function getJobTrigger($name, $optionalArgs = [])
+    public function getJobTrigger($name, array $optionalArgs = [])
     {
         $request = new GetJobTriggerRequest();
         $request->setName($name);
@@ -1838,6 +1884,7 @@ class DlpServiceGapicClient
 
     /**
      * Deletes a job trigger.
+     * See https://cloud.google.com/dlp/docs/creating-job-triggers to learn more.
      *
      * Sample code:
      * ```
@@ -1865,7 +1912,7 @@ class DlpServiceGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function deleteJobTrigger($name, $optionalArgs = [])
+    public function deleteJobTrigger($name, array $optionalArgs = [])
     {
         $request = new DeleteJobTriggerRequest();
         $request->setName($name);
@@ -1880,6 +1927,7 @@ class DlpServiceGapicClient
 
     /**
      * Updates a job trigger.
+     * See https://cloud.google.com/dlp/docs/creating-job-triggers to learn more.
      *
      * Sample code:
      * ```
@@ -1913,7 +1961,7 @@ class DlpServiceGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function updateJobTrigger($name, $optionalArgs = [])
+    public function updateJobTrigger($name, array $optionalArgs = [])
     {
         $request = new UpdateJobTriggerRequest();
         $request->setName($name);
@@ -1935,6 +1983,7 @@ class DlpServiceGapicClient
     /**
      * Creates a job trigger to run DLP actions such as scanning storage for
      * sensitive information on a set schedule.
+     * See https://cloud.google.com/dlp/docs/creating-job-triggers to learn more.
      *
      * Sample code:
      * ```
@@ -1970,7 +2019,7 @@ class DlpServiceGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function createJobTrigger($parent, $optionalArgs = [])
+    public function createJobTrigger($parent, array $optionalArgs = [])
     {
         $request = new CreateJobTriggerRequest();
         $request->setParent($parent);

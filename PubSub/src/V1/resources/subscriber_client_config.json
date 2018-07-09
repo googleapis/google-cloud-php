@@ -86,7 +86,7 @@
           "retry_params_name": "messaging"
         },
         "StreamingPull": {
-          "timeout_millis": 60000
+          "timeout_millis": 900000
         },
         "ModifyPushConfig": {
           "timeout_millis": 60000,

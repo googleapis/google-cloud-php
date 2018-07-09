@@ -1,18 +1,23 @@
-# Google Cloud Container for PHP
+# Google Cloud Container V1 generated client for PHP
 
-> Idiomatic PHP client for [Google Cloud Container](https://cloud.google.com/kubernetes-engine/).
+### Sample
 
-* [Homepage](http://googlecloudplatform.github.io/google-cloud-php)
-* [API documentation](http://googlecloudplatform.github.io/google-cloud-php/#/docs/cloud-container/latest/container/readme)
+```php
+require 'vendor/autoload.php';
 
-**NOTE:** This repository a Read-Only subtree split of
-[Google Cloud PHP](https://github.com/googlecloudplatform/google-cloud-php). Any
-support requests, bug reports, or development contributions should be directed to
-that project. Additional tests and build information can also be found at the
-parent project.
+use Google\Cloud\Container\V1\ClusterManagerClient;
 
-## Installation
+$clusterManagerClient = new ClusterManagerClient();
 
-```
-$ composer require google/cloud-container
+$projectId = '[MY-PROJECT-ID]';
+$zone = 'us-central1-a';
+
+try {
+    $clusters = $clusterManagerClient->listClusters($projectId, $zone);
+    foreach ($clusters->getClusters() as $cluster) {
+        print('Cluster: ' . $cluster->getName() . PHP_EOL);
+    }
+} finally {
+    $clusterManagerClient->close();
+}
 ```

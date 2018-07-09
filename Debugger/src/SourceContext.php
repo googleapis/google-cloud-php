@@ -24,9 +24,9 @@ namespace Google\Cloud\Debugger;
 interface SourceContext
 {
     /**
-     * Return context data.
+     * Return a serializable version of this object
      *
      * @return array
      */
-    public function contextData();
+    public function info();
 }

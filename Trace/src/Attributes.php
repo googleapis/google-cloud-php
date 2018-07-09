@@ -37,7 +37,7 @@ namespace Google\Cloud\Trace;
  *
  * @see https://cloud.google.com/trace/docs/reference/v2/rest/v2/Attributes Attributes model documentation
  */
-class Attributes implements \JsonSerializable, \ArrayAccess
+class Attributes implements \ArrayAccess
 {
     /**
      * @var array
@@ -97,7 +97,7 @@ class Attributes implements \JsonSerializable, \ArrayAccess
      * @access private
      * @return array
      */
-    public function jsonSerialize()
+    public function info()
     {
         $data = [];
         foreach ($this->attributes as $key => $value) {

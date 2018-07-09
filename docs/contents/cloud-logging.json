@@ -1,7 +1,11 @@
 {
     "title": "Logging",
     "pattern": "logging\/\\w{1,}",
+    "defaultService": "logging/readme",
     "services": [{
+        "title": "Overview",
+        "type": "logging/readme"
+    },{
         "title": "LoggingClient",
         "type": "logging/loggingclient"
     }, {

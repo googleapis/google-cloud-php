@@ -30,7 +30,7 @@ namespace Google\Cloud\Trace;
  *
  * @see https://cloud.google.com/trace/docs/reference/v2/rest/v2/StackTrace StackTrace model documentation
  */
-class StackTrace implements \JsonSerializable
+class StackTrace
 {
     /**
      * @var array The backtrace in the format of debug_backtrace().
@@ -53,7 +53,7 @@ class StackTrace implements \JsonSerializable
      * @access private
      * @return array
      */
-    public function jsonSerialize()
+    public function info()
     {
         return [
             'stackFrames' => [

@@ -38,5 +38,5 @@ use Google\Cloud\Logging\V2\Gapic\MetricsServiceV2GapicClient;
 class MetricsServiceV2Client extends MetricsServiceV2GapicClient
 {
     // This class is intentionally empty, and is intended to hold manual
-    // additions to the generated {@see MetricsServiceV2ClientImpl} class.
+    // additions to the generated {@see MetricsServiceV2GapicClient} class.
 }

@@ -19,6 +19,7 @@ namespace Google\Cloud\Debugger;
 
 use Google\Cloud\Core\ClientTrait;
 use Google\Cloud\Debugger\Connection\ConnectionInterface;
+use Google\Cloud\Debugger\Connection\Grpc;
 use Google\Cloud\Debugger\Connection\Rest;
 use Psr\Cache\CacheItemPoolInterface;
 
@@ -38,8 +39,7 @@ class DebuggerClient
 {
     use ClientTrait;
 
-    const VERSION = '0.8.0';
-    const DEFAULT_AGENT_VERSION = 'google.com/gcp-php/v0.1';
+    const VERSION = '0.12.1';
 
     const FULL_CONTROL_SCOPE = 'https://www.googleapis.com/auth/cloud-platform';
     const READ_ONLY_SCOPE = 'https://www.googleapis.com/auth/debugger.readonly';
@@ -48,6 +48,16 @@ class DebuggerClient
      * @var ConnectionInterface $connection Represents a connection to Debugger
      */
     protected $connection;
+
+    /**
+     * Returns the default Agent version string
+     *
+     * @return string
+     */
+    public static function getDefaultAgentVersion()
+    {
+        return 'google.com/gcp-php/' . self::VERSION;
+    }
 
     /**
      * Create a Debugger client.
@@ -77,13 +87,15 @@ class DebuggerClient
      */
     public function __construct(array $config = [])
     {
-        if (!isset($config['scopes'])) {
-            $config['scopes'] = [self::FULL_CONTROL_SCOPE];
-        }
-
-        $this->connection = new Rest($this->configureAuthentication($config + [
+        $connectionType = $this->getConnectionType($config);
+        $config += [
+            'scopes' => [self::FULL_CONTROL_SCOPE],
+            'projectIdRequired' => true,
             'preferNumericProjectId' => true
-        ]));
+        ];
+        $this->connection = $connectionType === 'grpc'
+            ? new Grpc($this->configureAuthentication($config))
+            : new Rest($this->configureAuthentication($config));
     }
 
     /**
@@ -128,7 +140,7 @@ class DebuggerClient
         return new Debuggee($this->connection, [
             'id' => $id,
             'project' => $this->projectId,
-            'agentVersion' => self::DEFAULT_AGENT_VERSION
+            'agentVersion' => self::getDefaultAgentVersion()
         ] + $options);
     }
 

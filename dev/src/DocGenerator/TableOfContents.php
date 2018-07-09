@@ -41,6 +41,9 @@ class TableOfContents
         $toc = $this->getToc($this->componentId);
 
         $tpl = $this->template;
+        if (isset($toc['defaultService'])) {
+            $tpl['defaultService'] = $toc['defaultService'];
+        }
         $tpl['services'] = $this->services($toc);
         $tpl['tagName'] = $this->release
             ? $this->componentVersion

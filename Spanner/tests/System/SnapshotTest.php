@@ -121,8 +121,8 @@ class SnapshotTest extends SpannerTestCase
 
         $db->insert(self::$tableName, $row);
         sleep(1);
-        $ts = new Timestamp(new \DateTimeImmutable);
-        sleep(1);
+        $ts = new Timestamp(new \DateTimeImmutable('now', new \DateTimeZone('UTC')));
+        sleep(2);
 
         $newRow = $row;
         $newRow['number'] = 2;
@@ -167,7 +167,7 @@ class SnapshotTest extends SpannerTestCase
             'returnReadTimestamp' => true
         ]);
 
-        $this->assertEquals($ts->get()->format('U'), $snapshot->readTimestamp()->get()->format('U'));
+        $this->assertGreaterThan($ts->get()->format('U.u'), $snapshot->readTimestamp()->get()->format('U.u'));
 
         $res = $this->getRow($snapshot, $id);
         $this->assertEquals($row, $res);

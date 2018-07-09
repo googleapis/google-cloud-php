@@ -1,18 +1,14 @@
-# Google Cloud OsLogin for PHP
+# Google Cloud OsLogin V1beta generated client for PHP
 
-> Idiomatic PHP client for [Google Cloud OsLogin](https://cloud.google.com/compute/docs/oslogin/rest/).
+### Sample
 
-* [Homepage](http://googlecloudplatform.github.io/google-cloud-php)
-* [API documentation](http://googlecloudplatform.github.io/google-cloud-php/#/docs/cloud-oslogin/latest/oslogin/readme)
+```php
+require 'vendor/autoload.php';
 
-**NOTE:** This repository a Read-Only subtree split of
-[Google Cloud PHP](https://github.com/googlecloudplatform/google-cloud-php). Any
-support requests, bug reports, or development contributions should be directed to
-that project. Additional tests and build information can also be found at the
-parent project.
+use Google\Cloud\OsLogin\V1beta\OsLoginServiceClient;
 
-## Installation
-
-```
-$ composer require google/cloud-oslogin
+$osLoginServiceClient = new OsLoginServiceClient();
+$userId = '[MY_USER_ID]';
+$formattedName = $osLoginServiceClient->userName($userId);
+$loginProfile = $osLoginServiceClient->getLoginProfile($formattedName);
 ```

@@ -5,8 +5,7 @@
     "minimum-stability": "stable",
     "require": {
         "google/cloud-core": "^1.14",
-        "google/proto-client": "^0.38.0",
-        "google/gax": "^0.31.1"
+        "google/gax": "^0.34"
     },
     "require-dev": {
         "phpunit/phpunit": "^4.8|^5.0",
@@ -15,7 +14,8 @@
         "erusev/parsedown": "^1.6",
         "google/cloud-storage": "^1.3",
         "google/cloud-bigquery": "^1.0",
-        "google/cloud-pubsub": "^1.0"
+        "google/cloud-pubsub": "^1.0",
+        "opis/closure": "^3"
     },
     "suggest": {
         "ext-grpc": "The gRPC extension enables use of the performant gRPC transport",
@@ -31,7 +31,8 @@
     },
     "autoload": {
         "psr-4": {
-            "Google\\Cloud\\Logging\\": "src"
+            "Google\\Cloud\\Logging\\": "src",
+            "GPBMetadata\\Google\\Logging\\": "metadata"
         }
     },
     "autoload-dev": {

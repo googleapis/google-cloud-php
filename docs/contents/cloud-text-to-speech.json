@@ -1,0 +1,19 @@
+{
+    "title": "TextToSpeech",
+    "defaultService": "texttospeech\/readme",
+    "services": [
+        {
+            "title": "Overview",
+            "type": "texttospeech\/readme"
+        },
+        {
+            "title": "TextToSpeechClient",
+            "type": "texttospeech\/v1\/texttospeechclient",
+            "nav": [],
+            "patterns": [
+                "texttospeech\/v1\/\\w{1,}"
+            ]
+        }
+    ],
+    "pattern": "texttospeech\/\\w{1,}"
+}

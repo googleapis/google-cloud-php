@@ -21,10 +21,6 @@
  * https://github.com/google/googleapis/blob/master/google/pubsub/v1/pubsub.proto
  * and updates to that file get reflected here through a refresh process.
  *
- * EXPERIMENTAL: This client library class has not yet been declared GA (1.0). This means that
- * even though we intend the surface to be stable, we may make backwards incompatible changes
- * if necessary.
- *
  * @experimental
  */
 
@@ -38,5 +34,5 @@ use Google\Cloud\PubSub\V1\Gapic\SubscriberGapicClient;
 class SubscriberClient extends SubscriberGapicClient
 {
     // This class is intentionally empty, and is intended to hold manual
-    // additions to the generated {@see SubscriberClientImpl} class.
+    // additions to the generated {@see SubscriberGapicClient} class.
 }

@@ -5,6 +5,7 @@ composer.lock
 docs/json/**/*
 vendor/
 .idea/
+*.iml
 
 # do not delete
 keys/

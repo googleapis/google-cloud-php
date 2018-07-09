@@ -36,7 +36,6 @@ class ValueMapperTest extends FirestoreTestCase
         parent::setupBeforeClass();
 
         self::$document = self::$collection->add([]);
-        self::$deletionQueue->add(self::$document);
     }
 
     /**

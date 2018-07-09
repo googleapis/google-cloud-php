@@ -38,11 +38,11 @@ class GrpcTest extends TestCase
     use GrpcTestTrait;
     use GrpcTrait;
 
-    const PROJECT = 'projects/grass-clump-479';
-    const LOCATION = 'projects/grass-clump-479/locations/us-east1-b';
+    const PROJECT = 'projects/my-awesome-project';
+    const LOCATION = 'projects/my-awesome-project/locations/us-east1-b';
 
     private $successMessage;
-    
+
     private $requestWrapper;
 
     public function setUp()
@@ -51,7 +51,7 @@ class GrpcTest extends TestCase
         $this->requestWrapper = $this->prophesize(GrpcRequestWrapper::class);
         $this->successMessage = 'success';
     }
-    
+
     /**
      * @dataProvider methodProvider
      */
@@ -73,9 +73,13 @@ class GrpcTest extends TestCase
             return [];
         }
         $serializer = new Serializer();
-        $instanceName = 'test-instance';
+        $instanceName = 'test-instance3';
         $clusterName = 'test-cluster';
- 
+        $tableName = 'test-table';
+        $permissions = ['permission1','permission2'];
+        $policy = ['foo' => 'bar'];
+        $consistencyToken = 'a1b2c3d4';
+
         $clusterArgs = [
             'location' => self::LOCATION,
             'serveNodes' => 3,
@@ -159,6 +163,31 @@ class GrpcTest extends TestCase
                 'deleteCluster',
                 ['name' => 'projects/grass-clump-479/instances/test-instance/clusters/test-cluster'],
                 ['projects/grass-clump-479/instances/test-instance/clusters/test-cluster', ['headers' => ['google-cloud-resource-prefix' => ['projects/grass-clump-479/instances/test-instance/clusters/test-cluster']]]]
+            ],
+            [
+                'setIamPolicy',
+                ['resource' => $instanceName, 'policy' => $policy],
+                [$instanceName, $policy, ['headers' => ['google-cloud-resource-prefix' => [$instanceName]]]]
+            ],
+            [
+                'getIamPolicy',
+                ['resource' => $instanceName],
+                [$instanceName, ['headers' => ['google-cloud-resource-prefix' => [$instanceName]]]]
+            ],
+            [
+                'testIamPermissions',
+                ['resource' => $instanceName, 'permissions' => $permissions],
+                [$instanceName, $permissions, ['headers' => ['google-cloud-resource-prefix' => [$instanceName]]]]
+            ],
+            [
+                'checkConsistency',
+                ['name' => $tableName, 'consistencyToken' => $consistencyToken],
+                [$tableName, $consistencyToken, ['headers' => ['google-cloud-resource-prefix' => [$tableName]]]]
+            ],
+            [
+                'generateConsistencyToken',
+                ['name' => $tableName],
+                [$tableName, ['headers' => ['google-cloud-resource-prefix' => [$tableName]]]]
             ]
         ];
     }

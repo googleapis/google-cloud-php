@@ -1,12 +1,12 @@
 <?php
-/**
- * Copyright 2018 Google Inc.
+/*
+ * Copyright 2018 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
+ *     https://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -15,192 +15,261 @@
  * limitations under the License.
  */
 
+/*
+ * GENERATED CODE WARNING
+ * This file was automatically generated - do not edit!
+ */
+
 namespace Google\Cloud\Vision\Tests\Unit\V1;
 
-use Google\ApiCore\Call;
-use Google\ApiCore\Transport\TransportInterface;
-use Google\Cloud\Vision\V1\AnnotateImageRequest;
-use Google\Cloud\Vision\V1\AnnotateImageResponse;
-use Google\Cloud\Vision\V1\BatchAnnotateImagesRequest;
-use Google\Cloud\Vision\V1\BatchAnnotateImagesResponse;
-use Google\Cloud\Vision\V1\Feature;
-use Google\Cloud\Vision\V1\Feature_Type;
-use Google\Cloud\Vision\V1\Image;
 use Google\Cloud\Vision\V1\ImageAnnotatorClient;
-use Google\Cloud\Vision\V1\ImageContext;
-use Google\Cloud\Vision\V1\ImageSource;
-use Google\Cloud\Vision\VisionHelpersTrait;
-use GuzzleHttp\Promise\FulfilledPromise;
-use Prophecy\Argument;
-use PHPUnit\Framework\TestCase;
+use Google\ApiCore\ApiException;
+use Google\ApiCore\CredentialsWrapper;
+use Google\ApiCore\LongRunning\OperationsClient;
+use Google\ApiCore\Testing\GeneratedTest;
+use Google\ApiCore\Testing\MockTransport;
+use Google\Cloud\Vision\V1\AsyncBatchAnnotateFilesResponse;
+use Google\Cloud\Vision\V1\BatchAnnotateImagesResponse;
+use Google\LongRunning\GetOperationRequest;
+use Google\LongRunning\Operation;
+use Google\Protobuf\Any;
+use Google\Rpc\Code;
+use stdClass;
 
 /**
  * @group vision
  * @group gapic
  */
-class ImageAnnotatorClientTest extends TestCase
+class ImageAnnotatorClientTest extends GeneratedTest
 {
-    use VisionHelpersTrait;
-
-    /** @var ImageAnnotatorClient */
-    private $client;
-    private $transport;
-
-    public function setUp()
+    /**
+     * @return TransportInterface
+     */
+    private function createTransport($deserialize = null)
     {
-        $this->transport = $this->prophesize(TransportInterface::class);
-        $this->client = new ImageAnnotatorClient([
-            'transport' => $this->transport->reveal(),
-        ]);
-    }
-
-    public function testCreateImageObject()
-    {
-        $image = $this->client->createImageObject("gs://my-bucket/myimage.jpg");
-        $this->assertSame(Image::class, get_class($image));
-        $this->assertSame(ImageSource::class, get_class($image->getSource()));
+        return new MockTransport($deserialize);
     }
 
     /**
-     * @dataProvider annotateImageDataProvider
+     * @return ImageAnnotatorClient
      */
-    public function testAnnotateImage($image, $features)
+    private function createClient(array $options = [])
     {
-        $expectedAnnotationResponses = [new AnnotateImageResponse()];
-        $expectedResponse = new BatchAnnotateImagesResponse();
-        $expectedResponse->setResponses($expectedAnnotationResponses);
-        $this->transport->startUnaryCall(Argument::type(Call::class), Argument::type('array'))
-            ->shouldBeCalledTimes(1)
-            ->willReturn(
-                new FulfilledPromise(
-                    $expectedResponse
-                )
-            );
-
-        $res = $this->client->annotateImage($image, $features);
-
-        $this->assertInstanceOf(AnnotateImageResponse::class, $res);
-    }
-
-    public function annotateImageDataProvider()
-    {
-        return [
-            [$this->createImageObject('foobar'), [(new Feature())->setType(Feature_Type::FACE_DETECTION)]],
-            ['foobar', [Feature_Type::FACE_DETECTION]],
+        $options += [
+            'credentials' => $this->getMockBuilder(CredentialsWrapper::class)
+                ->disableOriginalConstructor()
+                ->getMock(),
         ];
-    }
 
-    public function testAnnotateImageWithImageContext()
-    {
-        $image = $this->client->createImageObject('foobar');
-        $featureType = Feature_Type::FACE_DETECTION;
-        $imageContext = new ImageContext();
-        $imageContext->setLanguageHints(['en']);
-
-        $expectedFeature = new Feature();
-        $expectedFeature->setType($featureType);
-        $expectedFeatures = [$expectedFeature];
-        $expectedRequest = new AnnotateImageRequest();
-        $expectedRequest->setImage($image);
-        $expectedRequest->setFeatures($expectedFeatures);
-        $expectedRequest->setImageContext($imageContext);
-        $expectedRequests = [$expectedRequest];
-
-        $expectedMessage = new BatchAnnotateImagesRequest();
-        $expectedMessage->setRequests($expectedRequests);
-
-        $expectedAnnotationResponses = [new AnnotateImageResponse()];
-        $expectedResponse = new BatchAnnotateImagesResponse();
-        $expectedResponse->setResponses($expectedAnnotationResponses);
-        $this->transport->startUnaryCall( Argument::allOf(
-                    Argument::type(Call::class),
-                    Argument::which('getMethod', 'google.cloud.vision.v1.ImageAnnotator/BatchAnnotateImages'),
-                    Argument::which('getMessage', $expectedMessage)
-                ),
-                Argument::type('array')
-            )
-            ->shouldBeCalledTimes(1)
-            ->willReturn(
-                new FulfilledPromise(
-                    $expectedResponse
-                )
-            );
-
-        $feature = new Feature();
-        $feature->setType($featureType);
-        $features = [$feature];
-
-        $res = $this->client->annotateImage($image, $features, [
-            'imageContext' => $imageContext,
-        ]);
-
-        $this->assertInstanceOf(AnnotateImageResponse::class, $res);
+        return new ImageAnnotatorClient($options);
     }
 
     /**
-     * @dataProvider detectionMethodDataProvider
+     * @test
      */
-    public function testDetectionMethod($methodName, $featureType, $image)
+    public function batchAnnotateImagesTest()
     {
-        $expectedFeature = new Feature();
-        $expectedFeature->setType($featureType);
-        $expectedFeatures = [$expectedFeature];
-        $expectedRequest = new AnnotateImageRequest();
-        $expectedRequest->setImage($this->createImageObject($image));
-        $expectedRequest->setFeatures($expectedFeatures);
-        $expectedRequests = [$expectedRequest];
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-        $expectedMessage = new BatchAnnotateImagesRequest();
-        $expectedMessage->setRequests($expectedRequests);
+        $this->assertTrue($transport->isExhausted());
 
-        $expectedAnnotationResponses = [new AnnotateImageResponse()];
+        // Mock response
         $expectedResponse = new BatchAnnotateImagesResponse();
-        $expectedResponse->setResponses($expectedAnnotationResponses);
-        $this->transport->startUnaryCall(
-                Argument::allOf(
-                    Argument::type(Call::class),
-                    Argument::which('getMethod', 'google.cloud.vision.v1.ImageAnnotator/BatchAnnotateImages'),
-                    Argument::which('getMessage', $expectedMessage)
-                ),
-                Argument::type('array')
-            )
-            ->shouldBeCalledTimes(1)
-            ->willReturn(
-                new FulfilledPromise(
-                    $expectedResponse
-                )
-            );
+        $transport->addResponse($expectedResponse);
 
-        $res = $this->client->$methodName($image);
+        // Mock request
+        $requests = [];
 
-        $this->assertInstanceOf(AnnotateImageResponse::class, $res);
+        $response = $client->batchAnnotateImages($requests);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.vision.v1.ImageAnnotator/BatchAnnotateImages', $actualFuncCall);
+
+        $actualValue = $actualRequestObject->getRequests();
+
+        $this->assertProtobufEquals($requests, $actualValue);
+
+        $this->assertTrue($transport->isExhausted());
     }
 
-    public function detectionMethodDataProvider()
+    /**
+     * @test
+     */
+    public function batchAnnotateImagesExceptionTest()
     {
-        $items = [
-            ['faceDetection', Feature_Type::FACE_DETECTION],
-            ['landmarkDetection', Feature_Type::LANDMARK_DETECTION],
-            ['logoDetection', Feature_Type::LOGO_DETECTION],
-            ['labelDetection', Feature_Type::LABEL_DETECTION],
-            ['textDetection', Feature_Type::TEXT_DETECTION],
-            ['documentTextDetection', Feature_Type::DOCUMENT_TEXT_DETECTION],
-            ['safeSearchDetection', Feature_Type::SAFE_SEARCH_DETECTION],
-            ['imagePropertiesDetection', Feature_Type::IMAGE_PROPERTIES],
-            ['cropHintsDetection', Feature_Type::CROP_HINTS],
-            ['webDetection', Feature_Type::WEB_DETECTION],
-        ];
-        $data = [];
-        foreach ($items as $item) {
-            $item[] = 'foobar';
-            $item[] = $this->createImageObject('foobar');
-            $data[] = $item;
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
+
+        $this->assertTrue($transport->isExhausted());
+
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+
+        $expectedExceptionMessage = json_encode([
+           'message' => 'internal error',
+           'code' => Code::DATA_LOSS,
+           'status' => 'DATA_LOSS',
+           'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+
+        // Mock request
+        $requests = [];
+
+        try {
+            $client->batchAnnotateImages($requests);
+            // If the $client method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
         }
-        return $data;
+
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
     }
 
-    private function createImageObject($imageInput)
+    /**
+     * @test
+     */
+    public function asyncBatchAnnotateFilesTest()
     {
-        return $this->createImageHelper(Image::class, ImageSource::class, $imageInput);
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'serviceAddress' => '',
+            'transport' => $operationsTransport,
+        ]);
+        $transport = $this->createTransport();
+        $client = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/asyncBatchAnnotateFilesTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $expectedResponse = new AsyncBatchAnnotateFilesResponse();
+        $anyResponse = new Any();
+        $anyResponse->setValue($expectedResponse->serializeToString());
+        $completeOperation = new Operation();
+        $completeOperation->setName('operations/asyncBatchAnnotateFilesTest');
+        $completeOperation->setDone(true);
+        $completeOperation->setResponse($anyResponse);
+        $operationsTransport->addResponse($completeOperation);
+
+        // Mock request
+        $requests = [];
+
+        $response = $client->asyncBatchAnnotateFiles($requests);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $apiRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($apiRequests));
+        $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
+        $this->assertSame(0, count($operationsRequestsEmpty));
+
+        $actualApiFuncCall = $apiRequests[0]->getFuncCall();
+        $actualApiRequestObject = $apiRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.vision.v1.ImageAnnotator/AsyncBatchAnnotateFiles', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getRequests();
+
+        $this->assertProtobufEquals($requests, $actualValue);
+
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/asyncBatchAnnotateFilesTest');
+
+        $response->pollUntilComplete([
+            'initialPollDelayMillis' => 1,
+        ]);
+        $this->assertTrue($response->isDone());
+        $this->assertEquals($expectedResponse, $response->getResult());
+        $apiRequestsEmpty = $transport->popReceivedCalls();
+        $this->assertSame(0, count($apiRequestsEmpty));
+        $operationsRequests = $operationsTransport->popReceivedCalls();
+        $this->assertSame(1, count($operationsRequests));
+
+        $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
+        $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
+        $this->assertSame('/google.longrunning.Operations/GetOperation', $actualOperationsFuncCall);
+        $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
+
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function asyncBatchAnnotateFilesExceptionTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'serviceAddress' => '',
+            'transport' => $operationsTransport,
+        ]);
+        $transport = $this->createTransport();
+        $client = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/asyncBatchAnnotateFilesTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+
+        $expectedExceptionMessage = json_encode([
+           'message' => 'internal error',
+           'code' => Code::DATA_LOSS,
+           'status' => 'DATA_LOSS',
+           'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $operationsTransport->addResponse(null, $status);
+
+        // Mock request
+        $requests = [];
+
+        $response = $client->asyncBatchAnnotateFiles($requests);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/asyncBatchAnnotateFilesTest');
+
+        try {
+            $response->pollUntilComplete([
+                'initialPollDelayMillis' => 1,
+            ]);
+            // If the pollUntilComplete() method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+
+        // Call popReceivedCalls to ensure the stubs are exhausted
+        $transport->popReceivedCalls();
+        $operationsTransport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
     }
 }

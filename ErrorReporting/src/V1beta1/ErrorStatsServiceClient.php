@@ -21,10 +21,6 @@
  * https://github.com/google/googleapis/blob/master/google/devtools/clouderrorreporting/v1beta1/error_stats_service.proto
  * and updates to that file get reflected here through a refresh process.
  *
- * EXPERIMENTAL: This client library class has not yet been declared GA (1.0). This means that
- * even though we intend the surface to be stable, we may make backwards incompatible changes
- * if necessary.
- *
  * @experimental
  */
 
@@ -38,5 +34,5 @@ use Google\Cloud\ErrorReporting\V1beta1\Gapic\ErrorStatsServiceGapicClient;
 class ErrorStatsServiceClient extends ErrorStatsServiceGapicClient
 {
     // This class is intentionally empty, and is intended to hold manual
-    // additions to the generated {@see ErrorStatsServiceClientImpl} class.
+    // additions to the generated {@see ErrorStatsServiceGapicClient} class.
 }

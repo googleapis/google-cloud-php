@@ -38,5 +38,5 @@ use Google\Cloud\Logging\V2\Gapic\ConfigServiceV2GapicClient;
 class ConfigServiceV2Client extends ConfigServiceV2GapicClient
 {
     // This class is intentionally empty, and is intended to hold manual
-    // additions to the generated {@see ConfigServiceV2ClientImpl} class.
+    // additions to the generated {@see ConfigServiceV2GapicClient} class.
 }

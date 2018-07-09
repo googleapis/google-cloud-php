@@ -13,6 +13,7 @@ This client supports the following Google Cloud Platform services at a [General 
 * [Google Cloud Pub/Sub](#google-cloud-pubsub-ga) (GA)
 * [Google Cloud Storage](#google-cloud-storage-ga) (GA)
 * [Google Cloud Translation](#google-cloud-translation-ga) (GA)
+* [Google Cloud Video Intelligence](#google-cloud-video-intelligence-ga) (GA)
 * [Google Stackdriver Logging](#google-stackdriver-logging-ga) (GA)
 
 This client supports the following Google Cloud Platform services at a [Beta](#versioning) quality level:
@@ -20,9 +21,11 @@ This client supports the following Google Cloud Platform services at a [Beta](#v
 * [Cloud Firestore](#cloud-firestore-beta) (Beta)
 * [Google Cloud Container](#google-cloud-container-beta) (Beta)
 * [Google Cloud Dataproc](#google-cloud-dataproc-beta) (Beta)
+* [Google Cloud KMS](#google-cloud-kms-beta) (Beta)
 * [Google Cloud Natural Language](#google-cloud-natural-language-beta) (Beta)
 * [Google Cloud OsLogin](#google-cloud-oslogin-beta) (Beta)
-* [Google Cloud Video Intelligence](#google-cloud-video-intelligence-beta) (Beta)
+* [Google Cloud Tasks](#google-cloud-tasks-beta) (Beta)
+* [Google Cloud Text-to-Speech](#google-cloud-text-to-speech-beta) (Beta)
 * [Google Cloud Vision](#google-cloud-vision-beta) (Beta)
 * [Google DLP](#google-dlp-beta) (Beta)
 * [Google Stackdriver Error Reporting](#google-stackdriver-error-reporting-beta) (Beta)
@@ -117,9 +120,7 @@ require 'vendor/autoload.php';
 
 use Google\Cloud\Spanner\SpannerClient;
 
-$spanner = new SpannerClient([
-    'projectId' => 'my_project'
-]);
+$spanner = new SpannerClient();
 
 $db = $spanner->connect('my-instance', 'my-database');
 
@@ -154,23 +155,23 @@ require 'vendor/autoload.php';
 
 use Google\Cloud\BigQuery\BigQueryClient;
 
-$bigQuery = new BigQueryClient([
-    'projectId' => 'my_project'
-]);
+$bigQuery = new BigQueryClient();
 
 // Get an instance of a previously created table.
 $dataset = $bigQuery->dataset('my_dataset');
 $table = $dataset->table('my_table');
 
 // Begin a job to import data from a CSV file into the table.
-$job = $table->load(
+$loadJobConfig = $table->load(
     fopen('/data/my_data.csv', 'r')
 );
+$job = $table->runJob($loadJobConfig);
 
 // Run a query and inspect the results.
-$queryResults = $bigQuery->runQuery('SELECT * FROM [my_project:my_dataset.my_table]');
+$queryJobConfig = 'SELECT * FROM [my_project:my_dataset.my_table]';
+$queryResults = $bigQuery->runQuery($queryConfig);
 
-foreach ($queryResults->rows() as $row) {
+foreach ($queryResults as $row) {
     print_r($row);
 }
 ```
@@ -195,9 +196,7 @@ require 'vendor/autoload.php';
 
 use Google\Cloud\Datastore\DatastoreClient;
 
-$datastore = new DatastoreClient([
-    'projectId' => 'my_project'
-]);
+$datastore = new DatastoreClient();
 
 // Create an entity
 $bob = $datastore->entity('Person');
@@ -234,9 +233,7 @@ require 'vendor/autoload.php';
 
 use Google\Cloud\PubSub\PubSubClient;
 
-$pubSub = new PubSubClient([
-    'projectId' => 'my_project'
-]);
+$pubSub = new PubSubClient();
 
 // Get an instance of a previously created topic.
 $topic = $pubSub->topic('my_topic');
@@ -281,9 +278,7 @@ require 'vendor/autoload.php';
 
 use Google\Cloud\Storage\StorageClient;
 
-$storage = new StorageClient([
-    'projectId' => 'my_project'
-]);
+$storage = new StorageClient();
 
 $bucket = $storage->bucket('my_bucket');
 
@@ -313,9 +308,7 @@ require 'vendor/autoload.php';
 
 use Google\Cloud\Storage\StorageClient;
 
-$storage = new StorageClient([
-    'projectId' => 'my_project'
-]);
+$storage = new StorageClient();
 $storage->registerStreamWrapper();
 
 $contents = file_get_contents('gs://my_bucket/file_backup.txt');
@@ -383,6 +376,65 @@ foreach ($languages as $language) {
 $ composer require google/cloud-translate
 ```
 
+## Google Cloud Video Intelligence (GA)
+
+- [API Documentation](http://googlecloudplatform.github.io/google-cloud-php/#/docs/latest/videointelligence/readme)
+- [Official Documentation](https://cloud.google.com/video-intelligence/docs)
+
+#### Preview
+
+```php
+require __DIR__ . '/vendor/autoload.php';
+
+use Google\Cloud\VideoIntelligence\V1\VideoIntelligenceServiceClient;
+use Google\Cloud\VideoIntelligence\V1\Feature;
+
+$videoIntelligenceServiceClient = new VideoIntelligenceServiceClient();
+
+$inputUri = "gs://example-bucket/example-video.mp4";
+
+$features = [
+    Feature::LABEL_DETECTION,
+];
+$operationResponse = $videoIntelligenceServiceClient->annotateVideo([
+    'inputUri' => $inputUri,
+    'features' => $features
+]);
+$operationResponse->pollUntilComplete();
+if ($operationResponse->operationSucceeded()) {
+    $results = $operationResponse->getResult();
+    foreach ($results->getAnnotationResults() as $result) {
+        echo 'Segment labels' . PHP_EOL;
+        foreach ($result->getSegmentLabelAnnotations() as $labelAnnotation) {
+            echo "Label: " . $labelAnnotation->getEntity()->getDescription()
+                . PHP_EOL;
+        }
+        echo 'Shot labels' . PHP_EOL;
+        foreach ($result->getShotLabelAnnotations() as $labelAnnotation) {
+            echo "Label: " . $labelAnnotation->getEntity()->getDescription()
+                . PHP_EOL;
+        }
+        echo 'Frame labels' . PHP_EOL;
+        foreach ($result->getFrameLabelAnnotations() as $labelAnnotation) {
+            echo "Label: " . $labelAnnotation->getEntity()->getDescription()
+                . PHP_EOL;
+        }
+    }
+} else {
+    $error = $operationResponse->getError();
+    echo "error: " . $error->getMessage() . PHP_EOL;
+
+}
+```
+
+#### google/cloud-videointelligence
+
+[Cloud Video Intelligence](https://github.com/GoogleCloudPlatform/google-cloud-php-videointelligence) can be installed separately by requiring the [`google/cloud-videointelligence`](https://packagist.org/packages/google/cloud-videointelligence) composer package:
+
+```
+$ composer require google/cloud-videointelligence
+```
+
 ## Google Stackdriver Logging (GA)
 
 - [API Documentation](http://googlecloudplatform.github.io/google-cloud-php/#/docs/latest/logging/loggingclient)
@@ -395,9 +447,7 @@ require 'vendor/autoload.php';
 
 use Google\Cloud\Logging\LoggingClient;
 
-$logging = new LoggingClient([
-    'projectId' => 'my_project'
-]);
+$logging = new LoggingClient();
 
 // Get a logger instance.
 $logger = $logging->logger('my_log');
@@ -435,9 +485,7 @@ require 'vendor/autoload.php';
 
 use Google\Cloud\Firestore\FirestoreClient;
 
-$firestore = new FirestoreClient([
-    'projectId' => 'my_project'
-]);
+$firestore = new FirestoreClient();
 
 $collectionReference = $firestore->collection('Users');
 $documentReference = $collectionReference->document($userId);
@@ -456,11 +504,10 @@ $ composer require google/cloud-firestore
 
 ## Google Cloud Container (Beta)
 
-- [API Documentation](http://googlecloudplatform.github.io/google-cloud-php/#/docs/latest/monitoring/readme)
+- [API Documentation](http://googlecloudplatform.github.io/google-cloud-php/#/docs/latest/container/readme)
 - [Official Documentation](https://cloud.google.com/kubernetes-engine/docs)
 
 ```php
-<?php
 require 'vendor/autoload.php';
 
 use Google\Cloud\Container\V1\ClusterManagerClient;
@@ -494,7 +541,6 @@ $ composer require google/cloud-container
 - [Official Documentation](https://cloud.google.com/dataproc/docs)
 
 ```php
-<?php
 require 'vendor/autoload.php';
 
 use Google\Cloud\Dataproc\V1\JobControllerClient;
@@ -528,6 +574,74 @@ $submittedJob = $jobControllerClient->submitJob($projectId, $region, $job);
 $ composer require google/cloud-dataproc
 ```
 
+## Google Cloud KMS (Beta)
+
+- [API Documentation](http://googlecloudplatform.github.io/google-cloud-php/#/docs/latest/kms/readme)
+- [Official Documentation](https://cloud.google.com/kms/docs/reference/rest/)
+
+```php
+require __DIR__ . '/vendor/autoload.php';
+
+use Google\ApiCore\ApiException;
+use Google\Cloud\Kms\V1\CryptoKey;
+use Google\Cloud\Kms\V1\CryptoKey_CryptoKeyPurpose;
+use Google\Cloud\Kms\V1\KeyManagementServiceClient;
+use Google\Cloud\Kms\V1\KeyRing;
+
+$client = new KeyManagementServiceClient();
+
+$projectId = 'example-project';
+$location = 'global';
+
+// Create a keyring
+$keyRingId = 'example-keyring';
+$locationName = $client::locationName($projectId, $location);
+$keyRingName = $client::keyRingName($projectId, $location, $keyRingId);
+
+try {
+    $keyRing = $client->getKeyRing($keyRingName);
+} catch (ApiException $e) {
+    if ($e->getStatus() === 'NOT_FOUND') {
+        $keyRing = new KeyRing();
+        $keyRing->setName($keyRingName);
+        $client->createKeyRing($locationName, $keyRingId, $keyRing);
+    }
+}
+
+// Create a cryptokey
+$keyId = 'example-key';
+$keyName = $client::cryptoKeyName($projectId, $location, $keyRingId, $keyId);
+
+try {
+    $cryptoKey = $client->getCryptoKey($keyName);
+} catch (ApiException $e) {
+    if ($e->getStatus() === 'NOT_FOUND') {
+        $cryptoKey = new CryptoKey();
+        $cryptoKey->setPurpose(CryptoKey_CryptoKeyPurpose::ENCRYPT_DECRYPT);
+        $cryptoKey = $client->createCryptoKey($keyRingName, $keyId, $cryptoKey);
+    }
+}
+
+// Encrypt and decrypt
+$secret = 'My secret text';
+$response = $client->encrypt($keyName, $secret);
+$cipherText = $response->getCiphertext();
+
+$response = $client->decrypt($keyName, $cipherText);
+
+$plainText = $response->getPlaintext();
+
+assert($secret === $plainText);
+```
+
+#### google/cloud-kms
+
+[Google Cloud KMS](https://github.com/GoogleCloudPlatform/google-cloud-php-kms) can be installed separately by requiring the [`google/cloud-kms`](https://packagist.org/packages/google/cloud-kms) composer package:
+
+```
+$ composer require google/cloud-kms
+```
+
 ## Google Cloud Natural Language (Beta)
 
 - [API Documentation](http://googlecloudplatform.github.io/google-cloud-php/#/docs/latest/language/languageclient)
@@ -540,9 +654,7 @@ require 'vendor/autoload.php';
 
 use Google\Cloud\Language\LanguageClient;
 
-$language = new LanguageClient([
-    'projectId' => 'my_project'
-]);
+$language = new LanguageClient();
 
 // Analyze a sentence.
 $annotation = $language->annotateText('Greetings from Michigan!');
@@ -581,10 +693,9 @@ $ composer require google/cloud-language
 - [Official Documentation](https://cloud.google.com/compute/docs/oslogin/rest/)
 
 ```php
-<?php
 require 'vendor/autoload.php';
 
-use Google\Cloud\OsLogin\V1beta\OsLoginServiceClient;
+use Google\Cloud\OsLogin\V1\OsLoginServiceClient;
 
 $osLoginServiceClient = new OsLoginServiceClient();
 $userId = '[MY_USER_ID]';
@@ -600,46 +711,113 @@ $loginProfile = $osLoginServiceClient->getLoginProfile($formattedName);
 $ composer require google/cloud-oslogin
 ```
 
-## Google Cloud Video Intelligence (Beta)
-
-- [API Documentation](http://googlecloudplatform.github.io/google-cloud-php/#/docs/latest/videointelligence/readme)
-- [Official Documentation](https://cloud.google.com/video-intelligence/docs)
+## Google Cloud Tasks (Beta)
+- [API Documentation](http://googlecloudplatform.github.io/google-cloud-php/#/docs/latest/tasks/readme)
 
 #### Preview
 
 ```php
+require_once __DIR__ . '/vendor/autoload.php';
+
+use Google\Cloud\Tasks\V2beta2\CloudTasksClient;
+use Google\Cloud\Tasks\V2beta2\LeaseDuration;
+use Google\Cloud\Tasks\V2beta2\PullMessage;
+use Google\Cloud\Tasks\V2beta2\PullTarget;
+use Google\Cloud\Tasks\V2beta2\Queue;
+use Google\Cloud\Tasks\V2beta2\Task;
+use Google\Cloud\Tasks\V2beta2\Task_View;
+use Google\Protobuf\Duration;
+
+$client = new CloudTasksClient();
+
+$project = 'example-project';
+$location = 'us-central1';
+$queue = uniqid('example-queue-');
+$queueName = $client::queueName($project, $location, $queue);
+
+// Create a pull queue
+$locationName = $client::locationName($project, $location);
+$queue = new Queue();
+$queue->setName($queueName);
+$queue->setPullTarget(new PullTarget());
+$client->createQueue($locationName, $queue);
+
+echo "$queueName created." . PHP_EOL;
+
+// After the creation, wait at least a minute
+echo 'Waiting for the queue to settle...' . PHP_EOL;
+sleep(60);
+
+// Create a task
+$pullMessage = new PullMessage();
+$payload = 'a message for the consumer: ' . uniqid();
+$pullMessage->setPayload($payload);
+$task = new Task();
+$task->setPullMessage($pullMessage);
+$client->createTask($queueName, $task);
+
+// Lease a task
+$leaseDuration = new Duration();
+$leaseDuration->setSeconds(600);
+$resp = $client->leaseTasks(
+    $queueName,
+    $leaseDuration,
+    [
+        'maxTasks' => 1,
+        'responseView' => Task_View::FULL
+    ]
+);
+$task = $resp->getTasks()[0];
+assert($task->getPullMessage()->getPayload() === $payload);
+
+// Acknowledge the task
+$client->acknowledgeTask($task->getName(), $task->getScheduleTime());
+
+// Delete the queue
+$client->deleteQueue($queueName);
+```
+
+#### google/cloud-tasks
+
+[Google Cloud Tasks](https://github.com/GoogleCloudPlatform/google-cloud-php-tasks) can be installed separately by requiring the [`google/cloud-tasks`](https://packagist.org/packages/google/cloud-tasks) composer package:
+
+```
+$ composer require google/cloud-tasks
+```
+
+## Google Cloud Text-to-Speech (Beta)
+
+- [API Documentation](http://googlecloudplatform.github.io/google-cloud-php/#/docs/latest/text-to-speech/readme)
+- [Official Documentation](https://cloud.google.com/text-to-speech/docs/reference/rpc/)
+
+```php
 require __DIR__ . '/vendor/autoload.php';
 
-use Google\Cloud\VideoIntelligence\V1\VideoIntelligenceServiceClient;
-use Google\Cloud\VideoIntelligence\V1\Feature;
+use Google\Cloud\TextToSpeech\V1\AudioConfig;
+use Google\Cloud\TextToSpeech\V1\AudioEncoding;
+use Google\Cloud\TextToSpeech\V1\SynthesisInput;
+use Google\Cloud\TextToSpeech\V1\TextToSpeechClient;
+use Google\Cloud\TextToSpeech\V1\VoiceSelectionParams;
 
-$videoIntelligenceServiceClient = new VideoIntelligenceServiceClient();
+$textToSpeechClient = new TextToSpeechClient();
 
-$inputUri = "gs://example-bucket/example-video.mp4";
-$features = [
-    Feature::LABEL_DETECTION,
-];
-$operationResponse = $videoIntelligenceServiceClient->annotateVideo($inputUri, $features);
-$operationResponse->pollUntilComplete();
-if ($operationResponse->operationSucceeded()) {
-    $results = $operationResponse->getResult();
-    foreach ($results->getAnnotationResultsList() as $result) {
-        foreach ($result->getLabelAnnotationsList() as $labelAnnotation) {
-            echo "Label: " . $labelAnnotation->getDescription() . "\n";
-        }
-    }
-} else {
-    $error = $operationResponse->getError();
-    echo "error: " . $error->getMessage() . "\n";
-}
+$input = new SynthesisInput();
+$input->setText('Japan\'s national soccer team won against Colombia!');
+$voice = new VoiceSelectionParams();
+$voice->setLanguageCode('en-US');
+$audioConfig = new AudioConfig();
+$audioConfig->setAudioEncoding(AudioEncoding::MP3);
+
+$resp = $textToSpeechClient->synthesizeSpeech($input, $voice, $audioConfig);
+file_put_contents('test.mp3', $resp->getAudioContent());
 ```
 
-#### google/cloud-videointelligence
+#### google/cloud-text-to-speech
 
-[Cloud Video Intelligence](https://github.com/GoogleCloudPlatform/google-cloud-php-videointelligence) can be installed separately by requiring the [`google/cloud-videointelligence`](https://packagist.org/packages/google/cloud-videointelligence) composer package:
+[Google Cloud Text-to-Speech](https://github.com/GoogleCloudPlatform/google-cloud-php-text-to-speech) can be installed separately by requiring the [`google/cloud-text-to-speech`](https://packagist.org/packages/google/cloud-text-to-speech) composer package:
 
 ```
-$ composer require google/cloud-videointelligence
+$ composer require google/cloud-text-to-speech
 ```
 
 ## Google Cloud Vision (Beta)
@@ -654,9 +832,7 @@ require 'vendor/autoload.php';
 
 use Google\Cloud\Vision\VisionClient;
 
-$vision = new VisionClient([
-    'projectId' => 'my_project'
-]);
+$vision = new VisionClient();
 
 // Annotate an image, detecting faces.
 $image = $vision->image(
@@ -740,7 +916,7 @@ $ composer require google/cloud-dlp
 require 'vendor/autoload.php';
 
 use Google\Cloud\ErrorReporting\V1beta1\ReportErrorsServiceClient;
-use Google\Cloud\ErrorReporting\\V1beta1\ReportedErrorEvent;
+use Google\Cloud\ErrorReporting\V1beta1\ReportedErrorEvent;
 
 $reportErrorsServiceClient = new ReportErrorsServiceClient();
 $formattedProjectName = $reportErrorsServiceClient->projectName('[PROJECT]');
@@ -770,8 +946,6 @@ $ composer require google/cloud-error-reporting
 
 ```php
 require 'vendor/autoload.php';
-
-<?php
 
 use Google\Api\Metric;
 use Google\Api\MonitoredResource;
@@ -1012,7 +1186,6 @@ require 'vendor/autoload.php';
 use Google\Cloud\Speech\SpeechClient;
 
 $speech = new SpeechClient([
-    'projectId' => 'my_project',
     'languageCode' => 'en-US'
 ]);
 
@@ -1069,9 +1242,7 @@ require 'vendor/autoload.php';
 
 use Google\Cloud\Trace\TraceClient;
 
-$traceClient = new TraceClient([
-    'projectId' => 'my_project'
-]);
+$traceClient = new TraceClient();
 
 // Create a Trace
 $trace = $traceClient->trace();
@@ -1142,7 +1313,11 @@ Please note it is currently under active development. Any release versioned
 
 **GA**: Libraries defined at a GA quality level are stable, and will not
 introduce backwards-incompatible changes in any minor or patch releases. We will
-address issues and requests with the highest priority.
+address issues and requests with the highest priority. Please note, for any
+components which include generated clients the GA guarantee will only apply to
+clients which interact with stable services. For example, in a component which
+hosts V1 and V1beta1 generated clients, the GA guarantee will only apply to the
+V1 client as the service it interacts with is considered stable.
 
 **Beta**: Libraries defined at a Beta quality level are expected to be mostly
 stable and we're working towards their release candidate. We will address issues

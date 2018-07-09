@@ -31,7 +31,7 @@ namespace Google\Cloud\Debugger;
  * @see https://cloud.google.com/debugger/api/reference/rest/v2/debugger.debuggees.breakpoints#variable Variable model documentation
  * @codingStandardsIgnoreEnd
  */
-class Variable implements \JsonSerializable
+class Variable
 {
     /**
      * @var string Name of the variable, if any.
@@ -142,12 +142,38 @@ class Variable implements \JsonSerializable
     }
 
     /**
-     * Callback to implement JsonSerializable interface
+     * Return the approximate size of this object in bytes
+     *
+     * @return int
+     */
+    public function byteSize()
+    {
+        return mb_strlen($this->name) +
+                mb_strlen($this->type) +
+                mb_strlen($this->value);
+    }
+
+    /**
+     * Returns the approximate size of this object including all members in bytes
+     *
+     * @return int
+     */
+    public function fullByteSize()
+    {
+        $size = $this->byteSize();
+        foreach ($this->members as $variable) {
+            $size += $variable->fullByteSize();
+        }
+        return $size;
+    }
+
+    /**
+     * Return a serializable version of this object
      *
      * @access private
      * @return array
      */
-    public function jsonSerialize()
+    public function info()
     {
         $data = [
             'name' => $this->name,
@@ -160,10 +186,12 @@ class Variable implements \JsonSerializable
             $data['varTableIndex'] = $this->varTableIndex;
         }
         if ($this->members) {
-            $data['members'] = $this->members;
+            $data['members'] = array_map(function ($v) {
+                return $v->info();
+            }, $this->members);
         }
         if ($this->status) {
-            $data['status'] = $this->status;
+            $data['status'] = $this->status->info();
         }
         return $data;
     }

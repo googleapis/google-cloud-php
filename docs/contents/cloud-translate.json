@@ -1,7 +1,11 @@
 {
     "title": "Translation",
     "pattern": "translate\/\\w{1,}",
+    "defaultService": "translate/readme",
     "services": [{
+        "title": "Overview",
+        "type": "translate/readme"
+    }, {
         "title": "TranslateClient",
         "type": "translate/translateclient"
     }]

@@ -1,12 +1,12 @@
 <?php
-/**
- * Copyright 2018 Google Inc.
+/*
+ * Copyright 2018 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
+ *     https://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -15,146 +15,409 @@
  * limitations under the License.
  */
 
-namespace Google\Cloud\Tests\Unit\Speech\V1beta1;
+/*
+ * GENERATED CODE WARNING
+ * This file was automatically generated - do not edit!
+ */
 
+namespace Google\Cloud\Speech\Tests\Unit\V1beta1;
+
+use Google\Cloud\Speech\V1beta1\SpeechClient;
+use Google\ApiCore\ApiException;
 use Google\ApiCore\BidiStream;
-use Google\ApiCore\Call;
-use Google\ApiCore\Testing\MockBidiStreamingCall;
-use Google\ApiCore\Transport\TransportInterface;
+use Google\ApiCore\CredentialsWrapper;
+use Google\ApiCore\LongRunning\OperationsClient;
+use Google\ApiCore\Testing\GeneratedTest;
+use Google\ApiCore\Testing\MockTransport;
+use Google\Cloud\Speech\V1beta1\AsyncRecognizeResponse;
 use Google\Cloud\Speech\V1beta1\RecognitionAudio;
 use Google\Cloud\Speech\V1beta1\RecognitionConfig;
 use Google\Cloud\Speech\V1beta1\RecognitionConfig_AudioEncoding;
-use Google\Cloud\Speech\V1beta1\SpeechClient;
-use Google\Cloud\Speech\V1beta1\StreamingRecognitionConfig;
 use Google\Cloud\Speech\V1beta1\StreamingRecognizeRequest;
 use Google\Cloud\Speech\V1beta1\StreamingRecognizeResponse;
-use Prophecy\Argument;
-use PHPUnit\Framework\TestCase;
+use Google\Cloud\Speech\V1beta1\SyncRecognizeResponse;
+use Google\LongRunning\GetOperationRequest;
+use Google\LongRunning\Operation;
+use Google\Protobuf\Any;
+use Google\Rpc\Code;
+use stdClass;
 
 /**
  * @group speech
+ * @group gapic
  */
-class SpeechClientTest extends TestCase
+class SpeechClientTest extends GeneratedTest
 {
-    /** @var SpeechClient */
-    private $client;
-    /** @var TransportInterface */
-    private $transport;
-
-    public function setUp()
+    /**
+     * @return TransportInterface
+     */
+    private function createTransport($deserialize = null)
     {
-        $this->transport = $this->prophesize(TransportInterface::class);
-        $this->client = new SpeechClient([
-            'transport' => $this->transport->reveal(),
-        ]);
+        return new MockTransport($deserialize);
     }
 
-    private function createRecognitionConfig()
+    /**
+     * @return SpeechClient
+     */
+    private function createClient(array $options = [])
     {
+        $options += [
+            'credentials' => $this->getMockBuilder(CredentialsWrapper::class)
+                ->disableOriginalConstructor()
+                ->getMock(),
+        ];
+
+        return new SpeechClient($options);
+    }
+
+    /**
+     * @test
+     */
+    public function syncRecognizeTest()
+    {
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
+
+        $this->assertTrue($transport->isExhausted());
+
+        // Mock response
+        $expectedResponse = new SyncRecognizeResponse();
+        $transport->addResponse($expectedResponse);
+
+        // Mock request
         $encoding = RecognitionConfig_AudioEncoding::FLAC;
-        $sampleRateHertz = 44100;
-        $languageCode = 'en-US';
-        $recognitionConfig = new RecognitionConfig();
-        $recognitionConfig->setEncoding($encoding);
-        $recognitionConfig->setSampleRate($sampleRateHertz);
-        $recognitionConfig->setLanguageCode($languageCode);
-        return $recognitionConfig;
+        $sampleRate = 44100;
+        $config = new RecognitionConfig();
+        $config->setEncoding($encoding);
+        $config->setSampleRate($sampleRate);
+        $uri = 'gs://bucket_name/file_name.flac';
+        $audio = new RecognitionAudio();
+        $audio->setUri($uri);
+
+        $response = $client->syncRecognize($config, $audio);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.speech.v1beta1.Speech/SyncRecognize', $actualFuncCall);
+
+        $actualValue = $actualRequestObject->getConfig();
+
+        $this->assertProtobufEquals($config, $actualValue);
+        $actualValue = $actualRequestObject->getAudio();
+
+        $this->assertProtobufEquals($audio, $actualValue);
+
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
-     * @dataProvider createRecognitionAudioDataProvider
+     * @test
      */
-    public function testCreateRecognitionAudio($audio, $expectedRequestMessage)
+    public function syncRecognizeExceptionTest()
     {
-        $actualRequestMessage = $this->client->createRecognitionAudio($audio);
-        $this->assertEquals($expectedRequestMessage->serializeToJsonString(), $actualRequestMessage->serializeToJsonString());
-    }
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
 
-    public function createRecognitionAudioDataProvider()
-    {
-        $uri = 'gs://my-bucket/my-audio.flac';
-        $data = 'abcdefgh';
-        $resourceData = 'zyxwvuts';
-        $resource = $this->createResource($resourceData);
-        $recognitionAudio = (new RecognitionAudio())
-            ->setContent('directRequestData');
-        return [
-            [$uri, (new RecognitionAudio())
-                ->setUri($uri)],
-            [$data, (new RecognitionAudio())
-                ->setContent($data)],
-            [$resource, (new RecognitionAudio())
-                ->setContent($resourceData)],
-            [$recognitionAudio, $recognitionAudio]
-        ];
-    }
+        $this->assertTrue($transport->isExhausted());
 
-    /**
-     * @dataProvider recognizeAudioStreamData
-     */
-    public function testRecognizeAudioStream($audio, $expectedContent)
-    {
-        $recognitionConfig = $this->createRecognitionConfig();
-        $config = new StreamingRecognitionConfig();
-        $config->setConfig($recognitionConfig);
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
 
-        $expectedResponseStream = [
-            new StreamingRecognizeResponse(),
-            new StreamingRecognizeResponse(),
-        ];
+        $expectedExceptionMessage = json_encode([
+           'message' => 'internal error',
+           'code' => Code::DATA_LOSS,
+           'status' => 'DATA_LOSS',
+           'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
 
-        $mockBidiStreamingCall = new MockBidiStreamingCall($expectedResponseStream);
+        // Mock request
+        $encoding = RecognitionConfig_AudioEncoding::FLAC;
+        $sampleRate = 44100;
+        $config = new RecognitionConfig();
+        $config->setEncoding($encoding);
+        $config->setSampleRate($sampleRate);
+        $uri = 'gs://bucket_name/file_name.flac';
+        $audio = new RecognitionAudio();
+        $audio->setUri($uri);
 
-        $this->transport->startBidiStreamingCall(Argument::allOf(
-            Argument::type(Call::class),
-            Argument::which('getMethod', 'google.cloud.speech.v1beta1.Speech/StreamingRecognize')
-        ),
-            Argument::type('array')
-        )
-            ->shouldBeCalledTimes(1)
-            ->willReturn(new BidiStream($mockBidiStreamingCall));
-
-        $responseStream = $this->client->recognizeAudioStream($config, $audio);
-
-        $this->assertSame($expectedResponseStream, iterator_to_array($responseStream));
-
-        /** @var StreamingRecognizeRequest[] $receivedCalls */
-        $receivedCalls = $mockBidiStreamingCall->popReceivedCalls();
-
-        $expectedConfigMessage = new StreamingRecognizeRequest();
-        $expectedConfigMessage->setStreamingConfig($config);
-
-        // Expect one extra call, for the config message
-        $this->assertSame(count($expectedContent) + 1, count($receivedCalls));
-        $initialReceivedCall = array_shift($receivedCalls);
-        $this->assertEquals($expectedConfigMessage, $initialReceivedCall);
-        for ($i = 0; $i < count($expectedContent); $i++) {
-            $this->assertSame($expectedContent[$i], $receivedCalls[$i]->getAudioContent());
+        try {
+            $client->syncRecognize($config, $audio);
+            // If the $client method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
         }
+
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
     }
 
-    public function recognizeAudioStreamData()
+    /**
+     * @test
+     */
+    public function asyncRecognizeTest()
     {
-        $data = 'abcdefgh';
-        $iterableData = ['abcd', 'efgh'];
-        $resourceData = 'zyxwvuts';
-        $streamingData = '12345678';
-        $resource = $this->createResource($resourceData);
-        $streamingRecognizeRequest = new StreamingRecognizeRequest();
-        $streamingRecognizeRequest->setAudioContent($streamingData);
-        return [
-            [$data, [$data]],
-            [$iterableData, $iterableData],
-            [[$streamingRecognizeRequest], [$streamingData]],
-            [$resource, [$resourceData]]
-        ];
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'serviceAddress' => '',
+            'transport' => $operationsTransport,
+        ]);
+        $transport = $this->createTransport();
+        $client = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/asyncRecognizeTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $expectedResponse = new AsyncRecognizeResponse();
+        $anyResponse = new Any();
+        $anyResponse->setValue($expectedResponse->serializeToString());
+        $completeOperation = new Operation();
+        $completeOperation->setName('operations/asyncRecognizeTest');
+        $completeOperation->setDone(true);
+        $completeOperation->setResponse($anyResponse);
+        $operationsTransport->addResponse($completeOperation);
+
+        // Mock request
+        $encoding = RecognitionConfig_AudioEncoding::FLAC;
+        $sampleRate = 44100;
+        $config = new RecognitionConfig();
+        $config->setEncoding($encoding);
+        $config->setSampleRate($sampleRate);
+        $uri = 'gs://bucket_name/file_name.flac';
+        $audio = new RecognitionAudio();
+        $audio->setUri($uri);
+
+        $response = $client->asyncRecognize($config, $audio);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $apiRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($apiRequests));
+        $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
+        $this->assertSame(0, count($operationsRequestsEmpty));
+
+        $actualApiFuncCall = $apiRequests[0]->getFuncCall();
+        $actualApiRequestObject = $apiRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.speech.v1beta1.Speech/AsyncRecognize', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getConfig();
+
+        $this->assertProtobufEquals($config, $actualValue);
+        $actualValue = $actualApiRequestObject->getAudio();
+
+        $this->assertProtobufEquals($audio, $actualValue);
+
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/asyncRecognizeTest');
+
+        $response->pollUntilComplete([
+            'initialPollDelayMillis' => 1,
+        ]);
+        $this->assertTrue($response->isDone());
+        $this->assertEquals($expectedResponse, $response->getResult());
+        $apiRequestsEmpty = $transport->popReceivedCalls();
+        $this->assertSame(0, count($apiRequestsEmpty));
+        $operationsRequests = $operationsTransport->popReceivedCalls();
+        $this->assertSame(1, count($operationsRequests));
+
+        $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
+        $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
+        $this->assertSame('/google.longrunning.Operations/GetOperation', $actualOperationsFuncCall);
+        $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
+
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    private function createResource($data)
+    /**
+     * @test
+     */
+    public function asyncRecognizeExceptionTest()
     {
-        $resource = fopen('php://memory','r+');
-        fwrite($resource, $data);
-        rewind($resource);
-        return $resource;
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'serviceAddress' => '',
+            'transport' => $operationsTransport,
+        ]);
+        $transport = $this->createTransport();
+        $client = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/asyncRecognizeTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+
+        $expectedExceptionMessage = json_encode([
+           'message' => 'internal error',
+           'code' => Code::DATA_LOSS,
+           'status' => 'DATA_LOSS',
+           'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $operationsTransport->addResponse(null, $status);
+
+        // Mock request
+        $encoding = RecognitionConfig_AudioEncoding::FLAC;
+        $sampleRate = 44100;
+        $config = new RecognitionConfig();
+        $config->setEncoding($encoding);
+        $config->setSampleRate($sampleRate);
+        $uri = 'gs://bucket_name/file_name.flac';
+        $audio = new RecognitionAudio();
+        $audio->setUri($uri);
+
+        $response = $client->asyncRecognize($config, $audio);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/asyncRecognizeTest');
+
+        try {
+            $response->pollUntilComplete([
+                'initialPollDelayMillis' => 1,
+            ]);
+            // If the pollUntilComplete() method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+
+        // Call popReceivedCalls to ensure the stubs are exhausted
+        $transport->popReceivedCalls();
+        $operationsTransport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function streamingRecognizeTest()
+    {
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
+
+        $this->assertTrue($transport->isExhausted());
+
+        // Mock response
+        $resultIndex = 520358448;
+        $expectedResponse = new StreamingRecognizeResponse();
+        $expectedResponse->setResultIndex($resultIndex);
+        $transport->addResponse($expectedResponse);
+        $resultIndex2 = 1848265187;
+        $expectedResponse2 = new StreamingRecognizeResponse();
+        $expectedResponse2->setResultIndex($resultIndex2);
+        $transport->addResponse($expectedResponse2);
+        $resultIndex3 = 1848265188;
+        $expectedResponse3 = new StreamingRecognizeResponse();
+        $expectedResponse3->setResultIndex($resultIndex3);
+        $transport->addResponse($expectedResponse3);
+
+        // Mock request
+        $request = new StreamingRecognizeRequest();
+        $request2 = new StreamingRecognizeRequest();
+        $request3 = new StreamingRecognizeRequest();
+
+        $bidi = $client->streamingRecognize();
+        $this->assertInstanceOf(BidiStream::class, $bidi);
+
+        $bidi->write($request);
+        $responses = [];
+        $responses[] = $bidi->read();
+
+        $bidi->writeAll([$request2, $request3]);
+        foreach ($bidi->closeWriteAndReadAll() as $response) {
+            $responses[] = $response;
+        }
+
+        $expectedResponses = [];
+        $expectedResponses[] = $expectedResponse;
+        $expectedResponses[] = $expectedResponse2;
+        $expectedResponses[] = $expectedResponse3;
+        $this->assertEquals($expectedResponses, $responses);
+
+        $createStreamRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($createStreamRequests));
+        $streamFuncCall = $createStreamRequests[0]->getFuncCall();
+        $streamRequestObject = $createStreamRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.speech.v1beta1.Speech/StreamingRecognize', $streamFuncCall);
+        $this->assertNull($streamRequestObject);
+
+        $callObjects = $transport->popCallObjects();
+        $this->assertSame(1, count($callObjects));
+        $bidiCall = $callObjects[0];
+
+        $writeRequests = $bidiCall->popReceivedCalls();
+        $expectedRequests = [];
+        $expectedRequests[] = $request;
+        $expectedRequests[] = $request2;
+        $expectedRequests[] = $request3;
+        $this->assertEquals($expectedRequests, $writeRequests);
+
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function streamingRecognizeExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
+
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+
+        $expectedExceptionMessage = json_encode([
+           'message' => 'internal error',
+           'code' => Code::DATA_LOSS,
+           'status' => 'DATA_LOSS',
+           'details' => [],
+        ], JSON_PRETTY_PRINT);
+
+        $transport->setStreamingStatus($status);
+
+        $this->assertTrue($transport->isExhausted());
+
+        $bidi = $client->streamingRecognize();
+        $results = $bidi->closeWriteAndReadAll();
+
+        try {
+            iterator_to_array($results);
+            // If the close stream method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
     }
 }

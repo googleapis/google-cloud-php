@@ -1,7 +1,11 @@
 {
     "title": "Language",
     "pattern": "language\/\\w{1,}",
+    "defaultService": "language/readme",
     "services": [{
+        "title": "Overview",
+        "type": "language/readme"
+    },{
         "title": "LanguageClient",
         "type": "language/languageclient"
     }, {

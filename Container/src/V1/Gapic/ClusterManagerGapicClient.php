@@ -21,21 +21,18 @@
  * https://github.com/google/googleapis/blob/master/google/container/v1/cluster_service.proto
  * and updates to that file get reflected here through a refresh process.
  *
- * EXPERIMENTAL: This client library class has not yet been declared GA (1.0). This means that
- * even though we intend the surface to be stable, we may make backwards incompatible changes
- * if necessary.
- *
  * @experimental
  */
 
 namespace Google\Cloud\Container\V1\Gapic;
 
 use Google\ApiCore\ApiException;
-use Google\ApiCore\Call;
+use Google\ApiCore\CredentialsWrapper;
+use Google\ApiCore\FetchAuthTokenInterface;
 use Google\ApiCore\GapicClientTrait;
 use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
-use Google\Auth\CredentialsLoader;
+use Google\ApiCore\ValidationException;
 use Google\Cloud\Container\V1\AddonsConfig;
 use Google\Cloud\Container\V1\CancelOperationRequest;
 use Google\Cloud\Container\V1\Cluster;
@@ -82,15 +79,9 @@ use Google\Cloud\Container\V1\UpdateClusterRequest;
 use Google\Cloud\Container\V1\UpdateMasterRequest;
 use Google\Cloud\Container\V1\UpdateNodePoolRequest;
 use Google\Protobuf\GPBEmpty;
-use Grpc\Channel;
-use Grpc\ChannelCredentials;
 
 /**
  * Service Description: Google Container Engine Cluster Manager v1.
- *
- * EXPERIMENTAL: This client library class has not yet been declared GA (1.0). This means that
- * even though we intend the surface to be stable, we may make backwards incompatible changes
- * if necessary.
  *
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods. Sample code to get started:
@@ -133,23 +124,27 @@ class ClusterManagerGapicClient
     const CODEGEN_NAME = 'gapic';
 
     /**
-     * The code generator version, to be included in the agent header.
+     * The default scopes required by the service.
      */
-    const CODEGEN_VERSION = '0.0.5';
+    public static $serviceScopes = [
+        'https://www.googleapis.com/auth/cloud-platform',
+    ];
 
     private static function getClientDefaults()
     {
         return [
             'serviceName' => self::SERVICE_NAME,
-            'serviceAddress' => self::SERVICE_ADDRESS,
-            'port' => self::DEFAULT_SERVICE_PORT,
-            'scopes' => [
-                'https://www.googleapis.com/auth/cloud-platform',
-            ],
-            'clientConfigPath' => __DIR__.'/../resources/cluster_manager_client_config.json',
-            'restClientConfigPath' => __DIR__.'/../resources/cluster_manager_rest_client_config.php',
+            'serviceAddress' => self::SERVICE_ADDRESS.':'.self::DEFAULT_SERVICE_PORT,
+            'clientConfig' => __DIR__.'/../resources/cluster_manager_client_config.json',
             'descriptorsConfigPath' => __DIR__.'/../resources/cluster_manager_descriptor_config.php',
-            'versionFile' => __DIR__.'/../../VERSION',
+            'credentialsConfig' => [
+                'scopes' => self::$serviceScopes,
+            ],
+            'transportConfig' => [
+                'rest' => [
+                    'restClientConfigPath' => __DIR__.'/../resources/cluster_manager_rest_client_config.php',
+                ],
+            ],
         ];
     }
 
@@ -159,57 +154,56 @@ class ClusterManagerGapicClient
      * @param array $options {
      *                       Optional. Options for configuring the service API wrapper.
      *
-     *     @type string $serviceAddress The domain name of the API remote host.
-     *                                  Default 'container.googleapis.com'.
-     *     @type mixed $port The port on which to connect to the remote host. Default 443.
-     *     @type Channel $channel
-     *           A `Channel` object. If not specified, a channel will be constructed.
-     *           NOTE: This option is only valid when utilizing the gRPC transport.
-     *     @type ChannelCredentials $sslCreds
-     *           A `ChannelCredentials` object for use with an SSL-enabled channel.
-     *           Default: a credentials object returned from
-     *           \Grpc\ChannelCredentials::createSsl().
-     *           NOTE: This option is only valid when utilizing the gRPC transport. Also, if the $channel
-     *           optional argument is specified, then this argument is unused.
-     *     @type bool $forceNewChannel
-     *           If true, this forces gRPC to create a new channel instead of using a persistent channel.
-     *           Defaults to false.
-     *           NOTE: This option is only valid when utilizing the gRPC transport. Also, if the $channel
-     *           optional argument is specified, then this option is unused.
-     *     @type CredentialsLoader $credentialsLoader
-     *           A CredentialsLoader object created using the Google\Auth library.
-     *     @type string[] $scopes A string array of scopes to use when acquiring credentials.
-     *                          Defaults to the scopes for the Google Container Engine API.
-     *     @type string $clientConfigPath
-     *           Path to a JSON file containing client method configuration, including retry settings.
-     *           Specify this setting to specify the retry behavior of all methods on the client.
+     *     @type string $serviceAddress
+     *           The address of the API remote host. May optionally include the port, formatted
+     *           as "<uri>:<port>". Default 'container.googleapis.com:443'.
+     *     @type string|array|FetchAuthTokenInterface|CredentialsWrapper $credentials
+     *           The credentials to be used by the client to authorize API calls. This option
+     *           accepts either a path to a credentials file, or a decoded credentials file as a
+     *           PHP array.
+     *           *Advanced usage*: In addition, this option can also accept a pre-constructed
+     *           {@see \Google\Auth\FetchAuthTokenInterface} object or
+     *           {@see \Google\ApiCore\CredentialsWrapper} object. Note that when one of these
+     *           objects are provided, any settings in $credentialsConfig will be ignored.
+     *     @type array $credentialsConfig
+     *           Options used to configure credentials, including auth token caching, for the client.
+     *           For a full list of supporting configuration options, see
+     *           {@see \Google\ApiCore\CredentialsWrapper::build()}.
+     *     @type bool $disableRetries
+     *           Determines whether or not retries defined by the client configuration should be
+     *           disabled. Defaults to `false`.
+     *     @type string|array $clientConfig
+     *           Client method configuration, including retry settings. This option can be either a
+     *           path to a JSON file, or a PHP array containing the decoded JSON data.
      *           By default this settings points to the default client config file, which is provided
-     *           in the resources folder. The retry settings provided in this option can be overridden
-     *           by settings in $retryingOverride
-     *     @type array $retryingOverride
-     *           An associative array in which the keys are method names (e.g. 'createFoo'), and
-     *           the values are retry settings to use for that method. The retry settings for each
-     *           method can be a {@see Google\ApiCore\RetrySettings} object, or an associative array
-     *           of retry settings parameters. See the documentation on {@see Google\ApiCore\RetrySettings}
-     *           for example usage. Passing a value of null is equivalent to a value of
-     *           ['retriesEnabled' => false]. Retry settings provided in this setting override the
-     *           settings in $clientConfigPath.
-     *     @type callable $authHttpHandler A handler used to deliver PSR-7 requests specifically
-     *           for authentication. Should match a signature of
-     *           `function (RequestInterface $request, array $options) : ResponseInterface`.
-     *     @type callable $httpHandler A handler used to deliver PSR-7 requests. Should match a
-     *           signature of `function (RequestInterface $request, array $options) : PromiseInterface`.
-     *           NOTE: This option is only valid when utilizing the REST transport.
-     *     @type string|TransportInterface $transport The transport used for executing network
-     *           requests. May be either the string `rest` or `grpc`. Additionally, it is possible
-     *           to pass in an already instantiated transport. Defaults to `grpc` if gRPC support is
-     *           detected on the system.
+     *           in the resources folder.
+     *     @type string|TransportInterface $transport
+     *           The transport used for executing network requests. May be either the string `rest`
+     *           or `grpc`. Defaults to `grpc` if gRPC support is detected on the system.
+     *           *Advanced usage*: Additionally, it is possible to pass in an already instantiated
+     *           {@see \Google\ApiCore\Transport\TransportInterface} object. Note that when this
+     *           object is provided, any settings in $transportConfig, and any $serviceAddress
+     *           setting, will be ignored.
+     *     @type array $transportConfig
+     *           Configuration options that will be used to construct the transport. Options for
+     *           each supported transport type should be passed in a key for that transport. For
+     *           example:
+     *           $transportConfig = [
+     *               'grpc' => [...],
+     *               'rest' => [...]
+     *           ];
+     *           See the {@see \Google\ApiCore\Transport\GrpcTransport::build()} and
+     *           {@see \Google\ApiCore\Transport\RestTransport::build()} methods for the
+     *           supported options.
      * }
+     *
+     * @throws ValidationException
      * @experimental
      */
-    public function __construct($options = [])
+    public function __construct(array $options = [])
     {
-        $this->setClientOptions($options + self::getClientDefaults());
+        $clientOptions = $this->buildClientOptions($options);
+        $this->setClientOptions($clientOptions);
     }
 
     /**
@@ -248,7 +242,7 @@ class ClusterManagerGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function listClusters($projectId, $zone, $optionalArgs = [])
+    public function listClusters($projectId, $zone, array $optionalArgs = [])
     {
         $request = new ListClustersRequest();
         $request->setProjectId($projectId);
@@ -299,7 +293,7 @@ class ClusterManagerGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function getCluster($projectId, $zone, $clusterId, $optionalArgs = [])
+    public function getCluster($projectId, $zone, $clusterId, array $optionalArgs = [])
     {
         $request = new GetClusterRequest();
         $request->setProjectId($projectId);
@@ -364,7 +358,7 @@ class ClusterManagerGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function createCluster($projectId, $zone, $cluster, $optionalArgs = [])
+    public function createCluster($projectId, $zone, $cluster, array $optionalArgs = [])
     {
         $request = new CreateClusterRequest();
         $request->setProjectId($projectId);
@@ -418,7 +412,7 @@ class ClusterManagerGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function updateCluster($projectId, $zone, $clusterId, $update, $optionalArgs = [])
+    public function updateCluster($projectId, $zone, $clusterId, $update, array $optionalArgs = [])
     {
         $request = new UpdateClusterRequest();
         $request->setProjectId($projectId);
@@ -479,7 +473,7 @@ class ClusterManagerGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function updateNodePool($projectId, $zone, $clusterId, $nodePoolId, $nodeVersion, $imageType, $optionalArgs = [])
+    public function updateNodePool($projectId, $zone, $clusterId, $nodePoolId, $nodeVersion, $imageType, array $optionalArgs = [])
     {
         $request = new UpdateNodePoolRequest();
         $request->setProjectId($projectId);
@@ -538,7 +532,7 @@ class ClusterManagerGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function setNodePoolAutoscaling($projectId, $zone, $clusterId, $nodePoolId, $autoscaling, $optionalArgs = [])
+    public function setNodePoolAutoscaling($projectId, $zone, $clusterId, $nodePoolId, $autoscaling, array $optionalArgs = [])
     {
         $request = new SetNodePoolAutoscalingRequest();
         $request->setProjectId($projectId);
@@ -598,7 +592,7 @@ class ClusterManagerGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function setLoggingService($projectId, $zone, $clusterId, $loggingService, $optionalArgs = [])
+    public function setLoggingService($projectId, $zone, $clusterId, $loggingService, array $optionalArgs = [])
     {
         $request = new SetLoggingServiceRequest();
         $request->setProjectId($projectId);
@@ -657,7 +651,7 @@ class ClusterManagerGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function setMonitoringService($projectId, $zone, $clusterId, $monitoringService, $optionalArgs = [])
+    public function setMonitoringService($projectId, $zone, $clusterId, $monitoringService, array $optionalArgs = [])
     {
         $request = new SetMonitoringServiceRequest();
         $request->setProjectId($projectId);
@@ -713,7 +707,7 @@ class ClusterManagerGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function setAddonsConfig($projectId, $zone, $clusterId, $addonsConfig, $optionalArgs = [])
+    public function setAddonsConfig($projectId, $zone, $clusterId, $addonsConfig, array $optionalArgs = [])
     {
         $request = new SetAddonsConfigRequest();
         $request->setProjectId($projectId);
@@ -774,7 +768,7 @@ class ClusterManagerGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function setLocations($projectId, $zone, $clusterId, $locations, $optionalArgs = [])
+    public function setLocations($projectId, $zone, $clusterId, $locations, array $optionalArgs = [])
     {
         $request = new SetLocationsRequest();
         $request->setProjectId($projectId);
@@ -831,7 +825,7 @@ class ClusterManagerGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function updateMaster($projectId, $zone, $clusterId, $masterVersion, $optionalArgs = [])
+    public function updateMaster($projectId, $zone, $clusterId, $masterVersion, array $optionalArgs = [])
     {
         $request = new UpdateMasterRequest();
         $request->setProjectId($projectId);
@@ -891,7 +885,7 @@ class ClusterManagerGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function setMasterAuth($projectId, $zone, $clusterId, $action, $update, $optionalArgs = [])
+    public function setMasterAuth($projectId, $zone, $clusterId, $action, $update, array $optionalArgs = [])
     {
         $request = new SetMasterAuthRequest();
         $request->setProjectId($projectId);
@@ -953,7 +947,7 @@ class ClusterManagerGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function deleteCluster($projectId, $zone, $clusterId, $optionalArgs = [])
+    public function deleteCluster($projectId, $zone, $clusterId, array $optionalArgs = [])
     {
         $request = new DeleteClusterRequest();
         $request->setProjectId($projectId);
@@ -1002,7 +996,7 @@ class ClusterManagerGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function listOperations($projectId, $zone, $optionalArgs = [])
+    public function listOperations($projectId, $zone, array $optionalArgs = [])
     {
         $request = new ListOperationsRequest();
         $request->setProjectId($projectId);
@@ -1053,7 +1047,7 @@ class ClusterManagerGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function getOperation($projectId, $zone, $operationId, $optionalArgs = [])
+    public function getOperation($projectId, $zone, $operationId, array $optionalArgs = [])
     {
         $request = new GetOperationRequest();
         $request->setProjectId($projectId);
@@ -1102,7 +1096,7 @@ class ClusterManagerGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function cancelOperation($projectId, $zone, $operationId, $optionalArgs = [])
+    public function cancelOperation($projectId, $zone, $operationId, array $optionalArgs = [])
     {
         $request = new CancelOperationRequest();
         $request->setProjectId($projectId);
@@ -1151,7 +1145,7 @@ class ClusterManagerGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function getServerConfig($projectId, $zone, $optionalArgs = [])
+    public function getServerConfig($projectId, $zone, array $optionalArgs = [])
     {
         $request = new GetServerConfigRequest();
         $request->setProjectId($projectId);
@@ -1202,7 +1196,7 @@ class ClusterManagerGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function listNodePools($projectId, $zone, $clusterId, $optionalArgs = [])
+    public function listNodePools($projectId, $zone, $clusterId, array $optionalArgs = [])
     {
         $request = new ListNodePoolsRequest();
         $request->setProjectId($projectId);
@@ -1256,7 +1250,7 @@ class ClusterManagerGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function getNodePool($projectId, $zone, $clusterId, $nodePoolId, $optionalArgs = [])
+    public function getNodePool($projectId, $zone, $clusterId, $nodePoolId, array $optionalArgs = [])
     {
         $request = new GetNodePoolRequest();
         $request->setProjectId($projectId);
@@ -1311,7 +1305,7 @@ class ClusterManagerGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function createNodePool($projectId, $zone, $clusterId, $nodePool, $optionalArgs = [])
+    public function createNodePool($projectId, $zone, $clusterId, $nodePool, array $optionalArgs = [])
     {
         $request = new CreateNodePoolRequest();
         $request->setProjectId($projectId);
@@ -1366,7 +1360,7 @@ class ClusterManagerGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function deleteNodePool($projectId, $zone, $clusterId, $nodePoolId, $optionalArgs = [])
+    public function deleteNodePool($projectId, $zone, $clusterId, $nodePoolId, array $optionalArgs = [])
     {
         $request = new DeleteNodePoolRequest();
         $request->setProjectId($projectId);
@@ -1422,7 +1416,7 @@ class ClusterManagerGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function rollbackNodePoolUpgrade($projectId, $zone, $clusterId, $nodePoolId, $optionalArgs = [])
+    public function rollbackNodePoolUpgrade($projectId, $zone, $clusterId, $nodePoolId, array $optionalArgs = [])
     {
         $request = new RollbackNodePoolUpgradeRequest();
         $request->setProjectId($projectId);
@@ -1479,7 +1473,7 @@ class ClusterManagerGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function setNodePoolManagement($projectId, $zone, $clusterId, $nodePoolId, $management, $optionalArgs = [])
+    public function setNodePoolManagement($projectId, $zone, $clusterId, $nodePoolId, $management, array $optionalArgs = [])
     {
         $request = new SetNodePoolManagementRequest();
         $request->setProjectId($projectId);
@@ -1542,7 +1536,7 @@ class ClusterManagerGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function setLabels($projectId, $zone, $clusterId, $resourceLabels, $labelFingerprint, $optionalArgs = [])
+    public function setLabels($projectId, $zone, $clusterId, $resourceLabels, $labelFingerprint, array $optionalArgs = [])
     {
         $request = new SetLabelsRequest();
         $request->setProjectId($projectId);
@@ -1598,7 +1592,7 @@ class ClusterManagerGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function setLegacyAbac($projectId, $zone, $clusterId, $enabled, $optionalArgs = [])
+    public function setLegacyAbac($projectId, $zone, $clusterId, $enabled, array $optionalArgs = [])
     {
         $request = new SetLegacyAbacRequest();
         $request->setProjectId($projectId);
@@ -1651,7 +1645,7 @@ class ClusterManagerGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function startIPRotation($projectId, $zone, $clusterId, $optionalArgs = [])
+    public function startIPRotation($projectId, $zone, $clusterId, array $optionalArgs = [])
     {
         $request = new StartIPRotationRequest();
         $request->setProjectId($projectId);
@@ -1703,7 +1697,7 @@ class ClusterManagerGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function completeIPRotation($projectId, $zone, $clusterId, $optionalArgs = [])
+    public function completeIPRotation($projectId, $zone, $clusterId, array $optionalArgs = [])
     {
         $request = new CompleteIPRotationRequest();
         $request->setProjectId($projectId);
@@ -1759,7 +1753,7 @@ class ClusterManagerGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function setNodePoolSize($projectId, $zone, $clusterId, $nodePoolId, $nodeCount, $optionalArgs = [])
+    public function setNodePoolSize($projectId, $zone, $clusterId, $nodePoolId, $nodeCount, array $optionalArgs = [])
     {
         $request = new SetNodePoolSizeRequest();
         $request->setProjectId($projectId);
@@ -1815,7 +1809,7 @@ class ClusterManagerGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function setNetworkPolicy($projectId, $zone, $clusterId, $networkPolicy, $optionalArgs = [])
+    public function setNetworkPolicy($projectId, $zone, $clusterId, $networkPolicy, array $optionalArgs = [])
     {
         $request = new SetNetworkPolicyRequest();
         $request->setProjectId($projectId);
@@ -1871,7 +1865,7 @@ class ClusterManagerGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function setMaintenancePolicy($projectId, $zone, $clusterId, $maintenancePolicy, $optionalArgs = [])
+    public function setMaintenancePolicy($projectId, $zone, $clusterId, $maintenancePolicy, array $optionalArgs = [])
     {
         $request = new SetMaintenancePolicyRequest();
         $request->setProjectId($projectId);

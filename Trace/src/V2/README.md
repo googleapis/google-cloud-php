@@ -1,21 +1,18 @@
-# Google PHP Stackdriver Trace
+# Stackdriver Trace V2 generated client for PHP
 
-> Idiomatic PHP client for [Stackdriver Trace][stackdriver-trace].
+### Sample
 
-[![Latest Stable Version](https://poser.pugx.org/google/cloud-trace/v/stable)](https://packagist.org/packages/google/cloud-trace) [![Packagist](https://img.shields.io/packagist/dm/google/cloud-trace.svg)](https://packagist.org/packages/google/cloud-trace)
+```php
+require 'vendor/autoload.php';
 
-* [Homepage][homepage]
-* [API documentation][api-docs]
+use Google\Cloud\Trace\V2\TraceServiceClient;
 
-**NOTE:** This repository is part of [Google Cloud PHP][github-home]. Any
-support requests, bug reports, or development contributions should be directed to
-that project.
-
-## Installation
-
-Install with `composer` or add to your `composer.json`.
-
+$traceServiceClient = new TraceServiceClient();
+try {
+    $formattedName = $traceServiceClient->projectName('[PROJECT]');
+    $spans = [];
+    $traceServiceClient->batchWriteSpans($formattedName, $spans);
+} finally {
+    $traceServiceClient->close();
+}
 ```
-$ composer require google/cloud-trace
-```
-

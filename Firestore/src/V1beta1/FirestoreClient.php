@@ -21,10 +21,6 @@
  * https://github.com/google/googleapis/blob/master/google/firestore/v1beta1/firestore.proto
  * and updates to that file get reflected here through a refresh process.
  *
- * EXPERIMENTAL: This client library class has not yet been declared GA (1.0). This means that
- * even though we intend the surface to be stable, we may make backwards incompatible changes
- * if necessary.
- *
  * @experimental
  */
 
@@ -38,5 +34,5 @@ use Google\Cloud\Firestore\V1beta1\Gapic\FirestoreGapicClient;
 class FirestoreClient extends FirestoreGapicClient
 {
     // This class is intentionally empty, and is intended to hold manual
-    // additions to the generated {@see FirestoreClientImpl} class.
+    // additions to the generated {@see FirestoreGapicClient} class.
 }

@@ -18,6 +18,8 @@
 namespace Google\Cloud\Debugger;
 
 use Google\Cloud\Core\ArrayTrait;
+use Google\Cloud\Debugger\V2\Breakpoint_Action;
+use Google\Cloud\Debugger\V2\Breakpoint_LogLevel;
 
 /**
  * This plain PHP class represents a debugger breakpoint resource.
@@ -40,15 +42,15 @@ use Google\Cloud\Core\ArrayTrait;
  * @see https://cloud.google.com/debugger/api/reference/rest/v2/debugger.debuggees.breakpoints#Breakpoint Breakpoint model documentation
  * @codingStandardsIgnoreEnd
  */
-class Breakpoint implements \JsonSerializable
+class Breakpoint
 {
     use ArrayTrait;
 
-    const ACTION_CAPTURE = 'CAPTURE';
-    const ACTION_LOG = 'LOG';
-    const LOG_LEVEL_INFO = 'INFO';
-    const LOG_LEVEL_WARNING = 'WARNING';
-    const LOG_LEVEL_ERROR = 'ERROR';
+    const ACTION_CAPTURE = Breakpoint_Action::CAPTURE;
+    const ACTION_LOG = Breakpoint_Action::LOG;
+    const LOG_LEVEL_INFO = Breakpoint_LogLevel::INFO;
+    const LOG_LEVEL_WARNING = Breakpoint_LogLevel::WARNING;
+    const LOG_LEVEL_ERROR = Breakpoint_LogLevel::ERROR;
 
     /**
      * @var string Breakpoint identifier, unique in the scope of the debuggee.
@@ -425,12 +427,41 @@ class Breakpoint implements \JsonSerializable
     }
 
     /**
-     * Callback to implement JsonSerializable interface
+     * Evaluate this breakpoint with the provided evaluated expressions and
+     * captured stackframe data.
+     *
+     * @access private
+     * @param array $expressions Key is the expression executed. Value is the
+     *        execution result.
+     * @param array $stackFrames Array of stackframe data.
+     * @param array $options [optional] {
+     *      Configuration options.
+     *
+     *      @type int $maxMemberDepth Maximum depth of member variables to capture.
+     *            **Defaults to** 5.
+     *      @type int $maxPayloadSize Maximum amount of space of captured data.
+     *            **Defaults to** 32768.
+     *      @type int $maxMembers Maximum number of member variables captured per
+     *            variable. **Defaults to** 1000.
+     *      @type int $maxValueLength Maximum length of the string representing
+     *            the captured variable. **Defaults to** 500.
+     * }
+     */
+    public function evaluate(array $evaluatedExpressions, array $stackframes, array $options = [])
+    {
+        $this->variableTable->setOptions($options);
+        $this->addEvaluatedExpressions($evaluatedExpressions);
+        $this->addStackFrames($stackframes);
+        $this->finalize();
+    }
+
+    /**
+     * Return a serializable version of this object
      *
      * @access private
      * @return array
      */
-    public function jsonSerialize()
+    public function info()
     {
         $info = [
             'id' => $this->id,
@@ -442,19 +473,25 @@ class Breakpoint implements \JsonSerializable
             'isFinalState' => $this->isFinalState,
             'createTime' => $this->createTime,
             'finalTime' => $this->finalTime,
-            'userEmail' => $this->userEmail,
-            'stackFrames' => $this->stackFrames,
-            'evaluatedExpressions' => $this->evaluatedExpressions,
-            'labels' => $this->labels
+            'stackFrames' => array_map(function ($sf) {
+                return $sf->info();
+            }, $this->stackFrames),
+            'evaluatedExpressions' => $this->evaluatedExpressions
         ];
+        if ($this->labels) {
+            $info['labels'] = $this->labels;
+        }
+        if ($this->userEmail) {
+            $info['userEmail'] = $this->userEmail;
+        }
         if ($this->location) {
-            $info['location'] = $this->location;
+            $info['location'] = $this->location->info();
         }
         if ($this->status) {
-            $info['status'] = $this->status;
+            $info['status'] = $this->status->info();
         }
         if ($this->variableTable) {
-            $info['variableTable'] = $this->variableTable;
+            $info['variableTable'] = $this->variableTable->info();
         }
         return $info;
     }
@@ -519,22 +556,12 @@ class Breakpoint implements \JsonSerializable
      *      @type string $filename The name of the file executed.
      *      @type int $line The line number of the file executed.
      *      @type array $locals Captured local variables.
-     * }
-     * @param array $options {
-     *      Configuration options.
-     *
-     *      @type bool $captureVariables Whether or not to record variables
-     *            for this stackframe. **Defaults to* true.
-     * }
      */
-    public function addStackFrame($stackFrameData, array $options = [])
+    public function addStackFrame($stackFrameData)
     {
         $stackFrameData += [
-            'function' => null,
+            'function' => '',
             'locals' => []
-        ];
-        $options += [
-            'captureVariables' => true
         ];
 
         $sf = new StackFrame(
@@ -542,13 +569,19 @@ class Breakpoint implements \JsonSerializable
             new SourceLocation($stackFrameData['filename'], $stackFrameData['line'])
         );
 
-        if ($options['captureVariables']) {
-            foreach ($stackFrameData['locals'] as $local) {
-                $value = isset($local['value']) ? $local['value'] : null;
-                $hash = isset($local['id']) ? $local['id'] : null;
-                $variable = $this->addVariable($local['name'], $value, $hash);
-                $sf->addLocal($variable);
+        foreach ($stackFrameData['locals'] as $local) {
+            if ($this->variableTable->isFull()) {
+                break;
             }
+            $value = isset($local['value']) ? $local['value'] : null;
+            $hash = isset($local['id']) ? $local['id'] : null;
+            try {
+                $variable = $this->addVariable($local['name'], $value, $hash);
+            } catch (BufferFullException $e) {
+                $sf->addLocal($this->variableTable->bufferFullVariable());
+                break;
+            }
+            $sf->addLocal($variable);
         }
 
         array_push($this->stackFrames, $sf);
@@ -571,7 +604,11 @@ class Breakpoint implements \JsonSerializable
     public function addEvaluatedExpressions(array $expressions)
     {
         foreach ($expressions as $expression => $result) {
-            $this->evaluatedExpressions[] = $this->addVariable($expression, $result);
+            try {
+                $this->evaluatedExpressions[] = $this->addVariable($expression, $result);
+            } catch (BufferFullException $e) {
+                $this->evaluatedExpressions[] = $this->variableTable->bufferFullVariable();
+            }
         }
     }
 

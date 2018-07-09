@@ -1,16 +1,20 @@
-# Google Cloud PHP Bigtable
+# Google Cloud Bigtable Admin V2 for PHP
 
-> Idiomatic PHP client for [Bigtable](https://cloud.google.com/bigtable/).
+### Sample
 
-* [Homepage](http://googlecloudplatform.github.io/google-cloud-php)
-* [API documentation](http://googlecloudplatform.github.io/google-cloud-php/#/docs/cloud-bigtable/latest/bigtable/bigtableclient)
+```php
+require 'vendor/autoload.php';
 
-**NOTE:** This repository is part of [Google Cloud PHP](https://github.com/googlecloudplatform/google-cloud-php). Any
-support requests, bug reports, or development contributions should be directed to
-that project.
+use Google\Cloud\Bigtable\Admin\V2\BigtableTableAdminClient;
+use Google\Cloud\Bigtable\Admin\V2\Table;
 
-## Installation
-
-```
-$ composer require google/cloud-bigtable
+$bigtableTableAdminClient = new BigtableTableAdminClient();
+try {
+    $formattedParent = $bigtableTableAdminClient->instanceName('[PROJECT]', '[INSTANCE]');
+    $tableId = '[TABLE_ID]';
+    $table = new Table();
+    $response = $bigtableTableAdminClient->createTable($formattedParent, $tableId, $table);
+} finally {
+    $bigtableTableAdminClient->close();
+}
 ```
