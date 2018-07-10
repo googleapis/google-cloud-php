@@ -17,8 +17,6 @@
 
 namespace Google\Cloud\Core\Testing;
 
-use Google\Cloud\Dev\DocGenerator\RegexFileFilter;
-
 /**
  * Filter to create a list of only required files
  *
