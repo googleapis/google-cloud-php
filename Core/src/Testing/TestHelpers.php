@@ -24,6 +24,7 @@ use Google\Cloud\Core\Testing\Snippet\Coverage\ExcludeFilter;
 use Google\Cloud\Core\Testing\Snippet\Coverage\Scanner;
 use Google\Cloud\Core\Testing\Snippet\Parser\Parser;
 use Google\Cloud\Core\Testing\System\SystemTestCase;
+use Google\Cloud\Dev\DocGenerator\RegexFileFilter;
 
 /**
  * Class TestHelpers is used to hold static functions required for testing
@@ -109,7 +110,11 @@ class TestHelpers
         putenv('GOOGLE_APPLICATION_CREDENTIALS='. \Google\Cloud\Core\Testing\Snippet\Fixtures::KEYFILE_STUB_FIXTURE());
 
         $parser = new Parser;
-        $scanner = new Scanner($parser, self::projectRoot(), ['/vendor/', '/dev/']);
+        $scanner = new Scanner($parser, self::projectRoot(), [
+            '/vendor/',
+            '/dev/',
+            new RegexFileFilter('/\w{0,}\/vendor\//')
+        ]);
         $coverage = new Coverage($scanner);
         $coverage->buildListToCover();
 
