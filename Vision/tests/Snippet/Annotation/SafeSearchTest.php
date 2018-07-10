@@ -110,6 +110,15 @@ class SafeSearchTest extends SnippetTestCase
         $this->assertEquals($this->ssData['violence'], $res->output());
     }
 
+    public function testRacy()
+    {
+        $snippet = $this->snippetFromMagicMethod(SafeSearch::class, 'racy');
+        $snippet->addLocal('safeSearch', $this->ss);
+
+        $res = $snippet->invoke();
+        $this->assertEquals($this->ssData['racy'], $res->output());
+    }
+
     public function testIsAdult()
     {
         $snippet = $this->snippetFromMethod(SafeSearch::class, 'isAdult');
