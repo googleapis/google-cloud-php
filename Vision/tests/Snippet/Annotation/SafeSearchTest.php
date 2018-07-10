@@ -145,6 +145,15 @@ class SafeSearchTest extends SnippetTestCase
         $this->assertEquals(sprintf('Image contains %s content.', 'violent'), $res->output());
     }
 
+    public function testIsRacy()
+    {
+        $snippet = $this->snippetFromMethod(SafeSearch::class, 'isRacy');
+        $snippet->addLocal('safeSearch', $this->ss);
+
+        $res = $snippet->invoke();
+        $this->assertEquals(sprintf('Image contains %s content.', 'racy'), $res->output());
+    }
+
     public function testInfo()
     {
         $snippet = $this->snippetFromMagicMethod(SafeSearch::class, 'info');
