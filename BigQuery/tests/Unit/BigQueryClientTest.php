@@ -430,4 +430,22 @@ class BigQueryClientTest extends TestCase
             )->identity()['location']
         );
     }
+
+    public function testGetServiceAccount()
+    {
+        $expectedEmail = uniqid() . '@bigquery-encryption.iam.gserviceaccount.com';
+        $client = $this->getClient();
+        $this->connection->getServiceAccount([
+            'projectId' => self::PROJECT_ID,
+        ])
+            ->willReturn([
+                "kind" => "bigquery#getServiceAccountResponse",
+                "email" => $expectedEmail
+            ])
+            ->shouldBeCalledTimes(1);
+        $client->___setProperty('connection', $this->connection->reveal());
+        $serviceAccount = $client->getServiceAccount();
+
+        $this->assertEquals($expectedEmail, $serviceAccount);
+    }
 }

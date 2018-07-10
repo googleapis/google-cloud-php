@@ -412,6 +412,23 @@ class BigQueryClientTest extends SnippetTestCase
 
         $this->assertInstanceOf(Timestamp::class, $res->returnVal());
     }
+
+    public function testGetServiceAccount()
+    {
+        $expectedEmail = uniqid() . '@bigquery-encryption.iam.gserviceaccount.com';
+        $snippet = $this->snippetFromMethod(BigQueryClient::class, 'getServiceAccount');
+        $snippet->addLocal('bigQuery', $this->client);
+        $this->connection->getServiceAccount(['projectId' => self::PROJECT_ID])
+            ->willReturn([
+                "kind" => "bigquery#getServiceAccountResponse",
+                "email" => $expectedEmail
+            ])
+            ->shouldBeCalledTimes(1);
+        $this->client->___setProperty('connection', $this->connection->reveal());
+        $res = $snippet->invoke('serviceAccount');
+
+        $this->assertEquals($expectedEmail, $res->returnVal());
+    }
 }
 
 class BigQueryTestClient extends BigQueryClient

@@ -682,4 +682,22 @@ class BigQueryClient
     {
         return new Timestamp($value);
     }
+
+    /**
+     * Get a service account for the KMS integration.
+     *
+     * Example:
+     * ```
+     * $serviceAccount = $bigQuery->getServiceAccount();
+     * ```
+     *
+     * @param array $options [optional] Configuration options.
+     *
+     * @return string
+     */
+    public function getServiceAccount(array $options = [])
+    {
+        $resp = $this->connection->getServiceAccount($options + ['projectId' => $this->projectId]);
+        return $resp['email'];
+    }
 }

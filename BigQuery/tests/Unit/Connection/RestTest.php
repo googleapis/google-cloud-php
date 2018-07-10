@@ -91,7 +91,8 @@ class RestTest extends TestCase
             ['getJob'],
             ['listJobs'],
             ['cancelJob'],
-            ['insertJob']
+            ['insertJob'],
+            ['getServiceAccount'],
         ];
     }
 
