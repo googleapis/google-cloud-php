@@ -77,7 +77,7 @@ class FileListFilterIterator extends \FilterIterator
             if ($exclude instanceof RegexFileFilter) {
                 $pattern = $exclude->regex;
 
-                if (preg_match('/'. $pattern .'/', $path) === 1) {
+                if (preg_match($pattern, $path) === 1) {
                     return false;
                 }
 
