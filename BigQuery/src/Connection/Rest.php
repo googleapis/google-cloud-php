@@ -243,7 +243,7 @@ class Rest implements ConnectionInterface
      */
     public function getServiceAccount(array $args = [])
     {
-        return $this->send("projects", "getServiceAccount", $args);
+        return $this->send('projects', 'getServiceAccount', $args);
     }
 
     /**
