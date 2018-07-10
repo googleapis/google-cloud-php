@@ -690,9 +690,9 @@ class BigQueryClient
      * ```
      * $serviceAccount = $bigQuery->getServiceAccount();
      * ```
-     * @param array $options [optional] Please see the
-     *        [API documentation for Job configuration](https://goo.gl/vSTbGp)
-     *        for the available options.
+     *
+     * @param array $options [optional] Job configuration
+     *
      * @return string
      */
     public function getServiceAccount(array $options = [])

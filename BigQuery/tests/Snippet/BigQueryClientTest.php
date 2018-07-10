@@ -418,7 +418,7 @@ class BigQueryClientTest extends SnippetTestCase
         $expectedEmail = uniqid() . '@bigquery-encryption.iam.gserviceaccount.com';
         $snippet = $this->snippetFromMethod(BigQueryClient::class, 'getServiceAccount');
         $snippet->addLocal('bigQuery', $this->client);
-        $this->connection->getServiceAccount(['projectId' => $this::PROJECT_ID])
+        $this->connection->getServiceAccount(['projectId' => self::PROJECT_ID])
             ->willReturn([
                 "kind" => "bigquery#getServiceAccountResponse",
                 "email" => $expectedEmail
