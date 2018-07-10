@@ -37,6 +37,7 @@ class SafeSearchTest extends SnippetTestCase
             'spoof' => 'VERY_LIKELY',
             'medical' => 'VERY_LIKELY',
             'violence' => 'VERY_LIKELY',
+            'racy' => 'VERY_LIKELY',
         ];
         $this->ss = new SafeSearch($this->ssData);
     }
