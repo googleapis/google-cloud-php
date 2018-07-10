@@ -100,7 +100,7 @@ class InstanceTest extends TestCase
         $this->assertEquals($this->instance->id(), $instanceId);
     }
 
-    public function testCreateWithoutClusterMetadata()
+    public function testCreateWithoutbuildClusterMetadata()
     {
         try {
             $this->instance->create(
@@ -115,7 +115,7 @@ class InstanceTest extends TestCase
     public function testCreateWithoutClusterId()
     {
         try {
-            $clusterMetadataList = $this->bigtableClient->clusterMetadata(null, null);
+            $clusterMetadataList = $this->bigtableClient->buildClusterMetadata(null, null);
             $this->instance->create(
                 [$clusterMetadataList]
             );
@@ -129,7 +129,7 @@ class InstanceTest extends TestCase
     {
         try {
             $badClusterId = 'badformat/my-cluster';
-            $clusterMetadataList = $this->bigtableClient->clusterMetadata($badClusterId, 'location-id');
+            $clusterMetadataList = $this->bigtableClient->buildClusterMetadata($badClusterId, 'location-id');
             $this->instance->create(
                 [$clusterMetadataList]
             );
@@ -142,7 +142,7 @@ class InstanceTest extends TestCase
     public function testCreateWithoutLocationId()
     {
         try {
-            $clusterMetadataList = $this->bigtableClient->clusterMetadata(self::CLUSTER_ID, null);
+            $clusterMetadataList = $this->bigtableClient->buildClusterMetadata(self::CLUSTER_ID, null);
             $this->instance->create(
                 [$clusterMetadataList]
             );
@@ -155,7 +155,7 @@ class InstanceTest extends TestCase
     public function testCreateWithLocationIdBadFormat()
     {
         $badLocationId = 'badformat/my-locations';
-        $clusterMetadataList = $this->bigtableClient->clusterMetadata(
+        $clusterMetadataList = $this->bigtableClient->buildClusterMetadata(
             self::CLUSTER_ID,
             $badLocationId
         );
@@ -171,7 +171,7 @@ class InstanceTest extends TestCase
 
     public function testCreateWithServeNodeIsZero()
     {
-        $clusterMetadataList = $this->bigtableClient->clusterMetadata(
+        $clusterMetadataList = $this->bigtableClient->buildClusterMetadata(
             self::CLUSTER_ID,
             self::LOCATION_ID,
             null,
@@ -194,7 +194,7 @@ class InstanceTest extends TestCase
             ->willReturn(['name' => self::INSTANCE_NAME]);
         $this->instance->___setProperty('connection', $this->connection->reveal());
 
-        $clusterMetadataList = $this->bigtableClient->clusterMetadata(
+        $clusterMetadataList = $this->bigtableClient->buildClusterMetadata(
             self::CLUSTER_ID,
             self::LOCATION_ID,
             Instance::STORAGE_TYPE_HDD,

@@ -219,7 +219,7 @@ class Instance
      * use Google\Cloud\Bigtable\BigtableClient;
      * $bigtable = new BigtableClient();
      * $operation = $instance->create(
-     *     [$bigtable->clusterMetadata('my-cluster', 'my-location', null, 3)]
+     *     [$bigtable->buildClusterMetadata('my-cluster', 'my-location', null, 3)]
      * );
      * ```
      *
@@ -228,7 +228,7 @@ class Instance
      *     google.bigtable.admin.v2#CreateInstanceRequest CreateInstanceRequest
      * @codingStandardsIgnoreEnd
      *
-     * @param array[] $clusterMetadataList Use {@see Google\Cloud\Bigtable\BigtableClient::clusterMetadata()}
+     * @param array[] $clusterMetadataList Use {@see Google\Cloud\Bigtable\BigtableClient::buildClusterMetadata()}
      *        to create properly formatted cluster configurations.
      *        API accepts a map where the cluster ID is the php array key.
      * @param array $options [optional] {

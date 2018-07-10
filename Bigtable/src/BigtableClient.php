@@ -153,11 +153,11 @@ class BigtableClient
     }
 
     /**
-     * Helper method to create cluster metadata array for creating and updating instances.
+     * Helper method to create cluster metadata array for creating instances.
      *
      * Example:
      * ```
-     * $cluster = $bigtable->clusterMetadata('cluster-id', 'location-id');
+     * $cluster = $bigtable->buildClusterMetadata('cluster-id', 'location-id');
      * ```
      * @param string $clusterId The cluster ID
      *        e.g., just `cluster-id` rather than `projects/project-id/instances/instance-id/clusters/cluster-id`.
@@ -174,7 +174,7 @@ class BigtableClient
      * @return array
      * @throws \InvalidArgumentException if invalid argument
      */
-    public function clusterMetadata(
+    public function buildClusterMetadata(
         $clusterId,
         $locationId,
         $storageType = Instance::STORAGE_TYPE_UNSPECIFIED,
