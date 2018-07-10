@@ -276,9 +276,10 @@ class Query
     public function where($fieldPath, $operator, $value)
     {
         if (FieldValue::isSentinelValue($value)) {
-            throw new \InvalidArgumentException(
-                'Value cannot be a `Google\Cloud\Firestore\FieldType` value.'
-            );
+            throw new \InvalidArgumentException(sprintf(
+                'Value cannot be a `%s` value.',
+                FieldValue::class
+            ));
         }
 
         $escapedFieldPath = $this->valueMapper->escapeFieldPath($fieldPath);
@@ -582,20 +583,25 @@ class Query
             list ($fieldValues, $orderBy) = $this->snapshotPosition($fieldValues, $orderBy);
         } else {
             if (!is_array($fieldValues)) {
-                throw new \InvalidArgumentException('Field values must be an array or DocumentSnapshot.');
+                throw new \InvalidArgumentException(sprintf(
+                    'Field values must be an array or an instance of `%s`.',
+                    DocumentSnapshot::class
+                ));
             }
 
             foreach ($fieldValues as $value) {
                 if ($value instanceof DocumentSnapshot) {
-                    throw new \InvalidArgumentException(
-                        'DocumentSnapshots are not allowed in an array of field values. ' .
-                        'Provide it as the method argument instead.'
-                    );
+                    throw new \InvalidArgumentException(sprintf(
+                        'Instances of `%` are not allowed in an array of field values. ' .
+                        'Provide it as the method argument instead.',
+                        DocumentSnapshot::class
+                    ));
                 }
                 if (FieldValue::isSentinelValue($value)) {
-                    throw new \InvalidArgumentException(
-                        'Value cannot be a `Google\Cloud\Firestore\FieldType` value.'
-                    );
+                    throw new \InvalidArgumentException(sprintf(
+                        'Value cannot be a `%s` value.',
+                        FieldValue::class
+                    ));
                 }
             }
         }
