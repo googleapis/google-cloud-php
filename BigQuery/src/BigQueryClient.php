@@ -691,7 +691,7 @@ class BigQueryClient
      * $serviceAccount = $bigQuery->getServiceAccount();
      * ```
      *
-     * @param array $options [optional] Job configuration
+     * @param array $options [optional] Configuration options.
      *
      * @return string
      */
