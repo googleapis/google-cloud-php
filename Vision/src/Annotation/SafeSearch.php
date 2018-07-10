@@ -129,7 +129,7 @@ class SafeSearch extends AbstractFeature
      * ```
      *
      * @param  string $strength [optional] Value should be one of "low",
-     *         "medium" or "high". Recommended usage is via `Face::STRENGTH_*`
+     *         "medium" or "high". Recommended usage is via `SafeSearch::STRENGTH_*`
      *         constants. Higher strength will result in fewer `true` results,
      *         but fewer false positives. **Defaults to** `"low"`.
      * @return bool
@@ -150,7 +150,7 @@ class SafeSearch extends AbstractFeature
      * ```
      *
      * @param  string $strength [optional] Value should be one of "low",
-     *         "medium" or "high". Recommended usage is via `Face::STRENGTH_*`
+     *         "medium" or "high". Recommended usage is via `SafeSearch::STRENGTH_*`
      *         constants. Higher strength will result in fewer `true` results,
      *         but fewer false positives. **Defaults to** `"low"`.
      * @return bool
@@ -171,7 +171,7 @@ class SafeSearch extends AbstractFeature
      * ```
      *
      * @param  string $strength [optional] Value should be one of "low",
-     *         "medium" or "high". Recommended usage is via `Face::STRENGTH_*`
+     *         "medium" or "high". Recommended usage is via `SafeSearch::STRENGTH_*`
      *         constants. Higher strength will result in fewer `true` results,
      *         but fewer false positives. **Defaults to** `"low"`.
      * @return bool
@@ -192,7 +192,7 @@ class SafeSearch extends AbstractFeature
      * ```
      *
      * @param  string $strength [optional] Value should be one of "low",
-     *         "medium" or "high". Recommended usage is via `Face::STRENGTH_*`
+     *         "medium" or "high". Recommended usage is via `SafeSearch::STRENGTH_*`
      *         constants. Higher strength will result in fewer `true` results,
      *         but fewer false positives. **Defaults to** `"low"`.
      * @return bool
@@ -213,7 +213,7 @@ class SafeSearch extends AbstractFeature
      * ```
      *
      * @param  string $strength [optional] Value should be one of "low",
-     *         "medium" or "high". Recommended usage is via `Face::STRENGTH_*`
+     *         "medium" or "high". Recommended usage is via `SafeSearch::STRENGTH_*`
      *         constants. Higher strength will result in fewer `true` results,
      *         but fewer false positives. **Defaults to** `"low"`.
      * @return bool
