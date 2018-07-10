@@ -77,32 +77,32 @@ class BigQueryClient
      * @param array $config [optional] {
      *     Configuration options.
      *
-     * @type string $projectId The project ID from the Google Developer's
+     *     @type string $projectId The project ID from the Google Developer's
      *           Console.
-     * @type CacheItemPoolInterface $authCache A cache for storing access
+     *     @type CacheItemPoolInterface $authCache A cache for storing access
      *           tokens. **Defaults to** a simple in memory implementation.
-     * @type array $authCacheOptions Cache configuration options.
-     * @type callable $authHttpHandler A handler used to deliver Psr7
+     *     @type array $authCacheOptions Cache configuration options.
+     *     @type callable $authHttpHandler A handler used to deliver Psr7
      *           requests specifically for authentication.
-     * @type FetchAuthTokenInterface $credentialsFetcher A credentials
+     *     @type FetchAuthTokenInterface $credentialsFetcher A credentials
      *           fetcher instance.
-     * @type callable $httpHandler A handler used to deliver Psr7 requests.
+     *     @type callable $httpHandler A handler used to deliver Psr7 requests.
      *           Only valid for requests sent over REST.
-     * @type array $keyFile The contents of the service account credentials
+     *     @type array $keyFile The contents of the service account credentials
      *           .json file retrieved from the Google Developer's Console.
      *           Ex: `json_decode(file_get_contents($path), true)`.
-     * @type string $keyFilePath The full path to your service account
+     *     @type string $keyFilePath The full path to your service account
      *           credentials .json file retrieved from the Google Developers
      *           Console.
-     * @type float $requestTimeout Seconds to wait before timing out the
+     *     @type float $requestTimeout Seconds to wait before timing out the
      *           request. **Defaults to** `0` with REST and `60` with gRPC.
-     * @type int $retries Number of retries for a failed request. **Defaults
+     *     @type int $retries Number of retries for a failed request. **Defaults
      *           to** `3`.
-     * @type array $scopes Scopes to be used for the request.
-     * @type bool $returnInt64AsObject If true, 64 bit integers will be
+     *     @type array $scopes Scopes to be used for the request.
+     *     @type bool $returnInt64AsObject If true, 64 bit integers will be
      *           returned as a {@see Google\Cloud\Core\Int64} object for 32 bit
      *           platform compatibility. **Defaults to** false.
-     * @type string $location If provided, determines the default geographic
+     *     @type string $location If provided, determines the default geographic
      *           location used when creating datasets and managing jobs. Please
      *           note: This is only required for jobs started outside of the US
      *           and EU regions. Also, if location metadata has already been
@@ -302,17 +302,17 @@ class BigQueryClient
      * @param array $options [optional] {
      *     Configuration options.
      *
-     * @type int $maxResults The maximum number of rows to return per page
+     *     @type int $maxResults The maximum number of rows to return per page
      *           of results. Setting this flag to a small value such as 1000 and
      *           then paging through results might improve reliability when the
      *           query result set is large.
-     * @type int $startIndex Zero-based index of the starting row.
-     * @type int $timeoutMs How long, in milliseconds, each API call will
+     *     @type int $startIndex Zero-based index of the starting row.
+     *     @type int $timeoutMs How long, in milliseconds, each API call will
      *           wait for query results to become available before timing out.
      *           Depending on whether the $maxRetries has been exceeded, the
      *           results will be polled again after the timeout has been reached.
      *           **Defaults to** `10000` milliseconds (10 seconds).
-     * @type int $maxRetries The number of times to poll the Job status,
+     *     @type int $maxRetries The number of times to poll the Job status,
      *           until the job is complete. By default, will poll indefinitely.
      * }
      * @return QueryResults
@@ -392,7 +392,7 @@ class BigQueryClient
      * @param array $options [optional] {
      *     Configuration options.
      *
-     * @type string $location The geographic location of the job. Required
+     *     @type string $location The geographic location of the job. Required
      *           for jobs started outside of the US and EU regions.
      *           **Defaults to** a location specified in the client
      *           configuration.
@@ -433,14 +433,14 @@ class BigQueryClient
      * @param array $options [optional] {
      *     Configuration options.
      *
-     * @type bool $allUsers Whether to display jobs owned by all users in
+     *     @type bool $allUsers Whether to display jobs owned by all users in
      *           the project. **Defaults to** `false`.
-     * @type int $maxResults Maximum number of results to return per page.
-     * @type int $resultLimit Limit the number of results returned in total.
+     *     @type int $maxResults Maximum number of results to return per page.
+     *     @type int $resultLimit Limit the number of results returned in total.
      *           **Defaults to** `0` (return all results).
-     * @type string $pageToken A previously-returned page token used to
+     *     @type string $pageToken A previously-returned page token used to
      *           resume the loading of results from a specific point.
-     * @type string $stateFilter Filter for job state. Maybe be either
+     *     @type string $stateFilter Filter for job state. Maybe be either
      *           `done`, `pending`, or `running`.
      * }
      * @return ItemIterator<Job>
@@ -512,12 +512,12 @@ class BigQueryClient
      * @param array $options [optional] {
      *     Configuration options.
      *
-     * @type bool $all Whether to list all datasets, including hidden ones.
+     *     @type bool $all Whether to list all datasets, including hidden ones.
      *           **Defaults to** `false`.
-     * @type int $maxResults Maximum number of results to return per page.
-     * @type int $resultLimit Limit the number of results returned in total.
+     *     @type int $maxResults Maximum number of results to return per page.
+     *     @type int $resultLimit Limit the number of results returned in total.
      *           **Defaults to** `0` (return all results).
-     * @type string $pageToken A previously-returned page token used to
+     *     @type string $pageToken A previously-returned page token used to
      *           resume the loading of results from a specific point.
      * }
      * @return ItemIterator<Dataset>
@@ -565,7 +565,7 @@ class BigQueryClient
      * @param array $options [optional] {
      *     Configuration options.
      *
-     * @type array $metadata The available options for metadata are outlined
+     *     @type array $metadata The available options for metadata are outlined
      *           at the
      *           [Dataset Resource API docs](https://cloud.google.com/bigquery/docs/reference/v2/datasets#resource)
      * }
@@ -690,14 +690,14 @@ class BigQueryClient
      * ```
      * $serviceAccount = $bigQuery->getServiceAccount();
      * ```
+     * @param array $options [optional] Please see the
+     *        [API documentation for Job configuration](https://goo.gl/vSTbGp)
+     *        for the available options.
      * @return string
      */
-    public function getServiceAccount()
+    public function getServiceAccount(array $options = [])
     {
-        $resp = $this->connection->getServiceAccount(
-            [
-                'projectId' => $this->projectId
-            ]);
+        $resp = $this->connection->getServiceAccount($options + ['projectId' => $this->projectId]);
         return $resp['email'];
     }
 }
