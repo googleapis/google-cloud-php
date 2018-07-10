@@ -230,7 +230,6 @@ class Instance
      *
      * @param array[] $clusterMetadataList Use {@see Google\Cloud\Bigtable\BigtableClient::buildClusterMetadata()}
      *        to create properly formatted cluster configurations.
-     *        API accepts a map where the cluster ID is the php array key.
      * @param array $options [optional] {
      *     Configuration options
      *     @type string $displayName **Defaults to** the value of $instanceId.
@@ -280,6 +279,7 @@ class Instance
             } elseif (!isset($value['serveNodes']) || $value['serveNodes'] <= 0) {
                 throw new \InvalidArgumentException('When creating Production instance, serveNodes must be > 0');
             }
+            // `$clustersArray` must be keyed by the cluster ID.
             $clustersArray[$clusterId] = $value;
         }
 
