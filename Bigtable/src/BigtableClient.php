@@ -153,14 +153,16 @@ class BigtableClient
     }
 
     /**
-     * Constructs an array that contains cluster metadata.
+     * Helper method to create cluster metadata array for creating and updating instances.
      *
      * Example:
      * ```
-     * $cluster = $bigtable->clusterMetadata();
+     * $cluster = $bigtable->clusterMetadata('cluster-id', 'location-id');
      * ```
      * @param string $clusterId The cluster ID
+     *        e.g., just `cluster-id` rather than `projects/project-id/instances/instance-id/clusters/cluster-id`.
      * @param string $locationId The location ID
+     *        e.g., just `us-east1-b` rather than `projects/project-id/locations/us-east1-b`.
      * @param int $storageType The storage media type for persisting Bigtable data. Possible values include
      *        `Google\Cloud\Bigtable\Instance::STORAGE_TYPE_SSD`,
      *        `Google\Cloud\Bigtable\Instance::STORAGE_TYPE_HDD` and
@@ -170,24 +172,27 @@ class BigtableClient
      *        More nodes enable higher throughput and more consistent performance.
      * }
      * @return array
+     * @throws \InvalidArgumentException if invalid argument
      */
     public function clusterMetadata(
-        $clusterId = null,
-        $locationId = null,
-        $storageType = null,
+        $clusterId,
+        $locationId,
+        $storageType = Instance::STORAGE_TYPE_UNSPECIFIED,
         $serveNodes = null
     ) {
         $metaData = [];
-        if (!empty($clusterId)) {
-            $metaData['clusterId'] = $clusterId;
+        if (empty($clusterId)) {
+            throw new \InvalidArgumentException('Cluster id must be set');
         }
-        if (!empty($locationId)) {
-            $metaData['locationId'] = $locationId;
+        $metaData['clusterId'] = $clusterId;
+
+        if (empty($locationId)) {
+            throw new \InvalidArgumentException('Location id must be set');
         }
-        if (!empty($storageType)) {
-            $metaData['defaultStorageType'] = $storageType;
-        }
-        if (!empty($serveNodes)) {
+        $metaData['locationId'] = $locationId;
+        $metaData['defaultStorageType'] = $storageType;
+
+        if ($serveNodes !== null) {
             $metaData['serveNodes'] = $serveNodes;
         }
 

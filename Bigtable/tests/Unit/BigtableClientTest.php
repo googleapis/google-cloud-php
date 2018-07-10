@@ -60,6 +60,26 @@ class BigtableClientTest extends TestCase
         $this->assertEquals(self::INSTANCE_ID, InstanceAdminClient::parseName($instance->name())['instance']);
     }
 
+    public function testClusterMetadataWithoutClusterId()
+    {
+        try {
+            $this->client->clusterMetadata(null, null);
+        }  catch(\Exception $e) {
+            $error = 'Cluster id must be set';
+            $this->assertEquals($error, $e->getMessage());
+        }
+    }
+
+    public function testClusterMetadataWithoutLocationId()
+    {
+        try {
+            $this->client->clusterMetadata(self::CLUSTER_ID, null);
+        }  catch(\Exception $e) {
+            $error = 'Location id must be set';
+            $this->assertEquals($error, $e->getMessage());
+        }
+    }
+
     public function testClusterMetadata()
     {
         $instance = $this->client->clusterMetadata(self::CLUSTER_ID, self::LOCATION_ID);

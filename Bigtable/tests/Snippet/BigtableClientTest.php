@@ -74,9 +74,9 @@ class BigtableClientTest extends SnippetTestCase
     {
         $snippet = $this->snippetFromMethod(BigtableClient::class, 'clusterMetadata');
         $snippet->addLocal('bigtable', $this->client);
-        $snippet->addLocal('clusterMetadata', ['clusterId' => self::CLUSTER_ID]);
+        $snippet->addLocal('clusterMetadata', self::CLUSTER_ID);
 
         $res = $snippet->invoke('clusterMetadata');
-        $this->assertEquals(self::CLUSTER_ID, $res->returnVal()['clusterId']);
+        $this->assertEquals(self::CLUSTER_ID, $res->returnVal());
     }
 }

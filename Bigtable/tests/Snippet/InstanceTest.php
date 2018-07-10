@@ -102,4 +102,15 @@ class InstanceTest extends SnippetTestCase
         $res = $snippet->invoke('operation');
         $this->assertInstanceOf(LongRunningOperation::class, $res->returnVal());
     }
+
+    public function testResumeOperation()
+    {
+        $snippet = $this->snippetFromMagicMethod(Instance::class, 'resumeOperation');
+        $snippet->addLocal('instance', $this->instance);
+        $snippet->addLocal('operationName', 'foo');
+
+        $res = $snippet->invoke('operation');
+        $this->assertInstanceOf(LongRunningOperation::class, $res->returnVal());
+        $this->assertEquals('foo', $res->returnVal()->name());
+    }
 }

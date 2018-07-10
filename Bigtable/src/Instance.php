@@ -14,7 +14,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 namespace Google\Cloud\Bigtable;
 
 use Google\Cloud\Bigtable\Admin\V2\BigtableInstanceAdminClient as InstanceAdminClient;
@@ -39,6 +38,18 @@ use Google\Cloud\Core\LongRunning\LROTrait;
  *
  * $instance = $bigtable->instance('my-instance');
  * ```
+ * @method resumeOperation() {
+ *     Resume a Long Running Operation
+ *
+ *     Example:
+ *     ```
+ *     $operation = $instance->resumeOperation($operationName);
+ *     ```
+ *
+ *     @param string $operationName The Long Running Operation name.
+ *     @param array $info [optional] The operation data.
+ *     @return LongRunningOperation
+ * }
  */
 class Instance
 {
@@ -95,6 +106,7 @@ class Instance
      * @param string $projectId The project ID.
      * @param string $instanceId The instance ID.
      * @param array $info [optional] A representation of the instance object.
+     * @throws \InvalidArgumentException if invalid argument
      */
     public function __construct(
         ConnectionInterface $connection,
@@ -202,57 +214,57 @@ class Instance
     }
 
     /**
-     * Create a new instance.
-     *
      * Example:
      * ```
-     * $bigtable = new Google\Cloud\Bigtable\BigtableClient();
+     * use Google\Cloud\Bigtable\BigtableClient;
+     * $bigtable = new BigtableClient();
      * $operation = $instance->create(
-     *     $bigtable->clusterMetadata(['clusterId' => 'my-cluster', 'locationId' => 'us-east1-c'])
+     *     [$bigtable->clusterMetadata('my-cluster', 'my-location', null, 3)]
      * );
      * ```
      *
      * @codingStandardsIgnoreStart
-     * @see https://cloud.google.com/bigtable/docs/reference/admin/rpc/google.bigtable.admin.v2#CreateInstanceRequest CreateInstanceRequest
+     * @see https://cloud.google.com/bigtable/docs/reference/admin/rpc/
+     *     google.bigtable.admin.v2#CreateInstanceRequest CreateInstanceRequest
      * @codingStandardsIgnoreEnd
      *
-     * @param array $clusterMetadataList [
-     *        $bigtable->clusterMetadata('clusterId1', 'locationId1', 'SSD', 3),
-     *        $bigtable->clusterMetadata('clusterId2', 'locationId2', 'SSD', 3)
-     * ]
-     * @param string $displayName **Defaults to** the value of $instanceId.
-     * @param array $labels as key/value pair ['foo' => 'bar']. For more information, see
-     *        [Using labels to organize Google Cloud Platform resources](https://cloudplatform.googleblog.com/2015/10/using-labels-to-organize-Google-Cloud-Platform-resources.html).
-     * @param int $type Possible values are represented by the following constants:
-     *        `Google\Cloud\Bigtable\Instance::INSTANCE_TYPE_PRODUCTION`,
-     *        `Google\Cloud\Bigtable\Instance::INSTANCE_TYPE_DEVELOPMENT` and
-     *        `Google\Cloud\Bigtable\Instance::INSTANCE_TYPE_UNSPECIFIED`.
-     *        **Defaults to** using `Google\Cloud\Bigtable\Instance::INSTANCE_TYPE_UNSPECIFIED`.
-     *
+     * @param array[] $clusterMetadataList Use {@see Google\Cloud\Bigtable\BigtableClient::clusterMetadata()}
+     *        to create properly formatted cluster configurations.
+     *        API accepts a map where the cluster ID is the php array key.
+     * @param array $options [optional] {
+     *     Configuration options
+     *     @type string $displayName **Defaults to** the value of $instanceId.
+     *     @type array $labels as key/value pair ['foo' => 'bar']. For more information, see
+     *           [Using labels to organize Google Cloud Platform resources](https://cloudplatform.googleblog.com/2015/10/using-labels-to-organize-Google-Cloud-Platform-resources.html).
+     *     @type int $type Possible values are represented by the following constants:
+     *           `Google\Cloud\Bigtable\Instance::INSTANCE_TYPE_PRODUCTION`,
+     *           `Google\Cloud\Bigtable\Instance::INSTANCE_TYPE_DEVELOPMENT` and
+     *           `Google\Cloud\Bigtable\Instance::INSTANCE_TYPE_UNSPECIFIED`.
+     *           **Defaults to** using `Google\Cloud\Bigtable\Instance::INSTANCE_TYPE_UNSPECIFIED`.
+     * }
      * @return LongRunningOperation<Instance>
+     * @throws \InvalidArgumentException
      */
-    public function create(
-        array $clusterMetadataList,
-        $displayName = null,
-        array $labels = [],
-        $type = self::INSTANCE_TYPE_UNSPECIFIED
-    ) {
+    public function create(array $clusterMetadataList, array $options = [])
+    {
         if (empty($clusterMetadataList)) {
             throw new \InvalidArgumentException('At least one clusterMetadata must be passed');
         }
         $projectName = InstanceAdminClient::projectName($this->projectId);
-        $displayName = ($displayName) ? $displayName : $this->id;
+        $displayName = isset($optins['displayName']) ? $optins['displayName'] : $this->id;
+        $labels = isset($optins['labels']) ? $optins['labels'] : [];
+        $type = isset($optins['type']) ? $optins['type'] : self::INSTANCE_TYPE_UNSPECIFIED;
 
         $clustersArray = [];
         foreach ($clusterMetadataList as $value) {
             if (!isset($value['clusterId'])) {
-                throw new \InvalidArgumentException("Cluster id must be set");
+                throw new \InvalidArgumentException('Cluster id must be set');
             }
             $this->validate($value['clusterId'], 'cluster');
             $clusterId = $value['clusterId'];
 
             if (!isset($value['locationId'])) {
-                throw new \InvalidArgumentException("Location id must be set");
+                throw new \InvalidArgumentException('Location id must be set');
             }
             $this->validate($value['locationId'], 'location');
             $locationId = $value['locationId'];
@@ -263,10 +275,15 @@ class Instance
                 ? $value['storageType']
                 : self::STORAGE_TYPE_UNSPECIFIED;
 
+            if ($type == self::INSTANCE_TYPE_DEVELOPMENT) {
+                unset($value['serveNodes']);
+            } elseif (!isset($value['serveNodes']) || $value['serveNodes'] <= 0) {
+                throw new \InvalidArgumentException('When creating Production instance, serveNodes must be > 0');
+            }
             $clustersArray[$clusterId] = $value;
         }
 
-        $operation = $this->connection->createInstance([
+        $operation = $this->connection->createInstance($options + [
             'parent' => $projectName,
             'instanceId' => $this->id,
             'instance' => [
@@ -298,16 +315,16 @@ class Instance
     }
 
     /**
-     * Validate format of ID.
+     * Check invalid exception
      *
-     * @param string $value value to be validated whether it contains '/' character.
+     * @param string $value value to be validated for emptiness or containing '/' character.
      * @param string $text type of value to be validated.
-     *
+     * @throws \InvalidArgumentException
      */
     private function validate($value, $text)
     {
-        if (strpos($value, '/') !== false) {
-            throw new \InvalidArgumentException("Please pass just {$text}Id as '$text'");
+        if (empty($value) || strpos($value, '/') !== false) {
+            throw new \InvalidArgumentException("Please pass just {$text}Id as '{$text}-id'");
         }
     }
 }
