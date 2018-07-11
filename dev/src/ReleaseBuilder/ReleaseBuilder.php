@@ -262,7 +262,12 @@ class ReleaseBuilder extends GoogleCloudCommand
      */
     private function createReleaseNotes(array $release)
     {
-        $locationTemplate = $this->rootPath .'/build/release-%s.md';
+        $buildDir = $this->rootPath .'/build';
+        $locationTemplate = $buildDir . '/release-%s.md';
+
+        if (!is_dir($buildDir)) {
+            mkdir($buildDir);
+        }
 
         $umbrella = $release[self::DEFAULT_COMPONENT];
         $location = sprintf($locationTemplate, $umbrella['version']);
