@@ -14,7 +14,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 namespace Google\Cloud\Bigtable;
 
 use Google\Auth\FetchAuthTokenInterface;
@@ -153,14 +152,16 @@ class BigtableClient
     }
 
     /**
-     * Constructs an array that contains cluster metadata.
+     * Helper method to create cluster metadata array for creating instances.
      *
      * Example:
      * ```
-     * $cluster = $bigtable->clusterMetadata('cluster-id', 'location-id');
+     * $cluster = $bigtable->buildClusterMetadata('cluster-id', 'location-id');
      * ```
      * @param string $clusterId The cluster ID
+     *        e.g., just `cluster-id` rather than `projects/project-id/instances/instance-id/clusters/cluster-id`.
      * @param string $locationId The location ID
+     *        e.g., just `us-east1-b` rather than `projects/project-id/locations/us-east1-b`.
      * @param int $storageType The storage media type for persisting Bigtable data. Possible values include
      *        `Google\Cloud\Bigtable\Instance::STORAGE_TYPE_SSD`,
      *        `Google\Cloud\Bigtable\Instance::STORAGE_TYPE_HDD` and
@@ -170,8 +171,9 @@ class BigtableClient
      *        More nodes enable higher throughput and more consistent performance.
      * }
      * @return array
+     * @throws \InvalidArgumentException if invalid argument
      */
-    public function clusterMetadata(
+    public function buildClusterMetadata(
         $clusterId,
         $locationId,
         $storageType = Instance::STORAGE_TYPE_UNSPECIFIED,
@@ -179,12 +181,12 @@ class BigtableClient
     ) {
         $metaData = [];
         if (empty($clusterId)) {
-            throw new \InvalidArgumentException("Cluster id must be set");
+            throw new \InvalidArgumentException('Cluster id must be set');
         }
         $metaData['clusterId'] = $clusterId;
 
         if (empty($locationId)) {
-            throw new \InvalidArgumentException("Location id must be set");
+            throw new \InvalidArgumentException('Location id must be set');
         }
         $metaData['locationId'] = $locationId;
         $metaData['defaultStorageType'] = $storageType;

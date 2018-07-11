@@ -14,7 +14,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 namespace Google\Cloud\Bigtable\Tests\Bigtable;
 
 use Google\Cloud\Bigtable\Admin\V2\BigtableInstanceAdminClient as InstanceAdminClient;
@@ -70,13 +69,13 @@ class BigtableClientTest extends SnippetTestCase
         $this->assertEquals(self::INSTANCE_NAME, $res->returnVal()->name());
     }
 
-    public function testClusterMetadata()
+    public function testbuildClusterMetadata()
     {
-        $snippet = $this->snippetFromMethod(BigtableClient::class, 'clusterMetadata');
+        $snippet = $this->snippetFromMethod(BigtableClient::class, 'buildClusterMetadata');
         $snippet->addLocal('bigtable', $this->client);
-        $snippet->addLocal('clusterMetadata', self::CLUSTER_ID);
+        $snippet->addLocal('buildClusterMetadata', self::CLUSTER_ID);
 
-        $res = $snippet->invoke('clusterMetadata');
+        $res = $snippet->invoke('buildClusterMetadata');
         $this->assertEquals(self::CLUSTER_ID, $res->returnVal());
     }
 }

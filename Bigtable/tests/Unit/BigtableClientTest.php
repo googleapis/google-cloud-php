@@ -14,7 +14,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 namespace Google\Cloud\Bigtable\Tests\Unit;
 
 use Google\Cloud\Bigtable\Admin\V2\BigtableInstanceAdminClient as InstanceAdminClient;
@@ -60,29 +59,29 @@ class BigtableClientTest extends TestCase
         $this->assertEquals(self::INSTANCE_ID, InstanceAdminClient::parseName($instance->name())['instance']);
     }
 
-    public function testClusterMetadataWithoutClusterId()
+    public function testbuildClusterMetadataWithoutClusterId()
     {
         try {
-            $this->client->clusterMetadata(null, null);
+            $this->client->buildClusterMetadata(null, null);
         }  catch(\Exception $e) {
             $error = 'Cluster id must be set';
             $this->assertEquals($error, $e->getMessage());
         }
     }
 
-    public function testClusterMetadataWithoutLocationId()
+    public function testbuildClusterMetadataWithoutLocationId()
     {
         try {
-            $this->client->clusterMetadata(self::CLUSTER_ID, null);
+            $this->client->buildClusterMetadata(self::CLUSTER_ID, null);
         }  catch(\Exception $e) {
             $error = 'Location id must be set';
             $this->assertEquals($error, $e->getMessage());
         }
     }
 
-    public function testClusterMetadata()
+    public function testbuildClusterMetadata()
     {
-        $instance = $this->client->clusterMetadata(self::CLUSTER_ID, self::LOCATION_ID);
+        $instance = $this->client->buildClusterMetadata(self::CLUSTER_ID, self::LOCATION_ID);
         $this->assertEquals($instance['clusterId'], self::CLUSTER_ID);
         $this->assertEquals($instance['locationId'], self::LOCATION_ID);
     }

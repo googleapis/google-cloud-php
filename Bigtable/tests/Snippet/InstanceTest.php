@@ -14,7 +14,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 namespace Google\Cloud\Bigtable\Tests\Snippet;
 
 use Google\Cloud\Bigtable\Admin\V2\BigtableInstanceAdminClient as InstanceAdminClient;
@@ -101,5 +100,16 @@ class InstanceTest extends SnippetTestCase
 
         $res = $snippet->invoke('operation');
         $this->assertInstanceOf(LongRunningOperation::class, $res->returnVal());
+    }
+
+    public function testResumeOperation()
+    {
+        $snippet = $this->snippetFromMagicMethod(Instance::class, 'resumeOperation');
+        $snippet->addLocal('instance', $this->instance);
+        $snippet->addLocal('operationName', 'foo');
+
+        $res = $snippet->invoke('operation');
+        $this->assertInstanceOf(LongRunningOperation::class, $res->returnVal());
+        $this->assertEquals('foo', $res->returnVal()->name());
     }
 }
