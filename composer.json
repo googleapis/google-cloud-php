@@ -81,7 +81,7 @@
         "google/cloud-iot": "0.3.1",
         "google/cloud-kms": "0.1.1",
         "google/cloud-language": "0.15.1",
-        "google/cloud-logging": "1.13.0",
+        "google/cloud-logging": "1.12.4",
         "google/cloud-monitoring": "0.11.1",
         "google/cloud-oslogin": "0.6.0",
         "google/cloud-pubsub": "1.4.0",
