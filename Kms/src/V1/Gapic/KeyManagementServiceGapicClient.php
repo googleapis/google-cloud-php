@@ -887,7 +887,7 @@ class KeyManagementServiceGapicClient
      * try {
      *     $formattedParent = $keyManagementServiceClient->keyRingName('[PROJECT]', '[LOCATION]', '[KEY_RING]');
      *     $cryptoKeyId = 'my-app-key';
-     *     $purpose = CryptoKey_CryptoKeyPurpose::ENCRYPT_DECRYPT;
+     *     $purpose = CryptoKeyPurpose::ENCRYPT_DECRYPT;
      *     $seconds = 2147483647;
      *     $nextRotationTime = new Timestamp();
      *     $nextRotationTime->setSeconds($seconds);

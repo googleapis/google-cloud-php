@@ -43,3 +43,10 @@ s.replace(
     'tests/**/V1/*Test.php',
     r'Copyright \d{4}',
     r'Copyright 2018')
+
+# Use new namespace in the doc sample. See
+# https://github.com/googleapis/gapic-generator/issues/2141
+s.replace(
+    'src/V1/Gapic/KeyManagementServiceGapicClient.php',
+    r'CryptoKey_CryptoKeyPurpose',
+    'CryptoKeyPurpose')
