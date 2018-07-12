@@ -37,9 +37,26 @@ class DecryptRequest extends \Google\Protobuf\Internal\Message
      */
     private $additional_authenticated_data = '';
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $name
+     *           Required. The resource name of the [CryptoKey][google.cloud.kms.v1.CryptoKey] to use for decryption.
+     *           The server will choose the appropriate version.
+     *     @type string $ciphertext
+     *           Required. The encrypted data originally returned in
+     *           [EncryptResponse.ciphertext][google.cloud.kms.v1.EncryptResponse.ciphertext].
+     *     @type string $additional_authenticated_data
+     *           Optional data that must match the data originally supplied in
+     *           [EncryptRequest.additional_authenticated_data][google.cloud.kms.v1.EncryptRequest.additional_authenticated_data].
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Kms\V1\Service::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

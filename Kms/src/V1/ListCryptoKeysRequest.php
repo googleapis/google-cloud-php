@@ -39,9 +39,28 @@ class ListCryptoKeysRequest extends \Google\Protobuf\Internal\Message
      */
     private $page_token = '';
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $parent
+     *           Required. The resource name of the [KeyRing][google.cloud.kms.v1.KeyRing] to list, in the format
+     *           `projects/&#42;&#47;locations/&#42;&#47;keyRings/&#42;`.
+     *     @type int $page_size
+     *           Optional limit on the number of [CryptoKeys][google.cloud.kms.v1.CryptoKey] to include in the
+     *           response.  Further [CryptoKeys][google.cloud.kms.v1.CryptoKey] can subsequently be obtained by
+     *           including the [ListCryptoKeysResponse.next_page_token][google.cloud.kms.v1.ListCryptoKeysResponse.next_page_token] in a subsequent
+     *           request.  If unspecified, the server will pick an appropriate default.
+     *     @type string $page_token
+     *           Optional pagination token, returned earlier via
+     *           [ListCryptoKeysResponse.next_page_token][google.cloud.kms.v1.ListCryptoKeysResponse.next_page_token].
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Kms\V1\Service::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**
