@@ -50,3 +50,8 @@ s.replace(
     'src/V1/Gapic/KeyManagementServiceGapicClient.php',
     r'CryptoKey_CryptoKeyPurpose',
     'CryptoKeyPurpose')
+# Change the wording for the deprecation warning.
+s.replace(
+    'src/V1/CryptoKey*_*.php',
+    r'will be removed in the next major release',
+    'will be removed in a future release')

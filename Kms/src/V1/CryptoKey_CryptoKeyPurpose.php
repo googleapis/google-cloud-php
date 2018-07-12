@@ -12,5 +12,5 @@ if (false) {
     class CryptoKey_CryptoKeyPurpose {}
 }
 class_exists(CryptoKey\CryptoKeyPurpose::class);
-@trigger_error('Google\Cloud\Kms\V1\CryptoKey_CryptoKeyPurpose is deprecated and will be removed in the next major release. Use Google\Cloud\Kms\V1\CryptoKey\CryptoKeyPurpose instead', E_USER_DEPRECATED);
+@trigger_error('Google\Cloud\Kms\V1\CryptoKey_CryptoKeyPurpose is deprecated and will be removed in a future release. Use Google\Cloud\Kms\V1\CryptoKey\CryptoKeyPurpose instead', E_USER_DEPRECATED);
 
