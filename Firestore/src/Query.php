@@ -156,7 +156,10 @@ class Query
      */
     public function documents(array $options = [])
     {
-        $maxRetries = $this->pluck('maxRetries', $options, false) ?: FirestoreClient::MAX_RETRIES;
+        $maxRetries = $this->pluck('maxRetries', $options, false);
+        $maxRetries = $maxRetries === null
+            ? FirestoreClient::MAX_RETRIES
+            : $maxRetries;
 
         $rows = (new ExponentialBackoff($maxRetries))->execute(function () use ($options) {
             $generator = $this->connection->runQuery([
@@ -212,6 +215,8 @@ class Query
      * list of field paths to return, or use an empty list to only return the
      * references of matching documents.
      *
+     * Subsequent calls to this method will override previous values.
+     *
      * Example:
      * ```
      * $query = $query->select(['firstName']);
@@ -241,7 +246,7 @@ class Query
             'select' => [
                 'fields' => $fields
             ]
-        ]);
+        ], true);
     }
 
     /**
