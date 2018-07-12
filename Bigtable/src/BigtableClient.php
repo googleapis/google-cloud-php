@@ -87,6 +87,7 @@ class BigtableClient
      *     @type int $retries Number of retries for a failed request.
      *           **Defaults to** `3`.
      * }
+     *
      * @throws GoogleException If the gRPC extension is not enabled.
      */
     public function __construct(array $config = [])
@@ -135,8 +136,10 @@ class BigtableClient
      *           `Google\Cloud\Bigtable\Instance::INSTANCE_TYPE_DEVELOPMENT`.
      *           **Defaults to** using `Google\Cloud\Bigtable\Instance::INSTANCE_TYPE_UNSPECIFIED`.
      *     @type array $labels as key/value pair ['foo' => 'bar']. For more information, see
-     *           [Using labels to organize Google Cloud Platform resources](https://cloudplatform.googleblog.com/2015/10/using-labels-to-organize-Google-Cloud-Platform-resources.html).
+     *           [Using labels to organize Google Cloud Platform resources]
+     *           (https://cloudplatform.googleblog.com/2015/10/using-labels-to-organize-Google-Cloud-Platform-resources.html).
      * }
+     *
      * @return Instance
      */
     public function instance($instanceId, array $instance = [])
@@ -156,7 +159,7 @@ class BigtableClient
      *
      * Example:
      * ```
-     * $cluster = $bigtable->buildClusterMetadata('cluster-id', 'location-id');
+     * $cluster = $bigtable->buildClusterMetadata('my-cluster', 'us-east1-b');
      * ```
      * @param string $clusterId The cluster ID
      *        e.g., just `cluster-id` rather than `projects/project-id/instances/instance-id/clusters/cluster-id`.
@@ -170,7 +173,9 @@ class BigtableClient
      * @param int $serveNodes The number of nodes allocated to this cluster.
      *        More nodes enable higher throughput and more consistent performance.
      * }
+     *
      * @return array
+     *
      * @throws \InvalidArgumentException if invalid argument
      */
     public function buildClusterMetadata(
@@ -180,17 +185,17 @@ class BigtableClient
         $serveNodes = null
     ) {
         $metaData = [];
-        if (empty($clusterId)) {
-            throw new \InvalidArgumentException('Cluster id must be set');
-        }
         $metaData['clusterId'] = $clusterId;
-
-        if (empty($locationId)) {
-            throw new \InvalidArgumentException('Location id must be set');
-        }
         $metaData['locationId'] = $locationId;
+        $storageTypes = [
+            Instance::STORAGE_TYPE_UNSPECIFIED,
+            Instance::STORAGE_TYPE_SSD,
+            Instance::STORAGE_TYPE_HDD
+        ];
+        if (!in_array($storageType, $storageTypes)) {
+            throw new \InvalidargumentException('Invalid storage type provided.');
+        }
         $metaData['defaultStorageType'] = $storageType;
-
         if ($serveNodes !== null) {
             $metaData['serveNodes'] = $serveNodes;
         }

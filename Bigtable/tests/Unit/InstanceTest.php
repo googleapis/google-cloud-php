@@ -37,10 +37,12 @@ class InstanceTest extends TestCase
     use GrpcTestTrait;
 
     const PROJECT_ID = 'my-awesome-project';
+    const PROJECT_NAME = 'projects/my-awesome-project';
     const INSTANCE_ID = 'my-instance';
     const INSTANCE_NAME = 'projects/my-awesome-project/instances/my-instance';
     const CLUSTER_ID = 'my-cluster';
     const LOCATION_ID = 'us-east1-b';
+    const LOCATION_NAME = 'projects/my-awesome-project/locations/us-east1-b';
 
     private $connection;
     private $instance;
@@ -74,24 +76,23 @@ class InstanceTest extends TestCase
         $this->assertEquals(self::INSTANCE_ID, $this->instance->id());
     }
 
+    /**
+     * @expectedException \InvalidArgumentException
+     * @expectedExceptionMessage Please pass just instanceId as 'instance-id'
+     */
     public function testInstanceWhenBadIdFormatPassed()
     {
         $badInstanceId = 'badformat/my-instance';
-        try {
-            $instance = TestHelpers::stub(Instance::class, [
-                $this->connection->reveal(),
-                $this->prophesize(LongRunningConnectionInterface::class)->reveal(),
-                [],
-                self::PROJECT_ID,
-                $badInstanceId
-            ], [
-                'info',
-                'connection'
-            ]);
-        } catch(\Exception $e) {
-            $error = "Please pass just instanceId as 'instance-id'";
-            $this->assertEquals($error, $e->getMessage());
-        }
+        $instance = TestHelpers::stub(Instance::class, [
+            $this->connection->reveal(),
+            $this->prophesize(LongRunningConnectionInterface::class)->reveal(),
+            [],
+            self::PROJECT_ID,
+            $badInstanceId
+        ], [
+            'info',
+            'connection'
+        ]);
     }
 
     public function testInstanceId()
@@ -100,58 +101,54 @@ class InstanceTest extends TestCase
         $this->assertEquals($this->instance->id(), $instanceId);
     }
 
+    /**
+     * @expectedException \InvalidArgumentException
+     * @expectedExceptionMessage At least one clusterMetadata must be passed
+     */
     public function testCreateWithoutbuildClusterMetadata()
     {
-        try {
-            $this->instance->create(
-                []
-            );
-        }  catch(\Exception $e) {
-            $error = 'At least one clusterMetadata must be passed';
-            $this->assertEquals($error, $e->getMessage());
-        }
+        $this->instance->create([]);
     }
 
+    /**
+     * @expectedException \InvalidArgumentException
+     * @expectedExceptionMessage Cluster id must be set.
+     */
     public function testCreateWithoutClusterId()
     {
-        try {
-            $clusterMetadataList = $this->bigtableClient->buildClusterMetadata(null, null);
-            $this->instance->create(
-                [$clusterMetadataList]
-            );
-        }  catch(\Exception $e) {
-            $error = 'Cluster id must be set';
-            $this->assertEquals($error, $e->getMessage());
-        }
+        $this->instance->create([
+            ['clusterId' => null, 'locationId' => self::LOCATION_ID]
+        ]);
     }
 
+    /**
+     * @expectedException \InvalidArgumentException
+     * @expectedExceptionMessage Please pass just clusterId as 'cluster-id'
+     */
     public function testCreateWithClusterIdBadFormat()
     {
-        try {
-            $badClusterId = 'badformat/my-cluster';
-            $clusterMetadataList = $this->bigtableClient->buildClusterMetadata($badClusterId, 'location-id');
-            $this->instance->create(
-                [$clusterMetadataList]
-            );
-        }  catch(\Exception $e) {
-            $error = "Please pass just clusterId as 'cluster-id'";
-            $this->assertEquals($error, $e->getMessage());
-        }
+        $badClusterId = 'badformat/my-cluster';
+        $clusterMetadataList = $this->bigtableClient->buildClusterMetadata($badClusterId, self::LOCATION_ID);
+        $this->instance->create([
+            $clusterMetadataList
+        ]);
     }
 
+    /**
+     * @expectedException \InvalidArgumentException
+     * @expectedExceptionMessage Location id must be set.
+     */
     public function testCreateWithoutLocationId()
     {
-        try {
-            $clusterMetadataList = $this->bigtableClient->buildClusterMetadata(self::CLUSTER_ID, null);
-            $this->instance->create(
-                [$clusterMetadataList]
-            );
-        }  catch(\Exception $e) {
-            $error = 'Location id must be set';
-            $this->assertEquals($error, $e->getMessage());
-        }
+        $this->instance->create([
+            ['clusterId' => self::CLUSTER_ID, 'locationId' => null]
+        ]);
     }
 
+    /**
+     * @expectedException \InvalidArgumentException
+     * @expectedExceptionMessage Please pass just locationId as 'location-id'
+     */
     public function testCreateWithLocationIdBadFormat()
     {
         $badLocationId = 'badformat/my-locations';
@@ -159,16 +156,15 @@ class InstanceTest extends TestCase
             self::CLUSTER_ID,
             $badLocationId
         );
-        try {
-            $this->instance->create(
-                [$clusterMetadataList]
-            );
-        }  catch(\Exception $e) {
-            $error = "Please pass just locationId as 'location-id'";
-            $this->assertEquals($error, $e->getMessage());
-        }
+        $this->instance->create([
+            $clusterMetadataList
+        ]);
     }
 
+    /**
+     * @expectedException \InvalidArgumentException
+     * @expectedExceptionMessage When creating Production instance, serveNodes must be > 0
+     */
     public function testCreateWithServeNodeIsZero()
     {
         $clusterMetadataList = $this->bigtableClient->buildClusterMetadata(
@@ -177,21 +173,167 @@ class InstanceTest extends TestCase
             null,
             0
         );
-        try {
-            $this->instance->create(
-                [$clusterMetadataList]
-            );
-        }  catch(\Exception $e) {
-            $error = "When creating Production instance, serveNodes must be > 0";
-            $this->assertEquals($error, $e->getMessage());
-        }
+        $this->instance->create([
+            $clusterMetadataList
+        ]);
     }
 
-    public function testCreate()
+    public function testCreateWithoutOptions()
     {
-        $this->connection->createInstance(Argument::any())
+        $args = [
+            'parent' => self::PROJECT_NAME,
+            'instanceId' => self::INSTANCE_ID,
+            'instance' => [
+                'displayName' => self::INSTANCE_ID,
+                'type' => Instance::INSTANCE_TYPE_UNSPECIFIED,
+                'labels' => []
+            ],
+            'clusters' => [
+                'my-cluster' => [
+                    'clusterId' => self::CLUSTER_ID,
+                    'locationId' => self::LOCATION_ID,
+                    'defaultStorageType' => 0,
+                    'serveNodes' => 2,
+                    'location' => self::LOCATION_NAME
+                ]
+            ]
+        ];
+        $this->connection->createInstance($args)
             ->shouldBeCalled()
-            ->willReturn(['name' => self::INSTANCE_NAME]);
+            ->willReturn([
+                'name' => self::INSTANCE_NAME,
+                'displayName' => self::INSTANCE_ID,
+                'labels' => [],
+                'type' => 0
+            ]);
+        $this->instance->___setProperty('connection', $this->connection->reveal());
+
+        $clusterMetadataList = $this->bigtableClient->buildClusterMetadata(
+            self::CLUSTER_ID,
+            self::LOCATION_ID,
+            Instance::STORAGE_TYPE_HDD,
+            2
+        );
+        $instance = $this->instance->create(
+            [$clusterMetadataList]
+        );
+        $this->assertInstanceOf(LongRunningOperation::class, $instance);
+        $this->assertEquals(self::INSTANCE_NAME, $instance->name());
+        $this->assertEquals(self::INSTANCE_ID, $instance->info()['displayName']);
+    }
+
+    public function testCreateWithDisplayNameOptions()
+    {
+        $args = [
+            'parent' => self::PROJECT_NAME,
+            'instanceId' => self::INSTANCE_ID,
+            'instance' => [
+                'displayName' => 'My Test Instance',
+                'type' => Instance::INSTANCE_TYPE_UNSPECIFIED,
+                'labels' => []
+            ],
+            'clusters' => [
+                'my-cluster' => [
+                    'clusterId' => self::CLUSTER_ID,
+                    'locationId' => self::LOCATION_ID,
+                    'defaultStorageType' => 0,
+                    'serveNodes' => 2,
+                    'location' => self::LOCATION_NAME
+                ]
+            ]
+        ];
+        $this->connection->createInstance($args)
+            ->shouldBeCalled()
+            ->willReturn([
+                'name' => self::INSTANCE_NAME,
+                'displayName' => 'My Test Instance'
+            ]);
+        $this->instance->___setProperty('connection', $this->connection->reveal());
+
+        $clusterMetadataList = $this->bigtableClient->buildClusterMetadata(
+            self::CLUSTER_ID,
+            self::LOCATION_ID,
+            Instance::STORAGE_TYPE_HDD,
+            2
+        );
+        $instance = $this->instance->create(
+            [$clusterMetadataList],
+            ['displayName' => 'My Test Instance']
+        );
+        $this->assertInstanceOf(LongRunningOperation::class, $instance);
+        $this->assertEquals('My Test Instance', $instance->info()['displayName']);
+    }
+
+    public function testCreateWithLabelsOptions()
+    {
+        $args = [
+            'parent' => self::PROJECT_NAME,
+            'instanceId' => self::INSTANCE_ID,
+            'instance' => [
+                'displayName' => 'My Instance',
+                'type' => Instance::INSTANCE_TYPE_UNSPECIFIED,
+                'labels' => ['foo' => 'bar']
+            ],
+            'clusters' => [
+                'my-cluster' => [
+                    'clusterId' => self::CLUSTER_ID,
+                    'locationId' => self::LOCATION_ID,
+                    'defaultStorageType' => 0,
+                    'serveNodes' => 2,
+                    'location' => self::LOCATION_NAME
+                ]
+            ]
+        ];
+        $this->connection->createInstance($args)
+            ->shouldBeCalled()
+            ->willReturn([
+                'name' => self::INSTANCE_NAME,
+                'displayName' => 'My Instance',
+                'labels' => ['foo' => 'bar']
+            ]);
+        $this->instance->___setProperty('connection', $this->connection->reveal());
+
+        $clusterMetadataList = $this->bigtableClient->buildClusterMetadata(
+            self::CLUSTER_ID,
+            self::LOCATION_ID,
+            Instance::STORAGE_TYPE_HDD,
+            2
+        );
+        $instance = $this->instance->create(
+            [$clusterMetadataList],
+            ['displayName' => 'My Instance', 'labels' => ['foo' => 'bar']]
+        );
+        $this->assertInstanceOf(LongRunningOperation::class, $instance);
+        $this->assertEquals(['foo' => 'bar'], $instance->info()['labels']);
+    }
+
+    public function testCreateWithInstanceTypeDevelopmentWithServeNodeOptions()
+    {
+        $args = [
+            'parent' => self::PROJECT_NAME,
+            'instanceId' => self::INSTANCE_ID,
+            'instance' => [
+                'displayName' => 'My Instance',
+                'type' => Instance::INSTANCE_TYPE_DEVELOPMENT,
+                'labels' => ['foo' => 'bar']
+            ],
+            'clusters' => [
+                'my-cluster' => [
+                    'clusterId' => self::CLUSTER_ID,
+                    'locationId' => self::LOCATION_ID,
+                    'defaultStorageType' => 0,
+                    'location' => self::LOCATION_NAME
+                ]
+            ]
+        ];
+        $this->connection->createInstance($args)
+            ->shouldBeCalled()
+            ->willReturn([
+                'name' => self::INSTANCE_NAME,
+                'displayName' => 'My Instance',
+                'labels' => ['foo' => 'bar'],
+                'type' => Instance::INSTANCE_TYPE_DEVELOPMENT
+            ]);
         $this->instance->___setProperty('connection', $this->connection->reveal());
 
         $clusterMetadataList = $this->bigtableClient->buildClusterMetadata(
@@ -203,12 +345,12 @@ class InstanceTest extends TestCase
         $instance = $this->instance->create(
             [$clusterMetadataList],
             [
-                'displayName' => 'My Insatnce',
+                'displayName' => 'My Instance',
                 'labels' => ['foo' => 'bar'],
                 'type' => Instance::INSTANCE_TYPE_DEVELOPMENT
             ]
         );
         $this->assertInstanceOf(LongRunningOperation::class, $instance);
-        $this->assertEquals(self::INSTANCE_NAME, $instance->name());
+        $this->assertEquals(Instance::INSTANCE_TYPE_DEVELOPMENT, $instance->info()['type']);
     }
 }
