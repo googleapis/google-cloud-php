@@ -23,6 +23,7 @@ use Google\Cloud\BigQuery\Connection\ConnectionInterface;
 use Google\Cloud\BigQuery\Dataset;
 use Google\Cloud\BigQuery\Date;
 use Google\Cloud\BigQuery\Job;
+use Google\Cloud\BigQuery\Numeric;
 use Google\Cloud\BigQuery\QueryJobConfiguration;
 use Google\Cloud\BigQuery\QueryResults;
 use Google\Cloud\BigQuery\Time;
@@ -373,6 +374,13 @@ class BigQueryClientTest extends TestCase
         $bytes = $this->getClient()->bytes('1234');
 
         $this->assertInstanceOf(Bytes::class, $bytes);
+    }
+
+    public function testGetsNumeric()
+    {
+        $numeric = $this->getClient()->numeric('9');
+
+        $this->assertInstanceOf(Numeric::class, $numeric);
     }
 
     public function testGetsDate()
