@@ -61,7 +61,7 @@ class Grpc implements ConnectionInterface
     private $lroResponseMappers = [
         [
             'method' => 'createInstance',
-            'typeUrl' => 'type.googleapis.com/google.bigtable.admin.instance.v2.CreateInstanceMetadata',
+            'typeUrl' => 'type.googleapis.com/google.bigtable.admin.v2.CreateInstanceMetadata',
             'message' => Instance::class
         ]
     ];
@@ -412,7 +412,7 @@ class Grpc implements ConnectionInterface
     {
         throw new \BadMethodCallException('This method is not implemented yet');
     }
-    
+
     /**
      * @param array $args
      */
