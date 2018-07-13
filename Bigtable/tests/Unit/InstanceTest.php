@@ -17,8 +17,6 @@
 namespace Google\Cloud\Bigtable\Tests\Unit;
 
 use Google\Cloud\Bigtable\Admin\V2\BigtableInstanceAdminClient as InstanceAdminClient;
-use Google\Cloud\Bigtable\Admin\V2\Instance_Type;
-use Google\Cloud\Bigtable\Admin\V2\StorageType;
 use Google\Cloud\Bigtable\Connection\ConnectionInterface;
 use Google\Cloud\Bigtable\Instance;
 use Google\Cloud\Core\Exception\NotFoundException;
@@ -174,7 +172,7 @@ class InstanceTest extends TestCase
         );
         $this->instance->create(
             [$clusterMetadataList],
-            ['type' => Instance_Type::PRODUCTION]
+            ['type' => Instance::INSTANCE_TYPE_PRODUCTION]
         );
     }
 
@@ -202,7 +200,7 @@ class InstanceTest extends TestCase
                 'name' => self::INSTANCE_NAME,
                 'displayName' => self::INSTANCE_ID,
                 'labels' => [],
-                'type' => Instance_Type::TYPE_UNSPECIFIED
+                'type' => Instance::INSTANCE_TYPE_PRODUCTION
             ]);
         $this->instance->___setProperty('connection', $this->connection->reveal());
 
@@ -232,7 +230,7 @@ class InstanceTest extends TestCase
                 'my-cluster' => [
                     'clusterId' => self::CLUSTER_ID,
                     'locationId' => self::LOCATION_ID,
-                    'defaultStorageType' => StorageType::HDD,
+                    'defaultStorageType' => Instance::STORAGE_TYPE_HDD,
                     'serveNodes' => 2,
                     'location' => self::LOCATION_NAME
                 ]
@@ -244,14 +242,14 @@ class InstanceTest extends TestCase
                 'name' => self::INSTANCE_NAME,
                 'displayName' => self::INSTANCE_ID,
                 'labels' => [],
-                'type' => Instance_Type::TYPE_UNSPECIFIED
+                'type' => Instance::INSTANCE_TYPE_PRODUCTION
             ]);
         $this->instance->___setProperty('connection', $this->connection->reveal());
 
         $clusterMetadataList = Instance::buildClusterMetadata(
             self::CLUSTER_ID,
             self::LOCATION_ID,
-            StorageType::HDD,
+            Instance::STORAGE_TYPE_HDD,
             2
         );
         $instance = $this->instance->create(
@@ -276,7 +274,7 @@ class InstanceTest extends TestCase
                 'my-cluster' => [
                     'clusterId' => self::CLUSTER_ID,
                     'locationId' => self::LOCATION_ID,
-                    'defaultStorageType' => StorageType::HDD,
+                    'defaultStorageType' => Instance::STORAGE_TYPE_HDD,
                     'serveNodes' => 2,
                     'location' => self::LOCATION_NAME
                 ]
@@ -293,7 +291,7 @@ class InstanceTest extends TestCase
         $clusterMetadataList = Instance::buildClusterMetadata(
             self::CLUSTER_ID,
             self::LOCATION_ID,
-            StorageType::HDD,
+            Instance::STORAGE_TYPE_HDD,
             2
         );
         $instance = $this->instance->create(
@@ -311,14 +309,14 @@ class InstanceTest extends TestCase
             'instanceId' => self::INSTANCE_ID,
             'instance' => [
                 'displayName' => 'My Instance',
-                'type' => Instance_Type::PRODUCTION,
+                'type' => Instance::INSTANCE_TYPE_PRODUCTION,
                 'labels' => ['foo' => 'bar']
             ],
             'clusters' => [
                 'my-cluster' => [
                     'clusterId' => self::CLUSTER_ID,
                     'locationId' => self::LOCATION_ID,
-                    'defaultStorageType' => StorageType::HDD,
+                    'defaultStorageType' => Instance::STORAGE_TYPE_HDD,
                     'serveNodes' => 2,
                     'location' => self::LOCATION_NAME
                 ]
@@ -336,12 +334,12 @@ class InstanceTest extends TestCase
         $clusterMetadataList = Instance::buildClusterMetadata(
             self::CLUSTER_ID,
             self::LOCATION_ID,
-            StorageType::HDD,
+            Instance::STORAGE_TYPE_HDD,
             2
         );
         $instance = $this->instance->create(
             [$clusterMetadataList],
-            ['displayName' => 'My Instance', 'labels' => ['foo' => 'bar'], 'type'=> Instance_Type::PRODUCTION]
+            ['displayName' => 'My Instance', 'labels' => ['foo' => 'bar'], 'type'=> Instance::INSTANCE_TYPE_PRODUCTION]
         );
         $this->assertInstanceOf(LongRunningOperation::class, $instance);
         $this->assertEquals(['foo' => 'bar'], $instance->info()['labels']);
@@ -361,7 +359,7 @@ class InstanceTest extends TestCase
                 'my-cluster' => [
                     'clusterId' => self::CLUSTER_ID,
                     'locationId' => self::LOCATION_ID,
-                    'defaultStorageType' => StorageType::HDD,
+                    'defaultStorageType' => Instance::STORAGE_TYPE_HDD,
                     'serveNodes' => 2,
                     'location' => self::LOCATION_NAME
                 ]
@@ -379,7 +377,7 @@ class InstanceTest extends TestCase
         $clusterMetadataList = Instance::buildClusterMetadata(
             self::CLUSTER_ID,
             self::LOCATION_ID,
-            StorageType::HDD,
+            Instance::STORAGE_TYPE_HDD,
             2
         );
         $instance = $this->instance->create(
@@ -397,14 +395,14 @@ class InstanceTest extends TestCase
             'instanceId' => self::INSTANCE_ID,
             'instance' => [
                 'displayName' => 'My Instance',
-                'type' => Instance_Type::DEVELOPMENT,
+                'type' => Instance::INSTANCE_TYPE_DEVELOPMENT,
                 'labels' => ['foo' => 'bar']
             ],
             'clusters' => [
                 'my-cluster' => [
                     'clusterId' => self::CLUSTER_ID,
                     'locationId' => self::LOCATION_ID,
-                    'defaultStorageType' => StorageType::HDD,
+                    'defaultStorageType' => Instance::STORAGE_TYPE_HDD,
                     'location' => self::LOCATION_NAME
                 ]
             ]
@@ -415,14 +413,14 @@ class InstanceTest extends TestCase
                 'name' => self::INSTANCE_NAME,
                 'displayName' => 'My Instance',
                 'labels' => ['foo' => 'bar'],
-                'type' => Instance_Type::DEVELOPMENT
+                'type' => Instance::INSTANCE_TYPE_DEVELOPMENT
             ]);
         $this->instance->___setProperty('connection', $this->connection->reveal());
 
         $clusterMetadataList = Instance::buildClusterMetadata(
             self::CLUSTER_ID,
             self::LOCATION_ID,
-            StorageType::HDD,
+            Instance::STORAGE_TYPE_HDD,
             2
         );
         $instance = $this->instance->create(
@@ -430,11 +428,11 @@ class InstanceTest extends TestCase
             [
                 'displayName' => 'My Instance',
                 'labels' => ['foo' => 'bar'],
-                'type' => Instance_Type::DEVELOPMENT
+                'type' => Instance::INSTANCE_TYPE_DEVELOPMENT
             ]
         );
         $this->assertInstanceOf(LongRunningOperation::class, $instance);
-        $this->assertEquals(Instance_Type::DEVELOPMENT, $instance->info()['type']);
+        $this->assertEquals(Instance::INSTANCE_TYPE_DEVELOPMENT, $instance->info()['type']);
     }
 
     public function testbuildClusterMetadataWithoutStorageType()
@@ -451,11 +449,11 @@ class InstanceTest extends TestCase
         $cluster = Instance::buildClusterMetadata(
             self::CLUSTER_ID,
             self::LOCATION_ID,
-            StorageType::HDD
+            Instance::STORAGE_TYPE_HDD
         );
         $this->assertEquals($cluster['clusterId'], self::CLUSTER_ID);
         $this->assertEquals($cluster['locationId'], self::LOCATION_ID);
-        $this->assertEquals($cluster['defaultStorageType'], StorageType::HDD);
+        $this->assertEquals($cluster['defaultStorageType'], Instance::STORAGE_TYPE_HDD);
         $this->assertFalse(array_key_exists('serveNodes', $cluster));
     }
 
@@ -464,12 +462,12 @@ class InstanceTest extends TestCase
         $cluster = Instance::buildClusterMetadata(
             self::CLUSTER_ID,
             self::LOCATION_ID,
-            StorageType::HDD,
+            Instance::STORAGE_TYPE_HDD,
             3
         );
         $this->assertEquals($cluster['clusterId'], self::CLUSTER_ID);
         $this->assertEquals($cluster['locationId'], self::LOCATION_ID);
-        $this->assertEquals($cluster['defaultStorageType'], StorageType::HDD);
+        $this->assertEquals($cluster['defaultStorageType'], Instance::STORAGE_TYPE_HDD);
         $this->assertEquals($cluster['serveNodes'], 3);
     }
 }

@@ -132,8 +132,8 @@ class BigtableClient
      *
      *     @type string $displayName **Defaults to** the value of $instanceId.
      *     @type int $type Possible values are represented by the following constants:
-     *           `Google\Cloud\Bigtable\Admin\V2\Instance_Type::PRODUCTION`,
-     *           `Google\Cloud\Bigtable\Admin\V2\Instance_Type::DEVELOPMENT`.
+     *           `Google\Cloud\Bigtable\Instance::INSTANCE_TYPE_PRODUCTION` and
+     *           `Google\Cloud\Bigtable\Instance::INSTANCE_TYPE_DEVELOPMENT`.
      *           For the default value, please see [the upstream documentation](https://cloud.google.com/bigtable/docs/reference/admin/rpc/google.bigtable.admin.v2#google.bigtable.admin.v2.Instance.Type).
      *     @type array $labels as key/value pair ['foo' => 'bar']. For more information, see
      *           [Using labels to organize Google Cloud Platform resources](https://cloudplatform.googleblog.com/2015/10/using-labels-to-organize-Google-Cloud-Platform-resources.html).
