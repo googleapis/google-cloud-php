@@ -386,4 +386,12 @@ class Rest implements ConnectionInterface
     {
         return $this->send('notifications', 'list', $args);
     }
+
+    /**
+     * @param array $args
+     */
+    public function getServiceAccount(array $args = [])
+    {
+        return $this->send('projects.resources.serviceAccount', 'get', $args);
+    }
 }
