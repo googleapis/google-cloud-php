@@ -215,7 +215,7 @@ class Instance
      * @codingStandardsIgnoreStart
      * @see https://cloud.google.com/bigtable/docs/reference/admin/rpc/google.bigtable.admin.v2#google.bigtable.admin.v2.CreateInstanceRequest CreateInstanceRequest
      *
-     * @param array[] $clusterMetadataList Use {@see Google\Cloud\Bigtable\BigtableClient::buildClusterMetadata()}
+     * @param array[] $clusterMetadataList Use {@see Google\Cloud\Bigtable\Instance::buildClusterMetadata()}
      *        to create properly formatted cluster configurations.
      * @param array $options [optional] {
      *        Configuration options
@@ -224,8 +224,8 @@ class Instance
      *     @type array $labels as key/value pair ['foo' => 'bar']. For more information, see
      *           [Using labels to organize Google Cloud Platform resources](https://cloudplatform.googleblog.com/2015/10/using-labels-to-organize-Google-Cloud-Platform-resources.html).
      *     @type int $type Possible values are represented by the following constants:
-     *           `Google\Cloud\Bigtable\Instance::INSTANCE_TYPE_PRODUCTION`,
-     *           `Google\Cloud\Bigtable\Instance::INSTANCE_TYPE_DEVELOPMENT`.
+     *           `Google\Cloud\Bigtable\Admin\V2\Instance_Type::PRODUCTION`,
+     *           `Google\Cloud\Bigtable\Admin\V2\Instance_Type::DEVELOPMENT`.
      *           **Defaults to** @see https://cloud.google.com/bigtable/docs/reference/admin/rpc/google.bigtable.admin.v2#google.bigtable.admin.v2.Instance.Type Type
      * }
      *
@@ -275,7 +275,7 @@ class Instance
                 'labels' => $labels
             ],
             'clusters' => $clustersArray
-        ]+ $options);
+        ] + $options);
 
         return $this->resumeOperation($operation['name'], $operation);
     }
@@ -297,8 +297,8 @@ class Instance
      * @param string $locationId The location ID
      *        e.g., just `us-east1-b` rather than `projects/project-id/locations/us-east1-b`.
      * @param int $storageType The storage media type for persisting Bigtable data. Possible values include
-     *        `Google\Cloud\Bigtable\Instance::STORAGE_TYPE_SSD`,
-     *        `Google\Cloud\Bigtable\Instance::STORAGE_TYPE_HDD`.
+     *        `Google\Cloud\Bigtable\Admin\V2\StorageType::SSD`,
+     *        `Google\Cloud\Bigtable\Admin\V2\StorageType::HDD`.
      *        **Defaults to** @see https://cloud.google.com/bigtable/docs/reference/admin/rpc/google.bigtable.admin.v2#google.bigtable.admin.v2.StorageType StorageType
      * @param int $serveNodes The number of nodes allocated to this cluster.
      *        More nodes enable higher throughput and more consistent performance.
