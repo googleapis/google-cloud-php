@@ -19,7 +19,6 @@ namespace Google\Cloud\Bigtable\Tests\Snippet;
 use Google\Cloud\Bigtable\Admin\V2\BigtableInstanceAdminClient as InstanceAdminClient;
 use Google\Cloud\Bigtable\Connection\ConnectionInterface;
 use Google\Cloud\Bigtable\Instance;
-use Google\Cloud\Core\Iterator\ItemIterator;
 use Google\Cloud\Core\LongRunning\LongRunningConnectionInterface;
 use Google\Cloud\Core\LongRunning\LongRunningOperation;
 use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
@@ -35,9 +34,11 @@ class InstanceTest extends SnippetTestCase
 {
     use GrpcTestTrait;
 
+    const CLUSTER_ID = 'my-cluster';
     const PROJECT_ID = 'my-awesome-project';
     const INSTANCE_ID = 'my-instance';
     const INSTANCE_NAME = 'projects/my-awesome-project/instances/my-instance';
+    const LOCATION_ID = 'us-east1-b';
 
     private $connection;
     private $instance;
@@ -53,7 +54,7 @@ class InstanceTest extends SnippetTestCase
             [],
             self::PROJECT_ID,
             self::INSTANCE_ID
-        ], ['connection', 'lroConnection']);
+        ]);
     }
 
     public function testClass()
@@ -78,7 +79,6 @@ class InstanceTest extends SnippetTestCase
     {
         $snippet = $this->snippetFromMethod(Instance::class, 'id');
         $snippet->addLocal('instance', $this->instance);
-        $snippet->addLocal('id', self::INSTANCE_ID);
 
         $res = $snippet->invoke('id');
         $this->assertEquals(self::INSTANCE_ID, $res->returnVal());
@@ -86,10 +86,9 @@ class InstanceTest extends SnippetTestCase
 
     public function testCreate()
     {
-        $config = $this->prophesize(Instance::class);
-        $config->name()->willReturn(self::INSTANCE_NAME);
 
         $snippet = $this->snippetFromMethod(Instance::class, 'create');
+        $snippet->addUse(Instance::class);
         $snippet->addLocal('instance', $this->instance);
 
         $this->connection->createInstance(Argument::any())
@@ -111,5 +110,15 @@ class InstanceTest extends SnippetTestCase
         $res = $snippet->invoke('operation');
         $this->assertInstanceOf(LongRunningOperation::class, $res->returnVal());
         $this->assertEquals('foo', $res->returnVal()->name());
+    }
+
+    public function testbuildClusterMetadata()
+    {
+        $snippet = $this->snippetFromMethod(Instance::class, 'buildClusterMetadata');
+        $snippet->addUse(Instance::class);
+
+        $res = $snippet->invoke('cluster');
+        $this->assertEquals(self::CLUSTER_ID, $res->returnVal()['clusterId']);
+        $this->assertEquals(self::LOCATION_ID, $res->returnVal()['locationId']);
     }
 }

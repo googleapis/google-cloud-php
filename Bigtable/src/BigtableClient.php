@@ -103,13 +103,13 @@ class BigtableClient
         $this->connection = new Grpc($this->configureAuthentication($config));
         $this->setLroProperties(new LongRunningConnection($this->connection), [
             [
-                'typeUrl' => 'type.googleapis.com/google.bigtable.admin.instance.v2.UpdateInstanceMetadata',
+                'typeUrl' => 'type.googleapis.com/google.bigtable.admin.v2.UpdateInstanceMetadata',
                 'callable' => function ($instance) {
                     $name = InstanceAdminClient::parseName($instance['name'])['instance'];
                     return $this->instance($name, $instance);
                 }
             ], [
-                'typeUrl' => 'type.googleapis.com/google.bigtable.admin.instance.v2.CreateInstanceMetadata',
+                'typeUrl' => 'type.googleapis.com/google.bigtable.admin.v2.CreateInstanceMetadata',
                 'callable' => function ($instance) {
                     $name = InstanceAdminClient::parseName($instance['name'])['instance'];
                     return $this->instance($name, $instance);
@@ -125,7 +125,7 @@ class BigtableClient
      * ```
      * $instance = $bigtable->instance('my-instance');
      * ```
-     *
+     * @codingStandardsIgnoreStart
      * @param string $instanceId The instance ID
      * @param array $instance [optional] {
      *     Configuration options
@@ -136,11 +136,11 @@ class BigtableClient
      *           `Google\Cloud\Bigtable\Instance::INSTANCE_TYPE_DEVELOPMENT`.
      *           **Defaults to** using `Google\Cloud\Bigtable\Instance::INSTANCE_TYPE_UNSPECIFIED`.
      *     @type array $labels as key/value pair ['foo' => 'bar']. For more information, see
-     *           [Using labels to organize Google Cloud Platform resources]
-     *           (https://cloudplatform.googleblog.com/2015/10/using-labels-to-organize-Google-Cloud-Platform-resources.html).
+     *           [Using labels to organize Google Cloud Platform resources](https://cloudplatform.googleblog.com/2015/10/using-labels-to-organize-Google-Cloud-Platform-resources.html).
      * }
      *
      * @return Instance
+     * @codingStandardsIgnoreEnd
      */
     public function instance($instanceId, array $instance = [])
     {
@@ -152,54 +152,5 @@ class BigtableClient
             $instanceId,
             $instance
         );
-    }
-
-    /**
-     * Helper method to create cluster metadata array for creating instances.
-     *
-     * Example:
-     * ```
-     * $cluster = $bigtable->buildClusterMetadata('my-cluster', 'us-east1-b');
-     * ```
-     * @param string $clusterId The cluster ID
-     *        e.g., just `cluster-id` rather than `projects/project-id/instances/instance-id/clusters/cluster-id`.
-     * @param string $locationId The location ID
-     *        e.g., just `us-east1-b` rather than `projects/project-id/locations/us-east1-b`.
-     * @param int $storageType The storage media type for persisting Bigtable data. Possible values include
-     *        `Google\Cloud\Bigtable\Instance::STORAGE_TYPE_SSD`,
-     *        `Google\Cloud\Bigtable\Instance::STORAGE_TYPE_HDD` and
-     *        `Google\Cloud\Bigtable\Instance::STORAGE_TYPE_UNSPECIFIED`.
-     *        **Defaults to** `Google\Cloud\Bigtable\Instance::STORAGE_TYPE_UNSPECIFIED`.
-     * @param int $serveNodes The number of nodes allocated to this cluster.
-     *        More nodes enable higher throughput and more consistent performance.
-     * }
-     *
-     * @return array
-     *
-     * @throws \InvalidArgumentException if invalid argument
-     */
-    public function buildClusterMetadata(
-        $clusterId,
-        $locationId,
-        $storageType = Instance::STORAGE_TYPE_UNSPECIFIED,
-        $serveNodes = null
-    ) {
-        $metaData = [];
-        $metaData['clusterId'] = $clusterId;
-        $metaData['locationId'] = $locationId;
-        $storageTypes = [
-            Instance::STORAGE_TYPE_UNSPECIFIED,
-            Instance::STORAGE_TYPE_SSD,
-            Instance::STORAGE_TYPE_HDD
-        ];
-        if (!in_array($storageType, $storageTypes)) {
-            throw new \InvalidargumentException('Invalid storage type provided.');
-        }
-        $metaData['defaultStorageType'] = $storageType;
-        if ($serveNodes !== null) {
-            $metaData['serveNodes'] = $serveNodes;
-        }
-
-        return $metaData;
     }
 }

@@ -19,13 +19,13 @@ namespace Google\Cloud\Bigtable;
 use Google\Cloud\Bigtable\Admin\V2\BigtableInstanceAdminClient as InstanceAdminClient;
 use Google\Cloud\Bigtable\Admin\V2\Instance_Type;
 use Google\Cloud\Bigtable\Admin\V2\Instance_State;
-use Google\Cloud\Bigtable\Admin\V2\StorageType;
 use Google\Cloud\Bigtable\Connection\ConnectionInterface;
 use Google\Cloud\Core\Exception\NotFoundException;
 use Google\Cloud\Core\Iterator\ItemIterator;
 use Google\Cloud\Core\LongRunning\LongRunningConnectionInterface;
 use Google\Cloud\Core\LongRunning\LongRunningOperation;
 use Google\Cloud\Core\LongRunning\LROTrait;
+use Google\Cloud\Core\ArrayTrait;
 
 /**
  * Represents a Cloud Bigtable instance
@@ -55,14 +55,7 @@ use Google\Cloud\Core\LongRunning\LROTrait;
 class Instance
 {
     use LROTrait;
-
-    const STORAGE_TYPE_UNSPECIFIED = StorageType::STORAGE_TYPE_UNSPECIFIED;
-    const STORAGE_TYPE_SSD = StorageType::SSD;
-    const STORAGE_TYPE_HDD = StorageType::HDD;
-
-    const INSTANCE_TYPE_UNSPECIFIED = Instance_Type::TYPE_UNSPECIFIED;
-    const INSTANCE_TYPE_PRODUCTION = Instance_Type::PRODUCTION;
-    const INSTANCE_TYPE_DEVELOPMENT = Instance_Type::DEVELOPMENT;
+    use ArrayTrait;
 
     const STATE_TYPE_STATE_NOT_KNOWN = Instance_State::STATE_NOT_KNOWN;
     const STATE_TYPE_READY = Instance_State::READY;
@@ -146,7 +139,7 @@ class Instance
      *
      * Example:
      * ```
-     * $instanceId = $instance->id();
+     * $id = $instance->id();
      * ```
      *
      * @return string
@@ -184,10 +177,8 @@ class Instance
      * Fetch a fresh representation of the instance from the service.
      *
      * @codingStandardsIgnoreStart
-     * @see https://cloud.google.com/bigtable/docs/reference/admin/rpc/
-     *     google.bigtable.admin.v2#google.bigtable.admin.v2.GetInstanceRequest GetInstanceRequest
-     * @see https://cloud.google.com/bigtable/docs/reference/admin/rpc/
-     *     google.bigtable.admin.v2#instance Instance
+     * @see https://cloud.google.com/bigtable/docs/reference/admin/rpc/google.bigtable.admin.v2#google.bigtable.admin.v2.GetInstanceRequest GetInstanceRequest
+     * @see https://cloud.google.com/bigtable/docs/reference/admin/rpc/google.bigtable.admin.v2#instance Instance
      * @codingStandardsIgnoreEnd
      *
      * @param array $options [optional] Configuration options.
@@ -216,17 +207,13 @@ class Instance
      *
      * Example:
      * ```
-     * use Google\Cloud\Bigtable\BigtableClient;
-     * $bigtable = new BigtableClient();
      * $operation = $instance->create(
-     *     [$bigtable->buildClusterMetadata('my-cluster', 'my-location', null, 3)]
+     *     [Instance::buildClusterMetadata('my-cluster', 'my-location', null, 3)]
      * );
      * ```
      *
      * @codingStandardsIgnoreStart
-     * @see https://cloud.google.com/bigtable/docs/reference/admin/rpc/
-     *     google.bigtable.admin.v2#CreateInstanceRequest CreateInstanceRequest
-     * @codingStandardsIgnoreEnd
+     * @see https://cloud.google.com/bigtable/docs/reference/admin/rpc/google.bigtable.admin.v2#google.bigtable.admin.v2.CreateInstanceRequest CreateInstanceRequest
      *
      * @param array[] $clusterMetadataList Use {@see Google\Cloud\Bigtable\BigtableClient::buildClusterMetadata()}
      *        to create properly formatted cluster configurations.
@@ -235,18 +222,17 @@ class Instance
      *
      *     @type string $displayName **Defaults to** the value of $instanceId.
      *     @type array $labels as key/value pair ['foo' => 'bar']. For more information, see
-     *           [Using labels to organize Google Cloud Platform resources]
-     *           (https://cloudplatform.googleblog.com/2015/10/using-labels-to-organize-Google-Cloud-Platform-resources.html).
+     *           [Using labels to organize Google Cloud Platform resources](https://cloudplatform.googleblog.com/2015/10/using-labels-to-organize-Google-Cloud-Platform-resources.html).
      *     @type int $type Possible values are represented by the following constants:
      *           `Google\Cloud\Bigtable\Instance::INSTANCE_TYPE_PRODUCTION`,
-     *           `Google\Cloud\Bigtable\Instance::INSTANCE_TYPE_DEVELOPMENT` and
-     *           `Google\Cloud\Bigtable\Instance::INSTANCE_TYPE_UNSPECIFIED`.
-     *           **Defaults to** using `Google\Cloud\Bigtable\Instance::INSTANCE_TYPE_UNSPECIFIED`.
+     *           `Google\Cloud\Bigtable\Instance::INSTANCE_TYPE_DEVELOPMENT`.
+     *           **Defaults to** @see https://cloud.google.com/bigtable/docs/reference/admin/rpc/google.bigtable.admin.v2#google.bigtable.admin.v2.Instance.Type Type
      * }
      *
      * @return LongRunningOperation<Instance>
      *
      * @throws \InvalidArgumentException
+     * @codingStandardsIgnoreEnd
      */
     public function create(array $clusterMetadataList, array $options = [])
     {
@@ -254,9 +240,9 @@ class Instance
             throw new \InvalidArgumentException('At least one clusterMetadata must be passed');
         }
         $projectName = InstanceAdminClient::projectName($this->projectId);
-        $displayName = isset($options['displayName']) ? $options['displayName'] : $this->id;
-        $labels = isset($options['labels']) ? $options['labels'] : [];
-        $type = isset($options['type']) ? $options['type'] : self::INSTANCE_TYPE_UNSPECIFIED;
+        $displayName = $this->pluck('displayName', $options, false) ?: $this->id;
+        $labels = $this->pluck('labels', $options, false) ?: [];
+        $type = $this->pluck('type', $options, false);
 
         $clustersArray = [];
         foreach ($clusterMetadataList as $value) {
@@ -271,13 +257,10 @@ class Instance
             $this->validate($value['locationId'], 'location');
             $locationId = $value['locationId'];
             $value['location'] = InstanceAdminClient::locationName($this->projectId, $locationId);
-            $value['defaultStorageType'] = isset($value['storageType'])
-                ? $value['storageType']
-                : self::STORAGE_TYPE_UNSPECIFIED;
-
-            if ($type === self::INSTANCE_TYPE_DEVELOPMENT) {
+            if ($type === Instance_Type::DEVELOPMENT) {
                 unset($value['serveNodes']);
-            } elseif (!isset($value['serveNodes']) || $value['serveNodes'] <= 0) {
+            } elseif ($type === Instance_Type::PRODUCTION
+                        && (!isset($value['serveNodes']) || $value['serveNodes'] <= 0)) {
                 throw new \InvalidArgumentException('When creating Production instance, serveNodes must be > 0');
             }
             // `$clustersArray` must be keyed by the cluster ID.
@@ -290,11 +273,57 @@ class Instance
                 'displayName' => $displayName,
                 'type' => $type,
                 'labels' => $labels
-            ] + $options,
+            ],
             'clusters' => $clustersArray
-        ]);
+        ]+ $options);
 
         return $this->resumeOperation($operation['name'], $operation);
+    }
+
+    /**
+     * This method returns an associative array containing data required for
+     * configuring Bigtable instance clusters. The resulting array will contain
+     * 'clusterId', 'locationId`, and depending on how it is called,
+     * `storageType` and `serveNodes`.
+     *
+     * Example:
+     * ```
+     * $cluster = Instance::buildClusterMetadata('my-cluster', 'us-east1-b');
+     * ```
+     *
+     * @codingStandardsIgnoreStart
+     * @param string $clusterId The cluster ID
+     *        e.g., just `cluster-id` rather than `projects/project-id/instances/instance-id/clusters/cluster-id`.
+     * @param string $locationId The location ID
+     *        e.g., just `us-east1-b` rather than `projects/project-id/locations/us-east1-b`.
+     * @param int $storageType The storage media type for persisting Bigtable data. Possible values include
+     *        `Google\Cloud\Bigtable\Instance::STORAGE_TYPE_SSD`,
+     *        `Google\Cloud\Bigtable\Instance::STORAGE_TYPE_HDD`.
+     *        **Defaults to** @see https://cloud.google.com/bigtable/docs/reference/admin/rpc/google.bigtable.admin.v2#google.bigtable.admin.v2.StorageType StorageType
+     * @param int $serveNodes The number of nodes allocated to this cluster.
+     *        More nodes enable higher throughput and more consistent performance.
+     * }
+     *
+     * @return array
+     * @codingStandardsIgnoreEnd
+     */
+    public static function buildClusterMetadata(
+        $clusterId,
+        $locationId,
+        $storageType = null,
+        $serveNodes = null
+    ) {
+        $metaData = [];
+        $metaData['clusterId'] = $clusterId;
+        $metaData['locationId'] = $locationId;
+        if ($storageType !== null) {
+            $metaData['defaultStorageType'] = $storageType;
+        }
+        if ($serveNodes !== null) {
+            $metaData['serveNodes'] = $serveNodes;
+        }
+
+        return $metaData;
     }
 
     /**
@@ -325,7 +354,9 @@ class Instance
     private function validate($value, $text)
     {
         if (empty($value) || strpos($value, '/') !== false) {
-            throw new \InvalidArgumentException("Please pass just {$text}Id as '{$text}-id'");
+            throw new \InvalidArgumentException(
+                "Please pass the {$text} id, rather than the fully-qualified resource name."
+            );
         }
     }
 }
