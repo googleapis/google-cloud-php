@@ -20,12 +20,12 @@ use Google\Cloud\Bigtable\Admin\V2\BigtableInstanceAdminClient as InstanceAdminC
 use Google\Cloud\Bigtable\Admin\V2\Instance_Type;
 use Google\Cloud\Bigtable\Admin\V2\Instance_State;
 use Google\Cloud\Bigtable\Connection\ConnectionInterface;
+use Google\Cloud\Core\ArrayTrait;
 use Google\Cloud\Core\Exception\NotFoundException;
 use Google\Cloud\Core\Iterator\ItemIterator;
 use Google\Cloud\Core\LongRunning\LongRunningConnectionInterface;
 use Google\Cloud\Core\LongRunning\LongRunningOperation;
 use Google\Cloud\Core\LongRunning\LROTrait;
-use Google\Cloud\Core\ArrayTrait;
 
 /**
  * Represents a Cloud Bigtable instance

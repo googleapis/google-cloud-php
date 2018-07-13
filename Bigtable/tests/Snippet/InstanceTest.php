@@ -21,8 +21,8 @@ use Google\Cloud\Bigtable\Connection\ConnectionInterface;
 use Google\Cloud\Bigtable\Instance;
 use Google\Cloud\Core\LongRunning\LongRunningConnectionInterface;
 use Google\Cloud\Core\LongRunning\LongRunningOperation;
-use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
+use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
 use Google\Cloud\Core\Testing\TestHelpers;
 use Prophecy\Argument;
 
