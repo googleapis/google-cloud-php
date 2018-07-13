@@ -1175,7 +1175,7 @@ class CloudTasksGapicClient
      *          Authorization for [FULL][google.cloud.tasks.v2beta2.Task.View.FULL] requires
      *          `cloudtasks.tasks.fullView` [Google IAM](https://cloud.google.com/iam/)
      *          permission on the [Task][google.cloud.tasks.v2beta2.Task] resource.
-     *          For allowed values, use constants defined on {@see \Google\Cloud\Tasks\V2beta2\Task_View}
+     *          For allowed values, use constants defined on {@see \Google\Cloud\Tasks\V2beta2\Task\View}
      *     @type int $pageSize
      *          The maximum number of resources contained in the underlying API
      *          response. The API may return fewer values in a page, even if
@@ -1260,7 +1260,7 @@ class CloudTasksGapicClient
      *          Authorization for [FULL][google.cloud.tasks.v2beta2.Task.View.FULL] requires
      *          `cloudtasks.tasks.fullView` [Google IAM](https://cloud.google.com/iam/)
      *          permission on the [Task][google.cloud.tasks.v2beta2.Task] resource.
-     *          For allowed values, use constants defined on {@see \Google\Cloud\Tasks\V2beta2\Task_View}
+     *          For allowed values, use constants defined on {@see \Google\Cloud\Tasks\V2beta2\Task\View}
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
@@ -1374,7 +1374,7 @@ class CloudTasksGapicClient
      *          Authorization for [FULL][google.cloud.tasks.v2beta2.Task.View.FULL] requires
      *          `cloudtasks.tasks.fullView` [Google IAM](https://cloud.google.com/iam/)
      *          permission on the [Task][google.cloud.tasks.v2beta2.Task] resource.
-     *          For allowed values, use constants defined on {@see \Google\Cloud\Tasks\V2beta2\Task_View}
+     *          For allowed values, use constants defined on {@see \Google\Cloud\Tasks\V2beta2\Task\View}
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
@@ -1538,7 +1538,7 @@ class CloudTasksGapicClient
      *          Authorization for [FULL][google.cloud.tasks.v2beta2.Task.View.FULL] requires
      *          `cloudtasks.tasks.fullView` [Google IAM](https://cloud.google.com/iam/)
      *          permission on the [Task][google.cloud.tasks.v2beta2.Task] resource.
-     *          For allowed values, use constants defined on {@see \Google\Cloud\Tasks\V2beta2\Task_View}
+     *          For allowed values, use constants defined on {@see \Google\Cloud\Tasks\V2beta2\Task\View}
      *     @type string $filter
      *          `filter` can be used to specify a subset of tasks to lease.
      *
@@ -1733,7 +1733,7 @@ class CloudTasksGapicClient
      *          Authorization for [FULL][google.cloud.tasks.v2beta2.Task.View.FULL] requires
      *          `cloudtasks.tasks.fullView` [Google IAM](https://cloud.google.com/iam/)
      *          permission on the [Task][google.cloud.tasks.v2beta2.Task] resource.
-     *          For allowed values, use constants defined on {@see \Google\Cloud\Tasks\V2beta2\Task_View}
+     *          For allowed values, use constants defined on {@see \Google\Cloud\Tasks\V2beta2\Task\View}
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
@@ -1818,7 +1818,7 @@ class CloudTasksGapicClient
      *          Authorization for [FULL][google.cloud.tasks.v2beta2.Task.View.FULL] requires
      *          `cloudtasks.tasks.fullView` [Google IAM](https://cloud.google.com/iam/)
      *          permission on the [Task][google.cloud.tasks.v2beta2.Task] resource.
-     *          For allowed values, use constants defined on {@see \Google\Cloud\Tasks\V2beta2\Task_View}
+     *          For allowed values, use constants defined on {@see \Google\Cloud\Tasks\V2beta2\Task\View}
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
@@ -1915,7 +1915,7 @@ class CloudTasksGapicClient
      *          Authorization for [FULL][google.cloud.tasks.v2beta2.Task.View.FULL] requires
      *          `cloudtasks.tasks.fullView` [Google IAM](https://cloud.google.com/iam/)
      *          permission on the [Task][google.cloud.tasks.v2beta2.Task] resource.
-     *          For allowed values, use constants defined on {@see \Google\Cloud\Tasks\V2beta2\Task_View}
+     *          For allowed values, use constants defined on {@see \Google\Cloud\Tasks\V2beta2\Task\View}
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
