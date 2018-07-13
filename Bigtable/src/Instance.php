@@ -226,7 +226,7 @@ class Instance
      *     @type int $type Possible values are represented by the following constants:
      *           `Google\Cloud\Bigtable\Admin\V2\Instance_Type::PRODUCTION`,
      *           `Google\Cloud\Bigtable\Admin\V2\Instance_Type::DEVELOPMENT`.
-     *           **Defaults to** @see https://cloud.google.com/bigtable/docs/reference/admin/rpc/google.bigtable.admin.v2#google.bigtable.admin.v2.Instance.Type Type
+     *           For the default value, please see [the upstream documentation](https://cloud.google.com/bigtable/docs/reference/admin/rpc/google.bigtable.admin.v2#google.bigtable.admin.v2.Instance.Type).
      * }
      *
      * @return LongRunningOperation<Instance>
@@ -299,7 +299,7 @@ class Instance
      * @param int $storageType The storage media type for persisting Bigtable data. Possible values include
      *        `Google\Cloud\Bigtable\Admin\V2\StorageType::SSD`,
      *        `Google\Cloud\Bigtable\Admin\V2\StorageType::HDD`.
-     *        **Defaults to** @see https://cloud.google.com/bigtable/docs/reference/admin/rpc/google.bigtable.admin.v2#google.bigtable.admin.v2.StorageType StorageType
+     *        For the default value, please see [the upstream documentation](https://cloud.google.com/bigtable/docs/reference/admin/rpc/google.bigtable.admin.v2#google.bigtable.admin.v2.StorageType).
      * @param int $serveNodes The number of nodes allocated to this cluster.
      *        More nodes enable higher throughput and more consistent performance.
      * }
