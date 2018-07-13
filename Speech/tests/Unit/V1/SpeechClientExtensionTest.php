@@ -19,6 +19,7 @@ namespace Google\Cloud\Tests\Unit\Speech\V1;
 
 use Google\ApiCore\BidiStream;
 use Google\ApiCore\Call;
+use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockBidiStreamingCall;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\Cloud\Speech\V1\RecognitionAudio;
@@ -34,7 +35,7 @@ use PHPUnit\Framework\TestCase;
 /**
  * @group speech
  */
-class SpeechClientExtensionTest extends TestCase
+class SpeechClientExtensionTest extends GeneratedTest
 {
     /** @var SpeechClient */
     private $client;

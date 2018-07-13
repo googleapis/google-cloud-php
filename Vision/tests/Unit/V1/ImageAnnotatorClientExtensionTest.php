@@ -18,6 +18,7 @@
 namespace Google\Cloud\Vision\Tests\Unit\V1;
 
 use Google\ApiCore\Call;
+use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\Cloud\Vision\V1\AnnotateImageRequest;
 use Google\Cloud\Vision\V1\AnnotateImageResponse;
@@ -38,7 +39,7 @@ use PHPUnit\Framework\TestCase;
  * @group vision
  * @group gapic
  */
-class ImageAnnotatorClientExtensionTest extends TestCase
+class ImageAnnotatorClientExtensionTest extends GeneratedTest
 {
     use VisionHelpersTrait;
 
@@ -115,7 +116,12 @@ class ImageAnnotatorClientExtensionTest extends TestCase
         $this->transport->startUnaryCall( Argument::allOf(
                     Argument::type(Call::class),
                     Argument::which('getMethod', 'google.cloud.vision.v1.ImageAnnotator/BatchAnnotateImages'),
-                    Argument::which('getMessage', $expectedMessage)
+                    Argument::that(function($arg) use ($expectedMessage) {
+                        if ($arg->getMessage()->serializeToString() === $expectedMessage->serializeToString()) {
+                            return true;
+                        }
+                        return false;
+                    })
                 ),
                 Argument::type('array')
             )
@@ -160,7 +166,12 @@ class ImageAnnotatorClientExtensionTest extends TestCase
                 Argument::allOf(
                     Argument::type(Call::class),
                     Argument::which('getMethod', 'google.cloud.vision.v1.ImageAnnotator/BatchAnnotateImages'),
-                    Argument::which('getMessage', $expectedMessage)
+                    Argument::that(function($arg) use ($expectedMessage) {
+                        if ($arg->getMessage()->serializeToString() === $expectedMessage->serializeToString()) {
+                            return true;
+                        }
+                        return false;
+                    })
                 ),
                 Argument::type('array')
             )
