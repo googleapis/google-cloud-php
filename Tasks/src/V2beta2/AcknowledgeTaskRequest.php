@@ -36,9 +36,28 @@ class AcknowledgeTaskRequest extends \Google\Protobuf\Internal\Message
      */
     private $schedule_time = null;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $name
+     *           Required.
+     *           The task name. For example:
+     *           `projects/PROJECT_ID/locations/LOCATION_ID/queues/QUEUE_ID/tasks/TASK_ID`
+     *     @type \Google\Protobuf\Timestamp $schedule_time
+     *           Required.
+     *           The task's current schedule time, available in the
+     *           [schedule_time][google.cloud.tasks.v2beta2.Task.schedule_time] returned by
+     *           [LeaseTasks][google.cloud.tasks.v2beta2.CloudTasks.LeaseTasks] response or
+     *           [RenewLease][google.cloud.tasks.v2beta2.CloudTasks.RenewLease] response. This restriction is
+     *           to ensure that your worker currently holds the lease.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Tasks\V2Beta2\Cloudtasks::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

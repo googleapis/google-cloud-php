@@ -34,9 +34,27 @@ class UpdateQueueRequest extends \Google\Protobuf\Internal\Message
      */
     private $update_mask = null;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type \Google\Cloud\Tasks\V2beta2\Queue $queue
+     *           Required.
+     *           The queue to create or update.
+     *           The queue's [name][google.cloud.tasks.v2beta2.Queue.name] must be specified.
+     *           Output only fields cannot be modified using UpdateQueue.
+     *           Any value specified for an output only field will be ignored.
+     *           The queue's [name][google.cloud.tasks.v2beta2.Queue.name] cannot be changed.
+     *     @type \Google\Protobuf\FieldMask $update_mask
+     *           A mask used to specify which fields of the queue are being updated.
+     *           If empty, then all fields will be updated.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Tasks\V2Beta2\Cloudtasks::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

@@ -45,9 +45,30 @@ class AttemptStatus extends \Google\Protobuf\Internal\Message
      */
     private $response_status = null;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type \Google\Protobuf\Timestamp $schedule_time
+     *           Output only. The time that this attempt was scheduled.
+     *           `schedule_time` will be truncated to the nearest microsecond.
+     *     @type \Google\Protobuf\Timestamp $dispatch_time
+     *           Output only. The time that this attempt was dispatched.
+     *           `dispatch_time` will be truncated to the nearest microsecond.
+     *     @type \Google\Protobuf\Timestamp $response_time
+     *           Output only. The time that this attempt response was received.
+     *           `response_time` will be truncated to the nearest microsecond.
+     *     @type \Google\Rpc\Status $response_status
+     *           Output only. The response from the target for this attempt.
+     *           If the task has not been attempted or the task is currently running
+     *           then the response status is unset.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Tasks\V2Beta2\Task::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

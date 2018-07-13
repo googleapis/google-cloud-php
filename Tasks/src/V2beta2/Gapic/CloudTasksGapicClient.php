@@ -544,7 +544,7 @@ class CloudTasksGapicClient
      * WARNING: Using this method may have unintended side effects if you are
      * using an App Engine `queue.yaml` or `queue.xml` file to manage your queues.
      * Read
-     * [Overview of Queue Management and queue.yaml](https://cloud.google.com/cloud-tasks/docs/queue-yaml)
+     * [Overview of Queue Management and queue.yaml](https://cloud.google.com/tasks/docs/queue-yaml)
      * before using this method.
      *
      * Sample code:
@@ -621,7 +621,7 @@ class CloudTasksGapicClient
      * WARNING: Using this method may have unintended side effects if you are
      * using an App Engine `queue.yaml` or `queue.xml` file to manage your queues.
      * Read
-     * [Overview of Queue Management and queue.yaml](https://cloud.google.com/cloud-tasks/docs/queue-yaml)
+     * [Overview of Queue Management and queue.yaml](https://cloud.google.com/tasks/docs/queue-yaml)
      * before using this method.
      *
      * Sample code:
@@ -697,7 +697,7 @@ class CloudTasksGapicClient
      * WARNING: Using this method may have unintended side effects if you are
      * using an App Engine `queue.yaml` or `queue.xml` file to manage your queues.
      * Read
-     * [Overview of Queue Management and queue.yaml](https://cloud.google.com/cloud-tasks/docs/queue-yaml)
+     * [Overview of Queue Management and queue.yaml](https://cloud.google.com/tasks/docs/queue-yaml)
      * before using this method.
      *
      * Sample code:
@@ -877,7 +877,7 @@ class CloudTasksGapicClient
      * WARNING: Resuming many high-QPS queues at the same time can
      * lead to target overloading. If you are resuming high-QPS
      * queues, follow the 500/50/5 pattern described in
-     * [Managing Cloud Tasks Scaling Risks](https://cloud.google.com/cloud-tasks/pdfs/managing-cloud-tasks-scaling-risks-2017-06-05.pdf).
+     * [Managing Cloud Tasks Scaling Risks](https://cloud.google.com/tasks/docs/manage-cloud-task-scaling).
      *
      * Sample code:
      * ```
@@ -934,8 +934,9 @@ class CloudTasksGapicClient
      * Returns an empty policy if the resource exists and does not have a policy
      * set.
      *
-     * Authorization requires the following [Google IAM](https://cloud.google.com/iam) permission on the
-     * specified resource parent:
+     * Authorization requires the following
+     * [Google IAM](https://cloud.google.com/iam) permission on the specified
+     * resource parent:
      *
      * * `cloudtasks.queues.getIamPolicy`
      *
@@ -995,8 +996,9 @@ class CloudTasksGapicClient
      * Note: The Cloud Console does not check queue-level IAM permissions yet.
      * Project-level permissions are required to use the Cloud Console.
      *
-     * Authorization requires the following [Google IAM](https://cloud.google.com/iam) permission on the
-     * specified resource parent:
+     * Authorization requires the following
+     * [Google IAM](https://cloud.google.com/iam) permission on the specified
+     * resource parent:
      *
      * * `cloudtasks.queues.setIamPolicy`
      *
@@ -1127,6 +1129,9 @@ class CloudTasksGapicClient
      * [response_view][google.cloud.tasks.v2beta2.ListTasksRequest.response_view] controls the
      * subset of information which is returned.
      *
+     * The tasks may be returned in any order. The ordering may change at any
+     * time.
+     *
      * Sample code:
      * ```
      * $cloudTasksClient = new CloudTasksClient();
@@ -1168,14 +1173,9 @@ class CloudTasksGapicClient
      *          contains.
      *
      *          Authorization for [FULL][google.cloud.tasks.v2beta2.Task.View.FULL] requires
-     *          `cloudtasks.tasks.fullView` [Google IAM](https://cloud.google.com/iam/) permission on the
-     *          [Task][google.cloud.tasks.v2beta2.Task] resource.
+     *          `cloudtasks.tasks.fullView` [Google IAM](https://cloud.google.com/iam/)
+     *          permission on the [Task][google.cloud.tasks.v2beta2.Task] resource.
      *          For allowed values, use constants defined on {@see \Google\Cloud\Tasks\V2beta2\Task_View}
-     *     @type string $orderBy
-     *          Sort order used for the query. The only fields supported for sorting
-     *          are `schedule_time` and `pull_message.tag`. All results will be
-     *          returned in approximately ascending order. The default ordering is by
-     *          `schedule_time`.
      *     @type int $pageSize
      *          The maximum number of resources contained in the underlying API
      *          response. The API may return fewer values in a page, even if
@@ -1203,9 +1203,6 @@ class CloudTasksGapicClient
         $request->setParent($parent);
         if (isset($optionalArgs['responseView'])) {
             $request->setResponseView($optionalArgs['responseView']);
-        }
-        if (isset($optionalArgs['orderBy'])) {
-            $request->setOrderBy($optionalArgs['orderBy']);
         }
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
@@ -1261,8 +1258,8 @@ class CloudTasksGapicClient
      *          contains.
      *
      *          Authorization for [FULL][google.cloud.tasks.v2beta2.Task.View.FULL] requires
-     *          `cloudtasks.tasks.fullView` [Google IAM](https://cloud.google.com/iam/) permission on the
-     *          [Task][google.cloud.tasks.v2beta2.Task] resource.
+     *          `cloudtasks.tasks.fullView` [Google IAM](https://cloud.google.com/iam/)
+     *          permission on the [Task][google.cloud.tasks.v2beta2.Task] resource.
      *          For allowed values, use constants defined on {@see \Google\Cloud\Tasks\V2beta2\Task_View}
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
@@ -1304,10 +1301,9 @@ class CloudTasksGapicClient
      *
      * Tasks cannot be updated after creation; there is no UpdateTask command.
      *
-     * * For [App Engine queues](https://cloud.google.comgoogle.cloud.tasks.v2beta2.AppEngineHttpTarget),
-     *   the maximum task size is 100KB.
-     * * For [pull queues](https://cloud.google.comgoogle.cloud.tasks.v2beta2.PullTarget), this
-     *   the maximum task size is 1MB.
+     * * For [App Engine queues][google.cloud.tasks.v2beta2.AppEngineHttpTarget], the maximum task size is
+     *   100KB.
+     * * For [pull queues][google.cloud.tasks.v2beta2.PullTarget], the maximum task size is 1MB.
      *
      * Sample code:
      * ```
@@ -1376,8 +1372,8 @@ class CloudTasksGapicClient
      *          contains.
      *
      *          Authorization for [FULL][google.cloud.tasks.v2beta2.Task.View.FULL] requires
-     *          `cloudtasks.tasks.fullView` [Google IAM](https://cloud.google.com/iam/) permission on the
-     *          [Task][google.cloud.tasks.v2beta2.Task] resource.
+     *          `cloudtasks.tasks.fullView` [Google IAM](https://cloud.google.com/iam/)
+     *          permission on the [Task][google.cloud.tasks.v2beta2.Task] resource.
      *          For allowed values, use constants defined on {@see \Google\Cloud\Tasks\V2beta2\Task_View}
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
@@ -1540,8 +1536,8 @@ class CloudTasksGapicClient
      *          contains.
      *
      *          Authorization for [FULL][google.cloud.tasks.v2beta2.Task.View.FULL] requires
-     *          `cloudtasks.tasks.fullView` [Google IAM](https://cloud.google.com/iam/) permission on the
-     *          [Task][google.cloud.tasks.v2beta2.Task] resource.
+     *          `cloudtasks.tasks.fullView` [Google IAM](https://cloud.google.com/iam/)
+     *          permission on the [Task][google.cloud.tasks.v2beta2.Task] resource.
      *          For allowed values, use constants defined on {@see \Google\Cloud\Tasks\V2beta2\Task_View}
      *     @type string $filter
      *          `filter` can be used to specify a subset of tasks to lease.
@@ -1735,8 +1731,8 @@ class CloudTasksGapicClient
      *          contains.
      *
      *          Authorization for [FULL][google.cloud.tasks.v2beta2.Task.View.FULL] requires
-     *          `cloudtasks.tasks.fullView` [Google IAM](https://cloud.google.com/iam/) permission on the
-     *          [Task][google.cloud.tasks.v2beta2.Task] resource.
+     *          `cloudtasks.tasks.fullView` [Google IAM](https://cloud.google.com/iam/)
+     *          permission on the [Task][google.cloud.tasks.v2beta2.Task] resource.
      *          For allowed values, use constants defined on {@see \Google\Cloud\Tasks\V2beta2\Task_View}
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
@@ -1820,8 +1816,8 @@ class CloudTasksGapicClient
      *          contains.
      *
      *          Authorization for [FULL][google.cloud.tasks.v2beta2.Task.View.FULL] requires
-     *          `cloudtasks.tasks.fullView` [Google IAM](https://cloud.google.com/iam/) permission on the
-     *          [Task][google.cloud.tasks.v2beta2.Task] resource.
+     *          `cloudtasks.tasks.fullView` [Google IAM](https://cloud.google.com/iam/)
+     *          permission on the [Task][google.cloud.tasks.v2beta2.Task] resource.
      *          For allowed values, use constants defined on {@see \Google\Cloud\Tasks\V2beta2\Task_View}
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
@@ -1917,8 +1913,8 @@ class CloudTasksGapicClient
      *          contains.
      *
      *          Authorization for [FULL][google.cloud.tasks.v2beta2.Task.View.FULL] requires
-     *          `cloudtasks.tasks.fullView` [Google IAM](https://cloud.google.com/iam/) permission on the
-     *          [Task][google.cloud.tasks.v2beta2.Task] resource.
+     *          `cloudtasks.tasks.fullView` [Google IAM](https://cloud.google.com/iam/)
+     *          permission on the [Task][google.cloud.tasks.v2beta2.Task] resource.
      *          For allowed values, use constants defined on {@see \Google\Cloud\Tasks\V2beta2\Task_View}
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a

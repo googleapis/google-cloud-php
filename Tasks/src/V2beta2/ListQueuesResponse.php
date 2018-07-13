@@ -33,9 +33,26 @@ class ListQueuesResponse extends \Google\Protobuf\Internal\Message
      */
     private $next_page_token = '';
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type \Google\Cloud\Tasks\V2beta2\Queue[]|\Google\Protobuf\Internal\RepeatedField $queues
+     *           The list of queues.
+     *     @type string $next_page_token
+     *           A token to retrieve next page of results.
+     *           To return the next page of results, call
+     *           [ListQueues][google.cloud.tasks.v2beta2.CloudTasks.ListQueues] with this value as the
+     *           [page_token][google.cloud.tasks.v2beta2.ListQueuesRequest.page_token].
+     *           If the next_page_token is empty, there are no more results.
+     *           The page token is valid for only 2 hours.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Tasks\V2Beta2\Cloudtasks::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**
