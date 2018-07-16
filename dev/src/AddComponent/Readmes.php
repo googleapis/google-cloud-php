@@ -18,6 +18,7 @@
 namespace Google\Cloud\Dev\AddComponent;
 
 use Google\Cloud\Dev\AddComponent\Command\AddComponent;
+use Google\Cloud\Dev\QuestionTrait;
 use Symfony\Component\Console\Helper\QuestionHelper;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;

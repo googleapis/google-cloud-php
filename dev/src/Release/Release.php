@@ -15,10 +15,10 @@
  * limitations under the License.
  */
 
-namespace Google\Cloud\Dev\Release\Command;
+namespace Google\Cloud\Dev\Release;
 
 use Google\Cloud\Dev\Command\GoogleCloudCommand;
-use Google\Cloud\Dev\GetComponentsTrait;
+use Google\Cloud\Dev\ComponentVersionTrait;
 use RuntimeException;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
@@ -27,7 +27,7 @@ use vierbergenlars\SemVer\version;
 
 class Release extends GoogleCloudCommand
 {
-    use GetComponentsTrait;
+    use ComponentVersionTrait;
 
     const COMPONENT_BASE = '%s/';
     const DEFAULT_COMPONENT = 'google-cloud';
@@ -149,73 +149,13 @@ class Release extends GoogleCloudCommand
         return $lastRelease->inc($type);
     }
 
-    private function addToComponentManifest($version, array $component)
+    protected function rootPath()
     {
-        $manifest = $this->getManifest($this->manifest);
-        $index = $this->getManifestComponentModuleIndex($manifest, $component['id']);
-
-        array_unshift($manifest['modules'][$index]['versions'], 'v'. $version);
-
-        $content = json_encode($manifest, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES) ."\n";
-        $result = file_put_contents($this->manifest, $content);
-
-        if (!$result) {
-            throw new RuntimeException('File write failed');
-        }
+        return $this->rootPath;
     }
 
-    private function updateComponentVersionConstant($version, $componentPath, $componentEntry)
+    protected function manifest()
     {
-        if (is_null($componentEntry)) {
-            return false;
-        }
-
-        $path = $this->rootPath .'/'. $componentPath .'/'. $componentEntry;
-        if (!file_exists($path)) {
-            throw new \RuntimeException(sprintf(
-                'Component entry file %s does not exist',
-                $path
-            ));
-        }
-
-        $entry = file_get_contents($path);
-
-        $replacement = sprintf("const VERSION = '%s';", $version);
-
-        $entry = preg_replace("/const VERSION = [\'\\\"]([0-9.]{0,}|master)[\'\\\"]\;/", $replacement, $entry);
-
-        $result = file_put_contents($path, $entry);
-
-        if (!$result) {
-            throw new RuntimeException('File write failed');
-        }
-
-        return true;
-    }
-
-    private function updateComponentVersionFile($version, array $component)
-    {
-        $path = $this->rootPath .'/'. $component['path'] .'/VERSION';
-        $result = file_put_contents($path, $version);
-
-        if (!$result) {
-            throw new RuntimeException('File write failed');
-        }
-
-        return true;
-    }
-
-    private function updateComposerReplacesVersion($version, array $component)
-    {
-        $composer = $this->rootPath .'/composer.json';
-        if (!file_exists($composer)) {
-            throw new \Exception('Invalid composer.json path');
-        }
-
-        $data = json_decode(file_get_contents($composer), true);
-
-        $data['replace'][$component['name']] = $version;
-
-        file_put_contents($composer, json_encode($data, JSON_PRETTY_PRINT|JSON_UNESCAPED_SLASHES));
+        return $this->manifest;
     }
 }

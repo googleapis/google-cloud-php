@@ -22,7 +22,8 @@ use Google\Cloud\Dev\AddComponent\Command\AddComponent;
 use Google\Cloud\Dev\ComponentIntegration\Command\ComponentIntegration;
 use Google\Cloud\Dev\Credentials\Command as Credentials;
 use Google\Cloud\Dev\DocGenerator\Command\Docs;
-use Google\Cloud\Dev\Release\Command\Release;
+use Google\Cloud\Dev\Release\Release;
+use Google\Cloud\Dev\ReleaseBuilder\ReleaseBuilder;
 use Google\Cloud\Dev\Split\Command\Split;
 use Symfony\Component\Console\Application;
 
@@ -41,5 +42,6 @@ $app->add(new ComponentIntegration($rootDirectory));
 $app->add(new Credentials($rootDirectory));
 $app->add(new Docs($rootDirectory));
 $app->add(new Release($rootDirectory));
+$app->add(new ReleaseBuilder($rootDirectory));
 $app->add(new Split($rootDirectory));
 $app->run();
