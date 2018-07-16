@@ -273,18 +273,38 @@ class Instance
             // `$clustersArray` must be keyed by the cluster ID.
             $clustersArray[$clusterId] = $value;
         }
+        $info = ['displayName' => $displayName ];
+        if ($type != null) {
+            $info['type'] = $type;
+        }
+        if ($labels != null) {
+            $info['labels'] = $labels;
+        }
         $operation = $this->connection->createInstance([
             'parent' => $projectName,
             'instanceId' => $this->id,
-            'instance' => [
-                'displayName' => $displayName,
-                'type' => $type,
-                'labels' => $labels
-            ],
+            'instance' => $info,
             'clusters' => $clustersArray
         ] + $options);
 
         return $this->resumeOperation($operation['name'], $operation);
+    }
+
+    /**
+     * Delete an instance.
+     *
+     * Example:
+     * ```
+     * $instance->delete();
+     * ```
+     *
+     * @return array
+     */
+    public function delete()
+    {
+        return $this->connection->deleteInstance([
+            'name' => $this->name
+        ]);
     }
 
     /**

@@ -121,4 +121,15 @@ class InstanceTest extends SnippetTestCase
         $this->assertEquals(self::CLUSTER_ID, $res->returnVal()['clusterId']);
         $this->assertEquals(self::LOCATION_ID, $res->returnVal()['locationId']);
     }
+
+    public function testDelete()
+    {
+        $snippet = $this->snippetFromMethod(Instance::class, 'delete');
+        $snippet->addLocal('instance', $this->instance);
+
+        $this->connection->deleteInstance(Argument::any())
+            ->shouldBeCalled();
+        $this->instance->___setProperty('connection', $this->connection->reveal());
+        $snippet->invoke();
+    }
 }
