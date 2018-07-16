@@ -19,6 +19,7 @@ namespace Google\Cloud\Bigtable;
 use Google\Cloud\Bigtable\Admin\V2\BigtableInstanceAdminClient as InstanceAdminClient;
 use Google\Cloud\Bigtable\Admin\V2\Instance_Type;
 use Google\Cloud\Bigtable\Admin\V2\Instance_State;
+use Google\Cloud\Bigtable\Admin\V2\StorageType;
 use Google\Cloud\Bigtable\Connection\ConnectionInterface;
 use Google\Cloud\Core\ArrayTrait;
 use Google\Cloud\Core\Exception\NotFoundException;
@@ -56,6 +57,12 @@ class Instance
 {
     use LROTrait;
     use ArrayTrait;
+
+    const STORAGE_TYPE_SSD = StorageType::SSD;
+    const STORAGE_TYPE_HDD = StorageType::HDD;
+
+    const INSTANCE_TYPE_PRODUCTION = Instance_Type::PRODUCTION;
+    const INSTANCE_TYPE_DEVELOPMENT = Instance_Type::DEVELOPMENT;
 
     const STATE_TYPE_STATE_NOT_KNOWN = Instance_State::STATE_NOT_KNOWN;
     const STATE_TYPE_READY = Instance_State::READY;
@@ -224,8 +231,8 @@ class Instance
      *     @type array $labels as key/value pair ['foo' => 'bar']. For more information, see
      *           [Using labels to organize Google Cloud Platform resources](https://cloudplatform.googleblog.com/2015/10/using-labels-to-organize-Google-Cloud-Platform-resources.html).
      *     @type int $type Possible values are represented by the following constants:
-     *           `Google\Cloud\Bigtable\Admin\V2\Instance_Type::PRODUCTION`,
-     *           `Google\Cloud\Bigtable\Admin\V2\Instance_Type::DEVELOPMENT`.
+     *           `Google\Cloud\Bigtable\Instance::INSTANCE_TYPE_PRODUCTION` and
+     *           `Google\Cloud\Bigtable\Instance::INSTANCE_TYPE_DEVELOPMENT`.
      *           For the default value, please see [the upstream documentation](https://cloud.google.com/bigtable/docs/reference/admin/rpc/google.bigtable.admin.v2#google.bigtable.admin.v2.Instance.Type).
      * }
      *
@@ -257,9 +264,9 @@ class Instance
             $this->validate($value['locationId'], 'location');
             $locationId = $value['locationId'];
             $value['location'] = InstanceAdminClient::locationName($this->projectId, $locationId);
-            if ($type === Instance_Type::DEVELOPMENT) {
+            if ($type === self::INSTANCE_TYPE_DEVELOPMENT) {
                 unset($value['serveNodes']);
-            } elseif ($type === Instance_Type::PRODUCTION
+            } elseif ($type === self::INSTANCE_TYPE_PRODUCTION
                         && (!isset($value['serveNodes']) || $value['serveNodes'] <= 0)) {
                 throw new \InvalidArgumentException('When creating Production instance, serveNodes must be > 0');
             }
@@ -297,8 +304,8 @@ class Instance
      * @param string $locationId The location ID
      *        e.g., just `us-east1-b` rather than `projects/project-id/locations/us-east1-b`.
      * @param int $storageType The storage media type for persisting Bigtable data. Possible values include
-     *        `Google\Cloud\Bigtable\Admin\V2\StorageType::SSD`,
-     *        `Google\Cloud\Bigtable\Admin\V2\StorageType::HDD`.
+     *        `Google\Cloud\Bigtable\Instance::STORAGE_TYPE_SSD` and
+     *        `Google\Cloud\Bigtable\Instance::STORAGE_TYPE_HDD`.
      *        For the default value, please see [the upstream documentation](https://cloud.google.com/bigtable/docs/reference/admin/rpc/google.bigtable.admin.v2#google.bigtable.admin.v2.StorageType).
      * @param int $serveNodes The number of nodes allocated to this cluster.
      *        More nodes enable higher throughput and more consistent performance.
