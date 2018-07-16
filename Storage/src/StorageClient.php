@@ -379,4 +379,26 @@ class StorageClient
     {
         return new Timestamp($timestamp, $nanoSeconds);
     }
+
+    /**
+     * Get a service account email for the KMS integration.
+     *
+     * Example:
+     * ```
+     * $serviceAccount = $storage->getServiceAccount();
+     * ```
+     *
+     * @param array $options [optional] {
+     *     Configuration options.
+     *
+     *     @type string $userProject If set, this is the ID of the project which
+     *           will be billed for the request.
+     * }
+     * @return string
+     */
+    public function getServiceAccount(array $options = [])
+    {
+        $resp = $this->connection->getServiceAccount($options + ['projectId' => $this->projectId]);
+        return $resp['email_address'];
+    }
 }

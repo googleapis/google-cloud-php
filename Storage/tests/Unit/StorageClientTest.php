@@ -156,6 +156,24 @@ class StorageClientTest extends TestCase
         $this->assertInstanceOf(Timestamp::class, $ts);
         $this->assertEquals($ts->get(), $dt);
     }
+
+    public function testGetServiceAccount()
+    {
+        $expectedServiceAccount = self::PROJECT . '@gs-project-accounts.iam.gserviceaccount.com';
+        $this->connection->getServiceAccount([
+            'projectId' => self::PROJECT,
+            'userProject' => self::PROJECT
+        ])->willReturn([
+            'kind' => 'storage#serviceAccount',
+            'email_address' => $expectedServiceAccount
+        ])->shouldBeCalledTimes(1);
+        $this->client->___setProperty('connection', $this->connection->reveal());
+
+        $this->assertEquals(
+            $this->client->getServiceAccount(['userProject' => self::PROJECT]),
+            $expectedServiceAccount
+        );
+    }
 }
 
 class StorageClientStub extends StorageClient
