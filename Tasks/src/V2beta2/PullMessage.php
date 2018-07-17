@@ -36,7 +36,7 @@ class PullMessage extends \Google\Protobuf\Internal\Message
      * [task is created][google.cloud.tasks.v2beta2.CloudTasks.CreateTask].
      * The tag must be less than 500 characters.
      * SDK compatibility: Although the SDK allows tags to be either
-     * string or [bytes](/appengine/docs/standard/java/javadoc/com/google/appengine/api/taskqueue/TaskOptions.html#tag-byte:A-),
+     * string or [bytes](https://cloud.google.com/appengine/docs/standard/java/javadoc/com/google/appengine/api/taskqueue/TaskOptions.html#tag-byte:A-),
      * only UTF-8 encoded tags can be used in Cloud Tasks. If a tag isn't UTF-8
      * encoded, the tag will be empty when the task is returned by Cloud Tasks.
      *
@@ -44,9 +44,34 @@ class PullMessage extends \Google\Protobuf\Internal\Message
      */
     private $tag = '';
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $payload
+     *           A data payload consumed by the worker to execute the task.
+     *     @type string $tag
+     *           The task's tag.
+     *           Tags allow similar tasks to be processed in a batch. If you label
+     *           tasks with a tag, your worker can
+     *           [lease tasks][google.cloud.tasks.v2beta2.CloudTasks.LeaseTasks] with the same tag using
+     *           [filter][google.cloud.tasks.v2beta2.LeaseTasksRequest.filter]. For example, if you want to
+     *           aggregate the events associated with a specific user once a day,
+     *           you could tag tasks with the user ID.
+     *           The task's tag can only be set when the
+     *           [task is created][google.cloud.tasks.v2beta2.CloudTasks.CreateTask].
+     *           The tag must be less than 500 characters.
+     *           SDK compatibility: Although the SDK allows tags to be either
+     *           string or [bytes](https://cloud.google.com/appengine/docs/standard/java/javadoc/com/google/appengine/api/taskqueue/TaskOptions.html#tag-byte:A-),
+     *           only UTF-8 encoded tags can be used in Cloud Tasks. If a tag isn't UTF-8
+     *           encoded, the tag will be empty when the task is returned by Cloud Tasks.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Tasks\V2Beta2\Target::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**
@@ -87,7 +112,7 @@ class PullMessage extends \Google\Protobuf\Internal\Message
      * [task is created][google.cloud.tasks.v2beta2.CloudTasks.CreateTask].
      * The tag must be less than 500 characters.
      * SDK compatibility: Although the SDK allows tags to be either
-     * string or [bytes](/appengine/docs/standard/java/javadoc/com/google/appengine/api/taskqueue/TaskOptions.html#tag-byte:A-),
+     * string or [bytes](https://cloud.google.com/appengine/docs/standard/java/javadoc/com/google/appengine/api/taskqueue/TaskOptions.html#tag-byte:A-),
      * only UTF-8 encoded tags can be used in Cloud Tasks. If a tag isn't UTF-8
      * encoded, the tag will be empty when the task is returned by Cloud Tasks.
      *
@@ -111,7 +136,7 @@ class PullMessage extends \Google\Protobuf\Internal\Message
      * [task is created][google.cloud.tasks.v2beta2.CloudTasks.CreateTask].
      * The tag must be less than 500 characters.
      * SDK compatibility: Although the SDK allows tags to be either
-     * string or [bytes](/appengine/docs/standard/java/javadoc/com/google/appengine/api/taskqueue/TaskOptions.html#tag-byte:A-),
+     * string or [bytes](https://cloud.google.com/appengine/docs/standard/java/javadoc/com/google/appengine/api/taskqueue/TaskOptions.html#tag-byte:A-),
      * only UTF-8 encoded tags can be used in Cloud Tasks. If a tag isn't UTF-8
      * encoded, the tag will be empty when the task is returned by Cloud Tasks.
      *

@@ -28,7 +28,7 @@ class ListQueuesRequest extends \Google\Protobuf\Internal\Message
      * field can be used as a filter and several operators as supported.
      * For example: `<=, <, >=, >, !=, =, :`. The filter syntax is the same as
      * described in
-     * [Stackdriver's Advanced Logs Filters](/logging/docs/view/advanced_filters).
+     * [Stackdriver's Advanced Logs Filters](https://cloud.google.com/logging/docs/view/advanced_filters).
      * Sample filter "app_engine_http_target: *".
      * Note that using filters might cause fewer queues than the
      * requested_page size to be returned.
@@ -60,9 +60,45 @@ class ListQueuesRequest extends \Google\Protobuf\Internal\Message
      */
     private $page_token = '';
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $parent
+     *           Required.
+     *           The location name.
+     *           For example: `projects/PROJECT_ID/locations/LOCATION_ID`
+     *     @type string $filter
+     *           `filter` can be used to specify a subset of queues. Any [Queue][google.cloud.tasks.v2beta2.Queue]
+     *           field can be used as a filter and several operators as supported.
+     *           For example: `<=, <, >=, >, !=, =, :`. The filter syntax is the same as
+     *           described in
+     *           [Stackdriver's Advanced Logs Filters](https://cloud.google.com/logging/docs/view/advanced_filters).
+     *           Sample filter "app_engine_http_target: *".
+     *           Note that using filters might cause fewer queues than the
+     *           requested_page size to be returned.
+     *     @type int $page_size
+     *           Requested page size.
+     *           The maximum page size is 9800. If unspecified, the page size will
+     *           be the maximum. Fewer queues than requested might be returned,
+     *           even if more queues exist; use the
+     *           [next_page_token][google.cloud.tasks.v2beta2.ListQueuesResponse.next_page_token] in the
+     *           response to determine if more queues exist.
+     *     @type string $page_token
+     *           A token identifying the page of results to return.
+     *           To request the first page results, page_token must be empty. To
+     *           request the next page of results, page_token must be the value of
+     *           [next_page_token][google.cloud.tasks.v2beta2.ListQueuesResponse.next_page_token] returned
+     *           from the previous call to [ListQueues][google.cloud.tasks.v2beta2.CloudTasks.ListQueues]
+     *           method. It is an error to switch the value of the
+     *           [filter][google.cloud.tasks.v2beta2.ListQueuesRequest.filter] while iterating through pages.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Tasks\V2Beta2\Cloudtasks::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**
@@ -100,7 +136,7 @@ class ListQueuesRequest extends \Google\Protobuf\Internal\Message
      * field can be used as a filter and several operators as supported.
      * For example: `<=, <, >=, >, !=, =, :`. The filter syntax is the same as
      * described in
-     * [Stackdriver's Advanced Logs Filters](/logging/docs/view/advanced_filters).
+     * [Stackdriver's Advanced Logs Filters](https://cloud.google.com/logging/docs/view/advanced_filters).
      * Sample filter "app_engine_http_target: *".
      * Note that using filters might cause fewer queues than the
      * requested_page size to be returned.
@@ -118,7 +154,7 @@ class ListQueuesRequest extends \Google\Protobuf\Internal\Message
      * field can be used as a filter and several operators as supported.
      * For example: `<=, <, >=, >, !=, =, :`. The filter syntax is the same as
      * described in
-     * [Stackdriver's Advanced Logs Filters](/logging/docs/view/advanced_filters).
+     * [Stackdriver's Advanced Logs Filters](https://cloud.google.com/logging/docs/view/advanced_filters).
      * Sample filter "app_engine_http_target: *".
      * Note that using filters might cause fewer queues than the
      * requested_page size to be returned.
