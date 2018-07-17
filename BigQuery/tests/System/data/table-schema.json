@@ -88,6 +88,6 @@
   {
     "mode": "REPEATED",
     "name": "FavoriteNumbers",
-    "type": "INTEGER"
+    "type": "NUMERIC"
   }
 ]

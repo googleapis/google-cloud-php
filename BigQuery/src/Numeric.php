@@ -43,11 +43,12 @@ class Numeric implements ValueInterface
     private $value;
 
     /**
-     * @param string $value The NUMERIC value.
+     * @param string|int|float $value The NUMERIC value.
      * @throws \InvalidArgumentException
      */
     public function __construct($value)
     {
+        $value = (string) $value;
         if (! preg_match('/^-?[0-9]{1,38}(\.[0-9]{1,9})?$/', $value)) {
             throw new \InvalidArgumentException(
                 'Numeric type only allows fixed 38 decimal digits and 9 decimal digits of scale.'

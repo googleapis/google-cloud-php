@@ -52,6 +52,7 @@ class NumericTest extends TestCase
     {
         $numeric = new Numeric($value);
         $this->assertInstanceOf(Numeric::class, $numeric);
+        $this->assertEquals((string) $value, $numeric->get());
     }
 
     public function validValueProvider()
@@ -64,6 +65,8 @@ class NumericTest extends TestCase
                 ['99999999999999999999999999999999999999.999999999'],
                 ['-99999999999999999999999999999999999999.999999999'],
                 ['0.999999999'],
+                [99], // int
+                [99.9] // float
             ];
     }
 
