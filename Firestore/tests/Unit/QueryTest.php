@@ -613,16 +613,19 @@ class QueryTest extends TestCase
         ]);
     }
 
-        public function testPositionWithDocumentSnapshot()
+    public function testPositionWithDocumentSnapshot()
     {
         $c = $this->prophesize(CollectionReference::class);
         $c->name()->willReturn(self::PARENT .'/'. $this->queryFrom()[0]['collectionId']);
+
         $ref = $this->prophesize(DocumentReference::class);
         $ref->name()->willReturn(self::PARENT .'/'. $this->queryFrom()[0]['collectionId'] .'/john');
         $ref->parent()->willReturn($c->reveal());
+
         $snapshot = $this->prophesize(DocumentSnapshot::class);
         $snapshot->name()->willReturn(self::PARENT .'/'. $this->queryFrom()[0]['collectionId'] .'/john');
         $snapshot->reference()->willReturn($ref->reveal());
+
         $this->runAndAssert(function (Query $q) use ($snapshot) {
             return $this->query->startAt($snapshot->reveal());
         }, [
@@ -648,6 +651,7 @@ class QueryTest extends TestCase
             ]
         ]);
     }
+
     /**
      * @expectedException InvalidArgumentException
      */
@@ -656,6 +660,7 @@ class QueryTest extends TestCase
         $snapshot = $this->prophesize(DocumentSnapshot::class);
         $this->query->startAt([$snapshot->reveal()]);
     }
+
     /**
      * @expectedException InvalidArgumentException
      */
@@ -663,18 +668,22 @@ class QueryTest extends TestCase
     {
         $this->query->startAt('foo');
     }
+
     public function testPositionSnapshotOrderBy()
     {
         $c = $this->prophesize(CollectionReference::class);
         $c->name()->willReturn(self::PARENT .'/'. $this->queryFrom()[0]['collectionId']);
+
         $ref = $this->prophesize(DocumentReference::class);
         $ref->name()->willReturn(self::PARENT .'/'. $this->queryFrom()[0]['collectionId'] .'/john');
         $ref->parent()->willReturn($c->reveal());
+
         $snapshot = $this->prophesize(DocumentSnapshot::class);
         $snapshot->name()->willReturn(self::PARENT .'/'. $this->queryFrom()[0]['collectionId'] .'/john');
         $snapshot->reference()->willReturn($ref->reveal());
         $snapshot->get('a')->willReturn('b');
         $snapshot->get('c')->willReturn('d');
+
         $this->runAndAssert(function (Query $q) use ($snapshot) {
             $query = $this->query->orderBy('a')->orderBy('c');
             return $query->startAt($snapshot->reveal());
@@ -713,17 +722,21 @@ class QueryTest extends TestCase
             ]
         ]);
     }
+
     public function testPositionInequalityFilter()
     {
         $c = $this->prophesize(CollectionReference::class);
         $c->name()->willReturn(self::PARENT .'/'. $this->queryFrom()[0]['collectionId']);
+
         $ref = $this->prophesize(DocumentReference::class);
         $ref->name()->willReturn(self::PARENT .'/'. $this->queryFrom()[0]['collectionId'] .'/john');
         $ref->parent()->willReturn($c->reveal());
+
         $snapshot = $this->prophesize(DocumentSnapshot::class);
         $snapshot->name()->willReturn(self::PARENT .'/'. $this->queryFrom()[0]['collectionId'] .'/john');
         $snapshot->reference()->willReturn($ref->reveal());
         $snapshot->get('foo')->willReturn('bar');
+
         $this->runAndAssert(function (Query $q) use ($snapshot) {
             $query = $this->query->where('foo', '>', 'bar');
             return $query->startAt($snapshot->reveal());

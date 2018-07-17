@@ -580,7 +580,7 @@ class Query
     {
         $orderBy = $this->queryKey('orderBy') ?: [];
         if ($fieldValues instanceof DocumentSnapshot) {
-            list ($fieldValues, $orderBy) = $this->snapshotPosition($fieldValues, $orderBy);
+            list($fieldValues, $orderBy) = $this->snapshotPosition($fieldValues, $orderBy);
         } else {
             if (!is_array($fieldValues)) {
                 throw new \InvalidArgumentException(sprintf(
@@ -675,18 +675,18 @@ class Query
      * Build cursors for document snapshots.
      *
      * @param DocumentSnapshot $snapshot The document snapshot
-     * @return array[] A list, where position 0 is fieldValues and position 1 is orderBy.
+     * @param array $orderBy A list of orderBy clauses.
+     * @return array A list, where position 0 is fieldValues and position 1 is orderBy.
      */
     private function snapshotPosition(DocumentSnapshot $snapshot, array $orderBy)
     {
         $appendName = true;
-        $direction = self::DIR_ASCENDING;
-        $fieldValues = [];
-
-        // If the list of orderBy clauses already contains __name__, use it unchanged.
-        $appendName = !(bool) array_filter($orderBy, function ($order) {
-            return $order['field']['fieldPath'] === self::DOCUMENT_ID;
-        });
+        foreach ($orderBy as $order) {
+            if ($order['field']['fieldPath'] === self::DOCUMENT_ID) {
+                $appendName = false;
+                break;
+            }
+        }
 
         if ($appendName) {
             // If there is inequality filter (anything other than equals),
@@ -799,15 +799,15 @@ class Query
      * at execution.
      *
      * @param array $query The incoming query
-     * @return array The final query data,
+     * @return array The final query data
      */
     private function finalQueryPrepare(array $query)
     {
         if (isset($query['where']['compositeFilter']) && count($query['where']['compositeFilter']['filters']) === 1) {
             $filter = $query['where']['compositeFilter']['filters'][0];
-            unset($query['where']);
             $query['where'] = $filter;
         }
+
         return $query;
     }
 }
