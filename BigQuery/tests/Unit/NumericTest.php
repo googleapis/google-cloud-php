@@ -42,6 +42,8 @@ class NumericTest extends TestCase
             ['+9'], // doesn't support + sign
             ['999999999999999999999999999999999999999.999999999'], // to many digits
             ['0.9999999999'], // to many digits of scale
+            ['0.123.123'],
+            ['...']
         ];
     }
 
@@ -66,7 +68,9 @@ class NumericTest extends TestCase
                 ['-99999999999999999999999999999999999999.999999999'],
                 ['0.999999999'],
                 [99], // int
-                [99.9] // float
+                [99.9], // float
+                ['123.'],
+                ['.123']
             ];
     }
 

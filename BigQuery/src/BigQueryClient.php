@@ -698,7 +698,7 @@ class BigQueryClient
      * $numeric = $bigQuery->numeric('99999999999999999999999999999999999999.999999999');
      * ```
      *
-     * @param string $value The Numeric value.
+     * @param string|int|float $value The Numeric value.
      * @return Numeric
      * @throws \InvalidArgumentException
      */

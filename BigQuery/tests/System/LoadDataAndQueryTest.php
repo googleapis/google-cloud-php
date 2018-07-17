@@ -61,7 +61,7 @@ class LoadDataAndQueryTest extends BigQueryTestCase
                 'NextVacation' => self::$client->date(new \DateTime('2020-10-11')),
                 'FavoriteTime' => new \DateTime('1920-01-01 15:15:12')
             ],
-            'FavoriteNumbers' => [new Numeric('10'), new Numeric('11')]
+            'FavoriteNumbers' => [new Numeric('.123'), new Numeric('123.')]
         ];
     }
 

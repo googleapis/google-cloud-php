@@ -36,7 +36,6 @@ namespace Google\Cloud\BigQuery;
  */
 class Numeric implements ValueInterface
 {
-
     /**
      * @var string
      */
@@ -49,7 +48,11 @@ class Numeric implements ValueInterface
     public function __construct($value)
     {
         $value = (string) $value;
-        if (! preg_match('/^-?[0-9]{1,38}(\.[0-9]{1,9})?$/', $value)) {
+        // allow minus sign at the beginning
+        // 38 or less decimal digits (or none)
+        // optional period and 9 or less digits of scale
+        $pattern = '/^-?([0-9]{1,38})?(\.([0-9]{1,9})?)?$/';
+        if (! preg_match($pattern, $value)) {
             throw new \InvalidArgumentException(
                 'Numeric type only allows fixed 38 decimal digits and 9 decimal digits of scale.'
             );
