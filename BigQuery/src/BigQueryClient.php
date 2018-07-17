@@ -684,6 +684,30 @@ class BigQueryClient
     }
 
     /**
+     * Create a Numeric object.
+     *
+     * Numeric represents a value with a data type of
+     * [Numeric](https://cloud.google.com/bigquery/docs/reference/standard-sql/data-types#numeric-type).
+     *
+     * It supports a fixed 38 decimal digits of precision and 9 decimal digits of scale, and values
+     * are in the range of -99999999999999999999999999999.999999999 to
+     * 99999999999999999999999999999.999999999.
+     *
+     * Example:
+     * ```
+     * $numeric = $bigQuery->numeric('99999999999999999999999999999999999999.999999999');
+     * ```
+     *
+     * @param string|int|float $value The Numeric value.
+     * @return Numeric
+     * @throws \InvalidArgumentException
+     */
+    public function numeric($value)
+    {
+        return new Numeric($value);
+    }
+
+    /**
      * Get a service account for the KMS integration.
      *
      * Example:
