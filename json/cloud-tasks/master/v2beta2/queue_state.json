@@ -1,1 +1,1 @@
-{"id":"tasks\/v2beta2\/queue_state","type":"","title":"Google\\Cloud\\Tasks\\V2beta2\\Queue_State","name":"Queue_State","description":"<p>State of the queue.<\/p>\n<p>Protobuf enum <code>Google\\Cloud\\Tasks\\V2beta2\\Queue\\State<\/code><\/p>","examples":[],"resources":[],"methods":[]}
+{"id":"tasks\/v2beta2\/queue_state","type":"","title":"Google\\Cloud\\Tasks\\V2beta2\\Queue_State","name":"Queue_State","description":"<p>This class is deprecated. Use Google\\Cloud\\Tasks\\V2beta2\\Queue\\State instead.<\/p>","examples":[],"resources":[],"methods":[]}
