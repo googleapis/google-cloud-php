@@ -183,8 +183,7 @@ class InstanceTest extends TestCase
             'instanceId' => self::INSTANCE_ID,
             'instance' => [
                 'displayName' => self::INSTANCE_ID,
-                'labels' => [],
-                'type' => null
+                'labels' => []
             ],
             'clusters' => [
                 'my-cluster' => [
@@ -223,8 +222,7 @@ class InstanceTest extends TestCase
             'instanceId' => self::INSTANCE_ID,
             'instance' => [
                 'displayName' => self::INSTANCE_ID,
-                'labels' => [],
-                'type' => null
+                'labels' => []
             ],
             'clusters' => [
                 'my-cluster' => [
@@ -267,8 +265,7 @@ class InstanceTest extends TestCase
             'instanceId' => self::INSTANCE_ID,
             'instance' => [
                 'displayName' => 'My Test Instance',
-                'labels' => [],
-                'type' => null
+                'labels' => []
             ],
             'clusters' => [
                 'my-cluster' => [
@@ -352,8 +349,7 @@ class InstanceTest extends TestCase
             'instanceId' => self::INSTANCE_ID,
             'instance' => [
                 'displayName' => 'My Instance',
-                'labels' => ['foo' => 'bar'],
-                'type' => null
+                'labels' => ['foo' => 'bar']
             ],
             'clusters' => [
                 'my-cluster' => [
@@ -469,5 +465,16 @@ class InstanceTest extends TestCase
         $this->assertEquals($cluster['locationId'], self::LOCATION_ID);
         $this->assertEquals($cluster['defaultStorageType'], Instance::STORAGE_TYPE_HDD);
         $this->assertEquals($cluster['serveNodes'], 3);
+    }
+
+    public function testDelete()
+    {
+        $this->connection->deleteInstance(['name' => self::INSTANCE_NAME])
+            ->shouldBeCalled()
+            ->willReturn([]);
+        $this->instance->___setProperty('connection', $this->connection->reveal());
+
+        $instance = $this->instance->delete();
+        $this->assertEquals([], $instance);
     }
 }

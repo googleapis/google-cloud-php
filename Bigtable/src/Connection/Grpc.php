@@ -163,7 +163,11 @@ class Grpc implements ConnectionInterface
      */
     public function deleteInstance(array $args)
     {
-        throw new \BadMethodCallException('This method is not implemented yet');
+        $name = $this->pluck('name', $args);
+        return $this->send([$this->bigtableInstanceAdminClient, 'deleteInstance'], [
+            $name,
+            $this->addResourcePrefixHeader($args, $name)
+        ]);
     }
 
     /**

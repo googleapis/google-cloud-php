@@ -276,15 +276,32 @@ class Instance
         $operation = $this->connection->createInstance([
             'parent' => $projectName,
             'instanceId' => $this->id,
-            'instance' => [
+            'instance' => $this->arrayFilterRemoveNull([
                 'displayName' => $displayName,
                 'type' => $type,
                 'labels' => $labels
-            ],
+            ]),
             'clusters' => $clustersArray
         ] + $options);
 
         return $this->resumeOperation($operation['name'], $operation);
+    }
+
+    /**
+     * Delete an instance.
+     *
+     * Example:
+     * ```
+     * $instance->delete();
+     * ```
+     *
+     * @return void
+     */
+    public function delete(array $options = [])
+    {
+        return $this->connection->deleteInstance([
+            'name' => $this->name
+        ] + $options);
     }
 
     /**
