@@ -17,6 +17,8 @@
 
 namespace Google\Cloud\Firestore\Tests\System;
 
+use Google\Cloud\Firestore\CollectionReference;
+
 /**
  * @group firestore
  * @group firestore-query
@@ -88,6 +90,31 @@ class QueryTest extends FirestoreTestCase
 
         $res = $this->getQueryRow($this->query->where('foo', '=', NAN));
         $this->assertEquals($res->name(), $doc->name());
+    }
+
+    public function testSnapshotCursors()
+    {
+        $collection = self::$client->collection(uniqid(self::COLLECTION_NAME));
+        self::$localDeletionQueue->add($collection);
+
+        $refs = [];
+        for ($i = 0; $i <= 3; $i++) {
+            $doc = $collection->document($i);
+            $doc->create(['i' => $i]);
+            $refs[] = $doc;
+        }
+
+        $q = $collection->startAt($refs[0]->snapshot());
+        $this->assertCount(count($refs), iterator_to_array($q->documents()));
+
+        $q = $collection->startAfter($refs[0]->snapshot());
+        $this->assertCount(count($refs)-1, iterator_to_array($q->documents()));
+
+        $q = $collection->endBefore(end($refs)->snapshot());
+        $this->assertCount(count($refs)-1, iterator_to_array($q->documents()));
+
+        $q = $collection->endAt(end($refs)->snapshot());
+        $this->assertCount(count($refs), iterator_to_array($q->documents()));
     }
 
     private function insertDoc(array $fields)

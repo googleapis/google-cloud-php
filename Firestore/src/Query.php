@@ -21,6 +21,7 @@ use Google\Cloud\Core\DebugInfoTrait;
 use Google\Cloud\Core\ExponentialBackoff;
 use Google\Cloud\Firestore\Connection\ConnectionInterface;
 use Google\Cloud\Firestore\DocumentSnapshot;
+use Google\Cloud\Firestore\FieldValue;
 use Google\Cloud\Firestore\SnapshotTrait;
 use Google\Cloud\Firestore\V1beta1\StructuredQuery_CompositeFilter_Operator;
 use Google\Cloud\Firestore\V1beta1\StructuredQuery_Direction;
@@ -126,7 +127,10 @@ class Query
         $this->connection = $connection;
         $this->valueMapper = $valueMapper;
         $this->parent = $parent;
-        $this->query = $query;
+        $this->query = $query + [
+            'orderBy' => [],
+            'offset' => 0
+        ];
 
         if (!isset($this->query['from'])) {
             throw new \InvalidArgumentException(
@@ -162,11 +166,12 @@ class Query
             : $maxRetries;
 
         $rows = (new ExponentialBackoff($maxRetries))->execute(function () use ($options) {
-            $generator = $this->connection->runQuery([
+            $query = $this->finalQueryPrepare($this->query);
+            $generator = $this->connection->runQuery($this->arrayFilterRemoveNull([
                 'parent' => $this->parent,
-                'structuredQuery' => $this->query,
+                'structuredQuery' => $query,
                 'retries' => 0
-            ] + $options);
+            ]) + $options);
 
             // cache collection references
             $collections = [];
@@ -270,6 +275,13 @@ class Query
      */
     public function where($fieldPath, $operator, $value)
     {
+        if (FieldValue::isSentinelValue($value)) {
+            throw new \InvalidArgumentException(sprintf(
+                'Value cannot be a `%s` value.',
+                FieldValue::class
+            ));
+        }
+
         $escapedFieldPath = $this->valueMapper->escapeFieldPath($fieldPath);
 
         $operator = array_key_exists($operator, $this->shortOperators)
@@ -338,7 +350,7 @@ class Query
      * @param string $direction The direction to order in. **Defaults to** `ASC`.
      * @return Query A new instance of Query with the given changes applied.
      * @throws \InvalidArgumentException If an invalid direction is given.
-     * @throws \BadMethodCallException If orderBy is called after `startAt()`,
+     * @throws \InvalidArgumentException If orderBy is called after `startAt()`,
      *         `startAfter()`, `endBefore()` or `endAt`().
      */
     public function orderBy($fieldPath, $direction = self::DIR_ASCENDING)
@@ -355,7 +367,7 @@ class Query
         }
 
         if ($this->queryHas('startAt') || $this->queryHas('endAt')) {
-            throw new \BadMethodCallException(
+            throw new \InvalidArgumentException(
                 'Cannot specify an orderBy constraint after calling any of ' .
                 '`startAt()`, `startAfter()`, `endBefore()` or `endAt`().'
             );
@@ -433,14 +445,14 @@ class Query
      * $users18YearsOrOlder = $query->documents();
      * ```
      *
-     * @param array $fieldValues A list of values defining the query starting point.
+     * @param mixed[]|DocumentSnapshot $fieldValues A list of values, or an
+     *        instance of {@see Google\Cloud\Firestore\DocumentSnapshot}
+     *        defining the query starting point.
      * @return Query A new instance of Query with the given changes applied.
      */
-    public function startAt(array $fieldValues)
+    public function startAt($fieldValues)
     {
-        return $this->newQuery([
-            'startAt' => $this->buildPosition($fieldValues, true)
-        ], true);
+        return $this->buildPosition('startAt', $fieldValues, true);
     }
 
     /**
@@ -461,14 +473,14 @@ class Query
      * $users18YearsOrOlder = $query->documents();
      * ```
      *
-     * @param array $fieldValues A list of values defining the query starting point.
+     * @param mixed[]|DocumentSnapshot $fieldValues A list of values, or an
+     *        instance of {@see Google\Cloud\Firestore\DocumentSnapshot}
+     *        defining the query starting point.
      * @return Query A new instance of Query with the given changes applied.
      */
-    public function startAfter(array $fieldValues)
+    public function startAfter($fieldValues)
     {
-        return $this->newQuery([
-            'startAt' => $this->buildPosition($fieldValues, false)
-        ], true);
+        return $this->buildPosition('startAt', $fieldValues, false);
     }
 
     /**
@@ -489,14 +501,14 @@ class Query
      * $usersYoungerThan18 = $query->documents();
      * ```
      *
-     * @param array $fieldValues A list of values defining the query end point.
+     * @param mixed[]|DocumentSnapshot $fieldValues A list of values, or an
+     *        instance of {@see Google\Cloud\Firestore\DocumentSnapshot}
+     *        defining the query end point.
      * @return Query A new instance of Query with the given changes applied.
      */
-    public function endBefore(array $fieldValues)
+    public function endBefore($fieldValues)
     {
-        return $this->newQuery([
-            'endAt' => $this->buildPosition($fieldValues, true)
-        ], true);
+        return $this->buildPosition('endAt', $fieldValues, true);
     }
 
     /**
@@ -517,82 +529,14 @@ class Query
      * $usersYoungerThan18 = $query->documents();
      * ```
      *
-     * @param array $fieldValues A list of values defining the query end point.
+     * @param mixed[]|DocumentSnapshot $fieldValues A list of values, or an
+     *        instance of {@see Google\Cloud\Firestore\DocumentSnapshot}
+     *        defining the query end point.
      * @return Query A new instance of Query with the given changes applied.
      */
-    public function endAt(array $fieldValues)
+    public function endAt($fieldValues)
     {
-        return $this->newQuery([
-            'endAt' => $this->buildPosition($fieldValues, false)
-        ], true);
-    }
-
-    /**
-     * Builds a Firestore query position.
-     *
-     * @param array $fieldValues The set of field values to use as the query boundary.
-     * @param bool $before Whether the query boundary lies just before or after
-     *        the provided data.
-     * @return array
-     */
-    private function buildPosition(array $fieldValues, $before)
-    {
-        if (!$this->queryHas('orderBy') || count($fieldValues) > count($this->query['orderBy'])) {
-            throw new \BadMethodCallException(
-                'Too many cursor values specified. The specified values must ' .
-                'match the `orderBy` constraints of the query.'
-            );
-        }
-
-        $order = $this->query['orderBy'];
-        foreach ($fieldValues as $i => &$value) {
-            if ($order[$i]['field']['fieldPath'] === self::DOCUMENT_ID) {
-                $collection = $this->childPath(
-                    $this->parent,
-                    $this->query['from'][0]['collectionId']
-                );
-
-                if (is_string($value)) {
-                    $c = new CollectionReference(
-                        $this->connection,
-                        $this->valueMapper,
-                        $collection
-                    );
-
-                    $value = new DocumentReference(
-                        $this->connection,
-                        $this->valueMapper,
-                        $c,
-                        $this->childPath($collection, $value)
-                    );
-                } elseif ($value instanceof DocumentReference) {
-                    $name = $value->name();
-                    if (!$this->isPrefixOf($collection, $name)) {
-                        throw new \BadMethodCallException(sprintf(
-                            '%s is not a part of the query result set and ' .
-                            'cannot be used as a query boundary',
-                            $name
-                        ));
-                    }
-                } else {
-                    throw new \BadMethodCallException(
-                        'The corresponding value for DOCUMENT_ID must be a ' .
-                        'string or a DocumentReference.'
-                    );
-                }
-
-                if ($value->parent()->name() !== $collection) {
-                    throw new \BadMethodCallException(
-                        'Only direct children may be used as query boundaries.'
-                    );
-                }
-            }
-        }
-
-        return [
-            'before' => $before,
-            'values' => $this->valueMapper->encodeValues($fieldValues)
-        ];
+        return $this->buildPosition('endAt', $fieldValues, false);
     }
 
     /**
@@ -600,10 +544,223 @@ class Query
      *
      * @param string $key The constraint name.
      * @return bool
+     * @access private
      */
-    private function queryHas($key)
+    public function queryHas($key)
     {
         return isset($this->query[$key]);
+    }
+
+    /**
+     * Get the constraint data from the current query.
+     *
+     * @param string $key The constraint name
+     * @return mixed
+     * @access private
+     */
+    public function queryKey($key)
+    {
+        return $this->queryHas($key)
+            ? $this->query[$key]
+            : null;
+    }
+
+    /**
+     * Builds a Firestore query position.
+     *
+     * @param string $key The query key.
+     * @param mixed[]|DocumentSnapshot $fieldValues An array of values, or an
+     *        instance of {@see Google\Cloud\Firestore\DocumentSnapshot}
+     *        to use as the query boundary.
+     * @param bool $before Whether the query boundary lies just before or after
+     *        the provided data.
+     * @return array
+     */
+    private function buildPosition($key, $fieldValues, $before)
+    {
+        $orderBy = $this->queryKey('orderBy') ?: [];
+        if ($fieldValues instanceof DocumentSnapshot) {
+            list($fieldValues, $orderBy) = $this->snapshotPosition($fieldValues, $orderBy);
+        } else {
+            if (!is_array($fieldValues)) {
+                throw new \InvalidArgumentException(sprintf(
+                    'Field values must be an array or an instance of `%s`.',
+                    DocumentSnapshot::class
+                ));
+            }
+
+            foreach ($fieldValues as $value) {
+                if ($value instanceof DocumentSnapshot) {
+                    throw new \InvalidArgumentException(sprintf(
+                        'Instances of `%` are not allowed in an array of field values. ' .
+                        'Provide it as the method argument instead.',
+                        DocumentSnapshot::class
+                    ));
+                }
+                if (FieldValue::isSentinelValue($value)) {
+                    throw new \InvalidArgumentException(sprintf(
+                        'Value cannot be a `%s` value.',
+                        FieldValue::class
+                    ));
+                }
+            }
+        }
+
+        if (count($fieldValues) > count($orderBy)) {
+            throw new \InvalidArgumentException(
+                'Too many cursor values specified. The specified values must ' .
+                'match the `orderBy` constraints of the query.'
+            );
+        }
+
+        foreach ($fieldValues as $i => &$value) {
+            if ($orderBy[$i]['field']['fieldPath'] === self::DOCUMENT_ID) {
+                $collection = $this->childPath(
+                    $this->parent,
+                    $this->query['from'][0]['collectionId']
+                );
+
+                if (is_string($value)) {
+                    $parent = new CollectionReference(
+                        $this->connection,
+                        $this->valueMapper,
+                        $collection
+                    );
+
+                    $name = $this->childPath($collection, $value);
+                    $value = new DocumentReference(
+                        $this->connection,
+                        $this->valueMapper,
+                        $parent,
+                        $name
+                    );
+                } else {
+                    if ($value instanceof DocumentReference) {
+                        $name = $value->name();
+                        $parent = $value->parent()->name();
+                    } else {
+                        throw new \InvalidArgumentException(
+                            'The corresponding value for DOCUMENT_ID must be a ' .
+                            'string or a DocumentReference.'
+                        );
+                    }
+
+                    if (!$this->isPrefixOf($collection, $name)) {
+                        throw new \InvalidArgumentException(sprintf(
+                            '%s is not a part of the query result set and ' .
+                            'cannot be used as a query boundary',
+                            $name
+                        ));
+                    }
+
+                    if ($parent !== $collection) {
+                        throw new \InvalidArgumentException(
+                            'Only direct children may be used as query boundaries.'
+                        );
+                    }
+                }
+            }
+        }
+
+        return $this->newQuery([
+            $key => [
+                'before' => $before,
+                'values' => $this->valueMapper->encodeValues($fieldValues)
+            ],
+            'orderBy' => $orderBy
+        ], true);
+    }
+
+    /**
+     * Build cursors for document snapshots.
+     *
+     * @param DocumentSnapshot $snapshot The document snapshot
+     * @param array $orderBy A list of orderBy clauses.
+     * @return array A list, where position 0 is fieldValues and position 1 is orderBy.
+     */
+    private function snapshotPosition(DocumentSnapshot $snapshot, array $orderBy)
+    {
+        $appendName = true;
+        foreach ($orderBy as $order) {
+            if ($order['field']['fieldPath'] === self::DOCUMENT_ID) {
+                $appendName = false;
+                break;
+            }
+        }
+
+        if ($appendName) {
+            // If there is inequality filter (anything other than equals),
+            // append orderBy(the last inequality filter’s path, ascending).
+            if (!$orderBy && $this->queryHas('where')) {
+                $filters = $this->query['where']['compositeFilter']['filters'];
+                $inequality = array_filter($filters, function ($filter) {
+                    $type = array_keys($filter)[0];
+                    return $filter[$type]['op'] !== self::OP_EQUAL;
+                });
+
+                if ($inequality) {
+                    $filter = end($inequality);
+                    $type = array_keys($filter)[0];
+                    $orderBy[] = [
+                        'field' => [
+                            'fieldPath' => $filter[$type]['field']['fieldPath'],
+                        ],
+                        'direction' => self::DIR_ASCENDING
+                    ];
+                }
+            }
+
+            // If the query has existing orderBy constraints
+            if ($orderBy) {
+                // Append orderBy(__name__, direction of last orderBy clause)
+                $lastOrderDirection = end($orderBy)['direction'];
+                $orderBy[] = [
+                    'field' => [
+                        'fieldPath' => self::DOCUMENT_ID
+                    ],
+                    'direction' => $lastOrderDirection
+                ];
+            } else {
+                // no existing orderBy constraints
+                // Otherwise append orderBy(__name__, ‘asc’)
+                $orderBy[] = [
+                    'field' => [
+                        'fieldPath' => self::DOCUMENT_ID
+                    ],
+                    'direction' => self::DIR_ASCENDING
+                ];
+            }
+        }
+
+        $fieldValues = $this->snapshotCursorValues($snapshot, $orderBy);
+
+        return [
+            $fieldValues,
+            $orderBy
+        ];
+    }
+
+    /**
+     * Determine field values for Document Snapshot cursors.
+     *
+     * @param DocumentSnapshot $snapshot
+     * @param array $orderBy
+     * @return $fieldValues
+     */
+    private function snapshotCursorValues(DocumentSnapshot $snapshot, array $orderBy)
+    {
+        $fieldValues = [];
+        foreach ($orderBy as $order) {
+            $path = $order['field']['fieldPath'];
+            if ($path === self::DOCUMENT_ID) {
+                continue;
+            }
+
+            $fieldValues[] = $snapshot->get($path);
+        }
+
+        $fieldValues[] = $snapshot->reference();
+        return $fieldValues;
     }
 
     /**
@@ -633,5 +790,24 @@ class Query
             $this->parent,
             $query
         );
+    }
+
+    /**
+     * Clean up the query array before sending.
+     *
+     * Some optimizations cannot be performed ahead of time and must be done
+     * at execution.
+     *
+     * @param array $query The incoming query
+     * @return array The final query data
+     */
+    private function finalQueryPrepare(array $query)
+    {
+        if (isset($query['where']['compositeFilter']) && count($query['where']['compositeFilter']['filters']) === 1) {
+            $filter = $query['where']['compositeFilter']['filters'][0];
+            $query['where'] = $filter;
+        }
+
+        return $query;
     }
 }

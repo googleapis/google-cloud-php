@@ -429,7 +429,7 @@ class ValueMapper
             return ['geoPointValue' => $value->point()];
         }
 
-        if ($value instanceof DocumentReference) {
+        if ($value instanceof DocumentReference || $value instanceof DocumentSnapshot) {
             return ['referenceValue' => $value->name()];
         }
 
