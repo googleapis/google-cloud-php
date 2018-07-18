@@ -31,13 +31,11 @@ class InstanceTest extends BigtableSystemTestCase
     const CLUSTER_ID = 'google-cloud-php-system-tests-cluster';
     const LOCATION_ID = 'us-east1-b';
 
+    /**
+     * @todo Implement test after LRO is implemented
+     */
     public function testInstance()
     {
-        $client = self::$client;
-
-        $instance = $client->instance(self::INSTANCE_ID);
-        $op = $instance->create([Instance::buildClusterMetadata(self::CLUSTER_ID, self::LOCATION_ID, null, 3)]);
-        $this->assertInstanceOf(LongRunningOperation::class, $op);
-        $instance->delete();
+        $this->markTestSkipped('Waiting on LRO to be implemented.');
     }
 }

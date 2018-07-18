@@ -182,7 +182,8 @@ class InstanceTest extends TestCase
             'parent' => self::PROJECT_NAME,
             'instanceId' => self::INSTANCE_ID,
             'instance' => [
-                'displayName' => self::INSTANCE_ID
+                'displayName' => self::INSTANCE_ID,
+                'labels' => []
             ],
             'clusters' => [
                 'my-cluster' => [
@@ -220,7 +221,8 @@ class InstanceTest extends TestCase
             'parent' => self::PROJECT_NAME,
             'instanceId' => self::INSTANCE_ID,
             'instance' => [
-                'displayName' => self::INSTANCE_ID
+                'displayName' => self::INSTANCE_ID,
+                'labels' => []
             ],
             'clusters' => [
                 'my-cluster' => [
@@ -262,7 +264,8 @@ class InstanceTest extends TestCase
             'parent' => self::PROJECT_NAME,
             'instanceId' => self::INSTANCE_ID,
             'instance' => [
-                'displayName' => 'My Test Instance'
+                'displayName' => 'My Test Instance',
+                'labels' => []
             ],
             'clusters' => [
                 'my-cluster' => [

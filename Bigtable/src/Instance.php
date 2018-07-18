@@ -273,17 +273,14 @@ class Instance
             // `$clustersArray` must be keyed by the cluster ID.
             $clustersArray[$clusterId] = $value;
         }
-        $info = ['displayName' => $displayName ];
-        if ($type != null) {
-            $info['type'] = $type;
-        }
-        if ($labels != null) {
-            $info['labels'] = $labels;
-        }
         $operation = $this->connection->createInstance([
             'parent' => $projectName,
             'instanceId' => $this->id,
-            'instance' => $info,
+            'instance' => $this->arrayFilterRemoveNull([
+                'displayName' => $displayName,
+                'type' => $type,
+                'labels' => $labels
+            ]),
             'clusters' => $clustersArray
         ] + $options);
 
@@ -298,13 +295,13 @@ class Instance
      * $instance->delete();
      * ```
      *
-     * @return array
+     * @return void
      */
-    public function delete()
+    public function delete(array $options = [])
     {
         return $this->connection->deleteInstance([
             'name' => $this->name
-        ]);
+        ] + $options);
     }
 
     /**
