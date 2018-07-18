@@ -5,6 +5,7 @@ jobs:
     - php: 7.2
       install:
         - pecl install grpc || echo 'Failed to install grpc'
+        - pecl install protobuf || echo 'Failed to install protobuf'
         - pecl install stackdriver_debugger-alpha || echo 'Failed to install stackdriver_debugger'
         - composer self-update
         - travis_retry composer install
