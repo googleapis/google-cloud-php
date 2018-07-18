@@ -29,9 +29,18 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-require_once __DIR__ . '/../vendor/autoload.php';
+
+$loader = require_once __DIR__ . '/../vendor/autoload.php';
+
+use Google\ApiCore\Testing\MessageAwareArrayComparator;
+use Google\ApiCore\Testing\ProtobufMessageComparator;
+use Google\ApiCore\Testing\ProtobufGPBEmptyComparator;
 
 date_default_timezone_set('UTC');
 ini_set('error_reporting', E_ALL);
 ini_set('display_errors', '1');
 ini_set('display_startup_errors', '1');
+
+\SebastianBergmann\Comparator\Factory::getInstance()->register(new MessageAwareArrayComparator());
+\SebastianBergmann\Comparator\Factory::getInstance()->register(new ProtobufMessageComparator());
+\SebastianBergmann\Comparator\Factory::getInstance()->register(new ProtobufGPBEmptyComparator());
