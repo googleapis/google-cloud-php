@@ -18,7 +18,6 @@
 namespace Google\Cloud\Vision\Tests\Unit\V1;
 
 use Google\ApiCore\Call;
-use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\Cloud\Vision\V1\AnnotateImageRequest;
 use Google\Cloud\Vision\V1\AnnotateImageResponse;
@@ -39,7 +38,7 @@ use PHPUnit\Framework\TestCase;
  * @group vision
  * @group gapic
  */
-class ImageAnnotatorClientExtensionTest extends GeneratedTest
+class ImageAnnotatorClientExtensionTest extends TestCase
 {
     use VisionHelpersTrait;
 
