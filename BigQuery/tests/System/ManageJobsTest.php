@@ -59,8 +59,8 @@ class ManageJobsTest extends BigQueryTestCase
         $jobId = $job->id();
         $creationTime = $info['statistics']['creationTime'];
         $jobs = self::$client->jobs([
-            'maxCreationTime' => $creationTime + 1000,
-            'minCreationTime' => $creationTime - 1000,
+            'maxCreationTime' => $creationTime + 1,
+            'minCreationTime' => $creationTime - 1,
         ]);
         $job = null;
 
