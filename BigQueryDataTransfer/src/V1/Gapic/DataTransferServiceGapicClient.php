@@ -1038,7 +1038,7 @@ class DataTransferServiceGapicClient
      *          there are additional values to be retrieved.
      *     @type int $runAttempt
      *          Indicates how run attempts are to be pulled.
-     *          For allowed values, use constants defined on {@see \Google\Cloud\BigQuery\DataTransfer\V1\ListTransferRunsRequest_RunAttempt}
+     *          For allowed values, use constants defined on {@see \Google\Cloud\BigQuery\DataTransfer\V1\ListTransferRunsRequest\RunAttempt}
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array

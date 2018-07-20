@@ -12,5 +12,5 @@ if (false) {
     class DataSource_DataRefreshType {}
 }
 class_exists(DataSource\DataRefreshType::class);
-@trigger_error('Google\Cloud\BigQuery\DataTransfer\V1\DataSource_DataRefreshType is deprecated and will be removed in the next major release. Use Google\Cloud\BigQuery\DataTransfer\V1\DataSource\DataRefreshType instead', E_USER_DEPRECATED);
+@trigger_error('Google\Cloud\BigQuery\DataTransfer\V1\DataSource_DataRefreshType is deprecated and will be removed in a future release. Use Google\Cloud\BigQuery\DataTransfer\V1\DataSource\DataRefreshType instead', E_USER_DEPRECATED);
 
