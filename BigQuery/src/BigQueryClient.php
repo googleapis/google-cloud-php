@@ -442,6 +442,10 @@ class BigQueryClient
      *           resume the loading of results from a specific point.
      *     @type string $stateFilter Filter for job state. Maybe be either
      *           `done`, `pending`, or `running`.
+     *     @type int $maxCreationTime Milliseconds since the POSIX epoch. If set, only jobs created
+     *           before or at this timestamp are returned.
+     *     @type int $minCreationTime Milliseconds since the POSIX epoch. If set, only jobs created
+     *           after or at this timestamp are returned.
      * }
      * @return ItemIterator<Job>
      */

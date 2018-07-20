@@ -47,6 +47,33 @@ class ManageJobsTest extends BigQueryTestCase
         return $job;
     }
 
+    public function testListJobsWithTimeFilter()
+    {
+        $query = self::$client->query(sprintf(
+            'SELECT * FROM [%s.%s]',
+            self::$dataset->id(),
+            self::$table->id()
+        ));
+        $job = self::$client->startQuery($query);
+        $info = $job->info();
+        $jobId = $job->id();
+        $creationTime = $info['statistics']['creationTime'];
+        $jobs = self::$client->jobs([
+            'maxCreationTime' => $creationTime + 1000,
+            'minCreationTime' => $creationTime - 1000,
+        ]);
+        $job = null;
+
+        // break early to prevent subsequent requests
+        foreach ($jobs as $j) {
+            $job = $j;
+            break;
+        }
+
+        $this->assertInstanceOf(Job::class, $job);
+        $this->assertEquals($jobId, $job->id());
+    }
+
     /**
      * @depends testListJobs
      */

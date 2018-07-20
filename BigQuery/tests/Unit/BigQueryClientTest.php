@@ -257,6 +257,31 @@ class BigQueryClientTest extends TestCase
         $this->assertEquals(self::JOB_ID, $job[1]->id());
     }
 
+    public function testGetsJobsWithTimeFilter()
+    {
+        $client = $this->getClient();
+        $now = round(microtime(true) * 1000);
+        $max = $now + 1000;
+        $min = $now - 1000;
+        $token = 'token';
+        $this->connection->listJobs([
+            'projectId' => self::PROJECT_ID,
+            'maxCreationTime' => $max,
+            'minCreationTime' => $min
+        ])->willReturn([
+            'jobs' => [
+                ['jobReference' => ['jobId' => self::JOB_ID]]
+            ]
+        ])->shouldBeCalledTimes(1);
+        $client->___setProperty('connection', $this->connection->reveal());
+        $job = iterator_to_array($client->jobs([
+            'minCreationTime' => $min,
+            'maxCreationTime' => $max,
+        ]));
+
+        $this->assertEquals(self::JOB_ID, $job[0]->id());
+    }
+
     public function testGetsDataset()
     {
         $client = $this->getClient();
