@@ -23,9 +23,20 @@ class GetDataSourceRequest extends \Google\Protobuf\Internal\Message
      */
     private $name = '';
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $name
+     *           The field will contain name of the resource requested, for example:
+     *           `projects/{project_id}/dataSources/{data_source_id}`
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Bigquery\Datatransfer\V1\Datatransfer::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

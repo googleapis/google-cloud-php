@@ -39,9 +39,28 @@ class ListDataSourcesRequest extends \Google\Protobuf\Internal\Message
      */
     private $page_size = 0;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $parent
+     *           The BigQuery project id for which data sources should be returned.
+     *           Must be in the form: `projects/{project_id}`
+     *     @type string $page_token
+     *           Pagination token, which can be used to request a specific page
+     *           of `ListDataSourcesRequest` list results. For multiple-page
+     *           results, `ListDataSourcesResponse` outputs
+     *           a `next_page` token, which can be used as the
+     *           `page_token` value to request the next page of list results.
+     *     @type int $page_size
+     *           Page size. The default page size is the maximum value of 1000 results.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Bigquery\Datatransfer\V1\Datatransfer::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

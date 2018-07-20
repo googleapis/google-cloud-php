@@ -4,24 +4,13 @@
 
 namespace Google\Cloud\BigQuery\DataTransfer\V1;
 
-/**
- * Represents which runs should be pulled.
- *
- * Protobuf enum <code>Google\Cloud\Bigquery\Datatransfer\V1\ListTransferRunsRequest\RunAttempt</code>
- */
-class ListTransferRunsRequest_RunAttempt
-{
+if (false) {
     /**
-     * All runs should be returned.
-     *
-     * Generated from protobuf enum <code>RUN_ATTEMPT_UNSPECIFIED = 0;</code>
+     * This class is deprecated. Use Google\Cloud\BigQuery\DataTransfer\V1\ListTransferRunsRequest\RunAttempt instead.
+     * @deprecated
      */
-    const RUN_ATTEMPT_UNSPECIFIED = 0;
-    /**
-     * Only latest run per day should be returned.
-     *
-     * Generated from protobuf enum <code>LATEST = 1;</code>
-     */
-    const LATEST = 1;
+    class ListTransferRunsRequest_RunAttempt {}
 }
+class_exists(ListTransferRunsRequest\RunAttempt::class);
+@trigger_error('Google\Cloud\BigQuery\DataTransfer\V1\ListTransferRunsRequest_RunAttempt is deprecated and will be removed in the next major release. Use Google\Cloud\BigQuery\DataTransfer\V1\ListTransferRunsRequest\RunAttempt instead', E_USER_DEPRECATED);
 

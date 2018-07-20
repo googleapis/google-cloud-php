@@ -31,6 +31,7 @@ use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\FetchAuthTokenInterface;
 use Google\ApiCore\GapicClientTrait;
 use Google\ApiCore\PathTemplate;
+use Google\ApiCore\RequestParamsHeaderDescriptor;
 use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
@@ -401,6 +402,13 @@ class DataTransferServiceGapicClient
         $request = new GetDataSourceRequest();
         $request->setName($name);
 
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'name' => $request->getName(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
         return $this->startCall(
             'GetDataSource',
             DataSource::class,
@@ -473,6 +481,13 @@ class DataTransferServiceGapicClient
             $request->setPageSize($optionalArgs['pageSize']);
         }
 
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'parent' => $request->getParent(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
         return $this->getPagedListResponse(
             'ListDataSources',
             $optionalArgs,
@@ -542,6 +557,13 @@ class DataTransferServiceGapicClient
             $request->setAuthorizationCode($optionalArgs['authorizationCode']);
         }
 
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'parent' => $request->getParent(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
         return $this->startCall(
             'CreateTransferConfig',
             TransferConfig::class,
@@ -609,6 +631,13 @@ class DataTransferServiceGapicClient
             $request->setAuthorizationCode($optionalArgs['authorizationCode']);
         }
 
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'transfer_config.name' => $request->getTransferConfig()->getName(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
         return $this->startCall(
             'UpdateTransferConfig',
             TransferConfig::class,
@@ -651,6 +680,13 @@ class DataTransferServiceGapicClient
     {
         $request = new DeleteTransferConfigRequest();
         $request->setName($name);
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'name' => $request->getName(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
 
         return $this->startCall(
             'DeleteTransferConfig',
@@ -695,6 +731,13 @@ class DataTransferServiceGapicClient
     {
         $request = new GetTransferConfigRequest();
         $request->setName($name);
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'name' => $request->getName(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
 
         return $this->startCall(
             'GetTransferConfig',
@@ -772,6 +815,13 @@ class DataTransferServiceGapicClient
             $request->setPageSize($optionalArgs['pageSize']);
         }
 
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'parent' => $request->getParent(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
         return $this->getPagedListResponse(
             'ListTransferConfigs',
             $optionalArgs,
@@ -827,6 +877,13 @@ class DataTransferServiceGapicClient
         $request->setStartTime($startTime);
         $request->setEndTime($endTime);
 
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'parent' => $request->getParent(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
         return $this->startCall(
             'ScheduleTransferRuns',
             ScheduleTransferRunsResponse::class,
@@ -871,6 +928,13 @@ class DataTransferServiceGapicClient
         $request = new GetTransferRunRequest();
         $request->setName($name);
 
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'name' => $request->getName(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
         return $this->startCall(
             'GetTransferRun',
             TransferRun::class,
@@ -912,6 +976,13 @@ class DataTransferServiceGapicClient
     {
         $request = new DeleteTransferRunRequest();
         $request->setName($name);
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'name' => $request->getName(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
 
         return $this->startCall(
             'DeleteTransferRun',
@@ -997,6 +1068,13 @@ class DataTransferServiceGapicClient
             $request->setRunAttempt($optionalArgs['runAttempt']);
         }
 
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'parent' => $request->getParent(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
         return $this->getPagedListResponse(
             'ListTransferRuns',
             $optionalArgs,
@@ -1075,6 +1153,13 @@ class DataTransferServiceGapicClient
             $request->setMessageTypes($optionalArgs['messageTypes']);
         }
 
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'parent' => $request->getParent(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
         return $this->getPagedListResponse(
             'ListTransferLogs',
             $optionalArgs,
@@ -1123,6 +1208,13 @@ class DataTransferServiceGapicClient
     {
         $request = new CheckValidCredsRequest();
         $request->setName($name);
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'name' => $request->getName(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
 
         return $this->startCall(
             'CheckValidCreds',
