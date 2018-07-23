@@ -125,9 +125,69 @@ class TransferConfig extends \Google\Protobuf\Internal\Message
      */
     private $dataset_region = '';
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $name
+     *           The resource name of the transfer config.
+     *           Transfer config names have the form
+     *           `projects/{project_id}/transferConfigs/{config_id}`.
+     *           Where `config_id` is usually a uuid, even though it is not
+     *           guaranteed or required. The name is ignored when creating a transfer
+     *           config.
+     *     @type string $destination_dataset_id
+     *           The BigQuery target dataset id.
+     *     @type string $display_name
+     *           User specified display name for the data transfer.
+     *     @type string $data_source_id
+     *           Data source id. Cannot be changed once data transfer is created.
+     *     @type \Google\Protobuf\Struct $params
+     *           Data transfer specific parameters.
+     *     @type string $schedule
+     *           Data transfer schedule.
+     *           If the data source does not support a custom schedule, this should be
+     *           empty. If it is empty, the default value for the data source will be
+     *           used.
+     *           The specified times are in UTC.
+     *           Examples of valid format:
+     *           `1st,3rd monday of month 15:30`,
+     *           `every wed,fri of jan,jun 13:15`, and
+     *           `first sunday of quarter 00:00`.
+     *           See more explanation about the format here:
+     *           https://cloud.google.com/appengine/docs/flexible/python/scheduling-jobs-with-cron-yaml#the_schedule_format
+     *           NOTE: the granularity should be at least 8 hours, or less frequent.
+     *     @type int $data_refresh_window_days
+     *           The number of days to look back to automatically refresh the data.
+     *           For example, if `data_refresh_window_days = 10`, then every day
+     *           BigQuery reingests data for [today-10, today-1], rather than ingesting data
+     *           for just [today-1].
+     *           Only valid if the data source supports the feature. Set the value to  0
+     *           to use the default value.
+     *     @type bool $disabled
+     *           Is this config disabled. When set to true, no runs are scheduled
+     *           for a given transfer.
+     *     @type \Google\Protobuf\Timestamp $update_time
+     *           Output only. Data transfer modification time. Ignored by server on input.
+     *     @type \Google\Protobuf\Timestamp $next_run_time
+     *           Output only. Next time when data transfer will run.
+     *     @type int $state
+     *           Output only. State of the most recently updated transfer run.
+     *     @type int|string $user_id
+     *           Output only. Unique ID of the user on whose behalf transfer is done.
+     *           Applicable only to data sources that do not support service accounts.
+     *           When set to 0, the data source service account credentials are used.
+     *           May be negative. Note, that this identifier is not stable.
+     *           It may change over time even for the same user.
+     *     @type string $dataset_region
+     *           Output only. Region in which BigQuery dataset is located.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Bigquery\Datatransfer\V1\Transfer::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

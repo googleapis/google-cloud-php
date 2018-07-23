@@ -4,55 +4,13 @@
 
 namespace Google\Cloud\BigQuery\DataTransfer\V1;
 
-/**
- * Parameter type.
- *
- * Protobuf enum <code>Google\Cloud\Bigquery\Datatransfer\V1\DataSourceParameter\Type</code>
- */
-class DataSourceParameter_Type
-{
+if (false) {
     /**
-     * Type unspecified.
-     *
-     * Generated from protobuf enum <code>TYPE_UNSPECIFIED = 0;</code>
+     * This class is deprecated. Use Google\Cloud\BigQuery\DataTransfer\V1\DataSourceParameter\Type instead.
+     * @deprecated
      */
-    const TYPE_UNSPECIFIED = 0;
-    /**
-     * String parameter.
-     *
-     * Generated from protobuf enum <code>STRING = 1;</code>
-     */
-    const STRING = 1;
-    /**
-     * Integer parameter (64-bits).
-     * Will be serialized to json as string.
-     *
-     * Generated from protobuf enum <code>INTEGER = 2;</code>
-     */
-    const INTEGER = 2;
-    /**
-     * Double precision floating point parameter.
-     *
-     * Generated from protobuf enum <code>DOUBLE = 3;</code>
-     */
-    const DOUBLE = 3;
-    /**
-     * Boolean parameter.
-     *
-     * Generated from protobuf enum <code>BOOLEAN = 4;</code>
-     */
-    const BOOLEAN = 4;
-    /**
-     * Record parameter.
-     *
-     * Generated from protobuf enum <code>RECORD = 5;</code>
-     */
-    const RECORD = 5;
-    /**
-     * Page ID for a Google+ Page.
-     *
-     * Generated from protobuf enum <code>PLUS_PAGE = 6;</code>
-     */
-    const PLUS_PAGE = 6;
+    class DataSourceParameter_Type {}
 }
+class_exists(DataSourceParameter\Type::class);
+@trigger_error('Google\Cloud\BigQuery\DataTransfer\V1\DataSourceParameter_Type is deprecated and will be removed in a future release. Use Google\Cloud\BigQuery\DataTransfer\V1\DataSourceParameter\Type instead', E_USER_DEPRECATED);
 

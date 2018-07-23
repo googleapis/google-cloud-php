@@ -37,9 +37,26 @@ class ScheduleTransferRunsRequest extends \Google\Protobuf\Internal\Message
      */
     private $end_time = null;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $parent
+     *           Transfer configuration name in the form:
+     *           `projects/{project_id}/transferConfigs/{config_id}`.
+     *     @type \Google\Protobuf\Timestamp $start_time
+     *           Start time of the range of transfer runs. For example,
+     *           `"2017-05-25T00:00:00+00:00"`.
+     *     @type \Google\Protobuf\Timestamp $end_time
+     *           End time of the range of transfer runs. For example,
+     *           `"2017-05-30T00:00:00+00:00"`.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Bigquery\Datatransfer\V1\Datatransfer::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

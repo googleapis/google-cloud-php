@@ -22,9 +22,19 @@ class CheckValidCredsResponse extends \Google\Protobuf\Internal\Message
      */
     private $has_valid_creds = false;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type bool $has_valid_creds
+     *           If set to `true`, the credentials exist and are valid.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Bigquery\Datatransfer\V1\Datatransfer::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

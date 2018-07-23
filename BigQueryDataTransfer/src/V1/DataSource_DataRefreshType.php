@@ -4,34 +4,13 @@
 
 namespace Google\Cloud\BigQuery\DataTransfer\V1;
 
-/**
- * Represents how the data source supports data auto refresh.
- *
- * Protobuf enum <code>Google\Cloud\Bigquery\Datatransfer\V1\DataSource\DataRefreshType</code>
- */
-class DataSource_DataRefreshType
-{
+if (false) {
     /**
-     * The data source won't support data auto refresh, which is default value.
-     *
-     * Generated from protobuf enum <code>DATA_REFRESH_TYPE_UNSPECIFIED = 0;</code>
+     * This class is deprecated. Use Google\Cloud\BigQuery\DataTransfer\V1\DataSource\DataRefreshType instead.
+     * @deprecated
      */
-    const DATA_REFRESH_TYPE_UNSPECIFIED = 0;
-    /**
-     * The data source supports data auto refresh, and runs will be scheduled
-     * for the past few days. Does not allow custom values to be set for each
-     * transfer config.
-     *
-     * Generated from protobuf enum <code>SLIDING_WINDOW = 1;</code>
-     */
-    const SLIDING_WINDOW = 1;
-    /**
-     * The data source supports data auto refresh, and runs will be scheduled
-     * for the past few days. Allows custom values to be set for each transfer
-     * config.
-     *
-     * Generated from protobuf enum <code>CUSTOM_SLIDING_WINDOW = 2;</code>
-     */
-    const CUSTOM_SLIDING_WINDOW = 2;
+    class DataSource_DataRefreshType {}
 }
+class_exists(DataSource\DataRefreshType::class);
+@trigger_error('Google\Cloud\BigQuery\DataTransfer\V1\DataSource_DataRefreshType is deprecated and will be removed in a future release. Use Google\Cloud\BigQuery\DataTransfer\V1\DataSource\DataRefreshType instead', E_USER_DEPRECATED);
 

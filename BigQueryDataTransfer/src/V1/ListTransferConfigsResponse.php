@@ -31,9 +31,24 @@ class ListTransferConfigsResponse extends \Google\Protobuf\Internal\Message
      */
     private $next_page_token = '';
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type \Google\Cloud\BigQuery\DataTransfer\V1\TransferConfig[]|\Google\Protobuf\Internal\RepeatedField $transfer_configs
+     *           Output only. The stored pipeline transfer configurations.
+     *     @type string $next_page_token
+     *           Output only. The next-pagination token. For multiple-page list results,
+     *           this token can be used as the
+     *           `ListTransferConfigsRequest.page_token`
+     *           to request the next page of list results.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Bigquery\Datatransfer\V1\Datatransfer::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**
