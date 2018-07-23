@@ -20,9 +20,12 @@ namespace Google\Cloud\Bigtable\Tests\Unit\Connection;
 use Google\ApiCore\Call;
 use Google\ApiCore\OperationResponse;
 use Google\ApiCore\Serializer;
+use Google\Cloud\Bigtable\Admin\V2\Cluster;
+use Google\Cloud\Bigtable\Admin\V2\ColumnFamily;
 use Google\Cloud\Bigtable\Admin\V2\Instance;
 use Google\Cloud\Bigtable\Admin\V2\Instance_Type;
-use Google\Cloud\Bigtable\Admin\V2\Cluster;
+use Google\Cloud\Bigtable\Admin\V2\ModifyColumnFamiliesRequest_Modification;
+use Google\Cloud\Bigtable\Admin\V2\Table;
 use Google\Cloud\Bigtable\Connection\Grpc;
 use Google\Cloud\Core\GrpcTrait;
 use Google\Cloud\Core\GrpcRequestWrapper;
@@ -41,6 +44,7 @@ class GrpcTest extends TestCase
     const PROJECT = 'projects/my-awesome-project';
     const INSTANCE = 'projects/my-awesome-project/instances/my-instance';
     const LOCATION = 'projects/my-awesome-project/locations/us-east1-b';
+    const TABLE    = 'projects/my-awesome-project/instances/my-instance/tables/my-table';
 
     private $successMessage;
 
@@ -102,6 +106,47 @@ class GrpcTest extends TestCase
         );
         $lro = $this->prophesize(OperationResponse::class)->reveal();
 
+        $tableId = 'my-table';
+        $table = $serializer->decodeMessage(
+            new Table(),
+            []
+        );
+
+        $columnFamily = $serializer->decodeMessage(
+            new ColumnFamily(),
+            []
+        );
+
+        $columnFamilyModificationCreate = $serializer->decodeMessage(
+            new ModifyColumnFamiliesRequest_Modification(),
+            [
+                'id' => 'cf1',
+                'create' => $columnFamily
+            ]
+        );
+
+        $columnFamilyModificationUpdate = $serializer->decodeMessage(
+            new ModifyColumnFamiliesRequest_Modification(),
+            [
+                'id' => 'cf2',
+                'update' => $columnFamily
+            ]
+        );
+
+        $columnFamilyModificationdrop = $serializer->decodeMessage(
+            new ModifyColumnFamiliesRequest_Modification(),
+            [
+                'id' => 'cf3',
+                'drop' => true
+            ]
+        );
+
+        $modifications = [
+            $columnFamilyModificationCreate,
+            $columnFamilyModificationUpdate,
+            $columnFamilyModificationdrop
+        ];
+
         return [
             [
                 'createInstance',
@@ -128,6 +173,32 @@ class GrpcTest extends TestCase
                 'deleteInstance',
                 ['name' => self::INSTANCE],
                 [self::INSTANCE, ['headers' => ['google-cloud-resource-prefix' => [self::INSTANCE]]]]
+            ],
+            [
+                'createTable',
+                [
+                    'parent' => self::INSTANCE,
+                    'tableId' => $tableId
+                ],
+                [self::INSTANCE, $tableId, $table, ['headers' => ['google-cloud-resource-prefix' => [self::INSTANCE]]]]
+            ],
+            [
+                'modifyColumnFamilies',
+                [
+                    'name' => self::TABLE,
+                    'modifications' => [
+                        ['id'=>'cf1', 'create'=> []],
+                        ['id'=>'cf2', 'update'=>[]],
+                        ['id'=>'cf3', 'drop'=>true]
+
+                    ]
+                ],
+                [self::TABLE, $modifications, ['headers' => ['google-cloud-resource-prefix' => [self::TABLE]]]]
+            ],
+            [
+                'deleteTable',
+                ['name' => self::TABLE],
+                [self::TABLE, ['headers' => ['google-cloud-resource-prefix' => [self::TABLE]]]]
             ],
             [
                 'setIamPolicy',

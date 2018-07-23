@@ -20,8 +20,11 @@ namespace Google\Cloud\Bigtable\Connection;
 use Google\ApiCore\Serializer;
 use Google\Cloud\Bigtable\Admin\V2\BigtableInstanceAdminClient;
 use Google\Cloud\Bigtable\Admin\V2\BigtableTableAdminClient;
+use Google\Cloud\Bigtable\Admin\V2\ColumnFamily;
 use Google\Cloud\Bigtable\Admin\V2\Cluster;
 use Google\Cloud\Bigtable\Admin\V2\Instance;
+use Google\Cloud\Bigtable\Admin\V2\ModifyColumnFamiliesRequest_Modification;
+use Google\Cloud\Bigtable\Admin\V2\Table;
 use Google\Cloud\Bigtable\V2\BigtableClient;
 use Google\Cloud\Core\GrpcRequestWrapper;
 use Google\Cloud\Core\GrpcTrait;
@@ -293,7 +296,13 @@ class Grpc implements ConnectionInterface
      */
     public function createTable(array $args)
     {
-        throw new \BadMethodCallException('This method is not implemented yet');
+        $parent = $this->pluck('parent', $args);
+        return $this->send([$this->bigtableTableAdminClient, 'createTable'], [
+            $parent,
+            $this->pluck('tableId', $args),
+            new Table(),
+            $this->addResourcePrefixHeader($args, $parent)
+        ]);
     }
 
     /**
@@ -325,7 +334,11 @@ class Grpc implements ConnectionInterface
      */
     public function deleteTable(array $args)
     {
-        throw new \BadMethodCallException('This method is not implemented yet');
+        $name = $this->pluck('name', $args);
+        return $this->send([$this->bigtableTableAdminClient, 'deleteTable'], [
+            $name,
+            $this->addResourcePrefixHeader($args, $name)
+        ]);
     }
 
     /**
@@ -333,7 +346,52 @@ class Grpc implements ConnectionInterface
      */
     public function modifyColumnFamilies(array $args)
     {
-        throw new \BadMethodCallException('This method is not implemented yet');
+        $name = $this->pluck('name', $args);
+        $modifications = $this->pluck('modifications', $args);
+        return $this->send([$this->bigtableTableAdminClient, 'modifyColumnFamilies'], [
+            $name,
+            array_map([$this,'columnFamilyModificationsObject'], $modifications),
+            $this->addResourcePrefixHeader($args, $name)
+        ]);
+    }
+
+    /**
+     * @param array $modifications
+     * @return Modification
+     */
+    private function columnFamilyModificationsObject(array $modifications)
+    {
+
+        if (isset($modifications['create'])) {
+            $create = $this->pluck('create', $modifications);
+            $modifications['create'] = $this->columnFamilyObject($create);
+        } elseif (isset($modifications['update'])) {
+            $update = $this->pluck('update', $modifications);
+            $modifications['update'] = $this->columnFamilyObject($update);
+        } elseif (isset($modifications['drop'])) {
+            $modifications['drop'] = true;
+        }
+        return $this->serializer->decodeMessage(
+            new ModifyColumnFamiliesRequest_Modification(),
+            $this->pluckArray([
+                'id',
+                'create',
+                'update',
+                'drop'
+            ], $modifications)
+        );
+    }
+
+    /**
+     * @param array $columnFamily
+     * @return ColumnFamily
+     */
+    private function columnFamilyObject(array $columnFamily)
+    {
+        return $this->serializer->decodeMessage(
+            new ColumnFamily(),
+            []
+        );
     }
 
     /**

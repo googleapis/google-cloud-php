@@ -17,8 +17,10 @@
 namespace Google\Cloud\Bigtable\Tests\Unit;
 
 use Google\Cloud\Bigtable\Admin\V2\BigtableInstanceAdminClient as InstanceAdminClient;
+use Google\Cloud\Bigtable\Admin\V2\BigtableTableAdminClient as TableAdminClient;
 use Google\Cloud\Bigtable\Connection\ConnectionInterface;
 use Google\Cloud\Bigtable\Instance;
+use Google\Cloud\Bigtable\Table;
 use Google\Cloud\Core\Exception\NotFoundException;
 use Google\Cloud\Core\LongRunning\LongRunningConnectionInterface;
 use Google\Cloud\Core\LongRunning\LongRunningOperation;
@@ -42,6 +44,7 @@ class InstanceTest extends TestCase
     const CLUSTER_ID = 'my-cluster';
     const LOCATION_ID = 'us-east1-b';
     const LOCATION_NAME = 'projects/my-awesome-project/locations/us-east1-b';
+    const TABLE_ID = 'my-table';
 
     private $connection;
     private $instance;
@@ -476,5 +479,15 @@ class InstanceTest extends TestCase
 
         $instance = $this->instance->delete();
         $this->assertEquals([], $instance);
+    }
+
+    public function testTable()
+    {
+        $table = $this->instance->table(self::TABLE_ID);
+        $this->assertInstanceOf(Table::class, $table);
+        $this->assertEquals(
+            TableAdminClient::tableName(self::PROJECT_ID, self::INSTANCE_ID, self::TABLE_ID),
+            $table->name()
+        );
     }
 }

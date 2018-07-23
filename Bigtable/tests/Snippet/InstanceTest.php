@@ -19,6 +19,7 @@ namespace Google\Cloud\Bigtable\Tests\Snippet;
 use Google\Cloud\Bigtable\Admin\V2\BigtableInstanceAdminClient as InstanceAdminClient;
 use Google\Cloud\Bigtable\Connection\ConnectionInterface;
 use Google\Cloud\Bigtable\Instance;
+use Google\Cloud\Bigtable\Table;
 use Google\Cloud\Core\LongRunning\LongRunningConnectionInterface;
 use Google\Cloud\Core\LongRunning\LongRunningOperation;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
@@ -39,6 +40,7 @@ class InstanceTest extends SnippetTestCase
     const INSTANCE_ID = 'my-instance';
     const INSTANCE_NAME = 'projects/my-awesome-project/instances/my-instance';
     const LOCATION_ID = 'us-east1-b';
+    const TABLE_NAME = 'projects/my-awesome-project/instances/my-instance/tables/my-table';
 
     private $connection;
     private $instance;
@@ -131,5 +133,15 @@ class InstanceTest extends SnippetTestCase
             ->shouldBeCalled();
         $this->instance->___setProperty('connection', $this->connection->reveal());
         $snippet->invoke();
+    }
+
+    public function testTable()
+    {
+        $snippet = $this->snippetFromMethod(Instance::class, 'table');
+        $snippet->addLocal('instance', $this->instance);
+
+        $res = $snippet->invoke('table');
+        $this->assertInstanceOf(Table::class, $res->returnVal());
+        $this->assertEquals(self::TABLE_NAME, $res->returnVal()->name());
     }
 }

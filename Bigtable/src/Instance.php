@@ -351,6 +351,30 @@ class Instance
     }
 
     /**
+     * Lazily instantiate a table.
+     *
+     * Example:
+     * ```
+     * $table = $instance->table('my-table');
+     * ```
+     *
+     * @param string $tableId The table ID
+     *
+     * @return Table
+     */
+    public function table($tableId)
+    {
+        return new Table(
+            $this->connection,
+            $this->lroConnection,
+            $this->lroCallables,
+            $this->projectId,
+            $this->id(),
+            $tableId
+        );
+    }
+
+    /**
      * Represent the class in a more readable and digestable fashion.
      *
      * @access private
