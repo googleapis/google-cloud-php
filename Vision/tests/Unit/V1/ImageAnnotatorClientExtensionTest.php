@@ -115,7 +115,12 @@ class ImageAnnotatorClientExtensionTest extends TestCase
         $this->transport->startUnaryCall( Argument::allOf(
                     Argument::type(Call::class),
                     Argument::which('getMethod', 'google.cloud.vision.v1.ImageAnnotator/BatchAnnotateImages'),
-                    Argument::which('getMessage', $expectedMessage)
+                    Argument::that(function($arg) use ($expectedMessage) {
+                        if ($arg->getMessage()->serializeToString() === $expectedMessage->serializeToString()) {
+                            return true;
+                        }
+                        return false;
+                    })
                 ),
                 Argument::type('array')
             )
@@ -160,7 +165,12 @@ class ImageAnnotatorClientExtensionTest extends TestCase
                 Argument::allOf(
                     Argument::type(Call::class),
                     Argument::which('getMethod', 'google.cloud.vision.v1.ImageAnnotator/BatchAnnotateImages'),
-                    Argument::which('getMessage', $expectedMessage)
+                    Argument::that(function($arg) use ($expectedMessage) {
+                        if ($arg->getMessage()->serializeToString() === $expectedMessage->serializeToString()) {
+                            return true;
+                        }
+                        return false;
+                    })
                 ),
                 Argument::type('array')
             )

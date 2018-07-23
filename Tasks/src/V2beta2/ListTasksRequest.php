@@ -32,21 +32,12 @@ class ListTasksRequest extends \Google\Protobuf\Internal\Message
      * of its large size or because of the sensitivity of data that it
      * contains.
      * Authorization for [FULL][google.cloud.tasks.v2beta2.Task.View.FULL] requires
-     * `cloudtasks.tasks.fullView` [Google IAM](/iam/) permission on the
-     * [Task][google.cloud.tasks.v2beta2.Task] resource.
+     * `cloudtasks.tasks.fullView` [Google IAM](https://cloud.google.com/iam/)
+     * permission on the [Task][google.cloud.tasks.v2beta2.Task] resource.
      *
      * Generated from protobuf field <code>.google.cloud.tasks.v2beta2.Task.View response_view = 2;</code>
      */
     private $response_view = 0;
-    /**
-     * Sort order used for the query. The only fields supported for sorting
-     * are `schedule_time` and `pull_message.tag`. All results will be
-     * returned in approximately ascending order. The default ordering is by
-     * `schedule_time`.
-     *
-     * Generated from protobuf field <code>string order_by = 3;</code>
-     */
-    private $order_by = '';
     /**
      * Requested page size. Fewer tasks than requested might be returned.
      * The maximum page size is 1000. If unspecified, the page size will
@@ -71,9 +62,47 @@ class ListTasksRequest extends \Google\Protobuf\Internal\Message
      */
     private $page_token = '';
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $parent
+     *           Required.
+     *           The queue name. For example:
+     *           `projects/PROJECT_ID/locations/LOCATION_ID/queues/QUEUE_ID`
+     *     @type int $response_view
+     *           The response_view specifies which subset of the [Task][google.cloud.tasks.v2beta2.Task] will be
+     *           returned.
+     *           By default response_view is [BASIC][google.cloud.tasks.v2beta2.Task.View.BASIC]; not all
+     *           information is retrieved by default because some data, such as
+     *           payloads, might be desirable to return only when needed because
+     *           of its large size or because of the sensitivity of data that it
+     *           contains.
+     *           Authorization for [FULL][google.cloud.tasks.v2beta2.Task.View.FULL] requires
+     *           `cloudtasks.tasks.fullView` [Google IAM](https://cloud.google.com/iam/)
+     *           permission on the [Task][google.cloud.tasks.v2beta2.Task] resource.
+     *     @type int $page_size
+     *           Requested page size. Fewer tasks than requested might be returned.
+     *           The maximum page size is 1000. If unspecified, the page size will
+     *           be the maximum. Fewer tasks than requested might be returned,
+     *           even if more tasks exist; use
+     *           [next_page_token][google.cloud.tasks.v2beta2.ListTasksResponse.next_page_token] in the
+     *           response to determine if more tasks exist.
+     *     @type string $page_token
+     *           A token identifying the page of results to return.
+     *           To request the first page results, page_token must be empty. To
+     *           request the next page of results, page_token must be the value of
+     *           [next_page_token][google.cloud.tasks.v2beta2.ListTasksResponse.next_page_token] returned
+     *           from the previous call to [ListTasks][google.cloud.tasks.v2beta2.CloudTasks.ListTasks]
+     *           method.
+     *           The page token is valid for only 2 hours.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Tasks\V2Beta2\Cloudtasks::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**
@@ -115,8 +144,8 @@ class ListTasksRequest extends \Google\Protobuf\Internal\Message
      * of its large size or because of the sensitivity of data that it
      * contains.
      * Authorization for [FULL][google.cloud.tasks.v2beta2.Task.View.FULL] requires
-     * `cloudtasks.tasks.fullView` [Google IAM](/iam/) permission on the
-     * [Task][google.cloud.tasks.v2beta2.Task] resource.
+     * `cloudtasks.tasks.fullView` [Google IAM](https://cloud.google.com/iam/)
+     * permission on the [Task][google.cloud.tasks.v2beta2.Task] resource.
      *
      * Generated from protobuf field <code>.google.cloud.tasks.v2beta2.Task.View response_view = 2;</code>
      * @return int
@@ -135,8 +164,8 @@ class ListTasksRequest extends \Google\Protobuf\Internal\Message
      * of its large size or because of the sensitivity of data that it
      * contains.
      * Authorization for [FULL][google.cloud.tasks.v2beta2.Task.View.FULL] requires
-     * `cloudtasks.tasks.fullView` [Google IAM](/iam/) permission on the
-     * [Task][google.cloud.tasks.v2beta2.Task] resource.
+     * `cloudtasks.tasks.fullView` [Google IAM](https://cloud.google.com/iam/)
+     * permission on the [Task][google.cloud.tasks.v2beta2.Task] resource.
      *
      * Generated from protobuf field <code>.google.cloud.tasks.v2beta2.Task.View response_view = 2;</code>
      * @param int $var
@@ -146,38 +175,6 @@ class ListTasksRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkEnum($var, \Google\Cloud\Tasks\V2beta2\Task_View::class);
         $this->response_view = $var;
-
-        return $this;
-    }
-
-    /**
-     * Sort order used for the query. The only fields supported for sorting
-     * are `schedule_time` and `pull_message.tag`. All results will be
-     * returned in approximately ascending order. The default ordering is by
-     * `schedule_time`.
-     *
-     * Generated from protobuf field <code>string order_by = 3;</code>
-     * @return string
-     */
-    public function getOrderBy()
-    {
-        return $this->order_by;
-    }
-
-    /**
-     * Sort order used for the query. The only fields supported for sorting
-     * are `schedule_time` and `pull_message.tag`. All results will be
-     * returned in approximately ascending order. The default ordering is by
-     * `schedule_time`.
-     *
-     * Generated from protobuf field <code>string order_by = 3;</code>
-     * @param string $var
-     * @return $this
-     */
-    public function setOrderBy($var)
-    {
-        GPBUtil::checkString($var, True);
-        $this->order_by = $var;
 
         return $this;
     }

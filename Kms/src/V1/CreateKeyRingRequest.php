@@ -36,9 +36,25 @@ class CreateKeyRingRequest extends \Google\Protobuf\Internal\Message
      */
     private $key_ring = null;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $parent
+     *           Required. The resource name of the location associated with the
+     *           [KeyRings][google.cloud.kms.v1.KeyRing], in the format `projects/&#42;&#47;locations/&#42;`.
+     *     @type string $key_ring_id
+     *           Required. It must be unique within a location and match the regular
+     *           expression `[a-zA-Z0-9_-]{1,63}`
+     *     @type \Google\Cloud\Kms\V1\KeyRing $key_ring
+     *           A [KeyRing][google.cloud.kms.v1.KeyRing] with initial field values.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Kms\V1\Service::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

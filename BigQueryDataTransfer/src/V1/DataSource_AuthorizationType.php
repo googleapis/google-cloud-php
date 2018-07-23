@@ -4,32 +4,13 @@
 
 namespace Google\Cloud\BigQuery\DataTransfer\V1;
 
-/**
- * The type of authorization needed for this data source.
- *
- * Protobuf enum <code>Google\Cloud\Bigquery\Datatransfer\V1\DataSource\AuthorizationType</code>
- */
-class DataSource_AuthorizationType
-{
+if (false) {
     /**
-     * Type unspecified.
-     *
-     * Generated from protobuf enum <code>AUTHORIZATION_TYPE_UNSPECIFIED = 0;</code>
+     * This class is deprecated. Use Google\Cloud\BigQuery\DataTransfer\V1\DataSource\AuthorizationType instead.
+     * @deprecated
      */
-    const AUTHORIZATION_TYPE_UNSPECIFIED = 0;
-    /**
-     * Use OAuth 2 authorization codes that can be exchanged
-     * for a refresh token on the backend.
-     *
-     * Generated from protobuf enum <code>AUTHORIZATION_CODE = 1;</code>
-     */
-    const AUTHORIZATION_CODE = 1;
-    /**
-     * Return an authorization code for a given Google+ page that can then be
-     * exchanged for a refresh token on the backend.
-     *
-     * Generated from protobuf enum <code>GOOGLE_PLUS_AUTHORIZATION_CODE = 2;</code>
-     */
-    const GOOGLE_PLUS_AUTHORIZATION_CODE = 2;
+    class DataSource_AuthorizationType {}
 }
+class_exists(DataSource\AuthorizationType::class);
+@trigger_error('Google\Cloud\BigQuery\DataTransfer\V1\DataSource_AuthorizationType is deprecated and will be removed in a future release. Use Google\Cloud\BigQuery\DataTransfer\V1\DataSource\AuthorizationType instead', E_USER_DEPRECATED);
 

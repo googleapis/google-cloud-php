@@ -76,6 +76,16 @@ use Google\Cloud\Core\CallTrait;
  *
  *     @return string
  * }
+ * @method racy() {
+ *     Racy likelihood.
+ *
+ *     Example:
+ *     ```
+ *     echo $safeSearch->racy();
+ *     ```
+ *
+ *     @return string
+ * }
  * @method info() {
  *     Get the raw annotation result
  *
@@ -119,7 +129,7 @@ class SafeSearch extends AbstractFeature
      * ```
      *
      * @param  string $strength [optional] Value should be one of "low",
-     *         "medium" or "high". Recommended usage is via `Face::STRENGTH_*`
+     *         "medium" or "high". Recommended usage is via `SafeSearch::STRENGTH_*`
      *         constants. Higher strength will result in fewer `true` results,
      *         but fewer false positives. **Defaults to** `"low"`.
      * @return bool
@@ -140,7 +150,7 @@ class SafeSearch extends AbstractFeature
      * ```
      *
      * @param  string $strength [optional] Value should be one of "low",
-     *         "medium" or "high". Recommended usage is via `Face::STRENGTH_*`
+     *         "medium" or "high". Recommended usage is via `SafeSearch::STRENGTH_*`
      *         constants. Higher strength will result in fewer `true` results,
      *         but fewer false positives. **Defaults to** `"low"`.
      * @return bool
@@ -161,7 +171,7 @@ class SafeSearch extends AbstractFeature
      * ```
      *
      * @param  string $strength [optional] Value should be one of "low",
-     *         "medium" or "high". Recommended usage is via `Face::STRENGTH_*`
+     *         "medium" or "high". Recommended usage is via `SafeSearch::STRENGTH_*`
      *         constants. Higher strength will result in fewer `true` results,
      *         but fewer false positives. **Defaults to** `"low"`.
      * @return bool
@@ -182,7 +192,7 @@ class SafeSearch extends AbstractFeature
      * ```
      *
      * @param  string $strength [optional] Value should be one of "low",
-     *         "medium" or "high". Recommended usage is via `Face::STRENGTH_*`
+     *         "medium" or "high". Recommended usage is via `SafeSearch::STRENGTH_*`
      *         constants. Higher strength will result in fewer `true` results,
      *         but fewer false positives. **Defaults to** `"low"`.
      * @return bool
@@ -190,5 +200,26 @@ class SafeSearch extends AbstractFeature
     public function isViolent($strength = self::STRENGTH_LOW)
     {
         return $this->likelihood($this->info['violence'], $strength);
+    }
+
+    /**
+     * Check whether the image contains racy content
+     *
+     * Example:
+     * ```
+     * if ($safeSearch->isRacy()) {
+     *     echo "Image contains racy content.";
+     * }
+     * ```
+     *
+     * @param  string $strength [optional] Value should be one of "low",
+     *         "medium" or "high". Recommended usage is via `SafeSearch::STRENGTH_*`
+     *         constants. Higher strength will result in fewer `true` results,
+     *         but fewer false positives. **Defaults to** `"low"`.
+     * @return bool
+     */
+    public function isRacy($strength = self::STRENGTH_LOW)
+    {
+        return $this->likelihood($this->info['racy'], $strength);
     }
 }

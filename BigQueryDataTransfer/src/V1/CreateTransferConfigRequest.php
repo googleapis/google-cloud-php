@@ -56,9 +56,40 @@ class CreateTransferConfigRequest extends \Google\Protobuf\Internal\Message
      */
     private $authorization_code = '';
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $parent
+     *           The BigQuery project id where the transfer configuration should be created.
+     *           Must be in the format /projects/{project_id}/locations/{location_id}
+     *           If specified location and location of the destination bigquery dataset
+     *           do not match - the request will fail.
+     *     @type \Google\Cloud\BigQuery\DataTransfer\V1\TransferConfig $transfer_config
+     *           Data transfer configuration to create.
+     *     @type string $authorization_code
+     *           Optional OAuth2 authorization code to use with this transfer configuration.
+     *           This is required if new credentials are needed, as indicated by
+     *           `CheckValidCreds`.
+     *           In order to obtain authorization_code, please make a
+     *           request to
+     *           https://www.gstatic.com/bigquerydatatransfer/oauthz/auth?client_id=<datatransferapiclientid>&scope=<data_source_scopes>&redirect_uri=<redirect_uri>
+     *           * client_id should be OAuth client_id of BigQuery DTS API for the given
+     *             data source returned by ListDataSources method.
+     *           * data_source_scopes are the scopes returned by ListDataSources method.
+     *           * redirect_uri is an optional parameter. If not specified, then
+     *             authorization code is posted to the opener of authorization flow window.
+     *             Otherwise it will be sent to the redirect uri. A special value of
+     *             urn:ietf:wg:oauth:2.0:oob means that authorization code should be
+     *             returned in the title bar of the browser, with the page text prompting
+     *             the user to copy the code and paste it in the application.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Bigquery\Datatransfer\V1\Datatransfer::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

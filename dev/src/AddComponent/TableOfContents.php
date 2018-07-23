@@ -17,6 +17,7 @@
 
 namespace Google\Cloud\Dev\AddComponent;
 
+use Google\Cloud\Dev\QuestionTrait;
 use Symfony\Component\Console\Helper\FormatterHelper;
 use Symfony\Component\Console\Helper\QuestionHelper;
 use Symfony\Component\Console\Input\InputInterface;

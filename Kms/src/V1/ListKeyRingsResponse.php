@@ -35,9 +35,24 @@ class ListKeyRingsResponse extends \Google\Protobuf\Internal\Message
      */
     private $total_size = 0;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type \Google\Cloud\Kms\V1\KeyRing[]|\Google\Protobuf\Internal\RepeatedField $key_rings
+     *           The list of [KeyRings][google.cloud.kms.v1.KeyRing].
+     *     @type string $next_page_token
+     *           A token to retrieve next page of results. Pass this value in
+     *           [ListKeyRingsRequest.page_token][google.cloud.kms.v1.ListKeyRingsRequest.page_token] to retrieve the next page of results.
+     *     @type int $total_size
+     *           The total number of [KeyRings][google.cloud.kms.v1.KeyRing] that matched the query.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Kms\V1\Service::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

@@ -187,28 +187,16 @@ class PsrLoggerTest extends TestCase
 
     public function testLogAppendsExceptionWhenPassedThroughAsContext()
     {
-        $exception = new \Exception('test');
-        $this->connection->writeEntries([
-            'entries' => [
-                [
-                    'severity' => $this->severity,
-                    'jsonPayload' => [
-                        'message' => $this->textPayload,
-                        'exception' => (string) $exception
-                    ],
-                    'logName' => $this->formattedName,
-                    'resource' => $this->resource,
-                    'timestamp' => null
-                ]
-            ]
-        ])
-            ->willReturn([])
-            ->shouldBeCalledTimes(1);
-        $psrLogger = $this->getPsrLogger($this->connection);
-        $psrLogger->log($this->severity, $this->textPayload, [
-            'exception' => $exception,
-            'stackdriverOptions' => ['timestamp' => null]
-        ]);
+        $this->expectLogWithExceptionInContext(new \Exception('test'));
+    }
+
+    public function testLogAppendsThrowableWhenPassedThroughAsContext()
+    {
+        if (!is_subclass_of('Error', 'Throwable')) {
+            $this->markTestSkipped('This test requires PHP 7+');
+        }
+
+        $this->expectLogWithExceptionInContext(new \Error('test'));
     }
 
     public function testUsesCustomMessageKey()
@@ -291,5 +279,30 @@ class PsrLoggerTest extends TestCase
             PHPUnit_Framework_Assert::readAttribute($psrLogger, 'logName'),
             $this->logName
         );
+    }
+
+    private function expectLogWithExceptionInContext($throwable)
+    {
+        $this->connection->writeEntries([
+            'entries' => [
+                [
+                    'severity' => $this->severity,
+                    'jsonPayload' => [
+                        'message' => $this->textPayload,
+                        'exception' => (string) $throwable
+                    ],
+                    'logName' => $this->formattedName,
+                    'resource' => $this->resource,
+                    'timestamp' => null
+                ]
+            ]
+        ])
+            ->willReturn([])
+            ->shouldBeCalledTimes(1);
+        $psrLogger = $this->getPsrLogger($this->connection);
+        $psrLogger->log($this->severity, $this->textPayload, [
+            'exception' => $throwable,
+            'stackdriverOptions' => ['timestamp' => null]
+        ]);
     }
 }

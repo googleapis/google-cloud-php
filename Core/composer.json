@@ -17,7 +17,7 @@
         "squizlabs/php_codesniffer": "2.*",
         "phpdocumentor/reflection": "^3.0",
         "erusev/parsedown": "^1.6",
-        "google/gax": "^0.33",
+        "google/gax": "^0.36",
         "opis/closure": "^3"
     },
     "suggest": {

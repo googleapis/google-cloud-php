@@ -24,9 +24,21 @@ class PurgeQueueRequest extends \Google\Protobuf\Internal\Message
      */
     private $name = '';
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $name
+     *           Required.
+     *           The queue name. For example:
+     *           `projects/PROJECT_ID/location/LOCATION_ID/queues/QUEUE_ID`
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Tasks\V2Beta2\Cloudtasks::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

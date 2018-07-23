@@ -22,9 +22,19 @@ class LeaseTasksResponse extends \Google\Protobuf\Internal\Message
      */
     private $tasks;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type \Google\Cloud\Tasks\V2beta2\Task[]|\Google\Protobuf\Internal\RepeatedField $tasks
+     *           The leased tasks.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Tasks\V2Beta2\Cloudtasks::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

@@ -32,16 +32,39 @@ class GetTaskRequest extends \Google\Protobuf\Internal\Message
      * of its large size or because of the sensitivity of data that it
      * contains.
      * Authorization for [FULL][google.cloud.tasks.v2beta2.Task.View.FULL] requires
-     * `cloudtasks.tasks.fullView` [Google IAM](/iam/) permission on the
-     * [Task][google.cloud.tasks.v2beta2.Task] resource.
+     * `cloudtasks.tasks.fullView` [Google IAM](https://cloud.google.com/iam/)
+     * permission on the [Task][google.cloud.tasks.v2beta2.Task] resource.
      *
      * Generated from protobuf field <code>.google.cloud.tasks.v2beta2.Task.View response_view = 2;</code>
      */
     private $response_view = 0;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $name
+     *           Required.
+     *           The task name. For example:
+     *           `projects/PROJECT_ID/locations/LOCATION_ID/queues/QUEUE_ID/tasks/TASK_ID`
+     *     @type int $response_view
+     *           The response_view specifies which subset of the [Task][google.cloud.tasks.v2beta2.Task] will be
+     *           returned.
+     *           By default response_view is [BASIC][google.cloud.tasks.v2beta2.Task.View.BASIC]; not all
+     *           information is retrieved by default because some data, such as
+     *           payloads, might be desirable to return only when needed because
+     *           of its large size or because of the sensitivity of data that it
+     *           contains.
+     *           Authorization for [FULL][google.cloud.tasks.v2beta2.Task.View.FULL] requires
+     *           `cloudtasks.tasks.fullView` [Google IAM](https://cloud.google.com/iam/)
+     *           permission on the [Task][google.cloud.tasks.v2beta2.Task] resource.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Tasks\V2Beta2\Cloudtasks::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**
@@ -83,8 +106,8 @@ class GetTaskRequest extends \Google\Protobuf\Internal\Message
      * of its large size or because of the sensitivity of data that it
      * contains.
      * Authorization for [FULL][google.cloud.tasks.v2beta2.Task.View.FULL] requires
-     * `cloudtasks.tasks.fullView` [Google IAM](/iam/) permission on the
-     * [Task][google.cloud.tasks.v2beta2.Task] resource.
+     * `cloudtasks.tasks.fullView` [Google IAM](https://cloud.google.com/iam/)
+     * permission on the [Task][google.cloud.tasks.v2beta2.Task] resource.
      *
      * Generated from protobuf field <code>.google.cloud.tasks.v2beta2.Task.View response_view = 2;</code>
      * @return int
@@ -103,8 +126,8 @@ class GetTaskRequest extends \Google\Protobuf\Internal\Message
      * of its large size or because of the sensitivity of data that it
      * contains.
      * Authorization for [FULL][google.cloud.tasks.v2beta2.Task.View.FULL] requires
-     * `cloudtasks.tasks.fullView` [Google IAM](/iam/) permission on the
-     * [Task][google.cloud.tasks.v2beta2.Task] resource.
+     * `cloudtasks.tasks.fullView` [Google IAM](https://cloud.google.com/iam/)
+     * permission on the [Task][google.cloud.tasks.v2beta2.Task] resource.
      *
      * Generated from protobuf field <code>.google.cloud.tasks.v2beta2.Task.View response_view = 2;</code>
      * @param int $var

@@ -28,9 +28,21 @@ class UpdateCryptoKeyRequest extends \Google\Protobuf\Internal\Message
      */
     private $update_mask = null;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type \Google\Cloud\Kms\V1\CryptoKey $crypto_key
+     *           [CryptoKey][google.cloud.kms.v1.CryptoKey] with updated values.
+     *     @type \Google\Protobuf\FieldMask $update_mask
+     *           Required list of fields to be updated in this request.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Kms\V1\Service::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

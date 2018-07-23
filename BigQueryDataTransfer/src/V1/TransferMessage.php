@@ -34,9 +34,23 @@ class TransferMessage extends \Google\Protobuf\Internal\Message
      */
     private $message_text = '';
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type \Google\Protobuf\Timestamp $message_time
+     *           Time when message was logged.
+     *     @type int $severity
+     *           Message severity.
+     *     @type string $message_text
+     *           Message text.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Bigquery\Datatransfer\V1\Transfer::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

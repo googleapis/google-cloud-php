@@ -7,7 +7,7 @@ namespace Google\Cloud\BigQuery\DataTransfer\V1;
 /**
  * Represents data transfer run state.
  *
- * Protobuf enum <code>Google\Cloud\Bigquery\Datatransfer\V1\TransferState</code>
+ * Protobuf type <code>google.cloud.bigquery.datatransfer.v1.TransferState</code>
  */
 class TransferState
 {

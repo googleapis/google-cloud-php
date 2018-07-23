@@ -364,7 +364,8 @@ class PsrLogger implements LoggerInterface, \Serializable
         $this->validateLogLevel($level);
         $options = [];
 
-        if (isset($context['exception']) && $context['exception'] instanceof \Exception) {
+        if (isset($context['exception'])
+            && ($context['exception'] instanceof \Exception || $context['exception'] instanceof \Throwable)) {
             $context['exception'] = (string) $context['exception'];
         }
 
@@ -383,7 +384,7 @@ class PsrLogger implements LoggerInterface, \Serializable
 
         // Adding labels for log request correlation.
         $labels = $this->getLabels();
-        if (! empty($labels)) {
+        if (!empty($labels)) {
             $options['labels'] =
                 (isset($options['labels'])
                  ? $options['labels']
@@ -397,7 +398,7 @@ class PsrLogger implements LoggerInterface, \Serializable
         }
         // Adding MonitoredResource
         $resource = $this->metadataProvider->monitoredResource();
-        if (! empty($resource)) {
+        if (!empty($resource)) {
             $options['resource'] =
                 (isset($options['resource'])
                  ? $options['resource']

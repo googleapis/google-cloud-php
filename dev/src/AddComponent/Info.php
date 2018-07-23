@@ -17,6 +17,7 @@
 
 namespace Google\Cloud\Dev\AddComponent;
 
+use Google\Cloud\Dev\QuestionTrait;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\RequestException;
 use Symfony\Component\Console\Helper\QuestionHelper;
