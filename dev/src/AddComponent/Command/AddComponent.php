@@ -24,10 +24,10 @@ use Google\Cloud\Dev\AddComponent\Info;
 use Google\Cloud\Dev\AddComponent\License;
 use Google\Cloud\Dev\AddComponent\Manifest;
 use Google\Cloud\Dev\AddComponent\PullRequestTemplate;
-use Google\Cloud\Dev\AddComponent\QuestionTrait;
 use Google\Cloud\Dev\AddComponent\Readmes;
 use Google\Cloud\Dev\AddComponent\TableOfContents;
 use Google\Cloud\Dev\Command\GoogleCloudCommand;
+use Google\Cloud\Dev\QuestionTrait;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 

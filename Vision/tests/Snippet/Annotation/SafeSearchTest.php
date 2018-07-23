@@ -37,6 +37,7 @@ class SafeSearchTest extends SnippetTestCase
             'spoof' => 'VERY_LIKELY',
             'medical' => 'VERY_LIKELY',
             'violence' => 'VERY_LIKELY',
+            'racy' => 'VERY_LIKELY',
         ];
         $this->ss = new SafeSearch($this->ssData);
     }
@@ -109,6 +110,15 @@ class SafeSearchTest extends SnippetTestCase
         $this->assertEquals($this->ssData['violence'], $res->output());
     }
 
+    public function testRacy()
+    {
+        $snippet = $this->snippetFromMagicMethod(SafeSearch::class, 'racy');
+        $snippet->addLocal('safeSearch', $this->ss);
+
+        $res = $snippet->invoke();
+        $this->assertEquals($this->ssData['racy'], $res->output());
+    }
+
     public function testIsAdult()
     {
         $snippet = $this->snippetFromMethod(SafeSearch::class, 'isAdult');
@@ -143,6 +153,15 @@ class SafeSearchTest extends SnippetTestCase
 
         $res = $snippet->invoke();
         $this->assertEquals(sprintf('Image contains %s content.', 'violent'), $res->output());
+    }
+
+    public function testIsRacy()
+    {
+        $snippet = $this->snippetFromMethod(SafeSearch::class, 'isRacy');
+        $snippet->addLocal('safeSearch', $this->ss);
+
+        $res = $snippet->invoke();
+        $this->assertEquals(sprintf('Image contains %s content.', 'racy'), $res->output());
     }
 
     public function testInfo()

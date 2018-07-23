@@ -4,36 +4,13 @@
 
 namespace Google\Cloud\BigQuery\DataTransfer\V1;
 
-/**
- * Represents data transfer user facing message severity.
- *
- * Protobuf enum <code>Google\Cloud\Bigquery\Datatransfer\V1\TransferMessage\MessageSeverity</code>
- */
-class TransferMessage_MessageSeverity
-{
+if (false) {
     /**
-     * No severity specified.
-     *
-     * Generated from protobuf enum <code>MESSAGE_SEVERITY_UNSPECIFIED = 0;</code>
+     * This class is deprecated. Use Google\Cloud\BigQuery\DataTransfer\V1\TransferMessage\MessageSeverity instead.
+     * @deprecated
      */
-    const MESSAGE_SEVERITY_UNSPECIFIED = 0;
-    /**
-     * Informational message.
-     *
-     * Generated from protobuf enum <code>INFO = 1;</code>
-     */
-    const INFO = 1;
-    /**
-     * Warning message.
-     *
-     * Generated from protobuf enum <code>WARNING = 2;</code>
-     */
-    const WARNING = 2;
-    /**
-     * Error message.
-     *
-     * Generated from protobuf enum <code>ERROR = 3;</code>
-     */
-    const ERROR = 3;
+    class TransferMessage_MessageSeverity {}
 }
+class_exists(TransferMessage\MessageSeverity::class);
+@trigger_error('Google\Cloud\BigQuery\DataTransfer\V1\TransferMessage_MessageSeverity is deprecated and will be removed in a future release. Use Google\Cloud\BigQuery\DataTransfer\V1\TransferMessage\MessageSeverity instead', E_USER_DEPRECATED);
 

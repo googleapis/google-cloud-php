@@ -21,7 +21,6 @@ use Google\Cloud\Core\Testing\FileListFilterIterator;
 use Google\Cloud\Dev\Command\GoogleCloudCommand;
 use Google\Cloud\Dev\DocGenerator\DocGenerator;
 use Google\Cloud\Dev\DocGenerator\GuideGenerator;
-use Google\Cloud\Dev\DocGenerator\RegexFileFilter;
 use Google\Cloud\Dev\DocGenerator\TableOfContents;
 use Google\Cloud\Dev\DocGenerator\TypeGenerator;
 use Google\Cloud\Dev\GetComponentsTrait;

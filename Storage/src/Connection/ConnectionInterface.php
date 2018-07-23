@@ -152,4 +152,9 @@ interface ConnectionInterface
      * @param array $args
      */
     public function listNotifications(array $args = []);
+
+    /**
+     * @param array $args
+     */
+    public function getServiceAccount(array $args = []);
 }

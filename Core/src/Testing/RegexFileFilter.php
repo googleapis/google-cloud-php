@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-namespace Google\Cloud\Dev\DocGenerator;
+namespace Google\Cloud\Core\Testing;
 
 /**
  * A regex exclude path

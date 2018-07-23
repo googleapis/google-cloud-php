@@ -138,4 +138,10 @@ interface ConnectionInterface
      * @return AbstractUploader
      */
     public function insertJobUpload(array $args = []);
+
+    /**
+     * @param array $args
+     * @return array
+     */
+    public function getServiceAccount(array $args = []);
 }

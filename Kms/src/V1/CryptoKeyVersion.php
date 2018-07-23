@@ -59,9 +59,32 @@ class CryptoKeyVersion extends \Google\Protobuf\Internal\Message
      */
     private $destroy_event_time = null;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $name
+     *           Output only. The resource name for this [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] in the format
+     *           `projects/&#42;&#47;locations/&#42;&#47;keyRings/&#42;&#47;cryptoKeys/&#42;&#47;cryptoKeyVersions/&#42;`.
+     *     @type int $state
+     *           The current state of the [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion].
+     *     @type \Google\Protobuf\Timestamp $create_time
+     *           Output only. The time at which this [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] was created.
+     *     @type \Google\Protobuf\Timestamp $destroy_time
+     *           Output only. The time this [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion]'s key material is scheduled
+     *           for destruction. Only present if [state][google.cloud.kms.v1.CryptoKeyVersion.state] is
+     *           [DESTROY_SCHEDULED][google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionState.DESTROY_SCHEDULED].
+     *     @type \Google\Protobuf\Timestamp $destroy_event_time
+     *           Output only. The time this CryptoKeyVersion's key material was
+     *           destroyed. Only present if [state][google.cloud.kms.v1.CryptoKeyVersion.state] is
+     *           [DESTROYED][google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionState.DESTROYED].
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Kms\V1\Resources::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

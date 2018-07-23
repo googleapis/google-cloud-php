@@ -142,9 +142,70 @@ class DataSource extends \Google\Protobuf\Internal\Message
      */
     private $minimum_schedule_interval = null;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $name
+     *           Output only. Data source resource name.
+     *     @type string $data_source_id
+     *           Data source id.
+     *     @type string $display_name
+     *           User friendly data source name.
+     *     @type string $description
+     *           User friendly data source description string.
+     *     @type string $client_id
+     *           Data source client id which should be used to receive refresh token.
+     *           When not supplied, no offline credentials are populated for data transfer.
+     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $scopes
+     *           Api auth scopes for which refresh token needs to be obtained. Only valid
+     *           when `client_id` is specified. Ignored otherwise. These are scopes needed
+     *           by a data source to prepare data and ingest them into BigQuery,
+     *           e.g., https://www.googleapis.com/auth/bigquery
+     *     @type int $transfer_type
+     *           Deprecated. This field has no effect.
+     *     @type bool $supports_multiple_transfers
+     *           Indicates whether the data source supports multiple transfers
+     *           to different BigQuery targets.
+     *     @type int $update_deadline_seconds
+     *           The number of seconds to wait for an update from the data source
+     *           before BigQuery marks the transfer as failed.
+     *     @type string $default_schedule
+     *           Default data transfer schedule.
+     *           Examples of valid schedules include:
+     *           `1st,3rd monday of month 15:30`,
+     *           `every wed,fri of jan,jun 13:15`, and
+     *           `first sunday of quarter 00:00`.
+     *     @type bool $supports_custom_schedule
+     *           Specifies whether the data source supports a user defined schedule, or
+     *           operates on the default schedule.
+     *           When set to `true`, user can override default schedule.
+     *     @type \Google\Cloud\BigQuery\DataTransfer\V1\DataSourceParameter[]|\Google\Protobuf\Internal\RepeatedField $parameters
+     *           Data source parameters.
+     *     @type string $help_url
+     *           Url for the help document for this data source.
+     *     @type int $authorization_type
+     *           Indicates the type of authorization.
+     *     @type int $data_refresh_type
+     *           Specifies whether the data source supports automatic data refresh for the
+     *           past few days, and how it's supported.
+     *           For some data sources, data might not be complete until a few days later,
+     *           so it's useful to refresh data automatically.
+     *     @type int $default_data_refresh_window_days
+     *           Default data refresh window on days.
+     *           Only meaningful when `data_refresh_type` = `SLIDING_WINDOW`.
+     *     @type bool $manual_runs_disabled
+     *           Disables backfilling and manual run scheduling
+     *           for the data source.
+     *     @type \Google\Protobuf\Duration $minimum_schedule_interval
+     *           The minimum interval for scheduler to schedule runs.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Bigquery\Datatransfer\V1\Datatransfer::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

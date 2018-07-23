@@ -113,9 +113,49 @@ class DataSourceParameter extends \Google\Protobuf\Internal\Message
      */
     private $recurse = false;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $param_id
+     *           Parameter identifier.
+     *     @type string $display_name
+     *           Parameter display name in the user interface.
+     *     @type string $description
+     *           Parameter description.
+     *     @type int $type
+     *           Parameter type.
+     *     @type bool $required
+     *           Is parameter required.
+     *     @type bool $repeated
+     *           Can parameter have multiple values.
+     *     @type string $validation_regex
+     *           Regular expression which can be used for parameter validation.
+     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $allowed_values
+     *           All possible values for the parameter.
+     *     @type \Google\Protobuf\DoubleValue $min_value
+     *           For integer and double values specifies minimum allowed value.
+     *     @type \Google\Protobuf\DoubleValue $max_value
+     *           For integer and double values specifies maxminum allowed value.
+     *     @type \Google\Cloud\BigQuery\DataTransfer\V1\DataSourceParameter[]|\Google\Protobuf\Internal\RepeatedField $fields
+     *           When parameter is a record, describes child fields.
+     *     @type string $validation_description
+     *           Description of the requirements for this field, in case the user input does
+     *           not fulfill the regex pattern or min/max values.
+     *     @type string $validation_help_url
+     *           URL to a help document to further explain the naming requirements.
+     *     @type bool $immutable
+     *           Cannot be changed after initial creation.
+     *     @type bool $recurse
+     *           If set to true, schema should be taken from the parent with the same
+     *           parameter_id. Only applicable when parameter type is RECORD.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Bigquery\Datatransfer\V1\Datatransfer::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

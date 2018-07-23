@@ -19,6 +19,7 @@ namespace Google\Cloud\Storage\Tests\Snippet;
 
 use Google\Cloud\Core\Iterator\ItemIterator;
 use Google\Cloud\Core\RequestWrapper;
+use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Core\Timestamp;
 use Google\Cloud\Core\Upload\SignedUrlUploader;
 use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
@@ -43,7 +44,9 @@ class StorageClientTest extends SnippetTestCase
         $this->connection = $this->prophesize(Rest::class);
         $this->connection->projectId()
             ->willReturn(self::PROJECT_ID);
-        $this->client = \Google\Cloud\Core\Testing\TestHelpers::stub(StorageClient::class);
+        $this->client = TestHelpers::stub(StorageClient::class, [
+            ['projectId' => self::PROJECT_ID]
+        ]);
         $this->client->___setProperty('connection', $this->connection->reveal());
     }
 
@@ -160,5 +163,21 @@ class StorageClientTest extends SnippetTestCase
 
         $res = $snippet->invoke('timestamp');
         $this->assertInstanceOf(Timestamp::class, $res->returnVal());
+    }
+
+    public function testGetServiceAccount()
+    {
+        $snippet = $this->snippetFromMethod(StorageClient::class, 'getServiceAccount');
+        $snippet->addLocal('storage', $this->client);
+        $expectedServiceAccount = self::PROJECT_ID . '@gs-project-accounts.iam.gserviceaccount.com';
+        $this->connection->getServiceAccount([
+            'projectId' => self::PROJECT_ID,
+        ])->willReturn([
+            'kind' => 'storage#serviceAccount',
+            'email_address' => $expectedServiceAccount
+        ])->shouldBeCalledTimes(1);
+
+        $res = $snippet->invoke('serviceAccount');
+        $this->assertEquals($expectedServiceAccount, $res->returnVal());
     }
 }

@@ -35,9 +35,24 @@ class ListCryptoKeysResponse extends \Google\Protobuf\Internal\Message
      */
     private $total_size = 0;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type \Google\Cloud\Kms\V1\CryptoKey[]|\Google\Protobuf\Internal\RepeatedField $crypto_keys
+     *           The list of [CryptoKeys][google.cloud.kms.v1.CryptoKey].
+     *     @type string $next_page_token
+     *           A token to retrieve next page of results. Pass this value in
+     *           [ListCryptoKeysRequest.page_token][google.cloud.kms.v1.ListCryptoKeysRequest.page_token] to retrieve the next page of results.
+     *     @type int $total_size
+     *           The total number of [CryptoKeys][google.cloud.kms.v1.CryptoKey] that matched the query.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Kms\V1\Service::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

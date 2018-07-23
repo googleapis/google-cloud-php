@@ -18,6 +18,7 @@
 namespace Google\Cloud\BigQuery\Tests\System;
 
 use Google\Cloud\BigQuery\Bytes;
+use Google\Cloud\BigQuery\Numeric;
 use Google\Cloud\BigQuery\Date;
 use Google\Cloud\Core\ExponentialBackoff;
 use Google\Cloud\BigQuery\Time;
@@ -60,7 +61,7 @@ class LoadDataAndQueryTest extends BigQueryTestCase
                 'NextVacation' => self::$client->date(new \DateTime('2020-10-11')),
                 'FavoriteTime' => new \DateTime('1920-01-01 15:15:12')
             ],
-            'FavoriteNumbers' => [10, 11]
+            'FavoriteNumbers' => [new Numeric('.123'), new Numeric('123.')]
         ];
     }
 
@@ -133,8 +134,8 @@ class LoadDataAndQueryTest extends BigQueryTestCase
             $expectedRow = $this->row;
             $expectedBytes = $expectedRow['Spells'][0]['Icon'];
             $actualBytes = $actualRow['Spells'][0]['Icon'];
-            unset($expectedRow['ImportantDates']);
             unset($expectedRow['FavoriteNumbers']);
+            unset($expectedRow['ImportantDates']);
             unset($expectedRow['Spells'][0]['Icon']);
             unset($actualRow['Spells'][0]['Icon']);
 
@@ -216,9 +217,11 @@ class LoadDataAndQueryTest extends BigQueryTestCase
             . '@datetime as datetime,'
             . '@date as date,'
             . '@time as time,'
-            . '@bytes as bytes';
+            . '@bytes as bytes, '
+            . '@numeric as numeric';
 
         $bytes = self::$client->bytes('123');
+        $numeric = self::$client->numeric('9.999999999');
         $params = [
             'structType' => [
                 'hello' => 'world'
@@ -241,7 +244,8 @@ class LoadDataAndQueryTest extends BigQueryTestCase
             'datetime' => new \DateTime('2003-02-05 11:15:02.421827Z'),
             'date' => self::$client->date(new \DateTime('2003-12-12')),
             'time' => self::$client->time(new \DateTime('11:15:02')),
-            'bytes' => $bytes
+            'bytes' => $bytes,
+            'numeric' => $numeric
         ];
         $query = self::$client->query($queryString)
             ->parameters($params);

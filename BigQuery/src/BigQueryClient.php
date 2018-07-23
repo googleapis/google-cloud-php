@@ -49,7 +49,7 @@ class BigQueryClient
     use ClientTrait;
     use RetryDeciderTrait;
 
-    const VERSION = '1.2.4';
+    const VERSION = '1.4.0';
 
     const MAX_DELAY_MICROSECONDS = 32000000;
 
@@ -442,6 +442,10 @@ class BigQueryClient
      *           resume the loading of results from a specific point.
      *     @type string $stateFilter Filter for job state. Maybe be either
      *           `done`, `pending`, or `running`.
+     *     @type int $maxCreationTime Milliseconds since the POSIX epoch. If set, only jobs created
+     *           before or at this timestamp are returned.
+     *     @type int $minCreationTime Milliseconds since the POSIX epoch. If set, only jobs created
+     *           after or at this timestamp are returned.
      * }
      * @return ItemIterator<Job>
      */
@@ -681,5 +685,47 @@ class BigQueryClient
     public function timestamp(\DateTimeInterface $value)
     {
         return new Timestamp($value);
+    }
+
+    /**
+     * Create a Numeric object.
+     *
+     * Numeric represents a value with a data type of
+     * [Numeric](https://cloud.google.com/bigquery/docs/reference/standard-sql/data-types#numeric-type).
+     *
+     * It supports a fixed 38 decimal digits of precision and 9 decimal digits of scale, and values
+     * are in the range of -99999999999999999999999999999.999999999 to
+     * 99999999999999999999999999999.999999999.
+     *
+     * Example:
+     * ```
+     * $numeric = $bigQuery->numeric('99999999999999999999999999999999999999.999999999');
+     * ```
+     *
+     * @param string|int|float $value The Numeric value.
+     * @return Numeric
+     * @throws \InvalidArgumentException
+     */
+    public function numeric($value)
+    {
+        return new Numeric($value);
+    }
+
+    /**
+     * Get a service account for the KMS integration.
+     *
+     * Example:
+     * ```
+     * $serviceAccount = $bigQuery->getServiceAccount();
+     * ```
+     *
+     * @param array $options [optional] Configuration options.
+     *
+     * @return string
+     */
+    public function getServiceAccount(array $options = [])
+    {
+        $resp = $this->connection->getServiceAccount($options + ['projectId' => $this->projectId]);
+        return $resp['email'];
     }
 }

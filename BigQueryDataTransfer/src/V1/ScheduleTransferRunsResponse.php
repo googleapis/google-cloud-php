@@ -22,9 +22,19 @@ class ScheduleTransferRunsResponse extends \Google\Protobuf\Internal\Message
      */
     private $runs;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type \Google\Cloud\BigQuery\DataTransfer\V1\TransferRun[]|\Google\Protobuf\Internal\RepeatedField $runs
+     *           The transfer runs that were scheduled.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Bigquery\Datatransfer\V1\Datatransfer::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

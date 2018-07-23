@@ -36,9 +36,25 @@ class CreateCryptoKeyRequest extends \Google\Protobuf\Internal\Message
      */
     private $crypto_key = null;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $parent
+     *           Required. The [name][google.cloud.kms.v1.KeyRing.name] of the KeyRing associated with the
+     *           [CryptoKeys][google.cloud.kms.v1.CryptoKey].
+     *     @type string $crypto_key_id
+     *           Required. It must be unique within a KeyRing and match the regular
+     *           expression `[a-zA-Z0-9_-]{1,63}`
+     *     @type \Google\Cloud\Kms\V1\CryptoKey $crypto_key
+     *           A [CryptoKey][google.cloud.kms.v1.CryptoKey] with initial field values.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Kms\V1\Service::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

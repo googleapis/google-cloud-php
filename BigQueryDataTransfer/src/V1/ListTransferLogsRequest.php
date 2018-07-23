@@ -46,9 +46,31 @@ class ListTransferLogsRequest extends \Google\Protobuf\Internal\Message
      */
     private $message_types;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $parent
+     *           Transfer run name in the form:
+     *           `projects/{project_id}/transferConfigs/{config_Id}/runs/{run_id}`.
+     *     @type string $page_token
+     *           Pagination token, which can be used to request a specific page
+     *           of `ListTransferLogsRequest` list results. For multiple-page
+     *           results, `ListTransferLogsResponse` outputs
+     *           a `next_page` token, which can be used as the
+     *           `page_token` value to request the next page of list results.
+     *     @type int $page_size
+     *           Page size. The default page size is the maximum value of 1000 results.
+     *     @type int[]|\Google\Protobuf\Internal\RepeatedField $message_types
+     *           Message types to return. If not populated - INFO, WARNING and ERROR
+     *           messages are returned.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Bigquery\Datatransfer\V1\Datatransfer::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**
@@ -161,7 +183,7 @@ class ListTransferLogsRequest extends \Google\Protobuf\Internal\Message
      */
     public function setMessageTypes($var)
     {
-        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::ENUM, \Google\Cloud\BigQuery\DataTransfer\V1\TransferMessage_MessageSeverity::class);
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::ENUM, \Google\Cloud\BigQuery\DataTransfer\V1\TransferMessage\MessageSeverity::class);
         $this->message_types = $arr;
 
         return $this;

@@ -15,7 +15,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * The documentation for [AppEngineHttpRequest][google.cloud.tasks.v2beta2.AppEngineHttpRequest] explains how the
  * task's host URL is constructed.
  * Using [AppEngineHttpTarget][google.cloud.tasks.v2beta2.AppEngineHttpTarget] requires
- * [`appengine.applications.get`](/appengine/docs/admin-api/access-control)
+ * [`appengine.applications.get`](https://cloud.google.com/appengine/docs/admin-api/access-control)
  * Google IAM permission for the project
  * and the following scope:
  * `https://www.googleapis.com/auth/cloud-platform`
@@ -35,9 +35,23 @@ class AppEngineHttpTarget extends \Google\Protobuf\Internal\Message
      */
     private $app_engine_routing_override = null;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type \Google\Cloud\Tasks\V2beta2\AppEngineRouting $app_engine_routing_override
+     *           Overrides for the
+     *           [task-level app_engine_routing][google.cloud.tasks.v2beta2.AppEngineHttpRequest.app_engine_routing].
+     *           If set, `app_engine_routing_override` is used for all tasks in
+     *           the queue, no matter what the setting is for the
+     *           [task-level app_engine_routing][google.cloud.tasks.v2beta2.AppEngineHttpRequest.app_engine_routing].
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Tasks\V2Beta2\Target::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

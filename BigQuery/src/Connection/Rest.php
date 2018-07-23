@@ -241,6 +241,15 @@ class Rest implements ConnectionInterface
      * @param array $args
      * @return array
      */
+    public function getServiceAccount(array $args = [])
+    {
+        return $this->send('projects', 'getServiceAccount', $args);
+    }
+
+    /**
+     * @param array $args
+     * @return array
+     */
     private function resolveUploadOptions(array $args)
     {
         $args += [

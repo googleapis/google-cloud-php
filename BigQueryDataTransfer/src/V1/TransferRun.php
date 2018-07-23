@@ -108,9 +108,57 @@ class TransferRun extends \Google\Protobuf\Internal\Message
      */
     private $schedule = '';
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $name
+     *           The resource name of the transfer run.
+     *           Transfer run names have the form
+     *           `projects/{project_id}/locations/{location}/transferConfigs/{config_id}/runs/{run_id}`.
+     *           The name is ignored when creating a transfer run.
+     *     @type \Google\Protobuf\Timestamp $schedule_time
+     *           Minimum time after which a transfer run can be started.
+     *     @type \Google\Protobuf\Timestamp $run_time
+     *           For batch transfer runs, specifies the date and time that
+     *           data should be ingested.
+     *     @type \Google\Rpc\Status $error_status
+     *           Status of the transfer run.
+     *     @type \Google\Protobuf\Timestamp $start_time
+     *           Output only. Time when transfer run was started.
+     *           Parameter ignored by server for input requests.
+     *     @type \Google\Protobuf\Timestamp $end_time
+     *           Output only. Time when transfer run ended.
+     *           Parameter ignored by server for input requests.
+     *     @type \Google\Protobuf\Timestamp $update_time
+     *           Output only. Last time the data transfer run state was updated.
+     *     @type \Google\Protobuf\Struct $params
+     *           Output only. Data transfer specific parameters.
+     *     @type string $destination_dataset_id
+     *           Output only. The BigQuery target dataset id.
+     *     @type string $data_source_id
+     *           Output only. Data source id.
+     *     @type int $state
+     *           Data transfer run state. Ignored for input requests.
+     *     @type int|string $user_id
+     *           Output only. Unique ID of the user on whose behalf transfer is done.
+     *           Applicable only to data sources that do not support service accounts.
+     *           When set to 0, the data source service account credentials are used.
+     *           May be negative. Note, that this identifier is not stable.
+     *           It may change over time even for the same user.
+     *     @type string $schedule
+     *           Output only. Describes the schedule of this transfer run if it was
+     *           created as part of a regular schedule. For batch transfer runs that are
+     *           scheduled manually, this is empty.
+     *           NOTE: the system might choose to delay the schedule depending on the
+     *           current load, so `schedule_time` doesn't always matches this.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Bigquery\Datatransfer\V1\Transfer::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

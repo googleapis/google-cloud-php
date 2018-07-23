@@ -20,6 +20,7 @@ namespace Google\Cloud\BigQuery\Tests\Snippet;
 use Google\Cloud\BigQuery\BigQueryClient;
 use Google\Cloud\BigQuery\Bytes;
 use Google\Cloud\BigQuery\Date;
+use Google\Cloud\BigQuery\Numeric;
 use Google\Cloud\BigQuery\Time;
 use Google\Cloud\BigQuery\Timestamp;
 use Google\Cloud\BigQuery\Connection\ConnectionInterface;
@@ -393,6 +394,16 @@ class BigQueryClientTest extends SnippetTestCase
         $this->assertInstanceOf(Int64::class, $res->returnVal());
     }
 
+    public function testNumeric()
+    {
+        $snippet = $this->snippetFromMethod(BigQueryClient::class, 'numeric');
+        $snippet->addLocal('bigQuery', $this->client);
+        $this->client->___setProperty('connection', $this->connection->reveal());
+        $res = $snippet->invoke('numeric');
+
+        $this->assertInstanceOf(Numeric::class, $res->returnVal());
+    }
+
     public function testTime()
     {
         $snippet = $this->snippetFromMethod(BigQueryClient::class, 'time');
@@ -411,6 +422,23 @@ class BigQueryClientTest extends SnippetTestCase
         $res = $snippet->invoke('timestamp');
 
         $this->assertInstanceOf(Timestamp::class, $res->returnVal());
+    }
+
+    public function testGetServiceAccount()
+    {
+        $expectedEmail = uniqid() . '@bigquery-encryption.iam.gserviceaccount.com';
+        $snippet = $this->snippetFromMethod(BigQueryClient::class, 'getServiceAccount');
+        $snippet->addLocal('bigQuery', $this->client);
+        $this->connection->getServiceAccount(['projectId' => self::PROJECT_ID])
+            ->willReturn([
+                "kind" => "bigquery#getServiceAccountResponse",
+                "email" => $expectedEmail
+            ])
+            ->shouldBeCalledTimes(1);
+        $this->client->___setProperty('connection', $this->connection->reveal());
+        $res = $snippet->invoke('serviceAccount');
+
+        $this->assertEquals($expectedEmail, $res->returnVal());
     }
 }
 
