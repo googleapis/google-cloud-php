@@ -214,11 +214,13 @@ class Table
      * @see https://cloud.google.com/bigtable/docs/reference/admin/rpc/google.bigtable.admin.v2#google.bigtable.admin.v2.CreateTableRequest CreateTableRequest
      * @codingStandardsIgnoreEnd
      *
+     * @param array $options [optional] Configuration options.
+     *
      * @return array Table information
      *
      * @throws \InvalidArgumentException
      */
-    public function create()
+    public function create(array $options = [])
     {
         $instanceName = TableAdminClient::instanceName($this->projectId, $this->instanceId);
         $this->info = $this->connection->createTable([
@@ -237,9 +239,11 @@ class Table
      * $table->delete();
      * ```
      *
+     * @param array $options [optional] Configuration options.
+     *
      * @return void
      */
-    public function delete()
+    public function delete(array $options = [])
     {
         return $this->connection->deleteTable([
             'name' => $this->name
