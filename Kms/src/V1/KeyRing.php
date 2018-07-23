@@ -29,9 +29,22 @@ class KeyRing extends \Google\Protobuf\Internal\Message
      */
     private $create_time = null;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $name
+     *           Output only. The resource name for the [KeyRing][google.cloud.kms.v1.KeyRing] in the format
+     *           `projects/&#42;&#47;locations/&#42;&#47;keyRings/&#42;`.
+     *     @type \Google\Protobuf\Timestamp $create_time
+     *           Output only. The time at which this [KeyRing][google.cloud.kms.v1.KeyRing] was created.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Kms\V1\Resources::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

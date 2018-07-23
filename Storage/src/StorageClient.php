@@ -47,7 +47,7 @@ class StorageClient
     use ArrayTrait;
     use ClientTrait;
 
-    const VERSION = '1.5.2';
+    const VERSION = '1.6.0';
 
     const FULL_CONTROL_SCOPE = 'https://www.googleapis.com/auth/devstorage.full_control';
     const READ_ONLY_SCOPE = 'https://www.googleapis.com/auth/devstorage.read_only';
@@ -378,5 +378,27 @@ class StorageClient
     public function timestamp(\DateTimeInterface $timestamp, $nanoSeconds = null)
     {
         return new Timestamp($timestamp, $nanoSeconds);
+    }
+
+    /**
+     * Get a service account email for the KMS integration.
+     *
+     * Example:
+     * ```
+     * $serviceAccount = $storage->getServiceAccount();
+     * ```
+     *
+     * @param array $options [optional] {
+     *     Configuration options.
+     *
+     *     @type string $userProject If set, this is the ID of the project which
+     *           will be billed for the request.
+     * }
+     * @return string
+     */
+    public function getServiceAccount(array $options = [])
+    {
+        $resp = $this->connection->getServiceAccount($options + ['projectId' => $this->projectId]);
+        return $resp['email_address'];
     }
 }

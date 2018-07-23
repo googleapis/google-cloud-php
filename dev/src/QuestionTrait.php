@@ -15,17 +15,19 @@
  * limitations under the License.
  */
 
-namespace Google\Cloud\Dev\AddComponent;
+namespace Google\Cloud\Dev;
 
 use Symfony\Component\Console\Question\ChoiceQuestion;
 use Symfony\Component\Console\Question\ConfirmationQuestion;
 use Symfony\Component\Console\Question\Question;
 
 /**
- * Helpers for asking questions
+ * Helpers for asking questions in an interactice CLI.
  */
 trait QuestionTrait
 {
+    private $choiceDefaultText = ' (default)';
+
     protected abstract function questionHelper();
     protected abstract function input();
     protected abstract function output();
@@ -48,7 +50,7 @@ trait QuestionTrait
     private function question($question, $default = null)
     {
         if ($default) {
-            $question = $question . ' (leave blank for '. $default .')';
+            $question = $question . ' (leave blank for "'. $default .'")';
         }
 
         return new Question(
@@ -67,10 +69,16 @@ trait QuestionTrait
             }
 
             $key = array_search($default, $options);
-            $options[$key] = $options[$key] .' (default)';
+            $options[$key] = $options[$key] . $this->choiceDefaultText;
+            $default = $options[$key];
         }
 
-        return new ChoiceQuestion($question, $options);
+        return new ChoiceQuestion($question, $options, $default);
+    }
+
+    private function removeDefaultFromChoice($answer)
+    {
+        return rtrim($answer, $this->choiceDefaultText);
     }
 
     private function confirm($question, $defaultToYes = true)

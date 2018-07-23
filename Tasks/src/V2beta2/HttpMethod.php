@@ -7,7 +7,7 @@ namespace Google\Cloud\Tasks\V2beta2;
 /**
  * The HTTP method used to execute the task.
  *
- * Protobuf enum <code>Google\Cloud\Tasks\V2beta2\HttpMethod</code>
+ * Protobuf type <code>google.cloud.tasks.v2beta2.HttpMethod</code>
  */
 class HttpMethod
 {
@@ -18,31 +18,31 @@ class HttpMethod
      */
     const HTTP_METHOD_UNSPECIFIED = 0;
     /**
-     * HTTP Post
+     * HTTP POST
      *
      * Generated from protobuf enum <code>POST = 1;</code>
      */
     const POST = 1;
     /**
-     * HTTP Get
+     * HTTP GET
      *
      * Generated from protobuf enum <code>GET = 2;</code>
      */
     const GET = 2;
     /**
-     * HTTP Head
+     * HTTP HEAD
      *
      * Generated from protobuf enum <code>HEAD = 3;</code>
      */
     const HEAD = 3;
     /**
-     * HTTP Put
+     * HTTP PUT
      *
      * Generated from protobuf enum <code>PUT = 4;</code>
      */
     const PUT = 4;
     /**
-     * HTTP Delete
+     * HTTP DELETE
      *
      * Generated from protobuf enum <code>DELETE = 5;</code>
      */

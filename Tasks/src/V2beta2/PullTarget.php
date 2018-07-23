@@ -16,9 +16,17 @@ use Google\Protobuf\Internal\GPBUtil;
 class PullTarget extends \Google\Protobuf\Internal\Message
 {
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Tasks\V2Beta2\Target::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
 }

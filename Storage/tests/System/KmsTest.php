@@ -178,7 +178,7 @@ class KmsTest extends StorageTestCase
             'scopes' => ['https://www.googleapis.com/auth/cloud-platform']
         ]);
         $projectId = self::getProjectId($keyFilePath);
-        $serviceAccount = self::getServiceAccount($wrapper, $projectId);
+        $serviceAccount = self::$client->getServiceAccount();
         self::buildKeyRing($wrapper, $projectId, $keyRingId);
         $keyNames[] = self::getCryptoKeyName(
             $wrapper,
@@ -294,28 +294,5 @@ class KmsTest extends StorageTestCase
         );
 
         return $name;
-    }
-
-    /**
-     * @param RequestWrapper $wrapper
-     * @param string $projectId
-     * @return string
-     */
-    private static function getServiceAccount(RequestWrapper $wrapper, $projectId)
-    {
-        $response = $wrapper->send(
-            new Request(
-                'GET',
-                sprintf(
-                    'https://www.googleapis.com/storage/v1/projects/%s/serviceAccount',
-                    $projectId
-                )
-            )
-        );
-
-        return json_decode(
-            (string) $response->getBody(),
-            true
-        )['email_address'];
     }
 }

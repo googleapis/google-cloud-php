@@ -69,9 +69,46 @@ class CryptoKey extends \Google\Protobuf\Internal\Message
     private $labels;
     protected $rotation_schedule;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $name
+     *           Output only. The resource name for this [CryptoKey][google.cloud.kms.v1.CryptoKey] in the format
+     *           `projects/&#42;&#47;locations/&#42;&#47;keyRings/&#42;&#47;cryptoKeys/&#42;`.
+     *     @type \Google\Cloud\Kms\V1\CryptoKeyVersion $primary
+     *           Output only. A copy of the "primary" [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] that will be used
+     *           by [Encrypt][google.cloud.kms.v1.KeyManagementService.Encrypt] when this [CryptoKey][google.cloud.kms.v1.CryptoKey] is given
+     *           in [EncryptRequest.name][google.cloud.kms.v1.EncryptRequest.name].
+     *           The [CryptoKey][google.cloud.kms.v1.CryptoKey]'s primary version can be updated via
+     *           [UpdateCryptoKeyPrimaryVersion][google.cloud.kms.v1.KeyManagementService.UpdateCryptoKeyPrimaryVersion].
+     *     @type int $purpose
+     *           The immutable purpose of this [CryptoKey][google.cloud.kms.v1.CryptoKey]. Currently, the only acceptable
+     *           purpose is [ENCRYPT_DECRYPT][google.cloud.kms.v1.CryptoKey.CryptoKeyPurpose.ENCRYPT_DECRYPT].
+     *     @type \Google\Protobuf\Timestamp $create_time
+     *           Output only. The time at which this [CryptoKey][google.cloud.kms.v1.CryptoKey] was created.
+     *     @type \Google\Protobuf\Timestamp $next_rotation_time
+     *           At [next_rotation_time][google.cloud.kms.v1.CryptoKey.next_rotation_time], the Key Management Service will automatically:
+     *           1. Create a new version of this [CryptoKey][google.cloud.kms.v1.CryptoKey].
+     *           2. Mark the new version as primary.
+     *           Key rotations performed manually via
+     *           [CreateCryptoKeyVersion][google.cloud.kms.v1.KeyManagementService.CreateCryptoKeyVersion] and
+     *           [UpdateCryptoKeyPrimaryVersion][google.cloud.kms.v1.KeyManagementService.UpdateCryptoKeyPrimaryVersion]
+     *           do not affect [next_rotation_time][google.cloud.kms.v1.CryptoKey.next_rotation_time].
+     *     @type \Google\Protobuf\Duration $rotation_period
+     *           [next_rotation_time][google.cloud.kms.v1.CryptoKey.next_rotation_time] will be advanced by this period when the service
+     *           automatically rotates a key. Must be at least one day.
+     *           If [rotation_period][google.cloud.kms.v1.CryptoKey.rotation_period] is set, [next_rotation_time][google.cloud.kms.v1.CryptoKey.next_rotation_time] must also be set.
+     *     @type array|\Google\Protobuf\Internal\MapField $labels
+     *           Labels with user-defined metadata. For more information, see
+     *           [Labeling Keys](/kms/docs/labeling-keys).
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Kms\V1\Resources::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

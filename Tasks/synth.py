@@ -34,3 +34,15 @@ s.copy(v2beta2_library / f'src/')
 s.copy(v2beta2_library / f'proto/src/GPBMetadata/Google/Cloud/Tasks', f'metadata')
 s.copy(v2beta2_library / f'proto/src/Google/Cloud/Tasks', f'src')
 s.copy(v2beta2_library / f'tests')
+
+# Use new namespace in the doc sample. See
+# https://github.com/googleapis/gapic-generator/issues/2141
+s.replace(
+    'src/V2beta2/Gapic/CloudTasksGapicClient.php',
+    r'Task_View',
+    'Task\View')
+# Change the wording for the deprecation warning.
+s.replace(
+    'src/*/*_*.php',
+    r'will be removed in the next major release',
+    'will be removed in a future release')

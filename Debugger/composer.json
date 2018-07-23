@@ -6,7 +6,7 @@
     "require": {
         "google/cloud-core": "^1.4",
         "google/cloud-logging": "^1.4",
-        "google/gax": "^0.34",
+        "google/gax": "^0.36",
         "psr/log": "^1.0"
     },
     "require-dev": {

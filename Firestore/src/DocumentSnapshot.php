@@ -294,7 +294,10 @@ class DocumentSnapshot implements \ArrayAccess
                 break;
             } else {
                 if (!isset($fields[$part])) {
-                    throw new \InvalidArgumentException('field path does not exist.');
+                    throw new \InvalidArgumentException(sprintf(
+                        'Field path `%s` does not exist.',
+                        $fieldPath
+                    ));
                 }
 
                 $fields = $fields[$part];

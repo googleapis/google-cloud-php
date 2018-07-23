@@ -2,7 +2,7 @@
 // GENERATED CODE -- DO NOT EDIT!
 
 // Original file comments:
-// Copyright 2018 Google Inc.
+// Copyright 2018 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -73,7 +73,7 @@ class CloudTasksGrpcClient extends \Grpc\BaseStub {
      * WARNING: Using this method may have unintended side effects if you are
      * using an App Engine `queue.yaml` or `queue.xml` file to manage your queues.
      * Read
-     * [Overview of Queue Management and queue.yaml](/cloud-tasks/docs/queue-yaml)
+     * [Overview of Queue Management and queue.yaml](https://cloud.google.com/tasks/docs/queue-yaml)
      * before using this method.
      * @param \Google\Cloud\Tasks\V2beta2\CreateQueueRequest $argument input argument
      * @param array $metadata metadata
@@ -100,7 +100,7 @@ class CloudTasksGrpcClient extends \Grpc\BaseStub {
      * WARNING: Using this method may have unintended side effects if you are
      * using an App Engine `queue.yaml` or `queue.xml` file to manage your queues.
      * Read
-     * [Overview of Queue Management and queue.yaml](/cloud-tasks/docs/queue-yaml)
+     * [Overview of Queue Management and queue.yaml](https://cloud.google.com/tasks/docs/queue-yaml)
      * before using this method.
      * @param \Google\Cloud\Tasks\V2beta2\UpdateQueueRequest $argument input argument
      * @param array $metadata metadata
@@ -125,7 +125,7 @@ class CloudTasksGrpcClient extends \Grpc\BaseStub {
      * WARNING: Using this method may have unintended side effects if you are
      * using an App Engine `queue.yaml` or `queue.xml` file to manage your queues.
      * Read
-     * [Overview of Queue Management and queue.yaml](/cloud-tasks/docs/queue-yaml)
+     * [Overview of Queue Management and queue.yaml](https://cloud.google.com/tasks/docs/queue-yaml)
      * before using this method.
      * @param \Google\Cloud\Tasks\V2beta2\DeleteQueueRequest $argument input argument
      * @param array $metadata metadata
@@ -190,7 +190,7 @@ class CloudTasksGrpcClient extends \Grpc\BaseStub {
      * WARNING: Resuming many high-QPS queues at the same time can
      * lead to target overloading. If you are resuming high-QPS
      * queues, follow the 500/50/5 pattern described in
-     * [Managing Cloud Tasks Scaling Risks](/cloud-tasks/pdfs/managing-cloud-tasks-scaling-risks-2017-06-05.pdf).
+     * [Managing Cloud Tasks Scaling Risks](https://cloud.google.com/tasks/docs/manage-cloud-task-scaling).
      * @param \Google\Cloud\Tasks\V2beta2\ResumeQueueRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -208,8 +208,9 @@ class CloudTasksGrpcClient extends \Grpc\BaseStub {
      * Returns an empty policy if the resource exists and does not have a policy
      * set.
      *
-     * Authorization requires the following [Google IAM](/iam) permission on the
-     * specified resource parent:
+     * Authorization requires the following
+     * [Google IAM](https://cloud.google.com/iam) permission on the specified
+     * resource parent:
      *
      * * `cloudtasks.queues.getIamPolicy`
      * @param \Google\Cloud\Iam\V1\GetIamPolicyRequest $argument input argument
@@ -231,8 +232,9 @@ class CloudTasksGrpcClient extends \Grpc\BaseStub {
      * Note: The Cloud Console does not check queue-level IAM permissions yet.
      * Project-level permissions are required to use the Cloud Console.
      *
-     * Authorization requires the following [Google IAM](/iam) permission on the
-     * specified resource parent:
+     * Authorization requires the following
+     * [Google IAM](https://cloud.google.com/iam) permission on the specified
+     * resource parent:
      *
      * * `cloudtasks.queues.setIamPolicy`
      * @param \Google\Cloud\Iam\V1\SetIamPolicyRequest $argument input argument
@@ -274,6 +276,9 @@ class CloudTasksGrpcClient extends \Grpc\BaseStub {
      * due to performance considerations;
      * [response_view][google.cloud.tasks.v2beta2.ListTasksRequest.response_view] controls the
      * subset of information which is returned.
+     *
+     * The tasks may be returned in any order. The ordering may change at any
+     * time.
      * @param \Google\Cloud\Tasks\V2beta2\ListTasksRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -305,10 +310,9 @@ class CloudTasksGrpcClient extends \Grpc\BaseStub {
      *
      * Tasks cannot be updated after creation; there is no UpdateTask command.
      *
-     * * For [App Engine queues](google.cloud.tasks.v2beta2.AppEngineHttpTarget),
-     *   the maximum task size is 100KB.
-     * * For [pull queues](google.cloud.tasks.v2beta2.PullTarget), this
-     *   the maximum task size is 1MB.
+     * * For [App Engine queues][google.cloud.tasks.v2beta2.AppEngineHttpTarget], the maximum task size is
+     *   100KB.
+     * * For [pull queues][google.cloud.tasks.v2beta2.PullTarget], the maximum task size is 1MB.
      * @param \Google\Cloud\Tasks\V2beta2\CreateTaskRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options

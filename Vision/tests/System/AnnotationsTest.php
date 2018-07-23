@@ -67,10 +67,12 @@ class AnnotationsTest extends VisionTestCase
         $this->assertEquals('VERY_UNLIKELY', $res->safeSearch()->spoof());
         $this->assertEquals('VERY_UNLIKELY', $res->safeSearch()->medical());
         $this->assertEquals('VERY_UNLIKELY', $res->safeSearch()->violence());
+        $this->assertEquals('VERY_UNLIKELY', $res->safeSearch()->racy());
         $this->assertFalse($res->safeSearch()->isAdult());
         $this->assertFalse($res->safeSearch()->isSpoof());
         $this->assertFalse($res->safeSearch()->isMedical());
         $this->assertFalse($res->safeSearch()->isViolent());
+        $this->assertFalse($res->safeSearch()->isRacy());
 
         // Image Properties
         $this->assertInstanceOf(ImageProperties::class, $res->imageProperties());

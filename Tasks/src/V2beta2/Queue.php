@@ -26,7 +26,7 @@ class Queue extends \Google\Protobuf\Internal\Message
      * * `PROJECT_ID` can contain letters ([A-Za-z]), numbers ([0-9]),
      *    hyphens (-), colons (:), or periods (.).
      *    For more information, see
-     *    [Identifying projects](/resource-manager/docs/creating-managing-projects#identifying_projects)
+     *    [Identifying projects](https://cloud.google.com/resource-manager/docs/creating-managing-projects#identifying_projects)
      * * `LOCATION_ID` is the canonical ID for the queue's location.
      *    The list of available locations can be obtained by calling
      *    [ListLocations][google.cloud.location.Locations.ListLocations].
@@ -63,7 +63,7 @@ class Queue extends \Google\Protobuf\Internal\Message
      * * For tasks created using the App Engine SDK: the queue-level retry
      *   settings apply to all tasks in the queue which do not have retry settings
      *   explicitly set on the task and were created by the App Engine SDK. See
-     *   [App Engine documentation](/appengine/docs/standard/python/taskqueue/push/retrying-tasks).
+     *   [App Engine documentation](https://cloud.google.com/appengine/docs/standard/python/taskqueue/push/retrying-tasks).
      *
      * Generated from protobuf field <code>.google.cloud.tasks.v2beta2.RetryConfig retry_config = 6;</code>
      */
@@ -73,7 +73,7 @@ class Queue extends \Google\Protobuf\Internal\Message
      * `state` can only be changed by called
      * [PauseQueue][google.cloud.tasks.v2beta2.CloudTasks.PauseQueue],
      * [ResumeQueue][google.cloud.tasks.v2beta2.CloudTasks.ResumeQueue], or uploading
-     * [queue.yaml/xml](/appengine/docs/python/config/queueref).
+     * [queue.yaml/xml](https://cloud.google.com/appengine/docs/python/config/queueref).
      * [UpdateQueue][google.cloud.tasks.v2beta2.CloudTasks.UpdateQueue] cannot be used to change `state`.
      *
      * Generated from protobuf field <code>.google.cloud.tasks.v2beta2.Queue.State state = 7;</code>
@@ -84,7 +84,7 @@ class Queue extends \Google\Protobuf\Internal\Message
      * All tasks that were [created][google.cloud.tasks.v2beta2.Task.create_time] before this time
      * were purged.
      * A queue can be purged using [PurgeQueue][google.cloud.tasks.v2beta2.CloudTasks.PurgeQueue], the
-     * [App Engine Task Queue SDK, or the Cloud Console](/appengine/docs/standard/python/taskqueue/push/deleting-tasks-and-queues#purging_all_tasks_from_a_queue).
+     * [App Engine Task Queue SDK, or the Cloud Console](https://cloud.google.com/appengine/docs/standard/python/taskqueue/push/deleting-tasks-and-queues#purging_all_tasks_from_a_queue).
      * Purge time will be truncated to the nearest microsecond. Purge
      * time will be unset if the queue has never been purged.
      *
@@ -93,9 +93,77 @@ class Queue extends \Google\Protobuf\Internal\Message
     private $purge_time = null;
     protected $target_type;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $name
+     *           Caller-specified and required in [CreateQueue][google.cloud.tasks.v2beta2.CloudTasks.CreateQueue],
+     *           after which it becomes output only.
+     *           The queue name.
+     *           The queue name must have the following format:
+     *           `projects/PROJECT_ID/locations/LOCATION_ID/queues/QUEUE_ID`
+     *           * `PROJECT_ID` can contain letters ([A-Za-z]), numbers ([0-9]),
+     *              hyphens (-), colons (:), or periods (.).
+     *              For more information, see
+     *              [Identifying projects](https://cloud.google.com/resource-manager/docs/creating-managing-projects#identifying_projects)
+     *           * `LOCATION_ID` is the canonical ID for the queue's location.
+     *              The list of available locations can be obtained by calling
+     *              [ListLocations][google.cloud.location.Locations.ListLocations].
+     *              For more information, see https://cloud.google.com/about/locations/.
+     *           * `QUEUE_ID` can contain letters ([A-Za-z]), numbers ([0-9]), or
+     *             hyphens (-). The maximum length is 100 characters.
+     *     @type \Google\Cloud\Tasks\V2beta2\AppEngineHttpTarget $app_engine_http_target
+     *           App Engine HTTP target.
+     *           An App Engine queue is a queue that has an [AppEngineHttpTarget][google.cloud.tasks.v2beta2.AppEngineHttpTarget].
+     *     @type \Google\Cloud\Tasks\V2beta2\PullTarget $pull_target
+     *           Pull target.
+     *           A pull queue is a queue that has a [PullTarget][google.cloud.tasks.v2beta2.PullTarget].
+     *     @type \Google\Cloud\Tasks\V2beta2\RateLimits $rate_limits
+     *           Rate limits for task dispatches.
+     *           [rate_limits][google.cloud.tasks.v2beta2.Queue.rate_limits] and
+     *           [retry_config][google.cloud.tasks.v2beta2.Queue.retry_config] are related because they both
+     *           control task attempts however they control how tasks are
+     *           attempted in different ways:
+     *           * [rate_limits][google.cloud.tasks.v2beta2.Queue.rate_limits] controls the total rate of
+     *             dispatches from a queue (i.e. all traffic dispatched from the
+     *             queue, regardless of whether the dispatch is from a first
+     *             attempt or a retry).
+     *           * [retry_config][google.cloud.tasks.v2beta2.Queue.retry_config] controls what happens to
+     *             particular a task after its first attempt fails. That is,
+     *             [retry_config][google.cloud.tasks.v2beta2.Queue.retry_config] controls task retries (the
+     *             second attempt, third attempt, etc).
+     *     @type \Google\Cloud\Tasks\V2beta2\RetryConfig $retry_config
+     *           Settings that determine the retry behavior.
+     *           * For tasks created using Cloud Tasks: the queue-level retry settings
+     *             apply to all tasks in the queue that were created using Cloud Tasks.
+     *             Retry settings cannot be set on individual tasks.
+     *           * For tasks created using the App Engine SDK: the queue-level retry
+     *             settings apply to all tasks in the queue which do not have retry settings
+     *             explicitly set on the task and were created by the App Engine SDK. See
+     *             [App Engine documentation](https://cloud.google.com/appengine/docs/standard/python/taskqueue/push/retrying-tasks).
+     *     @type int $state
+     *           Output only. The state of the queue.
+     *           `state` can only be changed by called
+     *           [PauseQueue][google.cloud.tasks.v2beta2.CloudTasks.PauseQueue],
+     *           [ResumeQueue][google.cloud.tasks.v2beta2.CloudTasks.ResumeQueue], or uploading
+     *           [queue.yaml/xml](https://cloud.google.com/appengine/docs/python/config/queueref).
+     *           [UpdateQueue][google.cloud.tasks.v2beta2.CloudTasks.UpdateQueue] cannot be used to change `state`.
+     *     @type \Google\Protobuf\Timestamp $purge_time
+     *           Output only. The last time this queue was purged.
+     *           All tasks that were [created][google.cloud.tasks.v2beta2.Task.create_time] before this time
+     *           were purged.
+     *           A queue can be purged using [PurgeQueue][google.cloud.tasks.v2beta2.CloudTasks.PurgeQueue], the
+     *           [App Engine Task Queue SDK, or the Cloud Console](https://cloud.google.com/appengine/docs/standard/python/taskqueue/push/deleting-tasks-and-queues#purging_all_tasks_from_a_queue).
+     *           Purge time will be truncated to the nearest microsecond. Purge
+     *           time will be unset if the queue has never been purged.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Tasks\V2Beta2\Queue::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**
@@ -107,7 +175,7 @@ class Queue extends \Google\Protobuf\Internal\Message
      * * `PROJECT_ID` can contain letters ([A-Za-z]), numbers ([0-9]),
      *    hyphens (-), colons (:), or periods (.).
      *    For more information, see
-     *    [Identifying projects](/resource-manager/docs/creating-managing-projects#identifying_projects)
+     *    [Identifying projects](https://cloud.google.com/resource-manager/docs/creating-managing-projects#identifying_projects)
      * * `LOCATION_ID` is the canonical ID for the queue's location.
      *    The list of available locations can be obtained by calling
      *    [ListLocations][google.cloud.location.Locations.ListLocations].
@@ -132,7 +200,7 @@ class Queue extends \Google\Protobuf\Internal\Message
      * * `PROJECT_ID` can contain letters ([A-Za-z]), numbers ([0-9]),
      *    hyphens (-), colons (:), or periods (.).
      *    For more information, see
-     *    [Identifying projects](/resource-manager/docs/creating-managing-projects#identifying_projects)
+     *    [Identifying projects](https://cloud.google.com/resource-manager/docs/creating-managing-projects#identifying_projects)
      * * `LOCATION_ID` is the canonical ID for the queue's location.
      *    The list of available locations can be obtained by calling
      *    [ListLocations][google.cloud.location.Locations.ListLocations].
@@ -266,7 +334,7 @@ class Queue extends \Google\Protobuf\Internal\Message
      * * For tasks created using the App Engine SDK: the queue-level retry
      *   settings apply to all tasks in the queue which do not have retry settings
      *   explicitly set on the task and were created by the App Engine SDK. See
-     *   [App Engine documentation](/appengine/docs/standard/python/taskqueue/push/retrying-tasks).
+     *   [App Engine documentation](https://cloud.google.com/appengine/docs/standard/python/taskqueue/push/retrying-tasks).
      *
      * Generated from protobuf field <code>.google.cloud.tasks.v2beta2.RetryConfig retry_config = 6;</code>
      * @return \Google\Cloud\Tasks\V2beta2\RetryConfig
@@ -284,7 +352,7 @@ class Queue extends \Google\Protobuf\Internal\Message
      * * For tasks created using the App Engine SDK: the queue-level retry
      *   settings apply to all tasks in the queue which do not have retry settings
      *   explicitly set on the task and were created by the App Engine SDK. See
-     *   [App Engine documentation](/appengine/docs/standard/python/taskqueue/push/retrying-tasks).
+     *   [App Engine documentation](https://cloud.google.com/appengine/docs/standard/python/taskqueue/push/retrying-tasks).
      *
      * Generated from protobuf field <code>.google.cloud.tasks.v2beta2.RetryConfig retry_config = 6;</code>
      * @param \Google\Cloud\Tasks\V2beta2\RetryConfig $var
@@ -303,7 +371,7 @@ class Queue extends \Google\Protobuf\Internal\Message
      * `state` can only be changed by called
      * [PauseQueue][google.cloud.tasks.v2beta2.CloudTasks.PauseQueue],
      * [ResumeQueue][google.cloud.tasks.v2beta2.CloudTasks.ResumeQueue], or uploading
-     * [queue.yaml/xml](/appengine/docs/python/config/queueref).
+     * [queue.yaml/xml](https://cloud.google.com/appengine/docs/python/config/queueref).
      * [UpdateQueue][google.cloud.tasks.v2beta2.CloudTasks.UpdateQueue] cannot be used to change `state`.
      *
      * Generated from protobuf field <code>.google.cloud.tasks.v2beta2.Queue.State state = 7;</code>
@@ -319,7 +387,7 @@ class Queue extends \Google\Protobuf\Internal\Message
      * `state` can only be changed by called
      * [PauseQueue][google.cloud.tasks.v2beta2.CloudTasks.PauseQueue],
      * [ResumeQueue][google.cloud.tasks.v2beta2.CloudTasks.ResumeQueue], or uploading
-     * [queue.yaml/xml](/appengine/docs/python/config/queueref).
+     * [queue.yaml/xml](https://cloud.google.com/appengine/docs/python/config/queueref).
      * [UpdateQueue][google.cloud.tasks.v2beta2.CloudTasks.UpdateQueue] cannot be used to change `state`.
      *
      * Generated from protobuf field <code>.google.cloud.tasks.v2beta2.Queue.State state = 7;</code>
@@ -339,7 +407,7 @@ class Queue extends \Google\Protobuf\Internal\Message
      * All tasks that were [created][google.cloud.tasks.v2beta2.Task.create_time] before this time
      * were purged.
      * A queue can be purged using [PurgeQueue][google.cloud.tasks.v2beta2.CloudTasks.PurgeQueue], the
-     * [App Engine Task Queue SDK, or the Cloud Console](/appengine/docs/standard/python/taskqueue/push/deleting-tasks-and-queues#purging_all_tasks_from_a_queue).
+     * [App Engine Task Queue SDK, or the Cloud Console](https://cloud.google.com/appengine/docs/standard/python/taskqueue/push/deleting-tasks-and-queues#purging_all_tasks_from_a_queue).
      * Purge time will be truncated to the nearest microsecond. Purge
      * time will be unset if the queue has never been purged.
      *
@@ -356,7 +424,7 @@ class Queue extends \Google\Protobuf\Internal\Message
      * All tasks that were [created][google.cloud.tasks.v2beta2.Task.create_time] before this time
      * were purged.
      * A queue can be purged using [PurgeQueue][google.cloud.tasks.v2beta2.CloudTasks.PurgeQueue], the
-     * [App Engine Task Queue SDK, or the Cloud Console](/appengine/docs/standard/python/taskqueue/push/deleting-tasks-and-queues#purging_all_tasks_from_a_queue).
+     * [App Engine Task Queue SDK, or the Cloud Console](https://cloud.google.com/appengine/docs/standard/python/taskqueue/push/deleting-tasks-and-queues#purging_all_tasks_from_a_queue).
      * Purge time will be truncated to the nearest microsecond. Purge
      * time will be unset if the queue has never been purged.
      *
