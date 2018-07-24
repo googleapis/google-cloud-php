@@ -138,4 +138,36 @@ class TableTest extends SnippetTestCase
         $res = $snippet->invoke();
         $this->assertEquals(null, $res->returnVal());
     }
+
+    public function testAddColumnFamilys()
+    {
+        $snippet = $this->snippetFromMethod(Table::class, 'addColumnFamilys');
+        $snippet->addUse(Table::class);
+        $snippet->addLocal('table', $this->table);
+
+        $this->connection->modifyColumnFamilies(Argument::any())
+            ->shouldBeCalled()
+            ->willReturn(['name' => self::TABLE_ID]);
+
+        $this->table->___setProperty('connection', $this->connection->reveal());
+
+        $res = $snippet->invoke('tableInfo');
+        $this->assertEquals(self::TABLE_ID, $res->returnVal()['name']);
+    }
+
+    public function testDropColumnFamilys()
+    {
+        $snippet = $this->snippetFromMethod(Table::class, 'dropColumnFamilys');
+        $snippet->addUse(Table::class);
+        $snippet->addLocal('table', $this->table);
+
+        $this->connection->modifyColumnFamilies(Argument::any())
+            ->shouldBeCalled()
+            ->willReturn(['name' => self::TABLE_ID]);
+
+        $this->table->___setProperty('connection', $this->connection->reveal());
+
+        $res = $snippet->invoke('tableInfo');
+        $this->assertEquals(self::TABLE_ID, $res->returnVal()['name']);
+    }
 }

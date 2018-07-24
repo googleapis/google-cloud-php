@@ -292,6 +292,9 @@ class Grpc implements ConnectionInterface
     }
 
     /**
+     *
+     * @todo add options for ColumnFamily
+     *
      * @param array $args
      */
     public function createTable(array $args)
@@ -383,6 +386,9 @@ class Grpc implements ConnectionInterface
     }
 
     /**
+     *
+     * @todo add GCRule
+     *
      * @param array $columnFamily
      * @return ColumnFamily
      */

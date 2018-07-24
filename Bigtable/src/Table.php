@@ -210,6 +210,8 @@ class Table
      * $tableInfo = $table->create();
      * ```
      *
+     * @todo add options for ColumnFamily
+     *
      * @codingStandardsIgnoreStart
      * @see https://cloud.google.com/bigtable/docs/reference/admin/rpc/google.bigtable.admin.v2#google.bigtable.admin.v2.CreateTableRequest CreateTableRequest
      * @codingStandardsIgnoreEnd
@@ -226,7 +228,7 @@ class Table
         $this->info = $this->connection->createTable([
             'parent' => $instanceName,
             'tableId' => $this->id
-        ]);
+        ] + $options);
 
         return $this->info;
     }
@@ -247,8 +249,73 @@ class Table
     {
         return $this->connection->deleteTable([
             'name' => $this->name
-        ]);
+        ] + $options);
     }
+
+    /**
+     * Add columnFamily.
+     *
+     * Example:
+     * ```
+     * $tableInfo = $table->addColumnFamilys(['cf1'=>[],'cf2'=>[],'cf3'=>[]]);
+     * ```
+     * @todo add GCRule options
+     *
+     * @param array[] $columnFamilys List of ColumnFamily, key is name of column family,
+     *        value is optional GCRule
+     *
+     * @param array $options [optional] Configuration options.
+     *
+     * @return array Table information
+     */
+
+    public function addColumnFamilys(array $columnFamilys, array $options = [])
+    {
+        $modifications = [];
+        foreach( $columnFamilys as $columnFamily => $gcRule)
+        {
+            $modifications[] = [ 'id' => $columnFamily, 'create' => $gcRule];
+        }
+
+        $this->info = $this->connection->modifyColumnFamilies([
+            'name' => $this->name,
+            'modifications' => $modifications
+        ] + $options);
+
+        return $this->info;
+    }
+
+    /**
+     * Drop columnFamily.
+     *
+     * Example:
+     * ```
+     * $tableInfo = $table->dropColumnFamilys(['cf1','cf2','cf3']);
+     * ```
+     *
+     * @param array $columnFamilys List of ColumnFamilys to be dropped
+     *
+     * @param array $options [optional] Configuration options.
+     *
+     * @return array Table information
+     */
+
+    public function dropColumnFamilys(array $columnFamilys, array $options = [])
+    {
+        $modifications = [];
+        foreach( $columnFamilys as $columnFamily)
+        {
+            $modifications[] = [ 'id' => $columnFamily, 'drop' => true];
+        }
+
+        $this->info = $this->connection->modifyColumnFamilies([
+            'name' => $this->name,
+            'modifications' => $modifications
+        ] + $options);
+
+        return $this->info;
+    }
+
 
     /**
      * Represent the class in a more readable and digestable fashion.

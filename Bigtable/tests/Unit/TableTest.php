@@ -128,4 +128,52 @@ class TableTest extends TestCase
         $info = $this->table->delete();
         $this->assertEquals([], $info);
     }
+
+    public function testAddColumnFamilys()
+    {
+        $args = [
+            'name' => self::TABLE_NAME,
+            'modifications' => [
+                ['id' => 'cf1', 'create' => []],
+                ['id' => 'cf2', 'create' => []]
+            ]
+        ];
+        $this->connection->modifyColumnFamilies($args)
+            ->shouldBeCalled()
+            ->willReturn([
+                'name' => self::TABLE_NAME
+            ]);
+        $this->table->___setProperty('connection', $this->connection->reveal());
+
+        $tableInfo = $this->table->addColumnFamilys([
+            'cf1' => [],
+            'cf2' => []
+        ]);
+
+        $this->assertEquals(self::TABLE_NAME, $tableInfo['name']);
+    }
+
+    public function testDropColumnFamilys()
+    {
+        $args = [
+            'name' => self::TABLE_NAME,
+            'modifications' => [
+                ['id' => 'cf1', 'drop' => true],
+                ['id' => 'cf2', 'drop' => true]
+            ]
+        ];
+        $this->connection->modifyColumnFamilies($args)
+            ->shouldBeCalled()
+            ->willReturn([
+                'name' => self::TABLE_NAME
+            ]);
+        $this->table->___setProperty('connection', $this->connection->reveal());
+
+        $tableInfo = $this->table->dropColumnFamilys([
+            'cf1',
+            'cf2'
+        ]);
+
+        $this->assertEquals(self::TABLE_NAME, $tableInfo['name']);
+    }
 }
