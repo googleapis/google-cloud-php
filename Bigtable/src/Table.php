@@ -272,8 +272,7 @@ class Table
     public function addColumnFamilys(array $columnFamilys, array $options = [])
     {
         $modifications = [];
-        foreach( $columnFamilys as $columnFamily => $gcRule)
-        {
+        foreach ($columnFamilys as $columnFamily => $gcRule) {
             $modifications[] = [ 'id' => $columnFamily, 'create' => $gcRule];
         }
 
@@ -303,8 +302,7 @@ class Table
     public function dropColumnFamilys(array $columnFamilys, array $options = [])
     {
         $modifications = [];
-        foreach( $columnFamilys as $columnFamily)
-        {
+        foreach ($columnFamilys as $columnFamily) {
             $modifications[] = [ 'id' => $columnFamily, 'drop' => true];
         }
 
