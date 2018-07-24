@@ -616,8 +616,7 @@ class IntentsGapicClient
      * $intentsClient = new IntentsClient();
      * try {
      *     $intent = new Intent();
-     *     $languageCode = '';
-     *     $response = $intentsClient->updateIntent($intent, $languageCode);
+     *     $response = $intentsClient->updateIntent($intent);
      * } finally {
      *     $intentsClient->close();
      * }
@@ -650,7 +649,7 @@ class IntentsGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function updateIntent($intent, $languageCode, array $optionalArgs = [])
+    public function updateIntent($intent, $languageCode = '', array $optionalArgs = [])
     {
         $request = new UpdateIntentRequest();
         $request->setIntent($intent);
