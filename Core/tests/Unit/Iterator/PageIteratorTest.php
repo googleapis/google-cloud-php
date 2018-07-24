@@ -151,10 +151,6 @@ class PageIteratorTest extends TestCase
             ];
         }
 
-        if (isset($options['firstPage'])) {
-
-        }
-
         if (isset($options['multiPage'])) {
             return [
                 $options['itemsKey'] => self::$page1,

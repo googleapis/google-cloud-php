@@ -17,13 +17,14 @@
 
 namespace Google\Cloud\Firestore\Tests\Snippet;
 
+use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Core\Testing\Snippet\Parser\Snippet;
 use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
+use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Firestore\Connection\ConnectionInterface;
+use Google\Cloud\Firestore\V1beta1\DocumentTransform_FieldTransform_ServerValue;
 use Google\Cloud\Firestore\ValueMapper;
 use Google\Cloud\Firestore\WriteBatch;
-use Google\Cloud\Core\Testing\GrpcTestTrait;
-use Google\Cloud\Firestore\V1beta1\DocumentTransform_FieldTransform_ServerValue;
 use Prophecy\Argument;
 
 /**
@@ -43,7 +44,7 @@ class WriteBatchTest extends SnippetTestCase
     public function setUp()
     {
         $this->connection = $this->prophesize(ConnectionInterface::class);
-        $this->batch = \Google\Cloud\Core\Testing\TestHelpers::stub(WriteBatch::class, [
+        $this->batch = TestHelpers::stub(WriteBatch::class, [
             $this->connection->reveal(),
             new ValueMapper($this->connection->reveal(), false),
             self::DATABASE

@@ -17,6 +17,7 @@
 
 namespace Google\Cloud\Tests\Unit\Speech;
 
+use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Speech\SpeechHelpersTrait;
 use PHPUnit\Framework\TestCase;
 
@@ -25,13 +26,13 @@ use PHPUnit\Framework\TestCase;
  */
 class SpeechHelpersTraitTest extends TestCase
 {
-    CONST GCS_URI = 'gs://bucket/object';
+    const GCS_URI = 'gs://bucket/object';
 
     private $implementation;
 
     public function setUp()
     {
-        $this->implementation = \Google\Cloud\Core\Testing\TestHelpers::impl(SpeechHelpersTrait::class);
+        $this->implementation = TestHelpers::impl(SpeechHelpersTrait::class);
     }
 
     /**
@@ -66,10 +67,9 @@ class SpeechHelpersTraitTest extends TestCase
 
     private function createResource($data)
     {
-        $resource = fopen('php://memory','r+');
+        $resource = fopen('php://memory', 'r+');
         fwrite($resource, $data);
         rewind($resource);
         return $resource;
     }
 }
-

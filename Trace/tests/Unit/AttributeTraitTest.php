@@ -17,6 +17,7 @@
 
 namespace Google\Cloud\Trace\Tests\Unit;
 
+use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Trace\Attributes;
 use Google\Cloud\Trace\AttributeTrait;
 use PHPUnit\Framework\TestCase;
@@ -24,40 +25,30 @@ use PHPUnit\Framework\TestCase;
 /**
  * @group trace
  */
-class AttributesTraitTest extends TestCase
+class AttributeTraitTest extends TestCase
 {
     public function testDefaultsAttributesToNull()
     {
-        $obj = new TestTraitClass();
-        $this->assertNull($obj->attributes());
+        $obj = TestHelpers::impl(AttributeTrait::class);
+        $this->assertNull($obj->___getProperty('attributes'));
     }
 
     public function testAddAttribute()
     {
-        $obj = new TestTraitClass();
+        $obj = TestHelpers::impl(AttributeTrait::class);
         $obj->addAttribute('foo', 'bar');
-        $attributes = $obj->attributes();
+        $attributes = $obj->___getProperty('attributes');
         $this->assertInstanceOf(Attributes::class, $attributes);
         $this->assertEquals('bar', $attributes['foo']);
     }
 
     public function testAddAttributes()
     {
-        $obj = new TestTraitClass();
+        $obj = TestHelpers::impl(AttributeTrait::class);
         $obj->addAttributes(['foo' => 'bar', 'asdf' => 'qwer']);
-        $attributes = $obj->attributes();
+        $attributes = $obj->___getProperty('attributes');
         $this->assertInstanceOf(Attributes::class, $attributes);
         $this->assertEquals('bar', $attributes['foo']);
         $this->assertEquals('qwer', $attributes['asdf']);
-    }
-}
-
-class TestTraitClass
-{
-    use AttributeTrait;
-
-    public function attributes()
-    {
-        return $this->attributes;
     }
 }

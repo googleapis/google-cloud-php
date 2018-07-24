@@ -17,11 +17,12 @@
 
 namespace Google\Cloud\Trace\Tests\Unit;
 
+use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Trace\Connection\ConnectionInterface;
 use Google\Cloud\Trace\Trace;
 use Google\Cloud\Trace\TraceClient;
-use Prophecy\Argument;
 use PHPUnit\Framework\TestCase;
+use Prophecy\Argument;
 
 /**
  * @group trace
@@ -33,7 +34,9 @@ class TraceClientTest extends TestCase
 
     public function setUp()
     {
-        $this->client = new TraceTestClient(['projectId' => 'project']);
+        $this->client = TestHelpers::stub(TraceClient::class, [
+            ['projectId' => 'project']
+        ]);
         $this->connection = $this->prophesize(ConnectionInterface::class);
     }
 
@@ -50,9 +53,12 @@ class TraceClientTest extends TestCase
                 ]
             ]
         ]);
-        $this->client->setConnection($this->connection->reveal());
+        $this->client->___setProperty('connection', $this->connection->reveal());
 
-        $trace = new Trace('project', '1', [
+        $trace = new Trace(
+            'project',
+            '1',
+            [
                 ['name' => 'main']
             ]
         );
@@ -72,21 +78,15 @@ class TraceClientTest extends TestCase
                 ]
             ]
         ]);
-        $this->client->setConnection($this->connection->reveal());
+        $this->client->___setProperty('connection', $this->connection->reveal());
 
-        $trace = new Trace('project', '1', [
+        $trace = new Trace(
+            'project',
+            '1',
+            [
                 ['name' => 'main']
             ]
         );
         $this->assertTrue($this->client->insertBatch([$trace]));
-    }
-
-}
-
-class TraceTestClient extends TraceClient
-{
-    public function setConnection($connection)
-    {
-        $this->connection = $connection;
     }
 }

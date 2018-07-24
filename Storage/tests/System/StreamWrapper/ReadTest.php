@@ -59,5 +59,4 @@ class ReadTest extends StreamWrapperTestCase
         $this->assertTrue(feof($fd));
         $this->assertTrue(fclose($fd));
     }
-
 }

@@ -84,4 +84,3 @@ class SemaphoreLockTest extends TestCase
         $this->lock->acquire();
     }
 }
-

@@ -17,6 +17,7 @@
 
 namespace Google\Cloud\Core\Tests\Unit;
 
+//@codingStandardsIgnoreStart
 class Fixtures
 {
     public static function JSON_KEY_FIXTURE()
@@ -29,3 +30,4 @@ class Fixtures
         return __DIR__ . '/fixtures/service-fixture.json';
     }
 }
+//@codingStandardsIgnoreEnd

@@ -99,16 +99,16 @@ class TransactionTest extends SnippetTestCase
         $snippet->addLocal('datastore', $this->client);
         $snippet->addLocal('transaction', $this->transaction);
 
-        $this->connection->commit(Argument::that(function ($args) {
-            if ($args['transaction'] !== self::TRANSACTION) return false;
-            return array_keys($args['mutations'][0])[0] === 'insert';
-        }))
-            ->shouldBeCalled()
-            ->willReturn([
-                'mutationResults' => [
-                    ['version' => 1]
-                ]
-            ]);
+        $this->connection->commit(Argument::allOf(
+            Argument::withEntry('transaction', self::TRANSACTION),
+            Argument::that(function ($args) {
+                return array_keys($args['mutations'][0])[0] === 'insert';
+            })
+        ))->shouldBeCalled()->willReturn([
+            'mutationResults' => [
+                ['version' => 1]
+            ]
+        ]);
 
         $this->refreshOperation($this->transaction, $this->connection->reveal(), [
             'projectId' => self::PROJECT
@@ -123,16 +123,16 @@ class TransactionTest extends SnippetTestCase
         $snippet->addLocal('datastore', $this->client);
         $snippet->addLocal('transaction', $this->transaction);
 
-        $this->connection->commit(Argument::that(function ($args) {
-            if ($args['transaction'] !== self::TRANSACTION) return false;
-            return array_keys($args['mutations'][0])[0] === 'insert';
-        }))
-            ->shouldBeCalled()
-            ->willReturn([
-                'mutationResults' => [
-                    ['version' => 1]
-                ]
-            ]);
+        $this->connection->commit(Argument::allOf(
+            Argument::withEntry('transaction', self::TRANSACTION),
+            Argument::that(function ($args) {
+                return array_keys($args['mutations'][0])[0] === 'insert';
+            })
+        ))->shouldBeCalled()->willReturn([
+            'mutationResults' => [
+                ['version' => 1]
+            ]
+        ]);
 
         $this->allocateIdsConnectionMock();
 
@@ -152,16 +152,16 @@ class TransactionTest extends SnippetTestCase
             'populatedByService' => true
         ]));
 
-        $this->connection->commit(Argument::that(function ($args) {
-            if ($args['transaction'] !== self::TRANSACTION) return false;
-            return array_keys($args['mutations'][0])[0] === 'update';
-        }))
-            ->shouldBeCalled()
-            ->willReturn([
-                'mutationResults' => [
-                    ['version' => 1]
-                ]
-            ]);
+        $this->connection->commit(Argument::allOf(
+            Argument::withEntry('transaction', self::TRANSACTION),
+            Argument::that(function ($args) {
+                return array_keys($args['mutations'][0])[0] === 'update';
+            })
+        ))->shouldBeCalled()->willReturn([
+            'mutationResults' => [
+                ['version' => 1]
+            ]
+        ]);
 
         $this->refreshOperation($this->transaction, $this->connection->reveal(), [
             'projectId' => self::PROJECT
@@ -180,11 +180,12 @@ class TransactionTest extends SnippetTestCase
             $this->client->entity($this->client->key('Person', 'John'), [], ['populatedByService' => true])
         ]);
 
-        $this->connection->commit(Argument::that(function ($args) {
-            if ($args['transaction'] !== self::TRANSACTION) return false;
-            return array_keys($args['mutations'][0])[0] === 'update';
-        }))
-            ->shouldBeCalled();
+        $this->connection->commit(Argument::allOf(
+            Argument::withEntry('transaction', self::TRANSACTION),
+            Argument::that(function ($args) {
+                return array_keys($args['mutations'][0])[0] === 'update';
+            })
+        ))->shouldBeCalled();
 
         $res = $snippet->invoke();
     }
@@ -198,10 +199,12 @@ class TransactionTest extends SnippetTestCase
             'populatedByService' => true
         ]));
 
-        $this->connection->commit(Argument::that(function ($args) {
-            if ($args['transaction'] !== self::TRANSACTION) return false;
-            return array_keys($args['mutations'][0])[0] === 'upsert';
-        }))
+        $this->connection->commit(Argument::allOf(
+            Argument::withEntry('transaction', self::TRANSACTION),
+            Argument::that(function ($args) {
+                return array_keys($args['mutations'][0])[0] === 'upsert';
+            })
+        ))
             ->shouldBeCalled()
             ->willReturn([
                 'mutationResults' => [
@@ -226,10 +229,12 @@ class TransactionTest extends SnippetTestCase
             $this->client->entity($this->client->key('Person', 'John'), [], ['populatedByService' => true])
         ]);
 
-        $this->connection->commit(Argument::that(function ($args) {
-            if ($args['transaction'] !== self::TRANSACTION) return false;
-            return array_keys($args['mutations'][0])[0] === 'upsert';
-        }))
+        $this->connection->commit(Argument::allOf(
+            Argument::withEntry('transaction', self::TRANSACTION),
+            Argument::that(function ($args) {
+                return array_keys($args['mutations'][0])[0] === 'upsert';
+            })
+        ))
             ->shouldBeCalled();
 
         $res = $snippet->invoke();
@@ -241,10 +246,12 @@ class TransactionTest extends SnippetTestCase
         $snippet->addLocal('datastore', $this->client);
         $snippet->addLocal('transaction', $this->transaction);
 
-        $this->connection->commit(Argument::that(function ($args) {
-            if ($args['transaction'] !== self::TRANSACTION) return false;
-            return array_keys($args['mutations'][0])[0] === 'delete';
-        }))
+        $this->connection->commit(Argument::allOf(
+            Argument::withEntry('transaction', self::TRANSACTION),
+            Argument::that(function ($args) {
+                return array_keys($args['mutations'][0])[0] === 'delete';
+            })
+        ))
             ->shouldBeCalled()
             ->willReturn([
                 'mutationResults' => [
@@ -265,12 +272,12 @@ class TransactionTest extends SnippetTestCase
         $snippet->addLocal('datastore', $this->client);
         $snippet->addLocal('transaction', $this->transaction);
 
-        $this->connection->commit(Argument::that(function ($args) {
-            if ($args['transaction'] !== self::TRANSACTION) return false;
-            if (array_keys($args['mutations'][0])[0] !== 'delete') return false;
-            return true;
-        }))
-            ->shouldBeCalled();
+        $this->connection->commit(Argument::allOf(
+            Argument::withEntry('transaction', self::TRANSACTION),
+            Argument::that(function ($args) {
+                return array_keys($args['mutations'][0])[0] === 'delete';
+            })
+        ))->shouldBeCalled();
 
         $res = $snippet->invoke();
     }

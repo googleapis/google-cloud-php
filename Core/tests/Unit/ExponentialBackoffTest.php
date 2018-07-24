@@ -30,7 +30,7 @@ class ExponentialBackoffTest extends TestCase
 
     public function setUp()
     {
-        $this->delayFunction = function() {
+        $this->delayFunction = function () {
             return;
         };
     }
@@ -79,7 +79,7 @@ class ExponentialBackoffTest extends TestCase
     {
         $actualAttempts = 0;
         $hasTriggeredException = false;
-        $retryFunction = function(\Exception $ex) {
+        $retryFunction = function (\Exception $ex) {
             return false;
         };
         $backoff = new ExponentialBackoff(null, $retryFunction);

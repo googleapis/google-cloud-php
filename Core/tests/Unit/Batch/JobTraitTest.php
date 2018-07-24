@@ -39,6 +39,7 @@ class JobTraitTest extends TestCase
     }
 }
 
+//@codingStandardsIgnoreStart
 class TestJob implements JobInterface
 {
     use JobTrait;
@@ -48,3 +49,4 @@ class TestJob implements JobInterface
         // Do nothing
     }
 }
+//@codingStandardsIgnoreEnd

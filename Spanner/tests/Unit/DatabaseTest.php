@@ -24,6 +24,7 @@ use Google\Cloud\Core\LongRunning\LongRunningConnectionInterface;
 use Google\Cloud\Core\LongRunning\LongRunningOperation;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Core\Testing\SpannerOperationRefreshTrait;
+use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Spanner\Admin\Database\V1\DatabaseAdminClient;
 use Google\Cloud\Spanner\Admin\Instance\V1\InstanceAdminClient;
 use Google\Cloud\Spanner\Connection\ConnectionInterface;
@@ -101,12 +102,15 @@ class DatabaseTest extends TestCase
             'connection', 'operation'
         ];
 
-        $this->database = \Google\Cloud\Core\Testing\TestHelpers::stub(Database::class, $args, $props);
+        $this->database = TestHelpers::stub(Database::class, $args, $props);
     }
 
     public function testName()
     {
-        $this->assertEquals($this->database->name(), DatabaseAdminClient::databaseName(self::PROJECT, self::INSTANCE, self::DATABASE));
+        $this->assertEquals(
+            DatabaseAdminClient::databaseName(self::PROJECT, self::INSTANCE, self::DATABASE),
+            $this->database->name()
+        );
     }
 
     public function testInfo()
@@ -151,10 +155,9 @@ class DatabaseTest extends TestCase
     public function testExists()
     {
         $this->connection->getDatabase(Argument::withEntry(
-            'name', DatabaseAdminClient::databaseName(self::PROJECT, self::INSTANCE, self::DATABASE)
-        ))
-            ->shouldBeCalled()
-            ->willReturn([]);
+            'name',
+            DatabaseAdminClient::databaseName(self::PROJECT, self::INSTANCE, self::DATABASE)
+        ))->shouldBeCalled()->willReturn([]);
 
         $this->database->___setProperty('connection', $this->connection->reveal());
 
@@ -363,7 +366,7 @@ class DatabaseTest extends TestCase
 
         $this->refreshOperation($this->database, $this->connection->reveal());
 
-        $this->database->runTransaction(function (Transaction $t) {});
+        $this->database->runTransaction($this->noop());
     }
 
     /**
@@ -381,7 +384,7 @@ class DatabaseTest extends TestCase
         $this->refreshOperation($this->database, $this->connection->reveal());
 
         $this->database->runTransaction(function ($t) {
-            $this->database->runTransaction(function ($t) {});
+            $this->database->runTransaction($this->noop());
         });
     }
 
@@ -403,7 +406,7 @@ class DatabaseTest extends TestCase
         $it = 0;
         $this->connection->commit(Argument::any())
             ->shouldBeCalledTimes(3)
-            ->will(function() use (&$it, $abort) {
+            ->will(function () use (&$it, $abort) {
                 $it++;
                 if ($it <= 2) {
                     throw $abort;
@@ -414,7 +417,7 @@ class DatabaseTest extends TestCase
 
         $this->refreshOperation($this->database, $this->connection->reveal());
 
-        $this->database->runTransaction(function($t) use ($it) {
+        $this->database->runTransaction(function ($t) use ($it) {
             if ($it > 0) {
                 $this->assertTrue($t->isRetry());
             } else {
@@ -446,8 +449,9 @@ class DatabaseTest extends TestCase
         $it = 0;
         $this->connection->commit(Argument::any())
             ->shouldBeCalled()
-            ->will(function() use (&$it, $abort) {
+            ->will(function () use (&$it, $abort) {
                 $it++;
+
                 if ($it <= Database::MAX_RETRIES+1) {
                     throw $abort;
                 }
@@ -457,7 +461,9 @@ class DatabaseTest extends TestCase
 
         $this->refreshOperation($this->database, $this->connection->reveal());
 
-        $this->database->runTransaction(function($t){$t->commit();});
+        $this->database->runTransaction(function ($t) {
+            $t->commit();
+        });
     }
 
     public function testTransaction()
@@ -497,9 +503,17 @@ class DatabaseTest extends TestCase
         $row = ['col' => 'val'];
 
         $this->connection->commit(Argument::that(function ($arg) use ($table, $row) {
-            if ($arg['mutations'][0][OPERATION::OP_INSERT]['table'] !== $table) return false;
-            if ($arg['mutations'][0][OPERATION::OP_INSERT]['columns'][0] !== array_keys($row)[0]) return false;
-            if ($arg['mutations'][0][OPERATION::OP_INSERT]['values'][0] !== current($row)) return false;
+            if ($arg['mutations'][0][OPERATION::OP_INSERT]['table'] !== $table) {
+                return false;
+            }
+
+            if ($arg['mutations'][0][OPERATION::OP_INSERT]['columns'][0] !== array_keys($row)[0]) {
+                return false;
+            }
+
+            if ($arg['mutations'][0][OPERATION::OP_INSERT]['values'][0] !== current($row)) {
+                return false;
+            }
 
             return true;
         }))->shouldBeCalled()->willReturn($this->commitResponse());
@@ -517,9 +531,17 @@ class DatabaseTest extends TestCase
         $row = ['col' => 'val'];
 
         $this->connection->commit(Argument::that(function ($arg) use ($table, $row) {
-            if ($arg['mutations'][0][OPERATION::OP_INSERT]['table'] !== $table) return false;
-            if ($arg['mutations'][0][OPERATION::OP_INSERT]['columns'][0] !== array_keys($row)[0]) return false;
-            if ($arg['mutations'][0][OPERATION::OP_INSERT]['values'][0] !== current($row)) return false;
+            if ($arg['mutations'][0][OPERATION::OP_INSERT]['table'] !== $table) {
+                return false;
+            }
+
+            if ($arg['mutations'][0][OPERATION::OP_INSERT]['columns'][0] !== array_keys($row)[0]) {
+                return false;
+            }
+
+            if ($arg['mutations'][0][OPERATION::OP_INSERT]['values'][0] !== current($row)) {
+                return false;
+            }
 
             return true;
         }))->shouldBeCalled()->willReturn($this->commitResponse());
@@ -537,9 +559,17 @@ class DatabaseTest extends TestCase
         $row = ['col' => 'val'];
 
         $this->connection->commit(Argument::that(function ($arg) use ($table, $row) {
-            if ($arg['mutations'][0][Operation::OP_UPDATE]['table'] !== $table) return false;
-            if ($arg['mutations'][0][Operation::OP_UPDATE]['columns'][0] !== array_keys($row)[0]) return false;
-            if ($arg['mutations'][0][Operation::OP_UPDATE]['values'][0] !== current($row)) return false;
+            if ($arg['mutations'][0][Operation::OP_UPDATE]['table'] !== $table) {
+                return false;
+            }
+
+            if ($arg['mutations'][0][Operation::OP_UPDATE]['columns'][0] !== array_keys($row)[0]) {
+                return false;
+            }
+
+            if ($arg['mutations'][0][Operation::OP_UPDATE]['values'][0] !== current($row)) {
+                return false;
+            }
 
             return true;
         }))->shouldBeCalled()->willReturn($this->commitResponse());
@@ -557,9 +587,17 @@ class DatabaseTest extends TestCase
         $row = ['col' => 'val'];
 
         $this->connection->commit(Argument::that(function ($arg) use ($table, $row) {
-            if ($arg['mutations'][0][Operation::OP_UPDATE]['table'] !== $table) return false;
-            if ($arg['mutations'][0][Operation::OP_UPDATE]['columns'][0] !== array_keys($row)[0]) return false;
-            if ($arg['mutations'][0][Operation::OP_UPDATE]['values'][0] !== current($row)) return false;
+            if ($arg['mutations'][0][Operation::OP_UPDATE]['table'] !== $table) {
+                return false;
+            }
+
+            if ($arg['mutations'][0][Operation::OP_UPDATE]['columns'][0] !== array_keys($row)[0]) {
+                return false;
+            }
+
+            if ($arg['mutations'][0][Operation::OP_UPDATE]['values'][0] !== current($row)) {
+                return false;
+            }
 
             return true;
         }))->shouldBeCalled()->willReturn($this->commitResponse());
@@ -577,9 +615,17 @@ class DatabaseTest extends TestCase
         $row = ['col' => 'val'];
 
         $this->connection->commit(Argument::that(function ($arg) use ($table, $row) {
-            if ($arg['mutations'][0][Operation::OP_INSERT_OR_UPDATE]['table'] !== $table) return false;
-            if ($arg['mutations'][0][Operation::OP_INSERT_OR_UPDATE]['columns'][0] !== array_keys($row)[0]) return false;
-            if ($arg['mutations'][0][Operation::OP_INSERT_OR_UPDATE]['values'][0] !== current($row)) return false;
+            if ($arg['mutations'][0][Operation::OP_INSERT_OR_UPDATE]['table'] !== $table) {
+                return false;
+            }
+
+            if ($arg['mutations'][0][Operation::OP_INSERT_OR_UPDATE]['columns'][0] !== array_keys($row)[0]) {
+                return false;
+            }
+
+            if ($arg['mutations'][0][Operation::OP_INSERT_OR_UPDATE]['values'][0] !== current($row)) {
+                return false;
+            }
 
             return true;
         }))->shouldBeCalled()->willReturn($this->commitResponse());
@@ -597,9 +643,17 @@ class DatabaseTest extends TestCase
         $row = ['col' => 'val'];
 
         $this->connection->commit(Argument::that(function ($arg) use ($table, $row) {
-            if ($arg['mutations'][0][Operation::OP_INSERT_OR_UPDATE]['table'] !== $table) return false;
-            if ($arg['mutations'][0][Operation::OP_INSERT_OR_UPDATE]['columns'][0] !== array_keys($row)[0]) return false;
-            if ($arg['mutations'][0][Operation::OP_INSERT_OR_UPDATE]['values'][0] !== current($row)) return false;
+            if ($arg['mutations'][0][Operation::OP_INSERT_OR_UPDATE]['table'] !== $table) {
+                return false;
+            }
+
+            if ($arg['mutations'][0][Operation::OP_INSERT_OR_UPDATE]['columns'][0] !== array_keys($row)[0]) {
+                return false;
+            }
+
+            if ($arg['mutations'][0][Operation::OP_INSERT_OR_UPDATE]['values'][0] !== current($row)) {
+                return false;
+            }
 
             return true;
         }))->shouldBeCalled()->willReturn($this->commitResponse());
@@ -617,9 +671,17 @@ class DatabaseTest extends TestCase
         $row = ['col' => 'val'];
 
         $this->connection->commit(Argument::that(function ($arg) use ($table, $row) {
-            if ($arg['mutations'][0][Operation::OP_REPLACE]['table'] !== $table) return false;
-            if ($arg['mutations'][0][Operation::OP_REPLACE]['columns'][0] !== array_keys($row)[0]) return false;
-            if ($arg['mutations'][0][Operation::OP_REPLACE]['values'][0] !== current($row)) return false;
+            if ($arg['mutations'][0][Operation::OP_REPLACE]['table'] !== $table) {
+                return false;
+            }
+
+            if ($arg['mutations'][0][Operation::OP_REPLACE]['columns'][0] !== array_keys($row)[0]) {
+                return false;
+            }
+
+            if ($arg['mutations'][0][Operation::OP_REPLACE]['values'][0] !== current($row)) {
+                return false;
+            }
 
             return true;
         }))->shouldBeCalled()->willReturn($this->commitResponse());
@@ -637,9 +699,17 @@ class DatabaseTest extends TestCase
         $row = ['col' => 'val'];
 
         $this->connection->commit(Argument::that(function ($arg) use ($table, $row) {
-            if ($arg['mutations'][0][Operation::OP_REPLACE]['table'] !== $table) return false;
-            if ($arg['mutations'][0][Operation::OP_REPLACE]['columns'][0] !== array_keys($row)[0]) return false;
-            if ($arg['mutations'][0][Operation::OP_REPLACE]['values'][0] !== current($row)) return false;
+            if ($arg['mutations'][0][Operation::OP_REPLACE]['table'] !== $table) {
+                return false;
+            }
+
+            if ($arg['mutations'][0][Operation::OP_REPLACE]['columns'][0] !== array_keys($row)[0]) {
+                return false;
+            }
+
+            if ($arg['mutations'][0][Operation::OP_REPLACE]['values'][0] !== current($row)) {
+                return false;
+            }
 
             return true;
         }))->shouldBeCalled()->willReturn($this->commitResponse());
@@ -657,9 +727,17 @@ class DatabaseTest extends TestCase
         $keys = [10, 'bar'];
 
         $this->connection->commit(Argument::that(function ($arg) use ($table, $keys) {
-            if ($arg['mutations'][0][Operation::OP_DELETE]['table'] !== $table) return false;
-            if ($arg['mutations'][0][Operation::OP_DELETE]['keySet']['keys'][0] !== (string) $keys[0]) return false;
-            if ($arg['mutations'][0][Operation::OP_DELETE]['keySet']['keys'][1] !== $keys[1]) return false;
+            if ($arg['mutations'][0][Operation::OP_DELETE]['table'] !== $table) {
+                return false;
+            }
+
+            if ($arg['mutations'][0][Operation::OP_DELETE]['keySet']['keys'][0] !== (string) $keys[0]) {
+                return false;
+            }
+
+            if ($arg['mutations'][0][Operation::OP_DELETE]['keySet']['keys'][1] !== $keys[1]) {
+                return false;
+            }
 
             return true;
         }))->shouldBeCalled()->willReturn($this->commitResponse());
@@ -693,9 +771,17 @@ class DatabaseTest extends TestCase
         $opts = ['foo' => 'bar'];
 
         $this->connection->streamingRead(Argument::that(function ($arg) use ($table, $opts) {
-            if ($arg['table'] !== $table) return false;
-            if ($arg['keySet']['all'] !== true) return false;
-            if ($arg['columns'] !== ['ID']) return false;
+            if ($arg['table'] !== $table) {
+                return false;
+            }
+
+            if ($arg['keySet']['all'] !== true) {
+                return false;
+            }
+
+            if ($arg['columns'] !== ['ID']) {
+                return false;
+            }
 
             return true;
         }))->shouldBeCalled()->willReturn($this->resultGenerator());
@@ -742,5 +828,12 @@ class DatabaseTest extends TestCase
         $ts = new \DateTimeImmutable($this->commitResponse()['commitTimestamp']);
 
         $this->assertEquals($ts->format('Y-m-d\TH:i:s\Z'), $res->get()->format('Y-m-d\TH:i:s\Z'));
+    }
+
+    private function noop()
+    {
+        return function () {
+            return;
+        };
     }
 }

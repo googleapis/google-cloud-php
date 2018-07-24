@@ -18,6 +18,7 @@
 namespace Google\Cloud\Storage\Tests\Unit;
 
 use Google\Cloud\Core\Testing\KeyPairGenerateTrait;
+use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Storage\EncryptionTrait;
 use PHPUnit\Framework\TestCase;
 
@@ -28,11 +29,11 @@ class EncryptionTraitTest extends TestCase
 {
     use KeyPairGenerateTrait;
 
-    private $implementation;
+    private $impl;
 
     public function setUp()
     {
-        $this->implementation = \Google\Cloud\Core\Testing\TestHelpers::impl(EncryptionTrait::class);
+        $this->impl = TestHelpers::impl(EncryptionTrait::class);
     }
 
     public function testSignString()
@@ -41,7 +42,7 @@ class EncryptionTraitTest extends TestCase
 
         list($pkey, $pub) = $this->getKeyPair();
 
-        $res = $this->implementation->call('signString', [$pkey, $testString]);
+        $res = $this->impl->call('signString', [$pkey, $testString]);
 
         $this->assertTrue($this->verifySignature($pkey, $testString, urlencode(base64_encode($res))));
     }
@@ -52,7 +53,7 @@ class EncryptionTraitTest extends TestCase
 
         list($pkey, $pub) = $this->getKeyPair();
 
-        $res = $this->implementation->call('signString', [$pkey, $testString, true]);
+        $res = $this->impl->call('signString', [$pkey, $testString, true]);
 
         $this->assertTrue($this->verifySignature($pkey, $testString, urlencode(base64_encode($res))));
     }
@@ -64,7 +65,7 @@ class EncryptionTraitTest extends TestCase
     {
         $this->assertEquals(
             $expectedOptions,
-            $this->implementation->formatEncryptionHeaders($options)
+            $this->impl->formatEncryptionHeaders($options)
         );
     }
 

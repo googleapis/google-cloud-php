@@ -678,6 +678,7 @@ class TableTest extends TestCase
     }
 }
 
+//@codingStandardsIgnoreStart
 class TableStub extends Table
 {
     protected function usleep($ms)
@@ -685,3 +686,4 @@ class TableStub extends Table
         return;
     }
 }
+//@codingStandardsIgnoreEnd

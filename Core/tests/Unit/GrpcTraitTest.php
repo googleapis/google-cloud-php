@@ -25,9 +25,10 @@ use Google\Cloud\Core\Exception\NotFoundException;
 use Google\Cloud\Core\GrpcRequestWrapper;
 use Google\Cloud\Core\GrpcTrait;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
+use Google\Cloud\Core\Testing\TestHelpers;
 use google\protobuf;
-use Prophecy\Argument;
 use PHPUnit\Framework\TestCase;
+use Prophecy\Argument;
 
 /**
  * @group core
@@ -43,7 +44,7 @@ class GrpcTraitTest extends TestCase
     {
         $this->checkAndSkipGrpcTests();
 
-        $this->implementation = \Google\Cloud\Core\Testing\TestHelpers::impl(GrpcTrait::class);
+        $this->implementation = TestHelpers::impl(GrpcTrait::class);
         $this->requestWrapper = $this->prophesize(GrpcRequestWrapper::class);
     }
 
@@ -110,7 +111,7 @@ class GrpcTraitTest extends TestCase
 
         $msg = null;
         try {
-            $this->implementation->send(function () {}, [['grpcOptions' => $grpcOptions]], true);
+            $this->implementation->send($this->noop(), [['grpcOptions' => $grpcOptions]], true);
         } catch (NotFoundException $e) {
             $msg = $e->getMessage();
         }
@@ -133,7 +134,7 @@ class GrpcTraitTest extends TestCase
 
         $msg = null;
         try {
-            $this->implementation->send(function () {}, [['grpcOptions' => $grpcOptions]], false);
+            $this->implementation->send($this->noop(), [['grpcOptions' => $grpcOptions]], false);
         } catch (NotFoundException $e) {
             $msg = $e->getMessage();
         }
@@ -152,7 +153,9 @@ class GrpcTraitTest extends TestCase
             'libName' => 'gccl',
             'libVersion' => $version,
             'transport' => 'grpc',
-            'credentials' => new CredentialsWrapper($fetcher, function () { return true; })
+            'credentials' => new CredentialsWrapper($fetcher, function () {
+                return true;
+            })
         ];
 
         $this->assertEquals(
@@ -176,7 +179,10 @@ class GrpcTraitTest extends TestCase
             'nanos' => '1'
         ];
 
-        $this->assertEquals('2016-08-15T06:35:09.000000001Z', $this->implementation->call('formatTimestampFromApi', [$timestamp]));
+        $this->assertEquals(
+            '2016-08-15T06:35:09.000000001Z',
+            $this->implementation->call('formatTimestampFromApi', [$timestamp])
+        );
     }
 
     public function testFormatsStruct()
@@ -358,5 +364,12 @@ class GrpcTraitTest extends TestCase
                 ]
             ]
         ];
+    }
+
+    private function noop()
+    {
+        return function () {
+            return;
+        };
     }
 }

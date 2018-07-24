@@ -41,7 +41,7 @@ class DateTest extends TestCase
 
     public function testCreateFromValues()
     {
-        $date = Date::createFromValues(1989,10,11);
+        $date = Date::createFromValues(1989, 10, 11);
         $this->assertEquals($date->formatAsString(), $this->date->formatAsString());
     }
 

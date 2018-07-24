@@ -18,13 +18,14 @@
 namespace Google\Cloud\PubSub\Tests\Snippet;
 
 use Google\Cloud\Core\Iam\Iam;
+use Google\Cloud\Core\Iterator\ItemIterator;
 use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
-use Google\Cloud\PubSub\Connection\ConnectionInterface;
+use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\PubSub\BatchPublisher;
+use Google\Cloud\PubSub\Connection\ConnectionInterface;
 use Google\Cloud\PubSub\PubSubClient;
 use Google\Cloud\PubSub\Subscription;
 use Google\Cloud\PubSub\Topic;
-use Google\Cloud\Core\Iterator\ItemIterator;
 use Prophecy\Argument;
 
 /**
@@ -42,8 +43,8 @@ class TopicTest extends SnippetTestCase
     public function setUp()
     {
         $this->connection = $this->prophesize(ConnectionInterface::class);
-        $this->pubsub = \Google\Cloud\Core\Testing\TestHelpers::stub(PubSubClient::class);
-        $this->topic = \Google\Cloud\Core\Testing\TestHelpers::stub(Topic::class, [
+        $this->pubsub = TestHelpers::stub(PubSubClient::class);
+        $this->topic = TestHelpers::stub(Topic::class, [
             $this->connection->reveal(),
             'my-awesome-project',
             self::TOPIC,

@@ -371,8 +371,10 @@ class ValueMapperTest extends TestCase
     }
 
     /**
+     * @codingStandardsIgnoreStart
      * @expectedException InvalidArgumentException
      * @expectedExceptionMessage Struct parameter types must be declared explicitly, and must be an instance of Google\Cloud\Spanner\StructType.
+     * @codingStandardsIgnoreEnd
      */
     public function testFormatParamsForExecuteSqlStructInvalidDefinition()
     {
@@ -390,8 +392,10 @@ class ValueMapperTest extends TestCase
     }
 
     /**
+     * @codingStandardsIgnoreStart
      * @expectedException InvalidArgumentException
      * @expectedExceptionMessage Struct value must be an array an instance of `Google\Cloud\Spanner\StructValue` or null.
+     * @codingStandardsIgnoreEnd
      */
     public function testFormatParamsForExecuteSqlInvalidStructValue()
     {

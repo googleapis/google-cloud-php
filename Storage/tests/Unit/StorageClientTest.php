@@ -17,6 +17,7 @@
 
 namespace Google\Cloud\Storage\Tests\Unit;
 
+use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Core\Timestamp;
 use Google\Cloud\Core\Upload\SignedUrlUploader;
 use Google\Cloud\Storage\Bucket;
@@ -24,8 +25,8 @@ use Google\Cloud\Storage\Connection\Rest;
 use Google\Cloud\Storage\StorageClient;
 use Google\Cloud\Storage\StreamWrapper;
 use GuzzleHttp\Psr7;
-use Prophecy\Argument;
 use PHPUnit\Framework\TestCase;
+use Prophecy\Argument;
 
 /**
  * @group storage
@@ -38,7 +39,7 @@ class StorageClientTest extends TestCase
     public function setUp()
     {
         $this->connection = $this->prophesize(Rest::class);
-        $this->client = \Google\Cloud\Core\Testing\TestHelpers::stub(StorageClient::class, [['projectId' => self::PROJECT]]);
+        $this->client = TestHelpers::stub(StorageClient::class, [['projectId' => self::PROJECT]]);
     }
 
     public function testGetBucket()
@@ -87,19 +88,18 @@ class StorageClientTest extends TestCase
 
     public function testGetsBucketsWithToken()
     {
-        $this->connection->listBuckets(Argument::any())->willReturn(
-            [
+        $this->connection->listBuckets(Argument::any())
+            ->willReturn([
                 'nextPageToken' => 'token',
                 'items' => [
                     ['name' => 'bucket1']
                 ]
-            ],
-                [
+            ], [
                 'items' => [
                     ['name' => 'bucket2']
                 ]
-            ]
-        );
+            ]);
+
         $this->connection->projectId()
             ->willReturn(self::PROJECT);
 
@@ -176,6 +176,7 @@ class StorageClientTest extends TestCase
     }
 }
 
+//@codingStandardsIgnoreStart
 class StorageClientStub extends StorageClient
 {
     protected function onGce($httpHandler)
@@ -183,3 +184,4 @@ class StorageClientStub extends StorageClient
         return false;
     }
 }
+//@codingStandardsIgnoreEnd

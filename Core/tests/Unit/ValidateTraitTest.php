@@ -17,6 +17,7 @@
 
 namespace Google\Cloud\Core\Tests\Unit;
 
+use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Core\ValidateTrait;
 use PHPUnit\Framework\TestCase;
 
@@ -29,7 +30,7 @@ class ValidateTraitTest extends TestCase
 
     public function setUp()
     {
-        $this->stub = new ValidateTraitStub;
+        $this->stub = TestHelpers::impl(ValidateTrait::class);
     }
 
     public function testValidateBatch()
@@ -40,7 +41,7 @@ class ValidateTraitTest extends TestCase
             (object)[],
         ];
 
-        $this->stub->v($input, \stdClass::class);
+        $this->stub->call('validateBatch', [$input, \stdClass::class]);
     }
 
     /**
@@ -55,7 +56,7 @@ class ValidateTraitTest extends TestCase
             $this->stub
         ];
 
-        $this->stub->v($input, \stdClass::class);
+        $this->stub->call('validateBatch', [$input, \stdClass::class]);
     }
 
     public function testAdditionalCheckCalled()
@@ -67,20 +68,14 @@ class ValidateTraitTest extends TestCase
             (object)[],
         ];
 
-        $this->stub->v($input, \stdClass::class, function ($input) use (&$called) {
-            $called++;
-        });
+        $this->stub->call('validateBatch', [
+            $input,
+            \stdClass::class,
+            function ($input) use (&$called) {
+                $called++;
+            }
+        ]);
 
         $this->assertCount($called, $input);
-    }
-}
-
-class ValidateTraitStub
-{
-    use ValidateTrait;
-
-    public function v(array $input, $type, callable $check = null)
-    {
-        return $this->validateBatch($input, $type, $check);
     }
 }

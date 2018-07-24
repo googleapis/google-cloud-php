@@ -21,6 +21,7 @@ use Google\Cloud\Core\Int64;
 use Google\Cloud\Core\Iterator\ItemIterator;
 use Google\Cloud\Core\LongRunning\LongRunningOperation;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
+use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Spanner\Admin\Database\V1\DatabaseAdminClient;
 use Google\Cloud\Spanner\Admin\Instance\V1\InstanceAdminClient;
 use Google\Cloud\Spanner\Batch\BatchClient;
@@ -58,7 +59,7 @@ class SpannerClientTest extends TestCase
         $this->checkAndSkipGrpcTests();
 
         $this->connection = $this->prophesize(ConnectionInterface::class);
-        $this->client = \Google\Cloud\Core\Testing\TestHelpers::stub(SpannerClient::class, [
+        $this->client = TestHelpers::stub(SpannerClient::class, [
             ['projectId' => self::PROJECT]
         ]);
     }
@@ -72,10 +73,15 @@ class SpannerClientTest extends TestCase
         $prop = $ref->getProperty('databaseName');
         $prop->setAccessible(true);
 
-        $this->assertEquals(sprintf(
-            'projects/%s/instances/%s/databases/%s',
-            self::PROJECT, 'foo', 'bar'
-        ), $prop->getValue($batch));
+        $this->assertEquals(
+            sprintf(
+                'projects/%s/instances/%s/databases/%s',
+                self::PROJECT,
+                'foo',
+                'bar'
+            ),
+            $prop->getValue($batch)
+        );
     }
 
     /**
@@ -166,7 +172,10 @@ class SpannerClientTest extends TestCase
     public function testCreateInstance()
     {
         $this->connection->createInstance(Argument::that(function ($arg) {
-            if ($arg['name'] !== InstanceAdminClient::instanceName(self::PROJECT, self::INSTANCE)) return false;
+            if ($arg['name'] !== InstanceAdminClient::instanceName(self::PROJECT, self::INSTANCE)) {
+                return false;
+            }
+
             return $arg['config'] === InstanceAdminClient::instanceConfigName(self::PROJECT, self::CONFIG);
         }))
             ->shouldBeCalled()

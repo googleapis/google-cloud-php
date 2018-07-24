@@ -353,7 +353,9 @@ class WriteTest extends SpannerTestCase
         $row2 = $exec->rows()->current();
 
         foreach ($row2[$field] as $item) {
-            if (is_null($item)) continue;
+            if (is_null($item)) {
+                continue;
+            }
 
             $this->assertInstanceOf(get_class($value[0]), $item);
         }
@@ -421,11 +423,11 @@ class WriteTest extends SpannerTestCase
         }
 
         return [
-            [$this->randId(), new Bytes(base64_encode(random_bytes(rand(100,9999))))],
-            [$this->randId(), new Bytes(base64_encode(random_bytes(rand(100,9999))))],
-            [$this->randId(), new Bytes(base64_encode(random_bytes(rand(100,9999))))],
-            [$this->randId(), new Bytes(base64_encode(random_bytes(rand(100,9999))))],
-            [$this->randId(), new Bytes(base64_encode(random_bytes(rand(100,9999))))],
+            [$this->randId(), new Bytes(base64_encode(random_bytes(rand(100, 9999))))],
+            [$this->randId(), new Bytes(base64_encode(random_bytes(rand(100, 9999))))],
+            [$this->randId(), new Bytes(base64_encode(random_bytes(rand(100, 9999))))],
+            [$this->randId(), new Bytes(base64_encode(random_bytes(rand(100, 9999))))],
+            [$this->randId(), new Bytes(base64_encode(random_bytes(rand(100, 9999))))],
         ];
     }
 

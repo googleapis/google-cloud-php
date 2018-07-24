@@ -18,6 +18,7 @@
 namespace Google\Cloud\Vision\Tests\Snippet;
 
 use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
+use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Vision\Annotation;
 use Google\Cloud\Vision\Connection\ConnectionInterface;
 use Google\Cloud\Vision\Image;
@@ -35,7 +36,7 @@ class VisionClientTest extends SnippetTestCase
     public function setUp()
     {
         $this->connection = $this->prophesize(ConnectionInterface::class);
-        $this->client = \Google\Cloud\Core\Testing\TestHelpers::stub(VisionClient::class);
+        $this->client = TestHelpers::stub(VisionClient::class);
         $this->client->___setProperty('connection', $this->connection->reveal());
     }
 

@@ -20,12 +20,13 @@ namespace Google\Cloud\PubSub\Tests\Unit;
 use Google\Cloud\Core\Exception\NotFoundException;
 use Google\Cloud\Core\Iam\Iam;
 use Google\Cloud\Core\Iterator\ItemIterator;
+use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\PubSub\BatchPublisher;
 use Google\Cloud\PubSub\Connection\ConnectionInterface;
 use Google\Cloud\PubSub\Subscription;
 use Google\Cloud\PubSub\Topic;
-use Prophecy\Argument;
 use PHPUnit\Framework\TestCase;
+use Prophecy\Argument;
 
 /**
  * @group pubsub
@@ -38,12 +39,12 @@ class TopicTest extends TestCase
     public function setUp()
     {
         $this->connection = $this->prophesize(ConnectionInterface::class);
-        $this->topic = new TopicStub(
+        $this->topic = TestHelpers::stub(Topic::class, [
             $this->connection->reveal(),
             'project-name',
             'topic-name',
             true
-        );
+        ]);
     }
 
     public function testName()
@@ -60,7 +61,7 @@ class TopicTest extends TestCase
 
         $this->connection->getTopic()->shouldNotBeCalled();
 
-        $this->topic->setConnection($this->connection->reveal());
+        $this->topic->___setProperty('connection', $this->connection->reveal());
 
         $res = $this->topic->create(['foo' => 'bar']);
 
@@ -75,7 +76,7 @@ class TopicTest extends TestCase
         $this->connection->deleteTopic(Argument::withEntry('foo', 'bar'))
             ->shouldBeCalled();
 
-        $this->topic->setConnection($this->connection->reveal());
+        $this->topic->___setProperty('connection', $this->connection->reveal());
 
         $res = $this->topic->delete(['foo' => 'bar']);
     }
@@ -87,7 +88,7 @@ class TopicTest extends TestCase
                 'name' => 'projects/project-name/topics/topic-name'
             ]);
 
-        $this->topic->setConnection($this->connection->reveal());
+        $this->topic->___setProperty('connection', $this->connection->reveal());
 
         $this->assertTrue($this->topic->exists(['foo' => 'bar']));
     }
@@ -97,7 +98,7 @@ class TopicTest extends TestCase
         $this->connection->getTopic(Argument::withEntry('foo', 'bar'))
             ->willThrow(new NotFoundException('uh oh'));
 
-        $this->topic->setConnection($this->connection->reveal());
+        $this->topic->___setProperty('connection', $this->connection->reveal());
 
         $this->assertFalse($this->topic->exists(['foo' => 'bar']));
     }
@@ -109,7 +110,7 @@ class TopicTest extends TestCase
                 'name' => 'projects/project-name/topics/topic-name'
             ])->shouldBeCalledTimes(1);
 
-        $this->topic->setConnection($this->connection->reveal());
+        $this->topic->___setProperty('connection', $this->connection->reveal());
 
         $res = $this->topic->info(['foo' => 'bar']);
         $res2 = $this->topic->info();
@@ -125,7 +126,7 @@ class TopicTest extends TestCase
                 'name' => 'projects/project-name/topics/topic-name'
             ]);
 
-        $this->topic->setConnection($this->connection->reveal());
+        $this->topic->___setProperty('connection', $this->connection->reveal());
 
         $res = $this->topic->reload(['foo' => 'bar']);
 
@@ -145,15 +146,16 @@ class TopicTest extends TestCase
             'message1id'
         ];
 
-        $this->connection->publishMessage(Argument::that(function ($options) use ($message) {
-            if ($options['foo'] !== 'bar') return false;
+        $this->connection->publishMessage(Argument::allOf(
+            Argument::withEntry('foo', 'bar'),
+            Argument::that(function ($options) use ($message) {
+                $message['data'] = base64_encode($message['data']);
 
-            $message['data'] = base64_encode($message['data']);
+                return $options['messages'] === [$message];
+            })
+        ))->willReturn($ids);
 
-            return $options['messages'] === [$message];
-        }))->willReturn($ids);
-
-        $this->topic->setConnection($this->connection->reveal());
+        $this->topic->___setProperty('connection', $this->connection->reveal());
 
         $res = $this->topic->publish($message, ['foo' => 'bar']);
 
@@ -181,16 +183,17 @@ class TopicTest extends TestCase
             'message2id'
         ];
 
-        $this->connection->publishMessage(Argument::that(function ($options) use ($messages) {
-            if ($options['foo'] !== 'bar') return false;
+        $this->connection->publishMessage(Argument::allOf(
+            Argument::withEntry('foo', 'bar'),
+            Argument::that(function ($options) use ($messages) {
+                $messages[0]['data'] = base64_encode($messages[0]['data']);
+                $messages[1]['data'] = base64_encode($messages[1]['data']);
 
-            $messages[0]['data'] = base64_encode($messages[0]['data']);
-            $messages[1]['data'] = base64_encode($messages[1]['data']);
+                return $options['messages'] === $messages;
+            })
+        ))->willReturn($ids);
 
-            return $options['messages'] === $messages;
-        }))->willReturn($ids);
-
-        $this->topic->setConnection($this->connection->reveal());
+        $this->topic->___setProperty('connection', $this->connection->reveal());
 
         $res = $this->topic->publishBatch($messages, ['foo' => 'bar']);
 
@@ -206,18 +209,16 @@ class TopicTest extends TestCase
             ]
         ];
 
-        $this->connection->publishMessage(Argument::that(function ($options) use ($message) {
-            if ($options['foo'] !== 'bar') return false;
+        $this->connection->publishMessage(Argument::allOf(
+            Argument::withEntry('foo', 'bar'),
+            Argument::withEntry('messages', [$message]),
+            Argument::that(function ($options) use ($message) {
+                // If the message was encoded, this will fail the test.
+                return $options['messages'][0]['data'] === $message['data'];
+            })
+        ));
 
-            if ($options['messages'] !== [$message]) return false;
-
-            // If the message was encoded, this will fail the test.
-            if ($options['messages'][0]['data'] !== $message['data']) return false;
-
-            return true;
-        }));
-
-        $this->topic->setConnection($this->connection->reveal());
+        $this->topic->___setProperty('connection', $this->connection->reveal());
 
         $res = $this->topic->publishBatch([$message], ['foo' => 'bar', 'encode' => false]);
     }
@@ -233,7 +234,7 @@ class TopicTest extends TestCase
 
         $this->connection->publishMessage(Argument::any());
 
-        $this->topic->setConnection($this->connection->reveal());
+        $this->topic->___setProperty('connection', $this->connection->reveal());
 
         $this->topic->publishBatch([$message]);
     }
@@ -257,7 +258,7 @@ class TopicTest extends TestCase
             ->willReturn($subscriptionData)
             ->shouldBeCalledTimes(1);
 
-        $this->topic->setConnection($this->connection->reveal());
+        $this->topic->___setProperty('connection', $this->connection->reveal());
 
         $subscription = $this->topic->subscribe('subscription-name', ['foo' => 'bar']);
 
@@ -284,7 +285,7 @@ class TopicTest extends TestCase
                 'subscriptions' => $subscriptionResult
             ])->shouldBeCalledTimes(1);
 
-        $this->topic->setConnection($this->connection->reveal());
+        $this->topic->___setProperty('connection', $this->connection->reveal());
 
         $subscriptions = $this->topic->subscriptions([
             'foo' => 'bar'
@@ -307,19 +308,21 @@ class TopicTest extends TestCase
             'projects/project-name/subscriptions/subscription-c',
         ];
 
-        $this->connection->listSubscriptionsByTopic(Argument::that(function ($options) {
-            if ($options['foo'] !== 'bar') return false;
-            if (isset($options['pageToken']) && $options['pageToken'] !== 'foo') {
-                return false;
-            }
+        $this->connection->listSubscriptionsByTopic(Argument::allOf(
+            Argument::withEntry('foo', 'bar'),
+            Argument::that(function ($options) {
+                if (isset($options['pageToken']) && $options['pageToken'] !== 'foo') {
+                    return false;
+                }
 
-            return true;
-        }))->willReturn([
+                return true;
+            })
+        ))->willReturn([
             'subscriptions' => $subscriptionResult,
             'nextPageToken' => 'foo'
         ])->shouldBeCalledTimes(2);
 
-        $this->topic->setConnection($this->connection->reveal());
+        $this->topic->___setProperty('connection', $this->connection->reveal());
 
         $subscriptions = $this->topic->subscriptions([
             'foo' => 'bar'
@@ -331,7 +334,9 @@ class TopicTest extends TestCase
         foreach ($subscriptions as $subscription) {
             $i++;
             $arr[] = $subscription;
-            if ($i == 6) break;
+            if ($i == 6) {
+                break;
+            }
         }
 
         $this->assertCount(6, $arr);
@@ -340,13 +345,5 @@ class TopicTest extends TestCase
     public function testIam()
     {
         $this->assertInstanceOf(Iam::class, $this->topic->iam());
-    }
-}
-
-class TopicStub extends Topic
-{
-    public function setConnection($connection)
-    {
-        $this->connection = $connection;
     }
 }

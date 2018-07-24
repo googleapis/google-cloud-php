@@ -396,6 +396,7 @@ class RequestWrapperTest extends TestCase
     }
 }
 
+//@codingStandardsIgnoreStart
 class RequestWrapperStub extends RequestWrapper
 {
     protected function getADC()
@@ -403,3 +404,4 @@ class RequestWrapperStub extends RequestWrapper
         throw new \DomainException('Not found');
     }
 }
+//@codingStandardsIgnoreEnd

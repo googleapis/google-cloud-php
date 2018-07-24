@@ -17,28 +17,29 @@
 
 namespace Google\Cloud\Speech\Tests\Unit;
 
+use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Speech\Connection\ConnectionInterface;
 use Google\Cloud\Speech\Operation;
 use Google\Cloud\Speech\Result;
 use Google\Cloud\Speech\SpeechClient;
 use Google\Cloud\Storage\StorageObject;
-use Prophecy\Argument;
 use PHPUnit\Framework\TestCase;
+use Prophecy\Argument;
 
 /**
  * @group speech
  */
 class SpeechClientTest extends TestCase
 {
-    CONST GCS_URI = 'gs://bucket/object';
+    const GCS_URI = 'gs://bucket/object';
 
     private $client;
     private $connection;
 
     public function setUp()
     {
-        $this->client = new SpeechTestClient([
-            'languageCode' => 'en-US'
+        $this->client = TestHelpers::stub(SpeechClient::class, [
+            ['languageCode' => 'en-US']
         ]);
         $this->connection = $this->prophesize(ConnectionInterface::class);
     }
@@ -48,7 +49,7 @@ class SpeechClientTest extends TestCase
      */
     public function testThrowsExceptionWithoutLanguageCode()
     {
-        $client = new SpeechTestClient();
+        $client = TestHelpers::stub(SpeechClient::class);
         $client->recognize(self::GCS_URI);
     }
 
@@ -74,7 +75,7 @@ class SpeechClientTest extends TestCase
                 ]
             ])
             ->shouldBeCalledTimes(1);
-        $this->client->setConnection($this->connection->reveal());
+        $this->client->___setProperty('connection', $this->connection->reveal());
         $results = $this->client->recognize($audio, $options);
 
         $this->assertContainsOnlyInstancesOf(Result::class, $results);
@@ -90,7 +91,7 @@ class SpeechClientTest extends TestCase
             ->longRunningRecognize($expectedOptions)
             ->willReturn(['name' => '1234abc'])
             ->shouldBeCalledTimes(1);
-        $this->client->setConnection($this->connection->reveal());
+        $this->client->___setProperty('connection', $this->connection->reveal());
         $operation = $this->client->beginRecognizeOperation($audio, $options);
 
         $this->assertInstanceOf(Operation::class, $operation);
@@ -235,45 +236,5 @@ class SpeechClientTest extends TestCase
                 ]
             ]
         ];
-    }
-}
-
-class SpeechTestClient extends SpeechClient
-{
-    public function setConnection($connection)
-    {
-        $this->connection = $connection;
-    }
-}
-
-class HttpStreamWrapper {
-    public $position = 0;
-    public $bodyData = 'abcd';
-
-    public function stream_open($path, $mode, $options, &$opened_path) {
-        return true;
-    }
-
-    public function stream_read($count) {
-        $this->position += strlen($this->bodyData);
-        if ($this->position > strlen($this->bodyData)) {
-            return false;
-        }
-
-        return $this->bodyData;
-    }
-
-    public function stream_eof() {
-        return $this->position >= strlen($this->bodyData);
-    }
-
-    public function stream_stat() {
-        return [
-            'wrapper_data' => ['test']
-        ];
-    }
-
-    public function stream_tell() {
-        return $this->position;
     }
 }

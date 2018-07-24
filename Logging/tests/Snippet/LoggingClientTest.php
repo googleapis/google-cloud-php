@@ -17,14 +17,15 @@
 
 namespace Google\Cloud\Logging\Tests\Snippet;
 
+use Google\Cloud\Core\Iterator\ItemIterator;
 use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
+use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Logging\Connection\ConnectionInterface;
 use Google\Cloud\Logging\Logger;
 use Google\Cloud\Logging\LoggingClient;
 use Google\Cloud\Logging\Metric;
 use Google\Cloud\Logging\PsrLogger;
 use Google\Cloud\Logging\Sink;
-use Google\Cloud\Core\Iterator\ItemIterator;
 use Prophecy\Argument;
 
 /**
@@ -38,7 +39,7 @@ class LoggingClientTest extends SnippetTestCase
     public function setUp()
     {
         $this->connection = $this->prophesize(ConnectionInterface::class);
-        $this->client = \Google\Cloud\Core\Testing\TestHelpers::stub(LoggingClient::class);
+        $this->client = TestHelpers::stub(LoggingClient::class);
         $this->client->___setProperty('connection', $this->connection->reveal());
     }
 

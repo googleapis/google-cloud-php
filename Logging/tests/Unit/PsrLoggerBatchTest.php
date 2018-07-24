@@ -98,22 +98,24 @@ class PsrLoggerBatchTest extends TestCase
         } else {
             $server = ['HTTP_X_CLOUD_TRACE_CONTEXT' => $traceId];
         }
+
         $this->runner->submitItem(
-            'stackdriver-logging-my-log', Argument::any()
-        )
-            ->will(function($args) {
-                self::$logName = $args[0];
-                self::$entry = $args[1];
-            })
-            ->shouldBeCalledTimes(1);
-        $this->runner->registerJob(
-            Argument::any(), Argument::any(), Argument::any()
-        )->willReturn(true);
+            'stackdriver-logging-my-log',
+            Argument::any()
+        )->will(function ($args) {
+            self::$logName = $args[0];
+            self::$entry = $args[1];
+        })->shouldBeCalledTimes(1);
+
+        $this->runner->registerJob(Argument::any(), Argument::any(), Argument::any())
+            ->willReturn(true);
+
         $logger = new Logger(
             $this->prophesize(Rest::class)->reveal(),
             self::LOG_NAME,
             'my-project'
         );
+
         $psrBatchLogger = new PsrLogger(
             $logger,
             null,
@@ -123,13 +125,16 @@ class PsrLoggerBatchTest extends TestCase
                 'metadataProvider' => new GAEFlexMetadataProvider($server)
             ]
         );
+
         $psrBatchLogger->info(
             'test log',
             ['stackdriverOptions' => ['labels' => $labels]]
         );
+
         $this->assertEquals('stackdriver-logging-my-log', self::$logName);
         $info = self::$entry->info();
         $this->assertEquals($expectedLabels, $info['labels']);
+
         if (!empty($traceId)) {
             $this->assertEquals($traceId, $info['trace']);
         }
@@ -141,21 +146,22 @@ class PsrLoggerBatchTest extends TestCase
     public function testWritesEntryWithLevels($level)
     {
         $this->runner->submitItem(
-            'stackdriver-logging-my-log', Argument::any()
-        )
-            ->will(function($args) {
-                self::$logName = $args[0];
-                self::$entry = $args[1];
-            })
-            ->shouldBeCalledTimes(1);
-        $this->runner->registerJob(
-            Argument::any(), Argument::any(), Argument::any()
-        )->willReturn(true);
+            'stackdriver-logging-my-log',
+            Argument::any()
+        )->will(function ($args) {
+            self::$logName = $args[0];
+            self::$entry = $args[1];
+        })->shouldBeCalledTimes(1);
+
+        $this->runner->registerJob(Argument::any(), Argument::any(), Argument::any())
+            ->willReturn(true);
+
         $logger = new Logger(
             $this->prophesize(Rest::class)->reveal(),
             self::LOG_NAME,
             'my-project'
         );
+
         $psrBatchLogger = new PsrLogger(
             $logger,
             null,
@@ -232,5 +238,4 @@ class PsrLoggerBatchTest extends TestCase
             ['DEBUG']
         ];
     }
-
 }

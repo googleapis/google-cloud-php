@@ -69,10 +69,12 @@ class ValueMapperTest extends FirestoreTestCase
             [new Timestamp(\DateTime::createFromFormat('U', time()))],
             ['foo'],
             [self::$document],
-            [new GeoPoint(10,-10)],
-            [[1,2,3,4]],
-            [['foo' => 'bar', 'bat' => [1,2,3,4]]],
-            [NAN, function ($val) { return is_nan($val); }]
+            [new GeoPoint(10, -10)],
+            [[1, 2, 3, 4]],
+            [['foo' => 'bar', 'bat' => [1, 2, 3, 4]]],
+            [NAN, function ($val) {
+                return is_nan($val);
+            }]
         ];
     }
 

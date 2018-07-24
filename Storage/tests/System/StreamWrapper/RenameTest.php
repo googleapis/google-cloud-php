@@ -50,5 +50,4 @@ class RenameTest extends StreamWrapperTestCase
         $this->assertTrue(rename($oldFolder, $newFolder));
         $this->assertFileExists($newFile);
     }
-
 }

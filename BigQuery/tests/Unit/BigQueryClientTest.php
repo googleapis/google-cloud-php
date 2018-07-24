@@ -323,20 +323,16 @@ class BigQueryClientTest extends TestCase
     {
         $client = $this->getClient();
         $this->connection->listDatasets(Argument::any())
-            ->willReturn(
-                [
-                    'nextPageToken' => 'token',
-                    'datasets' => [
-                        ['datasetReference' => ['datasetId' => 'someOtherdatasetId']]
-                    ]
-                ],
-                    [
-                    'datasets' => [
-                        ['datasetReference' => ['datasetId' => self::DATASET_ID]]
-                    ]
+            ->willReturn([
+                'nextPageToken' => 'token',
+                'datasets' => [
+                    ['datasetReference' => ['datasetId' => 'someOtherdatasetId']]
                 ]
-            )
-            ->shouldBeCalledTimes(2);
+            ], [
+                'datasets' => [
+                    ['datasetReference' => ['datasetId' => self::DATASET_ID]]
+                ]
+            ])->shouldBeCalledTimes(2);
 
         $client->___setProperty('connection', $this->connection->reveal());
         $dataset = iterator_to_array($client->datasets());

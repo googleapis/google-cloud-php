@@ -38,7 +38,8 @@ class SysvProcessorTest extends TestCase
         putenv('GOOGLE_CLOUD_SYSV_ID=U');
         if (! $this->isSysvIPCLOaded()) {
             $this->markTestSkipped(
-                'Skipping because SystemV IPC extensions are not loaded');
+                'Skipping because SystemV IPC extensions are not loaded'
+            );
         }
         $this->processor = new SysvProcessor();
     }
@@ -72,7 +73,8 @@ class SysvProcessorTest extends TestCase
         } else {
             $this->assertEquals(
                 $item,
-                unserialize(file_get_contents($message)));
+                unserialize(file_get_contents($message))
+            );
             @unlink($message);
         }
     }

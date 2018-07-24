@@ -83,5 +83,3 @@ class LoggingTestCase extends SystemTestCase
         self::$hasSetUp = true;
     }
 }
-
-

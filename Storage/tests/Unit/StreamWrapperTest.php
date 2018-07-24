@@ -262,7 +262,8 @@ class StreamWrapperTest extends TestCase
      */
     public function testMkdirOnBadDirectory()
     {
-        $this->bucket->upload('', ['name' => 'foo/bar/', 'predefinedAcl' => 'publicRead'])->willThrow(NotFoundException::class);
+        $this->bucket->upload('', ['name' => 'foo/bar/', 'predefinedAcl' => 'publicRead'])
+            ->willThrow(NotFoundException::class);
         $this->assertFalse(mkdir('gs://my_bucket/foo/bar'));
     }
 
@@ -275,8 +276,8 @@ class StreamWrapperTest extends TestCase
         $this->bucket->name()->willReturn('my_bucket');
         $this->client->createBucket('my_bucket', [
             'predefinedAcl' => 'publicRead',
-            'predefinedDefaultObjectAcl' => 'publicRead']
-        )->willReturn($this->bucket);
+            'predefinedDefaultObjectAcl' => 'publicRead'
+        ])->willReturn($this->bucket);
         $this->bucket->upload('', ['name' => 'foo/bar/', 'predefinedAcl' => 'publicRead'])->shouldBeCalled();
 
         $this->assertTrue(mkdir('gs://my_bucket/foo/bar', 0777, STREAM_MKDIR_RECURSIVE));
@@ -408,17 +409,17 @@ class StreamWrapperTest extends TestCase
     {
         $test = $this;
         $this->bucket->objects(
-            Argument::that(function($options) use ($path) {
+            Argument::that(function ($options) use ($path) {
                 return $options['prefix'] == $path;
             })
-        )->will(function() use ($test, $filesToReturn) {
+        )->will(function () use ($test, $filesToReturn) {
             return $test->fileListGenerator($filesToReturn);
         });
     }
 
     private function fileListGenerator($fileToReturn)
     {
-        foreach($fileToReturn as $file) {
+        foreach ($fileToReturn as $file) {
             $obj = $this->prophesize(StorageObject::class);
             $obj->name()->willReturn($file);
             yield $obj->reveal();

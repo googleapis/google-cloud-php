@@ -48,7 +48,7 @@ class KeyTest extends SnippetTestCase
 
         $ds = $this->prophesize(DatastoreClient::class);
         $ds->key(Argument::any(), Argument::any())
-            ->will(function($args) {
+            ->will(function ($args) {
                 return new Key('my-awesome-project', [
                     'path' => [
                         ['kind' => $args[0], 'name' => $args[1]]
@@ -69,7 +69,7 @@ class KeyTest extends SnippetTestCase
     {
         $ds = $this->prophesize(DatastoreClient::class);
         $ds->key(Argument::any(), Argument::any())
-            ->will(function($args) {
+            ->will(function ($args) {
                 return new Key('my-awesome-project', [
                     'path' => [
                         ['kind' => $args[0], 'name' => $args[1]]
@@ -129,7 +129,7 @@ class KeyTest extends SnippetTestCase
     {
         $ds = $this->prophesize(DatastoreClient::class);
         $ds->key(Argument::any(), Argument::any())
-            ->will(function($args) {
+            ->will(function ($args) {
                 return new Key('my-awesome-project', [
                     'path' => [
                         ['kind' => $args[0], 'name' => $args[1]]
@@ -150,7 +150,7 @@ class KeyTest extends SnippetTestCase
     {
         $ds = $this->prophesize(DatastoreClient::class);
         $ds->key(Argument::any(), Argument::any())
-            ->will(function($args) {
+            ->will(function ($args) {
                 return new Key('my-awesome-project', [
                     'path' => [
                         ['kind' => $args[0], 'id' => $args[1]]
@@ -170,7 +170,7 @@ class KeyTest extends SnippetTestCase
     {
         $ds = $this->prophesize(DatastoreClient::class);
         $ds->key(Argument::any(), Argument::any())
-            ->will(function($args) {
+            ->will(function ($args) {
                 return new Key('my-awesome-project', [
                     'path' => [
                         ['kind' => $args[0], 'id' => $args[1]]
@@ -190,7 +190,7 @@ class KeyTest extends SnippetTestCase
     {
         $ds = $this->prophesize(DatastoreClient::class);
         $ds->key(Argument::any(), Argument::any())
-            ->will(function($args) {
+            ->will(function ($args) {
                 return new Key('my-awesome-project', [
                     'path' => [
                         ['kind' => $args[0]]

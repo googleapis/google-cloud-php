@@ -48,7 +48,7 @@ class WhitelistTest extends SystemTestCase
             'transport' => 'rest'
         ]);
 
-        $this->checkException(function() use ($client) {
+        $this->checkException(function () use ($client) {
             iterator_to_array($client->snapshots());
         });
     }
@@ -60,7 +60,7 @@ class WhitelistTest extends SystemTestCase
             'transport' => 'grpc'
         ]);
 
-        $this->checkException(function() use ($client) {
+        $this->checkException(function () use ($client) {
             iterator_to_array($client->snapshots());
         });
     }

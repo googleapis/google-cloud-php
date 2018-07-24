@@ -18,6 +18,7 @@
 namespace Google\Cloud\Core\Tests\Unit;
 
 use Google\Cloud\Core\JsonTrait;
+use Google\Cloud\Core\Testing\TestHelpers;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -29,7 +30,7 @@ class JsonTraitTest extends TestCase
 
     public function setUp()
     {
-        $this->implementation = \Google\Cloud\Core\Testing\TestHelpers::impl(JsonTrait::class);
+        $this->implementation = TestHelpers::impl(JsonTrait::class);
     }
 
     public function testJsonEncode()

@@ -19,6 +19,8 @@ namespace Google\Cloud\PubSub\Tests\Unit;
 
 use Google\Cloud\Core\Duration;
 use Google\Cloud\Core\Iterator\ItemIterator;
+use Google\Cloud\Core\Testing\GrpcTestTrait;
+use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Core\Timestamp;
 use Google\Cloud\PubSub\Connection\ConnectionInterface;
 use Google\Cloud\PubSub\Connection\Grpc;
@@ -28,9 +30,8 @@ use Google\Cloud\PubSub\PubSubClient;
 use Google\Cloud\PubSub\Snapshot;
 use Google\Cloud\PubSub\Subscription;
 use Google\Cloud\PubSub\Topic;
-use Google\Cloud\Core\Testing\GrpcTestTrait;
-use Prophecy\Argument;
 use PHPUnit\Framework\TestCase;
+use Prophecy\Argument;
 
 /**
  * @group pubsub
@@ -47,18 +48,22 @@ class PubSubClientTest extends TestCase
     {
         $this->connection = $this->prophesize(ConnectionInterface::class);
 
-        $this->client = new PubSubClientStub([
-            'projectId' => 'project',
-            'transport' => 'rest'
+        $this->client = TestHelpers::stub(PubSubClient::class, [
+            [
+                'projectId' => 'project',
+                'transport' => 'rest'
+            ]
         ]);
     }
 
     public function testUsesGrpcConnectionByDefault()
     {
         $this->checkAndSkipGrpcTests();
-        $client = new PubSubClientStub(['projectId' => 'project']);
+        $client = TestHelpers::stub(PubSubClient::class, [
+            ['projectId' => 'project']
+        ]);
 
-        $this->assertInstanceOf(Grpc::class, $client->getConnection());
+        $this->assertInstanceOf(Grpc::class, $client->___getProperty('connection'));
     }
 
     public function testCreateTopic()
@@ -73,7 +78,7 @@ class PubSubClientTest extends TestCase
         // Set this to zero to make sure we're getting the cached result
         $this->connection->getTopic(Argument::any())->shouldNotBeCalled();
 
-        $this->client->setConnection($this->connection->reveal());
+        $this->client->___setProperty('connection', $this->connection->reveal());
 
         $topic = $this->client->createTopic($topicName, [
             'foo' => 'bar'
@@ -94,7 +99,7 @@ class PubSubClientTest extends TestCase
                 'name' => 'projects/project/topics/'. $topicName
             ])->shouldBeCalledTimes(1);
 
-        $this->client->setConnection($this->connection->reveal());
+        $this->client->___setProperty('connection', $this->connection->reveal());
 
         $topic = $this->client->topic($topicName);
 
@@ -121,7 +126,7 @@ class PubSubClientTest extends TestCase
                 'topics' => $topicResult
             ])->shouldBeCalledTimes(1);
 
-        $this->client->setConnection($this->connection->reveal());
+        $this->client->___setProperty('connection', $this->connection->reveal());
 
         $topics = $this->client->topics([
             'foo' => 'bar'
@@ -148,19 +153,21 @@ class PubSubClientTest extends TestCase
             ]
         ];
 
-        $this->connection->listTopics(Argument::that(function ($options) {
-            if ($options['foo'] !== 'bar') return false;
-            if (isset($options['pageToken']) && $options['pageToken'] !== 'foo') {
-                return false;
-            }
+        $this->connection->listTopics(Argument::allOf(
+            Argument::withEntry('foo', 'bar'),
+            Argument::that(function ($options) {
+                if (isset($options['pageToken']) && $options['pageToken'] !== 'foo') {
+                    return false;
+                }
 
-            return true;
-        }))->willReturn([
+                return true;
+            })
+        ))->willReturn([
             'topics' => $topicResult,
             'nextPageToken' => 'foo'
         ])->shouldBeCalledTimes(2);
 
-        $this->client->setConnection($this->connection->reveal());
+        $this->client->___setProperty('connection', $this->connection->reveal());
 
         $topics = $this->client->topics([
             'foo' => 'bar'
@@ -172,7 +179,9 @@ class PubSubClientTest extends TestCase
         foreach ($topics as $topic) {
             $i++;
             $arr[] = $topic;
-            if ($i == 6) break;
+            if ($i == 6) {
+                break;
+            }
         }
 
         $this->assertCount(6, $arr);
@@ -187,7 +196,7 @@ class PubSubClientTest extends TestCase
 
         $this->connection->getSubscription()->shouldNotBeCalled();
 
-        $this->client->setConnection($this->connection->reveal());
+        $this->client->___setProperty('connection', $this->connection->reveal());
 
         $subscription = $this->client->subscribe('subscription', 'topic', [
             'foo' => 'bar'
@@ -199,9 +208,11 @@ class PubSubClientTest extends TestCase
 
     public function testSubscription()
     {
-        $this->connection->getSubscription(Argument::any())->shouldBeCalledTimes(1)->willReturn(['foo' => 'bar']);
+        $this->connection->getSubscription(Argument::any())
+            ->shouldBeCalledTimes(1)
+            ->willReturn(['foo' => 'bar']);
 
-        $this->client->setConnection($this->connection->reveal());
+        $this->client->___setProperty('connection', $this->connection->reveal());
 
         $subscription = $this->client->subscription('subscription-name', 'topic-name');
 
@@ -232,7 +243,7 @@ class PubSubClientTest extends TestCase
                 'subscriptions' => $subscriptionResult
             ])->shouldBeCalledTimes(1);
 
-        $this->client->setConnection($this->connection->reveal());
+        $this->client->___setProperty('connection', $this->connection->reveal());
 
         $subscriptions = $this->client->subscriptions([
             'foo' => 'bar'
@@ -262,19 +273,21 @@ class PubSubClientTest extends TestCase
             ]
         ];
 
-        $this->connection->listSubscriptions(Argument::that(function ($options) {
-            if ($options['foo'] !== 'bar') return false;
-            if (isset($options['pageToken']) && $options['pageToken'] !== 'foo') {
-                return false;
-            }
+        $this->connection->listSubscriptions(Argument::allOf(
+            Argument::withEntry('foo', 'bar'),
+            Argument::that(function ($options) {
+                if (isset($options['pageToken']) && $options['pageToken'] !== 'foo') {
+                    return false;
+                }
 
-            return true;
-        }))->willReturn([
+                return true;
+            })
+        ))->willReturn([
             'subscriptions' => $subscriptionResult,
             'nextPageToken' => 'foo'
         ])->shouldBeCalledTimes(2);
 
-        $this->client->setConnection($this->connection->reveal());
+        $this->client->___setProperty('connection', $this->connection->reveal());
 
         $subscriptions = $this->client->subscriptions([
             'foo' => 'bar'
@@ -286,7 +299,9 @@ class PubSubClientTest extends TestCase
         foreach ($subscriptions as $subscription) {
             $i++;
             $arr[] = $subscription;
-            if ($i == 6) break;
+            if ($i == 6) {
+                break;
+            }
         }
 
         $this->assertCount(6, $arr);
@@ -298,7 +313,7 @@ class PubSubClientTest extends TestCase
             ->shouldBeCalled()
             ->willReturn([]);
 
-        $this->client->setConnection($this->connection->reveal());
+        $this->client->___setProperty('connection', $this->connection->reveal());
 
         $subscription = $this->client->subscription('bar');
 
@@ -331,7 +346,7 @@ class PubSubClientTest extends TestCase
                 'snapshots' => $snapshotResult
             ])->shouldBeCalledTimes(1);
 
-        $this->client->setConnection($this->connection->reveal());
+        $this->client->___setProperty('connection', $this->connection->reveal());
 
         $snapshots = $this->client->snapshots([
             'foo' => 'bar'
@@ -358,19 +373,21 @@ class PubSubClientTest extends TestCase
             ]
         ];
 
-        $this->connection->listSnapshots(Argument::that(function ($options) {
-            if ($options['foo'] !== 'bar') return false;
-            if (isset($options['pageToken']) && $options['pageToken'] !== 'foo') {
-                return false;
-            }
+        $this->connection->listSnapshots(Argument::allOf(
+            Argument::withEntry('foo', 'bar'),
+            Argument::that(function ($options) {
+                if (isset($options['pageToken']) && $options['pageToken'] !== 'foo') {
+                    return false;
+                }
 
-            return true;
-        }))->willReturn([
+                return true;
+            })
+        ))->willReturn([
             'snapshots' => $snapshotResult,
             'nextPageToken' => 'foo'
         ])->shouldBeCalledTimes(2);
 
-        $this->client->setConnection($this->connection->reveal());
+        $this->client->___setProperty('connection', $this->connection->reveal());
 
         $snapshots = $this->client->snapshots([
             'foo' => 'bar'
@@ -382,7 +399,9 @@ class PubSubClientTest extends TestCase
         foreach ($snapshots as $snapshot) {
             $i++;
             $arr[] = $snapshot;
-            if ($i == 6) break;
+            if ($i == 6) {
+                break;
+            }
         }
 
         $this->assertCount(6, $arr);
@@ -414,18 +433,5 @@ class PubSubClientTest extends TestCase
         $dur = $this->client->duration($val['seconds'], $val['nanos']);
         $this->assertInstanceOf(Duration::class, $dur);
         $this->assertEquals($dur->get(), $val);
-    }
-}
-
-class PubSubClientStub extends PubSubClient
-{
-    public function setConnection($connection)
-    {
-        $this->connection = $connection;
-    }
-
-    public function getConnection()
-    {
-        return $this->connection;
     }
 }

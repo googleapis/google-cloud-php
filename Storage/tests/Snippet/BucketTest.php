@@ -20,10 +20,11 @@ namespace Google\Cloud\Storage\Tests\Snippet;
 use Google\Cloud\Core\Exception\GoogleException;
 use Google\Cloud\Core\Iam\Iam;
 use Google\Cloud\Core\Iterator\ItemIterator;
+use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
+use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Core\Upload\MultipartUploader;
 use Google\Cloud\Core\Upload\ResumableUploader;
 use Google\Cloud\Core\Upload\StreamableUploader;
-use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
 use Google\Cloud\PubSub\PubSubClient;
 use Google\Cloud\PubSub\Topic;
 use Google\Cloud\Storage\Acl;
@@ -51,7 +52,7 @@ class BucketTest extends SnippetTestCase
         $this->connection = $this->prophesize(Rest::class);
         $this->connection->projectId()
             ->willReturn(self::PROJECT_ID);
-        $this->bucket = \Google\Cloud\Core\Testing\TestHelpers::stub(Bucket::class, [
+        $this->bucket = TestHelpers::stub(Bucket::class, [
             $this->connection->reveal(),
             self::BUCKET,
             []
@@ -392,14 +393,13 @@ class BucketTest extends SnippetTestCase
         $snippet = $this->snippetFromMethod(Bucket::class, 'update');
         $snippet->addLocal('bucket', $this->bucket);
 
-        $this->connection->patchBucket(Argument::that(function($arg) {
-            if ($arg['logging']['logBucket'] !== 'myBucket') return false;
-            if ($arg['logging']['logObjectPrefix'] !== 'prefix') return false;
+        $this->connection->patchBucket(Argument::that(function ($arg) {
+            if ($arg['logging']['logBucket'] !== 'myBucket') {
+                return false;
+            }
 
-            return true;
-        }))
-            ->shouldBeCalled()
-            ->willReturn('foo');
+            return $arg['logging']['logObjectPrefix'] === 'prefix';
+        }))->shouldBeCalled()->willReturn('foo');
 
         $this->bucket->___setProperty('connection', $this->connection->reveal());
 

@@ -56,7 +56,7 @@ class SpannerTestCase extends SystemTestCase
 
         $db = self::getDatabaseInstance(self::$dbName);
 
-        self::$deletionQueue->add(function() use ($db) {
+        self::$deletionQueue->add(function () use ($db) {
             $db->drop();
         });
 

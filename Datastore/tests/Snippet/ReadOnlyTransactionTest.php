@@ -126,10 +126,7 @@ class ReadOnlyTransactionTest extends SnippetTestCase
         $snippet->addLocal('datastore', $this->client);
         $snippet->addLocal('transaction', $this->transaction);
 
-        $this->connection->lookup(Argument::that(function ($args) {
-            if ($args['transaction'] !== self::TRANSACTION) return false;
-            return true;
-        }))
+        $this->connection->lookup(Argument::withEntry('transaction', self::TRANSACTION))
             ->shouldBeCalled()
             ->willReturn([
                 'found' => [
@@ -164,10 +161,7 @@ class ReadOnlyTransactionTest extends SnippetTestCase
         $snippet->addLocal('datastore', $this->client);
         $snippet->addLocal('transaction', $this->transaction);
 
-        $this->connection->lookup(Argument::that(function ($args) {
-            if ($args['transaction'] !== self::TRANSACTION) return false;
-            return true;
-        }))
+        $this->connection->lookup(Argument::withEntry('transaction', self::TRANSACTION))
             ->shouldBeCalled()
             ->willReturn([
                 'found' => [
@@ -218,10 +212,7 @@ class ReadOnlyTransactionTest extends SnippetTestCase
         $snippet->addLocal('transaction', $this->transaction);
         $snippet->addLocal('query', $this->prophesize(QueryInterface::class)->reveal());
 
-        $this->connection->runQuery(Argument::that(function ($args) {
-            if ($args['transaction'] !== self::TRANSACTION) return false;
-            return true;
-        }))
+        $this->connection->runQuery(Argument::withEntry('transaction', self::TRANSACTION))
             ->shouldBeCalled()
             ->willReturn([
                 'batch' => [

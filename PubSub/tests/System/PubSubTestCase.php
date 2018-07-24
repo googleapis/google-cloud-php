@@ -57,5 +57,3 @@ class PubSubTestCase extends SystemTestCase
         self::$hasSetUp = true;
     }
 }
-
-

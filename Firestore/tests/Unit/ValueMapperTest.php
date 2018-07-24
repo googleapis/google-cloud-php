@@ -20,6 +20,7 @@ namespace Google\Cloud\Firestore\Tests\Unit;
 use Google\Cloud\Core\Blob;
 use Google\Cloud\Core\GeoPoint;
 use Google\Cloud\Core\Int64;
+use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Core\Timestamp;
 use Google\Cloud\Core\TimeTrait;
 use Google\Cloud\Firestore\CollectionReference;
@@ -45,7 +46,7 @@ class ValueMapperTest extends TestCase
     public function setUp()
     {
         $this->connection = $this->prophesize(ConnectionInterface::class);
-        $this->mapper = \Google\Cloud\Core\Testing\TestHelpers::stub(ValueMapper::class, [
+        $this->mapper = TestHelpers::stub(ValueMapper::class, [
             $this->connection->reveal(),
             false
         ], ['connection', 'returnInt64AsObject']);
@@ -150,13 +151,16 @@ class ValueMapperTest extends TestCase
                     $this->assertInstanceOf(DocumentReference::class, $val);
                     $this->assertInstanceOf(CollectionReference::class, $val->parent());
                     $this->assertEquals('projects/example_project/databases/(default)/documents/a/b', $val->name());
-                    $this->assertEquals('projects/example_project/databases/(default)/documents/a', $val->parent()->name());
+                    $this->assertEquals(
+                        'projects/example_project/databases/(default)/documents/a',
+                        $val->parent()->name()
+                    );
                 }
             ]
         ];
     }
 
-    function testDecodeValuesIntAsObject()
+    public function testDecodeValuesIntAsObject()
     {
         $val = ['integerValue' => 15];
 
@@ -170,7 +174,7 @@ class ValueMapperTest extends TestCase
     /**
      * @expectedException RuntimeException
      */
-    function testDecodeValuesInvalidValue()
+    public function testDecodeValuesInvalidValue()
     {
         $val = ['fooValue' => 15];
         $res = $this->mapper->decodeValues(['val' => $val]);

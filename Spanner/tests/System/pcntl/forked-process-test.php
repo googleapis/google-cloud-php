@@ -24,7 +24,9 @@ function setupIterationTracker($tmpFile)
 {
     $pid = getmypid();
     register_shutdown_function(function () use ($tmpFile, $pid) {
-        if ($pid !== getmypid()) return;
+        if ($pid !== getmypid()) {
+            return;
+        }
 
         $h = fopen($tmpFile, 'r+');
         flock($h, LOCK_UN);

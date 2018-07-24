@@ -18,6 +18,7 @@
 namespace Google\Cloud\Firestore\Tests\Unit;
 
 use Google\Cloud\Core\Testing\ArrayHasSameValuesToken;
+use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Core\Timestamp;
 use Google\Cloud\Firestore\CollectionReference;
 use Google\Cloud\Firestore\Connection\ConnectionInterface;
@@ -53,7 +54,7 @@ class QueryTest extends TestCase
     public function setUp()
     {
         $this->connection = $this->prophesize(ConnectionInterface::class);
-        $this->query = \Google\Cloud\Core\Testing\TestHelpers::stub(Query::class, [
+        $this->query = TestHelpers::stub(Query::class, [
             $this->connection->reveal(),
             new ValueMapper($this->connection->reveal(), false),
             self::PARENT,
@@ -66,7 +67,8 @@ class QueryTest extends TestCase
      */
     public function testConstructMissingFrom()
     {
-        new Query($this->connection->reveal(),
+        new Query(
+            $this->connection->reveal(),
             new ValueMapper($this->connection->reveal(), false),
             self::PARENT,
             []
@@ -767,18 +769,19 @@ class QueryTest extends TestCase
                         ]
                     ]
                 ],
-                "where" => [
-                "fieldFilter" => [
-                    "field" => [
-                        "fieldPath" => "foo"
-                    ],
-                    "op" => 3,
-                    "value" => [
-                        "stringValue" => "bar"
+                'where' => [
+                    'fieldFilter' => [
+                        'field' => [
+                            'fieldPath' => 'foo'
+                        ],
+                        'op' => 3,
+                        'value' => [
+                            'stringValue' => 'bar'
+                        ]
                     ]
                 ]
             ]
-        ]]);
+        ]);
     }
 
     /**

@@ -20,55 +20,60 @@ namespace Google\Cloud\PubSub\Tests\Unit;
 use Google\Cloud\Core\Exception\NotFoundException;
 use Google\Cloud\Core\Iam\Iam;
 use Google\Cloud\Core\Iterator\ItemIterator;
+use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Core\Timestamp;
 use Google\Cloud\PubSub\Connection\ConnectionInterface;
 use Google\Cloud\PubSub\Message;
 use Google\Cloud\PubSub\Snapshot;
 use Google\Cloud\PubSub\Subscription;
-use Prophecy\Argument;
 use PHPUnit\Framework\TestCase;
+use Prophecy\Argument;
 
 /**
  * @group pubsub
  */
 class SubscriptionTest extends TestCase
 {
+    const PROJECT = 'project-id';
+    const SUBSCRIPTION = 'projects/project-id/subscriptions/subscription-name';
+    const TOPIC = 'projects/project-id/topics/topic-name';
+
     private $subscription;
     private $connection;
 
     public function setUp()
     {
         $this->connection = $this->prophesize(ConnectionInterface::class);
-        $this->subscription = new SubscriptionStub(
+        $this->subscription = TestHelpers::stub(Subscription::class, [
             $this->connection->reveal(),
             'project-id',
             'subscription-name',
             'topic-name',
             true
-        );
+        ], ['connection', 'info']);
     }
 
     public function testName()
     {
-        $this->assertEquals($this->subscription->name(), 'projects/project-id/subscriptions/subscription-name');
+        $this->assertEquals($this->subscription->name(), self::SUBSCRIPTION);
     }
 
     public function testCreate()
     {
         $this->connection->createSubscription(Argument::withEntry('foo', 'bar'))
             ->willReturn([
-                'name' => 'projects/project-id/subscriptions/subscription-name',
-                'topic' => 'projects/project-id/topics/topic-name'
+                'name' => self::SUBSCRIPTION,
+                'topic' => self::TOPIC
             ])->shouldBeCalledTimes(1);
 
         $this->connection->getSubscription()->shouldNotBeCalled();
 
-        $this->subscription->setConnection($this->connection->reveal());
+        $this->subscription->___setProperty('connection', $this->connection->reveal());
 
         $sub = $this->subscription->create([ 'foo' => 'bar' ]);
 
-        $this->assertEquals($sub['name'], 'projects/project-id/subscriptions/subscription-name');
-        $this->assertEquals($sub['topic'], 'projects/project-id/topics/topic-name');
+        $this->assertEquals($sub['name'], self::SUBSCRIPTION);
+        $this->assertEquals($sub['topic'], self::TOPIC);
     }
 
     /**
@@ -101,7 +106,7 @@ class SubscriptionTest extends TestCase
             ->shouldBeCalled()
             ->willReturn($argsWithName);
 
-        $this->subscription->setConnection($this->connection->reveal());
+        $this->subscription->___setProperty('connection', $this->connection->reveal());
 
         $res = $this->subscription->update($args);
 
@@ -115,7 +120,7 @@ class SubscriptionTest extends TestCase
             ->willReturn(null)
             ->shouldBeCalledTimes(1);
 
-        $this->subscription->setConnection($this->connection->reveal());
+        $this->subscription->___setProperty('connection', $this->connection->reveal());
 
         $res = $this->subscription->delete([ 'foo' => 'bar' ]);
 
@@ -126,11 +131,11 @@ class SubscriptionTest extends TestCase
     {
         $this->connection->getSubscription(Argument::withEntry('foo', 'bar'))
             ->willReturn([
-                'subscription' => 'projects/project-id/subscriptions/subscription-name',
-                'topic' => 'projects/project-id/topics/topic-name'
+                'subscription' => self::SUBSCRIPTION,
+                'topic' => self::TOPIC
             ])->shouldBeCalledTimes(1);
 
-        $this->subscription->setConnection($this->connection->reveal());
+        $this->subscription->___setProperty('connection', $this->connection->reveal());
 
         $this->assertTrue($this->subscription->exists([ 'foo' => 'bar' ]));
     }
@@ -141,7 +146,7 @@ class SubscriptionTest extends TestCase
             ->willThrow(new NotFoundException('bad'))
             ->shouldBeCalledTimes(1);
 
-        $this->subscription->setConnection($this->connection->reveal());
+        $this->subscription->___setProperty('connection', $this->connection->reveal());
 
         $this->assertFalse($this->subscription->exists());
     }
@@ -149,15 +154,15 @@ class SubscriptionTest extends TestCase
     public function testInfo()
     {
         $sub = [
-            'subscription' => 'projects/project-id/subscriptions/subscription-name',
-            'topic' => 'projects/project-id/topics/topic-name'
+            'subscription' => self::SUBSCRIPTION,
+            'topic' => self::TOPIC
         ];
 
         $this->connection->getSubscription(Argument::withEntry('foo', 'bar'))
             ->willReturn($sub)
             ->shouldBeCalledTimes(1);
 
-        $this->subscription->setConnection($this->connection->reveal());
+        $this->subscription->___setProperty('connection', $this->connection->reveal());
 
         $res = $this->subscription->info([ 'foo' => 'bar' ]);
         $this->assertEquals($res, $sub);
@@ -166,37 +171,31 @@ class SubscriptionTest extends TestCase
     public function testInfoNoRequest()
     {
         $sub = [
-            'subscription' => 'projects/project-id/subscriptions/subscription-name',
-            'topic' => 'projects/project-id/topics/topic-name'
+            'subscription' => self::SUBSCRIPTION,
+            'topic' => self::TOPIC
         ];
 
         $this->connection->getSubscription()->shouldNotBeCalled();
 
-        $subscription = new Subscription(
-            $this->connection->reveal(),
-            'project-id',
-            'subscription-name',
-            'topic-name',
-            true,
-            $sub
-        );
+        $this->subscription->___setProperty('info', $sub);
+        $this->subscription->___setProperty('connection', $this->connection->reveal());
 
-        $res = $subscription->info();
+        $res = $this->subscription->info();
         $this->assertEquals($res, $sub);
     }
 
     public function testReload()
     {
         $sub = [
-            'subscription' => 'projects/project-id/subscriptions/subscription-name',
-            'topic' => 'projects/project-id/topics/topic-name'
+            'subscription' => self::SUBSCRIPTION,
+            'topic' => self::TOPIC
         ];
 
         $this->connection->getSubscription(Argument::withEntry('foo', 'bar'))
             ->willReturn($sub)
             ->shouldBeCalledTimes(1);
 
-        $this->subscription->setConnection($this->connection->reveal());
+        $this->subscription->___setProperty('connection', $this->connection->reveal());
 
         $res = $this->subscription->reload([ 'foo' => 'bar' ]);
         $this->assertEquals($res, $sub);
@@ -218,7 +217,7 @@ class SubscriptionTest extends TestCase
             ->willReturn($messages)
             ->shouldBeCalledTimes(1);
 
-        $this->subscription->setConnection($this->connection->reveal());
+        $this->subscription->___setProperty('connection', $this->connection->reveal());
 
         $result = $this->subscription->pull([
             'foo' => 'bar'
@@ -241,16 +240,13 @@ class SubscriptionTest extends TestCase
             ]
         ];
 
-        $this->connection->pull(Argument::that(function ($args) {
-                if ($args['foo'] !== 'bar') return false;
-                if ($args['returnImmediately'] !== true) return false;
-                if ($args['maxMessages'] !== 2) return false;
+        $this->connection->pull(Argument::allOf(
+            Argument::withEntry('foo', 'bar'),
+            Argument::withEntry('returnImmediately', true),
+            Argument::withEntry('maxMessages', 2)
+        ))->willReturn($messages)->shouldBeCalledTimes(1);
 
-                return true;
-            }))->willReturn($messages)
-            ->shouldBeCalledTimes(1);
-
-        $this->subscription->setConnection($this->connection->reveal());
+        $this->subscription->___setProperty('connection', $this->connection->reveal());
 
         $result = $this->subscription->pull([
             'foo' => 'bar',
@@ -267,14 +263,12 @@ class SubscriptionTest extends TestCase
     {
         $ackId = 'foobar';
 
-        $this->connection->acknowledge(Argument::that(function ($args) use ($ackId) {
-            if ($args['foo'] !== 'bar') return false;
-            if ($args['ackIds'] !== [$ackId]) return false;
+        $this->connection->acknowledge(Argument::allOf(
+            Argument::withEntry('foo', 'bar'),
+            Argument::withEntry('ackIds', [$ackId])
+        ))->shouldBeCalledTimes(1);
 
-            return true;
-        }))->shouldBeCalledTimes(1);
-
-        $this->subscription->setConnection($this->connection->reveal());
+        $this->subscription->___setProperty('connection', $this->connection->reveal());
 
         $message = new Message([], ['ackId' => $ackId]);
         $this->subscription->acknowledge($message, ['foo' => 'bar']);
@@ -292,14 +286,12 @@ class SubscriptionTest extends TestCase
             $messages[] = new Message([], ['ackId' => $id]);
         }
 
-        $this->connection->acknowledge(Argument::that(function ($args) use ($ackIds) {
-            if ($args['foo'] !== 'bar') return false;
-            if ($args['ackIds'] !== $ackIds) return false;
+        $this->connection->acknowledge(Argument::allOf(
+            Argument::withEntry('foo', 'bar'),
+            Argument::withEntry('ackIds', $ackIds)
+        ))->shouldBeCalledTimes(1);
 
-            return true;
-        }))->shouldBeCalledTimes(1);
-
-        $this->subscription->setConnection($this->connection->reveal());
+        $this->subscription->___setProperty('connection', $this->connection->reveal());
 
         $this->subscription->acknowledgeBatch($messages, ['foo' => 'bar']);
     }
@@ -316,18 +308,17 @@ class SubscriptionTest extends TestCase
     {
         $ackId = 'foobar';
         $message = new Message([], ['ackId' => $ackId]);
+        $seconds = 100;
 
-        $this->connection->modifyAckDeadline(Argument::that(function ($args) use ($ackId) {
-            if ($args['foo'] !== 'bar') return false;
-            if ($args['ackIds'] !== [$ackId]) return false;
-            if ($args['ackDeadlineSeconds'] !== 100) return false;
+        $this->connection->modifyAckDeadline(Argument::allOf(
+            Argument::withEntry('foo', 'bar'),
+            Argument::withEntry('ackIds', [$ackId]),
+            Argument::withEntry('ackDeadlineSeconds', $seconds)
+        ))->shouldBeCalledTimes(1);
 
-            return true;
-        }))->shouldBeCalledTimes(1);
+        $this->subscription->___setProperty('connection', $this->connection->reveal());
 
-        $this->subscription->setConnection($this->connection->reveal());
-
-        $this->subscription->modifyAckDeadline($message, 100, ['foo' => 'bar']);
+        $this->subscription->modifyAckDeadline($message, $seconds, ['foo' => 'bar']);
     }
 
     public function testModifyAckDeadlineBatch()
@@ -344,15 +335,13 @@ class SubscriptionTest extends TestCase
 
         $seconds = 100;
 
-        $this->connection->modifyAckDeadline(Argument::that(function ($args) use ($ackIds, $seconds) {
-            if ($args['foo'] !== 'bar') return false;
-            if ($args['ackIds'] !== $ackIds) return false;
-            if ($args['ackDeadlineSeconds'] !== $seconds) return false;
+        $this->connection->modifyAckDeadline(Argument::allOf(
+            Argument::withEntry('foo', 'bar'),
+            Argument::withEntry('ackIds', $ackIds),
+            Argument::withEntry('ackDeadlineSeconds', $seconds)
+        ))->shouldBeCalledTimes(1);
 
-            return true;
-        }))->shouldBeCalledTimes(1);
-
-        $this->subscription->setConnection($this->connection->reveal());
+        $this->subscription->___setProperty('connection', $this->connection->reveal());
 
         $this->subscription->modifyAckDeadlineBatch($messages, $seconds, ['foo' => 'bar']);
     }
@@ -371,14 +360,12 @@ class SubscriptionTest extends TestCase
             'hello' => 'world'
         ];
 
-        $this->connection->modifyPushConfig(Argument::that(function ($args) use ($config) {
-            if ($args['foo'] !== 'bar') return false;
-            if ($args['pushConfig'] !== $config) return false;
+        $this->connection->modifyPushConfig(Argument::allOf(
+            Argument::withEntry('foo', 'bar'),
+            Argument::withEntry('pushConfig', $config)
+        ))->shouldBeCalledTimes(1);
 
-            return true;
-        }))->shouldBeCalledTimes(1);
-
-        $this->subscription->setConnection($this->connection->reveal());
+        $this->subscription->___setProperty('connection', $this->connection->reveal());
 
         $this->subscription->modifyPushConfig($config, ['foo' => 'bar']);
     }
@@ -393,7 +380,7 @@ class SubscriptionTest extends TestCase
             'time' => $timestamp->formatAsString()
         ])->shouldBeCalled()->willReturn('foo');
 
-        $this->subscription->setConnection($this->connection->reveal());
+        $this->subscription->___setProperty('connection', $this->connection->reveal());
 
         $res = $this->subscription->seekToTime($timestamp);
         $this->assertEquals('foo', $res);
@@ -411,7 +398,7 @@ class SubscriptionTest extends TestCase
             'snapshot' => $snapshot->name()
         ])->shouldBeCalled()->willReturn('foo');
 
-        $this->subscription->setConnection($this->connection->reveal());
+        $this->subscription->___setProperty('connection', $this->connection->reveal());
 
         $res = $this->subscription->seekToSnapshot($snapshot);
         $this->assertEquals('foo', $res);
@@ -420,13 +407,5 @@ class SubscriptionTest extends TestCase
     public function testIam()
     {
         $this->assertInstanceOf(Iam::class, $this->subscription->iam());
-    }
-}
-
-class SubscriptionStub extends Subscription
-{
-    public function setConnection($connection)
-    {
-        $this->connection = $connection;
     }
 }

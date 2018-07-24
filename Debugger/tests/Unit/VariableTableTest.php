@@ -132,7 +132,7 @@ class VariableTableTest extends TestCase
             ['some string', 'string', 'some string'],
             [1234, 'integer', '1234'],
             [1234.2, 'double', '1234.2'],
-            [NULL, 'NULL', 'NULL']
+            [null, 'NULL', 'NULL']
         ];
     }
 
@@ -287,6 +287,9 @@ class VariableTableTest extends TestCase
         $index = $bufferFullReference->info()['varTableIndex'];
 
         $bufferFullVariable = $variables[$index];
-        $this->assertEquals(VariableTable::BUFFER_FULL_MESSAGE, $bufferFullVariable->info()['status']['description']['format']);
+        $this->assertEquals(
+            VariableTable::BUFFER_FULL_MESSAGE,
+            $bufferFullVariable->info()['status']['description']['format']
+        );
     }
 }

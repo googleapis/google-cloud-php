@@ -17,12 +17,13 @@
 
 namespace Google\Cloud\Language\Tests\Unit;
 
+use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Language\Annotation;
 use Google\Cloud\Language\Connection\ConnectionInterface;
 use Google\Cloud\Language\LanguageClient;
 use Google\Cloud\Storage\StorageObject;
-use Prophecy\Argument;
 use PHPUnit\Framework\TestCase;
+use Prophecy\Argument;
 
 /**
  * @group language
@@ -34,7 +35,7 @@ class LanguageClientTest extends TestCase
 
     public function setUp()
     {
-        $this->client = new LanguageTestClient();
+        $this->client = TestHelpers::stub(LanguageClient::class);
         $this->connection = $this->prophesize(ConnectionInterface::class);
     }
 
@@ -49,7 +50,7 @@ class LanguageClientTest extends TestCase
             ->analyzeEntities($expectedOptions)
             ->willReturn([])
             ->shouldBeCalledTimes(1);
-        $this->client->setConnection($this->connection->reveal());
+        $this->client->___setProperty('connection', $this->connection->reveal());
         $annotation = $this->client->analyzeEntities($content, $options);
 
         $this->assertInstanceOf(Annotation::class, $annotation);
@@ -66,7 +67,7 @@ class LanguageClientTest extends TestCase
             ->analyzeSentiment($expectedOptions)
             ->willReturn([])
             ->shouldBeCalledTimes(1);
-        $this->client->setConnection($this->connection->reveal());
+        $this->client->___setProperty('connection', $this->connection->reveal());
         $annotation = $this->client->analyzeSentiment($content, $options);
 
         $this->assertInstanceOf(Annotation::class, $annotation);
@@ -83,7 +84,7 @@ class LanguageClientTest extends TestCase
             ->analyzeEntitySentiment($expectedOptions)
             ->willReturn([])
             ->shouldBeCalledTimes(1);
-        $this->client->setConnection($this->connection->reveal());
+        $this->client->___setProperty('connection', $this->connection->reveal());
         $annotation = $this->client->analyzeEntitySentiment($content, $options);
         $this->assertInstanceOf(Annotation::class, $annotation);
     }
@@ -100,7 +101,7 @@ class LanguageClientTest extends TestCase
             ->analyzeSyntax($expectedOptions)
             ->willReturn([])
             ->shouldBeCalledTimes(1);
-        $this->client->setConnection($this->connection->reveal());
+        $this->client->___setProperty('connection', $this->connection->reveal());
         $annotation = $this->client->analyzeSyntax($content, $options);
 
         $this->assertInstanceOf(Annotation::class, $annotation);
@@ -126,7 +127,7 @@ class LanguageClientTest extends TestCase
                 'categories' => $categories
             ])
             ->shouldBeCalledTimes(1);
-        $this->client->setConnection($this->connection->reveal());
+        $this->client->___setProperty('connection', $this->connection->reveal());
         $annotation = $this->client->classifyText($content, $options);
 
         $this->assertInstanceOf(Annotation::class, $annotation);
@@ -151,7 +152,7 @@ class LanguageClientTest extends TestCase
             ->annotateText($expectedOptions)
             ->willReturn([])
             ->shouldBeCalledTimes(1);
-        $this->client->setConnection($this->connection->reveal());
+        $this->client->___setProperty('connection', $this->connection->reveal());
         $annotation = $this->client->annotateText($content, $options);
 
         $this->assertInstanceOf(Annotation::class, $annotation);
@@ -206,13 +207,5 @@ class LanguageClientTest extends TestCase
                 ]
             ]
         ];
-    }
-}
-
-class LanguageTestClient extends LanguageClient
-{
-    public function setConnection($connection)
-    {
-        $this->connection = $connection;
     }
 }

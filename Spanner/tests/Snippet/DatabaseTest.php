@@ -24,6 +24,7 @@ use Google\Cloud\Core\LongRunning\LongRunningOperation;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
 use Google\Cloud\Core\Testing\SpannerOperationRefreshTrait;
+use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Spanner\Admin\Database\V1\DatabaseAdminClient;
 use Google\Cloud\Spanner\Admin\Instance\V1\InstanceAdminClient;
 use Google\Cloud\Spanner\Connection\ConnectionInterface;
@@ -72,7 +73,7 @@ class DatabaseTest extends SnippetTestCase
             ->willReturn(null);
 
         $this->connection = $this->prophesize(ConnectionInterface::class);
-        $this->database = \Google\Cloud\Core\Testing\TestHelpers::stub(Database::class, [
+        $this->database = TestHelpers::stub(Database::class, [
             $this->connection->reveal(),
             $instance->reveal(),
             $this->prophesize(LongRunningConnectionInterface::class)->reveal(),
@@ -421,8 +422,14 @@ class DatabaseTest extends SnippetTestCase
     public function testInsertBatch()
     {
         $this->connection->commit(Argument::that(function ($args) {
-            if (!isset($args['mutations'][0]['insert'])) return false;
-            if (!isset($args['mutations'][1]['insert'])) return false;
+            if (!isset($args['mutations'][0]['insert'])) {
+                return false;
+            }
+
+            if (!isset($args['mutations'][1]['insert'])) {
+                return false;
+            }
+
             return true;
         }))->shouldBeCalled()->willReturn([
             'commitTimestamp' => (new Timestamp(new \DateTime))->formatAsString()
@@ -454,8 +461,14 @@ class DatabaseTest extends SnippetTestCase
     public function testUpdateBatch()
     {
         $this->connection->commit(Argument::that(function ($args) {
-            if (!isset($args['mutations'][0]['update'])) return false;
-            if (!isset($args['mutations'][1]['update'])) return false;
+            if (!isset($args['mutations'][0]['update'])) {
+                return false;
+            }
+
+            if (!isset($args['mutations'][1]['update'])) {
+                return false;
+            }
+
             return true;
         }))->shouldBeCalled()->willReturn([
             'commitTimestamp' => (new Timestamp(new \DateTime))->formatAsString()
@@ -487,8 +500,14 @@ class DatabaseTest extends SnippetTestCase
     public function testInsertOrUpdateBatch()
     {
         $this->connection->commit(Argument::that(function ($args) {
-            if (!isset($args['mutations'][0]['insertOrUpdate'])) return false;
-            if (!isset($args['mutations'][1]['insertOrUpdate'])) return false;
+            if (!isset($args['mutations'][0]['insertOrUpdate'])) {
+                return false;
+            }
+
+            if (!isset($args['mutations'][1]['insertOrUpdate'])) {
+                return false;
+            }
+
             return true;
         }))->shouldBeCalled()->willReturn([
             'commitTimestamp' => (new Timestamp(new \DateTime))->formatAsString()
@@ -520,8 +539,14 @@ class DatabaseTest extends SnippetTestCase
     public function testReplaceBatch()
     {
         $this->connection->commit(Argument::that(function ($args) {
-            if (!isset($args['mutations'][0]['replace'])) return false;
-            if (!isset($args['mutations'][1]['replace'])) return false;
+            if (!isset($args['mutations'][0]['replace'])) {
+                return false;
+            }
+
+            if (!isset($args['mutations'][1]['replace'])) {
+                return false;
+            }
+
             return true;
         }))->shouldBeCalled()->willReturn([
             'commitTimestamp' => (new Timestamp(new \DateTime))->formatAsString()

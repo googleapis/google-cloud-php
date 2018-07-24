@@ -43,8 +43,8 @@ class BatchSnapshotTest extends TestCase
 {
     use SpannerOperationRefreshTrait;
 
-    const DATABASE = 'projects/example_project/instances/example_instance/databases/example_database';
-    const SESSION = 'projects/example_project/instances/example_instance/databases/example_database/sessions/session-id';
+    const DATABASE = 'projects/my-awesome-project/instances/my-instance/databases/my-database';
+    const SESSION = 'projects/my-awesome-project/instances/my-instance/databases/my-database/sessions/session-id';
     const TRANSACTION = 'transaction-id';
 
     private $session;
@@ -190,7 +190,6 @@ class BatchSnapshotTest extends TestCase
             Argument::withEntry('session', self::SESSION),
             Argument::withEntry('database', array_pop($db)),
             Argument::withEntry('transaction', ['id' => self::TRANSACTION]),
-
             Argument::withEntry('sql', $sql),
             Argument::withEntry('params', $opts['parameters']),
             Argument::withEntry('paramTypes', ['foo' => ['code' => 6]])
@@ -222,7 +221,6 @@ class BatchSnapshotTest extends TestCase
             Argument::withEntry('session', self::SESSION),
             Argument::withEntry('database', array_pop($db)),
             Argument::withEntry('transaction', ['id' => self::TRANSACTION]),
-
             Argument::withEntry('table', $table),
             Argument::withEntry('columns', $columns),
             Argument::withEntry('keySet', $keySet->keySetObject()),
@@ -283,9 +281,11 @@ class BatchSnapshotTest extends TestCase
     }
 }
 
+//@codingStandardsIgnoreStart
 class DummyPartition implements PartitionInterface
 {
     public function __toString() {}
     public function serialize() {}
     public static function hydrate(array $data) {}
 }
+//@codingStandardsIgnoreEnd

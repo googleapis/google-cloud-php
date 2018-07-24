@@ -382,7 +382,9 @@ class QueryTest extends SpannerTestCase
     public function testBindArrayOfType($value, $result = null, $resultType = null, callable $filter = null)
     {
         if (!$filter) {
-            $filter = function ($val) { return $val; };
+            $filter = function ($val) {
+                return $val;
+            };
         }
 
         $db = self::$database;
@@ -615,7 +617,11 @@ class QueryTest extends SpannerTestCase
 
             // timestamp (covers 52)
             [
-                [new Timestamp(new \DateTime('2010-01-01')), new Timestamp(new \DateTime('2011-01-01')), new Timestamp(new \DateTime('2012-01-01'))],
+                [
+                    new Timestamp(new \DateTime('2010-01-01')),
+                    new Timestamp(new \DateTime('2011-01-01')),
+                    new Timestamp(new \DateTime('2012-01-01'))
+                ],
                 ['2010-01-01', '2011-01-01', '2012-01-01'],
                 Timestamp::class,
                 function (array $res) {
@@ -629,7 +635,11 @@ class QueryTest extends SpannerTestCase
 
             // date (covers 55)
             [
-                [new Date(new \DateTime('2010-01-01')), new Date(new \DateTime('2011-01-01')), new Date(new \DateTime('2012-01-01'))],
+                [
+                    new Date(new \DateTime('2010-01-01')),
+                    new Date(new \DateTime('2011-01-01')),
+                    new Date(new \DateTime('2012-01-01'))
+                ],
                 ['2010-01-01', '2011-01-01', '2012-01-01'],
                 Date::class,
                 function (array $res) {

@@ -308,10 +308,27 @@ class QueryTest extends TestCase
 
         $res = $this->query->queryObject();
 
-        $this->assertEquals('__key__', $res['filter']['compositeFilter']['filters'][0]['propertyFilter']['property']['name']);
-        $this->assertEquals('Kind', $res['filter']['compositeFilter']['filters'][0]['propertyFilter']['value']['keyValue']['path'][0]['kind']);
-        $this->assertEquals('Name', $res['filter']['compositeFilter']['filters'][0]['propertyFilter']['value']['keyValue']['path'][0]['name']);
-        $this->assertEquals('foo', $res['filter']['compositeFilter']['filters'][0]['propertyFilter']['value']['keyValue']['partitionId']['projectId']);
+        $propertyFilter = $res['filter']['compositeFilter']['filters'][0]['propertyFilter'];
+
+        $this->assertEquals(
+            '__key__',
+            $propertyFilter['property']['name']
+        );
+
+        $this->assertEquals(
+            'Kind',
+            $propertyFilter['value']['keyValue']['path'][0]['kind']
+        );
+
+        $this->assertEquals(
+            'Name',
+            $propertyFilter['value']['keyValue']['path'][0]['name']
+        );
+
+        $this->assertEquals(
+            'foo',
+            $propertyFilter['value']['keyValue']['partitionId']['projectId']
+        );
     }
 
     public function testDistinctOn()

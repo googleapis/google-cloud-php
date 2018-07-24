@@ -417,8 +417,15 @@ class TransactionTest extends TestCase
 
         return [
             // return callables to get around phpunit's annoying habit of running data providers way too early.
-            [function () { return $this->transaction; }],
-            [function () { return $this->readOnly; }]
+            [
+                function () {
+                    return $this->transaction;
+                }
+            ], [
+                function () {
+                    return $this->readOnly;
+                }
+            ]
         ];
     }
 }

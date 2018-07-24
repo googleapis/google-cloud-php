@@ -18,6 +18,7 @@
 namespace Google\Cloud\Speech\Tests\Snippet;
 
 use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
+use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Speech\Connection\ConnectionInterface;
 use Google\Cloud\Speech\Operation;
 use Google\Cloud\Speech\SpeechClient;
@@ -36,7 +37,7 @@ class SpeechClientTest extends SnippetTestCase
     {
         $this->testFile = "'" . __DIR__ . '/fixtures/demo.flac' . "'";
         $this->connection = $this->prophesize(ConnectionInterface::class);
-        $this->client = \Google\Cloud\Core\Testing\TestHelpers::stub(SpeechClient::class, [
+        $this->client = TestHelpers::stub(SpeechClient::class, [
             ['languageCode' => 'en-US']
         ]);
         $this->client->___setProperty('connection', $this->connection->reveal());

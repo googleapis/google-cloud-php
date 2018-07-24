@@ -28,8 +28,9 @@ use Google\Cloud\BigQuery\LoadJobConfiguration;
 use Google\Cloud\BigQuery\Table;
 use Google\Cloud\BigQuery\ValueMapper;
 use Google\Cloud\Core\Iterator\ItemIterator;
-use Google\Cloud\Core\Upload\MultipartUploader;
 use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
+use Google\Cloud\Core\Testing\TestHelpers;
+use Google\Cloud\Core\Upload\MultipartUploader;
 use Google\Cloud\Storage\Connection\Rest as StorageConnection;
 use Google\Cloud\Storage\StorageClient;
 use Prophecy\Argument;
@@ -73,7 +74,7 @@ class TableTest extends SnippetTestCase
 
         $this->mapper = new ValueMapper(false);
         $this->connection = $this->prophesize(ConnectionInterface::class);
-        $this->table = \Google\Cloud\Core\Testing\TestHelpers::stub(Table::class, [
+        $this->table = TestHelpers::stub(Table::class, [
             $this->connection->reveal(),
             self::ID,
             self::DSID,
@@ -202,7 +203,7 @@ class TableTest extends SnippetTestCase
 
     public function testCopy()
     {
-        $bq = \Google\Cloud\Core\Testing\TestHelpers::stub(BigQueryClient::class);
+        $bq = TestHelpers::stub(BigQueryClient::class);
         $snippet = $this->snippetFromMethod(Table::class, 'copy');
         $snippet->addLocal('bigQuery', $bq);
         $bq->___setProperty('connection', $this->connection->reveal());
@@ -229,7 +230,7 @@ class TableTest extends SnippetTestCase
 
     public function testExtract()
     {
-        $storage = \Google\Cloud\Core\Testing\TestHelpers::stub(StorageClient::class);
+        $storage = TestHelpers::stub(StorageClient::class);
         $storage->___setProperty('connection', $this->prophesize(StorageConnection::class)->reveal());
         $snippet = $this->snippetFromMethod(Table::class, 'extract');
         $snippet->addLocal('storage', $storage);
@@ -274,7 +275,7 @@ class TableTest extends SnippetTestCase
 
     public function testLoadFromStorage()
     {
-        $storage = \Google\Cloud\Core\Testing\TestHelpers::stub(StorageClient::class);
+        $storage = TestHelpers::stub(StorageClient::class);
         $storage->___setProperty('connection', $this->prophesize(StorageConnection::class)->reveal());
         $snippet = $this->snippetFromMethod(Table::class, 'loadFromStorage');
         $snippet->addLocal('storage', $storage);
@@ -336,7 +337,10 @@ class TableTest extends SnippetTestCase
         $snippet->addLocal('table', $this->table);
 
         $res = $snippet->invoke();
-        $this->assertEquals('https://www.googleapis.com/bigquery/v2/projects/my-project/datasets/mynewdataset', $res->output());
+        $this->assertEquals(
+            'https://www.googleapis.com/bigquery/v2/projects/my-project/datasets/mynewdataset',
+            $res->output()
+        );
     }
 
     public function testReload()
@@ -353,7 +357,10 @@ class TableTest extends SnippetTestCase
         $this->table->___setProperty('connection', $this->connection->reveal());
 
         $res = $snippet->invoke();
-        $this->assertEquals('https://www.googleapis.com/bigquery/v2/projects/my-project/datasets/myupdateddataset', $res->output());
+        $this->assertEquals(
+            'https://www.googleapis.com/bigquery/v2/projects/my-project/datasets/myupdateddataset',
+            $res->output()
+        );
     }
 
     public function testId()

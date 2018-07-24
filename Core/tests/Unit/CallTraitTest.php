@@ -43,6 +43,7 @@ class CallTraitTest extends TestCase
     }
 }
 
+//@codingStandardsIgnoreStart
 class CallTraitStub
 {
     use CallTrait;
@@ -57,3 +58,4 @@ class CallTraitStub
         return $this->info;
     }
 }
+//@codingStandardsIgnoreEnd

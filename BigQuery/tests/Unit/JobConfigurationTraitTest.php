@@ -18,8 +18,9 @@
 namespace Google\Cloud\BigQuery\Tests\Unit;
 
 use Google\Cloud\BigQuery\JobConfigurationTrait;
-use Ramsey\Uuid\Uuid;
+use Google\Cloud\Core\Testing\TestHelpers;
 use PHPUnit\Framework\TestCase;
+use Ramsey\Uuid\Uuid;
 
 /**
  * @group bigquery
@@ -34,7 +35,7 @@ class JobConfigurationTraitTest extends TestCase
 
     public function setUp()
     {
-        $this->trait = \Google\Cloud\Core\Testing\TestHelpers::impl(JobConfigurationTrait::class);
+        $this->trait = TestHelpers::impl(JobConfigurationTrait::class);
     }
 
     public function testJobConfigurationProperties()

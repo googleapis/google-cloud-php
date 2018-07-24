@@ -41,6 +41,8 @@ class StorageObjectTest extends TestCase
     use KeyPairGenerateTrait;
 
     const TIMESTAMP = '2025-01-01';
+    const BUCKET = 'bucket';
+    const OBJECT = 'object.txt';
 
     /** @var Rest|ObjectProphecy */
     public $connection;
@@ -60,15 +62,15 @@ class StorageObjectTest extends TestCase
 
     public function testGetAcl()
     {
-        $object = new StorageObject($this->connection->reveal(), 'object.txt', 'bucket');
+        $object = new StorageObject($this->connection->reveal(), self::OBJECT, self::BUCKET);
 
         $this->assertInstanceOf(Acl::class, $object->acl());
     }
 
     public function testDoesExistTrue()
     {
-        $this->connection->getObject(Argument::any())->willReturn(['name' => 'object.txt']);
-        $object = new StorageObject($this->connection->reveal(), 'object.txt', 'bucket');
+        $this->connection->getObject(Argument::any())->willReturn(['name' => self::OBJECT]);
+        $object = new StorageObject($this->connection->reveal(), self::OBJECT, self::BUCKET);
 
         $this->assertTrue($object->exists());
     }
@@ -76,21 +78,21 @@ class StorageObjectTest extends TestCase
     public function testDoesExistFalse()
     {
         $this->connection->getObject(Argument::any())->willThrow(new NotFoundException(null));
-        $object = new StorageObject($this->connection->reveal(), 'object.txt', 'bucket');
+        $object = new StorageObject($this->connection->reveal(), self::OBJECT, self::BUCKET);
 
         $this->assertFalse($object->exists());
     }
 
     public function testDelete()
     {
-        $object = new StorageObject($this->connection->reveal(), 'object.txt', 'bucket');
+        $object = new StorageObject($this->connection->reveal(), self::OBJECT, self::BUCKET);
 
         $this->assertNull($object->delete());
     }
 
     public function testUpdatesData()
     {
-        $object = 'object.txt';
+        $object = self::OBJECT;
         $data = ['contentType' => 'image/jpg'];
         $this->connection->patchObject(Argument::any())->willReturn(['name' => $object] + $data);
         $object = new StorageObject(
@@ -108,7 +110,7 @@ class StorageObjectTest extends TestCase
 
     public function testUpdatesDataAndUnsetsAclWithPredefinedAclApplied()
     {
-        $object = 'object.txt';
+        $object = self::OBJECT;
         $bucket = 'bucket';
         $predefinedAcl = ['predefinedAcl' => 'private'];
         $this->connection->patchObject($predefinedAcl + [
@@ -131,7 +133,7 @@ class StorageObjectTest extends TestCase
     {
         $sourceBucket = 'bucket';
         $destinationBucket = 'bucket2';
-        $objectName = 'object.txt';
+        $objectName = self::OBJECT;
         $acl = 'private';
         $key = base64_encode('abcd');
         $hash = base64_encode('1234');
@@ -169,7 +171,7 @@ class StorageObjectTest extends TestCase
     public function testCopyObjectWithNewName()
     {
         $sourceBucket = 'bucket';
-        $sourceObject = 'object.txt';
+        $sourceObject = self::OBJECT;
         $bucketConnection = $this->prophesize(Rest::class)->reveal();
         $destinationBucketName = 'bucket2';
         $destinationBucket = new Bucket($bucketConnection, $destinationBucketName, []);
@@ -203,7 +205,7 @@ class StorageObjectTest extends TestCase
      */
     public function testCopyObjectThrowsExceptionWithInvalidType()
     {
-        $object = new StorageObject($this->connection->reveal(), 'object.txt.', 'bucket');
+        $object = new StorageObject($this->connection->reveal(), 'object.txt.', self::BUCKET);
         $copiedObject = $object->copy($object);
     }
 
@@ -211,7 +213,7 @@ class StorageObjectTest extends TestCase
     {
         $sourceBucket = 'bucket';
         $destinationBucket = 'bucket2';
-        $objectName = 'object.txt';
+        $objectName = self::OBJECT;
         $acl = 'private';
         $key = base64_encode('abcd');
         $hash = base64_encode('1234');
@@ -258,7 +260,7 @@ class StorageObjectTest extends TestCase
     public function testRewriteObjectWithNewName()
     {
         $sourceBucket = 'bucket';
-        $sourceObject = 'object.txt';
+        $sourceObject = self::OBJECT;
         $bucketConnection = $this->prophesize(Rest::class)->reveal();
         $destinationBucketName = 'bucket2';
         $destinationBucket = new Bucket($bucketConnection, $destinationBucketName, []);
@@ -309,14 +311,14 @@ class StorageObjectTest extends TestCase
      */
     public function testRewriteObjectThrowsExceptionWithInvalidType()
     {
-        $object = new StorageObject($this->connection->reveal(), 'object.txt.', 'bucket');
+        $object = new StorageObject($this->connection->reveal(), 'object.txt.', self::BUCKET);
         $copiedObject = $object->rewrite($object);
     }
 
     public function testRenamesObject()
     {
         $sourceBucket = 'bucket';
-        $objectName = 'object.txt';
+        $objectName = self::OBJECT;
         $newObjectName = 'new-name.txt';
         $acl = 'private';
         $key = base64_encode('abcd');
@@ -360,7 +362,7 @@ class StorageObjectTest extends TestCase
         $key = base64_encode('abcd');
         $hash = base64_encode('1234');
         $bucket = 'bucket';
-        $object = 'object.txt';
+        $object = self::OBJECT;
         $stream = Psr7\stream_for($string = 'abcdefg');
         $this->connection->downloadObject([
                 'bucket' => $bucket,
@@ -389,7 +391,7 @@ class StorageObjectTest extends TestCase
         $key = base64_encode('abcd');
         $hash = base64_encode('1234');
         $bucket = 'bucket';
-        $object = 'object.txt';
+        $object = self::OBJECT;
         $stream = Psr7\stream_for($string = 'abcdefg');
         $this->connection->downloadObject([
                 'bucket' => $bucket,
@@ -406,18 +408,17 @@ class StorageObjectTest extends TestCase
 
         $object = new StorageObject($this->connection->reveal(), $object, $bucket);
 
-        $this->assertEquals($string, $object->downloadToFile('php://temp', [
-                'encryptionKey' => $key,
-                'encryptionKeySHA256' => $hash
-            ])
-            ->getContents()
-        );
+        $contents = $object->downloadToFile('php://temp', [
+            'encryptionKey' => $key,
+            'encryptionKeySHA256' => $hash
+        ])->getContents();
+        $this->assertEquals($string, $contents);
     }
 
     public function testGetBodyWithoutExtraOptions()
     {
         $bucket = 'bucket';
-        $object = 'object.txt';
+        $object = self::OBJECT;
         $stream = Psr7\stream_for($string = 'abcdefg');
         $this->connection->downloadObject([
             'bucket' => $bucket,
@@ -438,7 +439,7 @@ class StorageObjectTest extends TestCase
         $key = base64_encode('abcd');
         $hash = base64_encode('1234');
         $bucket = 'bucket';
-        $object = 'object.txt';
+        $object = self::OBJECT;
         $stream = Psr7\stream_for($string = 'abcdefg');
         $this->connection->downloadObject([
             'bucket' => $bucket,
@@ -467,12 +468,12 @@ class StorageObjectTest extends TestCase
     public function testGetsInfo()
     {
         $objectInfo = [
-            'name' => 'object.txt',
+            'name' => self::OBJECT,
             'bucket' => 'bucket',
             'etag' => 'ABC',
             'kind' => 'storage#object'
         ];
-        $object = new StorageObject($this->connection->reveal(), 'object.txt', 'bucket', null, $objectInfo);
+        $object = new StorageObject($this->connection->reveal(), self::OBJECT, 'bucket', null, $objectInfo);
 
         $this->assertEquals($objectInfo, $object->info());
     }
@@ -482,9 +483,9 @@ class StorageObjectTest extends TestCase
         $key = base64_encode('abcd');
         $hash = base64_encode('1234');
         $bucket = 'bucket';
-        $object = 'object.txt';
+        $object = self::OBJECT;
         $objectInfo = [
-            'name' => 'object.txt',
+            'name' => self::OBJECT,
             'bucket' => 'bucket',
             'etag' => 'ABC',
             'kind' => 'storage#object'
@@ -512,30 +513,30 @@ class StorageObjectTest extends TestCase
 
     public function testGetsName()
     {
-        $object = new StorageObject($this->connection->reveal(), $name = 'object.txt', 'bucket');
+        $object = new StorageObject($this->connection->reveal(), self::OBJECT, self::BUCKET);
 
-        $this->assertEquals($name, $object->name());
+        $this->assertEquals(self::OBJECT, $object->name());
     }
 
     public function testGetsIdentity()
     {
-        $object = new StorageObject($this->connection->reveal(), $name = 'object.txt', $bucketName = 'bucket');
+        $object = new StorageObject($this->connection->reveal(), self::OBJECT, self::BUCKET);
 
-        $this->assertEquals($name, $object->identity()['object']);
-        $this->assertEquals($bucketName, $object->identity()['bucket']);
+        $this->assertEquals(self::OBJECT, $object->identity()['object']);
+        $this->assertEquals(self::BUCKET, $object->identity()['bucket']);
     }
 
     public function testGetsGcsUri()
     {
-        $object = new StorageObject($this->connection->reveal(), $name = 'object.txt', $bucketName = 'bucket');
+        $object = new StorageObject($this->connection->reveal(), self::OBJECT, self::BUCKET);
 
-        $expectedUri = sprintf('gs://%s/%s', $bucketName, $name);
+        $expectedUri = sprintf('gs://%s/%s', self::BUCKET, self::OBJECT);
         $this->assertEquals($expectedUri, $object->gcsUri());
     }
 
     public function testSignedUrl()
     {
-        $object = new StorageObjectSignatureStub($this->connection->reveal(), $name = 'object.txt', $bucketName = 'bucket', 'foo');
+        $object = new StorageObjectSignatureStub($this->connection->reveal(), self::OBJECT, 'bucket', 'foo');
         $ts = new Timestamp(new \DateTime(self::TIMESTAMP));
 
         $seconds = $ts->get()->format('U');
@@ -580,7 +581,7 @@ class StorageObjectTest extends TestCase
 
     public function testSignedUrlWithSaveAsName()
     {
-        $object = new StorageObjectSignatureStub($this->connection->reveal(), $name = 'object.txt', $bucketName = 'bucket');
+        $object = new StorageObjectSignatureStub($this->connection->reveal(), self::OBJECT, self::BUCKET);
         $ts = new Timestamp(new \DateTime(self::TIMESTAMP));
 
         $seconds = $ts->get()->format('U');
@@ -616,7 +617,7 @@ class StorageObjectTest extends TestCase
         $conn = $this->prophesize(Rest::class);
         $conn->requestWrapper()->willReturn($rw->reveal());
 
-        $object = new StorageObjectSignatureStub($conn->reveal(), $name = 'object.txt', $bucketName = 'bucket');
+        $object = new StorageObjectSignatureStub($conn->reveal(), self::OBJECT, self::BUCKET);
         $ts = new Timestamp(new \DateTime(self::TIMESTAMP));
 
         $seconds = $ts->get()->format('U');
@@ -642,7 +643,13 @@ class StorageObjectTest extends TestCase
 
     public function testSignedUrlWithSpace()
     {
-        $object = new StorageObjectSignatureStub($this->connection->reveal(), $name = 'object object.txt', $bucketName = 'bucket', 'foo');
+        $name = 'object object.txt';
+        $object = new StorageObjectSignatureStub(
+            $this->connection->reveal(),
+            $name,
+            self::BUCKET,
+            'foo'
+        );
         $ts = new Timestamp(new \DateTime(self::TIMESTAMP));
 
         $seconds = $ts->get()->format('U');
@@ -669,7 +676,7 @@ class StorageObjectTest extends TestCase
             $seconds,
             'foo:bar,bar',
             'bat:baz',
-            sprintf('/%s/%s', $bucketName, rawurlencode($name))
+            sprintf('/%s/%s', self::BUCKET, rawurlencode($name))
         ]);
 
         $parts = explode('?', $url);
@@ -694,7 +701,12 @@ class StorageObjectTest extends TestCase
 
     public function testSignedUploadUrl()
     {
-        $object = new StorageObjectSignatureStub($this->connection->reveal(), $name = 'object.txt', $bucketName = 'bucket', 'foo');
+        $object = new StorageObjectSignatureStub(
+            $this->connection->reveal(),
+            self::OBJECT,
+            'bucket',
+            'foo'
+        );
         $ts = new Timestamp(new \DateTime(self::TIMESTAMP));
 
         $seconds = $ts->get()->format('U');
@@ -735,11 +747,10 @@ class StorageObjectTest extends TestCase
     public function testSignedUploadUrlNestedName()
     {
         $objectName = 'folder1/folder2/object.txt';
-        $bucketName = 'bucket';
         $object = new StorageObjectSignatureStub(
             $this->connection->reveal(),
             $objectName,
-            $bucketName,
+            self::BUCKET,
             'foo'
         );
         $ts = new Timestamp(new \DateTime(self::TIMESTAMP));
@@ -767,7 +778,7 @@ class StorageObjectTest extends TestCase
             'foo:bar,bar',
             'bat:baz',
             'x-goog-resumable:start',
-            "/$bucketName/$objectName"
+            sprintf('/%s/%s', self::BUCKET, $objectName)
         ]);
 
         $query = explode('?', $url)[1];
@@ -790,7 +801,7 @@ class StorageObjectTest extends TestCase
         $sessionUri = 'http://example.com';
 
         $rw->send(Argument::type(RequestInterface::class), Argument::type('array'))
-            ->will(function($args) use ($sessionUri, $test) {
+            ->will(function ($args) use ($sessionUri, $test) {
 
                 $res = $test->prophesize(ResponseInterface::class);
                 $res->getHeaderLine('Location')
@@ -802,7 +813,12 @@ class StorageObjectTest extends TestCase
         $this->connection->requestWrapper()
             ->willReturn($rw->reveal());
 
-        $object = new StorageObjectSignatureStub($this->connection->reveal(), $name = 'object.txt', $bucketName = 'bucket', 'foo');
+        $object = new StorageObjectSignatureStub(
+            $this->connection->reveal(),
+            self::OBJECT,
+            'bucket',
+            'foo'
+        );
 
         $uri = $object->beginSignedUploadSession([
             'keyFile' => $this->kf,
@@ -816,7 +832,7 @@ class StorageObjectTest extends TestCase
      */
     public function testSignedUrlInvalidExpiration()
     {
-        $object = new StorageObject($this->connection->reveal(), $name = 'object.txt', $bucketName = 'bucket');
+        $object = new StorageObject($this->connection->reveal(), self::OBJECT, self::BUCKET);
         $ts = new Timestamp(new \DateTime('yesterday'));
         $object->signedUrl($ts);
     }
@@ -826,7 +842,7 @@ class StorageObjectTest extends TestCase
      */
     public function testSignedUrlInvalidMethod()
     {
-        $object = new StorageObject($this->connection->reveal(), $name = 'object.txt', $bucketName = 'bucket');
+        $object = new StorageObject($this->connection->reveal(), self::OBJECT, self::BUCKET);
         $ts = new Timestamp(new \DateTime(self::TIMESTAMP));
         $object->signedUrl($ts, [
             'method' => 'FOO'
@@ -838,7 +854,7 @@ class StorageObjectTest extends TestCase
      */
     public function testSignedUrlInvalidMethodMissingAllowPostOption()
     {
-        $object = new StorageObject($this->connection->reveal(), $name = 'object.txt', $bucketName = 'bucket');
+        $object = new StorageObject($this->connection->reveal(), self::OBJECT, self::BUCKET);
         $ts = new Timestamp(new \DateTime(self::TIMESTAMP));
         $object->signedUrl($ts, [
             'method' => 'POST'
@@ -850,7 +866,7 @@ class StorageObjectTest extends TestCase
      */
     public function testSignedUrlInvalidKeyFilePath()
     {
-        $object = new StorageObject($this->connection->reveal(), $name = 'object.txt', $bucketName = 'bucket');
+        $object = new StorageObject($this->connection->reveal(), self::OBJECT, self::BUCKET);
         $ts = new Timestamp(new \DateTime(self::TIMESTAMP));
 
         $url = $object->signedUrl($ts, [
@@ -863,7 +879,7 @@ class StorageObjectTest extends TestCase
      */
     public function testSignedUrlInvalidKeyFilePathData()
     {
-        $object = new StorageObject($this->connection->reveal(), $name = 'object.txt', $bucketName = 'bucket');
+        $object = new StorageObject($this->connection->reveal(), self::OBJECT, self::BUCKET);
         $ts = new Timestamp(new \DateTime(self::TIMESTAMP));
 
         $url = $object->signedUrl($ts, [
@@ -876,7 +892,7 @@ class StorageObjectTest extends TestCase
      */
     public function testSignedUrlInvalidKeyFileMissingPrivateKey()
     {
-        $object = new StorageObject($this->connection->reveal(), $name = 'object.txt', $bucketName = 'bucket');
+        $object = new StorageObject($this->connection->reveal(), self::OBJECT, self::BUCKET);
         $ts = new Timestamp(new \DateTime(self::TIMESTAMP));
 
         $url = $object->signedUrl($ts, [
@@ -889,7 +905,7 @@ class StorageObjectTest extends TestCase
      */
     public function testSignedUrlInvalidKeyFileMissingClientEmail()
     {
-        $object = new StorageObject($this->connection->reveal(), $name = 'object.txt', $bucketName = 'bucket');
+        $object = new StorageObject($this->connection->reveal(), self::OBJECT, self::BUCKET);
         $ts = new Timestamp(new \DateTime(self::TIMESTAMP));
 
         $url = $object->signedUrl($ts, [
@@ -902,7 +918,15 @@ class StorageObjectTest extends TestCase
         $this->connection->getObject(Argument::withEntry('userProject', 'foo'))
             ->willReturn([]);
 
-        $object = new StorageObject($this->connection->reveal(), 'object', 'bucket', null, ['requesterProjectId' => 'foo']);
+        $object = new StorageObject(
+            $this->connection->reveal(),
+            'object',
+            'bucket',
+            null,
+            [
+                'requesterProjectId' => 'foo'
+            ]
+        );
 
         $object->reload();
     }
@@ -915,6 +939,7 @@ class StorageObjectTest extends TestCase
     }
 }
 
+//@codingStandardsIgnoreStart
 class StorageObjectSignatureStub extends StorageObject
 {
     const SIGNATURE = 'foo';
@@ -931,3 +956,4 @@ class StorageObjectSignatureStub extends StorageObject
         return base64_decode(urldecode($signature)) === self::SIGNATURE;
     }
 }
+//@codingStandardsIgnoreEnd

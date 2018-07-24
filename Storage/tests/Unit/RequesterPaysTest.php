@@ -17,13 +17,14 @@
 
 namespace Google\Cloud\Storage\Tests\Unit;
 
-use Prophecy\Argument;
 use Google\Cloud\Core\RequestWrapper;
-use Psr\Http\Message\RequestInterface;
-use Google\Cloud\Storage\StorageClient;
-use Google\Cloud\Storage\Connection\Rest;
+use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Core\Upload\AbstractUploader;
+use Google\Cloud\Storage\Connection\Rest;
+use Google\Cloud\Storage\StorageClient;
 use PHPUnit\Framework\TestCase;
+use Prophecy\Argument;
+use Psr\Http\Message\RequestInterface;
 
 /**
  * @group storage
@@ -43,7 +44,7 @@ class RequesterPaysTest extends TestCase
     public function setUp()
     {
         $this->connection = new Rest(['projectId' => self::PROJECT]);
-        $this->client = \Google\Cloud\Core\Testing\TestHelpers::stub(
+        $this->client = TestHelpers::stub(
             StorageClient::class,
             [['projectId' => self::PROJECT]]
         );
@@ -327,7 +328,10 @@ class RequesterPaysTest extends TestCase
             ]);
 
         $this->client->___setProperty('connection', $connection->reveal());
-        $bucket = $this->client->buckets(['userProject' => self::USER_PROJECT, 'bucketUserProject' => false])->current();
+        $bucket = $this->client->buckets([
+            'userProject' => self::USER_PROJECT,
+            'bucketUserProject' => false
+        ])->current();
         $bucket->objects()->current();
     }
 
@@ -402,7 +406,7 @@ class RequesterPaysTest extends TestCase
 
             // if no exception, something is wrong.
             $this->assertTrue(false);
-        } catch(\Exception $e) {
+        } catch (\Exception $e) {
             parse_str($e->getMessage(), $query);
             $this->assertEquals(self::USER_PROJECT, $query['userProject']);
         }
@@ -424,6 +428,7 @@ class RequesterPaysTest extends TestCase
     }
 }
 
+//@codingStandardsIgnoreStart
 class RequestWrapperStub extends RequestWrapper
 {
     public function send(RequestInterface $request, array $options = [])
@@ -432,3 +437,4 @@ class RequestWrapperStub extends RequestWrapper
         throw new \Exception($request->getUri()->getQuery());
     }
 }
+//@codingStandardsIgnoreEnd

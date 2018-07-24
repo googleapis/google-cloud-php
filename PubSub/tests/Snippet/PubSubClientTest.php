@@ -19,8 +19,9 @@ namespace Google\Cloud\PubSub\Tests\Snippet;
 
 use Google\Cloud\Core\Duration;
 use Google\Cloud\Core\Iterator\ItemIterator;
-use Google\Cloud\Core\Timestamp;
 use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
+use Google\Cloud\Core\Testing\TestHelpers;
+use Google\Cloud\Core\Timestamp;
 use Google\Cloud\PubSub\Connection\ConnectionInterface;
 use Google\Cloud\PubSub\Message;
 use Google\Cloud\PubSub\PubSubClient;
@@ -44,7 +45,7 @@ class PubSubClientTest extends SnippetTestCase
     public function setUp()
     {
         $this->connection = $this->prophesize(ConnectionInterface::class);
-        $this->client = \Google\Cloud\Core\Testing\TestHelpers::stub(PubSubClient::class, [['transport' => 'rest']]);
+        $this->client = TestHelpers::stub(PubSubClient::class, [['transport' => 'rest']]);
     }
 
     public function testClassExample()

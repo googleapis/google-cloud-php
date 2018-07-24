@@ -151,9 +151,12 @@ class RestTest extends TestCase
 
         $actualUri = (string) $actualRequest->getUri();
 
+        $expectedUri = 'https://www.googleapis.com/storage/v1/b/bigbucket/o/myfile.txt?' .
+            'generation=100&alt=media&userProject=myProject';
+
         $this->assertEquals($this->successBody, $actualBody);
         $this->assertEquals(
-            'https://www.googleapis.com/storage/v1/b/bigbucket/o/myfile.txt?generation=100&alt=media&userProject=myProject',
+            $expectedUri,
             $actualUri
         );
     }

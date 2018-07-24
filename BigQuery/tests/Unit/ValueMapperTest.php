@@ -45,7 +45,7 @@ class ValueMapperTest extends TestCase
      */
     public function testToParameterThrowsExceptionWithUnhandledType()
     {
-        $f = fopen('php://temp','r');
+        $f = fopen('php://temp', 'r');
         fclose($f);
         $mapper = new ValueMapper(false);
         $mapper->toParameter($f);

@@ -17,6 +17,7 @@
 
 namespace Google\Cloud\Firestore\Tests\Unit;
 
+use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Core\Timestamp;
 use Google\Cloud\Firestore\Connection\ConnectionInterface;
 use Google\Cloud\Firestore\DocumentReference;
@@ -49,7 +50,7 @@ class TransactionTest extends TestCase
     {
         $this->connection = $this->prophesize(ConnectionInterface::class);
         $this->valueMapper = new ValueMapper($this->connection->reveal(), false);
-        $this->transaction = \Google\Cloud\Core\Testing\TestHelpers::stub(Transaction::class, [
+        $this->transaction = TestHelpers::stub(Transaction::class, [
             $this->connection->reveal(),
             $this->valueMapper,
             sprintf('projects/%s/databases/%s', self::PROJECT, self::DATABASE),

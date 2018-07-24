@@ -20,6 +20,7 @@ namespace Google\Cloud\Spanner\Tests\Snippet;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
 use Google\Cloud\Core\Testing\SpannerOperationRefreshTrait;
+use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Spanner\Connection\ConnectionInterface;
 use Google\Cloud\Spanner\Database;
 use Google\Cloud\Spanner\KeySet;
@@ -52,7 +53,7 @@ class TransactionTest extends SnippetTestCase
         $operation = $this->prophesize(Operation::class);
         $session = $this->prophesize(Session::class);
 
-        $this->transaction = \Google\Cloud\Core\Testing\TestHelpers::stub(Transaction::class, [
+        $this->transaction = TestHelpers::stub(Transaction::class, [
             $operation->reveal(),
             $session->reveal(),
             self::TRANSACTION

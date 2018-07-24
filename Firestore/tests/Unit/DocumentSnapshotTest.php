@@ -17,6 +17,7 @@
 
 namespace Google\Cloud\Firestore\Tests\Unit;
 
+use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Core\Timestamp;
 use Google\Cloud\Firestore\Connection\ConnectionInterface;
 use Google\Cloud\Firestore\DocumentReference;
@@ -43,7 +44,7 @@ class DocumentSnapshotTest extends TestCase
         $ref->id()->willReturn(self::ID);
         $ref->path()->willReturn('a/b');
 
-        $this->snapshot = \Google\Cloud\Core\Testing\TestHelpers::stub(DocumentSnapshot::class, [
+        $this->snapshot = TestHelpers::stub(DocumentSnapshot::class, [
             $ref->reveal(),
             new ValueMapper($this->prophesize(ConnectionInterface::class)->reveal(), false),
             [], [], true

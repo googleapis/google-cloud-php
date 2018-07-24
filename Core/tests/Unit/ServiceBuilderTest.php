@@ -59,7 +59,7 @@ class ServiceBuilderTest extends TestCase
         $config = [
             'projectId' => 'myProject',
             'scopes' => ['somescope'],
-            'httpHandler' => function() {
+            'httpHandler' => function () {
                 return;
             }
         ] + $args;
@@ -122,7 +122,8 @@ class ServiceBuilderTest extends TestCase
      * @dataProvider serviceProvider
      */
     public function testKeyfileAuthPassthrough(
-        $serviceName, $expectedClient,
+        $serviceName,
+        $expectedClient,
         array $args = [],
         callable $beforeCallable = null
     ) {

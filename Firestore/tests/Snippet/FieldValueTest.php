@@ -17,13 +17,14 @@
 
 namespace Google\Cloud\Firestore\Tests\Snippet;
 
-use Prophecy\Argument;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
+use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
+use Google\Cloud\Core\Testing\TestHelpers;
+use Google\Cloud\Firestore\Connection\ConnectionInterface;
 use Google\Cloud\Firestore\FieldValue;
 use Google\Cloud\Firestore\FirestoreClient;
-use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
-use Google\Cloud\Firestore\Connection\ConnectionInterface;
 use Google\Cloud\Firestore\V1beta1\DocumentTransform_FieldTransform_ServerValue;
+use Prophecy\Argument;
 
 /**
  * @group firestore
@@ -41,7 +42,7 @@ class FieldValueTest extends SnippetTestCase
         $this->checkAndSkipGrpcTests();
 
         $this->connection = $this->prophesize(ConnectionInterface::class);
-        $this->firestore = \Google\Cloud\Core\Testing\TestHelpers::stub(FirestoreClient::class);
+        $this->firestore = TestHelpers::stub(FirestoreClient::class);
     }
 
     public function testDeleteField()

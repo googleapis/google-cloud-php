@@ -17,11 +17,12 @@
 
 namespace Google\Cloud\Logging\Tests\Snippet;
 
+use Google\Cloud\Core\Iterator\ItemIterator;
 use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
+use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Logging\Connection\ConnectionInterface;
 use Google\Cloud\Logging\Entry;
 use Google\Cloud\Logging\Logger;
-use Google\Cloud\Core\Iterator\ItemIterator;
 use Prophecy\Argument;
 
 /**
@@ -38,7 +39,7 @@ class LoggerTest extends SnippetTestCase
     public function setUp()
     {
         $this->connection = $this->prophesize(ConnectionInterface::class);
-        $this->logger = \Google\Cloud\Core\Testing\TestHelpers::stub(Logger::class, [
+        $this->logger = TestHelpers::stub(Logger::class, [
             $this->connection->reveal(),
             self::NAME,
             self::PROJECT
@@ -94,17 +95,17 @@ class LoggerTest extends SnippetTestCase
         $snippet->addLocal('logger', $this->logger);
 
         $this->connection->listEntries(Argument::that(function ($arg) {
-            if (!isset($arg['filter'])) return false;
-            if (strpos($arg['filter'], 'AND') === false) return false;
+            if (!isset($arg['filter']) || strpos($arg['filter'], 'AND') === false) {
+                return false;
+            }
+
             return true;
-        }))
-            ->shouldBeCalled()
-            ->willReturn([
-                'entries' => [
-                    ['textPayload' => 'foo'],
-                    ['textPayload' => 'bar']
-                ]
-            ]);
+        }))->shouldBeCalled()->willReturn([
+            'entries' => [
+                ['textPayload' => 'foo'],
+                ['textPayload' => 'bar']
+            ]
+        ]);
 
         $this->logger->___setProperty('connection', $this->connection->reveal());
 

@@ -20,6 +20,7 @@ namespace Google\Cloud\Spanner\Tests\Snippet;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
 use Google\Cloud\Core\Testing\SpannerOperationRefreshTrait;
+use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Spanner\Connection\ConnectionInterface;
 use Google\Cloud\Spanner\Database;
 use Google\Cloud\Spanner\KeySet;
@@ -53,7 +54,7 @@ class SnapshotTest extends SnippetTestCase
         $operation = $this->prophesize(Operation::class);
         $session = $this->prophesize(Session::class);
 
-        $this->snapshot = \Google\Cloud\Core\Testing\TestHelpers::stub(Snapshot::class, [
+        $this->snapshot = TestHelpers::stub(Snapshot::class, [
             $operation->reveal(),
             $session->reveal(),
             [

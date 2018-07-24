@@ -43,5 +43,4 @@ class StreamWrapperTestCase extends StorageTestCase
         $bucketName = self::$bucket->name();
         return "gs://$bucketName/$file";
     }
-
 }

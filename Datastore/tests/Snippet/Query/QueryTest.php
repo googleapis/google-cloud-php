@@ -17,6 +17,8 @@
 
 namespace Google\Cloud\Datastore\Tests\Snippet\Query;
 
+use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
+use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Datastore\Connection\ConnectionInterface;
 use Google\Cloud\Datastore\DatastoreClient;
 use Google\Cloud\Datastore\EntityIterator;
@@ -24,7 +26,6 @@ use Google\Cloud\Datastore\EntityMapper;
 use Google\Cloud\Datastore\Key;
 use Google\Cloud\Datastore\Operation;
 use Google\Cloud\Datastore\Query\Query;
-use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
 use Prophecy\Argument;
 
 /**
@@ -41,9 +42,9 @@ class QueryTest extends SnippetTestCase
     {
         $mapper = new EntityMapper('my-awesome-project', true, false);
 
-        $this->datastore = new DatastoreClient;
+        $this->datastore = TestHelpers::stub(DatastoreClient::class, [], ['operation']);
         $this->connection = $this->prophesize(ConnectionInterface::class);
-        $this->operation = \Google\Cloud\Core\Testing\TestHelpers::stub(Operation::class, [
+        $this->operation = TestHelpers::stub(Operation::class, [
             $this->connection->reveal(),
             'my-awesome-project',
             '',
@@ -79,14 +80,11 @@ class QueryTest extends SnippetTestCase
 
         $this->operation->___setProperty('connection', $this->connection->reveal());
 
+        $this->datastore->___setProperty('operation', $this->operation);
+
         $snippet = $this->snippetFromClass(Query::class);
-        $snippet->addLocal('operation', $this->operation);
-        $snippet->insertAfterLine(3, '$reflection = new \ReflectionClass($datastore);
-            $property = $reflection->getProperty(\'operation\');
-            $property->setAccessible(true);
-            $property->setValue($datastore, $operation);
-            $property->setAccessible(false);'
-        );
+        $snippet->replace('$datastore = new DatastoreClient();', '');
+        $snippet->addLocal('datastore', $this->datastore);
 
         $res = $snippet->invoke('res');
         $this->assertEquals('Google', $res->output());
@@ -153,7 +151,10 @@ class QueryTest extends SnippetTestCase
 
         $snippet->invoke();
 
-        $this->assertEquals('__key__', $this->query->queryObject()['filter']['compositeFilter']['filters'][0]['propertyFilter']['property']['name']);
+        $this->assertEquals(
+            '__key__',
+            $this->query->queryObject()['filter']['compositeFilter']['filters'][0]['propertyFilter']['property']['name']
+        );
     }
 
     public function testHasAncestorWithType()
@@ -165,7 +166,10 @@ class QueryTest extends SnippetTestCase
 
         $snippet->invoke();
 
-        $this->assertEquals('__key__', $this->query->queryObject()['filter']['compositeFilter']['filters'][0]['propertyFilter']['property']['name']);
+        $this->assertEquals(
+            '__key__',
+            $this->query->queryObject()['filter']['compositeFilter']['filters'][0]['propertyFilter']['property']['name']
+        );
     }
 
     public function testOrder()

@@ -18,6 +18,7 @@
 namespace Google\Cloud\Core\Tests\Unit;
 
 use Google\Cloud\Core\RetryDeciderTrait;
+use Google\Cloud\Core\Testing\TestHelpers;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -25,11 +26,11 @@ use PHPUnit\Framework\TestCase;
  */
 class RetryDeciderTraitTest extends TestCase
 {
-    private $implementation;
+    private $impl;
 
     public function setUp()
     {
-        $this->implementation = new RetryDeciderTraitStub();
+        $this->impl = TestHelpers::impl(RetryDeciderTrait::class);
     }
 
     /**
@@ -37,9 +38,9 @@ class RetryDeciderTraitTest extends TestCase
      */
     public function testDisableRetry($exception)
     {
-        $this->implementation->call('setHttpRetryCodes', [[]]);
-        $this->implementation->call('setHttpRetryMessages', [[]]);
-        $retryFunction = $this->implementation->call('getRetryFunction');
+        $this->impl->call('setHttpRetryCodes', [[]]);
+        $this->impl->call('setHttpRetryMessages', [[]]);
+        $retryFunction = $this->impl->call('getRetryFunction');
 
         $this->assertFalse($retryFunction($exception));
     }
@@ -49,7 +50,7 @@ class RetryDeciderTraitTest extends TestCase
      */
     public function testShouldRetry($exception, $shouldRetryMessage, $expected)
     {
-        $retryFunction = $this->implementation->call('getRetryFunction', [$shouldRetryMessage]);
+        $retryFunction = $this->impl->call('getRetryFunction', [$shouldRetryMessage]);
 
         $this->assertEquals($expected, $retryFunction($exception));
     }
@@ -70,15 +71,5 @@ class RetryDeciderTraitTest extends TestCase
             [new \Exception($userRateLimitExceededMessage), false, false],
             [new \Exception($notAGoodMessage), true, false],
         ];
-    }
-}
-
-class RetryDeciderTraitStub
-{
-    use RetryDeciderTrait;
-
-    public function call($fn, array $args = [])
-    {
-        return call_user_func_array([$this, $fn], $args);
     }
 }

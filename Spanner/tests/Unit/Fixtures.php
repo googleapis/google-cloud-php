@@ -17,6 +17,7 @@
 
 namespace Google\Cloud\Spanner\Tests\Unit;
 
+//@codingStandardsIgnoreStart
 class Fixtures
 {
     public static function STREAMING_READ_ACCEPTANCE_FIXTURE()
@@ -29,3 +30,4 @@ class Fixtures
         return __DIR__ . '/fixtures/instance.json';
     }
 }
+//@codingStandardsIgnoreEnd

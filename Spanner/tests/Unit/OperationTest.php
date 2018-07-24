@@ -18,6 +18,7 @@
 namespace Google\Cloud\Spanner\Tests\Unit;
 
 use Google\Cloud\Core\Testing\GrpcTestTrait;
+use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Spanner\Batch\QueryPartition;
 use Google\Cloud\Spanner\Batch\ReadPartition;
 use Google\Cloud\Spanner\Connection\ConnectionInterface;
@@ -57,7 +58,7 @@ class OperationTest extends TestCase
 
         $this->connection = $this->prophesize(ConnectionInterface::class);
 
-        $this->operation = \Google\Cloud\Core\Testing\TestHelpers::stub(Operation::class, [
+        $this->operation = TestHelpers::stub(Operation::class, [
             $this->connection->reveal(),
             false
         ]);
@@ -110,12 +111,12 @@ class OperationTest extends TestCase
             ])
         ];
 
-        $this->connection->commit(Argument::that(function ($arg) use ($mutations) {
-            if ($arg['mutations'] !== $mutations) return false;
-            if ($arg['transactionId'] !== 'foo') return false;
-
-            return true;
-        }))->shouldBeCalled()->willReturn(['commitTimestamp' => self::TIMESTAMP]);
+        $this->connection->commit(Argument::allOf(
+            Argument::withEntry('mutations', $mutations),
+            Argument::withEntry('transactionId', 'foo')
+        ))->shouldBeCalled()->willReturn([
+            'commitTimestamp' => self::TIMESTAMP
+        ]);
 
         $this->operation->___setProperty('connection', $this->connection->reveal());
 
@@ -134,13 +135,15 @@ class OperationTest extends TestCase
             ])
         ];
 
-        $this->connection->commit(Argument::that(function ($arg) use ($mutations) {
-            if ($arg['mutations'] !== $mutations) return false;
-            if (isset($arg['singleUseTransaction'])) return false;
-            if ($arg['transactionId'] !== self::TRANSACTION) return false;
-
-            return true;
-        }))->shouldBeCalled()->willReturn(['commitTimestamp' => self::TIMESTAMP]);
+        $this->connection->commit(Argument::allOf(
+            Argument::withEntry('mutations', $mutations),
+            Argument::withEntry('transactionId', self::TRANSACTION),
+            Argument::that(function ($arg) {
+                return !isset($arg['singleUseTransaction']);
+            })
+        ))->shouldBeCalled()->willReturn([
+            'commitTimestamp' => self::TIMESTAMP
+        ]);
 
         $this->operation->___setProperty('connection', $this->connection->reveal());
 
@@ -153,12 +156,10 @@ class OperationTest extends TestCase
 
     public function testRollback()
     {
-        $this->connection->rollback(Argument::that(function ($arg) {
-            if ($arg['transactionId'] !== self::TRANSACTION) return false;
-            if ($arg['session'] !== self::SESSION) return false;
-
-            return true;
-        }))->shouldBeCalled();
+        $this->connection->rollback(Argument::allOf(
+            Argument::withEntry('transactionId', self::TRANSACTION),
+            Argument::withEntry('session', self::SESSION)
+        ))->shouldBeCalled();
 
         $this->operation->___setProperty('connection', $this->connection->reveal());
 
@@ -170,14 +171,14 @@ class OperationTest extends TestCase
         $sql = 'SELECT * FROM Posts WHERE ID = @id';
         $params = ['id' => 10];
 
-        $this->connection->executeStreamingSql(Argument::that(function ($arg) use ($sql, $params) {
-            if ($arg['sql'] !== $sql) return false;
-            if ($arg['session'] !== self::SESSION) return false;
-            if ($arg['params'] !== ['id' => '10']) return false;
-            if ($arg['paramTypes']['id']['code'] !== Database::TYPE_INT64) return false;
-
-            return true;
-        }))->shouldBeCalled()->willReturn($this->executeAndReadResponse());
+        $this->connection->executeStreamingSql(Argument::allOf(
+            Argument::withEntry('sql', $sql),
+            Argument::withEntry('session', self::SESSION),
+            Argument::withEntry('params', ['id' => '10']),
+            Argument::that(function ($arg) use ($sql, $params) {
+                return $arg['paramTypes']['id']['code'] === Database::TYPE_INT64;
+            })
+        ))->shouldBeCalled()->willReturn($this->executeAndReadResponse());
 
         $this->operation->___setProperty('connection', $this->connection->reveal());
 
@@ -192,14 +193,12 @@ class OperationTest extends TestCase
 
     public function testRead()
     {
-        $this->connection->streamingRead(Argument::that(function ($arg) {
-            if ($arg['table'] !== 'Posts') return false;
-            if ($arg['session'] !== self::SESSION) return false;
-            if ($arg['keySet']['all'] !== true) return false;
-            if ($arg['columns'] !== ['foo']) return false;
-
-            return true;
-        }))->shouldBeCalled()->willReturn($this->executeAndReadResponse());
+        $this->connection->streamingRead(Argument::allOf(
+            Argument::withEntry('table', 'Posts'),
+            Argument::withEntry('session', self::SESSION),
+            Argument::withEntry('keySet', ['all' => true]),
+            Argument::withEntry('columns', ['foo'])
+        ))->shouldBeCalled()->willReturn($this->executeAndReadResponse());
 
         $this->operation->___setProperty('connection', $this->connection->reveal());
 
@@ -211,14 +210,12 @@ class OperationTest extends TestCase
 
     public function testReadWithTransaction()
     {
-        $this->connection->streamingRead(Argument::that(function ($arg) {
-            if ($arg['table'] !== 'Posts') return false;
-            if ($arg['session'] !== self::SESSION) return false;
-            if ($arg['keySet']['all'] !== true) return false;
-            if ($arg['columns'] !== ['foo']) return false;
-
-            return true;
-        }))->shouldBeCalled()->willReturn($this->executeAndReadResponse([
+        $this->connection->streamingRead(Argument::allOf(
+            Argument::withEntry('table', 'Posts'),
+            Argument::withEntry('session', self::SESSION),
+            Argument::withEntry('keySet', ['all' => true]),
+            Argument::withEntry('columns', ['foo'])
+        ))->shouldBeCalled()->willReturn($this->executeAndReadResponse([
             'transaction' => ['id' => self::TRANSACTION]
         ]));
 
@@ -235,14 +232,12 @@ class OperationTest extends TestCase
 
     public function testReadWithSnapshot()
     {
-        $this->connection->streamingRead(Argument::that(function ($arg) {
-            if ($arg['table'] !== 'Posts') return false;
-            if ($arg['session'] !== self::SESSION) return false;
-            if ($arg['keySet']['all'] !== true) return false;
-            if ($arg['columns'] !== ['foo']) return false;
-
-            return true;
-        }))->shouldBeCalled()->willReturn($this->executeAndReadResponse([
+        $this->connection->streamingRead(Argument::allOf(
+            Argument::withEntry('table', 'Posts'),
+            Argument::withEntry('session', self::SESSION),
+            Argument::withEntry('keySet', ['all' => true]),
+            Argument::withEntry('columns', ['foo'])
+        ))->shouldBeCalled()->willReturn($this->executeAndReadResponse([
             'transaction' => ['id' => self::TRANSACTION]
         ]));
 
@@ -320,15 +315,18 @@ class OperationTest extends TestCase
         $partitionToken1 = 'token1';
         $partitionToken2 = 'token2';
 
-        $this->connection->partitionQuery(Argument::that(function ($arg) use ($sql, $params, $transactionId) {
-            if ($arg['sql'] !== $sql) return false;
-            if ($arg['session'] !== self::SESSION) return false;
-            if ($arg['params'] !== ['id' => '10']) return false;
-            if ($arg['paramTypes']['id']['code'] !== Database::TYPE_INT64) return false;
-            if ($arg['transactionId'] !== $transactionId) return false;
+        $this->connection->partitionQuery(Argument::allOf(
+            Argument::withEntry('sql', $sql),
+            Argument::withEntry('session', self::SESSION),
+            Argument::withEntry('params', ['id' => '10']),
+            Argument::that(function ($arg) use ($transactionId) {
+                if ($arg['paramTypes']['id']['code'] !== Database::TYPE_INT64) {
+                    return false;
+                }
 
-            return true;
-        }))->shouldBeCalled()->willReturn([
+                return $arg['transactionId'] === $transactionId;
+            })
+        ))->shouldBeCalled()->willReturn([
             'partitions' => [
                 [
                     'partitionToken' => $partitionToken1
@@ -359,14 +357,12 @@ class OperationTest extends TestCase
         $partitionToken1 = 'token1';
         $partitionToken2 = 'token2';
 
-        $this->connection->partitionRead(Argument::that(function ($arg) {
-            if ($arg['table'] !== 'Posts') return false;
-            if ($arg['session'] !== self::SESSION) return false;
-            if ($arg['keySet']['all'] !== true) return false;
-            if ($arg['columns'] !== ['foo']) return false;
-
-            return true;
-        }))->shouldBeCalled()->willReturn([
+        $this->connection->partitionRead(Argument::allOf(
+            Argument::withEntry('table', 'Posts'),
+            Argument::withEntry('session', self::SESSION),
+            Argument::withEntry('keySet', ['all' => true]),
+            Argument::withEntry('columns', ['foo'])
+        ))->shouldBeCalled()->willReturn([
             'partitions' => [
                 [
                     'partitionToken' => $partitionToken1
@@ -378,9 +374,16 @@ class OperationTest extends TestCase
 
         $this->operation->___setProperty('connection', $this->connection->reveal());
 
-        $res = $this->operation->partitionRead($this->session, $transactionId, 'Posts', new KeySet(['all' => true]), ['foo'], [
-            'parameters' => $params
-        ]);
+        $res = $this->operation->partitionRead(
+            $this->session,
+            $transactionId,
+            'Posts',
+            new KeySet(['all' => true]),
+            ['foo'],
+            [
+                'parameters' => $params
+            ]
+        );
 
         $this->assertContainsOnlyInstancesOf(ReadPartition::class, $res);
         $this->assertCount(2, $res);

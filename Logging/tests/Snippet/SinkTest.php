@@ -18,6 +18,7 @@
 namespace Google\Cloud\Logging\Tests\Snippet;
 
 use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
+use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Logging\Connection\ConnectionInterface;
 use Google\Cloud\Logging\Sink;
 use Prophecy\Argument;
@@ -36,7 +37,7 @@ class SinkTest extends SnippetTestCase
     public function setUp()
     {
         $this->connection = $this->prophesize(ConnectionInterface::class);
-        $this->sink = \Google\Cloud\Core\Testing\TestHelpers::stub(Sink::class, [
+        $this->sink = TestHelpers::stub(Sink::class, [
             $this->connection->reveal(),
             self::SINK,
             self::PROJECT

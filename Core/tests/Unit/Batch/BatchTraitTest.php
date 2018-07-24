@@ -21,8 +21,9 @@ use Google\Cloud\Core\Batch\BatchJob;
 use Google\Cloud\Core\Batch\BatchRunner;
 use Google\Cloud\Core\Batch\BatchTrait;
 use Google\Cloud\Core\Batch\ProcessItemInterface;
-use Prophecy\Argument;
+use Google\Cloud\Core\Tests\Unit\Batch\Fixtures\BatchClass;
 use PHPUnit\Framework\TestCase;
+use Prophecy\Argument;
 
 /**
  * @group core
@@ -97,55 +98,5 @@ class BatchTraitTest extends TestCase
     {
         $impl = new BatchClass();
         $impl->setCommonBatchProperties(['identifier' => self::ID]);
-    }
-}
-
-class BatchClass
-{
-    use BatchTrait {
-        flush as publicFlush;
-        send as publicSend;
-        setCommonBatchProperties as privateSetCommonBatchProperties;
-    }
-
-    private $cb;
-
-    public function __construct(array $options = [])
-    {
-        $options += [
-            'batchRunner' => null,
-            'identifier' => BatchTraitTest::ID,
-            'batchMethod' => BatchTraitTest::BATCH_METHOD,
-            'debugOutput' => false,
-            'debugOutputResource' => null,
-            'cb' => null
-        ];
-
-        $this->batchRunner = $options['batchRunner'];
-        $this->identifier = $options['identifier'];
-        $this->batchMethod = $options['batchMethod'];
-        $this->debugOutput = $options['debugOutput'];
-        $this->debugOutputResource = $options['debugOutputResource'];
-        $this->cb = $options['cb'];
-    }
-
-    function flush()
-    {
-        return $this->publicFlush();
-    }
-
-    function send(array $items)
-    {
-        return $this->publicSend($items);
-    }
-
-    function setCommonBatchProperties(array $options)
-    {
-        $this->privateSetCommonBatchProperties($options);
-    }
-
-    function getCallback()
-    {
-        return $this->cb;
     }
 }

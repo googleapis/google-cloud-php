@@ -18,6 +18,7 @@
 namespace Google\Cloud\Core\Tests\Unit\Batch;
 
 use Google\Cloud\Core\Batch\BatchDaemonTrait;
+use Google\Cloud\Core\Testing\TestHelpers;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -28,7 +29,7 @@ class BatchDaemonTraitTest extends TestCase
 {
     public function setUp()
     {
-        $this->impl = new MyBatchDaemonTraitClass();
+        $this->impl = TestHelpers::impl(BatchDaemonTrait::class);
     }
 
     public function testIsDaemonRunning()
@@ -37,9 +38,9 @@ class BatchDaemonTraitTest extends TestCase
         $orig = getenv('IS_BATCH_DAEMON_RUNNING');
         try {
             putenv('IS_BATCH_DAEMON_RUNNING');
-            $this->assertFalse($this->impl->isDaemonRunning());
+            $this->assertFalse($this->impl->call('isDaemonRunning'));
             putenv('IS_BATCH_DAEMON_RUNNING=true');
-            $this->assertTrue($this->impl->isDaemonRunning());
+            $this->assertTrue($this->impl->call('isDaemonRunning'));
         } finally {
             if ($orig === false) {
                 putenv('IS_BATCH_DAEMON_RUNNING');
@@ -47,17 +48,5 @@ class BatchDaemonTraitTest extends TestCase
                 putenv('IS_BATCH_DAEMON_RUNNING=' . $orig);
             }
         }
-    }
-}
-
-class MyBatchDaemonTraitClass
-{
-    use BatchDaemonTrait {
-        isDaemonRunning as privateIsDaemonRunning;
-    }
-
-    function isDaemonRunning()
-    {
-        return $this->privateIsDaemonRunning();
     }
 }

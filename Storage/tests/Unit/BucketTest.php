@@ -182,8 +182,8 @@ class BucketTest extends TestCase
 
     public function testGetsObjectsWithToken()
     {
-        $this->connection->listObjects(Argument::any())->willReturn(
-            [
+        $this->connection->listObjects(Argument::any())
+            ->willReturn([
                 'nextPageToken' => 'token',
                 'items' => [
                     [
@@ -191,16 +191,14 @@ class BucketTest extends TestCase
                         'generation' => 'abc'
                     ]
                 ]
-            ],
-                [
+            ], [
                 'items' => [
                     [
                         'name' => 'file2.txt',
                         'generation' => 'def'
                     ]
                 ]
-            ]
-        );
+            ]);
 
         $bucket = $this->getBucket();
         $objects = iterator_to_array($bucket->objects());

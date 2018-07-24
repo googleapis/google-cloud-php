@@ -221,9 +221,9 @@ class EntityMapperTest extends TestCase
             ]
         ];
 
-        $res = $this->mapper->responseToEntityProperties($data, TestEntity::class)['properties'];
+        $res = $this->mapper->responseToEntityProperties($data, SampleEntity::class)['properties'];
 
-        $this->assertInstanceOf(TestEntity::class, $res['foo']);
+        $this->assertInstanceOf(SampleEntity::class, $res['foo']);
         $this->assertEquals('baz', $res['foo']->get()['bar']);
     }
 
@@ -247,9 +247,9 @@ class EntityMapperTest extends TestCase
             ]
         ];
 
-        $res = $this->mapper->responseToEntityProperties($data, TestEntity::class)['properties'];
+        $res = $this->mapper->responseToEntityProperties($data, SampleEntity::class)['properties'];
 
-        $this->assertInstanceOf(TestEntity::class, $res['foo']);
+        $this->assertInstanceOf(SampleEntity::class, $res['foo']);
         $this->assertTrue(is_array($res['foo']['bar']));
     }
 
@@ -279,11 +279,11 @@ class EntityMapperTest extends TestCase
             ]
         ];
 
-        $res = $this->mapper->responseToEntityProperties($data, TestEntity::class)['properties'];
+        $res = $this->mapper->responseToEntityProperties($data, SampleEntity::class)['properties'];
 
-        $this->assertInstanceOf(TestEntity::class, $res['foo']);
-        $this->assertInstanceOf(TestEntity::class, $res['foo']['nest']);
-        $this->assertInstanceOf(TestEntity::class, $res['foo']['nest']['nest']);
+        $this->assertInstanceOf(SampleEntity::class, $res['foo']);
+        $this->assertInstanceOf(SampleEntity::class, $res['foo']['nest']);
+        $this->assertInstanceOf(SampleEntity::class, $res['foo']['nest']['nest']);
         $this->assertEquals('bar', $res['foo']['nest']['nest']['foo']);
     }
 
@@ -709,15 +709,20 @@ class EntityMapperTest extends TestCase
             ]
         ]);
 
-        $this->assertEmpty((array) $res['entityValue']['properties']['foo']['arrayValue']['values'][2]['entityValue']['properties']);
-        $this->assertEmpty((array) $res['entityValue']['properties']['foo']['arrayValue']['values'][3]['entityValue']['properties']);
+        $this->assertEmpty(
+            (array) $res['entityValue']['properties']['foo']['arrayValue']['values'][2]['entityValue']['properties']
+        );
+
+        $this->assertEmpty(
+            (array) $res['entityValue']['properties']['foo']['arrayValue']['values'][3]['entityValue']['properties']
+        );
     }
 
     public function testValueObjectResource()
     {
         $string = 'test data';
 
-        $stream = fopen('php://memory','r+');
+        $stream = fopen('php://memory', 'r+');
         fwrite($stream, $string);
         rewind($stream);
 
@@ -730,7 +735,7 @@ class EntityMapperTest extends TestCase
     {
         $string = 'test data';
 
-        $stream = fopen('php://memory','r+');
+        $stream = fopen('php://memory', 'r+');
         fwrite($stream, $string);
         rewind($stream);
 
@@ -866,40 +871,5 @@ class EntityMapperTest extends TestCase
         $this->assertEquals([
             'integerValue' => $int64->get()
         ], $res);
-    }
-}
-
-class TestEntity implements EntityInterface, \arrayaccess
-{
-    use EntityTrait;
-
-    public static function mappings()
-    {
-        return [
-            'foo' => TestEntity::class,
-            'nest' => TestEntity::class
-        ];
-    }
-
-    public function offsetSet($key, $val)
-    {
-        $this->entity[$key] = $val;
-    }
-
-    public function offsetExists($key)
-    {
-        return isset($this->entity[$key]);
-    }
-
-    public function offsetUnset($key)
-    {
-        unset($this->entity[$key]);
-    }
-
-    public function offsetGet($key)
-    {
-        return isset($this->entity[$key])
-            ? $this->entity[$key]
-            : null;
     }
 }

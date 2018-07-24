@@ -36,8 +36,8 @@ class QueryPartitionTest extends SnippetTestCase
     use GrpcTestTrait;
     use PartitionSharedSnippetTestTrait;
 
-    const DATABASE = 'projects/example_project/instances/example_instance/databases/example_database';
-    const SESSION = 'projects/example_project/instances/example_instance/databases/example_database/sessions/session-id';
+    const DATABASE = 'projects/my-awesome-project/instances/my-instance/databases/my-database';
+    const SESSION = 'projects/my-awesome-project/instances/my-instance/databases/my-database/sessions/session-id';
     const TRANSACTION = 'transaction-id';
 
     private $className = QueryPartition::class;

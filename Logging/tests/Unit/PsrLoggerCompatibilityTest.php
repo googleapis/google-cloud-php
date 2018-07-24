@@ -46,12 +46,14 @@ class PsrLoggerCompatibilityTest extends LoggerInterfaceTest
                     ? strtolower($map[$entry['severity']])
                     : $entry['severity'];
 
-                self::$logs[] = sprintf('%s %s',
+                self::$logs[] = sprintf(
+                    '%s %s',
                     $severity,
                     $entry['jsonPayload']['message']
                 );
             });
-        $logger = new Logger($connection->reveal(), 'my-log', 'projectId');;
+
+        $logger = new Logger($connection->reveal(), 'my-log', 'projectId');
 
         return new PsrLogger($logger);
     }

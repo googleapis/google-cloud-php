@@ -180,10 +180,10 @@ class OperationTest extends TestCase
     public function testEntityCustomClass()
     {
         $e = $this->operation->entity('Foo', [], [
-            'className' => MyEntity::class
+            'className' => SampleEntity::class
         ]);
 
-        $this->assertInstanceOf(MyEntity::class, $e);
+        $this->assertInstanceOf(SampleEntity::class, $e);
     }
 
     /**
@@ -477,7 +477,7 @@ class OperationTest extends TestCase
     {
         $queryResult = json_decode(file_get_contents(Fixtures::QUERY_RESULTS_FIXTURE()), true);
         $this->connection->runQuery(Argument::type('array'))
-            ->will(function($args, $mock) use ($queryResult) {
+            ->will(function ($args, $mock) use ($queryResult) {
                 // The 2nd call will return the 2nd page of results!
                 $mock->runQuery(Argument::type('array'))
                     ->willReturn($queryResult['paged'][1]);
@@ -568,15 +568,12 @@ class OperationTest extends TestCase
 
     public function testCommit()
     {
-        $this->connection->commit(Argument::that(function($arg) {
-            if ($arg['mode'] !== 'NON_TRANSACTIONAL') return false;
-
-            if (count($arg['mutations']) > 0) return false;
-
-            return true;
-        }))
-            ->shouldBeCalled()
-            ->willReturn(['foo']);
+        $this->connection->commit(Argument::allOf(
+            Argument::withEntry('mode', 'NON_TRANSACTIONAL'),
+            Argument::that(function ($arg) {
+                return count($arg['mutations']) === 0;
+            })
+        ))->shouldBeCalled()->willReturn(['foo']);
 
         $this->operation->___setProperty('connection', $this->connection->reveal());
 
@@ -585,15 +582,12 @@ class OperationTest extends TestCase
 
     public function testCommitInTransaction()
     {
-        $this->connection->commit(Argument::that(function($arg) {
-            if ($arg['mode'] !== 'TRANSACTIONAL') return false;
-
-            if (count($arg['mutations']) > 0) return false;
-
-            return true;
-        }))
-            ->shouldBeCalled()
-            ->willReturn(['foo']);
+        $this->connection->commit(Argument::allOf(
+            Argument::withEntry('mode', 'TRANSACTIONAL'),
+            Argument::that(function ($arg) {
+                return count($arg['mutations']) === 0;
+            })
+        ))->shouldBeCalled()->willReturn(['foo']);
 
         $this->operation->___setProperty('connection', $this->connection->reveal());
 
@@ -604,7 +598,7 @@ class OperationTest extends TestCase
 
     public function testCommitWithMutation()
     {
-        $this->connection->commit(Argument::that(function($arg) {
+        $this->connection->commit(Argument::that(function ($arg) {
             return count($arg['mutations']) === 1;
         }))->shouldBeCalled()->willReturn(['foo']);
 
@@ -667,9 +661,13 @@ class OperationTest extends TestCase
         $id = 12345;
 
         $this->connection->commit(Argument::that(function ($arg) {
-            if (count($arg['mutations']) !== 1) return false;
+            if (count($arg['mutations']) !== 1) {
+                return false;
+            }
 
-            if (!isset($arg['mutations'][0]['insert'])) return false;
+            if (!isset($arg['mutations'][0]['insert'])) {
+                return false;
+            }
 
             return true;
         }))->shouldBeCalled();
@@ -703,8 +701,13 @@ class OperationTest extends TestCase
     public function testMutateWithKey()
     {
         $this->connection->commit(Argument::that(function ($arg) {
-            if (!isset($arg['mutations'][0]['delete'])) return false;
-            if (!isset($arg['mutations'][0]['delete']['path'])) return false;
+            if (!isset($arg['mutations'][0]['delete'])) {
+                return false;
+            }
+
+            if (!isset($arg['mutations'][0]['delete']['path'])) {
+                return false;
+            }
 
             return true;
         }))->willReturn('foo');
@@ -811,11 +814,11 @@ class OperationTest extends TestCase
 
         $entity = $this->operation->lookup([$key], [
             'className' => [
-                'Kind' => MyEntity::class
+                'Kind' => SampleEntity::class
             ]
         ]);
 
-        $this->assertInstanceOf(MyEntity::class, $entity['found'][0]);
+        $this->assertInstanceOf(SampleEntity::class, $entity['found'][0]);
     }
 
     /**
@@ -836,7 +839,7 @@ class OperationTest extends TestCase
 
         $entity = $this->operation->lookup([$key], [
             'className' => [
-                'Kind2' => MyEntity::class
+                'Kind2' => SampleEntity::class
             ]
         ]);
     }
@@ -871,11 +874,7 @@ class OperationTest extends TestCase
 
     public function testReadConsistencyInReadOptions()
     {
-        $this->connection->lookup(Argument::that(function ($arg) {
-            if ($arg['readOptions']['readConsistency'] !== 'test') return true;
-
-            return true;
-        }))
+        $this->connection->lookup(Argument::withEntry('readOptions', ['readConsistency' => 'test']))
             ->willReturn([]);
 
         $this->operation->___setProperty('connection', $this->connection->reveal());
@@ -894,5 +893,3 @@ class OperationTest extends TestCase
         $this->operation->lookup(['foo']);
     }
 }
-
-class MyEntity extends Entity {}

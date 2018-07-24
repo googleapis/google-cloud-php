@@ -18,6 +18,7 @@
 namespace Google\Cloud\Vision\Tests\Snippet\Annotation;
 
 use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
+use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Vision\Annotation\AbstractFeature;
 
 /**
@@ -27,8 +28,8 @@ class AbstractFeatureTest extends SnippetTestCase
 {
     public function testInfo()
     {
-        $stub = new AbstractFeatureImplementation;
-        $stub->setInfo('hello world');
+        $stub = TestHelpers::stub(AbstractFeature::class, [], ['info']);
+        $stub->___setProperty('info', 'hello world');
 
         $snippet = $this->snippetFromMethod(AbstractFeature::class, 'info');
         $snippet->addLocal('imageProperties', $stub);
@@ -36,9 +37,4 @@ class AbstractFeatureTest extends SnippetTestCase
         $res = $snippet->invoke('info');
         $this->assertEquals('hello world', $res->returnVal());
     }
-}
-
-class AbstractFeatureImplementation extends AbstractFeature
-{
-    public function setInfo($info) { $this->info = $info; }
 }

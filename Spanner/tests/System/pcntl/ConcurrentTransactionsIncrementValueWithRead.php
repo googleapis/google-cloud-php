@@ -18,7 +18,7 @@ $db2 = SpannerTestCase::getDatabaseInstance($dbName);
 $keyset = new KeySet(['keys' => [$id]]);
 $columns = ['id','number'];
 
-$callable = function(Database $db, KeySet $keyset, array $columns, $tableName) use ($tmpFile) {
+$callable = function (Database $db, KeySet $keyset, array $columns, $tableName) use ($tmpFile) {
     $iterations = 0;
     $db->runTransaction(function ($transaction) use ($keyset, $columns, $tableName, &$iterations) {
         $iterations++;

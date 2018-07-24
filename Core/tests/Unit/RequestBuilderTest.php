@@ -87,7 +87,11 @@ class RequestBuilderTest extends TestCase
             'referenceProp' => 'reference'
         ];
 
-        $request = $builder->build('myOtherResource.resources.evenMoreNestedThing', 'evenMoreNestedResource', $parameters);
+        $request = $builder->build(
+            'myOtherResource.resources.evenMoreNestedThing',
+            'evenMoreNestedResource',
+            $parameters
+        );
         $uri = $request->getUri();
 
         $this->assertEquals('/path', $uri->getPath());

@@ -18,6 +18,7 @@
 namespace Google\Cloud\Logging\Tests\Snippet;
 
 use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
+use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Logging\Connection\ConnectionInterface;
 use Google\Cloud\Logging\Logger;
 use Google\Cloud\Logging\PsrLogger;
@@ -34,12 +35,10 @@ class PsrLoggerTest extends SnippetTestCase
     public function setUp()
     {
         $this->connection = $this->prophesize(ConnectionInterface::class);
-        $logger = new Logger(
-            $this->connection->reveal(),
-            'my-log',
-            'my-awesome-project'
-        );
-        $this->psr = new PsrLoggerStub($logger);
+
+        $this->psr = TestHelpers::stub(PsrLogger::class, [
+            $this->refreshLogger($this->connection->reveal())
+        ], ['logger']);
     }
 
     public function testClass()
@@ -65,7 +64,10 @@ class PsrLoggerTest extends SnippetTestCase
             return $args['entries'][0]['severity'] === Logger::EMERGENCY;
         }))->shouldBeCalled();
 
-        $this->psr->setConnection($this->connection->reveal());
+        $this->psr->___setProperty(
+            'logger',
+            $this->refreshLogger($this->connection->reveal())
+        );
 
         $snippet->invoke();
     }
@@ -79,7 +81,10 @@ class PsrLoggerTest extends SnippetTestCase
             return $args['entries'][0]['severity'] === Logger::ALERT;
         }))->shouldBeCalled();
 
-        $this->psr->setConnection($this->connection->reveal());
+        $this->psr->___setProperty(
+            'logger',
+            $this->refreshLogger($this->connection->reveal())
+        );
 
         $snippet->invoke();
     }
@@ -93,7 +98,10 @@ class PsrLoggerTest extends SnippetTestCase
             return $args['entries'][0]['severity'] === Logger::CRITICAL;
         }))->shouldBeCalled();
 
-        $this->psr->setConnection($this->connection->reveal());
+        $this->psr->___setProperty(
+            'logger',
+            $this->refreshLogger($this->connection->reveal())
+        );
 
         $snippet->invoke();
     }
@@ -107,7 +115,10 @@ class PsrLoggerTest extends SnippetTestCase
             return $args['entries'][0]['severity'] === Logger::ERROR;
         }))->shouldBeCalled();
 
-        $this->psr->setConnection($this->connection->reveal());
+        $this->psr->___setProperty(
+            'logger',
+            $this->refreshLogger($this->connection->reveal())
+        );
 
         $snippet->invoke();
     }
@@ -121,7 +132,10 @@ class PsrLoggerTest extends SnippetTestCase
             return $args['entries'][0]['severity'] === Logger::WARNING;
         }))->shouldBeCalled();
 
-        $this->psr->setConnection($this->connection->reveal());
+        $this->psr->___setProperty(
+            'logger',
+            $this->refreshLogger($this->connection->reveal())
+        );
 
         $snippet->invoke();
     }
@@ -135,7 +149,10 @@ class PsrLoggerTest extends SnippetTestCase
             return $args['entries'][0]['severity'] === Logger::NOTICE;
         }))->shouldBeCalled();
 
-        $this->psr->setConnection($this->connection->reveal());
+        $this->psr->___setProperty(
+            'logger',
+            $this->refreshLogger($this->connection->reveal())
+        );
 
         $snippet->invoke();
     }
@@ -149,7 +166,10 @@ class PsrLoggerTest extends SnippetTestCase
             return $args['entries'][0]['severity'] === Logger::INFO;
         }))->shouldBeCalled();
 
-        $this->psr->setConnection($this->connection->reveal());
+        $this->psr->___setProperty(
+            'logger',
+            $this->refreshLogger($this->connection->reveal())
+        );
 
         $snippet->invoke();
     }
@@ -163,7 +183,10 @@ class PsrLoggerTest extends SnippetTestCase
             return $args['entries'][0]['severity'] === Logger::DEBUG;
         }))->shouldBeCalled();
 
-        $this->psr->setConnection($this->connection->reveal());
+        $this->psr->___setProperty(
+            'logger',
+            $this->refreshLogger($this->connection->reveal())
+        );
 
         $snippet->invoke();
     }
@@ -177,7 +200,10 @@ class PsrLoggerTest extends SnippetTestCase
             return $args['entries'][0]['severity'] === Logger::ALERT;
         }))->shouldBeCalled();
 
-        $this->psr->setConnection($this->connection->reveal());
+        $this->psr->___setProperty(
+            'logger',
+            $this->refreshLogger($this->connection->reveal())
+        );
 
         $snippet->invoke();
     }
@@ -188,12 +214,21 @@ class PsrLoggerTest extends SnippetTestCase
         $snippet->addLocal('psrLogger', $this->psr);
 
         $this->connection->writeEntries(Argument::that(function ($args) {
-            if ($args['entries'][0]['severity'] !== Logger::ALERT) return false;
-            if ($args['entries'][0]['jsonPayload']['message'] !== 'alert: my alert message') return false;
+            if ($args['entries'][0]['severity'] !== Logger::ALERT) {
+                return false;
+            }
+
+            if ($args['entries'][0]['jsonPayload']['message'] !== 'alert: my alert message') {
+                return false;
+            }
+
             return true;
         }))->shouldBeCalled();
 
-        $this->psr->setConnection($this->connection->reveal());
+        $this->psr->___setProperty(
+            'logger',
+            $this->refreshLogger($this->connection->reveal())
+        );
 
         $snippet->invoke();
     }
@@ -204,22 +239,28 @@ class PsrLoggerTest extends SnippetTestCase
         $snippet->addLocal('psrLogger', $this->psr);
 
         $this->connection->writeEntries(Argument::that(function ($args) {
-            if ($args['entries'][0]['severity'] !== Logger::ALERT) return false;
-            if ($args['entries'][0]['httpRequest']['requestMethod'] !== 'GET') return false;
+            if ($args['entries'][0]['severity'] !== Logger::ALERT) {
+                return false;
+            }
+
+            if ($args['entries'][0]['httpRequest']['requestMethod'] !== 'GET') {
+                return false;
+            }
+
             return true;
         }))->shouldBeCalled();
 
-        $this->psr->setConnection($this->connection->reveal());
+        $this->psr->___setProperty(
+            'logger',
+            $this->refreshLogger($this->connection->reveal())
+        );
 
         $snippet->invoke();
     }
-}
 
-class PsrLoggerStub extends PsrLogger
-{
-    public function setConnection($connection)
+    private function refreshLogger(ConnectionInterface $connection)
     {
-        $this->logger = new Logger(
+        return new Logger(
             $connection,
             'my-log',
             'my-awesome-project'

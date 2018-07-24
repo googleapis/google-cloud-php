@@ -17,12 +17,13 @@
 
 namespace Google\Cloud\Tests\Unit\Pubsub;
 
+use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\PubSub\Connection\ConnectionInterface;
 use Google\Cloud\PubSub\Snapshot;
 use Google\Cloud\PubSub\Subscription;
 use Google\Cloud\PubSub\Topic;
-use Prophecy\Argument;
 use PHPUnit\Framework\TestCase;
+use Prophecy\Argument;
 
 /**
  * @group pubsub
@@ -30,7 +31,7 @@ use PHPUnit\Framework\TestCase;
 class SnapshotTest extends TestCase
 {
     const PROJECT = 'my-project';
-    const NAME = 'snapshot';
+    const SNAPSHOT_ID = 'snapshot';
 
     private $connection;
     private $snapshot;
@@ -38,50 +39,43 @@ class SnapshotTest extends TestCase
     public function setUp()
     {
         $this->connection = $this->prophesize(ConnectionInterface::class);
-        $this->snapshot = new SnapshotStub(
+        $this->snapshot = TestHelpers::stub(Snapshot::class, [
             $this->connection->reveal(),
             self::PROJECT,
-            self::NAME,
+            self::SNAPSHOT_ID,
             false
-        );
+        ], ['connection', 'info']);
     }
 
     public function testConstructWithFullyQualifiedName()
     {
-        $snapshot = new SnapshotStub(
+        $snapshot = TestHelpers::stub(Snapshot::class, [
             $this->connection->reveal(),
             self::PROJECT,
-            'projects/'. self::PROJECT .'/snapshots/'. self::NAME,
+            'projects/'. self::PROJECT .'/snapshots/'. self::SNAPSHOT_ID,
             false
-        );
+        ]);
 
         $this->assertEquals($this->snapshot->name(), $snapshot->name());
     }
 
     public function testName()
     {
-        $this->assertEquals('projects/'. self::PROJECT .'/snapshots/'. self::NAME, $this->snapshot->name());
+        $this->assertEquals('projects/'. self::PROJECT .'/snapshots/'. self::SNAPSHOT_ID, $this->snapshot->name());
     }
 
     public function testInfo()
     {
-        $snapshot = new SnapshotStub(
-            $this->connection->reveal(),
-            self::PROJECT,
-            'projects/'. self::PROJECT .'/snapshots/'. self::NAME,
-            false,
-            [
-                'subscription' => 'foo',
-                'topic' => 'bar',
-            ]
-        );
-
-        $this->assertEquals([
-            'name' => 'projects/'. self::PROJECT .'/snapshots/'. self::NAME,
+        $info = [
+            'name' => 'projects/'. self::PROJECT .'/snapshots/'. self::SNAPSHOT_ID,
             'subscription' => 'foo',
             'topic' => 'bar',
             'expirationTime' => null
-        ], $snapshot->info());
+        ];
+
+        $this->snapshot->___setProperty('info', $info);
+
+        $this->assertEquals($info, $this->snapshot->info());
     }
 
     public function testCreate()
@@ -89,17 +83,15 @@ class SnapshotTest extends TestCase
         $this->connection->createSnapshot(Argument::any())
             ->shouldBeCalled();
 
-        $snapshot = new SnapshotStub(
-            $this->connection->reveal(),
-            self::PROJECT,
-            'projects/'. self::PROJECT .'/snapshots/'. self::NAME,
-            false,
-            [
-                'subscription' => 'foo',
-            ]
-        );
+        $info = [
+            'subscription' => 'foo',
+        ];
 
-        $snapshot->create();
+        $this->snapshot->___setProperty('info', $info);
+
+        $this->snapshot->___setProperty('connection', $this->connection->reveal());
+
+        $this->snapshot->create();
     }
 
     /**
@@ -113,10 +105,10 @@ class SnapshotTest extends TestCase
     public function testDelete()
     {
         $this->connection->deleteSnapshot([
-            'snapshot' => 'projects/'. self::PROJECT .'/snapshots/'. self::NAME
+            'snapshot' => 'projects/'. self::PROJECT .'/snapshots/'. self::SNAPSHOT_ID
         ]);
 
-        $this->snapshot->setConnection($this->connection->reveal());
+        $this->snapshot->___setProperty('connection', $this->connection->reveal());
 
         $this->snapshot->delete();
     }
@@ -128,17 +120,11 @@ class SnapshotTest extends TestCase
 
     public function testTopic()
     {
-        $snapshot = new SnapshotStub(
-            $this->connection->reveal(),
-            self::PROJECT,
-            'projects/'. self::PROJECT .'/snapshots/'. self::NAME,
-            false,
-            [
-                'topic' => 'foo',
-            ]
-        );
+        $this->snapshot->___setProperty('info', [
+            'topic' => 'foo',
+        ]);
 
-        $this->assertInstanceOf(Topic::class, $snapshot->topic());
+        $this->assertInstanceOf(Topic::class, $this->snapshot->topic());
     }
 
     public function testSubscriptionNull()
@@ -148,24 +134,10 @@ class SnapshotTest extends TestCase
 
     public function testSubscription()
     {
-        $snapshot = new SnapshotStub(
-            $this->connection->reveal(),
-            self::PROJECT,
-            'projects/'. self::PROJECT .'/snapshots/'. self::NAME,
-            false,
-            [
-                'subscription' => 'foo',
-            ]
-        );
+        $this->snapshot->___setProperty('info', [
+            'subscription' => 'foo',
+        ]);
 
-        $this->assertInstanceOf(Subscription::class, $snapshot->subscription());
-    }
-}
-
-class SnapshotStub extends Snapshot
-{
-    public function setConnection($c)
-    {
-        $this->connection = $c;
+        $this->assertInstanceOf(Subscription::class, $this->snapshot->subscription());
     }
 }

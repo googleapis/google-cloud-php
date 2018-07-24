@@ -18,14 +18,15 @@
 namespace Google\Cloud\Storage\Tests\Snippet;
 
 use Google\Cloud\Core\RequestWrapper;
-use Google\Cloud\Core\Timestamp;
+use Google\Cloud\Core\Testing\KeyPairGenerateTrait;
 use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
+use Google\Cloud\Core\Testing\TestHelpers;
+use Google\Cloud\Core\Timestamp;
 use Google\Cloud\Storage\Acl;
 use Google\Cloud\Storage\Bucket;
 use Google\Cloud\Storage\Connection\Rest;
 use Google\Cloud\Storage\StorageClient;
 use Google\Cloud\Storage\StorageObject;
-use Google\Cloud\Core\Testing\KeyPairGenerateTrait;
 use GuzzleHttp\Psr7\Response;
 use Prophecy\Argument;
 use Psr\Http\Message\RequestInterface;
@@ -47,7 +48,7 @@ class StorageObjectTest extends SnippetTestCase
     public function setUp()
     {
         $this->connection = $this->prophesize(Rest::class);
-        $this->object = \Google\Cloud\Core\Testing\TestHelpers::stub(StorageObject::class, [
+        $this->object = TestHelpers::stub(StorageObject::class, [
             $this->connection->reveal(),
             self::OBJECT,
             self::BUCKET

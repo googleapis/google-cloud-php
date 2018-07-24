@@ -17,6 +17,7 @@
 
 namespace Google\Cloud\Firestore\Tests\Unit;
 
+use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Core\Timestamp;
 use Google\Cloud\Firestore\Connection\ConnectionInterface;
 use Google\Cloud\Firestore\DocumentReference;
@@ -43,7 +44,7 @@ class SnapshotTraitTest extends TestCase
     public function setUp()
     {
         $this->connection = $this->prophesize(ConnectionInterface::class);
-        $this->impl = \Google\Cloud\Core\Testing\TestHelpers::impl(SnapshotTrait::class);
+        $this->impl = TestHelpers::impl(SnapshotTrait::class);
 
         $this->valueMapper = new ValueMapper($this->connection->reveal(), false);
     }
@@ -131,7 +132,12 @@ class SnapshotTraitTest extends TestCase
         $this->impl->call('getSnapshot', [
             $this->connection->reveal(),
             self::NAME,
-            ['readTime' => new Timestamp(\DateTimeImmutable::createFromFormat('U', (string) $timestamp['seconds']), $timestamp['nanos'])]
+            [
+                'readTime' => new Timestamp(
+                    \DateTimeImmutable::createFromFormat('U', (string) $timestamp['seconds']),
+                    $timestamp['nanos']
+                )
+            ]
         ]);
     }
 

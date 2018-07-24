@@ -18,6 +18,7 @@
 namespace Google\Cloud\Speech\Tests\Snippet;
 
 use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
+use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Speech\Connection\ConnectionInterface;
 use Google\Cloud\Speech\Operation;
 use Google\Cloud\Speech\Result;
@@ -48,7 +49,7 @@ class OperationTest extends SnippetTestCase
         ];
 
         $this->connection = $this->prophesize(ConnectionInterface::class);
-        $this->operation = \Google\Cloud\Core\Testing\TestHelpers::stub(Operation::class, [
+        $this->operation = TestHelpers::stub(Operation::class, [
             $this->connection->reveal(),
             $this->opData['name'],
             $this->opData
@@ -59,20 +60,22 @@ class OperationTest extends SnippetTestCase
     {
         $snippet = $this->snippetFromClass(Operation::class);
 
-        $connectionStub = $this->prophesize(ConnectionInterface::class);
-
-        $connectionStub->longRunningRecognize(Argument::any())
+        $connection = $this->prophesize(ConnectionInterface::class);
+        $connection->longRunningRecognize(Argument::any())
             ->willReturn(['name' => 'foo']);
 
-        $snippet->addLocal('connectionStub', $connectionStub->reveal());
-        $snippet->insertAfterLine(4, '$reflection = new \ReflectionClass($speech);
-            $property = $reflection->getProperty(\'connection\');
-            $property->setAccessible(true);
-            $property->setValue($speech, $connectionStub);
-            $property->setAccessible(false);'
-        );
 
         $snippet->replace("__DIR__  . '/audio.flac'", '"php://temp"');
+        $snippet->replace(
+            '$speech = new SpeechClient([' . PHP_EOL .'    \'languageCode\' => \'en-US\'' . PHP_EOL .']);',
+            ''
+        );
+
+        $speech = TestHelpers::stub(SpeechClient::class, [
+            ['languageCode' => 'en-US']
+        ]);
+        $speech->___setProperty('connection', $connection->reveal());
+        $snippet->addLocal('speech', $speech);
 
         $res = $snippet->invoke('operation');
     }

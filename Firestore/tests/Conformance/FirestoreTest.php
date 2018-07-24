@@ -17,6 +17,8 @@
 
 namespace Google\Cloud\Firestore\Tests\Conformance;
 
+use Google\ApiCore\Serializer;
+use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Core\Timestamp;
 use Google\Cloud\Firestore\Connection\ConnectionInterface;
 use Google\Cloud\Firestore\FieldPath;
@@ -24,7 +26,6 @@ use Google\Cloud\Firestore\FieldValue;
 use Google\Cloud\Firestore\FirestoreClient;
 use Google\Cloud\Firestore\PathTrait;
 use Google\Cloud\Tests\ArrayHasSameValuesToken;
-use Google\ApiCore\Serializer;
 use GuzzleHttp\Client;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
@@ -37,7 +38,8 @@ class FirestoreTest extends TestCase
 {
     use PathTrait;
 
-    const TEST_FILE = 'https://raw.githubusercontent.com/GoogleCloudPlatform/google-cloud-common/master/testing/firestore/testdata/test-suite.binprotos';
+    const TEST_FILE = 'https://raw.githubusercontent.com/GoogleCloudPlatform/'.
+        'google-cloud-common/master/testing/firestore/testdata/test-suite.binprotos';
 
     private $client;
     private $connection;
@@ -63,7 +65,7 @@ class FirestoreTest extends TestCase
 
     public function setUp()
     {
-        $this->client = \Google\Cloud\Core\Testing\TestHelpers::stub(FirestoreClient::class, [
+        $this->client = TestHelpers::stub(FirestoreClient::class, [
             [
                 'projectId' => 'projectID'
             ]
@@ -106,7 +108,7 @@ class FirestoreTest extends TestCase
                 $method = 'runDelete';
                 break;
 
-            default :
+            default:
                 throw \Exception('Invalid test type '. $type);
                 break;
         }
@@ -330,7 +332,6 @@ class FirestoreTest extends TestCase
     {
         $fields = json_decode($data, true);
         return $this->injectSentinels($fields);
-
     }
 
     private function injectSentinels(array $fields)
@@ -377,10 +378,12 @@ class FirestoreTest extends TestCase
 
             $protos[] = [$case['description'], $type, $case[$type]];
         }
+
         return $protos;
     }
 
-    private static function loadProto($bytes, $index) {
+    private static function loadProto($bytes, $index)
+    {
         list($num, $index) = \VarInt::decode($bytes, $index);
         $binProto = substr($bytes, $index, $num);
         $testProto = new \Tests\Test();

@@ -18,8 +18,10 @@
 namespace Google\Cloud\Language\Tests\Snippet;
 
 use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
+use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Language\Annotation;
 use Google\Cloud\Language\Connection\ConnectionInterface;
+use Google\Cloud\Language\LanguageClient;
 use Prophecy\Argument;
 
 /**
@@ -76,19 +78,18 @@ class AnnotationTest extends SnippetTestCase
 
     public function testClass()
     {
+        $snippet = $this->snippetFromClass(Annotation::class);
+
         $connection = $this->prophesize(ConnectionInterface::class);
         $connection->annotateText(Argument::any())
             ->shouldBeCalled()
             ->willReturn([]);
 
-        $snippet = $this->snippetFromClass(Annotation::class);
-        $snippet->addLocal('connectionStub', $connection->reveal());
-        $snippet->insertAfterLine(3, '$reflection = new \ReflectionClass($language);
-            $property = $reflection->getProperty(\'connection\');
-            $property->setAccessible(true);
-            $property->setValue($language, $connectionStub);
-            $property->setAccessible(false);'
-        );
+        $language = TestHelpers::stub(LanguageClient::class);
+        $language->___setProperty('connection', $connection->reveal());
+
+        $snippet->replace('$language = new LanguageClient();', '');
+        $snippet->addLocal('language', $language);
 
         $res = $snippet->invoke('annotation');
         $this->assertInstanceOf(Annotation::class, $res->returnVal());

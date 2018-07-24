@@ -18,8 +18,9 @@
 namespace Google\Cloud\Core\Tests\Unit;
 
 use Google\Cloud\Core\EmulatorTrait;
-use Prophecy\Argument;
+use Google\Cloud\Core\Testing\TestHelpers;
 use PHPUnit\Framework\TestCase;
+use Prophecy\Argument;
 
 /**
  * @group core
@@ -30,7 +31,7 @@ class EmulatorTraitTest extends TestCase
 
     public function setUp()
     {
-        $this->impl = \Google\Cloud\Core\Testing\TestHelpers::impl(EmulatorTrait::class);
+        $this->impl = TestHelpers::impl(EmulatorTrait::class);
     }
 
     public function testEmulatorBaseUri()

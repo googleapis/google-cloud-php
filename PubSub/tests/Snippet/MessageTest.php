@@ -18,8 +18,10 @@
 namespace Google\Cloud\PubSub\Tests\Snippet;
 
 use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
+use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\PubSub\Connection\ConnectionInterface;
 use Google\Cloud\PubSub\Message;
+use Google\Cloud\PubSub\PubSubClient;
 use Google\Cloud\PubSub\Subscription;
 use Prophecy\Argument;
 
@@ -65,24 +67,21 @@ class MessageTest extends SnippetTestCase
                 'receivedMessages' => [
                     [
                         'message' => [
-                            'data' => base64_encode('hello world')
+                            'data' => 'hello world'
                         ]
                     ]
                 ]
             ]);
 
+        $client = TestHelpers::stub(PubSubClient::class, [], [
+            'connection', 'encode'
+        ]);
+        $client->___setProperty('connection', $connection->reveal());
+        $client->___setProperty('encode', false);
+
         $snippet = $this->snippetFromClass(Message::class);
-        $snippet->addLocal('connectionStub', $connection->reveal());
-        $snippet->insertAfterLine(2, '$reflection = new \ReflectionClass($pubsub);
-            $property = $reflection->getProperty(\'connection\');
-            $property->setAccessible(true);
-            $property->setValue($pubsub, $connectionStub);
-            $property->setAccessible(false);
-            $property = $reflection->getProperty(\'encode\');
-            $property->setAccessible(true);
-            $property->setValue($pubsub, \'false\');
-            $property->setAccessible(false);'
-        );
+        $snippet->replace('$pubsub = new PubSubClient();', '');
+        $snippet->addLocal('pubsub', $client);
 
         $res = $snippet->invoke('messages');
         $this->assertContainsOnlyInstancesOf(Message::class, $res->returnVal());

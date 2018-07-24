@@ -60,4 +60,3 @@ class EmptyMetadataProviderTest extends TestCase
         $this->assertEquals([], $this->metadataProvider->labels());
     }
 }
-

@@ -60,7 +60,7 @@ class FirestoreTestCase extends SystemTestCase
 
         self::$localDeletionQueue->process(function ($items) use ($backoff) {
             foreach ($items as $collection) {
-                $backoff->execute(function() use ($collection) {
+                $backoff->execute(function () use ($collection) {
                     foreach ($collection->documents() as $document) {
                         $document->reference()->delete();
                     }

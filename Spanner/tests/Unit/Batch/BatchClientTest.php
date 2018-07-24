@@ -41,8 +41,8 @@ class BatchClientTest extends TestCase
     use SpannerOperationRefreshTrait;
     use TimeTrait;
 
-    const DATABASE = 'projects/example_project/instances/example_instance/databases/example_database';
-    const SESSION = 'projects/example_project/instances/example_instance/databases/example_database/sessions/session-id';
+    const DATABASE = 'projects/my-awesome-project/instances/my-instance/databases/my-database';
+    const SESSION = 'projects/my-awesome-project/instances/my-instance/databases/my-database/sessions/session-id';
     const TRANSACTION = 'transaction-id';
 
     private $connection;
@@ -68,20 +68,21 @@ class BatchClientTest extends TestCase
             ->willReturn([
                 'name' => self::SESSION
             ]);
-        $this->connection->beginTransaction(Argument::that(function(array $args) {
-            if ($args['singleUse'] !== false) return false;
-            if ($args['transactionOptions']['readOnly']['returnReadTimestamp'] !== true) return false;
-            if ($args['session'] !== self::SESSION) return false;
+        $this->connection->beginTransaction(Argument::allOf(
+            Argument::withEntry('singleUse', false),
+            Argument::withEntry('session', self::SESSION),
+            Argument::that(function (array $args) {
+                if ($args['transactionOptions']['readOnly']['returnReadTimestamp'] !== true) {
+                    return false;
+                }
 
-            $db = explode('/', self::DATABASE);
-            if ($args['database'] !== array_pop($db)) return false;
-
-            return true;
-        }))->shouldBeCalled()
-            ->willReturn([
-                'id' => self::TRANSACTION,
-                'readTimestamp' => \DateTime::createFromFormat('U', (string) $time)->format(Timestamp::FORMAT)
-            ]);
+                $db = explode('/', self::DATABASE);
+                return $args['database'] === array_pop($db);
+            })
+        ))->shouldBeCalled()->willReturn([
+            'id' => self::TRANSACTION,
+            'readTimestamp' => \DateTime::createFromFormat('U', (string) $time)->format(Timestamp::FORMAT)
+        ]);
 
         $this->refreshOperation($this->client, $this->connection->reveal());
 

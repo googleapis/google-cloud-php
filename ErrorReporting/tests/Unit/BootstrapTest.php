@@ -24,7 +24,9 @@ use Google\Cloud\Logging\PsrLogger;
 use Prophecy\Argument;
 use PHPUnit\Framework\TestCase;
 
+//@codingStandardsIgnoreStart
 require_once __DIR__ . '/fakeGlobalFunctions.php';
+//@codingStandardsIgnoreEnd
 
 /**
  * @group error-reporting
@@ -45,7 +47,8 @@ class BootstrapTest extends TestCase
         $prependFileLocation = Bootstrap::prependFileLocation();
         $this->assertFileExists(
             $prependFileLocation,
-            "The prepend file doesn't exist at $prependFileLocation");
+            "The prepend file doesn't exist at $prependFileLocation"
+        );
     }
 
     /**
@@ -109,9 +112,8 @@ class BootstrapTest extends TestCase
     /**
      * @dataProvider exceptionProvider
      */
-    public function testExceptionHandler(
-        $exception
-    ) {
+    public function testExceptionHandler($exception)
+    {
         $expectedMessage = sprintf('PHP Notice: %s', (string)$exception);
         $expectedContext = [
             'context' => [
@@ -218,10 +220,12 @@ class BootstrapTest extends TestCase
             'file',
             1
         );
+
         $this->assertTrue($result);
     }
 
-    public function testErrorHandlerWithoutLogger() {
+    public function testErrorHandlerWithoutLogger()
+    {
         Bootstrap::$psrLogger = null;
         MockValues::$errorReporting = E_ERROR;
         $result = Bootstrap::errorHandler(

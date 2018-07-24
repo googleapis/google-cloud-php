@@ -67,7 +67,11 @@ class GrpcRequestWrapperTest extends TestCase
 
         $actualResponse = $requestWrapper->send(
             function ($test, $options) use ($response, $requestOptions) {
-                $this->assertEquals($requestOptions['requestTimeout'] * 1000, $options['retrySettings']['noRetriesRpcTimeoutMillis']);
+                $this->assertEquals(
+                    $requestOptions['requestTimeout'] * 1000,
+                    $options['retrySettings']['noRetriesRpcTimeoutMillis']
+                );
+
                 return $response;
             },
             ['test', []],
@@ -106,7 +110,8 @@ class GrpcRequestWrapperTest extends TestCase
         $requestWrapper = new GrpcRequestWrapper();
 
         $requestWrapper->send(function () {
-            throw new ApiException('message',
+            throw new ApiException(
+                'message',
                 \Google\Rpc\Code::NOT_FOUND,
                 \Google\ApiCore\ApiStatus::NOT_FOUND
             );

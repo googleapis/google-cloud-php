@@ -259,7 +259,7 @@ class RunQueryTest extends DatastoreTestCase
     private function runQueryAndSortResults($query)
     {
         $results = iterator_to_array(self::$client->runQuery($query));
-        usort($results, function($a, $b) {
+        usort($results, function ($a, $b) {
             return $a['knownDances'] - $b['knownDances'];
         });
 

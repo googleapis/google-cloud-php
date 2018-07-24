@@ -19,6 +19,7 @@ namespace Google\Cloud\Spanner\Tests\Unit;
 
 use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Core\Testing\SpannerOperationRefreshTrait;
+use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Spanner\Connection\ConnectionInterface;
 use Google\Cloud\Spanner\Database;
 use Google\Cloud\Spanner\Instance;
@@ -82,10 +83,10 @@ class TransactionTest extends TestCase
             'operation', 'readTimestamp', 'state'
         ];
 
-        $this->transaction = \Google\Cloud\Core\Testing\TestHelpers::stub(Transaction::class, $args, $props);
+        $this->transaction = TestHelpers::stub(Transaction::class, $args, $props);
 
         unset($args[2]);
-        $this->singleUseTransaction = \Google\Cloud\Core\Testing\TestHelpers::stub(Transaction::class, $args, $props);
+        $this->singleUseTransaction = TestHelpers::stub(Transaction::class, $args, $props);
     }
 
     public function testInsert()
@@ -190,10 +191,10 @@ class TransactionTest extends TestCase
     {
         $sql = 'SELECT * FROM Table';
 
-        $this->connection->executeStreamingSql(Argument::that(function ($arg) use ($sql) {
-            if ($arg['transaction']['id'] !== self::TRANSACTION) return false;
-            return $arg['sql'] === $sql;
-        }))->shouldBeCalled()->willReturn($this->resultGenerator());
+        $this->connection->executeStreamingSql(Argument::allOf(
+            Argument::withEntry('transaction', ['id' => self::TRANSACTION]),
+            Argument::withEntry('sql', $sql)
+        ))->shouldBeCalled()->willReturn($this->resultGenerator());
 
         $this->refreshOperation($this->transaction, $this->connection->reveal());
 
@@ -208,12 +209,12 @@ class TransactionTest extends TestCase
         $table = 'Table';
         $opts = ['foo' => 'bar'];
 
-        $this->connection->streamingRead(Argument::that(function ($arg) use ($table, $opts) {
-            if ($arg['transaction']['id'] !== self::TRANSACTION) return false;
-            if ($arg['table'] !== $table) return false;
-            if ($arg['keySet']['all'] !== true) return false;
-            return $arg['columns'] === ['ID'];
-        }))->shouldBeCalled()->willReturn($this->resultGenerator());
+        $this->connection->streamingRead(Argument::allOf(
+            Argument::withEntry('transaction', ['id' => self::TRANSACTION]),
+            Argument::withEntry('table', $table),
+            Argument::withEntry('keySet', ['all' => true]),
+            Argument::withEntry('columns', ['ID'])
+        ))->shouldBeCalled()->willReturn($this->resultGenerator());
 
         $this->refreshOperation($this->transaction, $this->connection->reveal());
 
@@ -301,7 +302,7 @@ class TransactionTest extends TestCase
             true
         ];
 
-        $transaction = \Google\Cloud\Core\Testing\TestHelpers::stub(Transaction::class, $args);
+        $transaction = TestHelpers::stub(Transaction::class, $args);
 
         $this->assertTrue($transaction->isRetry());
     }

@@ -21,6 +21,7 @@ use Google\Cloud\Core\LongRunning\LongRunningConnectionInterface;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
 use Google\Cloud\Core\Testing\SpannerOperationRefreshTrait;
+use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Spanner\Admin\Instance\V1\InstanceAdminClient;
 use Google\Cloud\Spanner\Connection\ConnectionInterface;
 use Google\Cloud\Spanner\Database;
@@ -63,7 +64,7 @@ class StructValueTest extends SnippetTestCase
             ->willReturn(null);
 
         $this->connection = $this->prophesize(ConnectionInterface::class);
-        $this->database = \Google\Cloud\Core\Testing\TestHelpers::stub(Database::class, [
+        $this->database = TestHelpers::stub(Database::class, [
             $this->connection->reveal(),
             $instance->reveal(),
             $this->prophesize(LongRunningConnectionInterface::class)->reveal(),

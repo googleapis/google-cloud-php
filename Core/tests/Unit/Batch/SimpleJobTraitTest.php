@@ -61,6 +61,7 @@ class SimpleJobTraitTest extends TestCase
     }
 }
 
+//@codingStandardsIgnoreStart
 class SimpleClass
 {
     use SimpleJobTrait {
@@ -84,3 +85,4 @@ class SimpleClass
         return $this->hasRun;
     }
 }
+//@codingStandardsIgnoreEnd

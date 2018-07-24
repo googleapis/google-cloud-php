@@ -88,4 +88,3 @@ class SimpleMetadataProviderTest extends TestCase
         );
     }
 }
-

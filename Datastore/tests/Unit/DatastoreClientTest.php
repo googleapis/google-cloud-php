@@ -195,8 +195,13 @@ class DatastoreClientTest extends TestCase
             Argument::withEntry('projectId', self::PROJECT),
             // can't do direct comparisons between (object)[].
             Argument::that(function ($arg) use ($key) {
-                if (!($arg['transactionOptions'][$key] instanceof \stdClass)) return false;
-                if ((array) $arg['transactionOptions'][$key]) return false;
+                if (!($arg['transactionOptions'][$key] instanceof \stdClass)) {
+                    return false;
+                }
+
+                if ((array) $arg['transactionOptions'][$key]) {
+                    return false;
+                }
 
                 return true;
             })
