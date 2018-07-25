@@ -276,7 +276,7 @@ class Table
 
             $rule = isset($columnFamily['gcRule']) && is_array($columnFamily['gcRule'])
                 ? $columnFamily['gcRule']
-                : []
+                : [];
             $modifications[] = ['id' => $columnFamily['id'], 'create' => $rule];
         }
         $this->info = $this->connection->modifyColumnFamilies([
