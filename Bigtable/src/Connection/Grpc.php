@@ -21,7 +21,10 @@ use Google\ApiCore\Serializer;
 use Google\Cloud\Bigtable\Admin\V2\BigtableInstanceAdminClient;
 use Google\Cloud\Bigtable\Admin\V2\BigtableTableAdminClient;
 use Google\Cloud\Bigtable\Admin\V2\Cluster;
+use Google\Cloud\Bigtable\Admin\V2\ColumnFamily;
 use Google\Cloud\Bigtable\Admin\V2\Instance;
+use Google\Cloud\Bigtable\Admin\V2\ModifyColumnFamiliesRequest_Modification;
+use Google\Cloud\Bigtable\Admin\V2\Table;
 use Google\Cloud\Bigtable\V2\BigtableClient;
 use Google\Cloud\Core\GrpcRequestWrapper;
 use Google\Cloud\Core\GrpcTrait;
@@ -289,11 +292,18 @@ class Grpc implements ConnectionInterface
     }
 
     /**
+     * @todo add options to create ColumnFamilies.
      * @param array $args
      */
     public function createTable(array $args)
     {
-        throw new \BadMethodCallException('This method is not implemented yet');
+        $parent = $this->pluck('parent', $args);
+        return $this->send([$this->bigtableTableAdminClient, 'createTable'], [
+            $parent,
+            $this->pluck('tableId', $args),
+            new Table(),
+            $this->addResourcePrefixHeader($args, $parent)
+        ]);
     }
 
     /**
@@ -325,7 +335,11 @@ class Grpc implements ConnectionInterface
      */
     public function deleteTable(array $args)
     {
-        throw new \BadMethodCallException('This method is not implemented yet');
+        $name = $this->pluck('name', $args);
+        return $this->send([$this->bigtableTableAdminClient, 'deleteTable'], [
+            $name,
+            $this->addResourcePrefixHeader($args, $name)
+        ]);
     }
 
     /**
@@ -333,7 +347,47 @@ class Grpc implements ConnectionInterface
      */
     public function modifyColumnFamilies(array $args)
     {
-        throw new \BadMethodCallException('This method is not implemented yet');
+        $name = $this->pluck('name', $args);
+        $modifications = $this->pluck('modifications', $args);
+        return $this->send([$this->bigtableTableAdminClient, 'modifyColumnFamilies'], [
+            $name,
+            array_map([$this,'columnFamilyModificationObject'], $modifications),
+            $this->addResourcePrefixHeader($args, $name)
+        ]);
+    }
+
+    /**
+     * @param array $modification
+     * @return Modification
+     */
+    private function columnFamilyModificationObject(array $modification)
+    {
+        if (isset($modification['create'])) {
+            $modification['create'] = $this->columnFamilyObject($modification['create']);
+        } elseif (isset($modification['update'])) {
+            $modification['update'] = $this->columnFamilyObject($modification['update']);
+        } elseif (isset($modification['drop'])) {
+            $modification['drop'] = true;
+        }
+        return $this->serializer->decodeMessage(
+            new ModifyColumnFamiliesRequest_Modification(),
+            $modification
+        );
+    }
+
+    /**
+     *
+     * @todo add GCRule
+     *
+     * @param array $columnFamily
+     * @return ColumnFamily
+     */
+    private function columnFamilyObject(array $columnFamily)
+    {
+        return $this->serializer->decodeMessage(
+            new ColumnFamily(),
+            []
+        );
     }
 
     /**

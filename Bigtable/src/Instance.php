@@ -14,6 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 namespace Google\Cloud\Bigtable;
 
 use Google\Cloud\Bigtable\Admin\V2\BigtableInstanceAdminClient as InstanceAdminClient;
@@ -348,6 +349,30 @@ class Instance
         }
 
         return $metaData;
+    }
+
+    /**
+     * Lazily instantiate a table.
+     *
+     * Example:
+     * ```
+     * $table = $instance->table('my-table');
+     * ```
+     *
+     * @param string $id The table ID
+     *
+     * @return Table
+     */
+    public function table($id)
+    {
+        return new Table(
+            $this->connection,
+            $this->lroConnection,
+            $this->lroCallables,
+            $this->projectId,
+            $this->id,
+            $id
+        );
     }
 
     /**
