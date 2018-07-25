@@ -127,6 +127,41 @@ class TableTest extends TestCase
         $this->assertEquals([], $info);
     }
 
+    /**
+     * @expectedException \InvalidArgumentException
+     * @expectedExceptionMessage Each column family must specify an ID.
+     */
+    public function testAddColumnFamiliesWithoutColumnFamilyID()
+    {
+        $tableInfo = $this->table->addColumnFamilies([
+            [],
+            []
+        ]);
+    }
+
+    public function testAddColumnFamiliesWithoutGCRule()
+    {
+        $args = [
+            'name' => self::TABLE_NAME,
+            'modifications' => [
+                ['id' => 'cf1', 'create' => []],
+                ['id' => 'cf2', 'create' => []]
+            ]
+        ];
+        $this->connection->modifyColumnFamilies($args)
+            ->shouldBeCalled()
+            ->willReturn([
+                'name' => self::TABLE_NAME
+            ]);
+        $this->table->___setProperty('connection', $this->connection->reveal());
+        $tableInfo = $this->table->addColumnFamilies([
+            ['id' => 'cf1'],
+            ['id' => 'cf2']
+        ]);
+
+        $this->assertEquals(self::TABLE_NAME, $tableInfo['name']);
+    }
+
     public function testAddColumnFamilies()
     {
         $args = [
