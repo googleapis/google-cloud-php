@@ -270,7 +270,14 @@ class Table
     {
         $modifications = [];
         foreach ($columnFamilies as $columnFamily) {
-            $modifications[] = ['id' => $columnFamily['id'], 'create' => $columnFamily['gcRule']];
+            if (!isset($columnFamily['id']) {
+                throw new \InvalidArgumentException('Each column family must specify an ID.');
+            }
+
+            $rule = isset($columnFamily['gcRule']) && is_array($columnFamily['gcRule'])
+                ? $columnFamily['gcRule']
+                : []
+            $modifications[] = ['id' => $columnFamily['id'], 'create' => $rule];
         }
         $this->info = $this->connection->modifyColumnFamilies([
             'name' => $this->name,
