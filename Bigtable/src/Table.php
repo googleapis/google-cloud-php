@@ -270,7 +270,7 @@ class Table
     {
         $modifications = [];
         foreach ($columnFamilies as $columnFamily) {
-            if (!isset($columnFamily['id']) {
+            if (!isset($columnFamily['id'])) {
                 throw new \InvalidArgumentException('Each column family must specify an ID.');
             }
 
