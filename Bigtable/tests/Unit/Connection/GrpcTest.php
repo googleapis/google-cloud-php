@@ -116,7 +116,7 @@ class GrpcTest extends TestCase
             new ColumnFamily(),
             []
         );
-
+        // @todo add GCRule option
         $columnFamilyModificationCreate = $serializer->decodeMessage(
             new ModifyColumnFamiliesRequest_Modification(),
             [
@@ -124,7 +124,7 @@ class GrpcTest extends TestCase
                 'create' => $columnFamily
             ]
         );
-
+        // @todo add GCRule option
         $columnFamilyModificationUpdate = $serializer->decodeMessage(
             new ModifyColumnFamiliesRequest_Modification(),
             [
@@ -132,7 +132,6 @@ class GrpcTest extends TestCase
                 'update' => $columnFamily
             ]
         );
-
         $columnFamilyModificationdrop = $serializer->decodeMessage(
             new ModifyColumnFamiliesRequest_Modification(),
             [
@@ -140,7 +139,6 @@ class GrpcTest extends TestCase
                 'drop' => true
             ]
         );
-
         $modifications = [
             $columnFamilyModificationCreate,
             $columnFamilyModificationUpdate,
@@ -190,7 +188,6 @@ class GrpcTest extends TestCase
                         ['id'=>'cf1', 'create'=> []],
                         ['id'=>'cf2', 'update'=>[]],
                         ['id'=>'cf3', 'drop'=>true]
-
                     ]
                 ],
                 [self::TABLE, $modifications, ['headers' => ['google-cloud-resource-prefix' => [self::TABLE]]]]

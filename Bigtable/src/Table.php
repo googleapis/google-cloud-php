@@ -14,6 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 namespace Google\Cloud\Bigtable;
 
 use Google\Cloud\Bigtable\Admin\V2\BigtableTableAdminClient as TableAdminClient;
@@ -29,6 +30,11 @@ use Google\Cloud\Core\LongRunning\LROTrait;
  *
  * Example:
  * ```
+ * use Google\Cloud\Bigtable\BigtableClient;
+ *
+ * $bigtable = new BigtableClient();
+ * $instance = $bigtable->instance('my-instance');
+ *
  * $table = $instance->table('my-table');
  * ```
  *
@@ -80,7 +86,6 @@ class Table
     private $info;
 
     /**
-     *
      * @param ConnectionInterface $connection The connection to the
      *        Cloud Bigtable Admin API.
      * @param LongRunningConnectionInterface $lroConnection An implementation
@@ -91,7 +96,7 @@ class Table
      *        operation.metadata.typeUrl.
      * @param string $projectId The project ID.
      * @param string $instanceId The instance ID.
-     * @param string $tableId The table ID.
+     * @param string $id The table ID.
      * @param array $info [optional] A representation of the table object.
      * @throws \InvalidArgumentException if invalid argument
      */
@@ -101,16 +106,16 @@ class Table
         array $lroCallables,
         $projectId,
         $instanceId,
-        $tableId,
+        $id,
         array $info = []
     ) {
         $this->connection = $connection;
         $this->projectId = $projectId;
         $this->validate($instanceId, 'instance');
         $this->instanceId = $instanceId;
-        $this->validate($tableId, 'table');
-        $this->name = TableAdminClient::tableName($projectId, $instanceId, $tableId);
-        $this->id = $tableId;
+        $this->validate($id, 'table');
+        $this->name = TableAdminClient::tableName($projectId, $instanceId, $id);
+        $this->id = $id;
         $this->info = $info;
         $this->setLroProperties($lroConnection, $lroCallables, $this->name);
     }
@@ -150,7 +155,6 @@ class Table
      *
      * This method may require a service call.
      *
-     *
      * @param array $options [optional] Configuration options.
      */
     public function info(array $options = [])
@@ -163,7 +167,6 @@ class Table
      *
      * This method requires a service call.
      *
-     *
      * @param array $options [optional] Configuration options.
      */
     public function exists(array $options = [])
@@ -173,7 +176,6 @@ class Table
 
     /**
      * Fetch a fresh representation of the table from the service.
-     *
      *
      * @codingStandardsIgnoreStart
      * @see https://cloud.google.com/bigtable/docs/reference/admin/rpc/google.bigtable.admin.v2#google.bigtable.admin.v2.GetTableRequest GetTableRequest
@@ -191,9 +193,8 @@ class Table
      * Return the table state.
      *
      * When tables are created or updated, they may take some time before
-     * they are ready for use. This method allows for checking whether an
+     * they are ready for use. This method allows for checking whether a
      * table is ready.
-     *
      *
      * @param array $options [optional] Configuration options.
      */
@@ -210,17 +211,13 @@ class Table
      * $tableInfo = $table->create();
      * ```
      *
-     * @todo add options for ColumnFamily
-     *
      * @codingStandardsIgnoreStart
      * @see https://cloud.google.com/bigtable/docs/reference/admin/rpc/google.bigtable.admin.v2#google.bigtable.admin.v2.CreateTableRequest CreateTableRequest
      * @codingStandardsIgnoreEnd
      *
+     * @todo add options for ColumnFamily
      * @param array $options [optional] Configuration options.
-     *
      * @return array Table information
-     *
-     * @throws \InvalidArgumentException
      */
     public function create(array $options = [])
     {
@@ -234,7 +231,7 @@ class Table
     }
 
     /**
-     * Delete table.
+     * Delete the current table.
      *
      * Example:
      * ```
@@ -253,29 +250,28 @@ class Table
     }
 
     /**
-     * Add columnFamily.
+     * Add column families to the current table.
      *
      * Example:
      * ```
-     * $tableInfo = $table->addColumnFamilys(['cf1'=>[],'cf2'=>[],'cf3'=>[]]);
+     * $tableInfo = $table->addColumnFamilies([
+     *     ['id' => 'cf1', 'gcRule'=>[]],
+     *     ['id' => 'cf2', 'gcRule'=>[]],
+     *     ['id' => 'cf3', 'gcRule'=>[]]
+     * ]);
      * ```
      * @todo add GCRule options
-     *
-     * @param array[] $columnFamilys List of ColumnFamily, key is name of column family,
-     *        value is optional GCRule
-     *
+     * @param array[] $columnFamilies List of ColumnFamilies, each entry in the list
+     *        is array with key `id` for id of ColumnFamily
      * @param array $options [optional] Configuration options.
-     *
      * @return array Table information
      */
-
-    public function addColumnFamilys(array $columnFamilys, array $options = [])
+    public function addColumnFamilies(array $columnFamilies, array $options = [])
     {
         $modifications = [];
-        foreach ($columnFamilys as $columnFamily => $gcRule) {
-            $modifications[] = [ 'id' => $columnFamily, 'create' => $gcRule];
+        foreach ($columnFamilies as $columnFamily) {
+            $modifications[] = ['id' => $columnFamily['id'], 'create' => $columnFamily['gcRule']];
         }
-
         $this->info = $this->connection->modifyColumnFamilies([
             'name' => $this->name,
             'modifications' => $modifications
@@ -285,27 +281,23 @@ class Table
     }
 
     /**
-     * Drop columnFamily.
+     * Drop column families to the current table.
      *
      * Example:
      * ```
-     * $tableInfo = $table->dropColumnFamilys(['cf1','cf2','cf3']);
+     * $tableInfo = $table->dropColumnFamilies(['cf1', 'cf2', 'cf3']);
      * ```
      *
-     * @param array $columnFamilys List of ColumnFamilys to be dropped
-     *
+     * @param array $columnFamilies List of ColumnFamilies to be dropped
      * @param array $options [optional] Configuration options.
-     *
      * @return array Table information
      */
-
-    public function dropColumnFamilys(array $columnFamilys, array $options = [])
+    public function dropColumnFamilies(array $columnFamilies, array $options = [])
     {
         $modifications = [];
-        foreach ($columnFamilys as $columnFamily) {
+        foreach ($columnFamilies as $columnFamily) {
             $modifications[] = [ 'id' => $columnFamily, 'drop' => true];
         }
-
         $this->info = $this->connection->modifyColumnFamilies([
             'name' => $this->name,
             'modifications' => $modifications
@@ -314,6 +306,13 @@ class Table
         return $this->info;
     }
 
+    /**
+     * Update column families to the current table.
+     */
+    public function updateColumnfamilies(array $columnFamilies, array $options = [])
+    {
+        throw new \BadMethodCallException('This method is not implemented yet');
+    }
 
     /**
      * Represent the class in a more readable and digestable fashion.

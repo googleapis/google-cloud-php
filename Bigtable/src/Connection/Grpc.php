@@ -20,8 +20,8 @@ namespace Google\Cloud\Bigtable\Connection;
 use Google\ApiCore\Serializer;
 use Google\Cloud\Bigtable\Admin\V2\BigtableInstanceAdminClient;
 use Google\Cloud\Bigtable\Admin\V2\BigtableTableAdminClient;
-use Google\Cloud\Bigtable\Admin\V2\ColumnFamily;
 use Google\Cloud\Bigtable\Admin\V2\Cluster;
+use Google\Cloud\Bigtable\Admin\V2\ColumnFamily;
 use Google\Cloud\Bigtable\Admin\V2\Instance;
 use Google\Cloud\Bigtable\Admin\V2\ModifyColumnFamiliesRequest_Modification;
 use Google\Cloud\Bigtable\Admin\V2\Table;
@@ -292,9 +292,7 @@ class Grpc implements ConnectionInterface
     }
 
     /**
-     *
-     * @todo add options for ColumnFamily
-     *
+     * @todo add options to create ColumnFamilies.
      * @param array $args
      */
     public function createTable(array $args)
@@ -353,35 +351,27 @@ class Grpc implements ConnectionInterface
         $modifications = $this->pluck('modifications', $args);
         return $this->send([$this->bigtableTableAdminClient, 'modifyColumnFamilies'], [
             $name,
-            array_map([$this,'columnFamilyModificationsObject'], $modifications),
+            array_map([$this,'columnFamilyModificationObject'], $modifications),
             $this->addResourcePrefixHeader($args, $name)
         ]);
     }
 
     /**
-     * @param array $modifications
+     * @param array $modification
      * @return Modification
      */
-    private function columnFamilyModificationsObject(array $modifications)
+    private function columnFamilyModificationObject(array $modification)
     {
-
-        if (isset($modifications['create'])) {
-            $create = $this->pluck('create', $modifications);
-            $modifications['create'] = $this->columnFamilyObject($create);
-        } elseif (isset($modifications['update'])) {
-            $update = $this->pluck('update', $modifications);
-            $modifications['update'] = $this->columnFamilyObject($update);
-        } elseif (isset($modifications['drop'])) {
-            $modifications['drop'] = true;
+        if (isset($modification['create'])) {
+            $modification['create'] = $this->columnFamilyObject($modification['create']);
+        } elseif (isset($modification['update'])) {
+            $modification['update'] = $this->columnFamilyObject($modification['update']);
+        } elseif (isset($modification['drop'])) {
+            $modification['drop'] = true;
         }
         return $this->serializer->decodeMessage(
             new ModifyColumnFamiliesRequest_Modification(),
-            $this->pluckArray([
-                'id',
-                'create',
-                'update',
-                'drop'
-            ], $modifications)
+            $modification
         );
     }
 

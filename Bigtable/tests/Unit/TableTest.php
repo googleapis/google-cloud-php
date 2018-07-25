@@ -14,6 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 namespace Google\Cloud\Bigtable\Tests\Unit;
 
 use Google\Cloud\Bigtable\Admin\V2\BigtableTableAdminClient as TableAdminClient;
@@ -49,7 +50,7 @@ class TableTest extends TestCase
         $this->checkAndSkipGrpcTests();
 
         $this->connection = $this->prophesize(ConnectionInterface::class);
-        $this->table = TestHelpers::stub(table::class, [
+        $this->table = TestHelpers::stub(Table::class, [
             $this->connection->reveal(),
             $this->prophesize(LongRunningConnectionInterface::class)->reveal(),
             [],
@@ -79,7 +80,7 @@ class TableTest extends TestCase
     public function testTableWhenBadIdFormatPassed()
     {
         $badTableId = 'badformat/my-table';
-        $table = TestHelpers::stub(table::class, [
+        $table = TestHelpers::stub(Table::class, [
             $this->connection->reveal(),
             $this->prophesize(LongRunningConnectionInterface::class)->reveal(),
             [],
@@ -117,10 +118,7 @@ class TableTest extends TestCase
 
     public function testDelete()
     {
-        $args = [
-            'name' => self::TABLE_NAME,
-        ];
-        $this->connection->deleteTable($args)
+        $this->connection->deleteTable(Argument::withEntry('name', self::TABLE_NAME))
             ->shouldBeCalled()
             ->willReturn([]);
         $this->table->___setProperty('connection', $this->connection->reveal());
@@ -129,7 +127,7 @@ class TableTest extends TestCase
         $this->assertEquals([], $info);
     }
 
-    public function testAddColumnFamilys()
+    public function testAddColumnFamilies()
     {
         $args = [
             'name' => self::TABLE_NAME,
@@ -144,16 +142,15 @@ class TableTest extends TestCase
                 'name' => self::TABLE_NAME
             ]);
         $this->table->___setProperty('connection', $this->connection->reveal());
-
-        $tableInfo = $this->table->addColumnFamilys([
-            'cf1' => [],
-            'cf2' => []
+        $tableInfo = $this->table->addColumnFamilies([
+            ['id' => 'cf1', 'gcRule' => []],
+            ['id' => 'cf2', 'gcRule' => []]
         ]);
 
         $this->assertEquals(self::TABLE_NAME, $tableInfo['name']);
     }
 
-    public function testDropColumnFamilys()
+    public function testDropColumnFamilies()
     {
         $args = [
             'name' => self::TABLE_NAME,
@@ -168,8 +165,7 @@ class TableTest extends TestCase
                 'name' => self::TABLE_NAME
             ]);
         $this->table->___setProperty('connection', $this->connection->reveal());
-
-        $tableInfo = $this->table->dropColumnFamilys([
+        $tableInfo = $this->table->dropColumnFamilies([
             'cf1',
             'cf2'
         ]);

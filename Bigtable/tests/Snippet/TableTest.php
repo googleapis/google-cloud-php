@@ -14,6 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 namespace Google\Cloud\Bigtable\Tests\Snippet;
 
 use Google\Cloud\Bigtable\Admin\V2\BigtableTableAdminClient as TableAdminClient;
@@ -70,7 +71,6 @@ class TableTest extends SnippetTestCase
     public function testClass()
     {
         $snippet = $this->snippetFromClass(Table::class);
-        $snippet->addLocal('instance', $this->instance);
         $res = $snippet->invoke('table');
 
         $this->assertInstanceOf(Table::class, $res->returnVal());
@@ -97,9 +97,7 @@ class TableTest extends SnippetTestCase
 
     public function testCreate()
     {
-
         $snippet = $this->snippetFromMethod(Table::class, 'create');
-        $snippet->addUse(Table::class);
         $snippet->addLocal('table', $this->table);
 
         $this->connection->createTable(Argument::any())
@@ -126,7 +124,6 @@ class TableTest extends SnippetTestCase
     public function testDelete()
     {
         $snippet = $this->snippetFromMethod(Table::class, 'delete');
-        $snippet->addUse(Table::class);
         $snippet->addLocal('table', $this->table);
 
         $this->connection->deleteTable(Argument::any())
@@ -139,10 +136,9 @@ class TableTest extends SnippetTestCase
         $this->assertEquals(null, $res->returnVal());
     }
 
-    public function testAddColumnFamilys()
+    public function testAddColumnFamilies()
     {
-        $snippet = $this->snippetFromMethod(Table::class, 'addColumnFamilys');
-        $snippet->addUse(Table::class);
+        $snippet = $this->snippetFromMethod(Table::class, 'addColumnFamilies');
         $snippet->addLocal('table', $this->table);
 
         $this->connection->modifyColumnFamilies(Argument::any())
@@ -155,10 +151,9 @@ class TableTest extends SnippetTestCase
         $this->assertEquals(self::TABLE_ID, $res->returnVal()['name']);
     }
 
-    public function testDropColumnFamilys()
+    public function testDropColumnFamilies()
     {
-        $snippet = $this->snippetFromMethod(Table::class, 'dropColumnFamilys');
-        $snippet->addUse(Table::class);
+        $snippet = $this->snippetFromMethod(Table::class, 'dropColumnFamilies');
         $snippet->addLocal('table', $this->table);
 
         $this->connection->modifyColumnFamilies(Argument::any())
