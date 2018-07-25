@@ -281,7 +281,7 @@ class Table
     }
 
     /**
-     * Drop column families to the current table.
+     * Drop column families from the current table.
      *
      * Example:
      * ```
@@ -309,7 +309,7 @@ class Table
     /**
      * Update column families to the current table.
      */
-    public function updateColumnfamilies(array $columnFamilies, array $options = [])
+    public function updateColumnFamilies(array $columnFamilies, array $options = [])
     {
         throw new \BadMethodCallException('This method is not implemented yet');
     }
