@@ -314,7 +314,7 @@ class Table
     }
 
     /**
-     * Update column families to the current table.
+     * Update column families on the current table.
      */
     public function updateColumnFamilies(array $columnFamilies, array $options = [])
     {
