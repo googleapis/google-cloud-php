@@ -44,9 +44,32 @@ class StreamingRecognitionResult extends \Google\Protobuf\Internal\Message
      */
     private $stability = 0.0;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type \Google\Cloud\Speech\V1\SpeechRecognitionAlternative[]|\Google\Protobuf\Internal\RepeatedField $alternatives
+     *           *Output-only* May contain one or more recognition hypotheses (up to the
+     *           maximum specified in `max_alternatives`).
+     *     @type bool $is_final
+     *           *Output-only* If `false`, this `StreamingRecognitionResult` represents an
+     *           interim result that may change. If `true`, this is the final time the
+     *           speech service will return this particular `StreamingRecognitionResult`,
+     *           the recognizer will not return any further hypotheses for this portion of
+     *           the transcript and corresponding audio.
+     *     @type float $stability
+     *           *Output-only* An estimate of the likelihood that the recognizer will not
+     *           change its guess about this interim result. Values range from 0.0
+     *           (completely unstable) to 1.0 (completely stable).
+     *           This field is only provided for interim results (`is_final=false`).
+     *           The default of 0.0 is a sentinel value indicating `stability` was not set.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Speech\V1\CloudSpeech::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

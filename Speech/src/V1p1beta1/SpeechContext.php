@@ -28,9 +28,24 @@ class SpeechContext extends \Google\Protobuf\Internal\Message
      */
     private $phrases;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $phrases
+     *           *Optional* A list of strings containing words and phrases "hints" so that
+     *           the speech recognition is more likely to recognize them. This can be used
+     *           to improve the accuracy for specific words and phrases, for example, if
+     *           specific commands are typically spoken by the user. This can also be used
+     *           to add additional words to the vocabulary of the recognizer. See
+     *           [usage limits](https://cloud.google.com/speech/limits#content).
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Speech\V1P1Beta1\CloudSpeech::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

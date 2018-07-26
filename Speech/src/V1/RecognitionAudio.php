@@ -20,9 +20,28 @@ class RecognitionAudio extends \Google\Protobuf\Internal\Message
 {
     protected $audio_source;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $content
+     *           The audio data bytes encoded as specified in
+     *           `RecognitionConfig`. Note: as with all bytes fields, protobuffers use a
+     *           pure binary representation, whereas JSON representations use base64.
+     *     @type string $uri
+     *           URI that points to a file that contains audio data bytes as specified in
+     *           `RecognitionConfig`. Currently, only Google Cloud Storage URIs are
+     *           supported, which must be specified in the following format:
+     *           `gs://bucket_name/object_name` (other URI formats return
+     *           [google.rpc.Code.INVALID_ARGUMENT][google.rpc.Code.INVALID_ARGUMENT]). For more information, see
+     *           [Request URIs](https://cloud.google.com/storage/docs/reference-uris).
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Speech\V1\CloudSpeech::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

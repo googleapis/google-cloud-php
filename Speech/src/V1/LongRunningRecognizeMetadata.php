@@ -37,9 +37,24 @@ class LongRunningRecognizeMetadata extends \Google\Protobuf\Internal\Message
      */
     private $last_update_time = null;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type int $progress_percent
+     *           Approximate percentage of audio processed thus far. Guaranteed to be 100
+     *           when the audio is fully processed and the results are available.
+     *     @type \Google\Protobuf\Timestamp $start_time
+     *           Time when the request was received.
+     *     @type \Google\Protobuf\Timestamp $last_update_time
+     *           Time of the most recent processing update.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Speech\V1\CloudSpeech::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

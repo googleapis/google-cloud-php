@@ -80,9 +80,45 @@ class RecognitionMetadata extends \Google\Protobuf\Internal\Message
      */
     private $audio_topic = '';
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type int $interaction_type
+     *           The use case most closely describing the audio content to be recognized.
+     *     @type int $industry_naics_code_of_audio
+     *           The industry vertical to which this speech recognition request most
+     *           closely applies. This is most indicative of the topics contained
+     *           in the audio.  Use the 6-digit NAICS code to identify the industry
+     *           vertical - see https://www.naics.com/search/.
+     *     @type int $microphone_distance
+     *           The audio type that most closely describes the audio being recognized.
+     *     @type int $original_media_type
+     *           The original media the speech was recorded on.
+     *     @type int $recording_device_type
+     *           The type of device the speech was recorded with.
+     *     @type string $recording_device_name
+     *           The device used to make the recording.  Examples 'Nexus 5X' or
+     *           'Polycom SoundStation IP 6000' or 'POTS' or 'VoIP' or
+     *           'Cardioid Microphone'.
+     *     @type string $original_mime_type
+     *           Mime type of the original audio file.  For example `audio/m4a`,
+     *           `audio/x-alaw-basic`, `audio/mp3`, `audio/3gpp`.
+     *           A list of possible audio mime types is maintained at
+     *           http://www.iana.org/assignments/media-types/media-types.xhtml#audio
+     *     @type int|string $obfuscated_id
+     *           Obfuscated (privacy-protected) ID of the user, to identify number of
+     *           unique users using the service.
+     *     @type string $audio_topic
+     *           Description of the content. Eg. "Recordings of federal supreme court
+     *           hearings from 2012".
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Speech\V1P1Beta1\CloudSpeech::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

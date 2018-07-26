@@ -39,9 +39,28 @@ class SpeechRecognitionAlternative extends \Google\Protobuf\Internal\Message
      */
     private $words;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $transcript
+     *           *Output-only* Transcript text representing the words that the user spoke.
+     *     @type float $confidence
+     *           *Output-only* The confidence estimate between 0.0 and 1.0. A higher number
+     *           indicates an estimated greater likelihood that the recognized words are
+     *           correct. This field is typically provided only for the top hypothesis, and
+     *           only for `is_final=true` results. Clients should not rely on the
+     *           `confidence` field as it is not guaranteed to be accurate or consistent.
+     *           The default of 0.0 is a sentinel value indicating `confidence` was not set.
+     *     @type \Google\Cloud\Speech\V1\WordInfo[]|\Google\Protobuf\Internal\RepeatedField $words
+     *           *Output-only* A list of word-specific information for each recognized word.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Speech\V1\CloudSpeech::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

@@ -21,9 +21,30 @@ class StreamingRecognizeRequest extends \Google\Protobuf\Internal\Message
 {
     protected $streaming_request;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type \Google\Cloud\Speech\V1p1beta1\StreamingRecognitionConfig $streaming_config
+     *           Provides information to the recognizer that specifies how to process the
+     *           request. The first `StreamingRecognizeRequest` message must contain a
+     *           `streaming_config`  message.
+     *     @type string $audio_content
+     *           The audio data to be recognized. Sequential chunks of audio data are sent
+     *           in sequential `StreamingRecognizeRequest` messages. The first
+     *           `StreamingRecognizeRequest` message must not contain `audio_content` data
+     *           and all subsequent `StreamingRecognizeRequest` messages must contain
+     *           `audio_content` data. The audio bytes must be encoded as specified in
+     *           `RecognitionConfig`. Note: as with all bytes fields, protobuffers use a
+     *           pure binary representation (not base64). See
+     *           [audio limits](https://cloud.google.com/speech/limits#content).
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Speech\V1P1Beta1\CloudSpeech::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

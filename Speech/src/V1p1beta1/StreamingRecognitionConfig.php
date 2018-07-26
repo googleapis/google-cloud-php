@@ -48,9 +48,36 @@ class StreamingRecognitionConfig extends \Google\Protobuf\Internal\Message
      */
     private $interim_results = false;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type \Google\Cloud\Speech\V1p1beta1\RecognitionConfig $config
+     *           *Required* Provides information to the recognizer that specifies how to
+     *           process the request.
+     *     @type bool $single_utterance
+     *           *Optional* If `false` or omitted, the recognizer will perform continuous
+     *           recognition (continuing to wait for and process audio even if the user
+     *           pauses speaking) until the client closes the input stream (gRPC API) or
+     *           until the maximum time limit has been reached. May return multiple
+     *           `StreamingRecognitionResult`s with the `is_final` flag set to `true`.
+     *           If `true`, the recognizer will detect a single spoken utterance. When it
+     *           detects that the user has paused or stopped speaking, it will return an
+     *           `END_OF_SINGLE_UTTERANCE` event and cease recognition. It will return no
+     *           more than one `StreamingRecognitionResult` with the `is_final` flag set to
+     *           `true`.
+     *     @type bool $interim_results
+     *           *Optional* If `true`, interim results (tentative hypotheses) may be
+     *           returned as they become available (these interim results are indicated with
+     *           the `is_final=false` flag).
+     *           If `false` or omitted, only `is_final=true` result(s) are returned.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Speech\V1P1Beta1\CloudSpeech::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**
