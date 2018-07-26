@@ -24,6 +24,7 @@ use Google\Cloud\PubSub\Connection\ConnectionInterface;
 use Google\Cloud\PubSub\Message;
 use Google\Cloud\PubSub\PubSubClient;
 use Google\Cloud\PubSub\Subscription;
+use Google\Cloud\PubSub\Topic;
 use Prophecy\Argument;
 
 /**
@@ -77,6 +78,15 @@ class SubscriptionTest extends SnippetTestCase
         $snippet->addLocal('subscription', $this->subscription);
         $res = $snippet->invoke();
         $this->assertEquals(self::SUBSCRIPTION, $res->output());
+    }
+
+    public function testTopic()
+    {
+        $snippet = $this->snippetFromMethod(Subscription::class, 'topic');
+        $snippet->addLocal('subscription', $this->subscription);
+
+        $res = $snippet->invoke('topic');
+        $this->assertInstanceOf(Topic::class, $res->returnVal());
     }
 
     public function testCreate()
@@ -142,7 +152,7 @@ class SubscriptionTest extends SnippetTestCase
 
         $this->connection->getSubscription(Argument::any())
             ->shouldBeCalled()
-            ->willReturn(['name' => self::SUBSCRIPTION]);
+            ->willReturn(['name' => self::SUBSCRIPTION, 'topic' => self::TOPIC]);
 
         $this->subscription->___setProperty('connection', $this->connection->reveal());
 
@@ -157,7 +167,7 @@ class SubscriptionTest extends SnippetTestCase
 
         $this->connection->getSubscription(Argument::any())
             ->shouldBeCalled()
-            ->willReturn(['name' => self::SUBSCRIPTION]);
+            ->willReturn(['name' => self::SUBSCRIPTION, 'topic' => self::TOPIC]);
 
         $this->subscription->___setProperty('connection', $this->connection->reveal());
 

@@ -186,6 +186,10 @@ class Topic
      * a boolean value. If you want to check for errors, use
      * {@see Google\Cloud\PubSub\Topic::info()}.
      *
+     * If a topic has been deleted, this method will return `false`. To
+     * differentiate between a deleted topic and non-existent topic, use
+     * {@see Google\Cloud\PubSub\Topic::deleted()}.
+     *
      * Example:
      * ```
      * if ($topic->exists()) {
@@ -198,12 +202,35 @@ class Topic
      */
     public function exists(array $options = [])
     {
+        if ($this->isDeleted()) {
+            return false;
+        }
+
         try {
             $this->info($options);
             return true;
         } catch (NotFoundException $e) {
             return false;
         }
+    }
+
+    /**
+     * Check if a topic was deleted.
+     *
+     * To check if a topic exists, use {@see Google\Cloud\PubSub\Topic::exists()}.
+     *
+     * You may encounter a deleted topic if you fetch the topic from a subscription.
+     *
+     * Example:
+     * ```
+     * $deleted = $topic->isDeleted();
+     * ```
+     *
+     * @return bool
+     */
+    public function isDeleted()
+    {
+        return $this->pluckName('topic', $this->name) === '_deleted-topic_';
     }
 
     /**
@@ -578,7 +605,7 @@ class Topic
             $this->connection,
             $this->projectId,
             $name,
-            $this->name,
+            $this,
             $this->encode,
             $info
         );

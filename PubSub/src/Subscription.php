@@ -79,9 +79,9 @@ class Subscription
     private $name;
 
     /**
-     * @var string
+     * @var Topic|null
      */
-    private $topicName;
+    private $topic;
 
     /**
      * @var bool
@@ -107,7 +107,7 @@ class Subscription
      * @param ConnectionInterface $connection The service connection object
      * @param string $projectId The current project
      * @param string $name The subscription name
-     * @param string $topicName The topic name the subscription is attached to
+     * @param string|Topic|null $topic The topic object, or the topic name the subscription is attached to
      * @param bool $encode Whether messages are encrypted or not.
      * @param array $info [optional] Subscription info. Used to pre-populate the object.
      */
@@ -115,7 +115,7 @@ class Subscription
         ConnectionInterface $connection,
         $projectId,
         $name,
-        $topicName,
+        $topic,
         $encode,
         array $info = []
     ) {
@@ -131,14 +131,24 @@ class Subscription
             $this->name = $this->formatName('subscription', $name, $projectId);
         }
 
-        // Accept either a simple name or a fully-qualified name.
-        if ($this->isFullyQualifiedName('topic', $topicName)) {
-            $this->topicName = $topicName;
+        if ($topic instanceof Topic) {
+            $topic = clone $topic;
         } else {
-            $this->topicName = !is_null($topicName)
-                ? $this->formatName('topic', $topicName, $projectId)
-                : null;
+            // Accept either a simple name or a fully-qualified name.
+            // If the topic is null, use the topic name in the subscription info.
+            // If there's no subscription info, set the topic to null.
+            if (is_string($topic) && !$this->isFullyQualifiedName('topic', $topic)) {
+                $topic = $this->formatName('topic', $topic, $projectId);
+            } elseif ($topic === null && isset($info['topic'])) {
+                $topic = $info['topic'];
+            }
+
+            if (is_string($topic)) {
+                $topic = new Topic($connection, $projectId, $topic, $encode);
+            }
         }
+
+        $this->topic = $topic;
     }
 
     /**
@@ -154,6 +164,29 @@ class Subscription
     public function name()
     {
         return $this->name;
+    }
+
+    /**
+     * Get the topic to which the subscription is attached.
+     *
+     * If the topic isn't already known by the Subscription, this method will
+     * execute a service request to obtain the subscription data and return the
+     * topic.
+     *
+     * Example:
+     * ```
+     * $topic = $subscription->topic();
+     * ```
+     *
+     * @return Topic
+     */
+    public function topic(array $options = [])
+    {
+        if (is_null($this->topic)) {
+            $this->reload($options);
+        }
+
+        return $this->topic;
     }
 
     /**
@@ -209,14 +242,14 @@ class Subscription
         // If a subscription is created via PubSubClient::subscription(),
         // it may or may not have a topic name. This is fine for most API
         // interactions, but a topic name is required to create a subscription.
-        if (!$this->topicName) {
+        if (!$this->topic) {
             throw new InvalidArgumentException('A topic name is required to
                 create a subscription.');
         }
 
         $this->info = $this->connection->createSubscription($options + [
             'name' => $this->name,
-            'topic' => $this->topicName
+            'topic' => $this->topic->name()
         ]);
 
         return $this->info;
@@ -365,9 +398,17 @@ class Subscription
      */
     public function reload(array $options = [])
     {
-        return $this->info = $this->connection->getSubscription($options + [
+        $this->info = $this->connection->getSubscription($options + [
             'subscription' => $this->name
         ]);
+
+        // If no topic is set, or if the topic name has changed (this happens when a topic is deleted),
+        // set the new topic.
+        if (is_null($this->topic) || $this->topic->name() !== $this->info['topic']) {
+            $this->topic = $this->topicFactory($this->info['topic']);
+        }
+
+        return $this->info;
     }
 
     /**
@@ -690,6 +731,28 @@ class Subscription
     }
 
     /**
+     * Create an instance of a topic
+     *
+     * @codingStandardsIgnoreStart
+     * @param string $name The topic name
+     * @param array  $info [optional] Information about the topic. Used internally to
+     *        populate topic objects with an API result. Should be
+     *        a representation of a [Topic](https://cloud.google.com/pubsub/docs/reference/rest/v1/projects.topics#Topic).
+     * @return Topic
+     * @codingStandardsIgnoreEnd
+     */
+    private function topicFactory($name, array $info = [])
+    {
+        return new Topic(
+            $this->connection,
+            $this->projectId,
+            $name,
+            $this->encode,
+            $info
+        );
+    }
+
+    /**
      * Present a nicer debug result to people using php 5.6 or greater.
      * @return array
      * @codeCoverageIgnore
@@ -699,7 +762,7 @@ class Subscription
     {
         return [
             'name' => $this->name,
-            'topicName' => $this->topicName,
+            'topic' => $this->topic,
             'projectId' => $this->projectId,
             'info' => $this->info,
             'connection' => get_class($this->connection)

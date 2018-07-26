@@ -73,7 +73,17 @@ class ManageSubscriptionsTest extends PubSubTestCase
     public function testCreateAndListSnapshots($client)
     {
         $subs = $client->subscriptions();
-        $sub = $subs->current();
+        $hasTopic = false;
+        foreach ($subs as $sub) {
+            if ($sub->topic()->exists()) {
+                $hasTopic = true;
+                break;
+            }
+        }
+
+        if (!$hasTopic) {
+            throw new \Exception('No subscription found with valid topic.');
+        }
 
         $snapName = uniqid(self::TESTING_PREFIX);
 
@@ -101,6 +111,27 @@ class ManageSubscriptionsTest extends PubSubTestCase
         $sub->seekToSnapshot($client->snapshot($snapName));
 
         $sub->seekToTime($client->timestamp(new \DateTime));
+    }
+
+    /**
+     * @dataProvider clientProvider
+     */
+    public function testSubscribeAndDeleteTopic($client)
+    {
+        $topic = $client->createTopic(uniqid(self::TESTING_PREFIX));
+        $subscription = $topic->subscribe(uniqid(self::TESTING_PREFIX));
+        self::$deletionQueue->add($subscription);
+        $topic->delete();
+
+        $this->assertEquals($topic->name(), $subscription->topic()->name());
+
+        $name = explode('/', $topic->name());
+        array_pop($name);
+        $name[] = '_deleted-topic_';
+        $name = implode('/', $name);
+
+        $subscription->reload();
+        $this->assertEquals($name, $subscription->topic()->name());
     }
 
     private function assertSubsFound($class, $expectedSubs)

@@ -546,11 +546,15 @@ class PubSubClient
      */
     private function subscriptionFactory($name, $topicName = null, array $info = [])
     {
+        $topic = $topicName ?
+            $this->topicFactory($topicName)
+            : null;
+
         return new Subscription(
             $this->connection,
             $this->projectId,
             $name,
-            $topicName,
+            $topic,
             $this->encode,
             $info
         );

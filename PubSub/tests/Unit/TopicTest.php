@@ -33,6 +33,11 @@ use Prophecy\Argument;
  */
 class TopicTest extends TestCase
 {
+    const TOPIC = 'projects/project-id/topics/topic-id';
+    const DELETED = 'projects/project-id/topics/_deleted-topic_';
+    const SUBSCRIPTION = 'projects/project-id/subscriptions/subscription-id';
+    const PROJECT = 'project-id';
+
     private $topic;
     private $connection;
 
@@ -41,22 +46,22 @@ class TopicTest extends TestCase
         $this->connection = $this->prophesize(ConnectionInterface::class);
         $this->topic = TestHelpers::stub(Topic::class, [
             $this->connection->reveal(),
-            'project-name',
-            'topic-name',
+            self::PROJECT,
+            'topic-id',
             true
-        ]);
+        ], ['connection', 'name']);
     }
 
     public function testName()
     {
-        $this->assertEquals($this->topic->name(), 'projects/project-name/topics/topic-name');
+        $this->assertEquals($this->topic->name(), self::TOPIC);
     }
 
     public function testCreate()
     {
         $this->connection->createTopic(Argument::withEntry('foo', 'bar'))
             ->willReturn([
-                'name' => 'projects/project-name/topics/topic-name'
+                'name' => self::TOPIC
             ]);
 
         $this->connection->getTopic()->shouldNotBeCalled();
@@ -68,7 +73,7 @@ class TopicTest extends TestCase
         // Make sure the topic data gets cached!
         $this->topic->info();
 
-        $this->assertEquals('projects/project-name/topics/topic-name', $res['name']);
+        $this->assertEquals(self::TOPIC, $res['name']);
     }
 
     public function testDelete()
@@ -85,7 +90,7 @@ class TopicTest extends TestCase
     {
         $this->connection->getTopic(Argument::withEntry('foo', 'bar'))
             ->willReturn([
-                'name' => 'projects/project-name/topics/topic-name'
+                'name' => self::TOPIC
             ]);
 
         $this->topic->___setProperty('connection', $this->connection->reveal());
@@ -103,11 +108,28 @@ class TopicTest extends TestCase
         $this->assertFalse($this->topic->exists(['foo' => 'bar']));
     }
 
+    public function testIsDeleted()
+    {
+        $this->assertFalse($this->topic->isDeleted());
+    }
+
+    public function testIsDeletedTrue()
+    {
+        $topic = TestHelpers::stub(Topic::class, [
+            $this->connection->reveal(),
+            self::PROJECT,
+            '_deleted-topic_',
+            true
+        ]);
+
+        $this->assertTrue($topic->isDeleted());
+    }
+
     public function testInfo()
     {
         $this->connection->getTopic(Argument::withEntry('foo', 'bar'))
             ->willReturn([
-                'name' => 'projects/project-name/topics/topic-name'
+                'name' => self::TOPIC
             ])->shouldBeCalledTimes(1);
 
         $this->topic->___setProperty('connection', $this->connection->reveal());
@@ -116,21 +138,35 @@ class TopicTest extends TestCase
         $res2 = $this->topic->info();
 
         $this->assertEquals($res, $res2);
-        $this->assertEquals($res['name'], 'projects/project-name/topics/topic-name');
+        $this->assertEquals($res['name'], self::TOPIC);
     }
 
     public function testReload()
     {
         $this->connection->getTopic(Argument::withEntry('foo', 'bar'))
             ->willReturn([
-                'name' => 'projects/project-name/topics/topic-name'
+                'name' => self::TOPIC
             ]);
 
         $this->topic->___setProperty('connection', $this->connection->reveal());
 
         $res = $this->topic->reload(['foo' => 'bar']);
 
-        $this->assertEquals($res['name'], 'projects/project-name/topics/topic-name');
+        $this->assertEquals($res['name'], self::TOPIC);
+    }
+
+    public function testExistsDeleted()
+    {
+        $this->topic->___setProperty('name', self::DELETED);
+
+        $this->connection->getTopic()
+            ->shouldNotBeCalled();
+
+        $this->topic->___setProperty('connection', $this->connection->reveal());
+
+        $res = $this->topic->exists();
+
+        $this->assertFalse($this->topic->exists());
     }
 
     public function testPublish()
@@ -250,8 +286,8 @@ class TopicTest extends TestCase
     public function testSubscribe()
     {
         $subscriptionData = [
-            'name' => 'projects/project-name/subscriptions/subscription-name',
-            'topic' => 'projects/project-name/topics/topic-name'
+            'name' => self::SUBSCRIPTION,
+            'topic' => self::TOPIC
         ];
 
         $this->connection->createSubscription(Argument::withEntry('foo', 'bar'))
@@ -275,9 +311,9 @@ class TopicTest extends TestCase
     public function testSubscriptions()
     {
         $subscriptionResult = [
-            'projects/project-name/subscriptions/subscription-a',
-            'projects/project-name/subscriptions/subscription-b',
-            'projects/project-name/subscriptions/subscription-c',
+            sprintf('projects/%s/subscriptions/subscription-a', self::PROJECT),
+            sprintf('projects/%s/subscriptions/subscription-b', self::PROJECT),
+            sprintf('projects/%s/subscriptions/subscription-c', self::PROJECT),
         ];
 
         $this->connection->listSubscriptionsByTopic(Argument::withEntry('foo', 'bar'))
@@ -303,9 +339,9 @@ class TopicTest extends TestCase
     public function testSubscriptionsPaged()
     {
         $subscriptionResult = [
-            'projects/project-name/subscriptions/subscription-a',
-            'projects/project-name/subscriptions/subscription-b',
-            'projects/project-name/subscriptions/subscription-c',
+            sprintf('projects/%s/subscriptions/subscription-a', self::PROJECT),
+            sprintf('projects/%s/subscriptions/subscription-b', self::PROJECT),
+            sprintf('projects/%s/subscriptions/subscription-c', self::PROJECT),
         ];
 
         $this->connection->listSubscriptionsByTopic(Argument::allOf(
