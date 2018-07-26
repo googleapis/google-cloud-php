@@ -981,7 +981,7 @@ class StorageObject
      *     @type string $contentType If you provide this value, the client must
      *           provide this HTTP header set to the same value.
      *     @type string $origin Value of CORS header
-     *           "Access-Control-Allow-Origin". **Defaults to** "*".
+     *           "Access-Control-Allow-Origin". **Defaults to** `"*"`.
      *     @type string $contentMd5 The MD5 digest value in base64. If you
      *           provide this, the client must provide this HTTP header with
      *           this same value in its request. If provided, take care to
