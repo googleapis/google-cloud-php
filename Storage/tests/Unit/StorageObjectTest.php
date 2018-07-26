@@ -534,7 +534,11 @@ class StorageObjectTest extends TestCase
         $this->assertEquals($expectedUri, $object->gcsUri());
     }
 
-    public function testSignedUrl()
+    /**
+     * @group storage-signed-url
+     * @dataProvider signedUrlExpiration
+     */
+    public function testSignedUrl($exp, $seconds)
     {
         $object = new StorageObjectSignatureStub($this->connection->reveal(), self::OBJECT, 'bucket', 'foo');
         $ts = new Timestamp(new \DateTime(self::TIMESTAMP));
@@ -544,11 +548,11 @@ class StorageObjectTest extends TestCase
         $contentType = $responseType = 'text/plain';
         $digest = base64_encode(md5('hello world'));
 
-        $url = $object->signedUrl($ts, [
+        $url = $object->signedUrl($exp, [
             'keyFile' => $this->kf,
             'headers' => [
-                'foo' => ['bar', 'bar'],
-                'bat' => 'baz'
+                'x-goog-foo' => ['bar', 'bar'],
+                'x-goog-bat' => 'baz'
             ],
             'contentType' => $contentType,
             'responseDisposition' => 'foo',
@@ -561,8 +565,8 @@ class StorageObjectTest extends TestCase
             $digest,
             $contentType,
             $seconds,
-            'foo:bar,bar',
-            'bat:baz',
+            'x-goog-bat:baz',
+            'x-goog-foo:bar,bar',
             '/bucket/object.txt'
         ]);
 
@@ -579,6 +583,58 @@ class StorageObjectTest extends TestCase
         $this->assertContains('response-content-type='. urlencode($responseType), $pieces);
     }
 
+    public function signedUrlExpiration()
+    {
+        $ts = new Timestamp(new \DateTime(self::TIMESTAMP));
+        $seconds = $ts->get()->format('U');
+
+        return [
+            [$ts, $seconds],
+            [$seconds, $seconds]
+        ];
+    }
+
+    /**
+     * @group storage-signed-url
+     * @expectedException InvalidArgumentException
+     */
+    public function testSignedUrlInvalidExpirationType()
+    {
+        $object = new StorageObjectSignatureStub($this->connection->reveal(), 'object.txt', 'bucket', 'foo');
+        $object->signedUrl('foo', [
+            'keyFile' => $this->kf,
+        ]);
+    }
+
+    /**
+     * @group storage-signed-url
+     * @dataProvider signedUrlInvalidHeaders
+     * @expectedException InvalidArgumentException
+     */
+    public function testSignedUrlInvalidHeader($header, $val = 'val')
+    {
+        $object = new StorageObjectSignatureStub($this->connection->reveal(), 'object.txt', 'bucket', 'foo');
+        $object->signedUrl(time()+1, [
+            'keyFile' => $this->kf,
+            'headers' => [
+                $header => $val
+            ]
+        ]);
+    }
+
+    public function signedUrlInvalidHeaders()
+    {
+        return [
+            ['x-goog-encryption-key'],
+            ['x-goog-encryption-key-sha256'],
+            ['foo'],
+            ['x-goog-test', 'test' . PHP_EOL .' test']
+        ];
+    }
+
+    /**
+     * @group storage-signed-url
+     */
     public function testSignedUrlWithSaveAsName()
     {
         $object = new StorageObjectSignatureStub($this->connection->reveal(), self::OBJECT, self::BUCKET);
@@ -609,6 +665,9 @@ class StorageObjectTest extends TestCase
         $this->assertContains('response-content-disposition=attachment;filename="foo"', $pieces);
     }
 
+    /**
+     * @group storage-signed-url
+     */
     public function testSignedUrlConnectionKeyfile()
     {
         $rw = $this->prophesize(RequestWrapper::class);
@@ -641,6 +700,9 @@ class StorageObjectTest extends TestCase
         $this->assertEquals($object->input, $input);
     }
 
+    /**
+     * @group storage-signed-url
+     */
     public function testSignedUrlWithSpace()
     {
         $name = 'object object.txt';
@@ -659,10 +721,6 @@ class StorageObjectTest extends TestCase
 
         $url = $object->signedUrl($ts, [
             'keyFile' => $this->kf,
-            'headers' => [
-                'foo' => ['bar', 'bar'],
-                'bat' => 'baz'
-            ],
             'contentType' => $contentType,
             'responseDisposition' => 'foo',
             'responseType' => $responseType,
@@ -674,8 +732,6 @@ class StorageObjectTest extends TestCase
             $digest,
             $contentType,
             $seconds,
-            'foo:bar,bar',
-            'bat:baz',
             sprintf('/%s/%s', self::BUCKET, rawurlencode($name))
         ]);
 
@@ -699,6 +755,9 @@ class StorageObjectTest extends TestCase
         $this->assertContains('response-content-type='. urlencode($responseType), $pieces);
     }
 
+    /**
+     * @group storage-signed-url
+     */
     public function testSignedUploadUrl()
     {
         $object = new StorageObjectSignatureStub(
@@ -716,10 +775,6 @@ class StorageObjectTest extends TestCase
 
         $url = $object->signedUploadUrl($ts, [
             'keyFile' => $this->kf,
-            'headers' => [
-                'foo' => ['bar', 'bar'],
-                'bat' => 'baz'
-            ],
             'contentType' => $contentType,
             'contentMd5' => $digest
         ]);
@@ -729,8 +784,6 @@ class StorageObjectTest extends TestCase
             $digest,
             $contentType,
             $seconds,
-            'foo:bar,bar',
-            'bat:baz',
             'x-goog-resumable:start',
             '/bucket/object.txt'
         ]);
@@ -744,6 +797,9 @@ class StorageObjectTest extends TestCase
         $this->assertEquals($object->input, $input);
     }
 
+    /**
+     * @group storage-signed-url
+     */
     public function testSignedUploadUrlNestedName()
     {
         $objectName = 'folder1/folder2/object.txt';
@@ -763,8 +819,8 @@ class StorageObjectTest extends TestCase
         $url = $object->signedUploadUrl($ts, [
             'keyFile' => $this->kf,
             'headers' => [
-                'foo' => ['bar', 'bar'],
-                'bat' => 'baz'
+                'x-goog-foo' => ['bar', 'bar'],
+                'x-goog-bat' => 'baz'
             ],
             'contentType' => $contentType,
             'contentMd5' => $digest
@@ -775,8 +831,8 @@ class StorageObjectTest extends TestCase
             $digest,
             $contentType,
             $seconds,
-            'foo:bar,bar',
-            'bat:baz',
+            'x-goog-bat:baz',
+            'x-goog-foo:bar,bar',
             'x-goog-resumable:start',
             sprintf('/%s/%s', self::BUCKET, $objectName)
         ]);
@@ -790,6 +846,9 @@ class StorageObjectTest extends TestCase
         $this->assertEquals($object->input, $input);
     }
 
+    /**
+     * @group storage-signed-url
+     */
     public function testBeginSignedUploadSession()
     {
         $ts = new Timestamp(new \DateTime('+1 minute'));
@@ -828,6 +887,52 @@ class StorageObjectTest extends TestCase
     }
 
     /**
+     * @group storage-signed-url
+     */
+    public function testBeginSignedUploadSessionWithOrigin()
+    {
+        $ts = new Timestamp(new \DateTime('+1 minute'));
+
+        $seconds = $ts->get()->format('U');
+
+        $rw = $this->prophesize(RequestWrapper::class);
+        $test = $this;
+        $sessionUri = 'http://example.com';
+
+        $rw->send(Argument::that(function ($arg) {
+            if (!($arg instanceof RequestInterface)) {
+                return false;
+            }
+
+            if ($arg->getHeaderLine('Origin') !== 'http://google.com') {
+                return false;
+            }
+
+            return true;
+        }), Argument::type('array'))
+            ->will(function ($args) use ($sessionUri, $test) {
+                $res = $test->prophesize(ResponseInterface::class);
+                $res->getHeaderLine('Location')
+                    ->willReturn($sessionUri);
+
+                return $res->reveal();
+            });
+
+        $this->connection->requestWrapper()
+            ->willReturn($rw->reveal());
+
+        $object = new StorageObjectSignatureStub($this->connection->reveal(), 'object.txt', 'bucket', 'foo');
+
+        $uri = $object->beginSignedUploadSession([
+            'keyFile' => $this->kf,
+            'origin' => 'http://google.com'
+        ]);
+
+        $this->assertEquals($sessionUri, $uri);
+    }
+
+    /**
+     * @group storage-signed-url
      * @expectedException InvalidArgumentException
      */
     public function testSignedUrlInvalidExpiration()
@@ -838,6 +943,7 @@ class StorageObjectTest extends TestCase
     }
 
     /**
+     * @group storage-signed-url
      * @expectedException InvalidArgumentException
      */
     public function testSignedUrlInvalidMethod()
@@ -850,6 +956,7 @@ class StorageObjectTest extends TestCase
     }
 
     /**
+     * @group storage-signed-url
      * @expectedException InvalidArgumentException
      */
     public function testSignedUrlInvalidMethodMissingAllowPostOption()
@@ -862,6 +969,7 @@ class StorageObjectTest extends TestCase
     }
 
     /**
+     * @group storage-signed-url
      * @expectedException InvalidArgumentException
      */
     public function testSignedUrlInvalidKeyFilePath()
@@ -875,6 +983,7 @@ class StorageObjectTest extends TestCase
     }
 
     /**
+     * @group storage-signed-url
      * @expectedException InvalidArgumentException
      */
     public function testSignedUrlInvalidKeyFilePathData()
@@ -888,6 +997,7 @@ class StorageObjectTest extends TestCase
     }
 
     /**
+     * @group storage-signed-url
      * @expectedException RuntimeException
      */
     public function testSignedUrlInvalidKeyFileMissingPrivateKey()
@@ -901,6 +1011,7 @@ class StorageObjectTest extends TestCase
     }
 
     /**
+     * @group storage-signed-url
      * @expectedException RuntimeException
      */
     public function testSignedUrlInvalidKeyFileMissingClientEmail()
