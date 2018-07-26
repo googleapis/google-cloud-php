@@ -18,13 +18,11 @@
 namespace Google\Cloud\Bigtable;
 
 use Google\Cloud\Bigtable\Admin\V2\BigtableInstanceAdminClient as InstanceAdminClient;
-use Google\Cloud\Bigtable\Admin\V2\Instance_Type;
 use Google\Cloud\Bigtable\Admin\V2\Instance_State;
+use Google\Cloud\Bigtable\Admin\V2\Instance_Type;
 use Google\Cloud\Bigtable\Admin\V2\StorageType;
 use Google\Cloud\Bigtable\Connection\ConnectionInterface;
 use Google\Cloud\Core\ArrayTrait;
-use Google\Cloud\Core\Exception\NotFoundException;
-use Google\Cloud\Core\Iterator\ItemIterator;
 use Google\Cloud\Core\LongRunning\LongRunningConnectionInterface;
 use Google\Cloud\Core\LongRunning\LongRunningOperation;
 use Google\Cloud\Core\LongRunning\LROTrait;
@@ -41,7 +39,7 @@ use Google\Cloud\Core\LongRunning\LROTrait;
  * $instance = $bigtable->instance('my-instance');
  * ```
  *
- * @method LongRunningOperation resumeOperation() {
+ * @method LongRunningOperation resumeOperation(string $operationName, array $info) {
  *     Resume a Long Running Operation
  *
  *     Example:
@@ -295,12 +293,12 @@ class Instance
      * ```
      * $instance->delete();
      * ```
-     *
+     * @param array $options
      * @return void
      */
     public function delete(array $options = [])
     {
-        return $this->connection->deleteInstance([
+        $this->connection->deleteInstance([
             'name' => $this->name
         ] + $options);
     }

@@ -24,7 +24,6 @@ use Google\Cloud\Bigtable\Instance;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Core\Testing\TestHelpers;
 use PHPUnit\Framework\TestCase;
-use Prophecy\Argument;
 
 /**
  * @group bigtable

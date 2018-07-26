@@ -84,6 +84,7 @@ class Grpc implements ConnectionInterface
 
     /**
      * @param array $args
+     * @return array
      */
     public function createInstance(array $args)
     {
@@ -161,7 +162,7 @@ class Grpc implements ConnectionInterface
         throw new \BadMethodCallException('This method is not implemented yet');
     }
 
-        /**
+    /**
      * @param array $args
      */
     public function deleteInstance(array $args)
@@ -358,7 +359,7 @@ class Grpc implements ConnectionInterface
 
     /**
      * @param array $modification
-     * @return Modification
+     * @return ModifyColumnFamiliesRequest_Modification
      */
     private function columnFamilyModificationObject(array $modification)
     {

@@ -19,8 +19,6 @@ namespace Google\Cloud\Bigtable;
 
 use Google\Cloud\Bigtable\Admin\V2\BigtableTableAdminClient as TableAdminClient;
 use Google\Cloud\Bigtable\Connection\ConnectionInterface;
-use Google\Cloud\Core\Exception\NotFoundException;
-use Google\Cloud\Core\Iterator\ItemIterator;
 use Google\Cloud\Core\LongRunning\LongRunningConnectionInterface;
 use Google\Cloud\Core\LongRunning\LongRunningOperation;
 use Google\Cloud\Core\LongRunning\LROTrait;
@@ -38,7 +36,7 @@ use Google\Cloud\Core\LongRunning\LROTrait;
  * $table = $instance->table('my-table');
  * ```
  *
- * @method LongRunningOperation resumeOperation() {
+ * @method LongRunningOperation resumeOperation(string $operationName, array $info) {
  *     Resume a Long Running Operation
  *
  *     Example:
@@ -98,7 +96,7 @@ class Table
      * @param string $instanceId The instance ID.
      * @param string $id The table ID.
      * @param array $info [optional] A representation of the table object.
-     * @throws \InvalidArgumentException if invalid argument
+     * @throws \InvalidArgumentException if invalid argument.
      */
     public function __construct(
         ConnectionInterface $connection,
@@ -217,7 +215,7 @@ class Table
      *
      * @todo add options for ColumnFamily
      * @param array $options [optional] Configuration options.
-     * @return array Table information
+     * @return array Table information.
      */
     public function create(array $options = [])
     {
@@ -244,7 +242,7 @@ class Table
      */
     public function delete(array $options = [])
     {
-        return $this->connection->deleteTable([
+        $this->connection->deleteTable([
             'name' => $this->name
         ] + $options);
     }
@@ -262,9 +260,9 @@ class Table
      * ```
      * @todo add GCRule options
      * @param array[] $columnFamilies List of ColumnFamilies, each entry in the list
-     *        is array with key `id` for id of ColumnFamily
+     *        is array with key `id` for id of ColumnFamily.
      * @param array $options [optional] Configuration options.
-     * @return array Table information
+     * @return array Table information.
      */
     public function addColumnFamilies(array $columnFamilies, array $options = [])
     {
@@ -295,9 +293,9 @@ class Table
      * $tableInfo = $table->dropColumnFamilies(['cf1', 'cf2', 'cf3']);
      * ```
      *
-     * @param array $columnFamilies List of ColumnFamilies to be dropped
+     * @param array $columnFamilies List of ColumnFamilies to be dropped.
      * @param array $options [optional] Configuration options.
-     * @return array Table information
+     * @return array Table information.
      */
     public function dropColumnFamilies(array $columnFamilies, array $options = [])
     {
@@ -315,6 +313,9 @@ class Table
 
     /**
      * Update column families on the current table.
+     *
+     * @param array $columnFamilies The column families.
+     * @param array $options [optional] Configuration options.
      */
     public function updateColumnFamilies(array $columnFamilies, array $options = [])
     {

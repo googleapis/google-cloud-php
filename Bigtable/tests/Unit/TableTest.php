@@ -20,9 +20,7 @@ namespace Google\Cloud\Bigtable\Tests\Unit;
 use Google\Cloud\Bigtable\Admin\V2\BigtableTableAdminClient as TableAdminClient;
 use Google\Cloud\Bigtable\Connection\ConnectionInterface;
 use Google\Cloud\Bigtable\Table;
-use Google\Cloud\Core\Exception\NotFoundException;
 use Google\Cloud\Core\LongRunning\LongRunningConnectionInterface;
-use Google\Cloud\Core\LongRunning\LongRunningOperation;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Core\Testing\TestHelpers;
 use PHPUnit\Framework\TestCase;
@@ -80,7 +78,7 @@ class TableTest extends TestCase
     public function testTableWhenBadIdFormatPassed()
     {
         $badTableId = 'badformat/my-table';
-        $table = TestHelpers::stub(Table::class, [
+        TestHelpers::stub(Table::class, [
             $this->connection->reveal(),
             $this->prophesize(LongRunningConnectionInterface::class)->reveal(),
             [],
@@ -119,12 +117,10 @@ class TableTest extends TestCase
     public function testDelete()
     {
         $this->connection->deleteTable(Argument::withEntry('name', self::TABLE_NAME))
-            ->shouldBeCalled()
-            ->willReturn([]);
+            ->shouldBeCalled();
         $this->table->___setProperty('connection', $this->connection->reveal());
 
-        $info = $this->table->delete();
-        $this->assertEquals([], $info);
+        $this->table->delete();
     }
 
     /**
@@ -133,7 +129,7 @@ class TableTest extends TestCase
      */
     public function testAddColumnFamiliesWithoutColumnFamilyID()
     {
-        $tableInfo = $this->table->addColumnFamilies([
+        $this->table->addColumnFamilies([
             [],
             []
         ]);
