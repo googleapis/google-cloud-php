@@ -18,8 +18,10 @@
 namespace Google\Cloud\Vision\Tests\Snippet\Annotation;
 
 use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
+use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Vision\Annotation\SafeSearch;
 use Google\Cloud\Vision\Connection\ConnectionInterface;
+use Google\Cloud\Vision\VisionClient;
 use Prophecy\Argument;
 
 /**
@@ -44,9 +46,10 @@ class SafeSearchTest extends SnippetTestCase
 
     public function testClass()
     {
-        $connectionStub = $this->prophesize(ConnectionInterface::class);
+        $snippet = $this->snippetFromClass(SafeSearch::class);
 
-        $connectionStub->annotate(Argument::any())
+        $connection = $this->prophesize(ConnectionInterface::class);
+        $connection->annotate(Argument::any())
             ->willReturn([
                 'responses' => [
                     [
@@ -57,17 +60,19 @@ class SafeSearchTest extends SnippetTestCase
                 ]
             ]);
 
-        $snippet = $this->snippetFromClass(SafeSearch::class);
-        $snippet->addLocal('connectionStub', $connectionStub->reveal());
+
+        $vision = TestHelpers::stub(VisionClient::class);
+        $vision->___setProperty('connection', $connection->reveal());
+
+        $snippet->addLocal('vision', $vision);
+
         $snippet->replace(
             "__DIR__ . '/assets/family-photo.jpg'",
             "'php://temp'"
         );
-        $snippet->insertAfterLine(3, '$reflection = new \ReflectionClass($vision);
-            $property = $reflection->getProperty(\'connection\');
-            $property->setAccessible(true);
-            $property->setValue($vision, $connectionStub);
-            $property->setAccessible(false);'
+        $snippet->replace(
+            '$vision = new VisionClient();',
+            ''
         );
 
         $res = $snippet->invoke('safeSearch');

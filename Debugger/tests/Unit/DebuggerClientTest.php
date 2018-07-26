@@ -17,35 +17,40 @@
 
 namespace Google\Cloud\Debugger\Tests\Unit;
 
+use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Debugger\Connection\ConnectionInterface;
-use Google\Cloud\Debugger\DebuggerClient;
 use Google\Cloud\Debugger\Debuggee;
-use Prophecy\Argument;
+use Google\Cloud\Debugger\DebuggerClient;
 use PHPUnit\Framework\TestCase;
+use Prophecy\Argument;
 
 /**
  * @group debugger
  */
 class DebuggerClientTest extends TestCase
 {
+    const PROJECT = 'my-project';
+
     private $client;
     private $connection;
 
     public function setUp()
     {
-        $this->client = new DebuggerTestClient(['projectId' => 'project1']);
+        $this->client = TestHelpers::stub(DebuggerClient::class, [
+            ['projectId' => self::PROJECT]
+        ]);
         $this->connection = $this->prophesize(ConnectionInterface::class);
     }
 
     public function testListsDebuggees()
     {
-        $this->connection->listDebuggees(['project' => 'project1'])->willReturn([
+        $this->connection->listDebuggees(['project' => self::PROJECT])->willReturn([
             'debuggees' => [
-                ['id' => 'debuggee1', 'project' => 'project1'],
-                ['id' => 'debuggee2', 'project' => 'project1'],
+                ['id' => 'debuggee1', 'project' => self::PROJECT],
+                ['id' => 'debuggee2', 'project' => self::PROJECT],
             ]
         ]);
-        $this->client->setConnection($this->connection->reveal());
+        $this->client->___setProperty('connection', $this->connection->reveal());
         $debuggees = $this->client->debuggees();
         $this->assertCount(2, $debuggees);
         $this->assertEquals('debuggee1', $debuggees[0]->id());
@@ -54,8 +59,8 @@ class DebuggerClientTest extends TestCase
 
     public function testListsDebuggeesEmpty()
     {
-        $this->connection->listDebuggees(['project' => 'project1'])->willReturn([]);
-        $this->client->setConnection($this->connection->reveal());
+        $this->connection->listDebuggees(['project' => self::PROJECT])->willReturn([]);
+        $this->client->___setProperty('connection', $this->connection->reveal());
         $debuggees = $this->client->debuggees();
         $this->assertCount(0, $debuggees);
     }
@@ -72,13 +77,5 @@ class DebuggerClientTest extends TestCase
         $debuggee = $this->client->debuggee();
         $this->assertInstanceOf(Debuggee::class, $debuggee);
         $this->assertNull($debuggee->id());
-    }
-}
-
-class DebuggerTestClient extends DebuggerClient
-{
-    public function setConnection($connection)
-    {
-        $this->connection = $connection;
     }
 }

@@ -17,13 +17,14 @@
 
 namespace Google\Cloud\Datastore\Tests\Snippet\Query;
 
+use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
+use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Datastore\Connection\ConnectionInterface;
 use Google\Cloud\Datastore\DatastoreClient;
 use Google\Cloud\Datastore\EntityIterator;
 use Google\Cloud\Datastore\EntityMapper;
 use Google\Cloud\Datastore\Operation;
 use Google\Cloud\Datastore\Query\GqlQuery;
-use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
 use Prophecy\Argument;
 
 /**
@@ -37,9 +38,9 @@ class GqlQueryTest extends SnippetTestCase
 
     public function setUp()
     {
-        $this->datastore = new DatastoreClient;
+        $this->datastore = TestHelpers::stub(DatastoreClient::class, [], ['operation']);
         $this->connection = $this->prophesize(ConnectionInterface::class);
-        $this->operation = \Google\Cloud\Core\Testing\TestHelpers::stub(Operation::class, [
+        $this->operation = TestHelpers::stub(Operation::class, [
             $this->connection->reveal(),
             'my-awesome-project',
             '',
@@ -72,14 +73,11 @@ class GqlQueryTest extends SnippetTestCase
 
         $this->operation->___setProperty('connection', $this->connection->reveal());
 
+        $this->datastore->___setProperty('operation', $this->operation);
+
         $snippet = $this->snippetFromClass(GqlQuery::class);
-        $snippet->addLocal('operation', $this->operation);
-        $snippet->insertAfterLine(3, '$reflection = new \ReflectionClass($datastore);
-            $property = $reflection->getProperty(\'operation\');
-            $property->setAccessible(true);
-            $property->setValue($datastore, $operation);
-            $property->setAccessible(false);'
-        );
+        $snippet->replace('$datastore = new DatastoreClient();', '');
+        $snippet->addLocal('datastore', $this->datastore);
 
         $res = $snippet->invoke(['query', 'res']);
         $this->assertEquals('Google', $res->output());

@@ -17,6 +17,7 @@
 
 namespace Google\Cloud\Vision\Tests\Unit;
 
+use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Vision\V1\AnnotateImageRequest;
 use Google\Cloud\Vision\V1\AnnotateImageResponse;
 use Google\Cloud\Vision\V1\BatchAnnotateImagesResponse;
@@ -27,8 +28,8 @@ use Google\Cloud\Vision\V1\ImageContext;
 use Google\Cloud\Vision\V1\ImageSource;
 use Google\Cloud\Vision\VisionHelpersTrait;
 use InvalidArgumentException;
-use Prophecy\Argument;
 use PHPUnit\Framework\TestCase;
+use Prophecy\Argument;
 
 /**
  * @group vision
@@ -41,7 +42,7 @@ class VisionHelpersTraitTest extends TestCase
 
     public function setUp()
     {
-        $this->implementation = \Google\Cloud\Core\Testing\TestHelpers::impl(VisionHelpersTrait::class);
+        $this->implementation = TestHelpers::impl(VisionHelpersTrait::class);
     }
 
     public function testAnnotateImageHelper()
@@ -100,7 +101,7 @@ class VisionHelpersTraitTest extends TestCase
     public function createImageHelperDataProvider()
     {
         $content = 'imageresourcecontent';
-        $stream = fopen('php://memory','r+');
+        $stream = fopen('php://memory', 'r+');
         fwrite($stream, $content);
         rewind($stream);
         return [
@@ -143,4 +144,3 @@ class VisionHelpersTraitTest extends TestCase
         ];
     }
 }
-

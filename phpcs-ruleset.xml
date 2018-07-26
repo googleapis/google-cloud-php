@@ -3,21 +3,25 @@
   <rule ref="PSR2" />
   <rule ref="PSR1.Methods.CamelCapsMethodName">
     <exclude-pattern>Storage/src/StreamWrapper.php</exclude-pattern>
+    <exclude-pattern>Speech/tests/Unit/HttpStreamWrapper.php</exclude-pattern>
   </rule>
   <rule ref="PSR1.Files.SideEffects.FoundWithSymbols">
     <exclude-pattern>Core/src/Testing/Lock/MockValues.php</exclude-pattern>
+    <exclude-pattern>ErrorReporting/tests/Unit/BootstrapTest.php</exclude-pattern>
   </rule>
   <file>.</file>
   <exclude-pattern>*/src/V[0-9]+</exclude-pattern>
   <exclude-pattern>*/src/*/V[0-9]+</exclude-pattern>
   <exclude-pattern>*/src/*/*/V[0-9]+</exclude-pattern>
+  <exclude-pattern>*/tests/*/V[0-9]+</exclude-pattern>
+  <exclude-pattern>*/tests/*/*/V[0-9]+</exclude-pattern>
   <exclude-pattern>Core/src/Testing</exclude-pattern>
   <exclude-pattern>OsLogin/src/Common</exclude-pattern>
-  <exclude-pattern>*/tests</exclude-pattern>
   <exclude-pattern>vendor</exclude-pattern>
-  <exclude-pattern>tests</exclude-pattern>
   <exclude-pattern>dev</exclude-pattern>
   <exclude-pattern>docs</exclude-pattern>
-  <exclude-pattern>*/metadata</exclude-pattern>ex
+  <exclude-pattern>*/metadata</exclude-pattern>
+  <exclude-pattern>Firestore/tests/conformance-fixtures</exclude-pattern>
+  <exclude-pattern>tests/Component/TestComposerInstall.php</exclude-pattern>
   <arg name="extensions" value="php"/>
 </ruleset>

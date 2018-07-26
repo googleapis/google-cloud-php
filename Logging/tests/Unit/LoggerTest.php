@@ -18,10 +18,10 @@
 namespace Google\Cloud\Logging\Tests\Unit;
 
 use Google\Cloud\Core\Timestamp;
-use Google\Cloud\Logging\Logger;
 use Google\Cloud\Logging\Connection\ConnectionInterface;
-use Prophecy\Argument;
+use Google\Cloud\Logging\Logger;
 use PHPUnit\Framework\TestCase;
+use Prophecy\Argument;
 
 /**
  * @group logging
@@ -93,20 +93,16 @@ class LoggerTest extends TestCase
     public function testGetsEntriesWithToken()
     {
         $this->connection->listEntries(Argument::any())
-            ->willReturn(
-                [
-                    'nextPageToken' => 'token',
-                    'entries' => [
-                        ['textPayload' => 'someOtherPayload']
-                    ]
-                ],
-                    [
-                    'entries' => [
-                        ['textPayload' => $this->textPayload]
-                    ]
+            ->willReturn([
+                'nextPageToken' => 'token',
+                'entries' => [
+                    ['textPayload' => 'someOtherPayload']
                 ]
-            )
-            ->shouldBeCalledTimes(2);
+            ], [
+                'entries' => [
+                    ['textPayload' => $this->textPayload]
+                ]
+            ])->shouldBeCalledTimes(2);
 
         $logger = $this->getLogger($this->connection);
         $entries = iterator_to_array($logger->entries());
@@ -333,6 +329,7 @@ class LoggerTest extends TestCase
     }
 }
 
+//@codingStandardsIgnoreStart
 class LoggerStub extends Logger
 {
     private $time;
@@ -347,3 +344,4 @@ class LoggerStub extends Logger
         return $this->time ?: microtime(true);
     }
 }
+//@codingStandardsIgnoreEnd

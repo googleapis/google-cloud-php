@@ -68,7 +68,7 @@ class ResumableUploaderTest extends TestCase
         $response = new Response(200, ['Location' => 'theResumeUri'], $this->successBody);
 
         $called = false;
-        $callback = function() use (&$called) {
+        $callback = function () use (&$called) {
             $called = true;
         };
 

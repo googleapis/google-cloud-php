@@ -154,7 +154,10 @@ class DatastoreClientTest extends SnippetTestCase
 
         $this->assertEquals(['kind' => 'Person'], $res->returnVal()[0]->keyObject()['path'][2]);
         $this->assertEquals(['kind' => 'Person', 'name' => 'Dad Mike'], $res->returnVal()[0]->keyObject()['path'][1]);
-        $this->assertEquals(['kind' => 'Person', 'name' => 'Grandpa Joe'], $res->returnVal()[0]->keyObject()['path'][0]);
+        $this->assertEquals(
+            ['kind' => 'Person', 'name' => 'Grandpa Joe'],
+            $res->returnVal()[0]->keyObject()['path'][0]
+        );
     }
 
     public function testEntity()
@@ -710,7 +713,8 @@ class DatastoreClientTest extends SnippetTestCase
             if (!empty((array) $options)) {
                 return $options === $args['transactionOptions'][$type];
             } else {
-                return is_object($args['transactionOptions'][$type]) && empty((array) $args['transactionOptions'][$type]);
+                return is_object($args['transactionOptions'][$type])
+                    && empty((array) $args['transactionOptions'][$type]);
             }
 
             return true;

@@ -720,6 +720,7 @@ class CacheSessionPoolTest extends TestCase
     }
 }
 
+//@codingStandardsIgnoreStart
 class CacheSessionPoolStub extends CacheSessionPool
 {
     private $time;
@@ -735,3 +736,4 @@ class CacheSessionPoolStub extends CacheSessionPool
         return $this->time ?: parent::time();
     }
 }
+//@codingStandardsIgnoreEnd

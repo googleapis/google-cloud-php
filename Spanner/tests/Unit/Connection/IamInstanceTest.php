@@ -17,10 +17,11 @@
 
 namespace Google\Cloud\Spanner\Tests\Unit\Connection;
 
+use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Spanner\Connection\ConnectionInterface;
 use Google\Cloud\Spanner\Connection\IamInstance;
-use Prophecy\Argument;
 use PHPUnit\Framework\TestCase;
+use Prophecy\Argument;
 
 /**
  * @group spanneradmin
@@ -36,7 +37,7 @@ class IamInstanceTest extends TestCase
     {
         $this->connection = $this->prophesize(ConnectionInterface::class);
 
-        $this->iam = \Google\Cloud\Core\Testing\TestHelpers::stub(IamInstance::class, [$this->connection->reveal()]);
+        $this->iam = TestHelpers::stub(IamInstance::class, [$this->connection->reveal()]);
     }
 
     /**

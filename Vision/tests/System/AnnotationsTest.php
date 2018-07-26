@@ -44,15 +44,13 @@ class AnnotationsTest extends VisionTestCase
 
     public function testAnnotate()
     {
-        $image = $this->client->image(
-            file_get_contents($this->getFixtureFilePath('landmark.jpg')) , [
-                'LANDMARK_DETECTION',
-                'SAFE_SEARCH_DETECTION',
-                'IMAGE_PROPERTIES',
-                'CROP_HINTS',
-                'WEB_DETECTION'
-            ]
-        );
+        $image = $this->client->image(file_get_contents($this->getFixtureFilePath('landmark.jpg')), [
+            'LANDMARK_DETECTION',
+            'SAFE_SEARCH_DETECTION',
+            'IMAGE_PROPERTIES',
+            'CROP_HINTS',
+            'WEB_DETECTION'
+        ]);
 
         $res = $this->client->annotate($image);
         $this->assertInstanceOf(Annotation::class, $res);
@@ -100,12 +98,10 @@ class AnnotationsTest extends VisionTestCase
 
     public function testFaceAndLabelDetection()
     {
-        $image = $this->client->image(
-            file_get_contents($this->getFixtureFilePath('obama.jpg')) , [
-                'FACE_DETECTION',
-                'LABEL_DETECTION'
-            ]
-        );
+        $image = $this->client->image(file_get_contents($this->getFixtureFilePath('obama.jpg')), [
+            'FACE_DETECTION',
+            'LABEL_DETECTION'
+        ]);
 
         $res = $this->client->annotate($image);
 
@@ -128,11 +124,9 @@ class AnnotationsTest extends VisionTestCase
 
     public function testLogoDetection()
     {
-        $image = $this->client->image(
-            file_get_contents($this->getFixtureFilePath('google.jpg')) , [
-                'LOGO_DETECTION'
-            ]
-        );
+        $image = $this->client->image(file_get_contents($this->getFixtureFilePath('google.jpg')), [
+            'LOGO_DETECTION'
+        ]);
 
         $res = $this->client->annotate($image);
         $this->assertInstanceOf(Annotation::class, $res);
@@ -142,11 +136,9 @@ class AnnotationsTest extends VisionTestCase
 
     public function testTextDetection()
     {
-        $image = $this->client->image(
-            file_get_contents($this->getFixtureFilePath('text.jpg')) , [
-                'TEXT_DETECTION'
-            ]
-        );
+        $image = $this->client->image(file_get_contents($this->getFixtureFilePath('text.jpg')), [
+            'TEXT_DETECTION'
+        ]);
 
         $res = $this->client->annotate($image);
         $this->assertInstanceOf(Annotation::class, $res);
@@ -157,11 +149,9 @@ class AnnotationsTest extends VisionTestCase
 
     public function testDocumentTextDetection()
     {
-        $image = $this->client->image(
-            file_get_contents($this->getFixtureFilePath('text.jpg')) , [
-                'DOCUMENT_TEXT_DETECTION'
-            ]
-        );
+        $image = $this->client->image(file_get_contents($this->getFixtureFilePath('text.jpg')), [
+            'DOCUMENT_TEXT_DETECTION'
+        ]);
 
         $res = $this->client->annotate($image);
 

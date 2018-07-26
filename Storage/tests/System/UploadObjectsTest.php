@@ -101,8 +101,10 @@ class UploadObjectsTest extends StorageTestCase
         $this->testFileSize = filesize($path);
 
         $options = [
-            'resumable' => true, // It's required to be in resumable upload if we want to track the progress with callback method.
-            'chunkSize' => 1 * 1024 * 1024, //1MB; The upload progress will be done in chunks. The size must be in multiples of 262144 bytes.
+            // It's required to be in resumable upload if we want to track the progress with callback method.
+            'resumable' => true,
+            // 1MB; The upload progress will be done in chunks. The size must be in multiples of 262144 bytes.
+            'chunkSize' => 1 * 1024 * 1024,
             'uploadProgressCallback' => array($this, 'onStoredFileChunk')
         ];
 

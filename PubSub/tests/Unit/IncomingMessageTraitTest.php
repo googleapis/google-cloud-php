@@ -17,6 +17,7 @@
 
 namespace Google\Cloud\PubSub\Tests\Unit;
 
+use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\PubSub\Connection\ConnectionInterface;
 use Google\Cloud\PubSub\IncomingMessageTrait;
 use Google\Cloud\PubSub\Message;
@@ -28,20 +29,31 @@ use PHPUnit\Framework\TestCase;
  */
 class IncomingMessageTraitTest extends TestCase
 {
+    const PROJECT = 'my-project';
+
+    private $connection;
     private $stub;
 
     public function setUp()
     {
-        $this->stub = new IncomingMessageTraitStub($this->prophesize(ConnectionInterface::class)->reveal());
+        $this->connection = $this->prophesize(ConnectionInterface::class);
+        $this->stub = TestHelpers::impl(IncomingMessageTrait::class);
     }
 
     public function testMessageFactory()
     {
-        $message = $this->stub->call([
+        $data = [
             'message' => [
                 'data' => 'hello world'
             ]
-        ]);
+        ];
+
+        $message = $this->stub->call(
+            'messageFactory',
+            [
+                $data, $this->connection->reveal(), self::PROJECT, false
+            ]
+        );
 
         $this->assertInstanceOf(Message::class, $message);
         $this->assertEquals('hello world', $message->data());
@@ -52,47 +64,51 @@ class IncomingMessageTraitTest extends TestCase
      */
     public function testInvalidMessage()
     {
-        $this->stub->call([]);
+        $this->stub->call(
+            'messageFactory',
+            [
+                [], $this->connection->reveal(), self::PROJECT, false
+            ]
+        );
     }
 
     public function testDecodeMessage()
     {
-        $message = $this->stub->call([
-            'message' => [
-                'data' => base64_encode('hello world')
+        $message = $this->stub->call(
+            'messageFactory',
+            [
+                [
+                    'message' => [
+                        'data' => base64_encode('hello world')
+                    ]
+                ],
+                $this->connection->reveal(),
+                self::PROJECT,
+                true
             ]
-        ], true);
+        );
 
         $this->assertEquals('hello world', $message->data());
     }
 
     public function testMessageWithSubscription()
     {
-        $message = $this->stub->call([
-            'message' => [
-                'data' => base64_encode('hello world')
-            ],
-            'subscription' => 'projects/project-id/subscriptions/foo'
-        ], true);
+        $message = $this->stub->call(
+            'messageFactory',
+            [
+                [
+                    'message' => [
+                        'data' => base64_encode('hello world')
+                    ],
+                    'subscription' => 'projects/project-id/subscriptions/foo'
+                ],
+                $this->connection->reveal(),
+                self::PROJECT,
+                true
+            ]
+        );
 
         $this->assertInstanceOf(Subscription::class, $message->subscription());
         $this->assertEquals('projects/project-id/subscriptions/foo', $message->subscription()->name());
-    }
-}
-
-class IncomingMessageTraitStub
-{
-    use IncomingMessageTrait;
-
-    private $connection;
-
-    public function __construct($connection)
-    {
-        $this->connection = $connection;
-    }
-
-    public function call($message, $encode = false)
-    {
-        return $this->messageFactory($message, $this->connection, 'project-id', $encode);
     }
 }

@@ -34,7 +34,7 @@ class CommitTimestampTest extends SnippetTestCase
 {
     use GrpcTestTrait;
 
-    const SESSION = 'projects/example_project/instances/example_instance/databases/example_database/sessions/session-id';
+    const SESSION = 'projects/my-awesome-project/instances/my-instance/databases/my-database/sessions/session-id';
 
     public function setUp()
     {

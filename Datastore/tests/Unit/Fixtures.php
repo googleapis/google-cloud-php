@@ -17,6 +17,7 @@
 
 namespace Google\Cloud\Datastore\Tests\Unit;
 
+//@codingStandardsIgnoreStart
 class Fixtures
 {
     public static function ENTITY_BATCH_LOOKUP_FIXTURE()
@@ -44,3 +45,4 @@ class Fixtures
         return __DIR__ . '/fixtures/entity-result-no-properties.json';
     }
 }
+//@codingStandardsIgnoreEnd

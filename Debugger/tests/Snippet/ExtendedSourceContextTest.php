@@ -46,6 +46,7 @@ class ExtendedSourceContextTest extends SnippetTestCase
     }
 }
 
+//@codingStandardsIgnoreStart
 class TestSourceContext implements SourceContext
 {
     public function info()
@@ -55,3 +56,4 @@ class TestSourceContext implements SourceContext
         ];
     }
 }
+//@codingStandardsIgnoreEnd

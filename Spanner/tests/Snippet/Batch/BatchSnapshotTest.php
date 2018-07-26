@@ -44,8 +44,8 @@ class BatchSnapshotTest extends SnippetTestCase
     use GrpcTestTrait;
     use SpannerOperationRefreshTrait;
 
-    const DATABASE = 'projects/example_project/instances/example_instance/databases/example_database';
-    const SESSION = 'projects/example_project/instances/example_instance/databases/example_database/sessions/session-id';
+    const DATABASE = 'projects/my-awesome-project/instances/my-instance/databases/my-database';
+    const SESSION = 'projects/my-awesome-project/instances/my-instance/databases/my-database/sessions/session-id';
     const TRANSACTION = 'transaction-id';
 
     private $connection;
@@ -70,7 +70,10 @@ class BatchSnapshotTest extends SnippetTestCase
         $this->snapshot = TestHelpers::stub(BatchSnapshot::class, [
             new Operation($this->connection->reveal(), false),
             $this->session->reveal(),
-            ['id' => self::TRANSACTION, 'readTimestamp' => new Timestamp(\DateTime::createFromFormat('U', (string) $this->time))]
+            [
+                'id' => self::TRANSACTION,
+                'readTimestamp' => new Timestamp(\DateTime::createFromFormat('U', (string) $this->time))
+            ]
         ], ['operation', 'session']);
     }
 

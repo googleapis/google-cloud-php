@@ -195,6 +195,7 @@ class TransactionConfigurationTraitTest extends TestCase
     }
 }
 
+//@codingStandardsIgnoreStart
 class TransactionConfigurationTraitImplementation
 {
     use TransactionConfigurationTrait;
@@ -214,3 +215,4 @@ class TransactionConfigurationTraitImplementation
         return $this->configureSnapshotOptions($options);
     }
 }
+//@codingStandardsIgnoreEnd

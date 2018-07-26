@@ -19,6 +19,7 @@ namespace Google\Cloud\Core\Tests\Unit;
 
 use Google\Cloud\Core\ClientTrait;
 use Google\Cloud\Core\Compute\Metadata;
+use Google\Cloud\Core\Testing\TestHelpers;
 use GuzzleHttp\Psr7\Response;
 use PHPUnit\Framework\TestCase;
 
@@ -33,9 +34,9 @@ class ClientTraitTest extends TestCase
 
     public function setUp()
     {
-        $this->impl = \Google\Cloud\Core\Testing\TestHelpers::impl(ClientTrait::class);
+        $this->impl = TestHelpers::impl(ClientTrait::class);
 
-        $this->dependency = \Google\Cloud\Core\Testing\TestHelpers::impl(ClientTraitStubGrpcDependencyChecks::class, [
+        $this->dependency = TestHelpers::impl(ClientTraitStubGrpcDependencyChecks::class, [
             'dependencyStatus'
         ]);
     }
@@ -266,7 +267,7 @@ class ClientTraitTest extends TestCase
         $m = $this->prophesize(Metadata::class);
         $m->getProjectId()->willReturn($projectId)->shouldBeCalled();
 
-        $trait = \Google\Cloud\Core\Testing\TestHelpers::impl(ClientTraitStubOnGce::class, ['metadata']);
+        $trait = TestHelpers::impl(ClientTraitStubOnGce::class, ['metadata']);
         $trait->___setProperty('metadata', $m);
 
         $res = $trait->call('detectProjectId', [[]]);
@@ -281,7 +282,7 @@ class ClientTraitTest extends TestCase
         $m = $this->prophesize(Metadata::class);
         $m->getNumericProjectId()->willReturn($projectId)->shouldBeCalled();
 
-        $trait = \Google\Cloud\Core\Testing\TestHelpers::impl(ClientTraitStubOnGce::class, ['metadata']);
+        $trait = TestHelpers::impl(ClientTraitStubOnGce::class, ['metadata']);
         $trait->___setProperty('metadata', $m);
 
         $res = $trait->call('detectProjectId', [['preferNumericProjectId' => true]]);
@@ -299,7 +300,7 @@ class ClientTraitTest extends TestCase
         $m = $this->prophesize(Metadata::class);
         $m->getProjectId()->willReturn($projectId)->shouldBeCalled();
 
-        $trait = \Google\Cloud\Core\Testing\TestHelpers::impl(ClientTraitStubOnGce::class, ['metadata']);
+        $trait = TestHelpers::impl(ClientTraitStubOnGce::class, ['metadata']);
         $trait->___setProperty('metadata', $m);
 
         $res = $trait->call('detectProjectId', [[
@@ -317,7 +318,7 @@ class ClientTraitTest extends TestCase
         $m = $this->prophesize(Metadata::class);
         $m->getProjectId()->willReturn(false)->shouldBeCalled();
 
-        $trait = \Google\Cloud\Core\Testing\TestHelpers::impl(ClientTraitStubOnGce::class, ['metadata']);
+        $trait = TestHelpers::impl(ClientTraitStubOnGce::class, ['metadata']);
         $trait->___setProperty('metadata', $m);
 
         $res = $trait->call('detectProjectId', [[
@@ -332,6 +333,7 @@ class ClientTraitTest extends TestCase
     }
 }
 
+//@codingStandardsIgnoreStart
 trait ClientTraitStubOnGce
 {
     use ClientTrait;
@@ -356,3 +358,4 @@ trait ClientTraitStubGrpcDependencyChecks
         return $this->dependencyStatus;
     }
 }
+//@codingStandardsIgnoreEnd

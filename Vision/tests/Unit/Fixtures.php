@@ -17,6 +17,7 @@
 
 namespace Google\Cloud\Vision\Tests\Unit;
 
+//@codingStandardsIgnoreStart
 class Fixtures
 {
     public static function FACE_LANDMARKS_FIXTURE()
@@ -29,3 +30,4 @@ class Fixtures
         return __DIR__ . '/fixtures/eiffel-tower.jpg';
     }
 }
+//@codingStandardsIgnoreStart

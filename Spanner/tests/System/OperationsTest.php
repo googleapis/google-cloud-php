@@ -33,8 +33,8 @@ class OperationsTest extends SpannerTestCase
 
     public static function setUpBeforeClass()
     {
-        self::$id1 = rand(1000,9999);
-        self::$id2 = rand(1,999);
+        self::$id1 = rand(1000, 9999);
+        self::$id2 = rand(1, 999);
         self::$name1 = uniqid(self::TESTING_PREFIX);
         self::$name2 = uniqid(self::TESTING_PREFIX);
 

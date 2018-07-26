@@ -76,4 +76,3 @@ class FlockLockTest extends TestCase
         $this->lock->acquire();
     }
 }
-

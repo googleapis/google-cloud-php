@@ -146,20 +146,16 @@ class DatasetTest extends TestCase
     public function testGetsTablesWithToken()
     {
         $this->connection->listTables(Argument::any())
-            ->willReturn(
-                [
-                    'nextPageToken' => 'token',
-                    'tables' => [
-                        ['tableReference' => ['tableId' => 'someOthertableId']]
-                    ]
-                ],
-                    [
-                    'tables' => [
-                        ['tableReference' => ['tableId' => $this->tableId]]
-                    ]
+            ->willReturn([
+                'nextPageToken' => 'token',
+                'tables' => [
+                    ['tableReference' => ['tableId' => 'someOthertableId']]
                 ]
-            )
-            ->shouldBeCalledTimes(2);
+            ], [
+                'tables' => [
+                    ['tableReference' => ['tableId' => $this->tableId]]
+                ]
+            ])->shouldBeCalledTimes(2);
 
         $dataset = $this->getDataset($this->connection);
         $tables = iterator_to_array($dataset->tables());

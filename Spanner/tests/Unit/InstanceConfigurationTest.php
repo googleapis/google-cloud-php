@@ -18,12 +18,13 @@
 namespace Google\Cloud\Spanner\Tests\UnitAdmin;
 
 use Google\Cloud\Core\Exception\NotFoundException;
-use Google\Cloud\Spanner\Admin\Instance\V1\InstanceAdminClient;
-use Google\Cloud\Spanner\InstanceConfiguration;
-use Google\Cloud\Spanner\Connection\ConnectionInterface;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
-use Prophecy\Argument;
+use Google\Cloud\Core\Testing\TestHelpers;
+use Google\Cloud\Spanner\Admin\Instance\V1\InstanceAdminClient;
+use Google\Cloud\Spanner\Connection\ConnectionInterface;
+use Google\Cloud\Spanner\InstanceConfiguration;
 use PHPUnit\Framework\TestCase;
+use Prophecy\Argument;
 
 /**
  * @group spanneradmin
@@ -44,7 +45,7 @@ class InstanceConfigurationTest extends TestCase
         $this->checkAndSkipGrpcTests();
 
         $this->connection = $this->prophesize(ConnectionInterface::class);
-        $this->configuration = \Google\Cloud\Core\Testing\TestHelpers::stub(InstanceConfiguration::class, [
+        $this->configuration = TestHelpers::stub(InstanceConfiguration::class, [
             $this->connection->reveal(),
             self::PROJECT_ID,
             self::NAME
@@ -53,7 +54,10 @@ class InstanceConfigurationTest extends TestCase
 
     public function testName()
     {
-        $this->assertEquals(self::NAME, InstanceAdminClient::parseName($this->configuration->name())['instance_config']);
+        $this->assertEquals(
+            InstanceAdminClient::parseName($this->configuration->name())['instance_config'],
+            self::NAME
+        );
     }
 
     public function testInfo()
@@ -62,7 +66,7 @@ class InstanceConfigurationTest extends TestCase
         $this->configuration->___setProperty('connection', $this->connection->reveal());
 
         $info = ['foo' => 'bar'];
-        $config = \Google\Cloud\Core\Testing\TestHelpers::stub(InstanceConfiguration::class, [
+        $config = TestHelpers::stub(InstanceConfiguration::class, [
             $this->connection->reveal(),
             self::PROJECT_ID,
             self::NAME,

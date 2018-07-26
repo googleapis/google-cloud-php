@@ -17,6 +17,7 @@
 
 namespace Google\Cloud\PubSub\Tests\Unit;
 
+use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\PubSub\ResourceNameTrait;
 use PHPUnit\Framework\TestCase;
 
@@ -29,7 +30,7 @@ class ResourceNameTraitTest extends TestCase
 
     public function setUp()
     {
-        $this->trait = new ResourceNameTraitStub;
+        $this->trait = TestHelpers::impl(ResourceNameTrait::class);
     }
 
     public function testPluckProjectId()
@@ -144,15 +145,5 @@ class ResourceNameTraitTest extends TestCase
     public function testIsFullyQualifiedNameInvalidType()
     {
         $this->trait->call('isFullyQualifiedName', ['lame', 'foo']);
-    }
-}
-
-class ResourceNameTraitStub
-{
-    use ResourceNameTrait;
-
-    public function call($method, array $args)
-    {
-        return call_user_func_array([$this, $method], $args);
     }
 }

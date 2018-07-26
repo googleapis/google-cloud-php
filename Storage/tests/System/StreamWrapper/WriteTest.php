@@ -63,7 +63,7 @@ class WriteTest extends StreamWrapperTestCase
         $this->assertFileNotExists($this->fileUrl);
 
         $fp = fopen($this->fileUrl, 'w');
-        for($i = 0; $i < 20000; $i++) {
+        for ($i = 0; $i < 20000; $i++) {
             fwrite($fp, "Line Number: $i\n");
         }
         fclose($fp);

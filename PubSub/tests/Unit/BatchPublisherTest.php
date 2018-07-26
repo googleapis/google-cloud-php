@@ -54,14 +54,15 @@ class BatchPublisherTest extends TestCase
 
     public function testGetCallback()
     {
-        $callbackArray = (new TestBatchPublisher(self::TOPIC_NAME, ['clientConfig' => ['projectId' => 'example_project']]))
-            ->getCallbackArray();
+        $publisher = new TestBatchPublisher(self::TOPIC_NAME, ['clientConfig' => ['projectId' => 'example_project']]);
+        $callbackArray = $publisher->getCallbackArray();
 
         $this->assertInstanceOf(Topic::class, $callbackArray[0]);
         $this->assertEquals('publishBatch', $callbackArray[1]);
     }
 }
 
+//@codingStandardsIgnoreStart
 class TestBatchPublisher extends BatchPublisher
 {
     public function getCallbackArray()
@@ -69,3 +70,4 @@ class TestBatchPublisher extends BatchPublisher
         return $this->getCallback();
     }
 }
+//@codingStandardsIgnoreEnd

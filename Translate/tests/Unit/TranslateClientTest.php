@@ -17,10 +17,11 @@
 
 namespace Google\Cloud\Translate\Tests\Unit;
 
+use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Translate\Connection\ConnectionInterface;
 use Google\Cloud\Translate\TranslateClient;
-use Prophecy\Argument;
 use PHPUnit\Framework\TestCase;
+use Prophecy\Argument;
 
 /**
  * @group translate
@@ -33,19 +34,21 @@ class TranslateClientTest extends TestCase
 
     public function setUp()
     {
-        $this->client = new TranslateTestClient(['key' => $this->key]);
+        $this->client = TestHelpers::stub(TranslateClient::class, [
+            ['key' => $this->key]
+        ]);
         $this->connection = $this->prophesize(ConnectionInterface::class);
     }
 
     public function testWithNoKey()
     {
-        $client = new TranslateTestClient();
+        $client = TestHelpers::stub(TranslateClient::class);
 
-        $this->connection->listTranslations(Argument::that(function($args) {
+        $this->connection->listTranslations(Argument::that(function ($args) {
             return !isset($args['key']);
         }))->shouldBeCalled()->willReturn([]);
 
-        $client->setConnection($this->connection->reveal());
+        $client->___setProperty('connection', $this->connection->reveal());
 
         $client->translate('foo');
     }
@@ -53,18 +56,18 @@ class TranslateClientTest extends TestCase
     public function testTranslateModel()
     {
         $this->connection->listTranslations(Argument::that(function ($args) {
-            if (isset($args['model'])) return false;
+            if (isset($args['model'])) {
+                return false;
+            }
         }));
 
-        $this->client->setConnection($this->connection->reveal());
+        $this->client->___setProperty('connection', $this->connection->reveal());
 
         $this->client->translate('foo bar');
 
-        $this->connection->listTranslations(Argument::that(function ($args) {
-            if ($args['model'] !== 'base') return false;
-        }));
+        $this->connection->listTranslations(Argument::withEntry('model', 'base'));
 
-        $this->client->setConnection($this->connection->reveal());
+        $this->client->___setProperty('connection', $this->connection->reveal());
         $this->client->translate('foo bar', ['model' => 'base']);
     }
 
@@ -77,20 +80,18 @@ class TranslateClientTest extends TestCase
             'format' => 'text',
             'model' => 'base'
         ];
-        $this->connection
-            ->listTranslations($options + [
-                'q' => [$expected['input']],
-                'key' => $this->key
-            ])
-            ->willReturn([
-                'data' => [
-                    'translations' => [
-                        $this->getTranslateApiData($expected['text'])
-                    ]
+        $this->connection->listTranslations($options + [
+            'q' => [$expected['input']],
+            'key' => $this->key
+        ])->willReturn([
+            'data' => [
+                'translations' => [
+                    $this->getTranslateApiData($expected['text'])
                 ]
-            ])
-            ->shouldBeCalledTimes(1);
-        $this->client->setConnection($this->connection->reveal());
+            ]
+        ])->shouldBeCalledTimes(1);
+
+        $this->client->___setProperty('connection', $this->connection->reveal());
         $translation = $this->client->translate($expected['input'], $options);
 
         $this->assertEquals($expected, $translation);
@@ -119,7 +120,7 @@ class TranslateClientTest extends TestCase
                 ]
             ])
             ->shouldBeCalledTimes(1);
-        $this->client->setConnection($this->connection->reveal());
+        $this->client->___setProperty('connection', $this->connection->reveal());
         $translation = $this->client->translate($expected['input'], $options);
 
         $this->assertEquals($expected, $translation);
@@ -147,8 +148,10 @@ class TranslateClientTest extends TestCase
                 ]
             ])
             ->shouldBeCalledTimes(1);
-        $client = new TranslateTestClient(['key' => $this->key, 'target' => $target]);
-        $client->setConnection($this->connection->reveal());
+        $client = TestHelpers::stub(TranslateClient::class, [
+            ['key' => $this->key, 'target' => $target]
+        ]);
+        $client->___setProperty('connection', $this->connection->reveal());
         $translations = $client->translateBatch($stringsToTranslate, ['model' => 'base']);
 
         $this->assertEquals($expected1, $translations[0]);
@@ -157,33 +160,33 @@ class TranslateClientTest extends TestCase
 
     public function testTranslateBatchWithNotZeroIndexedInput()
     {
-       $expected1 = $this->getTranslateExpectedData('translate', 'translated', 'en');
-       $expected2 = $this->getTranslateExpectedData('translate2', 'translated2', 'en');
-       $stringsToTranslate = [1 => $expected1['input'], 2 => $expected2['input']];
+        $expected1 = $this->getTranslateExpectedData('translate', 'translated', 'en');
+        $expected2 = $this->getTranslateExpectedData('translate2', 'translated2', 'en');
+        $stringsToTranslate = [1 => $expected1['input'], 2 => $expected2['input']];
 
-       $target = 'de';
-       $this->connection
-          ->listTranslations([
-             'target' => $target,
-             'q' => $stringsToTranslate,
-             'key' => $this->key,
-             'model' => 'base'
-          ])
-          ->willReturn([
-             'data' => [
+        $target = 'de';
+        $this->connection->listTranslations([
+            'target' => $target,
+            'q' => $stringsToTranslate,
+            'key' => $this->key,
+            'model' => 'base'
+        ])->willReturn([
+            'data' => [
                 'translations' => [
-                   $this->getTranslateApiData($expected1['text'], $expected1['source']),
-                   $this->getTranslateApiData($expected2['text'], $expected2['source'])
+                    $this->getTranslateApiData($expected1['text'], $expected1['source']),
+                    $this->getTranslateApiData($expected2['text'], $expected2['source'])
                 ]
-             ]
-          ])
-          ->shouldBeCalledTimes(1);
-       $client = new TranslateTestClient(['key' => $this->key, 'target' => $target]);
-       $client->setConnection($this->connection->reveal());
-       $translations = $client->translateBatch($stringsToTranslate, ['model' => 'base']);
+            ]
+        ])->shouldBeCalledTimes(1);
 
-       $this->assertEquals($expected1, $translations[0]);
-       $this->assertEquals($expected2, $translations[1]);
+        $client = TestHelpers::stub(TranslateClient::class, [
+            ['key' => $this->key, 'target' => $target]
+        ]);
+        $client->___setProperty('connection', $this->connection->reveal());
+        $translations = $client->translateBatch($stringsToTranslate, ['model' => 'base']);
+
+        $this->assertEquals($expected1, $translations[0]);
+        $this->assertEquals($expected2, $translations[1]);
     }
 
     public function testDetectLanguage()
@@ -203,7 +206,7 @@ class TranslateClientTest extends TestCase
                 ]
             ])
             ->shouldBeCalledTimes(1);
-        $this->client->setConnection($this->connection->reveal());
+        $this->client->___setProperty('connection', $this->connection->reveal());
         $detection = $this->client->detectLanguage($expected['input'], $options);
 
         $this->assertEquals($expected, $detection);
@@ -228,7 +231,7 @@ class TranslateClientTest extends TestCase
                 ]
             ])
             ->shouldBeCalledTimes(1);
-        $this->client->setConnection($this->connection->reveal());
+        $this->client->___setProperty('connection', $this->connection->reveal());
         $detections = $this->client->detectLanguageBatch($stringsToDetect);
 
         $this->assertEquals($expected1, $detections[0]);
@@ -255,7 +258,7 @@ class TranslateClientTest extends TestCase
                 ]
             ])
             ->shouldBeCalledTimes(1);
-        $this->client->setConnection($this->connection->reveal());
+        $this->client->___setProperty('connection', $this->connection->reveal());
         $languages = $this->client->localizedLanguages(['target' => $target]);
 
         $this->assertEquals($expected, $languages[0]);
@@ -277,7 +280,7 @@ class TranslateClientTest extends TestCase
                 ]
             ])
             ->shouldBeCalledTimes(1);
-        $this->client->setConnection($this->connection->reveal());
+        $this->client->___setProperty('connection', $this->connection->reveal());
         $languages = $this->client->languages();
 
         $this->assertEquals($expectedLanguage, $languages[0]);
@@ -328,13 +331,5 @@ class TranslateClientTest extends TestCase
             'language' => $languageCode,
             'name' => $name
         ]);
-    }
-}
-
-class TranslateTestClient extends TranslateClient
-{
-    public function setConnection($connection)
-    {
-        $this->connection = $connection;
     }
 }

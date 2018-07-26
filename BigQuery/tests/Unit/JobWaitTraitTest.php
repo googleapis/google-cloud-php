@@ -19,6 +19,7 @@ namespace Google\Cloud\BigQuery\Tests\Unit;
 
 use Google\Cloud\BigQuery\Job;
 use Google\Cloud\BigQuery\JobWaitTrait;
+use Google\Cloud\Core\Testing\TestHelpers;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -31,7 +32,7 @@ class JobWaitTraitTest extends TestCase
 
     public function setUp()
     {
-        $this->trait = \Google\Cloud\Core\Testing\TestHelpers::impl(JobWaitTrait::class);
+        $this->trait = TestHelpers::impl(JobWaitTrait::class);
         $this->job = $this->prophesize(Job::class)->reveal();
     }
 
@@ -41,11 +42,11 @@ class JobWaitTraitTest extends TestCase
         $isReloadCalled = false;
 
         $this->trait->call('wait', [
-            function() use (&$isCompleteCalled) {
+            function () use (&$isCompleteCalled) {
                 $isCompleteCalled = true;
                 return true;
             },
-            function() use (&$isReloadCalled) {
+            function () use (&$isReloadCalled) {
                 $isReloadCalled = true;
                 return ['complete' => true];
             },
@@ -63,11 +64,11 @@ class JobWaitTraitTest extends TestCase
         $isReloadCalled = false;
 
         $this->trait->call('wait', [
-            function() use (&$isCompleteCallCount, &$isReloadCalled) {
+            function () use (&$isCompleteCallCount, &$isReloadCalled) {
                 $isCompleteCallCount++;
                 return $isReloadCalled ? true : false;
             },
-            function() use (&$isReloadCalled) {
+            function () use (&$isReloadCalled) {
                 $isReloadCalled = true;
                 return ['complete' => true];
             },
@@ -86,8 +87,12 @@ class JobWaitTraitTest extends TestCase
     public function testWaitThrowsExceptionWhenMaxAttemptsMet()
     {
         $this->trait->call('wait', [
-            function() { return false; },
-            function () { return ['complete' => false]; },
+            function () {
+                return false;
+            },
+            function () {
+                return ['complete' => false];
+            },
             $this->job,
             1
         ]);

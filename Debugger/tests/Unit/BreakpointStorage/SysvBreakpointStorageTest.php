@@ -37,7 +37,8 @@ class SysvBreakpointStorageTest extends TestCase
     {
         if (!$this->isSysvIPCLoaded()) {
             $this->markTestSkipped(
-                'Skipping because SystemV IPC extensions are not loaded');
+                'Skipping because SystemV IPC extensions are not loaded'
+            );
         }
         $this->storage = new SysvBreakpointStorage();
     }

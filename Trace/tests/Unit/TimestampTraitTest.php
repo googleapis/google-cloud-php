@@ -51,6 +51,7 @@ class TimestampTraitTest extends TestCase
     }
 }
 
+//@codingStandardsIgnoreStart
 class TestTimestampClass
 {
     use TimestampTrait;
@@ -67,3 +68,4 @@ class TestTimestampClass
         return $this->time;
     }
 }
+//@codingStandardsIgnoreEnd

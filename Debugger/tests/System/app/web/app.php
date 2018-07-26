@@ -21,7 +21,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 
 $app = new Silex\Application();
 
-$app->get('/', function() {
+$app->get('/', function () {
     return 'Silex version ' . Silex\Application::VERSION;
 });
 

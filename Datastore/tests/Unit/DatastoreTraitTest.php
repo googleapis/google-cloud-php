@@ -17,6 +17,7 @@
 
 namespace Google\Cloud\Datastore\Tests\Unit;
 
+use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Datastore\DatastoreClient;
 use Google\Cloud\Datastore\DatastoreTrait;
 use Google\Cloud\Datastore\Key;
@@ -32,7 +33,7 @@ class DatastoreTraitTest extends TestCase
 
     public function setUp()
     {
-        $this->stub = new DatastoreTraitStub;
+        $this->stub = TestHelpers::impl(DatastoreTrait::class);
     }
 
     public function testPartitionId()
@@ -44,15 +45,5 @@ class DatastoreTraitTest extends TestCase
         $this->assertInternalType('array', $res);
         $this->assertEquals('foo', $res['projectId']);
         $this->assertEquals('bar', $res['namespaceId']);
-    }
-}
-
-class DatastoreTraitStub
-{
-    use DatastoreTrait;
-
-    public function call($fn, array $args)
-    {
-        return call_user_func_array([$this, $fn], $args);
     }
 }

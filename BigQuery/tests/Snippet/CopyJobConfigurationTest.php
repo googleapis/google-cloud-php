@@ -20,6 +20,7 @@ namespace Google\Cloud\BigQuery\Tests\Snippet;
 use Google\Cloud\BigQuery\BigQueryClient;
 use Google\Cloud\BigQuery\CopyJobConfiguration;
 use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
+use Google\Cloud\Core\Testing\TestHelpers;
 
 /**
  * @group bigquery
@@ -71,7 +72,7 @@ class CopyJobConfigurationTest extends SnippetTestCase
 
     public function setterDataProvider()
     {
-        $bq = \Google\Cloud\Core\Testing\TestHelpers::stub(BigQueryClient::class, [
+        $bq = TestHelpers::stub(BigQueryClient::class, [
             ['projectId' => self::PROJECT_ID]
         ]);
 

@@ -120,7 +120,7 @@ class RequesterPaysTest extends StorageTestCase
     public function testBucketSettings()
     {
         // run an http request to call the object's public link and see what we get.
-        $getBody = function($bucket, $object) {
+        $getBody = function ($bucket, $object) {
             $guzzle = new Client;
 
             try {

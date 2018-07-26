@@ -18,6 +18,7 @@
 namespace Google\Cloud\Translate\Tests\Snippet;
 
 use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
+use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Translate\Connection\ConnectionInterface;
 use Google\Cloud\Translate\TranslateClient;
 use Prophecy\Argument;
@@ -33,7 +34,7 @@ class TranslateClientTest extends SnippetTestCase
     public function setUp()
     {
         $this->connection = $this->prophesize(ConnectionInterface::class);
-        $this->client = \Google\Cloud\Core\Testing\TestHelpers::stub(TranslateClient::class);
+        $this->client = TestHelpers::stub(TranslateClient::class);
         $this->client->___setProperty('connection', $this->connection->reveal());
     }
 

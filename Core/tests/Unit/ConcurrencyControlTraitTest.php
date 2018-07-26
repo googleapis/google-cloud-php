@@ -18,6 +18,7 @@
 namespace Google\Cloud\Core\Tests\Unit;
 
 use Google\Cloud\Core\ConcurrencyControlTrait;
+use Google\Cloud\Core\Testing\TestHelpers;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -31,7 +32,7 @@ class ConcurrencyControlTraitTest extends TestCase
 
     public function setUp()
     {
-        $this->trait = \Google\Cloud\Core\Testing\TestHelpers::impl(ConcurrencyControlTrait::class);
+        $this->trait = TestHelpers::impl(ConcurrencyControlTrait::class);
     }
 
     public function testApplyEtagHeader()

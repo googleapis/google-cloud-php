@@ -103,5 +103,4 @@ class UrlStatTest extends StreamWrapperTestCase
         $this->assertTrue(is_dir(self::$dirUrl));
         $this->assertFalse(is_dir(self::$fileUrl));
     }
-
 }

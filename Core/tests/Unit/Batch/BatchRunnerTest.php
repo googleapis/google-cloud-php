@@ -52,7 +52,9 @@ class BatchRunnerTest extends TestCase
         );
         $result = $runner->registerJob(
             'test',
-            function() {}
+            function () {
+                return;
+            }
         );
         $this->assertTrue(false, 'It should throw InvalidArgumentException');
     }

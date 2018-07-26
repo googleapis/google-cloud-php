@@ -18,8 +18,8 @@
 namespace Google\Cloud\Core\Tests\Unit\Batch;
 
 use Google\Cloud\Core\Batch\BatchJob;
-use Google\Cloud\Core\Batch\JobConfig;
 use Google\Cloud\Core\Batch\InMemoryConfigStorage;
+use Google\Cloud\Core\Batch\JobConfig;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -39,8 +39,7 @@ class InMemoryConfigStorageTest extends TestCase
 
     public function testConstructorIsForbidden()
     {
-        $reflection = new \ReflectionClass(
-            '\Google\Cloud\Core\Batch\InMemoryConfigStorage');
+        $reflection = new \ReflectionClass(InMemoryConfigStorage::class);
         $constructor = $reflection->getConstructor();
         $this->assertFalse($constructor->isPublic());
     }

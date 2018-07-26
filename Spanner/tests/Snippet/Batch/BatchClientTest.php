@@ -39,12 +39,11 @@ use Prophecy\Argument;
 class BatchClientTest extends SnippetTestCase
 {
     use GrpcTestTrait;
-
-    const DATABASE = 'projects/example_project/instances/example_instance/databases/example_database';
-    const SESSION = 'projects/example_project/instances/example_instance/databases/example_database/sessions/session-id';
-    const TRANSACTION = 'transaction-id';
-
     use SpannerOperationRefreshTrait;
+
+    const DATABASE = 'projects/my-awesome-project/instances/my-instance/databases/my-database';
+    const SESSION = 'projects/my-awesome-project/instances/my-instance/databases/my-database/sessions/session-id';
+    const TRANSACTION = 'transaction-id';
 
     private $connection;
     private $client;
@@ -102,7 +101,7 @@ class BatchClientTest extends SnippetTestCase
         $pConnection = $this->prophesize(PubSubConnectionInterface::class);
         $pConnection->publishMessage(Argument::withEntry('messages', [$message1]))
             ->shouldBeCalled()
-            ->will(function() use ($message2) {
+            ->will(function () use ($message2) {
                 $this->publishMessage(Argument::withEntry('messages', [$message2]))
                     ->shouldBeCalled();
             });

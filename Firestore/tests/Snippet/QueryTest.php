@@ -21,6 +21,7 @@ use Google\Cloud\Core\Testing\ArrayHasSameValuesToken;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Core\Testing\Snippet\Parser\Snippet;
 use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
+use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Firestore\Connection\ConnectionInterface;
 use Google\Cloud\Firestore\Query;
 use Google\Cloud\Firestore\QuerySnapshot;
@@ -44,7 +45,7 @@ class QueryTest extends SnippetTestCase
     public function setUp()
     {
         $this->connection = $this->prophesize(ConnectionInterface::class);
-        $this->query = \Google\Cloud\Core\Testing\TestHelpers::stub(Query::class, [
+        $this->query = TestHelpers::stub(Query::class, [
             $this->connection->reveal(),
             new ValueMapper($this->connection->reveal(), false),
             self::NAME,

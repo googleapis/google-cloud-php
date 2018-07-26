@@ -21,6 +21,8 @@ use Google\Cloud\Core\Blob;
 use Google\Cloud\Core\Exception\AbortedException;
 use Google\Cloud\Core\GeoPoint;
 use Google\Cloud\Core\Iterator\ItemIterator;
+use Google\Cloud\Core\Testing\GrpcTestTrait;
+use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Core\Timestamp;
 use Google\Cloud\Firestore\CollectionReference;
 use Google\Cloud\Firestore\Connection\ConnectionInterface;
@@ -28,7 +30,6 @@ use Google\Cloud\Firestore\DocumentReference;
 use Google\Cloud\Firestore\FieldPath;
 use Google\Cloud\Firestore\FirestoreClient;
 use Google\Cloud\Firestore\WriteBatch;
-use Google\Cloud\Core\Testing\GrpcTestTrait;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
 
@@ -51,7 +52,7 @@ class FirestoreClientTest extends TestCase
         $this->checkAndSkipGrpcTests();
 
         $this->connection = $this->prophesize(ConnectionInterface::class);
-        $this->client = \Google\Cloud\Core\Testing\TestHelpers::stub(
+        $this->client = TestHelpers::stub(
             FirestoreClient::class,
             [['projectId' => self::PROJECT]]
         );
@@ -119,14 +120,16 @@ class FirestoreClientTest extends TestCase
             'collection-c',
         ];
 
-        $this->connection->listCollectionIds(Argument::that(function ($options) {
-            if ($options['foo'] !== 'bar') return false;
-            if (isset($options['pageToken']) && $options['pageToken'] !== 'foo') {
-                return false;
-            }
+        $this->connection->listCollectionIds(Argument::allOf(
+            Argument::withEntry('foo', 'bar'),
+            Argument::that(function ($options) {
+                if (isset($options['pageToken']) && $options['pageToken'] !== 'foo') {
+                    return false;
+                }
 
-            return true;
-        }))->willReturn([
+                return true;
+            })
+        ))->willReturn([
             'collectionIds' => $collectionIds,
             'nextPageToken' => 'foo'
         ])->shouldBeCalledTimes(2);
@@ -143,7 +146,9 @@ class FirestoreClientTest extends TestCase
         foreach ($collections as $collection) {
             $i++;
             $arr[] = $collection;
-            if ($i == 6) break;
+            if ($i == 6) {
+                break;
+            }
         }
 
         $this->assertCount(6, $arr);
@@ -318,7 +323,7 @@ class FirestoreClientTest extends TestCase
 
         $this->client->___setProperty('connection', $this->connection->reveal());
 
-        $this->client->runTransaction(function ($t) {});
+        $this->client->runTransaction($this->noop());
     }
 
     public function testRunTransactionRetryable()
@@ -329,7 +334,7 @@ class FirestoreClientTest extends TestCase
 
         $this->connection->beginTransaction([
             'database' => 'projects/'. self::PROJECT .'/databases/'. self::DATABASE
-        ])->shouldBeCalled()->will(function($args, $mock) use ($transactionId, $transactionId2) {
+        ])->shouldBeCalled()->will(function ($args, $mock) use ($transactionId, $transactionId2) {
             $mock->beginTransaction(Argument::withEntry('retryTransaction', $transactionId))->willReturn([
                 'transaction' => $transactionId2
             ]);
@@ -339,22 +344,16 @@ class FirestoreClientTest extends TestCase
             ];
         });
 
-        $this->connection->commit(Argument::that(function ($args) use ($transactionId) {
-            if ($args['database'] !== 'projects/'. self::PROJECT .'/databases/'. self::DATABASE) return false;
-            if ($args['transaction'] !== $transactionId) return false;
-
-            return true;
-        }))
-            ->shouldBeCalled()
-            ->will(function ($args, $mock) use ($timestamp, $transactionId2) {
-                $mock->commit(Argument::that(function ($args) use ($transactionId2) {
-                    if ($args['database'] !== 'projects/'. self::PROJECT .'/databases/'. self::DATABASE) return false;
-                    if ($args['transaction'] !== $transactionId2) return false;
-
-                    return true;
-                }))->willReturn([
-                    'commitTime' => $timestamp,
-                ]);
+        $this->connection->commit(Argument::allOf(
+            Argument::withEntry('database', 'projects/'. self::PROJECT .'/databases/'. self::DATABASE),
+            Argument::withEntry('transaction', $transactionId)
+        ))->shouldBeCalled()->will(function ($args, $mock) use ($timestamp, $transactionId2) {
+            $mock->commit(Argument::allOf(
+                Argument::withEntry('database', 'projects/'. self::PROJECT .'/databases/'. self::DATABASE),
+                Argument::withEntry('transaction', $transactionId2)
+            ))->willReturn([
+                'commitTime' => $timestamp,
+            ]);
 
             throw new AbortedException('');
         });
@@ -400,7 +399,9 @@ class FirestoreClientTest extends TestCase
 
         $this->client->___setProperty('connection', $this->connection->reveal());
 
-        $res = $this->client->runTransaction(function ($t) { throw new \RangeException('foo'); });
+        $res = $this->client->runTransaction(function ($t) {
+            throw new \RangeException('foo');
+        });
     }
 
     /**
@@ -470,7 +471,7 @@ class FirestoreClientTest extends TestCase
         $this->client->___setProperty('connection', $this->connection->reveal());
 
         $this->client->runTransaction(function ($t) {
-            $this->client->runTransaction(function (){});
+            $this->client->runTransaction($this->noop());
         });
     }
 
@@ -498,5 +499,12 @@ class FirestoreClientTest extends TestCase
         $path = $this->client->fieldPath($parts);
         $this->assertInstanceOf(FieldPath::class, $path);
         $this->assertEquals($parts, $path->path());
+    }
+
+    private function noop()
+    {
+        return function () {
+            return;
+        };
     }
 }

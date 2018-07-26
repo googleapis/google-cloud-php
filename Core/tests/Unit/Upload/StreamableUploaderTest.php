@@ -47,7 +47,7 @@ class StreamableUploaderTest extends TestCase
     {
         $resumeResponse = new Response(200, ['Location' => 'http://some-resume-uri.example.com'], $this->successBody);
         $this->requestWrapper->send(
-            Argument::that(function($request){
+            Argument::that(function ($request) {
                 return (string) $request->getUri() == 'http://www.example.com';
             }),
             Argument::type('array')
@@ -55,7 +55,7 @@ class StreamableUploaderTest extends TestCase
 
         $uploadResponse = new Response(200, [], $this->successBody);
         $upload = $this->requestWrapper->send(
-            Argument::that(function($request){
+            Argument::that(function ($request) {
                 return (string) $request->getUri() == 'http://some-resume-uri.example.com';
             }),
             Argument::type('array')
@@ -156,7 +156,7 @@ class StreamableUploaderTest extends TestCase
         )->willReturn($resumeUriResponse)->shouldBeCalled();
 
         $this->requestWrapper->send(
-            Argument::that(function($request) {
+            Argument::that(function ($request) {
                 return $request->getHeaderLine('Content-Length') == '10';
             }),
             Argument::type('array')

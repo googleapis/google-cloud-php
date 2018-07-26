@@ -65,7 +65,10 @@ class WebTest extends TestCase
     public function testPartialMatchingImages()
     {
         $this->assertInstanceOf(WebImage::class, $this->annotation->partialMatchingImages()[0]);
-        $this->assertEquals($this->info['partialMatchingImages'][0], $this->annotation->partialMatchingImages()[0]->info());
+        $this->assertEquals(
+            $this->info['partialMatchingImages'][0],
+            $this->annotation->partialMatchingImages()[0]->info()
+        );
     }
 
     public function testPages()

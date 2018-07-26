@@ -19,19 +19,20 @@ namespace Google\Cloud\BigQuery\Tests\Snippet;
 
 use Google\Cloud\BigQuery\BigQueryClient;
 use Google\Cloud\BigQuery\Bytes;
-use Google\Cloud\BigQuery\Date;
-use Google\Cloud\BigQuery\Numeric;
-use Google\Cloud\BigQuery\Time;
-use Google\Cloud\BigQuery\Timestamp;
 use Google\Cloud\BigQuery\Connection\ConnectionInterface;
 use Google\Cloud\BigQuery\Dataset;
+use Google\Cloud\BigQuery\Date;
 use Google\Cloud\BigQuery\Job;
+use Google\Cloud\BigQuery\Numeric;
 use Google\Cloud\BigQuery\QueryJobConfiguration;
 use Google\Cloud\BigQuery\QueryResults;
+use Google\Cloud\BigQuery\Time;
+use Google\Cloud\BigQuery\Timestamp;
 use Google\Cloud\BigQuery\ValueMapper;
 use Google\Cloud\Core\Int64;
 use Google\Cloud\Core\Iterator\ItemIterator;
 use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
+use Google\Cloud\Core\Testing\TestHelpers;
 use Prophecy\Argument;
 
 /**
@@ -71,7 +72,7 @@ class BigQueryClientTest extends SnippetTestCase
     public function setUp()
     {
         $this->connection = $this->prophesize(ConnectionInterface::class);
-        $this->client = \Google\Cloud\Core\Testing\TestHelpers::stub(BigQueryTestClient::class);
+        $this->client = TestHelpers::stub(BigQueryTestClient::class);
         $this->client->___setProperty('connection', $this->connection->reveal());
     }
 
@@ -132,7 +133,10 @@ class BigQueryClientTest extends SnippetTestCase
         $array = $config->toArray();
 
         $this->assertInstanceOf(QueryJobConfiguration::class, $config);
-        $this->assertEquals('SELECT name FROM `my_project.users_dataset.users` LIMIT 100', $array['configuration']['query']['query']);
+        $this->assertEquals(
+            'SELECT name FROM `my_project.users_dataset.users` LIMIT 100',
+            $array['configuration']['query']['query']
+        );
         $this->assertEquals('asia-northeast1', $array['jobReference']['location']);
     }
 
@@ -442,6 +446,7 @@ class BigQueryClientTest extends SnippetTestCase
     }
 }
 
+//@codingStandardsIgnoreStart
 class BigQueryTestClient extends BigQueryClient
 {
     public function query($query, array $options = [])
@@ -462,3 +467,4 @@ class QueryJobConfigurationStub extends QueryJobConfiguration
         return BigQueryClientTest::JOB_ID;
     }
 }
+//@codingStandardsIgnoreEnd

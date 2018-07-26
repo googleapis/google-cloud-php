@@ -17,6 +17,7 @@
 
 namespace Google\Cloud\Firestore\Tests\Unit;
 
+use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Core\Timestamp;
 use Google\Cloud\Core\TimeTrait;
 use Google\Cloud\Firestore\CollectionReference;
@@ -49,7 +50,7 @@ class DocumentReferenceTest extends TestCase
         $this->connection = $this->prophesize(ConnectionInterface::class);
 
         $valueMapper = new ValueMapper($this->connection->reveal(), false);
-        $this->document = \Google\Cloud\Core\Testing\TestHelpers::stub(DocumentReference::class, [
+        $this->document = TestHelpers::stub(DocumentReference::class, [
             $this->connection->reveal(),
             $valueMapper,
             new CollectionReference($this->connection->reveal(), $valueMapper, self::COLLECTION),

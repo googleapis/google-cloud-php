@@ -54,7 +54,7 @@ class TransactionalReadMethodsTest extends SnippetTestCase
     const DATABASE = 'my-database';
     const INSTANCE = 'my-instance';
     const TRANSACTION = 'my-transaction';
-    const SESSION = 'projects/example_project/instances/example_instance/databases/example_database/sessions/session-id';
+    const SESSION = 'projects/my-awesome-project/instances/my-instance/databases/my-database/sessions/session-id';
 
     private $connection;
     private $session;
@@ -134,9 +134,17 @@ class TransactionalReadMethodsTest extends SnippetTestCase
         $this->checkAndSkipGrpcTests();
 
         $this->connection->executeStreamingSql(Argument::that(function ($arg) {
-            if (!isset($arg['params'])) return false;
-            if (!isset($arg['paramTypes'])) return false;
-            if ($arg['paramTypes']['timestamp']['code'] !== Database::TYPE_TIMESTAMP) return false;
+            if (!isset($arg['params'])) {
+                return false;
+            }
+
+            if (!isset($arg['paramTypes'])) {
+                return false;
+            }
+
+            if ($arg['paramTypes']['timestamp']['code'] !== Database::TYPE_TIMESTAMP) {
+                return false;
+            }
 
             return true;
         }))->shouldBeCalled()->willReturn($this->resultGenerator([
@@ -181,10 +189,21 @@ class TransactionalReadMethodsTest extends SnippetTestCase
         $this->checkAndSkipGrpcTests();
 
         $this->connection->executeStreamingSql(Argument::that(function ($arg) {
-            if (!isset($arg['params'])) return false;
-            if (!isset($arg['paramTypes'])) return false;
-            if ($arg['paramTypes']['emptyArrayOfIntegers']['code'] !== Database::TYPE_ARRAY) return false;
-            if ($arg['paramTypes']['emptyArrayOfIntegers']['arrayElementType']['code'] !== Database::TYPE_INT64) return false;
+            if (!isset($arg['params'])) {
+                return false;
+            }
+
+            if (!isset($arg['paramTypes'])) {
+                return false;
+            }
+
+            if ($arg['paramTypes']['emptyArrayOfIntegers']['code'] !== Database::TYPE_ARRAY) {
+                return false;
+            }
+
+            if ($arg['paramTypes']['emptyArrayOfIntegers']['arrayElementType']['code'] !== Database::TYPE_INT64) {
+                return false;
+            }
 
             return true;
         }))->shouldBeCalled()->willReturn($this->resultGenerator([
@@ -456,7 +475,10 @@ class TransactionalReadMethodsTest extends SnippetTestCase
         return \Google\Cloud\Core\Testing\TestHelpers::stub(BatchSnapshot::class, [
             new Operation($this->connection->reveal(), false),
             $this->session->reveal(),
-            ['id' => self::TRANSACTION, 'readTimestamp' => new Timestamp(\DateTime::createFromFormat('U', (string) time()))]
+            [
+                'id' => self::TRANSACTION,
+                'readTimestamp' => new Timestamp(\DateTime::createFromFormat('U', (string) time()))
+            ]
         ], ['operation', 'session']);
     }
 

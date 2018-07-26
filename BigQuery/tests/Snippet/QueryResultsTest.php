@@ -22,6 +22,7 @@ use Google\Cloud\BigQuery\Job;
 use Google\Cloud\BigQuery\QueryResults;
 use Google\Cloud\BigQuery\ValueMapper;
 use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
+use Google\Cloud\Core\Testing\TestHelpers;
 use Prophecy\Argument;
 
 /**
@@ -63,7 +64,7 @@ class QueryResultsTest extends SnippetTestCase
         ];
 
         $this->connection = $this->prophesize(ConnectionInterface::class);
-        $this->qr = \Google\Cloud\Core\Testing\TestHelpers::stub(QueryResults::class, [
+        $this->qr = TestHelpers::stub(QueryResults::class, [
             $this->connection->reveal(),
             self::JOB_ID,
             self::PROJECT,

@@ -18,6 +18,7 @@
 namespace Google\Cloud\Core\Tests\Unit;
 
 use Google\Cloud\Core\SysvTrait;
+use Google\Cloud\Core\Testing\TestHelpers;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -27,18 +28,18 @@ class SysvTraitTest extends TestCase
 {
     public function setUp()
     {
-        $this->impl = new MySysvClass();
+        $this->impl = TestHelpers::impl(SysvTrait::class);
     }
 
     public function testGetSysvKey()
     {
-        if (!$this->impl->isSysvIPCLoaded()) {
+        if (!$this->impl->call('isSysvIPCLoaded')) {
             $this->markTestSkipped(
                 'SysV IPC extensions are not available, skipped'
             );
         }
-        $key1 = $this->impl->getSysvKey(1);
-        $key2 = $this->impl->getSysvKey(2);
+        $key1 = $this->impl->call('getSysvKey', [1]);
+        $key2 = $this->impl->call('getSysvKey', [2]);
         $this->assertEquals(1, $key2 - $key1);
     }
 
@@ -47,24 +48,6 @@ class SysvTraitTest extends TestCase
         $expected = extension_loaded('sysvmsg')
             && extension_loaded('sysvsem')
             && extension_loaded('sysvshm');
-        $this->assertEquals($expected, $this->impl->isSysvIPCLoaded());
-    }
-}
-
-class MySysvClass
-{
-    use SysvTrait {
-        isSysvIPCLoaded as privateIsSysvIPCLoaded;
-        getSysvKey as privateGetSysvKey;
-    }
-
-    function isSysvIPCLoaded()
-    {
-        return $this->privateIsSysvIPCLoaded();
-    }
-
-    function getSysvKey($id)
-    {
-        return $this->privateGetSysvKey($id);
+        $this->assertEquals($expected, $this->impl->call('isSysvIPCLoaded'));
     }
 }

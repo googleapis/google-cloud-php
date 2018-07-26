@@ -191,35 +191,33 @@ class GrpcTest extends TestCase
         $columns = ['id', 'name'];
         $keySetArgs = [];
         $keySet = $serializer->decodeMessage(new KeySet, $keySetArgs);
-        $keySetSingular = $serializer->decodeMessage(
-            new KeySet, [
-                'keys' => [
-                    [
-                        'values' => [
-                            [
-                                'number_value' => 1
-                            ]
+        $keySetSingular = $serializer->decodeMessage(new KeySet, [
+            'keys' => [
+                [
+                    'values' => [
+                        [
+                            'number_value' => 1
                         ]
-                    ],
-                ]
+                    ]
+                ],
             ]
-        );
-        $keySetComposite = $serializer->decodeMessage(
-            new KeySet, [
-                'keys' => [
-                    [
-                        'values' => [
-                            [
-                                'number_value' => 1
-                            ],
-                            [
-                                'number_value' => 1
-                            ]
+        ]);
+
+        $keySetComposite = $serializer->decodeMessage(new KeySet, [
+            'keys' => [
+                [
+                    'values' => [
+                        [
+                            'number_value' => 1
+                        ],
+                        [
+                            'number_value' => 1
                         ]
                     ]
                 ]
             ]
-        );
+        ]);
+
         $readWriteTransactionArgs = ['readWrite' => []];
         $readWriteTransactionOptions = new TransactionOptions;
         $rw = new TransactionOptions_ReadWrite();
@@ -268,140 +266,269 @@ class GrpcTest extends TestCase
         return [
             [
                 'listInstanceConfigs',
-                ['projectId' => self::PROJECT],
-                [self::PROJECT, ['headers' => ['google-cloud-resource-prefix' => [self::PROJECT]]]]
-            ],
-            [
+                [
+                    'projectId' => self::PROJECT
+                ], [
+                    self::PROJECT,
+                    [
+                        'headers' => $this->header(self::PROJECT)
+                    ]
+                ]
+            ], [
                 'getInstanceConfig',
-                ['name' => $configName, 'projectId' => self::PROJECT],
-                [$configName, ['headers' => ['google-cloud-resource-prefix' => [self::PROJECT]]]]
-            ],
-            [
+                [
+                    'name' => $configName,
+                    'projectId' => self::PROJECT
+                ], [
+                    $configName,
+                    [
+                        'headers' => $this->header(self::PROJECT)
+                    ]
+                ]
+            ], [
                 'listInstances',
-                ['projectId' => self::PROJECT],
-                [self::PROJECT, ['headers' => ['google-cloud-resource-prefix' => [self::PROJECT]]]]
-            ],
-            [
+                [
+                    'projectId' => self::PROJECT
+                ], [
+                    self::PROJECT,
+                    [
+                        'headers' => $this->header(self::PROJECT)
+                    ]
+                ]
+            ], [
                 'getInstance',
-                ['name' => $instanceName, 'projectId' => self::PROJECT],
-                [$instanceName, ['headers' => ['google-cloud-resource-prefix' => [self::PROJECT]]]]
-            ],
-            [
+                [
+                    'name' => $instanceName,
+                    'projectId' => self::PROJECT
+                ], [
+                    $instanceName,
+                    [
+                        'headers' => $this->header(self::PROJECT)
+                    ]
+                ]
+            ], [
                 'createInstance',
-                ['projectId' => self::PROJECT, 'instanceId' => $instanceName] + $instanceArgs,
-                [self::PROJECT, $instanceName, $instance, ['headers' => ['google-cloud-resource-prefix' => [$instanceName]]]],
+                [
+                    'projectId' => self::PROJECT,
+                    'instanceId' => $instanceName
+                ] + $instanceArgs, [
+                    self::PROJECT,
+                    $instanceName,
+                    $instance,
+                    [
+                        'headers' => $this->header($instanceName)
+                    ]
+                ],
                 $lro,
                 null
-            ],
-            [
+            ], [
                 'updateInstance',
                 $instanceArgs,
-                [$instance, $fieldMask, ['headers' => ['google-cloud-resource-prefix' => [$instanceName]]]],
+                [
+                    $instance,
+                    $fieldMask,
+                    [
+                        'headers' => $this->header($instanceName)
+                    ]
+                ],
                 $lro,
                 null
-            ],
-            [
+            ], [
                 'updateInstance',
                 $instanceArgsPartial,
-                [$instancePartial, $fieldMaskPartial, ['headers' => ['google-cloud-resource-prefix' => [$instanceName]]]],
+                [
+                    $instancePartial,
+                    $fieldMaskPartial,
+                    [
+                        'headers' => $this->header($instanceName)
+                    ]
+                ],
                 $lroPartial,
                 null
-            ],
-            [
+            ], [
                 'deleteInstance',
-                ['name' => $instanceName],
-                [$instanceName, ['headers' => ['google-cloud-resource-prefix' => [$instanceName]]]]
-            ],
-            [
+                [
+                    'name' => $instanceName
+                ], [
+                    $instanceName, [
+                        'headers' => $this->header($instanceName)
+                    ]
+                ]
+            ], [
                 'setInstanceIamPolicy',
-                ['resource' => $instanceName, 'policy' => $policy],
-                [$instanceName, $policy, ['headers' => ['google-cloud-resource-prefix' => [$instanceName]]]]
-            ],
-            [
+                [
+                    'resource' => $instanceName,
+                    'policy' => $policy
+                ], [
+                    $instanceName,
+                    $policy,
+                    [
+                        'headers' => $this->header($instanceName)
+                    ]
+                ]
+            ], [
                 'getInstanceIamPolicy',
-                ['resource' => $instanceName],
-                [$instanceName, ['headers' => ['google-cloud-resource-prefix' => [$instanceName]]]]
-            ],
-            [
+                [
+                    'resource' => $instanceName
+                ], [
+                    $instanceName,
+                    [
+                        'headers' => $this->header($instanceName)
+                    ]
+                ]
+            ], [
                 'testInstanceIamPermissions',
-                ['resource' => $instanceName, 'permissions' => $permissions],
-                [$instanceName, $permissions, ['headers' => ['google-cloud-resource-prefix' => [$instanceName]]]]
-            ],
-            [
+                [
+                    'resource' => $instanceName,
+                    'permissions' => $permissions
+                ], [
+                    $instanceName,
+                    $permissions, [
+                        'headers' => $this->header($instanceName)
+                    ]
+                ]
+            ], [
                 'listDatabases',
-                ['instance' => $instanceName],
-                [$instanceName, ['headers' => ['google-cloud-resource-prefix' => [$instanceName]]]]
-            ],
-            [
+                [
+                    'instance' => $instanceName
+                ], [
+                    $instanceName,
+                    [
+                        'headers' => $this->header($instanceName)
+                    ]
+                ]
+            ], [
                 'createDatabase',
-                ['instance' => $instanceName, 'createStatement' => $createStmt, 'extraStatements' => []],
-                [$instanceName, $createStmt, ['extraStatements' => [], 'headers' => ['google-cloud-resource-prefix' => [$instanceName]]]],
+                [
+                    'instance' => $instanceName,
+                    'createStatement' => $createStmt,
+                    'extraStatements' => []
+                ], [
+                    $instanceName,
+                    $createStmt,
+                    [
+                        'extraStatements' => [],
+                        'headers' => $this->header($instanceName)
+                    ]
+                ],
                 $lro,
                 null
-            ],
-            [
+            ], [
                 'updateDatabaseDdl',
-                ['name' => $databaseName, 'statements' => []],
-                [$databaseName, [], ['headers' => ['google-cloud-resource-prefix' => [$databaseName]]]],
+                [
+                    'name' => $databaseName,
+                    'statements' => []
+                ], [
+                    $databaseName,
+                    [],
+                    [
+                        'headers' => $this->header($databaseName)
+                    ]
+                ],
                 $lro,
                 null
-            ],
-            [
+            ], [
                 'dropDatabase',
-                ['name' => $databaseName],
-                [$databaseName, ['headers' => ['google-cloud-resource-prefix' => [$databaseName]]]]
-            ],
-            [
+                [
+                    'name' => $databaseName
+                ], [
+                    $databaseName, [
+                        'headers' => $this->header($databaseName)
+                    ]
+                ]
+            ], [
                 'getDatabaseDDL',
-                ['name' => $databaseName],
-                [$databaseName, ['headers' => ['google-cloud-resource-prefix' => [$databaseName]]]]
-            ],
-            [
+                [
+                    'name' => $databaseName
+                ], [
+                    $databaseName,
+                    [
+                        'headers' => $this->header($databaseName)
+                    ]
+                ]
+            ], [
                 'setDatabaseIamPolicy',
-                ['resource' => $databaseName, 'policy' => $policy],
-                [$databaseName, $policy, ['headers' => ['google-cloud-resource-prefix' => [$databaseName]]]]
-            ],
-            [
+                [
+                    'resource' => $databaseName,
+                    'policy' => $policy
+                ], [
+                    $databaseName,
+                    $policy,
+                    [
+                        'headers' => $this->header($databaseName)
+                    ]
+                ]
+            ], [
                 'getDatabaseIamPolicy',
-                ['resource' => $databaseName],
-                [$databaseName, ['headers' => ['google-cloud-resource-prefix' => [$databaseName]]]]
-            ],
-            [
+                [
+                    'resource' => $databaseName
+                ], [
+                    $databaseName,
+                    [
+                        'headers' => $this->header($databaseName)
+                    ]
+                ]
+            ], [
                 'testDatabaseIamPermissions',
-                ['resource' => $databaseName, 'permissions' => $permissions],
-                [$databaseName, $permissions, ['headers' => ['google-cloud-resource-prefix' => [$databaseName]]]]
-            ],
-            [
+                [
+                    'resource' => $databaseName,
+                    'permissions' => $permissions
+                ], [
+                    $databaseName,
+                    $permissions,
+                    [
+                        'headers' => $this->header($databaseName)
+                    ]
+                ]
+            ], [
                 'createSession',
-                ['database' => $databaseName],
-                [$databaseName, ['headers' => ['google-cloud-resource-prefix' => [$databaseName]]]]
-            ],
-            [
+                [
+                    'database' => $databaseName
+                ], [
+                    $databaseName,
+                    [
+                        'headers' => $this->header($databaseName)
+                    ]
+                ]
+            ], [
                 'getSession',
-                ['name' => $sessionName, 'database' => $databaseName],
-                [$sessionName, ['headers' => ['google-cloud-resource-prefix' => [$databaseName]]]]
-            ],
-            [
+                [
+                    'name' => $sessionName,
+                    'database' => $databaseName
+                ], [
+                    $sessionName,
+                    [
+                        'headers' => $this->header($databaseName)
+                    ]
+                ]
+            ], [
                 'deleteSession',
-                ['name' => $sessionName, 'database' => $databaseName],
-                [$sessionName, ['headers' => ['google-cloud-resource-prefix' => [$databaseName]]]]
-            ],
-            [
+                [
+                    'name' => $sessionName,
+                    'database' => $databaseName
+                ], [
+                    $sessionName,
+                    [
+                        'headers' => $this->header($databaseName)
+                    ]
+                ]
+            ], [
                 'executeStreamingSql',
                 [
                     'session' => $sessionName,
                     'sql' => $sql,
                     'transactionId' => $transactionName,
                     'database' => $databaseName
-                ] + $mapped,
-                [$sessionName, $sql, [
-                    'transaction' => $transactionSelector,
-                    'params' => $expectedParams,
-                    'paramTypes' => $expectedParamTypes,
-                    'headers' => ['google-cloud-resource-prefix' => [$databaseName]]
-                ]]
-            ],
-            [
+                ] + $mapped, [
+                    $sessionName,
+                    $sql, [
+                        'transaction' => $transactionSelector,
+                        'params' => $expectedParams,
+                        'paramTypes' => $expectedParamTypes,
+                        'headers' => $this->header($databaseName)
+                    ]
+                ]
+            ], [
                 'streamingRead',
                 [
                     'keySet' => [],
@@ -410,10 +537,17 @@ class GrpcTest extends TestCase
                     'table' => $tableName,
                     'columns' => $columns,
                     'database' => $databaseName,
-                ],
-                [$sessionName, $tableName, $columns, $keySet, ['transaction' => $transactionSelector, 'headers' => ['google-cloud-resource-prefix' => [$databaseName]]]]
-            ],
-            [
+                ], [
+                    $sessionName,
+                    $tableName,
+                    $columns,
+                    $keySet,
+                    [
+                        'transaction' => $transactionSelector,
+                        'headers' => $this->header($databaseName)
+                    ]
+                ]
+            ], [
                 'streamingRead',
                 [
                     'keySet' => ['keys' => [1]],
@@ -422,10 +556,17 @@ class GrpcTest extends TestCase
                     'table' => $tableName,
                     'columns' => $columns,
                     'database' => $databaseName,
-                ],
-                [$sessionName, $tableName, $columns, $keySetSingular, ['transaction' => $transactionSelector, 'headers' => ['google-cloud-resource-prefix' => [$databaseName]]]]
-            ],
-            [
+                ], [
+                    $sessionName,
+                    $tableName,
+                    $columns,
+                    $keySetSingular,
+                    [
+                        'transaction' => $transactionSelector,
+                        'headers' => $this->header($databaseName)
+                    ]
+                ]
+            ], [
                 'streamingRead',
                 [
                     'keySet' => ['keys' => [[1,1]]],
@@ -434,8 +575,16 @@ class GrpcTest extends TestCase
                     'table' => $tableName,
                     'columns' => $columns,
                     'database' => $databaseName,
-                ],
-                [$sessionName, $tableName, $columns, $keySetComposite, ['transaction' => $transactionSelector, 'headers' => ['google-cloud-resource-prefix' => [$databaseName]]]]
+                ], [
+                    $sessionName,
+                    $tableName,
+                    $columns,
+                    $keySetComposite,
+                    [
+                        'transaction' => $transactionSelector,
+                        'headers' => $this->header($databaseName)
+                    ]
+                ]
             ],
             // test read write
             [
@@ -444,8 +593,13 @@ class GrpcTest extends TestCase
                     'session' => $sessionName,
                     'transactionOptions' => $readWriteTransactionArgs,
                     'database' => $databaseName
-                ],
-                [$sessionName, $readWriteTransactionOptions, ['headers' => ['google-cloud-resource-prefix' => [$databaseName]]]]
+                ], [
+                    $sessionName,
+                    $readWriteTransactionOptions,
+                    [
+                        'headers' => $this->header($databaseName)
+                    ]
+                ]
             ],
             // test read only
             [
@@ -454,8 +608,13 @@ class GrpcTest extends TestCase
                     'session' => $sessionName,
                     'transactionOptions' => $readOnlyTransactionArgs,
                     'database' => $databaseName
-                ],
-                [$sessionName, $readOnlyTransactionOptions, ['headers' => ['google-cloud-resource-prefix' => [$databaseName]]]]
+                ], [
+                    $sessionName,
+                    $readOnlyTransactionOptions,
+                    [
+                        'headers' => $this->header($databaseName)
+                    ]
+                ]
             ],
             // test insert
             // [
@@ -471,22 +630,39 @@ class GrpcTest extends TestCase
                     'mutations' => [],
                     'singleUseTransaction' => true,
                     'database' => $databaseName
-                ],
-                [$sessionName, [], ['singleUseTransaction' => $readWriteTransactionOptions, 'headers' => ['google-cloud-resource-prefix' => [$databaseName]]]]
-            ],
-            [
+                ], [
+                    $sessionName,
+                    [],
+                    [
+                        'singleUseTransaction' => $readWriteTransactionOptions,
+                        'headers' => $this->header($databaseName)
+                    ]
+                ]
+            ], [
                 'rollback',
                 [
                     'session' => $sessionName,
                     'transactionId' => $transactionName,
                     'database' => $databaseName
-                ],
-                [$sessionName, $transactionName, ['headers' => ['google-cloud-resource-prefix' => [$databaseName]]]]
+                ], [
+                    $sessionName,
+                    $transactionName,
+                    [
+                        'headers' => $this->header($databaseName)
+                    ]
+                ]
             ],
             // ['getOperation'],
             // ['cancelOperation'],
             // ['deleteOperation'],
             // ['listOperations']
+        ];
+    }
+
+    private function header($val)
+    {
+        return [
+            'google-cloud-resource-prefix' => [$val]
         ];
     }
 }

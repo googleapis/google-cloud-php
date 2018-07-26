@@ -34,9 +34,7 @@ class AppEngineFlexHandlerTest extends TestCase
     {
         $dir = sys_get_temp_dir();
         $this->stream = tmpfile();
-        $handler = new AppEngineFlexHandler(
-            Logger::DEBUG, true, 0640, false, $this->stream
-        );
+        $handler = new AppEngineFlexHandler(Logger::DEBUG, true, 0640, false, $this->stream);
         $this->log = new Logger('gcloud-test');
         $this->log->pushHandler($handler);
     }

@@ -66,7 +66,7 @@ class DatastoreTestCase extends TestCase
         $transaction = self::$client->transaction();
 
         self::$localDeletionQueue->process(function ($items) use ($backoff, $transaction) {
-            $backoff->execute(function() use ($items, $transaction) {
+            $backoff->execute(function () use ($items, $transaction) {
                 $transaction->deleteBatch($items);
             });
         });

@@ -35,7 +35,7 @@ class BlobTest extends TestCase
     public function testBlobResource()
     {
         $string = 'hello world';
-        $stream = fopen('php://memory','r+');
+        $stream = fopen('php://memory', 'r+');
         fwrite($stream, $string);
         rewind($stream);
 

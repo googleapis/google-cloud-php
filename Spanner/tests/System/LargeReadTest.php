@@ -29,7 +29,12 @@ class LargeReadTest extends SpannerTestCase
     private static $tableName;
     private static $row = [];
 
-    private static $data = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'];
+    //@codingStandardsIgnoreStart
+    private static $data = [
+        'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'
+    ];
+    //@codingStandardsIgnoreEnd
+
     private static $str = '';
     const NUM = 40000;
 
@@ -135,7 +140,7 @@ class LargeReadTest extends SpannerTestCase
     private static function randomArrayOfStrings()
     {
         $res = [];
-        for ($i=0; $i <= rand(1,4); $i++) {
+        for ($i=0; $i <= rand(1, 4); $i++) {
             $res[] = self::randomString();
         }
 
@@ -145,7 +150,7 @@ class LargeReadTest extends SpannerTestCase
     private static function randomArrayOfBytes(&$str)
     {
         $res = [];
-        for ($i=0; $i <= rand(1,4); $i++) {
+        for ($i=0; $i <= rand(1, 4); $i++) {
             $res[] = self::randomBytes($str);
         }
 

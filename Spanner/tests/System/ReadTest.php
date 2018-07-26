@@ -339,7 +339,7 @@ class ReadTest extends SpannerTestCase
     {
         $db = self::$database;
 
-        $res = function($limit) use ($db) {
+        $res = function ($limit) use ($db) {
             $keyset = new KeySet(['all' => true]);
             return $db->read(self::$rangeTableName, $keyset, array_keys(self::$dataset[0]), [
                 'limit' => $limit
@@ -360,7 +360,7 @@ class ReadTest extends SpannerTestCase
     {
         $db = self::$database;
 
-        $res = function($limit) use ($db) {
+        $res = function ($limit) use ($db) {
             $keyset = new KeySet(['all' => true]);
             return $db->read(self::$rangeTableName, $keyset, array_keys(self::$dataset[0]), [
                 'limit' => $limit,

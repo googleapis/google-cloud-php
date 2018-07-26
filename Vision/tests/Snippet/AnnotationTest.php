@@ -18,6 +18,7 @@
 namespace Google\Cloud\Vision\Tests\Snippet;
 
 use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
+use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Vision\Annotation;
 use Google\Cloud\Vision\Annotation\CropHint;
 use Google\Cloud\Vision\Annotation\Document;
@@ -27,6 +28,7 @@ use Google\Cloud\Vision\Annotation\ImageProperties;
 use Google\Cloud\Vision\Annotation\SafeSearch;
 use Google\Cloud\Vision\Annotation\Web;
 use Google\Cloud\Vision\Connection\ConnectionInterface;
+use Google\Cloud\Vision\VisionClient;
 use Prophecy\Argument;
 
 /**
@@ -37,21 +39,23 @@ class AnnotationTest extends SnippetTestCase
     public function testClass()
     {
         $snippet = $this->snippetFromClass(Annotation::class);
+
+        $connection = $this->prophesize(ConnectionInterface::class);
+        $connection->annotate(Argument::any())
+            ->willReturn(['responses' => [[]]]);
+
+        $vision = TestHelpers::stub(VisionClient::class);
+        $vision->___setProperty('connection', $connection->reveal());
+
+        $snippet->addLocal('vision', $vision);
+
         $snippet->replace(
             "__DIR__ . '/assets/family-photo.jpg'",
             "'php://temp'"
         );
-
-        $connectionStub = $this->prophesize(ConnectionInterface::class);
-        $connectionStub->annotate(Argument::any())
-            ->willReturn(['responses' => [ [] ] ]);
-
-        $snippet->addLocal('connectionStub', $connectionStub->reveal());
-        $snippet->insertAfterLine(3, '$reflection = new \ReflectionClass($vision);
-            $property = $reflection->getProperty(\'connection\');
-            $property->setAccessible(true);
-            $property->setValue($vision, $connectionStub);
-            $property->setAccessible(false);'
+        $snippet->replace(
+            '$vision = new VisionClient();',
+            ''
         );
 
         $res = $snippet->invoke('annotation');

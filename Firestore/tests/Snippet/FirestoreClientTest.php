@@ -22,6 +22,7 @@ use Google\Cloud\Core\GeoPoint;
 use Google\Cloud\Core\Iterator\ItemIterator;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
+use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Core\Timestamp;
 use Google\Cloud\Firestore\CollectionReference;
 use Google\Cloud\Firestore\Connection\ConnectionInterface;
@@ -52,7 +53,7 @@ class FirestoreClientTest extends SnippetTestCase
         $this->checkAndSkipGrpcTests();
 
         $this->connection = $this->prophesize(ConnectionInterface::class);
-        $this->client = \Google\Cloud\Core\Testing\TestHelpers::stub(FirestoreClient::class, [
+        $this->client = TestHelpers::stub(FirestoreClient::class, [
             ['projectId' => self::PROJECT]
         ]);
     }

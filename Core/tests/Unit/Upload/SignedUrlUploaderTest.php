@@ -52,10 +52,22 @@ class SignedUrlUploaderTest extends TestCase
 
         $this->requestWrapper->send(
             Argument::that(function ($arg) {
-                if (!($arg instanceof RequestInterface)) return false;
-                if ($arg->getHeaderLine('Content-Type') !== 'application/octet-stream') return false;
-                if ($arg->getHeaderLine('Content-Length') != 0) return false;
-                if ($arg->getHeaderLine('x-goog-resumable') !== 'start') return false;
+                if (!($arg instanceof RequestInterface)) {
+                    return false;
+                }
+
+                if ($arg->getHeaderLine('Content-Type') !== 'application/octet-stream') {
+                    return false;
+                }
+
+                if ($arg->getHeaderLine('Content-Length') != 0) {
+                    return false;
+                }
+
+                if ($arg->getHeaderLine('x-goog-resumable') !== 'start') {
+                    return false;
+                }
+
                 return true;
             }),
             Argument::type('array')

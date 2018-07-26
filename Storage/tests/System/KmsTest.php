@@ -242,11 +242,14 @@ class KmsTest extends StorageTestCase
         $name = null;
 
         try {
+            $uri = 'https://cloudkms.googleapis.com/v1/projects/%s/'.
+                'locations/us-west1/keyRings/%s/cryptoKeys?cryptoKeyId=%s';
+
             $response = $wrapper->send(
                 new Request(
                     'POST',
                     sprintf(
-                        'https://cloudkms.googleapis.com/v1/projects/%s/locations/us-west1/keyRings/%s/cryptoKeys?cryptoKeyId=%s',
+                        $uri,
                         $projectId,
                         $keyRingId,
                         $cryptoKeyId
@@ -279,11 +282,13 @@ class KmsTest extends StorageTestCase
             ]
         ];
 
+        $uri = 'https://cloudkms.googleapis.com/v1/projects/%s/locations/'.
+            'us-west1/keyRings/%s/cryptoKeys/%s:setIamPolicy';
         $wrapper->send(
             new Request(
                 'POST',
                 sprintf(
-                    'https://cloudkms.googleapis.com/v1/projects/%s/locations/us-west1/keyRings/%s/cryptoKeys/%s:setIamPolicy',
+                    $uri,
                     $projectId,
                     $keyRingId,
                     $cryptoKeyId

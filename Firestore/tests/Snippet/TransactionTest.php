@@ -19,6 +19,7 @@ namespace Google\Cloud\Firestore\Tests\Snippet;
 
 use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
+use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Core\Timestamp;
 use Google\Cloud\Firestore\CollectionReference;
 use Google\Cloud\Firestore\Connection\ConnectionInterface;
@@ -56,7 +57,7 @@ class TransactionTest extends SnippetTestCase
     public function setUp()
     {
         $this->connection = $this->prophesize(ConnectionInterface::class);
-        $this->transaction = \Google\Cloud\Core\Testing\TestHelpers::stub(TransactionStub::class, [
+        $this->transaction = TestHelpers::stub(TransactionStub::class, [
             $this->connection->reveal(),
             new ValueMapper($this->connection->reveal(), false),
             self::DATABASE,
@@ -80,7 +81,7 @@ class TransactionTest extends SnippetTestCase
         $this->connection->rollback(Argument::any())
             ->shouldBeCalled();
 
-        $client = \Google\Cloud\Core\Testing\TestHelpers::stub(FirestoreClient::class);
+        $client = TestHelpers::stub(FirestoreClient::class);
         $client->___setProperty('connection', $this->connection->reveal());
 
         $snippet = $this->snippetFromClass(Transaction::class);
@@ -262,6 +263,7 @@ class TransactionTest extends SnippetTestCase
     }
 }
 
+//@codingStandardsIgnoreStart
 class TransactionStub extends Transaction
 {
     private $database;
@@ -289,3 +291,4 @@ class TransactionStub extends Transaction
         $this->___setProperty('writer', $writer);
     }
 }
+//@codingStandardsIgnoreEnd

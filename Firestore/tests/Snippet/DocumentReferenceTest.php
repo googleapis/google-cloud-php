@@ -19,6 +19,7 @@ namespace Google\Cloud\Firestore\Tests\Snippet;
 
 use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
+use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Core\Timestamp;
 use Google\Cloud\Firestore\CollectionReference;
 use Google\Cloud\Firestore\Connection\ConnectionInterface;
@@ -46,12 +47,12 @@ class DocumentReferenceTest extends SnippetTestCase
     public function setUp()
     {
         $this->connection = $this->prophesize(ConnectionInterface::class);
-        $this->document = \Google\Cloud\Core\Testing\TestHelpers::stub(DocumentReferenceStub::class, [
+        $this->document = TestHelpers::stub(DocumentReferenceStub::class, [
             $this->connection->reveal(),
             new ValueMapper($this->connection->reveal(), false),
             $this->prophesize(CollectionReference::class)->reveal(),
             self::DOCUMENT
-        ]);
+        ], ['connection', 'batch']);
         $this->batch = $this->prophesize(WriteBatch::class);
     }
 
@@ -106,7 +107,7 @@ class DocumentReferenceTest extends SnippetTestCase
         $this->batch->create(self::DOCUMENT, Argument::any(), Argument::any())
             ->shouldBeCalled()->willReturn($this->batch->reveal());
 
-        $this->document->setBatch($this->batch->reveal());
+        $this->document->___setProperty('batch', $this->batch->reveal());
 
         $snippet = $this->snippetFromMethod(DocumentReference::class, 'create');
         $snippet->addLocal('document', $this->document);
@@ -122,7 +123,7 @@ class DocumentReferenceTest extends SnippetTestCase
         $this->batch->set(self::DOCUMENT, Argument::any(), Argument::any())
             ->shouldBeCalled()->willReturn($this->batch->reveal());
 
-        $this->document->setBatch($this->batch->reveal());
+        $this->document->___setProperty('batch', $this->batch->reveal());
 
         $snippet = $this->snippetFromMethod(DocumentReference::class, 'set');
         $snippet->addLocal('document', $this->document);
@@ -138,7 +139,7 @@ class DocumentReferenceTest extends SnippetTestCase
         $this->batch->update(self::DOCUMENT, Argument::any(), Argument::any())
             ->shouldBeCalled()->willReturn($this->batch->reveal());
 
-        $this->document->setBatch($this->batch->reveal());
+        $this->document->___setProperty('batch', $this->batch->reveal());
 
         $snippet = $this->snippetFromMethod(DocumentReference::class, 'update');
         $snippet->addLocal('document', $this->document);
@@ -156,7 +157,7 @@ class DocumentReferenceTest extends SnippetTestCase
             ['path' => 'lastLogin', 'value' => FieldValue::serverTimestamp()]
         ], Argument::any())->shouldBeCalled()->willReturn($this->batch->reveal());
 
-        $this->document->setBatch($this->batch->reveal());
+        $this->document->___setProperty('batch', $this->batch->reveal());
 
         $snippet = $this->snippetFromMethod(DocumentReference::class, 'update', 1);
         $snippet->addLocal('document', $this->document);
@@ -166,13 +167,13 @@ class DocumentReferenceTest extends SnippetTestCase
     public function testUpdateSpecialChars()
     {
         $this->batch->commit(Argument::any())
-        ->shouldBeCalled()
-        ->willReturn([[]]);
+            ->shouldBeCalled()
+            ->willReturn([[]]);
 
         $this->batch->update(self::DOCUMENT, Argument::any(), Argument::any())
             ->shouldBeCalled()->willReturn($this->batch->reveal());
 
-        $this->document->setBatch($this->batch->reveal());
+        $this->document->___setProperty('batch', $this->batch->reveal());
 
         $snippet = $this->snippetFromMethod(DocumentReference::class, 'update', 2);
         $snippet->addLocal('document', $this->document);
@@ -188,7 +189,7 @@ class DocumentReferenceTest extends SnippetTestCase
         $this->batch->delete(self::DOCUMENT, Argument::any())
             ->shouldBeCalled()->willReturn($this->batch->reveal());
 
-        $this->document->setBatch($this->batch->reveal());
+        $this->document->___setProperty('batch', $this->batch->reveal());
 
         $snippet = $this->snippetFromMethod(DocumentReference::class, 'delete');
         $snippet->addLocal('document', $this->document);
@@ -236,20 +237,5 @@ class DocumentReferenceTest extends SnippetTestCase
         $snippet->addLocal('document', $this->document);
         $res = $snippet->invoke('collections');
         $this->assertContainsOnlyInstancesOf(CollectionReference::class, $res->returnVal());
-    }
-}
-
-class DocumentReferenceStub extends DocumentReference
-{
-    private $batch;
-
-    public function setBatch(WriteBatch $batch)
-    {
-        $this->batch = $batch;
-    }
-
-    protected function batchFactory()
-    {
-        return $this->batch;
     }
 }

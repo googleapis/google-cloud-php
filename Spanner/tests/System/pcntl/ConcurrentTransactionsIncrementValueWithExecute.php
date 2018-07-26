@@ -14,7 +14,7 @@ setupIterationTracker($tmpFile);
 $db1 = SpannerTestCase::getDatabaseInstance($dbName);
 $db2 = SpannerTestCase::getDatabaseInstance($dbName);
 
-$callable = function(Database $db, $tableName, $id) use ($tmpFile) {
+$callable = function (Database $db, $tableName, $id) use ($tmpFile) {
     $iterations = 0;
     $db->runTransaction(function ($transaction) use ($id, $tableName, &$iterations) {
         $iterations++;

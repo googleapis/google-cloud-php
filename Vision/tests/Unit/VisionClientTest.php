@@ -17,12 +17,13 @@
 
 namespace Google\Cloud\Vision\Tests\Unit;
 
+use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Vision\Annotation;
 use Google\Cloud\Vision\Connection\ConnectionInterface;
 use Google\Cloud\Vision\Image;
 use Google\Cloud\Vision\VisionClient;
-use Prophecy\Argument;
 use PHPUnit\Framework\TestCase;
+use Prophecy\Argument;
 
 /**
  * @group vision
@@ -35,7 +36,7 @@ class VisionClientTest extends TestCase
 
     public function setUp()
     {
-        $this->client = new VisionClientStub;
+        $this->client = TestHelpers::stub(VisionClient::class);
         $this->connection = $this->prophesize(ConnectionInterface::class);
     }
 
@@ -65,7 +66,7 @@ class VisionClientTest extends TestCase
                 ]
             ]);
 
-        $this->client->setConnection($this->connection->reveal());
+        $this->client->___setProperty('connection', $this->connection->reveal());
 
         $res = $this->client->annotate($image);
 
@@ -83,7 +84,7 @@ class VisionClientTest extends TestCase
                 ]
             ]);
 
-        $this->client->setConnection($this->connection->reveal());
+        $this->client->___setProperty('connection', $this->connection->reveal());
 
         $res = $this->client->annotateBatch([$image]);
 
@@ -99,13 +100,5 @@ class VisionClientTest extends TestCase
     public function testAnnotateBatchInvalidImageType()
     {
         $this->client->annotateBatch(['test']);
-    }
-}
-
-class VisionClientStub extends VisionClient
-{
-    public function setConnection($connection)
-    {
-        $this->connection = $connection;
     }
 }

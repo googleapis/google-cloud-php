@@ -17,6 +17,7 @@
 
 namespace Google\Cloud\Vision\Tests\Unit\Annotation;
 
+use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Vision\Annotation\FeatureInterface;
 use Google\Cloud\Vision\Annotation\LikelihoodTrait;
 use PHPUnit\Framework\TestCase;
@@ -26,21 +27,37 @@ use PHPUnit\Framework\TestCase;
  */
 class LikelihoodTraitTest extends TestCase
 {
-    public function testLikelihoods()
+    private $stub;
+
+    public function setUp()
     {
-        $t = new LikelihoodTraitStub;
+        $this->stub = TestHelpers::impl(LikelihoodTrait::class);
+    }
 
-        $this->assertTrue($t->l('VERY_LIKELY', FeatureInterface::STRENGTH_HIGH));
-        $this->assertFalse($t->l('LIKELY', FeatureInterface::STRENGTH_HIGH));
-        $this->assertFalse($t->l('POSSIBLE', FeatureInterface::STRENGTH_HIGH));
+    /**
+     * @dataProvider likelihood
+     */
+    public function testLikelihoods($expected, $value, $strength)
+    {
+        $this->assertEquals($expected, $this->stub->call('likelihood', [
+            $value,
+            $strength
+        ]));
+    }
 
-        $this->assertTrue($t->l('VERY_LIKELY', FeatureInterface::STRENGTH_MEDIUM));
-        $this->assertTrue($t->l('LIKELY', FeatureInterface::STRENGTH_MEDIUM));
-        $this->assertFalse($t->l('POSSIBLE', FeatureInterface::STRENGTH_MEDIUM));
-
-        $this->assertTrue($t->l('VERY_LIKELY', FeatureInterface::STRENGTH_LOW));
-        $this->assertTrue($t->l('LIKELY', FeatureInterface::STRENGTH_LOW));
-        $this->assertTrue($t->l('POSSIBLE', FeatureInterface::STRENGTH_LOW));
+    public function likelihood()
+    {
+        return [
+            [true, 'VERY_LIKELY', FeatureInterface::STRENGTH_HIGH],
+            [false, 'LIKELY', FeatureInterface::STRENGTH_HIGH],
+            [false, 'POSSIBLE', FeatureInterface::STRENGTH_HIGH],
+            [true, 'VERY_LIKELY', FeatureInterface::STRENGTH_MEDIUM],
+            [true, 'LIKELY', FeatureInterface::STRENGTH_MEDIUM],
+            [false, 'POSSIBLE', FeatureInterface::STRENGTH_MEDIUM],
+            [true, 'VERY_LIKELY', FeatureInterface::STRENGTH_LOW],
+            [true, 'LIKELY', FeatureInterface::STRENGTH_LOW],
+            [true, 'POSSIBLE', FeatureInterface::STRENGTH_LOW],
+        ];
     }
 
     /**
@@ -48,18 +65,6 @@ class LikelihoodTraitTest extends TestCase
      */
     public function testErr()
     {
-        $t = new LikelihoodTraitStub;
-
-        $t->l('foo', 'bar');
-    }
-}
-
-class LikelihoodTraitStub
-{
-    use LikelihoodTrait;
-
-    public function l($value, $strength)
-    {
-        return $this->likelihood($value, $strength);
+        $this->stub->call('likelihood', ['foo', 'bar']);
     }
 }

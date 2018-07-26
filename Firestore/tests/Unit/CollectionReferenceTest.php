@@ -17,6 +17,7 @@
 
 namespace Google\Cloud\Firestore\Tests\Unit;
 
+use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Firestore\CollectionReference;
 use Google\Cloud\Firestore\Connection\ConnectionInterface;
 use Google\Cloud\Firestore\DocumentReference;
@@ -42,7 +43,7 @@ class CollectionReferenceTest extends TestCase
     public function setUp()
     {
         $this->connection = $this->prophesize(ConnectionInterface::class);
-        $this->collection = \Google\Cloud\Core\Testing\TestHelpers::stub(CollectionReference::class, [
+        $this->collection = TestHelpers::stub(CollectionReference::class, [
             $this->connection->reveal(),
             new ValueMapper($this->connection->reveal(), false),
             self::NAME
@@ -104,7 +105,7 @@ class CollectionReferenceTest extends TestCase
             ];
 
             unset($args['writes'][0]['update']['name']);
-            
+
             return $args === $expected;
         }))->shouldBeCalled()->willReturn([[]]);
 
@@ -130,7 +131,7 @@ class CollectionReferenceTest extends TestCase
     public function randomNames()
     {
         $connection = $this->prophesize(ConnectionInterface::class);
-        $collection = \Google\Cloud\Core\Testing\TestHelpers::stub(CollectionReference::class, [
+        $collection = TestHelpers::stub(CollectionReference::class, [
             $connection->reveal(),
             new ValueMapper($connection->reveal(), false),
             self::NAME

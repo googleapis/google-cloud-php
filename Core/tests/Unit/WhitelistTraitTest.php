@@ -19,6 +19,7 @@ namespace Google\Cloud\Core\Tests\Unit;
 
 use Google\Cloud\Core\Exception\NotFoundException;
 use Google\Cloud\Core\Exception\ServiceException;
+use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Core\WhitelistTrait;
 use PHPUnit\Framework\TestCase;
 
@@ -31,7 +32,7 @@ class WhitelistTraitTest extends TestCase
 
     public function setUp()
     {
-        $this->trait = new WhitelistTraitStub;
+        $this->trait = TestHelpers::impl(WhitelistTrait::class);
     }
 
     public function testModifyWhitelistedError()
@@ -45,15 +46,5 @@ class WhitelistTraitTest extends TestCase
             $res->getMessage(),
             'NOTE: Error may be due to Whitelist Restriction. hello world'
         );
-    }
-}
-
-class WhitelistTraitStub
-{
-    use WhitelistTrait;
-
-    public function call($method, array $args)
-    {
-        return call_user_func_array([$this, $method], $args);
     }
 }

@@ -18,19 +18,20 @@
 namespace Google\Cloud\Core\Tests\Unit;
 
 use Google\Cloud\Core\ArrayTrait;
-use Prophecy\Argument;
+use Google\Cloud\Core\Testing\TestHelpers;
 use PHPUnit\Framework\TestCase;
+use Prophecy\Argument;
 
 /**
  * @group core
  */
 class ArrayTraitTest extends TestCase
 {
-    private $implementation;
+    private $impl;
 
     public function setUp()
     {
-        $this->implementation = new ArrayTraitStub();
+        $this->impl = TestHelpers::impl(ArrayTrait::class);
     }
 
     public function testPluck()
@@ -38,7 +39,7 @@ class ArrayTraitTest extends TestCase
         $value = '123';
         $key = 'key';
         $array = [$key => $value];
-        $actualValue = $this->implementation->call('pluck', [$key, &$array]);
+        $actualValue = $this->impl->call('pluck', [$key, &$array]);
 
         $this->assertEquals($value, $actualValue);
         $this->assertEquals([], $array);
@@ -50,7 +51,7 @@ class ArrayTraitTest extends TestCase
     public function testPluckThrowsExceptionWithInvalidKey()
     {
         $array = [];
-        $this->implementation->call('pluck', ['not_here', &$array]);
+        $this->impl->call('pluck', ['not_here', &$array]);
     }
 
     public function testPluckArray()
@@ -62,15 +63,15 @@ class ArrayTraitTest extends TestCase
         ];
         $expectedArray = $array;
 
-       $actualValues = $this->implementation->call('pluckArray', [$keys, &$array]);
+        $actualValues = $this->impl->call('pluckArray', [$keys, &$array]);
 
-       $this->assertEquals($expectedArray, $actualValues);
-       $this->assertEquals([], $array);
+        $this->assertEquals($expectedArray, $actualValues);
+        $this->assertEquals([], $array);
     }
 
     public function testIsAssocTrue()
     {
-        $actual = $this->implementation->call('isAssoc', [[
+        $actual = $this->impl->call('isAssoc', [[
             'test' => 1,
             'test' => 2
         ]]);
@@ -80,7 +81,7 @@ class ArrayTraitTest extends TestCase
 
     public function testIsAssocFalse()
     {
-        $actual = $this->implementation->call('isAssoc', [[1, 2, 3]]);
+        $actual = $this->impl->call('isAssoc', [[1, 2, 3]]);
 
         $this->assertFalse($actual);
     }
@@ -96,22 +97,12 @@ class ArrayTraitTest extends TestCase
             'array' => [],
         ];
 
-        $res = $this->implementation->call('arrayFilterRemoveNull', [$input]);
+        $res = $this->impl->call('arrayFilterRemoveNull', [$input]);
         $this->assertArrayNotHasKey('null', $res);
         $this->assertArrayHasKey('false', $res);
         $this->assertArrayHasKey('zero', $res);
         $this->assertArrayHasKey('float', $res);
         $this->assertArrayHasKey('empty', $res);
         $this->assertArrayHasKey('array', $res);
-    }
-}
-
-class ArrayTraitStub
-{
-    use ArrayTrait;
-
-    public function call($fn, array $args)
-    {
-        return call_user_func_array([$this, $fn], $args);
     }
 }

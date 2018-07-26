@@ -17,11 +17,12 @@
 
 namespace Google\Cloud\Spanner\Tests\Snippet;
 
+use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
+use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Spanner\Admin\Instance\V1\InstanceAdminClient;
 use Google\Cloud\Spanner\Connection\ConnectionInterface;
 use Google\Cloud\Spanner\InstanceConfiguration;
-use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Prophecy\Argument;
 
 /**
@@ -43,7 +44,7 @@ class InstanceConfigurationTest extends SnippetTestCase
         $this->checkAndSkipGrpcTests();
 
         $this->connection = $this->prophesize(ConnectionInterface::class);
-        $this->config = \Google\Cloud\Core\Testing\TestHelpers::stub(InstanceConfiguration::class, [
+        $this->config = TestHelpers::stub(InstanceConfiguration::class, [
             $this->connection->reveal(),
             self::PROJECT,
             self::CONFIG
@@ -56,7 +57,10 @@ class InstanceConfigurationTest extends SnippetTestCase
         $res = $snippet->invoke('configuration');
 
         $this->assertInstanceOf(InstanceConfiguration::class, $res->returnVal());
-        $this->assertEquals(InstanceAdminClient::instanceConfigName(self::PROJECT, self::CONFIG), $res->returnVal()->name());
+        $this->assertEquals(
+            InstanceAdminClient::instanceConfigName(self::PROJECT, self::CONFIG),
+            $res->returnVal()->name()
+        );
     }
 
     public function testName()

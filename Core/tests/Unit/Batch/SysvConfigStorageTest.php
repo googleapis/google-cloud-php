@@ -21,6 +21,7 @@ use Google\Cloud\Core\Batch\BatchJob;
 use Google\Cloud\Core\Batch\JobConfig;
 use Google\Cloud\Core\Batch\SysvConfigStorage;
 use Google\Cloud\Core\SysvTrait;
+use Google\Cloud\Core\Tests\Unit\Batch\Fixtures\TestSerializableObjectWithClosure;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -43,7 +44,8 @@ class SysvConfigStorageTest extends TestCase
     {
         if (! $this->isSysvIPCLOaded()) {
             $this->markTestSkipped(
-                'Skipping because SystemV IPC extensions are not loaded');
+                'Skipping because SystemV IPC extensions are not loaded'
+            );
         }
         $this->storage = new SysvConfigStorage();
         $this->originalShmSize = getenv('GOOGLE_CLOUD_BATCH_SHM_SIZE');
@@ -137,19 +139,5 @@ class SysvConfigStorageTest extends TestCase
         $p = $r->getProperty('project');
         $p->setAccessible(true);
         $this->assertEquals('B', $p->getValue($storage));
-    }
-}
-
-class TestSerializableObjectWithClosure
-{
-    public $closure;
-
-    public function __construct()
-    {
-        $this->closure = function () {};
-    }
-
-    public function callback()
-    {
     }
 }

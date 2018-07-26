@@ -34,7 +34,6 @@ class JsonFileTest extends TestCase
         $this->assertEquals(JSON_ERROR_NONE, json_last_error());
 
         $this->validateAndAssert($json, 'composer.json.schema');
-
     }
 
     /**
@@ -81,7 +80,8 @@ class JsonFileTest extends TestCase
     {
         $schema = file_get_contents(sprintf(
             self::SCHEMA_PATH,
-            __DIR__, $schemaPath
+            __DIR__,
+            $schemaPath
         ));
 
         $validator = Schema::import(json_decode($schema));

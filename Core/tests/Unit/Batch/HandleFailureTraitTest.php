@@ -18,6 +18,7 @@
 namespace Google\Cloud\Core\Tests\Unit\Batch;
 
 use Google\Cloud\Core\Batch\HandleFailureTrait;
+use Google\Cloud\Core\Testing\TestHelpers;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -42,7 +43,7 @@ class HandleFailureTraitTest extends TestCase
 
     public function setUp()
     {
-        $this->impl = new HandleFailureClass();
+        $this->impl = TestHelpers::impl(HandleFailureTrait::class);
         $this->testDir = sprintf(
             '%s/google-cloud-unit-test-%d',
             sys_get_temp_dir(),
@@ -63,78 +64,49 @@ class HandleFailureTraitTest extends TestCase
      */
     public function testInitFailureFileThrowsException()
     {
-        putenv(
-            'GOOGLE_CLOUD_BATCH_DAEMON_FAILURE_DIR=/tmp/non-existent/subdir');
-        $this->impl->initFailureFile();
+        putenv('GOOGLE_CLOUD_BATCH_DAEMON_FAILURE_DIR=/tmp/non-existent/subdir');
+        $this->impl->call('initFailureFile');
     }
 
     public function testInitFailureFile()
     {
-        $this->impl->initFailureFile();
+        $this->impl->call('initFailureFile');
         $this->assertEquals(
             sprintf('%s/batch-daemon-failure', sys_get_temp_dir()),
-            $this->impl->getBaseDir()
+            $this->impl->___getProperty('baseDir')
         );
         $this->assertEquals(
             sprintf(
                 '%s/failed-items-%d',
-                $this->impl->getBaseDir(),
+                $this->impl->___getProperty('baseDir'),
                 getmypid()
             ),
-            $this->impl->getFailureFile()
+            $this->impl->___getProperty('failureFile')
         );
         putenv('GOOGLE_CLOUD_BATCH_DAEMON_FAILURE_DIR=/tmp');
-        $this->impl->initFailureFile();
-        $this->assertEquals('/tmp', $this->impl->getBaseDir());
+        $this->impl->call('initFailureFile');
+        $this->assertEquals('/tmp', $this->impl->___getProperty('baseDir'));
         $this->assertEquals(
             sprintf(
                 '%s/failed-items-%d',
-                $this->impl->getBaseDir(),
+                $this->impl->___getProperty('baseDir'),
                 getmypid()
             ),
-            $this->impl->getFailureFile()
+            $this->impl->___getProperty('failureFile')
         );
     }
 
     public function testHandleFailure()
     {
         putenv('GOOGLE_CLOUD_BATCH_DAEMON_FAILURE_DIR=' . $this->testDir);
-        $this->impl->initFailureFile();
+        $this->impl->call('initFailureFile');
         $this->impl->handleFailure(1, array('apple', 'orange'));
-        $files = $this->impl->getFailedFiles();
+        $files = $this->impl->call('getFailedFiles');
         $this->assertCount(1, $files);
         $unserialized = unserialize(file_get_contents($files[0]));
         $this->assertEquals(
             array(1 => array('apple', 'orange')),
             $unserialized
         );
-    }
-}
-
-class HandleFailureClass
-{
-    use HandleFailureTrait {
-        initFailureFile as privateInitFailureFile;
-        getFailedFiles as privateGetFailedFiles;
-    }
-
-    public function getFailureFile()
-    {
-        return $this->failureFile;
-    }
-
-    public function getBaseDir()
-    {
-        return $this->baseDir;
-    }
-
-    public function initFailureFile()
-    {
-        return $this->privateInitFailureFile();
-    }
-
-    public function getFailedFiles()
-    {
-        return $this->privateGetFailedFiles();
     }
 }

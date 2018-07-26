@@ -17,7 +17,6 @@
 
 namespace Google\Cloud\Datastore\Tests\Unit;
 
-
 use Exception;
 use Google\Cloud\Datastore\DatastoreClient;
 use Google\Cloud\Datastore\DatastoreSessionHandler;
@@ -192,7 +191,7 @@ class DatastoreSessionHandlerTest extends TestCase
             ->willReturn($key);
         $that = $this;
         $this->datastore->entity($key, Argument::type('array'), Argument::type('array'))
-            ->will(function($args) use ($that, $key, $entity) {
+            ->will(function ($args) use ($that, $key, $entity) {
                 $that->assertEquals($key, $args[0]);
                 $that->assertEquals('sessiondata', $args[1]['data']);
                 $that->assertInternalType('int', $args[1]['t']);
@@ -237,7 +236,7 @@ class DatastoreSessionHandlerTest extends TestCase
             ->willReturn($key);
         $that = $this;
         $this->datastore->entity($key, Argument::type('array'), Argument::type('array'))
-            ->will(function($args) use ($that, $key, $entity) {
+            ->will(function ($args) use ($that, $key, $entity) {
                 $that->assertEquals($key, $args[0]);
                 $that->assertEquals('sessiondata', $args[1]['data']);
                 $that->assertInternalType('int', $args[1]['t']);
@@ -282,7 +281,7 @@ class DatastoreSessionHandlerTest extends TestCase
             ->willReturn($key);
         $that = $this;
         $this->datastore->entity($key, Argument::type('array'), Argument::type('array'))
-            ->will(function($args) use ($that, $key, $entity) {
+            ->will(function ($args) use ($that, $key, $entity) {
                 $that->assertEquals($key, $args[0]);
                 $that->assertEquals('sessiondata', $args[1]['data']);
                 $that->assertInternalType('int', $args[1]['t']);
@@ -328,7 +327,7 @@ class DatastoreSessionHandlerTest extends TestCase
             ->willReturn($key);
         $that = $this;
         $this->datastore->entity($key, Argument::type('array'), Argument::type('array'))
-            ->will(function($args) use ($that, $key, $entity) {
+            ->will(function ($args) use ($that, $key, $entity) {
                 $that->assertEquals($key, $args[0]);
                 $that->assertEquals('sessiondata', $args[1]['data']);
                 $that->assertInternalType('int', $args[1]['t']);
@@ -468,7 +467,7 @@ class DatastoreSessionHandlerTest extends TestCase
             Argument::type('int')
         )
             ->shouldBeCalledTimes(1)
-            ->will(function($args) use ($that, $query) {
+            ->will(function ($args) use ($that, $query) {
                 $that->assertEquals('t', $args[0]);
                 $that->assertEquals('<', $args[1]);
                 $that->assertInternalType('int', $args[2]);
@@ -478,6 +477,7 @@ class DatastoreSessionHandlerTest extends TestCase
                 $that->assertGreaterThanOrEqual(100, $diff);
                 return $query->reveal();
             });
+
         $query->order('t')
             ->shouldBeCalledTimes(1)
             ->willReturn($query->reveal());
@@ -499,16 +499,15 @@ class DatastoreSessionHandlerTest extends TestCase
             Argument::type('array')
         )
             ->shouldBeCalledTimes(1)
-            ->will(
-                function($args)
-                    use ($that, $query, $entity1, $entity2) {
-                        $that->assertEquals($query->reveal(), $args[0]);
-                        $that->assertEquals(
-                            ['namespaceId' => self::NAMESPACE_ID],
-                            $args[1]
-                        );
-                        return [$entity1, $entity2];
-                    });
+            ->will(function ($args) use ($that, $query, $entity1, $entity2) {
+                $that->assertEquals($query->reveal(), $args[0]);
+                $that->assertEquals(
+                    ['namespaceId' => self::NAMESPACE_ID],
+                    $args[1]
+                );
+                return [$entity1, $entity2];
+            });
+
         $this->datastore->deleteBatch([$key1, $key2])
             ->shouldBeCalledTimes(1);
         $datastoreSessionHandler = new DatastoreSessionHandler(
@@ -544,7 +543,7 @@ class DatastoreSessionHandlerTest extends TestCase
             Argument::type('int')
         )
             ->shouldBeCalledTimes(1)
-            ->will(function($args) use ($that, $query) {
+            ->will(function ($args) use ($that, $query) {
                 $that->assertEquals('t', $args[0]);
                 $that->assertEquals('<', $args[1]);
                 $that->assertInternalType('int', $args[2]);
@@ -554,6 +553,7 @@ class DatastoreSessionHandlerTest extends TestCase
                 $that->assertGreaterThanOrEqual(100, $diff);
                 return $query->reveal();
             });
+
         $query->order('t')
             ->shouldBeCalledTimes(1)
             ->willReturn($query->reveal());
@@ -575,16 +575,15 @@ class DatastoreSessionHandlerTest extends TestCase
             Argument::type('array')
         )
             ->shouldBeCalledTimes(1)
-            ->will(
-                function($args)
-                    use ($that, $query, $entity1, $entity2) {
-                        $that->assertEquals($query->reveal(), $args[0]);
-                        $that->assertEquals(
-                            ['namespaceId' => self::NAMESPACE_ID],
-                            $args[1]
-                        );
-                        return [$entity1, $entity2];
-                    });
+            ->will(function ($args) use ($that, $query, $entity1, $entity2) {
+                $that->assertEquals($query->reveal(), $args[0]);
+                $that->assertEquals(
+                    ['namespaceId' => self::NAMESPACE_ID],
+                    $args[1]
+                );
+                return [$entity1, $entity2];
+            });
+
         $this->datastore->deleteBatch([$key1, $key2])
             ->shouldBeCalledTimes(1)
             ->willThrow(new Exception());

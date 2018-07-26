@@ -17,6 +17,7 @@
 
 namespace Google\Cloud\Firestore\Tests\Unit;
 
+use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Core\Timestamp;
 use Google\Cloud\Firestore\Connection\ConnectionInterface;
 use Google\Cloud\Firestore\DocumentReference;
@@ -46,7 +47,7 @@ class WriteBatchTest extends TestCase
     public function setUp()
     {
         $this->connection = $this->prophesize(ConnectionInterface::class);
-        $this->batch = \Google\Cloud\Core\Testing\TestHelpers::stub(WriteBatch::class, [
+        $this->batch = TestHelpers::stub(WriteBatch::class, [
             $this->connection->reveal(),
             new ValueMapper($this->connection->reveal(), false),
             sprintf('projects/%s/databases/%s', self::PROJECT, self::DATABASE)
@@ -283,7 +284,10 @@ class WriteBatchTest extends TestCase
 
         $this->batch->delete($ref, [
             'precondition' => [
-                'updateTime' => new Timestamp(\DateTimeImmutable::createFromFormat('U', (string) $ts['seconds']), $ts['nanos'])
+                'updateTime' => new Timestamp(
+                    \DateTimeImmutable::createFromFormat('U', (string) $ts['seconds']),
+                    $ts['nanos']
+                )
             ]
         ]);
 

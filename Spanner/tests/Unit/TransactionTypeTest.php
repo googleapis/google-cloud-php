@@ -19,6 +19,7 @@ namespace Google\Cloud\Spanner\Tests\Unit;
 
 use Google\Cloud\Core\LongRunning\LongRunningConnectionInterface;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
+use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Core\TimeTrait;
 use Google\Cloud\Spanner\Admin\Instance\V1\InstanceAdminClient;
 use Google\Cloud\Spanner\Connection\ConnectionInterface;
@@ -87,7 +88,7 @@ class TransactionTypeTest extends TestCase
 
         $database = $this->database($this->connection->reveal());
 
-        $database->runTransaction(function($t){
+        $database->runTransaction(function ($t) {
             $this->assertEquals($t->id(), self::TRANSACTION);
 
             $t->commit();
@@ -105,7 +106,7 @@ class TransactionTypeTest extends TestCase
 
         $database = $this->database($this->connection->reveal());
 
-        $database->runTransaction(function($t){
+        $database->runTransaction(function ($t) {
             $this->assertNull($t->id());
 
             $t->commit();
@@ -775,7 +776,7 @@ class TransactionTypeTest extends TestCase
         $instance = $this->prophesize(Instance::class);
         $instance->name()->willReturn(InstanceAdminClient::instanceName(self::PROJECT, self::INSTANCE));
 
-        $database = \Google\Cloud\Core\Testing\TestHelpers::stub(Database::class, [
+        $database = TestHelpers::stub(Database::class, [
             $connection,
             $instance->reveal(),
             $this->prophesize(LongRunningConnectionInterface::class)->reveal(),

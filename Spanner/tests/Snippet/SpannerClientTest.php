@@ -22,6 +22,7 @@ use Google\Cloud\Core\Iterator\ItemIterator;
 use Google\Cloud\Core\LongRunning\LongRunningOperation;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
+use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Spanner\Admin\Instance\V1\InstanceAdminClient;
 use Google\Cloud\Spanner\Batch\BatchClient;
 use Google\Cloud\Spanner\Bytes;
@@ -57,7 +58,7 @@ class SpannerClientTest extends SnippetTestCase
         $this->checkAndSkipGrpcTests();
 
         $this->connection = $this->prophesize(ConnectionInterface::class);
-        $this->client = \Google\Cloud\Core\Testing\TestHelpers::stub(SpannerClient::class);
+        $this->client = TestHelpers::stub(SpannerClient::class);
         $this->client->___setProperty('connection', $this->connection->reveal());
     }
 
@@ -115,7 +116,10 @@ class SpannerClientTest extends SnippetTestCase
 
         $res = $snippet->invoke('configuration');
         $this->assertInstanceOf(InstanceConfiguration::class, $res->returnVal());
-        $this->assertEquals(InstanceAdminClient::instanceConfigName(self::PROJECT, $configName), $res->returnVal()->name());
+        $this->assertEquals(
+            InstanceAdminClient::instanceConfigName(self::PROJECT, $configName),
+            $res->returnVal()->name()
+        );
     }
 
     /**
@@ -147,7 +151,10 @@ class SpannerClientTest extends SnippetTestCase
 
         $res = $snippet->invoke('instance');
         $this->assertInstanceOf(Instance::class, $res->returnVal());
-        $this->assertEquals(InstanceAdminClient::instanceName(self::PROJECT, self::INSTANCE), $res->returnVal()->name());
+        $this->assertEquals(
+            InstanceAdminClient::instanceName(self::PROJECT, self::INSTANCE),
+            $res->returnVal()->name()
+        );
     }
 
     /**
@@ -172,7 +179,10 @@ class SpannerClientTest extends SnippetTestCase
         $res = $snippet->invoke('instances');
         $this->assertInstanceOf(ItemIterator::class, $res->returnVal());
         $this->assertInstanceOf(Instance::class, $res->returnVal()->current());
-        $this->assertEquals(InstanceAdminClient::instanceName(self::PROJECT, self::INSTANCE), $res->returnVal()->current()->name());
+        $this->assertEquals(
+            InstanceAdminClient::instanceName(self::PROJECT, self::INSTANCE),
+            $res->returnVal()->current()->name()
+        );
     }
 
     public function testConnect()

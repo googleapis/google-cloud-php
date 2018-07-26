@@ -21,6 +21,7 @@ use Google\Cloud\BigQuery\BigQueryClient;
 use Google\Cloud\BigQuery\ExtractJobConfiguration;
 use Google\Cloud\BigQuery\Table;
 use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
+use Google\Cloud\Core\Testing\TestHelpers;
 
 /**
  * @group bigquery
@@ -72,7 +73,7 @@ class ExtractJobConfigurationTest extends SnippetTestCase
 
     public function setterDataProvider()
     {
-        $bq = \Google\Cloud\Core\Testing\TestHelpers::stub(BigQueryClient::class, [
+        $bq = TestHelpers::stub(BigQueryClient::class, [
             ['projectId' => self::PROJECT_ID]
         ]);
 

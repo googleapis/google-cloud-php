@@ -35,7 +35,7 @@ class WriteStreamTest extends TestCase
         $stream = new WriteStream($uploader->reveal(), ['chunkSize' => 10]);
 
         // We should see 2 calls to upload with size of 10.
-        $upload = $uploader->upload(10)->will(function($args) use ($stream) {
+        $upload = $uploader->upload(10)->will(function ($args) use ($stream) {
             if (count($args) > 0) {
                 $size = $args[0];
                 $stream->read(10);

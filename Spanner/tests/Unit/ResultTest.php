@@ -99,9 +99,9 @@ class ResultTest extends TestCase
                     }
                     yield $chunk;
                 }
-
             }
         );
+
         iterator_to_array($result->rows());
         $this->assertEquals(2, $timesCalled);
     }
@@ -132,9 +132,9 @@ class ResultTest extends TestCase
                     }
                     yield $chunk;
                 }
-
             }
         );
+
         iterator_to_array($result->rows());
     }
 
