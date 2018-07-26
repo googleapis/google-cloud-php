@@ -17,7 +17,6 @@
 
 namespace Google\Cloud\Bigtable\Tests\Unit\Connection;
 
-use Google\ApiCore\Call;
 use Google\ApiCore\OperationResponse;
 use Google\ApiCore\Serializer;
 use Google\Cloud\Bigtable\Admin\V2\Cluster;
@@ -27,8 +26,8 @@ use Google\Cloud\Bigtable\Admin\V2\Instance_Type;
 use Google\Cloud\Bigtable\Admin\V2\ModifyColumnFamiliesRequest_Modification;
 use Google\Cloud\Bigtable\Admin\V2\Table;
 use Google\Cloud\Bigtable\Connection\Grpc;
-use Google\Cloud\Core\GrpcTrait;
 use Google\Cloud\Core\GrpcRequestWrapper;
+use Google\Cloud\Core\GrpcTrait;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
@@ -79,7 +78,6 @@ class GrpcTest extends TestCase
         }
         $serializer = new Serializer();
         $instanceName = 'test-instance3';
-        $clusterName = 'test-cluster';
         $tableName = 'test-table';
         $permissions = ['permission1','permission2'];
         $policy = ['foo' => 'bar'];
@@ -163,7 +161,13 @@ class GrpcTest extends TestCase
                         ]
                     ]
                 ],
-                [self::PROJECT, $instanceName, $instance, ['test-cluster3' =>$cluster], ['headers' => ['google-cloud-resource-prefix' => [self::PROJECT]]]],
+                [
+                    self::PROJECT,
+                    $instanceName,
+                    $instance,
+                    ['test-cluster3' => $cluster],
+                    ['headers' => ['google-cloud-resource-prefix' => [self::PROJECT]]]
+                ],
                 $lro,
                 null
             ],

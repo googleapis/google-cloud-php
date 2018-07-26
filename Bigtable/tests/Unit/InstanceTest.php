@@ -22,13 +22,11 @@ use Google\Cloud\Bigtable\Admin\V2\BigtableTableAdminClient as TableAdminClient;
 use Google\Cloud\Bigtable\Connection\ConnectionInterface;
 use Google\Cloud\Bigtable\Instance;
 use Google\Cloud\Bigtable\Table;
-use Google\Cloud\Core\Exception\NotFoundException;
 use Google\Cloud\Core\LongRunning\LongRunningConnectionInterface;
 use Google\Cloud\Core\LongRunning\LongRunningOperation;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Core\Testing\TestHelpers;
 use PHPUnit\Framework\TestCase;
-use Prophecy\Argument;
 
 /**
  * @group bigtable
@@ -84,7 +82,7 @@ class InstanceTest extends TestCase
     public function testInstanceWhenBadIdFormatPassed()
     {
         $badInstanceId = 'badformat/my-instance';
-        $instance = TestHelpers::stub(Instance::class, [
+        TestHelpers::stub(Instance::class, [
             $this->connection->reveal(),
             $this->prophesize(LongRunningConnectionInterface::class)->reveal(),
             [],
@@ -106,7 +104,7 @@ class InstanceTest extends TestCase
      * @expectedException \InvalidArgumentException
      * @expectedExceptionMessage At least one clusterMetadata must be passed
      */
-    public function testCreateWithoutbuildClusterMetadata()
+    public function testCreateWithoutBuildClusterMetadata()
     {
         $this->instance->create([]);
     }
@@ -435,7 +433,7 @@ class InstanceTest extends TestCase
         $this->assertEquals(Instance::INSTANCE_TYPE_DEVELOPMENT, $instance->info()['type']);
     }
 
-    public function testbuildClusterMetadataWithoutStorageType()
+    public function testBuildClusterMetadataWithoutStorageType()
     {
         $cluster = Instance::buildClusterMetadata(self::CLUSTER_ID, self::LOCATION_ID);
         $this->assertEquals($cluster['clusterId'], self::CLUSTER_ID);
@@ -444,7 +442,7 @@ class InstanceTest extends TestCase
         $this->assertFalse(array_key_exists('serveNodes', $cluster));
     }
 
-    public function testbuildClusterMetadataWithStorageType()
+    public function testBuildClusterMetadataWithStorageType()
     {
         $cluster = Instance::buildClusterMetadata(
             self::CLUSTER_ID,
@@ -457,7 +455,7 @@ class InstanceTest extends TestCase
         $this->assertFalse(array_key_exists('serveNodes', $cluster));
     }
 
-    public function testbuildClusterMetadataWithServeNodes()
+    public function testBuildClusterMetadataWithServeNodes()
     {
         $cluster = Instance::buildClusterMetadata(
             self::CLUSTER_ID,
@@ -474,12 +472,10 @@ class InstanceTest extends TestCase
     public function testDelete()
     {
         $this->connection->deleteInstance(['name' => self::INSTANCE_NAME])
-            ->shouldBeCalled()
-            ->willReturn([]);
+            ->shouldBeCalled();
         $this->instance->___setProperty('connection', $this->connection->reveal());
 
-        $instance = $this->instance->delete();
-        $this->assertEquals([], $instance);
+        $this->instance->delete();
     }
 
     public function testTable()

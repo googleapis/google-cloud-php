@@ -24,7 +24,6 @@ use Google\Cloud\Bigtable\Connection\Grpc;
 use Google\Cloud\Bigtable\Connection\LongRunningConnection;
 use Google\Cloud\Core\ClientTrait;
 use Google\Cloud\Core\Exception\GoogleException;
-use Google\Cloud\Core\LongRunning\LongRunningOperation;
 use Google\Cloud\Core\LongRunning\LROTrait;
 use Psr\Cache\CacheItemPoolInterface;
 
