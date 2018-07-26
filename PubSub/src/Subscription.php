@@ -131,9 +131,7 @@ class Subscription
             $this->name = $this->formatName('subscription', $name, $projectId);
         }
 
-        if ($topic instanceof Topic) {
-            $topic = clone $topic;
-        } else {
+        if (!($topic instanceof Topic)) {
             // Accept either a simple name or a fully-qualified name.
             // If the topic is null, use the topic name in the subscription info.
             // If there's no subscription info, set the topic to null.
