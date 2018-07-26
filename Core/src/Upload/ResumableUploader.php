@@ -49,6 +49,15 @@ class ResumableUploader extends AbstractUploader
     protected $resumeUri;
 
     /**
+     * Classes extending ResumableUploader may provide request headers to be
+     * included in {@see Google\Cloud\Core\Upload\ResumableUploader::upload()}
+     * and {@see Google\Cloud\Core\Upload\ResumableUploader::createResumeUri{}}.
+     *
+     * @var array
+     */
+    protected $headers = [];
+
+    /**
      * @param RequestWrapper $requestWrapper
      * @param string|resource|StreamInterface $data
      * @param string $uri
@@ -151,7 +160,7 @@ class ResumableUploader extends AbstractUploader
 
             $rangeEnd = $rangeStart + ($currStreamLimitSize - 1);
 
-            $headers = [
+            $headers = $this->headers + [
                 'Content-Length' => $currStreamLimitSize,
                 'Content-Type' => $this->contentType,
                 'Content-Range' => "bytes $rangeStart-$rangeEnd/$size",
@@ -201,7 +210,7 @@ class ResumableUploader extends AbstractUploader
      */
     protected function createResumeUri()
     {
-        $headers = [
+        $headers = $this->headers + [
             'X-Upload-Content-Type' => $this->contentType,
             'X-Upload-Content-Length' => $this->data->getSize(),
             'Content-Type' => 'application/json'

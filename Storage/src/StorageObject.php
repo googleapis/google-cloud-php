@@ -644,6 +644,9 @@ class StorageObject
     /**
      * Create a Signed URL for this object.
      *
+     * Signed URLs can be complex, and it is strongly recommended you read and
+     * understand the [documentation](https://cloud.google.com/storage/docs/access-control/signed-urls).
+     *
      * Example:
      * ```
      * $url = $object->signedUrl(new Timestamp(new DateTime('tomorrow')));
@@ -655,6 +658,8 @@ class StorageObject
      *     'method' => 'PUT'
      * ]);
      * ```
+     *
+     * @see https://cloud.google.com/storage/docs/access-control/signed-urls Signed URLs
      *
      * @param Timestamp|\DateTimeInterface|int $expires Specifies when the URL
      *        will expire. May provide an instance of {@see Google\Cloud\Core\Timestamp},
@@ -672,20 +677,23 @@ class StorageObject
      *           provide this, the client must provide this HTTP header with
      *           this same value in its request. If provided, take care to
      *           always provide this value as a base64 encoded string.
-     *     @type string $contentType If you provide this value, the client must
-     *           provide this HTTP header set to the same value.
      *     @type array $headers If these headers are used, the server will check
      *           to make sure that the client provides matching values. Provide
      *           headers as a key/value array, where the key is the header name,
-     *           and the value is an array of header values.
+     *           and the value is an array of header values. Headers with multiple
+     *           values may provide values as a simple array, or a
+     *           comma-separated string. Headers names MUST begin with `x-goog-`.
      *     @type string $saveAsName The filename to prompt the user to save the
      *           file as when the signed url is accessed. This is ignored if
      *           `$options.responseDisposition` is set.
      *     @type string $responseDisposition The
      *           [`response-content-disposition`](http://www.iana.org/assignments/cont-disp/cont-disp.xhtml)
      *           parameter of the signed url.
+     *     @type string $contentType If you provide this value, the client must
+     *           provide this HTTP header set to the same value.
      *     @type string $responseType The `response-content-type` parameter of the
-     *           signed url.
+     *           signed url. When the server contentType is `null`, this option
+     *           may be used to control the content type of the response.
      *     @type array $keyFile Keyfile data to use in place of the keyfile with
      *           which the client was constructed. If `$options.keyFilePath` is
      *           set, this option is ignored.
@@ -695,10 +703,11 @@ class StorageObject
      *           whether phpseclib is available. **Defaults to** `false`.
      * }
      * @return string
-     * @throws \InvalidArgumentException If the given expiration is in the past.
+     * @throws \InvalidArgumentException If the given expiration is invalid or in the past.
      * @throws \InvalidArgumentException If the given `$options.method` is not valid.
      * @throws \InvalidArgumentException If the given `$options.keyFilePath` is not valid.
-     * @throws \InvalidArgumentException If the keyfile does not contain the required information.
+     * @throws \InvalidArgumentException If the given custom headers are invalid.
+     * @throws \RuntimeException If the keyfile does not contain the required information.
      */
     public function signedUrl($expires, array $options = [])
     {
@@ -772,11 +781,45 @@ class StorageObject
             );
         }
 
+        // Make sure disallowed headers are not included.
+        $illegalHeaders = [
+            'x-goog-encryption-key',
+            'x-goog-encryption-key-sha256'
+        ];
+
+        if ($illegal = array_intersect_key(array_flip($illegalHeaders), $options['headers'])) {
+            throw new \InvalidArgumentException(sprintf(
+                '%s %s not allowed in Signed URL headers.',
+                implode(' and ', array_keys($illegal)),
+                count($illegal) === 1 ? 'is' : 'are'
+            ));
+        }
+
+        // Sort headers by name.
+        ksort($options['headers']);
+
         $headers = [];
         foreach ($options['headers'] as $name => $value) {
-            $value = (is_array($value))
-                ? implode(',', $value)
-                : $value;
+            $name = strtolower(trim($name));
+
+            $value = is_array($value)
+                ? implode(',', array_map('trim', $value))
+                : trim($value);
+
+            // Linebreaks are not allowed in headers.
+            // Rather than strip, we throw because we don't want to change the expected value without the user knowing.
+            if (strpos($value, PHP_EOL) !== false) {
+                throw new \InvalidArgumentException(
+                    'Line endings are not allowed in header values. Replace line endings with a single space.'
+                );
+            }
+
+            // Invalid header names throw exception.
+            if (strpos($name, 'x-goog-') !== 0) {
+                throw new \InvalidArgumentException(
+                    'Header names must begin with `x-goog-`.'
+                );
+            }
 
             $headers[] = $name .':'. $value;
         }
@@ -815,10 +858,6 @@ class StorageObject
         $query[] = 'GoogleAccessId=' . $keyFile['client_email'];
         $query[] = 'Expires=' . $seconds;
         $query[] = 'Signature=' . $encodedSignature;
-
-        if ($options['contentType']) {
-            $query[] = 'response-content-type=' . urlencode($options['contentType']);
-        }
 
         if ($options['responseDisposition']) {
             $query[] = 'response-content-disposition=' . urlencode($options['responseDisposition']);
@@ -879,7 +918,9 @@ class StorageObject
      *     @type array $headers If these headers are used, the server will check
      *           to make sure that the client provides matching values. Provide
      *           headers as a key/value array, where the key is the header name,
-     *           and the value is an array of header values.
+     *           and the value is an array of header values. Headers with multiple
+     *           values may provide values as a simple array, or a
+     *           comma-separated string. Headers names MUST begin with `x-goog-`.
      *     @type array $keyFile Keyfile data to use in place of the keyfile with
      *           which the client was constructed. If `$options.keyFilePath` is
      *           set, this option is ignored.
@@ -893,10 +934,15 @@ class StorageObject
     public function signedUploadUrl($expires, array $options = [])
     {
         $options += [
-            'headers' => [],
             'contentType' => null,
             'contentMd5' => null,
         ];
+
+        if (!isset($options['headers'])) {
+            $options['headers'] = [];
+        }
+
+        $options['headers']['x-goog-resumable'] = ['start'];
 
         unset(
             $options['cname'],
@@ -904,8 +950,6 @@ class StorageObject
             $options['responseDisposition'],
             $options['responseType']
         );
-
-        $options['headers']['x-goog-resumable'] = ['start'];
 
         return $this->signedUrl($expires, [
             'method' => 'POST',
@@ -919,6 +963,7 @@ class StorageObject
      * The returned URL differs from the return value of
      * {@see Google\Cloud\Storage\StorageObject::signedUploadUrl()} in that it
      * is ready to accept upload data immediately via an HTTP PUT request.
+     *
      * Because an upload session is created by the client, the expiration date
      * is not configurable. The URL generated by this method is valid for one
      * week.
@@ -935,6 +980,8 @@ class StorageObject
      *
      *     @type string $contentType If you provide this value, the client must
      *           provide this HTTP header set to the same value.
+     *     @type string $origin Value of CORS header
+     *           "Access-Control-Allow-Origin". **Defaults to** `"*"`.
      *     @type string $contentMd5 The MD5 digest value in base64. If you
      *           provide this, the client must provide this HTTP header with
      *           this same value in its request. If provided, take care to
@@ -942,7 +989,9 @@ class StorageObject
      *     @type array $headers If these headers are used, the server will check
      *           to make sure that the client provides matching values. Provide
      *           headers as a key/value array, where the key is the header name,
-     *           and the value is an array of header values.
+     *           and the value is an array of header values. Headers with multiple
+     *           values may provide values as a simple array, or a
+     *           comma-separated string. Headers names MUST begin with `x-goog-`.
      *     @type array $keyFile Keyfile data to use in place of the keyfile with
      *           which the client was constructed. If `$options.keyFilePath` is
      *           set, this option is ignored.
@@ -958,7 +1007,16 @@ class StorageObject
         $timestamp = new \DateTimeImmutable('+1 minute');
         $startUri = $this->signedUploadUrl($timestamp, $options);
 
-        $uploader = new SignedUrlUploader($this->connection->requestWrapper(), '', $startUri);
+        $uploaderOptions = $this->pluckArray([
+            'contentType',
+            'origin'
+        ], $options);
+
+        if (!isset($uploaderOptions['origin'])) {
+            $uploaderOptions['origin'] = '*';
+        }
+
+        $uploader = new SignedUrlUploader($this->connection->requestWrapper(), '', $startUri, $uploaderOptions);
 
         return $uploader->getResumeUri();
     }

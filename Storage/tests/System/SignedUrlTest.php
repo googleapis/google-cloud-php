@@ -17,6 +17,7 @@
 
 namespace Google\Cloud\Storage\Tests\System;
 
+use Google\Cloud\Core\Exception\NotFoundException;
 use Google\Cloud\Core\Timestamp;
 use GuzzleHttp\Client;
 
@@ -40,11 +41,19 @@ class SignedUrlTest extends StorageTestCase
     {
         return [
             [
-                self::RANDOM_NAME
+                uniqid(self::TESTING_PREFIX)
             ], [
                 uniqid(self::TESTING_PREFIX . ' ' . self::TESTING_PREFIX)
             ], [
                 uniqid(self::TESTING_PREFIX) .'/'. uniqid(self::TESTING_PREFIX) .' '. uniqid(self::TESTING_PREFIX)
+            ], [
+                uniqid(self::TESTING_PREFIX),
+                [
+                    'headers' => [
+                        'x-goog-foo' => 'bar',
+                        'x-goog-a' => 'b'
+                    ]
+                ]
             ]
         ];
     }
@@ -54,14 +63,11 @@ class SignedUrlTest extends StorageTestCase
      */
     public function testSignedUrl($objectName, array $urlOpts = [])
     {
-        if ($objectName === self::RANDOM_NAME) {
-            $objectName = null;
-        }
         $obj = $this->createFile($objectName);
         $ts = new Timestamp(new \DateTime('tomorrow'));
-        return $obj->signedUrl($ts, $urlOpts);
+        $url = $obj->signedUrl($ts, $urlOpts);
 
-        $this->assertEquals(self::CONTENT, $this->getFile($url));
+        $this->assertEquals(self::CONTENT, $this->getFile($url, $urlOpts));
     }
 
     /**
@@ -69,13 +75,20 @@ class SignedUrlTest extends StorageTestCase
      */
     public function testSignedUrlDelete()
     {
-        $obj = $this->createFile();
+        $obj = $this->createFile(uniqid(self::TESTING_PREFIX));
 
         $ts = new Timestamp(new \DateTime('tomorrow'));
         $url = $obj->signedUrl($ts, [
             'method' => 'DELETE',
             'contentType' => 'text/plain'
         ]);
+
+        try {
+            $obj->reload();
+        } catch (NotFoundException $e) {
+            // If the file doesn't exist now, prevent the expected throw to get a failure.
+            return false;
+        }
 
         $this->deleteFile($url, [
             'Content-type' => 'text/plain'
@@ -84,11 +97,79 @@ class SignedUrlTest extends StorageTestCase
         $obj->reload();
     }
 
-    private function createFile($name = null)
+    public function testSignedUploadSession()
+    {
+        $obj = self::$bucket->object(uniqid(self::TESTING_PREFIX) .'.txt');
+        $url = $obj->beginSignedUploadSession();
+
+        $this->guzzle->request('PUT', $url, [
+            'body' => self::CONTENT
+        ]);
+
+        $this->assertTrue($obj->exists());
+        $this->assertEquals(self::CONTENT, $obj->downloadAsString());
+    }
+
+    public function testSignedUploadSessionOrigin()
+    {
+        $obj = self::$bucket->object(uniqid(self::TESTING_PREFIX) .'.txt');
+        self::$deletionQueue->add($obj);
+
+        $url = $obj->beginSignedUploadSession([
+            'origin' => 'https://google.com',
+            'headers' => [
+                'x-goog-test' => 'hi'
+            ]
+        ]);
+
+        $res = $this->guzzle->request('OPTIONS', $url, [
+            'headers' => [
+                'Origin' => 'https://google.com',
+                'x-goog-test' => 'hi'
+            ]
+        ]);
+
+        $this->guzzle->request('PUT', $url, [
+            'body' => self::CONTENT,
+            'headers' => [
+                'x-goog-test' => 'hi'
+            ]
+        ]);
+
+        $this->assertEquals('https://google.com', $res->getHeaderLine('Access-Control-Allow-Origin'));
+
+        $this->assertTrue($obj->exists());
+        $this->assertEquals(self::CONTENT, $obj->downloadAsString());
+    }
+
+    public function testSignedUrlContentType()
+    {
+        $obj = $this->createFile(uniqid(self::TESTING_PREFIX) .'.txt');
+
+        $obj->update([
+            'contentType' => null
+        ]);
+
+        $url = $obj->signedUrl(time()+2, [
+            'responseDisposition' => 'attachment;filename="image.jpg"',
+            'responseType' => 'image/jpg'
+        ]);
+
+        $res = $this->guzzle->request('GET', $url, [
+            'headers' => [
+                // 'Content-Type' => 'image/jpg'
+            ]
+        ]);
+
+        $this->assertEquals('image/jpg', $res->getHeaderLine('Content-Type'));
+        $this->assertEquals('attachment;filename="image.jpg"', $res->getHeaderLine('Content-Disposition'));
+    }
+
+    private function createFile($name)
     {
         $bucket = self::$bucket;
         $object = $bucket->upload(self::CONTENT, [
-            'name' => $name ?: uniqid(self::TESTING_PREFIX) .'.txt',
+            'name' => $name .'.txt',
         ]);
 
         self::$deletionQueue->add($object);
@@ -96,16 +177,15 @@ class SignedUrlTest extends StorageTestCase
         return $object;
     }
 
-    private function getFile($url)
+    private function getFile($url, array $options = [])
     {
-        $res = $this->guzzle->request('GET', $url);
+        $res = $this->guzzle->request('GET', $url, $options);
 
         return (string) $res->getBody();
     }
 
     private function deleteFile($url, array $headers = [])
     {
-
         $this->guzzle->request('DELETE', $url, [
             'headers' => $headers
         ]);
