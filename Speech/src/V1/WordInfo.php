@@ -46,9 +46,33 @@ class WordInfo extends \Google\Protobuf\Internal\Message
      */
     private $word = '';
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type \Google\Protobuf\Duration $start_time
+     *           *Output-only* Time offset relative to the beginning of the audio,
+     *           and corresponding to the start of the spoken word.
+     *           This field is only set if `enable_word_time_offsets=true` and only
+     *           in the top hypothesis.
+     *           This is an experimental feature and the accuracy of the time offset can
+     *           vary.
+     *     @type \Google\Protobuf\Duration $end_time
+     *           *Output-only* Time offset relative to the beginning of the audio,
+     *           and corresponding to the end of the spoken word.
+     *           This field is only set if `enable_word_time_offsets=true` and only
+     *           in the top hypothesis.
+     *           This is an experimental feature and the accuracy of the time offset can
+     *           vary.
+     *     @type string $word
+     *           *Output-only* The word corresponding to this set of information.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Speech\V1\CloudSpeech::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

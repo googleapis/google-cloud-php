@@ -42,9 +42,31 @@ class SpeechRecognitionAlternative extends \Google\Protobuf\Internal\Message
      */
     private $words;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $transcript
+     *           Output only. Transcript text representing the words that the user spoke.
+     *     @type float $confidence
+     *           Output only. The confidence estimate between 0.0 and 1.0. A higher number
+     *           indicates an estimated greater likelihood that the recognized words are
+     *           correct. This field is set only for the top alternative of a non-streaming
+     *           result or, of a streaming result where `is_final=true`.
+     *           This field is not guaranteed to be accurate and users should not rely on it
+     *           to be always provided.
+     *           The default of 0.0 is a sentinel value indicating `confidence` was not set.
+     *     @type \Google\Cloud\Speech\V1p1beta1\WordInfo[]|\Google\Protobuf\Internal\RepeatedField $words
+     *           Output only. A list of word-specific information for each recognized word.
+     *           Note: When enable_speaker_diarization is true, you will see all the words
+     *           from the beginning of the audio.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Speech\V1P1Beta1\CloudSpeech::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

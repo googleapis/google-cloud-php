@@ -4,38 +4,13 @@
 
 namespace Google\Cloud\Speech\V1p1beta1;
 
-/**
- * Enumerates the types of capture settings describing an audio file.
- *
- * Protobuf enum <code>Google\Cloud\Speech\V1p1beta1\RecognitionMetadata\MicrophoneDistance</code>
- */
-class RecognitionMetadata_MicrophoneDistance
-{
+if (false) {
     /**
-     * Audio type is not known.
-     *
-     * Generated from protobuf enum <code>MICROPHONE_DISTANCE_UNSPECIFIED = 0;</code>
+     * This class is deprecated. Use Google\Cloud\Speech\V1p1beta1\RecognitionMetadata\MicrophoneDistance instead.
+     * @deprecated
      */
-    const MICROPHONE_DISTANCE_UNSPECIFIED = 0;
-    /**
-     * The audio was captured from a closely placed microphone. Eg. phone,
-     * dictaphone, or handheld microphone. Generally if there speaker is within
-     * 1 meter of the microphone.
-     *
-     * Generated from protobuf enum <code>NEARFIELD = 1;</code>
-     */
-    const NEARFIELD = 1;
-    /**
-     * The speaker if within 3 meters of the microphone.
-     *
-     * Generated from protobuf enum <code>MIDFIELD = 2;</code>
-     */
-    const MIDFIELD = 2;
-    /**
-     * The speaker is more than 3 meters away from the microphone.
-     *
-     * Generated from protobuf enum <code>FARFIELD = 3;</code>
-     */
-    const FARFIELD = 3;
+    class RecognitionMetadata_MicrophoneDistance {}
 }
+class_exists(RecognitionMetadata\MicrophoneDistance::class);
+@trigger_error('Google\Cloud\Speech\V1p1beta1\RecognitionMetadata_MicrophoneDistance is deprecated and will be removed in a future release. Use Google\Cloud\Speech\V1p1beta1\RecognitionMetadata\MicrophoneDistance instead', E_USER_DEPRECATED);
 

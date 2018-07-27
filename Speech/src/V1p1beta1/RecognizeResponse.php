@@ -25,9 +25,20 @@ class RecognizeResponse extends \Google\Protobuf\Internal\Message
      */
     private $results;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type \Google\Cloud\Speech\V1p1beta1\SpeechRecognitionResult[]|\Google\Protobuf\Internal\RepeatedField $results
+     *           Output only. Sequential list of transcription results corresponding to
+     *           sequential portions of audio.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Speech\V1P1Beta1\CloudSpeech::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

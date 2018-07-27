@@ -78,9 +78,50 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
      */
     private $enable_word_time_offsets = false;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type int $encoding
+     *           *Required* Encoding of audio data sent in all `RecognitionAudio` messages.
+     *     @type int $sample_rate_hertz
+     *           *Required* Sample rate in Hertz of the audio data sent in all
+     *           `RecognitionAudio` messages. Valid values are: 8000-48000.
+     *           16000 is optimal. For best results, set the sampling rate of the audio
+     *           source to 16000 Hz. If that's not possible, use the native sample rate of
+     *           the audio source (instead of re-sampling).
+     *     @type string $language_code
+     *           *Required* The language of the supplied audio as a
+     *           [BCP-47](https://www.rfc-editor.org/rfc/bcp/bcp47.txt) language tag.
+     *           Example: "en-US".
+     *           See [Language Support](https://cloud.google.com/speech/docs/languages)
+     *           for a list of the currently supported language codes.
+     *     @type int $max_alternatives
+     *           *Optional* Maximum number of recognition hypotheses to be returned.
+     *           Specifically, the maximum number of `SpeechRecognitionAlternative` messages
+     *           within each `SpeechRecognitionResult`.
+     *           The server may return fewer than `max_alternatives`.
+     *           Valid values are `0`-`30`. A value of `0` or `1` will return a maximum of
+     *           one. If omitted, will return a maximum of one.
+     *     @type bool $profanity_filter
+     *           *Optional* If set to `true`, the server will attempt to filter out
+     *           profanities, replacing all but the initial character in each filtered word
+     *           with asterisks, e.g. "f***". If set to `false` or omitted, profanities
+     *           won't be filtered out.
+     *     @type \Google\Cloud\Speech\V1\SpeechContext[]|\Google\Protobuf\Internal\RepeatedField $speech_contexts
+     *           *Optional* A means to provide context to assist the speech recognition.
+     *     @type bool $enable_word_time_offsets
+     *           *Optional* If `true`, the top result includes a list of words and
+     *           the start and end time offsets (timestamps) for those words. If
+     *           `false`, no word-level time offset information is returned. The default is
+     *           `false`.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Speech\V1\CloudSpeech::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

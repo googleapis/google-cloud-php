@@ -37,6 +37,31 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
      */
     private $sample_rate_hertz = 0;
     /**
+     * *Optional* The number of channels in the input audio data.
+     * ONLY set this for MULTI-CHANNEL recognition.
+     * Valid values for LINEAR16 and FLAC are `1`-`8`.
+     * Valid values for OGG_OPUS are '1'-'254'.
+     * Valid value for MULAW, AMR, AMR_WB and SPEEX_WITH_HEADER_BYTE is only `1`.
+     * If `0` or omitted, defaults to one channel (mono).
+     * NOTE: We only recognize the first channel by default.
+     * To perform independent recognition on each channel set
+     * enable_separate_recognition_per_channel to 'true'.
+     *
+     * Generated from protobuf field <code>int32 audio_channel_count = 7;</code>
+     */
+    private $audio_channel_count = 0;
+    /**
+     * This needs to be set to ‘true’ explicitly and audio_channel_count > 1
+     * to get each channel recognized separately. The recognition result will
+     * contain a channel_tag field to state which channel that result belongs to.
+     * If this is not ‘true’, we will only recognize the first channel.
+     * NOTE: The request is also billed cumulatively for all channels recognized:
+     *     (audio_channel_count times the audio length)
+     *
+     * Generated from protobuf field <code>bool enable_separate_recognition_per_channel = 12;</code>
+     */
+    private $enable_separate_recognition_per_channel = false;
+    /**
      * *Required* The language of the supplied audio as a
      * [BCP-47](https://www.rfc-editor.org/rfc/bcp/bcp47.txt) language tag.
      * Example: "en-US".
@@ -46,6 +71,23 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string language_code = 3;</code>
      */
     private $language_code = '';
+    /**
+     * *Optional* A list of up to 3 additional
+     * [BCP-47](https://www.rfc-editor.org/rfc/bcp/bcp47.txt) language tags,
+     * listing possible alternative languages of the supplied audio.
+     * See [Language Support](https://cloud.google.com/speech/docs/languages)
+     * for a list of the currently supported language codes.
+     * If alternative languages are listed, recognition result will contain
+     * recognition in the most likely language detected including the main
+     * language_code. The recognition result will include the language tag
+     * of the language detected in the audio.
+     * NOTE: This feature is only supported for Voice Command and Voice Search
+     * use cases and performance may vary for other use cases (e.g., phone call
+     * transcription).
+     *
+     * Generated from protobuf field <code>repeated string alternative_language_codes = 18;</code>
+     */
+    private $alternative_language_codes;
     /**
      * *Optional* Maximum number of recognition hypotheses to be returned.
      * Specifically, the maximum number of `SpeechRecognitionAlternative` messages
@@ -82,6 +124,14 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
      */
     private $enable_word_time_offsets = false;
     /**
+     * *Optional* If `true`, the top result includes a list of words and the
+     * confidence for those words. If `false`, no word-level confidence
+     * information is returned. The default is `false`.
+     *
+     * Generated from protobuf field <code>bool enable_word_confidence = 15;</code>
+     */
+    private $enable_word_confidence = false;
+    /**
      * *Optional* If 'true', adds punctuation to recognition result hypotheses.
      * This feature is only available in select languages. Setting this for
      * requests in other languages has no effect at all.
@@ -93,6 +143,27 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>bool enable_automatic_punctuation = 11;</code>
      */
     private $enable_automatic_punctuation = false;
+    /**
+     * *Optional* If 'true', enables speaker detection for each recognized word in
+     * the top alternative of the recognition result using a speaker_tag provided
+     * in the WordInfo.
+     * Note: When this is true, we send all the words from the beginning of the
+     * audio for the top alternative in every consecutive responses.
+     * This is done in order to improve our speaker tags as our models learn to
+     * identify the speakers in the conversation over time.
+     *
+     * Generated from protobuf field <code>bool enable_speaker_diarization = 16;</code>
+     */
+    private $enable_speaker_diarization = false;
+    /**
+     * *Optional*
+     * If set, specifies the estimated number of speakers in the conversation.
+     * If not set, defaults to '2'.
+     * Ignored unless enable_speaker_diarization is set to true."
+     *
+     * Generated from protobuf field <code>int32 diarization_speaker_count = 17;</code>
+     */
+    private $diarization_speaker_count = 0;
     /**
      * *Optional* Metadata regarding this request.
      *
@@ -152,9 +223,155 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
      */
     private $use_enhanced = false;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type int $encoding
+     *           Encoding of audio data sent in all `RecognitionAudio` messages.
+     *           This field is optional for `FLAC` and `WAV` audio files and required
+     *           for all other audio formats. For details, see [AudioEncoding][google.cloud.speech.v1p1beta1.RecognitionConfig.AudioEncoding].
+     *     @type int $sample_rate_hertz
+     *           Sample rate in Hertz of the audio data sent in all
+     *           `RecognitionAudio` messages. Valid values are: 8000-48000.
+     *           16000 is optimal. For best results, set the sampling rate of the audio
+     *           source to 16000 Hz. If that's not possible, use the native sample rate of
+     *           the audio source (instead of re-sampling).
+     *           This field is optional for `FLAC` and `WAV` audio files and required
+     *           for all other audio formats. For details, see [AudioEncoding][google.cloud.speech.v1p1beta1.RecognitionConfig.AudioEncoding].
+     *     @type int $audio_channel_count
+     *           *Optional* The number of channels in the input audio data.
+     *           ONLY set this for MULTI-CHANNEL recognition.
+     *           Valid values for LINEAR16 and FLAC are `1`-`8`.
+     *           Valid values for OGG_OPUS are '1'-'254'.
+     *           Valid value for MULAW, AMR, AMR_WB and SPEEX_WITH_HEADER_BYTE is only `1`.
+     *           If `0` or omitted, defaults to one channel (mono).
+     *           NOTE: We only recognize the first channel by default.
+     *           To perform independent recognition on each channel set
+     *           enable_separate_recognition_per_channel to 'true'.
+     *     @type bool $enable_separate_recognition_per_channel
+     *           This needs to be set to ‘true’ explicitly and audio_channel_count > 1
+     *           to get each channel recognized separately. The recognition result will
+     *           contain a channel_tag field to state which channel that result belongs to.
+     *           If this is not ‘true’, we will only recognize the first channel.
+     *           NOTE: The request is also billed cumulatively for all channels recognized:
+     *               (audio_channel_count times the audio length)
+     *     @type string $language_code
+     *           *Required* The language of the supplied audio as a
+     *           [BCP-47](https://www.rfc-editor.org/rfc/bcp/bcp47.txt) language tag.
+     *           Example: "en-US".
+     *           See [Language Support](https://cloud.google.com/speech/docs/languages)
+     *           for a list of the currently supported language codes.
+     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $alternative_language_codes
+     *           *Optional* A list of up to 3 additional
+     *           [BCP-47](https://www.rfc-editor.org/rfc/bcp/bcp47.txt) language tags,
+     *           listing possible alternative languages of the supplied audio.
+     *           See [Language Support](https://cloud.google.com/speech/docs/languages)
+     *           for a list of the currently supported language codes.
+     *           If alternative languages are listed, recognition result will contain
+     *           recognition in the most likely language detected including the main
+     *           language_code. The recognition result will include the language tag
+     *           of the language detected in the audio.
+     *           NOTE: This feature is only supported for Voice Command and Voice Search
+     *           use cases and performance may vary for other use cases (e.g., phone call
+     *           transcription).
+     *     @type int $max_alternatives
+     *           *Optional* Maximum number of recognition hypotheses to be returned.
+     *           Specifically, the maximum number of `SpeechRecognitionAlternative` messages
+     *           within each `SpeechRecognitionResult`.
+     *           The server may return fewer than `max_alternatives`.
+     *           Valid values are `0`-`30`. A value of `0` or `1` will return a maximum of
+     *           one. If omitted, will return a maximum of one.
+     *     @type bool $profanity_filter
+     *           *Optional* If set to `true`, the server will attempt to filter out
+     *           profanities, replacing all but the initial character in each filtered word
+     *           with asterisks, e.g. "f***". If set to `false` or omitted, profanities
+     *           won't be filtered out.
+     *     @type \Google\Cloud\Speech\V1p1beta1\SpeechContext[]|\Google\Protobuf\Internal\RepeatedField $speech_contexts
+     *           *Optional* A means to provide context to assist the speech recognition.
+     *     @type bool $enable_word_time_offsets
+     *           *Optional* If `true`, the top result includes a list of words and
+     *           the start and end time offsets (timestamps) for those words. If
+     *           `false`, no word-level time offset information is returned. The default is
+     *           `false`.
+     *     @type bool $enable_word_confidence
+     *           *Optional* If `true`, the top result includes a list of words and the
+     *           confidence for those words. If `false`, no word-level confidence
+     *           information is returned. The default is `false`.
+     *     @type bool $enable_automatic_punctuation
+     *           *Optional* If 'true', adds punctuation to recognition result hypotheses.
+     *           This feature is only available in select languages. Setting this for
+     *           requests in other languages has no effect at all.
+     *           The default 'false' value does not add punctuation to result hypotheses.
+     *           NOTE: "This is currently offered as an experimental service, complimentary
+     *           to all users. In the future this may be exclusively available as a
+     *           premium feature."
+     *     @type bool $enable_speaker_diarization
+     *           *Optional* If 'true', enables speaker detection for each recognized word in
+     *           the top alternative of the recognition result using a speaker_tag provided
+     *           in the WordInfo.
+     *           Note: When this is true, we send all the words from the beginning of the
+     *           audio for the top alternative in every consecutive responses.
+     *           This is done in order to improve our speaker tags as our models learn to
+     *           identify the speakers in the conversation over time.
+     *     @type int $diarization_speaker_count
+     *           *Optional*
+     *           If set, specifies the estimated number of speakers in the conversation.
+     *           If not set, defaults to '2'.
+     *           Ignored unless enable_speaker_diarization is set to true."
+     *     @type \Google\Cloud\Speech\V1p1beta1\RecognitionMetadata $metadata
+     *           *Optional* Metadata regarding this request.
+     *     @type string $model
+     *           *Optional* Which model to select for the given request. Select the model
+     *           best suited to your domain to get best results. If a model is not
+     *           explicitly specified, then we auto-select a model based on the parameters
+     *           in the RecognitionConfig.
+     *           <table>
+     *             <tr>
+     *               <td><b>Model</b></td>
+     *               <td><b>Description</b></td>
+     *             </tr>
+     *             <tr>
+     *               <td><code>command_and_search</code></td>
+     *               <td>Best for short queries such as voice commands or voice search.</td>
+     *             </tr>
+     *             <tr>
+     *               <td><code>phone_call</code></td>
+     *               <td>Best for audio that originated from a phone call (typically
+     *               recorded at an 8khz sampling rate).</td>
+     *             </tr>
+     *             <tr>
+     *               <td><code>video</code></td>
+     *               <td>Best for audio that originated from from video or includes multiple
+     *                   speakers. Ideally the audio is recorded at a 16khz or greater
+     *                   sampling rate. This is a premium model that costs more than the
+     *                   standard rate.</td>
+     *             </tr>
+     *             <tr>
+     *               <td><code>default</code></td>
+     *               <td>Best for audio that is not one of the specific audio models.
+     *                   For example, long-form audio. Ideally the audio is high-fidelity,
+     *                   recorded at a 16khz or greater sampling rate.</td>
+     *             </tr>
+     *           </table>
+     *     @type bool $use_enhanced
+     *           *Optional* Set to true to use an enhanced model for speech recognition.
+     *           You must also set the `model` field to a valid, enhanced model. If
+     *           `use_enhanced` is set to true and the `model` field is not set, then
+     *           `use_enhanced` is ignored. If `use_enhanced` is true and an enhanced
+     *           version of the specified model does not exist, then the speech is
+     *           recognized using the standard version of the specified model.
+     *           Enhanced speech models require that you opt-in to the audio logging using
+     *           instructions in the [alpha documentation](/speech/data-sharing). If you set
+     *           `use_enhanced` to true and you have not enabled audio logging, then you
+     *           will receive an error.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Speech\V1P1Beta1\CloudSpeech::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**
@@ -226,6 +443,84 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * *Optional* The number of channels in the input audio data.
+     * ONLY set this for MULTI-CHANNEL recognition.
+     * Valid values for LINEAR16 and FLAC are `1`-`8`.
+     * Valid values for OGG_OPUS are '1'-'254'.
+     * Valid value for MULAW, AMR, AMR_WB and SPEEX_WITH_HEADER_BYTE is only `1`.
+     * If `0` or omitted, defaults to one channel (mono).
+     * NOTE: We only recognize the first channel by default.
+     * To perform independent recognition on each channel set
+     * enable_separate_recognition_per_channel to 'true'.
+     *
+     * Generated from protobuf field <code>int32 audio_channel_count = 7;</code>
+     * @return int
+     */
+    public function getAudioChannelCount()
+    {
+        return $this->audio_channel_count;
+    }
+
+    /**
+     * *Optional* The number of channels in the input audio data.
+     * ONLY set this for MULTI-CHANNEL recognition.
+     * Valid values for LINEAR16 and FLAC are `1`-`8`.
+     * Valid values for OGG_OPUS are '1'-'254'.
+     * Valid value for MULAW, AMR, AMR_WB and SPEEX_WITH_HEADER_BYTE is only `1`.
+     * If `0` or omitted, defaults to one channel (mono).
+     * NOTE: We only recognize the first channel by default.
+     * To perform independent recognition on each channel set
+     * enable_separate_recognition_per_channel to 'true'.
+     *
+     * Generated from protobuf field <code>int32 audio_channel_count = 7;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setAudioChannelCount($var)
+    {
+        GPBUtil::checkInt32($var);
+        $this->audio_channel_count = $var;
+
+        return $this;
+    }
+
+    /**
+     * This needs to be set to ‘true’ explicitly and audio_channel_count > 1
+     * to get each channel recognized separately. The recognition result will
+     * contain a channel_tag field to state which channel that result belongs to.
+     * If this is not ‘true’, we will only recognize the first channel.
+     * NOTE: The request is also billed cumulatively for all channels recognized:
+     *     (audio_channel_count times the audio length)
+     *
+     * Generated from protobuf field <code>bool enable_separate_recognition_per_channel = 12;</code>
+     * @return bool
+     */
+    public function getEnableSeparateRecognitionPerChannel()
+    {
+        return $this->enable_separate_recognition_per_channel;
+    }
+
+    /**
+     * This needs to be set to ‘true’ explicitly and audio_channel_count > 1
+     * to get each channel recognized separately. The recognition result will
+     * contain a channel_tag field to state which channel that result belongs to.
+     * If this is not ‘true’, we will only recognize the first channel.
+     * NOTE: The request is also billed cumulatively for all channels recognized:
+     *     (audio_channel_count times the audio length)
+     *
+     * Generated from protobuf field <code>bool enable_separate_recognition_per_channel = 12;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setEnableSeparateRecognitionPerChannel($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->enable_separate_recognition_per_channel = $var;
+
+        return $this;
+    }
+
+    /**
      * *Required* The language of the supplied audio as a
      * [BCP-47](https://www.rfc-editor.org/rfc/bcp/bcp47.txt) language tag.
      * Example: "en-US".
@@ -255,6 +550,54 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->language_code = $var;
+
+        return $this;
+    }
+
+    /**
+     * *Optional* A list of up to 3 additional
+     * [BCP-47](https://www.rfc-editor.org/rfc/bcp/bcp47.txt) language tags,
+     * listing possible alternative languages of the supplied audio.
+     * See [Language Support](https://cloud.google.com/speech/docs/languages)
+     * for a list of the currently supported language codes.
+     * If alternative languages are listed, recognition result will contain
+     * recognition in the most likely language detected including the main
+     * language_code. The recognition result will include the language tag
+     * of the language detected in the audio.
+     * NOTE: This feature is only supported for Voice Command and Voice Search
+     * use cases and performance may vary for other use cases (e.g., phone call
+     * transcription).
+     *
+     * Generated from protobuf field <code>repeated string alternative_language_codes = 18;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getAlternativeLanguageCodes()
+    {
+        return $this->alternative_language_codes;
+    }
+
+    /**
+     * *Optional* A list of up to 3 additional
+     * [BCP-47](https://www.rfc-editor.org/rfc/bcp/bcp47.txt) language tags,
+     * listing possible alternative languages of the supplied audio.
+     * See [Language Support](https://cloud.google.com/speech/docs/languages)
+     * for a list of the currently supported language codes.
+     * If alternative languages are listed, recognition result will contain
+     * recognition in the most likely language detected including the main
+     * language_code. The recognition result will include the language tag
+     * of the language detected in the audio.
+     * NOTE: This feature is only supported for Voice Command and Voice Search
+     * use cases and performance may vary for other use cases (e.g., phone call
+     * transcription).
+     *
+     * Generated from protobuf field <code>repeated string alternative_language_codes = 18;</code>
+     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setAlternativeLanguageCodes($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->alternative_language_codes = $arr;
 
         return $this;
     }
@@ -386,6 +729,36 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * *Optional* If `true`, the top result includes a list of words and the
+     * confidence for those words. If `false`, no word-level confidence
+     * information is returned. The default is `false`.
+     *
+     * Generated from protobuf field <code>bool enable_word_confidence = 15;</code>
+     * @return bool
+     */
+    public function getEnableWordConfidence()
+    {
+        return $this->enable_word_confidence;
+    }
+
+    /**
+     * *Optional* If `true`, the top result includes a list of words and the
+     * confidence for those words. If `false`, no word-level confidence
+     * information is returned. The default is `false`.
+     *
+     * Generated from protobuf field <code>bool enable_word_confidence = 15;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setEnableWordConfidence($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->enable_word_confidence = $var;
+
+        return $this;
+    }
+
+    /**
      * *Optional* If 'true', adds punctuation to recognition result hypotheses.
      * This feature is only available in select languages. Setting this for
      * requests in other languages has no effect at all.
@@ -419,6 +792,76 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->enable_automatic_punctuation = $var;
+
+        return $this;
+    }
+
+    /**
+     * *Optional* If 'true', enables speaker detection for each recognized word in
+     * the top alternative of the recognition result using a speaker_tag provided
+     * in the WordInfo.
+     * Note: When this is true, we send all the words from the beginning of the
+     * audio for the top alternative in every consecutive responses.
+     * This is done in order to improve our speaker tags as our models learn to
+     * identify the speakers in the conversation over time.
+     *
+     * Generated from protobuf field <code>bool enable_speaker_diarization = 16;</code>
+     * @return bool
+     */
+    public function getEnableSpeakerDiarization()
+    {
+        return $this->enable_speaker_diarization;
+    }
+
+    /**
+     * *Optional* If 'true', enables speaker detection for each recognized word in
+     * the top alternative of the recognition result using a speaker_tag provided
+     * in the WordInfo.
+     * Note: When this is true, we send all the words from the beginning of the
+     * audio for the top alternative in every consecutive responses.
+     * This is done in order to improve our speaker tags as our models learn to
+     * identify the speakers in the conversation over time.
+     *
+     * Generated from protobuf field <code>bool enable_speaker_diarization = 16;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setEnableSpeakerDiarization($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->enable_speaker_diarization = $var;
+
+        return $this;
+    }
+
+    /**
+     * *Optional*
+     * If set, specifies the estimated number of speakers in the conversation.
+     * If not set, defaults to '2'.
+     * Ignored unless enable_speaker_diarization is set to true."
+     *
+     * Generated from protobuf field <code>int32 diarization_speaker_count = 17;</code>
+     * @return int
+     */
+    public function getDiarizationSpeakerCount()
+    {
+        return $this->diarization_speaker_count;
+    }
+
+    /**
+     * *Optional*
+     * If set, specifies the estimated number of speakers in the conversation.
+     * If not set, defaults to '2'.
+     * Ignored unless enable_speaker_diarization is set to true."
+     *
+     * Generated from protobuf field <code>int32 diarization_speaker_count = 17;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setDiarizationSpeakerCount($var)
+    {
+        GPBUtil::checkInt32($var);
+        $this->diarization_speaker_count = $var;
 
         return $this;
     }

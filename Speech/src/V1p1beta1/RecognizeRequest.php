@@ -29,9 +29,22 @@ class RecognizeRequest extends \Google\Protobuf\Internal\Message
      */
     private $audio = null;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type \Google\Cloud\Speech\V1p1beta1\RecognitionConfig $config
+     *           *Required* Provides information to the recognizer that specifies how to
+     *           process the request.
+     *     @type \Google\Cloud\Speech\V1p1beta1\RecognitionAudio $audio
+     *           *Required* The audio data to be recognized.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Speech\V1P1Beta1\CloudSpeech::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

@@ -73,9 +73,27 @@ class StreamingRecognizeResponse extends \Google\Protobuf\Internal\Message
      */
     private $speech_event_type = 0;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type \Google\Rpc\Status $error
+     *           Output only. If set, returns a [google.rpc.Status][google.rpc.Status] message that
+     *           specifies the error for the operation.
+     *     @type \Google\Cloud\Speech\V1p1beta1\StreamingRecognitionResult[]|\Google\Protobuf\Internal\RepeatedField $results
+     *           Output only. This repeated list contains zero or more results that
+     *           correspond to consecutive portions of the audio currently being processed.
+     *           It contains zero or one `is_final=true` result (the newly settled portion),
+     *           followed by zero or more `is_final=false` results (the interim results).
+     *     @type int $speech_event_type
+     *           Output only. Indicates the type of speech event.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Speech\V1P1Beta1\CloudSpeech::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

@@ -43,10 +43,70 @@ class WordInfo extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string word = 3;</code>
      */
     private $word = '';
+    /**
+     * Output only. The confidence estimate between 0.0 and 1.0. A higher number
+     * indicates an estimated greater likelihood that the recognized words are
+     * correct. This field is set only for the top alternative of a non-streaming
+     * result or, of a streaming result where `is_final=true`.
+     * This field is not guaranteed to be accurate and users should not rely on it
+     * to be always provided.
+     * The default of 0.0 is a sentinel value indicating `confidence` was not set.
+     *
+     * Generated from protobuf field <code>float confidence = 4;</code>
+     */
+    private $confidence = 0.0;
+    /**
+     * Output only. A distinct integer value is assigned for every speaker within
+     * the audio. This field specifies which one of those speakers was detected to
+     * have spoken this word. Value ranges from '1' to diarization_speaker_count.
+     * speaker_tag is set if enable_speaker_diarization = 'true' and only in the
+     * top alternative.
+     *
+     * Generated from protobuf field <code>int32 speaker_tag = 5;</code>
+     */
+    private $speaker_tag = 0;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type \Google\Protobuf\Duration $start_time
+     *           Output only. Time offset relative to the beginning of the audio,
+     *           and corresponding to the start of the spoken word.
+     *           This field is only set if `enable_word_time_offsets=true` and only
+     *           in the top hypothesis.
+     *           This is an experimental feature and the accuracy of the time offset can
+     *           vary.
+     *     @type \Google\Protobuf\Duration $end_time
+     *           Output only. Time offset relative to the beginning of the audio,
+     *           and corresponding to the end of the spoken word.
+     *           This field is only set if `enable_word_time_offsets=true` and only
+     *           in the top hypothesis.
+     *           This is an experimental feature and the accuracy of the time offset can
+     *           vary.
+     *     @type string $word
+     *           Output only. The word corresponding to this set of information.
+     *     @type float $confidence
+     *           Output only. The confidence estimate between 0.0 and 1.0. A higher number
+     *           indicates an estimated greater likelihood that the recognized words are
+     *           correct. This field is set only for the top alternative of a non-streaming
+     *           result or, of a streaming result where `is_final=true`.
+     *           This field is not guaranteed to be accurate and users should not rely on it
+     *           to be always provided.
+     *           The default of 0.0 is a sentinel value indicating `confidence` was not set.
+     *     @type int $speaker_tag
+     *           Output only. A distinct integer value is assigned for every speaker within
+     *           the audio. This field specifies which one of those speakers was detected to
+     *           have spoken this word. Value ranges from '1' to diarization_speaker_count.
+     *           speaker_tag is set if enable_speaker_diarization = 'true' and only in the
+     *           top alternative.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Speech\V1P1Beta1\CloudSpeech::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**
@@ -143,6 +203,78 @@ class WordInfo extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->word = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The confidence estimate between 0.0 and 1.0. A higher number
+     * indicates an estimated greater likelihood that the recognized words are
+     * correct. This field is set only for the top alternative of a non-streaming
+     * result or, of a streaming result where `is_final=true`.
+     * This field is not guaranteed to be accurate and users should not rely on it
+     * to be always provided.
+     * The default of 0.0 is a sentinel value indicating `confidence` was not set.
+     *
+     * Generated from protobuf field <code>float confidence = 4;</code>
+     * @return float
+     */
+    public function getConfidence()
+    {
+        return $this->confidence;
+    }
+
+    /**
+     * Output only. The confidence estimate between 0.0 and 1.0. A higher number
+     * indicates an estimated greater likelihood that the recognized words are
+     * correct. This field is set only for the top alternative of a non-streaming
+     * result or, of a streaming result where `is_final=true`.
+     * This field is not guaranteed to be accurate and users should not rely on it
+     * to be always provided.
+     * The default of 0.0 is a sentinel value indicating `confidence` was not set.
+     *
+     * Generated from protobuf field <code>float confidence = 4;</code>
+     * @param float $var
+     * @return $this
+     */
+    public function setConfidence($var)
+    {
+        GPBUtil::checkFloat($var);
+        $this->confidence = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. A distinct integer value is assigned for every speaker within
+     * the audio. This field specifies which one of those speakers was detected to
+     * have spoken this word. Value ranges from '1' to diarization_speaker_count.
+     * speaker_tag is set if enable_speaker_diarization = 'true' and only in the
+     * top alternative.
+     *
+     * Generated from protobuf field <code>int32 speaker_tag = 5;</code>
+     * @return int
+     */
+    public function getSpeakerTag()
+    {
+        return $this->speaker_tag;
+    }
+
+    /**
+     * Output only. A distinct integer value is assigned for every speaker within
+     * the audio. This field specifies which one of those speakers was detected to
+     * have spoken this word. Value ranges from '1' to diarization_speaker_count.
+     * speaker_tag is set if enable_speaker_diarization = 'true' and only in the
+     * top alternative.
+     *
+     * Generated from protobuf field <code>int32 speaker_tag = 5;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setSpeakerTag($var)
+    {
+        GPBUtil::checkInt32($var);
+        $this->speaker_tag = $var;
 
         return $this;
     }

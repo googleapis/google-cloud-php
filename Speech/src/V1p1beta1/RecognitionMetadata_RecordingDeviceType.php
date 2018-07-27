@@ -4,54 +4,13 @@
 
 namespace Google\Cloud\Speech\V1p1beta1;
 
-/**
- * The type of device the speech was recorded with.
- *
- * Protobuf enum <code>Google\Cloud\Speech\V1p1beta1\RecognitionMetadata\RecordingDeviceType</code>
- */
-class RecognitionMetadata_RecordingDeviceType
-{
+if (false) {
     /**
-     * The recording device is unknown.
-     *
-     * Generated from protobuf enum <code>RECORDING_DEVICE_TYPE_UNSPECIFIED = 0;</code>
+     * This class is deprecated. Use Google\Cloud\Speech\V1p1beta1\RecognitionMetadata\RecordingDeviceType instead.
+     * @deprecated
      */
-    const RECORDING_DEVICE_TYPE_UNSPECIFIED = 0;
-    /**
-     * Speech was recorded on a smartphone.
-     *
-     * Generated from protobuf enum <code>SMARTPHONE = 1;</code>
-     */
-    const SMARTPHONE = 1;
-    /**
-     * Speech was recorded using a personal computer or tablet.
-     *
-     * Generated from protobuf enum <code>PC = 2;</code>
-     */
-    const PC = 2;
-    /**
-     * Speech was recorded over a phone line.
-     *
-     * Generated from protobuf enum <code>PHONE_LINE = 3;</code>
-     */
-    const PHONE_LINE = 3;
-    /**
-     * Speech was recorded in a vehicle.
-     *
-     * Generated from protobuf enum <code>VEHICLE = 4;</code>
-     */
-    const VEHICLE = 4;
-    /**
-     * Speech was recorded outdoors.
-     *
-     * Generated from protobuf enum <code>OTHER_OUTDOOR_DEVICE = 5;</code>
-     */
-    const OTHER_OUTDOOR_DEVICE = 5;
-    /**
-     * Speech was recorded indoors.
-     *
-     * Generated from protobuf enum <code>OTHER_INDOOR_DEVICE = 6;</code>
-     */
-    const OTHER_INDOOR_DEVICE = 6;
+    class RecognitionMetadata_RecordingDeviceType {}
 }
+class_exists(RecognitionMetadata\RecordingDeviceType::class);
+@trigger_error('Google\Cloud\Speech\V1p1beta1\RecognitionMetadata_RecordingDeviceType is deprecated and will be removed in a future release. Use Google\Cloud\Speech\V1p1beta1\RecognitionMetadata\RecordingDeviceType instead', E_USER_DEPRECATED);
 

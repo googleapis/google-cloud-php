@@ -23,7 +23,7 @@ logging.basicConfig(level=logging.DEBUG)
 gapic = gcp.GAPICGenerator()
 common = gcp.CommonTemplates()
 
-for version in ['V1', 'V1beta1', 'V1p1beta1']:
+for version in ['V1', 'V1p1beta1']:
     lower_version = version.lower()
 
     library = gapic.php_library(
@@ -55,3 +55,15 @@ s.replace(
     'tests/**/V1*/*Test.php',
     r'Copyright \d{4}',
     r'Copyright 2018')
+
+# Use new namespace in the doc sample. See
+# https://github.com/googleapis/gapic-generator/issues/2141
+s.replace(
+    'src/*/Gapic/SpeechGapicClient.php',
+    r'RecognitionConfig_AudioEncoding',
+    r'RecognitionConfig\\AudioEncoding')
+# Change the wording for the deprecation warning.
+s.replace(
+    'src/*/*_*.php',
+    r'will be removed in the next major release',
+    'will be removed in a future release')

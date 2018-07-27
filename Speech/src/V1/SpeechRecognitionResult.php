@@ -25,9 +25,22 @@ class SpeechRecognitionResult extends \Google\Protobuf\Internal\Message
      */
     private $alternatives;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type \Google\Cloud\Speech\V1\SpeechRecognitionAlternative[]|\Google\Protobuf\Internal\RepeatedField $alternatives
+     *           *Output-only* May contain one or more recognition hypotheses (up to the
+     *           maximum specified in `max_alternatives`).
+     *           These alternatives are ordered in terms of accuracy, with the top (first)
+     *           alternative being the most probable, as ranked by the recognizer.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Speech\V1\CloudSpeech::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**
