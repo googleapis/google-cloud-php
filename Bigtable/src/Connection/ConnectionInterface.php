@@ -180,11 +180,6 @@ interface ConnectionInterface
     /**
      * @param array $args
      */
-    public function readRow(array $args);
-
-    /**
-     * @param array $args
-     */
     public function readRows(array $args);
 
     /**

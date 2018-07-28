@@ -459,14 +459,6 @@ class Grpc implements ConnectionInterface
     /**
      * @param array $args
      */
-    public function readRow(array $args)
-    {
-        throw new \BadMethodCallException('This method is not implemented yet');
-    }
-
-    /**
-     * @param array $args
-     */
     public function readRows(array $args)
     {
         throw new \BadMethodCallException('This method is not implemented yet');
