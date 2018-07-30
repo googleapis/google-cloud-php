@@ -278,7 +278,7 @@ class Grpc implements ConnectionInterface
     public function createTable(array $args)
     {
         if (isset($args['initialSplits'])) {
-            $this->args['initialSplits'] = array_map(
+            $args['initialSplits'] = array_map(
                 [$this, 'createTableRequestSplitObject'],
                 $args['initialSplits']
             );
