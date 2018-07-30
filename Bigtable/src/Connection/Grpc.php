@@ -301,7 +301,7 @@ class Grpc implements ConnectionInterface
     public function createTableFromSnapshot(array $args)
     {
         $parent = $this->pluck('parent', $args);
-        $response = $this->send([$this->bigtableTableAdminClient, 'createTable'], [
+        $response = $this->send([$this->bigtableTableAdminClient, 'createTableFromSnapshot'], [
             $parent,
             $this->pluck('tableId', $args),
             $this->pluck('sourceSnapshot', $args),
@@ -545,7 +545,7 @@ class Grpc implements ConnectionInterface
         }
 
         $name = $this->pluck('tableName', $args);
-        return $this->send([$this->bigtableClient, 'mutateRows'], [
+        return $this->send([$this->bigtableClient, 'checkAndMutateRow'], [
             $name,
             $this->pluck('rowKey', $args),
             $this->addResourcePrefixHeader($args, $name)
@@ -559,7 +559,7 @@ class Grpc implements ConnectionInterface
     {
         $name = $this->pluck('tableName', $args);
         $rules = $this->pluck('rules', $args);
-        return $this->send([$this->bigtableClient, 'mutateRows'], [
+        return $this->send([$this->bigtableClient, 'readModifyWriteRow'], [
             $name,
             $this->pluck('rowKey', $args),
             array_map([$this, 'readModifyWriteRuleObject'], $rules),
