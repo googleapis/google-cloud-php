@@ -189,11 +189,22 @@ trait ClientTrait
                 return $config['keyFile']['project_id'];
             }
 
-            trigger_error(
-                'A keyfile was given, but it does not contain a project ID. ' .
-                'This can indicate an old and obsolete keyfile, in which case you should create a new one.',
-                E_USER_NOTICE
-            );
+            if (!isset($config['suppressKeyFileNotice']) && $config['suppressKeyFileNotice'] !== true) {
+                $serviceAccountUri = 'https://cloud.google.com/iam/docs/' .
+                    'creating-managing-service-account-keys#creating_service_account_keys';
+
+                trigger_error(
+                    sprintf(
+                        'A keyfile was given, but it does not contain a project ' .
+                        'ID. This can indicate an old and obsolete keyfile, ' .
+                        'in which case you should create a new one. To suppress ' .
+                        'this message, set `suppressKeyFileNotice` to `true` in your client configuration. ' .
+                        'To learn more about generating new keys, see this URL: %s',
+                        $serviceAccountUri
+                    ),
+                    E_USER_NOTICE
+                );
+            }
         }
 
         if (getenv('GOOGLE_CLOUD_PROJECT')) {

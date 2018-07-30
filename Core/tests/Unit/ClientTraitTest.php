@@ -338,6 +338,16 @@ class ClientTraitTest extends TestCase
             'keyFile' => []
         ]]);
     }
+
+    public function testDetectProjectIdWithKeyfileMissingProjectIdSuppressNotice()
+    {
+        $trait = TestHelpers::impl(ClientTrait::class);
+
+        $res = $trait->call('detectProjectId', [[
+            'keyFile' => [],
+            'suppressKeyFileNotice' => true
+        ]]);
+    }
 }
 
 //@codingStandardsIgnoreStart
