@@ -19,6 +19,7 @@ namespace Google\Cloud\Bigtable\Tests\Unit\Connection;
 
 use Google\ApiCore\OperationResponse;
 use Google\ApiCore\Serializer;
+use Google\Cloud\Bigtable\Admin\V2\AppProfile;
 use Google\Cloud\Bigtable\Admin\V2\Cluster;
 use Google\Cloud\Bigtable\Admin\V2\ColumnFamily;
 use Google\Cloud\Bigtable\Admin\V2\Instance;
@@ -34,6 +35,7 @@ use Google\Cloud\Bigtable\V2\RowSet;
 use Google\Cloud\Core\GrpcRequestWrapper;
 use Google\Cloud\Core\GrpcTrait;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
+use Google\Protobuf\FieldMask;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
 
@@ -45,12 +47,13 @@ class GrpcTest extends TestCase
     use GrpcTestTrait;
     use GrpcTrait;
 
-    const PROJECT  = 'projects/my-awesome-project';
-    const INSTANCE = 'projects/my-awesome-project/instances/my-instance';
-    const LOCATION = 'projects/my-awesome-project/locations/us-east1-b';
-    const TABLE    = 'projects/my-awesome-project/instances/my-instance/tables/my-table';
-    const CLUSTER  = 'projects/my-awesome-project/instances/my-instance/clusters/my-cluster';
-    const SNAPSHOT = 'projects/my-awesome-project/instances/my-instance/clusters/my-cluster/snapshots/my-snapshot';
+    const PROJECT     = 'projects/my-awesome-project';
+    const INSTANCE    = 'projects/my-awesome-project/instances/my-instance';
+    const LOCATION    = 'projects/my-awesome-project/locations/us-east1-b';
+    const TABLE       = 'projects/my-awesome-project/instances/my-instance/tables/my-table';
+    const CLUSTER     = 'projects/my-awesome-project/instances/my-instance/clusters/my-cluster';
+    const SNAPSHOT    = 'projects/my-awesome-project/instances/my-instance/clusters/my-cluster/snapshots/my-snapshot';
+    const APP_PROFILE = 'projects/my-awesome-project/instances/my-instance/appProfiles/my-app-profile';
 
     private $successMessage;
 
@@ -85,6 +88,11 @@ class GrpcTest extends TestCase
         }
         $serializer = new Serializer();
         $instanceName = 'test-instance3';
+        $instanceType = 1;
+        $instanceLabels = [
+            'test' => 'label'
+        ];
+        $clusterId = 'my-cluster';
         $tableName = 'test-table';
         $permissions = ['permission1','permission2'];
         $policy = ['foo' => 'bar'];
@@ -94,16 +102,26 @@ class GrpcTest extends TestCase
         $setValue = 'abc';
         $columnQualifier = 'c1';
         $snapshotTableDesc = 'abc';
+        $serveNodes = 3;
+        $appProfileId = 'my-app-profile';
 
-        $clusterArgs = [
+        $appProfileInArrayFormat = [
+            'name' => self::APP_PROFILE,
+            'description' => 'my description'
+        ];
+        $appProfile = $serializer->decodeMessage(
+            new AppProfile(),
+            $appProfileInArrayFormat
+        );
+        $clusterInArrayFormat = [
             'location' => self::LOCATION,
-            'serveNodes' => 3,
+            'serveNodes' => $serveNodes,
             'defaultStorageType' => 0,
             'state'=>0
         ];
         $cluster = $serializer->decodeMessage(
             new Cluster(),
-            $clusterArgs
+            $clusterInArrayFormat
         );
         $instanceArgs = [
             'displayName' => $instanceName,
@@ -115,6 +133,17 @@ class GrpcTest extends TestCase
             $instanceArgs
         );
         $lro = $this->prophesize(OperationResponse::class)->reveal();
+        $updateMaskInArrayFormat = [
+            'paths' => [
+                'a',
+                'b',
+                'c'
+            ]
+        ];
+        $updateMask = $serializer->decodeMessage(
+            new FieldMask(),
+            $updateMaskInArrayFormat
+        );
 
         $tableId = 'my-table';
         $table = $serializer->decodeMessage(
@@ -237,7 +266,7 @@ class GrpcTest extends TestCase
                     'clusters' => [
                         'test-cluster3' => [
                             'location' => self::LOCATION,
-                            'serveNodes' => 3
+                            'serveNodes' => $serveNodes
                         ]
                     ]
                 ],
@@ -252,9 +281,128 @@ class GrpcTest extends TestCase
                 null
             ],
             [
+                'getInstance',
+                ['name' => self::INSTANCE],
+                [self::INSTANCE, ['headers' => ['google-cloud-resource-prefix' => [self::INSTANCE]]]]
+            ],
+            [
+                'listInstances',
+                ['parent' => self::PROJECT],
+                [self::PROJECT, ['headers' => ['google-cloud-resource-prefix' => [self::PROJECT]]]]
+            ],
+            [
+                'updateInstance',
+                [
+                    'name' => self::INSTANCE,
+                    'displayName' => $instanceName,
+                    'type' => $instanceType,
+                    'labels' => $instanceLabels
+                ],
+                [
+                    self::INSTANCE,
+                    $instanceName,
+                    $instanceType,
+                    $instanceLabels,
+                    ['headers' => ['google-cloud-resource-prefix' => [self::INSTANCE]]]
+                ]
+            ],
+            [
                 'deleteInstance',
                 ['name' => self::INSTANCE],
                 [self::INSTANCE, ['headers' => ['google-cloud-resource-prefix' => [self::INSTANCE]]]]
+            ],
+            [
+                'createCluster',
+                [
+                    'parent' => self::INSTANCE,
+                    'clusterId' => $clusterId,
+                    'cluster' => $clusterInArrayFormat,
+                ],
+                [
+                    self::INSTANCE,
+                    $clusterId,
+                    $cluster,
+                    ['headers' => ['google-cloud-resource-prefix' => [self::INSTANCE]]]
+                ],
+                $lro,
+                null
+            ],
+            [
+                'getCluster',
+                ['name' => self::CLUSTER],
+                [self::CLUSTER, ['headers' => ['google-cloud-resource-prefix' => [self::CLUSTER]]]]
+            ],
+            [
+                'listClusters',
+                ['parent' => self::INSTANCE],
+                [self::INSTANCE, ['headers' => ['google-cloud-resource-prefix' => [self::INSTANCE]]]]
+            ],
+            [
+                'updateCluster',
+                [
+                    'name' => self::CLUSTER,
+                    'location' => self::LOCATION,
+                    'serveNodes' => $serveNodes
+                ],
+                [
+                    self::CLUSTER,
+                    self::LOCATION,
+                    $serveNodes,
+                    ['headers' => ['google-cloud-resource-prefix' => [self::CLUSTER]]]
+                ]
+            ],
+            [
+                'deleteCluster',
+                ['name' => self::CLUSTER],
+                [self::CLUSTER, ['headers' => ['google-cloud-resource-prefix' => [self::CLUSTER]]]]
+            ],
+            [
+                'createAppProfile',
+                [
+                    'parent' => self::INSTANCE,
+                    'appProfileId' => $appProfileId,
+                    'appProfile' => $appProfileInArrayFormat
+                ],
+                [
+                    self::INSTANCE,
+                    $appProfileId,
+                    $appProfile,
+                    ['headers' => ['google-cloud-resource-prefix' => [self::INSTANCE]]]
+                ]
+            ],
+            [
+                'getAppProfile',
+                ['name' => self::APP_PROFILE],
+                [self::APP_PROFILE, ['headers' => ['google-cloud-resource-prefix' => [self::APP_PROFILE]]]]
+            ],
+            [
+                'listAppProfiles',
+                ['parent' => self::INSTANCE],
+                [self::INSTANCE, ['headers' => ['google-cloud-resource-prefix' => [self::INSTANCE]]]]
+            ],
+            [
+                'updateAppProfile',
+                [
+                    'appProfile' => $appProfileInArrayFormat,
+                    'updateMask' => $updateMaskInArrayFormat
+                ],
+                [
+                    $appProfile,
+                    $updateMask,
+                    ['headers' => ['google-cloud-resource-prefix' => [self::APP_PROFILE]]]
+                ]
+            ],
+            [
+                'deleteAppProfile',
+                [
+                    'name' => self::APP_PROFILE,
+                    'ignoreWarnings' => true
+                ],
+                [
+                    self::APP_PROFILE,
+                    true,
+                    ['headers' => ['google-cloud-resource-prefix' => [self::APP_PROFILE]]]
+                ]
             ],
             [
                 'createTable',
