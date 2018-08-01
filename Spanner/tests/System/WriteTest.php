@@ -421,11 +421,11 @@ class WriteTest extends SpannerTestCase
         }
 
         return [
-            [$this->randId(), new Bytes(base64_encode(random_bytes(rand(100,9999))))],
-            [$this->randId(), new Bytes(base64_encode(random_bytes(rand(100,9999))))],
-            [$this->randId(), new Bytes(base64_encode(random_bytes(rand(100,9999))))],
-            [$this->randId(), new Bytes(base64_encode(random_bytes(rand(100,9999))))],
-            [$this->randId(), new Bytes(base64_encode(random_bytes(rand(100,9999))))],
+            [$this->randId(), new Bytes(base64_encode(random_bytes(rand(100, 9999))))],
+            [$this->randId(), new Bytes(base64_encode(random_bytes(rand(100, 9999))))],
+            [$this->randId(), new Bytes(base64_encode(random_bytes(rand(100, 9999))))],
+            [$this->randId(), new Bytes(base64_encode(random_bytes(rand(100, 9999))))],
+            [$this->randId(), new Bytes(base64_encode(random_bytes(rand(100, 9999))))],
         ];
     }
 
@@ -552,5 +552,31 @@ class WriteTest extends SpannerTestCase
             [$r->newInstanceArgs($this->parseTimeString($str .'.000000001Z'))],
             [$r->newInstanceArgs($this->parseTimeString($str .'.101999119Z'))],
         ];
+    }
+
+    public function testSetFieldToNull()
+    {
+        $id = $this->randId();
+        $str = base64_encode(random_bytes(rand(100, 9999)));
+        $row = self::$database->insert(self::TABLE_NAME, [
+            'id' => $id,
+            'stringField' => $str
+        ]);
+
+        self::$database->update(self::TABLE_NAME, [
+            'id' => $id,
+            'stringField' => null
+        ]);
+
+        $res = self::$database->execute(
+            'SELECT stringField FROM '. self::TABLE_NAME .' WHERE id = @id',
+            [
+                'parameters' => [
+                    'id' => $id
+                ]
+            ]
+        );
+
+        $this->assertNull($res->rows()->current()['stringField']);
     }
 }

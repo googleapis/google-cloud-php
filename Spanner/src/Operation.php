@@ -83,8 +83,6 @@ class Operation
      */
     public function mutation($operation, $table, $mutation)
     {
-        $mutation = $this->arrayFilterRemoveNull($mutation);
-
         return [
             $operation => [
                 'table' => $table,
