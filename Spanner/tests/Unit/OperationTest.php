@@ -72,13 +72,14 @@ class OperationTest extends TestCase
     public function testMutation()
     {
         $res = $this->operation->mutation(Operation::OP_INSERT, 'Posts', [
-            'foo' => 'bar'
+            'foo' => 'bar',
+            'baz' => null
         ]);
 
         $this->assertEquals(Operation::OP_INSERT, array_keys($res)[0]);
         $this->assertEquals('Posts', $res[Operation::OP_INSERT]['table']);
-        $this->assertEquals('foo', $res[Operation::OP_INSERT]['columns'][0]);
-        $this->assertEquals('bar', $res[Operation::OP_INSERT]['values'][0]);
+        $this->assertEquals(['foo', 'baz'], $res[Operation::OP_INSERT]['columns']);
+        $this->assertEquals(['bar', null], $res[Operation::OP_INSERT]['values']);
     }
 
     public function testDeleteMutation()
