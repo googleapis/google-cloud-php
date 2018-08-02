@@ -21,6 +21,7 @@ use Google\Cloud\Bigtable\Admin\V2\BigtableInstanceAdminClient as InstanceAdminC
 use Google\Cloud\Bigtable\Connection\ConnectionInterface;
 use Google\Cloud\Bigtable\Instance;
 use Google\Cloud\Bigtable\Table;
+use Google\Cloud\Core\Iam\Iam;
 use Google\Cloud\Core\LongRunning\LongRunningConnectionInterface;
 use Google\Cloud\Core\LongRunning\LongRunningOperation;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
@@ -144,5 +145,13 @@ class InstanceTest extends SnippetTestCase
         $res = $snippet->invoke('table');
         $this->assertInstanceOf(Table::class, $res->returnVal());
         $this->assertEquals(self::TABLE_NAME, $res->returnVal()->name());
+    }
+
+    public function testIam()
+    {
+        $snippet = $this->snippetFromMethod(Instance::class, 'iam');
+        $snippet->addLocal('instance', $this->instance);
+        $res = $snippet->invoke('iam');
+        $this->assertInstanceOf(Iam::class, $res->returnVal());
     }
 }

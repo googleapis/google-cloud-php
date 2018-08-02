@@ -22,7 +22,9 @@ use Google\Cloud\Bigtable\Admin\V2\Instance_State;
 use Google\Cloud\Bigtable\Admin\V2\Instance_Type;
 use Google\Cloud\Bigtable\Admin\V2\StorageType;
 use Google\Cloud\Bigtable\Connection\ConnectionInterface;
+use Google\Cloud\Bigtable\Connection\IamInstance;
 use Google\Cloud\Core\ArrayTrait;
+use Google\Cloud\Core\Iam\Iam;
 use Google\Cloud\Core\LongRunning\LongRunningConnectionInterface;
 use Google\Cloud\Core\LongRunning\LongRunningOperation;
 use Google\Cloud\Core\LongRunning\LROTrait;
@@ -91,6 +93,11 @@ class Instance
      * @var array
      */
     private $info;
+
+    /**
+     * @var Iam
+     */
+    private $iam;
 
     /**
      * @param ConnectionInterface $connection The connection to the
@@ -371,6 +378,27 @@ class Instance
             $this->id,
             $id
         );
+    }
+
+    /**
+     * Manage the instance IAM policy
+     *
+     * Example:
+     * ```
+     * $iam = $instance->iam();
+     * ```
+     *
+     * @return Iam
+     */
+    public function iam()
+    {
+        if (!$this->iam) {
+            $this->iam = new Iam(
+                new IamInstance($this->connection),
+                $this->name
+            );
+        }
+        return $this->iam;
     }
 
     /**

@@ -22,6 +22,7 @@ use Google\Cloud\Bigtable\Admin\V2\BigtableTableAdminClient as TableAdminClient;
 use Google\Cloud\Bigtable\Connection\ConnectionInterface;
 use Google\Cloud\Bigtable\Instance;
 use Google\Cloud\Bigtable\Table;
+use Google\Cloud\Core\Iam\Iam;
 use Google\Cloud\Core\LongRunning\LongRunningConnectionInterface;
 use Google\Cloud\Core\LongRunning\LongRunningOperation;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
@@ -45,7 +46,10 @@ class InstanceTest extends TestCase
     const LOCATION_NAME = 'projects/my-awesome-project/locations/us-east1-b';
     const TABLE_ID = 'my-table';
 
+    /** @var ConnectionInterface */
     private $connection;
+
+    /** @var Instance */
     private $instance;
 
     public function setUp()
@@ -486,5 +490,10 @@ class InstanceTest extends TestCase
             TableAdminClient::tableName(self::PROJECT_ID, self::INSTANCE_ID, self::TABLE_ID),
             $table->name()
         );
+    }
+
+    public function testIam()
+    {
+        $this->assertInstanceOf(Iam::class, $this->instance->iam());
     }
 }
