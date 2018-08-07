@@ -18,15 +18,16 @@
 namespace Google\Cloud\Bigtable\Connection;
 
 use Google\ApiCore\Serializer;
+use Google\Cloud\Bigtable\Admin\V2\AppProfile;
 use Google\Cloud\Bigtable\Admin\V2\BigtableInstanceAdminClient;
 use Google\Cloud\Bigtable\Admin\V2\BigtableTableAdminClient;
 use Google\Cloud\Bigtable\Admin\V2\Cluster;
 use Google\Cloud\Bigtable\Admin\V2\ColumnFamily;
+use Google\Cloud\Bigtable\Admin\V2\CreateTableRequest_Split;
 use Google\Cloud\Bigtable\Admin\V2\Instance;
 use Google\Cloud\Bigtable\Admin\V2\ModifyColumnFamiliesRequest_Modification;
 use Google\Cloud\Bigtable\Admin\V2\Table;
 use Google\Cloud\Bigtable\V2\BigtableClient;
-use Google\Cloud\Bigtable\V2\CreateTableRequest_Split;
 use Google\Cloud\Bigtable\V2\MutateRowsRequest_Entry;
 use Google\Cloud\Bigtable\V2\Mutation;
 use Google\Cloud\Bigtable\V2\ReadModifyWriteRule;
@@ -36,6 +37,7 @@ use Google\Cloud\Core\GrpcRequestWrapper;
 use Google\Cloud\Core\GrpcTrait;
 use Google\Cloud\Core\LongRunning\OperationResponseTrait;
 use Google\Protobuf\Duration;
+use Google\Protobuf\FieldMask;
 
 /**
  * Connection to Cloud Bigtable over GRPC
@@ -78,6 +80,11 @@ class Grpc implements ConnectionInterface
             'method' => 'createTableFromSnapshot',
             'typeUrl' => 'type.googleapis.com/google.bigtable.admin.v2.CreateTableFromSnapshotMetadata',
             'message' => Table::class
+        ],
+        [
+            'method' => 'createCluster',
+            'typeUrl' => 'type.googleapis.com/google.bigtable.admin.v2.CreateClusterMetadata',
+            'message' => Cluster::class
         ]
     ];
 
@@ -123,7 +130,11 @@ class Grpc implements ConnectionInterface
      */
     public function getInstance(array $args)
     {
-        throw new \BadMethodCallException('This method is not implemented yet');
+        $name = $this->pluck('name', $args);
+        return $this->send([$this->bigtableInstanceAdminClient, 'getInstance'], [
+            $name,
+            $this->addResourcePrefixHeader($args, $name)
+        ]);
     }
 
     /**
@@ -131,7 +142,11 @@ class Grpc implements ConnectionInterface
      */
     public function listInstances(array $args)
     {
-        throw new \BadMethodCallException('This method is not implemented yet');
+        $parent = $this->pluck('parent', $args);
+        return $this->send([$this->bigtableInstanceAdminClient, 'listInstances'], [
+            $parent,
+            $this->addResourcePrefixHeader($args, $parent)
+        ]);
     }
 
     /**
@@ -139,7 +154,14 @@ class Grpc implements ConnectionInterface
      */
     public function updateInstance(array $args)
     {
-        throw new \BadMethodCallException('This method is not implemented yet');
+        $name = $this->pluck('name', $args);
+        return $this->send([$this->bigtableInstanceAdminClient, 'updateInstance'], [
+            $name,
+            $this->pluck('displayName', $args),
+            $this->pluck('type', $args),
+            $this->pluck('labels', $args),
+            $this->addResourcePrefixHeader($args, $name)
+        ]);
     }
 
     /**
@@ -159,7 +181,21 @@ class Grpc implements ConnectionInterface
      */
     public function createCluster(array $args)
     {
-        throw new \BadMethodCallException('This method is not implemented yet');
+        $parent = $this->pluck('parent', $args);
+        $response = $this->send([$this->bigtableInstanceAdminClient, 'createCluster'], [
+            $parent,
+            $this->pluck('clusterId', $args),
+            $this->clusterObject(
+                $this->pluck('cluster', $args)
+            ),
+            $this->addResourcePrefixHeader($args, $parent)
+        ]);
+
+        return $this->operationToArray(
+            $response,
+            $this->serializer,
+            $this->lroResponseMappers
+        );
     }
 
     /**
@@ -167,7 +203,11 @@ class Grpc implements ConnectionInterface
      */
     public function getCluster(array $args)
     {
-        throw new \BadMethodCallException('This method is not implemented yet');
+        $name = $this->pluck('name', $args);
+        return $this->send([$this->bigtableInstanceAdminClient, 'getCluster'], [
+            $name,
+            $this->addResourcePrefixHeader($args, $name)
+        ]);
     }
 
     /**
@@ -175,7 +215,11 @@ class Grpc implements ConnectionInterface
      */
     public function listClusters(array $args)
     {
-        throw new \BadMethodCallException('This method is not implemented yet');
+        $parent = $this->pluck('parent', $args);
+        return $this->send([$this->bigtableInstanceAdminClient, 'listClusters'], [
+            $parent,
+            $this->addResourcePrefixHeader($args, $parent)
+        ]);
     }
 
     /**
@@ -183,7 +227,13 @@ class Grpc implements ConnectionInterface
      */
     public function updateCluster(array $args)
     {
-        throw new \BadMethodCallException('This method is not implemented yet');
+        $name = $this->pluck('name', $args);
+        return $this->send([$this->bigtableInstanceAdminClient, 'updateCluster'], [
+            $name,
+            $this->pluck('location', $args),
+            $this->pluck('serveNodes', $args),
+            $this->addResourcePrefixHeader($args, $name)
+        ]);
     }
 
     /**
@@ -191,7 +241,11 @@ class Grpc implements ConnectionInterface
      */
     public function deleteCluster(array $args)
     {
-        throw new \BadMethodCallException('This method is not implemented yet');
+        $name = $this->pluck('name', $args);
+        return $this->send([$this->bigtableInstanceAdminClient, 'deleteCluster'], [
+            $name,
+            $this->addResourcePrefixHeader($args, $name)
+        ]);
     }
 
     /**
@@ -199,7 +253,15 @@ class Grpc implements ConnectionInterface
      */
     public function createAppProfile(array $args)
     {
-        throw new \BadMethodCallException('This method is not implemented yet');
+        $parent = $this->pluck('parent', $args);
+        return $this->send([$this->bigtableInstanceAdminClient, 'createAppProfile'], [
+            $parent,
+            $this->pluck('appProfileId', $args),
+            $this->appProfileObject(
+                $this->pluck('appProfile', $args)
+            ),
+            $this->addResourcePrefixHeader($args, $parent)
+        ]);
     }
 
     /**
@@ -207,7 +269,11 @@ class Grpc implements ConnectionInterface
      */
     public function getAppProfile(array $args)
     {
-        throw new \BadMethodCallException('This method is not implemented yet');
+        $name = $this->pluck('name', $args);
+        return $this->send([$this->bigtableInstanceAdminClient, 'getAppProfile'], [
+            $name,
+            $this->addResourcePrefixHeader($args, $name)
+        ]);
     }
 
     /**
@@ -215,7 +281,11 @@ class Grpc implements ConnectionInterface
      */
     public function listAppProfiles(array $args)
     {
-        throw new \BadMethodCallException('This method is not implemented yet');
+        $parent = $this->pluck('parent', $args);
+        return $this->send([$this->bigtableInstanceAdminClient, 'listAppProfiles'], [
+            $parent,
+            $this->addResourcePrefixHeader($args, $parent)
+        ]);
     }
 
     /**
@@ -223,7 +293,16 @@ class Grpc implements ConnectionInterface
      */
     public function updateAppProfile(array $args)
     {
-        throw new \BadMethodCallException('This method is not implemented yet');
+        $appProfile = $this->appProfileObject(
+            $this->pluck('appProfile', $args)
+        );
+        return $this->send([$this->bigtableInstanceAdminClient, 'updateAppProfile'], [
+            $appProfile,
+            $this->fieldMaskObject(
+                $this->pluck('updateMask', $args)
+            ),
+            $this->addResourcePrefixHeader($args, $appProfile->getName())
+        ]);
     }
 
     /**
@@ -231,7 +310,12 @@ class Grpc implements ConnectionInterface
      */
     public function deleteAppProfile(array $args)
     {
-        throw new \BadMethodCallException('This method is not implemented yet');
+        $name = $this->pluck('name', $args);
+        return $this->send([$this->bigtableInstanceAdminClient, 'deleteAppProfile'], [
+            $name,
+            $this->pluck('ignoreWarnings', $args),
+            $this->addResourcePrefixHeader($args, $name)
+        ]);
     }
 
     /**
@@ -722,11 +806,39 @@ class Grpc implements ConnectionInterface
         );
     }
 
+    /**
+     * @param array $split
+     * @return CreateTableRequest_Split
+     */
     private function createTableRequestSplitObject(array $split)
     {
         return $this->serializer->decodeMessage(
             new CreateTableRequest_Split,
             $split
+        );
+    }
+
+    /**
+     * @param array $appProfile
+     * @return AppProfile
+     */
+    private function appProfileObject(array $appProfile)
+    {
+        return $this->serializer->decodeMessage(
+            new AppProfile,
+            $appProfile
+        );
+    }
+
+    /**
+     * @param array $fieldMask
+     * @return FieldMask
+     */
+    private function fieldMaskObject(array $fieldMask)
+    {
+        return $this->serializer->decodeMessage(
+            new FieldMask,
+            $fieldMask
         );
     }
 
