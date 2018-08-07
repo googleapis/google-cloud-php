@@ -94,9 +94,20 @@ class FieldValue
      */
     public static function isSentinelValue($value)
     {
-        return in_array($value, [
+        return in_array($value, self::sentinelValues(), true);
+    }
+
+    /**
+     * Get a list of sentinel values.
+     *
+     * @return array
+     * @access private
+     */
+    public static function sentinelValues()
+    {
+        return [
             self::deleteField(),
             self::serverTimestamp()
-        ]);
+        ];
     }
 }

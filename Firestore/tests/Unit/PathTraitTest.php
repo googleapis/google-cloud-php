@@ -80,6 +80,36 @@ class PathTraitTest extends TestCase
         );
     }
 
+    public function testDatabaseIdFromName()
+    {
+        $path = sprintf('projects/%s/databases/%s/documents/%s', self::PROJECT, self::DATABASE, self::DOCUMENT);
+
+        $this->assertEquals(
+            self::DATABASE,
+            $this->impl->call('databaseIdFromName', [$path])
+        );
+    }
+
+    public function testDatabaseIdFromNameNull()
+    {
+        $this->assertNull($this->impl->call('databaseIdFromName', ['foo bar']));
+    }
+
+    public function testProjectIdFromName()
+    {
+        $path = sprintf('projects/%s/databases/%s/documents/%s', self::PROJECT, self::DATABASE, self::DOCUMENT);
+
+        $this->assertEquals(
+            self::PROJECT,
+            $this->impl->call('projectIdFromName', [$path])
+        );
+    }
+
+    public function testProjectIdFromNameNull()
+    {
+        $this->assertNull($this->impl->call('projectIdFromName', ['foo bar']));
+    }
+
     /**
      * @dataProvider documentsTrue
      */

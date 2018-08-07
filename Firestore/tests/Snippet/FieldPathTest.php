@@ -29,6 +29,13 @@ class FieldPathTest extends SnippetTestCase
 {
     use GrpcTestTrait;
 
+    private $fieldPath;
+
+    public function setUp()
+    {
+        $this->fieldPath = new FieldPath([]);
+    }
+
     public function testClass()
     {
         $this->checkAndSkipGrpcTests();
@@ -36,5 +43,30 @@ class FieldPathTest extends SnippetTestCase
         $snippet = $this->snippetFromClass(FieldPath::class);
         $res = $snippet->invoke('path');
         $this->assertInstanceOf(FieldPath::class, $res->returnVal());
+    }
+
+    public function testFromString()
+    {
+        $snippet = $this->snippetFromMethod(FieldPath::class, 'fromString');
+        $res = $snippet->invoke('path');
+        $this->assertInstanceOf(FieldPath::class, $res->returnVal());
+    }
+
+    public function testChild()
+    {
+        $snippet = $this->snippetFromMethod(FieldPath::class, 'child');
+        $snippet->addLocal('path', $this->fieldPath);
+        $res = $snippet->invoke('child');
+
+        $this->assertCount(1, $res->returnVal()->path());
+    }
+
+    public function testPathString()
+    {
+        $snippet = $this->snippetFromMethod(FieldPath::class, 'pathString');
+        $snippet->addLocal('path', $this->fieldPath->child('foo'));
+        $res = $snippet->invoke('string');
+
+        $this->assertEquals('foo', $res->returnVal());
     }
 }

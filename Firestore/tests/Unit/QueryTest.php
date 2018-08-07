@@ -24,6 +24,7 @@ use Google\Cloud\Firestore\CollectionReference;
 use Google\Cloud\Firestore\Connection\ConnectionInterface;
 use Google\Cloud\Firestore\DocumentReference;
 use Google\Cloud\Firestore\DocumentSnapshot;
+use Google\Cloud\Firestore\FieldValue;
 use Google\Cloud\Firestore\FirestoreClient;
 use Google\Cloud\Firestore\Query;
 use Google\Cloud\Firestore\V1beta1\StructuredQuery_CompositeFilter_Operator;
@@ -312,6 +313,15 @@ class QueryTest extends TestCase
             ['>='],
             ['='],
         ];
+    }
+
+    /**
+     * @expectedException InvalidArgumentException
+     * @dataProvider sentinels
+     */
+    public function testWhereInvalidSentinelValue($sentinel)
+    {
+        $this->query->where('foo', '=', $sentinel);
     }
 
     /**
@@ -817,6 +827,15 @@ class QueryTest extends TestCase
 
     /**
      * @expectedException InvalidArgumentException
+     * @dataProvider sentinels
+     */
+    public function testBuildPositionInvalidSentinelValue($sentinel)
+    {
+        $this->query->orderBy(Query::DOCUMENT_ID)->startAt([$sentinel]);
+    }
+
+    /**
+     * @expectedException InvalidArgumentException
      */
     public function testBuildPositionNestedChild()
     {
@@ -863,5 +882,12 @@ class QueryTest extends TestCase
     private function queryFrom()
     {
         return $this->queryObj['from'];
+    }
+
+    public function sentinels()
+    {
+        return array_map(function ($val) {
+            return [$val];
+        }, FieldValue::sentinelValues());
     }
 }

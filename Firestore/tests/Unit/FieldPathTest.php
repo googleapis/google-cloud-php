@@ -34,9 +34,63 @@ class FieldPathTest extends TestCase
         $this->assertEquals($this->pieces, $fieldPath->path());
     }
 
+    /**
+     * @expectedException InvalidArgumentException
+     */
+    public function testEmptyElements()
+    {
+        new FieldPath(['']);
+    }
+
     public function testFromString()
     {
         $fieldPath = FieldPath::fromString(implode('.', $this->pieces));
         $this->assertEquals($this->pieces, $fieldPath->path());
+    }
+
+    /**
+     * @dataProvider invalidPaths
+     * @expectedException InvalidArgumentException
+     */
+    public function testInvalidPaths($path)
+    {
+        FieldPath::fromString($path);
+    }
+
+    public function invalidPaths()
+    {
+        return [
+            ['hello..world'],
+            ['.hello.world'],
+            ['hello.world.'],
+            ['.hello.world.'],
+        ];
+    }
+
+    /**
+     * @dataProvider fieldPaths
+     */
+    public function testEscapeFieldPath($expected, $input)
+    {
+        if ($input instanceof FieldPath) {
+            $input = $input->pathString();
+        } else {
+            $input = FieldPath::fromString($input)->pathString();
+        }
+
+        $this->assertEquals($expected, $input);
+    }
+
+    public function fieldPaths()
+    {
+        return [
+            ['foo.bar',                         'foo.bar'],
+            ['foo.bar.bar.bar.baz.whatever',    'foo.bar.bar.bar.baz.whatever'],
+            ['this.is.a.bad.`idea!!`',          'this.is.a.bad.idea!!'],
+            ['manual.escaping.`isn\'t`.wrong',  'manual.escaping.`isn\'t`.wrong'],
+            ['foo.bar',                         new FieldPath(['foo', 'bar'])],
+            ['`hello.world`',                   new FieldPath(['hello.world'])],
+            ['get.`$$$$`.do.`things#`',         new FieldPath(['get', '$$$$', 'do', 'things#'])]
+        ];
     }
 }

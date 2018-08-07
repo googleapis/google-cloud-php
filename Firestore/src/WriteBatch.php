@@ -120,16 +120,26 @@ class WriteBatch
      */
     public function create($document, array $fields, array $options = [])
     {
+        // Record whether the document is empty before any filtering.
         $emptyDocument = count($fields) === 0;
 
-        list($fields, $timestamps, $deletes) = $this->valueMapper->findSentinels($fields);
+        list ($fields, $sentinels, $flags) = $this->filterFields($fields);
 
-        if (!empty($deletes)) {
+        if ($sentinels[FieldValue::deleteField()]) {
             throw new \InvalidArgumentException('Cannot delete fields when creating a document.');
         }
 
+        if ($flags['timestampInArray']) {
+            throw new \InvalidArgumentException(
+                'Server Timestamps cannot be used anywhere within a non-associative array value.'
+            );
+        }
+
+        // Cannot create a document that already exists!
         $precondition = ['exists' => false];
 
+        // Enqueue an update operation if an empty document was provided,
+        // or if there are still fields after filtering.
         $transformOptions = [];
         if (!empty($fields) || $emptyDocument) {
             $this->writes[] = $this->createDatabaseWrite(self::TYPE_UPDATE, $document, [
@@ -137,13 +147,21 @@ class WriteBatch
                 'precondition' => $precondition
             ] + $options);
         } else {
+            // If no UPDATE mutation is enqueued, we need the precondition applied
+            // to the transform mutation.
             $transformOptions = [
                 'precondition' => $precondition
             ];
         }
 
-        // Setting values to the server timestamp is implemented as a document tranformation.
-        $this->updateTransforms($document, $timestamps, $transformOptions);
+        // Some sentinel values (at the time of writing server timestamps)
+        // are implemented using TRANSFORM mutations rather than being embedded
+        // in the normal update.
+        $this->updateTransforms(
+            $document,
+            $sentinels,
+            $transformOptions
+        );
 
         return $this;
     }
@@ -151,7 +169,8 @@ class WriteBatch
     /**
      * Enqueue a set mutation.
      *
-     * Replaces all fields in a Firestore document.
+     * Unless `$options['merge']` is set to `true, this method replaces all
+     * fields in a Firestore document.
      *
      * Example:
      * ```
@@ -183,23 +202,56 @@ class WriteBatch
     {
         $merge = $this->pluck('merge', $options, false) ?: false;
 
-        if ($merge && empty($fields)) {
-            throw new \InvalidArgumentException('Fields list cannot be empty when merging fields.');
+        // Record whether the document is empty before any filtering.
+        $emptyDocument = count($fields) === 0;
+
+        list ($fields, $sentinels, $flags) = $this->filterFields($fields);
+
+        if (!$merge && $sentinels[FieldValue::deleteField()]) {
+            throw new \InvalidArgumentException('Delete cannot appear in data unless `$options[\'merge\']` is set.');
         }
 
-        list($fields, $timestamps) = $this->valueMapper->findSentinels($fields);
+        if ($flags['timestampInArray']) {
+            throw new \InvalidArgumentException(
+                'Server Timestamps cannot be used anywhere within a non-associative array value.'
+            );
+        }
 
-        if ($fields) {
-            $write = array_filter([
+        $hasOnlyTimestamps = count($fields) === 0
+            && !$emptyDocument
+            && $sentinels[FieldValue::serverTimestamp()]
+            && !$sentinels[FieldValue::deleteField()];
+
+        // Enqueue a write if any of the following conditions are met
+        // - if there are still fields remaining after sentinels were removed
+        // - if the user provided an empty set to begin with
+        // - if the user provided only server timestamp sentinel values AND did not specify merge behavior
+        // - if the user provided only delete sentinel field values.
+        $shouldEnqueueUpdate = $fields
+            || $emptyDocument
+            || ($hasOnlyTimestamps && !$merge)
+            || $sentinels[FieldValue::deleteField()];
+
+        if ($shouldEnqueueUpdate) {
+            $write = [
                 'fields' => $this->valueMapper->encodeValues($fields),
-                'updateMask' => $merge ? $this->valueMapper->encodeFieldPaths($fields) : null
-            ]);
+            ];
 
-            $this->writes[] = $this->createDatabaseWrite(self::TYPE_UPDATE, $document, $write);
+            if ($merge) {
+                $deletes = $sentinels[FieldValue::deleteField()];
+
+                $write['updateMask'] = $this->pathsToStrings(
+                    array_merge($this->encodeFieldPaths($fields), $deletes)
+                );
+            }
+
+            $this->writes[] = $this->createDatabaseWrite(self::TYPE_UPDATE, $document, $write, $options);
         }
 
-        // Setting values to the server timestamp is implemented as a document tranformation.
-        $this->updateTransforms($document, $timestamps);
+        // Some sentinel values (at the time of writing server timestamps)
+        // are implemented using TRANSFORM mutations rather than being embedded
+        // in the normal update.
+        $this->updateTransforms($document, $sentinels, $options);
 
         return $this;
     }
@@ -218,6 +270,11 @@ class WriteBatch
      * Note that field names must be provided using field paths, encoded either
      * as a dot-delimited string (i.e. `foo.bar`), or an instance of
      * {@see Google\Cloud\Firestore\FieldPath}. Nested arrays are not allowed.
+     *
+     * Please note that conflicting paths will result in an exception. Paths
+     * conflict when one path indicates a location nested within another path.
+     * For instance, path `a.b` cannot be set directly if path `a` is also
+     * provided.
      *
      * Example:
      * ```
@@ -256,11 +313,14 @@ class WriteBatch
      *        as a string document name, or DocumentReference object. Please
      *        note that DocumentReferences will be used only for the document
      *        name. Field data must be provided in the `$data` argument.
-     * @param array[] $data A list of arrays of form `[FieldPath|string $path, mixed $value]`.
+     * @param array[] $data A list of arrays of form
+     *        `[FieldPath|string $path, mixed $value]`.
      * @param array $options Configuration options
      * @return WriteBatch
-     * @throws \InvalidArgumentException If data is given in an invalid format or is empty.
+     * @throws \InvalidArgumentException If data is given in an invalid format
+     *         or is empty.
      * @throws \InvalidArgumentException If any field paths are empty.
+     * @throws \InvalidArgumentException If field paths conflict.
      */
     public function update($document, array $data, array $options = [])
     {
@@ -268,18 +328,10 @@ class WriteBatch
             throw new \InvalidArgumentException(
                 'Field data must be provided as a list of arrays of form `[string|FieldPath $path, mixed $value]`.'
             );
-        } elseif (!$data) {
-            throw new \InvalidArgumentException(
-                'Field data cannot be empty.'
-            );
         }
 
-        $options += [
-            'precondition' => ['exists' => true]
-        ];
-
         $paths = [];
-        $values = [];
+        $fields = [];
         foreach ($data as $field) {
             $this->arrayHasKeys($field, ['path', 'value']);
 
@@ -293,42 +345,91 @@ class WriteBatch
 
             $paths[] = $path;
 
-            $values[] = $field['value'];
+            $keys = $path->path();
+            $num = count($keys);
+
+            // Construct a nested array to represent a nested field path.
+            // For instance, `a.b.c` = 'foo' will become
+            // `['a' => ['b' => ['c' => 'foo']]]`
+            $val = $field['value'];
+            foreach (array_reverse($keys) as $index => $key) {
+                if ($num >= $index + 1) {
+                    $val = [
+                        $key => $val
+                    ];
+                }
+            }
+
+            $fields = $this->arrayMergeRecursive($fields, $val);
         }
 
-        $fields = $this->valueMapper->buildDocumentFromPathsAndValues($paths, $values);
+        if (count(array_unique($paths)) !== count($paths)) {
+            throw new \InvalidArgumentException('Duplicate field paths are not allowed.');
+        }
 
-        list($fields, $timestamps, $deletes) = $this->valueMapper->findSentinels($fields);
+        // Record whether the document is empty before any filtering.
+        $emptyDocument = count($fields) === 0;
 
-        $transformOptions = [];
+        list ($fields, $sentinels, $flags) = $this->filterFields($fields);
+
+        // to conform to specification.
+        if (isset($options['precondition']['exists'])) {
+            throw new \InvalidArgumentException('Exists preconditions are not supported by this method.');
+        }
+
+        if ($flags['timestampInArray']) {
+            throw new \InvalidArgumentException(
+                'Server Timestamps cannot be used anywhere within a non-associative array value.'
+            );
+        }
 
         // We only want to enqueue an update write if there are non-sentinel fields
         // OR no timestamp sentinels are found.
         // We MUST always enqueue at least one write, so if there are no fields
         // and no timestamp sentinels, we can assume an empty write is intended
         // and enqueue an empty UPDATE operation.
-        if ($fields || !$timestamps || $deletes) {
-            // encode field paths as strings and remove server timestamp sentinels.
-            $updateMask = [];
-            array_walk($paths, function ($path) use (&$updateMask, $timestamps) {
-                $path = $this->valueMapper->escapeFieldPath($path);
-                if (!in_array($path, $timestamps)) {
-                    $updateMask[] = $path;
-                }
+        $shouldEnqueueUpdate = $fields
+            || !$sentinels[FieldValue::serverTimestamp()]
+            || $sentinels[FieldValue::deleteField()];
+
+        if ($shouldEnqueueUpdate) {
+            $write = [
+                'fields' => $this->valueMapper->encodeValues($fields),
+            ];
+
+            $deletes = $sentinels[FieldValue::deleteField()];
+            $timestamps = $sentinels[FieldValue::serverTimestamp()];
+
+            // Add deletes to the list of paths
+            $mask = array_merge($paths, $deletes);
+            $mask = array_unique($this->pathsToStrings($mask));
+
+            // Check the update mask for prefix paths.
+            // This needs to happen before we remove server timestamp sentinels.
+            $this->checkPrefixes($mask);
+
+            // remove timestamps from the mask.
+            // since we constructed the input mask before removing sentinels,
+            // we'll need to run through and pull them out now.
+            $mask = array_filter($mask, function ($item) use ($timestamps) {
+                return !in_array($item, $timestamps);
             });
 
-            $this->writes[] = $this->createDatabaseWrite(self::TYPE_UPDATE, $document, [
-                'fields' => $this->valueMapper->encodeValues($fields),
-                'updateMask' => array_unique(array_merge($updateMask, $deletes))
-            ] + $options);
+            $write['updateMask'] = $mask;
+
+            $this->writes[] = $this->createDatabaseWrite(
+                self::TYPE_UPDATE,
+                $document,
+                $write + $this->formatPrecondition($options, true)
+            );
         } else {
-            $transformOptions = [
-                'precondition' => $options['precondition']
-            ];
+            // If no update write is enqueued, preconditions must be applied to
+            // a transform.
+            $options = $this->formatPrecondition($options, true);
         }
 
         // Setting values to the server timestamp is implemented as a document tranformation.
-        $this->updateTransforms($document, $timestamps, $transformOptions);
+        $this->updateTransforms($document, $sentinels, $options);
 
         return $this;
     }
@@ -350,6 +451,7 @@ class WriteBatch
      */
     public function delete($document, array $options = [])
     {
+        $options = $this->formatPrecondition($options);
         $this->writes[] = $this->createDatabaseWrite(self::TYPE_DELETE, $document, $options);
 
         return $this;
@@ -423,20 +525,31 @@ class WriteBatch
     }
 
     /**
+     * Check if the WriteBatch has any writes enqueued.
+     *
+     * @return bool
+     * @access private
+     */
+    public function isEmpty()
+    {
+        return ! (bool) $this->writes;
+    }
+
+    /**
      * Enqueue transforms for sentinels found in UPDATE calls.
      *
      * @param DocumentReference|string $document The document to target, either
      *        as a string document name, or DocumentReference object.
-     * @param array $timestamps
+     * @param array $sentinels
      * @param array $options
      * @return void
      */
-    private function updateTransforms($document, array $timestamps, array $options = [])
+    private function updateTransforms($document, array $sentinels, array $options = [])
     {
         $transforms = [];
-        foreach ($timestamps as $timestamp) {
+        foreach ($sentinels[FieldValue::serverTimestamp()] as $timestamp) {
             $transforms[] = [
-                'fieldPath' => $timestamp,
+                'fieldPath' => $timestamp->pathString(),
                 'setToServerValue' => self::REQUEST_TIME
             ];
         }
@@ -469,7 +582,7 @@ class WriteBatch
     private function createDatabaseWrite($type, $document, array $options = [])
     {
         $mask = $this->pluck('updateMask', $options, false);
-        if ($mask) {
+        if ($mask !== null) {
             sort($mask);
             $mask = ['fieldPaths' => $mask];
         }
@@ -478,7 +591,7 @@ class WriteBatch
             ? $document->name()
             : $document;
 
-        return array_filter([
+        return $this->arrayFilterRemoveNull([
             'updateMask' => $mask,
             'currentDocument' => $this->validatePrecondition($options),
         ]) + $this->createDatabaseWriteOperation($type, $document, $options);
@@ -495,7 +608,9 @@ class WriteBatch
      */
     private function validatePrecondition(array &$options)
     {
-        $precondition = $this->pluck('precondition', $options, false);
+        $precondition = isset($options['precondition'])
+            ? $options['precondition']
+            : null;
 
         if (!$precondition) {
             return;
@@ -508,7 +623,7 @@ class WriteBatch
         if (isset($precondition['updateTime'])) {
             if (!($precondition['updateTime'] instanceof Timestamp)) {
                 throw new \InvalidArgumentException(
-                    'Precondition Update Time must be an instance of Google\\Cloud\\Core\\Timestamp'
+                    'Precondition Update Time must be an instance of `Google\\Cloud\\Core\\Timestamp`'
                 );
             }
 
@@ -567,13 +682,188 @@ class WriteBatch
     }
 
     /**
-     * Check if the WriteBatch has any writes enqueued.
+     * Filter fields, removing sentinel values from the field list and recording
+     * their location.
      *
-     * @return bool
-     * @access private
+     * @param array $fields The fields input
+     * @return array An array containing the output fields at position 0 and the
+     *         sentinels list at position 1.
      */
-    public function isEmpty()
+    private function filterFields(array $fields)
     {
-        return ! (bool) $this->writes;
+        // initialize the sentinels list with empty arrays.
+        $sentinels = [];
+        foreach (FieldValue::sentinelValues() as $sentinel) {
+            $sentinels[$sentinel] = [];
+        }
+
+        // Track useful information here to keep complexity low elsewhere.
+        $flags = [
+            'timestampInArray' => false
+        ];
+
+        $filterSentinels = function (
+            array $fields,
+            FieldPath $path = null,
+            $inArray = false
+        ) use (
+            &$sentinels,
+            &$filterSentinels,
+            &$flags
+        ) {
+            if (!$path) {
+                $path = new FieldPath([]);
+            }
+
+            foreach ($fields as $key => $value) {
+                $currentPath = $path->child($key);
+                if (is_array($value)) {
+                    // If a sentinel appears in or descends from an array, we need to track that.
+                    $inArray = $inArray
+                        ? $inArray
+                        : !$this->isAssoc($value);
+
+                    $fields[$key] = $filterSentinels($value, $currentPath, $inArray);
+                    if (empty($fields[$key])) {
+                        unset($fields[$key]);
+                    }
+                } else {
+                    if (FieldValue::isSentinelValue($value)) {
+                        $sentinels[$value][] = $currentPath;
+                        if ($value === FieldValue::serverTimestamp() && $inArray) {
+                            $flags['timestampInArray'] = true;
+                        }
+
+                        unset($fields[$key]);
+                    }
+                }
+            }
+
+            return $fields;
+        };
+
+        $fields = $filterSentinels($fields);
+
+        return [$fields, $sentinels, $flags];
+    }
+
+    /**
+     * Check list of FieldPaths for prefix paths and throw exception.
+     *
+     * @param string[] $paths
+     * @throws \InvalidArgumentException If prefix paths are found.
+     */
+    private function checkPrefixes(array $paths)
+    {
+        sort($paths);
+
+        for ($i = 1; $i < count($paths); $i++) {
+            if ($this->isPrefix($paths[$i-1], $paths[$i])) {
+                throw new \InvalidArgumentException(sprintf(
+                    'Field path conflict detected for field path `%s`. ' .
+                    'Conflicts occur when a field path descends from another ' .
+                    'path. For instance `a.b` is not allowed when `a` is also ' .
+                    'provided.',
+                    $paths[$i-1]
+                ));
+            }
+        }
+    }
+
+    /**
+     * Compare two field paths to determine whether one is a prefix of the other.
+     *
+     * @param string $prefix The prefix path.
+     * @param string $suffix The suffix path.
+     * @return bool
+     */
+    private function isPrefix($prefix, $suffix)
+    {
+        $prefix = explode('.', $prefix);
+        $suffix = explode('.', $suffix);
+
+        return count($prefix) < count($suffix)
+            && $prefix === array_slice($suffix, 0, count($prefix));
+    }
+
+    /**
+     * Correctly formats a precondition for a write.
+     *
+     * @param array $options Configuration options input.
+     * @param bool $mustExist If true, the precondition will always include at
+     *        least `exists=true` precondition. **Defaults to** `false`.
+     * @return array Modified configuration options.
+     */
+    private function formatPrecondition(array $options, $mustExist = false)
+    {
+        if (!isset($options['precondition']) && !$mustExist) {
+            return $options;
+        }
+
+        $precondition = isset($options['precondition'])
+            ? $options['precondition']
+            : [];
+
+        if (isset($precondition['updateTime'])) {
+            return $options;
+        }
+
+        if ($mustExist) {
+            $precondition['exists'] = true;
+        }
+
+        $options['precondition'] = $precondition;
+
+        return $options;
+    }
+
+    /**
+     * Create a list of fields paths from field data.
+     *
+     * The return value of this method does not include the field values. It
+     * merely provides a list of field paths which were included in the input.
+     *
+     * @param array $fields A list of fields to map as paths.
+     * @param FieldPath|null $path The parent path (used internally).
+     * @return FieldPath[]
+     */
+    private function encodeFieldPaths(array $fields, $path = null)
+    {
+        $output = [];
+
+        if (!$path) {
+            $path = new FieldPath([]);
+        }
+
+        foreach ($fields as $key => $val) {
+            $currentPath = $path->child($key);
+
+            if (is_array($val) && $this->isAssoc($val)) {
+                $output = array_merge(
+                    $output,
+                    $this->encodeFieldPaths($val, $currentPath)
+                );
+            } else {
+                $output[] = $currentPath;
+            }
+        }
+
+        return $output;
+    }
+
+    /**
+     * Convert a set of {@see Google\Cloud\Firestore\FieldPath} objects to strings.
+     *
+     * @param FieldPath[] $paths The input paths.
+     * @return string[]
+     */
+    private function pathsToStrings(array $paths)
+    {
+        $out = [];
+        foreach ($paths as $path) {
+            $out[] = $path->pathString();
+        }
+
+        return $out;
     }
 }
