@@ -14,16 +14,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 namespace Google\Cloud\Bigtable\Connection;
 
-use Google\Cloud\Core\LongRunning\LongRunningConnectionInterface;
+use Google\Cloud\Core\Iam\IamConnectionInterface;
 
 /**
- * Represents a connection to the Long Running Operations portion of the
- * Cloud Bigtable API.
+ * Represents a connection to the Cloud Bigtable Instance IAM API.
  */
-class LongRunningConnection implements LongRunningConnectionInterface
+class IamInstance implements IamConnectionInterface
 {
     /**
      * @var ConnectionInterface
@@ -41,32 +39,24 @@ class LongRunningConnection implements LongRunningConnectionInterface
     /**
      * @param array $args
      */
-    public function get(array $args)
+    public function getPolicy(array $args)
     {
-        return $this->connection->getOperation($args);
+        return $this->connection->getIamPolicy($args);
     }
 
     /**
      * @param array $args
      */
-    public function cancel(array $args)
+    public function setPolicy(array $args)
     {
-        return $this->connection->cancelOperation($args);
+        return $this->connection->setIamPolicy($args);
     }
 
     /**
      * @param array $args
      */
-    public function delete(array $args)
+    public function testPermissions(array $args)
     {
-        return $this->connection->deleteOperation($args);
-    }
-
-    /**
-     * @param array $args
-     */
-    public function operations(array $args)
-    {
-        return $this->connection->listOperations($args);
+        return $this->connection->testIamPermissions($args);
     }
 }
