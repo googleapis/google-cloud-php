@@ -122,13 +122,13 @@ class Grpc implements ConnectionInterface
      */
     private $longRunningGrpcClients;
 
-    private function enableConnectionManagement($conf_path)
+    private function enableConnectionManagement($hostName, $confPath)
     {
         // TODO(ddyihai): move this function to GrpcTrait, if we are going
         // to enable the grpc-gcp library for other apis.
         $conf = new ApiConfig();
-        $conf->mergeFromJsonString($string = file_get_contents($conf_path));
-        $config = new Config($conf);
+        $conf->mergeFromJsonString(file_get_contents($confPath));
+        $config = new Config($hostName, $conf);
         return $config;
     }
 
@@ -137,6 +137,10 @@ class Grpc implements ConnectionInterface
      */
     public function __construct(array $config = [])
     {
+        if (getenv("ENABLE_GCP_OPTIMIZER") === false) {
+            // Enable the GCP optimizer by default.
+            putenv('ENABLE_GCP_OPTIMIZER=TRUE');
+        }
         $this->serializer = new Serializer([
             'commit_timestamp' => function ($v) {
                 return $this->formatTimestampFromApi($v);
@@ -165,12 +169,13 @@ class Grpc implements ConnectionInterface
                 : null
         );
 
-        if (isset($config['enableGcpOptimizer'])) {
-            $api = 'spanner';
-            $conf_path = __DIR__. "/../$api.grpc.config";
-            $grpc_gcp_config = $this->enableConnectionManagement($conf_path);
-            $grpcConfig['grpc_call_invoker'] = $grpc_gcp_config->callInvoker();
-            unset($config['enableGcpOptimizer']);
+        if (getenv('ENABLE_GCP_OPTIMIZER') == 'TRUE') {
+            if (extension_loaded('sysvshm')) {
+                $api = 'spanner';
+                $confPath = __DIR__. "/../V1/resources/$api.grpc.config";
+                $grpcGcpConfig = $this->enableConnectionManagement('spanner.googleapis.com', $confPath);
+                $grpcConfig['grpc_call_invoker'] = $grpcGcpConfig->callInvoker();
+            }
         }
 
         $this->spannerClient = isset($config['gapicSpannerClient'])
