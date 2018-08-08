@@ -31,17 +31,13 @@
  */
 namespace Google\ApiCore\Transport;
 
-use Exception;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\ApiStatus;
-use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Call;
-use Google\ApiCore\GrpcSupportTrait;
 use Google\ApiCore\RequestBuilder;
 use Google\ApiCore\ServiceAddressTrait;
 use Google\ApiCore\ValidationException;
 use Google\ApiCore\ValidationTrait;
-use Google\Auth\HttpHandler\HttpHandlerFactory;
 use GuzzleHttp\Exception\RequestException;
 use Psr\Http\Message\ResponseInterface;
 
@@ -52,9 +48,9 @@ class RestTransport implements TransportInterface
 {
     use ValidationTrait;
     use ServiceAddressTrait;
+    use HttpUnaryTransportTrait;
 
     private $requestBuilder;
-    private $httpHandler;
 
     /**
      * @param RequestBuilder $requestBuilder A builder responsible for creating
@@ -67,6 +63,7 @@ class RestTransport implements TransportInterface
     ) {
         $this->requestBuilder = $requestBuilder;
         $this->httpHandler = $httpHandler;
+        $this->transportName = 'REST';
     }
 
     /**
@@ -97,44 +94,10 @@ class RestTransport implements TransportInterface
 
     /**
      * {@inheritdoc}
-     * @throws \BadMethodCallException
-     */
-    public function startClientStreamingCall(Call $call, array $options)
-    {
-        $this->throwUnsupportedException();
-    }
-
-    /**
-     * {@inheritdoc}
-     * @throws \BadMethodCallException
-     */
-    public function startServerStreamingCall(Call $call, array $options)
-    {
-        $this->throwUnsupportedException();
-    }
-
-    /**
-     * {@inheritdoc}
-     * @throws \BadMethodCallException
-     */
-    public function startBidiStreamingCall(Call $call, array $options)
-    {
-        $this->throwUnsupportedException();
-    }
-
-    /**
-     * {@inheritdoc}
      */
     public function startUnaryCall(Call $call, array $options)
     {
-        $headers = isset($options['headers'])
-            ? $options['headers']
-            : [];
-
-        // If not already set, add an auth header to the request
-        if (!isset($headers['Authorization']) && isset($options['credentialsWrapper'])) {
-            $headers['Authorization'] = $options['credentialsWrapper']->getBearerString();
-        }
+        $headers = self::buildCommonHeaders($options);
 
         // call the HTTP handler
         $httpHandler = $this->httpHandler;
@@ -170,19 +133,6 @@ class RestTransport implements TransportInterface
         );
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function close()
-    {
-        // Nothing to do.
-    }
-
-    private function throwUnsupportedException()
-    {
-        throw new \BadMethodCallException('Streaming calls are not supported while using the REST transport.');
-    }
-
     private function getCallOptions(array $options)
     {
         $callOptions = isset($options['transportOptions']['restOptions'])
@@ -213,18 +163,5 @@ class RestTransport implements TransportInterface
         // Use the RPC code instead of the HTTP Status Code.
         $code = ApiStatus::rpcCodeFromHttpStatusCode($res->getStatusCode());
         return ApiException::createFromApiResponse($body, $code);
-    }
-
-    /**
-     * @return callable
-     * @throws ValidationException
-     */
-    private static function buildHttpHandlerAsync()
-    {
-        try {
-            return [HttpHandlerFactory::build(), 'async'];
-        } catch (Exception $ex) {
-            throw new ValidationException("Failed to build HttpHandler", $ex->getCode(), $ex);
-        }
     }
 }
