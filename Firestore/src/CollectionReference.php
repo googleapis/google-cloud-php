@@ -167,6 +167,9 @@ class CollectionReference extends Query
     /**
      * Get a document reference with a randomly generated document ID.
      *
+     * If you wish to create a document reference with a specified name, use
+     * {@see Google\Cloud\Firestore\CollectionReference::document()}.
+     *
      * This method does NOT insert the document until you call
      * {@see Google\Cloud\Firestore\DocumentReference::create()}.
      *
@@ -184,6 +187,12 @@ class CollectionReference extends Query
 
     /**
      * Generate a new document reference, and insert it with the given field data.
+     *
+     * This method will generate a random document name. If you wish to create a
+     * document with a specified name, create a reference with
+     * {@see Google\Cloud\Firestore\CollectionReference::document()}, then call
+     * {@see Google\Cloud\Firestore\DocumentReference::create()} to insert the
+     * document.
      *
      * This method immediately inserts the document. If you wish for lazy
      * creation of a Document instance, refer to
