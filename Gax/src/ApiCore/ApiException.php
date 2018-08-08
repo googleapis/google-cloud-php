@@ -32,6 +32,7 @@
 namespace Google\ApiCore;
 
 use Exception;
+use Google\Rpc\Status;
 
 /**
  * Represents an exception thrown during an RPC.
@@ -91,11 +92,16 @@ class ApiException extends Exception
     /**
      * @param string $basicMessage
      * @param int $rpcCode
-     * @param string|null $metadata
+     * @param array|null $metadata
+     * @param \Exception $previous
      * @return ApiException
      */
-    public static function createFromApiResponse($basicMessage, $rpcCode, $metadata = null)
-    {
+    public static function createFromApiResponse(
+        $basicMessage,
+        $rpcCode,
+        array $metadata = null,
+        \Exception $previous = null
+    ) {
         $rpcStatus = ApiStatus::statusFromRpcCode($rpcCode);
 
         $messageData = [
@@ -110,7 +116,21 @@ class ApiException extends Exception
         return new ApiException($message, $rpcCode, $rpcStatus, [
             'metadata' => $metadata,
             'basicMessage' => $basicMessage,
+            'previous' => $previous,
         ]);
+    }
+
+    /**
+     * @param Status $status
+     * @return ApiException
+     */
+    public static function createFromRpcStatus(Status $status)
+    {
+        $metadata = [];
+        foreach ($status->getDetails() as $any) {
+            $metadata[] = Serializer::serializeToPhpArray($any);
+        }
+        return self::createFromApiResponse($status->getMessage(), $status->getCode(), $metadata);
     }
 
     /**
