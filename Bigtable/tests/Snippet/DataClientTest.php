@@ -19,7 +19,7 @@ namespace Google\Cloud\Bigtable\Tests\Snippet;
 
 use \Google\ApiCore\ServerStream;
 use Google\Cloud\Bigtable\DataClient;
-use Google\Cloud\Bigtable\V2\BigtableClient;
+use Google\Cloud\Bigtable\V2\BigtableClient as TableClient;
 use Google\Cloud\Bigtable\V2\MutateRowsRequest_Entry;
 use Google\Cloud\Bigtable\V2\MutateRowsResponse;
 use Google\Cloud\Bigtable\V2\MutateRowsResponse_Entry;
@@ -55,7 +55,7 @@ class DataClientTest extends SnippetTestCase
 
     public function setUp()
     {
-        $this->bigtableClient = $this->prophesize(BigtableClient::class);
+        $this->bigtableClient = $this->prophesize(TableClient::class);
         $this->serverStream = $this->prophesize(ServerStream::class);
 
         $mutateRowsRequestEntry = new MutateRowsRequest_Entry;

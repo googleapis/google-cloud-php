@@ -18,7 +18,7 @@
 namespace Google\Cloud\Bigtable;
 
 use Google\Cloud\Bigtable\Exception\BigtableDataOperationException;
-use Google\Cloud\Bigtable\V2\BigtableClient;
+use Google\Cloud\Bigtable\V2\BigtableClient as TableClient;
 use Google\Cloud\Bigtable\V2\MutateRowsRequest;
 use Google\Cloud\Bigtable\V2\RowRange;
 use Google\Cloud\Bigtable\V2\RowSet;
@@ -84,9 +84,9 @@ class DataClient
         if (isset($config['bigtableClient'])) {
             $this->bigtableClient = $config['bigtableClient'];
         } else {
-            $this->bigtableClient = new BigtableClient();
+            $this->bigtableClient = new TableClient();
         }
-        $this->tableName = BigtableClient::tableName($projectId, $instanceId, $tableId);
+        $this->tableName = TableClient::tableName($projectId, $instanceId, $tableId);
     }
 
     /**

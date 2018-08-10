@@ -21,7 +21,7 @@ use Google\ApiCore\ApiException;
 use \Google\ApiCore\ServerStream;
 use Google\Cloud\Bigtable\DataClient;
 use Google\Cloud\Bigtable\RowMutation;
-use Google\Cloud\Bigtable\V2\BigtableClient;
+use Google\Cloud\Bigtable\V2\BigtableClient as TableClient;
 use Google\Cloud\Bigtable\V2\MutateRowsResponse;
 use Google\Cloud\Bigtable\V2\MutateRowsResponse_Entry;
 use Google\Rpc\Code;
@@ -59,7 +59,7 @@ class DataClientTest extends TestCase
 
     public function setUp()
     {
-        $this->bigtableClient = $this->prophesize(BigtableClient::class);
+        $this->bigtableClient = $this->prophesize(TableClient::class);
         $this->serverStream = $this->prophesize(ServerStream::class);
         $this->options = [
             'appProfile' => self::APP_PROFILE,
