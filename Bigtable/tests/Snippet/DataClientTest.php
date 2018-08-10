@@ -108,7 +108,7 @@ class DataClientTest extends SnippetTestCase
             );
         $snippet = $this->snippetFromMethod(DataClient::class, 'mutateRows');
         $snippet->addLocal('dataClient', $this->dataClient);
-        $res = $snippet->invoke('result');
+        $res = $snippet->invoke();
     }
 
     public function testUpsert()
@@ -125,7 +125,7 @@ class DataClientTest extends SnippetTestCase
             );
         $snippet = $this->snippetFromMethod(DataClient::class, 'upsert');
         $snippet->addLocal('dataClient', $this->dataClient);
-        $res = $snippet->invoke('result');
+        $res = $snippet->invoke();
     }
 
     private function arrayAsGenerator(array $array)
