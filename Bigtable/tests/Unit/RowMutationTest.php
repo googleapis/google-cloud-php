@@ -42,22 +42,23 @@ class RowMutationTest extends TestCase
 
     public function setUp()
     {
-        $this->rowMutation = new RowMutation(ROW_KEY);
+        $this->rowMutation = new RowMutation(self::ROW_KEY);
     }
 
     public function testGetRowKey()
     {
-        $this->assertEquals(ROW_KEY, $this->rowMutation->getRowKey());
+        $this->assertEquals(self::ROW_KEY, $this->rowMutation->getRowKey());
     }
 
     public function testUpsert()
     {
-        $this->rowMutation->upsert(COLUMN_FAMILY, COLUMN_QUALIFIER, VALUE);
+        $this->rowMutation->upsert(self::COLUMN_FAMILY, self::COLUMN_QUALIFIER, self::VALUE);
 
         $entry = $this->rowMutation->getEntry();
         $mutationSetCell = new Mutation_SetCell;
-        $mutationSetCell->setFamilyName(COLUMN_FAMILY)->setColumnQualifier(COLUMN_QUALIFIER)
-                        ->setValue(VALUE);
+        $mutationSetCell->setFamilyName(self::COLUMN_FAMILY)
+                        ->setColumnQualifier(self::COLUMN_QUALIFIER)
+                        ->setValue(self::VALUE);
         $mutation = new Mutation;
         $mutation->setSetCell($mutationSetCell);
         $mutateRowsRequestEntry = $this->getMutateRowsRequestEntry($mutation);
@@ -66,12 +67,12 @@ class RowMutationTest extends TestCase
 
     public function testUpsertWithTimeRange()
     {
-        $this->rowMutation->upsert(COLUMN_FAMILY, COLUMN_QUALIFIER, VALUE, 20);
+        $this->rowMutation->upsert(self::COLUMN_FAMILY, self::COLUMN_QUALIFIER, self::VALUE, 20);
 
         $entry = $this->rowMutation->getEntry();
         $mutationSetCell = new Mutation_SetCell;
-        $mutationSetCell->setFamilyName(COLUMN_FAMILY)->setColumnQualifier(COLUMN_QUALIFIER)
-                        ->setValue(VALUE)
+        $mutationSetCell->setFamilyName(self::COLUMN_FAMILY)->setColumnQualifier(self::COLUMN_QUALIFIER)
+                        ->setValue(self::VALUE)
                         ->setTimestampMicros(20);
         $mutation = new Mutation;
         $mutation->setSetCell($mutationSetCell);
@@ -81,10 +82,10 @@ class RowMutationTest extends TestCase
 
     public function testDeleteFromFamily()
     {
-        $this->rowMutation->deleteFromFamily(COLUMN_FAMILY);
+        $this->rowMutation->deleteFromFamily(self::COLUMN_FAMILY);
         $entry = $this->rowMutation->getEntry();
         $deleteFromFamily = new Mutation_DeleteFromFamily;
-        $deleteFromFamily->setFamilyName(COLUMN_FAMILY);
+        $deleteFromFamily->setFamilyName(self::COLUMN_FAMILY);
         $mutation = new Mutation;
         $mutation->setDeleteFromFamily($deleteFromFamily);
         $mutateRowsRequestEntry = $this->getMutateRowsRequestEntry($mutation);
@@ -93,10 +94,10 @@ class RowMutationTest extends TestCase
 
     public function testDeleteFromColumn()
     {
-        $this->rowMutation->deleteFromColumn(COLUMN_FAMILY, COLUMN_QUALIFIER);
+        $this->rowMutation->deleteFromColumn(self::COLUMN_FAMILY, self::COLUMN_QUALIFIER);
         $entry = $this->rowMutation->getEntry();
         $deleteFromColumn = new Mutation_DeleteFromColumn;
-        $deleteFromColumn->setFamilyName(COLUMN_FAMILY)->setColumnQualifier(COLUMN_QUALIFIER);
+        $deleteFromColumn->setFamilyName(self::COLUMN_FAMILY)->setColumnQualifier(self::COLUMN_QUALIFIER);
         $mutation = new Mutation;
         $mutation->setDeleteFromColumn($deleteFromColumn);
         $mutateRowsRequestEntry = $this->getMutateRowsRequestEntry($mutation);
@@ -105,10 +106,15 @@ class RowMutationTest extends TestCase
 
     public function testDeleteFromColumnWithTimeRange()
     {
-        $this->rowMutation->deleteFromColumn(COLUMN_FAMILY, COLUMN_QUALIFIER, ['start' => 1, 'end' => 5]);
+        $this->rowMutation->deleteFromColumn(
+            self::COLUMN_FAMILY,
+            self::COLUMN_QUALIFIER,
+            ['start' => 1, 'end' => 5]
+        );
         $entry = $this->rowMutation->getEntry();
         $deleteFromColumn = new Mutation_DeleteFromColumn;
-        $deleteFromColumn->setFamilyName(COLUMN_FAMILY)->setColumnQualifier(COLUMN_QUALIFIER);
+        $deleteFromColumn->setFamilyName(self::COLUMN_FAMILY)
+                        ->setColumnQualifier(self::COLUMN_QUALIFIER);
         $timestampRange = new TimestampRange;
         $timestampRange->setStartTimestampMicros(1);
         $timestampRange->setEndTimestampMicros(5);
@@ -132,7 +138,7 @@ class RowMutationTest extends TestCase
     private function getMutateRowsRequestEntry($mutation)
     {
         $mutateRowsRequestEntry = new MutateRowsRequest_Entry;
-        $mutateRowsRequestEntry->setRowKey(ROW_KEY);
+        $mutateRowsRequestEntry->setRowKey(self::ROW_KEY);
         $mutateRowsRequestEntry->setMutations([$mutation]);
         return $mutateRowsRequestEntry;
     }
