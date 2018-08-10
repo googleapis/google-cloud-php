@@ -50,21 +50,6 @@ class RowMutationTest extends TestCase
         $this->assertEquals(self::ROW_KEY, $this->rowMutation->getRowKey());
     }
 
-    public function testUpsert()
-    {
-        $this->rowMutation->upsert(self::COLUMN_FAMILY, self::COLUMN_QUALIFIER, self::VALUE);
-
-        $entry = $this->rowMutation->getEntry();
-        $mutationSetCell = new Mutation_SetCell;
-        $mutationSetCell->setFamilyName(self::COLUMN_FAMILY)
-                        ->setColumnQualifier(self::COLUMN_QUALIFIER)
-                        ->setValue(self::VALUE);
-        $mutation = new Mutation;
-        $mutation->setSetCell($mutationSetCell);
-        $mutateRowsRequestEntry = $this->getMutateRowsRequestEntry($mutation);
-        $this->assertEquals($mutateRowsRequestEntry, $entry);
-    }
-
     public function testUpsertWithTimeRange()
     {
         $this->rowMutation->upsert(self::COLUMN_FAMILY, self::COLUMN_QUALIFIER, self::VALUE, 20);

@@ -62,7 +62,7 @@ class DataClientTest extends SnippetTestCase
         $mutation = new Mutation;
         $mutationSetCell = new Mutation_SetCell;
         $mutationSetCell->setFamilyName('cf1')->setColumnQualifier('cq1')
-            ->setValue('value1');
+            ->setValue('value1')->setTimestampMicros(5);
         $mutation->setSetCell($mutationSetCell);
         $mutateRowsRequestEntry->setRowKey('r1');
         $mutateRowsRequestEntry->setMutations([$mutation]);

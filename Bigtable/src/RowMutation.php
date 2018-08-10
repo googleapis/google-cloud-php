@@ -68,13 +68,15 @@ class RowMutation
      *
      * @return void
      */
-    public function upsert($family, $qualifier, $value, $timeStamp = null)
+    public function upsert($family, $qualifier, $value, $timeStamp = 0)
     {
         $mutation = new Mutation;
         $mutationSetCell = new Mutation_SetCell;
         $mutationSetCell->setFamilyName($family)->setColumnQualifier($qualifier)
                         ->setValue($value);
-        if ($timeStamp !== null) {
+        if ($timeStamp === 0) {
+            $mutationSetCell->setTimestampMicros(time() * 1000);
+        } else {
             $mutationSetCell->setTimestampMicros($timeStamp);
         }
         $mutation->setSetCell($mutationSetCell);

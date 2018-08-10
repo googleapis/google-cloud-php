@@ -98,7 +98,7 @@ class DataClient
      * use Google\Cloud\Bigtable\RowMutation;
      *
      * $rowMutation = new RowMutation('r1');
-     * $rowMutation->upsert('cf1','cq1','value1');
+     * $rowMutation->upsert('cf1','cq1','value1',5);
      *
      * $dataClient->mutateRows([$rowMutation]);
      * ```
@@ -143,7 +143,7 @@ class DataClient
      * ```
      * use Google\Cloud\Bigtable\DataClient;
      *
-     * $dataClient->upsert(['r1' => ['cf1' => ['cq1' => ['value'=>'value1']]]]);
+     * $dataClient->upsert(['r1' => ['cf1' => ['cq1' => ['value'=>'value1', 'timeStamp' => 5]]]]);
      * ```
      * @param array[] $rows array of row.
      * @return void
