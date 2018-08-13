@@ -43,6 +43,7 @@ class DataClientTest extends TestCase
     const HEADER_VALUE = 'my-header-value';
     const APP_PROFILE = 'my-app-profile';
     const TABLE_NAME = 'projects/my-project/instances/my-instance/tables/my-table';
+    const TIMESTAMP = 1534183334215000;
 
     private $bigtableClient;
     private $dataClient;
@@ -66,12 +67,12 @@ class DataClientTest extends TestCase
         ];
         $this->dataClient = new DataClient(self::INSTANCE_ID, self::TABLE_ID, $clientOptions);
         $rowMutation = new RowMutation('rk1');
-        $rowMutation->upsert('cf1', 'cq1', 'value1');
+        $rowMutation->upsert('cf1', 'cq1', 'value1', self::TIMESTAMP);
         $this->entries[] = $rowMutation->getEntry();
         $this->rowMutations[] = $rowMutation;
 
         $rowMutation = new RowMutation('rk2');
-        $rowMutation->upsert('cf2', 'cq2', 'value2');
+        $rowMutation->upsert('cf2', 'cq2', 'value2', self::TIMESTAMP);
         $this->entries[] = $rowMutation->getEntry();
         $this->rowMutations[] = $rowMutation;
     }
@@ -199,14 +200,16 @@ class DataClientTest extends TestCase
             'rk1' => [
                 'cf1' => [
                     'cq1' => [
-                        'value' => 'value1'
+                        'value' => 'value1',
+                        'timeStamp' => self::TIMESTAMP
                     ]
                 ]
             ],
             'rk2' => [
                 'cf2' => [
                     'cq2' => [
-                        'value' => 'value2'
+                        'value' => 'value2',
+                        'timeStamp' => self::TIMESTAMP
                     ]
                 ]
             ]
