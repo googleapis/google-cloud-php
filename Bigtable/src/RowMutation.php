@@ -76,7 +76,12 @@ class RowMutation
             ->setColumnQualifier($qualifier)
             ->setValue($value);
         if ($timeStamp === null) {
-            $mutationSetCell->setTimestampMicros(time() * 1000);
+            $mutationSetCell->setTimestampMicros(
+                //gives milli second
+                round(microtime(true) * 1000)
+                // multiply by 1000 to get micro
+                * 1000
+            );
         } else {
             $mutationSetCell->setTimestampMicros($timeStamp);
         }

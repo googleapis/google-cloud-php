@@ -52,14 +52,19 @@ class RowMutationTest extends TestCase
 
     public function testUpsertWithTimeRange()
     {
-        $return = $this->rowMutation->upsert(self::COLUMN_FAMILY, self::COLUMN_QUALIFIER, self::VALUE, 1534175145);
+        $return = $this->rowMutation->upsert(
+            self::COLUMN_FAMILY,
+            self::COLUMN_QUALIFIER,
+            self::VALUE,
+            1534183334215000
+        );
 
         $entry = $this->rowMutation->getEntry();
         $mutationSetCell = new Mutation_SetCell;
         $mutationSetCell->setFamilyName(self::COLUMN_FAMILY)
             ->setColumnQualifier(self::COLUMN_QUALIFIER)
             ->setValue(self::VALUE)
-            ->setTimestampMicros(1534175145);
+            ->setTimestampMicros(1534183334215000);
         $mutation = new Mutation;
         $mutation->setSetCell($mutationSetCell);
         $mutateRowsRequestEntry = $this->getMutateRowsRequestEntry($mutation);
