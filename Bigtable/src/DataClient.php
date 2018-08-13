@@ -22,6 +22,7 @@ use Google\Cloud\Bigtable\V2\BigtableClient as TableClient;
 use Google\Cloud\Bigtable\V2\MutateRowsRequest;
 use Google\Cloud\Bigtable\V2\RowRange;
 use Google\Cloud\Bigtable\V2\RowSet;
+use Google\Cloud\Core\ClientTrait;
 use Google\Rpc\Code;
 
 /**
@@ -32,17 +33,13 @@ use Google\Rpc\Code;
  * ```
  * use Google\Cloud\Bigtable\DataClient;
  *
- * $dataClient = new DataClient('my-project', 'my-instance', 'my-table');
+ * $dataClient = new DataClient('my-instance', 'my-table');
  * ```
  *
  */
 class DataClient
 {
-
-    /**
-     * @var string
-     */
-    private $projectId;
+    use ClientTrait;
 
     /**
      * @var string
@@ -69,24 +66,44 @@ class DataClient
      */
     private $tableName;
 
-    public function __construct($projectId, $instanceId, $tableId, array $config = [])
+    /**
+     * Create a Bigtable data client.
+     *
+     * @param string $instanceId The instance id.
+     * @param string $tableId The table id on which operation to be performed.
+     * @param array $config [optional] {
+     *     Configuration Options.
+     *
+     *      @type string $appProfileId The appProfileId to be used.
+     *      @type array $headers The headers to be passed to request.
+     *      @type BigtableClient $bigtableClient The GAPIC Bigtable client to use.
+     *            If not provided it will create one.
+     *     @type array $keyFile The contents of the service account credentials
+     *           .json file retrieved from the Google Developer's Console.
+     *           Ex: `json_decode(file_get_contents($path), true)`.
+     *     @type string $keyFilePath The full path to your service account
+     *           credentials .json file retrieved from the Google Developers
+     *           Console.
+     * }
+     */
+    public function __construct($instanceId, $tableId, array $config = [])
     {
-        $this->projectId = $projectId;
         $this->instanceId = $instanceId;
         $this->tableId = $tableId;
         $this->options = [];
-        if (isset($config['appProfile'])) {
-            $this->options['appProfile'] = $config['appProfile'];
+        if (isset($config['appProfileId'])) {
+            $this->options['appProfileId'] = $config['appProfileId'];
         }
         if (isset($config['headers'])) {
             $this->options['headers'] = $config['headers'];
         }
+        $config = $this->configureAuthentication($config);
         if (isset($config['bigtableClient'])) {
             $this->bigtableClient = $config['bigtableClient'];
         } else {
-            $this->bigtableClient = new TableClient();
+            $this->bigtableClient = new TableClient($config);
         }
-        $this->tableName = TableClient::tableName($projectId, $instanceId, $tableId);
+        $this->tableName = TableClient::tableName($this->projectId, $instanceId, $tableId);
     }
 
     /**
@@ -98,7 +115,7 @@ class DataClient
      * use Google\Cloud\Bigtable\RowMutation;
      *
      * $rowMutation = new RowMutation('r1');
-     * $rowMutation->upsert('cf1','cq1','value1',5);
+     * $rowMutation->upsert('cf1','cq1','value1',1534175145);
      *
      * $dataClient->mutateRows([$rowMutation]);
      * ```
@@ -123,7 +140,7 @@ class DataClient
                     $failureCode = $mutateRowsResponseEntry->getStatus()->getCode();
                     $message = $mutateRowsResponseEntry->getStatus()->getMessage();
                     $rowMutationsFailedResponse[] = [
-                        'rowKey' => $rowMutations[$mutateRowsResponseEntry->getIndex()],
+                        'rowKey' => $rowMutations[$mutateRowsResponseEntry->getIndex()]->getRowKey(),
                         'rowMutationIndex' => $mutateRowsResponseEntry->getIndex(),
                         'statusCode' => $failureCode,
                         'message' => $message
@@ -143,7 +160,7 @@ class DataClient
      * ```
      * use Google\Cloud\Bigtable\DataClient;
      *
-     * $dataClient->upsert(['r1' => ['cf1' => ['cq1' => ['value'=>'value1', 'timeStamp' => 5]]]]);
+     * $dataClient->upsert(['r1' => ['cf1' => ['cq1' => ['value'=>'value1', 'timeStamp' => 1534175145]]]]);
      * ```
      * @param array[] $rows array of row.
      * @return void

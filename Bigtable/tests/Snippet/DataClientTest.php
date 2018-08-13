@@ -44,13 +44,9 @@ class DataClientTest extends SnippetTestCase
     const TABLE_NAME = 'projects/my-project/instances/my-instance/tables/my-table';
 
     private $bigtableClient;
-
     private $dataClient;
-
     private $mutateRowsResponses = [];
-
     private $serverStream;
-
     private $entries = [];
 
     public function setUp()
@@ -61,8 +57,10 @@ class DataClientTest extends SnippetTestCase
         $mutateRowsRequestEntry = new MutateRowsRequest_Entry;
         $mutation = new Mutation;
         $mutationSetCell = new Mutation_SetCell;
-        $mutationSetCell->setFamilyName('cf1')->setColumnQualifier('cq1')
-            ->setValue('value1')->setTimestampMicros(5);
+        $mutationSetCell->setFamilyName('cf1')
+            ->setColumnQualifier('cq1')
+            ->setValue('value1')
+            ->setTimestampMicros(1534175145);
         $mutation->setSetCell($mutationSetCell);
         $mutateRowsRequestEntry->setRowKey('r1');
         $mutateRowsRequestEntry->setMutations([$mutation]);
@@ -78,10 +76,12 @@ class DataClientTest extends SnippetTestCase
         $this->dataClient = TestHelpers::stub(
             DataClient::class,
             [
-                self::PROJECT_ID,
                 self::INSTANCE_ID,
                 self::TABLE_ID,
-                [ 'bigtableClient' => $this->bigtableClient->reveal() ]
+                [
+                    'bigtableClient' => $this->bigtableClient->reveal(),
+                    'projectId' => self::PROJECT_ID
+                ]
             ]
         );
     }

@@ -20,6 +20,7 @@ namespace Google\Cloud\Bigtable\Tests\Unit;
 use Google\ApiCore\ApiException;
 use \Google\ApiCore\ServerStream;
 use Google\Cloud\Bigtable\DataClient;
+use Google\Cloud\Bigtable\Exception\BigtableDataOperationException;
 use Google\Cloud\Bigtable\RowMutation;
 use Google\Cloud\Bigtable\V2\BigtableClient as TableClient;
 use Google\Cloud\Bigtable\V2\MutateRowsResponse;
@@ -44,17 +45,11 @@ class DataClientTest extends TestCase
     const TABLE_NAME = 'projects/my-project/instances/my-instance/tables/my-table';
 
     private $bigtableClient;
-
     private $dataClient;
-
     private $rowMutations = [];
-
     private $entries = [];
-
     private $mutateRowsRequest;
-
     private $options;
-
     private $serverStream;
 
     public function setUp()
@@ -62,13 +57,14 @@ class DataClientTest extends TestCase
         $this->bigtableClient = $this->prophesize(TableClient::class);
         $this->serverStream = $this->prophesize(ServerStream::class);
         $this->options = [
-            'appProfile' => self::APP_PROFILE,
+            'appProfileId' => self::APP_PROFILE,
             'headers' => [self::HEADER => self::HEADER_VALUE]
         ];
         $clientOptions = $this->options + [
-            'bigtableClient' => $this->bigtableClient->reveal()
+            'bigtableClient' => $this->bigtableClient->reveal(),
+            'projectId' => self::PROJECT_ID
         ];
-        $this->dataClient = new DataClient(self::PROJECT_ID, self::INSTANCE_ID, self::TABLE_ID, $clientOptions);
+        $this->dataClient = new DataClient(self::INSTANCE_ID, self::TABLE_ID, $clientOptions);
         $rowMutation = new RowMutation('rk1');
         $rowMutation->upsert('cf1', 'cq1', 'value1');
         $this->entries[] = $rowMutation->getEntry();
@@ -102,10 +98,6 @@ class DataClientTest extends TestCase
         $this->dataClient->mutateRows($this->rowMutations);
     }
 
-    /**
-     * @expectedException Google\Cloud\Bigtable\Exception\BigtableDataOperationException
-     * @expectedExceptionMessage Invalid argument
-     */
     public function testMutateRowsFailure()
     {
         $statuses = [];
@@ -128,7 +120,25 @@ class DataClientTest extends TestCase
             ->willReturn(
                 $this->serverStream->reveal()
             );
-        $this->dataClient->mutateRows($this->rowMutations);
+        try {
+            $this->dataClient->mutateRows($this->rowMutations);
+            $this->fail('Expected exception is not thrown');
+        } catch (BigtableDataOperationException $e) {
+            $metadata = [
+                [
+                    'rowKey' => 'rk1',
+                    'rowMutationIndex' => 0,
+                    'statusCode' => Code::INVALID_ARGUMENT,
+                    'message' => 'Invalid argument'
+                ]
+            ];
+            $this->assertEquals('Invalid argument', $e->getMessage());
+            $this->assertEquals(Code::INVALID_ARGUMENT, $e->getCode());
+            $this->assertEquals(
+                $metadata,
+                $e->getMetadata()
+            );
+        }
     }
 
     /**
@@ -150,7 +160,7 @@ class DataClientTest extends TestCase
      * @expectedException Google\ApiCore\ApiException
      * @expectedExceptionMessage unauthenticated
      */
-    public function testMutateRowsApiExceptionInreadAll()
+    public function testMutateRowsApiExceptionInReadAll()
     {
         $apiException =  new ApiException('unauthenticated', Code::UNAUTHENTICATED, 'unauthenticated');
         $this->serverStream->readAll()

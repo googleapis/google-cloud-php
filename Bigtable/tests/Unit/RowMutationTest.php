@@ -52,46 +52,50 @@ class RowMutationTest extends TestCase
 
     public function testUpsertWithTimeRange()
     {
-        $this->rowMutation->upsert(self::COLUMN_FAMILY, self::COLUMN_QUALIFIER, self::VALUE, 20);
+        $return = $this->rowMutation->upsert(self::COLUMN_FAMILY, self::COLUMN_QUALIFIER, self::VALUE, 1534175145);
 
         $entry = $this->rowMutation->getEntry();
         $mutationSetCell = new Mutation_SetCell;
-        $mutationSetCell->setFamilyName(self::COLUMN_FAMILY)->setColumnQualifier(self::COLUMN_QUALIFIER)
-                        ->setValue(self::VALUE)
-                        ->setTimestampMicros(20);
+        $mutationSetCell->setFamilyName(self::COLUMN_FAMILY)
+            ->setColumnQualifier(self::COLUMN_QUALIFIER)
+            ->setValue(self::VALUE)
+            ->setTimestampMicros(1534175145);
         $mutation = new Mutation;
         $mutation->setSetCell($mutationSetCell);
         $mutateRowsRequestEntry = $this->getMutateRowsRequestEntry($mutation);
+        $this->assertEquals($this->rowMutation, $return);
         $this->assertEquals($mutateRowsRequestEntry, $entry);
     }
 
     public function testDeleteFromFamily()
     {
-        $this->rowMutation->deleteFromFamily(self::COLUMN_FAMILY);
+        $return = $this->rowMutation->deleteFromFamily(self::COLUMN_FAMILY);
         $entry = $this->rowMutation->getEntry();
         $deleteFromFamily = new Mutation_DeleteFromFamily;
         $deleteFromFamily->setFamilyName(self::COLUMN_FAMILY);
         $mutation = new Mutation;
         $mutation->setDeleteFromFamily($deleteFromFamily);
         $mutateRowsRequestEntry = $this->getMutateRowsRequestEntry($mutation);
+        $this->assertEquals($this->rowMutation, $return);
         $this->assertEquals($mutateRowsRequestEntry, $entry);
     }
 
     public function testDeleteFromColumn()
     {
-        $this->rowMutation->deleteFromColumn(self::COLUMN_FAMILY, self::COLUMN_QUALIFIER);
+        $return = $this->rowMutation->deleteFromColumn(self::COLUMN_FAMILY, self::COLUMN_QUALIFIER);
         $entry = $this->rowMutation->getEntry();
         $deleteFromColumn = new Mutation_DeleteFromColumn;
         $deleteFromColumn->setFamilyName(self::COLUMN_FAMILY)->setColumnQualifier(self::COLUMN_QUALIFIER);
         $mutation = new Mutation;
         $mutation->setDeleteFromColumn($deleteFromColumn);
         $mutateRowsRequestEntry = $this->getMutateRowsRequestEntry($mutation);
+        $this->assertEquals($this->rowMutation, $return);
         $this->assertEquals($mutateRowsRequestEntry, $entry);
     }
 
     public function testDeleteFromColumnWithTimeRange()
     {
-        $this->rowMutation->deleteFromColumn(
+        $return = $this->rowMutation->deleteFromColumn(
             self::COLUMN_FAMILY,
             self::COLUMN_QUALIFIER,
             ['start' => 1, 'end' => 5]
@@ -99,7 +103,7 @@ class RowMutationTest extends TestCase
         $entry = $this->rowMutation->getEntry();
         $deleteFromColumn = new Mutation_DeleteFromColumn;
         $deleteFromColumn->setFamilyName(self::COLUMN_FAMILY)
-                        ->setColumnQualifier(self::COLUMN_QUALIFIER);
+            ->setColumnQualifier(self::COLUMN_QUALIFIER);
         $timestampRange = new TimestampRange;
         $timestampRange->setStartTimestampMicros(1);
         $timestampRange->setEndTimestampMicros(5);
@@ -107,16 +111,18 @@ class RowMutationTest extends TestCase
         $mutation = new Mutation;
         $mutation->setDeleteFromColumn($deleteFromColumn);
         $mutateRowsRequestEntry = $this->getMutateRowsRequestEntry($mutation);
+        $this->assertEquals($this->rowMutation, $return);
         $this->assertEquals($mutateRowsRequestEntry, $entry);
     }
 
-    public function testDeleteFromRow()
+    public function testDeleteRow()
     {
-        $this->rowMutation->deleteFromRow();
+        $return = $this->rowMutation->deleteRow();
         $entry = $this->rowMutation->getEntry();
         $mutation = new Mutation;
         $mutation->setDeleteFromRow(new Mutation_DeleteFromRow);
         $mutateRowsRequestEntry = $this->getMutateRowsRequestEntry($mutation);
+        $this->assertEquals($this->rowMutation, $return);
         $this->assertEquals($mutateRowsRequestEntry, $entry);
     }
 

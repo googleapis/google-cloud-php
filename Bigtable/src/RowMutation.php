@@ -66,21 +66,23 @@ class RowMutation
      * @param string $value Value of the Column qualifier.
      * @param int $timeStamp optional timestamp value.
      *
-     * @return void
+     * @return RowMutation returns current RowMutation object.
      */
-    public function upsert($family, $qualifier, $value, $timeStamp = 0)
+    public function upsert($family, $qualifier, $value, $timeStamp = null)
     {
         $mutation = new Mutation;
         $mutationSetCell = new Mutation_SetCell;
-        $mutationSetCell->setFamilyName($family)->setColumnQualifier($qualifier)
-                        ->setValue($value);
-        if ($timeStamp === 0) {
+        $mutationSetCell->setFamilyName($family)
+            ->setColumnQualifier($qualifier)
+            ->setValue($value);
+        if ($timeStamp === null) {
             $mutationSetCell->setTimestampMicros(time() * 1000);
         } else {
             $mutationSetCell->setTimestampMicros($timeStamp);
         }
         $mutation->setSetCell($mutationSetCell);
         $this->mutations[] = $mutation;
+        return $this;
     }
 
     /**
@@ -88,7 +90,7 @@ class RowMutation
      *
      * @param string $family Family name of the row.
      *
-     * @return void
+     * @return RowMutation returns current RowMutation object.
      */
     public function deleteFromFamily($family)
     {
@@ -97,6 +99,7 @@ class RowMutation
         $deleteFromFamily->setFamilyName($family);
         $mutation->setDeleteFromFamily($deleteFromFamily);
         $this->mutations[] = $mutation;
+        return $this;
     }
 
     /**
@@ -106,7 +109,7 @@ class RowMutation
      * @param string $qualifier Column qualifier of the row.
      * @param array $timeRange optional array of time range to delete from column,
      *        keyed by `start` and `end` representing time range window.
-     * @return void
+     * @return RowMutation returns current RowMutation object.
      */
     public function deleteFromColumn($family, $qualifier, array $timeRange = [])
     {
@@ -121,18 +124,20 @@ class RowMutation
         }
         $mutation->setDeleteFromColumn($deleteFromColumn);
         $this->mutations[] = $mutation;
+        return $this;
     }
 
     /**
      * Creates delete row mutation for a row.
      *
-     * @return void
+     * @return RowMutation returns current RowMutation object.
      */
-    public function deleteFromRow()
+    public function deleteRow()
     {
         $mutation = new Mutation;
         $mutation->setDeleteFromRow(new Mutation_DeleteFromRow);
         $this->mutations[] = $mutation;
+        return $this;
     }
 
     /**

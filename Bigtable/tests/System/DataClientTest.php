@@ -45,15 +45,10 @@ class DataClientTest extends TestCase
     const VALUE = 'value1';
 
     private static $instanceAdminClient;
-
     private static $tableAdminClient;
-
     private static $dataClient;
-
     private static $projectId;
-
     private static $instanceId;
-
     private static $clusterId;
 
     public static function setUpBeforeClass()
@@ -65,19 +60,15 @@ class DataClientTest extends TestCase
         self::$tableAdminClient = new TableAdminClient([
             'keyFilePath' => $keyFilePath
         ]);
-        $tableClient = new TableClient([
-            'keyFilePath' => $keyFilePath
-        ]);
         $keyFileData = json_decode(file_get_contents($keyFilePath), true);
         self::$projectId = $keyFileData['project_id'];
         self::$instanceId = uniqid(self::INSTANCE_ID_PREFIX);
         self::$clusterId = uniqid(self::CLUSTER_ID_PREFIX);
         self::$dataClient = new DataClient(
-            self::$projectId,
             self::$instanceId,
             self::TABLE_ID,
             [
-                'bigtableClient' => $tableClient
+                'keyFilePath' => $keyFilePath
             ]
         );
         self::createInstance();
