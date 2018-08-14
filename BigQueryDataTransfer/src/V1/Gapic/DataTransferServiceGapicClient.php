@@ -426,18 +426,21 @@ class DataTransferServiceGapicClient
      * $dataTransferServiceClient = new DataTransferServiceClient();
      * try {
      *     $formattedParent = $dataTransferServiceClient->projectName('[PROJECT]');
-     *     // Iterate through all elements
-     *     $pagedResponse = $dataTransferServiceClient->listDataSources($formattedParent);
-     *     foreach ($pagedResponse->iterateAllElements() as $element) {
-     *         // doSomethingWith($element);
-     *     }
-     *
-     *     // OR iterate over pages of elements
+     *     // Iterate over pages of elements
      *     $pagedResponse = $dataTransferServiceClient->listDataSources($formattedParent);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
      *         }
+     *     }
+     *
+     *
+     *     // Alternatively:
+     *
+     *     // Iterate through all elements
+     *     $pagedResponse = $dataTransferServiceClient->listDataSources($formattedParent);
+     *     foreach ($pagedResponse->iterateAllElements() as $element) {
+     *         // doSomethingWith($element);
      *     }
      * } finally {
      *     $dataTransferServiceClient->close();
@@ -755,18 +758,21 @@ class DataTransferServiceGapicClient
      * $dataTransferServiceClient = new DataTransferServiceClient();
      * try {
      *     $formattedParent = $dataTransferServiceClient->projectName('[PROJECT]');
-     *     // Iterate through all elements
-     *     $pagedResponse = $dataTransferServiceClient->listTransferConfigs($formattedParent);
-     *     foreach ($pagedResponse->iterateAllElements() as $element) {
-     *         // doSomethingWith($element);
-     *     }
-     *
-     *     // OR iterate over pages of elements
+     *     // Iterate over pages of elements
      *     $pagedResponse = $dataTransferServiceClient->listTransferConfigs($formattedParent);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
      *         }
+     *     }
+     *
+     *
+     *     // Alternatively:
+     *
+     *     // Iterate through all elements
+     *     $pagedResponse = $dataTransferServiceClient->listTransferConfigs($formattedParent);
+     *     foreach ($pagedResponse->iterateAllElements() as $element) {
+     *         // doSomethingWith($element);
      *     }
      * } finally {
      *     $dataTransferServiceClient->close();
@@ -1000,18 +1006,21 @@ class DataTransferServiceGapicClient
      * $dataTransferServiceClient = new DataTransferServiceClient();
      * try {
      *     $formattedParent = $dataTransferServiceClient->projectTransferConfigName('[PROJECT]', '[TRANSFER_CONFIG]');
-     *     // Iterate through all elements
-     *     $pagedResponse = $dataTransferServiceClient->listTransferRuns($formattedParent);
-     *     foreach ($pagedResponse->iterateAllElements() as $element) {
-     *         // doSomethingWith($element);
-     *     }
-     *
-     *     // OR iterate over pages of elements
+     *     // Iterate over pages of elements
      *     $pagedResponse = $dataTransferServiceClient->listTransferRuns($formattedParent);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
      *         }
+     *     }
+     *
+     *
+     *     // Alternatively:
+     *
+     *     // Iterate through all elements
+     *     $pagedResponse = $dataTransferServiceClient->listTransferRuns($formattedParent);
+     *     foreach ($pagedResponse->iterateAllElements() as $element) {
+     *         // doSomethingWith($element);
      *     }
      * } finally {
      *     $dataTransferServiceClient->close();
@@ -1091,18 +1100,21 @@ class DataTransferServiceGapicClient
      * $dataTransferServiceClient = new DataTransferServiceClient();
      * try {
      *     $formattedParent = $dataTransferServiceClient->projectRunName('[PROJECT]', '[TRANSFER_CONFIG]', '[RUN]');
-     *     // Iterate through all elements
-     *     $pagedResponse = $dataTransferServiceClient->listTransferLogs($formattedParent);
-     *     foreach ($pagedResponse->iterateAllElements() as $element) {
-     *         // doSomethingWith($element);
-     *     }
-     *
-     *     // OR iterate over pages of elements
+     *     // Iterate over pages of elements
      *     $pagedResponse = $dataTransferServiceClient->listTransferLogs($formattedParent);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
      *         }
+     *     }
+     *
+     *
+     *     // Alternatively:
+     *
+     *     // Iterate through all elements
+     *     $pagedResponse = $dataTransferServiceClient->listTransferLogs($formattedParent);
+     *     foreach ($pagedResponse->iterateAllElements() as $element) {
+     *         // doSomethingWith($element);
      *     }
      * } finally {
      *     $dataTransferServiceClient->close();
