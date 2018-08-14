@@ -4,7 +4,7 @@
     "license": "Apache-2.0",
     "minimum-stability": "stable",
     "require": {
-        "google/cloud-core": "^1.14"
+        "google/cloud-core": "^1.23"
     },
      "require-dev": {
         "phpunit/phpunit": "^4.8|^5.0",
