@@ -174,7 +174,11 @@ class Grpc implements ConnectionInterface
                 $api = 'spanner';
                 $confPath = __DIR__. "/../V1/resources/$api.grpc.config";
                 $grpcGcpConfig = $this->enableConnectionManagement('spanner.googleapis.com', $confPath);
-                $grpcConfig['grpc_call_invoker'] = $grpcGcpConfig->callInvoker();
+                $grpcConfig['transportConfig']['grpc'] = [
+                    'stubOpts' => [
+                        'grpc_call_invoker' => $grpcGcpConfig->callInvoker()
+                    ]
+                ];
             }
         }
 
