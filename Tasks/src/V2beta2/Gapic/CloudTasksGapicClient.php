@@ -78,18 +78,21 @@ use Google\Protobuf\Timestamp;
  * $cloudTasksClient = new CloudTasksClient();
  * try {
  *     $formattedParent = $cloudTasksClient->locationName('[PROJECT]', '[LOCATION]');
- *     // Iterate through all elements
- *     $pagedResponse = $cloudTasksClient->listQueues($formattedParent);
- *     foreach ($pagedResponse->iterateAllElements() as $element) {
- *         // doSomethingWith($element);
- *     }
- *
- *     // OR iterate over pages of elements
+ *     // Iterate over pages of elements
  *     $pagedResponse = $cloudTasksClient->listQueues($formattedParent);
  *     foreach ($pagedResponse->iteratePages() as $page) {
  *         foreach ($page as $element) {
  *             // doSomethingWith($element);
  *         }
+ *     }
+ *
+ *
+ *     // Alternatively:
+ *
+ *     // Iterate through all elements
+ *     $pagedResponse = $cloudTasksClient->listQueues($formattedParent);
+ *     foreach ($pagedResponse->iterateAllElements() as $element) {
+ *         // doSomethingWith($element);
  *     }
  * } finally {
  *     $cloudTasksClient->close();
@@ -395,18 +398,21 @@ class CloudTasksGapicClient
      * $cloudTasksClient = new CloudTasksClient();
      * try {
      *     $formattedParent = $cloudTasksClient->locationName('[PROJECT]', '[LOCATION]');
-     *     // Iterate through all elements
-     *     $pagedResponse = $cloudTasksClient->listQueues($formattedParent);
-     *     foreach ($pagedResponse->iterateAllElements() as $element) {
-     *         // doSomethingWith($element);
-     *     }
-     *
-     *     // OR iterate over pages of elements
+     *     // Iterate over pages of elements
      *     $pagedResponse = $cloudTasksClient->listQueues($formattedParent);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
      *         }
+     *     }
+     *
+     *
+     *     // Alternatively:
+     *
+     *     // Iterate through all elements
+     *     $pagedResponse = $cloudTasksClient->listQueues($formattedParent);
+     *     foreach ($pagedResponse->iterateAllElements() as $element) {
+     *         // doSomethingWith($element);
      *     }
      * } finally {
      *     $cloudTasksClient->close();
@@ -1137,18 +1143,21 @@ class CloudTasksGapicClient
      * $cloudTasksClient = new CloudTasksClient();
      * try {
      *     $formattedParent = $cloudTasksClient->queueName('[PROJECT]', '[LOCATION]', '[QUEUE]');
-     *     // Iterate through all elements
-     *     $pagedResponse = $cloudTasksClient->listTasks($formattedParent);
-     *     foreach ($pagedResponse->iterateAllElements() as $element) {
-     *         // doSomethingWith($element);
-     *     }
-     *
-     *     // OR iterate over pages of elements
+     *     // Iterate over pages of elements
      *     $pagedResponse = $cloudTasksClient->listTasks($formattedParent);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
      *         }
+     *     }
+     *
+     *
+     *     // Alternatively:
+     *
+     *     // Iterate through all elements
+     *     $pagedResponse = $cloudTasksClient->listTasks($formattedParent);
+     *     foreach ($pagedResponse->iterateAllElements() as $element) {
+     *         // doSomethingWith($element);
      *     }
      * } finally {
      *     $cloudTasksClient->close();
