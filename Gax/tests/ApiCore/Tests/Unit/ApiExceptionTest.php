@@ -32,6 +32,7 @@
 namespace Google\ApiCore\Tests\Unit;
 
 use Google\ApiCore\ApiException;
+use Google\Protobuf\Any;
 use Google\Protobuf\Duration;
 use Google\Rpc\BadRequest;
 use Google\Rpc\Code;
@@ -42,6 +43,7 @@ use Google\Rpc\QuotaFailure;
 use Google\Rpc\RequestInfo;
 use Google\Rpc\ResourceInfo;
 use Google\Rpc\RetryInfo;
+use Google\Rpc\Status;
 use PHPUnit\Framework\TestCase;
 
 class ApiExceptionTest extends TestCase
@@ -173,6 +175,72 @@ class ApiExceptionTest extends TestCase
                 'google.rpc.help-bin' => [(new Help())->serializeToString()],
                 'google.rpc.localizedmessage-bin' => [(new LocalizedMessage())->serializeToString()],
             ], $allKnownTypesData],
+        ];
+    }
+
+    /**
+     * @dataProvider getMetadata
+     */
+    public function testCreateFromApiResponse($metadata, $metadataArray) {
+        $basicMessage = 'testWithMetadata';
+        $code = Code::OK;
+        $status = 'OK';
+
+        $apiException = ApiException::createFromApiResponse($basicMessage, $code, $metadata);
+
+        $expectedMessage = json_encode([
+            'message' => $basicMessage,
+            'code' => $code,
+            'status' => $status,
+            'details' => $metadataArray
+        ], JSON_PRETTY_PRINT);
+
+        $this->assertSame(Code::OK, $apiException->getCode());
+        $this->assertSame($expectedMessage, $apiException->getMessage());
+        $this->assertSame($metadata, $apiException->getMetadata());
+    }
+
+    /**
+     * @dataProvider getRpcStatusData
+     */
+    public function testCreateFromRpcStatus($status, $expectedApiException) {
+        $actualApiException = ApiException::createFromRpcStatus($status);
+        $this->assertEquals($expectedApiException, $actualApiException);
+    }
+
+    public function getRpcStatusData()
+    {
+        $debugInfo = new DebugInfo();
+        $debugInfo->setDetail("debug detail");
+        $any = new Any();
+        $any->pack($debugInfo);
+
+        $status = new Status();
+        $status->setMessage("status string");
+        $status->setCode(Code::OK);
+        $status->setDetails([$any]);
+
+        $expectedMessage = json_encode([
+            'message' => $status->getMessage(),
+            'code' => $status->getCode(),
+            'status' => 'OK',
+            'details' => [
+                [
+                    'stackEntries' => [],
+                    'detail' => 'debug detail',
+                ]
+            ],
+        ], JSON_PRETTY_PRINT);
+
+        return [
+            [
+                $status,
+                new ApiException($expectedMessage, Code::OK, 'OK', [
+                        'metadata' => $status->getDetails(),
+                        'basicMessage' => $status->getMessage(),
+                    ]
+                )
+            ]
         ];
     }
 }
