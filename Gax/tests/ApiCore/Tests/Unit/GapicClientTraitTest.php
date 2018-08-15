@@ -32,6 +32,7 @@
 
 namespace Google\ApiCore\Tests\Unit;
 
+use Google\ApiCore\AgentHeader;
 use Google\ApiCore\AgentHeaderDescriptor;
 use Google\ApiCore\BidiStream;
 use Google\ApiCore\ClientStream;
@@ -63,12 +64,12 @@ class GapicClientTraitTest extends TestCase
     {
         // Reset the static gapicVersion field between tests
         $client = new GapicClientTraitStub();
-        $client->set('gapicVersion', null, true);
+        $client->set('gapicVersionFromFile', null, true);
     }
 
     public function testHeadersOverwriteBehavior()
     {
-        $headerDescriptor = new AgentHeaderDescriptor([
+        $header = AgentHeader::buildAgentHeader([
             'libName' => 'gccl',
             'libVersion' => '0.0.0',
             'gapicVersion' => '0.9.0',
@@ -96,7 +97,7 @@ class GapicClientTraitTest extends TestCase
                 ])
             );
         $client = new GapicClientTraitStub();
-        $client->set('agentHeaderDescriptor', $headerDescriptor);
+        $client->set('agentHeader', $header);
         $client->set('retrySettings', [
             'method' => $this->getMockBuilder(RetrySettings::class)
                 ->disableOriginalConstructor()
@@ -114,12 +115,7 @@ class GapicClientTraitTest extends TestCase
 
     public function testStartOperationsCall()
     {
-        $agentHeaderDescriptor = $this->getMockBuilder(AgentHeaderDescriptor::class)
-            ->disableOriginalConstructor()
-            ->getMock();
-        $agentHeaderDescriptor->expects($this->once())
-            ->method('getHeader')
-            ->will($this->returnValue([]));
+        $header = AgentHeader::buildAgentHeader([]);
         $retrySettings = $this->getMockBuilder(RetrySettings::class)
             ->disableOriginalConstructor()
             ->getMock();
@@ -143,7 +139,7 @@ class GapicClientTraitTest extends TestCase
         $client = new GapicClientTraitStub();
         $client->set('transport', $transport);
         $client->set('credentialsWrapper', $credentialsWrapper);
-        $client->set('agentHeaderDescriptor', $agentHeaderDescriptor);
+        $client->set('agentHeader', $header);
         $client->set('retrySettings', ['method' => $retrySettings]);
         $client->set('descriptors', ['method' => $longRunningDescriptors]);
         $message = new MockRequest();
@@ -177,14 +173,14 @@ class GapicClientTraitTest extends TestCase
     public function testGetGapicVersionWithNoAvailableVersion()
     {
         $client = new GapicClientTraitStub();
-        $this->assertNull($client->call('getGapicVersion', [[]]));
+        $this->assertEquals('', $client->call('getGapicVersion', [[]]));
     }
 
     public function testGetGapicVersionWithLibVersion()
     {
         $version = '1.2.3-dev';
         $client = new GapicClientTraitStub();
-        $client->set('gapicVersion', $version, true);
+        $client->set('gapicVersionFromFile', $version, true);
         $options = ['libVersion' => $version];
         $this->assertEquals($version, $client->call('getGapicVersion', [
             $options
@@ -360,7 +356,7 @@ class GapicClientTraitTest extends TestCase
         }
         $expectedProperties = [
             'serviceName' => 'test.interface.v1.api',
-            'agentHeaderDescriptor' => new AgentHeaderDescriptor([]),
+            'agentHeader' => AgentHeader::buildAgentHeader([]),
             'retrySettings' => $expectedRetrySettings,
         ];
         return [
@@ -447,12 +443,7 @@ class GapicClientTraitTest extends TestCase
 
     private function buildClientToTestModifyCallMethods()
     {
-        $agentHeaderDescriptor = $this->getMockBuilder(AgentHeaderDescriptor::class)
-            ->disableOriginalConstructor()
-            ->getMock();
-        $agentHeaderDescriptor->expects($this->once())
-            ->method('getHeader')
-            ->will($this->returnValue([]));
+        $header = AgentHeader::buildAgentHeader([]);
         $retrySettings = $this->getMockBuilder(RetrySettings::class)
             ->disableOriginalConstructor()
             ->getMock();
@@ -478,7 +469,7 @@ class GapicClientTraitTest extends TestCase
         $client = new GapicClientTraitStubExtension();
         $client->set('transport', $transport);
         $client->set('credentialsWrapper', $credentialsWrapper);
-        $client->set('agentHeaderDescriptor', $agentHeaderDescriptor);
+        $client->set('agentHeader', $header);
         $client->set('retrySettings', [
             'simpleMethod' => $retrySettings,
             'longRunningMethod' => $retrySettings,
@@ -505,7 +496,7 @@ class GapicClientTraitTest extends TestCase
                     'transportOptions' => [
                         'custom' => ['addModifyUnaryCallableOption' => true]
                     ],
-                    'headers' => [],
+                    'headers' => AgentHeader::buildAgentHeader([]),
                     'credentialsWrapper' => CredentialsWrapper::build([])
                 ])
             )
@@ -529,7 +520,7 @@ class GapicClientTraitTest extends TestCase
                     'transportOptions' => [
                         'custom' => ['addModifyUnaryCallableOption' => true]
                     ],
-                    'headers' => [],
+                    'headers' => AgentHeader::buildAgentHeader([]),
                     'credentialsWrapper' => CredentialsWrapper::build([])
                 ])
             )
@@ -556,7 +547,7 @@ class GapicClientTraitTest extends TestCase
                     'transportOptions' => [
                         'custom' => ['addModifyUnaryCallableOption' => true]
                     ],
-                    'headers' => [],
+                    'headers' => AgentHeader::buildAgentHeader([]),
                     'credentialsWrapper' => CredentialsWrapper::build([])
                 ])
             )
@@ -583,7 +574,7 @@ class GapicClientTraitTest extends TestCase
                     'transportOptions' => [
                         'custom' => ['addModifyStreamingCallable' => true]
                     ],
-                    'headers' => [],
+                    'headers' => AgentHeader::buildAgentHeader([]),
                     'credentialsWrapper' => CredentialsWrapper::build([])
                 ])
             )

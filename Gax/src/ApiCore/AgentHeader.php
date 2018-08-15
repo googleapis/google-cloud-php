@@ -33,14 +33,12 @@
 namespace Google\ApiCore;
 
 /**
- * Encapsulates the custom GAPIC header information.
+ * Class containing functions used to build the Agent header.
  */
-class AgentHeaderDescriptor
+class AgentHeader
 {
     const AGENT_HEADER_KEY = 'x-goog-api-client';
     const UNKNOWN_VERSION = '';
-
-    private $metricsHeaders;
 
     /**
      * @param array $headerInfo {
@@ -53,8 +51,9 @@ class AgentHeaderDescriptor
      *     @type string $apiCoreVersion the ApiCore version.
      *     @type string $grpcVersion the gRPC version.
      * }
+     * @return array Agent header array
      */
-    public function __construct($headerInfo)
+    public static function buildAgentHeader($headerInfo)
     {
         $metricsHeaders = [];
 
@@ -93,30 +92,34 @@ class AgentHeaderDescriptor
             : phpversion('grpc');
         $metricsHeaders['grpc'] = $grpcVersion;
 
-        $this->metricsHeaders = $metricsHeaders;
-    }
-
-    /**
-     * Returns an associative array that contains GAPIC header metadata.
-     *
-     * @return array
-     */
-    public function getHeader()
-    {
         $metricsList = [];
-        foreach ($this->metricsHeaders as $key => $value) {
+        foreach ($metricsHeaders as $key => $value) {
             $metricsList[] = $key . "/" . $value;
         }
         return [self::AGENT_HEADER_KEY => [implode(" ", $metricsList)]];
     }
 
     /**
-     * Returns the version string for ApiCore.
+     * Reads the gapic version string from a VERSION file. In order to determine the file
+     * location, this method follows this procedure:
+     * - accepts a class name $callingClass
+     * - identifies the file defining that class
+     * - searches up the directory structure for the 'src' directory
+     * - looks in the directory above 'src' for a file named VERSION
      *
-     * @return string
+     * @param string $callingClass
+     * @return string the gapic version
+     * @throws \ReflectionException
      */
-    public static function getApiCoreVersion()
+    public static function readGapicVersionFromFile($callingClass)
     {
-        return self::API_CORE_VERSION;
+        $callingClassFile = (new \ReflectionClass($callingClass))->getFileName();
+        $versionFile = substr(
+            $callingClassFile,
+            0,
+            strrpos($callingClassFile, DIRECTORY_SEPARATOR . 'src' . DIRECTORY_SEPARATOR)
+        ) . DIRECTORY_SEPARATOR . 'VERSION';
+
+        return Version::readVersionFile($versionFile);
     }
 }

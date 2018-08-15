@@ -32,62 +32,79 @@
 
 namespace Google\ApiCore\Tests\Unit\Middleware;
 
-use Google\ApiCore\AgentHeaderDescriptor;
+use Google\ApiCore\AgentHeader;
 use Google\ApiCore\Call;
 use Google\ApiCore\Middleware\AgentHeaderMiddleware;
+use Google\ApiCore\Middleware\FixedHeaderMiddleware;
 use PHPUnit\Framework\TestCase;
 
-class AgentHeaderMiddlewareTest extends TestCase
+class FixedHeaderMiddlewareTest extends TestCase
 {
     public function testCustomHeader()
     {
         $call = $this->getMock(Call::class, [], [], '', false);
-        $headerDescriptor = new AgentHeaderDescriptor([
-            'libName' => 'gccl',
-            'libVersion' => '0.0.0',
-            'gapicVersion' => '0.9.0',
-            'apiCoreVersion' => '1.0.0',
-            'phpVersion' => '5.5.0',
-            'grpcVersion' => '1.0.1'
-        ]);
-        $expectedHeaders = [
+        $fixedHeader = [
             'x-goog-api-client' => ['gl-php/5.5.0 gccl/0.0.0 gapic/0.9.0 gax/1.0.0 grpc/1.0.1']
         ];
         $handlerCalled = false;
-        $callable = function(Call $call, $options) use ($expectedHeaders, &$handlerCalled) {
-            $this->assertEquals($expectedHeaders, $options['headers']);
+        $callable = function(Call $call, $options) use ($fixedHeader, &$handlerCalled) {
+            $this->assertEquals($fixedHeader, $options['headers']);
             $handlerCalled = true;
         };
-        $middleware = new AgentHeaderMiddleware($callable, $headerDescriptor);
+        $middleware = new FixedHeaderMiddleware($callable, $fixedHeader);
         $middleware($call, []);
         $this->assertTrue($handlerCalled);
     }
 
-    public function testHeaders()
+    public function testCustomHeaderNoOverride()
     {
         $call = $this->getMock(Call::class, [], [], '', false);
-        $headerDescriptor = new AgentHeaderDescriptor([
-            'libName' => 'gccl',
-            'libVersion' => '0.0.0',
-            'gapicVersion' => '0.9.0',
-            'apiCoreVersion' => '1.0.0',
-            'phpVersion' => '5.5.0',
-            'grpcVersion' => '1.0.1'
-        ]);
-        $headers = [
-            'google-cloud-resource-prefix' => ['my-database'],
+        $fixedHeader = [
+            'my-header' => ['some header string'],
+            'fixed-only' => ['fixed header only'],
         ];
-        $expectedHeaders = [
-            'x-goog-api-client' => ['gl-php/5.5.0 gccl/0.0.0 gapic/0.9.0 gax/1.0.0 grpc/1.0.1'],
-            'google-cloud-resource-prefix' => ['my-database'],
+        $userHeader = [
+            'my-header' => ['some alternate string'],
+            'user-only' => ['user only header'],
+        ];
+        $expectedHeader = [
+            'my-header' => ['some alternate string'],
+            'fixed-only' => ['fixed header only'],
+            'user-only' => ['user only header'],
         ];
         $handlerCalled = false;
-        $callable = function(Call $call, $options) use ($expectedHeaders, &$handlerCalled) {
-            $this->assertEquals($expectedHeaders, $options['headers']);
+        $callable = function(Call $call, $options) use ($expectedHeader, &$handlerCalled) {
+            $this->assertEquals($expectedHeader, $options['headers']);
             $handlerCalled = true;
         };
-        $middleware = new AgentHeaderMiddleware($callable, $headerDescriptor);
-        $middleware($call, ['headers' => $headers]);
+        $middleware = new FixedHeaderMiddleware($callable, $fixedHeader);
+        $middleware($call, ['headers' => $userHeader]);
+        $this->assertTrue($handlerCalled);
+    }
+
+    public function testCustomHeaderOverride()
+    {
+        $call = $this->getMock(Call::class, [], [], '', false);
+        $fixedHeader = [
+            'my-header' => ['some header string'],
+            'fixed-only' => ['fixed header only'],
+        ];
+        $userHeader = [
+            'my-header' => ['some alternate string'],
+            'user-only' => ['user only header'],
+        ];
+        $expectedHeader = [
+            'my-header' => ['some header string'],
+            'fixed-only' => ['fixed header only'],
+            'user-only' => ['user only header'],
+        ];
+        $handlerCalled = false;
+        $callable = function(Call $call, $options) use ($expectedHeader, &$handlerCalled) {
+            $this->assertEquals($expectedHeader, $options['headers']);
+            $handlerCalled = true;
+        };
+        $middleware = new FixedHeaderMiddleware($callable, $fixedHeader, true);
+        $middleware($call, ['headers' => $userHeader]);
         $this->assertTrue($handlerCalled);
     }
 }

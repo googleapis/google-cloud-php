@@ -31,34 +31,32 @@
  */
 namespace Google\ApiCore\Tests\Unit;
 
-use Google\ApiCore\AgentHeaderDescriptor;
+use Google\ApiCore\AgentHeader;
 use Google\ApiCore\Version;
 use PHPUnit\Framework\TestCase;
 
-class AgentHeaderDescriptorTest extends TestCase
+class AgentHeaderTest extends TestCase
 {
     public function testWithoutInput()
     {
-        $expectedHeader = [AgentHeaderDescriptor::AGENT_HEADER_KEY => [
+        $expectedHeader = [AgentHeader::AGENT_HEADER_KEY => [
             'gl-php/' . phpversion() .
             ' gapic/' .
             ' gax/' . Version::getApiCoreVersion() .
             ' grpc/' . phpversion('grpc')
         ]];
 
-        $agentHeaderDescriptor = new AgentHeaderDescriptor([]);
-        $header = $agentHeaderDescriptor->getHeader();
-
+        $header = AgentHeader::buildAgentHeader([]);
         $this->assertSame($expectedHeader, $header);
     }
 
     public function testWithInput()
     {
-        $expectedHeader = [AgentHeaderDescriptor::AGENT_HEADER_KEY => [
+        $expectedHeader = [AgentHeader::AGENT_HEADER_KEY => [
             'gl-php/4.4.4 gccl/1.1.1 gapic/2.2.2 gax/3.3.3 grpc/5.5.5'
         ]];
 
-        $agentHeaderDescriptor = new AgentHeaderDescriptor([
+        $header = AgentHeader::buildAgentHeader([
             'libName' => 'gccl',
             'libVersion' => '1.1.1',
             'gapicVersion' => '2.2.2',
@@ -66,36 +64,34 @@ class AgentHeaderDescriptorTest extends TestCase
             'phpVersion' => '4.4.4',
             'grpcVersion' => '5.5.5',
         ]);
-        $header = $agentHeaderDescriptor->getHeader();
 
         $this->assertSame($expectedHeader, $header);
     }
 
     public function testWithoutVersionInput()
     {
-        $expectedHeader = [AgentHeaderDescriptor::AGENT_HEADER_KEY => [
+        $expectedHeader = [AgentHeader::AGENT_HEADER_KEY => [
             'gl-php/' . phpversion() .
             ' gccl/ gapic/ gax/' . Version::getApiCoreVersion() .
             ' grpc/' . phpversion('grpc')
         ]];
 
-        $agentHeaderDescriptor = new AgentHeaderDescriptor([
+        $header = AgentHeader::buildAgentHeader([
             'libName' => 'gccl',
         ]);
-        $header = $agentHeaderDescriptor->getHeader();
 
         $this->assertSame($expectedHeader, $header);
     }
 
     public function testWithNullVersionInput()
     {
-        $expectedHeader = [AgentHeaderDescriptor::AGENT_HEADER_KEY => [
+        $expectedHeader = [AgentHeader::AGENT_HEADER_KEY => [
             'gl-php/' . phpversion() .
             ' gccl/ gapic/ gax/' . Version::getApiCoreVersion() .
             ' grpc/' . phpversion('grpc')
         ]];
 
-        $agentHeaderDescriptor = new AgentHeaderDescriptor([
+        $header = AgentHeader::buildAgentHeader([
             'libName' => 'gccl',
             'libVersion' => null,
             'gapicVersion' => null,
@@ -103,8 +99,20 @@ class AgentHeaderDescriptorTest extends TestCase
             'phpVersion' => null,
             'grpcVersion' => null,
         ]);
-        $header = $agentHeaderDescriptor->getHeader();
 
         $this->assertSame($expectedHeader, $header);
+    }
+
+    public function testGetGapicVersionWithVersionFile()
+    {
+        require_once __DIR__ . '/testdata/src/GapicClientStub.php';
+        $expectedVersion = '1.2.3-dev';
+        $actualVersion = AgentHeader::readGapicVersionFromFile(\GapicClientStub::class);
+        $this->assertEquals($expectedVersion, $actualVersion);
+    }
+
+    public function testGetGapicVersionWithNoAvailableVersion()
+    {
+        $this->assertEquals('', AgentHeader::readGapicVersionFromFile(__CLASS__));
     }
 }

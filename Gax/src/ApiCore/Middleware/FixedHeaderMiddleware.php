@@ -43,20 +43,24 @@ class FixedHeaderMiddleware
     private $nextHandler;
 
     private $headers;
+    private $overrideUserHeaders;
 
-    public function __construct(callable $nextHandler, array $headers)
+    public function __construct(callable $nextHandler, array $headers, $overrideUserHeaders = false)
     {
         $this->nextHandler = $nextHandler;
         $this->headers = $headers;
+        $this->overrideUserHeaders = $overrideUserHeaders;
     }
 
     public function __invoke(Call $call, array $options)
     {
-        if (isset($options['headers'])) {
-            $options['headers'] = $options['headers'] + $this->headers;
+        $userHeaders = isset($options['headers']) ? $options['headers'] : [];
+        if ($this->overrideUserHeaders) {
+            $options['headers'] = $this->headers + $userHeaders;
         } else {
-            $options['headers'] = $this->headers;
+            $options['headers'] = $userHeaders + $this->headers;
         }
+
         $next = $this->nextHandler;
         return $next(
             $call,
