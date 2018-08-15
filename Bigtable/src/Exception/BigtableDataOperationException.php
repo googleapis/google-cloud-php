@@ -31,7 +31,7 @@ class BigtableDataOperationException extends GoogleException
     protected $metadata;
 
     /**
-     * Handle previous exceptions differently here.
+     * Handles previous exceptions differently here.
      *
      * @param string $message
      * @param int $code
@@ -48,7 +48,7 @@ class BigtableDataOperationException extends GoogleException
     }
 
     /**
-     * Get exception metadata.
+     * Gets exception metadata.
      */
     public function getMetadata()
     {

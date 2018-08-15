@@ -28,7 +28,6 @@ use Google\Cloud\Bigtable\V2\TimestampRange;
 /**
  * Represents a RowMutation to perform data operation on Bigtable table.
  * This is used to insert,update, delete operation on row in Bigtable table.
- *
  */
 class RowMutation
 {
@@ -49,7 +48,7 @@ class RowMutation
     }
 
     /**
-     * Return the row key.
+     * Returns the row key.
      *
      * @return string RowKey of the Row.
      */
@@ -77,7 +76,7 @@ class RowMutation
             ->setValue($value);
         if ($timeStamp === null) {
             $mutationSetCell->setTimestampMicros(
-                //gives milli second
+                // gives milli second
                 round(microtime(true) * 1000)
                 // multiply by 1000 to get micro
                 * 1000
@@ -146,7 +145,7 @@ class RowMutation
     }
 
     /**
-     * Returns proto represenation of RowMutation.
+     * Returns proto representation of RowMutation.
      *
      * @return MutateRowsRequest_Entry Entry for Row.
      */

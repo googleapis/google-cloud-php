@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright 2018 Google Inc.
+ * Copyright 2018 Google LLC.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -25,7 +25,6 @@ use Google\Cloud\Bigtable\Admin\V2\Instance;
 use Google\Cloud\Bigtable\Admin\V2\Table;
 use Google\Cloud\Bigtable\DataClient;
 use Google\Cloud\Bigtable\RowMutation;
-use Google\Cloud\Bigtable\V2\BigtableClient as TableClient;
 use Exception;
 use PHPUnit\Framework\TestCase;
 
@@ -140,7 +139,7 @@ class DataClientTest extends TestCase
         $table->setColumnFamilies([
             self::COLUMN_FAMILY => $columnFamily
         ]);
-        $response = self::$tableAdminClient->createTable(
+        self::$tableAdminClient->createTable(
             $formattedParent,
             self::TABLE_ID,
             $table

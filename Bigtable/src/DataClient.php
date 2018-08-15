@@ -17,11 +17,9 @@
 
 namespace Google\Cloud\Bigtable;
 
+use Google\ApiCore\ApiException;
 use Google\Cloud\Bigtable\Exception\BigtableDataOperationException;
 use Google\Cloud\Bigtable\V2\BigtableClient as TableClient;
-use Google\Cloud\Bigtable\V2\MutateRowsRequest;
-use Google\Cloud\Bigtable\V2\RowRange;
-use Google\Cloud\Bigtable\V2\RowSet;
 use Google\Cloud\Core\ClientTrait;
 use Google\Rpc\Code;
 

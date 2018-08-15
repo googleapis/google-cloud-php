@@ -1,5 +1,5 @@
 <?php
-/*
+/**
  * Copyright 2018, Google LLC All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -29,7 +29,6 @@ use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
 use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Rpc\Code;
 use Google\Rpc\Status;
-use Prophecy\Argument;
 
 /**
  * @group bigtable
@@ -108,7 +107,7 @@ class DataClientTest extends SnippetTestCase
             );
         $snippet = $this->snippetFromMethod(DataClient::class, 'mutateRows');
         $snippet->addLocal('dataClient', $this->dataClient);
-        $res = $snippet->invoke();
+        $snippet->invoke();
     }
 
     public function testUpsert()
@@ -125,7 +124,7 @@ class DataClientTest extends SnippetTestCase
             );
         $snippet = $this->snippetFromMethod(DataClient::class, 'upsert');
         $snippet->addLocal('dataClient', $this->dataClient);
-        $res = $snippet->invoke();
+        $snippet->invoke();
     }
 
     private function arrayAsGenerator(array $array)

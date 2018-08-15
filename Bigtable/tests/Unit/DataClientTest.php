@@ -18,7 +18,7 @@
 namespace Google\Cloud\Bigtable\Tests\Unit;
 
 use Google\ApiCore\ApiException;
-use \Google\ApiCore\ServerStream;
+use Google\ApiCore\ServerStream;
 use Google\Cloud\Bigtable\DataClient;
 use Google\Cloud\Bigtable\Exception\BigtableDataOperationException;
 use Google\Cloud\Bigtable\RowMutation;
@@ -28,7 +28,6 @@ use Google\Cloud\Bigtable\V2\MutateRowsResponse_Entry;
 use Google\Rpc\Code;
 use Google\Rpc\Status;
 use PHPUnit\Framework\TestCase;
-use Prophecy\Argument;
 
 /**
  * @group bigtable
@@ -49,7 +48,6 @@ class DataClientTest extends TestCase
     private $dataClient;
     private $rowMutations = [];
     private $entries = [];
-    private $mutateRowsRequest;
     private $options;
     private $serverStream;
 
@@ -80,7 +78,7 @@ class DataClientTest extends TestCase
     public function testMutateRows()
     {
         $statuses = [];
-        foreach ($this->rowMutations as $rowMutation) {
+        for ($i=0; $i<count($this->rowMutations); $i++) {
             $status = new Status;
             $status->setCode(Code::OK);
             $statuses[] = $status;
@@ -143,7 +141,7 @@ class DataClientTest extends TestCase
     }
 
     /**
-     * @expectedException Google\ApiCore\ApiException
+     * @expectedException \Google\ApiCore\ApiException
      * @expectedExceptionMessage unauthenticated
      */
     public function testMutateRowsApiExceptionInMutateRows()
@@ -158,7 +156,7 @@ class DataClientTest extends TestCase
     }
 
     /**
-     * @expectedException Google\ApiCore\ApiException
+     * @expectedException \Google\ApiCore\ApiException
      * @expectedExceptionMessage unauthenticated
      */
     public function testMutateRowsApiExceptionInReadAll()
@@ -180,7 +178,7 @@ class DataClientTest extends TestCase
     public function testUpsert()
     {
         $statuses = [];
-        foreach ($this->rowMutations as $rowMutation) {
+        for ($i=0; $i<count($this->rowMutations); $i++) {
             $status = new Status;
             $status->setCode(Code::OK);
             $statuses[] = $status;
