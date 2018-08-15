@@ -82,11 +82,13 @@ class ApiException extends Exception
      */
     public static function createFromStdClass($status)
     {
-        $basicMessage = $status->details;
-        $code = $status->code;
         $metadata = property_exists($status, 'metadata') ? $status->metadata : null;
-
-        return self::createFromApiResponse($basicMessage, $code, $metadata);
+        return self::create(
+            $status->details,
+            $status->code,
+            $metadata,
+            Serializer::decodeMetadata($metadata)
+        );
     }
 
     /**
@@ -102,21 +104,41 @@ class ApiException extends Exception
         array $metadata = null,
         \Exception $previous = null
     ) {
-        $rpcStatus = ApiStatus::statusFromRpcCode($rpcCode);
+        return self::create(
+            $basicMessage,
+            $rpcCode,
+            $metadata,
+            Serializer::decodeMetadata($metadata),
+            $previous
+        );
+    }
 
+    /**
+     * Construct an ApiException with a useful message, including decoded metadata.
+     *
+     * @param string $basicMessage
+     * @param int $rpcCode
+     * @param mixed[] $metadata
+     * @param array $decodedMetadata
+     * @param \Exception|null $previous
+     * @return ApiException
+     */
+    private static function create($basicMessage, $rpcCode, $metadata, array $decodedMetadata, $previous = null)
+    {
+        $rpcStatus = ApiStatus::statusFromRpcCode($rpcCode);
         $messageData = [
             'message' => $basicMessage,
             'code' => $rpcCode,
             'status' => $rpcStatus,
-            'details' => Serializer::decodeMetadata($metadata)
+            'details' => $decodedMetadata
         ];
 
         $message = json_encode($messageData, JSON_PRETTY_PRINT);
 
         return new ApiException($message, $rpcCode, $rpcStatus, [
+            'previous' => $previous,
             'metadata' => $metadata,
             'basicMessage' => $basicMessage,
-            'previous' => $previous,
         ]);
     }
 
@@ -126,11 +148,12 @@ class ApiException extends Exception
      */
     public static function createFromRpcStatus(Status $status)
     {
-        $metadata = [];
-        foreach ($status->getDetails() as $any) {
-            $metadata[] = Serializer::serializeToPhpArray($any);
-        }
-        return self::createFromApiResponse($status->getMessage(), $status->getCode(), $metadata);
+        return self::create(
+            $status->getMessage(),
+            $status->getCode(),
+            $status->getDetails(),
+            Serializer::decodeAnyMessages($status->getDetails())
+        );
     }
 
     /**
