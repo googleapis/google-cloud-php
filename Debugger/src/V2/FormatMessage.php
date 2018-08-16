@@ -34,9 +34,27 @@ class FormatMessage extends \Google\Protobuf\Internal\Message
      */
     private $parameters;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $format
+     *           Format template for the message. The `format` uses placeholders `$0`,
+     *           `$1`, etc. to reference parameters. `$$` can be used to denote the `$`
+     *           character.
+     *           Examples:
+     *           *   `Failed to load '$0' which helps debug $1 the first time it
+     *               is loaded.  Again, $0 is very important.`
+     *           *   `Please pay $$10 to use $0 instead of $1.`
+     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $parameters
+     *           Optional parameters to be embedded into the message.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Devtools\Clouddebugger\V2\Data::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

@@ -151,9 +151,47 @@ class Variable extends \Google\Protobuf\Internal\Message
      */
     private $status = null;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $name
+     *           Name of the variable, if any.
+     *     @type string $value
+     *           Simple value of the variable.
+     *     @type string $type
+     *           Variable type (e.g. `MyClass`). If the variable is split with
+     *           `var_table_index`, `type` goes next to `value`. The interpretation of
+     *           a type is agent specific. It is recommended to include the dynamic type
+     *           rather than a static type of an object.
+     *     @type \Google\Cloud\Debugger\V2\Variable[]|\Google\Protobuf\Internal\RepeatedField $members
+     *           Members contained or pointed to by the variable.
+     *     @type \Google\Protobuf\Int32Value $var_table_index
+     *           Reference to a variable in the shared variable table. More than
+     *           one variable can reference the same variable in the table. The
+     *           `var_table_index` field is an index into `variable_table` in Breakpoint.
+     *     @type \Google\Cloud\Debugger\V2\StatusMessage $status
+     *           Status associated with the variable. This field will usually stay
+     *           unset. A status of a single variable only applies to that variable or
+     *           expression. The rest of breakpoint data still remains valid. Variables
+     *           might be reported in error state even when breakpoint is not in final
+     *           state.
+     *           The message may refer to variable name with `refers_to` set to
+     *           `VARIABLE_NAME`. Alternatively `refers_to` will be set to `VARIABLE_VALUE`.
+     *           In either case variable value and members will be unset.
+     *           Example of error message applied to name: `Invalid expression syntax`.
+     *           Example of information message applied to value: `Not captured`.
+     *           Examples of error message applied to value:
+     *           *   `Malformed string`,
+     *           *   `Field f not found in class C`
+     *           *   `Null pointer dereference`
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Devtools\Clouddebugger\V2\Data::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

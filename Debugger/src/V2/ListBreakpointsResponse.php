@@ -32,9 +32,25 @@ class ListBreakpointsResponse extends \Google\Protobuf\Internal\Message
      */
     private $next_wait_token = '';
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type \Google\Cloud\Debugger\V2\Breakpoint[]|\Google\Protobuf\Internal\RepeatedField $breakpoints
+     *           List of breakpoints matching the request.
+     *           The fields `id` and `location` are guaranteed to be set on each breakpoint.
+     *           The fields: `stack_frames`, `evaluated_expressions` and `variable_table`
+     *           are cleared on each breakpoint regardless of its status.
+     *     @type string $next_wait_token
+     *           A wait token that can be used in the next call to `list` (REST) or
+     *           `ListBreakpoints` (RPC) to block until the list of breakpoints has changes.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Devtools\Clouddebugger\V2\Debugger::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

@@ -36,9 +36,25 @@ class SetBreakpointRequest extends \Google\Protobuf\Internal\Message
      */
     private $client_version = '';
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $debuggee_id
+     *           ID of the debuggee where the breakpoint is to be set.
+     *     @type \Google\Cloud\Debugger\V2\Breakpoint $breakpoint
+     *           Breakpoint specification to set.
+     *           The field `location` of the breakpoint must be set.
+     *     @type string $client_version
+     *           The client version making the call.
+     *           Schema: `domain/type/version` (e.g., `google.com/intellij/v1`).
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Devtools\Clouddebugger\V2\Debugger::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

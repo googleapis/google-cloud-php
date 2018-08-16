@@ -38,9 +38,23 @@ class StatusMessage extends \Google\Protobuf\Internal\Message
      */
     private $description = null;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type bool $is_error
+     *           Distinguishes errors from informational messages.
+     *     @type int $refers_to
+     *           Reference to which the message applies.
+     *     @type \Google\Cloud\Debugger\V2\FormatMessage $description
+     *           Status message text.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Devtools\Clouddebugger\V2\Data::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

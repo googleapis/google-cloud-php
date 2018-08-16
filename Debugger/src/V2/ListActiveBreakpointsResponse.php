@@ -38,9 +38,27 @@ class ListActiveBreakpointsResponse extends \Google\Protobuf\Internal\Message
      */
     private $wait_expired = false;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type \Google\Cloud\Debugger\V2\Breakpoint[]|\Google\Protobuf\Internal\RepeatedField $breakpoints
+     *           List of all active breakpoints.
+     *           The fields `id` and `location` are guaranteed to be set on each breakpoint.
+     *     @type string $next_wait_token
+     *           A token that can be used in the next method call to block until
+     *           the list of breakpoints changes.
+     *     @type bool $wait_expired
+     *           If set to `true`, indicates that there is no change to the
+     *           list of active breakpoints and the server-selected timeout has expired.
+     *           The `breakpoints` field would be empty and should be ignored.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Devtools\Clouddebugger\V2\Controller::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

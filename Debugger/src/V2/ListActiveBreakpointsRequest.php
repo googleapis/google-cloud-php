@@ -41,9 +41,30 @@ class ListActiveBreakpointsRequest extends \Google\Protobuf\Internal\Message
      */
     private $success_on_timeout = false;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $debuggee_id
+     *           Identifies the debuggee.
+     *     @type string $wait_token
+     *           A token that, if specified, blocks the method call until the list
+     *           of active breakpoints has changed, or a server-selected timeout has
+     *           expired. The value should be set from the `next_wait_token` field in
+     *           the last response. The initial value should be set to `"init"`.
+     *     @type bool $success_on_timeout
+     *           If set to `true` (recommended), returns `google.rpc.Code.OK` status and
+     *           sets the `wait_expired` response field to `true` when the server-selected
+     *           timeout has expired.
+     *           If set to `false` (deprecated), returns `google.rpc.Code.ABORTED` status
+     *           when the server-selected timeout has expired.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Devtools\Clouddebugger\V2\Controller::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**
