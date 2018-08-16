@@ -34,11 +34,11 @@ namespace Google\ApiCore;
 
 use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\Middleware\AgentHeaderMiddleware;
+use Google\ApiCore\Middleware\CredentialsWrapperMiddleware;
 use Google\ApiCore\Middleware\FixedHeaderMiddleware;
 use Google\ApiCore\Middleware\OperationsMiddleware;
 use Google\ApiCore\Middleware\OptionsFilterMiddleware;
 use Google\ApiCore\Middleware\PagedMiddleware;
-use Google\ApiCore\Middleware\CredentialsWrapperMiddleware;
 use Google\ApiCore\Middleware\RetryMiddleware;
 use Google\ApiCore\Transport\GrpcTransport;
 use Google\ApiCore\Transport\RestTransport;
@@ -46,6 +46,8 @@ use Google\ApiCore\Transport\TransportInterface;
 use Google\Auth\FetchAuthTokenInterface;
 use Google\LongRunning\Operation;
 use Google\Protobuf\Internal\Message;
+use Grpc\Gcp\ApiConfig;
+use Grpc\Gcp\Config;
 use GuzzleHttp\Promise\PromiseInterface;
 
 /**
@@ -119,6 +121,14 @@ trait GapicClientTrait
         }
     }
 
+    private static function initGrpcGcpConfig($hostName, $confPath)
+    {
+        $apiConfig = new ApiConfig();
+        $apiConfig->mergeFromJsonString(file_get_contents($confPath));
+        $config = new Config($hostName, $apiConfig);
+        return $config;
+    }
+
     /**
      * Get default options. This function should be "overridden" by clients using late static
      * binding to provide default options to the client.
@@ -162,6 +172,29 @@ trait GapicClientTrait
         $options['transportConfig']['rest'] += $defaultOptions['transportConfig']['rest'];
 
         $this->modifyClientOptions($options);
+
+        if (extension_loaded('sysvshm')
+                && isset($options['gcpApiConfigPath'])
+                && file_exists($options['gcpApiConfigPath'])
+                && isset($options['serviceAddress'])) {
+            $grpcGcpConfig = self::initGrpcGcpConfig(
+                $options['serviceAddress'],
+                $options['gcpApiConfigPath']
+            );
+
+            if (array_key_exists('stubOpts', $options['transportConfig']['grpc'])) {
+                $options['transportConfig']['grpc']['stubOpts'] += [
+                    'grpc_call_invoker' => $grpcGcpConfig->callInvoker()
+                ];
+            } else {
+                $options['transportConfig']['grpc'] += [
+                    'stubOpts' => [
+                        'grpc_call_invoker' => $grpcGcpConfig->callInvoker()
+                    ]
+                ];
+            }
+        }
+
         return $options;
     }
 
