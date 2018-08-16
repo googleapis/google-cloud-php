@@ -32,9 +32,24 @@ class NodeInitializationAction extends \Google\Protobuf\Internal\Message
      */
     private $execution_timeout = null;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $executable_file
+     *           Required. Google Cloud Storage URI of executable file.
+     *     @type \Google\Protobuf\Duration $execution_timeout
+     *           Optional. Amount of time executable has to complete. Default is
+     *           10 minutes. Cluster creation fails with an explanatory error message (the
+     *           name of the executable that caused the error and the exceeded timeout
+     *           period) if the executable is not completed at end of the timeout period.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Dataproc\V1\Clusters::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

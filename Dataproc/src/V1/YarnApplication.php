@@ -46,9 +46,28 @@ class YarnApplication extends \Google\Protobuf\Internal\Message
      */
     private $tracking_url = '';
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $name
+     *           Required. The application name.
+     *     @type int $state
+     *           Required. The application state.
+     *     @type float $progress
+     *           Required. The numerical progress of the application, from 1 to 100.
+     *     @type string $tracking_url
+     *           Optional. The HTTP URL of the ApplicationMaster, HistoryServer, or
+     *           TimelineServer that provides application-specific information. The URL uses
+     *           the internal hostname, and requires a proxy server for resolution and,
+     *           possibly, access.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Dataproc\V1\Jobs::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

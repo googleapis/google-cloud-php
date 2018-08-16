@@ -87,9 +87,63 @@ class Job extends \Google\Protobuf\Internal\Message
     private $scheduling = null;
     protected $type_job;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type \Google\Cloud\Dataproc\V1\JobReference $reference
+     *           Optional. The fully qualified reference to the job, which can be used to
+     *           obtain the equivalent REST path of the job resource. If this property
+     *           is not specified when a job is created, the server generates a
+     *           <code>job_id</code>.
+     *     @type \Google\Cloud\Dataproc\V1\JobPlacement $placement
+     *           Required. Job information, including how, when, and where to
+     *           run the job.
+     *     @type \Google\Cloud\Dataproc\V1\HadoopJob $hadoop_job
+     *           Job is a Hadoop job.
+     *     @type \Google\Cloud\Dataproc\V1\SparkJob $spark_job
+     *           Job is a Spark job.
+     *     @type \Google\Cloud\Dataproc\V1\PySparkJob $pyspark_job
+     *           Job is a Pyspark job.
+     *     @type \Google\Cloud\Dataproc\V1\HiveJob $hive_job
+     *           Job is a Hive job.
+     *     @type \Google\Cloud\Dataproc\V1\PigJob $pig_job
+     *           Job is a Pig job.
+     *     @type \Google\Cloud\Dataproc\V1\SparkSqlJob $spark_sql_job
+     *           Job is a SparkSql job.
+     *     @type \Google\Cloud\Dataproc\V1\JobStatus $status
+     *           Output-only. The job status. Additional application-specific
+     *           status information may be contained in the <code>type_job</code>
+     *           and <code>yarn_applications</code> fields.
+     *     @type \Google\Cloud\Dataproc\V1\JobStatus[]|\Google\Protobuf\Internal\RepeatedField $status_history
+     *           Output-only. The previous job status.
+     *     @type \Google\Cloud\Dataproc\V1\YarnApplication[]|\Google\Protobuf\Internal\RepeatedField $yarn_applications
+     *           Output-only. The collection of YARN applications spun up by this job.
+     *           **Beta** Feature: This report is available for testing purposes only. It may
+     *           be changed before final release.
+     *     @type string $driver_output_resource_uri
+     *           Output-only. A URI pointing to the location of the stdout of the job's
+     *           driver program.
+     *     @type string $driver_control_files_uri
+     *           Output-only. If present, the location of miscellaneous control files
+     *           which may be used as part of job setup and handling. If not present,
+     *           control files may be placed in the same location as `driver_output_uri`.
+     *     @type array|\Google\Protobuf\Internal\MapField $labels
+     *           Optional. The labels to associate with this job.
+     *           Label **keys** must contain 1 to 63 characters, and must conform to
+     *           [RFC 1035](https://www.ietf.org/rfc/rfc1035.txt).
+     *           Label **values** may be empty, but, if present, must contain 1 to 63
+     *           characters, and must conform to [RFC 1035](https://www.ietf.org/rfc/rfc1035.txt).
+     *           No more than 32 labels can be associated with a job.
+     *     @type \Google\Cloud\Dataproc\V1\JobScheduling $scheduling
+     *           Optional. Job scheduling configuration.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Dataproc\V1\Jobs::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

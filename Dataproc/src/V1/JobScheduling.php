@@ -29,9 +29,24 @@ class JobScheduling extends \Google\Protobuf\Internal\Message
      */
     private $max_failures_per_hour = 0;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type int $max_failures_per_hour
+     *           Optional. Maximum number of times per hour a driver may be restarted as
+     *           a result of driver terminating with non-zero code before job is
+     *           reported failed.
+     *           A job may be reported as thrashing if driver exits with non-zero code
+     *           4 times within 10 minute window.
+     *           Maximum value is 10.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Dataproc\V1\Jobs::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

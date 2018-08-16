@@ -75,9 +75,43 @@ class Cluster extends \Google\Protobuf\Internal\Message
      */
     private $metrics = null;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $project_id
+     *           Required. The Google Cloud Platform project ID that the cluster belongs to.
+     *     @type string $cluster_name
+     *           Required. The cluster name. Cluster names within a project must be
+     *           unique. Names of deleted clusters can be reused.
+     *     @type \Google\Cloud\Dataproc\V1\ClusterConfig $config
+     *           Required. The cluster config. Note that Cloud Dataproc may set
+     *           default values, and values may change when clusters are updated.
+     *     @type array|\Google\Protobuf\Internal\MapField $labels
+     *           Optional. The labels to associate with this cluster.
+     *           Label **keys** must contain 1 to 63 characters, and must conform to
+     *           [RFC 1035](https://www.ietf.org/rfc/rfc1035.txt).
+     *           Label **values** may be empty, but, if present, must contain 1 to 63
+     *           characters, and must conform to [RFC 1035](https://www.ietf.org/rfc/rfc1035.txt).
+     *           No more than 32 labels can be associated with a cluster.
+     *     @type \Google\Cloud\Dataproc\V1\ClusterStatus $status
+     *           Output-only. Cluster status.
+     *     @type \Google\Cloud\Dataproc\V1\ClusterStatus[]|\Google\Protobuf\Internal\RepeatedField $status_history
+     *           Output-only. The previous cluster status.
+     *     @type string $cluster_uuid
+     *           Output-only. A cluster UUID (Unique Universal Identifier). Cloud Dataproc
+     *           generates this value when it creates the cluster.
+     *     @type \Google\Cloud\Dataproc\V1\ClusterMetrics $metrics
+     *           Contains cluster daemon metrics such as HDFS and YARN stats.
+     *           **Beta Feature**: This report is available for testing purposes only. It may
+     *           be changed before final release.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Dataproc\V1\Clusters::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**
