@@ -23,9 +23,20 @@ class GetJobTriggerRequest extends \Google\Protobuf\Internal\Message
      */
     private $name = '';
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $name
+     *           Resource name of the project and the triggeredJob, for example
+     *           `projects/dlp-test-project/jobTriggers/53234423`.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Privacy\Dlp\V2\Dlp::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

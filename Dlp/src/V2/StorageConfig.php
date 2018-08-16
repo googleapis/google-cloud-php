@@ -21,9 +21,24 @@ class StorageConfig extends \Google\Protobuf\Internal\Message
     private $timespan_config = null;
     protected $type;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type \Google\Cloud\Dlp\V2\DatastoreOptions $datastore_options
+     *           Google Cloud Datastore options specification.
+     *     @type \Google\Cloud\Dlp\V2\CloudStorageOptions $cloud_storage_options
+     *           Google Cloud Storage options specification.
+     *     @type \Google\Cloud\Dlp\V2\BigQueryOptions $big_query_options
+     *           BigQuery options specification.
+     *     @type \Google\Cloud\Dlp\V2\StorageConfig\TimespanConfig $timespan_config
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Privacy\Dlp\V2\Storage::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**
@@ -106,7 +121,7 @@ class StorageConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * Generated from protobuf field <code>.google.privacy.dlp.v2.StorageConfig.TimespanConfig timespan_config = 6;</code>
-     * @return \Google\Cloud\Dlp\V2\StorageConfig_TimespanConfig
+     * @return \Google\Cloud\Dlp\V2\StorageConfig\TimespanConfig
      */
     public function getTimespanConfig()
     {
@@ -115,7 +130,7 @@ class StorageConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * Generated from protobuf field <code>.google.privacy.dlp.v2.StorageConfig.TimespanConfig timespan_config = 6;</code>
-     * @param \Google\Cloud\Dlp\V2\StorageConfig_TimespanConfig $var
+     * @param \Google\Cloud\Dlp\V2\StorageConfig\TimespanConfig $var
      * @return $this
      */
     public function setTimespanConfig($var)

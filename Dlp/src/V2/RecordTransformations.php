@@ -30,9 +30,22 @@ class RecordTransformations extends \Google\Protobuf\Internal\Message
      */
     private $record_suppressions;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type \Google\Cloud\Dlp\V2\FieldTransformation[]|\Google\Protobuf\Internal\RepeatedField $field_transformations
+     *           Transform the record by applying various field transformations.
+     *     @type \Google\Cloud\Dlp\V2\RecordSuppression[]|\Google\Protobuf\Internal\RepeatedField $record_suppressions
+     *           Configuration defining which records get suppressed entirely. Records that
+     *           match any suppression rule are omitted from the output [optional].
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Privacy\Dlp\V2\Dlp::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

@@ -64,9 +64,41 @@ class DeidentifyContentRequest extends \Google\Protobuf\Internal\Message
      */
     private $deidentify_template_name = '';
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $parent
+     *           The parent resource name, for example projects/my-project-id.
+     *     @type \Google\Cloud\Dlp\V2\DeidentifyConfig $deidentify_config
+     *           Configuration for the de-identification of the content item.
+     *           Items specified here will override the template referenced by the
+     *           deidentify_template_name argument.
+     *     @type \Google\Cloud\Dlp\V2\InspectConfig $inspect_config
+     *           Configuration for the inspector.
+     *           Items specified here will override the template referenced by the
+     *           inspect_template_name argument.
+     *     @type \Google\Cloud\Dlp\V2\ContentItem $item
+     *           The item to de-identify. Will be treated as text.
+     *     @type string $inspect_template_name
+     *           Optional template to use. Any configuration directly specified in
+     *           inspect_config will override those set in the template. Singular fields
+     *           that are set in this request will replace their corresponding fields in the
+     *           template. Repeated fields are appended. Singular sub-messages and groups
+     *           are recursively merged.
+     *     @type string $deidentify_template_name
+     *           Optional template to use. Any configuration directly specified in
+     *           deidentify_config will override those set in the template. Singular fields
+     *           that are set in this request will replace their corresponding fields in the
+     *           template. Repeated fields are appended. Singular sub-messages and groups
+     *           are recursively merged.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Privacy\Dlp\V2\Dlp::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

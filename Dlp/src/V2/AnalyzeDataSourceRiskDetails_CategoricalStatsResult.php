@@ -4,54 +4,13 @@
 
 namespace Google\Cloud\Dlp\V2;
 
-use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
-use Google\Protobuf\Internal\GPBUtil;
-
-/**
- * Result of the categorical stats computation.
- *
- * Generated from protobuf message <code>google.privacy.dlp.v2.AnalyzeDataSourceRiskDetails.CategoricalStatsResult</code>
- */
-class AnalyzeDataSourceRiskDetails_CategoricalStatsResult extends \Google\Protobuf\Internal\Message
-{
+if (false) {
     /**
-     * Histogram of value frequencies in the column.
-     *
-     * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.AnalyzeDataSourceRiskDetails.CategoricalStatsResult.CategoricalStatsHistogramBucket value_frequency_histogram_buckets = 5;</code>
+     * This class is deprecated. Use Google\Cloud\Dlp\V2\AnalyzeDataSourceRiskDetails\CategoricalStatsResult instead.
+     * @deprecated
      */
-    private $value_frequency_histogram_buckets;
-
-    public function __construct() {
-        \GPBMetadata\Google\Privacy\Dlp\V2\Dlp::initOnce();
-        parent::__construct();
-    }
-
-    /**
-     * Histogram of value frequencies in the column.
-     *
-     * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.AnalyzeDataSourceRiskDetails.CategoricalStatsResult.CategoricalStatsHistogramBucket value_frequency_histogram_buckets = 5;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
-     */
-    public function getValueFrequencyHistogramBuckets()
-    {
-        return $this->value_frequency_histogram_buckets;
-    }
-
-    /**
-     * Histogram of value frequencies in the column.
-     *
-     * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.AnalyzeDataSourceRiskDetails.CategoricalStatsResult.CategoricalStatsHistogramBucket value_frequency_histogram_buckets = 5;</code>
-     * @param \Google\Cloud\Dlp\V2\AnalyzeDataSourceRiskDetails_CategoricalStatsResult_CategoricalStatsHistogramBucket[]|\Google\Protobuf\Internal\RepeatedField $var
-     * @return $this
-     */
-    public function setValueFrequencyHistogramBuckets($var)
-    {
-        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Dlp\V2\AnalyzeDataSourceRiskDetails_CategoricalStatsResult_CategoricalStatsHistogramBucket::class);
-        $this->value_frequency_histogram_buckets = $arr;
-
-        return $this;
-    }
-
+    class AnalyzeDataSourceRiskDetails_CategoricalStatsResult {}
 }
+class_exists(AnalyzeDataSourceRiskDetails\CategoricalStatsResult::class);
+@trigger_error('Google\Cloud\Dlp\V2\AnalyzeDataSourceRiskDetails_CategoricalStatsResult is deprecated and will be removed in the next major release. Use Google\Cloud\Dlp\V2\AnalyzeDataSourceRiskDetails\CategoricalStatsResult instead', E_USER_DEPRECATED);
 

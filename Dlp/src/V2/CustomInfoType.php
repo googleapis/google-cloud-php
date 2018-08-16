@@ -41,9 +41,38 @@ class CustomInfoType extends \Google\Protobuf\Internal\Message
     private $detection_rules;
     protected $type;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type \Google\Cloud\Dlp\V2\InfoType $info_type
+     *           All CustomInfoTypes must have a name
+     *           that does not conflict with built-in InfoTypes or other CustomInfoTypes.
+     *     @type int $likelihood
+     *           Likelihood to return for this CustomInfoType. This base value can be
+     *           altered by a detection rule if the finding meets the criteria specified by
+     *           the rule. Defaults to `VERY_LIKELY` if not specified.
+     *     @type \Google\Cloud\Dlp\V2\CustomInfoType\Dictionary $dictionary
+     *           A list of phrases to detect as a CustomInfoType.
+     *     @type \Google\Cloud\Dlp\V2\CustomInfoType\Regex $regex
+     *           Regular expression based CustomInfoType.
+     *     @type \Google\Cloud\Dlp\V2\CustomInfoType\SurrogateType $surrogate_type
+     *           Message for detecting output from deidentification transformations that
+     *           support reversing.
+     *     @type \Google\Cloud\Dlp\V2\StoredType $stored_type
+     *           Load an existing `StoredInfoType` resource for use in
+     *           `InspectDataSource`. Not currently supported in `InspectContent`.
+     *     @type \Google\Cloud\Dlp\V2\CustomInfoType\DetectionRule[]|\Google\Protobuf\Internal\RepeatedField $detection_rules
+     *           Set of detection rules to apply to all findings of this CustomInfoType.
+     *           Rules are applied in order that they are specified. Not supported for the
+     *           `surrogate_type` CustomInfoType.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Privacy\Dlp\V2\Storage::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**
@@ -108,7 +137,7 @@ class CustomInfoType extends \Google\Protobuf\Internal\Message
      * A list of phrases to detect as a CustomInfoType.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.CustomInfoType.Dictionary dictionary = 2;</code>
-     * @return \Google\Cloud\Dlp\V2\CustomInfoType_Dictionary
+     * @return \Google\Cloud\Dlp\V2\CustomInfoType\Dictionary
      */
     public function getDictionary()
     {
@@ -119,7 +148,7 @@ class CustomInfoType extends \Google\Protobuf\Internal\Message
      * A list of phrases to detect as a CustomInfoType.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.CustomInfoType.Dictionary dictionary = 2;</code>
-     * @param \Google\Cloud\Dlp\V2\CustomInfoType_Dictionary $var
+     * @param \Google\Cloud\Dlp\V2\CustomInfoType\Dictionary $var
      * @return $this
      */
     public function setDictionary($var)
@@ -134,7 +163,7 @@ class CustomInfoType extends \Google\Protobuf\Internal\Message
      * Regular expression based CustomInfoType.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.CustomInfoType.Regex regex = 3;</code>
-     * @return \Google\Cloud\Dlp\V2\CustomInfoType_Regex
+     * @return \Google\Cloud\Dlp\V2\CustomInfoType\Regex
      */
     public function getRegex()
     {
@@ -145,7 +174,7 @@ class CustomInfoType extends \Google\Protobuf\Internal\Message
      * Regular expression based CustomInfoType.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.CustomInfoType.Regex regex = 3;</code>
-     * @param \Google\Cloud\Dlp\V2\CustomInfoType_Regex $var
+     * @param \Google\Cloud\Dlp\V2\CustomInfoType\Regex $var
      * @return $this
      */
     public function setRegex($var)
@@ -161,7 +190,7 @@ class CustomInfoType extends \Google\Protobuf\Internal\Message
      * support reversing.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.CustomInfoType.SurrogateType surrogate_type = 4;</code>
-     * @return \Google\Cloud\Dlp\V2\CustomInfoType_SurrogateType
+     * @return \Google\Cloud\Dlp\V2\CustomInfoType\SurrogateType
      */
     public function getSurrogateType()
     {
@@ -173,13 +202,41 @@ class CustomInfoType extends \Google\Protobuf\Internal\Message
      * support reversing.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.CustomInfoType.SurrogateType surrogate_type = 4;</code>
-     * @param \Google\Cloud\Dlp\V2\CustomInfoType_SurrogateType $var
+     * @param \Google\Cloud\Dlp\V2\CustomInfoType\SurrogateType $var
      * @return $this
      */
     public function setSurrogateType($var)
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Dlp\V2\CustomInfoType_SurrogateType::class);
         $this->writeOneof(4, $var);
+
+        return $this;
+    }
+
+    /**
+     * Load an existing `StoredInfoType` resource for use in
+     * `InspectDataSource`. Not currently supported in `InspectContent`.
+     *
+     * Generated from protobuf field <code>.google.privacy.dlp.v2.StoredType stored_type = 5;</code>
+     * @return \Google\Cloud\Dlp\V2\StoredType
+     */
+    public function getStoredType()
+    {
+        return $this->readOneof(5);
+    }
+
+    /**
+     * Load an existing `StoredInfoType` resource for use in
+     * `InspectDataSource`. Not currently supported in `InspectContent`.
+     *
+     * Generated from protobuf field <code>.google.privacy.dlp.v2.StoredType stored_type = 5;</code>
+     * @param \Google\Cloud\Dlp\V2\StoredType $var
+     * @return $this
+     */
+    public function setStoredType($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Dlp\V2\StoredType::class);
+        $this->writeOneof(5, $var);
 
         return $this;
     }
@@ -203,12 +260,12 @@ class CustomInfoType extends \Google\Protobuf\Internal\Message
      * `surrogate_type` CustomInfoType.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.CustomInfoType.DetectionRule detection_rules = 7;</code>
-     * @param \Google\Cloud\Dlp\V2\CustomInfoType_DetectionRule[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dlp\V2\CustomInfoType\DetectionRule[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setDetectionRules($var)
     {
-        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Dlp\V2\CustomInfoType_DetectionRule::class);
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Dlp\V2\CustomInfoType\DetectionRule::class);
         $this->detection_rules = $arr;
 
         return $this;

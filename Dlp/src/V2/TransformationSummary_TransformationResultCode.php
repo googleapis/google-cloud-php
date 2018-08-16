@@ -4,24 +4,13 @@
 
 namespace Google\Cloud\Dlp\V2;
 
-/**
- * Possible outcomes of transformations.
- *
- * Protobuf enum <code>Google\Privacy\Dlp\V2\TransformationSummary\TransformationResultCode</code>
- */
-class TransformationSummary_TransformationResultCode
-{
+if (false) {
     /**
-     * Generated from protobuf enum <code>TRANSFORMATION_RESULT_CODE_UNSPECIFIED = 0;</code>
+     * This class is deprecated. Use Google\Cloud\Dlp\V2\TransformationSummary\TransformationResultCode instead.
+     * @deprecated
      */
-    const TRANSFORMATION_RESULT_CODE_UNSPECIFIED = 0;
-    /**
-     * Generated from protobuf enum <code>SUCCESS = 1;</code>
-     */
-    const SUCCESS = 1;
-    /**
-     * Generated from protobuf enum <code>ERROR = 2;</code>
-     */
-    const ERROR = 2;
+    class TransformationSummary_TransformationResultCode {}
 }
+class_exists(TransformationSummary\TransformationResultCode::class);
+@trigger_error('Google\Cloud\Dlp\V2\TransformationSummary_TransformationResultCode is deprecated and will be removed in the next major release. Use Google\Cloud\Dlp\V2\TransformationSummary\TransformationResultCode instead', E_USER_DEPRECATED);
 

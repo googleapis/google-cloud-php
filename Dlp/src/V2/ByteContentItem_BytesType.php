@@ -4,38 +4,13 @@
 
 namespace Google\Cloud\Dlp\V2;
 
-/**
- * Protobuf enum <code>Google\Privacy\Dlp\V2\ByteContentItem\BytesType</code>
- */
-class ByteContentItem_BytesType
-{
+if (false) {
     /**
-     * Generated from protobuf enum <code>BYTES_TYPE_UNSPECIFIED = 0;</code>
+     * This class is deprecated. Use Google\Cloud\Dlp\V2\ByteContentItem\BytesType instead.
+     * @deprecated
      */
-    const BYTES_TYPE_UNSPECIFIED = 0;
-    /**
-     * Generated from protobuf enum <code>IMAGE = 6;</code>
-     */
-    const IMAGE = 6;
-    /**
-     * Generated from protobuf enum <code>IMAGE_JPEG = 1;</code>
-     */
-    const IMAGE_JPEG = 1;
-    /**
-     * Generated from protobuf enum <code>IMAGE_BMP = 2;</code>
-     */
-    const IMAGE_BMP = 2;
-    /**
-     * Generated from protobuf enum <code>IMAGE_PNG = 3;</code>
-     */
-    const IMAGE_PNG = 3;
-    /**
-     * Generated from protobuf enum <code>IMAGE_SVG = 4;</code>
-     */
-    const IMAGE_SVG = 4;
-    /**
-     * Generated from protobuf enum <code>TEXT_UTF8 = 5;</code>
-     */
-    const TEXT_UTF8 = 5;
+    class ByteContentItem_BytesType {}
 }
+class_exists(ByteContentItem\BytesType::class);
+@trigger_error('Google\Cloud\Dlp\V2\ByteContentItem_BytesType is deprecated and will be removed in the next major release. Use Google\Cloud\Dlp\V2\ByteContentItem\BytesType instead', E_USER_DEPRECATED);
 

@@ -31,9 +31,21 @@ class KmsWrappedCryptoKey extends \Google\Protobuf\Internal\Message
      */
     private $crypto_key_name = '';
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $wrapped_key
+     *           The wrapped data crypto key. [required]
+     *     @type string $crypto_key_name
+     *           The resource name of the KMS CryptoKey to use for unwrapping. [required]
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Privacy\Dlp\V2\Dlp::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

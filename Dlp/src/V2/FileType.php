@@ -7,7 +7,7 @@ namespace Google\Cloud\Dlp\V2;
 /**
  * Definitions of file type groups to scan.
  *
- * Protobuf enum <code>Google\Privacy\Dlp\V2\FileType</code>
+ * Protobuf type <code>google.privacy.dlp.v2.FileType</code>
  */
 class FileType
 {

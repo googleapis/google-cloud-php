@@ -4,60 +4,13 @@
 
 namespace Google\Cloud\Dlp\V2;
 
-use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
-use Google\Protobuf\Internal\GPBUtil;
-
-/**
- * Message defining a list of words or phrases to search for in the data.
- *
- * Generated from protobuf message <code>google.privacy.dlp.v2.CustomInfoType.Dictionary.WordList</code>
- */
-class CustomInfoType_Dictionary_WordList extends \Google\Protobuf\Internal\Message
-{
+if (false) {
     /**
-     * Words or phrases defining the dictionary. The dictionary must contain
-     * at least one phrase and every phrase must contain at least 2 characters
-     * that are letters or digits. [required]
-     *
-     * Generated from protobuf field <code>repeated string words = 1;</code>
+     * This class is deprecated. Use Google\Cloud\Dlp\V2\CustomInfoType\Dictionary\WordList instead.
+     * @deprecated
      */
-    private $words;
-
-    public function __construct() {
-        \GPBMetadata\Google\Privacy\Dlp\V2\Storage::initOnce();
-        parent::__construct();
-    }
-
-    /**
-     * Words or phrases defining the dictionary. The dictionary must contain
-     * at least one phrase and every phrase must contain at least 2 characters
-     * that are letters or digits. [required]
-     *
-     * Generated from protobuf field <code>repeated string words = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
-     */
-    public function getWords()
-    {
-        return $this->words;
-    }
-
-    /**
-     * Words or phrases defining the dictionary. The dictionary must contain
-     * at least one phrase and every phrase must contain at least 2 characters
-     * that are letters or digits. [required]
-     *
-     * Generated from protobuf field <code>repeated string words = 1;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
-     * @return $this
-     */
-    public function setWords($var)
-    {
-        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
-        $this->words = $arr;
-
-        return $this;
-    }
-
+    class CustomInfoType_Dictionary_WordList {}
 }
+class_exists(CustomInfoType\Dictionary\WordList::class);
+@trigger_error('Google\Cloud\Dlp\V2\CustomInfoType_Dictionary_WordList is deprecated and will be removed in the next major release. Use Google\Cloud\Dlp\V2\CustomInfoType\Dictionary\WordList instead', E_USER_DEPRECATED);
 

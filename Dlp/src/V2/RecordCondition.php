@@ -23,16 +23,26 @@ class RecordCondition extends \Google\Protobuf\Internal\Message
      */
     private $expressions = null;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type \Google\Cloud\Dlp\V2\RecordCondition\Expressions $expressions
+     *           An expression.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Privacy\Dlp\V2\Dlp::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**
      * An expression.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.RecordCondition.Expressions expressions = 3;</code>
-     * @return \Google\Cloud\Dlp\V2\RecordCondition_Expressions
+     * @return \Google\Cloud\Dlp\V2\RecordCondition\Expressions
      */
     public function getExpressions()
     {
@@ -43,7 +53,7 @@ class RecordCondition extends \Google\Protobuf\Internal\Message
      * An expression.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.RecordCondition.Expressions expressions = 3;</code>
-     * @param \Google\Cloud\Dlp\V2\RecordCondition_Expressions $var
+     * @param \Google\Cloud\Dlp\V2\RecordCondition\Expressions $var
      * @return $this
      */
     public function setExpressions($var)

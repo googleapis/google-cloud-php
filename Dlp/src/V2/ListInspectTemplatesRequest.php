@@ -37,9 +37,26 @@ class ListInspectTemplatesRequest extends \Google\Protobuf\Internal\Message
      */
     private $page_size = 0;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $parent
+     *           The parent resource name, for example projects/my-project-id or
+     *           organizations/my-org-id.
+     *     @type string $page_token
+     *           Optional page token to continue retrieval. Comes from previous call
+     *           to `ListInspectTemplates`.
+     *     @type int $page_size
+     *           Optional size of the page, can be limited by server. If zero server returns
+     *           a page of max size 100.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Privacy\Dlp\V2\Dlp::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

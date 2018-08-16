@@ -17,9 +17,19 @@ class RecordKey extends \Google\Protobuf\Internal\Message
 {
     protected $type;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type \Google\Cloud\Dlp\V2\DatastoreKey $datastore_key
+     *     @type \Google\Cloud\Dlp\V2\BigQueryKey $big_query_key
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Privacy\Dlp\V2\Storage::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

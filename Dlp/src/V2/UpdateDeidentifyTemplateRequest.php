@@ -36,9 +36,25 @@ class UpdateDeidentifyTemplateRequest extends \Google\Protobuf\Internal\Message
      */
     private $update_mask = null;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $name
+     *           Resource name of organization and deidentify template to be updated, for
+     *           example `organizations/433245324/deidentifyTemplates/432452342` or
+     *           projects/project-id/deidentifyTemplates/432452342.
+     *     @type \Google\Cloud\Dlp\V2\DeidentifyTemplate $deidentify_template
+     *           New DeidentifyTemplate value.
+     *     @type \Google\Protobuf\FieldMask $update_mask
+     *           Mask to control which fields get updated.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Privacy\Dlp\V2\Dlp::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

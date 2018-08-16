@@ -17,9 +17,25 @@ class ContentItem extends \Google\Protobuf\Internal\Message
 {
     protected $data_item;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $value
+     *           String data to inspect or redact.
+     *     @type \Google\Cloud\Dlp\V2\Table $table
+     *           Structured content for inspection. See
+     *           https://cloud.google.com/dlp/docs/inspecting-text#inspecting_a_table to
+     *           learn more.
+     *     @type \Google\Cloud\Dlp\V2\ByteContentItem $byte_item
+     *           Content data to inspect or redact. Replaces `type` and `data`.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Privacy\Dlp\V2\Dlp::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

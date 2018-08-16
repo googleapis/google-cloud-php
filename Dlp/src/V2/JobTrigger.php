@@ -79,9 +79,43 @@ class JobTrigger extends \Google\Protobuf\Internal\Message
     private $status = 0;
     protected $job;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $name
+     *           Unique resource name for the triggeredJob, assigned by the service when the
+     *           triggeredJob is created, for example
+     *           `projects/dlp-test-project/triggeredJobs/53234423`.
+     *     @type string $display_name
+     *           Display name (max 100 chars)
+     *     @type string $description
+     *           User provided description (max 256 chars)
+     *     @type \Google\Cloud\Dlp\V2\InspectJobConfig $inspect_job
+     *     @type \Google\Cloud\Dlp\V2\JobTrigger\Trigger[]|\Google\Protobuf\Internal\RepeatedField $triggers
+     *           A list of triggers which will be OR'ed together. Only one in the list
+     *           needs to trigger for a job to be started. The list may contain only
+     *           a single Schedule trigger and must have at least one object.
+     *     @type \Google\Cloud\Dlp\V2\Error[]|\Google\Protobuf\Internal\RepeatedField $errors
+     *           A stream of errors encountered when the trigger was activated. Repeated
+     *           errors may result in the JobTrigger automaticaly being paused.
+     *           Will return the last 100 errors. Whenever the JobTrigger is modified
+     *           this list will be cleared. Output only field.
+     *     @type \Google\Protobuf\Timestamp $create_time
+     *           The creation timestamp of a triggeredJob, output only field.
+     *     @type \Google\Protobuf\Timestamp $update_time
+     *           The last update timestamp of a triggeredJob, output only field.
+     *     @type \Google\Protobuf\Timestamp $last_run_time
+     *           The timestamp of the last time this trigger executed, output only field.
+     *     @type int $status
+     *           A status for this trigger. [required]
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Privacy\Dlp\V2\Dlp::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**
@@ -207,12 +241,12 @@ class JobTrigger extends \Google\Protobuf\Internal\Message
      * a single Schedule trigger and must have at least one object.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.JobTrigger.Trigger triggers = 5;</code>
-     * @param \Google\Cloud\Dlp\V2\JobTrigger_Trigger[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dlp\V2\JobTrigger\Trigger[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setTriggers($var)
     {
-        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Dlp\V2\JobTrigger_Trigger::class);
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Dlp\V2\JobTrigger\Trigger::class);
         $this->triggers = $arr;
 
         return $this;

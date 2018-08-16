@@ -22,9 +22,25 @@ class Value extends \Google\Protobuf\Internal\Message
 {
     protected $type;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type int|string $integer_value
+     *     @type float $float_value
+     *     @type string $string_value
+     *     @type bool $boolean_value
+     *     @type \Google\Protobuf\Timestamp $timestamp_value
+     *     @type \Google\Type\TimeOfDay $time_value
+     *     @type \Google\Type\Date $date_value
+     *     @type int $day_of_week_value
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Privacy\Dlp\V2\Dlp::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

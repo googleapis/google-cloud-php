@@ -4,87 +4,13 @@
 
 namespace Google\Cloud\Dlp\V2;
 
-use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
-use Google\Protobuf\Internal\GPBUtil;
-
-/**
- * Message for specifying a window around a finding to apply a detection
- * rule.
- *
- * Generated from protobuf message <code>google.privacy.dlp.v2.CustomInfoType.DetectionRule.Proximity</code>
- */
-class CustomInfoType_DetectionRule_Proximity extends \Google\Protobuf\Internal\Message
-{
+if (false) {
     /**
-     * Number of characters before the finding to consider.
-     *
-     * Generated from protobuf field <code>int32 window_before = 1;</code>
+     * This class is deprecated. Use Google\Cloud\Dlp\V2\CustomInfoType\DetectionRule\Proximity instead.
+     * @deprecated
      */
-    private $window_before = 0;
-    /**
-     * Number of characters after the finding to consider.
-     *
-     * Generated from protobuf field <code>int32 window_after = 2;</code>
-     */
-    private $window_after = 0;
-
-    public function __construct() {
-        \GPBMetadata\Google\Privacy\Dlp\V2\Storage::initOnce();
-        parent::__construct();
-    }
-
-    /**
-     * Number of characters before the finding to consider.
-     *
-     * Generated from protobuf field <code>int32 window_before = 1;</code>
-     * @return int
-     */
-    public function getWindowBefore()
-    {
-        return $this->window_before;
-    }
-
-    /**
-     * Number of characters before the finding to consider.
-     *
-     * Generated from protobuf field <code>int32 window_before = 1;</code>
-     * @param int $var
-     * @return $this
-     */
-    public function setWindowBefore($var)
-    {
-        GPBUtil::checkInt32($var);
-        $this->window_before = $var;
-
-        return $this;
-    }
-
-    /**
-     * Number of characters after the finding to consider.
-     *
-     * Generated from protobuf field <code>int32 window_after = 2;</code>
-     * @return int
-     */
-    public function getWindowAfter()
-    {
-        return $this->window_after;
-    }
-
-    /**
-     * Number of characters after the finding to consider.
-     *
-     * Generated from protobuf field <code>int32 window_after = 2;</code>
-     * @param int $var
-     * @return $this
-     */
-    public function setWindowAfter($var)
-    {
-        GPBUtil::checkInt32($var);
-        $this->window_after = $var;
-
-        return $this;
-    }
-
+    class CustomInfoType_DetectionRule_Proximity {}
 }
+class_exists(CustomInfoType\DetectionRule\Proximity::class);
+@trigger_error('Google\Cloud\Dlp\V2\CustomInfoType_DetectionRule_Proximity is deprecated and will be removed in the next major release. Use Google\Cloud\Dlp\V2\CustomInfoType\DetectionRule\Proximity instead', E_USER_DEPRECATED);
 

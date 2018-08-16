@@ -42,9 +42,25 @@ class StatisticalTable extends \Google\Protobuf\Internal\Message
      */
     private $relative_frequency = null;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type \Google\Cloud\Dlp\V2\BigQueryTable $table
+     *           Auxiliary table location. [required]
+     *     @type \Google\Cloud\Dlp\V2\StatisticalTable\QuasiIdentifierField[]|\Google\Protobuf\Internal\RepeatedField $quasi_ids
+     *           Quasi-identifier columns. [required]
+     *     @type \Google\Cloud\Dlp\V2\FieldId $relative_frequency
+     *           The relative frequency column must contain a floating-point number
+     *           between 0 and 1 (inclusive). Null values are assumed to be zero.
+     *           [required]
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Privacy\Dlp\V2\Dlp::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**
@@ -88,12 +104,12 @@ class StatisticalTable extends \Google\Protobuf\Internal\Message
      * Quasi-identifier columns. [required]
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.StatisticalTable.QuasiIdentifierField quasi_ids = 1;</code>
-     * @param \Google\Cloud\Dlp\V2\StatisticalTable_QuasiIdentifierField[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dlp\V2\StatisticalTable\QuasiIdentifierField[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setQuasiIds($var)
     {
-        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Dlp\V2\StatisticalTable_QuasiIdentifierField::class);
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Dlp\V2\StatisticalTable\QuasiIdentifierField::class);
         $this->quasi_ids = $arr;
 
         return $this;

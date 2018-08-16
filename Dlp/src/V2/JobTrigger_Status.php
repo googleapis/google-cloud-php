@@ -4,37 +4,13 @@
 
 namespace Google\Cloud\Dlp\V2;
 
-/**
- * Whether the trigger is currently active. If PAUSED or CANCELLED, no jobs
- * will be created with this configuration. The service may automatically
- * pause triggers experiencing frequent errors. To restart a job, set the
- * status to HEALTHY after correcting user errors.
- *
- * Protobuf enum <code>Google\Privacy\Dlp\V2\JobTrigger\Status</code>
- */
-class JobTrigger_Status
-{
+if (false) {
     /**
-     * Generated from protobuf enum <code>STATUS_UNSPECIFIED = 0;</code>
+     * This class is deprecated. Use Google\Cloud\Dlp\V2\JobTrigger\Status instead.
+     * @deprecated
      */
-    const STATUS_UNSPECIFIED = 0;
-    /**
-     * Trigger is healthy.
-     *
-     * Generated from protobuf enum <code>HEALTHY = 1;</code>
-     */
-    const HEALTHY = 1;
-    /**
-     * Trigger is temporarily paused.
-     *
-     * Generated from protobuf enum <code>PAUSED = 2;</code>
-     */
-    const PAUSED = 2;
-    /**
-     * Trigger is cancelled and can not be resumed.
-     *
-     * Generated from protobuf enum <code>CANCELLED = 3;</code>
-     */
-    const CANCELLED = 3;
+    class JobTrigger_Status {}
 }
+class_exists(JobTrigger\Status::class);
+@trigger_error('Google\Cloud\Dlp\V2\JobTrigger_Status is deprecated and will be removed in the next major release. Use Google\Cloud\Dlp\V2\JobTrigger\Status instead', E_USER_DEPRECATED);
 

@@ -4,30 +4,13 @@
 
 namespace Google\Cloud\Dlp\V2;
 
-/**
- * How to sample rows if not all rows are scanned. Meaningful only when used
- * in conjunction with rows_limit. If not specified, scanning would start
- * from the top.
- *
- * Protobuf enum <code>Google\Privacy\Dlp\V2\BigQueryOptions\SampleMethod</code>
- */
-class BigQueryOptions_SampleMethod
-{
+if (false) {
     /**
-     * Generated from protobuf enum <code>SAMPLE_METHOD_UNSPECIFIED = 0;</code>
+     * This class is deprecated. Use Google\Cloud\Dlp\V2\BigQueryOptions\SampleMethod instead.
+     * @deprecated
      */
-    const SAMPLE_METHOD_UNSPECIFIED = 0;
-    /**
-     * Scan from the top (default).
-     *
-     * Generated from protobuf enum <code>TOP = 1;</code>
-     */
-    const TOP = 1;
-    /**
-     * Randomly pick the row to start scanning. The scanned rows are contiguous.
-     *
-     * Generated from protobuf enum <code>RANDOM_START = 2;</code>
-     */
-    const RANDOM_START = 2;
+    class BigQueryOptions_SampleMethod {}
 }
+class_exists(BigQueryOptions\SampleMethod::class);
+@trigger_error('Google\Cloud\Dlp\V2\BigQueryOptions_SampleMethod is deprecated and will be removed in the next major release. Use Google\Cloud\Dlp\V2\BigQueryOptions\SampleMethod instead', E_USER_DEPRECATED);
 

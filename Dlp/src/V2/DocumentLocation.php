@@ -23,9 +23,20 @@ class DocumentLocation extends \Google\Protobuf\Internal\Message
      */
     private $file_offset = 0;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type int|string $file_offset
+     *           Offset of the line, from the beginning of the file, where the finding
+     *           is located.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Privacy\Dlp\V2\Dlp::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

@@ -68,9 +68,45 @@ class ReidentifyContentRequest extends \Google\Protobuf\Internal\Message
      */
     private $reidentify_template_name = '';
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $parent
+     *           The parent resource name.
+     *     @type \Google\Cloud\Dlp\V2\DeidentifyConfig $reidentify_config
+     *           Configuration for the re-identification of the content item.
+     *           This field shares the same proto message type that is used for
+     *           de-identification, however its usage here is for the reversal of the
+     *           previous de-identification. Re-identification is performed by examining
+     *           the transformations used to de-identify the items and executing the
+     *           reverse. This requires that only reversible transformations
+     *           be provided here. The reversible transformations are:
+     *            - `CryptoReplaceFfxFpeConfig`
+     *     @type \Google\Cloud\Dlp\V2\InspectConfig $inspect_config
+     *           Configuration for the inspector.
+     *     @type \Google\Cloud\Dlp\V2\ContentItem $item
+     *           The item to re-identify. Will be treated as text.
+     *     @type string $inspect_template_name
+     *           Optional template to use. Any configuration directly specified in
+     *           `inspect_config` will override those set in the template. Singular fields
+     *           that are set in this request will replace their corresponding fields in the
+     *           template. Repeated fields are appended. Singular sub-messages and groups
+     *           are recursively merged.
+     *     @type string $reidentify_template_name
+     *           Optional template to use. References an instance of `DeidentifyTemplate`.
+     *           Any configuration directly specified in `reidentify_config` or
+     *           `inspect_config` will override those set in the template. Singular fields
+     *           that are set in this request will replace their corresponding fields in the
+     *           template. Repeated fields are appended. Singular sub-messages and groups
+     *           are recursively merged.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Privacy\Dlp\V2\Dlp::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

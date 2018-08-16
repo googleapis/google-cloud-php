@@ -36,9 +36,24 @@ class RiskAnalysisJobConfig extends \Google\Protobuf\Internal\Message
      */
     private $actions;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type \Google\Cloud\Dlp\V2\PrivacyMetric $privacy_metric
+     *           Privacy metric to compute.
+     *     @type \Google\Cloud\Dlp\V2\BigQueryTable $source_table
+     *           Input dataset to compute metrics over.
+     *     @type \Google\Cloud\Dlp\V2\Action[]|\Google\Protobuf\Internal\RepeatedField $actions
+     *           Actions to execute at the completion of the job. Are executed in the order
+     *           provided.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Privacy\Dlp\V2\Dlp::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

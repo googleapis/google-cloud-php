@@ -41,9 +41,28 @@ class InspectJobConfig extends \Google\Protobuf\Internal\Message
      */
     private $actions;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type \Google\Cloud\Dlp\V2\StorageConfig $storage_config
+     *           The data to scan.
+     *     @type \Google\Cloud\Dlp\V2\InspectConfig $inspect_config
+     *           How and what to scan for.
+     *     @type string $inspect_template_name
+     *           If provided, will be used as the default for all values in InspectConfig.
+     *           `inspect_config` will be merged into the values persisted as part of the
+     *           template.
+     *     @type \Google\Cloud\Dlp\V2\Action[]|\Google\Protobuf\Internal\RepeatedField $actions
+     *           Actions to execute at the completion of the job. Are executed in the order
+     *           provided.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Privacy\Dlp\V2\Dlp::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**
