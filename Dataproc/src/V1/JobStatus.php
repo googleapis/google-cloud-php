@@ -42,9 +42,27 @@ class JobStatus extends \Google\Protobuf\Internal\Message
      */
     private $substate = 0;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type int $state
+     *           Output-only. A state message specifying the overall job state.
+     *     @type string $details
+     *           Output-only. Optional job state details, such as an error
+     *           description if the state is <code>ERROR</code>.
+     *     @type \Google\Protobuf\Timestamp $state_start_time
+     *           Output-only. The time when this state was entered.
+     *     @type int $substate
+     *           Output-only. Additional state information, which includes
+     *           status reported by the agent.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Dataproc\V1\Jobs::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

@@ -4,31 +4,13 @@
 
 namespace Google\Cloud\Dataproc\V1;
 
-/**
- * Protobuf enum <code>Google\Cloud\Dataproc\V1\ClusterStatus\Substate</code>
- */
-class ClusterStatus_Substate
-{
+if (false) {
     /**
-     * Generated from protobuf enum <code>UNSPECIFIED = 0;</code>
+     * This class is deprecated. Use Google\Cloud\Dataproc\V1\ClusterStatus\Substate instead.
+     * @deprecated
      */
-    const UNSPECIFIED = 0;
-    /**
-     * The cluster is known to be in an unhealthy state
-     * (for example, critical daemons are not running or HDFS capacity is
-     * exhausted).
-     * Applies to RUNNING state.
-     *
-     * Generated from protobuf enum <code>UNHEALTHY = 1;</code>
-     */
-    const UNHEALTHY = 1;
-    /**
-     * The agent-reported status is out of date (may occur if
-     * Cloud Dataproc loses communication with Agent).
-     * Applies to RUNNING state.
-     *
-     * Generated from protobuf enum <code>STALE_STATUS = 2;</code>
-     */
-    const STALE_STATUS = 2;
+    class ClusterStatus_Substate {}
 }
+class_exists(ClusterStatus\Substate::class);
+@trigger_error('Google\Cloud\Dataproc\V1\ClusterStatus_Substate is deprecated and will be removed in the next major release. Use Google\Cloud\Dataproc\V1\ClusterStatus\Substate instead', E_USER_DEPRECATED);
 

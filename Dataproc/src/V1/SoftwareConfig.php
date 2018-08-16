@@ -44,9 +44,37 @@ class SoftwareConfig extends \Google\Protobuf\Internal\Message
      */
     private $properties;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $image_version
+     *           Optional. The version of software inside the cluster. It must match the
+     *           regular expression `[0-9]+\.[0-9]+`. If unspecified, it defaults to the
+     *           latest version (see [Cloud Dataproc Versioning](/dataproc/versioning)).
+     *     @type array|\Google\Protobuf\Internal\MapField $properties
+     *           Optional. The properties to set on daemon config files.
+     *           Property keys are specified in `prefix:property` format, such as
+     *           `core:fs.defaultFS`. The following are supported prefixes
+     *           and their mappings:
+     *           * capacity-scheduler: `capacity-scheduler.xml`
+     *           * core:   `core-site.xml`
+     *           * distcp: `distcp-default.xml`
+     *           * hdfs:   `hdfs-site.xml`
+     *           * hive:   `hive-site.xml`
+     *           * mapred: `mapred-site.xml`
+     *           * pig:    `pig.properties`
+     *           * spark:  `spark-defaults.conf`
+     *           * yarn:   `yarn-site.xml`
+     *           For more information, see
+     *           [Cluster properties](/dataproc/docs/concepts/cluster-properties).
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Dataproc\V1\Clusters::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

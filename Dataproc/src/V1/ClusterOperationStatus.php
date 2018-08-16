@@ -40,9 +40,25 @@ class ClusterOperationStatus extends \Google\Protobuf\Internal\Message
      */
     private $state_start_time = null;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type int $state
+     *           Output-only. A message containing the operation state.
+     *     @type string $inner_state
+     *           Output-only. A message containing the detailed operation state.
+     *     @type string $details
+     *           Output-only.A message containing any operation metadata details.
+     *     @type \Google\Protobuf\Timestamp $state_start_time
+     *           Output-only. The time this state was entered.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Dataproc\V1\Operations::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

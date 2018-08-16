@@ -45,9 +45,32 @@ class SparkSqlJob extends \Google\Protobuf\Internal\Message
     private $logging_config = null;
     protected $queries;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $query_file_uri
+     *           The HCFS URI of the script that contains SQL queries.
+     *     @type \Google\Cloud\Dataproc\V1\QueryList $query_list
+     *           A list of queries.
+     *     @type array|\Google\Protobuf\Internal\MapField $script_variables
+     *           Optional. Mapping of query variable names to values (equivalent to the
+     *           Spark SQL command: SET `name="value";`).
+     *     @type array|\Google\Protobuf\Internal\MapField $properties
+     *           Optional. A mapping of property names to values, used to configure
+     *           Spark SQL's SparkConf. Properties that conflict with values set by the
+     *           Cloud Dataproc API may be overwritten.
+     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $jar_file_uris
+     *           Optional. HCFS URIs of jar files to be added to the Spark CLASSPATH.
+     *     @type \Google\Cloud\Dataproc\V1\LoggingConfig $logging_config
+     *           Optional. The runtime log config for job execution.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Dataproc\V1\Jobs::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

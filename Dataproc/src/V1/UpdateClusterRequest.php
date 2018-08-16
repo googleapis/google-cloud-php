@@ -90,9 +90,71 @@ class UpdateClusterRequest extends \Google\Protobuf\Internal\Message
      */
     private $update_mask = null;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $project_id
+     *           Required. The ID of the Google Cloud Platform project the
+     *           cluster belongs to.
+     *     @type string $region
+     *           Required. The Cloud Dataproc region in which to handle the request.
+     *     @type string $cluster_name
+     *           Required. The cluster name.
+     *     @type \Google\Cloud\Dataproc\V1\Cluster $cluster
+     *           Required. The changes to the cluster.
+     *     @type \Google\Protobuf\FieldMask $update_mask
+     *           Required. Specifies the path, relative to `Cluster`, of
+     *           the field to update. For example, to change the number of workers
+     *           in a cluster to 5, the `update_mask` parameter would be
+     *           specified as `config.worker_config.num_instances`,
+     *           and the `PATCH` request body would specify the new value, as follows:
+     *               {
+     *                 "config":{
+     *                   "workerConfig":{
+     *                     "numInstances":"5"
+     *                   }
+     *                 }
+     *               }
+     *           Similarly, to change the number of preemptible workers in a cluster to 5,
+     *           the `update_mask` parameter would be
+     *           `config.secondary_worker_config.num_instances`, and the `PATCH` request
+     *           body would be set as follows:
+     *               {
+     *                 "config":{
+     *                   "secondaryWorkerConfig":{
+     *                     "numInstances":"5"
+     *                   }
+     *                 }
+     *               }
+     *           <strong>Note:</strong> Currently, only the following fields can be updated:
+     *            <table>
+     *            <tbody>
+     *            <tr>
+     *            <td><strong>Mask</strong></td>
+     *            <td><strong>Purpose</strong></td>
+     *            </tr>
+     *            <tr>
+     *            <td><strong><em>labels</em></strong></td>
+     *            <td>Update labels</td>
+     *            </tr>
+     *            <tr>
+     *            <td><strong><em>config.worker_config.num_instances</em></strong></td>
+     *            <td>Resize primary worker group</td>
+     *            </tr>
+     *            <tr>
+     *            <td><strong><em>config.secondary_worker_config.num_instances</em></strong></td>
+     *            <td>Resize secondary worker group</td>
+     *            </tr>
+     *            </tbody>
+     *            </table>
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Dataproc\V1\Clusters::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

@@ -76,9 +76,43 @@ class PySparkJob extends \Google\Protobuf\Internal\Message
      */
     private $logging_config = null;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $main_python_file_uri
+     *           Required. The HCFS URI of the main Python file to use as the driver. Must
+     *           be a .py file.
+     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $args
+     *           Optional. The arguments to pass to the driver.  Do not include arguments,
+     *           such as `--conf`, that can be set as job properties, since a collision may
+     *           occur that causes an incorrect job submission.
+     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $python_file_uris
+     *           Optional. HCFS file URIs of Python files to pass to the PySpark
+     *           framework. Supported file types: .py, .egg, and .zip.
+     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $jar_file_uris
+     *           Optional. HCFS URIs of jar files to add to the CLASSPATHs of the
+     *           Python driver and tasks.
+     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $file_uris
+     *           Optional. HCFS URIs of files to be copied to the working directory of
+     *           Python drivers and distributed tasks. Useful for naively parallel tasks.
+     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $archive_uris
+     *           Optional. HCFS URIs of archives to be extracted in the working directory of
+     *           .jar, .tar, .tar.gz, .tgz, and .zip.
+     *     @type array|\Google\Protobuf\Internal\MapField $properties
+     *           Optional. A mapping of property names to values, used to configure PySpark.
+     *           Properties that conflict with values set by the Cloud Dataproc API may be
+     *           overwritten. Can include properties set in
+     *           /etc/spark/conf/spark-defaults.conf and classes in user code.
+     *     @type \Google\Cloud\Dataproc\V1\LoggingConfig $logging_config
+     *           Optional. The runtime log config for job execution.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Dataproc\V1\Jobs::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

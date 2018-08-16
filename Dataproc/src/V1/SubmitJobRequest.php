@@ -35,9 +35,24 @@ class SubmitJobRequest extends \Google\Protobuf\Internal\Message
      */
     private $job = null;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $project_id
+     *           Required. The ID of the Google Cloud Platform project that the job
+     *           belongs to.
+     *     @type string $region
+     *           Required. The Cloud Dataproc region in which to handle the request.
+     *     @type \Google\Cloud\Dataproc\V1\Job $job
+     *           Required. The job resource.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Dataproc\V1\Jobs::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**
