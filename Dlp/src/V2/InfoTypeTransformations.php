@@ -26,9 +26,20 @@ class InfoTypeTransformations extends \Google\Protobuf\Internal\Message
      */
     private $transformations;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type \Google\Cloud\Dlp\V2\InfoTypeTransformations\InfoTypeTransformation[]|\Google\Protobuf\Internal\RepeatedField $transformations
+     *           Transformation for each infoType. Cannot specify more than one
+     *           for a given infoType. [required]
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Privacy\Dlp\V2\Dlp::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**
@@ -48,12 +59,12 @@ class InfoTypeTransformations extends \Google\Protobuf\Internal\Message
      * for a given infoType. [required]
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.InfoTypeTransformations.InfoTypeTransformation transformations = 1;</code>
-     * @param \Google\Cloud\Dlp\V2\InfoTypeTransformations_InfoTypeTransformation[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dlp\V2\InfoTypeTransformations\InfoTypeTransformation[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setTransformations($var)
     {
-        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Dlp\V2\InfoTypeTransformations_InfoTypeTransformation::class);
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Dlp\V2\InfoTypeTransformations\InfoTypeTransformation::class);
         $this->transformations = $arr;
 
         return $this;

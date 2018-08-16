@@ -27,9 +27,19 @@ class CryptoHashConfig extends \Google\Protobuf\Internal\Message
      */
     private $crypto_key = null;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type \Google\Cloud\Dlp\V2\CryptoKey $crypto_key
+     *           The key used by the hash function.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Privacy\Dlp\V2\Dlp::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

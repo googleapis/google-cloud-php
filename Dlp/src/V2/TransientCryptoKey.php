@@ -28,9 +28,24 @@ class TransientCryptoKey extends \Google\Protobuf\Internal\Message
      */
     private $name = '';
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $name
+     *           Name of the key. [required]
+     *           This is an arbitrary string used to differentiate different keys.
+     *           A unique key is generated per name: two separate `TransientCryptoKey`
+     *           protos share the same generated key if their names are the same.
+     *           When the data crypto key is generated, this name is not used in any way
+     *           (repeating the api call will result in a different key being generated).
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Privacy\Dlp\V2\Dlp::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

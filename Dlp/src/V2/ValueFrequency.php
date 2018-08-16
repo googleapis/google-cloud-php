@@ -28,9 +28,21 @@ class ValueFrequency extends \Google\Protobuf\Internal\Message
      */
     private $count = 0;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type \Google\Cloud\Dlp\V2\Value $value
+     *           A value contained in the field in question.
+     *     @type int|string $count
+     *           How many times the value is contained in the field.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Privacy\Dlp\V2\Dlp::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

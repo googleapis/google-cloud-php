@@ -4,46 +4,13 @@
 
 namespace Google\Cloud\Dlp\V2;
 
-use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
-use Google\Protobuf\Internal\GPBUtil;
-
-/**
- * Generated from protobuf message <code>google.privacy.dlp.v2.Table.Row</code>
- */
-class Table_Row extends \Google\Protobuf\Internal\Message
-{
+if (false) {
     /**
-     * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.Value values = 1;</code>
+     * This class is deprecated. Use Google\Cloud\Dlp\V2\Table\Row instead.
+     * @deprecated
      */
-    private $values;
-
-    public function __construct() {
-        \GPBMetadata\Google\Privacy\Dlp\V2\Dlp::initOnce();
-        parent::__construct();
-    }
-
-    /**
-     * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.Value values = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
-     */
-    public function getValues()
-    {
-        return $this->values;
-    }
-
-    /**
-     * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.Value values = 1;</code>
-     * @param \Google\Cloud\Dlp\V2\Value[]|\Google\Protobuf\Internal\RepeatedField $var
-     * @return $this
-     */
-    public function setValues($var)
-    {
-        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Dlp\V2\Value::class);
-        $this->values = $arr;
-
-        return $this;
-    }
-
+    class Table_Row {}
 }
+class_exists(Table\Row::class);
+@trigger_error('Google\Cloud\Dlp\V2\Table_Row is deprecated and will be removed in the next major release. Use Google\Cloud\Dlp\V2\Table\Row instead', E_USER_DEPRECATED);
 

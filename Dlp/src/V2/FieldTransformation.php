@@ -35,9 +35,32 @@ class FieldTransformation extends \Google\Protobuf\Internal\Message
     private $condition = null;
     protected $transformation;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type \Google\Cloud\Dlp\V2\FieldId[]|\Google\Protobuf\Internal\RepeatedField $fields
+     *           Input field(s) to apply the transformation to. [required]
+     *     @type \Google\Cloud\Dlp\V2\RecordCondition $condition
+     *           Only apply the transformation if the condition evaluates to true for the
+     *           given `RecordCondition`. The conditions are allowed to reference fields
+     *           that are not used in the actual transformation. [optional]
+     *           Example Use Cases:
+     *           - Apply a different bucket transformation to an age column if the zip code
+     *           column for the same record is within a specific range.
+     *           - Redact a field if the date of birth field is greater than 85.
+     *     @type \Google\Cloud\Dlp\V2\PrimitiveTransformation $primitive_transformation
+     *           Apply the transformation to the entire field.
+     *     @type \Google\Cloud\Dlp\V2\InfoTypeTransformations $info_type_transformations
+     *           Treat the contents of the field as free text, and selectively
+     *           transform content that matches an `InfoType`.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Privacy\Dlp\V2\Dlp::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

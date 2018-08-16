@@ -39,9 +39,24 @@ class BigQueryTable extends \Google\Protobuf\Internal\Message
      */
     private $table_id = '';
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $project_id
+     *           The Google Cloud Platform project ID of the project containing the table.
+     *           If omitted, project ID is inferred from the API call.
+     *     @type string $dataset_id
+     *           Dataset ID of the table.
+     *     @type string $table_id
+     *           Name of the table.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Privacy\Dlp\V2\Storage::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

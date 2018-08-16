@@ -33,9 +33,26 @@ class InspectResult extends \Google\Protobuf\Internal\Message
      */
     private $findings_truncated = false;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type \Google\Cloud\Dlp\V2\Finding[]|\Google\Protobuf\Internal\RepeatedField $findings
+     *           List of findings for an item.
+     *     @type bool $findings_truncated
+     *           If true, then this item might have more findings than were returned,
+     *           and the findings returned are an arbitrary subset of all findings.
+     *           The findings list might be truncated because the input items were too
+     *           large, or because the server reached the maximum amount of resources
+     *           allowed for a single API call. For best results, divide the input into
+     *           smaller batches.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Privacy\Dlp\V2\Dlp::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

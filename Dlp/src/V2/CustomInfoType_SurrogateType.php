@@ -4,29 +4,13 @@
 
 namespace Google\Cloud\Dlp\V2;
 
-use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
-use Google\Protobuf\Internal\GPBUtil;
-
-/**
- * Message for detecting output from deidentification transformations
- * such as
- * [`CryptoReplaceFfxFpeConfig`](/dlp/docs/reference/rest/v2/organizations.deidentifyTemplates#cryptoreplaceffxfpeconfig).
- * These types of transformations are
- * those that perform pseudonymization, thereby producing a "surrogate" as
- * output. This should be used in conjunction with a field on the
- * transformation such as `surrogate_info_type`. This CustomInfoType does
- * not support the use of `detection_rules`.
- *
- * Generated from protobuf message <code>google.privacy.dlp.v2.CustomInfoType.SurrogateType</code>
- */
-class CustomInfoType_SurrogateType extends \Google\Protobuf\Internal\Message
-{
-
-    public function __construct() {
-        \GPBMetadata\Google\Privacy\Dlp\V2\Storage::initOnce();
-        parent::__construct();
-    }
-
+if (false) {
+    /**
+     * This class is deprecated. Use Google\Cloud\Dlp\V2\CustomInfoType\SurrogateType instead.
+     * @deprecated
+     */
+    class CustomInfoType_SurrogateType {}
 }
+class_exists(CustomInfoType\SurrogateType::class);
+@trigger_error('Google\Cloud\Dlp\V2\CustomInfoType_SurrogateType is deprecated and will be removed in the next major release. Use Google\Cloud\Dlp\V2\CustomInfoType\SurrogateType instead', E_USER_DEPRECATED);
 

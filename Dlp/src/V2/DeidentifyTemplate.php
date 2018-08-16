@@ -56,9 +56,32 @@ class DeidentifyTemplate extends \Google\Protobuf\Internal\Message
      */
     private $deidentify_config = null;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $name
+     *           The template name. Output only.
+     *           The template will have one of the following formats:
+     *           `projects/PROJECT_ID/deidentifyTemplates/TEMPLATE_ID` OR
+     *           `organizations/ORGANIZATION_ID/deidentifyTemplates/TEMPLATE_ID`
+     *     @type string $display_name
+     *           Display name (max 256 chars).
+     *     @type string $description
+     *           Short description (max 256 chars).
+     *     @type \Google\Protobuf\Timestamp $create_time
+     *           The creation timestamp of a inspectTemplate, output only field.
+     *     @type \Google\Protobuf\Timestamp $update_time
+     *           The last update timestamp of a inspectTemplate, output only field.
+     *     @type \Google\Cloud\Dlp\V2\DeidentifyConfig $deidentify_config
+     *           ///////////// // The core content of the template  // ///////////////
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Privacy\Dlp\V2\Dlp::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

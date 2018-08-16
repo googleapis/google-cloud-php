@@ -4,31 +4,13 @@
 
 namespace Google\Cloud\Dlp\V2;
 
-/**
- * How to sample bytes if not all bytes are scanned. Meaningful only when used
- * in conjunction with bytes_limit_per_file. If not specified, scanning would
- * start from the top.
- *
- * Protobuf enum <code>Google\Privacy\Dlp\V2\CloudStorageOptions\SampleMethod</code>
- */
-class CloudStorageOptions_SampleMethod
-{
+if (false) {
     /**
-     * Generated from protobuf enum <code>SAMPLE_METHOD_UNSPECIFIED = 0;</code>
+     * This class is deprecated. Use Google\Cloud\Dlp\V2\CloudStorageOptions\SampleMethod instead.
+     * @deprecated
      */
-    const SAMPLE_METHOD_UNSPECIFIED = 0;
-    /**
-     * Scan from the top (default).
-     *
-     * Generated from protobuf enum <code>TOP = 1;</code>
-     */
-    const TOP = 1;
-    /**
-     * For each file larger than bytes_limit_per_file, randomly pick the offset
-     * to start scanning. The scanned bytes are contiguous.
-     *
-     * Generated from protobuf enum <code>RANDOM_START = 2;</code>
-     */
-    const RANDOM_START = 2;
+    class CloudStorageOptions_SampleMethod {}
 }
+class_exists(CloudStorageOptions\SampleMethod::class);
+@trigger_error('Google\Cloud\Dlp\V2\CloudStorageOptions_SampleMethod is deprecated and will be removed in the next major release. Use Google\Cloud\Dlp\V2\CloudStorageOptions\SampleMethod instead', E_USER_DEPRECATED);
 

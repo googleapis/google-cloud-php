@@ -4,64 +4,13 @@
 
 namespace Google\Cloud\Dlp\V2;
 
-use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
-use Google\Protobuf\Internal\GPBUtil;
-
-/**
- * Compute numerical stats over an individual column, including
- * number of distinct values and value count distribution.
- *
- * Generated from protobuf message <code>google.privacy.dlp.v2.PrivacyMetric.CategoricalStatsConfig</code>
- */
-class PrivacyMetric_CategoricalStatsConfig extends \Google\Protobuf\Internal\Message
-{
+if (false) {
     /**
-     * Field to compute categorical stats on. All column types are
-     * supported except for arrays and structs. However, it may be more
-     * informative to use NumericalStats when the field type is supported,
-     * depending on the data.
-     *
-     * Generated from protobuf field <code>.google.privacy.dlp.v2.FieldId field = 1;</code>
+     * This class is deprecated. Use Google\Cloud\Dlp\V2\PrivacyMetric\CategoricalStatsConfig instead.
+     * @deprecated
      */
-    private $field = null;
-
-    public function __construct() {
-        \GPBMetadata\Google\Privacy\Dlp\V2\Dlp::initOnce();
-        parent::__construct();
-    }
-
-    /**
-     * Field to compute categorical stats on. All column types are
-     * supported except for arrays and structs. However, it may be more
-     * informative to use NumericalStats when the field type is supported,
-     * depending on the data.
-     *
-     * Generated from protobuf field <code>.google.privacy.dlp.v2.FieldId field = 1;</code>
-     * @return \Google\Cloud\Dlp\V2\FieldId
-     */
-    public function getField()
-    {
-        return $this->field;
-    }
-
-    /**
-     * Field to compute categorical stats on. All column types are
-     * supported except for arrays and structs. However, it may be more
-     * informative to use NumericalStats when the field type is supported,
-     * depending on the data.
-     *
-     * Generated from protobuf field <code>.google.privacy.dlp.v2.FieldId field = 1;</code>
-     * @param \Google\Cloud\Dlp\V2\FieldId $var
-     * @return $this
-     */
-    public function setField($var)
-    {
-        GPBUtil::checkMessage($var, \Google\Cloud\Dlp\V2\FieldId::class);
-        $this->field = $var;
-
-        return $this;
-    }
-
+    class PrivacyMetric_CategoricalStatsConfig {}
 }
+class_exists(PrivacyMetric\CategoricalStatsConfig::class);
+@trigger_error('Google\Cloud\Dlp\V2\PrivacyMetric_CategoricalStatsConfig is deprecated and will be removed in the next major release. Use Google\Cloud\Dlp\V2\PrivacyMetric\CategoricalStatsConfig instead', E_USER_DEPRECATED);
 

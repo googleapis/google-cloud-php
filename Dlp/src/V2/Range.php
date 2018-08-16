@@ -28,9 +28,21 @@ class Range extends \Google\Protobuf\Internal\Message
      */
     private $end = 0;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type int|string $start
+     *           Index of the first character of the range (inclusive).
+     *     @type int|string $end
+     *           Index of the last character of the range (exclusive).
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Privacy\Dlp\V2\Dlp::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

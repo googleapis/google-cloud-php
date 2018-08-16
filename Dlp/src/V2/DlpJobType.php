@@ -7,7 +7,7 @@ namespace Google\Cloud\Dlp\V2;
 /**
  * An enum to represent the various type of DLP jobs.
  *
- * Protobuf enum <code>Google\Privacy\Dlp\V2\DlpJobType</code>
+ * Protobuf type <code>google.privacy.dlp.v2.DlpJobType</code>
  */
 class DlpJobType
 {

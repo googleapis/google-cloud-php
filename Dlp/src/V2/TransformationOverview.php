@@ -28,9 +28,21 @@ class TransformationOverview extends \Google\Protobuf\Internal\Message
      */
     private $transformation_summaries;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type int|string $transformed_bytes
+     *           Total size in bytes that were transformed in some way.
+     *     @type \Google\Cloud\Dlp\V2\TransformationSummary[]|\Google\Protobuf\Internal\RepeatedField $transformation_summaries
+     *           Transformations applied to the dataset.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Privacy\Dlp\V2\Dlp::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

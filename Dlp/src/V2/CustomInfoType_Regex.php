@@ -4,54 +4,13 @@
 
 namespace Google\Cloud\Dlp\V2;
 
-use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
-use Google\Protobuf\Internal\GPBUtil;
-
-/**
- * Message defining a custom regular expression.
- *
- * Generated from protobuf message <code>google.privacy.dlp.v2.CustomInfoType.Regex</code>
- */
-class CustomInfoType_Regex extends \Google\Protobuf\Internal\Message
-{
+if (false) {
     /**
-     * Pattern defining the regular expression.
-     *
-     * Generated from protobuf field <code>string pattern = 1;</code>
+     * This class is deprecated. Use Google\Cloud\Dlp\V2\CustomInfoType\Regex instead.
+     * @deprecated
      */
-    private $pattern = '';
-
-    public function __construct() {
-        \GPBMetadata\Google\Privacy\Dlp\V2\Storage::initOnce();
-        parent::__construct();
-    }
-
-    /**
-     * Pattern defining the regular expression.
-     *
-     * Generated from protobuf field <code>string pattern = 1;</code>
-     * @return string
-     */
-    public function getPattern()
-    {
-        return $this->pattern;
-    }
-
-    /**
-     * Pattern defining the regular expression.
-     *
-     * Generated from protobuf field <code>string pattern = 1;</code>
-     * @param string $var
-     * @return $this
-     */
-    public function setPattern($var)
-    {
-        GPBUtil::checkString($var, True);
-        $this->pattern = $var;
-
-        return $this;
-    }
-
+    class CustomInfoType_Regex {}
 }
+class_exists(CustomInfoType\Regex::class);
+@trigger_error('Google\Cloud\Dlp\V2\CustomInfoType_Regex is deprecated and will be removed in the next major release. Use Google\Cloud\Dlp\V2\CustomInfoType\Regex instead', E_USER_DEPRECATED);
 

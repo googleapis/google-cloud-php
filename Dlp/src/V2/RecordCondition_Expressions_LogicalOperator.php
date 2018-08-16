@@ -4,18 +4,13 @@
 
 namespace Google\Cloud\Dlp\V2;
 
-/**
- * Protobuf enum <code>Google\Privacy\Dlp\V2\RecordCondition\Expressions\LogicalOperator</code>
- */
-class RecordCondition_Expressions_LogicalOperator
-{
+if (false) {
     /**
-     * Generated from protobuf enum <code>LOGICAL_OPERATOR_UNSPECIFIED = 0;</code>
+     * This class is deprecated. Use Google\Cloud\Dlp\V2\RecordCondition\Expressions\LogicalOperator instead.
+     * @deprecated
      */
-    const LOGICAL_OPERATOR_UNSPECIFIED = 0;
-    /**
-     * Generated from protobuf enum <code>AND = 1;</code>
-     */
-    const PBAND = 1;
+    class RecordCondition_Expressions_LogicalOperator {}
 }
+class_exists(RecordCondition\Expressions\LogicalOperator::class);
+@trigger_error('Google\Cloud\Dlp\V2\RecordCondition_Expressions_LogicalOperator is deprecated and will be removed in the next major release. Use Google\Cloud\Dlp\V2\RecordCondition\Expressions\LogicalOperator instead', E_USER_DEPRECATED);
 

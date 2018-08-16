@@ -50,9 +50,35 @@ class ListJobTriggersRequest extends \Google\Protobuf\Internal\Message
      */
     private $order_by = '';
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $parent
+     *           The parent resource name, for example `projects/my-project-id`.
+     *     @type string $page_token
+     *           Optional page token to continue retrieval. Comes from previous call
+     *           to ListJobTriggers. `order_by` field must not
+     *           change for subsequent calls.
+     *     @type int $page_size
+     *           Optional size of the page, can be limited by a server.
+     *     @type string $order_by
+     *           Optional comma separated list of triggeredJob fields to order by,
+     *           followed by `asc` or `desc` postfix. This list is case-insensitive,
+     *           default sorting order is ascending, redundant space characters are
+     *           insignificant.
+     *           Example: `name asc,update_time, create_time desc`
+     *           Supported fields are:
+     *           - `create_time`: corresponds to time the triggeredJob was created.
+     *           - `update_time`: corresponds to time the triggeredJob was last updated.
+     *           - `name`: corresponds to JobTrigger's name.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Privacy\Dlp\V2\Dlp::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

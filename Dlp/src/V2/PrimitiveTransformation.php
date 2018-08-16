@@ -17,9 +17,27 @@ class PrimitiveTransformation extends \Google\Protobuf\Internal\Message
 {
     protected $transformation;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type \Google\Cloud\Dlp\V2\ReplaceValueConfig $replace_config
+     *     @type \Google\Cloud\Dlp\V2\RedactConfig $redact_config
+     *     @type \Google\Cloud\Dlp\V2\CharacterMaskConfig $character_mask_config
+     *     @type \Google\Cloud\Dlp\V2\CryptoReplaceFfxFpeConfig $crypto_replace_ffx_fpe_config
+     *     @type \Google\Cloud\Dlp\V2\FixedSizeBucketingConfig $fixed_size_bucketing_config
+     *     @type \Google\Cloud\Dlp\V2\BucketingConfig $bucketing_config
+     *     @type \Google\Cloud\Dlp\V2\ReplaceWithInfoTypeConfig $replace_with_info_type_config
+     *     @type \Google\Cloud\Dlp\V2\TimePartConfig $time_part_config
+     *     @type \Google\Cloud\Dlp\V2\CryptoHashConfig $crypto_hash_config
+     *     @type \Google\Cloud\Dlp\V2\DateShiftConfig $date_shift_config
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Privacy\Dlp\V2\Dlp::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

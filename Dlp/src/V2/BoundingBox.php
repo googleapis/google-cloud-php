@@ -40,9 +40,25 @@ class BoundingBox extends \Google\Protobuf\Internal\Message
      */
     private $height = 0;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type int $top
+     *           Top coordinate of the bounding box. (0,0) is upper left.
+     *     @type int $left
+     *           Left coordinate of the bounding box. (0,0) is upper left.
+     *     @type int $width
+     *           Width of the bounding box in pixels.
+     *     @type int $height
+     *           Height of the bounding box in pixels.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Privacy\Dlp\V2\Dlp::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

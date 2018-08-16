@@ -17,14 +17,28 @@ class PrivacyMetric extends \Google\Protobuf\Internal\Message
 {
     protected $type;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type \Google\Cloud\Dlp\V2\PrivacyMetric\NumericalStatsConfig $numerical_stats_config
+     *     @type \Google\Cloud\Dlp\V2\PrivacyMetric\CategoricalStatsConfig $categorical_stats_config
+     *     @type \Google\Cloud\Dlp\V2\PrivacyMetric\KAnonymityConfig $k_anonymity_config
+     *     @type \Google\Cloud\Dlp\V2\PrivacyMetric\LDiversityConfig $l_diversity_config
+     *     @type \Google\Cloud\Dlp\V2\PrivacyMetric\KMapEstimationConfig $k_map_estimation_config
+     *     @type \Google\Cloud\Dlp\V2\PrivacyMetric\DeltaPresenceEstimationConfig $delta_presence_estimation_config
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Privacy\Dlp\V2\Dlp::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**
      * Generated from protobuf field <code>.google.privacy.dlp.v2.PrivacyMetric.NumericalStatsConfig numerical_stats_config = 1;</code>
-     * @return \Google\Cloud\Dlp\V2\PrivacyMetric_NumericalStatsConfig
+     * @return \Google\Cloud\Dlp\V2\PrivacyMetric\NumericalStatsConfig
      */
     public function getNumericalStatsConfig()
     {
@@ -33,7 +47,7 @@ class PrivacyMetric extends \Google\Protobuf\Internal\Message
 
     /**
      * Generated from protobuf field <code>.google.privacy.dlp.v2.PrivacyMetric.NumericalStatsConfig numerical_stats_config = 1;</code>
-     * @param \Google\Cloud\Dlp\V2\PrivacyMetric_NumericalStatsConfig $var
+     * @param \Google\Cloud\Dlp\V2\PrivacyMetric\NumericalStatsConfig $var
      * @return $this
      */
     public function setNumericalStatsConfig($var)
@@ -46,7 +60,7 @@ class PrivacyMetric extends \Google\Protobuf\Internal\Message
 
     /**
      * Generated from protobuf field <code>.google.privacy.dlp.v2.PrivacyMetric.CategoricalStatsConfig categorical_stats_config = 2;</code>
-     * @return \Google\Cloud\Dlp\V2\PrivacyMetric_CategoricalStatsConfig
+     * @return \Google\Cloud\Dlp\V2\PrivacyMetric\CategoricalStatsConfig
      */
     public function getCategoricalStatsConfig()
     {
@@ -55,7 +69,7 @@ class PrivacyMetric extends \Google\Protobuf\Internal\Message
 
     /**
      * Generated from protobuf field <code>.google.privacy.dlp.v2.PrivacyMetric.CategoricalStatsConfig categorical_stats_config = 2;</code>
-     * @param \Google\Cloud\Dlp\V2\PrivacyMetric_CategoricalStatsConfig $var
+     * @param \Google\Cloud\Dlp\V2\PrivacyMetric\CategoricalStatsConfig $var
      * @return $this
      */
     public function setCategoricalStatsConfig($var)
@@ -68,7 +82,7 @@ class PrivacyMetric extends \Google\Protobuf\Internal\Message
 
     /**
      * Generated from protobuf field <code>.google.privacy.dlp.v2.PrivacyMetric.KAnonymityConfig k_anonymity_config = 3;</code>
-     * @return \Google\Cloud\Dlp\V2\PrivacyMetric_KAnonymityConfig
+     * @return \Google\Cloud\Dlp\V2\PrivacyMetric\KAnonymityConfig
      */
     public function getKAnonymityConfig()
     {
@@ -77,7 +91,7 @@ class PrivacyMetric extends \Google\Protobuf\Internal\Message
 
     /**
      * Generated from protobuf field <code>.google.privacy.dlp.v2.PrivacyMetric.KAnonymityConfig k_anonymity_config = 3;</code>
-     * @param \Google\Cloud\Dlp\V2\PrivacyMetric_KAnonymityConfig $var
+     * @param \Google\Cloud\Dlp\V2\PrivacyMetric\KAnonymityConfig $var
      * @return $this
      */
     public function setKAnonymityConfig($var)
@@ -90,7 +104,7 @@ class PrivacyMetric extends \Google\Protobuf\Internal\Message
 
     /**
      * Generated from protobuf field <code>.google.privacy.dlp.v2.PrivacyMetric.LDiversityConfig l_diversity_config = 4;</code>
-     * @return \Google\Cloud\Dlp\V2\PrivacyMetric_LDiversityConfig
+     * @return \Google\Cloud\Dlp\V2\PrivacyMetric\LDiversityConfig
      */
     public function getLDiversityConfig()
     {
@@ -99,7 +113,7 @@ class PrivacyMetric extends \Google\Protobuf\Internal\Message
 
     /**
      * Generated from protobuf field <code>.google.privacy.dlp.v2.PrivacyMetric.LDiversityConfig l_diversity_config = 4;</code>
-     * @param \Google\Cloud\Dlp\V2\PrivacyMetric_LDiversityConfig $var
+     * @param \Google\Cloud\Dlp\V2\PrivacyMetric\LDiversityConfig $var
      * @return $this
      */
     public function setLDiversityConfig($var)
@@ -112,7 +126,7 @@ class PrivacyMetric extends \Google\Protobuf\Internal\Message
 
     /**
      * Generated from protobuf field <code>.google.privacy.dlp.v2.PrivacyMetric.KMapEstimationConfig k_map_estimation_config = 5;</code>
-     * @return \Google\Cloud\Dlp\V2\PrivacyMetric_KMapEstimationConfig
+     * @return \Google\Cloud\Dlp\V2\PrivacyMetric\KMapEstimationConfig
      */
     public function getKMapEstimationConfig()
     {
@@ -121,7 +135,7 @@ class PrivacyMetric extends \Google\Protobuf\Internal\Message
 
     /**
      * Generated from protobuf field <code>.google.privacy.dlp.v2.PrivacyMetric.KMapEstimationConfig k_map_estimation_config = 5;</code>
-     * @param \Google\Cloud\Dlp\V2\PrivacyMetric_KMapEstimationConfig $var
+     * @param \Google\Cloud\Dlp\V2\PrivacyMetric\KMapEstimationConfig $var
      * @return $this
      */
     public function setKMapEstimationConfig($var)
@@ -134,7 +148,7 @@ class PrivacyMetric extends \Google\Protobuf\Internal\Message
 
     /**
      * Generated from protobuf field <code>.google.privacy.dlp.v2.PrivacyMetric.DeltaPresenceEstimationConfig delta_presence_estimation_config = 6;</code>
-     * @return \Google\Cloud\Dlp\V2\PrivacyMetric_DeltaPresenceEstimationConfig
+     * @return \Google\Cloud\Dlp\V2\PrivacyMetric\DeltaPresenceEstimationConfig
      */
     public function getDeltaPresenceEstimationConfig()
     {
@@ -143,7 +157,7 @@ class PrivacyMetric extends \Google\Protobuf\Internal\Message
 
     /**
      * Generated from protobuf field <code>.google.privacy.dlp.v2.PrivacyMetric.DeltaPresenceEstimationConfig delta_presence_estimation_config = 6;</code>
-     * @param \Google\Cloud\Dlp\V2\PrivacyMetric_DeltaPresenceEstimationConfig $var
+     * @param \Google\Cloud\Dlp\V2\PrivacyMetric\DeltaPresenceEstimationConfig $var
      * @return $this
      */
     public function setDeltaPresenceEstimationConfig($var)

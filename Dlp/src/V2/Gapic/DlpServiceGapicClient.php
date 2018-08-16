@@ -72,7 +72,7 @@ use Google\Cloud\Dlp\V2\ListInspectTemplatesResponse;
 use Google\Cloud\Dlp\V2\ListJobTriggersRequest;
 use Google\Cloud\Dlp\V2\ListJobTriggersResponse;
 use Google\Cloud\Dlp\V2\RedactImageRequest;
-use Google\Cloud\Dlp\V2\RedactImageRequest_ImageRedactionConfig;
+use Google\Cloud\Dlp\V2\RedactImageRequest\ImageRedactionConfig;
 use Google\Cloud\Dlp\V2\RedactImageResponse;
 use Google\Cloud\Dlp\V2\ReidentifyContentRequest;
 use Google\Cloud\Dlp\V2\ReidentifyContentResponse;
@@ -606,7 +606,7 @@ class DlpServiceGapicClient
      *
      *     @type InspectConfig $inspectConfig
      *          Configuration for the inspector.
-     *     @type RedactImageRequest_ImageRedactionConfig[] $imageRedactionConfigs
+     *     @type RedactImageRequest\ImageRedactionConfig[] $imageRedactionConfigs
      *          The configuration for specifying what content to redact from images.
      *     @type bool $includeFindings
      *          Whether the response should include findings along with the redacted

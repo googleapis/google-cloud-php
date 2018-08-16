@@ -60,9 +60,32 @@ class TransformationSummary extends \Google\Protobuf\Internal\Message
      */
     private $transformed_bytes = 0;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type \Google\Cloud\Dlp\V2\InfoType $info_type
+     *           Set if the transformation was limited to a specific info_type.
+     *     @type \Google\Cloud\Dlp\V2\FieldId $field
+     *           Set if the transformation was limited to a specific FieldId.
+     *     @type \Google\Cloud\Dlp\V2\PrimitiveTransformation $transformation
+     *           The specific transformation these stats apply to.
+     *     @type \Google\Cloud\Dlp\V2\FieldTransformation[]|\Google\Protobuf\Internal\RepeatedField $field_transformations
+     *           The field transformation that was applied.
+     *           If multiple field transformations are requested for a single field,
+     *           this list will contain all of them; otherwise, only one is supplied.
+     *     @type \Google\Cloud\Dlp\V2\RecordSuppression $record_suppress
+     *           The specific suppression option these stats apply to.
+     *     @type \Google\Cloud\Dlp\V2\TransformationSummary\SummaryResult[]|\Google\Protobuf\Internal\RepeatedField $results
+     *     @type int|string $transformed_bytes
+     *           Total size in bytes that were transformed in some way.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Privacy\Dlp\V2\Dlp::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**
@@ -210,12 +233,12 @@ class TransformationSummary extends \Google\Protobuf\Internal\Message
 
     /**
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.TransformationSummary.SummaryResult results = 4;</code>
-     * @param \Google\Cloud\Dlp\V2\TransformationSummary_SummaryResult[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dlp\V2\TransformationSummary\SummaryResult[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setResults($var)
     {
-        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Dlp\V2\TransformationSummary_SummaryResult::class);
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Dlp\V2\TransformationSummary\SummaryResult::class);
         $this->results = $arr;
 
         return $this;

@@ -4,50 +4,13 @@
 
 namespace Google\Cloud\Dlp\V2;
 
-/**
- * Protobuf enum <code>Google\Privacy\Dlp\V2\TimePartConfig\TimePart</code>
- */
-class TimePartConfig_TimePart
-{
+if (false) {
     /**
-     * Generated from protobuf enum <code>TIME_PART_UNSPECIFIED = 0;</code>
+     * This class is deprecated. Use Google\Cloud\Dlp\V2\TimePartConfig\TimePart instead.
+     * @deprecated
      */
-    const TIME_PART_UNSPECIFIED = 0;
-    /**
-     * [0-9999]
-     *
-     * Generated from protobuf enum <code>YEAR = 1;</code>
-     */
-    const YEAR = 1;
-    /**
-     * [1-12]
-     *
-     * Generated from protobuf enum <code>MONTH = 2;</code>
-     */
-    const MONTH = 2;
-    /**
-     * [1-31]
-     *
-     * Generated from protobuf enum <code>DAY_OF_MONTH = 3;</code>
-     */
-    const DAY_OF_MONTH = 3;
-    /**
-     * [1-7]
-     *
-     * Generated from protobuf enum <code>DAY_OF_WEEK = 4;</code>
-     */
-    const DAY_OF_WEEK = 4;
-    /**
-     * [1-52]
-     *
-     * Generated from protobuf enum <code>WEEK_OF_YEAR = 5;</code>
-     */
-    const WEEK_OF_YEAR = 5;
-    /**
-     * [0-23]
-     *
-     * Generated from protobuf enum <code>HOUR_OF_DAY = 6;</code>
-     */
-    const HOUR_OF_DAY = 6;
+    class TimePartConfig_TimePart {}
 }
+class_exists(TimePartConfig\TimePart::class);
+@trigger_error('Google\Cloud\Dlp\V2\TimePartConfig_TimePart is deprecated and will be removed in the next major release. Use Google\Cloud\Dlp\V2\TimePartConfig\TimePart instead', E_USER_DEPRECATED);
 

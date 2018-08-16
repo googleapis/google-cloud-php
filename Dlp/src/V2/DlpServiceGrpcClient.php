@@ -2,7 +2,7 @@
 // GENERATED CODE -- DO NOT EDIT!
 
 // Original file comments:
-// Copyright 2018 Google Inc.
+// Copyright 2018 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -453,6 +453,87 @@ class DlpServiceGrpcClient extends \Grpc\BaseStub {
     public function CancelDlpJob(\Google\Cloud\Dlp\V2\CancelDlpJobRequest $argument,
       $metadata = [], $options = []) {
         return $this->_simpleRequest('/google.privacy.dlp.v2.DlpService/CancelDlpJob',
+        $argument,
+        ['\Google\Protobuf\GPBEmpty', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Creates a pre-built stored infoType to be used for inspection.
+     * See https://cloud.google.com/dlp/docs/creating-stored-infotypes to
+     * learn more.
+     * @param \Google\Cloud\Dlp\V2\CreateStoredInfoTypeRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     */
+    public function CreateStoredInfoType(\Google\Cloud\Dlp\V2\CreateStoredInfoTypeRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.privacy.dlp.v2.DlpService/CreateStoredInfoType',
+        $argument,
+        ['\Google\Cloud\Dlp\V2\StoredInfoType', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Updates the stored infoType by creating a new version. The existing version
+     * will continue to be used until the new version is ready.
+     * See https://cloud.google.com/dlp/docs/creating-stored-infotypes to
+     * learn more.
+     * @param \Google\Cloud\Dlp\V2\UpdateStoredInfoTypeRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     */
+    public function UpdateStoredInfoType(\Google\Cloud\Dlp\V2\UpdateStoredInfoTypeRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.privacy.dlp.v2.DlpService/UpdateStoredInfoType',
+        $argument,
+        ['\Google\Cloud\Dlp\V2\StoredInfoType', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Gets a stored infoType.
+     * See https://cloud.google.com/dlp/docs/creating-stored-infotypes to
+     * learn more.
+     * @param \Google\Cloud\Dlp\V2\GetStoredInfoTypeRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     */
+    public function GetStoredInfoType(\Google\Cloud\Dlp\V2\GetStoredInfoTypeRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.privacy.dlp.v2.DlpService/GetStoredInfoType',
+        $argument,
+        ['\Google\Cloud\Dlp\V2\StoredInfoType', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Lists stored infoTypes.
+     * See https://cloud.google.com/dlp/docs/creating-stored-infotypes to
+     * learn more.
+     * @param \Google\Cloud\Dlp\V2\ListStoredInfoTypesRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     */
+    public function ListStoredInfoTypes(\Google\Cloud\Dlp\V2\ListStoredInfoTypesRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.privacy.dlp.v2.DlpService/ListStoredInfoTypes',
+        $argument,
+        ['\Google\Cloud\Dlp\V2\ListStoredInfoTypesResponse', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Deletes a stored infoType.
+     * See https://cloud.google.com/dlp/docs/creating-stored-infotypes to
+     * learn more.
+     * @param \Google\Cloud\Dlp\V2\DeleteStoredInfoTypeRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     */
+    public function DeleteStoredInfoType(\Google\Cloud\Dlp\V2\DeleteStoredInfoTypeRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.privacy.dlp.v2.DlpService/DeleteStoredInfoType',
         $argument,
         ['\Google\Protobuf\GPBEmpty', 'decode'],
         $metadata, $options);

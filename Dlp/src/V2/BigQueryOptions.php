@@ -31,19 +31,55 @@ class BigQueryOptions extends \Google\Protobuf\Internal\Message
     /**
      * Max number of rows to scan. If the table has more rows than this value, the
      * rest of the rows are omitted. If not set, or if set to 0, all rows will be
-     * scanned. Cannot be used in conjunction with TimespanConfig.
+     * scanned. Only one of rows_limit and rows_limit_percent can be specified.
+     * Cannot be used in conjunction with TimespanConfig.
      *
      * Generated from protobuf field <code>int64 rows_limit = 3;</code>
      */
     private $rows_limit = 0;
     /**
+     * Max percentage of rows to scan. The rest are omitted. The number of rows
+     * scanned is rounded down. Must be between 0 and 100, inclusively. Both 0 and
+     * 100 means no limit. Defaults to 0. Only one of rows_limit and
+     * rows_limit_percent can be specified. Cannot be used in conjunction with
+     * TimespanConfig.
+     *
+     * Generated from protobuf field <code>int32 rows_limit_percent = 6;</code>
+     */
+    private $rows_limit_percent = 0;
+    /**
      * Generated from protobuf field <code>.google.privacy.dlp.v2.BigQueryOptions.SampleMethod sample_method = 4;</code>
      */
     private $sample_method = 0;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type \Google\Cloud\Dlp\V2\BigQueryTable $table_reference
+     *           Complete BigQuery table reference.
+     *     @type \Google\Cloud\Dlp\V2\FieldId[]|\Google\Protobuf\Internal\RepeatedField $identifying_fields
+     *           References to fields uniquely identifying rows within the table.
+     *           Nested fields in the format, like `person.birthdate.year`, are allowed.
+     *     @type int|string $rows_limit
+     *           Max number of rows to scan. If the table has more rows than this value, the
+     *           rest of the rows are omitted. If not set, or if set to 0, all rows will be
+     *           scanned. Only one of rows_limit and rows_limit_percent can be specified.
+     *           Cannot be used in conjunction with TimespanConfig.
+     *     @type int $rows_limit_percent
+     *           Max percentage of rows to scan. The rest are omitted. The number of rows
+     *           scanned is rounded down. Must be between 0 and 100, inclusively. Both 0 and
+     *           100 means no limit. Defaults to 0. Only one of rows_limit and
+     *           rows_limit_percent can be specified. Cannot be used in conjunction with
+     *           TimespanConfig.
+     *     @type int $sample_method
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Privacy\Dlp\V2\Storage::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**
@@ -103,7 +139,8 @@ class BigQueryOptions extends \Google\Protobuf\Internal\Message
     /**
      * Max number of rows to scan. If the table has more rows than this value, the
      * rest of the rows are omitted. If not set, or if set to 0, all rows will be
-     * scanned. Cannot be used in conjunction with TimespanConfig.
+     * scanned. Only one of rows_limit and rows_limit_percent can be specified.
+     * Cannot be used in conjunction with TimespanConfig.
      *
      * Generated from protobuf field <code>int64 rows_limit = 3;</code>
      * @return int|string
@@ -116,7 +153,8 @@ class BigQueryOptions extends \Google\Protobuf\Internal\Message
     /**
      * Max number of rows to scan. If the table has more rows than this value, the
      * rest of the rows are omitted. If not set, or if set to 0, all rows will be
-     * scanned. Cannot be used in conjunction with TimespanConfig.
+     * scanned. Only one of rows_limit and rows_limit_percent can be specified.
+     * Cannot be used in conjunction with TimespanConfig.
      *
      * Generated from protobuf field <code>int64 rows_limit = 3;</code>
      * @param int|string $var
@@ -126,6 +164,40 @@ class BigQueryOptions extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkInt64($var);
         $this->rows_limit = $var;
+
+        return $this;
+    }
+
+    /**
+     * Max percentage of rows to scan. The rest are omitted. The number of rows
+     * scanned is rounded down. Must be between 0 and 100, inclusively. Both 0 and
+     * 100 means no limit. Defaults to 0. Only one of rows_limit and
+     * rows_limit_percent can be specified. Cannot be used in conjunction with
+     * TimespanConfig.
+     *
+     * Generated from protobuf field <code>int32 rows_limit_percent = 6;</code>
+     * @return int
+     */
+    public function getRowsLimitPercent()
+    {
+        return $this->rows_limit_percent;
+    }
+
+    /**
+     * Max percentage of rows to scan. The rest are omitted. The number of rows
+     * scanned is rounded down. Must be between 0 and 100, inclusively. Both 0 and
+     * 100 means no limit. Defaults to 0. Only one of rows_limit and
+     * rows_limit_percent can be specified. Cannot be used in conjunction with
+     * TimespanConfig.
+     *
+     * Generated from protobuf field <code>int32 rows_limit_percent = 6;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setRowsLimitPercent($var)
+    {
+        GPBUtil::checkInt32($var);
+        $this->rows_limit_percent = $var;
 
         return $this;
     }

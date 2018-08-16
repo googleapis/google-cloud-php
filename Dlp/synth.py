@@ -64,3 +64,9 @@ s.replace(
     r'@type RiskAnalysisJobConfig \$riskJob\n',
     '@type RiskAnalysisJobConfig $riskJob The configuration details for a risk\n'
     '     *          analysis job. Only one of $inspectJob and $riskJob may be provided.\n')
+
+# Use new namespaces
+s.replace(
+    'src/V2/Gapic/DlpServiceGapicClient.php',
+    r'RedactImageRequest_ImageRedactionConfig',
+    'RedactImageRequest\\ImageRedactionConfig')

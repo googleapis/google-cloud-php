@@ -7,7 +7,7 @@ namespace Google\Cloud\Dlp\V2;
 /**
  * Options describing which parts of the provided content should be scanned.
  *
- * Protobuf enum <code>Google\Privacy\Dlp\V2\ContentOption</code>
+ * Protobuf type <code>google.privacy.dlp.v2.ContentOption</code>
  */
 class ContentOption
 {
