@@ -67,3 +67,33 @@ s.replace(
     'tests/**/V2/*Test.php',
     r'Copyright \d{4}',
     r'Copyright 2018')
+
+# Use new namespaces
+s.replace(
+    'src/Admin/V2/Gapic/BigtableInstanceAdminGapicClient.php',
+    r'Cluster_State',
+    'Cluster\\State')
+s.replace(
+    'src/Admin/V2/Gapic/BigtableInstanceAdminGapicClient.php',
+    r'Instance_Type',
+    'Instance\\Type')
+s.replace(
+    'src/Admin/V2/Gapic/BigtableInstanceAdminGapicClient.php',
+    r'Instance_State',
+    'Instance\\State')
+s.replace(
+    'src/Admin/V2/Gapic/BigtableTableAdminGapicClient.php',
+    r'CreateTableRequest_Split',
+    'CreateTableRequest\\Split')
+s.replace(
+    'src/Admin/V2/Gapic/BigtableTableAdminGapicClient.php',
+    r'ModifyColumnFamiliesRequest_Modification',
+    'ModifyColumnFamiliesRequest\\Modification')
+s.replace(
+    'src/Admin/V2/Gapic/BigtableTableAdminGapicClient.php',
+    r'Table_View',
+    'Table\\View')
+s.replace(
+    'src/V2/Gapic/BigtableGapicClient.php',
+    r'MutateRowsRequest_Entry',
+    'MutateRowsRequest\\Entry')

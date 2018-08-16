@@ -49,7 +49,7 @@ use Google\Cloud\Bigtable\Admin\V2\GetAppProfileRequest;
 use Google\Cloud\Bigtable\Admin\V2\GetClusterRequest;
 use Google\Cloud\Bigtable\Admin\V2\GetInstanceRequest;
 use Google\Cloud\Bigtable\Admin\V2\Instance;
-use Google\Cloud\Bigtable\Admin\V2\Instance_Type;
+use Google\Cloud\Bigtable\Admin\V2\Instance\Type;
 use Google\Cloud\Bigtable\Admin\V2\ListAppProfilesRequest;
 use Google\Cloud\Bigtable\Admin\V2\ListAppProfilesResponse;
 use Google\Cloud\Bigtable\Admin\V2\ListClustersRequest;
@@ -690,7 +690,7 @@ class BigtableInstanceAdminGapicClient
      * try {
      *     $formattedName = $bigtableInstanceAdminClient->instanceName('[PROJECT]', '[INSTANCE]');
      *     $displayName = '';
-     *     $type = Instance_Type::TYPE_UNSPECIFIED;
+     *     $type = Instance\Type::TYPE_UNSPECIFIED;
      *     $labels = [];
      *     $response = $bigtableInstanceAdminClient->updateInstance($formattedName, $displayName, $type, $labels);
      * } finally {
@@ -705,7 +705,7 @@ class BigtableInstanceAdminGapicClient
      *                            Can be changed at any time, but should be kept globally unique
      *                            to avoid confusion.
      * @param int    $type        The type of the instance. Defaults to `PRODUCTION`.
-     *                            For allowed values, use constants defined on {@see \Google\Cloud\Bigtable\Admin\V2\Instance_Type}
+     *                            For allowed values, use constants defined on {@see \Google\Cloud\Bigtable\Admin\V2\Instance\Type}
      * @param array  $labels      Labels are a flexible and lightweight mechanism for organizing cloud
      *                            resources into groups that reflect a customer's organizational needs and
      *                            deployment strategies. They can be used to filter resources and aggregate
@@ -723,7 +723,7 @@ class BigtableInstanceAdminGapicClient
      *     @type int $state
      *          (`OutputOnly`)
      *          The current state of the instance.
-     *          For allowed values, use constants defined on {@see \Google\Cloud\Bigtable\Admin\V2\Instance_State}
+     *          For allowed values, use constants defined on {@see \Google\Cloud\Bigtable\Admin\V2\Instance\State}
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
@@ -1151,7 +1151,7 @@ class BigtableInstanceAdminGapicClient
      *     @type int $state
      *          (`OutputOnly`)
      *          The current state of the cluster.
-     *          For allowed values, use constants defined on {@see \Google\Cloud\Bigtable\Admin\V2\Cluster_State}
+     *          For allowed values, use constants defined on {@see \Google\Cloud\Bigtable\Admin\V2\Cluster\State}
      *     @type int $defaultStorageType
      *          (`CreationOnly`)
      *          The type of storage used by this cluster to serve its
