@@ -601,9 +601,6 @@ class CodeParser implements ParserInterface
             $nestedParam = explode(' ', trim($param), 3);
 
             // START proto nested arg missing description workaround
-            // if (count($nestedParam) < 3) {
-            //     throw new \Exception('nested param is in an invalid format: '. $param);
-            // }
             if (count($nestedParam) < 3 && !$isProto) {
                 throw new \Exception('nested param is in an invalid format: '. $param);
             }
