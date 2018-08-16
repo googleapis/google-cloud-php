@@ -4,24 +4,13 @@
 
 namespace Google\Cloud\Container\V1;
 
-/**
- * Allowed Network Policy providers.
- *
- * Protobuf enum <code>Google\Container\V1\NetworkPolicy\Provider</code>
- */
-class NetworkPolicy_Provider
-{
+if (false) {
     /**
-     * Not set
-     *
-     * Generated from protobuf enum <code>PROVIDER_UNSPECIFIED = 0;</code>
+     * This class is deprecated. Use Google\Cloud\Container\V1\NetworkPolicy\Provider instead.
+     * @deprecated
      */
-    const PROVIDER_UNSPECIFIED = 0;
-    /**
-     * Tigera (Calico Felix).
-     *
-     * Generated from protobuf enum <code>CALICO = 1;</code>
-     */
-    const CALICO = 1;
+    class NetworkPolicy_Provider {}
 }
+class_exists(NetworkPolicy\Provider::class);
+@trigger_error('Google\Cloud\Container\V1\NetworkPolicy_Provider is deprecated and will be removed in the next major release. Use Google\Cloud\Container\V1\NetworkPolicy\Provider instead', E_USER_DEPRECATED);
 

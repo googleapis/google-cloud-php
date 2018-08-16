@@ -17,9 +17,19 @@ class MaintenanceWindow extends \Google\Protobuf\Internal\Message
 {
     protected $policy;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type \Google\Cloud\Container\V1\DailyMaintenanceWindow $daily_maintenance_window
+     *           DailyMaintenanceWindow specifies a daily maintenance operation window.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Container\V1\ClusterService::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

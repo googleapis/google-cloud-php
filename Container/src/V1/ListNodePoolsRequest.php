@@ -37,9 +37,26 @@ class ListNodePoolsRequest extends \Google\Protobuf\Internal\Message
      */
     private $cluster_id = '';
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $project_id
+     *           The Google Developers Console [project ID or project
+     *           number](https://developers.google.com/console/help/new/#projectnumber).
+     *     @type string $zone
+     *           The name of the Google Compute Engine
+     *           [zone](/compute/docs/zones#available) in which the cluster
+     *           resides.
+     *     @type string $cluster_id
+     *           The name of the cluster.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Container\V1\ClusterService::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

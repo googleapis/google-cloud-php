@@ -26,9 +26,21 @@ class HorizontalPodAutoscaling extends \Google\Protobuf\Internal\Message
      */
     private $disabled = false;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type bool $disabled
+     *           Whether the Horizontal Pod Autoscaling feature is enabled in the cluster.
+     *           When enabled, it ensures that a Heapster pod is running in the cluster,
+     *           which is also used by the Cloud Monitoring service.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Container\V1\ClusterService::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

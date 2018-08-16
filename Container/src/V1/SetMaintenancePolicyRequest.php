@@ -44,9 +44,29 @@ class SetMaintenancePolicyRequest extends \Google\Protobuf\Internal\Message
      */
     private $maintenance_policy = null;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $project_id
+     *           The Google Developers Console [project ID or project
+     *           number](https://support.google.com/cloud/answer/6158840).
+     *     @type string $zone
+     *           The name of the Google Compute Engine
+     *           [zone](/compute/docs/zones#available) in which the cluster
+     *           resides.
+     *     @type string $cluster_id
+     *           The name of the cluster to update.
+     *     @type \Google\Cloud\Container\V1\MaintenancePolicy $maintenance_policy
+     *           The maintenance policy to be set for the cluster. An empty field
+     *           clears the existing maintenance policy.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Container\V1\ClusterService::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

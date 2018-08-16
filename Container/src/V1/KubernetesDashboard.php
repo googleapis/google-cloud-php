@@ -22,9 +22,19 @@ class KubernetesDashboard extends \Google\Protobuf\Internal\Message
      */
     private $disabled = false;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type bool $disabled
+     *           Whether the Kubernetes Dashboard is enabled for this cluster.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Container\V1\ClusterService::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

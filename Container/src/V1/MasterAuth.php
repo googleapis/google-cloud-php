@@ -63,9 +63,38 @@ class MasterAuth extends \Google\Protobuf\Internal\Message
      */
     private $client_key = '';
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $username
+     *           The username to use for HTTP basic authentication to the master endpoint.
+     *           For clusters v1.6.0 and later, you can disable basic authentication by
+     *           providing an empty username.
+     *     @type string $password
+     *           The password to use for HTTP basic authentication to the master endpoint.
+     *           Because the master endpoint is open to the Internet, you should create a
+     *           strong password.  If a password is provided for cluster creation, username
+     *           must be non-empty.
+     *     @type \Google\Cloud\Container\V1\ClientCertificateConfig $client_certificate_config
+     *           Configuration for client certificate authentication on the cluster.  If no
+     *           configuration is specified, a client certificate is issued.
+     *     @type string $cluster_ca_certificate
+     *           [Output only] Base64-encoded public certificate that is the root of
+     *           trust for the cluster.
+     *     @type string $client_certificate
+     *           [Output only] Base64-encoded public certificate used by clients to
+     *           authenticate to the cluster endpoint.
+     *     @type string $client_key
+     *           [Output only] Base64-encoded private key used by clients to authenticate
+     *           to the cluster endpoint.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Container\V1\ClusterService::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

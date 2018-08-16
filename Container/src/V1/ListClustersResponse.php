@@ -30,9 +30,23 @@ class ListClustersResponse extends \Google\Protobuf\Internal\Message
      */
     private $missing_zones;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type \Google\Cloud\Container\V1\Cluster[]|\Google\Protobuf\Internal\RepeatedField $clusters
+     *           A list of clusters in the project in the specified zone, or
+     *           across all ones.
+     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $missing_zones
+     *           If any zones are listed here, the list of clusters returned
+     *           may be missing those zones.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Container\V1\ClusterService::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

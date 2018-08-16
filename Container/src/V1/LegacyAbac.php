@@ -26,9 +26,22 @@ class LegacyAbac extends \Google\Protobuf\Internal\Message
      */
     private $enabled = false;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type bool $enabled
+     *           Whether the ABAC authorizer is enabled for this cluster. When enabled,
+     *           identities in the system, including service accounts, nodes, and
+     *           controllers, will have statically granted permissions beyond those
+     *           provided by the RBAC configuration or IAM.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Container\V1\ClusterService::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

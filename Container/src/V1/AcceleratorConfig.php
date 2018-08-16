@@ -29,9 +29,22 @@ class AcceleratorConfig extends \Google\Protobuf\Internal\Message
      */
     private $accelerator_type = '';
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type int|string $accelerator_count
+     *           The number of the accelerator cards exposed to an instance.
+     *     @type string $accelerator_type
+     *           The accelerator type resource name. List of supported accelerators
+     *           [here](/compute/docs/gpus/#Introduction)
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Container\V1\ClusterService::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

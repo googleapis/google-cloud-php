@@ -57,9 +57,34 @@ class UpdateNodePoolRequest extends \Google\Protobuf\Internal\Message
      */
     private $image_type = '';
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $project_id
+     *           The Google Developers Console [project ID or project
+     *           number](https://support.google.com/cloud/answer/6158840).
+     *     @type string $zone
+     *           The name of the Google Compute Engine
+     *           [zone](/compute/docs/zones#available) in which the cluster
+     *           resides.
+     *     @type string $cluster_id
+     *           The name of the cluster to upgrade.
+     *     @type string $node_pool_id
+     *           The name of the node pool to upgrade.
+     *     @type string $node_version
+     *           The Kubernetes version to change the nodes to (typically an
+     *           upgrade). Use `-` to upgrade to the latest version supported by
+     *           the server.
+     *     @type string $image_type
+     *           The desired image type for the node pool.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Container\V1\ClusterService::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**
