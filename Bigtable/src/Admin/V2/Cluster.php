@@ -58,9 +58,37 @@ class Cluster extends \Google\Protobuf\Internal\Message
      */
     private $default_storage_type = 0;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $name
+     *           (`OutputOnly`)
+     *           The unique name of the cluster. Values are of the form
+     *           `projects/<project>/instances/<instance>/clusters/[a-z][-a-z0-9]*`.
+     *     @type string $location
+     *           (`CreationOnly`)
+     *           The location where this cluster's nodes and storage reside. For best
+     *           performance, clients should be located as close as possible to this
+     *           cluster. Currently only zones are supported, so values should be of the
+     *           form `projects/<project>/locations/<zone>`.
+     *     @type int $state
+     *           (`OutputOnly`)
+     *           The current state of the cluster.
+     *     @type int $serve_nodes
+     *           The number of nodes allocated to this cluster. More nodes enable higher
+     *           throughput and more consistent performance.
+     *     @type int $default_storage_type
+     *           (`CreationOnly`)
+     *           The type of storage used by this cluster to serve its
+     *           parent instance's tables, unless explicitly overridden.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Bigtable\Admin\V2\Instance::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

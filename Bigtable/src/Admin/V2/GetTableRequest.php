@@ -32,9 +32,24 @@ class GetTableRequest extends \Google\Protobuf\Internal\Message
      */
     private $view = 0;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $name
+     *           The unique name of the requested table.
+     *           Values are of the form
+     *           `projects/<project>/instances/<instance>/tables/<table>`.
+     *     @type int $view
+     *           The view to be applied to the returned table's fields.
+     *           Defaults to `SCHEMA_VIEW` if unspecified.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Bigtable\Admin\V2\BigtableTableAdmin::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

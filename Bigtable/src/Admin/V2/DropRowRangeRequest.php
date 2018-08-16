@@ -26,9 +26,26 @@ class DropRowRangeRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
     protected $target;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $name
+     *           The unique name of the table on which to drop a range of rows.
+     *           Values are of the form
+     *           `projects/<project>/instances/<instance>/tables/<table>`.
+     *     @type string $row_key_prefix
+     *           Delete all rows that start with this row key prefix. Prefix cannot be
+     *           zero length.
+     *     @type bool $delete_all_data_from_table
+     *           Delete all rows in the table. Setting this to false is a no-op.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Bigtable\Admin\V2\BigtableTableAdmin::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

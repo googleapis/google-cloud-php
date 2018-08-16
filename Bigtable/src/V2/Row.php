@@ -32,9 +32,24 @@ class Row extends \Google\Protobuf\Internal\Message
      */
     private $families;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $key
+     *           The unique key which identifies this row within its table. This is the same
+     *           key that's used to identify the row in, for example, a MutateRowRequest.
+     *           May contain any non-empty byte string up to 4KiB in length.
+     *     @type \Google\Cloud\Bigtable\V2\Family[]|\Google\Protobuf\Internal\RepeatedField $families
+     *           May be empty, but only if the entire row is empty.
+     *           The mutual ordering of column families is not specified.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Bigtable\V2\Data::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

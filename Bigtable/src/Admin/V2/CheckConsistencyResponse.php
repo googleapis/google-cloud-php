@@ -24,9 +24,20 @@ class CheckConsistencyResponse extends \Google\Protobuf\Internal\Message
      */
     private $consistent = false;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type bool $consistent
+     *           True only if the token is consistent. A token is consistent if replication
+     *           has caught up with the restrictions specified in the request.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Bigtable\Admin\V2\BigtableTableAdmin::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

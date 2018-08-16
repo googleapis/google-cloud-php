@@ -39,9 +39,28 @@ class ListClustersResponse extends \Google\Protobuf\Internal\Message
      */
     private $next_page_token = '';
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type \Google\Cloud\Bigtable\Admin\V2\Cluster[]|\Google\Protobuf\Internal\RepeatedField $clusters
+     *           The list of requested clusters.
+     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $failed_locations
+     *           Locations from which Cluster information could not be retrieved,
+     *           due to an outage or some other transient condition.
+     *           Clusters from these locations may be missing from `clusters`,
+     *           or may only have partial information returned.
+     *     @type string $next_page_token
+     *           Set if not all clusters could be returned in a single response.
+     *           Pass this value to `page_token` in another request to get the next
+     *           page of results.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Bigtable\Admin\V2\BigtableInstanceAdmin::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

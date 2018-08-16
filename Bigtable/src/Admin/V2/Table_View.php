@@ -4,43 +4,13 @@
 
 namespace Google\Cloud\Bigtable\Admin\V2;
 
-/**
- * Defines a view over a table's fields.
- *
- * Protobuf enum <code>Google\Bigtable\Admin\V2\Table\View</code>
- */
-class Table_View
-{
+if (false) {
     /**
-     * Uses the default view for each method as documented in its request.
-     *
-     * Generated from protobuf enum <code>VIEW_UNSPECIFIED = 0;</code>
+     * This class is deprecated. Use Google\Cloud\Bigtable\Admin\V2\Table\View instead.
+     * @deprecated
      */
-    const VIEW_UNSPECIFIED = 0;
-    /**
-     * Only populates `name`.
-     *
-     * Generated from protobuf enum <code>NAME_ONLY = 1;</code>
-     */
-    const NAME_ONLY = 1;
-    /**
-     * Only populates `name` and fields related to the table's schema.
-     *
-     * Generated from protobuf enum <code>SCHEMA_VIEW = 2;</code>
-     */
-    const SCHEMA_VIEW = 2;
-    /**
-     * Only populates `name` and fields related to the table's
-     * replication state.
-     *
-     * Generated from protobuf enum <code>REPLICATION_VIEW = 3;</code>
-     */
-    const REPLICATION_VIEW = 3;
-    /**
-     * Populates all fields.
-     *
-     * Generated from protobuf enum <code>FULL = 4;</code>
-     */
-    const FULL = 4;
+    class Table_View {}
 }
+class_exists(Table\View::class);
+@trigger_error('Google\Cloud\Bigtable\Admin\V2\Table_View is deprecated and will be removed in the next major release. Use Google\Cloud\Bigtable\Admin\V2\Table\View instead', E_USER_DEPRECATED);
 

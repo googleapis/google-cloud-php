@@ -41,9 +41,30 @@ class Cell extends \Google\Protobuf\Internal\Message
      */
     private $labels;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type int|string $timestamp_micros
+     *           The cell's stored timestamp, which also uniquely identifies it within
+     *           its column.
+     *           Values are always expressed in microseconds, but individual tables may set
+     *           a coarser granularity to further restrict the allowed values. For
+     *           example, a table which specifies millisecond granularity will only allow
+     *           values of `timestamp_micros` which are multiples of 1000.
+     *     @type string $value
+     *           The value stored in the cell.
+     *           May contain any byte string, including the empty string, up to 100MiB in
+     *           length.
+     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $labels
+     *           Labels applied to the cell by a [RowFilter][google.bigtable.v2.RowFilter].
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Bigtable\V2\Data::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

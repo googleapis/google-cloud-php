@@ -4,57 +4,13 @@
 
 namespace Google\Cloud\Bigtable\V2;
 
-use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
-use Google\Protobuf\Internal\GPBUtil;
-
-/**
- * A Mutation which deletes all cells from the specified column family.
- *
- * Generated from protobuf message <code>google.bigtable.v2.Mutation.DeleteFromFamily</code>
- */
-class Mutation_DeleteFromFamily extends \Google\Protobuf\Internal\Message
-{
+if (false) {
     /**
-     * The name of the family from which cells should be deleted.
-     * Must match `[-_.a-zA-Z0-9]+`
-     *
-     * Generated from protobuf field <code>string family_name = 1;</code>
+     * This class is deprecated. Use Google\Cloud\Bigtable\V2\Mutation\DeleteFromFamily instead.
+     * @deprecated
      */
-    private $family_name = '';
-
-    public function __construct() {
-        \GPBMetadata\Google\Bigtable\V2\Data::initOnce();
-        parent::__construct();
-    }
-
-    /**
-     * The name of the family from which cells should be deleted.
-     * Must match `[-_.a-zA-Z0-9]+`
-     *
-     * Generated from protobuf field <code>string family_name = 1;</code>
-     * @return string
-     */
-    public function getFamilyName()
-    {
-        return $this->family_name;
-    }
-
-    /**
-     * The name of the family from which cells should be deleted.
-     * Must match `[-_.a-zA-Z0-9]+`
-     *
-     * Generated from protobuf field <code>string family_name = 1;</code>
-     * @param string $var
-     * @return $this
-     */
-    public function setFamilyName($var)
-    {
-        GPBUtil::checkString($var, True);
-        $this->family_name = $var;
-
-        return $this;
-    }
-
+    class Mutation_DeleteFromFamily {}
 }
+class_exists(Mutation\DeleteFromFamily::class);
+@trigger_error('Google\Cloud\Bigtable\V2\Mutation_DeleteFromFamily is deprecated and will be removed in the next major release. Use Google\Cloud\Bigtable\V2\Mutation\DeleteFromFamily instead', E_USER_DEPRECATED);
 

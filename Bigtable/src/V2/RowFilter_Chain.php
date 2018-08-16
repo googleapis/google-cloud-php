@@ -4,60 +4,13 @@
 
 namespace Google\Cloud\Bigtable\V2;
 
-use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
-use Google\Protobuf\Internal\GPBUtil;
-
-/**
- * A RowFilter which sends rows through several RowFilters in sequence.
- *
- * Generated from protobuf message <code>google.bigtable.v2.RowFilter.Chain</code>
- */
-class RowFilter_Chain extends \Google\Protobuf\Internal\Message
-{
+if (false) {
     /**
-     * The elements of "filters" are chained together to process the input row:
-     * in row -> f(0) -> intermediate row -> f(1) -> ... -> f(N) -> out row
-     * The full chain is executed atomically.
-     *
-     * Generated from protobuf field <code>repeated .google.bigtable.v2.RowFilter filters = 1;</code>
+     * This class is deprecated. Use Google\Cloud\Bigtable\V2\RowFilter\Chain instead.
+     * @deprecated
      */
-    private $filters;
-
-    public function __construct() {
-        \GPBMetadata\Google\Bigtable\V2\Data::initOnce();
-        parent::__construct();
-    }
-
-    /**
-     * The elements of "filters" are chained together to process the input row:
-     * in row -> f(0) -> intermediate row -> f(1) -> ... -> f(N) -> out row
-     * The full chain is executed atomically.
-     *
-     * Generated from protobuf field <code>repeated .google.bigtable.v2.RowFilter filters = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
-     */
-    public function getFilters()
-    {
-        return $this->filters;
-    }
-
-    /**
-     * The elements of "filters" are chained together to process the input row:
-     * in row -> f(0) -> intermediate row -> f(1) -> ... -> f(N) -> out row
-     * The full chain is executed atomically.
-     *
-     * Generated from protobuf field <code>repeated .google.bigtable.v2.RowFilter filters = 1;</code>
-     * @param \Google\Cloud\Bigtable\V2\RowFilter[]|\Google\Protobuf\Internal\RepeatedField $var
-     * @return $this
-     */
-    public function setFilters($var)
-    {
-        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Bigtable\V2\RowFilter::class);
-        $this->filters = $arr;
-
-        return $this;
-    }
-
+    class RowFilter_Chain {}
 }
+class_exists(RowFilter\Chain::class);
+@trigger_error('Google\Cloud\Bigtable\V2\RowFilter_Chain is deprecated and will be removed in the next major release. Use Google\Cloud\Bigtable\V2\RowFilter\Chain instead', E_USER_DEPRECATED);
 

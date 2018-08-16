@@ -45,9 +45,30 @@ class MutateRowRequest extends \Google\Protobuf\Internal\Message
      */
     private $mutations;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $table_name
+     *           The unique name of the table to which the mutation should be applied.
+     *           Values are of the form
+     *           `projects/<project>/instances/<instance>/tables/<table>`.
+     *     @type string $app_profile_id
+     *           This value specifies routing for replication. If not specified, the
+     *           "default" application profile will be used.
+     *     @type string $row_key
+     *           The key of the row to which the mutation should be applied.
+     *     @type \Google\Cloud\Bigtable\V2\Mutation[]|\Google\Protobuf\Internal\RepeatedField $mutations
+     *           Changes to be atomically applied to the specified row. Entries are applied
+     *           in order, meaning that earlier mutations can be masked by later ones.
+     *           Must contain at least one entry and at most 100000.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Bigtable\V2\Bigtable::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

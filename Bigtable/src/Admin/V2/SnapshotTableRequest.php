@@ -61,9 +61,37 @@ class SnapshotTableRequest extends \Google\Protobuf\Internal\Message
      */
     private $description = '';
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $name
+     *           The unique name of the table to have the snapshot taken.
+     *           Values are of the form
+     *           `projects/<project>/instances/<instance>/tables/<table>`.
+     *     @type string $cluster
+     *           The name of the cluster where the snapshot will be created in.
+     *           Values are of the form
+     *           `projects/<project>/instances/<instance>/clusters/<cluster>`.
+     *     @type string $snapshot_id
+     *           The ID by which the new snapshot should be referred to within the parent
+     *           cluster, e.g., `mysnapshot` of the form: `[_a-zA-Z0-9][-_.a-zA-Z0-9]*`
+     *           rather than
+     *           `projects/<project>/instances/<instance>/clusters/<cluster>/snapshots/mysnapshot`.
+     *     @type \Google\Protobuf\Duration $ttl
+     *           The amount of time that the new snapshot can stay active after it is
+     *           created. Once 'ttl' expires, the snapshot will get deleted. The maximum
+     *           amount of time a snapshot can stay active is 7 days. If 'ttl' is not
+     *           specified, the default value of 24 hours will be used.
+     *     @type string $description
+     *           Description of the snapshot.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Bigtable\Admin\V2\BigtableTableAdmin::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

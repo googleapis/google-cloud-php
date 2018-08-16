@@ -1014,11 +1014,11 @@ class BigtableInstanceAdminClientTest extends GeneratedTest
         $incompleteOperation->setDone(false);
         $transport->addResponse($incompleteOperation);
         $name2 = 'name2-1052831874';
-        $location2 = 'location21541837352';
+        $location = 'location1901043637';
         $serveNodes2 = 1623486220;
         $expectedResponse = new Cluster();
         $expectedResponse->setName($name2);
-        $expectedResponse->setLocation($location2);
+        $expectedResponse->setLocation($location);
         $expectedResponse->setServeNodes($serveNodes2);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
@@ -1030,10 +1030,9 @@ class BigtableInstanceAdminClientTest extends GeneratedTest
 
         // Mock request
         $formattedName = $client->clusterName('[PROJECT]', '[INSTANCE]', '[CLUSTER]');
-        $location = 'location1901043637';
         $serveNodes = 1288838783;
 
-        $response = $client->updateCluster($formattedName, $location, $serveNodes);
+        $response = $client->updateCluster($formattedName, $serveNodes);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -1047,9 +1046,6 @@ class BigtableInstanceAdminClientTest extends GeneratedTest
         $actualValue = $actualApiRequestObject->getName();
 
         $this->assertProtobufEquals($formattedName, $actualValue);
-        $actualValue = $actualApiRequestObject->getLocation();
-
-        $this->assertProtobufEquals($location, $actualValue);
         $actualValue = $actualApiRequestObject->getServeNodes();
 
         $this->assertProtobufEquals($serveNodes, $actualValue);
@@ -1115,10 +1111,9 @@ class BigtableInstanceAdminClientTest extends GeneratedTest
 
         // Mock request
         $formattedName = $client->clusterName('[PROJECT]', '[INSTANCE]', '[CLUSTER]');
-        $location = 'location1901043637';
         $serveNodes = 1288838783;
 
-        $response = $client->updateCluster($formattedName, $location, $serveNodes);
+        $response = $client->updateCluster($formattedName, $serveNodes);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
 

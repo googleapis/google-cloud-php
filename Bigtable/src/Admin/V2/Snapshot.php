@@ -76,9 +76,44 @@ class Snapshot extends \Google\Protobuf\Internal\Message
      */
     private $description = '';
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $name
+     *           (`OutputOnly`)
+     *           The unique name of the snapshot.
+     *           Values are of the form
+     *           `projects/<project>/instances/<instance>/clusters/<cluster>/snapshots/<snapshot>`.
+     *     @type \Google\Cloud\Bigtable\Admin\V2\Table $source_table
+     *           (`OutputOnly`)
+     *           The source table at the time the snapshot was taken.
+     *     @type int|string $data_size_bytes
+     *           (`OutputOnly`)
+     *           The size of the data in the source table at the time the snapshot was
+     *           taken. In some cases, this value may be computed asynchronously via a
+     *           background process and a placeholder of 0 will be used in the meantime.
+     *     @type \Google\Protobuf\Timestamp $create_time
+     *           (`OutputOnly`)
+     *           The time when the snapshot is created.
+     *     @type \Google\Protobuf\Timestamp $delete_time
+     *           (`OutputOnly`)
+     *           The time when the snapshot will be deleted. The maximum amount of time a
+     *           snapshot can stay active is 365 days. If 'ttl' is not specified,
+     *           the default maximum of 365 days will be used.
+     *     @type int $state
+     *           (`OutputOnly`)
+     *           The current state of the snapshot.
+     *     @type string $description
+     *           (`OutputOnly`)
+     *           Description of the snapshot.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Bigtable\Admin\V2\Table::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

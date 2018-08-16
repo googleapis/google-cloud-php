@@ -63,9 +63,41 @@ class Instance extends \Google\Protobuf\Internal\Message
      */
     private $labels;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $name
+     *           (`OutputOnly`)
+     *           The unique name of the instance. Values are of the form
+     *           `projects/<project>/instances/[a-z][a-z0-9\\-]+[a-z0-9]`.
+     *     @type string $display_name
+     *           The descriptive name for this instance as it appears in UIs.
+     *           Can be changed at any time, but should be kept globally unique
+     *           to avoid confusion.
+     *     @type int $state
+     *           (`OutputOnly`)
+     *           The current state of the instance.
+     *     @type int $type
+     *           The type of the instance. Defaults to `PRODUCTION`.
+     *     @type array|\Google\Protobuf\Internal\MapField $labels
+     *           Labels are a flexible and lightweight mechanism for organizing cloud
+     *           resources into groups that reflect a customer's organizational needs and
+     *           deployment strategies. They can be used to filter resources and aggregate
+     *           metrics.
+     *           * Label keys must be between 1 and 63 characters long and must conform to
+     *             the regular expression: `[\p{Ll}\p{Lo}][\p{Ll}\p{Lo}\p{N}_-]{0,62}`.
+     *           * Label values must be between 0 and 63 characters long and must conform to
+     *             the regular expression: `[\p{Ll}\p{Lo}\p{N}_-]{0,63}`.
+     *           * No more than 64 labels can be associated with a given resource.
+     *           * Keys and values must both be under 128 bytes.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Bigtable\Admin\V2\Instance::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

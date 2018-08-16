@@ -23,9 +23,19 @@ class GenerateConsistencyTokenResponse extends \Google\Protobuf\Internal\Message
      */
     private $consistency_token = '';
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $consistency_token
+     *           The generated consistency token.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Bigtable\Admin\V2\BigtableTableAdmin::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

@@ -4,57 +4,13 @@
 
 namespace Google\Cloud\Bigtable\Admin\V2;
 
-use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
-use Google\Protobuf\Internal\GPBUtil;
-
-/**
- * The state of a table's data in a particular cluster.
- *
- * Generated from protobuf message <code>google.bigtable.admin.v2.Table.ClusterState</code>
- */
-class Table_ClusterState extends \Google\Protobuf\Internal\Message
-{
+if (false) {
     /**
-     * (`OutputOnly`)
-     * The state of replication for the table in this cluster.
-     *
-     * Generated from protobuf field <code>.google.bigtable.admin.v2.Table.ClusterState.ReplicationState replication_state = 1;</code>
+     * This class is deprecated. Use Google\Cloud\Bigtable\Admin\V2\Table\ClusterState instead.
+     * @deprecated
      */
-    private $replication_state = 0;
-
-    public function __construct() {
-        \GPBMetadata\Google\Bigtable\Admin\V2\Table::initOnce();
-        parent::__construct();
-    }
-
-    /**
-     * (`OutputOnly`)
-     * The state of replication for the table in this cluster.
-     *
-     * Generated from protobuf field <code>.google.bigtable.admin.v2.Table.ClusterState.ReplicationState replication_state = 1;</code>
-     * @return int
-     */
-    public function getReplicationState()
-    {
-        return $this->replication_state;
-    }
-
-    /**
-     * (`OutputOnly`)
-     * The state of replication for the table in this cluster.
-     *
-     * Generated from protobuf field <code>.google.bigtable.admin.v2.Table.ClusterState.ReplicationState replication_state = 1;</code>
-     * @param int $var
-     * @return $this
-     */
-    public function setReplicationState($var)
-    {
-        GPBUtil::checkEnum($var, \Google\Cloud\Bigtable\Admin\V2\Table_ClusterState_ReplicationState::class);
-        $this->replication_state = $var;
-
-        return $this;
-    }
-
+    class Table_ClusterState {}
 }
+class_exists(Table\ClusterState::class);
+@trigger_error('Google\Cloud\Bigtable\Admin\V2\Table_ClusterState is deprecated and will be removed in the next major release. Use Google\Cloud\Bigtable\Admin\V2\Table\ClusterState instead', E_USER_DEPRECATED);
 

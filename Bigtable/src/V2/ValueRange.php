@@ -18,9 +18,25 @@ class ValueRange extends \Google\Protobuf\Internal\Message
     protected $start_value;
     protected $end_value;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $start_value_closed
+     *           Used when giving an inclusive lower bound for the range.
+     *     @type string $start_value_open
+     *           Used when giving an exclusive lower bound for the range.
+     *     @type string $end_value_closed
+     *           Used when giving an inclusive upper bound for the range.
+     *     @type string $end_value_open
+     *           Used when giving an exclusive upper bound for the range.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Bigtable\V2\Data::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

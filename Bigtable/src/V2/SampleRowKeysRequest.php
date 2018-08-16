@@ -31,9 +31,24 @@ class SampleRowKeysRequest extends \Google\Protobuf\Internal\Message
      */
     private $app_profile_id = '';
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $table_name
+     *           The unique name of the table from which to sample row keys.
+     *           Values are of the form
+     *           `projects/<project>/instances/<instance>/tables/<table>`.
+     *     @type string $app_profile_id
+     *           This value specifies routing for replication. If not specified, the
+     *           "default" application profile will be used.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Bigtable\V2\Bigtable::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

@@ -4,25 +4,13 @@
 
 namespace Google\Cloud\Bigtable\Admin\V2;
 
-use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
-use Google\Protobuf\Internal\GPBUtil;
-
-/**
- * Read/write requests may be routed to any cluster in the instance, and will
- * fail over to another cluster in the event of transient errors or delays.
- * Choosing this option sacrifices read-your-writes consistency to improve
- * availability.
- *
- * Generated from protobuf message <code>google.bigtable.admin.v2.AppProfile.MultiClusterRoutingUseAny</code>
- */
-class AppProfile_MultiClusterRoutingUseAny extends \Google\Protobuf\Internal\Message
-{
-
-    public function __construct() {
-        \GPBMetadata\Google\Bigtable\Admin\V2\Instance::initOnce();
-        parent::__construct();
-    }
-
+if (false) {
+    /**
+     * This class is deprecated. Use Google\Cloud\Bigtable\Admin\V2\AppProfile\MultiClusterRoutingUseAny instead.
+     * @deprecated
+     */
+    class AppProfile_MultiClusterRoutingUseAny {}
 }
+class_exists(AppProfile\MultiClusterRoutingUseAny::class);
+@trigger_error('Google\Cloud\Bigtable\Admin\V2\AppProfile_MultiClusterRoutingUseAny is deprecated and will be removed in the next major release. Use Google\Cloud\Bigtable\Admin\V2\AppProfile\MultiClusterRoutingUseAny instead', E_USER_DEPRECATED);
 

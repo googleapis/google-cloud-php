@@ -4,125 +4,13 @@
 
 namespace Google\Cloud\Bigtable\V2;
 
-use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
-use Google\Protobuf\Internal\GPBUtil;
-
-/**
- * A Mutation which deletes cells from the specified column, optionally
- * restricting the deletions to a given timestamp range.
- *
- * Generated from protobuf message <code>google.bigtable.v2.Mutation.DeleteFromColumn</code>
- */
-class Mutation_DeleteFromColumn extends \Google\Protobuf\Internal\Message
-{
+if (false) {
     /**
-     * The name of the family from which cells should be deleted.
-     * Must match `[-_.a-zA-Z0-9]+`
-     *
-     * Generated from protobuf field <code>string family_name = 1;</code>
+     * This class is deprecated. Use Google\Cloud\Bigtable\V2\Mutation\DeleteFromColumn instead.
+     * @deprecated
      */
-    private $family_name = '';
-    /**
-     * The qualifier of the column from which cells should be deleted.
-     * Can be any byte string, including the empty string.
-     *
-     * Generated from protobuf field <code>bytes column_qualifier = 2;</code>
-     */
-    private $column_qualifier = '';
-    /**
-     * The range of timestamps within which cells should be deleted.
-     *
-     * Generated from protobuf field <code>.google.bigtable.v2.TimestampRange time_range = 3;</code>
-     */
-    private $time_range = null;
-
-    public function __construct() {
-        \GPBMetadata\Google\Bigtable\V2\Data::initOnce();
-        parent::__construct();
-    }
-
-    /**
-     * The name of the family from which cells should be deleted.
-     * Must match `[-_.a-zA-Z0-9]+`
-     *
-     * Generated from protobuf field <code>string family_name = 1;</code>
-     * @return string
-     */
-    public function getFamilyName()
-    {
-        return $this->family_name;
-    }
-
-    /**
-     * The name of the family from which cells should be deleted.
-     * Must match `[-_.a-zA-Z0-9]+`
-     *
-     * Generated from protobuf field <code>string family_name = 1;</code>
-     * @param string $var
-     * @return $this
-     */
-    public function setFamilyName($var)
-    {
-        GPBUtil::checkString($var, True);
-        $this->family_name = $var;
-
-        return $this;
-    }
-
-    /**
-     * The qualifier of the column from which cells should be deleted.
-     * Can be any byte string, including the empty string.
-     *
-     * Generated from protobuf field <code>bytes column_qualifier = 2;</code>
-     * @return string
-     */
-    public function getColumnQualifier()
-    {
-        return $this->column_qualifier;
-    }
-
-    /**
-     * The qualifier of the column from which cells should be deleted.
-     * Can be any byte string, including the empty string.
-     *
-     * Generated from protobuf field <code>bytes column_qualifier = 2;</code>
-     * @param string $var
-     * @return $this
-     */
-    public function setColumnQualifier($var)
-    {
-        GPBUtil::checkString($var, False);
-        $this->column_qualifier = $var;
-
-        return $this;
-    }
-
-    /**
-     * The range of timestamps within which cells should be deleted.
-     *
-     * Generated from protobuf field <code>.google.bigtable.v2.TimestampRange time_range = 3;</code>
-     * @return \Google\Cloud\Bigtable\V2\TimestampRange
-     */
-    public function getTimeRange()
-    {
-        return $this->time_range;
-    }
-
-    /**
-     * The range of timestamps within which cells should be deleted.
-     *
-     * Generated from protobuf field <code>.google.bigtable.v2.TimestampRange time_range = 3;</code>
-     * @param \Google\Cloud\Bigtable\V2\TimestampRange $var
-     * @return $this
-     */
-    public function setTimeRange($var)
-    {
-        GPBUtil::checkMessage($var, \Google\Cloud\Bigtable\V2\TimestampRange::class);
-        $this->time_range = $var;
-
-        return $this;
-    }
-
+    class Mutation_DeleteFromColumn {}
 }
+class_exists(Mutation\DeleteFromColumn::class);
+@trigger_error('Google\Cloud\Bigtable\V2\Mutation_DeleteFromColumn is deprecated and will be removed in the next major release. Use Google\Cloud\Bigtable\V2\Mutation\DeleteFromColumn instead', E_USER_DEPRECATED);
 

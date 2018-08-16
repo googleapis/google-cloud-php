@@ -32,9 +32,26 @@ class ReadRowsResponse extends \Google\Protobuf\Internal\Message
      */
     private $last_scanned_row_key = '';
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type \Google\Cloud\Bigtable\V2\ReadRowsResponse\CellChunk[]|\Google\Protobuf\Internal\RepeatedField $chunks
+     *     @type string $last_scanned_row_key
+     *           Optionally the server might return the row key of the last row it
+     *           has scanned.  The client can use this to construct a more
+     *           efficient retry request if needed: any row keys or portions of
+     *           ranges less than this row key can be dropped from the request.
+     *           This is primarily useful for cases where the server has read a
+     *           lot of data that was filtered out since the last committed row
+     *           key, allowing the client to skip that work on a retry.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Bigtable\V2\Bigtable::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**
@@ -48,12 +65,12 @@ class ReadRowsResponse extends \Google\Protobuf\Internal\Message
 
     /**
      * Generated from protobuf field <code>repeated .google.bigtable.v2.ReadRowsResponse.CellChunk chunks = 1;</code>
-     * @param \Google\Cloud\Bigtable\V2\ReadRowsResponse_CellChunk[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Bigtable\V2\ReadRowsResponse\CellChunk[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setChunks($var)
     {
-        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Bigtable\V2\ReadRowsResponse_CellChunk::class);
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Bigtable\V2\ReadRowsResponse\CellChunk::class);
         $this->chunks = $arr;
 
         return $this;

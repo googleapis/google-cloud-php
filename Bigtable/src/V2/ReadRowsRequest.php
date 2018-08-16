@@ -51,9 +51,32 @@ class ReadRowsRequest extends \Google\Protobuf\Internal\Message
      */
     private $rows_limit = 0;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $table_name
+     *           The unique name of the table from which to read.
+     *           Values are of the form
+     *           `projects/<project>/instances/<instance>/tables/<table>`.
+     *     @type string $app_profile_id
+     *           This value specifies routing for replication. If not specified, the
+     *           "default" application profile will be used.
+     *     @type \Google\Cloud\Bigtable\V2\RowSet $rows
+     *           The row keys and/or ranges to read. If not specified, reads from all rows.
+     *     @type \Google\Cloud\Bigtable\V2\RowFilter $filter
+     *           The filter to apply to the contents of the specified row(s). If unset,
+     *           reads the entirety of each row.
+     *     @type int|string $rows_limit
+     *           The read will terminate after committing to N rows' worth of results. The
+     *           default (zero) is to return all results.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Bigtable\V2\Bigtable::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

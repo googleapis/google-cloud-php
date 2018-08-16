@@ -28,9 +28,21 @@ class TimestampRange extends \Google\Protobuf\Internal\Message
      */
     private $end_timestamp_micros = 0;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type int|string $start_timestamp_micros
+     *           Inclusive lower bound. If left empty, interpreted as 0.
+     *     @type int|string $end_timestamp_micros
+     *           Exclusive upper bound. If left empty, interpreted as infinity.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Bigtable\V2\Data::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

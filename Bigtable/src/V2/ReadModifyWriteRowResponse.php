@@ -22,9 +22,19 @@ class ReadModifyWriteRowResponse extends \Google\Protobuf\Internal\Message
      */
     private $row = null;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type \Google\Cloud\Bigtable\V2\Row $row
+     *           A Row containing the new contents of all cells modified by the request.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Bigtable\V2\Bigtable::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**
