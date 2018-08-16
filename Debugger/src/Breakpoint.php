@@ -18,8 +18,8 @@
 namespace Google\Cloud\Debugger;
 
 use Google\Cloud\Core\ArrayTrait;
-use Google\Cloud\Debugger\V2\Breakpoint_Action;
-use Google\Cloud\Debugger\V2\Breakpoint_LogLevel;
+use Google\Cloud\Debugger\V2\Breakpoint\Action;
+use Google\Cloud\Debugger\V2\Breakpoint\LogLevel;
 
 /**
  * This plain PHP class represents a debugger breakpoint resource.
@@ -46,11 +46,11 @@ class Breakpoint
 {
     use ArrayTrait;
 
-    const ACTION_CAPTURE = Breakpoint_Action::CAPTURE;
-    const ACTION_LOG = Breakpoint_Action::LOG;
-    const LOG_LEVEL_INFO = Breakpoint_LogLevel::INFO;
-    const LOG_LEVEL_WARNING = Breakpoint_LogLevel::WARNING;
-    const LOG_LEVEL_ERROR = Breakpoint_LogLevel::ERROR;
+    const ACTION_CAPTURE = Action::CAPTURE;
+    const ACTION_LOG = Action::LOG;
+    const LOG_LEVEL_INFO = LogLevel::INFO;
+    const LOG_LEVEL_WARNING = LogLevel::WARNING;
+    const LOG_LEVEL_ERROR = LogLevel::ERROR;
 
     /**
      * @var string Breakpoint identifier, unique in the scope of the debuggee.
