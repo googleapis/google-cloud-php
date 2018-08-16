@@ -17,9 +17,24 @@ class DeidentifyConfig extends \Google\Protobuf\Internal\Message
 {
     protected $transformation;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type \Google\Cloud\Dlp\V2\InfoTypeTransformations $info_type_transformations
+     *           Treat the dataset as free-form text and apply the same free text
+     *           transformation everywhere.
+     *     @type \Google\Cloud\Dlp\V2\RecordTransformations $record_transformations
+     *           Treat the dataset as structured. Transformations can be applied to
+     *           specific locations within structured datasets, such as transforming
+     *           a column within a table.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Privacy\Dlp\V2\Dlp::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

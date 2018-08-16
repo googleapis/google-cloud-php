@@ -28,9 +28,21 @@ class ByteContentItem extends \Google\Protobuf\Internal\Message
      */
     private $data = '';
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type int $type
+     *           The type of data stored in the bytes string. Default will be TEXT_UTF8.
+     *     @type string $data
+     *           Content data to inspect or redact.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Privacy\Dlp\V2\Dlp::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

@@ -34,9 +34,23 @@ class RecordLocation extends \Google\Protobuf\Internal\Message
      */
     private $table_location = null;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type \Google\Cloud\Dlp\V2\RecordKey $record_key
+     *           Key of the finding.
+     *     @type \Google\Cloud\Dlp\V2\FieldId $field_id
+     *           Field id of the field containing the finding.
+     *     @type \Google\Cloud\Dlp\V2\TableLocation $table_location
+     *           Location within a `ContentItem.Table`.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Privacy\Dlp\V2\Dlp::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

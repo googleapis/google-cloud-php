@@ -31,9 +31,24 @@ class ListInfoTypesRequest extends \Google\Protobuf\Internal\Message
      */
     private $filter = '';
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $language_code
+     *           Optional BCP-47 language code for localized infoType friendly
+     *           names. If omitted, or if localized strings are not available,
+     *           en-US strings will be returned.
+     *     @type string $filter
+     *           Optional filter to only return infoTypes supported by certain parts of the
+     *           API. Defaults to supported_by=INSPECT.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Privacy\Dlp\V2\Dlp::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

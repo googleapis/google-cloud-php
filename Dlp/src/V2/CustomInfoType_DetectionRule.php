@@ -4,59 +4,13 @@
 
 namespace Google\Cloud\Dlp\V2;
 
-use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
-use Google\Protobuf\Internal\GPBUtil;
-
-/**
- * Rule for modifying a CustomInfoType to alter behavior under certain
- * circumstances, depending on the specific details of the rule. Not supported
- * for the `surrogate_type` custom info type.
- *
- * Generated from protobuf message <code>google.privacy.dlp.v2.CustomInfoType.DetectionRule</code>
- */
-class CustomInfoType_DetectionRule extends \Google\Protobuf\Internal\Message
-{
-    protected $type;
-
-    public function __construct() {
-        \GPBMetadata\Google\Privacy\Dlp\V2\Storage::initOnce();
-        parent::__construct();
-    }
-
+if (false) {
     /**
-     * Hotword-based detection rule.
-     *
-     * Generated from protobuf field <code>.google.privacy.dlp.v2.CustomInfoType.DetectionRule.HotwordRule hotword_rule = 1;</code>
-     * @return \Google\Cloud\Dlp\V2\CustomInfoType_DetectionRule_HotwordRule
+     * This class is deprecated. Use Google\Cloud\Dlp\V2\CustomInfoType\DetectionRule instead.
+     * @deprecated
      */
-    public function getHotwordRule()
-    {
-        return $this->readOneof(1);
-    }
-
-    /**
-     * Hotword-based detection rule.
-     *
-     * Generated from protobuf field <code>.google.privacy.dlp.v2.CustomInfoType.DetectionRule.HotwordRule hotword_rule = 1;</code>
-     * @param \Google\Cloud\Dlp\V2\CustomInfoType_DetectionRule_HotwordRule $var
-     * @return $this
-     */
-    public function setHotwordRule($var)
-    {
-        GPBUtil::checkMessage($var, \Google\Cloud\Dlp\V2\CustomInfoType_DetectionRule_HotwordRule::class);
-        $this->writeOneof(1, $var);
-
-        return $this;
-    }
-
-    /**
-     * @return string
-     */
-    public function getType()
-    {
-        return $this->whichOneof("type");
-    }
-
+    class CustomInfoType_DetectionRule {}
 }
+class_exists(CustomInfoType\DetectionRule::class);
+@trigger_error('Google\Cloud\Dlp\V2\CustomInfoType_DetectionRule is deprecated and will be removed in the next major release. Use Google\Cloud\Dlp\V2\CustomInfoType\DetectionRule instead', E_USER_DEPRECATED);
 

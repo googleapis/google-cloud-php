@@ -34,9 +34,23 @@ class Color extends \Google\Protobuf\Internal\Message
      */
     private $blue = 0.0;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type float $red
+     *           The amount of red in the color as a value in the interval [0, 1].
+     *     @type float $green
+     *           The amount of green in the color as a value in the interval [0, 1].
+     *     @type float $blue
+     *           The amount of blue in the color as a value in the interval [0, 1].
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Privacy\Dlp\V2\Dlp::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

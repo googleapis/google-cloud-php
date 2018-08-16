@@ -28,9 +28,21 @@ class DeidentifyContentResponse extends \Google\Protobuf\Internal\Message
      */
     private $overview = null;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type \Google\Cloud\Dlp\V2\ContentItem $item
+     *           The de-identified item.
+     *     @type \Google\Cloud\Dlp\V2\TransformationOverview $overview
+     *           An overview of the changes that were made on the `item`.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Privacy\Dlp\V2\Dlp::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

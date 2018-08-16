@@ -4,54 +4,13 @@
 
 namespace Google\Cloud\Dlp\V2;
 
-use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
-use Google\Protobuf\Internal\GPBUtil;
-
-/**
- * Result of the k-anonymity computation.
- *
- * Generated from protobuf message <code>google.privacy.dlp.v2.AnalyzeDataSourceRiskDetails.KAnonymityResult</code>
- */
-class AnalyzeDataSourceRiskDetails_KAnonymityResult extends \Google\Protobuf\Internal\Message
-{
+if (false) {
     /**
-     * Histogram of k-anonymity equivalence classes.
-     *
-     * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.AnalyzeDataSourceRiskDetails.KAnonymityResult.KAnonymityHistogramBucket equivalence_class_histogram_buckets = 5;</code>
+     * This class is deprecated. Use Google\Cloud\Dlp\V2\AnalyzeDataSourceRiskDetails\KAnonymityResult instead.
+     * @deprecated
      */
-    private $equivalence_class_histogram_buckets;
-
-    public function __construct() {
-        \GPBMetadata\Google\Privacy\Dlp\V2\Dlp::initOnce();
-        parent::__construct();
-    }
-
-    /**
-     * Histogram of k-anonymity equivalence classes.
-     *
-     * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.AnalyzeDataSourceRiskDetails.KAnonymityResult.KAnonymityHistogramBucket equivalence_class_histogram_buckets = 5;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
-     */
-    public function getEquivalenceClassHistogramBuckets()
-    {
-        return $this->equivalence_class_histogram_buckets;
-    }
-
-    /**
-     * Histogram of k-anonymity equivalence classes.
-     *
-     * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.AnalyzeDataSourceRiskDetails.KAnonymityResult.KAnonymityHistogramBucket equivalence_class_histogram_buckets = 5;</code>
-     * @param \Google\Cloud\Dlp\V2\AnalyzeDataSourceRiskDetails_KAnonymityResult_KAnonymityHistogramBucket[]|\Google\Protobuf\Internal\RepeatedField $var
-     * @return $this
-     */
-    public function setEquivalenceClassHistogramBuckets($var)
-    {
-        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Dlp\V2\AnalyzeDataSourceRiskDetails_KAnonymityResult_KAnonymityHistogramBucket::class);
-        $this->equivalence_class_histogram_buckets = $arr;
-
-        return $this;
-    }
-
+    class AnalyzeDataSourceRiskDetails_KAnonymityResult {}
 }
+class_exists(AnalyzeDataSourceRiskDetails\KAnonymityResult::class);
+@trigger_error('Google\Cloud\Dlp\V2\AnalyzeDataSourceRiskDetails_KAnonymityResult is deprecated and will be removed in the next major release. Use Google\Cloud\Dlp\V2\AnalyzeDataSourceRiskDetails\KAnonymityResult instead', E_USER_DEPRECATED);
 

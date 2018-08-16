@@ -28,9 +28,20 @@ class Error extends \Google\Protobuf\Internal\Message
      */
     private $timestamps;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type \Google\Rpc\Status $details
+     *     @type \Google\Protobuf\Timestamp[]|\Google\Protobuf\Internal\RepeatedField $timestamps
+     *           The times the error occurred.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Privacy\Dlp\V2\Dlp::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

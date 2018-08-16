@@ -28,9 +28,21 @@ class ListDlpJobsResponse extends \Google\Protobuf\Internal\Message
      */
     private $next_page_token = '';
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type \Google\Cloud\Dlp\V2\DlpJob[]|\Google\Protobuf\Internal\RepeatedField $jobs
+     *           A list of DlpJobs that matches the specified filter in the request.
+     *     @type string $next_page_token
+     *           The standard List next-page token.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Privacy\Dlp\V2\Dlp::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

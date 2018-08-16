@@ -36,9 +36,25 @@ class RedactImageResponse extends \Google\Protobuf\Internal\Message
      */
     private $inspect_result = null;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $redacted_image
+     *           The redacted image. The type will be the same as the original image.
+     *     @type string $extracted_text
+     *           If an image was being inspected and the InspectConfig's include_quote was
+     *           set to true, then this field will include all text, if any, that was found
+     *           in the image.
+     *     @type \Google\Cloud\Dlp\V2\InspectResult $inspect_result
+     *           The findings. Populated when include_findings in the request is true.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Privacy\Dlp\V2\Dlp::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

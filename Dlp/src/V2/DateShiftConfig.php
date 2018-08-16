@@ -44,9 +44,33 @@ class DateShiftConfig extends \Google\Protobuf\Internal\Message
     private $context = null;
     protected $method;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type int $upper_bound_days
+     *           Range of shift in days. Actual shift will be selected at random within this
+     *           range (inclusive ends). Negative means shift to earlier in time. Must not
+     *           be more than 365250 days (1000 years) each direction.
+     *           For example, 3 means shift date to at most 3 days into the future.
+     *           [Required]
+     *     @type int $lower_bound_days
+     *           For example, -5 means shift date to at most 5 days back in the past.
+     *           [Required]
+     *     @type \Google\Cloud\Dlp\V2\FieldId $context
+     *           Points to the field that contains the context, for example, an entity id.
+     *           If set, must also set method. If set, shift will be consistent for the
+     *           given context.
+     *     @type \Google\Cloud\Dlp\V2\CryptoKey $crypto_key
+     *           Causes the shift to be computed based on this key and the context. This
+     *           results in the same shift for the same context and crypto_key.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Privacy\Dlp\V2\Dlp::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

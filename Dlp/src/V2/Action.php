@@ -18,16 +18,30 @@ class Action extends \Google\Protobuf\Internal\Message
 {
     protected $action;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type \Google\Cloud\Dlp\V2\Action\SaveFindings $save_findings
+     *           Save resulting findings in a provided location.
+     *     @type \Google\Cloud\Dlp\V2\Action\PublishToPubSub $pub_sub
+     *           Publish a notification to a pubsub topic.
+     *     @type \Google\Cloud\Dlp\V2\Action\PublishSummaryToCscc $publish_summary_to_cscc
+     *           Publish summary to Cloud Security Command Center (Alpha).
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Privacy\Dlp\V2\Dlp::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**
      * Save resulting findings in a provided location.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.Action.SaveFindings save_findings = 1;</code>
-     * @return \Google\Cloud\Dlp\V2\Action_SaveFindings
+     * @return \Google\Cloud\Dlp\V2\Action\SaveFindings
      */
     public function getSaveFindings()
     {
@@ -38,7 +52,7 @@ class Action extends \Google\Protobuf\Internal\Message
      * Save resulting findings in a provided location.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.Action.SaveFindings save_findings = 1;</code>
-     * @param \Google\Cloud\Dlp\V2\Action_SaveFindings $var
+     * @param \Google\Cloud\Dlp\V2\Action\SaveFindings $var
      * @return $this
      */
     public function setSaveFindings($var)
@@ -53,7 +67,7 @@ class Action extends \Google\Protobuf\Internal\Message
      * Publish a notification to a pubsub topic.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.Action.PublishToPubSub pub_sub = 2;</code>
-     * @return \Google\Cloud\Dlp\V2\Action_PublishToPubSub
+     * @return \Google\Cloud\Dlp\V2\Action\PublishToPubSub
      */
     public function getPubSub()
     {
@@ -64,7 +78,7 @@ class Action extends \Google\Protobuf\Internal\Message
      * Publish a notification to a pubsub topic.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.Action.PublishToPubSub pub_sub = 2;</code>
-     * @param \Google\Cloud\Dlp\V2\Action_PublishToPubSub $var
+     * @param \Google\Cloud\Dlp\V2\Action\PublishToPubSub $var
      * @return $this
      */
     public function setPubSub($var)
@@ -79,7 +93,7 @@ class Action extends \Google\Protobuf\Internal\Message
      * Publish summary to Cloud Security Command Center (Alpha).
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.Action.PublishSummaryToCscc publish_summary_to_cscc = 3;</code>
-     * @return \Google\Cloud\Dlp\V2\Action_PublishSummaryToCscc
+     * @return \Google\Cloud\Dlp\V2\Action\PublishSummaryToCscc
      */
     public function getPublishSummaryToCscc()
     {
@@ -90,7 +104,7 @@ class Action extends \Google\Protobuf\Internal\Message
      * Publish summary to Cloud Security Command Center (Alpha).
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.Action.PublishSummaryToCscc publish_summary_to_cscc = 3;</code>
-     * @param \Google\Cloud\Dlp\V2\Action_PublishSummaryToCscc $var
+     * @param \Google\Cloud\Dlp\V2\Action\PublishSummaryToCscc $var
      * @return $this
      */
     public function setPublishSummaryToCscc($var)

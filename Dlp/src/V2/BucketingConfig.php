@@ -30,9 +30,19 @@ class BucketingConfig extends \Google\Protobuf\Internal\Message
      */
     private $buckets;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type \Google\Cloud\Dlp\V2\BucketingConfig\Bucket[]|\Google\Protobuf\Internal\RepeatedField $buckets
+     *           Set of buckets. Ranges must be non-overlapping.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Privacy\Dlp\V2\Dlp::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**
@@ -50,12 +60,12 @@ class BucketingConfig extends \Google\Protobuf\Internal\Message
      * Set of buckets. Ranges must be non-overlapping.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.BucketingConfig.Bucket buckets = 1;</code>
-     * @param \Google\Cloud\Dlp\V2\BucketingConfig_Bucket[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dlp\V2\BucketingConfig\Bucket[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setBuckets($var)
     {
-        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Dlp\V2\BucketingConfig_Bucket::class);
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Dlp\V2\BucketingConfig\Bucket::class);
         $this->buckets = $arr;
 
         return $this;

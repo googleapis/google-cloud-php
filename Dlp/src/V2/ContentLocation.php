@@ -42,9 +42,36 @@ class ContentLocation extends \Google\Protobuf\Internal\Message
     private $container_version = '';
     protected $location;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $container_name
+     *           Name of the container where the finding is located.
+     *           The top level name is the source file name or table name. Nested names
+     *           could be absent if the embedded object has no string identifier
+     *           (for an example an image contained within a document).
+     *     @type \Google\Cloud\Dlp\V2\RecordLocation $record_location
+     *           Location within a row or record of a database table.
+     *     @type \Google\Cloud\Dlp\V2\ImageLocation $image_location
+     *           Location within an image's pixels.
+     *     @type \Google\Cloud\Dlp\V2\DocumentLocation $document_location
+     *           Location data for document files.
+     *     @type \Google\Protobuf\Timestamp $container_timestamp
+     *           Findings container modification timestamp, if applicable.
+     *           For Google Cloud Storage contains last file modification timestamp.
+     *           For BigQuery table contains last_modified_time property.
+     *           For Datastore - not populated.
+     *     @type string $container_version
+     *           Findings container version, if available
+     *           ("generation" for Google Cloud Storage).
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Privacy\Dlp\V2\Dlp::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

@@ -7,7 +7,7 @@ namespace Google\Cloud\Dlp\V2;
 /**
  * Operators available for comparing the value of fields.
  *
- * Protobuf enum <code>Google\Privacy\Dlp\V2\RelationalOperator</code>
+ * Protobuf type <code>google.privacy.dlp.v2.RelationalOperator</code>
  */
 class RelationalOperator
 {

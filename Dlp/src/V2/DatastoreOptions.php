@@ -29,9 +29,22 @@ class DatastoreOptions extends \Google\Protobuf\Internal\Message
      */
     private $kind = null;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type \Google\Cloud\Dlp\V2\PartitionId $partition_id
+     *           A partition ID identifies a grouping of entities. The grouping is always
+     *           by project and namespace, however the namespace ID may be empty.
+     *     @type \Google\Cloud\Dlp\V2\KindExpression $kind
+     *           The kind to process.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Privacy\Dlp\V2\Storage::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**
