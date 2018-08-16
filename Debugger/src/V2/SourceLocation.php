@@ -28,9 +28,21 @@ class SourceLocation extends \Google\Protobuf\Internal\Message
      */
     private $line = 0;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $path
+     *           Path to the source file within the source context of the target binary.
+     *     @type int $line
+     *           Line inside the file. The first line in the file has the value `1`.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Devtools\Clouddebugger\V2\Data::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

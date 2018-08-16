@@ -4,30 +4,13 @@
 
 namespace Google\Cloud\Debugger\V2;
 
-/**
- * Log severity levels.
- *
- * Protobuf enum <code>Google\Devtools\Clouddebugger\V2\Breakpoint\LogLevel</code>
- */
-class Breakpoint_LogLevel
-{
+if (false) {
     /**
-     * Information log message.
-     *
-     * Generated from protobuf enum <code>INFO = 0;</code>
+     * This class is deprecated. Use Google\Cloud\Debugger\V2\Breakpoint\LogLevel instead.
+     * @deprecated
      */
-    const INFO = 0;
-    /**
-     * Warning log message.
-     *
-     * Generated from protobuf enum <code>WARNING = 1;</code>
-     */
-    const WARNING = 1;
-    /**
-     * Error log message.
-     *
-     * Generated from protobuf enum <code>ERROR = 2;</code>
-     */
-    const ERROR = 2;
+    class Breakpoint_LogLevel {}
 }
+class_exists(Breakpoint\LogLevel::class);
+@trigger_error('Google\Cloud\Debugger\V2\Breakpoint_LogLevel is deprecated and will be removed in the next major release. Use Google\Cloud\Debugger\V2\Breakpoint\LogLevel instead', E_USER_DEPRECATED);
 

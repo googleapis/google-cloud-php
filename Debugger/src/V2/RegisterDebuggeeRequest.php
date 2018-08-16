@@ -24,9 +24,21 @@ class RegisterDebuggeeRequest extends \Google\Protobuf\Internal\Message
      */
     private $debuggee = null;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type \Google\Cloud\Debugger\V2\Debuggee $debuggee
+     *           Debuggee information to register.
+     *           The fields `project`, `uniquifier`, `description` and `agent_version`
+     *           of the debuggee must be set.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Devtools\Clouddebugger\V2\Controller::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

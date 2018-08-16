@@ -66,9 +66,39 @@ class ListBreakpointsRequest extends \Google\Protobuf\Internal\Message
      */
     private $client_version = '';
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $debuggee_id
+     *           ID of the debuggee whose breakpoints to list.
+     *     @type bool $include_all_users
+     *           When set to `true`, the response includes the list of breakpoints set by
+     *           any user. Otherwise, it includes only breakpoints set by the caller.
+     *     @type bool $include_inactive
+     *           When set to `true`, the response includes active and inactive
+     *           breakpoints. Otherwise, it includes only active breakpoints.
+     *     @type \Google\Cloud\Debugger\V2\ListBreakpointsRequest\BreakpointActionValue $action
+     *           When set, the response includes only breakpoints with the specified action.
+     *     @type bool $strip_results
+     *           This field is deprecated. The following fields are always stripped out of
+     *           the result: `stack_frames`, `evaluated_expressions` and `variable_table`.
+     *     @type string $wait_token
+     *           A wait token that, if specified, blocks the call until the breakpoints
+     *           list has changed, or a server selected timeout has expired.  The value
+     *           should be set from the last response. The error code
+     *           `google.rpc.Code.ABORTED` (RPC) is returned on wait timeout, which
+     *           should be called again with the same `wait_token`.
+     *     @type string $client_version
+     *           The client version making the call.
+     *           Schema: `domain/type/version` (e.g., `google.com/intellij/v1`).
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Devtools\Clouddebugger\V2\Debugger::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**
@@ -157,7 +187,7 @@ class ListBreakpointsRequest extends \Google\Protobuf\Internal\Message
      * When set, the response includes only breakpoints with the specified action.
      *
      * Generated from protobuf field <code>.google.devtools.clouddebugger.v2.ListBreakpointsRequest.BreakpointActionValue action = 4;</code>
-     * @return \Google\Cloud\Debugger\V2\ListBreakpointsRequest_BreakpointActionValue
+     * @return \Google\Cloud\Debugger\V2\ListBreakpointsRequest\BreakpointActionValue
      */
     public function getAction()
     {
@@ -168,7 +198,7 @@ class ListBreakpointsRequest extends \Google\Protobuf\Internal\Message
      * When set, the response includes only breakpoints with the specified action.
      *
      * Generated from protobuf field <code>.google.devtools.clouddebugger.v2.ListBreakpointsRequest.BreakpointActionValue action = 4;</code>
-     * @param \Google\Cloud\Debugger\V2\ListBreakpointsRequest_BreakpointActionValue $var
+     * @param \Google\Cloud\Debugger\V2\ListBreakpointsRequest\BreakpointActionValue $var
      * @return $this
      */
     public function setAction($var)

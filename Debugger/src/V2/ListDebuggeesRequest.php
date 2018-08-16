@@ -36,9 +36,25 @@ class ListDebuggeesRequest extends \Google\Protobuf\Internal\Message
      */
     private $client_version = '';
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $project
+     *           Project number of a Google Cloud project whose debuggees to list.
+     *     @type bool $include_inactive
+     *           When set to `true`, the result includes all debuggees. Otherwise, the
+     *           result includes only debuggees that are active.
+     *     @type string $client_version
+     *           The client version making the call.
+     *           Schema: `domain/type/version` (e.g., `google.com/intellij/v1`).
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Devtools\Clouddebugger\V2\Debugger::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

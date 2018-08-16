@@ -42,9 +42,27 @@ class StackFrame extends \Google\Protobuf\Internal\Message
      */
     private $locals;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $function
+     *           Demangled function name at the call site.
+     *     @type \Google\Cloud\Debugger\V2\SourceLocation $location
+     *           Source location of the call site.
+     *     @type \Google\Cloud\Debugger\V2\Variable[]|\Google\Protobuf\Internal\RepeatedField $arguments
+     *           Set of arguments passed to this function.
+     *           Note that this might not be populated for all stack frames.
+     *     @type \Google\Cloud\Debugger\V2\Variable[]|\Google\Protobuf\Internal\RepeatedField $locals
+     *           Set of local variables at the stack frame location.
+     *           Note that this might not be populated for all stack frames.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Devtools\Clouddebugger\V2\Data::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

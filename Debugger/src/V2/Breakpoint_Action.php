@@ -4,28 +4,13 @@
 
 namespace Google\Cloud\Debugger\V2;
 
-/**
- * Actions that can be taken when a breakpoint hits.
- * Agents should reject breakpoints with unsupported or unknown action values.
- *
- * Protobuf enum <code>Google\Devtools\Clouddebugger\V2\Breakpoint\Action</code>
- */
-class Breakpoint_Action
-{
+if (false) {
     /**
-     * Capture stack frame and variables and update the breakpoint.
-     * The data is only captured once. After that the breakpoint is set
-     * in a final state.
-     *
-     * Generated from protobuf enum <code>CAPTURE = 0;</code>
+     * This class is deprecated. Use Google\Cloud\Debugger\V2\Breakpoint\Action instead.
+     * @deprecated
      */
-    const CAPTURE = 0;
-    /**
-     * Log each breakpoint hit. The breakpoint remains active until
-     * deleted or expired.
-     *
-     * Generated from protobuf enum <code>LOG = 1;</code>
-     */
-    const LOG = 1;
+    class Breakpoint_Action {}
 }
+class_exists(Breakpoint\Action::class);
+@trigger_error('Google\Cloud\Debugger\V2\Breakpoint_Action is deprecated and will be removed in the next major release. Use Google\Cloud\Debugger\V2\Breakpoint\Action instead', E_USER_DEPRECATED);
 

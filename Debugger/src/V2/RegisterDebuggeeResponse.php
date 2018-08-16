@@ -26,9 +26,23 @@ class RegisterDebuggeeResponse extends \Google\Protobuf\Internal\Message
      */
     private $debuggee = null;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type \Google\Cloud\Debugger\V2\Debuggee $debuggee
+     *           Debuggee resource.
+     *           The field `id` is guranteed to be set (in addition to the echoed fields).
+     *           If the field `is_disabled` is set to `true`, the agent should disable
+     *           itself by removing all breakpoints and detaching from the application.
+     *           It should however continue to poll `RegisterDebuggee` until reenabled.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Devtools\Clouddebugger\V2\Controller::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

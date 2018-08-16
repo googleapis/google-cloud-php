@@ -23,9 +23,20 @@ class GetBreakpointResponse extends \Google\Protobuf\Internal\Message
      */
     private $breakpoint = null;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type \Google\Cloud\Debugger\V2\Breakpoint $breakpoint
+     *           Complete breakpoint state.
+     *           The fields `id` and `location` are guaranteed to be set.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Devtools\Clouddebugger\V2\Debugger::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**
