@@ -41,9 +41,26 @@ class ClusterStatus extends \Google\Protobuf\Internal\Message
      */
     private $substate = 0;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type int $state
+     *           Output-only. The cluster's state.
+     *     @type string $detail
+     *           Output-only. Optional details of cluster's state.
+     *     @type \Google\Protobuf\Timestamp $state_start_time
+     *           Output-only. Time when this state was entered.
+     *     @type int $substate
+     *           Output-only. Additional state information that includes
+     *           status reported by the agent.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Dataproc\V1\Clusters::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

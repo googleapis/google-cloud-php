@@ -4,36 +4,13 @@
 
 namespace Google\Cloud\Dataproc\V1;
 
-/**
- * The operation state.
- *
- * Protobuf enum <code>Google\Cloud\Dataproc\V1\ClusterOperationStatus\State</code>
- */
-class ClusterOperationStatus_State
-{
+if (false) {
     /**
-     * Unused.
-     *
-     * Generated from protobuf enum <code>UNKNOWN = 0;</code>
+     * This class is deprecated. Use Google\Cloud\Dataproc\V1\ClusterOperationStatus\State instead.
+     * @deprecated
      */
-    const UNKNOWN = 0;
-    /**
-     * The operation has been created.
-     *
-     * Generated from protobuf enum <code>PENDING = 1;</code>
-     */
-    const PENDING = 1;
-    /**
-     * The operation is running.
-     *
-     * Generated from protobuf enum <code>RUNNING = 2;</code>
-     */
-    const RUNNING = 2;
-    /**
-     * The operation is done; either cancelled or completed.
-     *
-     * Generated from protobuf enum <code>DONE = 3;</code>
-     */
-    const DONE = 3;
+    class ClusterOperationStatus_State {}
 }
+class_exists(ClusterOperationStatus\State::class);
+@trigger_error('Google\Cloud\Dataproc\V1\ClusterOperationStatus_State is deprecated and will be removed in the next major release. Use Google\Cloud\Dataproc\V1\ClusterOperationStatus\State instead', E_USER_DEPRECATED);
 

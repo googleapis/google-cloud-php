@@ -280,18 +280,21 @@ class JobControllerGapicClient
      * try {
      *     $projectId = '';
      *     $region = '';
-     *     // Iterate through all elements
-     *     $pagedResponse = $jobControllerClient->listJobs($projectId, $region);
-     *     foreach ($pagedResponse->iterateAllElements() as $element) {
-     *         // doSomethingWith($element);
-     *     }
-     *
-     *     // OR iterate over pages of elements
+     *     // Iterate over pages of elements
      *     $pagedResponse = $jobControllerClient->listJobs($projectId, $region);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
      *         }
+     *     }
+     *
+     *
+     *     // Alternatively:
+     *
+     *     // Iterate through all elements
+     *     $pagedResponse = $jobControllerClient->listJobs($projectId, $region);
+     *     foreach ($pagedResponse->iterateAllElements() as $element) {
+     *         // doSomethingWith($element);
      *     }
      * } finally {
      *     $jobControllerClient->close();

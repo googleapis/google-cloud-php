@@ -64,9 +64,33 @@ class ClusterOperationMetadata extends \Google\Protobuf\Internal\Message
      */
     private $warnings;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $cluster_name
+     *           Output-only. Name of the cluster for the operation.
+     *     @type string $cluster_uuid
+     *           Output-only. Cluster UUID for the operation.
+     *     @type \Google\Cloud\Dataproc\V1\ClusterOperationStatus $status
+     *           Output-only. Current operation status.
+     *     @type \Google\Cloud\Dataproc\V1\ClusterOperationStatus[]|\Google\Protobuf\Internal\RepeatedField $status_history
+     *           Output-only. The previous operation status.
+     *     @type string $operation_type
+     *           Output-only. The operation type.
+     *     @type string $description
+     *           Output-only. Short description of operation.
+     *     @type array|\Google\Protobuf\Internal\MapField $labels
+     *           Output-only. Labels associated with the operation
+     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $warnings
+     *           Output-only. Errors encountered during operation execution.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Dataproc\V1\Operations::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

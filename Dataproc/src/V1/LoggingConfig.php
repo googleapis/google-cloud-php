@@ -25,9 +25,22 @@ class LoggingConfig extends \Google\Protobuf\Internal\Message
      */
     private $driver_log_levels;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type array|\Google\Protobuf\Internal\MapField $driver_log_levels
+     *           The per-package log levels for the driver. This may include
+     *           "root" package name to configure rootLogger.
+     *           Examples:
+     *             'com.google = FATAL', 'root = INFO', 'org.apache = DEBUG'
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Dataproc\V1\Jobs::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**
@@ -56,7 +69,7 @@ class LoggingConfig extends \Google\Protobuf\Internal\Message
      */
     public function setDriverLogLevels($var)
     {
-        $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::ENUM, \Google\Cloud\Dataproc\V1\LoggingConfig_Level::class);
+        $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::ENUM, \Google\Cloud\Dataproc\V1\LoggingConfig\Level::class);
         $this->driver_log_levels = $arr;
 
         return $this;

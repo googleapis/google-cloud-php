@@ -30,9 +30,23 @@ class ListClustersResponse extends \Google\Protobuf\Internal\Message
      */
     private $next_page_token = '';
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type \Google\Cloud\Dataproc\V1\Cluster[]|\Google\Protobuf\Internal\RepeatedField $clusters
+     *           Output-only. The clusters in the project.
+     *     @type string $next_page_token
+     *           Output-only. This token is included in the response if there are more
+     *           results to fetch. To fetch additional results, provide this value as the
+     *           `page_token` in a subsequent `ListClustersRequest`.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Dataproc\V1\Clusters::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**
