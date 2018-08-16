@@ -173,8 +173,9 @@ class Result implements \IteratorAggregate
         $call = $this->call;
         $generator = $call();
         $shouldRetry = false;
+        $valid = $generator->valid();
 
-        while ($generator->valid()) {
+        while ($valid) {
             try {
                 $result = $generator->current();
                 $bufferedResults[] = $result;
@@ -205,12 +206,11 @@ class Result implements \IteratorAggregate
                 }
 
                 $generator->next();
+                $valid = $generator->valid();
             } catch (ServiceException $ex) {
                 if ($shouldRetry && $ex->getCode() === Grpc\STATUS_UNAVAILABLE) {
                     $backoff = new ExponentialBackoff($this->retries, function (ServiceException $ex) {
-                        return $ex->getCode() === Grpc\STATUS_UNAVAILABLE
-                            ? true
-                            : false;
+                        return $ex->getCode() === Grpc\STATUS_UNAVAILABLE;
                     });
 
                     // Attempt to resume using our last stored resume token. If we
