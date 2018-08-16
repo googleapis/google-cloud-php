@@ -4,42 +4,13 @@
 
 namespace Google\Cloud\Dlp\V2;
 
-/**
- * These are commonly used subsets of the alphabet that the FFX mode
- * natively supports. In the algorithm, the alphabet is selected using
- * the "radix". Therefore each corresponds to particular radix.
- *
- * Protobuf enum <code>Google\Privacy\Dlp\V2\CryptoReplaceFfxFpeConfig\FfxCommonNativeAlphabet</code>
- */
-class CryptoReplaceFfxFpeConfig_FfxCommonNativeAlphabet
-{
+if (false) {
     /**
-     * Generated from protobuf enum <code>FFX_COMMON_NATIVE_ALPHABET_UNSPECIFIED = 0;</code>
+     * This class is deprecated. Use Google\Cloud\Dlp\V2\CryptoReplaceFfxFpeConfig\FfxCommonNativeAlphabet instead.
+     * @deprecated
      */
-    const FFX_COMMON_NATIVE_ALPHABET_UNSPECIFIED = 0;
-    /**
-     * [0-9] (radix of 10)
-     *
-     * Generated from protobuf enum <code>NUMERIC = 1;</code>
-     */
-    const NUMERIC = 1;
-    /**
-     * [0-9A-F] (radix of 16)
-     *
-     * Generated from protobuf enum <code>HEXADECIMAL = 2;</code>
-     */
-    const HEXADECIMAL = 2;
-    /**
-     * [0-9A-Z] (radix of 36)
-     *
-     * Generated from protobuf enum <code>UPPER_CASE_ALPHA_NUMERIC = 3;</code>
-     */
-    const UPPER_CASE_ALPHA_NUMERIC = 3;
-    /**
-     * [0-9A-Za-z] (radix of 62)
-     *
-     * Generated from protobuf enum <code>ALPHA_NUMERIC = 4;</code>
-     */
-    const ALPHA_NUMERIC = 4;
+    class CryptoReplaceFfxFpeConfig_FfxCommonNativeAlphabet {}
 }
+class_exists(CryptoReplaceFfxFpeConfig\FfxCommonNativeAlphabet::class);
+@trigger_error('Google\Cloud\Dlp\V2\CryptoReplaceFfxFpeConfig_FfxCommonNativeAlphabet is deprecated and will be removed in the next major release. Use Google\Cloud\Dlp\V2\CryptoReplaceFfxFpeConfig\FfxCommonNativeAlphabet instead', E_USER_DEPRECATED);
 

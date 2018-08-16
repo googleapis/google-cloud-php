@@ -23,9 +23,32 @@ class QuasiId extends \Google\Protobuf\Internal\Message
     private $field = null;
     protected $tag;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type \Google\Cloud\Dlp\V2\FieldId $field
+     *           Identifies the column. [required]
+     *     @type \Google\Cloud\Dlp\V2\InfoType $info_type
+     *           A column can be tagged with a InfoType to use the relevant public
+     *           dataset as a statistical model of population, if available. We
+     *           currently support US ZIP codes, region codes, ages and genders.
+     *           To programmatically obtain the list of supported InfoTypes, use
+     *           ListInfoTypes with the supported_by=RISK_ANALYSIS filter.
+     *     @type string $custom_tag
+     *           A column can be tagged with a custom tag. In this case, the user must
+     *           indicate an auxiliary table that contains statistical information on
+     *           the possible values of this column (below).
+     *     @type \Google\Protobuf\GPBEmpty $inferred
+     *           If no semantic tag is indicated, we infer the statistical model from
+     *           the distribution of values in the input data
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Privacy\Dlp\V2\Dlp::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

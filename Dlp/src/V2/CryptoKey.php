@@ -21,9 +21,20 @@ class CryptoKey extends \Google\Protobuf\Internal\Message
 {
     protected $source;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type \Google\Cloud\Dlp\V2\TransientCryptoKey $transient
+     *     @type \Google\Cloud\Dlp\V2\UnwrappedCryptoKey $unwrapped
+     *     @type \Google\Cloud\Dlp\V2\KmsWrappedCryptoKey $kms_wrapped
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Privacy\Dlp\V2\Dlp::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

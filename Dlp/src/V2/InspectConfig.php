@@ -24,6 +24,10 @@ class InspectConfig extends \Google\Protobuf\Internal\Message
      * When no InfoTypes or CustomInfoTypes are specified in a request, the
      * system may automatically choose what detectors to run. By default this may
      * be all types, but may change over time as detectors are updated.
+     * The special InfoType name "ALL_BASIC" can be used to trigger all detectors,
+     * but may change over time as new InfoTypes are added. If you need precise
+     * control and predictability as to what detectors are run you should specify
+     * specific InfoTypes listed in the reference.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.InfoType info_types = 1;</code>
      */
@@ -68,9 +72,44 @@ class InspectConfig extends \Google\Protobuf\Internal\Message
      */
     private $content_options;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type \Google\Cloud\Dlp\V2\InfoType[]|\Google\Protobuf\Internal\RepeatedField $info_types
+     *           Restricts what info_types to look for. The values must correspond to
+     *           InfoType values returned by ListInfoTypes or listed at
+     *           https://cloud.google.com/dlp/docs/infotypes-reference.
+     *           When no InfoTypes or CustomInfoTypes are specified in a request, the
+     *           system may automatically choose what detectors to run. By default this may
+     *           be all types, but may change over time as detectors are updated.
+     *           The special InfoType name "ALL_BASIC" can be used to trigger all detectors,
+     *           but may change over time as new InfoTypes are added. If you need precise
+     *           control and predictability as to what detectors are run you should specify
+     *           specific InfoTypes listed in the reference.
+     *     @type int $min_likelihood
+     *           Only returns findings equal or above this threshold. The default is
+     *           POSSIBLE.
+     *           See https://cloud.google.com/dlp/docs/likelihood to learn more.
+     *     @type \Google\Cloud\Dlp\V2\InspectConfig\FindingLimits $limits
+     *     @type bool $include_quote
+     *           When true, a contextual quote from the data that triggered a finding is
+     *           included in the response; see Finding.quote.
+     *     @type bool $exclude_info_types
+     *           When true, excludes type information of the findings.
+     *     @type \Google\Cloud\Dlp\V2\CustomInfoType[]|\Google\Protobuf\Internal\RepeatedField $custom_info_types
+     *           CustomInfoTypes provided by the user. See
+     *           https://cloud.google.com/dlp/docs/creating-custom-infotypes to learn more.
+     *     @type int[]|\Google\Protobuf\Internal\RepeatedField $content_options
+     *           List of options defining data content to scan.
+     *           If empty, text, images, and other content will be included.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Privacy\Dlp\V2\Dlp::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**
@@ -80,6 +119,10 @@ class InspectConfig extends \Google\Protobuf\Internal\Message
      * When no InfoTypes or CustomInfoTypes are specified in a request, the
      * system may automatically choose what detectors to run. By default this may
      * be all types, but may change over time as detectors are updated.
+     * The special InfoType name "ALL_BASIC" can be used to trigger all detectors,
+     * but may change over time as new InfoTypes are added. If you need precise
+     * control and predictability as to what detectors are run you should specify
+     * specific InfoTypes listed in the reference.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.InfoType info_types = 1;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -96,6 +139,10 @@ class InspectConfig extends \Google\Protobuf\Internal\Message
      * When no InfoTypes or CustomInfoTypes are specified in a request, the
      * system may automatically choose what detectors to run. By default this may
      * be all types, but may change over time as detectors are updated.
+     * The special InfoType name "ALL_BASIC" can be used to trigger all detectors,
+     * but may change over time as new InfoTypes are added. If you need precise
+     * control and predictability as to what detectors are run you should specify
+     * specific InfoTypes listed in the reference.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.InfoType info_types = 1;</code>
      * @param \Google\Cloud\Dlp\V2\InfoType[]|\Google\Protobuf\Internal\RepeatedField $var
@@ -141,7 +188,7 @@ class InspectConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * Generated from protobuf field <code>.google.privacy.dlp.v2.InspectConfig.FindingLimits limits = 3;</code>
-     * @return \Google\Cloud\Dlp\V2\InspectConfig_FindingLimits
+     * @return \Google\Cloud\Dlp\V2\InspectConfig\FindingLimits
      */
     public function getLimits()
     {
@@ -150,7 +197,7 @@ class InspectConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * Generated from protobuf field <code>.google.privacy.dlp.v2.InspectConfig.FindingLimits limits = 3;</code>
-     * @param \Google\Cloud\Dlp\V2\InspectConfig_FindingLimits $var
+     * @param \Google\Cloud\Dlp\V2\InspectConfig\FindingLimits $var
      * @return $this
      */
     public function setLimits($var)

@@ -8,7 +8,7 @@ namespace Google\Cloud\Dlp\V2;
  * Categorization of results based on how likely they are to represent a match,
  * based on the number of elements they contain which imply a match.
  *
- * Protobuf enum <code>Google\Privacy\Dlp\V2\Likelihood</code>
+ * Protobuf type <code>google.privacy.dlp.v2.Likelihood</code>
  */
 class Likelihood
 {

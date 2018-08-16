@@ -30,9 +30,23 @@ class ListDeidentifyTemplatesResponse extends \Google\Protobuf\Internal\Message
      */
     private $next_page_token = '';
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type \Google\Cloud\Dlp\V2\DeidentifyTemplate[]|\Google\Protobuf\Internal\RepeatedField $deidentify_templates
+     *           List of deidentify templates, up to page_size in
+     *           ListDeidentifyTemplatesRequest.
+     *     @type string $next_page_token
+     *           If the next page is available then the next page token to be used
+     *           in following ListDeidentifyTemplates request.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Privacy\Dlp\V2\Dlp::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

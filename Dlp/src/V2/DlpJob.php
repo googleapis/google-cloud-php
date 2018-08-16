@@ -66,9 +66,38 @@ class DlpJob extends \Google\Protobuf\Internal\Message
     private $errors;
     protected $details;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $name
+     *           The server-assigned name.
+     *     @type int $type
+     *           The type of job.
+     *     @type int $state
+     *           State of a job.
+     *     @type \Google\Cloud\Dlp\V2\AnalyzeDataSourceRiskDetails $risk_details
+     *           Results from analyzing risk of a data source.
+     *     @type \Google\Cloud\Dlp\V2\InspectDataSourceDetails $inspect_details
+     *           Results from inspecting a data source.
+     *     @type \Google\Protobuf\Timestamp $create_time
+     *           Time when the job was created.
+     *     @type \Google\Protobuf\Timestamp $start_time
+     *           Time when the job started.
+     *     @type \Google\Protobuf\Timestamp $end_time
+     *           Time when the job finished.
+     *     @type string $job_trigger_name
+     *           If created by a job trigger, the resource name of the trigger that
+     *           instantiated the job.
+     *     @type \Google\Cloud\Dlp\V2\Error[]|\Google\Protobuf\Internal\RepeatedField $errors
+     *           A stream of errors encountered running the job.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Privacy\Dlp\V2\Dlp::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

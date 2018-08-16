@@ -38,9 +38,27 @@ class CreateDeidentifyTemplateRequest extends \Google\Protobuf\Internal\Message
      */
     private $template_id = '';
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $parent
+     *           The parent resource name, for example projects/my-project-id or
+     *           organizations/my-org-id.
+     *     @type \Google\Cloud\Dlp\V2\DeidentifyTemplate $deidentify_template
+     *           The DeidentifyTemplate to create.
+     *     @type string $template_id
+     *           The template id can contain uppercase and lowercase letters,
+     *           numbers, and hyphens; that is, it must match the regular
+     *           expression: `[a-zA-Z\\d-]+`. The maximum length is 100
+     *           characters. Can be empty to allow the system to generate one.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Privacy\Dlp\V2\Dlp::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

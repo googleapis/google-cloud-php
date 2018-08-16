@@ -18,9 +18,19 @@ class CharsToIgnore extends \Google\Protobuf\Internal\Message
 {
     protected $characters;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $characters_to_skip
+     *     @type int $common_characters_to_ignore
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Privacy\Dlp\V2\Dlp::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

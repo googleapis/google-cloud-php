@@ -41,9 +41,30 @@ class Location extends \Google\Protobuf\Internal\Message
      */
     private $content_locations;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type \Google\Cloud\Dlp\V2\Range $byte_range
+     *           Zero-based byte offsets delimiting the finding.
+     *           These are relative to the finding's containing element.
+     *           Note that when the content is not textual, this references
+     *           the UTF-8 encoded textual representation of the content.
+     *           Omitted if content is an image.
+     *     @type \Google\Cloud\Dlp\V2\Range $codepoint_range
+     *           Unicode character offsets delimiting the finding.
+     *           These are relative to the finding's containing element.
+     *           Provided when the content is text.
+     *     @type \Google\Cloud\Dlp\V2\ContentLocation[]|\Google\Protobuf\Internal\RepeatedField $content_locations
+     *           List of nested objects pointing to the precise location of the finding
+     *           within the file or record.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Privacy\Dlp\V2\Dlp::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

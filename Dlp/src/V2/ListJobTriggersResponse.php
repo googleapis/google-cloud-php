@@ -29,9 +29,22 @@ class ListJobTriggersResponse extends \Google\Protobuf\Internal\Message
      */
     private $next_page_token = '';
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type \Google\Cloud\Dlp\V2\JobTrigger[]|\Google\Protobuf\Internal\RepeatedField $job_triggers
+     *           List of triggeredJobs, up to page_size in ListJobTriggersRequest.
+     *     @type string $next_page_token
+     *           If the next page is available then the next page token to be used
+     *           in following ListJobTriggers request.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Privacy\Dlp\V2\Dlp::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

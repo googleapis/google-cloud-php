@@ -4,44 +4,13 @@
 
 namespace Google\Cloud\Dlp\V2;
 
-/**
- * Protobuf enum <code>Google\Privacy\Dlp\V2\CharsToIgnore\CommonCharsToIgnore</code>
- */
-class CharsToIgnore_CommonCharsToIgnore
-{
+if (false) {
     /**
-     * Generated from protobuf enum <code>COMMON_CHARS_TO_IGNORE_UNSPECIFIED = 0;</code>
+     * This class is deprecated. Use Google\Cloud\Dlp\V2\CharsToIgnore\CommonCharsToIgnore instead.
+     * @deprecated
      */
-    const COMMON_CHARS_TO_IGNORE_UNSPECIFIED = 0;
-    /**
-     * 0-9
-     *
-     * Generated from protobuf enum <code>NUMERIC = 1;</code>
-     */
-    const NUMERIC = 1;
-    /**
-     * A-Z
-     *
-     * Generated from protobuf enum <code>ALPHA_UPPER_CASE = 2;</code>
-     */
-    const ALPHA_UPPER_CASE = 2;
-    /**
-     * a-z
-     *
-     * Generated from protobuf enum <code>ALPHA_LOWER_CASE = 3;</code>
-     */
-    const ALPHA_LOWER_CASE = 3;
-    /**
-     * US Punctuation, one of !"#$%&'()*+,-./:;<=>?&#64;[\]^_`{|}~
-     *
-     * Generated from protobuf enum <code>PUNCTUATION = 4;</code>
-     */
-    const PUNCTUATION = 4;
-    /**
-     * Whitespace character, one of [ \t\n\x0B\f\r]
-     *
-     * Generated from protobuf enum <code>WHITESPACE = 5;</code>
-     */
-    const WHITESPACE = 5;
+    class CharsToIgnore_CommonCharsToIgnore {}
 }
+class_exists(CharsToIgnore\CommonCharsToIgnore::class);
+@trigger_error('Google\Cloud\Dlp\V2\CharsToIgnore_CommonCharsToIgnore is deprecated and will be removed in the next major release. Use Google\Cloud\Dlp\V2\CharsToIgnore\CommonCharsToIgnore instead', E_USER_DEPRECATED);
 

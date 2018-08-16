@@ -29,9 +29,22 @@ class BigQueryKey extends \Google\Protobuf\Internal\Message
      */
     private $row_number = 0;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type \Google\Cloud\Dlp\V2\BigQueryTable $table_reference
+     *           Complete BigQuery table reference.
+     *     @type int|string $row_number
+     *           Absolute number of the row from the beginning of the table at the time
+     *           of scanning.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Privacy\Dlp\V2\Storage::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

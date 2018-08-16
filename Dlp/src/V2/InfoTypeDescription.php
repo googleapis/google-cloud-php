@@ -34,9 +34,23 @@ class InfoTypeDescription extends \Google\Protobuf\Internal\Message
      */
     private $supported_by;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $name
+     *           Internal name of the infoType.
+     *     @type string $display_name
+     *           Human readable form of the infoType name.
+     *     @type int[]|\Google\Protobuf\Internal\RepeatedField $supported_by
+     *           Which parts of the API supports this InfoType.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Privacy\Dlp\V2\Dlp::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

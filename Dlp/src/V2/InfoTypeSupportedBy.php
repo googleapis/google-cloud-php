@@ -7,7 +7,7 @@ namespace Google\Cloud\Dlp\V2;
 /**
  * Parts of the APIs which use certain infoTypes.
  *
- * Protobuf enum <code>Google\Privacy\Dlp\V2\InfoTypeSupportedBy</code>
+ * Protobuf type <code>google.privacy.dlp.v2.InfoTypeSupportedBy</code>
  */
 class InfoTypeSupportedBy
 {

@@ -28,9 +28,21 @@ class InfoTypeStats extends \Google\Protobuf\Internal\Message
      */
     private $count = 0;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type \Google\Cloud\Dlp\V2\InfoType $info_type
+     *           The type of finding this stat is for.
+     *     @type int|string $count
+     *           Number of findings for this infoType.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Privacy\Dlp\V2\Dlp::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

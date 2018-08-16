@@ -22,11 +22,21 @@ class CloudStorageOptions extends \Google\Protobuf\Internal\Message
     private $file_set = null;
     /**
      * Max number of bytes to scan from a file. If a scanned file's size is bigger
-     * than this value then the rest of the bytes are omitted.
+     * than this value then the rest of the bytes are omitted. Only one
+     * of bytes_limit_per_file and bytes_limit_per_file_percent can be specified.
      *
      * Generated from protobuf field <code>int64 bytes_limit_per_file = 4;</code>
      */
     private $bytes_limit_per_file = 0;
+    /**
+     * Max percentage of bytes to scan from a file. The rest are omitted. The
+     * number of bytes scanned is rounded down. Must be between 0 and 100,
+     * inclusively. Both 0 and 100 means no limit. Defaults to 0. Only one
+     * of bytes_limit_per_file and bytes_limit_per_file_percent can be specified.
+     *
+     * Generated from protobuf field <code>int32 bytes_limit_per_file_percent = 8;</code>
+     */
+    private $bytes_limit_per_file_percent = 0;
     /**
      * List of file type groups to include in the scan.
      * If empty, all files are scanned and available data format processors
@@ -48,14 +58,41 @@ class CloudStorageOptions extends \Google\Protobuf\Internal\Message
      */
     private $files_limit_percent = 0;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type \Google\Cloud\Dlp\V2\CloudStorageOptions\FileSet $file_set
+     *     @type int|string $bytes_limit_per_file
+     *           Max number of bytes to scan from a file. If a scanned file's size is bigger
+     *           than this value then the rest of the bytes are omitted. Only one
+     *           of bytes_limit_per_file and bytes_limit_per_file_percent can be specified.
+     *     @type int $bytes_limit_per_file_percent
+     *           Max percentage of bytes to scan from a file. The rest are omitted. The
+     *           number of bytes scanned is rounded down. Must be between 0 and 100,
+     *           inclusively. Both 0 and 100 means no limit. Defaults to 0. Only one
+     *           of bytes_limit_per_file and bytes_limit_per_file_percent can be specified.
+     *     @type int[]|\Google\Protobuf\Internal\RepeatedField $file_types
+     *           List of file type groups to include in the scan.
+     *           If empty, all files are scanned and available data format processors
+     *           are applied.
+     *     @type int $sample_method
+     *     @type int $files_limit_percent
+     *           Limits the number of files to scan to this percentage of the input FileSet.
+     *           Number of files scanned is rounded down. Must be between 0 and 100,
+     *           inclusively. Both 0 and 100 means no limit. Defaults to 0.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Privacy\Dlp\V2\Storage::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**
      * Generated from protobuf field <code>.google.privacy.dlp.v2.CloudStorageOptions.FileSet file_set = 1;</code>
-     * @return \Google\Cloud\Dlp\V2\CloudStorageOptions_FileSet
+     * @return \Google\Cloud\Dlp\V2\CloudStorageOptions\FileSet
      */
     public function getFileSet()
     {
@@ -64,7 +101,7 @@ class CloudStorageOptions extends \Google\Protobuf\Internal\Message
 
     /**
      * Generated from protobuf field <code>.google.privacy.dlp.v2.CloudStorageOptions.FileSet file_set = 1;</code>
-     * @param \Google\Cloud\Dlp\V2\CloudStorageOptions_FileSet $var
+     * @param \Google\Cloud\Dlp\V2\CloudStorageOptions\FileSet $var
      * @return $this
      */
     public function setFileSet($var)
@@ -77,7 +114,8 @@ class CloudStorageOptions extends \Google\Protobuf\Internal\Message
 
     /**
      * Max number of bytes to scan from a file. If a scanned file's size is bigger
-     * than this value then the rest of the bytes are omitted.
+     * than this value then the rest of the bytes are omitted. Only one
+     * of bytes_limit_per_file and bytes_limit_per_file_percent can be specified.
      *
      * Generated from protobuf field <code>int64 bytes_limit_per_file = 4;</code>
      * @return int|string
@@ -89,7 +127,8 @@ class CloudStorageOptions extends \Google\Protobuf\Internal\Message
 
     /**
      * Max number of bytes to scan from a file. If a scanned file's size is bigger
-     * than this value then the rest of the bytes are omitted.
+     * than this value then the rest of the bytes are omitted. Only one
+     * of bytes_limit_per_file and bytes_limit_per_file_percent can be specified.
      *
      * Generated from protobuf field <code>int64 bytes_limit_per_file = 4;</code>
      * @param int|string $var
@@ -99,6 +138,38 @@ class CloudStorageOptions extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkInt64($var);
         $this->bytes_limit_per_file = $var;
+
+        return $this;
+    }
+
+    /**
+     * Max percentage of bytes to scan from a file. The rest are omitted. The
+     * number of bytes scanned is rounded down. Must be between 0 and 100,
+     * inclusively. Both 0 and 100 means no limit. Defaults to 0. Only one
+     * of bytes_limit_per_file and bytes_limit_per_file_percent can be specified.
+     *
+     * Generated from protobuf field <code>int32 bytes_limit_per_file_percent = 8;</code>
+     * @return int
+     */
+    public function getBytesLimitPerFilePercent()
+    {
+        return $this->bytes_limit_per_file_percent;
+    }
+
+    /**
+     * Max percentage of bytes to scan from a file. The rest are omitted. The
+     * number of bytes scanned is rounded down. Must be between 0 and 100,
+     * inclusively. Both 0 and 100 means no limit. Defaults to 0. Only one
+     * of bytes_limit_per_file and bytes_limit_per_file_percent can be specified.
+     *
+     * Generated from protobuf field <code>int32 bytes_limit_per_file_percent = 8;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setBytesLimitPerFilePercent($var)
+    {
+        GPBUtil::checkInt32($var);
+        $this->bytes_limit_per_file_percent = $var;
 
         return $this;
     }

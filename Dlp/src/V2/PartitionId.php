@@ -32,9 +32,21 @@ class PartitionId extends \Google\Protobuf\Internal\Message
      */
     private $namespace_id = '';
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $project_id
+     *           The ID of the project to which the entities belong.
+     *     @type string $namespace_id
+     *           If not empty, the ID of the namespace to which the entities belong.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Privacy\Dlp\V2\Storage::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

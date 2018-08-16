@@ -34,9 +34,26 @@ class CreateDlpJobRequest extends \Google\Protobuf\Internal\Message
     private $job_id = '';
     protected $job;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $parent
+     *           The parent resource name, for example projects/my-project-id.
+     *     @type \Google\Cloud\Dlp\V2\InspectJobConfig $inspect_job
+     *     @type \Google\Cloud\Dlp\V2\RiskAnalysisJobConfig $risk_job
+     *     @type string $job_id
+     *           The job id can contain uppercase and lowercase letters,
+     *           numbers, and hyphens; that is, it must match the regular
+     *           expression: `[a-zA-Z\\d-]+`. The maximum length is 100
+     *           characters. Can be empty to allow the system to generate one.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Privacy\Dlp\V2\Dlp::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

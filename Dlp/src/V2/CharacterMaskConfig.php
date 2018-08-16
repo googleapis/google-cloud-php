@@ -55,9 +55,35 @@ class CharacterMaskConfig extends \Google\Protobuf\Internal\Message
      */
     private $characters_to_ignore;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $masking_character
+     *           Character to mask the sensitive values&mdash;for example, "*" for an
+     *           alphabetic string such as name, or "0" for a numeric string such as ZIP
+     *           code or credit card number. String must have length 1. If not supplied, we
+     *           will default to "*" for strings, 0 for digits.
+     *     @type int $number_to_mask
+     *           Number of characters to mask. If not set, all matching chars will be
+     *           masked. Skipped characters do not count towards this tally.
+     *     @type bool $reverse_order
+     *           Mask characters in reverse order. For example, if `masking_character` is
+     *           '0', number_to_mask is 14, and `reverse_order` is false, then
+     *           1234-5678-9012-3456 -> 00000000000000-3456
+     *           If `masking_character` is '*', `number_to_mask` is 3, and `reverse_order`
+     *           is true, then 12345 -> 12***
+     *     @type \Google\Cloud\Dlp\V2\CharsToIgnore[]|\Google\Protobuf\Internal\RepeatedField $characters_to_ignore
+     *           When masking a string, items in this list will be skipped when replacing.
+     *           For example, if your string is 555-555-5555 and you ask us to skip `-` and
+     *           mask 5 chars with * we would produce ***-*55-5555.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Privacy\Dlp\V2\Dlp::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

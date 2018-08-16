@@ -35,9 +35,23 @@ class DateTime extends \Google\Protobuf\Internal\Message
      */
     private $time_zone = null;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type \Google\Type\Date $date
+     *           One or more of the following must be set. All fields are optional, but
+     *           when set must be valid date or time values.
+     *     @type int $day_of_week
+     *     @type \Google\Type\TimeOfDay $time
+     *     @type \Google\Cloud\Dlp\V2\DateTime\TimeZone $time_zone
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Privacy\Dlp\V2\Dlp::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**
@@ -114,7 +128,7 @@ class DateTime extends \Google\Protobuf\Internal\Message
 
     /**
      * Generated from protobuf field <code>.google.privacy.dlp.v2.DateTime.TimeZone time_zone = 4;</code>
-     * @return \Google\Cloud\Dlp\V2\DateTime_TimeZone
+     * @return \Google\Cloud\Dlp\V2\DateTime\TimeZone
      */
     public function getTimeZone()
     {
@@ -123,7 +137,7 @@ class DateTime extends \Google\Protobuf\Internal\Message
 
     /**
      * Generated from protobuf field <code>.google.privacy.dlp.v2.DateTime.TimeZone time_zone = 4;</code>
-     * @param \Google\Cloud\Dlp\V2\DateTime_TimeZone $var
+     * @param \Google\Cloud\Dlp\V2\DateTime\TimeZone $var
      * @return $this
      */
     public function setTimeZone($var)

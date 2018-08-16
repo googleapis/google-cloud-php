@@ -4,31 +4,13 @@
 
 namespace Google\Cloud\Dlp\V2;
 
-use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
-use Google\Protobuf\Internal\GPBUtil;
-
-/**
- * Publish the result summary of a DlpJob to the Cloud Security
- * Command Center (CSCC Alpha).
- * This action is only available for projects which are parts of
- * an organization and whitelisted for the alpha Cloud Security Command
- * Center.
- * The action will publish count of finding instances and their info types.
- * The summary of findings will be persisted in CSCC and are governed by CSCC
- * service-specific policy, see https://cloud.google.com/terms/service-terms
- * Only a single instance of this action can be specified.
- * Compatible with: Inspect
- *
- * Generated from protobuf message <code>google.privacy.dlp.v2.Action.PublishSummaryToCscc</code>
- */
-class Action_PublishSummaryToCscc extends \Google\Protobuf\Internal\Message
-{
-
-    public function __construct() {
-        \GPBMetadata\Google\Privacy\Dlp\V2\Dlp::initOnce();
-        parent::__construct();
-    }
-
+if (false) {
+    /**
+     * This class is deprecated. Use Google\Cloud\Dlp\V2\Action\PublishSummaryToCscc instead.
+     * @deprecated
+     */
+    class Action_PublishSummaryToCscc {}
 }
+class_exists(Action\PublishSummaryToCscc::class);
+@trigger_error('Google\Cloud\Dlp\V2\Action_PublishSummaryToCscc is deprecated and will be removed in the next major release. Use Google\Cloud\Dlp\V2\Action\PublishSummaryToCscc instead', E_USER_DEPRECATED);
 

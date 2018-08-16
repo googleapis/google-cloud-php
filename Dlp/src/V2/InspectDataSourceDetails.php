@@ -28,16 +28,28 @@ class InspectDataSourceDetails extends \Google\Protobuf\Internal\Message
      */
     private $result = null;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type \Google\Cloud\Dlp\V2\InspectDataSourceDetails\RequestedOptions $requested_options
+     *           The configuration used for this job.
+     *     @type \Google\Cloud\Dlp\V2\InspectDataSourceDetails\Result $result
+     *           A summary of the outcome of this inspect job.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Privacy\Dlp\V2\Dlp::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**
      * The configuration used for this job.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.InspectDataSourceDetails.RequestedOptions requested_options = 2;</code>
-     * @return \Google\Cloud\Dlp\V2\InspectDataSourceDetails_RequestedOptions
+     * @return \Google\Cloud\Dlp\V2\InspectDataSourceDetails\RequestedOptions
      */
     public function getRequestedOptions()
     {
@@ -48,7 +60,7 @@ class InspectDataSourceDetails extends \Google\Protobuf\Internal\Message
      * The configuration used for this job.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.InspectDataSourceDetails.RequestedOptions requested_options = 2;</code>
-     * @param \Google\Cloud\Dlp\V2\InspectDataSourceDetails_RequestedOptions $var
+     * @param \Google\Cloud\Dlp\V2\InspectDataSourceDetails\RequestedOptions $var
      * @return $this
      */
     public function setRequestedOptions($var)
@@ -63,7 +75,7 @@ class InspectDataSourceDetails extends \Google\Protobuf\Internal\Message
      * A summary of the outcome of this inspect job.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.InspectDataSourceDetails.Result result = 3;</code>
-     * @return \Google\Cloud\Dlp\V2\InspectDataSourceDetails_Result
+     * @return \Google\Cloud\Dlp\V2\InspectDataSourceDetails\Result
      */
     public function getResult()
     {
@@ -74,7 +86,7 @@ class InspectDataSourceDetails extends \Google\Protobuf\Internal\Message
      * A summary of the outcome of this inspect job.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.InspectDataSourceDetails.Result result = 3;</code>
-     * @param \Google\Cloud\Dlp\V2\InspectDataSourceDetails_Result $var
+     * @param \Google\Cloud\Dlp\V2\InspectDataSourceDetails\Result $var
      * @return $this
      */
     public function setResult($var)

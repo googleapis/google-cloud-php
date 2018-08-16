@@ -48,9 +48,28 @@ class RedactImageRequest extends \Google\Protobuf\Internal\Message
      */
     private $byte_item = null;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $parent
+     *           The parent resource name, for example projects/my-project-id.
+     *     @type \Google\Cloud\Dlp\V2\InspectConfig $inspect_config
+     *           Configuration for the inspector.
+     *     @type \Google\Cloud\Dlp\V2\RedactImageRequest\ImageRedactionConfig[]|\Google\Protobuf\Internal\RepeatedField $image_redaction_configs
+     *           The configuration for specifying what content to redact from images.
+     *     @type bool $include_findings
+     *           Whether the response should include findings along with the redacted
+     *           image.
+     *     @type \Google\Cloud\Dlp\V2\ByteContentItem $byte_item
+     *           The content must be PNG, JPEG, SVG or BMP.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Privacy\Dlp\V2\Dlp::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**
@@ -120,12 +139,12 @@ class RedactImageRequest extends \Google\Protobuf\Internal\Message
      * The configuration for specifying what content to redact from images.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.RedactImageRequest.ImageRedactionConfig image_redaction_configs = 5;</code>
-     * @param \Google\Cloud\Dlp\V2\RedactImageRequest_ImageRedactionConfig[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dlp\V2\RedactImageRequest\ImageRedactionConfig[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setImageRedactionConfigs($var)
     {
-        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Dlp\V2\RedactImageRequest_ImageRedactionConfig::class);
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Dlp\V2\RedactImageRequest\ImageRedactionConfig::class);
         $this->image_redaction_configs = $arr;
 
         return $this;

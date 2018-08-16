@@ -63,9 +63,44 @@ class ListDlpJobsRequest extends \Google\Protobuf\Internal\Message
      */
     private $type = 0;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $parent
+     *           The parent resource name, for example projects/my-project-id.
+     *     @type string $filter
+     *           Optional. Allows filtering.
+     *           Supported syntax:
+     *           * Filter expressions are made up of one or more restrictions.
+     *           * Restrictions can be combined by `AND` or `OR` logical operators. A
+     *           sequence of restrictions implicitly uses `AND`.
+     *           * A restriction has the form of `<field> <operator> <value>`.
+     *           * Supported fields/values for inspect jobs:
+     *               - `state` - PENDING|RUNNING|CANCELED|FINISHED|FAILED
+     *               - `inspected_storage` - DATASTORE|CLOUD_STORAGE|BIGQUERY
+     *               - `trigger_name` - The resource name of the trigger that created job.
+     *           * Supported fields for risk analysis jobs:
+     *               - `state` - RUNNING|CANCELED|FINISHED|FAILED
+     *           * The operator must be `=` or `!=`.
+     *           Examples:
+     *           * inspected_storage = cloud_storage AND state = done
+     *           * inspected_storage = cloud_storage OR inspected_storage = bigquery
+     *           * inspected_storage = cloud_storage AND (state = done OR state = canceled)
+     *           The length of this field should be no more than 500 characters.
+     *     @type int $page_size
+     *           The standard list page size.
+     *     @type string $page_token
+     *           The standard list page token.
+     *     @type int $type
+     *           The type of job. Defaults to `DlpJobType.INSPECT`
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Privacy\Dlp\V2\Dlp::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

@@ -59,9 +59,36 @@ class Finding extends \Google\Protobuf\Internal\Message
      */
     private $quote_info = null;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $quote
+     *           The content that was found. Even if the content is not textual, it
+     *           may be converted to a textual representation here.
+     *           Provided if `include_quote` is true and the finding is
+     *           less than or equal to 4096 bytes long. If the finding exceeds 4096 bytes
+     *           in length, the quote may be omitted.
+     *     @type \Google\Cloud\Dlp\V2\InfoType $info_type
+     *           The type of content that might have been found.
+     *           Provided if `excluded_types` is false.
+     *     @type int $likelihood
+     *           Confidence of how likely it is that the `info_type` is correct.
+     *     @type \Google\Cloud\Dlp\V2\Location $location
+     *           Where the content was found.
+     *     @type \Google\Protobuf\Timestamp $create_time
+     *           Timestamp when finding was detected.
+     *     @type \Google\Cloud\Dlp\V2\QuoteInfo $quote_info
+     *           Contains data parsed from quotes. Only populated if include_quote was set
+     *           to true and a supported infoType was requested. Currently supported
+     *           infoTypes: DATE, DATE_OF_BIRTH and TIME.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Privacy\Dlp\V2\Dlp::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**
