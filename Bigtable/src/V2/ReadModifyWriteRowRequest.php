@@ -46,9 +46,31 @@ class ReadModifyWriteRowRequest extends \Google\Protobuf\Internal\Message
      */
     private $rules;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $table_name
+     *           The unique name of the table to which the read/modify/write rules should be
+     *           applied.
+     *           Values are of the form
+     *           `projects/<project>/instances/<instance>/tables/<table>`.
+     *     @type string $app_profile_id
+     *           This value specifies routing for replication. If not specified, the
+     *           "default" application profile will be used.
+     *     @type string $row_key
+     *           The key of the row to which the read/modify/write rules should be applied.
+     *     @type \Google\Cloud\Bigtable\V2\ReadModifyWriteRule[]|\Google\Protobuf\Internal\RepeatedField $rules
+     *           Rules specifying how the specified row's contents are to be transformed
+     *           into writes. Entries are applied in order, meaning that earlier rules will
+     *           affect the results of later ones.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Bigtable\V2\Bigtable::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

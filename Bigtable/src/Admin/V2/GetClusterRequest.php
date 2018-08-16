@@ -23,9 +23,20 @@ class GetClusterRequest extends \Google\Protobuf\Internal\Message
      */
     private $name = '';
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $name
+     *           The unique name of the requested cluster. Values are of the form
+     *           `projects/<project>/instances/<instance>/clusters/<cluster>`.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Bigtable\Admin\V2\BigtableInstanceAdmin::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

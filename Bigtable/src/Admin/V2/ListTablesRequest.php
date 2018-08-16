@@ -37,9 +37,25 @@ class ListTablesRequest extends \Google\Protobuf\Internal\Message
      */
     private $page_token = '';
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $parent
+     *           The unique name of the instance for which tables should be listed.
+     *           Values are of the form `projects/<project>/instances/<instance>`.
+     *     @type int $view
+     *           The view to be applied to the returned tables' fields.
+     *           Defaults to `NAME_ONLY` if unspecified; no others are currently supported.
+     *     @type string $page_token
+     *           The value of `next_page_token` returned by a previous call.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Bigtable\Admin\V2\BigtableTableAdmin::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

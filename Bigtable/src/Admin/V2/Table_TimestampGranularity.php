@@ -4,26 +4,13 @@
 
 namespace Google\Cloud\Bigtable\Admin\V2;
 
-/**
- * Possible timestamp granularities to use when keeping multiple versions
- * of data in a table.
- *
- * Protobuf enum <code>Google\Bigtable\Admin\V2\Table\TimestampGranularity</code>
- */
-class Table_TimestampGranularity
-{
+if (false) {
     /**
-     * The user did not specify a granularity. Should not be returned.
-     * When specified during table creation, MILLIS will be used.
-     *
-     * Generated from protobuf enum <code>TIMESTAMP_GRANULARITY_UNSPECIFIED = 0;</code>
+     * This class is deprecated. Use Google\Cloud\Bigtable\Admin\V2\Table\TimestampGranularity instead.
+     * @deprecated
      */
-    const TIMESTAMP_GRANULARITY_UNSPECIFIED = 0;
-    /**
-     * The table keeps data versioned at a granularity of 1ms.
-     *
-     * Generated from protobuf enum <code>MILLIS = 1;</code>
-     */
-    const MILLIS = 1;
+    class Table_TimestampGranularity {}
 }
+class_exists(Table\TimestampGranularity::class);
+@trigger_error('Google\Cloud\Bigtable\Admin\V2\Table_TimestampGranularity is deprecated and will be removed in the next major release. Use Google\Cloud\Bigtable\Admin\V2\Table\TimestampGranularity instead', E_USER_DEPRECATED);
 

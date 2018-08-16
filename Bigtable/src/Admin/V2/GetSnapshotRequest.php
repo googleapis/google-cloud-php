@@ -29,9 +29,21 @@ class GetSnapshotRequest extends \Google\Protobuf\Internal\Message
      */
     private $name = '';
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $name
+     *           The unique name of the requested snapshot.
+     *           Values are of the form
+     *           `projects/<project>/instances/<instance>/clusters/<cluster>/snapshots/<snapshot>`.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Bigtable\Admin\V2\BigtableTableAdmin::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

@@ -17,9 +17,27 @@ class GcRule extends \Google\Protobuf\Internal\Message
 {
     protected $rule;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type int $max_num_versions
+     *           Delete all cells in a column except the most recent N.
+     *     @type \Google\Protobuf\Duration $max_age
+     *           Delete cells in a column older than the given age.
+     *           Values must be at least one millisecond, and will be truncated to
+     *           microsecond granularity.
+     *     @type \Google\Cloud\Bigtable\Admin\V2\GcRule\Intersection $intersection
+     *           Delete cells that would be deleted by every nested rule.
+     *     @type \Google\Cloud\Bigtable\Admin\V2\GcRule\Union $union
+     *           Delete cells that would be deleted by any nested rule.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Bigtable\Admin\V2\Table::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**
@@ -82,7 +100,7 @@ class GcRule extends \Google\Protobuf\Internal\Message
      * Delete cells that would be deleted by every nested rule.
      *
      * Generated from protobuf field <code>.google.bigtable.admin.v2.GcRule.Intersection intersection = 3;</code>
-     * @return \Google\Cloud\Bigtable\Admin\V2\GcRule_Intersection
+     * @return \Google\Cloud\Bigtable\Admin\V2\GcRule\Intersection
      */
     public function getIntersection()
     {
@@ -93,7 +111,7 @@ class GcRule extends \Google\Protobuf\Internal\Message
      * Delete cells that would be deleted by every nested rule.
      *
      * Generated from protobuf field <code>.google.bigtable.admin.v2.GcRule.Intersection intersection = 3;</code>
-     * @param \Google\Cloud\Bigtable\Admin\V2\GcRule_Intersection $var
+     * @param \Google\Cloud\Bigtable\Admin\V2\GcRule\Intersection $var
      * @return $this
      */
     public function setIntersection($var)
@@ -108,7 +126,7 @@ class GcRule extends \Google\Protobuf\Internal\Message
      * Delete cells that would be deleted by any nested rule.
      *
      * Generated from protobuf field <code>.google.bigtable.admin.v2.GcRule.Union union = 4;</code>
-     * @return \Google\Cloud\Bigtable\Admin\V2\GcRule_Union
+     * @return \Google\Cloud\Bigtable\Admin\V2\GcRule\Union
      */
     public function getUnion()
     {
@@ -119,7 +137,7 @@ class GcRule extends \Google\Protobuf\Internal\Message
      * Delete cells that would be deleted by any nested rule.
      *
      * Generated from protobuf field <code>.google.bigtable.admin.v2.GcRule.Union union = 4;</code>
-     * @param \Google\Cloud\Bigtable\Admin\V2\GcRule_Union $var
+     * @param \Google\Cloud\Bigtable\Admin\V2\GcRule\Union $var
      * @return $this
      */
     public function setUnion($var)

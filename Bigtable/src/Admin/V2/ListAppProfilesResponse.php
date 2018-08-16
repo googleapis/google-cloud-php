@@ -30,9 +30,23 @@ class ListAppProfilesResponse extends \Google\Protobuf\Internal\Message
      */
     private $next_page_token = '';
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type \Google\Cloud\Bigtable\Admin\V2\AppProfile[]|\Google\Protobuf\Internal\RepeatedField $app_profiles
+     *           The list of requested app profiles.
+     *     @type string $next_page_token
+     *           Set if not all app profiles could be returned in a single response.
+     *           Pass this value to `page_token` in another request to get the next
+     *           page of results.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Bigtable\Admin\V2\BigtableInstanceAdmin::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

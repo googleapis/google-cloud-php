@@ -39,9 +39,28 @@ class CreateClusterRequest extends \Google\Protobuf\Internal\Message
      */
     private $cluster = null;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $parent
+     *           The unique name of the instance in which to create the new cluster.
+     *           Values are of the form
+     *           `projects/<project>/instances/<instance>`.
+     *     @type string $cluster_id
+     *           The ID to be used when referring to the new cluster within its instance,
+     *           e.g., just `mycluster` rather than
+     *           `projects/myproject/instances/myinstance/clusters/mycluster`.
+     *     @type \Google\Cloud\Bigtable\Admin\V2\Cluster $cluster
+     *           The cluster to be created.
+     *           Fields marked `OutputOnly` must be left blank.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Bigtable\Admin\V2\BigtableInstanceAdmin::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

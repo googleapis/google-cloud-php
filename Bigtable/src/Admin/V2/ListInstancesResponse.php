@@ -40,9 +40,29 @@ class ListInstancesResponse extends \Google\Protobuf\Internal\Message
      */
     private $next_page_token = '';
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type \Google\Cloud\Bigtable\Admin\V2\Instance[]|\Google\Protobuf\Internal\RepeatedField $instances
+     *           The list of requested instances.
+     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $failed_locations
+     *           Locations from which Instance information could not be retrieved,
+     *           due to an outage or some other transient condition.
+     *           Instances whose Clusters are all in one of the failed locations
+     *           may be missing from `instances`, and Instances with at least one
+     *           Cluster in a failed location may only have partial information returned.
+     *     @type string $next_page_token
+     *           Set if not all instances could be returned in a single response.
+     *           Pass this value to `page_token` in another request to get the next
+     *           page of results.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Bigtable\Admin\V2\BigtableInstanceAdmin::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

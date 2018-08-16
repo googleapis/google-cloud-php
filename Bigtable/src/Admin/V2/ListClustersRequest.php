@@ -31,9 +31,24 @@ class ListClustersRequest extends \Google\Protobuf\Internal\Message
      */
     private $page_token = '';
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $parent
+     *           The unique name of the instance for which a list of clusters is requested.
+     *           Values are of the form `projects/<project>/instances/<instance>`.
+     *           Use `<instance> = '-'` to list Clusters for all Instances in a project,
+     *           e.g., `projects/myproject/instances/-`.
+     *     @type string $page_token
+     *           The value of `next_page_token` returned by a previous call.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Bigtable\Admin\V2\BigtableInstanceAdmin::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

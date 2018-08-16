@@ -39,9 +39,24 @@ class CreateTableFromSnapshotMetadata extends \Google\Protobuf\Internal\Message
      */
     private $finish_time = null;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type \Google\Cloud\Bigtable\Admin\V2\CreateTableFromSnapshotRequest $original_request
+     *           The request that prompted the initiation of this CreateTableFromSnapshot
+     *           operation.
+     *     @type \Google\Protobuf\Timestamp $request_time
+     *           The time at which the original request was received.
+     *     @type \Google\Protobuf\Timestamp $finish_time
+     *           The time at which the operation failed or was completed successfully.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Bigtable\Admin\V2\BigtableTableAdmin::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

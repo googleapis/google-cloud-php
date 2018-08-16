@@ -31,9 +31,23 @@ class CheckConsistencyRequest extends \Google\Protobuf\Internal\Message
      */
     private $consistency_token = '';
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $name
+     *           The unique name of the Table for which to check replication consistency.
+     *           Values are of the form
+     *           `projects/<project>/instances/<instance>/tables/<table>`.
+     *     @type string $consistency_token
+     *           The token created using GenerateConsistencyToken for the Table.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Bigtable\Admin\V2\BigtableTableAdmin::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

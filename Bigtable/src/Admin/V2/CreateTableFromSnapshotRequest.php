@@ -44,9 +44,28 @@ class CreateTableFromSnapshotRequest extends \Google\Protobuf\Internal\Message
      */
     private $source_snapshot = '';
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $parent
+     *           The unique name of the instance in which to create the table.
+     *           Values are of the form `projects/<project>/instances/<instance>`.
+     *     @type string $table_id
+     *           The name by which the new table should be referred to within the parent
+     *           instance, e.g., `foobar` rather than `<parent>/tables/foobar`.
+     *     @type string $source_snapshot
+     *           The unique name of the snapshot from which to restore the table. The
+     *           snapshot and the table must be in the same instance.
+     *           Values are of the form
+     *           `projects/<project>/instances/<instance>/clusters/<cluster>/snapshots/<snapshot>`.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Bigtable\Admin\V2\BigtableTableAdmin::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

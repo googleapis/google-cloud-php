@@ -49,7 +49,7 @@ use Google\Cloud\Bigtable\Admin\V2\GetAppProfileRequest;
 use Google\Cloud\Bigtable\Admin\V2\GetClusterRequest;
 use Google\Cloud\Bigtable\Admin\V2\GetInstanceRequest;
 use Google\Cloud\Bigtable\Admin\V2\Instance;
-use Google\Cloud\Bigtable\Admin\V2\Instance_Type;
+use Google\Cloud\Bigtable\Admin\V2\Instance\Type;
 use Google\Cloud\Bigtable\Admin\V2\ListAppProfilesRequest;
 use Google\Cloud\Bigtable\Admin\V2\ListAppProfilesResponse;
 use Google\Cloud\Bigtable\Admin\V2\ListClustersRequest;
@@ -85,14 +85,17 @@ use Google\Protobuf\GPBEmpty;
  *     $operationResponse = $bigtableInstanceAdminClient->createInstance($formattedParent, $instanceId, $instance, $clusters);
  *     $operationResponse->pollUntilComplete();
  *     if ($operationResponse->operationSucceeded()) {
- *       $result = $operationResponse->getResult();
- *       // doSomethingWith($result)
+ *         $result = $operationResponse->getResult();
+ *         // doSomethingWith($result)
  *     } else {
- *       $error = $operationResponse->getError();
- *       // handleError($error)
+ *         $error = $operationResponse->getError();
+ *         // handleError($error)
  *     }
  *
- *     // OR start the operation, keep the operation name, and resume later
+ *
+ *     // Alternatively:
+ *
+ *     // start the operation, keep the operation name, and resume later
  *     $operationResponse = $bigtableInstanceAdminClient->createInstance($formattedParent, $instanceId, $instance, $clusters);
  *     $operationName = $operationResponse->getName();
  *     // ... do other work
@@ -490,14 +493,17 @@ class BigtableInstanceAdminGapicClient
      *     $operationResponse = $bigtableInstanceAdminClient->createInstance($formattedParent, $instanceId, $instance, $clusters);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
-     *       $result = $operationResponse->getResult();
-     *       // doSomethingWith($result)
+     *         $result = $operationResponse->getResult();
+     *         // doSomethingWith($result)
      *     } else {
-     *       $error = $operationResponse->getError();
-     *       // handleError($error)
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
      *     }
      *
-     *     // OR start the operation, keep the operation name, and resume later
+     *
+     *     // Alternatively:
+     *
+     *     // start the operation, keep the operation name, and resume later
      *     $operationResponse = $bigtableInstanceAdminClient->createInstance($formattedParent, $instanceId, $instance, $clusters);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
@@ -684,7 +690,7 @@ class BigtableInstanceAdminGapicClient
      * try {
      *     $formattedName = $bigtableInstanceAdminClient->instanceName('[PROJECT]', '[INSTANCE]');
      *     $displayName = '';
-     *     $type = Instance_Type::TYPE_UNSPECIFIED;
+     *     $type = Instance\Type::TYPE_UNSPECIFIED;
      *     $labels = [];
      *     $response = $bigtableInstanceAdminClient->updateInstance($formattedName, $displayName, $type, $labels);
      * } finally {
@@ -699,7 +705,7 @@ class BigtableInstanceAdminGapicClient
      *                            Can be changed at any time, but should be kept globally unique
      *                            to avoid confusion.
      * @param int    $type        The type of the instance. Defaults to `PRODUCTION`.
-     *                            For allowed values, use constants defined on {@see \Google\Cloud\Bigtable\Admin\V2\Instance_Type}
+     *                            For allowed values, use constants defined on {@see \Google\Cloud\Bigtable\Admin\V2\Instance\Type}
      * @param array  $labels      Labels are a flexible and lightweight mechanism for organizing cloud
      *                            resources into groups that reflect a customer's organizational needs and
      *                            deployment strategies. They can be used to filter resources and aggregate
@@ -717,7 +723,7 @@ class BigtableInstanceAdminGapicClient
      *     @type int $state
      *          (`OutputOnly`)
      *          The current state of the instance.
-     *          For allowed values, use constants defined on {@see \Google\Cloud\Bigtable\Admin\V2\Instance_State}
+     *          For allowed values, use constants defined on {@see \Google\Cloud\Bigtable\Admin\V2\Instance\State}
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
@@ -768,14 +774,17 @@ class BigtableInstanceAdminGapicClient
      *     $operationResponse = $bigtableInstanceAdminClient->partialUpdateInstance($instance, $updateMask);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
-     *       $result = $operationResponse->getResult();
-     *       // doSomethingWith($result)
+     *         $result = $operationResponse->getResult();
+     *         // doSomethingWith($result)
      *     } else {
-     *       $error = $operationResponse->getError();
-     *       // handleError($error)
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
      *     }
      *
-     *     // OR start the operation, keep the operation name, and resume later
+     *
+     *     // Alternatively:
+     *
+     *     // start the operation, keep the operation name, and resume later
      *     $operationResponse = $bigtableInstanceAdminClient->partialUpdateInstance($instance, $updateMask);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
@@ -897,14 +906,17 @@ class BigtableInstanceAdminGapicClient
      *     $operationResponse = $bigtableInstanceAdminClient->createCluster($formattedParent, $clusterId, $cluster);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
-     *       $result = $operationResponse->getResult();
-     *       // doSomethingWith($result)
+     *         $result = $operationResponse->getResult();
+     *         // doSomethingWith($result)
      *     } else {
-     *       $error = $operationResponse->getError();
-     *       // handleError($error)
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
      *     }
      *
-     *     // OR start the operation, keep the operation name, and resume later
+     *
+     *     // Alternatively:
+     *
+     *     // start the operation, keep the operation name, and resume later
      *     $operationResponse = $bigtableInstanceAdminClient->createCluster($formattedParent, $clusterId, $cluster);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
@@ -1087,20 +1099,22 @@ class BigtableInstanceAdminGapicClient
      * $bigtableInstanceAdminClient = new BigtableInstanceAdminClient();
      * try {
      *     $formattedName = $bigtableInstanceAdminClient->clusterName('[PROJECT]', '[INSTANCE]', '[CLUSTER]');
-     *     $location = '';
      *     $serveNodes = 0;
-     *     $operationResponse = $bigtableInstanceAdminClient->updateCluster($formattedName, $location, $serveNodes);
+     *     $operationResponse = $bigtableInstanceAdminClient->updateCluster($formattedName, $serveNodes);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
-     *       $result = $operationResponse->getResult();
-     *       // doSomethingWith($result)
+     *         $result = $operationResponse->getResult();
+     *         // doSomethingWith($result)
      *     } else {
-     *       $error = $operationResponse->getError();
-     *       // handleError($error)
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
      *     }
      *
-     *     // OR start the operation, keep the operation name, and resume later
-     *     $operationResponse = $bigtableInstanceAdminClient->updateCluster($formattedName, $location, $serveNodes);
+     *
+     *     // Alternatively:
+     *
+     *     // start the operation, keep the operation name, and resume later
+     *     $operationResponse = $bigtableInstanceAdminClient->updateCluster($formattedName, $serveNodes);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $bigtableInstanceAdminClient->resumeOperation($operationName, 'updateCluster');
@@ -1123,20 +1137,21 @@ class BigtableInstanceAdminGapicClient
      * @param string $name         (`OutputOnly`)
      *                             The unique name of the cluster. Values are of the form
      *                             `projects/<project>/instances/<instance>/clusters/[a-z][-a-z0-9]*`.
-     * @param string $location     (`CreationOnly`)
-     *                             The location where this cluster's nodes and storage reside. For best
-     *                             performance, clients should be located as close as possible to this
-     *                             cluster. Currently only zones are supported, so values should be of the
-     *                             form `projects/<project>/locations/<zone>`.
      * @param int    $serveNodes   The number of nodes allocated to this cluster. More nodes enable higher
      *                             throughput and more consistent performance.
      * @param array  $optionalArgs {
      *                             Optional.
      *
+     *     @type string $location
+     *          (`CreationOnly`)
+     *          The location where this cluster's nodes and storage reside. For best
+     *          performance, clients should be located as close as possible to this
+     *          cluster. Currently only zones are supported, so values should be of the
+     *          form `projects/<project>/locations/<zone>`.
      *     @type int $state
      *          (`OutputOnly`)
      *          The current state of the cluster.
-     *          For allowed values, use constants defined on {@see \Google\Cloud\Bigtable\Admin\V2\Cluster_State}
+     *          For allowed values, use constants defined on {@see \Google\Cloud\Bigtable\Admin\V2\Cluster\State}
      *     @type int $defaultStorageType
      *          (`CreationOnly`)
      *          The type of storage used by this cluster to serve its
@@ -1154,12 +1169,14 @@ class BigtableInstanceAdminGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function updateCluster($name, $location, $serveNodes, array $optionalArgs = [])
+    public function updateCluster($name, $serveNodes, array $optionalArgs = [])
     {
         $request = new Cluster();
         $request->setName($name);
-        $request->setLocation($location);
         $request->setServeNodes($serveNodes);
+        if (isset($optionalArgs['location'])) {
+            $request->setLocation($optionalArgs['location']);
+        }
         if (isset($optionalArgs['state'])) {
             $request->setState($optionalArgs['state']);
         }
@@ -1356,18 +1373,21 @@ class BigtableInstanceAdminGapicClient
      * $bigtableInstanceAdminClient = new BigtableInstanceAdminClient();
      * try {
      *     $formattedParent = $bigtableInstanceAdminClient->instanceName('[PROJECT]', '[INSTANCE]');
-     *     // Iterate through all elements
-     *     $pagedResponse = $bigtableInstanceAdminClient->listAppProfiles($formattedParent);
-     *     foreach ($pagedResponse->iterateAllElements() as $element) {
-     *         // doSomethingWith($element);
-     *     }
-     *
-     *     // OR iterate over pages of elements
+     *     // Iterate over pages of elements
      *     $pagedResponse = $bigtableInstanceAdminClient->listAppProfiles($formattedParent);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
      *         }
+     *     }
+     *
+     *
+     *     // Alternatively:
+     *
+     *     // Iterate through all elements
+     *     $pagedResponse = $bigtableInstanceAdminClient->listAppProfiles($formattedParent);
+     *     foreach ($pagedResponse->iterateAllElements() as $element) {
+     *         // doSomethingWith($element);
      *     }
      * } finally {
      *     $bigtableInstanceAdminClient->close();
@@ -1432,14 +1452,17 @@ class BigtableInstanceAdminGapicClient
      *     $operationResponse = $bigtableInstanceAdminClient->updateAppProfile($appProfile, $updateMask);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
-     *       $result = $operationResponse->getResult();
-     *       // doSomethingWith($result)
+     *         $result = $operationResponse->getResult();
+     *         // doSomethingWith($result)
      *     } else {
-     *       $error = $operationResponse->getError();
-     *       // handleError($error)
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
      *     }
      *
-     *     // OR start the operation, keep the operation name, and resume later
+     *
+     *     // Alternatively:
+     *
+     *     // start the operation, keep the operation name, and resume later
      *     $operationResponse = $bigtableInstanceAdminClient->updateAppProfile($appProfile, $updateMask);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work

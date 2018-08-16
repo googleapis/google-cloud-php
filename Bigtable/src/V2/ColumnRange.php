@@ -27,9 +27,27 @@ class ColumnRange extends \Google\Protobuf\Internal\Message
     protected $start_qualifier;
     protected $end_qualifier;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $family_name
+     *           The name of the column family within which this range falls.
+     *     @type string $start_qualifier_closed
+     *           Used when giving an inclusive lower bound for the range.
+     *     @type string $start_qualifier_open
+     *           Used when giving an exclusive lower bound for the range.
+     *     @type string $end_qualifier_closed
+     *           Used when giving an inclusive upper bound for the range.
+     *     @type string $end_qualifier_open
+     *           Used when giving an exclusive upper bound for the range.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Bigtable\V2\Data::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

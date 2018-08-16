@@ -7,7 +7,7 @@ namespace Google\Cloud\Bigtable\Admin\V2;
 /**
  * Storage media types for persisting Bigtable data.
  *
- * Protobuf enum <code>Google\Bigtable\Admin\V2\StorageType</code>
+ * Protobuf type <code>google.bigtable.admin.v2.StorageType</code>
  */
 class StorageType
 {

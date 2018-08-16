@@ -41,7 +41,7 @@ use Google\Cloud\Bigtable\V2\CheckAndMutateRowResponse;
 use Google\Cloud\Bigtable\V2\MutateRowRequest;
 use Google\Cloud\Bigtable\V2\MutateRowResponse;
 use Google\Cloud\Bigtable\V2\MutateRowsRequest;
-use Google\Cloud\Bigtable\V2\MutateRowsRequest_Entry;
+use Google\Cloud\Bigtable\V2\MutateRowsRequest\Entry;
 use Google\Cloud\Bigtable\V2\MutateRowsResponse;
 use Google\Cloud\Bigtable\V2\Mutation;
 use Google\Cloud\Bigtable\V2\ReadModifyWriteRowRequest;
@@ -509,7 +509,7 @@ class BigtableGapicClient
      * ```
      *
      * @param string                    $tableName    The unique name of the table to which the mutations should be applied.
-     * @param MutateRowsRequest_Entry[] $entries      The row keys and corresponding mutations to be applied in bulk.
+     * @param MutateRowsRequest\Entry[] $entries      The row keys and corresponding mutations to be applied in bulk.
      *                                                Each entry is applied as an atomic mutation, but the entries may be
      *                                                applied in arbitrary order (even between entries for the same row).
      *                                                At least one entry must be specified, and in total the entries can

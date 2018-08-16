@@ -4,96 +4,13 @@
 
 namespace Google\Cloud\Bigtable\V2;
 
-use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
-use Google\Protobuf\Internal\GPBUtil;
-
-/**
- * Generated from protobuf message <code>google.bigtable.v2.MutateRowsResponse.Entry</code>
- */
-class MutateRowsResponse_Entry extends \Google\Protobuf\Internal\Message
-{
+if (false) {
     /**
-     * The index into the original request's `entries` list of the Entry
-     * for which a result is being reported.
-     *
-     * Generated from protobuf field <code>int64 index = 1;</code>
+     * This class is deprecated. Use Google\Cloud\Bigtable\V2\MutateRowsResponse\Entry instead.
+     * @deprecated
      */
-    private $index = 0;
-    /**
-     * The result of the request Entry identified by `index`.
-     * Depending on how requests are batched during execution, it is possible
-     * for one Entry to fail due to an error with another Entry. In the event
-     * that this occurs, the same error will be reported for both entries.
-     *
-     * Generated from protobuf field <code>.google.rpc.Status status = 2;</code>
-     */
-    private $status = null;
-
-    public function __construct() {
-        \GPBMetadata\Google\Bigtable\V2\Bigtable::initOnce();
-        parent::__construct();
-    }
-
-    /**
-     * The index into the original request's `entries` list of the Entry
-     * for which a result is being reported.
-     *
-     * Generated from protobuf field <code>int64 index = 1;</code>
-     * @return int|string
-     */
-    public function getIndex()
-    {
-        return $this->index;
-    }
-
-    /**
-     * The index into the original request's `entries` list of the Entry
-     * for which a result is being reported.
-     *
-     * Generated from protobuf field <code>int64 index = 1;</code>
-     * @param int|string $var
-     * @return $this
-     */
-    public function setIndex($var)
-    {
-        GPBUtil::checkInt64($var);
-        $this->index = $var;
-
-        return $this;
-    }
-
-    /**
-     * The result of the request Entry identified by `index`.
-     * Depending on how requests are batched during execution, it is possible
-     * for one Entry to fail due to an error with another Entry. In the event
-     * that this occurs, the same error will be reported for both entries.
-     *
-     * Generated from protobuf field <code>.google.rpc.Status status = 2;</code>
-     * @return \Google\Rpc\Status
-     */
-    public function getStatus()
-    {
-        return $this->status;
-    }
-
-    /**
-     * The result of the request Entry identified by `index`.
-     * Depending on how requests are batched during execution, it is possible
-     * for one Entry to fail due to an error with another Entry. In the event
-     * that this occurs, the same error will be reported for both entries.
-     *
-     * Generated from protobuf field <code>.google.rpc.Status status = 2;</code>
-     * @param \Google\Rpc\Status $var
-     * @return $this
-     */
-    public function setStatus($var)
-    {
-        GPBUtil::checkMessage($var, \Google\Rpc\Status::class);
-        $this->status = $var;
-
-        return $this;
-    }
-
+    class MutateRowsResponse_Entry {}
 }
+class_exists(MutateRowsResponse\Entry::class);
+@trigger_error('Google\Cloud\Bigtable\V2\MutateRowsResponse_Entry is deprecated and will be removed in the next major release. Use Google\Cloud\Bigtable\V2\MutateRowsResponse\Entry instead', E_USER_DEPRECATED);
 

@@ -4,32 +4,13 @@
 
 namespace Google\Cloud\Bigtable\Admin\V2;
 
-/**
- * Possible states of an instance.
- *
- * Protobuf enum <code>Google\Bigtable\Admin\V2\Instance\State</code>
- */
-class Instance_State
-{
+if (false) {
     /**
-     * The state of the instance could not be determined.
-     *
-     * Generated from protobuf enum <code>STATE_NOT_KNOWN = 0;</code>
+     * This class is deprecated. Use Google\Cloud\Bigtable\Admin\V2\Instance\State instead.
+     * @deprecated
      */
-    const STATE_NOT_KNOWN = 0;
-    /**
-     * The instance has been successfully created and can serve requests
-     * to its tables.
-     *
-     * Generated from protobuf enum <code>READY = 1;</code>
-     */
-    const READY = 1;
-    /**
-     * The instance is currently being created, and may be destroyed
-     * if the creation process encounters an error.
-     *
-     * Generated from protobuf enum <code>CREATING = 2;</code>
-     */
-    const CREATING = 2;
+    class Instance_State {}
 }
+class_exists(Instance\State::class);
+@trigger_error('Google\Cloud\Bigtable\Admin\V2\Instance_State is deprecated and will be removed in the next major release. Use Google\Cloud\Bigtable\Admin\V2\Instance\State instead', E_USER_DEPRECATED);
 

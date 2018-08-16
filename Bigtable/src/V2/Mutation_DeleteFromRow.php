@@ -4,22 +4,13 @@
 
 namespace Google\Cloud\Bigtable\V2;
 
-use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
-use Google\Protobuf\Internal\GPBUtil;
-
-/**
- * A Mutation which deletes all cells from the containing row.
- *
- * Generated from protobuf message <code>google.bigtable.v2.Mutation.DeleteFromRow</code>
- */
-class Mutation_DeleteFromRow extends \Google\Protobuf\Internal\Message
-{
-
-    public function __construct() {
-        \GPBMetadata\Google\Bigtable\V2\Data::initOnce();
-        parent::__construct();
-    }
-
+if (false) {
+    /**
+     * This class is deprecated. Use Google\Cloud\Bigtable\V2\Mutation\DeleteFromRow instead.
+     * @deprecated
+     */
+    class Mutation_DeleteFromRow {}
 }
+class_exists(Mutation\DeleteFromRow::class);
+@trigger_error('Google\Cloud\Bigtable\V2\Mutation_DeleteFromRow is deprecated and will be removed in the next major release. Use Google\Cloud\Bigtable\V2\Mutation\DeleteFromRow instead', E_USER_DEPRECATED);
 

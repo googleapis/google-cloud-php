@@ -35,9 +35,24 @@ class UpdateAppProfileRequest extends \Google\Protobuf\Internal\Message
      */
     private $ignore_warnings = false;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type \Google\Cloud\Bigtable\Admin\V2\AppProfile $app_profile
+     *           The app profile which will (partially) replace the current value.
+     *     @type \Google\Protobuf\FieldMask $update_mask
+     *           The subset of app profile fields which should be replaced.
+     *           If unset, all fields will be replaced.
+     *     @type bool $ignore_warnings
+     *           If true, ignore safety checks when updating the app profile.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Bigtable\Admin\V2\BigtableInstanceAdmin::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

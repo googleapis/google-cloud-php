@@ -33,9 +33,33 @@ class ReadModifyWriteRule extends \Google\Protobuf\Internal\Message
     private $column_qualifier = '';
     protected $rule;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $family_name
+     *           The name of the family to which the read/modify/write should be applied.
+     *           Must match `[-_.a-zA-Z0-9]+`
+     *     @type string $column_qualifier
+     *           The qualifier of the column to which the read/modify/write should be
+     *           applied.
+     *           Can be any byte string, including the empty string.
+     *     @type string $append_value
+     *           Rule specifying that `append_value` be appended to the existing value.
+     *           If the targeted cell is unset, it will be treated as containing the
+     *           empty string.
+     *     @type int|string $increment_amount
+     *           Rule specifying that `increment_amount` be added to the existing value.
+     *           If the targeted cell is unset, it will be treated as containing a zero.
+     *           Otherwise, the targeted cell must contain an 8-byte value (interpreted
+     *           as a 64-bit big-endian signed integer), or the entire request will fail.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Bigtable\V2\Data::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

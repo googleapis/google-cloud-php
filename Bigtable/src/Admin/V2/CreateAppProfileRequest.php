@@ -45,9 +45,30 @@ class CreateAppProfileRequest extends \Google\Protobuf\Internal\Message
      */
     private $ignore_warnings = false;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $parent
+     *           The unique name of the instance in which to create the new app profile.
+     *           Values are of the form
+     *           `projects/<project>/instances/<instance>`.
+     *     @type string $app_profile_id
+     *           The ID to be used when referring to the new app profile within its
+     *           instance, e.g., just `myprofile` rather than
+     *           `projects/myproject/instances/myinstance/appProfiles/myprofile`.
+     *     @type \Google\Cloud\Bigtable\Admin\V2\AppProfile $app_profile
+     *           The app profile to be created.
+     *           Fields marked `OutputOnly` will be ignored.
+     *     @type bool $ignore_warnings
+     *           If true, ignore safety checks when creating the app profile.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Bigtable\Admin\V2\BigtableInstanceAdmin::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

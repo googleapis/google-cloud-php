@@ -39,9 +39,28 @@ class MutateRowsRequest extends \Google\Protobuf\Internal\Message
      */
     private $entries;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $table_name
+     *           The unique name of the table to which the mutations should be applied.
+     *     @type string $app_profile_id
+     *           This value specifies routing for replication. If not specified, the
+     *           "default" application profile will be used.
+     *     @type \Google\Cloud\Bigtable\V2\MutateRowsRequest\Entry[]|\Google\Protobuf\Internal\RepeatedField $entries
+     *           The row keys and corresponding mutations to be applied in bulk.
+     *           Each entry is applied as an atomic mutation, but the entries may be
+     *           applied in arbitrary order (even between entries for the same row).
+     *           At least one entry must be specified, and in total the entries can
+     *           contain at most 100000 mutations.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Bigtable\V2\Bigtable::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**
@@ -121,12 +140,12 @@ class MutateRowsRequest extends \Google\Protobuf\Internal\Message
      * contain at most 100000 mutations.
      *
      * Generated from protobuf field <code>repeated .google.bigtable.v2.MutateRowsRequest.Entry entries = 2;</code>
-     * @param \Google\Cloud\Bigtable\V2\MutateRowsRequest_Entry[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Bigtable\V2\MutateRowsRequest\Entry[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setEntries($var)
     {
-        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Bigtable\V2\MutateRowsRequest_Entry::class);
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Bigtable\V2\MutateRowsRequest\Entry::class);
         $this->entries = $arr;
 
         return $this;

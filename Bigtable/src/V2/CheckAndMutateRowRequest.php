@@ -67,9 +67,44 @@ class CheckAndMutateRowRequest extends \Google\Protobuf\Internal\Message
      */
     private $false_mutations;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $table_name
+     *           The unique name of the table to which the conditional mutation should be
+     *           applied.
+     *           Values are of the form
+     *           `projects/<project>/instances/<instance>/tables/<table>`.
+     *     @type string $app_profile_id
+     *           This value specifies routing for replication. If not specified, the
+     *           "default" application profile will be used.
+     *     @type string $row_key
+     *           The key of the row to which the conditional mutation should be applied.
+     *     @type \Google\Cloud\Bigtable\V2\RowFilter $predicate_filter
+     *           The filter to be applied to the contents of the specified row. Depending
+     *           on whether or not any results are yielded, either `true_mutations` or
+     *           `false_mutations` will be executed. If unset, checks that the row contains
+     *           any values at all.
+     *     @type \Google\Cloud\Bigtable\V2\Mutation[]|\Google\Protobuf\Internal\RepeatedField $true_mutations
+     *           Changes to be atomically applied to the specified row if `predicate_filter`
+     *           yields at least one cell when applied to `row_key`. Entries are applied in
+     *           order, meaning that earlier mutations can be masked by later ones.
+     *           Must contain at least one entry if `false_mutations` is empty, and at most
+     *           100000.
+     *     @type \Google\Cloud\Bigtable\V2\Mutation[]|\Google\Protobuf\Internal\RepeatedField $false_mutations
+     *           Changes to be atomically applied to the specified row if `predicate_filter`
+     *           does not yield any cells when applied to `row_key`. Entries are applied in
+     *           order, meaning that earlier mutations can be masked by later ones.
+     *           Must contain at least one entry if `true_mutations` is empty, and at most
+     *           100000.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Bigtable\V2\Bigtable::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

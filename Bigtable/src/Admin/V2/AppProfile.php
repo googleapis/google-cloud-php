@@ -45,9 +45,36 @@ class AppProfile extends \Google\Protobuf\Internal\Message
     private $description = '';
     protected $routing_policy;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $name
+     *           (`OutputOnly`)
+     *           The unique name of the app profile. Values are of the form
+     *           `projects/<project>/instances/<instance>/appProfiles/[_a-zA-Z0-9][-_.a-zA-Z0-9]*`.
+     *     @type string $etag
+     *           Strongly validated etag for optimistic concurrency control. Preserve the
+     *           value returned from `GetAppProfile` when calling `UpdateAppProfile` to
+     *           fail the request if there has been a modification in the mean time. The
+     *           `update_mask` of the request need not include `etag` for this protection
+     *           to apply.
+     *           See [Wikipedia](https://en.wikipedia.org/wiki/HTTP_ETag) and
+     *           [RFC 7232](https://tools.ietf.org/html/rfc7232#section-2.3) for more
+     *           details.
+     *     @type string $description
+     *           Optional long form description of the use case for this AppProfile.
+     *     @type \Google\Cloud\Bigtable\Admin\V2\AppProfile\MultiClusterRoutingUseAny $multi_cluster_routing_use_any
+     *           Use a multi-cluster routing policy that may pick any cluster.
+     *     @type \Google\Cloud\Bigtable\Admin\V2\AppProfile\SingleClusterRouting $single_cluster_routing
+     *           Use a single-cluster routing policy.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Bigtable\Admin\V2\Instance::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**
@@ -150,7 +177,7 @@ class AppProfile extends \Google\Protobuf\Internal\Message
      * Use a multi-cluster routing policy that may pick any cluster.
      *
      * Generated from protobuf field <code>.google.bigtable.admin.v2.AppProfile.MultiClusterRoutingUseAny multi_cluster_routing_use_any = 5;</code>
-     * @return \Google\Cloud\Bigtable\Admin\V2\AppProfile_MultiClusterRoutingUseAny
+     * @return \Google\Cloud\Bigtable\Admin\V2\AppProfile\MultiClusterRoutingUseAny
      */
     public function getMultiClusterRoutingUseAny()
     {
@@ -161,7 +188,7 @@ class AppProfile extends \Google\Protobuf\Internal\Message
      * Use a multi-cluster routing policy that may pick any cluster.
      *
      * Generated from protobuf field <code>.google.bigtable.admin.v2.AppProfile.MultiClusterRoutingUseAny multi_cluster_routing_use_any = 5;</code>
-     * @param \Google\Cloud\Bigtable\Admin\V2\AppProfile_MultiClusterRoutingUseAny $var
+     * @param \Google\Cloud\Bigtable\Admin\V2\AppProfile\MultiClusterRoutingUseAny $var
      * @return $this
      */
     public function setMultiClusterRoutingUseAny($var)
@@ -176,7 +203,7 @@ class AppProfile extends \Google\Protobuf\Internal\Message
      * Use a single-cluster routing policy.
      *
      * Generated from protobuf field <code>.google.bigtable.admin.v2.AppProfile.SingleClusterRouting single_cluster_routing = 6;</code>
-     * @return \Google\Cloud\Bigtable\Admin\V2\AppProfile_SingleClusterRouting
+     * @return \Google\Cloud\Bigtable\Admin\V2\AppProfile\SingleClusterRouting
      */
     public function getSingleClusterRouting()
     {
@@ -187,7 +214,7 @@ class AppProfile extends \Google\Protobuf\Internal\Message
      * Use a single-cluster routing policy.
      *
      * Generated from protobuf field <code>.google.bigtable.admin.v2.AppProfile.SingleClusterRouting single_cluster_routing = 6;</code>
-     * @param \Google\Cloud\Bigtable\Admin\V2\AppProfile_SingleClusterRouting $var
+     * @param \Google\Cloud\Bigtable\Admin\V2\AppProfile\SingleClusterRouting $var
      * @return $this
      */
     public function setSingleClusterRouting($var)

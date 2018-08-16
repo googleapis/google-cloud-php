@@ -23,9 +23,20 @@ class CheckAndMutateRowResponse extends \Google\Protobuf\Internal\Message
      */
     private $predicate_matched = false;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type bool $predicate_matched
+     *           Whether or not the request's `predicate_filter` yielded any results for
+     *           the specified row.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Bigtable\V2\Bigtable::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

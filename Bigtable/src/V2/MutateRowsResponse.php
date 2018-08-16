@@ -22,9 +22,19 @@ class MutateRowsResponse extends \Google\Protobuf\Internal\Message
      */
     private $entries;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type \Google\Cloud\Bigtable\V2\MutateRowsResponse\Entry[]|\Google\Protobuf\Internal\RepeatedField $entries
+     *           One or more results for Entries from the batch request.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Bigtable\V2\Bigtable::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**
@@ -42,12 +52,12 @@ class MutateRowsResponse extends \Google\Protobuf\Internal\Message
      * One or more results for Entries from the batch request.
      *
      * Generated from protobuf field <code>repeated .google.bigtable.v2.MutateRowsResponse.Entry entries = 1;</code>
-     * @param \Google\Cloud\Bigtable\V2\MutateRowsResponse_Entry[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Bigtable\V2\MutateRowsResponse\Entry[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setEntries($var)
     {
-        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Bigtable\V2\MutateRowsResponse_Entry::class);
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Bigtable\V2\MutateRowsResponse\Entry::class);
         $this->entries = $arr;
 
         return $this;

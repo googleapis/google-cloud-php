@@ -28,9 +28,21 @@ class RowSet extends \Google\Protobuf\Internal\Message
      */
     private $row_ranges;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $row_keys
+     *           Single rows included in the set.
+     *     @type \Google\Cloud\Bigtable\V2\RowRange[]|\Google\Protobuf\Internal\RepeatedField $row_ranges
+     *           Contiguous row ranges included in the set.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Bigtable\V2\Data::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

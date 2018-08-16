@@ -43,9 +43,27 @@ class ListSnapshotsRequest extends \Google\Protobuf\Internal\Message
      */
     private $page_token = '';
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $parent
+     *           The unique name of the cluster for which snapshots should be listed.
+     *           Values are of the form
+     *           `projects/<project>/instances/<instance>/clusters/<cluster>`.
+     *           Use `<cluster> = '-'` to list snapshots for all clusters in an instance,
+     *           e.g., `projects/<project>/instances/<instance>/clusters/-`.
+     *     @type int $page_size
+     *           The maximum number of snapshots to return.
+     *     @type string $page_token
+     *           The value of `next_page_token` returned by a previous call.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Bigtable\Admin\V2\BigtableTableAdmin::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**
