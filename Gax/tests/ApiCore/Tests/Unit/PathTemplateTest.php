@@ -36,17 +36,9 @@ use PHPUnit\Framework\TestCase;
 
 class PathTemplateTest extends TestCase
 {
-    public function testCount()
-    {
-        $this->assertEquals(
-            count(new PathTemplate('a/b/**/*/{a=hello/world}')),
-            6
-        );
-    }
-
     /**
      * @expectedException \Google\ApiCore\ValidationException
-     * @expectedExceptionMessage Exception in parser
+     * @expectedExceptionMessage Unexpected characters in literal segment
      */
     public function testFailInvalidToken()
     {
@@ -55,7 +47,7 @@ class PathTemplateTest extends TestCase
 
     /**
      * @expectedException \Google\ApiCore\ValidationException
-     * @expectedExceptionMessage match error
+     * @expectedExceptionMessage Could not match path
      */
     public function testFailWhenImpossibleMatch01()
     {
@@ -65,7 +57,7 @@ class PathTemplateTest extends TestCase
 
     /**
      * @expectedException \Google\ApiCore\ValidationException
-     * @expectedExceptionMessage match error
+     * @expectedExceptionMessage Could not match path
      */
     public function testFailWhenImpossibleMatch02()
     {
@@ -75,7 +67,7 @@ class PathTemplateTest extends TestCase
 
     /**
      * @expectedException \Google\ApiCore\ValidationException
-     * @expectedExceptionMessage mismatched literal
+     * @expectedExceptionMessage Could not match path
      */
     public function testFailMismatchedLiteral()
     {
@@ -85,7 +77,7 @@ class PathTemplateTest extends TestCase
 
     /**
      * @expectedException \Google\ApiCore\ValidationException
-     * @expectedExceptionMessage validation error: path template cannot contain more than one path wildcard
+     * @expectedExceptionMessage Cannot parse
      */
     public function testFailWhenMultiplePathWildcards()
     {
@@ -94,7 +86,7 @@ class PathTemplateTest extends TestCase
 
     /**
      * @expectedException \Google\ApiCore\ValidationException
-     * @expectedExceptionMessage Exception in parser
+     * @expectedExceptionMessage Unexpected '{'
      */
     public function testFailIfInnerBinding()
     {
@@ -103,7 +95,7 @@ class PathTemplateTest extends TestCase
 
     /**
      * @expectedException \Google\ApiCore\ValidationException
-     * @expectedExceptionMessage Exception in parser
+     * @expectedExceptionMessage Expected '}'
      */
     public function testFailUnexpectedEof()
     {
@@ -138,12 +130,12 @@ class PathTemplateTest extends TestCase
         $template = new PathTemplate('/buckets/{hello}');
         $this->assertEquals(
             ['hello' => 'world'],
-            $template->match('buckets/world')
+            $template->match('/buckets/world')
         );
         $template = new PathTemplate('/buckets/{hello=*}');
         $this->assertEquals(
             ['hello' => 'world'],
-            $template->match('buckets/world')
+            $template->match('/buckets/world')
         );
     }
 
@@ -156,49 +148,47 @@ class PathTemplateTest extends TestCase
         );
     }
 
+    /**
+     * @expectedException \Google\ApiCore\ValidationException
+     */
     public function testMatchWildcardWithColonInMiddle()
     {
-        $template = new PathTemplate('buckets/*:action/objects');
-        $this->assertEquals(
-            ['$0' => 'foo'],
-            $template->match('buckets/foo:action/objects')
-        );
+        new PathTemplate('/buckets/*:action/objects');
     }
 
     public function testMatchWildcardWithColon()
     {
-        $template = new PathTemplate('buckets/*:action');
+        $template = new PathTemplate('/buckets/*:action');
         $this->assertEquals(
             ['$0' => 'foo'],
-            $template->match('buckets/foo:action')
+            $template->match('/buckets/foo:action')
         );
     }
 
     public function testMatchColonInWildcardAndTemplate()
     {
-        $template = new PathTemplate('buckets/*/*/*/objects/*:action');
+        $template = new PathTemplate('/buckets/*/*/*/objects/*:action');
         $url = $template->render(
             ['$0' => 'f', '$1' => 'o', '$2' => 'o', '$3' => 'google.com:a-b']
         );
-        $this->assertEquals($url, 'buckets/f/o/o/objects/google.com:a-b:action');
+        $this->assertEquals($url, '/buckets/f/o/o/objects/google.com:a-b:action');
     }
 
     public function testMatchUnboundedWildcardWithColon()
     {
-        $template = new PathTemplate('buckets/*/objects/**:action');
+        $template = new PathTemplate('/buckets/*/objects/**:action');
         $this->assertEquals(
             ['$0' => 'foo', '$1' => 'bar/baz'],
-            $template->match('buckets/foo/objects/bar/baz:action')
+            $template->match('/buckets/foo/objects/bar/baz:action')
         );
     }
 
+    /**
+     * @expectedException \Google\ApiCore\ValidationException
+     */
     public function testMatchUnboundedWildcardWithColonInMiddle()
     {
-        $template = new PathTemplate('buckets/*/objects/**:action/path');
-        $this->assertEquals(
-            ['$0' => 'foo', '$1' => 'bar/baz'],
-            $template->match('buckets/foo/objects/bar/baz:action/path')
-        );
+        new PathTemplate('/buckets/*/objects/**:action/path');
     }
 
     public function testMatchTemplateWithUnboundedWildcard()
@@ -230,7 +220,7 @@ class PathTemplateTest extends TestCase
 
     /**
      * @expectedException \Google\ApiCore\ValidationException
-     * @expectedExceptionMessage render error
+     * @expectedExceptionMessage Rendering error
      */
     public function testRenderFailWhenTooFewVariables()
     {
@@ -248,23 +238,23 @@ class PathTemplateTest extends TestCase
     public function testToString()
     {
         $template = new PathTemplate('bar/**/foo/*');
-        $this->assertEquals((string) $template, 'bar/{$0=**}/foo/{$1=*}');
+        $this->assertEquals((string) $template, 'bar/**/foo/*');
         $template = new PathTemplate('buckets/*/objects/*');
         $this->assertEquals(
             (string) ($template),
-            'buckets/{$0=*}/objects/{$1=*}'
+            'buckets/*/objects/*'
         );
         $template = new PathTemplate('/buckets/{hello}');
-        $this->assertEquals((string) ($template), 'buckets/{hello=*}');
+        $this->assertEquals((string) ($template), '/buckets/{hello=*}');
         $template = new PathTemplate('/buckets/{hello=what}/{world}');
         $this->assertEquals(
             (string) ($template),
-            'buckets/{hello=what}/{world=*}'
+            '/buckets/{hello=what}/{world=*}'
         );
         $template = new PathTemplate('/buckets/helloazAZ09-.~_what');
         $this->assertEquals(
             (string) ($template),
-            'buckets/helloazAZ09-.~_what'
+            '/buckets/helloazAZ09-.~_what'
         );
     }
 
@@ -285,14 +275,6 @@ class PathTemplateTest extends TestCase
         $this->assertEquals(
             $url,
             'projects/g.,;:~`!@#$%^&()+-/topics/sdf<>,.?[]'
-        );
-    }
-
-    public function testLeadingSlash()
-    {
-        $this->assertEquals(
-            count(new PathTemplate('/a/b/**/*/{a=hello/world}')),
-            6
         );
     }
 }
