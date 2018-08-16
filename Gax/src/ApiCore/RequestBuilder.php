@@ -32,6 +32,7 @@
 
 namespace Google\ApiCore;
 
+use Google\ApiCore\ResourceTemplate\AbsoluteResourceTemplate;
 use Google\Protobuf\Internal\GPBUtil;
 use Google\Protobuf\Internal\Message;
 use Google\Protobuf\Internal\RepeatedField;
@@ -199,6 +200,8 @@ class RequestBuilder
     }
 
     /**
+     * Try to render the resource name. The rendered resource name will always contain a leading '/'
+     *
      * @param $uriTemplate
      * @param array $bindings
      * @return null|string
@@ -206,7 +209,7 @@ class RequestBuilder
      */
     private function tryRenderPathTemplate($uriTemplate, array $bindings)
     {
-        $template = new PathTemplate($uriTemplate);
+        $template = new AbsoluteResourceTemplate($uriTemplate);
 
         try {
             return $template->render($bindings);
@@ -224,7 +227,7 @@ class RequestBuilder
     {
         $uri = Psr7\uri_for(
             sprintf(
-                'https://%s/%s',
+                'https://%s%s',
                 $this->baseUri,
                 $path
             )

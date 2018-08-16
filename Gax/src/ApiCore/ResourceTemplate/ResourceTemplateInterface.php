@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2016, Google Inc.
+ * Copyright 2018 Google LLC
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -30,63 +30,43 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-namespace Google\ApiCore;
+namespace Google\ApiCore\ResourceTemplate;
 
-use Google\ApiCore\ResourceTemplate\AbsoluteResourceTemplate;
-use Google\ApiCore\ResourceTemplate\RelativeResourceTemplate;
-use Google\ApiCore\ResourceTemplate\ResourceTemplateInterface;
+use Google\ApiCore\ValidationException;
 
 /**
- * Represents a path template.
+ * Represents a resource template that may or may not contain a leading slash, and if a leading
+ * slash is present may contain a trailing verb (":<verb>"). (Note that a trailing verb without a
+ * leading slash is not permitted).
  *
- * Templates use the syntax of the API platform; see the protobuf of HttpRule for
- * details. A template consists of a sequence of literals, wildcards, and variable bindings,
+ * Examples:
+ *   projects
+ *   /projects
+ *   foo/{bar=**}/fizz/*
+ *   /foo/{bar=**}/fizz/*:action
+ *
+ * Templates use the syntax of the API platform; see
+ * https://github.com/googleapis/api-common-protos/blob/master/google/api/http.proto
+ * for details. A template consists of a sequence of literals, wildcards, and variable bindings,
  * where each binding can have a sub-path. A string representation can be parsed into an
- * instance of PathTemplate, which can then be used to perform matching and instantiation.
+ * instance of AbsoluteResourceTemplate, which can then be used to perform matching and instantiation.
  */
-class PathTemplate implements ResourceTemplateInterface
+interface ResourceTemplateInterface
 {
-    private $resourceTemplate;
-
     /**
-     * PathTemplate constructor.
-     *
-     * @param string $path A path template string
-     * @throws ValidationException When $path cannot be parsed into a valid PathTemplate
+     * @return string A string representation of the resource template
      */
-    public function __construct($path)
-    {
-        if (empty($path)) {
-            throw new ValidationException('Cannot construct PathTemplate from empty string');
-        }
-
-        if ($path[0] === '/') {
-            $this->resourceTemplate = new AbsoluteResourceTemplate($path);
-        } else {
-            $this->resourceTemplate = new RelativeResourceTemplate($path);
-        }
-    }
+    public function __toString();
 
     /**
-     * @return string A string representation of the path template
-     */
-    public function __toString()
-    {
-        return $this->resourceTemplate->__toString();
-    }
-
-    /**
-     * Renders a path template using the provided bindings.
+     * Renders a resource template using the provided bindings.
      *
      * @param array $bindings An array matching var names to binding strings.
-     * @throws ValidationException if a key isn't provided or if a sub-template
-     *    can't be parsed.
-     * @return string A rendered representation of this path template.
+     * @return string A rendered representation of this resource template.
+     * @throws ValidationException If $bindings does not contain all required keys
+     *         or if a sub-template can't be parsed.
      */
-    public function render(array $bindings)
-    {
-        return $this->resourceTemplate->render($bindings);
-    }
+    public function render(array $bindings);
 
     /**
      * Check if $path matches a resource string.
@@ -94,20 +74,16 @@ class PathTemplate implements ResourceTemplateInterface
      * @param string $path A resource string.
      * @return bool
      */
-    public function matches($path)
-    {
-        return $this->resourceTemplate->matches($path);
-    }
+    public function matches($path);
 
     /**
-     * Matches a fully qualified path template string.
+     * Matches a given $path to a resource template, and returns an array of bindings between
+     * wildcards / variables in the template and values in the path. If $path does not match the
+     * template, then a ValidationException is thrown.
      *
-     * @param string $path A fully qualified path template string.
+     * @param string $path A resource string.
      * @throws ValidationException if path can't be matched to the template.
      * @return array Array matching var names to binding values.
      */
-    public function match($path)
-    {
-        return $this->resourceTemplate->match($path);
-    }
+    public function match($path);
 }
