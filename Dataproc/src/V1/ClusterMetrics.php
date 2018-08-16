@@ -30,9 +30,21 @@ class ClusterMetrics extends \Google\Protobuf\Internal\Message
      */
     private $yarn_metrics;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type array|\Google\Protobuf\Internal\MapField $hdfs_metrics
+     *           The HDFS metrics.
+     *     @type array|\Google\Protobuf\Internal\MapField $yarn_metrics
+     *           The YARN metrics.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Dataproc\V1\Clusters::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

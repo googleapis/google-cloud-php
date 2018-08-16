@@ -55,3 +55,9 @@ s.replace(
     'tests/**/V1/*Test.php',
     r'Copyright \d{4}',
     'Copyright 2018')
+
+# Use new namespaces
+s.replace(
+    'src/V1/Gapic/JobControllerGapicClient.php',
+    r'ListJobsRequest_JobStateMatcher',
+    'ListJobsRequest\\JobStateMatcher')

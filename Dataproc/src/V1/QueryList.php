@@ -34,9 +34,31 @@ class QueryList extends \Google\Protobuf\Internal\Message
      */
     private $queries;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $queries
+     *           Required. The queries to execute. You do not need to terminate a query
+     *           with a semicolon. Multiple queries can be specified in one string
+     *           by separating each with a semicolon. Here is an example of an Cloud
+     *           Dataproc API snippet that uses a QueryList to specify a HiveJob:
+     *               "hiveJob": {
+     *                 "queryList": {
+     *                   "queries": [
+     *                     "query1",
+     *                     "query2",
+     *                     "query3;query4",
+     *                   ]
+     *                 }
+     *               }
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Dataproc\V1\Jobs::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

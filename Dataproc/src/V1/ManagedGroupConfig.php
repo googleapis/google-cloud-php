@@ -29,9 +29,22 @@ class ManagedGroupConfig extends \Google\Protobuf\Internal\Message
      */
     private $instance_group_manager_name = '';
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $instance_template_name
+     *           Output-only. The name of the Instance Template used for the Managed
+     *           Instance Group.
+     *     @type string $instance_group_manager_name
+     *           Output-only. The name of the Instance Group Manager for this group.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Dataproc\V1\Clusters::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

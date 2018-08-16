@@ -35,9 +35,27 @@ class AcceleratorConfig extends \Google\Protobuf\Internal\Message
      */
     private $accelerator_count = 0;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $accelerator_type_uri
+     *           Full URL, partial URI, or short name of the accelerator type resource to
+     *           expose to this instance. See [Google Compute Engine AcceleratorTypes](
+     *           /compute/docs/reference/beta/acceleratorTypes)
+     *           Examples
+     *           * `https://www.googleapis.com/compute/beta/projects/[project_id]/zones/us-east1-a/acceleratorTypes/nvidia-tesla-k80`
+     *           * `projects/[project_id]/zones/us-east1-a/acceleratorTypes/nvidia-tesla-k80`
+     *           * `nvidia-tesla-k80`
+     *     @type int $accelerator_count
+     *           The number of the accelerator cards of this type exposed to this instance.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Dataproc\V1\Clusters::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

@@ -4,31 +4,13 @@
 
 namespace Google\Cloud\Dataproc\V1;
 
-/**
- * A matcher that specifies categories of job states.
- *
- * Protobuf enum <code>Google\Cloud\Dataproc\V1\ListJobsRequest\JobStateMatcher</code>
- */
-class ListJobsRequest_JobStateMatcher
-{
+if (false) {
     /**
-     * Match all jobs, regardless of state.
-     *
-     * Generated from protobuf enum <code>ALL = 0;</code>
+     * This class is deprecated. Use Google\Cloud\Dataproc\V1\ListJobsRequest\JobStateMatcher instead.
+     * @deprecated
      */
-    const ALL = 0;
-    /**
-     * Only match jobs in non-terminal states: PENDING, RUNNING, or
-     * CANCEL_PENDING.
-     *
-     * Generated from protobuf enum <code>ACTIVE = 1;</code>
-     */
-    const ACTIVE = 1;
-    /**
-     * Only match jobs in terminal states: CANCELLED, DONE, or ERROR.
-     *
-     * Generated from protobuf enum <code>NON_ACTIVE = 2;</code>
-     */
-    const NON_ACTIVE = 2;
+    class ListJobsRequest_JobStateMatcher {}
 }
+class_exists(ListJobsRequest\JobStateMatcher::class);
+@trigger_error('Google\Cloud\Dataproc\V1\ListJobsRequest_JobStateMatcher is deprecated and will be removed in the next major release. Use Google\Cloud\Dataproc\V1\ListJobsRequest\JobStateMatcher instead', E_USER_DEPRECATED);
 

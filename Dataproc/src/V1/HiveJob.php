@@ -50,9 +50,37 @@ class HiveJob extends \Google\Protobuf\Internal\Message
     private $jar_file_uris;
     protected $queries;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $query_file_uri
+     *           The HCFS URI of the script that contains Hive queries.
+     *     @type \Google\Cloud\Dataproc\V1\QueryList $query_list
+     *           A list of queries.
+     *     @type bool $continue_on_failure
+     *           Optional. Whether to continue executing queries if a query fails.
+     *           The default value is `false`. Setting to `true` can be useful when executing
+     *           independent parallel queries.
+     *     @type array|\Google\Protobuf\Internal\MapField $script_variables
+     *           Optional. Mapping of query variable names to values (equivalent to the
+     *           Hive command: `SET name="value";`).
+     *     @type array|\Google\Protobuf\Internal\MapField $properties
+     *           Optional. A mapping of property names and values, used to configure Hive.
+     *           Properties that conflict with values set by the Cloud Dataproc API may be
+     *           overwritten. Can include properties set in /etc/hadoop/conf/&#42;-site.xml,
+     *           /etc/hive/conf/hive-site.xml, and classes in user code.
+     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $jar_file_uris
+     *           Optional. HCFS URIs of jar files to add to the CLASSPATH of the
+     *           Hive server and Hadoop MapReduce (MR) tasks. Can contain Hive SerDes
+     *           and UDFs.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Dataproc\V1\Jobs::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

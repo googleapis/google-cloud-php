@@ -72,9 +72,45 @@ class ListJobsRequest extends \Google\Protobuf\Internal\Message
      */
     private $filter = '';
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $project_id
+     *           Required. The ID of the Google Cloud Platform project that the job
+     *           belongs to.
+     *     @type string $region
+     *           Required. The Cloud Dataproc region in which to handle the request.
+     *     @type int $page_size
+     *           Optional. The number of results to return in each response.
+     *     @type string $page_token
+     *           Optional. The page token, returned by a previous call, to request the
+     *           next page of results.
+     *     @type string $cluster_name
+     *           Optional. If set, the returned jobs list includes only jobs that were
+     *           submitted to the named cluster.
+     *     @type int $job_state_matcher
+     *           Optional. Specifies enumerated categories of jobs to list.
+     *           (default = match ALL jobs).
+     *           If `filter` is provided, `jobStateMatcher` will be ignored.
+     *     @type string $filter
+     *           Optional. A filter constraining the jobs to list. Filters are
+     *           case-sensitive and have the following syntax:
+     *           [field = value] AND [field [= value]] ...
+     *           where **field** is `status.state` or `labels.[KEY]`, and `[KEY]` is a label
+     *           key. **value** can be `*` to match all values.
+     *           `status.state` can be either `ACTIVE` or `NON_ACTIVE`.
+     *           Only the logical `AND` operator is supported; space-separated items are
+     *           treated as having an implicit `AND` operator.
+     *           Example filter:
+     *           status.state = ACTIVE AND labels.env = staging AND labels.starred = *
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Dataproc\V1\Jobs::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

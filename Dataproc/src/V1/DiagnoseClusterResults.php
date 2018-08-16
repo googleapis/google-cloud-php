@@ -24,9 +24,21 @@ class DiagnoseClusterResults extends \Google\Protobuf\Internal\Message
      */
     private $output_uri = '';
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $output_uri
+     *           Output-only. The Google Cloud Storage URI of the diagnostic output.
+     *           The output report is a plain text file with a summary of collected
+     *           diagnostics.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Dataproc\V1\Clusters::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

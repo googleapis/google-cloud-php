@@ -4,48 +4,13 @@
 
 namespace Google\Cloud\Dataproc\V1;
 
-/**
- * The cluster state.
- *
- * Protobuf enum <code>Google\Cloud\Dataproc\V1\ClusterStatus\State</code>
- */
-class ClusterStatus_State
-{
+if (false) {
     /**
-     * The cluster state is unknown.
-     *
-     * Generated from protobuf enum <code>UNKNOWN = 0;</code>
+     * This class is deprecated. Use Google\Cloud\Dataproc\V1\ClusterStatus\State instead.
+     * @deprecated
      */
-    const UNKNOWN = 0;
-    /**
-     * The cluster is being created and set up. It is not ready for use.
-     *
-     * Generated from protobuf enum <code>CREATING = 1;</code>
-     */
-    const CREATING = 1;
-    /**
-     * The cluster is currently running and healthy. It is ready for use.
-     *
-     * Generated from protobuf enum <code>RUNNING = 2;</code>
-     */
-    const RUNNING = 2;
-    /**
-     * The cluster encountered an error. It is not ready for use.
-     *
-     * Generated from protobuf enum <code>ERROR = 3;</code>
-     */
-    const ERROR = 3;
-    /**
-     * The cluster is being deleted. It cannot be used.
-     *
-     * Generated from protobuf enum <code>DELETING = 4;</code>
-     */
-    const DELETING = 4;
-    /**
-     * The cluster is being updated. It continues to accept and process jobs.
-     *
-     * Generated from protobuf enum <code>UPDATING = 5;</code>
-     */
-    const UPDATING = 5;
+    class ClusterStatus_State {}
 }
+class_exists(ClusterStatus\State::class);
+@trigger_error('Google\Cloud\Dataproc\V1\ClusterStatus_State is deprecated and will be removed in the next major release. Use Google\Cloud\Dataproc\V1\ClusterStatus\State instead', E_USER_DEPRECATED);
 
