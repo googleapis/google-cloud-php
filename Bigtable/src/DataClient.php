@@ -20,6 +20,9 @@ namespace Google\Cloud\Bigtable;
 use Google\ApiCore\ApiException;
 use Google\Cloud\Bigtable\Exception\BigtableDataOperationException;
 use Google\Cloud\Bigtable\V2\BigtableClient as TableClient;
+use Google\Cloud\Bigtable\V2\RowRange;
+use Google\Cloud\Bigtable\V2\RowSet;
+use Google\Cloud\Core\ArrayTrait;
 use Google\Cloud\Core\ClientTrait;
 use Google\Rpc\Code;
 
@@ -37,6 +40,7 @@ use Google\Rpc\Code;
  */
 class DataClient
 {
+    use ArrayTrait;
     use ClientTrait;
 
     /**
@@ -188,5 +192,74 @@ class DataClient
             $rowMutations[] = $rowMutation;
         }
         $this->mutateRows($rowMutations, $options);
+    }
+
+    /**
+     * Read rows from the table.
+     *
+     * Example:
+     * ```
+     * use Google\Cloud\Bigtable\DataClient;
+     * $rows = iterator_to_array($dataClient->readRows()->readAll());
+     * ```
+     *
+     * @param array $options [optional] {
+     *     ReadRows Options.
+     *
+     *     @type string $rowKeys Row key of the row to read.
+     *     @type array $rowKeys Set of row keys of the rows to read.
+     *     @type array $rowRanges Array of row ranges. Each row range is an array
+     *           with keys `startKeyOpen`, `startKeyClosed`, `endKeyOpen` &
+     *           `endKeyClosed` and values of row key to be scanned.
+     *     @type int $rowsLimit Number of rows to scan.
+     * }
+     *
+     * @return Generator
+     * @throws ApiException|BigtableDataOperationException if the remote call fails or operation fails
+     */
+    public function readRows(array $options = [])
+    {
+        $rowSet = null;
+        $rowKeys = $this->pluck('rowKeys', $options, false);
+        $ranges = $this->pluck('rowRanges', $options, false);
+        if ($rowKeys !== null) {
+            $rowSet = new RowSet();
+            if (is_array($rowKeys)) {
+                $rowSet->setRowKeys($rowKeys);
+            } else {
+                $rowSet->setRowKeys([$rowKeys]);
+            }
+        }
+        if ($ranges !== null) {
+            if ($rowSet === null) {
+                $rowSet = new RowSet();
+            }
+            $rowRanges = [];
+            foreach ($ranges as $range) {
+                $rowRange = new RowRange();
+                if (isset($range['startKeyOpen'])) {
+                    $rowRange->setStartKeyOpen($range['startKeyOpen']);
+                } elseif (isset($range['startKeyClosed'])) {
+                    $rowRange->setStartKeyClosed($range['startKeyClosed']);
+                }
+                if (isset($range['endKeyOpen'])) {
+                    $rowRange->setEndKeyOpen($range['endKeyOpen']);
+                } elseif (isset($range['endKeyClosed'])) {
+                    $rowRange->setEndKeyClosed($range['endKeyClosed']);
+                }
+                $rowRanges[] = $rowRange;
+            }
+            $rowSet->setRowRanges($rowRanges);
+        }
+        $args = $options + $this->options;
+        if ($rowSet !== null) {
+            $args['rows'] = $rowSet;
+        }
+        $serverStream = $this->bigtableClient->readRows(
+            $this->tableName,
+            $args
+        );
+        $chunkFormatter = new ChunkFormatter($serverStream);
+        return $chunkFormatter;
     }
 }

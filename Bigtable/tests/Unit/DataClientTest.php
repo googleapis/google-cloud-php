@@ -19,12 +19,15 @@ namespace Google\Cloud\Bigtable\Tests\Unit;
 
 use Google\ApiCore\ApiException;
 use Google\ApiCore\ServerStream;
+use Google\Cloud\Bigtable\ChunkFormatter;
 use Google\Cloud\Bigtable\DataClient;
 use Google\Cloud\Bigtable\Exception\BigtableDataOperationException;
 use Google\Cloud\Bigtable\RowMutation;
 use Google\Cloud\Bigtable\V2\BigtableClient as TableClient;
 use Google\Cloud\Bigtable\V2\MutateRowsResponse;
 use Google\Cloud\Bigtable\V2\MutateRowsResponse\Entry;
+use Google\Cloud\Bigtable\V2\RowRange;
+use Google\Cloud\Bigtable\V2\RowSet;
 use Google\Rpc\Code;
 use Google\Rpc\Status;
 use PHPUnit\Framework\TestCase;
@@ -267,6 +270,250 @@ class DataClientTest extends TestCase
             ]
         ];
         $this->dataClient->upsert($rows, $options);
+    }
+    public function testReadRowsNoArg()
+    {
+        $expectedArgs = $this->options;
+        $this->bigtableClient->readRows(self::TABLE_NAME, $expectedArgs)
+            ->shouldBeCalled()
+            ->willReturn(
+                $this->serverStream
+            );
+        $args = [];
+        $iterator = $this->dataClient->readRows($args);
+        $this->assertInstanceOf(ChunkFormatter::class, $iterator);
+    }
+
+    public function testReadRowsWithSingleRowKey()
+    {
+        $rowSet = new RowSet();
+        $rowSet->setRowKeys(['rk1']);
+        $expectedArgs = $this->options + [
+            'rows' => $rowSet
+        ];
+        $this->bigtableClient->readRows(self::TABLE_NAME, $expectedArgs)
+            ->shouldBeCalled()
+            ->willReturn(
+                $this->serverStream
+            );
+        $args = [
+            'rowKeys' => 'rk1'
+        ];
+        $iterator = $this->dataClient->readRows($args);
+        $this->assertInstanceOf(ChunkFormatter::class, $iterator);
+    }
+
+    public function testReadRowsWithMultipleRowKeys()
+    {
+        $rowSet = new RowSet();
+        $rowSet->setRowKeys(['rk1', 'rk2']);
+        $expectedArgs = $this->options + [
+            'rows' => $rowSet
+        ];
+        $this->bigtableClient->readRows(self::TABLE_NAME, $expectedArgs)
+            ->shouldBeCalled()
+            ->willReturn(
+                $this->serverStream
+            );
+        $args = [
+            'rowKeys' => [ 'rk1', 'rk2']
+        ];
+        $iterator = $this->dataClient->readRows($args);
+        $this->assertInstanceOf(ChunkFormatter::class, $iterator);
+    }
+
+    public function testReadRowsWithRowLimit()
+    {
+        $rowSet = new RowSet();
+        $rowSet->setRowKeys(['rk1', 'rk2']);
+        $expectedArgs = $this->options + [
+            'rows' => $rowSet,
+            'rowsLimit' => 10
+        ];
+        $this->bigtableClient->readRows(self::TABLE_NAME, $expectedArgs)
+            ->shouldBeCalled()
+            ->willReturn(
+                $this->serverStream
+            );
+        $args = [
+            'rowKeys' => [ 'rk1', 'rk2'],
+            'rowsLimit' => 10
+        ];
+        $iterator = $this->dataClient->readRows($args);
+        $this->assertInstanceOf(ChunkFormatter::class, $iterator);
+    }
+
+    public function testReadRowsWithRowRangeKeysOpen()
+    {
+        $rowSet = new RowSet();
+        $rowRange = new RowRange();
+        $rowRange->setStartKeyOpen('so1');
+        $rowRange->setEndKeyOpen('eo1');
+        $rowSet->setRowRanges([$rowRange]);
+        $expectedArgs = $this->options + [
+            'rows' => $rowSet
+        ];
+        $this->bigtableClient->readRows(self::TABLE_NAME, $expectedArgs)
+            ->shouldBeCalled()
+            ->willReturn(
+                $this->serverStream
+            );
+        $args = [
+            'rowRanges' =>[
+                [
+                    'startKeyOpen' => 'so1',
+                    'endKeyOpen' => 'eo1'
+                ]
+            ]
+        ];
+        $iterator = $this->dataClient->readRows($args);
+        $this->assertInstanceOf(ChunkFormatter::class, $iterator);
+    }
+
+    public function testReadRowsWithRowRangeKeysClosed()
+    {
+        $rowSet = new RowSet();
+        $rowRange = new RowRange();
+        $rowRange->setStartKeyClosed('sc1');
+        $rowRange->setEndKeyClosed('ec1');
+        $rowSet->setRowRanges([$rowRange]);
+        $expectedArgs = $this->options + [
+            'rows' => $rowSet
+        ];
+        $this->bigtableClient->readRows(self::TABLE_NAME, $expectedArgs)
+            ->shouldBeCalled()
+            ->willReturn(
+                $this->serverStream
+            );
+        $args = [
+            'rowRanges' =>[
+                [
+                    'startKeyClosed' => 'sc1',
+                    'endKeyClosed' => 'ec1'
+                ]
+            ]
+        ];
+        $iterator = $this->dataClient->readRows($args);
+        $this->assertInstanceOf(ChunkFormatter::class, $iterator);
+    }
+
+    public function testReadRowsWithRowRangeKeysOpenClosed()
+    {
+        $rowSet = new RowSet();
+        $rowRange = new RowRange();
+        $rowRange->setStartKeyOpen('so1');
+        $rowRange->setEndKeyClosed('ec1');
+        $rowSet->setRowRanges([$rowRange]);
+        $expectedArgs = $this->options + [
+            'rows' => $rowSet
+        ];
+        $this->bigtableClient->readRows(self::TABLE_NAME, $expectedArgs)
+            ->shouldBeCalled()
+            ->willReturn(
+                $this->serverStream
+            );
+        $args = [
+            'rowRanges' =>[
+                [
+                    'startKeyOpen' => 'so1',
+                    'endKeyClosed' => 'ec1'
+                ]
+            ]
+        ];
+        $iterator = $this->dataClient->readRows($args);
+        $this->assertInstanceOf(ChunkFormatter::class, $iterator);
+    }
+
+    public function testReadRowsWithRowRangeKeysClosedOpen()
+    {
+        $rowSet = new RowSet();
+        $rowRange = new RowRange();
+        $rowRange->setStartKeyClosed('sc1');
+        $rowRange->setEndKeyOpen('eo1');
+        $rowSet->setRowRanges([$rowRange]);
+        $expectedArgs = $this->options + [
+            'rows' => $rowSet
+        ];
+        $this->bigtableClient->readRows(self::TABLE_NAME, $expectedArgs)
+            ->shouldBeCalled()
+            ->willReturn(
+                $this->serverStream
+            );
+        $args = [
+            'rowRanges' =>[
+                [
+                    'startKeyClosed' => 'sc1',
+                    'endKeyOpen' => 'eo1'
+                ]
+            ]
+        ];
+        $iterator = $this->dataClient->readRows($args);
+        $this->assertInstanceOf(ChunkFormatter::class, $iterator);
+    }
+
+    public function testReadRowsWithRowRangeKeysMultipleRowRanges()
+    {
+        $rowSet = new RowSet();
+        $rowRange = new RowRange();
+        $rowRange->setStartKeyClosed('sc1');
+        $rowRange->setEndKeyOpen('eo1');
+        $rowRanges[] = $rowRange;
+        $rowRange = new RowRange();
+        $rowRange->setStartKeyClosed('sc2');
+        $rowRange->setEndKeyOpen('eo2');
+        $rowRanges[] = $rowRange;
+        $rowSet->setRowRanges($rowRanges);
+        $expectedArgs = $this->options + [
+            'rows' => $rowSet
+        ];
+        $this->bigtableClient->readRows(self::TABLE_NAME, $expectedArgs)
+            ->shouldBeCalled()
+            ->willReturn(
+                $this->serverStream
+            );
+        $args = [
+            'rowRanges' =>[
+                [
+                    'startKeyClosed' => 'sc1',
+                    'endKeyOpen' => 'eo1'
+                ],
+                [
+                    'startKeyClosed' => 'sc2',
+                    'endKeyOpen' => 'eo2'
+                ]
+            ]
+        ];
+        $iterator = $this->dataClient->readRows($args);
+        $this->assertInstanceOf(ChunkFormatter::class, $iterator);
+    }
+
+    public function testReadRowsWithKeyAndRanges()
+    {
+        $rowSet = new RowSet();
+        $rowRange = new RowRange();
+        $rowSet->setRowKeys(['rk1']);
+        $rowRange->setStartKeyClosed('sc1');
+        $rowRange->setEndKeyOpen('eo1');
+        $rowSet->setRowRanges([$rowRange]);
+        $expectedArgs = $this->options + [
+            'rows' => $rowSet
+        ];
+        $this->bigtableClient->readRows(self::TABLE_NAME, $expectedArgs)
+            ->shouldBeCalled()
+            ->willReturn(
+                $this->serverStream
+            );
+        $args = [
+            'rowKeys' => 'rk1',
+            'rowRanges' => [
+                [
+                    'startKeyClosed' => 'sc1',
+                    'endKeyOpen' => 'eo1'
+                ]
+            ]
+        ];
+        $iterator = $this->dataClient->readRows($args);
+        $this->assertInstanceOf(ChunkFormatter::class, $iterator);
     }
 
     private function getMutateRowsResponse(array $status)

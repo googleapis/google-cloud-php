@@ -25,8 +25,12 @@ use Google\Cloud\Bigtable\V2\MutateRowsResponse;
 use Google\Cloud\Bigtable\V2\MutateRowsResponse\Entry as MutateRowsResponse_Entry;
 use Google\Cloud\Bigtable\V2\Mutation;
 use Google\Cloud\Bigtable\V2\Mutation\SetCell;
+use Google\Cloud\Bigtable\V2\ReadRowsResponse;
+use Google\Cloud\Bigtable\V2\ReadRowsResponse_CellChunk as ReadRowsResponse_CellChunk;
 use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
 use Google\Cloud\Core\Testing\TestHelpers;
+use Google\Protobuf\StringValue;
+use Google\Protobuf\BytesValue;
 use Google\Rpc\Code;
 use Google\Rpc\Status;
 
@@ -125,6 +129,43 @@ class DataClientTest extends SnippetTestCase
         $snippet = $this->snippetFromMethod(DataClient::class, 'upsert');
         $snippet->addLocal('dataClient', $this->dataClient);
         $snippet->invoke();
+    }
+
+    public function testReadRows()
+    {
+        $readRowsResponse = new ReadRowsResponse;
+        $chunks = [];
+        $chunk = new ReadRowsResponse_CellChunk();
+        $chunk->setRowKey('rk1');
+        $chunk->setFamilyName(new StringValue(['value' => 'cf1']));
+        $chunk->setQualifier(new BytesValue(['value' => 'cq1']));
+        $chunk->setValue('value1');
+        $chunk->setCommitRow(true);
+        $chunks[] = $chunk;
+        $readRowsResponse->setChunks($chunks);
+        $this->serverStream->readAll()->shouldBeCalled()->willReturn(
+            $this->arrayAsGenerator([$readRowsResponse])
+        );
+        $this->bigtableClient->readRows(self::TABLE_NAME, [])
+        ->shouldBeCalled()
+        ->willReturn(
+            $this->serverStream->reveal()
+        );
+        $snippet = $this->snippetFromMethod(DataClient::class, 'readRows');
+        $snippet->addLocal('dataClient', $this->dataClient);
+        $res = $snippet->invoke('rows');
+        $expectedRows = [
+            'rk1' => [
+                'cf1' => [
+                    'cq1' => [[
+                        'value' => 'value1',
+                        'labels' => '',
+                        'timeStamp' => 0
+                    ]]
+                ]
+            ]
+        ];
+        $this->assertEquals($expectedRows, $res->returnVal());
     }
 
     private function arrayAsGenerator(array $array)
