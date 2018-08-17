@@ -151,7 +151,7 @@ class PathTemplateTest extends TestCase
     /**
      * @expectedException \Google\ApiCore\ValidationException
      */
-    public function testMatchWildcardWithColonInMiddle()
+    public function testFailMatchWildcardWithColonInMiddle()
     {
         new PathTemplate('/buckets/*:action/objects');
     }
@@ -186,7 +186,7 @@ class PathTemplateTest extends TestCase
     /**
      * @expectedException \Google\ApiCore\ValidationException
      */
-    public function testMatchUnboundedWildcardWithColonInMiddle()
+    public function testFailMatchUnboundedWildcardWithColonInMiddle()
     {
         new PathTemplate('/buckets/*/objects/**:action/path');
     }

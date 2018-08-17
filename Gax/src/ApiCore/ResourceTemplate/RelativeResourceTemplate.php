@@ -145,6 +145,7 @@ class RelativeResourceTemplate implements ResourceTemplateInterface
         // - Match pieces of the path with Segments in the flattened list
 
         $pathPieces = explode('/', $path);
+        $pathPiecesCount = count($pathPieces);
 
         // In order to build correct bindings after we match the $path against our template, we
         // need to (a) calculate the correct positional keys for our wildcards, and (b) maintain
@@ -153,7 +154,8 @@ class RelativeResourceTemplate implements ResourceTemplateInterface
         // key.
         $keySegmentTuples = self::buildKeySegmentTuples($this->segments);
         $flattenedKeySegmentTuples = self::flattenKeySegmentTuples($keySegmentTuples);
-        assert(count($flattenedKeySegmentTuples) > 0);
+        $flattenedKeySegmentTuplesCount = count($flattenedKeySegmentTuples);
+        assert($flattenedKeySegmentTuplesCount > 0);
 
         // We would like to match pieces of our path 1:1 with the segments of our template. However,
         // this is confounded by the presence of double wildcards ('**') in the template, which can
@@ -162,20 +164,20 @@ class RelativeResourceTemplate implements ResourceTemplateInterface
         // match by examining the difference in count between the template segments and the
         // path pieces.
 
-        if (count($pathPieces) < count($flattenedKeySegmentTuples)) {
+        if ($pathPiecesCount < $flattenedKeySegmentTuplesCount) {
             // Each segment in $flattenedKeyedSegments must consume at least one
             // segment in $pathSegments, so matching must fail.
             throw $this->matchException($path);
         }
 
-        $doubleWildcardPieceCount = count($pathPieces) - count($flattenedKeySegmentTuples) + 1;
+        $doubleWildcardPieceCount = $pathPiecesCount - $flattenedKeySegmentTuplesCount + 1;
 
         $bindings = [];
         $pathPiecesIndex = 0;
         /** @var Segment $segment */
         foreach ($flattenedKeySegmentTuples as list($segmentKey, $segment)) {
             // So long as there are tuples remaining, there will also be $pathPieces
-            assert($pathPiecesIndex < count($pathPieces));
+            assert($pathPiecesIndex < $pathPiecesCount);
 
             // In our flattened list of segments, we should never encounter a variable segment
             assert($segment->getSegmentType() !== Segment::VARIABLE_SEGMENT);
@@ -203,7 +205,7 @@ class RelativeResourceTemplate implements ResourceTemplateInterface
 
         // It is possible that we have left over path pieces, which can occur if our template does
         // not have a double wildcard. In that case, the match should fail.
-        if ($pathPiecesIndex !== count($pathPieces)) {
+        if ($pathPiecesIndex !== $pathPiecesCount) {
             throw $this->matchException($path);
         }
 
@@ -224,7 +226,7 @@ class RelativeResourceTemplate implements ResourceTemplateInterface
      * @param Segment[] $segments
      * @return array[] A list of [string, Segment] tuples
      */
-    private static function buildKeySegmentTuples($segments)
+    private static function buildKeySegmentTuples(array $segments)
     {
         $keySegmentTuples = [];
         $positionalArgumentCounter = 0;
@@ -247,7 +249,7 @@ class RelativeResourceTemplate implements ResourceTemplateInterface
      * @param array[] A list of [string, Segment] tuples
      * @return array[] A list of [string, Segment] tuples
      */
-    private static function flattenKeySegmentTuples($keySegmentTuples)
+    private static function flattenKeySegmentTuples(array $keySegmentTuples)
     {
         $flattenedKeySegmentTuples = [];
         foreach ($keySegmentTuples as list($key, $segment)) {
@@ -278,7 +280,7 @@ class RelativeResourceTemplate implements ResourceTemplateInterface
      * @param Segment[] $segments
      * @return int
      */
-    private static function countDoubleWildcards($segments)
+    private static function countDoubleWildcards(array $segments)
     {
         $doubleWildcardCount = 0;
         foreach ($segments as $segment) {
