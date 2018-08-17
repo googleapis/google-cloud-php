@@ -50,7 +50,7 @@ class DataClient
     private $tableId;
 
     /**
-     * @var BigtableClient
+     * @var TableClient
      */
     private $bigtableClient;
 
@@ -74,7 +74,7 @@ class DataClient
      *
      *      @type string $appProfileId The appProfileId to be used.
      *      @type array $headers The headers to be passed to request.
-     *      @type BigtableClient $bigtableClient The GAPIC Bigtable client to use.
+     *      @type TableClient $bigtableClient The GAPIC Bigtable client to use.
      *            If not provided it will create one.
      *     @type array $keyFile The contents of the service account credentials
      *           .json file retrieved from the Google Developer's Console.
