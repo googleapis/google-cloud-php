@@ -70,9 +70,24 @@ class Quota extends \Google\Protobuf\Internal\Message
      */
     private $metric_rules;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type \Google\Api\QuotaLimit[]|\Google\Protobuf\Internal\RepeatedField $limits
+     *           List of `QuotaLimit` definitions for the service.
+     *           Used by metric-based quotas only.
+     *     @type \Google\Api\MetricRule[]|\Google\Protobuf\Internal\RepeatedField $metric_rules
+     *           List of `MetricRule` definitions, each one mapping a selected method to one
+     *           or more metrics.
+     *           Used by metric-based quotas only.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Api\Quota::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

@@ -41,9 +41,23 @@ class Property extends \Google\Protobuf\Internal\Message
      */
     private $description = '';
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $name
+     *           The name of the property (a.k.a key).
+     *     @type int $type
+     *           The type of this property.
+     *     @type string $description
+     *           The description of the property
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Api\Consumer::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

@@ -4,93 +4,13 @@
 
 namespace Google\Api;
 
-use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
-use Google\Protobuf\Internal\GPBUtil;
-
-/**
- * Configuration of a specific monitoring destination (the producer project
- * or the consumer project).
- *
- * Generated from protobuf message <code>google.api.Monitoring.MonitoringDestination</code>
- */
-class Monitoring_MonitoringDestination extends \Google\Protobuf\Internal\Message
-{
+if (false) {
     /**
-     * The monitored resource type. The type must be defined in
-     * [Service.monitored_resources][google.api.Service.monitored_resources] section.
-     *
-     * Generated from protobuf field <code>string monitored_resource = 1;</code>
+     * This class is deprecated. Use Google\Api\Monitoring\MonitoringDestination instead.
+     * @deprecated
      */
-    private $monitored_resource = '';
-    /**
-     * Names of the metrics to report to this monitoring destination.
-     * Each name must be defined in [Service.metrics][google.api.Service.metrics] section.
-     *
-     * Generated from protobuf field <code>repeated string metrics = 2;</code>
-     */
-    private $metrics;
-
-    public function __construct() {
-        \GPBMetadata\Google\Api\Monitoring::initOnce();
-        parent::__construct();
-    }
-
-    /**
-     * The monitored resource type. The type must be defined in
-     * [Service.monitored_resources][google.api.Service.monitored_resources] section.
-     *
-     * Generated from protobuf field <code>string monitored_resource = 1;</code>
-     * @return string
-     */
-    public function getMonitoredResource()
-    {
-        return $this->monitored_resource;
-    }
-
-    /**
-     * The monitored resource type. The type must be defined in
-     * [Service.monitored_resources][google.api.Service.monitored_resources] section.
-     *
-     * Generated from protobuf field <code>string monitored_resource = 1;</code>
-     * @param string $var
-     * @return $this
-     */
-    public function setMonitoredResource($var)
-    {
-        GPBUtil::checkString($var, True);
-        $this->monitored_resource = $var;
-
-        return $this;
-    }
-
-    /**
-     * Names of the metrics to report to this monitoring destination.
-     * Each name must be defined in [Service.metrics][google.api.Service.metrics] section.
-     *
-     * Generated from protobuf field <code>repeated string metrics = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
-     */
-    public function getMetrics()
-    {
-        return $this->metrics;
-    }
-
-    /**
-     * Names of the metrics to report to this monitoring destination.
-     * Each name must be defined in [Service.metrics][google.api.Service.metrics] section.
-     *
-     * Generated from protobuf field <code>repeated string metrics = 2;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
-     * @return $this
-     */
-    public function setMetrics($var)
-    {
-        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
-        $this->metrics = $arr;
-
-        return $this;
-    }
-
+    class Monitoring_MonitoringDestination {}
 }
+class_exists(Monitoring\MonitoringDestination::class);
+@trigger_error('Google\Api\Monitoring_MonitoringDestination is deprecated and will be removed in the next major release. Use Google\Api\Monitoring\MonitoringDestination instead', E_USER_DEPRECATED);
 

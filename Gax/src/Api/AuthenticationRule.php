@@ -35,12 +35,7 @@ class AuthenticationRule extends \Google\Protobuf\Internal\Message
      */
     private $oauth = null;
     /**
-     * Whether to allow requests without a credential. The credential can be
-     * an OAuth token, Google cookies (first-party auth) or EndUserCreds.
-     * For requests without credentials, if the service control environment is
-     * specified, each incoming request **must** be associated with a service
-     * consumer. This can be done by passing an API key that belongs to a consumer
-     * project.
+     * If true, the service accepts API keys without any other credential.
      *
      * Generated from protobuf field <code>bool allow_without_credential = 5;</code>
      */
@@ -52,9 +47,26 @@ class AuthenticationRule extends \Google\Protobuf\Internal\Message
      */
     private $requirements;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $selector
+     *           Selects the methods to which this rule applies.
+     *           Refer to [selector][google.api.DocumentationRule.selector] for syntax details.
+     *     @type \Google\Api\OAuthRequirements $oauth
+     *           The requirements for OAuth credentials.
+     *     @type bool $allow_without_credential
+     *           If true, the service accepts API keys without any other credential.
+     *     @type \Google\Api\AuthRequirement[]|\Google\Protobuf\Internal\RepeatedField $requirements
+     *           Requirements for additional authentication providers.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Api\Auth::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**
@@ -112,12 +124,7 @@ class AuthenticationRule extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Whether to allow requests without a credential. The credential can be
-     * an OAuth token, Google cookies (first-party auth) or EndUserCreds.
-     * For requests without credentials, if the service control environment is
-     * specified, each incoming request **must** be associated with a service
-     * consumer. This can be done by passing an API key that belongs to a consumer
-     * project.
+     * If true, the service accepts API keys without any other credential.
      *
      * Generated from protobuf field <code>bool allow_without_credential = 5;</code>
      * @return bool
@@ -128,12 +135,7 @@ class AuthenticationRule extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Whether to allow requests without a credential. The credential can be
-     * an OAuth token, Google cookies (first-party auth) or EndUserCreds.
-     * For requests without credentials, if the service control environment is
-     * specified, each incoming request **must** be associated with a service
-     * consumer. This can be done by passing an API key that belongs to a consumer
-     * project.
+     * If true, the service accepts API keys without any other credential.
      *
      * Generated from protobuf field <code>bool allow_without_credential = 5;</code>
      * @param bool $var

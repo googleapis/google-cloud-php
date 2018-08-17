@@ -23,9 +23,20 @@ class Backend extends \Google\Protobuf\Internal\Message
      */
     private $rules;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type \Google\Api\BackendRule[]|\Google\Protobuf\Internal\RepeatedField $rules
+     *           A list of API backend rules that apply to individual API methods.
+     *           **NOTE:** All service configuration rules follow "last one wins" order.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Api\Backend::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

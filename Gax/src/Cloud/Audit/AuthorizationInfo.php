@@ -36,9 +36,25 @@ class AuthorizationInfo extends \Google\Protobuf\Internal\Message
      */
     private $granted = false;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $resource
+     *           The resource being accessed, as a REST-style string. For example:
+     *               bigquery.googlapis.com/projects/PROJECTID/datasets/DATASETID
+     *     @type string $permission
+     *           The required IAM permission.
+     *     @type bool $granted
+     *           Whether or not authorization for `resource` and `permission`
+     *           was granted.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Audit\AuditLog::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

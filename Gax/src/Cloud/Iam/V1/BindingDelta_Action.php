@@ -4,30 +4,13 @@
 
 namespace Google\Cloud\Iam\V1;
 
-/**
- * The type of action performed on a Binding in a policy.
- *
- * Protobuf enum <code>Google\Iam\V1\BindingDelta\Action</code>
- */
-class BindingDelta_Action
-{
+if (false) {
     /**
-     * Unspecified.
-     *
-     * Generated from protobuf enum <code>ACTION_UNSPECIFIED = 0;</code>
+     * This class is deprecated. Use Google\Cloud\Iam\V1\BindingDelta\Action instead.
+     * @deprecated
      */
-    const ACTION_UNSPECIFIED = 0;
-    /**
-     * Addition of a Binding.
-     *
-     * Generated from protobuf enum <code>ADD = 1;</code>
-     */
-    const ADD = 1;
-    /**
-     * Removal of a Binding.
-     *
-     * Generated from protobuf enum <code>REMOVE = 2;</code>
-     */
-    const REMOVE = 2;
+    class BindingDelta_Action {}
 }
+class_exists(BindingDelta\Action::class);
+@trigger_error('Google\Cloud\Iam\V1\BindingDelta_Action is deprecated and will be removed in the next major release. Use Google\Cloud\Iam\V1\BindingDelta\Action instead', E_USER_DEPRECATED);
 

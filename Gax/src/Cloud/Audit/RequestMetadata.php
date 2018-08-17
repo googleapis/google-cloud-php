@@ -36,9 +36,29 @@ class RequestMetadata extends \Google\Protobuf\Internal\Message
      */
     private $caller_supplied_user_agent = '';
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $caller_ip
+     *           The IP address of the caller.
+     *     @type string $caller_supplied_user_agent
+     *           The user agent of the caller.
+     *           This information is not authenticated and should be treated accordingly.
+     *           For example:
+     *           +   `google-api-python-client/1.4.0`:
+     *               The request was made by the Google API client for Python.
+     *           +   `Cloud SDK Command Line Tool apitools-client/1.0 gcloud/0.9.62`:
+     *               The request was made by the Google Cloud SDK CLI (gcloud).
+     *           +   `AppEngine-Google; (+http://code.google.com/appengine; appid: s~my-project`:
+     *               The request was made from the `my-project` App Engine app.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Audit\AuditLog::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

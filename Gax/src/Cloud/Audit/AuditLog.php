@@ -105,9 +105,62 @@ class AuditLog extends \Google\Protobuf\Internal\Message
      */
     private $service_data = null;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $service_name
+     *           The name of the API service performing the operation. For example,
+     *           `"datastore.googleapis.com"`.
+     *     @type string $method_name
+     *           The name of the service method or operation.
+     *           For API calls, this should be the name of the API method.
+     *           For example,
+     *               "google.datastore.v1.Datastore.RunQuery"
+     *               "google.logging.v1.LoggingService.DeleteLog"
+     *     @type string $resource_name
+     *           The resource or collection that is the target of the operation.
+     *           The name is a scheme-less URI, not including the API service name.
+     *           For example:
+     *               "shelves/SHELF_ID/books"
+     *               "shelves/SHELF_ID/books/BOOK_ID"
+     *     @type int|string $num_response_items
+     *           The number of items returned from a List or Query API method,
+     *           if applicable.
+     *     @type \Google\Rpc\Status $status
+     *           The status of the overall operation.
+     *     @type \Google\Cloud\Audit\AuthenticationInfo $authentication_info
+     *           Authentication information.
+     *     @type \Google\Cloud\Audit\AuthorizationInfo[]|\Google\Protobuf\Internal\RepeatedField $authorization_info
+     *           Authorization information. If there are multiple
+     *           resources or permissions involved, then there is
+     *           one AuthorizationInfo element for each {resource, permission} tuple.
+     *     @type \Google\Cloud\Audit\RequestMetadata $request_metadata
+     *           Metadata about the operation.
+     *     @type \Google\Protobuf\Struct $request
+     *           The operation request. This may not include all request parameters,
+     *           such as those that are too large, privacy-sensitive, or duplicated
+     *           elsewhere in the log record.
+     *           It should never include user-generated data, such as file contents.
+     *           When the JSON object represented here has a proto equivalent, the proto
+     *           name will be indicated in the `&#64;type` property.
+     *     @type \Google\Protobuf\Struct $response
+     *           The operation response. This may not include all response elements,
+     *           such as those that are too large, privacy-sensitive, or duplicated
+     *           elsewhere in the log record.
+     *           It should never include user-generated data, such as file contents.
+     *           When the JSON object represented here has a proto equivalent, the proto
+     *           name will be indicated in the `&#64;type` property.
+     *     @type \Google\Protobuf\Any $service_data
+     *           Other service-specific data about the request, response, and other
+     *           activities.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Audit\AuditLog::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

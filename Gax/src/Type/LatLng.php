@@ -62,9 +62,21 @@ class LatLng extends \Google\Protobuf\Internal\Message
      */
     private $longitude = 0.0;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type float $latitude
+     *           The latitude in degrees. It must be in the range [-90.0, +90.0].
+     *     @type float $longitude
+     *           The longitude in degrees. It must be in the range [-180.0, +180.0].
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Type\Latlng::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

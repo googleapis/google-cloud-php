@@ -33,9 +33,26 @@ class SetIamPolicyRequest extends \Google\Protobuf\Internal\Message
      */
     private $policy = null;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $resource
+     *           REQUIRED: The resource for which the policy is being specified.
+     *           `resource` is usually specified as a path. For example, a Project
+     *           resource is specified as `projects/{project}`.
+     *     @type \Google\Cloud\Iam\V1\Policy $policy
+     *           REQUIRED: The complete policy to be applied to the `resource`. The size of
+     *           the policy is limited to a few 10s of KB. An empty policy is a
+     *           valid policy but certain Cloud Platform services (such as Projects)
+     *           might reject them.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Iam\V1\IamPolicy::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

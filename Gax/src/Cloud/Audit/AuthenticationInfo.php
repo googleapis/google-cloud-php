@@ -22,9 +22,19 @@ class AuthenticationInfo extends \Google\Protobuf\Internal\Message
      */
     private $principal_email = '';
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $principal_email
+     *           The email address of the authenticated user making the request.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Audit\AuditLog::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

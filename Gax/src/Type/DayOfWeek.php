@@ -7,7 +7,7 @@ namespace Google\Type;
 /**
  * Represents a day of week.
  *
- * Protobuf enum <code>Google\Type\DayOfWeek</code>
+ * Protobuf type <code>google.type.DayOfWeek</code>
  */
 class DayOfWeek
 {

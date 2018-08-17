@@ -4,40 +4,13 @@
 
 namespace Google\Api;
 
-/**
- * The kind of measurement. It describes how the data is reported.
- *
- * Protobuf enum <code>Google\Api\MetricDescriptor\MetricKind</code>
- */
-class MetricDescriptor_MetricKind
-{
+if (false) {
     /**
-     * Do not use this default value.
-     *
-     * Generated from protobuf enum <code>METRIC_KIND_UNSPECIFIED = 0;</code>
+     * This class is deprecated. Use Google\Api\MetricDescriptor\MetricKind instead.
+     * @deprecated
      */
-    const METRIC_KIND_UNSPECIFIED = 0;
-    /**
-     * An instantaneous measurement of a value.
-     *
-     * Generated from protobuf enum <code>GAUGE = 1;</code>
-     */
-    const GAUGE = 1;
-    /**
-     * The change in a value during a time interval.
-     *
-     * Generated from protobuf enum <code>DELTA = 2;</code>
-     */
-    const DELTA = 2;
-    /**
-     * A value accumulated over a time interval.  Cumulative
-     * measurements in a time series should have the same start time
-     * and increasing end times, until an event resets the cumulative
-     * value to zero and sets a new start time for the following
-     * points.
-     *
-     * Generated from protobuf enum <code>CUMULATIVE = 3;</code>
-     */
-    const CUMULATIVE = 3;
+    class MetricDescriptor_MetricKind {}
 }
+class_exists(MetricDescriptor\MetricKind::class);
+@trigger_error('Google\Api\MetricDescriptor_MetricKind is deprecated and will be removed in the next major release. Use Google\Api\MetricDescriptor\MetricKind instead', E_USER_DEPRECATED);
 

@@ -10,11 +10,11 @@ use Google\Protobuf\Internal\GPBUtil;
 
 /**
  * `HttpRule` defines the mapping of an RPC method to one or more HTTP
- * REST APIs.  The mapping determines what portions of the request
- * message are populated from the path, query parameters, or body of
- * the HTTP request.  The mapping is typically specified as an
- * `google.api.http` annotation, see "google/api/annotations.proto"
- * for details.
+ * REST API methods. The mapping specifies how different portions of the RPC
+ * request message are mapped to URL path, URL query parameters, and
+ * HTTP request body. The mapping is typically specified as an
+ * `google.api.http` annotation on the RPC method,
+ * see "google/api/annotations.proto" for details.
  * The mapping consists of a field specifying the path template and
  * method kind.  The path template can refer to fields in the request
  * message, as in the example below which describes a REST GET
@@ -51,6 +51,11 @@ use Google\Protobuf\Internal\GPBUtil;
  * Any fields in the request message which are not bound by the path
  * pattern automatically become (optional) HTTP query
  * parameters. Assume the following definition of the request message:
+ *     service Messaging {
+ *       rpc GetMessage(GetMessageRequest) returns (Message) {
+ *         option (google.api.http).get = "/v1/messages/{message_id}";
+ *       }
+ *     }
  *     message GetMessageRequest {
  *       message SubMessage {
  *         string subfield = 1;
@@ -139,7 +144,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * The rules for mapping HTTP path, query parameters, and body fields
  * to the request message are as follows:
  * 1. The `body` field specifies either `*` or a field path, or is
- *    omitted. If omitted, it assumes there is no HTTP body.
+ *    omitted. If omitted, it indicates there is no HTTP request body.
  * 2. Leaf fields (recursive expansion of nested messages in the
  *    request) can be classified into three types:
  *     (a) Matched in the URL template.
@@ -155,23 +160,29 @@ use Google\Protobuf\Internal\GPBUtil;
  *     Variable = "{" FieldPath [ "=" Segments ] "}" ;
  *     FieldPath = IDENT { "." IDENT } ;
  *     Verb     = ":" LITERAL ;
- * The syntax `*` matches a single path segment. It follows the semantics of
- * [RFC 6570](https://tools.ietf.org/html/rfc6570) Section 3.2.2 Simple String
- * Expansion.
- * The syntax `**` matches zero or more path segments. It follows the semantics
- * of [RFC 6570](https://tools.ietf.org/html/rfc6570) Section 3.2.3 Reserved
- * Expansion. NOTE: it must be the last segment in the path except the Verb.
- * The syntax `LITERAL` matches literal text in the URL path.
- * The syntax `Variable` matches the entire path as specified by its template;
- * this nested template must not contain further variables. If a variable
+ * The syntax `*` matches a single path segment. The syntax `**` matches zero
+ * or more path segments, which must be the last part of the path except the
+ * `Verb`. The syntax `LITERAL` matches literal text in the path.
+ * The syntax `Variable` matches part of the URL path as specified by its
+ * template. A variable template must not contain other variables. If a variable
  * matches a single path segment, its template may be omitted, e.g. `{var}`
  * is equivalent to `{var=*}`.
+ * If a variable contains exactly one path segment, such as `"{var}"` or
+ * `"{var=*}"`, when such a variable is expanded into a URL path, all characters
+ * except `[-_.~0-9a-zA-Z]` are percent-encoded. Such variables show up in the
+ * Discovery Document as `{var}`.
+ * If a variable contains one or more path segments, such as `"{var=foo/&#42;}"`
+ * or `"{var=**}"`, when such a variable is expanded into a URL path, all
+ * characters except `[-_.~/0-9a-zA-Z]` are percent-encoded. Such variables
+ * show up in the Discovery Document as `{+var}`.
+ * NOTE: While the single segment variable matches the semantics of
+ * [RFC 6570](https://tools.ietf.org/html/rfc6570) Section 3.2.2
+ * Simple String Expansion, the multi segment variable **does not** match
+ * RFC 6570 Reserved Expansion. The reason is that the Reserved Expansion
+ * does not expand special characters like `?` and `#`, which would lead
+ * to invalid URLs.
  * NOTE: the field paths in variables and in the `body` must not refer to
  * repeated fields or map fields.
- * Use CustomHttpPattern to specify any HTTP method that is not included in the
- * `pattern` field, such as HEAD, or "*" to leave the HTTP method unspecified for
- * a given URL path rule. The wild-card rule is useful for services that provide
- * content to Web (HTML) clients.
  *
  * Generated from protobuf message <code>google.api.HttpRule</code>
  */
@@ -194,6 +205,14 @@ class HttpRule extends \Google\Protobuf\Internal\Message
      */
     private $body = '';
     /**
+     * Optional. The name of the response field whose value is mapped to the HTTP
+     * body of response. Other response fields are ignored. When
+     * not set, the response message will be used as HTTP body of response.
+     *
+     * Generated from protobuf field <code>string response_body = 12;</code>
+     */
+    private $response_body = '';
+    /**
      * Additional HTTP bindings for the selector. Nested bindings must
      * not contain an `additional_bindings` field themselves (that is,
      * the nesting may only be one level deep).
@@ -203,9 +222,48 @@ class HttpRule extends \Google\Protobuf\Internal\Message
     private $additional_bindings;
     protected $pattern;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $selector
+     *           Selects methods to which this rule applies.
+     *           Refer to [selector][google.api.DocumentationRule.selector] for syntax details.
+     *     @type string $get
+     *           Used for listing and getting information about resources.
+     *     @type string $put
+     *           Used for updating a resource.
+     *     @type string $post
+     *           Used for creating a resource.
+     *     @type string $delete
+     *           Used for deleting a resource.
+     *     @type string $patch
+     *           Used for updating a resource.
+     *     @type \Google\Api\CustomHttpPattern $custom
+     *           The custom pattern is used for specifying an HTTP method that is not
+     *           included in the `pattern` field, such as HEAD, or "*" to leave the
+     *           HTTP method unspecified for this rule. The wild-card rule is useful
+     *           for services that provide content to Web (HTML) clients.
+     *     @type string $body
+     *           The name of the request field whose value is mapped to the HTTP body, or
+     *           `*` for mapping all fields not captured by the path pattern to the HTTP
+     *           body. NOTE: the referred field must not be a repeated field and must be
+     *           present at the top-level of request message type.
+     *     @type string $response_body
+     *           Optional. The name of the response field whose value is mapped to the HTTP
+     *           body of response. Other response fields are ignored. When
+     *           not set, the response message will be used as HTTP body of response.
+     *     @type \Google\Api\HttpRule[]|\Google\Protobuf\Internal\RepeatedField $additional_bindings
+     *           Additional HTTP bindings for the selector. Nested bindings must
+     *           not contain an `additional_bindings` field themselves (that is,
+     *           the nesting may only be one level deep).
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Api\Http::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**
@@ -367,7 +425,10 @@ class HttpRule extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Custom pattern is used for defining custom verbs.
+     * The custom pattern is used for specifying an HTTP method that is not
+     * included in the `pattern` field, such as HEAD, or "*" to leave the
+     * HTTP method unspecified for this rule. The wild-card rule is useful
+     * for services that provide content to Web (HTML) clients.
      *
      * Generated from protobuf field <code>.google.api.CustomHttpPattern custom = 8;</code>
      * @return \Google\Api\CustomHttpPattern
@@ -378,7 +439,10 @@ class HttpRule extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Custom pattern is used for defining custom verbs.
+     * The custom pattern is used for specifying an HTTP method that is not
+     * included in the `pattern` field, such as HEAD, or "*" to leave the
+     * HTTP method unspecified for this rule. The wild-card rule is useful
+     * for services that provide content to Web (HTML) clients.
      *
      * Generated from protobuf field <code>.google.api.CustomHttpPattern custom = 8;</code>
      * @param \Google\Api\CustomHttpPattern $var
@@ -420,6 +484,36 @@ class HttpRule extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->body = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The name of the response field whose value is mapped to the HTTP
+     * body of response. Other response fields are ignored. When
+     * not set, the response message will be used as HTTP body of response.
+     *
+     * Generated from protobuf field <code>string response_body = 12;</code>
+     * @return string
+     */
+    public function getResponseBody()
+    {
+        return $this->response_body;
+    }
+
+    /**
+     * Optional. The name of the response field whose value is mapped to the HTTP
+     * body of response. Other response fields are ignored. When
+     * not set, the response message will be used as HTTP body of response.
+     *
+     * Generated from protobuf field <code>string response_body = 12;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setResponseBody($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->response_body = $var;
 
         return $this;
     }

@@ -23,9 +23,19 @@ class BadRequest extends \Google\Protobuf\Internal\Message
      */
     private $field_violations;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type \Google\Rpc\BadRequest\FieldViolation[]|\Google\Protobuf\Internal\RepeatedField $field_violations
+     *           Describes all violations in a client request.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Rpc\ErrorDetails::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**
@@ -43,12 +53,12 @@ class BadRequest extends \Google\Protobuf\Internal\Message
      * Describes all violations in a client request.
      *
      * Generated from protobuf field <code>repeated .google.rpc.BadRequest.FieldViolation field_violations = 1;</code>
-     * @param \Google\Rpc\BadRequest_FieldViolation[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Rpc\BadRequest\FieldViolation[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setFieldViolations($var)
     {
-        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Rpc\BadRequest_FieldViolation::class);
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Rpc\BadRequest\FieldViolation::class);
         $this->field_violations = $arr;
 
         return $this;

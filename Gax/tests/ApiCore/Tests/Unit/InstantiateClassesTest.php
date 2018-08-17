@@ -59,7 +59,7 @@ class InstantiateClassesTest extends TestCase
     public function testClassesProvider()
     {
         $classes = iterator_to_array($this->classesProvider());
-        $this->assertSame(113, count($classes));
+        $this->assertSame(132, count($classes));
         $this->assertGreaterThan(0, count($classes));
     }
 

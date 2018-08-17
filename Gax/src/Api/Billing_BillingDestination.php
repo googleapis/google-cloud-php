@@ -4,93 +4,13 @@
 
 namespace Google\Api;
 
-use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
-use Google\Protobuf\Internal\GPBUtil;
-
-/**
- * Configuration of a specific billing destination (Currently only support
- * bill against consumer project).
- *
- * Generated from protobuf message <code>google.api.Billing.BillingDestination</code>
- */
-class Billing_BillingDestination extends \Google\Protobuf\Internal\Message
-{
+if (false) {
     /**
-     * The monitored resource type. The type must be defined in
-     * [Service.monitored_resources][google.api.Service.monitored_resources] section.
-     *
-     * Generated from protobuf field <code>string monitored_resource = 1;</code>
+     * This class is deprecated. Use Google\Api\Billing\BillingDestination instead.
+     * @deprecated
      */
-    private $monitored_resource = '';
-    /**
-     * Names of the metrics to report to this billing destination.
-     * Each name must be defined in [Service.metrics][google.api.Service.metrics] section.
-     *
-     * Generated from protobuf field <code>repeated string metrics = 2;</code>
-     */
-    private $metrics;
-
-    public function __construct() {
-        \GPBMetadata\Google\Api\Billing::initOnce();
-        parent::__construct();
-    }
-
-    /**
-     * The monitored resource type. The type must be defined in
-     * [Service.monitored_resources][google.api.Service.monitored_resources] section.
-     *
-     * Generated from protobuf field <code>string monitored_resource = 1;</code>
-     * @return string
-     */
-    public function getMonitoredResource()
-    {
-        return $this->monitored_resource;
-    }
-
-    /**
-     * The monitored resource type. The type must be defined in
-     * [Service.monitored_resources][google.api.Service.monitored_resources] section.
-     *
-     * Generated from protobuf field <code>string monitored_resource = 1;</code>
-     * @param string $var
-     * @return $this
-     */
-    public function setMonitoredResource($var)
-    {
-        GPBUtil::checkString($var, True);
-        $this->monitored_resource = $var;
-
-        return $this;
-    }
-
-    /**
-     * Names of the metrics to report to this billing destination.
-     * Each name must be defined in [Service.metrics][google.api.Service.metrics] section.
-     *
-     * Generated from protobuf field <code>repeated string metrics = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
-     */
-    public function getMetrics()
-    {
-        return $this->metrics;
-    }
-
-    /**
-     * Names of the metrics to report to this billing destination.
-     * Each name must be defined in [Service.metrics][google.api.Service.metrics] section.
-     *
-     * Generated from protobuf field <code>repeated string metrics = 2;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
-     * @return $this
-     */
-    public function setMetrics($var)
-    {
-        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
-        $this->metrics = $arr;
-
-        return $this;
-    }
-
+    class Billing_BillingDestination {}
 }
+class_exists(Billing\BillingDestination::class);
+@trigger_error('Google\Api\Billing_BillingDestination is deprecated and will be removed in the next major release. Use Google\Api\Billing\BillingDestination instead', E_USER_DEPRECATED);
 

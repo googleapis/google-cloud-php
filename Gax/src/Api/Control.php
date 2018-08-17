@@ -25,9 +25,20 @@ class Control extends \Google\Protobuf\Internal\Message
      */
     private $environment = '';
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $environment
+     *           The service control environment to use. If empty, no control plane
+     *           feature (like quota and billing) will be enabled.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Api\Control::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

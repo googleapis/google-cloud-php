@@ -29,9 +29,21 @@ class ProjectRepoId extends \Google\Protobuf\Internal\Message
      */
     private $repo_name = '';
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $project_id
+     *           The ID of the project.
+     *     @type string $repo_name
+     *           The name of the repo. Leave empty for the default repo.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Devtools\Source\V1\SourceContext::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

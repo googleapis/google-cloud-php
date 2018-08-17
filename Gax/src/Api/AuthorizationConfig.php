@@ -29,9 +29,20 @@ class AuthorizationConfig extends \Google\Protobuf\Internal\Message
      */
     private $provider = '';
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $provider
+     *           The name of the authorization provider, such as
+     *           firebaserules.googleapis.com.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Api\Experimental\AuthorizationConfig::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

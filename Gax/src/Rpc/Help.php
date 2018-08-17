@@ -25,9 +25,19 @@ class Help extends \Google\Protobuf\Internal\Message
      */
     private $links;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type \Google\Rpc\Help\Link[]|\Google\Protobuf\Internal\RepeatedField $links
+     *           URL(s) pointing to additional information on handling the current error.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Rpc\ErrorDetails::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**
@@ -45,12 +55,12 @@ class Help extends \Google\Protobuf\Internal\Message
      * URL(s) pointing to additional information on handling the current error.
      *
      * Generated from protobuf field <code>repeated .google.rpc.Help.Link links = 1;</code>
-     * @param \Google\Rpc\Help_Link[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Rpc\Help\Link[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setLinks($var)
     {
-        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Rpc\Help_Link::class);
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Rpc\Help\Link::class);
         $this->links = $arr;
 
         return $this;

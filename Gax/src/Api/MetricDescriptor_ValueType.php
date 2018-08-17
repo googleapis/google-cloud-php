@@ -4,56 +4,13 @@
 
 namespace Google\Api;
 
-/**
- * The value type of a metric.
- *
- * Protobuf enum <code>Google\Api\MetricDescriptor\ValueType</code>
- */
-class MetricDescriptor_ValueType
-{
+if (false) {
     /**
-     * Do not use this default value.
-     *
-     * Generated from protobuf enum <code>VALUE_TYPE_UNSPECIFIED = 0;</code>
+     * This class is deprecated. Use Google\Api\MetricDescriptor\ValueType instead.
+     * @deprecated
      */
-    const VALUE_TYPE_UNSPECIFIED = 0;
-    /**
-     * The value is a boolean.
-     * This value type can be used only if the metric kind is `GAUGE`.
-     *
-     * Generated from protobuf enum <code>BOOL = 1;</code>
-     */
-    const BOOL = 1;
-    /**
-     * The value is a signed 64-bit integer.
-     *
-     * Generated from protobuf enum <code>INT64 = 2;</code>
-     */
-    const INT64 = 2;
-    /**
-     * The value is a double precision floating point number.
-     *
-     * Generated from protobuf enum <code>DOUBLE = 3;</code>
-     */
-    const DOUBLE = 3;
-    /**
-     * The value is a text string.
-     * This value type can be used only if the metric kind is `GAUGE`.
-     *
-     * Generated from protobuf enum <code>STRING = 4;</code>
-     */
-    const STRING = 4;
-    /**
-     * The value is a [`Distribution`][google.api.Distribution].
-     *
-     * Generated from protobuf enum <code>DISTRIBUTION = 5;</code>
-     */
-    const DISTRIBUTION = 5;
-    /**
-     * The value is money.
-     *
-     * Generated from protobuf enum <code>MONEY = 6;</code>
-     */
-    const MONEY = 6;
+    class MetricDescriptor_ValueType {}
 }
+class_exists(MetricDescriptor\ValueType::class);
+@trigger_error('Google\Api\MetricDescriptor_ValueType is deprecated and will be removed in the next major release. Use Google\Api\MetricDescriptor\ValueType instead', E_USER_DEPRECATED);
 

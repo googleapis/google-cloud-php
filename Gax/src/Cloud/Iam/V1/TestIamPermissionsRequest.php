@@ -33,9 +33,26 @@ class TestIamPermissionsRequest extends \Google\Protobuf\Internal\Message
      */
     private $permissions;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $resource
+     *           REQUIRED: The resource for which the policy detail is being requested.
+     *           `resource` is usually specified as a path. For example, a Project
+     *           resource is specified as `projects/{project}`.
+     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $permissions
+     *           The set of permissions to check for the `resource`. Permissions with
+     *           wildcards (such as '*' or 'storage.*') are not allowed. For more
+     *           information see
+     *           [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Iam\V1\IamPolicy::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

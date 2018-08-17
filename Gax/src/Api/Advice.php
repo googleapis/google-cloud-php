@@ -24,9 +24,20 @@ class Advice extends \Google\Protobuf\Internal\Message
      */
     private $description = '';
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $description
+     *           Useful description for why this advice was applied and what actions should
+     *           be taken to mitigate any implied risks.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Api\ConfigChange::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

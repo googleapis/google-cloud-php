@@ -18,9 +18,25 @@ class SourceContext extends \Google\Protobuf\Internal\Message
 {
     protected $context;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type \Google\Cloud\DevTools\Source\V1\CloudRepoSourceContext $cloud_repo
+     *           A SourceContext referring to a revision in a cloud repo.
+     *     @type \Google\Cloud\DevTools\Source\V1\CloudWorkspaceSourceContext $cloud_workspace
+     *           A SourceContext referring to a snapshot in a cloud workspace.
+     *     @type \Google\Cloud\DevTools\Source\V1\GerritSourceContext $gerrit
+     *           A SourceContext referring to a Gerrit project.
+     *     @type \Google\Cloud\DevTools\Source\V1\GitSourceContext $git
+     *           A SourceContext referring to any third party Git repo (e.g. GitHub).
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Devtools\Source\V1\SourceContext::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

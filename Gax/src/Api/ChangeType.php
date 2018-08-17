@@ -8,7 +8,7 @@ namespace Google\Api;
  * Classifies set of possible modifications to an object in the service
  * configuration.
  *
- * Protobuf enum <code>Google\Api\ChangeType</code>
+ * Protobuf type <code>google.api.ChangeType</code>
  */
 class ChangeType
 {

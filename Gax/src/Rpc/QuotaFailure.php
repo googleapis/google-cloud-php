@@ -30,9 +30,19 @@ class QuotaFailure extends \Google\Protobuf\Internal\Message
      */
     private $violations;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type \Google\Rpc\QuotaFailure\Violation[]|\Google\Protobuf\Internal\RepeatedField $violations
+     *           Describes all quota violations.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Rpc\ErrorDetails::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**
@@ -50,12 +60,12 @@ class QuotaFailure extends \Google\Protobuf\Internal\Message
      * Describes all quota violations.
      *
      * Generated from protobuf field <code>repeated .google.rpc.QuotaFailure.Violation violations = 1;</code>
-     * @param \Google\Rpc\QuotaFailure_Violation[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Rpc\QuotaFailure\Violation[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setViolations($var)
     {
-        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Rpc\QuotaFailure_Violation::class);
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Rpc\QuotaFailure\Violation::class);
         $this->violations = $arr;
 
         return $this;

@@ -29,29 +29,45 @@ class MonitoredResource extends \Google\Protobuf\Internal\Message
     /**
      * Required. The monitored resource type. This field must match
      * the `type` field of a [MonitoredResourceDescriptor][google.api.MonitoredResourceDescriptor] object. For
-     * example, the type of a Cloud SQL database is `"cloudsql_database"`.
+     * example, the type of a Compute Engine VM instance is `gce_instance`.
      *
      * Generated from protobuf field <code>string type = 1;</code>
      */
     private $type = '';
     /**
      * Required. Values for all of the labels listed in the associated monitored
-     * resource descriptor. For example, Cloud SQL databases use the labels
-     * `"database_id"` and `"zone"`.
+     * resource descriptor. For example, Compute Engine VM instances use the
+     * labels `"project_id"`, `"instance_id"`, and `"zone"`.
      *
      * Generated from protobuf field <code>map<string, string> labels = 2;</code>
      */
     private $labels;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $type
+     *           Required. The monitored resource type. This field must match
+     *           the `type` field of a [MonitoredResourceDescriptor][google.api.MonitoredResourceDescriptor] object. For
+     *           example, the type of a Compute Engine VM instance is `gce_instance`.
+     *     @type array|\Google\Protobuf\Internal\MapField $labels
+     *           Required. Values for all of the labels listed in the associated monitored
+     *           resource descriptor. For example, Compute Engine VM instances use the
+     *           labels `"project_id"`, `"instance_id"`, and `"zone"`.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Api\MonitoredResource::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**
      * Required. The monitored resource type. This field must match
      * the `type` field of a [MonitoredResourceDescriptor][google.api.MonitoredResourceDescriptor] object. For
-     * example, the type of a Cloud SQL database is `"cloudsql_database"`.
+     * example, the type of a Compute Engine VM instance is `gce_instance`.
      *
      * Generated from protobuf field <code>string type = 1;</code>
      * @return string
@@ -64,7 +80,7 @@ class MonitoredResource extends \Google\Protobuf\Internal\Message
     /**
      * Required. The monitored resource type. This field must match
      * the `type` field of a [MonitoredResourceDescriptor][google.api.MonitoredResourceDescriptor] object. For
-     * example, the type of a Cloud SQL database is `"cloudsql_database"`.
+     * example, the type of a Compute Engine VM instance is `gce_instance`.
      *
      * Generated from protobuf field <code>string type = 1;</code>
      * @param string $var
@@ -80,8 +96,8 @@ class MonitoredResource extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. Values for all of the labels listed in the associated monitored
-     * resource descriptor. For example, Cloud SQL databases use the labels
-     * `"database_id"` and `"zone"`.
+     * resource descriptor. For example, Compute Engine VM instances use the
+     * labels `"project_id"`, `"instance_id"`, and `"zone"`.
      *
      * Generated from protobuf field <code>map<string, string> labels = 2;</code>
      * @return \Google\Protobuf\Internal\MapField
@@ -93,8 +109,8 @@ class MonitoredResource extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. Values for all of the labels listed in the associated monitored
-     * resource descriptor. For example, Cloud SQL databases use the labels
-     * `"database_id"` and `"zone"`.
+     * resource descriptor. For example, Compute Engine VM instances use the
+     * labels `"project_id"`, `"instance_id"`, and `"zone"`.
      *
      * Generated from protobuf field <code>map<string, string> labels = 2;</code>
      * @param array|\Google\Protobuf\Internal\MapField $var

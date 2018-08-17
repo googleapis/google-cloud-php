@@ -36,9 +36,24 @@ class ContextRule extends \Google\Protobuf\Internal\Message
      */
     private $provided;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $selector
+     *           Selects the methods to which this rule applies.
+     *           Refer to [selector][google.api.DocumentationRule.selector] for syntax details.
+     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $requested
+     *           A list of full type names of requested contexts.
+     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $provided
+     *           A list of full type names of provided contexts.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Api\Context::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

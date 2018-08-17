@@ -35,9 +35,19 @@ class ProjectProperties extends \Google\Protobuf\Internal\Message
      */
     private $properties;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type \Google\Api\Property[]|\Google\Protobuf\Internal\RepeatedField $properties
+     *           List of per consumer project-specific properties.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Api\Consumer::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

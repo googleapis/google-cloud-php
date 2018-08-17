@@ -102,6 +102,7 @@ class SerializerTest extends TestCase
         $encodedMessage = [
             'selector' => '',
             'body' => '',
+            'responseBody' => '',
             'additionalBindings' => [],
         ];
 
@@ -117,6 +118,7 @@ class SerializerTest extends TestCase
             'selector' => '',
             'patch' => '',
             'body' => '',
+            'responseBody' => '',
             'additionalBindings' => [],
         ];
 
@@ -132,6 +134,7 @@ class SerializerTest extends TestCase
             'selector' => '',
             'patch' => 'test',
             'body' => '',
+            'responseBody' => '',
             'additionalBindings' => [],
         ];
 

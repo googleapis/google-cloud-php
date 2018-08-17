@@ -48,9 +48,6 @@ use Google\Protobuf\Internal\GPBUtil;
  * <pre><code>&#91;display text]&#91;fully.qualified.proto.name]</code></pre>
  * Text can be excluded from doc using the following notation:
  * <pre><code>&#40;-- internal comment --&#41;</code></pre>
- * Comments can be made conditional using a visibility label. The below
- * text will be only rendered if the `BETA` label is available:
- * <pre><code>&#40;--BETA: comment for BETA users --&#41;</code></pre>
  * A few directives are available in documentation. Note that
  * directives must appear on a single line to be properly
  * identified. The `include` directive includes a markdown file from
@@ -112,9 +109,41 @@ class Documentation extends \Google\Protobuf\Internal\Message
      */
     private $overview = '';
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $summary
+     *           A short summary of what the service does. Can only be provided by
+     *           plain text.
+     *     @type \Google\Api\Page[]|\Google\Protobuf\Internal\RepeatedField $pages
+     *           The top level pages for the documentation set.
+     *     @type \Google\Api\DocumentationRule[]|\Google\Protobuf\Internal\RepeatedField $rules
+     *           A list of documentation rules that apply to individual API elements.
+     *           **NOTE:** All service configuration rules follow "last one wins" order.
+     *     @type string $documentation_root_url
+     *           The URL to the root of documentation.
+     *     @type string $overview
+     *           Declares a single overview page. For example:
+     *           <pre><code>documentation:
+     *             summary: ...
+     *             overview: &#40;== include overview.md ==&#41;
+     *           </code></pre>
+     *           This is a shortcut for the following declaration (using pages style):
+     *           <pre><code>documentation:
+     *             summary: ...
+     *             pages:
+     *             - name: Overview
+     *               content: &#40;== include overview.md ==&#41;
+     *           </code></pre>
+     *           Note: you cannot specify both `overview` field and `pages` field.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Api\Documentation::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

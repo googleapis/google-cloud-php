@@ -78,9 +78,44 @@ class Distribution extends \Google\Protobuf\Internal\Message
      */
     private $bucket_counts;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type int|string $count
+     *           The number of values in the population. Must be non-negative.
+     *     @type float $mean
+     *           The arithmetic mean of the values in the population. If `count` is zero
+     *           then this field must be zero.
+     *     @type float $sum_of_squared_deviation
+     *           The sum of squared deviations from the mean of the values in the
+     *           population.  For values x_i this is:
+     *               Sum[i=1..n]((x_i - mean)^2)
+     *           Knuth, "The Art of Computer Programming", Vol. 2, page 323, 3rd edition
+     *           describes Welford's method for accumulating this sum in one pass.
+     *           If `count` is zero then this field must be zero.
+     *     @type \Google\Api\Distribution\Range $range
+     *           If specified, contains the range of the population values. The field
+     *           must not be present if the `count` is zero.
+     *     @type \Google\Api\Distribution\BucketOptions $bucket_options
+     *           Defines the histogram bucket boundaries.
+     *     @type int[]|string[]|\Google\Protobuf\Internal\RepeatedField $bucket_counts
+     *           If `bucket_options` is given, then the sum of the values in `bucket_counts`
+     *           must equal the value in `count`.  If `bucket_options` is not given, no
+     *           `bucket_counts` fields may be given.
+     *           Bucket counts are given in order under the numbering scheme described
+     *           above (the underflow bucket has number 0; the finite buckets, if any,
+     *           have numbers 1 through N-2; the overflow bucket has number N-1).
+     *           The size of `bucket_counts` must be no greater than N as defined in
+     *           `bucket_options`.
+     *           Any suffix of trailing zero bucket_count fields may be omitted.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Api\Distribution::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**
@@ -178,7 +213,7 @@ class Distribution extends \Google\Protobuf\Internal\Message
      * must not be present if the `count` is zero.
      *
      * Generated from protobuf field <code>.google.api.Distribution.Range range = 4;</code>
-     * @return \Google\Api\Distribution_Range
+     * @return \Google\Api\Distribution\Range
      */
     public function getRange()
     {
@@ -190,7 +225,7 @@ class Distribution extends \Google\Protobuf\Internal\Message
      * must not be present if the `count` is zero.
      *
      * Generated from protobuf field <code>.google.api.Distribution.Range range = 4;</code>
-     * @param \Google\Api\Distribution_Range $var
+     * @param \Google\Api\Distribution\Range $var
      * @return $this
      */
     public function setRange($var)
@@ -205,7 +240,7 @@ class Distribution extends \Google\Protobuf\Internal\Message
      * Defines the histogram bucket boundaries.
      *
      * Generated from protobuf field <code>.google.api.Distribution.BucketOptions bucket_options = 6;</code>
-     * @return \Google\Api\Distribution_BucketOptions
+     * @return \Google\Api\Distribution\BucketOptions
      */
     public function getBucketOptions()
     {
@@ -216,7 +251,7 @@ class Distribution extends \Google\Protobuf\Internal\Message
      * Defines the histogram bucket boundaries.
      *
      * Generated from protobuf field <code>.google.api.Distribution.BucketOptions bucket_options = 6;</code>
-     * @param \Google\Api\Distribution_BucketOptions $var
+     * @param \Google\Api\Distribution\BucketOptions $var
      * @return $this
      */
     public function setBucketOptions($var)

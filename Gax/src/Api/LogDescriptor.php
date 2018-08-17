@@ -53,9 +53,32 @@ class LogDescriptor extends \Google\Protobuf\Internal\Message
      */
     private $display_name = '';
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $name
+     *           The name of the log. It must be less than 512 characters long and can
+     *           include the following characters: upper- and lower-case alphanumeric
+     *           characters [A-Za-z0-9], and punctuation characters including
+     *           slash, underscore, hyphen, period [/_-.].
+     *     @type \Google\Api\LabelDescriptor[]|\Google\Protobuf\Internal\RepeatedField $labels
+     *           The set of labels that are available to describe a specific log entry.
+     *           Runtime requests that contain labels not specified here are
+     *           considered invalid.
+     *     @type string $description
+     *           A human-readable description of this log. This information appears in
+     *           the documentation and can contain details.
+     *     @type string $display_name
+     *           The human-readable name for this log. This information appears on
+     *           the user interface and should be concise.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Api\Log::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

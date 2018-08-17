@@ -43,9 +43,36 @@ class Binding extends \Google\Protobuf\Internal\Message
      */
     private $members;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $role
+     *           Role that is assigned to `members`.
+     *           For example, `roles/viewer`, `roles/editor`, or `roles/owner`.
+     *           Required
+     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $members
+     *           Specifies the identities requesting access for a Cloud Platform resource.
+     *           `members` can have the following values:
+     *           * `allUsers`: A special identifier that represents anyone who is
+     *              on the internet; with or without a Google account.
+     *           * `allAuthenticatedUsers`: A special identifier that represents anyone
+     *              who is authenticated with a Google account or a service account.
+     *           * `user:{emailid}`: An email address that represents a specific Google
+     *              account. For example, `alice&#64;gmail.com` or `joe&#64;example.com`.
+     *           * `serviceAccount:{emailid}`: An email address that represents a service
+     *              account. For example, `my-other-app&#64;appspot.gserviceaccount.com`.
+     *           * `group:{emailid}`: An email address that represents a Google group.
+     *              For example, `admins&#64;example.com`.
+     *           * `domain:{domain}`: A Google Apps domain name that represents all the
+     *              users of that domain. For example, `google.com` or `example.com`.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Iam\V1\Policy::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**
