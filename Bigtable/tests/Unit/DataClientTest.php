@@ -97,6 +97,24 @@ class DataClientTest extends TestCase
         $this->dataClient->mutateRows($this->rowMutations);
     }
 
+    public function testMutateRowsOptionalConfiguration()
+    {
+        $this->serverStream->readAll()
+            ->shouldBeCalled()
+            ->willReturn(
+                $this->arrayAsGenerator([])
+            );
+        $options = [
+            'key1' => 'value1'
+        ];
+        $this->bigtableClient->mutateRows(self::TABLE_NAME, $this->entries, $this->options + $options)
+            ->shouldBeCalled()
+            ->willReturn(
+                $this->serverStream->reveal()
+            );
+        $this->dataClient->mutateRows($this->rowMutations, $options);
+    }
+
     public function testMutateRowsFailure()
     {
         $statuses = [];
@@ -213,6 +231,42 @@ class DataClientTest extends TestCase
             ]
         ];
         $this->dataClient->upsert($rows);
+    }
+
+    public function testUpsertOptionalConfiguration()
+    {
+        $this->serverStream->readAll()
+            ->shouldBeCalled()
+            ->willReturn(
+                $this->arrayAsGenerator([])
+            );
+        $options = [
+            'key1' => 'value1'
+        ];
+        $this->bigtableClient->mutateRows(self::TABLE_NAME, $this->entries, $this->options + $options)
+            ->shouldBeCalled()
+            ->willReturn(
+                $this->serverStream->reveal()
+            );
+        $rows = [
+            'rk1' => [
+                'cf1' => [
+                    'cq1' => [
+                        'value' => 'value1',
+                        'timeStamp' => self::TIMESTAMP
+                    ]
+                ]
+            ],
+            'rk2' => [
+                'cf2' => [
+                    'cq2' => [
+                        'value' => 'value2',
+                        'timeStamp' => self::TIMESTAMP
+                    ]
+                ]
+            ]
+        ];
+        $this->dataClient->upsert($rows, $options);
     }
 
     private function getMutateRowsResponse(array $status)

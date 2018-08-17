@@ -118,16 +118,17 @@ class DataClient
      * $dataClient->mutateRows([$rowMutation]);
      * ```
      * @param array $rowMutations array of RowMutation object.
+     * @param array $options [optional] Configuration options.
      * @return void
      * @throws ApiException|BigtableDataOperationException if the remote call fails or operation fails
      */
-    public function mutateRows(array $rowMutations)
+    public function mutateRows(array $rowMutations, array $options = [])
     {
         $entries = [];
         foreach ($rowMutations as $rowMutation) {
             $entries[] = $rowMutation->getEntry();
         }
-        $responseStream = $this->bigtableClient->mutateRows($this->tableName, $entries, $this->options);
+        $responseStream = $this->bigtableClient->mutateRows($this->tableName, $entries, $this->options + $options);
         $rowMutationsFailedResponse = [];
         $failureCode = Code::OK;
         $message = 'partial failure';
@@ -161,10 +162,11 @@ class DataClient
      * $dataClient->upsert(['r1' => ['cf1' => ['cq1' => ['value'=>'value1', 'timeStamp' => 1534183334215000]]]]);
      * ```
      * @param array[] $rows array of row.
+     * @param array $options [optional] Configuration options.
      * @return void
      * @throws ApiException|BigtableDataOperationException if the remote call fails or operation fails
      */
-    public function upsert(array $rows)
+    public function upsert(array $rows, array $options = [])
     {
         $rowMutations = [];
         foreach ($rows as $rowKey => $families) {
@@ -185,6 +187,6 @@ class DataClient
             }
             $rowMutations[] = $rowMutation;
         }
-        $this->mutateRows($rowMutations);
+        $this->mutateRows($rowMutations, $options);
     }
 }
