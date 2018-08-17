@@ -104,7 +104,7 @@ class ChunkFormatter
      *
      * @param boolean $condition condition to evaluate
      * @param string $text Error text
-     * @param ReadRowsResponse_CellChunk $chunk chunk object to append to text
+     * @param Google\Cloud\Bigtable\V2\ReadRowsResponse\CellChunk $chunk chunk object to append to text
      * @throws Google\Cloud\Bigtable\Exception\BigtableDataOperationException
      */
     private function isError($condition, $text, $chunk)
@@ -117,7 +117,7 @@ class ChunkFormatter
     /**
      * Validates valuesize and commitrow in a chunk
      *
-     * @param ReadRowsResponse_CellChunk $chunk chunk to validate for valuesize and commitRow.
+     * @param Google\Cloud\Bigtable\V2\ReadRowsResponse\CellChunk $chunk chunk to validate for valuesize and commitRow.
      * @return void
      */
     private function validateValueSizeAndCommitRow($chunk)
@@ -132,7 +132,7 @@ class ChunkFormatter
     /**
      * Validates state for new row.
      *
-     * @param ReadRowsResponse_CellChunk $chunk chunk to validate.
+     * @param Google\Cloud\Bigtable\V2\ReadRowsResponse\CellChunk $chunk chunk to validate.
      * @return void
      */
     private function validateNewRow($chunk)
@@ -191,7 +191,7 @@ class ChunkFormatter
     /**
      * Moves to next state in processing.
      *
-     * @param CellChunk $chunk in process.
+     * @param Google\Cloud\Bigtable\V2\ReadRowsResponse\CellChunk $chunk in process.
      * @return row
      */
     private function moveToNextState($chunk)
@@ -213,7 +213,7 @@ class ChunkFormatter
     /**
      * Process chunk when in NEW_ROW state.
      *
-     * @param CellChunk $chunk chunk to process.
+     * @param Google\Cloud\Bigtable\V2\ReadRowsResponse\CellChunk $chunk chunk to process.
      * @return Generator
      */
     private function newRow($chunk)
@@ -243,7 +243,7 @@ class ChunkFormatter
     /**
      * Validates resetRow condition for chunk
      *
-     * @param CellChunk $chunk chunk to validate for resetrow.
+     * @param Google\Cloud\Bigtable\V2\ReadRowsResponse\CellChunk $chunk chunk to validate for resetrow.
      * @return void
      */
     private function validateResetRow($chunk)
@@ -287,7 +287,7 @@ class ChunkFormatter
     /**
      * Process chunk when in ROW_IN_PROGRESS state.
      *
-     * @param CellChunk $chunk chunk to process.
+     * @param Google\Cloud\Bigtable\V2\ReadRowsResponse\CellChunk $chunk chunk to process.
      * @return Generator
      */
     private function rowInProgress($chunk)
@@ -326,7 +326,7 @@ class ChunkFormatter
     /**
      * Validates chunk for CELL_IN_PROGRESS state.
      *
-     * @param CellChunk $chunk chunk to validate.
+     * @param Google\Cloud\Bigtable\V2\ReadRowsResponse\CellChunk $chunk chunk to validate.
      * @return void
      */
     private function validateCellInProgress($chunk)
@@ -338,7 +338,7 @@ class ChunkFormatter
     /**
      * Process chunk when in CELL_IN_PROGRESS state.
      *
-     * @param CellChunk $chunk chunk to process.
+     * @param Google\Cloud\Bigtable\V2\ReadRowsResponse\CellChunk $chunk chunk to process.
      * @return Generator
      */
     private function cellInProgress($chunk)
