@@ -71,14 +71,20 @@ class ChunkFormatter
             foreach ($readRowsResponse->getChunks() as $chunk) {
                 switch ($this->state) {
                     case $this->RowStateEnum['NEW_ROW']:
-                        yield from $this->newRow($chunk);
+                        $this->newRow($chunk);
                         break;
                     case $this->RowStateEnum['ROW_IN_PROGRESS']:
-                        yield from $this->rowInProgress($chunk);
+                        $this->rowInProgress($chunk);
                         break;
                     case $this->RowStateEnum['CELL_IN_PROGRESS']:
-                        yield from $this->cellInProgress($chunk);
+                        $this->cellInProgress($chunk);
                         break;
+                }
+                if ($chunk->getCommitRow()) {
+                    $row = $this->row;
+                    $rowKey = $this->rowKey;
+                    $this->commit();
+                    yield $rowKey => $row;
                 }
             }
         }
@@ -192,21 +198,14 @@ class ChunkFormatter
      * Moves to next state in processing.
      *
      * @param Google\Cloud\Bigtable\V2\ReadRowsResponse\CellChunk $chunk in process.
-     * @return row
+     * @return void
      */
     private function moveToNextState($chunk)
     {
-        if ($chunk->getCommitRow()) {
-            $row = $this->row;
-            $rowKey = $this->rowKey;
-            $this->commit();
-            yield $rowKey => $row;
+        if ($chunk->getValueSize() > 0) {
+            $this->state = $this->RowStateEnum['CELL_IN_PROGRESS'];
         } else {
-            if ($chunk->getValueSize() > 0) {
-                $this->state = $this->RowStateEnum['CELL_IN_PROGRESS'];
-            } else {
-                $this->state = $this->RowStateEnum['ROW_IN_PROGRESS'];
-            }
+            $this->state = $this->RowStateEnum['ROW_IN_PROGRESS'];
         }
     }
 
@@ -214,7 +213,7 @@ class ChunkFormatter
      * Process chunk when in NEW_ROW state.
      *
      * @param Google\Cloud\Bigtable\V2\ReadRowsResponse\CellChunk $chunk chunk to process.
-     * @return Generator
+     * @return void
      */
     private function newRow($chunk)
     {
@@ -237,7 +236,7 @@ class ChunkFormatter
         ];
         $this->qualifierValue = &$qualifier['value'];
         $this->qualifiers[] = &$qualifier;
-        yield from $this->moveToNextState($chunk);
+        $this->moveToNextState($chunk);
     }
 
     /**
@@ -288,7 +287,7 @@ class ChunkFormatter
      * Process chunk when in ROW_IN_PROGRESS state.
      *
      * @param Google\Cloud\Bigtable\V2\ReadRowsResponse\CellChunk $chunk chunk to process.
-     * @return Generator
+     * @return void
      */
     private function rowInProgress($chunk)
     {
@@ -320,7 +319,7 @@ class ChunkFormatter
         ];
         $this->qualifierValue = &$qualifier['value'];
         $this->qualifiers[] = &$qualifier;
-        yield from $this->moveToNextState($chunk);
+        $this->moveToNextState($chunk);
     }
 
     /**
@@ -339,7 +338,7 @@ class ChunkFormatter
      * Process chunk when in CELL_IN_PROGRESS state.
      *
      * @param Google\Cloud\Bigtable\V2\ReadRowsResponse\CellChunk $chunk chunk to process.
-     * @return Generator
+     * @return void
      */
     private function cellInProgress($chunk)
     {
@@ -348,7 +347,7 @@ class ChunkFormatter
             return $this->reset();
         }
         $this->qualifierValue = $this->qualifierValue . $chunk->getValue();
-        yield from $this->moveToNextState($chunk);
+        $this->moveToNextState($chunk);
     }
 
     /**
