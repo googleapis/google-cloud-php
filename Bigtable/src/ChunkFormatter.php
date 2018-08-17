@@ -191,7 +191,7 @@ class ChunkFormatter
     /**
      * Moves to next state in processing.
      *
-     * @param ReadRowsResponse_CellChunk $chunk in process.
+     * @param CellChunk $chunk in process.
      * @return row
      */
     private function moveToNextState($chunk)
@@ -213,7 +213,7 @@ class ChunkFormatter
     /**
      * Process chunk when in NEW_ROW state.
      *
-     * @param ReadRowsResponse_CellChunk $chunk chunk to process.
+     * @param CellChunk $chunk chunk to process.
      * @return Generator
      */
     private function newRow($chunk)
@@ -243,7 +243,7 @@ class ChunkFormatter
     /**
      * Validates resetRow condition for chunk
      *
-     * @param ReadRowsResponse_CellChunk $chunk chunk to validate for resetrow.
+     * @param CellChunk $chunk chunk to validate for resetrow.
      * @return void
      */
     private function validateResetRow($chunk)
@@ -264,7 +264,7 @@ class ChunkFormatter
     /**
      * Validates state for rowInProgress
      *
-     * @param ReadRowsResponse_CellChunk $chunk chunk to validate.
+     * @param CellChunk $chunk chunk to validate.
      * @return void
      */
     private function validateRowInProgress($chunk)
@@ -287,7 +287,7 @@ class ChunkFormatter
     /**
      * Process chunk when in ROW_IN_PROGRESS state.
      *
-     * @param ReadRowsResponse_CellChunk$chunk chunk to process.
+     * @param CellChunk $chunk chunk to process.
      * @return Generator
      */
     private function rowInProgress($chunk)
@@ -326,7 +326,7 @@ class ChunkFormatter
     /**
      * Validates chunk for CELL_IN_PROGRESS state.
      *
-     * @param ReadRowsResponse_CellChunk $chunk chunk to validate.
+     * @param CellChunk $chunk chunk to validate.
      * @return void
      */
     private function validateCellInProgress($chunk)
@@ -338,7 +338,7 @@ class ChunkFormatter
     /**
      * Process chunk when in CELL_IN_PROGRESS state.
      *
-     * @param ReadRowsResponse_CellChunk $chunk chunk to process.
+     * @param CellChunk $chunk chunk to process.
      * @return Generator
      */
     private function cellInProgress($chunk)
