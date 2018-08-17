@@ -45,7 +45,7 @@ class ChunkFormatter
         $this->RowStateEnum = array(
             'NEW_ROW' => 1,
             'ROW_IN_PROGRESS' => 2,
-            'CELL_IN_ROGRESS' =>3,
+            'CELL_IN_PROGRESS' =>3,
         );
         $this->reset();
     }
