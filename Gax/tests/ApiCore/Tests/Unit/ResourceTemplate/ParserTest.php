@@ -40,22 +40,22 @@ class ParserTest extends TestCase
 {
     private static function literalSegment($value)
     {
-        return new Segment(Segment::LITERAL_SEGMENT, null, $value);
+        return new Segment(Segment::LITERAL_SEGMENT, $value);
     }
 
-    private static function wildcardSegment($value = null)
+    private static function wildcardSegment()
     {
-        return new Segment(Segment::WILDCARD_SEGMENT, null, $value);
+        return new Segment(Segment::WILDCARD_SEGMENT);
     }
 
-    private static function doubleWildcardSegment($value = null)
+    private static function doubleWildcardSegment()
     {
-        return new Segment(Segment::DOUBLE_WILDCARD_SEGMENT, null, $value);
+        return new Segment(Segment::DOUBLE_WILDCARD_SEGMENT);
     }
 
-    private static function variableSegment($key, $template, $value = null)
+    private static function variableSegment($key, $template)
     {
-        return new Segment(Segment::VARIABLE_SEGMENT, $key, $value, $template);
+        return new Segment(Segment::VARIABLE_SEGMENT, null, $key, $template);
     }
 
     /**
@@ -193,7 +193,7 @@ class ParserTest extends TestCase
      */
     public function testIsValidLiteral($literal)
     {
-        $this->assertTrue(Parser::isValidLiteral($literal));
+        $this->assertTrue($this->invokeStaticMethod(Parser::class, 'isValidLiteral', [$literal]));
     }
 
     public function validLiterals()
@@ -212,7 +212,7 @@ class ParserTest extends TestCase
      */
     public function testFailIsValidLiteral($literal)
     {
-        $this->assertFalse(Parser::isValidLiteral($literal));
+        $this->assertFalse($this->invokeStaticMethod(Parser::class, 'isValidLiteral', [$literal]));
     }
 
     public function invalidLiterals()
@@ -236,7 +236,7 @@ class ParserTest extends TestCase
      */
     public function testIsValidBinding($binding)
     {
-        $this->assertTrue(Parser::isValidBinding($binding));
+        $this->assertTrue($this->invokeStaticMethod(Segment::class, 'isValidBinding', [$binding]));
     }
 
     public function validBindings()
@@ -270,7 +270,7 @@ class ParserTest extends TestCase
      */
     public function testFailIsValidBinding($binding)
     {
-        $this->assertFalse(Parser::isValidBinding($binding));
+        $this->assertFalse($this->invokeStaticMethod(Segment::class, 'isValidBinding', [$binding]));
     }
 
     public function invalidBindings()
@@ -288,7 +288,7 @@ class ParserTest extends TestCase
      */
     public function testIsValidDoubleWildcardBinding($binding)
     {
-        $this->assertTrue(Parser::isValidDoubleWildcardBinding($binding));
+        $this->assertTrue($this->invokeStaticMethod(Segment::class, 'isValidDoubleWildcardBinding', [$binding]));
     }
 
     public function validDoubleWildcardBindings()
@@ -307,7 +307,7 @@ class ParserTest extends TestCase
      */
     public function testFailIsValidDoubleWildcardBinding($binding)
     {
-        $this->assertFalse(Parser::isValidDoubleWildcardBinding($binding));
+        $this->assertFalse($this->invokeStaticMethod(Segment::class, 'isValidDoubleWildcardBinding', [$binding]));
     }
 
     public function invalidDoubleWildcardBindings()
@@ -316,5 +316,14 @@ class ParserTest extends TestCase
             [null],
             [""],
         ];
+    }
+
+    private function invokeStaticMethod($class, $methodName, array $parameters)
+    {
+        $reflection = new \ReflectionClass($class);
+        $method = $reflection->getMethod($methodName);
+        $method->setAccessible(true);
+
+        return $method->invokeArgs(null, $parameters);
     }
 }

@@ -50,20 +50,50 @@ class Segment
     private $segmentType;
 
     /** @var string|null */
-    private $key;
+    private $value;
 
     /** @var string|null */
-    private $value;
+    private $key;
 
     /** @var RelativeResourceTemplate|null */
     private $template;
 
-    public function __construct($segmentType, $key, $value, RelativeResourceTemplate $template = null)
+    /** @var string */
+    private $stringRepr;
+
+    /**
+     * Segment constructor.
+     * @param int $segmentType
+     * @param string|null $value
+     * @param string|null $key
+     * @param RelativeResourceTemplate|null $template
+     * @throws ValidationException
+     */
+    public function __construct($segmentType, $value = null, $key = null, RelativeResourceTemplate $template = null)
     {
         $this->segmentType = $segmentType;
-        $this->key = $key;
         $this->value = $value;
+        $this->key = $key;
         $this->template = $template;
+
+        switch ($this->segmentType) {
+            case Segment::LITERAL_SEGMENT:
+                $this->stringRepr = "{$this->value}";
+                break;
+            case Segment::WILDCARD_SEGMENT:
+                $this->stringRepr = "*";
+                break;
+            case Segment::DOUBLE_WILDCARD_SEGMENT:
+                $this->stringRepr = "**";
+                break;
+            case Segment::VARIABLE_SEGMENT:
+                $this->stringRepr = "{{$this->key}={$this->template}}";
+                break;
+            default:
+                throw new ValidationException(
+                    "Unexpected Segment type: {$this->segmentType}"
+                );
+        }
     }
 
     /**
@@ -71,20 +101,7 @@ class Segment
      */
     public function __toString()
     {
-        switch ($this->segmentType) {
-            case Segment::LITERAL_SEGMENT:
-                return $this->value;
-            case Segment::WILDCARD_SEGMENT:
-                return "*";
-            case Segment::DOUBLE_WILDCARD_SEGMENT:
-                return "**";
-            case Segment::VARIABLE_SEGMENT:
-                return "{{$this->key}={$this->template}}";
-            default:
-                throw new ValidationException(
-                    "Unexpected Segment type: {$this->segmentType}"
-                );
-        }
+        return $this->stringRepr;
     }
 
     /**
@@ -99,7 +116,7 @@ class Segment
     {
         $value = (string) $value;
         if ($this->matches($value)) {
-            return new Segment(Segment::LITERAL_SEGMENT, null, $value);
+            return new Segment(Segment::LITERAL_SEGMENT, $value);
         } else {
             throw new ValidationException(
                 "Cannot bind segment '$this' to value '$value'"
@@ -107,15 +124,22 @@ class Segment
         }
     }
 
+    /**
+     * Checks if $value matches this Segment.
+     *
+     * @param string $value
+     * @return bool
+     * @throws ValidationException
+     */
     public function matches($value)
     {
         switch ($this->segmentType) {
             case Segment::LITERAL_SEGMENT:
                 return $this->value === $value;
             case Segment::WILDCARD_SEGMENT:
-                return Parser::isValidBinding($value);
+                return self::isValidBinding($value);
             case Segment::DOUBLE_WILDCARD_SEGMENT:
-                return Parser::isValidDoubleWildcardBinding($value);
+                return self::isValidDoubleWildcardBinding($value);
             case Segment::VARIABLE_SEGMENT:
                 return $this->template->matches($value);
             default:
@@ -155,5 +179,29 @@ class Segment
     public function getTemplate()
     {
         return $this->template;
+    }
+
+    /**
+     * Check if $binding is a valid segment binding. Segment bindings may contain any characters
+     * except a forward slash ('/'), and may not be empty.
+     *
+     * @param $binding
+     * @return bool
+     */
+    private static function isValidBinding($binding)
+    {
+        return preg_match("-^[^/]+$-", $binding) === 1;
+    }
+
+    /**
+     * Check if $binding is a valid double wildcard binding. Segment bindings may contain any
+     * characters, but may not be empty.
+     *
+     * @param $binding
+     * @return bool
+     */
+    private static function isValidDoubleWildcardBinding($binding)
+    {
+        return preg_match("-^.+$-", $binding) === 1;
     }
 }
