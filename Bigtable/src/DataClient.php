@@ -128,7 +128,7 @@ class DataClient
         foreach ($rowMutations as $rowMutation) {
             $entries[] = $rowMutation->getEntry();
         }
-        $responseStream = $this->bigtableClient->mutateRows($this->tableName, $entries, $this->options + $options);
+        $responseStream = $this->bigtableClient->mutateRows($this->tableName, $entries, $options + $this->options);
         $rowMutationsFailedResponse = [];
         $failureCode = Code::OK;
         $message = 'partial failure';
