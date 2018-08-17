@@ -29,9 +29,21 @@ class ExtendedSourceContext extends \Google\Protobuf\Internal\Message
      */
     private $labels;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type \Google\Cloud\DevTools\Source\V1\SourceContext $context
+     *           Any source context.
+     *     @type array|\Google\Protobuf\Internal\MapField $labels
+     *           Labels with user defined metadata.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Devtools\Source\V1\SourceContext::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

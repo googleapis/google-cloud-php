@@ -28,9 +28,21 @@ class DebugInfo extends \Google\Protobuf\Internal\Message
      */
     private $detail = '';
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $stack_entries
+     *           The stack trace entries indicating where the error occurred.
+     *     @type string $detail
+     *           Additional debugging information provided by the server.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Rpc\ErrorDetails::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

@@ -17,9 +17,21 @@ class RepoId extends \Google\Protobuf\Internal\Message
 {
     protected $id;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type \Google\Cloud\DevTools\Source\V1\ProjectRepoId $project_repo_id
+     *           A combination of a project ID and a repo name.
+     *     @type string $uid
+     *           A server-assigned, globally unique identifier.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Devtools\Source\V1\SourceContext::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

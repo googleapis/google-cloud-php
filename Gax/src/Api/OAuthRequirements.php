@@ -39,9 +39,23 @@ class OAuthRequirements extends \Google\Protobuf\Internal\Message
      */
     private $canonical_scopes = '';
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $canonical_scopes
+     *           The list of publicly documented OAuth scopes that are allowed access. An
+     *           OAuth token containing any of these scopes will be accepted.
+     *           Example:
+     *                canonical_scopes: https://www.googleapis.com/auth/calendar,
+     *                                  https://www.googleapis.com/auth/calendar.read
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Api\Auth::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

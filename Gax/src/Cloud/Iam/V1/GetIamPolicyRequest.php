@@ -24,9 +24,21 @@ class GetIamPolicyRequest extends \Google\Protobuf\Internal\Message
      */
     private $resource = '';
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $resource
+     *           REQUIRED: The resource for which the policy is being requested.
+     *           `resource` is usually specified as a path. For example, a Project
+     *           resource is specified as `projects/{project}`.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Iam\V1\IamPolicy::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

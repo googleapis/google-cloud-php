@@ -29,9 +29,22 @@ class CloudWorkspaceSourceContext extends \Google\Protobuf\Internal\Message
      */
     private $snapshot_id = '';
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type \Google\Cloud\DevTools\Source\V1\CloudWorkspaceId $workspace_id
+     *           The ID of the workspace.
+     *     @type string $snapshot_id
+     *           The ID of the snapshot.
+     *           An empty snapshot_id refers to the most recent snapshot.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Devtools\Source\V1\SourceContext::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

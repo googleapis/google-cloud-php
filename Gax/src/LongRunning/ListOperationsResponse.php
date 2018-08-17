@@ -28,9 +28,21 @@ class ListOperationsResponse extends \Google\Protobuf\Internal\Message
      */
     private $next_page_token = '';
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type \Google\LongRunning\Operation[]|\Google\Protobuf\Internal\RepeatedField $operations
+     *           A list of operations that matches the specified filter in the request.
+     *     @type string $next_page_token
+     *           The standard List next-page token.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Longrunning\Operations::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

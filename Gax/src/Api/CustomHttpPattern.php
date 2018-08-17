@@ -28,9 +28,21 @@ class CustomHttpPattern extends \Google\Protobuf\Internal\Message
      */
     private $path = '';
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $kind
+     *           The name of this custom HTTP verb.
+     *     @type string $path
+     *           The path matched by this custom verb.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Api\Http::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

@@ -25,9 +25,19 @@ class PreconditionFailure extends \Google\Protobuf\Internal\Message
      */
     private $violations;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type \Google\Rpc\PreconditionFailure\Violation[]|\Google\Protobuf\Internal\RepeatedField $violations
+     *           Describes all precondition violations.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Rpc\ErrorDetails::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**
@@ -45,12 +55,12 @@ class PreconditionFailure extends \Google\Protobuf\Internal\Message
      * Describes all precondition violations.
      *
      * Generated from protobuf field <code>repeated .google.rpc.PreconditionFailure.Violation violations = 1;</code>
-     * @param \Google\Rpc\PreconditionFailure_Violation[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Rpc\PreconditionFailure\Violation[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setViolations($var)
     {
-        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Rpc\PreconditionFailure_Violation::class);
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Rpc\PreconditionFailure\Violation::class);
         $this->violations = $arr;
 
         return $this;

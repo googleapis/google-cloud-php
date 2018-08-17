@@ -32,9 +32,19 @@ class RetryInfo extends \Google\Protobuf\Internal\Message
      */
     private $retry_delay = null;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type \Google\Protobuf\Duration $retry_delay
+     *           Clients should wait at least this long between retrying the same request.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Rpc\ErrorDetails::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

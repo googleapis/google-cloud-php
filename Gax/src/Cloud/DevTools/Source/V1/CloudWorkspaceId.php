@@ -31,9 +31,22 @@ class CloudWorkspaceId extends \Google\Protobuf\Internal\Message
      */
     private $name = '';
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type \Google\Cloud\DevTools\Source\V1\RepoId $repo_id
+     *           The ID of the repo containing the workspace.
+     *     @type string $name
+     *           The unique name of the workspace within the repo.  This is the name
+     *           chosen by the client in the Source API's CreateWorkspace method.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Devtools\Source\V1\SourceContext::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

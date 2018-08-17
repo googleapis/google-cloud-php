@@ -23,9 +23,19 @@ class Experimental extends \Google\Protobuf\Internal\Message
      */
     private $authorization = null;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type \Google\Api\AuthorizationConfig $authorization
+     *           Authorization configuration.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Api\Experimental\Experimental::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

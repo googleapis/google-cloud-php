@@ -31,9 +31,23 @@ class LocalizedMessage extends \Google\Protobuf\Internal\Message
      */
     private $message = '';
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $locale
+     *           The locale used following the specification defined at
+     *           http://www.rfc-editor.org/rfc/bcp/bcp47.txt.
+     *           Examples are: "en-US", "fr-CH", "es-MX"
+     *     @type string $message
+     *           The localized error message in the above locale.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Rpc\ErrorDetails::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

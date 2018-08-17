@@ -23,9 +23,20 @@ class TestIamPermissionsResponse extends \Google\Protobuf\Internal\Message
      */
     private $permissions;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $permissions
+     *           A subset of `TestPermissionsRequest.permissions` that the caller is
+     *           allowed.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Iam\V1\IamPolicy::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

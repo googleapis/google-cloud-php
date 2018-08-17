@@ -34,9 +34,23 @@ class LabelDescriptor extends \Google\Protobuf\Internal\Message
      */
     private $description = '';
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $key
+     *           The label key.
+     *     @type int $value_type
+     *           The type of data that can be assigned to the label.
+     *     @type string $description
+     *           A human-readable description for the label.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Api\Label::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

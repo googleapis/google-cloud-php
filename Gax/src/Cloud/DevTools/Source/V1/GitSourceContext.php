@@ -30,9 +30,22 @@ class GitSourceContext extends \Google\Protobuf\Internal\Message
      */
     private $revision_id = '';
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $url
+     *           Git repository URL.
+     *     @type string $revision_id
+     *           Git commit hash.
+     *           required.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Devtools\Source\V1\SourceContext::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

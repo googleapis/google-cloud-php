@@ -60,9 +60,27 @@ class Logging extends \Google\Protobuf\Internal\Message
      */
     private $consumer_destinations;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type \Google\Api\Logging\LoggingDestination[]|\Google\Protobuf\Internal\RepeatedField $producer_destinations
+     *           Logging configurations for sending logs to the producer project.
+     *           There can be multiple producer destinations, each one must have a
+     *           different monitored resource type. A log can be used in at most
+     *           one producer destination.
+     *     @type \Google\Api\Logging\LoggingDestination[]|\Google\Protobuf\Internal\RepeatedField $consumer_destinations
+     *           Logging configurations for sending logs to the consumer project.
+     *           There can be multiple consumer destinations, each one must have a
+     *           different monitored resource type. A log can be used in at most
+     *           one consumer destination.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Api\Logging::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**
@@ -86,12 +104,12 @@ class Logging extends \Google\Protobuf\Internal\Message
      * one producer destination.
      *
      * Generated from protobuf field <code>repeated .google.api.Logging.LoggingDestination producer_destinations = 1;</code>
-     * @param \Google\Api\Logging_LoggingDestination[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Api\Logging\LoggingDestination[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setProducerDestinations($var)
     {
-        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Api\Logging_LoggingDestination::class);
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Api\Logging\LoggingDestination::class);
         $this->producer_destinations = $arr;
 
         return $this;
@@ -118,12 +136,12 @@ class Logging extends \Google\Protobuf\Internal\Message
      * one consumer destination.
      *
      * Generated from protobuf field <code>repeated .google.api.Logging.LoggingDestination consumer_destinations = 2;</code>
-     * @param \Google\Api\Logging_LoggingDestination[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Api\Logging\LoggingDestination[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setConsumerDestinations($var)
     {
-        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Api\Logging_LoggingDestination::class);
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Api\Logging\LoggingDestination::class);
         $this->consumer_destinations = $arr;
 
         return $this;

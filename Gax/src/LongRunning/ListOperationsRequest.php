@@ -40,9 +40,25 @@ class ListOperationsRequest extends \Google\Protobuf\Internal\Message
      */
     private $page_token = '';
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $name
+     *           The name of the operation collection.
+     *     @type string $filter
+     *           The standard list filter.
+     *     @type int $page_size
+     *           The standard list page size.
+     *     @type string $page_token
+     *           The standard list page token.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Longrunning\Operations::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

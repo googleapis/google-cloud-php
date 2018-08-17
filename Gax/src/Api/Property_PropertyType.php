@@ -4,42 +4,13 @@
 
 namespace Google\Api;
 
-/**
- * Supported data type of the property values
- *
- * Protobuf enum <code>Google\Api\Property\PropertyType</code>
- */
-class Property_PropertyType
-{
+if (false) {
     /**
-     * The type is unspecified, and will result in an error.
-     *
-     * Generated from protobuf enum <code>UNSPECIFIED = 0;</code>
+     * This class is deprecated. Use Google\Api\Property\PropertyType instead.
+     * @deprecated
      */
-    const UNSPECIFIED = 0;
-    /**
-     * The type is `int64`.
-     *
-     * Generated from protobuf enum <code>INT64 = 1;</code>
-     */
-    const INT64 = 1;
-    /**
-     * The type is `bool`.
-     *
-     * Generated from protobuf enum <code>BOOL = 2;</code>
-     */
-    const BOOL = 2;
-    /**
-     * The type is `string`.
-     *
-     * Generated from protobuf enum <code>STRING = 3;</code>
-     */
-    const STRING = 3;
-    /**
-     * The type is 'double'.
-     *
-     * Generated from protobuf enum <code>DOUBLE = 4;</code>
-     */
-    const DOUBLE = 4;
+    class Property_PropertyType {}
 }
+class_exists(Property\PropertyType::class);
+@trigger_error('Google\Api\Property_PropertyType is deprecated and will be removed in the next major release. Use Google\Api\Property\PropertyType instead', E_USER_DEPRECATED);
 

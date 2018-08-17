@@ -122,9 +122,61 @@ class HttpRequest extends \Google\Protobuf\Internal\Message
      */
     private $protocol = '';
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $request_method
+     *           The request method. Examples: `"GET"`, `"HEAD"`, `"PUT"`, `"POST"`.
+     *     @type string $request_url
+     *           The scheme (http, https), the host name, the path and the query
+     *           portion of the URL that was requested.
+     *           Example: `"http://example.com/some/info?color=red"`.
+     *     @type int|string $request_size
+     *           The size of the HTTP request message in bytes, including the request
+     *           headers and the request body.
+     *     @type int $status
+     *           The response code indicating the status of response.
+     *           Examples: 200, 404.
+     *     @type int|string $response_size
+     *           The size of the HTTP response message sent back to the client, in bytes,
+     *           including the response headers and the response body.
+     *     @type string $user_agent
+     *           The user agent sent by the client. Example:
+     *           `"Mozilla/4.0 (compatible; MSIE 6.0; Windows 98; Q312461; .NET CLR 1.0.3705)"`.
+     *     @type string $remote_ip
+     *           The IP address (IPv4 or IPv6) of the client that issued the HTTP
+     *           request. Examples: `"192.168.1.1"`, `"FE80::0202:B3FF:FE1E:8329"`.
+     *     @type string $server_ip
+     *           The IP address (IPv4 or IPv6) of the origin server that the request was
+     *           sent to.
+     *     @type string $referer
+     *           The referer URL of the request, as defined in
+     *           [HTTP/1.1 Header Field Definitions](http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html).
+     *     @type \Google\Protobuf\Duration $latency
+     *           The request processing latency on the server, from the time the request was
+     *           received until the response was sent.
+     *     @type bool $cache_lookup
+     *           Whether or not a cache lookup was attempted.
+     *     @type bool $cache_hit
+     *           Whether or not an entity was served from cache
+     *           (with or without validation).
+     *     @type bool $cache_validated_with_origin_server
+     *           Whether or not the response was validated with the origin server before
+     *           being served from cache. This field is only meaningful if `cache_hit` is
+     *           True.
+     *     @type int|string $cache_fill_bytes
+     *           The number of HTTP response bytes inserted into cache. Set only when a
+     *           cache fill was attempted.
+     *     @type string $protocol
+     *           Protocol used for the request. Examples: "HTTP/1.1", "HTTP/2", "websocket"
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Logging\Type\HttpRequest::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

@@ -22,9 +22,19 @@ class PolicyDelta extends \Google\Protobuf\Internal\Message
      */
     private $binding_deltas;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type \Google\Cloud\Iam\V1\BindingDelta[]|\Google\Protobuf\Internal\RepeatedField $binding_deltas
+     *           The delta for Bindings between two policies.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Iam\V1\Policy::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

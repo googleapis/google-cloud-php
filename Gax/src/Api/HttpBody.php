@@ -54,10 +54,32 @@ class HttpBody extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>bytes data = 2;</code>
      */
     private $data = '';
+    /**
+     * Application specific response metadata. Must be set in the first response
+     * for streaming APIs.
+     *
+     * Generated from protobuf field <code>repeated .google.protobuf.Any extensions = 3;</code>
+     */
+    private $extensions;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $content_type
+     *           The HTTP Content-Type string representing the content type of the body.
+     *     @type string $data
+     *           HTTP body binary data.
+     *     @type \Google\Protobuf\Any[]|\Google\Protobuf\Internal\RepeatedField $extensions
+     *           Application specific response metadata. Must be set in the first response
+     *           for streaming APIs.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Api\Httpbody::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**
@@ -108,6 +130,34 @@ class HttpBody extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, False);
         $this->data = $var;
+
+        return $this;
+    }
+
+    /**
+     * Application specific response metadata. Must be set in the first response
+     * for streaming APIs.
+     *
+     * Generated from protobuf field <code>repeated .google.protobuf.Any extensions = 3;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getExtensions()
+    {
+        return $this->extensions;
+    }
+
+    /**
+     * Application specific response metadata. Must be set in the first response
+     * for streaming APIs.
+     *
+     * Generated from protobuf field <code>repeated .google.protobuf.Any extensions = 3;</code>
+     * @param \Google\Protobuf\Any[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setExtensions($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Protobuf\Any::class);
+        $this->extensions = $arr;
 
         return $this;
     }

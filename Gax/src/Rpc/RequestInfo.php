@@ -31,9 +31,23 @@ class RequestInfo extends \Google\Protobuf\Internal\Message
      */
     private $serving_data = '';
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $request_id
+     *           An opaque string that should only be interpreted by the service generating
+     *           it. For example, it can be used to identify requests in the service's logs.
+     *     @type string $serving_data
+     *           Any data that was used to serve this request. For example, an encrypted
+     *           stack trace that can be sent back to the service provider for debugging.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Rpc\ErrorDetails::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

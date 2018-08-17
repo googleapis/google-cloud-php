@@ -4,30 +4,13 @@
 
 namespace Google\Api;
 
-/**
- * Value types that can be used as label values.
- *
- * Protobuf enum <code>Google\Api\LabelDescriptor\ValueType</code>
- */
-class LabelDescriptor_ValueType
-{
+if (false) {
     /**
-     * A variable-length string. This is the default.
-     *
-     * Generated from protobuf enum <code>STRING = 0;</code>
+     * This class is deprecated. Use Google\Api\LabelDescriptor\ValueType instead.
+     * @deprecated
      */
-    const STRING = 0;
-    /**
-     * Boolean; true or false.
-     *
-     * Generated from protobuf enum <code>BOOL = 1;</code>
-     */
-    const BOOL = 1;
-    /**
-     * A 64-bit signed integer.
-     *
-     * Generated from protobuf enum <code>INT64 = 2;</code>
-     */
-    const INT64 = 2;
+    class LabelDescriptor_ValueType {}
 }
+class_exists(LabelDescriptor\ValueType::class);
+@trigger_error('Google\Api\LabelDescriptor_ValueType is deprecated and will be removed in the next major release. Use Google\Api\LabelDescriptor\ValueType instead', E_USER_DEPRECATED);
 

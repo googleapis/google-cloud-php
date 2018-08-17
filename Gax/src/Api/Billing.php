@@ -43,9 +43,22 @@ class Billing extends \Google\Protobuf\Internal\Message
      */
     private $consumer_destinations;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type \Google\Api\Billing\BillingDestination[]|\Google\Protobuf\Internal\RepeatedField $consumer_destinations
+     *           Billing configurations for sending metrics to the consumer project.
+     *           There can be multiple consumer destinations per service, each one must have
+     *           a different monitored resource type. A metric can be used in at most
+     *           one consumer destination.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Api\Billing::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**
@@ -69,12 +82,12 @@ class Billing extends \Google\Protobuf\Internal\Message
      * one consumer destination.
      *
      * Generated from protobuf field <code>repeated .google.api.Billing.BillingDestination consumer_destinations = 8;</code>
-     * @param \Google\Api\Billing_BillingDestination[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Api\Billing\BillingDestination[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setConsumerDestinations($var)
     {
-        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Api\Billing_BillingDestination::class);
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Api\Billing\BillingDestination::class);
         $this->consumer_destinations = $arr;
 
         return $this;

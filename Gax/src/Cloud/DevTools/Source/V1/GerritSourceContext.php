@@ -31,9 +31,29 @@ class GerritSourceContext extends \Google\Protobuf\Internal\Message
     private $gerrit_project = '';
     protected $revision;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $host_uri
+     *           The URI of a running Gerrit instance.
+     *     @type string $gerrit_project
+     *           The full project name within the host. Projects may be nested, so
+     *           "project/subproject" is a valid project name.
+     *           The "repo name" is hostURI/project.
+     *     @type string $revision_id
+     *           A revision (commit) ID.
+     *     @type string $alias_name
+     *           The name of an alias (branch, tag, etc.).
+     *     @type \Google\Cloud\DevTools\Source\V1\AliasContext $alias_context
+     *           An alias, which may be a branch or tag.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Devtools\Source\V1\SourceContext::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

@@ -28,9 +28,21 @@ class AliasContext extends \Google\Protobuf\Internal\Message
      */
     private $name = '';
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type int $kind
+     *           The alias kind.
+     *     @type string $name
+     *           The alias name.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Devtools\Source\V1\SourceContext::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

@@ -36,9 +36,26 @@ class MetricRule extends \Google\Protobuf\Internal\Message
      */
     private $metric_costs;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $selector
+     *           Selects the methods to which this rule applies.
+     *           Refer to [selector][google.api.DocumentationRule.selector] for syntax details.
+     *     @type array|\Google\Protobuf\Internal\MapField $metric_costs
+     *           Metrics to update when the selected methods are called, and the associated
+     *           cost applied to each metric.
+     *           The key of the map is the metric name, and the values are the amount
+     *           increased for the metric against which the quota limits are defined.
+     *           The value must not be negative.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Api\Quota::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

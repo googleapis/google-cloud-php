@@ -69,9 +69,33 @@ class Policy extends \Google\Protobuf\Internal\Message
      */
     private $etag = '';
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type int $version
+     *           Version of the `Policy`. The default version is 0.
+     *     @type \Google\Cloud\Iam\V1\Binding[]|\Google\Protobuf\Internal\RepeatedField $bindings
+     *           Associates a list of `members` to a `role`.
+     *           Multiple `bindings` must not be specified for the same `role`.
+     *           `bindings` with no members will result in an error.
+     *     @type string $etag
+     *           `etag` is used for optimistic concurrency control as a way to help
+     *           prevent simultaneous updates of a policy from overwriting each other.
+     *           It is strongly suggested that systems make use of the `etag` in the
+     *           read-modify-write cycle to perform policy updates in order to avoid race
+     *           conditions: An `etag` is returned in the response to `getIamPolicy`, and
+     *           systems are expected to put that etag in the request to `setIamPolicy` to
+     *           ensure that their change will be applied to the same version of the policy.
+     *           If no `etag` is provided in the call to `setIamPolicy`, then the existing
+     *           policy is overwritten blindly.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Iam\V1\Policy::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

@@ -29,16 +29,42 @@ class BackendRule extends \Google\Protobuf\Internal\Message
      */
     private $address = '';
     /**
-     * The number of seconds to wait for a response from a request.  The
-     * default depends on the deployment context.
+     * The number of seconds to wait for a response from a request.  The default
+     * deadline for gRPC is infinite (no deadline) and HTTP requests is 5 seconds.
      *
      * Generated from protobuf field <code>double deadline = 3;</code>
      */
     private $deadline = 0.0;
+    /**
+     * Minimum deadline in seconds needed for this method. Calls having deadline
+     * value lower than this will be rejected.
+     *
+     * Generated from protobuf field <code>double min_deadline = 4;</code>
+     */
+    private $min_deadline = 0.0;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $selector
+     *           Selects the methods to which this rule applies.
+     *           Refer to [selector][google.api.DocumentationRule.selector] for syntax details.
+     *     @type string $address
+     *           The address of the API backend.
+     *     @type float $deadline
+     *           The number of seconds to wait for a response from a request.  The default
+     *           deadline for gRPC is infinite (no deadline) and HTTP requests is 5 seconds.
+     *     @type float $min_deadline
+     *           Minimum deadline in seconds needed for this method. Calls having deadline
+     *           value lower than this will be rejected.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Api\Backend::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**
@@ -96,8 +122,8 @@ class BackendRule extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The number of seconds to wait for a response from a request.  The
-     * default depends on the deployment context.
+     * The number of seconds to wait for a response from a request.  The default
+     * deadline for gRPC is infinite (no deadline) and HTTP requests is 5 seconds.
      *
      * Generated from protobuf field <code>double deadline = 3;</code>
      * @return float
@@ -108,8 +134,8 @@ class BackendRule extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The number of seconds to wait for a response from a request.  The
-     * default depends on the deployment context.
+     * The number of seconds to wait for a response from a request.  The default
+     * deadline for gRPC is infinite (no deadline) and HTTP requests is 5 seconds.
      *
      * Generated from protobuf field <code>double deadline = 3;</code>
      * @param float $var
@@ -119,6 +145,34 @@ class BackendRule extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkDouble($var);
         $this->deadline = $var;
+
+        return $this;
+    }
+
+    /**
+     * Minimum deadline in seconds needed for this method. Calls having deadline
+     * value lower than this will be rejected.
+     *
+     * Generated from protobuf field <code>double min_deadline = 4;</code>
+     * @return float
+     */
+    public function getMinDeadline()
+    {
+        return $this->min_deadline;
+    }
+
+    /**
+     * Minimum deadline in seconds needed for this method. Calls having deadline
+     * value lower than this will be rejected.
+     *
+     * Generated from protobuf field <code>double min_deadline = 4;</code>
+     * @param float $var
+     * @return $this
+     */
+    public function setMinDeadline($var)
+    {
+        GPBUtil::checkDouble($var);
+        $this->min_deadline = $var;
 
         return $this;
     }

@@ -18,7 +18,7 @@ namespace Google\Cloud\Logging\Type;
  * FINER, and FINEST levels to `LogSeverity.DEBUG`. You can preserve the
  * original severity level in the log entry payload if you wish.
  *
- * Protobuf enum <code>Google\Logging\Type\LogSeverity</code>
+ * Protobuf type <code>google.logging.type.LogSeverity</code>
  */
 class LogSeverity
 {

@@ -43,9 +43,32 @@ class Usage extends \Google\Protobuf\Internal\Message
      */
     private $producer_notification_channel = '';
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $requirements
+     *           Requirements that must be satisfied before a consumer project can use the
+     *           service. Each requirement is of the form <service.name>/<requirement-id>;
+     *           for example 'serviceusage.googleapis.com/billing-enabled'.
+     *     @type \Google\Api\UsageRule[]|\Google\Protobuf\Internal\RepeatedField $rules
+     *           A list of usage rules that apply to individual API methods.
+     *           **NOTE:** All service configuration rules follow "last one wins" order.
+     *     @type string $producer_notification_channel
+     *           The full resource name of a channel used for sending notifications to the
+     *           service producer.
+     *           Google Service Management currently only supports
+     *           [Google Cloud Pub/Sub](https://cloud.google.com/pubsub) as a notification
+     *           channel. To use Google Cloud Pub/Sub as the channel, this must be the name
+     *           of a Cloud Pub/Sub topic that uses the Cloud Pub/Sub topic name format
+     *           documented in https://cloud.google.com/pubsub/docs/overview.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Api\Usage::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

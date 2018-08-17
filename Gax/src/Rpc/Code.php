@@ -11,7 +11,7 @@ namespace Google\Rpc;
  * `OUT_OF_RANGE` over `FAILED_PRECONDITION` if both codes apply.
  * Similarly prefer `NOT_FOUND` or `ALREADY_EXISTS` over `FAILED_PRECONDITION`.
  *
- * Protobuf enum <code>Google\Rpc\Code</code>
+ * Protobuf type <code>google.rpc.Code</code>
  */
 class Code
 {
