@@ -34,6 +34,7 @@ use Google\Cloud\Spanner\V1\Mutation;
 use Google\Cloud\Spanner\V1\Mutation_Delete;
 use Google\Cloud\Spanner\V1\Mutation_Write;
 use Google\Cloud\Spanner\V1\PartitionOptions;
+use Google\Cloud\Spanner\V1\Session;
 use Google\Cloud\Spanner\V1\SpannerClient;
 use Google\Cloud\Spanner\V1\TransactionOptions;
 use Google\Cloud\Spanner\V1\TransactionOptions_ReadOnly;
@@ -424,6 +425,12 @@ class Grpc implements ConnectionInterface
     public function createSession(array $args)
     {
         $databaseName = $this->pluck('database', $args);
+
+        if ($labels = $this->pluck('labels', $args, false)) {
+            $args['session'] = new Session;
+            $args['session']->setLabels($labels);
+        }
+
         return $this->send([$this->spannerClient, 'createSession'], [
             $databaseName,
             $this->addResourcePrefixHeader($args, $databaseName)

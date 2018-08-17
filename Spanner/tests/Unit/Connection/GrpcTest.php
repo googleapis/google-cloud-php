@@ -23,30 +23,32 @@ use Google\ApiCore\Serializer;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\Cloud\Core\GrpcRequestWrapper;
 use Google\Cloud\Core\GrpcTrait;
-use Google\Cloud\Spanner\Connection\Grpc;
-use Google\Cloud\Spanner\V1\SpannerClient;
-use Google\Cloud\Spanner\ValueMapper;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
-use Google\Protobuf\FieldMask;
-use Google\Protobuf\Struct;
 use Google\Cloud\Spanner\Admin\Instance\V1\Instance;
 use Google\Cloud\Spanner\Admin\Instance\V1\Instance_State;
-use Google\Cloud\Spanner\V1\Mutation_Write;
-use Google\Cloud\Spanner\V1\TransactionOptions_ReadOnly;
-use Google\Cloud\Spanner\V1\TransactionOptions_ReadWrite;
+use Google\Cloud\Spanner\Connection\Grpc;
 use Google\Cloud\Spanner\V1\DeleteSessionRequest;
 use Google\Cloud\Spanner\V1\KeySet;
 use Google\Cloud\Spanner\V1\Mutation;
+use Google\Cloud\Spanner\V1\Mutation_Write;
+use Google\Cloud\Spanner\V1\Session;
+use Google\Cloud\Spanner\V1\SpannerClient;
 use Google\Cloud\Spanner\V1\SpannerGrpcClient;
 use Google\Cloud\Spanner\V1\TransactionOptions;
+use Google\Cloud\Spanner\V1\TransactionOptions_ReadOnly;
+use Google\Cloud\Spanner\V1\TransactionOptions_ReadWrite;
 use Google\Cloud\Spanner\V1\TransactionSelector;
 use Google\Cloud\Spanner\V1\Type;
+use Google\Cloud\Spanner\ValueMapper;
+use Google\Protobuf\FieldMask;
+use Google\Protobuf\Struct;
 use GuzzleHttp\Promise\PromiseInterface;
-use Prophecy\Argument;
 use PHPUnit\Framework\TestCase;
+use Prophecy\Argument;
 
 /**
  * @group spanner
+ * @group spanner-grpc
  */
 class GrpcTest extends TestCase
 {
@@ -483,10 +485,14 @@ class GrpcTest extends TestCase
             ], [
                 'createSession',
                 [
-                    'database' => $databaseName
+                    'database' => $databaseName,
+                    'labels' => [
+                        'foo' => 'bar'
+                    ]
                 ], [
                     $databaseName,
                     [
+                        'session' => (new Session)->setLabels(['foo' => 'bar']),
                         'headers' => $this->header($databaseName)
                     ]
                 ]

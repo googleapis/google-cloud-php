@@ -372,9 +372,9 @@ class Operation
      */
     public function createSession($databaseName, array $options = [])
     {
-        $res = $this->connection->createSession($options + [
+        $res = $this->connection->createSession([
             'database' => $databaseName
-        ]);
+        ] + $options);
 
         return $this->session($res['name']);
     }

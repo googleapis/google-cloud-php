@@ -309,8 +309,8 @@ class Database
             'statements' => [],
         ];
 
-        $databaseName = DatabaseAdminClient::parseName($this->name())['database'];
-        $statement = sprintf('CREATE DATABASE `%s`', $databaseName);
+        $databaseId = DatabaseAdminClient::parseName($this->name())['database'];
+        $statement = sprintf('CREATE DATABASE `%s`', $databaseId);
 
         $operation = $this->connection->createDatabase([
             'instance' => $this->instance->name(),
@@ -536,6 +536,8 @@ class Database
      *           up front. Instead, the transaction will be considered
      *           "single-use", and may be used for only a single operation.
      *           **Defaults to** `false`.
+     *     @type array $sessionOptions An array of configuration options used if
+     *           a new session is created for the request.
      * }
      * @return Snapshot
      * @throws \BadMethodCallException If attempting to call this method within
@@ -554,7 +556,10 @@ class Database
 
         $options['transactionOptions'] = $this->configureSnapshotOptions($options);
 
-        $session = $this->selectSession(SessionPoolInterface::CONTEXT_READ);
+        $session = $this->selectSession(
+            SessionPoolInterface::CONTEXT_READ,
+            $this->pluck('sessionOptions', $options, false) ?: []
+        );
 
         try {
             return $this->operation->snapshot($session, $options);
@@ -595,6 +600,8 @@ class Database
      *           up front. Instead, the transaction will be considered
      *           "single-use", and may be used for only a single operation.
      *           **Defaults to** `false`.
+     *     @type array $sessionOptions An array of configuration options used if
+     *           a new session is created for the request.
      * }
      * @return Transaction
      * @throws \BadMethodCallException If attempting to call this method within
@@ -609,7 +616,10 @@ class Database
         // There isn't anything configurable here.
         $options['transactionOptions'] = $this->configureTransactionOptions();
 
-        $session = $this->selectSession(SessionPoolInterface::CONTEXT_READWRITE);
+        $session = $this->selectSession(
+            SessionPoolInterface::CONTEXT_READWRITE,
+            $this->pluck('sessionOptions', $options, false) ?: []
+        );
 
         try {
             return $this->operation->transaction($session, $options);
@@ -688,6 +698,8 @@ class Database
      *           that in a single-use transaction, only a single operation may
      *           be executed, and rollback is not available. **Defaults to**
      *           `false`.
+     *     @type array $sessionOptions An array of configuration options used if
+     *           a new session is created for the request.
      * }
      * @return mixed The return value of `$operation`.
      * @throws \RuntimeException If a transaction is not committed or rolled back.
@@ -707,7 +719,10 @@ class Database
         // There isn't anything configurable here.
         $options['transactionOptions'] = $this->configureTransactionOptions();
 
-        $session = $this->selectSession(SessionPoolInterface::CONTEXT_READWRITE);
+        $session = $this->selectSession(
+            SessionPoolInterface::CONTEXT_READWRITE,
+            $this->pluck('sessionOptions', $options, false) ?: []
+        );
 
         $attempt = 0;
         $startTransactionFn = function ($session, $options) use (&$attempt) {
@@ -1321,13 +1336,18 @@ class Database
      *           chosen, any snapshot options will be disregarded. If `$begin`
      *           is false, transaction type MUST be `SessionPoolInterface::CONTEXT_READ`.
      *           **Defaults to** `SessionPoolInterface::CONTEXT_READ`.
+     *     @type array $sessionOptions An array of configuration options used if
+     *           a new session is created for the request.
      * }
      * @codingStandardsIgnoreEnd
      * @return Result
      */
     public function execute($sql, array $options = [])
     {
-        $session = $this->selectSession(SessionPoolInterface::CONTEXT_READ);
+        $session = $this->selectSession(
+            SessionPoolInterface::CONTEXT_READ,
+            $this->pluck('sessionOptions', $options, false) ?: []
+        );
 
         list($transactionOptions, $context) = $this->transactionSelector($options);
         $options['transaction'] = $transactionOptions;
@@ -1441,13 +1461,18 @@ class Database
      *           chosen, any snapshot options will be disregarded. If `$begin`
      *           is false, transaction type MUST be `SessionPoolInterface::CONTEXT_READ`.
      *           **Defaults to** `SessionPoolInterface::CONTEXT_READ`.
+     *     @type array $sessionOptions An array of configuration options used if
+     *           a new session is created for the request.
      * }
      * @codingStandardsIgnoreEnd
      * @return Result
      */
     public function read($table, KeySet $keySet, array $columns, array $options = [])
     {
-        $session = $this->selectSession(SessionPoolInterface::CONTEXT_READ);
+        $session = $this->selectSession(
+            SessionPoolInterface::CONTEXT_READ,
+            $this->pluck('sessionOptions', $options, false) ?: []
+        );
 
         list($transactionOptions, $context) = $this->transactionSelector($options);
         $options['transaction'] = $transactionOptions;
@@ -1508,8 +1533,11 @@ class Database
     {
         try {
             $this->close();
-        } catch (\Exception $ex) {
-        }
+        //@codingStandardsIgnoreStart
+        //@codeCoverageIgnoreStart
+        } catch (\Exception $ex) {}
+        //@codeCoverageIgnoreEnd
+        //@codingStandardsIgnoreStart
     }
 
     /**
@@ -1599,9 +1627,10 @@ class Database
      *
      * @param string $context [optional] The session context. **Defaults to**
      *        `r` (READ).
+     * @param array $options [optional] Configuration options.
      * @return Session
      */
-    private function selectSession($context = SessionPoolInterface::CONTEXT_READ)
+    private function selectSession($context = SessionPoolInterface::CONTEXT_READ, array $options = [])
     {
         if ($this->session) {
             return $this->session;
@@ -1611,9 +1640,16 @@ class Database
             return $this->session = $this->sessionPool->acquire($context);
         }
 
-        return $this->session = $this->operation->createSession($this->name);
+        return $this->session = $this->operation->createSession($this->name, $options);
     }
 
+    /**
+     * Common method to run mutations within a single-use transaction.
+     *
+     * @param array $mutations A list of mutations to execute.
+     * @param array $options [optional] Configuration options.
+     * @return Timestamp The commit timestamp.
+     */
     private function commitInSingleUseTransaction(array $mutations, array $options = [])
     {
         $options['mutations'] = $mutations;
@@ -1640,8 +1676,10 @@ class Database
                 $instance,
                 $name
             );
+        //@codeCoverageIgnoreStart
         } catch (ValidationException $e) {
             return $name;
         }
+        //@codeCoverageIgnoreEnd
     }
 }

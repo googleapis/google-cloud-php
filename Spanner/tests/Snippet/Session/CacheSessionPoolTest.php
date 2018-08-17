@@ -39,4 +39,16 @@ class CacheSessionPoolTest extends SnippetTestCase
         $res = $snippet->invoke('database');
         $this->assertInstanceOf(Database::class, $res->returnVal());
     }
+
+    public function testClassLabels()
+    {
+        if (!extension_loaded('grpc')) {
+            $this->markTestSkipped('Must have the grpc extension installed to run this test.');
+        }
+
+        $snippet = $this->snippetFromClass(CacheSessionPool::class, 1);
+        $snippet->replace('$cache =', '//$cache =');
+        $snippet->addLocal('cache', new MemoryCacheItemPool);
+        $res = $snippet->invoke();
+    }
 }
