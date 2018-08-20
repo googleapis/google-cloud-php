@@ -214,7 +214,7 @@ class DataClient
      *     @type int $rowsLimit Number of rows to scan.
      * }
      *
-     * @return Generator
+     * @return \Generator|mixed
      * @throws ApiException|BigtableDataOperationException if the remote call fails or operation fails
      */
     public function readRows(array $options = [])
