@@ -834,7 +834,6 @@ class DlpServiceGapicClient
      * ```
      * $dlpServiceClient = new DlpServiceClient();
      * try {
-     *
      *     $response = $dlpServiceClient->listInfoTypes();
      * } finally {
      *     $dlpServiceClient->close();
@@ -1004,7 +1003,6 @@ class DlpServiceGapicClient
      * ```
      * $dlpServiceClient = new DlpServiceClient();
      * try {
-     *
      *     $response = $dlpServiceClient->getInspectTemplate();
      * } finally {
      *     $dlpServiceClient->close();
@@ -1054,18 +1052,21 @@ class DlpServiceGapicClient
      * $dlpServiceClient = new DlpServiceClient();
      * try {
      *     $formattedParent = $dlpServiceClient->organizationName('[ORGANIZATION]');
-     *     // Iterate through all elements
-     *     $pagedResponse = $dlpServiceClient->listInspectTemplates($formattedParent);
-     *     foreach ($pagedResponse->iterateAllElements() as $element) {
-     *         // doSomethingWith($element);
-     *     }
-     *
-     *     // OR iterate over pages of elements
+     *     // Iterate over pages of elements
      *     $pagedResponse = $dlpServiceClient->listInspectTemplates($formattedParent);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
      *         }
+     *     }
+     *
+     *
+     *     // Alternatively:
+     *
+     *     // Iterate through all elements
+     *     $pagedResponse = $dlpServiceClient->listInspectTemplates($formattedParent);
+     *     foreach ($pagedResponse->iterateAllElements() as $element) {
+     *         // doSomethingWith($element);
      *     }
      * } finally {
      *     $dlpServiceClient->close();
@@ -1335,18 +1336,21 @@ class DlpServiceGapicClient
      * $dlpServiceClient = new DlpServiceClient();
      * try {
      *     $formattedParent = $dlpServiceClient->organizationName('[ORGANIZATION]');
-     *     // Iterate through all elements
-     *     $pagedResponse = $dlpServiceClient->listDeidentifyTemplates($formattedParent);
-     *     foreach ($pagedResponse->iterateAllElements() as $element) {
-     *         // doSomethingWith($element);
-     *     }
-     *
-     *     // OR iterate over pages of elements
+     *     // Iterate over pages of elements
      *     $pagedResponse = $dlpServiceClient->listDeidentifyTemplates($formattedParent);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
      *         }
+     *     }
+     *
+     *
+     *     // Alternatively:
+     *
+     *     // Iterate through all elements
+     *     $pagedResponse = $dlpServiceClient->listDeidentifyTemplates($formattedParent);
+     *     foreach ($pagedResponse->iterateAllElements() as $element) {
+     *         // doSomethingWith($element);
      *     }
      * } finally {
      *     $dlpServiceClient->close();
@@ -1520,18 +1524,21 @@ class DlpServiceGapicClient
      * $dlpServiceClient = new DlpServiceClient();
      * try {
      *     $formattedParent = $dlpServiceClient->projectName('[PROJECT]');
-     *     // Iterate through all elements
-     *     $pagedResponse = $dlpServiceClient->listDlpJobs($formattedParent);
-     *     foreach ($pagedResponse->iterateAllElements() as $element) {
-     *         // doSomethingWith($element);
-     *     }
-     *
-     *     // OR iterate over pages of elements
+     *     // Iterate over pages of elements
      *     $pagedResponse = $dlpServiceClient->listDlpJobs($formattedParent);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
      *         }
+     *     }
+     *
+     *
+     *     // Alternatively:
+     *
+     *     // Iterate through all elements
+     *     $pagedResponse = $dlpServiceClient->listDlpJobs($formattedParent);
+     *     foreach ($pagedResponse->iterateAllElements() as $element) {
+     *         // doSomethingWith($element);
      *     }
      * } finally {
      *     $dlpServiceClient->close();
@@ -1759,18 +1766,21 @@ class DlpServiceGapicClient
      * $dlpServiceClient = new DlpServiceClient();
      * try {
      *     $formattedParent = $dlpServiceClient->projectName('[PROJECT]');
-     *     // Iterate through all elements
-     *     $pagedResponse = $dlpServiceClient->listJobTriggers($formattedParent);
-     *     foreach ($pagedResponse->iterateAllElements() as $element) {
-     *         // doSomethingWith($element);
-     *     }
-     *
-     *     // OR iterate over pages of elements
+     *     // Iterate over pages of elements
      *     $pagedResponse = $dlpServiceClient->listJobTriggers($formattedParent);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
      *         }
+     *     }
+     *
+     *
+     *     // Alternatively:
+     *
+     *     // Iterate through all elements
+     *     $pagedResponse = $dlpServiceClient->listJobTriggers($formattedParent);
+     *     foreach ($pagedResponse->iterateAllElements() as $element) {
+     *         // doSomethingWith($element);
      *     }
      * } finally {
      *     $dlpServiceClient->close();
