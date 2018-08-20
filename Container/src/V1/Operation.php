@@ -81,9 +81,41 @@ class Operation extends \Google\Protobuf\Internal\Message
      */
     private $end_time = '';
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $name
+     *           The server-assigned ID for the operation.
+     *     @type string $zone
+     *           The name of the Google Compute Engine
+     *           [zone](/compute/docs/zones#available) in which the operation
+     *           is taking place.
+     *     @type int $operation_type
+     *           The operation type.
+     *     @type int $status
+     *           The current status of the operation.
+     *     @type string $detail
+     *           Detailed operation progress, if available.
+     *     @type string $status_message
+     *           If an error has occurred, a textual description of the error.
+     *     @type string $self_link
+     *           Server-defined URL for the resource.
+     *     @type string $target_link
+     *           Server-defined URL for the target of the operation.
+     *     @type string $start_time
+     *           [Output only] The time the operation started, in
+     *           [RFC3339](https://www.ietf.org/rfc/rfc3339.txt) text format.
+     *     @type string $end_time
+     *           [Output only] The time the operation completed, in
+     *           [RFC3339](https://www.ietf.org/rfc/rfc3339.txt) text format.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Container\V1\ClusterService::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

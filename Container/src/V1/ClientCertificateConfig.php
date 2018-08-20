@@ -22,9 +22,19 @@ class ClientCertificateConfig extends \Google\Protobuf\Internal\Message
      */
     private $issue_client_certificate = false;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type bool $issue_client_certificate
+     *           Issue a client certificate.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Container\V1\ClusterService::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

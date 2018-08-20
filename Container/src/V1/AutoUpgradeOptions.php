@@ -32,9 +32,24 @@ class AutoUpgradeOptions extends \Google\Protobuf\Internal\Message
      */
     private $description = '';
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $auto_upgrade_start_time
+     *           [Output only] This field is set when upgrades are about to commence
+     *           with the approximate start time for the upgrades, in
+     *           [RFC3339](https://www.ietf.org/rfc/rfc3339.txt) text format.
+     *     @type string $description
+     *           [Output only] This field is set when upgrades are about to commence
+     *           with the description of the upgrade.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Container\V1\ClusterService::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

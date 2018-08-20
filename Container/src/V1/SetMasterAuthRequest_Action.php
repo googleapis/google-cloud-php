@@ -4,39 +4,13 @@
 
 namespace Google\Cloud\Container\V1;
 
-/**
- * Operation type: what type update to perform.
- *
- * Protobuf enum <code>Google\Container\V1\SetMasterAuthRequest\Action</code>
- */
-class SetMasterAuthRequest_Action
-{
+if (false) {
     /**
-     * Operation is unknown and will error out.
-     *
-     * Generated from protobuf enum <code>UNKNOWN = 0;</code>
+     * This class is deprecated. Use Google\Cloud\Container\V1\SetMasterAuthRequest\Action instead.
+     * @deprecated
      */
-    const UNKNOWN = 0;
-    /**
-     * Set the password to a user generated value.
-     *
-     * Generated from protobuf enum <code>SET_PASSWORD = 1;</code>
-     */
-    const SET_PASSWORD = 1;
-    /**
-     * Generate a new password and set it to that.
-     *
-     * Generated from protobuf enum <code>GENERATE_PASSWORD = 2;</code>
-     */
-    const GENERATE_PASSWORD = 2;
-    /**
-     * Set the username.  If an empty username is provided, basic authentication
-     * is disabled for the cluster.  If a non-empty username is provided, basic
-     * authentication is enabled, with either a provided password or a generated
-     * one.
-     *
-     * Generated from protobuf enum <code>SET_USERNAME = 3;</code>
-     */
-    const SET_USERNAME = 3;
+    class SetMasterAuthRequest_Action {}
 }
+class_exists(SetMasterAuthRequest\Action::class);
+@trigger_error('Google\Cloud\Container\V1\SetMasterAuthRequest_Action is deprecated and will be removed in the next major release. Use Google\Cloud\Container\V1\SetMasterAuthRequest\Action instead', E_USER_DEPRECATED);
 

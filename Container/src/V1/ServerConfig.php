@@ -46,9 +46,27 @@ class ServerConfig extends \Google\Protobuf\Internal\Message
      */
     private $valid_master_versions;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $default_cluster_version
+     *           Version of Kubernetes the service deploys by default.
+     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $valid_node_versions
+     *           List of valid node upgrade target versions.
+     *     @type string $default_image_type
+     *           Default image type.
+     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $valid_image_types
+     *           List of valid image types.
+     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $valid_master_versions
+     *           List of valid master versions.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Container\V1\ClusterService::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

@@ -33,9 +33,22 @@ class MasterAuthorizedNetworksConfig extends \Google\Protobuf\Internal\Message
      */
     private $cidr_blocks;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type bool $enabled
+     *           Whether or not master authorized networks is enabled.
+     *     @type \Google\Cloud\Container\V1\MasterAuthorizedNetworksConfig\CidrBlock[]|\Google\Protobuf\Internal\RepeatedField $cidr_blocks
+     *           cidr_blocks define up to 10 external networks that could access
+     *           Kubernetes master through HTTPS.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Container\V1\ClusterService::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**
@@ -81,12 +94,12 @@ class MasterAuthorizedNetworksConfig extends \Google\Protobuf\Internal\Message
      * Kubernetes master through HTTPS.
      *
      * Generated from protobuf field <code>repeated .google.container.v1.MasterAuthorizedNetworksConfig.CidrBlock cidr_blocks = 2;</code>
-     * @param \Google\Cloud\Container\V1\MasterAuthorizedNetworksConfig_CidrBlock[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Container\V1\MasterAuthorizedNetworksConfig\CidrBlock[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setCidrBlocks($var)
     {
-        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Container\V1\MasterAuthorizedNetworksConfig_CidrBlock::class);
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Container\V1\MasterAuthorizedNetworksConfig\CidrBlock::class);
         $this->cidr_blocks = $arr;
 
         return $this;

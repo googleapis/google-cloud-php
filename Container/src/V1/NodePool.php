@@ -88,9 +88,44 @@ class NodePool extends \Google\Protobuf\Internal\Message
      */
     private $management = null;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $name
+     *           The name of the node pool.
+     *     @type \Google\Cloud\Container\V1\NodeConfig $config
+     *           The node configuration of the pool.
+     *     @type int $initial_node_count
+     *           The initial node count for the pool. You must ensure that your
+     *           Compute Engine <a href="/compute/docs/resource-quotas">resource quota</a>
+     *           is sufficient for this number of instances. You must also have available
+     *           firewall and routes quota.
+     *     @type string $self_link
+     *           [Output only] Server-defined URL for the resource.
+     *     @type string $version
+     *           The version of the Kubernetes of this node.
+     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $instance_group_urls
+     *           [Output only] The resource URLs of the [managed instance
+     *           groups](/compute/docs/instance-groups/creating-groups-of-managed-instances)
+     *           associated with this node pool.
+     *     @type int $status
+     *           [Output only] The status of the nodes in this pool instance.
+     *     @type string $status_message
+     *           [Output only] Additional information about the current status of this
+     *           node pool instance, if available.
+     *     @type \Google\Cloud\Container\V1\NodePoolAutoscaling $autoscaling
+     *           Autoscaler configuration for this NodePool. Autoscaler is enabled
+     *           only if a valid configuration is present.
+     *     @type \Google\Cloud\Container\V1\NodeManagement $management
+     *           NodeManagement configuration for this NodePool.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Container\V1\ClusterService::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

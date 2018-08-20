@@ -29,9 +29,22 @@ class ListOperationsResponse extends \Google\Protobuf\Internal\Message
      */
     private $missing_zones;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type \Google\Cloud\Container\V1\Operation[]|\Google\Protobuf\Internal\RepeatedField $operations
+     *           A list of operations in the project in the specified zone.
+     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $missing_zones
+     *           If any zones are listed here, the list of operations returned
+     *           may be missing the operations from those zones.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Container\V1\ClusterService::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

@@ -29,9 +29,21 @@ class NetworkPolicy extends \Google\Protobuf\Internal\Message
      */
     private $enabled = false;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type int $provider
+     *           The selected network policy provider.
+     *     @type bool $enabled
+     *           Whether network policy is enabled on the cluster.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Container\V1\ClusterService::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

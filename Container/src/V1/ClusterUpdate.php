@@ -92,9 +92,55 @@ class ClusterUpdate extends \Google\Protobuf\Internal\Message
      */
     private $desired_master_version = '';
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $desired_node_version
+     *           The Kubernetes version to change the nodes to (typically an
+     *           upgrade). Use `-` to upgrade to the latest version supported by
+     *           the server.
+     *     @type string $desired_monitoring_service
+     *           The monitoring service the cluster should use to write metrics.
+     *           Currently available options:
+     *           * "monitoring.googleapis.com" - the Google Cloud Monitoring service
+     *           * "none" - no metrics will be exported from the cluster
+     *     @type \Google\Cloud\Container\V1\AddonsConfig $desired_addons_config
+     *           Configurations for the various addons available to run in the cluster.
+     *     @type string $desired_node_pool_id
+     *           The node pool to be upgraded. This field is mandatory if
+     *           "desired_node_version", "desired_image_family" or
+     *           "desired_node_pool_autoscaling" is specified and there is more than one
+     *           node pool on the cluster.
+     *     @type string $desired_image_type
+     *           The desired image type for the node pool.
+     *           NOTE: Set the "desired_node_pool" field as well.
+     *     @type \Google\Cloud\Container\V1\NodePoolAutoscaling $desired_node_pool_autoscaling
+     *           Autoscaler configuration for the node pool specified in
+     *           desired_node_pool_id. If there is only one pool in the
+     *           cluster and desired_node_pool_id is not provided then
+     *           the change applies to that single node pool.
+     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $desired_locations
+     *           The desired list of Google Compute Engine
+     *           [locations](/compute/docs/zones#available) in which the cluster's nodes
+     *           should be located. Changing the locations a cluster is in will result
+     *           in nodes being either created or removed from the cluster, depending on
+     *           whether locations are being added or removed.
+     *           This list must always include the cluster's primary zone.
+     *     @type \Google\Cloud\Container\V1\MasterAuthorizedNetworksConfig $desired_master_authorized_networks_config
+     *           Master authorized networks is a Beta feature.
+     *           The desired configuration options for master authorized networks feature.
+     *     @type string $desired_master_version
+     *           The Kubernetes version to change the master to. The only valid value is the
+     *           latest supported version. Use "-" to have the server automatically select
+     *           the latest version.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Container\V1\ClusterService::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

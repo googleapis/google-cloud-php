@@ -44,9 +44,29 @@ class SetAddonsConfigRequest extends \Google\Protobuf\Internal\Message
      */
     private $addons_config = null;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $project_id
+     *           The Google Developers Console [project ID or project
+     *           number](https://support.google.com/cloud/answer/6158840).
+     *     @type string $zone
+     *           The name of the Google Compute Engine
+     *           [zone](/compute/docs/zones#available) in which the cluster
+     *           resides.
+     *     @type string $cluster_id
+     *           The name of the cluster to upgrade.
+     *     @type \Google\Cloud\Container\V1\AddonsConfig $addons_config
+     *           The desired configurations for the various addons available to run in the
+     *           cluster.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Container\V1\ClusterService::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

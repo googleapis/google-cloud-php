@@ -37,9 +37,25 @@ class NodePoolAutoscaling extends \Google\Protobuf\Internal\Message
      */
     private $max_node_count = 0;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type bool $enabled
+     *           Is autoscaling enabled for this node pool.
+     *     @type int $min_node_count
+     *           Minimum number of nodes in the NodePool. Must be >= 1 and <=
+     *           max_node_count.
+     *     @type int $max_node_count
+     *           Maximum number of nodes in the NodePool. Must be >= min_node_count. There
+     *           has to enough quota to scale up the cluster.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Container\V1\ClusterService::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

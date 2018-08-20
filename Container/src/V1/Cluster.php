@@ -292,9 +292,153 @@ class Cluster extends \Google\Protobuf\Internal\Message
      */
     private $expire_time = '';
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $name
+     *           The name of this cluster. The name must be unique within this project
+     *           and zone, and can be up to 40 characters with the following restrictions:
+     *           * Lowercase letters, numbers, and hyphens only.
+     *           * Must start with a letter.
+     *           * Must end with a number or a letter.
+     *     @type string $description
+     *           An optional description of this cluster.
+     *     @type int $initial_node_count
+     *           The number of nodes to create in this cluster. You must ensure that your
+     *           Compute Engine <a href="/compute/docs/resource-quotas">resource quota</a>
+     *           is sufficient for this number of instances. You must also have available
+     *           firewall and routes quota.
+     *           For requests, this field should only be used in lieu of a
+     *           "node_pool" object, since this configuration (along with the
+     *           "node_config") will be used to create a "NodePool" object with an
+     *           auto-generated name. Do not use this and a node_pool at the same time.
+     *     @type \Google\Cloud\Container\V1\NodeConfig $node_config
+     *           Parameters used in creating the cluster's nodes.
+     *           See `nodeConfig` for the description of its properties.
+     *           For requests, this field should only be used in lieu of a
+     *           "node_pool" object, since this configuration (along with the
+     *           "initial_node_count") will be used to create a "NodePool" object with an
+     *           auto-generated name. Do not use this and a node_pool at the same time.
+     *           For responses, this field will be populated with the node configuration of
+     *           the first node pool.
+     *           If unspecified, the defaults are used.
+     *     @type \Google\Cloud\Container\V1\MasterAuth $master_auth
+     *           The authentication information for accessing the master endpoint.
+     *     @type string $logging_service
+     *           The logging service the cluster should use to write logs.
+     *           Currently available options:
+     *           * `logging.googleapis.com` - the Google Cloud Logging service.
+     *           * `none` - no logs will be exported from the cluster.
+     *           * if left as an empty string,`logging.googleapis.com` will be used.
+     *     @type string $monitoring_service
+     *           The monitoring service the cluster should use to write metrics.
+     *           Currently available options:
+     *           * `monitoring.googleapis.com` - the Google Cloud Monitoring service.
+     *           * `none` - no metrics will be exported from the cluster.
+     *           * if left as an empty string, `monitoring.googleapis.com` will be used.
+     *     @type string $network
+     *           The name of the Google Compute Engine
+     *           [network](/compute/docs/networks-and-firewalls#networks) to which the
+     *           cluster is connected. If left unspecified, the `default` network
+     *           will be used.
+     *     @type string $cluster_ipv4_cidr
+     *           The IP address range of the container pods in this cluster, in
+     *           [CIDR](http://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing)
+     *           notation (e.g. `10.96.0.0/14`). Leave blank to have
+     *           one automatically chosen or specify a `/14` block in `10.0.0.0/8`.
+     *     @type \Google\Cloud\Container\V1\AddonsConfig $addons_config
+     *           Configurations for the various addons available to run in the cluster.
+     *     @type string $subnetwork
+     *           The name of the Google Compute Engine
+     *           [subnetwork](/compute/docs/subnetworks) to which the
+     *           cluster is connected.
+     *     @type \Google\Cloud\Container\V1\NodePool[]|\Google\Protobuf\Internal\RepeatedField $node_pools
+     *           The node pools associated with this cluster.
+     *           This field should not be set if "node_config" or "initial_node_count" are
+     *           specified.
+     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $locations
+     *           The list of Google Compute Engine
+     *           [locations](/compute/docs/zones#available) in which the cluster's nodes
+     *           should be located.
+     *     @type bool $enable_kubernetes_alpha
+     *           Kubernetes alpha features are enabled on this cluster. This includes alpha
+     *           API groups (e.g. v1alpha1) and features that may not be production ready in
+     *           the kubernetes version of the master and nodes.
+     *           The cluster has no SLA for uptime and master/node upgrades are disabled.
+     *           Alpha enabled clusters are automatically deleted thirty days after
+     *           creation.
+     *     @type array|\Google\Protobuf\Internal\MapField $resource_labels
+     *           The resource labels for the cluster to use to annotate any related
+     *           Google Compute Engine resources.
+     *     @type string $label_fingerprint
+     *           The fingerprint of the set of labels for this cluster.
+     *     @type \Google\Cloud\Container\V1\LegacyAbac $legacy_abac
+     *           Configuration for the legacy ABAC authorization mode.
+     *     @type \Google\Cloud\Container\V1\NetworkPolicy $network_policy
+     *           Configuration options for the NetworkPolicy feature.
+     *     @type \Google\Cloud\Container\V1\IPAllocationPolicy $ip_allocation_policy
+     *           Configuration for cluster IP allocation.
+     *     @type \Google\Cloud\Container\V1\MasterAuthorizedNetworksConfig $master_authorized_networks_config
+     *           Master authorized networks is a Beta feature.
+     *           The configuration options for master authorized networks feature.
+     *     @type \Google\Cloud\Container\V1\MaintenancePolicy $maintenance_policy
+     *           Configure the maintenance policy for this cluster.
+     *     @type string $self_link
+     *           [Output only] Server-defined URL for the resource.
+     *     @type string $zone
+     *           [Output only] The name of the Google Compute Engine
+     *           [zone](/compute/docs/zones#available) in which the cluster
+     *           resides.
+     *     @type string $endpoint
+     *           [Output only] The IP address of this cluster's master endpoint.
+     *           The endpoint can be accessed from the internet at
+     *           `https://username:password&#64;endpoint/`.
+     *           See the `masterAuth` property of this resource for username and
+     *           password information.
+     *     @type string $initial_cluster_version
+     *           The initial Kubernetes version for this cluster.  Valid versions are those
+     *           found in validMasterVersions returned by getServerConfig.  The version can
+     *           be upgraded over time; such upgrades are reflected in
+     *           currentMasterVersion and currentNodeVersion.
+     *     @type string $current_master_version
+     *           [Output only] The current software version of the master endpoint.
+     *     @type string $current_node_version
+     *           [Output only] The current version of the node software components.
+     *           If they are currently at multiple versions because they're in the process
+     *           of being upgraded, this reflects the minimum version of all nodes.
+     *     @type string $create_time
+     *           [Output only] The time the cluster was created, in
+     *           [RFC3339](https://www.ietf.org/rfc/rfc3339.txt) text format.
+     *     @type int $status
+     *           [Output only] The current status of this cluster.
+     *     @type string $status_message
+     *           [Output only] Additional information about the current status of this
+     *           cluster, if available.
+     *     @type int $node_ipv4_cidr_size
+     *           [Output only] The size of the address space on each node for hosting
+     *           containers. This is provisioned from within the `container_ipv4_cidr`
+     *           range.
+     *     @type string $services_ipv4_cidr
+     *           [Output only] The IP address range of the Kubernetes services in
+     *           this cluster, in
+     *           [CIDR](http://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing)
+     *           notation (e.g. `1.2.3.4/29`). Service addresses are
+     *           typically put in the last `/16` from the container CIDR.
+     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $instance_group_urls
+     *           Deprecated. Use node_pools.instance_group_urls.
+     *     @type int $current_node_count
+     *           [Output only] The number of nodes currently in the cluster.
+     *     @type string $expire_time
+     *           [Output only] The time the cluster will be automatically
+     *           deleted in [RFC3339](https://www.ietf.org/rfc/rfc3339.txt) text format.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Container\V1\ClusterService::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

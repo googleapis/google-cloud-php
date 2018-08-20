@@ -46,9 +46,30 @@ class AddonsConfig extends \Google\Protobuf\Internal\Message
      */
     private $network_policy_config = null;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type \Google\Cloud\Container\V1\HttpLoadBalancing $http_load_balancing
+     *           Configuration for the HTTP (L7) load balancing controller addon, which
+     *           makes it easy to set up HTTP load balancers for services in a cluster.
+     *     @type \Google\Cloud\Container\V1\HorizontalPodAutoscaling $horizontal_pod_autoscaling
+     *           Configuration for the horizontal pod autoscaling feature, which
+     *           increases or decreases the number of replica pods a replication controller
+     *           has based on the resource usage of the existing pods.
+     *     @type \Google\Cloud\Container\V1\KubernetesDashboard $kubernetes_dashboard
+     *           Configuration for the Kubernetes Dashboard.
+     *     @type \Google\Cloud\Container\V1\NetworkPolicyConfig $network_policy_config
+     *           Configuration for NetworkPolicy. This only tracks whether the addon
+     *           is enabled or not on the Master, it does not track whether network policy
+     *           is enabled for the nodes.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Container\V1\ClusterService::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

@@ -40,9 +40,28 @@ class NodeManagement extends \Google\Protobuf\Internal\Message
      */
     private $upgrade_options = null;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type bool $auto_upgrade
+     *           A flag that specifies whether node auto-upgrade is enabled for the node
+     *           pool. If enabled, node auto-upgrade helps keep the nodes in your node pool
+     *           up to date with the latest release version of Kubernetes.
+     *     @type bool $auto_repair
+     *           A flag that specifies whether the node auto-repair is enabled for the node
+     *           pool. If enabled, the nodes in this node pool will be monitored and, if
+     *           they fail health checks too many times, an automatic repair action will be
+     *           triggered.
+     *     @type \Google\Cloud\Container\V1\AutoUpgradeOptions $upgrade_options
+     *           Specifies the Auto Upgrade knobs for the node pool.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Container\V1\ClusterService::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

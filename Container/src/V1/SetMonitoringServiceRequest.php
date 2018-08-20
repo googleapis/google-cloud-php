@@ -46,9 +46,31 @@ class SetMonitoringServiceRequest extends \Google\Protobuf\Internal\Message
      */
     private $monitoring_service = '';
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $project_id
+     *           The Google Developers Console [project ID or project
+     *           number](https://support.google.com/cloud/answer/6158840).
+     *     @type string $zone
+     *           The name of the Google Compute Engine
+     *           [zone](/compute/docs/zones#available) in which the cluster
+     *           resides.
+     *     @type string $cluster_id
+     *           The name of the cluster to upgrade.
+     *     @type string $monitoring_service
+     *           The monitoring service the cluster should use to write metrics.
+     *           Currently available options:
+     *           * "monitoring.googleapis.com" - the Google Cloud Monitoring service
+     *           * "none" - no metrics will be exported from the cluster
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Container\V1\ClusterService::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

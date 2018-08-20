@@ -25,9 +25,21 @@ class HttpLoadBalancing extends \Google\Protobuf\Internal\Message
      */
     private $disabled = false;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type bool $disabled
+     *           Whether the HTTP Load Balancing controller is enabled in the cluster.
+     *           When enabled, it runs a small pod in the cluster that manages the load
+     *           balancers.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Container\V1\ClusterService::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**
