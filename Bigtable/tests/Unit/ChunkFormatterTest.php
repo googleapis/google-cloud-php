@@ -100,7 +100,9 @@ class ChunkFormatterTest extends TestCase
         $readRowsResponse = new ReadRowsResponse;
         $chunk = new ReadRowsResponse_CellChunk();
         $chunk->setRowKey('rk1');
-        $chunk->setFamilyName(new StringValue(['value' => 'cf1']));
+        $stringValue = new StringValue();
+        $stringValue->setValue('cf1');
+        $chunk->setFamilyName($stringValue);
         $readRowsResponse->setChunks([$chunk]);
         $this->serverStream->readAll()->shouldBeCalled()->willReturn(
             $this->arrayAsGenerator([$readRowsResponse])
@@ -117,8 +119,12 @@ class ChunkFormatterTest extends TestCase
         $readRowsResponse = new ReadRowsResponse;
         $chunk = new ReadRowsResponse_CellChunk();
         $chunk->setRowKey('rk1');
-        $chunk->setFamilyName(new StringValue(['value' => 'cf1']));
-        $chunk->setQualifier(new BytesValue(['value' => 'cq1']));
+        $stringValue = new StringValue();
+        $stringValue->setValue('cf1');
+        $bytesValue = new BytesValue();
+        $bytesValue->setValue('cq1');
+        $chunk->setFamilyName($stringValue);
+        $chunk->setQualifier($bytesValue);
         $chunk->setValueSize(10);
         $chunk->setCommitRow(true);
         $readRowsResponse->setChunks([$chunk]);
@@ -138,15 +144,23 @@ class ChunkFormatterTest extends TestCase
         $chunks = [];
         $chunk = new ReadRowsResponse_CellChunk();
         $chunk->setRowKey('rk1');
-        $chunk->setFamilyName(new StringValue(['value' => 'cf1']));
-        $chunk->setQualifier(new BytesValue(['value' => 'cq1']));
+        $stringValue = new StringValue();
+        $stringValue->setValue('cf1');
+        $bytesValue = new BytesValue();
+        $bytesValue->setValue('cq1');
+        $chunk->setFamilyName($stringValue);
+        $chunk->setQualifier($bytesValue);
         $chunk->setValue('Value1');
         $chunk->setCommitRow(true);
         $chunks[] = $chunk;
         $chunk = new ReadRowsResponse_CellChunk();
         $chunk->setRowKey('rk1');
-        $chunk->setFamilyName(new StringValue(['value' => 'cf1']));
-        $chunk->setQualifier(new BytesValue(['value' => 'cq1']));
+        $stringValue = new StringValue();
+        $stringValue->setValue('cf1');
+        $bytesValue = new BytesValue();
+        $bytesValue->setValue('cq1');
+        $chunk->setFamilyName($stringValue);
+        $chunk->setQualifier($bytesValue);
         $chunks[] = $chunk;
         $readRowsResponse->setChunks($chunks);
         $this->serverStream->readAll()->shouldBeCalled()->willReturn(
@@ -161,8 +175,12 @@ class ChunkFormatterTest extends TestCase
         $chunks = [];
         $chunk = new ReadRowsResponse_CellChunk();
         $chunk->setRowKey('rk1');
-        $chunk->setFamilyName(new StringValue(['value' => 'cf1']));
-        $chunk->setQualifier(new BytesValue(['value' => 'cq1']));
+        $stringValue = new StringValue();
+        $stringValue->setValue('cf1');
+        $bytesValue = new BytesValue();
+        $bytesValue->setValue('cq1');
+        $chunk->setFamilyName($stringValue);
+        $chunk->setQualifier($bytesValue);
         $chunk->setValue('value1');
         $chunk->setCommitRow(true);
         $chunks[] = $chunk;
@@ -185,14 +203,88 @@ class ChunkFormatterTest extends TestCase
         $this->assertEquals($expectedRows, $rows);
     }
 
+    public function testNewRowShouldGenerateNewRowWithBinaryData()
+    {
+        $readRowsResponse = new ReadRowsResponse;
+        $chunks = [];
+        $chunk = new ReadRowsResponse_CellChunk();
+        $data = pack("C*", 23, 17, 208, 3, 25, 68, 87, 3, 2, 64, 76, 145, 235);
+        $chunk->setRowKey('rk1');
+        $stringValue = new StringValue();
+        $stringValue->setValue('cf1');
+        $bytesValue = new BytesValue();
+        $bytesValue->setValue('cq1');
+        $chunk->setFamilyName($stringValue);
+        $chunk->setQualifier($bytesValue);
+        $chunk->setValue($data);
+        $chunk->setCommitRow(true);
+        $chunks[] = $chunk;
+        $readRowsResponse->setChunks($chunks);
+        $this->serverStream->readAll()->shouldBeCalled()->willReturn(
+            $this->arrayAsGenerator([$readRowsResponse])
+        );
+        $rows = iterator_to_array($this->chunkFormatter->readAll());
+        $expectedRows = [
+                'rk1' => [
+                    'cf1' => [
+                        'cq1' => [[
+                            'value' => $data,
+                            'labels' => '',
+                            'timeStamp' => 0
+                        ]]
+                    ]
+                ]
+        ];
+        $this->assertEquals($expectedRows, $rows);
+    }
+
+    public function testNewRowShouldGenerateNewRowWithBinaryRowKey()
+    {
+        $readRowsResponse = new ReadRowsResponse;
+        $chunks = [];
+        $chunk = new ReadRowsResponse_CellChunk();
+        $data = pack("C*", 23, 17, 208, 3, 25, 68, 87, 3, 2, 64, 76, 145, 235);
+        $chunk->setRowKey($data);
+        $stringValue = new StringValue();
+        $stringValue->setValue('cf1');
+        $bytesValue = new BytesValue();
+        $bytesValue->setValue($data);
+        $chunk->setFamilyName($stringValue);
+        $chunk->setQualifier($bytesValue);
+        $chunk->setValue($data);
+        $chunk->setCommitRow(true);
+        $chunks[] = $chunk;
+        $readRowsResponse->setChunks($chunks);
+        $this->serverStream->readAll()->shouldBeCalled()->willReturn(
+            $this->arrayAsGenerator([$readRowsResponse])
+        );
+        $rows = iterator_to_array($this->chunkFormatter->readAll());
+        $expectedRows = [
+            $data => [
+                'cf1' => [
+                    $data => [[
+                            'value' => $data,
+                            'labels' => '',
+                            'timeStamp' => 0
+                        ]]
+                    ]
+                ]
+        ];
+        $this->assertEquals($expectedRows, $rows);
+    }
+
     public function testNewRowShouldGenerateNewRowWithTimeStamp()
     {
         $readRowsResponse = new ReadRowsResponse;
         $chunks = [];
         $chunk = new ReadRowsResponse_CellChunk();
         $chunk->setRowKey('rk1');
-        $chunk->setFamilyName(new StringValue(['value' => 'cf1']));
-        $chunk->setQualifier(new BytesValue(['value' => 'cq1']));
+        $stringValue = new StringValue();
+        $stringValue->setValue('cf1');
+        $bytesValue = new BytesValue();
+        $bytesValue->setValue('cq1');
+        $chunk->setFamilyName($stringValue);
+        $chunk->setQualifier($bytesValue);
         $chunk->setValue('value1');
         $chunk->setTimestampMicros(10);
         $chunk->setCommitRow(true);
@@ -222,8 +314,12 @@ class ChunkFormatterTest extends TestCase
         $chunks = [];
         $chunk = new ReadRowsResponse_CellChunk();
         $chunk->setRowKey('rk1');
-        $chunk->setFamilyName(new StringValue(['value' => 'cf1']));
-        $chunk->setQualifier(new BytesValue(['value' => 'cq1']));
+        $stringValue = new StringValue();
+        $stringValue->setValue('cf1');
+        $bytesValue = new BytesValue();
+        $bytesValue->setValue('cq1');
+        $chunk->setFamilyName($stringValue);
+        $chunk->setQualifier($bytesValue);
         $chunk->setValue('value1');
         $chunk->setTimestampMicros(10);
         $chunk->setLabels(['label1', 'label2']);
@@ -258,8 +354,12 @@ class ChunkFormatterTest extends TestCase
         $chunks = [];
         $chunk = new ReadRowsResponse_CellChunk();
         $chunk->setRowKey('rk1');
-        $chunk->setFamilyName(new StringValue(['value' => 'cf1']));
-        $chunk->setQualifier(new BytesValue(['value' => 'cq1']));
+        $stringValue = new StringValue();
+        $stringValue->setValue('cf1');
+        $bytesValue = new BytesValue();
+        $bytesValue->setValue('cq1');
+        $chunk->setFamilyName($stringValue);
+        $chunk->setQualifier($bytesValue);
         $chunk->setValue('Value1');
         $chunks[] = $chunk;
         $readRowsResponse->setChunks($chunks);
@@ -279,8 +379,12 @@ class ChunkFormatterTest extends TestCase
         $chunks = [];
         $chunk = new ReadRowsResponse_CellChunk();
         $chunk->setRowKey('rk1');
-        $chunk->setFamilyName(new StringValue(['value' => 'cf1']));
-        $chunk->setQualifier(new BytesValue(['value' => 'cq1']));
+        $stringValue = new StringValue();
+        $stringValue->setValue('cf1');
+        $bytesValue = new BytesValue();
+        $bytesValue->setValue('cq1');
+        $chunk->setFamilyName($stringValue);
+        $chunk->setQualifier($bytesValue);
         $chunk->setValue('Value1');
         $chunks[] = $chunk;
         $chunk = new ReadRowsResponse_CellChunk();
@@ -304,12 +408,16 @@ class ChunkFormatterTest extends TestCase
         $chunks = [];
         $chunk = new ReadRowsResponse_CellChunk();
         $chunk->setRowKey('rk1');
-        $chunk->setFamilyName(new StringValue(['value' => 'cf1']));
-        $chunk->setQualifier(new BytesValue(['value' => 'cq1']));
+        $stringValue = new StringValue();
+        $stringValue->setValue('cf1');
+        $bytesValue = new BytesValue();
+        $bytesValue->setValue('cq1');
+        $chunk->setFamilyName($stringValue);
+        $chunk->setQualifier($bytesValue);
         $chunk->setValue('Value1');
         $chunks[] = $chunk;
         $chunk = new ReadRowsResponse_CellChunk();
-        $chunk->setQualifier(new BytesValue(['value' => 'cq1']));
+        $chunk->setQualifier($bytesValue);
         $chunk->setResetRow(true);
         $chunks[] = $chunk;
         $readRowsResponse->setChunks($chunks);
@@ -329,8 +437,12 @@ class ChunkFormatterTest extends TestCase
         $chunks = [];
         $chunk = new ReadRowsResponse_CellChunk();
         $chunk->setRowKey('rk1');
-        $chunk->setFamilyName(new StringValue(['value' => 'cf1']));
-        $chunk->setQualifier(new BytesValue(['value' => 'cq1']));
+        $stringValue = new StringValue();
+        $stringValue->setValue('cf1');
+        $bytesValue = new BytesValue();
+        $bytesValue->setValue('cq1');
+        $chunk->setFamilyName($stringValue);
+        $chunk->setQualifier($bytesValue);
         $chunk->setValue('Value1');
         $chunks[] = $chunk;
         $chunk = new ReadRowsResponse_CellChunk();
@@ -354,8 +466,12 @@ class ChunkFormatterTest extends TestCase
         $chunks = [];
         $chunk = new ReadRowsResponse_CellChunk();
         $chunk->setRowKey('rk1');
-        $chunk->setFamilyName(new StringValue(['value' => 'cf1']));
-        $chunk->setQualifier(new BytesValue(['value' => 'cq1']));
+        $stringValue = new StringValue();
+        $stringValue->setValue('cf1');
+        $bytesValue = new BytesValue();
+        $bytesValue->setValue('cq1');
+        $chunk->setFamilyName($stringValue);
+        $chunk->setQualifier($bytesValue);
         $chunk->setValue('Value1');
         $chunks[] = $chunk;
         $chunk = new ReadRowsResponse_CellChunk();
@@ -379,8 +495,12 @@ class ChunkFormatterTest extends TestCase
         $chunks = [];
         $chunk = new ReadRowsResponse_CellChunk();
         $chunk->setRowKey('rk1');
-        $chunk->setFamilyName(new StringValue(['value' => 'cf1']));
-        $chunk->setQualifier(new BytesValue(['value' => 'cq1']));
+        $stringValue = new StringValue();
+        $stringValue->setValue('cf1');
+        $bytesValue = new BytesValue();
+        $bytesValue->setValue('cq1');
+        $chunk->setFamilyName($stringValue);
+        $chunk->setQualifier($bytesValue);
         $chunk->setValue('Value1');
         $chunks[] = $chunk;
         $chunk = new ReadRowsResponse_CellChunk();
@@ -403,13 +523,19 @@ class ChunkFormatterTest extends TestCase
         $chunks = [];
         $chunk = new ReadRowsResponse_CellChunk();
         $chunk->setRowKey('rk1');
-        $chunk->setFamilyName(new StringValue(['value' => 'cf1']));
-        $chunk->setQualifier(new BytesValue(['value' => 'cq1']));
+        $stringValue = new StringValue();
+        $stringValue->setValue('cf1');
+        $bytesValue = new BytesValue();
+        $bytesValue->setValue('cq1');
+        $chunk->setFamilyName($stringValue);
+        $chunk->setQualifier($bytesValue);
         $chunk->setValue('Value1');
         $chunks[] = $chunk;
         $chunk = new ReadRowsResponse_CellChunk();
         $chunk->setRowKey('rk1');
-        $chunk->setFamilyName(new StringValue(['value' => 'cf2']));
+        $stringValue = new StringValue();
+        $stringValue->setValue('cf2');
+        $chunk->setFamilyName($stringValue);
         $chunks[] = $chunk;
         $readRowsResponse->setChunks($chunks);
         $this->serverStream->readAll()->shouldBeCalled()->willReturn(
@@ -428,14 +554,22 @@ class ChunkFormatterTest extends TestCase
         $chunks = [];
         $chunk = new ReadRowsResponse_CellChunk();
         $chunk->setRowKey('rk1');
-        $chunk->setFamilyName(new StringValue(['value' => 'cf1']));
-        $chunk->setQualifier(new BytesValue(['value' => 'cq1']));
+        $stringValue = new StringValue();
+        $stringValue->setValue('cf1');
+        $bytesValue = new BytesValue();
+        $bytesValue->setValue('cq1');
+        $chunk->setFamilyName($stringValue);
+        $chunk->setQualifier($bytesValue);
         $chunk->setValue('Value1');
         $chunks[] = $chunk;
         $chunk = new ReadRowsResponse_CellChunk();
         $chunk->setRowKey('rk1');
-        $chunk->setFamilyName(new StringValue(['value' => 'cf2']));
-        $chunk->setQualifier(new BytesValue(['value' => 'cq2']));
+        $stringValue = new StringValue();
+        $stringValue->setValue('cf2');
+        $bytesValue = new BytesValue();
+        $bytesValue->setValue('cq2');
+        $chunk->setFamilyName($stringValue);
+        $chunk->setQualifier($bytesValue);
         $chunk->setValueSize(10);
         $chunk->setCommitRow(true);
         $chunks[] = $chunk;
@@ -452,8 +586,12 @@ class ChunkFormatterTest extends TestCase
         $chunks = [];
         $chunk = new ReadRowsResponse_CellChunk();
         $chunk->setRowKey('rk1');
-        $chunk->setFamilyName(new StringValue(['value' => 'cf1']));
-        $chunk->setQualifier(new BytesValue(['value' => 'cq1']));
+        $stringValue = new StringValue();
+        $stringValue->setValue('cf1');
+        $bytesValue = new BytesValue();
+        $bytesValue->setValue('cq1');
+        $chunk->setFamilyName($stringValue);
+        $chunk->setQualifier($bytesValue);
         $chunk->setValue('Value1');
         $chunks[] = $chunk;
         $chunk = new ReadRowsResponse_CellChunk();
@@ -473,13 +611,21 @@ class ChunkFormatterTest extends TestCase
         $chunks = [];
         $chunk = new ReadRowsResponse_CellChunk();
         $chunk->setRowKey('rk1');
-        $chunk->setFamilyName(new StringValue(['value' => 'cf1']));
-        $chunk->setQualifier(new BytesValue(['value' => 'cq1']));
+        $stringValue = new StringValue();
+        $stringValue->setValue('cf1');
+        $bytesValue = new BytesValue();
+        $bytesValue->setValue('cq1');
+        $chunk->setFamilyName($stringValue);
+        $chunk->setQualifier($bytesValue);
         $chunk->setValue('value1');
         $chunks[] = $chunk;
         $chunk = new ReadRowsResponse_CellChunk();
-        $chunk->setFamilyName(new StringValue(['value' => 'cf2']));
-        $chunk->setQualifier(new BytesValue(['value' => 'cq2']));
+        $stringValue = new StringValue();
+        $stringValue->setValue('cf2');
+        $bytesValue = new BytesValue();
+        $bytesValue->setValue('cq2');
+        $chunk->setFamilyName($stringValue);
+        $chunk->setQualifier($bytesValue);
         $chunk->setValue('value2');
         $chunk->setCommitRow(true);
         $chunks[] = $chunk;
@@ -515,12 +661,18 @@ class ChunkFormatterTest extends TestCase
         $chunks = [];
         $chunk = new ReadRowsResponse_CellChunk();
         $chunk->setRowKey('rk1');
-        $chunk->setFamilyName(new StringValue(['value' => 'cf1']));
-        $chunk->setQualifier(new BytesValue(['value' => 'cq1']));
+        $stringValue = new StringValue();
+        $stringValue->setValue('cf1');
+        $bytesValue = new BytesValue();
+        $bytesValue->setValue('cq1');
+        $chunk->setFamilyName($stringValue);
+        $chunk->setQualifier($bytesValue);
         $chunk->setValue('value1');
         $chunks[] = $chunk;
         $chunk = new ReadRowsResponse_CellChunk();
-        $chunk->setQualifier(new BytesValue(['value' => 'cq2']));
+        $bytesValue = new BytesValue();
+        $bytesValue->setValue('cq2');
+        $chunk->setQualifier($bytesValue);
         $chunk->setValue('value2');
         $chunk->setCommitRow(true);
         $chunks[] = $chunk;
@@ -554,12 +706,18 @@ class ChunkFormatterTest extends TestCase
         $chunks = [];
         $chunk = new ReadRowsResponse_CellChunk();
         $chunk->setRowKey('rk1');
-        $chunk->setFamilyName(new StringValue(['value' => 'cf1']));
-        $chunk->setQualifier(new BytesValue(['value' => 'cq1']));
+        $stringValue = new StringValue();
+        $stringValue->setValue('cf1');
+        $bytesValue = new BytesValue();
+        $bytesValue->setValue('cq1');
+        $chunk->setFamilyName($stringValue);
+        $chunk->setQualifier($bytesValue);
         $chunk->setValue('value1');
         $chunks[] = $chunk;
         $chunk = new ReadRowsResponse_CellChunk();
-        $chunk->setQualifier(new BytesValue(['value' => 'cq2']));
+        $bytesValue = new BytesValue();
+        $bytesValue->setValue('cq2');
+        $chunk->setQualifier($bytesValue);
         $chunk->setValue('value2');
         $chunk->setTimestampMicros(10);
         $chunk->setCommitRow(true);
@@ -594,12 +752,18 @@ class ChunkFormatterTest extends TestCase
         $chunks = [];
         $chunk = new ReadRowsResponse_CellChunk();
         $chunk->setRowKey('rk1');
-        $chunk->setFamilyName(new StringValue(['value' => 'cf1']));
-        $chunk->setQualifier(new BytesValue(['value' => 'cq1']));
+        $stringValue = new StringValue();
+        $stringValue->setValue('cf1');
+        $bytesValue = new BytesValue();
+        $bytesValue->setValue('cq1');
+        $chunk->setFamilyName($stringValue);
+        $chunk->setQualifier($bytesValue);
         $chunk->setValue('value1');
         $chunks[] = $chunk;
         $chunk = new ReadRowsResponse_CellChunk();
-        $chunk->setQualifier(new BytesValue(['value' => 'cq2']));
+        $bytesValue = new BytesValue();
+        $bytesValue->setValue('cq2');
+        $chunk->setQualifier($bytesValue);
         $chunk->setValue('value2');
         $chunk->setLabels(['l1','l2']);
         $chunk->setCommitRow(true);
@@ -638,8 +802,12 @@ class ChunkFormatterTest extends TestCase
         $chunks = [];
         $chunk = new ReadRowsResponse_CellChunk();
         $chunk->setRowKey('rk1');
-        $chunk->setFamilyName(new StringValue(['value' => 'cf1']));
-        $chunk->setQualifier(new BytesValue(['value' => 'cq1']));
+        $stringValue = new StringValue();
+        $stringValue->setValue('cf1');
+        $bytesValue = new BytesValue();
+        $bytesValue->setValue('cq1');
+        $chunk->setFamilyName($stringValue);
+        $chunk->setQualifier($bytesValue);
         $chunk->setValue('Value1');
         $chunk->setValueSize(10);
         $chunks[] = $chunk;
@@ -664,8 +832,12 @@ class ChunkFormatterTest extends TestCase
         $chunks = [];
         $chunk = new ReadRowsResponse_CellChunk();
         $chunk->setRowKey('rk1');
-        $chunk->setFamilyName(new StringValue(['value' => 'cf1']));
-        $chunk->setQualifier(new BytesValue(['value' => 'cq1']));
+        $stringValue = new StringValue();
+        $stringValue->setValue('cf1');
+        $bytesValue = new BytesValue();
+        $bytesValue->setValue('cq1');
+        $chunk->setFamilyName($stringValue);
+        $chunk->setQualifier($bytesValue);
         $chunk->setValue('Value1');
         $chunk->setValueSize(10);
         $chunks[] = $chunk;
@@ -690,13 +862,19 @@ class ChunkFormatterTest extends TestCase
         $chunks = [];
         $chunk = new ReadRowsResponse_CellChunk();
         $chunk->setRowKey('rk1');
-        $chunk->setFamilyName(new StringValue(['value' => 'cf1']));
-        $chunk->setQualifier(new BytesValue(['value' => 'cq1']));
+        $stringValue = new StringValue();
+        $stringValue->setValue('cf1');
+        $bytesValue = new BytesValue();
+        $bytesValue->setValue('cq1');
+        $chunk->setFamilyName($stringValue);
+        $chunk->setQualifier($bytesValue);
         $chunk->setValue('Value1');
         $chunk->setValueSize(10);
         $chunks[] = $chunk;
         $chunk = new ReadRowsResponse_CellChunk();
-        $chunk->setQualifier(new BytesValue(['value' => 'cq1']));
+        $bytesValue = new BytesValue();
+        $bytesValue->setValue('cq1');
+        $chunk->setQualifier($bytesValue);
         $chunk->setResetRow(true);
         $chunks[] = $chunk;
         $readRowsResponse->setChunks($chunks);
@@ -716,8 +894,12 @@ class ChunkFormatterTest extends TestCase
         $chunks = [];
         $chunk = new ReadRowsResponse_CellChunk();
         $chunk->setRowKey('rk1');
-        $chunk->setFamilyName(new StringValue(['value' => 'cf1']));
-        $chunk->setQualifier(new BytesValue(['value' => 'cq1']));
+        $stringValue = new StringValue();
+        $stringValue->setValue('cf1');
+        $bytesValue = new BytesValue();
+        $bytesValue->setValue('cq1');
+        $chunk->setFamilyName($stringValue);
+        $chunk->setQualifier($bytesValue);
         $chunk->setValue('Value1');
         $chunk->setValueSize(10);
         $chunks[] = $chunk;
@@ -742,8 +924,12 @@ class ChunkFormatterTest extends TestCase
         $chunks = [];
         $chunk = new ReadRowsResponse_CellChunk();
         $chunk->setRowKey('rk1');
-        $chunk->setFamilyName(new StringValue(['value' => 'cf1']));
-        $chunk->setQualifier(new BytesValue(['value' => 'cq1']));
+        $stringValue = new StringValue();
+        $stringValue->setValue('cf1');
+        $bytesValue = new BytesValue();
+        $bytesValue->setValue('cq1');
+        $chunk->setFamilyName($stringValue);
+        $chunk->setQualifier($bytesValue);
         $chunk->setValue('Value1');
         $chunk->setValueSize(10);
         $chunks[] = $chunk;
@@ -764,8 +950,12 @@ class ChunkFormatterTest extends TestCase
         $chunks = [];
         $chunk = new ReadRowsResponse_CellChunk();
         $chunk->setRowKey('rk1');
-        $chunk->setFamilyName(new StringValue(['value' => 'cf1']));
-        $chunk->setQualifier(new BytesValue(['value' => 'cq1']));
+        $stringValue = new StringValue();
+        $stringValue->setValue('cf1');
+        $bytesValue = new BytesValue();
+        $bytesValue->setValue('cq1');
+        $chunk->setFamilyName($stringValue);
+        $chunk->setQualifier($bytesValue);
         $chunk->setValue('Value1');
         $chunk->setValueSize(10);
         $chunks[] = $chunk;
@@ -786,8 +976,12 @@ class ChunkFormatterTest extends TestCase
         $chunks = [];
         $chunk = new ReadRowsResponse_CellChunk();
         $chunk->setRowKey('rk1');
-        $chunk->setFamilyName(new StringValue(['value' => 'cf1']));
-        $chunk->setQualifier(new BytesValue(['value' => 'cq1']));
+        $stringValue = new StringValue();
+        $stringValue->setValue('cf1');
+        $bytesValue = new BytesValue();
+        $bytesValue->setValue('cq1');
+        $chunk->setFamilyName($stringValue);
+        $chunk->setQualifier($bytesValue);
         $chunk->setValue('value1');
         $chunk->setValueSize(10);
         $chunks[] = $chunk;

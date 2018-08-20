@@ -137,8 +137,12 @@ class DataClientTest extends SnippetTestCase
         $chunks = [];
         $chunk = new ReadRowsResponse_CellChunk();
         $chunk->setRowKey('rk1');
-        $chunk->setFamilyName(new StringValue(['value' => 'cf1']));
-        $chunk->setQualifier(new BytesValue(['value' => 'cq1']));
+        $stringValue = new StringValue();
+        $stringValue->setValue('cf1');
+        $bytesValue = new BytesValue();
+        $bytesValue->setValue('cq1');
+        $chunk->setFamilyName($stringValue);
+        $chunk->setQualifier($bytesValue);
         $chunk->setValue('value1');
         $chunk->setCommitRow(true);
         $chunks[] = $chunk;
