@@ -40,6 +40,7 @@ class FieldPath
 
     /**
      * @param array $fieldNames A list of field names.
+     * @throws \InvalidArgumentException If an empty path element is provided.
      */
     public function __construct(array $fieldNames)
     {
@@ -70,6 +71,7 @@ class FieldPath
      * @param bool $splitPath If false, the input path will not be split on `.`.
      *        **Defaults to** `true`.
      * @return FieldPath
+     * @throws \InvalidArgumentException If an invalid path is provided.
      */
     public static function fromString($path, $splitPath = true)
     {
@@ -93,6 +95,7 @@ class FieldPath
      *
      * @param string $part The child path part.
      * @return FieldPath
+     * @throws \InvalidArgumentException If an empty path element is provided.
      */
     public function child($part)
     {
@@ -120,8 +123,6 @@ class FieldPath
         }
 
         $fieldPath = implode('.', $out);
-
-        $this->validateString($fieldPath);
 
         return $fieldPath;
     }

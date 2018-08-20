@@ -116,7 +116,8 @@ class WriteBatch
      *        field paths are NOT supported by this method.
      * @param array $options Configuration options
      * @return WriteBatch
-     * @throws \InvalidArgumentException If delete field sentinels are found in the fields list.
+     * @throws \InvalidArgumentException If `FieldValue::deleteField()` is found in the fields list.
+     * @throws \InvalidArgumentException If `FieldValue::serverTimestamp()` is found in an array value.
      */
     public function create($document, array $fields, array $options = [])
     {
@@ -196,7 +197,9 @@ class WriteBatch
      * }
      * @return WriteBatch
      * @codingStandardsIgnoreEnd
-     * @throws \InvalidArgumentException If the fields list is empty when `$options.merge` is `true`.
+     * @throws \InvalidArgumentException If `FieldValue::deleteField()` is found in the document when `$options.merge`
+     *         is not `true`.
+     * @throws \InvalidArgumentException If `FieldValue::serverTimestamp()` is found in an array value.
      */
     public function set($document, array $fields, array $options = [])
     {
