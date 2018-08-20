@@ -1,0 +1,1 @@
+{"id":"container\/v1\/nodepool\/status","type":"","title":"Google\\Cloud\\Container\\V1\\NodePool\\Status","name":"Status","description":"<p>The current status of the node pool instance.<\/p>\n<p>Protobuf type <code>google.container.v1.NodePool.Status<\/code><\/p>","examples":[],"resources":[],"methods":[]}
