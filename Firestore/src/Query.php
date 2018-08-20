@@ -76,7 +76,9 @@ class Query
         '<=' => self::OP_LESS_THAN_OR_EQUAL,
         '>'  => self::OP_GREATER_THAN,
         '>=' => self::OP_GREATER_THAN_OR_EQUAL,
-        '='  => self::OP_EQUAL
+        '='  => self::OP_EQUAL,
+        '=='  => self::OP_EQUAL,
+        '==='  => self::OP_EQUAL,
     ];
 
     private $allowedDirections = [
@@ -236,8 +238,12 @@ class Query
     {
         $fields = [];
         foreach ($fieldPaths as $field) {
+            if (!($field instanceof FieldPath)) {
+                $field = FieldPath::fromString($field);
+            }
+
             $fields[] = [
-                'fieldPath' => $this->valueMapper->escapeFieldPath($field)
+                'fieldPath' => $field->pathString()
             ];
         }
 
@@ -282,7 +288,11 @@ class Query
             ));
         }
 
-        $escapedFieldPath = $this->valueMapper->escapeFieldPath($fieldPath);
+        if (!($fieldPath instanceof FieldPath)) {
+            $fieldPath = FieldPath::fromString($fieldPath);
+        }
+
+        $escapedPathString = $fieldPath->pathString();
 
         $operator = array_key_exists($operator, $this->shortOperators)
             ? $this->shortOperators[$operator]
@@ -307,7 +317,7 @@ class Query
             $filter = [
                 'unaryFilter' => [
                     'field' => [
-                        'fieldPath' => $escapedFieldPath
+                        'fieldPath' => $escapedPathString
                     ],
                     'op' => $unaryOperator
                 ]
@@ -316,7 +326,7 @@ class Query
             $filter = [
                 'fieldFilter' => [
                     'field' => [
-                        'fieldPath' => $escapedFieldPath,
+                        'fieldPath' => $escapedPathString,
                     ],
                     'op' => $operator,
                     'value' => $this->valueMapper->encodeValue($value)
@@ -373,11 +383,15 @@ class Query
             );
         }
 
+        if (!($fieldPath instanceof FieldPath)) {
+            $fieldPath = FieldPath::fromString($fieldPath);
+        }
+
         return $this->newQuery([
             'orderBy' => [
                 [
                     'field' => [
-                        'fieldPath' => $this->valueMapper->escapeFieldPath($fieldPath)
+                        'fieldPath' => $fieldPath->pathString()
                     ],
                     'direction' => $direction
                 ]

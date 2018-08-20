@@ -236,9 +236,11 @@ trait SnapshotTrait
                 // manually construct a document path.
                 $hasSpecialChars = preg_match('/[!@#$%^&*(),.?":{}|<>]/', $name) === 1;
 
+                //@codeCoverageIgnoreStart
                 if (!$hasSpecialChars) {
                     throw $e;
                 }
+                //@codeCoverageIgnoreEnd
 
                 $base = $this->databaseName($projectId, $database);
                 $name = $base .'/documents/'. $name;

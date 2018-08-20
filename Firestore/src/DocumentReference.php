@@ -245,6 +245,11 @@ class DocumentReference
      * as a dot-delimited string (i.e. `foo.bar`), or an instance of
      * {@see Google\Cloud\Firestore\FieldPath}. Nested arrays are not allowed.
      *
+     * Please note that conflicting paths will result in an exception. Paths
+     * conflict when one path indicates a location nested within another path.
+     * For instance, path `a.b` cannot be set directly if path `a` is also
+     * provided.
+     *
      * Example:
      * ```
      * $document->update([
@@ -281,9 +286,14 @@ class DocumentReference
      * @codingStandardsIgnoreStart
      * @see https://cloud.google.com/firestore/docs/reference/rpc/google.firestore.v1beta1#google.firestore.v1beta1.Firestore.Commit Commit
      *
-     * @param array[] $data A list of arrays of form `[FieldPath|string $path, mixed $value]`.
+     * @param array[] $data A list of arrays of form
+     *        `[FieldPath|string $path, mixed $value]`.
      * @param array $options Configuration options
      * @return array [WriteResult](https://cloud.google.com/firestore/docs/reference/rpc/google.firestore.v1beta1#google.firestore.v1beta1.WriteResult)
+     * @throws \InvalidArgumentException If data is given in an invalid format
+     *         or is empty.
+     * @throws \InvalidArgumentException If any field paths are empty.
+     * @throws \InvalidArgumentException If field paths conflict.
      * @codingStandardsIgnoreEnd
      */
     public function update(array $data, array $options = [])

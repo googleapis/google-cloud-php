@@ -267,6 +267,11 @@ class Transaction
      * as a dot-delimited string (i.e. `foo.bar`), or an instance of
      * {@see Google\Cloud\Firestore\FieldPath}. Nested arrays are not allowed.
      *
+     * Please note that conflicting paths will result in an exception. Paths
+     * conflict when one path indicates a location nested within another path.
+     * For instance, path `a.b` cannot be set directly if path `a` is also
+     * provided.
+     *
      * Example:
      * ```
      * $transaction->update($document, [
@@ -300,12 +305,15 @@ class Transaction
      * ]);
      * ```
      *
-     * @codingStandardsIgnoreStart
      * @param DocumentReference $document The document to modify or replace.
-     * @param array[] $data A list of arrays of form `[FieldPath|string $path, mixed $value]`.
+     * @param array[] $data A list of arrays of form
+     *        `[FieldPath|string $path, mixed $value]`.
      * @param array $options Configuration options
      * @return Transaction
-     * @codingStandardsIgnoreEnd
+     * @throws \InvalidArgumentException If data is given in an invalid format
+     *         or is empty.
+     * @throws \InvalidArgumentException If any field paths are empty.
+     * @throws \InvalidArgumentException If field paths conflict.
      */
     public function update(DocumentReference $document, array $data, array $options = [])
     {

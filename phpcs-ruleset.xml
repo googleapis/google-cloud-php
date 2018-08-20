@@ -21,7 +21,7 @@
   <exclude-pattern>dev</exclude-pattern>
   <exclude-pattern>docs</exclude-pattern>
   <exclude-pattern>*/metadata</exclude-pattern>
-  <exclude-pattern>Firestore/tests/conformance-fixtures</exclude-pattern>
+  <exclude-pattern>Firestore/tests/Conformance</exclude-pattern>
   <exclude-pattern>tests/Component/TestComposerInstall.php</exclude-pattern>
   <arg name="extensions" value="php"/>
 </ruleset>

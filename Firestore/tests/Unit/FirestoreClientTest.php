@@ -226,6 +226,16 @@ class FirestoreClientTest extends TestCase
         $this->assertEquals('world', $res[0]['hello']);
     }
 
+    /**
+     * @expectedException InvalidArgumentException
+     */
+    public function testDocumentsInvalidInputType()
+    {
+        $this->client->documents([
+            10
+        ]);
+    }
+
     public function documents()
     {
         $b = $this->prophesize(DocumentReference::class);

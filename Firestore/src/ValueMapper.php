@@ -30,6 +30,8 @@ use Google\Protobuf\NullValue;
 
 /**
  * Normalizes values between Google Cloud PHP and Cloud Firestore.
+ *
+ * @internal
  */
 class ValueMapper
 {
@@ -100,155 +102,6 @@ class ValueMapper
         }
 
         return $output;
-    }
-
-    /**
-     * Escape a field path and return it as a string.
-     *
-     * @param string|FieldPath $fieldPath
-     * @return string
-     * @throws \InvalidArgumentException If the path is a string, and is invalid.
-     */
-    public function escapeFieldPath($fieldPath)
-    {
-        if ($fieldPath instanceof FieldPath) {
-            $parts = $fieldPath->path();
-
-            $out = [];
-            foreach ($parts as $part) {
-                $out[] = $this->escapePathPart($part);
-            }
-
-            $fieldPath = implode('.', $out);
-        } else {
-            if (!preg_match(self::VALID_FIELD_PATH, $fieldPath)) {
-                throw new \InvalidArgumentException('Paths cannot be empty and must not contain `*~/[]\`.');
-            }
-        }
-
-        $this->validateFieldPath($fieldPath);
-        return $fieldPath;
-    }
-
-    /**
-     * Create a list of fields paths from field data.
-     *
-     * The return value of this method does not include the field values. It
-     * merely provides a list of field paths which were included in the input.
-     *
-     * @param array $fields A list of fields to map as paths.
-     * @param string $parentPath The parent path (used internally).
-     * @return array
-     */
-    public function encodeFieldPaths(array $fields, $parentPath = '')
-    {
-        $output = [];
-
-        foreach ($fields as $key => $val) {
-            $key = $this->escapePathPart($key);
-
-            if (is_array($val) && $this->isAssoc($val)) {
-                $nestedParentPath = $parentPath
-                    ? $parentPath . '.' . $key
-                    : $key;
-
-                $output = array_merge($output, $this->encodeFieldPaths($val, $nestedParentPath));
-            } else {
-                $output[] = $parentPath
-                    ? $parentPath . '.' . $key
-                    : $key;
-            }
-        }
-
-        return $output;
-    }
-
-    /**
-     * Accepts a list of field paths and a list of values, and constructs
-     * a nested array of fields and values.
-     *
-     * @param FieldPath[] $paths The field paths.
-     * @param array $values The field values.
-     * @return array
-     * @todo less recursion
-     */
-    public function buildDocumentFromPathsAndValues(array $paths, array $values)
-    {
-        $this->validateBatch($paths, FieldPath::class);
-
-        $output = [];
-
-        foreach ($paths as $pathIndex => $path) {
-            $keys = $path->path();
-            $num = count($keys);
-
-            $val = $values[$pathIndex];
-            foreach (array_reverse($keys) as $index => $key) {
-                if ($num >= $index+1) {
-                    $val = [
-                        $key => $val
-                    ];
-                }
-            }
-
-            $output = $this->arrayMergeRecursive($output, $val);
-        }
-
-        return $output;
-    }
-
-    /**
-     * Search an array for sentinel values, returning the array of fields with
-     * sentinels removed, and a list of delete and server timestamp value field
-     * paths.
-     *
-     * @param array $fields The input field data.
-     * @return array `[$fields, $timestamps, $deletes]`
-     */
-    public function findSentinels(array $fields)
-    {
-        $timestamps = [];
-        $deletes = [];
-        $fields = $this->removeSentinel($fields, $timestamps, $deletes);
-
-        return [$fields, $timestamps, $deletes];
-    }
-
-    /**
-     * Recurse through fields and find and remove sentinel values.
-     *
-     * @param array $fields The input field data.
-     * @param array $timestamps The timestamps field paths. (reference)
-     * @param array $deletes the deletes field paths. (reference)
-     * @param string $path The current field path.
-     * @return array
-     */
-    private function removeSentinel(array $fields, array &$timestamps, array &$deletes, $path = '')
-    {
-        if ($path !== '') {
-            $path .= '.';
-        }
-
-        foreach ($fields as $key => $value) {
-            $currPath = $path . (string) $this->escapePathPart($key);
-            if (is_array($value)) {
-                $fields[$key] = $this->removeSentinel($value, $timestamps, $deletes, $currPath);
-            } else {
-                if ($value === FieldValue::deleteField() || $value === FieldValue::serverTimestamp()) {
-                    if ($value === FieldValue::deleteField()) {
-                        $deletes[] = $currPath;
-                    }
-
-                    if ($value === FieldValue::serverTimestamp()) {
-                        $timestamps[] = $currPath;
-                    }
-
-                    unset($fields[$key]);
-                }
-            }
-        }
-
-        return $fields;
     }
 
     /**
@@ -478,36 +331,5 @@ class ValueMapper
         }
 
         return ['arrayValue' => ['values' => $out]];
-    }
-
-    /**
-     * Test a field path component, checking for any special characters,
-     * and escaping as required.
-     *
-     * @param string $part The raw field path component.
-     * @return string
-     */
-    private function escapePathPart($part)
-    {
-        return preg_match(self::UNESCAPED_FIELD_NAME, $part)
-            ? $part
-            : '`' . str_replace('`', '\\`', str_replace('\\', '\\\\', $part)) . '`';
-    }
-
-    /**
-     * Check if a given string field path is valid.
-     *
-     * @param string $fieldPath
-     * @throws \InvalidArgumentException
-     */
-    private function validateFieldPath($fieldPath)
-    {
-        if (strpos($fieldPath, '..')) {
-            throw new \InvalidArgumentException('Paths cannot contain `..`.');
-        }
-
-        if (strpos($fieldPath, '.') === 0 || strpos(strrev($fieldPath), '.') === 0) {
-            throw new \InvalidArgumentException('Paths cannot begin or end with `.`.');
-        }
     }
 }
