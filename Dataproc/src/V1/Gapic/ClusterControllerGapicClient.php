@@ -62,14 +62,17 @@ use Google\Protobuf\FieldMask;
  *     $operationResponse = $clusterControllerClient->createCluster($projectId, $region, $cluster);
  *     $operationResponse->pollUntilComplete();
  *     if ($operationResponse->operationSucceeded()) {
- *       $result = $operationResponse->getResult();
- *       // doSomethingWith($result)
+ *         $result = $operationResponse->getResult();
+ *         // doSomethingWith($result)
  *     } else {
- *       $error = $operationResponse->getError();
- *       // handleError($error)
+ *         $error = $operationResponse->getError();
+ *         // handleError($error)
  *     }
  *
- *     // OR start the operation, keep the operation name, and resume later
+ *
+ *     // Alternatively:
+ *
+ *     // start the operation, keep the operation name, and resume later
  *     $operationResponse = $clusterControllerClient->createCluster($projectId, $region, $cluster);
  *     $operationName = $operationResponse->getName();
  *     // ... do other work
@@ -250,14 +253,17 @@ class ClusterControllerGapicClient
      *     $operationResponse = $clusterControllerClient->createCluster($projectId, $region, $cluster);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
-     *       $result = $operationResponse->getResult();
-     *       // doSomethingWith($result)
+     *         $result = $operationResponse->getResult();
+     *         // doSomethingWith($result)
      *     } else {
-     *       $error = $operationResponse->getError();
-     *       // handleError($error)
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
      *     }
      *
-     *     // OR start the operation, keep the operation name, and resume later
+     *
+     *     // Alternatively:
+     *
+     *     // start the operation, keep the operation name, and resume later
      *     $operationResponse = $clusterControllerClient->createCluster($projectId, $region, $cluster);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
@@ -327,14 +333,17 @@ class ClusterControllerGapicClient
      *     $operationResponse = $clusterControllerClient->updateCluster($projectId, $region, $clusterName, $cluster, $updateMask);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
-     *       $result = $operationResponse->getResult();
-     *       // doSomethingWith($result)
+     *         $result = $operationResponse->getResult();
+     *         // doSomethingWith($result)
      *     } else {
-     *       $error = $operationResponse->getError();
-     *       // handleError($error)
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
      *     }
      *
-     *     // OR start the operation, keep the operation name, and resume later
+     *
+     *     // Alternatively:
+     *
+     *     // start the operation, keep the operation name, and resume later
      *     $operationResponse = $clusterControllerClient->updateCluster($projectId, $region, $clusterName, $cluster, $updateMask);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
@@ -452,13 +461,16 @@ class ClusterControllerGapicClient
      *     $operationResponse = $clusterControllerClient->deleteCluster($projectId, $region, $clusterName);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
-     *       // operation succeeded and returns no value
+     *         // operation succeeded and returns no value
      *     } else {
-     *       $error = $operationResponse->getError();
-     *       // handleError($error)
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
      *     }
      *
-     *     // OR start the operation, keep the operation name, and resume later
+     *
+     *     // Alternatively:
+     *
+     *     // start the operation, keep the operation name, and resume later
      *     $operationResponse = $clusterControllerClient->deleteCluster($projectId, $region, $clusterName);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
@@ -571,18 +583,21 @@ class ClusterControllerGapicClient
      * try {
      *     $projectId = '';
      *     $region = '';
-     *     // Iterate through all elements
-     *     $pagedResponse = $clusterControllerClient->listClusters($projectId, $region);
-     *     foreach ($pagedResponse->iterateAllElements() as $element) {
-     *         // doSomethingWith($element);
-     *     }
-     *
-     *     // OR iterate over pages of elements
+     *     // Iterate over pages of elements
      *     $pagedResponse = $clusterControllerClient->listClusters($projectId, $region);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
      *         }
+     *     }
+     *
+     *
+     *     // Alternatively:
+     *
+     *     // Iterate through all elements
+     *     $pagedResponse = $clusterControllerClient->listClusters($projectId, $region);
+     *     foreach ($pagedResponse->iterateAllElements() as $element) {
+     *         // doSomethingWith($element);
      *     }
      * } finally {
      *     $clusterControllerClient->close();
@@ -674,13 +689,16 @@ class ClusterControllerGapicClient
      *     $operationResponse = $clusterControllerClient->diagnoseCluster($projectId, $region, $clusterName);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
-     *       // operation succeeded and returns no value
+     *         // operation succeeded and returns no value
      *     } else {
-     *       $error = $operationResponse->getError();
-     *       // handleError($error)
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
      *     }
      *
-     *     // OR start the operation, keep the operation name, and resume later
+     *
+     *     // Alternatively:
+     *
+     *     // start the operation, keep the operation name, and resume later
      *     $operationResponse = $clusterControllerClient->diagnoseCluster($projectId, $region, $clusterName);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
