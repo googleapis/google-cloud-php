@@ -1,0 +1,1 @@
+{"id":"pubsub\/v1\/seekresponse","type":"","title":"Google\\Cloud\\PubSub\\V1\\SeekResponse","name":"SeekResponse","description":"<p>Generated from protobuf message <code>google.pubsub.v1.SeekResponse<\/code><\/p>\n<p>Extends \\Google\\Protobuf\\Internal\\Message<\/p>","examples":[],"resources":[],"methods":[]}

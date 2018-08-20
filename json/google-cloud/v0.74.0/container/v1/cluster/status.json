@@ -1,0 +1,1 @@
+{"id":"container\/v1\/cluster\/status","type":"","title":"Google\\Cloud\\Container\\V1\\Cluster\\Status","name":"Status","description":"<p>The current status of the cluster.<\/p>\n<p>Protobuf type <code>google.container.v1.Cluster.Status<\/code><\/p>","examples":[],"resources":[],"methods":[]}

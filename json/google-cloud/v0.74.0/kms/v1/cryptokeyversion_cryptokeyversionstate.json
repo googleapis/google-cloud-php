@@ -1,0 +1,1 @@
+{"id":"kms\/v1\/cryptokeyversion_cryptokeyversionstate","type":"","title":"Google\\Cloud\\Kms\\V1\\CryptoKeyVersion_CryptoKeyVersionState","name":"CryptoKeyVersion_CryptoKeyVersionState","description":"<p>This class is deprecated. Use Google\\Cloud\\Kms\\V1\\CryptoKeyVersion\\CryptoKeyVersionState instead.<\/p>","examples":[],"resources":[],"methods":[]}

@@ -1,0 +1,1 @@
+{"id":"dlp\/v2\/custominfotype_detectionrule_proximity","type":"","title":"Google\\Cloud\\Dlp\\V2\\CustomInfoType_DetectionRule_Proximity","name":"CustomInfoType_DetectionRule_Proximity","description":"<p>This class is deprecated. Use Google\\Cloud\\Dlp\\V2\\CustomInfoType\\DetectionRule\\Proximity instead.<\/p>","examples":[],"resources":[],"methods":[]}

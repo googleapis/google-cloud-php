@@ -1,0 +1,1 @@
+{"id":"dlp\/v2\/storedinfotypestate","type":"","title":"Google\\Cloud\\Dlp\\V2\\StoredInfoTypeState","name":"StoredInfoTypeState","description":"<p>State of a StoredInfoType version.<\/p>\n<p>Protobuf type <code>google.privacy.dlp.v2.StoredInfoTypeState<\/code><\/p>","examples":[],"resources":[],"methods":[]}

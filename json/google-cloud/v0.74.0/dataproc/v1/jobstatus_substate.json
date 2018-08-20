@@ -1,0 +1,1 @@
+{"id":"dataproc\/v1\/jobstatus_substate","type":"","title":"Google\\Cloud\\Dataproc\\V1\\JobStatus_Substate","name":"JobStatus_Substate","description":"<p>This class is deprecated. Use Google\\Cloud\\Dataproc\\V1\\JobStatus\\Substate instead.<\/p>","examples":[],"resources":[],"methods":[]}

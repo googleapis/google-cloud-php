@@ -1,0 +1,1 @@
+{"id":"redis\/v1beta1\/instance_state","type":"","title":"Google\\Cloud\\Redis\\V1beta1\\Instance_State","name":"Instance_State","description":"<p>Represents the different states of a Redis instance.<\/p>\n<p>Protobuf enum <code>Google\\Cloud\\Redis\\V1beta1\\Instance\\State<\/code><\/p>","examples":[],"resources":[],"methods":[]}
