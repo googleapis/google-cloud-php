@@ -40,6 +40,7 @@ use Google\ApiCore\Middleware\OperationsMiddleware;
 use Google\ApiCore\Middleware\OptionsFilterMiddleware;
 use Google\ApiCore\Middleware\PagedMiddleware;
 use Google\ApiCore\Middleware\RetryMiddleware;
+use Google\ApiCore\Transport\GrpcFallbackTransport;
 use Google\ApiCore\Transport\GrpcTransport;
 use Google\ApiCore\Transport\RestTransport;
 use Google\ApiCore\Transport\TransportInterface;
@@ -160,6 +161,7 @@ trait GapicClientTrait
         $defaultOptions['transportConfig'] += [
             'grpc' => [],
             'rest' => [],
+            'grpc-fallback' => [],
         ];
 
         // Merge defaults into $options starting from top level
@@ -170,6 +172,7 @@ trait GapicClientTrait
         $options['transportConfig'] += $defaultOptions['transportConfig'];
         $options['transportConfig']['grpc'] += $defaultOptions['transportConfig']['grpc'];
         $options['transportConfig']['rest'] += $defaultOptions['transportConfig']['rest'];
+        $options['transportConfig']['grpc-fallback'] += $defaultOptions['transportConfig']['grpc-fallback'];
 
         $this->modifyClientOptions($options);
 
@@ -228,8 +231,8 @@ trait GapicClientTrait
      *           For a full list of supporting configuration options, see
      *           \Google\ApiCore\CredentialsWrapper::build.
      *     @type string|TransportInterface $transport
-     *           The transport used for executing network requests. May be either the string `rest`
-     *           or `grpc`. Defaults to `grpc` if gRPC support is detected on the system.
+     *           The transport used for executing network requests. May be either the string `rest`,
+     *           `grpc`, or 'grpc-fallback'. Defaults to `grpc` if gRPC support is detected on the system.
      *           *Advanced usage*: Additionally, it is possible to pass in an already instantiated
      *           TransportInterface object. Note that when this objects is provided, any settings in
      *           $transportConfig, and any $serviceAddress setting, will be ignored.
@@ -239,7 +242,8 @@ trait GapicClientTrait
      *           example:
      *           $transportConfig = [
      *               'grpc' => [...],
-     *               'rest' => [...]
+     *               'rest' => [...],
+     *               'grpc-fallback' => [...],
      *           ];
      *           See the GrpcTransport::build and RestTransport::build
      *           methods for the supported options.
@@ -357,6 +361,8 @@ trait GapicClientTrait
         switch ($transport) {
             case 'grpc':
                 return GrpcTransport::build($serviceAddress, $configForSpecifiedTransport);
+            case 'grpc-fallback':
+                return GrpcFallbackTransport::build($serviceAddress, $configForSpecifiedTransport);
             case 'rest':
                 if (!isset($configForSpecifiedTransport['restClientConfigPath'])) {
                     throw new ValidationException(
@@ -368,7 +374,7 @@ trait GapicClientTrait
             default:
                 throw new ValidationException(
                     "Unexpected 'transport' option: $transport. " .
-                    "Supported values: ['grpc', 'rest']"
+                    "Supported values: ['grpc', 'rest', 'grpc-fallback']"
                 );
         }
     }

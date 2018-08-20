@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2018, Google Inc.
+ * Copyright 2018 Google LLC
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -34,62 +34,62 @@ namespace Google\ApiCore\Transport;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\ApiStatus;
 use Google\ApiCore\Call;
-use Google\ApiCore\RequestBuilder;
 use Google\ApiCore\ServiceAddressTrait;
 use Google\ApiCore\ValidationException;
 use Google\ApiCore\ValidationTrait;
+use Google\Protobuf\Internal\Message;
+use Google\Rpc\Status;
 use GuzzleHttp\Exception\RequestException;
+use GuzzleHttp\Psr7\Request;
+use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
 
 /**
- * A REST based transport implementation.
+ * A transport that sends protobuf over HTTP 1.1 that can be used when full gRPC support
+ * is not available.
  */
-class RestTransport implements TransportInterface
+class GrpcFallbackTransport implements TransportInterface
 {
     use ValidationTrait;
     use ServiceAddressTrait;
     use HttpUnaryTransportTrait;
 
-    private $requestBuilder;
+    private $baseUri;
 
     /**
-     * @param RequestBuilder $requestBuilder A builder responsible for creating
-     *        a PSR-7 request from a set of request information.
+     * @param string $baseUri
      * @param callable $httpHandler A handler used to deliver PSR-7 requests.
      */
     public function __construct(
-        RequestBuilder $requestBuilder,
+        $baseUri,
         callable $httpHandler
     ) {
-        $this->requestBuilder = $requestBuilder;
+        $this->baseUri = $baseUri;
         $this->httpHandler = $httpHandler;
-        $this->transportName = 'REST';
+        $this->transportName = 'grpc-fallback';
     }
 
     /**
-     * Builds a RestTransport.
+     * Builds a GrpcFallbackTransport.
      *
      * @param string $serviceAddress
      *        The address of the API remote host, for example "example.googleapis.com".
-     * @param string $restConfigPath
-     *        Path to rest config file.
      * @param array $config {
-     *    Config options used to construct the gRPC transport.
+     *    Config options used to construct the grpc-fallback transport.
      *
      *    @type callable $httpHandler A handler used to deliver PSR-7 requests.
      * }
-     * @return RestTransport
+     * @return GrpcFallbackTransport
      * @throws ValidationException
      */
-    public static function build($serviceAddress, $restConfigPath, array $config = [])
+    public static function build($serviceAddress, array $config = [])
     {
         $config += [
             'httpHandler'  => null,
         ];
         list($baseUri, $port) = self::normalizeServiceAddress($serviceAddress);
-        $requestBuilder = new RequestBuilder("$baseUri:$port", $restConfigPath);
         $httpHandler = $config['httpHandler'] ?: self::buildHttpHandlerAsync();
-        return new RestTransport($requestBuilder, $httpHandler);
+        return new GrpcFallbackTransport("$baseUri:$port", $httpHandler);
     }
 
     /**
@@ -97,46 +97,76 @@ class RestTransport implements TransportInterface
      */
     public function startUnaryCall(Call $call, array $options)
     {
-        $headers = self::buildCommonHeaders($options);
-
-        // call the HTTP handler
         $httpHandler = $this->httpHandler;
         return $httpHandler(
-            $this->requestBuilder->build(
-                $call->getMethod(),
-                $call->getMessage(),
-                $headers
-            ),
+            $this->buildRequest($call, $options),
             $this->getCallOptions($options)
         )->then(
-            function (ResponseInterface $response) use ($call, $options) {
-                $decodeType = $call->getDecodeType();
-                $return = new $decodeType;
-                $return->mergeFromJsonString(
-                    (string) $response->getBody()
-                );
-
+            function (ResponseInterface $response) use ($options) {
                 if (isset($options['metadataCallback'])) {
                     $metadataCallback = $options['metadataCallback'];
                     $metadataCallback($response->getHeaders());
                 }
-
-                return $return;
+                return $response;
+            }
+        )->then(
+            function (ResponseInterface $response) use ($call) {
+                return $this->unpackResponse($call, $response);
             },
             function (\Exception $ex) {
-                if ($ex instanceof RequestException && $ex->hasResponse()) {
-                    throw $this->convertToApiException($ex);
-                }
-
-                throw $ex;
+                throw $this->transformException($ex);
             }
         );
     }
 
+    /**
+     * @param Call $call
+     * @param array $options
+     * @return RequestInterface
+     */
+    private function buildRequest(Call $call, array $options)
+    {
+        // Build common headers and set the content type to 'application/x-protobuf'
+        $headers = ['Content-Type' => 'application/x-protobuf'] + self::buildCommonHeaders($options);
+
+        // It is necessary to supply 'grpc-web' in the 'x-goog-api-client' header
+        // when using the grpc-fallback protocol.
+        $headers += ['x-goog-api-client' => []];
+        $headers['x-goog-api-client'][] = 'grpc-web';
+
+        // Uri format: https://<service>/$rpc/<method>
+        $uri = "https://{$this->baseUri}/\$rpc/{$call->getMethod()}";
+
+        return new Request(
+            'POST',
+            $uri,
+            $headers,
+            $call->getMessage()->serializeToString()
+        );
+    }
+
+    /**
+     * @param Call $call
+     * @param ResponseInterface $response
+     * @return Message
+     */
+    private function unpackResponse(Call $call, ResponseInterface $response)
+    {
+        $decodeType = $call->getDecodeType();
+        /** @var Message $responseMessage */
+        $responseMessage = new $decodeType;
+        $responseMessage->mergeFromString((string)$response->getBody());
+        return $responseMessage;
+    }
+
+    /**
+     * @param array $options
+     * @return array
+     */
     private function getCallOptions(array $options)
     {
-        $callOptions = isset($options['transportOptions']['restOptions'])
-            ? $options['transportOptions']['restOptions']
+        $callOptions = isset($options['transportOptions']['grpcFallbackOptions'])
+            ? $options['transportOptions']['grpcFallbackOptions']
             : [];
 
         if (isset($options['timeoutMillis'])) {
@@ -148,20 +178,25 @@ class RestTransport implements TransportInterface
 
     /**
      * @param \Exception $ex
-     * @return ApiException
+     * @return \Exception
      */
-    private function convertToApiException(\Exception $ex)
+    private function transformException(\Exception $ex)
     {
-        $res = $ex->getResponse();
-        $body = (string) $res->getBody();
-        if ($error = json_decode($body, true)['error']) {
-            $basicMessage = $error['message'];
-            $code = ApiStatus::rpcCodeFromStatus($error['status']);
-            $metadata = isset($error['details']) ? $error['details'] : null;
-            return ApiException::createFromApiResponse($basicMessage, $code, $metadata);
+        if ($ex instanceof RequestException && $ex->hasResponse()) {
+            $res = $ex->getResponse();
+            $body = (string) $res->getBody();
+            $status = new Status();
+            try {
+                $status->mergeFromString($body);
+                return ApiException::createFromRpcStatus($status);
+            } catch (\Exception $parseException) {
+                // We were unable to parse the response body into a $status object. Instead,
+                // create an ApiException using the unparsed $body as message.
+                $code = ApiStatus::rpcCodeFromHttpStatusCode($res->getStatusCode());
+                return ApiException::createFromApiResponse($body, $code, null, $parseException);
+            }
+        } else {
+            return $ex;
         }
-        // Use the RPC code instead of the HTTP Status Code.
-        $code = ApiStatus::rpcCodeFromHttpStatusCode($res->getStatusCode());
-        return ApiException::createFromApiResponse($body, $code);
     }
 }
