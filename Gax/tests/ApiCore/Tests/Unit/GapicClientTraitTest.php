@@ -44,6 +44,7 @@ use Google\ApiCore\OperationResponse;
 use Google\ApiCore\RetrySettings;
 use Google\ApiCore\ServerStream;
 use Google\ApiCore\Testing\MockRequest;
+use Google\ApiCore\Transport\GrpcFallbackTransport;
 use Google\ApiCore\Transport\GrpcTransport;
 use Google\ApiCore\Transport\RestTransport;
 use Google\ApiCore\Transport\TransportInterface;
@@ -295,6 +296,7 @@ class GapicClientTraitTest extends TestCase
             [$serviceAddress, $transport, $transportConfig, $defaultTransportClass],
             [$serviceAddress, 'grpc', $transportConfig, GrpcTransport::class],
             [$serviceAddress, 'rest', $transportConfig, RestTransport::class],
+            [$serviceAddress, 'grpc-fallback', $transportConfig, GrpcFallbackTransport::class],
         ];
     }
 
@@ -406,7 +408,8 @@ class GapicClientTraitTest extends TestCase
                 ],
                 'rest' => [
                     'restClientConfigPath' => __DIR__.'/testdata/test_service_rest_client_config.php',
-                ]
+                ],
+                'grpc-fallback' => [],
             ],
             'credentials' => null,
             'credentialsConfig' => [],

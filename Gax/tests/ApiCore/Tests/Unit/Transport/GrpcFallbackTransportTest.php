@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2018, Google Inc.
+ * Copyright 2018 Google LLC
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -37,9 +37,12 @@ use Google\ApiCore\Call;
 use Google\ApiCore\RequestBuilder;
 use Google\ApiCore\Testing\MockRequest;
 use Google\ApiCore\Testing\MockResponse;
+use Google\ApiCore\Transport\GrpcFallbackTransport;
 use Google\ApiCore\Transport\RestTransport;
 use Google\Auth\FetchAuthTokenInterface;
 use Google\Auth\HttpHandler\HttpHandlerFactory;
+use Google\Rpc\Code;
+use Google\Rpc\Status;
 use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Promise;
 use GuzzleHttp\Psr7\Request;
@@ -47,7 +50,7 @@ use GuzzleHttp\Psr7\Response;
 use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\RequestInterface;
 
-class RestTransportTest extends TestCase
+class GrpcFallbackTransportTest extends TestCase
 {
     private $call;
 
@@ -59,66 +62,69 @@ class RestTransportTest extends TestCase
             new MockRequest()
         );
     }
-    private function getTransport(callable $httpHandler, $serviceAddress = 'http://www.example.com')
-    {
-        $request = new Request('POST', $serviceAddress);
-        $requestBuilder = $this->getMockBuilder(RequestBuilder::class)
-            ->disableOriginalConstructor()
-            ->getMock();
-        $requestBuilder->method('build')
-            ->willReturn($request);
-        $credentialsLoader = $this->getMockBuilder(FetchAuthTokenInterface::class)
-            ->disableOriginalConstructor()
-            ->getMock();
-        $credentialsLoader->method('fetchAuthToken')
-            ->willReturn(['access_token' => 'abc']);
 
-        return new RestTransport(
-            $requestBuilder,
+    private function getTransport(callable $httpHandler)
+    {
+        return new GrpcFallbackTransport(
+            'www.example.com',
             $httpHandler
         );
     }
 
     /**
      * @param $serviceAddress
+     * @param $requestMessage
      * @dataProvider startUnaryCallDataProvider
      */
-    public function testStartUnaryCall($serviceAddress)
+    public function testStartUnaryCall($serviceAddress, $requestMessage)
     {
         $expectedRequest = new Request(
             'POST',
-            "$serviceAddress",
-            [],
-            ""
+            "https://$serviceAddress/\$rpc/Testing123",
+            [
+                'Content-Type' => 'application/x-protobuf',
+                'x-goog-api-client' => ['grpc-web'],
+            ],
+            $requestMessage->serializeToString()
         );
 
-        $body = ['name' => 'hello', 'number' => 15];
+        $expectedResponse = (new MockResponse())
+            ->setName('hello')
+            ->setNumber(15);
 
-        $httpHandler = function (RequestInterface $request, array $options = []) use ($body, $expectedRequest) {
+        $httpHandler = function (RequestInterface $request, array $options = []) use ($expectedResponse, $expectedRequest) {
             $this->assertEquals($expectedRequest, $request);
+
             return Promise\promise_for(
                 new Response(
                     200,
                     [],
-                    json_encode($body)
+                    $expectedResponse->serializeToString()
                 )
             );
         };
 
-        $response = $this->getTransport($httpHandler, $serviceAddress)
-            ->startUnaryCall($this->call, [])
-            ->wait();
+        $transport = new GrpcFallbackTransport(
+            $serviceAddress,
+            $httpHandler
+        );
+        $call = new Call(
+            'Testing123',
+            MockResponse::class,
+            $requestMessage
+        );
+        $response = $transport->startUnaryCall($call, [])->wait();
 
-        $this->assertEquals($body['name'], $response->getName());
-        $this->assertEquals($body['number'], $response->getNumber());
+        $this->assertEquals($expectedResponse->getName(), $response->getName());
+        $this->assertEquals($expectedResponse->getNumber(), $response->getNumber());
     }
 
     public function startUnaryCallDataProvider()
     {
         return [
-            ["www.example.com"],
-            ["www.example.com:443"],
-            ["www.example.com:447"],
+            ["www.example.com", new MockRequest()],
+            ["www.example.com:443", new MockRequest()],
+            ["www.example.com:447", new MockRequest()],
         ];
     }
 
@@ -142,18 +148,16 @@ class RestTransportTest extends TestCase
     public function testStartUnaryCallThrowsRequestException()
     {
         $httpHandler = function (RequestInterface $request, array $options = []) {
+            $status = new Status();
+            $status->setCode(Code::NOT_FOUND);
+            $status->setMessage("Ruh-roh");
             return Promise\rejection_for(
                 RequestException::create(
                     new Request('POST', 'http://www.example.com'),
                     new Response(
                         404,
                         [],
-                        json_encode([
-                            'error' => [
-                                'status' => 'NOT_FOUND',
-                                'message' => 'Ruh-roh.'
-                            ]
-                        ])
+                        $status->serializeToString()
                     )
                 )
             );
@@ -165,33 +169,29 @@ class RestTransportTest extends TestCase
     }
 
     /**
-     * @dataProvider buildDataRest
+     * @dataProvider buildDataGrpcFallback
      */
-    public function testBuildRest($serviceAddress, $restConfigPath, $config, $expectedTransport)
+    public function testBuildGrpcFallback($serviceAddress, $config, $expectedTransport)
     {
-        $actualTransport = RestTransport::build($serviceAddress, $restConfigPath, $config);
+        $actualTransport = GrpcFallbackTransport::build($serviceAddress, $config);
         $this->assertEquals($expectedTransport, $actualTransport);
     }
 
-    public function buildDataRest()
+    public function buildDataGrpcFallback()
     {
         $uri = "address.com";
         $serviceAddress = "$uri:443";
-        $restConfigPath = __DIR__ . '/../testdata/test_service_rest_client_config.php';
-        $requestBuilder = new RequestBuilder($serviceAddress, $restConfigPath);
         $httpHandler = [HttpHandlerFactory::build(), 'async'];
         return [
             [
                 $serviceAddress,
-                $restConfigPath,
                 ['httpHandler' => $httpHandler],
-                new RestTransport($requestBuilder, $httpHandler)
+                new GrpcFallbackTransport($serviceAddress, $httpHandler)
             ],
             [
                 $serviceAddress,
-                $restConfigPath,
                 [],
-                new RestTransport($requestBuilder, $httpHandler),
+                new GrpcFallbackTransport($serviceAddress, $httpHandler),
             ],
         ];
     }
@@ -199,24 +199,20 @@ class RestTransportTest extends TestCase
     /**
      * @dataProvider buildInvalidData
      * @expectedException \Google\ApiCore\ValidationException
+     * @param $serviceAddress
+     * @param $args
+     * @throws \Google\ApiCore\ValidationException
      */
-    public function testBuildInvalid($serviceAddress, $restConfigPath, $args)
+    public function testBuildInvalid($serviceAddress, $args)
     {
-        RestTransport::build($serviceAddress, $restConfigPath, $args);
+        GrpcFallbackTransport::build($serviceAddress, $args);
     }
 
     public function buildInvalidData()
     {
-        $restConfigPath = __DIR__ . '/../testdata/test_service_rest_client_config.php';
         return [
             [
                 "addresswithtoo:many:segments",
-                $restConfigPath,
-                [],
-            ],
-            [
-                "address.com",
-                "badpath",
                 [],
             ],
         ];
@@ -227,7 +223,7 @@ class RestTransportTest extends TestCase
      * @expectedExceptionMessage <html><body>This is an HTML response<\/body><\/html>
      * @expectedExceptionCode 5
      */
-    public function testNonJsonResponseException()
+    public function testNonBinaryProtobufResponseException()
     {
         $httpHandler = function (RequestInterface $request, array $options = []) {
             return Promise\rejection_for(
