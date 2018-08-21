@@ -129,6 +129,7 @@ class SpannerGapicClient
             'serviceAddress' => self::SERVICE_ADDRESS.':'.self::DEFAULT_SERVICE_PORT,
             'clientConfig' => __DIR__.'/../resources/spanner_client_config.json',
             'descriptorsConfigPath' => __DIR__.'/../resources/spanner_descriptor_config.php',
+            'gcpApiConfigPath' => __DIR__ . '/../resources/spanner_grpc_config.json',
             'credentialsConfig' => [
                 'scopes' => self::$serviceScopes,
             ],
