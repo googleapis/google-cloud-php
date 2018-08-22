@@ -1,0 +1,1 @@
+{"id":"bigtable\/v2\/mutation_deletefromcolumn","type":"","title":"Google\\Cloud\\Bigtable\\V2\\Mutation_DeleteFromColumn","name":"Mutation_DeleteFromColumn","description":"<p>This class is deprecated. Use Google\\Cloud\\Bigtable\\V2\\Mutation\\DeleteFromColumn instead.<\/p>","examples":[],"resources":[],"methods":[]}

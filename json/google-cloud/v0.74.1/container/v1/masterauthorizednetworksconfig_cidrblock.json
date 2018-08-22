@@ -1,0 +1,1 @@
+{"id":"container\/v1\/masterauthorizednetworksconfig_cidrblock","type":"","title":"Google\\Cloud\\Container\\V1\\MasterAuthorizedNetworksConfig_CidrBlock","name":"MasterAuthorizedNetworksConfig_CidrBlock","description":"<p>This class is deprecated. Use Google\\Cloud\\Container\\V1\\MasterAuthorizedNetworksConfig\\CidrBlock instead.<\/p>","examples":[],"resources":[],"methods":[]}

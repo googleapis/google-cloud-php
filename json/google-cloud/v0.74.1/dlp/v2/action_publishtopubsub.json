@@ -1,0 +1,1 @@
+{"id":"dlp\/v2\/action_publishtopubsub","type":"","title":"Google\\Cloud\\Dlp\\V2\\Action_PublishToPubSub","name":"Action_PublishToPubSub","description":"<p>This class is deprecated. Use Google\\Cloud\\Dlp\\V2\\Action\\PublishToPubSub instead.<\/p>","examples":[],"resources":[],"methods":[]}

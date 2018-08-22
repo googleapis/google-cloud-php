@@ -1,0 +1,1 @@
+{"id":"dlp\/v2\/privacymetric_categoricalstatsconfig","type":"","title":"Google\\Cloud\\Dlp\\V2\\PrivacyMetric_CategoricalStatsConfig","name":"PrivacyMetric_CategoricalStatsConfig","description":"<p>This class is deprecated. Use Google\\Cloud\\Dlp\\V2\\PrivacyMetric\\CategoricalStatsConfig instead.<\/p>","examples":[],"resources":[],"methods":[]}
