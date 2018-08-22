@@ -189,7 +189,7 @@ trait ClientTrait
                 return $config['keyFile']['project_id'];
             }
 
-            if (!isset($config['suppressKeyFileNotice']) && $config['suppressKeyFileNotice'] !== true) {
+            if (!isset($config['suppressKeyFileNotice']) || $config['suppressKeyFileNotice'] !== true) {
                 $serviceAccountUri = 'https://cloud.google.com/iam/docs/' .
                     'creating-managing-service-account-keys#creating_service_account_keys';
 
