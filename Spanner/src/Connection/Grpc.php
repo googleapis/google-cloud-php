@@ -46,6 +46,8 @@ use Google\Protobuf\GPBEmpty;
 use Google\Protobuf\ListValue;
 use Google\Protobuf\Struct;
 use Google\Protobuf\Value;
+use Grpc\Gcp\ApiConfig;
+use Grpc\Gcp\Config;
 use Grpc\UnaryCall;
 
 /**
@@ -120,11 +122,25 @@ class Grpc implements ConnectionInterface
      */
     private $longRunningGrpcClients;
 
+    private function enableConnectionManagement($hostName, $confPath)
+    {
+        // TODO(ddyihai): move this function to GrpcTrait, if we are going
+        // to enable the grpc-gcp library for other apis.
+        $conf = new ApiConfig();
+        $conf->mergeFromJsonString(file_get_contents($confPath));
+        $config = new Config($hostName, $conf);
+        return $config;
+    }
+
     /**
      * @param array $config [optional]
      */
     public function __construct(array $config = [])
     {
+        if (getenv("ENABLE_GCP_OPTIMIZER") === false) {
+            // Enable the GCP optimizer by default.
+            putenv('ENABLE_GCP_OPTIMIZER=TRUE');
+        }
         $this->serializer = new Serializer([
             'commit_timestamp' => function ($v) {
                 return $this->formatTimestampFromApi($v);
@@ -152,6 +168,20 @@ class Grpc implements ConnectionInterface
                 ? $config['authHttpHandler']
                 : null
         );
+
+        if (getenv('ENABLE_GCP_OPTIMIZER') == 'TRUE') {
+            if (extension_loaded('sysvshm')) {
+                $api = 'spanner';
+                $confPath = __DIR__. "/../V1/resources/$api.grpc.config";
+                $grpcGcpConfig = $this->enableConnectionManagement('spanner.googleapis.com', $confPath);
+                $grpcConfig['transportConfig']['grpc'] = [
+                    'stubOpts' => [
+                        'grpc_call_invoker' => $grpcGcpConfig->callInvoker()
+                    ]
+                ];
+            }
+        }
+
         $this->spannerClient = isset($config['gapicSpannerClient'])
             ? $config['gapicSpannerClient']
             : new SpannerClient($grpcConfig);
