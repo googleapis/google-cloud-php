@@ -17,7 +17,7 @@
 
 namespace Google\Cloud\Debugger;
 
-use Google\Cloud\DevTools\Source\V1\AliasContext_Kind;
+use Google\Cloud\DevTools\Source\V1\AliasContext\Kind;
 
 /**
  * An alias to a repo revision.
@@ -35,10 +35,10 @@ use Google\Cloud\DevTools\Source\V1\AliasContext_Kind;
  */
 class AliasContext
 {
-    const KIND_ANY = AliasContext_Kind::ANY;
-    const KIND_FIXED = AliasContext_Kind::FIXED;
-    const KIND_MOVABLE = AliasContext_Kind::MOVABLE;
-    const KIND_OTHER = AliasContext_Kind::OTHER;
+    const KIND_ANY = Kind::ANY;
+    const KIND_FIXED = Kind::FIXED;
+    const KIND_MOVABLE = Kind::MOVABLE;
+    const KIND_OTHER = Kind::OTHER;
 
     /**
      * @var string The alias kind.
