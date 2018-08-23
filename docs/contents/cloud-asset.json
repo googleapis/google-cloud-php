@@ -1,0 +1,81 @@
+{
+    "title": "Asset",
+    "defaultService": "asset\/readme",
+    "services": [
+        {
+            "title": "Overview",
+            "type": "asset\/readme"
+        },
+        {
+            "title": "AssetService",
+            "type": "asset\/metadata\/v1beta1\/assetservice",
+            "nav": [
+                {
+                    "title": "Assets",
+                    "type": "asset\/metadata\/v1beta1\/assets"
+                }
+            ],
+            "patterns": [
+                "asset\/metadata\/v1beta1\/\\w{1,}"
+            ]
+        },
+        {
+            "title": "AssetServiceClient",
+            "type": "asset\/v1beta1\/assetserviceclient",
+            "nav": [
+                {
+                    "title": "Asset",
+                    "type": "asset\/v1beta1\/asset"
+                },
+                {
+                    "title": "AssetServiceGrpcClient",
+                    "type": "asset\/v1beta1\/assetservicegrpcclient"
+                },
+                {
+                    "title": "BatchGetAssetsHistoryRequest",
+                    "type": "asset\/v1beta1\/batchgetassetshistoryrequest"
+                },
+                {
+                    "title": "BatchGetAssetsHistoryResponse",
+                    "type": "asset\/v1beta1\/batchgetassetshistoryresponse"
+                },
+                {
+                    "title": "ContentType",
+                    "type": "asset\/v1beta1\/contenttype"
+                },
+                {
+                    "title": "ExportAssetsRequest",
+                    "type": "asset\/v1beta1\/exportassetsrequest"
+                },
+                {
+                    "title": "ExportAssetsResponse",
+                    "type": "asset\/v1beta1\/exportassetsresponse"
+                },
+                {
+                    "title": "GcsDestination",
+                    "type": "asset\/v1beta1\/gcsdestination"
+                },
+                {
+                    "title": "OutputConfig",
+                    "type": "asset\/v1beta1\/outputconfig"
+                },
+                {
+                    "title": "Resource",
+                    "type": "asset\/v1beta1\/resource"
+                },
+                {
+                    "title": "TemporalAsset",
+                    "type": "asset\/v1beta1\/temporalasset"
+                },
+                {
+                    "title": "TimeWindow",
+                    "type": "asset\/v1beta1\/timewindow"
+                }
+            ],
+            "patterns": [
+                "asset\/v1beta1\/\\w{1,}"
+            ]
+        }
+    ],
+    "pattern": "asset\/\\w{1,}"
+}
