@@ -34,16 +34,26 @@ class Filter
      */
     private $filters = [];
 
+    private function __construct()
+    {
+    }
+
+    public function filter()
+    {
+        return new Filter;
+    }
+
     public function addFilters(array $filters)
     {
         foreach ($filters as $filter) {
             $this->filters[] = $filter;
         }
+        return $this;
     }
 
     public function chain()
     {
-        if (array_count($this->filters) < 2) {
+        if (count($this->filters) < 2) {
             return $this;
         }
         $chain = new Chain;
@@ -56,7 +66,7 @@ class Filter
 
     public function interleave()
     {
-        if (array_count($this->filters) < 2) {
+        if (count($this->filters) < 2) {
             return $this;
         }
         $interleave = new Interleave;
@@ -162,14 +172,14 @@ class Filter
     {
         $valueRange = new ValueRange;
         if ($startInclusive) {
-            $valueRange->setStartClosed($start);
+            $valueRange->setStartValueClosed($start);
         } else {
-            $valueRange->setStartOpen($start);
+            $valueRange->setStartValueOpen($start);
         }
         if ($endInclusive) {
-            $valueRange->setEndClosed($end);
+            $valueRange->setEndValueClosed($end);
         } else {
-            $valueRange->setEndOpen($end);
+            $valueRange->setEndValueOpen($end);
         }
         $rowFilter = new RowFilter;
         $rowFilter->setValueRangeFilter($valueRange);
@@ -219,10 +229,10 @@ class Filter
 
     public function get()
     {
-        if (array_count($this->filters) > 1) {
+        if (count($this->filters) > 1) {
             throw new Exception('There are multiple filter. Forgot to call chain or interleave?');
         }
-        if (array_count($this->filters) === 0) {
+        if (count($this->filters) === 0) {
             throw new Exception('There are not filters added');
         }
         return $this->filters[0];

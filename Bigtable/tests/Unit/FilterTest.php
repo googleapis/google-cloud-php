@@ -25,6 +25,7 @@ use Google\Cloud\Bigtable\V2\RowFilter\Condition;
 use Google\Cloud\Bigtable\V2\RowFilter\Interleave;
 use Google\Cloud\Bigtable\V2\TimestampRange;
 use Google\Cloud\Bigtable\V2\ValueRange;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group bigtable
@@ -36,7 +37,12 @@ class FilterTest extends TestCase
 
     public function setUp()
     {
-        $this->filter = new Filter();
+        $this->filter = Filter::filter();
+    }
+
+    public function testFilter()
+    {
+        $this->assertInstanceOf(Filter::class, $this->filter);
     }
 
     /**
@@ -45,7 +51,7 @@ class FilterTest extends TestCase
      */
     public function testGetOnEmptyFilterShouldThrow()
     {
-        $this->filter-get();
+        $this->filter->get();
     }
 
     /**
@@ -60,7 +66,7 @@ class FilterTest extends TestCase
     public function testGet()
     {
         $filter = $this->filter->sink()->get();
-        $this->assertInstanceOf(Filter::class, $filter);
+        $this->assertInstanceOf(RowFilter::class, $filter);
     }
 
     public function testSinkShouldReturnThis()
@@ -113,7 +119,7 @@ class FilterTest extends TestCase
 
     public function testRowKeyFilterShouldReturnThis()
     {
-        $filter = $this->filter->rowKey();
+        $filter = $this->filter->rowKey('r1');
         $this->assertInstanceOf(Filter::class, $filter);
         $this->assertEquals($this->filter, $filter);
     }
@@ -121,7 +127,7 @@ class FilterTest extends TestCase
     public function testRowKeyFilter()
     {
         $rowFilter = new RowFilter;
-        $rowFilter->setRowKey('r1');
+        $rowFilter->setRowKeyRegexFilter('r1');
         $filter = $this->filter->rowKey('r1')->get();
         $this->assertInstanceOf(RowFilter::class, $filter);
         $this->assertEquals($rowFilter, $filter);
@@ -153,7 +159,7 @@ class FilterTest extends TestCase
     public function testFamilyName()
     {
         $rowFilter = new RowFilter;
-        $rowFilter->setFamilyName('cf1');
+        $rowFilter->setFamilyNameRegexFilter('cf1');
         $filter = $this->filter->familyName('cf1')->get();
         $this->assertInstanceOf(RowFilter::class, $filter);
         $this->assertEquals($rowFilter, $filter);
@@ -231,7 +237,7 @@ class FilterTest extends TestCase
         $timestampRange->setStartTimestampMicros(500);
         $timestampRange->setEndTimestampMicros(800);
         $rowFilter = new RowFilter;
-        $rowfilter->setTimestampRangeFilter($timestampRange);
+        $rowFilter->setTimestampRangeFilter($timestampRange);
         $filter = $this->filter->timestampRange(500, 800)->get();
         $this->assertInstanceOf(RowFilter::class, $filter);
         $this->assertEquals($rowFilter, $filter);
@@ -247,8 +253,8 @@ class FilterTest extends TestCase
     public function testValueRangeOpenStartEnd()
     {
         $valueRange = new ValueRange;
-        $valueRange->setStartOpen('v1');
-        $valueRange->setEndOpen('v2');
+        $valueRange->setStartValueOpen('v1');
+        $valueRange->setEndValueOpen('v2');
         $rowFilter = new RowFilter;
         $rowFilter->setValueRangeFilter($valueRange);
         $filter = $this->filter->valueRange('v1', 'v2')->get();
@@ -259,8 +265,8 @@ class FilterTest extends TestCase
     public function testValueRangeClosedStartEnd()
     {
         $valueRange = new ValueRange;
-        $valueRange->setStartClosed('v1');
-        $valueRange->setEndClosed('v2');
+        $valueRange->setStartValueClosed('v1');
+        $valueRange->setEndValueClosed('v2');
         $rowFilter = new RowFilter;
         $rowFilter->setValueRangeFilter($valueRange);
         $filter = $this->filter->valueRange('v1', 'v2', true, true)->get();
@@ -271,8 +277,8 @@ class FilterTest extends TestCase
     public function testValueRangeOpenStartClosedEnd()
     {
         $valueRange = new ValueRange;
-        $valueRange->setStartOpen('v1');
-        $valueRange->setEndClosed('v2');
+        $valueRange->setStartValueOpen('v1');
+        $valueRange->setEndValueClosed('v2');
         $rowFilter = new RowFilter;
         $rowFilter->setValueRangeFilter($valueRange);
         $filter = $this->filter->valueRange('v1', 'v2', false, true)->get();
@@ -283,8 +289,8 @@ class FilterTest extends TestCase
     public function testValueRangeClosedStartOpenEnd()
     {
         $valueRange = new ValueRange;
-        $valueRange->setStartClosed('v1');
-        $valueRange->setEndOpen('v2');
+        $valueRange->setStartValueClosed('v1');
+        $valueRange->setEndValueOpen('v2');
         $rowFilter = new RowFilter;
         $rowFilter->setValueRangeFilter($valueRange);
         $filter = $this->filter->valueRange('v1', 'v2', true)->get();
@@ -303,7 +309,7 @@ class FilterTest extends TestCase
     {
         $rowFilter = new RowFilter;
         $rowFilter->setCellsPerRowOffsetFilter(3);
-        $filter = $this->filter->cellsPerRowOffsetFilter(3)->get();
+        $filter = $this->filter->cellsPerRowOffset(3)->get();
         $this->assertInstanceOf(RowFilter::class, $filter);
         $this->assertEquals($rowFilter, $filter);
     }
@@ -374,13 +380,10 @@ class FilterTest extends TestCase
 
     public function testConditionShouldReturnThis()
     {
-        $predicateFilter = new Filter;
-        $trueFilter = new Filter;
-        $falseFilter = new Filter;
         $filter = $this->filter->condition(
-            $predicateFilter->sink()-get(),
-            $trueFilter->sink()->get(),
-            $falseFilter->sink()->get()
+            Filter::filter()->sink()->get(),
+            Filter::filter()->sink()->get(),
+            Filter::filter()->sink()->get()
         );
         $this->assertInstanceOf(Filter::class, $filter);
         $this->assertEquals($this->filter, $filter);
@@ -401,14 +404,10 @@ class FilterTest extends TestCase
         $rowFilter = new RowFilter;
         $rowFilter->setCondition($condition);
 
-        $predicateFilter = new Filter;
-        $trueFilter = new Filter;
-        $falseFilter = new Filter;
-
         $filter = $this->filter->condition(
-            $predicateFilter->passAllFilter()->get(),
-            $trueFilter->blockAllFilter()->get(),
-            $falseFilter->stripValueTransformer()->get()
+            Filter::filter()->passAllFilter()->get(),
+            Filter::filter()->blockAllFilter()->get(),
+            Filter::filter()->stripValueTransformer()->get()
         )->get();
         $this->assertInstanceOf(RowFilter::class, $filter);
         $this->assertEquals($rowFilter, $filter);
@@ -494,16 +493,14 @@ class FilterTest extends TestCase
 
     public function testAddFiltersShouldReturnThis()
     {
-        $newFilter = new Filter;
-        $filter = $this->filter->addFilters($newFilter->sink()->get());
+        $filter = $this->filter->addFilters([Filter::filter()->sink()->get()]);
         $this->assertInstanceOf(Filter::class, $filter);
         $this->assertEquals($this->filter, $filter);
     }
 
     public function testAddFilterShouldAddToExistingFilter()
     {
-        $newFilter = new Filter;
-        $filter = $this->filter->sink()->addFilters([$newFilter->passAllFilter()->get()])->chain()->get();
+        $filter = $this->filter->sink()->addFilters([Filter::filter()->passAllFilter()->get()])->chain()->get();
         $chainFilter1 = new RowFilter;
         $chainFilter1->setSink(true);
         $chainFilter2 = new RowFilter;
