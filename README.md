@@ -18,8 +18,8 @@ This client supports the following Google Cloud Platform services at a [General 
 
 This client supports the following Google Cloud Platform services at a [Beta](#versioning) quality level:
 
-* [Cloud Asset Inventory API](#google-cloud-asset-beta) (Beta)
 * [Cloud Firestore](#cloud-firestore-beta) (Beta)
+* [Google Cloud Asset](#google-cloud-asset-beta) (Beta)
 * [Google Cloud Container](#google-cloud-container-beta) (Beta)
 * [Google Cloud Dataproc](#google-cloud-dataproc-beta) (Beta)
 * [Google Cloud KMS](#google-cloud-kms-beta) (Beta)
@@ -474,7 +474,36 @@ foreach ($entries as $entry) {
 $ composer require google/cloud-logging
 ```
 
-## Cloud Asset Inventory API (Beta)
+## Cloud Firestore (Beta)
+
+- [API Documentation](http://googlecloudplatform.github.io/google-cloud-php/#/docs/latest/firestore/firestoreclient)
+- [Official Documentation](https://cloud.google.com/firestore/docs)
+
+#### Preview
+
+```php
+require 'vendor/autoload.php';
+
+use Google\Cloud\Firestore\FirestoreClient;
+
+$firestore = new FirestoreClient();
+
+$collectionReference = $firestore->collection('Users');
+$documentReference = $collectionReference->document($userId);
+$snapshot = $documentReference->snapshot();
+
+echo "Hello " . $snapshot['firstName'];
+```
+
+#### google/cloud-firestore
+
+[Cloud Firestore](https://github.com/GoogleCloudPlatform/google-cloud-php-firestore) can be installed separately by requiring the [`google/cloud-firestore`](https://packagist.org/packages/google/cloud-firestore) composer package:
+
+```
+$ composer require google/cloud-firestore
+```
+
+## Google Cloud Asset (Beta)
 
 - [API Documentation](http://googlecloudplatform.github.io/google-cloud-php/#/docs/latest/asset/assetclient)
 - [Official Documentation](https://cloud.google.com/resource-manager/docs/cai/)
@@ -516,35 +545,6 @@ if ($resp->operationSucceeded()) {
 
 ```
 $ composer require google/cloud-asset
-```
-
-## Cloud Firestore (Beta)
-
-- [API Documentation](http://googlecloudplatform.github.io/google-cloud-php/#/docs/latest/firestore/firestoreclient)
-- [Official Documentation](https://cloud.google.com/firestore/docs)
-
-#### Preview
-
-```php
-require 'vendor/autoload.php';
-
-use Google\Cloud\Firestore\FirestoreClient;
-
-$firestore = new FirestoreClient();
-
-$collectionReference = $firestore->collection('Users');
-$documentReference = $collectionReference->document($userId);
-$snapshot = $documentReference->snapshot();
-
-echo "Hello " . $snapshot['firstName'];
-```
-
-#### google/cloud-firestore
-
-[Cloud Firestore](https://github.com/GoogleCloudPlatform/google-cloud-php-firestore) can be installed separately by requiring the [`google/cloud-firestore`](https://packagist.org/packages/google/cloud-firestore) composer package:
-
-```
-$ composer require google/cloud-firestore
 ```
 
 ## Google Cloud Container (Beta)

@@ -1,6 +1,6 @@
 # Google Cloud Asset for PHP
 
-> Idiomatic PHP client for [Google Cloud Asset](https://cloud.google.com/asset/).
+> Idiomatic PHP client for [Google Cloud Asset](https://cloud.google.com/resource-manager/docs/cai/).
 
 [![Latest Stable Version](https://poser.pugx.org/google/cloud-asset/v/stable)](https://packagist.org/packages/google/cloud-asset) [![Packagist](https://img.shields.io/packagist/dm/google/cloud-asset.svg)](https://packagist.org/packages/google/cloud-asset)
 
