@@ -18,6 +18,7 @@ This client supports the following Google Cloud Platform services at a [General 
 
 This client supports the following Google Cloud Platform services at a [Beta](#versioning) quality level:
 
+* [Cloud Asset Inventory API](#google-cloud-asset-beta) (Beta)
 * [Cloud Firestore](#cloud-firestore-beta) (Beta)
 * [Google Cloud Container](#google-cloud-container-beta) (Beta)
 * [Google Cloud Dataproc](#google-cloud-dataproc-beta) (Beta)
@@ -471,6 +472,50 @@ foreach ($entries as $entry) {
 
 ```
 $ composer require google/cloud-logging
+```
+
+## Cloud Asset Inventory API (Beta)
+
+- [API Documentation](http://googlecloudplatform.github.io/google-cloud-php/#/docs/latest/asset/assetclient)
+- [Official Documentation](https://cloud.google.com/resource-manager/docs/cai/)
+
+#### Preview
+
+```php
+require_once __DIR__ . '/vendor/autoload.php';
+
+
+use Google\Cloud\Asset\V1beta1\AssetServiceClient;
+use Google\Cloud\Asset\V1beta1\GcsDestination;
+use Google\Cloud\Asset\V1beta1\OutputConfig;
+
+$objectPath = 'gs://your-bucket/cai-export';
+// Now you need to change this with your project number (numeric id)
+$project = 'example-project';
+
+$client = new AssetServiceClient();
+
+$gcsDestination = new GcsDestination(['uri' => $objectPath]);
+$outputConfig = new OutputConfig(['gcs_destination' => $gcsDestination]);
+
+$resp = $client->exportAssets("projects/$project", [], $outputConfig);
+
+$resp->pollUntilComplete();
+
+if ($resp->operationSucceeded()) {
+    echo "The result is dumped to $objectPath successfully." . PHP_EOL;
+} else {
+    $error = $operationResponse->getError();
+    // handleError($error)
+}
+```
+
+#### google/cloud-asset
+
+[Cloud Asset Inventory](https://github.com/GoogleCloudPlatform/google-cloud-php-asset) can be installed separately by requiring the [`google/cloud-asset`](https://packagist.org/packages/google/cloud-asset) composer package:
+
+```
+$ composer require google/cloud-asset
 ```
 
 ## Cloud Firestore (Beta)

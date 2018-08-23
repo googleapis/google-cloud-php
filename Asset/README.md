@@ -37,12 +37,38 @@ on authenticating your client. Once authenticated, you'll be ready to start maki
 ### Sample
 
 ```php
+require_once __DIR__ . '/vendor/autoload.php';
+
+
+use Google\Cloud\Asset\V1beta1\AssetServiceClient;
+use Google\Cloud\Asset\V1beta1\GcsDestination;
+use Google\Cloud\Asset\V1beta1\OutputConfig;
+
+$objectPath = 'gs://your-bucket/cai-export';
+// Now you need to change this with your project number (numeric id)
+$project = 'example-project';
+
+$client = new AssetServiceClient();
+
+$gcsDestination = new GcsDestination(['uri' => $objectPath]);
+$outputConfig = new OutputConfig(['gcs_destination' => $gcsDestination]);
+
+$resp = $client->exportAssets("projects/$project", [], $outputConfig);
+
+$resp->pollUntilComplete();
+
+if ($resp->operationSucceeded()) {
+    echo "The result is dumped to $objectPath successfully." . PHP_EOL;
+} else {
+    $error = $operationResponse->getError();
+    // handleError($error)
+}
 ```
 
 ### Version
 
-This component is considered alpha. As such, it is still a work-in-progress and is more likely to get backwards-incompatible updates.
+This component is considered beta. As such, it is still a work-in-progress and is more likely to get backwards-incompatible updates.
 
 ### Next Steps
 
-1. Understand the [official documentation](https://cloud.google.com/asset/docs/).
+1. Understand the [official documentation](https://cloud.google.com/resource-manager/docs/cai/).
