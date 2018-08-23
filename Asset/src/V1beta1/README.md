@@ -5,7 +5,6 @@
 ```php
 require_once __DIR__ . '/vendor/autoload.php';
 
-
 use Google\Cloud\Asset\V1beta1\AssetServiceClient;
 use Google\Cloud\Asset\V1beta1\GcsDestination;
 use Google\Cloud\Asset\V1beta1\OutputConfig;
