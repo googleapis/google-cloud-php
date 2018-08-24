@@ -52,7 +52,7 @@ $client = new AssetServiceClient();
 $gcsDestination = new GcsDestination(['uri' => $objectPath]);
 $outputConfig = new OutputConfig(['gcs_destination' => $gcsDestination]);
 
-$resp = $client->exportAssets("projects/$project", [], $outputConfig);
+$resp = $client->exportAssets("projects/$project", $outputConfig);
 
 $resp->pollUntilComplete();
 
