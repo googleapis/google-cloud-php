@@ -394,6 +394,11 @@ class Database
     /**
      * Drop the database.
      *
+     * Please note that after a database is dropped, all sessions attached to it
+     * will be invalid and unusable. Calls to this method will clear any session
+     * pool attached to this database class instance and delete any sessions
+     * attached to the database class instance.
+     *
      * **NOTE**: Requires `https://www.googleapis.com/auth/spanner.admin` scope.
      *
      * Example:
@@ -413,6 +418,15 @@ class Database
         $this->connection->dropDatabase($options + [
             'name' => $this->name
         ]);
+
+        if ($this->sessionPool) {
+            $this->sessionPool->clear();
+        }
+
+        if ($this->session) {
+            $this->session->delete($options);
+            $this->session = null;
+        }
     }
 
     /**
@@ -1574,6 +1588,7 @@ class Database
             'name' => $this->name,
             'instance' => $this->instance,
             'sessionPool' => $this->sessionPool,
+            'session' => $this->session,
         ];
     }
 

@@ -38,6 +38,7 @@ use Google\Cloud\Spanner\Session\SessionPoolInterface;
 use Google\Cloud\Spanner\Snapshot;
 use Google\Cloud\Spanner\Timestamp;
 use Google\Cloud\Spanner\Transaction;
+use Google\Cloud\Spanner\V1\SpannerClient;
 use Google\Cloud\Spanner\ValueMapper;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
@@ -240,9 +241,50 @@ class DatabaseTest extends TestCase
             'name' => DatabaseAdminClient::databaseName(self::PROJECT, self::INSTANCE, self::DATABASE)
         ])->shouldBeCalled();
 
+        $this->sessionPool->clear()->shouldBeCalled()->willReturn(null);
+
         $this->database->___setProperty('connection', $this->connection->reveal());
 
         $this->database->drop();
+    }
+
+    /**
+     * @group spanneradmin
+     */
+    public function testDropDeleteSession()
+    {
+        $this->connection->createSession(Argument::any())
+            ->shouldBeCalled()
+            ->willReturn([
+                'name' => SpannerClient::sessionName(self::PROJECT, self::INSTANCE, self::DATABASE, self::SESSION)
+            ]);
+
+        $this->connection->beginTransaction(Argument::any())
+            ->shouldBeCalled()
+            ->willReturn([
+                'id' => self::TRANSACTION
+            ]);
+
+        $this->connection->deleteSession(Argument::any())
+            ->shouldBeCalled();
+
+        $this->connection->dropDatabase([
+            'name' => DatabaseAdminClient::databaseName(self::PROJECT, self::INSTANCE, self::DATABASE)
+        ])->shouldBeCalled();
+
+        $database = TestHelpers::stub(Database::class, [
+            $this->connection->reveal(),
+            $this->instance->reveal(),
+            $this->lro->reveal(),
+            $this->lroCallables,
+            self::PROJECT,
+            self::DATABASE
+        ]);
+
+        // This will set a session on the Database class.
+        $database->transaction();
+
+        $database->drop();
     }
 
     /**

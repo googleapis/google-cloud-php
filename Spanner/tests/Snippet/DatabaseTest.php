@@ -71,6 +71,7 @@ class DatabaseTest extends SnippetTestCase
             ->willReturn($session->reveal());
         $sessionPool->setDatabase(Argument::any())
             ->willReturn(null);
+        $sessionPool->clear()->willReturn(null);
 
         $this->connection = $this->prophesize(ConnectionInterface::class);
         $this->database = TestHelpers::stub(Database::class, [
