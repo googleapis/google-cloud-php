@@ -102,10 +102,9 @@ class AssetServiceClientTest extends GeneratedTest
 
         // Mock request
         $formattedParent = $client->projectName('[PROJECT]');
-        $contentTypes = [];
         $outputConfig = new OutputConfig();
 
-        $response = $client->exportAssets($formattedParent, $contentTypes, $outputConfig);
+        $response = $client->exportAssets($formattedParent, $outputConfig);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -119,9 +118,6 @@ class AssetServiceClientTest extends GeneratedTest
         $actualValue = $actualApiRequestObject->getParent();
 
         $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualApiRequestObject->getContentTypes();
-
-        $this->assertProtobufEquals($contentTypes, $actualValue);
         $actualValue = $actualApiRequestObject->getOutputConfig();
 
         $this->assertProtobufEquals($outputConfig, $actualValue);
@@ -187,10 +183,9 @@ class AssetServiceClientTest extends GeneratedTest
 
         // Mock request
         $formattedParent = $client->projectName('[PROJECT]');
-        $contentTypes = [];
         $outputConfig = new OutputConfig();
 
-        $response = $client->exportAssets($formattedParent, $contentTypes, $outputConfig);
+        $response = $client->exportAssets($formattedParent, $outputConfig);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
 
@@ -231,11 +226,10 @@ class AssetServiceClientTest extends GeneratedTest
 
         // Mock request
         $formattedParent = $client->projectName('[PROJECT]');
-        $assetNames = [];
         $contentType = ContentType::CONTENT_TYPE_UNSPECIFIED;
         $readTimeWindow = new TimeWindow();
 
-        $response = $client->batchGetAssetsHistory($formattedParent, $assetNames, $contentType, $readTimeWindow);
+        $response = $client->batchGetAssetsHistory($formattedParent, $contentType, $readTimeWindow);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -246,9 +240,6 @@ class AssetServiceClientTest extends GeneratedTest
         $actualValue = $actualRequestObject->getParent();
 
         $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualRequestObject->getAssetNames();
-
-        $this->assertProtobufEquals($assetNames, $actualValue);
         $actualValue = $actualRequestObject->getContentType();
 
         $this->assertProtobufEquals($contentType, $actualValue);
@@ -283,12 +274,11 @@ class AssetServiceClientTest extends GeneratedTest
 
         // Mock request
         $formattedParent = $client->projectName('[PROJECT]');
-        $assetNames = [];
         $contentType = ContentType::CONTENT_TYPE_UNSPECIFIED;
         $readTimeWindow = new TimeWindow();
 
         try {
-            $client->batchGetAssetsHistory($formattedParent, $assetNames, $contentType, $readTimeWindow);
+            $client->batchGetAssetsHistory($formattedParent, $contentType, $readTimeWindow);
             // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {

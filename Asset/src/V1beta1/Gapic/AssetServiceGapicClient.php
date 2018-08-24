@@ -55,9 +55,8 @@ use Google\Protobuf\Timestamp;
  * $assetServiceClient = new AssetServiceClient();
  * try {
  *     $formattedParent = $assetServiceClient->projectName('[PROJECT]');
- *     $contentTypes = [];
  *     $outputConfig = new OutputConfig();
- *     $operationResponse = $assetServiceClient->exportAssets($formattedParent, $contentTypes, $outputConfig);
+ *     $operationResponse = $assetServiceClient->exportAssets($formattedParent, $outputConfig);
  *     $operationResponse->pollUntilComplete();
  *     if ($operationResponse->operationSucceeded()) {
  *         $result = $operationResponse->getResult();
@@ -71,7 +70,7 @@ use Google\Protobuf\Timestamp;
  *     // Alternatively:
  *
  *     // start the operation, keep the operation name, and resume later
- *     $operationResponse = $assetServiceClient->exportAssets($formattedParent, $contentTypes, $outputConfig);
+ *     $operationResponse = $assetServiceClient->exportAssets($formattedParent, $outputConfig);
  *     $operationName = $operationResponse->getName();
  *     // ... do other work
  *     $newOperationResponse = $assetServiceClient->resumeOperation($operationName, 'exportAssets');
@@ -333,9 +332,8 @@ class AssetServiceGapicClient
      * $assetServiceClient = new AssetServiceClient();
      * try {
      *     $formattedParent = $assetServiceClient->projectName('[PROJECT]');
-     *     $contentTypes = [];
      *     $outputConfig = new OutputConfig();
-     *     $operationResponse = $assetServiceClient->exportAssets($formattedParent, $contentTypes, $outputConfig);
+     *     $operationResponse = $assetServiceClient->exportAssets($formattedParent, $outputConfig);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -349,7 +347,7 @@ class AssetServiceGapicClient
      *     // Alternatively:
      *
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $assetServiceClient->exportAssets($formattedParent, $contentTypes, $outputConfig);
+     *     $operationResponse = $assetServiceClient->exportAssets($formattedParent, $outputConfig);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $assetServiceClient->resumeOperation($operationName, 'exportAssets');
@@ -372,9 +370,6 @@ class AssetServiceGapicClient
      * @param string       $parent       Required. The relative name of the root asset. It can only be an
      *                                   organization number (e.g. "organizations/123") or a project number
      *                                   (e.g. "projects/12345").
-     * @param int[]        $contentTypes A list of asset content types. If specified, only matching content will be
-     *                                   returned. Otherwise, no content but the asset name will be returned.
-     *                                   For allowed values, use constants defined on {@see \Google\Cloud\Asset\V1beta1\ContentType}
      * @param OutputConfig $outputConfig Required. Output configuration indicating where the results will be output
      *                                   to. All results will be in newline delimited JSON format.
      * @param array        $optionalArgs {
@@ -388,6 +383,10 @@ class AssetServiceGapicClient
      *     @type string[] $assetTypes
      *          A list of asset types to take a snapshot for. Example:
      *          "google.compute.disk". If specified, only matching assets will be returned.
+     *     @type int[] $contentTypes
+     *          A list of asset content types. If specified, only matching content will be
+     *          returned. Otherwise, no content but the asset name will be returned.
+     *          For allowed values, use constants defined on {@see \Google\Cloud\Asset\V1beta1\ContentType}
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
@@ -400,17 +399,19 @@ class AssetServiceGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function exportAssets($parent, $contentTypes, $outputConfig, array $optionalArgs = [])
+    public function exportAssets($parent, $outputConfig, array $optionalArgs = [])
     {
         $request = new ExportAssetsRequest();
         $request->setParent($parent);
-        $request->setContentTypes($contentTypes);
         $request->setOutputConfig($outputConfig);
         if (isset($optionalArgs['readTime'])) {
             $request->setReadTime($optionalArgs['readTime']);
         }
         if (isset($optionalArgs['assetTypes'])) {
             $request->setAssetTypes($optionalArgs['assetTypes']);
+        }
+        if (isset($optionalArgs['contentTypes'])) {
+            $request->setContentTypes($optionalArgs['contentTypes']);
         }
 
         return $this->startOperationsCall(
@@ -433,24 +434,17 @@ class AssetServiceGapicClient
      * $assetServiceClient = new AssetServiceClient();
      * try {
      *     $formattedParent = $assetServiceClient->projectName('[PROJECT]');
-     *     $assetNames = [];
      *     $contentType = ContentType::CONTENT_TYPE_UNSPECIFIED;
      *     $readTimeWindow = new TimeWindow();
-     *     $response = $assetServiceClient->batchGetAssetsHistory($formattedParent, $assetNames, $contentType, $readTimeWindow);
+     *     $response = $assetServiceClient->batchGetAssetsHistory($formattedParent, $contentType, $readTimeWindow);
      * } finally {
      *     $assetServiceClient->close();
      * }
      * ```
      *
-     * @param string   $parent     Required. The relative name of the root asset. It can only be an
-     *                             organization ID (e.g. "organizations/123") or a project ID
-     *                             (e.g. "projects/12345").
-     * @param string[] $assetNames A list of the full names of the assets. See:
-     *                             https://cloud.google.com/apis/design/resource_names#full_resource_name
-     *                             Example:
-     *                             "//compute.googleapis.com/projects/my_project_123/zones/zone1/instances/instance1".
-     *
-     * The request becomes a no-op if the asset name list is empty.
+     * @param string     $parent         Required. The relative name of the root asset. It can only be an
+     *                                   organization ID (e.g. "organizations/123") or a project ID
+     *                                   (e.g. "projects/12345").
      * @param int        $contentType    Required. The content type.
      *                                   For allowed values, use constants defined on {@see \Google\Cloud\Asset\V1beta1\ContentType}
      * @param TimeWindow $readTimeWindow Required. The time window for the asset history. The returned results
@@ -459,6 +453,13 @@ class AssetServiceGapicClient
      * @param array      $optionalArgs   {
      *                                   Optional.
      *
+     *     @type string[] $assetNames
+     *          A list of the full names of the assets. See:
+     *          https://cloud.google.com/apis/design/resource_names#full_resource_name
+     *          Example:
+     *          "//compute.googleapis.com/projects/my_project_123/zones/zone1/instances/instance1".
+     *
+     *          The request becomes a no-op if the asset name list is empty.
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
@@ -471,13 +472,15 @@ class AssetServiceGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function batchGetAssetsHistory($parent, $assetNames, $contentType, $readTimeWindow, array $optionalArgs = [])
+    public function batchGetAssetsHistory($parent, $contentType, $readTimeWindow, array $optionalArgs = [])
     {
         $request = new BatchGetAssetsHistoryRequest();
         $request->setParent($parent);
-        $request->setAssetNames($assetNames);
         $request->setContentType($contentType);
         $request->setReadTimeWindow($readTimeWindow);
+        if (isset($optionalArgs['assetNames'])) {
+            $request->setAssetNames($optionalArgs['assetNames']);
+        }
 
         return $this->startCall(
             'BatchGetAssetsHistory',
