@@ -17,224 +17,99 @@
 
 namespace Google\Cloud\Bigtable;
 
-use Exception;
-use Google\Cloud\Bigtable\V2\ColumnRange;
+use Google\Cloud\Bigtable\Filter\ChainFilter;
+use Google\Cloud\Bigtable\Filter\ConditionFilter;
+use Google\Cloud\Bigtable\Filter\FamilyFilter;
+use Google\Cloud\Bigtable\Filter\InterleaveFilter;
+use Google\Cloud\Bigtable\Filter\KeyFilter;
+use Google\Cloud\Bigtable\Filter\LimitFilter;
+use Google\Cloud\Bigtable\Filter\OffsetFilter;
+use Google\Cloud\Bigtable\Filter\QualifierFilter;
+use Google\Cloud\Bigtable\Filter\SimpleFilter;
+use Google\Cloud\Bigtable\Filter\TimestampFilter;
+use Google\Cloud\Bigtable\Filter\ValueFilter;
 use Google\Cloud\Bigtable\V2\RowFilter;
-use Google\Cloud\Bigtable\V2\RowFilter\Chain;
-use Google\Cloud\Bigtable\V2\RowFilter\Condition;
-use Google\Cloud\Bigtable\V2\RowFilter\Interleave;
-use Google\Cloud\Bigtable\V2\TimestampRange;
-use Google\Cloud\Bigtable\V2\ValueRange;
 
-class Filter
+abstract class Filter
 {
 
-    /**
-     * @var array RowFilter
-     */
-    private $filters = [];
-
-    private function __construct()
+    public static function chain()
     {
+        return new ChainFilter();
     }
 
-    public function filter()
+    public static function interleave()
     {
-        return new Filter;
+        return new InterleaveFilter();
     }
 
-    public function addFilters(array $filters)
+    public static function condition($predicateFilter)
     {
-        foreach ($filters as $filter) {
-            $this->filters[] = $filter;
-        }
-        return $this;
+        return new ConditionFilter($predicateFilter);
     }
 
-    public function chain()
+    public static function key()
     {
-        if (count($this->filters) < 2) {
-            return $this;
-        }
-        $chain = new Chain;
-        $chain->setFilters($this->filters);
-        $rowFilter = new RowFilter;
-        $rowFilter->setChain($chain);
-        $this->filters = [$rowFilter];
-        return $this;
+        return new KeyFilter();
     }
 
-    public function interleave()
+    public static function family()
     {
-        if (count($this->filters) < 2) {
-            return $this;
-        }
-        $interleave = new Interleave;
-        $interleave->setFilters($this->filters);
-        $rowFilter = new RowFilter;
-        $rowFilter->setInterleave($interleave);
-        $this->filters = [$rowFilter];
-        return $this;
+        return new FamilyFilter();
     }
 
-    public function condition($predicateFilter, $trueFilter, $falseFilter)
+    public static function qualifier()
     {
-        $condition = new Condition;
-        $condition->setPredicateFilter($predicateFilter);
-        $condition->setTrueFilter($trueFilter);
-        $condition->setFalseFilter($falseFilter);
-        $rowFilter = new RowFilter;
-        $rowFilter->setCondition($condition);
-        $this->filters[] = $rowFilter;
-        return $this;
+        return new QualifierFilter();
     }
 
-    public function sink()
+    public static function timestamp()
     {
-        $rowFilter = new RowFilter;
-        $rowFilter->setSink(true);
-        $this->filters[] = $rowFilter;
-        return $this;
+        return new TimestampFilter();
     }
 
-    public function passAllFilter()
+    public static function value()
     {
-        $rowFilter = new RowFilter;
+        return new ValueFilter();
+    }
+
+    public static function offset()
+    {
+        return new OffsetFilter();
+    }
+
+    public static function limit()
+    {
+        return new LimitFilter();
+    }
+
+    public static function pass()
+    {
+        $rowFilter = new RowFilter();
         $rowFilter->setPassAllFilter(true);
-        $this->filters[] = $rowFilter;
-        return $this;
+        return new SimpleFilter($rowFilter);
     }
 
-    public function blockAllFilter()
+    public static function block()
     {
-        $rowFilter = new RowFilter;
+        $rowFilter = new RowFilter();
         $rowFilter->setBlockAllFilter(true);
-        $this->filters[] = $rowFilter;
-        return $this;
+        return new SimpleFilter($rowFilter);
     }
 
-    public function rowKey($value)
+    public static function sink()
     {
-        $rowFilter = new RowFilter;
-        $rowFilter->setRowKeyRegexFilter($value);
-        $this->filters[] = $rowFilter;
-        return $this;
+        $rowFilter = new RowFilter();
+        $rowFilter->setSink(true);
+        return new SimpleFilter($rowFilter);
     }
 
-    public function rowSampleFilter($value)
+    public static function label($value)
     {
-        $rowFilter = new RowFilter;
-        $rowFilter->setRowSampleFilter($value);
-        $this->filters[] = $rowFilter;
-        return $this;
-    }
-
-    public function familyName($value)
-    {
-        $rowFilter = new RowFilter;
-        $rowFilter->setFamilyNameRegexFilter($value);
-        $this->filters[] = $rowFilter;
-        return $this;
-    }
-
-    public function columnRange($familyName, $start, $end, $startInclusive = false, $endInclusive = false)
-    {
-        $columnRange = new ColumnRange;
-        $columnRange->setFamilyName($familyName);
-        if ($startInclusive) {
-            $columnRange->setStartQualifierClosed($start);
-        } else {
-            $columnRange->setStartQualifierOpen($start);
-        }
-        if ($endInclusive) {
-            $columnRange->setEndQualifierClosed($end);
-        } else {
-            $columnRange->setEndQualifierOpen($end);
-        }
-        $rowFilter = new RowFilter;
-        $rowFilter->setColumnRangeFilter($columnRange);
-        $this->filters[] = $rowFilter;
-        return $this;
-    }
-
-    public function timestampRange($startMicros, $endMicros)
-    {
-        $timestampRange = new TimestampRange;
-        $timestampRange->setStartTimestampMicros($startMicros);
-        $timestampRange->setEndTimestampMicros($endMicros);
-        $rowFilter = new RowFilter;
-        $rowFilter->setTimestampRangeFilter($timestampRange);
-        $this->filters[] = $rowFilter;
-        return $this;
-    }
-
-    public function valueRange($start, $end, $startInclusive = false, $endInclusive = false)
-    {
-        $valueRange = new ValueRange;
-        if ($startInclusive) {
-            $valueRange->setStartValueClosed($start);
-        } else {
-            $valueRange->setStartValueOpen($start);
-        }
-        if ($endInclusive) {
-            $valueRange->setEndValueClosed($end);
-        } else {
-            $valueRange->setEndValueOpen($end);
-        }
-        $rowFilter = new RowFilter;
-        $rowFilter->setValueRangeFilter($valueRange);
-        $this->filters[] = $rowFilter;
-        return $this;
-    }
-
-    public function cellsPerRowOffset($value)
-    {
-        $rowFilter = new RowFilter;
-        $rowFilter->setCellsPerRowOffsetFilter($value);
-        $this->filters[] = $rowFilter;
-        return $this;
-    }
-
-    public function cellsPerRowLimit($value)
-    {
-        $rowFilter = new RowFilter;
-        $rowFilter->setCellsPerRowLimitFilter($value);
-        $this->filters[] = $rowFilter;
-        return $this;
-    }
-
-    public function cellsPerColumnLimit($value)
-    {
-        $rowFilter = new RowFilter;
-        $rowFilter->setCellsPerColumnLimitFilter($value);
-        $this->filters[] = $rowFilter;
-        return $this;
-    }
-
-    public function stripValueTransformer()
-    {
-        $rowFilter = new RowFilter;
-        $rowFilter->setStripValueTransformer(true);
-        $this->filters[] = $rowFilter;
-        return $this;
-    }
-
-    public function applyLabelTransformer($value)
-    {
-        $rowFilter = new RowFilter;
+        $rowFilter = new RowFilter();
         $rowFilter->setApplyLabelTransformer($value);
-        $this->filters[] = $rowFilter;
-        return $this;
+        return new SimpleFilter($rowFilter);
     }
 
-    public function get()
-    {
-        if (count($this->filters) > 1) {
-            throw new Exception('There are multiple filter. Forgot to call chain or interleave?');
-        }
-        if (count($this->filters) === 0) {
-            throw new Exception('There are not filters added');
-        }
-        return $this->filters[0];
-    }
+    abstract public function toProto();
 }
