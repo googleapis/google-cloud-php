@@ -8,7 +8,7 @@
         },
         {
             "title": "AssetServiceClient",
-            "type": "asset\/v1beta1\/assetserviceclient",
+            "type": "asset\/v1beta1\/assetserviceclient"
         }
     ],
     "pattern": "asset\/\\w{1,}"
