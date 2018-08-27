@@ -69,9 +69,44 @@ class WriteRequest extends \Google\Protobuf\Internal\Message
      */
     private $labels;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $database
+     *           The database name. In the format:
+     *           `projects/{project_id}/databases/{database_id}`.
+     *           This is only required in the first message.
+     *     @type string $stream_id
+     *           The ID of the write stream to resume.
+     *           This may only be set in the first message. When left empty, a new write
+     *           stream will be created.
+     *     @type \Google\Cloud\Firestore\V1beta1\Write[]|\Google\Protobuf\Internal\RepeatedField $writes
+     *           The writes to apply.
+     *           Always executed atomically and in order.
+     *           This must be empty on the first request.
+     *           This may be empty on the last request.
+     *           This must not be empty on all other requests.
+     *     @type string $stream_token
+     *           A stream token that was previously sent by the server.
+     *           The client should set this field to the token from the most recent
+     *           [WriteResponse][google.firestore.v1beta1.WriteResponse] it has received. This acknowledges that the client has
+     *           received responses up to this token. After sending this token, earlier
+     *           tokens may not be used anymore.
+     *           The server may close the stream if there are too many unacknowledged
+     *           responses.
+     *           Leave this field unset when creating a new stream. To resume a stream at
+     *           a specific point, set this field and the `stream_id` field.
+     *           Leave this field unset when creating a new stream.
+     *     @type array|\Google\Protobuf\Internal\MapField $labels
+     *           Labels associated with this write request.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Firestore\V1Beta1\Firestore::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

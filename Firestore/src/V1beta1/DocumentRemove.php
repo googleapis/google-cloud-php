@@ -40,9 +40,24 @@ class DocumentRemove extends \Google\Protobuf\Internal\Message
      */
     private $read_time = null;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $document
+     *           The resource name of the [Document][google.firestore.v1beta1.Document] that has gone out of view.
+     *     @type int[]|\Google\Protobuf\Internal\RepeatedField $removed_target_ids
+     *           A set of target IDs for targets that previously matched this document.
+     *     @type \Google\Protobuf\Timestamp $read_time
+     *           The read timestamp at which the remove was observed.
+     *           Greater or equal to the `commit_time` of the change/delete/remove.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Firestore\V1Beta1\Write::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

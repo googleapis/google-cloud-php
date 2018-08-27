@@ -111,6 +111,13 @@ return [
                 'method' => 'post',
                 'uriTemplate' => '/v1beta1/{parent=projects/*/databases/*/documents}:listCollectionIds',
                 'body' => '*',
+                'additionalBindings' => [
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1beta1/{parent=projects/*/databases/*/documents/*/**}:listCollectionIds',
+                        'body' => '*',
+                    ],
+                ],
                 'placeholders' => [
                     'parent' => [
                         'getters' => [

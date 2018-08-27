@@ -26,9 +26,23 @@ class MapValue extends \Google\Protobuf\Internal\Message
      */
     private $fields;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type array|\Google\Protobuf\Internal\MapField $fields
+     *           The map's fields.
+     *           The map keys represent field names. Field names matching the regular
+     *           expression `__.*__` are reserved. Reserved field names are forbidden except
+     *           in certain documented contexts. The map keys, represented as UTF-8, must
+     *           not exceed 1,500 bytes and cannot be empty.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Firestore\V1Beta1\Document::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

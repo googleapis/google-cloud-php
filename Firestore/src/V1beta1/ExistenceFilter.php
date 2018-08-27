@@ -30,9 +30,23 @@ class ExistenceFilter extends \Google\Protobuf\Internal\Message
      */
     private $count = 0;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type int $target_id
+     *           The target ID to which this filter applies.
+     *     @type int $count
+     *           The total count of documents that match [target_id][google.firestore.v1beta1.ExistenceFilter.target_id].
+     *           If different from the count of documents in the client that match, the
+     *           client must manually determine which documents no longer match the target.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Firestore\V1Beta1\Write::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

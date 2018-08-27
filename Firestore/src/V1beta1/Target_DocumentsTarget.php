@@ -4,63 +4,13 @@
 
 namespace Google\Cloud\Firestore\V1beta1;
 
-use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
-use Google\Protobuf\Internal\GPBUtil;
-
-/**
- * A target specified by a set of documents names.
- *
- * Generated from protobuf message <code>google.firestore.v1beta1.Target.DocumentsTarget</code>
- */
-class Target_DocumentsTarget extends \Google\Protobuf\Internal\Message
-{
+if (false) {
     /**
-     * The names of the documents to retrieve. In the format:
-     * `projects/{project_id}/databases/{database_id}/documents/{document_path}`.
-     * The request will fail if any of the document is not a child resource of
-     * the given `database`. Duplicate names will be elided.
-     *
-     * Generated from protobuf field <code>repeated string documents = 2;</code>
+     * This class is deprecated. Use Google\Cloud\Firestore\V1beta1\Target\DocumentsTarget instead.
+     * @deprecated
      */
-    private $documents;
-
-    public function __construct() {
-        \GPBMetadata\Google\Firestore\V1Beta1\Firestore::initOnce();
-        parent::__construct();
-    }
-
-    /**
-     * The names of the documents to retrieve. In the format:
-     * `projects/{project_id}/databases/{database_id}/documents/{document_path}`.
-     * The request will fail if any of the document is not a child resource of
-     * the given `database`. Duplicate names will be elided.
-     *
-     * Generated from protobuf field <code>repeated string documents = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
-     */
-    public function getDocuments()
-    {
-        return $this->documents;
-    }
-
-    /**
-     * The names of the documents to retrieve. In the format:
-     * `projects/{project_id}/databases/{database_id}/documents/{document_path}`.
-     * The request will fail if any of the document is not a child resource of
-     * the given `database`. Duplicate names will be elided.
-     *
-     * Generated from protobuf field <code>repeated string documents = 2;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
-     * @return $this
-     */
-    public function setDocuments($var)
-    {
-        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
-        $this->documents = $arr;
-
-        return $this;
-    }
-
+    class Target_DocumentsTarget {}
 }
+class_exists(Target\DocumentsTarget::class);
+@trigger_error('Google\Cloud\Firestore\V1beta1\Target_DocumentsTarget is deprecated and will be removed in the next major release. Use Google\Cloud\Firestore\V1beta1\Target\DocumentsTarget instead', E_USER_DEPRECATED);
 

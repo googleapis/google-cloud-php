@@ -17,9 +17,49 @@ class Value extends \Google\Protobuf\Internal\Message
 {
     protected $value_type;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type int $null_value
+     *           A null value.
+     *     @type bool $boolean_value
+     *           A boolean value.
+     *     @type int|string $integer_value
+     *           An integer value.
+     *     @type float $double_value
+     *           A double value.
+     *     @type \Google\Protobuf\Timestamp $timestamp_value
+     *           A timestamp value.
+     *           Precise only to microseconds. When stored, any additional precision is
+     *           rounded down.
+     *     @type string $string_value
+     *           A string value.
+     *           The string, represented as UTF-8, must not exceed 1 MiB - 89 bytes.
+     *           Only the first 1,500 bytes of the UTF-8 representation are considered by
+     *           queries.
+     *     @type string $bytes_value
+     *           A bytes value.
+     *           Must not exceed 1 MiB - 89 bytes.
+     *           Only the first 1,500 bytes are considered by queries.
+     *     @type string $reference_value
+     *           A reference to a document. For example:
+     *           `projects/{project_id}/databases/{database_id}/documents/{document_path}`.
+     *     @type \Google\Type\LatLng $geo_point_value
+     *           A geo point value representing a point on the surface of Earth.
+     *     @type \Google\Cloud\Firestore\V1beta1\ArrayValue $array_value
+     *           An array value.
+     *           Cannot directly contain another array value, though can contain an
+     *           map which contains another array.
+     *     @type \Google\Cloud\Firestore\V1beta1\MapValue $map_value
+     *           A map value.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Firestore\V1Beta1\Document::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**
@@ -274,7 +314,8 @@ class Value extends \Google\Protobuf\Internal\Message
 
     /**
      * An array value.
-     * Cannot contain another array value.
+     * Cannot directly contain another array value, though can contain an
+     * map which contains another array.
      *
      * Generated from protobuf field <code>.google.firestore.v1beta1.ArrayValue array_value = 9;</code>
      * @return \Google\Cloud\Firestore\V1beta1\ArrayValue
@@ -286,7 +327,8 @@ class Value extends \Google\Protobuf\Internal\Message
 
     /**
      * An array value.
-     * Cannot contain another array value.
+     * Cannot directly contain another array value, though can contain an
+     * map which contains another array.
      *
      * Generated from protobuf field <code>.google.firestore.v1beta1.ArrayValue array_value = 9;</code>
      * @param \Google\Cloud\Firestore\V1beta1\ArrayValue $var

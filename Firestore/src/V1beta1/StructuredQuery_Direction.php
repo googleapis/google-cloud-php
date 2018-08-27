@@ -4,30 +4,13 @@
 
 namespace Google\Cloud\Firestore\V1beta1;
 
-/**
- * A sort direction.
- *
- * Protobuf enum <code>Google\Firestore\V1beta1\StructuredQuery\Direction</code>
- */
-class StructuredQuery_Direction
-{
+if (false) {
     /**
-     * Unspecified.
-     *
-     * Generated from protobuf enum <code>DIRECTION_UNSPECIFIED = 0;</code>
+     * This class is deprecated. Use Google\Cloud\Firestore\V1beta1\StructuredQuery\Direction instead.
+     * @deprecated
      */
-    const DIRECTION_UNSPECIFIED = 0;
-    /**
-     * Ascending.
-     *
-     * Generated from protobuf enum <code>ASCENDING = 1;</code>
-     */
-    const ASCENDING = 1;
-    /**
-     * Descending.
-     *
-     * Generated from protobuf enum <code>DESCENDING = 2;</code>
-     */
-    const DESCENDING = 2;
+    class StructuredQuery_Direction {}
 }
+class_exists(StructuredQuery\Direction::class);
+@trigger_error('Google\Cloud\Firestore\V1beta1\StructuredQuery_Direction is deprecated and will be removed in the next major release. Use Google\Cloud\Firestore\V1beta1\StructuredQuery\Direction instead', E_USER_DEPRECATED);
 

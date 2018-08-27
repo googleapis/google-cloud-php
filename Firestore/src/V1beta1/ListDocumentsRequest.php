@@ -72,9 +72,49 @@ class ListDocumentsRequest extends \Google\Protobuf\Internal\Message
     private $show_missing = false;
     protected $consistency_selector;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $parent
+     *           The parent resource name. In the format:
+     *           `projects/{project_id}/databases/{database_id}/documents` or
+     *           `projects/{project_id}/databases/{database_id}/documents/{document_path}`.
+     *           For example:
+     *           `projects/my-project/databases/my-database/documents` or
+     *           `projects/my-project/databases/my-database/documents/chatrooms/my-chatroom`
+     *     @type string $collection_id
+     *           The collection ID, relative to `parent`, to list. For example: `chatrooms`
+     *           or `messages`.
+     *     @type int $page_size
+     *           The maximum number of documents to return.
+     *     @type string $page_token
+     *           The `next_page_token` value returned from a previous List request, if any.
+     *     @type string $order_by
+     *           The order to sort results by. For example: `priority desc, name`.
+     *     @type \Google\Cloud\Firestore\V1beta1\DocumentMask $mask
+     *           The fields to return. If not set, returns all fields.
+     *           If a document has a field that is not present in this mask, that field
+     *           will not be returned in the response.
+     *     @type string $transaction
+     *           Reads documents in a transaction.
+     *     @type \Google\Protobuf\Timestamp $read_time
+     *           Reads documents as they were at the given time.
+     *           This may not be older than 60 seconds.
+     *     @type bool $show_missing
+     *           If the list should show missing documents. A missing document is a
+     *           document that does not exist but has sub-documents. These documents will
+     *           be returned with a key but will not have fields, [Document.create_time][google.firestore.v1beta1.Document.create_time],
+     *           or [Document.update_time][google.firestore.v1beta1.Document.update_time] set.
+     *           Requests with `show_missing` may not specify `where` or
+     *           `order_by`.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Firestore\V1Beta1\Firestore::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

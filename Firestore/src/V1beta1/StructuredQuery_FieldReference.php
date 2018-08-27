@@ -4,48 +4,13 @@
 
 namespace Google\Cloud\Firestore\V1beta1;
 
-use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
-use Google\Protobuf\Internal\GPBUtil;
-
-/**
- * A reference to a field, such as `max(messages.time) as max_time`.
- *
- * Generated from protobuf message <code>google.firestore.v1beta1.StructuredQuery.FieldReference</code>
- */
-class StructuredQuery_FieldReference extends \Google\Protobuf\Internal\Message
-{
+if (false) {
     /**
-     * Generated from protobuf field <code>string field_path = 2;</code>
+     * This class is deprecated. Use Google\Cloud\Firestore\V1beta1\StructuredQuery\FieldReference instead.
+     * @deprecated
      */
-    private $field_path = '';
-
-    public function __construct() {
-        \GPBMetadata\Google\Firestore\V1Beta1\Query::initOnce();
-        parent::__construct();
-    }
-
-    /**
-     * Generated from protobuf field <code>string field_path = 2;</code>
-     * @return string
-     */
-    public function getFieldPath()
-    {
-        return $this->field_path;
-    }
-
-    /**
-     * Generated from protobuf field <code>string field_path = 2;</code>
-     * @param string $var
-     * @return $this
-     */
-    public function setFieldPath($var)
-    {
-        GPBUtil::checkString($var, True);
-        $this->field_path = $var;
-
-        return $this;
-    }
-
+    class StructuredQuery_FieldReference {}
 }
+class_exists(StructuredQuery\FieldReference::class);
+@trigger_error('Google\Cloud\Firestore\V1beta1\StructuredQuery_FieldReference is deprecated and will be removed in the next major release. Use Google\Cloud\Firestore\V1beta1\StructuredQuery\FieldReference instead', E_USER_DEPRECATED);
 

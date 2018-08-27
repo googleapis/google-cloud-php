@@ -4,118 +4,13 @@
 
 namespace Google\Cloud\Firestore\V1beta1;
 
-use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
-use Google\Protobuf\Internal\GPBUtil;
-
-/**
- * A filter on a specific field.
- *
- * Generated from protobuf message <code>google.firestore.v1beta1.StructuredQuery.FieldFilter</code>
- */
-class StructuredQuery_FieldFilter extends \Google\Protobuf\Internal\Message
-{
+if (false) {
     /**
-     * The field to filter by.
-     *
-     * Generated from protobuf field <code>.google.firestore.v1beta1.StructuredQuery.FieldReference field = 1;</code>
+     * This class is deprecated. Use Google\Cloud\Firestore\V1beta1\StructuredQuery\FieldFilter instead.
+     * @deprecated
      */
-    private $field = null;
-    /**
-     * The operator to filter by.
-     *
-     * Generated from protobuf field <code>.google.firestore.v1beta1.StructuredQuery.FieldFilter.Operator op = 2;</code>
-     */
-    private $op = 0;
-    /**
-     * The value to compare to.
-     *
-     * Generated from protobuf field <code>.google.firestore.v1beta1.Value value = 3;</code>
-     */
-    private $value = null;
-
-    public function __construct() {
-        \GPBMetadata\Google\Firestore\V1Beta1\Query::initOnce();
-        parent::__construct();
-    }
-
-    /**
-     * The field to filter by.
-     *
-     * Generated from protobuf field <code>.google.firestore.v1beta1.StructuredQuery.FieldReference field = 1;</code>
-     * @return \Google\Cloud\Firestore\V1beta1\StructuredQuery_FieldReference
-     */
-    public function getField()
-    {
-        return $this->field;
-    }
-
-    /**
-     * The field to filter by.
-     *
-     * Generated from protobuf field <code>.google.firestore.v1beta1.StructuredQuery.FieldReference field = 1;</code>
-     * @param \Google\Cloud\Firestore\V1beta1\StructuredQuery_FieldReference $var
-     * @return $this
-     */
-    public function setField($var)
-    {
-        GPBUtil::checkMessage($var, \Google\Cloud\Firestore\V1beta1\StructuredQuery_FieldReference::class);
-        $this->field = $var;
-
-        return $this;
-    }
-
-    /**
-     * The operator to filter by.
-     *
-     * Generated from protobuf field <code>.google.firestore.v1beta1.StructuredQuery.FieldFilter.Operator op = 2;</code>
-     * @return int
-     */
-    public function getOp()
-    {
-        return $this->op;
-    }
-
-    /**
-     * The operator to filter by.
-     *
-     * Generated from protobuf field <code>.google.firestore.v1beta1.StructuredQuery.FieldFilter.Operator op = 2;</code>
-     * @param int $var
-     * @return $this
-     */
-    public function setOp($var)
-    {
-        GPBUtil::checkEnum($var, \Google\Cloud\Firestore\V1beta1\StructuredQuery_FieldFilter_Operator::class);
-        $this->op = $var;
-
-        return $this;
-    }
-
-    /**
-     * The value to compare to.
-     *
-     * Generated from protobuf field <code>.google.firestore.v1beta1.Value value = 3;</code>
-     * @return \Google\Cloud\Firestore\V1beta1\Value
-     */
-    public function getValue()
-    {
-        return $this->value;
-    }
-
-    /**
-     * The value to compare to.
-     *
-     * Generated from protobuf field <code>.google.firestore.v1beta1.Value value = 3;</code>
-     * @param \Google\Cloud\Firestore\V1beta1\Value $var
-     * @return $this
-     */
-    public function setValue($var)
-    {
-        GPBUtil::checkMessage($var, \Google\Cloud\Firestore\V1beta1\Value::class);
-        $this->value = $var;
-
-        return $this;
-    }
-
+    class StructuredQuery_FieldFilter {}
 }
+class_exists(StructuredQuery\FieldFilter::class);
+@trigger_error('Google\Cloud\Firestore\V1beta1\StructuredQuery_FieldFilter is deprecated and will be removed in the next major release. Use Google\Cloud\Firestore\V1beta1\StructuredQuery\FieldFilter instead', E_USER_DEPRECATED);
 

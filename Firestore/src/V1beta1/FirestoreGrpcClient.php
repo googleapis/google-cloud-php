@@ -2,7 +2,7 @@
 // GENERATED CODE -- DO NOT EDIT!
 
 // Original file comments:
-// Copyright 2017 Google Inc.
+// Copyright 2018 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -19,8 +19,6 @@
 namespace Google\Cloud\Firestore\V1beta1;
 
 /**
- * Specification of the Firestore API.
- *
  * The Cloud Firestore service.
  *
  * This service exposes several types of comparable timestamps:

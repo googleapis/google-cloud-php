@@ -4,24 +4,13 @@
 
 namespace Google\Cloud\Firestore\V1beta1;
 
-/**
- * A composite filter operator.
- *
- * Protobuf enum <code>Google\Firestore\V1beta1\StructuredQuery\CompositeFilter\Operator</code>
- */
-class StructuredQuery_CompositeFilter_Operator
-{
+if (false) {
     /**
-     * Unspecified. This value must not be used.
-     *
-     * Generated from protobuf enum <code>OPERATOR_UNSPECIFIED = 0;</code>
+     * This class is deprecated. Use Google\Cloud\Firestore\V1beta1\StructuredQuery\CompositeFilter\Operator instead.
+     * @deprecated
      */
-    const OPERATOR_UNSPECIFIED = 0;
-    /**
-     * The results are required to satisfy each of the combined filters.
-     *
-     * Generated from protobuf enum <code>AND = 1;</code>
-     */
-    const PBAND = 1;
+    class StructuredQuery_CompositeFilter_Operator {}
 }
+class_exists(StructuredQuery\CompositeFilter\Operator::class);
+@trigger_error('Google\Cloud\Firestore\V1beta1\StructuredQuery_CompositeFilter_Operator is deprecated and will be removed in the next major release. Use Google\Cloud\Firestore\V1beta1\StructuredQuery\CompositeFilter\Operator instead', E_USER_DEPRECATED);
 

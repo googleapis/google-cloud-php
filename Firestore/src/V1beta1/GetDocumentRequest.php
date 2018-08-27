@@ -32,9 +32,29 @@ class GetDocumentRequest extends \Google\Protobuf\Internal\Message
     private $mask = null;
     protected $consistency_selector;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $name
+     *           The resource name of the Document to get. In the format:
+     *           `projects/{project_id}/databases/{database_id}/documents/{document_path}`.
+     *     @type \Google\Cloud\Firestore\V1beta1\DocumentMask $mask
+     *           The fields to return. If not set, returns all fields.
+     *           If the document has a field that is not present in this mask, that field
+     *           will not be returned in the response.
+     *     @type string $transaction
+     *           Reads the document in a transaction.
+     *     @type \Google\Protobuf\Timestamp $read_time
+     *           Reads the version of the document at the given time.
+     *           This may not be older than 60 seconds.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Firestore\V1Beta1\Firestore::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

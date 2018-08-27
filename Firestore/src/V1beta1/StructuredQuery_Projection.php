@@ -4,60 +4,13 @@
 
 namespace Google\Cloud\Firestore\V1beta1;
 
-use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
-use Google\Protobuf\Internal\GPBUtil;
-
-/**
- * The projection of document's fields to return.
- *
- * Generated from protobuf message <code>google.firestore.v1beta1.StructuredQuery.Projection</code>
- */
-class StructuredQuery_Projection extends \Google\Protobuf\Internal\Message
-{
+if (false) {
     /**
-     * The fields to return.
-     * If empty, all fields are returned. To only return the name
-     * of the document, use `['__name__']`.
-     *
-     * Generated from protobuf field <code>repeated .google.firestore.v1beta1.StructuredQuery.FieldReference fields = 2;</code>
+     * This class is deprecated. Use Google\Cloud\Firestore\V1beta1\StructuredQuery\Projection instead.
+     * @deprecated
      */
-    private $fields;
-
-    public function __construct() {
-        \GPBMetadata\Google\Firestore\V1Beta1\Query::initOnce();
-        parent::__construct();
-    }
-
-    /**
-     * The fields to return.
-     * If empty, all fields are returned. To only return the name
-     * of the document, use `['__name__']`.
-     *
-     * Generated from protobuf field <code>repeated .google.firestore.v1beta1.StructuredQuery.FieldReference fields = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
-     */
-    public function getFields()
-    {
-        return $this->fields;
-    }
-
-    /**
-     * The fields to return.
-     * If empty, all fields are returned. To only return the name
-     * of the document, use `['__name__']`.
-     *
-     * Generated from protobuf field <code>repeated .google.firestore.v1beta1.StructuredQuery.FieldReference fields = 2;</code>
-     * @param \Google\Cloud\Firestore\V1beta1\StructuredQuery_FieldReference[]|\Google\Protobuf\Internal\RepeatedField $var
-     * @return $this
-     */
-    public function setFields($var)
-    {
-        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Firestore\V1beta1\StructuredQuery_FieldReference::class);
-        $this->fields = $arr;
-
-        return $this;
-    }
-
+    class StructuredQuery_Projection {}
 }
+class_exists(StructuredQuery\Projection::class);
+@trigger_error('Google\Cloud\Firestore\V1beta1\StructuredQuery_Projection is deprecated and will be removed in the next major release. Use Google\Cloud\Firestore\V1beta1\StructuredQuery\Projection instead', E_USER_DEPRECATED);
 

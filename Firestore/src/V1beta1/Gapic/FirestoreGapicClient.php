@@ -461,18 +461,21 @@ class FirestoreGapicClient
      * try {
      *     $formattedParent = $firestoreClient->anyPathName('[PROJECT]', '[DATABASE]', '[DOCUMENT]', '[ANY_PATH]');
      *     $collectionId = '';
-     *     // Iterate through all elements
-     *     $pagedResponse = $firestoreClient->listDocuments($formattedParent, $collectionId);
-     *     foreach ($pagedResponse->iterateAllElements() as $element) {
-     *         // doSomethingWith($element);
-     *     }
-     *
-     *     // OR iterate over pages of elements
+     *     // Iterate over pages of elements
      *     $pagedResponse = $firestoreClient->listDocuments($formattedParent, $collectionId);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
      *         }
+     *     }
+     *
+     *
+     *     // Alternatively:
+     *
+     *     // Iterate through all elements
+     *     $pagedResponse = $firestoreClient->listDocuments($formattedParent, $collectionId);
+     *     foreach ($pagedResponse->iterateAllElements() as $element) {
+     *         // doSomethingWith($element);
      *     }
      * } finally {
      *     $firestoreClient->close();
@@ -1060,19 +1063,22 @@ class FirestoreGapicClient
      *     $formattedDatabase = $firestoreClient->databaseRootName('[PROJECT]', '[DATABASE]');
      *     $request = new WriteRequest();
      *     $request->setDatabase($formattedDatabase);
-     *     $requests = [$request];
-     *
      *     // Write all requests to the server, then read all responses until the
      *     // stream is complete
+     *     $requests = [$request];
      *     $stream = $firestoreClient->write();
      *     $stream->writeAll($requests);
      *     foreach ($stream->closeWriteAndReadAll() as $element) {
      *         // doSomethingWith($element);
      *     }
      *
-     *     // OR write requests individually, making read() calls if
+     *
+     *     // Alternatively:
+     *
+     *     // Write requests individually, making read() calls if
      *     // required. Call closeWrite() once writes are complete, and read the
      *     // remaining responses from the server.
+     *     $requests = [$request];
      *     $stream = $firestoreClient->write();
      *     foreach ($requests as $request) {
      *         $stream->write($request);
@@ -1124,19 +1130,22 @@ class FirestoreGapicClient
      *     $formattedDatabase = $firestoreClient->databaseRootName('[PROJECT]', '[DATABASE]');
      *     $request = new ListenRequest();
      *     $request->setDatabase($formattedDatabase);
-     *     $requests = [$request];
-     *
      *     // Write all requests to the server, then read all responses until the
      *     // stream is complete
+     *     $requests = [$request];
      *     $stream = $firestoreClient->listen();
      *     $stream->writeAll($requests);
      *     foreach ($stream->closeWriteAndReadAll() as $element) {
      *         // doSomethingWith($element);
      *     }
      *
-     *     // OR write requests individually, making read() calls if
+     *
+     *     // Alternatively:
+     *
+     *     // Write requests individually, making read() calls if
      *     // required. Call closeWrite() once writes are complete, and read the
      *     // remaining responses from the server.
+     *     $requests = [$request];
      *     $stream = $firestoreClient->listen();
      *     foreach ($requests as $request) {
      *         $stream->write($request);
@@ -1186,18 +1195,21 @@ class FirestoreGapicClient
      * $firestoreClient = new FirestoreClient();
      * try {
      *     $formattedParent = $firestoreClient->anyPathName('[PROJECT]', '[DATABASE]', '[DOCUMENT]', '[ANY_PATH]');
-     *     // Iterate through all elements
-     *     $pagedResponse = $firestoreClient->listCollectionIds($formattedParent);
-     *     foreach ($pagedResponse->iterateAllElements() as $element) {
-     *         // doSomethingWith($element);
-     *     }
-     *
-     *     // OR iterate over pages of elements
+     *     // Iterate over pages of elements
      *     $pagedResponse = $firestoreClient->listCollectionIds($formattedParent);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
      *         }
+     *     }
+     *
+     *
+     *     // Alternatively:
+     *
+     *     // Iterate through all elements
+     *     $pagedResponse = $firestoreClient->listCollectionIds($formattedParent);
+     *     foreach ($pagedResponse->iterateAllElements() as $element) {
+     *         // doSomethingWith($element);
      *     }
      * } finally {
      *     $firestoreClient->close();

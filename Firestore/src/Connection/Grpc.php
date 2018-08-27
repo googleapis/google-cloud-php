@@ -24,7 +24,7 @@ use Google\Cloud\Firestore\FirestoreClient as ManualFirestoreClient;
 use Google\Cloud\Firestore\V1beta1\DocumentMask;
 use Google\Cloud\Firestore\V1beta1\StructuredQuery;
 use Google\Cloud\Firestore\V1beta1\TransactionOptions;
-use Google\Cloud\Firestore\V1beta1\TransactionOptions_ReadWrite;
+use Google\Cloud\Firestore\V1beta1\TransactionOptions\ReadWrite;
 use Google\Cloud\Firestore\V1beta1\Write;
 use Google\ApiCore\Serializer;
 
@@ -104,7 +104,7 @@ class Grpc implements ConnectionInterface
      */
     public function beginTransaction(array $args)
     {
-        $rw = new TransactionOptions_ReadWrite;
+        $rw = new ReadWrite;
         $retry = $this->pluck('retryTransaction', $args, false);
         if ($retry) {
             $rw->setRetryTransaction($retry);

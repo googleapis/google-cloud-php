@@ -17,9 +17,23 @@ class Precondition extends \Google\Protobuf\Internal\Message
 {
     protected $condition_type;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type bool $exists
+     *           When set to `true`, the target document must exist.
+     *           When set to `false`, the target document must not exist.
+     *     @type \Google\Protobuf\Timestamp $update_time
+     *           When set, the target document must exist and have been last updated at
+     *           that time.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Firestore\V1Beta1\Common::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

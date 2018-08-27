@@ -32,9 +32,25 @@ class WriteResult extends \Google\Protobuf\Internal\Message
      */
     private $transform_results;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type \Google\Protobuf\Timestamp $update_time
+     *           The last update time of the document after applying the write. Not set
+     *           after a `delete`.
+     *           If the write did not actually change the document, this will be the
+     *           previous update_time.
+     *     @type \Google\Cloud\Firestore\V1beta1\Value[]|\Google\Protobuf\Internal\RepeatedField $transform_results
+     *           The results of applying each [DocumentTransform.FieldTransform][google.firestore.v1beta1.DocumentTransform.FieldTransform], in the
+     *           same order.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Firestore\V1Beta1\Write::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

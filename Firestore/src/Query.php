@@ -23,10 +23,10 @@ use Google\Cloud\Firestore\Connection\ConnectionInterface;
 use Google\Cloud\Firestore\DocumentSnapshot;
 use Google\Cloud\Firestore\FieldValue;
 use Google\Cloud\Firestore\SnapshotTrait;
-use Google\Cloud\Firestore\V1beta1\StructuredQuery_CompositeFilter_Operator;
-use Google\Cloud\Firestore\V1beta1\StructuredQuery_Direction;
-use Google\Cloud\Firestore\V1beta1\StructuredQuery_FieldFilter_Operator;
-use Google\Cloud\Firestore\V1beta1\StructuredQuery_UnaryFilter_Operator;
+use Google\Cloud\Firestore\V1beta1\StructuredQuery\CompositeFilter\Operator;
+use Google\Cloud\Firestore\V1beta1\StructuredQuery\Direction;
+use Google\Cloud\Firestore\V1beta1\StructuredQuery\FieldFilter\Operator as FieldFilterOperator;
+use Google\Cloud\Firestore\V1beta1\StructuredQuery\UnaryFilter\Operator as UnaryFilterOperator;
 
 /**
  * A Cloud Firestore Query.
@@ -49,17 +49,17 @@ class Query
     use DebugInfoTrait;
     use SnapshotTrait;
 
-    const OP_LESS_THAN = StructuredQuery_FieldFilter_Operator::LESS_THAN;
-    const OP_LESS_THAN_OR_EQUAL = StructuredQuery_FieldFilter_Operator::LESS_THAN_OR_EQUAL;
-    const OP_GREATER_THAN = StructuredQuery_FieldFilter_Operator::GREATER_THAN;
-    const OP_GREATER_THAN_OR_EQUAL = StructuredQuery_FieldFilter_Operator::GREATER_THAN_OR_EQUAL;
-    const OP_EQUAL = StructuredQuery_FieldFilter_Operator::EQUAL;
+    const OP_LESS_THAN = FieldFilterOperator::LESS_THAN;
+    const OP_LESS_THAN_OR_EQUAL = FieldFilterOperator::LESS_THAN_OR_EQUAL;
+    const OP_GREATER_THAN = FieldFilterOperator::GREATER_THAN;
+    const OP_GREATER_THAN_OR_EQUAL = FieldFilterOperator::GREATER_THAN_OR_EQUAL;
+    const OP_EQUAL = FieldFilterOperator::EQUAL;
 
-    const OP_NAN = StructuredQuery_UnaryFilter_Operator::IS_NAN;
-    const OP_NULL = StructuredQuery_UnaryFilter_Operator::IS_NULL;
+    const OP_NAN = UnaryFilterOperator::IS_NAN;
+    const OP_NULL = UnaryFilterOperator::IS_NULL;
 
-    const DIR_ASCENDING = StructuredQuery_Direction::ASCENDING;
-    const DIR_DESCENDING = StructuredQuery_Direction::DESCENDING;
+    const DIR_ASCENDING = Direction::ASCENDING;
+    const DIR_DESCENDING = Direction::DESCENDING;
 
     const DOCUMENT_ID = '__name__';
 
@@ -249,7 +249,7 @@ class Query
 
         if (!$fields) {
             $fields[] = [
-                'fieldPath' => '__name__'
+                'fieldPath' => self::DOCUMENT_ID
             ];
         }
 
@@ -337,7 +337,7 @@ class Query
         $query = [
             'where' => [
                 'compositeFilter' => [
-                    'op' => StructuredQuery_CompositeFilter_Operator::PBAND,
+                    'op' => Operator::PBAND,
                     'filters' => [
                         $filter
                     ]

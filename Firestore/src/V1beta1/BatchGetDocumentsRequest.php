@@ -41,9 +41,39 @@ class BatchGetDocumentsRequest extends \Google\Protobuf\Internal\Message
     private $mask = null;
     protected $consistency_selector;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $database
+     *           The database name. In the format:
+     *           `projects/{project_id}/databases/{database_id}`.
+     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $documents
+     *           The names of the documents to retrieve. In the format:
+     *           `projects/{project_id}/databases/{database_id}/documents/{document_path}`.
+     *           The request will fail if any of the document is not a child resource of the
+     *           given `database`. Duplicate names will be elided.
+     *     @type \Google\Cloud\Firestore\V1beta1\DocumentMask $mask
+     *           The fields to return. If not set, returns all fields.
+     *           If a document has a field that is not present in this mask, that field will
+     *           not be returned in the response.
+     *     @type string $transaction
+     *           Reads documents in a transaction.
+     *     @type \Google\Cloud\Firestore\V1beta1\TransactionOptions $new_transaction
+     *           Starts a new transaction and reads the documents.
+     *           Defaults to a read-only transaction.
+     *           The new transaction ID will be returned as the first response in the
+     *           stream.
+     *     @type \Google\Protobuf\Timestamp $read_time
+     *           Reads documents as they were at the given time.
+     *           This may not be older than 60 seconds.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Firestore\V1Beta1\Firestore::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

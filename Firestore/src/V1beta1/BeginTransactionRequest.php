@@ -30,9 +30,23 @@ class BeginTransactionRequest extends \Google\Protobuf\Internal\Message
      */
     private $options = null;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $database
+     *           The database name. In the format:
+     *           `projects/{project_id}/databases/{database_id}`.
+     *     @type \Google\Cloud\Firestore\V1beta1\TransactionOptions $options
+     *           The options for the transaction.
+     *           Defaults to a read-write transaction.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Firestore\V1Beta1\Firestore::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

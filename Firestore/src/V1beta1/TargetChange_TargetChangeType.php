@@ -4,50 +4,13 @@
 
 namespace Google\Cloud\Firestore\V1beta1;
 
-/**
- * The type of change.
- *
- * Protobuf enum <code>Google\Firestore\V1beta1\TargetChange\TargetChangeType</code>
- */
-class TargetChange_TargetChangeType
-{
+if (false) {
     /**
-     * No change has occurred. Used only to send an updated `resume_token`.
-     *
-     * Generated from protobuf enum <code>NO_CHANGE = 0;</code>
+     * This class is deprecated. Use Google\Cloud\Firestore\V1beta1\TargetChange\TargetChangeType instead.
+     * @deprecated
      */
-    const NO_CHANGE = 0;
-    /**
-     * The targets have been added.
-     *
-     * Generated from protobuf enum <code>ADD = 1;</code>
-     */
-    const ADD = 1;
-    /**
-     * The targets have been removed.
-     *
-     * Generated from protobuf enum <code>REMOVE = 2;</code>
-     */
-    const REMOVE = 2;
-    /**
-     * The targets reflect all changes committed before the targets were added
-     * to the stream.
-     * This will be sent after or with a `read_time` that is greater than or
-     * equal to the time at which the targets were added.
-     * Listeners can wait for this change if read-after-write semantics
-     * are desired.
-     *
-     * Generated from protobuf enum <code>CURRENT = 3;</code>
-     */
-    const CURRENT = 3;
-    /**
-     * The targets have been reset, and a new initial state for the targets
-     * will be returned in subsequent changes.
-     * After the initial state is complete, `CURRENT` will be returned even
-     * if the target was previously indicated to be `CURRENT`.
-     *
-     * Generated from protobuf enum <code>RESET = 4;</code>
-     */
-    const RESET = 4;
+    class TargetChange_TargetChangeType {}
 }
+class_exists(TargetChange\TargetChangeType::class);
+@trigger_error('Google\Cloud\Firestore\V1beta1\TargetChange_TargetChangeType is deprecated and will be removed in the next major release. Use Google\Cloud\Firestore\V1beta1\TargetChange\TargetChangeType instead', E_USER_DEPRECATED);
 
