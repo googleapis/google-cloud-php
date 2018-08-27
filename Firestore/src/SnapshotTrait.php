@@ -152,7 +152,8 @@ trait SnapshotTrait
         array $paths,
         array $options
     ) {
-        array_walk($paths, function (&$path) use ($projectId, $database) {
+        $documentNames = [];
+        foreach ($paths as $path) {
             if ($path instanceof DocumentReference) {
                 $path = $path->name();
             }
@@ -166,11 +167,13 @@ trait SnapshotTrait
             $path = $this->isRelative($path)
                 ? $this->fullName($projectId, $database, $path)
                 : $path;
-        });
+
+            $documentNames[] = $path;
+        }
 
         $documents = $this->connection->batchGetDocuments([
             'database' => $this->databaseName($projectId, $database),
-            'documents' => $paths,
+            'documents' => $documentNames,
         ] + $options);
 
         $res = [];
@@ -201,7 +204,7 @@ trait SnapshotTrait
         }
 
         $out = [];
-        foreach ($paths as $path) {
+        foreach ($documentNames as $path) {
             $out[] = $res[$path];
         }
 
