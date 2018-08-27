@@ -21,6 +21,9 @@ use Google\Cloud\Bigtable\Filter\Range;
 use Google\Cloud\Bigtable\V2\RowFilter;
 use Google\Cloud\Bigtable\V2\TimestampRange;
 
+/**
+ * Matches only cells with microsecond timestamps within the given range.
+ */
 class TimestampRangeFilter extends Range
 {
 

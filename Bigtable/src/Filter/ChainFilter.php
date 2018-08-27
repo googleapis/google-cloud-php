@@ -29,6 +29,12 @@ class ChainFilter extends Filter
      */
     private $filters = [];
 
+    /**
+     * Adds filter to the chain.
+     *
+     * @param Filter $filter Filter to be added.
+     * @return $this
+     */
     public function filter($filter)
     {
         if ($filter === null) {

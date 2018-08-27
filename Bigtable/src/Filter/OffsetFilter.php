@@ -22,6 +22,11 @@ use Google\Cloud\Bigtable\V2\RowFilter;
 
 class OffsetFilter
 {
+    /**
+     * Skips the first N cells of each row, matching all subsequent cells. If duplicate cells are
+     * present, as is possible when using an {@see InterleaveFilter}, each copy of the cell is
+     * counted separately.
+     */
     public function cellsPerRow($count)
     {
         $rowFilter = new RowFilter();

@@ -29,6 +29,12 @@ class InterleaveFilter extends Filter
      */
     private $filters = [];
 
+    /**
+     * Adds filter to interleave filter.
+     *
+     * @param Filter $filter filter to be added.
+     * @throws Exception
+     */
     public function filter($filter)
     {
         if ($filter === null) {

@@ -37,6 +37,12 @@ class ConditionFilter extends Filter
      */
     private $falseFilter = null;
 
+    /**
+     * Constructs a ConditionFilter class.
+     *
+     * @param Filter $predicateFilter Predicate filter for the condition.
+     * @throws Exception when $predicateFilter parameter is null.
+     */
     public function __construct($predicateFilter)
     {
         if ($predicateFilter === null) {
@@ -45,6 +51,12 @@ class ConditionFilter extends Filter
         $this->predicateFilter = $predicateFilter->toProto();
     }
 
+    /**
+     * Adds true filter to the condition flter.
+     *
+     * @param Filter $trueFilter Filter to be evaluted when predicate evalutes to true.
+     * @throws Exception when $trueFilter parameter is null.
+     */
     public function then($trueFilter)
     {
         if ($trueFilter === null) {
@@ -54,6 +66,12 @@ class ConditionFilter extends Filter
         return $this;
     }
 
+    /**
+     * Adds false filter to condition filter.
+     *
+     * @param Filter $falseFilter Filter to be evaluated when predicate evalutes to false.
+     * @throws Exception when $falseFilter parameter is null.
+     */
     public function otherwise($falseFilter)
     {
         if ($falseFilter === null) {

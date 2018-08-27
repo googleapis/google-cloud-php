@@ -21,6 +21,10 @@ use Google\Cloud\Bigtable\Filter\TimestampRangeFilter;
 
 class TimestampFilter
 {
+    /**
+     * Matches only cells with timestamps within the given range.
+     * @return TimestampRangeFilter
+     */
     public function range()
     {
         return new TimestampRangeFilter();

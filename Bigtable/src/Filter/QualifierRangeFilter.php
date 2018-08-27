@@ -22,6 +22,9 @@ use Google\Cloud\Bigtable\Filter\Range;
 use Google\Cloud\Bigtable\V2\ColumnRange;
 use Google\Cloud\Bigtable\V2\RowFilter;
 
+/**
+ * Matches only cells from columns within the given range.
+ */
 class QualifierRangeFilter extends Range
 {
     private $family;

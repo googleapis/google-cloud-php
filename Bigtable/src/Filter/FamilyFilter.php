@@ -23,11 +23,28 @@ use Google\Cloud\Bigtable\V2\RowFilter;
 
 class FamilyFilter
 {
+    /**
+     * @codingStandardsIgnoreStart
+     * Matches only cells from columns whose families satisfy the given [RE2 regex](https://github.com/google/re2/wiki/Syntax).
+     * For technical reasons, the regex must not contain the `:` character, even if it is not being used as literal.
+     * Note that, since column families cannot contain the new line character `\n`, it is sufficient to use `.` as a
+     * full wildcard when matching column family names.
+     *
+     * @param string $value regex value.
+     * @throws Exception
+     * @codingStandardsIgnoreEnd
+     */
     public function regex($value)
     {
         return $this->toFilter($value);
     }
 
+    /**
+     * Matches only cells from columns whose families match the value.
+     *
+     * @param string $value exact value
+     * @throws Exception
+     */
     public function exactMatch($value)
     {
         return $this->toFilter($value);

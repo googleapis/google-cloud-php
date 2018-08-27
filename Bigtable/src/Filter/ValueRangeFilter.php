@@ -21,6 +21,9 @@ use Google\Cloud\Bigtable\Filter\Range;
 use Google\Cloud\Bigtable\V2\RowFilter;
 use Google\Cloud\Bigtable\V2\ValueRange;
 
+/**
+ * Matches only cells with values that fall within the given value range.
+ */
 class ValueRangeFilter extends Range
 {
 

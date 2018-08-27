@@ -24,16 +24,39 @@ use Google\Cloud\Bigtable\V2\RowFilter;
 
 class QualifierFilter
 {
+    /**
+     * @codingStandardsIgnoreStart
+     * Matches only cells from columns whose qualifiers satisfy the given [RE2 regex](https://github.com/google/re2/wiki/Syntax).
+     * Note that, since column qualifiers can contain arbitrary bytes, the `\C` escape sequence must be used if a true
+     * wildcard is desired. The `.` character will not match the new line character `\n`, which may be present in a binary qualifier.
+     *
+     * @param string $value regex value.
+     * @throws Exception
+     * @codingStandardsIgnoreEnd
+     */
     public function regex($value)
     {
         return $this->toFilter($value);
     }
 
+    /**
+     * Matches only cells from rows whose keys equal the value. In other words, passes through the
+     * entire row when the key matches, and otherwise produces an empty row.
+     *
+     * @param string $value exact value
+     * @throws Exception
+     */
     public function exactMatch($value)
     {
         return $this->toFilter($value);
     }
 
+    /**
+     * Construct a {@see QualifierRangeFilter} that can create a {@see Google\Cloud\Bigtable\V2\ColumnRange} oriented
+     * {@see Filter}.
+     * @param string $family Family name.
+     * @return QualifierRangeFilter
+     */
     public function rangeWithInFamily($family)
     {
         return new QualifierRangeFilter($family);
