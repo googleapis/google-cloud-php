@@ -118,6 +118,7 @@ class Controller2GapicClient
             'serviceAddress' => self::SERVICE_ADDRESS.':'.self::DEFAULT_SERVICE_PORT,
             'clientConfig' => __DIR__.'/../resources/controller2_client_config.json',
             'descriptorsConfigPath' => __DIR__.'/../resources/controller2_descriptor_config.php',
+            'gcpApiConfigPath' => __DIR__.'/../resources/controller2_grpc_config.json',
             'credentialsConfig' => [
                 'scopes' => self::$serviceScopes,
             ],
