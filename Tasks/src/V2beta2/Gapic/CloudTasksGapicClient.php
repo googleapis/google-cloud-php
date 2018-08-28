@@ -149,6 +149,7 @@ class CloudTasksGapicClient
             'serviceAddress' => self::SERVICE_ADDRESS.':'.self::DEFAULT_SERVICE_PORT,
             'clientConfig' => __DIR__.'/../resources/cloud_tasks_client_config.json',
             'descriptorsConfigPath' => __DIR__.'/../resources/cloud_tasks_descriptor_config.php',
+            'gcpApiConfigPath' => __DIR__.'/../resources/cloud_tasks_grpc_config.json',
             'credentialsConfig' => [
                 'scopes' => self::$serviceScopes,
             ],
