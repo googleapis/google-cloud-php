@@ -161,6 +161,7 @@ class DlpServiceGapicClient
             'serviceAddress' => self::SERVICE_ADDRESS.':'.self::DEFAULT_SERVICE_PORT,
             'clientConfig' => __DIR__.'/../resources/dlp_service_client_config.json',
             'descriptorsConfigPath' => __DIR__.'/../resources/dlp_service_descriptor_config.php',
+            'gcpApiConfigPath' => __DIR__.'/../resources/dlp_service_grpc_config.json',
             'credentialsConfig' => [
                 'scopes' => self::$serviceScopes,
             ],
