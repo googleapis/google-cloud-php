@@ -137,6 +137,7 @@ class ClusterManagerGapicClient
             'serviceAddress' => self::SERVICE_ADDRESS.':'.self::DEFAULT_SERVICE_PORT,
             'clientConfig' => __DIR__.'/../resources/cluster_manager_client_config.json',
             'descriptorsConfigPath' => __DIR__.'/../resources/cluster_manager_descriptor_config.php',
+            'gcpApiConfigPath' => __DIR__.'/../resources/cluster_manager_grpc_config.json',
             'credentialsConfig' => [
                 'scopes' => self::$serviceScopes,
             ],
