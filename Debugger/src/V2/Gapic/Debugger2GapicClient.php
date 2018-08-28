@@ -116,6 +116,7 @@ class Debugger2GapicClient
             'serviceAddress' => self::SERVICE_ADDRESS.':'.self::DEFAULT_SERVICE_PORT,
             'clientConfig' => __DIR__.'/../resources/debugger2_client_config.json',
             'descriptorsConfigPath' => __DIR__.'/../resources/debugger2_descriptor_config.php',
+            'gcpApiConfigPath' => __DIR__.'/../resources/debugger2_grpc_config.json',
             'credentialsConfig' => [
                 'scopes' => self::$serviceScopes,
             ],
