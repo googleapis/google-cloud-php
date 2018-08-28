@@ -39,9 +39,24 @@ class DocumentChange extends \Google\Protobuf\Internal\Message
      */
     private $removed_target_ids;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type \Google\Cloud\Firestore\V1beta1\Document $document
+     *           The new state of the [Document][google.firestore.v1beta1.Document].
+     *           If `mask` is set, contains only fields that were updated or added.
+     *     @type int[]|\Google\Protobuf\Internal\RepeatedField $target_ids
+     *           A set of target IDs of targets that match this document.
+     *     @type int[]|\Google\Protobuf\Internal\RepeatedField $removed_target_ids
+     *           A set of target IDs for targets that no longer match this document.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Firestore\V1Beta1\Write::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

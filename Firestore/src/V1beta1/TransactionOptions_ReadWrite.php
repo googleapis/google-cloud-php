@@ -4,54 +4,13 @@
 
 namespace Google\Cloud\Firestore\V1beta1;
 
-use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
-use Google\Protobuf\Internal\GPBUtil;
-
-/**
- * Options for a transaction that can be used to read and write documents.
- *
- * Generated from protobuf message <code>google.firestore.v1beta1.TransactionOptions.ReadWrite</code>
- */
-class TransactionOptions_ReadWrite extends \Google\Protobuf\Internal\Message
-{
+if (false) {
     /**
-     * An optional transaction to retry.
-     *
-     * Generated from protobuf field <code>bytes retry_transaction = 1;</code>
+     * This class is deprecated. Use Google\Cloud\Firestore\V1beta1\TransactionOptions\ReadWrite instead.
+     * @deprecated
      */
-    private $retry_transaction = '';
-
-    public function __construct() {
-        \GPBMetadata\Google\Firestore\V1Beta1\Common::initOnce();
-        parent::__construct();
-    }
-
-    /**
-     * An optional transaction to retry.
-     *
-     * Generated from protobuf field <code>bytes retry_transaction = 1;</code>
-     * @return string
-     */
-    public function getRetryTransaction()
-    {
-        return $this->retry_transaction;
-    }
-
-    /**
-     * An optional transaction to retry.
-     *
-     * Generated from protobuf field <code>bytes retry_transaction = 1;</code>
-     * @param string $var
-     * @return $this
-     */
-    public function setRetryTransaction($var)
-    {
-        GPBUtil::checkString($var, False);
-        $this->retry_transaction = $var;
-
-        return $this;
-    }
-
+    class TransactionOptions_ReadWrite {}
 }
+class_exists(TransactionOptions\ReadWrite::class);
+@trigger_error('Google\Cloud\Firestore\V1beta1\TransactionOptions_ReadWrite is deprecated and will be removed in the next major release. Use Google\Cloud\Firestore\V1beta1\TransactionOptions\ReadWrite instead', E_USER_DEPRECATED);
 

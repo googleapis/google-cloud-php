@@ -17,16 +17,28 @@ class TransactionOptions extends \Google\Protobuf\Internal\Message
 {
     protected $mode;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type \Google\Cloud\Firestore\V1beta1\TransactionOptions\ReadOnly $read_only
+     *           The transaction can only be used for read operations.
+     *     @type \Google\Cloud\Firestore\V1beta1\TransactionOptions\ReadWrite $read_write
+     *           The transaction can be used for both read and write operations.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Firestore\V1Beta1\Common::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**
      * The transaction can only be used for read operations.
      *
      * Generated from protobuf field <code>.google.firestore.v1beta1.TransactionOptions.ReadOnly read_only = 2;</code>
-     * @return \Google\Cloud\Firestore\V1beta1\TransactionOptions_ReadOnly
+     * @return \Google\Cloud\Firestore\V1beta1\TransactionOptions\ReadOnly
      */
     public function getReadOnly()
     {
@@ -37,7 +49,7 @@ class TransactionOptions extends \Google\Protobuf\Internal\Message
      * The transaction can only be used for read operations.
      *
      * Generated from protobuf field <code>.google.firestore.v1beta1.TransactionOptions.ReadOnly read_only = 2;</code>
-     * @param \Google\Cloud\Firestore\V1beta1\TransactionOptions_ReadOnly $var
+     * @param \Google\Cloud\Firestore\V1beta1\TransactionOptions\ReadOnly $var
      * @return $this
      */
     public function setReadOnly($var)
@@ -52,7 +64,7 @@ class TransactionOptions extends \Google\Protobuf\Internal\Message
      * The transaction can be used for both read and write operations.
      *
      * Generated from protobuf field <code>.google.firestore.v1beta1.TransactionOptions.ReadWrite read_write = 3;</code>
-     * @return \Google\Cloud\Firestore\V1beta1\TransactionOptions_ReadWrite
+     * @return \Google\Cloud\Firestore\V1beta1\TransactionOptions\ReadWrite
      */
     public function getReadWrite()
     {
@@ -63,7 +75,7 @@ class TransactionOptions extends \Google\Protobuf\Internal\Message
      * The transaction can be used for both read and write operations.
      *
      * Generated from protobuf field <code>.google.firestore.v1beta1.TransactionOptions.ReadWrite read_write = 3;</code>
-     * @param \Google\Cloud\Firestore\V1beta1\TransactionOptions_ReadWrite $var
+     * @param \Google\Cloud\Firestore\V1beta1\TransactionOptions\ReadWrite $var
      * @return $this
      */
     public function setReadWrite($var)

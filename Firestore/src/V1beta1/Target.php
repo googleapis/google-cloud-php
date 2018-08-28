@@ -35,16 +35,43 @@ class Target extends \Google\Protobuf\Internal\Message
     protected $target_type;
     protected $resume_type;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type \Google\Cloud\Firestore\V1beta1\Target\QueryTarget $query
+     *           A target specified by a query.
+     *     @type \Google\Cloud\Firestore\V1beta1\Target\DocumentsTarget $documents
+     *           A target specified by a set of document names.
+     *     @type string $resume_token
+     *           A resume token from a prior [TargetChange][google.firestore.v1beta1.TargetChange] for an identical target.
+     *           Using a resume token with a different target is unsupported and may fail.
+     *     @type \Google\Protobuf\Timestamp $read_time
+     *           Start listening after a specific `read_time`.
+     *           The client must know the state of matching documents at this time.
+     *     @type int $target_id
+     *           A client provided target ID.
+     *           If not set, the server will assign an ID for the target.
+     *           Used for resuming a target without changing IDs. The IDs can either be
+     *           client-assigned or be server-assigned in a previous stream. All targets
+     *           with client provided IDs must be added before adding a target that needs
+     *           a server-assigned id.
+     *     @type bool $once
+     *           If the target should be removed once it is current and consistent.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Firestore\V1Beta1\Firestore::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**
      * A target specified by a query.
      *
      * Generated from protobuf field <code>.google.firestore.v1beta1.Target.QueryTarget query = 2;</code>
-     * @return \Google\Cloud\Firestore\V1beta1\Target_QueryTarget
+     * @return \Google\Cloud\Firestore\V1beta1\Target\QueryTarget
      */
     public function getQuery()
     {
@@ -55,7 +82,7 @@ class Target extends \Google\Protobuf\Internal\Message
      * A target specified by a query.
      *
      * Generated from protobuf field <code>.google.firestore.v1beta1.Target.QueryTarget query = 2;</code>
-     * @param \Google\Cloud\Firestore\V1beta1\Target_QueryTarget $var
+     * @param \Google\Cloud\Firestore\V1beta1\Target\QueryTarget $var
      * @return $this
      */
     public function setQuery($var)
@@ -70,7 +97,7 @@ class Target extends \Google\Protobuf\Internal\Message
      * A target specified by a set of document names.
      *
      * Generated from protobuf field <code>.google.firestore.v1beta1.Target.DocumentsTarget documents = 3;</code>
-     * @return \Google\Cloud\Firestore\V1beta1\Target_DocumentsTarget
+     * @return \Google\Cloud\Firestore\V1beta1\Target\DocumentsTarget
      */
     public function getDocuments()
     {
@@ -81,7 +108,7 @@ class Target extends \Google\Protobuf\Internal\Message
      * A target specified by a set of document names.
      *
      * Generated from protobuf field <code>.google.firestore.v1beta1.Target.DocumentsTarget documents = 3;</code>
-     * @param \Google\Cloud\Firestore\V1beta1\Target_DocumentsTarget $var
+     * @param \Google\Cloud\Firestore\V1beta1\Target\DocumentsTarget $var
      * @return $this
      */
     public function setDocuments($var)

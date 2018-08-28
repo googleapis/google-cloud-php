@@ -4,95 +4,13 @@
 
 namespace Google\Cloud\Firestore\V1beta1;
 
-use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
-use Google\Protobuf\Internal\GPBUtil;
-
-/**
- * A selection of a collection, such as `messages as m1`.
- *
- * Generated from protobuf message <code>google.firestore.v1beta1.StructuredQuery.CollectionSelector</code>
- */
-class StructuredQuery_CollectionSelector extends \Google\Protobuf\Internal\Message
-{
+if (false) {
     /**
-     * The collection ID.
-     * When set, selects only collections with this ID.
-     *
-     * Generated from protobuf field <code>string collection_id = 2;</code>
+     * This class is deprecated. Use Google\Cloud\Firestore\V1beta1\StructuredQuery\CollectionSelector instead.
+     * @deprecated
      */
-    private $collection_id = '';
-    /**
-     * When false, selects only collections that are immediate children of
-     * the `parent` specified in the containing `RunQueryRequest`.
-     * When true, selects all descendant collections.
-     *
-     * Generated from protobuf field <code>bool all_descendants = 3;</code>
-     */
-    private $all_descendants = false;
-
-    public function __construct() {
-        \GPBMetadata\Google\Firestore\V1Beta1\Query::initOnce();
-        parent::__construct();
-    }
-
-    /**
-     * The collection ID.
-     * When set, selects only collections with this ID.
-     *
-     * Generated from protobuf field <code>string collection_id = 2;</code>
-     * @return string
-     */
-    public function getCollectionId()
-    {
-        return $this->collection_id;
-    }
-
-    /**
-     * The collection ID.
-     * When set, selects only collections with this ID.
-     *
-     * Generated from protobuf field <code>string collection_id = 2;</code>
-     * @param string $var
-     * @return $this
-     */
-    public function setCollectionId($var)
-    {
-        GPBUtil::checkString($var, True);
-        $this->collection_id = $var;
-
-        return $this;
-    }
-
-    /**
-     * When false, selects only collections that are immediate children of
-     * the `parent` specified in the containing `RunQueryRequest`.
-     * When true, selects all descendant collections.
-     *
-     * Generated from protobuf field <code>bool all_descendants = 3;</code>
-     * @return bool
-     */
-    public function getAllDescendants()
-    {
-        return $this->all_descendants;
-    }
-
-    /**
-     * When false, selects only collections that are immediate children of
-     * the `parent` specified in the containing `RunQueryRequest`.
-     * When true, selects all descendant collections.
-     *
-     * Generated from protobuf field <code>bool all_descendants = 3;</code>
-     * @param bool $var
-     * @return $this
-     */
-    public function setAllDescendants($var)
-    {
-        GPBUtil::checkBool($var);
-        $this->all_descendants = $var;
-
-        return $this;
-    }
-
+    class StructuredQuery_CollectionSelector {}
 }
+class_exists(StructuredQuery\CollectionSelector::class);
+@trigger_error('Google\Cloud\Firestore\V1beta1\StructuredQuery_CollectionSelector is deprecated and will be removed in the next major release. Use Google\Cloud\Firestore\V1beta1\StructuredQuery\CollectionSelector instead', E_USER_DEPRECATED);
 

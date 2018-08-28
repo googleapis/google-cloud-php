@@ -27,9 +27,20 @@ class DocumentMask extends \Google\Protobuf\Internal\Message
      */
     private $field_paths;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $field_paths
+     *           The list of field paths in the mask. See [Document.fields][google.firestore.v1beta1.Document.fields] for a field
+     *           path syntax reference.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Firestore\V1Beta1\Common::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

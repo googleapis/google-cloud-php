@@ -22,9 +22,19 @@ class BeginTransactionResponse extends \Google\Protobuf\Internal\Message
      */
     private $transaction = '';
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $transaction
+     *           The transaction that was started.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Firestore\V1Beta1\Firestore::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

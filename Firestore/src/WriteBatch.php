@@ -23,7 +23,7 @@ use Google\Cloud\Core\Timestamp;
 use Google\Cloud\Core\TimeTrait;
 use Google\Cloud\Core\ValidateTrait;
 use Google\Cloud\Firestore\Connection\ConnectionInterface;
-use Google\Cloud\Firestore\V1beta1\DocumentTransform_FieldTransform_ServerValue;
+use Google\Cloud\Firestore\V1beta1\DocumentTransform\FieldTransform\ServerValue;
 
 /**
  * Enqueue and write multiple mutations to Cloud Firestore.
@@ -52,7 +52,7 @@ class WriteBatch
     const TYPE_DELETE = 'delete';
     const TYPE_TRANSFORM = 'transform';
 
-    const REQUEST_TIME = DocumentTransform_FieldTransform_ServerValue::REQUEST_TIME;
+    const REQUEST_TIME = ServerValue::REQUEST_TIME;
 
     /**
      * @var ConnectionInterface

@@ -76,10 +76,10 @@
           "timeout_millis": 60000
         },
         "Write": {
-          "timeout_millis": 300000
+          "timeout_millis": 86400000
         },
         "Listen": {
-          "timeout_millis": 300000
+          "timeout_millis": 86400000
         },
         "ListCollectionIds": {
           "timeout_millis": 60000,

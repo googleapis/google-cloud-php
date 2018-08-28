@@ -4,30 +4,13 @@
 
 namespace Google\Cloud\Firestore\V1beta1;
 
-/**
- * A unary operator.
- *
- * Protobuf enum <code>Google\Firestore\V1beta1\StructuredQuery\UnaryFilter\Operator</code>
- */
-class StructuredQuery_UnaryFilter_Operator
-{
+if (false) {
     /**
-     * Unspecified. This value must not be used.
-     *
-     * Generated from protobuf enum <code>OPERATOR_UNSPECIFIED = 0;</code>
+     * This class is deprecated. Use Google\Cloud\Firestore\V1beta1\StructuredQuery\UnaryFilter\Operator instead.
+     * @deprecated
      */
-    const OPERATOR_UNSPECIFIED = 0;
-    /**
-     * Test if a field is equal to NaN.
-     *
-     * Generated from protobuf enum <code>IS_NAN = 2;</code>
-     */
-    const IS_NAN = 2;
-    /**
-     * Test if an exprestion evaluates to Null.
-     *
-     * Generated from protobuf enum <code>IS_NULL = 3;</code>
-     */
-    const IS_NULL = 3;
+    class StructuredQuery_UnaryFilter_Operator {}
 }
+class_exists(StructuredQuery\UnaryFilter\Operator::class);
+@trigger_error('Google\Cloud\Firestore\V1beta1\StructuredQuery_UnaryFilter_Operator is deprecated and will be removed in the next major release. Use Google\Cloud\Firestore\V1beta1\StructuredQuery\UnaryFilter\Operator instead', E_USER_DEPRECATED);
 

@@ -30,9 +30,23 @@ class DocumentTransform extends \Google\Protobuf\Internal\Message
      */
     private $field_transforms;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $document
+     *           The name of the document to transform.
+     *     @type \Google\Cloud\Firestore\V1beta1\DocumentTransform\FieldTransform[]|\Google\Protobuf\Internal\RepeatedField $field_transforms
+     *           The list of transformations to apply to the fields of the document, in
+     *           order.
+     *           This must not be empty.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Firestore\V1Beta1\Write::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**
@@ -80,12 +94,12 @@ class DocumentTransform extends \Google\Protobuf\Internal\Message
      * This must not be empty.
      *
      * Generated from protobuf field <code>repeated .google.firestore.v1beta1.DocumentTransform.FieldTransform field_transforms = 2;</code>
-     * @param \Google\Cloud\Firestore\V1beta1\DocumentTransform_FieldTransform[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Firestore\V1beta1\DocumentTransform\FieldTransform[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setFieldTransforms($var)
     {
-        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Firestore\V1beta1\DocumentTransform_FieldTransform::class);
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Firestore\V1beta1\DocumentTransform\FieldTransform::class);
         $this->field_transforms = $arr;
 
         return $this;

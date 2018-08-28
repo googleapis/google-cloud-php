@@ -31,9 +31,24 @@ class Cursor extends \Google\Protobuf\Internal\Message
      */
     private $before = false;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type \Google\Cloud\Firestore\V1beta1\Value[]|\Google\Protobuf\Internal\RepeatedField $values
+     *           The values that represent a position, in the order they appear in
+     *           the order by clause of a query.
+     *           Can contain fewer values than specified in the order by clause.
+     *     @type bool $before
+     *           If the position is just before or just after the given values, relative
+     *           to the sort order defined by the query.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Firestore\V1Beta1\Query::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

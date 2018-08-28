@@ -34,9 +34,31 @@ class BatchGetDocumentsResponse extends \Google\Protobuf\Internal\Message
     private $read_time = null;
     protected $result;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type \Google\Cloud\Firestore\V1beta1\Document $found
+     *           A document that was requested.
+     *     @type string $missing
+     *           A document name that was requested but does not exist. In the format:
+     *           `projects/{project_id}/databases/{database_id}/documents/{document_path}`.
+     *     @type string $transaction
+     *           The transaction that was started as part of this request.
+     *           Will only be set in the first response, and only if
+     *           [BatchGetDocumentsRequest.new_transaction][google.firestore.v1beta1.BatchGetDocumentsRequest.new_transaction] was set in the request.
+     *     @type \Google\Protobuf\Timestamp $read_time
+     *           The time at which the document was read.
+     *           This may be monotically increasing, in this case the previous documents in
+     *           the result stream are guaranteed not to have changed between their
+     *           read_time and this one.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Firestore\V1Beta1\Firestore::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

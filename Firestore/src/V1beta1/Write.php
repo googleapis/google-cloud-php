@@ -18,9 +18,10 @@ class Write extends \Google\Protobuf\Internal\Message
     /**
      * The fields to update in this write.
      * This field can be set only when the operation is `update`.
-     * None of the field paths in the mask may contain a reserved name.
-     * If the document exists on the server and has fields not referenced in the
-     * mask, they are left unchanged.
+     * If the mask is not set for an `update` and the document exists, any
+     * existing data will be overwritten.
+     * If the mask is set and the document on the server has fields not covered by
+     * the mask, they are left unchanged.
      * Fields referenced in the mask, but not present in the input document, are
      * deleted from the document on the server.
      * The field paths in this mask must not contain a reserved field name.
@@ -37,9 +38,40 @@ class Write extends \Google\Protobuf\Internal\Message
     private $current_document = null;
     protected $operation;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type \Google\Cloud\Firestore\V1beta1\Document $update
+     *           A document to write.
+     *     @type string $delete
+     *           A document name to delete. In the format:
+     *           `projects/{project_id}/databases/{database_id}/documents/{document_path}`.
+     *     @type \Google\Cloud\Firestore\V1beta1\DocumentTransform $transform
+     *           Applies a tranformation to a document.
+     *           At most one `transform` per document is allowed in a given request.
+     *           An `update` cannot follow a `transform` on the same document in a given
+     *           request.
+     *     @type \Google\Cloud\Firestore\V1beta1\DocumentMask $update_mask
+     *           The fields to update in this write.
+     *           This field can be set only when the operation is `update`.
+     *           If the mask is not set for an `update` and the document exists, any
+     *           existing data will be overwritten.
+     *           If the mask is set and the document on the server has fields not covered by
+     *           the mask, they are left unchanged.
+     *           Fields referenced in the mask, but not present in the input document, are
+     *           deleted from the document on the server.
+     *           The field paths in this mask must not contain a reserved field name.
+     *     @type \Google\Cloud\Firestore\V1beta1\Precondition $current_document
+     *           An optional precondition on the document.
+     *           The write will fail if this is set and not met by the target document.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Firestore\V1Beta1\Write::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**
@@ -131,9 +163,10 @@ class Write extends \Google\Protobuf\Internal\Message
     /**
      * The fields to update in this write.
      * This field can be set only when the operation is `update`.
-     * None of the field paths in the mask may contain a reserved name.
-     * If the document exists on the server and has fields not referenced in the
-     * mask, they are left unchanged.
+     * If the mask is not set for an `update` and the document exists, any
+     * existing data will be overwritten.
+     * If the mask is set and the document on the server has fields not covered by
+     * the mask, they are left unchanged.
      * Fields referenced in the mask, but not present in the input document, are
      * deleted from the document on the server.
      * The field paths in this mask must not contain a reserved field name.
@@ -149,9 +182,10 @@ class Write extends \Google\Protobuf\Internal\Message
     /**
      * The fields to update in this write.
      * This field can be set only when the operation is `update`.
-     * None of the field paths in the mask may contain a reserved name.
-     * If the document exists on the server and has fields not referenced in the
-     * mask, they are left unchanged.
+     * If the mask is not set for an `update` and the document exists, any
+     * existing data will be overwritten.
+     * If the mask is set and the document on the server has fields not covered by
+     * the mask, they are left unchanged.
      * Fields referenced in the mask, but not present in the input document, are
      * deleted from the document on the server.
      * The field paths in this mask must not contain a reserved field name.

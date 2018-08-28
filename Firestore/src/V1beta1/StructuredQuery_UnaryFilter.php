@@ -4,89 +4,13 @@
 
 namespace Google\Cloud\Firestore\V1beta1;
 
-use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
-use Google\Protobuf\Internal\GPBUtil;
-
-/**
- * A filter with a single operand.
- *
- * Generated from protobuf message <code>google.firestore.v1beta1.StructuredQuery.UnaryFilter</code>
- */
-class StructuredQuery_UnaryFilter extends \Google\Protobuf\Internal\Message
-{
+if (false) {
     /**
-     * The unary operator to apply.
-     *
-     * Generated from protobuf field <code>.google.firestore.v1beta1.StructuredQuery.UnaryFilter.Operator op = 1;</code>
+     * This class is deprecated. Use Google\Cloud\Firestore\V1beta1\StructuredQuery\UnaryFilter instead.
+     * @deprecated
      */
-    private $op = 0;
-    protected $operand_type;
-
-    public function __construct() {
-        \GPBMetadata\Google\Firestore\V1Beta1\Query::initOnce();
-        parent::__construct();
-    }
-
-    /**
-     * The unary operator to apply.
-     *
-     * Generated from protobuf field <code>.google.firestore.v1beta1.StructuredQuery.UnaryFilter.Operator op = 1;</code>
-     * @return int
-     */
-    public function getOp()
-    {
-        return $this->op;
-    }
-
-    /**
-     * The unary operator to apply.
-     *
-     * Generated from protobuf field <code>.google.firestore.v1beta1.StructuredQuery.UnaryFilter.Operator op = 1;</code>
-     * @param int $var
-     * @return $this
-     */
-    public function setOp($var)
-    {
-        GPBUtil::checkEnum($var, \Google\Cloud\Firestore\V1beta1\StructuredQuery_UnaryFilter_Operator::class);
-        $this->op = $var;
-
-        return $this;
-    }
-
-    /**
-     * The field to which to apply the operator.
-     *
-     * Generated from protobuf field <code>.google.firestore.v1beta1.StructuredQuery.FieldReference field = 2;</code>
-     * @return \Google\Cloud\Firestore\V1beta1\StructuredQuery_FieldReference
-     */
-    public function getField()
-    {
-        return $this->readOneof(2);
-    }
-
-    /**
-     * The field to which to apply the operator.
-     *
-     * Generated from protobuf field <code>.google.firestore.v1beta1.StructuredQuery.FieldReference field = 2;</code>
-     * @param \Google\Cloud\Firestore\V1beta1\StructuredQuery_FieldReference $var
-     * @return $this
-     */
-    public function setField($var)
-    {
-        GPBUtil::checkMessage($var, \Google\Cloud\Firestore\V1beta1\StructuredQuery_FieldReference::class);
-        $this->writeOneof(2, $var);
-
-        return $this;
-    }
-
-    /**
-     * @return string
-     */
-    public function getOperandType()
-    {
-        return $this->whichOneof("operand_type");
-    }
-
+    class StructuredQuery_UnaryFilter {}
 }
+class_exists(StructuredQuery\UnaryFilter::class);
+@trigger_error('Google\Cloud\Firestore\V1beta1\StructuredQuery_UnaryFilter is deprecated and will be removed in the next major release. Use Google\Cloud\Firestore\V1beta1\StructuredQuery\UnaryFilter instead', E_USER_DEPRECATED);
 

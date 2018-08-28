@@ -51,9 +51,32 @@ class CreateDocumentRequest extends \Google\Protobuf\Internal\Message
      */
     private $mask = null;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $parent
+     *           The parent resource. For example:
+     *           `projects/{project_id}/databases/{database_id}/documents` or
+     *           `projects/{project_id}/databases/{database_id}/documents/chatrooms/{chatroom_id}`
+     *     @type string $collection_id
+     *           The collection ID, relative to `parent`, to list. For example: `chatrooms`.
+     *     @type string $document_id
+     *           The client-assigned document ID to use for this document.
+     *           Optional. If not specified, an ID will be assigned by the service.
+     *     @type \Google\Cloud\Firestore\V1beta1\Document $document
+     *           The document to create. `name` must not be set.
+     *     @type \Google\Cloud\Firestore\V1beta1\DocumentMask $mask
+     *           The fields to return. If not set, returns all fields.
+     *           If the document has a field that is not present in this mask, that field
+     *           will not be returned in the response.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Firestore\V1Beta1\Firestore::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

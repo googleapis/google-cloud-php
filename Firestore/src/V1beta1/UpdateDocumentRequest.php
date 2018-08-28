@@ -49,9 +49,34 @@ class UpdateDocumentRequest extends \Google\Protobuf\Internal\Message
      */
     private $current_document = null;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type \Google\Cloud\Firestore\V1beta1\Document $document
+     *           The updated document.
+     *           Creates the document if it does not already exist.
+     *     @type \Google\Cloud\Firestore\V1beta1\DocumentMask $update_mask
+     *           The fields to update.
+     *           None of the field paths in the mask may contain a reserved name.
+     *           If the document exists on the server and has fields not referenced in the
+     *           mask, they are left unchanged.
+     *           Fields referenced in the mask, but not present in the input document, are
+     *           deleted from the document on the server.
+     *     @type \Google\Cloud\Firestore\V1beta1\DocumentMask $mask
+     *           The fields to return. If not set, returns all fields.
+     *           If the document has a field that is not present in this mask, that field
+     *           will not be returned in the response.
+     *     @type \Google\Cloud\Firestore\V1beta1\Precondition $current_document
+     *           An optional precondition on the document.
+     *           The request will fail if this is set and not met by the target document.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Firestore\V1Beta1\Firestore::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

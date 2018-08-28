@@ -17,9 +17,31 @@ class ListenResponse extends \Google\Protobuf\Internal\Message
 {
     protected $response_type;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type \Google\Cloud\Firestore\V1beta1\TargetChange $target_change
+     *           Targets have changed.
+     *     @type \Google\Cloud\Firestore\V1beta1\DocumentChange $document_change
+     *           A [Document][google.firestore.v1beta1.Document] has changed.
+     *     @type \Google\Cloud\Firestore\V1beta1\DocumentDelete $document_delete
+     *           A [Document][google.firestore.v1beta1.Document] has been deleted.
+     *     @type \Google\Cloud\Firestore\V1beta1\DocumentRemove $document_remove
+     *           A [Document][google.firestore.v1beta1.Document] has been removed from a target (because it is no longer
+     *           relevant to that target).
+     *     @type \Google\Cloud\Firestore\V1beta1\ExistenceFilter $filter
+     *           A filter to apply to the set of documents previously returned for the
+     *           given target.
+     *           Returned when documents may have been removed from the given target, but
+     *           the exact documents are unknown.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Firestore\V1Beta1\Firestore::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

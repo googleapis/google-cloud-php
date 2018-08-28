@@ -29,9 +29,36 @@ class RunQueryRequest extends \Google\Protobuf\Internal\Message
     protected $query_type;
     protected $consistency_selector;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $parent
+     *           The parent resource name. In the format:
+     *           `projects/{project_id}/databases/{database_id}/documents` or
+     *           `projects/{project_id}/databases/{database_id}/documents/{document_path}`.
+     *           For example:
+     *           `projects/my-project/databases/my-database/documents` or
+     *           `projects/my-project/databases/my-database/documents/chatrooms/my-chatroom`
+     *     @type \Google\Cloud\Firestore\V1beta1\StructuredQuery $structured_query
+     *           A structured query.
+     *     @type string $transaction
+     *           Reads documents in a transaction.
+     *     @type \Google\Cloud\Firestore\V1beta1\TransactionOptions $new_transaction
+     *           Starts a new transaction and reads the documents.
+     *           Defaults to a read-only transaction.
+     *           The new transaction ID will be returned as the first response in the
+     *           stream.
+     *     @type \Google\Protobuf\Timestamp $read_time
+     *           Reads documents as they were at the given time.
+     *           This may not be older than 60 seconds.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Firestore\V1Beta1\Firestore::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

@@ -36,9 +36,25 @@ class CommitRequest extends \Google\Protobuf\Internal\Message
      */
     private $transaction = '';
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $database
+     *           The database name. In the format:
+     *           `projects/{project_id}/databases/{database_id}`.
+     *     @type \Google\Cloud\Firestore\V1beta1\Write[]|\Google\Protobuf\Internal\RepeatedField $writes
+     *           The writes to apply.
+     *           Always executed atomically and in order.
+     *     @type string $transaction
+     *           If set, applies all writes in this transaction, and commits it.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Firestore\V1Beta1\Firestore::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

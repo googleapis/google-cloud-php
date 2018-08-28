@@ -38,9 +38,27 @@ class ListCollectionIdsRequest extends \Google\Protobuf\Internal\Message
      */
     private $page_token = '';
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $parent
+     *           The parent document. In the format:
+     *           `projects/{project_id}/databases/{database_id}/documents/{document_path}`.
+     *           For example:
+     *           `projects/my-project/databases/my-database/documents/chatrooms/my-chatroom`
+     *     @type int $page_size
+     *           The maximum number of results to return.
+     *     @type string $page_token
+     *           A page token. Must be a value from
+     *           [ListCollectionIdsResponse][google.firestore.v1beta1.ListCollectionIdsResponse].
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Firestore\V1Beta1\Firestore::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

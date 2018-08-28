@@ -45,9 +45,30 @@ class WriteResponse extends \Google\Protobuf\Internal\Message
      */
     private $commit_time = null;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $stream_id
+     *           The ID of the stream.
+     *           Only set on the first message, when a new stream was created.
+     *     @type string $stream_token
+     *           A token that represents the position of this response in the stream.
+     *           This can be used by a client to resume the stream at this point.
+     *           This field is always set.
+     *     @type \Google\Cloud\Firestore\V1beta1\WriteResult[]|\Google\Protobuf\Internal\RepeatedField $write_results
+     *           The result of applying the writes.
+     *           This i-th write result corresponds to the i-th write in the
+     *           request.
+     *     @type \Google\Protobuf\Timestamp $commit_time
+     *           The time at which the commit occurred.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Firestore\V1Beta1\Firestore::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

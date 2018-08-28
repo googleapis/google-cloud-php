@@ -50,9 +50,35 @@ class RunQueryResponse extends \Google\Protobuf\Internal\Message
      */
     private $skipped_results = 0;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $transaction
+     *           The transaction that was started as part of this request.
+     *           Can only be set in the first response, and only if
+     *           [RunQueryRequest.new_transaction][google.firestore.v1beta1.RunQueryRequest.new_transaction] was set in the request.
+     *           If set, no other fields will be set in this response.
+     *     @type \Google\Cloud\Firestore\V1beta1\Document $document
+     *           A query result.
+     *           Not set when reporting partial progress.
+     *     @type \Google\Protobuf\Timestamp $read_time
+     *           The time at which the document was read. This may be monotonically
+     *           increasing; in this case, the previous documents in the result stream are
+     *           guaranteed not to have changed between their `read_time` and this one.
+     *           If the query returns no results, a response with `read_time` and no
+     *           `document` will be sent, and this represents the time at which the query
+     *           was run.
+     *     @type int $skipped_results
+     *           The number of results that have been skipped due to an offset between
+     *           the last response and the current response.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Firestore\V1Beta1\Firestore::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

@@ -4,25 +4,13 @@
 
 namespace Google\Cloud\Firestore\V1beta1;
 
-/**
- * A value that is calculated by the server.
- *
- * Protobuf enum <code>Google\Firestore\V1beta1\DocumentTransform\FieldTransform\ServerValue</code>
- */
-class DocumentTransform_FieldTransform_ServerValue
-{
+if (false) {
     /**
-     * Unspecified. This value must not be used.
-     *
-     * Generated from protobuf enum <code>SERVER_VALUE_UNSPECIFIED = 0;</code>
+     * This class is deprecated. Use Google\Cloud\Firestore\V1beta1\DocumentTransform\FieldTransform\ServerValue instead.
+     * @deprecated
      */
-    const SERVER_VALUE_UNSPECIFIED = 0;
-    /**
-     * The time at which the server processed the request, with millisecond
-     * precision.
-     *
-     * Generated from protobuf enum <code>REQUEST_TIME = 1;</code>
-     */
-    const REQUEST_TIME = 1;
+    class DocumentTransform_FieldTransform_ServerValue {}
 }
+class_exists(DocumentTransform\FieldTransform\ServerValue::class);
+@trigger_error('Google\Cloud\Firestore\V1beta1\DocumentTransform_FieldTransform_ServerValue is deprecated and will be removed in the next major release. Use Google\Cloud\Firestore\V1beta1\DocumentTransform\FieldTransform\ServerValue instead', E_USER_DEPRECATED);
 

@@ -30,9 +30,26 @@ class ListenRequest extends \Google\Protobuf\Internal\Message
     private $labels;
     protected $target_change;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $database
+     *           The database name. In the format:
+     *           `projects/{project_id}/databases/{database_id}`.
+     *     @type \Google\Cloud\Firestore\V1beta1\Target $add_target
+     *           A target to add to this stream.
+     *     @type int $remove_target
+     *           The ID of a target to remove from this stream.
+     *     @type array|\Google\Protobuf\Internal\MapField $labels
+     *           Labels associated with this target change.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Firestore\V1Beta1\Firestore::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**
