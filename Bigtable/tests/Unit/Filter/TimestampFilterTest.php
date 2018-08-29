@@ -33,4 +33,3 @@ class TimestampFilterTest extends TestCase
         $this->assertInstanceOf(TimestampRangeFilter::class, $timestampFilter->range());
     }
 }
-

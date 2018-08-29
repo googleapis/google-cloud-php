@@ -95,7 +95,7 @@ class ConditionFilter extends Filter
             $condition->setFalseFilter($this->falseFilter);
         }
         $rowFilter = new RowFilter();
-        $rowFilter->setCondition($this->condition);
+        $rowFilter->setCondition($condition);
         return $rowFilter;
     }
 }
