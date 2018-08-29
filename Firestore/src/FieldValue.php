@@ -60,7 +60,7 @@ class FieldValue
      * ]);
      * ```
      *
-     * @return string
+     * @return DeleteFieldValue
      */
     public static function deleteField()
     {

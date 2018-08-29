@@ -19,11 +19,16 @@ namespace Google\Cloud\Firestore\FieldValue;
 
 /**
  * Represents an ArrayRemove DocumentTransform.
+ *
+ * See {@see Google\Cloud\Firestore\FieldValue::arrayRemove()} for usage.
  */
 class ArrayRemoveValue implements DocumentTransformInterface
 {
     use DocumentTransformTrait;
 
+    /**
+     * @access private
+     */
     public function key()
     {
         return 'removeAllFromArray';

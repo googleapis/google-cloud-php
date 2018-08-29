@@ -54,6 +54,7 @@ class Query
     const OP_GREATER_THAN = FieldFilterOperator::GREATER_THAN;
     const OP_GREATER_THAN_OR_EQUAL = FieldFilterOperator::GREATER_THAN_OR_EQUAL;
     const OP_EQUAL = FieldFilterOperator::EQUAL;
+    const OP_ARRAY_CONTAINS = FieldFilterOperator::ARRAY_CONTAINS;
 
     const OP_NAN = UnaryFilterOperator::IS_NAN;
     const OP_NULL = UnaryFilterOperator::IS_NULL;
@@ -69,6 +70,7 @@ class Query
         self::OP_EQUAL,
         self::OP_GREATER_THAN,
         self::OP_GREATER_THAN_OR_EQUAL,
+        self::OP_ARRAY_CONTAINS,
     ];
 
     private $shortOperators = [
@@ -79,6 +81,7 @@ class Query
         '='  => self::OP_EQUAL,
         '=='  => self::OP_EQUAL,
         '==='  => self::OP_EQUAL,
+        'array-contains' => self::OP_ARRAY_CONTAINS,
     ];
 
     private $allowedDirections = [

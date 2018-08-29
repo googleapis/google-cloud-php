@@ -19,11 +19,16 @@ namespace Google\Cloud\Firestore\FieldValue;
 
 /**
  * Represents an ArrayUnion DocumentTransform.
+ *
+ * See {@see Google\Cloud\Firestore\FieldValue::arrayUnion()} for usage.
  */
 class ArrayUnionValue implements DocumentTransformInterface
 {
     use DocumentTransformTrait;
 
+    /**
+     * @access private
+     */
     public function key()
     {
         return 'appendMissingElements';

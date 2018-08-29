@@ -21,6 +21,8 @@ use Google\Cloud\Firestore\V1beta1\DocumentTransform\FieldTransform\ServerValue;
 
 /**
  * Represents a ServerTimestamp DocumentTransform.
+ *
+ * See {@see Google\Cloud\Firestore\FieldValue::serverTimestamp()} for usage.
  */
 class ServerTimestampValue implements DocumentTransformInterface
 {
@@ -28,11 +30,17 @@ class ServerTimestampValue implements DocumentTransformInterface
 
     const REQUEST_TIME = ServerValue::REQUEST_TIME;
 
+    /**
+     * @access private
+     */
     public function key()
     {
         return 'setToServerValue';
     }
 
+    /**
+     * @access private
+     */
     public function args()
     {
         return self::REQUEST_TIME;

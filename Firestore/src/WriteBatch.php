@@ -687,7 +687,7 @@ class WriteBatch
                         ? $inArray
                         : !$this->isAssoc($value);
 
-                    $fields[$key] = $filterFn($value, $currentPath, $inArray);
+                    $fields[$key] = $filterFn($value, $currentPath, $localInArray);
                     if (empty($fields[$key])) {
                         unset($fields[$key]);
                     }
