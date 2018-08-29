@@ -165,6 +165,5 @@ class RangeTest extends TestCase
         $this->assertEquals($this->range, $range);
         $this->assertEquals(Range::BOUND_TYPE_CLOSED, $range->getStartBound());
         $this->assertEquals(Range::BOUND_TYPE_OPEN, $range->getEndBound());
-
     }
 }

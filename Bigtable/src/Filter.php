@@ -17,6 +17,7 @@
 
 namespace Google\Cloud\Bigtable;
 
+use Exception;
 use Google\Cloud\Bigtable\Filter\ChainFilter;
 use Google\Cloud\Bigtable\Filter\ConditionFilter;
 use Google\Cloud\Bigtable\Filter\FamilyFilter;
@@ -217,6 +218,43 @@ abstract class Filter
         $rowFilter = new RowFilter();
         $rowFilter->setApplyLabelTransformer($value);
         return new SimpleFilter($rowFilter);
+    }
+
+    public static function escapeLiteralValue($value)
+    {
+        if ($value === null) {
+            return null;
+        }
+        $nullBytes = unpack('C*', '\\x00');
+        $byteValue = null;
+        if (is_array($value)) {
+            $byteValue = $value;
+        } elseif (is_string($value)) {
+            if (preg_match('//u', $value)) {
+                $byteValue = unpack('C*', $value);
+            } else {
+                $byteValue = unpack('C*', utf8_encode($value));
+            }
+        } else {
+            throw new Exception('Expect byte array or string');
+        }
+        $quotedBytes = [];
+        foreach ($byteValue as $byte) {
+            if (($byte < ord('a') || $byte > ord('z'))
+                && ($byte < ord('A') || $byte > ord('Z'))
+                && ($byte < ord('0') || $byte > ord('9'))
+                && $byte != ord('_')
+                && ($byte & 128) ==0
+            ) {
+                if ($byte == 0) {
+                    $quotedBytes =  array_merge($quotedBytes, $nullBytes);
+                    continue;
+                }
+                $quotedBytes[] = ord('\\');
+            }
+            $quotedBytes[] = $byte;
+        }
+        return implode(array_map("chr", $quotedBytes));
     }
 
     /**

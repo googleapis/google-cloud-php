@@ -18,6 +18,7 @@
 namespace Google\Cloud\Bigtable\Filter;
 
 use Exception;
+use Google\Cloud\Bigtable\Filter;
 use Google\Cloud\Bigtable\Filter\QualifierRangeFilter;
 use Google\Cloud\Bigtable\Filter\SimpleFilter;
 use Google\Cloud\Bigtable\V2\RowFilter;
@@ -48,7 +49,7 @@ class QualifierFilter
      */
     public function exactMatch($value)
     {
-        return $this->toFilter($value);
+        return $this->toFilter(Filter::escapeLiteralValue($value));
     }
 
     /**

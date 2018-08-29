@@ -31,6 +31,7 @@ use Google\Cloud\Bigtable\Filter\TimestampFilter;
 use Google\Cloud\Bigtable\Filter\ValueFilter;
 use Google\Cloud\Bigtable\V2\RowFilter;
 use PHPUnit\Framework\TestCase;
+use stdClass;
 
 /**
  * @group bigtable
@@ -142,5 +143,37 @@ class FilterTest extends TestCase
         $rowFilter = new RowFilter();
         $rowFilter->setApplyLabelTransformer('l1');
         $this->assertEquals($rowFilter, $labelFilter->toProto());
+    }
+
+    public function testEscapeLiteralValueShouldReturnNullOnNull()
+    {
+        $this->assertEquals(null, Filter::escapeLiteralValue(null));
+    }
+
+    /**
+     * @expectedException \Exception
+     * @expectedExceptionMessage Expect byte array or string
+     */
+    public function testEscapeLiteralValueShouldThrowIfNotByteArrayOrString()
+    {
+        Filter::escapeLiteralValue(new stdClass());
+    }
+
+    public function testEscapeLiteralValueAsciiChr()
+    {
+        $this->assertEquals('hi', Filter::escapeLiteralValue('hi'));
+    }
+
+    public function testEscapeLiteralValueWithEscapeChr()
+    {
+        $this->assertEquals('h\\.\\*i', Filter::escapeLiteralValue('h.*i'));
+    }
+
+    public function testEscapeLiteralValueWithByteArray()
+    {
+        $value = [ 0xe2, 0x80, 0xb3];
+        $escapedValue = Filter::escapeLiteralValue($value);
+        $expected = implode(array_map("chr", $value));
+        $this->assertEquals($expected, $escapedValue);
     }
 }
