@@ -38,9 +38,9 @@ use Google\Cloud\Bigtable\V2\RowFilter;
  * ```
  * use Google\Cloud\Bigtable\Filter;
  * $rowFilter = Filter::chain()
- *              .filter(Filter::qualifier().regex("prefix.*"))
- *              .filter(Filter::limit().cellsPerRow(10))
- *              .toProto();
+ *              ->filter(Filter::qualifier()->regex('prefix.*'))
+ *              ->filter(Filter::limit()->cellsPerRow(10))
+ *              ->toProto();
  * ```
  */
 abstract class Filter
