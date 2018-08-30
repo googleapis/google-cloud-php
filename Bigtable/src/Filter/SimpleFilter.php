@@ -20,6 +20,9 @@ namespace Google\Cloud\Bigtable\Filter;
 use Google\Cloud\Bigtable\Filter;
 use Google\Cloud\Bigtable\V2\RowFilter;
 
+/**
+ * Constructs Simple filter implmenting toProto from abstract Filter class.
+ */
 class SimpleFilter extends Filter
 {
     /**

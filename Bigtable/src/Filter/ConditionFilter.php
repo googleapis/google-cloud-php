@@ -22,6 +22,9 @@ use Google\Cloud\Bigtable\Filter;
 use Google\Cloud\Bigtable\V2\RowFilter;
 use Google\Cloud\Bigtable\V2\RowFilter\Condition;
 
+/**
+ * Constructs Bigtable Condition filter.
+ */
 class ConditionFilter extends Filter
 {
     /**

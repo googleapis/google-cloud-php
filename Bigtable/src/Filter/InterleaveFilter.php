@@ -22,6 +22,9 @@ use Google\Cloud\Bigtable\Filter;
 use Google\Cloud\Bigtable\V2\RowFilter;
 use Google\Cloud\Bigtable\V2\RowFilter\Interleave;
 
+/**
+ * Constructs multiple interleave filters.
+ */
 class InterleaveFilter extends Filter
 {
     /**

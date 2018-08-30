@@ -20,6 +20,10 @@ namespace Google\Cloud\Bigtable\Filter;
 use Exception;
 use Google\Cloud\Bigtable\Filter;
 
+/**
+ * Abstract class representing filter range for Rowkey, ColumnFamily, ColumnQualifier and
+ * Value.
+ */
 abstract class Range
 {
     const BOUND_TYPE_UNBOUNDED = 0;

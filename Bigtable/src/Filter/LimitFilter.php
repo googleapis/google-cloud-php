@@ -20,6 +20,9 @@ namespace Google\Cloud\Bigtable\Filter;
 use Google\Cloud\Bigtable\Filter\SimpleFilter;
 use Google\Cloud\Bigtable\V2\RowFilter;
 
+/**
+ * Constructs Limit filters.
+ */
 class LimitFilter
 {
     /**

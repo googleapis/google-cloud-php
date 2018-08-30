@@ -18,9 +18,13 @@
 namespace Google\Cloud\Bigtable\Filter;
 
 use Exception;
+use Google\Cloud\Bigtable\Filter;
 use Google\Cloud\Bigtable\Filter\SimpleFilter;
 use Google\Cloud\Bigtable\V2\RowFilter;
 
+/**
+ * Family related filters.
+ */
 class FamilyFilter
 {
     /**
@@ -47,7 +51,7 @@ class FamilyFilter
      */
     public function exactMatch($value)
     {
-        return $this->toFilter($value);
+        return $this->toFilter(Filter::escapeLiteralValue($value));
     }
 
     private function toFilter($value)

@@ -22,6 +22,9 @@ use Google\Cloud\Bigtable\Filter;
 use Google\Cloud\Bigtable\Filter\SimpleFilter;
 use Google\Cloud\Bigtable\V2\RowFilter;
 
+/**
+ * Construts RowKey related filters.
+ */
 class KeyFilter
 {
     /**

@@ -23,6 +23,9 @@ use Google\Cloud\Bigtable\Filter\SimpleFilter;
 use Google\Cloud\Bigtable\Filter\ValueRangeFilter;
 use Google\Cloud\Bigtable\V2\RowFilter;
 
+/**
+ * Constructs Value related filter.
+ */
 class ValueFilter
 {
     /**

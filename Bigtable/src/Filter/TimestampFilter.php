@@ -19,6 +19,9 @@ namespace Google\Cloud\Bigtable\Filter;
 
 use Google\Cloud\Bigtable\Filter\TimestampRangeFilter;
 
+/**
+ * Constructs Timestamp related filter.
+ */
 class TimestampFilter
 {
     /**

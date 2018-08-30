@@ -23,6 +23,9 @@ use Google\Cloud\Bigtable\Filter\QualifierRangeFilter;
 use Google\Cloud\Bigtable\Filter\SimpleFilter;
 use Google\Cloud\Bigtable\V2\RowFilter;
 
+/**
+ * Constructs Qualifier related filters.
+ */
 class QualifierFilter
 {
     /**
