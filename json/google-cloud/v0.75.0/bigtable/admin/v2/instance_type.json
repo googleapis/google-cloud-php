@@ -1,0 +1,1 @@
+{"id":"bigtable\/admin\/v2\/instance_type","type":"","title":"Google\\Cloud\\Bigtable\\Admin\\V2\\Instance_Type","name":"Instance_Type","description":"<p>This class is deprecated. Use Google\\Cloud\\Bigtable\\Admin\\V2\\Instance\\Type instead.<\/p>","examples":[],"resources":[],"methods":[]}

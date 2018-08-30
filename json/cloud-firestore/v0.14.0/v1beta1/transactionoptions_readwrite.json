@@ -1,0 +1,1 @@
+{"id":"firestore\/v1beta1\/transactionoptions_readwrite","type":"","title":"Google\\Cloud\\Firestore\\V1beta1\\TransactionOptions_ReadWrite","name":"TransactionOptions_ReadWrite","description":"<p>This class is deprecated. Use Google\\Cloud\\Firestore\\V1beta1\\TransactionOptions\\ReadWrite instead.<\/p>","examples":[],"resources":[],"methods":[]}

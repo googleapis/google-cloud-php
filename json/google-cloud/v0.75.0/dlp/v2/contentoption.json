@@ -1,0 +1,1 @@
+{"id":"dlp\/v2\/contentoption","type":"","title":"Google\\Cloud\\Dlp\\V2\\ContentOption","name":"ContentOption","description":"<p>Options describing which parts of the provided content should be scanned.<\/p>\n<p>Protobuf type <code>google.privacy.dlp.v2.ContentOption<\/code><\/p>","examples":[],"resources":[],"methods":[]}

@@ -1,0 +1,1 @@
+{"id":"dlp\/v2\/inspectdatasourcedetails_requestedoptions","type":"","title":"Google\\Cloud\\Dlp\\V2\\InspectDataSourceDetails_RequestedOptions","name":"InspectDataSourceDetails_RequestedOptions","description":"<p>This class is deprecated. Use Google\\Cloud\\Dlp\\V2\\InspectDataSourceDetails\\RequestedOptions instead.<\/p>","examples":[],"resources":[],"methods":[]}

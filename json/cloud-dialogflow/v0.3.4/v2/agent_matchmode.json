@@ -1,0 +1,1 @@
+{"id":"dialogflow\/v2\/agent_matchmode","type":"","title":"Google\\Cloud\\Dialogflow\\V2\\Agent_MatchMode","name":"Agent_MatchMode","description":"<p>Match mode determines how intents are detected from user queries.<\/p>\n<p>Protobuf enum <code>Google\\Cloud\\Dialogflow\\V2\\Agent\\MatchMode<\/code><\/p>","examples":[],"resources":[],"methods":[]}

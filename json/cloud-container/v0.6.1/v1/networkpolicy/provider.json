@@ -1,0 +1,1 @@
+{"id":"container\/v1\/networkpolicy\/provider","type":"","title":"Google\\Cloud\\Container\\V1\\NetworkPolicy\\Provider","name":"Provider","description":"<p>Allowed Network Policy providers.<\/p>\n<p>Protobuf type <code>google.container.v1.NetworkPolicy.Provider<\/code><\/p>","examples":[],"resources":[],"methods":[]}

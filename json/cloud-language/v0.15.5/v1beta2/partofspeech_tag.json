@@ -1,0 +1,1 @@
+{"id":"language\/v1beta2\/partofspeech_tag","type":"","title":"Google\\Cloud\\Language\\V1beta2\\PartOfSpeech_Tag","name":"PartOfSpeech_Tag","description":"<p>The part of speech tags enum.<\/p>\n<p>Protobuf enum <code>Google\\Cloud\\Language\\V1beta2\\PartOfSpeech\\Tag<\/code><\/p>","examples":[],"resources":[],"methods":[]}

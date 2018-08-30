@@ -1,0 +1,1 @@
+{"id":"dlp\/v2\/outputstorageconfig_outputschema","type":"","title":"Google\\Cloud\\Dlp\\V2\\OutputStorageConfig_OutputSchema","name":"OutputStorageConfig_OutputSchema","description":"<p>This class is deprecated. Use Google\\Cloud\\Dlp\\V2\\OutputStorageConfig\\OutputSchema instead.<\/p>","examples":[],"resources":[],"methods":[]}
