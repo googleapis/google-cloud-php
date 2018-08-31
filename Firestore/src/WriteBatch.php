@@ -722,11 +722,11 @@ class WriteBatch
                 $currentPath = $path->child($key);
                 if (is_array($value)) {
                     // If a sentinel appears in or descends from an array, we need to track that.
-                    $inArray = $inArray
+                    $localInArray = $inArray
                         ? $inArray
                         : !$this->isAssoc($value);
 
-                    $fields[$key] = $filterSentinels($value, $currentPath, $inArray);
+                    $fields[$key] = $filterSentinels($value, $currentPath, $localInArray);
                     if (empty($fields[$key])) {
                         unset($fields[$key]);
                     }
