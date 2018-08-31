@@ -51,7 +51,7 @@ class ReadRowsTest extends TestCase
         $rows = [];
         $errorCount = 0;
         try {
-            foreach ($chunkFormatter->rows() as $rowKey => $row) {
+            foreach ($chunkFormatter->readAll() as $rowKey => $row) {
                 $rows[$rowKey] = $row;
             }
         } catch (BigtableDataOperationException $e) {
