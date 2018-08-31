@@ -17,72 +17,119 @@
 
 namespace Google\Cloud\Bigtable;
 
+use Google\ApiCore\ServerStream;
 use Google\Cloud\Bigtable\Exception\BigtableDataOperationException;
+use Google\Cloud\Bigtable\V2\ReadRowsResponse\CellChunk;
 
 /**
- * Converts chunks from ReadRowsResponse in to rows.
+ * Converts cell chunks into an easily digestable format. Please note this class
+ * implements the IteratorAggregate interface, and as such can be iterated over
+ * directly in order to access the formatted rows.
+ *
+ * Example:
+ * ```
+ * use Google\Cloud\Bigtable\DataClient;
+ *
+ * $dataClient = new DataClient('my-instance', 'my-table');
+ * $formatter = $dataClient->readRows();
+ * ```
  */
-class ChunkFormatter
+class ChunkFormatter implements \IteratorAggregate
 {
-    private $RowStateEnum;
-    private $prevRowKey = null;
+    /**
+     * @var array
+     */
+    private static $rowStateEnum = [
+        'NEW_ROW'          => 1,
+        'ROW_IN_PROGRESS'  => 2,
+        'CELL_IN_PROGRESS' => 3,
+    ];
+
+    /**
+     * @var string
+     */
     private $state;
-    private $serverStream;
-    private $options;
+
+    /**
+     * @var ServerStream
+     */
+    private $stream;
+
+    /**
+     * @var string|null
+     */
+    private $prevRowKey = null;
+
+    /**
+     * @var string|null
+     */
     private $rowKey = null;
+
+    /**
+     * @var array
+     */
     private $row = [];
+
+    /**
+     * @var array|null
+     */
     private $family = null;
+
+    /**
+     * @var array|null
+     */
     private $qualifiers = null;
+
+    /**
+     * @var string|null
+     */
     private $qualifierValue = null;
 
     /**
-     * Constructs ChunkFormatter.
+     * Constructs the ChunkFormatter.
      *
-     * @param \Google\ApiCore\ServerStream $stream input server stream.
-     * @param array $options optional argument.
+     * @param ServerStream $stream A server stream used to read rows.
      */
-    public function __construct($stream, array $options = [])
+    public function __construct(ServerStream $stream)
     {
-        $this->serverStream = $stream;
-        $this->options = $options;
-        $this->RowStateEnum = array(
-            'NEW_ROW' => 1,
-            'ROW_IN_PROGRESS' => 2,
-            'CELL_IN_PROGRESS' =>3,
-        );
+        $this->stream = $stream;
         $this->reset();
     }
 
     /**
-     * Formats the row chunks into friendly format. Chunks contain 3 properties:
+     * Formats the row's chunks into a friendly format.
      *
-     * `rowContents` The row contents, this essentially is all data pertaining
-     * to a single family.
+     * Example:
+     * ```
+     * $rows = $formatter->readAll();
+     * ```
      *
-     * `commitRow` This is a boolean telling us the all previous chunks for this
-     * row are ok to consume.
-     *
-     * `resetRow` This is a boolean telling us that all the previous chunks are to
-     * be discarded.
-     *
-     * @return \Generator|mixed
-     * @throws \Google\Cloud\Bigtable\Exception\BigtableDataOperationException if it detects invalid state
+     * @return \Generator
+     * @throws BigtableDataOperationException If a malformed response is received.
      */
     public function readAll()
     {
-        foreach ($this->serverStream->readAll() as $readRowsResponse) {
+        // Chunks contain 3 properties:
+        // - rowContents: The row contents, this essentially is all data
+        //   pertaining to a single family.
+        // - commitRow: This is a boolean telling us the all previous chunks for
+        //   this row are ok to consume.
+        // - resetRow: This is a boolean telling us that all the previous chunks
+        //   are to be discarded.
+        foreach ($this->stream->readAll() as $readRowsResponse) {
             foreach ($readRowsResponse->getChunks() as $chunk) {
                 switch ($this->state) {
-                    case $this->RowStateEnum['NEW_ROW']:
+                    case self::$rowStateEnum['NEW_ROW']:
                         $this->newRow($chunk);
                         break;
-                    case $this->RowStateEnum['ROW_IN_PROGRESS']:
+                    case self::$rowStateEnum['ROW_IN_PROGRESS']:
                         $this->rowInProgress($chunk);
                         break;
-                    case $this->RowStateEnum['CELL_IN_PROGRESS']:
+                    case self::$rowStateEnum['CELL_IN_PROGRESS']:
                         $this->cellInProgress($chunk);
                         break;
                 }
+
                 if ($chunk->getCommitRow()) {
                     $row = $this->row;
                     $rowKey = $this->rowKey;
@@ -91,32 +138,32 @@ class ChunkFormatter
                 }
             }
         }
+
         $this->onStreamEnd();
     }
 
     /**
-     * should be called at end of the stream to check if there is any pending row.
+     * Should be called at end of the stream to check if there are any pending
+     * rows.
      *
-     * @throws \Google\Cloud\Bigtable\Exception\BigtableDataOperationException if there is any uncommitted row.
+     * @throws BigtableDataOperationException
      */
     private function onStreamEnd()
     {
         $this->isError(
             !empty($this->row),
-            'Response ended with pending row without commit',
-            $this->row
+            'Response ended with pending row without commit.'
         );
     }
 
     /**
-     * Error checker if true throws error
+     * Error checker. If the condition is true throws an exception.
      *
      * @param boolean $condition condition to evaluate
      * @param string $text Error text
-     * @param \Google\Cloud\Bigtable\V2\ReadRowsResponse\CellChunk $chunk chunk object to append to text
-     * @throws \Google\Cloud\Bigtable\Exception\BigtableDataOperationException
+     * @throws BigtableDataOperationException
      */
-    private function isError($condition, $text, $chunk)
+    private function isError($condition, $text)
     {
         if ($condition) {
             throw new BigtableDataOperationException($text);
@@ -124,56 +171,53 @@ class ChunkFormatter
     }
 
     /**
-     * Validates valuesize and commitrow in a chunk
+     * Validates value size and commit row in a chunk.
      *
-     * @param \Google\Cloud\Bigtable\V2\ReadRowsResponse\CellChunk $chunk chunk to validate for valuesize and commitRow.
+     * @param CellChunk $chunk The chunk to validate.
      * @return void
+     * @throws BigtableDataOperationException
      */
-    private function validateValueSizeAndCommitRow($chunk)
+    private function validateValueSizeAndCommitRow(CellChunk $chunk)
     {
         $this->isError(
             $chunk->getValueSize() > 0 && $chunk->getCommitRow(),
-            'A row cannot be have a value size and be a commit row',
-            $chunk
+            'A row cannot have a value size and be a commit row.'
         );
     }
 
     /**
-     * Validates state for new row.
+     * Validates state for a new row.
      *
-     * @param \Google\Cloud\Bigtable\V2\ReadRowsResponse\CellChunk $chunk chunk to validate.
+     * @param CellChunk $chunk The chunk to validate.
      * @return void
+     * @throws BigtableDataOperationException
      */
-    private function validateNewRow($chunk)
+    private function validateNewRow(CellChunk $chunk)
     {
         $this->isError(
-            !empty($this->row),
-            'A new row cannot have existing state',
-            $chunk
+            $this->row,
+            'A new row cannot have existing state.'
         );
         $this->isError(
-            !$chunk->getRowKey() || $chunk->getRowKey() === '' || is_null($chunk->getRowKey()),
-            'A row key must be set',
-            $chunk
+            !$chunk->getRowKey(),
+            'A row key must be set.'
         );
         $this->isError(
             $chunk->getResetRow(),
-            'A new row cannot be reset',
-            $chunk
+            'A new row cannot be reset.'
         );
         $this->isError(
-            $this->prevRowKey !== null &&
+            $this->prevRowKey &&
             $this->prevRowKey === $chunk->getRowKey(),
-            'A commit happened but the same key followed',
-            $chunk
+            'A commit happened but the same key followed.'
         );
-        $this->isError(!$chunk->getFamilyName(), 'A family must be set', $chunk);
-        $this->isError(!$chunk->getQualifier(), 'A column qualifier must be set', $chunk);
+        $this->isError(!$chunk->getFamilyName(), 'A family must be set.');
+        $this->isError(!$chunk->getQualifier(), 'A column qualifier must be set.');
         $this->validateValueSizeAndCommitRow($chunk);
     }
 
     /**
-     * Resets state of formatter
+     * Resets the state of formatter.
      *
      * @return void
      */
@@ -181,12 +225,12 @@ class ChunkFormatter
     {
         $this->prevRowKey = null;
         $this->rowKey = null;
-        $this->state = $this->RowStateEnum['NEW_ROW'];
+        $this->state = self::$rowStateEnum['NEW_ROW'];
         $this->row = [];
     }
 
     /**
-     * sets prevRowkey and calls reset when row is committed.
+     * Sets the previous row key and calls reset.
      *
      * @return void
      */
@@ -198,36 +242,34 @@ class ChunkFormatter
     }
 
     /**
-     * Moves to next state in processing.
+     * Moves to the next state in processing.
      *
-     * @param \Google\Cloud\Bigtable\V2\ReadRowsResponse\CellChunk $chunk in process.
+     * @param CellChunk $chunk The chunk to analyze.
      * @return void
      */
-    private function moveToNextState($chunk)
+    private function moveToNextState(CellChunk $chunk)
     {
-        if ($chunk->getValueSize() > 0) {
-            $this->state = $this->RowStateEnum['CELL_IN_PROGRESS'];
-        } else {
-            $this->state = $this->RowStateEnum['ROW_IN_PROGRESS'];
-        }
+        $this->state = $chunk->getValueSize() > 0
+            ? self::$rowStateEnum['CELL_IN_PROGRESS']
+            : self::$rowStateEnum['ROW_IN_PROGRESS'];
     }
 
     /**
-     * Process chunk when in NEW_ROW state.
+     * Processes a chunk when in the NEW_ROW state.
      *
-     * @param \Google\Cloud\Bigtable\V2\ReadRowsResponse\CellChunk $chunk chunk to process.
+     * @param CellChunk $chunk The chunk to process.
      * @return void
+     * @throws BigtableDataOperationException
      */
-    private function newRow($chunk)
+    private function newRow(CellChunk $chunk)
     {
-        $newRowkey = $chunk->getRowKey();
         $this->validateNewRow($chunk);
-        $this->rowKey = $newRowkey;
+        $this->rowKey = $chunk->getRowKey();
         $familyName = $chunk->getFamilyName()->getValue();
         $qualifierName = $chunk->getQualifier()->getValue();
-        $labels = ($chunk->getLabels()->getIterator()->valid())?
-            implode(iterator_to_array($chunk->getLabels()->getIterator())):'';
-        $timestamp = $chunk->getTimestampMicros();
+        $labels = ($chunk->getLabels()->getIterator()->valid())
+            ? implode(iterator_to_array($chunk->getLabels()->getIterator()))
+            : '';
         $this->row[$familyName] = [];
         $this->family = &$this->row[$familyName];
         $this->family[$qualifierName] = [];
@@ -235,7 +277,7 @@ class ChunkFormatter
         $qualifier = [
             'value' => $chunk->getValue(),
             'labels' => $labels,
-            'timeStamp' => $timestamp
+            'timeStamp' => $chunk->getTimestampMicros()
         ];
         $this->qualifierValue = &$qualifier['value'];
         $this->qualifiers[] = &$qualifier;
@@ -243,12 +285,13 @@ class ChunkFormatter
     }
 
     /**
-     * Validates resetRow condition for chunk
+     * Validates the reset row condition for a chunk.
      *
-     * @param \Google\Cloud\Bigtable\V2\ReadRowsResponse\CellChunk $chunk chunk to validate for resetrow.
+     * @param CellChunk $chunk chunk The chunk to validate.
      * @return void
+     * @throws BigtableDataOperationException
      */
-    private function validateResetRow($chunk)
+    private function validateResetRow(CellChunk $chunk)
     {
         $this->isError(
             $chunk->getResetRow() &&
@@ -258,45 +301,45 @@ class ChunkFormatter
                 $chunk->getValue() ||
                 $chunk->getTimestampMicros() > 0
             ),
-            'A reset should have no data',
-            $chunk
+            'A reset should have no data.'
         );
     }
 
     /**
-     * Validates state for rowInProgress
+     * Validates state for a row in progress.
      *
-     * @param \Google\Cloud\Bigtable\V2\ReadRowsResponse\CellChunk $chunk chunk to validate.
+     * @param CellChunk $chunk The chunk to validate.
      * @return void
+     * @throws BigtableDataOperationException
      */
-    private function validateRowInProgress($chunk)
+    private function validateRowInProgress(CellChunk $chunk)
     {
         $this->validateResetRow($chunk);
         $newRowKey = $chunk->getRowKey();
         $this->isError(
             $chunk->getRowKey() && $newRowKey !== $this->rowKey,
-            'A commit is required between row keys',
-            $chunk
+            'A commit is required between row keys.'
         );
         $this->isError(
             $chunk->getFamilyName() && !$chunk->getQualifier(),
-            'A qualifier must be specified',
-            $chunk
+            'A qualifier must be specified.'
         );
         $this->validateValueSizeAndCommitRow($chunk);
     }
 
     /**
-     * Process chunk when in ROW_IN_PROGRESS state.
+     * Process a chunk when in ROW_IN_PROGRESS state.
      *
-     * @param \Google\Cloud\Bigtable\V2\ReadRowsResponse\CellChunk $chunk chunk to process.
+     * @param CellChunk $chunk The chunk to process.
      * @return void
+     * @throws BigtableDataOperationException
      */
-    private function rowInProgress($chunk)
+    private function rowInProgress(CellChunk $chunk)
     {
         $this->validateRowInProgress($chunk);
         if ($chunk->getResetRow()) {
-            return $this->reset();
+            $this->reset();
+            return;
         }
         if ($chunk->getFamilyName()) {
             $familyName = $chunk->getFamilyName()->getValue();
@@ -312,13 +355,13 @@ class ChunkFormatter
             }
             $this->qualifiers = &$this->family[$qualifierName];
         }
-        $labels = ($chunk->getLabels()->getIterator()->valid())?
-            implode(iterator_to_array($chunk->getLabels()->getIterator())):'';
-        $timestamp = $chunk->getTimestampMicros();
+        $labels = ($chunk->getLabels()->getIterator()->valid())
+            ? implode(iterator_to_array($chunk->getLabels()->getIterator()))
+            : '';
         $qualifier = [
             'value' => $chunk->getValue(),
             'labels' => $labels,
-            'timeStamp' => $timestamp
+            'timeStamp' => $chunk->getTimestampMicros()
         ];
         $this->qualifierValue = &$qualifier['value'];
         $this->qualifiers[] = &$qualifier;
@@ -328,10 +371,11 @@ class ChunkFormatter
     /**
      * Validates chunk for CELL_IN_PROGRESS state.
      *
-     * @param \Google\Cloud\Bigtable\V2\ReadRowsResponse\CellChunk $chunk chunk to validate.
+     * @param CellChunk $chunk The chunk to validate.
      * @return void
+     * @throws BigtableDataOperationException
      */
-    private function validateCellInProgress($chunk)
+    private function validateCellInProgress(CellChunk $chunk)
     {
         $this->validateResetRow($chunk);
         $this->validateValueSizeAndCommitRow($chunk);
@@ -340,17 +384,29 @@ class ChunkFormatter
     /**
      * Process chunk when in CELL_IN_PROGRESS state.
      *
-     * @param \Google\Cloud\Bigtable\V2\ReadRowsResponse\CellChunk $chunk chunk to process.
+     * @param CellChunk $chunk The chunk to process.
      * @return void
+     * @throws BigtableDataOperationException
      */
-    private function cellInProgress($chunk)
+    private function cellInProgress(CellChunk $chunk)
     {
         $this->validateCellInProgress($chunk);
         if ($chunk->getResetRow()) {
-            return $this->reset();
+            $this->reset();
+            return;
         }
         $this->qualifierValue = $this->qualifierValue . $chunk->getValue();
         $this->moveToNextState($chunk);
+    }
+
+    /**
+     * @access private
+     * @return \Generator
+     * @throws BigtableDataOperationException Thrown in the case of a malformed response.
+     */
+    public function getIterator()
+    {
+        return $this->readAll();
     }
 
     /**

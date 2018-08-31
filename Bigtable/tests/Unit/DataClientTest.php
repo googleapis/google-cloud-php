@@ -271,36 +271,39 @@ class DataClientTest extends TestCase
         ];
         $this->dataClient->upsert($rows, $options);
     }
+
     public function testReadRowsNoArg()
     {
         $expectedArgs = $this->options;
         $this->bigtableClient->readRows(self::TABLE_NAME, $expectedArgs)
             ->shouldBeCalled()
             ->willReturn(
-                $this->serverStream
+                $this->serverStream->reveal()
             );
         $args = [];
         $iterator = $this->dataClient->readRows($args);
         $this->assertInstanceOf(ChunkFormatter::class, $iterator);
     }
 
-    public function testReadRowsWithSingleRowKey()
+    public function testReadRow()
     {
         $rowSet = new RowSet();
         $rowSet->setRowKeys(['rk1']);
         $expectedArgs = $this->options + [
             'rows' => $rowSet
         ];
+        $this->serverStream->readAll()
+            ->shouldBeCalled()
+            ->willReturn(
+                $this->arrayAsGenerator([])
+            );
         $this->bigtableClient->readRows(self::TABLE_NAME, $expectedArgs)
             ->shouldBeCalled()
             ->willReturn(
-                $this->serverStream
+                $this->serverStream->reveal()
             );
-        $args = [
-            'rowKeys' => 'rk1'
-        ];
-        $iterator = $this->dataClient->readRows($args);
-        $this->assertInstanceOf(ChunkFormatter::class, $iterator);
+        $row = $this->dataClient->readRow('rk1');
+        $this->assertNull($row);
     }
 
     public function testReadRowsWithMultipleRowKeys()
@@ -313,10 +316,10 @@ class DataClientTest extends TestCase
         $this->bigtableClient->readRows(self::TABLE_NAME, $expectedArgs)
             ->shouldBeCalled()
             ->willReturn(
-                $this->serverStream
+                $this->serverStream->reveal()
             );
         $args = [
-            'rowKeys' => [ 'rk1', 'rk2']
+            'rowKeys' => ['rk1', 'rk2']
         ];
         $iterator = $this->dataClient->readRows($args);
         $this->assertInstanceOf(ChunkFormatter::class, $iterator);
@@ -333,10 +336,10 @@ class DataClientTest extends TestCase
         $this->bigtableClient->readRows(self::TABLE_NAME, $expectedArgs)
             ->shouldBeCalled()
             ->willReturn(
-                $this->serverStream
+                $this->serverStream->reveal()
             );
         $args = [
-            'rowKeys' => [ 'rk1', 'rk2'],
+            'rowKeys' => ['rk1', 'rk2'],
             'rowsLimit' => 10
         ];
         $iterator = $this->dataClient->readRows($args);
@@ -356,7 +359,7 @@ class DataClientTest extends TestCase
         $this->bigtableClient->readRows(self::TABLE_NAME, $expectedArgs)
             ->shouldBeCalled()
             ->willReturn(
-                $this->serverStream
+                $this->serverStream->reveal()
             );
         $args = [
             'rowRanges' =>[
@@ -383,7 +386,7 @@ class DataClientTest extends TestCase
         $this->bigtableClient->readRows(self::TABLE_NAME, $expectedArgs)
             ->shouldBeCalled()
             ->willReturn(
-                $this->serverStream
+                $this->serverStream->reveal()
             );
         $args = [
             'rowRanges' =>[
@@ -410,7 +413,7 @@ class DataClientTest extends TestCase
         $this->bigtableClient->readRows(self::TABLE_NAME, $expectedArgs)
             ->shouldBeCalled()
             ->willReturn(
-                $this->serverStream
+                $this->serverStream->reveal()
             );
         $args = [
             'rowRanges' =>[
@@ -437,7 +440,7 @@ class DataClientTest extends TestCase
         $this->bigtableClient->readRows(self::TABLE_NAME, $expectedArgs)
             ->shouldBeCalled()
             ->willReturn(
-                $this->serverStream
+                $this->serverStream->reveal()
             );
         $args = [
             'rowRanges' =>[
@@ -469,7 +472,7 @@ class DataClientTest extends TestCase
         $this->bigtableClient->readRows(self::TABLE_NAME, $expectedArgs)
             ->shouldBeCalled()
             ->willReturn(
-                $this->serverStream
+                $this->serverStream->reveal()
             );
         $args = [
             'rowRanges' =>[
@@ -501,10 +504,10 @@ class DataClientTest extends TestCase
         $this->bigtableClient->readRows(self::TABLE_NAME, $expectedArgs)
             ->shouldBeCalled()
             ->willReturn(
-                $this->serverStream
+                $this->serverStream->reveal()
             );
         $args = [
-            'rowKeys' => 'rk1',
+            'rowKeys' => ['rk1'],
             'rowRanges' => [
                 [
                     'startKeyClosed' => 'sc1',
@@ -530,6 +533,7 @@ class DataClientTest extends TestCase
         }
         return $mutateRowsResponses;
     }
+
     private function arrayAsGenerator(array $array)
     {
         foreach ($array as $item) {

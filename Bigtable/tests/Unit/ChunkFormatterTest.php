@@ -44,7 +44,7 @@ class ChunkFormatterTest extends TestCase
 
     /**
      * @expectedException \Google\Cloud\Bigtable\Exception\BigtableDataOperationException
-     * @expectedExceptionMessage A row key must be set
+     * @expectedExceptionMessage A row key must be set.
      */
     public function testNewRowShouldThrowWhenNoRowKey()
     {
@@ -59,7 +59,7 @@ class ChunkFormatterTest extends TestCase
 
     /**
      * @expectedException \Google\Cloud\Bigtable\Exception\BigtableDataOperationException
-     * @expectedExceptionMessage A new row cannot be reset
+     * @expectedExceptionMessage A new row cannot be reset.
      */
     public function testNewRowShouldThrowWhenResetIsTrue()
     {
@@ -76,7 +76,7 @@ class ChunkFormatterTest extends TestCase
 
     /**
      * @expectedException \Google\Cloud\Bigtable\Exception\BigtableDataOperationException
-     * @expectedExceptionMessage A family must be set
+     * @expectedExceptionMessage A family must be set.
      */
     public function testNewRowShouldThrowWhenNoFamilyName()
     {
@@ -92,7 +92,7 @@ class ChunkFormatterTest extends TestCase
 
     /**
      * @expectedException \Google\Cloud\Bigtable\Exception\BigtableDataOperationException
-     * @expectedExceptionMessage A column qualifier must be set
+     * @expectedExceptionMessage A column qualifier must be set.
      */
     public function testNewRowShouldThrowWhenNoQualifier()
     {
@@ -111,7 +111,7 @@ class ChunkFormatterTest extends TestCase
 
     /**
      * @expectedException \Google\Cloud\Bigtable\Exception\BigtableDataOperationException
-     * @expectedExceptionMessage A row cannot be have a value size and be a commit row
+     * @expectedExceptionMessage A row cannot have a value size and be a commit row.
      */
     public function testNewRowShouldThrowWhenValueSizeAndCommitRow()
     {
@@ -135,7 +135,7 @@ class ChunkFormatterTest extends TestCase
 
     /**
      * @expectedException \Google\Cloud\Bigtable\Exception\BigtableDataOperationException
-     * @expectedExceptionMessage A commit happened but the same key followed
+     * @expectedExceptionMessage A commit happened but the same key followed.
      */
     public function testNewRowShouldThrowWhenSameRowKeyFollows()
     {
@@ -345,7 +345,7 @@ class ChunkFormatterTest extends TestCase
 
     /**
      * @expectedException \Google\Cloud\Bigtable\Exception\BigtableDataOperationException
-     * @expectedExceptionMessage Response ended with pending row without commit
+     * @expectedExceptionMessage Response ended with pending row without commit.
      */
     public function testNewRowShouldThrowWhenPendingRow()
     {
@@ -370,7 +370,7 @@ class ChunkFormatterTest extends TestCase
 
     /**
      * @expectedException \Google\Cloud\Bigtable\Exception\BigtableDataOperationException
-     * @expectedExceptionMessage A reset should have no data
+     * @expectedExceptionMessage A reset should have no data.
      */
     public function testValidateResetWithRowKey()
     {
@@ -399,7 +399,7 @@ class ChunkFormatterTest extends TestCase
 
     /**
      * @expectedException \Google\Cloud\Bigtable\Exception\BigtableDataOperationException
-     * @expectedExceptionMessage A reset should have no data
+     * @expectedExceptionMessage A reset should have no data.
      */
     public function testValidateResetWithQualifier()
     {
@@ -428,7 +428,7 @@ class ChunkFormatterTest extends TestCase
 
     /**
      * @expectedException \Google\Cloud\Bigtable\Exception\BigtableDataOperationException
-     * @expectedExceptionMessage A reset should have no data
+     * @expectedExceptionMessage A reset should have no data.
      */
     public function testValidateResetWithValue()
     {
@@ -457,7 +457,7 @@ class ChunkFormatterTest extends TestCase
 
     /**
      * @expectedException \Google\Cloud\Bigtable\Exception\BigtableDataOperationException
-     * @expectedExceptionMessage A reset should have no data
+     * @expectedExceptionMessage A reset should have no data.
      */
     public function testValidateResetWithTimestampMicro()
     {
@@ -486,7 +486,7 @@ class ChunkFormatterTest extends TestCase
 
     /**
      * @expectedException \Google\Cloud\Bigtable\Exception\BigtableDataOperationException
-     * @expectedExceptionMessage A commit is required between row keys
+     * @expectedExceptionMessage A commit is required between row keys.
      */
     public function testRowInProgressDifferentRowKey()
     {
@@ -514,7 +514,7 @@ class ChunkFormatterTest extends TestCase
 
     /**
      * @expectedException \Google\Cloud\Bigtable\Exception\BigtableDataOperationException
-     * @expectedExceptionMessage A qualifier must be specified
+     * @expectedExceptionMessage A qualifier must be specified.
      */
     public function testRowInProgressFamilyNameWithouQualifier()
     {
@@ -545,7 +545,7 @@ class ChunkFormatterTest extends TestCase
 
     /**
      * @expectedException \Google\Cloud\Bigtable\Exception\BigtableDataOperationException
-     * @expectedExceptionMessage A row cannot be have a value size and be a commit row
+     * @expectedExceptionMessage A row cannot have a value size and be a commit row.
      */
     public function testRowInProgressValueSizeAndCommit()
     {
@@ -793,7 +793,7 @@ class ChunkFormatterTest extends TestCase
 
     /**
      * @expectedException \Google\Cloud\Bigtable\Exception\BigtableDataOperationException
-     * @expectedExceptionMessage A row cannot be have a value size and be a commit row
+     * @expectedExceptionMessage A row cannot have a value size and be a commit row.
      */
     public function testCellInProgressValueSizeAndCommit()
     {
@@ -823,7 +823,7 @@ class ChunkFormatterTest extends TestCase
 
     /**
      * @expectedException \Google\Cloud\Bigtable\Exception\BigtableDataOperationException
-     * @expectedExceptionMessage A reset should have no data
+     * @expectedExceptionMessage A reset should have no data.
      */
     public function testCellInProgressValidateResetWithRowKey()
     {
@@ -853,7 +853,7 @@ class ChunkFormatterTest extends TestCase
 
     /**
      * @expectedException \Google\Cloud\Bigtable\Exception\BigtableDataOperationException
-     * @expectedExceptionMessage A reset should have no data
+     * @expectedExceptionMessage A reset should have no data.
      */
     public function testCellInProgressValidateResetWithQualifier()
     {
@@ -885,7 +885,7 @@ class ChunkFormatterTest extends TestCase
 
     /**
      * @expectedException \Google\Cloud\Bigtable\Exception\BigtableDataOperationException
-     * @expectedExceptionMessage A reset should have no data
+     * @expectedExceptionMessage A reset should have no data.
      */
     public function testCellInProgressValidateResetWithValue()
     {
@@ -915,7 +915,7 @@ class ChunkFormatterTest extends TestCase
 
     /**
      * @expectedException \Google\Cloud\Bigtable\Exception\BigtableDataOperationException
-     * @expectedExceptionMessage A reset should have no data
+     * @expectedExceptionMessage A reset should have no data.
      */
     public function testCellInProgressValidateResetWithTimestampMicro()
     {
