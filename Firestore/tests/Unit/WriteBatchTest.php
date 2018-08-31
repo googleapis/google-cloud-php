@@ -265,6 +265,40 @@ class WriteBatchTest extends TestCase
     }
 
     /**
+     * @expectedException InvalidArgumentException
+     */
+    public function testSentinelsInArray()
+    {
+        $this->batch->set('name', [
+            'foo' => [
+                FieldValue::serverTimestamp()
+            ]
+        ]);
+    }
+
+    public function testSentinelsAfterArray()
+    {
+        $this->batch->set('name', [
+            'foo' => [
+                'a', 'b', 'c'
+            ],
+            'bar' => FieldValue::serverTimestamp()
+        ]);
+    }
+
+    public function testSentinelsAfterArrayNested()
+    {
+        $this->batch->set('name', [
+            'foo' => [
+                'a' => [
+                    'a', 'b', 'c',
+                ],
+                'b' => FieldValue::serverTimestamp()
+            ]
+        ]);
+    }
+
+    /**
      * @dataProvider documents
      * @expectedException InvalidArgumentException
      * @expectedExceptionMessage Delete cannot appear in data unless `$options['merge']` is set.
