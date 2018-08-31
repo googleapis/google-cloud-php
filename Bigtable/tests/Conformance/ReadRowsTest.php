@@ -15,9 +15,9 @@
  * limitations under the License.
  */
 
-namespace Google\Cloud\Bigtable\Tests\System;
+namespace Google\Cloud\Bigtable\Tests\Conformance;
 
-use \Google\ApiCore\ServerStream;
+use Google\ApiCore\ServerStream;
 use Google\Cloud\Bigtable\ChunkFormatter;
 use Google\Cloud\Bigtable\Exception\BigtableDataOperationException;
 use Google\Cloud\Bigtable\V2\ReadRowsResponse;
@@ -28,7 +28,7 @@ use PHPUnit\Framework\TestCase;
  * @group bigtable
  * @group bigtabledata
  */
-class ReadRowsAcceptanceTest extends TestCase
+class ReadRowsTest extends TestCase
 {
     private $serverStream;
 
@@ -40,7 +40,7 @@ class ReadRowsAcceptanceTest extends TestCase
     /**
      * @dataProvider rowsProvider
      */
-    public function testReadRowsAcceptanceTest($readRowsResponses, $expectedRows, $expectedErrorCount)
+    public function testReadRows($readRowsResponses, $expectedRows, $expectedErrorCount)
     {
         $this->serverStream->readAll()->shouldBeCalled()->willReturn(
             $this->arrayAsGenerator($readRowsResponses)
@@ -51,7 +51,7 @@ class ReadRowsAcceptanceTest extends TestCase
         $rows = [];
         $errorCount = 0;
         try {
-            foreach ($chunkFormatter->readAll() as $rowKey => $row) {
+            foreach ($chunkFormatter->rows() as $rowKey => $row) {
                 $rows[$rowKey] = $row;
             }
         } catch (BigtableDataOperationException $e) {
@@ -63,7 +63,7 @@ class ReadRowsAcceptanceTest extends TestCase
 
     public function rowsProvider()
     {
-        $str = file_get_contents(__DIR__ .'/read-rows-acceptance-test.json');
+        $str = file_get_contents(__DIR__ . '/fixtures/read-rows-test.json');
         $json = json_decode($str, true)['tests'];
         $testsData = [];
         foreach ($json as $test) {

@@ -17,7 +17,7 @@
 
 namespace Google\Cloud\Bigtable\Tests\Snippet;
 
-use \Google\ApiCore\ServerStream;
+use Google\ApiCore\ServerStream;
 use Google\Cloud\Bigtable\DataClient;
 use Google\Cloud\Bigtable\V2\BigtableClient as TableClient;
 use Google\Cloud\Bigtable\V2\MutateRowsRequest\Entry as MutateRowsRequest_Entry;
@@ -27,6 +27,8 @@ use Google\Cloud\Bigtable\V2\Mutation;
 use Google\Cloud\Bigtable\V2\Mutation\SetCell;
 use Google\Cloud\Bigtable\V2\ReadRowsResponse;
 use Google\Cloud\Bigtable\V2\ReadRowsResponse_CellChunk as ReadRowsResponse_CellChunk;
+use Google\Cloud\Bigtable\V2\RowRange;
+use Google\Cloud\Bigtable\V2\RowSet;
 use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
 use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Protobuf\StringValue;
@@ -40,7 +42,6 @@ use Google\Rpc\Status;
  */
 class DataClientTest extends SnippetTestCase
 {
-
     const PROJECT_ID = 'my-project';
     const INSTANCE_ID = 'my-instance';
     const TABLE_ID = 'my-table';
@@ -133,6 +134,110 @@ class DataClientTest extends SnippetTestCase
 
     public function testReadRows()
     {
+        $this->serverStream->readAll()
+            ->shouldBeCalled()
+            ->willReturn(
+                $this->arrayAsGenerator([$this->setUpReadRowsResponse()])
+            );
+        $this->bigtableClient->readRows(self::TABLE_NAME, [])
+            ->shouldBeCalled()
+            ->willReturn(
+                $this->serverStream->reveal()
+            );
+        $snippet = $this->snippetFromMethod(DataClient::class, 'readRows');
+        $snippet->addLocal('dataClient', $this->dataClient);
+        $res = $snippet->invoke('rows');
+        $expectedRows = [
+            'cf1' => [
+                'cq1' => [[
+                    'value' => 'value1',
+                    'labels' => '',
+                    'timeStamp' => 0
+                ]]
+            ]
+        ];
+        $this->assertEquals(
+            print_r($expectedRows, true),
+            $res->output()
+        );
+    }
+
+    public function testReadRowsWithRowRanges()
+    {
+        $this->serverStream->readAll()
+            ->shouldBeCalled()
+            ->willReturn(
+                $this->arrayAsGenerator([$this->setUpReadRowsResponse()])
+            );
+        $rowRange = (new RowRange)
+            ->setStartKeyOpen('jefferson')
+            ->setEndKeyOpen('lincoln');
+        $rowSet = (new RowSet())
+            ->setRowRanges([$rowRange]);
+        $this->bigtableClient->readRows(
+                self::TABLE_NAME,
+                ['rows' => $rowSet]
+            )
+            ->shouldBeCalled()
+            ->willReturn(
+                $this->serverStream->reveal()
+            );
+
+        $snippet = $this->snippetFromMethod(DataClient::class, 'readRows', 1);
+        $snippet->addLocal('dataClient', $this->dataClient);
+        $res = $snippet->invoke('rows');
+        $expectedRows = [
+            'cf1' => [
+                'cq1' => [[
+                    'value' => 'value1',
+                    'labels' => '',
+                    'timeStamp' => 0
+                ]]
+            ]
+        ];
+        $this->assertEquals(
+            print_r($expectedRows, true),
+            $res->output()
+        );
+    }
+
+    public function testReadRow()
+    {
+        $this->serverStream->readAll()
+            ->shouldBeCalled()
+            ->willReturn(
+                $this->arrayAsGenerator([$this->setUpReadRowsResponse()])
+            );
+        $rowSet = (new RowSet())
+            ->setRowKeys(['jefferson']);
+        $this->bigtableClient->readRows(
+                self::TABLE_NAME,
+                ['rows' => $rowSet]
+            )
+            ->shouldBeCalled()
+            ->willReturn(
+                $this->serverStream->reveal()
+            );
+        $snippet = $this->snippetFromMethod(DataClient::class, 'readRow');
+        $snippet->addLocal('dataClient', $this->dataClient);
+        $res = $snippet->invoke('row');
+        $expectedRow = [
+            'cf1' => [
+                'cq1' => [[
+                    'value' => 'value1',
+                    'labels' => '',
+                    'timeStamp' => 0
+                ]]
+            ]
+        ];
+        $this->assertEquals(
+            print_r($expectedRow, true),
+            $res->output()
+        );
+    }
+
+    private function setUpReadRowsResponse()
+    {
         $readRowsResponse = new ReadRowsResponse;
         $chunks = [];
         $chunk = new ReadRowsResponse_CellChunk();
@@ -147,29 +252,8 @@ class DataClientTest extends SnippetTestCase
         $chunk->setCommitRow(true);
         $chunks[] = $chunk;
         $readRowsResponse->setChunks($chunks);
-        $this->serverStream->readAll()->shouldBeCalled()->willReturn(
-            $this->arrayAsGenerator([$readRowsResponse])
-        );
-        $this->bigtableClient->readRows(self::TABLE_NAME, [])
-        ->shouldBeCalled()
-        ->willReturn(
-            $this->serverStream->reveal()
-        );
-        $snippet = $this->snippetFromMethod(DataClient::class, 'readRows');
-        $snippet->addLocal('dataClient', $this->dataClient);
-        $res = $snippet->invoke('rows');
-        $expectedRows = [
-            'rk1' => [
-                'cf1' => [
-                    'cq1' => [[
-                        'value' => 'value1',
-                        'labels' => '',
-                        'timeStamp' => 0
-                    ]]
-                ]
-            ]
-        ];
-        $this->assertEquals($expectedRows, $res->returnVal());
+
+        return $readRowsResponse;
     }
 
     private function arrayAsGenerator(array $array)

@@ -18,6 +18,7 @@
 namespace Google\Cloud\Bigtable;
 
 use Google\ApiCore\ApiException;
+use Google\ApiCore\Serializer;
 use Google\Cloud\Bigtable\Exception\BigtableDataOperationException;
 use Google\Cloud\Bigtable\V2\BigtableClient as TableClient;
 use Google\Cloud\Bigtable\V2\RowRange;
@@ -90,6 +91,7 @@ class DataClient
      */
     public function __construct($instanceId, $tableId, array $config = [])
     {
+        $this->serializer = new Serializer();
         $this->instanceId = $instanceId;
         $this->tableId = $tableId;
         $this->options = [];
@@ -103,6 +105,15 @@ class DataClient
         if (isset($config['bigtableClient'])) {
             $this->bigtableClient = $config['bigtableClient'];
         } else {
+            // Temp workaround for large messages.
+            $config['transportConfig'] = [
+                'grpc' => [
+                    'stubOpts' => [
+                        'grpc.max_send_message_length' => -1,
+                        'grpc.max_receive_message_length' => -1
+                    ]
+                ]
+            ];
             $this->bigtableClient = new TableClient($config);
         }
         $this->tableName = TableClient::tableName($this->projectId, $instanceId, $tableId);
@@ -199,67 +210,91 @@ class DataClient
      *
      * Example:
      * ```
-     * use Google\Cloud\Bigtable\DataClient;
-     * $rows = iterator_to_array($dataClient->readRows()->readAll());
+     * $rows = $dataClient->readRows();
+     *
+     * foreach ($rows as $row) {
+     *     print_r($row) . PHP_EOL;
+     * }
+     * ```
+     *
+     * // Specify a set of row ranges.
+     * ```
+     * $rows = $dataClient->readRows([
+     *     'rowRanges' => [
+     *         [
+     *             'startKeyOpen' => 'jefferson',
+     *             'endKeyOpen' => 'lincoln'
+     *         ]
+     *     ]
+     * ]);
+     *
+     * foreach ($rows as $row) {
+     *     print_r($row) . PHP_EOL;
+     * }
      * ```
      *
      * @param array $options [optional] {
-     *     ReadRows Options.
+     *     Configuration options.
      *
-     *     @type string $rowKeys Row key of the row to read.
-     *     @type array $rowKeys Set of row keys of the rows to read.
-     *     @type array $rowRanges Array of row ranges. Each row range is an array
-     *           with keys `startKeyOpen`, `startKeyClosed`, `endKeyOpen` &
-     *           `endKeyClosed` and values of row key to be scanned.
-     *     @type int $rowsLimit Number of rows to scan.
+     *     @type string[] $rowKeys A set of row keys to read.
+     *     @type array $rowRanges A set of row ranges. Each row range is an
+     *           associative array which may contain a start key
+     *           (`startKeyClosed` or `startKeyOpen`) and/or an end key
+     *           (`endKeyOpen` or `endKeyClosed`).
+     *     @type int $rowsLimit The number of rows to scan.
      * }
-     *
-     * @return \Generator|mixed
-     * @throws ApiException|BigtableDataOperationException if the remote call fails or operation fails
+     * @return ChunkFormatter
      */
     public function readRows(array $options = [])
     {
-        $rowSet = null;
-        $rowKeys = $this->pluck('rowKeys', $options, false);
-        $ranges = $this->pluck('rowRanges', $options, false);
-        if ($rowKeys !== null) {
-            $rowSet = new RowSet();
-            if (is_array($rowKeys)) {
-                $rowSet->setRowKeys($rowKeys);
-            } else {
-                $rowSet->setRowKeys([$rowKeys]);
-            }
+        $rowKeys = $this->pluck('rowKeys', $options, false) ?: [];
+        $ranges = $this->pluck('rowRanges', $options, false) ?: [];
+
+        array_walk($ranges, function (&$range) {
+            $range = $this->serializer->decodeMessage(
+                new RowRange(),
+                $range
+            );
+        });
+
+        if ($ranges || $rowKeys) {
+            $options['rows'] = $this->serializer->decodeMessage(
+                new RowSet,
+                [
+                    'rowKeys' => $rowKeys,
+                    'rowRanges' => $ranges
+                ]
+            );
         }
-        if ($ranges !== null) {
-            if ($rowSet === null) {
-                $rowSet = new RowSet();
-            }
-            $rowRanges = [];
-            foreach ($ranges as $range) {
-                $rowRange = new RowRange();
-                if (isset($range['startKeyOpen'])) {
-                    $rowRange->setStartKeyOpen($range['startKeyOpen']);
-                } elseif (isset($range['startKeyClosed'])) {
-                    $rowRange->setStartKeyClosed($range['startKeyClosed']);
-                }
-                if (isset($range['endKeyOpen'])) {
-                    $rowRange->setEndKeyOpen($range['endKeyOpen']);
-                } elseif (isset($range['endKeyClosed'])) {
-                    $rowRange->setEndKeyClosed($range['endKeyClosed']);
-                }
-                $rowRanges[] = $rowRange;
-            }
-            $rowSet->setRowRanges($rowRanges);
-        }
-        $args = $options + $this->options;
-        if ($rowSet !== null) {
-            $args['rows'] = $rowSet;
-        }
+
         $serverStream = $this->bigtableClient->readRows(
             $this->tableName,
-            $args
+            $options + $this->options
         );
-        $chunkFormatter = new ChunkFormatter($serverStream);
-        return $chunkFormatter;
+        return new ChunkFormatter($serverStream);
+    }
+
+    /**
+     * Read a single row from the table.
+     *
+     * Example:
+     * ```
+     * $row = $dataClient->readRow('jefferson');
+     *
+     * print_r($row);
+     * ```
+     *
+     * @param string $rowKey The row key to read.
+     * @param array $options [optional] Configuration options.
+     * @return array|null
+     */
+    public function readRow($rowKey, array $options = [])
+    {
+        return $this->readRows(
+            ['rowKeys' => [$rowKey]],
+            $options + $this->options
+        )
+            ->readAll()
+            ->current();
     }
 }
