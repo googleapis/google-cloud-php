@@ -174,14 +174,9 @@ class DataClientTest extends SnippetTestCase
             ->setEndKeyOpen('lincoln');
         $rowSet = (new RowSet())
             ->setRowRanges([$rowRange]);
-        $this->bigtableClient->readRows(
-                self::TABLE_NAME,
-                ['rows' => $rowSet]
-            )
+        $this->bigtableClient->readRows(self::TABLE_NAME, ['rows' => $rowSet])
             ->shouldBeCalled()
-            ->willReturn(
-                $this->serverStream->reveal()
-            );
+            ->willReturn($this->serverStream->reveal());
 
         $snippet = $this->snippetFromMethod(DataClient::class, 'readRows', 1);
         $snippet->addLocal('dataClient', $this->dataClient);
@@ -210,14 +205,9 @@ class DataClientTest extends SnippetTestCase
             );
         $rowSet = (new RowSet())
             ->setRowKeys(['jefferson']);
-        $this->bigtableClient->readRows(
-                self::TABLE_NAME,
-                ['rows' => $rowSet]
-            )
+        $this->bigtableClient->readRows(self::TABLE_NAME, ['rows' => $rowSet])
             ->shouldBeCalled()
-            ->willReturn(
-                $this->serverStream->reveal()
-            );
+            ->willReturn($this->serverStream->reveal());
         $snippet = $this->snippetFromMethod(DataClient::class, 'readRow');
         $snippet->addLocal('dataClient', $this->dataClient);
         $res = $snippet->invoke('row');
