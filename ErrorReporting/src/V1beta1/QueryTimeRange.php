@@ -23,9 +23,19 @@ class QueryTimeRange extends \Google\Protobuf\Internal\Message
      */
     private $period = 0;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type int $period
+     *           Restricts the query to the specified time range.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Devtools\Clouderrorreporting\V1Beta1\ErrorStatsService::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

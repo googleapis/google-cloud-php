@@ -57,18 +57,21 @@ use Google\Protobuf\Timestamp;
  * try {
  *     $formattedProjectName = $errorStatsServiceClient->projectName('[PROJECT]');
  *     $timeRange = new QueryTimeRange();
- *     // Iterate through all elements
- *     $pagedResponse = $errorStatsServiceClient->listGroupStats($formattedProjectName, $timeRange);
- *     foreach ($pagedResponse->iterateAllElements() as $element) {
- *         // doSomethingWith($element);
- *     }
- *
- *     // OR iterate over pages of elements
+ *     // Iterate over pages of elements
  *     $pagedResponse = $errorStatsServiceClient->listGroupStats($formattedProjectName, $timeRange);
  *     foreach ($pagedResponse->iteratePages() as $page) {
  *         foreach ($page as $element) {
  *             // doSomethingWith($element);
  *         }
+ *     }
+ *
+ *
+ *     // Alternatively:
+ *
+ *     // Iterate through all elements
+ *     $pagedResponse = $errorStatsServiceClient->listGroupStats($formattedProjectName, $timeRange);
+ *     foreach ($pagedResponse->iterateAllElements() as $element) {
+ *         // doSomethingWith($element);
  *     }
  * } finally {
  *     $errorStatsServiceClient->close();
@@ -122,6 +125,7 @@ class ErrorStatsServiceGapicClient
             'serviceAddress' => self::SERVICE_ADDRESS.':'.self::DEFAULT_SERVICE_PORT,
             'clientConfig' => __DIR__.'/../resources/error_stats_service_client_config.json',
             'descriptorsConfigPath' => __DIR__.'/../resources/error_stats_service_descriptor_config.php',
+            'gcpApiConfigPath' => __DIR__.'/../resources/error_stats_service_grpc_config.json',
             'credentialsConfig' => [
                 'scopes' => self::$serviceScopes,
             ],
@@ -277,18 +281,21 @@ class ErrorStatsServiceGapicClient
      * try {
      *     $formattedProjectName = $errorStatsServiceClient->projectName('[PROJECT]');
      *     $timeRange = new QueryTimeRange();
-     *     // Iterate through all elements
-     *     $pagedResponse = $errorStatsServiceClient->listGroupStats($formattedProjectName, $timeRange);
-     *     foreach ($pagedResponse->iterateAllElements() as $element) {
-     *         // doSomethingWith($element);
-     *     }
-     *
-     *     // OR iterate over pages of elements
+     *     // Iterate over pages of elements
      *     $pagedResponse = $errorStatsServiceClient->listGroupStats($formattedProjectName, $timeRange);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
      *         }
+     *     }
+     *
+     *
+     *     // Alternatively:
+     *
+     *     // Iterate through all elements
+     *     $pagedResponse = $errorStatsServiceClient->listGroupStats($formattedProjectName, $timeRange);
+     *     foreach ($pagedResponse->iterateAllElements() as $element) {
+     *         // doSomethingWith($element);
      *     }
      * } finally {
      *     $errorStatsServiceClient->close();
@@ -399,18 +406,21 @@ class ErrorStatsServiceGapicClient
      * try {
      *     $formattedProjectName = $errorStatsServiceClient->projectName('[PROJECT]');
      *     $groupId = '';
-     *     // Iterate through all elements
-     *     $pagedResponse = $errorStatsServiceClient->listEvents($formattedProjectName, $groupId);
-     *     foreach ($pagedResponse->iterateAllElements() as $element) {
-     *         // doSomethingWith($element);
-     *     }
-     *
-     *     // OR iterate over pages of elements
+     *     // Iterate over pages of elements
      *     $pagedResponse = $errorStatsServiceClient->listEvents($formattedProjectName, $groupId);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
      *         }
+     *     }
+     *
+     *
+     *     // Alternatively:
+     *
+     *     // Iterate through all elements
+     *     $pagedResponse = $errorStatsServiceClient->listEvents($formattedProjectName, $groupId);
+     *     foreach ($pagedResponse->iterateAllElements() as $element) {
+     *         // doSomethingWith($element);
      *     }
      * } finally {
      *     $errorStatsServiceClient->close();

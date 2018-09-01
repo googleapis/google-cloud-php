@@ -36,9 +36,23 @@ class TimedCount extends \Google\Protobuf\Internal\Message
      */
     private $end_time = null;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type int|string $count
+     *           Approximate number of occurrences in the given time period.
+     *     @type \Google\Protobuf\Timestamp $start_time
+     *           Start of the time period to which `count` refers (included).
+     *     @type \Google\Protobuf\Timestamp $end_time
+     *           End of the time period to which `count` refers (excluded).
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Devtools\Clouderrorreporting\V1Beta1\ErrorStatsService::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

@@ -7,7 +7,7 @@ namespace Google\Cloud\ErrorReporting\V1beta1;
 /**
  * Specifies how the time periods of error group counts are aligned.
  *
- * Protobuf enum <code>Google\Devtools\Clouderrorreporting\V1beta1\TimedCountAlignment</code>
+ * Protobuf type <code>google.devtools.clouderrorreporting.v1beta1.TimedCountAlignment</code>
  */
 class TimedCountAlignment
 {

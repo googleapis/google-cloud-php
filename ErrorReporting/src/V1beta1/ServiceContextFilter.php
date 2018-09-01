@@ -40,9 +40,26 @@ class ServiceContextFilter extends \Google\Protobuf\Internal\Message
      */
     private $resource_type = '';
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $service
+     *           [Optional] The exact value to match against
+     *           [`ServiceContext.service`](/error-reporting/reference/rest/v1beta1/ServiceContext#FIELDS.service).
+     *     @type string $version
+     *           [Optional] The exact value to match against
+     *           [`ServiceContext.version`](/error-reporting/reference/rest/v1beta1/ServiceContext#FIELDS.version).
+     *     @type string $resource_type
+     *           [Optional] The exact value to match against
+     *           [`ServiceContext.resource_type`](/error-reporting/reference/rest/v1beta1/ServiceContext#FIELDS.resource_type).
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Devtools\Clouderrorreporting\V1Beta1\ErrorStatsService::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

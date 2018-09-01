@@ -28,9 +28,25 @@ class GetGroupRequest extends \Google\Protobuf\Internal\Message
      */
     private $group_name = '';
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $group_name
+     *           [Required] The group resource name. Written as
+     *           <code>projects/<var>projectID</var>/groups/<var>group_name</var></code>.
+     *           Call
+     *           <a href="/error-reporting/reference/rest/v1beta1/projects.groupStats/list">
+     *           <code>groupStats.list</code></a> to return a list of groups belonging to
+     *           this project.
+     *           Example: <code>projects/my-project-123/groups/my-group</code>
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Devtools\Clouderrorreporting\V1Beta1\ErrorGroupService::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

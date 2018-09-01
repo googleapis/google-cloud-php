@@ -36,9 +36,25 @@ class ListEventsResponse extends \Google\Protobuf\Internal\Message
      */
     private $time_range_begin = null;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type \Google\Cloud\ErrorReporting\V1beta1\ErrorEvent[]|\Google\Protobuf\Internal\RepeatedField $error_events
+     *           The error events which match the given request.
+     *     @type string $next_page_token
+     *           If non-empty, more results are available.
+     *           Pass this token, along with the same query parameters as the first
+     *           request, to view the next page of results.
+     *     @type \Google\Protobuf\Timestamp $time_range_begin
+     *           The timestamp specifies the start time to which the request was restricted.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Devtools\Clouderrorreporting\V1Beta1\ErrorStatsService::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

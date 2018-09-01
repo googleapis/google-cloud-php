@@ -60,9 +60,37 @@ class ListEventsRequest extends \Google\Protobuf\Internal\Message
      */
     private $page_token = '';
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $project_name
+     *           [Required] The resource name of the Google Cloud Platform project. Written
+     *           as `projects/` plus the
+     *           [Google Cloud Platform project
+     *           ID](https://support.google.com/cloud/answer/6158840).
+     *           Example: `projects/my-project-123`.
+     *     @type string $group_id
+     *           [Required] The group for which events shall be returned.
+     *     @type \Google\Cloud\ErrorReporting\V1beta1\ServiceContextFilter $service_filter
+     *           [Optional] List only ErrorGroups which belong to a service context that
+     *           matches the filter.
+     *           Data for all service contexts is returned if this field is not specified.
+     *     @type \Google\Cloud\ErrorReporting\V1beta1\QueryTimeRange $time_range
+     *           [Optional] List only data for the given time range.
+     *           If not set a default time range is used. The field time_range_begin
+     *           in the response will specify the beginning of this time range.
+     *     @type int $page_size
+     *           [Optional] The maximum number of results to return per response.
+     *     @type string $page_token
+     *           [Optional] A `next_page_token` provided by a previous response.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Devtools\Clouderrorreporting\V1Beta1\ErrorStatsService::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

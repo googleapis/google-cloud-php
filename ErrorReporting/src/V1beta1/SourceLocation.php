@@ -41,9 +41,26 @@ class SourceLocation extends \Google\Protobuf\Internal\Message
      */
     private $function_name = '';
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $file_path
+     *           The source code filename, which can include a truncated relative
+     *           path, or a full path from a production machine.
+     *     @type int $line_number
+     *           1-based. 0 indicates that the line number is unknown.
+     *     @type string $function_name
+     *           Human-readable name of a function or method.
+     *           The value can include optional context like the class or package name.
+     *           For example, `my.package.MyClass.method` in case of Java.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Devtools\Clouderrorreporting\V1Beta1\Common::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**
