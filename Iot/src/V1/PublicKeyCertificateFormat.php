@@ -7,7 +7,7 @@ namespace Google\Cloud\Iot\V1;
 /**
  * The supported formats for the public key.
  *
- * Protobuf enum <code>Google\Cloud\Iot\V1\PublicKeyCertificateFormat</code>
+ * Protobuf type <code>google.cloud.iot.v1.PublicKeyCertificateFormat</code>
  */
 class PublicKeyCertificateFormat
 {

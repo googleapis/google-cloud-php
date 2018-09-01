@@ -40,9 +40,29 @@ class ListDeviceRegistriesRequest extends \Google\Protobuf\Internal\Message
      */
     private $page_token = '';
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $parent
+     *           The project and cloud region path. For example,
+     *           `projects/example-project/locations/us-central1`.
+     *     @type int $page_size
+     *           The maximum number of registries to return in the response. If this value
+     *           is zero, the service will select a default size. A call may return fewer
+     *           objects than requested, but if there is a non-empty `page_token`, it
+     *           indicates that more entries are available.
+     *     @type string $page_token
+     *           The value returned by the last `ListDeviceRegistriesResponse`; indicates
+     *           that this is a continuation of a prior `ListDeviceRegistries` call, and
+     *           that the system should return the next page of data.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Iot\V1\DeviceManager::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

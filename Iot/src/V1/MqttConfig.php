@@ -23,9 +23,20 @@ class MqttConfig extends \Google\Protobuf\Internal\Message
      */
     private $mqtt_enabled_state = 0;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type int $mqtt_enabled_state
+     *           If enabled, allows connections using the MQTT protocol. Otherwise, MQTT
+     *           connections to this registry will fail.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Iot\V1\Resources::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

@@ -34,9 +34,27 @@ class UpdateDeviceRequest extends \Google\Protobuf\Internal\Message
      */
     private $update_mask = null;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type \Google\Cloud\Iot\V1\Device $device
+     *           The new values for the device registry. The `id` and `num_id` fields must
+     *           be empty, and the field `name` must specify the name path. For example,
+     *           `projects/p0/locations/us-central1/registries/registry0/devices/device0`or
+     *           `projects/p0/locations/us-central1/registries/registry0/devices/{num_id}`.
+     *     @type \Google\Protobuf\FieldMask $update_mask
+     *           Only updates the `device` fields indicated by this mask.
+     *           The field mask must not be empty, and it must not contain fields that
+     *           are immutable or only set by the server.
+     *           Mutable top-level fields: `credentials`, `blocked`, and `metadata`
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Iot\V1\DeviceManager::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

@@ -149,9 +149,90 @@ class Device extends \Google\Protobuf\Internal\Message
      */
     private $metadata;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $id
+     *           The user-defined device identifier. The device ID must be unique
+     *           within a device registry.
+     *     @type string $name
+     *           The resource path name. For example,
+     *           `projects/p1/locations/us-central1/registries/registry0/devices/dev0` or
+     *           `projects/p1/locations/us-central1/registries/registry0/devices/{num_id}`.
+     *           When `name` is populated as a response from the service, it always ends
+     *           in the device numeric ID.
+     *     @type int|string $num_id
+     *           [Output only] A server-defined unique numeric ID for the device. This is a
+     *           more compact way to identify devices, and it is globally unique.
+     *     @type \Google\Cloud\Iot\V1\DeviceCredential[]|\Google\Protobuf\Internal\RepeatedField $credentials
+     *           The credentials used to authenticate this device. To allow credential
+     *           rotation without interruption, multiple device credentials can be bound to
+     *           this device. No more than 3 credentials can be bound to a single device at
+     *           a time. When new credentials are added to a device, they are verified
+     *           against the registry credentials. For details, see the description of the
+     *           `DeviceRegistry.credentials` field.
+     *     @type \Google\Protobuf\Timestamp $last_heartbeat_time
+     *           [Output only] The last time an MQTT `PINGREQ` was received. This field
+     *           applies only to devices connecting through MQTT. MQTT clients usually only
+     *           send `PINGREQ` messages if the connection is idle, and no other messages
+     *           have been sent. Timestamps are periodically collected and written to
+     *           storage; they may be stale by a few minutes.
+     *     @type \Google\Protobuf\Timestamp $last_event_time
+     *           [Output only] The last time a telemetry event was received. Timestamps are
+     *           periodically collected and written to storage; they may be stale by a few
+     *           minutes.
+     *     @type \Google\Protobuf\Timestamp $last_state_time
+     *           [Output only] The last time a state event was received. Timestamps are
+     *           periodically collected and written to storage; they may be stale by a few
+     *           minutes.
+     *     @type \Google\Protobuf\Timestamp $last_config_ack_time
+     *           [Output only] The last time a cloud-to-device config version acknowledgment
+     *           was received from the device. This field is only for configurations
+     *           sent through MQTT.
+     *     @type \Google\Protobuf\Timestamp $last_config_send_time
+     *           [Output only] The last time a cloud-to-device config version was sent to
+     *           the device.
+     *     @type bool $blocked
+     *           If a device is blocked, connections or requests from this device will fail.
+     *           Can be used to temporarily prevent the device from connecting if, for
+     *           example, the sensor is generating bad data and needs maintenance.
+     *     @type \Google\Protobuf\Timestamp $last_error_time
+     *           [Output only] The time the most recent error occurred, such as a failure to
+     *           publish to Cloud Pub/Sub. This field is the timestamp of
+     *           'last_error_status'.
+     *     @type \Google\Rpc\Status $last_error_status
+     *           [Output only] The error message of the most recent error, such as a failure
+     *           to publish to Cloud Pub/Sub. 'last_error_time' is the timestamp of this
+     *           field. If no errors have occurred, this field has an empty message
+     *           and the status code 0 == OK. Otherwise, this field is expected to have a
+     *           status code other than OK.
+     *     @type \Google\Cloud\Iot\V1\DeviceConfig $config
+     *           The most recent device configuration, which is eventually sent from
+     *           Cloud IoT Core to the device. If not present on creation, the
+     *           configuration will be initialized with an empty payload and version value
+     *           of `1`. To update this field after creation, use the
+     *           `DeviceManager.ModifyCloudToDeviceConfig` method.
+     *     @type \Google\Cloud\Iot\V1\DeviceState $state
+     *           [Output only] The state most recently received from the device. If no state
+     *           has been reported, this field is not present.
+     *     @type array|\Google\Protobuf\Internal\MapField $metadata
+     *           The metadata key-value pairs assigned to the device. This metadata is not
+     *           interpreted or indexed by Cloud IoT Core. It can be used to add contextual
+     *           information for the device.
+     *           Keys must conform to the regular expression [a-zA-Z][a-zA-Z0-9-_.+~%]+ and
+     *           be less than 128 bytes in length.
+     *           Values are free-form strings. Each value must be less than or equal to 32
+     *           KB in size.
+     *           The total size of all keys and values must be less than 256 KB, and the
+     *           maximum number of key-value pairs is 500.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Iot\V1\Resources::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

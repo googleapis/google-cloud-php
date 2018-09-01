@@ -131,6 +131,7 @@ class DeviceManagerGapicClient
             'serviceAddress' => self::SERVICE_ADDRESS.':'.self::DEFAULT_SERVICE_PORT,
             'clientConfig' => __DIR__.'/../resources/device_manager_client_config.json',
             'descriptorsConfigPath' => __DIR__.'/../resources/device_manager_descriptor_config.php',
+            'gcpApiConfigPath' => __DIR__.'/../resources/device_manager_grpc_config.json',
             'credentialsConfig' => [
                 'scopes' => self::$serviceScopes,
             ],
@@ -566,18 +567,21 @@ class DeviceManagerGapicClient
      * $deviceManagerClient = new DeviceManagerClient();
      * try {
      *     $formattedParent = $deviceManagerClient->locationName('[PROJECT]', '[LOCATION]');
-     *     // Iterate through all elements
-     *     $pagedResponse = $deviceManagerClient->listDeviceRegistries($formattedParent);
-     *     foreach ($pagedResponse->iterateAllElements() as $element) {
-     *         // doSomethingWith($element);
-     *     }
-     *
-     *     // OR iterate over pages of elements
+     *     // Iterate over pages of elements
      *     $pagedResponse = $deviceManagerClient->listDeviceRegistries($formattedParent);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
      *         }
+     *     }
+     *
+     *
+     *     // Alternatively:
+     *
+     *     // Iterate through all elements
+     *     $pagedResponse = $deviceManagerClient->listDeviceRegistries($formattedParent);
+     *     foreach ($pagedResponse->iterateAllElements() as $element) {
+     *         // doSomethingWith($element);
      *     }
      * } finally {
      *     $deviceManagerClient->close();
@@ -868,18 +872,21 @@ class DeviceManagerGapicClient
      * $deviceManagerClient = new DeviceManagerClient();
      * try {
      *     $formattedParent = $deviceManagerClient->registryName('[PROJECT]', '[LOCATION]', '[REGISTRY]');
-     *     // Iterate through all elements
-     *     $pagedResponse = $deviceManagerClient->listDevices($formattedParent);
-     *     foreach ($pagedResponse->iterateAllElements() as $element) {
-     *         // doSomethingWith($element);
-     *     }
-     *
-     *     // OR iterate over pages of elements
+     *     // Iterate over pages of elements
      *     $pagedResponse = $deviceManagerClient->listDevices($formattedParent);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
      *         }
+     *     }
+     *
+     *
+     *     // Alternatively:
+     *
+     *     // Iterate through all elements
+     *     $pagedResponse = $deviceManagerClient->listDevices($formattedParent);
+     *     foreach ($pagedResponse->iterateAllElements() as $element) {
+     *         // doSomethingWith($element);
      *     }
      * } finally {
      *     $deviceManagerClient->close();

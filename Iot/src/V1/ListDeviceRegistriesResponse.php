@@ -30,9 +30,23 @@ class ListDeviceRegistriesResponse extends \Google\Protobuf\Internal\Message
      */
     private $next_page_token = '';
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type \Google\Cloud\Iot\V1\DeviceRegistry[]|\Google\Protobuf\Internal\RepeatedField $device_registries
+     *           The registries that matched the query.
+     *     @type string $next_page_token
+     *           If not empty, indicates that there may be more registries that match the
+     *           request; this value should be passed in a new
+     *           `ListDeviceRegistriesRequest`.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Iot\V1\DeviceManager::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

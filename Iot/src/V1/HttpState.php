@@ -8,7 +8,7 @@ namespace Google\Cloud\Iot\V1;
  * Indicates whether DeviceService (HTTP) is enabled or disabled for the
  * registry. See the field description for details.
  *
- * Protobuf enum <code>Google\Cloud\Iot\V1\HttpState</code>
+ * Protobuf type <code>google.cloud.iot.v1.HttpState</code>
  */
 class HttpState
 {

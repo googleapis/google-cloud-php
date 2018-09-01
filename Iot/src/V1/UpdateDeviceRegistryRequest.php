@@ -34,9 +34,27 @@ class UpdateDeviceRegistryRequest extends \Google\Protobuf\Internal\Message
      */
     private $update_mask = null;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type \Google\Cloud\Iot\V1\DeviceRegistry $device_registry
+     *           The new values for the device registry. The `id` field must be empty, and
+     *           the `name` field must indicate the path of the resource. For example,
+     *           `projects/example-project/locations/us-central1/registries/my-registry`.
+     *     @type \Google\Protobuf\FieldMask $update_mask
+     *           Only updates the `device_registry` fields indicated by this mask.
+     *           The field mask must not be empty, and it must not contain fields that
+     *           are immutable or only set by the server.
+     *           Mutable top-level fields: `event_notification_config`, `http_config`,
+     *           `mqtt_config`, and `state_notification_config`.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Iot\V1\DeviceManager::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

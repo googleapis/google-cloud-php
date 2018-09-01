@@ -31,9 +31,24 @@ class GetDeviceRequest extends \Google\Protobuf\Internal\Message
      */
     private $field_mask = null;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $name
+     *           The name of the device. For example,
+     *           `projects/p0/locations/us-central1/registries/registry0/devices/device0` or
+     *           `projects/p0/locations/us-central1/registries/registry0/devices/{num_id}`.
+     *     @type \Google\Protobuf\FieldMask $field_mask
+     *           The fields of the `Device` resource to be returned in the response. If the
+     *           field mask is unset or empty, all fields are returned.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Iot\V1\DeviceManager::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

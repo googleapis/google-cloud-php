@@ -23,9 +23,20 @@ class ListDeviceConfigVersionsResponse extends \Google\Protobuf\Internal\Message
      */
     private $device_configs;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type \Google\Cloud\Iot\V1\DeviceConfig[]|\Google\Protobuf\Internal\RepeatedField $device_configs
+     *           The device configuration for the last few versions. Versions are listed
+     *           in decreasing order, starting from the most recent one.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Iot\V1\DeviceManager::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**
