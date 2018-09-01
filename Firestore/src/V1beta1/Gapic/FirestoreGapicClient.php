@@ -148,6 +148,7 @@ class FirestoreGapicClient
             'serviceAddress' => self::SERVICE_ADDRESS.':'.self::DEFAULT_SERVICE_PORT,
             'clientConfig' => __DIR__.'/../resources/firestore_client_config.json',
             'descriptorsConfigPath' => __DIR__.'/../resources/firestore_descriptor_config.php',
+            'gcpApiConfigPath' => __DIR__.'/../resources/firestore_grpc_config.json',
             'credentialsConfig' => [
                 'scopes' => self::$serviceScopes,
             ],
