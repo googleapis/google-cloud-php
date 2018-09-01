@@ -30,9 +30,23 @@ class Sentence extends \Google\Protobuf\Internal\Message
      */
     private $sentiment = null;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type \Google\Cloud\Language\V1beta2\TextSpan $text
+     *           The sentence text.
+     *     @type \Google\Cloud\Language\V1beta2\Sentiment $sentiment
+     *           For calls to [AnalyzeSentiment][] or if
+     *           [AnnotateTextRequest.Features.extract_document_sentiment][google.cloud.language.v1beta2.AnnotateTextRequest.Features.extract_document_sentiment] is set to
+     *           true, this field will contain the sentiment for the sentence.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Language\V1Beta2\LanguageService::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

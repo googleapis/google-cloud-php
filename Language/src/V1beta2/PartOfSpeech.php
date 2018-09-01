@@ -88,9 +88,41 @@ class PartOfSpeech extends \Google\Protobuf\Internal\Message
      */
     private $voice = 0;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type int $tag
+     *           The part of speech tag.
+     *     @type int $aspect
+     *           The grammatical aspect.
+     *     @type int $case
+     *           The grammatical case.
+     *     @type int $form
+     *           The grammatical form.
+     *     @type int $gender
+     *           The grammatical gender.
+     *     @type int $mood
+     *           The grammatical mood.
+     *     @type int $number
+     *           The grammatical number.
+     *     @type int $person
+     *           The grammatical person.
+     *     @type int $proper
+     *           The grammatical properness.
+     *     @type int $reciprocity
+     *           The grammatical reciprocity.
+     *     @type int $tense
+     *           The grammatical tense.
+     *     @type int $voice
+     *           The grammatical voice.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Language\V1Beta2\LanguageService::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

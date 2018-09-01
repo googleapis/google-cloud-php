@@ -4,31 +4,13 @@
 
 namespace Google\Cloud\Language\V1beta2;
 
-/**
- * Reciprocal features of a pronoun.
- *
- * Protobuf enum <code>Google\Cloud\Language\V1beta2\PartOfSpeech\Reciprocity</code>
- */
-class PartOfSpeech_Reciprocity
-{
+if (false) {
     /**
-     * Reciprocity is not applicable in the analyzed language or is not
-     * predicted.
-     *
-     * Generated from protobuf enum <code>RECIPROCITY_UNKNOWN = 0;</code>
+     * This class is deprecated. Use Google\Cloud\Language\V1beta2\PartOfSpeech\Reciprocity instead.
+     * @deprecated
      */
-    const RECIPROCITY_UNKNOWN = 0;
-    /**
-     * Reciprocal
-     *
-     * Generated from protobuf enum <code>RECIPROCAL = 1;</code>
-     */
-    const RECIPROCAL = 1;
-    /**
-     * Non-reciprocal
-     *
-     * Generated from protobuf enum <code>NON_RECIPROCAL = 2;</code>
-     */
-    const NON_RECIPROCAL = 2;
+    class PartOfSpeech_Reciprocity {}
 }
+class_exists(PartOfSpeech\Reciprocity::class);
+@trigger_error('Google\Cloud\Language\V1beta2\PartOfSpeech_Reciprocity is deprecated and will be removed in the next major release. Use Google\Cloud\Language\V1beta2\PartOfSpeech\Reciprocity instead', E_USER_DEPRECATED);
 

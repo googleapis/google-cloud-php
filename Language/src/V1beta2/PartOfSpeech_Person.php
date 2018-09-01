@@ -4,42 +4,13 @@
 
 namespace Google\Cloud\Language\V1beta2;
 
-/**
- * The distinction between the speaker, second person, third person, etc.
- *
- * Protobuf enum <code>Google\Cloud\Language\V1beta2\PartOfSpeech\Person</code>
- */
-class PartOfSpeech_Person
-{
+if (false) {
     /**
-     * Person is not applicable in the analyzed language or is not predicted.
-     *
-     * Generated from protobuf enum <code>PERSON_UNKNOWN = 0;</code>
+     * This class is deprecated. Use Google\Cloud\Language\V1beta2\PartOfSpeech\Person instead.
+     * @deprecated
      */
-    const PERSON_UNKNOWN = 0;
-    /**
-     * First
-     *
-     * Generated from protobuf enum <code>FIRST = 1;</code>
-     */
-    const FIRST = 1;
-    /**
-     * Second
-     *
-     * Generated from protobuf enum <code>SECOND = 2;</code>
-     */
-    const SECOND = 2;
-    /**
-     * Third
-     *
-     * Generated from protobuf enum <code>THIRD = 3;</code>
-     */
-    const THIRD = 3;
-    /**
-     * Reflexive
-     *
-     * Generated from protobuf enum <code>REFLEXIVE_PERSON = 4;</code>
-     */
-    const REFLEXIVE_PERSON = 4;
+    class PartOfSpeech_Person {}
 }
+class_exists(PartOfSpeech\Person::class);
+@trigger_error('Google\Cloud\Language\V1beta2\PartOfSpeech_Person is deprecated and will be removed in the next major release. Use Google\Cloud\Language\V1beta2\PartOfSpeech\Person instead', E_USER_DEPRECATED);
 

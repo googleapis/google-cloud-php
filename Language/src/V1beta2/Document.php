@@ -38,9 +38,36 @@ class Document extends \Google\Protobuf\Internal\Message
     private $language = '';
     protected $source;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type int $type
+     *           Required. If the type is not set or is `TYPE_UNSPECIFIED`,
+     *           returns an `INVALID_ARGUMENT` error.
+     *     @type string $content
+     *           The content of the input in string format.
+     *     @type string $gcs_content_uri
+     *           The Google Cloud Storage URI where the file content is located.
+     *           This URI must be of the form: gs://bucket_name/object_name. For more
+     *           details, see https://cloud.google.com/storage/docs/reference-uris.
+     *           NOTE: Cloud Storage object versioning is not supported.
+     *     @type string $language
+     *           The language of the document (if not specified, the language is
+     *           automatically detected). Both ISO and BCP-47 language codes are
+     *           accepted.<br>
+     *           [Language Support](/natural-language/docs/languages)
+     *           lists currently supported languages for each API method.
+     *           If the language (either specified by the caller or automatically detected)
+     *           is not supported by the called API method, an `INVALID_ARGUMENT` error
+     *           is returned.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Language\V1Beta2\LanguageService::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

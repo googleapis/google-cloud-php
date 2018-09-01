@@ -11,7 +11,7 @@ namespace Google\Cloud\Language\V1beta2;
  * languages that natively use different text encodings may access offsets
  * differently.
  *
- * Protobuf enum <code>Google\Cloud\Language\V1beta2\EncodingType</code>
+ * Protobuf type <code>google.cloud.language.v1beta2.EncodingType</code>
  */
 class EncodingType
 {

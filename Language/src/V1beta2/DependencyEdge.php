@@ -32,9 +32,25 @@ class DependencyEdge extends \Google\Protobuf\Internal\Message
      */
     private $label = 0;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type int $head_token_index
+     *           Represents the head of this token in the dependency tree.
+     *           This is the index of the token which has an arc going to this token.
+     *           The index is the position of the token in the array of tokens returned
+     *           by the API method. If this token is a root token, then the
+     *           `head_token_index` is its own index.
+     *     @type int $label
+     *           The parse label for the token.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Language\V1Beta2\LanguageService::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**
