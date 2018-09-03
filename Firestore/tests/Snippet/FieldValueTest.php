@@ -23,7 +23,7 @@ use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Firestore\Connection\ConnectionInterface;
 use Google\Cloud\Firestore\FieldValue;
 use Google\Cloud\Firestore\FirestoreClient;
-use Google\Cloud\Firestore\V1beta1\DocumentTransform_FieldTransform_ServerValue;
+use Google\Cloud\Firestore\V1beta1\DocumentTransform\FieldTransform\ServerValue;
 use Prophecy\Argument;
 
 /**
@@ -85,7 +85,7 @@ class FieldValueTest extends SnippetTestCase
                         "fieldTransforms" => [
                             [
                                 "fieldPath" => "lastLogin",
-                                "setToServerValue" => DocumentTransform_FieldTransform_ServerValue::REQUEST_TIME
+                                "setToServerValue" => ServerValue::REQUEST_TIME
                             ]
                         ]
                     ],
@@ -99,6 +99,82 @@ class FieldValueTest extends SnippetTestCase
         $this->firestore->___setProperty('connection', $this->connection->reveal());
 
         $snippet = $this->snippetFromMethod(FieldValue::class, 'serverTimestamp');
+        $snippet->setLine(3, '');
+        $snippet->addLocal('firestore', $this->firestore);
+
+        $snippet->invoke();
+    }
+
+    public function testArrayUnion()
+    {
+        $this->connection->commit([
+            "database" => "projects/my-awesome-project/databases/(default)",
+            "writes" => [
+                [
+                    "transform" => [
+                        "document" => "projects/my-awesome-project/databases/(default)/documents/users/dave",
+                        "fieldTransforms" => [
+                            [
+                                "fieldPath" => "favoriteColors",
+                                'appendMissingElements' => [
+                                    'values' => [
+                                        [
+                                            'stringValue' => 'red'
+                                        ], [
+                                            'stringValue' => 'blue'
+                                        ]
+                                    ]
+                                ]
+                            ]
+                        ]
+                    ],
+                    "currentDocument" => [
+                        "exists" => true
+                    ]
+                ]
+            ]
+        ])->willReturn([[]]);
+
+        $this->firestore->___setProperty('connection', $this->connection->reveal());
+
+        $snippet = $this->snippetFromMethod(FieldValue::class, 'arrayUnion');
+        $snippet->setLine(3, '');
+        $snippet->addLocal('firestore', $this->firestore);
+
+        $snippet->invoke();
+    }
+
+    public function testArrayRemove()
+    {
+        $this->connection->commit([
+            "database" => "projects/my-awesome-project/databases/(default)",
+            "writes" => [
+                [
+                    "transform" => [
+                        "document" => "projects/my-awesome-project/databases/(default)/documents/users/dave",
+                        "fieldTransforms" => [
+                            [
+                                "fieldPath" => "favoriteColors",
+                                'removeAllFromArray' => [
+                                    'values' => [
+                                        [
+                                            'stringValue' => 'green'
+                                        ]
+                                    ]
+                                ]
+                            ]
+                        ]
+                    ],
+                    "currentDocument" => [
+                        "exists" => true
+                    ]
+                ]
+            ]
+        ])->willReturn([[]]);
+
+        $this->firestore->___setProperty('connection', $this->connection->reveal());
+
+        $snippet = $this->snippetFromMethod(FieldValue::class, 'arrayRemove');
         $snippet->setLine(3, '');
         $snippet->addLocal('firestore', $this->firestore);
 

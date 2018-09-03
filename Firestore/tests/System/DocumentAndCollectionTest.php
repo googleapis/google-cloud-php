@@ -17,10 +17,6 @@
 
 namespace Google\Cloud\Firestore\Tests\System;
 
-use Google\Cloud\Core\Timestamp;
-use Google\Cloud\Firestore\FieldValue;
-use Google\Cloud\Firestore\FirestoreClient;
-
 /**
  * @group firestore
  * @group firestore-documentandcollection
@@ -72,12 +68,7 @@ class DocumentAndCollectionTest extends FirestoreTestCase
         $snapshot = $this->document->snapshot();
         $this->assertEquals('Dave', $snapshot['firstName']);
 
-        try {
-            $snapshot['country'];
-            $this->assertTrue(false);
-        } catch (\PHPUnit_Framework_Error_Notice $e) {
-            $this->assertTrue(true);
-        }
+        $this->assertArrayNotHasKey('country', $snapshot->data());
     }
 
     public function testSetMerge()
@@ -113,39 +104,6 @@ class DocumentAndCollectionTest extends FirestoreTestCase
         $collection = $this->document->collections()->current();
 
         $this->assertEquals($childName, $collection->id());
-    }
-
-    public function testDeleteField()
-    {
-        $this->document->set([
-            'foo' => 'bar'
-        ]);
-        $this->assertEquals('bar', $this->document->snapshot()['foo']);
-
-        $this->document->update([
-            ['path' => 'foo', 'value' => FieldValue::deleteField()]
-        ]);
-
-        try {
-            $this->document->snapshot()->get('foo');
-            $this->assertTrue(false);
-        } catch (\InvalidArgumentException $e) {
-            $this->assertTrue(true);
-        }
-    }
-
-    public function testServerTimestamp()
-    {
-        $this->document->set([
-            'foo' => 'bar'
-        ]);
-        $this->assertEquals('bar', $this->document->snapshot()['foo']);
-
-        $this->document->update([
-            ['path' => 'foo', 'value' => FieldValue::serverTimestamp()]
-        ]);
-
-        $this->assertInstanceOf(Timestamp::class, $this->document->snapshot()['foo']);
     }
 
     public function testNonAlphaNumericFieldPaths()

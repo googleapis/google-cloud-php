@@ -21,7 +21,7 @@ use Google\Cloud\Core\DebugInfoTrait;
 use Google\Cloud\Core\ExponentialBackoff;
 use Google\Cloud\Firestore\Connection\ConnectionInterface;
 use Google\Cloud\Firestore\DocumentSnapshot;
-use Google\Cloud\Firestore\FieldValue;
+use Google\Cloud\Firestore\FieldValue\FieldValueInterface;
 use Google\Cloud\Firestore\SnapshotTrait;
 use Google\Cloud\Firestore\V1beta1\StructuredQuery\CompositeFilter\Operator;
 use Google\Cloud\Firestore\V1beta1\StructuredQuery\Direction;
@@ -281,7 +281,7 @@ class Query
      */
     public function where($fieldPath, $operator, $value)
     {
-        if (FieldValue::isSentinelValue($value)) {
+        if ($value instanceof FieldValueInterface) {
             throw new \InvalidArgumentException(sprintf(
                 'Value cannot be a `%s` value.',
                 FieldValue::class
@@ -611,7 +611,7 @@ class Query
                         DocumentSnapshot::class
                     ));
                 }
-                if (FieldValue::isSentinelValue($value)) {
+                if ($value instanceof FieldValueInterface) {
                     throw new \InvalidArgumentException(sprintf(
                         'Value cannot be a `%s` value.',
                         FieldValue::class
