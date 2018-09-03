@@ -98,9 +98,62 @@ class ErrorGroupStats extends \Google\Protobuf\Internal\Message
      */
     private $representative = null;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type \Google\Cloud\ErrorReporting\V1beta1\ErrorGroup $group
+     *           Group data that is independent of the filter criteria.
+     *     @type int|string $count
+     *           Approximate total number of events in the given group that match
+     *           the filter criteria.
+     *     @type int|string $affected_users_count
+     *           Approximate number of affected users in the given group that
+     *           match the filter criteria.
+     *           Users are distinguished by data in the `ErrorContext` of the
+     *           individual error events, such as their login name or their remote
+     *           IP address in case of HTTP requests.
+     *           The number of affected users can be zero even if the number of
+     *           errors is non-zero if no data was provided from which the
+     *           affected user could be deduced.
+     *           Users are counted based on data in the request
+     *           context that was provided in the error report. If more users are
+     *           implicitly affected, such as due to a crash of the whole service,
+     *           this is not reflected here.
+     *     @type \Google\Cloud\ErrorReporting\V1beta1\TimedCount[]|\Google\Protobuf\Internal\RepeatedField $timed_counts
+     *           Approximate number of occurrences over time.
+     *           Timed counts returned by ListGroups are guaranteed to be:
+     *           - Inside the requested time interval
+     *           - Non-overlapping, and
+     *           - Ordered by ascending time.
+     *     @type \Google\Protobuf\Timestamp $first_seen_time
+     *           Approximate first occurrence that was ever seen for this group
+     *           and which matches the given filter criteria, ignoring the
+     *           time_range that was specified in the request.
+     *     @type \Google\Protobuf\Timestamp $last_seen_time
+     *           Approximate last occurrence that was ever seen for this group and
+     *           which matches the given filter criteria, ignoring the time_range
+     *           that was specified in the request.
+     *     @type \Google\Cloud\ErrorReporting\V1beta1\ServiceContext[]|\Google\Protobuf\Internal\RepeatedField $affected_services
+     *           Service contexts with a non-zero error count for the given filter
+     *           criteria. This list can be truncated if multiple services are affected.
+     *           Refer to `num_affected_services` for the total count.
+     *     @type int $num_affected_services
+     *           The total number of services with a non-zero error count for the given
+     *           filter criteria.
+     *     @type \Google\Cloud\ErrorReporting\V1beta1\ErrorEvent $representative
+     *           An arbitrary event that is chosen as representative for the whole group.
+     *           The representative event is intended to be used as a quick preview for
+     *           the whole group. Events in the group are usually sufficiently similar
+     *           to each other such that showing an arbitrary representative provides
+     *           insight into the characteristics of the group as a whole.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Devtools\Clouderrorreporting\V1Beta1\ErrorStatsService::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

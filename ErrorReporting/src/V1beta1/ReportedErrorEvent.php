@@ -45,9 +45,30 @@ class ReportedErrorEvent extends \Google\Protobuf\Internal\Message
      */
     private $context = null;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type \Google\Protobuf\Timestamp $event_time
+     *           [Optional] Time when the event occurred.
+     *           If not provided, the time when the event was received by the
+     *           Error Reporting system will be used.
+     *     @type \Google\Cloud\ErrorReporting\V1beta1\ServiceContext $service_context
+     *           [Required] The service context in which this error has occurred.
+     *     @type string $message
+     *           [Required] A message describing the error. The message can contain an
+     *           exception stack in one of the supported programming languages and formats.
+     *           In that case, the message is parsed and detailed exception information
+     *           is returned when retrieving the error event again.
+     *     @type \Google\Cloud\ErrorReporting\V1beta1\ErrorContext $context
+     *           [Optional] A description of the context in which the error occurred.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Devtools\Clouderrorreporting\V1Beta1\ReportErrorsService::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

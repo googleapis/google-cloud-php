@@ -44,9 +44,32 @@ class ServiceContext extends \Google\Protobuf\Internal\Message
      */
     private $resource_type = '';
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $service
+     *           An identifier of the service, such as the name of the
+     *           executable, job, or Google App Engine service name. This field is expected
+     *           to have a low number of values that are relatively stable over time, as
+     *           opposed to `version`, which can be changed whenever new code is deployed.
+     *           Contains the service name for error reports extracted from Google
+     *           App Engine logs or `default` if the App Engine default service is used.
+     *     @type string $version
+     *           Represents the source code version that the developer provided,
+     *           which could represent a version label or a Git SHA-1 hash, for example.
+     *     @type string $resource_type
+     *           Type of the MonitoredResource. List of possible values:
+     *           https://cloud.google.com/monitoring/api/resources
+     *           Value is set automatically for incoming errors and must not be set when
+     *           reporting errors.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Devtools\Clouderrorreporting\V1Beta1\Common::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

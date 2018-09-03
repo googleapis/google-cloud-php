@@ -50,9 +50,36 @@ class ErrorContext extends \Google\Protobuf\Internal\Message
      */
     private $report_location = null;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type \Google\Cloud\ErrorReporting\V1beta1\HttpRequestContext $http_request
+     *           The HTTP request which was processed when the error was
+     *           triggered.
+     *     @type string $user
+     *           The user who caused or was affected by the crash.
+     *           This can be a user ID, an email address, or an arbitrary token that
+     *           uniquely identifies the user.
+     *           When sending an error report, leave this field empty if the user was not
+     *           logged in. In this case the
+     *           Error Reporting system will use other data, such as remote IP address, to
+     *           distinguish affected users. See `affected_users_count` in
+     *           `ErrorGroupStats`.
+     *     @type \Google\Cloud\ErrorReporting\V1beta1\SourceLocation $report_location
+     *           The location in the source code where the decision was made to
+     *           report the error, usually the place where it was logged.
+     *           For a logged exception this would be the source line where the
+     *           exception is logged, usually close to the place where it was
+     *           caught. This value is in contrast to `Exception.cause_location`,
+     *           which describes the source line where the exception was thrown.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Devtools\Clouderrorreporting\V1Beta1\Common::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

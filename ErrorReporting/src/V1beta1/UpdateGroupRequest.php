@@ -22,9 +22,19 @@ class UpdateGroupRequest extends \Google\Protobuf\Internal\Message
      */
     private $group = null;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type \Google\Cloud\ErrorReporting\V1beta1\ErrorGroup $group
+     *           [Required] The group which replaces the resource on the server.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Devtools\Clouderrorreporting\V1Beta1\ErrorGroupService::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

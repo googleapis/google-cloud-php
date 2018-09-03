@@ -26,9 +26,23 @@ class DeleteEventsRequest extends \Google\Protobuf\Internal\Message
      */
     private $project_name = '';
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $project_name
+     *           [Required] The resource name of the Google Cloud Platform project. Written
+     *           as `projects/` plus the
+     *           [Google Cloud Platform project
+     *           ID](https://support.google.com/cloud/answer/6158840).
+     *           Example: `projects/my-project-123`.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Devtools\Clouderrorreporting\V1Beta1\ErrorStatsService::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

@@ -42,9 +42,27 @@ class ErrorEvent extends \Google\Protobuf\Internal\Message
      */
     private $context = null;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type \Google\Protobuf\Timestamp $event_time
+     *           Time when the event occurred as provided in the error report.
+     *           If the report did not contain a timestamp, the time the error was received
+     *           by the Error Reporting system is used.
+     *     @type \Google\Cloud\ErrorReporting\V1beta1\ServiceContext $service_context
+     *           The `ServiceContext` for which this error was reported.
+     *     @type string $message
+     *           The stack trace that was reported or logged by the service.
+     *     @type \Google\Cloud\ErrorReporting\V1beta1\ErrorContext $context
+     *           Data about the context in which the error occurred.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Devtools\Clouderrorreporting\V1Beta1\Common::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

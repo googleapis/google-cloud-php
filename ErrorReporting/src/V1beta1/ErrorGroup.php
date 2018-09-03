@@ -36,9 +36,25 @@ class ErrorGroup extends \Google\Protobuf\Internal\Message
      */
     private $tracking_issues;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $name
+     *           The group resource name.
+     *           Example: <code>projects/my-project-123/groups/my-groupid</code>
+     *     @type string $group_id
+     *           Group IDs are unique for a given project. If the same kind of error
+     *           occurs in different service contexts, it will receive the same group ID.
+     *     @type \Google\Cloud\ErrorReporting\V1beta1\TrackingIssue[]|\Google\Protobuf\Internal\RepeatedField $tracking_issues
+     *           Associated tracking issues.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Devtools\Clouderrorreporting\V1Beta1\Common::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

@@ -58,9 +58,32 @@ class HttpRequestContext extends \Google\Protobuf\Internal\Message
      */
     private $remote_ip = '';
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $method
+     *           The type of HTTP request, such as `GET`, `POST`, etc.
+     *     @type string $url
+     *           The URL of the request.
+     *     @type string $user_agent
+     *           The user agent information that is provided with the request.
+     *     @type string $referrer
+     *           The referrer information that is provided with the request.
+     *     @type int $response_status_code
+     *           The HTTP response status code for the request.
+     *     @type string $remote_ip
+     *           The IP address from which the request originated.
+     *           This can be IPv4, IPv6, or a token which is derived from the
+     *           IP address, depending on the data that has been provided
+     *           in the error report.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Devtools\Clouderrorreporting\V1Beta1\Common::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**
