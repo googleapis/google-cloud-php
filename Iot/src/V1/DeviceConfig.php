@@ -52,9 +52,37 @@ class DeviceConfig extends \Google\Protobuf\Internal\Message
      */
     private $binary_data = '';
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type int|string $version
+     *           [Output only] The version of this update. The version number is assigned by
+     *           the server, and is always greater than 0 after device creation. The
+     *           version must be 0 on the `CreateDevice` request if a `config` is
+     *           specified; the response of `CreateDevice` will always have a value of 1.
+     *     @type \Google\Protobuf\Timestamp $cloud_update_time
+     *           [Output only] The time at which this configuration version was updated in
+     *           Cloud IoT Core. This timestamp is set by the server.
+     *     @type \Google\Protobuf\Timestamp $device_ack_time
+     *           [Output only] The time at which Cloud IoT Core received the
+     *           acknowledgment from the device, indicating that the device has received
+     *           this configuration version. If this field is not present, the device has
+     *           not yet acknowledged that it received this version. Note that when
+     *           the config was sent to the device, many config versions may have been
+     *           available in Cloud IoT Core while the device was disconnected, and on
+     *           connection, only the latest version is sent to the device. Some
+     *           versions may never be sent to the device, and therefore are never
+     *           acknowledged. This timestamp is set by Cloud IoT Core.
+     *     @type string $binary_data
+     *           The device configuration data.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Iot\V1\Resources::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

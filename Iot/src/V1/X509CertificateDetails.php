@@ -52,9 +52,29 @@ class X509CertificateDetails extends \Google\Protobuf\Internal\Message
      */
     private $public_key_type = '';
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $issuer
+     *           The entity that signed the certificate.
+     *     @type string $subject
+     *           The entity the certificate and public key belong to.
+     *     @type \Google\Protobuf\Timestamp $start_time
+     *           The time the certificate becomes valid.
+     *     @type \Google\Protobuf\Timestamp $expiry_time
+     *           The time the certificate becomes invalid.
+     *     @type string $signature_algorithm
+     *           The algorithm used to sign the certificate.
+     *     @type string $public_key_type
+     *           The type of public key in the certificate.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Iot\V1\Resources::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

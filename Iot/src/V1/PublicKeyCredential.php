@@ -28,9 +28,21 @@ class PublicKeyCredential extends \Google\Protobuf\Internal\Message
      */
     private $key = '';
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type int $format
+     *           The format of the key.
+     *     @type string $key
+     *           The key data.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Iot\V1\Resources::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

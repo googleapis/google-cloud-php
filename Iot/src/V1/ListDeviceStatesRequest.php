@@ -32,9 +32,25 @@ class ListDeviceStatesRequest extends \Google\Protobuf\Internal\Message
      */
     private $num_states = 0;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $name
+     *           The name of the device. For example,
+     *           `projects/p0/locations/us-central1/registries/registry0/devices/device0` or
+     *           `projects/p0/locations/us-central1/registries/registry0/devices/{num_id}`.
+     *     @type int $num_states
+     *           The number of states to list. States are listed in descending order of
+     *           update time. The maximum number of states retained is 10. If this
+     *           value is zero, it will return all the states available.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Iot\V1\DeviceManager::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

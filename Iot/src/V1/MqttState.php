@@ -8,7 +8,7 @@ namespace Google\Cloud\Iot\V1;
  * Indicates whether an MQTT connection is enabled or disabled. See the field
  * description for details.
  *
- * Protobuf enum <code>Google\Cloud\Iot\V1\MqttState</code>
+ * Protobuf type <code>google.cloud.iot.v1.MqttState</code>
  */
 class MqttState
 {

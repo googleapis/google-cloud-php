@@ -29,9 +29,22 @@ class ListDevicesResponse extends \Google\Protobuf\Internal\Message
      */
     private $next_page_token = '';
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type \Google\Cloud\Iot\V1\Device[]|\Google\Protobuf\Internal\RepeatedField $devices
+     *           The devices that match the request.
+     *     @type string $next_page_token
+     *           If not empty, indicates that there may be more devices that match the
+     *           request; this value should be passed in a new `ListDevicesRequest`.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Iot\V1\DeviceManager::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

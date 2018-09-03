@@ -32,9 +32,25 @@ class CreateDeviceRequest extends \Google\Protobuf\Internal\Message
      */
     private $device = null;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $parent
+     *           The name of the device registry where this device should be created.
+     *           For example,
+     *           `projects/example-project/locations/us-central1/registries/my-registry`.
+     *     @type \Google\Cloud\Iot\V1\Device $device
+     *           The device registration details. The field `name` must be empty. The server
+     *           will generate that field from the device registry `id` provided and the
+     *           `parent` field.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Iot\V1\DeviceManager::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

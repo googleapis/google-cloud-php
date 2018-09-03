@@ -63,9 +63,40 @@ class ListDevicesRequest extends \Google\Protobuf\Internal\Message
      */
     private $page_token = '';
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $parent
+     *           The device registry path. Required. For example,
+     *           `projects/my-project/locations/us-central1/registries/my-registry`.
+     *     @type int[]|string[]|\Google\Protobuf\Internal\RepeatedField $device_num_ids
+     *           A list of device numerical ids. If empty, it will ignore this field. This
+     *           field cannot hold more than 10,000 entries.
+     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $device_ids
+     *           A list of device string identifiers. If empty, it will ignore this field.
+     *           For example, `['device0', 'device12']`. This field cannot hold more than
+     *           10,000 entries.
+     *     @type \Google\Protobuf\FieldMask $field_mask
+     *           The fields of the `Device` resource to be returned in the response. The
+     *           fields `id`, and `num_id` are always returned by default, along with any
+     *           other fields specified.
+     *     @type int $page_size
+     *           The maximum number of devices to return in the response. If this value
+     *           is zero, the service will select a default size. A call may return fewer
+     *           objects than requested, but if there is a non-empty `page_token`, it
+     *           indicates that more entries are available.
+     *     @type string $page_token
+     *           The value returned by the last `ListDevicesResponse`; indicates
+     *           that this is a continuation of a prior `ListDevices` call, and
+     *           that the system should return the next page of data.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Iot\V1\DeviceManager::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

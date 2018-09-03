@@ -23,9 +23,20 @@ class ListDeviceStatesResponse extends \Google\Protobuf\Internal\Message
      */
     private $device_states;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type \Google\Cloud\Iot\V1\DeviceState[]|\Google\Protobuf\Internal\RepeatedField $device_states
+     *           The last few device states. States are listed in descending order of server
+     *           update time, starting from the most recent one.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Iot\V1\DeviceManager::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

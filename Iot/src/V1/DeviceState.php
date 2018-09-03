@@ -29,9 +29,22 @@ class DeviceState extends \Google\Protobuf\Internal\Message
      */
     private $binary_data = '';
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type \Google\Protobuf\Timestamp $update_time
+     *           [Output only] The time at which this state version was updated in Cloud
+     *           IoT Core.
+     *     @type string $binary_data
+     *           The device state data.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Iot\V1\Resources::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

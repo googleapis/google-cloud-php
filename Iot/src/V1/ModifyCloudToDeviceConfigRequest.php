@@ -40,9 +40,29 @@ class ModifyCloudToDeviceConfigRequest extends \Google\Protobuf\Internal\Message
      */
     private $binary_data = '';
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $name
+     *           The name of the device. For example,
+     *           `projects/p0/locations/us-central1/registries/registry0/devices/device0` or
+     *           `projects/p0/locations/us-central1/registries/registry0/devices/{num_id}`.
+     *     @type int|string $version_to_update
+     *           The version number to update. If this value is zero, it will not check the
+     *           version number of the server and will always update the current version;
+     *           otherwise, this update will fail if the version number found on the server
+     *           does not match this version number. This is used to support multiple
+     *           simultaneous updates without losing data.
+     *     @type string $binary_data
+     *           The configuration data for the device.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Iot\V1\DeviceManager::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

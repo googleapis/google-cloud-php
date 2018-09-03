@@ -32,9 +32,25 @@ class EventNotificationConfig extends \Google\Protobuf\Internal\Message
      */
     private $pubsub_topic_name = '';
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $subfolder_matches
+     *           If the subfolder name matches this string exactly, this configuration will
+     *           be used. The string must not include the leading '/' character. If empty,
+     *           all strings are matched. This field is used only for telemetry events;
+     *           subfolders are not supported for state changes.
+     *     @type string $pubsub_topic_name
+     *           A Cloud Pub/Sub topic name. For example,
+     *           `projects/myProject/topics/deviceEvents`.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Iot\V1\Resources::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**
