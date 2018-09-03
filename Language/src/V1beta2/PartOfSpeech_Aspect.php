@@ -4,36 +4,13 @@
 
 namespace Google\Cloud\Language\V1beta2;
 
-/**
- * The characteristic of a verb that expresses time flow during an event.
- *
- * Protobuf enum <code>Google\Cloud\Language\V1beta2\PartOfSpeech\Aspect</code>
- */
-class PartOfSpeech_Aspect
-{
+if (false) {
     /**
-     * Aspect is not applicable in the analyzed language or is not predicted.
-     *
-     * Generated from protobuf enum <code>ASPECT_UNKNOWN = 0;</code>
+     * This class is deprecated. Use Google\Cloud\Language\V1beta2\PartOfSpeech\Aspect instead.
+     * @deprecated
      */
-    const ASPECT_UNKNOWN = 0;
-    /**
-     * Perfective
-     *
-     * Generated from protobuf enum <code>PERFECTIVE = 1;</code>
-     */
-    const PERFECTIVE = 1;
-    /**
-     * Imperfective
-     *
-     * Generated from protobuf enum <code>IMPERFECTIVE = 2;</code>
-     */
-    const IMPERFECTIVE = 2;
-    /**
-     * Progressive
-     *
-     * Generated from protobuf enum <code>PROGRESSIVE = 3;</code>
-     */
-    const PROGRESSIVE = 3;
+    class PartOfSpeech_Aspect {}
 }
+class_exists(PartOfSpeech\Aspect::class);
+@trigger_error('Google\Cloud\Language\V1beta2\PartOfSpeech_Aspect is deprecated and will be removed in the next major release. Use Google\Cloud\Language\V1beta2\PartOfSpeech\Aspect instead', E_USER_DEPRECATED);
 

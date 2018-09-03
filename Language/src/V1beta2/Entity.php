@@ -64,9 +64,39 @@ class Entity extends \Google\Protobuf\Internal\Message
      */
     private $sentiment = null;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $name
+     *           The representative name for the entity.
+     *     @type int $type
+     *           The entity type.
+     *     @type array|\Google\Protobuf\Internal\MapField $metadata
+     *           Metadata associated with the entity.
+     *           Currently, Wikipedia URLs and Knowledge Graph MIDs are provided, if
+     *           available. The associated keys are "wikipedia_url" and "mid", respectively.
+     *     @type float $salience
+     *           The salience score associated with the entity in the [0, 1.0] range.
+     *           The salience score for an entity provides information about the
+     *           importance or centrality of that entity to the entire document text.
+     *           Scores closer to 0 are less salient, while scores closer to 1.0 are highly
+     *           salient.
+     *     @type \Google\Cloud\Language\V1beta2\EntityMention[]|\Google\Protobuf\Internal\RepeatedField $mentions
+     *           The mentions of this entity in the input document. The API currently
+     *           supports proper noun mentions.
+     *     @type \Google\Cloud\Language\V1beta2\Sentiment $sentiment
+     *           For calls to [AnalyzeEntitySentiment][] or if
+     *           [AnnotateTextRequest.Features.extract_entity_sentiment][google.cloud.language.v1beta2.AnnotateTextRequest.Features.extract_entity_sentiment] is set to
+     *           true, this field will contain the aggregate sentiment expressed for this
+     *           entity in the provided document.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Language\V1Beta2\LanguageService::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

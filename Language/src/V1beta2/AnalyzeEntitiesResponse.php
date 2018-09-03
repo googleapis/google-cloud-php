@@ -30,9 +30,23 @@ class AnalyzeEntitiesResponse extends \Google\Protobuf\Internal\Message
      */
     private $language = '';
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type \Google\Cloud\Language\V1beta2\Entity[]|\Google\Protobuf\Internal\RepeatedField $entities
+     *           The recognized entities in the input document.
+     *     @type string $language
+     *           The language of the text, which will be the same as the language specified
+     *           in the request or, if not specified, the automatically-detected language.
+     *           See [Document.language][google.cloud.language.v1beta2.Document.language] field for more details.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Language\V1Beta2\LanguageService::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

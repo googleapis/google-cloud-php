@@ -28,9 +28,21 @@ class AnalyzeSyntaxRequest extends \Google\Protobuf\Internal\Message
      */
     private $encoding_type = 0;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type \Google\Cloud\Language\V1beta2\Document $document
+     *           Input document.
+     *     @type int $encoding_type
+     *           The encoding type used by the API to calculate offsets.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Language\V1Beta2\LanguageService::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

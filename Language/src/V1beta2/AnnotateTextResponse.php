@@ -60,9 +60,37 @@ class AnnotateTextResponse extends \Google\Protobuf\Internal\Message
      */
     private $categories;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type \Google\Cloud\Language\V1beta2\Sentence[]|\Google\Protobuf\Internal\RepeatedField $sentences
+     *           Sentences in the input document. Populated if the user enables
+     *           [AnnotateTextRequest.Features.extract_syntax][google.cloud.language.v1beta2.AnnotateTextRequest.Features.extract_syntax].
+     *     @type \Google\Cloud\Language\V1beta2\Token[]|\Google\Protobuf\Internal\RepeatedField $tokens
+     *           Tokens, along with their syntactic information, in the input document.
+     *           Populated if the user enables
+     *           [AnnotateTextRequest.Features.extract_syntax][google.cloud.language.v1beta2.AnnotateTextRequest.Features.extract_syntax].
+     *     @type \Google\Cloud\Language\V1beta2\Entity[]|\Google\Protobuf\Internal\RepeatedField $entities
+     *           Entities, along with their semantic information, in the input document.
+     *           Populated if the user enables
+     *           [AnnotateTextRequest.Features.extract_entities][google.cloud.language.v1beta2.AnnotateTextRequest.Features.extract_entities].
+     *     @type \Google\Cloud\Language\V1beta2\Sentiment $document_sentiment
+     *           The overall sentiment for the document. Populated if the user enables
+     *           [AnnotateTextRequest.Features.extract_document_sentiment][google.cloud.language.v1beta2.AnnotateTextRequest.Features.extract_document_sentiment].
+     *     @type string $language
+     *           The language of the text, which will be the same as the language specified
+     *           in the request or, if not specified, the automatically-detected language.
+     *           See [Document.language][google.cloud.language.v1beta2.Document.language] field for more details.
+     *     @type \Google\Cloud\Language\V1beta2\ClassificationCategory[]|\Google\Protobuf\Internal\RepeatedField $categories
+     *           Categories identified in the input document.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Language\V1Beta2\LanguageService::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

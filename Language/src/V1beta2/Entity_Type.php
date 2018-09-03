@@ -4,60 +4,13 @@
 
 namespace Google\Cloud\Language\V1beta2;
 
-/**
- * The type of the entity.
- *
- * Protobuf enum <code>Google\Cloud\Language\V1beta2\Entity\Type</code>
- */
-class Entity_Type
-{
+if (false) {
     /**
-     * Unknown
-     *
-     * Generated from protobuf enum <code>UNKNOWN = 0;</code>
+     * This class is deprecated. Use Google\Cloud\Language\V1beta2\Entity\Type instead.
+     * @deprecated
      */
-    const UNKNOWN = 0;
-    /**
-     * Person
-     *
-     * Generated from protobuf enum <code>PERSON = 1;</code>
-     */
-    const PERSON = 1;
-    /**
-     * Location
-     *
-     * Generated from protobuf enum <code>LOCATION = 2;</code>
-     */
-    const LOCATION = 2;
-    /**
-     * Organization
-     *
-     * Generated from protobuf enum <code>ORGANIZATION = 3;</code>
-     */
-    const ORGANIZATION = 3;
-    /**
-     * Event
-     *
-     * Generated from protobuf enum <code>EVENT = 4;</code>
-     */
-    const EVENT = 4;
-    /**
-     * Work of art
-     *
-     * Generated from protobuf enum <code>WORK_OF_ART = 5;</code>
-     */
-    const WORK_OF_ART = 5;
-    /**
-     * Consumer goods
-     *
-     * Generated from protobuf enum <code>CONSUMER_GOOD = 6;</code>
-     */
-    const CONSUMER_GOOD = 6;
-    /**
-     * Other types
-     *
-     * Generated from protobuf enum <code>OTHER = 7;</code>
-     */
-    const OTHER = 7;
+    class Entity_Type {}
 }
+class_exists(Entity\Type::class);
+@trigger_error('Google\Cloud\Language\V1beta2\Entity_Type is deprecated and will be removed in the next major release. Use Google\Cloud\Language\V1beta2\Entity\Type instead', E_USER_DEPRECATED);
 

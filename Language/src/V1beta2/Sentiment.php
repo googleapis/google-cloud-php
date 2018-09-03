@@ -32,9 +32,24 @@ class Sentiment extends \Google\Protobuf\Internal\Message
      */
     private $score = 0.0;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type float $magnitude
+     *           A non-negative number in the [0, +inf) range, which represents
+     *           the absolute magnitude of sentiment regardless of score (positive or
+     *           negative).
+     *     @type float $score
+     *           Sentiment score between -1.0 (negative sentiment) and 1.0
+     *           (positive sentiment).
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Language\V1Beta2\LanguageService::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**
