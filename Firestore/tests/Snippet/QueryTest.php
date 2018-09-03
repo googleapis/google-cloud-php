@@ -113,6 +113,30 @@ class QueryTest extends SnippetTestCase
         ]);
     }
 
+    public function testWhereArrayContains()
+    {
+        $snippet = $this->snippetFromMethod(Query::class, 'where', 2);
+        $this->runAndAssert($snippet, 'where', [
+            'fieldFilter' => [
+                'field' => [
+                    'fieldPath' => 'friends'
+                ],
+                'op' => Query::OP_ARRAY_CONTAINS,
+                'value' => [
+                    'arrayValue' => [
+                        'values' => [
+                            [
+                                'stringValue' => 'Steve'
+                            ], [
+                                'stringValue' => 'Sarah'
+                            ]
+                        ]
+                    ]
+                ]
+            ]
+        ]);
+    }
+
     public function testOrderBy()
     {
         $snippet = $this->snippetFromMethod(Query::class, 'orderBy');

@@ -276,6 +276,11 @@ class Query
      * $query = $query->where('coolnessPercentage', '=', NAN);
      * ```
      *
+     * ```
+     * // Use `array-contains` to select documents where the array contains given elements.
+     * $query = $query->where('friends', 'array-contains', ['Steve', 'Sarah']);
+     * ```
+     *
      * @param string|FieldPath $fieldPath The field to filter by.
      * @param string $operator The operator to filter by.
      * @param mixed $value The value to compare to.
