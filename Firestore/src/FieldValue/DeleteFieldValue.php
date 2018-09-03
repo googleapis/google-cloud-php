@@ -22,34 +22,12 @@ use Google\Cloud\Firestore\FieldPath;
 /**
  * Represents a field to be deleted.
  *
- * See {@see Google\Cloud\Firestore\FieldValue::deleteField()} for usage.
+ * This class is not intended to be used directly. See
+ * {@see Google\Cloud\Firestore\FieldValue::deleteField()} for usage.
  */
 class DeleteFieldValue implements FieldValueInterface
 {
-    private $fieldPath;
-
-    /**
-     * Set the field path for the transform value.
-     *
-     * @param FieldPath $fieldPath The field path object.
-     * @return void
-     * @access private
-     */
-    public function setFieldPath(FieldPath $fieldPath)
-    {
-        $this->fieldPath = $fieldPath;
-    }
-
-    /**
-     * Get the field path.
-     *
-     * @return FieldPath|null
-     * @access private
-     */
-    public function fieldPath()
-    {
-        return $this->fieldPath;
-    }
+    use FieldValueTrait;
 
     /**
      * @access private

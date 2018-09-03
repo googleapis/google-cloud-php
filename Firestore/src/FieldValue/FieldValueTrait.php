@@ -17,29 +17,38 @@
 
 namespace Google\Cloud\Firestore\FieldValue;
 
+use Google\Cloud\Firestore\FieldPath;
+
 /**
- * Represents an ArrayUnion DocumentTransform.
- *
- * This class is not intended to be used directly. See
- * {@see Google\Cloud\Firestore\FieldValue::arrayUnion()} for usage.
+ * Common methods for special field values.
  */
-class ArrayUnionValue implements DocumentTransformInterface
+trait FieldValueTrait
 {
-    use DocumentTransformTrait;
+    /**
+     * @var FieldPath|null
+     */
+    private $fieldPath;
 
     /**
+     * Set the field path for the transform value.
+     *
+     * @param FieldPath $fieldPath The field path object.
+     * @return void
      * @access private
      */
-    public function key()
+    public function setFieldPath(FieldPath $fieldPath)
     {
-        return 'appendMissingElements';
+        $this->fieldPath = $fieldPath;
     }
 
     /**
+     * Get the field path.
+     *
+     * @return FieldPath|null
      * @access private
      */
-    public function includeInUpdateMask()
+    public function fieldPath()
     {
-        return false;
+        return $this->fieldPath;
     }
 }

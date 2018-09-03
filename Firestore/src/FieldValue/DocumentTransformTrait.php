@@ -24,15 +24,12 @@ use Google\Cloud\Firestore\FieldPath;
  */
 trait DocumentTransformTrait
 {
+    use FieldValueTrait;
+
     /**
      * @var array
      */
     private $args;
-
-    /**
-     * @var FieldPath|null
-     */
-    private $fieldPath;
 
     /**
      * @param array $args
@@ -51,28 +48,5 @@ trait DocumentTransformTrait
     public function args()
     {
         return $this->args;
-    }
-
-    /**
-     * Set the field path for the transform value.
-     *
-     * @param FieldPath $fieldPath The field path object.
-     * @return void
-     * @access private
-     */
-    public function setFieldPath(FieldPath $fieldPath)
-    {
-        $this->fieldPath = $fieldPath;
-    }
-
-    /**
-     * Get the field path.
-     *
-     * @return FieldPath|null
-     * @access private
-     */
-    public function fieldPath()
-    {
-        return $this->fieldPath;
     }
 }
