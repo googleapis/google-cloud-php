@@ -17,14 +17,11 @@
 
 namespace Google\Cloud\Bigtable\Exception;
 
-use Google\Cloud\Core\Exception\GoogleException;
-
 /**
  * Exception thrown when a request fails.
  */
-class BigtableDataOperationException extends GoogleException
+class BigtableDataOperationException extends \Exception
 {
-
     /**
      * @var array
      */
@@ -34,7 +31,7 @@ class BigtableDataOperationException extends GoogleException
      * Handles previous exceptions differently here.
      *
      * @param string $message
-     * @param int $code
+     * @param int $code [optional]
      * @param array $metadata [optional] Exception metadata.
      */
     public function __construct(

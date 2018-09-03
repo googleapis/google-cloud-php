@@ -37,18 +37,14 @@ class DataClientTest extends TestCase
     const INSTANCE_ID_PREFIX = 'php-sys-instance-';
     const CLUSTER_ID_PREFIX = 'php-sys-cluster-';
     const TABLE_ID = 'bigtable-php-sys-test-table';
-    const COLUMN_FAMILY = 'cf1';
     const LOCATION_ID = 'us-east1-b';
-    const ROW_KEY = 'rk1';
-    const COLUMN_QUALIFIER = 'cq1';
-    const VALUE = 'value1';
 
-    private static $instanceAdminClient;
-    private static $tableAdminClient;
-    private static $dataClient;
-    private static $projectId;
-    private static $instanceId;
-    private static $clusterId;
+    protected static $instanceAdminClient;
+    protected static $tableAdminClient;
+    protected static $dataClient;
+    protected static $projectId;
+    protected static $instanceId;
+    protected static $clusterId;
 
     public static function setUpBeforeClass()
     {
@@ -72,17 +68,6 @@ class DataClientTest extends TestCase
         );
         self::createInstance();
         self::createTable();
-    }
-
-    public function testMutateRows()
-    {
-        $rowMutation = new RowMutation(self::ROW_KEY);
-        $rowMutation->upsert(
-            self::COLUMN_FAMILY,
-            self::COLUMN_QUALIFIER,
-            self::VALUE
-        );
-        self::$dataClient->mutateRows([$rowMutation]);
     }
 
     public static function tearDownAfterClass()
@@ -137,7 +122,8 @@ class DataClientTest extends TestCase
         $table = new Table();
         $columnFamily = new ColumnFamily();
         $table->setColumnFamilies([
-            self::COLUMN_FAMILY => $columnFamily
+            'cf1' => $columnFamily,
+            'cf2' => $columnFamily
         ]);
         self::$tableAdminClient->createTable(
             $formattedParent,
