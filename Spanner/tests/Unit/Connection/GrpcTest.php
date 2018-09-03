@@ -486,8 +486,10 @@ class GrpcTest extends TestCase
                 'createSession',
                 [
                     'database' => $databaseName,
-                    'labels' => [
-                        'foo' => 'bar'
+                    'session' => [
+                        'labels' => [
+                            'foo' => 'bar'
+                        ]
                     ]
                 ], [
                     $databaseName,
