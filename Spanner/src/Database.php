@@ -536,8 +536,8 @@ class Database
      *           up front. Instead, the transaction will be considered
      *           "single-use", and may be used for only a single operation.
      *           **Defaults to** `false`.
-     *     @type array $sessionOptions An array of configuration options used if
-     *           a new session is created for the request.
+     *     @type array $sessionOptions Session configuration and request options.
+     *           Session labels may be applied using the `labels` key.
      * }
      * @return Snapshot
      * @throws \BadMethodCallException If attempting to call this method within
@@ -600,8 +600,8 @@ class Database
      *           up front. Instead, the transaction will be considered
      *           "single-use", and may be used for only a single operation.
      *           **Defaults to** `false`.
-     *     @type array $sessionOptions An array of configuration options used if
-     *           a new session is created for the request.
+     *     @type array $sessionOptions Session configuration and request options.
+     *           Session labels may be applied using the `labels` key.
      * }
      * @return Transaction
      * @throws \BadMethodCallException If attempting to call this method within
@@ -698,8 +698,8 @@ class Database
      *           that in a single-use transaction, only a single operation may
      *           be executed, and rollback is not available. **Defaults to**
      *           `false`.
-     *     @type array $sessionOptions An array of configuration options used if
-     *           a new session is created for the request.
+     *     @type array $sessionOptions Session configuration and request options.
+     *           Session labels may be applied using the `labels` key.
      * }
      * @return mixed The return value of `$operation`.
      * @throws \RuntimeException If a transaction is not committed or rolled back.
@@ -1336,8 +1336,8 @@ class Database
      *           chosen, any snapshot options will be disregarded. If `$begin`
      *           is false, transaction type MUST be `SessionPoolInterface::CONTEXT_READ`.
      *           **Defaults to** `SessionPoolInterface::CONTEXT_READ`.
-     *     @type array $sessionOptions An array of configuration options used if
-     *           a new session is created for the request.
+     *     @type array $sessionOptions Session configuration and request options.
+     *           Session labels may be applied using the `labels` key.
      * }
      * @codingStandardsIgnoreEnd
      * @return Result
@@ -1461,8 +1461,8 @@ class Database
      *           chosen, any snapshot options will be disregarded. If `$begin`
      *           is false, transaction type MUST be `SessionPoolInterface::CONTEXT_READ`.
      *           **Defaults to** `SessionPoolInterface::CONTEXT_READ`.
-     *     @type array $sessionOptions An array of configuration options used if
-     *           a new session is created for the request.
+     *     @type array $sessionOptions Session configuration and request options.
+     *           Session labels may be applied using the `labels` key.
      * }
      * @codingStandardsIgnoreEnd
      * @return Result
