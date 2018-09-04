@@ -11,6 +11,7 @@
             "name": "google/cloud",
             "defaultService": "servicebuilder",
             "versions": [
+                "v0.76.0",
                 "v0.75.0",
                 "v0.74.1",
                 "v0.74.0",
@@ -417,6 +418,7 @@
             "name": "google/cloud-error-reporting",
             "defaultService": "errorreporting/readme",
             "versions": [
+                "v0.12.0",
                 "v0.11.5",
                 "v0.11.4",
                 "v0.11.3",
@@ -459,6 +461,7 @@
             "name": "google/cloud-firestore",
             "defaultService": "firestore/firestoreclient",
             "versions": [
+                "v0.14.1",
                 "v0.14.0",
                 "v0.13.0",
                 "v0.12.1",
@@ -496,6 +499,7 @@
             "name": "google/cloud-iot",
             "defaultService": "iot/readme",
             "versions": [
+                "v0.4.0",
                 "v0.3.4",
                 "v0.3.3",
                 "v0.3.2",
@@ -515,6 +519,7 @@
             "name": "google/cloud-kms",
             "defaultService": "kms/readme",
             "versions": [
+                "v0.2.3",
                 "v0.2.2",
                 "v0.2.1",
                 "v0.2.0",
@@ -528,6 +533,7 @@
             "name": "google/cloud-language",
             "defaultService": "language/languageclient",
             "versions": [
+                "v0.16.0",
                 "v0.15.5",
                 "v0.15.4",
                 "v0.15.3",
@@ -745,6 +751,7 @@
             "name": "google/cloud-spanner",
             "defaultService": "spanner/spannerclient",
             "versions": [
+                "v1.9.0",
                 "v1.8.0",
                 "v1.7.0",
                 "v1.6.3",
