@@ -38,9 +38,26 @@ class EntityMention extends \Google\Protobuf\Internal\Message
      */
     private $sentiment = null;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type \Google\Cloud\Language\V1beta2\TextSpan $text
+     *           The mention text.
+     *     @type int $type
+     *           The type of the entity mention.
+     *     @type \Google\Cloud\Language\V1beta2\Sentiment $sentiment
+     *           For calls to [AnalyzeEntitySentiment][] or if
+     *           [AnnotateTextRequest.Features.extract_entity_sentiment][google.cloud.language.v1beta2.AnnotateTextRequest.Features.extract_entity_sentiment] is set to
+     *           true, this field will contain the sentiment expressed for this mention of
+     *           the entity in the provided document.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Language\V1Beta2\LanguageService::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

@@ -35,9 +35,23 @@ class AnnotateTextRequest extends \Google\Protobuf\Internal\Message
      */
     private $encoding_type = 0;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type \Google\Cloud\Language\V1beta2\Document $document
+     *           Input document.
+     *     @type \Google\Cloud\Language\V1beta2\AnnotateTextRequest\Features $features
+     *           The enabled features.
+     *     @type int $encoding_type
+     *           The encoding type used by the API to calculate offsets.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Language\V1Beta2\LanguageService::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**
@@ -70,7 +84,7 @@ class AnnotateTextRequest extends \Google\Protobuf\Internal\Message
      * The enabled features.
      *
      * Generated from protobuf field <code>.google.cloud.language.v1beta2.AnnotateTextRequest.Features features = 2;</code>
-     * @return \Google\Cloud\Language\V1beta2\AnnotateTextRequest_Features
+     * @return \Google\Cloud\Language\V1beta2\AnnotateTextRequest\Features
      */
     public function getFeatures()
     {
@@ -81,7 +95,7 @@ class AnnotateTextRequest extends \Google\Protobuf\Internal\Message
      * The enabled features.
      *
      * Generated from protobuf field <code>.google.cloud.language.v1beta2.AnnotateTextRequest.Features features = 2;</code>
-     * @param \Google\Cloud\Language\V1beta2\AnnotateTextRequest_Features $var
+     * @param \Google\Cloud\Language\V1beta2\AnnotateTextRequest\Features $var
      * @return $this
      */
     public function setFeatures($var)

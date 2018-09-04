@@ -4,36 +4,13 @@
 
 namespace Google\Cloud\Language\V1beta2;
 
-/**
- * Count distinctions.
- *
- * Protobuf enum <code>Google\Cloud\Language\V1beta2\PartOfSpeech\Number</code>
- */
-class PartOfSpeech_Number
-{
+if (false) {
     /**
-     * Number is not applicable in the analyzed language or is not predicted.
-     *
-     * Generated from protobuf enum <code>NUMBER_UNKNOWN = 0;</code>
+     * This class is deprecated. Use Google\Cloud\Language\V1beta2\PartOfSpeech\Number instead.
+     * @deprecated
      */
-    const NUMBER_UNKNOWN = 0;
-    /**
-     * Singular
-     *
-     * Generated from protobuf enum <code>SINGULAR = 1;</code>
-     */
-    const SINGULAR = 1;
-    /**
-     * Plural
-     *
-     * Generated from protobuf enum <code>PLURAL = 2;</code>
-     */
-    const PLURAL = 2;
-    /**
-     * Dual
-     *
-     * Generated from protobuf enum <code>DUAL = 3;</code>
-     */
-    const DUAL = 3;
+    class PartOfSpeech_Number {}
 }
+class_exists(PartOfSpeech\Number::class);
+@trigger_error('Google\Cloud\Language\V1beta2\PartOfSpeech_Number is deprecated and will be removed in the next major release. Use Google\Cloud\Language\V1beta2\PartOfSpeech\Number instead', E_USER_DEPRECATED);
 

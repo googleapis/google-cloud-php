@@ -42,7 +42,7 @@ use Google\Cloud\Language\V1beta2\AnalyzeSentimentResponse;
 use Google\Cloud\Language\V1beta2\AnalyzeSyntaxRequest;
 use Google\Cloud\Language\V1beta2\AnalyzeSyntaxResponse;
 use Google\Cloud\Language\V1beta2\AnnotateTextRequest;
-use Google\Cloud\Language\V1beta2\AnnotateTextRequest_Features;
+use Google\Cloud\Language\V1beta2\AnnotateTextRequest\Features;
 use Google\Cloud\Language\V1beta2\AnnotateTextResponse;
 use Google\Cloud\Language\V1beta2\ClassifyTextRequest;
 use Google\Cloud\Language\V1beta2\ClassifyTextResponse;
@@ -106,6 +106,7 @@ class LanguageServiceGapicClient
             'serviceAddress' => self::SERVICE_ADDRESS.':'.self::DEFAULT_SERVICE_PORT,
             'clientConfig' => __DIR__.'/../resources/language_service_client_config.json',
             'descriptorsConfigPath' => __DIR__.'/../resources/language_service_descriptor_config.php',
+            'gcpApiConfigPath' => __DIR__.'/../resources/language_service_grpc_config.json',
             'credentialsConfig' => [
                 'scopes' => self::$serviceScopes,
             ],
@@ -429,7 +430,7 @@ class LanguageServiceGapicClient
      * $languageServiceClient = new LanguageServiceClient();
      * try {
      *     $document = new Document();
-     *     $features = new AnnotateTextRequest_Features();
+     *     $features = new AnnotateTextRequest\Features();
      *     $response = $languageServiceClient->annotateText($document, $features);
      * } finally {
      *     $languageServiceClient->close();
@@ -437,7 +438,7 @@ class LanguageServiceGapicClient
      * ```
      *
      * @param Document                     $document     Input document.
-     * @param AnnotateTextRequest_Features $features     The enabled features.
+     * @param AnnotateTextRequest\Features $features     The enabled features.
      * @param array                        $optionalArgs {
      *                                                   Optional.
      *

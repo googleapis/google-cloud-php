@@ -22,9 +22,19 @@ class ClassifyTextRequest extends \Google\Protobuf\Internal\Message
      */
     private $document = null;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type \Google\Cloud\Language\V1beta2\Document $document
+     *           Input document.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Language\V1Beta2\LanguageService::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

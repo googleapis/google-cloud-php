@@ -4,36 +4,13 @@
 
 namespace Google\Cloud\Language\V1beta2;
 
-/**
- * Gender classes of nouns reflected in the behaviour of associated words.
- *
- * Protobuf enum <code>Google\Cloud\Language\V1beta2\PartOfSpeech\Gender</code>
- */
-class PartOfSpeech_Gender
-{
+if (false) {
     /**
-     * Gender is not applicable in the analyzed language or is not predicted.
-     *
-     * Generated from protobuf enum <code>GENDER_UNKNOWN = 0;</code>
+     * This class is deprecated. Use Google\Cloud\Language\V1beta2\PartOfSpeech\Gender instead.
+     * @deprecated
      */
-    const GENDER_UNKNOWN = 0;
-    /**
-     * Feminine
-     *
-     * Generated from protobuf enum <code>FEMININE = 1;</code>
-     */
-    const FEMININE = 1;
-    /**
-     * Masculine
-     *
-     * Generated from protobuf enum <code>MASCULINE = 2;</code>
-     */
-    const MASCULINE = 2;
-    /**
-     * Neuter
-     *
-     * Generated from protobuf enum <code>NEUTER = 3;</code>
-     */
-    const NEUTER = 3;
+    class PartOfSpeech_Gender {}
 }
+class_exists(PartOfSpeech\Gender::class);
+@trigger_error('Google\Cloud\Language\V1beta2\PartOfSpeech_Gender is deprecated and will be removed in the next major release. Use Google\Cloud\Language\V1beta2\PartOfSpeech\Gender instead', E_USER_DEPRECATED);
 

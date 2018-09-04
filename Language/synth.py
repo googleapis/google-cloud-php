@@ -51,3 +51,9 @@ s.replace(
     'tests/**/V1beta2/*Test.php',
     r'Copyright \d{4}',
     'Copyright 2018')
+
+# Use new namespaces
+s.replace(
+    'src/V1beta2/Gapic/LanguageServiceGapicClient.php',
+    r'AnnotateTextRequest_Features',
+    'AnnotateTextRequest\Features')
