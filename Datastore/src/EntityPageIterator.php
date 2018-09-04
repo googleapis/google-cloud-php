@@ -61,6 +61,6 @@ class EntityPageIterator implements \Iterator
             ? $this->page['batch']['moreResults']
             : null;
 
-        return $this->get($this->itemsPath, $this->page);
+        return $this->getNestedResource($this->itemsPath, $this->page);
     }
 }

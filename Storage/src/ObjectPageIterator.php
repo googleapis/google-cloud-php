@@ -58,7 +58,7 @@ class ObjectPageIterator implements \Iterator
             $this->updatePrefixes();
         }
 
-        return $this->get($this->itemsPath, $this->page);
+        return $this->getNestedResource($this->itemsPath, $this->page);
     }
 
     /**
