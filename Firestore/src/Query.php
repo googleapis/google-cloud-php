@@ -717,7 +717,10 @@ class Query
                 $filters = $this->query['where']['compositeFilter']['filters'];
                 $inequality = array_filter($filters, function ($filter) {
                     $type = array_keys($filter)[0];
-                    return $filter[$type]['op'] !== self::OP_EQUAL;
+                    return !in_array($filter[$type]['op'], [
+                        self::OP_EQUAL,
+                        self::OP_ARRAY_CONTAINS
+                    ]);
                 });
 
                 if ($inequality) {

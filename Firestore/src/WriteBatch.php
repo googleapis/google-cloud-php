@@ -126,7 +126,7 @@ class WriteBatch
 
         list ($fields, $sentinels, $metadata) = $this->filterFields($fields);
 
-        if (in_array(DeleteFieldValue::class, $metadata['types'])) {
+        if ($metadata['hasDelete']) {
             throw new \InvalidArgumentException('Cannot delete fields when creating a document.');
         }
 
@@ -198,7 +198,7 @@ class WriteBatch
 
         list ($fields, $sentinels, $metadata) = $this->filterFields($fields);
 
-        if (!$merge && in_array(DeleteFieldValue::class, $metadata['types'])) {
+        if (!$merge && $metadata['hasDelete']) {
             throw new \InvalidArgumentException('Delete cannot appear in data unless `$options[\'merge\']` is set.');
         }
 
@@ -210,13 +210,13 @@ class WriteBatch
 
         $updateNotRequired = count($fields) === 0
             && !$emptyDocument
-            && $metadata['hasTransform']
-            && !isset($metadata['types'][DeleteFieldValue::class]);
+            && !$metadata['hasUpdateMask']
+            && $metadata['hasTransform'];
 
         $shouldEnqueueUpdate = $fields
             || $emptyDocument
             || ($updateNotRequired && !$merge)
-            || isset($metadata['types'][DeleteFieldValue::class]);
+            || $metadata['hasUpdateMask'];
 
         if ($shouldEnqueueUpdate) {
             $write = [
@@ -364,7 +364,7 @@ class WriteBatch
         // and enqueue an empty UPDATE operation.
         $shouldEnqueueUpdate = $fields
             || $emptyDocument
-            || in_array(DeleteFieldValue::class, $metadata['types']);
+            || $metadata['hasUpdateMask'];
 
         if ($shouldEnqueueUpdate) {
             $write = [
@@ -659,8 +659,9 @@ class WriteBatch
     {
         $sentinels = [];
         $metadata = [
-            'types' => [],
-            'hasTransform' => false
+            'hasTransform' => false,
+            'hasUpdateMask' => false,
+            'hasDelete' => false,
         ];
 
         // Recurses through the fields list, filtering for sentinel values
@@ -699,8 +700,10 @@ class WriteBatch
                         // Sentinels cannot be used within a non-associative array.
                         if ($inArray) {
                             throw new \InvalidArgumentException(sprintf(
-                                '%s values cannot be used anywhere within a non-associative array value.',
-                                FieldValue::class
+                                '%s values cannot be used anywhere within a non-associative array value. ' .
+                                'Invalid value found at %s.',
+                                FieldValue::class,
+                                $currentPath->pathString()
                             ));
                         }
 
@@ -712,22 +715,46 @@ class WriteBatch
 
                         if ($illegalNestedDelete) {
                             throw new \InvalidArgumentException(sprintf(
-                                '%s::deleteField() values cannot be nested.',
-                                FieldValue::class
+                                '%s::deleteField() values cannot be nested. ' .
+                                'Invalid value found at %s.',
+                                FieldValue::class,
+                                $currentPath->pathString()
                             ));
+                        }
+
+                        // Values of type `DocumentTransformInterface` cannot contain nested transforms.
+                        if ($value instanceof DocumentTransformInterface) {
+                            $args = $value->args();
+                            if (is_array($args) && !$this->isAssoc($args)) {
+                                foreach ($args as $arg) {
+                                    if ($arg instanceof DocumentTransformInterface) {
+                                        throw new \InvalidArgumentException(sprintf(
+                                            'Document transforms cannot contain %s values. ' .
+                                            'Invalid value found at %s.',
+                                            FieldValue::class,
+                                            $currentPath->pathString()
+                                        ));
+                                    }
+                                }
+                            }
                         }
 
                         // Remove the sentinel value from the fields array.
                         unset($fields[$key]);
 
-                        // Record the sentinel type.
-                        if (!in_array(get_class($value), $metadata['types'])) {
-                            $metadata['types'][] = get_class($value);
-                        }
-
                         // Record whether the mutation contains a transform value.
                         if (!$metadata['hasTransform'] && $value instanceof DocumentTransformInterface) {
                             $metadata['hasTransform'] = true;
+                        }
+
+                        // Record whether an update mask is required.
+                        if (!$metadata['hasUpdateMask'] && $value->includeInUpdateMask()) {
+                            $metadata['hasUpdateMask'] = true;
+                        }
+
+                        // Record whether a field delete is provided.
+                        if (!$metadata['hasDelete'] && $value instanceof DeleteFieldValue) {
+                            $metadata['hasDelete'] = true;
                         }
                     }
                 }

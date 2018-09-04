@@ -353,6 +353,17 @@ class WriteBatchTest extends TestCase
     }
 
     /**
+     * @expectedException InvalidArgumentException
+     * @expectedExceptionMessageRegExp /Document transforms cannot contain/
+     */
+    public function testSentinelCannotContainSentinel()
+    {
+        $this->batch->set('name', [
+            'foo' => FieldValue::arrayRemove([FieldValue::arrayUnion([])])
+        ]);
+    }
+
+    /**
      * @dataProvider documents
      * @expectedException InvalidArgumentException
      * @expectedExceptionMessage Delete cannot appear in data unless `$options['merge']` is set.
