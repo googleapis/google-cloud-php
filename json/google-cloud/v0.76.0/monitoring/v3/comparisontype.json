@@ -1,0 +1,1 @@
+{"id":"monitoring\/v3\/comparisontype","type":"","title":"Google\\Cloud\\Monitoring\\V3\\ComparisonType","name":"ComparisonType","description":"<p>Specifies an ordering relationship on two arguments, here called left and\nright.<\/p>\n<p>Protobuf enum <code>Google\\Monitoring\\V3\\ComparisonType<\/code><\/p>","examples":[],"resources":[],"methods":[]}

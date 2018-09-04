@@ -1,0 +1,1 @@
+{"id":"dialogflow\/v2\/entitytype_kind","type":"","title":"Google\\Cloud\\Dialogflow\\V2\\EntityType_Kind","name":"EntityType_Kind","description":"<p>Represents kinds of entities.<\/p>\n<p>Protobuf enum <code>Google\\Cloud\\Dialogflow\\V2\\EntityType\\Kind<\/code><\/p>","examples":[],"resources":[],"methods":[]}
