@@ -33,7 +33,6 @@
 namespace Google\ApiCore;
 
 use Google\ApiCore\ResourceTemplate\AbsoluteResourceTemplate;
-use Google\Protobuf\Internal\GPBUtil;
 use Google\Protobuf\Internal\Message;
 use Google\Protobuf\Internal\RepeatedField;
 use GuzzleHttp\Psr7;
@@ -142,7 +141,7 @@ class RequestBuilder
      * @param $config
      * @return array Tuple [$body, $queryParams]
      */
-    private function constructBodyAndQueryParameters($message, $config)
+    private function constructBodyAndQueryParameters(Message $message, $config)
     {
         if ($config['body'] === '*') {
             return [$message->serializeToJsonString(), []];
@@ -189,6 +188,8 @@ class RequestBuilder
                 function (Message $result = null, $getter) {
                     if ($result) {
                         return $result->$getter();
+                    } else {
+                        return null;
                     }
                 },
                 $message

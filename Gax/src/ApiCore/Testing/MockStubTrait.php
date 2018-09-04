@@ -32,6 +32,7 @@
 
 namespace Google\ApiCore\Testing;
 
+use Google\Protobuf\Internal\Message;
 use Google\Rpc\Status;
 use UnderflowException;
 
@@ -135,6 +136,7 @@ trait MockStubTrait
     ) {
 
         if (is_a($argument, '\Google\Protobuf\Internal\Message')) {
+            /** @var Message $newArgument */
             $newArgument = new $argument();
             $newArgument->mergeFromString($argument->serializeToString());
             $argument = $newArgument;
@@ -180,7 +182,7 @@ trait MockStubTrait
     {
         $strippedResponses = [];
         foreach ($responses as $response) {
-            list($resp, $status) = $response;
+            list($resp, $_) = $response;
             $strippedResponses[] = $resp;
         }
         return $strippedResponses;

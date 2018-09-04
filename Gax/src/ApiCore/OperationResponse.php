@@ -34,6 +34,8 @@ namespace Google\ApiCore;
 
 use Google\ApiCore\LongRunning\OperationsClient;
 use Google\LongRunning\Operation;
+use Google\Protobuf\Any;
+use Google\Protobuf\Internal\Message;
 use Google\Rpc\Status;
 
 /**
@@ -221,11 +223,13 @@ class OperationResponse
             return null;
         }
 
+        /** @var Any $anyResponse */
         $anyResponse = $this->lastProtoResponse->getResponse();
         if (is_null($this->operationReturnType)) {
             return $anyResponse;
         }
         $operationReturnType = $this->operationReturnType;
+        /** @var Message $response */
         $response = new $operationReturnType();
         $response->mergeFromString($anyResponse->getValue());
         return $response;
@@ -322,6 +326,7 @@ class OperationResponse
         if (is_null($this->lastProtoResponse)) {
             return null;
         }
+        /** @var Any $any */
         $any = $this->lastProtoResponse->getMetadata();
         if (is_null($this->metadataReturnType)) {
             return $any;
@@ -330,6 +335,7 @@ class OperationResponse
             return null;
         }
         $metadataReturnType = $this->metadataReturnType;
+        /** @var Message $metadata */
         $metadata = new $metadataReturnType();
         $metadata->mergeFromString($any->getValue());
         return $metadata;

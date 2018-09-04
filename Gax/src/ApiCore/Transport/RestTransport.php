@@ -38,6 +38,7 @@ use Google\ApiCore\RequestBuilder;
 use Google\ApiCore\ServiceAddressTrait;
 use Google\ApiCore\ValidationException;
 use Google\ApiCore\ValidationTrait;
+use Google\Protobuf\Internal\Message;
 use GuzzleHttp\Exception\RequestException;
 use Psr\Http\Message\ResponseInterface;
 
@@ -111,6 +112,7 @@ class RestTransport implements TransportInterface
         )->then(
             function (ResponseInterface $response) use ($call, $options) {
                 $decodeType = $call->getDecodeType();
+                /** @var Message $return */
                 $return = new $decodeType;
                 $return->mergeFromJsonString(
                     (string) $response->getBody()
@@ -147,10 +149,11 @@ class RestTransport implements TransportInterface
     }
 
     /**
-     * @param \Exception $ex
+     * @param RequestException $ex
      * @return ApiException
+     * @throws ValidationException
      */
-    private function convertToApiException(\Exception $ex)
+    private function convertToApiException(RequestException $ex)
     {
         $res = $ex->getResponse();
         $body = (string) $res->getBody();

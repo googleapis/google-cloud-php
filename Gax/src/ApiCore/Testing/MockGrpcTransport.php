@@ -32,13 +32,8 @@
 
 namespace Google\ApiCore\Testing;
 
-use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Transport\GrpcTransport;
-use Google\Auth\ApplicationDefaultCredentials;
 use Grpc\ChannelCredentials;
-use GuzzleHttp\Psr7\Response;
-use Psr\Http\Message\RequestInterface;
-use ReflectionClass;
 
 class MockGrpcTransport extends GrpcTransport
 {

@@ -32,7 +32,6 @@
 namespace Google\ApiCore\Middleware;
 
 use Google\ApiCore\Call;
-use Google\Protobuf\Internal\Message;
 use GuzzleHttp\Promise\Promise;
 use GuzzleHttp\Promise\PromiseInterface;
 

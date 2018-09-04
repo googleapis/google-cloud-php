@@ -70,6 +70,7 @@ class GrpcTransport extends BaseStub implements TransportInterface
      * @param Channel $channel An already created Channel object (optional)
      * @param array $interceptors *EXPERIMENTAL* Interceptor support, required until
      *                                           gRPC interceptors are available.
+     * @throws Exception
      */
     public function __construct($hostname, $opts, Channel $channel = null, array $interceptors = [])
     {
@@ -235,6 +236,7 @@ class GrpcTransport extends BaseStub implements TransportInterface
             $this->getCallOptions($options)
         );
 
+        /** @var Promise $promise */
         $promise = new Promise(
             function () use ($unaryCall, $options, &$promise) {
                 list($response, $status) = $unaryCall->wait();

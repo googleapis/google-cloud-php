@@ -43,7 +43,7 @@ trait ArrayTrait
      * @param string $key
      * @param array $arr
      * @param bool $isRequired
-     * @return string|null
+     * @return mixed|null
      * @throws \InvalidArgumentException
      */
     private function pluck($key, array &$arr, $isRequired = true)

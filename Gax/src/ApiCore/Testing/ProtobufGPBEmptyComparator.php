@@ -18,7 +18,9 @@
 namespace Google\ApiCore\Testing;
 
 use Google\Protobuf\GPBEmpty;
+use Google\Protobuf\Internal\Message;
 use SebastianBergmann\Comparator\Comparator;
+use SebastianBergmann\Comparator\ComparisonFailure;
 
 class ProtobufGPBEmptyComparator extends Comparator
 {
@@ -45,7 +47,7 @@ class ProtobufGPBEmptyComparator extends Comparator
      *                             comparison
      * @param  bool $ignoreCase If set to TRUE, upper- and lowercasing is
      *                           ignored when comparing string values
-     * @throws \PHPUnit_Framework_ComparisonFailure Thrown when the comparison
+     * @throws ComparisonFailure Thrown when the comparison
      *                           fails. Contains information about the
      *                           specific errors that lead to the failure.
      */

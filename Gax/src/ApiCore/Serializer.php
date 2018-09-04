@@ -35,6 +35,7 @@ use Google\Protobuf\Any;
 use Google\Protobuf\Descriptor;
 use Google\Protobuf\DescriptorPool;
 use Google\Protobuf\FieldDescriptor;
+use Google\Protobuf\Internal\Message;
 use RuntimeException;
 
 /**
@@ -90,13 +91,22 @@ class Serializer
      *
      * @param mixed $message
      * @return array
+     * @throws ValidationException
      */
     public function encodeMessage($message)
     {
         // Get message descriptor
         $pool = DescriptorPool::getGeneratedPool();
         $messageType = $pool->getDescriptorByClassName(get_class($message));
-        return $this->encodeMessageImpl($message, $messageType);
+        try {
+            return $this->encodeMessageImpl($message, $messageType);
+        } catch (\Exception $e) {
+            throw new ValidationException(
+                "Error encoding message: " . $e->getMessage(),
+                $e->getCode(),
+                $e
+            );
+        }
     }
 
     /**
@@ -105,18 +115,28 @@ class Serializer
      * @param mixed $message
      * @param array $data
      * @return mixed
+     * @throws ValidationException
      */
     public function decodeMessage($message, $data)
     {
         // Get message descriptor
         $pool = DescriptorPool::getGeneratedPool();
         $messageType = $pool->getDescriptorByClassName(get_class($message));
-        return $this->decodeMessageImpl($message, $messageType, $data);
+        try {
+            return $this->decodeMessageImpl($message, $messageType, $data);
+        } catch (\Exception $e) {
+            throw new ValidationException(
+                "Error decoding message: " . $e->getMessage(),
+                $e->getCode(),
+                $e
+            );
+        }
     }
 
     /**
-     * @param \Google\Protobuf\Internal\Message $message
+     * @param Message $message
      * @return string Json representation of $message
+     * @throws ValidationException
      */
     public static function serializeToJson($message)
     {
@@ -124,8 +144,9 @@ class Serializer
     }
 
     /**
-     * @param \Google\Protobuf\Internal\Message $message
+     * @param Message $message
      * @return array PHP array representation of $message
+     * @throws ValidationException
      */
     public static function serializeToPhpArray($message)
     {
@@ -152,9 +173,17 @@ class Serializer
                 if (self::hasBinaryHeaderSuffix($key)) {
                     if (isset(self::$metadataKnownTypes[$key])) {
                         $class = self::$metadataKnownTypes[$key];
+                        /** @var Message $message */
                         $message = new $class();
-                        $message->mergeFromString($value);
-                        $decodedValue += self::serializeToPhpArray($message);
+                        try {
+                            $message->mergeFromString($value);
+                            $decodedValue += self::serializeToPhpArray($message);
+                        } catch (\Exception $e) {
+                            // We encountered an error trying to deserialize the data
+                            $decodedValue += [
+                                'data' => '<Unable to deserialize data>',
+                            ];
+                        }
                     } else {
                         // The metadata contains an unexpected binary type
                         $decodedValue += [
@@ -184,6 +213,7 @@ class Serializer
         foreach ($anyArray as $any) {
             try {
                 /** @var Any $any */
+                /** @var Message $unpacked */
                 $unpacked = $any->unpack();
                 $results[] = self::serializeToPhpArray($unpacked);
             } catch (\Exception $ex) {
@@ -198,6 +228,12 @@ class Serializer
         return $results;
     }
 
+    /**
+     * @param FieldDescriptor $field
+     * @param $data
+     * @return mixed array
+     * @throws \Exception
+     */
     private function encodeElement(FieldDescriptor $field, $data)
     {
         switch ($field->getType()) {
@@ -247,6 +283,12 @@ class Serializer
         return $this->descriptorMaps[$descriptor->getFullName()];
     }
 
+    /**
+     * @param Message $message
+     * @param Descriptor $messageType
+     * @return array
+     * @throws \Exception
+     */
     private function encodeMessageImpl($message, Descriptor $messageType)
     {
         $data = [];
@@ -298,6 +340,12 @@ class Serializer
         return $data;
     }
 
+    /**
+     * @param FieldDescriptor $field
+     * @param mixed $data
+     * @return mixed
+     * @throws \Exception
+     */
     private function decodeElement(FieldDescriptor $field, $data)
     {
         if (isset($this->decodeFieldTransformers[$field->getName()])) {
@@ -306,7 +354,7 @@ class Serializer
 
         switch ($field->getType()) {
             case GPBType::MESSAGE:
-                if ($data instanceof \Google\Protobuf\Internal\Message) {
+                if ($data instanceof Message) {
                     return $data;
                 }
                 $messageType = $field->getMessageType();
@@ -323,6 +371,13 @@ class Serializer
         }
     }
 
+    /**
+     * @param Message $message
+     * @param Descriptor $messageType
+     * @param array $data
+     * @return mixed
+     * @throws \Exception
+     */
     private function decodeMessageImpl($message, Descriptor $messageType, $data)
     {
         list($fieldsByName, $_) = $this->getDescriptorMaps($messageType);
@@ -346,10 +401,6 @@ class Serializer
                 list($mapFieldsByName, $_) = $this->getDescriptorMaps($field->getMessageType());
                 $keyField = $mapFieldsByName[self::MAP_KEY_FIELD_NAME];
                 $valueField = $mapFieldsByName[self::MAP_VALUE_FIELD_NAME];
-
-                $klass = $valueField->getType() === GPBType::MESSAGE
-                    ? $valueField->getMessageType()->getClass()
-                    : null;
                 $arr = [];
                 foreach ($v as $k => $vv) {
                     $arr[$this->decodeElement($keyField, $k)] = $this->decodeElement($valueField, $vv);

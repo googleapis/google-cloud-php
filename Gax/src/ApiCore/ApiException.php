@@ -32,6 +32,7 @@
 namespace Google\ApiCore;
 
 use Exception;
+use Google\Protobuf\Internal\RepeatedField;
 use Google\Rpc\Status;
 
 /**
@@ -118,7 +119,7 @@ class ApiException extends Exception
      *
      * @param string $basicMessage
      * @param int $rpcCode
-     * @param mixed[] $metadata
+     * @param mixed[]|RepeatedField $metadata
      * @param array $decodedMetadata
      * @param \Exception|null $previous
      * @return ApiException

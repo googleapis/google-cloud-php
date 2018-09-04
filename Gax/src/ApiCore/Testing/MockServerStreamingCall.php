@@ -33,8 +33,8 @@
 namespace Google\ApiCore\Testing;
 
 use Google\ApiCore\ApiException;
+use Google\ApiCore\ApiStatus;
 use Google\Rpc\Code;
-use Grpc;
 
 /**
  * The MockServerStreamingCall class is used to mock out the \Grpc\ServerStreamingCall class
@@ -72,12 +72,17 @@ class MockServerStreamingCall extends \Grpc\ServerStreamingCall
         }
     }
 
+    /**
+     * @return MockStatus|null|\stdClass
+     * @throws ApiException
+     */
     public function getStatus()
     {
         if (count($this->responses) > 0) {
             throw new ApiException(
                 "Calls to getStatus() will block if all responses are not read",
-                Grpc\STATUS_INTERNAL
+                Code::INTERNAL,
+                ApiStatus::INTERNAL
             );
         }
         return $this->status;

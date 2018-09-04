@@ -36,6 +36,7 @@ use Google\ApiCore\BidiStream;
 use Google\ApiCore\Call;
 use Google\ApiCore\ClientStream;
 use Google\ApiCore\ServerStream;
+use Google\ApiCore\ValidationException;
 use GuzzleHttp\Promise\PromiseInterface;
 
 interface TransportInterface
@@ -77,6 +78,7 @@ interface TransportInterface
      * @param array $options
      *
      * @return PromiseInterface
+     * @throws ValidationException
      */
     public function startUnaryCall(Call $call, array $options);
 

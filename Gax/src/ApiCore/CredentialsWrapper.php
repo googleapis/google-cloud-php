@@ -50,6 +50,7 @@ class CredentialsWrapper
 {
     use ValidationTrait;
 
+    /** @var FetchAuthTokenInterface $credentialsFetcher */
     private $credentialsFetcher;
     private $authHttpHandler;
 
@@ -198,7 +199,7 @@ class CredentialsWrapper
         }
     }
 
-    private static function getToken($credentialsFetcher, $authHttpHandler)
+    private static function getToken(FetchAuthTokenInterface $credentialsFetcher, $authHttpHandler)
     {
         $token = $credentialsFetcher->getLastReceivedToken();
         if (self::isExpired($token)) {

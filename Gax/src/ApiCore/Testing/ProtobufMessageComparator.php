@@ -56,7 +56,7 @@ class ProtobufMessageComparator extends Comparator
      *                             comparison
      * @param  bool $ignoreCase If set to TRUE, upper- and lowercasing is
      *                           ignored when comparing string values
-     * @throws \PHPUnit_Framework_ComparisonFailure Thrown when the comparison
+     * @throws ComparisonFailure Thrown when the comparison
      *                           fails. Contains information about the
      *                           specific errors that lead to the failure.
      */
