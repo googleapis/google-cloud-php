@@ -25,9 +25,10 @@ class MessageAwareExporter extends Exporter
     /**
      * Exports a value into a single-line string
      *
+     * @param mixed $value
      * @return string
      *
-     * @see    SebastianBergmann\Exporter\Exporter::export
+     * @see    \SebastianBergmann\Exporter\Exporter::export
      */
     public function shortenedExport($value)
     {

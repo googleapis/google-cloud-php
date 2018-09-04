@@ -33,7 +33,6 @@
 namespace Google\ApiCore;
 
 use Google\ApiCore\LongRunning\OperationsClient;
-use Google\ApiCore\Middleware\AgentHeaderMiddleware;
 use Google\ApiCore\Middleware\CredentialsWrapperMiddleware;
 use Google\ApiCore\Middleware\FixedHeaderMiddleware;
 use Google\ApiCore\Middleware\OperationsMiddleware;
@@ -60,10 +59,12 @@ trait GapicClientTrait
     use ValidationTrait;
     use GrpcSupportTrait;
 
+    /** @var TransportInterface */
     private $transport;
     private $credentialsWrapper;
 
     private static $gapicVersionFromFile;
+    /** @var RetrySettings[] $retrySettings */
     private $retrySettings;
     private $serviceName;
     private $agentHeader;

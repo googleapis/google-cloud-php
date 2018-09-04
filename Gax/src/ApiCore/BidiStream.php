@@ -81,7 +81,6 @@ class BidiStream
      * @param mixed[] $requests An Iterable of request objects to write to the server
      *
      * @throws ValidationException
-     * @throws ApiException
      */
     public function writeAll($requests = [])
     {
@@ -93,6 +92,7 @@ class BidiStream
     /**
      * Inform the server that no more requests will be written. The write() function cannot be
      * called after closeWrite() is called.
+     * @throws ValidationException
      */
     public function closeWrite()
     {

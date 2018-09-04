@@ -31,11 +31,9 @@
  */
 namespace Google\ApiCore\Middleware;
 
-use Exception;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\ApiStatus;
 use Google\ApiCore\Call;
-use Google\ApiCore\CallSettings;
 use Google\ApiCore\RetrySettings;
 use GuzzleHttp\Promise\PromiseInterface;
 
@@ -106,6 +104,7 @@ class RetryMiddleware
      * @param string $status
      *
      * @return PromiseInterface
+     * @throws ApiException
      */
     private function retry(Call $call, array $options, $status)
     {

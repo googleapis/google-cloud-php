@@ -31,6 +31,8 @@
  */
 namespace Google\ApiCore\Testing;
 
+use Google\Protobuf\Internal\Message;
+
 trait SerializationTrait
 {
     protected function deserializeMessage($message, $deserialize)
@@ -46,6 +48,7 @@ trait SerializationTrait
         // Proto3 implementation
         if (is_array($deserialize)) {
             list($className, $deserializeFunc) = $deserialize;
+            /** @var Message $obj */
             $obj = new $className();
             if (method_exists($obj, $deserializeFunc)) {
                 $obj->$deserializeFunc($message);

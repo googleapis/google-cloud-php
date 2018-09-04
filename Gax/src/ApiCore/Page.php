@@ -106,6 +106,7 @@ class Page implements IteratorAggregate
      * @param int|null $pageSize
      * @throws ValidationException if there are no pages remaining, or if pageSize is supplied but
      * is not supported by the API
+     * @throws ApiException if the call to fetch the next page fails.
      * @return Page
      */
     public function getNextPage($pageSize = null)
@@ -178,7 +179,9 @@ class Page implements IteratorAggregate
      * Additional Page objects are retrieved lazily via API calls until
      * all elements have been retrieved.
      *
-     * @return Page[]
+     * @return Generator|Page[]
+     * @throws ValidationException
+     * @throws ApiException
      */
     public function iteratePages()
     {

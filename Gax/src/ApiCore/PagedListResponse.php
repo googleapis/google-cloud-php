@@ -68,6 +68,7 @@ class PagedListResponse
      * of the list are retrieved lazily using the underlying API.
      *
      * @return Generator
+     * @throws ValidationException
      */
     public function iterateAllElements()
     {
@@ -93,6 +94,7 @@ class PagedListResponse
      * retrieved lazily from the underlying API.
      *
      * @return Page[]
+     * @throws ValidationException
      */
     public function iteratePages()
     {

@@ -33,6 +33,7 @@
 namespace Google\ApiCore\Testing;
 
 use Google\ApiCore\ApiException;
+use Google\Protobuf\Internal\Message;
 use Google\Rpc\Code;
 use Grpc;
 
@@ -40,7 +41,7 @@ use Grpc;
  * The MockBidiStreamingCall class is used to mock out the \Grpc\BidiStreamingCall class
  * (https://github.com/grpc/grpc/blob/master/src/php/lib/Grpc/BidiStreamingCall.php)
  */
-class MockBidiStreamingCall extends \Grpc\BidiStreamingCall
+class MockBidiStreamingCall extends Grpc\BidiStreamingCall
 {
     use SerializationTrait;
 
@@ -134,6 +135,7 @@ class MockBidiStreamingCall extends \Grpc\BidiStreamingCall
             );
         }
         if (is_a($request, '\Google\Protobuf\Internal\Message')) {
+            /** @var Message $newRequest */
             $newRequest = new $request();
             $newRequest->mergeFromString($request->serializeToString());
             $request = $newRequest;
