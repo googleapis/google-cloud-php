@@ -22,9 +22,19 @@ class ClassifyTextResponse extends \Google\Protobuf\Internal\Message
      */
     private $categories;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type \Google\Cloud\Language\V1beta2\ClassificationCategory[]|\Google\Protobuf\Internal\RepeatedField $categories
+     *           Categories representing the input document.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Language\V1Beta2\LanguageService::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

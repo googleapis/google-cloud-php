@@ -4,54 +4,13 @@
 
 namespace Google\Cloud\Language\V1beta2;
 
-/**
- * Time reference.
- *
- * Protobuf enum <code>Google\Cloud\Language\V1beta2\PartOfSpeech\Tense</code>
- */
-class PartOfSpeech_Tense
-{
+if (false) {
     /**
-     * Tense is not applicable in the analyzed language or is not predicted.
-     *
-     * Generated from protobuf enum <code>TENSE_UNKNOWN = 0;</code>
+     * This class is deprecated. Use Google\Cloud\Language\V1beta2\PartOfSpeech\Tense instead.
+     * @deprecated
      */
-    const TENSE_UNKNOWN = 0;
-    /**
-     * Conditional
-     *
-     * Generated from protobuf enum <code>CONDITIONAL_TENSE = 1;</code>
-     */
-    const CONDITIONAL_TENSE = 1;
-    /**
-     * Future
-     *
-     * Generated from protobuf enum <code>FUTURE = 2;</code>
-     */
-    const FUTURE = 2;
-    /**
-     * Past
-     *
-     * Generated from protobuf enum <code>PAST = 3;</code>
-     */
-    const PAST = 3;
-    /**
-     * Present
-     *
-     * Generated from protobuf enum <code>PRESENT = 4;</code>
-     */
-    const PRESENT = 4;
-    /**
-     * Imperfect
-     *
-     * Generated from protobuf enum <code>IMPERFECT = 5;</code>
-     */
-    const IMPERFECT = 5;
-    /**
-     * Pluperfect
-     *
-     * Generated from protobuf enum <code>PLUPERFECT = 6;</code>
-     */
-    const PLUPERFECT = 6;
+    class PartOfSpeech_Tense {}
 }
+class_exists(PartOfSpeech\Tense::class);
+@trigger_error('Google\Cloud\Language\V1beta2\PartOfSpeech_Tense is deprecated and will be removed in the next major release. Use Google\Cloud\Language\V1beta2\PartOfSpeech\Tense instead', E_USER_DEPRECATED);
 

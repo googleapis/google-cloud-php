@@ -40,9 +40,25 @@ class Token extends \Google\Protobuf\Internal\Message
      */
     private $lemma = '';
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type \Google\Cloud\Language\V1beta2\TextSpan $text
+     *           The token text.
+     *     @type \Google\Cloud\Language\V1beta2\PartOfSpeech $part_of_speech
+     *           Parts of speech tag for this token.
+     *     @type \Google\Cloud\Language\V1beta2\DependencyEdge $dependency_edge
+     *           Dependency tree parse for this token.
+     *     @type string $lemma
+     *           [Lemma](https://en.wikipedia.org/wiki/Lemma_%28morphology%29) of the token.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Language\V1Beta2\LanguageService::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

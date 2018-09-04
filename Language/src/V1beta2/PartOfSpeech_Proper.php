@@ -4,30 +4,13 @@
 
 namespace Google\Cloud\Language\V1beta2;
 
-/**
- * This category shows if the token is part of a proper name.
- *
- * Protobuf enum <code>Google\Cloud\Language\V1beta2\PartOfSpeech\Proper</code>
- */
-class PartOfSpeech_Proper
-{
+if (false) {
     /**
-     * Proper is not applicable in the analyzed language or is not predicted.
-     *
-     * Generated from protobuf enum <code>PROPER_UNKNOWN = 0;</code>
+     * This class is deprecated. Use Google\Cloud\Language\V1beta2\PartOfSpeech\Proper instead.
+     * @deprecated
      */
-    const PROPER_UNKNOWN = 0;
-    /**
-     * Proper
-     *
-     * Generated from protobuf enum <code>PROPER = 1;</code>
-     */
-    const PROPER = 1;
-    /**
-     * Not proper
-     *
-     * Generated from protobuf enum <code>NOT_PROPER = 2;</code>
-     */
-    const NOT_PROPER = 2;
+    class PartOfSpeech_Proper {}
 }
+class_exists(PartOfSpeech\Proper::class);
+@trigger_error('Google\Cloud\Language\V1beta2\PartOfSpeech_Proper is deprecated and will be removed in the next major release. Use Google\Cloud\Language\V1beta2\PartOfSpeech\Proper instead', E_USER_DEPRECATED);
 

@@ -4,37 +4,13 @@
 
 namespace Google\Cloud\Language\V1beta2;
 
-/**
- * The relationship between the action that a verb expresses and the
- * participants identified by its arguments.
- *
- * Protobuf enum <code>Google\Cloud\Language\V1beta2\PartOfSpeech\Voice</code>
- */
-class PartOfSpeech_Voice
-{
+if (false) {
     /**
-     * Voice is not applicable in the analyzed language or is not predicted.
-     *
-     * Generated from protobuf enum <code>VOICE_UNKNOWN = 0;</code>
+     * This class is deprecated. Use Google\Cloud\Language\V1beta2\PartOfSpeech\Voice instead.
+     * @deprecated
      */
-    const VOICE_UNKNOWN = 0;
-    /**
-     * Active
-     *
-     * Generated from protobuf enum <code>ACTIVE = 1;</code>
-     */
-    const ACTIVE = 1;
-    /**
-     * Causative
-     *
-     * Generated from protobuf enum <code>CAUSATIVE = 2;</code>
-     */
-    const CAUSATIVE = 2;
-    /**
-     * Passive
-     *
-     * Generated from protobuf enum <code>PASSIVE = 3;</code>
-     */
-    const PASSIVE = 3;
+    class PartOfSpeech_Voice {}
 }
+class_exists(PartOfSpeech\Voice::class);
+@trigger_error('Google\Cloud\Language\V1beta2\PartOfSpeech_Voice is deprecated and will be removed in the next major release. Use Google\Cloud\Language\V1beta2\PartOfSpeech\Voice instead', E_USER_DEPRECATED);
 

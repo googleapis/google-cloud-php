@@ -29,9 +29,22 @@ class TextSpan extends \Google\Protobuf\Internal\Message
      */
     private $begin_offset = 0;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $content
+     *           The content of the output text.
+     *     @type int $begin_offset
+     *           The API calculates the beginning offset of the content in the original
+     *           document according to the [EncodingType][google.cloud.language.v1beta2.EncodingType] specified in the API request.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Language\V1Beta2\LanguageService::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

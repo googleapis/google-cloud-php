@@ -4,30 +4,13 @@
 
 namespace Google\Cloud\Language\V1beta2;
 
-/**
- * The supported types of mentions.
- *
- * Protobuf enum <code>Google\Cloud\Language\V1beta2\EntityMention\Type</code>
- */
-class EntityMention_Type
-{
+if (false) {
     /**
-     * Unknown
-     *
-     * Generated from protobuf enum <code>TYPE_UNKNOWN = 0;</code>
+     * This class is deprecated. Use Google\Cloud\Language\V1beta2\EntityMention\Type instead.
+     * @deprecated
      */
-    const TYPE_UNKNOWN = 0;
-    /**
-     * Proper name
-     *
-     * Generated from protobuf enum <code>PROPER = 1;</code>
-     */
-    const PROPER = 1;
-    /**
-     * Common noun (or noun compound)
-     *
-     * Generated from protobuf enum <code>COMMON = 2;</code>
-     */
-    const COMMON = 2;
+    class EntityMention_Type {}
 }
+class_exists(EntityMention\Type::class);
+@trigger_error('Google\Cloud\Language\V1beta2\EntityMention_Type is deprecated and will be removed in the next major release. Use Google\Cloud\Language\V1beta2\EntityMention\Type instead', E_USER_DEPRECATED);
 

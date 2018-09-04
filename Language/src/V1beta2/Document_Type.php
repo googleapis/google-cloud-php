@@ -4,30 +4,13 @@
 
 namespace Google\Cloud\Language\V1beta2;
 
-/**
- * The document types enum.
- *
- * Protobuf enum <code>Google\Cloud\Language\V1beta2\Document\Type</code>
- */
-class Document_Type
-{
+if (false) {
     /**
-     * The content type is not specified.
-     *
-     * Generated from protobuf enum <code>TYPE_UNSPECIFIED = 0;</code>
+     * This class is deprecated. Use Google\Cloud\Language\V1beta2\Document\Type instead.
+     * @deprecated
      */
-    const TYPE_UNSPECIFIED = 0;
-    /**
-     * Plain text
-     *
-     * Generated from protobuf enum <code>PLAIN_TEXT = 1;</code>
-     */
-    const PLAIN_TEXT = 1;
-    /**
-     * HTML
-     *
-     * Generated from protobuf enum <code>HTML = 2;</code>
-     */
-    const HTML = 2;
+    class Document_Type {}
 }
+class_exists(Document\Type::class);
+@trigger_error('Google\Cloud\Language\V1beta2\Document_Type is deprecated and will be removed in the next major release. Use Google\Cloud\Language\V1beta2\Document\Type instead', E_USER_DEPRECATED);
 
