@@ -45,6 +45,7 @@ use Prophecy\Argument;
 
 /**
  * @group spanner
+ * @group spanner-database
  */
 class DatabaseTest extends TestCase
 {
@@ -63,6 +64,7 @@ class DatabaseTest extends TestCase
     private $lro;
     private $lroCallables;
     private $database;
+    private $session;
 
     public function setUp()
     {
@@ -73,15 +75,16 @@ class DatabaseTest extends TestCase
         $this->sessionPool = $this->prophesize(SessionPoolInterface::class);
         $this->lro = $this->prophesize(LongRunningConnectionInterface::class);
         $this->lroCallables = [];
+        $this->session = TestHelpers::stub(Session::class, [
+            $this->connection->reveal(),
+            self::PROJECT,
+            self::INSTANCE,
+            self::DATABASE,
+            self::SESSION
+        ]);
 
         $this->sessionPool->acquire(Argument::type('string'))
-            ->willReturn(new Session(
-                $this->connection->reveal(),
-                self::PROJECT,
-                self::INSTANCE,
-                self::DATABASE,
-                self::SESSION
-            ));
+            ->willReturn($this->session);
         $this->sessionPool->setDatabase(Argument::type(Database::class))
             ->willReturn(null);
         $this->sessionPool->release(Argument::type(Session::class))
@@ -100,7 +103,7 @@ class DatabaseTest extends TestCase
         ];
 
         $props = [
-            'connection', 'operation'
+            'connection', 'operation', 'session', 'sessionPool'
         ];
 
         $this->database = TestHelpers::stub(Database::class, $args, $props);
@@ -168,6 +171,29 @@ class DatabaseTest extends TestCase
     /**
      * @group spanneradmin
      */
+    public function testCreate()
+    {
+        $statement = 'foo';
+        $this->connection->createDatabase([
+            'instance' => $this->instance->reveal()->name(),
+            'createStatement' => sprintf('CREATE DATABASE `%s`', self::DATABASE),
+            'extraStatements' => [$statement]
+        ])->willReturn([
+            'name' => 'my-operation'
+        ]);
+
+        $this->database->___setProperty('connection', $this->connection->reveal());
+
+        $res = $this->database->create([
+            'statements' => [$statement]
+        ]);
+
+        $this->assertInstanceOf(LongRunningOperation::class, $res);
+    }
+
+    /**
+     * @group spanneradmin
+     */
     public function testExistsNotFound()
     {
         $this->connection->getDatabase(Argument::any())
@@ -194,7 +220,9 @@ class DatabaseTest extends TestCase
 
         $this->database->___setProperty('connection', $this->connection->reveal());
 
-        $this->database->updateDdl($statement);
+        $res = $this->database->updateDdl($statement);
+
+        $this->assertInstanceOf(LongRunningOperation::class, $res);
     }
 
     /**
@@ -807,6 +835,23 @@ class DatabaseTest extends TestCase
         $this->assertEquals(10, $rows[0]['ID']);
     }
 
+    public function testExecuteWithSingleSession()
+    {
+        $this->database->___setProperty('sessionPool', null);
+        $this->database->___setProperty('session', $this->session);
+        $sql = 'SELECT * FROM Table';
+
+        $sessName = SpannerClient::sessionName(self::PROJECT, self::INSTANCE, self::DATABASE, self::SESSION);
+        $this->connection->executeStreamingSql(Argument::withEntry('session', $sessName))
+            ->shouldBeCalled()
+            ->willReturn($this->resultGenerator());
+
+        $this->refreshOperation($this->database, $this->connection->reveal());
+
+        $res = $this->database->execute($sql);
+        $rows = iterator_to_array($res->rows());
+    }
+
     public function testRead()
     {
         $table = 'Table';
@@ -834,6 +879,83 @@ class DatabaseTest extends TestCase
         $this->assertInstanceOf(Result::class, $res);
         $rows = iterator_to_array($res->rows());
         $this->assertEquals(10, $rows[0]['ID']);
+    }
+
+    public function testSessionPool()
+    {
+        $this->assertInstanceOf(SessionPoolInterface::class, $this->database->sessionPool());
+    }
+
+    public function testClose()
+    {
+        $this->sessionPool->release(Argument::type(Session::class))
+            ->shouldBeCalled()
+            ->willReturn(null);
+
+        $this->database->___setProperty('sessionPool', $this->sessionPool->reveal());
+        $this->database->___setProperty('session', $this->session);
+
+        $this->database->close();
+
+        $this->assertNull($this->database->___getProperty('session'));
+    }
+
+    public function testCloseNoPool()
+    {
+        $this->connection->deleteSession(Argument::any())
+            ->shouldBeCalled()
+            ->willReturn([]);
+
+        $this->session->___setProperty('connection', $this->connection->reveal());
+        $this->database->___setProperty('sessionPool', null);
+        $this->database->___setProperty('session', $this->session);
+
+        $this->database->close();
+    }
+
+    public function testCreateSession()
+    {
+        $db = SpannerClient::databaseName(self::PROJECT, self::INSTANCE, self::DATABASE);
+        $sessName = SpannerClient::sessionName(self::PROJECT, self::INSTANCE, self::DATABASE, self::SESSION);
+        $this->connection->createSession(Argument::withEntry('database', $db))
+            ->shouldBeCalled()
+            ->willReturn([
+                'name' => $sessName
+            ]);
+
+        $this->refreshOperation($this->database, $this->connection->reveal());
+
+        $sess = $this->database->createSession();
+
+        $this->assertInstanceOf(Session::class, $sess);
+        $this->assertEquals($sessName, $sess->name());
+    }
+
+    public function testSession()
+    {
+        $sess = $this->database->session(
+            SpannerClient::sessionName(self::PROJECT, self::INSTANCE, self::DATABASE, self::SESSION)
+        );
+
+        $this->assertInstanceOf(Session::class, $sess);
+        $this->assertEquals(
+            SpannerClient::sessionName(self::PROJECT, self::INSTANCE, self::DATABASE, self::SESSION),
+            $sess->name()
+        );
+    }
+
+    public function testIdentity()
+    {
+        $this->assertEquals([
+            'projectId' => self::PROJECT,
+            'database' => self::DATABASE,
+            'instance' => self::INSTANCE
+        ], $this->database->identity());
+    }
+
+    public function testConnection()
+    {
+        $this->assertInstanceOf(ConnectionInterface::class, $this->database->connection());
     }
 
     // *******

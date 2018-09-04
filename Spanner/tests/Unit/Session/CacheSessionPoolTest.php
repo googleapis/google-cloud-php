@@ -34,6 +34,7 @@ use PHPUnit\Framework\TestCase;
 
 /**
  * @group spanner
+ * @group spanner-session-cachepool
  */
 class CacheSessionPoolTest extends TestCase
 {
@@ -643,6 +644,28 @@ class CacheSessionPoolTest extends TestCase
                     'maxInUseSessions' => 1
                 ],
                 $time
+            ],
+            [
+                [
+                    'labels' => [
+                        'env' => 'unit-test'
+                    ]
+                ],
+                null,
+                [
+                    'queue' => [],
+                    'inUse' => [
+                        'session0' => [
+                            'name' => 'session0',
+                            'expiration' => $time + 3600,
+                            'lastActive' => $time
+                        ]
+                    ],
+                    'toCreate' => [],
+                    'windowStart' => $time,
+                    'maxInUseSessions' => 1
+                ],
+                $time
             ]
         ];
     }
@@ -691,7 +714,7 @@ class CacheSessionPoolTest extends TestCase
             $database->createSession()
                 ->willThrow(new \Exception());
         } else {
-            $database->createSession()
+            $database->createSession(Argument::any())
                 ->will(function ($args, $mock, $method) use ($createdSession) {
                     $methodCalls = $mock->findProphecyMethodCalls(
                         $method->getMethodName(),

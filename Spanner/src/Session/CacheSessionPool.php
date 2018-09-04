@@ -63,7 +63,7 @@ use Psr\Cache\CacheItemPoolInterface;
  *
  * If you're on Windows, or your PHP doesn't have `sysvshm` extension,
  * unfortunately you can not use `Google\Auth\Cache\SysVCacheItemPool`. In such
- * cases, it will be neccesary to include a separate dependency to fulfill
+ * cases, it will be necessary to include a separate dependency to fulfill
  * this requirement. The below example makes use of
  * [Symfony's Cache Component](https://github.com/symfony/cache). For more
  * implementations please see the [Packagist PHP Package
@@ -81,6 +81,19 @@ use Psr\Cache\CacheItemPoolInterface;
  *
  * $database = $spanner->connect('my-instance', 'my-database', [
  *     'sessionPool' => $sessionPool
+ * ]);
+ * ```
+ *
+ * ```
+ * // Labels configured on the pool will be applied to each session created by the pool.
+ * use Google\Cloud\Spanner\Session\CacheSessionPool;
+ * use Symfony\Component\Cache\Adapter\FilesystemAdapter;
+ *
+ * $cache = new FilesystemAdapter();
+ * $sessionPool = new CacheSessionPool($cache, [
+ *     'labels' => [
+ *         'environment' => getenv('APPLICATION_ENV')
+ *     ]
  * ]);
  * ```
  */
@@ -102,7 +115,8 @@ class CacheSessionPool implements SessionPoolInterface
         'shouldWaitForSession' => true,
         'maxCyclesToWaitForSession' => 30,
         'sleepIntervalSeconds' => .5,
-        'shouldAutoDownsize' => true
+        'shouldAutoDownsize' => true,
+        'labels' => [],
     ];
 
     /**
@@ -160,6 +174,15 @@ class CacheSessionPool implements SessionPoolInterface
      *     @type bool $shouldAutoDownsize Determines whether or not to
      *           automatically attempt to downsize the pool after every 10
      *           minute window. **Defaults to** `true`.
+     *     @type array $labels Labels to be applied to each session created in
+     *           the pool. Label keys must be between 1 and 63 characters long
+     *           and must conform to the following regular expression:
+     *           `[a-z]([-a-z0-9]*[a-z0-9])?`. Label values must be between 0
+     *           and 63 characters long and must conform to the regular
+     *           expression `([a-z]([-a-z0-9]*[a-z0-9])?)?`. No more than 64
+     *           labels can be associated with a given session. See
+     *           https://goo.gl/xmQnxf for more information on and examples of
+     *           labels.
      * }
      * @throws \InvalidArgumentException
      */
@@ -630,8 +653,13 @@ class CacheSessionPool implements SessionPoolInterface
         $sessions = [];
 
         for ($i = 0; $i < $count; $i++) {
+            $options = [];
+            if ($this->config['labels']) {
+                $options['labels'] = $this->config['labels'];
+            }
+
             $sessions[] = [
-                'name' => $this->database->createSession()->name(),
+                'name' => $this->database->createSession($options)->name(),
                 'expiration' => $this->time() + SessionPoolInterface::SESSION_EXPIRATION_SECONDS
             ];
         }
