@@ -11,6 +11,7 @@
             "name": "google/cloud",
             "defaultService": "servicebuilder",
             "versions": [
+                "v0.76.1",
                 "v0.76.0",
                 "v0.75.0",
                 "v0.74.1",
@@ -116,6 +117,7 @@
             "name": "google/cloud-bigquery",
             "defaultService": "bigquery/bigqueryclient",
             "versions": [
+                "v1.4.3",
                 "v1.4.2",
                 "v1.4.1",
                 "v1.4.0",
