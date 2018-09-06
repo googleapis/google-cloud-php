@@ -32,6 +32,8 @@ use GuzzleHttp\Psr7;
  */
 class LoadDataAndQueryTest extends BigQueryTestCase
 {
+    const US_STATES_ORC_DATA = 'gs://cloud-samples-data/bigquery/us-states/us-states.orc';
+
     private static $expectedRows = 0;
     private $row;
 
@@ -416,6 +418,36 @@ class LoadDataAndQueryTest extends BigQueryTestCase
         $actualRows = count(iterator_to_array(self::$table->rows()));
 
         $this->assertEquals(self::$expectedRows, $actualRows);
+    }
+
+    public function testLoadsOrcDataFromStorageToTable()
+    {
+        $table = self::$dataset->createTable('orc_test_data', [
+            'metadata' => [
+                'schema' => [
+                    'fields' => [
+                        [
+                            'name' => 'name',
+                            'type' => 'STRING'
+                        ],
+                        [
+                            'name' => 'post_abbr',
+                            'type' => 'STRING'
+                        ]
+                    ]
+                ]
+            ]
+        ]);
+        $loadJobConfig = $table->loadFromStorage(self::US_STATES_ORC_DATA)
+            ->sourceFormat('ORC');
+        $job = self::$table->runJob($loadJobConfig, [
+            'maxRetries' => 8
+        ]);
+
+        $this->assertGreaterThan(
+            0,
+            count(iterator_to_array($table->rows()))
+        );
     }
 
     /**
