@@ -3,6 +3,6 @@
 set -ex
 
 pushd github/google-cloud-php
-composer update
+composer --no-interaction --no-ansi --no-progress update
 dev/sh/tests
 popd
