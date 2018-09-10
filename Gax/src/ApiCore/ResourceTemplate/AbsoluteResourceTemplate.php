@@ -111,19 +111,22 @@ class AbsoluteResourceTemplate implements ResourceTemplateInterface
      */
     public function match($path)
     {
-        if (empty($path) || $path[0] !== '/') {
-            throw $this->matchException($path);
+        if (empty($path)) {
+            throw $this->matchException($path, "path cannot be empty");
+        }
+        if ($path[0] !== '/') {
+            throw $this->matchException($path, "missing leading '/'");
         }
         $verbSeparatorPos = $this->verbSeparatorPos($path);
         if (substr($path, $verbSeparatorPos + 1) !== $this->verb) {
-            throw $this->matchException($path);
+            throw $this->matchException($path, "trailing verb did not match '{$this->verb}'");
         }
         return $this->resourceTemplate->match(substr($path, 1, $verbSeparatorPos - 1));
     }
 
-    private function matchException($path)
+    private function matchException($path, $reason)
     {
-        return new ValidationException("Could not match path '$path' to template '$this'");
+        return new ValidationException("Could not match path '$path' to template '$this': $reason");
     }
 
     private function renderVerb()

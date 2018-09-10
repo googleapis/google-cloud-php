@@ -105,26 +105,6 @@ class Segment
     }
 
     /**
-     * Checks if $value matches the current segment, and creates a new literal Segment with value
-     * equal to $value. If $value does not match the current Segment, throws a ValidationException.
-     *
-     * @param string $value
-     * @return Segment
-     * @throws ValidationException
-     */
-    public function bindTo($value)
-    {
-        $value = (string) $value;
-        if ($this->matches($value)) {
-            return new Segment(Segment::LITERAL_SEGMENT, $value);
-        } else {
-            throw new ValidationException(
-                "Cannot bind segment '$this' to value '$value'"
-            );
-        }
-    }
-
-    /**
      * Checks if $value matches this Segment.
      *
      * @param string $value

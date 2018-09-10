@@ -220,7 +220,7 @@ class PathTemplateTest extends TestCase
 
     /**
      * @expectedException \Google\ApiCore\ValidationException
-     * @expectedExceptionMessage Rendering error
+     * @expectedExceptionMessage Error rendering
      */
     public function testRenderFailWhenTooFewVariables()
     {

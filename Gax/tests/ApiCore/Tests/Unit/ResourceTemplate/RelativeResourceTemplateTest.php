@@ -73,20 +73,43 @@ class RelativeResourceTemplateTest extends TestCase
      * @expectedException \Google\ApiCore\ValidationException
      * @param string $path
      */
-    public function testInvalidPaths($path)
+    public function testInvalidPaths($path, $expectedExceptionMessage = null)
     {
+        if (isset($expectedExceptionMessage)) {
+            $this->setExpectedException($this->getExpectedException(), $expectedExceptionMessage);
+        }
         new RelativeResourceTemplate($path);
     }
 
     public function invalidPathProvider()
     {
         return [
-            [null],                     // Null path
-            [""],                       // Empty path
-            ["foo:bar/baz"],           // Action containing '/'
+            [
+                null,                  // Null path
+                "Cannot construct RelativeResourceTemplate from null string"
+            ],
+            [
+                "",                    // Empty path
+                "Cannot construct RelativeResourceTemplate from empty string"
+            ],
+            [
+                "foo:bar/baz",         // Action containing '/'
+                "Error parsing 'foo:bar/baz' at index 7: Unexpected characters in literal segment foo:bar",
+            ],
+            [
+                "foo/**/**",           // Multiple '**'
+                "Cannot parse 'foo/**/**': cannot contain more than one path wildcard"
+            ],
+            [
+                "foo//bar",            // Consecutive '/'
+                "Error parsing 'foo//bar' at index 4: Unexpected empty segment (consecutive '/'s are invalid)",
+            ],
+            [
+                "foo/",                // Trailing '/'
+                "Error parsing 'foo/' at index 3: invalid trailing '/'"
+            ],
             ["foo:bar:baz"],           // Multiple ':'
             ["foo/bar*baz"],           // Mixed literal and '*'
-            ["foo/**/**"],             // Multiple '**'
             ["foo/**/{var=**}"],       // Multiple '**' nested
             ["foo/{bizz=**}/{var=**}"],// Multiple '**' nested
             ["foo/{bizz=**/**}"],      // Multiple '**' nested
@@ -254,8 +277,11 @@ class RelativeResourceTemplateTest extends TestCase
      * @dataProvider invalidRenderData
      * @expectedException \Google\ApiCore\ValidationException
      */
-    public function testFailRender($pathTemplate, $bindings)
+    public function testFailRender($pathTemplate, $bindings, $expectedExceptionMessage = null)
     {
+        if (isset($expectedExceptionMessage)) {
+            $this->setExpectedException($this->getExpectedException(), $expectedExceptionMessage);
+        }
         $template = new RelativeResourceTemplate($pathTemplate);
         $template->render($bindings);
     }
@@ -266,6 +292,12 @@ class RelativeResourceTemplateTest extends TestCase
             [
                 'buckets/*/*/objects/*',
                 ['$0' => 'f', '$2' => 'bar'], // Missing key
+                "Error rendering 'buckets/*/*/objects/*': missing required binding '$1' for segment '*'\n" .
+                 "Provided bindings: Array\n" .
+                 "(\n" .
+                 "    [$0] => f\n" .
+                 "    [$2] => bar\n" .
+                 ")\n",
             ],
             [
                 'buckets/{hello}',
@@ -278,10 +310,40 @@ class RelativeResourceTemplateTest extends TestCase
             [
                 'buckets/{hello=*}',
                 ['hello' => ''], // Invalid binding
+                "Error rendering 'buckets/{hello=*}': expected binding 'hello' to match segment '{hello=*}', instead got ''\n" .
+                "Provided bindings: Array\n" .
+                "(\n" .
+                "    [hello] => \n" .
+                ")\n",
+            ],
+            [
+                'buckets/{hello=*}',
+                ['hello' => null], // Invalid binding
+                "Error rendering 'buckets/{hello=*}': expected binding 'hello' to match segment '{hello=*}', instead got null\n" .
+                "Provided bindings: Array\n" .
+                "(\n" .
+                "    [hello] => \n" .
+                ")\n",
             ],
             [
                 'buckets/*/objects/**',
                 ['$0' => 'foo', '$1' => ''],  // Invalid binding
+                "Error rendering 'buckets/*/objects/**': expected binding '$1' to match segment '**', instead got ''\n" .
+                "Provided bindings: Array\n" .
+                "(\n" .
+                "    [$0] => foo\n" .
+                "    [$1] => \n" .
+                ")\n",
+            ],
+            [
+                'buckets/*/objects/**',
+                ['$0' => 'foo', '$1' => null],  // Invalid binding
+                "Error rendering 'buckets/*/objects/**': expected binding '$1' to match segment '**', instead got null\n" .
+                "Provided bindings: Array\n" .
+                "(\n" .
+                "    [$0] => foo\n" .
+                "    [$1] => \n" .
+                ")\n",
             ],
             [
                 'foo/*/{bar=*/rar/*}/**/*:action',

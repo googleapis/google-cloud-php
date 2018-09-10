@@ -63,7 +63,11 @@ class RelativeResourceTemplate implements ResourceTemplateInterface
     public function __construct($path)
     {
         if (empty($path)) {
-            throw new ValidationException("Cannot construct RelativeResourceTemplate from empty string");
+            $msg = sprintf(
+                "Cannot construct RelativeResourceTemplate from %s string",
+                is_null($path) ? "null" : "empty"
+            );
+            throw new ValidationException($msg);
         }
         $this->segments = Parser::parseSegments($path);
 
@@ -110,12 +114,18 @@ class RelativeResourceTemplate implements ResourceTemplateInterface
                 continue;
             }
             if (!array_key_exists($key, $bindings)) {
-                throw new ValidationException(
-                    "Rendering error - missing required binding '$key' for segment '$segment'."
+                throw $this->renderingException($bindings, "missing required binding '$key' for segment '$segment'");
+            }
+            $value = $bindings[$key];
+            if ($segment->matches($value)) {
+                $literalSegments[] = new Segment(Segment::LITERAL_SEGMENT, $value);
+            } else {
+                $valueString = is_null($value) ? "null" : "'$value'";
+                throw $this->renderingException(
+                    $bindings,
+                    "expected binding '$key' to match segment '$segment', instead got $valueString"
                 );
             }
-            $boundSegment = $segment->bindTo($bindings[$key]);
-            $literalSegments[] =  $boundSegment;
         }
         return implode("/", $literalSegments);
     }
@@ -167,7 +177,7 @@ class RelativeResourceTemplate implements ResourceTemplateInterface
         if ($pathPiecesCount < $flattenedKeySegmentTuplesCount) {
             // Each segment in $flattenedKeyedSegments must consume at least one
             // segment in $pathSegments, so matching must fail.
-            throw $this->matchException($path);
+            throw $this->matchException($path, "path does not contain enough segments to be matched");
         }
 
         $doubleWildcardPieceCount = $pathPiecesCount - $flattenedKeySegmentTuplesCount + 1;
@@ -190,7 +200,7 @@ class RelativeResourceTemplate implements ResourceTemplateInterface
                 $pathPiece = $pathPieces[$pathPiecesIndex++];
             }
             if (!$segment->matches($pathPiece)) {
-                throw $this->matchException($path);
+                throw $this->matchException($path, "expected path element matching '$segment', got '$pathPiece'");
             }
 
             // If we have a valid key, add our $pathPiece to the $bindings array. Note that there
@@ -206,7 +216,7 @@ class RelativeResourceTemplate implements ResourceTemplateInterface
         // It is possible that we have left over path pieces, which can occur if our template does
         // not have a double wildcard. In that case, the match should fail.
         if ($pathPiecesIndex !== $pathPiecesCount) {
-            throw $this->matchException($path);
+            throw $this->matchException($path, "expected end of path, got '$pathPieces[$pathPiecesIndex]'");
         }
 
         // Collapse the bindings from lists into strings
@@ -217,9 +227,18 @@ class RelativeResourceTemplate implements ResourceTemplateInterface
         return $collapsedBindings;
     }
 
-    private function matchException($path)
+    private function matchException($path, $reason)
     {
-        return new ValidationException("Could not match path '$path' to template '$this'");
+        return new ValidationException("Could not match path '$path' to template '$this': $reason");
+    }
+
+    private function renderingException($bindings, $reason)
+    {
+        $bindingsString = print_r($bindings, true);
+        return new ValidationException(
+            "Error rendering '$this': $reason\n" .
+            "Provided bindings: $bindingsString"
+        );
     }
 
     /**
