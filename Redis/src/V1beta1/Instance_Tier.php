@@ -4,30 +4,13 @@
 
 namespace Google\Cloud\Redis\V1beta1;
 
-/**
- * Available service tiers to choose from
- *
- * Protobuf enum <code>Google\Cloud\Redis\V1beta1\Instance\Tier</code>
- */
-class Instance_Tier
-{
+if (false) {
     /**
-     * Not set.
-     *
-     * Generated from protobuf enum <code>TIER_UNSPECIFIED = 0;</code>
+     * This class is deprecated. Use Google\Cloud\Redis\V1beta1\Instance\Tier instead.
+     * @deprecated
      */
-    const TIER_UNSPECIFIED = 0;
-    /**
-     * BASIC tier: standalone instance
-     *
-     * Generated from protobuf enum <code>BASIC = 1;</code>
-     */
-    const BASIC = 1;
-    /**
-     * STANDARD_HA tier: highly available primary/replica instances
-     *
-     * Generated from protobuf enum <code>STANDARD_HA = 3;</code>
-     */
-    const STANDARD_HA = 3;
+    class Instance_Tier {}
 }
+class_exists(Instance\Tier::class);
+@trigger_error('Google\Cloud\Redis\V1beta1\Instance_Tier is deprecated and will be removed in a future release. Use Google\Cloud\Redis\V1beta1\Instance\Tier instead', E_USER_DEPRECATED);
 

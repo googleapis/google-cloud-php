@@ -8,10 +8,10 @@
         },
         {
             "title": "CloudRedisClient",
-            "type": "redis\/v1beta1\/cloudredisclient",
+            "type": "redis\/v1\/cloudredisclient",
             "nav": [],
             "patterns": [
-                "redis\/v1beta1\/\\w{1,}"
+                "redis\/v1\/\\w{1,}"
             ]
         }
     ],

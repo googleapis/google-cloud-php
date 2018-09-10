@@ -18,13 +18,13 @@
 /*
  * GENERATED CODE WARNING
  * This file was generated from the file
- * https://github.com/google/googleapis/blob/master/google/cloud/redis/v1beta1/cloud_redis.proto
+ * https://github.com/google/googleapis/blob/master/google/cloud/redis/v1/cloud_redis.proto
  * and updates to that file get reflected here through a refresh process.
  *
  * @experimental
  */
 
-namespace Google\Cloud\Redis\V1beta1\Gapic;
+namespace Google\Cloud\Redis\V1\Gapic;
 
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
@@ -36,21 +36,20 @@ use Google\ApiCore\PathTemplate;
 use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
-use Google\Cloud\Redis\V1beta1\CreateInstanceRequest;
-use Google\Cloud\Redis\V1beta1\DeleteInstanceRequest;
-use Google\Cloud\Redis\V1beta1\GetInstanceRequest;
-use Google\Cloud\Redis\V1beta1\Instance;
-use Google\Cloud\Redis\V1beta1\ListInstancesRequest;
-use Google\Cloud\Redis\V1beta1\ListInstancesResponse;
-use Google\Cloud\Redis\V1beta1\UpdateInstanceRequest;
+use Google\Cloud\Redis\V1\CreateInstanceRequest;
+use Google\Cloud\Redis\V1\DeleteInstanceRequest;
+use Google\Cloud\Redis\V1\GetInstanceRequest;
+use Google\Cloud\Redis\V1\Instance;
+use Google\Cloud\Redis\V1\ListInstancesRequest;
+use Google\Cloud\Redis\V1\ListInstancesResponse;
+use Google\Cloud\Redis\V1\UpdateInstanceRequest;
 use Google\LongRunning\Operation;
-use Google\Protobuf\Any;
 use Google\Protobuf\FieldMask;
 
 /**
  * Service Description: Configures and manages Cloud Memorystore for Redis instances.
  *
- * Google Cloud Memorystore for Redis v1beta1
+ * Google Cloud Memorystore for Redis v1
  *
  * The `redis.googleapis.com` service implements the Google Cloud Memorystore
  * for Redis API and defines the following resource model for managing Redis
@@ -106,7 +105,7 @@ class CloudRedisGapicClient
     /**
      * The name of the service.
      */
-    const SERVICE_NAME = 'google.cloud.redis.v1beta1.CloudRedis';
+    const SERVICE_NAME = 'google.cloud.redis.v1.CloudRedis';
 
     /**
      * The default address of the service.
@@ -467,7 +466,7 @@ class CloudRedisGapicClient
      *          {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
-     * @return \Google\Cloud\Redis\V1beta1\Instance
+     * @return \Google\Cloud\Redis\V1\Instance
      *
      * @throws ApiException if the remote call fails
      * @experimental
@@ -488,7 +487,7 @@ class CloudRedisGapicClient
     /**
      * Creates a Redis instance based on the specified tier and memory size.
      *
-     * By default, the instance is peered to the project's
+     * By default, the instance is accessible from the project's
      * [default network](https://cloud.google.com/compute/docs/networks-and-firewalls#networks).
      *
      * The creation is executed asynchronously and callers may check the returned
@@ -641,17 +640,18 @@ class CloudRedisGapicClient
      * }
      * ```
      *
-     * @param FieldMask $updateMask   Required. Mask of fields to update. At least one path must be supplied in
-     *                                this field. The elements of the repeated paths field may only include these
-     *                                fields from [Instance][CloudRedis.Instance]:
-     *                                * `display_name`
-     *                                * `labels`
-     *                                * `memory_size_gb`
-     *                                * `redis_config`
-     * @param Instance  $instance     Required. Update description.
-     *                                Only fields specified in update_mask are updated.
-     * @param array     $optionalArgs {
-     *                                Optional.
+     * @param FieldMask $updateMask Required. Mask of fields to update. At least one path must be supplied in
+     *                              this field. The elements of the repeated paths field may only include these
+     *                              fields from [Instance][CloudRedis.Instance]:
+     *
+     *  *   `displayName`
+     *  *   `labels`
+     *  *   `memorySizeGb`
+     *  *   `redisConfig`
+     * @param Instance $instance     Required. Update description.
+     *                               Only fields specified in update_mask are updated.
+     * @param array    $optionalArgs {
+     *                               Optional.
      *
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a

@@ -15,12 +15,12 @@
  * limitations under the License.
  */
 
-namespace Google\Cloud\Container\Tests\System;
+namespace Google\Cloud\Container\Tests\System\V1beta1;
 
 use Google\Auth\CredentialsLoader;
 use Google\Cloud\Redis\V1beta1\CloudRedisClient;
 use Google\Cloud\Redis\V1beta1\Instance;
-use Google\Cloud\Redis\V1beta1\Instance_Tier;
+use Google\Cloud\Redis\V1beta1\Instance\Tier;
 use Google\Protobuf\Any;
 use Google\Protobuf\GPBEmpty;
 use PHPUnit\Framework\TestCase;
@@ -88,7 +88,7 @@ class CloudRedisClientTest extends TestCase
      */
     private function createRedisInstance(CloudRedisClient $client, $parent, $instanceId)
     {
-        $tier = Instance_Tier::BASIC;
+        $tier = Tier::BASIC;
         $memorySizeGb = 1;
         $instance = new Instance();
         $instance->setTier($tier);
