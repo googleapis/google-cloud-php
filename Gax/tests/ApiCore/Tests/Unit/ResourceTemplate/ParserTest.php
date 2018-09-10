@@ -184,6 +184,9 @@ class ParserTest extends TestCase
             ["{foo.bar=baz"],           // Unbalanced '{'
             ["{foo.bar=baz=fizz}"],     // Multiple '=' in variable
             ["{foo.bar=**/**}"],        // Invalid resource template
+            ["/foo"],                   // Leading '/'
+            ["foo//bar"],               // Consecutive '/'
+            ["foo/"],                   // Trailing '/'
         ];
     }
 

@@ -72,12 +72,19 @@ class Parser
      */
     private static function parseSegmentFromPath($path, &$index)
     {
+        if ($index >= strlen($path)) {
+            // A trailing '/' has caused the index to exceed the bounds
+            // of the string - provide a helpful error message.
+            throw self::parseError($path, strlen($path) - 1, "invalid trailing '/'");
+        }
         if ($path[$index] === '{') {
             // Validate that the { has a matching }
             $closingBraceIndex = strpos($path, '}', $index);
             if ($closingBraceIndex === false) {
-                throw new ValidationException(
-                    "Expected '}' in path $path"
+                throw self::parseError(
+                    $path,
+                    strlen($path),
+                    "Expected '}' to match '{' at index $index, got end of string"
                 );
             }
 
@@ -92,16 +99,18 @@ class Parser
             }
             $segmentString = substr($path, $index, $nextSlash - $index);
             $index = $nextSlash;
-            return self::parse($segmentString);
+            return self::parse($segmentString, $path, $index);
         }
     }
 
     /**
      * @param string $segmentString
+     * @param string $path
+     * @param int $index
      * @return Segment
      * @throws ValidationException
      */
-    private static function parse($segmentString)
+    private static function parse($segmentString, $path, $index)
     {
         if ($segmentString === '*') {
             return new Segment(Segment::WILDCARD_SEGMENT);
@@ -109,9 +118,12 @@ class Parser
             return new Segment(Segment::DOUBLE_WILDCARD_SEGMENT);
         } else {
             if (!self::isValidLiteral($segmentString)) {
-                throw new ValidationException(
-                    "Unexpected characters in literal segment $segmentString"
-                );
+                if (empty($segmentString)) {
+                    // Create user friendly message in case of empty segment
+                    throw self::parseError($path, $index, "Unexpected empty segment (consecutive '/'s are invalid)");
+                } else {
+                    throw self::parseError($path, $index, "Unexpected characters in literal segment $segmentString");
+                }
             }
             return new Segment(Segment::LITERAL_SEGMENT, $segmentString);
         }
@@ -162,22 +174,19 @@ class Parser
     {
         $literalLength = strlen($literal);
         if (strlen($path) < ($index + $literalLength)) {
-            throw self::parseError($literal, $path, $index);
+            throw self::parseError($path, $index, "expected '$literal'");
         }
         $consumedLiteral = substr($path, $index, $literalLength);
         if ($consumedLiteral !== $literal) {
-            throw self::parseError($literal, $path, $index);
+            throw self::parseError($path, $index, "expected '$literal'");
         }
         $index += $literalLength;
         return $consumedLiteral;
     }
 
-    private static function parseError($literal, $path, $index)
+    private static function parseError($path, $index, $reason)
     {
-        return new ValidationException(
-            "Error parsing '$path' as index $index: " .
-            "expected '$literal'"
-        );
+        return new ValidationException("Error parsing '$path' at index $index: $reason");
     }
 
     /**

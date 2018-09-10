@@ -96,6 +96,9 @@ class AbsoluteResourceTemplateTest extends TestCase
             ["/foo/{bar"],              // Unmatched '{'
             ["/foo/{bar}/{bar}"],       // Duplicate variable key
             ["/foo/{bar/baz}"],         // Variable containing '/'
+            ["/foo//bar"],              // Consecutive '/'
+            ["//bar"],                  // Consecutive '/'
+            ["/foo/"],                  // Trailing '/'
         ];
     }
 
