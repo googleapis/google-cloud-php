@@ -47,9 +47,32 @@ class ImageContext extends \Google\Protobuf\Internal\Message
      */
     private $web_detection_params = null;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type \Google\Cloud\Vision\V1\LatLongRect $lat_long_rect
+     *           Not used.
+     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $language_hints
+     *           List of languages to use for TEXT_DETECTION. In most cases, an empty value
+     *           yields the best results since it enables automatic language detection. For
+     *           languages based on the Latin alphabet, setting `language_hints` is not
+     *           needed. In rare cases, when the language of the text in the image is known,
+     *           setting a hint will help get better results (although it will be a
+     *           significant hindrance if the hint is wrong). Text detection returns an
+     *           error if one or more of the specified languages is not one of the
+     *           [supported languages](/vision/docs/languages).
+     *     @type \Google\Cloud\Vision\V1\CropHintsParams $crop_hints_params
+     *           Parameters for crop hints annotation request.
+     *     @type \Google\Cloud\Vision\V1\WebDetectionParams $web_detection_params
+     *           Parameters for web detection.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Vision\V1\ImageAnnotator::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

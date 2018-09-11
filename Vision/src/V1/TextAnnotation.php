@@ -34,9 +34,21 @@ class TextAnnotation extends \Google\Protobuf\Internal\Message
      */
     private $text = '';
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type \Google\Cloud\Vision\V1\Page[]|\Google\Protobuf\Internal\RepeatedField $pages
+     *           List of pages detected by OCR.
+     *     @type string $text
+     *           UTF-8 text detected on the pages.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Vision\V1\TextAnnotation::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

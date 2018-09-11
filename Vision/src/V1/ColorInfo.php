@@ -36,9 +36,24 @@ class ColorInfo extends \Google\Protobuf\Internal\Message
      */
     private $pixel_fraction = 0.0;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type \Google\Type\Color $color
+     *           RGB components of the color.
+     *     @type float $score
+     *           Image-specific score for this color. Value in range [0, 1].
+     *     @type float $pixel_fraction
+     *           The fraction of pixels the color occupies in the image.
+     *           Value in range [0, 1].
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Vision\V1\ImageAnnotator::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

@@ -22,9 +22,19 @@ class CropHintsAnnotation extends \Google\Protobuf\Internal\Message
      */
     private $crop_hints;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type \Google\Cloud\Vision\V1\CropHint[]|\Google\Protobuf\Internal\RepeatedField $crop_hints
+     *           Crop hint results.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Vision\V1\ImageAnnotator::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

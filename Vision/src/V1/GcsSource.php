@@ -23,9 +23,20 @@ class GcsSource extends \Google\Protobuf\Internal\Message
      */
     private $uri = '';
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $uri
+     *           Google Cloud Storage URI for the input file. This must only be a
+     *           Google Cloud Storage object. Wildcards are not currently supported.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Vision\V1\ImageAnnotator::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

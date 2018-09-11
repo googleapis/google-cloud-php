@@ -40,9 +40,25 @@ class AsyncAnnotateFileRequest extends \Google\Protobuf\Internal\Message
      */
     private $output_config = null;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type \Google\Cloud\Vision\V1\InputConfig $input_config
+     *           Required. Information about the input file.
+     *     @type \Google\Cloud\Vision\V1\Feature[]|\Google\Protobuf\Internal\RepeatedField $features
+     *           Required. Requested features.
+     *     @type \Google\Cloud\Vision\V1\ImageContext $image_context
+     *           Additional context that may accompany the image(s) in the file.
+     *     @type \Google\Cloud\Vision\V1\OutputConfig $output_config
+     *           Required. The desired output location and metadata (e.g. format).
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Vision\V1\ImageAnnotator::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

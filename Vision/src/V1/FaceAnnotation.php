@@ -122,9 +122,63 @@ class FaceAnnotation extends \Google\Protobuf\Internal\Message
      */
     private $headwear_likelihood = 0;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type \Google\Cloud\Vision\V1\BoundingPoly $bounding_poly
+     *           The bounding polygon around the face. The coordinates of the bounding box
+     *           are in the original image's scale, as returned in `ImageParams`.
+     *           The bounding box is computed to "frame" the face in accordance with human
+     *           expectations. It is based on the landmarker results.
+     *           Note that one or more x and/or y coordinates may not be generated in the
+     *           `BoundingPoly` (the polygon will be unbounded) if only a partial face
+     *           appears in the image to be annotated.
+     *     @type \Google\Cloud\Vision\V1\BoundingPoly $fd_bounding_poly
+     *           The `fd_bounding_poly` bounding polygon is tighter than the
+     *           `boundingPoly`, and encloses only the skin part of the face. Typically, it
+     *           is used to eliminate the face from any image analysis that detects the
+     *           "amount of skin" visible in an image. It is not based on the
+     *           landmarker results, only on the initial face detection, hence
+     *           the <code>fd</code> (face detection) prefix.
+     *     @type \Google\Cloud\Vision\V1\FaceAnnotation\Landmark[]|\Google\Protobuf\Internal\RepeatedField $landmarks
+     *           Detected face landmarks.
+     *     @type float $roll_angle
+     *           Roll angle, which indicates the amount of clockwise/anti-clockwise rotation
+     *           of the face relative to the image vertical about the axis perpendicular to
+     *           the face. Range [-180,180].
+     *     @type float $pan_angle
+     *           Yaw angle, which indicates the leftward/rightward angle that the face is
+     *           pointing relative to the vertical plane perpendicular to the image. Range
+     *           [-180,180].
+     *     @type float $tilt_angle
+     *           Pitch angle, which indicates the upwards/downwards angle that the face is
+     *           pointing relative to the image's horizontal plane. Range [-180,180].
+     *     @type float $detection_confidence
+     *           Detection confidence. Range [0, 1].
+     *     @type float $landmarking_confidence
+     *           Face landmarking confidence. Range [0, 1].
+     *     @type int $joy_likelihood
+     *           Joy likelihood.
+     *     @type int $sorrow_likelihood
+     *           Sorrow likelihood.
+     *     @type int $anger_likelihood
+     *           Anger likelihood.
+     *     @type int $surprise_likelihood
+     *           Surprise likelihood.
+     *     @type int $under_exposed_likelihood
+     *           Under-exposed likelihood.
+     *     @type int $blurred_likelihood
+     *           Blurred likelihood.
+     *     @type int $headwear_likelihood
+     *           Headwear likelihood.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Vision\V1\ImageAnnotator::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**
@@ -216,12 +270,12 @@ class FaceAnnotation extends \Google\Protobuf\Internal\Message
      * Detected face landmarks.
      *
      * Generated from protobuf field <code>repeated .google.cloud.vision.v1.FaceAnnotation.Landmark landmarks = 3;</code>
-     * @param \Google\Cloud\Vision\V1\FaceAnnotation_Landmark[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Vision\V1\FaceAnnotation\Landmark[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setLandmarks($var)
     {
-        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Vision\V1\FaceAnnotation_Landmark::class);
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Vision\V1\FaceAnnotation\Landmark::class);
         $this->landmarks = $arr;
 
         return $this;

@@ -34,9 +34,23 @@ class OperationMetadata extends \Google\Protobuf\Internal\Message
      */
     private $update_time = null;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type int $state
+     *           Current state of the batch operation.
+     *     @type \Google\Protobuf\Timestamp $create_time
+     *           The time when the batch request was received.
+     *     @type \Google\Protobuf\Timestamp $update_time
+     *           The time when the operation result was last updated.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Vision\V1\ImageAnnotator::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

@@ -22,9 +22,19 @@ class LocationInfo extends \Google\Protobuf\Internal\Message
      */
     private $lat_lng = null;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type \Google\Type\LatLng $lat_lng
+     *           lat/long location coordinates.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Vision\V1\ImageAnnotator::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

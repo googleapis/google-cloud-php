@@ -87,9 +87,52 @@ class EntityAnnotation extends \Google\Protobuf\Internal\Message
      */
     private $properties;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $mid
+     *           Opaque entity ID. Some IDs may be available in
+     *           [Google Knowledge Graph Search
+     *           API](https://developers.google.com/knowledge-graph/).
+     *     @type string $locale
+     *           The language code for the locale in which the entity textual
+     *           `description` is expressed.
+     *     @type string $description
+     *           Entity textual description, expressed in its `locale` language.
+     *     @type float $score
+     *           Overall score of the result. Range [0, 1].
+     *     @type float $confidence
+     *           **Deprecated. Use `score` instead.**
+     *           The accuracy of the entity detection in an image.
+     *           For example, for an image in which the "Eiffel Tower" entity is detected,
+     *           this field represents the confidence that there is a tower in the query
+     *           image. Range [0, 1].
+     *     @type float $topicality
+     *           The relevancy of the ICA (Image Content Annotation) label to the
+     *           image. For example, the relevancy of "tower" is likely higher to an image
+     *           containing the detected "Eiffel Tower" than to an image containing a
+     *           detected distant towering building, even though the confidence that
+     *           there is a tower in each image may be the same. Range [0, 1].
+     *     @type \Google\Cloud\Vision\V1\BoundingPoly $bounding_poly
+     *           Image region to which this entity belongs. Not produced
+     *           for `LABEL_DETECTION` features.
+     *     @type \Google\Cloud\Vision\V1\LocationInfo[]|\Google\Protobuf\Internal\RepeatedField $locations
+     *           The location information for the detected entity. Multiple
+     *           `LocationInfo` elements can be present because one location may
+     *           indicate the location of the scene in the image, and another location
+     *           may indicate the location of the place where the image was taken.
+     *           Location information is usually present for landmarks.
+     *     @type \Google\Cloud\Vision\V1\Property[]|\Google\Protobuf\Internal\RepeatedField $properties
+     *           Some entities may have optional user-supplied `Property` (name/value)
+     *           fields, such a score or string that qualifies the entity.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Vision\V1\ImageAnnotator::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

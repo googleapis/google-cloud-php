@@ -55,16 +55,47 @@ class Word extends \Google\Protobuf\Internal\Message
      */
     private $confidence = 0.0;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type \Google\Cloud\Vision\V1\TextAnnotation\TextProperty $property
+     *           Additional information detected for the word.
+     *     @type \Google\Cloud\Vision\V1\BoundingPoly $bounding_box
+     *           The bounding box for the word.
+     *           The vertices are in the order of top-left, top-right, bottom-right,
+     *           bottom-left. When a rotation of the bounding box is detected the rotation
+     *           is represented as around the top-left corner as defined when the text is
+     *           read in the 'natural' orientation.
+     *           For example:
+     *             * when the text is horizontal it might look like:
+     *                0----1
+     *                |    |
+     *                3----2
+     *             * when it's rotated 180 degrees around the top-left corner it becomes:
+     *                2----3
+     *                |    |
+     *                1----0
+     *             and the vertice order will still be (0, 1, 2, 3).
+     *     @type \Google\Cloud\Vision\V1\Symbol[]|\Google\Protobuf\Internal\RepeatedField $symbols
+     *           List of symbols in the word.
+     *           The order of the symbols follows the natural reading order.
+     *     @type float $confidence
+     *           Confidence of the OCR results for the word. Range [0, 1].
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Vision\V1\TextAnnotation::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**
      * Additional information detected for the word.
      *
      * Generated from protobuf field <code>.google.cloud.vision.v1.TextAnnotation.TextProperty property = 1;</code>
-     * @return \Google\Cloud\Vision\V1\TextAnnotation_TextProperty
+     * @return \Google\Cloud\Vision\V1\TextAnnotation\TextProperty
      */
     public function getProperty()
     {
@@ -75,7 +106,7 @@ class Word extends \Google\Protobuf\Internal\Message
      * Additional information detected for the word.
      *
      * Generated from protobuf field <code>.google.cloud.vision.v1.TextAnnotation.TextProperty property = 1;</code>
-     * @param \Google\Cloud\Vision\V1\TextAnnotation_TextProperty $var
+     * @param \Google\Cloud\Vision\V1\TextAnnotation\TextProperty $var
      * @return $this
      */
     public function setProperty($var)

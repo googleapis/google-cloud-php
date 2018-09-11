@@ -22,9 +22,19 @@ class ImageProperties extends \Google\Protobuf\Internal\Message
      */
     private $dominant_colors = null;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type \Google\Cloud\Vision\V1\DominantColorsAnnotation $dominant_colors
+     *           If present, dominant colors completed successfully.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Vision\V1\ImageAnnotator::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

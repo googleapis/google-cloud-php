@@ -55,9 +55,32 @@ class WebDetection extends \Google\Protobuf\Internal\Message
      */
     private $best_guess_labels;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type \Google\Cloud\Vision\V1\WebDetection\WebEntity[]|\Google\Protobuf\Internal\RepeatedField $web_entities
+     *           Deduced entities from similar images on the Internet.
+     *     @type \Google\Cloud\Vision\V1\WebDetection\WebImage[]|\Google\Protobuf\Internal\RepeatedField $full_matching_images
+     *           Fully matching images from the Internet.
+     *           Can include resized copies of the query image.
+     *     @type \Google\Cloud\Vision\V1\WebDetection\WebImage[]|\Google\Protobuf\Internal\RepeatedField $partial_matching_images
+     *           Partial matching images from the Internet.
+     *           Those images are similar enough to share some key-point features. For
+     *           example an original image will likely have partial matching for its crops.
+     *     @type \Google\Cloud\Vision\V1\WebDetection\WebPage[]|\Google\Protobuf\Internal\RepeatedField $pages_with_matching_images
+     *           Web pages containing the matching images from the Internet.
+     *     @type \Google\Cloud\Vision\V1\WebDetection\WebImage[]|\Google\Protobuf\Internal\RepeatedField $visually_similar_images
+     *           The visually similar image results.
+     *     @type \Google\Cloud\Vision\V1\WebDetection\WebLabel[]|\Google\Protobuf\Internal\RepeatedField $best_guess_labels
+     *           Best guess text labels for the request image.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Vision\V1\WebDetection::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**
@@ -75,12 +98,12 @@ class WebDetection extends \Google\Protobuf\Internal\Message
      * Deduced entities from similar images on the Internet.
      *
      * Generated from protobuf field <code>repeated .google.cloud.vision.v1.WebDetection.WebEntity web_entities = 1;</code>
-     * @param \Google\Cloud\Vision\V1\WebDetection_WebEntity[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Vision\V1\WebDetection\WebEntity[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setWebEntities($var)
     {
-        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Vision\V1\WebDetection_WebEntity::class);
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Vision\V1\WebDetection\WebEntity::class);
         $this->web_entities = $arr;
 
         return $this;
@@ -103,12 +126,12 @@ class WebDetection extends \Google\Protobuf\Internal\Message
      * Can include resized copies of the query image.
      *
      * Generated from protobuf field <code>repeated .google.cloud.vision.v1.WebDetection.WebImage full_matching_images = 2;</code>
-     * @param \Google\Cloud\Vision\V1\WebDetection_WebImage[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Vision\V1\WebDetection\WebImage[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setFullMatchingImages($var)
     {
-        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Vision\V1\WebDetection_WebImage::class);
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Vision\V1\WebDetection\WebImage::class);
         $this->full_matching_images = $arr;
 
         return $this;
@@ -133,12 +156,12 @@ class WebDetection extends \Google\Protobuf\Internal\Message
      * example an original image will likely have partial matching for its crops.
      *
      * Generated from protobuf field <code>repeated .google.cloud.vision.v1.WebDetection.WebImage partial_matching_images = 3;</code>
-     * @param \Google\Cloud\Vision\V1\WebDetection_WebImage[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Vision\V1\WebDetection\WebImage[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setPartialMatchingImages($var)
     {
-        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Vision\V1\WebDetection_WebImage::class);
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Vision\V1\WebDetection\WebImage::class);
         $this->partial_matching_images = $arr;
 
         return $this;
@@ -159,12 +182,12 @@ class WebDetection extends \Google\Protobuf\Internal\Message
      * Web pages containing the matching images from the Internet.
      *
      * Generated from protobuf field <code>repeated .google.cloud.vision.v1.WebDetection.WebPage pages_with_matching_images = 4;</code>
-     * @param \Google\Cloud\Vision\V1\WebDetection_WebPage[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Vision\V1\WebDetection\WebPage[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setPagesWithMatchingImages($var)
     {
-        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Vision\V1\WebDetection_WebPage::class);
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Vision\V1\WebDetection\WebPage::class);
         $this->pages_with_matching_images = $arr;
 
         return $this;
@@ -185,12 +208,12 @@ class WebDetection extends \Google\Protobuf\Internal\Message
      * The visually similar image results.
      *
      * Generated from protobuf field <code>repeated .google.cloud.vision.v1.WebDetection.WebImage visually_similar_images = 6;</code>
-     * @param \Google\Cloud\Vision\V1\WebDetection_WebImage[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Vision\V1\WebDetection\WebImage[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setVisuallySimilarImages($var)
     {
-        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Vision\V1\WebDetection_WebImage::class);
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Vision\V1\WebDetection\WebImage::class);
         $this->visually_similar_images = $arr;
 
         return $this;
@@ -211,12 +234,12 @@ class WebDetection extends \Google\Protobuf\Internal\Message
      * Best guess text labels for the request image.
      *
      * Generated from protobuf field <code>repeated .google.cloud.vision.v1.WebDetection.WebLabel best_guess_labels = 8;</code>
-     * @param \Google\Cloud\Vision\V1\WebDetection_WebLabel[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Vision\V1\WebDetection\WebLabel[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setBestGuessLabels($var)
     {
-        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Vision\V1\WebDetection_WebLabel::class);
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Vision\V1\WebDetection\WebLabel::class);
         $this->best_guess_labels = $arr;
 
         return $this;

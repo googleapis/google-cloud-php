@@ -36,9 +36,29 @@ class OutputConfig extends \Google\Protobuf\Internal\Message
      */
     private $batch_size = 0;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type \Google\Cloud\Vision\V1\GcsDestination $gcs_destination
+     *           The Google Cloud Storage location to write the output(s) to.
+     *     @type int $batch_size
+     *           The max number of response protos to put into each output JSON file on
+     *           Google Cloud Storage.
+     *           The valid range is [1, 100]. If not specified, the default value is 20.
+     *           For example, for one pdf file with 100 pages, 100 response protos will
+     *           be generated. If `batch_size` = 20, then 5 json files each
+     *           containing 20 response protos will be written under the prefix
+     *           `gcs_destination`.`uri`.
+     *           Currently, batch_size only applies to GcsDestination, with potential future
+     *           support for other output configurations.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Vision\V1\ImageAnnotator::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

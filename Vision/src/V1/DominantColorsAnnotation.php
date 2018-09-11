@@ -22,9 +22,19 @@ class DominantColorsAnnotation extends \Google\Protobuf\Internal\Message
      */
     private $colors;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type \Google\Cloud\Vision\V1\ColorInfo[]|\Google\Protobuf\Internal\RepeatedField $colors
+     *           RGB color values with their score and pixel fraction.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Vision\V1\ImageAnnotator::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

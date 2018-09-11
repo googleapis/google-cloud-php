@@ -30,9 +30,22 @@ class ImageAnnotationContext extends \Google\Protobuf\Internal\Message
      */
     private $page_number = 0;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $uri
+     *           The URI of the file used to produce the image.
+     *     @type int $page_number
+     *           If the file was a PDF or TIFF, this field gives the page number within
+     *           the file used to produce the image.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Vision\V1\ImageAnnotator::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

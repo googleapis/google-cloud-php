@@ -28,9 +28,21 @@ class LatLongRect extends \Google\Protobuf\Internal\Message
      */
     private $max_lat_lng = null;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type \Google\Type\LatLng $min_lat_lng
+     *           Min lat/long pair.
+     *     @type \Google\Type\LatLng $max_lat_lng
+     *           Max lat/long pair.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Vision\V1\ImageAnnotator::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

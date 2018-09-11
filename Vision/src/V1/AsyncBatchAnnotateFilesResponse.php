@@ -23,9 +23,20 @@ class AsyncBatchAnnotateFilesResponse extends \Google\Protobuf\Internal\Message
      */
     private $responses;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type \Google\Cloud\Vision\V1\AsyncAnnotateFileResponse[]|\Google\Protobuf\Internal\RepeatedField $responses
+     *           The list of file annotation responses, one for each request in
+     *           AsyncBatchAnnotateFilesRequest.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Vision\V1\ImageAnnotator::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

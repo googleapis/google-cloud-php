@@ -36,9 +36,25 @@ class CropHint extends \Google\Protobuf\Internal\Message
      */
     private $importance_fraction = 0.0;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type \Google\Cloud\Vision\V1\BoundingPoly $bounding_poly
+     *           The bounding polygon for the crop region. The coordinates of the bounding
+     *           box are in the original image's scale, as returned in `ImageParams`.
+     *     @type float $confidence
+     *           Confidence of this being a salient region.  Range [0, 1].
+     *     @type float $importance_fraction
+     *           Fraction of importance of this salient region with respect to the original
+     *           image.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Vision\V1\ImageAnnotator::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

@@ -34,6 +34,7 @@ use Google\ApiCore\ApiException;
 use Google\ApiCore\ArrayTrait;
 use Google\ApiCore\RetrySettings;
 use Google\Cloud\Vision\VisionHelpersTrait;
+use Google\Cloud\Vision\V1\Feature\Type;
 use Google\Cloud\Vision\V1\Gapic\ImageAnnotatorGapicClient;
 use InvalidArgumentException;
 
@@ -87,10 +88,10 @@ class ImageAnnotatorClient extends ImageAnnotatorGapicClient
      * Example:
      * ```
      * use Google\Cloud\Vision\V1\Feature;
-     * use Google\Cloud\Vision\V1\Feature_Type;
+     * use Google\Cloud\Vision\V1\Feature\Type;
      *
      * $imageResource = fopen('path/to/image.jpg', 'r');
-     * $features = [Feature_Type::FACE_DETECTION];
+     * $features = [Type::FACE_DETECTION];
      * $response = $imageAnnotatorClient->annotateImage($imageResource, $features);
      * ```
      *
@@ -154,7 +155,7 @@ class ImageAnnotatorClient extends ImageAnnotatorGapicClient
     {
         return $this->annotateSingleFeature(
             $image,
-            Feature_Type::FACE_DETECTION,
+            Type::FACE_DETECTION,
             $optionalArgs
         );
     }
@@ -189,7 +190,7 @@ class ImageAnnotatorClient extends ImageAnnotatorGapicClient
     {
         return $this->annotateSingleFeature(
             $image,
-            Feature_Type::LANDMARK_DETECTION,
+            Type::LANDMARK_DETECTION,
             $optionalArgs
         );
     }
@@ -224,7 +225,7 @@ class ImageAnnotatorClient extends ImageAnnotatorGapicClient
     {
         return $this->annotateSingleFeature(
             $image,
-            Feature_Type::LOGO_DETECTION,
+            Type::LOGO_DETECTION,
             $optionalArgs
         );
     }
@@ -259,7 +260,7 @@ class ImageAnnotatorClient extends ImageAnnotatorGapicClient
     {
         return $this->annotateSingleFeature(
             $image,
-            Feature_Type::LABEL_DETECTION,
+            Type::LABEL_DETECTION,
             $optionalArgs
         );
     }
@@ -294,7 +295,7 @@ class ImageAnnotatorClient extends ImageAnnotatorGapicClient
     {
         return $this->annotateSingleFeature(
             $image,
-            Feature_Type::TEXT_DETECTION,
+            Type::TEXT_DETECTION,
             $optionalArgs
         );
     }
@@ -329,7 +330,7 @@ class ImageAnnotatorClient extends ImageAnnotatorGapicClient
     {
         return $this->annotateSingleFeature(
             $image,
-            Feature_Type::DOCUMENT_TEXT_DETECTION,
+            Type::DOCUMENT_TEXT_DETECTION,
             $optionalArgs
         );
     }
@@ -364,7 +365,7 @@ class ImageAnnotatorClient extends ImageAnnotatorGapicClient
     {
         return $this->annotateSingleFeature(
             $image,
-            Feature_Type::SAFE_SEARCH_DETECTION,
+            Type::SAFE_SEARCH_DETECTION,
             $optionalArgs
         );
     }
@@ -399,7 +400,7 @@ class ImageAnnotatorClient extends ImageAnnotatorGapicClient
     {
         return $this->annotateSingleFeature(
             $image,
-            Feature_Type::IMAGE_PROPERTIES,
+            Type::IMAGE_PROPERTIES,
             $optionalArgs
         );
     }
@@ -434,7 +435,7 @@ class ImageAnnotatorClient extends ImageAnnotatorGapicClient
     {
         return $this->annotateSingleFeature(
             $image,
-            Feature_Type::CROP_HINTS,
+            Type::CROP_HINTS,
             $optionalArgs
         );
     }
@@ -469,7 +470,7 @@ class ImageAnnotatorClient extends ImageAnnotatorGapicClient
     {
         return $this->annotateSingleFeature(
             $image,
-            Feature_Type::WEB_DETECTION,
+            Type::WEB_DETECTION,
             $optionalArgs
         );
     }

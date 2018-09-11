@@ -36,9 +36,23 @@ class Position extends \Google\Protobuf\Internal\Message
      */
     private $z = 0.0;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type float $x
+     *           X coordinate.
+     *     @type float $y
+     *           Y coordinate.
+     *     @type float $z
+     *           Z coordinate (or depth).
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Vision\V1\Geometry::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**
