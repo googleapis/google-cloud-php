@@ -4,57 +4,13 @@
 
 namespace Google\Cloud\Redis\V1beta1;
 
-/**
- * Represents the different states of a Redis instance.
- *
- * Protobuf enum <code>Google\Cloud\Redis\V1beta1\Instance\State</code>
- */
-class Instance_State
-{
+if (false) {
     /**
-     * Not set.
-     *
-     * Generated from protobuf enum <code>STATE_UNSPECIFIED = 0;</code>
+     * This class is deprecated. Use Google\Cloud\Redis\V1beta1\Instance\State instead.
+     * @deprecated
      */
-    const STATE_UNSPECIFIED = 0;
-    /**
-     * Redis instance is being created.
-     *
-     * Generated from protobuf enum <code>CREATING = 1;</code>
-     */
-    const CREATING = 1;
-    /**
-     * Redis instance has been created and is fully usable.
-     *
-     * Generated from protobuf enum <code>READY = 2;</code>
-     */
-    const READY = 2;
-    /**
-     * Redis instance configuration is being updated. Certain kinds of updates
-     * may cause the instance to become unusable while the update is in
-     * progress.
-     *
-     * Generated from protobuf enum <code>UPDATING = 3;</code>
-     */
-    const UPDATING = 3;
-    /**
-     * Redis instance is being deleted.
-     *
-     * Generated from protobuf enum <code>DELETING = 4;</code>
-     */
-    const DELETING = 4;
-    /**
-     * Redis instance is being repaired and may be unusable. Details can be
-     * found in the `status_message` field.
-     *
-     * Generated from protobuf enum <code>REPAIRING = 5;</code>
-     */
-    const REPAIRING = 5;
-    /**
-     * Maintenance is being performed on this Redis instance.
-     *
-     * Generated from protobuf enum <code>MAINTENANCE = 6;</code>
-     */
-    const MAINTENANCE = 6;
+    class Instance_State {}
 }
+class_exists(Instance\State::class);
+@trigger_error('Google\Cloud\Redis\V1beta1\Instance_State is deprecated and will be removed in a future release. Use Google\Cloud\Redis\V1beta1\Instance\State instead', E_USER_DEPRECATED);
 

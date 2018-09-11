@@ -23,21 +23,37 @@ logging.basicConfig(level=logging.DEBUG)
 gapic = gcp.GAPICGenerator()
 common = gcp.CommonTemplates()
 
-library = gapic.php_library(
+v1beta1_library = gapic.php_library(
     service='redis',
     version='v1beta1',
     artman_output_name='google-cloud-redis-v1beta1')
 
 # copy all src except partial veneer classes
-s.move(library / f'src/V1beta1/Gapic')
-s.move(library / f'src/V1beta1/resources')
+s.move(v1beta1_library / f'src/V1beta1/Gapic')
+s.move(v1beta1_library / f'src/V1beta1/resources')
 
 # copy proto files to src also
-s.move(library / f'proto/src/Google/Cloud/Redis', f'src/')
-s.move(library / f'tests/')
+s.move(v1beta1_library / f'proto/src/Google/Cloud/Redis', f'src/')
+s.move(v1beta1_library / f'tests/')
 
 # copy GPBMetadata file to metadata
-s.move(library / f'proto/src/GPBMetadata/Google/Cloud/Redis', f'metadata/')
+s.move(v1beta1_library / f'proto/src/GPBMetadata/Google/Cloud/Redis', f'metadata/')
+
+v1_library = gapic.php_library(
+    service='redis',
+    version='v1',
+    artman_output_name='google-cloud-redis-v1')
+
+# copy all src except partial veneer classes
+s.move(v1_library / f'src/V1/Gapic')
+s.move(v1_library / f'src/V1/resources')
+
+# copy proto files to src also
+s.move(v1_library / f'proto/src/Google/Cloud/Redis', f'src/')
+s.move(v1_library / f'tests/')
+
+# copy GPBMetadata file to metadata
+s.move(v1_library / f'proto/src/GPBMetadata/Google/Cloud/Redis', f'metadata/')
 
 # fix year
 s.replace(
@@ -45,6 +61,18 @@ s.replace(
     r'Copyright \d{4}',
     r'Copyright 2018')
 s.replace(
-    'tests/**/V1beta1/*Test.php',
+    'tests/**/V1*/*Test.php',
     r'Copyright \d{4}',
     r'Copyright 2018')
+
+# Change the wording for the deprecation warning.
+s.replace(
+    'src/*/*_*.php',
+    r'will be removed in the next major release',
+    'will be removed in a future release')
+# Use new namespace in the doc sample. See
+# https://github.com/googleapis/gapic-generator/issues/2141
+s.replace(
+    'src/**/Gapic/CloudRedisGapicClient.php',
+    r'Instance_Tier',
+    'Tier')

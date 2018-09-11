@@ -1148,7 +1148,7 @@ $ composer require google/cloud-iot
 ```php
 require 'vendor/autoload.php';
 
-use Google\Cloud\Redis\V1beta1\CloudRedisClient;
+use Google\Cloud\Redis\V1\CloudRedisClient;
 
 $client = new CloudRedisClient();
 

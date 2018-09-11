@@ -42,7 +42,7 @@ on authenticating your client. Once authenticated, you'll be ready to start maki
 ```php
 require 'vendor/autoload.php';
 
-use Google\Cloud\Redis\V1beta1\CloudRedisClient;
+use Google\Cloud\Redis\V1\CloudRedisClient;
 
 $client = new CloudRedisClient();
 
