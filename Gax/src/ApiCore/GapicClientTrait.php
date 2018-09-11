@@ -315,28 +315,28 @@ trait GapicClientTrait
     }
 
     /**
-     * @param mixed $auth
-     * @param array $authConfig
+     * @param mixed $credentials
+     * @param array $credentialsConfig
      * @return CredentialsWrapper
      * @throws ValidationException
      */
-    private function createCredentialsWrapper($auth, array $authConfig)
+    private function createCredentialsWrapper($credentials, array $credentialsConfig)
     {
-        if (is_null($auth)) {
-            return CredentialsWrapper::build($authConfig);
-        } elseif (is_string($auth) || is_array($auth)) {
-            return CredentialsWrapper::build(['keyFile' => $auth] + $authConfig);
-        } elseif ($auth instanceof FetchAuthTokenInterface) {
-            $authHttpHandler = isset($authConfig['authHttpHandler'])
-                ? $authConfig['authHttpHandler']
+        if (is_null($credentials)) {
+            return CredentialsWrapper::build($credentialsConfig);
+        } elseif (is_string($credentials) || is_array($credentials)) {
+            return CredentialsWrapper::build(['keyFile' => $credentials] + $credentialsConfig);
+        } elseif ($credentials instanceof FetchAuthTokenInterface) {
+            $authHttpHandler = isset($credentialsConfig['authHttpHandler'])
+                ? $credentialsConfig['authHttpHandler']
                 : null;
-            return new CredentialsWrapper($auth, $authHttpHandler);
-        } elseif ($auth instanceof CredentialsWrapper) {
-            return $auth;
+            return new CredentialsWrapper($credentials, $authHttpHandler);
+        } elseif ($credentials instanceof CredentialsWrapper) {
+            return $credentials;
         } else {
             throw new ValidationException(
                 'Unexpected value in $auth option, got: ' .
-                print_r($auth, true)
+                print_r($credentials, true)
             );
         }
     }
