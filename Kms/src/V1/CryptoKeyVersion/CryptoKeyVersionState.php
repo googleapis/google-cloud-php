@@ -18,8 +18,15 @@ class CryptoKeyVersionState
      */
     const CRYPTO_KEY_VERSION_STATE_UNSPECIFIED = 0;
     /**
-     * This version may be used in [Encrypt][google.cloud.kms.v1.KeyManagementService.Encrypt] and
-     * [Decrypt][google.cloud.kms.v1.KeyManagementService.Decrypt] requests.
+     * This version is still being generated. It may not be used, enabled,
+     * disabled, or destroyed yet. Cloud KMS will automatically mark this
+     * version [ENABLED][google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionState.ENABLED] as soon as the version is ready.
+     *
+     * Generated from protobuf enum <code>PENDING_GENERATION = 5;</code>
+     */
+    const PENDING_GENERATION = 5;
+    /**
+     * This version may be used for cryptographic operations.
      *
      * Generated from protobuf enum <code>ENABLED = 1;</code>
      */
