@@ -17,14 +17,16 @@ use Google\Protobuf\Internal\GPBUtil;
 class StreamingRecognitionResult extends \Google\Protobuf\Internal\Message
 {
     /**
-     * *Output-only* May contain one or more recognition hypotheses (up to the
+     * Output only. May contain one or more recognition hypotheses (up to the
      * maximum specified in `max_alternatives`).
+     * These alternatives are ordered in terms of accuracy, with the top (first)
+     * alternative being the most probable, as ranked by the recognizer.
      *
      * Generated from protobuf field <code>repeated .google.cloud.speech.v1.SpeechRecognitionAlternative alternatives = 1;</code>
      */
     private $alternatives;
     /**
-     * *Output-only* If `false`, this `StreamingRecognitionResult` represents an
+     * Output only. If `false`, this `StreamingRecognitionResult` represents an
      * interim result that may change. If `true`, this is the final time the
      * speech service will return this particular `StreamingRecognitionResult`,
      * the recognizer will not return any further hypotheses for this portion of
@@ -34,7 +36,7 @@ class StreamingRecognitionResult extends \Google\Protobuf\Internal\Message
      */
     private $is_final = false;
     /**
-     * *Output-only* An estimate of the likelihood that the recognizer will not
+     * Output only. An estimate of the likelihood that the recognizer will not
      * change its guess about this interim result. Values range from 0.0
      * (completely unstable) to 1.0 (completely stable).
      * This field is only provided for interim results (`is_final=false`).
@@ -51,16 +53,18 @@ class StreamingRecognitionResult extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\Speech\V1\SpeechRecognitionAlternative[]|\Google\Protobuf\Internal\RepeatedField $alternatives
-     *           *Output-only* May contain one or more recognition hypotheses (up to the
+     *           Output only. May contain one or more recognition hypotheses (up to the
      *           maximum specified in `max_alternatives`).
+     *           These alternatives are ordered in terms of accuracy, with the top (first)
+     *           alternative being the most probable, as ranked by the recognizer.
      *     @type bool $is_final
-     *           *Output-only* If `false`, this `StreamingRecognitionResult` represents an
+     *           Output only. If `false`, this `StreamingRecognitionResult` represents an
      *           interim result that may change. If `true`, this is the final time the
      *           speech service will return this particular `StreamingRecognitionResult`,
      *           the recognizer will not return any further hypotheses for this portion of
      *           the transcript and corresponding audio.
      *     @type float $stability
-     *           *Output-only* An estimate of the likelihood that the recognizer will not
+     *           Output only. An estimate of the likelihood that the recognizer will not
      *           change its guess about this interim result. Values range from 0.0
      *           (completely unstable) to 1.0 (completely stable).
      *           This field is only provided for interim results (`is_final=false`).
@@ -73,8 +77,10 @@ class StreamingRecognitionResult extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * *Output-only* May contain one or more recognition hypotheses (up to the
+     * Output only. May contain one or more recognition hypotheses (up to the
      * maximum specified in `max_alternatives`).
+     * These alternatives are ordered in terms of accuracy, with the top (first)
+     * alternative being the most probable, as ranked by the recognizer.
      *
      * Generated from protobuf field <code>repeated .google.cloud.speech.v1.SpeechRecognitionAlternative alternatives = 1;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -85,8 +91,10 @@ class StreamingRecognitionResult extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * *Output-only* May contain one or more recognition hypotheses (up to the
+     * Output only. May contain one or more recognition hypotheses (up to the
      * maximum specified in `max_alternatives`).
+     * These alternatives are ordered in terms of accuracy, with the top (first)
+     * alternative being the most probable, as ranked by the recognizer.
      *
      * Generated from protobuf field <code>repeated .google.cloud.speech.v1.SpeechRecognitionAlternative alternatives = 1;</code>
      * @param \Google\Cloud\Speech\V1\SpeechRecognitionAlternative[]|\Google\Protobuf\Internal\RepeatedField $var
@@ -101,7 +109,7 @@ class StreamingRecognitionResult extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * *Output-only* If `false`, this `StreamingRecognitionResult` represents an
+     * Output only. If `false`, this `StreamingRecognitionResult` represents an
      * interim result that may change. If `true`, this is the final time the
      * speech service will return this particular `StreamingRecognitionResult`,
      * the recognizer will not return any further hypotheses for this portion of
@@ -116,7 +124,7 @@ class StreamingRecognitionResult extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * *Output-only* If `false`, this `StreamingRecognitionResult` represents an
+     * Output only. If `false`, this `StreamingRecognitionResult` represents an
      * interim result that may change. If `true`, this is the final time the
      * speech service will return this particular `StreamingRecognitionResult`,
      * the recognizer will not return any further hypotheses for this portion of
@@ -135,7 +143,7 @@ class StreamingRecognitionResult extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * *Output-only* An estimate of the likelihood that the recognizer will not
+     * Output only. An estimate of the likelihood that the recognizer will not
      * change its guess about this interim result. Values range from 0.0
      * (completely unstable) to 1.0 (completely stable).
      * This field is only provided for interim results (`is_final=false`).
@@ -150,7 +158,7 @@ class StreamingRecognitionResult extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * *Output-only* An estimate of the likelihood that the recognizer will not
+     * Output only. An estimate of the likelihood that the recognizer will not
      * change its guess about this interim result. Values range from 0.0
      * (completely unstable) to 1.0 (completely stable).
      * This field is only provided for interim results (`is_final=false`).

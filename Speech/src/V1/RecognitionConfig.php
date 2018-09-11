@@ -17,17 +17,21 @@ use Google\Protobuf\Internal\GPBUtil;
 class RecognitionConfig extends \Google\Protobuf\Internal\Message
 {
     /**
-     * *Required* Encoding of audio data sent in all `RecognitionAudio` messages.
+     * Encoding of audio data sent in all `RecognitionAudio` messages.
+     * This field is optional for `FLAC` and `WAV` audio files and required
+     * for all other audio formats. For details, see [AudioEncoding][google.cloud.speech.v1.RecognitionConfig.AudioEncoding].
      *
      * Generated from protobuf field <code>.google.cloud.speech.v1.RecognitionConfig.AudioEncoding encoding = 1;</code>
      */
     private $encoding = 0;
     /**
-     * *Required* Sample rate in Hertz of the audio data sent in all
+     * Sample rate in Hertz of the audio data sent in all
      * `RecognitionAudio` messages. Valid values are: 8000-48000.
      * 16000 is optimal. For best results, set the sampling rate of the audio
      * source to 16000 Hz. If that's not possible, use the native sample rate of
      * the audio source (instead of re-sampling).
+     * This field is optional for `FLAC` and `WAV` audio files and required
+     * for all other audio formats. For details, see [AudioEncoding][google.cloud.speech.v1.RecognitionConfig.AudioEncoding].
      *
      * Generated from protobuf field <code>int32 sample_rate_hertz = 2;</code>
      */
@@ -36,7 +40,7 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
      * *Required* The language of the supplied audio as a
      * [BCP-47](https://www.rfc-editor.org/rfc/bcp/bcp47.txt) language tag.
      * Example: "en-US".
-     * See [Language Support](https://cloud.google.com/speech/docs/languages)
+     * See [Language Support](/speech-to-text/docs/languages)
      * for a list of the currently supported language codes.
      *
      * Generated from protobuf field <code>string language_code = 3;</code>
@@ -63,7 +67,9 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
      */
     private $profanity_filter = false;
     /**
-     * *Optional* A means to provide context to assist the speech recognition.
+     * *Optional* array of [SpeechContext][google.cloud.speech.v1.SpeechContext].
+     * A means to provide context to assist the speech recognition. For more
+     * information, see [Phrase Hints](/speech-to-text/docs/basics#phrase-hints).
      *
      * Generated from protobuf field <code>repeated .google.cloud.speech.v1.SpeechContext speech_contexts = 6;</code>
      */
@@ -77,6 +83,70 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>bool enable_word_time_offsets = 8;</code>
      */
     private $enable_word_time_offsets = false;
+    /**
+     * *Optional* If 'true', adds punctuation to recognition result hypotheses.
+     * This feature is only available in select languages. Setting this for
+     * requests in other languages has no effect at all.
+     * The default 'false' value does not add punctuation to result hypotheses.
+     * Note: This is currently offered as an experimental service, complimentary
+     * to all users. In the future this may be exclusively available as a
+     * premium feature.
+     *
+     * Generated from protobuf field <code>bool enable_automatic_punctuation = 11;</code>
+     */
+    private $enable_automatic_punctuation = false;
+    /**
+     * *Optional* Which model to select for the given request. Select the model
+     * best suited to your domain to get best results. If a model is not
+     * explicitly specified, then we auto-select a model based on the parameters
+     * in the RecognitionConfig.
+     * <table>
+     *   <tr>
+     *     <td><b>Model</b></td>
+     *     <td><b>Description</b></td>
+     *   </tr>
+     *   <tr>
+     *     <td><code>command_and_search</code></td>
+     *     <td>Best for short queries such as voice commands or voice search.</td>
+     *   </tr>
+     *   <tr>
+     *     <td><code>phone_call</code></td>
+     *     <td>Best for audio that originated from a phone call (typically
+     *     recorded at an 8khz sampling rate).</td>
+     *   </tr>
+     *   <tr>
+     *     <td><code>video</code></td>
+     *     <td>Best for audio that originated from from video or includes multiple
+     *         speakers. Ideally the audio is recorded at a 16khz or greater
+     *         sampling rate. This is a premium model that costs more than the
+     *         standard rate.</td>
+     *   </tr>
+     *   <tr>
+     *     <td><code>default</code></td>
+     *     <td>Best for audio that is not one of the specific audio models.
+     *         For example, long-form audio. Ideally the audio is high-fidelity,
+     *         recorded at a 16khz or greater sampling rate.</td>
+     *   </tr>
+     * </table>
+     *
+     * Generated from protobuf field <code>string model = 13;</code>
+     */
+    private $model = '';
+    /**
+     * *Optional* Set to true to use an enhanced model for speech recognition.
+     * You must also set the `model` field to a valid, enhanced model. If
+     * `use_enhanced` is set to true and the `model` field is not set, then
+     * `use_enhanced` is ignored. If `use_enhanced` is true and an enhanced
+     * version of the specified model does not exist, then the speech is
+     * recognized using the standard version of the specified model.
+     * Enhanced speech models require that you opt-in to data logging using
+     * instructions in the [documentation](/speech-to-text/enable-data-logging).
+     * If you set `use_enhanced` to true and you have not enabled audio logging,
+     * then you will receive an error.
+     *
+     * Generated from protobuf field <code>bool use_enhanced = 14;</code>
+     */
+    private $use_enhanced = false;
 
     /**
      * Constructor.
@@ -85,18 +155,22 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type int $encoding
-     *           *Required* Encoding of audio data sent in all `RecognitionAudio` messages.
+     *           Encoding of audio data sent in all `RecognitionAudio` messages.
+     *           This field is optional for `FLAC` and `WAV` audio files and required
+     *           for all other audio formats. For details, see [AudioEncoding][google.cloud.speech.v1.RecognitionConfig.AudioEncoding].
      *     @type int $sample_rate_hertz
-     *           *Required* Sample rate in Hertz of the audio data sent in all
+     *           Sample rate in Hertz of the audio data sent in all
      *           `RecognitionAudio` messages. Valid values are: 8000-48000.
      *           16000 is optimal. For best results, set the sampling rate of the audio
      *           source to 16000 Hz. If that's not possible, use the native sample rate of
      *           the audio source (instead of re-sampling).
+     *           This field is optional for `FLAC` and `WAV` audio files and required
+     *           for all other audio formats. For details, see [AudioEncoding][google.cloud.speech.v1.RecognitionConfig.AudioEncoding].
      *     @type string $language_code
      *           *Required* The language of the supplied audio as a
      *           [BCP-47](https://www.rfc-editor.org/rfc/bcp/bcp47.txt) language tag.
      *           Example: "en-US".
-     *           See [Language Support](https://cloud.google.com/speech/docs/languages)
+     *           See [Language Support](/speech-to-text/docs/languages)
      *           for a list of the currently supported language codes.
      *     @type int $max_alternatives
      *           *Optional* Maximum number of recognition hypotheses to be returned.
@@ -111,12 +185,66 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
      *           with asterisks, e.g. "f***". If set to `false` or omitted, profanities
      *           won't be filtered out.
      *     @type \Google\Cloud\Speech\V1\SpeechContext[]|\Google\Protobuf\Internal\RepeatedField $speech_contexts
-     *           *Optional* A means to provide context to assist the speech recognition.
+     *           *Optional* array of [SpeechContext][google.cloud.speech.v1.SpeechContext].
+     *           A means to provide context to assist the speech recognition. For more
+     *           information, see [Phrase Hints](/speech-to-text/docs/basics#phrase-hints).
      *     @type bool $enable_word_time_offsets
      *           *Optional* If `true`, the top result includes a list of words and
      *           the start and end time offsets (timestamps) for those words. If
      *           `false`, no word-level time offset information is returned. The default is
      *           `false`.
+     *     @type bool $enable_automatic_punctuation
+     *           *Optional* If 'true', adds punctuation to recognition result hypotheses.
+     *           This feature is only available in select languages. Setting this for
+     *           requests in other languages has no effect at all.
+     *           The default 'false' value does not add punctuation to result hypotheses.
+     *           Note: This is currently offered as an experimental service, complimentary
+     *           to all users. In the future this may be exclusively available as a
+     *           premium feature.
+     *     @type string $model
+     *           *Optional* Which model to select for the given request. Select the model
+     *           best suited to your domain to get best results. If a model is not
+     *           explicitly specified, then we auto-select a model based on the parameters
+     *           in the RecognitionConfig.
+     *           <table>
+     *             <tr>
+     *               <td><b>Model</b></td>
+     *               <td><b>Description</b></td>
+     *             </tr>
+     *             <tr>
+     *               <td><code>command_and_search</code></td>
+     *               <td>Best for short queries such as voice commands or voice search.</td>
+     *             </tr>
+     *             <tr>
+     *               <td><code>phone_call</code></td>
+     *               <td>Best for audio that originated from a phone call (typically
+     *               recorded at an 8khz sampling rate).</td>
+     *             </tr>
+     *             <tr>
+     *               <td><code>video</code></td>
+     *               <td>Best for audio that originated from from video or includes multiple
+     *                   speakers. Ideally the audio is recorded at a 16khz or greater
+     *                   sampling rate. This is a premium model that costs more than the
+     *                   standard rate.</td>
+     *             </tr>
+     *             <tr>
+     *               <td><code>default</code></td>
+     *               <td>Best for audio that is not one of the specific audio models.
+     *                   For example, long-form audio. Ideally the audio is high-fidelity,
+     *                   recorded at a 16khz or greater sampling rate.</td>
+     *             </tr>
+     *           </table>
+     *     @type bool $use_enhanced
+     *           *Optional* Set to true to use an enhanced model for speech recognition.
+     *           You must also set the `model` field to a valid, enhanced model. If
+     *           `use_enhanced` is set to true and the `model` field is not set, then
+     *           `use_enhanced` is ignored. If `use_enhanced` is true and an enhanced
+     *           version of the specified model does not exist, then the speech is
+     *           recognized using the standard version of the specified model.
+     *           Enhanced speech models require that you opt-in to data logging using
+     *           instructions in the [documentation](/speech-to-text/enable-data-logging).
+     *           If you set `use_enhanced` to true and you have not enabled audio logging,
+     *           then you will receive an error.
      * }
      */
     public function __construct($data = NULL) {
@@ -125,7 +253,9 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * *Required* Encoding of audio data sent in all `RecognitionAudio` messages.
+     * Encoding of audio data sent in all `RecognitionAudio` messages.
+     * This field is optional for `FLAC` and `WAV` audio files and required
+     * for all other audio formats. For details, see [AudioEncoding][google.cloud.speech.v1.RecognitionConfig.AudioEncoding].
      *
      * Generated from protobuf field <code>.google.cloud.speech.v1.RecognitionConfig.AudioEncoding encoding = 1;</code>
      * @return int
@@ -136,7 +266,9 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * *Required* Encoding of audio data sent in all `RecognitionAudio` messages.
+     * Encoding of audio data sent in all `RecognitionAudio` messages.
+     * This field is optional for `FLAC` and `WAV` audio files and required
+     * for all other audio formats. For details, see [AudioEncoding][google.cloud.speech.v1.RecognitionConfig.AudioEncoding].
      *
      * Generated from protobuf field <code>.google.cloud.speech.v1.RecognitionConfig.AudioEncoding encoding = 1;</code>
      * @param int $var
@@ -151,11 +283,13 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * *Required* Sample rate in Hertz of the audio data sent in all
+     * Sample rate in Hertz of the audio data sent in all
      * `RecognitionAudio` messages. Valid values are: 8000-48000.
      * 16000 is optimal. For best results, set the sampling rate of the audio
      * source to 16000 Hz. If that's not possible, use the native sample rate of
      * the audio source (instead of re-sampling).
+     * This field is optional for `FLAC` and `WAV` audio files and required
+     * for all other audio formats. For details, see [AudioEncoding][google.cloud.speech.v1.RecognitionConfig.AudioEncoding].
      *
      * Generated from protobuf field <code>int32 sample_rate_hertz = 2;</code>
      * @return int
@@ -166,11 +300,13 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * *Required* Sample rate in Hertz of the audio data sent in all
+     * Sample rate in Hertz of the audio data sent in all
      * `RecognitionAudio` messages. Valid values are: 8000-48000.
      * 16000 is optimal. For best results, set the sampling rate of the audio
      * source to 16000 Hz. If that's not possible, use the native sample rate of
      * the audio source (instead of re-sampling).
+     * This field is optional for `FLAC` and `WAV` audio files and required
+     * for all other audio formats. For details, see [AudioEncoding][google.cloud.speech.v1.RecognitionConfig.AudioEncoding].
      *
      * Generated from protobuf field <code>int32 sample_rate_hertz = 2;</code>
      * @param int $var
@@ -188,7 +324,7 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
      * *Required* The language of the supplied audio as a
      * [BCP-47](https://www.rfc-editor.org/rfc/bcp/bcp47.txt) language tag.
      * Example: "en-US".
-     * See [Language Support](https://cloud.google.com/speech/docs/languages)
+     * See [Language Support](/speech-to-text/docs/languages)
      * for a list of the currently supported language codes.
      *
      * Generated from protobuf field <code>string language_code = 3;</code>
@@ -203,7 +339,7 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
      * *Required* The language of the supplied audio as a
      * [BCP-47](https://www.rfc-editor.org/rfc/bcp/bcp47.txt) language tag.
      * Example: "en-US".
-     * See [Language Support](https://cloud.google.com/speech/docs/languages)
+     * See [Language Support](/speech-to-text/docs/languages)
      * for a list of the currently supported language codes.
      *
      * Generated from protobuf field <code>string language_code = 3;</code>
@@ -287,7 +423,9 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * *Optional* A means to provide context to assist the speech recognition.
+     * *Optional* array of [SpeechContext][google.cloud.speech.v1.SpeechContext].
+     * A means to provide context to assist the speech recognition. For more
+     * information, see [Phrase Hints](/speech-to-text/docs/basics#phrase-hints).
      *
      * Generated from protobuf field <code>repeated .google.cloud.speech.v1.SpeechContext speech_contexts = 6;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -298,7 +436,9 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * *Optional* A means to provide context to assist the speech recognition.
+     * *Optional* array of [SpeechContext][google.cloud.speech.v1.SpeechContext].
+     * A means to provide context to assist the speech recognition. For more
+     * information, see [Phrase Hints](/speech-to-text/docs/basics#phrase-hints).
      *
      * Generated from protobuf field <code>repeated .google.cloud.speech.v1.SpeechContext speech_contexts = 6;</code>
      * @param \Google\Cloud\Speech\V1\SpeechContext[]|\Google\Protobuf\Internal\RepeatedField $var
@@ -340,6 +480,176 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->enable_word_time_offsets = $var;
+
+        return $this;
+    }
+
+    /**
+     * *Optional* If 'true', adds punctuation to recognition result hypotheses.
+     * This feature is only available in select languages. Setting this for
+     * requests in other languages has no effect at all.
+     * The default 'false' value does not add punctuation to result hypotheses.
+     * Note: This is currently offered as an experimental service, complimentary
+     * to all users. In the future this may be exclusively available as a
+     * premium feature.
+     *
+     * Generated from protobuf field <code>bool enable_automatic_punctuation = 11;</code>
+     * @return bool
+     */
+    public function getEnableAutomaticPunctuation()
+    {
+        return $this->enable_automatic_punctuation;
+    }
+
+    /**
+     * *Optional* If 'true', adds punctuation to recognition result hypotheses.
+     * This feature is only available in select languages. Setting this for
+     * requests in other languages has no effect at all.
+     * The default 'false' value does not add punctuation to result hypotheses.
+     * Note: This is currently offered as an experimental service, complimentary
+     * to all users. In the future this may be exclusively available as a
+     * premium feature.
+     *
+     * Generated from protobuf field <code>bool enable_automatic_punctuation = 11;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setEnableAutomaticPunctuation($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->enable_automatic_punctuation = $var;
+
+        return $this;
+    }
+
+    /**
+     * *Optional* Which model to select for the given request. Select the model
+     * best suited to your domain to get best results. If a model is not
+     * explicitly specified, then we auto-select a model based on the parameters
+     * in the RecognitionConfig.
+     * <table>
+     *   <tr>
+     *     <td><b>Model</b></td>
+     *     <td><b>Description</b></td>
+     *   </tr>
+     *   <tr>
+     *     <td><code>command_and_search</code></td>
+     *     <td>Best for short queries such as voice commands or voice search.</td>
+     *   </tr>
+     *   <tr>
+     *     <td><code>phone_call</code></td>
+     *     <td>Best for audio that originated from a phone call (typically
+     *     recorded at an 8khz sampling rate).</td>
+     *   </tr>
+     *   <tr>
+     *     <td><code>video</code></td>
+     *     <td>Best for audio that originated from from video or includes multiple
+     *         speakers. Ideally the audio is recorded at a 16khz or greater
+     *         sampling rate. This is a premium model that costs more than the
+     *         standard rate.</td>
+     *   </tr>
+     *   <tr>
+     *     <td><code>default</code></td>
+     *     <td>Best for audio that is not one of the specific audio models.
+     *         For example, long-form audio. Ideally the audio is high-fidelity,
+     *         recorded at a 16khz or greater sampling rate.</td>
+     *   </tr>
+     * </table>
+     *
+     * Generated from protobuf field <code>string model = 13;</code>
+     * @return string
+     */
+    public function getModel()
+    {
+        return $this->model;
+    }
+
+    /**
+     * *Optional* Which model to select for the given request. Select the model
+     * best suited to your domain to get best results. If a model is not
+     * explicitly specified, then we auto-select a model based on the parameters
+     * in the RecognitionConfig.
+     * <table>
+     *   <tr>
+     *     <td><b>Model</b></td>
+     *     <td><b>Description</b></td>
+     *   </tr>
+     *   <tr>
+     *     <td><code>command_and_search</code></td>
+     *     <td>Best for short queries such as voice commands or voice search.</td>
+     *   </tr>
+     *   <tr>
+     *     <td><code>phone_call</code></td>
+     *     <td>Best for audio that originated from a phone call (typically
+     *     recorded at an 8khz sampling rate).</td>
+     *   </tr>
+     *   <tr>
+     *     <td><code>video</code></td>
+     *     <td>Best for audio that originated from from video or includes multiple
+     *         speakers. Ideally the audio is recorded at a 16khz or greater
+     *         sampling rate. This is a premium model that costs more than the
+     *         standard rate.</td>
+     *   </tr>
+     *   <tr>
+     *     <td><code>default</code></td>
+     *     <td>Best for audio that is not one of the specific audio models.
+     *         For example, long-form audio. Ideally the audio is high-fidelity,
+     *         recorded at a 16khz or greater sampling rate.</td>
+     *   </tr>
+     * </table>
+     *
+     * Generated from protobuf field <code>string model = 13;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setModel($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->model = $var;
+
+        return $this;
+    }
+
+    /**
+     * *Optional* Set to true to use an enhanced model for speech recognition.
+     * You must also set the `model` field to a valid, enhanced model. If
+     * `use_enhanced` is set to true and the `model` field is not set, then
+     * `use_enhanced` is ignored. If `use_enhanced` is true and an enhanced
+     * version of the specified model does not exist, then the speech is
+     * recognized using the standard version of the specified model.
+     * Enhanced speech models require that you opt-in to data logging using
+     * instructions in the [documentation](/speech-to-text/enable-data-logging).
+     * If you set `use_enhanced` to true and you have not enabled audio logging,
+     * then you will receive an error.
+     *
+     * Generated from protobuf field <code>bool use_enhanced = 14;</code>
+     * @return bool
+     */
+    public function getUseEnhanced()
+    {
+        return $this->use_enhanced;
+    }
+
+    /**
+     * *Optional* Set to true to use an enhanced model for speech recognition.
+     * You must also set the `model` field to a valid, enhanced model. If
+     * `use_enhanced` is set to true and the `model` field is not set, then
+     * `use_enhanced` is ignored. If `use_enhanced` is true and an enhanced
+     * version of the specified model does not exist, then the speech is
+     * recognized using the standard version of the specified model.
+     * Enhanced speech models require that you opt-in to data logging using
+     * instructions in the [documentation](/speech-to-text/enable-data-logging).
+     * If you set `use_enhanced` to true and you have not enabled audio logging,
+     * then you will receive an error.
+     *
+     * Generated from protobuf field <code>bool use_enhanced = 14;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setUseEnhanced($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->use_enhanced = $var;
 
         return $this;
     }

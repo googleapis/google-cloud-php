@@ -5,22 +5,30 @@
 namespace Google\Cloud\Speech\V1\RecognitionConfig;
 
 /**
- * Audio encoding of the data sent in the audio message. All encodings support
- * only 1 channel (mono) audio. Only `FLAC` and `WAV` include a header that
- * describes the bytes of audio that follow the header. The other encodings
- * are raw audio bytes with no header.
+ * The encoding of the audio data sent in the request.
+ * All encodings support only 1 channel (mono) audio.
  * For best results, the audio source should be captured and transmitted using
- * a lossless encoding (`FLAC` or `LINEAR16`). Recognition accuracy may be
- * reduced if lossy codecs, which include the other codecs listed in
- * this section, are used to capture or transmit the audio, particularly if
- * background noise is present.
+ * a lossless encoding (`FLAC` or `LINEAR16`). The accuracy of the speech
+ * recognition can be reduced if lossy codecs are used to capture or transmit
+ * audio, particularly if background noise is present. Lossy codecs include
+ * `MULAW`, `AMR`, `AMR_WB`, `OGG_OPUS`, and `SPEEX_WITH_HEADER_BYTE`.
+ * The `FLAC` and `WAV` audio file formats include a header that describes the
+ * included audio content. You can request recognition for `WAV` files that
+ * contain either `LINEAR16` or `MULAW` encoded audio.
+ * If you send `FLAC` or `WAV` audio file format in
+ * your request, you do not need to specify an `AudioEncoding`; the audio
+ * encoding format is determined from the file header. If you specify
+ * an `AudioEncoding` when you send  send `FLAC` or `WAV` audio, the
+ * encoding configuration must match the encoding described in the audio
+ * header; otherwise the request returns an
+ * [google.rpc.Code.INVALID_ARGUMENT][google.rpc.Code.INVALID_ARGUMENT] error code.
  *
  * Protobuf type <code>google.cloud.speech.v1.RecognitionConfig.AudioEncoding</code>
  */
 class AudioEncoding
 {
     /**
-     * Not specified. Will return result [google.rpc.Code.INVALID_ARGUMENT][google.rpc.Code.INVALID_ARGUMENT].
+     * Not specified.
      *
      * Generated from protobuf enum <code>ENCODING_UNSPECIFIED = 0;</code>
      */
@@ -32,7 +40,7 @@ class AudioEncoding
      */
     const LINEAR16 = 1;
     /**
-     * [`FLAC`](https://xiph.org/flac/documentation.html) (Free Lossless Audio
+     * `FLAC` (Free Lossless Audio
      * Codec) is the recommended encoding because it is
      * lossless--therefore recognition is not compromised--and
      * requires only about half the bandwidth of `LINEAR16`. `FLAC` stream
@@ -63,7 +71,7 @@ class AudioEncoding
     /**
      * Opus encoded audio frames in Ogg container
      * ([OggOpus](https://wiki.xiph.org/OggOpus)).
-     * `sample_rate_hertz` must be 16000.
+     * `sample_rate_hertz` must be one of 8000, 12000, 16000, 24000, or 48000.
      *
      * Generated from protobuf enum <code>OGG_OPUS = 6;</code>
      */
