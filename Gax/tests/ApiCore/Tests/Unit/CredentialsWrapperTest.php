@@ -179,9 +179,23 @@ class CredentialsWrapperTest extends TestCase
                 'access_token' => 123,
                 'expires_at' => time() + 100,
             ]);
+        $insecureFetcher = $this->prophesize(FetchAuthTokenInterface::class);
+        $insecureFetcher->getLastReceivedToken()->willReturn(null);
+        $insecureFetcher->fetchAuthToken(Argument::any())
+            ->willReturn([
+                'access_token' => '',
+            ]);
+        $nullFetcher = $this->prophesize(FetchAuthTokenInterface::class);
+        $nullFetcher->getLastReceivedToken()->willReturn(null);
+        $nullFetcher->fetchAuthToken(Argument::any())
+            ->willReturn([
+                'access_token' => null,
+            ]);
         return [
             [$expiredFetcher->reveal(), 'Bearer 456'],
             [$unexpiredFetcher->reveal(), 'Bearer 123'],
+            [$insecureFetcher->reveal(), ''],
+            [$nullFetcher->reveal(), '']
         ];
     }
 
@@ -215,9 +229,24 @@ class CredentialsWrapperTest extends TestCase
                 'access_token' => 123,
                 'expires_at' => time() + 100,
             ]);
+
+        $insecureFetcher = $this->prophesize(FetchAuthTokenInterface::class);
+        $insecureFetcher->getLastReceivedToken()->willReturn(null);
+        $insecureFetcher->fetchAuthToken(Argument::any())
+            ->willReturn([
+                'access_token' => '',
+            ]);
+        $nullFetcher = $this->prophesize(FetchAuthTokenInterface::class);
+        $nullFetcher->getLastReceivedToken()->willReturn(null);
+        $nullFetcher->fetchAuthToken(Argument::any())
+            ->willReturn([
+                'access_token' => null,
+            ]);
         return [
             [$expiredFetcher->reveal(), ['authorization' => ['Bearer 456']]],
             [$unexpiredFetcher->reveal(), ['authorization' => ['Bearer 123']]],
+            [$insecureFetcher->reveal(), []],
+            [$nullFetcher->reveal(), []],
         ];
     }
 }
