@@ -18,13 +18,13 @@ use Google\Protobuf\Internal\GPBUtil;
 class ExportAssetsResponse extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. Time the snapshot was taken.
+     * Time the snapshot was taken.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp read_time = 1;</code>
      */
     private $read_time = null;
     /**
-     * Required. Output configuration indicating where the results were output to.
+     * Output configuration indicating where the results were output to.
      * All results are in JSON format.
      *
      * Generated from protobuf field <code>.google.cloud.asset.v1beta1.OutputConfig output_config = 2;</code>
@@ -38,9 +38,9 @@ class ExportAssetsResponse extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Protobuf\Timestamp $read_time
-     *           Required. Time the snapshot was taken.
+     *           Time the snapshot was taken.
      *     @type \Google\Cloud\Asset\V1beta1\OutputConfig $output_config
-     *           Required. Output configuration indicating where the results were output to.
+     *           Output configuration indicating where the results were output to.
      *           All results are in JSON format.
      * }
      */
@@ -50,7 +50,7 @@ class ExportAssetsResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Time the snapshot was taken.
+     * Time the snapshot was taken.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp read_time = 1;</code>
      * @return \Google\Protobuf\Timestamp
@@ -61,7 +61,7 @@ class ExportAssetsResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Time the snapshot was taken.
+     * Time the snapshot was taken.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp read_time = 1;</code>
      * @param \Google\Protobuf\Timestamp $var
@@ -76,7 +76,7 @@ class ExportAssetsResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Output configuration indicating where the results were output to.
+     * Output configuration indicating where the results were output to.
      * All results are in JSON format.
      *
      * Generated from protobuf field <code>.google.cloud.asset.v1beta1.OutputConfig output_config = 2;</code>
@@ -88,7 +88,7 @@ class ExportAssetsResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Output configuration indicating where the results were output to.
+     * Output configuration indicating where the results were output to.
      * All results are in JSON format.
      *
      * Generated from protobuf field <code>.google.cloud.asset.v1beta1.OutputConfig output_config = 2;</code>

@@ -16,36 +16,37 @@ use Google\Protobuf\Internal\GPBUtil;
 class ExportAssetsRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The relative name of the root asset. It can only be an
-     * organization number (e.g. "organizations/123") or a project number
-     * (e.g. "projects/12345").
+     * Required. The relative name of the root asset. Can only be an organization
+     * number (such as "organizations/123"), or a project id (such as
+     * "projects/my-project-id") or a project number (such as "projects/12345").
      *
      * Generated from protobuf field <code>string parent = 1;</code>
      */
     private $parent = '';
     /**
-     * Timestamp to take an asset snapshot. This can only be current or past
-     * time. If not specified, the current time will be used. Due to delays in
-     * resource data collection and indexing, there is a volatile window during
-     * which running the same query may get different results.
+     * Timestamp to take an asset snapshot. This can only be set to a timestamp in
+     * the past or of the current time. If not specified, the current time will be
+     * used. Due to delays in resource data collection and indexing, there is a
+     * volatile window during which running the same query may get different
+     * results.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp read_time = 2;</code>
      */
     private $read_time = null;
     /**
-     * A list of asset types to take a snapshot for. Example:
+     * A list of asset types of which to take a snapshot for. Example:
      * "google.compute.disk". If specified, only matching assets will be returned.
      *
      * Generated from protobuf field <code>repeated string asset_types = 3;</code>
      */
     private $asset_types;
     /**
-     * A list of asset content types. If specified, only matching content will be
-     * returned. Otherwise, no content but the asset name will be returned.
+     * Asset content type. If not specified, no content but the asset name will be
+     * returned.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.asset.v1beta1.ContentType content_types = 4;</code>
+     * Generated from protobuf field <code>.google.cloud.asset.v1beta1.ContentType content_type = 4;</code>
      */
-    private $content_types;
+    private $content_type = 0;
     /**
      * Required. Output configuration indicating where the results will be output
      * to. All results will be in newline delimited JSON format.
@@ -61,20 +62,21 @@ class ExportAssetsRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Required. The relative name of the root asset. It can only be an
-     *           organization number (e.g. "organizations/123") or a project number
-     *           (e.g. "projects/12345").
+     *           Required. The relative name of the root asset. Can only be an organization
+     *           number (such as "organizations/123"), or a project id (such as
+     *           "projects/my-project-id") or a project number (such as "projects/12345").
      *     @type \Google\Protobuf\Timestamp $read_time
-     *           Timestamp to take an asset snapshot. This can only be current or past
-     *           time. If not specified, the current time will be used. Due to delays in
-     *           resource data collection and indexing, there is a volatile window during
-     *           which running the same query may get different results.
+     *           Timestamp to take an asset snapshot. This can only be set to a timestamp in
+     *           the past or of the current time. If not specified, the current time will be
+     *           used. Due to delays in resource data collection and indexing, there is a
+     *           volatile window during which running the same query may get different
+     *           results.
      *     @type string[]|\Google\Protobuf\Internal\RepeatedField $asset_types
-     *           A list of asset types to take a snapshot for. Example:
+     *           A list of asset types of which to take a snapshot for. Example:
      *           "google.compute.disk". If specified, only matching assets will be returned.
-     *     @type int[]|\Google\Protobuf\Internal\RepeatedField $content_types
-     *           A list of asset content types. If specified, only matching content will be
-     *           returned. Otherwise, no content but the asset name will be returned.
+     *     @type int $content_type
+     *           Asset content type. If not specified, no content but the asset name will be
+     *           returned.
      *     @type \Google\Cloud\Asset\V1beta1\OutputConfig $output_config
      *           Required. Output configuration indicating where the results will be output
      *           to. All results will be in newline delimited JSON format.
@@ -86,9 +88,9 @@ class ExportAssetsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The relative name of the root asset. It can only be an
-     * organization number (e.g. "organizations/123") or a project number
-     * (e.g. "projects/12345").
+     * Required. The relative name of the root asset. Can only be an organization
+     * number (such as "organizations/123"), or a project id (such as
+     * "projects/my-project-id") or a project number (such as "projects/12345").
      *
      * Generated from protobuf field <code>string parent = 1;</code>
      * @return string
@@ -99,9 +101,9 @@ class ExportAssetsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The relative name of the root asset. It can only be an
-     * organization number (e.g. "organizations/123") or a project number
-     * (e.g. "projects/12345").
+     * Required. The relative name of the root asset. Can only be an organization
+     * number (such as "organizations/123"), or a project id (such as
+     * "projects/my-project-id") or a project number (such as "projects/12345").
      *
      * Generated from protobuf field <code>string parent = 1;</code>
      * @param string $var
@@ -116,10 +118,11 @@ class ExportAssetsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Timestamp to take an asset snapshot. This can only be current or past
-     * time. If not specified, the current time will be used. Due to delays in
-     * resource data collection and indexing, there is a volatile window during
-     * which running the same query may get different results.
+     * Timestamp to take an asset snapshot. This can only be set to a timestamp in
+     * the past or of the current time. If not specified, the current time will be
+     * used. Due to delays in resource data collection and indexing, there is a
+     * volatile window during which running the same query may get different
+     * results.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp read_time = 2;</code>
      * @return \Google\Protobuf\Timestamp
@@ -130,10 +133,11 @@ class ExportAssetsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Timestamp to take an asset snapshot. This can only be current or past
-     * time. If not specified, the current time will be used. Due to delays in
-     * resource data collection and indexing, there is a volatile window during
-     * which running the same query may get different results.
+     * Timestamp to take an asset snapshot. This can only be set to a timestamp in
+     * the past or of the current time. If not specified, the current time will be
+     * used. Due to delays in resource data collection and indexing, there is a
+     * volatile window during which running the same query may get different
+     * results.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp read_time = 2;</code>
      * @param \Google\Protobuf\Timestamp $var
@@ -148,7 +152,7 @@ class ExportAssetsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A list of asset types to take a snapshot for. Example:
+     * A list of asset types of which to take a snapshot for. Example:
      * "google.compute.disk". If specified, only matching assets will be returned.
      *
      * Generated from protobuf field <code>repeated string asset_types = 3;</code>
@@ -160,7 +164,7 @@ class ExportAssetsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A list of asset types to take a snapshot for. Example:
+     * A list of asset types of which to take a snapshot for. Example:
      * "google.compute.disk". If specified, only matching assets will be returned.
      *
      * Generated from protobuf field <code>repeated string asset_types = 3;</code>
@@ -176,29 +180,29 @@ class ExportAssetsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A list of asset content types. If specified, only matching content will be
-     * returned. Otherwise, no content but the asset name will be returned.
+     * Asset content type. If not specified, no content but the asset name will be
+     * returned.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.asset.v1beta1.ContentType content_types = 4;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * Generated from protobuf field <code>.google.cloud.asset.v1beta1.ContentType content_type = 4;</code>
+     * @return int
      */
-    public function getContentTypes()
+    public function getContentType()
     {
-        return $this->content_types;
+        return $this->content_type;
     }
 
     /**
-     * A list of asset content types. If specified, only matching content will be
-     * returned. Otherwise, no content but the asset name will be returned.
+     * Asset content type. If not specified, no content but the asset name will be
+     * returned.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.asset.v1beta1.ContentType content_types = 4;</code>
-     * @param int[]|\Google\Protobuf\Internal\RepeatedField $var
+     * Generated from protobuf field <code>.google.cloud.asset.v1beta1.ContentType content_type = 4;</code>
+     * @param int $var
      * @return $this
      */
-    public function setContentTypes($var)
+    public function setContentType($var)
     {
-        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::ENUM, \Google\Cloud\Asset\V1beta1\ContentType::class);
-        $this->content_types = $arr;
+        GPBUtil::checkEnum($var, \Google\Cloud\Asset\V1beta1\ContentType::class);
+        $this->content_type = $var;
 
         return $this;
     }

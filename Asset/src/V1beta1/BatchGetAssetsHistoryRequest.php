@@ -17,8 +17,8 @@ class BatchGetAssetsHistoryRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The relative name of the root asset. It can only be an
-     * organization ID (e.g. "organizations/123") or a project ID
-     * (e.g. "projects/12345").
+     * organization number (such as "organizations/123"), or a project id (such as
+     * "projects/my-project-id")"or a project number (such as "projects/12345").
      *
      * Generated from protobuf field <code>string parent = 1;</code>
      */
@@ -28,7 +28,8 @@ class BatchGetAssetsHistoryRequest extends \Google\Protobuf\Internal\Message
      * https://cloud.google.com/apis/design/resource_names#full_resource_name
      * Example:
      * "//compute.googleapis.com/projects/my_project_123/zones/zone1/instances/instance1".
-     * The request becomes a no-op if the asset name list is empty.
+     * The request becomes a no-op if the asset name list is empty, and the max
+     * size of the asset name list is 100 in one request.
      *
      * Generated from protobuf field <code>repeated string asset_names = 2;</code>
      */
@@ -40,9 +41,9 @@ class BatchGetAssetsHistoryRequest extends \Google\Protobuf\Internal\Message
      */
     private $content_type = 0;
     /**
-     * Required. The time window for the asset history. The returned results
-     * contain all temporal assets whose time window overlap with
-     * read_time_window.
+     * Required. The time window for the asset history. The start time is
+     * required. The returned results contain all temporal assets whose time
+     * window overlap with read_time_window.
      *
      * Generated from protobuf field <code>.google.cloud.asset.v1beta1.TimeWindow read_time_window = 4;</code>
      */
@@ -56,20 +57,21 @@ class BatchGetAssetsHistoryRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $parent
      *           Required. The relative name of the root asset. It can only be an
-     *           organization ID (e.g. "organizations/123") or a project ID
-     *           (e.g. "projects/12345").
+     *           organization number (such as "organizations/123"), or a project id (such as
+     *           "projects/my-project-id")"or a project number (such as "projects/12345").
      *     @type string[]|\Google\Protobuf\Internal\RepeatedField $asset_names
      *           A list of the full names of the assets. See:
      *           https://cloud.google.com/apis/design/resource_names#full_resource_name
      *           Example:
      *           "//compute.googleapis.com/projects/my_project_123/zones/zone1/instances/instance1".
-     *           The request becomes a no-op if the asset name list is empty.
+     *           The request becomes a no-op if the asset name list is empty, and the max
+     *           size of the asset name list is 100 in one request.
      *     @type int $content_type
      *           Required. The content type.
      *     @type \Google\Cloud\Asset\V1beta1\TimeWindow $read_time_window
-     *           Required. The time window for the asset history. The returned results
-     *           contain all temporal assets whose time window overlap with
-     *           read_time_window.
+     *           Required. The time window for the asset history. The start time is
+     *           required. The returned results contain all temporal assets whose time
+     *           window overlap with read_time_window.
      * }
      */
     public function __construct($data = NULL) {
@@ -79,8 +81,8 @@ class BatchGetAssetsHistoryRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The relative name of the root asset. It can only be an
-     * organization ID (e.g. "organizations/123") or a project ID
-     * (e.g. "projects/12345").
+     * organization number (such as "organizations/123"), or a project id (such as
+     * "projects/my-project-id")"or a project number (such as "projects/12345").
      *
      * Generated from protobuf field <code>string parent = 1;</code>
      * @return string
@@ -92,8 +94,8 @@ class BatchGetAssetsHistoryRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The relative name of the root asset. It can only be an
-     * organization ID (e.g. "organizations/123") or a project ID
-     * (e.g. "projects/12345").
+     * organization number (such as "organizations/123"), or a project id (such as
+     * "projects/my-project-id")"or a project number (such as "projects/12345").
      *
      * Generated from protobuf field <code>string parent = 1;</code>
      * @param string $var
@@ -112,7 +114,8 @@ class BatchGetAssetsHistoryRequest extends \Google\Protobuf\Internal\Message
      * https://cloud.google.com/apis/design/resource_names#full_resource_name
      * Example:
      * "//compute.googleapis.com/projects/my_project_123/zones/zone1/instances/instance1".
-     * The request becomes a no-op if the asset name list is empty.
+     * The request becomes a no-op if the asset name list is empty, and the max
+     * size of the asset name list is 100 in one request.
      *
      * Generated from protobuf field <code>repeated string asset_names = 2;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -127,7 +130,8 @@ class BatchGetAssetsHistoryRequest extends \Google\Protobuf\Internal\Message
      * https://cloud.google.com/apis/design/resource_names#full_resource_name
      * Example:
      * "//compute.googleapis.com/projects/my_project_123/zones/zone1/instances/instance1".
-     * The request becomes a no-op if the asset name list is empty.
+     * The request becomes a no-op if the asset name list is empty, and the max
+     * size of the asset name list is 100 in one request.
      *
      * Generated from protobuf field <code>repeated string asset_names = 2;</code>
      * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
@@ -168,9 +172,9 @@ class BatchGetAssetsHistoryRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The time window for the asset history. The returned results
-     * contain all temporal assets whose time window overlap with
-     * read_time_window.
+     * Required. The time window for the asset history. The start time is
+     * required. The returned results contain all temporal assets whose time
+     * window overlap with read_time_window.
      *
      * Generated from protobuf field <code>.google.cloud.asset.v1beta1.TimeWindow read_time_window = 4;</code>
      * @return \Google\Cloud\Asset\V1beta1\TimeWindow
@@ -181,9 +185,9 @@ class BatchGetAssetsHistoryRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The time window for the asset history. The returned results
-     * contain all temporal assets whose time window overlap with
-     * read_time_window.
+     * Required. The time window for the asset history. The start time is
+     * required. The returned results contain all temporal assets whose time
+     * window overlap with read_time_window.
      *
      * Generated from protobuf field <code>.google.cloud.asset.v1beta1.TimeWindow read_time_window = 4;</code>
      * @param \Google\Cloud\Asset\V1beta1\TimeWindow $var

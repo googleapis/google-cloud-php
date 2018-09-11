@@ -47,11 +47,7 @@ class AssetServiceSmokeTest extends SystemTestCase
             'gcs_destination' => $gcsDestination
         ]);
 
-        $resp = $client->exportAssets('projects/145106218721', $outputConfig);
-        // Currently the service only accepts the numeric id. Change it to the
-        // $projectId as follows:
-        //
-        // $resp = $client->exportAssets("projects/$projectId", $outputConfig);
+        $resp = $client->exportAssets("projects/$projectId", $outputConfig);
         $resp->pollUntilComplete();
 
         $this->assertTrue($resp->operationSucceeded());

@@ -139,6 +139,7 @@ class AssetServiceGapicClient
             'serviceAddress' => self::SERVICE_ADDRESS.':'.self::DEFAULT_SERVICE_PORT,
             'clientConfig' => __DIR__.'/../resources/asset_service_client_config.json',
             'descriptorsConfigPath' => __DIR__.'/../resources/asset_service_descriptor_config.php',
+            'gcpApiConfigPath' => __DIR__.'/../resources/asset_service_grpc_config.json',
             'credentialsConfig' => [
                 'scopes' => self::$serviceScopes,
             ],
@@ -323,7 +324,7 @@ class AssetServiceGapicClient
 
     /**
      * Exports assets with time and resource types to a given Google Cloud Storage
-     * location. The output format is newline delimited JSON.
+     * location. The output format is newline-delimited JSON.
      * This API implements the [google.longrunning.Operation][google.longrunning.Operation] API allowing users
      * to keep track of the export.
      *
@@ -367,25 +368,26 @@ class AssetServiceGapicClient
      * }
      * ```
      *
-     * @param string       $parent       Required. The relative name of the root asset. It can only be an
-     *                                   organization number (e.g. "organizations/123") or a project number
-     *                                   (e.g. "projects/12345").
+     * @param string       $parent       Required. The relative name of the root asset. Can only be an organization
+     *                                   number (such as "organizations/123"), or a project id (such as
+     *                                   "projects/my-project-id") or a project number (such as "projects/12345").
      * @param OutputConfig $outputConfig Required. Output configuration indicating where the results will be output
      *                                   to. All results will be in newline delimited JSON format.
      * @param array        $optionalArgs {
      *                                   Optional.
      *
      *     @type Timestamp $readTime
-     *          Timestamp to take an asset snapshot. This can only be current or past
-     *          time. If not specified, the current time will be used. Due to delays in
-     *          resource data collection and indexing, there is a volatile window during
-     *          which running the same query may get different results.
+     *          Timestamp to take an asset snapshot. This can only be set to a timestamp in
+     *          the past or of the current time. If not specified, the current time will be
+     *          used. Due to delays in resource data collection and indexing, there is a
+     *          volatile window during which running the same query may get different
+     *          results.
      *     @type string[] $assetTypes
-     *          A list of asset types to take a snapshot for. Example:
+     *          A list of asset types of which to take a snapshot for. Example:
      *          "google.compute.disk". If specified, only matching assets will be returned.
-     *     @type int[] $contentTypes
-     *          A list of asset content types. If specified, only matching content will be
-     *          returned. Otherwise, no content but the asset name will be returned.
+     *     @type int $contentType
+     *          Asset content type. If not specified, no content but the asset name will be
+     *          returned.
      *          For allowed values, use constants defined on {@see \Google\Cloud\Asset\V1beta1\ContentType}
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
@@ -410,8 +412,8 @@ class AssetServiceGapicClient
         if (isset($optionalArgs['assetTypes'])) {
             $request->setAssetTypes($optionalArgs['assetTypes']);
         }
-        if (isset($optionalArgs['contentTypes'])) {
-            $request->setContentTypes($optionalArgs['contentTypes']);
+        if (isset($optionalArgs['contentType'])) {
+            $request->setContentType($optionalArgs['contentType']);
         }
 
         return $this->startOperationsCall(
@@ -443,13 +445,13 @@ class AssetServiceGapicClient
      * ```
      *
      * @param string     $parent         Required. The relative name of the root asset. It can only be an
-     *                                   organization ID (e.g. "organizations/123") or a project ID
-     *                                   (e.g. "projects/12345").
+     *                                   organization number (such as "organizations/123"), or a project id (such as
+     *                                   "projects/my-project-id")"or a project number (such as "projects/12345").
      * @param int        $contentType    Required. The content type.
      *                                   For allowed values, use constants defined on {@see \Google\Cloud\Asset\V1beta1\ContentType}
-     * @param TimeWindow $readTimeWindow Required. The time window for the asset history. The returned results
-     *                                   contain all temporal assets whose time window overlap with
-     *                                   read_time_window.
+     * @param TimeWindow $readTimeWindow Required. The time window for the asset history. The start time is
+     *                                   required. The returned results contain all temporal assets whose time
+     *                                   window overlap with read_time_window.
      * @param array      $optionalArgs   {
      *                                   Optional.
      *
@@ -459,7 +461,8 @@ class AssetServiceGapicClient
      *          Example:
      *          "//compute.googleapis.com/projects/my_project_123/zones/zone1/instances/instance1".
      *
-     *          The request becomes a no-op if the asset name list is empty.
+     *          The request becomes a no-op if the asset name list is empty, and the max
+     *          size of the asset name list is 100 in one request.
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array

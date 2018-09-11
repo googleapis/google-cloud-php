@@ -17,14 +17,13 @@ class TimeWindow extends \Google\Protobuf\Internal\Message
 {
     /**
      * Start time of the time window (inclusive).
-     * Infinite past if not specified.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 1;</code>
      */
     private $start_time = null;
     /**
      * End time of the time window (exclusive).
-     * Infinite future if not specified.
+     * Current timestamp if not specified.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp end_time = 2;</code>
      */
@@ -38,10 +37,9 @@ class TimeWindow extends \Google\Protobuf\Internal\Message
      *
      *     @type \Google\Protobuf\Timestamp $start_time
      *           Start time of the time window (inclusive).
-     *           Infinite past if not specified.
      *     @type \Google\Protobuf\Timestamp $end_time
      *           End time of the time window (exclusive).
-     *           Infinite future if not specified.
+     *           Current timestamp if not specified.
      * }
      */
     public function __construct($data = NULL) {
@@ -51,7 +49,6 @@ class TimeWindow extends \Google\Protobuf\Internal\Message
 
     /**
      * Start time of the time window (inclusive).
-     * Infinite past if not specified.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 1;</code>
      * @return \Google\Protobuf\Timestamp
@@ -63,7 +60,6 @@ class TimeWindow extends \Google\Protobuf\Internal\Message
 
     /**
      * Start time of the time window (inclusive).
-     * Infinite past if not specified.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 1;</code>
      * @param \Google\Protobuf\Timestamp $var
@@ -79,7 +75,7 @@ class TimeWindow extends \Google\Protobuf\Internal\Message
 
     /**
      * End time of the time window (exclusive).
-     * Infinite future if not specified.
+     * Current timestamp if not specified.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp end_time = 2;</code>
      * @return \Google\Protobuf\Timestamp
@@ -91,7 +87,7 @@ class TimeWindow extends \Google\Protobuf\Internal\Message
 
     /**
      * End time of the time window (exclusive).
-     * Infinite future if not specified.
+     * Current timestamp if not specified.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp end_time = 2;</code>
      * @param \Google\Protobuf\Timestamp $var
