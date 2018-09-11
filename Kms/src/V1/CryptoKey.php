@@ -31,13 +31,15 @@ class CryptoKey extends \Google\Protobuf\Internal\Message
      * in [EncryptRequest.name][google.cloud.kms.v1.EncryptRequest.name].
      * The [CryptoKey][google.cloud.kms.v1.CryptoKey]'s primary version can be updated via
      * [UpdateCryptoKeyPrimaryVersion][google.cloud.kms.v1.KeyManagementService.UpdateCryptoKeyPrimaryVersion].
+     * All keys with [purpose][google.cloud.kms.v1.CryptoKey.purpose]
+     * [ENCRYPT_DECRYPT][google.cloud.kms.v1.CryptoKey.CryptoKeyPurpose.ENCRYPT_DECRYPT] have a
+     * primary. For other keys, this field will be omitted.
      *
      * Generated from protobuf field <code>.google.cloud.kms.v1.CryptoKeyVersion primary = 2;</code>
      */
     private $primary = null;
     /**
-     * The immutable purpose of this [CryptoKey][google.cloud.kms.v1.CryptoKey]. Currently, the only acceptable
-     * purpose is [ENCRYPT_DECRYPT][google.cloud.kms.v1.CryptoKey.CryptoKeyPurpose.ENCRYPT_DECRYPT].
+     * The immutable purpose of this [CryptoKey][google.cloud.kms.v1.CryptoKey].
      *
      * Generated from protobuf field <code>.google.cloud.kms.v1.CryptoKey.CryptoKeyPurpose purpose = 3;</code>
      */
@@ -56,10 +58,22 @@ class CryptoKey extends \Google\Protobuf\Internal\Message
      * [CreateCryptoKeyVersion][google.cloud.kms.v1.KeyManagementService.CreateCryptoKeyVersion] and
      * [UpdateCryptoKeyPrimaryVersion][google.cloud.kms.v1.KeyManagementService.UpdateCryptoKeyPrimaryVersion]
      * do not affect [next_rotation_time][google.cloud.kms.v1.CryptoKey.next_rotation_time].
+     * Keys with [purpose][google.cloud.kms.v1.CryptoKey.purpose]
+     * [ENCRYPT_DECRYPT][google.cloud.kms.v1.CryptoKey.CryptoKeyPurpose.ENCRYPT_DECRYPT] support
+     * automatic rotation. For other keys, this field must be omitted.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp next_rotation_time = 7;</code>
      */
     private $next_rotation_time = null;
+    /**
+     * A template describing settings for new [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] instances.
+     * The properties of new [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] instances created by either
+     * [CreateCryptoKeyVersion][google.cloud.kms.v1.KeyManagementService.CreateCryptoKeyVersion] or
+     * auto-rotation are controlled by this template.
+     *
+     * Generated from protobuf field <code>.google.cloud.kms.v1.CryptoKeyVersionTemplate version_template = 11;</code>
+     */
+    private $version_template = null;
     /**
      * Labels with user-defined metadata. For more information, see
      * [Labeling Keys](/kms/docs/labeling-keys).
@@ -84,9 +98,11 @@ class CryptoKey extends \Google\Protobuf\Internal\Message
      *           in [EncryptRequest.name][google.cloud.kms.v1.EncryptRequest.name].
      *           The [CryptoKey][google.cloud.kms.v1.CryptoKey]'s primary version can be updated via
      *           [UpdateCryptoKeyPrimaryVersion][google.cloud.kms.v1.KeyManagementService.UpdateCryptoKeyPrimaryVersion].
+     *           All keys with [purpose][google.cloud.kms.v1.CryptoKey.purpose]
+     *           [ENCRYPT_DECRYPT][google.cloud.kms.v1.CryptoKey.CryptoKeyPurpose.ENCRYPT_DECRYPT] have a
+     *           primary. For other keys, this field will be omitted.
      *     @type int $purpose
-     *           The immutable purpose of this [CryptoKey][google.cloud.kms.v1.CryptoKey]. Currently, the only acceptable
-     *           purpose is [ENCRYPT_DECRYPT][google.cloud.kms.v1.CryptoKey.CryptoKeyPurpose.ENCRYPT_DECRYPT].
+     *           The immutable purpose of this [CryptoKey][google.cloud.kms.v1.CryptoKey].
      *     @type \Google\Protobuf\Timestamp $create_time
      *           Output only. The time at which this [CryptoKey][google.cloud.kms.v1.CryptoKey] was created.
      *     @type \Google\Protobuf\Timestamp $next_rotation_time
@@ -97,10 +113,21 @@ class CryptoKey extends \Google\Protobuf\Internal\Message
      *           [CreateCryptoKeyVersion][google.cloud.kms.v1.KeyManagementService.CreateCryptoKeyVersion] and
      *           [UpdateCryptoKeyPrimaryVersion][google.cloud.kms.v1.KeyManagementService.UpdateCryptoKeyPrimaryVersion]
      *           do not affect [next_rotation_time][google.cloud.kms.v1.CryptoKey.next_rotation_time].
+     *           Keys with [purpose][google.cloud.kms.v1.CryptoKey.purpose]
+     *           [ENCRYPT_DECRYPT][google.cloud.kms.v1.CryptoKey.CryptoKeyPurpose.ENCRYPT_DECRYPT] support
+     *           automatic rotation. For other keys, this field must be omitted.
      *     @type \Google\Protobuf\Duration $rotation_period
      *           [next_rotation_time][google.cloud.kms.v1.CryptoKey.next_rotation_time] will be advanced by this period when the service
      *           automatically rotates a key. Must be at least one day.
      *           If [rotation_period][google.cloud.kms.v1.CryptoKey.rotation_period] is set, [next_rotation_time][google.cloud.kms.v1.CryptoKey.next_rotation_time] must also be set.
+     *           Keys with [purpose][google.cloud.kms.v1.CryptoKey.purpose]
+     *           [ENCRYPT_DECRYPT][google.cloud.kms.v1.CryptoKey.CryptoKeyPurpose.ENCRYPT_DECRYPT] support
+     *           automatic rotation. For other keys, this field must be omitted.
+     *     @type \Google\Cloud\Kms\V1\CryptoKeyVersionTemplate $version_template
+     *           A template describing settings for new [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] instances.
+     *           The properties of new [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] instances created by either
+     *           [CreateCryptoKeyVersion][google.cloud.kms.v1.KeyManagementService.CreateCryptoKeyVersion] or
+     *           auto-rotation are controlled by this template.
      *     @type array|\Google\Protobuf\Internal\MapField $labels
      *           Labels with user-defined metadata. For more information, see
      *           [Labeling Keys](/kms/docs/labeling-keys).
@@ -145,6 +172,9 @@ class CryptoKey extends \Google\Protobuf\Internal\Message
      * in [EncryptRequest.name][google.cloud.kms.v1.EncryptRequest.name].
      * The [CryptoKey][google.cloud.kms.v1.CryptoKey]'s primary version can be updated via
      * [UpdateCryptoKeyPrimaryVersion][google.cloud.kms.v1.KeyManagementService.UpdateCryptoKeyPrimaryVersion].
+     * All keys with [purpose][google.cloud.kms.v1.CryptoKey.purpose]
+     * [ENCRYPT_DECRYPT][google.cloud.kms.v1.CryptoKey.CryptoKeyPurpose.ENCRYPT_DECRYPT] have a
+     * primary. For other keys, this field will be omitted.
      *
      * Generated from protobuf field <code>.google.cloud.kms.v1.CryptoKeyVersion primary = 2;</code>
      * @return \Google\Cloud\Kms\V1\CryptoKeyVersion
@@ -160,6 +190,9 @@ class CryptoKey extends \Google\Protobuf\Internal\Message
      * in [EncryptRequest.name][google.cloud.kms.v1.EncryptRequest.name].
      * The [CryptoKey][google.cloud.kms.v1.CryptoKey]'s primary version can be updated via
      * [UpdateCryptoKeyPrimaryVersion][google.cloud.kms.v1.KeyManagementService.UpdateCryptoKeyPrimaryVersion].
+     * All keys with [purpose][google.cloud.kms.v1.CryptoKey.purpose]
+     * [ENCRYPT_DECRYPT][google.cloud.kms.v1.CryptoKey.CryptoKeyPurpose.ENCRYPT_DECRYPT] have a
+     * primary. For other keys, this field will be omitted.
      *
      * Generated from protobuf field <code>.google.cloud.kms.v1.CryptoKeyVersion primary = 2;</code>
      * @param \Google\Cloud\Kms\V1\CryptoKeyVersion $var
@@ -174,8 +207,7 @@ class CryptoKey extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The immutable purpose of this [CryptoKey][google.cloud.kms.v1.CryptoKey]. Currently, the only acceptable
-     * purpose is [ENCRYPT_DECRYPT][google.cloud.kms.v1.CryptoKey.CryptoKeyPurpose.ENCRYPT_DECRYPT].
+     * The immutable purpose of this [CryptoKey][google.cloud.kms.v1.CryptoKey].
      *
      * Generated from protobuf field <code>.google.cloud.kms.v1.CryptoKey.CryptoKeyPurpose purpose = 3;</code>
      * @return int
@@ -186,8 +218,7 @@ class CryptoKey extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The immutable purpose of this [CryptoKey][google.cloud.kms.v1.CryptoKey]. Currently, the only acceptable
-     * purpose is [ENCRYPT_DECRYPT][google.cloud.kms.v1.CryptoKey.CryptoKeyPurpose.ENCRYPT_DECRYPT].
+     * The immutable purpose of this [CryptoKey][google.cloud.kms.v1.CryptoKey].
      *
      * Generated from protobuf field <code>.google.cloud.kms.v1.CryptoKey.CryptoKeyPurpose purpose = 3;</code>
      * @param int $var
@@ -235,6 +266,9 @@ class CryptoKey extends \Google\Protobuf\Internal\Message
      * [CreateCryptoKeyVersion][google.cloud.kms.v1.KeyManagementService.CreateCryptoKeyVersion] and
      * [UpdateCryptoKeyPrimaryVersion][google.cloud.kms.v1.KeyManagementService.UpdateCryptoKeyPrimaryVersion]
      * do not affect [next_rotation_time][google.cloud.kms.v1.CryptoKey.next_rotation_time].
+     * Keys with [purpose][google.cloud.kms.v1.CryptoKey.purpose]
+     * [ENCRYPT_DECRYPT][google.cloud.kms.v1.CryptoKey.CryptoKeyPurpose.ENCRYPT_DECRYPT] support
+     * automatic rotation. For other keys, this field must be omitted.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp next_rotation_time = 7;</code>
      * @return \Google\Protobuf\Timestamp
@@ -252,6 +286,9 @@ class CryptoKey extends \Google\Protobuf\Internal\Message
      * [CreateCryptoKeyVersion][google.cloud.kms.v1.KeyManagementService.CreateCryptoKeyVersion] and
      * [UpdateCryptoKeyPrimaryVersion][google.cloud.kms.v1.KeyManagementService.UpdateCryptoKeyPrimaryVersion]
      * do not affect [next_rotation_time][google.cloud.kms.v1.CryptoKey.next_rotation_time].
+     * Keys with [purpose][google.cloud.kms.v1.CryptoKey.purpose]
+     * [ENCRYPT_DECRYPT][google.cloud.kms.v1.CryptoKey.CryptoKeyPurpose.ENCRYPT_DECRYPT] support
+     * automatic rotation. For other keys, this field must be omitted.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp next_rotation_time = 7;</code>
      * @param \Google\Protobuf\Timestamp $var
@@ -269,6 +306,9 @@ class CryptoKey extends \Google\Protobuf\Internal\Message
      * [next_rotation_time][google.cloud.kms.v1.CryptoKey.next_rotation_time] will be advanced by this period when the service
      * automatically rotates a key. Must be at least one day.
      * If [rotation_period][google.cloud.kms.v1.CryptoKey.rotation_period] is set, [next_rotation_time][google.cloud.kms.v1.CryptoKey.next_rotation_time] must also be set.
+     * Keys with [purpose][google.cloud.kms.v1.CryptoKey.purpose]
+     * [ENCRYPT_DECRYPT][google.cloud.kms.v1.CryptoKey.CryptoKeyPurpose.ENCRYPT_DECRYPT] support
+     * automatic rotation. For other keys, this field must be omitted.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration rotation_period = 8;</code>
      * @return \Google\Protobuf\Duration
@@ -282,6 +322,9 @@ class CryptoKey extends \Google\Protobuf\Internal\Message
      * [next_rotation_time][google.cloud.kms.v1.CryptoKey.next_rotation_time] will be advanced by this period when the service
      * automatically rotates a key. Must be at least one day.
      * If [rotation_period][google.cloud.kms.v1.CryptoKey.rotation_period] is set, [next_rotation_time][google.cloud.kms.v1.CryptoKey.next_rotation_time] must also be set.
+     * Keys with [purpose][google.cloud.kms.v1.CryptoKey.purpose]
+     * [ENCRYPT_DECRYPT][google.cloud.kms.v1.CryptoKey.CryptoKeyPurpose.ENCRYPT_DECRYPT] support
+     * automatic rotation. For other keys, this field must be omitted.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration rotation_period = 8;</code>
      * @param \Google\Protobuf\Duration $var
@@ -291,6 +334,38 @@ class CryptoKey extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Protobuf\Duration::class);
         $this->writeOneof(8, $var);
+
+        return $this;
+    }
+
+    /**
+     * A template describing settings for new [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] instances.
+     * The properties of new [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] instances created by either
+     * [CreateCryptoKeyVersion][google.cloud.kms.v1.KeyManagementService.CreateCryptoKeyVersion] or
+     * auto-rotation are controlled by this template.
+     *
+     * Generated from protobuf field <code>.google.cloud.kms.v1.CryptoKeyVersionTemplate version_template = 11;</code>
+     * @return \Google\Cloud\Kms\V1\CryptoKeyVersionTemplate
+     */
+    public function getVersionTemplate()
+    {
+        return $this->version_template;
+    }
+
+    /**
+     * A template describing settings for new [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] instances.
+     * The properties of new [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] instances created by either
+     * [CreateCryptoKeyVersion][google.cloud.kms.v1.KeyManagementService.CreateCryptoKeyVersion] or
+     * auto-rotation are controlled by this template.
+     *
+     * Generated from protobuf field <code>.google.cloud.kms.v1.CryptoKeyVersionTemplate version_template = 11;</code>
+     * @param \Google\Cloud\Kms\V1\CryptoKeyVersionTemplate $var
+     * @return $this
+     */
+    public function setVersionTemplate($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Kms\V1\CryptoKeyVersionTemplate::class);
+        $this->version_template = $var;
 
         return $this;
     }

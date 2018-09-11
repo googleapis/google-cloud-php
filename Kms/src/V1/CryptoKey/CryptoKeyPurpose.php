@@ -5,9 +5,9 @@
 namespace Google\Cloud\Kms\V1\CryptoKey;
 
 /**
- * [CryptoKeyPurpose][google.cloud.kms.v1.CryptoKey.CryptoKeyPurpose] describes the capabilities of a [CryptoKey][google.cloud.kms.v1.CryptoKey]. Two
- * keys with the same purpose may use different underlying algorithms, but
- * must support the same set of operations.
+ * [CryptoKeyPurpose][google.cloud.kms.v1.CryptoKey.CryptoKeyPurpose] describes the cryptographic capabilities of a
+ * [CryptoKey][google.cloud.kms.v1.CryptoKey]. A given key can only be used for the operations allowed by
+ * its purpose.
  *
  * Protobuf type <code>google.cloud.kms.v1.CryptoKey.CryptoKeyPurpose</code>
  */
@@ -27,6 +27,22 @@ class CryptoKeyPurpose
      * Generated from protobuf enum <code>ENCRYPT_DECRYPT = 1;</code>
      */
     const ENCRYPT_DECRYPT = 1;
+    /**
+     * [CryptoKeys][google.cloud.kms.v1.CryptoKey] with this purpose may be used with
+     * [AsymmetricSign][google.cloud.kms.v1.KeyManagementService.AsymmetricSign] and
+     * [GetPublicKey][google.cloud.kms.v1.KeyManagementService.GetPublicKey].
+     *
+     * Generated from protobuf enum <code>ASYMMETRIC_SIGN = 5;</code>
+     */
+    const ASYMMETRIC_SIGN = 5;
+    /**
+     * [CryptoKeys][google.cloud.kms.v1.CryptoKey] with this purpose may be used with
+     * [AsymmetricDecrypt][google.cloud.kms.v1.KeyManagementService.AsymmetricDecrypt] and
+     * [GetPublicKey][google.cloud.kms.v1.KeyManagementService.GetPublicKey].
+     *
+     * Generated from protobuf enum <code>ASYMMETRIC_DECRYPT = 6;</code>
+     */
+    const ASYMMETRIC_DECRYPT = 6;
 }
 
 // Adding a class alias for backwards compatibility with the previous class name.

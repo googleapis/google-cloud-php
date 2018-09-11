@@ -2,7 +2,7 @@
 // GENERATED CODE -- DO NOT EDIT!
 
 // Original file comments:
-// Copyright 2018 Google Inc.
+// Copyright 2018 Google LLC.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -16,6 +16,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 //
+//
 namespace Google\Cloud\Kms\V1;
 
 /**
@@ -27,6 +28,9 @@ namespace Google\Cloud\Kms\V1;
  * * [KeyRing][google.cloud.kms.v1.KeyRing]
  * * [CryptoKey][google.cloud.kms.v1.CryptoKey]
  * * [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion]
+ *
+ * If you are using manual gRPC libraries, see
+ * [Using gRPC with Cloud KMS](https://cloud.google.com/kms/docs/grpc).
  */
 class KeyManagementServiceGrpcClient extends \Grpc\BaseStub {
 
@@ -125,6 +129,23 @@ class KeyManagementServiceGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
+     * Returns the public key for the given [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion]. The
+     * [CryptoKey.purpose][google.cloud.kms.v1.CryptoKey.purpose] must be
+     * [ASYMMETRIC_SIGN][google.cloud.kms.v1.CryptoKey.CryptoKeyPurpose.ASYMMETRIC_SIGN] or
+     * [ASYMMETRIC_DECRYPT][google.cloud.kms.v1.CryptoKey.CryptoKeyPurpose.ASYMMETRIC_DECRYPT].
+     * @param \Google\Cloud\Kms\V1\GetPublicKeyRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     */
+    public function GetPublicKey(\Google\Cloud\Kms\V1\GetPublicKeyRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.kms.v1.KeyManagementService/GetPublicKey',
+        $argument,
+        ['\Google\Cloud\Kms\V1\PublicKey', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
      * Create a new [KeyRing][google.cloud.kms.v1.KeyRing] in a given Project and Location.
      * @param \Google\Cloud\Kms\V1\CreateKeyRingRequest $argument input argument
      * @param array $metadata metadata
@@ -141,7 +162,9 @@ class KeyManagementServiceGrpcClient extends \Grpc\BaseStub {
     /**
      * Create a new [CryptoKey][google.cloud.kms.v1.CryptoKey] within a [KeyRing][google.cloud.kms.v1.KeyRing].
      *
-     * [CryptoKey.purpose][google.cloud.kms.v1.CryptoKey.purpose] is required.
+     * [CryptoKey.purpose][google.cloud.kms.v1.CryptoKey.purpose] and
+     * [CryptoKey.version_template.algorithm][google.cloud.kms.v1.CryptoKeyVersionTemplate.algorithm]
+     * are required.
      * @param \Google\Cloud\Kms\V1\CreateCryptoKeyRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -208,6 +231,8 @@ class KeyManagementServiceGrpcClient extends \Grpc\BaseStub {
 
     /**
      * Encrypts data, so that it can only be recovered by a call to [Decrypt][google.cloud.kms.v1.KeyManagementService.Decrypt].
+     * The [CryptoKey.purpose][google.cloud.kms.v1.CryptoKey.purpose] must be
+     * [ENCRYPT_DECRYPT][google.cloud.kms.v1.CryptoKey.CryptoKeyPurpose.ENCRYPT_DECRYPT].
      * @param \Google\Cloud\Kms\V1\EncryptRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -221,7 +246,8 @@ class KeyManagementServiceGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * Decrypts data that was protected by [Encrypt][google.cloud.kms.v1.KeyManagementService.Encrypt].
+     * Decrypts data that was protected by [Encrypt][google.cloud.kms.v1.KeyManagementService.Encrypt]. The [CryptoKey.purpose][google.cloud.kms.v1.CryptoKey.purpose]
+     * must be [ENCRYPT_DECRYPT][google.cloud.kms.v1.CryptoKey.CryptoKeyPurpose.ENCRYPT_DECRYPT].
      * @param \Google\Cloud\Kms\V1\DecryptRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -235,7 +261,41 @@ class KeyManagementServiceGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * Update the version of a [CryptoKey][google.cloud.kms.v1.CryptoKey] that will be used in [Encrypt][google.cloud.kms.v1.KeyManagementService.Encrypt]
+     * Signs data using a [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] with [CryptoKey.purpose][google.cloud.kms.v1.CryptoKey.purpose]
+     * ASYMMETRIC_SIGN, producing a signature that can be verified with the public
+     * key retrieved from [GetPublicKey][google.cloud.kms.v1.KeyManagementService.GetPublicKey].
+     * @param \Google\Cloud\Kms\V1\AsymmetricSignRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     */
+    public function AsymmetricSign(\Google\Cloud\Kms\V1\AsymmetricSignRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.kms.v1.KeyManagementService/AsymmetricSign',
+        $argument,
+        ['\Google\Cloud\Kms\V1\AsymmetricSignResponse', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Decrypts data that was encrypted with a public key retrieved from
+     * [GetPublicKey][google.cloud.kms.v1.KeyManagementService.GetPublicKey] corresponding to a [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] with
+     * [CryptoKey.purpose][google.cloud.kms.v1.CryptoKey.purpose] ASYMMETRIC_DECRYPT.
+     * @param \Google\Cloud\Kms\V1\AsymmetricDecryptRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     */
+    public function AsymmetricDecrypt(\Google\Cloud\Kms\V1\AsymmetricDecryptRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.kms.v1.KeyManagementService/AsymmetricDecrypt',
+        $argument,
+        ['\Google\Cloud\Kms\V1\AsymmetricDecryptResponse', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Update the version of a [CryptoKey][google.cloud.kms.v1.CryptoKey] that will be used in [Encrypt][google.cloud.kms.v1.KeyManagementService.Encrypt].
+     *
+     * Returns an error if called on an asymmetric key.
      * @param \Google\Cloud\Kms\V1\UpdateCryptoKeyPrimaryVersionRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -275,7 +335,7 @@ class KeyManagementServiceGrpcClient extends \Grpc\BaseStub {
 
     /**
      * Restore a [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] in the
-     * [DESTROY_SCHEDULED][google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionState.DESTROY_SCHEDULED],
+     * [DESTROY_SCHEDULED][google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionState.DESTROY_SCHEDULED]
      * state.
      *
      * Upon restoration of the CryptoKeyVersion, [state][google.cloud.kms.v1.CryptoKeyVersion.state]

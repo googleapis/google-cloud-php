@@ -39,6 +39,12 @@ class ListCryptoKeyVersionsRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string page_token = 3;</code>
      */
     private $page_token = '';
+    /**
+     * The fields to include in the response.
+     *
+     * Generated from protobuf field <code>.google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionView view = 4;</code>
+     */
+    private $view = 0;
 
     /**
      * Constructor.
@@ -58,6 +64,8 @@ class ListCryptoKeyVersionsRequest extends \Google\Protobuf\Internal\Message
      *     @type string $page_token
      *           Optional pagination token, returned earlier via
      *           [ListCryptoKeyVersionsResponse.next_page_token][google.cloud.kms.v1.ListCryptoKeyVersionsResponse.next_page_token].
+     *     @type int $view
+     *           The fields to include in the response.
      * }
      */
     public function __construct($data = NULL) {
@@ -151,6 +159,32 @@ class ListCryptoKeyVersionsRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->page_token = $var;
+
+        return $this;
+    }
+
+    /**
+     * The fields to include in the response.
+     *
+     * Generated from protobuf field <code>.google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionView view = 4;</code>
+     * @return int
+     */
+    public function getView()
+    {
+        return $this->view;
+    }
+
+    /**
+     * The fields to include in the response.
+     *
+     * Generated from protobuf field <code>.google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionView view = 4;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setView($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\Kms\V1\CryptoKeyVersion_CryptoKeyVersionView::class);
+        $this->view = $var;
 
         return $this;
     }

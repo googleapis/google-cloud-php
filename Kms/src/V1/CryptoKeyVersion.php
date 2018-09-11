@@ -11,13 +11,12 @@ use Google\Protobuf\Internal\GPBUtil;
 /**
  * A [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] represents an individual cryptographic key, and the
  * associated key material.
- * It can be used for cryptographic operations either directly, or via its
- * parent [CryptoKey][google.cloud.kms.v1.CryptoKey], in which case the server will choose the appropriate
- * version for the operation.
+ * An [ENABLED][google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionState.ENABLED] version can be
+ * used for cryptographic operations.
  * For security reasons, the raw cryptographic key material represented by a
  * [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] can never be viewed or exported. It can only be used to
- * encrypt or decrypt data when an authorized user or application invokes Cloud
- * KMS.
+ * encrypt, decrypt, or sign data when an authorized user or application invokes
+ * Cloud KMS.
  *
  * Generated from protobuf message <code>google.cloud.kms.v1.CryptoKeyVersion</code>
  */
@@ -37,11 +36,41 @@ class CryptoKeyVersion extends \Google\Protobuf\Internal\Message
      */
     private $state = 0;
     /**
+     * Output only. The [ProtectionLevel][google.cloud.kms.v1.ProtectionLevel] describing how crypto operations are
+     * performed with this [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion].
+     *
+     * Generated from protobuf field <code>.google.cloud.kms.v1.ProtectionLevel protection_level = 7;</code>
+     */
+    private $protection_level = 0;
+    /**
+     * Output only. The [CryptoKeyVersionAlgorithm][google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionAlgorithm] that this
+     * [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] supports.
+     *
+     * Generated from protobuf field <code>.google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionAlgorithm algorithm = 10;</code>
+     */
+    private $algorithm = 0;
+    /**
+     * Output only. Statement that was generated and signed by the HSM at key
+     * creation time. Use this statement to verify attributes of the key as stored
+     * on the HSM, independently of Google. Only provided for key versions with
+     * [protection_level][google.cloud.kms.v1.CryptoKeyVersion.protection_level] [HSM][google.cloud.kms.v1.ProtectionLevel.HSM].
+     *
+     * Generated from protobuf field <code>.google.cloud.kms.v1.KeyOperationAttestation attestation = 8;</code>
+     */
+    private $attestation = null;
+    /**
      * Output only. The time at which this [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] was created.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 4;</code>
      */
     private $create_time = null;
+    /**
+     * Output only. The time this [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion]'s key material was
+     * generated.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp generate_time = 11;</code>
+     */
+    private $generate_time = null;
     /**
      * Output only. The time this [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion]'s key material is scheduled
      * for destruction. Only present if [state][google.cloud.kms.v1.CryptoKeyVersion.state] is
@@ -70,8 +99,22 @@ class CryptoKeyVersion extends \Google\Protobuf\Internal\Message
      *           `projects/&#42;&#47;locations/&#42;&#47;keyRings/&#42;&#47;cryptoKeys/&#42;&#47;cryptoKeyVersions/&#42;`.
      *     @type int $state
      *           The current state of the [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion].
+     *     @type int $protection_level
+     *           Output only. The [ProtectionLevel][google.cloud.kms.v1.ProtectionLevel] describing how crypto operations are
+     *           performed with this [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion].
+     *     @type int $algorithm
+     *           Output only. The [CryptoKeyVersionAlgorithm][google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionAlgorithm] that this
+     *           [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] supports.
+     *     @type \Google\Cloud\Kms\V1\KeyOperationAttestation $attestation
+     *           Output only. Statement that was generated and signed by the HSM at key
+     *           creation time. Use this statement to verify attributes of the key as stored
+     *           on the HSM, independently of Google. Only provided for key versions with
+     *           [protection_level][google.cloud.kms.v1.CryptoKeyVersion.protection_level] [HSM][google.cloud.kms.v1.ProtectionLevel.HSM].
      *     @type \Google\Protobuf\Timestamp $create_time
      *           Output only. The time at which this [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] was created.
+     *     @type \Google\Protobuf\Timestamp $generate_time
+     *           Output only. The time this [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion]'s key material was
+     *           generated.
      *     @type \Google\Protobuf\Timestamp $destroy_time
      *           Output only. The time this [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion]'s key material is scheduled
      *           for destruction. Only present if [state][google.cloud.kms.v1.CryptoKeyVersion.state] is
@@ -142,6 +185,94 @@ class CryptoKeyVersion extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Output only. The [ProtectionLevel][google.cloud.kms.v1.ProtectionLevel] describing how crypto operations are
+     * performed with this [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion].
+     *
+     * Generated from protobuf field <code>.google.cloud.kms.v1.ProtectionLevel protection_level = 7;</code>
+     * @return int
+     */
+    public function getProtectionLevel()
+    {
+        return $this->protection_level;
+    }
+
+    /**
+     * Output only. The [ProtectionLevel][google.cloud.kms.v1.ProtectionLevel] describing how crypto operations are
+     * performed with this [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion].
+     *
+     * Generated from protobuf field <code>.google.cloud.kms.v1.ProtectionLevel protection_level = 7;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setProtectionLevel($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\Kms\V1\ProtectionLevel::class);
+        $this->protection_level = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The [CryptoKeyVersionAlgorithm][google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionAlgorithm] that this
+     * [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] supports.
+     *
+     * Generated from protobuf field <code>.google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionAlgorithm algorithm = 10;</code>
+     * @return int
+     */
+    public function getAlgorithm()
+    {
+        return $this->algorithm;
+    }
+
+    /**
+     * Output only. The [CryptoKeyVersionAlgorithm][google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionAlgorithm] that this
+     * [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] supports.
+     *
+     * Generated from protobuf field <code>.google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionAlgorithm algorithm = 10;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setAlgorithm($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\Kms\V1\CryptoKeyVersion_CryptoKeyVersionAlgorithm::class);
+        $this->algorithm = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Statement that was generated and signed by the HSM at key
+     * creation time. Use this statement to verify attributes of the key as stored
+     * on the HSM, independently of Google. Only provided for key versions with
+     * [protection_level][google.cloud.kms.v1.CryptoKeyVersion.protection_level] [HSM][google.cloud.kms.v1.ProtectionLevel.HSM].
+     *
+     * Generated from protobuf field <code>.google.cloud.kms.v1.KeyOperationAttestation attestation = 8;</code>
+     * @return \Google\Cloud\Kms\V1\KeyOperationAttestation
+     */
+    public function getAttestation()
+    {
+        return $this->attestation;
+    }
+
+    /**
+     * Output only. Statement that was generated and signed by the HSM at key
+     * creation time. Use this statement to verify attributes of the key as stored
+     * on the HSM, independently of Google. Only provided for key versions with
+     * [protection_level][google.cloud.kms.v1.CryptoKeyVersion.protection_level] [HSM][google.cloud.kms.v1.ProtectionLevel.HSM].
+     *
+     * Generated from protobuf field <code>.google.cloud.kms.v1.KeyOperationAttestation attestation = 8;</code>
+     * @param \Google\Cloud\Kms\V1\KeyOperationAttestation $var
+     * @return $this
+     */
+    public function setAttestation($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Kms\V1\KeyOperationAttestation::class);
+        $this->attestation = $var;
+
+        return $this;
+    }
+
+    /**
      * Output only. The time at which this [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] was created.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 4;</code>
@@ -163,6 +294,34 @@ class CryptoKeyVersion extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
         $this->create_time = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The time this [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion]'s key material was
+     * generated.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp generate_time = 11;</code>
+     * @return \Google\Protobuf\Timestamp
+     */
+    public function getGenerateTime()
+    {
+        return $this->generate_time;
+    }
+
+    /**
+     * Output only. The time this [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion]'s key material was
+     * generated.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp generate_time = 11;</code>
+     * @param \Google\Protobuf\Timestamp $var
+     * @return $this
+     */
+    public function setGenerateTime($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
+        $this->generate_time = $var;
 
         return $this;
     }
