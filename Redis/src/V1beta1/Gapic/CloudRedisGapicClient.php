@@ -505,7 +505,7 @@ class CloudRedisGapicClient
      * try {
      *     $formattedParent = $cloudRedisClient->locationName('[PROJECT]', '[LOCATION]');
      *     $instanceId = 'test_instance';
-     *     $tier = Instance_Tier::BASIC;
+     *     $tier = Tier::BASIC;
      *     $memorySizeGb = 1;
      *     $instance = new Instance();
      *     $instance->setTier($tier);

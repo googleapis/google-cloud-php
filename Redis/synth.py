@@ -70,3 +70,9 @@ s.replace(
     'src/*/*_*.php',
     r'will be removed in the next major release',
     'will be removed in a future release')
+# Use new namespace in the doc sample. See
+# https://github.com/googleapis/gapic-generator/issues/2141
+s.replace(
+    'src/**/Gapic/CloudRedisGapicClient.php',
+    r'Instance_Tier',
+    'Tier')
