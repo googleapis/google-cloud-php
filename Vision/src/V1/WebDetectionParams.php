@@ -22,9 +22,19 @@ class WebDetectionParams extends \Google\Protobuf\Internal\Message
      */
     private $include_geo_results = false;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type bool $include_geo_results
+     *           Whether to include results derived from the geo information in the image.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Vision\V1\ImageAnnotator::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

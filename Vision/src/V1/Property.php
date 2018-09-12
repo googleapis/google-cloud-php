@@ -34,9 +34,23 @@ class Property extends \Google\Protobuf\Internal\Message
      */
     private $uint64_value = 0;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $name
+     *           Name of the property.
+     *     @type string $value
+     *           Value of the property.
+     *     @type int|string $uint64_value
+     *           Value of numeric properties.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Vision\V1\ImageAnnotator::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

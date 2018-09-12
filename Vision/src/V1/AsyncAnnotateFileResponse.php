@@ -22,9 +22,19 @@ class AsyncAnnotateFileResponse extends \Google\Protobuf\Internal\Message
      */
     private $output_config = null;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type \Google\Cloud\Vision\V1\OutputConfig $output_config
+     *           The output location and metadata from AsyncAnnotateFileRequest.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Vision\V1\ImageAnnotator::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

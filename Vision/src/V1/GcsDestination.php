@@ -33,9 +33,30 @@ class GcsDestination extends \Google\Protobuf\Internal\Message
      */
     private $uri = '';
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $uri
+     *           Google Cloud Storage URI where the results will be stored. Results will
+     *           be in JSON format and preceded by its corresponding input URI. This field
+     *           can either represent a single file, or a prefix for multiple outputs.
+     *           Prefixes must end in a `/`.
+     *           Examples:
+     *           *    File: gs://bucket-name/filename.json
+     *           *    Prefix: gs://bucket-name/prefix/here/
+     *           *    File: gs://bucket-name/prefix/here
+     *           If multiple outputs, each response is still AnnotateFileResponse, each of
+     *           which contains some subset of the full list of AnnotateImageResponse.
+     *           Multiple outputs can happen if, for example, the output JSON is too large
+     *           and overflows into multiple sharded files.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Vision\V1\ImageAnnotator::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

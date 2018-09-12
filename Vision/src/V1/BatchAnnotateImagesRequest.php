@@ -22,9 +22,19 @@ class BatchAnnotateImagesRequest extends \Google\Protobuf\Internal\Message
      */
     private $requests;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type \Google\Cloud\Vision\V1\AnnotateImageRequest[]|\Google\Protobuf\Internal\RepeatedField $requests
+     *           Individual image annotation requests for this batch.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Vision\V1\ImageAnnotator::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

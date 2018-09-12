@@ -4,42 +4,13 @@
 
 namespace Google\Cloud\Vision\V1;
 
-/**
- * Batch operation states.
- *
- * Protobuf enum <code>Google\Cloud\Vision\V1\OperationMetadata\State</code>
- */
-class OperationMetadata_State
-{
+if (false) {
     /**
-     * Invalid.
-     *
-     * Generated from protobuf enum <code>STATE_UNSPECIFIED = 0;</code>
+     * This class is deprecated. Use Google\Cloud\Vision\V1\OperationMetadata\State instead.
+     * @deprecated
      */
-    const STATE_UNSPECIFIED = 0;
-    /**
-     * Request is received.
-     *
-     * Generated from protobuf enum <code>CREATED = 1;</code>
-     */
-    const CREATED = 1;
-    /**
-     * Request is actively being processed.
-     *
-     * Generated from protobuf enum <code>RUNNING = 2;</code>
-     */
-    const RUNNING = 2;
-    /**
-     * The batch processing is done.
-     *
-     * Generated from protobuf enum <code>DONE = 3;</code>
-     */
-    const DONE = 3;
-    /**
-     * The batch processing was cancelled.
-     *
-     * Generated from protobuf enum <code>CANCELLED = 4;</code>
-     */
-    const CANCELLED = 4;
+    class OperationMetadata_State {}
 }
+class_exists(OperationMetadata\State::class);
+@trigger_error('Google\Cloud\Vision\V1\OperationMetadata_State is deprecated and will be removed in a future release. Use Google\Cloud\Vision\V1\OperationMetadata\State instead', E_USER_DEPRECATED);
 

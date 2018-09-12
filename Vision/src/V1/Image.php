@@ -32,9 +32,25 @@ class Image extends \Google\Protobuf\Internal\Message
      */
     private $source = null;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $content
+     *           Image content, represented as a stream of bytes.
+     *           Note: As with all `bytes` fields, protobuffers use a pure binary
+     *           representation, whereas JSON representations use base64.
+     *     @type \Google\Cloud\Vision\V1\ImageSource $source
+     *           Google Cloud Storage image location, or publicly-accessible image
+     *           URL. If both `content` and `source` are provided for an image, `content`
+     *           takes precedence and is used to perform the image annotation request.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Vision\V1\ImageAnnotator::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

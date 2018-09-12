@@ -29,9 +29,21 @@ class Vertex extends \Google\Protobuf\Internal\Message
      */
     private $y = 0;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type int $x
+     *           X coordinate.
+     *     @type int $y
+     *           Y coordinate.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Vision\V1\Geometry::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

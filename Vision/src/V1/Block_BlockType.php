@@ -4,48 +4,13 @@
 
 namespace Google\Cloud\Vision\V1;
 
-/**
- * Type of a block (text, image etc) as identified by OCR.
- *
- * Protobuf enum <code>Google\Cloud\Vision\V1\Block\BlockType</code>
- */
-class Block_BlockType
-{
+if (false) {
     /**
-     * Unknown block type.
-     *
-     * Generated from protobuf enum <code>UNKNOWN = 0;</code>
+     * This class is deprecated. Use Google\Cloud\Vision\V1\Block\BlockType instead.
+     * @deprecated
      */
-    const UNKNOWN = 0;
-    /**
-     * Regular text block.
-     *
-     * Generated from protobuf enum <code>TEXT = 1;</code>
-     */
-    const TEXT = 1;
-    /**
-     * Table block.
-     *
-     * Generated from protobuf enum <code>TABLE = 2;</code>
-     */
-    const TABLE = 2;
-    /**
-     * Image block.
-     *
-     * Generated from protobuf enum <code>PICTURE = 3;</code>
-     */
-    const PICTURE = 3;
-    /**
-     * Horizontal/vertical line box.
-     *
-     * Generated from protobuf enum <code>RULER = 4;</code>
-     */
-    const RULER = 4;
-    /**
-     * Barcode block.
-     *
-     * Generated from protobuf enum <code>BARCODE = 5;</code>
-     */
-    const BARCODE = 5;
+    class Block_BlockType {}
 }
+class_exists(Block\BlockType::class);
+@trigger_error('Google\Cloud\Vision\V1\Block_BlockType is deprecated and will be removed in a future release. Use Google\Cloud\Vision\V1\Block\BlockType instead', E_USER_DEPRECATED);
 

@@ -39,9 +39,26 @@ class Feature extends \Google\Protobuf\Internal\Message
      */
     private $model = '';
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type int $type
+     *           The feature type.
+     *     @type int $max_results
+     *           Maximum number of results of this type. Does not apply to
+     *           `TEXT_DETECTION`, `DOCUMENT_TEXT_DETECTION`, or `CROP_HINTS`.
+     *     @type string $model
+     *           Model to use for the feature.
+     *           Supported values: "builtin/stable" (the default if unset) and
+     *           "builtin/latest".
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Vision\V1\ImageAnnotator::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

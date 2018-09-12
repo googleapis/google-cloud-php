@@ -8,7 +8,7 @@ namespace Google\Cloud\Vision\V1;
  * A bucketized representation of likelihood, which is intended to give clients
  * highly stable results across model upgrades.
  *
- * Protobuf enum <code>Google\Cloud\Vision\V1\Likelihood</code>
+ * Protobuf type <code>google.cloud.vision.v1.Likelihood</code>
  */
 class Likelihood
 {

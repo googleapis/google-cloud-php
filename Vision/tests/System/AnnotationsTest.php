@@ -87,7 +87,8 @@ class AnnotationsTest extends VisionTestCase
         $this->assertInstanceOf(WebEntity::class, $res->web()->entities()[0]);
 
         $desc = array_filter($res->web()->entities(), function ($e) {
-            return ($e->description() === 'Eiffel Tower');
+            return (in_array('description', $e->info())
+                    && $e->description() === 'Eiffel Tower');
         });
         $this->assertGreaterThan(0, $desc);
 

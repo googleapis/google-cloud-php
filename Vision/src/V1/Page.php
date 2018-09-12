@@ -48,16 +48,36 @@ class Page extends \Google\Protobuf\Internal\Message
      */
     private $confidence = 0.0;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type \Google\Cloud\Vision\V1\TextAnnotation\TextProperty $property
+     *           Additional information detected on the page.
+     *     @type int $width
+     *           Page width. For PDFs the unit is points. For images (including
+     *           TIFFs) the unit is pixels.
+     *     @type int $height
+     *           Page height. For PDFs the unit is points. For images (including
+     *           TIFFs) the unit is pixels.
+     *     @type \Google\Cloud\Vision\V1\Block[]|\Google\Protobuf\Internal\RepeatedField $blocks
+     *           List of blocks of text, images etc on this page.
+     *     @type float $confidence
+     *           Confidence of the OCR results on the page. Range [0, 1].
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Vision\V1\TextAnnotation::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**
      * Additional information detected on the page.
      *
      * Generated from protobuf field <code>.google.cloud.vision.v1.TextAnnotation.TextProperty property = 1;</code>
-     * @return \Google\Cloud\Vision\V1\TextAnnotation_TextProperty
+     * @return \Google\Cloud\Vision\V1\TextAnnotation\TextProperty
      */
     public function getProperty()
     {
@@ -68,7 +88,7 @@ class Page extends \Google\Protobuf\Internal\Message
      * Additional information detected on the page.
      *
      * Generated from protobuf field <code>.google.cloud.vision.v1.TextAnnotation.TextProperty property = 1;</code>
-     * @param \Google\Cloud\Vision\V1\TextAnnotation_TextProperty $var
+     * @param \Google\Cloud\Vision\V1\TextAnnotation\TextProperty $var
      * @return $this
      */
     public function setProperty($var)

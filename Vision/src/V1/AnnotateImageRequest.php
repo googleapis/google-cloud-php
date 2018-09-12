@@ -35,9 +35,23 @@ class AnnotateImageRequest extends \Google\Protobuf\Internal\Message
      */
     private $image_context = null;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type \Google\Cloud\Vision\V1\Image $image
+     *           The image to be processed.
+     *     @type \Google\Cloud\Vision\V1\Feature[]|\Google\Protobuf\Internal\RepeatedField $features
+     *           Requested features.
+     *     @type \Google\Cloud\Vision\V1\ImageContext $image_context
+     *           Additional context that may accompany the image.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Vision\V1\ImageAnnotator::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

@@ -28,9 +28,21 @@ class BoundingPoly extends \Google\Protobuf\Internal\Message
      */
     private $normalized_vertices;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type \Google\Cloud\Vision\V1\Vertex[]|\Google\Protobuf\Internal\RepeatedField $vertices
+     *           The bounding polygon vertices.
+     *     @type \Google\Cloud\Vision\V1\NormalizedVertex[]|\Google\Protobuf\Internal\RepeatedField $normalized_vertices
+     *           The bounding polygon normalized vertices.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Vision\V1\Geometry::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

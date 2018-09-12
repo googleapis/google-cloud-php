@@ -29,9 +29,22 @@ class InputConfig extends \Google\Protobuf\Internal\Message
      */
     private $mime_type = '';
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type \Google\Cloud\Vision\V1\GcsSource $gcs_source
+     *           The Google Cloud Storage location to read the input from.
+     *     @type string $mime_type
+     *           The type of the file. Currently only "application/pdf" and "image/tiff"
+     *           are supported. Wildcards are not supported.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Vision\V1\ImageAnnotator::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

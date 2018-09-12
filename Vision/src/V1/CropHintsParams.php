@@ -27,9 +27,24 @@ class CropHintsParams extends \Google\Protobuf\Internal\Message
      */
     private $aspect_ratios;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type float[]|\Google\Protobuf\Internal\RepeatedField $aspect_ratios
+     *           Aspect ratios in floats, representing the ratio of the width to the height
+     *           of the image. For example, if the desired aspect ratio is 4/3, the
+     *           corresponding float value should be 1.33333.  If not specified, the
+     *           best possible crop is returned. The number of provided aspect ratios is
+     *           limited to a maximum of 16; any aspect ratios provided after the 16th are
+     *           ignored.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Vision\V1\ImageAnnotator::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

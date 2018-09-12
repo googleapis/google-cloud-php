@@ -55,9 +55,34 @@ class SafeSearchAnnotation extends \Google\Protobuf\Internal\Message
      */
     private $racy = 0;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type int $adult
+     *           Represents the adult content likelihood for the image. Adult content may
+     *           contain elements such as nudity, pornographic images or cartoons, or
+     *           sexual activities.
+     *     @type int $spoof
+     *           Spoof likelihood. The likelihood that an modification
+     *           was made to the image's canonical version to make it appear
+     *           funny or offensive.
+     *     @type int $medical
+     *           Likelihood that this is a medical image.
+     *     @type int $violence
+     *           Likelihood that this image contains violent content.
+     *     @type int $racy
+     *           Likelihood that the request image contains racy content. Racy content may
+     *           include (but is not limited to) skimpy or sheer clothing, strategically
+     *           covered nudity, lewd or provocative poses, or close-ups of sensitive
+     *           body areas.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Vision\V1\ImageAnnotator::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**
