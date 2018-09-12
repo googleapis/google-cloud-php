@@ -39,7 +39,7 @@ class StreamingRecognizeRequest extends \Google\Protobuf\Internal\Message
      *           `audio_content` data. The audio bytes must be encoded as specified in
      *           `RecognitionConfig`. Note: as with all bytes fields, protobuffers use a
      *           pure binary representation (not base64). See
-     *           [audio limits](https://cloud.google.com/speech/limits#content).
+     *           [content limits](/speech-to-text/quotas#content).
      * }
      */
     public function __construct($data = NULL) {
@@ -85,7 +85,7 @@ class StreamingRecognizeRequest extends \Google\Protobuf\Internal\Message
      * `audio_content` data. The audio bytes must be encoded as specified in
      * `RecognitionConfig`. Note: as with all bytes fields, protobuffers use a
      * pure binary representation (not base64). See
-     * [audio limits](https://cloud.google.com/speech/limits#content).
+     * [content limits](/speech-to-text/quotas#content).
      *
      * Generated from protobuf field <code>bytes audio_content = 2;</code>
      * @return string
@@ -103,7 +103,7 @@ class StreamingRecognizeRequest extends \Google\Protobuf\Internal\Message
      * `audio_content` data. The audio bytes must be encoded as specified in
      * `RecognitionConfig`. Note: as with all bytes fields, protobuffers use a
      * pure binary representation (not base64). See
-     * [audio limits](https://cloud.google.com/speech/limits#content).
+     * [content limits](/speech-to-text/quotas#content).
      *
      * Generated from protobuf field <code>bytes audio_content = 2;</code>
      * @param string $var

@@ -18,7 +18,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class RecognizeResponse extends \Google\Protobuf\Internal\Message
 {
     /**
-     * *Output-only* Sequential list of transcription results corresponding to
+     * Output only. Sequential list of transcription results corresponding to
      * sequential portions of audio.
      *
      * Generated from protobuf field <code>repeated .google.cloud.speech.v1.SpeechRecognitionResult results = 2;</code>
@@ -32,7 +32,7 @@ class RecognizeResponse extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\Speech\V1\SpeechRecognitionResult[]|\Google\Protobuf\Internal\RepeatedField $results
-     *           *Output-only* Sequential list of transcription results corresponding to
+     *           Output only. Sequential list of transcription results corresponding to
      *           sequential portions of audio.
      * }
      */
@@ -42,7 +42,7 @@ class RecognizeResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * *Output-only* Sequential list of transcription results corresponding to
+     * Output only. Sequential list of transcription results corresponding to
      * sequential portions of audio.
      *
      * Generated from protobuf field <code>repeated .google.cloud.speech.v1.SpeechRecognitionResult results = 2;</code>
@@ -54,7 +54,7 @@ class RecognizeResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * *Output-only* Sequential list of transcription results corresponding to
+     * Output only. Sequential list of transcription results corresponding to
      * sequential portions of audio.
      *
      * Generated from protobuf field <code>repeated .google.cloud.speech.v1.SpeechRecognitionResult results = 2;</code>
