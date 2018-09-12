@@ -227,7 +227,7 @@
             "name": "google/cloud-core",
             "defaultService": "core/servicebuilder",
             "versions": [
-                "v1.24.0",
+                "v1.23.3",
                 "v1.23.2",
                 "v1.23.1",
                 "v1.23.0",
@@ -313,7 +313,7 @@
             "name": "google/cloud-datastore",
             "defaultService": "datastore/datastoreclient",
             "versions": [
-                "v1.6.0",
+                "v1.5.7",
                 "v1.5.6",
                 "v1.5.5",
                 "v1.5.4",
@@ -849,7 +849,7 @@
             "name": "google/cloud-storage",
             "defaultService": "storage/storageclient",
             "versions": [
-                "v1.8.0",
+                "v1.7.2",
                 "v1.7.1",
                 "v1.7.0",
                 "v1.6.0",
