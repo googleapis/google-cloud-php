@@ -11,6 +11,7 @@
             "name": "google/cloud",
             "defaultService": "servicebuilder",
             "versions": [
+                "v0.77.0",
                 "v0.76.1",
                 "v0.76.0",
                 "v0.75.0",
@@ -226,6 +227,7 @@
             "name": "google/cloud-core",
             "defaultService": "core/servicebuilder",
             "versions": [
+                "v1.23.3",
                 "v1.23.2",
                 "v1.23.1",
                 "v1.23.0",
@@ -311,6 +313,7 @@
             "name": "google/cloud-datastore",
             "defaultService": "datastore/datastoreclient",
             "versions": [
+                "v1.5.7",
                 "v1.5.6",
                 "v1.5.5",
                 "v1.5.4",
@@ -521,6 +524,7 @@
             "name": "google/cloud-kms",
             "defaultService": "kms/readme",
             "versions": [
+                "v0.3.0",
                 "v0.2.3",
                 "v0.2.2",
                 "v0.2.1",
@@ -735,6 +739,7 @@
             "name": "google/cloud-redis",
             "defaultService": "redis/readme",
             "versions": [
+                "v0.4.0",
                 "v0.3.5",
                 "v0.3.4",
                 "v0.3.3",
@@ -802,6 +807,7 @@
             "name": "google/cloud-speech",
             "defaultService": "speech/speechclient",
             "versions": [
+                "v0.17.0",
                 "v0.16.2",
                 "v0.16.1",
                 "v0.16.0",
@@ -843,6 +849,7 @@
             "name": "google/cloud-storage",
             "defaultService": "storage/storageclient",
             "versions": [
+                "v1.7.2",
                 "v1.7.1",
                 "v1.7.0",
                 "v1.6.0",
@@ -996,6 +1003,7 @@
             "name": "google/cloud-vision",
             "defaultService": "vision/visionclient",
             "versions": [
+                "v0.16.0",
                 "v0.15.4",
                 "v0.15.3",
                 "v0.15.2",
