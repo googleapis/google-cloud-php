@@ -114,6 +114,14 @@
             ]
         },
         {
+            "id": "cloud-asset",
+            "name": "google/cloud-asset",
+            "defaultService": "asset/readme",
+            "versions": [
+                "master"
+            ]
+        },
+        {
             "id": "cloud-bigquery",
             "name": "google/cloud-bigquery",
             "defaultService": "bigquery/bigqueryclient",
