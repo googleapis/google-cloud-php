@@ -144,6 +144,7 @@ class BigtableTableAdminGapicClient
             'serviceAddress' => self::SERVICE_ADDRESS.':'.self::DEFAULT_SERVICE_PORT,
             'clientConfig' => __DIR__.'/../resources/bigtable_table_admin_client_config.json',
             'descriptorsConfigPath' => __DIR__.'/../resources/bigtable_table_admin_descriptor_config.php',
+            'gcpApiConfigPath' => __DIR__.'/../resources/bigtable_table_admin_grpc_config.json',
             'credentialsConfig' => [
                 'scopes' => self::$serviceScopes,
             ],
@@ -637,6 +638,9 @@ class BigtableTableAdminGapicClient
      *          The view to be applied to the returned tables' fields.
      *          Defaults to `NAME_ONLY` if unspecified; no others are currently supported.
      *          For allowed values, use constants defined on {@see \Google\Cloud\Bigtable\Admin\V2\Table\View}
+     *     @type int $pageSize
+     *          Maximum number of results per page.
+     *          CURRENTLY UNIMPLEMENTED AND IGNORED.
      *     @type string $pageToken
      *          A page token is used to specify a page of values to be returned.
      *          If no page token is specified (the default), the first page
@@ -660,6 +664,9 @@ class BigtableTableAdminGapicClient
         $request->setParent($parent);
         if (isset($optionalArgs['view'])) {
             $request->setView($optionalArgs['view']);
+        }
+        if (isset($optionalArgs['pageSize'])) {
+            $request->setPageSize($optionalArgs['pageSize']);
         }
         if (isset($optionalArgs['pageToken'])) {
             $request->setPageToken($optionalArgs['pageToken']);

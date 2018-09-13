@@ -23,7 +23,7 @@ class ListInstancesRequest extends \Google\Protobuf\Internal\Message
      */
     private $parent = '';
     /**
-     * The value of `next_page_token` returned by a previous call.
+     * DEPRECATED: This field is unused and ignored.
      *
      * Generated from protobuf field <code>string page_token = 2;</code>
      */
@@ -39,7 +39,7 @@ class ListInstancesRequest extends \Google\Protobuf\Internal\Message
      *           The unique name of the project for which a list of instances is requested.
      *           Values are of the form `projects/<project>`.
      *     @type string $page_token
-     *           The value of `next_page_token` returned by a previous call.
+     *           DEPRECATED: This field is unused and ignored.
      * }
      */
     public function __construct($data = NULL) {
@@ -76,7 +76,7 @@ class ListInstancesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The value of `next_page_token` returned by a previous call.
+     * DEPRECATED: This field is unused and ignored.
      *
      * Generated from protobuf field <code>string page_token = 2;</code>
      * @return string
@@ -87,7 +87,7 @@ class ListInstancesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The value of `next_page_token` returned by a previous call.
+     * DEPRECATED: This field is unused and ignored.
      *
      * Generated from protobuf field <code>string page_token = 2;</code>
      * @param string $var

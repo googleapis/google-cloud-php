@@ -31,7 +31,8 @@ class ListSnapshotsRequest extends \Google\Protobuf\Internal\Message
      */
     private $parent = '';
     /**
-     * The maximum number of snapshots to return.
+     * The maximum number of snapshots to return per page.
+     * CURRENTLY UNIMPLEMENTED AND IGNORED.
      *
      * Generated from protobuf field <code>int32 page_size = 2;</code>
      */
@@ -56,7 +57,8 @@ class ListSnapshotsRequest extends \Google\Protobuf\Internal\Message
      *           Use `<cluster> = '-'` to list snapshots for all clusters in an instance,
      *           e.g., `projects/<project>/instances/<instance>/clusters/-`.
      *     @type int $page_size
-     *           The maximum number of snapshots to return.
+     *           The maximum number of snapshots to return per page.
+     *           CURRENTLY UNIMPLEMENTED AND IGNORED.
      *     @type string $page_token
      *           The value of `next_page_token` returned by a previous call.
      * }
@@ -101,7 +103,8 @@ class ListSnapshotsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The maximum number of snapshots to return.
+     * The maximum number of snapshots to return per page.
+     * CURRENTLY UNIMPLEMENTED AND IGNORED.
      *
      * Generated from protobuf field <code>int32 page_size = 2;</code>
      * @return int
@@ -112,7 +115,8 @@ class ListSnapshotsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The maximum number of snapshots to return.
+     * The maximum number of snapshots to return per page.
+     * CURRENTLY UNIMPLEMENTED AND IGNORED.
      *
      * Generated from protobuf field <code>int32 page_size = 2;</code>
      * @param int $var

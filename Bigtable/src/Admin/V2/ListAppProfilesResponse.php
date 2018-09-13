@@ -29,6 +29,15 @@ class ListAppProfilesResponse extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string next_page_token = 2;</code>
      */
     private $next_page_token = '';
+    /**
+     * Locations from which AppProfile information could not be retrieved,
+     * due to an outage or some other transient condition.
+     * AppProfiles from these locations may be missing from `app_profiles`.
+     * Values are of the form `projects/<project>/locations/<zone_id>`
+     *
+     * Generated from protobuf field <code>repeated string failed_locations = 3;</code>
+     */
+    private $failed_locations;
 
     /**
      * Constructor.
@@ -42,6 +51,11 @@ class ListAppProfilesResponse extends \Google\Protobuf\Internal\Message
      *           Set if not all app profiles could be returned in a single response.
      *           Pass this value to `page_token` in another request to get the next
      *           page of results.
+     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $failed_locations
+     *           Locations from which AppProfile information could not be retrieved,
+     *           due to an outage or some other transient condition.
+     *           AppProfiles from these locations may be missing from `app_profiles`.
+     *           Values are of the form `projects/<project>/locations/<zone_id>`
      * }
      */
     public function __construct($data = NULL) {
@@ -101,6 +115,38 @@ class ListAppProfilesResponse extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->next_page_token = $var;
+
+        return $this;
+    }
+
+    /**
+     * Locations from which AppProfile information could not be retrieved,
+     * due to an outage or some other transient condition.
+     * AppProfiles from these locations may be missing from `app_profiles`.
+     * Values are of the form `projects/<project>/locations/<zone_id>`
+     *
+     * Generated from protobuf field <code>repeated string failed_locations = 3;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getFailedLocations()
+    {
+        return $this->failed_locations;
+    }
+
+    /**
+     * Locations from which AppProfile information could not be retrieved,
+     * due to an outage or some other transient condition.
+     * AppProfiles from these locations may be missing from `app_profiles`.
+     * Values are of the form `projects/<project>/locations/<zone_id>`
+     *
+     * Generated from protobuf field <code>repeated string failed_locations = 3;</code>
+     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setFailedLocations($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->failed_locations = $arr;
 
         return $this;
     }

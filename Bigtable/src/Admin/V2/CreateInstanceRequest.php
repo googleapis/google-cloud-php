@@ -42,7 +42,7 @@ class CreateInstanceRequest extends \Google\Protobuf\Internal\Message
      * cluster ID, e.g., just `mycluster` rather than
      * `projects/myproject/instances/myinstance/clusters/mycluster`.
      * Fields marked `OutputOnly` must be left blank.
-     * Currently exactly one cluster must be specified.
+     * Currently, at most two clusters can be specified.
      *
      * Generated from protobuf field <code>map<string, .google.bigtable.admin.v2.Cluster> clusters = 4;</code>
      */
@@ -69,7 +69,7 @@ class CreateInstanceRequest extends \Google\Protobuf\Internal\Message
      *           cluster ID, e.g., just `mycluster` rather than
      *           `projects/myproject/instances/myinstance/clusters/mycluster`.
      *           Fields marked `OutputOnly` must be left blank.
-     *           Currently exactly one cluster must be specified.
+     *           Currently, at most two clusters can be specified.
      * }
      */
     public function __construct($data = NULL) {
@@ -168,7 +168,7 @@ class CreateInstanceRequest extends \Google\Protobuf\Internal\Message
      * cluster ID, e.g., just `mycluster` rather than
      * `projects/myproject/instances/myinstance/clusters/mycluster`.
      * Fields marked `OutputOnly` must be left blank.
-     * Currently exactly one cluster must be specified.
+     * Currently, at most two clusters can be specified.
      *
      * Generated from protobuf field <code>map<string, .google.bigtable.admin.v2.Cluster> clusters = 4;</code>
      * @return \Google\Protobuf\Internal\MapField
@@ -183,7 +183,7 @@ class CreateInstanceRequest extends \Google\Protobuf\Internal\Message
      * cluster ID, e.g., just `mycluster` rather than
      * `projects/myproject/instances/myinstance/clusters/mycluster`.
      * Fields marked `OutputOnly` must be left blank.
-     * Currently exactly one cluster must be specified.
+     * Currently, at most two clusters can be specified.
      *
      * Generated from protobuf field <code>map<string, .google.bigtable.admin.v2.Cluster> clusters = 4;</code>
      * @param array|\Google\Protobuf\Internal\MapField $var

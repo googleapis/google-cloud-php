@@ -25,7 +25,7 @@ class ListClustersRequest extends \Google\Protobuf\Internal\Message
      */
     private $parent = '';
     /**
-     * The value of `next_page_token` returned by a previous call.
+     * DEPRECATED: This field is unused and ignored.
      *
      * Generated from protobuf field <code>string page_token = 2;</code>
      */
@@ -43,7 +43,7 @@ class ListClustersRequest extends \Google\Protobuf\Internal\Message
      *           Use `<instance> = '-'` to list Clusters for all Instances in a project,
      *           e.g., `projects/myproject/instances/-`.
      *     @type string $page_token
-     *           The value of `next_page_token` returned by a previous call.
+     *           DEPRECATED: This field is unused and ignored.
      * }
      */
     public function __construct($data = NULL) {
@@ -84,7 +84,7 @@ class ListClustersRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The value of `next_page_token` returned by a previous call.
+     * DEPRECATED: This field is unused and ignored.
      *
      * Generated from protobuf field <code>string page_token = 2;</code>
      * @return string
@@ -95,7 +95,7 @@ class ListClustersRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The value of `next_page_token` returned by a previous call.
+     * DEPRECATED: This field is unused and ignored.
      *
      * Generated from protobuf field <code>string page_token = 2;</code>
      * @param string $var

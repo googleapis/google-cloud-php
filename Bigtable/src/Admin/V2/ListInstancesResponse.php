@@ -27,14 +27,13 @@ class ListInstancesResponse extends \Google\Protobuf\Internal\Message
      * Instances whose Clusters are all in one of the failed locations
      * may be missing from `instances`, and Instances with at least one
      * Cluster in a failed location may only have partial information returned.
+     * Values are of the form `projects/<project>/locations/<zone_id>`
      *
      * Generated from protobuf field <code>repeated string failed_locations = 2;</code>
      */
     private $failed_locations;
     /**
-     * Set if not all instances could be returned in a single response.
-     * Pass this value to `page_token` in another request to get the next
-     * page of results.
+     * DEPRECATED: This field is unused and ignored.
      *
      * Generated from protobuf field <code>string next_page_token = 3;</code>
      */
@@ -54,10 +53,9 @@ class ListInstancesResponse extends \Google\Protobuf\Internal\Message
      *           Instances whose Clusters are all in one of the failed locations
      *           may be missing from `instances`, and Instances with at least one
      *           Cluster in a failed location may only have partial information returned.
+     *           Values are of the form `projects/<project>/locations/<zone_id>`
      *     @type string $next_page_token
-     *           Set if not all instances could be returned in a single response.
-     *           Pass this value to `page_token` in another request to get the next
-     *           page of results.
+     *           DEPRECATED: This field is unused and ignored.
      * }
      */
     public function __construct($data = NULL) {
@@ -97,6 +95,7 @@ class ListInstancesResponse extends \Google\Protobuf\Internal\Message
      * Instances whose Clusters are all in one of the failed locations
      * may be missing from `instances`, and Instances with at least one
      * Cluster in a failed location may only have partial information returned.
+     * Values are of the form `projects/<project>/locations/<zone_id>`
      *
      * Generated from protobuf field <code>repeated string failed_locations = 2;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -112,6 +111,7 @@ class ListInstancesResponse extends \Google\Protobuf\Internal\Message
      * Instances whose Clusters are all in one of the failed locations
      * may be missing from `instances`, and Instances with at least one
      * Cluster in a failed location may only have partial information returned.
+     * Values are of the form `projects/<project>/locations/<zone_id>`
      *
      * Generated from protobuf field <code>repeated string failed_locations = 2;</code>
      * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
@@ -126,9 +126,7 @@ class ListInstancesResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Set if not all instances could be returned in a single response.
-     * Pass this value to `page_token` in another request to get the next
-     * page of results.
+     * DEPRECATED: This field is unused and ignored.
      *
      * Generated from protobuf field <code>string next_page_token = 3;</code>
      * @return string
@@ -139,9 +137,7 @@ class ListInstancesResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Set if not all instances could be returned in a single response.
-     * Pass this value to `page_token` in another request to get the next
-     * page of results.
+     * DEPRECATED: This field is unused and ignored.
      *
      * Generated from protobuf field <code>string next_page_token = 3;</code>
      * @param string $var
