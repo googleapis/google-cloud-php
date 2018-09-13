@@ -21,7 +21,7 @@ use Google\Cloud\Core\DebugInfoTrait;
 use Google\Cloud\Core\ExponentialBackoff;
 use Google\Cloud\Firestore\Connection\ConnectionInterface;
 use Google\Cloud\Firestore\DocumentSnapshot;
-use Google\Cloud\Firestore\FieldValue;
+use Google\Cloud\Firestore\FieldValue\FieldValueInterface;
 use Google\Cloud\Firestore\SnapshotTrait;
 use Google\Cloud\Firestore\V1beta1\StructuredQuery\CompositeFilter\Operator;
 use Google\Cloud\Firestore\V1beta1\StructuredQuery\Direction;
@@ -54,6 +54,7 @@ class Query
     const OP_GREATER_THAN = FieldFilterOperator::GREATER_THAN;
     const OP_GREATER_THAN_OR_EQUAL = FieldFilterOperator::GREATER_THAN_OR_EQUAL;
     const OP_EQUAL = FieldFilterOperator::EQUAL;
+    const OP_ARRAY_CONTAINS = FieldFilterOperator::ARRAY_CONTAINS;
 
     const OP_NAN = UnaryFilterOperator::IS_NAN;
     const OP_NULL = UnaryFilterOperator::IS_NULL;
@@ -69,6 +70,7 @@ class Query
         self::OP_EQUAL,
         self::OP_GREATER_THAN,
         self::OP_GREATER_THAN_OR_EQUAL,
+        self::OP_ARRAY_CONTAINS,
     ];
 
     private $shortOperators = [
@@ -79,6 +81,7 @@ class Query
         '='  => self::OP_EQUAL,
         '=='  => self::OP_EQUAL,
         '==='  => self::OP_EQUAL,
+        'array-contains' => self::OP_ARRAY_CONTAINS,
     ];
 
     private $allowedDirections = [
@@ -273,6 +276,11 @@ class Query
      * $query = $query->where('coolnessPercentage', '=', NAN);
      * ```
      *
+     * ```
+     * // Use `array-contains` to select documents where the array contains given elements.
+     * $query = $query->where('friends', 'array-contains', ['Steve', 'Sarah']);
+     * ```
+     *
      * @param string|FieldPath $fieldPath The field to filter by.
      * @param string $operator The operator to filter by.
      * @param mixed $value The value to compare to.
@@ -281,7 +289,7 @@ class Query
      */
     public function where($fieldPath, $operator, $value)
     {
-        if (FieldValue::isSentinelValue($value)) {
+        if ($value instanceof FieldValueInterface) {
             throw new \InvalidArgumentException(sprintf(
                 'Value cannot be a `%s` value.',
                 FieldValue::class
@@ -611,7 +619,7 @@ class Query
                         DocumentSnapshot::class
                     ));
                 }
-                if (FieldValue::isSentinelValue($value)) {
+                if ($value instanceof FieldValueInterface) {
                     throw new \InvalidArgumentException(sprintf(
                         'Value cannot be a `%s` value.',
                         FieldValue::class
@@ -709,7 +717,10 @@ class Query
                 $filters = $this->query['where']['compositeFilter']['filters'];
                 $inequality = array_filter($filters, function ($filter) {
                     $type = array_keys($filter)[0];
-                    return $filter[$type]['op'] !== self::OP_EQUAL;
+                    return !in_array($filter[$type]['op'], [
+                        self::OP_EQUAL,
+                        self::OP_ARRAY_CONTAINS
+                    ]);
                 });
 
                 if ($inequality) {

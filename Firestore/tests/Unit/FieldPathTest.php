@@ -18,6 +18,7 @@
 namespace Google\Cloud\Firestore\Tests\Unit;
 
 use Google\Cloud\Firestore\FieldPath;
+use Google\Cloud\Firestore\FieldValue;
 use PHPUnit\Framework\TestCase;
 
 /**

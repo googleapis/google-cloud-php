@@ -17,8 +17,13 @@
 
 namespace Google\Cloud\Firestore;
 
+use Google\Cloud\Firestore\FieldValue\ArrayRemoveValue;
+use Google\Cloud\Firestore\FieldValue\ArrayUnionValue;
+use Google\Cloud\Firestore\FieldValue\DeleteFieldValue;
+use Google\Cloud\Firestore\FieldValue\ServerTimestampValue;
+
 /**
- * Contains special field values for Cloud Firestore.
+ * Provides special field values for Cloud Firestore.
  *
  * This class cannot be instantiated, and methods contained within it should be
  * accessed statically.
@@ -48,15 +53,18 @@ class FieldValue
      * $firestore = new FirestoreClient;
      * $document = $firestore->document('users/dave');
      * $document->update([
-     *     ['path' => 'hometown', 'value' => FieldValue::deleteField()]
+     *     [
+     *         'path' => 'hometown',
+     *         'value' => FieldValue::deleteField()
+     *     ]
      * ]);
      * ```
      *
-     * @return string
+     * @return DeleteFieldValue
      */
     public static function deleteField()
     {
-        return '___google-cloud-php__deleteField___';
+        return new DeleteFieldValue();
     }
 
     /**
@@ -74,40 +82,80 @@ class FieldValue
      * $firestore = new FirestoreClient;
      * $document = $firestore->document('users/dave');
      * $document->update([
-     *     ['path' => 'lastLogin', 'value' => FieldValue::serverTimestamp()]
+     *     [
+     *         'path' => 'lastLogin',
+     *         'value' => FieldValue::serverTimestamp()
+     *     ]
      * ]);
      * ```
      *
-     * @return string
+     * @return ServerTimestampValue
      */
     public static function serverTimestamp()
     {
-        return '___google-cloud-php__serverTimestamp___';
+        return new ServerTimestampValue();
     }
 
     /**
-     * Check if the given value is a sentinel.
+     * Returns a special value that can be used with set(), create() or update()
+     * that tells the server to union the given elements with any array value
+     * that already exists on the server. Each specified element that doesn't
+     * already exist in the array will be added to the end. If the field being
+     * modified is not already an array it will be overwritten with an array
+     * containing exactly the specified elements.
      *
-     * @param string $value
-     * @return bool
-     * @access private
+     * Example:
+     * ```
+     * use Google\Cloud\Firestore\FieldValue;
+     * use Google\Cloud\Firestore\FirestoreClient;
+     *
+     * $firestore = new FirestoreClient;
+     * $document = $firestore->document('users/dave');
+     *
+     * $document->update([
+     *     [
+     *         'path' => 'favoriteColors',
+     *         'value' => FieldValue::arrayUnion(['red', 'blue'])
+     *     ]
+     * ]);
+     * ```
+     *
+     * @param array $elements The elements to union into the array.
+     * @return ArrayUnionValue
      */
-    public static function isSentinelValue($value)
+    public static function arrayUnion(array $elements)
     {
-        return in_array($value, self::sentinelValues(), true);
+        return new ArrayUnionValue($elements);
     }
 
     /**
-     * Get a list of sentinel values.
+     * Returns a special value that can be used with set(), create() or update()
+     * that tells the server to remove the given elements from any array value
+     * that already exists on the server. All instances of each element
+     * specified will be removed from the array. If the field being modified is
+     * not already an array it will be overwritten with an empty array.
      *
-     * @return array
-     * @access private
+     * Example:
+     * ```
+     * use Google\Cloud\Firestore\FieldValue;
+     * use Google\Cloud\Firestore\FirestoreClient;
+     *
+     * $firestore = new FirestoreClient;
+     * $document = $firestore->document('users/dave');
+     *
+     * $document->update([
+     *     [
+     *         'path' => 'favoriteColors',
+     *         'value' => FieldValue::arrayRemove(['green'])
+     *     ]
+     * ]);
+     * ```
+     *
+     * @param array $elements The elements to remove from the array.
+     * @return ArrayRemoveValue
      */
-    public static function sentinelValues()
+    public static function arrayRemove(array $elements)
     {
-        return [
-            self::deleteField(),
-            self::serverTimestamp()
-        ];
+        return new ArrayRemoveValue($elements);
     }
 }

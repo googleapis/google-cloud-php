@@ -24,7 +24,7 @@ use Google\Cloud\Firestore\DocumentReference;
 use Google\Cloud\Firestore\FieldPath;
 use Google\Cloud\Firestore\FieldValue;
 use Google\Cloud\Firestore\FirestoreClient;
-use Google\Cloud\Firestore\V1beta1\DocumentTransform_FieldTransform_ServerValue;
+use Google\Cloud\Firestore\V1beta1\DocumentTransform\FieldTransform\ServerValue;
 use Google\Cloud\Firestore\ValueMapper;
 use Google\Cloud\Firestore\WriteBatch;
 use PHPUnit\Framework\TestCase;
@@ -153,6 +153,8 @@ class WriteBatchTest extends TestCase
             ['path' => 'foo', 'value' =>  'bar'],
             ['path' => 'hello', 'value' =>  FieldValue::deleteField()],
             ['path' => 'world', 'value' =>  FieldValue::serverTimestamp()],
+            ['path' => 'arr', 'value' => FieldValue::arrayUnion(['a'])],
+            ['path' => 'arr2', 'value' => FieldValue::arrayRemove(['b'])],
         ]);
 
         $this->commitAndAssert([
@@ -173,13 +175,65 @@ class WriteBatchTest extends TestCase
                         'fieldTransforms' => [
                             [
                                 'fieldPath' => 'world',
-                                'setToServerValue' => DocumentTransform_FieldTransform_ServerValue::REQUEST_TIME
+                                'setToServerValue' => ServerValue::REQUEST_TIME
+                            ], [
+                                'fieldPath' => 'arr',
+                                'appendMissingElements' => [
+                                    'values' => [
+                                        [
+                                            'stringValue' => 'a'
+                                        ]
+                                    ]
+                                ]
+                            ], [
+                                'fieldPath' => 'arr2',
+                                'removeAllFromArray' => [
+                                    'values' => [
+                                        [
+                                            'stringValue' => 'b'
+                                        ]
+                                    ]
+                                ]
                             ]
                         ]
                     ]
                 ]
             ]
         ]);
+    }
+
+    /**
+     * @dataProvider noUpdateSentinels
+     */
+    public function testSentinelsOmitUpdateWrite($val)
+    {
+        $ref = $this->prophesize(DocumentReference::class);
+        $ref->name()->willReturn(self::DOCUMENT);
+
+        $this->batch->update($ref->reveal(), [
+            ['path' => 'foo', 'value' =>  $val],
+        ]);
+
+        $this->commitAndAssert(function ($arg) {
+            if (count($arg['writes']) > 1) {
+                return false;
+            }
+
+            if (!isset($arg['writes'][0]['transform']['fieldTransforms'][0])) {
+                return false;
+            }
+
+            return $arg['writes'][0]['transform']['fieldTransforms'][0]['fieldPath'] === 'foo';
+        });
+    }
+
+    public function noUpdateSentinels()
+    {
+        return [
+            [FieldValue::serverTimestamp()],
+            [FieldValue::arrayUnion([])],
+            [FieldValue::arrayRemove([])]
+        ];
     }
 
     /**
@@ -255,7 +309,7 @@ class WriteBatchTest extends TestCase
                         'fieldTransforms' => [
                             [
                                 'fieldPath' => 'world',
-                                'setToServerValue' => DocumentTransform_FieldTransform_ServerValue::REQUEST_TIME
+                                'setToServerValue' => ServerValue::REQUEST_TIME
                             ]
                         ]
                     ]
@@ -299,6 +353,17 @@ class WriteBatchTest extends TestCase
     }
 
     /**
+     * @expectedException InvalidArgumentException
+     * @expectedExceptionMessageRegExp /Document transforms cannot contain/
+     */
+    public function testSentinelCannotContainSentinel()
+    {
+        $this->batch->set('name', [
+            'foo' => FieldValue::arrayRemove([FieldValue::arrayUnion([])])
+        ]);
+    }
+
+    /**
      * @dataProvider documents
      * @expectedException InvalidArgumentException
      * @expectedExceptionMessage Delete cannot appear in data unless `$options['merge']` is set.
@@ -306,7 +371,7 @@ class WriteBatchTest extends TestCase
     public function testSetSentinelsDeleteRequiresMerge($name, $ref)
     {
         $this->batch->set($ref, [
-            'hello' => FieldValue::DeleteField(),
+            'hello' => FieldValue::deleteField(),
         ]);
     }
 

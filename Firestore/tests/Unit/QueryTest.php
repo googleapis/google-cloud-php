@@ -27,9 +27,9 @@ use Google\Cloud\Firestore\DocumentSnapshot;
 use Google\Cloud\Firestore\FieldValue;
 use Google\Cloud\Firestore\FirestoreClient;
 use Google\Cloud\Firestore\Query;
-use Google\Cloud\Firestore\V1beta1\StructuredQuery_CompositeFilter_Operator;
-use Google\Cloud\Firestore\V1beta1\StructuredQuery_Direction;
-use Google\Cloud\Firestore\V1beta1\StructuredQuery_FieldFilter_Operator;
+use Google\Cloud\Firestore\V1beta1\StructuredQuery\CompositeFilter\Operator;
+use Google\Cloud\Firestore\V1beta1\StructuredQuery\Direction;
+use Google\Cloud\Firestore\V1beta1\StructuredQuery\FieldFilter\Operator as FieldFilterOperator;
 use Google\Cloud\Firestore\ValueMapper;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
@@ -223,14 +223,14 @@ class QueryTest extends TestCase
                 'from' => $this->queryFrom(),
                 'where' => [
                     'compositeFilter' => [
-                        'op' => StructuredQuery_CompositeFilter_Operator::PBAND,
+                        'op' => Operator::PBAND,
                         'filters' => [
                             [
                                 'fieldFilter' => [
                                     'field' => [
                                         'fieldPath' => 'user.name'
                                     ],
-                                    'op' => StructuredQuery_FieldFilter_Operator::EQUAL,
+                                    'op' => FieldFilterOperator::EQUAL,
                                     'value' => [
                                         'stringValue' => 'John'
                                     ]
@@ -240,7 +240,7 @@ class QueryTest extends TestCase
                                     'field' => [
                                         'fieldPath' => 'user.age'
                                     ],
-                                    'op' => StructuredQuery_FieldFilter_Operator::EQUAL,
+                                    'op' => FieldFilterOperator::EQUAL,
                                     'value' => [
                                         'integerValue' => '30'
                                     ]
@@ -307,11 +307,13 @@ class QueryTest extends TestCase
             [Query::OP_GREATER_THAN],
             [Query::OP_GREATER_THAN_OR_EQUAL],
             [Query::OP_EQUAL],
+            [Query::OP_ARRAY_CONTAINS],
             ['<'],
             ['<='],
             ['>'],
             ['>='],
             ['='],
+            ['array-contains'],
         ];
     }
 
@@ -346,10 +348,10 @@ class QueryTest extends TestCase
                 'orderBy' => [
                     [
                         'field' => ['fieldPath' => 'user.name'],
-                        'direction' => StructuredQuery_Direction::DESCENDING
+                        'direction' => Direction::DESCENDING
                     ], [
                         'field' => ['fieldPath' => 'user.age'],
-                        'direction' => StructuredQuery_Direction::ASCENDING
+                        'direction' => Direction::ASCENDING
                     ]
                 ]
             ]
@@ -886,8 +888,11 @@ class QueryTest extends TestCase
 
     public function sentinels()
     {
-        return array_map(function ($val) {
-            return [$val];
-        }, FieldValue::sentinelValues());
+        return [
+            [FieldValue::deleteField()],
+            [FieldValue::serverTimestamp()],
+            [FieldValue::arrayUnion([])],
+            [FieldValue::arrayRemove([])]
+        ];
     }
 }

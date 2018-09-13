@@ -224,7 +224,7 @@ class ValueMapper
                     return $this->encodeAssociativeArrayValue($value);
                 }
 
-                return $this->encodeArrayValue($value);
+                return ['arrayValue' => $this->encodeArrayValue($value)];
                 break;
 
             case 'NULL':
@@ -241,6 +241,29 @@ class ValueMapper
                 break;
             // @codeCoverageIgnoreEnd
         }
+    }
+
+    /**
+     * Encode a simple array as a Firestore array value.
+     *
+     * @codingStandardsIgnoreStart
+     * @param array $value
+     * @return array [ArrayValue](https://firebase.google.com/docs/firestore/reference/rpc/google.firestore.v1beta1#google.firestore.v1beta1.ArrayValue)
+     * @throws \RuntimeException If the array contains a nested array.
+     * @codingStandardsIgnoreEnd
+     */
+    public function encodeArrayValue(array $value)
+    {
+        $out = [];
+        foreach ($value as $item) {
+            if (is_array($item) && !$this->isAssoc($item)) {
+                throw new \RuntimeException('Nested array values are not permitted.');
+            }
+
+            $out[] = $this->encodeValue($item);
+        }
+
+        return ['values' => $out];
     }
 
     /**
@@ -308,28 +331,5 @@ class ValueMapper
         }
 
         return ['mapValue' => ['fields' => $out]];
-    }
-
-    /**
-     * Encode a simple array as a Firestore array value.
-     *
-     * @codingStandardsIgnoreStart
-     * @param array $value
-     * @return array [ArrayValue](https://firebase.google.com/docs/firestore/reference/rpc/google.firestore.v1beta1#google.firestore.v1beta1.ArrayValue)
-     * @throws \RuntimeException If the array contains a nested array.
-     * @codingStandardsIgnoreEnd
-     */
-    private function encodeArrayValue(array $value)
-    {
-        $out = [];
-        foreach ($value as $item) {
-            if (is_array($item) && !$this->isAssoc($item)) {
-                throw new \RuntimeException('Nested array values are not permitted.');
-            }
-
-            $out[] = $this->encodeValue($item);
-        }
-
-        return ['arrayValue' => ['values' => $out]];
     }
 }
