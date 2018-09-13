@@ -29,6 +29,7 @@ class ArrayRemoveValue implements DocumentTransformInterface
 
     /**
      * @access private
+     * @return string
      */
     public function key()
     {
@@ -37,6 +38,7 @@ class ArrayRemoveValue implements DocumentTransformInterface
 
     /**
      * @access private
+     * @return bool
      */
     public function includeInUpdateMask()
     {

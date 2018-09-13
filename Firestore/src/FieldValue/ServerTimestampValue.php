@@ -33,6 +33,7 @@ class ServerTimestampValue implements DocumentTransformInterface
 
     /**
      * @access private
+     * @return string
      */
     public function key()
     {
@@ -41,6 +42,7 @@ class ServerTimestampValue implements DocumentTransformInterface
 
     /**
      * @access private
+     * @return int
      */
     public function args()
     {
@@ -49,6 +51,7 @@ class ServerTimestampValue implements DocumentTransformInterface
 
     /**
      * @access private
+     * @return bool
      */
     public function includeInUpdateMask()
     {
