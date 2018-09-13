@@ -138,7 +138,7 @@ trait PageIteratorTrait
      */
     public function nextResultToken()
     {
-        return $this->getNestedResource($this->resultTokenPath, $this->callOptions);
+        return $this->get($this->resultTokenPath, $this->callOptions);
     }
 
     /**
@@ -175,7 +175,7 @@ trait PageIteratorTrait
             $this->page = $this->executeCall();
         }
 
-        $page = $this->getNestedResource($this->itemsPath, $this->page);
+        $page = $this->get($this->itemsPath, $this->page);
 
         if ($this->nextResultToken()) {
             return $page ?: [];
@@ -248,7 +248,7 @@ trait PageIteratorTrait
      */
     private function mapResults(array $results)
     {
-        $items = $this->getNestedResource($this->itemsPath, $results);
+        $items = $this->get($this->itemsPath, $results);
         $resultMapper = $this->resultMapper;
         $shouldContinue = true;
 
@@ -278,7 +278,7 @@ trait PageIteratorTrait
     private function determineNextResultToken(array $results, $shouldContinue = true)
     {
         return $shouldContinue && $this->config['setNextResultTokenCondition']($results)
-            ? $this->getNestedResource($this->nextResultTokenPath, $results)
+            ? $this->get($this->nextResultTokenPath, $results)
             : null;
     }
 
@@ -287,7 +287,7 @@ trait PageIteratorTrait
      * @param array $array
      * @return mixed
      */
-    private function getNestedResource(array $path, array $array)
+    private function get(array $path, array $array)
     {
         $result = $array;
 
