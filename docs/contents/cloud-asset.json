@@ -1,0 +1,15 @@
+{
+    "title": "Asset",
+    "defaultService": "asset\/readme",
+    "services": [
+        {
+            "title": "Overview",
+            "type": "asset\/readme"
+        },
+        {
+            "title": "AssetServiceClient",
+            "type": "asset\/v1beta1\/assetserviceclient"
+        }
+    ],
+    "pattern": "asset\/\\w{1,}"
+}
