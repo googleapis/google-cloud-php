@@ -11,6 +11,7 @@
             "name": "google/cloud",
             "defaultService": "servicebuilder",
             "versions": [
+                "v0.78.0",
                 "v0.77.0",
                 "v0.76.1",
                 "v0.76.0",
@@ -118,6 +119,7 @@
             "name": "google/cloud-asset",
             "defaultService": "asset/readme",
             "versions": [
+                "v0.1.0",
                 "master"
             ]
         },
@@ -235,6 +237,7 @@
             "name": "google/cloud-core",
             "defaultService": "core/servicebuilder",
             "versions": [
+                "v1.23.4",
                 "v1.23.3",
                 "v1.23.2",
                 "v1.23.1",
@@ -321,6 +324,7 @@
             "name": "google/cloud-datastore",
             "defaultService": "datastore/datastoreclient",
             "versions": [
+                "v1.5.8",
                 "v1.5.7",
                 "v1.5.6",
                 "v1.5.5",
@@ -474,6 +478,7 @@
             "name": "google/cloud-firestore",
             "defaultService": "firestore/firestoreclient",
             "versions": [
+                "v0.15.0",
                 "v0.14.1",
                 "v0.14.0",
                 "v0.13.0",
@@ -857,6 +862,7 @@
             "name": "google/cloud-storage",
             "defaultService": "storage/storageclient",
             "versions": [
+                "v1.7.3",
                 "v1.7.2",
                 "v1.7.1",
                 "v1.7.0",
