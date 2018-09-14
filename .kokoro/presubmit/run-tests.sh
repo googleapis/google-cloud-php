@@ -19,8 +19,4 @@ echo "Running Snippet Test Suite"
 vendor/bin/phpunit -c phpunit-snippets.xml.dist --verbose --log-junit \
                    ${SNIPPETS_LOG_FILENAME}
 
-# Move the file to the source top directory for better look
-mv ${UNIT_LOG_FILENAME} ../..
-mv ${SNIPPETS_LOG_FILENAME} ../..
-
 popd
