@@ -26,9 +26,20 @@ class GetSnapshotRequest extends \Google\Protobuf\Internal\Message
      */
     private $snapshot = '';
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $snapshot
+     *           The name of the snapshot to get.
+     *           Format is `projects/{project}/snapshots/{snap}`.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Pubsub\V1\Pubsub::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

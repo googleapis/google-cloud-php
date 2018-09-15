@@ -28,9 +28,21 @@ class ReceivedMessage extends \Google\Protobuf\Internal\Message
      */
     private $message = null;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $ack_id
+     *           This ID can be used to acknowledge the received message.
+     *     @type \Google\Cloud\PubSub\V1\PubsubMessage $message
+     *           The message.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Pubsub\V1\Pubsub::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

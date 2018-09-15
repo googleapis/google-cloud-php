@@ -44,9 +44,33 @@ class Topic extends \Google\Protobuf\Internal\Message
      */
     private $message_storage_policy = null;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $name
+     *           The name of the topic. It must have the format
+     *           `"projects/{project}/topics/{topic}"`. `{topic}` must start with a letter,
+     *           and contain only letters (`[A-Za-z]`), numbers (`[0-9]`), dashes (`-`),
+     *           underscores (`_`), periods (`.`), tildes (`~`), plus (`+`) or percent
+     *           signs (`%`). It must be between 3 and 255 characters in length, and it
+     *           must not start with `"goog"`.
+     *     @type array|\Google\Protobuf\Internal\MapField $labels
+     *           User labels.
+     *     @type \Google\Cloud\PubSub\V1\MessageStoragePolicy $message_storage_policy
+     *           Policy constraining how messages published to the topic may be stored. It
+     *           is determined when the topic is created based on the policy configured at
+     *           the project level. It must not be set by the caller in the request to
+     *           CreateTopic or to UpdateTopic. This field will be populated in the
+     *           responses for GetTopic, CreateTopic, and UpdateTopic: if not present in the
+     *           response, then no constraints are in effect.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Pubsub\V1\Pubsub::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

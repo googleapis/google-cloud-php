@@ -25,9 +25,24 @@ class MessageStoragePolicy extends \Google\Protobuf\Internal\Message
      */
     private $allowed_persistence_regions;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $allowed_persistence_regions
+     *           The list of GCP regions where messages that are published to the topic may
+     *           be persisted in storage. Messages published by publishers running in
+     *           non-allowed GCP regions (or running outside of GCP altogether) will be
+     *           routed for storage in one of the allowed regions. An empty list indicates a
+     *           misconfiguration at the project or organization level, which will result in
+     *           all Publish operations failing.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Pubsub\V1\Pubsub::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

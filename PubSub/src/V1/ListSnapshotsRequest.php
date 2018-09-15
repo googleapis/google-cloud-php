@@ -40,9 +40,26 @@ class ListSnapshotsRequest extends \Google\Protobuf\Internal\Message
      */
     private $page_token = '';
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $project
+     *           The name of the cloud project that snapshots belong to.
+     *           Format is `projects/{project}`.
+     *     @type int $page_size
+     *           Maximum number of snapshots to return.
+     *     @type string $page_token
+     *           The value returned by the last `ListSnapshotsResponse`; indicates that this
+     *           is a continuation of a prior `ListSnapshots` call, and that the system
+     *           should return the next page of data.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Pubsub\V1\Pubsub::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

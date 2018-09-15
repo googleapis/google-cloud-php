@@ -41,9 +41,30 @@ class PullRequest extends \Google\Protobuf\Internal\Message
      */
     private $max_messages = 0;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $subscription
+     *           The subscription from which messages should be pulled.
+     *           Format is `projects/{project}/subscriptions/{sub}`.
+     *     @type bool $return_immediately
+     *           If this field set to true, the system will respond immediately even if
+     *           it there are no messages available to return in the `Pull` response.
+     *           Otherwise, the system may wait (for a bounded amount of time) until at
+     *           least one message is available, rather than returning no messages. The
+     *           client may cancel the request if it does not wish to wait any longer for
+     *           the response.
+     *     @type int $max_messages
+     *           The maximum number of messages returned for this request. The Pub/Sub
+     *           system may return fewer than the number specified.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Pubsub\V1\Pubsub::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**
