@@ -45,9 +45,34 @@ class UpdateExclusionRequest extends \Google\Protobuf\Internal\Message
      */
     private $update_mask = null;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $name
+     *           Required. The resource name of the exclusion to update:
+     *               "projects/[PROJECT_ID]/exclusions/[EXCLUSION_ID]"
+     *               "organizations/[ORGANIZATION_ID]/exclusions/[EXCLUSION_ID]"
+     *               "billingAccounts/[BILLING_ACCOUNT_ID]/exclusions/[EXCLUSION_ID]"
+     *               "folders/[FOLDER_ID]/exclusions/[EXCLUSION_ID]"
+     *           Example: `"projects/my-project-id/exclusions/my-exclusion-id"`.
+     *     @type \Google\Cloud\Logging\V2\LogExclusion $exclusion
+     *           Required. New values for the existing exclusion. Only the fields specified
+     *           in `update_mask` are relevant.
+     *     @type \Google\Protobuf\FieldMask $update_mask
+     *           Required. A nonempty list of fields to change in the existing exclusion.
+     *           New values for the fields are taken from the corresponding fields in the
+     *           [LogExclusion][google.logging.v2.LogExclusion] included in this request. Fields not mentioned in
+     *           `update_mask` are not changed and are ignored in the request.
+     *           For example, to change the filter and description of an exclusion,
+     *           specify an `update_mask` of `"filter,description"`.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Logging\V2\LoggingConfig::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

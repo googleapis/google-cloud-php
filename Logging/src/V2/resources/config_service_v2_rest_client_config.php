@@ -6,6 +6,24 @@ return [
             'ListSinks' => [
                 'method' => 'get',
                 'uriTemplate' => '/v2/{parent=*/*}/sinks',
+                'additionalBindings' => [
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v2/{parent=projects/*}/sinks',
+                    ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v2/{parent=organizations/*}/sinks',
+                    ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v2/{parent=folders/*}/sinks',
+                    ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v2/{parent=billingAccounts/*}/sinks',
+                    ],
+                ],
                 'placeholders' => [
                     'parent' => [
                         'getters' => [
@@ -17,6 +35,24 @@ return [
             'GetSink' => [
                 'method' => 'get',
                 'uriTemplate' => '/v2/{sink_name=*/*/sinks/*}',
+                'additionalBindings' => [
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v2/{sink_name=projects/*/sinks/*}',
+                    ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v2/{sink_name=organizations/*/sinks/*}',
+                    ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v2/{sink_name=folders/*/sinks/*}',
+                    ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v2/{sink_name=billingAccounts/*/sinks/*}',
+                    ],
+                ],
                 'placeholders' => [
                     'sink_name' => [
                         'getters' => [
@@ -29,6 +65,28 @@ return [
                 'method' => 'post',
                 'uriTemplate' => '/v2/{parent=*/*}/sinks',
                 'body' => 'sink',
+                'additionalBindings' => [
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v2/{parent=projects/*}/sinks',
+                        'body' => 'sink',
+                    ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v2/{parent=organizations/*}/sinks',
+                        'body' => 'sink',
+                    ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v2/{parent=folders/*}/sinks',
+                        'body' => 'sink',
+                    ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v2/{parent=billingAccounts/*}/sinks',
+                        'body' => 'sink',
+                    ],
+                ],
                 'placeholders' => [
                     'parent' => [
                         'getters' => [
@@ -41,6 +99,48 @@ return [
                 'method' => 'put',
                 'uriTemplate' => '/v2/{sink_name=*/*/sinks/*}',
                 'body' => 'sink',
+                'additionalBindings' => [
+                    [
+                        'method' => 'put',
+                        'uriTemplate' => '/v2/{sink_name=projects/*/sinks/*}',
+                        'body' => 'sink',
+                    ],
+                    [
+                        'method' => 'put',
+                        'uriTemplate' => '/v2/{sink_name=organizations/*/sinks/*}',
+                        'body' => 'sink',
+                    ],
+                    [
+                        'method' => 'put',
+                        'uriTemplate' => '/v2/{sink_name=folders/*/sinks/*}',
+                        'body' => 'sink',
+                    ],
+                    [
+                        'method' => 'put',
+                        'uriTemplate' => '/v2/{sink_name=billingAccounts/*/sinks/*}',
+                        'body' => 'sink',
+                    ],
+                    [
+                        'method' => 'put',
+                        'uriTemplate' => '/v2/{sink_name=projects/*/sinks/*}',
+                        'body' => 'sink',
+                    ],
+                    [
+                        'method' => 'put',
+                        'uriTemplate' => '/v2/{sink_name=organizations/*/sinks/*}',
+                        'body' => 'sink',
+                    ],
+                    [
+                        'method' => 'put',
+                        'uriTemplate' => '/v2/{sink_name=folders/*/sinks/*}',
+                        'body' => 'sink',
+                    ],
+                    [
+                        'method' => 'put',
+                        'uriTemplate' => '/v2/{sink_name=billingAccounts/*/sinks/*}',
+                        'body' => 'sink',
+                    ],
+                ],
                 'placeholders' => [
                     'sink_name' => [
                         'getters' => [
@@ -52,6 +152,24 @@ return [
             'DeleteSink' => [
                 'method' => 'delete',
                 'uriTemplate' => '/v2/{sink_name=*/*/sinks/*}',
+                'additionalBindings' => [
+                    [
+                        'method' => 'delete',
+                        'uriTemplate' => '/v2/{sink_name=projects/*/sinks/*}',
+                    ],
+                    [
+                        'method' => 'delete',
+                        'uriTemplate' => '/v2/{sink_name=organizations/*/sinks/*}',
+                    ],
+                    [
+                        'method' => 'delete',
+                        'uriTemplate' => '/v2/{sink_name=folders/*/sinks/*}',
+                    ],
+                    [
+                        'method' => 'delete',
+                        'uriTemplate' => '/v2/{sink_name=billingAccounts/*/sinks/*}',
+                    ],
+                ],
                 'placeholders' => [
                     'sink_name' => [
                         'getters' => [
@@ -63,6 +181,24 @@ return [
             'ListExclusions' => [
                 'method' => 'get',
                 'uriTemplate' => '/v2/{parent=*/*}/exclusions',
+                'additionalBindings' => [
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v2/{parent=projects/*}/exclusions',
+                    ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v2/{parent=organizations/*}/exclusions',
+                    ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v2/{parent=folders/*}/exclusions',
+                    ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v2/{parent=billingAccounts/*}/exclusions',
+                    ],
+                ],
                 'placeholders' => [
                     'parent' => [
                         'getters' => [
@@ -74,6 +210,24 @@ return [
             'GetExclusion' => [
                 'method' => 'get',
                 'uriTemplate' => '/v2/{name=*/*/exclusions/*}',
+                'additionalBindings' => [
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v2/{name=projects/*/exclusions/*}',
+                    ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v2/{name=organizations/*/exclusions/*}',
+                    ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v2/{name=folders/*/exclusions/*}',
+                    ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v2/{name=billingAccounts/*/exclusions/*}',
+                    ],
+                ],
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -86,6 +240,28 @@ return [
                 'method' => 'post',
                 'uriTemplate' => '/v2/{parent=*/*}/exclusions',
                 'body' => 'exclusion',
+                'additionalBindings' => [
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v2/{parent=projects/*}/exclusions',
+                        'body' => 'exclusion',
+                    ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v2/{parent=organizations/*}/exclusions',
+                        'body' => 'exclusion',
+                    ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v2/{parent=folders/*}/exclusions',
+                        'body' => 'exclusion',
+                    ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v2/{parent=billingAccounts/*}/exclusions',
+                        'body' => 'exclusion',
+                    ],
+                ],
                 'placeholders' => [
                     'parent' => [
                         'getters' => [
@@ -98,6 +274,28 @@ return [
                 'method' => 'patch',
                 'uriTemplate' => '/v2/{name=*/*/exclusions/*}',
                 'body' => 'exclusion',
+                'additionalBindings' => [
+                    [
+                        'method' => 'patch',
+                        'uriTemplate' => '/v2/{name=projects/*/exclusions/*}',
+                        'body' => 'exclusion',
+                    ],
+                    [
+                        'method' => 'patch',
+                        'uriTemplate' => '/v2/{name=organizations/*/exclusions/*}',
+                        'body' => 'exclusion',
+                    ],
+                    [
+                        'method' => 'patch',
+                        'uriTemplate' => '/v2/{name=folders/*/exclusions/*}',
+                        'body' => 'exclusion',
+                    ],
+                    [
+                        'method' => 'patch',
+                        'uriTemplate' => '/v2/{name=billingAccounts/*/exclusions/*}',
+                        'body' => 'exclusion',
+                    ],
+                ],
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -109,6 +307,24 @@ return [
             'DeleteExclusion' => [
                 'method' => 'delete',
                 'uriTemplate' => '/v2/{name=*/*/exclusions/*}',
+                'additionalBindings' => [
+                    [
+                        'method' => 'delete',
+                        'uriTemplate' => '/v2/{name=projects/*/exclusions/*}',
+                    ],
+                    [
+                        'method' => 'delete',
+                        'uriTemplate' => '/v2/{name=organizations/*/exclusions/*}',
+                    ],
+                    [
+                        'method' => 'delete',
+                        'uriTemplate' => '/v2/{name=folders/*/exclusions/*}',
+                    ],
+                    [
+                        'method' => 'delete',
+                        'uriTemplate' => '/v2/{name=billingAccounts/*/exclusions/*}',
+                    ],
+                ],
                 'placeholders' => [
                     'name' => [
                         'getters' => [

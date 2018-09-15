@@ -4,24 +4,13 @@
 
 namespace Google\Cloud\Logging\V2;
 
-/**
- * Stackdriver Logging API version.
- *
- * Protobuf enum <code>Google\Logging\V2\LogMetric\ApiVersion</code>
- */
-class LogMetric_ApiVersion
-{
+if (false) {
     /**
-     * Stackdriver Logging API v2.
-     *
-     * Generated from protobuf enum <code>V2 = 0;</code>
+     * This class is deprecated. Use Google\Cloud\Logging\V2\LogMetric\ApiVersion instead.
+     * @deprecated
      */
-    const V2 = 0;
-    /**
-     * Stackdriver Logging API v1.
-     *
-     * Generated from protobuf enum <code>V1 = 1;</code>
-     */
-    const V1 = 1;
+    class LogMetric_ApiVersion {}
 }
+class_exists(LogMetric\ApiVersion::class);
+@trigger_error('Google\Cloud\Logging\V2\LogMetric_ApiVersion is deprecated and will be removed in the next major release. Use Google\Cloud\Logging\V2\LogMetric\ApiVersion instead', E_USER_DEPRECATED);
 

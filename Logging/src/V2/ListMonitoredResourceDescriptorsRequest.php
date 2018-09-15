@@ -33,9 +33,26 @@ class ListMonitoredResourceDescriptorsRequest extends \Google\Protobuf\Internal\
      */
     private $page_token = '';
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type int $page_size
+     *           Optional. The maximum number of results to return from this request.
+     *           Non-positive values are ignored.  The presence of `nextPageToken` in the
+     *           response indicates that more results might be available.
+     *     @type string $page_token
+     *           Optional. If present, then retrieve the next batch of results from the
+     *           preceding call to this method.  `pageToken` must be the value of
+     *           `nextPageToken` from the previous response.  The values of other method
+     *           parameters should be identical to those in the previous call.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Logging\V2\Logging::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

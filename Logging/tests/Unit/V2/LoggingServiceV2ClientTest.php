@@ -227,9 +227,9 @@ class LoggingServiceV2ClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
 
         // Mock request
-        $resourceNames = [];
+        $formattedResourceNames = [];
 
-        $response = $client->listLogEntries($resourceNames);
+        $response = $client->listLogEntries($formattedResourceNames);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -243,7 +243,7 @@ class LoggingServiceV2ClientTest extends GeneratedTest
 
         $actualValue = $actualRequestObject->getResourceNames();
 
-        $this->assertProtobufEquals($resourceNames, $actualValue);
+        $this->assertProtobufEquals($formattedResourceNames, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -270,10 +270,10 @@ class LoggingServiceV2ClientTest extends GeneratedTest
         $transport->addResponse(null, $status);
 
         // Mock request
-        $resourceNames = [];
+        $formattedResourceNames = [];
 
         try {
-            $client->listLogEntries($resourceNames);
+            $client->listLogEntries($formattedResourceNames);
             // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {

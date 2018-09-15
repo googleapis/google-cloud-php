@@ -30,9 +30,23 @@ class ListMonitoredResourceDescriptorsResponse extends \Google\Protobuf\Internal
      */
     private $next_page_token = '';
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type \Google\Api\MonitoredResourceDescriptor[]|\Google\Protobuf\Internal\RepeatedField $resource_descriptors
+     *           A list of resource descriptors.
+     *     @type string $next_page_token
+     *           If there might be more results than those appearing in this response, then
+     *           `nextPageToken` is included.  To get the next set of results, call this
+     *           method again using the value of `nextPageToken` as `pageToken`.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Logging\V2\Logging::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

@@ -23,9 +23,20 @@ class GetLogMetricRequest extends \Google\Protobuf\Internal\Message
      */
     private $metric_name = '';
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $metric_name
+     *           The resource name of the desired metric:
+     *               "projects/[PROJECT_ID]/metrics/[METRIC_ID]"
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Logging\V2\LoggingMetrics::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

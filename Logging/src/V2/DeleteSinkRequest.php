@@ -28,9 +28,25 @@ class DeleteSinkRequest extends \Google\Protobuf\Internal\Message
      */
     private $sink_name = '';
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $sink_name
+     *           Required. The full resource name of the sink to delete, including the
+     *           parent resource and the sink identifier:
+     *               "projects/[PROJECT_ID]/sinks/[SINK_ID]"
+     *               "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]"
+     *               "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]"
+     *               "folders/[FOLDER_ID]/sinks/[SINK_ID]"
+     *           Example: `"projects/my-project-id/sinks/my-sink-id"`.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Logging\V2\LoggingConfig::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

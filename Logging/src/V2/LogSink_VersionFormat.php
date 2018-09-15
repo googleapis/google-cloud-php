@@ -4,32 +4,13 @@
 
 namespace Google\Cloud\Logging\V2;
 
-/**
- * Available log entry formats. Log entries can be written to Stackdriver
- * Logging in either format and can be exported in either format.
- * Version 2 is the preferred format.
- *
- * Protobuf enum <code>Google\Logging\V2\LogSink\VersionFormat</code>
- */
-class LogSink_VersionFormat
-{
+if (false) {
     /**
-     * An unspecified format version that will default to V2.
-     *
-     * Generated from protobuf enum <code>VERSION_FORMAT_UNSPECIFIED = 0;</code>
+     * This class is deprecated. Use Google\Cloud\Logging\V2\LogSink\VersionFormat instead.
+     * @deprecated
      */
-    const VERSION_FORMAT_UNSPECIFIED = 0;
-    /**
-     * `LogEntry` version 2 format.
-     *
-     * Generated from protobuf enum <code>V2 = 1;</code>
-     */
-    const V2 = 1;
-    /**
-     * `LogEntry` version 1 format.
-     *
-     * Generated from protobuf enum <code>V1 = 2;</code>
-     */
-    const V1 = 2;
+    class LogSink_VersionFormat {}
 }
+class_exists(LogSink\VersionFormat::class);
+@trigger_error('Google\Cloud\Logging\V2\LogSink_VersionFormat is deprecated and will be removed in the next major release. Use Google\Cloud\Logging\V2\LogSink\VersionFormat instead', E_USER_DEPRECATED);
 

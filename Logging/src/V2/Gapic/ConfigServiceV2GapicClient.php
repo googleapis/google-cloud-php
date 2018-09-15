@@ -62,18 +62,21 @@ use Google\Protobuf\GPBEmpty;
  * $configServiceV2Client = new ConfigServiceV2Client();
  * try {
  *     $formattedParent = $configServiceV2Client->projectName('[PROJECT]');
- *     // Iterate through all elements
- *     $pagedResponse = $configServiceV2Client->listSinks($formattedParent);
- *     foreach ($pagedResponse->iterateAllElements() as $element) {
- *         // doSomethingWith($element);
- *     }
- *
- *     // OR iterate over pages of elements
+ *     // Iterate over pages of elements
  *     $pagedResponse = $configServiceV2Client->listSinks($formattedParent);
  *     foreach ($pagedResponse->iteratePages() as $page) {
  *         foreach ($page as $element) {
  *             // doSomethingWith($element);
  *         }
+ *     }
+ *
+ *
+ *     // Alternatively:
+ *
+ *     // Iterate through all elements
+ *     $pagedResponse = $configServiceV2Client->listSinks($formattedParent);
+ *     foreach ($pagedResponse->iterateAllElements() as $element) {
+ *         // doSomethingWith($element);
  *     }
  * } finally {
  *     $configServiceV2Client->close();
@@ -133,6 +136,7 @@ class ConfigServiceV2GapicClient
             'serviceAddress' => self::SERVICE_ADDRESS.':'.self::DEFAULT_SERVICE_PORT,
             'clientConfig' => __DIR__.'/../resources/config_service_v2_client_config.json',
             'descriptorsConfigPath' => __DIR__.'/../resources/config_service_v2_descriptor_config.php',
+            'gcpApiConfigPath' => __DIR__.'/../resources/config_service_v2_grpc_config.json',
             'credentialsConfig' => [
                 'scopes' => self::$serviceScopes,
             ],
@@ -345,18 +349,21 @@ class ConfigServiceV2GapicClient
      * $configServiceV2Client = new ConfigServiceV2Client();
      * try {
      *     $formattedParent = $configServiceV2Client->projectName('[PROJECT]');
-     *     // Iterate through all elements
-     *     $pagedResponse = $configServiceV2Client->listSinks($formattedParent);
-     *     foreach ($pagedResponse->iterateAllElements() as $element) {
-     *         // doSomethingWith($element);
-     *     }
-     *
-     *     // OR iterate over pages of elements
+     *     // Iterate over pages of elements
      *     $pagedResponse = $configServiceV2Client->listSinks($formattedParent);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
      *         }
+     *     }
+     *
+     *
+     *     // Alternatively:
+     *
+     *     // Iterate through all elements
+     *     $pagedResponse = $configServiceV2Client->listSinks($formattedParent);
+     *     foreach ($pagedResponse->iterateAllElements() as $element) {
+     *         // doSomethingWith($element);
      *     }
      * } finally {
      *     $configServiceV2Client->close();
@@ -684,18 +691,21 @@ class ConfigServiceV2GapicClient
      * $configServiceV2Client = new ConfigServiceV2Client();
      * try {
      *     $formattedParent = $configServiceV2Client->projectName('[PROJECT]');
-     *     // Iterate through all elements
-     *     $pagedResponse = $configServiceV2Client->listExclusions($formattedParent);
-     *     foreach ($pagedResponse->iterateAllElements() as $element) {
-     *         // doSomethingWith($element);
-     *     }
-     *
-     *     // OR iterate over pages of elements
+     *     // Iterate over pages of elements
      *     $pagedResponse = $configServiceV2Client->listExclusions($formattedParent);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
      *         }
+     *     }
+     *
+     *
+     *     // Alternatively:
+     *
+     *     // Iterate through all elements
+     *     $pagedResponse = $configServiceV2Client->listExclusions($formattedParent);
+     *     foreach ($pagedResponse->iterateAllElements() as $element) {
+     *         // doSomethingWith($element);
      *     }
      * } finally {
      *     $configServiceV2Client->close();
