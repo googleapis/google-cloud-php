@@ -32,9 +32,23 @@ class TimeInterval extends \Google\Protobuf\Internal\Message
      */
     private $start_time = null;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type \Google\Protobuf\Timestamp $end_time
+     *           Required. The end of the time interval.
+     *     @type \Google\Protobuf\Timestamp $start_time
+     *           Optional. The beginning of the time interval.  The default value
+     *           for the start time is the end time. The start time must not be
+     *           later than the end time.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Monitoring\V3\Common::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

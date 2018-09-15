@@ -8,7 +8,7 @@ namespace Google\Cloud\Monitoring\V3;
  * Specifies an ordering relationship on two arguments, here called left and
  * right.
  *
- * Protobuf enum <code>Google\Monitoring\V3\ComparisonType</code>
+ * Protobuf type <code>google.monitoring.v3.ComparisonType</code>
  */
 class ComparisonType
 {

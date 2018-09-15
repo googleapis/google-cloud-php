@@ -44,9 +44,33 @@ class ListNotificationChannelDescriptorsRequest extends \Google\Protobuf\Interna
      */
     private $page_token = '';
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $name
+     *           The REST resource name of the parent from which to retrieve
+     *           the notification channel descriptors. The expected syntax is:
+     *               projects/[PROJECT_ID]
+     *           Note that this names the parent container in which to look for the
+     *           descriptors; to retrieve a single descriptor by name, use the
+     *           [GetNotificationChannelDescriptor][google.monitoring.v3.NotificationChannelService.GetNotificationChannelDescriptor]
+     *           operation, instead.
+     *     @type int $page_size
+     *           The maximum number of results to return in a single response. If
+     *           not set to a positive number, a reasonable value will be chosen by the
+     *           service.
+     *     @type string $page_token
+     *           If non-empty, `page_token` must contain a value returned as the
+     *           `next_page_token` in a previous response to request the next set
+     *           of results.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Monitoring\V3\NotificationService::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

@@ -29,9 +29,22 @@ class UpdateGroupRequest extends \Google\Protobuf\Internal\Message
      */
     private $validate_only = false;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type \Google\Cloud\Monitoring\V3\Group $group
+     *           The new definition of the group.  All fields of the existing group,
+     *           excepting `name`, are replaced with the corresponding fields of this group.
+     *     @type bool $validate_only
+     *           If true, validate this request but do not update the existing group.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Monitoring\V3\GroupService::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

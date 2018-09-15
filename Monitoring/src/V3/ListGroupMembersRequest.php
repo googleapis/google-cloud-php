@@ -57,9 +57,38 @@ class ListGroupMembersRequest extends \Google\Protobuf\Internal\Message
      */
     private $interval = null;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $name
+     *           The group whose members are listed. The format is
+     *           `"projects/{project_id_or_number}/groups/{group_id}"`.
+     *     @type int $page_size
+     *           A positive number that is the maximum number of results to return.
+     *     @type string $page_token
+     *           If this field is not empty then it must contain the `nextPageToken` value
+     *           returned by a previous call to this method.  Using this field causes the
+     *           method to return additional results from the previous method call.
+     *     @type string $filter
+     *           An optional [list filter](/monitoring/api/learn_more#filtering) describing
+     *           the members to be returned.  The filter may reference the type, labels, and
+     *           metadata of monitored resources that comprise the group.
+     *           For example, to return only resources representing Compute Engine VM
+     *           instances, use this filter:
+     *               resource.type = "gce_instance"
+     *     @type \Google\Cloud\Monitoring\V3\TimeInterval $interval
+     *           An optional time interval for which results should be returned. Only
+     *           members that were part of the group during the specified interval are
+     *           included in the response.  If no interval is provided then the group
+     *           membership over the last minute is returned.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Monitoring\V3\GroupService::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

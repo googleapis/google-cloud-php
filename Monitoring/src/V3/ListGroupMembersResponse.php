@@ -36,9 +36,25 @@ class ListGroupMembersResponse extends \Google\Protobuf\Internal\Message
      */
     private $total_size = 0;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type \Google\Api\MonitoredResource[]|\Google\Protobuf\Internal\RepeatedField $members
+     *           A set of monitored resources in the group.
+     *     @type string $next_page_token
+     *           If there are more results than have been returned, then this field is
+     *           set to a non-empty value.  To see the additional results, use that value as
+     *           `pageToken` in the next call to this method.
+     *     @type int $total_size
+     *           The total number of elements matching this request.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Monitoring\V3\GroupService::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

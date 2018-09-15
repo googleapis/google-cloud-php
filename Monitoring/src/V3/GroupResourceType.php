@@ -6,10 +6,12 @@ namespace Google\Cloud\Monitoring\V3;
 
 /**
  * The supported resource types that can be used as values of
- * group_resource.resource_type. gae_app and uptime_url are not allowed
- * because group checks on App Engine modules and URLs are not allowed.
+ * `group_resource.resource_type`.
+ * `INSTANCE` includes `gce_instance` and `aws_ec2_instance` resource types.
+ * The resource types `gae_app` and `uptime_url` are not valid here because
+ * group checks on App Engine modules and URLs are not allowed.
  *
- * Protobuf enum <code>Google\Monitoring\V3\GroupResourceType</code>
+ * Protobuf type <code>google.monitoring.v3.GroupResourceType</code>
  */
 class GroupResourceType
 {
@@ -20,13 +22,14 @@ class GroupResourceType
      */
     const RESOURCE_TYPE_UNSPECIFIED = 0;
     /**
-     * A group of instances (could be either GCE or AWS_EC2).
+     * A group of instances from Google Cloud Platform (GCP) or
+     * Amazon Web Services (AWS).
      *
      * Generated from protobuf enum <code>INSTANCE = 1;</code>
      */
     const INSTANCE = 1;
     /**
-     * A group of AWS load balancers.
+     * A group of Amazon ELB load balancers.
      *
      * Generated from protobuf enum <code>AWS_ELB_LOAD_BALANCER = 2;</code>
      */

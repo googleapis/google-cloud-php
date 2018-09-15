@@ -31,10 +31,36 @@ class ListUptimeCheckConfigsResponse extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string next_page_token = 2;</code>
      */
     private $next_page_token = '';
+    /**
+     * The total number of uptime check configurations for the project,
+     * irrespective of any pagination.
+     *
+     * Generated from protobuf field <code>int32 total_size = 3;</code>
+     */
+    private $total_size = 0;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type \Google\Cloud\Monitoring\V3\UptimeCheckConfig[]|\Google\Protobuf\Internal\RepeatedField $uptime_check_configs
+     *           The returned uptime check configurations.
+     *     @type string $next_page_token
+     *           This field represents the pagination token to retrieve the next page of
+     *           results. If the value is empty, it means no further results for the
+     *           request. To retrieve the next page of results, the value of the
+     *           next_page_token is passed to the subsequent List method call (in the
+     *           request message's page_token field).
+     *     @type int $total_size
+     *           The total number of uptime check configurations for the project,
+     *           irrespective of any pagination.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Monitoring\V3\UptimeService::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**
@@ -93,6 +119,34 @@ class ListUptimeCheckConfigsResponse extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->next_page_token = $var;
+
+        return $this;
+    }
+
+    /**
+     * The total number of uptime check configurations for the project,
+     * irrespective of any pagination.
+     *
+     * Generated from protobuf field <code>int32 total_size = 3;</code>
+     * @return int
+     */
+    public function getTotalSize()
+    {
+        return $this->total_size;
+    }
+
+    /**
+     * The total number of uptime check configurations for the project,
+     * irrespective of any pagination.
+     *
+     * Generated from protobuf field <code>int32 total_size = 3;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setTotalSize($var)
+    {
+        GPBUtil::checkInt32($var);
+        $this->total_size = $var;
 
         return $this;
     }

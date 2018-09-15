@@ -31,9 +31,24 @@ class ListMetricDescriptorsResponse extends \Google\Protobuf\Internal\Message
      */
     private $next_page_token = '';
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type \Google\Api\MetricDescriptor[]|\Google\Protobuf\Internal\RepeatedField $metric_descriptors
+     *           The metric descriptors that are available to the project
+     *           and that match the value of `filter`, if present.
+     *     @type string $next_page_token
+     *           If there are more results than have been returned, then this field is set
+     *           to a non-empty value.  To see the additional results,
+     *           use that value as `pageToken` in the next call to this method.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Monitoring\V3\MetricService::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

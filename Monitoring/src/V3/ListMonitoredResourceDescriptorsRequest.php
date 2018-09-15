@@ -48,9 +48,33 @@ class ListMonitoredResourceDescriptorsRequest extends \Google\Protobuf\Internal\
      */
     private $page_token = '';
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $name
+     *           The project on which to execute the request. The format is
+     *           `"projects/{project_id_or_number}"`.
+     *     @type string $filter
+     *           An optional [filter](/monitoring/api/v3/filters) describing
+     *           the descriptors to be returned.  The filter can reference
+     *           the descriptor's type and labels. For example, the
+     *           following filter returns only Google Compute Engine descriptors
+     *           that have an `id` label:
+     *               resource.type = starts_with("gce_") AND resource.label:id
+     *     @type int $page_size
+     *           A positive number that is the maximum number of results to return.
+     *     @type string $page_token
+     *           If this field is not empty then it must contain the `nextPageToken` value
+     *           returned by a previous call to this method.  Using this field causes the
+     *           method to return additional results from the previous method call.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Monitoring\V3\MetricService::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**
