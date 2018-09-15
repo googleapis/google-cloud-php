@@ -42,9 +42,26 @@ class LoginProfile extends \Google\Protobuf\Internal\Message
      */
     private $suspended = false;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $name
+     *           The primary email address that uniquely identifies the user.
+     *     @type \Google\Cloud\OsLogin\Common\PosixAccount[]|\Google\Protobuf\Internal\RepeatedField $posix_accounts
+     *           The list of POSIX accounts associated with the user.
+     *     @type array|\Google\Protobuf\Internal\MapField $ssh_public_keys
+     *           A map from SSH public key fingerprint to the associated key object.
+     *     @type bool $suspended
+     *           Indicates if the user is suspended. A suspended user cannot log in but
+     *           their profile information is retained.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Oslogin\V1Beta\Oslogin::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

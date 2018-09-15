@@ -36,9 +36,25 @@ class SshPublicKey extends \Google\Protobuf\Internal\Message
      */
     private $fingerprint = '';
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $key
+     *           Public key text in SSH format, defined by
+     *           <a href="https://www.ietf.org/rfc/rfc4253.txt" target="_blank">RFC4253</a>
+     *           section 6.6.
+     *     @type int|string $expiration_time_usec
+     *           An expiration time in microseconds since epoch.
+     *     @type string $fingerprint
+     *           Output only. The SHA-256 fingerprint of the SSH public key.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Oslogin\Common\Common::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

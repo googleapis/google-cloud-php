@@ -22,9 +22,19 @@ class ImportSshPublicKeyResponse extends \Google\Protobuf\Internal\Message
      */
     private $login_profile = null;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type \Google\Cloud\OsLogin\V1\LoginProfile $login_profile
+     *           The login profile information for the user.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Oslogin\V1\Oslogin::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

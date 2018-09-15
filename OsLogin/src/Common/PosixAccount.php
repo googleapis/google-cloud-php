@@ -71,9 +71,36 @@ class PosixAccount extends \Google\Protobuf\Internal\Message
      */
     private $account_id = '';
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type bool $primary
+     *           Only one POSIX account can be marked as primary.
+     *     @type string $username
+     *           The username of the POSIX account.
+     *     @type int|string $uid
+     *           The user ID.
+     *     @type int|string $gid
+     *           The default group ID.
+     *     @type string $home_directory
+     *           The path to the home directory for this account.
+     *     @type string $shell
+     *           The path to the logic shell for this account.
+     *     @type string $gecos
+     *           The GECOS (user information) entry for this account.
+     *     @type string $system_id
+     *           System identifier for which account the username or uid applies to.
+     *           By default, the empty value is used.
+     *     @type string $account_id
+     *           Output only. A POSIX account identifier.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Oslogin\Common\Common::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

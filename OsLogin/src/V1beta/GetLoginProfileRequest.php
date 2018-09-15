@@ -22,9 +22,19 @@ class GetLoginProfileRequest extends \Google\Protobuf\Internal\Message
      */
     private $name = '';
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $name
+     *           The unique ID for the user in format `users/{user}`.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Oslogin\V1Beta\Oslogin::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

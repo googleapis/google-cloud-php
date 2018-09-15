@@ -24,9 +24,21 @@ class DeletePosixAccountRequest extends \Google\Protobuf\Internal\Message
      */
     private $name = '';
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $name
+     *           A reference to the POSIX account to update. POSIX accounts are identified
+     *           by the project ID they are associated with. A reference to the POSIX
+     *           account is in format `users/{user}/projects/{project}`.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Oslogin\V1\Oslogin::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**
