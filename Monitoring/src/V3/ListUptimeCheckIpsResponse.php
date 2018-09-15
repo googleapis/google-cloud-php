@@ -34,9 +34,27 @@ class ListUptimeCheckIpsResponse extends \Google\Protobuf\Internal\Message
      */
     private $next_page_token = '';
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type \Google\Cloud\Monitoring\V3\UptimeCheckIp[]|\Google\Protobuf\Internal\RepeatedField $uptime_check_ips
+     *           The returned list of IP addresses (including region and location) that the
+     *           checkers run from.
+     *     @type string $next_page_token
+     *           This field represents the pagination token to retrieve the next page of
+     *           results. If the value is empty, it means no further results for the
+     *           request. To retrieve the next page of results, the value of the
+     *           next_page_token is passed to the subsequent List method call (in the
+     *           request message's page_token field).
+     *           NOTE: this field is not yet implemented
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Monitoring\V3\UptimeService::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

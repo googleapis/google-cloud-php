@@ -16,8 +16,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class CreateUptimeCheckConfigRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The project in which to create the uptime check. The format is:
-     *   `projects/[PROJECT_ID]`.
+     * The project in which to create the uptime check. The format
+     *   is `projects/[PROJECT_ID]`.
      *
      * Generated from protobuf field <code>string parent = 1;</code>
      */
@@ -29,14 +29,27 @@ class CreateUptimeCheckConfigRequest extends \Google\Protobuf\Internal\Message
      */
     private $uptime_check_config = null;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $parent
+     *           The project in which to create the uptime check. The format
+     *             is `projects/[PROJECT_ID]`.
+     *     @type \Google\Cloud\Monitoring\V3\UptimeCheckConfig $uptime_check_config
+     *           The new uptime check configuration.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Monitoring\V3\UptimeService::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**
-     * The project in which to create the uptime check. The format is:
-     *   `projects/[PROJECT_ID]`.
+     * The project in which to create the uptime check. The format
+     *   is `projects/[PROJECT_ID]`.
      *
      * Generated from protobuf field <code>string parent = 1;</code>
      * @return string
@@ -47,8 +60,8 @@ class CreateUptimeCheckConfigRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The project in which to create the uptime check. The format is:
-     *   `projects/[PROJECT_ID]`.
+     * The project in which to create the uptime check. The format
+     *   is `projects/[PROJECT_ID]`.
      *
      * Generated from protobuf field <code>string parent = 1;</code>
      * @param string $var

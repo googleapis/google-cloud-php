@@ -59,13 +59,42 @@ class NotificationChannelDescriptor extends \Google\Protobuf\Internal\Message
      * The tiers that support this notification channel; the project service tier
      * must be one of the supported_tiers.
      *
-     * Generated from protobuf field <code>repeated .google.monitoring.v3.ServiceTier supported_tiers = 5;</code>
+     * Generated from protobuf field <code>repeated .google.monitoring.v3.ServiceTier supported_tiers = 5 [deprecated = true];</code>
      */
     private $supported_tiers;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $name
+     *           The full REST resource name for this descriptor. The syntax is:
+     *               projects/[PROJECT_ID]/notificationChannelDescriptors/[TYPE]
+     *           In the above, `[TYPE]` is the value of the `type` field.
+     *     @type string $type
+     *           The type of notification channel, such as "email", "sms", etc.
+     *           Notification channel types are globally unique.
+     *     @type string $display_name
+     *           A human-readable name for the notification channel type.  This
+     *           form of the name is suitable for a user interface.
+     *     @type string $description
+     *           A human-readable description of the notification channel
+     *           type. The description may include a description of the properties
+     *           of the channel and pointers to external documentation.
+     *     @type \Google\Api\LabelDescriptor[]|\Google\Protobuf\Internal\RepeatedField $labels
+     *           The set of labels that must be defined to identify a particular
+     *           channel of the corresponding type. Each label includes a
+     *           description for how that field should be populated.
+     *     @type int[]|\Google\Protobuf\Internal\RepeatedField $supported_tiers
+     *           The tiers that support this notification channel; the project service tier
+     *           must be one of the supported_tiers.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Monitoring\V3\Notification::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**
@@ -218,7 +247,7 @@ class NotificationChannelDescriptor extends \Google\Protobuf\Internal\Message
      * The tiers that support this notification channel; the project service tier
      * must be one of the supported_tiers.
      *
-     * Generated from protobuf field <code>repeated .google.monitoring.v3.ServiceTier supported_tiers = 5;</code>
+     * Generated from protobuf field <code>repeated .google.monitoring.v3.ServiceTier supported_tiers = 5 [deprecated = true];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getSupportedTiers()
@@ -230,7 +259,7 @@ class NotificationChannelDescriptor extends \Google\Protobuf\Internal\Message
      * The tiers that support this notification channel; the project service tier
      * must be one of the supported_tiers.
      *
-     * Generated from protobuf field <code>repeated .google.monitoring.v3.ServiceTier supported_tiers = 5;</code>
+     * Generated from protobuf field <code>repeated .google.monitoring.v3.ServiceTier supported_tiers = 5 [deprecated = true];</code>
      * @param int[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */

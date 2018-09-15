@@ -38,9 +38,31 @@ class GetNotificationChannelVerificationCodeRequest extends \Google\Protobuf\Int
      */
     private $expire_time = null;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $name
+     *           The notification channel for which a verification code is to be generated
+     *           and retrieved. This must name a channel that is already verified; if
+     *           the specified channel is not verified, the request will fail.
+     *     @type \Google\Protobuf\Timestamp $expire_time
+     *           The desired expiration time. If specified, the API will guarantee that
+     *           the returned code will not be valid after the specified timestamp;
+     *           however, the API cannot guarantee that the returned code will be
+     *           valid for at least as long as the requested time (the API puts an upper
+     *           bound on the amount of time for which a code may be valid). If omitted,
+     *           a default expiration will be used, which may be less than the max
+     *           permissible expiration (so specifying an expiration may extend the
+     *           code's lifetime over omitting an expiration, even though the API does
+     *           impose an upper limit on the maximum expiration that is permitted).
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Monitoring\V3\NotificationService::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

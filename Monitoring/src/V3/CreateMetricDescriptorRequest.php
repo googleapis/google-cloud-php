@@ -30,9 +30,23 @@ class CreateMetricDescriptorRequest extends \Google\Protobuf\Internal\Message
      */
     private $metric_descriptor = null;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $name
+     *           The project on which to execute the request. The format is
+     *           `"projects/{project_id_or_number}"`.
+     *     @type \Google\Api\MetricDescriptor $metric_descriptor
+     *           The new [custom metric](/monitoring/custom-metrics)
+     *           descriptor.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Monitoring\V3\MetricService::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

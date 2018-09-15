@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * The `ListMonitoredResourcDescriptors` response.
+ * The `ListMonitoredResourceDescriptors` response.
  *
  * Generated from protobuf message <code>google.monitoring.v3.ListMonitoredResourceDescriptorsResponse</code>
  */
@@ -31,9 +31,24 @@ class ListMonitoredResourceDescriptorsResponse extends \Google\Protobuf\Internal
      */
     private $next_page_token = '';
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type \Google\Api\MonitoredResourceDescriptor[]|\Google\Protobuf\Internal\RepeatedField $resource_descriptors
+     *           The monitored resource descriptors that are available to this project
+     *           and that match `filter`, if present.
+     *     @type string $next_page_token
+     *           If there are more results than have been returned, then this field is set
+     *           to a non-empty value.  To see the additional results,
+     *           use that value as `pageToken` in the next call to this method.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Monitoring\V3\MetricService::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

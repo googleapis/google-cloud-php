@@ -23,9 +23,20 @@ class GetAlertPolicyRequest extends \Google\Protobuf\Internal\Message
      */
     private $name = '';
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $name
+     *           The alerting policy to retrieve. The format is
+     *               projects/[PROJECT_ID]/alertPolicies/[ALERT_POLICY_ID]
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Monitoring\V3\AlertService::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

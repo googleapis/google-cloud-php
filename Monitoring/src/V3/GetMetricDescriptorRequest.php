@@ -25,9 +25,22 @@ class GetMetricDescriptorRequest extends \Google\Protobuf\Internal\Message
      */
     private $name = '';
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $name
+     *           The metric descriptor on which to execute the request. The format is
+     *           `"projects/{project_id_or_number}/metricDescriptors/{metric_id}"`.
+     *           An example value of `{metric_id}` is
+     *           `"compute.googleapis.com/instance/disk/read_bytes_count"`.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Monitoring\V3\MetricService::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

@@ -36,9 +36,25 @@ class CreateGroupRequest extends \Google\Protobuf\Internal\Message
      */
     private $validate_only = false;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $name
+     *           The project in which to create the group. The format is
+     *           `"projects/{project_id_or_number}"`.
+     *     @type \Google\Cloud\Monitoring\V3\Group $group
+     *           A group definition. It is an error to define the `name` field because
+     *           the system assigns the name.
+     *     @type bool $validate_only
+     *           If true, validate this request but do not create the group.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Monitoring\V3\GroupService::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

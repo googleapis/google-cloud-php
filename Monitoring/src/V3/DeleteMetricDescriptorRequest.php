@@ -25,9 +25,22 @@ class DeleteMetricDescriptorRequest extends \Google\Protobuf\Internal\Message
      */
     private $name = '';
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $name
+     *           The metric descriptor on which to execute the request. The format is
+     *           `"projects/{project_id_or_number}/metricDescriptors/{metric_id}"`.
+     *           An example of `{metric_id}` is:
+     *           `"custom.googleapis.com/my_test_metric"`.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Monitoring\V3\MetricService::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

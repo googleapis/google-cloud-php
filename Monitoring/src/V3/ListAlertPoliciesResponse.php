@@ -30,9 +30,23 @@ class ListAlertPoliciesResponse extends \Google\Protobuf\Internal\Message
      */
     private $next_page_token = '';
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type \Google\Cloud\Monitoring\V3\AlertPolicy[]|\Google\Protobuf\Internal\RepeatedField $alert_policies
+     *           The returned alert policies.
+     *     @type string $next_page_token
+     *           If there might be more results than were returned, then this field is set
+     *           to a non-empty value. To see the additional results,
+     *           use that value as `pageToken` in the next call to this method.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Monitoring\V3\AlertService::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**
