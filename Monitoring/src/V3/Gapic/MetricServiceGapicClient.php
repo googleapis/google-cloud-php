@@ -47,7 +47,7 @@ use Google\Cloud\Monitoring\V3\ListMetricDescriptorsResponse;
 use Google\Cloud\Monitoring\V3\ListMonitoredResourceDescriptorsRequest;
 use Google\Cloud\Monitoring\V3\ListMonitoredResourceDescriptorsResponse;
 use Google\Cloud\Monitoring\V3\ListTimeSeriesRequest;
-use Google\Cloud\Monitoring\V3\ListTimeSeriesRequest_TimeSeriesView;
+use Google\Cloud\Monitoring\V3\ListTimeSeriesRequest\TimeSeriesView;
 use Google\Cloud\Monitoring\V3\ListTimeSeriesResponse;
 use Google\Cloud\Monitoring\V3\TimeInterval;
 use Google\Cloud\Monitoring\V3\TimeSeries;
@@ -64,18 +64,21 @@ use Google\Protobuf\GPBEmpty;
  * $metricServiceClient = new MetricServiceClient();
  * try {
  *     $formattedName = $metricServiceClient->projectName('[PROJECT]');
- *     // Iterate through all elements
- *     $pagedResponse = $metricServiceClient->listMonitoredResourceDescriptors($formattedName);
- *     foreach ($pagedResponse->iterateAllElements() as $element) {
- *         // doSomethingWith($element);
- *     }
- *
- *     // OR iterate over pages of elements
+ *     // Iterate over pages of elements
  *     $pagedResponse = $metricServiceClient->listMonitoredResourceDescriptors($formattedName);
  *     foreach ($pagedResponse->iteratePages() as $page) {
  *         foreach ($page as $element) {
  *             // doSomethingWith($element);
  *         }
+ *     }
+ *
+ *
+ *     // Alternatively:
+ *
+ *     // Iterate through all elements
+ *     $pagedResponse = $metricServiceClient->listMonitoredResourceDescriptors($formattedName);
+ *     foreach ($pagedResponse->iterateAllElements() as $element) {
+ *         // doSomethingWith($element);
  *     }
  * } finally {
  *     $metricServiceClient->close();
@@ -134,6 +137,7 @@ class MetricServiceGapicClient
             'serviceAddress' => self::SERVICE_ADDRESS.':'.self::DEFAULT_SERVICE_PORT,
             'clientConfig' => __DIR__.'/../resources/metric_service_client_config.json',
             'descriptorsConfigPath' => __DIR__.'/../resources/metric_service_descriptor_config.php',
+            'gcpApiConfigPath' => __DIR__.'/../resources/metric_service_grpc_config.json',
             'credentialsConfig' => [
                 'scopes' => self::$serviceScopes,
             ],
@@ -346,18 +350,21 @@ class MetricServiceGapicClient
      * $metricServiceClient = new MetricServiceClient();
      * try {
      *     $formattedName = $metricServiceClient->projectName('[PROJECT]');
-     *     // Iterate through all elements
-     *     $pagedResponse = $metricServiceClient->listMonitoredResourceDescriptors($formattedName);
-     *     foreach ($pagedResponse->iterateAllElements() as $element) {
-     *         // doSomethingWith($element);
-     *     }
-     *
-     *     // OR iterate over pages of elements
+     *     // Iterate over pages of elements
      *     $pagedResponse = $metricServiceClient->listMonitoredResourceDescriptors($formattedName);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
      *         }
+     *     }
+     *
+     *
+     *     // Alternatively:
+     *
+     *     // Iterate through all elements
+     *     $pagedResponse = $metricServiceClient->listMonitoredResourceDescriptors($formattedName);
+     *     foreach ($pagedResponse->iterateAllElements() as $element) {
+     *         // doSomethingWith($element);
      *     }
      * } finally {
      *     $metricServiceClient->close();
@@ -474,18 +481,21 @@ class MetricServiceGapicClient
      * $metricServiceClient = new MetricServiceClient();
      * try {
      *     $formattedName = $metricServiceClient->projectName('[PROJECT]');
-     *     // Iterate through all elements
-     *     $pagedResponse = $metricServiceClient->listMetricDescriptors($formattedName);
-     *     foreach ($pagedResponse->iterateAllElements() as $element) {
-     *         // doSomethingWith($element);
-     *     }
-     *
-     *     // OR iterate over pages of elements
+     *     // Iterate over pages of elements
      *     $pagedResponse = $metricServiceClient->listMetricDescriptors($formattedName);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
      *         }
+     *     }
+     *
+     *
+     *     // Alternatively:
+     *
+     *     // Iterate through all elements
+     *     $pagedResponse = $metricServiceClient->listMetricDescriptors($formattedName);
+     *     foreach ($pagedResponse->iterateAllElements() as $element) {
+     *         // doSomethingWith($element);
      *     }
      * } finally {
      *     $metricServiceClient->close();
@@ -700,19 +710,22 @@ class MetricServiceGapicClient
      *     $formattedName = $metricServiceClient->projectName('[PROJECT]');
      *     $filter = '';
      *     $interval = new TimeInterval();
-     *     $view = ListTimeSeriesRequest_TimeSeriesView::FULL;
-     *     // Iterate through all elements
-     *     $pagedResponse = $metricServiceClient->listTimeSeries($formattedName, $filter, $interval, $view);
-     *     foreach ($pagedResponse->iterateAllElements() as $element) {
-     *         // doSomethingWith($element);
-     *     }
-     *
-     *     // OR iterate over pages of elements
+     *     $view = ListTimeSeriesRequest\TimeSeriesView::FULL;
+     *     // Iterate over pages of elements
      *     $pagedResponse = $metricServiceClient->listTimeSeries($formattedName, $filter, $interval, $view);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
      *         }
+     *     }
+     *
+     *
+     *     // Alternatively:
+     *
+     *     // Iterate through all elements
+     *     $pagedResponse = $metricServiceClient->listTimeSeries($formattedName, $filter, $interval, $view);
+     *     foreach ($pagedResponse->iterateAllElements() as $element) {
+     *         // doSomethingWith($element);
      *     }
      * } finally {
      *     $metricServiceClient->close();
@@ -732,7 +745,7 @@ class MetricServiceGapicClient
      *                                   that contain data points in the specified interval are included
      *                                   in the response.
      * @param int          $view         Specifies which information is returned about the time series.
-     *                                   For allowed values, use constants defined on {@see \Google\Cloud\Monitoring\V3\ListTimeSeriesRequest_TimeSeriesView}
+     *                                   For allowed values, use constants defined on {@see \Google\Cloud\Monitoring\V3\ListTimeSeriesRequest\TimeSeriesView}
      * @param array        $optionalArgs {
      *                                   Optional.
      *
@@ -741,9 +754,8 @@ class MetricServiceGapicClient
      *          Use this field to combine multiple time series for different
      *          views of the data.
      *     @type string $orderBy
-     *          Specifies the order in which the points of the time series should
-     *          be returned.  By default, results are not ordered.  Currently,
-     *          this field must be left blank.
+     *          Unsupported: must be left blank. The points in each time series are
+     *          returned in reverse time order.
      *     @type int $pageSize
      *          The maximum number of resources contained in the underlying API
      *          response. The API may return fewer values in a page, even if

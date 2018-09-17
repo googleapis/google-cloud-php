@@ -50,9 +50,8 @@ class ListTimeSeriesRequest extends \Google\Protobuf\Internal\Message
      */
     private $aggregation = null;
     /**
-     * Specifies the order in which the points of the time series should
-     * be returned.  By default, results are not ordered.  Currently,
-     * this field must be left blank.
+     * Unsupported: must be left blank. The points in each time series are
+     * returned in reverse time order.
      *
      * Generated from protobuf field <code>string order_by = 6;</code>
      */
@@ -64,10 +63,11 @@ class ListTimeSeriesRequest extends \Google\Protobuf\Internal\Message
      */
     private $view = 0;
     /**
-     * A positive number that is the maximum number of results to return.
-     * When `view` field sets to `FULL`, it limits the number of `Points` server
-     * will return; if `view` field is `HEADERS`, it limits the number of
-     * `TimeSeries` server will return.
+     * A positive number that is the maximum number of results to return. If
+     * `page_size` is empty or more than 100,000 results, the effective
+     * `page_size` is 100,000 results. If `view` is set to `FULL`, this is the
+     * maximum number of `Points` returned. If `view` is set to `HEADERS`, this is
+     * the maximum number of `TimeSeries` returned.
      *
      * Generated from protobuf field <code>int32 page_size = 8;</code>
      */
@@ -81,9 +81,50 @@ class ListTimeSeriesRequest extends \Google\Protobuf\Internal\Message
      */
     private $page_token = '';
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $name
+     *           The project on which to execute the request. The format is
+     *           "projects/{project_id_or_number}".
+     *     @type string $filter
+     *           A [monitoring filter](/monitoring/api/v3/filters) that specifies which time
+     *           series should be returned.  The filter must specify a single metric type,
+     *           and can additionally specify metric labels and other information. For
+     *           example:
+     *               metric.type = "compute.googleapis.com/instance/cpu/usage_time" AND
+     *                   metric.label.instance_name = "my-instance-name"
+     *     @type \Google\Cloud\Monitoring\V3\TimeInterval $interval
+     *           The time interval for which results should be returned. Only time series
+     *           that contain data points in the specified interval are included
+     *           in the response.
+     *     @type \Google\Cloud\Monitoring\V3\Aggregation $aggregation
+     *           By default, the raw time series data is returned.
+     *           Use this field to combine multiple time series for different
+     *           views of the data.
+     *     @type string $order_by
+     *           Unsupported: must be left blank. The points in each time series are
+     *           returned in reverse time order.
+     *     @type int $view
+     *           Specifies which information is returned about the time series.
+     *     @type int $page_size
+     *           A positive number that is the maximum number of results to return. If
+     *           `page_size` is empty or more than 100,000 results, the effective
+     *           `page_size` is 100,000 results. If `view` is set to `FULL`, this is the
+     *           maximum number of `Points` returned. If `view` is set to `HEADERS`, this is
+     *           the maximum number of `TimeSeries` returned.
+     *     @type string $page_token
+     *           If this field is not empty then it must contain the `nextPageToken` value
+     *           returned by a previous call to this method.  Using this field causes the
+     *           method to return additional results from the previous method call.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Monitoring\V3\MetricService::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**
@@ -211,9 +252,8 @@ class ListTimeSeriesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Specifies the order in which the points of the time series should
-     * be returned.  By default, results are not ordered.  Currently,
-     * this field must be left blank.
+     * Unsupported: must be left blank. The points in each time series are
+     * returned in reverse time order.
      *
      * Generated from protobuf field <code>string order_by = 6;</code>
      * @return string
@@ -224,9 +264,8 @@ class ListTimeSeriesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Specifies the order in which the points of the time series should
-     * be returned.  By default, results are not ordered.  Currently,
-     * this field must be left blank.
+     * Unsupported: must be left blank. The points in each time series are
+     * returned in reverse time order.
      *
      * Generated from protobuf field <code>string order_by = 6;</code>
      * @param string $var
@@ -267,10 +306,11 @@ class ListTimeSeriesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A positive number that is the maximum number of results to return.
-     * When `view` field sets to `FULL`, it limits the number of `Points` server
-     * will return; if `view` field is `HEADERS`, it limits the number of
-     * `TimeSeries` server will return.
+     * A positive number that is the maximum number of results to return. If
+     * `page_size` is empty or more than 100,000 results, the effective
+     * `page_size` is 100,000 results. If `view` is set to `FULL`, this is the
+     * maximum number of `Points` returned. If `view` is set to `HEADERS`, this is
+     * the maximum number of `TimeSeries` returned.
      *
      * Generated from protobuf field <code>int32 page_size = 8;</code>
      * @return int
@@ -281,10 +321,11 @@ class ListTimeSeriesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A positive number that is the maximum number of results to return.
-     * When `view` field sets to `FULL`, it limits the number of `Points` server
-     * will return; if `view` field is `HEADERS`, it limits the number of
-     * `TimeSeries` server will return.
+     * A positive number that is the maximum number of results to return. If
+     * `page_size` is empty or more than 100,000 results, the effective
+     * `page_size` is 100,000 results. If `view` is set to `FULL`, this is the
+     * maximum number of `Points` returned. If `view` is set to `HEADERS`, this is
+     * the maximum number of `TimeSeries` returned.
      *
      * Generated from protobuf field <code>int32 page_size = 8;</code>
      * @param int $var

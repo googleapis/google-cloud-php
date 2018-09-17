@@ -32,9 +32,25 @@ class DeleteNotificationChannelRequest extends \Google\Protobuf\Internal\Message
      */
     private $force = false;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $name
+     *           The channel for which to execute the request. The format is
+     *           `projects/[PROJECT_ID]/notificationChannels/[CHANNEL_ID]`.
+     *     @type bool $force
+     *           If true, the notification channel will be deleted regardless of its
+     *           use in alert policies (the policies will be updated to remove the
+     *           channel). If false, channels that are still referenced by an existing
+     *           alerting policy will fail to be deleted in a delete operation.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Monitoring\V3\NotificationService::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

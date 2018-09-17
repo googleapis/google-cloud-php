@@ -9,7 +9,7 @@ namespace Google\Cloud\Monitoring\V3;
  * [service tiers documentation](https://cloud.google.com/monitoring/accounts/tiers)
  * for more details.
  *
- * Protobuf enum <code>Google\Monitoring\V3\ServiceTier</code>
+ * Protobuf type <code>google.monitoring.v3.ServiceTier</code>
  */
 class ServiceTier
 {

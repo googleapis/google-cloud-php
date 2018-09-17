@@ -26,12 +26,20 @@ class TimeSeries extends \Google\Protobuf\Internal\Message
      */
     private $metric = null;
     /**
-     * The associated resource. A fully-specified monitored resource used to
-     * identify the time series.
+     * The associated monitored resource.  Custom metrics can use only certain
+     * monitored resource types in their time series data.
      *
      * Generated from protobuf field <code>.google.api.MonitoredResource resource = 2;</code>
      */
     private $resource = null;
+    /**
+     * Output only. The associated monitored resource metadata. When reading a
+     * a timeseries, this field will include metadata labels that are explicitly
+     * named in the reduction. When creating a timeseries, this field is ignored.
+     *
+     * Generated from protobuf field <code>.google.api.MonitoredResourceMetadata metadata = 7;</code>
+     */
+    private $metadata = null;
     /**
      * The metric kind of the time series. When listing time series, this metric
      * kind might be different from the metric kind of the associated metric if
@@ -56,8 +64,8 @@ class TimeSeries extends \Google\Protobuf\Internal\Message
      */
     private $value_type = 0;
     /**
-     * The data points of this time series. When listing time series, the order of
-     * the points is specified by the list method.
+     * The data points of this time series. When listing time series, points are
+     * returned in reverse time order.
      * When creating a time series, this field must contain exactly one point and
      * the point's type must be the same as the value type of the associated
      * metric. If the associated metric's descriptor must be auto-created, then
@@ -68,9 +76,50 @@ class TimeSeries extends \Google\Protobuf\Internal\Message
      */
     private $points;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type \Google\Api\Metric $metric
+     *           The associated metric. A fully-specified metric used to identify the time
+     *           series.
+     *     @type \Google\Api\MonitoredResource $resource
+     *           The associated monitored resource.  Custom metrics can use only certain
+     *           monitored resource types in their time series data.
+     *     @type \Google\Api\MonitoredResourceMetadata $metadata
+     *           Output only. The associated monitored resource metadata. When reading a
+     *           a timeseries, this field will include metadata labels that are explicitly
+     *           named in the reduction. When creating a timeseries, this field is ignored.
+     *     @type int $metric_kind
+     *           The metric kind of the time series. When listing time series, this metric
+     *           kind might be different from the metric kind of the associated metric if
+     *           this time series is an alignment or reduction of other time series.
+     *           When creating a time series, this field is optional. If present, it must be
+     *           the same as the metric kind of the associated metric. If the associated
+     *           metric's descriptor must be auto-created, then this field specifies the
+     *           metric kind of the new descriptor and must be either `GAUGE` (the default)
+     *           or `CUMULATIVE`.
+     *     @type int $value_type
+     *           The value type of the time series. When listing time series, this value
+     *           type might be different from the value type of the associated metric if
+     *           this time series is an alignment or reduction of other time series.
+     *           When creating a time series, this field is optional. If present, it must be
+     *           the same as the type of the data in the `points` field.
+     *     @type \Google\Cloud\Monitoring\V3\Point[]|\Google\Protobuf\Internal\RepeatedField $points
+     *           The data points of this time series. When listing time series, points are
+     *           returned in reverse time order.
+     *           When creating a time series, this field must contain exactly one point and
+     *           the point's type must be the same as the value type of the associated
+     *           metric. If the associated metric's descriptor must be auto-created, then
+     *           the value type of the descriptor is determined by the point's type, which
+     *           must be `BOOL`, `INT64`, `DOUBLE`, or `DISTRIBUTION`.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Monitoring\V3\Metric::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**
@@ -102,8 +151,8 @@ class TimeSeries extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The associated resource. A fully-specified monitored resource used to
-     * identify the time series.
+     * The associated monitored resource.  Custom metrics can use only certain
+     * monitored resource types in their time series data.
      *
      * Generated from protobuf field <code>.google.api.MonitoredResource resource = 2;</code>
      * @return \Google\Api\MonitoredResource
@@ -114,8 +163,8 @@ class TimeSeries extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The associated resource. A fully-specified monitored resource used to
-     * identify the time series.
+     * The associated monitored resource.  Custom metrics can use only certain
+     * monitored resource types in their time series data.
      *
      * Generated from protobuf field <code>.google.api.MonitoredResource resource = 2;</code>
      * @param \Google\Api\MonitoredResource $var
@@ -125,6 +174,36 @@ class TimeSeries extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Api\MonitoredResource::class);
         $this->resource = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The associated monitored resource metadata. When reading a
+     * a timeseries, this field will include metadata labels that are explicitly
+     * named in the reduction. When creating a timeseries, this field is ignored.
+     *
+     * Generated from protobuf field <code>.google.api.MonitoredResourceMetadata metadata = 7;</code>
+     * @return \Google\Api\MonitoredResourceMetadata
+     */
+    public function getMetadata()
+    {
+        return $this->metadata;
+    }
+
+    /**
+     * Output only. The associated monitored resource metadata. When reading a
+     * a timeseries, this field will include metadata labels that are explicitly
+     * named in the reduction. When creating a timeseries, this field is ignored.
+     *
+     * Generated from protobuf field <code>.google.api.MonitoredResourceMetadata metadata = 7;</code>
+     * @param \Google\Api\MonitoredResourceMetadata $var
+     * @return $this
+     */
+    public function setMetadata($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Api\MonitoredResourceMetadata::class);
+        $this->metadata = $var;
 
         return $this;
     }
@@ -204,8 +283,8 @@ class TimeSeries extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The data points of this time series. When listing time series, the order of
-     * the points is specified by the list method.
+     * The data points of this time series. When listing time series, points are
+     * returned in reverse time order.
      * When creating a time series, this field must contain exactly one point and
      * the point's type must be the same as the value type of the associated
      * metric. If the associated metric's descriptor must be auto-created, then
@@ -221,8 +300,8 @@ class TimeSeries extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The data points of this time series. When listing time series, the order of
-     * the points is specified by the list method.
+     * The data points of this time series. When listing time series, points are
+     * returned in reverse time order.
      * When creating a time series, this field must contain exactly one point and
      * the point's type must be the same as the value type of the associated
      * metric. If the associated metric's descriptor must be auto-created, then

@@ -75,9 +75,34 @@ class Group extends \Google\Protobuf\Internal\Message
      */
     private $is_cluster = false;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $name
+     *           Output only. The name of this group. The format is
+     *           `"projects/{project_id_or_number}/groups/{group_id}"`.
+     *           When creating a group, this field is ignored and a new name is created
+     *           consisting of the project specified in the call to `CreateGroup`
+     *           and a unique `{group_id}` that is generated automatically.
+     *     @type string $display_name
+     *           A user-assigned name for this group, used only for display purposes.
+     *     @type string $parent_name
+     *           The name of the group's parent, if it has one.
+     *           The format is `"projects/{project_id_or_number}/groups/{group_id}"`.
+     *           For groups with no parent, `parentName` is the empty string, `""`.
+     *     @type string $filter
+     *           The filter used to determine which monitored resources belong to this group.
+     *     @type bool $is_cluster
+     *           If true, the members of this group are considered to be a cluster.
+     *           The system can perform additional analysis on groups that are clusters.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Monitoring\V3\Group::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

@@ -16,8 +16,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class ListUptimeCheckConfigsRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The project whose uptime check configurations are listed. The format is
-     *   `projects/[PROJECT_ID]`.
+     * The project whose uptime check configurations are listed. The format
+     *   is `projects/[PROJECT_ID]`.
      *
      * Generated from protobuf field <code>string parent = 1;</code>
      */
@@ -40,14 +40,34 @@ class ListUptimeCheckConfigsRequest extends \Google\Protobuf\Internal\Message
      */
     private $page_token = '';
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $parent
+     *           The project whose uptime check configurations are listed. The format
+     *             is `projects/[PROJECT_ID]`.
+     *     @type int $page_size
+     *           The maximum number of results to return in a single response. The server
+     *           may further constrain the maximum number of results returned in a single
+     *           page. If the page_size is <=0, the server will decide the number of results
+     *           to be returned.
+     *     @type string $page_token
+     *           If this field is not empty then it must contain the `nextPageToken` value
+     *           returned by a previous call to this method.  Using this field causes the
+     *           method to return more results from the previous method call.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Monitoring\V3\UptimeService::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**
-     * The project whose uptime check configurations are listed. The format is
-     *   `projects/[PROJECT_ID]`.
+     * The project whose uptime check configurations are listed. The format
+     *   is `projects/[PROJECT_ID]`.
      *
      * Generated from protobuf field <code>string parent = 1;</code>
      * @return string
@@ -58,8 +78,8 @@ class ListUptimeCheckConfigsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The project whose uptime check configurations are listed. The format is
-     *   `projects/[PROJECT_ID]`.
+     * The project whose uptime check configurations are listed. The format
+     *   is `projects/[PROJECT_ID]`.
      *
      * Generated from protobuf field <code>string parent = 1;</code>
      * @param string $var

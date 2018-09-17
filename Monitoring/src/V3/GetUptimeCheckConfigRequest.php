@@ -16,21 +16,32 @@ use Google\Protobuf\Internal\GPBUtil;
 class GetUptimeCheckConfigRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The uptime check configuration to retrieve. The format is
-     *   `projects/[PROJECT_ID]/uptimeCheckConfigs/[UPTIME_CHECK_ID]`.
+     * The uptime check configuration to retrieve. The format
+     *   is `projects/[PROJECT_ID]/uptimeCheckConfigs/[UPTIME_CHECK_ID]`.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
     private $name = '';
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $name
+     *           The uptime check configuration to retrieve. The format
+     *             is `projects/[PROJECT_ID]/uptimeCheckConfigs/[UPTIME_CHECK_ID]`.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Monitoring\V3\UptimeService::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**
-     * The uptime check configuration to retrieve. The format is
-     *   `projects/[PROJECT_ID]/uptimeCheckConfigs/[UPTIME_CHECK_ID]`.
+     * The uptime check configuration to retrieve. The format
+     *   is `projects/[PROJECT_ID]/uptimeCheckConfigs/[UPTIME_CHECK_ID]`.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @return string
@@ -41,8 +52,8 @@ class GetUptimeCheckConfigRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The uptime check configuration to retrieve. The format is
-     *   `projects/[PROJECT_ID]/uptimeCheckConfigs/[UPTIME_CHECK_ID]`.
+     * The uptime check configuration to retrieve. The format
+     *   is `projects/[PROJECT_ID]/uptimeCheckConfigs/[UPTIME_CHECK_ID]`.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @param string $var

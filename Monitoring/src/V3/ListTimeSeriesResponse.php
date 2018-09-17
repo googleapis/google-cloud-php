@@ -29,10 +29,34 @@ class ListTimeSeriesResponse extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string next_page_token = 2;</code>
      */
     private $next_page_token = '';
+    /**
+     * Query execution errors that may have caused the time series data returned
+     * to be incomplete.
+     *
+     * Generated from protobuf field <code>repeated .google.rpc.Status execution_errors = 3;</code>
+     */
+    private $execution_errors;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type \Google\Cloud\Monitoring\V3\TimeSeries[]|\Google\Protobuf\Internal\RepeatedField $time_series
+     *           One or more time series that match the filter included in the request.
+     *     @type string $next_page_token
+     *           If there are more results than have been returned, then this field is set
+     *           to a non-empty value.  To see the additional results,
+     *           use that value as `pageToken` in the next call to this method.
+     *     @type \Google\Rpc\Status[]|\Google\Protobuf\Internal\RepeatedField $execution_errors
+     *           Query execution errors that may have caused the time series data returned
+     *           to be incomplete.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Monitoring\V3\MetricService::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**
@@ -87,6 +111,34 @@ class ListTimeSeriesResponse extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->next_page_token = $var;
+
+        return $this;
+    }
+
+    /**
+     * Query execution errors that may have caused the time series data returned
+     * to be incomplete.
+     *
+     * Generated from protobuf field <code>repeated .google.rpc.Status execution_errors = 3;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getExecutionErrors()
+    {
+        return $this->execution_errors;
+    }
+
+    /**
+     * Query execution errors that may have caused the time series data returned
+     * to be incomplete.
+     *
+     * Generated from protobuf field <code>repeated .google.rpc.Status execution_errors = 3;</code>
+     * @param \Google\Rpc\Status[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setExecutionErrors($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Rpc\Status::class);
+        $this->execution_errors = $arr;
 
         return $this;
     }

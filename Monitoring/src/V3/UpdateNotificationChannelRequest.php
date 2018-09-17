@@ -31,9 +31,24 @@ class UpdateNotificationChannelRequest extends \Google\Protobuf\Internal\Message
      */
     private $notification_channel = null;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type \Google\Protobuf\FieldMask $update_mask
+     *           The fields to update.
+     *     @type \Google\Cloud\Monitoring\V3\NotificationChannel $notification_channel
+     *           A description of the changes to be applied to the specified
+     *           notification channel. The description must provide a definition for
+     *           fields to be updated; the names of these fields should also be
+     *           included in the `update_mask`.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Monitoring\V3\NotificationService::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

@@ -35,8 +35,10 @@ class UptimeCheckConfig extends \Google\Protobuf\Internal\Message
      */
     private $display_name = '';
     /**
-     * How often the uptime check is performed.
-     * Currently, only 1, 5, 10, and 15 minutes are supported. Required.
+     * How often, in seconds, the uptime check is performed.
+     * Currently, the only supported values are `60s` (1 minute), `300s`
+     * (5 minutes), `600s` (10 minutes), and `900s` (15 minutes). Optional,
+     * defaults to `300s`.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration period = 7;</code>
      */
@@ -69,17 +71,85 @@ class UptimeCheckConfig extends \Google\Protobuf\Internal\Message
      */
     private $selected_regions;
     /**
-     * The internal checkers that this check will egress from.
+     * Denotes whether this is a check that egresses from InternalCheckers.
      *
-     * Generated from protobuf field <code>repeated .google.monitoring.v3.UptimeCheckConfig.InternalChecker internal_checkers = 14;</code>
+     * Generated from protobuf field <code>bool is_internal = 15;</code>
+     */
+    private $is_internal = false;
+    /**
+     * The internal checkers that this check will egress from. If `is_internal` is
+     * true and this list is empty, the check will egress from all
+     * InternalCheckers configured for the project that owns this CheckConfig.
+     *
+     * Generated from protobuf field <code>repeated .google.monitoring.v3.InternalChecker internal_checkers = 14;</code>
      */
     private $internal_checkers;
     protected $resource;
     protected $check_request_type;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $name
+     *           A unique resource name for this UptimeCheckConfig. The format is:
+     *             `projects/[PROJECT_ID]/uptimeCheckConfigs/[UPTIME_CHECK_ID]`.
+     *           This field should be omitted when creating the uptime check configuration;
+     *           on create, the resource name is assigned by the server and included in the
+     *           response.
+     *     @type string $display_name
+     *           A human-friendly name for the uptime check configuration. The display name
+     *           should be unique within a Stackdriver Account in order to make it easier
+     *           to identify; however, uniqueness is not enforced. Required.
+     *     @type \Google\Api\MonitoredResource $monitored_resource
+     *           The [monitored
+     *           resource](https://cloud.google.com/monitoring/api/resources) associated
+     *           with the configuration.
+     *           The following monitored resource types are supported for uptime checks:
+     *             uptime_url
+     *             gce_instance
+     *             gae_app
+     *             aws_ec2_instance
+     *             aws_elb_load_balancer
+     *     @type \Google\Cloud\Monitoring\V3\UptimeCheckConfig\ResourceGroup $resource_group
+     *           The group resource associated with the configuration.
+     *     @type \Google\Cloud\Monitoring\V3\UptimeCheckConfig\HttpCheck $http_check
+     *           Contains information needed to make an HTTP or HTTPS check.
+     *     @type \Google\Cloud\Monitoring\V3\UptimeCheckConfig\TcpCheck $tcp_check
+     *           Contains information needed to make a TCP check.
+     *     @type \Google\Protobuf\Duration $period
+     *           How often, in seconds, the uptime check is performed.
+     *           Currently, the only supported values are `60s` (1 minute), `300s`
+     *           (5 minutes), `600s` (10 minutes), and `900s` (15 minutes). Optional,
+     *           defaults to `300s`.
+     *     @type \Google\Protobuf\Duration $timeout
+     *           The maximum amount of time to wait for the request to complete (must be
+     *           between 1 and 60 seconds). Required.
+     *     @type \Google\Cloud\Monitoring\V3\UptimeCheckConfig\ContentMatcher[]|\Google\Protobuf\Internal\RepeatedField $content_matchers
+     *           The expected content on the page the check is run against.
+     *           Currently, only the first entry in the list is supported, and other entries
+     *           will be ignored. The server will look for an exact match of the string in
+     *           the page response's content. This field is optional and should only be
+     *           specified if a content match is required.
+     *     @type int[]|\Google\Protobuf\Internal\RepeatedField $selected_regions
+     *           The list of regions from which the check will be run.
+     *           If this field is specified, enough regions to include a minimum of
+     *           3 locations must be provided, or an error message is returned.
+     *           Not specifying this field will result in uptime checks running from all
+     *           regions.
+     *     @type bool $is_internal
+     *           Denotes whether this is a check that egresses from InternalCheckers.
+     *     @type \Google\Cloud\Monitoring\V3\InternalChecker[]|\Google\Protobuf\Internal\RepeatedField $internal_checkers
+     *           The internal checkers that this check will egress from. If `is_internal` is
+     *           true and this list is empty, the check will egress from all
+     *           InternalCheckers configured for the project that owns this CheckConfig.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Monitoring\V3\Uptime::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**
@@ -147,7 +217,15 @@ class UptimeCheckConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The monitored resource associated with the configuration.
+     * The [monitored
+     * resource](https://cloud.google.com/monitoring/api/resources) associated
+     * with the configuration.
+     * The following monitored resource types are supported for uptime checks:
+     *   uptime_url
+     *   gce_instance
+     *   gae_app
+     *   aws_ec2_instance
+     *   aws_elb_load_balancer
      *
      * Generated from protobuf field <code>.google.api.MonitoredResource monitored_resource = 3;</code>
      * @return \Google\Api\MonitoredResource
@@ -158,7 +236,15 @@ class UptimeCheckConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The monitored resource associated with the configuration.
+     * The [monitored
+     * resource](https://cloud.google.com/monitoring/api/resources) associated
+     * with the configuration.
+     * The following monitored resource types are supported for uptime checks:
+     *   uptime_url
+     *   gce_instance
+     *   gae_app
+     *   aws_ec2_instance
+     *   aws_elb_load_balancer
      *
      * Generated from protobuf field <code>.google.api.MonitoredResource monitored_resource = 3;</code>
      * @param \Google\Api\MonitoredResource $var
@@ -176,7 +262,7 @@ class UptimeCheckConfig extends \Google\Protobuf\Internal\Message
      * The group resource associated with the configuration.
      *
      * Generated from protobuf field <code>.google.monitoring.v3.UptimeCheckConfig.ResourceGroup resource_group = 4;</code>
-     * @return \Google\Cloud\Monitoring\V3\UptimeCheckConfig_ResourceGroup
+     * @return \Google\Cloud\Monitoring\V3\UptimeCheckConfig\ResourceGroup
      */
     public function getResourceGroup()
     {
@@ -187,7 +273,7 @@ class UptimeCheckConfig extends \Google\Protobuf\Internal\Message
      * The group resource associated with the configuration.
      *
      * Generated from protobuf field <code>.google.monitoring.v3.UptimeCheckConfig.ResourceGroup resource_group = 4;</code>
-     * @param \Google\Cloud\Monitoring\V3\UptimeCheckConfig_ResourceGroup $var
+     * @param \Google\Cloud\Monitoring\V3\UptimeCheckConfig\ResourceGroup $var
      * @return $this
      */
     public function setResourceGroup($var)
@@ -202,7 +288,7 @@ class UptimeCheckConfig extends \Google\Protobuf\Internal\Message
      * Contains information needed to make an HTTP or HTTPS check.
      *
      * Generated from protobuf field <code>.google.monitoring.v3.UptimeCheckConfig.HttpCheck http_check = 5;</code>
-     * @return \Google\Cloud\Monitoring\V3\UptimeCheckConfig_HttpCheck
+     * @return \Google\Cloud\Monitoring\V3\UptimeCheckConfig\HttpCheck
      */
     public function getHttpCheck()
     {
@@ -213,7 +299,7 @@ class UptimeCheckConfig extends \Google\Protobuf\Internal\Message
      * Contains information needed to make an HTTP or HTTPS check.
      *
      * Generated from protobuf field <code>.google.monitoring.v3.UptimeCheckConfig.HttpCheck http_check = 5;</code>
-     * @param \Google\Cloud\Monitoring\V3\UptimeCheckConfig_HttpCheck $var
+     * @param \Google\Cloud\Monitoring\V3\UptimeCheckConfig\HttpCheck $var
      * @return $this
      */
     public function setHttpCheck($var)
@@ -228,7 +314,7 @@ class UptimeCheckConfig extends \Google\Protobuf\Internal\Message
      * Contains information needed to make a TCP check.
      *
      * Generated from protobuf field <code>.google.monitoring.v3.UptimeCheckConfig.TcpCheck tcp_check = 6;</code>
-     * @return \Google\Cloud\Monitoring\V3\UptimeCheckConfig_TcpCheck
+     * @return \Google\Cloud\Monitoring\V3\UptimeCheckConfig\TcpCheck
      */
     public function getTcpCheck()
     {
@@ -239,7 +325,7 @@ class UptimeCheckConfig extends \Google\Protobuf\Internal\Message
      * Contains information needed to make a TCP check.
      *
      * Generated from protobuf field <code>.google.monitoring.v3.UptimeCheckConfig.TcpCheck tcp_check = 6;</code>
-     * @param \Google\Cloud\Monitoring\V3\UptimeCheckConfig_TcpCheck $var
+     * @param \Google\Cloud\Monitoring\V3\UptimeCheckConfig\TcpCheck $var
      * @return $this
      */
     public function setTcpCheck($var)
@@ -251,8 +337,10 @@ class UptimeCheckConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * How often the uptime check is performed.
-     * Currently, only 1, 5, 10, and 15 minutes are supported. Required.
+     * How often, in seconds, the uptime check is performed.
+     * Currently, the only supported values are `60s` (1 minute), `300s`
+     * (5 minutes), `600s` (10 minutes), and `900s` (15 minutes). Optional,
+     * defaults to `300s`.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration period = 7;</code>
      * @return \Google\Protobuf\Duration
@@ -263,8 +351,10 @@ class UptimeCheckConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * How often the uptime check is performed.
-     * Currently, only 1, 5, 10, and 15 minutes are supported. Required.
+     * How often, in seconds, the uptime check is performed.
+     * Currently, the only supported values are `60s` (1 minute), `300s`
+     * (5 minutes), `600s` (10 minutes), and `900s` (15 minutes). Optional,
+     * defaults to `300s`.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration period = 7;</code>
      * @param \Google\Protobuf\Duration $var
@@ -329,12 +419,12 @@ class UptimeCheckConfig extends \Google\Protobuf\Internal\Message
      * specified if a content match is required.
      *
      * Generated from protobuf field <code>repeated .google.monitoring.v3.UptimeCheckConfig.ContentMatcher content_matchers = 9;</code>
-     * @param \Google\Cloud\Monitoring\V3\UptimeCheckConfig_ContentMatcher[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Monitoring\V3\UptimeCheckConfig\ContentMatcher[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setContentMatchers($var)
     {
-        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Monitoring\V3\UptimeCheckConfig_ContentMatcher::class);
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Monitoring\V3\UptimeCheckConfig\ContentMatcher::class);
         $this->content_matchers = $arr;
 
         return $this;
@@ -375,9 +465,37 @@ class UptimeCheckConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The internal checkers that this check will egress from.
+     * Denotes whether this is a check that egresses from InternalCheckers.
      *
-     * Generated from protobuf field <code>repeated .google.monitoring.v3.UptimeCheckConfig.InternalChecker internal_checkers = 14;</code>
+     * Generated from protobuf field <code>bool is_internal = 15;</code>
+     * @return bool
+     */
+    public function getIsInternal()
+    {
+        return $this->is_internal;
+    }
+
+    /**
+     * Denotes whether this is a check that egresses from InternalCheckers.
+     *
+     * Generated from protobuf field <code>bool is_internal = 15;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setIsInternal($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->is_internal = $var;
+
+        return $this;
+    }
+
+    /**
+     * The internal checkers that this check will egress from. If `is_internal` is
+     * true and this list is empty, the check will egress from all
+     * InternalCheckers configured for the project that owns this CheckConfig.
+     *
+     * Generated from protobuf field <code>repeated .google.monitoring.v3.InternalChecker internal_checkers = 14;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getInternalCheckers()
@@ -386,15 +504,17 @@ class UptimeCheckConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The internal checkers that this check will egress from.
+     * The internal checkers that this check will egress from. If `is_internal` is
+     * true and this list is empty, the check will egress from all
+     * InternalCheckers configured for the project that owns this CheckConfig.
      *
-     * Generated from protobuf field <code>repeated .google.monitoring.v3.UptimeCheckConfig.InternalChecker internal_checkers = 14;</code>
-     * @param \Google\Cloud\Monitoring\V3\UptimeCheckConfig_InternalChecker[]|\Google\Protobuf\Internal\RepeatedField $var
+     * Generated from protobuf field <code>repeated .google.monitoring.v3.InternalChecker internal_checkers = 14;</code>
+     * @param \Google\Cloud\Monitoring\V3\InternalChecker[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setInternalCheckers($var)
     {
-        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Monitoring\V3\UptimeCheckConfig_InternalChecker::class);
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Monitoring\V3\InternalChecker::class);
         $this->internal_checkers = $arr;
 
         return $this;
