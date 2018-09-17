@@ -34,9 +34,23 @@ class ImportSshPublicKeyRequest extends \Google\Protobuf\Internal\Message
      */
     private $project_id = '';
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $parent
+     *           The unique ID for the user in format `users/{user}`.
+     *     @type \Google\Cloud\OsLogin\Common\SshPublicKey $ssh_public_key
+     *           The SSH public key and expiration time.
+     *     @type string $project_id
+     *           The project ID of the Google Cloud Platform project.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Oslogin\V1\Oslogin::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

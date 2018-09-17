@@ -36,9 +36,25 @@ class UpdateSshPublicKeyRequest extends \Google\Protobuf\Internal\Message
      */
     private $update_mask = null;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $name
+     *           The fingerprint of the public key to update. Public keys are identified by
+     *           their SHA-256 fingerprint. The fingerprint of the public key is in format
+     *           `users/{user}/sshPublicKeys/{fingerprint}`.
+     *     @type \Google\Cloud\OsLogin\Common\SshPublicKey $ssh_public_key
+     *           The SSH public key and expiration time.
+     *     @type \Google\Protobuf\FieldMask $update_mask
+     *           Mask to control which fields get updated. Updates all if not present.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Oslogin\V1\Oslogin::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

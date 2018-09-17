@@ -24,9 +24,21 @@ class DeleteSshPublicKeyRequest extends \Google\Protobuf\Internal\Message
      */
     private $name = '';
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $name
+     *           The fingerprint of the public key to update. Public keys are identified by
+     *           their SHA-256 fingerprint. The fingerprint of the public key is in format
+     *           `users/{user}/sshPublicKeys/{fingerprint}`.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Oslogin\V1Beta\Oslogin::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**
