@@ -191,6 +191,41 @@ return [
                     ],
                 ],
             ],
+            'GetPublicKey' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/keyRings/*/cryptoKeys/*/cryptoKeyVersions/*}/publicKey',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'AsymmetricDecrypt' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/keyRings/*/cryptoKeys/*/cryptoKeyVersions/*}:asymmetricDecrypt',
+                'body' => '*',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'AsymmetricSign' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/keyRings/*/cryptoKeys/*/cryptoKeyVersions/*}:asymmetricSign',
+                'body' => '*',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
         ],
         'google.iam.v1.IAMPolicy' => [
             'SetIamPolicy' => [

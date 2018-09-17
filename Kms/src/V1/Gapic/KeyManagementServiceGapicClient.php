@@ -41,6 +41,10 @@ use Google\Cloud\Iam\V1\Policy;
 use Google\Cloud\Iam\V1\SetIamPolicyRequest;
 use Google\Cloud\Iam\V1\TestIamPermissionsRequest;
 use Google\Cloud\Iam\V1\TestIamPermissionsResponse;
+use Google\Cloud\Kms\V1\AsymmetricDecryptRequest;
+use Google\Cloud\Kms\V1\AsymmetricDecryptResponse;
+use Google\Cloud\Kms\V1\AsymmetricSignRequest;
+use Google\Cloud\Kms\V1\AsymmetricSignResponse;
 use Google\Cloud\Kms\V1\CreateCryptoKeyRequest;
 use Google\Cloud\Kms\V1\CreateCryptoKeyVersionRequest;
 use Google\Cloud\Kms\V1\CreateKeyRingRequest;
@@ -49,11 +53,13 @@ use Google\Cloud\Kms\V1\CryptoKeyVersion;
 use Google\Cloud\Kms\V1\DecryptRequest;
 use Google\Cloud\Kms\V1\DecryptResponse;
 use Google\Cloud\Kms\V1\DestroyCryptoKeyVersionRequest;
+use Google\Cloud\Kms\V1\Digest;
 use Google\Cloud\Kms\V1\EncryptRequest;
 use Google\Cloud\Kms\V1\EncryptResponse;
 use Google\Cloud\Kms\V1\GetCryptoKeyRequest;
 use Google\Cloud\Kms\V1\GetCryptoKeyVersionRequest;
 use Google\Cloud\Kms\V1\GetKeyRingRequest;
+use Google\Cloud\Kms\V1\GetPublicKeyRequest;
 use Google\Cloud\Kms\V1\KeyRing;
 use Google\Cloud\Kms\V1\ListCryptoKeyVersionsRequest;
 use Google\Cloud\Kms\V1\ListCryptoKeyVersionsResponse;
@@ -61,6 +67,7 @@ use Google\Cloud\Kms\V1\ListCryptoKeysRequest;
 use Google\Cloud\Kms\V1\ListCryptoKeysResponse;
 use Google\Cloud\Kms\V1\ListKeyRingsRequest;
 use Google\Cloud\Kms\V1\ListKeyRingsResponse;
+use Google\Cloud\Kms\V1\PublicKey;
 use Google\Cloud\Kms\V1\RestoreCryptoKeyVersionRequest;
 use Google\Cloud\Kms\V1\UpdateCryptoKeyPrimaryVersionRequest;
 use Google\Cloud\Kms\V1\UpdateCryptoKeyRequest;
@@ -1454,6 +1461,174 @@ class KeyManagementServiceGapicClient
         return $this->startCall(
             'RestoreCryptoKeyVersion',
             CryptoKeyVersion::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
+     * Returns the public key for the given [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion]. The
+     * [CryptoKey.purpose][google.cloud.kms.v1.CryptoKey.purpose] must be
+     * [ASYMMETRIC_SIGN][google.cloud.kms.v1.CryptoKey.CryptoKeyPurpose.ASYMMETRIC_SIGN] or
+     * [ASYMMETRIC_DECRYPT][google.cloud.kms.v1.CryptoKey.CryptoKeyPurpose.ASYMMETRIC_DECRYPT].
+     *
+     * Sample code:
+     * ```
+     * $keyManagementServiceClient = new KeyManagementServiceClient();
+     * try {
+     *     $formattedName = $keyManagementServiceClient->cryptoKeyVersionName('[PROJECT]', '[LOCATION]', '[KEY_RING]', '[CRYPTO_KEY]', '[CRYPTO_KEY_VERSION]');
+     *     $response = $keyManagementServiceClient->getPublicKey($formattedName);
+     * } finally {
+     *     $keyManagementServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         The [name][google.cloud.kms.v1.CryptoKeyVersion.name] of the [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] public key to
+     *                             get.
+     * @param array  $optionalArgs {
+     *                             Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Kms\V1\PublicKey
+     *
+     * @throws ApiException if the remote call fails
+     * @experimental
+     */
+    public function getPublicKey($name, array $optionalArgs = [])
+    {
+        $request = new GetPublicKeyRequest();
+        $request->setName($name);
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'name' => $request->getName(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
+        return $this->startCall(
+            'GetPublicKey',
+            PublicKey::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
+     * Decrypts data that was encrypted with a public key retrieved from
+     * [GetPublicKey][google.cloud.kms.v1.KeyManagementService.GetPublicKey] corresponding to a [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] with
+     * [CryptoKey.purpose][google.cloud.kms.v1.CryptoKey.purpose] ASYMMETRIC_DECRYPT.
+     *
+     * Sample code:
+     * ```
+     * $keyManagementServiceClient = new KeyManagementServiceClient();
+     * try {
+     *     $formattedName = $keyManagementServiceClient->cryptoKeyVersionName('[PROJECT]', '[LOCATION]', '[KEY_RING]', '[CRYPTO_KEY]', '[CRYPTO_KEY_VERSION]');
+     *     $ciphertext = '';
+     *     $response = $keyManagementServiceClient->asymmetricDecrypt($formattedName, $ciphertext);
+     * } finally {
+     *     $keyManagementServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. The resource name of the [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] to use for
+     *                             decryption.
+     * @param string $ciphertext   Required. The data encrypted with the named [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion]'s public
+     *                             key using OAEP.
+     * @param array  $optionalArgs {
+     *                             Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Kms\V1\AsymmetricDecryptResponse
+     *
+     * @throws ApiException if the remote call fails
+     * @experimental
+     */
+    public function asymmetricDecrypt($name, $ciphertext, array $optionalArgs = [])
+    {
+        $request = new AsymmetricDecryptRequest();
+        $request->setName($name);
+        $request->setCiphertext($ciphertext);
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'name' => $request->getName(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
+        return $this->startCall(
+            'AsymmetricDecrypt',
+            AsymmetricDecryptResponse::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
+     * Signs data using a [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] with [CryptoKey.purpose][google.cloud.kms.v1.CryptoKey.purpose]
+     * ASYMMETRIC_SIGN, producing a signature that can be verified with the public
+     * key retrieved from [GetPublicKey][google.cloud.kms.v1.KeyManagementService.GetPublicKey].
+     *
+     * Sample code:
+     * ```
+     * $keyManagementServiceClient = new KeyManagementServiceClient();
+     * try {
+     *     $formattedName = $keyManagementServiceClient->cryptoKeyVersionName('[PROJECT]', '[LOCATION]', '[KEY_RING]', '[CRYPTO_KEY]', '[CRYPTO_KEY_VERSION]');
+     *     $digest = new Digest();
+     *     $response = $keyManagementServiceClient->asymmetricSign($formattedName, $digest);
+     * } finally {
+     *     $keyManagementServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. The resource name of the [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] to use for signing.
+     * @param Digest $digest       Required. The digest of the data to sign. The digest must be produced with
+     *                             the same digest algorithm as specified by the key version's
+     *                             [algorithm][google.cloud.kms.v1.CryptoKeyVersion.algorithm].
+     * @param array  $optionalArgs {
+     *                             Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Kms\V1\AsymmetricSignResponse
+     *
+     * @throws ApiException if the remote call fails
+     * @experimental
+     */
+    public function asymmetricSign($name, $digest, array $optionalArgs = [])
+    {
+        $request = new AsymmetricSignRequest();
+        $request->setName($name);
+        $request->setDigest($digest);
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'name' => $request->getName(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
+        return $this->startCall(
+            'AsymmetricSign',
+            AsymmetricSignResponse::class,
             $optionalArgs,
             $request
         )->wait();

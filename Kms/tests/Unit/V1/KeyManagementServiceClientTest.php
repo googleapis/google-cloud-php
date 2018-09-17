@@ -29,15 +29,19 @@ use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Iam\V1\Policy;
 use Google\Cloud\Iam\V1\TestIamPermissionsResponse;
+use Google\Cloud\Kms\V1\AsymmetricDecryptResponse;
+use Google\Cloud\Kms\V1\AsymmetricSignResponse;
 use Google\Cloud\Kms\V1\CryptoKey;
 use Google\Cloud\Kms\V1\CryptoKeyVersion;
 use Google\Cloud\Kms\V1\CryptoKey_CryptoKeyPurpose;
 use Google\Cloud\Kms\V1\DecryptResponse;
+use Google\Cloud\Kms\V1\Digest;
 use Google\Cloud\Kms\V1\EncryptResponse;
 use Google\Cloud\Kms\V1\KeyRing;
 use Google\Cloud\Kms\V1\ListCryptoKeyVersionsResponse;
 use Google\Cloud\Kms\V1\ListCryptoKeysResponse;
 use Google\Cloud\Kms\V1\ListKeyRingsResponse;
+use Google\Cloud\Kms\V1\PublicKey;
 use Google\Protobuf\Any;
 use Google\Protobuf\Duration;
 use Google\Protobuf\FieldMask;
@@ -1325,6 +1329,235 @@ class KeyManagementServiceClientTest extends GeneratedTest
 
         try {
             $client->restoreCryptoKeyVersion($formattedName);
+            // If the $client method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function getPublicKeyTest()
+    {
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
+
+        $this->assertTrue($transport->isExhausted());
+
+        // Mock response
+        $pem = 'pem110872';
+        $expectedResponse = new PublicKey();
+        $expectedResponse->setPem($pem);
+        $transport->addResponse($expectedResponse);
+
+        // Mock request
+        $formattedName = $client->cryptoKeyVersionName('[PROJECT]', '[LOCATION]', '[KEY_RING]', '[CRYPTO_KEY]', '[CRYPTO_KEY_VERSION]');
+
+        $response = $client->getPublicKey($formattedName);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.kms.v1.KeyManagementService/GetPublicKey', $actualFuncCall);
+
+        $actualValue = $actualRequestObject->getName();
+
+        $this->assertProtobufEquals($formattedName, $actualValue);
+
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function getPublicKeyExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
+
+        $this->assertTrue($transport->isExhausted());
+
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+
+        $expectedExceptionMessage = json_encode([
+           'message' => 'internal error',
+           'code' => Code::DATA_LOSS,
+           'status' => 'DATA_LOSS',
+           'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+
+        // Mock request
+        $formattedName = $client->cryptoKeyVersionName('[PROJECT]', '[LOCATION]', '[KEY_RING]', '[CRYPTO_KEY]', '[CRYPTO_KEY_VERSION]');
+
+        try {
+            $client->getPublicKey($formattedName);
+            // If the $client method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function asymmetricDecryptTest()
+    {
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
+
+        $this->assertTrue($transport->isExhausted());
+
+        // Mock response
+        $plaintext = '-9';
+        $expectedResponse = new AsymmetricDecryptResponse();
+        $expectedResponse->setPlaintext($plaintext);
+        $transport->addResponse($expectedResponse);
+
+        // Mock request
+        $formattedName = $client->cryptoKeyVersionName('[PROJECT]', '[LOCATION]', '[KEY_RING]', '[CRYPTO_KEY]', '[CRYPTO_KEY_VERSION]');
+        $ciphertext = '-72';
+
+        $response = $client->asymmetricDecrypt($formattedName, $ciphertext);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.kms.v1.KeyManagementService/AsymmetricDecrypt', $actualFuncCall);
+
+        $actualValue = $actualRequestObject->getName();
+
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $actualValue = $actualRequestObject->getCiphertext();
+
+        $this->assertProtobufEquals($ciphertext, $actualValue);
+
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function asymmetricDecryptExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
+
+        $this->assertTrue($transport->isExhausted());
+
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+
+        $expectedExceptionMessage = json_encode([
+           'message' => 'internal error',
+           'code' => Code::DATA_LOSS,
+           'status' => 'DATA_LOSS',
+           'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+
+        // Mock request
+        $formattedName = $client->cryptoKeyVersionName('[PROJECT]', '[LOCATION]', '[KEY_RING]', '[CRYPTO_KEY]', '[CRYPTO_KEY_VERSION]');
+        $ciphertext = '-72';
+
+        try {
+            $client->asymmetricDecrypt($formattedName, $ciphertext);
+            // If the $client method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function asymmetricSignTest()
+    {
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
+
+        $this->assertTrue($transport->isExhausted());
+
+        // Mock response
+        $signature = '106';
+        $expectedResponse = new AsymmetricSignResponse();
+        $expectedResponse->setSignature($signature);
+        $transport->addResponse($expectedResponse);
+
+        // Mock request
+        $formattedName = $client->cryptoKeyVersionName('[PROJECT]', '[LOCATION]', '[KEY_RING]', '[CRYPTO_KEY]', '[CRYPTO_KEY_VERSION]');
+        $digest = new Digest();
+
+        $response = $client->asymmetricSign($formattedName, $digest);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.kms.v1.KeyManagementService/AsymmetricSign', $actualFuncCall);
+
+        $actualValue = $actualRequestObject->getName();
+
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $actualValue = $actualRequestObject->getDigest();
+
+        $this->assertProtobufEquals($digest, $actualValue);
+
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function asymmetricSignExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
+
+        $this->assertTrue($transport->isExhausted());
+
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+
+        $expectedExceptionMessage = json_encode([
+           'message' => 'internal error',
+           'code' => Code::DATA_LOSS,
+           'status' => 'DATA_LOSS',
+           'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+
+        // Mock request
+        $formattedName = $client->cryptoKeyVersionName('[PROJECT]', '[LOCATION]', '[KEY_RING]', '[CRYPTO_KEY]', '[CRYPTO_KEY_VERSION]');
+        $digest = new Digest();
+
+        try {
+            $client->asymmetricSign($formattedName, $digest);
             // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
