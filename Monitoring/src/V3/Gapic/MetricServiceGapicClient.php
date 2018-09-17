@@ -47,7 +47,7 @@ use Google\Cloud\Monitoring\V3\ListMetricDescriptorsResponse;
 use Google\Cloud\Monitoring\V3\ListMonitoredResourceDescriptorsRequest;
 use Google\Cloud\Monitoring\V3\ListMonitoredResourceDescriptorsResponse;
 use Google\Cloud\Monitoring\V3\ListTimeSeriesRequest;
-use Google\Cloud\Monitoring\V3\ListTimeSeriesRequest_TimeSeriesView;
+use Google\Cloud\Monitoring\V3\ListTimeSeriesRequest\TimeSeriesView;
 use Google\Cloud\Monitoring\V3\ListTimeSeriesResponse;
 use Google\Cloud\Monitoring\V3\TimeInterval;
 use Google\Cloud\Monitoring\V3\TimeSeries;
@@ -710,7 +710,7 @@ class MetricServiceGapicClient
      *     $formattedName = $metricServiceClient->projectName('[PROJECT]');
      *     $filter = '';
      *     $interval = new TimeInterval();
-     *     $view = ListTimeSeriesRequest_TimeSeriesView::FULL;
+     *     $view = ListTimeSeriesRequest\TimeSeriesView::FULL;
      *     // Iterate over pages of elements
      *     $pagedResponse = $metricServiceClient->listTimeSeries($formattedName, $filter, $interval, $view);
      *     foreach ($pagedResponse->iteratePages() as $page) {
@@ -745,7 +745,7 @@ class MetricServiceGapicClient
      *                                   that contain data points in the specified interval are included
      *                                   in the response.
      * @param int          $view         Specifies which information is returned about the time series.
-     *                                   For allowed values, use constants defined on {@see \Google\Cloud\Monitoring\V3\ListTimeSeriesRequest_TimeSeriesView}
+     *                                   For allowed values, use constants defined on {@see \Google\Cloud\Monitoring\V3\ListTimeSeriesRequest\TimeSeriesView}
      * @param array        $optionalArgs {
      *                                   Optional.
      *

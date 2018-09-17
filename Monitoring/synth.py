@@ -62,3 +62,9 @@ s.replace(
     'tests/**/V3/*Test.php',
     r'Copyright \d{4}',
     'Copyright 2018')
+
+# Use new namespaces
+s.replace(
+    'src/V3/Gapic/MetricServiceGapicClient.php',
+    r'ListTimeSeriesRequest_TimeSeriesView',
+    'ListTimeSeriesRequest\\TimeSeriesView')
