@@ -121,6 +121,7 @@ class PublisherGapicClient
             'serviceAddress' => self::SERVICE_ADDRESS.':'.self::DEFAULT_SERVICE_PORT,
             'clientConfig' => __DIR__.'/../resources/publisher_client_config.json',
             'descriptorsConfigPath' => __DIR__.'/../resources/publisher_descriptor_config.php',
+            'gcpApiConfigPath' => __DIR__.'/../resources/publisher_grpc_config.json',
             'credentialsConfig' => [
                 'scopes' => self::$serviceScopes,
             ],
@@ -515,18 +516,21 @@ class PublisherGapicClient
      * $publisherClient = new PublisherClient();
      * try {
      *     $formattedProject = $publisherClient->projectName('[PROJECT]');
-     *     // Iterate through all elements
-     *     $pagedResponse = $publisherClient->listTopics($formattedProject);
-     *     foreach ($pagedResponse->iterateAllElements() as $element) {
-     *         // doSomethingWith($element);
-     *     }
-     *
-     *     // OR iterate over pages of elements
+     *     // Iterate over pages of elements
      *     $pagedResponse = $publisherClient->listTopics($formattedProject);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
      *         }
+     *     }
+     *
+     *
+     *     // Alternatively:
+     *
+     *     // Iterate through all elements
+     *     $pagedResponse = $publisherClient->listTopics($formattedProject);
+     *     foreach ($pagedResponse->iterateAllElements() as $element) {
+     *         // doSomethingWith($element);
      *     }
      * } finally {
      *     $publisherClient->close();
@@ -586,18 +590,21 @@ class PublisherGapicClient
      * $publisherClient = new PublisherClient();
      * try {
      *     $formattedTopic = $publisherClient->topicName('[PROJECT]', '[TOPIC]');
-     *     // Iterate through all elements
-     *     $pagedResponse = $publisherClient->listTopicSubscriptions($formattedTopic);
-     *     foreach ($pagedResponse->iterateAllElements() as $element) {
-     *         // doSomethingWith($element);
-     *     }
-     *
-     *     // OR iterate over pages of elements
+     *     // Iterate over pages of elements
      *     $pagedResponse = $publisherClient->listTopicSubscriptions($formattedTopic);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
      *         }
+     *     }
+     *
+     *
+     *     // Alternatively:
+     *
+     *     // Iterate through all elements
+     *     $pagedResponse = $publisherClient->listTopicSubscriptions($formattedTopic);
+     *     foreach ($pagedResponse->iterateAllElements() as $element) {
+     *         // doSomethingWith($element);
      *     }
      * } finally {
      *     $publisherClient->close();

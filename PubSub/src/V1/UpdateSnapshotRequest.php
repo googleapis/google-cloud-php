@@ -32,9 +32,22 @@ class UpdateSnapshotRequest extends \Google\Protobuf\Internal\Message
      */
     private $update_mask = null;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type \Google\Cloud\PubSub\V1\Snapshot $snapshot
+     *           The updated snapshot object.
+     *     @type \Google\Protobuf\FieldMask $update_mask
+     *           Indicates which fields in the provided snapshot to update.
+     *           Must be specified and non-empty.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Pubsub\V1\Pubsub::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

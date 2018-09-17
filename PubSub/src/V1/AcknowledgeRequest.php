@@ -30,9 +30,23 @@ class AcknowledgeRequest extends \Google\Protobuf\Internal\Message
      */
     private $ack_ids;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $subscription
+     *           The subscription whose message is being acknowledged.
+     *           Format is `projects/{project}/subscriptions/{sub}`.
+     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $ack_ids
+     *           The acknowledgment ID for the messages being acknowledged that was returned
+     *           by the Pub/Sub system in the `Pull` response. Must not be empty.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Pubsub\V1\Pubsub::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

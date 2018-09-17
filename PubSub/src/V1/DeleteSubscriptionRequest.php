@@ -23,9 +23,20 @@ class DeleteSubscriptionRequest extends \Google\Protobuf\Internal\Message
      */
     private $subscription = '';
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $subscription
+     *           The subscription to delete.
+     *           Format is `projects/{project}/subscriptions/{sub}`.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Pubsub\V1\Pubsub::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

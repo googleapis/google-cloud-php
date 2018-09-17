@@ -41,9 +41,30 @@ class ModifyAckDeadlineRequest extends \Google\Protobuf\Internal\Message
      */
     private $ack_deadline_seconds = 0;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $subscription
+     *           The name of the subscription.
+     *           Format is `projects/{project}/subscriptions/{sub}`.
+     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $ack_ids
+     *           List of acknowledgment IDs.
+     *     @type int $ack_deadline_seconds
+     *           The new ack deadline with respect to the time this request was sent to
+     *           the Pub/Sub system. For example, if the value is 10, the new
+     *           ack deadline will expire 10 seconds after the `ModifyAckDeadline` call
+     *           was made. Specifying zero may immediately make the message available for
+     *           another pull request.
+     *           The minimum deadline you can specify is 0 seconds.
+     *           The maximum deadline you can specify is 600 seconds (10 minutes).
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Pubsub\V1\Pubsub::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

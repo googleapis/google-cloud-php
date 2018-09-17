@@ -137,6 +137,7 @@ class SubscriberGapicClient
             'serviceAddress' => self::SERVICE_ADDRESS.':'.self::DEFAULT_SERVICE_PORT,
             'clientConfig' => __DIR__.'/../resources/subscriber_client_config.json',
             'descriptorsConfigPath' => __DIR__.'/../resources/subscriber_descriptor_config.php',
+            'gcpApiConfigPath' => __DIR__.'/../resources/subscriber_grpc_config.json',
             'credentialsConfig' => [
                 'scopes' => self::$serviceScopes,
             ],
@@ -599,18 +600,21 @@ class SubscriberGapicClient
      * $subscriberClient = new SubscriberClient();
      * try {
      *     $formattedProject = $subscriberClient->projectName('[PROJECT]');
-     *     // Iterate through all elements
-     *     $pagedResponse = $subscriberClient->listSubscriptions($formattedProject);
-     *     foreach ($pagedResponse->iterateAllElements() as $element) {
-     *         // doSomethingWith($element);
-     *     }
-     *
-     *     // OR iterate over pages of elements
+     *     // Iterate over pages of elements
      *     $pagedResponse = $subscriberClient->listSubscriptions($formattedProject);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
      *         }
+     *     }
+     *
+     *
+     *     // Alternatively:
+     *
+     *     // Iterate through all elements
+     *     $pagedResponse = $subscriberClient->listSubscriptions($formattedProject);
+     *     foreach ($pagedResponse->iterateAllElements() as $element) {
+     *         // doSomethingWith($element);
      *     }
      * } finally {
      *     $subscriberClient->close();
@@ -897,19 +901,22 @@ class SubscriberGapicClient
      *     $request = new StreamingPullRequest();
      *     $request->setSubscription($formattedSubscription);
      *     $request->setStreamAckDeadlineSeconds($streamAckDeadlineSeconds);
-     *     $requests = [$request];
-     *
      *     // Write all requests to the server, then read all responses until the
      *     // stream is complete
+     *     $requests = [$request];
      *     $stream = $subscriberClient->streamingPull();
      *     $stream->writeAll($requests);
      *     foreach ($stream->closeWriteAndReadAll() as $element) {
      *         // doSomethingWith($element);
      *     }
      *
-     *     // OR write requests individually, making read() calls if
+     *
+     *     // Alternatively:
+     *
+     *     // Write requests individually, making read() calls if
      *     // required. Call closeWrite() once writes are complete, and read the
      *     // remaining responses from the server.
+     *     $requests = [$request];
      *     $stream = $subscriberClient->streamingPull();
      *     foreach ($requests as $request) {
      *         $stream->write($request);
@@ -1017,18 +1024,21 @@ class SubscriberGapicClient
      * $subscriberClient = new SubscriberClient();
      * try {
      *     $formattedProject = $subscriberClient->projectName('[PROJECT]');
-     *     // Iterate through all elements
-     *     $pagedResponse = $subscriberClient->listSnapshots($formattedProject);
-     *     foreach ($pagedResponse->iterateAllElements() as $element) {
-     *         // doSomethingWith($element);
-     *     }
-     *
-     *     // OR iterate over pages of elements
+     *     // Iterate over pages of elements
      *     $pagedResponse = $subscriberClient->listSnapshots($formattedProject);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
      *         }
+     *     }
+     *
+     *
+     *     // Alternatively:
+     *
+     *     // Iterate through all elements
+     *     $pagedResponse = $subscriberClient->listSnapshots($formattedProject);
+     *     foreach ($pagedResponse->iterateAllElements() as $element) {
+     *         // doSomethingWith($element);
      *     }
      * } finally {
      *     $subscriberClient->close();

@@ -30,9 +30,23 @@ class ListTopicSubscriptionsResponse extends \Google\Protobuf\Internal\Message
      */
     private $next_page_token = '';
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $subscriptions
+     *           The names of the subscriptions that match the request.
+     *     @type string $next_page_token
+     *           If not empty, indicates that there may be more subscriptions that match
+     *           the request; this value should be passed in a new
+     *           `ListTopicSubscriptionsRequest` to get more subscriptions.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Pubsub\V1\Pubsub::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

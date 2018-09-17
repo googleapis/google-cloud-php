@@ -24,9 +24,21 @@ class PublishResponse extends \Google\Protobuf\Internal\Message
      */
     private $message_ids;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $message_ids
+     *           The server-assigned ID of each published message, in the same order as
+     *           the messages in the request. IDs are guaranteed to be unique within
+     *           the topic.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Pubsub\V1\Pubsub::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

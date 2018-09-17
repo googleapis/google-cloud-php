@@ -46,9 +46,30 @@ class PubsubMessage extends \Google\Protobuf\Internal\Message
      */
     private $publish_time = null;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $data
+     *           The message payload.
+     *     @type array|\Google\Protobuf\Internal\MapField $attributes
+     *           Optional attributes for this message.
+     *     @type string $message_id
+     *           ID of this message, assigned by the server when the message is published.
+     *           Guaranteed to be unique within the topic. This value may be read by a
+     *           subscriber that receives a `PubsubMessage` via a `Pull` call or a push
+     *           delivery. It must not be populated by the publisher in a `Publish` call.
+     *     @type \Google\Protobuf\Timestamp $publish_time
+     *           The time at which the message was published, populated by the server when
+     *           it receives the `Publish` call. It must not be populated by the
+     *           publisher in a `Publish` call.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Pubsub\V1\Pubsub::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

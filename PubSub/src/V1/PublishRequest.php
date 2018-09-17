@@ -29,9 +29,22 @@ class PublishRequest extends \Google\Protobuf\Internal\Message
      */
     private $messages;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $topic
+     *           The messages in the request will be published on this topic.
+     *           Format is `projects/{project}/topics/{topic}`.
+     *     @type \Google\Cloud\PubSub\V1\PubsubMessage[]|\Google\Protobuf\Internal\RepeatedField $messages
+     *           The messages to publish.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Pubsub\V1\Pubsub::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

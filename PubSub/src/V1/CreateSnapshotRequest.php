@@ -49,9 +49,35 @@ class CreateSnapshotRequest extends \Google\Protobuf\Internal\Message
      */
     private $labels;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $name
+     *           Optional user-provided name for this snapshot.
+     *           If the name is not provided in the request, the server will assign a random
+     *           name for this snapshot on the same project as the subscription.
+     *           Note that for REST API requests, you must specify a name.
+     *           Format is `projects/{project}/snapshots/{snap}`.
+     *     @type string $subscription
+     *           The subscription whose backlog the snapshot retains.
+     *           Specifically, the created snapshot is guaranteed to retain:
+     *            (a) The existing backlog on the subscription. More precisely, this is
+     *                defined as the messages in the subscription's backlog that are
+     *                unacknowledged upon the successful completion of the
+     *                `CreateSnapshot` request; as well as:
+     *            (b) Any messages published to the subscription's topic following the
+     *                successful completion of the CreateSnapshot request.
+     *           Format is `projects/{project}/subscriptions/{sub}`.
+     *     @type array|\Google\Protobuf\Internal\MapField $labels
+     *           User labels.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Pubsub\V1\Pubsub::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

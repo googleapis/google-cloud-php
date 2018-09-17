@@ -23,9 +23,20 @@ class GetTopicRequest extends \Google\Protobuf\Internal\Message
      */
     private $topic = '';
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $topic
+     *           The name of the topic to get.
+     *           Format is `projects/{project}/topics/{topic}`.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Pubsub\V1\Pubsub::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

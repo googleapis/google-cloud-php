@@ -33,9 +33,26 @@ class ModifyPushConfigRequest extends \Google\Protobuf\Internal\Message
      */
     private $push_config = null;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $subscription
+     *           The name of the subscription.
+     *           Format is `projects/{project}/subscriptions/{sub}`.
+     *     @type \Google\Cloud\PubSub\V1\PushConfig $push_config
+     *           The push configuration for future deliveries.
+     *           An empty `pushConfig` indicates that the Pub/Sub system should
+     *           stop pushing messages from the given subscription and allow
+     *           messages to be pulled and acknowledged - effectively pausing
+     *           the subscription if `Pull` or `StreamingPull` is not called.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Pubsub\V1\Pubsub::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**
