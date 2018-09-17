@@ -19,10 +19,19 @@ class ListAppProfilesRequest extends \Google\Protobuf\Internal\Message
      * The unique name of the instance for which a list of app profiles is
      * requested. Values are of the form
      * `projects/<project>/instances/<instance>`.
+     * Use `<instance> = '-'` to list AppProfiles for all Instances in a project,
+     * e.g., `projects/myproject/instances/-`.
      *
      * Generated from protobuf field <code>string parent = 1;</code>
      */
     private $parent = '';
+    /**
+     * Maximum number of results per page.
+     * CURRENTLY UNIMPLEMENTED AND IGNORED.
+     *
+     * Generated from protobuf field <code>int32 page_size = 3;</code>
+     */
+    private $page_size = 0;
     /**
      * The value of `next_page_token` returned by a previous call.
      *
@@ -40,6 +49,11 @@ class ListAppProfilesRequest extends \Google\Protobuf\Internal\Message
      *           The unique name of the instance for which a list of app profiles is
      *           requested. Values are of the form
      *           `projects/<project>/instances/<instance>`.
+     *           Use `<instance> = '-'` to list AppProfiles for all Instances in a project,
+     *           e.g., `projects/myproject/instances/-`.
+     *     @type int $page_size
+     *           Maximum number of results per page.
+     *           CURRENTLY UNIMPLEMENTED AND IGNORED.
      *     @type string $page_token
      *           The value of `next_page_token` returned by a previous call.
      * }
@@ -53,6 +67,8 @@ class ListAppProfilesRequest extends \Google\Protobuf\Internal\Message
      * The unique name of the instance for which a list of app profiles is
      * requested. Values are of the form
      * `projects/<project>/instances/<instance>`.
+     * Use `<instance> = '-'` to list AppProfiles for all Instances in a project,
+     * e.g., `projects/myproject/instances/-`.
      *
      * Generated from protobuf field <code>string parent = 1;</code>
      * @return string
@@ -66,6 +82,8 @@ class ListAppProfilesRequest extends \Google\Protobuf\Internal\Message
      * The unique name of the instance for which a list of app profiles is
      * requested. Values are of the form
      * `projects/<project>/instances/<instance>`.
+     * Use `<instance> = '-'` to list AppProfiles for all Instances in a project,
+     * e.g., `projects/myproject/instances/-`.
      *
      * Generated from protobuf field <code>string parent = 1;</code>
      * @param string $var
@@ -75,6 +93,34 @@ class ListAppProfilesRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->parent = $var;
+
+        return $this;
+    }
+
+    /**
+     * Maximum number of results per page.
+     * CURRENTLY UNIMPLEMENTED AND IGNORED.
+     *
+     * Generated from protobuf field <code>int32 page_size = 3;</code>
+     * @return int
+     */
+    public function getPageSize()
+    {
+        return $this->page_size;
+    }
+
+    /**
+     * Maximum number of results per page.
+     * CURRENTLY UNIMPLEMENTED AND IGNORED.
+     *
+     * Generated from protobuf field <code>int32 page_size = 3;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setPageSize($var)
+    {
+        GPBUtil::checkInt32($var);
+        $this->page_size = $var;
 
         return $this;
     }

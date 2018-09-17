@@ -31,6 +31,13 @@ class ListTablesRequest extends \Google\Protobuf\Internal\Message
      */
     private $view = 0;
     /**
+     * Maximum number of results per page.
+     * CURRENTLY UNIMPLEMENTED AND IGNORED.
+     *
+     * Generated from protobuf field <code>int32 page_size = 4;</code>
+     */
+    private $page_size = 0;
+    /**
      * The value of `next_page_token` returned by a previous call.
      *
      * Generated from protobuf field <code>string page_token = 3;</code>
@@ -49,6 +56,9 @@ class ListTablesRequest extends \Google\Protobuf\Internal\Message
      *     @type int $view
      *           The view to be applied to the returned tables' fields.
      *           Defaults to `NAME_ONLY` if unspecified; no others are currently supported.
+     *     @type int $page_size
+     *           Maximum number of results per page.
+     *           CURRENTLY UNIMPLEMENTED AND IGNORED.
      *     @type string $page_token
      *           The value of `next_page_token` returned by a previous call.
      * }
@@ -110,6 +120,34 @@ class ListTablesRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkEnum($var, \Google\Cloud\Bigtable\Admin\V2\Table_View::class);
         $this->view = $var;
+
+        return $this;
+    }
+
+    /**
+     * Maximum number of results per page.
+     * CURRENTLY UNIMPLEMENTED AND IGNORED.
+     *
+     * Generated from protobuf field <code>int32 page_size = 4;</code>
+     * @return int
+     */
+    public function getPageSize()
+    {
+        return $this->page_size;
+    }
+
+    /**
+     * Maximum number of results per page.
+     * CURRENTLY UNIMPLEMENTED AND IGNORED.
+     *
+     * Generated from protobuf field <code>int32 page_size = 4;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setPageSize($var)
+    {
+        GPBUtil::checkInt32($var);
+        $this->page_size = $var;
 
         return $this;
     }

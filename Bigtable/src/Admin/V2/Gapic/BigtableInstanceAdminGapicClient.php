@@ -177,6 +177,7 @@ class BigtableInstanceAdminGapicClient
             'serviceAddress' => self::SERVICE_ADDRESS.':'.self::DEFAULT_SERVICE_PORT,
             'clientConfig' => __DIR__.'/../resources/bigtable_instance_admin_client_config.json',
             'descriptorsConfigPath' => __DIR__.'/../resources/bigtable_instance_admin_descriptor_config.php',
+            'gcpApiConfigPath' => __DIR__.'/../resources/bigtable_instance_admin_grpc_config.json',
             'credentialsConfig' => [
                 'scopes' => self::$serviceScopes,
             ],
@@ -535,7 +536,7 @@ class BigtableInstanceAdminGapicClient
      *                               cluster ID, e.g., just `mycluster` rather than
      *                               `projects/myproject/instances/myinstance/clusters/mycluster`.
      *                               Fields marked `OutputOnly` must be left blank.
-     *                               Currently exactly one cluster must be specified.
+     *                               Currently, at most two clusters can be specified.
      * @param array    $optionalArgs {
      *                               Optional.
      *
@@ -645,7 +646,7 @@ class BigtableInstanceAdminGapicClient
      *                             Optional.
      *
      *     @type string $pageToken
-     *          The value of `next_page_token` returned by a previous call.
+     *          DEPRECATED: This field is unused and ignored.
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
@@ -1055,7 +1056,7 @@ class BigtableInstanceAdminGapicClient
      *                             Optional.
      *
      *     @type string $pageToken
-     *          The value of `next_page_token` returned by a previous call.
+     *          DEPRECATED: This field is unused and ignored.
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
@@ -1397,9 +1398,14 @@ class BigtableInstanceAdminGapicClient
      * @param string $parent       The unique name of the instance for which a list of app profiles is
      *                             requested. Values are of the form
      *                             `projects/<project>/instances/<instance>`.
+     *                             Use `<instance> = '-'` to list AppProfiles for all Instances in a project,
+     *                             e.g., `projects/myproject/instances/-`.
      * @param array  $optionalArgs {
      *                             Optional.
      *
+     *     @type int $pageSize
+     *          Maximum number of results per page.
+     *          CURRENTLY UNIMPLEMENTED AND IGNORED.
      *     @type string $pageToken
      *          A page token is used to specify a page of values to be returned.
      *          If no page token is specified (the default), the first page
@@ -1421,6 +1427,9 @@ class BigtableInstanceAdminGapicClient
     {
         $request = new ListAppProfilesRequest();
         $request->setParent($parent);
+        if (isset($optionalArgs['pageSize'])) {
+            $request->setPageSize($optionalArgs['pageSize']);
+        }
         if (isset($optionalArgs['pageToken'])) {
             $request->setPageToken($optionalArgs['pageToken']);
         }
