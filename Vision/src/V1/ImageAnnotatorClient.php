@@ -134,8 +134,8 @@ class ImageAnnotatorClient extends ImageAnnotatorGapicClient
      * $response = $imageAnnotatorClient->faceDetection($imageContent);
      * ```
      *
-     * @param Image $image        An image annotation request.
-     * @param array $optionalArgs {
+     * @param resource|string|Image $image The image to be processed.
+     * @param array $optionalArgs   {
      *     Configuration Options.
      *
      *     @type ImageContext        $imageContext  Additional context that may accompany the image.
@@ -169,8 +169,8 @@ class ImageAnnotatorClient extends ImageAnnotatorGapicClient
      * $response = $imageAnnotatorClient->landmarkDetection($imageContent);
      * ```
      *
-     * @param Image $image        An image annotation request.
-     * @param array $optionalArgs {
+     * @param resource|string|Image $image The image to be processed.
+     * @param array $optionalArgs   {
      *     Configuration Options.
      *
      *     @type ImageContext        $imageContext  Additional context that may accompany the image.
@@ -204,8 +204,8 @@ class ImageAnnotatorClient extends ImageAnnotatorGapicClient
      * $response = $imageAnnotatorClient->logoDetection($imageContent);
      * ```
      *
-     * @param Image $image        An image annotation request.
-     * @param array $optionalArgs {
+     * @param resource|string|Image $image The image to be processed.
+     * @param array $optionalArgs   {
      *     Configuration Options.
      *
      *     @type ImageContext        $imageContext  Additional context that may accompany the image.
@@ -239,8 +239,8 @@ class ImageAnnotatorClient extends ImageAnnotatorGapicClient
      * $response = $imageAnnotatorClient->labelDetection($imageContent);
      * ```
      *
-     * @param Image $image        An image annotation request.
-     * @param array $optionalArgs {
+     * @param resource|string|Image $image The image to be processed.
+     * @param array $optionalArgs   {
      *     Configuration Options.
      *
      *     @type ImageContext        $imageContext  Additional context that may accompany the image.
@@ -274,8 +274,8 @@ class ImageAnnotatorClient extends ImageAnnotatorGapicClient
      * $response = $imageAnnotatorClient->textDetection($imageContent);
      * ```
      *
-     * @param Image $image        An image annotation request.
-     * @param array $optionalArgs {
+     * @param resource|string|Image $image The image to be processed.
+     * @param array $optionalArgs   {
      *     Configuration Options.
      *
      *     @type ImageContext        $imageContext  Additional context that may accompany the image.
@@ -309,8 +309,8 @@ class ImageAnnotatorClient extends ImageAnnotatorGapicClient
      * $response = $imageAnnotatorClient->documentTextDetection($imageContent);
      * ```
      *
-     * @param Image $image        An image annotation request.
-     * @param array $optionalArgs {
+     * @param resource|string|Image $image The image to be processed.
+     * @param array $optionalArgs   {
      *     Configuration Options.
      *
      *     @type ImageContext        $imageContext  Additional context that may accompany the image.
@@ -344,8 +344,8 @@ class ImageAnnotatorClient extends ImageAnnotatorGapicClient
      * $response = $imageAnnotatorClient->safeSearchDetection($imageContent);
      * ```
      *
-     * @param Image $image        An image annotation request.
-     * @param array $optionalArgs {
+     * @param resource|string|Image $image The image to be processed.
+     * @param array $optionalArgs   {
      *     Configuration Options.
      *
      *     @type ImageContext        $imageContext  Additional context that may accompany the image.
@@ -379,8 +379,8 @@ class ImageAnnotatorClient extends ImageAnnotatorGapicClient
      * $response = $imageAnnotatorClient->imagePropertiesDetection($imageContent);
      * ```
      *
-     * @param Image $image        An image annotation request.
-     * @param array $optionalArgs {
+     * @param resource|string|Image $image The image to be processed.
+     * @param array $optionalArgs   {
      *     Configuration Options.
      *
      *     @type ImageContext        $imageContext  Additional context that may accompany the image.
@@ -414,8 +414,8 @@ class ImageAnnotatorClient extends ImageAnnotatorGapicClient
      * $response = $imageAnnotatorClient->cropHintsDetection($imageContent);
      * ```
      *
-     * @param Image $image        An image annotation request.
-     * @param array $optionalArgs {
+     * @param resource|string|Image $image The image to be processed.
+     * @param array $optionalArgs   {
      *     Configuration Options.
      *
      *     @type ImageContext        $imageContext  Additional context that may accompany the image.
@@ -449,8 +449,8 @@ class ImageAnnotatorClient extends ImageAnnotatorGapicClient
      * $response = $imageAnnotatorClient->webDetection($imageContent);
      * ```
      *
-     * @param Image $image        An image annotation request.
-     * @param array $optionalArgs {
+     * @param resource|string|Image $image The image to be processed.
+     * @param array $optionalArgs   {
      *     Configuration Options.
      *
      *     @type ImageContext        $imageContext  Additional context that may accompany the image.
@@ -484,8 +484,8 @@ class ImageAnnotatorClient extends ImageAnnotatorGapicClient
      * $response = $imageAnnotatorClient->objectLocalization($imageContent);
      * ```
      *
-     * @param Image $image        An image annotation request.
-     * @param array $optionalArgs {
+     * @param resource|string|Image $image The image to be processed.
+     * @param array $optionalArgs   {
      *     Configuration Options.
      *
      *     @type ImageContext        $imageContext  Additional context that may accompany the image.
