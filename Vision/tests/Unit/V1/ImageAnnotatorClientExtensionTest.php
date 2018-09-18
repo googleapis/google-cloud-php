@@ -199,6 +199,7 @@ class ImageAnnotatorClientExtensionTest extends TestCase
             ['imagePropertiesDetection', Feature_Type::IMAGE_PROPERTIES],
             ['cropHintsDetection', Feature_Type::CROP_HINTS],
             ['webDetection', Feature_Type::WEB_DETECTION],
+            ['objectLocalization', Feature_Type::OBJECT_LOCALIZATION],
         ];
         $data = [];
         foreach ($items as $item) {

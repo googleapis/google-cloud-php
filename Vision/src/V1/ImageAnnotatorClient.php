@@ -476,6 +476,41 @@ class ImageAnnotatorClient extends ImageAnnotatorGapicClient
     }
 
     /**
+     * Run object localization for an image.
+     *
+     * Example:
+     * ```
+     * $imageContent = file_get_contents('path/to/image.jpg');
+     * $response = $imageAnnotatorClient->objectLocalization($imageContent);
+     * ```
+     *
+     * @param Image $image        An image annotation request.
+     * @param array $optionalArgs {
+     *     Configuration Options.
+     *
+     *     @type ImageContext        $imageContext  Additional context that may accompany the image.
+     *     @type RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return AnnotateImageResponse
+     *
+     * @throws ApiException if the remote call fails
+     * @experimental
+     */
+    public function objectLocalization($image, $optionalArgs = [])
+    {
+        return $this->annotateSingleFeature(
+            $image,
+            Type::OBJECT_LOCALIZATION,
+            $optionalArgs
+        );
+    }
+
+    /**
      * @param Image $image
      * @param Feature|int $featureType
      * @param array $optionalArgs
