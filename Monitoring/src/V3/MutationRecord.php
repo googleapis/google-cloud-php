@@ -28,9 +28,21 @@ class MutationRecord extends \Google\Protobuf\Internal\Message
      */
     private $mutated_by = '';
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type \Google\Protobuf\Timestamp $mutate_time
+     *           When the change occurred.
+     *     @type string $mutated_by
+     *           The email address of the user making the change.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Monitoring\V3\MutationRecord::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

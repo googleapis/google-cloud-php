@@ -4,26 +4,13 @@
 
 namespace Google\Cloud\Monitoring\V3;
 
-/**
- * Controls which fields are returned by `ListTimeSeries`.
- *
- * Protobuf enum <code>Google\Monitoring\V3\ListTimeSeriesRequest\TimeSeriesView</code>
- */
-class ListTimeSeriesRequest_TimeSeriesView
-{
+if (false) {
     /**
-     * Returns the identity of the metric(s), the time series,
-     * and the time series data.
-     *
-     * Generated from protobuf enum <code>FULL = 0;</code>
+     * This class is deprecated. Use Google\Cloud\Monitoring\V3\ListTimeSeriesRequest\TimeSeriesView instead.
+     * @deprecated
      */
-    const FULL = 0;
-    /**
-     * Returns the identity of the metric and the time series resource,
-     * but not the time series data.
-     *
-     * Generated from protobuf enum <code>HEADERS = 1;</code>
-     */
-    const HEADERS = 1;
+    class ListTimeSeriesRequest_TimeSeriesView {}
 }
+class_exists(ListTimeSeriesRequest\TimeSeriesView::class);
+@trigger_error('Google\Cloud\Monitoring\V3\ListTimeSeriesRequest_TimeSeriesView is deprecated and will be removed in the next major release. Use Google\Cloud\Monitoring\V3\ListTimeSeriesRequest\TimeSeriesView instead', E_USER_DEPRECATED);
 

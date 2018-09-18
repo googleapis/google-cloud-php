@@ -62,18 +62,21 @@ use Google\Protobuf\GPBEmpty;
  * $alertPolicyServiceClient = new AlertPolicyServiceClient();
  * try {
  *     $formattedName = $alertPolicyServiceClient->projectName('[PROJECT]');
- *     // Iterate through all elements
- *     $pagedResponse = $alertPolicyServiceClient->listAlertPolicies($formattedName);
- *     foreach ($pagedResponse->iterateAllElements() as $element) {
- *         // doSomethingWith($element);
- *     }
- *
- *     // OR iterate over pages of elements
+ *     // Iterate over pages of elements
  *     $pagedResponse = $alertPolicyServiceClient->listAlertPolicies($formattedName);
  *     foreach ($pagedResponse->iteratePages() as $page) {
  *         foreach ($page as $element) {
  *             // doSomethingWith($element);
  *         }
+ *     }
+ *
+ *
+ *     // Alternatively:
+ *
+ *     // Iterate through all elements
+ *     $pagedResponse = $alertPolicyServiceClient->listAlertPolicies($formattedName);
+ *     foreach ($pagedResponse->iterateAllElements() as $element) {
+ *         // doSomethingWith($element);
  *     }
  * } finally {
  *     $alertPolicyServiceClient->close();
@@ -132,6 +135,7 @@ class AlertPolicyServiceGapicClient
             'serviceAddress' => self::SERVICE_ADDRESS.':'.self::DEFAULT_SERVICE_PORT,
             'clientConfig' => __DIR__.'/../resources/alert_policy_service_client_config.json',
             'descriptorsConfigPath' => __DIR__.'/../resources/alert_policy_service_descriptor_config.php',
+            'gcpApiConfigPath' => __DIR__.'/../resources/alert_policy_service_grpc_config.json',
             'credentialsConfig' => [
                 'scopes' => self::$serviceScopes,
             ],
@@ -346,18 +350,21 @@ class AlertPolicyServiceGapicClient
      * $alertPolicyServiceClient = new AlertPolicyServiceClient();
      * try {
      *     $formattedName = $alertPolicyServiceClient->projectName('[PROJECT]');
-     *     // Iterate through all elements
-     *     $pagedResponse = $alertPolicyServiceClient->listAlertPolicies($formattedName);
-     *     foreach ($pagedResponse->iterateAllElements() as $element) {
-     *         // doSomethingWith($element);
-     *     }
-     *
-     *     // OR iterate over pages of elements
+     *     // Iterate over pages of elements
      *     $pagedResponse = $alertPolicyServiceClient->listAlertPolicies($formattedName);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
      *         }
+     *     }
+     *
+     *
+     *     // Alternatively:
+     *
+     *     // Iterate through all elements
+     *     $pagedResponse = $alertPolicyServiceClient->listAlertPolicies($formattedName);
+     *     foreach ($pagedResponse->iterateAllElements() as $element) {
+     *         // doSomethingWith($element);
      *     }
      * } finally {
      *     $alertPolicyServiceClient->close();

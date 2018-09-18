@@ -4,60 +4,13 @@
 
 namespace Google\Cloud\Monitoring\V3;
 
-use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
-use Google\Protobuf\Internal\GPBUtil;
-
-/**
- * Information required for a TCP uptime check request.
- *
- * Generated from protobuf message <code>google.monitoring.v3.UptimeCheckConfig.TcpCheck</code>
- */
-class UptimeCheckConfig_TcpCheck extends \Google\Protobuf\Internal\Message
-{
+if (false) {
     /**
-     * The port to the page to run the check against. Will be combined with host
-     * (specified within the MonitoredResource) to construct the full URL.
-     * Required.
-     *
-     * Generated from protobuf field <code>int32 port = 1;</code>
+     * This class is deprecated. Use Google\Cloud\Monitoring\V3\UptimeCheckConfig\TcpCheck instead.
+     * @deprecated
      */
-    private $port = 0;
-
-    public function __construct() {
-        \GPBMetadata\Google\Monitoring\V3\Uptime::initOnce();
-        parent::__construct();
-    }
-
-    /**
-     * The port to the page to run the check against. Will be combined with host
-     * (specified within the MonitoredResource) to construct the full URL.
-     * Required.
-     *
-     * Generated from protobuf field <code>int32 port = 1;</code>
-     * @return int
-     */
-    public function getPort()
-    {
-        return $this->port;
-    }
-
-    /**
-     * The port to the page to run the check against. Will be combined with host
-     * (specified within the MonitoredResource) to construct the full URL.
-     * Required.
-     *
-     * Generated from protobuf field <code>int32 port = 1;</code>
-     * @param int $var
-     * @return $this
-     */
-    public function setPort($var)
-    {
-        GPBUtil::checkInt32($var);
-        $this->port = $var;
-
-        return $this;
-    }
-
+    class UptimeCheckConfig_TcpCheck {}
 }
+class_exists(UptimeCheckConfig\TcpCheck::class);
+@trigger_error('Google\Cloud\Monitoring\V3\UptimeCheckConfig_TcpCheck is deprecated and will be removed in the next major release. Use Google\Cloud\Monitoring\V3\UptimeCheckConfig\TcpCheck instead', E_USER_DEPRECATED);
 

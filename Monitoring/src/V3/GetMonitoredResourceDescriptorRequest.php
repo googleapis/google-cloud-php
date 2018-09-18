@@ -25,9 +25,22 @@ class GetMonitoredResourceDescriptorRequest extends \Google\Protobuf\Internal\Me
      */
     private $name = '';
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $name
+     *           The monitored resource descriptor to get.  The format is
+     *           `"projects/{project_id_or_number}/monitoredResourceDescriptors/{resource_type}"`.
+     *           The `{resource_type}` is a predefined type, such as
+     *           `cloudsql_database`.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Monitoring\V3\MetricService::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

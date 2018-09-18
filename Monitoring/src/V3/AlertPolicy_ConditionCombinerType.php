@@ -4,42 +4,13 @@
 
 namespace Google\Cloud\Monitoring\V3;
 
-/**
- * Operators for combining conditions.
- *
- * Protobuf enum <code>Google\Monitoring\V3\AlertPolicy\ConditionCombinerType</code>
- */
-class AlertPolicy_ConditionCombinerType
-{
+if (false) {
     /**
-     * An unspecified combiner.
-     *
-     * Generated from protobuf enum <code>COMBINE_UNSPECIFIED = 0;</code>
+     * This class is deprecated. Use Google\Cloud\Monitoring\V3\AlertPolicy\ConditionCombinerType instead.
+     * @deprecated
      */
-    const COMBINE_UNSPECIFIED = 0;
-    /**
-     * Combine conditions using the logical `AND` operator. An
-     * incident is created only if all conditions are met
-     * simultaneously. This combiner is satisfied if all conditions are
-     * met, even if they are met on completely different resources.
-     *
-     * Generated from protobuf enum <code>AND = 1;</code>
-     */
-    const PBAND = 1;
-    /**
-     * Combine conditions using the logical `OR` operator. An incident
-     * is created if any of the listed conditions is met.
-     *
-     * Generated from protobuf enum <code>OR = 2;</code>
-     */
-    const PBOR = 2;
-    /**
-     * Combine conditions using logical `AND` operator, but unlike the regular
-     * `AND` option, an incident is created only if all conditions are met
-     * simultaneously on at least one resource.
-     *
-     * Generated from protobuf enum <code>AND_WITH_MATCHING_RESOURCE = 3;</code>
-     */
-    const AND_WITH_MATCHING_RESOURCE = 3;
+    class AlertPolicy_ConditionCombinerType {}
 }
+class_exists(AlertPolicy\ConditionCombinerType::class);
+@trigger_error('Google\Cloud\Monitoring\V3\AlertPolicy_ConditionCombinerType is deprecated and will be removed in the next major release. Use Google\Cloud\Monitoring\V3\AlertPolicy\ConditionCombinerType instead', E_USER_DEPRECATED);
 

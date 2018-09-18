@@ -16,14 +16,14 @@ use Google\Protobuf\Internal\GPBUtil;
 class Point extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The time interval to which the data point applies.  For GAUGE metrics, only
-     * the end time of the interval is used.  For DELTA metrics, the start and end
-     * time should specify a non-zero interval, with subsequent points specifying
-     * contiguous and non-overlapping intervals.  For CUMULATIVE metrics, the
-     * start and end time should specify a non-zero interval, with subsequent
-     * points specifying the same start time and increasing end times, until an
-     * event resets the cumulative value to zero and sets a new start time for the
-     * following points.
+     * The time interval to which the data point applies.  For `GAUGE` metrics,
+     * only the end time of the interval is used.  For `DELTA` metrics, the start
+     * and end time should specify a non-zero interval, with subsequent points
+     * specifying contiguous and non-overlapping intervals.  For `CUMULATIVE`
+     * metrics, the start and end time should specify a non-zero interval, with
+     * subsequent points specifying the same start time and increasing end times,
+     * until an event resets the cumulative value to zero and sets a new start
+     * time for the following points.
      *
      * Generated from protobuf field <code>.google.monitoring.v3.TimeInterval interval = 1;</code>
      */
@@ -35,20 +35,39 @@ class Point extends \Google\Protobuf\Internal\Message
      */
     private $value = null;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type \Google\Cloud\Monitoring\V3\TimeInterval $interval
+     *           The time interval to which the data point applies.  For `GAUGE` metrics,
+     *           only the end time of the interval is used.  For `DELTA` metrics, the start
+     *           and end time should specify a non-zero interval, with subsequent points
+     *           specifying contiguous and non-overlapping intervals.  For `CUMULATIVE`
+     *           metrics, the start and end time should specify a non-zero interval, with
+     *           subsequent points specifying the same start time and increasing end times,
+     *           until an event resets the cumulative value to zero and sets a new start
+     *           time for the following points.
+     *     @type \Google\Cloud\Monitoring\V3\TypedValue $value
+     *           The value of the data point.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Monitoring\V3\Metric::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**
-     * The time interval to which the data point applies.  For GAUGE metrics, only
-     * the end time of the interval is used.  For DELTA metrics, the start and end
-     * time should specify a non-zero interval, with subsequent points specifying
-     * contiguous and non-overlapping intervals.  For CUMULATIVE metrics, the
-     * start and end time should specify a non-zero interval, with subsequent
-     * points specifying the same start time and increasing end times, until an
-     * event resets the cumulative value to zero and sets a new start time for the
-     * following points.
+     * The time interval to which the data point applies.  For `GAUGE` metrics,
+     * only the end time of the interval is used.  For `DELTA` metrics, the start
+     * and end time should specify a non-zero interval, with subsequent points
+     * specifying contiguous and non-overlapping intervals.  For `CUMULATIVE`
+     * metrics, the start and end time should specify a non-zero interval, with
+     * subsequent points specifying the same start time and increasing end times,
+     * until an event resets the cumulative value to zero and sets a new start
+     * time for the following points.
      *
      * Generated from protobuf field <code>.google.monitoring.v3.TimeInterval interval = 1;</code>
      * @return \Google\Cloud\Monitoring\V3\TimeInterval
@@ -59,14 +78,14 @@ class Point extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The time interval to which the data point applies.  For GAUGE metrics, only
-     * the end time of the interval is used.  For DELTA metrics, the start and end
-     * time should specify a non-zero interval, with subsequent points specifying
-     * contiguous and non-overlapping intervals.  For CUMULATIVE metrics, the
-     * start and end time should specify a non-zero interval, with subsequent
-     * points specifying the same start time and increasing end times, until an
-     * event resets the cumulative value to zero and sets a new start time for the
-     * following points.
+     * The time interval to which the data point applies.  For `GAUGE` metrics,
+     * only the end time of the interval is used.  For `DELTA` metrics, the start
+     * and end time should specify a non-zero interval, with subsequent points
+     * specifying contiguous and non-overlapping intervals.  For `CUMULATIVE`
+     * metrics, the start and end time should specify a non-zero interval, with
+     * subsequent points specifying the same start time and increasing end times,
+     * until an event resets the cumulative value to zero and sets a new start
+     * time for the following points.
      *
      * Generated from protobuf field <code>.google.monitoring.v3.TimeInterval interval = 1;</code>
      * @param \Google\Cloud\Monitoring\V3\TimeInterval $var

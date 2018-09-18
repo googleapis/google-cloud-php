@@ -7,7 +7,7 @@ namespace Google\Cloud\Monitoring\V3;
 /**
  * The regions from which an uptime check can be run.
  *
- * Protobuf enum <code>Google\Monitoring\V3\UptimeCheckRegion</code>
+ * Protobuf type <code>google.monitoring.v3.UptimeCheckRegion</code>
  */
 class UptimeCheckRegion
 {

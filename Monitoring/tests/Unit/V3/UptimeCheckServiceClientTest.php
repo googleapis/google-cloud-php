@@ -76,10 +76,12 @@ class UptimeCheckServiceClientTest extends GeneratedTest
 
         // Mock response
         $nextPageToken = '';
+        $totalSize = 705419236;
         $uptimeCheckConfigsElement = new UptimeCheckConfig();
         $uptimeCheckConfigs = [$uptimeCheckConfigsElement];
         $expectedResponse = new ListUptimeCheckConfigsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
+        $expectedResponse->setTotalSize($totalSize);
         $expectedResponse->setUptimeCheckConfigs($uptimeCheckConfigs);
         $transport->addResponse($expectedResponse);
 
@@ -156,9 +158,11 @@ class UptimeCheckServiceClientTest extends GeneratedTest
         // Mock response
         $name2 = 'name2-1052831874';
         $displayName = 'displayName1615086568';
+        $isInternal = true;
         $expectedResponse = new UptimeCheckConfig();
         $expectedResponse->setName($name2);
         $expectedResponse->setDisplayName($displayName);
+        $expectedResponse->setIsInternal($isInternal);
         $transport->addResponse($expectedResponse);
 
         // Mock request
@@ -231,9 +235,11 @@ class UptimeCheckServiceClientTest extends GeneratedTest
         // Mock response
         $name = 'name3373707';
         $displayName = 'displayName1615086568';
+        $isInternal = true;
         $expectedResponse = new UptimeCheckConfig();
         $expectedResponse->setName($name);
         $expectedResponse->setDisplayName($displayName);
+        $expectedResponse->setIsInternal($isInternal);
         $transport->addResponse($expectedResponse);
 
         // Mock request
@@ -311,9 +317,11 @@ class UptimeCheckServiceClientTest extends GeneratedTest
         // Mock response
         $name = 'name3373707';
         $displayName = 'displayName1615086568';
+        $isInternal = true;
         $expectedResponse = new UptimeCheckConfig();
         $expectedResponse->setName($name);
         $expectedResponse->setDisplayName($displayName);
+        $expectedResponse->setIsInternal($isInternal);
         $transport->addResponse($expectedResponse);
 
         // Mock request
