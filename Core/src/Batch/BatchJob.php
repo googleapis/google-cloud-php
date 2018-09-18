@@ -92,6 +92,7 @@ class BatchJob implements JobInterface
         $this->callPeriod = $options['callPeriod'];
         $this->bootstrapFile = $options['bootstrapFile'];
         $this->numWorkers = $options['numWorkers'];
+        $this->initFailureFile();
     }
 
     /**
