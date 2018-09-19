@@ -59,18 +59,21 @@ use Google\Protobuf\GPBEmpty;
  * $notificationChannelServiceClient = new NotificationChannelServiceClient();
  * try {
  *     $formattedName = $notificationChannelServiceClient->projectName('[PROJECT]');
- *     // Iterate through all elements
- *     $pagedResponse = $notificationChannelServiceClient->listNotificationChannelDescriptors($formattedName);
- *     foreach ($pagedResponse->iterateAllElements() as $element) {
- *         // doSomethingWith($element);
- *     }
- *
- *     // OR iterate over pages of elements
+ *     // Iterate over pages of elements
  *     $pagedResponse = $notificationChannelServiceClient->listNotificationChannelDescriptors($formattedName);
  *     foreach ($pagedResponse->iteratePages() as $page) {
  *         foreach ($page as $element) {
  *             // doSomethingWith($element);
  *         }
+ *     }
+ *
+ *
+ *     // Alternatively:
+ *
+ *     // Iterate through all elements
+ *     $pagedResponse = $notificationChannelServiceClient->listNotificationChannelDescriptors($formattedName);
+ *     foreach ($pagedResponse->iterateAllElements() as $element) {
+ *         // doSomethingWith($element);
  *     }
  * } finally {
  *     $notificationChannelServiceClient->close();
@@ -129,6 +132,7 @@ class NotificationChannelServiceGapicClient
             'serviceAddress' => self::SERVICE_ADDRESS.':'.self::DEFAULT_SERVICE_PORT,
             'clientConfig' => __DIR__.'/../resources/notification_channel_service_client_config.json',
             'descriptorsConfigPath' => __DIR__.'/../resources/notification_channel_service_descriptor_config.php',
+            'gcpApiConfigPath' => __DIR__.'/../resources/notification_channel_service_grpc_config.json',
             'credentialsConfig' => [
                 'scopes' => self::$serviceScopes,
             ],
@@ -342,18 +346,21 @@ class NotificationChannelServiceGapicClient
      * $notificationChannelServiceClient = new NotificationChannelServiceClient();
      * try {
      *     $formattedName = $notificationChannelServiceClient->projectName('[PROJECT]');
-     *     // Iterate through all elements
-     *     $pagedResponse = $notificationChannelServiceClient->listNotificationChannelDescriptors($formattedName);
-     *     foreach ($pagedResponse->iterateAllElements() as $element) {
-     *         // doSomethingWith($element);
-     *     }
-     *
-     *     // OR iterate over pages of elements
+     *     // Iterate over pages of elements
      *     $pagedResponse = $notificationChannelServiceClient->listNotificationChannelDescriptors($formattedName);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
      *         }
+     *     }
+     *
+     *
+     *     // Alternatively:
+     *
+     *     // Iterate through all elements
+     *     $pagedResponse = $notificationChannelServiceClient->listNotificationChannelDescriptors($formattedName);
+     *     foreach ($pagedResponse->iterateAllElements() as $element) {
+     *         // doSomethingWith($element);
      *     }
      * } finally {
      *     $notificationChannelServiceClient->close();
@@ -465,18 +472,21 @@ class NotificationChannelServiceGapicClient
      * $notificationChannelServiceClient = new NotificationChannelServiceClient();
      * try {
      *     $formattedName = $notificationChannelServiceClient->projectName('[PROJECT]');
-     *     // Iterate through all elements
-     *     $pagedResponse = $notificationChannelServiceClient->listNotificationChannels($formattedName);
-     *     foreach ($pagedResponse->iterateAllElements() as $element) {
-     *         // doSomethingWith($element);
-     *     }
-     *
-     *     // OR iterate over pages of elements
+     *     // Iterate over pages of elements
      *     $pagedResponse = $notificationChannelServiceClient->listNotificationChannels($formattedName);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
      *         }
+     *     }
+     *
+     *
+     *     // Alternatively:
+     *
+     *     // Iterate through all elements
+     *     $pagedResponse = $notificationChannelServiceClient->listNotificationChannels($formattedName);
+     *     foreach ($pagedResponse->iterateAllElements() as $element) {
+     *         // doSomethingWith($element);
      *     }
      * } finally {
      *     $notificationChannelServiceClient->close();

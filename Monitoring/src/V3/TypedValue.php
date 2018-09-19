@@ -17,9 +17,29 @@ class TypedValue extends \Google\Protobuf\Internal\Message
 {
     protected $value;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type bool $bool_value
+     *           A Boolean value: `true` or `false`.
+     *     @type int|string $int64_value
+     *           A 64-bit integer. Its range is approximately &plusmn;9.2x10<sup>18</sup>.
+     *     @type float $double_value
+     *           A 64-bit double-precision floating-point number. Its magnitude
+     *           is approximately &plusmn;10<sup>&plusmn;300</sup> and it has 16
+     *           significant digits of precision.
+     *     @type string $string_value
+     *           A variable-length string value.
+     *     @type \Google\Api\Distribution $distribution_value
+     *           A distribution value.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Monitoring\V3\Common::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

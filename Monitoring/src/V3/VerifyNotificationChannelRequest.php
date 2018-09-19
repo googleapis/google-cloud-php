@@ -34,9 +34,27 @@ class VerifyNotificationChannelRequest extends \Google\Protobuf\Internal\Message
      */
     private $code = '';
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $name
+     *           The notification channel to verify.
+     *     @type string $code
+     *           The verification code that was delivered to the channel as
+     *           a result of invoking the `SendNotificationChannelVerificationCode` API
+     *           method or that was retrieved from a verified channel via
+     *           `GetNotificationChannelVerificationCode`. For example, one might have
+     *           "G-123456" or "TKNZGhhd2EyN3I1MnRnMjRv" (in general, one is only
+     *           guaranteed that the code is valid UTF-8; one should not
+     *           make any assumptions regarding the structure or format of the code).
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Monitoring\V3\NotificationService::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

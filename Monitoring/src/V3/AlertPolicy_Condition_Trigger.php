@@ -4,88 +4,13 @@
 
 namespace Google\Cloud\Monitoring\V3;
 
-use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
-use Google\Protobuf\Internal\GPBUtil;
-
-/**
- * Specifies how many time series must fail a predicate to trigger a
- * condition. If not specified, then a `{count: 1}` trigger is used.
- *
- * Generated from protobuf message <code>google.monitoring.v3.AlertPolicy.Condition.Trigger</code>
- */
-class AlertPolicy_Condition_Trigger extends \Google\Protobuf\Internal\Message
-{
-    protected $type;
-
-    public function __construct() {
-        \GPBMetadata\Google\Monitoring\V3\Alert::initOnce();
-        parent::__construct();
-    }
-
+if (false) {
     /**
-     * The absolute number of time series that must fail
-     * the predicate for the condition to be triggered.
-     *
-     * Generated from protobuf field <code>int32 count = 1;</code>
-     * @return int
+     * This class is deprecated. Use Google\Cloud\Monitoring\V3\AlertPolicy\Condition\Trigger instead.
+     * @deprecated
      */
-    public function getCount()
-    {
-        return $this->readOneof(1);
-    }
-
-    /**
-     * The absolute number of time series that must fail
-     * the predicate for the condition to be triggered.
-     *
-     * Generated from protobuf field <code>int32 count = 1;</code>
-     * @param int $var
-     * @return $this
-     */
-    public function setCount($var)
-    {
-        GPBUtil::checkInt32($var);
-        $this->writeOneof(1, $var);
-
-        return $this;
-    }
-
-    /**
-     * The percentage of time series that must fail the
-     * predicate for the condition to be triggered.
-     *
-     * Generated from protobuf field <code>double percent = 2;</code>
-     * @return float
-     */
-    public function getPercent()
-    {
-        return $this->readOneof(2);
-    }
-
-    /**
-     * The percentage of time series that must fail the
-     * predicate for the condition to be triggered.
-     *
-     * Generated from protobuf field <code>double percent = 2;</code>
-     * @param float $var
-     * @return $this
-     */
-    public function setPercent($var)
-    {
-        GPBUtil::checkDouble($var);
-        $this->writeOneof(2, $var);
-
-        return $this;
-    }
-
-    /**
-     * @return string
-     */
-    public function getType()
-    {
-        return $this->whichOneof("type");
-    }
-
+    class AlertPolicy_Condition_Trigger {}
 }
+class_exists(AlertPolicy\Condition\Trigger::class);
+@trigger_error('Google\Cloud\Monitoring\V3\AlertPolicy_Condition_Trigger is deprecated and will be removed in the next major release. Use Google\Cloud\Monitoring\V3\AlertPolicy\Condition\Trigger instead', E_USER_DEPRECATED);
 

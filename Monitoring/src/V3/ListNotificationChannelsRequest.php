@@ -62,9 +62,43 @@ class ListNotificationChannelsRequest extends \Google\Protobuf\Internal\Message
      */
     private $page_token = '';
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $name
+     *           The project on which to execute the request. The format is
+     *           `projects/[PROJECT_ID]`. That is, this names the container
+     *           in which to look for the notification channels; it does not name a
+     *           specific channel. To query a specific channel by REST resource name, use
+     *           the
+     *           [`GetNotificationChannel`][google.monitoring.v3.NotificationChannelService.GetNotificationChannel] operation.
+     *     @type string $filter
+     *           If provided, this field specifies the criteria that must be met by
+     *           notification channels to be included in the response.
+     *           For more details, see [sorting and
+     *           filtering](/monitoring/api/v3/sorting-and-filtering).
+     *     @type string $order_by
+     *           A comma-separated list of fields by which to sort the result. Supports
+     *           the same set of fields as in `filter`. Entries can be prefixed with
+     *           a minus sign to sort in descending rather than ascending order.
+     *           For more details, see [sorting and
+     *           filtering](/monitoring/api/v3/sorting-and-filtering).
+     *     @type int $page_size
+     *           The maximum number of results to return in a single response. If
+     *           not set to a positive number, a reasonable value will be chosen by the
+     *           service.
+     *     @type string $page_token
+     *           If non-empty, `page_token` must contain a value returned as the
+     *           `next_page_token` in a previous response to request the next set
+     *           of results.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Monitoring\V3\NotificationService::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

@@ -61,9 +61,42 @@ class ListAlertPoliciesRequest extends \Google\Protobuf\Internal\Message
      */
     private $page_token = '';
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $name
+     *           The project whose alert policies are to be listed. The format is
+     *               projects/[PROJECT_ID]
+     *           Note that this field names the parent container in which the alerting
+     *           policies to be listed are stored. To retrieve a single alerting policy
+     *           by name, use the
+     *           [GetAlertPolicy][google.monitoring.v3.AlertPolicyService.GetAlertPolicy]
+     *           operation, instead.
+     *     @type string $filter
+     *           If provided, this field specifies the criteria that must be met by
+     *           alert policies to be included in the response.
+     *           For more details, see [sorting and
+     *           filtering](/monitoring/api/v3/sorting-and-filtering).
+     *     @type string $order_by
+     *           A comma-separated list of fields by which to sort the result. Supports
+     *           the same set of field references as the `filter` field. Entries can be
+     *           prefixed with a minus sign to sort by the field in descending order.
+     *           For more details, see [sorting and
+     *           filtering](/monitoring/api/v3/sorting-and-filtering).
+     *     @type int $page_size
+     *           The maximum number of results to return in a single response.
+     *     @type string $page_token
+     *           If this field is not empty then it must contain the `nextPageToken` value
+     *           returned by a previous call to this method.  Using this field causes the
+     *           method to return more results from the previous method call.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Monitoring\V3\AlertService::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

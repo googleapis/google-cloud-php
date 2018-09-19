@@ -23,9 +23,20 @@ class GetNotificationChannelDescriptorRequest extends \Google\Protobuf\Internal\
      */
     private $name = '';
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $name
+     *           The channel type for which to execute the request. The format is
+     *           `projects/[PROJECT_ID]/notificationChannelDescriptors/{channel_type}`.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Monitoring\V3\NotificationService::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

@@ -33,9 +33,26 @@ class GetNotificationChannelVerificationCodeResponse extends \Google\Protobuf\In
      */
     private $expire_time = null;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $code
+     *           The verification code, which may be used to verify other channels
+     *           that have an equivalent identity (i.e. other channels of the same
+     *           type with the same fingerprint such as other email channels with
+     *           the same email address or other sms channels with the same number).
+     *     @type \Google\Protobuf\Timestamp $expire_time
+     *           The expiration time associated with the code that was returned. If
+     *           an expiration was provided in the request, this is the minimum of the
+     *           requested expiration in the request and the max permitted expiration.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Monitoring\V3\NotificationService::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**
