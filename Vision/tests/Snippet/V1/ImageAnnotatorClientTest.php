@@ -134,6 +134,7 @@ class ImageAnnotatorClientTest extends SnippetTestCase
             ['imagePropertiesDetection'],
             ['cropHintsDetection'],
             ['webDetection'],
+            ['objectLocalization'],
         ];
     }
 
