@@ -98,15 +98,29 @@ trait GrpcTrait
      */
     private function getGaxConfig($version, callable $authHttpHandler = null)
     {
-        return [
-            'credentials' => new CredentialsWrapper(
-                $this->requestWrapper->getCredentialsFetcher(),
-                $authHttpHandler
-            ),
+        $config = [
             'libName' => 'gccl',
             'libVersion' => $version,
-            'transport' => 'grpc',
+            'transport' => 'grpc'
         ];
+
+        // GAX v0.32.0 introduced the CredentialsWrapper class and a different
+        // way to configure credentials. If the class exists, use this new method
+        // otherwise default to legacy usage.
+        if (class_exists(CredentialsWrapper::class)) {
+            $config['credentials'] = new CredentialsWrapper(
+                $this->requestWrapper->getCredentialsFetcher(),
+                $authHttpHandler
+            );
+        } else {
+            $config += [
+                'credentialsLoader' => $this->requestWrapper->getCredentialsFetcher(),
+                'authHttpHandler' => $authHttpHandler,
+                'enableCaching' => false
+            ];
+        }
+
+        return $config;
     }
 
     /**
