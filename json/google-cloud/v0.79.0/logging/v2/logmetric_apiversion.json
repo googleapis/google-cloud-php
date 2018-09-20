@@ -1,0 +1,1 @@
+{"id":"logging\/v2\/logmetric_apiversion","type":"","title":"Google\\Cloud\\Logging\\V2\\LogMetric_ApiVersion","name":"LogMetric_ApiVersion","description":"<p>Stackdriver Logging API version.<\/p>\n<p>Protobuf enum <code>Google\\Logging\\V2\\LogMetric\\ApiVersion<\/code><\/p>","examples":[],"resources":[],"methods":[]}

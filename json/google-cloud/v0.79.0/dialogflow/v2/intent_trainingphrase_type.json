@@ -1,0 +1,1 @@
+{"id":"dialogflow\/v2\/intent_trainingphrase_type","type":"","title":"Google\\Cloud\\Dialogflow\\V2\\Intent_TrainingPhrase_Type","name":"Intent_TrainingPhrase_Type","description":"<p>Represents different types of training phrases.<\/p>\n<p>Protobuf enum <code>Google\\Cloud\\Dialogflow\\V2\\Intent\\TrainingPhrase\\Type<\/code><\/p>","examples":[],"resources":[],"methods":[]}
