@@ -22,5 +22,5 @@ namespace Google\Cloud;
  */
 class Version
 {
-    const VERSION = '0.78.0';
+    const VERSION = '0.79.0';
 }
