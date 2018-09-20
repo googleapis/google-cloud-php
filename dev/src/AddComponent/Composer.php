@@ -149,7 +149,7 @@ class Composer
         $target = $this->ask(
             'Enter the remote repository target, relative to the hostname. ' .
             'For `git@github.com:foo/bar.git`, enter `foo/bar.git`.',
-            'GoogleCloudPlatform/google-cloud-php-'. str_replace('cloud-', '', $this->info['name']) .'.git'
+            'googleapis/google-cloud-php-'. str_replace('cloud-', '', $this->info['name']) .'.git'
         );
 
         $entry = $this->ask(

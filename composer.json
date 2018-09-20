@@ -30,7 +30,7 @@
         "translation",
         "vision"
     ],
-    "homepage": "http://github.com/GoogleCloudPlatform/google-cloud-php",
+    "homepage": "http://github.com/googleapis/google-cloud-php",
     "license": "Apache-2.0",
     "authors": [
         {
@@ -208,7 +208,7 @@
     "extra": {
         "component": {
             "id": "google-cloud",
-            "target": "GoogleCloudPlatform/google-cloud-php.git",
+            "target": "googleapis/google-cloud-php.git",
             "path": "src",
             "entry": [
                 "Version.php",

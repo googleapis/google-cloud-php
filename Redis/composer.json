@@ -14,7 +14,7 @@
             "id": "cloud-redis",
             "path": "Redis",
             "entry": null,
-            "target": "GoogleCloudPlatform/google-cloud-php-redis.git"
+            "target": "googleapis/google-cloud-php-redis.git"
         }
     },
     "require": {

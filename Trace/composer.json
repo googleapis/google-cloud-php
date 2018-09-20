@@ -22,7 +22,7 @@
     "extra": {
         "component": {
             "id": "cloud-trace",
-            "target": "GoogleCloudPlatform/google-cloud-php-trace.git",
+            "target": "googleapis/google-cloud-php-trace.git",
             "path": "Trace",
             "entry": "src/TraceClient.php"
         }

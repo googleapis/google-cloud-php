@@ -14,7 +14,7 @@
             "id": "cloud-dataproc",
             "path": "Dataproc",
             "entry": null,
-            "target": "GoogleCloudPlatform/google-cloud-php-dataproc.git"
+            "target": "googleapis/google-cloud-php-dataproc.git"
         }
     },
     "require": {

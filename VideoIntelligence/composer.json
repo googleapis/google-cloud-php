@@ -17,7 +17,7 @@
     "extra": {
         "component": {
             "id": "cloud-videointelligence",
-            "target": "GoogleCloudPlatform/google-cloud-php-videointelligence.git",
+            "target": "googleapis/google-cloud-php-videointelligence.git",
             "path": "VideoIntelligence",
             "entry": null
         }

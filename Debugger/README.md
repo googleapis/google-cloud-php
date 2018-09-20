@@ -4,9 +4,9 @@
 
 [![Latest Stable Version](https://poser.pugx.org/google/cloud-debugger/v/stable)](https://packagist.org/packages/google/cloud-debugger) [![Packagist](https://img.shields.io/packagist/dm/google/cloud-debugger.svg)](https://packagist.org/packages/google/cloud-debugger)
 
-* [API documentation](http://googlecloudplatform.github.io/google-cloud-php/#/docs/cloud-debugger/latest)
+* [API documentation](http://googleapis.github.io/google-cloud-php/#/docs/cloud-debugger/latest)
 
-**NOTE:** This repository is part of [Google Cloud PHP](https://github.com/googlecloudplatform/google-cloud-php). Any
+**NOTE:** This repository is part of [Google Cloud PHP](https://github.com/googleapis/google-cloud-php). Any
 support requests, bug reports, or development contributions should be directed to
 that project.
 
@@ -87,7 +87,7 @@ please see our [gRPC installation guide](https://cloud.google.com/php/grpc).
 
 ### Authentication
 
-Please see our [Authentication guide](https://github.com/GoogleCloudPlatform/google-cloud-php/blob/master/AUTHENTICATION.md) for more information
+Please see our [Authentication guide](https://github.com/googleapis/google-cloud-php/blob/master/AUTHENTICATION.md) for more information
 on authenticating your client. Once authenticated, you'll be ready to start making requests.
 
 ### Sample
@@ -141,8 +141,8 @@ This component is considered alpha. As such, it is still a work-in-progress and 
 2. Take a look at [in-depth usage samples][usage-samples].
 
 [semaphore-extensions]: http://php.net/manual/en/book.sem.php
-[batch-daemon]: https://github.com/GoogleCloudPlatform/google-cloud-php/blob/master/src/Core/Batch/BatchDaemon.php
-[debugger-daemon]: http://googlecloudplatform.github.io/google-cloud-php/#/docs/cloud-debugger/master/debugger/daemon
+[batch-daemon]: https://github.com/googleapis/google-cloud-php/blob/master/src/Core/Batch/BatchDaemon.php
+[debugger-daemon]: http://googleapis.github.io/google-cloud-php/#/docs/cloud-debugger/master/debugger/daemon
 [pecl-debugger]: https://pecl.php.net/package/stackdriver_debugger
 [debugger-console]: https://console.cloud.google.com/debug
 [using-debug-snapshots]: https://cloud.google.com/debugger/docs/debugging

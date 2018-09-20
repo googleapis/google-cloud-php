@@ -19,7 +19,7 @@
             "id": "cloud-asset",
             "path": "Asset",
             "entry": null,
-            "target": "GoogleCloudPlatform/google-cloud-php-asset.git"
+            "target": "googleapis/google-cloud-php-asset.git"
         }
     },
     "require": {

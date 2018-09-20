@@ -82,7 +82,7 @@ class E2ETest extends TestCase
     {
         return getenv('TRAVIS_REPO_SLUG')
             ?: getenv('REPO_SLUG')
-            ?: 'GoogleCloudPlatform/google-cloud-php';
+            ?: 'googleapis/google-cloud-php';
     }
 
     public static function createComposerJson()

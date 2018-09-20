@@ -19,7 +19,7 @@
             "id": "cloud-kms",
             "path": "Kms",
             "entry": null,
-            "target": "GoogleCloudPlatform/google-cloud-php-kms.git"
+            "target": "googleapis/google-cloud-php-kms.git"
         }
     },
     "require": {

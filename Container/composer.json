@@ -14,7 +14,7 @@
             "id": "cloud-container",
             "path": "Container",
             "entry": null,
-            "target": "GoogleCloudPlatform/google-cloud-php-container.git"
+            "target": "googleapis/google-cloud-php-container.git"
         }
     },
     "require": {

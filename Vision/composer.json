@@ -22,7 +22,7 @@
     "extra": {
         "component": {
             "id": "cloud-vision",
-            "target": "GoogleCloudPlatform/google-cloud-php-vision.git",
+            "target": "googleapis/google-cloud-php-vision.git",
             "path": "Vision",
             "entry": "src/VisionClient.php"
         }
