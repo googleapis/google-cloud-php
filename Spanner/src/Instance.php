@@ -17,21 +17,21 @@
 
 namespace Google\Cloud\Spanner;
 
+use Google\ApiCore\ValidationException;
 use Google\Cloud\Core\ArrayTrait;
 use Google\Cloud\Core\Exception\NotFoundException;
 use Google\Cloud\Core\Iam\Iam;
 use Google\Cloud\Core\Iterator\ItemIterator;
 use Google\Cloud\Core\Iterator\PageIterator;
-use Google\Cloud\Core\LongRunning\LROTrait;
 use Google\Cloud\Core\LongRunning\LongRunningConnectionInterface;
 use Google\Cloud\Core\LongRunning\LongRunningOperation;
+use Google\Cloud\Core\LongRunning\LROTrait;
 use Google\Cloud\Spanner\Admin\Database\V1\DatabaseAdminClient;
+use Google\Cloud\Spanner\Admin\Instance\V1\Instance\State;
 use Google\Cloud\Spanner\Admin\Instance\V1\InstanceAdminClient;
 use Google\Cloud\Spanner\Connection\ConnectionInterface;
 use Google\Cloud\Spanner\Connection\IamInstance;
 use Google\Cloud\Spanner\Session\SessionPoolInterface;
-use Google\ApiCore\ValidationException;
-use Google\Cloud\Spanner\Admin\Instance\V1\Instance_State;
 
 /**
  * Represents a Cloud Spanner instance
@@ -85,8 +85,8 @@ class Instance
     use ArrayTrait;
     use LROTrait;
 
-    const STATE_READY = Instance_State::READY;
-    const STATE_CREATING = Instance_State::CREATING;
+    const STATE_READY = State::READY;
+    const STATE_CREATING = State::CREATING;
 
     const DEFAULT_NODE_COUNT = 1;
 
@@ -276,7 +276,7 @@ class Instance
         ];
 
         // This must always be set to CREATING, so overwrite anything else.
-        $options['state'] = Instance_State::CREATING;
+        $options['state'] = State::CREATING;
 
         $operation = $this->connection->createInstance([
             'instanceId' => $instanceId,

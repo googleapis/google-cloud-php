@@ -31,9 +31,35 @@ class CommitRequest extends \Google\Protobuf\Internal\Message
     private $mutations;
     protected $transaction;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $session
+     *           Required. The session in which the transaction to be committed is running.
+     *     @type string $transaction_id
+     *           Commit a previously-started transaction.
+     *     @type \Google\Cloud\Spanner\V1\TransactionOptions $single_use_transaction
+     *           Execute mutations in a temporary transaction. Note that unlike
+     *           commit of a previously-started transaction, commit with a
+     *           temporary transaction is non-idempotent. That is, if the
+     *           `CommitRequest` is sent to Cloud Spanner more than once (for
+     *           instance, due to retries in the application, or in the
+     *           transport library), it is possible that the mutations are
+     *           executed more than once. If this is undesirable, use
+     *           [BeginTransaction][google.spanner.v1.Spanner.BeginTransaction] and
+     *           [Commit][google.spanner.v1.Spanner.Commit] instead.
+     *     @type \Google\Cloud\Spanner\V1\Mutation[]|\Google\Protobuf\Internal\RepeatedField $mutations
+     *           The mutations to be executed when this transaction commits. All
+     *           mutations are applied atomically, in the order they appear in
+     *           this list.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Spanner\V1\Spanner::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

@@ -64,9 +64,39 @@ class UpdateDatabaseDdlRequest extends \Google\Protobuf\Internal\Message
      */
     private $operation_id = '';
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $database
+     *           Required. The database to update.
+     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $statements
+     *           DDL statements to be applied to the database.
+     *     @type string $operation_id
+     *           If empty, the new update request is assigned an
+     *           automatically-generated operation ID. Otherwise, `operation_id`
+     *           is used to construct the name of the resulting
+     *           [Operation][google.longrunning.Operation].
+     *           Specifying an explicit operation ID simplifies determining
+     *           whether the statements were executed in the event that the
+     *           [UpdateDatabaseDdl][google.spanner.admin.database.v1.DatabaseAdmin.UpdateDatabaseDdl] call is replayed,
+     *           or the return value is otherwise lost: the [database][google.spanner.admin.database.v1.UpdateDatabaseDdlRequest.database] and
+     *           `operation_id` fields can be combined to form the
+     *           [name][google.longrunning.Operation.name] of the resulting
+     *           [longrunning.Operation][google.longrunning.Operation]: `<database>/operations/<operation_id>`.
+     *           `operation_id` should be unique within the database, and must be
+     *           a valid identifier: `[a-z][a-z0-9_]*`. Note that
+     *           automatically-generated operation IDs always begin with an
+     *           underscore. If the named operation already exists,
+     *           [UpdateDatabaseDdl][google.spanner.admin.database.v1.DatabaseAdmin.UpdateDatabaseDdl] returns
+     *           `ALREADY_EXISTS`.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Spanner\Admin\Database\V1\SpannerDatabaseAdmin::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

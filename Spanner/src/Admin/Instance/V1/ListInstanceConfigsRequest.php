@@ -39,9 +39,28 @@ class ListInstanceConfigsRequest extends \Google\Protobuf\Internal\Message
      */
     private $page_token = '';
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $parent
+     *           Required. The name of the project for which a list of supported instance
+     *           configurations is requested. Values are of the form
+     *           `projects/<project>`.
+     *     @type int $page_size
+     *           Number of instance configurations to be returned in the response. If 0 or
+     *           less, defaults to the server's maximum allowed page size.
+     *     @type string $page_token
+     *           If non-empty, `page_token` should contain a
+     *           [next_page_token][google.spanner.admin.instance.v1.ListInstanceConfigsResponse.next_page_token]
+     *           from a previous [ListInstanceConfigsResponse][google.spanner.admin.instance.v1.ListInstanceConfigsResponse].
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Spanner\Admin\Instance\V1\SpannerInstanceAdmin::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

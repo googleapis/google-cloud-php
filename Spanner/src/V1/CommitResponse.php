@@ -22,9 +22,19 @@ class CommitResponse extends \Google\Protobuf\Internal\Message
      */
     private $commit_timestamp = null;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type \Google\Protobuf\Timestamp $commit_timestamp
+     *           The Cloud Spanner timestamp at which the transaction committed.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Spanner\V1\Spanner::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

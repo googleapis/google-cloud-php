@@ -4,33 +4,13 @@
 
 namespace Google\Cloud\Spanner\Admin\Instance\V1;
 
-/**
- * Indicates the current state of the instance.
- *
- * Protobuf enum <code>Google\Spanner\Admin\Instance\V1\Instance\State</code>
- */
-class Instance_State
-{
+if (false) {
     /**
-     * Not specified.
-     *
-     * Generated from protobuf enum <code>STATE_UNSPECIFIED = 0;</code>
+     * This class is deprecated. Use Google\Cloud\Spanner\Admin\Instance\V1\Instance\State instead.
+     * @deprecated
      */
-    const STATE_UNSPECIFIED = 0;
-    /**
-     * The instance is still being created. Resources may not be
-     * available yet, and operations such as database creation may not
-     * work.
-     *
-     * Generated from protobuf enum <code>CREATING = 1;</code>
-     */
-    const CREATING = 1;
-    /**
-     * The instance is fully created and ready to do work such as
-     * creating databases.
-     *
-     * Generated from protobuf enum <code>READY = 2;</code>
-     */
-    const READY = 2;
+    class Instance_State {}
 }
+class_exists(Instance\State::class);
+@trigger_error('Google\Cloud\Spanner\Admin\Instance\V1\Instance_State is deprecated and will be removed in the next major release. Use Google\Cloud\Spanner\Admin\Instance\V1\Instance\State instead', E_USER_DEPRECATED);
 

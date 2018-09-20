@@ -38,9 +38,26 @@ class UpdateDatabaseDdlMetadata extends \Google\Protobuf\Internal\Message
      */
     private $commit_timestamps;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $database
+     *           The database being modified.
+     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $statements
+     *           For an update this list contains all the statements. For an
+     *           individual statement, this list contains only that statement.
+     *     @type \Google\Protobuf\Timestamp[]|\Google\Protobuf\Internal\RepeatedField $commit_timestamps
+     *           Reports the commit timestamps of all statements that have
+     *           succeeded so far, where `commit_timestamps[i]` is the commit
+     *           timestamp for the statement `statements[i]`.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Spanner\Admin\Database\V1\SpannerDatabaseAdmin::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

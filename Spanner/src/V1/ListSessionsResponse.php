@@ -30,9 +30,23 @@ class ListSessionsResponse extends \Google\Protobuf\Internal\Message
      */
     private $next_page_token = '';
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type \Google\Cloud\Spanner\V1\Session[]|\Google\Protobuf\Internal\RepeatedField $sessions
+     *           The list of requested sessions.
+     *     @type string $next_page_token
+     *           `next_page_token` can be sent in a subsequent
+     *           [ListSessions][google.spanner.v1.Spanner.ListSessions] call to fetch more of the matching
+     *           sessions.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Spanner\V1\Spanner::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

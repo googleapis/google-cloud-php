@@ -20,9 +20,27 @@ class TransactionSelector extends \Google\Protobuf\Internal\Message
 {
     protected $selector;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type \Google\Cloud\Spanner\V1\TransactionOptions $single_use
+     *           Execute the read or SQL query in a temporary transaction.
+     *           This is the most efficient way to execute a transaction that
+     *           consists of a single SQL query.
+     *     @type string $id
+     *           Execute the read or SQL query in a previously-started transaction.
+     *     @type \Google\Cloud\Spanner\V1\TransactionOptions $begin
+     *           Begin a new transaction and execute this read or SQL query in
+     *           it. The transaction ID of the new transaction is returned in
+     *           [ResultSetMetadata.transaction][google.spanner.v1.ResultSetMetadata.transaction], which is a [Transaction][google.spanner.v1.Transaction].
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Spanner\V1\Transaction::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

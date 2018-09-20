@@ -59,9 +59,44 @@ class ListInstancesRequest extends \Google\Protobuf\Internal\Message
      */
     private $filter = '';
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $parent
+     *           Required. The name of the project for which a list of instances is
+     *           requested. Values are of the form `projects/<project>`.
+     *     @type int $page_size
+     *           Number of instances to be returned in the response. If 0 or less, defaults
+     *           to the server's maximum allowed page size.
+     *     @type string $page_token
+     *           If non-empty, `page_token` should contain a
+     *           [next_page_token][google.spanner.admin.instance.v1.ListInstancesResponse.next_page_token] from a
+     *           previous [ListInstancesResponse][google.spanner.admin.instance.v1.ListInstancesResponse].
+     *     @type string $filter
+     *           An expression for filtering the results of the request. Filter rules are
+     *           case insensitive. The fields eligible for filtering are:
+     *             * `name`
+     *             * `display_name`
+     *             * `labels.key` where key is the name of a label
+     *           Some examples of using filters are:
+     *             * `name:*` --> The instance has a name.
+     *             * `name:Howl` --> The instance's name contains the string "howl".
+     *             * `name:HOWL` --> Equivalent to above.
+     *             * `NAME:howl` --> Equivalent to above.
+     *             * `labels.env:*` --> The instance has the label "env".
+     *             * `labels.env:dev` --> The instance has the label "env" and the value of
+     *                                  the label contains the string "dev".
+     *             * `name:howl labels.env:dev` --> The instance's name contains "howl" and
+     *                                            it has the label "env" with its value
+     *                                            containing "dev".
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Spanner\Admin\Instance\V1\SpannerInstanceAdmin::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

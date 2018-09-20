@@ -34,17 +34,48 @@ class ResultSet extends \Google\Protobuf\Internal\Message
      */
     private $rows;
     /**
-     * Query plan and execution statistics for the query that produced this
-     * result set. These can be requested by setting
+     * Query plan and execution statistics for the SQL statement that
+     * produced this result set. These can be requested by setting
+     * [ExecuteSqlRequest.query_mode][google.spanner.v1.ExecuteSqlRequest.query_mode].
+     * DML statements always produce stats containing the number of rows
+     * modified, unless executed using the
+     * [ExecuteSqlRequest.QueryMode.PLAN][google.spanner.v1.ExecuteSqlRequest.QueryMode.PLAN] [ExecuteSqlRequest.query_mode][google.spanner.v1.ExecuteSqlRequest.query_mode].
+     * Other fields may or may not be populated, based on the
      * [ExecuteSqlRequest.query_mode][google.spanner.v1.ExecuteSqlRequest.query_mode].
      *
      * Generated from protobuf field <code>.google.spanner.v1.ResultSetStats stats = 3;</code>
      */
     private $stats = null;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type \Google\Cloud\Spanner\V1\ResultSetMetadata $metadata
+     *           Metadata about the result set, such as row type information.
+     *     @type \Google\Protobuf\ListValue[]|\Google\Protobuf\Internal\RepeatedField $rows
+     *           Each element in `rows` is a row whose format is defined by
+     *           [metadata.row_type][google.spanner.v1.ResultSetMetadata.row_type]. The ith element
+     *           in each row matches the ith field in
+     *           [metadata.row_type][google.spanner.v1.ResultSetMetadata.row_type]. Elements are
+     *           encoded based on type as described
+     *           [here][google.spanner.v1.TypeCode].
+     *     @type \Google\Cloud\Spanner\V1\ResultSetStats $stats
+     *           Query plan and execution statistics for the SQL statement that
+     *           produced this result set. These can be requested by setting
+     *           [ExecuteSqlRequest.query_mode][google.spanner.v1.ExecuteSqlRequest.query_mode].
+     *           DML statements always produce stats containing the number of rows
+     *           modified, unless executed using the
+     *           [ExecuteSqlRequest.QueryMode.PLAN][google.spanner.v1.ExecuteSqlRequest.QueryMode.PLAN] [ExecuteSqlRequest.query_mode][google.spanner.v1.ExecuteSqlRequest.query_mode].
+     *           Other fields may or may not be populated, based on the
+     *           [ExecuteSqlRequest.query_mode][google.spanner.v1.ExecuteSqlRequest.query_mode].
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Spanner\V1\ResultSet::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**
@@ -110,8 +141,13 @@ class ResultSet extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Query plan and execution statistics for the query that produced this
-     * result set. These can be requested by setting
+     * Query plan and execution statistics for the SQL statement that
+     * produced this result set. These can be requested by setting
+     * [ExecuteSqlRequest.query_mode][google.spanner.v1.ExecuteSqlRequest.query_mode].
+     * DML statements always produce stats containing the number of rows
+     * modified, unless executed using the
+     * [ExecuteSqlRequest.QueryMode.PLAN][google.spanner.v1.ExecuteSqlRequest.QueryMode.PLAN] [ExecuteSqlRequest.query_mode][google.spanner.v1.ExecuteSqlRequest.query_mode].
+     * Other fields may or may not be populated, based on the
      * [ExecuteSqlRequest.query_mode][google.spanner.v1.ExecuteSqlRequest.query_mode].
      *
      * Generated from protobuf field <code>.google.spanner.v1.ResultSetStats stats = 3;</code>
@@ -123,8 +159,13 @@ class ResultSet extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Query plan and execution statistics for the query that produced this
-     * result set. These can be requested by setting
+     * Query plan and execution statistics for the SQL statement that
+     * produced this result set. These can be requested by setting
+     * [ExecuteSqlRequest.query_mode][google.spanner.v1.ExecuteSqlRequest.query_mode].
+     * DML statements always produce stats containing the number of rows
+     * modified, unless executed using the
+     * [ExecuteSqlRequest.QueryMode.PLAN][google.spanner.v1.ExecuteSqlRequest.QueryMode.PLAN] [ExecuteSqlRequest.query_mode][google.spanner.v1.ExecuteSqlRequest.query_mode].
+     * Other fields may or may not be populated, based on the
      * [ExecuteSqlRequest.query_mode][google.spanner.v1.ExecuteSqlRequest.query_mode].
      *
      * Generated from protobuf field <code>.google.spanner.v1.ResultSetStats stats = 3;</code>

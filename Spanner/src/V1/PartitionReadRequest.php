@@ -67,9 +67,40 @@ class PartitionReadRequest extends \Google\Protobuf\Internal\Message
      */
     private $partition_options = null;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $session
+     *           Required. The session used to create the partitions.
+     *     @type \Google\Cloud\Spanner\V1\TransactionSelector $transaction
+     *           Read only snapshot transactions are supported, read/write and single use
+     *           transactions are not.
+     *     @type string $table
+     *           Required. The name of the table in the database to be read.
+     *     @type string $index
+     *           If non-empty, the name of an index on [table][google.spanner.v1.PartitionReadRequest.table]. This index is
+     *           used instead of the table primary key when interpreting [key_set][google.spanner.v1.PartitionReadRequest.key_set]
+     *           and sorting result rows. See [key_set][google.spanner.v1.PartitionReadRequest.key_set] for further information.
+     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $columns
+     *           The columns of [table][google.spanner.v1.PartitionReadRequest.table] to be returned for each row matching
+     *           this request.
+     *     @type \Google\Cloud\Spanner\V1\KeySet $key_set
+     *           Required. `key_set` identifies the rows to be yielded. `key_set` names the
+     *           primary keys of the rows in [table][google.spanner.v1.PartitionReadRequest.table] to be yielded, unless [index][google.spanner.v1.PartitionReadRequest.index]
+     *           is present. If [index][google.spanner.v1.PartitionReadRequest.index] is present, then [key_set][google.spanner.v1.PartitionReadRequest.key_set] instead names
+     *           index keys in [index][google.spanner.v1.PartitionReadRequest.index].
+     *           It is not an error for the `key_set` to name rows that do not
+     *           exist in the database. Read yields nothing for nonexistent rows.
+     *     @type \Google\Cloud\Spanner\V1\PartitionOptions $partition_options
+     *           Additional options that affect how many partitions are created.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Spanner\V1\Spanner::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

@@ -71,9 +71,44 @@ class PlanNode extends \Google\Protobuf\Internal\Message
      */
     private $execution_stats = null;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type int $index
+     *           The `PlanNode`'s index in [node list][google.spanner.v1.QueryPlan.plan_nodes].
+     *     @type int $kind
+     *           Used to determine the type of node. May be needed for visualizing
+     *           different kinds of nodes differently. For example, If the node is a
+     *           [SCALAR][google.spanner.v1.PlanNode.Kind.SCALAR] node, it will have a condensed representation
+     *           which can be used to directly embed a description of the node in its
+     *           parent.
+     *     @type string $display_name
+     *           The display name for the node.
+     *     @type \Google\Cloud\Spanner\V1\PlanNode\ChildLink[]|\Google\Protobuf\Internal\RepeatedField $child_links
+     *           List of child node `index`es and their relationship to this parent.
+     *     @type \Google\Cloud\Spanner\V1\PlanNode\ShortRepresentation $short_representation
+     *           Condensed representation for [SCALAR][google.spanner.v1.PlanNode.Kind.SCALAR] nodes.
+     *     @type \Google\Protobuf\Struct $metadata
+     *           Attributes relevant to the node contained in a group of key-value pairs.
+     *           For example, a Parameter Reference node could have the following
+     *           information in its metadata:
+     *               {
+     *                 "parameter_reference": "param1",
+     *                 "parameter_type": "array"
+     *               }
+     *     @type \Google\Protobuf\Struct $execution_stats
+     *           The execution statistics associated with the node, contained in a group of
+     *           key-value pairs. Only present if the plan was returned as a result of a
+     *           profile query. For example, number of executions, number of rows/time per
+     *           execution etc.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Spanner\V1\QueryPlan::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**
@@ -177,12 +212,12 @@ class PlanNode extends \Google\Protobuf\Internal\Message
      * List of child node `index`es and their relationship to this parent.
      *
      * Generated from protobuf field <code>repeated .google.spanner.v1.PlanNode.ChildLink child_links = 4;</code>
-     * @param \Google\Cloud\Spanner\V1\PlanNode_ChildLink[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Spanner\V1\PlanNode\ChildLink[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setChildLinks($var)
     {
-        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Spanner\V1\PlanNode_ChildLink::class);
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Spanner\V1\PlanNode\ChildLink::class);
         $this->child_links = $arr;
 
         return $this;
@@ -192,7 +227,7 @@ class PlanNode extends \Google\Protobuf\Internal\Message
      * Condensed representation for [SCALAR][google.spanner.v1.PlanNode.Kind.SCALAR] nodes.
      *
      * Generated from protobuf field <code>.google.spanner.v1.PlanNode.ShortRepresentation short_representation = 5;</code>
-     * @return \Google\Cloud\Spanner\V1\PlanNode_ShortRepresentation
+     * @return \Google\Cloud\Spanner\V1\PlanNode\ShortRepresentation
      */
     public function getShortRepresentation()
     {
@@ -203,7 +238,7 @@ class PlanNode extends \Google\Protobuf\Internal\Message
      * Condensed representation for [SCALAR][google.spanner.v1.PlanNode.Kind.SCALAR] nodes.
      *
      * Generated from protobuf field <code>.google.spanner.v1.PlanNode.ShortRepresentation short_representation = 5;</code>
-     * @param \Google\Cloud\Spanner\V1\PlanNode_ShortRepresentation $var
+     * @param \Google\Cloud\Spanner\V1\PlanNode\ShortRepresentation $var
      * @return $this
      */
     public function setShortRepresentation($var)

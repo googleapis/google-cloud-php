@@ -32,9 +32,25 @@ class UpdateInstanceRequest extends \Google\Protobuf\Internal\Message
      */
     private $field_mask = null;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type \Google\Cloud\Spanner\Admin\Instance\V1\Instance $instance
+     *           Required. The instance to update, which must always include the instance
+     *           name.  Otherwise, only fields mentioned in [][google.spanner.admin.instance.v1.UpdateInstanceRequest.field_mask] need be included.
+     *     @type \Google\Protobuf\FieldMask $field_mask
+     *           Required. A mask specifying which fields in [][google.spanner.admin.instance.v1.UpdateInstanceRequest.instance] should be updated.
+     *           The field mask must always be specified; this prevents any future fields in
+     *           [][google.spanner.admin.instance.v1.Instance] from being erased accidentally by clients that do not know
+     *           about them.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Spanner\Admin\Instance\V1\SpannerInstanceAdmin::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

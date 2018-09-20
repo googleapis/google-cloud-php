@@ -37,9 +37,25 @@ class Type extends \Google\Protobuf\Internal\Message
      */
     private $struct_type = null;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type int $code
+     *           Required. The [TypeCode][google.spanner.v1.TypeCode] for this type.
+     *     @type \Google\Cloud\Spanner\V1\Type $array_element_type
+     *           If [code][google.spanner.v1.Type.code] == [ARRAY][google.spanner.v1.TypeCode.ARRAY], then `array_element_type`
+     *           is the type of the array elements.
+     *     @type \Google\Cloud\Spanner\V1\StructType $struct_type
+     *           If [code][google.spanner.v1.Type.code] == [STRUCT][google.spanner.v1.TypeCode.STRUCT], then `struct_type`
+     *           provides type information for the struct's fields.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Spanner\V1\Type::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

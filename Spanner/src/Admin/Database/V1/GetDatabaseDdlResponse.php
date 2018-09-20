@@ -23,9 +23,20 @@ class GetDatabaseDdlResponse extends \Google\Protobuf\Internal\Message
      */
     private $statements;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $statements
+     *           A list of formatted DDL statements defining the schema of the database
+     *           specified in the request.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Spanner\Admin\Database\V1\SpannerDatabaseAdmin::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

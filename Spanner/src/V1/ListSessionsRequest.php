@@ -49,9 +49,34 @@ class ListSessionsRequest extends \Google\Protobuf\Internal\Message
      */
     private $filter = '';
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $database
+     *           Required. The database in which to list sessions.
+     *     @type int $page_size
+     *           Number of sessions to be returned in the response. If 0 or less, defaults
+     *           to the server's maximum allowed page size.
+     *     @type string $page_token
+     *           If non-empty, `page_token` should contain a
+     *           [next_page_token][google.spanner.v1.ListSessionsResponse.next_page_token] from a previous
+     *           [ListSessionsResponse][google.spanner.v1.ListSessionsResponse].
+     *     @type string $filter
+     *           An expression for filtering the results of the request. Filter rules are
+     *           case insensitive. The fields eligible for filtering are:
+     *             * `labels.key` where key is the name of a label
+     *           Some examples of using filters are:
+     *             * `labels.env:*` --> The session has the label "env".
+     *             * `labels.env:dev` --> The session has the label "env" and the value of
+     *                                  the label contains the string "dev".
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Spanner\V1\Spanner::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

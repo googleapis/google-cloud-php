@@ -69,18 +69,21 @@ use Google\Protobuf\GPBEmpty;
  * $databaseAdminClient = new DatabaseAdminClient();
  * try {
  *     $formattedParent = $databaseAdminClient->instanceName('[PROJECT]', '[INSTANCE]');
- *     // Iterate through all elements
- *     $pagedResponse = $databaseAdminClient->listDatabases($formattedParent);
- *     foreach ($pagedResponse->iterateAllElements() as $element) {
- *         // doSomethingWith($element);
- *     }
- *
- *     // OR iterate over pages of elements
+ *     // Iterate over pages of elements
  *     $pagedResponse = $databaseAdminClient->listDatabases($formattedParent);
  *     foreach ($pagedResponse->iteratePages() as $page) {
  *         foreach ($page as $element) {
  *             // doSomethingWith($element);
  *         }
+ *     }
+ *
+ *
+ *     // Alternatively:
+ *
+ *     // Iterate through all elements
+ *     $pagedResponse = $databaseAdminClient->listDatabases($formattedParent);
+ *     foreach ($pagedResponse->iterateAllElements() as $element) {
+ *         // doSomethingWith($element);
  *     }
  * } finally {
  *     $databaseAdminClient->close();
@@ -138,6 +141,7 @@ class DatabaseAdminGapicClient
             'serviceAddress' => self::SERVICE_ADDRESS.':'.self::DEFAULT_SERVICE_PORT,
             'clientConfig' => __DIR__.'/../resources/database_admin_client_config.json',
             'descriptorsConfigPath' => __DIR__.'/../resources/database_admin_descriptor_config.php',
+            'gcpApiConfigPath' => __DIR__.'/../resources/database_admin_grpc_config.json',
             'credentialsConfig' => [
                 'scopes' => self::$serviceScopes,
             ],
@@ -361,18 +365,21 @@ class DatabaseAdminGapicClient
      * $databaseAdminClient = new DatabaseAdminClient();
      * try {
      *     $formattedParent = $databaseAdminClient->instanceName('[PROJECT]', '[INSTANCE]');
-     *     // Iterate through all elements
-     *     $pagedResponse = $databaseAdminClient->listDatabases($formattedParent);
-     *     foreach ($pagedResponse->iterateAllElements() as $element) {
-     *         // doSomethingWith($element);
-     *     }
-     *
-     *     // OR iterate over pages of elements
+     *     // Iterate over pages of elements
      *     $pagedResponse = $databaseAdminClient->listDatabases($formattedParent);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
      *         }
+     *     }
+     *
+     *
+     *     // Alternatively:
+     *
+     *     // Iterate through all elements
+     *     $pagedResponse = $databaseAdminClient->listDatabases($formattedParent);
+     *     foreach ($pagedResponse->iterateAllElements() as $element) {
+     *         // doSomethingWith($element);
      *     }
      * } finally {
      *     $databaseAdminClient->close();
@@ -443,14 +450,17 @@ class DatabaseAdminGapicClient
      *     $operationResponse = $databaseAdminClient->createDatabase($formattedParent, $createStatement);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
-     *       $result = $operationResponse->getResult();
-     *       // doSomethingWith($result)
+     *         $result = $operationResponse->getResult();
+     *         // doSomethingWith($result)
      *     } else {
-     *       $error = $operationResponse->getError();
-     *       // handleError($error)
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
      *     }
      *
-     *     // OR start the operation, keep the operation name, and resume later
+     *
+     *     // Alternatively:
+     *
+     *     // start the operation, keep the operation name, and resume later
      *     $operationResponse = $databaseAdminClient->createDatabase($formattedParent, $createStatement);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
@@ -577,13 +587,16 @@ class DatabaseAdminGapicClient
      *     $operationResponse = $databaseAdminClient->updateDatabaseDdl($formattedDatabase, $statements);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
-     *       // operation succeeded and returns no value
+     *         // operation succeeded and returns no value
      *     } else {
-     *       $error = $operationResponse->getError();
-     *       // handleError($error)
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
      *     }
      *
-     *     // OR start the operation, keep the operation name, and resume later
+     *
+     *     // Alternatively:
+     *
+     *     // start the operation, keep the operation name, and resume later
      *     $operationResponse = $databaseAdminClient->updateDatabaseDdl($formattedDatabase, $statements);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work

@@ -34,10 +34,35 @@ class ResultSetStats extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.Struct query_stats = 2;</code>
      */
     private $query_stats = null;
+    protected $row_count;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type \Google\Cloud\Spanner\V1\QueryPlan $query_plan
+     *           [QueryPlan][google.spanner.v1.QueryPlan] for the query associated with this result.
+     *     @type \Google\Protobuf\Struct $query_stats
+     *           Aggregated statistics from the execution of the query. Only present when
+     *           the query is profiled. For example, a query could return the statistics as
+     *           follows:
+     *               {
+     *                 "rows_returned": "3",
+     *                 "elapsed_time": "1.22 secs",
+     *                 "cpu_time": "1.19 secs"
+     *               }
+     *     @type int|string $row_count_exact
+     *           Standard DML returns an exact count of rows that were modified.
+     *     @type int|string $row_count_lower_bound
+     *           Partitioned DML does not offer exactly-once semantics, so it
+     *           returns a lower bound of the rows modified.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Spanner\V1\ResultSet::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**
@@ -104,6 +129,68 @@ class ResultSetStats extends \Google\Protobuf\Internal\Message
         $this->query_stats = $var;
 
         return $this;
+    }
+
+    /**
+     * Standard DML returns an exact count of rows that were modified.
+     *
+     * Generated from protobuf field <code>int64 row_count_exact = 3;</code>
+     * @return int|string
+     */
+    public function getRowCountExact()
+    {
+        return $this->readOneof(3);
+    }
+
+    /**
+     * Standard DML returns an exact count of rows that were modified.
+     *
+     * Generated from protobuf field <code>int64 row_count_exact = 3;</code>
+     * @param int|string $var
+     * @return $this
+     */
+    public function setRowCountExact($var)
+    {
+        GPBUtil::checkInt64($var);
+        $this->writeOneof(3, $var);
+
+        return $this;
+    }
+
+    /**
+     * Partitioned DML does not offer exactly-once semantics, so it
+     * returns a lower bound of the rows modified.
+     *
+     * Generated from protobuf field <code>int64 row_count_lower_bound = 4;</code>
+     * @return int|string
+     */
+    public function getRowCountLowerBound()
+    {
+        return $this->readOneof(4);
+    }
+
+    /**
+     * Partitioned DML does not offer exactly-once semantics, so it
+     * returns a lower bound of the rows modified.
+     *
+     * Generated from protobuf field <code>int64 row_count_lower_bound = 4;</code>
+     * @param int|string $var
+     * @return $this
+     */
+    public function setRowCountLowerBound($var)
+    {
+        GPBUtil::checkInt64($var);
+        $this->writeOneof(4, $var);
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getRowCount()
+    {
+        return $this->whichOneof("row_count");
     }
 
 }

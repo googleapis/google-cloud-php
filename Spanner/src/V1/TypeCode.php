@@ -12,7 +12,7 @@ namespace Google\Cloud\Spanner\V1;
  * be `null`, regardless of type; `null`s are always encoded as a JSON
  * `null`.
  *
- * Protobuf enum <code>Google\Spanner\V1\TypeCode</code>
+ * Protobuf type <code>google.spanner.v1.TypeCode</code>
  */
 class TypeCode
 {

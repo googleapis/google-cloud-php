@@ -48,9 +48,33 @@ class Session extends \Google\Protobuf\Internal\Message
      */
     private $approximate_last_use_time = null;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $name
+     *           The name of the session. This is always system-assigned; values provided
+     *           when creating a session are ignored.
+     *     @type array|\Google\Protobuf\Internal\MapField $labels
+     *           The labels for the session.
+     *            * Label keys must be between 1 and 63 characters long and must conform to
+     *              the following regular expression: `[a-z]([-a-z0-9]*[a-z0-9])?`.
+     *            * Label values must be between 0 and 63 characters long and must conform
+     *              to the regular expression `([a-z]([-a-z0-9]*[a-z0-9])?)?`.
+     *            * No more than 64 labels can be associated with a given session.
+     *           See https://goo.gl/xmQnxf for more information on and examples of labels.
+     *     @type \Google\Protobuf\Timestamp $create_time
+     *           Output only. The timestamp when the session is created.
+     *     @type \Google\Protobuf\Timestamp $approximate_last_use_time
+     *           Output only. The approximate timestamp when the session is last used. It is
+     *           typically earlier than the actual last use time.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Spanner\V1\Spanner::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

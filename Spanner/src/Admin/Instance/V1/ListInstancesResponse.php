@@ -30,9 +30,23 @@ class ListInstancesResponse extends \Google\Protobuf\Internal\Message
      */
     private $next_page_token = '';
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type \Google\Cloud\Spanner\Admin\Instance\V1\Instance[]|\Google\Protobuf\Internal\RepeatedField $instances
+     *           The list of requested instances.
+     *     @type string $next_page_token
+     *           `next_page_token` can be sent in a subsequent
+     *           [ListInstances][google.spanner.admin.instance.v1.InstanceAdmin.ListInstances] call to fetch more
+     *           of the matching instances.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Spanner\Admin\Instance\V1\SpannerInstanceAdmin::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

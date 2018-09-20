@@ -35,9 +35,28 @@ class ResultSetMetadata extends \Google\Protobuf\Internal\Message
      */
     private $transaction = null;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type \Google\Cloud\Spanner\V1\StructType $row_type
+     *           Indicates the field names and types for the rows in the result
+     *           set.  For example, a SQL query like `"SELECT UserId, UserName FROM
+     *           Users"` could return a `row_type` value like:
+     *               "fields": [
+     *                 { "name": "UserId", "type": { "code": "INT64" } },
+     *                 { "name": "UserName", "type": { "code": "STRING" } },
+     *               ]
+     *     @type \Google\Cloud\Spanner\V1\Transaction $transaction
+     *           If the read or SQL query began a transaction as a side-effect, the
+     *           information about the new transaction is yielded here.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Spanner\V1\ResultSet::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

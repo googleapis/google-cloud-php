@@ -38,9 +38,27 @@ class ListDatabasesRequest extends \Google\Protobuf\Internal\Message
      */
     private $page_token = '';
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $parent
+     *           Required. The instance whose databases should be listed.
+     *           Values are of the form `projects/<project>/instances/<instance>`.
+     *     @type int $page_size
+     *           Number of databases to be returned in the response. If 0 or less,
+     *           defaults to the server's maximum allowed page size.
+     *     @type string $page_token
+     *           If non-empty, `page_token` should contain a
+     *           [next_page_token][google.spanner.admin.database.v1.ListDatabasesResponse.next_page_token] from a
+     *           previous [ListDatabasesResponse][google.spanner.admin.database.v1.ListDatabasesResponse].
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Spanner\Admin\Database\V1\SpannerDatabaseAdmin::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

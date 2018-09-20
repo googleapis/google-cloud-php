@@ -38,9 +38,31 @@ class Transaction extends \Google\Protobuf\Internal\Message
      */
     private $read_timestamp = null;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $id
+     *           `id` may be used to identify the transaction in subsequent
+     *           [Read][google.spanner.v1.Spanner.Read],
+     *           [ExecuteSql][google.spanner.v1.Spanner.ExecuteSql],
+     *           [Commit][google.spanner.v1.Spanner.Commit], or
+     *           [Rollback][google.spanner.v1.Spanner.Rollback] calls.
+     *           Single-use read-only transactions do not have IDs, because
+     *           single-use transactions do not support multiple requests.
+     *     @type \Google\Protobuf\Timestamp $read_timestamp
+     *           For snapshot read-only transactions, the read timestamp chosen
+     *           for the transaction. Not returned by default: see
+     *           [TransactionOptions.ReadOnly.return_read_timestamp][google.spanner.v1.TransactionOptions.ReadOnly.return_read_timestamp].
+     *           A timestamp in RFC3339 UTC \"Zulu\" format, accurate to nanoseconds.
+     *           Example: `"2014-10-02T15:01:23.045123456Z"`.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Spanner\V1\Transaction::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

@@ -4,31 +4,13 @@
 
 namespace Google\Cloud\Spanner\Admin\Database\V1;
 
-/**
- * Indicates the current state of the database.
- *
- * Protobuf enum <code>Google\Spanner\Admin\Database\V1\Database\State</code>
- */
-class Database_State
-{
+if (false) {
     /**
-     * Not specified.
-     *
-     * Generated from protobuf enum <code>STATE_UNSPECIFIED = 0;</code>
+     * This class is deprecated. Use Google\Cloud\Spanner\Admin\Database\V1\Database\State instead.
+     * @deprecated
      */
-    const STATE_UNSPECIFIED = 0;
-    /**
-     * The database is still being created. Operations on the database may fail
-     * with `FAILED_PRECONDITION` in this state.
-     *
-     * Generated from protobuf enum <code>CREATING = 1;</code>
-     */
-    const CREATING = 1;
-    /**
-     * The database is fully created and ready for use.
-     *
-     * Generated from protobuf enum <code>READY = 2;</code>
-     */
-    const READY = 2;
+    class Database_State {}
 }
+class_exists(Database\State::class);
+@trigger_error('Google\Cloud\Spanner\Admin\Database\V1\Database_State is deprecated and will be removed in the next major release. Use Google\Cloud\Spanner\Admin\Database\V1\Database\State instead', E_USER_DEPRECATED);
 

@@ -4,36 +4,13 @@
 
 namespace Google\Cloud\Spanner\V1;
 
-/**
- * The kind of [PlanNode][google.spanner.v1.PlanNode]. Distinguishes between the two different kinds of
- * nodes that can appear in a query plan.
- *
- * Protobuf enum <code>Google\Spanner\V1\PlanNode\Kind</code>
- */
-class PlanNode_Kind
-{
+if (false) {
     /**
-     * Not specified.
-     *
-     * Generated from protobuf enum <code>KIND_UNSPECIFIED = 0;</code>
+     * This class is deprecated. Use Google\Cloud\Spanner\V1\PlanNode\Kind instead.
+     * @deprecated
      */
-    const KIND_UNSPECIFIED = 0;
-    /**
-     * Denotes a Relational operator node in the expression tree. Relational
-     * operators represent iterative processing of rows during query execution.
-     * For example, a `TableScan` operation that reads rows from a table.
-     *
-     * Generated from protobuf enum <code>RELATIONAL = 1;</code>
-     */
-    const RELATIONAL = 1;
-    /**
-     * Denotes a Scalar node in the expression tree. Scalar nodes represent
-     * non-iterable entities in the query plan. For example, constants or
-     * arithmetic operators appearing inside predicate expressions or references
-     * to column names.
-     *
-     * Generated from protobuf enum <code>SCALAR = 2;</code>
-     */
-    const SCALAR = 2;
+    class PlanNode_Kind {}
 }
+class_exists(PlanNode\Kind::class);
+@trigger_error('Google\Cloud\Spanner\V1\PlanNode_Kind is deprecated and will be removed in the next major release. Use Google\Cloud\Spanner\V1\PlanNode\Kind instead', E_USER_DEPRECATED);
 
