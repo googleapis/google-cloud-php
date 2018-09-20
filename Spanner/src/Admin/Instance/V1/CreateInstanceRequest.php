@@ -38,9 +38,27 @@ class CreateInstanceRequest extends \Google\Protobuf\Internal\Message
      */
     private $instance = null;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $parent
+     *           Required. The name of the project in which to create the instance. Values
+     *           are of the form `projects/<project>`.
+     *     @type string $instance_id
+     *           Required. The ID of the instance to create.  Valid identifiers are of the
+     *           form `[a-z][-a-z0-9]*[a-z0-9]` and must be between 6 and 30 characters in
+     *           length.
+     *     @type \Google\Cloud\Spanner\Admin\Instance\V1\Instance $instance
+     *           Required. The instance to create.  The name may be omitted, but if
+     *           specified must be `<parent>/instances/<instance_id>`.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Spanner\Admin\Instance\V1\SpannerInstanceAdmin::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

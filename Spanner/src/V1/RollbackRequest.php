@@ -28,9 +28,21 @@ class RollbackRequest extends \Google\Protobuf\Internal\Message
      */
     private $transaction_id = '';
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $session
+     *           Required. The session in which the transaction to roll back is running.
+     *     @type string $transaction_id
+     *           Required. The transaction to roll back.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Spanner\V1\Spanner::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

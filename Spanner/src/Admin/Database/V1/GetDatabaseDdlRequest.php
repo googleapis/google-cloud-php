@@ -22,9 +22,19 @@ class GetDatabaseDdlRequest extends \Google\Protobuf\Internal\Message
      */
     private $database = '';
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $database
+     *           Required. The database whose schema we wish to get.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Spanner\Admin\Database\V1\SpannerDatabaseAdmin::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

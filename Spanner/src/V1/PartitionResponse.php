@@ -29,9 +29,21 @@ class PartitionResponse extends \Google\Protobuf\Internal\Message
      */
     private $transaction = null;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type \Google\Cloud\Spanner\V1\Partition[]|\Google\Protobuf\Internal\RepeatedField $partitions
+     *           Partitions created by this request.
+     *     @type \Google\Cloud\Spanner\V1\Transaction $transaction
+     *           Transaction created by this request.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Spanner\V1\Spanner::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

@@ -45,9 +45,29 @@ class KeySet extends \Google\Protobuf\Internal\Message
      */
     private $all = false;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type \Google\Protobuf\ListValue[]|\Google\Protobuf\Internal\RepeatedField $keys
+     *           A list of specific keys. Entries in `keys` should have exactly as
+     *           many elements as there are columns in the primary or index key
+     *           with which this `KeySet` is used.  Individual key values are
+     *           encoded as described [here][google.spanner.v1.TypeCode].
+     *     @type \Google\Cloud\Spanner\V1\KeyRange[]|\Google\Protobuf\Internal\RepeatedField $ranges
+     *           A list of key ranges. See [KeyRange][google.spanner.v1.KeyRange] for more information about
+     *           key range specifications.
+     *     @type bool $all
+     *           For convenience `all` can be set to `true` to indicate that this
+     *           `KeySet` matches all keys in the table or index. Note that any keys
+     *           specified in `keys` or `ranges` are only yielded once.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Spanner\V1\Keys::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

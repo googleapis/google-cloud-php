@@ -31,9 +31,23 @@ class InstanceConfig extends \Google\Protobuf\Internal\Message
      */
     private $display_name = '';
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $name
+     *           A unique identifier for the instance configuration.  Values
+     *           are of the form
+     *           `projects/<project>/instanceConfigs/[a-z][-a-z0-9]*`
+     *     @type string $display_name
+     *           The name of this instance configuration as it appears in UIs.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Spanner\Admin\Instance\V1\SpannerInstanceAdmin::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

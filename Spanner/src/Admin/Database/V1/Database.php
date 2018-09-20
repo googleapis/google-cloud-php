@@ -32,9 +32,25 @@ class Database extends \Google\Protobuf\Internal\Message
      */
     private $state = 0;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $name
+     *           Required. The name of the database. Values are of the form
+     *           `projects/<project>/instances/<instance>/databases/<database>`,
+     *           where `<database>` is as specified in the `CREATE DATABASE`
+     *           statement. This name can be passed to other API methods to
+     *           identify the database.
+     *     @type int $state
+     *           Output only. The current database state.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Spanner\Admin\Database\V1\SpannerDatabaseAdmin::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

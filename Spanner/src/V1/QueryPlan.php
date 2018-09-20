@@ -24,9 +24,21 @@ class QueryPlan extends \Google\Protobuf\Internal\Message
      */
     private $plan_nodes;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type \Google\Cloud\Spanner\V1\PlanNode[]|\Google\Protobuf\Internal\RepeatedField $plan_nodes
+     *           The nodes in the query plan. Plan nodes are returned in pre-order starting
+     *           with the plan root. Each [PlanNode][google.spanner.v1.PlanNode]'s `id` corresponds to its index in
+     *           `plan_nodes`.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Spanner\V1\QueryPlan::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

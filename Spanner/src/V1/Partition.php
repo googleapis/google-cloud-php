@@ -25,9 +25,21 @@ class Partition extends \Google\Protobuf\Internal\Message
      */
     private $partition_token = '';
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $partition_token
+     *           This token can be passed to Read, StreamingRead, ExecuteSql, or
+     *           ExecuteStreamingSql requests to restrict the results to those identified by
+     *           this partition token.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Spanner\V1\Spanner::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

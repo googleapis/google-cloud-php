@@ -77,9 +77,29 @@ class KeyRange extends \Google\Protobuf\Internal\Message
     protected $start_key_type;
     protected $end_key_type;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type \Google\Protobuf\ListValue $start_closed
+     *           If the start is closed, then the range includes all rows whose
+     *           first `len(start_closed)` key columns exactly match `start_closed`.
+     *     @type \Google\Protobuf\ListValue $start_open
+     *           If the start is open, then the range excludes rows whose first
+     *           `len(start_open)` key columns exactly match `start_open`.
+     *     @type \Google\Protobuf\ListValue $end_closed
+     *           If the end is closed, then the range includes all rows whose
+     *           first `len(end_closed)` key columns exactly match `end_closed`.
+     *     @type \Google\Protobuf\ListValue $end_open
+     *           If the end is open, then the range excludes rows whose first
+     *           `len(end_open)` key columns exactly match `end_open`.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Spanner\V1\Keys::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

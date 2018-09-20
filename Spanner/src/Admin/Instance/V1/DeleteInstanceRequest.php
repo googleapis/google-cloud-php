@@ -23,9 +23,20 @@ class DeleteInstanceRequest extends \Google\Protobuf\Internal\Message
      */
     private $name = '';
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $name
+     *           Required. The name of the instance to be deleted. Values are of the form
+     *           `projects/<project>/instances/<instance>`
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Spanner\Admin\Instance\V1\SpannerInstanceAdmin::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

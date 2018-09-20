@@ -35,6 +35,9 @@ class PartitionQueryRequest extends \Google\Protobuf\Internal\Message
      * union operator conceptually divides one or more tables into multiple
      * splits, remotely evaluates a subquery independently on each split, and
      * then unions all results.
+     * This must not contain DML commands, such as INSERT, UPDATE, or
+     * DELETE. Use [ExecuteStreamingSql][google.spanner.v1.Spanner.ExecuteStreamingSql] with a
+     * PartitionedDml transaction for large, partition-friendly DML operations.
      *
      * Generated from protobuf field <code>string sql = 3;</code>
      */
@@ -74,9 +77,54 @@ class PartitionQueryRequest extends \Google\Protobuf\Internal\Message
      */
     private $partition_options = null;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $session
+     *           Required. The session used to create the partitions.
+     *     @type \Google\Cloud\Spanner\V1\TransactionSelector $transaction
+     *           Read only snapshot transactions are supported, read/write and single use
+     *           transactions are not.
+     *     @type string $sql
+     *           The query request to generate partitions for. The request will fail if
+     *           the query is not root partitionable. The query plan of a root
+     *           partitionable query has a single distributed union operator. A distributed
+     *           union operator conceptually divides one or more tables into multiple
+     *           splits, remotely evaluates a subquery independently on each split, and
+     *           then unions all results.
+     *           This must not contain DML commands, such as INSERT, UPDATE, or
+     *           DELETE. Use [ExecuteStreamingSql][google.spanner.v1.Spanner.ExecuteStreamingSql] with a
+     *           PartitionedDml transaction for large, partition-friendly DML operations.
+     *     @type \Google\Protobuf\Struct $params
+     *           The SQL query string can contain parameter placeholders. A parameter
+     *           placeholder consists of `'&#64;'` followed by the parameter
+     *           name. Parameter names consist of any combination of letters,
+     *           numbers, and underscores.
+     *           Parameters can appear anywhere that a literal value is expected.  The same
+     *           parameter name can be used more than once, for example:
+     *             `"WHERE id > &#64;msg_id AND id < &#64;msg_id + 100"`
+     *           It is an error to execute an SQL query with unbound parameters.
+     *           Parameter values are specified using `params`, which is a JSON
+     *           object whose keys are parameter names, and whose values are the
+     *           corresponding parameter values.
+     *     @type array|\Google\Protobuf\Internal\MapField $param_types
+     *           It is not always possible for Cloud Spanner to infer the right SQL type
+     *           from a JSON value.  For example, values of type `BYTES` and values
+     *           of type `STRING` both appear in [params][google.spanner.v1.PartitionQueryRequest.params] as JSON strings.
+     *           In these cases, `param_types` can be used to specify the exact
+     *           SQL type for some or all of the SQL query parameters. See the
+     *           definition of [Type][google.spanner.v1.Type] for more information
+     *           about SQL types.
+     *     @type \Google\Cloud\Spanner\V1\PartitionOptions $partition_options
+     *           Additional options that affect how many partitions are created.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Spanner\V1\Spanner::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**
@@ -140,6 +188,9 @@ class PartitionQueryRequest extends \Google\Protobuf\Internal\Message
      * union operator conceptually divides one or more tables into multiple
      * splits, remotely evaluates a subquery independently on each split, and
      * then unions all results.
+     * This must not contain DML commands, such as INSERT, UPDATE, or
+     * DELETE. Use [ExecuteStreamingSql][google.spanner.v1.Spanner.ExecuteStreamingSql] with a
+     * PartitionedDml transaction for large, partition-friendly DML operations.
      *
      * Generated from protobuf field <code>string sql = 3;</code>
      * @return string
@@ -156,6 +207,9 @@ class PartitionQueryRequest extends \Google\Protobuf\Internal\Message
      * union operator conceptually divides one or more tables into multiple
      * splits, remotely evaluates a subquery independently on each split, and
      * then unions all results.
+     * This must not contain DML commands, such as INSERT, UPDATE, or
+     * DELETE. Use [ExecuteStreamingSql][google.spanner.v1.Spanner.ExecuteStreamingSql] with a
+     * PartitionedDml transaction for large, partition-friendly DML operations.
      *
      * Generated from protobuf field <code>string sql = 3;</code>
      * @param string $var

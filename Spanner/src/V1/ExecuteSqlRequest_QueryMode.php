@@ -4,33 +4,13 @@
 
 namespace Google\Cloud\Spanner\V1;
 
-/**
- * Mode in which the query must be processed.
- *
- * Protobuf enum <code>Google\Spanner\V1\ExecuteSqlRequest\QueryMode</code>
- */
-class ExecuteSqlRequest_QueryMode
-{
+if (false) {
     /**
-     * The default mode where only the query result, without any information
-     * about the query plan is returned.
-     *
-     * Generated from protobuf enum <code>NORMAL = 0;</code>
+     * This class is deprecated. Use Google\Cloud\Spanner\V1\ExecuteSqlRequest\QueryMode instead.
+     * @deprecated
      */
-    const NORMAL = 0;
-    /**
-     * This mode returns only the query plan, without any result rows or
-     * execution statistics information.
-     *
-     * Generated from protobuf enum <code>PLAN = 1;</code>
-     */
-    const PLAN = 1;
-    /**
-     * This mode returns both the query plan and the execution statistics along
-     * with the result rows.
-     *
-     * Generated from protobuf enum <code>PROFILE = 2;</code>
-     */
-    const PROFILE = 2;
+    class ExecuteSqlRequest_QueryMode {}
 }
+class_exists(ExecuteSqlRequest\QueryMode::class);
+@trigger_error('Google\Cloud\Spanner\V1\ExecuteSqlRequest_QueryMode is deprecated and will be removed in the next major release. Use Google\Cloud\Spanner\V1\ExecuteSqlRequest\QueryMode instead', E_USER_DEPRECATED);
 

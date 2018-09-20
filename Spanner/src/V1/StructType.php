@@ -27,9 +27,24 @@ class StructType extends \Google\Protobuf\Internal\Message
      */
     private $fields;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type \Google\Cloud\Spanner\V1\StructType\Field[]|\Google\Protobuf\Internal\RepeatedField $fields
+     *           The list of fields that make up this struct. Order is
+     *           significant, because values of this struct type are represented as
+     *           lists, where the order of field values matches the order of
+     *           fields in the [StructType][google.spanner.v1.StructType]. In turn, the order of fields
+     *           matches the order of columns in a read request, or the order of
+     *           fields in the `SELECT` clause of a query.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Spanner\V1\Type::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**
@@ -57,12 +72,12 @@ class StructType extends \Google\Protobuf\Internal\Message
      * fields in the `SELECT` clause of a query.
      *
      * Generated from protobuf field <code>repeated .google.spanner.v1.StructType.Field fields = 1;</code>
-     * @param \Google\Cloud\Spanner\V1\StructType_Field[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Spanner\V1\StructType\Field[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setFields($var)
     {
-        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Spanner\V1\StructType_Field::class);
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Spanner\V1\StructType\Field::class);
         $this->fields = $arr;
 
         return $this;

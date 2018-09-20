@@ -42,9 +42,31 @@ class CreateDatabaseRequest extends \Google\Protobuf\Internal\Message
      */
     private $extra_statements;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $parent
+     *           Required. The name of the instance that will serve the new database.
+     *           Values are of the form `projects/<project>/instances/<instance>`.
+     *     @type string $create_statement
+     *           Required. A `CREATE DATABASE` statement, which specifies the ID of the
+     *           new database.  The database ID must conform to the regular expression
+     *           `[a-z][a-z0-9_\-]*[a-z0-9]` and be between 2 and 30 characters in length.
+     *           If the database ID is a reserved word or if it contains a hyphen, the
+     *           database ID must be enclosed in backticks (`` ` ``).
+     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $extra_statements
+     *           An optional list of DDL statements to run inside the newly created
+     *           database. Statements can create tables, indexes, etc. These
+     *           statements execute atomically with the creation of the database:
+     *           if there is an error in any statement, the database is not created.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Spanner\Admin\Database\V1\SpannerDatabaseAdmin::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

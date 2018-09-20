@@ -31,14 +31,14 @@ use Google\Cloud\Spanner\SpannerClient as ManualSpannerClient;
 use Google\Cloud\Spanner\V1\DeleteSessionRequest;
 use Google\Cloud\Spanner\V1\KeySet;
 use Google\Cloud\Spanner\V1\Mutation;
-use Google\Cloud\Spanner\V1\Mutation_Delete;
-use Google\Cloud\Spanner\V1\Mutation_Write;
+use Google\Cloud\Spanner\V1\Mutation\Delete;
+use Google\Cloud\Spanner\V1\Mutation\Write;
 use Google\Cloud\Spanner\V1\PartitionOptions;
 use Google\Cloud\Spanner\V1\Session;
 use Google\Cloud\Spanner\V1\SpannerClient;
 use Google\Cloud\Spanner\V1\TransactionOptions;
-use Google\Cloud\Spanner\V1\TransactionOptions_ReadOnly;
-use Google\Cloud\Spanner\V1\TransactionOptions_ReadWrite;
+use Google\Cloud\Spanner\V1\TransactionOptions\ReadOnly;
+use Google\Cloud\Spanner\V1\TransactionOptions\ReadWrite;
 use Google\Cloud\Spanner\V1\TransactionSelector;
 use Google\Cloud\Spanner\V1\Type;
 use Google\Protobuf;
@@ -535,12 +535,12 @@ class Grpc implements ConnectionInterface
         $transactionOptions = $this->formatTransactionOptions($this->pluck('transactionOptions', $args));
         if (isset($transactionOptions['readOnly'])) {
             $readOnly = $this->serializer->decodeMessage(
-                new TransactionOptions_ReadOnly(),
+                new ReadOnly(),
                 $transactionOptions['readOnly']
             );
             $options->setReadOnly($readOnly);
         } else {
-            $readWrite = new TransactionOptions_ReadWrite();
+            $readWrite = new ReadWrite();
             $options->setReadWrite($readWrite);
         }
 
@@ -572,12 +572,12 @@ class Grpc implements ConnectionInterface
                         }
 
                         $operation = $this->serializer->decodeMessage(
-                            new Mutation_Delete,
+                            new Delete,
                             $data
                         );
                         break;
                     default:
-                        $operation = new Mutation_Write;
+                        $operation = new Write;
                         $operation->setTable($data['table']);
                         $operation->setColumns($data['columns']);
 
@@ -603,7 +603,7 @@ class Grpc implements ConnectionInterface
 
         if (isset($args['singleUseTransaction'])) {
             $readWrite = $this->serializer->decodeMessage(
-                new TransactionOptions_ReadWrite,
+                new ReadWrite,
                 []
             );
 

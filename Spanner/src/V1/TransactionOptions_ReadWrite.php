@@ -4,23 +4,13 @@
 
 namespace Google\Cloud\Spanner\V1;
 
-use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
-use Google\Protobuf\Internal\GPBUtil;
-
-/**
- * Message type to initiate a read-write transaction. Currently this
- * transaction type has no options.
- *
- * Generated from protobuf message <code>google.spanner.v1.TransactionOptions.ReadWrite</code>
- */
-class TransactionOptions_ReadWrite extends \Google\Protobuf\Internal\Message
-{
-
-    public function __construct() {
-        \GPBMetadata\Google\Spanner\V1\Transaction::initOnce();
-        parent::__construct();
-    }
-
+if (false) {
+    /**
+     * This class is deprecated. Use Google\Cloud\Spanner\V1\TransactionOptions\ReadWrite instead.
+     * @deprecated
+     */
+    class TransactionOptions_ReadWrite {}
 }
+class_exists(TransactionOptions\ReadWrite::class);
+@trigger_error('Google\Cloud\Spanner\V1\TransactionOptions_ReadWrite is deprecated and will be removed in the next major release. Use Google\Cloud\Spanner\V1\TransactionOptions\ReadWrite instead', E_USER_DEPRECATED);
 

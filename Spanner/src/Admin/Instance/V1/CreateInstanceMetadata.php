@@ -45,9 +45,29 @@ class CreateInstanceMetadata extends \Google\Protobuf\Internal\Message
      */
     private $end_time = null;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type \Google\Cloud\Spanner\Admin\Instance\V1\Instance $instance
+     *           The instance being created.
+     *     @type \Google\Protobuf\Timestamp $start_time
+     *           The time at which the
+     *           [CreateInstance][google.spanner.admin.instance.v1.InstanceAdmin.CreateInstance] request was
+     *           received.
+     *     @type \Google\Protobuf\Timestamp $cancel_time
+     *           The time at which this operation was cancelled. If set, this operation is
+     *           in the process of undoing itself (which is guaranteed to succeed) and
+     *           cannot be cancelled again.
+     *     @type \Google\Protobuf\Timestamp $end_time
+     *           The time at which this operation failed or was completed successfully.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Spanner\Admin\Instance\V1\SpannerInstanceAdmin::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

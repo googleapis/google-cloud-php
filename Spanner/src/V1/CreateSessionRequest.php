@@ -28,9 +28,21 @@ class CreateSessionRequest extends \Google\Protobuf\Internal\Message
      */
     private $session = null;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $database
+     *           Required. The database in which the new session is created.
+     *     @type \Google\Cloud\Spanner\V1\Session $session
+     *           The session to create.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Spanner\V1\Spanner::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

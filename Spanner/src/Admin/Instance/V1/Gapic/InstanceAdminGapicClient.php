@@ -88,18 +88,21 @@ use Google\Protobuf\GPBEmpty;
  * $instanceAdminClient = new InstanceAdminClient();
  * try {
  *     $formattedParent = $instanceAdminClient->projectName('[PROJECT]');
- *     // Iterate through all elements
- *     $pagedResponse = $instanceAdminClient->listInstanceConfigs($formattedParent);
- *     foreach ($pagedResponse->iterateAllElements() as $element) {
- *         // doSomethingWith($element);
- *     }
- *
- *     // OR iterate over pages of elements
+ *     // Iterate over pages of elements
  *     $pagedResponse = $instanceAdminClient->listInstanceConfigs($formattedParent);
  *     foreach ($pagedResponse->iteratePages() as $page) {
  *         foreach ($page as $element) {
  *             // doSomethingWith($element);
  *         }
+ *     }
+ *
+ *
+ *     // Alternatively:
+ *
+ *     // Iterate through all elements
+ *     $pagedResponse = $instanceAdminClient->listInstanceConfigs($formattedParent);
+ *     foreach ($pagedResponse->iterateAllElements() as $element) {
+ *         // doSomethingWith($element);
  *     }
  * } finally {
  *     $instanceAdminClient->close();
@@ -158,6 +161,7 @@ class InstanceAdminGapicClient
             'serviceAddress' => self::SERVICE_ADDRESS.':'.self::DEFAULT_SERVICE_PORT,
             'clientConfig' => __DIR__.'/../resources/instance_admin_client_config.json',
             'descriptorsConfigPath' => __DIR__.'/../resources/instance_admin_descriptor_config.php',
+            'gcpApiConfigPath' => __DIR__.'/../resources/instance_admin_grpc_config.json',
             'credentialsConfig' => [
                 'scopes' => self::$serviceScopes,
             ],
@@ -406,18 +410,21 @@ class InstanceAdminGapicClient
      * $instanceAdminClient = new InstanceAdminClient();
      * try {
      *     $formattedParent = $instanceAdminClient->projectName('[PROJECT]');
-     *     // Iterate through all elements
-     *     $pagedResponse = $instanceAdminClient->listInstanceConfigs($formattedParent);
-     *     foreach ($pagedResponse->iterateAllElements() as $element) {
-     *         // doSomethingWith($element);
-     *     }
-     *
-     *     // OR iterate over pages of elements
+     *     // Iterate over pages of elements
      *     $pagedResponse = $instanceAdminClient->listInstanceConfigs($formattedParent);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
      *         }
+     *     }
+     *
+     *
+     *     // Alternatively:
+     *
+     *     // Iterate through all elements
+     *     $pagedResponse = $instanceAdminClient->listInstanceConfigs($formattedParent);
+     *     foreach ($pagedResponse->iterateAllElements() as $element) {
+     *         // doSomethingWith($element);
      *     }
      * } finally {
      *     $instanceAdminClient->close();
@@ -522,18 +529,21 @@ class InstanceAdminGapicClient
      * $instanceAdminClient = new InstanceAdminClient();
      * try {
      *     $formattedParent = $instanceAdminClient->projectName('[PROJECT]');
-     *     // Iterate through all elements
-     *     $pagedResponse = $instanceAdminClient->listInstances($formattedParent);
-     *     foreach ($pagedResponse->iterateAllElements() as $element) {
-     *         // doSomethingWith($element);
-     *     }
-     *
-     *     // OR iterate over pages of elements
+     *     // Iterate over pages of elements
      *     $pagedResponse = $instanceAdminClient->listInstances($formattedParent);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
      *         }
+     *     }
+     *
+     *
+     *     // Alternatively:
+     *
+     *     // Iterate through all elements
+     *     $pagedResponse = $instanceAdminClient->listInstances($formattedParent);
+     *     foreach ($pagedResponse->iterateAllElements() as $element) {
+     *         // doSomethingWith($element);
      *     }
      * } finally {
      *     $instanceAdminClient->close();
@@ -698,14 +708,17 @@ class InstanceAdminGapicClient
      *     $operationResponse = $instanceAdminClient->createInstance($formattedParent, $instanceId, $instance);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
-     *       $result = $operationResponse->getResult();
-     *       // doSomethingWith($result)
+     *         $result = $operationResponse->getResult();
+     *         // doSomethingWith($result)
      *     } else {
-     *       $error = $operationResponse->getError();
-     *       // handleError($error)
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
      *     }
      *
-     *     // OR start the operation, keep the operation name, and resume later
+     *
+     *     // Alternatively:
+     *
+     *     // start the operation, keep the operation name, and resume later
      *     $operationResponse = $instanceAdminClient->createInstance($formattedParent, $instanceId, $instance);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
@@ -814,14 +827,17 @@ class InstanceAdminGapicClient
      *     $operationResponse = $instanceAdminClient->updateInstance($instance, $fieldMask);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
-     *       $result = $operationResponse->getResult();
-     *       // doSomethingWith($result)
+     *         $result = $operationResponse->getResult();
+     *         // doSomethingWith($result)
      *     } else {
-     *       $error = $operationResponse->getError();
-     *       // handleError($error)
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
      *     }
      *
-     *     // OR start the operation, keep the operation name, and resume later
+     *
+     *     // Alternatively:
+     *
+     *     // start the operation, keep the operation name, and resume later
      *     $operationResponse = $instanceAdminClient->updateInstance($instance, $fieldMask);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
