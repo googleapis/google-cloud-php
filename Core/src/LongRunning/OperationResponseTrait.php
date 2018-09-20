@@ -19,6 +19,8 @@ namespace Google\Cloud\Core\LongRunning;
 
 use Google\ApiCore\OperationResponse;
 use Google\ApiCore\Serializer;
+use Google\GAX\OperationResponse as GaxOperationResponse;
+use Google\GAX\Serializer as GaxSerialzer;
 
 /**
  * Serializes and deserializes ApiCore LRO Response objects.
@@ -30,12 +32,12 @@ trait OperationResponseTrait
     /**
      * Convert a ApiCore OperationResponse object to an array.
      *
-     * @param OperationResponse $operation The operation response
-     * @param Serializer $serializer The serializer to use for gRPC serialization/deserialization.
+     * @param OperationResponse|GaxOperationResponse $operation The operation response
+     * @param Serializer|GaxSerializer $serializer The serializer to use for gRPC serialization/deserialization.
      * @param array $lroMappers A list of mappers for deserializing operation results.
      * @return array
      */
-    private function operationToArray(OperationResponse $operation, Serializer $serializer, array $lroMappers)
+    private function operationToArray($operation, $serializer, array $lroMappers)
     {
         $response = $operation->getLastProtoResponse();
         if (is_null($response)) {
@@ -77,14 +79,16 @@ trait OperationResponseTrait
     /**
      * Convert an operation response to an array
      *
-     * @param OperationResponse $operation The operation to serialize.
+     * @param OperationResponse|GaxOperationResponse $operation The operation to
+     *        serialize.
      * @param string $type The Operation type. The type should correspond to a
      *        member of $mappers.typeUrl.
-     * @param Serializer $serializer The gRPC serializer to use for the deserialization.
+     * @param Serializer|GaxSerializer $serializer The gRPC serializer to use
+     *        for the deserialization.
      * @param array $mappers A list of mappers.
      * @return array|null
      */
-    private function deserializeResult(OperationResponse $operation, $type, Serializer $serializer, array $mappers)
+    private function deserializeResult($operation, $type, $serializer, array $mappers)
     {
         $mappers = array_filter($mappers, function ($mapper) use ($type) {
             return $mapper['typeUrl'] === $type;
