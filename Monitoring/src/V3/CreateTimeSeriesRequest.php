@@ -33,9 +33,26 @@ class CreateTimeSeriesRequest extends \Google\Protobuf\Internal\Message
      */
     private $time_series;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $name
+     *           The project on which to execute the request. The format is
+     *           `"projects/{project_id_or_number}"`.
+     *     @type \Google\Cloud\Monitoring\V3\TimeSeries[]|\Google\Protobuf\Internal\RepeatedField $time_series
+     *           The new data to be added to a list of time series.
+     *           Adds at most one data point to each of several time series.  The new data
+     *           point must be more recent than any other point in its time series.  Each
+     *           `TimeSeries` value must fully specify a unique time series by supplying
+     *           all label values for the metric and the monitored resource.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Monitoring\V3\MetricService::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

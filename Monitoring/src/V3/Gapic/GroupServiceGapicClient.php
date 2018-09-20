@@ -48,7 +48,7 @@ use Google\Protobuf\GPBEmpty;
 
 /**
  * Service Description: The Group API lets you inspect and manage your
- * [groups](https://cloud.google.comgoogle.monitoring.v3.Group).
+ * [groups](https://cloud.google.com#google.monitoring.v3.Group).
  *
  * A group is a named filter that is used to identify
  * a collection of monitored resources. Groups are typically used to
@@ -67,18 +67,21 @@ use Google\Protobuf\GPBEmpty;
  * $groupServiceClient = new GroupServiceClient();
  * try {
  *     $formattedName = $groupServiceClient->projectName('[PROJECT]');
- *     // Iterate through all elements
- *     $pagedResponse = $groupServiceClient->listGroups($formattedName);
- *     foreach ($pagedResponse->iterateAllElements() as $element) {
- *         // doSomethingWith($element);
- *     }
- *
- *     // OR iterate over pages of elements
+ *     // Iterate over pages of elements
  *     $pagedResponse = $groupServiceClient->listGroups($formattedName);
  *     foreach ($pagedResponse->iteratePages() as $page) {
  *         foreach ($page as $element) {
  *             // doSomethingWith($element);
  *         }
+ *     }
+ *
+ *
+ *     // Alternatively:
+ *
+ *     // Iterate through all elements
+ *     $pagedResponse = $groupServiceClient->listGroups($formattedName);
+ *     foreach ($pagedResponse->iterateAllElements() as $element) {
+ *         // doSomethingWith($element);
  *     }
  * } finally {
  *     $groupServiceClient->close();
@@ -136,6 +139,7 @@ class GroupServiceGapicClient
             'serviceAddress' => self::SERVICE_ADDRESS.':'.self::DEFAULT_SERVICE_PORT,
             'clientConfig' => __DIR__.'/../resources/group_service_client_config.json',
             'descriptorsConfigPath' => __DIR__.'/../resources/group_service_descriptor_config.php',
+            'gcpApiConfigPath' => __DIR__.'/../resources/group_service_grpc_config.json',
             'credentialsConfig' => [
                 'scopes' => self::$serviceScopes,
             ],
@@ -319,18 +323,21 @@ class GroupServiceGapicClient
      * $groupServiceClient = new GroupServiceClient();
      * try {
      *     $formattedName = $groupServiceClient->projectName('[PROJECT]');
-     *     // Iterate through all elements
-     *     $pagedResponse = $groupServiceClient->listGroups($formattedName);
-     *     foreach ($pagedResponse->iterateAllElements() as $element) {
-     *         // doSomethingWith($element);
-     *     }
-     *
-     *     // OR iterate over pages of elements
+     *     // Iterate over pages of elements
      *     $pagedResponse = $groupServiceClient->listGroups($formattedName);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
      *         }
+     *     }
+     *
+     *
+     *     // Alternatively:
+     *
+     *     // Iterate through all elements
+     *     $pagedResponse = $groupServiceClient->listGroups($formattedName);
+     *     foreach ($pagedResponse->iterateAllElements() as $element) {
+     *         // doSomethingWith($element);
      *     }
      * } finally {
      *     $groupServiceClient->close();
@@ -603,18 +610,21 @@ class GroupServiceGapicClient
      * $groupServiceClient = new GroupServiceClient();
      * try {
      *     $formattedName = $groupServiceClient->groupName('[PROJECT]', '[GROUP]');
-     *     // Iterate through all elements
-     *     $pagedResponse = $groupServiceClient->listGroupMembers($formattedName);
-     *     foreach ($pagedResponse->iterateAllElements() as $element) {
-     *         // doSomethingWith($element);
-     *     }
-     *
-     *     // OR iterate over pages of elements
+     *     // Iterate over pages of elements
      *     $pagedResponse = $groupServiceClient->listGroupMembers($formattedName);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
      *         }
+     *     }
+     *
+     *
+     *     // Alternatively:
+     *
+     *     // Iterate through all elements
+     *     $pagedResponse = $groupServiceClient->listGroupMembers($formattedName);
+     *     foreach ($pagedResponse->iterateAllElements() as $element) {
+     *         // doSomethingWith($element);
      *     }
      * } finally {
      *     $groupServiceClient->close();

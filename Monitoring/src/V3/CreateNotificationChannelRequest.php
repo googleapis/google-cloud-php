@@ -33,9 +33,26 @@ class CreateNotificationChannelRequest extends \Google\Protobuf\Internal\Message
      */
     private $notification_channel = null;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $name
+     *           The project on which to execute the request. The format is:
+     *               projects/[PROJECT_ID]
+     *           Note that this names the container into which the channel will be
+     *           written. This does not name the newly created channel. The resulting
+     *           channel's name will have a normalized version of this field as a prefix,
+     *           but will add `/notificationChannels/[CHANNEL_ID]` to identify the channel.
+     *     @type \Google\Cloud\Monitoring\V3\NotificationChannel $notification_channel
+     *           The definition of the `NotificationChannel` to create.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Monitoring\V3\NotificationService::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

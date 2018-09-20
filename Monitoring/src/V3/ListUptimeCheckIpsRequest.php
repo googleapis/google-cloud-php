@@ -35,9 +35,28 @@ class ListUptimeCheckIpsRequest extends \Google\Protobuf\Internal\Message
      */
     private $page_token = '';
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type int $page_size
+     *           The maximum number of results to return in a single response. The server
+     *           may further constrain the maximum number of results returned in a single
+     *           page. If the page_size is <=0, the server will decide the number of results
+     *           to be returned.
+     *           NOTE: this field is not yet implemented
+     *     @type string $page_token
+     *           If this field is not empty then it must contain the `nextPageToken` value
+     *           returned by a previous call to this method.  Using this field causes the
+     *           method to return more results from the previous method call.
+     *           NOTE: this field is not yet implemented
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Monitoring\V3\UptimeService::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

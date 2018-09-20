@@ -24,9 +24,21 @@ class DeleteAlertPolicyRequest extends \Google\Protobuf\Internal\Message
      */
     private $name = '';
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $name
+     *           The alerting policy to delete. The format is:
+     *               projects/[PROJECT_ID]/alertPolicies/[ALERT_POLICY_ID]
+     *           For more information, see [AlertPolicy][google.monitoring.v3.AlertPolicy].
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Monitoring\V3\AlertService::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

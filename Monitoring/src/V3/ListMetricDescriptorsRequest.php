@@ -49,9 +49,34 @@ class ListMetricDescriptorsRequest extends \Google\Protobuf\Internal\Message
      */
     private $page_token = '';
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $name
+     *           The project on which to execute the request. The format is
+     *           `"projects/{project_id_or_number}"`.
+     *     @type string $filter
+     *           If this field is empty, all custom and
+     *           system-defined metric descriptors are returned.
+     *           Otherwise, the [filter](/monitoring/api/v3/filters)
+     *           specifies which metric descriptors are to be
+     *           returned. For example, the following filter matches all
+     *           [custom metrics](/monitoring/custom-metrics):
+     *               metric.type = starts_with("custom.googleapis.com/")
+     *     @type int $page_size
+     *           A positive number that is the maximum number of results to return.
+     *     @type string $page_token
+     *           If this field is not empty then it must contain the `nextPageToken` value
+     *           returned by a previous call to this method.  Using this field causes the
+     *           method to return additional results from the previous method call.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Monitoring\V3\MetricService::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

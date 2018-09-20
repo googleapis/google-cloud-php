@@ -31,9 +31,24 @@ class ListNotificationChannelsResponse extends \Google\Protobuf\Internal\Message
      */
     private $next_page_token = '';
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type \Google\Cloud\Monitoring\V3\NotificationChannel[]|\Google\Protobuf\Internal\RepeatedField $notification_channels
+     *           The notification channels defined for the specified project.
+     *     @type string $next_page_token
+     *           If not empty, indicates that there may be more results that match
+     *           the request. Use the value in the `page_token` field in a
+     *           subsequent request to fetch the next set of results. If empty,
+     *           all results have been returned.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Monitoring\V3\NotificationService::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

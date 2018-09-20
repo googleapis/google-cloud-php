@@ -38,9 +38,41 @@ class ListGroupsRequest extends \Google\Protobuf\Internal\Message
     private $page_token = '';
     protected $filter;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $name
+     *           The project whose groups are to be listed. The format is
+     *           `"projects/{project_id_or_number}"`.
+     *     @type string $children_of_group
+     *           A group name: `"projects/{project_id_or_number}/groups/{group_id}"`.
+     *           Returns groups whose `parentName` field contains the group
+     *           name.  If no groups have this parent, the results are empty.
+     *     @type string $ancestors_of_group
+     *           A group name: `"projects/{project_id_or_number}/groups/{group_id}"`.
+     *           Returns groups that are ancestors of the specified group.
+     *           The groups are returned in order, starting with the immediate parent and
+     *           ending with the most distant ancestor.  If the specified group has no
+     *           immediate parent, the results are empty.
+     *     @type string $descendants_of_group
+     *           A group name: `"projects/{project_id_or_number}/groups/{group_id}"`.
+     *           Returns the descendants of the specified group.  This is a superset of
+     *           the results returned by the `childrenOfGroup` filter, and includes
+     *           children-of-children, and so forth.
+     *     @type int $page_size
+     *           A positive number that is the maximum number of results to return.
+     *     @type string $page_token
+     *           If this field is not empty then it must contain the `nextPageToken` value
+     *           returned by a previous call to this method.  Using this field causes the
+     *           method to return additional results from the previous method call.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Monitoring\V3\GroupService::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

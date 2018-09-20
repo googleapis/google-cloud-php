@@ -31,9 +31,24 @@ class CreateTimeSeriesError extends \Google\Protobuf\Internal\Message
      */
     private $status = null;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type \Google\Cloud\Monitoring\V3\TimeSeries $time_series
+     *           The time series, including the `Metric`, `MonitoredResource`,
+     *           and `Point`s (including timestamp and value) that resulted
+     *           in the error. This field provides all of the context that
+     *           would be needed to retry the operation.
+     *     @type \Google\Rpc\Status $status
+     *           The status of the requested write operation.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Monitoring\V3\MetricService::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

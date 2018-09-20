@@ -63,18 +63,21 @@ use Google\Protobuf\GPBEmpty;
  * $uptimeCheckServiceClient = new UptimeCheckServiceClient();
  * try {
  *     $formattedParent = $uptimeCheckServiceClient->projectName('[PROJECT]');
- *     // Iterate through all elements
- *     $pagedResponse = $uptimeCheckServiceClient->listUptimeCheckConfigs($formattedParent);
- *     foreach ($pagedResponse->iterateAllElements() as $element) {
- *         // doSomethingWith($element);
- *     }
- *
- *     // OR iterate over pages of elements
+ *     // Iterate over pages of elements
  *     $pagedResponse = $uptimeCheckServiceClient->listUptimeCheckConfigs($formattedParent);
  *     foreach ($pagedResponse->iteratePages() as $page) {
  *         foreach ($page as $element) {
  *             // doSomethingWith($element);
  *         }
+ *     }
+ *
+ *
+ *     // Alternatively:
+ *
+ *     // Iterate through all elements
+ *     $pagedResponse = $uptimeCheckServiceClient->listUptimeCheckConfigs($formattedParent);
+ *     foreach ($pagedResponse->iterateAllElements() as $element) {
+ *         // doSomethingWith($element);
  *     }
  * } finally {
  *     $uptimeCheckServiceClient->close();
@@ -132,6 +135,7 @@ class UptimeCheckServiceGapicClient
             'serviceAddress' => self::SERVICE_ADDRESS.':'.self::DEFAULT_SERVICE_PORT,
             'clientConfig' => __DIR__.'/../resources/uptime_check_service_client_config.json',
             'descriptorsConfigPath' => __DIR__.'/../resources/uptime_check_service_descriptor_config.php',
+            'gcpApiConfigPath' => __DIR__.'/../resources/uptime_check_service_grpc_config.json',
             'credentialsConfig' => [
                 'scopes' => self::$serviceScopes,
             ],
@@ -316,29 +320,31 @@ class UptimeCheckServiceGapicClient
      * $uptimeCheckServiceClient = new UptimeCheckServiceClient();
      * try {
      *     $formattedParent = $uptimeCheckServiceClient->projectName('[PROJECT]');
-     *     // Iterate through all elements
-     *     $pagedResponse = $uptimeCheckServiceClient->listUptimeCheckConfigs($formattedParent);
-     *     foreach ($pagedResponse->iterateAllElements() as $element) {
-     *         // doSomethingWith($element);
-     *     }
-     *
-     *     // OR iterate over pages of elements
+     *     // Iterate over pages of elements
      *     $pagedResponse = $uptimeCheckServiceClient->listUptimeCheckConfigs($formattedParent);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
      *         }
      *     }
+     *
+     *
+     *     // Alternatively:
+     *
+     *     // Iterate through all elements
+     *     $pagedResponse = $uptimeCheckServiceClient->listUptimeCheckConfigs($formattedParent);
+     *     foreach ($pagedResponse->iterateAllElements() as $element) {
+     *         // doSomethingWith($element);
+     *     }
      * } finally {
      *     $uptimeCheckServiceClient->close();
      * }
      * ```
      *
-     * @param string $parent The project whose uptime check configurations are listed. The format is
-     *
-     *   `projects/[PROJECT_ID]`.
-     * @param array $optionalArgs {
-     *                            Optional.
+     * @param string $parent       The project whose uptime check configurations are listed. The format
+     *                             is `projects/[PROJECT_ID]`.
+     * @param array  $optionalArgs {
+     *                             Optional.
      *
      *     @type int $pageSize
      *          The maximum number of resources contained in the underlying API
@@ -394,11 +400,10 @@ class UptimeCheckServiceGapicClient
      * }
      * ```
      *
-     * @param string $name The uptime check configuration to retrieve. The format is
-     *
-     *   `projects/[PROJECT_ID]/uptimeCheckConfigs/[UPTIME_CHECK_ID]`.
-     * @param array $optionalArgs {
-     *                            Optional.
+     * @param string $name         The uptime check configuration to retrieve. The format
+     *                             is `projects/[PROJECT_ID]/uptimeCheckConfigs/[UPTIME_CHECK_ID]`.
+     * @param array  $optionalArgs {
+     *                             Optional.
      *
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
@@ -440,9 +445,8 @@ class UptimeCheckServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent The project in which to create the uptime check. The format is:
-     *
-     *   `projects/[PROJECT_ID]`.
+     * @param string            $parent            The project in which to create the uptime check. The format
+     *                                             is `projects/[PROJECT_ID]`.
      * @param UptimeCheckConfig $uptimeCheckConfig The new uptime check configuration.
      * @param array             $optionalArgs      {
      *                                             Optional.
@@ -493,12 +497,16 @@ class UptimeCheckServiceGapicClient
      * @param UptimeCheckConfig $uptimeCheckConfig Required. If an `"updateMask"` has been specified, this field gives
      *                                             the values for the set of fields mentioned in the `"updateMask"`. If an
      *                                             `"updateMask"` has not been given, this uptime check configuration replaces
-     *                                             the current configuration. If a field is mentioned in `"updateMask`" but
+     *                                             the current configuration. If a field is mentioned in `"updateMask"` but
      *                                             the corresonding field is omitted in this partial uptime check
      *                                             configuration, it has the effect of deleting/clearing the field from the
      *                                             configuration on the server.
-     * @param array             $optionalArgs      {
-     *                                             Optional.
+     *
+     * The following fields can be updated: `display_name`,
+     * `http_check`, `tcp_check`, `timeout`, `content_matchers`, and
+     * `selected_regions`.
+     * @param array $optionalArgs {
+     *                            Optional.
      *
      *     @type FieldMask $updateMask
      *          Optional. If present, only the listed fields in the current uptime check
@@ -549,11 +557,10 @@ class UptimeCheckServiceGapicClient
      * }
      * ```
      *
-     * @param string $name The uptime check configuration to delete. The format is
-     *
-     *   `projects/[PROJECT_ID]/uptimeCheckConfigs/[UPTIME_CHECK_ID]`.
-     * @param array $optionalArgs {
-     *                            Optional.
+     * @param string $name         The uptime check configuration to delete. The format
+     *                             is `projects/[PROJECT_ID]/uptimeCheckConfigs/[UPTIME_CHECK_ID]`.
+     * @param array  $optionalArgs {
+     *                             Optional.
      *
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
@@ -585,19 +592,21 @@ class UptimeCheckServiceGapicClient
      * ```
      * $uptimeCheckServiceClient = new UptimeCheckServiceClient();
      * try {
-     *
-     *     // Iterate through all elements
-     *     $pagedResponse = $uptimeCheckServiceClient->listUptimeCheckIps();
-     *     foreach ($pagedResponse->iterateAllElements() as $element) {
-     *         // doSomethingWith($element);
-     *     }
-     *
-     *     // OR iterate over pages of elements
+     *     // Iterate over pages of elements
      *     $pagedResponse = $uptimeCheckServiceClient->listUptimeCheckIps();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
      *         }
+     *     }
+     *
+     *
+     *     // Alternatively:
+     *
+     *     // Iterate through all elements
+     *     $pagedResponse = $uptimeCheckServiceClient->listUptimeCheckIps();
+     *     foreach ($pagedResponse->iterateAllElements() as $element) {
+     *         // doSomethingWith($element);
      *     }
      * } finally {
      *     $uptimeCheckServiceClient->close();
