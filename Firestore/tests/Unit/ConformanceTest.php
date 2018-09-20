@@ -393,6 +393,11 @@ class ConformanceTest extends TestCase
     private function injectSentinel($value)
     {
         if (is_array($value)) {
+            if (in_array(array_values($value)[0], ['ArrayUnion', 'ArrayRemove'], true)) {
+                $type = lcfirst(array_shift($value));
+                return FieldValue::$type($this->injectSentinels($value));
+            }
+
             return $this->injectSentinels($value);
         }
 
