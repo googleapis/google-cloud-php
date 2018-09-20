@@ -20,7 +20,7 @@
     "extra": {
         "component": {
             "id": "cloud-pubsub",
-            "target": "GoogleCloudPlatform/google-cloud-php-pubsub.git",
+            "target": "googleapis/google-cloud-php-pubsub.git",
             "path": "PubSub",
             "entry": "src/PubSubClient.php"
         }

@@ -24,7 +24,7 @@
     "extra": {
         "component": {
             "id": "cloud-logging",
-            "target": "GoogleCloudPlatform/google-cloud-php-logging.git",
+            "target": "googleapis/google-cloud-php-logging.git",
             "path": "Logging",
             "entry": "src/LoggingClient.php"
         }

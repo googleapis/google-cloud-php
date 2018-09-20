@@ -17,7 +17,7 @@
     "extra": {
         "component": {
             "id": "cloud-bigtable",
-            "target": "GoogleCloudPlatform/google-cloud-php-bigtable.git",
+            "target": "googleapis/google-cloud-php-bigtable.git",
             "path": "Bigtable",
             "entry": null
         }

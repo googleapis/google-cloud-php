@@ -15,7 +15,7 @@
     "extra": {
         "component": {
             "id": "cloud-translate",
-            "target": "GoogleCloudPlatform/google-cloud-php-translate.git",
+            "target": "googleapis/google-cloud-php-translate.git",
             "path": "Translate",
             "entry": "src/TranslateClient.php"
         }

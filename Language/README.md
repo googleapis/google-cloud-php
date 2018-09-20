@@ -4,9 +4,9 @@
 
 [![Latest Stable Version](https://poser.pugx.org/google/cloud-language/v/stable)](https://packagist.org/packages/google/cloud-language) [![Packagist](https://img.shields.io/packagist/dm/google/cloud-language.svg)](https://packagist.org/packages/google/cloud-language)
 
-* [API documentation](http://googlecloudplatform.github.io/google-cloud-php/#/docs/cloud-language/latest)
+* [API documentation](http://googleapis.github.io/google-cloud-php/#/docs/cloud-language/latest)
 
-**NOTE:** This repository is part of [Google Cloud PHP](https://github.com/googlecloudplatform/google-cloud-php). Any
+**NOTE:** This repository is part of [Google Cloud PHP](https://github.com/googleapis/google-cloud-php). Any
 support requests, bug reports, or development contributions should be directed to
 that project.
 
@@ -31,7 +31,7 @@ $ composer require google/cloud
 
 ### Authentication
 
-Please see our [Authentication guide](https://github.com/GoogleCloudPlatform/google-cloud-php/blob/master/AUTHENTICATION.md) for more information
+Please see our [Authentication guide](https://github.com/googleapis/google-cloud-php/blob/master/AUTHENTICATION.md) for more information
 on authenticating your client. Once authenticated, you'll be ready to start making requests.
 
 ### Sample

@@ -21,7 +21,7 @@
         "component": {
             "displayName": "Google Cloud BigQuery",
             "id": "cloud-bigquery",
-            "target": "GoogleCloudPlatform/google-cloud-php-bigquery.git",
+            "target": "googleapis/google-cloud-php-bigquery.git",
             "path": "BigQuery",
             "entry": "src/BigQueryClient.php"
         }

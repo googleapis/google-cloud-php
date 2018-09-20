@@ -17,7 +17,7 @@
     "extra": {
         "component": {
             "id": "cloud-monitoring",
-            "target": "GoogleCloudPlatform/google-cloud-php-monitoring.git",
+            "target": "googleapis/google-cloud-php-monitoring.git",
             "path": "Monitoring",
             "entry": null
         }

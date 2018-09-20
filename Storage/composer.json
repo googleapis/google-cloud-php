@@ -21,7 +21,7 @@
     "extra": {
         "component": {
             "id": "cloud-storage",
-            "target": "GoogleCloudPlatform/google-cloud-php-storage.git",
+            "target": "googleapis/google-cloud-php-storage.git",
             "path": "Storage",
             "entry": "src/StorageClient.php"
         }

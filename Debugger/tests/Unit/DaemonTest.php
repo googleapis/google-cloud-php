@@ -108,7 +108,7 @@ class DaemonTest extends TestCase
         $context = [
             'context' => [
                 'git' => [
-                    'url' => 'https://github.com/GoogleCloudPlatform/google-cloud-php',
+                    'url' => 'https://github.com/googleapis/google-cloud-php',
                     'revisionId' => 'master'
                 ]
             ],
@@ -156,7 +156,7 @@ class DaemonTest extends TestCase
             'context' => [
                 'git' => [
                     'revisionId' => '81b20d097da02ebb6c6fdfbf6900c67a90f2c54b',
-                    'url' => 'https://github.com/GoogleCloudPlatform/google-cloud-php.git'
+                    'url' => 'https://github.com/googleapis/google-cloud-php.git'
                 ]
             ]
         ];

@@ -14,7 +14,7 @@
             "id": "cloud-dialogflow",
             "path": "Dialogflow",
             "entry": null,
-            "target": "GoogleCloudPlatform/google-cloud-php-dialogflow.git"
+            "target": "googleapis/google-cloud-php-dialogflow.git"
         }
     },
     "require": {

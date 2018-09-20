@@ -35,7 +35,7 @@ please see our [gRPC installation guide](https://cloud.google.com/php/grpc).
 
 ### Authentication
 
-Please see our [Authentication guide](https://github.com/GoogleCloudPlatform/google-cloud-php/blob/master/AUTHENTICATION.md) for more information
+Please see our [Authentication guide](https://github.com/googleapis/google-cloud-php/blob/master/AUTHENTICATION.md) for more information
 on authenticating your client. Once authenticated, you'll be ready to start making requests.
 
 ### Sample
@@ -115,8 +115,8 @@ This component is considered alpha. As such, it is still a work-in-progress and 
 
 
 [stackdriver-trace]: https://cloud.google.com/trace/
-[homepage]: http://googlecloudplatform.github.io/google-cloud-php
-[api-docs]: http://googlecloudplatform.github.io/google-cloud-php/#/docs/cloud-trace/latest
+[homepage]: http://googleapis.github.io/google-cloud-php
+[api-docs]: http://googleapis.github.io/google-cloud-php/#/docs/cloud-trace/latest
 [opencensus]: http://opencensus.io
 [opencensus-php]: https://github.com/census-instrumentation/opencensus-php
 [opencensus-migration]: http://opencensus.io/opencensus-php/migrating-stackdriver-trace

@@ -17,7 +17,7 @@
     "extra": {
         "component": {
             "id": "cloud-dlp",
-            "target": "GoogleCloudPlatform/google-cloud-php-dlp.git",
+            "target": "googleapis/google-cloud-php-dlp.git",
             "path": "Dlp",
             "entry": null
         }

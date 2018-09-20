@@ -14,7 +14,7 @@
             "id": "cloud-iot",
             "path": "Iot",
             "entry": null,
-            "target": "GoogleCloudPlatform/google-cloud-php-iot.git"
+            "target": "googleapis/google-cloud-php-iot.git"
         }
     },
     "require": {

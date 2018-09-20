@@ -19,7 +19,7 @@
             "id": "cloud-text-to-speech",
             "path": "TextToSpeech",
             "entry": null,
-            "target": "GoogleCloudPlatform/google-cloud-php-text-to-speech.git"
+            "target": "googleapis/google-cloud-php-text-to-speech.git"
         }
     },
     "require": {

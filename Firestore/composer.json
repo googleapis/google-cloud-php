@@ -21,7 +21,7 @@
     "extra": {
         "component": {
             "id": "cloud-firestore",
-            "target": "GoogleCloudPlatform/google-cloud-php-firestore.git",
+            "target": "googleapis/google-cloud-php-firestore.git",
             "path": "Firestore",
             "entry": "src/FirestoreClient.php"
         }
