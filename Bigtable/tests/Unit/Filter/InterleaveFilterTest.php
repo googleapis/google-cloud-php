@@ -33,7 +33,7 @@ class InterleaveFilterTest extends TestCase
 
     public function setUp()
     {
-        $this->interleaveFilter = Filter::interleave();
+        $this->interleaveFilter = new InterleaveFilter;
     }
 
     public function testClass()
@@ -41,18 +41,9 @@ class InterleaveFilterTest extends TestCase
         $this->assertInstanceOf(InterleaveFilter::class, $this->interleaveFilter);
     }
 
-    /**
-     * @expectedException \Exception
-     * @expectedExceptionMessage Filter can`t be null
-     */
-    public function testFilterShouldThrowOnNull()
-    {
-        $this->interleaveFilter->filter(null);
-    }
-
     public function testFilter()
     {
-        $interleaveFilter =  $this->interleaveFilter->filter(Filter::pass());
+        $interleaveFilter =  $this->interleaveFilter->addFilter(Filter::pass());
         $this->assertEquals($this->interleaveFilter, $interleaveFilter);
         $interleave = new Interleave();
         $interleave->setFilters([Filter::pass()->toProto()]);

@@ -17,88 +17,121 @@
 
 namespace Google\Cloud\Bigtable\Filter;
 
-use Exception;
-use Google\Cloud\Bigtable\Filter;
 use Google\Cloud\Bigtable\V2\RowFilter;
 use Google\Cloud\Bigtable\V2\RowFilter\Condition;
 
 /**
- * Constructs Bigtable Condition filter.
+ * Evaluates one of two filters, depending on the outcome of the predicate
+ * filter.
+ *
+ * Example:
+ * ```
+ * use Google\Cloud\Bigtable\Filter;
+ *
+ * $conditionFilter = Filter::condition();
+ * ```
  */
-class ConditionFilter extends Filter
+class ConditionFilter implements FilterInterface
 {
     /**
      * @var RowFilter
      */
     private $predicateFilter;
+
     /**
-     * @var RowFilter
+     * @var RowFilter|null
      */
     private $trueFilter = null;
+
     /**
-     * @var RowFilter
+     * @var RowFilter|null
      */
     private $falseFilter = null;
 
     /**
-     * Constructs a ConditionFilter class.
-     *
-     * @param Filter $predicateFilter Predicate filter for the condition.
-     * @throws Exception when $predicateFilter parameter is null.
+     * @param FilterInterface $predicateFilter A predicate filter.
      */
-    public function __construct($predicateFilter)
+    public function __construct(FilterInterface $predicateFilter)
     {
-        if ($predicateFilter === null) {
-            throw new Exception('Predicate filter can`t be null');
-        }
         $this->predicateFilter = $predicateFilter->toProto();
     }
 
     /**
-     * Adds true filter to the condition flter.
+     * Adds a true filter to the condition filter. This filter will be applied
+     * if the predicate filter returns any results.
      *
-     * @param Filter $trueFilter Filter to be evaluted when predicate evalutes to true.
-     * @throws Exception when $trueFilter parameter is null.
+     * Example:
+     * ```
+     * use Google\Cloud\Bigtable\Filter;
+     *
+     * $conditionFilter->then(
+     *     Filter::label('hasPrefix')
+     * );
+     * ```
+     *
+     * @param FilterInterface $trueFilter A filter to be evaluted when the
+     *        predicate evalutes to true.
+     * @return ConditionFilter
      */
-    public function then($trueFilter)
+    public function then(FilterInterface $trueFilter)
     {
-        if ($trueFilter === null) {
-            throw new Exception('True filter can`t be null');
-        }
         $this->trueFilter = $trueFilter->toProto();
         return $this;
     }
 
     /**
-     * Adds false filter to condition filter.
+     * Adds a false filter to condition filter. This filter will be applied if
+     * the predicate filter does not return results.
      *
-     * @param Filter $falseFilter Filter to be evaluated when predicate evalutes to false.
-     * @throws Exception when $falseFilter parameter is null.
+     * Example:
+     * ```
+     * use Google\Cloud\Bigtable\Filter;
+     *
+     * $conditionFilter->otherwise(
+     *     Filter::value()->strip()
+     * );
+     * ```
+     *
+     * @param FilterInterface $falseFilter A filter to be evaluated when the
+     *        predicate evalutes to false.
+     * @return ConditionFilter
      */
-    public function otherwise($falseFilter)
+    public function otherwise(FilterInterface $falseFilter)
     {
-        if ($falseFilter === null) {
-            throw new Exception('False filter can`t be null');
-        }
         $this->falseFilter = $falseFilter->toProto();
         return $this;
     }
 
+    /**
+     * Get the proto representation of the filter.
+     *
+     * @internal
+     * @access private
+     * @return RowFilter
+     * @throws \RuntimeException
+     */
     public function toProto()
     {
         if ($this->trueFilter === null && $this->falseFilter === null) {
-            throw new Exception('Either TrueFilter or FalseFilter should be provided');
+            throw new \RuntimeException(
+                sprintf(
+                    'In order to utilize a condition filter you must supply a filter through either %s:%s or %s:%s.',
+                    self::class,
+                    'then()',
+                    self::class,
+                    'otherwise()'
+                )
+            );
         }
-        $condition = new Condition();
-        $condition->setPredicateFilter($this->predicateFilter);
-        if ($this->trueFilter !== null) {
+        $condition = (new Condition)
+            ->setPredicateFilter($this->predicateFilter);
+        if ($this->trueFilter) {
             $condition->setTrueFilter($this->trueFilter);
         }
-        if ($this->falseFilter !== null) {
+        if ($this->falseFilter) {
             $condition->setFalseFilter($this->falseFilter);
         }
-        $rowFilter = new RowFilter();
-        $rowFilter->setCondition($condition);
-        return $rowFilter;
+        return (new RowFilter)
+            ->setCondition($condition);
     }
 }

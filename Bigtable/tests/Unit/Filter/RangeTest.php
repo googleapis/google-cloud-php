@@ -42,7 +42,7 @@ class RangeTest extends TestCase
     }
 
     /**
-     * @expectedException \Exception
+     * @expectedException \RuntimeException
      * @expectedExceptionMessage Start is unbounded
      */
     public function testGetStartShouldThrow()
@@ -51,7 +51,7 @@ class RangeTest extends TestCase
     }
 
     /**
-     * @expectedException \Exception
+     * @expectedException \RuntimeException
      * @expectedExceptionMessage End is unbounded
      */
     public function testGetEndShouldThrow()
@@ -67,7 +67,7 @@ class RangeTest extends TestCase
     }
 
     /**
-     * @expectedException \Exception
+     * @expectedException \RuntimeException
      * @expectedExceptionMessage Start is unbounded
      */
     public function testStartUnboundedShouldThrowOnGetStart()
@@ -76,8 +76,8 @@ class RangeTest extends TestCase
     }
 
     /**
-     * @expectedException \Exception
-     * @expectedExceptionMessage Start can`t be null
+     * @expectedException \InvalidArgumentException
+     * @expectedExceptionMessage startOpen accepts only string or numeric types.
      */
     public function testStartOpenShouldThrow()
     {
@@ -93,8 +93,8 @@ class RangeTest extends TestCase
     }
 
     /**
-     * @expectedException \Exception
-     * @expectedExceptionMessage Start can`t be null
+     * @expectedException \InvalidArgumentException
+     * @expectedExceptionMessage startClosed accepts only string or numeric types.
      */
     public function testStartClosedShouldThrow()
     {
@@ -117,7 +117,7 @@ class RangeTest extends TestCase
     }
 
     /**
-     * @expectedException \Exception
+     * @expectedException \RuntimeException
      * @expectedExceptionMessage End is unbounded
      */
     public function testEndUnboundedShouldThrow()
@@ -126,8 +126,8 @@ class RangeTest extends TestCase
     }
 
     /**
-     * @expectedException \Exception
-     * @expectedExceptionMessage End can`t be null
+     * @expectedException \InvalidArgumentException
+     * @expectedExceptionMessage endOpen accepts only string or numeric types.
      */
     public function testEndOpenShouldThrow()
     {
@@ -143,8 +143,8 @@ class RangeTest extends TestCase
     }
 
     /**
-     * @expectedException \Exception
-     * @expectedExceptionMessage End can`t be null
+     * @expectedException \InvalidArgumentException
+     * @expectedExceptionMessage endClosed accepts only string or numeric types.
      */
     public function testEndClosedShouldThrow()
     {

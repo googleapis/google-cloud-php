@@ -17,16 +17,29 @@
 
 namespace Google\Cloud\Bigtable\Filter;
 
-use Google\Cloud\Bigtable\Filter\Range;
 use Google\Cloud\Bigtable\V2\RowFilter;
 use Google\Cloud\Bigtable\V2\ValueRange;
 
 /**
  * Matches only cells with values that fall within the given value range.
+ *
+ * Example:
+ * ```
+ * use Google\Cloud\Bigtable\Filter;
+ *
+ * $rangeFilter = Filter::value()
+ *     ->range();
+ * ```
  */
-class ValueRangeFilter extends Range
+class ValueRangeFilter extends Range implements FilterInterface
 {
-
+    /**
+     * Get the proto representation of the filter.
+     *
+     * @internal
+     * @access private
+     * @return RowFilter
+     */
     public function toProto()
     {
         $valueRange = new ValueRange();

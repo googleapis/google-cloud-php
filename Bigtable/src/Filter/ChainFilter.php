@@ -17,42 +17,59 @@
 
 namespace Google\Cloud\Bigtable\Filter;
 
-use Exception;
-use Google\Cloud\Bigtable\Filter;
 use Google\Cloud\Bigtable\V2\RowFilter;
 use Google\Cloud\Bigtable\V2\RowFilter\Chain;
 
 /**
- * Chains multiple filter.
+ * Chains together multiple filters.
+ *
+ * Example:
+ * ```
+ * use Google\Cloud\Bigtable\Filter;
+ *
+ * $chainFilter = Filter::chain();
+ * ```
  */
-class ChainFilter extends Filter
+class ChainFilter implements FilterInterface
 {
     /**
-     * @var array RowFilter
+     * @var RowFilter[]
      */
     private $filters = [];
 
     /**
-     * Adds filter to the chain.
+     * Adds a filter to the chain.
      *
-     * @param Filter $filter Filter to be added.
-     * @return $this
+     * Example:
+     * ```
+     * use Google\Cloud\Bigtable\Filter;
+     *
+     * $chainFilter->addFilter(
+     *     Filter::qualifier()->regex('prefix.*')
+     * );
+     * ```
+     *
+     * @param FilterInterface $filter A filter to add to the chain.
+     * @return ChainFilter
      */
-    public function filter($filter)
+    public function addFilter(FilterInterface $filter)
     {
-        if ($filter === null) {
-            throw new Exception('Filter can`t be null');
-        }
         $this->filters[] = $filter->toProto();
         return $this;
     }
 
+    /**
+     * Get the proto representation of the filter.
+     *
+     * @internal
+     * @access private
+     * @return RowFilter
+     */
     public function toProto()
     {
-        $chain = new Chain();
-        $chain->setFilters($this->filters);
-        $rowFilter = new RowFilter();
-        $rowFilter->setChain($chain);
-        return $rowFilter;
+        $chain = (new Chain)
+            ->setFilters($this->filters);
+        return (new RowFilter)
+            ->setChain($chain);
     }
 }

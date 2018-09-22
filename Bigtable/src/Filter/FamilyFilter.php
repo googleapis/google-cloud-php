@@ -17,50 +17,66 @@
 
 namespace Google\Cloud\Bigtable\Filter;
 
-use Exception;
-use Google\Cloud\Bigtable\Filter;
-use Google\Cloud\Bigtable\Filter\SimpleFilter;
 use Google\Cloud\Bigtable\V2\RowFilter;
 
 /**
- * Family related filters.
+ * A builder used to configure column family filters.
+ *
+ * Example:
+ * ```
+ * use Google\Cloud\Bigtable\Filter;
+ *
+ * $builder = Filter::family();
+ * ```
  */
 class FamilyFilter
 {
+    use RegexTrait;
+
     /**
-     * @codingStandardsIgnoreStart
-     * Matches only cells from columns whose families satisfy the given [RE2 regex](https://github.com/google/re2/wiki/Syntax).
-     * For technical reasons, the regex must not contain the `:` character, even if it is not being used as literal.
-     * Note that, since column families cannot contain the new line character `\n`, it is sufficient to use `.` as a
-     * full wildcard when matching column family names.
+     * @var string
+     */
+    private static $regexSetter = 'setFamilyNameRegexFilter';
+
+    /**
+     * Matches only cells from columns whose families satisfy the given
+     * [RE2 regex](https://github.com/google/re2/wiki/Syntax).
+     * For technical reasons, the regex must not contain the `:` character, even
+     * if it is not being used as literal. Note that, since column families
+     * cannot contain the new line character `\n`, it is sufficient to use `.`
+     * as a full wildcard when matching column family names.
      *
-     * @param string $value regex value.
-     * @throws Exception
-     * @codingStandardsIgnoreEnd
+     * Example:
+     * ```
+     * $familyFilter = $builder->regex('prefix.*');
+     * ```
+     *
+     * @param string $value A regex value.
+     * @return SimpleFilter
      */
     public function regex($value)
     {
-        return $this->toFilter($value);
+        return $this->buildRegexFilter($value, self::$regexSetter);
     }
 
     /**
      * Matches only cells from columns whose families match the value.
      *
-     * @param string $value exact value
-     * @throws Exception
+     * Example:
+     * ```
+     * $familyFilter = $builder->exectMatch('cf1');
+     * ```
+     *
+     * @param string $value An exact value to match.
+     * @return SimpleFilter
+     * @throws \InvalidArgumentException When the provided value is not an array
+     *         or string.
      */
     public function exactMatch($value)
     {
-        return $this->toFilter(Filter::escapeLiteralValue($value));
-    }
-
-    private function toFilter($value)
-    {
-        if ($value === null) {
-            throw new Exception('Value can`t be null');
-        }
-        $rowFilter = new RowFilter();
-        $rowFilter->setFamilyNameRegexFilter($value);
-        return new SimpleFilter($rowFilter);
+        return $this->buildRegexFilter(
+            $this->escapeLiteralValue($value),
+            self::$regexSetter
+        );
     }
 }

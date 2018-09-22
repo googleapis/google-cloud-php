@@ -17,9 +17,9 @@
 
 namespace Google\Cloud\Bigtable\Tests\Unit\Filter;
 
-use Google\Cloud\Bigtable\Filter;
 use Google\Cloud\Bigtable\Filter\QualifierFilter;
 use Google\Cloud\Bigtable\Filter\QualifierRangeFilter;
+use Google\Cloud\Bigtable\Filter\SimpleFilter;
 use Google\Cloud\Bigtable\V2\RowFilter;
 use PHPUnit\Framework\TestCase;
 
@@ -33,51 +33,32 @@ class QualifierFilterTest extends TestCase
 
     public function setUp()
     {
-        $this->qualifierFilter = Filter::qualifier();
-    }
-
-    /**
-     * @expectedException \Exception
-     * @expectedExceptionMessage Value can`t be null
-     */
-    public function testRegexShouldThrowOnNull()
-    {
-        $this->qualifierFilter->regex(null);
+        $this->qualifierFilter = new QualifierFilter;
     }
 
     public function testRegex()
     {
         $filter = $this->qualifierFilter->regex('v1');
-        $this->assertInstanceOf(Filter::class, $filter);
+        $this->assertInstanceOf(SimpleFilter::class, $filter);
         $rowFilter = new RowFilter();
         $rowFilter->setColumnQualifierRegexFilter('v1');
         $this->assertEquals($rowFilter, $filter->toProto());
-    }
-
-    /**
-     * @expectedException \Exception
-     * @expectedExceptionMessage Value can`t be null
-     */
-    public function testExactMatchShouldThrowOnNull()
-    {
-        $this->qualifierFilter->exactMatch(null);
     }
 
     public function testExactMatch()
     {
         $filter = $this->qualifierFilter->exactMatch('v1');
-        $this->assertInstanceOf(Filter::class, $filter);
+        $this->assertInstanceOf(SimpleFilter::class, $filter);
         $rowFilter = new RowFilter();
         $rowFilter->setColumnQualifierRegexFilter('v1');
         $this->assertEquals($rowFilter, $filter->toProto());
     }
 
-    /**
-     * @expectedException \Exception
-     * @expectedExceptionMessage Family can`t be null
-     */
-    public function testRangeWIthInFamilyShouldThrowOnNullFamily()
+    public function testRangeWithInFamily()
     {
-        $this->qualifierFilter->rangeWithInFamily(null);
+        $this->assertInstanceOf(
+            QualifierRangeFilter::class,
+            $this->qualifierFilter->rangeWithInFamily('cf1')
+        );
     }
 }

@@ -17,24 +17,39 @@
 
 namespace Google\Cloud\Bigtable\Filter;
 
-use Google\Cloud\Bigtable\Filter;
 use Google\Cloud\Bigtable\V2\RowFilter;
 
 /**
- * Constructs Simple filter implmenting toProto from abstract Filter class.
+ * A simple filter. Instead of constructing this class manually please
+ * utilize the static builders found in {@see Google\Cloud\Bigtable\Filter}.
+ *
+ * @internal
  */
-class SimpleFilter extends Filter
+class SimpleFilter implements FilterInterface
 {
     /**
      * @var RowFilter
      */
     private $proto;
 
-    public function __construct($rowFilter)
+    /**
+     * @internal
+     * @access private
+     * @param RowFilter $rowFilter A RowFilter to wrap.
+     */
+    public function __construct(RowFilter $rowFilter)
     {
         $this->proto = $rowFilter;
     }
 
+    /**
+     * Get the proto representation of the filter.
+     *
+     * @internal
+     * @access private
+     * @return RowFilter
+     * @throws \RuntimeException
+     */
     public function toProto()
     {
         return $this->proto;

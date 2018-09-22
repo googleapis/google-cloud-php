@@ -17,8 +17,8 @@
 
 namespace Google\Cloud\Bigtable\Tests\Unit\Filter;
 
-use Google\Cloud\Bigtable\Filter;
 use Google\Cloud\Bigtable\Filter\FamilyFilter;
+use Google\Cloud\Bigtable\Filter\SimpleFilter;
 use Google\Cloud\Bigtable\V2\RowFilter;
 use PHPUnit\Framework\TestCase;
 
@@ -32,40 +32,22 @@ class FamilyFilterTest extends TestCase
 
     public function setUp()
     {
-        $this->familyFilter = Filter::family();
-    }
-
-    /**
-     * @expectedException \Exception
-     * @expectedExceptionMessage Value can`t be null
-     */
-    public function testRegexShouldThrowOnNull()
-    {
-        $this->familyFilter->regex(null);
+        $this->familyFilter = new FamilyFilter;
     }
 
     public function testRegex()
     {
         $filter = $this->familyFilter->regex('v1');
-        $this->assertInstanceOf(Filter::class, $filter);
+        $this->assertInstanceOf(SimpleFilter::class, $filter);
         $rowFilter = new RowFilter();
         $rowFilter->setFamilyNameRegexFilter('v1');
         $this->assertEquals($rowFilter, $filter->toProto());
     }
 
-    /**
-     * @expectedException \Exception
-     * @expectedExceptionMessage Value can`t be null
-     */
-    public function testExactMatchShouldThrowOnNull()
-    {
-        $this->familyFilter->exactMatch(null);
-    }
-
     public function testExactMatch()
     {
         $filter = $this->familyFilter->exactMatch('v1');
-        $this->assertInstanceOf(Filter::class, $filter);
+        $this->assertInstanceOf(SimpleFilter::class, $filter);
         $rowFilter = new RowFilter();
         $rowFilter->setFamilyNameRegexFilter('v1');
         $this->assertEquals($rowFilter, $filter->toProto());

@@ -17,62 +17,85 @@
 
 namespace Google\Cloud\Bigtable\Filter;
 
-use Exception;
 use Google\Cloud\Bigtable\Filter;
-use Google\Cloud\Bigtable\Filter\QualifierRangeFilter;
-use Google\Cloud\Bigtable\Filter\SimpleFilter;
 use Google\Cloud\Bigtable\V2\RowFilter;
 
 /**
- * Constructs Qualifier related filters.
+ * A builder used to configure qualifier based filters.
+ *
+ * Example:
+ * ```
+ * use Google\Cloud\Bigtable\Filter;
+ *
+ * $builder = Filter::qualifier();
+ * ```
  */
 class QualifierFilter
 {
+    use RegexTrait;
+
     /**
-     * @codingStandardsIgnoreStart
-     * Matches only cells from columns whose qualifiers satisfy the given [RE2 regex](https://github.com/google/re2/wiki/Syntax).
-     * Note that, since column qualifiers can contain arbitrary bytes, the `\C` escape sequence must be used if a true
-     * wildcard is desired. The `.` character will not match the new line character `\n`, which may be present in a binary qualifier.
+     * @var string
+     */
+    private static $regexSetter = 'setColumnQualifierRegexFilter';
+
+    /**
+     * Matches only cells from columns whose qualifiers satisfy the given
+     * [RE2 regex](https://github.com/google/re2/wiki/Syntax). Note that, since
+     * column qualifiers can contain arbitrary bytes, the `\C` escape sequence
+     * must be used if a true wildcard is desired. The `.` character will not
+     * match the new line character `\n`, which may be present in a binary
+     * qualifier.
      *
-     * @param string $value regex value.
-     * @throws Exception
-     * @codingStandardsIgnoreEnd
+     * Example:
+     * ```
+     * $qualifierFilter = $builder->regex('prefix.*');
+     * ```
+     *
+     * @param string $value A regex value.
+     * @return SimpleFilter
      */
     public function regex($value)
     {
-        return $this->toFilter($value);
+        return $this->buildRegexFilter($value, self::$regexSetter);
     }
 
     /**
      * Matches only cells from rows whose keys equal the value. In other words, passes through the
      * entire row when the key matches, and otherwise produces an empty row.
      *
-     * @param string $value exact value
-     * @throws Exception
+     * Example:
+     * ```
+     * $qualifierFilter = $builder->exactMatch('cq1');
+     * ```
+     *
+     * @param string $value An exact value.
+     * @return SimpleFilter
+     * @throws \InvalidArgumentException When the provided value is not an array
+     *         or string.
      */
     public function exactMatch($value)
     {
-        return $this->toFilter(Filter::escapeLiteralValue($value));
+        return $this->buildRegexFilter(
+            $this->escapeLiteralValue($value),
+            self::$regexSetter
+        );
     }
 
     /**
-     * Construct a {@see QualifierRangeFilter} that can create a {@see Google\Cloud\Bigtable\V2\ColumnRange} oriented
-     * {@see Filter}.
-     * @param string $family Family name.
+     * Returns a builder used to configure qualifier range filters.
+     *
+     * Example:
+     * ```
+     * $qualifierFilter = $builder->rangeWithinFamily('cf1')
+     *     ->of('cq1', 'cq10');
+     * ```
+     *
+     * @param string $family The family name to search within.
      * @return QualifierRangeFilter
      */
-    public function rangeWithInFamily($family)
+    public function rangeWithinFamily($family)
     {
         return new QualifierRangeFilter($family);
-    }
-
-    private function toFilter($value)
-    {
-        if ($value === null) {
-            throw new Exception('Value can`t be null');
-        }
-        $rowFilter = new RowFilter();
-        $rowFilter->setColumnQualifierRegexFilter($value);
-        return new SimpleFilter($rowFilter);
     }
 }

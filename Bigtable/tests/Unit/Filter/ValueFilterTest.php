@@ -17,7 +17,7 @@
 
 namespace Google\Cloud\Bigtable\Tests\Unit\Filter;
 
-use Google\Cloud\Bigtable\Filter;
+use Google\Cloud\Bigtable\Filter\SimpleFilter;
 use Google\Cloud\Bigtable\Filter\ValueFilter;
 use Google\Cloud\Bigtable\Filter\ValueRangeFilter;
 use Google\Cloud\Bigtable\V2\RowFilter;
@@ -33,40 +33,22 @@ class ValueFilterTest extends TestCase
 
     public function setUp()
     {
-        $this->valueFilter = Filter::value();
-    }
-
-    /**
-     * @expectedException \Exception
-     * @expectedExceptionMessage Value can`t be null
-     */
-    public function testRegexShouldThrowOnNull()
-    {
-        $this->valueFilter->regex(null);
+        $this->valueFilter = new ValueFilter;
     }
 
     public function testRegex()
     {
         $filter = $this->valueFilter->regex('v1');
-        $this->assertInstanceOf(Filter::class, $filter);
+        $this->assertInstanceOf(SimpleFilter::class, $filter);
         $rowFilter = new RowFilter();
         $rowFilter->setValueRegexFilter('v1');
         $this->assertEquals($rowFilter, $filter->toProto());
     }
 
-    /**
-     * @expectedException \Exception
-     * @expectedExceptionMessage Value can`t be null
-     */
-    public function testExactMatchShouldThrowOnNull()
-    {
-        $this->valueFilter->exactMatch(null);
-    }
-
     public function testExactMatch()
     {
         $filter = $this->valueFilter->exactMatch('v1');
-        $this->assertInstanceOf(Filter::class, $filter);
+        $this->assertInstanceOf(SimpleFilter::class, $filter);
         $rowFilter = new RowFilter();
         $rowFilter->setValueRegexFilter('v1');
         $this->assertEquals($rowFilter, $filter->toProto());

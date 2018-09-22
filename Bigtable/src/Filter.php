@@ -17,10 +17,10 @@
 
 namespace Google\Cloud\Bigtable;
 
-use Exception;
 use Google\Cloud\Bigtable\Filter\ChainFilter;
 use Google\Cloud\Bigtable\Filter\ConditionFilter;
 use Google\Cloud\Bigtable\Filter\FamilyFilter;
+use Google\Cloud\Bigtable\Filter\FilterInterface;
 use Google\Cloud\Bigtable\Filter\InterleaveFilter;
 use Google\Cloud\Bigtable\Filter\KeyFilter;
 use Google\Cloud\Bigtable\Filter\LimitFilter;
@@ -32,26 +32,81 @@ use Google\Cloud\Bigtable\Filter\ValueFilter;
 use Google\Cloud\Bigtable\V2\RowFilter;
 
 /**
- * Class to create hierarchy of filters for the CheckAndMutateRow and ReadRows Query.
+ * This class houses static factory methods which can be used to create a
+ * hierarchy of filters for use with
+ * {@see Google\Cloud\Bigtable\DataClient::checkAndMutateRow()} or
+ * {@see Google\Cloud\Bigtable\DataClient::readRows()}.
+ *
+ * Filters are used to take an input row and produce an alternate view of the
+ * row based on the specified rules. For example, a filter might trim down a row
+ * to include just the cells from columns matching a given regular expression,
+ * or might return all the cells of a row but not their values. More complicated
+ * filters can be composed out of these components to express requests such as,
+ * "within every column of a particular family, give just the two most recent
+ * cells which are older than timestamp X."
+ *
+ * There are two broad categories of filters (true filters and transformers),
+ * as well as two ways to compose simple filters into more complex ones
+ * (chains and interleaves). They work as follows:
+ *
+ * True filters alter the input row by excluding some of its cells wholesale
+ * from the output row. An example of a true filter is
+ * {@see Google\Cloud\Bigtable\Filter\ValueFilter::regex()}, which excludes
+ * cells whose values don't match the specified pattern. All regex true filters
+ * use [RE2 syntax](https://github.com/google/re2/wiki/Syntax) in raw byte mode
+ * (RE2::Latin1), and are evaluated as full matches. An important point to keep
+ * in mind is that `RE2(.)` is equivalent by default to `RE2([^\n])`, meaning
+ * that it does not match newlines.
+ *
+ * Transformers alter the input row by changing the values of some of its cells
+ * in the output, without excluding them completely. An example of such a
+ * transformer is {@see Google\Cloud\Bigtable\Filter\ValueFilter::strip()}.
+ *
+ * The total serialized size of a filter message must not
+ * exceed 4096 bytes, and filters may not be nested within each other
+ * (in Chains or Interleaves) to a depth of more than 20.
  *
  * Example:
  * ```
+ * use Google\Cloud\Bigtable\DataClient;
  * use Google\Cloud\Bigtable\Filter;
+ *
+ * $dataClient = new DataClient('my-instance', 'my-table');
  * $rowFilter = Filter::chain()
- *              ->filter(Filter::qualifier()->regex('prefix.*'))
- *              ->filter(Filter::limit()->cellsPerRow(10))
- *              ->toProto();
+ *     ->addFilter(Filter::qualifier()->regex('prefix.*'))
+ *     ->addFilter(Filter::limit()->cellsPerRow(10));
+ *
+ * $rows = $dataClient->readRows([
+ *     'filter' => $rowFilter
+ * ]);
+ *
+ * foreach ($rows as $row) {
+ *     print_r($row) . PHP_EOL;
+ * }
  * ```
  */
-abstract class Filter
+class Filter
 {
-
     /**
-     * Creates and empty chain filter list. Fitlers can be added to the chain by invoking {@see ChainFilter::filter()}.
+     * Creates an empty chain filter.
      *
-     * The elements of "filters" are chained together to process the input row:
-     * in row -> filter0 -> intermediate row -> filter1 -> ... -> filterN -> out row
-     * The full chain is executed atomatically.
+     * Filters can be added to the chain by invoking
+     * {@see Google\Cloud\Bigtable\Filter\ChainFilter::addFilter()}.
+     *
+     * The filters are applied in sequence, progressively narrowing the results.
+     * The full chain is executed atomically.
+     *
+     * Conceptually, the process looks like the following:
+     * `in row -> filter0 -> intermediate row -> filter1 -> ... -> filterN -> out row`.
+     *
+     * Example:
+     * ```
+     * use Google\Cloud\Bigtable\Filter;
+     *
+     * $rowFilter = Filter::chain()
+     *     ->addFilter(Filter::qualifier()->regex('prefix.*'))
+     *     ->addFilter(Filter::limit()->cellsPerRow(10));
+     * ```
      *
      * @return ChainFilter
      */
@@ -61,13 +116,46 @@ abstract class Filter
     }
 
     /**
-     * Creates and empty interleave filter list. FIlters can be added to the interleave by invoking
-     * {@see InterleaveFilter::filter()}.
+     * Creates an empty interleave filter.
      *
-     * The elements of "filters" all process a copy of the input row, and the results are pooled, sorted,
-     * and combined into a single output row. If multiple cells are produced with the same column and timestamp,
-     * they will all appear in the output row in an unspecified mutual order.
-     * The full chain is executed atomically.
+     * Filters can be added to the interleave by invoking
+     * {@see Google\Cloud\Bigtable\Filter\InterleaveFilter::addFilter()}.
+     *
+     * The supplied filters all process a copy of the input row, and the
+     * results are pooled, sorted, and combined into a single output row. If
+     * multiple cells are produced with the same column and timestamp, they will
+     * all appear in the output row in an unspecified mutual order. The full
+     * chain is executed atomically.
+     *
+     * Consider the following example, with three filters:
+     * ```
+     *                                  input row
+     *                                      |
+     *            -----------------------------------------------------
+     *            |                         |                         |
+     *         filter1                   filter2                   filter3
+     *            |                         |                         |
+     *     1: foo,bar,10,x             foo,bar,10,z              far,bar,7,a
+     *     2: foo,blah,11,z            far,blah,5,x              far,blah,5,x
+     *            |                         |                         |
+     *            -----------------------------------------------------
+     *                                      |
+     *     1:                      foo,bar,10,z   // could have switched with #2
+     *     2:                      foo,bar,10,x   // could have switched with #1
+     *     3:                      foo,blah,11,z
+     *     4:                      far,bar,7,a
+     *     5:                      far,blah,5,x   // identical to #6
+     *     6:                      far,blah,5,x   // identical to #5
+     * ```
+     *
+     * Example:
+     * ```
+     * use Google\Cloud\Bigtable\Filter;
+     *
+     * $rowFilter = Filter::interleave()
+     *     ->addFilter(Filter::key()->regex('prefix.*'))
+     *     ->addFilter(Filter::sink());
+     * ```
      *
      * @return InterleaveFilter
      */
@@ -77,24 +165,50 @@ abstract class Filter
     }
 
     /**
-     * Creates and empty condition filter. The filter results of the predicate can be configured by invoking
-     * {@see ConditionFilter::then()} and {@see ConditionFilter::otherwise()}.
+     * Creates a condition filter.
      *
-     * A RowFilter which evalutes one of two possible RowFilters, depending on whether or not a predicate RowFilter
-     * outputs any cells from right input row.
+     * If the result of predicate filter outputs any cells the filter configured
+     * by {@see Google\Cloud\Bigtable\Filter\ConditionFilter::then()} will be
+     * applied. Conversely, if the predicate results in no cells, the filter
+     * configured by
+     * {@see Google\Cloud\Bigtable\Filter\ConditionFilter::otherwise()} will
+     * then be applied instead.
      *
-     * IMPORTANT NOTE: The predicate filter does not execute atomically with the {@see ConditionFilter::then()}
-     * and {@see ConditionFilter::otherwise()} filters, which may lead to inconsistent or unexpected results.
-     * Additionally, {@see ConditionFilter} may have poor performance, especially when filters are set for the
-     * {@see ConditionFilter::otherwise()}.
+     * IMPORTANT NOTE: The predicate filter does not execute atomically with the
+     * {@see Google\Cloud\Bigtable\Filter\ConditionFilter::then()}
+     * and {@see Google\Cloud\Bigtable\Filter\ConditionFilter::otherwise()}
+     * filters, which may lead to inconsistent or unexpected results.
+     * Additionally, {@see Google\Cloud\Bigtable\Filter\ConditionFilter} may
+     * have poor performance, especially when filters are set for the
+     * {@see Google\Cloud\Bigtable\Filter\ConditionFilter::otherwise()}.
+     *
+     * Example:
+     * ```
+     * use Google\Cloud\Bigtable\Filter;
+     *
+     * $rowFilter = Filter::condition(Filter::key()->regex('prefix.*'))
+     *     ->then(Filter::label('hasPrefix'))
+     *     ->otherwise(Filter::value()->strip());
+     * ```
+     *
+     * @param FilterInterface $predicateFilter A predicate filter.
+     * @return ConditionFilter
      */
-    public static function condition($predicateFilter)
+    public static function condition(FilterInterface $predicateFilter)
     {
         return new ConditionFilter($predicateFilter);
     }
 
     /**
-     * Returns KeyFilter for the row key related filters.
+     * Returns a builder used to configure row key filters.
+     *
+     * Example:
+     * ```
+     * use Google\Cloud\Bigtable\Filter;
+     *
+     * $rowFilter = Filter::key()
+     *     ->regex('prefix.*');
+     * ```
      *
      * @return KeyFilter
      */
@@ -104,7 +218,15 @@ abstract class Filter
     }
 
     /**
-     * Returns FamilyFilter for column family related filters.
+     * Returns a builder used to configure column family filters.
+     *
+     * Example:
+     * ```
+     * use Google\Cloud\Bigtable\Filter;
+     *
+     * $rowFilter = Filter::family()
+     *     ->regex('prefix.*');
+     * ```
      *
      * @return FamilyFilter
      */
@@ -114,7 +236,15 @@ abstract class Filter
     }
 
     /**
-     * Returns QualifierFilter for the column qualifier related filters.
+     * Returns a builder used to configure column qualifier filters.
+     *
+     * Example:
+     * ```
+     * use Google\Cloud\Bigtable\Filter;
+     *
+     * $rowFilter = Filter::qualifier()
+     *     ->regex('prefix.*');
+     * ```
      *
      * @return QualifierFilter
      */
@@ -124,7 +254,16 @@ abstract class Filter
     }
 
     /**
-     * Returns TimestampFilter for timestamp related filters.
+     * Returns a builder used to configure timestamp related filters.
+     *
+     * Example:
+     * ```
+     * use Google\Cloud\Bigtable\Filter;
+     *
+     * $rowFilter = Filter::timestamp()
+     *     ->range()
+     *     ->of(1536766964380000, 1536766964383000);
+     * ```
      *
      * @return TimestampFilter
      */
@@ -134,7 +273,16 @@ abstract class Filter
     }
 
     /**
-     * Returns ValueFilter for value related filters.
+     * Returns a builder used to configure value related filters.
+     *
+     * Example:
+     * ```
+     * use Google\Cloud\Bigtable\Filter;
+     *
+     * $rowFilter = Filter::value()
+     *     ->range()
+     *     ->of('a', 'z');
+     * ```
      *
      * @return ValueFilter
      */
@@ -144,7 +292,15 @@ abstract class Filter
     }
 
     /**
-     * Returns OffsetFilter for offset related filters.
+     * Returns a builder used to configure offset related filters.
+     *
+     * Example:
+     * ```
+     * use Google\Cloud\Bigtable\Filter;
+     *
+     * $rowFilter = Filter::offset()
+     *     ->cellsPerRow(1);
+     * ```
      *
      * @return OffsetFilter
      */
@@ -154,7 +310,15 @@ abstract class Filter
     }
 
     /**
-     * Returns LimitFilter for limit related filters.
+     * Returns a builder used to configure limit related filters.
+     *
+     * Example:
+     * ```
+     * use Google\Cloud\Bigtable\Filter;
+     *
+     * $rowFilter = Filter::limit()
+     *     ->cellsPerRow(1);
+     * ```
      *
      * @return LimitFilter
      */
@@ -164,9 +328,17 @@ abstract class Filter
     }
 
     /**
-     * Matches all cells, regardless of input. Functionally equivalent to having no filter.
+     * Matches all cells, regardless of input. Functionally equivalent to having
+     * no filter.
      *
-     * @return Filter
+     * Example:
+     * ```
+     * use Google\Cloud\Bigtable\Filter;
+     *
+     * $rowFilter = Filter::pass();
+     * ```
+     *
+     * @return SimpleFilter
      */
     public static function pass()
     {
@@ -176,9 +348,17 @@ abstract class Filter
     }
 
     /**
-     * Does not match any cells, regardless of input. Useful for temporarily disabling just part of a filter.
+     * Does not match any cells, regardless of input. Useful for temporarily
+     * disabling just part of a filter.
      *
-     * @return Filter
+     * Example:
+     * ```
+     * use Google\Cloud\Bigtable\Filter;
+     *
+     * $rowFilter = Filter::block();
+     * ```
+     *
+     * @return SimpleFilter
      */
     public static function block()
     {
@@ -188,12 +368,19 @@ abstract class Filter
     }
 
     /**
-     * @codingStandardsIgnoreStart
-     * Outputs all cells directly to the output of the read rather than to any parent filter.
-     * For advanced usage, [see comments in] (https://github.com/googleapis/googleapis/blob/master/google/bigtable/v2/data.proto) for more detail.
+     * Outputs all cells directly to the output of the read rather than to any
+     * parent filter. For advanced usage,
+     * [see comments in](https://github.com/googleapis/googleapis/blob/master/google/bigtable/v2/data.proto)
+     * for more detail.
      *
-     * @return Filter
-     * @codingStandardsIgnoreEnd
+     * Example:
+     * ```
+     * use Google\Cloud\Bigtable\Filter;
+     *
+     * $rowFilter = Filter::sink();
+     * ```
+     *
+     * @return SimpleFilter
      */
     public static function sink()
     {
@@ -203,15 +390,27 @@ abstract class Filter
     }
 
     /**
-     * Applies the given label to all cells in the output row. This allows the caller to determine which results were
-     * produced from which part of the filter.
+     * Applies the given label to all cells in the output row. This allows the
+     * caller to determine which results were produced from which part of the
+     * filter.
      *
-     * Due to technical limitation, it is not crrently possible to apply multiple labels to a cell. As a result,
-     * a {@see ChainFilter} may have no more than one sub-filter which contains a lable. It is okay for an
-     * {@see InterleaveFilter} to contain multiple labels, as they will be applied to separate copies of the input.
-     * This may be relaxed in the future.
+     * Due to technical limitation, it is not currently possible to apply
+     * multiple labels to a cell. As a result, a
+     * {@see Google\Cloud\Bigtable\Filter\ChainFilter} may have no more than one
+     * sub-filter which contains a label. It is okay for a
+     * {@see Google\Cloud\Bigtable\Filter\InterleaveFilter} to contain multiple
+     * labels, as they will be applied to separate copies of the input. This may
+     * be relaxed in the future.
      *
-     * @return Filter
+     * Example:
+     * ```
+     * use Google\Cloud\Bigtable\Filter;
+     *
+     * $rowFilter = Filter::label('my-label');
+     * ```
+     *
+     * @param string $value The label to apply.
+     * @return SimpleFilter
      */
     public static function label($value)
     {
@@ -219,48 +418,4 @@ abstract class Filter
         $rowFilter->setApplyLabelTransformer($value);
         return new SimpleFilter($rowFilter);
     }
-
-    public static function escapeLiteralValue($value)
-    {
-        if ($value === null) {
-            return null;
-        }
-        $nullBytes = unpack('C*', '\\x00');
-        $byteValue = null;
-        if (is_array($value)) {
-            $byteValue = $value;
-        } elseif (is_string($value)) {
-            if (preg_match('//u', $value)) {
-                $byteValue = unpack('C*', $value);
-            } else {
-                $byteValue = unpack('C*', utf8_encode($value));
-            }
-        } else {
-            throw new Exception('Expect byte array or string');
-        }
-        $quotedBytes = [];
-        foreach ($byteValue as $byte) {
-            if (($byte < ord('a') || $byte > ord('z'))
-                && ($byte < ord('A') || $byte > ord('Z'))
-                && ($byte < ord('0') || $byte > ord('9'))
-                && $byte != ord('_')
-                && ($byte & 128) ==0
-            ) {
-                if ($byte == 0) {
-                    $quotedBytes =  array_merge($quotedBytes, $nullBytes);
-                    continue;
-                }
-                $quotedBytes[] = ord('\\');
-            }
-            $quotedBytes[] = $byte;
-        }
-        return implode(array_map("chr", $quotedBytes));
-    }
-
-    /**
-     * Abstract method to be implemented by specific filter.
-     *
-     * @return RowFilter
-     */
-    abstract public function toProto();
 }

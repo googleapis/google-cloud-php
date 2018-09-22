@@ -17,46 +17,76 @@
 
 namespace Google\Cloud\Bigtable\Filter;
 
-use Exception;
-use Google\Cloud\Bigtable\Filter;
-use Google\Cloud\Bigtable\Filter\SimpleFilter;
-use Google\Cloud\Bigtable\Filter\ValueRangeFilter;
 use Google\Cloud\Bigtable\V2\RowFilter;
 
 /**
- * Constructs Value related filter.
+ * A builder used to configure value based filters.
+ *
+ * Example:
+ * ```
+ * use Google\Cloud\Bigtable\Filter;
+ *
+ * $builder = Filter::value();
+ * ```
  */
 class ValueFilter
 {
+    use RegexTrait;
+
     /**
-     * @codingStandardsIgnoreStart
-     * Matches only cells with values that satisfy the given [RE2 regex](https://github.com/google/re2/wiki/Syntax).
-     * Note that, since cell values can contain arbitrary bytes, the `\C` escape sequence must be used if a true
-     * wildcard is desired. The `.` character will not match the new line character `\n`, which may be present in a binary value.
+     * @var string
+     */
+    private static $regexSetter = 'setValueRegexFilter';
+
+    /**
+     * Matches only cells with values that satisfy the given
+     * [RE2 regex](https://github.com/google/re2/wiki/Syntax). Note that, since
+     * cell values can contain arbitrary bytes, the `\C` escape sequence must be
+     * used if a true wildcard is desired. The `.` character will not match the
+     * new line character `\n`, which may be present in a binary value.
      *
-     * @param string $value regex value.
-     * @throws Exception
-     * @codingStandardsIgnoreEnd
+     * Example:
+     * ```
+     * $valueFilter = $builder->regex('prefix.*');
+     * ```
+     *
+     * @param string $value A regex value.
+     * @return SimpleFilter
      */
     public function regex($value)
     {
-        return $this->toFilter($value);
+        return $this->buildRegexFilter($value, self::$regexSetter);
     }
 
     /**
      * Matches only cells with values that match the given value.
      *
-     * @param string $value exact value
-     * @throws Exception
+     * Example:
+     * ```
+     * $valueFilter = $builder->exactMatch('my-value');
+     * ```
+     *
+     * @param string $value An exact value to match.
+     * @return SimpleFilter
+     * @throws \InvalidArgumentException When the provided value is not an array
+     *         or string.
      */
     public function exactMatch($value)
     {
-        return $this->toFilter(Filter::escapeLiteralValue($value));
+        return $this->buildRegexFilter(
+            $this->escapeLiteralValue($value),
+            self::$regexSetter
+        );
     }
 
     /**
-     * onstruct a {@see ValueRangeFilter} that can create a {@see Google\Cloud\Bigtable\V2\ValueRange} oriented
-     * {@see Google\Cloud\Bigtable\Filter}.
+     * Returns a builder used to configure value range filters.
+     *
+     * Example:
+     * ```
+     * $valueFilter = $builder->range()
+     *     ->of('value1', 'value10');
+     * ```
      *
      * @return ValueRangeFilter
      */
@@ -66,22 +96,14 @@ class ValueFilter
     }
 
     /**
-     * Replaces each cell's value with the empty string.
+     * Replaces each cell's value with an empty string.
+     *
+     * @return SimpleFilter
      */
     public function strip()
     {
-        $rowFilter = new RowFilter();
-        $rowFilter->setStripValueTransformer(true);
-        return new SimpleFilter($rowFilter);
-    }
-
-    private function toFilter($value)
-    {
-        if ($value === null) {
-            throw new Exception('Value can`t be null');
-        }
-        $rowFilter = new RowFilter();
-        $rowFilter->setValueRegexFilter($value);
-        return new SimpleFilter($rowFilter);
+        return new SimpleFilter(
+            (new RowFilter)->setStripValueTransformer(true)
+        );
     }
 }

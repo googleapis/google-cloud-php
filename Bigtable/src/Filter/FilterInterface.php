@@ -17,33 +17,20 @@
 
 namespace Google\Cloud\Bigtable\Filter;
 
-use Google\Cloud\Bigtable\Filter\TimestampRangeFilter;
+use Google\Cloud\Bigtable\V2\RowFilter;
 
 /**
- * A builder used to configure timestamp based filters.
- *
- * Example:
- * ```
- * use Google\Cloud\Bigtable\Filter;
- *
- * $builder = Filter::timestamp();
- * ```
+ * A contract to be implemented by filters.
  */
-class TimestampFilter
+interface FilterInterface
 {
     /**
-     * Matches only cells with timestamps within the given range.
+     * Get the proto representation of the filter.
      *
-     * Example:
-     * ```
-     * $timestampRangeFilter = $builder->range()
-     *     ->of(1536766964380000, 1536766964383000);
-     * ```
-     *
-     * @return TimestampRangeFilter
+     * @internal
+     * @access private
+     * @return RowFilter
+     * @throws \RuntimeException
      */
-    public function range()
-    {
-        return new TimestampRangeFilter();
-    }
+    public function toProto();
 }

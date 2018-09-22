@@ -17,27 +17,43 @@
 
 namespace Google\Cloud\Bigtable\Filter;
 
-use Exception;
-use Google\Cloud\Bigtable\Filter\Range;
 use Google\Cloud\Bigtable\V2\ColumnRange;
 use Google\Cloud\Bigtable\V2\RowFilter;
 
 /**
  * Matches only cells from columns within the given range.
+ *
+ * Example:
+ * ```
+ * use Google\Cloud\Bigtable\Filter;
+ *
+ * $rangeFilter = Filter::qualifier()
+ *     ->rangeWithinFamily('cf1');
+ * ```
  */
-class QualifierRangeFilter extends Range
+class QualifierRangeFilter extends Range implements FilterInterface
 {
+    /**
+     * @var string
+     */
     private $family;
 
+    /**
+     * @param string $family The family name to search within.
+     */
     public function __construct($family)
     {
-        if ($family === null) {
-            throw new Exception('Family can`t be null');
-        }
         parent::__construct();
         $this->family = $family;
     }
 
+    /**
+     * Get the proto representation of the filter.
+     *
+     * @internal
+     * @access private
+     * @return RowFilter
+     */
     public function toProto()
     {
         $columnRange = new ColumnRange();

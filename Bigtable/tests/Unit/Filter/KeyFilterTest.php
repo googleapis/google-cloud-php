@@ -17,8 +17,8 @@
 
 namespace Google\Cloud\Bigtable\Tests\Unit\Filter;
 
-use Google\Cloud\Bigtable\Filter;
 use Google\Cloud\Bigtable\Filter\KeyFilter;
+use Google\Cloud\Bigtable\Filter\SimpleFilter;
 use Google\Cloud\Bigtable\V2\RowFilter;
 use PHPUnit\Framework\TestCase;
 
@@ -32,47 +32,29 @@ class KeyFilterTest extends TestCase
 
     public function setUp()
     {
-        $this->keyFilter = Filter::key();
-    }
-
-    /**
-     * @expectedException \Exception
-     * @expectedExceptionMessage Value can`t be null
-     */
-    public function testRegexShouldThrowOnNull()
-    {
-        $this->keyFilter->regex(null);
+        $this->keyFilter = new KeyFilter;
     }
 
     public function testRegex()
     {
         $filter = $this->keyFilter->regex('v1');
-        $this->assertInstanceOf(Filter::class, $filter);
+        $this->assertInstanceOf(SimpleFilter::class, $filter);
         $rowFilter = new RowFilter();
         $rowFilter->setRowKeyRegexFilter('v1');
         $this->assertEquals($rowFilter, $filter->toProto());
-    }
-
-    /**
-     * @expectedException \Exception
-     * @expectedExceptionMessage Value can`t be null
-     */
-    public function testExactMatchShouldThrowOnNull()
-    {
-        $this->keyFilter->exactMatch(null);
     }
 
     public function testExactMatch()
     {
         $filter = $this->keyFilter->exactMatch('v1');
-        $this->assertInstanceOf(Filter::class, $filter);
+        $this->assertInstanceOf(SimpleFilter::class, $filter);
         $rowFilter = new RowFilter();
         $rowFilter->setRowKeyRegexFilter('v1');
         $this->assertEquals($rowFilter, $filter->toProto());
     }
 
     /**
-     * @expectedException \Exception
+     * @expectedException \InvalidArgumentException
      * @expectedExceptionMessage Probability must be positive
      */
     public function testSampleShouldThrowOnLessThanZero()
@@ -81,7 +63,7 @@ class KeyFilterTest extends TestCase
     }
 
     /**
-     * @expectedException \Exception
+     * @expectedException \InvalidArgumentException
      * @expectedExceptionMessage Probability must be less than 1.0
      */
     public function testSampleShouldThrowOnGreaterThanOne()
@@ -92,7 +74,7 @@ class KeyFilterTest extends TestCase
     public function testSample()
     {
         $filter = $this->keyFilter->sample(0.9);
-        $this->assertInstanceOf(Filter::class, $filter);
+        $this->assertInstanceOf(SimpleFilter::class, $filter);
         $rowFilter = new RowFilter();
         $rowFilter->setRowSampleFilter(0.9);
         $this->assertEquals($rowFilter, $filter->toProto());

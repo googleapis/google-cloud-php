@@ -34,27 +34,21 @@ class ConditionFilterTest extends TestCase
 
     public function setUp()
     {
-        $this->conditionFilter = Filter::condition(Filter::pass());
+        $this->conditionFilter = new ConditionFilter(Filter::pass());
         $this->condition = new Condition();
         $this->condition->setPredicateFilter(Filter::pass()->toProto());
     }
 
     /**
-     * @expectedException \Exception
-     * @expectedExceptionMessage Either TrueFilter or FalseFilter should be provided
+     * @expectedException \RuntimeException
+     * @expectedExceptionMessage In order to utilize a condition filter you must
+     * supply a filter through either
+     * Google\Cloud\Bigtable\Filter\ConditionFilter:then()
+     * or Google\Cloud\Bigtable\Filter\ConditionFilter:otherwise().
      */
     public function testPredicate()
     {
         $this->conditionFilter->toProto();
-    }
-
-    /**
-     * @expectedException \Exception
-     * @expectedExceptionMessage True filter can`t be null
-     */
-    public function testThenShouldThrowOnNull()
-    {
-        $this->conditionFilter->then(null);
     }
 
     public function testThen()
@@ -65,15 +59,6 @@ class ConditionFilterTest extends TestCase
         $rowFilter = new RowFilter();
         $rowFilter->setCondition($this->condition);
         $this->assertEquals($rowFilter, $this->conditionFilter->toProto());
-    }
-
-    /**
-     * @expectedException \Exception
-     * @expectedExceptionMessage False filter can`t be null
-     */
-    public function testOtherwiseShouldThrowOnNull()
-    {
-        $this->conditionFilter->otherwise(null);
     }
 
     public function testOtherwise()

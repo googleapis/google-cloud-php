@@ -33,27 +33,13 @@ class ChainFilterTest extends TestCase
 
     public function setUp()
     {
-        $this->chainFilter = Filter::chain();
-    }
-
-    public function testClass()
-    {
-        $this->assertInstanceOf(ChainFilter::class, $this->chainFilter);
-    }
-
-    /**
-     * @expectedException \Exception
-     * @expectedExceptionMessage Filter can`t be null
-     */
-    public function testFilterShouldThrowOnNull()
-    {
-        $this->chainFilter->filter(null);
+        $this->chainFilter = new ChainFilter;
     }
 
     public function testFilter()
     {
-        $chainFilter =  $this->chainFilter->filter(Filter::pass());
-        $this->assertEquals($this->chainFilter, $chainFilter);
+        $chainFilter = $this->chainFilter->addFilter(Filter::pass());
+        $this->assertEquals($chainFilter, $this->chainFilter);
         $chain = new Chain();
         $chain->setFilters([Filter::pass()->toProto()]);
         $rowFilter = new RowFilter();

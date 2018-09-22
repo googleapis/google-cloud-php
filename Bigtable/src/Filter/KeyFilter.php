@@ -17,71 +17,98 @@
 
 namespace Google\Cloud\Bigtable\Filter;
 
-use Exception;
-use Google\Cloud\Bigtable\Filter;
-use Google\Cloud\Bigtable\Filter\SimpleFilter;
 use Google\Cloud\Bigtable\V2\RowFilter;
 
 /**
- * Construts RowKey related filters.
+ * A builder used to configure row key related filters.
+ *
+ * Example:
+ * ```
+ * use Google\Cloud\Bigtable\Filter;
+ *
+ * $builder = Filter::key();
+ * ```
  */
 class KeyFilter
 {
+    use RegexTrait;
+
     /**
-     * @codingStandardsIgnoreStart
-     * Matches only cells from rows whose keys satisfy the given [RE2 regex](https://github.com/google/re2/wiki/Syntax).
-     * In other words, passes through the entire row when the key matches, and otherwise produces and empty row. Note that, since row keys
-     * can contain arbitrary bytes, the `\C` espace sequence must be used if a true wildcard is desired. The `.` character will not match
-     * the new line character `\n`, which may be present in a binary key.
+     * @var string
+     */
+    private static $regexSetter = 'setRowKeyRegexFilter';
+
+    /**
+     * Matches only cells from rows whose keys satisfy the given
+     * [RE2 regex](https://github.com/google/re2/wiki/Syntax). In other words,
+     * passes through the entire row when the key matches, and otherwise
+     * produces an empty row. Note that, since row keys can contain arbitrary
+     * bytes, the `\C` escape sequence must be used if a true wildcard is
+     * desired. The `.` character will not match the new line character `\n`,
+     * which may be present in a binary key.
      *
-     * @param string $value regex value.
-     * @throws Exception
-     * @codingStandardsIgnoreEnd
+     * Example:
+     * ```
+     * $keyFilter = $builder->regex('prefix.*');
+     * ```
+     *
+     * @param string $value A regex value.
+     * @return SimpleFilter
      */
     public function regex($value)
     {
-        return $this->toFilter($value);
+        return $this->buildRegexFilter($value, self::$regexSetter);
     }
 
     /**
-     * Matches only cells from rows whose keys equal the value. In other words, passes through the
-     * entire row when the key matches, and otherwise produces an empty row.
+     * Matches only cells from rows whose keys equal the value. In other words,
+     * passes through the entire row when the key matches, and otherwise
+     * produces an empty row.
      *
-     * @param string $value exact value
-     * @throws Exception
+     * Example:
+     * ```
+     * $keyFilter = $builder->exactMatch('r1');
+     * ```
+     *
+     * @param string $value An exact value.
+     * @return SimpleFilter
+     * @throws \InvalidArgumentException When the provided value is not an array
+     *         or string.
      */
     public function exactMatch($value)
     {
-        return $this->toFilter(Filter::escapeLiteralValue($value));
+        return $this->buildRegexFilter(
+            $this->escapeLiteralValue($value),
+            self::$regexSetter
+        );
     }
 
     /**
-     * Matches all cells from a row with `probability`, and matches no cells from the row with
-     * probability 1-`probability`.
+     * Matches all cells from a row with `probability`, and matches no cells
+     * from the row with probability 1-`probability`.
      *
-     * @param double $probability sample size
-     * @throws Exception
+     * Example:
+     * ```
+     * $keyFilter = $builder->sample(.7);
+     * ```
+     *
+     * @param float $probability The probability to filter by. Must be within
+     *        the range [0, 1], end points excluded.
+     * @return SimpleFilter
+     * @throws \InvalidArgumentException When the probability does not fall
+     *         within the acceptable range.
      */
     public function sample($probability)
     {
         if ($probability < 0) {
-            throw new Exception('Probability must be positive');
+            throw new \InvalidArgumentException('Probability must be positive');
         }
         if ($probability >= 1.0) {
-            throw new Exception('Probability must be less than 1.0');
+            throw new \InvalidArgumentException('Probability must be less than 1.0');
         }
-        $rowFilter = new RowFilter();
-        $rowFilter->setRowSampleFilter($probability);
-        return new SimpleFilter($rowFilter);
-    }
 
-    private function toFilter($value)
-    {
-        if ($value === null) {
-            throw new Exception('Value can`t be null');
-        }
-        $rowFilter = new RowFilter();
-        $rowFilter->setRowKeyRegexFilter($value);
-        return new SimpleFilter($rowFilter);
+        return new SimpleFilter(
+            (new RowFilter)->setRowSampleFilter($probability)
+        );
     }
 }

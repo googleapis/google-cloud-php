@@ -17,23 +17,38 @@
 
 namespace Google\Cloud\Bigtable\Filter;
 
-use Google\Cloud\Bigtable\Filter\SimpleFilter;
 use Google\Cloud\Bigtable\V2\RowFilter;
 
 /**
- * Constructs offset filter.
+ * A builder used to configure offset based filters.
+ *
+ * Example:
+ * ```
+ * use Google\Cloud\Bigtable\Filter;
+ *
+ * $builder = Filter::offset();
+ * ```
  */
 class OffsetFilter
 {
     /**
-     * Skips the first N cells of each row, matching all subsequent cells. If duplicate cells are
-     * present, as is possible when using an {@see InterleaveFilter}, each copy of the cell is
-     * counted separately.
+     * Skips the first N cells of each row, matching all subsequent cells. If
+     * duplicate cells are present, as is possible when using an
+     * {@see Google\Cloud\Bigtable\Filter\InterleaveFilter}, each copy of the
+     * cell is counted separately.
+     *
+     * Example:
+     * ```
+     * $limitFilter = $builder->cellsPerRow(2);
+     * ```
+     *
+     * @param int $count The count to offset by.
+     * @return SimpleFilter
      */
     public function cellsPerRow($count)
     {
-        $rowFilter = new RowFilter();
-        $rowFilter->setCellsPerRowOffsetFilter($count);
-        return new SimpleFilter($rowFilter);
+        return new SimpleFilter(
+            (new RowFilter)->setCellsPerRowOffsetFilter($count)
+        );
     }
 }

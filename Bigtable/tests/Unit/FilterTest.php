@@ -39,7 +39,6 @@ use stdClass;
  */
 class FilterTest extends TestCase
 {
-
     public function testChain()
     {
         $chainFilter = Filter::chain();
@@ -50,15 +49,6 @@ class FilterTest extends TestCase
     {
         $interleaveFilter = Filter::interleave();
         $this->assertInstanceOf(InterleaveFilter::class, $interleaveFilter);
-    }
-
-    /**
-     * @expectedException \Exception
-     * @expectedExceptionMessage Predicate filter can`t be null
-     */
-    public function testConditionShouldThrowOnNullPredicate()
-    {
-        Filter::condition(null);
     }
 
     public function testCondition()
@@ -112,7 +102,7 @@ class FilterTest extends TestCase
     public function testPass()
     {
         $passFilter = Filter::pass();
-        $this->assertInstanceOf(Filter::class, $passFilter);
+        $this->assertInstanceOf(SimpleFilter::class, $passFilter);
         $rowFilter = new RowFilter();
         $rowFilter->setPassAllFilter(true);
         $this->assertEquals($rowFilter, $passFilter->toProto());
@@ -121,7 +111,7 @@ class FilterTest extends TestCase
     public function testBlock()
     {
         $blockFilter = Filter::block();
-        $this->assertInstanceOf(Filter::class, $blockFilter);
+        $this->assertInstanceOf(SimpleFilter::class, $blockFilter);
         $rowFilter = new RowFilter();
         $rowFilter->setBlockAllFilter(true);
         $this->assertEquals($rowFilter, $blockFilter->toProto());
@@ -130,7 +120,7 @@ class FilterTest extends TestCase
     public function testSink()
     {
         $sinkFilter = Filter::sink();
-        $this->assertInstanceOf(Filter::class, $sinkFilter);
+        $this->assertInstanceOf(SimpleFilter::class, $sinkFilter);
         $rowFilter = new RowFilter();
         $rowFilter->setSink(true);
         $this->assertEquals($rowFilter, $sinkFilter->toProto());
@@ -139,41 +129,9 @@ class FilterTest extends TestCase
     public function testLable()
     {
         $labelFilter = Filter::label('l1');
-        $this->assertInstanceOf(Filter::class, $labelFilter);
+        $this->assertInstanceOf(SimpleFilter::class, $labelFilter);
         $rowFilter = new RowFilter();
         $rowFilter->setApplyLabelTransformer('l1');
         $this->assertEquals($rowFilter, $labelFilter->toProto());
-    }
-
-    public function testEscapeLiteralValueShouldReturnNullOnNull()
-    {
-        $this->assertEquals(null, Filter::escapeLiteralValue(null));
-    }
-
-    /**
-     * @expectedException \Exception
-     * @expectedExceptionMessage Expect byte array or string
-     */
-    public function testEscapeLiteralValueShouldThrowIfNotByteArrayOrString()
-    {
-        Filter::escapeLiteralValue(new stdClass());
-    }
-
-    public function testEscapeLiteralValueAsciiChr()
-    {
-        $this->assertEquals('hi', Filter::escapeLiteralValue('hi'));
-    }
-
-    public function testEscapeLiteralValueWithEscapeChr()
-    {
-        $this->assertEquals('h\\.\\*i', Filter::escapeLiteralValue('h.*i'));
-    }
-
-    public function testEscapeLiteralValueWithByteArray()
-    {
-        $value = [ 0xe2, 0x80, 0xb3];
-        $escapedValue = Filter::escapeLiteralValue($value);
-        $expected = implode(array_map("chr", $value));
-        $this->assertEquals($expected, $escapedValue);
     }
 }

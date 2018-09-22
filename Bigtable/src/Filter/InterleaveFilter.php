@@ -17,42 +17,59 @@
 
 namespace Google\Cloud\Bigtable\Filter;
 
-use Exception;
-use Google\Cloud\Bigtable\Filter;
 use Google\Cloud\Bigtable\V2\RowFilter;
 use Google\Cloud\Bigtable\V2\RowFilter\Interleave;
 
 /**
- * Constructs multiple interleave filters.
+ * Applies serveral filters to the data in parallel and combines the results.
+ *
+ * Example:
+ * ```
+ * use Google\Cloud\Bigtable\Filter;
+ *
+ * $interleaveFilter = Filter::interleave();
+ * ```
  */
-class InterleaveFilter extends Filter
+class InterleaveFilter implements FilterInterface
 {
     /**
-     * @var array Filter
+     * @var FilterInterface[]
      */
     private $filters = [];
 
     /**
-     * Adds filter to interleave filter.
+     * Adds a filter to the interleave filter.
      *
-     * @param Filter $filter filter to be added.
-     * @throws Exception
+     * Example:
+     * ```
+     * use Google\Cloud\Bigtable\Filter;
+     *
+     * $interleaveFilter->addFilter(
+     *     Filter::key()->regex('prefix.*')
+     * );
+     * ```
+     *
+     * @param FilterInterface $filter A filter to be added.
+     * @return InterleaveFilter
      */
-    public function filter($filter)
+    public function addFilter(FilterInterface $filter)
     {
-        if ($filter === null) {
-            throw new Exception('Filter can`t be null');
-        }
         $this->filters[] = $filter->toProto();
         return $this;
     }
 
+    /**
+     * Get the proto representation of the filter.
+     *
+     * @internal
+     * @access private
+     * @return RowFilter
+     */
     public function toProto()
     {
-        $interleave = new Interleave();
-        $interleave->setFilters($this->filters);
-        $rowFilter = new RowFilter();
-        $rowFilter->setInterleave($interleave);
-        return $rowFilter;
+        $interleave = (new Interleave)
+            ->setFilters($this->filters);
+        return (new RowFilter)
+            ->setInterleave($interleave);
     }
 }

@@ -17,16 +17,29 @@
 
 namespace Google\Cloud\Bigtable\Filter;
 
-use Google\Cloud\Bigtable\Filter\Range;
 use Google\Cloud\Bigtable\V2\RowFilter;
 use Google\Cloud\Bigtable\V2\TimestampRange;
 
 /**
  * Matches only cells with microsecond timestamps within the given range.
+ *
+ * Example:
+ * ```
+ * use Google\Cloud\Bigtable\Filter;
+ *
+ * $rangeFilter = Filter::timestramp()
+ *     ->range();
+ * ```
  */
-class TimestampRangeFilter extends Range
+class TimestampRangeFilter extends Range implements FilterInterface
 {
-
+    /**
+     * Get the proto representation of the filter.
+     *
+     * @internal
+     * @access private
+     * @return RowFilter
+     */
     public function toProto()
     {
         $timestampRange = new TimestampRange();
