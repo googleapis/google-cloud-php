@@ -46,6 +46,23 @@ class BucketTest extends SnippetTestCase
 
     private $connection;
     private $bucket;
+    private static $expectedLifecycleData = [
+        'userProject' => null,
+        'bucket' => self::BUCKET,
+        'lifecycle' => [
+            'rule' => [
+                [
+                    'action' => [
+                        'type' => 'Delete'
+                    ],
+                    'condition' => [
+                        'age' => 50,
+                        'isLive' => true
+                    ]
+                ]
+            ]
+        ]
+    ];
 
     public function setUp()
     {
@@ -487,6 +504,31 @@ class BucketTest extends SnippetTestCase
 
         $res = $snippet->invoke();
         $this->assertEquals(self::BUCKET, $res->output());
+    }
+
+    public function testLifecycle()
+    {
+        $snippet = $this->snippetFromMethod(Bucket::class, 'lifecycle');
+        $snippet->addLocal('bucket', $this->bucket);
+        $this->connection->patchBucket(self::$expectedLifecycleData)
+            ->shouldBeCalled();
+        $this->bucket->___setProperty('connection', $this->connection->reveal());
+
+        $res = $snippet->invoke();
+    }
+
+    public function testCurrentLifecycle()
+    {
+        $snippet = $this->snippetFromMethod(Bucket::class, 'currentLifecycle');
+        $snippet->addLocal('bucket', $this->bucket);
+        $this->connection->getBucket(Argument::any())
+            ->shouldBeCalled()
+            ->willReturn([]);
+        $this->connection->patchBucket(self::$expectedLifecycleData)
+            ->shouldBeCalled();
+        $this->bucket->___setProperty('connection', $this->connection->reveal());
+
+        $res = $snippet->invoke();
     }
 
     public function testIam()

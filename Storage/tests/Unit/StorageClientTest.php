@@ -22,6 +22,7 @@ use Google\Cloud\Core\Timestamp;
 use Google\Cloud\Core\Upload\SignedUrlUploader;
 use Google\Cloud\Storage\Bucket;
 use Google\Cloud\Storage\Connection\Rest;
+use Google\Cloud\Storage\Lifecycle;
 use Google\Cloud\Storage\StorageClient;
 use Google\Cloud\Storage\StreamWrapper;
 use GuzzleHttp\Psr7;
@@ -130,6 +131,33 @@ class StorageClientTest extends TestCase
         $this->client->___setProperty('connection', $this->connection->reveal());
 
         $this->assertInstanceOf(Bucket::class, $this->client->createBucket('bucket'));
+    }
+
+    public function testCreatesBucketWithLifecycleBuilder()
+    {
+        $bucket = 'bucket';
+        $lifecycleArr = ['test' => 'test'];
+        $lifecycle = $this->prophesize(Lifecycle::class);
+        $lifecycle->toArray()
+            ->willReturn($lifecycleArr);
+        $this->connection->projectId()
+            ->willReturn(self::PROJECT);
+        $this->connection
+            ->insertBucket([
+                'project' => self::PROJECT,
+                'lifecycle' => $lifecycleArr,
+                'name' => $bucket
+            ])
+            ->willReturn(['name' => $bucket]);
+        $this->client->___setProperty('connection', $this->connection->reveal());
+
+        $this->assertInstanceOf(
+            Bucket::class,
+            $this->client->createBucket(
+                $bucket,
+                ['lifecycle' => $lifecycle->reveal()]
+            )
+        );
     }
 
     public function testRegisteringStreamWrapper()
