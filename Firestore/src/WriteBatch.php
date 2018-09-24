@@ -688,8 +688,10 @@ class WriteBatch
                         ? $inArray
                         : !$this->isAssoc($value);
 
+                    $isEmptyBeforeFiltering = empty($fields[$key]);
+
                     $fields[$key] = $filterFn($value, $currentPath, $localInArray);
-                    if (empty($fields[$key])) {
+                    if (!$isEmptyBeforeFiltering && empty($fields[$key])) {
                         unset($fields[$key]);
                     }
                 } else {
