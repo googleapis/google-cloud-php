@@ -1052,6 +1052,15 @@ class Bucket
      * ]);
      * ```
      *
+     * ```
+     * // Iterate over existing rules.
+     * $lifecycle = $bucket->currentLifecycle();
+     *
+     * foreach ($lifecycle as $rule) {
+     *     print_r($rule);
+     * }
+     * ```
+     *
      * @see https://cloud.google.com/storage/docs/lifecycle Object Lifecycle Management API Documentation
      *
      * @param array $options [optional] Configuration options.

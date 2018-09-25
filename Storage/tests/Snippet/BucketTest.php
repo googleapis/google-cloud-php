@@ -531,6 +531,23 @@ class BucketTest extends SnippetTestCase
         $res = $snippet->invoke();
     }
 
+    public function testCurrentLifecycleIterate()
+    {
+        $snippet = $this->snippetFromMethod(Bucket::class, 'currentLifecycle', 1);
+        $snippet->addLocal('bucket', $this->bucket);
+        $this->connection->getBucket(Argument::any())
+            ->shouldBeCalled()
+            ->willReturn(self::$expectedLifecycleData);
+        $this->bucket->___setProperty('connection', $this->connection->reveal());
+
+        $res = $snippet->invoke();
+
+        $this->assertEquals(
+            print_r(self::$expectedLifecycleData['lifecycle']['rule'][0], true),
+            $res->output()
+        );
+    }
+
     public function testIam()
     {
         $snippet = $this->snippetFromMethod(Bucket::class, 'iam');
