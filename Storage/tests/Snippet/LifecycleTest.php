@@ -146,4 +146,18 @@ class LifecycleTest extends SnippetTestCase
         $this->assertInstanceOf(Lifecycle::class, $returnVal);
         $this->assertEmpty($returnVal->toArray());
     }
+
+    public function testClearRulesWithCallable()
+    {
+        $this->lifecycle
+            ->addDeleteRule(self::$condition);
+        $snippet = $this->snippetFromMethod(Lifecycle::class, 'clearRules', 2);
+        $snippet->addLocal('lifecycle', $this->lifecycle);
+
+        $returnVal = $snippet->invoke('lifecycle')
+            ->returnVal();
+
+        $this->assertInstanceOf(Lifecycle::class, $returnVal);
+        $this->assertEmpty($returnVal->toArray());
+    }
 }

@@ -65,7 +65,7 @@ class Lifecycle
     }
 
     /**
-     * Adds a delete rule.
+     * Adds an Object Lifecycle Delete Rule.
      *
      * Example:
      * ```
@@ -111,7 +111,7 @@ class Lifecycle
     }
 
     /**
-     * Adds a set storage class rule.
+     * Adds an Object Lifecycle Set Storage Class Rule.
      *
      * Example:
      * ```
@@ -161,7 +161,7 @@ class Lifecycle
     }
 
     /**
-     * Clears out rules based on the provided condition.
+     * Clear all Object Lifecycle rules or rules of a certain action type.
      *
      * Example:
      * ```
@@ -174,7 +174,16 @@ class Lifecycle
      * $lifecycle->clearRules('Delete');
      * ```
      *
-     * @param string|callable $condition [optional] If a string is provided, it
+     * ```
+     * // Clear any rules which have an age equal to 50.
+     * $lifecycle->clearRules(function (array $rule) {
+     *     return $rule['condition']['age'] === 50
+     *         ? false
+     *         : true;
+     * });
+     * ```
+     *
+     * @param string|callable $action [optional] If a string is provided, it
      *        must be the name of the type of rule to remove (`SetStorageClass`
      *        or `Delete`). All rules of this type will then be cleared. When
      *        providing a callable you may define a custom route for how you
@@ -189,32 +198,32 @@ class Lifecycle
      * @throws \InvalidArgumentException If a type other than a string or
      *         callabe is provided.
      */
-    public function clearRules($condition = null)
+    public function clearRules($action = null)
     {
-        if (!$condition) {
+        if (!$action) {
             $this->lifecycle = [];
             return $this;
         }
 
-        if (!is_string($condition) && !is_callable($condition)) {
+        if (!is_string($action) && !is_callable($action)) {
             throw new \InvalidArgumentException(
                 sprintf(
                     'Expected either a string or callable, instead got \'%s\'.',
-                    gettype($condition)
+                    gettype($action)
                 )
             );
         }
 
         if (isset($this->lifecycle['rule'])) {
-            if (is_string($condition)) {
-                $condition = function ($rule) use ($condition) {
-                    return $rule['action']['type'] !== $condition;
+            if (is_string($action)) {
+                $action = function ($rule) use ($action) {
+                    return $rule['action']['type'] !== $action;
                 };
             }
 
             $this->lifecycle['rule'] = array_filter(
                 $this->lifecycle['rule'],
-                $condition
+                $action
             );
 
             if (!$this->lifecycle['rule']) {
