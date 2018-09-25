@@ -181,6 +181,9 @@ class Lifecycle
      *        would like to remove rules. The provided callable will be run
      *        through
      *        [array_filter](http://php.net/manual/en/function.array-filter.php).
+     *        The callable's argument will be a single lifecycle rule as an
+     *        associative array. When returning true from the callable the rule
+     *        will be preserved, and if false it will be removed.
      *        **Defaults to** `null`, clearing all assigned rules.
      * @return Lifecycle
      * @throws \InvalidArgumentException If a type other than a string or
