@@ -1088,6 +1088,20 @@ class DlpServiceGapicClient
      *          The maximum number of resources contained in the underlying API
      *          response. The API may return fewer values in a page, even if
      *          there are additional values to be retrieved.
+     *     @type string $orderBy
+     *          Optional comma separated list of fields to order by,
+     *          followed by `asc` or `desc` postfix. This list is case-insensitive,
+     *          default sorting order is ascending, redundant space characters are
+     *          insignificant.
+     *
+     *          Example: `name asc,update_time, create_time desc`
+     *
+     *          Supported fields are:
+     *
+     *          - `create_time`: corresponds to time the template was created.
+     *          - `update_time`: corresponds to time the template was last updated.
+     *          - `name`: corresponds to template's name.
+     *          - `display_name`: corresponds to template's display name.
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
@@ -1109,6 +1123,9 @@ class DlpServiceGapicClient
         }
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
+        }
+        if (isset($optionalArgs['orderBy'])) {
+            $request->setOrderBy($optionalArgs['orderBy']);
         }
 
         return $this->getPagedListResponse(
@@ -1372,6 +1389,20 @@ class DlpServiceGapicClient
      *          The maximum number of resources contained in the underlying API
      *          response. The API may return fewer values in a page, even if
      *          there are additional values to be retrieved.
+     *     @type string $orderBy
+     *          Optional comma separated list of fields to order by,
+     *          followed by `asc` or `desc` postfix. This list is case-insensitive,
+     *          default sorting order is ascending, redundant space characters are
+     *          insignificant.
+     *
+     *          Example: `name asc,update_time, create_time desc`
+     *
+     *          Supported fields are:
+     *
+     *          - `create_time`: corresponds to time the template was created.
+     *          - `update_time`: corresponds to time the template was last updated.
+     *          - `name`: corresponds to template's name.
+     *          - `display_name`: corresponds to template's display name.
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
@@ -1393,6 +1424,9 @@ class DlpServiceGapicClient
         }
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
+        }
+        if (isset($optionalArgs['orderBy'])) {
+            $request->setOrderBy($optionalArgs['orderBy']);
         }
 
         return $this->getPagedListResponse(
@@ -1811,9 +1845,11 @@ class DlpServiceGapicClient
      *
      *          Supported fields are:
      *
-     *          - `create_time`: corresponds to time the triggeredJob was created.
-     *          - `update_time`: corresponds to time the triggeredJob was last updated.
+     *          - `create_time`: corresponds to time the JobTrigger was created.
+     *          - `update_time`: corresponds to time the JobTrigger was last updated.
      *          - `name`: corresponds to JobTrigger's name.
+     *          - `display_name`: corresponds to JobTrigger's display name.
+     *          - `status`: corresponds to JobTrigger's status.
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array

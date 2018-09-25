@@ -16,8 +16,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class FileSet extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The url, in the format `gs://<bucket>/<path>`. Trailing wildcard in the
-     * path is allowed.
+     * The Cloud Storage url of the file(s) to scan, in the format
+     * `gs://<bucket>/<path>`. Trailing wildcard in the path is allowed.
      *
      * Generated from protobuf field <code>string url = 1;</code>
      */
@@ -30,8 +30,8 @@ class FileSet extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $url
-     *           The url, in the format `gs://<bucket>/<path>`. Trailing wildcard in the
-     *           path is allowed.
+     *           The Cloud Storage url of the file(s) to scan, in the format
+     *           `gs://<bucket>/<path>`. Trailing wildcard in the path is allowed.
      * }
      */
     public function __construct($data = NULL) {
@@ -40,8 +40,8 @@ class FileSet extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The url, in the format `gs://<bucket>/<path>`. Trailing wildcard in the
-     * path is allowed.
+     * The Cloud Storage url of the file(s) to scan, in the format
+     * `gs://<bucket>/<path>`. Trailing wildcard in the path is allowed.
      *
      * Generated from protobuf field <code>string url = 1;</code>
      * @return string
@@ -52,8 +52,8 @@ class FileSet extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The url, in the format `gs://<bucket>/<path>`. Trailing wildcard in the
-     * path is allowed.
+     * The Cloud Storage url of the file(s) to scan, in the format
+     * `gs://<bucket>/<path>`. Trailing wildcard in the path is allowed.
      *
      * Generated from protobuf field <code>string url = 1;</code>
      * @param string $var
