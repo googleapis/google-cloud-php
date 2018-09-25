@@ -15,10 +15,10 @@
  * limitations under the License.
  */
 
-namespace Google\Cloud\Bigtable\Tests\Unit\Filter;
+namespace Google\Cloud\Bigtable\Tests\Unit\Filter\Builder;
 
 use Google\Cloud\Bigtable\Filter;
-use Google\Cloud\Bigtable\Filter\OffsetFilter;
+use Google\Cloud\Bigtable\Filter\Builder\LimitFilter;
 use Google\Cloud\Bigtable\V2\RowFilter;
 use PHPUnit\Framework\TestCase;
 
@@ -26,20 +26,28 @@ use PHPUnit\Framework\TestCase;
  * @group bigtable
  * @group bigtabledata
  */
-class OffsetFilterTest extends TestCase
+class LimitFilterTest extends TestCase
 {
-    private $offsetFilter;
+    private $limitFilter;
 
     public function setUp()
     {
-        $this->offsetFilter = Filter::offset();
+        $this->limitFilter = Filter::limit();
     }
 
     public function testCellsPerRow()
     {
-        $filter = $this->offsetFilter->cellsPerRow(5);
+        $filter = $this->limitFilter->cellsPerRow(5);
         $rowFilter = new RowFilter();
-        $rowFilter->setCellsPerRowOffsetFilter(5);
+        $rowFilter->setCellsPerRowLimitFilter(5);
+        $this->assertEquals($rowFilter, $filter->toProto());
+    }
+
+    public function testCellsPerColumn()
+    {
+        $filter = $this->limitFilter->cellsPerColumn(5);
+        $rowFilter = new RowFilter();
+        $rowFilter->setCellsPerColumnLimitFilter(5);
         $this->assertEquals($rowFilter, $filter->toProto());
     }
 }

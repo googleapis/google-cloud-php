@@ -15,10 +15,11 @@
  * limitations under the License.
  */
 
-namespace Google\Cloud\Bigtable\Tests\Unit\Filter;
+namespace Google\Cloud\Bigtable\Tests\Unit\Filter\Builder;
 
-use Google\Cloud\Bigtable\Filter\FamilyFilter;
 use Google\Cloud\Bigtable\Filter\SimpleFilter;
+use Google\Cloud\Bigtable\Filter\Builder\ValueFilter;
+use Google\Cloud\Bigtable\Filter\ValueRangeFilter;
 use Google\Cloud\Bigtable\V2\RowFilter;
 use PHPUnit\Framework\TestCase;
 
@@ -26,30 +27,43 @@ use PHPUnit\Framework\TestCase;
  * @group bigtable
  * @group bigtabledata
  */
-class FamilyFilterTest extends TestCase
+class ValueFilterTest extends TestCase
 {
-    private $familyFilter;
+    private $valueFilter;
 
     public function setUp()
     {
-        $this->familyFilter = new FamilyFilter;
+        $this->valueFilter = new ValueFilter;
     }
 
     public function testRegex()
     {
-        $filter = $this->familyFilter->regex('v1');
+        $filter = $this->valueFilter->regex('v1');
         $this->assertInstanceOf(SimpleFilter::class, $filter);
         $rowFilter = new RowFilter();
-        $rowFilter->setFamilyNameRegexFilter('v1');
+        $rowFilter->setValueRegexFilter('v1');
         $this->assertEquals($rowFilter, $filter->toProto());
     }
 
     public function testExactMatch()
     {
-        $filter = $this->familyFilter->exactMatch('v1');
+        $filter = $this->valueFilter->exactMatch('v1');
         $this->assertInstanceOf(SimpleFilter::class, $filter);
         $rowFilter = new RowFilter();
-        $rowFilter->setFamilyNameRegexFilter('v1');
+        $rowFilter->setValueRegexFilter('v1');
+        $this->assertEquals($rowFilter, $filter->toProto());
+    }
+
+    public function testRange()
+    {
+        $this->assertInstanceOf(ValueRangeFilter::class, $this->valueFilter->range());
+    }
+
+    public function testStrip()
+    {
+        $filter = $this->valueFilter->strip();
+        $rowFilter = new RowFilter();
+        $rowFilter->setStripValueTransformer(true);
         $this->assertEquals($rowFilter, $filter->toProto());
     }
 }

@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-namespace Google\Cloud\Bigtable\Filter;
+namespace Google\Cloud\Bigtable\Filter\Builder;
 
 use Google\Cloud\Bigtable\Filter\TimestampRangeFilter;
 

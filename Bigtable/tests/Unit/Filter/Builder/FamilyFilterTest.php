@@ -15,10 +15,10 @@
  * limitations under the License.
  */
 
-namespace Google\Cloud\Bigtable\Tests\Unit\Filter;
+namespace Google\Cloud\Bigtable\Tests\Unit\Filter\Builder;
 
-use Google\Cloud\Bigtable\Filter;
-use Google\Cloud\Bigtable\Filter\LimitFilter;
+use Google\Cloud\Bigtable\Filter\Builder\FamilyFilter;
+use Google\Cloud\Bigtable\Filter\SimpleFilter;
 use Google\Cloud\Bigtable\V2\RowFilter;
 use PHPUnit\Framework\TestCase;
 
@@ -26,28 +26,30 @@ use PHPUnit\Framework\TestCase;
  * @group bigtable
  * @group bigtabledata
  */
-class LimitFilterTest extends TestCase
+class FamilyFilterTest extends TestCase
 {
-    private $limitFilter;
+    private $familyFilter;
 
     public function setUp()
     {
-        $this->limitFilter = Filter::limit();
+        $this->familyFilter = new FamilyFilter;
     }
 
-    public function testCellsPerRow()
+    public function testRegex()
     {
-        $filter = $this->limitFilter->cellsPerRow(5);
+        $filter = $this->familyFilter->regex('v1');
+        $this->assertInstanceOf(SimpleFilter::class, $filter);
         $rowFilter = new RowFilter();
-        $rowFilter->setCellsPerRowLimitFilter(5);
+        $rowFilter->setFamilyNameRegexFilter('v1');
         $this->assertEquals($rowFilter, $filter->toProto());
     }
 
-    public function testCellsPerColumn()
+    public function testExactMatch()
     {
-        $filter = $this->limitFilter->cellsPerColumn(5);
+        $filter = $this->familyFilter->exactMatch('v1');
+        $this->assertInstanceOf(SimpleFilter::class, $filter);
         $rowFilter = new RowFilter();
-        $rowFilter->setCellsPerColumnLimitFilter(5);
+        $rowFilter->setFamilyNameRegexFilter('v1');
         $this->assertEquals($rowFilter, $filter->toProto());
     }
 }

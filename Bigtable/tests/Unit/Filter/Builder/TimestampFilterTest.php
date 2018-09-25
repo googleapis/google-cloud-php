@@ -15,9 +15,9 @@
  * limitations under the License.
  */
 
-namespace Google\Cloud\Bigtable\Tests\Unit\Filter;
+namespace Google\Cloud\Bigtable\Tests\Unit\Filter\Builder;
 
-use Google\Cloud\Bigtable\Filter\TimestampFilter;
+use Google\Cloud\Bigtable\Filter\Builder\TimestampFilter;
 use Google\Cloud\Bigtable\Filter\TimestampRangeFilter;
 use PHPUnit\Framework\TestCase;
 

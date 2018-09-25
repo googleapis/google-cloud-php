@@ -17,6 +17,7 @@
 
 namespace Google\Cloud\Bigtable\Filter;
 
+use Google\Cloud\Bigtable\Filter\Builder\Range;
 use Google\Cloud\Bigtable\V2\RowFilter;
 use Google\Cloud\Bigtable\V2\ValueRange;
 

@@ -15,10 +15,9 @@
  * limitations under the License.
  */
 
-namespace Google\Cloud\Bigtable\Tests\Unit\Filter;
+namespace Google\Cloud\Bigtable\Tests\Unit\Filter\Builder;
 
-use Google\Cloud\Bigtable\Filter\QualifierFilter;
-use Google\Cloud\Bigtable\Filter\QualifierRangeFilter;
+use Google\Cloud\Bigtable\Filter\Builder\KeyFilter;
 use Google\Cloud\Bigtable\Filter\SimpleFilter;
 use Google\Cloud\Bigtable\V2\RowFilter;
 use PHPUnit\Framework\TestCase;
@@ -27,38 +26,57 @@ use PHPUnit\Framework\TestCase;
  * @group bigtable
  * @group bigtabledata
  */
-class QualifierFilterTest extends TestCase
+class KeyFilterTest extends TestCase
 {
-    private $qualifierFilter;
+    private $keyFilter;
 
     public function setUp()
     {
-        $this->qualifierFilter = new QualifierFilter;
+        $this->keyFilter = new KeyFilter;
     }
 
     public function testRegex()
     {
-        $filter = $this->qualifierFilter->regex('v1');
+        $filter = $this->keyFilter->regex('v1');
         $this->assertInstanceOf(SimpleFilter::class, $filter);
         $rowFilter = new RowFilter();
-        $rowFilter->setColumnQualifierRegexFilter('v1');
+        $rowFilter->setRowKeyRegexFilter('v1');
         $this->assertEquals($rowFilter, $filter->toProto());
     }
 
     public function testExactMatch()
     {
-        $filter = $this->qualifierFilter->exactMatch('v1');
+        $filter = $this->keyFilter->exactMatch('v1');
         $this->assertInstanceOf(SimpleFilter::class, $filter);
         $rowFilter = new RowFilter();
-        $rowFilter->setColumnQualifierRegexFilter('v1');
+        $rowFilter->setRowKeyRegexFilter('v1');
         $this->assertEquals($rowFilter, $filter->toProto());
     }
 
-    public function testRangeWithInFamily()
+    /**
+     * @expectedException \InvalidArgumentException
+     * @expectedExceptionMessage Probability must be positive
+     */
+    public function testSampleShouldThrowOnLessThanZero()
     {
-        $this->assertInstanceOf(
-            QualifierRangeFilter::class,
-            $this->qualifierFilter->rangeWithInFamily('cf1')
-        );
+        $this->keyFilter->sample(-1);
+    }
+
+    /**
+     * @expectedException \InvalidArgumentException
+     * @expectedExceptionMessage Probability must be less than 1.0
+     */
+    public function testSampleShouldThrowOnGreaterThanOne()
+    {
+        $this->keyFilter->sample(1.1);
+    }
+
+    public function testSample()
+    {
+        $filter = $this->keyFilter->sample(0.9);
+        $this->assertInstanceOf(SimpleFilter::class, $filter);
+        $rowFilter = new RowFilter();
+        $rowFilter->setRowSampleFilter(0.9);
+        $this->assertEquals($rowFilter, $filter->toProto());
     }
 }

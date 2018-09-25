@@ -15,8 +15,9 @@
  * limitations under the License.
  */
 
-namespace Google\Cloud\Bigtable\Filter;
+namespace Google\Cloud\Bigtable\Filter\Builder;
 
+use Google\Cloud\Bigtable\Filter\SimpleFilter;
 use Google\Cloud\Bigtable\V2\RowFilter;
 
 /**

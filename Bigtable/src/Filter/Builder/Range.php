@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-namespace Google\Cloud\Bigtable\Filter;
+namespace Google\Cloud\Bigtable\Filter\Builder;
 
 /**
  * Abstract class representing filter range for Rowkey, ColumnFamily,

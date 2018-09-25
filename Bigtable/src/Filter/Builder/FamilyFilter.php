@@ -15,39 +15,40 @@
  * limitations under the License.
  */
 
-namespace Google\Cloud\Bigtable\Filter;
+namespace Google\Cloud\Bigtable\Filter\Builder;
 
 use Google\Cloud\Bigtable\V2\RowFilter;
 
 /**
- * A builder used to configure value based filters.
+ * A builder used to configure column family filters.
  *
  * Example:
  * ```
  * use Google\Cloud\Bigtable\Filter;
  *
- * $builder = Filter::value();
+ * $builder = Filter::family();
  * ```
  */
-class ValueFilter
+class FamilyFilter
 {
     use RegexTrait;
 
     /**
      * @var string
      */
-    private static $regexSetter = 'setValueRegexFilter';
+    private static $regexSetter = 'setFamilyNameRegexFilter';
 
     /**
-     * Matches only cells with values that satisfy the given
-     * [RE2 regex](https://github.com/google/re2/wiki/Syntax). Note that, since
-     * cell values can contain arbitrary bytes, the `\C` escape sequence must be
-     * used if a true wildcard is desired. The `.` character will not match the
-     * new line character `\n`, which may be present in a binary value.
+     * Matches only cells from columns whose families satisfy the given
+     * [RE2 regex](https://github.com/google/re2/wiki/Syntax).
+     * For technical reasons, the regex must not contain the `:` character, even
+     * if it is not being used as literal. Note that, since column families
+     * cannot contain the new line character `\n`, it is sufficient to use `.`
+     * as a full wildcard when matching column family names.
      *
      * Example:
      * ```
-     * $valueFilter = $builder->regex('prefix.*');
+     * $familyFilter = $builder->regex('prefix.*');
      * ```
      *
      * @param string $value A regex value.
@@ -59,11 +60,11 @@ class ValueFilter
     }
 
     /**
-     * Matches only cells with values that match the given value.
+     * Matches only cells from columns whose families match the value.
      *
      * Example:
      * ```
-     * $valueFilter = $builder->exactMatch('my-value');
+     * $familyFilter = $builder->exectMatch('cf1');
      * ```
      *
      * @param string $value An exact value to match.
@@ -76,34 +77,6 @@ class ValueFilter
         return $this->buildRegexFilter(
             $this->escapeLiteralValue($value),
             self::$regexSetter
-        );
-    }
-
-    /**
-     * Returns a builder used to configure value range filters.
-     *
-     * Example:
-     * ```
-     * $valueFilter = $builder->range()
-     *     ->of('value1', 'value10');
-     * ```
-     *
-     * @return ValueRangeFilter
-     */
-    public function range()
-    {
-        return new ValueRangeFilter();
-    }
-
-    /**
-     * Replaces each cell's value with an empty string.
-     *
-     * @return SimpleFilter
-     */
-    public function strip()
-    {
-        return new SimpleFilter(
-            (new RowFilter)->setStripValueTransformer(true)
         );
     }
 }
