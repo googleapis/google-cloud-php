@@ -47,7 +47,7 @@ namespace Google\Cloud\Storage;
  *
  * @see https://cloud.google.com/storage/docs/lifecycle Object Lifecycle Management API Documentation
  */
-class Lifecycle
+class Lifecycle implements \ArrayAccess, \IteratorAggregate
 {
     /**
      * @var array
@@ -236,10 +236,66 @@ class Lifecycle
 
     /**
      * @access private
+     * @return \Generator
+     */
+    public function getIterator()
+    {
+        if (!isset($this->lifecycle['rule'])) {
+            return;
+        }
+
+        foreach ($this->lifecycle['rule'] as $rule) {
+            yield $rule;
+        }
+    }
+
+    /**
+     * @access private
      * @return array
      */
     public function toArray()
     {
         return $this->lifecycle;
+    }
+
+    /**
+     * @access private
+     * @param string $offset
+     * @param mixed $value
+     */
+    public function offsetSet($offset, $value)
+    {
+        $this->lifecycle['rule'][$offset] = $value;
+    }
+
+    /**
+     * @access private
+     * @param string $offset
+     * @return bool
+     */
+    public function offsetExists($offset)
+    {
+        return isset($this->lifecycle['rule'][$offset]);
+    }
+
+    /**
+     * @access private
+     * @param string $offset
+     */
+    public function offsetUnset($offset)
+    {
+        unset($this->lifecycle['rule'][$offset]);
+    }
+
+    /**
+     * @access private
+     * @param string $offset
+     * @return mixed
+     */
+    public function offsetGet($offset)
+    {
+        return isset($this->lifecycle['rule'][$offset])
+            ? $this->lifecycle['rule'][$offset]
+            : null;
     }
 }
