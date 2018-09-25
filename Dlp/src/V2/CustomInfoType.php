@@ -17,8 +17,12 @@ use Google\Protobuf\Internal\GPBUtil;
 class CustomInfoType extends \Google\Protobuf\Internal\Message
 {
     /**
-     * All CustomInfoTypes must have a name
-     * that does not conflict with built-in InfoTypes or other CustomInfoTypes.
+     * CustomInfoType can either be a new infoType, or an extension of built-in
+     * infoType, when the name matches one of existing infoTypes and that infoType
+     * is specified in `InspectContent.info_types` field. Specifying the latter
+     * adds findings to the one detected by the system. If built-in info type is
+     * not specified in `InspectContent.info_types` list then the name is treated
+     * as a custom info type.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.InfoType info_type = 1;</code>
      */
@@ -39,6 +43,13 @@ class CustomInfoType extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.CustomInfoType.DetectionRule detection_rules = 7;</code>
      */
     private $detection_rules;
+    /**
+     * If set to EXCLUSION_TYPE_EXCLUDE this infoType will not cause a finding
+     * to be returned. It still can be used for rules matching.
+     *
+     * Generated from protobuf field <code>.google.privacy.dlp.v2.CustomInfoType.ExclusionType exclusion_type = 8;</code>
+     */
+    private $exclusion_type = 0;
     protected $type;
 
     /**
@@ -48,8 +59,12 @@ class CustomInfoType extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\Dlp\V2\InfoType $info_type
-     *           All CustomInfoTypes must have a name
-     *           that does not conflict with built-in InfoTypes or other CustomInfoTypes.
+     *           CustomInfoType can either be a new infoType, or an extension of built-in
+     *           infoType, when the name matches one of existing infoTypes and that infoType
+     *           is specified in `InspectContent.info_types` field. Specifying the latter
+     *           adds findings to the one detected by the system. If built-in info type is
+     *           not specified in `InspectContent.info_types` list then the name is treated
+     *           as a custom info type.
      *     @type int $likelihood
      *           Likelihood to return for this CustomInfoType. This base value can be
      *           altered by a detection rule if the finding meets the criteria specified by
@@ -68,6 +83,9 @@ class CustomInfoType extends \Google\Protobuf\Internal\Message
      *           Set of detection rules to apply to all findings of this CustomInfoType.
      *           Rules are applied in order that they are specified. Not supported for the
      *           `surrogate_type` CustomInfoType.
+     *     @type int $exclusion_type
+     *           If set to EXCLUSION_TYPE_EXCLUDE this infoType will not cause a finding
+     *           to be returned. It still can be used for rules matching.
      * }
      */
     public function __construct($data = NULL) {
@@ -76,8 +94,12 @@ class CustomInfoType extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * All CustomInfoTypes must have a name
-     * that does not conflict with built-in InfoTypes or other CustomInfoTypes.
+     * CustomInfoType can either be a new infoType, or an extension of built-in
+     * infoType, when the name matches one of existing infoTypes and that infoType
+     * is specified in `InspectContent.info_types` field. Specifying the latter
+     * adds findings to the one detected by the system. If built-in info type is
+     * not specified in `InspectContent.info_types` list then the name is treated
+     * as a custom info type.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.InfoType info_type = 1;</code>
      * @return \Google\Cloud\Dlp\V2\InfoType
@@ -88,8 +110,12 @@ class CustomInfoType extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * All CustomInfoTypes must have a name
-     * that does not conflict with built-in InfoTypes or other CustomInfoTypes.
+     * CustomInfoType can either be a new infoType, or an extension of built-in
+     * infoType, when the name matches one of existing infoTypes and that infoType
+     * is specified in `InspectContent.info_types` field. Specifying the latter
+     * adds findings to the one detected by the system. If built-in info type is
+     * not specified in `InspectContent.info_types` list then the name is treated
+     * as a custom info type.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.InfoType info_type = 1;</code>
      * @param \Google\Cloud\Dlp\V2\InfoType $var
@@ -267,6 +293,34 @@ class CustomInfoType extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Dlp\V2\CustomInfoType\DetectionRule::class);
         $this->detection_rules = $arr;
+
+        return $this;
+    }
+
+    /**
+     * If set to EXCLUSION_TYPE_EXCLUDE this infoType will not cause a finding
+     * to be returned. It still can be used for rules matching.
+     *
+     * Generated from protobuf field <code>.google.privacy.dlp.v2.CustomInfoType.ExclusionType exclusion_type = 8;</code>
+     * @return int
+     */
+    public function getExclusionType()
+    {
+        return $this->exclusion_type;
+    }
+
+    /**
+     * If set to EXCLUSION_TYPE_EXCLUDE this infoType will not cause a finding
+     * to be returned. It still can be used for rules matching.
+     *
+     * Generated from protobuf field <code>.google.privacy.dlp.v2.CustomInfoType.ExclusionType exclusion_type = 8;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setExclusionType($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\Dlp\V2\CustomInfoType_ExclusionType::class);
+        $this->exclusion_type = $var;
 
         return $this;
     }

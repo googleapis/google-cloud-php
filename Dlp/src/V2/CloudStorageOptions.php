@@ -9,14 +9,16 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Options defining a file or a set of files (path ending with *) within
- * a Google Cloud Storage bucket.
+ * Options defining a file or a set of files within a Google Cloud Storage
+ * bucket.
  *
  * Generated from protobuf message <code>google.privacy.dlp.v2.CloudStorageOptions</code>
  */
 class CloudStorageOptions extends \Google\Protobuf\Internal\Message
 {
     /**
+     * The set of one or more files to scan.
+     *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.CloudStorageOptions.FileSet file_set = 1;</code>
      */
     private $file_set = null;
@@ -65,6 +67,7 @@ class CloudStorageOptions extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\Dlp\V2\CloudStorageOptions\FileSet $file_set
+     *           The set of one or more files to scan.
      *     @type int|string $bytes_limit_per_file
      *           Max number of bytes to scan from a file. If a scanned file's size is bigger
      *           than this value then the rest of the bytes are omitted. Only one
@@ -91,6 +94,8 @@ class CloudStorageOptions extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * The set of one or more files to scan.
+     *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.CloudStorageOptions.FileSet file_set = 1;</code>
      * @return \Google\Cloud\Dlp\V2\CloudStorageOptions\FileSet
      */
@@ -100,6 +105,8 @@ class CloudStorageOptions extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * The set of one or more files to scan.
+     *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.CloudStorageOptions.FileSet file_set = 1;</code>
      * @param \Google\Cloud\Dlp\V2\CloudStorageOptions\FileSet $var
      * @return $this

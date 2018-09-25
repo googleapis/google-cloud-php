@@ -36,6 +36,21 @@ class ListDeidentifyTemplatesRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>int32 page_size = 3;</code>
      */
     private $page_size = 0;
+    /**
+     * Optional comma separated list of fields to order by,
+     * followed by `asc` or `desc` postfix. This list is case-insensitive,
+     * default sorting order is ascending, redundant space characters are
+     * insignificant.
+     * Example: `name asc,update_time, create_time desc`
+     * Supported fields are:
+     * - `create_time`: corresponds to time the template was created.
+     * - `update_time`: corresponds to time the template was last updated.
+     * - `name`: corresponds to template's name.
+     * - `display_name`: corresponds to template's display name.
+     *
+     * Generated from protobuf field <code>string order_by = 4;</code>
+     */
+    private $order_by = '';
 
     /**
      * Constructor.
@@ -52,6 +67,17 @@ class ListDeidentifyTemplatesRequest extends \Google\Protobuf\Internal\Message
      *     @type int $page_size
      *           Optional size of the page, can be limited by server. If zero server returns
      *           a page of max size 100.
+     *     @type string $order_by
+     *           Optional comma separated list of fields to order by,
+     *           followed by `asc` or `desc` postfix. This list is case-insensitive,
+     *           default sorting order is ascending, redundant space characters are
+     *           insignificant.
+     *           Example: `name asc,update_time, create_time desc`
+     *           Supported fields are:
+     *           - `create_time`: corresponds to time the template was created.
+     *           - `update_time`: corresponds to time the template was last updated.
+     *           - `name`: corresponds to template's name.
+     *           - `display_name`: corresponds to template's display name.
      * }
      */
     public function __construct($data = NULL) {
@@ -139,6 +165,50 @@ class ListDeidentifyTemplatesRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkInt32($var);
         $this->page_size = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional comma separated list of fields to order by,
+     * followed by `asc` or `desc` postfix. This list is case-insensitive,
+     * default sorting order is ascending, redundant space characters are
+     * insignificant.
+     * Example: `name asc,update_time, create_time desc`
+     * Supported fields are:
+     * - `create_time`: corresponds to time the template was created.
+     * - `update_time`: corresponds to time the template was last updated.
+     * - `name`: corresponds to template's name.
+     * - `display_name`: corresponds to template's display name.
+     *
+     * Generated from protobuf field <code>string order_by = 4;</code>
+     * @return string
+     */
+    public function getOrderBy()
+    {
+        return $this->order_by;
+    }
+
+    /**
+     * Optional comma separated list of fields to order by,
+     * followed by `asc` or `desc` postfix. This list is case-insensitive,
+     * default sorting order is ascending, redundant space characters are
+     * insignificant.
+     * Example: `name asc,update_time, create_time desc`
+     * Supported fields are:
+     * - `create_time`: corresponds to time the template was created.
+     * - `update_time`: corresponds to time the template was last updated.
+     * - `name`: corresponds to template's name.
+     * - `display_name`: corresponds to template's display name.
+     *
+     * Generated from protobuf field <code>string order_by = 4;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setOrderBy($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->order_by = $var;
 
         return $this;
     }

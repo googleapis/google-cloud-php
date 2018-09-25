@@ -42,9 +42,11 @@ class ListJobTriggersRequest extends \Google\Protobuf\Internal\Message
      * insignificant.
      * Example: `name asc,update_time, create_time desc`
      * Supported fields are:
-     * - `create_time`: corresponds to time the triggeredJob was created.
-     * - `update_time`: corresponds to time the triggeredJob was last updated.
+     * - `create_time`: corresponds to time the JobTrigger was created.
+     * - `update_time`: corresponds to time the JobTrigger was last updated.
      * - `name`: corresponds to JobTrigger's name.
+     * - `display_name`: corresponds to JobTrigger's display name.
+     * - `status`: corresponds to JobTrigger's status.
      *
      * Generated from protobuf field <code>string order_by = 4;</code>
      */
@@ -71,9 +73,11 @@ class ListJobTriggersRequest extends \Google\Protobuf\Internal\Message
      *           insignificant.
      *           Example: `name asc,update_time, create_time desc`
      *           Supported fields are:
-     *           - `create_time`: corresponds to time the triggeredJob was created.
-     *           - `update_time`: corresponds to time the triggeredJob was last updated.
+     *           - `create_time`: corresponds to time the JobTrigger was created.
+     *           - `update_time`: corresponds to time the JobTrigger was last updated.
      *           - `name`: corresponds to JobTrigger's name.
+     *           - `display_name`: corresponds to JobTrigger's display name.
+     *           - `status`: corresponds to JobTrigger's status.
      * }
      */
     public function __construct($data = NULL) {
@@ -170,9 +174,11 @@ class ListJobTriggersRequest extends \Google\Protobuf\Internal\Message
      * insignificant.
      * Example: `name asc,update_time, create_time desc`
      * Supported fields are:
-     * - `create_time`: corresponds to time the triggeredJob was created.
-     * - `update_time`: corresponds to time the triggeredJob was last updated.
+     * - `create_time`: corresponds to time the JobTrigger was created.
+     * - `update_time`: corresponds to time the JobTrigger was last updated.
      * - `name`: corresponds to JobTrigger's name.
+     * - `display_name`: corresponds to JobTrigger's display name.
+     * - `status`: corresponds to JobTrigger's status.
      *
      * Generated from protobuf field <code>string order_by = 4;</code>
      * @return string
@@ -189,9 +195,11 @@ class ListJobTriggersRequest extends \Google\Protobuf\Internal\Message
      * insignificant.
      * Example: `name asc,update_time, create_time desc`
      * Supported fields are:
-     * - `create_time`: corresponds to time the triggeredJob was created.
-     * - `update_time`: corresponds to time the triggeredJob was last updated.
+     * - `create_time`: corresponds to time the JobTrigger was created.
+     * - `update_time`: corresponds to time the JobTrigger was last updated.
      * - `name`: corresponds to JobTrigger's name.
+     * - `display_name`: corresponds to JobTrigger's display name.
+     * - `status`: corresponds to JobTrigger's status.
      *
      * Generated from protobuf field <code>string order_by = 4;</code>
      * @param string $var

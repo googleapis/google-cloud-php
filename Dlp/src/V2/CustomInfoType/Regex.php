@@ -16,7 +16,9 @@ use Google\Protobuf\Internal\GPBUtil;
 class Regex extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Pattern defining the regular expression.
+     * Pattern defining the regular expression. Its syntax
+     * (https://github.com/google/re2/wiki/Syntax) can be found under the
+     * google/re2 repository on GitHub.
      *
      * Generated from protobuf field <code>string pattern = 1;</code>
      */
@@ -29,7 +31,9 @@ class Regex extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $pattern
-     *           Pattern defining the regular expression.
+     *           Pattern defining the regular expression. Its syntax
+     *           (https://github.com/google/re2/wiki/Syntax) can be found under the
+     *           google/re2 repository on GitHub.
      * }
      */
     public function __construct($data = NULL) {
@@ -38,7 +42,9 @@ class Regex extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Pattern defining the regular expression.
+     * Pattern defining the regular expression. Its syntax
+     * (https://github.com/google/re2/wiki/Syntax) can be found under the
+     * google/re2 repository on GitHub.
      *
      * Generated from protobuf field <code>string pattern = 1;</code>
      * @return string
@@ -49,7 +55,9 @@ class Regex extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Pattern defining the regular expression.
+     * Pattern defining the regular expression. Its syntax
+     * (https://github.com/google/re2/wiki/Syntax) can be found under the
+     * google/re2 repository on GitHub.
      *
      * Generated from protobuf field <code>string pattern = 1;</code>
      * @param string $var

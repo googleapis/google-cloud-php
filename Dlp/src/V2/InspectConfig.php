@@ -71,6 +71,14 @@ class InspectConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.ContentOption content_options = 8;</code>
      */
     private $content_options;
+    /**
+     * Set of rules to apply to the findings for this InspectConfig.
+     * Exclusion rules, contained in the set are executed in the end, other
+     * rules are executed in the order they are specified for each info type.
+     *
+     * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.InspectionRuleSet rule_set = 10;</code>
+     */
+    private $rule_set;
 
     /**
      * Constructor.
@@ -105,6 +113,10 @@ class InspectConfig extends \Google\Protobuf\Internal\Message
      *     @type int[]|\Google\Protobuf\Internal\RepeatedField $content_options
      *           List of options defining data content to scan.
      *           If empty, text, images, and other content will be included.
+     *     @type \Google\Cloud\Dlp\V2\InspectionRuleSet[]|\Google\Protobuf\Internal\RepeatedField $rule_set
+     *           Set of rules to apply to the findings for this InspectConfig.
+     *           Exclusion rules, contained in the set are executed in the end, other
+     *           rules are executed in the order they are specified for each info type.
      * }
      */
     public function __construct($data = NULL) {
@@ -314,6 +326,36 @@ class InspectConfig extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::ENUM, \Google\Cloud\Dlp\V2\ContentOption::class);
         $this->content_options = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Set of rules to apply to the findings for this InspectConfig.
+     * Exclusion rules, contained in the set are executed in the end, other
+     * rules are executed in the order they are specified for each info type.
+     *
+     * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.InspectionRuleSet rule_set = 10;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getRuleSet()
+    {
+        return $this->rule_set;
+    }
+
+    /**
+     * Set of rules to apply to the findings for this InspectConfig.
+     * Exclusion rules, contained in the set are executed in the end, other
+     * rules are executed in the order they are specified for each info type.
+     *
+     * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.InspectionRuleSet rule_set = 10;</code>
+     * @param \Google\Cloud\Dlp\V2\InspectionRuleSet[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setRuleSet($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Dlp\V2\InspectionRuleSet::class);
+        $this->rule_set = $arr;
 
         return $this;
     }
