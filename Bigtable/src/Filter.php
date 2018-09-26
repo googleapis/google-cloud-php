@@ -51,7 +51,7 @@ use Google\Cloud\Bigtable\V2\RowFilter;
  *
  * True filters alter the input row by excluding some of its cells wholesale
  * from the output row. An example of a true filter is
- * {@see Google\Cloud\Bigtable\Filter\ValueFilter::regex()}, which excludes
+ * {@see Google\Cloud\Bigtable\Filter\Builder\ValueFilter::regex()}, which excludes
  * cells whose values don't match the specified pattern. All regex true filters
  * use [RE2 syntax](https://github.com/google/re2/wiki/Syntax) in raw byte mode
  * (RE2::Latin1), and are evaluated as full matches. An important point to keep
@@ -60,7 +60,7 @@ use Google\Cloud\Bigtable\V2\RowFilter;
  *
  * Transformers alter the input row by changing the values of some of its cells
  * in the output, without excluding them completely. An example of such a
- * transformer is {@see Google\Cloud\Bigtable\Filter\ValueFilter::strip()}.
+ * transformer is {@see Google\Cloud\Bigtable\Filter\Builder\ValueFilter::strip()}.
  *
  * The total serialized size of a filter message must not
  * exceed 4096 bytes, and filters may not be nested within each other
