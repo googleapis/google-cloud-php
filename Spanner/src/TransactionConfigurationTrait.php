@@ -172,8 +172,9 @@ trait TransactionConfigurationTrait
                 $field = $transactionOptions['readOnly'][$tsf];
                 if (!($field instanceof Timestamp)) {
                     throw new \BadMethodCallException(sprintf(
-                        'Read Only Transaction Configuration Field %s must be an instance of Timestamp',
-                        $tsf
+                        'Read Only Transaction Configuration Field %s must be an instance of `%s`.',
+                        $tsf,
+                        Timestamp::class
                     ));
                 }
 
@@ -186,8 +187,9 @@ trait TransactionConfigurationTrait
                 $field = $transactionOptions['readOnly'][$df];
                 if (!($field instanceof Duration)) {
                     throw new \BadMethodCallException(sprintf(
-                        'Read Only Transaction Configuration Field %s must be an instance of Duration',
-                        $df
+                        'Read Only Transaction Configuration Field %s must be an instance of `%s`.',
+                        $df,
+                        Duration::class
                     ));
                 }
 

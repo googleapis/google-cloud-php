@@ -18,7 +18,6 @@
 namespace Google\Cloud\Spanner\Tests\Unit;
 
 use Google\Cloud\Core\Testing\GrpcTestTrait;
-use Google\Cloud\Core\Testing\SpannerOperationRefreshTrait;
 use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Spanner\Connection\ConnectionInterface;
 use Google\Cloud\Spanner\Database;
@@ -28,6 +27,8 @@ use Google\Cloud\Spanner\Operation;
 use Google\Cloud\Spanner\Result;
 use Google\Cloud\Spanner\Session\Session;
 use Google\Cloud\Spanner\Session\SessionPoolInterface;
+use Google\Cloud\Spanner\Tests\OperationRefreshTrait;
+use Google\Cloud\Spanner\Tests\ResultGeneratorTrait;
 use Google\Cloud\Spanner\Timestamp;
 use Google\Cloud\Spanner\Transaction;
 use Google\Cloud\Spanner\ValueMapper;
@@ -40,7 +41,8 @@ use Prophecy\Argument;
 class TransactionTest extends TestCase
 {
     use GrpcTestTrait;
-    use SpannerOperationRefreshTrait;
+    use OperationRefreshTrait;
+    use ResultGeneratorTrait;
 
     const TIMESTAMP = '2017-01-09T18:05:22.534799Z';
 
@@ -204,6 +206,55 @@ class TransactionTest extends TestCase
         $this->assertEquals(10, $rows[0]['ID']);
     }
 
+    public function testExecuteUpdate()
+    {
+        $sql = 'UPDATE foo SET bar = @bar';
+        $this->connection->executeStreamingSql(Argument::allOf(
+            Argument::withEntry('sql', $sql),
+            Argument::withEntry('transactionId', self::TRANSACTION)
+        ))->shouldBeCalled()->willReturn($this->resultGenerator(true));
+
+        $this->refreshOperation($this->transaction, $this->connection->reveal());
+        $res = $this->transaction->executeUpdate($sql);
+
+        $this->assertEquals(1, $res);
+    }
+
+    public function testExecuteUpdateSeqno()
+    {
+        $sql = 'UPDATE foo SET bar = @bar';
+        $this->connection->executeStreamingSql(Argument::withEntry('seqno', 1))
+            ->shouldBeCalled()
+            ->willReturn($this->resultGenerator(true));
+
+        $this->refreshOperation($this->transaction, $this->connection->reveal());
+        $this->transaction->executeUpdate($sql);
+
+        $this->connection->executeStreamingSql(Argument::withEntry('seqno', 2))
+            ->shouldBeCalled()
+            ->willReturn($this->resultGenerator(true));
+
+        $this->refreshOperation($this->transaction, $this->connection->reveal());
+        $this->transaction->executeUpdate($sql);
+    }
+
+    /**
+     * @expectedException InvalidArgumentException
+     */
+    public function testExecuteUpdateNonDml()
+    {
+        $sql = 'UPDATE foo SET bar = @bar';
+        $this->connection->executeStreamingSql(Argument::allOf(
+            Argument::withEntry('sql', $sql),
+            Argument::withEntry('transactionId', self::TRANSACTION)
+        ))->shouldBeCalled()->willReturn($this->resultGenerator());
+
+        $this->refreshOperation($this->transaction, $this->connection->reveal());
+        $res = $this->transaction->executeUpdate($sql);
+
+        $this->assertEquals(1, $res);
+    }
+
     public function testRead()
     {
         $table = 'Table';
@@ -309,27 +360,6 @@ class TransactionTest extends TestCase
 
     // *******
     // Helpers
-
-    private function resultGenerator()
-    {
-        yield [
-            'metadata' => [
-                'rowType' => [
-                    'fields' => [
-                        [
-                            'name' => 'ID',
-                            'type' => [
-                                'code' => Database::TYPE_INT64
-                            ]
-                        ]
-                    ]
-                ]
-            ],
-            'values' => [
-                '10'
-            ]
-        ];
-    }
 
     private function commitResponse()
     {

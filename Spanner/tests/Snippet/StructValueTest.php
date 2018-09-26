@@ -20,7 +20,6 @@ namespace Google\Cloud\Spanner\Tests\Snippet;
 use Google\Cloud\Core\LongRunning\LongRunningConnectionInterface;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
-use Google\Cloud\Core\Testing\SpannerOperationRefreshTrait;
 use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Spanner\Admin\Instance\V1\InstanceAdminClient;
 use Google\Cloud\Spanner\Connection\ConnectionInterface;
@@ -29,6 +28,7 @@ use Google\Cloud\Spanner\Instance;
 use Google\Cloud\Spanner\Session\Session;
 use Google\Cloud\Spanner\Session\SessionPoolInterface;
 use Google\Cloud\Spanner\StructValue;
+use Google\Cloud\Spanner\Tests\OperationRefreshTrait;
 use Prophecy\Argument;
 
 /**
@@ -38,7 +38,7 @@ use Prophecy\Argument;
 class StructValueTest extends SnippetTestCase
 {
     use GrpcTestTrait;
-    use SpannerOperationRefreshTrait;
+    use OperationRefreshTrait;
 
     const PROJECT = 'my-awesome-project';
     const DATABASE = 'my-database';

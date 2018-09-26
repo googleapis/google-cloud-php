@@ -19,7 +19,6 @@ namespace Google\Cloud\Spanner\Tests\Snippet\Batch;
 
 use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
-use Google\Cloud\Core\Testing\SpannerOperationRefreshTrait;
 use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\PubSub\Connection\ConnectionInterface as PubSubConnectionInterface;
 use Google\Cloud\PubSub\PubSubClient;
@@ -29,6 +28,7 @@ use Google\Cloud\Spanner\Batch\QueryPartition;
 use Google\Cloud\Spanner\Connection\ConnectionInterface;
 use Google\Cloud\Spanner\Database;
 use Google\Cloud\Spanner\Operation;
+use Google\Cloud\Spanner\Tests\OperationRefreshTrait;
 use Google\Cloud\Spanner\Timestamp;
 use Prophecy\Argument;
 
@@ -39,7 +39,7 @@ use Prophecy\Argument;
 class BatchClientTest extends SnippetTestCase
 {
     use GrpcTestTrait;
-    use SpannerOperationRefreshTrait;
+    use OperationRefreshTrait;
 
     const DATABASE = 'projects/my-awesome-project/instances/my-instance/databases/my-database';
     const SESSION = 'projects/my-awesome-project/instances/my-instance/databases/my-database/sessions/session-id';

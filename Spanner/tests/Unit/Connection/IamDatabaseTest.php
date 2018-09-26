@@ -24,7 +24,7 @@ use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
 
 /**
- * @group spanneradmin
+ * @group spanner-admin
  * @group spanner
  */
 class IamDatabaseTest extends TestCase

@@ -19,7 +19,6 @@ namespace Google\Cloud\Spanner\Tests\Snippet;
 
 use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
-use Google\Cloud\Core\Testing\SpannerOperationRefreshTrait;
 use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Spanner\Connection\ConnectionInterface;
 use Google\Cloud\Spanner\Database;
@@ -27,6 +26,8 @@ use Google\Cloud\Spanner\KeySet;
 use Google\Cloud\Spanner\Operation;
 use Google\Cloud\Spanner\Result;
 use Google\Cloud\Spanner\Session\Session;
+use Google\Cloud\Spanner\Tests\OperationRefreshTrait;
+use Google\Cloud\Spanner\Tests\ResultGeneratorTrait;
 use Google\Cloud\Spanner\Timestamp;
 use Google\Cloud\Spanner\Transaction;
 use Google\Cloud\Spanner\ValueMapper;
@@ -38,7 +39,8 @@ use Prophecy\Argument;
 class TransactionTest extends SnippetTestCase
 {
     use GrpcTestTrait;
-    use SpannerOperationRefreshTrait;
+    use OperationRefreshTrait;
+    use ResultGeneratorTrait;
 
     const TRANSACTION = 'my-transaction';
 
@@ -83,6 +85,51 @@ class TransactionTest extends SnippetTestCase
         $snippet->addLocal('database', $database->reveal());
         $res = $snippet->invoke('transaction');
         $this->assertEquals('foo', $res->returnVal());
+    }
+
+    public function testExecute()
+    {
+        $this->connection->executeStreamingSql(Argument::any())
+            ->shouldBeCalled()
+            ->willReturn($this->resultGenerator());
+
+        $this->refreshOperation($this->transaction, $this->connection->reveal());
+
+        $snippet = $this->snippetFromMagicMethod(Transaction::class, 'execute');
+        $snippet->addLocal('transaction', $this->transaction);
+        $res = $snippet->invoke('result');
+
+        $this->assertInstanceOf(Result::class, $res->returnVal());
+    }
+
+    public function testExecuteUpdate()
+    {
+        $this->connection->executeStreamingSql(Argument::any())
+            ->shouldBeCalled()
+            ->willReturn($this->resultGenerator(true));
+
+        $this->refreshOperation($this->transaction, $this->connection->reveal());
+
+        $snippet = $this->snippetFromMethod(Transaction::class, 'executeUpdate');
+        $snippet->addLocal('transaction', $this->transaction);
+        $res = $snippet->invoke('modifiedRowCount');
+
+        $this->assertEquals(1, $res->returnVal());
+    }
+
+    public function testRead()
+    {
+        $this->connection->streamingRead(Argument::any())
+            ->shouldBeCalled()
+            ->willReturn($this->resultGenerator());
+
+        $this->refreshOperation($this->transaction, $this->connection->reveal());
+
+        $snippet = $this->snippetFromMagicMethod(Transaction::class, 'read');
+        $snippet->addLocal('transaction', $this->transaction);
+        $res = $snippet->invoke('result');
+
+        $this->assertInstanceOf(Result::class, $res->returnVal());
     }
 
     public function testId()
@@ -265,24 +312,5 @@ class TransactionTest extends SnippetTestCase
 
         $res = $snippet->invoke();
         $this->assertEquals('This is a retry transaction!', $res->output());
-    }
-
-    private function resultGenerator()
-    {
-        yield [
-            'metadata' => [
-                'rowType' => [
-                    'fields' => [
-                        [
-                            'name' => 'loginCount',
-                            'type' => [
-                                'code' => Database::TYPE_INT64
-                            ]
-                        ]
-                    ]
-                ]
-            ],
-            'values' => [0]
-        ];
     }
 }

@@ -20,6 +20,7 @@ namespace Google\Cloud\Spanner;
 use Google\Cloud\Core\Exception\AbortedException;
 use Google\Cloud\Spanner\Session\Session;
 use Google\Cloud\Spanner\Session\SessionPoolInterface;
+use Google\Cloud\Spanner\V1\ExecuteSqlRequest_QueryMode;
 use RuntimeException;
 
 /**
@@ -306,6 +307,67 @@ class Transaction implements TransactionalReadInterface
         $this->enqueue(Operation::OP_DELETE, $table, [$keySet]);
 
         return $this;
+    }
+
+    /**
+     * Execute a Cloud Spanner DML statement.
+     *
+     * Data Manipulation Language (DML) allows you to execute statements which
+     * modify the state of the database (i.e. inserting, updating or deleting
+     * rows).
+     *
+     * To execute a SQL query (such as a SELECT), use
+     * {@see Google\Cloud\Spanner\Transaction::execute()}.
+     *
+     * Mutations performed via DML will be visible to subsequent operations
+     * within the same transaction. In other words, unlike with other mutation
+     * methods provided, you can read your uncommitted writes. If a transaction
+     * is not committed (either because of a rollback or error), the DML writes
+     * will not be applied.
+     *
+     * Example:
+     * ```
+     * $modifiedRowCount = $transaction->executeUpdate('UPDATE Posts SET content = @content WHERE id = @id', [
+     *     'parameters' => [
+     *         'content' => 'Hello world!',
+     *         'id' => 10
+     *     ]
+     * ]);
+     *
+     * @codingStandardsIgnoreStart
+     * @see https://cloud.google.com/spanner/reference/rpc/google.spanner.v1#google.spanner.v1.ExecuteSqlRequest ExecuteSqlRequest
+     * @codingStandardsIgnoreEnd
+     *
+     * @param string $sql The query string to execute.
+     * @param array $options [optional] {
+     *     Configuration Options.
+     *
+     *     @type array $parameters A key/value array of Query Parameters, where
+     *           the key is represented in the query string prefixed by a `@`
+     *           symbol.
+     *     @type array $types A key/value array of Query Parameter types.
+     *           Generally, Google Cloud PHP can infer types. Explicit type
+     *           declarations are required in the case of struct parameters,
+     *           or when a null value exists as a parameter.
+     *           Accepted values for primitive types are defined as constants on
+     *           {@see Google\Cloud\Spanner\Database}, and are as follows:
+     *           `Database::TYPE_BOOL`, `Database::TYPE_INT64`,
+     *           `Database::TYPE_FLOAT64`, `Database::TYPE_TIMESTAMP`,
+     *           `Database::TYPE_DATE`, `Database::TYPE_STRING`,
+     *           `Database::TYPE_BYTES`. If the value is an array, use
+     *           {@see Google\Cloud\Spanner\ArrayType} to declare the array
+     *           parameter types. Likewise, for structs, use
+     *           {@see Google\Cloud\Spanner\StructType}.
+     * }
+     * @return int The number of rows modified.
+     */
+    public function executeUpdate($sql, array $options = [])
+    {
+        $options['seqno'] = $this->seqno;
+        $this->seqno++;
+
+        return $this->operation
+            ->executeUpdate($this->session, $this, $sql, $options);
     }
 
     /**

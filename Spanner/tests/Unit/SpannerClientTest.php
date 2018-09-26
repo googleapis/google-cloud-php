@@ -85,7 +85,7 @@ class SpannerClientTest extends TestCase
     }
 
     /**
-     * @group spanneradmin
+     * @group spanner-admin
      */
     public function testInstanceConfigurations()
     {
@@ -116,7 +116,7 @@ class SpannerClientTest extends TestCase
     }
 
     /**
-     * @group spanneradmin
+     * @group spanner-admin
      */
     public function testPagedInstanceConfigurations()
     {
@@ -156,7 +156,7 @@ class SpannerClientTest extends TestCase
     }
 
     /**
-     * @group spanneradmin
+     * @group spanner-admin
      */
     public function testInstanceConfiguration()
     {
@@ -167,7 +167,7 @@ class SpannerClientTest extends TestCase
     }
 
     /**
-     * @group spanneradmin
+     * @group spanner-admin
      */
     public function testCreateInstance()
     {
@@ -194,7 +194,7 @@ class SpannerClientTest extends TestCase
     }
 
     /**
-     * @group spanneradmin
+     * @group spanner-admin
      */
     public function testInstance()
     {
@@ -204,7 +204,7 @@ class SpannerClientTest extends TestCase
     }
 
     /**
-     * @group spanneradmin
+     * @group spanner-admin
      */
     public function testInstanceWithInstanceArray()
     {
@@ -213,7 +213,7 @@ class SpannerClientTest extends TestCase
     }
 
     /**
-     * @group spanneradmin
+     * @group spanner-admin
      */
     public function testInstances()
     {
@@ -238,7 +238,7 @@ class SpannerClientTest extends TestCase
     }
 
     /**
-     * @group spanneradmin
+     * @group spanner-admin
      */
     public function testResumeOperation()
     {

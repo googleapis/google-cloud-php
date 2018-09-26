@@ -19,7 +19,6 @@ namespace Google\Cloud\Spanner\Tests\Snippet;
 
 use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
-use Google\Cloud\Core\Testing\SpannerOperationRefreshTrait;
 use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Spanner\Connection\ConnectionInterface;
 use Google\Cloud\Spanner\Database;
@@ -29,6 +28,7 @@ use Google\Cloud\Spanner\Result;
 use Google\Cloud\Spanner\Session\Session;
 use Google\Cloud\Spanner\Snapshot;
 use Google\Cloud\Spanner\SpannerClient;
+use Google\Cloud\Spanner\Tests\OperationRefreshTrait;
 use Google\Cloud\Spanner\Timestamp;
 use Google\Cloud\Spanner\ValueMapper;
 use Prophecy\Argument;
@@ -39,7 +39,7 @@ use Prophecy\Argument;
 class SnapshotTest extends SnippetTestCase
 {
     use GrpcTestTrait;
-    use SpannerOperationRefreshTrait;
+    use OperationRefreshTrait;
 
     const TRANSACTION = 'my-transaction';
 

@@ -195,6 +195,43 @@ class Operation
     }
 
     /**
+     * Execute a DML statement and return an affected row count.
+     *
+     * @param Session $session The session in which the update operation should be executed.
+     * @param Transaction $transaction The transaction in which the operation should be executed.
+     * @param string $sql The SQL string to execute.
+     * @param array $options Configuration options.
+     * @return int
+     * @throws \InvalidArgumentException If the SQL string isn't an update operation.
+     */
+    public function executeUpdate(
+        Session $session,
+        Transaction $transaction,
+        $sql,
+        array $options = []
+    ) {
+        $res = $this->execute($session, $sql, [
+            'transactionId' => $transaction->id()
+        ] + $options);
+
+        // Iterate through the result to ensure we have query statistics available.
+        iterator_to_array($res->rows());
+
+        $stats = $res->stats();
+        if (!$stats) {
+            throw new \InvalidArgumentException(
+                'Partitioned DML response missing stats, possible due to non-DML statement as input.'
+            );
+        }
+
+        $statsItem = isset($options['statsItem'])
+            ? $options['statsItem']
+            : 'rowCountExact';
+
+        return $stats[$statsItem];
+    }
+
+    /**
      * Lookup rows in a database.
      *
      * @param Session $session The session in which to read data.

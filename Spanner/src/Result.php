@@ -17,11 +17,12 @@
 
 namespace Google\Cloud\Spanner;
 
-use Grpc;
 use Google\Cloud\Core\Exception\ServiceException;
 use Google\Cloud\Core\ExponentialBackoff;
 use Google\Cloud\Spanner\Session\Session;
 use Google\Cloud\Spanner\Session\SessionPoolInterface;
+use Google\Cloud\Spanner\V1\ExecuteSqlRequest\QueryMode;
+use Grpc;
 
 /**
  * Represent a Cloud Spanner lookup result (either read or executeSql).
@@ -45,6 +46,10 @@ class Result implements \IteratorAggregate
     const RETURN_NAME_VALUE_PAIR = 'nameValuePair';
     const RETURN_ASSOCIATIVE = 'associative';
     const RETURN_ZERO_INDEXED = 'zeroIndexed';
+
+    const MODE_NORMAL = QueryMode::NORMAL;
+    const MODE_PLAN = QueryMode::PLAN;
+    const MODE_PROFILE = QueryMode::PROFILE;
 
     /**
      * @var array
@@ -181,16 +186,20 @@ class Result implements \IteratorAggregate
                 $bufferedResults[] = $result;
                 $this->setResultData($result, $format);
 
+                $empty = false;
                 if (!isset($result['values']) || $this->columnCount === 0) {
-                    return;
+                    $empty = true;
                 }
 
                 $hasResumeToken = $this->isSetAndTrue($result, 'resumeToken');
                 if ($hasResumeToken || count($bufferedResults) >= self::BUFFER_RESULT_LIMIT) {
-                    list($yieldableRows, $chunkedResult) = $this->parseRowsFromBufferedResults($bufferedResults);
+                    $chunkedResult = null;
+                    if (!$empty) {
+                        list($yieldableRows, $chunkedResult) = $this->parseRowsFromBufferedResults($bufferedResults);
 
-                    foreach ($yieldableRows as $row) {
-                        yield $this->mapper->decodeValues($this->columns, $row, $format);
+                        foreach ($yieldableRows as $row) {
+                            yield $this->mapper->decodeValues($this->columns, $row, $format);
+                        }
                     }
 
                     // Now that we've yielded all available rows, flush the buffer.
@@ -290,8 +299,12 @@ class Result implements \IteratorAggregate
      * Get the query plan and execution statistics for the query that produced
      * this result set.
      *
-     * Stats are not returned by default and will not be accessible until the
-     * entire set of results has been iterated through.
+     * By default, statistics are returned by default only when executing a DML
+     * statement. To receive statistics for a SELECT statement, set
+     * `$options.queryMode` to `Result::MODE_PROFILE`, as demonstrated below.
+     *
+     * Setting `$options.queryMode` to `Result::MODE_PLAN` will return the query
+     * plan without any results or execution statistics information.
      *
      * Example:
      * ```
@@ -300,8 +313,10 @@ class Result implements \IteratorAggregate
      *
      * ```
      * // Executing a query with stats returned.
+     * use Google\Cloud\Spanner\Result;
+     *
      * $res = $database->execute('SELECT * FROM Posts', [
-     *     'queryMode' => 'PROFILE'
+     *     'queryMode' => Result::MODE_PROFILE
      * ]);
      * ```
      *
@@ -368,20 +383,27 @@ class Result implements \IteratorAggregate
         $shouldMergeValues = $this->isSetAndTrue($bufferedResults[0], 'chunkedValue');
 
         foreach ($bufferedResults as $key => $result) {
-            if ($key === 0) {
+            if ($key === 0 && isset($bufferedResults[0]['values'])) {
                 $values = $bufferedResults[0]['values'];
                 continue;
             }
 
+            $resultValues = isset($result['values'])
+                ? $result['values']
+                : [];
+
             $values = $shouldMergeValues
-                ? $this->mergeValues($values, $result['values'])
-                : array_merge($values, $result['values']);
+                ? $this->mergeValues($values, $resultValues)
+                : array_merge($values, $resultValues);
+
             $shouldMergeValues = $this->isSetAndTrue($result, 'chunkedValue')
                 ? true
                 : false;
         }
 
-        $yieldableRows = array_chunk($values, $this->columnCount);
+        $yieldableRows = $values && $this->columnCount > 0
+            ? array_chunk($values, $this->columnCount)
+            : [];
 
         if ($this->isSetAndTrue($result, 'chunkedValue')) {
             $chunkedResult = [

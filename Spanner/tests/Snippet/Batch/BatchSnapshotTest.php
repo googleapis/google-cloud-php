@@ -19,7 +19,6 @@ namespace Google\Cloud\Spanner\Tests\Snippet\Batch;
 
 use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
-use Google\Cloud\Core\Testing\SpannerOperationRefreshTrait;
 use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Spanner\Batch\BatchClient;
 use Google\Cloud\Spanner\Batch\BatchSnapshot;
@@ -31,8 +30,9 @@ use Google\Cloud\Spanner\Database;
 use Google\Cloud\Spanner\Operation;
 use Google\Cloud\Spanner\Result;
 use Google\Cloud\Spanner\Session\Session;
+use Google\Cloud\Spanner\Tests\OperationRefreshTrait;
 use Google\Cloud\Spanner\Timestamp;
-use Google\Cloud\Spanner\V1\Gapic\SpannerGapicClient;
+use Google\Cloud\Spanner\V1\SpannerClient;
 use Prophecy\Argument;
 
 /**
@@ -42,7 +42,7 @@ use Prophecy\Argument;
 class BatchSnapshotTest extends SnippetTestCase
 {
     use GrpcTestTrait;
-    use SpannerOperationRefreshTrait;
+    use OperationRefreshTrait;
 
     const DATABASE = 'projects/my-awesome-project/instances/my-instance/databases/my-database';
     const SESSION = 'projects/my-awesome-project/instances/my-instance/databases/my-database/sessions/session-id';
@@ -59,7 +59,7 @@ class BatchSnapshotTest extends SnippetTestCase
 
         $this->connection = $this->prophesize(ConnectionInterface::class);
 
-        $sessData = SpannerGapicClient::parseName(self::SESSION, 'session');
+        $sessData = SpannerClient::parseName(self::SESSION, 'session');
         $this->session = $this->prophesize(Session::class);
         $this->session->name()->willReturn(self::SESSION);
         $this->session->info()->willReturn($sessData + [
