@@ -28,7 +28,7 @@ use Google\Cloud\Bigtable\V2\TimestampRange;
  * ```
  * use Google\Cloud\Bigtable\Filter;
  *
- * $rangeFilter = Filter::timestramp()
+ * $rangeFilter = Filter::timestamp()
  *     ->range();
  * ```
  */

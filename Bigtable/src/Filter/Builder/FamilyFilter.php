@@ -64,7 +64,7 @@ class FamilyFilter
      *
      * Example:
      * ```
-     * $familyFilter = $builder->exectMatch('cf1');
+     * $familyFilter = $builder->exactMatch('cf1');
      * ```
      *
      * @param string $value An exact value to match.

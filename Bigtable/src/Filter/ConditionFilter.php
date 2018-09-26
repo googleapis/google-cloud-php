@@ -28,7 +28,7 @@ use Google\Cloud\Bigtable\V2\RowFilter\Condition;
  * ```
  * use Google\Cloud\Bigtable\Filter;
  *
- * $conditionFilter = Filter::condition();
+ * $conditionFilter = Filter::condition(Filter::key()->regex('prefix.*'));
  * ```
  */
 class ConditionFilter implements FilterInterface
