@@ -65,7 +65,7 @@ class ValueFilter
      *
      * Example:
      * ```
-     * $valueFilter = $builder->exactMatch('my-value');
+     * $valueFilter = $builder->exactMatch('value1');
      * ```
      *
      * @param string $value An exact value to match.

@@ -57,7 +57,7 @@ class ValueFilterTest extends SnippetTestCase
         $snippet = $this->snippetFromMethod(ValueFilter::class, 'exactMatch');
         $snippet->addLocal('builder', $this->builder);
         $res = $snippet->invoke('valueFilter');
-        $rowFilter = (new RowFilter)->setValueRegexFilter('my-value');
+        $rowFilter = (new RowFilter)->setValueRegexFilter('value1');
         $this->assertEquals($rowFilter, $res->returnVal()->toProto());
     }
 
