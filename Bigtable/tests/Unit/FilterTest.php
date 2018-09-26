@@ -18,17 +18,18 @@
 namespace Google\Cloud\Bigtable\Tests\Unit;
 
 use Google\Cloud\Bigtable\Filter;
-use Google\Cloud\Bigtable\Filter\ChainFilter;
-use Google\Cloud\Bigtable\Filter\ConditionFilter;
+
 use Google\Cloud\Bigtable\Filter\Builder\FamilyFilter;
-use Google\Cloud\Bigtable\Filter\InterleaveFilter;
 use Google\Cloud\Bigtable\Filter\Builder\KeyFilter;
 use Google\Cloud\Bigtable\Filter\Builder\LimitFilter;
 use Google\Cloud\Bigtable\Filter\Builder\OffsetFilter;
 use Google\Cloud\Bigtable\Filter\Builder\QualifierFilter;
-use Google\Cloud\Bigtable\Filter\SimpleFilter;
 use Google\Cloud\Bigtable\Filter\Builder\TimestampFilter;
 use Google\Cloud\Bigtable\Filter\Builder\ValueFilter;
+use Google\Cloud\Bigtable\Filter\ChainFilter;
+use Google\Cloud\Bigtable\Filter\ConditionFilter;
+use Google\Cloud\Bigtable\Filter\InterleaveFilter;
+use Google\Cloud\Bigtable\Filter\SimpleFilter;
 use Google\Cloud\Bigtable\V2\RowFilter;
 use PHPUnit\Framework\TestCase;
 use stdClass;
