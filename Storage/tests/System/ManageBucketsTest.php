@@ -17,6 +17,8 @@
 
 namespace Google\Cloud\Storage\Tests\System;
 
+use Google\Cloud\Storage\Bucket;
+
 /**
  * @group storage
  * @group storage-bucket
@@ -69,6 +71,23 @@ class ManageBucketsTest extends StorageTestCase
         $this->assertEquals($options['versioning'], $bucket->info()['versioning']);
     }
 
+    public function testCreatesBucketWithLifeycleBuilder()
+    {
+        $lifecycle = Bucket::lifecycle()
+            ->addDeleteRule([
+                'age' => 500
+            ]);
+        $name = uniqid(self::TESTING_PREFIX);
+        $this->assertFalse(self::$client->bucket($name)->exists());
+        $bucket = self::createBucket(self::$client, $name, [
+            'lifecycle' => $lifecycle
+        ]);
+
+        $this->assertTrue(self::$client->bucket($name)->exists());
+        $this->assertEquals($name, $bucket->name());
+        $this->assertEquals($lifecycle->toArray(), $bucket->info()['lifecycle']);
+    }
+
     public function testUpdateBucket()
     {
         $options = [
@@ -80,6 +99,32 @@ class ManageBucketsTest extends StorageTestCase
         $info = self::$bucket->update($options);
 
         $this->assertEquals($options['website'], $info['website']);
+    }
+
+    public function testUpdateBucketWithLifecycleBuilder()
+    {
+        $lifecycle = self::$bucket->currentLifecycle()
+            ->addDeleteRule([
+                'age' => 500
+            ]);
+        $info = self::$bucket->update(['lifecycle' => $lifecycle]);
+
+        $this->assertEquals($lifecycle->toArray(), $info['lifecycle']);
+
+        $lifecycle = self::$bucket->currentLifecycle()
+            ->addDeleteRule([
+                'age' => 1000
+            ]);
+        $info = self::$bucket->update(['lifecycle' => $lifecycle]);
+
+        $this->assertEquals($lifecycle->toArray(), $info['lifecycle']);
+
+        $lifecycle = self::$bucket->currentLifecycle()
+            ->clearRules('Delete');
+        $info = self::$bucket->update(['lifecycle' => $lifecycle]);
+
+        $this->assertEmpty($lifecycle->toArray());
+        $this->assertArrayNotHasKey('lifecycle', $info);
     }
 
     public function testReloadBucket()

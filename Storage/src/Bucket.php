@@ -779,7 +779,7 @@ class Bucket
      *           configuration.
      *     @type array $defaultObjectAcl Default access controls to apply to new
      *           objects when no ACL is provided.
-     *     @type array $lifecycle The bucket's lifecycle configuration.
+     *     @type array|Lifecycle $lifecycle The bucket's lifecycle configuration.
      *     @type array $logging The bucket's logging configuration, which
      *           defines the destination bucket and optional name prefix for the
      *           current bucket's logs.
@@ -810,6 +810,10 @@ class Bucket
      */
     public function update(array $options = [])
     {
+        if (isset($options['lifecycle']) && $options['lifecycle'] instanceof Lifecycle) {
+            $options['lifecycle'] = $options['lifecycle']->toArray();
+        }
+
         return $this->info = $this->connection->patchBucket($options + $this->identity);
     }
 
@@ -986,6 +990,89 @@ class Bucket
     public function name()
     {
         return $this->identity['bucket'];
+    }
+
+    /**
+     * Retrieves a fresh lifecycle builder. If a lifecyle configuration already
+     * exists on the target bucket and this builder is used, it will fully
+     * replace the configuration with the rules provided by this builder.
+     *
+     * This builder is intended to be used in tandem with
+     * {@see Google\Cloud\Storage\StorageClient::createBucket()} and
+     * {@see Google\Cloud\Storage\Bucket::update()}.
+     *
+     * Example:
+     * ```
+     * use Google\Cloud\Storage\Bucket;
+     *
+     * $lifecycle = Bucket::lifecycle()
+     *     ->addDeleteRule([
+     *         'age' => 50,
+     *         'isLive' => true
+     *     ]);
+     * $bucket->update([
+     *     'lifecycle' => $lifecycle
+     * ]);
+     * ```
+     *
+     * @see https://cloud.google.com/storage/docs/lifecycle Object Lifecycle Management API Documentation
+     *
+     * @param array $lifecycle [optional] A lifecycle configuration. Please see
+     *        [here](https://cloud.google.com/storage/docs/json_api/v1/buckets#lifecycle)
+     *        for the expected structure.
+     * @return Lifecycle
+     */
+    public static function lifecycle(array $lifecycle = [])
+    {
+        return new Lifecycle($lifecycle);
+    }
+
+    /**
+     * Retrieves a lifecycle builder preconfigured with the lifecycle rules that
+     * already exists on the bucket. Use this if you want to make updates to an
+     * existing configuration without removing existing rules, as would be the
+     * case when using {@see Google\Cloud\Storage\Bucket::lifecycle()}.
+     *
+     * This builder is intended to be used in tandem with
+     * {@see Google\Cloud\Storage\StorageClient::createBucket()} and
+     * {@see Google\Cloud\Storage\Bucket::update()}.
+     *
+     * Please note, this method may trigger a network request in order to fetch
+     * the existing lifecycle rules from the server.
+     *
+     * Example:
+     * ```
+     * $lifecycle = $bucket->currentLifecycle()
+     *     ->addDeleteRule([
+     *         'age' => 50,
+     *         'isLive' => true
+     *     ]);
+     * $bucket->update([
+     *     'lifecycle' => $lifecycle
+     * ]);
+     * ```
+     *
+     * ```
+     * // Iterate over existing rules.
+     * $lifecycle = $bucket->currentLifecycle();
+     *
+     * foreach ($lifecycle as $rule) {
+     *     print_r($rule);
+     * }
+     * ```
+     *
+     * @see https://cloud.google.com/storage/docs/lifecycle Object Lifecycle Management API Documentation
+     *
+     * @param array $options [optional] Configuration options.
+     * @return Lifecycle
+     */
+    public function currentLifecycle(array $options = [])
+    {
+        return self::lifecycle(
+            isset($this->info($options)['lifecycle'])
+                ? $this->info['lifecycle']
+                : []
+        );
     }
 
     /**

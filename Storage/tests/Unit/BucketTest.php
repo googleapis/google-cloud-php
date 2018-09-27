@@ -26,6 +26,7 @@ use Google\Cloud\PubSub\Topic;
 use Google\Cloud\Storage\Acl;
 use Google\Cloud\Storage\Bucket;
 use Google\Cloud\Storage\Connection\Rest;
+use Google\Cloud\Storage\Lifecycle;
 use Google\Cloud\Storage\Notification;
 use Google\Cloud\Storage\StorageObject;
 use Prophecy\Argument;
@@ -313,6 +314,31 @@ class BucketTest extends TestCase
         $this->assertTrue($bucket->info()['versioning']['enabled']);
     }
 
+    public function testUpdatesDataWithLifecycleBuilder()
+    {
+        $lifecycleArr = ['test' => 'test'];
+        $lifecycle = $this->prophesize(Lifecycle::class);
+        $lifecycle->toArray()
+            ->willReturn($lifecycleArr);
+        $this->connection
+            ->patchBucket([
+                'userProject' => null,
+                'bucket' => self::BUCKET_NAME,
+                'lifecycle' => $lifecycleArr
+            ])
+            ->willReturn([
+                'lifecycle' => $lifecycleArr
+            ]);
+        $bucket = $this->getBucket();
+
+        $this->assertEquals(
+            $lifecycleArr,
+            $bucket->update(
+                ['lifecycle' => $lifecycle->reveal()]
+            )['lifecycle']
+        );
+    }
+
     public function testGetsInfo()
     {
         $bucketInfo = [
@@ -345,6 +371,37 @@ class BucketTest extends TestCase
         $bucket = $this->getBucket();
 
         $this->assertEquals(self::BUCKET_NAME, $bucket->name());
+    }
+
+    public function testLifecycle()
+    {
+        $this->assertInstanceOf(Lifecycle::class, Bucket::lifecycle());
+    }
+
+    public function testCurrentLifecycle()
+    {
+        $this->connection
+            ->getBucket(Argument::any())
+            ->willReturn(['lifecycle' => ['test' => 'test']]);
+
+        $this->assertInstanceOf(
+            Lifecycle::class,
+            $this->getBucket()->currentLifecycle()
+        );
+    }
+
+    public function testCurrentLifecycleWithCachedData()
+    {
+        $this->connection
+            ->getBucket(Argument::any())
+            ->shouldNotBeCalled();
+
+        $this->assertInstanceOf(
+            Lifecycle::class,
+            $this->getBucket([
+                'lifecycle' => ['test' => ['test']]
+            ])->currentLifecycle()
+        );
     }
 
     public function testIsWritable()
