@@ -20,6 +20,7 @@ namespace Google\Cloud\Bigtable;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\Serializer;
 use Google\Cloud\Bigtable\Exception\BigtableDataOperationException;
+use Google\Cloud\Bigtable\Filter\FilterInterface;
 use Google\Cloud\Bigtable\V2\BigtableClient as TableClient;
 use Google\Cloud\Bigtable\V2\RowRange;
 use Google\Cloud\Bigtable\V2\RowSet;
@@ -241,7 +242,9 @@ class DataClient
      *           associative array which may contain a start key
      *           (`startKeyClosed` or `startKeyOpen`) and/or an end key
      *           (`endKeyOpen` or `endKeyClosed`).
-     *     @type filter $filter A {@see Google\Cloud\Bigtable\Filter\FilterInterface} object to filter the rows.
+     *     @type FilterInterface $filter A filter used to take an input row and produce an alternate view of the row
+     *           based on the specified rules. To learn more please see {@see Google\Cloud\Bigtable\Filter} which
+     *           provides static factory methods for the various filter types.
      *     @type int $rowsLimit The number of rows to scan.
      * }
      * @return ChunkFormatter
