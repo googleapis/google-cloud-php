@@ -241,6 +241,7 @@ class DataClient
      *           associative array which may contain a start key
      *           (`startKeyClosed` or `startKeyOpen`) and/or an end key
      *           (`endKeyOpen` or `endKeyClosed`).
+     *     @type filter $filter A {@see Google\Cloud\Bigtable\Filter\FilterInterface} object to filter the rows.
      *     @type int $rowsLimit The number of rows to scan.
      * }
      * @return ChunkFormatter
@@ -249,6 +250,7 @@ class DataClient
     {
         $rowKeys = $this->pluck('rowKeys', $options, false) ?: [];
         $ranges = $this->pluck('rowRanges', $options, false) ?: [];
+        $filter = $this->pluck('filter', $options, false) ?: null;
 
         array_walk($ranges, function (&$range) {
             $range = $this->serializer->decodeMessage(
@@ -256,7 +258,9 @@ class DataClient
                 $range
             );
         });
-
+        if (is_string($rowKeys)) {
+            $rowKeys = [$rowKeys];
+        }
         if ($ranges || $rowKeys) {
             $options['rows'] = $this->serializer->decodeMessage(
                 new RowSet,
@@ -265,6 +269,10 @@ class DataClient
                     'rowRanges' => $ranges
                 ]
             );
+        }
+
+        if ($filter !== null) {
+            $options['filter'] = $filter->toProto();
         }
 
         $serverStream = $this->bigtableClient->readRows(
