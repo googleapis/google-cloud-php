@@ -261,8 +261,13 @@ class DataClient
                 $range
             );
         });
-        if (is_string($rowKeys)) {
-            $rowKeys = [$rowKeys];
+        if (!is_array($rowKeys)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    'Expected rowKeys to be of array, instead got \'%s\'.',
+                    gettype($rowKeys)
+                )
+            );
         }
         if ($ranges || $rowKeys) {
             $options['rows'] = $this->serializer->decodeMessage(

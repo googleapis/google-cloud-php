@@ -42,7 +42,7 @@ class InterleaveFilterTest extends FilterTest
         $rows = iterator_to_array(
             self::$dataClient->readRows(
                 [
-                    'rowKeys' => 'rk1',
+                    'rowKeys' => ['rk1'],
                     'filter' => $rowFilter
                 ]
             )->readAll()
